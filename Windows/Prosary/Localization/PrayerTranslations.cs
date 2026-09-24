@@ -26,8 +26,31 @@ public static partial class PrayerTranslations
     {
         var unpointed = HebrewDisplayText.WithoutMarks(title);
         if (Models.LanguageCatalog.FallbackChain(languageCode).FirstOrDefault() != "arc") return unpointed;
+        var pairs = PrayerPackStore.AramaicTitlePairs(bundleId).ToArray();
+        var definition = PrayerPackStore.Definition(bundleId);
+        var ordinalKeys = new[] { definition?.Decades?.OrdinalNounKey }
+            .Concat(definition?.Variants?.Select(variant => variant.Decades?.OrdinalNounKey) ?? []);
+        var ordinalNouns = ordinalKeys.OfType<string>().SelectMany(key => new[]
+            { PrayerPackStore.ResolveBodyText(bundleId, "arc", key), PrayerPackStore.Transliteration(bundleId, "arc", key) })
+            .OfType<string>().Select(HebrewDisplayText.WithoutMarks).ToHashSet(StringComparer.Ordinal);
+        if (unpointed.Contains(" — ", StringComparison.Ordinal))
+        {
+            var parts = unpointed.Split(" — ");
+            bool IsPaired(string value) => pairs.Any(pair =>
+                HebrewDisplayText.WithoutMarks(pair.Item1) == value || HebrewDisplayText.WithoutMarks(pair.Item2) == value);
+            // Recognize the authored ordinal/mystery caption, preserving personal dash titles.
+            if (parts.Length is < 2 or > 3) return unpointed;
+            bool IsOrdinal(string value)
+            {
+                var suffix = System.Text.RegularExpressions.Regex.Match(value, @" \d+$");
+                return suffix.Success && ordinalNouns.Contains(value[..suffix.Index]);
+            }
+            var ordinalIndex = IsOrdinal(parts[^1]) ? parts.Length - 1 : parts.Length - 2;
+            if (!IsOrdinal(parts[ordinalIndex]) || (ordinalIndex != parts.Length - 1 && !IsPaired(parts[^1]))) return unpointed;
+            return string.Join(" — ", parts.Select(part => FlowTitle(part, languageCode, sourceScript, bundleId)));
+        }
         var desiredScript = sourceScript ? Services.PrayerTypography.Script.Syriac : Services.PrayerTypography.Script.Hebrew;
-        foreach (var (text, readingAid) in PrayerPackStore.AramaicTitlePairs(bundleId))
+        foreach (var (text, readingAid) in pairs)
         {
             var primary = HebrewDisplayText.WithoutMarks(text);
             var alternate = HebrewDisplayText.WithoutMarks(readingAid);
@@ -39,7 +62,9 @@ public static partial class PrayerTranslations
             {
                 if (!unpointed.StartsWith(candidate, StringComparison.Ordinal)) continue;
                 var suffix = unpointed[candidate.Length..];
-                if (suffix.Length != 0 && !IsAramaicTitleCounter(suffix)) continue;
+                if (suffix.Length != 0 && !IsAramaicTitleCounter(suffix)
+                    && !(ordinalNouns.Contains(candidate)
+                        && System.Text.RegularExpressions.Regex.IsMatch(suffix, @"^ \d+$"))) continue;
                 var heading = primaryScript == desiredScript ? primary : alternate;
                 return heading + AramaicTitleSuffix(suffix, sourceScript);
             }

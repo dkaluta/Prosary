@@ -59,6 +59,8 @@ SUPPLIED_PESHITTA_URL = (
 SUPPLIED_PESHITTA_SHA256 = "4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88"
 REVIEWED_ISAIAH_VERSES = frozenset({(7, 14), (9, 2), (11, 2), (11, 3), (11, 4),
                                      (11, 5), (11, 10), (22, 22), (28, 16)})
+TORRES_AMAT_ISAIAH_PATH = CONTENT / "spanish-torres-amat-1836-isaiah.json"
+TORRES_AMAT_ISAIAH_SHA256 = "95b69a5ca11facc9eeaeee306db7ab2fe6ebbc7cda04be1435717be3be37726f"
 
 # Which book each Latin abbreviation in the bundles names. "ot"/"nt" only picks the source file;
 # nothing else depends on the testament.
@@ -149,17 +151,20 @@ LANGUAGES = {
         # Félix Torres Amat's Spanish Bible (1836), translated from the Vulgate — which is why it
         # is the right one here: every citation in this app is Vulgate chapter-and-verse, so no
         # versification map is needed. Public domain by age (Torres Amat died 1847); Wikisource
-        # transcribes it from the volume scans, and only the New Testament volumes (XIII–XV) have
-        # been transcribed, so Isaiah is absent and the O Antiphons' readings stay empty.
+        # transcribes its New Testament volumes (XIII–XV). The nine Isaiah verses below are
+        # independently transcribed from volume IX, with exact page evidence and a pinned hash.
         "sources": {
             "nt": ("https://es.wikisource.org/w/api.php?action=parse&page={book}"
                    "&prop=text&format=json",
                    "wikisource", "La Sagrada Biblia, Félix Torres Amat (1836), public domain"),
+            "ot": ("https://archive.org/details/lasagradabiblian10torr",
+                   "reviewed-torres-amat", "La Sagrada Biblia, Félix Torres Amat, tomo IX (1836), public domain"),
         },
         "primary_script": None,
         "second_script": None,
         "books": {"Matthew": ("San Mateo",), "Mark": ("San Marcos",), "Luke": ("San Lucas",),
-                  "John": ("San Juan",), "Acts": ("Hechos",), "Revelation": ("Apocalipsis",)},
+                  "John": ("San Juan",), "Acts": ("Hechos",), "Revelation": ("Apocalipsis",),
+                  "Isaiah": ("Isaías",)},
         "edition": ("Torres Amat",),
         "file_names": {
             "Matthew": "La Sagrada Biblia (XIII)/Mateo",
@@ -290,6 +295,18 @@ def fetch(language: str, testament: str, book: str, binary: bool = False):
 def verses(language: str, testament: str, book: str) -> dict:
     """(chapter, verse) -> text, in whatever layout this language's source uses."""
     layout = LANGUAGES[language]["sources"][testament][1]
+    if layout == "reviewed-torres-amat":
+        raw = TORRES_AMAT_ISAIAH_PATH.read_bytes()
+        if hashlib.sha256(raw).hexdigest() != TORRES_AMAT_ISAIAH_SHA256:
+            raise ValueError("The reviewed Torres Amat Isaiah source changed; review before updating its hash")
+        source = json.loads(raw)
+        if book != "Isaiah" or source["edition"]["id"] != "torres-amat-1836-isaiah":
+            raise ValueError("The reviewed Torres Amat corpus covers only Isaiah")
+        table = {(int(chapter), int(verse)): text for chapter, rows in source["verses"][book].items()
+                 for verse, text in rows.items()}
+        if set(table) != REVIEWED_ISAIAH_VERSES or any(not text.strip() for text in table.values()):
+            raise ValueError("The reviewed Torres Amat Isaiah selection is incomplete")
+        return table
     if layout == "peshitta-tei":
         return parse_pointed_peshitta(fetch(language, testament, book), book)
     if layout == "peshitta-supplied-xml":
@@ -802,8 +819,10 @@ NOTES = {
            "Shared/tools/import-scripture.py — re-run it rather than editing these by hand. "
            "Torres Amat translated the Vulgate, so its chapter-and-verse is the same one these "
            "devotions cite and no versification map is needed. Spelling and accentuation are the "
-           "1836 printing's own. Old Testament readings are absent: only the New Testament "
-           "volumes of it have been transcribed from the scans."),
+           "1836 printing's own. The New Testament follows Wikisource's transcription. "
+           "Nine Isaiah verses are independently transcribed and visually checked against "
+           "volume IX (https://archive.org/details/lasagradabiblian10torr); exact pages and "
+           "source checksum are recorded in Shared/content/spanish-torres-amat-1836-isaiah.json."),
     "el": ("Scripture imported from the Byzantine Majority Text (Robinson-Pierpont, public domain) "
            "and Brenton's Septuagint (eBible.org grcbrent, public domain) by "
            "Shared/tools/import-scripture.py — re-run it rather than editing these by hand. "
@@ -831,6 +850,8 @@ def render(language: str, built: dict, existing: dict) -> dict:
         "prayerKeys": sorted(built["prayers"]),
         "mysteryKeys": sorted(built["mysteries"]),
     }
+    if language == "es" and any(key.startswith("o") and key.endswith("Lectio") for key in built["prayers"]):
+        out["$scriptureImport"]["isaiahSourceSHA256"] = TORRES_AMAT_ISAIAH_SHA256
     prayers = out.setdefault("prayers", {})
     prayers.update(built["prayers"])
     if built["transliterations"]:

@@ -296,11 +296,17 @@ struct CustomDevotionDefinition: Decodable {
     /// Optional grouping label for the Montfort-style structure ("First Week: Knowledge of
     /// Self"), shown as period context by the day picker.
     let period: String?
+    let periodByLanguage: [String: String]?
     let steps: [CustomDevotionStep]
 
     var localizedName: String {
       let uiLanguage = UILanguage.current
       return HebrewDisplayText.unpointed(nameByLanguage?[uiLanguage] ?? name)
+    }
+
+    var localizedPeriod: String? {
+      let value = periodByLanguage?[UILanguage.current] ?? period
+      return value.map(HebrewDisplayText.unpointed)
     }
   }
 
@@ -573,6 +579,7 @@ enum PrayerPackStore {
   private static var prayerTransliterations: [String: [PrayerKey: String]] = [:]
   private static let sharedPrayerTitleKeys: Set<String> = [
     "signumCrucisTitle", "symbolumApostolorumTitle", "paterNosterTitle", "aveMariaTitle", "gloriaPatriTitle",
+    "mysteryGroupJoyfulTitle", "mysteryGroupSorrowfulTitle", "mysteryGroupGloriousTitle", "mysteryGroupLuminousTitle",
   ]
   private static var mysteryOverrides: [String: [String: MysteryTextOverride]] = [:]
   /// Image locations in pack-load order. Keeping the stack preserves the ordinary last-loaded
@@ -1020,13 +1027,18 @@ enum PrayerPackStore {
       if $0.hasSuffix("Title") != $1.hasSuffix("Title") { return $0.hasSuffix("Title") }
       return $0 < $1
     }
-    return keys.compactMap { key in
+    let prayerPairs: [(original: String, alternate: String)] = keys.compactMap { key in
       let pair = localText(bundleId: bundleId, contentCode: "arc", key: key)
         ?? (sharedPrayerTitleKeys.contains(key) ? localText(bundleId: "rosary", contentCode: "arc", key: key) : nil)
       guard let pair, let alternate = pair.transliteration,
             !pair.text.isEmpty, !alternate.isEmpty else { return nil }
       return (pair.text, alternate)
     }
+    let mysteryPairs = (mysteryOverrides["arc"] ?? [:]).sorted { $0.key < $1.key }.compactMap { entry -> (original: String, alternate: String)? in
+      guard let title = entry.value.title, let alternate = entry.value.transliteratedTitle else { return nil }
+      return (title, alternate)
+    }
+    return prayerPairs + mysteryPairs
   }
 
   #if DEBUG

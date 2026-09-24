@@ -602,6 +602,25 @@ final class CustomDevotionEngineTests: XCTestCase {
 
   // MARK: - Seven Sorrows (rosary type, 7×7)
 
+  func testAramaicCustomMysteriesCarryTheirMatchingScriptAndNarrativeKind() throws {
+    for (bundle, key, noun, scripture) in [
+      ("franciscanCrown", "franciscan_04_adoration_of_the_magi", "ܚܕܘܬܐ", true),
+      ("sevenSorrows", "seven_sorrows_04_meeting_jesus_on_the_way_of_the_cross", "ܚܫܐ", false),
+    ] {
+      let mystery = MysteryTranslations.get(languageCode: "arc", imageKey: key)
+      XCTAssertNotEqual(PrayerPackStore.effectiveLanguage(for: bundle, chosen: "arc"), "arc",
+        "a partial overlay must not promise a complete Aramaic session")
+      let flow = PrayerEngine(calendar: FixedLiturgicalCalendar()).buildCustomDevotionSteps(bundleId: bundle, languageCode: "arc")
+      let announcement = try XCTUnwrap(flow.first { $0.title == mystery.title })
+      XCTAssertEqual(announcement.isScripture, scripture)
+      XCTAssertTrue(announcement.transliteratedBody?.hasPrefix(try XCTUnwrap(mystery.transliteratedDescription)) == true)
+      XCTAssertTrue(announcement.transliteratedBody?.hasSuffix(try XCTUnwrap(mystery.transliteratedFruit)) == true)
+      let caption = try XCTUnwrap(flow.first { $0.subtitle?.hasSuffix(" — \(mystery.title)") == true }?.subtitle)
+      XCTAssertEqual(PrayerTranslations.flowTitle(caption, languageCode: "arc", sourceScript: true, bundleId: bundle),
+        "\(noun) 4 — \(try XCTUnwrap(mystery.transliteratedTitle))")
+    }
+  }
+
   func testSevenSorrowsSixtyNineStepSequence() {
     let steps = steps("sevenSorrows")
     XCTAssertEqual(steps.count, 69)

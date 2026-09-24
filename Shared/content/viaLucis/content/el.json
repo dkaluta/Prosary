@@ -27,7 +27,24 @@
     "stationOrdinal11": "11η στάση",
     "stationOrdinal12": "12η στάση",
     "stationOrdinal13": "13η στάση",
-    "stationOrdinal14": "14η στάση"
+    "stationOrdinal14": "14η στάση",
+    "viaLucis01Title": "Ο Ιησούς ανασταίνεται από τους νεκρούς",
+    "viaLucis02Title": "Οι μαθητές βρίσκουν τον τάφο κενό",
+    "viaLucis03Title": "Ο αναστημένος Κύριος εμφανίζεται στη Μαρία τη Μαγδαληνή",
+    "viaLucis04Title": "Ο Ιησούς εμφανίζεται στον δρόμο προς Εμμαούς",
+    "viaLucis05Title": "Ο Ιησούς αναγνωρίζεται στο μοίρασμα του άρτου",
+    "viaLucis06Title": "Ο Ιησούς εμφανίζεται στους μαθητές στην Ιερουσαλήμ",
+    "viaLucis07Title": "Ο Ιησούς δίνει την εξουσία της άφεσης των αμαρτιών",
+    "viaLucis08Title": "Ο Ιησούς ενισχύει την πίστη του Θωμά",
+    "viaLucis09Title": "Ο Ιησούς εμφανίζεται στη θάλασσα της Τιβεριάδας",
+    "viaLucis10Title": "Ο Ιησούς αναθέτει στον Πέτρο να ποιμαίνει τα πρόβατά του",
+    "viaLucis11Title": "Ο Ιησούς στέλνει τους μαθητές σε όλο τον κόσμο",
+    "viaLucis12Title": "Ο Ιησούς αναλαμβάνεται στον ουρανό",
+    "viaLucis13Title": "Η Μαρία και οι μαθητές περιμένουν το Άγιο Πνεύμα",
+    "viaLucis14Title": "Το Άγιο Πνεύμα κατέρχεται την Πεντηκοστή",
+    "signumCrucisTitle": "Σημείο του Σταυρού",
+    "viaLucisClosingTitle": "Ἄνασσα τῶν οὐρανῶν",
+    "viaLucisClosingBody": "Ἄνασσα τῶν οὐρανῶν εὐφραίνου, ἀλληλούϊα,\nὍτι, ὃν ἠξίωσας βαστάζειν, ἀλληλούϊα,\nἘξανέστη, ὡς εἶπεν, ἀλληλούϊα·\nΕὔχου ὑπὲρ ἡμῶν τῷ Θεῷ, ἀλληλούϊα.\n\nΧαῖρε καὶ ἀγάλλου, Παρθένε Μαρία, ἀλληλούϊα.\n**Ὅτι ὄντως ἀνέστη ὁ Κύριος, ἀλληλούϊα.**\n\nΕὐχώμεθα.\nὉ Θεὸς, ὃς δι’ ἀναστάσεως τοῦ Υἱοῦ σου Κυρίου ἡμῶν Ἰησοῦ Χριστοῦ τὴν πανοικίαν σου εὐφραίνειν ἠξίωσας, διάνυσον, δεόμεθα, ἵνα διὰ τῆς αὐτοῦ Μητρὸς Παρθένου Μαρίας ἀϊδίου ληψώμεθα χάρματα ζωῆς. Διὰ τοῦ αὐτοῦ Χριστοῦ Κυρίου ἡμῶν.\n℟. Ἀμήν."
   },
   "mysteries": {},
   "$scriptureImport": {
@@ -49,5 +66,10 @@
     ],
     "mysteryKeys": []
   },
-  "$scriptureSource": "Scripture imported from the Byzantine Majority Text (Robinson-Pierpont, public domain) and Brenton's Septuagint (eBible.org grcbrent, public domain) by Shared/tools/import-scripture.py — re-run it rather than editing these by hand. Polytonic, as the sources have it; each citation names its own edition."
+  "$scriptureSource": "Scripture imported from the Byzantine Majority Text (Robinson-Pierpont, public domain) and Brenton's Septuagint (eBible.org grcbrent, public domain) by Shared/tools/import-scripture.py — re-run it rather than editing these by hand. Polytonic, as the sources have it; each citation names its own edition.",
+  "$metadataSource": "Prosary editorial translations of the existing English station headings and short narrative summaries. These summaries describe the traditional scenes; they are not Scripture quotations or translations of St Alphonsus meditations. Published prayer wording and Scripture are credited separately.",
+  "$sources": {
+    "viaLucisClosingBody": "https://books.google.com/books?id=DY_8v-ZEfCYC&pg=PA119"
+  },
+  "$closingPrayerProvenance": "Regina Caeli and its collect reuse the already scan-verified canonical Rosary texts: Officium Parvum Graece et Latine (Avignon: F. Seguin, 1823), pp. 119 and 121, public domain. The intervening versicle and response reuse the existing Greek native base table; they have not been newly translated. Paragraph breaks and response emphasis are presentation only."
 }

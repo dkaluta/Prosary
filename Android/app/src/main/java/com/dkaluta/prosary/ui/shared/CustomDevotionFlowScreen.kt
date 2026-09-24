@@ -626,7 +626,7 @@ fun CustomDevotionFlowScreen(
                 DropdownMenu(expanded = dayMenuExpanded, onDismissRequest = { dayMenuExpanded = false }) {
                     days.forEachIndexed { index, day ->
                         val label = HebrewDisplayText.unpoint(
-                            day.period?.let { "$it — ${day.localizedName}" } ?: day.localizedName,
+                            day.localizedPeriod?.let { "$it — ${day.localizedName}" } ?: day.localizedName,
                         )
                         DropdownMenuItem(
                             text = { Text(label) },

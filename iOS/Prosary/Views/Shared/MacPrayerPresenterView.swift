@@ -23,6 +23,7 @@ struct MacPrayerPresenterView: View {
   var titleIsPrayerHeading = false
 
   @Environment(\.layoutDirection) private var interfaceDirection
+  @AppStorage(PrayerKeyboardNavigation.arrowsKey) private var keyboardArrowsEnabled = true
   @Environment(\.colorSchemeContrast) private var contrast
   @ObservedObject private var typography = PrayerTypographyMonitor.shared
   @State private var scrollMetrics = PresenterScrollMetrics()
@@ -63,10 +64,6 @@ struct MacPrayerPresenterView: View {
             .background {
               PresenterScrollKeyboardBridge(
                 reference: windowReference,
-                interfaceIsRTL: interfaceDirection == .rightToLeft,
-                canGoBack: canGoBack && step != nil,
-                canGoNext: step != nil,
-                onBack: onBack, onNext: onNext,
                 onMetrics: { scrollMetrics = $0 })
             }
           }
@@ -161,8 +158,13 @@ struct MacPrayerPresenterView: View {
     if let step {
       VStack(spacing: max(pointSize * 0.5, 20)) {
         if let subtitle = step.subtitle, !subtitle.isEmpty {
-          Text(HebrewDisplayText.unpointed(subtitle))
-            .font(.system(size: max(17, pointSize * 0.42), weight: .medium))
+          let caption = PrayerTranslations.flowTitle(subtitle, languageCode: languageCode,
+            sourceScript: PrayerTypography.resolvedScript(text: step.body, languageCode: languageCode) == .syriac,
+            bundleId: contentBundleID)
+          Text(caption)
+            .font(PrayerTypography.aramaicHeadingFont(text: caption, languageCode: languageCode,
+              typefaces: typography.typefaces, pointSize: max(17, pointSize * 0.42))
+              ?? .system(size: max(17, pointSize * 0.42), weight: .medium))
             .foregroundStyle(contrast == .increased ? Color.primary : Color.secondary)
             .multilineTextAlignment(.center)
             .fixedSize(horizontal: false, vertical: true)
@@ -232,7 +234,9 @@ struct MacPrayerPresenterView: View {
         Label(String(localized: "prayerFlow.back", defaultValue: "Back", bundle: UILanguage.bundle, locale: UILanguage.locale), systemImage: "chevron.backward")
       }
       .disabled(!canGoBack || step == nil || hasAttachedSheet)
-      .help(interfaceDirection == .rightToLeft
+      .help(!keyboardArrowsEnabled
+        ? String(localized: "prayerFlow.back", defaultValue: "Back", bundle: UILanguage.bundle, locale: UILanguage.locale)
+        : interfaceDirection == .rightToLeft
         ? String(localized: "presenter.backHelpRTL", defaultValue: "Previous Step (Right Arrow)", bundle: UILanguage.bundle, locale: UILanguage.locale)
         : String(localized: "presenter.backHelp", defaultValue: "Previous Step (Left Arrow)", bundle: UILanguage.bundle, locale: UILanguage.locale))
       .accessibilityIdentifier("presenterBackButton")
@@ -256,6 +260,8 @@ struct MacPrayerPresenterView: View {
       .disabled(step == nil || hasAttachedSheet)
       .help(isLastStep
         ? String(localized: "presenter.finishHelp", defaultValue: "Finish Prayer (Return)", bundle: UILanguage.bundle, locale: UILanguage.locale)
+        : !keyboardArrowsEnabled
+          ? String(localized: "prayerFlow.next", defaultValue: "Next", bundle: UILanguage.bundle, locale: UILanguage.locale)
         : interfaceDirection == .rightToLeft
           ? String(localized: "presenter.nextHelpRTL", defaultValue: "Next Step (Left Arrow or Return)", bundle: UILanguage.bundle, locale: UILanguage.locale)
           : String(localized: "presenter.nextHelp", defaultValue: "Next Step (Right Arrow or Return)", bundle: UILanguage.bundle, locale: UILanguage.locale))
@@ -341,11 +347,6 @@ private struct PresenterScrollMetrics: Equatable {
 /// is confined to this presenter's key window and yields to sheets, menus and text selection.
 private struct PresenterScrollKeyboardBridge: NSViewRepresentable {
   let reference: PresenterWindowReference
-  let interfaceIsRTL: Bool
-  let canGoBack: Bool
-  let canGoNext: Bool
-  let onBack: () -> Void
-  let onNext: () -> Void
   let onMetrics: (PresenterScrollMetrics) -> Void
 
   func makeNSView(context: Context) -> ReaderView { ReaderView() }
@@ -408,12 +409,6 @@ private struct PresenterScrollKeyboardBridge: NSViewRepresentable {
       switch event.keyCode {
       case 116: scrollPage(forward: false); return nil // Page Up
       case 121: scrollPage(forward: true); return nil  // Page Down
-      case 123, 124:
-        guard !event.isARepeat else { return nil }
-        let backwards = event.keyCode == (configuration.interfaceIsRTL ? 124 : 123)
-        if backwards { if configuration.canGoBack { configuration.onBack() } }
-        else if configuration.canGoNext { configuration.onNext() }
-        return nil
       default: return event
       }
     }

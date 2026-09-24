@@ -13,6 +13,26 @@ import XCTest
 
 @MainActor
 final class PrayerPackLoaderTests: XCTestCase {
+  func testDayPickerLocalizesPeriodAndKeepsOlderBundlesReadable() throws {
+    let originalInterface = InterfaceLanguageStore.shared.selection
+    defer { InterfaceLanguageStore.shared.selection = originalInterface }
+    let day = try JSONDecoder().decode(CustomDevotionDefinition.Day.self, from: Data(#"""
+      {"name":"O Wisdom","nameByLanguage":{"tl":"O Karunungan"},
+       "period":"17 December","periodByLanguage":{"tl":"17 Disyembre"},"steps":[]}
+      """#.utf8))
+    InterfaceLanguageStore.shared.selection = "tl"
+    XCTAssertEqual(day.localizedName, "O Karunungan")
+    XCTAssertEqual(day.localizedPeriod, "17 Disyembre")
+    InterfaceLanguageStore.shared.selection = "en"
+    XCTAssertEqual(day.localizedPeriod, "17 December")
+    let legacy = try JSONDecoder().decode(CustomDevotionDefinition.Day.self,
+      from: Data(#"{"name":"Day 1","period":"First week","steps":[]}"#.utf8))
+    XCTAssertEqual(legacy.localizedPeriod, "First week")
+    let ungrouped = try JSONDecoder().decode(CustomDevotionDefinition.Day.self,
+      from: Data(#"{"name":"Day 1","steps":[]}"#.utf8))
+    XCTAssertNil(ungrouped.localizedPeriod)
+  }
+
   func testSavedPrayerLabelsUseTheAvailableLanguageWithoutChangingThePreference() async throws {
     let defaults = UserDefaults.standard
     let originalInterface = InterfaceLanguageStore.shared.selection
@@ -427,6 +447,19 @@ final class PrayerPackLoaderTests: XCTestCase {
     let replacement = scripture.merging(MysteryTextOverride(description: "Later Scripture"))
     XCTAssertEqual(replacement.description, "Later Scripture")
     XCTAssertNil(replacement.transliteratedDescription)
+  }
+
+  func testMysteryMetadataScriptPairsFollowTheirOwnFields() {
+    let earlier = MysteryTextOverride(title: "Primary title", fruit: "Primary fruit",
+      description: "Scripture", transliteratedDescription: "Scripture aid",
+      transliteratedTitle: "Title aid", transliteratedFruit: "Fruit aid")
+    let titleOnly = earlier.merging(MysteryTextOverride(title: "Replacement title"))
+    XCTAssertNil(titleOnly.transliteratedTitle)
+    XCTAssertEqual(titleOnly.transliteratedFruit, "Fruit aid")
+    XCTAssertEqual(titleOnly.transliteratedDescription, "Scripture aid")
+    let fruitOnly = earlier.merging(MysteryTextOverride(fruit: "Replacement fruit"))
+    XCTAssertNil(fruitOnly.transliteratedFruit)
+    XCTAssertEqual(fruitOnly.transliteratedTitle, "Title aid")
   }
 
   /// A source-language file may own only the Scripture reading. Its title and fruit resolve
@@ -1175,10 +1208,10 @@ final class PrayerPackLoaderTests: XCTestCase {
     XCTAssertEqual(PrayerPackStore.info(for: "divineMercyChaplet")?.localizedDisplayName,
                    PrayerPackStore.info(for: "divineMercyChaplet")?.displayNameByLanguage["he"])
 
-    // Latin names nothing in the manifest, so the UI language decides as before.
+    // An authored Latin name follows the explicitly selected prayer language.
     UserDefaults.standard.set("la", forKey: "defaultLanguageCode")
-    XCTAssertEqual(PrayerPackStore.info(for: "trisagion")?.namePresentation(prayerCode: "la").title, "Trisagion")
-    XCTAssertEqual(PrayerPackStore.info(for: "trisagion")?.localizedDisplayName, "Trisagion")
+    XCTAssertEqual(PrayerPackStore.info(for: "trisagion")?.namePresentation(prayerCode: "la").title, "Trisagium")
+    XCTAssertEqual(PrayerPackStore.info(for: "trisagion")?.localizedDisplayName, "Trisagium")
   }
 
   func testCustomDevotionIdsAreTheGenericDevotionsInLoadOrder() {

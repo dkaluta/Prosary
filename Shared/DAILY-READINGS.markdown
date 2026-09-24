@@ -196,7 +196,7 @@ actual imported corpus against its digest before selecting any existing source r
 Profiles account for Psalm headings, moved verses, split/merged endings, Delitzsch's own
 numbering and local exceptions where word-count comparisons across languages select the
 wrong rule. Generic SIL maxima remain completeness guards unless a chapter has an explicit
-review. Arabic retains its 64 indivisible reviewed units rather than using chapter predicates
+review. Arabic retains its 72 indivisible reviewed units rather than using chapter predicates
 on sparse data. One verified converter is cached per assembled edition during generation.
 
 The September 13 Sirach reading is now also available in Crampon at 27:30; 28:1–7. The day's
@@ -230,10 +230,18 @@ one edition, including 49 references newly available with full-verse notices.
 After the September 16 Psalm review, 2,291 of 2,390 references have text in at least one edition.
 Current per-edition daily/Torah counts are: Douay–Rheims 2,203/63; Hebrew 2,219/71; Synodal 2,215/68;
 Ang Dating Biblia 2,213/70; Crampon 2,164/69; Martini 1,863/58; Ukrainian 2,190/49.
-The old Arabic Jesuit addition contains 220 transcribed verses in 64 reviewed passage units.
-Its exact-unit policy supplies **9 distinct daily citations and no Torah passages** in the
+The old Arabic Jesuit addition contains 239 transcribed verses in 72 reviewed passage units.
+Its exact-unit policy supplies **10 distinct daily citations and no Torah passages** in the
 current appointment tables. Other Arabic citations explicitly remain unavailable. Adding
 more requires further source transcription and boundary review, not a wider runtime fallback.
+The 19 September extension adds the complete Magnificat, Luke 1:46–55, and seven bounded
+Isaiah reading units checked against PDF pages 293–299 and 432. Their exact correspondence
+to STEP English Standard is documented in the
+[Arabic passage-boundary review](content/ARABIC-REFERENCE-REVIEW.markdown), including
+Isaiah 9:2's distinction from Masoretic numbering and the whole Isaiah 11:2–3 envelope.
+The Magnificat is the one newly available daily citation; all previously emitted reading rows remain unchanged.
+The extended transcription is pinned to SHA-256
+`9495719b3f1573e7a446dc22dbeb3014e913d69b5bfff71239dd9602c0efeda8`.
 The Peshitta addition supplies 1,770 daily citations and no Torah passages. Its pinned source
 inventory contains 7,912 verse labels from 27 NT books and exactly nine previously approved
 Isaiah verses. Luke 10/11, Philippians 1, 3 John and Revelation 12/13 remain unavailable

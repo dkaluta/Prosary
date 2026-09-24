@@ -406,10 +406,10 @@
   <data name="category_short" xml:space="preserve"><value>Short</value></data>
   <data name="category_easter" xml:space="preserve"><value>Easter</value></data>
   <data name="category_other" xml:space="preserve"><value>Other</value></data>
-  <data name="AbtPrayerSources.Text" xml:space="preserve"><value>Additional prayer sources: Vatican News, the Sanctuary of Fatima, Notre-Dame de Paris, AELF and the Italian Episcopal Conference (CEI). Also: Basilica of Guadalupe; GOARCH Digital Chant Stand; IVE Greece (Greek Anima Christi translated by Fr F. Bravo IVE); St Nicholas Catholic Parish, Tinos; Carmelite Iberian Province; Natalia Smelova, Melkite Syriac Hymns to the Mother of God (2011), for the medieval Syriac Under Your Protection. Officium Parvum Graece et Latine (Avignon: F. Seguin, 1823), pp. 119, 121, 125. Alfonso Maria de’ Liguori: Esercizio della Via Crucis (1761); Mater dolorosa (1888).</value></data>
-  <data name="AbtDivineMercySources.Text" xml:space="preserve"><value>Divine Mercy Chaplet: Congregation of the Sisters of Our Lady of Mercy.</value></data>
+  <data name="AbtPrayerSources.Text" xml:space="preserve"><value>Additional prayer sources: Vatican News, the Sanctuary of Fatima, Notre-Dame de Paris, AELF and the Italian Episcopal Conference (CEI). Also: Basilica of Guadalupe; GOARCH Digital Chant Stand; IVE Greece (Greek Anima Christi translated by Fr F. Bravo IVE); St Nicholas Catholic Parish, Tinos; Carmelite Iberian Province; Natalia Smelova, Melkite Syriac Hymns to the Mother of God (2011), for the medieval Syriac Under Your Protection. Officium Parvum Graece et Latine (Avignon: F. Seguin, 1823), pp. 7, 119, 121, 125. Alfonso Maria de’ Liguori: Esercizio della Via Crucis (1761); Mater dolorosa (1888). Greek Angelus: IVE Greece. O Antiphons: Saint James Vicariate (Hebrew) and RusCatholic (Russian). Syriac Rosary opening verse: Psalm 70:2, Walton Polyglot (1657), p. 194. Greek Stations response: Catholic Bishops’ Conference of Greece (cen.gr).</value></data>
+  <data name="AbtDivineMercySources.Text" xml:space="preserve"><value>Divine Mercy Chaplet: Congregation of the Sisters of Our Lady of Mercy. Greek text: iPray.</value></data>
   <data name="AppDescription" xml:space="preserve"><value>A companion for praying the Rosary, the Angelus, and the Jesus Prayer.</value></data>
-  <data name="AbtSevenSorrowsSources.Text" xml:space="preserve"><value>Seven Sorrows prayers: Notre Dame de Chrétienté and Confraternite.net.</value></data>
+  <data name="AbtSevenSorrowsSources.Text" xml:space="preserve"><value>Seven Sorrows prayers: Notre Dame de Chrétienté and Confraternite.net. Spanish closing prayer: José Pulido y Espinosa, Misal Romano (Madrid: Imprenta a cargo de Zacarías Soler, 1851), p. 333. Versicle and response: Apostolado Sacerdotal / Pierina Devoções.</value></data>
   <data name="settings_typeface_frank_ruhl_libre" xml:space="preserve"><value>Frank Ruhl Libre</value></data>
   <data name="SetLatinPrayerTypeface.Header" xml:space="preserve"><value>Latin-script prayers</value></data>
   <data name="SetCyrillicPrayerTypeface.Header" xml:space="preserve"><value>Cyrillic prayers</value></data>
@@ -446,8 +446,9 @@
   <data name="AbtHebrewBookIndex.Text" xml:space="preserve"><value>Additional Hebrew Bible book names: Mechon Mamre’s Hebrew Bible index. Names only; no Scripture text.</value></data>
   <data name="SetJaffaWording.Header" xml:space="preserve"><value>Alternative Hail Mary wording</value></data>
   <data name="SetJaffaWordingFooter.Text" xml:space="preserve"><value>Use בְּרוּכַת הַחֶסֶד instead of מְלֵאַת הַחֶסֶד in Vicariate prayers.</value></data>
-  <data name="AbtUkrainianPrayerSources.Text" xml:space="preserve"><value>Ukrainian prayers: Roman Catholic Church in Ukraine, Щоденно з Богом prayerbook. Used with attribution under the publisher’s reuse policy. Scripture: Kulish, Nechui-Levytsky and Puluj Bible (1905), public domain; eBible.org ukr1871. Historical Scripture spelling is retained.</value></data>
+  <data name="AbtUkrainianPrayerSources.Text" xml:space="preserve"><value>Ukrainian prayers: Roman Catholic Church in Ukraine, Щоденно з Богом prayerbook. Used with attribution under the publisher’s reuse policy. Scripture: Kulish, Nechui-Levytsky and Puluj Bible (1905), public domain; eBible.org ukr1871. Historical Scripture spelling is retained. Ukrainian Rosary closing prayer: Ukrainian Information Center MIR Medjugorje (medjugorje.com.ua), reproduced with attribution under the site’s publication permission.</value></data>
   <data name="AbtUkrainianPrayerbookLink.Content" xml:space="preserve"><value>Ukrainian prayerbook</value></data>
+  <data name="AbtUkrainianRosarySourceLink.Content" xml:space="preserve"><value>MIR Medjugorje — Ukrainian Rosary prayer</value></data>
   <data name="AbtUkrainianScriptureLink.Content" xml:space="preserve"><value>Ukrainian Bible (1905)</value></data>
   <!-- Window and menu commands -->
   <data name="CommandsOpenInNewWindow" xml:space="preserve"><value>Open in New Window</value></data>
@@ -529,4 +530,8 @@
   <data name="readings_whole_verses_notice" xml:space="preserve"><value>Full verses are shown and may extend beyond the reading’s cited limits.</value></data>
   <data name="readings_source" xml:space="preserve"><value>Source and Edition</value></data>
   <data name="language_app_parenthesized" xml:space="preserve"><value>App Language ({0})</value></data>
+  <data name="SetKeyboardHeader.Text" xml:space="preserve"><value>Keyboard</value></data>
+  <data name="SetKeyboardArrows.Header" xml:space="preserve"><value>Navigate prayers with arrow keys</value></data>
+  <data name="SetKeyboardSpace.Header" xml:space="preserve"><value>Advance prayers with the space bar</value></data>
+  <data name="SetKeyboardHint.Text" xml:space="preserve"><value>Left and Right move between steps. Space advances the prayer in the active window.</value></data>
 </root>

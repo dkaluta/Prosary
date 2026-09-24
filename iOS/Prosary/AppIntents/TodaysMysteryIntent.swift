@@ -14,7 +14,9 @@ struct TodaysMysteryIntent: AppIntent {
   @MainActor
   func perform() async throws -> some IntentResult & ReturnsValue<String> & ProvidesDialog {
     let group = AppServices.shared.calendar.mysteryGroupToday()
-    let text = "Today's Mysteries are the \(group.displayName) Mysteries."
+    let text = String(localized: "appIntents.todaysMystery.response",
+                      defaultValue: "Today's Mysteries: \(group.displayName).",
+                      bundle: UILanguage.bundle, locale: UILanguage.locale)
     return .result(value: text, dialog: IntentDialog(stringLiteral: text))
   }
 }

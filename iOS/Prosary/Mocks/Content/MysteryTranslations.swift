@@ -17,14 +17,16 @@ enum MysteryTranslations {
     let chain = LanguageCatalog.contentFallbackChain(for: languageCode)
 
     func resolvedField(_ overrideValue: (MysteryTextOverride) -> String?,
-                       _ builtInValue: (MysteryText) -> String) -> String? {
+                       _ builtInValue: (MysteryText) -> String,
+                       _ overrideAid: (MysteryTextOverride) -> String?,
+                       _ builtInAid: (MysteryText) -> String?) -> (text: String, alternate: String?)? {
       for code in chain {
         if let override = PrayerPackStore.mysteryOverride(
           languageCode: code, imageKey: imageKey),
            let value = overrideValue(override) {
-          return value
+          return (value, overrideAid(override))
         }
-        if let text = byLanguage[code]?[imageKey] { return builtInValue(text) }
+        if let text = byLanguage[code]?[imageKey] { return (builtInValue(text), builtInAid(text)) }
       }
       return nil
     }
@@ -45,11 +47,15 @@ enum MysteryTranslations {
       }
     }
 
+    let title = resolvedField(\.title, \.title, \.transliteratedTitle, \.transliteratedTitle)
+    let fruit = resolvedField(\.fruit, \.fruit, \.transliteratedFruit, \.transliteratedFruit)
     return MysteryText(
-      title: resolvedField(\.title, \.title) ?? imageKey,
-      fruit: resolvedField(\.fruit, \.fruit) ?? "",
+      title: title?.text ?? imageKey,
+      fruit: fruit?.text ?? "",
       description: resolvedDescription?.text ?? "",
-      transliteratedDescription: resolvedDescription?.transliteration)
+      transliteratedDescription: resolvedDescription?.transliteration,
+      transliteratedTitle: title?.alternate,
+      transliteratedFruit: fruit?.alternate)
   }
 
   static let byLanguage: [String: [String: MysteryText]] = [

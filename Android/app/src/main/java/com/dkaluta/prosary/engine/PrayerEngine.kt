@@ -203,13 +203,15 @@ class PrayerEngine(
         fruitLabel: String,
         alternateFruitLabel: String,
     ): Pair<String, String?> {
-        fun appendFruit(description: String, label: String): String = if (mysteryText.fruit.isEmpty()) {
+        fun appendFruit(description: String, label: String, fruit: String): String = if (fruit.isEmpty()) {
             description
         } else {
-            "$description\n\n$label: ${mysteryText.fruit}"
+            "$description\n\n$label: $fruit"
         }
-        return appendFruit(mysteryText.description, fruitLabel) to
-            mysteryText.transliteratedDescription?.let { appendFruit(it, alternateFruitLabel) }
+        return appendFruit(mysteryText.description, fruitLabel, mysteryText.fruit) to
+            mysteryText.transliteratedDescription?.let {
+                appendFruit(it, alternateFruitLabel, mysteryText.transliteratedFruit ?: mysteryText.fruit)
+            }
     }
 
     // MARK: Custom (bundle-driven) devotions
@@ -219,7 +221,9 @@ class PrayerEngine(
      * flat "steps" type covers Angelus/Stations/Trisagion-shaped devotions (including the
      * Angelus's Eastertide whole-sequence swap); the decade/bead-structured "rosary" type covers
      * Franciscan Crown/Seven Sorrows/Divine Mercy-shaped ones. */
-    private fun buildCustomDevotionSteps(
+    // Content-contract tests may exercise sparse overlays directly; ordinary sessions still
+    // choose an advertised language before invoking this builder.
+    internal fun buildCustomDevotionSteps(
         bundleId: String,
         languageCode: String?,
         variantId: String? = null,
@@ -498,6 +502,8 @@ class PrayerEngine(
         val steps = mutableListOf<RosaryStep>()
         var decadeIndex = 0
         for (group in groups) {
+            val groupKey = "mysteryGroup${group.name}Title"
+            val groupTitle = resolve(groupKey)
             val mysteries = MysteryCatalog.forGroup(group)
             val indices = if (rosary.mysterySelectionMode == MysterySelectionMode.SingleMystery) {
                 listOf(rosary.specificMysteryOrder - 1)
@@ -509,9 +515,7 @@ class PrayerEngine(
                 val mystery = mysteries[d]
                 val mysteryText = MysteryTranslations.get(languageCode, mystery.imageKey)
                 val ordinal = decadeOrdinal(d, decades, bundleId, languageCode)
-                // The group prefix is still English — MysteryGroup has no per-prayer-language
-                // name yet.
-                val ordinalLabel = if (showGroupName) "${group.displayName} — $ordinal" else ordinal
+                val ordinalLabel = if (showGroupName) "$groupTitle — $ordinal" else ordinal
                 val decadeSubtitle = "$ordinalLabel — ${mysteryText.title}"
                 val presenter = decades.presenter
                 val (announcementBody, transliteratedAnnouncementBody) =

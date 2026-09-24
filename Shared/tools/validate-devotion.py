@@ -145,7 +145,7 @@ def load_json(path: Path):
         return json.load(f)
 
 
-MYSTERY_OVERRIDE_FIELDS = {"title", "fruit", "description", "transliteratedDescription"}
+MYSTERY_OVERRIDE_FIELDS = {"title", "fruit", "description", "transliteratedDescription", "transliteratedTitle", "transliteratedFruit"}
 
 
 def validate_prayer_traditions(path: Path, content: dict) -> None:
@@ -193,8 +193,10 @@ def validate_mystery_overrides(path: Path, content: dict) -> None:
         for field in MYSTERY_OVERRIDE_FIELDS:
             if field in value and not isinstance(value[field], str):
                 err(f"{where}: {field} must be a string")
-        if "transliteratedDescription" in value and "description" not in value:
-            err(f"{where}: transliteratedDescription requires description in the same override")
+        for field in ("title", "fruit", "description"):
+            alternate = "transliterated" + field.title()
+            if alternate in value and field not in value:
+                err(f"{where}: {alternate} requires {field} in the same override")
 
 
 def _all_strings(value):
@@ -715,7 +717,14 @@ def main() -> int:
             if not day.get("steps"):
                 err(f"{where}: empty step list")
             check_entry_list(day.get("steps") or [], f"{where}.steps")
-            extra = set(day) - {"name", "nameByLanguage", "period", "steps"}
+            extra = set(day) - {"name", "nameByLanguage", "period", "periodByLanguage", "steps"}
+            localized_periods = day.get("periodByLanguage")
+            if localized_periods is not None:
+                if not isinstance(localized_periods, dict) or not all(
+                    isinstance(language, str) and isinstance(text, str) and text.strip()
+                    for language, text in localized_periods.items()
+                ):
+                    err(f"{where}: periodByLanguage must map language codes to non-empty text")
             if extra:
                 err(f"{where}: unknown fields {sorted(extra)}")
         # How the days relate to each other, which is the difference between a novena you work

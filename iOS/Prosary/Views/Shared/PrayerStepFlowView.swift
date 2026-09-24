@@ -245,6 +245,8 @@ struct PrayerStepFlowView: View {
       regularContent
       #endif
     }
+    .modifier(PrayerKeyboardNavigationModifier(canGoBack: canGoBack && step != nil,
+      canGoNext: step != nil, isModal: windowIsModal, onBack: onBack, onNext: onNext))
     .navigationTitle(showsCompactHeader ? "" : displayedNavigationTitle)
     .onAppear { applyDefaultScript() }
     .onChange(of: languageCode) { _, _ in applyDefaultScript() }
@@ -461,8 +463,11 @@ struct PrayerStepFlowView: View {
   private func textBlock(step: RosaryStep) -> some View {
     VStack(spacing: 8) {
       if let subtitle = step.subtitle {
-        Text(HebrewDisplayText.unpointed(subtitle))
-          .font(.subheadline)
+        let caption = PrayerTranslations.flowTitle(subtitle, languageCode: languageCode,
+          sourceScript: usesSyriacScript, bundleId: contentBundleID)
+        Text(caption)
+          .font(PrayerTypography.aramaicHeadingFont(text: caption, languageCode: languageCode,
+            typefaces: typefaces, pointSize: 15) ?? .subheadline)
           .foregroundStyle(.secondary)
           .multilineTextAlignment(.center)
       }

@@ -10,6 +10,35 @@ namespace Prosary.Tests;
 
 public class UiLanguageTests
 {
+    [Fact]
+    public void BundleMetadataUsesTheSelectedLanguageAndFilipinoContentAlias()
+    {
+        var previous = UiLanguageCatalog.Current;
+        try
+        {
+            UiLanguageCatalog.UseLanguageForCurrentSession("fil-PH");
+            var names = new Dictionary<string, string> { ["tl"] = "Panalangin" };
+            Assert.Equal("Panalangin", new CustomDevotionOption("prayer",
+                CustomDevotionOption.OptionKind.Toggle, "Prayer", names).LocalizedName);
+            Assert.Equal("Panalangin", new CustomDevotionOption.Case("prayer", "Prayer", names).LocalizedName);
+            Assert.Equal("Panalangin", new CustomDevotionDefinition.Variant("prayer", "Prayer", names).LocalizedName);
+            Assert.Equal("Panalangin", new DevotionAudioTrack("track", "en", "audio/track.opus",
+                Name: "Prayer", NameByLanguage: names).LocalizedName);
+            var day = new CustomDevotionDefinition.Day("Prayer", names, "17 December",
+                PeriodByLanguage: new() { ["tl"] = "17 Disyembre" });
+            Assert.Equal("Panalangin", day.LocalizedName);
+            Assert.Equal("17 Disyembre", day.LocalizedPeriod);
+            UiLanguageCatalog.UseLanguageForCurrentSession("en");
+            Assert.Equal("17 December", day.LocalizedPeriod);
+            Assert.Equal("First week", new CustomDevotionDefinition.Day("Day 1", Period: "First week").LocalizedPeriod);
+            Assert.Null(new CustomDevotionDefinition.Day("Day 1").LocalizedPeriod);
+        }
+        finally
+        {
+            UiLanguageCatalog.UseLanguageForCurrentSession(previous);
+        }
+    }
+
     [Theory]
     [InlineData("", "de-DE,uk-UA,en-US", "uk")]
     [InlineData("", "de-DE,ja-JP", "en")]

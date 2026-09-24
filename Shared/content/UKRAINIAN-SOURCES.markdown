@@ -26,10 +26,27 @@ Line breaks, bold responses, and the app's cross cue are presentation changes. R
 as “three times” are omitted where the prayer engine performs that repetition. The Loreto
 collect joins the source's line-break artifact “Пре- святої” as “Пресвятої”. A prayer's
 wording is never filled by a machine translation. Titles, fruits of mysteries, intention
-labels, configuration options, and the explicitly non-Scripture fourth Sorrow narrative are
-Prosary's translations of editorial metadata.
+labels, configuration options, the explicitly non-Scripture fourth Sorrow narrative, and the
+fourteen short traditional Stations scene descriptions are Prosary's editorial translations.
+The latter describe the scenes; they are not the longer meditations by St Alphonsus.
 
-`Shared/tools/fixtures/ukrainian-source-excerpts.json` retains seventeen selected source
+The repeated Via Lucis acclamation follows the twenty-word excerpt from the same prayerbook
+published by [CREDO](https://credo.pro/2014/01/109413), accessed on 19 September 2026. The
+prayerbook's local recension is retained, with reader/assembly initials replaced by response
+emphasis.
+
+The standard Rosary closing collect, also used by the Franciscan Crown and the Loreto
+“after the Rosary” option, follows the published prose text from the
+[Ukrainian Information Center MIR Medjugorje](https://medjugorje.com.ua/media/video/molytvy/6220-6-den-novenna-do-bozhoyi-matery-fatymskoyi17-bereznya-25-bereznya-2022.html).
+The source page explicitly permits publication with a link to the site: «Публікація
+матеріалів дозволена тільки з посиланням на сайт.» This is an attribution condition, not a
+public-domain or Creative Commons claim. The text is retained exactly, including its
+published invocation and conclusion. The page was checked on 19 September 2026; its URL
+contains 2022 while the displayed article date is 9 May 2026. The same prayer is also
+published in the Ukrainian Legion of Mary's Tessera; that independent witness is not the
+permission source.
+
+`Shared/tools/fixtures/ukrainian-source-excerpts.json` retains nineteen selected source
 excerpts, their original page URLs and page SHA-256 fingerprints, including all six Basic
 Prayers and every O Antiphon. `test-ukrainian-content.py` checks these independently of
 formatting, including the complete four-line Regina Caeli and its separate versicle,
@@ -54,20 +71,56 @@ cover all nine imported Isaiah verses, the Annunciation, scourging and Revelatio
 
 ## Remaining fallback bodies
 
-The following **21 distinct keys remain untranslated**. They are deliberately absent from
+The following **four distinct keys remain unavailable in the bundle**. They are deliberately absent from
 `uk.json`, and incomplete bundles are not described as fully translated. None is substituted
 with a newly composed prayer or another author's text under the original author's name.
 
 | Bundle | Remaining keys |
 | --- | --- |
-| Rosary | `almaRedemptorisMater`, `aveReginaCaelorum`, `collectaStandard` |
-| Loreto | `collectAfterRosary` |
-| Stations of the Cross | `stationsOpeningPrayer`, `stationsClosingPrayer`, `station01Body`, `station02Body`, `station03Body`, `station04Body`, `station05Body`, `station06Body`, `station07Body`, `station08Body`, `station09Body`, `station10Body`, `station11Body`, `station12Body`, `station13Body`, `station14Body` |
-| Via Lucis | `viaLucisAcclamation` |
+| Rosary | `almaRedemptorisMater`, `aveReginaCaelorum` |
+| Stations of the Cross | `stationsOpeningPrayer`, `stationsClosingPrayer` |
 
-The Franciscan Crown also uses the same three shared Marian-antiphon keys listed under
+The Franciscan Crown also uses the same two shared Marian-antiphon keys listed under
 Rosary, so it has the same optional closing fallbacks. All fourteen scriptural Stations
-have sourced Ukrainian passages; the traditional St Alphonsus meditations remain fallback
-text. The Via Lucis readings and full Regina Caeli closing are Ukrainian, while its repeated
-acclamation remains fallback text. The format validator's scoped allowlists document the
+have sourced Ukrainian passages, and the traditional scene descriptions are Ukrainian editorial
+translations. The Via Lucis readings, full Regina Caeli closing and repeated acclamation are
+Ukrainian. The format validator's scoped allowlists document the
 non-fixed missing keys; the coverage audit additionally catches the shared fixed-key gaps.
+
+## Located Marian antiphons
+
+Published Ukrainian versions of both missing antiphons have been located and checked against
+the printed scores in *Вгору серця: Церковний співник Римо-Католицької Церкви* (Kyiv, 2006):
+
+| Prayer | Number and Ukrainian title | Credited translator from Latin | Printed source |
+| --- | --- | --- | --- |
+| Ave Regina Caelorum | 457, «Радуйся, Царице неба» | І. Волоцька | [Score](https://www2.truechristianity.info/img/vgoru_sertsya/vgoru_sertsya_457.png) |
+| Alma Redemptoris Mater | 458, «Рідна Спасителя Мати» | О. Сартаков | [Score](https://www2.truechristianity.info/img/vgoru_sertsya/vgoru_sertsya_458.png) |
+
+The [book's contents and publication credits](https://www2.truechristianity.info/ua/books/tserkovny_spivnyk_rymo-katolytskoyi_tserkvy/vgoru_sertsya_content.php)
+give Bishop Stanislav Shyrokoradiuk's imprimatur, the censor Sr Maria Marta Ryk OSU,
+compiler/music editor Kostiantyn Babenko and literary editor Mykola Lutsiuk. The numbers above
+are song numbers, not a claimed pagination. An independent
+[2012 Hnivan songbook transcription](https://pisennyk-osppe.blogspot.com/2012/10/blog-post_4846.html)
+reproduces them as numbers 902 and 904 and explicitly lists *Вгору серця*, Kyiv 2006, among
+its sources. That transcription differs slightly from the printed score, so the scan is the
+wording authority.
+
+These two gaps are **sources found, reuse unresolved**. Their ancient Latin originals do not
+establish a public-domain status for the credited modern Ukrainian translations. No publisher
+reuse statement for these versions was located, and RKC Ukraine's permission for its own
+prayerbook is not extended to this separate songbook. The full texts have therefore not been
+copied into the bundles or fixtures. The two Stations keys still need a matching published
+Ukrainian form; no newly composed prayer is supplied in their place.
+
+The renewed source review on 19 September 2026 also checked the Ukrainian entries in
+[Divinum Officium](https://github.com/DivinumOfficium/divinum-officium) at revision
+`5e27a65f632350719c697960e5416001a9e77a5c`, the Ukrainian Marian-antiphon references on Vatican
+News, and Catholic Stations publications. The open-source Ukrainian office corpus does not
+yet contain these two Marian antiphons. Vatican News identifies them but the inspected
+pages do not print their Ukrainian bodies. The public-domain 1921
+[Хрестна Дорога](https://uk.wikisource.org/wiki/Хрестна_Дорога) and the published
+[Stations for souls in purgatory](https://kyrios.org.ua/literature/books/261-misjats-dush-chistilischnih.html)
+contain different opening and closing prayers; those are not silently substituted for the
+existing texts. These are the limits of the verified sources, not a claim that Ukrainian
+translations cannot exist.

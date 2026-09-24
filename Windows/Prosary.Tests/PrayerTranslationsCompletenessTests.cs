@@ -36,16 +36,7 @@ public class PrayerTranslationsCompletenessTests : IClassFixture<PrayerPackLoade
     /// <summary>Known per-bundle translation gaps: bundleId -> language -> keys awaiting a
     /// verified translation. The self-guard test below fails once a listed key gains its
     /// translation, so this map can never go silently stale.</summary>
-    private static readonly Dictionary<string, Dictionary<string, string[]>> BundleKeysMissingLanguages = new()
-    {
-        // Veronica's station quotes Judith, and the Arabic/Tagalog scripture sources carry no
-        // deuterocanon — those two follow the configured fallback order (English by default).
-        ["stationsOfTheCross"] = new()
-        {
-            ["ar"] = ["station06Body"],
-            ["tl"] = ["station06Body"],
-        },
-    };
+    private static readonly Dictionary<string, Dictionary<string, string[]>> BundleKeysMissingLanguages = new();
 
     private static IEnumerable<string> AllPrayerKeys() =>
         typeof(PrayerKey).GetFields(BindingFlags.Public | BindingFlags.Static)

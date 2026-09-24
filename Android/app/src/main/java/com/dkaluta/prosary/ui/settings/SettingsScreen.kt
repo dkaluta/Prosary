@@ -49,6 +49,7 @@ import com.dkaluta.prosary.R
 import com.dkaluta.prosary.content.prayerpack.PrayerPackStore
 import com.dkaluta.prosary.content.today.TodayInfoStore
 import com.dkaluta.prosary.models.AppSettings
+import com.dkaluta.prosary.ui.shared.rememberHardwareKeyboardAvailable
 import com.dkaluta.prosary.models.HomeOrder
 import com.dkaluta.prosary.models.LanguageCatalog
 import com.dkaluta.prosary.models.InterfaceLanguage
@@ -72,6 +73,7 @@ import java.io.File
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SettingsScreen(onBack: () -> Unit) {
+    val hardwareKeyboardAvailable = rememberHardwareKeyboardAvailable()
     val context = LocalContext.current
     val services = LocalAppServices.current
     val scope = rememberCoroutineScope()
@@ -280,6 +282,27 @@ fun SettingsScreen(onBack: () -> Unit) {
                         AppSettings.setHapticsOnAdvance(it)
                     },
                 )
+            }
+
+            if (hardwareKeyboardAvailable) {
+                Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+                    Text(stringResource(R.string.settings_keyboard_arrows), Modifier.weight(1f))
+                    Switch(
+                        checked = AppSettings.keyboardArrowNavigationEnabled,
+                        onCheckedChange = { AppSettings.keyboardArrowNavigationEnabled = it },
+                        modifier = Modifier.testTag("keyboardArrowNavigationEnabled"),
+                    )
+                }
+                Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+                    Text(stringResource(R.string.settings_keyboard_space), Modifier.weight(1f))
+                    Switch(
+                        checked = AppSettings.keyboardSpaceAdvanceEnabled,
+                        onCheckedChange = { AppSettings.keyboardSpaceAdvanceEnabled = it },
+                        modifier = Modifier.testTag("keyboardSpaceAdvanceEnabled"),
+                    )
+                }
+                Text(stringResource(R.string.settings_keyboard_hint),
+                    style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
             }
 
             OutlinedButton(

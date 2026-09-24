@@ -34,19 +34,25 @@ struct MacTodayView: View {
       : label("home.today.selectedReadings", "Readings")
   }
   private var dateLabel: String {
+    formattedDate(template: "yMMMMdEEEE")
+  }
+  private var toolbarDateLabel: String {
+    formattedDate(template: "yMMMd")
+  }
+  private func formattedDate(template: String) -> String {
     let formatter = DateFormatter()
     formatter.locale = Locale(identifier: language)
     formatter.calendar = Calendar(identifier: .gregorian)
-    formatter.setLocalizedDateFormatFromTemplate("yMMMMdEEEE")
+    formatter.setLocalizedDateFormatFromTemplate(template)
     return formatter.string(from: selectedDate)
   }
 
   var body: some View {
     readingContent
-    // Keep the reading surface opaque while the system manages the navigation's scroll edge.
+    // The window toolbar owns navigation and its material; readings remain ordinary content.
     .background(Color(nsColor: .textBackgroundColor))
     .accessibilityIdentifier("macToday.content")
-    .prosaryNavigationBar(edge: .top) { dateNavigation }
+    .toolbar { dateToolbar }
     .environment(\.layoutDirection, UILanguage.isRightToLeft(language) ? .rightToLeft : .leftToRight)
     .environment(\.locale, Locale(identifier: language == "tl" ? "fil" : language))
     .accessibilityIdentifier("macToday")
@@ -68,6 +74,10 @@ struct MacTodayView: View {
   private var readingContent: some View {
     ScrollView {
       VStack(alignment: .leading, spacing: 24) {
+        Text(selectedCalendarName)
+          .font(.caption)
+          .foregroundStyle(.secondary)
+          .accessibilityIdentifier("macToday.calendarName")
         if let dayInfo {
           Text(HebrewDisplayText.unpointed(dayInfo.localized(language)))
             .font(.subheadline).foregroundStyle(.secondary)
@@ -107,74 +117,68 @@ struct MacTodayView: View {
     }
   }
 
-  private var dateNavigation: some View {
-    VStack(spacing: 8) {
-      dateControls
-      Text(selectedCalendarName)
-        .font(.caption)
-        .foregroundStyle(.secondary)
-        .multilineTextAlignment(.center)
-        .textSelection(.enabled)
-    }
-    .padding(16)
-    .accessibilityElement(children: .contain)
-    .accessibilityIdentifier("macToday.dateNavigation")
-  }
-
-  private var dateControls: some View {
-    ProsaryGlassControlGroup(spacing: 12) {
-      dateControlRow
-    }
-  }
-
-  private var dateControlRow: some View {
-    HStack(spacing: 12) {
-      Spacer(minLength: 0)
+  @ToolbarContentBuilder
+  private var dateToolbar: some ToolbarContent {
+    ToolbarItem(id: "today.previousDay", placement: .navigation) {
       Button { dateSelection.move(by: -1) } label: {
         Label(label("home.today.previousDay", "Previous Day"), systemImage: "chevron.backward")
-          .prosaryDateControlLabel()
       }
       .labelStyle(.iconOnly)
+      .buttonBorderShape(.circle)
       .disabled(!dateSelection.canMoveBackward)
       .help(label("home.today.previousDay", "Previous Day"))
       .accessibilityIdentifier("macToday.previousDay")
+    }
+    if #available(macOS 26.0, *) {
+      ToolbarSpacer(.fixed, placement: .navigation)
+    }
+    ToolbarItem(id: "today.chooseDate", placement: .navigation) {
       Button { showsDatePicker = true } label: {
-        Text(dateLabel)
-          .fontWeight(.semibold)
-          .multilineTextAlignment(.center)
-          .fixedSize(horizontal: false, vertical: true)
-          .prosaryDateControlLabel()
+        Text(toolbarDateLabel).lineLimit(1)
       }
-      .help(label("home.today.chooseDate", "Choose a date"))
+      .buttonBorderShape(.capsule)
+      .help(dateLabel)
+      .accessibilityLabel(dateLabel)
       .accessibilityHint(label("home.today.chooseDate", "Choose a date"))
       .accessibilityIdentifier("macToday.chooseDate")
       .popover(isPresented: $showsDatePicker) { datePopover }
+    }
+    if #available(macOS 26.0, *) {
+      ToolbarSpacer(.fixed, placement: .navigation)
+    }
+    ToolbarItem(id: "today.nextDay", placement: .navigation) {
       Button { dateSelection.move(by: 1) } label: {
         Label(label("home.today.nextDay", "Next Day"), systemImage: "chevron.forward")
-          .prosaryDateControlLabel()
       }
       .labelStyle(.iconOnly)
+      .buttonBorderShape(.circle)
       .disabled(!dateSelection.canMoveForward)
       .help(label("home.today.nextDay", "Next Day"))
       .accessibilityIdentifier("macToday.nextDay")
-      Spacer(minLength: 0)
+    }
+    ToolbarItem(id: "today.reset", placement: .primaryAction) {
       Button { chooseDate(Date()) } label: {
-        Text(label("home.today.today", "Today")).prosaryDateControlLabel()
-      }
-        .disabled(isToday)
-        .accessibilityIdentifier("macToday.reset")
-      Button { showsOptions = true } label: {
-        Label(label("settings.title", "Settings"), systemImage: "slider.horizontal.3")
-          .prosaryDateControlLabel()
+        Label(label("home.today.today", "Today"), systemImage: "calendar.badge.clock")
       }
       .labelStyle(.iconOnly)
+      .buttonBorderShape(.circle)
+      .disabled(isToday)
+      .help(label("home.today.today", "Today"))
+      .accessibilityIdentifier("macToday.reset")
+    }
+    if #available(macOS 26.0, *) {
+      ToolbarSpacer(.fixed, placement: .primaryAction)
+    }
+    ToolbarItem(id: "today.options", placement: .primaryAction) {
+      Button { showsOptions = true } label: {
+        Label(label("settings.title", "Settings"), systemImage: "slider.horizontal.3")
+      }
+      .labelStyle(.iconOnly)
+      .buttonBorderShape(.circle)
       .help(label("settings.todayHeader", "Today"))
       .accessibilityIdentifier("macToday.options")
       .popover(isPresented: $showsOptions) { optionsPopover }
     }
-    .prosaryNavigationButtonStyle()
-    .controlSize(.regular)
-    .fixedSize(horizontal: false, vertical: true)
   }
 
   private var datePopover: some View {

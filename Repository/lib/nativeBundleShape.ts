@@ -83,7 +83,7 @@ const formFields = {
 export const checkNativeDevotion: Check = object({ type: choice("steps", "rosary", "days") }, {
   ...formFields,
   dayProgression: choice("series", "free"), suggestedReminderTime: string, suggestedStart: string, suggestedNext: string,
-  days: array(object({ name: string, steps }, { ...translatedName, period: string })),
+  days: array(object({ name: string, steps }, { ...translatedName, period: string, periodByLanguage: strings })),
   variants: array(object({ id: string, name: string }, {
     ...formFields, ...translatedName, defaultForLanguages: stringList,
   })),
@@ -103,6 +103,7 @@ export const checkNativeContent: Check = object({
   prayers: strings,
   mysteries: map(object({}, {
     title: string, fruit: string, description: string, transliteratedDescription: string,
+    transliteratedTitle: string, transliteratedFruit: string,
   })),
 }, {}, { transliterations: strings, $prayerTraditionByKey: strings });
 

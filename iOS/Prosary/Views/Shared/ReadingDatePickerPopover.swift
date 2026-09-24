@@ -2,6 +2,9 @@ import SwiftUI
 
 /// Give the native calendar room for all seven columns and its larger spatial day targets.
 struct ReadingDatePickerPopover: View {
+  #if os(iOS)
+  @Environment(\.verticalSizeClass) private var verticalSizeClass
+  #endif
   @Binding var selection: Date
   var range: ClosedRange<Date> = Date.distantPast...Date.distantFuture
   var pickerIdentifier: String
@@ -11,15 +14,16 @@ struct ReadingDatePickerPopover: View {
 
   var body: some View {
     VStack(spacing: 16) {
-      DatePicker(String(localized: "home.today.chooseDate", defaultValue: "Choose a date", bundle: UILanguage.bundle, locale: UILanguage.locale),
-                 selection: $selection, in: range, displayedComponents: .date)
-        .datePickerStyle(.graphical)
-        .labelsHidden()
-        .environment(\.calendar, Calendar(identifier: .gregorian))
-        // The UIKit-backed graphical picker underreports its ideal width in a popover.
-        .frame(width: calendarWidth)
-        .fixedSize(horizontal: false, vertical: true)
-        .accessibilityIdentifier(pickerIdentifier)
+      #if os(iOS)
+      if verticalSizeClass == .compact {
+        ScrollView { calendar }
+          .scrollBounceBehavior(.basedOnSize)
+      } else {
+        calendar
+      }
+      #else
+      calendar
+      #endif
       HStack {
         Button(String(localized: "home.today.today", defaultValue: "Today", bundle: UILanguage.bundle, locale: UILanguage.locale)) {
           selection = Date()
@@ -39,9 +43,25 @@ struct ReadingDatePickerPopover: View {
     .controlSize(.large)
     #endif
     .padding(padding)
+    #if os(iOS)
+    .fixedSize(horizontal: true, vertical: verticalSizeClass != .compact)
+    #else
     .fixedSize(horizontal: true, vertical: true)
+    #endif
     .accessibilityElement(children: .contain)
     .accessibilityIdentifier(pickerIdentifier + ".popover")
+  }
+
+  private var calendar: some View {
+    DatePicker(String(localized: "home.today.chooseDate", defaultValue: "Choose a date", bundle: UILanguage.bundle, locale: UILanguage.locale),
+               selection: $selection, in: range, displayedComponents: .date)
+      .datePickerStyle(.graphical)
+      .labelsHidden()
+      .environment(\.calendar, Calendar(identifier: .gregorian))
+      // The UIKit-backed graphical picker underreports its ideal width in a popover.
+      .frame(width: calendarWidth)
+      .fixedSize(horizontal: false, vertical: true)
+      .accessibilityIdentifier(pickerIdentifier)
   }
 
   private var padding: CGFloat {

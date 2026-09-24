@@ -14,12 +14,11 @@
     "el",
     "arc"
   ],
-  "canonical_files": 117,
+  "canonical_files": 128,
   "pack_count": 10,
   "status_counts": {
-    "advertised": 95,
-    "absent_language": 11,
-    "partial_overlay": 14
+    "advertised": 102,
+    "partial_overlay": 18
   },
   "fixed_prayers": {
     "la": {
@@ -68,15 +67,14 @@
     "uk": {
       "missing_prayer_bodies": [
         "almaRedemptorisMater",
-        "aveReginaCaelorum",
-        "collectaStandard"
+        "aveReginaCaelorum"
       ],
       "missing_headings_or_labels": [],
       "missing_inactive_fixed_bodies": [
         "doxologiaMinor"
       ],
       "native_keys": 0,
-      "resolved_fixed_keys": 29
+      "resolved_fixed_keys": 30
     },
     "tl": {
       "missing_prayer_bodies": [],
@@ -141,21 +139,12 @@
         "versiculumPaschale",
         "versiculumStandard"
       ],
-      "missing_headings_or_labels": [
-        "almaRedemptorisMaterTitle",
-        "aveMariaProCaritate",
-        "aveMariaProFide",
-        "aveMariaProSpe",
-        "aveReginaCaelorumTitle",
-        "decadeOrdinalFormat",
-        "reginaCaeliTitle",
-        "salveReginaTitle"
-      ],
+      "missing_headings_or_labels": [],
       "missing_inactive_fixed_bodies": [
         "doxologiaMinor"
       ],
       "native_keys": 0,
-      "resolved_fixed_keys": 9
+      "resolved_fixed_keys": 17
     }
   },
   "packs": {
@@ -311,23 +300,11 @@
         }
       },
       "el": {
-        "status": "absent_language",
+        "status": "advertised",
         "source_file": "Shared/content/angelus/content/el.json",
         "missing": {
-          "heading_or_label": [
-            "angelusAnnunciationTitle",
-            "angelusCollectTitle",
-            "angelusFiatTitle",
-            "angelusIncarnationTitle",
-            "aveMariaTitle"
-          ],
-          "prayer_body": [
-            "angelusAnnunciationBody",
-            "angelusCollectBody",
-            "angelusFiatBody",
-            "angelusIncarnationBody",
-            "reginaCaeliBody"
-          ]
+          "heading_or_label": [],
+          "prayer_body": []
         },
         "missing_mysteries": {
           "title": [],
@@ -338,17 +315,10 @@
         }
       },
       "arc": {
-        "status": "absent_language",
+        "status": "partial_overlay",
         "source_file": "Shared/content/angelus/content/arc.json",
         "missing": {
-          "heading_or_label": [
-            "angelusAnnunciationTitle",
-            "angelusCollectTitle",
-            "angelusFiatTitle",
-            "angelusIncarnationTitle",
-            "aveMariaTitle",
-            "reginaCaeliTitle"
-          ],
+          "heading_or_label": [],
           "prayer_body": [
             "angelusAnnunciationBody",
             "angelusCollectBody",
@@ -518,24 +488,11 @@
         }
       },
       "el": {
-        "status": "absent_language",
+        "status": "advertised",
         "source_file": "Shared/content/divineMercyChaplet/content/el.json",
         "missing": {
-          "heading_or_label": [
-            "aveMariaTitle",
-            "decadeOrdinalNoun",
-            "divineMercyClosingAcclamationTitle",
-            "divineMercyOfferingTitle",
-            "divineMercyPetitionTitle",
-            "paterNosterTitle",
-            "signumCrucisTitle",
-            "symbolumApostolorumTitle"
-          ],
-          "prayer_body": [
-            "divineMercyClosingAcclamation",
-            "divineMercyOffering",
-            "divineMercyPetition"
-          ]
+          "heading_or_label": [],
+          "prayer_body": []
         },
         "missing_mysteries": {
           "title": [],
@@ -546,20 +503,10 @@
         }
       },
       "arc": {
-        "status": "absent_language",
+        "status": "partial_overlay",
         "source_file": "Shared/content/divineMercyChaplet/content/arc.json",
         "missing": {
-          "heading_or_label": [
-            "aveMariaTitle",
-            "decadeOrdinalFormat",
-            "decadeOrdinalNoun",
-            "divineMercyClosingAcclamationTitle",
-            "divineMercyOfferingTitle",
-            "divineMercyPetitionTitle",
-            "paterNosterTitle",
-            "signumCrucisTitle",
-            "symbolumApostolorumTitle"
-          ],
+          "heading_or_label": [],
           "prayer_body": [
             "divineMercyClosingAcclamation",
             "divineMercyOffering",
@@ -658,8 +605,7 @@
           "heading_or_label": [],
           "prayer_body": [
             "almaRedemptorisMater",
-            "aveReginaCaelorum",
-            "collectaStandard"
+            "aveReginaCaelorum"
           ]
         },
         "missing_mysteries": {
@@ -746,22 +692,10 @@
         }
       },
       "arc": {
-        "status": "absent_language",
+        "status": "partial_overlay",
         "source_file": "Shared/content/franciscanCrown/content/arc.json",
         "missing": {
-          "heading_or_label": [
-            "almaRedemptorisMaterTitle",
-            "aveMariaTitle",
-            "aveReginaCaelorumTitle",
-            "crownPopeSubtitle",
-            "crownYearsSubtitle",
-            "decadeOrdinalFormat",
-            "decadeOrdinalNoun",
-            "paterNosterTitle",
-            "reginaCaeliTitle",
-            "salveReginaTitle",
-            "signumCrucisTitle"
-          ],
+          "heading_or_label": [],
           "prayer_body": [
             "almaRedemptorisMater",
             "aveReginaCaelorum",
@@ -776,30 +710,10 @@
           ]
         },
         "missing_mysteries": {
-          "title": [
-            "franciscan_04_adoration_of_the_magi",
-            "glorious_01_resurrection",
-            "glorious_05_coronation",
-            "joyful_01_annunciation",
-            "joyful_02_visitation",
-            "joyful_03_nativity",
-            "joyful_05_finding_in_the_temple"
-          ],
-          "fruit": [
-            "franciscan_04_adoration_of_the_magi",
-            "glorious_01_resurrection",
-            "glorious_05_coronation",
-            "joyful_01_annunciation",
-            "joyful_02_visitation",
-            "joyful_03_nativity",
-            "joyful_05_finding_in_the_temple"
-          ],
-          "description": [
-            "franciscan_04_adoration_of_the_magi"
-          ],
-          "scripture_descriptions": [
-            "franciscan_04_adoration_of_the_magi"
-          ],
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
           "meditation_descriptions": []
         }
       }
@@ -885,9 +799,7 @@
         "source_file": "Shared/content/litanyOfLoreto/content/uk.json",
         "missing": {
           "heading_or_label": [],
-          "prayer_body": [
-            "collectAfterRosary"
-          ]
+          "prayer_body": []
         },
         "missing_mysteries": {
           "title": [],
@@ -973,27 +885,10 @@
         }
       },
       "arc": {
-        "status": "absent_language",
+        "status": "partial_overlay",
         "source_file": "Shared/content/litanyOfLoreto/content/arc.json",
         "missing": {
-          "heading_or_label": [
-            "collectTitle",
-            "step01Title",
-            "step02Title",
-            "step03Title",
-            "step04Title",
-            "step05Title",
-            "step06Title",
-            "step07Title",
-            "step08Title",
-            "step09Title",
-            "step10Title",
-            "step11Title",
-            "step12Title",
-            "step13Title",
-            "step14Title",
-            "step15Title"
-          ],
+          "heading_or_label": [],
           "prayer_body": [
             "collectAfterRosary",
             "collectStandard",
@@ -1057,40 +952,12 @@
         }
       },
       "he": {
-        "status": "absent_language",
+        "status": "advertised",
         "source_file": "Shared/content/oAntiphons/content/he.json",
         "missing": {
-          "heading_or_label": [
-            "gloriaPatriTitle",
-            "magnificatTitle",
-            "oAdonaiTitle",
-            "oAntiphonLectioTitle",
-            "oClavisDavidTitle",
-            "oEmmanuelTitle",
-            "oOriensTitle",
-            "oRadixIesseTitle",
-            "oRexGentiumTitle",
-            "oSapientiaTitle"
-          ],
-          "prayer_body": [
-            "oAdonaiBody",
-            "oClavisDavidBody",
-            "oEmmanuelBody",
-            "oOriensBody",
-            "oRadixIesseBody",
-            "oRexGentiumBody",
-            "oSapientiaBody"
-          ],
-          "scripture_body": [
-            "magnificatBody",
-            "oAdonaiLectio",
-            "oClavisDavidLectio",
-            "oEmmanuelLectio",
-            "oOriensLectio",
-            "oRadixIesseLectio",
-            "oRexGentiumLectio",
-            "oSapientiaLectio"
-          ]
+          "heading_or_label": [],
+          "prayer_body": [],
+          "scripture_body": []
         },
         "missing_mysteries": {
           "title": [],
@@ -1101,21 +968,10 @@
         }
       },
       "ar": {
-        "status": "absent_language",
+        "status": "partial_overlay",
         "source_file": "Shared/content/oAntiphons/content/ar.json",
         "missing": {
-          "heading_or_label": [
-            "gloriaPatriTitle",
-            "magnificatTitle",
-            "oAdonaiTitle",
-            "oAntiphonLectioTitle",
-            "oClavisDavidTitle",
-            "oEmmanuelTitle",
-            "oOriensTitle",
-            "oRadixIesseTitle",
-            "oRexGentiumTitle",
-            "oSapientiaTitle"
-          ],
+          "heading_or_label": [],
           "prayer_body": [
             "oAdonaiBody",
             "oClavisDavidBody",
@@ -1125,16 +981,7 @@
             "oRexGentiumBody",
             "oSapientiaBody"
           ],
-          "scripture_body": [
-            "magnificatBody",
-            "oAdonaiLectio",
-            "oClavisDavidLectio",
-            "oEmmanuelLectio",
-            "oOriensLectio",
-            "oRadixIesseLectio",
-            "oRexGentiumLectio",
-            "oSapientiaLectio"
-          ]
+          "scripture_body": []
         },
         "missing_mysteries": {
           "title": [],
@@ -1145,40 +992,12 @@
         }
       },
       "ru": {
-        "status": "absent_language",
+        "status": "advertised",
         "source_file": "Shared/content/oAntiphons/content/ru.json",
         "missing": {
-          "heading_or_label": [
-            "gloriaPatriTitle",
-            "magnificatTitle",
-            "oAdonaiTitle",
-            "oAntiphonLectioTitle",
-            "oClavisDavidTitle",
-            "oEmmanuelTitle",
-            "oOriensTitle",
-            "oRadixIesseTitle",
-            "oRexGentiumTitle",
-            "oSapientiaTitle"
-          ],
-          "prayer_body": [
-            "oAdonaiBody",
-            "oClavisDavidBody",
-            "oEmmanuelBody",
-            "oOriensBody",
-            "oRadixIesseBody",
-            "oRexGentiumBody",
-            "oSapientiaBody"
-          ],
-          "scripture_body": [
-            "magnificatBody",
-            "oAdonaiLectio",
-            "oClavisDavidLectio",
-            "oEmmanuelLectio",
-            "oOriensLectio",
-            "oRadixIesseLectio",
-            "oRexGentiumLectio",
-            "oSapientiaLectio"
-          ]
+          "heading_or_label": [],
+          "prayer_body": [],
+          "scripture_body": []
         },
         "missing_mysteries": {
           "title": [],
@@ -1205,21 +1024,10 @@
         }
       },
       "tl": {
-        "status": "absent_language",
+        "status": "partial_overlay",
         "source_file": "Shared/content/oAntiphons/content/tl.json",
         "missing": {
-          "heading_or_label": [
-            "gloriaPatriTitle",
-            "magnificatTitle",
-            "oAdonaiTitle",
-            "oAntiphonLectioTitle",
-            "oClavisDavidTitle",
-            "oEmmanuelTitle",
-            "oOriensTitle",
-            "oRadixIesseTitle",
-            "oRexGentiumTitle",
-            "oSapientiaTitle"
-          ],
+          "heading_or_label": [],
           "prayer_body": [
             "oAdonaiBody",
             "oClavisDavidBody",
@@ -1229,16 +1037,7 @@
             "oRexGentiumBody",
             "oSapientiaBody"
           ],
-          "scripture_body": [
-            "magnificatBody",
-            "oAdonaiLectio",
-            "oClavisDavidLectio",
-            "oEmmanuelLectio",
-            "oOriensLectio",
-            "oRadixIesseLectio",
-            "oRexGentiumLectio",
-            "oSapientiaLectio"
-          ]
+          "scripture_body": []
         },
         "missing_mysteries": {
           "title": [],
@@ -1281,20 +1080,12 @@
         }
       },
       "es": {
-        "status": "partial_overlay",
+        "status": "advertised",
         "source_file": "Shared/content/oAntiphons/content/es.json",
         "missing": {
           "heading_or_label": [],
           "prayer_body": [],
-          "scripture_body": [
-            "oAdonaiLectio",
-            "oClavisDavidLectio",
-            "oEmmanuelLectio",
-            "oOriensLectio",
-            "oRadixIesseLectio",
-            "oRexGentiumLectio",
-            "oSapientiaLectio"
-          ]
+          "scripture_body": []
         },
         "missing_mysteries": {
           "title": [],
@@ -1308,18 +1099,7 @@
         "status": "partial_overlay",
         "source_file": "Shared/content/oAntiphons/content/el.json",
         "missing": {
-          "heading_or_label": [
-            "gloriaPatriTitle",
-            "magnificatTitle",
-            "oAdonaiTitle",
-            "oAntiphonLectioTitle",
-            "oClavisDavidTitle",
-            "oEmmanuelTitle",
-            "oOriensTitle",
-            "oRadixIesseTitle",
-            "oRexGentiumTitle",
-            "oSapientiaTitle"
-          ],
+          "heading_or_label": [],
           "prayer_body": [
             "oAdonaiBody",
             "oClavisDavidBody",
@@ -1343,18 +1123,7 @@
         "status": "partial_overlay",
         "source_file": "Shared/content/oAntiphons/content/arc.json",
         "missing": {
-          "heading_or_label": [
-            "gloriaPatriTitle",
-            "magnificatTitle",
-            "oAdonaiTitle",
-            "oAntiphonLectioTitle",
-            "oClavisDavidTitle",
-            "oEmmanuelTitle",
-            "oOriensTitle",
-            "oRadixIesseTitle",
-            "oRexGentiumTitle",
-            "oSapientiaTitle"
-          ],
+          "heading_or_label": [],
           "prayer_body": [
             "oAdonaiBody",
             "oClavisDavidBody",
@@ -1380,9 +1149,7 @@
         "status": "advertised",
         "source_file": "Shared/content/rosary/content/la.json",
         "missing": {
-          "heading_or_label": [
-            "animaChristiTitle"
-          ],
+          "heading_or_label": [],
           "prayer_body": [],
           "supplemental_body": []
         },
@@ -1398,9 +1165,7 @@
         "status": "advertised",
         "source_file": "Shared/content/rosary/content/en.json",
         "missing": {
-          "heading_or_label": [
-            "animaChristiTitle"
-          ],
+          "heading_or_label": [],
           "prayer_body": [],
           "supplemental_body": []
         },
@@ -1416,9 +1181,7 @@
         "status": "advertised",
         "source_file": "Shared/content/rosary/content/he.json",
         "missing": {
-          "heading_or_label": [
-            "animaChristiTitle"
-          ],
+          "heading_or_label": [],
           "prayer_body": [],
           "supplemental_body": []
         },
@@ -1434,9 +1197,7 @@
         "status": "advertised",
         "source_file": "Shared/content/rosary/content/ar.json",
         "missing": {
-          "heading_or_label": [
-            "animaChristiTitle"
-          ],
+          "heading_or_label": [],
           "prayer_body": [],
           "supplemental_body": []
         },
@@ -1452,9 +1213,7 @@
         "status": "advertised",
         "source_file": "Shared/content/rosary/content/ru.json",
         "missing": {
-          "heading_or_label": [
-            "animaChristiTitle"
-          ],
+          "heading_or_label": [],
           "prayer_body": [],
           "supplemental_body": []
         },
@@ -1473,8 +1232,7 @@
           "heading_or_label": [],
           "prayer_body": [
             "almaRedemptorisMater",
-            "aveReginaCaelorum",
-            "collectaStandard"
+            "aveReginaCaelorum"
           ],
           "supplemental_body": []
         },
@@ -1490,9 +1248,7 @@
         "status": "advertised",
         "source_file": "Shared/content/rosary/content/tl.json",
         "missing": {
-          "heading_or_label": [
-            "animaChristiTitle"
-          ],
+          "heading_or_label": [],
           "prayer_body": [],
           "supplemental_body": []
         },
@@ -1508,9 +1264,7 @@
         "status": "advertised",
         "source_file": "Shared/content/rosary/content/fr.json",
         "missing": {
-          "heading_or_label": [
-            "animaChristiTitle"
-          ],
+          "heading_or_label": [],
           "prayer_body": [],
           "supplemental_body": []
         },
@@ -1526,9 +1280,7 @@
         "status": "advertised",
         "source_file": "Shared/content/rosary/content/it.json",
         "missing": {
-          "heading_or_label": [
-            "animaChristiTitle"
-          ],
+          "heading_or_label": [],
           "prayer_body": [],
           "supplemental_body": []
         },
@@ -1562,12 +1314,6 @@
         "missing": {
           "heading_or_label": [],
           "prayer_body": [
-            "intentioAnimarum",
-            "intentioOrdinarii",
-            "intentioPontificis",
-            "invitatoryBody",
-            "invitatoryBodyLent",
-            "requiescantInPace",
             "sanctusMichael"
           ],
           "supplemental_body": []
@@ -1584,36 +1330,12 @@
         "status": "advertised",
         "source_file": "Shared/content/rosary/content/arc.json",
         "missing": {
-          "heading_or_label": [
-            "almaRedemptorisMaterTitle",
-            "animaChristiTitle",
-            "aveMariaProCaritate",
-            "aveMariaProFide",
-            "aveMariaProSpe",
-            "aveReginaCaelorumTitle",
-            "closingBishopIntentionTitle",
-            "closingDepartedIntentionTitle",
-            "closingPopeIntentionTitle",
-            "decadeOrdinalFormat",
-            "decadeOrdinalNoun",
-            "invitatoryTitle",
-            "oratioFatimaeTitle",
-            "presenterCombinedTitle",
-            "reginaCaeliTitle",
-            "requiemAeternamTitle",
-            "salveReginaTitle",
-            "sanctusMichaelTitle"
-          ],
+          "heading_or_label": [],
           "prayer_body": [
             "almaRedemptorisMater",
             "aveReginaCaelorum",
             "collectaPaschale",
             "collectaStandard",
-            "intentioAnimarum",
-            "intentioOrdinarii",
-            "intentioPontificis",
-            "invitatoryBody",
-            "invitatoryBodyLent",
             "oratioFatimae",
             "reginaCaeli",
             "requiemAeternam",
@@ -1631,50 +1353,8 @@
           ]
         },
         "missing_mysteries": {
-          "title": [
-            "glorious_01_resurrection",
-            "glorious_02_ascension",
-            "glorious_03_descent_of_the_holy_spirit",
-            "glorious_04_assumption",
-            "glorious_05_coronation",
-            "joyful_01_annunciation",
-            "joyful_02_visitation",
-            "joyful_03_nativity",
-            "joyful_04_presentation",
-            "joyful_05_finding_in_the_temple",
-            "luminous_01_baptism",
-            "luminous_02_wedding_at_cana",
-            "luminous_03_proclamation_of_the_kingdom",
-            "luminous_04_transfiguration",
-            "luminous_05_institution_of_the_eucharist",
-            "sorrowful_01_agony_in_the_garden",
-            "sorrowful_02_scourging_at_the_pillar",
-            "sorrowful_03_crowning_with_thorns",
-            "sorrowful_04_carrying_of_the_cross",
-            "sorrowful_05_crucifixion"
-          ],
-          "fruit": [
-            "glorious_01_resurrection",
-            "glorious_02_ascension",
-            "glorious_03_descent_of_the_holy_spirit",
-            "glorious_04_assumption",
-            "glorious_05_coronation",
-            "joyful_01_annunciation",
-            "joyful_02_visitation",
-            "joyful_03_nativity",
-            "joyful_04_presentation",
-            "joyful_05_finding_in_the_temple",
-            "luminous_01_baptism",
-            "luminous_02_wedding_at_cana",
-            "luminous_03_proclamation_of_the_kingdom",
-            "luminous_04_transfiguration",
-            "luminous_05_institution_of_the_eucharist",
-            "sorrowful_01_agony_in_the_garden",
-            "sorrowful_02_scourging_at_the_pillar",
-            "sorrowful_03_crowning_with_thorns",
-            "sorrowful_04_carrying_of_the_cross",
-            "sorrowful_05_crucifixion"
-          ],
+          "title": [],
+          "fruit": [],
           "description": [],
           "scripture_descriptions": [],
           "meditation_descriptions": []
@@ -1818,149 +1498,52 @@
         }
       },
       "es": {
-        "status": "partial_overlay",
+        "status": "advertised",
         "source_file": "Shared/content/sevenSorrows/content/es.json",
         "missing": {
-          "heading_or_label": [
-            "aveMariaTitle",
-            "decadeOrdinalNoun",
-            "paterNosterTitle",
-            "sevenSorrowsClosingTitle",
-            "sevenSorrowsTearsSubtitle",
-            "signumCrucisTitle"
-          ],
-          "prayer_body": [
-            "sevenSorrowsClosingBody"
-          ]
+          "heading_or_label": [],
+          "prayer_body": []
         },
         "missing_mysteries": {
-          "title": [
-            "seven_sorrows_01_prophecy_of_simeon",
-            "seven_sorrows_02_flight_into_egypt",
-            "seven_sorrows_03_loss_of_jesus_in_the_temple",
-            "seven_sorrows_04_meeting_jesus_on_the_way_of_the_cross",
-            "seven_sorrows_05_crucifixion",
-            "seven_sorrows_06_descent_from_the_cross",
-            "seven_sorrows_07_burial_of_jesus"
-          ],
-          "fruit": [
-            "seven_sorrows_01_prophecy_of_simeon",
-            "seven_sorrows_02_flight_into_egypt",
-            "seven_sorrows_03_loss_of_jesus_in_the_temple",
-            "seven_sorrows_04_meeting_jesus_on_the_way_of_the_cross",
-            "seven_sorrows_05_crucifixion",
-            "seven_sorrows_06_descent_from_the_cross",
-            "seven_sorrows_07_burial_of_jesus"
-          ],
-          "description": [
-            "seven_sorrows_04_meeting_jesus_on_the_way_of_the_cross"
-          ],
+          "title": [],
+          "fruit": [],
+          "description": [],
           "scripture_descriptions": [],
-          "meditation_descriptions": [
-            "seven_sorrows_04_meeting_jesus_on_the_way_of_the_cross"
-          ]
+          "meditation_descriptions": []
         }
       },
       "el": {
         "status": "partial_overlay",
         "source_file": "Shared/content/sevenSorrows/content/el.json",
         "missing": {
-          "heading_or_label": [
-            "aveMariaTitle",
-            "decadeOrdinalNoun",
-            "paterNosterTitle",
-            "sevenSorrowsClosingTitle",
-            "sevenSorrowsTearsSubtitle",
-            "signumCrucisTitle"
-          ],
+          "heading_or_label": [],
           "prayer_body": [
             "sevenSorrowsClosingBody"
           ]
         },
         "missing_mysteries": {
-          "title": [
-            "seven_sorrows_01_prophecy_of_simeon",
-            "seven_sorrows_02_flight_into_egypt",
-            "seven_sorrows_03_loss_of_jesus_in_the_temple",
-            "seven_sorrows_04_meeting_jesus_on_the_way_of_the_cross",
-            "seven_sorrows_05_crucifixion",
-            "seven_sorrows_06_descent_from_the_cross",
-            "seven_sorrows_07_burial_of_jesus"
-          ],
-          "fruit": [
-            "seven_sorrows_01_prophecy_of_simeon",
-            "seven_sorrows_02_flight_into_egypt",
-            "seven_sorrows_03_loss_of_jesus_in_the_temple",
-            "seven_sorrows_04_meeting_jesus_on_the_way_of_the_cross",
-            "seven_sorrows_05_crucifixion",
-            "seven_sorrows_06_descent_from_the_cross",
-            "seven_sorrows_07_burial_of_jesus"
-          ],
-          "description": [
-            "seven_sorrows_04_meeting_jesus_on_the_way_of_the_cross"
-          ],
+          "title": [],
+          "fruit": [],
+          "description": [],
           "scripture_descriptions": [],
-          "meditation_descriptions": [
-            "seven_sorrows_04_meeting_jesus_on_the_way_of_the_cross"
-          ]
+          "meditation_descriptions": []
         }
       },
       "arc": {
-        "status": "absent_language",
+        "status": "partial_overlay",
         "source_file": "Shared/content/sevenSorrows/content/arc.json",
         "missing": {
-          "heading_or_label": [
-            "aveMariaTitle",
-            "decadeOrdinalFormat",
-            "decadeOrdinalNoun",
-            "paterNosterTitle",
-            "sevenSorrowsClosingTitle",
-            "sevenSorrowsTearsSubtitle",
-            "signumCrucisTitle"
-          ],
+          "heading_or_label": [],
           "prayer_body": [
             "sevenSorrowsClosingBody"
           ]
         },
         "missing_mysteries": {
-          "title": [
-            "seven_sorrows_01_prophecy_of_simeon",
-            "seven_sorrows_02_flight_into_egypt",
-            "seven_sorrows_03_loss_of_jesus_in_the_temple",
-            "seven_sorrows_04_meeting_jesus_on_the_way_of_the_cross",
-            "seven_sorrows_05_crucifixion",
-            "seven_sorrows_06_descent_from_the_cross",
-            "seven_sorrows_07_burial_of_jesus"
-          ],
-          "fruit": [
-            "seven_sorrows_01_prophecy_of_simeon",
-            "seven_sorrows_02_flight_into_egypt",
-            "seven_sorrows_03_loss_of_jesus_in_the_temple",
-            "seven_sorrows_04_meeting_jesus_on_the_way_of_the_cross",
-            "seven_sorrows_05_crucifixion",
-            "seven_sorrows_06_descent_from_the_cross",
-            "seven_sorrows_07_burial_of_jesus"
-          ],
-          "description": [
-            "seven_sorrows_01_prophecy_of_simeon",
-            "seven_sorrows_02_flight_into_egypt",
-            "seven_sorrows_03_loss_of_jesus_in_the_temple",
-            "seven_sorrows_04_meeting_jesus_on_the_way_of_the_cross",
-            "seven_sorrows_05_crucifixion",
-            "seven_sorrows_06_descent_from_the_cross",
-            "seven_sorrows_07_burial_of_jesus"
-          ],
-          "scripture_descriptions": [
-            "seven_sorrows_01_prophecy_of_simeon",
-            "seven_sorrows_02_flight_into_egypt",
-            "seven_sorrows_03_loss_of_jesus_in_the_temple",
-            "seven_sorrows_05_crucifixion",
-            "seven_sorrows_06_descent_from_the_cross",
-            "seven_sorrows_07_burial_of_jesus"
-          ],
-          "meditation_descriptions": [
-            "seven_sorrows_04_meeting_jesus_on_the_way_of_the_cross"
-          ]
+          "title": [],
+          "fruit": [],
+          "description": [],
+          "scripture_descriptions": [],
+          "meditation_descriptions": []
         }
       }
     },
@@ -2020,10 +1603,9 @@
         "source_file": "Shared/content/stationsOfTheCross/content/ar.json",
         "missing": {
           "heading_or_label": [],
+          "meditation_body": [],
           "prayer_body": [],
-          "scripture_body": [
-            "station06Body"
-          ]
+          "scripture_body": []
         },
         "missing_mysteries": {
           "title": [],
@@ -2054,22 +1636,7 @@
         "source_file": "Shared/content/stationsOfTheCross/content/uk.json",
         "missing": {
           "heading_or_label": [],
-          "meditation_body": [
-            "station01Body",
-            "station02Body",
-            "station03Body",
-            "station04Body",
-            "station05Body",
-            "station06Body",
-            "station07Body",
-            "station08Body",
-            "station09Body",
-            "station10Body",
-            "station11Body",
-            "station12Body",
-            "station13Body",
-            "station14Body"
-          ],
+          "meditation_body": [],
           "prayer_body": [
             "stationsClosingPrayer",
             "stationsOpeningPrayer"
@@ -2089,10 +1656,9 @@
         "source_file": "Shared/content/stationsOfTheCross/content/tl.json",
         "missing": {
           "heading_or_label": [],
+          "meditation_body": [],
           "prayer_body": [],
-          "scripture_body": [
-            "station06Body"
-          ]
+          "scripture_body": []
         },
         "missing_mysteries": {
           "title": [],
@@ -2144,60 +1710,10 @@
         "status": "partial_overlay",
         "source_file": "Shared/content/stationsOfTheCross/content/es.json",
         "missing": {
-          "heading_or_label": [
-            "animaChristiTitle",
-            "scriptural01Title",
-            "scriptural02Title",
-            "scriptural03Title",
-            "scriptural04Title",
-            "scriptural05Title",
-            "scriptural06Title",
-            "scriptural07Title",
-            "scriptural08Title",
-            "scriptural09Title",
-            "scriptural10Title",
-            "scriptural11Title",
-            "scriptural12Title",
-            "scriptural13Title",
-            "scriptural14Title",
-            "signumCrucisTitle",
-            "station01Title",
-            "station02Title",
-            "station03Title",
-            "station04Title",
-            "station05Title",
-            "station06Title",
-            "station07Title",
-            "station08Title",
-            "station09Title",
-            "station10Title",
-            "station11Title",
-            "station12Title",
-            "station13Title",
-            "station14Title",
-            "stationsClosingPrayerTitle",
-            "stationsOpeningPrayerTitle"
-          ],
-          "meditation_body": [
-            "station01Body",
-            "station02Body",
-            "station03Body",
-            "station04Body",
-            "station05Body",
-            "station06Body",
-            "station07Body",
-            "station08Body",
-            "station09Body",
-            "station10Body",
-            "station11Body",
-            "station12Body",
-            "station13Body",
-            "station14Body"
-          ],
+          "heading_or_label": [],
+          "meditation_body": [],
           "prayer_body": [
-            "stationsAcclamation",
-            "stationsClosingPrayer",
-            "stationsOpeningPrayer"
+            "stationsClosingPrayer"
           ],
           "scripture_body": []
         },
@@ -2213,58 +1729,9 @@
         "status": "partial_overlay",
         "source_file": "Shared/content/stationsOfTheCross/content/el.json",
         "missing": {
-          "heading_or_label": [
-            "animaChristiTitle",
-            "scriptural01Title",
-            "scriptural02Title",
-            "scriptural03Title",
-            "scriptural04Title",
-            "scriptural05Title",
-            "scriptural06Title",
-            "scriptural07Title",
-            "scriptural08Title",
-            "scriptural09Title",
-            "scriptural10Title",
-            "scriptural11Title",
-            "scriptural12Title",
-            "scriptural13Title",
-            "scriptural14Title",
-            "signumCrucisTitle",
-            "station01Title",
-            "station02Title",
-            "station03Title",
-            "station04Title",
-            "station05Title",
-            "station06Title",
-            "station07Title",
-            "station08Title",
-            "station09Title",
-            "station10Title",
-            "station11Title",
-            "station12Title",
-            "station13Title",
-            "station14Title",
-            "stationsClosingPrayerTitle",
-            "stationsOpeningPrayerTitle"
-          ],
-          "meditation_body": [
-            "station01Body",
-            "station02Body",
-            "station03Body",
-            "station04Body",
-            "station05Body",
-            "station06Body",
-            "station07Body",
-            "station08Body",
-            "station09Body",
-            "station10Body",
-            "station11Body",
-            "station12Body",
-            "station13Body",
-            "station14Body"
-          ],
+          "heading_or_label": [],
+          "meditation_body": [],
           "prayer_body": [
-            "stationsAcclamation",
             "stationsClosingPrayer",
             "stationsOpeningPrayer"
           ],
@@ -2282,56 +1749,8 @@
         "status": "partial_overlay",
         "source_file": "Shared/content/stationsOfTheCross/content/arc.json",
         "missing": {
-          "heading_or_label": [
-            "animaChristiTitle",
-            "scriptural01Title",
-            "scriptural02Title",
-            "scriptural03Title",
-            "scriptural04Title",
-            "scriptural05Title",
-            "scriptural06Title",
-            "scriptural07Title",
-            "scriptural08Title",
-            "scriptural09Title",
-            "scriptural10Title",
-            "scriptural11Title",
-            "scriptural12Title",
-            "scriptural13Title",
-            "scriptural14Title",
-            "signumCrucisTitle",
-            "station01Title",
-            "station02Title",
-            "station03Title",
-            "station04Title",
-            "station05Title",
-            "station06Title",
-            "station07Title",
-            "station08Title",
-            "station09Title",
-            "station10Title",
-            "station11Title",
-            "station12Title",
-            "station13Title",
-            "station14Title",
-            "stationsClosingPrayerTitle",
-            "stationsOpeningPrayerTitle"
-          ],
-          "meditation_body": [
-            "station01Body",
-            "station02Body",
-            "station03Body",
-            "station04Body",
-            "station05Body",
-            "station06Body",
-            "station07Body",
-            "station08Body",
-            "station09Body",
-            "station10Body",
-            "station11Body",
-            "station12Body",
-            "station13Body",
-            "station14Body"
-          ],
+          "heading_or_label": [],
+          "meditation_body": [],
           "prayer_body": [
             "animaChristi",
             "stationsAcclamation",
@@ -2617,9 +2036,7 @@
         "source_file": "Shared/content/viaLucis/content/uk.json",
         "missing": {
           "heading_or_label": [],
-          "prayer_body": [
-            "viaLucisAcclamation"
-          ],
+          "prayer_body": [],
           "scripture_body": []
         },
         "missing_mysteries": {
@@ -2679,31 +2096,11 @@
         }
       },
       "es": {
-        "status": "partial_overlay",
+        "status": "advertised",
         "source_file": "Shared/content/viaLucis/content/es.json",
         "missing": {
-          "heading_or_label": [
-            "signumCrucisTitle",
-            "viaLucis01Title",
-            "viaLucis02Title",
-            "viaLucis03Title",
-            "viaLucis04Title",
-            "viaLucis05Title",
-            "viaLucis06Title",
-            "viaLucis07Title",
-            "viaLucis08Title",
-            "viaLucis09Title",
-            "viaLucis10Title",
-            "viaLucis11Title",
-            "viaLucis12Title",
-            "viaLucis13Title",
-            "viaLucis14Title",
-            "viaLucisClosingTitle"
-          ],
-          "prayer_body": [
-            "viaLucisAcclamation",
-            "viaLucisClosingBody"
-          ],
+          "heading_or_label": [],
+          "prayer_body": [],
           "scripture_body": []
         },
         "missing_mysteries": {
@@ -2718,27 +2115,9 @@
         "status": "partial_overlay",
         "source_file": "Shared/content/viaLucis/content/el.json",
         "missing": {
-          "heading_or_label": [
-            "signumCrucisTitle",
-            "viaLucis01Title",
-            "viaLucis02Title",
-            "viaLucis03Title",
-            "viaLucis04Title",
-            "viaLucis05Title",
-            "viaLucis06Title",
-            "viaLucis07Title",
-            "viaLucis08Title",
-            "viaLucis09Title",
-            "viaLucis10Title",
-            "viaLucis11Title",
-            "viaLucis12Title",
-            "viaLucis13Title",
-            "viaLucis14Title",
-            "viaLucisClosingTitle"
-          ],
+          "heading_or_label": [],
           "prayer_body": [
-            "viaLucisAcclamation",
-            "viaLucisClosingBody"
+            "viaLucisAcclamation"
           ],
           "scripture_body": []
         },
@@ -2754,24 +2133,7 @@
         "status": "partial_overlay",
         "source_file": "Shared/content/viaLucis/content/arc.json",
         "missing": {
-          "heading_or_label": [
-            "signumCrucisTitle",
-            "viaLucis01Title",
-            "viaLucis02Title",
-            "viaLucis03Title",
-            "viaLucis04Title",
-            "viaLucis05Title",
-            "viaLucis06Title",
-            "viaLucis07Title",
-            "viaLucis08Title",
-            "viaLucis09Title",
-            "viaLucis10Title",
-            "viaLucis11Title",
-            "viaLucis12Title",
-            "viaLucis13Title",
-            "viaLucis14Title",
-            "viaLucisClosingTitle"
-          ],
+          "heading_or_label": [],
           "prayer_body": [
             "viaLucisAcclamation",
             "viaLucisClosingBody"

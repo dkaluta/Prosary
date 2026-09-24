@@ -37,17 +37,47 @@ enum PrayerTranslations {
                         bundleId: String = "rosary") -> String {
     let title = HebrewDisplayText.unpointed(title)
     guard LanguageCatalog.fallbackChain(for: languageCode).first == "arc" else { return title }
+    let pairs = PrayerPackStore.aramaicHeadingPairs(bundleId: bundleId)
+    let definition = PrayerPackStore.definition(for: bundleId)
+    let ordinalKeys = ([definition?.decades?.ordinalNounKey]
+      + (definition?.variants ?? []).map { $0.decades?.ordinalNounKey }).compactMap { $0 }
+    let ordinalNouns = Set(ordinalKeys.flatMap { key in
+      [PrayerPackStore.resolveBodyText(bundleId: bundleId, languageCode: "arc", key: key),
+       PrayerPackStore.transliteration(bundleId: bundleId, languageCode: "arc", key: key)]
+        .compactMap { $0 }.map(HebrewDisplayText.unpointed)
+    })
+    // Decade context is composed from independently authored labels and a mystery title.
+    // Only recognize that authored shape; personal titles containing a dash stay untouched.
+    if title.contains(" — ") {
+      let parts = title.components(separatedBy: " — ")
+      func isPaired(_ value: String) -> Bool {
+        pairs.contains { HebrewDisplayText.unpointed($0.original) == value || HebrewDisplayText.unpointed($0.alternate) == value }
+      }
+      func isOrdinal(_ value: String) -> Bool {
+        guard let suffix = value.range(of: #" \d+$"#, options: .regularExpression) else { return false }
+        return ordinalNouns.contains(String(value[..<suffix.lowerBound]))
+      }
+      guard (2...3).contains(parts.count) else { return title }
+      let ordinalIndex = isOrdinal(parts[parts.count - 1]) ? parts.count - 1 : parts.count - 2
+      guard isOrdinal(parts[ordinalIndex]), ordinalIndex == parts.count - 1 || isPaired(parts[parts.count - 1]) else { return title }
+      return parts.map { part in
+        flowTitle(part, languageCode: languageCode, sourceScript: sourceScript, bundleId: bundleId)
+      }.joined(separator: " — ")
+    }
     let hebrewConnector = HebrewDisplayText.unpointed(get(languageCode: "arc", key: .repetitionCounterConnector))
     let syriacConnector = PrayerPackStore.transliteration(
       bundleId: "rosary", languageCode: "arc", key: PrayerKey.repetitionCounterConnector.rawValue)
     let connectors = [hebrewConnector, syriacConnector].compactMap { $0 }
     let pattern = #" \(\d+ (?:"# + connectors.map { NSRegularExpression.escapedPattern(for: $0) }.joined(separator: "|") + #") \d+\)$"#
-    let suffixRange = title.range(of: pattern, options: .regularExpression)
+    let ordinalSuffix = title.range(of: #" \d+$"#, options: .regularExpression).flatMap {
+      ordinalNouns.contains(String(title[..<$0.lowerBound])) ? $0 : nil
+    }
+    let suffixRange = title.range(of: pattern, options: .regularExpression) ?? ordinalSuffix
     let heading = suffixRange.map { String(title[..<$0.lowerBound]) } ?? title
     var suffix = suffixRange.map { String(title[$0]) } ?? ""
     let desired: PrayerTypography.Script = sourceScript ? .syriac : .hebrew
     var displayed = heading
-    for pair in PrayerPackStore.aramaicHeadingPairs(bundleId: bundleId) {
+    for pair in pairs {
       let original = HebrewDisplayText.unpointed(pair.original)
       let alternate = HebrewDisplayText.unpointed(pair.alternate)
       guard heading == original || heading == alternate else { continue }

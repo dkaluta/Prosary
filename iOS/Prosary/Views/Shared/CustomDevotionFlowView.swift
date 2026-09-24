@@ -251,7 +251,7 @@ struct CustomDevotionFlowView: View {
             switchDay(to: index)
           } label: {
             let label = HebrewDisplayText.unpointed(
-              day.period.map { "\($0) — \(day.localizedName)" } ?? day.localizedName)
+              day.localizedPeriod.map { "\($0) — \(day.localizedName)" } ?? day.localizedName)
             if index == dayIndex {
               Label(label, systemImage: "checkmark")
             } else {

@@ -69,10 +69,11 @@ coverage_spec.loader.exec_module(coverage)
 report = coverage.inventory()
 for bundle, languages in {
     "rosary": ("es",),
-    "angelus": ("es",),
-    "divineMercyChaplet": ("es",),
+    "angelus": ("es", "el"),
+    "divineMercyChaplet": ("es", "el"),
     "franciscanCrown": ("es", "el"),
-    "oAntiphons": ("fr", "it"),
+    "oAntiphons": ("fr", "it", "he", "ru", "es"),
+    "sevenSorrows": ("es",),
     "trisagion": ("fr", "it", "es", "el"),
 }.items():
     for language in languages:
@@ -80,6 +81,17 @@ for bundle, languages in {
         assert row["status"] == "advertised", (bundle, language)
         assert not any(row["missing"].values()), (bundle, language, row["missing"])
         assert not any(row["missing_mysteries"].values()), (bundle, language, row["missing_mysteries"])
+
+# Only the seven published Hebrew antiphons are Vicariate prayer text. Display labels
+# and the separately sourced Masoretic/Delitzsch readings must not inherit that claim.
+hebrew_antiphons = json.loads((ROOT / "Shared/content/oAntiphons/content/he.json").read_text())
+vicariate_bodies = {f"{key}Body" for key in (
+    "oSapientia", "oAdonai", "oRadixIesse", "oClavisDavid", "oOriens", "oRexGentium", "oEmmanuel",
+)}
+assert hebrew_antiphons["$prayerTraditionByKey"] == {key: "vicariate" for key in vicariate_bodies}
+for key in vicariate_bodies:
+    assert "catholic.co.il" in hebrew_antiphons["$sources"][key], key
+assert not vicariate_bodies.intersection(hebrew_antiphons["$scriptureImport"]["prayerKeys"])
 assert not report["fixed_prayers"]["es"]["missing_prayer_bodies"]
 for language in ("fr", "it"):
     stations = json.loads((ROOT / f"Shared/content/stationsOfTheCross/content/{language}.json").read_text())

@@ -80,6 +80,9 @@
     <string name="prayer_order_title">"ترتيب الصلوات"</string>
     <string name="basic_prayers_title">"الصلوات الأساسية"</string>
     <string name="settings_haptics_on_advance">"اهتزاز عند تغيير الخطوة"</string>
+    <string name="settings_keyboard_arrows">التنقل بمفاتيح الأسهم</string>
+    <string name="settings_keyboard_space">التقدم بمفتاح المسافة</string>
+    <string name="settings_keyboard_hint">أثناء القراءة، استخدم مفتاحي السهم الأيسر والأيمن للتنقل بين الخطوات، أو مفتاح المسافة للتقدم.</string>
     <string name="settings_auto_advance">"الانتقال التلقائي"</string>
     <string name="auto_advance_off">"متوقف"</string>
     <string name="auto_advance_every">"كل %1$d ثانية"</string>
@@ -132,11 +135,11 @@
     <!-- Marian antiphon controls; named prayers use the selected prayer language at runtime. -->
     <string name="antiphon_none">"لا شيء"</string>
     <string name="antiphon_seasonal">"تلقائيًا بحسب الزمن الطقسي"</string>
-    <string name="antiphon_salve_regina">"Salve Regina"</string>
-    <string name="antiphon_alma_redemptoris">"Alma Redemptoris Mater"</string>
-    <string name="antiphon_ave_regina">"Ave Regina Caelorum"</string>
-    <string name="antiphon_regina_caeli">"Regina Caeli"</string>
-    <string name="antiphon_sub_tuum">"Sub Tuum Praesidium"</string>
+    <string name="antiphon_salve_regina">"السلام عليك يا ملكة"</string>
+    <string name="antiphon_alma_redemptoris">"يا أم الفادي"</string>
+    <string name="antiphon_ave_regina">"السلام عليك يا ملكة السماوات"</string>
+    <string name="antiphon_regina_caeli">"يا ملكة السماء"</string>
+    <string name="antiphon_sub_tuum">"تحت حمايتك"</string>
 
     <!-- Mystery artwork styles -->
     <string name="image_style_classic">"لوحات كلاسيكية"</string>
@@ -419,9 +422,9 @@
     <string name="about_bible_book_sources">أسماء أسفار الكتاب المقدس: AELF، دار المشرق، الترجمة السينودسية الروسية (Azbyka)، جمعية الكتاب المقدس الفلبينية وParolaViva.</string>
     <string name="about_prayer_network_link">شبكة صلاة البابا العالمية</string>
     <string name="about_parolaviva_link">ParolaViva — CC BY 4.0</string>
-    <string name="about_additional_prayer_sources">مصادر إضافية للصلوات: أخبار الفاتيكان، ومزار فاطمة، وكاتدرائية نوتردام في باريس، وAELF، ومجلس الأساقفة الإيطالي (CEI). كذلك: بازيليك غوادالوبي؛ GOARCH Digital Chant Stand؛ IVE في اليونان (ترجمة صلاة نفس المسيح إلى اليونانية للأب F. Bravo IVE)؛ رعية القديس نيقولاوس الكاثوليكية في تينوس؛ الإقليم الكرملي الإيبيري؛ Natalia Smelova, Melkite Syriac Hymns to the Mother of God (2011)، للنص السرياني من العصور الوسطى لصلاة تحت حمايتك. Officium Parvum Graece et Latine (Avignon: F. Seguin, 1823), pp. 119, 121, 125. Alfonso Maria de’ Liguori: Esercizio della Via Crucis (1761); Mater dolorosa (1888).</string>
-    <string name="about_divine_mercy_source">مسبحة الرحمة الإلهية: رهبانية راهبات سيدة الرحمة.</string>
-    <string name="about_seven_sorrows_source">صلوات الأحزان السبعة: Notre Dame de Chrétienté وConfraternite.net.</string>
+    <string name="about_additional_prayer_sources">مصادر إضافية للصلوات: أخبار الفاتيكان، ومزار فاطمة، وكاتدرائية نوتردام في باريس، وAELF، ومجلس الأساقفة الإيطالي (CEI). كذلك: بازيليك غوادالوبي؛ GOARCH Digital Chant Stand؛ IVE في اليونان (ترجمة صلاة نفس المسيح إلى اليونانية للأب F. Bravo IVE)؛ رعية القديس نيقولاوس الكاثوليكية في تينوس؛ الإقليم الكرملي الإيبيري؛ Natalia Smelova, Melkite Syriac Hymns to the Mother of God (2011)، للنص السرياني من العصور الوسطى لصلاة تحت حمايتك. Officium Parvum Graece et Latine (Avignon: F. Seguin, 1823), pp. 7, 119, 121, 125. Alfonso Maria de’ Liguori: Esercizio della Via Crucis (1761); Mater dolorosa (1888). صلاة التبشير الملائكي باليونانية: IVE في اليونان. أنتيفونات «يا»: نيابة القديس يعقوب (العبرية) وRusCatholic (الروسية). آية افتتاح المسبحة بالسريانية: المزمور 70:2، الكتاب المقدس متعدد اللغات لوالتون (1657)، ص. 194. ردّ درب الصليب باليونانية: مجلس الأساقفة الكاثوليك في اليونان (cen.gr).</string>
+    <string name="about_divine_mercy_source">مسبحة الرحمة الإلهية: رهبانية راهبات سيدة الرحمة. النص اليوناني: iPray.</string>
+    <string name="about_seven_sorrows_source">صلوات الأحزان السبعة: Notre Dame de Chrétienté وConfraternite.net. الصلاة الختامية بالإسبانية: José Pulido y Espinosa, Misal Romano (Madrid: Imprenta a cargo de Zacarías Soler, 1851)، ص. 333. الآية والردّ: Apostolado Sacerdotal / Pierina Devoções.</string>
     <string name="settings_typeface_frank_ruhl_libre">"Frank Ruhl Libre"</string>
     <string name="settings_latin_prayer_typeface">"الصلوات بالحروف اللاتينية"</string>
     <string name="settings_cyrillic_prayer_typeface">"الصلوات بالحروف السيريلية"</string>
@@ -458,8 +461,9 @@
     <string name="settings_eastern_pascha">الفصح البيزنطي</string>
     <string name="settings_pascha_julian">الفصح حسب التقويم اليولياني</string>
     <string name="settings_pascha_gregorian">الفصح حسب التقويم الغريغوري</string>
-    <string name="about_ukrainian_sources">"الصلوات بالأوكرانية: الكنيسة الكاثوليكية الرومانية في أوكرانيا، كتاب الصلاة Щоденно з Богом. تُستخدم مع ذكر المصدر وفق سياسة الناشر لإعادة الاستخدام. الكتاب المقدس: ترجمة كوليش ونيتشوي-ليفيتسكي وبوليوي (1905)، ملك عام؛ eBible.org ukr1871. حُفظ الإملاء التاريخي للنص الكتابي."</string>
+    <string name="about_ukrainian_sources">"الصلوات بالأوكرانية: الكنيسة الكاثوليكية الرومانية في أوكرانيا، كتاب الصلاة Щоденно з Богом. تُستخدم مع ذكر المصدر وفق سياسة الناشر لإعادة الاستخدام. الكتاب المقدس: ترجمة كوليش ونيتشوي-ليفيتسكي وبوليوي (1905)، ملك عام؛ eBible.org ukr1871. حُفظ الإملاء التاريخي للنص الكتابي. الصلاة الختامية للمسبحة بالأوكرانية: مركز المعلومات الأوكراني MIR مديوغوريه (medjugorje.com.ua)، أُعيد نشرها مع ذكر المصدر وفق إذن النشر في الموقع."</string>
     <string name="about_ukrainian_prayerbook_link">"كتاب الصلاة بالأوكرانية"</string>
+    <string name="about_ukrainian_rosary_source_link">MIR مديوغوريه — صلاة المسبحة بالأوكرانية</string>
     <string name="about_ukrainian_bible_link">"الكتاب المقدس بالأوكرانية (1905)"</string>
     <!-- Window and menu commands -->
     <string name="commands_open_in_new_window">فتح في نافذة جديدة</string>

@@ -102,6 +102,10 @@ presence on a phone is not, by itself, a reason to include it on Mac.
   display mode. Reopening or redrawing a window must
   preserve those choices. Keep menu and keyboard routes available when a toolbar item is hidden,
   and do not replace SwiftUI's toolbar delegate or draw a separate imitation toolbar.
+  Show prayer-library commands only in All Prayers and tag views. Today/Readings, Gallery,
+  Basic Prayers and Community Devotions keep their own controls instead of displaying disabled
+  library actions. Hide entire toolbar items so they leave no empty glass groups; returning
+  to the library restores the person's toolbar arrangement.
 - **Materials:** let native sidebars, toolbars, menus and popovers provide their system
   appearance. Reserve explicit Liquid Glass for the small, persistent controls that navigate
   dates or prayer steps. Keep library artwork, prayer text, Scripture, calendar metadata and
@@ -120,13 +124,19 @@ presence on a phone is not, by itself, a reason to include it on Mac.
   Control-click opens the same menu without replacing the current selection.
 - **Prayer controls:** size layouts from the actual window width. Use native Mac push buttons,
   tooltips for icon actions, selectable/copyable prayer text, and Return for the primary
-  prayer action. Preserve ordinary Space scrolling. Menus and progress never operate on a sibling.
+  prayer action. Separate Praying settings enable Left/Right step navigation and Space to advance,
+  both on by default; Space keeps ordinary scrolling when its preference is off. Left/Right
+  follow interface direction. Only the key window's reader handles these keys; sheets, editable
+  or selected text, focused controls and modified keys keep native behavior. Held navigation keys
+  advance only once.
+  Menus and progress never operate on a sibling.
 - **Presenter Mode:** every prayer uses the same optional large reading surface, entered from its
   toolbar or View menu. Preserve the selected original/transliterated wording, source-script
   direction, and Scripture/prayer typefaces. Size text explicitly from 24 to 96 points (44 by
   default); long prayers scroll without shrinking or clipping and show continuation cues.
-  Left/Right move between steps according to interface direction, Return performs the primary
-  action, and Escape exits the mode. Page Up/Page Down and Space remain reading controls.
+  Left/Right and Space follow the same Praying settings as the ordinary reader. Return performs
+  the primary action, and Escape exits the mode. Up/Down and Page Up/Page Down remain reading
+  controls; Space also scrolls when advance with Space is disabled.
   The native full-screen button is separate from Presenter Mode. A sheet pauses prayer actions
   and auto-advance. Rosary's older combined-decade option is labelled Combine Repeated Prayers.
 - **Basic Prayers:** The Library sidebar and Go menu expose the standalone prayer directory,
@@ -136,17 +146,18 @@ presence on a phone is not, by itself, a reason to include it on Mac.
   callback, never a navigation binding whose setter opens windows. Existing sourced text,
   language selection, and reading aids are reused.
 - **Today:** Today returns as a reference view in the Library sidebar, separate from the prayer
-  collection. Its date navigation stays above scrollable, selectable content; the native date
-  popover and Today action browse a civil day without changing any prayer session. The selected
+  collection. Its date navigation lives in the native window toolbar above scrollable,
+  selectable content; the native date popover and Today action browse a civil day without
+  changing any prayer session. The selected
   calendar supplies its own feast and ordered reading citations, and the selected month supplies
   the Pope's intention. Readings and the optional Eretz Israel Torah portion show full book names
   and verse references directly, without a shorthand toggle. Their Bible passages start expanded
   when opening Today or changing the date/calendar, and can be collapsed independently. Ordinary
-  refreshes and edition changes preserve those collapses. Compact date controls use native
-  Liquid Glass where supported, with standard bordered controls on older systems. The selected
-  calendar is plain metadata below those controls, and readings use an opaque text background.
-  The date bar uses the system scroll-edge treatment as content passes underneath. The Today options
-  popover owns its calendar, Byzantine Pascha choice and row toggles;
+  refreshes and edition changes preserve those collapses. Previous/Next, Today and Settings use
+  circular toolbar icon buttons with accessible labels and tooltips; the selected date uses a
+  compact capsule. The system supplies toolbar materials and scroll-edge treatment. The selected
+  calendar is plain metadata in the reading content, and readings use an opaque text background.
+  The Today options popover owns its calendar, Byzantine Pascha choice and row toggles;
   Julian/Gregorian Pascha switches both Byzantine datasets. Missing data hides only that row.
   Interface language controls the complete view, including Hebrew/Arabic RTL; prayer-language
   settings do not change it. Sunday omits the supplemental day heading; other rites never inherit

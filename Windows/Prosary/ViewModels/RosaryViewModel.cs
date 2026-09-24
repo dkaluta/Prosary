@@ -47,12 +47,14 @@ public partial class RosaryViewModel : ObservableObject, IPrayerStepFlowViewMode
     private bool _hasClosingCross;
 
     public string HeaderFontFamily => PrayerTypography.ResolveHeadingFontFamily(Header);
+    public string SubtitleFontFamily => PrayerTypography.ResolveHeadingFontFamily(Subtitle ?? string.Empty);
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(HeaderFontFamily))]
     private string _header = string.Empty;
 
     [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(SubtitleFontFamily))]
     private string? _subtitle;
 
     [ObservableProperty]
@@ -332,6 +334,7 @@ public partial class RosaryViewModel : ObservableObject, IPrayerStepFlowViewMode
     {
         RenderCurrentStep();
         OnPropertyChanged(nameof(HeaderFontFamily));
+        OnPropertyChanged(nameof(SubtitleFontFamily));
     }
 
     public void RefreshPrayerWording()
@@ -357,12 +360,12 @@ public partial class RosaryViewModel : ObservableObject, IPrayerStepFlowViewMode
         }
         if (_aramaicSessionScript is not null)
             ShowsTransliteration = PrayerTranslations.InitialTransliteration(_languageCode, step.Body, step.TransliteratedBody, _aramaicSessionScript) ?? false;
-        Subtitle = HebrewDisplayText.WithoutMarksOrNull(step.Subtitle);
         HasTransliteration = step.TransliteratedBody is not null;
         Body = ShowsTransliteration && step.TransliteratedBody is { } transliterated
             ? transliterated
             : step.Body;
         var usesSyriacScript = PrayerTypography.ScriptOf(Body) == PrayerTypography.Script.Syriac;
+        Subtitle = step.Subtitle is { } subtitle ? PrayerTranslations.FlowTitle(subtitle, _languageCode, usesSyriacScript) : null;
         Header = PrayerTranslations.FlowTitle(step.Title, _languageCode, usesSyriacScript);
         MysteryImageKey = step.ImageVariantKey ?? step.Mystery?.ImageKey ?? step.ImageOverrideKey ?? "cross_placeholder";
         var aramaicProgress = PrayerTranslations.AramaicProgress(_index + 1, _steps.Count, _languageCode, usesSyriacScript);

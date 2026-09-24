@@ -1,0 +1,39 @@
+{
+  "reviewed": "2026-09-19",
+  "greekInvitatory": {
+    "edition": "Officium Parvum Graece et Latine ad usum Congregationis B. Mariae Virginis (Avignon: François Seguin, 1823)",
+    "source": "https://books.google.com/books?id=DY_8v-ZEfCYC&pg=PA7",
+    "printedPage": 7,
+    "rights": "Public-domain 1823 printed liturgy.",
+    "scanSha256": "34b7f0e15e35c7b1dfe3bc4ecd82ee9b61559c24279269f2b70c8ad0fb616800",
+    "scanWidth": 1280,
+    "lentText": "Ὁ Θεὸς, εἰς τὴν βοήθειάν μου πρόσχες.\n**Κύριε, εἰς τὸ βοηθῆσαί μοι σπεῦσον.**\n\nΔόξα Πατρὶ, καὶ Υἱῷ, καὶ Ἁγίῳ Πνεύματι.\nὩς ἦν ἐν ἀρχῇ, καὶ νῦν, καὶ ἀεὶ, καὶ εἰς τοὺς αἰῶνας τῶν αἰώνων. Ἀμήν.",
+    "alleluia": "Ἀλληλούϊα.",
+    "review": "Versicle, response and doxology manually checked against the Greek page. Historical polytonic spelling retained, στ ligatures expanded, line wrapping removed and response emphasis added. The app’s Lenten template omits Alleluia; the book’s alternative seasonal acclamation is not part of the app prayer."
+  },
+  "greekStationsAcclamation": {
+    "source": "https://cen.gr/δρόμος-του-σταυρού-του-2019-του-ι-καθολικο/",
+    "publisher": "Catholic Bishops’ Conference of Greece",
+    "published": "2020-03-23",
+    "sourceDescription": "Published Stations used at the Catholic Cathedral of St Dionysius in 2019; the repeated two-line traditional acclamation only.",
+    "excerptWordCount": 15,
+    "renderedSha256": "8e2af5f3168e7457b8df3e6ac4c33fa3e59ccc1d07e2ba534c705180effa000a",
+    "review": "The published response spelling and capitalization are retained. Only a line break and response emphasis are added; modern meditations and distinct opening/closing collects are not reused."
+  },
+  "spanishSorrowsClosing": {
+    "edition": "José Pulido y Espinosa, Misal Romano (Madrid: Imprenta a cargo de Zacarías Soler, 1851)",
+    "collectSource": "https://books.google.com/books?id=mE9Xg0g9l3kC&pg=PA333",
+    "titlePageSource": "https://books.google.com/books?id=mE9Xg0g9l3kC&pg=PA1",
+    "printedPage": 333,
+    "rights": "Public-domain 1851 collect; separately credited 14-word published versicle/response excerpt.",
+    "collectScanSha256": "bf86143fcd4fd025b150dc43cb57e66d9ea6d585bc8313f6b68e6724e5d08872",
+    "collectScanWidth": 1280,
+    "titleScanSha256": "fb79f805671b7d16a8faaa7d4c4b076103fe419112489f792fa7601de8e5c2f2",
+    "collectText": "Oh Dios! en cuya Pasion segun la profecia de Simeon, traspasó la espada del dolor, la dulcisima alma de la gloriosa Virgen Maria Madre nuestra, concédenos propicio á los que venerando su transfixion y padecimientos, consigamos por la muerte, gloriosos méritos é intercesion de todos los santos que están acompañandoos fielmente al pié de la cruz, el feliz efecto de vuestra Pasion. Tú, Señor, que vives y reinas por todos los siglos. Amen.",
+    "responseSource": "https://pierinashop.com/wp-content/uploads/2024/04/corona-dolorosa.pdf#page=4",
+    "responsePdfSha256": "af30d96b8623d0ceaba5088b634e6867f22cd25f24a7734b1607f1ecc216be00",
+    "responseSha256": "b069c0d127cef1e5c298eb1dc06ccbecc93a02565ef265de7948aa21d20927c3",
+    "responseWordCount": 14,
+    "review": "Title page and collect scan visually checked; spaces and line-end hyphens normalized. Wording and accents independently reviewed against a 1280-pixel-wide scan, including unaccented profecia, dulcisima and Maria. Historical printed wording retained rather than corrected to modern Spanish. The response was independently checked against PDF page 4. The invitation Oremos is existing app vocabulary."
+  }
+}

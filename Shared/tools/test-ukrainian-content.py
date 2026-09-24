@@ -39,8 +39,21 @@ def main():
     for record in fixture["prayers"]:
         actual = content[record["bundle"]]["prayers"][record["key"]]
         assert words(actual) == words(record["excerpt"]), record["key"]
-        assert record["source"].startswith("https://rkc.org.ua/")
+        assert record["source"].startswith("https://rkc.org.ua/") or (
+            record["bundle"] == "viaLucis"
+            and record["key"] == "viaLucisAcclamation"
+            and record["source"] == "https://credo.pro/2014/01/109413"
+        ) or (
+            record["bundle"] == "rosary"
+            and record["key"] == "collectaStandard"
+            and record["source"] == "https://medjugorje.com.ua/media/video/molytvy/6220-6-den-novenna-do-bozhoyi-matery-fatymskoyi17-bereznya-25-bereznya-2022.html"
+            and record["permissionText"] == "Публікація матеріалів дозволена тільки з посиланням на сайт."
+        )
         assert re.fullmatch(r"[a-f0-9]{64}", record["pageSha256"])
+
+    # The Loreto option uses the same traditional Rosary collect; do not let its
+    # separately named key diverge from the source-checked shared closing prayer.
+    assert content["litanyOfLoreto"]["prayers"]["collectAfterRosary"] == content["rosary"]["prayers"]["collectaStandard"]
 
     # This edition's 9:2 must remain the darkness-and-light verse. Source examples also
     # guard historically spelled words against silent modernization or another edition.
@@ -87,13 +100,10 @@ def main():
     audit = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(audit)
     result = audit.inventory()
-    rosary_gaps = {"almaRedemptorisMater", "aveReginaCaelorum", "collectaStandard"}
+    rosary_gaps = {"almaRedemptorisMater", "aveReginaCaelorum"}
     expected = {
         "rosary": rosary_gaps, "franciscanCrown": rosary_gaps,
-        "litanyOfLoreto": {"collectAfterRosary"},
-        "stationsOfTheCross": {"stationsOpeningPrayer", "stationsClosingPrayer"}
-            | {f"station{i:02}Body" for i in range(1, 15)},
-        "viaLucis": {"viaLucisAcclamation"},
+        "stationsOfTheCross": {"stationsOpeningPrayer", "stationsClosingPrayer"},
     }
     unique_gaps = set()
     for bundle, languages in result["packs"].items():
@@ -105,8 +115,8 @@ def main():
         unique_gaps.update(missing)
         if missing:
             assert set(content[bundle]["$coverage"]["fallbackPrayerKeys"]) == missing
-    assert len(unique_gaps) == 21
-    print("PASS: 17 source excerpts, 12 Bible examples, 63 Scripture passages, all Ukrainian headings, and exactly 21 documented fallback bodies")
+    assert len(unique_gaps) == 4
+    print("PASS: 19 source excerpts, 12 Bible examples, 63 Scripture passages, all Ukrainian headings, and exactly 4 documented fallback bodies")
 
 
 if __name__ == "__main__":

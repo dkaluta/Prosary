@@ -80,6 +80,9 @@
     <string name="prayer_order_title">Prayer order</string>
     <string name="basic_prayers_title">Basic Prayers</string>
     <string name="settings_haptics_on_advance">Vibrate on step change</string>
+    <string name="settings_keyboard_arrows">Navigate with arrow keys</string>
+    <string name="settings_keyboard_space">Advance with Space</string>
+    <string name="settings_keyboard_hint">While reading, use the left and right arrow keys to move between steps, or Space to advance.</string>
     <string name="settings_auto_advance">Auto-Advance</string>
     <string name="auto_advance_off">Off</string>
     <string name="auto_advance_every">Every %1$d Seconds</string>
@@ -419,9 +422,9 @@
     <string name="about_bible_book_sources">Bible book names: AELF, Dar el-Machreq, Russian Synodal Bible (Azbyka), Philippine Bible Society and ParolaViva.</string>
     <string name="about_prayer_network_link">Pope’s Worldwide Prayer Network</string>
     <string name="about_parolaviva_link">ParolaViva — CC BY 4.0</string>
-    <string name="about_additional_prayer_sources">Additional prayer sources: Vatican News, the Sanctuary of Fatima, Notre-Dame de Paris, AELF and the Italian Episcopal Conference (CEI). Also: Basilica of Guadalupe; GOARCH Digital Chant Stand; IVE Greece (Greek Anima Christi translated by Fr F. Bravo IVE); St Nicholas Catholic Parish, Tinos; Carmelite Iberian Province; Natalia Smelova, Melkite Syriac Hymns to the Mother of God (2011), for the medieval Syriac Under Your Protection. Officium Parvum Graece et Latine (Avignon: F. Seguin, 1823), pp. 119, 121, 125. Alfonso Maria de’ Liguori: Esercizio della Via Crucis (1761); Mater dolorosa (1888).</string>
-    <string name="about_divine_mercy_source">Divine Mercy Chaplet: Congregation of the Sisters of Our Lady of Mercy.</string>
-    <string name="about_seven_sorrows_source">Seven Sorrows prayers: Notre Dame de Chrétienté and Confraternite.net.</string>
+    <string name="about_additional_prayer_sources">Additional prayer sources: Vatican News, the Sanctuary of Fatima, Notre-Dame de Paris, AELF and the Italian Episcopal Conference (CEI). Also: Basilica of Guadalupe; GOARCH Digital Chant Stand; IVE Greece (Greek Anima Christi translated by Fr F. Bravo IVE); St Nicholas Catholic Parish, Tinos; Carmelite Iberian Province; Natalia Smelova, Melkite Syriac Hymns to the Mother of God (2011), for the medieval Syriac Under Your Protection. Officium Parvum Graece et Latine (Avignon: F. Seguin, 1823), pp. 7, 119, 121, 125. Alfonso Maria de’ Liguori: Esercizio della Via Crucis (1761); Mater dolorosa (1888). Greek Angelus: IVE Greece. O Antiphons: Saint James Vicariate (Hebrew) and RusCatholic (Russian). Syriac Rosary opening verse: Psalm 70:2, Walton Polyglot (1657), p. 194. Greek Stations response: Catholic Bishops’ Conference of Greece (cen.gr).</string>
+    <string name="about_divine_mercy_source">Divine Mercy Chaplet: Congregation of the Sisters of Our Lady of Mercy. Greek text: iPray.</string>
+    <string name="about_seven_sorrows_source">Seven Sorrows prayers: Notre Dame de Chrétienté and Confraternite.net. Spanish closing prayer: José Pulido y Espinosa, Misal Romano (Madrid: Imprenta a cargo de Zacarías Soler, 1851), p. 333. Versicle and response: Apostolado Sacerdotal / Pierina Devoções.</string>
     <string name="settings_typeface_frank_ruhl_libre">"Frank Ruhl Libre"</string>
     <string name="settings_latin_prayer_typeface">"Latin-script prayers"</string>
     <string name="settings_cyrillic_prayer_typeface">"Cyrillic prayers"</string>
@@ -458,8 +461,9 @@
     <string name="settings_eastern_pascha">Byzantine Easter</string>
     <string name="settings_pascha_julian">Julian Easter</string>
     <string name="settings_pascha_gregorian">Gregorian Easter</string>
-    <string name="about_ukrainian_sources">"Ukrainian prayers: Roman Catholic Church in Ukraine, Щоденно з Богом prayerbook. Used with attribution under the publisher’s reuse policy. Scripture: Kulish, Nechui-Levytsky and Puluj Bible (1905), public domain; eBible.org ukr1871. Historical Scripture spelling is retained."</string>
+    <string name="about_ukrainian_sources">"Ukrainian prayers: Roman Catholic Church in Ukraine, Щоденно з Богом prayerbook. Used with attribution under the publisher’s reuse policy. Scripture: Kulish, Nechui-Levytsky and Puluj Bible (1905), public domain; eBible.org ukr1871. Historical Scripture spelling is retained. Ukrainian Rosary closing prayer: Ukrainian Information Center MIR Medjugorje (medjugorje.com.ua), reproduced with attribution under the site’s publication permission."</string>
     <string name="about_ukrainian_prayerbook_link">"Ukrainian prayerbook"</string>
+    <string name="about_ukrainian_rosary_source_link">MIR Medjugorje — Ukrainian Rosary prayer</string>
     <string name="about_ukrainian_bible_link">"Ukrainian Bible (1905)"</string>
     <!-- Window and menu commands -->
     <string name="commands_open_in_new_window">Open in New Window</string>

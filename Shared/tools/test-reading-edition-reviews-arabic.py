@@ -39,9 +39,9 @@ class ArabicReviewedMapperTests(unittest.TestCase):
 
     def test_numeric_metadata_retains_exact_reviewed_inventory_and_no_words(self):
         metadata = self.metadata
-        self.assertEqual((metadata["verseCount"], metadata["unitCount"]), (220, 64))
-        self.assertEqual(len(metadata["verses"]), 220)
-        self.assertEqual(len(metadata["units"]), 64)
+        self.assertEqual((metadata["verseCount"], metadata["unitCount"]), (239, 72))
+        self.assertEqual(len(metadata["verses"]), 239)
+        self.assertEqual(len(metadata["units"]), 72)
         self.assertTrue(json.dumps(metadata, ensure_ascii=False).isascii())
         for row in metadata["verses"]:
             self.assertEqual(set(row), {"reference", "wordCount", "textSHA256", "pdfPages"})
@@ -56,10 +56,10 @@ class ArabicReviewedMapperTests(unittest.TestCase):
         self.assertEqual(profile["local_rule_lines"], set())
         self.assertEqual(profile["overrides"], {})
         mapper = arabic.ReviewedArabicMapper.from_metadata(metadata)
-        self.assertEqual(len(mapper.verse_inventory), 24)
+        self.assertEqual(len(mapper.verse_inventory), 29)
         self.assertNotIn(1, mapper.verse_inventory["LUK", 22], "Sparse absence is not a Last or empty-verse predicate")
 
-    def test_all_64_complete_units_round_trip_without_any_text_access(self):
+    def test_all_72_complete_units_round_trip_without_any_text_access(self):
         # Standalone registry lookup must work when the canonical transcription
         # is unavailable. Its existing metadata is sufficient for unit mapping.
         with patch.object(Path, "read_bytes", side_effect=AssertionError("No Bible text access")), \
@@ -88,7 +88,11 @@ class ArabicReviewedMapperTests(unittest.TestCase):
         partials = (refs("LUK", 1, 32, 32), refs("LUK", 1, 32, 33),
                     refs("LUK", 1, 26, 37), refs("LUK", 22, 43, 44),
                     refs("LUK", 24, 40, 40), refs("JHN", 19, 25, 25),
-                    refs("MAT", 17, 1, 2), refs("MAT", 17, 1, 5))
+                    refs("MAT", 17, 1, 2), refs("MAT", 17, 1, 5),
+                    refs("LUK", 1, 46, 54), refs("LUK", 1, 47, 55),
+                    refs("ISA", 11, 2, 2), refs("ISA", 11, 3, 3),
+                    refs("ISA", 11, 3, 4), refs("ISA", 11, 4, 4),
+                    refs("ISA", 11, 5, 5), refs("ISA", 9, 1, 1))
         for requested in partials:
             for method in (mapper.from_standard, mapper.to_standard):
                 with self.subTest(refs=requested, direction=method.__name__), self.assertRaises(Unavailable):
@@ -155,11 +159,12 @@ class ArabicReviewedMapperTests(unittest.TestCase):
             with self.subTest(refs=requested), self.assertRaises(Unavailable):
                 mapper.from_standard(requested)
 
-    def test_existing_nine_arabic_appointments_keep_the_same_exact_source_rows(self):
+    def test_existing_appointments_and_new_magnificat_keep_exact_source_rows(self):
         payload = json.loads((TOOLS.parent / "data/readings-texts.json").read_text())
         existing = {key: editions[arabic.EDITION_ID] for key, editions in payload["passages"].items()
                     if arabic.EDITION_ID in editions}
-        self.assertEqual(set(existing), EXISTING_DAILY)
+        self.assertEqual(set(existing), EXISTING_DAILY | {"daily|Luke 1:46–55"})
+        self.assertEqual([row["verse"] for row in existing["daily|Luke 1:46–55"]], list(range(46, 56)))
         mapper = arabic.ReviewedArabicMapper(self.corpus)
         for key, rows in existing.items():
             book, _ = builder.parse_citation(key.split("|", 1)[1])

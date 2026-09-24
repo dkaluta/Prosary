@@ -173,7 +173,7 @@ public sealed class PrayerEngine
             ? string.Empty
             : $"\n\n{fruitLabel}: {mysteryText.Fruit}";
         var alternateFruit = string.IsNullOrEmpty(mysteryText.Fruit)
-            ? string.Empty : $"\n\n{alternateFruitLabel}: {mysteryText.Fruit}";
+            ? string.Empty : $"\n\n{alternateFruitLabel}: {mysteryText.TransliteratedFruit ?? mysteryText.Fruit}";
         return (
             mysteryText.Description + fruit,
             mysteryText.TransliteratedDescription is { } transliterated
@@ -484,6 +484,8 @@ public sealed class PrayerEngine
         var decadeIndex = 0;
         foreach (var group in groups)
         {
+            var groupKey = $"mysteryGroup{group}Title";
+            var groupTitle = Resolve(groupKey);
             var mysteries = MysteryCatalog.ForGroup(group);
             IEnumerable<int> indices = rosary.MysterySelectionMode == MysterySelectionMode.SingleMystery
                 ? [rosary.SpecificMysteryOrder - 1]
@@ -495,9 +497,7 @@ public sealed class PrayerEngine
                 var mysteryText = MysteryTranslations.Get(languageCode, mystery.ImageKey);
                 var (announcementBody, transliteratedBody) = MysteryBodies(mysteryText, fruitLabel, alternateFruitLabel);
                 var ordinalLabel = showGroupName
-                    // The group prefix is still English — MysteryGroup has no
-                    // per-prayer-language name yet.
-                    ? $"{group} — {DecadeOrdinal(d, decades, bundleId, languageCode)}"
+                    ? $"{groupTitle} — {DecadeOrdinal(d, decades, bundleId, languageCode)}"
                     : DecadeOrdinal(d, decades, bundleId, languageCode);
                 var decadeSubtitle = $"{ordinalLabel} — {mysteryText.Title}";
 

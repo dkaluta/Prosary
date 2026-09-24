@@ -11,6 +11,26 @@ class MysteryTranslationsTest {
     private val imageKey = "joyful_01_annunciation"
 
     @Test
+    fun metadataScriptPairsNeverBorrowAnUnrelatedFallback() {
+        val earlier = MysteryTextOverride(title = "Primary title", fruit = "Primary fruit",
+            description = "Scripture", transliteratedDescription = "Scripture aid",
+            transliteratedTitle = "Title aid", transliteratedFruit = "Fruit aid")
+        val titleOnly = earlier.mergedWith(MysteryTextOverride(title = "Replacement title"))
+        assertNull(titleOnly.transliteratedTitle)
+        assertEquals("Fruit aid", titleOnly.transliteratedFruit)
+        assertEquals("Scripture aid", titleOnly.transliteratedDescription)
+        val resolved = MysteryTranslations.resolve(listOf("arc", "en"), imageKey,
+            overrideAt = { code, _ -> if (code == "arc") titleOnly else earlier },
+            completeAt = { _, _ -> null })
+        assertEquals("Replacement title", resolved.title)
+        assertNull(resolved.transliteratedTitle)
+        assertEquals("Fruit aid", resolved.transliteratedFruit)
+        val fruitOnly = earlier.mergedWith(MysteryTextOverride(fruit = "Replacement fruit"))
+        assertNull(fruitOnly.transliteratedFruit)
+        assertEquals("Title aid", fruitOnly.transliteratedTitle)
+    }
+
+    @Test
     fun aramaicDescriptionAndItsSyriacTransliterationKeepFallbackTitleAndFruit() {
         val aramaic = MysteryTextOverride(
             description = "הָא מַלַאכָא אֶתָא לוָת מַריַם.",

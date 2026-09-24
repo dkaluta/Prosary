@@ -32,7 +32,7 @@ class UILocalizationTest {
     fun everyInterfaceLanguageHasEveryStringAndPreservesFormatArguments() {
         val english = strings("values")
         val arguments = Regex("%[0-9]+\\\$[sd]")
-        for (directory in listOf("values-iw", "values-ar", "values-ru", "values-tl", "values-b+fil", "values-fr", "values-it")) {
+        for (directory in listOf("values-iw", "values-ar", "values-ru", "values-tl", "values-b+fil", "values-fr", "values-it", "values-uk")) {
             val localized = strings(directory)
             assertEquals("$directory keys", english.keys, localized.keys)
             for ((key, originals) in english) {

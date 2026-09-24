@@ -149,6 +149,7 @@ fun PrayerStepFlowScreen(
     titleFollowsPrayerScript: Boolean = false,
 ) {
     val chrome: PrayerFlowChromeState = viewModel()
+    val interfaceDirection = LocalLayoutDirection.current
     val lifecycleOwner = LocalLifecycleOwner.current
     val activity = LocalActivity.current
     DisposableEffect(chrome, lifecycleOwner) {
@@ -377,6 +378,11 @@ fun PrayerStepFlowScreen(
                             onToggleTransliteration = toggleTransliteration,
                             centralActionLabel = centralActionLabel,
                             onCentralAction = onNext,
+                            keyboardSessionActive = !sessionPaused && !autoAdvanceMenuExpanded,
+                            interfaceDirection = interfaceDirection,
+                            canGoBack = canGoBack,
+                            onBack = onBack,
+                            onNext = onNext,
                         )
                     }
                 } else {
@@ -477,8 +483,20 @@ private fun AdaptivePrayerContent(
     onToggleTransliteration: () -> Unit,
     centralActionLabel: String? = null,
     onCentralAction: (() -> Unit)? = null,
+    keyboardSessionActive: Boolean,
+    interfaceDirection: LayoutDirection,
+    canGoBack: Boolean,
+    onBack: () -> Unit,
+    onNext: () -> Unit,
 ) {
     val readingState = chrome.reading
+    val keyboardModifier = prayerKeyboardNavigationModifier(
+        sessionActive = keyboardSessionActive,
+        interfaceDirection = interfaceDirection,
+        canGoBack = canGoBack,
+        onBack = onBack,
+        onNext = onNext,
+    )
     val compact = availableHeight < 480.dp
     val imageSide = if (compact) 190.dp else 320.dp
     val visibleBody = if (showsTransliteration) step.transliteratedBody ?: step.body else step.body
@@ -506,6 +524,7 @@ private fun AdaptivePrayerContent(
                         horizontalAlignment = Alignment.CenterHorizontally,
                         contentPadding = PaddingValues(16.dp),
                         modifier = Modifier.fillMaxSize().testTag("prayerBody")
+                            .then(keyboardModifier)
                             .onSizeChanged { chrome.restoreReadingAnchor() }
                             .pointerInput(chrome) {
                                 awaitEachGesture {
@@ -720,9 +739,11 @@ private fun PrayerTextHeader(
     ) {
         DisableSelection {
             step.subtitle?.let { subtitle ->
+                val visibleSubtitle = PrayerTranslations.flowTitle(subtitle, languageCode,
+                    PrayerTypography.scriptOf(visibleBody) == PrayerTypography.Script.Syriac, prayerBundleId)
                 Text(
-                    HebrewDisplayText.unpoint(subtitle),
-                    style = MaterialTheme.typography.bodyMedium,
+                    visibleSubtitle,
+                    style = PrayerTypography.headingStyleForText(visibleSubtitle, MaterialTheme.typography.bodyMedium),
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     textAlign = TextAlign.Center,
                 )

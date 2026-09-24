@@ -56,7 +56,7 @@ class AramaicPrayerTitleTest {
 
     @Test fun unsupportedAndUnrelatedTitlesArePreserved() {
         val known = HebrewDisplayText.unpoint(PrayerPackStore.resolveBodyText("rosary", "arc", "paterNosterTitle"))
-        for (title in listOf("Salve Regina", "A custom prayer", "$known — personal copy", "$known (evening)")) {
+        for (title in listOf("Salve Regina", "A custom prayer", "$known — personal copy", "$known (evening)", "$known 1", "Personal — $known 1")) {
             assertEquals(title, PrayerTranslations.flowTitle(title, "arc", true))
             assertEquals(title, PrayerTranslations.flowTitle(title, "arc", false))
         }

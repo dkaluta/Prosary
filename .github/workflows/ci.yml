@@ -58,6 +58,11 @@ jobs:
       - name: Sourced languages and intentions retain their provenance
         run: |
           uv run --script Shared/tools/test-localized-content.py
+          uv run --script Shared/tools/test-translation-completeness.py
+          uv run --script Shared/tools/test-mystery-metadata.py
+          uv run --script Shared/tools/test-o-antiphon-scripture.py
+          uv run --script Shared/tools/test-syriac-invitatory.py
+          uv run --script Shared/tools/test-sourced-prayer-additions.py
           uv run --script Shared/tools/test-ukrainian-content.py
           uv run --script Shared/tools/test-pope-intentions.py
           uv run --script Shared/tools/test-litany-content.py

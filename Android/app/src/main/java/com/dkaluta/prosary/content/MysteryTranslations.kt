@@ -30,12 +30,16 @@ object MysteryTranslations {
             fallback: String,
             fromOverride: (MysteryTextOverride) -> String?,
             fromComplete: (MysteryText) -> String,
-        ): String {
+            overrideAid: (MysteryTextOverride) -> String?,
+            completeAid: (MysteryText) -> String?,
+        ): Pair<String, String?> {
             for (code in chain) {
-                overrideAt(code, imageKey)?.let(fromOverride)?.let { return it }
-                completeAt(code, imageKey)?.let(fromComplete)?.let { return it }
+                val partial = overrideAt(code, imageKey)
+                partial?.let(fromOverride)?.let { return it to overrideAid(partial) }
+                val complete = completeAt(code, imageKey)
+                complete?.let(fromComplete)?.let { return it to completeAid(complete) }
             }
-            return fallback
+            return fallback to null
         }
 
         // Description and transliteration are a pair: if the Peshitta (for example) supplies
@@ -58,11 +62,15 @@ object MysteryTranslations {
             }
         }
 
+        val title = resolveField(imageKey, { it.title }, { it.title }, { it.transliteratedTitle }, { it.transliteratedTitle })
+        val fruit = resolveField("", { it.fruit }, { it.fruit }, { it.transliteratedFruit }, { it.transliteratedFruit })
         return MysteryText(
-            title = HebrewDisplayText.unpoint(resolveField(imageKey, { it.title }, { it.title })),
-            fruit = resolveField("", { it.fruit }, { it.fruit }),
+            title = HebrewDisplayText.unpoint(title.first),
+            fruit = fruit.first,
             description = description,
             transliteratedDescription = transliteratedDescription,
+            transliteratedTitle = title.second,
+            transliteratedFruit = fruit.second,
         )
     }
 

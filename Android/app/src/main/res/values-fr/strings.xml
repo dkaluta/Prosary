@@ -80,6 +80,9 @@
     <string name="prayer_order_title">"Ordre des prières"</string>
     <string name="basic_prayers_title">"Prières usuelles"</string>
     <string name="settings_haptics_on_advance">"Vibrer au changement d’étape"</string>
+    <string name="settings_keyboard_arrows">Naviguer avec les touches fléchées</string>
+    <string name="settings_keyboard_space">Avancer avec la barre d’espace</string>
+    <string name="settings_keyboard_hint">Pendant la lecture, utilisez les flèches gauche et droite pour changer d’étape, ou la barre d’espace pour avancer.</string>
     <string name="settings_auto_advance">"Avance automatique"</string>
     <string name="auto_advance_off">"Désactivé"</string>
     <string name="auto_advance_every">"Toutes les %1$d secondes"</string>
@@ -132,11 +135,11 @@
     <!-- Marian antiphon controls; named prayers use the selected prayer language at runtime. -->
     <string name="antiphon_none">"Aucun"</string>
     <string name="antiphon_seasonal">"Automatique (selon le temps liturgique)"</string>
-    <string name="antiphon_salve_regina">"Salve Regina"</string>
-    <string name="antiphon_alma_redemptoris">"Alma Redemptoris Mater"</string>
-    <string name="antiphon_ave_regina">"Ave Regina Caelorum"</string>
-    <string name="antiphon_regina_caeli">"Regina Caeli"</string>
-    <string name="antiphon_sub_tuum">"Sub Tuum Praesidium"</string>
+    <string name="antiphon_salve_regina">"Salut, ô Reine"</string>
+    <string name="antiphon_alma_redemptoris">"Sainte Mère du Rédempteur"</string>
+    <string name="antiphon_ave_regina">"Salut, Reine des cieux"</string>
+    <string name="antiphon_regina_caeli">"Reine du ciel"</string>
+    <string name="antiphon_sub_tuum">"Sous l’abri de ta miséricorde"</string>
 
     <!-- Mystery artwork styles -->
     <string name="image_style_classic">"Peintures classiques"</string>
@@ -419,9 +422,9 @@
     <string name="about_bible_book_sources">Noms des livres bibliques : AELF, Dar el-Machreq, Bible synodale russe (Azbyka), Société biblique philippine et ParolaViva.</string>
     <string name="about_prayer_network_link">Réseau mondial de prière du Pape</string>
     <string name="about_parolaviva_link">ParolaViva — CC BY 4.0</string>
-    <string name="about_additional_prayer_sources">Autres sources des prières : Vatican News, sanctuaire de Fatima, Notre-Dame de Paris, AELF et Conférence épiscopale italienne (CEI). Également : basilique de Guadalupe ; GOARCH Digital Chant Stand ; IVE en Grèce (traduction grecque de l’Anima Christi par le P. F. Bravo IVE) ; paroisse catholique Saint-Nicolas de Tinos ; province ibérique des Carmes ; Natalia Smelova, Melkite Syriac Hymns to the Mother of God (2011), pour le texte syriaque médiéval du Sous votre protection. Officium Parvum Graece et Latine (Avignon: F. Seguin, 1823), pp. 119, 121, 125. Alfonso Maria de’ Liguori: Esercizio della Via Crucis (1761); Mater dolorosa (1888).</string>
-    <string name="about_divine_mercy_source">Chapelet à la Miséricorde Divine : Congrégation des Sœurs de Notre-Dame de la Miséricorde.</string>
-    <string name="about_seven_sorrows_source">Prières des sept douleurs : Notre Dame de Chrétienté et Confraternite.net.</string>
+    <string name="about_additional_prayer_sources">Autres sources des prières : Vatican News, sanctuaire de Fatima, Notre-Dame de Paris, AELF et Conférence épiscopale italienne (CEI). Également : basilique de Guadalupe ; GOARCH Digital Chant Stand ; IVE en Grèce (traduction grecque de l’Anima Christi par le P. F. Bravo IVE) ; paroisse catholique Saint-Nicolas de Tinos ; province ibérique des Carmes ; Natalia Smelova, Melkite Syriac Hymns to the Mother of God (2011), pour le texte syriaque médiéval du Sous votre protection. Officium Parvum Graece et Latine (Avignon: F. Seguin, 1823), pp. 7, 119, 121, 125. Alfonso Maria de’ Liguori: Esercizio della Via Crucis (1761); Mater dolorosa (1888). Angélus en grec : IVE en Grèce. Grandes antiennes Ô : vicariat Saint-Jacques (hébreu) et RusCatholic (russe). Verset d’ouverture du Rosaire en syriaque : Psaume 70,2, Polyglotte de Walton (1657), p. 194. Répons du Chemin de croix en grec : Conférence des évêques catholiques de Grèce (cen.gr).</string>
+    <string name="about_divine_mercy_source">Chapelet à la Miséricorde Divine : Congrégation des Sœurs de Notre-Dame de la Miséricorde. Texte grec : iPray.</string>
+    <string name="about_seven_sorrows_source">Prières des sept douleurs : Notre Dame de Chrétienté et Confraternite.net. Prière finale en espagnol : José Pulido y Espinosa, Misal Romano (Madrid: Imprenta a cargo de Zacarías Soler, 1851), p. 333. Verset et répons : Apostolado Sacerdotal / Pierina Devoções.</string>
     <string name="settings_typeface_frank_ruhl_libre">"Frank Ruhl Libre"</string>
     <string name="settings_latin_prayer_typeface">"Prières en alphabet latin"</string>
     <string name="settings_cyrillic_prayer_typeface">"Prières en alphabet cyrillique"</string>
@@ -458,8 +461,9 @@
     <string name="settings_eastern_pascha">Pâques byzantines</string>
     <string name="settings_pascha_julian">Pâques selon le calendrier julien</string>
     <string name="settings_pascha_gregorian">Pâques selon le calendrier grégorien</string>
-    <string name="about_ukrainian_sources">"Prières en ukrainien : Église catholique romaine en Ukraine, livre de prières Щоденно з Богом. Utilisation avec attribution conformément à la politique de réutilisation de l’éditeur. Écriture : Bible de Kulish, Nechui-Levytsky et Puluj (1905), domaine public ; eBible.org ukr1871. L’orthographe historique du texte biblique est conservée."</string>
+    <string name="about_ukrainian_sources">"Prières en ukrainien : Église catholique romaine en Ukraine, livre de prières Щоденно з Богом. Utilisation avec attribution conformément à la politique de réutilisation de l’éditeur. Écriture : Bible de Kulish, Nechui-Levytsky et Puluj (1905), domaine public ; eBible.org ukr1871. L’orthographe historique du texte biblique est conservée. Prière finale du Rosaire en ukrainien : Centre d’information ukrainien MIR Medjugorje (medjugorje.com.ua), reproduite avec mention de la source conformément à l’autorisation de publication du site."</string>
     <string name="about_ukrainian_prayerbook_link">"Livre de prières en ukrainien"</string>
+    <string name="about_ukrainian_rosary_source_link">MIR Medjugorje — Prière du Rosaire en ukrainien</string>
     <string name="about_ukrainian_bible_link">"Bible en ukrainien (1905)"</string>
     <!-- Window and menu commands -->
     <string name="commands_open_in_new_window">Ouvrir dans une nouvelle fenêtre</string>

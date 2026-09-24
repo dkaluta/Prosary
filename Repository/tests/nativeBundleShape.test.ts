@@ -110,6 +110,8 @@ const invalidFiles: [string, string, unknown][] = [
   ["unknown special step", "devotion.json", { type: "steps", steps: [{ kind: "proper" }] }],
   ["missing variant id", "devotion.json", { type: "steps", variants: [{ name: "Full", steps: [] }] }],
   ["missing day steps", "devotion.json", { type: "days", days: [{ name: "First" }] }],
+  ["wrong localized day period map", "devotion.json", { type: "days", days: [{ name: "First", steps: [step], periodByLanguage: "Week 1" }] }],
+  ["non-string localized day period", "devotion.json", { type: "days", days: [{ name: "First", steps: [step], periodByLanguage: { fr: 17 } }] }],
   ["unknown native day progression", "devotion.json", { type: "days", dayProgression: "random", days: [] }],
   ["incomplete decades", "devotion.json", { type: "rosary", decades: { count: 5 } }],
   ["null content", "content/en.json", null],

@@ -7,6 +7,13 @@ and source assets, not runtime code: each port builds from the copies inside its
 tools, fonts, images, and marketing site. A platform change must preserve three-way parity and
 update the shared schema or source asset when it changes a shared shape or resource.
 
+An experimental [terminal port](../Terminal/README.markdown) lives in `Terminal/`.
+It uses C99, wide-character ncurses, and a plain Makefile. Its checked-in text-only
+snapshot is generated from canonical devotion JSON plus the existing native base
+prayer tables; the build and runtime need no shared tooling. It currently covers
+the stepped-prayer reader, local library, language/form settings, and resume state,
+and does not claim feature parity with the three production native ports.
+
 ## Brand system and web family
 
 The native apps and the three web surfaces share one visual identity: burgundy `#7A1F3D` as the
@@ -276,6 +283,10 @@ Settings) shows up
 everywhere without a relaunch — the bug that motivated the restructure.
 
 Readings has a date picker above complete citations, with previous/next day and Today actions.
+On iPhone, date navigation and Settings live in the native top toolbar; Today stays inside
+the calendar popover. iPad keeps its date row below the adaptive top tabs to avoid toolbar
+overflow. Short iPhone landscape windows present the calendar in a sheet with a scrolling
+calendar and reachable Today/Done controls.
 It shares the existing calendar, Pascha and optional Torah settings with Today, while its
 browsed date remains independent of prayer sessions and widget activation. Missing dates show
 an explicit empty state. Each appointment can expand to the selected Bible edition's text;
@@ -461,7 +472,23 @@ retains the established prayer-window identity.
 
 Every linear flow shares one presentation chrome per platform (iOS `PrayerStepFlowView`, Android
 `PrayerStepFlowScreen`, Windows `PrayerStepFlowControl` plus the bespoke Rosary/generic pages
-that mirror it). Two toolbar affordances belong to the flows themselves:
+that mirror it).
+
+Hardware-keyboard prayer navigation uses two independent app-wide Boolean preferences,
+`keyboardArrowNavigationEnabled` and `keyboardSpaceAdvanceEnabled`, both true by default.
+Settings always shows them on Mac and Windows; iPhone, iPad, visionOS and Android show them
+while a hardware keyboard is connected and update when it connects or disconnects. Left/Right
+invoke the same previous/next actions as the footer, following the interface direction
+(reversed in Hebrew/Arabic); Space invokes the primary advance/count/Finish action. The
+reader in the active window owns these events. Modified key presses, sheets, dialogs,
+editable/selected text and focused controls keep their native behavior; held navigation keys
+do not repeatedly advance the native apps. Up/Down and
+Page Up/Page Down remain scrolling controls. Turning either preference off restores the
+corresponding keys' native behavior without changing the other preference or prayer progress.
+The experimental terminal reader exposes the same two preference keys in its local settings;
+its focused reader receives navigation, while library/settings arrows retain their normal
+behavior. Enter and Backspace remain available when both preferences are off. Traditional
+terminal input cannot distinguish held-key repeats from separate presses.
 
 On narrow phones the prayer-flow controls sit in a horizontally scrollable row below the
 title, keeping long titles clear of the buttons. Wider layouts retain native toolbar controls.
@@ -486,9 +513,10 @@ prayer toolbar. It renders the same current step and selected original/translite
 including source-script direction and the selected prayer/Scripture typefaces. Text is explicitly
 sized, wraps at its selected size, and scrolls with continuation cues instead of shrinking long
 prayers to fit. Native controls provide Back, Next/counter action, Finish, text size, mode exit,
-and full screen. Left/Right navigate steps according to interface direction; Return invokes the
-primary action, Escape exits presentation, and Page Up/Page Down and Space retain reading-scroll
-behavior. Keyboard handling yields to sheets and editable/selected text. The existing Rosary
+and full screen. Left/Right and Space follow the keyboard preferences above; Return invokes the
+primary action, Escape exits presentation, and Page Up/Page Down retain reading-scroll behavior.
+Space scrolls when its advance preference is off. Keyboard handling yields to sheets and
+editable/selected text. The existing Rosary
 `presenterMode` content option is labelled Combine Repeated Prayers on Mac: it still controls
 decade grouping independently of this universal visual mode.
 
@@ -848,7 +876,7 @@ rosary-type bundles ship per-decade texts without any catalog.json. Only the Jes
 bundle at all (it has no per-step content to carry).
 
 Mystery entries in `content/<language>.json` are **field-wise overrides**:
-`mysteries: {imageKey: {title?, fruit?, description?, transliteratedDescription?}}`. Title, fruit,
+`mysteries: {imageKey: {title?, fruit?, description?, transliteratedTitle?, transliteratedFruit?, transliteratedDescription?}}`. Title, fruit,
 and description each resolve independently through exact language → base language → the user's
 fallback order → Latin, with a pack override ahead of the hardcoded table at each stop. This is
 load-bearing for rite-specific Scripture: an Aramaic Rosary can use the Peshitta passage and its
@@ -856,7 +884,11 @@ own source-native citation while inheriting a Hebrew mystery name and fruit, rat
 the Vulgate verse merely because that is where its Latin title lives. A
 `transliteratedDescription` must sit beside `description` in the same override and follows that
 description as one provenance pair; later-loaded bundles merge only the fields they actually
-supply. The engine appends the same resolved fruit to both script renderings.
+supply. Titles and spiritual fruits follow the same primary/alternate pairing through
+`transliteratedTitle` and `transliteratedFruit`. Replacing a primary field without an alternate
+clears its previous aid. The engine appends the matching fruit script to each Scripture
+rendering; a fruit without an alternate keeps its authored form. Flow titles and decade
+subtitles switch only known authored pairs, including mystery titles and ordinal nouns.
 
 ### Community language overlays
 
@@ -1058,8 +1090,9 @@ of its own — its entire step sequence and per-step text are data-driven from i
   the traditional sequence is unchanged out of the box. The validator checks the declarations
   and that every `if` references a declared option/case.
 - **Multi-day devotions** — `{"type": "days"}`: one step list per day
-  (`days: [{name, nameByLanguage?, period?, steps: [Entry…]}]` — `period` carries the
-  Montfort-style grouping labels), plus optional shared `opening`/`closing` prayed every day.
+  (`days: [{name, nameByLanguage?, period?, periodByLanguage?, steps: [Entry…]}]` — `period` carries the
+  Montfort-style grouping labels and `periodByLanguage` localizes them or date labels in the
+  interface language), plus optional shared `opening`/`closing` prayed every day.
   Novenas are 9 entries; the de Montfort Total Consecration is 33 (12 preliminary days + three
   weeks + the consecration day). The schema, decoders, engines (shared opening + the day's
   steps + shared closing, with a clamped `dayIndex`), and validator all ship — and so does
@@ -1631,7 +1664,8 @@ those names offline while preserving every calendar's chapter and verse referenc
 French/Italian full prayer choices now include Rosary, Angelus, Franciscan Crown, Divine Mercy,
 Seven Sorrows, Via Lucis, O Antiphons and Trisagion. Spanish now has sourced complete Rosary,
 Angelus, Divine Mercy and Trisagion flows. Spanish and Greek have complete Franciscan Crown
-flows, and Greek also has the Trisagion. Stations of the Cross has sourced French/Italian
+flows, and Greek also has the Angelus, Divine Mercy Chaplet and Trisagion. Spanish Via Lucis
+and Hebrew/Russian O Antiphons have complete sourced flows. Stations of the Cross has sourced French/Italian
 Scripture, opening prayers and fourteen traditional Liguori meditations. The independent
 optional closing prayer remains unsourced, so these overlays are still partial.
 The original Seven Sorrows fourth reflection is an authored
@@ -1651,10 +1685,19 @@ known `PrayerKey` alone does not establish a translation, and text presence is n
 certification. `test-localized-content.py` prevents newly completed flows from regressing to
 another language.
 
+All prayer headings and mystery names/fruits resolve in the twelve public prayer languages.
+`test-translation-completeness.py` checks the eight native interface catalogs and shared UI
+metadata, while `test-mystery-metadata.py` verifies the paired Aramaic mystery captions.
+`import-o-antiphon-scripture.py` imports the Hebrew/Russian/Tagalog O Antiphon readings from
+the existing hash-pinned Bible source lock; its regression test checks verse boundaries,
+Hebrew numbering, Divine Name punctuation and unchanged prayer provenance. Traditional
+bodies with no verified reusable publication remain explicit gaps. See
+`content/TRANSLATION-COVERAGE.markdown` for the added sources and editorial boundaries.
+
 Arabic Scripture uses the public-domain old Jesuit translation, transcribed and independently
-checked against its 1897 Beirut printing. `content/arabic-jesuit-1897.json` records the 220
+checked against its 1897 Beirut printing. `content/arabic-jesuit-1897.json` records the 239
 reviewed verses and their printed source pages; `tools/import-arabic-scripture.py` replaces
-68 canonical Scripture fields and generates all three native Rosary fallback tables.
+76 canonical Scripture fields and generates all three native Rosary fallback tables.
 Fixed prayers and authored meditations keep their own sources. Offline readings accept only
 complete reviewed passage units from this partial corpus. See
 `content/ARABIC-SCRIPTURE-SOURCES.markdown` for provenance, transcription conventions,
@@ -1663,8 +1706,13 @@ metadata; it is no longer the source credited for the Arabic Scripture passages.
 
 Ukrainian overlays use the RKC Ukraine *Щоденно з Богом* prayerbook with its required link
 attribution, and all 63 Scripture passages use the public-domain Kulish / Nechui-Levytsky /
-Puluj edition (1905). Historical Scripture spelling is retained. The exact 21 remaining
-fallback bodies and the source permission distinctions are recorded in
+Puluj edition (1905). Historical Scripture spelling is retained. The fourteen short
+traditional Stations scene descriptions are Prosary editorial translations, not translations
+of the longer St Alphonsus meditations. The Via Lucis acclamation follows the published
+prayerbook excerpt in CREDO. The standard Rosary/Loreto collect follows the published Ukrainian
+Information Center MIR Medjugorje text, under its explicit permission to republish with a
+source link. The exact four remaining fallback bodies, including two Marian
+antiphons whose published translations are located but reuse remains unresolved, are recorded in
 `content/UKRAINIAN-SOURCES.markdown`; `test-ukrainian-content.py` pins source excerpts,
 complete headings and the explicit gap inventory without counting fallback as translation.
 

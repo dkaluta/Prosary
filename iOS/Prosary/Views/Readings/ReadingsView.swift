@@ -16,6 +16,14 @@ struct ReadingsView: View {
   @State private var torah: TorahPortion?
 
   private var language: String { UILanguage.current }
+  private var usesDateToolbar: Bool {
+    #if os(iOS)
+    // iPad's adaptive tabs share this toolbar row and would overflow the date controls.
+    UIDevice.current.userInterfaceIdiom == .phone
+    #else
+    false
+    #endif
+  }
   private var selectedDate: Date { dateSelection.localDate() }
   private var passageContext: String { "\(dateSelection.day)|\(calendarID)|\(paschaStyle)" }
   private var calendarName: String {
@@ -32,6 +40,11 @@ struct ReadingsView: View {
   var body: some View {
     ScrollView {
       VStack(alignment: .leading, spacing: 24) {
+        if usesDateToolbar {
+          Text(calendarName)
+            .font(.caption)
+            .foregroundStyle(.secondary)
+        }
         if let feast {
           Text(feast.localizedTitle(language))
             .font(.title3.weight(.semibold)).accessibilityAddTraits(.isHeader)
@@ -69,13 +82,34 @@ struct ReadingsView: View {
       .frame(maxWidth: .infinity)
       .padding(20)
     }
-    .prosaryNavigationBar(edge: .top) { dateNavigation }
+    .prosaryNavigationBar(edge: .top) {
+      if !usesDateToolbar { dateNavigation }
+    }
     .navigationTitle(String(localized: "tabs.readings", defaultValue: "Readings", bundle: UILanguage.bundle, locale: UILanguage.locale))
     .toolbar {
+      #if os(iOS)
+      if usesDateToolbar {
+        ToolbarItem(placement: .topBarLeading) { previousDayButton }
+        if #available(iOS 26.0, *) {
+          ToolbarSpacer(.fixed, placement: .topBarLeading)
+        }
+        ToolbarItem(placement: .topBarLeading) { dateButton }
+        if #available(iOS 26.0, *) {
+          ToolbarSpacer(.fixed, placement: .topBarLeading)
+        }
+        ToolbarItem(placement: .topBarLeading) { nextDayButton }
+        // The date controls own the compact bar; keep the large title above the content.
+        ToolbarItem(placement: .principal) { Color.clear.frame(width: 0, height: 0) }
+      }
+      #endif
       ToolbarItem(placement: .topBarTrailing) {
         Button { showsOptions = true } label: {
           Label(String(localized: "settings.title", defaultValue: "Settings", bundle: UILanguage.bundle, locale: UILanguage.locale), systemImage: "slider.horizontal.3")
         }
+        .labelStyle(.iconOnly)
+        #if os(iOS)
+        .buttonBorderShape(.circle)
+        #endif
         .accessibilityIdentifier("readings.options")
       }
     }
@@ -109,28 +143,9 @@ struct ReadingsView: View {
 
   private var dateControls: some View {
     HStack(spacing: 12) {
-      Button { dateSelection.move(by: -1) } label: {
-        Label(String(localized: "home.today.previousDay", defaultValue: "Previous Day", bundle: UILanguage.bundle, locale: UILanguage.locale), systemImage: "chevron.backward")
-          .prosaryDateControlLabel()
-      }
-      .labelStyle(.iconOnly).disabled(!dateSelection.canMoveBackward)
-      .accessibilityIdentifier("readings.previousDay")
-      Button { showsDatePicker = true } label: {
-        Text(dateLabel)
-          .font(.subheadline.weight(.semibold))
-          .multilineTextAlignment(.center)
-          .fixedSize(horizontal: false, vertical: true)
-          .prosaryDateControlLabel()
-      }
-      .accessibilityHint(String(localized: "home.today.chooseDate", defaultValue: "Choose a date", bundle: UILanguage.bundle, locale: UILanguage.locale))
-      .accessibilityIdentifier("readings.chooseDate")
-      .popover(isPresented: $showsDatePicker) { datePopover }
-      Button { dateSelection.move(by: 1) } label: {
-        Label(String(localized: "home.today.nextDay", defaultValue: "Next Day", bundle: UILanguage.bundle, locale: UILanguage.locale), systemImage: "chevron.forward")
-          .prosaryDateControlLabel()
-      }
-      .labelStyle(.iconOnly).disabled(!dateSelection.canMoveForward)
-      .accessibilityIdentifier("readings.nextDay")
+      previousDayButton
+      dateButton
+      nextDayButton
     }
     .prosaryNavigationButtonStyle()
     #if os(visionOS)
@@ -141,6 +156,51 @@ struct ReadingsView: View {
     .fixedSize(horizontal: false, vertical: true)
   }
 
+  private var previousDayButton: some View {
+    Button { dateSelection.move(by: -1) } label: {
+      let label = Label(String(localized: "home.today.previousDay", defaultValue: "Previous Day", bundle: UILanguage.bundle, locale: UILanguage.locale), systemImage: "chevron.backward")
+      if usesDateToolbar { label } else { label.prosaryDateControlLabel() }
+    }
+    .labelStyle(.iconOnly)
+    #if os(iOS)
+    .buttonBorderShape(usesDateToolbar ? .circle : .automatic)
+    #endif
+    .disabled(!dateSelection.canMoveBackward)
+    .accessibilityIdentifier("readings.previousDay")
+  }
+
+  private var dateButton: some View {
+    Button { showsDatePicker = true } label: {
+      let label = Text(dateLabel).font(.subheadline.weight(.semibold))
+      if usesDateToolbar {
+        label.lineLimit(1)
+      } else {
+        label.multilineTextAlignment(.center)
+          .fixedSize(horizontal: false, vertical: true)
+          .prosaryDateControlLabel()
+      }
+    }
+    #if os(iOS)
+    .buttonBorderShape(.capsule)
+    #endif
+    .accessibilityHint(String(localized: "home.today.chooseDate", defaultValue: "Choose a date", bundle: UILanguage.bundle, locale: UILanguage.locale))
+    .accessibilityIdentifier("readings.chooseDate")
+    .popover(isPresented: $showsDatePicker) { datePopover }
+  }
+
+  private var nextDayButton: some View {
+    Button { dateSelection.move(by: 1) } label: {
+      let label = Label(String(localized: "home.today.nextDay", defaultValue: "Next Day", bundle: UILanguage.bundle, locale: UILanguage.locale), systemImage: "chevron.forward")
+      if usesDateToolbar { label } else { label.prosaryDateControlLabel() }
+    }
+    .labelStyle(.iconOnly)
+    #if os(iOS)
+    .buttonBorderShape(usesDateToolbar ? .circle : .automatic)
+    #endif
+    .disabled(!dateSelection.canMoveForward)
+    .accessibilityIdentifier("readings.nextDay")
+  }
+
   private var datePopover: some View {
     ReadingDatePickerPopover(selection: Binding(get: { selectedDate }, set: chooseDate),
                              range: MacTodayDateSelection.pickerRange(),
@@ -149,7 +209,11 @@ struct ReadingsView: View {
                              doneIdentifier: "readings.dateDone") {
       showsDatePicker = false
     }
+    #if os(iOS)
+    .presentationCompactAdaptation(horizontal: .popover, vertical: .sheet)
+    #else
     .presentationCompactAdaptation(.popover)
+    #endif
   }
 
   private var options: some View {

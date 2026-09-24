@@ -80,6 +80,9 @@
     <string name="prayer_order_title">"Порядок молитов"</string>
     <string name="basic_prayers_title">"Основні молитви"</string>
     <string name="settings_haptics_on_advance">"Вібрація під час переходу"</string>
+    <string name="settings_keyboard_arrows">Навігація клавішами зі стрілками</string>
+    <string name="settings_keyboard_space">Перехід уперед клавішею пробілу</string>
+    <string name="settings_keyboard_hint">Під час читання використовуйте стрілки ліворуч і праворуч для переходу між кроками або пробіл для переходу вперед.</string>
     <string name="settings_auto_advance">"Автоматичний перехід"</string>
     <string name="auto_advance_off">"Вимкнено"</string>
     <string name="auto_advance_every">"Кожні %1$d секунд"</string>
@@ -132,11 +135,11 @@
     <!-- Marian antiphon controls; named prayers use the selected prayer language at runtime. -->
     <string name="antiphon_none">"Немає"</string>
     <string name="antiphon_seasonal">"Автоматично (за літургійним періодом)"</string>
-    <string name="antiphon_salve_regina">"Salve Regina"</string>
-    <string name="antiphon_alma_redemptoris">"Alma Redemptoris Mater"</string>
-    <string name="antiphon_ave_regina">"Ave Regina Caelorum"</string>
-    <string name="antiphon_regina_caeli">"Regina Caeli"</string>
-    <string name="antiphon_sub_tuum">"Sub Tuum Praesidium"</string>
+    <string name="antiphon_salve_regina">"Слався, Царице"</string>
+    <string name="antiphon_alma_redemptoris">"Мати Відкупителя"</string>
+    <string name="antiphon_ave_regina">"Радуйся, Царице небес"</string>
+    <string name="antiphon_regina_caeli">"Царице Неба"</string>
+    <string name="antiphon_sub_tuum">"Під Твій захист"</string>
 
     <!-- Mystery artwork styles -->
     <string name="image_style_classic">"Класичні картини"</string>
@@ -419,9 +422,9 @@
     <string name="about_bible_book_sources">"Назви біблійних книг: AELF, Dar el-Machreq, російський Синодальний переклад (Азбука), Біблійне товариство Філіппін та ParolaViva."</string>
     <string name="about_prayer_network_link">"Всесвітня мережа молитви Папи"</string>
     <string name="about_parolaviva_link">"ParolaViva — CC BY 4.0"</string>
-    <string name="about_additional_prayer_sources">"Додаткові джерела молитов: Vatican News, санктуарій у Фатімі, Собор Паризької Богоматері, AELF та Італійська єпископська конференція (CEI). Також: базиліка Гваделупської Богоматері; GOARCH Digital Chant Stand; IVE Greece (грецький переклад Anima Christi — о. F. Bravo IVE); католицька парафія святого Миколая, Тінос; Іберійська провінція кармелітів; Наталія Смелова, Melkite Syriac Hymns to the Mother of God (2011), для середньовічної сирійської молитви «Під Твою милість». Officium Parvum Graece et Latine (Авіньйон: F. Seguin, 1823), с. 119, 121, 125. Альфонс Марія де Лігуорі: Esercizio della Via Crucis (1761); Mater dolorosa (1888)."</string>
-    <string name="about_divine_mercy_source">"Коронка до Божого Милосердя: Згромадження сестер Матері Божої Милосердя."</string>
-    <string name="about_seven_sorrows_source">"Молитви Семи скорбот: Notre Dame de Chrétienté та Confraternite.net."</string>
+    <string name="about_additional_prayer_sources">"Додаткові джерела молитов: Vatican News, санктуарій у Фатімі, Собор Паризької Богоматері, AELF та Італійська єпископська конференція (CEI). Також: базиліка Гваделупської Богоматері; GOARCH Digital Chant Stand; IVE Greece (грецький переклад Anima Christi — о. F. Bravo IVE); католицька парафія святого Миколая, Тінос; Іберійська провінція кармелітів; Наталія Смелова, Melkite Syriac Hymns to the Mother of God (2011), для середньовічної сирійської молитви «Під Твою милість». Officium Parvum Graece et Latine (Авіньйон: F. Seguin, 1823), с. 7, 119, 121, 125. Альфонс Марія де Лігуорі: Esercizio della Via Crucis (1761); Mater dolorosa (1888). «Ангел Господній» грецькою: IVE у Греції. Великі антифони «О»: Вікаріат святого Якова (іврит) і RusCatholic (російська). Початковий вірш Розарію сирійською: Псалом 70:2, Поліглота Волтона (1657), с. 194. Відповідь Хресної дороги грецькою: Конференція католицьких єпископів Греції (cen.gr)."</string>
+    <string name="about_divine_mercy_source">"Коронка до Божого Милосердя: Згромадження сестер Матері Божої Милосердя. Грецький текст: iPray."</string>
+    <string name="about_seven_sorrows_source">"Молитви Семи скорбот: Notre Dame de Chrétienté та Confraternite.net. Завершальна молитва іспанською: José Pulido y Espinosa, Misal Romano (Madrid: Imprenta a cargo de Zacarías Soler, 1851), с. 333. Вірш і відповідь: Apostolado Sacerdotal / Pierina Devoções."</string>
     <string name="settings_typeface_frank_ruhl_libre">"Frank Ruhl Libre"</string>
     <string name="settings_latin_prayer_typeface">"Молитви латинським письмом"</string>
     <string name="settings_cyrillic_prayer_typeface">"Молитви кирилицею"</string>
@@ -458,8 +461,9 @@
     <string name="settings_eastern_pascha">"Візантійська Пасха"</string>
     <string name="settings_pascha_julian">"Юліанська пасхалія"</string>
     <string name="settings_pascha_gregorian">"Григоріанська пасхалія"</string>
-    <string name="about_ukrainian_sources">"Молитви українською: Римсько-Католицька Церква в Україні, молитовник «Щоденно з Богом». Використано із зазначенням джерела відповідно до правил повторного використання видавця. Святе Письмо: Біблія Куліша, Нечуя-Левицького та Пулюя (1905), суспільне надбання; eBible.org ukr1871. Історичний правопис біблійного тексту збережено."</string>
+    <string name="about_ukrainian_sources">"Молитви українською: Римсько-Католицька Церква в Україні, молитовник «Щоденно з Богом». Використано із зазначенням джерела відповідно до правил повторного використання видавця. Святе Письмо: Біблія Куліша, Нечуя-Левицького та Пулюя (1905), суспільне надбання; eBible.org ukr1871. Історичний правопис біблійного тексту збережено. Завершальна молитва Розарію українською: Український інформаційний центр MIR Меджугор’є (medjugorje.com.ua), відтворено із зазначенням джерела згідно з дозволом сайту на публікацію."</string>
     <string name="about_ukrainian_prayerbook_link">"Український молитовник"</string>
+    <string name="about_ukrainian_rosary_source_link">MIR Меджугор’є — молитва Розарію українською</string>
     <string name="about_ukrainian_bible_link">"Українська Біблія (1905)"</string>
     <!-- Window and menu commands -->
     <string name="commands_open_in_new_window">Відкрити в новому вікні</string>

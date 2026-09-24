@@ -511,6 +511,23 @@ public class CustomDevotionEngineTests : IClassFixture<PrayerPackLoaderFixture>
 
     // Seven Sorrows (rosary type, 7×7)
 
+    [Theory]
+    [InlineData("franciscanCrown", "franciscan_04_adoration_of_the_magi", "ܚܕܘܬܐ", true)]
+    [InlineData("sevenSorrows", "seven_sorrows_04_meeting_jesus_on_the_way_of_the_cross", "ܚܫܐ", false)]
+    public void AramaicCustomMysteriesCarryTheirMatchingScriptAndNarrativeKind(string bundle, string key, string noun, bool scripture)
+    {
+        var mystery = MysteryTranslations.Get("arc", key);
+        Assert.NotEqual("arc", PrayerPackStore.EffectiveLanguage(bundle, "arc"));
+        var flow = BuildSteps(bundle, "arc");
+        var announcement = flow.First(step => step.Title == mystery.Title);
+        Assert.Equal(scripture, announcement.IsScripture);
+        Assert.NotNull(announcement.TransliteratedBody);
+        Assert.StartsWith(mystery.TransliteratedDescription!, announcement.TransliteratedBody!);
+        Assert.EndsWith(mystery.TransliteratedFruit!, announcement.TransliteratedBody!);
+        var caption = flow.First(step => step.Subtitle?.EndsWith($" — {mystery.Title}", StringComparison.Ordinal) == true).Subtitle!;
+        Assert.Equal($"{noun} 4 — {mystery.TransliteratedTitle}", PrayerTranslations.FlowTitle(caption, "arc", true, bundle));
+    }
+
     [Fact]
     public void SevenSorrowsSixtyNineStepSequence()
     {

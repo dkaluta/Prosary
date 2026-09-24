@@ -213,7 +213,7 @@ final class RosaryEngineTests: XCTestCase {
   @MainActor
   func testAramaicHeadingConversionLeavesUnknownAndFallbackTitlesAsSupplied() {
     for sourceScript in [false, true] {
-      for title in ["Sign of the Cross", "Unknown heading", "רושמא דצליבא — Example", "Fixture (1 of 3)"] {
+      for title in ["Sign of the Cross", "Unknown heading", "רושמא דצליבא — Example", "Fixture (1 of 3)", "רושמא דצליבא 1", "Personal — רושמא דצליבא 1"] {
         XCTAssertEqual(PrayerTranslations.flowTitle(title, languageCode: "arc", sourceScript: sourceScript), title)
       }
       for language in ["en", "he", "la"] {
@@ -438,6 +438,27 @@ final class RosaryEngineTests: XCTestCase {
     XCTAssertEqual(mysteries.count, 20)
   }
 
+  @MainActor
+  func testTwentyMysteryGroupCaptionsFollowThePrayerLanguageAndScript() throws {
+    let groups = ["Joyful", "Luminous", "Sorrowful", "Glorious"]
+    for language in ["fr", "arc"] {
+      let announcements = makeEngine().buildSteps(for: prayer(mode: .twentyMystery, language: language)).filter(\.isScripture)
+      XCTAssertEqual(announcements.count, 20)
+      for (index, group) in groups.enumerated() {
+        let key = "mysteryGroup\(group)Title"
+        let label = PrayerPackStore.resolveBodyText(bundleId: "rosary", languageCode: language, key: key)
+        XCTAssertNotEqual(label, key)
+        XCTAssertNotEqual(label, group)
+        let caption = try XCTUnwrap(announcements[index * 5].subtitle)
+        XCTAssertTrue(caption.hasPrefix("\(label) — "))
+        if language == "arc" {
+          let alternate = try XCTUnwrap(PrayerPackStore.transliteration(bundleId: "rosary", languageCode: language, key: key))
+          XCTAssertEqual(PrayerTranslations.flowTitle(caption, languageCode: language, sourceScript: true), "\(alternate) — ܪܙܐ 1")
+        }
+      }
+    }
+  }
+
   // MARK: - Step titles & content
 
   func testFirstStepIsSignOfCross() {
@@ -492,12 +513,13 @@ final class RosaryEngineTests: XCTestCase {
     let imageKey = "luminous_02_wedding_at_cana"
     let partial = try XCTUnwrap(
       PrayerPackStore.mysteryOverride(languageCode: "arc", imageKey: imageKey))
-    XCTAssertNil(partial.title)
-    XCTAssertNil(partial.fruit)
+    XCTAssertEqual(partial.title, "משתותא בקטנא")
+    XCTAssertEqual(partial.transliteratedTitle, "ܡܫܬܘܬܐ ܒܩܛܢܐ")
+    XCTAssertNotNil(partial.transliteratedFruit)
 
     let resolved = MysteryTranslations.get(languageCode: "arc", imageKey: imageKey)
-    XCTAssertNotEqual(resolved.title, imageKey, "the title falls through independently")
-    XCTAssertFalse(resolved.fruit.isEmpty, "the fruit falls through independently")
+    XCTAssertEqual(resolved.title, partial.title)
+    XCTAssertEqual(resolved.fruit, partial.fruit)
     XCTAssertTrue(resolved.description.contains("— יוחנן ב׳ 7–11 (פשיטתא)"),
                   "Hebrew citations keep gematria chapters, Arabic verses, and an en dash")
     XCTAssertFalse(resolved.description.contains("יוחנן ב׳:"),
@@ -515,7 +537,15 @@ final class RosaryEngineTests: XCTestCase {
       "\(resolved.description)\n\n\(fruitLabel): \(resolved.fruit)")
     XCTAssertEqual(
       announcement.transliteratedBody,
-      "\(try XCTUnwrap(resolved.transliteratedDescription))\n\n\(alternateFruitLabel): \(resolved.fruit)")
+      "\(try XCTUnwrap(resolved.transliteratedDescription))\n\n\(alternateFruitLabel): \(try XCTUnwrap(resolved.transliteratedFruit))")
+    XCTAssertEqual(PrayerTranslations.flowTitle(announcement.title, languageCode: "arc", sourceScript: true),
+      resolved.transliteratedTitle)
+    let context = "רזא 2 — \(announcement.title)"
+    let syriacContext = "ܪܙܐ 2 — \(try XCTUnwrap(resolved.transliteratedTitle))"
+    XCTAssertEqual(PrayerTranslations.flowTitle(context, languageCode: "arc", sourceScript: true), syriacContext)
+    XCTAssertEqual(PrayerTranslations.flowTitle(syriacContext, languageCode: "arc", sourceScript: false), context)
+    XCTAssertEqual(PrayerTranslations.flowTitle("Joyful — רזא 2", languageCode: "arc", sourceScript: true), "Joyful — ܪܙܐ 2")
+    XCTAssertEqual(PrayerTranslations.flowTitle("Joyful — \(context)", languageCode: "arc", sourceScript: true), "Joyful — \(syriacContext)")
   }
 
   func testLatinBodyContainsLatinText() {

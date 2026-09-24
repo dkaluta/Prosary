@@ -209,6 +209,9 @@ fun AboutScreen(onBack: () -> Unit) {
                 TextButton(onClick = { uriHandler.openUri("https://rkc.org.ua/duhovnist/molytovnyk/") }) {
                     Text(stringResource(R.string.about_ukrainian_prayerbook_link))
                 }
+                TextButton(onClick = { uriHandler.openUri("https://medjugorje.com.ua/media/video/molytvy/6220-6-den-novenna-do-bozhoyi-matery-fatymskoyi17-bereznya-25-bereznya-2022.html") }) {
+                    Text(stringResource(R.string.about_ukrainian_rosary_source_link))
+                }
                 TextButton(onClick = { uriHandler.openUri("https://ebible.org/find/details.php?id=ukr1871") }) {
                     Text(stringResource(R.string.about_ukrainian_bible_link))
                 }

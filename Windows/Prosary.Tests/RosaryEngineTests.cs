@@ -82,6 +82,34 @@ public class RosaryEngineTests : IClassFixture<PrayerPackLoaderFixture>
     }
 
     [Fact]
+    public void TwentyMysteryGroupCaptionsFollowThePrayerLanguageAndScript()
+    {
+        var groups = new[] { "Joyful", "Luminous", "Sorrowful", "Glorious" };
+        foreach (var language in new[] { "fr", "arc" })
+        {
+            var announcements = _engine.BuildSteps(SpecificRosary(new RosaryOptions
+                { MysterySelectionMode = MysterySelectionMode.TwentyMystery }, language))
+                .Where(step => step.IsScripture).ToList();
+            Assert.Equal(20, announcements.Count);
+            for (var index = 0; index < groups.Length; index++)
+            {
+                var key = $"mysteryGroup{groups[index]}Title";
+                var label = PrayerPackStore.ResolveBodyText("rosary", language, key);
+                Assert.NotEqual(key, label);
+                Assert.NotEqual(groups[index], label);
+                var caption = announcements[index * 5].Subtitle!;
+                Assert.StartsWith($"{label} — ", caption);
+                if (language == "arc")
+                {
+                    var alternate = PrayerPackStore.Transliteration("rosary", language, key);
+                    Assert.NotNull(alternate);
+                    Assert.Equal($"{alternate} — ܪܙܐ 1", PrayerTranslations.FlowTitle(caption, language, true));
+                }
+            }
+        }
+    }
+
+    [Fact]
     public void BuildSteps_EachDecade_HasTenHailMarys()
     {
         var steps = _engine.BuildSteps(SpecificRosary());
@@ -666,7 +694,7 @@ public class RosaryEngineTests : IClassFixture<PrayerPackLoaderFixture>
         Assert.Equal(syriacCounter, PrayerTranslations.FlowTitle(hebrewCounter, "arc", true));
         Assert.Equal(hebrewCounter, PrayerTranslations.FlowTitle(syriacCounter, "arc", false));
         foreach (var unknown in new[] { "My prayer", "Our Father", hebrew + " — my saved copy", "prefix " + hebrew,
-            hebrew + " (2 custom 10)", hebrew + " (2 of 10)" })
+            hebrew + " (2 custom 10)", hebrew + " (2 of 10)", hebrew + " 1", "Personal — " + hebrew + " 1" })
             Assert.Equal(unknown, PrayerTranslations.FlowTitle(unknown, "arc", true));
         Assert.Equal("My prayer (2 ܡܶܢ 10)", PrayerTranslations.FlowTitle("My prayer (2 מן 10)", "arc", true));
         Assert.Equal(hebrew, PrayerTranslations.FlowTitle(hebrew, "he", true));
@@ -693,10 +721,7 @@ public class RosaryEngineTests : IClassFixture<PrayerPackLoaderFixture>
         finally { AppSettings.SetAramaicDefaultScript(saved); }
     }
 
-    /// <summary>The Aramaic Rosary's bundle deliberately contributes only the Peshitta
-    /// Scripture for each mystery. Its ordinary title and fruit therefore continue through
-    /// the configured language fallback chain, while the Syriac-script rendering remains
-    /// paired with the Hebrew-square description that supplied it.</summary>
+    /// <summary>Aramaic mystery metadata and Scripture each retain their own script pair.</summary>
     [Fact]
     public void BuildSteps_AramaicMysteryUsesPeshittaAndItsSyriacTransliteration()
     {
@@ -706,12 +731,12 @@ public class RosaryEngineTests : IClassFixture<PrayerPackLoaderFixture>
             AppSettings.SetLanguageFallbackOrder(["en", "la"]);
 
             const string key = "joyful_01_annunciation";
-            var english = MysteryTranslations.Get("en", key);
             var hebrew = MysteryTranslations.Get("he", key);
             var aramaic = MysteryTranslations.Get("arc", key);
 
-            Assert.Equal(english.Title, aramaic.Title);
-            Assert.Equal(english.Fruit, aramaic.Fruit);
+            Assert.Equal("סוברא", aramaic.Title);
+            Assert.Equal("ܣܘܒܪܐ", aramaic.TransliteratedTitle);
+            Assert.Equal("ܡܟܝܟܘܬܐ", aramaic.TransliteratedFruit);
             Assert.EndsWith("— לוּקָס א׳ 26–38 (דליטש)", hebrew.Description);
             Assert.DoesNotContain("לוּקָס א׳:", hebrew.Description);
             Assert.StartsWith("בּיַרחָא דֶּין דֶּשתָּא", aramaic.Description);
@@ -721,13 +746,20 @@ public class RosaryEngineTests : IClassFixture<PrayerPackLoaderFixture>
 
             var announcement = _engine.BuildSteps(SpecificRosary(languageCode: "arc"))
                 .First(step => step.Mystery?.ImageKey == key);
-            Assert.Equal(english.Title, announcement.Title);
+            Assert.Equal(aramaic.Title, announcement.Title);
             Assert.StartsWith(aramaic.Description, announcement.Body);
             Assert.NotNull(announcement.TransliteratedBody);
             Assert.StartsWith(aramaic.TransliteratedDescription!, announcement.TransliteratedBody!);
 
             Assert.EndsWith($"\n\n{PrayerTranslations.Get("arc", PrayerKey.FructusMysteriiLabel)}: {aramaic.Fruit}", announcement.Body);
-            Assert.EndsWith($"\n\n{PrayerPackStore.Transliteration("rosary", "arc", "fructusMysteriiLabel")}: {aramaic.Fruit}", announcement.TransliteratedBody!);
+            Assert.EndsWith($"\n\n{PrayerPackStore.Transliteration("rosary", "arc", "fructusMysteriiLabel")}: {aramaic.TransliteratedFruit}", announcement.TransliteratedBody!);
+            Assert.Equal(aramaic.TransliteratedTitle, PrayerTranslations.FlowTitle(announcement.Title, "arc", true));
+            var context = $"רזא 1 — {aramaic.Title}";
+            var syriacContext = $"ܪܙܐ 1 — {aramaic.TransliteratedTitle}";
+            Assert.Equal(syriacContext, PrayerTranslations.FlowTitle(context, "arc", true));
+            Assert.Equal(context, PrayerTranslations.FlowTitle(syriacContext, "arc", false));
+            Assert.Equal("Joyful — ܪܙܐ 1", PrayerTranslations.FlowTitle("Joyful — רזא 1", "arc", true));
+            Assert.Equal($"Joyful — {syriacContext}", PrayerTranslations.FlowTitle($"Joyful — {context}", "arc", true));
         }
         finally
         {

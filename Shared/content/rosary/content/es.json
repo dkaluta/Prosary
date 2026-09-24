@@ -28,7 +28,11 @@
     "closingPopeIntentionTitle": "Oraciones finales por el Papa",
     "closingBishopIntentionTitle": "Oraciones finales por el obispo",
     "closingDepartedIntentionTitle": "Oraciones finales por los fieles difuntos",
-    "animaChristiTitle": "Alma de Cristo"
+    "animaChristiTitle": "Alma de Cristo",
+    "mysteryGroupJoyfulTitle": "Gozosos",
+    "mysteryGroupSorrowfulTitle": "Dolorosos",
+    "mysteryGroupGloriousTitle": "Gloriosos",
+    "mysteryGroupLuminousTitle": "Luminosos"
   },
   "$comment": "Published Spanish fixed prayers fill the former per-key Latin fallbacks. Creed: Vatican Compendium profession of faith (not only its appendix); Fatima: Sanctuary of Fatima; Jesus Prayer: Pope Francis audience, 21 April 2021; Saint Michael: Vatican News; Marian antiphons: Basilica of Guadalupe. Source wrapping and capitalization are normalized; Ave Regina's printed 'entre todas las más bella' has its extra plural s removed. The invitatory follows the published Liturgy of the Hours. Descriptive headings and intention introductions are Prosary translations of the app's existing metadata. Mystery names and fruits are Prosary descriptive translations; Scripture is imported separately from Torres Amat.",
   "$sources": {
@@ -167,5 +171,5 @@
       "sorrowful_05_crucifixion"
     ]
   },
-  "$scriptureSource": "Scripture imported from Félix Torres Amat's Spanish Bible (1836) by Shared/tools/import-scripture.py — re-run it rather than editing these by hand. Torres Amat translated the Vulgate, so its chapter-and-verse is the same one these devotions cite and no versification map is needed. Spelling and accentuation are the 1836 printing's own. Old Testament readings are absent: only the New Testament volumes of it have been transcribed from the scans."
+  "$scriptureSource": "Scripture imported from Félix Torres Amat's Spanish Bible (1836) by Shared/tools/import-scripture.py — re-run it rather than editing these by hand. Torres Amat translated the Vulgate, so its chapter-and-verse is the same one these devotions cite and no versification map is needed. Spelling and accentuation are the 1836 printing's own. The New Testament follows Wikisource's transcription. Nine Isaiah verses are independently transcribed and visually checked against volume IX (https://archive.org/details/lasagradabiblian10torr); exact pages and source checksum are recorded in Shared/content/spanish-torres-amat-1836-isaiah.json."
 }

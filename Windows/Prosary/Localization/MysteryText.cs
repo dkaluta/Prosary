@@ -6,7 +6,9 @@ public sealed record MysteryText(
     string Title,
     string Fruit,
     string Description,
-    string? TransliteratedDescription = null);
+    string? TransliteratedDescription = null,
+    string? TransliteratedTitle = null,
+    string? TransliteratedFruit = null);
 
 /// <summary>A bundle-layer mystery contribution. Fields are independently optional so a source
 /// can provide its native Scripture and transliteration without inventing a title or spiritual
@@ -15,4 +17,6 @@ public sealed record MysteryTextOverride(
     string? Title = null,
     string? Fruit = null,
     string? Description = null,
-    string? TransliteratedDescription = null);
+    string? TransliteratedDescription = null,
+    string? TransliteratedTitle = null,
+    string? TransliteratedFruit = null);

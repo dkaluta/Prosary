@@ -5,16 +5,18 @@
 """Reference-only adapter for the bounded, reviewed 1897 Jesuit Arabic corpus.
 
 The existing canonical transcription and ARABIC-SCRIPTURE-SOURCES.markdown establish
-64 indivisible passage envelopes, containing 220 distinct verses. The source and
+72 indivisible passage envelopes, containing 239 distinct verses. The source and
 STEP Standard labels agree for those complete envelopes; this does NOT establish
 individual verse boundaries inside them. In particular, Luke 1:32-33 and 22:43-44
 divide their clauses differently in the inspected printing.
 
-No Latin/Greek family rules or chapter-completeness predicates are selected. The
-only relevant pinned STEP rows are AllBibles empty-verse notices (27491, 27492,
-27495); a sparse transcription cannot prove absence and those notices do not
-authorize losing words. The prior source review, not a Vulgate label, is the basis
-for the explicit units below. No new wording, OCR, or transcription is introduced.
+No Latin/Greek family rules or chapter-completeness predicates are selected.
+AllBibles empty-verse notices (27491, 27492, 27495) do not authorize losing words;
+a sparse transcription cannot prove absence. ARABIC-REFERENCE-REVIEW.markdown
+records the eight added units' printed clause boundaries and KJV Standard
+witnesses, including Isaiah 9:2's distinction from Hebrew numbering. Those manual
+reviews, not a Vulgate label, establish the explicit units below. No new wording,
+OCR, or transcription is introduced by this adapter.
 
 reference_metadata() extracts references, page evidence, counts and hashes at build
 time. from_metadata() reads only that exported, hash-pinned metadata and never
@@ -36,8 +38,8 @@ from reading_step_mapping import Unavailable
 Reference = tuple[str, int, int]
 EDITION_ID = "jesuit-arabic-1897"
 SOURCE_ID = "old-jesuit-arabic-1897"
-SOURCE_SHA256 = "2c9bdbfb9a132fc2f79b5a7482f5e89958f4b37c02aa1a7df785b0b8d1f118c4"
-SOURCE_PIN_DIGEST = "5a9ca235cc8663b4ed2e9195d1cb5fe7795b7d281837fbdf81ae17e3c50dc458"
+SOURCE_SHA256 = "9495719b3f1573e7a446dc22dbeb3014e913d69b5bfff71239dd9602c0efeda8"
+SOURCE_PIN_DIGEST = "c6d5d35959ddd11e9f44d01098d32a2bcd127ebf734b4519ff3b01e3613e7a96"
 SOURCE_PATH = Path(__file__).resolve().parents[1] / "content/arabic-jesuit-1897.json"
 _BOOKS = {"Isaiah": "ISA", "Matthew": "MAT", "Mark": "MRK", "Luke": "LUK",
           "John": "JHN", "Acts": "ACT", "Revelation": "REV"}
@@ -78,6 +80,10 @@ _SPANS = (
     ("JHN", 21, ((1, 7),)), ("JHN", 21, ((15, 17),)),
     ("MAT", 28, ((16, 20),)), ("ACT", 1, ((6, 11),)),
     ("ACT", 1, ((12, 14),)), ("ACT", 2, ((1, 6),)),
+    ("LUK", 1, ((46, 55),)), ("ISA", 11, ((2, 3),)),
+    ("ISA", 11, ((4, 5),)), ("ISA", 11, ((10, 10),)),
+    ("ISA", 22, ((22, 22),)), ("ISA", 9, ((2, 2),)),
+    ("ISA", 28, ((16, 16),)), ("ISA", 7, ((14, 14),)),
 )
 REVIEWED_UNITS = tuple(tuple((book, chapter, verse)
                             for start, end in spans for verse in range(start, end + 1))
@@ -90,7 +96,7 @@ PROFILES = {
         "blocked_chapters": set(), "source_pin_digest": SOURCE_PIN_DIGEST,
         "notes": [
             "Dispatch through ReviewedArabicMapper; never a generic StepMapper.",
-            "220 existing source verses in 64 indivisible reviewed units; no new text.",
+            "239 source verses in 72 indivisible reviewed units; no unreviewed text.",
             "Empty broad STEP selections do not authorize identity outside those units.",
             "Luke 1:32-33 and 22:43-44 retain their entire previously reviewed envelopes.",
             "Sparse inventory does not establish chapter Last or a missing verse.",
@@ -149,7 +155,7 @@ def reference_metadata(source_path: Path = SOURCE_PATH) -> dict:
     metadata = {
         "schemaVersion": 1, "editionId": EDITION_ID,
         "sourcePins": {SOURCE_ID: SOURCE_SHA256}, "sourcePinDigest": SOURCE_PIN_DIGEST,
-        "coveragePolicy": "reviewed-units", "verseCount": 220, "unitCount": 64,
+        "coveragePolicy": "reviewed-units", "verseCount": 239, "unitCount": 72,
         "verses": sorted(verses, key=lambda row: _order(tuple(row["reference"]))),
         "units": [{"source": [list(ref) for ref in unit], "standard": [list(ref) for ref in unit]}
                   for unit in REVIEWED_UNITS],
@@ -192,10 +198,10 @@ class ReviewedArabicMapper:
                 or metadata.get("coveragePolicy") != "reviewed-units"
                 or pins != {SOURCE_ID: SOURCE_SHA256} or digest != SOURCE_PIN_DIGEST
                 or metadata.get("sourcePinDigest") != digest
-                or metadata.get("verseCount") != 220 or metadata.get("unitCount") != 64):
+                or metadata.get("verseCount") != 239 or metadata.get("unitCount") != 72):
             raise ValueError("Arabic reference metadata differs from its reviewed source pin")
         units = metadata.get("units", [])
-        if (len(units) != 64
+        if (len(units) != 72
                 or any(tuple(_reference(ref) for ref in row.get("source", ())) != expected
                        or tuple(_reference(ref) for ref in row.get("standard", ())) != expected
                        for row, expected in zip(units, REVIEWED_UNITS, strict=True))):
@@ -210,8 +216,8 @@ class ReviewedArabicMapper:
                     or any(type(page) is not int or not 1 <= page <= 570 for page in pages)):
                 raise ValueError("Arabic reference metadata has invalid or missing source evidence")
             evidence[ref] = (count, sha, tuple(pages))
-        if set(evidence) != _REFERENCES or len(evidence) != 220:
-            raise ValueError("Arabic reference metadata must retain all 220 reviewed verse records")
+        if set(evidence) != _REFERENCES or len(evidence) != 239:
+            raise ValueError("Arabic reference metadata must retain all 239 reviewed verse records")
         self.source_pins = dict(pins)
         self.source_pin_digest = digest
         self.unit_mappings = tuple((unit, unit) for unit in REVIEWED_UNITS)

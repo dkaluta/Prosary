@@ -99,6 +99,17 @@
                 <TextBlock x:Uid="SetPrayerNameLanguageHint" Text="Also show the interface-language name when it differs."
                            TextWrapping="Wrap" Style="{StaticResource MutedCaptionTextStyle}" />
 
+                <!-- Windows is always a keyboard-relevant desktop environment. -->
+                <TextBlock x:Uid="SetKeyboardHeader" Text="Keyboard" Style="{StaticResource BaseTextBlockStyle}" Margin="0,8,0,0" />
+                <ToggleSwitch x:Uid="SetKeyboardArrows" Header="Navigate prayers with arrow keys"
+                              IsOn="{x:Bind ViewModel.KeyboardArrowNavigationEnabled, Mode=TwoWay}"
+                              AutomationProperties.AutomationId="keyboardArrowNavigationEnabled" />
+                <ToggleSwitch x:Uid="SetKeyboardSpace" Header="Advance prayers with the space bar"
+                              IsOn="{x:Bind ViewModel.KeyboardSpaceAdvanceEnabled, Mode=TwoWay}"
+                              AutomationProperties.AutomationId="keyboardSpaceAdvanceEnabled" />
+                <TextBlock x:Uid="SetKeyboardHint" Text="Left and Right move between steps. Space advances the prayer in the active window."
+                           TextWrapping="Wrap" Style="{StaticResource MutedCaptionTextStyle}" />
+
                 <!-- The Home "Today" section: which of its rows show at all, and which
                      calendar's feasts the feast row prays. The calendar choices come from the
                      bundled calendars.json registry (labels included, so no resw entries per

@@ -78,6 +78,7 @@ internal static class DesktopWindowChrome
 
     public static void Populate(MenuBar menu, Window owner, Frame frame, Func<Guid?>? savedID = null)
     {
+        if (owner.Content is FrameworkElement root) PrayerKeyboardShortcuts.Attach(owner, root, frame);
         var navigation = Router.For(frame);
         var file = new MenuBarItem { Title = Loc.Tr("desktop_menu_file", "File") };
         file.Items.Add(Item("desktop_import", "Import Prayer Packs…", async () => await ImportAsync(owner, navigation), VirtualKey.O));
@@ -146,7 +147,7 @@ internal static class DesktopWindowChrome
         menu.Items.Add(help);
     }
 
-    private static IPrayerStepFlowViewModel? CurrentFlow(Frame frame) => frame.Content switch
+    internal static IPrayerStepFlowViewModel? CurrentFlow(Frame frame) => frame.Content switch
     {
         RosaryPrayerPage page => page.ViewModel,
         CustomDevotionFlowPage page => page.ViewModel,

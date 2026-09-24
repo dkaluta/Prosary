@@ -41,6 +41,13 @@ with Mica. It inherits WinUI's standard template, rounded interaction states, fl
 keyboard focus and contrast behavior; frequent actions remain in icon CommandBars.
 See Microsoft's [menu guidance](https://learn.microsoft.com/en-us/windows/apps/develop/ui/controls/menus).
 
+Settings includes independent **Use arrow keys to navigate** and **Press Space to advance**
+switches, both enabled by default. Plain Left/Right use the current prayer's previous/next
+actions according to interface direction; Space uses its primary advance/count/Finish action.
+Only the active window's loaded prayer handles them. Dialogs, flyouts, text editing/selection
+and focused controls retain native key behavior. Up/Down and Page Up/Page Down keep scrolling;
+modified and repeated key presses do not advance the prayer.
+
 | Menu | Commands |
 | --- | --- |
 | File | Import Prayer Packs… (Ctrl+O), Close Window (Ctrl+W) |

@@ -34,14 +34,24 @@ public static partial class MysteryTranslations
         string? fruit = null;
         string? description = null;
         string? transliteratedDescription = null;
+        string? transliteratedTitle = null;
+        string? transliteratedFruit = null;
 
         foreach (var code in Prosary.Models.LanguageCatalog.ContentFallbackChain(languageCode))
         {
             var packOverride = PrayerPackStore.MysteryOverride(code, imageKey);
             if (packOverride is not null)
             {
-                title ??= packOverride.Title;
-                fruit ??= packOverride.Fruit;
+                if (title is null && packOverride.Title is { } suppliedTitle)
+                {
+                    title = suppliedTitle;
+                    transliteratedTitle = packOverride.TransliteratedTitle;
+                }
+                if (fruit is null && packOverride.Fruit is { } suppliedFruit)
+                {
+                    fruit = suppliedFruit;
+                    transliteratedFruit = packOverride.TransliteratedFruit;
+                }
                 if (description is null && packOverride.Description is { } suppliedDescription)
                 {
                     description = suppliedDescription;
@@ -53,8 +63,16 @@ public static partial class MysteryTranslations
 
             if (ByLanguage.TryGetValue(code, out var table) && table.TryGetValue(imageKey, out var text))
             {
-                title ??= text.Title;
-                fruit ??= text.Fruit;
+                if (title is null)
+                {
+                    title = text.Title;
+                    transliteratedTitle = text.TransliteratedTitle;
+                }
+                if (fruit is null)
+                {
+                    fruit = text.Fruit;
+                    transliteratedFruit = text.TransliteratedFruit;
+                }
                 if (description is null)
                 {
                     description = text.Description;
@@ -69,7 +87,7 @@ public static partial class MysteryTranslations
             title ?? imageKey,
             fruit ?? string.Empty,
             description ?? string.Empty,
-            transliteratedDescription);
+            transliteratedDescription, transliteratedTitle, transliteratedFruit);
     }
 
     /// <summary>Returns a presentation copy with only the mystery heading unpointed. Fruit and

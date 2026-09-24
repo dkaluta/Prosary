@@ -31,14 +31,7 @@ final class PrayerTranslationsCompletenessTests: XCTestCase {
   /// Known per-bundle translation gaps: bundleId -> language -> keys awaiting a verified
   /// translation. The self-guard test below fails once a listed key gains its translation, so
   /// this map can never go silently stale.
-  private let bundleKeysMissingLanguages: [String: [String: Set<String>]] = [
-    // Veronica's station quotes Judith, and the Arabic/Tagalog scripture sources carry no
-    // deuterocanon — those two fall back to the bundle's Latin text.
-    "stationsOfTheCross": [
-      "ar": ["station06Body"],
-      "tl": ["station06Body"],
-    ],
-  ]
+  private let bundleKeysMissingLanguages: [String: [String: Set<String>]] = [:]
 
   private var allMysteryImageKeys: Set<String> {
     Set(MysteryGroup.allCases.flatMap { MysteryCatalog.forGroup($0) }.map(\.imageKey))

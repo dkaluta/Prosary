@@ -20,6 +20,9 @@ struct SettingsView: View {
   @AppStorage(JaffaHailMaryWording.defaultsKey) private var usesJaffaHailMaryWording = false
   @AppStorage("autoAdvanceSeconds") private var autoAdvanceSeconds = 0
   @AppStorage("hapticsOnAdvance") private var hapticsOnAdvance = false
+  @AppStorage(PrayerKeyboardNavigation.arrowsKey) private var keyboardArrowNavigationEnabled = true
+  @AppStorage(PrayerKeyboardNavigation.spaceKey) private var keyboardSpaceAdvanceEnabled = true
+  @ObservedObject private var keyboardAvailability = PrayerKeyboardAvailability.shared
   @AppStorage(PrayerTypography.syriacTypefaceKey) private var syriacTypeface = PrayerTypography.TypefaceValue.default
   @AppStorage(PrayerTranslations.aramaicDefaultScriptKey) private var aramaicDefaultScript = "Hebr"
   @AppStorage(PrayerTypography.hebrewPrayerTypefaceKey) private var hebrewPrayerTypeface = PrayerTypography.TypefaceValue.default
@@ -227,6 +230,15 @@ struct SettingsView: View {
       Toggle(String(localized: "settings.hapticsOnAdvance",
                     defaultValue: "Vibrate on step change", bundle: UILanguage.bundle, locale: UILanguage.locale), isOn: $hapticsOnAdvance)
       #endif
+
+      if keyboardAvailability.isAvailable {
+        Toggle(String(localized: "settings.keyboardArrowNavigation", defaultValue: "Use arrow keys to navigate",
+                      bundle: UILanguage.bundle, locale: UILanguage.locale), isOn: $keyboardArrowNavigationEnabled)
+          .accessibilityIdentifier("keyboardArrowNavigationEnabled")
+        Toggle(String(localized: "settings.keyboardSpaceAdvance", defaultValue: "Press Space to advance",
+                      bundle: UILanguage.bundle, locale: UILanguage.locale), isOn: $keyboardSpaceAdvanceEnabled)
+          .accessibilityIdentifier("keyboardSpaceAdvanceEnabled")
+      }
 
       #if !os(macOS)
       Button(String(localized: "settings.resetHomeOrder", defaultValue: "Reset Home Order", bundle: UILanguage.bundle, locale: UILanguage.locale)) {

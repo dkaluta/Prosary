@@ -80,6 +80,9 @@
     <string name="prayer_order_title">"Ordine delle preghiere"</string>
     <string name="basic_prayers_title">"Preghiere principali"</string>
     <string name="settings_haptics_on_advance">"Vibra al cambio di passo"</string>
+    <string name="settings_keyboard_arrows">Naviga con i tasti freccia</string>
+    <string name="settings_keyboard_space">Avanza con la barra spaziatrice</string>
+    <string name="settings_keyboard_hint">Durante la lettura, usa le frecce sinistra e destra per cambiare passo, oppure la barra spaziatrice per avanzare.</string>
     <string name="settings_auto_advance">"Avanzamento automatico"</string>
     <string name="auto_advance_off">"Disattivato"</string>
     <string name="auto_advance_every">"Ogni %1$d secondi"</string>
@@ -133,10 +136,10 @@
     <string name="antiphon_none">"Nessuna"</string>
     <string name="antiphon_seasonal">"Automatica (secondo il tempo liturgico)"</string>
     <string name="antiphon_salve_regina">"Salve Regina"</string>
-    <string name="antiphon_alma_redemptoris">"Alma Redemptoris Mater"</string>
-    <string name="antiphon_ave_regina">"Ave Regina Caelorum"</string>
-    <string name="antiphon_regina_caeli">"Regina Caeli"</string>
-    <string name="antiphon_sub_tuum">"Sub Tuum Praesidium"</string>
+    <string name="antiphon_alma_redemptoris">"O santa Madre del Redentore"</string>
+    <string name="antiphon_ave_regina">"Ave, regina dei cieli"</string>
+    <string name="antiphon_regina_caeli">"Regina dei cieli"</string>
+    <string name="antiphon_sub_tuum">"Sotto la tua protezione"</string>
 
     <!-- Mystery artwork styles -->
     <string name="image_style_classic">"Dipinti classici"</string>
@@ -419,9 +422,9 @@
     <string name="about_bible_book_sources">Nomi dei libri biblici: AELF, Dar el-Machreq, Bibbia sinodale russa (Azbyka), Società Biblica delle Filippine e ParolaViva.</string>
     <string name="about_prayer_network_link">Rete Mondiale di Preghiera del Papa</string>
     <string name="about_parolaviva_link">ParolaViva — CC BY 4.0</string>
-    <string name="about_additional_prayer_sources">Altre fonti delle preghiere: Vatican News, Santuario di Fatima, Notre-Dame de Paris, AELF e Conferenza Episcopale Italiana (CEI). Inoltre: basilica di Guadalupe; GOARCH Digital Chant Stand; IVE in Grecia (Anima Christi in greco tradotta da p. F. Bravo IVE); parrocchia cattolica di San Nicola a Tinos; provincia iberica dei Carmelitani; Natalia Smelova, Melkite Syriac Hymns to the Mother of God (2011), per il testo siriaco medievale del Sotto la tua protezione. Officium Parvum Graece et Latine (Avignon: F. Seguin, 1823), pp. 119, 121, 125. Alfonso Maria de’ Liguori: Esercizio della Via Crucis (1761); Mater dolorosa (1888).</string>
-    <string name="about_divine_mercy_source">Coroncina alla Divina Misericordia: Congregazione delle Suore della Beata Vergine Maria della Misericordia.</string>
-    <string name="about_seven_sorrows_source">Preghiere dei sette dolori: Notre Dame de Chrétienté e Confraternite.net.</string>
+    <string name="about_additional_prayer_sources">Altre fonti delle preghiere: Vatican News, Santuario di Fatima, Notre-Dame de Paris, AELF e Conferenza Episcopale Italiana (CEI). Inoltre: basilica di Guadalupe; GOARCH Digital Chant Stand; IVE in Grecia (Anima Christi in greco tradotta da p. F. Bravo IVE); parrocchia cattolica di San Nicola a Tinos; provincia iberica dei Carmelitani; Natalia Smelova, Melkite Syriac Hymns to the Mother of God (2011), per il testo siriaco medievale del Sotto la tua protezione. Officium Parvum Graece et Latine (Avignon: F. Seguin, 1823), pp. 7, 119, 121, 125. Alfonso Maria de’ Liguori: Esercizio della Via Crucis (1761); Mater dolorosa (1888). Angelus in greco: IVE in Grecia. Antifone maggiori: Vicariato di San Giacomo (ebraico) e RusCatholic (russo). Versetto iniziale del Rosario in siriaco: Salmo 70,2, Bibbia poliglotta di Walton (1657), p. 194. Risposta della Via Crucis in greco: Conferenza dei vescovi cattolici della Grecia (cen.gr).</string>
+    <string name="about_divine_mercy_source">Coroncina alla Divina Misericordia: Congregazione delle Suore della Beata Vergine Maria della Misericordia. Testo greco: iPray.</string>
+    <string name="about_seven_sorrows_source">Preghiere dei sette dolori: Notre Dame de Chrétienté e Confraternite.net. Preghiera conclusiva in spagnolo: José Pulido y Espinosa, Misal Romano (Madrid: Imprenta a cargo de Zacarías Soler, 1851), p. 333. Versetto e risposta: Apostolado Sacerdotal / Pierina Devoções.</string>
     <string name="settings_typeface_frank_ruhl_libre">"Frank Ruhl Libre"</string>
     <string name="settings_latin_prayer_typeface">"Preghiere in alfabeto latino"</string>
     <string name="settings_cyrillic_prayer_typeface">"Preghiere in alfabeto cirillico"</string>
@@ -458,8 +461,9 @@
     <string name="settings_eastern_pascha">Pasqua bizantina</string>
     <string name="settings_pascha_julian">Pasqua secondo il calendario giuliano</string>
     <string name="settings_pascha_gregorian">Pasqua secondo il calendario gregoriano</string>
-    <string name="about_ukrainian_sources">"Preghiere in ucraino: Chiesa cattolica romana in Ucraina, libro di preghiere Щоденно з Богом. Utilizzate con attribuzione secondo la politica di riutilizzo dell’editore. Sacra Scrittura: Bibbia di Kulish, Nechui-Levytsky e Puluj (1905), pubblico dominio; eBible.org ukr1871. L’ortografia storica del testo biblico è conservata."</string>
+    <string name="about_ukrainian_sources">"Preghiere in ucraino: Chiesa cattolica romana in Ucraina, libro di preghiere Щоденно з Богом. Utilizzate con attribuzione secondo la politica di riutilizzo dell’editore. Sacra Scrittura: Bibbia di Kulish, Nechui-Levytsky e Puluj (1905), pubblico dominio; eBible.org ukr1871. L’ortografia storica del testo biblico è conservata. Preghiera conclusiva del Rosario in ucraino: Centro d’informazione ucraino MIR Medjugorje (medjugorje.com.ua), riprodotta citando la fonte secondo l’autorizzazione alla pubblicazione del sito."</string>
     <string name="about_ukrainian_prayerbook_link">"Libro di preghiere in ucraino"</string>
+    <string name="about_ukrainian_rosary_source_link">MIR Medjugorje — Preghiera del Rosario in ucraino</string>
     <string name="about_ukrainian_bible_link">"Bibbia in ucraino (1905)"</string>
     <!-- Window and menu commands -->
     <string name="commands_open_in_new_window">Apri in una nuova finestra</string>

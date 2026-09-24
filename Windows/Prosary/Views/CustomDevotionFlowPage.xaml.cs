@@ -122,7 +122,7 @@ public sealed partial class CustomDevotionFlowPage : Page
             var day = ViewModel.Days[i];
             var item = new ToggleMenuFlyoutItem
             {
-                Text = day.Period is { } period
+                Text = day.LocalizedPeriod is { } period
                     ? $"{HebrewDisplayText.WithoutMarks(period)} — {day.LocalizedName}"
                     : day.LocalizedName,
                 IsChecked = i == ViewModel.CurrentDayIndex,

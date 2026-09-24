@@ -12,4 +12,6 @@ data class MysteryText(
      * [description], not to the mystery as a whole, so fallback resolution never borrows it
      * independently from a different language/source. */
     val transliteratedDescription: String? = null,
+    val transliteratedTitle: String? = null,
+    val transliteratedFruit: String? = null,
 )

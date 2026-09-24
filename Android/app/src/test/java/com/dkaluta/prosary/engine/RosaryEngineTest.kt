@@ -435,6 +435,26 @@ class RosaryEngineTest {
         assertEquals(20, mysteries.size)
     }
 
+    @Test
+    fun twentyMysteryGroupCaptionsFollowThePrayerLanguageAndScript() {
+        val groups = listOf("Joyful", "Luminous", "Sorrowful", "Glorious")
+        for (language in listOf("fr", "arc")) {
+            val announcements = engine().buildSteps(prayer(mode = MysterySelectionMode.TwentyMystery, language = language)).filter { it.isScripture }
+            assertEquals(20, announcements.size)
+            for ((index, group) in groups.withIndex()) {
+                val key = "mysteryGroup${group}Title"
+                val label = PrayerPackStore.resolveBodyText("rosary", language, key)
+                assertFalse(label == key || label == group)
+                val caption = requireNotNull(announcements[index * 5].subtitle)
+                assertTrue(caption.startsWith("$label — "))
+                if (language == "arc") {
+                    val alternate = requireNotNull(PrayerPackStore.transliteration("rosary", language, key))
+                    assertEquals("$alternate — ܪܙܐ 1", PrayerTranslations.flowTitle(caption, language, true))
+                }
+            }
+        }
+    }
+
     // MARK: - Step titles & content
 
     @Test
@@ -561,8 +581,9 @@ class RosaryEngineTest {
         val imageKey = "joyful_01_annunciation"
         val partial = PrayerPackStore.mysteryOverride("arc", imageKey)
         assertNotNull(partial)
-        assertEquals(null, partial?.title)
-        assertEquals(null, partial?.fruit)
+        assertEquals("סוברא", partial?.title)
+        assertEquals("ܣܘܒܪܐ", partial?.transliteratedTitle)
+        assertEquals("ܡܟܝܟܘܬܐ", partial?.transliteratedFruit)
 
         val resolved = com.dkaluta.prosary.content.MysteryTranslations.get("arc", imageKey)
         assertEquals(partial?.description, resolved.description)
@@ -580,8 +601,15 @@ class RosaryEngineTest {
         assertTrue(announcement.body.startsWith(resolved.description))
         assertTrue(announcement.body.endsWith(fruitLine))
         assertTrue(announcement.transliteratedBody?.startsWith(resolved.transliteratedDescription!!) == true)
-        val alternateFruitLine = "${PrayerPackStore.transliteration("rosary", "arc", "fructusMysteriiLabel")}: ${resolved.fruit}"
+        val alternateFruitLine = "${PrayerPackStore.transliteration("rosary", "arc", "fructusMysteriiLabel")}: ${resolved.transliteratedFruit}"
         assertTrue(announcement.transliteratedBody?.endsWith(alternateFruitLine) == true)
+        assertEquals(resolved.transliteratedTitle, PrayerTranslations.flowTitle(announcement.title, "arc", true))
+        val context = "רזא 1 — ${announcement.title}"
+        val syriacContext = "ܪܙܐ 1 — ${resolved.transliteratedTitle}"
+        assertEquals(syriacContext, PrayerTranslations.flowTitle(context, "arc", true))
+        assertEquals(context, PrayerTranslations.flowTitle(syriacContext, "arc", false))
+        assertEquals("Joyful — ܪܙܐ 1", PrayerTranslations.flowTitle("Joyful — רזא 1", "arc", true))
+        assertEquals("Joyful — $syriacContext", PrayerTranslations.flowTitle("Joyful — $context", "arc", true))
     }
 
     // MARK: - Presenter Mode

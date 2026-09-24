@@ -80,6 +80,9 @@
     <string name="prayer_order_title">"Pagkakasunod-sunod ng panalangin"</string>
     <string name="basic_prayers_title">"Mga Pangunahing Panalangin"</string>
     <string name="settings_haptics_on_advance">"Mag-vibrate sa paglipat ng hakbang"</string>
+    <string name="settings_keyboard_arrows">Mag-navigate gamit ang mga arrow key</string>
+    <string name="settings_keyboard_space">Sumulong gamit ang Space</string>
+    <string name="settings_keyboard_hint">Habang nagbabasa, gamitin ang kaliwa at kanang arrow key upang lumipat ng hakbang, o ang Space upang sumulong.</string>
     <string name="settings_auto_advance">"Awtomatikong paglipat"</string>
     <string name="auto_advance_off">"Naka-off"</string>
     <string name="auto_advance_every">"Tuwing %1$d segundo"</string>
@@ -132,11 +135,11 @@
     <!-- Marian antiphon controls; named prayers use the selected prayer language at runtime. -->
     <string name="antiphon_none">"Wala"</string>
     <string name="antiphon_seasonal">"Awtomatiko (Ayon sa Panahon)"</string>
-    <string name="antiphon_salve_regina">"Salve Regina"</string>
-    <string name="antiphon_alma_redemptoris">"Alma Redemptoris Mater"</string>
-    <string name="antiphon_ave_regina">"Ave Regina Caelorum"</string>
-    <string name="antiphon_regina_caeli">"Regina Caeli"</string>
-    <string name="antiphon_sub_tuum">"Sub Tuum Praesidium"</string>
+    <string name="antiphon_salve_regina">"Aba, Reyna"</string>
+    <string name="antiphon_alma_redemptoris">"Mapagmahal na Ina ng Manunubos"</string>
+    <string name="antiphon_ave_regina">"Aba, Reyna ng Langit"</string>
+    <string name="antiphon_regina_caeli">"Reyna ng Langit"</string>
+    <string name="antiphon_sub_tuum">"Sa Iyong Kalinga"</string>
 
     <!-- Mystery artwork styles -->
     <string name="image_style_classic">"Mga klasikong pinta"</string>
@@ -419,9 +422,9 @@
     <string name="about_bible_book_sources">Mga pangalan ng aklat ng Bibliya: AELF, Dar el-Machreq, Bibliyang Sinodal sa Ruso (Azbyka), Philippine Bible Society at ParolaViva.</string>
     <string name="about_prayer_network_link">Pandaigdigang Samahan ng Panalangin ng Papa</string>
     <string name="about_parolaviva_link">ParolaViva — CC BY 4.0</string>
-    <string name="about_additional_prayer_sources">Iba pang pinagmulan ng mga panalangin: Vatican News, Dambana ng Fatima, Notre-Dame de Paris, AELF at Kapulungan ng mga Obispong Italyano (CEI). Gayundin: Basilika ng Guadalupe; GOARCH Digital Chant Stand; IVE Greece (salin sa Griyego ng Anima Christi ni Padre F. Bravo IVE); Parokyang Katoliko ni San Nicolas sa Tinos; Lalawigang Iberiko ng mga Carmelite; Natalia Smelova, Melkite Syriac Hymns to the Mother of God (2011), para sa sinaunang tekstong Siryako ng Sa Ilalim ng Iyong Pagtangkilik. Officium Parvum Graece et Latine (Avignon: F. Seguin, 1823), pp. 119, 121, 125. Alfonso Maria de’ Liguori: Esercizio della Via Crucis (1761); Mater dolorosa (1888).</string>
-    <string name="about_divine_mercy_source">Koronilya ng Banal na Awa: Kongregasyon ng mga Madre ng Mahal na Birhen ng Awa.</string>
-    <string name="about_seven_sorrows_source">Mga panalangin ng Pitong Hapis: Notre Dame de Chrétienté at Confraternite.net.</string>
+    <string name="about_additional_prayer_sources">Iba pang pinagmulan ng mga panalangin: Vatican News, Dambana ng Fatima, Notre-Dame de Paris, AELF at Kapulungan ng mga Obispong Italyano (CEI). Gayundin: Basilika ng Guadalupe; GOARCH Digital Chant Stand; IVE Greece (salin sa Griyego ng Anima Christi ni Padre F. Bravo IVE); Parokyang Katoliko ni San Nicolas sa Tinos; Lalawigang Iberiko ng mga Carmelite; Natalia Smelova, Melkite Syriac Hymns to the Mother of God (2011), para sa sinaunang tekstong Siryako ng Sa Ilalim ng Iyong Pagtangkilik. Officium Parvum Graece et Latine (Avignon: F. Seguin, 1823), pp. 7, 119, 121, 125. Alfonso Maria de’ Liguori: Esercizio della Via Crucis (1761); Mater dolorosa (1888). Angelus sa Griyego: IVE Greece. Mga Antiponang O: Bikaryato ni Santiago (Hebreo) at RusCatholic (Ruso). Pambungad na talata ng Rosaryo sa Siryako: Awit 70:2, Polyglot ni Walton (1657), p. 194. Tugon sa Daan ng Krus sa Griyego: Kapulungan ng mga Obispong Katoliko ng Gresya (cen.gr).</string>
+    <string name="about_divine_mercy_source">Koronilya ng Banal na Awa: Kongregasyon ng mga Madre ng Mahal na Birhen ng Awa. Tekstong Griyego: iPray.</string>
+    <string name="about_seven_sorrows_source">Mga panalangin ng Pitong Hapis: Notre Dame de Chrétienté at Confraternite.net. Pangwakas na panalangin sa Espanyol: José Pulido y Espinosa, Misal Romano (Madrid: Imprenta a cargo de Zacarías Soler, 1851), p. 333. Bersikulo at tugon: Apostolado Sacerdotal / Pierina Devoções.</string>
     <string name="settings_typeface_frank_ruhl_libre">"Frank Ruhl Libre"</string>
     <string name="settings_latin_prayer_typeface">"Mga panalangin sa sulat Latin"</string>
     <string name="settings_cyrillic_prayer_typeface">"Mga panalangin sa sulat Cyrillic"</string>
@@ -458,8 +461,9 @@
     <string name="settings_eastern_pascha">Paskuwa ng Ritung Bisantino</string>
     <string name="settings_pascha_julian">Paskuwa ayon sa kalendaryong Juliano</string>
     <string name="settings_pascha_gregorian">Paskuwa ayon sa kalendaryong Gregoriano</string>
-    <string name="about_ukrainian_sources">"Mga panalangin sa Ukrainian: Simbahang Romano Katoliko sa Ukraine, aklat-dasalan na Щоденно з Богом. Ginagamit nang may pagkilala sa pinagmulan ayon sa patakaran ng tagapaglathala sa muling paggamit. Kasulatan: Bibliya nina Kulish, Nechui-Levytsky at Puluj (1905), pampublikong dominyo; eBible.org ukr1871. Pinanatili ang makasaysayang baybay ng Kasulatan."</string>
+    <string name="about_ukrainian_sources">"Mga panalangin sa Ukrainian: Simbahang Romano Katoliko sa Ukraine, aklat-dasalan na Щоденно з Богом. Ginagamit nang may pagkilala sa pinagmulan ayon sa patakaran ng tagapaglathala sa muling paggamit. Kasulatan: Bibliya nina Kulish, Nechui-Levytsky at Puluj (1905), pampublikong dominyo; eBible.org ukr1871. Pinanatili ang makasaysayang baybay ng Kasulatan. Pangwakas na panalangin ng Rosaryo sa Ukrainian: Ukrainian Information Center MIR Medjugorje (medjugorje.com.ua), inilathala nang may pagkilala sa pinagmulan alinsunod sa pahintulot ng website."</string>
     <string name="about_ukrainian_prayerbook_link">"Aklat-dasalan sa Ukrainian"</string>
+    <string name="about_ukrainian_rosary_source_link">MIR Medjugorje — Panalangin ng Rosaryo sa Ukrainian</string>
     <string name="about_ukrainian_bible_link">"Bibliya sa Ukrainian (1905)"</string>
     <!-- Window and menu commands -->
     <string name="commands_open_in_new_window">Buksan sa Bagong Window</string>
