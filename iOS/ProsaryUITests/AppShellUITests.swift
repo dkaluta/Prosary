@@ -931,6 +931,10 @@ final class AppShellUITests: XCTestCase {
 
   @MainActor
   func testAppearanceKeepsLargeTextChoicesReachable() throws {
+    // Give the iPad toolbar room to show Settings; this test targets the Appearance
+    // form, independently of the system overflow menu used by the Home toolbar.
+    XCUIDevice.shared.orientation = .landscapeLeft
+    defer { XCUIDevice.shared.orientation = .portrait }
     let app = XCUIApplication()
     app.launchArguments = ["-useInMemoryStore", "-AppleLanguages", "(en)", "-interfaceLanguageCode", "en",
                            "-UIPreferredContentSizeCategoryName", "UICTContentSizeCategoryAccessibilityXXXL"]
@@ -949,6 +953,7 @@ final class AppShellUITests: XCTestCase {
     XCTAssertTrue(link.isHittable)
     link.tap()
     XCTAssertTrue(app.navigationBars["Appearance"].waitForExistence(timeout: 5))
+    XCUIDevice.shared.orientation = .portrait
     for color in ["blue", "green", "red", "purple", "rose", "white", "gold"] {
       let row = app.buttons["appColorOption-\(color)"]
       for _ in 0..<4 where !row.isHittable { app.swipeUp() }
