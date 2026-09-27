@@ -43,6 +43,12 @@ enum AppColor: String, CaseIterable, Identifiable {
   var alternateIconName: String? { self == .blue ? nil : "Prosary\(assetSuffix)" }
   var previewAssetName: String { "AppIcon\(assetSuffix)" }
 
+  #if os(macOS)
+  func dockIconAssetName(isDark: Bool) -> String? {
+    isDark || self == .blue ? nil : previewAssetName
+  }
+  #endif
+
   var title: String {
     switch self {
     case .blue: String(localized: "settings.appColor.blue", defaultValue: "Blue", bundle: UILanguage.bundle, locale: UILanguage.locale)
@@ -67,13 +73,30 @@ final class AppIconController: ObservableObject {
   @Published var errorMessage: String?
   private var isUpdating = false
   private var requestedColor: AppColor = .blue
+  #if os(macOS)
+  private var appearanceObservation: NSKeyValueObservation?
+  #endif
+
+  private init() {
+    #if os(macOS)
+    // Keep the Dock in sync even after the last app window has closed.
+    appearanceObservation = NSApplication.shared.observe(\.effectiveAppearance) { [weak self] _, _ in
+      Task { @MainActor [weak self] in
+        guard let self else { return }
+        self.synchronize(self.requestedColor)
+      }
+    }
+    #endif
+  }
 
   func synchronize(_ color: AppColor) {
     // Unit/UI tests never change the person's installed application icon.
     guard !ProsaryRuntimeEnvironment.isTesting else { return }
     requestedColor = color
     #if os(macOS)
-    NSApplication.shared.applicationIconImage = color == .blue ? nil : NSImage(named: color.previewAssetName)
+    let isDark = NSApplication.shared.effectiveAppearance.bestMatch(from: [.darkAqua, .aqua]) == .darkAqua
+    // The native Icon Composer asset retains the original dark glass and silver cross.
+    NSApplication.shared.applicationIconImage = color.dockIconAssetName(isDark: isDark).flatMap { NSImage(named: $0) }
     #elseif os(iOS)
     guard !isUpdating, UIApplication.shared.applicationState == .active,
           UIApplication.shared.supportsAlternateIcons,

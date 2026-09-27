@@ -28,6 +28,15 @@ final class AppColorTests: XCTestCase {
     XCTAssertNotEqual(AppColor.white.lightHex, "#FFFFFF", "The white icon needs a readable gold accent in the interface")
   }
 
+  #if os(macOS)
+  func testDarkDockUsesTheOriginalNativeIconAndLightRestoresTheChosenColor() {
+    for color in AppColor.allCases {
+      XCTAssertNil(color.dockIconAssetName(isDark: true), color.rawValue)
+      XCTAssertEqual(color.dockIconAssetName(isDark: false), color == .blue ? nil : color.previewAssetName)
+    }
+  }
+  #endif
+
   #if os(iOS)
   func testEveryAlternateIconIsDeclaredForIPhoneAndIPad() throws {
     XCTAssertTrue(UIApplication.shared.supportsAlternateIcons)

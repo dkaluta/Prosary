@@ -1,34 +1,9 @@
 {
-  "fill-specializations": [
-    {
-      "value": {
-        "solid": "srgb:0.647059,0.462745,0.113725,1.000000"
-      }
-    },
-    {
-      "appearance": "dark",
-      "value": {
-        "solid": "srgb:0.647059,0.462745,0.113725,1.000000"
-      }
-    }
-  ],
   "groups": [
     {
       "layers": [
         {
-          "fill-specializations": [
-            {
-              "value": {
-                "solid": "srgb:1.000000,1.000000,1.000000,1.000000"
-              }
-            },
-            {
-              "appearance": "dark",
-              "value": {
-                "solid": "srgb:1.000000,1.000000,1.000000,1.000000"
-              }
-            }
-          ],
+          "fill": "automatic",
           "image-name": "Path 2.png",
           "name": "Path 2",
           "position": {
@@ -55,5 +30,16 @@
       "watchOS"
     ],
     "squares": "shared"
-  }
+  },
+  "fill-specializations": [
+    {
+      "value": {
+        "solid": "srgb:0.647059,0.462745,0.113725,1.000000"
+      }
+    },
+    {
+      "appearance": "dark",
+      "value": "system-dark"
+    }
+  ]
 }
