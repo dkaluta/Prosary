@@ -64,6 +64,20 @@ class ReadingTextStoreTest {
         }
     }
 
+    @Test fun sourceRangesPreserveAppointmentOrderAndRejectReversedLabels() {
+        fun store(end: Int) = ReadingTextStore {
+            """{"schemaVersion":1,"passages":{"daily|Fixture 2:12–13; 1:1":{"edition":[
+                {"chapter":2,"verse":12,"endVerse":$end,"text":"Indivisible printed unit"},
+                {"chapter":1,"verse":1,"text":"Earlier chapter in appointed order"}]}}}""".byteInputStream()
+        }
+        val citation = ReadingCitation("reading", "Fixture", "Fixture 2:12–13; 1:1")
+        val passage = requireNotNull(store(13).passage(citation, "edition"))
+        assertEquals(listOf(2, 1), passage.verses.map { it.chapter })
+        assertEquals("12–13", passage.verses.first().verseLabel)
+        assertEquals("1", passage.verses.last().verseLabel)
+        assertNull(store(11).passage(citation, "edition"))
+    }
+
     @Test fun availableEditionsRequireACompletePassageInTheExactScope() {
         val store = ReadingTextStore { name ->
             when (name) {

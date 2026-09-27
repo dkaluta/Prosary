@@ -28,6 +28,7 @@ from reading_source_numbering_reviews import (
     load_reviews as numbering_reviews, reviewed_numbering,
 )
 from reading_step_mapping import Unavailable
+from peshitta_supplied_ot import BOOKS as PESHITTA_OT_BOOKS
 from reading_versification import chapter_verse_count
 
 TOOLS = Path(__file__).resolve().parent
@@ -121,6 +122,10 @@ def audit(texts: Path) -> dict:
             refs = [(book, row["chapter"], row["verse"]) for row in rows]
             require(refs and len(refs) == len(set(refs)), f"Empty or duplicate passage: {key} {edition_id}")
             standard, _ = converters[edition_id].to_standard(refs)
+            if edition_id == 'peshitta-1905' and book in PESHITTA_OT_BOOKS:
+                closed_refs, _ = converters[edition_id].from_standard(standard)
+                require(set(closed_refs) == set(refs),
+                        f"Emitted passage splits a reviewed source unit: {key} {edition_id}")
             projections[edition_id] = set(standard)
             counts["emittedPassageProjections"] += 1
             if exact is not None:
@@ -140,9 +145,22 @@ def audit(texts: Path) -> dict:
             if exact is None and source is None:
                 # Generic SIL agreement must not hide differing complete units
                 # in actual editions, as it once did at 2 Corinthians 13:13.
-                values = list(projections.values())
+                # The source-pinned Peshitta OT review can require a wider
+                # indivisible envelope. Establish the other editions' common
+                # set first, then require exactly its reviewed graph closure,
+                # not an arbitrary superset or a blanket edition exception.
+                values = [value for edition, value in projections.items()
+                          if edition != 'peshitta-1905' or book not in PESHITTA_OT_BOOKS]
                 require(all(value == values[0] for value in values[1:]),
                         f"Legacy editions disagree about source units: {key}")
+                if values and book in PESHITTA_OT_BOOKS and 'peshitta-1905' in projections:
+                    converter = converters['peshitta-1905']
+                    source_refs, whole = converter.from_standard(sorted(values[0]))
+                    expected, _ = converter.to_standard(source_refs)
+                    require(projections['peshitta-1905'] == set(expected),
+                            f"Peshitta passage differs from its reviewed unit closure: {key}")
+                    require(not whole or key in notices,
+                            f"Peshitta compound envelope lacks a notice: {key}")
                 counts["legacyAgreementChecks"] += 1
     return {"status": "passed", "counts": dict(counts), "editionRoundtrips": per_edition}
 

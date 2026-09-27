@@ -83,10 +83,17 @@ another reader separately checking Luke 6/12 and Luke 10/11. Differences were
 resolved from targeted larger crops, including small conjunctions and verb forms;
 neither familiar modern phrasing nor smoother synonyms replace the print. Among
 the confirmed readings are `المدنفين` (6:18), `مثل خراف` (10:3), `وقال مجربا له`
-(10:25), `هم يحكمون عليكم` (11:19), `مع ذلك فتصدقوا` (11:41), `أغلت له أرضه`
+(10:25), `هم يحكمون عليكم` (11:19), `مع ذلك قد بقي لكم أن تصدقوا` (11:41), `أغلت له أرضه`
 (12:16), and `ولماذا لا تحكمون بالعدل من تلقاء أنفسكم` (12:57). Targeted crops also
 confirmed the original readings `يعطى` (11:10), `على نفسه` (11:17), and
 `اقترب منكم` (11:20), rejecting alternative readings proposed during the review.
+
+The subsequent exhaustive release audit found fourteen additional transcription
+errors in this file, including an omitted phrase at 11:41, omitted words at
+6:45 and 12:27, and several conjunctions and substituted synonyms. That audit
+supersedes the earlier wording assertions above. Every correction was reread
+independently against overlapping enlarged columns. See
+[the full audit](ARABIC-FULL-AUDIT.markdown) and its per-verse ledger.
 
 ## Validation and integration limits
 

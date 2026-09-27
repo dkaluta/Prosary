@@ -1632,6 +1632,16 @@ See [calendar research and coverage](calendar-research.markdown) for source rule
 
 ### Offline Bible passages
 
+Readings provides Daily Readings and Bible modes. The latter browses the selected edition's
+available books and chapters, with verse navigation, paired scripts, source credit, and
+explicit partial-chapter notices. Both modes share `readingsEditionId`; Bible position is
+window-local and independent of the prayer date. Only `bible-catalog.json` is bundled.
+Each Bible is an optional, individually removable offline download, validated and installed
+atomically in a separate private library. The full contract, generation and source limits
+are in [BIBLE-VIEWER.markdown](BIBLE-VIEWER.markdown); `schema/bible-library.json` defines
+the metadata and chapter shapes. Daily reading text remains bundled and independent of
+Bible downloads. Terminal has no readings or download features.
+
 Phone Readings and Mac/Windows Today retain the calendar's complete localized citation above
 each collapsible Bible passage. Daily and enabled Torah passages start collapsed unless
 `expandReadingsByDefault` is enabled when entering the view or changing the date/calendar.
@@ -1650,8 +1660,10 @@ Delitzsch 12th edition (1901). Source vowels and cantillation are preserved; onl
 points on the four letters of יהוה are removed. Delitzsch's source chapter files, reviewed
 numbering differences and print-verified transcription corrections are pinned at build time.
 The selectable Peshitta edition (`peshitta-1905`, `arc`) pairs source Syriac with the existing
-Hebrew-square projection. It covers the pinned BFBS 1905 NT and the structurally readable
-chapters of the supplied pointed OT whose numbering profile is available. Damaged chapters,
+Hebrew-square projection. It covers the pinned BFBS 1905 NT and explicitly reviewed
+verse units from the supplied pointed OT. An equal chapter verse count does not establish
+matching boundaries. Reviewed compounds remain indivisible; exact, source-pinned editorial
+captions are excluded from Scripture without changing the surrounding words. Damaged chapters,
 Psalms, deuterocanonical numbering and unresolved source boundaries remain unavailable.
 The credit distinguishes the NT's CC BY 4.0 edition from the OT's unresolved edition and rights.
 The reader expansion leaves the nine Isaiah verses used in prayer packs unchanged; see
@@ -1667,7 +1679,8 @@ parses references or guesses verse-number conversions at runtime. The files are 
 each native app's data resources, following the existing physical-copy rule.
 Paired editions declare optional `textScript` and `transliteratedTextScript` together, and
 every verse adds nonempty `transliteratedText`. Peshitta retains the established Aramaic
-convention: `text` is `Hebr`, `transliteratedText` is the untouched `Syrc` original. Native
+convention: `text` is `Hebr`, `transliteratedText` is the source `Syrc` wording after the
+documented exclusion of embedded OT editorial captions. Native
 readers initialize from `aramaicDefaultScript` and switch all verse text, typography and RTL
 direction together. An incomplete pair makes the complete passage unavailable; no runtime
 conversion or script fallback is permitted.

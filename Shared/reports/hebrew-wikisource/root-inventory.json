@@ -1,0 +1,181 @@
+{
+  "reviewedOn": "2026-09-27",
+  "purpose": "Review-only Wikisource inventory and OCR comparison baselines; not production Scripture imports.",
+  "rootBookFindings": [
+    {
+      "book": "WIS",
+      "printTranslator": "מנחם שטיין",
+      "exactTextLocated": false,
+      "availableBaseline": "Adapted Isaac S. Fraenkel 1885 translation, nineteen chapters in three parts",
+      "relationship": "related-translation",
+      "sourceURL": "https://he.wikisource.org/wiki/חכמת_שלמה",
+      "sampleReport": "WIS-cross-reference.json"
+    },
+    {
+      "book": "LJE",
+      "printTranslator": "אליהו ש׳ הרטום",
+      "exactTextLocated": false,
+      "availableBaseline": "Isaac S. Fraenkel, 79 online labels compared with 72 printed labels plus unnumbered opening",
+      "relationship": "related-translation",
+      "sourceURL": "https://he.wikisource.org/wiki/אגרת_ירמיהו",
+      "sampleReport": "LJE-cross-reference.json"
+    },
+    {
+      "book": "BAR",
+      "printTranslator": "אברהם כהנא",
+      "exactTextLocated": false,
+      "availableBaseline": null,
+      "notes": [
+        "Collection target ספר ברוך is missing. Title search finds ספר ברוך ב (a different apocalypse), not this canonical book."
+      ]
+    },
+    {
+      "book": "ESG",
+      "printTranslator": "מנחם שטיין",
+      "exactTextLocated": false,
+      "availableBaseline": "Generic תוספות למגילת אסתר gathers other Hebrew versions and retellings",
+      "relationship": "related-translation",
+      "notes": [
+        "Stein-specific תוספות למגלת אסתר (without yod) is a landing page and introduction link, with placeholder body links; revision767968 is not a full text."
+      ],
+      "sourceURL": "https://he.wikisource.org/wiki/תוספות_למגילת_אסתר"
+    },
+    {
+      "book": "S3Y",
+      "printTranslator": "דב היליר",
+      "exactTextLocated": false,
+      "availableBaseline": "Fraenkel prayer and song on separate pages",
+      "relationship": "related-translation",
+      "sourceURLs": [
+        "https://he.wikisource.org/wiki/תפילת_עזריה_בתוך_הכבשן/א",
+        "https://he.wikisource.org/wiki/תפילת_עזריה_בתוך_הכבשן/ב"
+      ]
+    },
+    {
+      "book": "SUS",
+      "printTranslator": "דב היליר",
+      "exactTextLocated": false,
+      "availableBaseline": "Fraenkel 1830 and 1863 versions; Jellinek retelling indexed separately",
+      "relationship": "related-translation",
+      "sourceURLs": [
+        "https://he.wikisource.org/wiki/כתובים_אחרונים/שושנה",
+        "https://he.wikisource.org/wiki/כתובים_אחרונים_(1863)/שושנה"
+      ]
+    },
+    {
+      "book": "BEL",
+      "printTranslator": "דב היליר",
+      "exactTextLocated": false,
+      "availableBaseline": "Fraenkel Bel and Dragon texts on separate pages",
+      "relationship": "related-translation",
+      "sourceURLs": [
+        "https://he.wikisource.org/wiki/ספרים_חיצוניים/הבעל_בבבל",
+        "https://he.wikisource.org/wiki/ספרים_חיצוניים/התנין_בבבל"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "title": "אגרת ירמיהו",
+      "url": "https://he.wikisource.org/wiki/%D7%90%D7%92%D7%A8%D7%AA_%D7%99%D7%A8%D7%9E%D7%99%D7%94%D7%95",
+      "resolvedURL": "https://he.wikisource.org/wiki/%D7%90%D7%92%D7%A8%D7%AA_%D7%99%D7%A8%D7%9E%D7%99%D7%94%D7%95",
+      "revisionId": 946670,
+      "responseSHA256": "e22eeaeedfcfea467652ffecb35827e819342793ac98e6bf8b132e31dd65d5ac"
+    },
+    {
+      "title": "חכמת שלמה/חלק א",
+      "url": "https://he.wikisource.org/wiki/%D7%97%D7%9B%D7%9E%D7%AA_%D7%A9%D7%9C%D7%9E%D7%94/%D7%97%D7%9C%D7%A7_%D7%90",
+      "resolvedURL": "https://he.wikisource.org/wiki/%D7%97%D7%9B%D7%9E%D7%AA_%D7%A9%D7%9C%D7%9E%D7%94/%D7%97%D7%9C%D7%A7_%D7%90",
+      "revisionId": 2705676,
+      "responseSHA256": "3951526996e20057a353da32da555e7ba0e2b23dc8d5fbf94c8be5b19076a776"
+    },
+    {
+      "title": "חכמת שלמה/חלק ב",
+      "url": "https://he.wikisource.org/wiki/%D7%97%D7%9B%D7%9E%D7%AA_%D7%A9%D7%9C%D7%9E%D7%94/%D7%97%D7%9C%D7%A7_%D7%91",
+      "resolvedURL": "https://he.wikisource.org/wiki/%D7%97%D7%9B%D7%9E%D7%AA_%D7%A9%D7%9C%D7%9E%D7%94/%D7%97%D7%9C%D7%A7_%D7%91",
+      "revisionId": 2705678,
+      "responseSHA256": "a65774ed409bcd3cf88681f3d9949984c03f90d4d1c5fc1873e2f9d590b9c456"
+    },
+    {
+      "title": "חכמת שלמה/חלק ג",
+      "url": "https://he.wikisource.org/wiki/%D7%97%D7%9B%D7%9E%D7%AA_%D7%A9%D7%9C%D7%9E%D7%94/%D7%97%D7%9C%D7%A7_%D7%92",
+      "resolvedURL": "https://he.wikisource.org/wiki/%D7%97%D7%9B%D7%9E%D7%AA_%D7%A9%D7%9C%D7%9E%D7%94/%D7%97%D7%9C%D7%A7_%D7%92",
+      "revisionId": 2705679,
+      "responseSHA256": "391caabce7b98556217df4b7592018e19dc8fe1e450a2ef2a5895d6f7910fca8"
+    },
+    {
+      "title": "כתובים אחרונים (1863)/שושנה",
+      "url": "https://he.wikisource.org/wiki/%D7%9B%D7%AA%D7%95%D7%91%D7%99%D7%9D_%D7%90%D7%97%D7%A8%D7%95%D7%A0%D7%99%D7%9D_%281863%29/%D7%A9%D7%95%D7%A9%D7%A0%D7%94",
+      "resolvedURL": "https://he.wikisource.org/wiki/%D7%9B%D7%AA%D7%95%D7%91%D7%99%D7%9D_%D7%90%D7%97%D7%A8%D7%95%D7%A0%D7%99%D7%9D_%281863%29/%D7%A9%D7%95%D7%A9%D7%A0%D7%94",
+      "revisionId": 2889581,
+      "responseSHA256": "0980fbdc739965f6884cd88f03ba2c0d157683e31211a9297e5a1d41e152f47a"
+    },
+    {
+      "title": "כתובים אחרונים/שושנה",
+      "url": "https://he.wikisource.org/wiki/%D7%9B%D7%AA%D7%95%D7%91%D7%99%D7%9D_%D7%90%D7%97%D7%A8%D7%95%D7%A0%D7%99%D7%9D/%D7%A9%D7%95%D7%A9%D7%A0%D7%94",
+      "resolvedURL": "https://he.wikisource.org/wiki/%D7%9B%D7%AA%D7%95%D7%91%D7%99%D7%9D_%D7%90%D7%97%D7%A8%D7%95%D7%A0%D7%99%D7%9D/%D7%A9%D7%95%D7%A9%D7%A0%D7%94",
+      "revisionId": 791641,
+      "responseSHA256": "e0bebf79e5192e57c87067398a309b80fc41a0a9d626ae57b1f8ffe15e085af0"
+    },
+    {
+      "title": "ספרים חיצוניים/הבעל בבבל",
+      "url": "https://he.wikisource.org/wiki/%D7%A1%D7%A4%D7%A8%D7%99%D7%9D_%D7%97%D7%99%D7%A6%D7%95%D7%A0%D7%99%D7%99%D7%9D/%D7%94%D7%91%D7%A2%D7%9C_%D7%91%D7%91%D7%91%D7%9C",
+      "resolvedURL": "https://he.wikisource.org/wiki/%D7%A1%D7%A4%D7%A8%D7%99%D7%9D_%D7%97%D7%99%D7%A6%D7%95%D7%A0%D7%99%D7%99%D7%9D/%D7%94%D7%91%D7%A2%D7%9C_%D7%91%D7%91%D7%91%D7%9C",
+      "revisionId": 746981,
+      "responseSHA256": "c2676aef5a9ada7170028de55dfbbfb786c88c61e72d8fc419ff0cfc420610e3"
+    },
+    {
+      "title": "ספרים חיצוניים/התנין בבבל",
+      "url": "https://he.wikisource.org/wiki/%D7%A1%D7%A4%D7%A8%D7%99%D7%9D_%D7%97%D7%99%D7%A6%D7%95%D7%A0%D7%99%D7%99%D7%9D/%D7%94%D7%AA%D7%A0%D7%99%D7%9F_%D7%91%D7%91%D7%91%D7%9C",
+      "resolvedURL": "https://he.wikisource.org/wiki/%D7%A1%D7%A4%D7%A8%D7%99%D7%9D_%D7%97%D7%99%D7%A6%D7%95%D7%A0%D7%99%D7%99%D7%9D/%D7%94%D7%AA%D7%A0%D7%99%D7%9F_%D7%91%D7%91%D7%91%D7%9C",
+      "revisionId": 1130658,
+      "responseSHA256": "7f6946a91afc702d0598dcb370fef94c3d47b82dc096adf4b1cd20f934007222"
+    },
+    {
+      "title": "תוספות למגילת אסתר",
+      "url": "https://he.wikisource.org/wiki/%D7%AA%D7%95%D7%A1%D7%A4%D7%95%D7%AA_%D7%9C%D7%9E%D7%92%D7%99%D7%9C%D7%AA_%D7%90%D7%A1%D7%AA%D7%A8",
+      "resolvedURL": "https://he.wikisource.org/wiki/%D7%AA%D7%95%D7%A1%D7%A4%D7%95%D7%AA_%D7%9C%D7%9E%D7%92%D7%99%D7%9C%D7%AA_%D7%90%D7%A1%D7%AA%D7%A8",
+      "revisionId": 2913941,
+      "responseSHA256": "0c7e16fc52758bdec1268540cbf2b98957d30be41411f4c11bbdad5b5efa7fb6"
+    },
+    {
+      "title": "תפילת עזריה בתוך הכבשן/א",
+      "url": "https://he.wikisource.org/wiki/%D7%AA%D7%A4%D7%99%D7%9C%D7%AA_%D7%A2%D7%96%D7%A8%D7%99%D7%94_%D7%91%D7%AA%D7%95%D7%9A_%D7%94%D7%9B%D7%91%D7%A9%D7%9F/%D7%90",
+      "resolvedURL": "https://he.wikisource.org/wiki/%D7%AA%D7%A4%D7%99%D7%9C%D7%AA_%D7%A2%D7%96%D7%A8%D7%99%D7%94_%D7%91%D7%AA%D7%95%D7%9A_%D7%94%D7%9B%D7%91%D7%A9%D7%9F/%D7%90",
+      "revisionId": 799968,
+      "responseSHA256": "474f48cb05ca5852587f5f3edd4d9d14b5ffcd7d53f48fb40c7c726964a46b3a"
+    },
+    {
+      "title": "תפילת עזריה בתוך הכבשן/ב",
+      "url": "https://he.wikisource.org/wiki/%D7%AA%D7%A4%D7%99%D7%9C%D7%AA_%D7%A2%D7%96%D7%A8%D7%99%D7%94_%D7%91%D7%AA%D7%95%D7%9A_%D7%94%D7%9B%D7%91%D7%A9%D7%9F/%D7%91",
+      "resolvedURL": "https://he.wikisource.org/wiki/%D7%AA%D7%A4%D7%99%D7%9C%D7%AA_%D7%A2%D7%96%D7%A8%D7%99%D7%94_%D7%91%D7%AA%D7%95%D7%9A_%D7%94%D7%9B%D7%91%D7%A9%D7%9F/%D7%91",
+      "revisionId": 2810047,
+      "responseSHA256": "6912b51c4007fb2e9e75074a166f5fc2b956a8a4153798283a1863c35d1bf29a"
+    },
+    {
+      "url": "https://he.wikisource.org/w/api.php?format=json&formatversion=2&action=query&prop=revisions&rvprop=ids%7Ccontent&rvslots=main&titles=%D7%A1%D7%A4%D7%A8+%D7%91%D7%A8%D7%95%D7%9A%7C%D7%90%D7%92%D7%A8%D7%AA+%D7%99%D7%A8%D7%9E%D7%99%D7%94%D7%95+%28%D7%94%D7%A8%D7%98%D7%95%D7%9D%29%7C%D7%AA%D7%95%D7%A1%D7%A4%D7%95%D7%AA+%D7%9C%D7%9E%D7%92%D7%9C%D7%AA+%D7%90%D7%A1%D7%AA%D7%A8&redirects=1",
+      "responseSHA256": "6d80b3d759f742566cc94aeba53a75b708a414903df75f50f1fbb6603343a86e",
+      "file": "root-search-0.json"
+    },
+    {
+      "url": "https://he.wikisource.org/w/api.php?format=json&formatversion=2&action=query&list=search&srsearch=intitle%3A%D7%91%D7%A8%D7%95%D7%9A&srnamespace=0&srlimit=100",
+      "responseSHA256": "443718b7d872945a418ada8a5dc677ccdaf47c8d8e252ec15c1db3d52205fadc",
+      "file": "root-search-1.json"
+    },
+    {
+      "url": "https://he.wikisource.org/w/api.php?format=json&formatversion=2&action=query&list=search&srsearch=%22%D7%9E%D7%A0%D7%97%D7%9D+%D7%A9%D7%98%D7%99%D7%99%D7%9F%22&srnamespace=0&srlimit=100",
+      "responseSHA256": "02364a09804830d0e316895eafe840a09074b840e3b7c067c851072587cdb183",
+      "file": "root-search-2.json"
+    },
+    {
+      "url": "https://he.wikisource.org/w/api.php?format=json&formatversion=2&action=query&list=search&srsearch=%22%D7%93%D7%91+%D7%94%D7%99%D7%9C%D7%99%D7%A8%22&srnamespace=0&srlimit=100",
+      "responseSHA256": "64a11e03b91961a4ae4413ed950cd148dbe6b2b8da27faea9ad505bcc857f758",
+      "file": "root-search-3.json"
+    }
+  ],
+  "limits": [
+    "No claim that every possible Wikisource alias has been disproved; findings cover checked collection targets, linked versions and documented searches.",
+    "Translation overlap is not OCR accuracy. The manual print transcriptions used in sample comparisons remain draft pending second review.",
+    "No baseline writes into canonical text or marks a book reviewed."
+  ]
+}

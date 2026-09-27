@@ -486,6 +486,19 @@ def resolve(key: str, contexts: set[str], edition: dict, corpus: dict) -> Resolv
         excluded = edition_mapper(edition["id"], corpus).excluded_chapters
         if any(reference[:2] in excluded for reference in candidates[0]):
             raise Unavailable("source chapter excluded by its edition review")
+        if edition["id"] == "peshitta-1905" and book not in NT:
+            # Legacy/exact-appointment paths already selected edition labels.
+            # Validate every source coordinate and close any reviewed compound
+            # unit before emission; a chapter's matching length is insufficient.
+            from reading_step_mapping import Unavailable as MappingUnavailable
+            try:
+                subject = edition_mapper(edition["id"], corpus)
+                standard, source_whole = subject.to_standard(candidates[0])
+                references, target_whole = subject.from_standard(standard)
+            except MappingUnavailable as error:
+                raise Unavailable(str(error)) from error
+            candidates = [references]
+            whole |= source_whole or target_whole
     if isinstance(corpus, ReviewedCorpus):
         if edition.get("coveragePolicy") != "reviewed-units" or corpus.edition_id != edition["id"]:
             raise ValueError("Reviewed Scripture corpus requires its matching edition and boundary policy")

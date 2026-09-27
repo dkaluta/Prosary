@@ -1,0 +1,371 @@
+{
+  "schemaVersion": 1,
+  "purpose": "review-only",
+  "productionEligible": false,
+  "book": "LJE",
+  "pdfPages": [
+    15
+  ],
+  "scan": {
+    "volume": "A2",
+    "sha256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5"
+  },
+  "reference": {
+    "origin": "User transcription supplied 27 September 2026, compared directly with the attached crop.",
+    "attachment": "download.png",
+    "attachmentSHA256": "4bde79029bb53171100edb663ac5c207da3cfa65f171ef1b93fd8cb17658f767",
+    "scope": "Verse3 continuation through verse7 opening; no claim for the rest of the chapter or for pointing.",
+    "corrections": [
+      {
+        "supplied": "אכם",
+        "reference": "אתכם",
+        "location": "Verse6",
+        "evidence": "Image visibly contains the tav; the user transcription has a typing omission."
+      }
+    ],
+    "punctuation": "User-designated sof pasuq is encoded as U+05C3; it is excluded from consonantal scoring.",
+    "text": "נשאים על־כתף ואת־מוראם ייראו הגוים׃ השמרו לכם פן־דמה\nתדמו גם אתם לבני הנכר ויאחז אתכם פחד אליהם׃ וכי תראו\nהמון רב לפניהם ואחריהם והמה משתחוים להם אמרו בלבבכם\nלך אדני נשתחוה׃ כי מלאכי אתכם והוא חוקר את־נפשותיכם׃\nכי לשונם הקצעה ביד חרש והמה מצפים זהב וכסף ושקר הם",
+    "lines": [
+      {
+        "rect": [
+          280,
+          78,
+          1580,
+          143
+        ],
+        "unit": "LJE3 continuation and4 opening",
+        "reference": "נשאים על־כתף ואת־מוראם ייראו הגוים׃ השמרו לכם פן־דמה"
+      },
+      {
+        "rect": [
+          280,
+          143,
+          1580,
+          214
+        ],
+        "unit": "LJE4 continuation and5 opening",
+        "reference": "תדמו גם אתם לבני הנכר ויאחז אתכם פחד אליהם׃ וכי תראו"
+      },
+      {
+        "rect": [
+          280,
+          214,
+          1580,
+          283
+        ],
+        "unit": "LJE5 continuation",
+        "reference": "המון רב לפניהם ואחריהם והמה משתחוים להם אמרו בלבבכם"
+      },
+      {
+        "rect": [
+          280,
+          283,
+          1580,
+          350
+        ],
+        "unit": "LJE5 ending and6",
+        "reference": "לך אדני נשתחוה׃ כי מלאכי אתכם והוא חוקר את־נפשותיכם׃"
+      },
+      {
+        "rect": [
+          280,
+          350,
+          1580,
+          422
+        ],
+        "unit": "LJE7 opening",
+        "reference": "כי לשונם הקצעה ביד חרש והמה מצפים זהב וכסף ושקר הם"
+      }
+    ]
+  },
+  "ocr": {
+    "engine": "Kraken7.1.1",
+    "modelURL": "https://zenodo.org/records/21788405",
+    "modelSHA256": "3108259779f5abfed3908a1c9eafba64d17e4a2a169368c539ecfeff04c018f3",
+    "configuration": [
+      "ocr",
+      "-s",
+      "-n",
+      "--base-dir",
+      "R"
+    ],
+    "manualLineSegmentation": true,
+    "dictionary": false,
+    "rawText": "נשאים על-כתף ואָת-מוראָם ייראו הנוים: השמרו לכם פן-דמה\nתךמו נם אתם לבני הנכר ויאחז אתכם פחד אָליהם: וכי תראו\nהמון רב לפניהם ואחריהם והמה משתחוים להם אמרו בלכבכם\nלך אָדני נשתחוה: כי מלאָכי אתכם והוא חוקר אָת-נפשותיכם:\nכי לשונם הקצעה ביד חרש והמה מצפים זהב וכסף ושקר הם\n",
+    "elapsedSeconds": 6.94,
+    "runtimeNote": "Temporary local Python3.13 environment used SciPy1.16.3 because the pinned1.15.3 wheel could not load on this macOS host; outside Kraken declared dependency range.",
+    "lines": [
+      {
+        "rect": [
+          280,
+          78,
+          1580,
+          143
+        ],
+        "imageSHA256": "96b4f20423bafba28305acfea4279dc7eb158e066808f61b07c504f50879c901",
+        "text": "נשאים על-כתף ואָת-מוראָם ייראו הנוים: השמרו לכם פן-דמה"
+      },
+      {
+        "rect": [
+          280,
+          143,
+          1580,
+          214
+        ],
+        "imageSHA256": "169fcade65025e6ace047afa750177ce25fc23a27208fe3d8275cbb6b71c1f49",
+        "text": "תךמו נם אתם לבני הנכר ויאחז אתכם פחד אָליהם: וכי תראו"
+      },
+      {
+        "rect": [
+          280,
+          214,
+          1580,
+          283
+        ],
+        "imageSHA256": "fc48115585b748872328240fe058505f7a322bd00e22c53f92120d3562a9c068",
+        "text": "המון רב לפניהם ואחריהם והמה משתחוים להם אמרו בלכבכם"
+      },
+      {
+        "rect": [
+          280,
+          283,
+          1580,
+          350
+        ],
+        "imageSHA256": "ee60aca81fe87bfcd302cd7c8630bae50e1a41d1062e9e45bf732d7194b76fdb",
+        "text": "לך אָדני נשתחוה: כי מלאָכי אתכם והוא חוקר אָת-נפשותיכם:"
+      },
+      {
+        "rect": [
+          280,
+          350,
+          1580,
+          422
+        ],
+        "imageSHA256": "b71f0175a6441fda72e32174397b4e7c4c27a2a97bde03b9a23444fbed99cc15",
+        "text": "כי לשונם הקצעה ביד חרש והמה מצפים זהב וכסף ושקר הם"
+      }
+    ]
+  },
+  "comparison": {
+    "schemaVersion": 1,
+    "purpose": "review-only",
+    "relationship": "scan-transcription",
+    "referenceStatus": "scan-checked",
+    "productionEligible": false,
+    "referenceSHA256": "7e5839989bddbe4835794b72c6c339edd0a1720781db27031c152bd7dadca1b8",
+    "observedSHA256": "904ee91711a9f22149d1dcda024a60831e725a49b095ceb75b8fcaecd3ab4bd4",
+    "normalization": "Combining marks and punctuation removed for comparison only; spelling preserved.",
+    "referenceWords": 52,
+    "observedWords": 52,
+    "wordOperations": {
+      "equal": 48,
+      "replace": 4,
+      "delete": 0,
+      "insert": 0
+    },
+    "matchingReferenceFraction": 0.9230769230769231,
+    "tokenDifferenceRate": 0.07692307692307693,
+    "alignment": [
+      {
+        "kind": "equal",
+        "referenceStart": 0,
+        "referenceEnd": 6,
+        "observedStart": 0,
+        "observedEnd": 6,
+        "reference": [
+          "נשאים",
+          "על",
+          "כתף",
+          "ואת",
+          "מוראם",
+          "ייראו"
+        ],
+        "observed": [
+          "נשאים",
+          "על",
+          "כתף",
+          "ואת",
+          "מוראם",
+          "ייראו"
+        ]
+      },
+      {
+        "kind": "replace",
+        "referenceStart": 6,
+        "referenceEnd": 7,
+        "observedStart": 6,
+        "observedEnd": 7,
+        "reference": [
+          "הגוים"
+        ],
+        "observed": [
+          "הנוים"
+        ]
+      },
+      {
+        "kind": "equal",
+        "referenceStart": 7,
+        "referenceEnd": 11,
+        "observedStart": 7,
+        "observedEnd": 11,
+        "reference": [
+          "השמרו",
+          "לכם",
+          "פן",
+          "דמה"
+        ],
+        "observed": [
+          "השמרו",
+          "לכם",
+          "פן",
+          "דמה"
+        ]
+      },
+      {
+        "kind": "replace",
+        "referenceStart": 11,
+        "referenceEnd": 13,
+        "observedStart": 11,
+        "observedEnd": 13,
+        "reference": [
+          "תדמו",
+          "גם"
+        ],
+        "observed": [
+          "תךמו",
+          "נם"
+        ]
+      },
+      {
+        "kind": "equal",
+        "referenceStart": 13,
+        "referenceEnd": 30,
+        "observedStart": 13,
+        "observedEnd": 30,
+        "reference": [
+          "אתם",
+          "לבני",
+          "הנכר",
+          "ויאחז",
+          "אתכם",
+          "פחד",
+          "אליהם",
+          "וכי",
+          "תראו",
+          "המון",
+          "רב",
+          "לפניהם",
+          "ואחריהם",
+          "והמה",
+          "משתחוים",
+          "להם",
+          "אמרו"
+        ],
+        "observed": [
+          "אתם",
+          "לבני",
+          "הנכר",
+          "ויאחז",
+          "אתכם",
+          "פחד",
+          "אליהם",
+          "וכי",
+          "תראו",
+          "המון",
+          "רב",
+          "לפניהם",
+          "ואחריהם",
+          "והמה",
+          "משתחוים",
+          "להם",
+          "אמרו"
+        ]
+      },
+      {
+        "kind": "replace",
+        "referenceStart": 30,
+        "referenceEnd": 31,
+        "observedStart": 30,
+        "observedEnd": 31,
+        "reference": [
+          "בלבבכם"
+        ],
+        "observed": [
+          "בלכבכם"
+        ]
+      },
+      {
+        "kind": "equal",
+        "referenceStart": 31,
+        "referenceEnd": 52,
+        "observedStart": 31,
+        "observedEnd": 52,
+        "reference": [
+          "לך",
+          "אדני",
+          "נשתחוה",
+          "כי",
+          "מלאכי",
+          "אתכם",
+          "והוא",
+          "חוקר",
+          "את",
+          "נפשותיכם",
+          "כי",
+          "לשונם",
+          "הקצעה",
+          "ביד",
+          "חרש",
+          "והמה",
+          "מצפים",
+          "זהב",
+          "וכסף",
+          "ושקר",
+          "הם"
+        ],
+        "observed": [
+          "לך",
+          "אדני",
+          "נשתחוה",
+          "כי",
+          "מלאכי",
+          "אתכם",
+          "והוא",
+          "חוקר",
+          "את",
+          "נפשותיכם",
+          "כי",
+          "לשונם",
+          "הקצעה",
+          "ביד",
+          "חרש",
+          "והמה",
+          "מצפים",
+          "זהב",
+          "וכסף",
+          "ושקר",
+          "הם"
+        ]
+      }
+    ],
+    "notes": [
+      "An alignment is a review aid, not a verified verse crosswalk.",
+      "Niqqud and punctuation still require separate image comparison."
+    ],
+    "consonantalWordErrorRate": 0.07692307692307693,
+    "consonantalCharacters": {
+      "reference": 206,
+      "observed": 206,
+      "minimumEdits": 4,
+      "errorRate": 0.019417475728155338,
+      "scope": "Removes spaces, punctuation and combining marks; evaluates consonants only."
+    }
+  },
+  "limitations": [
+    "One manually segmented crop does not establish whole-book accuracy.",
+    "The engine output was not corrected before scoring.",
+    "Niqqud, punctuation, omitted page regions and verse boundaries require independent source review.",
+    "This evidence cannot set a book or page review to complete."
+  ]
+}

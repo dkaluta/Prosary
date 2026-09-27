@@ -1,0 +1,3576 @@
+{
+  "schemaVersion": 1,
+  "book": "1MA",
+  "chapter": 1,
+  "status": "research_baseline_not_for_import",
+  "source": {
+    "pdfSHA256": "656891d377d2e3d4a9216723d94205488423907bf01df424b9f0b9de1560051e",
+    "onlineURL": "https://he.wikisource.org/wiki/ספר_המקבים_א_-_כל_הספר",
+    "onlineRevision": 1288876,
+    "onlineHTMLSHA256": "3a3d3881d1b4fe55e1ea05c011eb8465707ffaf2acf058935ef4c442a5430047"
+  },
+  "method": "Minimum word-edit alignment using hebrew_ocr_baseline.align. Only combining marks and punctuation are removed; spelling, final letters, prefixes, suffixes, and non-Hebrew OCR noise remain. Equal blocks are candidate alignments, not proof of source accuracy or pointing.",
+  "scope": {
+    "pages": [
+      97,
+      98,
+      99,
+      100,
+      101,
+      102,
+      103,
+      104,
+      105
+    ],
+    "regions": {
+      "97": [
+        0.08,
+        0.15,
+        0.935,
+        0.263
+      ],
+      "98": [
+        0.08,
+        0.12,
+        0.935,
+        0.275
+      ],
+      "99": [
+        0.08,
+        0.085,
+        0.935,
+        0.155
+      ],
+      "100": [
+        0.08,
+        0.12,
+        0.935,
+        0.25
+      ],
+      "101": [
+        0.08,
+        0.12,
+        0.935,
+        0.325
+      ],
+      "102": [
+        0.08,
+        0.12,
+        0.935,
+        0.372
+      ],
+      "103": [
+        0.08,
+        0.12,
+        0.935,
+        0.55
+      ],
+      "104": [
+        0.08,
+        0.13,
+        0.935,
+        0.425
+      ],
+      "105": [
+        0.08,
+        0.105,
+        0.935,
+        0.34
+      ]
+    },
+    "marginBoundaryByPage": {
+      "97": 0.82,
+      "98": 0.82,
+      "99": 0.89,
+      "100": 0.82,
+      "101": 0.82,
+      "102": 0.82,
+      "103": 0.82,
+      "104": 0.82,
+      "105": 0.82
+    },
+    "printedUnits": 59,
+    "coveredVerseLabels": 64
+  },
+  "counts": {
+    "onlineWords": 689,
+    "ocrWords": 636,
+    "exactAlignedConsonantalWords": 329,
+    "ocrDifferenceBlocks": 193,
+    "visuallyDraftedWords": 689,
+    "onlineToVisualDraftMatchedWords": 594,
+    "onlineToVisualDraftDifferenceBlocks": 85,
+    "visualDraftToOCRMatchedWords": 369,
+    "visualDraftToOCRDifferenceBlocks": 185
+  },
+  "ocrPages": [
+    {
+      "page": 97,
+      "engine": {
+        "engine": "tesseract.js",
+        "version": "7.0.0",
+        "language": "heb",
+        "oem": 1,
+        "psm": 6,
+        "imageSHA256": "f67c58d5998353e40cbf29ad442fb21e674e88d8d83ac33f5245ae190ea76ffd",
+        "modelSHA256": "a95d74d445e9bbb772a3572b4f01741309b3ab2c015773ef6fe7f25829c2dd0b",
+        "vocabularySHA256": null,
+        "confidence": 31
+      },
+      "excludedLayout": [
+        {
+          "text": "א",
+          "bbox": {
+            "x0": 1515,
+            "y0": 31,
+            "x1": 1541,
+            "y1": 63
+          },
+          "confidence": 86,
+          "classification": "printed_margin"
+        },
+        {
+          "text": "כ",
+          "bbox": {
+            "x0": 1522,
+            "y0": 183,
+            "x1": 1541,
+            "y1": 211
+          },
+          "confidence": 90,
+          "classification": "printed_margin"
+        },
+        {
+          "text": "|",
+          "bbox": {
+            "x0": 1475,
+            "y0": 162,
+            "x1": 1496,
+            "y1": 246
+          },
+          "confidence": 80,
+          "classification": "printed_margin"
+        },
+        {
+          "text": "ג",
+          "bbox": {
+            "x0": 1529,
+            "y0": 259,
+            "x1": 1541,
+            "y1": 285
+          },
+          "confidence": 84,
+          "classification": "printed_margin"
+        },
+        {
+          "text": "|",
+          "bbox": {
+            "x0": 1468,
+            "y0": 238,
+            "x1": 1484,
+            "y1": 328
+          },
+          "confidence": 42,
+          "classification": "printed_margin"
+        }
+      ],
+      "comparisonTextSHA256": "d6f4d596935d178296fd50568b2654bba24feec02494613a2a2125a478ec7ed7",
+      "confidence": 31,
+      "imageSHA256": "f67c58d5998353e40cbf29ad442fb21e674e88d8d83ac33f5245ae190ea76ffd",
+      "textSHA256": "c8c660b06412f6c59bd028a993073f6aba6f294df4365bda8e56be0021a98ef6"
+    },
+    {
+      "page": 98,
+      "engine": {
+        "engine": "tesseract.js",
+        "version": "7.0.0",
+        "language": "heb",
+        "oem": 1,
+        "psm": 6,
+        "imageSHA256": "6f7621448862f8439bef26079c515cc9a5fe995a535fdb7bcd3c8944fe8c8828",
+        "modelSHA256": "a95d74d445e9bbb772a3572b4f01741309b3ab2c015773ef6fe7f25829c2dd0b",
+        "vocabularySHA256": null,
+        "confidence": 37
+      },
+      "excludedLayout": [
+        {
+          "text": "ר",
+          "bbox": {
+            "x0": 1527,
+            "y0": 53,
+            "x1": 1546,
+            "y1": 78
+          },
+          "confidence": 78,
+          "classification": "printed_margin"
+        },
+        {
+          "text": "|",
+          "bbox": {
+            "x0": 1466,
+            "y0": 33,
+            "x1": 1486,
+            "y1": 110
+          },
+          "confidence": 41,
+          "classification": "mixed_margin_body_unresolved"
+        },
+        {
+          "text": "ה",
+          "bbox": {
+            "x0": 1526,
+            "y0": 127,
+            "x1": 1547,
+            "y1": 153
+          },
+          "confidence": 81,
+          "classification": "printed_margin"
+        },
+        {
+          "text": "=",
+          "bbox": {
+            "x0": 1466,
+            "y0": 107,
+            "x1": 1485,
+            "y1": 180
+          },
+          "confidence": 61,
+          "classification": "mixed_margin_body_unresolved"
+        },
+        {
+          "text": "ו",
+          "bbox": {
+            "x0": 1535,
+            "y0": 202,
+            "x1": 1546,
+            "y1": 227
+          },
+          "confidence": 89,
+          "classification": "printed_margin"
+        },
+        {
+          "text": "|",
+          "bbox": {
+            "x0": 1477,
+            "y0": 180,
+            "x1": 1492,
+            "y1": 268
+          },
+          "confidence": 49,
+          "classification": "printed_margin"
+        },
+        {
+          "text": "ו",
+          "bbox": {
+            "x0": 1537,
+            "y0": 277,
+            "x1": 1547,
+            "y1": 303
+          },
+          "confidence": 90,
+          "classification": "printed_margin"
+        },
+        {
+          "text": "|",
+          "bbox": {
+            "x0": 1477,
+            "y0": 257,
+            "x1": 1491,
+            "y1": 338
+          },
+          "confidence": 50,
+          "classification": "printed_margin"
+        },
+        {
+          "text": "ח-ט",
+          "bbox": {
+            "x0": 1468,
+            "y0": 351,
+            "x1": 1548,
+            "y1": 379
+          },
+          "confidence": 29,
+          "classification": "printed_margin"
+        }
+      ],
+      "comparisonTextSHA256": "ec8738f389986eda676e3cdab82189ab7add4279d6845b3c6f762f43cadb1b55",
+      "confidence": 37,
+      "imageSHA256": "6f7621448862f8439bef26079c515cc9a5fe995a535fdb7bcd3c8944fe8c8828",
+      "textSHA256": "35ee273de0251ac2f6a89ba34817567d0c0d768bb7765c95981ddb778eceed45"
+    },
+    {
+      "page": 99,
+      "engine": {
+        "engine": "tesseract.js",
+        "version": "7.0.0",
+        "language": "heb",
+        "oem": 1,
+        "psm": 6,
+        "imageSHA256": "231f5ad708f93ba8e3f6caaa06e2da8cd4c91270eb58dd1b051ebcdd3582621c",
+        "modelSHA256": "a95d74d445e9bbb772a3572b4f01741309b3ab2c015773ef6fe7f25829c2dd0b",
+        "vocabularySHA256": null,
+        "confidence": 37
+      },
+      "excludedLayout": [
+        {
+          "text": "י,",
+          "bbox": {
+            "x0": 1648,
+            "y0": 53,
+            "x1": 1661,
+            "y1": 72
+          },
+          "confidence": 17,
+          "classification": "printed_margin"
+        }
+      ],
+      "comparisonTextSHA256": "417019b06923c396f3023ad15154b231fbd9c062a1910fda804fae8e0595d9e7",
+      "confidence": 37,
+      "imageSHA256": "231f5ad708f93ba8e3f6caaa06e2da8cd4c91270eb58dd1b051ebcdd3582621c",
+      "textSHA256": "36d1edf6885c965a5f29e2c3563ae3a1d9648870d08e98d5660d6c1b7b6b5bd5"
+    },
+    {
+      "page": 100,
+      "engine": {
+        "engine": "tesseract.js",
+        "version": "7.0.0",
+        "language": "heb",
+        "oem": 1,
+        "psm": 6,
+        "imageSHA256": "b4a90b4afe34b5cdda0434c192dfc52c24cb40de522824736c3663f6d51e7f25",
+        "modelSHA256": "a95d74d445e9bbb772a3572b4f01741309b3ab2c015773ef6fe7f25829c2dd0b",
+        "vocabularySHA256": null,
+        "confidence": 33
+      },
+      "excludedLayout": [
+        {
+          "text": "יא",
+          "bbox": {
+            "x0": 1515,
+            "y0": 39,
+            "x1": 1547,
+            "y1": 65
+          },
+          "confidence": 96,
+          "classification": "printed_margin"
+        },
+        {
+          "text": "|",
+          "bbox": {
+            "x0": 1469,
+            "y0": 18,
+            "x1": 1481,
+            "y1": 90
+          },
+          "confidence": 49,
+          "classification": "printed_margin"
+        },
+        {
+          "text": "יב",
+          "bbox": {
+            "x0": 1517,
+            "y0": 187,
+            "x1": 1548,
+            "y1": 214
+          },
+          "confidence": 80,
+          "classification": "printed_margin"
+        },
+        {
+          "text": "|",
+          "bbox": {
+            "x0": 1480,
+            "y0": 174,
+            "x1": 1486,
+            "y1": 243
+          },
+          "confidence": 47,
+          "classification": "printed_margin"
+        },
+        {
+          "text": "יג",
+          "bbox": {
+            "x0": 1524,
+            "y0": 262,
+            "x1": 1548,
+            "y1": 289
+          },
+          "confidence": 44,
+          "classification": "printed_margin"
+        },
+        {
+          "text": "|",
+          "bbox": {
+            "x0": 1473,
+            "y0": 245,
+            "x1": 1487,
+            "y1": 325
+          },
+          "confidence": 35,
+          "classification": "printed_margin"
+        },
+        {
+          "text": "יר-מוקעשות",
+          "bbox": {
+            "x0": 1304,
+            "y0": 321,
+            "x1": 1550,
+            "y1": 382
+          },
+          "confidence": 27,
+          "classification": "mixed_margin_body_unresolved"
+        }
+      ],
+      "comparisonTextSHA256": "131fb08665453b29be1ffc1ac4fbd210378cb4823b2a10e6db01be3edee55f6c",
+      "confidence": 33,
+      "imageSHA256": "b4a90b4afe34b5cdda0434c192dfc52c24cb40de522824736c3663f6d51e7f25",
+      "textSHA256": "8546102af6b0d0a778a9dd66c7811d2d71a55e653ccf742890861585b047f580"
+    },
+    {
+      "page": 101,
+      "engine": {
+        "engine": "tesseract.js",
+        "version": "7.0.0",
+        "language": "heb",
+        "oem": 1,
+        "psm": 6,
+        "imageSHA256": "e9150cb3941a2c5a93dc95ffaa5a64a4e4fc112b56c1f16e49b23efcf6820ec5",
+        "modelSHA256": "a95d74d445e9bbb772a3572b4f01741309b3ab2c015773ef6fe7f25829c2dd0b",
+        "vocabularySHA256": null,
+        "confidence": 35
+      },
+      "excludedLayout": [
+        {
+          "text": ".",
+          "bbox": {
+            "x0": 1515,
+            "y0": 105,
+            "x1": 1550,
+            "y1": 132
+          },
+          "confidence": 55,
+          "classification": "printed_margin"
+        },
+        {
+          "text": "ו",
+          "bbox": {
+            "x0": 1526,
+            "y0": 180,
+            "x1": 1550,
+            "y1": 207
+          },
+          "confidence": 71,
+          "classification": "printed_margin"
+        },
+        {
+          "text": "|",
+          "bbox": {
+            "x0": 1470,
+            "y0": 158,
+            "x1": 1492,
+            "y1": 241
+          },
+          "confidence": 46,
+          "classification": "printed_margin"
+        },
+        {
+          "text": "יח",
+          "bbox": {
+            "x0": 1515,
+            "y0": 256,
+            "x1": 1548,
+            "y1": 282
+          },
+          "confidence": 76,
+          "classification": "printed_margin"
+        },
+        {
+          "text": "|",
+          "bbox": {
+            "x0": 1472,
+            "y0": 233,
+            "x1": 1487,
+            "y1": 318
+          },
+          "confidence": 46,
+          "classification": "printed_margin"
+        },
+        {
+          "text": "ים",
+          "bbox": {
+            "x0": 1515,
+            "y0": 331,
+            "x1": 1550,
+            "y1": 358
+          },
+          "confidence": 23,
+          "classification": "printed_margin"
+        },
+        {
+          "text": "|",
+          "bbox": {
+            "x0": 1468,
+            "y0": 308,
+            "x1": 1480,
+            "y1": 380
+          },
+          "confidence": 41,
+          "classification": "printed_margin"
+        },
+        {
+          "text": "כ",
+          "bbox": {
+            "x0": 1530,
+            "y0": 407,
+            "x1": 1548,
+            "y1": 435
+          },
+          "confidence": 69,
+          "classification": "printed_margin"
+        },
+        {
+          "text": "|",
+          "bbox": {
+            "x0": 1473,
+            "y0": 385,
+            "x1": 1494,
+            "y1": 465
+          },
+          "confidence": 58,
+          "classification": "printed_margin"
+        },
+        {
+          "text": "נא",
+          "bbox": {
+            "x0": 1508,
+            "y0": 558,
+            "x1": 1548,
+            "y1": 585
+          },
+          "confidence": 90,
+          "classification": "printed_margin"
+        }
+      ],
+      "comparisonTextSHA256": "7931f0bd27fcbd671504ab66ec3c11bbfaa188dbeac8b25616b129f0157a133f",
+      "confidence": 35,
+      "imageSHA256": "e9150cb3941a2c5a93dc95ffaa5a64a4e4fc112b56c1f16e49b23efcf6820ec5",
+      "textSHA256": "9da5199dbdae4ad15937d46baaa371998b31375bb6d5df543c4a777e26d39247"
+    },
+    {
+      "page": 102,
+      "engine": {
+        "engine": "tesseract.js",
+        "version": "7.0.0",
+        "language": "heb",
+        "oem": 1,
+        "psm": 6,
+        "imageSHA256": "4df2bf4883a5788d628dd643497a8456025e841f8571f43624f89d78e1d56622",
+        "modelSHA256": "a95d74d445e9bbb772a3572b4f01741309b3ab2c015773ef6fe7f25829c2dd0b",
+        "vocabularySHA256": null,
+        "confidence": 35
+      },
+      "excludedLayout": [
+        {
+          "text": "כנ",
+          "bbox": {
+            "x0": 1514,
+            "y0": 39,
+            "x1": 1552,
+            "y1": 65
+          },
+          "confidence": 79,
+          "classification": "printed_margin"
+        },
+        {
+          "text": "|",
+          "bbox": {
+            "x0": 1466,
+            "y0": 18,
+            "x1": 1486,
+            "y1": 92
+          },
+          "confidence": 59,
+          "classification": "mixed_margin_body_unresolved"
+        },
+        {
+          "text": "ג",
+          "bbox": {
+            "x0": 1520,
+            "y0": 189,
+            "x1": 1552,
+            "y1": 216
+          },
+          "confidence": 42,
+          "classification": "printed_margin"
+        },
+        {
+          "text": "|",
+          "bbox": {
+            "x0": 1480,
+            "y0": 165,
+            "x1": 1496,
+            "y1": 253
+          },
+          "confidence": 53,
+          "classification": "printed_margin"
+        },
+        {
+          "text": "כד",
+          "bbox": {
+            "x0": 1512,
+            "y0": 340,
+            "x1": 1551,
+            "y1": 368
+          },
+          "confidence": 86,
+          "classification": "printed_margin"
+        },
+        {
+          "text": "|",
+          "bbox": {
+            "x0": 1463,
+            "y0": 320,
+            "x1": 1487,
+            "y1": 389
+          },
+          "confidence": 82,
+          "classification": "mixed_margin_body_unresolved"
+        },
+        {
+          "text": "כה",
+          "bbox": {
+            "x0": 1510,
+            "y0": 415,
+            "x1": 1551,
+            "y1": 443
+          },
+          "confidence": 77,
+          "classification": "printed_margin"
+        },
+        {
+          "text": "|",
+          "bbox": {
+            "x0": 1451,
+            "y0": 395,
+            "x1": 1475,
+            "y1": 465
+          },
+          "confidence": 48,
+          "classification": "mixed_margin_body_unresolved"
+        },
+        {
+          "text": "כו",
+          "bbox": {
+            "x0": 1521,
+            "y0": 490,
+            "x1": 1551,
+            "y1": 517
+          },
+          "confidence": 74,
+          "classification": "printed_margin"
+        },
+        {
+          "text": "מ",
+          "bbox": {
+            "x0": 1521,
+            "y0": 641,
+            "x1": 1552,
+            "y1": 669
+          },
+          "confidence": 43,
+          "classification": "printed_margin"
+        },
+        {
+          "text": "כח",
+          "bbox": {
+            "x0": 1511,
+            "y0": 717,
+            "x1": 1552,
+            "y1": 743
+          },
+          "confidence": 52,
+          "classification": "printed_margin"
+        },
+        {
+          "text": "|",
+          "bbox": {
+            "x0": 1478,
+            "y0": 695,
+            "x1": 1492,
+            "y1": 772
+          },
+          "confidence": 53,
+          "classification": "printed_margin"
+        }
+      ],
+      "comparisonTextSHA256": "9fe1ae949472701c0ed73f47e47ec29c63f178c3f08db47f00f36c21ada73f4c",
+      "confidence": 35,
+      "imageSHA256": "4df2bf4883a5788d628dd643497a8456025e841f8571f43624f89d78e1d56622",
+      "textSHA256": "527c2ced4b4f5468ad8a95b143e76951778ad843509ebd80671c55370178711b"
+    },
+    {
+      "page": 103,
+      "engine": {
+        "engine": "tesseract.js",
+        "version": "7.0.0",
+        "language": "heb",
+        "oem": 1,
+        "psm": 6,
+        "imageSHA256": "6ed0b4908d21e6dda3bb9ba9b437665db511b1593184a9c12eac248812d1686c",
+        "modelSHA256": "a95d74d445e9bbb772a3572b4f01741309b3ab2c015773ef6fe7f25829c2dd0b",
+        "vocabularySHA256": null,
+        "confidence": 34
+      },
+      "excludedLayout": [
+        {
+          "text": "כט",
+          "bbox": {
+            "x0": 1511,
+            "y0": 51,
+            "x1": 1553,
+            "y1": 78
+          },
+          "confidence": 82,
+          "classification": "printed_margin"
+        },
+        {
+          "text": "ל",
+          "bbox": {
+            "x0": 1535,
+            "y0": 112,
+            "x1": 1554,
+            "y1": 155
+          },
+          "confidence": 94,
+          "classification": "printed_margin"
+        },
+        {
+          "text": "|",
+          "bbox": {
+            "x0": 1476,
+            "y0": 104,
+            "x1": 1498,
+            "y1": 190
+          },
+          "confidence": 40,
+          "classification": "printed_margin"
+        },
+        {
+          "text": "לא",
+          "bbox": {
+            "x0": 1509,
+            "y0": 267,
+            "x1": 1553,
+            "y1": 307
+          },
+          "confidence": 69,
+          "classification": "printed_margin"
+        },
+        {
+          "text": "לכ",
+          "bbox": {
+            "x0": 1515,
+            "y0": 339,
+            "x1": 1554,
+            "y1": 382
+          },
+          "confidence": 79,
+          "classification": "printed_margin"
+        },
+        {
+          "text": "|",
+          "bbox": {
+            "x0": 1475,
+            "y0": 335,
+            "x1": 1490,
+            "y1": 414
+          },
+          "confidence": 42,
+          "classification": "printed_margin"
+        },
+        {
+          "text": "לג",
+          "bbox": {
+            "x0": 1520,
+            "y0": 415,
+            "x1": 1553,
+            "y1": 457
+          },
+          "confidence": 96,
+          "classification": "printed_margin"
+        },
+        {
+          "text": "|",
+          "bbox": {
+            "x0": 1472,
+            "y0": 408,
+            "x1": 1492,
+            "y1": 481
+          },
+          "confidence": 50,
+          "classification": "printed_margin"
+        },
+        {
+          "text": "לד",
+          "bbox": {
+            "x0": 1511,
+            "y0": 490,
+            "x1": 1552,
+            "y1": 533
+          },
+          "confidence": 53,
+          "classification": "printed_margin"
+        },
+        {
+          "text": "לה",
+          "bbox": {
+            "x0": 1511,
+            "y0": 567,
+            "x1": 1553,
+            "y1": 609
+          },
+          "confidence": 50,
+          "classification": "printed_margin"
+        },
+        {
+          "text": "לו",
+          "bbox": {
+            "x0": 1520,
+            "y0": 643,
+            "x1": 1553,
+            "y1": 685
+          },
+          "confidence": 85,
+          "classification": "printed_margin"
+        },
+        {
+          "text": "|",
+          "bbox": {
+            "x0": 1473,
+            "y0": 635,
+            "x1": 1487,
+            "y1": 718
+          },
+          "confidence": 70,
+          "classification": "printed_margin"
+        },
+        {
+          "text": "לו",
+          "bbox": {
+            "x0": 1520,
+            "y0": 720,
+            "x1": 1552,
+            "y1": 762
+          },
+          "confidence": 51,
+          "classification": "printed_margin"
+        },
+        {
+          "text": "|",
+          "bbox": {
+            "x0": 1483,
+            "y0": 711,
+            "x1": 1498,
+            "y1": 796
+          },
+          "confidence": 51,
+          "classification": "printed_margin"
+        },
+        {
+          "text": "לח",
+          "bbox": {
+            "x0": 1510,
+            "y0": 793,
+            "x1": 1553,
+            "y1": 838
+          },
+          "confidence": 93,
+          "classification": "printed_margin"
+        },
+        {
+          "text": "=",
+          "bbox": {
+            "x0": 1469,
+            "y0": 787,
+            "x1": 1481,
+            "y1": 859
+          },
+          "confidence": 61,
+          "classification": "printed_margin"
+        },
+        {
+          "text": "לט",
+          "bbox": {
+            "x0": 1509,
+            "y0": 946,
+            "x1": 1552,
+            "y1": 988
+          },
+          "confidence": 89,
+          "classification": "printed_margin"
+        },
+        {
+          "text": "|",
+          "bbox": {
+            "x0": 1471,
+            "y0": 941,
+            "x1": 1486,
+            "y1": 1022
+          },
+          "confidence": 48,
+          "classification": "printed_margin"
+        },
+        {
+          "text": "ם",
+          "bbox": {
+            "x0": 1528,
+            "y0": 1111,
+            "x1": 1551,
+            "y1": 1139
+          },
+          "confidence": 77,
+          "classification": "printed_margin"
+        },
+        {
+          "text": "|",
+          "bbox": {
+            "x0": 1479,
+            "y0": 1089,
+            "x1": 1494,
+            "y1": 1174
+          },
+          "confidence": 61,
+          "classification": "printed_margin"
+        },
+        {
+          "text": "מא-מנ",
+          "bbox": {
+            "x0": 1433,
+            "y0": 1187,
+            "x1": 1552,
+            "y1": 1215
+          },
+          "confidence": 40,
+          "classification": "mixed_margin_body_unresolved"
+        },
+        {
+          "text": "מג",
+          "bbox": {
+            "x0": 1515,
+            "y0": 1261,
+            "x1": 1551,
+            "y1": 1289
+          },
+          "confidence": 87,
+          "classification": "printed_margin"
+        },
+        {
+          "text": "|",
+          "bbox": {
+            "x0": 1469,
+            "y0": 1237,
+            "x1": 1494,
+            "y1": 1312
+          },
+          "confidence": 81,
+          "classification": "printed_margin"
+        }
+      ],
+      "comparisonTextSHA256": "1b879a9034cf806169a4ced926092ea41f69e039af29e13960b6e02f466947f5",
+      "confidence": 34,
+      "imageSHA256": "6ed0b4908d21e6dda3bb9ba9b437665db511b1593184a9c12eac248812d1686c",
+      "textSHA256": "e587c7fa9eb155fa2255ba7034ca23652272dc399c1570578b1ad0d5f494adf4"
+    },
+    {
+      "page": 104,
+      "engine": {
+        "engine": "tesseract.js",
+        "version": "7.0.0",
+        "language": "heb",
+        "oem": 1,
+        "psm": 6,
+        "imageSHA256": "fe3d6cece45870147991097501d4c408e32ee87d895d115e3110841be5df7772",
+        "modelSHA256": "a95d74d445e9bbb772a3572b4f01741309b3ab2c015773ef6fe7f25829c2dd0b",
+        "vocabularySHA256": null,
+        "confidence": 34
+      },
+      "excludedLayout": [
+        {
+          "text": "מו",
+          "bbox": {
+            "x0": 1503,
+            "y0": 22,
+            "x1": 1547,
+            "y1": 49
+          },
+          "confidence": 47,
+          "classification": "printed_margin"
+        },
+        {
+          "text": "|",
+          "bbox": {
+            "x0": 1466,
+            "y0": 1,
+            "x1": 1482,
+            "y1": 87
+          },
+          "confidence": 69,
+          "classification": "mixed_margin_body_unresolved"
+        },
+        {
+          "text": "מה",
+          "bbox": {
+            "x0": 1503,
+            "y0": 171,
+            "x1": 1547,
+            "y1": 199
+          },
+          "confidence": 73,
+          "classification": "printed_margin"
+        },
+        {
+          "text": "|",
+          "bbox": {
+            "x0": 1469,
+            "y0": 152,
+            "x1": 1484,
+            "y1": 235
+          },
+          "confidence": 49,
+          "classification": "printed_margin"
+        },
+        {
+          "text": "מו",
+          "bbox": {
+            "x0": 1512,
+            "y0": 249,
+            "x1": 1547,
+            "y1": 275
+          },
+          "confidence": 45,
+          "classification": "printed_margin"
+        },
+        {
+          "text": "-",
+          "bbox": {
+            "x0": 1491,
+            "y0": 258,
+            "x1": 1500,
+            "y1": 263
+          },
+          "confidence": 45,
+          "classification": "printed_margin"
+        },
+        {
+          "text": "מז",
+          "bbox": {
+            "x0": 1438,
+            "y0": 249,
+            "x1": 1472,
+            "y1": 276
+          },
+          "confidence": 93,
+          "classification": "mixed_margin_body_unresolved"
+        },
+        {
+          "text": "מה",
+          "bbox": {
+            "x0": 1502,
+            "y0": 323,
+            "x1": 1546,
+            "y1": 351
+          },
+          "confidence": 66,
+          "classification": "printed_margin"
+        },
+        {
+          "text": "|",
+          "bbox": {
+            "x0": 1473,
+            "y0": 300,
+            "x1": 1486,
+            "y1": 374
+          },
+          "confidence": 57,
+          "classification": "printed_margin"
+        },
+        {
+          "text": "סש",
+          "bbox": {
+            "x0": 1500,
+            "y0": 397,
+            "x1": 1546,
+            "y1": 426
+          },
+          "confidence": 52,
+          "classification": "printed_margin"
+        },
+        {
+          "text": "נ-גא",
+          "bbox": {
+            "x0": 1461,
+            "y0": 474,
+            "x1": 1547,
+            "y1": 502
+          },
+          "confidence": 75,
+          "classification": "mixed_margin_body_unresolved"
+        },
+        {
+          "text": "נכ",
+          "bbox": {
+            "x0": 1514,
+            "y0": 625,
+            "x1": 1547,
+            "y1": 654
+          },
+          "confidence": 79,
+          "classification": "printed_margin"
+        },
+        {
+          "text": "|",
+          "bbox": {
+            "x0": 1469,
+            "y0": 605,
+            "x1": 1482,
+            "y1": 679
+          },
+          "confidence": 40,
+          "classification": "printed_margin"
+        },
+        {
+          "text": "ג",
+          "bbox": {
+            "x0": 1520,
+            "y0": 701,
+            "x1": 1547,
+            "y1": 729
+          },
+          "confidence": 73,
+          "classification": "printed_margin"
+        },
+        {
+          "text": "|",
+          "bbox": {
+            "x0": 1481,
+            "y0": 680,
+            "x1": 1495,
+            "y1": 762
+          },
+          "confidence": 53,
+          "classification": "printed_margin"
+        },
+        {
+          "text": ":",
+          "bbox": {
+            "x0": 1514,
+            "y0": 777,
+            "x1": 1546,
+            "y1": 804
+          },
+          "confidence": 66,
+          "classification": "printed_margin"
+        },
+        {
+          "text": "נה",
+          "bbox": {
+            "x0": 1512,
+            "y0": 851,
+            "x1": 1547,
+            "y1": 880
+          },
+          "confidence": 95,
+          "classification": "printed_margin"
+        },
+        {
+          "text": "|",
+          "bbox": {
+            "x0": 1454,
+            "y0": 830,
+            "x1": 1480,
+            "y1": 904
+          },
+          "confidence": 75,
+          "classification": "mixed_margin_body_unresolved"
+        }
+      ],
+      "comparisonTextSHA256": "5989a2e6163dc376088e341fabdc30f6273807f6fddd8bbed2cc84ba8efdc4a0",
+      "confidence": 34,
+      "imageSHA256": "fe3d6cece45870147991097501d4c408e32ee87d895d115e3110841be5df7772",
+      "textSHA256": "0f8e400905889d7931d39847bb00b06ef5e6ff3c3061f7729ea2c32d10d951bc"
+    },
+    {
+      "page": 105,
+      "engine": {
+        "engine": "tesseract.js",
+        "version": "7.0.0",
+        "language": "heb",
+        "oem": 1,
+        "psm": 6,
+        "imageSHA256": "d497e7cb3f079e2e4b6282e846822ac9be13955a086a275bfd150ff52a260120",
+        "modelSHA256": "a95d74d445e9bbb772a3572b4f01741309b3ab2c015773ef6fe7f25829c2dd0b",
+        "vocabularySHA256": null,
+        "confidence": 35
+      },
+      "excludedLayout": [
+        {
+          "text": "=",
+          "bbox": {
+            "x0": 1502,
+            "y0": 35,
+            "x1": 1515,
+            "y1": 105
+          },
+          "confidence": 18,
+          "classification": "printed_margin"
+        },
+        {
+          "text": "מ",
+          "bbox": {
+            "x0": 1529,
+            "y0": 131,
+            "x1": 1554,
+            "y1": 158
+          },
+          "confidence": 29,
+          "classification": "printed_margin"
+        },
+        {
+          "text": "|",
+          "bbox": {
+            "x0": 1495,
+            "y0": 108,
+            "x1": 1513,
+            "y1": 180
+          },
+          "confidence": 29,
+          "classification": "printed_margin"
+        },
+        {
+          "text": "נה",
+          "bbox": {
+            "x0": 1520,
+            "y0": 207,
+            "x1": 1553,
+            "y1": 233
+          },
+          "confidence": 60,
+          "classification": "printed_margin"
+        },
+        {
+          "text": "|",
+          "bbox": {
+            "x0": 1474,
+            "y0": 183,
+            "x1": 1495,
+            "y1": 264
+          },
+          "confidence": 38,
+          "classification": "printed_margin"
+        },
+        {
+          "text": "₪",
+          "bbox": {
+            "x0": 1517,
+            "y0": 283,
+            "x1": 1553,
+            "y1": 309
+          },
+          "confidence": 93,
+          "classification": "printed_margin"
+        },
+        {
+          "text": "|",
+          "bbox": {
+            "x0": 1477,
+            "y0": 258,
+            "x1": 1492,
+            "y1": 340
+          },
+          "confidence": 44,
+          "classification": "printed_margin"
+        },
+        {
+          "text": "ם",
+          "bbox": {
+            "x0": 1533,
+            "y0": 358,
+            "x1": 1553,
+            "y1": 385
+          },
+          "confidence": 77,
+          "classification": "printed_margin"
+        },
+        {
+          "text": "|",
+          "bbox": {
+            "x0": 1478,
+            "y0": 335,
+            "x1": 1504,
+            "y1": 411
+          },
+          "confidence": 78,
+          "classification": "printed_margin"
+        },
+        {
+          "text": "כא",
+          "bbox": {
+            "x0": 1510,
+            "y0": 433,
+            "x1": 1553,
+            "y1": 460
+          },
+          "confidence": 41,
+          "classification": "printed_margin"
+        },
+        {
+          "text": "סג",
+          "bbox": {
+            "x0": 1511,
+            "y0": 508,
+            "x1": 1552,
+            "y1": 536
+          },
+          "confidence": 72,
+          "classification": "printed_margin"
+        },
+        {
+          "text": "סג",
+          "bbox": {
+            "x0": 1517,
+            "y0": 585,
+            "x1": 1552,
+            "y1": 611
+          },
+          "confidence": 42,
+          "classification": "printed_margin"
+        },
+        {
+          "text": "סר",
+          "bbox": {
+            "x0": 1512,
+            "y0": 661,
+            "x1": 1553,
+            "y1": 687
+          },
+          "confidence": 81,
+          "classification": "printed_margin"
+        },
+        {
+          "text": "|",
+          "bbox": {
+            "x0": 1475,
+            "y0": 637,
+            "x1": 1493,
+            "y1": 706
+          },
+          "confidence": 68,
+          "classification": "printed_margin"
+        }
+      ],
+      "comparisonTextSHA256": "5fecad7bb149a0296c4f635cbda3fcdcd77ec770f3bb2f2dc0ef6e083c8f8473",
+      "confidence": 35,
+      "imageSHA256": "d497e7cb3f079e2e4b6282e846822ac9be13955a086a275bfd150ff52a260120",
+      "textSHA256": "90e3f1bfb3524ed77f931363726af0966b4bbe3289628ae8f4d8f5fd019f7fc3"
+    }
+  ],
+  "units": [
+    {
+      "verse": 1,
+      "endVerse": 1,
+      "visuallyLocatedPages": [
+        97
+      ],
+      "matchedOCRPages": [
+        97
+      ],
+      "referenceWords": 25,
+      "matchedWords": 9,
+      "firstWordMatched": false,
+      "lastWordMatched": false,
+      "unexpectedPages": [],
+      "status": "alignment_candidate_not_certified"
+    },
+    {
+      "verse": 2,
+      "endVerse": 2,
+      "visuallyLocatedPages": [
+        97
+      ],
+      "matchedOCRPages": [
+        97
+      ],
+      "referenceWords": 8,
+      "matchedWords": 3,
+      "firstWordMatched": false,
+      "lastWordMatched": true,
+      "unexpectedPages": [],
+      "status": "alignment_candidate_not_certified"
+    },
+    {
+      "verse": 3,
+      "endVerse": 3,
+      "visuallyLocatedPages": [
+        97,
+        98
+      ],
+      "matchedOCRPages": [
+        97,
+        98
+      ],
+      "referenceWords": 14,
+      "matchedWords": 5,
+      "firstWordMatched": false,
+      "lastWordMatched": true,
+      "unexpectedPages": [],
+      "status": "alignment_candidate_not_certified"
+    },
+    {
+      "verse": 4,
+      "endVerse": 4,
+      "visuallyLocatedPages": [
+        98
+      ],
+      "matchedOCRPages": [
+        98
+      ],
+      "referenceWords": 12,
+      "matchedWords": 6,
+      "firstWordMatched": false,
+      "lastWordMatched": true,
+      "unexpectedPages": [],
+      "status": "alignment_candidate_not_certified"
+    },
+    {
+      "verse": 5,
+      "endVerse": 5,
+      "visuallyLocatedPages": [
+        98
+      ],
+      "matchedOCRPages": [
+        98
+      ],
+      "referenceWords": 9,
+      "matchedWords": 3,
+      "firstWordMatched": false,
+      "lastWordMatched": true,
+      "unexpectedPages": [],
+      "status": "alignment_candidate_not_certified"
+    },
+    {
+      "verse": 6,
+      "endVerse": 6,
+      "visuallyLocatedPages": [
+        98
+      ],
+      "matchedOCRPages": [
+        98
+      ],
+      "referenceWords": 13,
+      "matchedWords": 4,
+      "firstWordMatched": false,
+      "lastWordMatched": true,
+      "unexpectedPages": [],
+      "status": "alignment_candidate_not_certified"
+    },
+    {
+      "verse": 7,
+      "endVerse": 7,
+      "visuallyLocatedPages": [
+        98
+      ],
+      "matchedOCRPages": [
+        98
+      ],
+      "referenceWords": 6,
+      "matchedWords": 3,
+      "firstWordMatched": false,
+      "lastWordMatched": false,
+      "unexpectedPages": [],
+      "status": "alignment_candidate_not_certified"
+    },
+    {
+      "verse": 8,
+      "endVerse": 9,
+      "visuallyLocatedPages": [
+        98
+      ],
+      "matchedOCRPages": [
+        98
+      ],
+      "referenceWords": 18,
+      "matchedWords": 12,
+      "firstWordMatched": false,
+      "lastWordMatched": false,
+      "unexpectedPages": [],
+      "status": "alignment_candidate_not_certified"
+    },
+    {
+      "verse": 10,
+      "endVerse": 10,
+      "visuallyLocatedPages": [
+        99,
+        100
+      ],
+      "matchedOCRPages": [
+        99,
+        100
+      ],
+      "referenceWords": 21,
+      "matchedWords": 10,
+      "firstWordMatched": false,
+      "lastWordMatched": false,
+      "unexpectedPages": [],
+      "status": "alignment_candidate_not_certified"
+    },
+    {
+      "verse": 11,
+      "endVerse": 11,
+      "visuallyLocatedPages": [
+        100
+      ],
+      "matchedOCRPages": [
+        100
+      ],
+      "referenceWords": 26,
+      "matchedWords": 18,
+      "firstWordMatched": true,
+      "lastWordMatched": true,
+      "unexpectedPages": [],
+      "status": "alignment_candidate_not_certified"
+    },
+    {
+      "verse": 12,
+      "endVerse": 12,
+      "visuallyLocatedPages": [
+        100
+      ],
+      "matchedOCRPages": [
+        100
+      ],
+      "referenceWords": 3,
+      "matchedWords": 1,
+      "firstWordMatched": false,
+      "lastWordMatched": true,
+      "unexpectedPages": [],
+      "status": "alignment_candidate_not_certified"
+    },
+    {
+      "verse": 13,
+      "endVerse": 13,
+      "visuallyLocatedPages": [
+        100
+      ],
+      "matchedOCRPages": [],
+      "referenceWords": 12,
+      "matchedWords": 0,
+      "firstWordMatched": false,
+      "lastWordMatched": false,
+      "unexpectedPages": [],
+      "status": "alignment_candidate_not_certified"
+    },
+    {
+      "verse": 14,
+      "endVerse": 15,
+      "visuallyLocatedPages": [
+        100,
+        101
+      ],
+      "matchedOCRPages": [
+        100,
+        101
+      ],
+      "referenceWords": 16,
+      "matchedWords": 7,
+      "firstWordMatched": true,
+      "lastWordMatched": true,
+      "unexpectedPages": [],
+      "status": "alignment_candidate_not_certified"
+    },
+    {
+      "verse": 16,
+      "endVerse": 16,
+      "visuallyLocatedPages": [
+        101
+      ],
+      "matchedOCRPages": [
+        101
+      ],
+      "referenceWords": 13,
+      "matchedWords": 6,
+      "firstWordMatched": true,
+      "lastWordMatched": true,
+      "unexpectedPages": [],
+      "status": "alignment_candidate_not_certified"
+    },
+    {
+      "verse": 17,
+      "endVerse": 17,
+      "visuallyLocatedPages": [
+        101
+      ],
+      "matchedOCRPages": [
+        101
+      ],
+      "referenceWords": 9,
+      "matchedWords": 4,
+      "firstWordMatched": false,
+      "lastWordMatched": false,
+      "unexpectedPages": [],
+      "status": "alignment_candidate_not_certified"
+    },
+    {
+      "verse": 18,
+      "endVerse": 18,
+      "visuallyLocatedPages": [
+        101
+      ],
+      "matchedOCRPages": [
+        101
+      ],
+      "referenceWords": 13,
+      "matchedWords": 8,
+      "firstWordMatched": false,
+      "lastWordMatched": true,
+      "unexpectedPages": [],
+      "status": "alignment_candidate_not_certified"
+    },
+    {
+      "verse": 19,
+      "endVerse": 19,
+      "visuallyLocatedPages": [
+        101
+      ],
+      "matchedOCRPages": [
+        101
+      ],
+      "referenceWords": 9,
+      "matchedWords": 7,
+      "firstWordMatched": false,
+      "lastWordMatched": true,
+      "unexpectedPages": [],
+      "status": "alignment_candidate_not_certified"
+    },
+    {
+      "verse": 20,
+      "endVerse": 20,
+      "visuallyLocatedPages": [
+        101
+      ],
+      "matchedOCRPages": [
+        101
+      ],
+      "referenceWords": 17,
+      "matchedWords": 9,
+      "firstWordMatched": false,
+      "lastWordMatched": false,
+      "unexpectedPages": [],
+      "status": "alignment_candidate_not_certified"
+    },
+    {
+      "verse": 21,
+      "endVerse": 21,
+      "visuallyLocatedPages": [
+        101,
+        102
+      ],
+      "matchedOCRPages": [
+        102
+      ],
+      "referenceWords": 14,
+      "matchedWords": 2,
+      "firstWordMatched": false,
+      "lastWordMatched": false,
+      "unexpectedPages": [],
+      "status": "alignment_candidate_not_certified"
+    },
+    {
+      "verse": 22,
+      "endVerse": 22,
+      "visuallyLocatedPages": [
+        102
+      ],
+      "matchedOCRPages": [
+        102
+      ],
+      "referenceWords": 22,
+      "matchedWords": 11,
+      "firstWordMatched": true,
+      "lastWordMatched": false,
+      "unexpectedPages": [],
+      "status": "alignment_candidate_not_certified"
+    },
+    {
+      "verse": 23,
+      "endVerse": 23,
+      "visuallyLocatedPages": [
+        102
+      ],
+      "matchedOCRPages": [
+        102
+      ],
+      "referenceWords": 14,
+      "matchedWords": 9,
+      "firstWordMatched": false,
+      "lastWordMatched": true,
+      "unexpectedPages": [],
+      "status": "alignment_candidate_not_certified"
+    },
+    {
+      "verse": 24,
+      "endVerse": 24,
+      "visuallyLocatedPages": [
+        102
+      ],
+      "matchedOCRPages": [
+        102
+      ],
+      "referenceWords": 10,
+      "matchedWords": 6,
+      "firstWordMatched": true,
+      "lastWordMatched": true,
+      "unexpectedPages": [],
+      "status": "alignment_candidate_not_certified"
+    },
+    {
+      "verse": 25,
+      "endVerse": 25,
+      "visuallyLocatedPages": [
+        102
+      ],
+      "matchedOCRPages": [
+        102
+      ],
+      "referenceWords": 6,
+      "matchedWords": 4,
+      "firstWordMatched": true,
+      "lastWordMatched": false,
+      "unexpectedPages": [],
+      "status": "alignment_candidate_not_certified"
+    },
+    {
+      "verse": 26,
+      "endVerse": 26,
+      "visuallyLocatedPages": [
+        102
+      ],
+      "matchedOCRPages": [
+        102
+      ],
+      "referenceWords": 9,
+      "matchedWords": 4,
+      "firstWordMatched": false,
+      "lastWordMatched": false,
+      "unexpectedPages": [],
+      "status": "alignment_candidate_not_certified"
+    },
+    {
+      "verse": 27,
+      "endVerse": 27,
+      "visuallyLocatedPages": [
+        102
+      ],
+      "matchedOCRPages": [
+        102
+      ],
+      "referenceWords": 7,
+      "matchedWords": 3,
+      "firstWordMatched": false,
+      "lastWordMatched": true,
+      "unexpectedPages": [],
+      "status": "alignment_candidate_not_certified"
+    },
+    {
+      "verse": 28,
+      "endVerse": 28,
+      "visuallyLocatedPages": [
+        102
+      ],
+      "matchedOCRPages": [
+        102
+      ],
+      "referenceWords": 9,
+      "matchedWords": 1,
+      "firstWordMatched": true,
+      "lastWordMatched": false,
+      "unexpectedPages": [],
+      "status": "alignment_candidate_not_certified"
+    },
+    {
+      "verse": 29,
+      "endVerse": 29,
+      "visuallyLocatedPages": [
+        103
+      ],
+      "matchedOCRPages": [
+        103
+      ],
+      "referenceWords": 14,
+      "matchedWords": 7,
+      "firstWordMatched": true,
+      "lastWordMatched": true,
+      "unexpectedPages": [],
+      "status": "alignment_candidate_not_certified"
+    },
+    {
+      "verse": 30,
+      "endVerse": 30,
+      "visuallyLocatedPages": [
+        103
+      ],
+      "matchedOCRPages": [
+        103
+      ],
+      "referenceWords": 19,
+      "matchedWords": 12,
+      "firstWordMatched": false,
+      "lastWordMatched": true,
+      "unexpectedPages": [],
+      "status": "alignment_candidate_not_certified"
+    },
+    {
+      "verse": 31,
+      "endVerse": 31,
+      "visuallyLocatedPages": [
+        103
+      ],
+      "matchedOCRPages": [
+        103
+      ],
+      "referenceWords": 12,
+      "matchedWords": 7,
+      "firstWordMatched": false,
+      "lastWordMatched": true,
+      "unexpectedPages": [],
+      "status": "alignment_candidate_not_certified"
+    },
+    {
+      "verse": 32,
+      "endVerse": 32,
+      "visuallyLocatedPages": [
+        103
+      ],
+      "matchedOCRPages": [
+        103
+      ],
+      "referenceWords": 8,
+      "matchedWords": 2,
+      "firstWordMatched": true,
+      "lastWordMatched": false,
+      "unexpectedPages": [],
+      "status": "alignment_candidate_not_certified"
+    },
+    {
+      "verse": 33,
+      "endVerse": 33,
+      "visuallyLocatedPages": [
+        103
+      ],
+      "matchedOCRPages": [
+        103
+      ],
+      "referenceWords": 12,
+      "matchedWords": 7,
+      "firstWordMatched": false,
+      "lastWordMatched": true,
+      "unexpectedPages": [],
+      "status": "alignment_candidate_not_certified"
+    },
+    {
+      "verse": 34,
+      "endVerse": 34,
+      "visuallyLocatedPages": [
+        103
+      ],
+      "matchedOCRPages": [
+        103
+      ],
+      "referenceWords": 8,
+      "matchedWords": 2,
+      "firstWordMatched": false,
+      "lastWordMatched": true,
+      "unexpectedPages": [],
+      "status": "alignment_candidate_not_certified"
+    },
+    {
+      "verse": 35,
+      "endVerse": 35,
+      "visuallyLocatedPages": [
+        103
+      ],
+      "matchedOCRPages": [
+        103
+      ],
+      "referenceWords": 11,
+      "matchedWords": 7,
+      "firstWordMatched": false,
+      "lastWordMatched": true,
+      "unexpectedPages": [],
+      "status": "alignment_candidate_not_certified"
+    },
+    {
+      "verse": 36,
+      "endVerse": 36,
+      "visuallyLocatedPages": [
+        103
+      ],
+      "matchedOCRPages": [
+        103
+      ],
+      "referenceWords": 8,
+      "matchedWords": 2,
+      "firstWordMatched": false,
+      "lastWordMatched": false,
+      "unexpectedPages": [],
+      "status": "alignment_candidate_not_certified"
+    },
+    {
+      "verse": 37,
+      "endVerse": 37,
+      "visuallyLocatedPages": [
+        103
+      ],
+      "matchedOCRPages": [
+        103
+      ],
+      "referenceWords": 8,
+      "matchedWords": 3,
+      "firstWordMatched": false,
+      "lastWordMatched": false,
+      "unexpectedPages": [],
+      "status": "alignment_candidate_not_certified"
+    },
+    {
+      "verse": 38,
+      "endVerse": 38,
+      "visuallyLocatedPages": [
+        103
+      ],
+      "matchedOCRPages": [
+        103
+      ],
+      "referenceWords": 12,
+      "matchedWords": 6,
+      "firstWordMatched": false,
+      "lastWordMatched": true,
+      "unexpectedPages": [],
+      "status": "alignment_candidate_not_certified"
+    },
+    {
+      "verse": 39,
+      "endVerse": 39,
+      "visuallyLocatedPages": [
+        103
+      ],
+      "matchedOCRPages": [
+        103
+      ],
+      "referenceWords": 11,
+      "matchedWords": 3,
+      "firstWordMatched": false,
+      "lastWordMatched": true,
+      "unexpectedPages": [],
+      "status": "alignment_candidate_not_certified"
+    },
+    {
+      "verse": 40,
+      "endVerse": 40,
+      "visuallyLocatedPages": [
+        103
+      ],
+      "matchedOCRPages": [
+        103
+      ],
+      "referenceWords": 7,
+      "matchedWords": 1,
+      "firstWordMatched": false,
+      "lastWordMatched": true,
+      "unexpectedPages": [],
+      "status": "alignment_candidate_not_certified"
+    },
+    {
+      "verse": 41,
+      "endVerse": 42,
+      "visuallyLocatedPages": [
+        103
+      ],
+      "matchedOCRPages": [
+        103
+      ],
+      "referenceWords": 19,
+      "matchedWords": 5,
+      "firstWordMatched": false,
+      "lastWordMatched": false,
+      "unexpectedPages": [],
+      "status": "alignment_candidate_not_certified"
+    },
+    {
+      "verse": 43,
+      "endVerse": 43,
+      "visuallyLocatedPages": [
+        103,
+        104
+      ],
+      "matchedOCRPages": [
+        103,
+        104
+      ],
+      "referenceWords": 9,
+      "matchedWords": 7,
+      "firstWordMatched": true,
+      "lastWordMatched": true,
+      "unexpectedPages": [],
+      "status": "alignment_candidate_not_certified"
+    },
+    {
+      "verse": 44,
+      "endVerse": 44,
+      "visuallyLocatedPages": [
+        104
+      ],
+      "matchedOCRPages": [
+        104
+      ],
+      "referenceWords": 13,
+      "matchedWords": 6,
+      "firstWordMatched": false,
+      "lastWordMatched": true,
+      "unexpectedPages": [],
+      "status": "alignment_candidate_not_certified"
+    },
+    {
+      "verse": 45,
+      "endVerse": 45,
+      "visuallyLocatedPages": [
+        104
+      ],
+      "matchedOCRPages": [
+        104
+      ],
+      "referenceWords": 9,
+      "matchedWords": 2,
+      "firstWordMatched": false,
+      "lastWordMatched": false,
+      "unexpectedPages": [],
+      "status": "alignment_candidate_not_certified"
+    },
+    {
+      "verse": 46,
+      "endVerse": 47,
+      "visuallyLocatedPages": [
+        104
+      ],
+      "matchedOCRPages": [
+        104
+      ],
+      "referenceWords": 11,
+      "matchedWords": 9,
+      "firstWordMatched": false,
+      "lastWordMatched": false,
+      "unexpectedPages": [],
+      "status": "alignment_candidate_not_certified"
+    },
+    {
+      "verse": 48,
+      "endVerse": 48,
+      "visuallyLocatedPages": [
+        104
+      ],
+      "matchedOCRPages": [
+        104
+      ],
+      "referenceWords": 11,
+      "matchedWords": 8,
+      "firstWordMatched": false,
+      "lastWordMatched": false,
+      "unexpectedPages": [],
+      "status": "alignment_candidate_not_certified"
+    },
+    {
+      "verse": 49,
+      "endVerse": 49,
+      "visuallyLocatedPages": [
+        104
+      ],
+      "matchedOCRPages": [
+        104
+      ],
+      "referenceWords": 6,
+      "matchedWords": 2,
+      "firstWordMatched": false,
+      "lastWordMatched": false,
+      "unexpectedPages": [],
+      "status": "alignment_candidate_not_certified"
+    },
+    {
+      "verse": 50,
+      "endVerse": 51,
+      "visuallyLocatedPages": [
+        104
+      ],
+      "matchedOCRPages": [
+        104
+      ],
+      "referenceWords": 22,
+      "matchedWords": 11,
+      "firstWordMatched": false,
+      "lastWordMatched": true,
+      "unexpectedPages": [],
+      "status": "alignment_candidate_not_certified"
+    },
+    {
+      "verse": 52,
+      "endVerse": 52,
+      "visuallyLocatedPages": [
+        104
+      ],
+      "matchedOCRPages": [
+        104
+      ],
+      "referenceWords": 12,
+      "matchedWords": 4,
+      "firstWordMatched": false,
+      "lastWordMatched": true,
+      "unexpectedPages": [],
+      "status": "alignment_candidate_not_certified"
+    },
+    {
+      "verse": 53,
+      "endVerse": 53,
+      "visuallyLocatedPages": [
+        104
+      ],
+      "matchedOCRPages": [],
+      "referenceWords": 6,
+      "matchedWords": 0,
+      "firstWordMatched": false,
+      "lastWordMatched": false,
+      "unexpectedPages": [],
+      "status": "alignment_candidate_not_certified"
+    },
+    {
+      "verse": 54,
+      "endVerse": 54,
+      "visuallyLocatedPages": [
+        104
+      ],
+      "matchedOCRPages": [
+        104
+      ],
+      "referenceWords": 18,
+      "matchedWords": 12,
+      "firstWordMatched": false,
+      "lastWordMatched": true,
+      "unexpectedPages": [],
+      "status": "alignment_candidate_not_certified"
+    },
+    {
+      "verse": 55,
+      "endVerse": 55,
+      "visuallyLocatedPages": [
+        104,
+        105
+      ],
+      "matchedOCRPages": [
+        104,
+        105
+      ],
+      "referenceWords": 4,
+      "matchedWords": 3,
+      "firstWordMatched": true,
+      "lastWordMatched": false,
+      "unexpectedPages": [],
+      "status": "alignment_candidate_not_certified"
+    },
+    {
+      "verse": 56,
+      "endVerse": 56,
+      "visuallyLocatedPages": [
+        105
+      ],
+      "matchedOCRPages": [
+        105
+      ],
+      "referenceWords": 7,
+      "matchedWords": 6,
+      "firstWordMatched": true,
+      "lastWordMatched": false,
+      "unexpectedPages": [],
+      "status": "alignment_candidate_not_certified"
+    },
+    {
+      "verse": 57,
+      "endVerse": 57,
+      "visuallyLocatedPages": [
+        105
+      ],
+      "matchedOCRPages": [
+        105
+      ],
+      "referenceWords": 14,
+      "matchedWords": 8,
+      "firstWordMatched": true,
+      "lastWordMatched": true,
+      "unexpectedPages": [],
+      "status": "alignment_candidate_not_certified"
+    },
+    {
+      "verse": 58,
+      "endVerse": 58,
+      "visuallyLocatedPages": [
+        105
+      ],
+      "matchedOCRPages": [
+        105
+      ],
+      "referenceWords": 8,
+      "matchedWords": 5,
+      "firstWordMatched": true,
+      "lastWordMatched": true,
+      "unexpectedPages": [],
+      "status": "alignment_candidate_not_certified"
+    },
+    {
+      "verse": 59,
+      "endVerse": 59,
+      "visuallyLocatedPages": [
+        105
+      ],
+      "matchedOCRPages": [
+        105
+      ],
+      "referenceWords": 10,
+      "matchedWords": 4,
+      "firstWordMatched": false,
+      "lastWordMatched": false,
+      "unexpectedPages": [],
+      "status": "alignment_candidate_not_certified"
+    },
+    {
+      "verse": 60,
+      "endVerse": 60,
+      "visuallyLocatedPages": [
+        105
+      ],
+      "matchedOCRPages": [
+        105
+      ],
+      "referenceWords": 10,
+      "matchedWords": 6,
+      "firstWordMatched": true,
+      "lastWordMatched": false,
+      "unexpectedPages": [],
+      "status": "alignment_candidate_not_certified"
+    },
+    {
+      "verse": 61,
+      "endVerse": 61,
+      "visuallyLocatedPages": [
+        105
+      ],
+      "matchedOCRPages": [
+        105
+      ],
+      "referenceWords": 11,
+      "matchedWords": 5,
+      "firstWordMatched": false,
+      "lastWordMatched": false,
+      "unexpectedPages": [],
+      "status": "alignment_candidate_not_certified"
+    },
+    {
+      "verse": 62,
+      "endVerse": 62,
+      "visuallyLocatedPages": [
+        105
+      ],
+      "matchedOCRPages": [
+        105
+      ],
+      "referenceWords": 8,
+      "matchedWords": 5,
+      "firstWordMatched": true,
+      "lastWordMatched": false,
+      "unexpectedPages": [],
+      "status": "alignment_candidate_not_certified"
+    },
+    {
+      "verse": 63,
+      "endVerse": 63,
+      "visuallyLocatedPages": [
+        105
+      ],
+      "matchedOCRPages": [
+        105
+      ],
+      "referenceWords": 10,
+      "matchedWords": 5,
+      "firstWordMatched": false,
+      "lastWordMatched": false,
+      "unexpectedPages": [],
+      "status": "alignment_candidate_not_certified"
+    },
+    {
+      "verse": 64,
+      "endVerse": 64,
+      "visuallyLocatedPages": [
+        105
+      ],
+      "matchedOCRPages": [
+        105
+      ],
+      "referenceWords": 6,
+      "matchedWords": 2,
+      "firstWordMatched": false,
+      "lastWordMatched": false,
+      "unexpectedPages": [],
+      "status": "alignment_candidate_not_certified"
+    }
+  ],
+  "sourceDraftNotes": [
+    "Initial Wikisource scaffold is not a complete pointed transcription. Every sourcePages-empty verse remains unreviewed and must not be imported.",
+    "Wikisource response SHA-256: 3a3d3881d1b4fe55e1ea05c011eb8465707ffaf2acf058935ef4c442a5430047",
+    "PDF97–98 first pointed transcription drafted; not yet marked reviewed: proper-name niqqud needs independent confirmation. Every verse remains subject to full final comparison.",
+    "PDF98 prints combined margin label ח–ט. Source unit1:8–9 retained as one row. PDF100 also prints combined14–15; pending transcription.",
+    "PDF99–102 first pointed transcription drafted, pending independent diacritic verification; no pages certified complete. Names are not mechanically vocalized.",
+    "PDF100–101 prints combined14–15; PDF102 explicitly includes a three-dash bracketed lacuna at1:26, absent from the online scaffold.",
+    "PDF103 first pointed transcription drafted through1:41–42. Source combines41–42. Full final diacritic verification remains outstanding, including doubtful vowel forms; no page marked complete.",
+    "Chapter1 first pointed draft now spansPDF97–105,59 source units representing64 verse labels. None certified complete yet. Further combined units46–47 and50–51 preserved.",
+    "PDF104-detail confirms defective ירושלם with the printed combined vowel marks; draft spelling corrected. Remaining targeted diacritic questions include כסלו1:54 and several worn vowel marks.",
+    "B103 targeted print recheck at1:39 confirms defective הֻשַׁם, without ו; draft corrected. Chapter1 is explicitly partial because the printed1:26 lacuna is preserved. This does not certify chapter review.",
+    "Unreviewed chapters2–16 scaffold reparsed with explicit HTML line-break separation; no source wording or pointing certified by that repair. The OCR baseline evidence freezes its original chapter1 reference snapshot.",
+    "B105–107 initial pointed draft of2:1–14. Source combines4–5 and8–9. Preserve the printed bracketed2:13 lacuna and כְּ[בֵית־]אִישׁ at2:8–9. Every vowel and punctuation mark remains subject to final comparison; no page certified complete.",
+    "Unresolved B107 marks: הרגו in2:8–9 and חפשיה in2:11 are deliberately left unpointed in this draft until their printed marks are resolved. Other worn marks and source-specific name pointing still need independent final comparison.",
+    "B1082:15–28 compared consonant-by-consonant only; pointing has NOT been transcribed or certified for these rows. Corrected the online omission in2:19 (בקול גדול אם־כל־העמים אשר בבית־מלכות המלך שומעים לו), source אבותיו versus online אבותינו, source או versus online ואו at2:22, and source פינחס at2:26. Printed combined labels16–17 and20–21 preserved.",
+    "B109–1102:29–69 compared for consonants and source unit boundaries only; printed niqqud remains to be transcribed. Source32 ends רבים without a verse-end sign;33 begins וישיגום. Retained source brackets [לעשות] at34, [ותחשב־לו] at51, [אדני] at54, and source name order חנניה עזריה מישאל at58–59. Added source-combined30–31,38–39,46–47,52–53,55–56,58–59,60–61,68–69.",
+    "Printed verse-end signs in all scan-compared draft rows are encoded with Hebrew sof pasuq U+05C3, not ASCII colon. Untouched online-scaffold rows retain their provisional punctuation until scan comparison.",
+    "Online scaffold reparsed for explicit empty inline-block column spacers as well as line breaks. This only repairs missing whitespace in unreviewed chapters; it does not infer or certify source words."
+  ],
+  "limitations": [
+    "The manually typed pointed chapter is itself a draft; its differences require final print adjudication.",
+    "Crops retain full Scripture lines and marginal labels. OCR word boxes in the known margin are recorded separately, not compared as Scripture. A merged body/margin box remains unresolved and is excluded without guessing its text.",
+    "Exact consonantal agreement cannot verify niqqud, punctuation, word boundaries, or the correct occurrence of a repeated phrase.",
+    "No differing OCR token is silently replaced from Wikisource. No page or book is marked reviewed by this tool."
+  ],
+  "provenance": {
+    "sourceDraftSHA256": "26b56dd0b6f3f0165ecb0f612a9201f7341e13a6e45e1a4d772af1d3de920734",
+    "comparisonToolSHA256": "e7a673c3e2999dbdb3005829d81e845bec1808015c7ecdc6396eb1e57ed8b717",
+    "sharedAlignerSHA256": "2e26c7ebf05124671418ff05be288b7b8770a2fafcce33888f93c0c7b47d1b73",
+    "renderer": "PyMuPDF",
+    "rendererVersion": "1.28.2",
+    "renderScale": 5
+  },
+  "vocabularyTrial": {
+    "status": "research_trial_not_accuracy_measurement",
+    "heldOutPage": 105,
+    "vocabularyChapters": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16
+    ],
+    "vocabularyWords": 3712,
+    "vocabularySHA256": "def26258576a1913a079b6e56e137919a0f81856668bc6388b56e56d7f0a641d",
+    "imageSHA256": "d497e7cb3f079e2e4b6282e846822ac9be13955a086a275bfd150ff52a260120",
+    "runnerSHA256": "b101e436a864ec5f69fd8f3d1796cceb419e5ce12750f4bd8a46c6845d1faa55",
+    "referenceStatus": "unreviewed",
+    "results": {
+      "plain": {
+        "schemaVersion": 1,
+        "purpose": "review-only",
+        "relationship": "scan-transcription",
+        "referenceStatus": "unreviewed",
+        "productionEligible": false,
+        "referenceSHA256": "f0e93fff21a0b9a460f90e1e8b0ad5a48b2819a4f4e1e13d7d394c1ee51a96eb",
+        "observedSHA256": "5fecad7bb149a0296c4f635cbda3fcdcd77ec770f3bb2f2dc0ef6e083c8f8473",
+        "normalization": "Combining marks and punctuation removed for comparison only; spelling preserved.",
+        "referenceWords": 87,
+        "observedWords": 81,
+        "wordOperations": {
+          "equal": 52,
+          "replace": 29,
+          "delete": 6,
+          "insert": 0
+        },
+        "matchingReferenceFraction": 0.5977011494252874,
+        "tokenDifferenceRate": 0.40229885057471265,
+        "notes": [
+          "An alignment is a review aid, not a verified verse crosswalk.",
+          "Niqqud and punctuation still require separate image comparison.",
+          "Text differences are not an OCR accuracy measurement without a scan-checked matching reference."
+        ]
+      },
+      "vocabulary": {
+        "schemaVersion": 1,
+        "purpose": "review-only",
+        "relationship": "scan-transcription",
+        "referenceStatus": "unreviewed",
+        "productionEligible": false,
+        "referenceSHA256": "f0e93fff21a0b9a460f90e1e8b0ad5a48b2819a4f4e1e13d7d394c1ee51a96eb",
+        "observedSHA256": "62edebc1783b8a0c1c6612729b08e15d677209dc78a882877f7c0bd0c8d193b3",
+        "normalization": "Combining marks and punctuation removed for comparison only; spelling preserved.",
+        "referenceWords": 87,
+        "observedWords": 81,
+        "wordOperations": {
+          "equal": 51,
+          "replace": 30,
+          "delete": 6,
+          "insert": 0
+        },
+        "matchingReferenceFraction": 0.5862068965517241,
+        "tokenDifferenceRate": 0.41379310344827586,
+        "notes": [
+          "An alignment is a review aid, not a verified verse crosswalk.",
+          "Niqqud and punctuation still require separate image comparison.",
+          "Text differences are not an OCR accuracy measurement without a scan-checked matching reference."
+        ]
+      }
+    },
+    "engine": {
+      "plain": {
+        "engine": "tesseract.js",
+        "version": "7.0.0",
+        "language": "heb",
+        "oem": 1,
+        "psm": 6,
+        "imageSHA256": "d497e7cb3f079e2e4b6282e846822ac9be13955a086a275bfd150ff52a260120",
+        "modelSHA256": "a95d74d445e9bbb772a3572b4f01741309b3ab2c015773ef6fe7f25829c2dd0b",
+        "vocabularySHA256": null,
+        "confidence": 35,
+        "excludedLayout": [
+          {
+            "text": "=",
+            "bbox": {
+              "x0": 1502,
+              "y0": 35,
+              "x1": 1515,
+              "y1": 105
+            },
+            "confidence": 18,
+            "classification": "printed_margin"
+          },
+          {
+            "text": "מ",
+            "bbox": {
+              "x0": 1529,
+              "y0": 131,
+              "x1": 1554,
+              "y1": 158
+            },
+            "confidence": 29,
+            "classification": "printed_margin"
+          },
+          {
+            "text": "|",
+            "bbox": {
+              "x0": 1495,
+              "y0": 108,
+              "x1": 1513,
+              "y1": 180
+            },
+            "confidence": 29,
+            "classification": "printed_margin"
+          },
+          {
+            "text": "נה",
+            "bbox": {
+              "x0": 1520,
+              "y0": 207,
+              "x1": 1553,
+              "y1": 233
+            },
+            "confidence": 60,
+            "classification": "printed_margin"
+          },
+          {
+            "text": "|",
+            "bbox": {
+              "x0": 1474,
+              "y0": 183,
+              "x1": 1495,
+              "y1": 264
+            },
+            "confidence": 38,
+            "classification": "printed_margin"
+          },
+          {
+            "text": "₪",
+            "bbox": {
+              "x0": 1517,
+              "y0": 283,
+              "x1": 1553,
+              "y1": 309
+            },
+            "confidence": 93,
+            "classification": "printed_margin"
+          },
+          {
+            "text": "|",
+            "bbox": {
+              "x0": 1477,
+              "y0": 258,
+              "x1": 1492,
+              "y1": 340
+            },
+            "confidence": 44,
+            "classification": "printed_margin"
+          },
+          {
+            "text": "ם",
+            "bbox": {
+              "x0": 1533,
+              "y0": 358,
+              "x1": 1553,
+              "y1": 385
+            },
+            "confidence": 77,
+            "classification": "printed_margin"
+          },
+          {
+            "text": "|",
+            "bbox": {
+              "x0": 1478,
+              "y0": 335,
+              "x1": 1504,
+              "y1": 411
+            },
+            "confidence": 78,
+            "classification": "printed_margin"
+          },
+          {
+            "text": "כא",
+            "bbox": {
+              "x0": 1510,
+              "y0": 433,
+              "x1": 1553,
+              "y1": 460
+            },
+            "confidence": 41,
+            "classification": "printed_margin"
+          },
+          {
+            "text": "סג",
+            "bbox": {
+              "x0": 1511,
+              "y0": 508,
+              "x1": 1552,
+              "y1": 536
+            },
+            "confidence": 72,
+            "classification": "printed_margin"
+          },
+          {
+            "text": "סג",
+            "bbox": {
+              "x0": 1517,
+              "y0": 585,
+              "x1": 1552,
+              "y1": 611
+            },
+            "confidence": 42,
+            "classification": "printed_margin"
+          },
+          {
+            "text": "סר",
+            "bbox": {
+              "x0": 1512,
+              "y0": 661,
+              "x1": 1553,
+              "y1": 687
+            },
+            "confidence": 81,
+            "classification": "printed_margin"
+          },
+          {
+            "text": "|",
+            "bbox": {
+              "x0": 1475,
+              "y0": 637,
+              "x1": 1493,
+              "y1": 706
+            },
+            "confidence": 68,
+            "classification": "printed_margin"
+          }
+        ]
+      },
+      "vocabulary": {
+        "engine": "tesseract.js",
+        "version": "7.0.0",
+        "language": "heb",
+        "oem": 1,
+        "psm": 6,
+        "imageSHA256": "d497e7cb3f079e2e4b6282e846822ac9be13955a086a275bfd150ff52a260120",
+        "modelSHA256": "a95d74d445e9bbb772a3572b4f01741309b3ab2c015773ef6fe7f25829c2dd0b",
+        "vocabularySHA256": "def26258576a1913a079b6e56e137919a0f81856668bc6388b56e56d7f0a641d",
+        "confidence": 37,
+        "excludedLayout": [
+          {
+            "text": "=",
+            "bbox": {
+              "x0": 1502,
+              "y0": 35,
+              "x1": 1515,
+              "y1": 105
+            },
+            "confidence": 18,
+            "classification": "printed_margin"
+          },
+          {
+            "text": "מ",
+            "bbox": {
+              "x0": 1529,
+              "y0": 131,
+              "x1": 1554,
+              "y1": 158
+            },
+            "confidence": 29,
+            "classification": "printed_margin"
+          },
+          {
+            "text": "|",
+            "bbox": {
+              "x0": 1495,
+              "y0": 108,
+              "x1": 1513,
+              "y1": 180
+            },
+            "confidence": 29,
+            "classification": "printed_margin"
+          },
+          {
+            "text": "נה",
+            "bbox": {
+              "x0": 1520,
+              "y0": 207,
+              "x1": 1553,
+              "y1": 233
+            },
+            "confidence": 60,
+            "classification": "printed_margin"
+          },
+          {
+            "text": "|",
+            "bbox": {
+              "x0": 1474,
+              "y0": 183,
+              "x1": 1495,
+              "y1": 264
+            },
+            "confidence": 38,
+            "classification": "printed_margin"
+          },
+          {
+            "text": "₪",
+            "bbox": {
+              "x0": 1517,
+              "y0": 283,
+              "x1": 1553,
+              "y1": 309
+            },
+            "confidence": 93,
+            "classification": "printed_margin"
+          },
+          {
+            "text": "|",
+            "bbox": {
+              "x0": 1477,
+              "y0": 258,
+              "x1": 1492,
+              "y1": 340
+            },
+            "confidence": 44,
+            "classification": "printed_margin"
+          },
+          {
+            "text": "ם",
+            "bbox": {
+              "x0": 1533,
+              "y0": 358,
+              "x1": 1553,
+              "y1": 385
+            },
+            "confidence": 77,
+            "classification": "printed_margin"
+          },
+          {
+            "text": "|",
+            "bbox": {
+              "x0": 1478,
+              "y0": 335,
+              "x1": 1504,
+              "y1": 411
+            },
+            "confidence": 78,
+            "classification": "printed_margin"
+          },
+          {
+            "text": "כא",
+            "bbox": {
+              "x0": 1510,
+              "y0": 433,
+              "x1": 1553,
+              "y1": 460
+            },
+            "confidence": 41,
+            "classification": "printed_margin"
+          },
+          {
+            "text": "סג",
+            "bbox": {
+              "x0": 1511,
+              "y0": 508,
+              "x1": 1552,
+              "y1": 536
+            },
+            "confidence": 72,
+            "classification": "printed_margin"
+          },
+          {
+            "text": "סג",
+            "bbox": {
+              "x0": 1517,
+              "y0": 585,
+              "x1": 1552,
+              "y1": 611
+            },
+            "confidence": 42,
+            "classification": "printed_margin"
+          },
+          {
+            "text": "סר",
+            "bbox": {
+              "x0": 1512,
+              "y0": 661,
+              "x1": 1553,
+              "y1": 687
+            },
+            "confidence": 81,
+            "classification": "printed_margin"
+          },
+          {
+            "text": "|",
+            "bbox": {
+              "x0": 1475,
+              "y0": 637,
+              "x1": 1493,
+              "y1": 706
+            },
+            "confidence": 68,
+            "classification": "printed_margin"
+          }
+        ]
+      }
+    }
+  },
+  "ocrRunnerSHA256": "b101e436a864ec5f69fd8f3d1796cceb419e5ce12750f4bd8a46c6845d1faa55",
+  "ocrModelSHA256": "a95d74d445e9bbb772a3572b4f01741309b3ab2c015773ef6fe7f25829c2dd0b",
+  "comparison": {
+    "schemaVersion": 1,
+    "purpose": "review-only",
+    "relationship": "same-translation",
+    "referenceStatus": "unreviewed",
+    "productionEligible": false,
+    "referenceSHA256": "dad4f623bd6b739a32d81682742ed2f6eab04b8fbcf575b6e72583bbc7bfbe6c",
+    "observedSHA256": "1b1d7353d4b22029d3d021975b14abf37a261f57e1041a8433667f11c7c739d6",
+    "normalization": "Combining marks and punctuation removed for comparison only; spelling preserved.",
+    "referenceWords": 689,
+    "observedWords": 636,
+    "wordOperations": {
+      "equal": 329,
+      "replace": 307,
+      "delete": 53,
+      "insert": 0
+    },
+    "matchingReferenceFraction": 0.47750362844702465,
+    "tokenDifferenceRate": 0.5224963715529753,
+    "notes": [
+      "An alignment is a review aid, not a verified verse crosswalk.",
+      "Niqqud and punctuation still require separate image comparison.",
+      "Text differences are not an OCR accuracy measurement without a scan-checked matching reference."
+    ]
+  },
+  "rawOCRByPage": {
+    "97": "     א והי אמָרי. הבות אַלְכְסנְדַר בְּדְפִילפים הַמְקְדונִיאסֶרדוְצָא\n\n מאָרֶץ כַתִים [(אֶת\"מיל פרֶס) ניך. אֶתדרְרְנוֶש מָלֶ פֶרס וּמָרִיימל\n כ | תִחְתָיו בְראשוּנָה בָאָרץ יָן: מערר מִלְרָמות רות לפמִבְצָרִים\n ג | נשמט מלכִי אָרֶץ: ניבא ער-קְצות-הָאָרֶץ גקח. שלליגוּיםרַבִּים\n",
+    "98": " ר | נתשָקט הָאָרֶץ לְפְגִיו ַיָרֶם נִיגְכָה לבו: גיאֶסף מל כְּבַד מָאדוַיְמְלך\n ה = על\"אַרְצות גויִם וְרוּזִָים נַיְהְיוּ לו לָמַס: וַיְהִי אַמַר הַדְּבָרִים הָאַלָהויפל\n ו | קְמְְכְבנמדעבִי\"יְמות: ניקְרָא לפְבְדָיו הִַכְבּריםאַטֶריגְרְלוּ אתומְנֶשרִיו\n ו | נְמַלק כָהֶם אֶת\"מַלְכותו בְּעידְנוּ חִי: מל אַלְכְסַוְררשְתִּים-עֶשָרֶה\n ח-ט שְנֶה ניָמת: נשקטו עַבְדָיו איש בְּמְקוּמו: נישימוּ כָלֶם כְּתְרִימַלְכוּת\n\n בְּרָאשִיהֶם אַחָרִי מותו וּבְנִיהֶם אַמְרִיהֶם שנִים רבות נַיַרְבּוּ רָעותכְארֶץ:\n",
+    "99": "       י, נמצא מָהֶם שרש רשע אַנְִיוכום אַפִיסְנֶם בְּזדאַנְטִיוכוםהַמָלֶך\n אשָר הָיָה בְְדתַעַרוּבות בְּרוּמִי ימל בִּשנת מאה ושלשיםוֶשֶבַע\n",
+    "100": " יא | לְמַלְכות הַיוָנִים: בַּיָמִים הָהֶם יַצְאוּ מִקְרֶב יַשרְאֶל בְּני\"בְליעלווריחו\n\n רַבִּים לאמר נִלְכָה וְנְכְרְתָה בָרִית. אֶתההַגוּיִם. אָשָר. פְבִיבוּתִינוכִּי\n יב | מִדהִיום אשָר פַרנוּ מַעְמָהֶם מְצָאוּנוּ רָעות רבות: נַיִיטֶבהַרְכָר\n יג | בְּעַינִיהֶם: נַיתְנדְבוּ אֶגֶשים מִוְדהָעֶם יכו אֶלההַמֶלֶך נישליסםהַמֶלֶר\n יר-מוקעשות כְּחְקִי הגוים: וַיִבְנוּ גַמְנְסיון בִּירוּשֶלֶם כְמשְָטי הַגוּיִם:יעשי\n",
+    "101": " לָהֶם עְרְלָה גיעָוְבוּ בְּריתהקדש וַיִצֶמְדוּ לגיים ַיְתְמִכְרוּ לעשותרע:\n      . ותכון הַמְלוּכָה לפָנִי. אַנְמִייכים. וִתְנשא למֶלך בְּאָרֶץמִצְרְיִם\n ו | קמע מלך עלישתִי הַמִמְלְכוּת: נַוֶבא מִצְריְמָה בְּעַם כְּכַרבְּרֶב\n יח | וְבְפילים. וּבְפְרֶשִים. וּכְאָנִי דול: מערך מִלְחְמָה עַם\"תַלְמִימלד\n ים | מִצְרָיִם ניסוג תַּלְמִי מִפְנְיו. וינם נִיְִּלו חַלְלים רַבִּים: נִַיִלְכְדועֶרִי\n כ | הַמִבְצָר בְאָרֶץ מִצָריִם ניִקַח שלל אָרֶץ מִצַרְיִם: נַיֶשָבאַנְמִייכוס\n\n אַמָרי הכותו אֶת\"מִצְריִם בִּשָנַת מאֶה וְאַרְבָּעִים ושֶלש געלעל\"\n נא יִשָרְאל |ְעַל\"וְרוּשְלֶם בְּעַם כְּכַד: נוָבא אֶליהַמְקְרֶש בְּאַוֶהניִקח\n",
+    "102": " כנ | אֶתימִזְבַּח הַזֶהֶב וְאֶתהמְטורת הַמָאור| ואֶתהבְלדכָּלֶיהַ: |וְאֶת-שֶלְמַן\n הַמעַרְכֶת וְאֶת\"הַקָשות וְאֶתההַמזרְקות וְאֶתהכַּפות הַזֶהֶבוְאֶת\"הַפֶרכֶת\n\n ג | וְאֶת\"הְעַטְרות ואת עַרִי-הַזֶהֶב אֶשָר לפְִי הַהִיכֶל וצל הַפל:ניִקח\n אֶת\"הְכְּסֶף וְאֶת\"הַזָהֶב וְאֶת\"בְלִיההַחְמְרָה וקה אֶת\"אצָרוּתהַמְטְמוּנִים\n\n כד | אשָר מְצָא: וּבְּקַחְתו הפל שב לָאַרְצו נועש הרג רב ניִדפרבְּנָאות\n\n כה | רַבָּה: וַיְהי אַבָּל גָדוּל בִּישראלבְּכֶלדמְקומוּתִיהֶם:\n\n כו ו-  ‎ -‏             -] ַיּאְנְחוּ ראשיםוּזְקְנִים\n בְּתוּלות וכחוּרים          אִמְלָלו ויפי נשִיםשְגֶה:\n\n מ וְמְל\"חְתְן גֶשָא              קִיגָה יושָבֶת בַּתְפֶההַתְאַבָלָה:\n\n כח | וְהָאָרֶץ הְָלֶה          עַלייושְבְיהָ ְכְליבִּית וָעָקב לְכשבּשֶת:\n",
+    "103": "      כט מקָץ שְנְתַיִם יָמִים שלח הַמָלֶך אֶת-שרדהַמופים קְעֶרִייְהוּרָה\n ל | ויבא וְרוּשְליְמָה בְּחַיל כְּבד: נַיְדכַר. אַלִיהֶם דִכְרִי. שָלוםבְּמְרְמָה\n ניאָמִיו לו ויפל עַל-הָעִיר פִתָאם ניֶך בָּה מִכָּה רַבֶּה ְַאַבָּר עםרב\n לא מִיִשָרְאַל: ניקַח אֶת\"שֶלל הָעיר. ישרפה בָּאש. נוֶהרם.אֶת\"בְּתִיהָ\n לכ | וְאֶתהחמוּתֶיהָ מִסָבִיב: וַישָבּוּ אֶת-הַגֶשים וְאֶתההַעָףוְאֶתהכַבְּהַמָה\n לג | בְזָו: נַיבָנוי את עִירחדְוד בְּחוּמָה.גְדוּלָה נַחַזְקָה וּבְמְגְרְלִיםבְּצוּרִים\n לד וַתְּהִי לָהֶָם למְצוּדָה: נִשפְודשֶָם גוי חטא אַנשראָוָן נַיִתְכַּצָרוּבֶּה:\n לה יִַצְבְּרוּ נשק וָאכְל וּבְאַסְפֶם שללחירושלם שָמוּ שָם וַיְהִי לְמוקשגָדול:\n לו | ניָהִי קְמאָרֶב       לְכִית\"הַמְקֶרֶש ּלְשָטֶן רע לִיִשראלתָּמִיר:\n לו | נִַשְפְּכוי דֶם נְקִי מִסָכִיב     למִקֶרֶש וְַמְאוּאֶת\"הַמְקֶרֶש:\n לח = [ונופו יושָבִי יְרוּשָלֶם       בְּנְלְלֶם ַתְּהִי מושָבזָרִים\n ַתְּהִי נְכְרְיָה             לַזרְעָה וְּניהָעַזְבוהְ:\n לט | בִּיתההַמְקְדֶש הָשם        כַמַרְבָר ַגִיהָ גְהְפְכוּלָאַבֶל\n שִבְּתוּתֶיהָ               לְבְּלְמָה מְבידָהלְבוּז:\n ם | כְּרב בְּכוּרֶה גֶרל          קְלְגָה ֶדְלָה גְרֶפֶרלְאַבָל:\n מא-מנ | | ויִמְתם הַמְלֶר אֶל\"כֶלרמלְכותו להְיות כְּלֶם לְעַם אֶחָר:|לעוב\n מג | כֶל\"אִיש | אֶתחתְקוּתָיו. נַיְִבְּלו. כְּלדהָעַמִים ‏ כַּרְבר הַמָּלֶר:וְרְבִּים\n",
+    "104": " מו | מִיִשְרְאל רצו בַעַבודתו ניְכָחו לָאלילים גְמַלְלוּ אֶת\"הַשִבָת:שלח\n הַמָלֶד מְפָרִים בֶּר\"מלאָכִים לירושָלֶם ולְעָרִי יְהודֶה לְלְכֶת אחַריחְקִיס\n מה | (ְכְרים לָאָרֶץ: |לְמְנע עלות וכח סד מךהַמְקדש וּלְחְלֶלשַבָתוּת\n מו - מז וְחָנִים: וּלְסמא מִקְדש וקֶדוּשים: לְבָנות בָּמוּת וְהִיכְלוּתופֶסִילים\n מה | וְלְהַקֶריב חָזַירִים וְבְהַמות מָמַאוּת: וְלְהַנִימַ אֶת\"בְּנִיהֶם בְּלְתִימולים\n סש וקשקָץ אֶת\"נְפֶשוּתֶם בְּכֶל\"טָמא ופְגול:. לשְפח אֶת\"הַתוּרֶהולְהַמַלִיף\n נ-גא בֶּל\"הַחְקִים: גאֶשָר לא-יְעֶשָהכךְכריהַמָלֶך ימת: פְּכֶל-הַרְכְרִיםהָאַלָה\n כָּתַב קַמַלְכותו גפְקַד פֶקירים על-בֶל-הְעָם ויו לְעָרִי יְהודֶהלְהַקֶריב\n נכ | בְּעִיר וֶעַיר: נַיְתְמַבָּרו אַלִיהֶם רַבִּים מִדדהְָעְם כֶּלהעזב |אֶתיהַתוּרֶה\n ג | נעשוּ רָעות בָאָרֶץ: ניֶשימו. אֶתדיִשְרְאֶל בְּמְהַבואִיםבְּכֶלימְגוֶם:\n      : כחֶמשָה עָשָר יום בְּכַסְלו. בְּחְמש ואַרְבָּעִים וּמאָה קְגֶהבָּנו\n נה | שקוץ מְשומֶם עַל-הַמְזְבֶה וּבְעְֶרִי יְהוּדָה מִסָבִים בָּנו בָמוּת:וּבְפְתְחִי\n",
+    "105": " = הַבְתִים וּבְרְחובות וְכָהוּ: וְספְרי הַתוּרָה אשר מְצְאוּ שרפו באשבְּקְרְעֶָם:\n מ | וּבְכל אַשֶרדימְצא בידי איש ססר בָרית וכל אשָר וחֶפץ בַתוּרָהדֶתה\n נה | הַמְלֶר להַמִיתו: בְּתְקְפָם עַשוּ כן לְיִשרָאַל למְצָאִים חרשבְּחְרשו\n ₪ | בְעָרים: וכְחֶמשָה וְעֶטָרִים לחרש הַקְריבו עַל-הַבְּמָה אָשָרהְיְתָה\n ם | עְלרהַמַזְבָּםַ: וְאֶת\"הַגֶשים אשֶר מָלוּ אֶת-בְנִיהֶן הַמִיתו עַליפיהַפְּקְרָה:\n כא נַיִתְלוּ אֶת\"הֶשלְלים בְּצַוְארִיהֶן וְאֶת\"בְּנייבְתִיהֶן ואת הַמָלִיםאותֶם\n סג (הַמית): וְרַבִּים בְּיִשָרְאל הָיו אמיצים ניתְמִזְקוּ לְבַּלְתִי אָכלסְמא:\n סג נִַבְחַרוּ לָמות לְבַלְתִי הַטָמא בְמַאְכָלים. וּלְבַלְתִי הללבֶּריתדקרש\n סר | נַימותו: גַיָהִי. קְצֶף גָדוּל עלדישראלמאר:\n"
+  },
+  "scriptureCandidateOCRByPage": {
+    "97": "והי אמָרי. הבות אַלְכְסנְדַר בְּדְפִילפים הַמְקְדונִי אסֶרדוְצָא מאָרֶץ כַתִים [(אֶת\"מיל פרֶס) ניך. אֶתדרְרְנוֶש מָלֶ פֶרס וּמָרִי ימל תִחְתָיו בְראשוּנָה בָאָרץ יָן: מערר מִלְרָמות רות לפ מִבְצָרִים נשמט מלכִי אָרֶץ: ניבא ער-קְצות-הָאָרֶץ גקח. שלליגוּים רַבִּים",
+    "98": "נתשָקט הָאָרֶץ לְפְגִיו ַיָרֶם נִיגְכָה לבו: גיאֶסף מל כְּבַד מָאד וַיְמְלך על\"אַרְצות גויִם וְרוּזִָים נַיְהְיוּ לו לָמַס: וַיְהִי אַמַר הַדְּבָרִים הָאַלָה ויפל קְמְְכְבנמדעבִי\"יְמות: ניקְרָא לפְבְדָיו הִַכְבּריםאַטֶריגְרְלוּ אתו מְנֶשרִיו נְמַלק כָהֶם אֶת\"מַלְכותו בְּעידְנוּ חִי: מל אַלְכְסַוְרר שְתִּים-עֶשָרֶה שְנֶה ניָמת: נשקטו עַבְדָיו איש בְּמְקוּמו: נישימוּ כָלֶם כְּתְרִי מַלְכוּת בְּרָאשִיהֶם אַחָרִי מותו וּבְנִיהֶם אַמְרִיהֶם שנִים רבות נַיַרְבּוּ רָעות כְארֶץ:",
+    "99": "נמצא מָהֶם שרש רשע אַנְִיוכום אַפִיסְנֶם בְּזדאַנְטִיוכום הַמָלֶך אשָר הָיָה בְְדתַעַרוּבות בְּרוּמִי ימל בִּשנת מאה ושלשים וֶשֶבַע",
+    "100": "לְמַלְכות הַיוָנִים: בַּיָמִים הָהֶם יַצְאוּ מִקְרֶב יַשרְאֶל בְּני\"בְליעל ווריחו רַבִּים לאמר נִלְכָה וְנְכְרְתָה בָרִית. אֶתההַגוּיִם. אָשָר. פְבִיבוּתִינו כִּי מִדהִיום אשָר פַרנוּ מַעְמָהֶם מְצָאוּנוּ רָעות רבות: נַיִיטֶב הַרְכָר בְּעַינִיהֶם: נַיתְנדְבוּ אֶגֶשים מִוְדהָעֶם יכו אֶלההַמֶלֶך נישליסם הַמֶלֶר כְּחְקִי הגוים: וַיִבְנוּ גַמְנְסיון בִּירוּשֶלֶם כְמשְָטי הַגוּיִם: יעשי",
+    "101": "לָהֶם עְרְלָה גיעָוְבוּ בְּריתהקדש וַיִצֶמְדוּ לגיים ַיְתְמִכְרוּ לעשות רע: ותכון הַמְלוּכָה לפָנִי. אַנְמִייכים. וִתְנשא למֶלך בְּאָרֶץ מִצְרְיִם קמע מלך עלישתִי הַמִמְלְכוּת: נַוֶבא מִצְריְמָה בְּעַם כְּכַר בְּרֶב וְבְפילים. וּבְפְרֶשִים. וּכְאָנִי דול: מערך מִלְחְמָה עַם\"תַלְמִי מלד מִצְרָיִם ניסוג תַּלְמִי מִפְנְיו. וינם נִיְִּלו חַלְלים רַבִּים: נִַיִלְכְדו עֶרִי הַמִבְצָר בְאָרֶץ מִצָריִם ניִקַח שלל אָרֶץ מִצַרְיִם: נַיֶשָב אַנְמִייכוס אַמָרי הכותו אֶת\"מִצְריִם בִּשָנַת מאֶה וְאַרְבָּעִים ושֶלש געל על\" יִשָרְאל |ְעַל\"וְרוּשְלֶם בְּעַם כְּכַד: נוָבא אֶליהַמְקְרֶש בְּאַוֶה ניִקח",
+    "102": "אֶתימִזְבַּח הַזֶהֶב וְאֶתהמְטורת הַמָאור| ואֶתהבְלדכָּלֶיהַ: | וְאֶת-שֶלְמַן הַמעַרְכֶת וְאֶת\"הַקָשות וְאֶתההַמזרְקות וְאֶתהכַּפות הַזֶהֶב וְאֶת\"הַפֶרכֶת וְאֶת\"הְעַטְרות ואת עַרִי-הַזֶהֶב אֶשָר לפְִי הַהִיכֶל וצל הַפל: ניִקח אֶת\"הְכְּסֶף וְאֶת\"הַזָהֶב וְאֶת\"בְלִיההַחְמְרָה וקה אֶת\"אצָרוּת הַמְטְמוּנִים אשָר מְצָא: וּבְּקַחְתו הפל שב לָאַרְצו נועש הרג רב ניִדפר בְּנָאות רַבָּה: וַיְהי אַבָּל גָדוּל בִּישראל בְּכֶלדמְקומוּתִיהֶם: ו-  ‎ -‏ -] ַיּאְנְחוּ ראשים וּזְקְנִים בְּתוּלות וכחוּרים אִמְלָלו ויפי נשִים שְגֶה: וְמְל\"חְתְן גֶשָא קִיגָה יושָבֶת בַּתְפֶה הַתְאַבָלָה: וְהָאָרֶץ הְָלֶה עַלייושְבְיהָ ְכְליבִּית וָעָקב לְכש בּשֶת:",
+    "103": "מקָץ שְנְתַיִם יָמִים שלח הַמָלֶך אֶת-שרדהַמופים קְעֶרִי יְהוּרָה ויבא וְרוּשְליְמָה בְּחַיל כְּבד: נַיְדכַר. אַלִיהֶם דִכְרִי. שָלום בְּמְרְמָה ניאָמִיו לו ויפל עַל-הָעִיר פִתָאם ניֶך בָּה מִכָּה רַבֶּה ְַאַבָּר עם רב מִיִשָרְאַל: ניקַח אֶת\"שֶלל הָעיר. ישרפה בָּאש. נוֶהרם. אֶת\"בְּתִיהָ וְאֶתהחמוּתֶיהָ מִסָבִיב: וַישָבּוּ אֶת-הַגֶשים וְאֶתההַעָף וְאֶתהכַבְּהַמָה בְזָו: נַיבָנוי את עִירחדְוד בְּחוּמָה.גְדוּלָה נַחַזְקָה וּבְמְגְרְלִים בְּצוּרִים וַתְּהִי לָהֶָם למְצוּדָה: נִשפְודשֶָם גוי חטא אַנשראָוָן נַיִתְכַּצָרוּ בֶּה: יִַצְבְּרוּ נשק וָאכְל וּבְאַסְפֶם שללחירושלם שָמוּ שָם וַיְהִי לְמוקש גָדול: ניָהִי קְמאָרֶב לְכִית\"הַמְקֶרֶש ּלְשָטֶן רע לִיִשראל תָּמִיר: נִַשְפְּכוי דֶם נְקִי מִסָכִיב למִקֶרֶש וְַמְאוּ אֶת\"הַמְקֶרֶש: [ונופו יושָבִי יְרוּשָלֶם בְּנְלְלֶם ַתְּהִי מושָב זָרִים ַתְּהִי נְכְרְיָה לַזרְעָה וְּניהָ עַזְבוהְ: בִּיתההַמְקְדֶש הָשם כַמַרְבָר ַגִיהָ גְהְפְכוּ לָאַבֶל שִבְּתוּתֶיהָ לְבְּלְמָה מְבידָה לְבוּז: כְּרב בְּכוּרֶה גֶרל קְלְגָה ֶדְלָה גְרֶפֶר לְאַבָל: | | ויִמְתם הַמְלֶר אֶל\"כֶלרמלְכותו להְיות כְּלֶם לְעַם אֶחָר: |לעוב כֶל\"אִיש | אֶתחתְקוּתָיו. נַיְִבְּלו. כְּלדהָעַמִים ‏ כַּרְבר הַמָּלֶר: וְרְבִּים",
+    "104": "מִיִשְרְאל רצו בַעַבודתו ניְכָחו לָאלילים גְמַלְלוּ אֶת\"הַשִבָת: שלח הַמָלֶד מְפָרִים בֶּר\"מלאָכִים לירושָלֶם ולְעָרִי יְהודֶה לְלְכֶת אחַרי חְקִיס (ְכְרים לָאָרֶץ: |לְמְנע עלות וכח סד מךהַמְקדש וּלְחְלֶל שַבָתוּת וְחָנִים: וּלְסמא מִקְדש וקֶדוּשים: לְבָנות בָּמוּת וְהִיכְלוּת ופֶסִילים וְלְהַקֶריב חָזַירִים וְבְהַמות מָמַאוּת: וְלְהַנִימַ אֶת\"בְּנִיהֶם בְּלְתִי מולים וקשקָץ אֶת\"נְפֶשוּתֶם בְּכֶל\"טָמא ופְגול:. לשְפח אֶת\"הַתוּרֶה ולְהַמַלִיף בֶּל\"הַחְקִים: גאֶשָר לא-יְעֶשָהכךְכריהַמָלֶך ימת: פְּכֶל-הַרְכְרִים הָאַלָה כָּתַב קַמַלְכותו גפְקַד פֶקירים על-בֶל-הְעָם ויו לְעָרִי יְהודֶה לְהַקֶריב בְּעִיר וֶעַיר: נַיְתְמַבָּרו אַלִיהֶם רַבִּים מִדדהְָעְם כֶּלהעזב | אֶתיהַתוּרֶה נעשוּ רָעות בָאָרֶץ: ניֶשימו. אֶתדיִשְרְאֶל בְּמְהַבואִים בְּכֶלימְגוֶם: כחֶמשָה עָשָר יום בְּכַסְלו. בְּחְמש ואַרְבָּעִים וּמאָה קְגֶה בָּנו שקוץ מְשומֶם עַל-הַמְזְבֶה וּבְעְֶרִי יְהוּדָה מִסָבִים בָּנו בָמוּת: וּבְפְתְחִי",
+    "105": "הַבְתִים וּבְרְחובות וְכָהוּ: וְספְרי הַתוּרָה אשר מְצְאוּ שרפו באש בְּקְרְעֶָם: וּבְכל אַשֶרדימְצא בידי איש ססר בָרית וכל אשָר וחֶפץ בַתוּרָה דֶתה הַמְלֶר להַמִיתו: בְּתְקְפָם עַשוּ כן לְיִשרָאַל למְצָאִים חרש בְּחְרשו בְעָרים: וכְחֶמשָה וְעֶטָרִים לחרש הַקְריבו עַל-הַבְּמָה אָשָר הְיְתָה עְלרהַמַזְבָּםַ: וְאֶת\"הַגֶשים אשֶר מָלוּ אֶת-בְנִיהֶן הַמִיתו עַליפי הַפְּקְרָה: נַיִתְלוּ אֶת\"הֶשלְלים בְּצַוְארִיהֶן וְאֶת\"בְּנייבְתִיהֶן ואת הַמָלִים אותֶם (הַמית): וְרַבִּים בְּיִשָרְאל הָיו אמיצים ניתְמִזְקוּ לְבַּלְתִי אָכל סְמא: נִַבְחַרוּ לָמות לְבַלְתִי הַטָמא בְמַאְכָלים. וּלְבַלְתִי הלל בֶּריתדקרש נַימותו: גַיָהִי. קְצֶף גָדוּל עלדישראל מאר:"
+  },
+  "referenceSnapshot": {
+    "onlineChapter": [
+      {
+        "verse": 1,
+        "text": "ויהי אחרי הַכּוׂת אלכסנדר בן פילפוס המקדוני אשר יצא מארץ כיתים [את חיל פרס] ויך את דריָוֶש מלך פרס ומדי וימלוך תחתיו בראשונה בארץ יון:"
+      },
+      {
+        "verse": 2,
+        "text": "ויערוך מלחמות רבות וילכוד מבצרים וישחט מלכי ארץ:"
+      },
+      {
+        "verse": 3,
+        "text": "ויבוא עד קצוֹת-הארץ וייקח שְלל-גויים רבים ותשקוט הארץ לפניו וירם ויגבה לבו:"
+      },
+      {
+        "verse": 4,
+        "text": "ויאסוף חיל כבד מאוד וימלוך על ארצות גוים ורוזנים ויהיו לו למס:"
+      },
+      {
+        "verse": 5,
+        "text": "ויהיה אחר הדברים האלה ויפול למשכב וידע כי ימות:"
+      },
+      {
+        "verse": 6,
+        "text": "ויקרא לעבדיו הנכבדים אשר גדלו אִתו מנעוריו ויחלק להם את מלכותו בעודנו חי:"
+      },
+      {
+        "verse": 7,
+        "text": "וימלוך אלכסנדר שתים-עשרה שנה וימות:"
+      },
+      {
+        "verse": 8,
+        "text": "וישלטו עבדיו איש במקומו:"
+      },
+      {
+        "verse": 9,
+        "text": "וישימו כולם כתרי מלכות בראשיהם אחרי מותו ובניהם אחריהם שנים רבות וירבו רעות בארץ:"
+      },
+      {
+        "verse": 10,
+        "text": "ויצא מהם שורש רשע אנטיוכוס אפיפנס בן אנטיוכוס המלך אשר היה בן תערובות ברומי וימלוך בשנת מאה ושלושים ושבע למלכות היוונים:"
+      },
+      {
+        "verse": 11,
+        "text": "בימים ההם יצאו מקרב ישראל בני בליעל וידיחו רבים לאמור נֵלכה ונכרתה ברית את הגויים אשר סביבותינו כי מן היום אשר סרנו מעמהם מצאונו רעות רבות:"
+      },
+      {
+        "verse": 12,
+        "text": "וייטב הדבר בעיניהם:"
+      },
+      {
+        "verse": 13,
+        "text": "ויתנדבו אנשים מן העם וילכו אל המלך וישליטם המלך לעשות כחוקי הגויים:"
+      },
+      {
+        "verse": 14,
+        "text": "ויבנו גִמְנַסְיוֹן בירושלים כמשפטי הגויים:"
+      },
+      {
+        "verse": 15,
+        "text": "ויעשו להם ערלה ויעזבו ברית קודש ויצמדו לגוים ויתמכרו לעשות רע:"
+      },
+      {
+        "verse": 16,
+        "text": "ותִכּוֹן המלוכה לפני אנטיוכוס ויתנשא למלוך בארץ מצרים למען מלוך על שתי הממלכות:"
+      },
+      {
+        "verse": 17,
+        "text": "ויבוא מצרימה בעם כבד ברכב ובפילים ובפרשים ובאֳני גדול:"
+      },
+      {
+        "verse": 18,
+        "text": "ויערוך מלחמה עם תלמי מלך מצרים ויסוג תלמי מפניו וינוס ויפלו חללים רבים:"
+      },
+      {
+        "verse": 19,
+        "text": "וילכדו ערי המבצר בארץ מצרים וייקח שלל ארץ מצרים:"
+      },
+      {
+        "verse": 20,
+        "text": "וישוב אנטיוכוס אחרי הכותו את מצרים בשנת מאה וארבעים ושלוש ויעל על ישראל ועל ירושלים בעם כבד:"
+      },
+      {
+        "verse": 21,
+        "text": "ויבוא אל המקדש בגאווה וייקח את מזבח הזהב ואת מנורת המאור ואת כל כֵליה:"
+      },
+      {
+        "verse": 22,
+        "text": "ואת שולחן המערכת ואת הקשוות ואת המזרקות ואת כפות הזהב ואת הפרוכת ואת העטרות ואת עדי הזהב אשר לפני ההיכל ויפצל הכול:"
+      },
+      {
+        "verse": 23,
+        "text": "וייקח את הכסף ואת הזהב ואת כלי החמדה וייקח את אוצרות המטמונים אשר מצא:"
+      },
+      {
+        "verse": 24,
+        "text": "ובקחתו הכול שב לארצו ויעש הרג רב וידבר בגאוּת רבה:"
+      },
+      {
+        "verse": 25,
+        "text": "ויהי אבל גדול בישראל בכל מקומותיהם:"
+      },
+      {
+        "verse": 26,
+        "text": "ויאנחו ראשים וזקנים בתולות ובחורים אומללו ויופי נשים שונה:"
+      },
+      {
+        "verse": 27,
+        "text": "וכל חתן נשא קינה יושבת בחופה התאבלה:"
+      },
+      {
+        "verse": 28,
+        "text": "והארץ חלה על יושביה וכל בית יעקב לבש בושת:"
+      },
+      {
+        "verse": 29,
+        "text": "מקץ שנתיים ימים שלח המלך את שר המוּסים לערי יהודה ויבוא ירושלימה בחיל כבד:"
+      },
+      {
+        "verse": 30,
+        "text": "וידבר אליהם דברי שלום במרמה ויאמינו לו ויפול על העיר פתאום ויך בה מכה רבה ויאבד עם רב מישראל:"
+      },
+      {
+        "verse": 31,
+        "text": "ויקח את שְלַל־העיר וישׂרפֻהָּ באש ויהרוס את בתיה ואת חומותיה מסביב:"
+      },
+      {
+        "verse": 32,
+        "text": "ויִשְבּוּ את הנשים ואת הטף ואת הבהמה בזזו:"
+      },
+      {
+        "verse": 33,
+        "text": "ויבנו את עיר דוד בחומה גדולה וחזקה ובמגדלים בצוּרים ותהי להם למצוּדה:"
+      },
+      {
+        "verse": 34,
+        "text": "וישכון שם גוי חוטא אנשי אוֶן ויתבצרו בה:"
+      },
+      {
+        "verse": 35,
+        "text": "ויצברו נשק ואוכל ובאָסְפּם שלל-ירושלים שמו שם ויהי למוקש גדול:"
+      },
+      {
+        "verse": 36,
+        "text": "ויהי למארב לבית המקדש ולשטן רע לישראל תמיד:"
+      },
+      {
+        "verse": 37,
+        "text": "וישפכו דם נקי מסביב למקדש ויטמאו את המקדש:"
+      },
+      {
+        "verse": 38,
+        "text": "וינוסו יושבי ירושלים בגללם ותהי מושב זרים ותהי נָכריה לזרעה ובניה עזבוּהָ:"
+      },
+      {
+        "verse": 39,
+        "text": "בית המקדש הוּשם כמדבר חגיה נהפכו לאבל שבתותיה לכלימה כבודה לבוז:"
+      },
+      {
+        "verse": 40,
+        "text": "כרוב כבודה גדל קלונה וגודלה נהפך לאבל:"
+      },
+      {
+        "verse": 41,
+        "text": "ויכתוב המלך אל כל מלכותו להיות כולם לעם אחד:"
+      },
+      {
+        "verse": 42,
+        "text": "ולעזוב כל איש את חוקותיו ויקבלו כל העמים כדבר המלך:"
+      },
+      {
+        "verse": 43,
+        "text": "ורבים מישראל רצו בעבודתו ויזבחו לאלילים ויחללו את השבת:"
+      },
+      {
+        "verse": 44,
+        "text": "וישלח המלך ספרים ביד מלאכים לירושלים ולערי יהודה ללכת אחרי חוקים נכרים לארץ:"
+      },
+      {
+        "verse": 45,
+        "text": "ולמנוע עולות וזבח ונסך מן-המקדש ולחלל שבתות וחגים:"
+      },
+      {
+        "verse": 46,
+        "text": "ולטמא מקדש וקדושים:"
+      },
+      {
+        "verse": 47,
+        "text": "לבנות במות והיכלות ופסילים ולהקריב חזירים ובהמות טמאות:"
+      },
+      {
+        "verse": 48,
+        "text": "ולהניח את בניהם בלתי מולים ולשקץ את נפשותם בכל טמא ופיגול:"
+      },
+      {
+        "verse": 49,
+        "text": "לשכוח את התורה ולהחליף כל החוקים:"
+      },
+      {
+        "verse": 50,
+        "text": "ואשר לא יעשה כדבר המלך ימֹת:"
+      },
+      {
+        "verse": 51,
+        "text": "ככול הדברים האלה כתב למלכותו ויפקד פקידים על כל העם ויצו לערי יהודה להקריב בעיר ועיר:"
+      },
+      {
+        "verse": 52,
+        "text": "ויתחברו אליהם רבים מן העם כל עוזב את התורה ויעשו רעות בארץ:"
+      },
+      {
+        "verse": 53,
+        "text": "וישימו את ישראל במחבואים בכל מנוסם:"
+      },
+      {
+        "verse": 54,
+        "text": "ובחמישה עשר יום בכסליו בחמש וארבעים ומאה שנה בנו שיקוץ משומם על המזבח ובערי יהודה מסביב בנו במות:"
+      },
+      {
+        "verse": 55,
+        "text": "ובפתחי הבתים וברחובות זבחו:"
+      },
+      {
+        "verse": 56,
+        "text": "וספרי התורה אשר מצאו שרפו באש בקורעם:"
+      },
+      {
+        "verse": 57,
+        "text": "ובכל אשר ימצא בידי איש ספר ברית וכל אשר יחפוץ בתורה דת המלך להמיתו:"
+      },
+      {
+        "verse": 58,
+        "text": "בתקפם עשו כן לישראל לנמצאים חודש בחודשו בערים:"
+      },
+      {
+        "verse": 59,
+        "text": "ובחמישה ועשרים לחודש הקריבו על הבמה אשר הייתה על המזבח:"
+      },
+      {
+        "verse": 60,
+        "text": "ואת הנשים אשר מלו את בניהן המיתו על פי הפקודה:"
+      },
+      {
+        "verse": 61,
+        "text": "ויתלו את העוללים בצוואריהם ואת בני בתיהם ואת המלים אותם [המיתו]:"
+      },
+      {
+        "verse": 62,
+        "text": "ורבים בישראל היו אמיצים ויתחזקו לבלתי אכול טמא:"
+      },
+      {
+        "verse": 63,
+        "text": "ויבחרו למות לבלתי הטמא במאכלים ולבלתי חלל ברית קודש וימותו:"
+      },
+      {
+        "verse": 64,
+        "text": "ויהיה קצף גדול על ישראל מאוד:"
+      }
+    ],
+    "visualDraftChapter": {
+      "number": 1,
+      "verses": [
+        {
+          "verse": 1,
+          "text": "וַיְהִי אַחֲרֵי הַכּוֹת אלכסנדר בֶּן־פילפוס הַמַּקְדּוֹנִי אֲשֶׁר־יָצָא מֵאֶרֶץ כִּתִּים [אֶת־חֵיל פָּרָס] וַיַּךְ אֶת־דָּרְיָוֶשׁ מֶלֶךְ פָּרָס וּמָדַי וַיִּמְלֹךְ תַּחְתָּיו בָּרִאשׁוֹנָה בְּאֶרֶץ יָוָן׃",
+          "sourcePages": [
+            97
+          ],
+          "textSHA256": "0dead0ecbe1ba19aea0914111c553312fe2a65e39ea0dd58738b2cf47fa4edd2"
+        },
+        {
+          "verse": 2,
+          "text": "וַיַּעֲרֹךְ מִלְחָמוֹת רַבּוֹת וַיִּלְכֹּד מִבְצָרִים וַיִּשְׁחַט מַלְכֵי אָרֶץ׃",
+          "sourcePages": [
+            97
+          ],
+          "textSHA256": "76f9c97b2af41f015b2a9038e5c86faf380ad49c190c1b1f2ea9bbdd33a009f3"
+        },
+        {
+          "verse": 3,
+          "text": "וַיָּבֹא עַד־קְצוֹת־הָאָרֶץ וַיִּקַּח שְׁלַל־גּוֹיִם רַבִּים וַתִּשְׁקֹט הָאָרֶץ לְפָנָיו וַיָּרָם וַיִּגְבַּהּ לִבּוֹ׃",
+          "sourcePages": [
+            97,
+            98
+          ],
+          "textSHA256": "96ed3528ebd2b5eecde918f75647276c938daa6cc68227c2d4b9f34960b6b4e2"
+        },
+        {
+          "verse": 4,
+          "text": "וַיֶּאֱסֹף חַיִל כָּבֵד מְאֹד וַיִּמְלֹךְ עַל־אַרְצוֹת גּוֹיִם וְרוֹזְנִים וַיִּהְיוּ לוֹ לָמַס׃",
+          "sourcePages": [
+            98
+          ],
+          "textSHA256": "da9d38cd41f046a709c78ed576b29dc684715c3c1617694a9cfc5a877eecfed1"
+        },
+        {
+          "verse": 5,
+          "text": "וַיְהִי אַחַר הַדְּבָרִים הָאֵלֶּה וַיִּפֹּל לְמִשְׁכָּב וַיֵּדַע כִּי־יָמוּת׃",
+          "sourcePages": [
+            98
+          ],
+          "textSHA256": "0cd7cb3387bb8eabb77beb14d0a98703512179124c218ff3cc5a4d5d9273031e"
+        },
+        {
+          "verse": 6,
+          "text": "וַיִּקְרָא לַעֲבָדָיו הַנִּכְבָּדִים אֲשֶׁר־גָּדְלוּ אִתּוֹ מִנְּעוּרָיו וַיְחַלֵּק לָהֶם אֶת־מַלְכוּתוֹ בִּעוֹדֶנּוּ חָי׃",
+          "sourcePages": [
+            98
+          ],
+          "textSHA256": "5ed39ffcac34afe227762987981cd139a07a3496274584894ee6bd4a49164392"
+        },
+        {
+          "verse": 7,
+          "text": "וַיִּמְלֹךְ אלכסנדר שְׁתֵּים־עֶשְׂרֵה שָׁנָה וַיָּמֹת׃",
+          "sourcePages": [
+            98
+          ],
+          "textSHA256": "b953882a9dca59614d09bc5de5def55356d9c91d4897ef6e88422d45f5696411"
+        },
+        {
+          "verse": 8,
+          "text": "וַיִּשְׁלְטוּ עֲבָדָיו אִישׁ בִּמְקוֹמוֹ׃ וַיָּשִׂימוּ כֻלָּם כִּתְרֵי מַלְכוּת בְּרָאשֵׁיהֶם אַחֲרֵי מוֹתוֹ וּבְנֵיהֶם אַחֲרֵיהֶם שָׁנִים רַבּוֹת וַיַּרְבּוּ רָעוֹת בָּאָרֶץ׃",
+          "sourcePages": [
+            98
+          ],
+          "textSHA256": "8f94ec19e0870991f24bce3ae8b85359780ecc8ed338d7fe2292dacb5f3b0597",
+          "endVerse": 9
+        },
+        {
+          "verse": 10,
+          "text": "וַיֵּצֵא מֵהֶם שֹׁרֶשׁ רֶשַׁע אַנְטִיוֹכוֹס אֶפִיפָנֶס בֶּן־אַנְטִיוֹכוֹס הַמֶּלֶךְ אֲשֶׁר הָיָה בֶּן־תַּעֲרוּבוֹת בְּרוֹמִי וַיִּמְלֹךְ בִּשְׁנַת מֵאָה וּשְׁלֹשִׁים וָשֶׁבַע לְמַלְכוּת הַיְּוָנִים׃",
+          "sourcePages": [
+            99,
+            100
+          ],
+          "textSHA256": "20ef1b12c60549e6ca96502e12cf15a0cb367b8fea4e569e5696f58a73710288"
+        },
+        {
+          "verse": 11,
+          "text": "בַּיָּמִים הָהֵם יָצְאוּ מִקֶּרֶב יִשְׂרָאֵל בְּנֵי־בְלִיַּעַל וַיַּדִּיחוּ רַבִּים לֵאמֹר נֵלְכָה וְנִכְרְתָה בְרִית אֶת־הַגּוֹיִם אֲשֶׁר סְבִיבוֹתֵינוּ כִּי מִן־הַיּוֹם אֲשֶׁר סַרְנוּ מֵעִמָּהֶם מְצָאוּנוּ רָעוֹת רַבּוֹת׃",
+          "sourcePages": [
+            100
+          ],
+          "textSHA256": "0137dea82d1593f496d657da56765aed5d564abe1230bd90f98cd7268549cb0d"
+        },
+        {
+          "verse": 12,
+          "text": "וַיִּיטַב הַדָּבָר בְּעֵינֵיהֶם׃",
+          "sourcePages": [
+            100
+          ],
+          "textSHA256": "2c18b9c94fe570261dfb9660d274930056a11f88d90f4cbc9b5ce3ec28c6f0c8"
+        },
+        {
+          "verse": 13,
+          "text": "וַיִּתְנַדְּבוּ אֲנָשִׁים מִן־הָעָם וַיֵּלְכוּ אֶל־הַמֶּלֶךְ וַיַּשְׁלִיטֵם הַמֶּלֶךְ לַעֲשׂוֹת כְּחֻקֵּי הַגּוֹיִם׃",
+          "sourcePages": [
+            100
+          ],
+          "textSHA256": "492d6c75a8a52d1f056ea7ee669f99d6416430d8ce8df44ea3604105c30ae4a3"
+        },
+        {
+          "verse": 14,
+          "text": "וַיִּבְנוּ גִּמְנַסְיוֹן בִּירוּשָׁלִַם כְּמִשְׁפְּטֵי הַגּוֹיִם׃ וַיַּעֲשׂוּ לָהֶם עָרְלָה וַיַּעַזְבוּ בְּרִית־קֹדֶשׁ וַיִּצָּמְדוּ לַגּוֹיִם וַיִּתְמַכְּרוּ לַעֲשׂוֹת רָע׃",
+          "sourcePages": [
+            100,
+            101
+          ],
+          "textSHA256": "4a384aa76d1bc16c54535df4473953196e57f5016efa287bfc3411c9ba70b883",
+          "endVerse": 15
+        },
+        {
+          "verse": 16,
+          "text": "וַתִּכּוֹן הַמְּלוּכָה לִפְנֵי אנטיוכוס וַיִּתְנַשֵּׂא לִמְלֹךְ בְּאֶרֶץ מִצְרַיִם לְמַעַן מְלֹךְ עַל־שְׁתֵּי הַמַּמְלָכוֹת׃",
+          "sourcePages": [
+            101
+          ],
+          "textSHA256": "b881e6da7782d3a5e9fd58a4515b2cf4e295d70e0210a850e7e947568b4e9d97"
+        },
+        {
+          "verse": 17,
+          "text": "וַיָּבֹא מִצְרַיְמָה בְּעַם כָּבֵד בְּרֶכֶב וּבְפִילִים וּבְפָרָשִׁים וּבָאֳנִי גָּדוֹל׃",
+          "sourcePages": [
+            101
+          ],
+          "textSHA256": "1313e2fabcb8b990d9b6fbfd62c55e86bd24365a74b0a889e3a280b101bf48c2"
+        },
+        {
+          "verse": 18,
+          "text": "וַיַּעֲרֹךְ מִלְחָמָה עִם־תלמי מֶלֶךְ מִצְרַיִם וַיִּסּוֹג תלמי מִפָּנָיו וַיָּנָס וַיִּפְּלוּ חֲלָלִים רַבִּים׃",
+          "sourcePages": [
+            101
+          ],
+          "textSHA256": "9e6c17c97d57d7859b270c3d6d458101826a0bbad19291dad49eaa1460950144"
+        },
+        {
+          "verse": 19,
+          "text": "וַיִּלְכְּדוּ עָרֵי הַמִּבְצָר בְּאֶרֶץ מִצְרַיִם וַיִּקַּח שְׁלַל אֶרֶץ מִצְרַיִם׃",
+          "sourcePages": [
+            101
+          ],
+          "textSHA256": "7721f2d23d33246719564cc8e45e47d91d5c795b18fdc0363589916774d36ae4"
+        },
+        {
+          "verse": 20,
+          "text": "וַיָּשָׁב אנטיוכוס אַחֲרֵי הַכּוֹתוֹ אֶת־מִצְרַיִם בִּשְׁנַת מֵאָה וְאַרְבָּעִים וְשָׁלֹשׁ וַיַּעַל עַל־יִשְׂרָאֵל וְעַל־יְרוּשָׁלִַם בְּעַם כָּבֵד׃",
+          "sourcePages": [
+            101
+          ],
+          "textSHA256": "20184d54255ae0f8179e338b64037f522adf9f0ac5a1f26f98b3551a978014ad"
+        },
+        {
+          "verse": 21,
+          "text": "וַיָּבֹא אֶל־הַמִּקְדָּשׁ בְּגַאֲוָה וַיִּקַּח אֶת־מִזְבַּח הַזָּהָב וְאֶת־מְנוֹרַת הַמָּאוֹר וְאֶת־כָּל־כֵּלֶיהָ׃",
+          "sourcePages": [
+            101,
+            102
+          ],
+          "textSHA256": "828ba44d4196d84b028e094b2c49ff62409188e8ce698b179fbc7b410b163358"
+        },
+        {
+          "verse": 22,
+          "text": "וְאֶת־שֻׁלְחַן הַמַּעֲרֶכֶת וְאֶת־הַקְּשָׂוֹת וְאֶת־הַמִּזְרָקוֹת וְאֶת־כַּפּוֹת הַזָּהָב וְאֶת־הַפָּרֹכֶת וְאֶת־הָעֲטָרוֹת וְאֵת עֲדִי־הַזָּהָב אֲשֶׁר לִפְנֵי הַהֵיכָל וַיְפַצֵּל הַכֹּל׃",
+          "sourcePages": [
+            102
+          ],
+          "textSHA256": "920094bf1541d0c33720e2e85ba9dcd99d1efff5f2d270ab9c581594efa25cd2"
+        },
+        {
+          "verse": 23,
+          "text": "וַיִּקַּח אֶת־הַכֶּסֶף וְאֶת־הַזָּהָב וְאֶת־כְּלֵי־הַחֶמְדָּה וַיִּקַּח אֶת־אוֹצְרוֹת הַמַּטְמוֹנִים אֲשֶׁר מָצָא׃",
+          "sourcePages": [
+            102
+          ],
+          "textSHA256": "bee45519afe51dc939e002293e2ba988f1d62edbcc8c10bb12619c9bd2bed3e2"
+        },
+        {
+          "verse": 24,
+          "text": "וּבְקַחְתּוֹ הַכֹּל שָׁב לְאַרְצוֹ וַיַּעַשׂ הֶרֶג רַב וַיְדַבֵּר בְּגֵאוּת רַבָּה׃",
+          "sourcePages": [
+            102
+          ],
+          "textSHA256": "06b9c4ea2664cabf75d5f12bedaf7283cb3f8e1bbab1db34d77832183a04cc4f"
+        },
+        {
+          "verse": 25,
+          "text": "וַיְהִי אֵבֶל גָּדוֹל בְּיִשְׂרָאֵל בְּכָל־מְקוֹמוֹתֵיהֶם׃",
+          "sourcePages": [
+            102
+          ],
+          "textSHA256": "f698800f2a4d80c68c6ff0025875fc1175ce331f305b577e525bda24e8fe937b"
+        },
+        {
+          "verse": 26,
+          "text": "[ — — — ] וַיֵּאָנְחוּ רָאשִׁים וּזְקֵנִים\nבְּתוּלוֹת וּבַחוּרִים אֻמְלָלוּ וְיֹפִי נָשִׁים שֻׁנָּה׃",
+          "sourcePages": [
+            102
+          ],
+          "textSHA256": "6b7180dd6f31204d3d8beb34fee400eecb5767bcd8649f492878008e6073b469"
+        },
+        {
+          "verse": 27,
+          "text": "וְכָל־חָתָן נָשָׂא קִינָה יוֹשֶׁבֶת בְּחֻפָּה הִתְאַבָּלָה׃",
+          "sourcePages": [
+            102
+          ],
+          "textSHA256": "6847d6f9cd2defbb7ae2f21e6fa8e9307c1a1d5ad439925001b65475989893e5"
+        },
+        {
+          "verse": 28,
+          "text": "וְהָאָרֶץ חָלָה עַל־יוֹשְׁבֶיהָ וְכָל־בֵּית יַעֲקֹב לָבַשׁ בֹּשֶׁת׃",
+          "sourcePages": [
+            102
+          ],
+          "textSHA256": "e99f91e21c680e960bd9de1994b188092cba292bd4137c5140c91e6b87054af5"
+        },
+        {
+          "verse": 29,
+          "text": "מִקֵּץ שְׁנָתַיִם יָמִים שָׁלַח הַמֶּלֶךְ אֶת־שַׂר־הַמּוּסִים לְעָרֵי יְהוּדָה וַיָּבֹא יְרוּשָׁלַיְמָה בְּחַיִל כָּבֵד׃",
+          "sourcePages": [
+            103
+          ],
+          "textSHA256": "3720dd7b617c1954a21d83030021808459f25e50617b8899dcd48fba60a0dec7"
+        },
+        {
+          "verse": 30,
+          "text": "וַיְדַבֵּר אֲלֵיהֶם דִּבְרֵי שָׁלוֹם בְּמִרְמָה וַיַּאֲמִינוּ לוֹ וַיִּפֹּל עַל־הָעִיר פִּתְאֹם וַיַּךְ בָּהּ מַכָּה רַבָּה וַיְאַבֵּד עַם רַב מִיִּשְׂרָאֵל׃",
+          "sourcePages": [
+            103
+          ],
+          "textSHA256": "85939b836d593e0b4205b20cb480881b57435bdd02048e2ae65932c081904f29"
+        },
+        {
+          "verse": 31,
+          "text": "וַיִּקַּח אֶת־שְׁלַל הָעִיר וַיִּשְׂרְפֶהָ בָּאֵשׁ וַיַּהֲרֹס אֶת־בָּתֶּיהָ וְאֶת־חוֹמוֹתֶיהָ מִסָּבִיב׃",
+          "sourcePages": [
+            103
+          ],
+          "textSHA256": "81ca163c5c0a5754f8666685f3d496a905e7b1a7dee124fbd6c5b77ca838835d"
+        },
+        {
+          "verse": 32,
+          "text": "וַיִּשְׁבּוּ אֶת־הַנָּשִׁים וְאֶת־הַטַּף וְאֶת־הַבְּהֵמָה בָּזָזוּ׃",
+          "sourcePages": [
+            103
+          ],
+          "textSHA256": "1340ec48df67d989124c686ac2a6b6f92b590ea69270e519338b711b203e42ef"
+        },
+        {
+          "verse": 33,
+          "text": "וַיִּבְנוּ אֶת עִיר־דָּוִד בְּחוֹמָה גְדוֹלָה וַחֲזָקָה וּבְמִגְדָּלִים בְּצוּרִים וַתְּהִי לָהֶם לִמְצוּדָה׃",
+          "sourcePages": [
+            103
+          ],
+          "textSHA256": "c49a7885efdd16941c7add5ba1425c81a145712260f9abe9ceba52a97904f7d2"
+        },
+        {
+          "verse": 34,
+          "text": "וַיִּשְׁכֹּן־שָׁם גּוֹי חוֹטֵא אַנְשֵׁי־אָוֶן וַיִּתְבַּצְּרוּ בָהּ׃",
+          "sourcePages": [
+            103
+          ],
+          "textSHA256": "24a802d4d4afc52e2cf66e8b03e2da96939b1103588db5f122243690aeadb5d3"
+        },
+        {
+          "verse": 35,
+          "text": "וַיִּצְבְּרוּ נֶשֶׁק וְאֹכֶל וּבְאָסְפָם שְׁלַל־יְרוּשָׁלִַם שָׂמוּ שָׁם וַיְהִי לְמוֹקֵשׁ גָּדוֹל׃",
+          "sourcePages": [
+            103
+          ],
+          "textSHA256": "670b34ea75f6ac677b318863a04c995fd11f2ffd08765009572abedd3169f082"
+        },
+        {
+          "verse": 36,
+          "text": "וַיְהִי לְמַאֲרָב לְבֵית־הַמִּקְדָּשׁ וּלְשָׂטָן רַע לְיִשְׂרָאֵל תָּמִיד׃",
+          "sourcePages": [
+            103
+          ],
+          "textSHA256": "dbe011afddc2f899d79dc45de9c17460cdbee6cf99cce104c98a9a34fdb9d65f"
+        },
+        {
+          "verse": 37,
+          "text": "וַיִּשְׁפְּכוּ דָם נָקִי מִסָּבִיב לַמִּקְדָּשׁ וַיְטַמְּאוּ אֶת־הַמִּקְדָּשׁ׃",
+          "sourcePages": [
+            103
+          ],
+          "textSHA256": "4371d0d936edeffa52e8fa50e3dfb0969e8e5775a024e1565ee36c95c87fdde7"
+        },
+        {
+          "verse": 38,
+          "text": "וַיָּנוּסוּ יוֹשְׁבֵי יְרוּשָׁלִַם בִּגְלָלָם וַתְּהִי מוֹשַׁב זָרִים\nוַתְּהִי נָכְרִיָּה לְזַרְעָהּ וּבָנֶיהָ עֲזָבוּהָ׃",
+          "sourcePages": [
+            103
+          ],
+          "textSHA256": "a44626b7aa17b1e5358493b15890085fccf4808ebdd83d6a3f6d70541d9ded20"
+        },
+        {
+          "verse": 39,
+          "text": "בֵּית־הַמִּקְדָּשׁ הֻשַׁם כַּמִּדְבָּר חַגֶּיהָ נֶהֶפְכוּ לְאֵבֶל\nשַׁבְּתוֹתֶיהָ לִכְלִמָּה כְּבוֹדָהּ לָבוּז׃",
+          "sourcePages": [
+            103
+          ],
+          "textSHA256": "a60f317f4b79c54c437d5b69786a73aba0f5c9f7302e79656546b4d39bcd5c7b"
+        },
+        {
+          "verse": 40,
+          "text": "כְּרֹב כְּבוֹדָהּ גָּדַל קְלוֹנָהּ וְגָדְלָהּ נֶהְפַּךְ לְאֵבֶל׃",
+          "sourcePages": [
+            103
+          ],
+          "textSHA256": "a57b12b62d08b491ab2952035130f802b429d10cfc767f3023c39501dac93df5"
+        },
+        {
+          "verse": 41,
+          "text": "וַיִּכְתֹּב הַמֶּלֶךְ אֶל־כָּל־מַלְכוּתוֹ לִהְיוֹת כֻּלָּם לְעַם אֶחָד׃ וְלַעֲזֹב כָּל־אִישׁ אֶת־חֻקּוֹתָיו וַיְקַבְּלוּ כָּל־הָעַמִּים כִּדְבַר הַמֶּלֶךְ׃",
+          "sourcePages": [
+            103
+          ],
+          "textSHA256": "afd56f7b9efa326f36c67b4d6bd26d361939fb00ebdc75fb10ef0d8ad9043179",
+          "endVerse": 42
+        },
+        {
+          "verse": 43,
+          "text": "וְרַבִּים מִיִּשְׂרָאֵל רָצוּ בַעֲבוֹדָתוֹ וַיִּזְבְּחוּ לָאֱלִילִים וַיְחַלְּלוּ אֶת־הַשַּׁבָּת׃",
+          "sourcePages": [
+            103,
+            104
+          ],
+          "textSHA256": "cd665f9a10cd2428ece271eacb8afd9fb8c3982903451aee70d3e98d870f7230"
+        },
+        {
+          "verse": 44,
+          "text": "וַיִּשְׁלַח הַמֶּלֶךְ סְפָרִים בְּיַד־מַלְאָכִים לִירוּשָׁלִַם וּלְעָרֵי יְהוּדָה לָלֶכֶת אַחֲרֵי חֻקִּים נָכְרִים לָאָרֶץ׃",
+          "sourcePages": [
+            104
+          ],
+          "textSHA256": "b59e13700b0ad572955f7f805758a61479696a29791e420d02e721f210fa0aaa"
+        },
+        {
+          "verse": 45,
+          "text": "וְלִמְנֹעַ עֹלוֹת וָזֶבַח וָנֶסֶךְ מִן־הַמִּקְדָּשׁ וּלְחַלֵּל שַׁבָּתוֹת וְחַגִּים׃",
+          "sourcePages": [
+            104
+          ],
+          "textSHA256": "b25c32a51764c4201731542e9adc7228f63d0c85d9c1268358481bc9765ea769"
+        },
+        {
+          "verse": 46,
+          "text": "וּלְטַמֵּא מִקְדָּשׁ וְקָדוֹשִׁים׃ לִבְנוֹת בָּמוֹת וְהֵיכָלוֹת וּפְסִילִים וּלְהַקְרִיב חֲזִירִים וּבְהֵמוֹת טְמֵאוֹת׃",
+          "sourcePages": [
+            104
+          ],
+          "textSHA256": "2aaa6c66a57cb8e21baff792f39ee03bc542f743abda4c84429c91b92af52b63",
+          "endVerse": 47
+        },
+        {
+          "verse": 48,
+          "text": "וּלְהַנִּיחַ אֶת־בְּנֵיהֶם בִּלְתִּי מוּלִים וּלְשַׁקֵּץ אֶת־נַפְשׁוֹתֵיהֶם בְּכָל־טָמֵא וּפִגּוּל׃",
+          "sourcePages": [
+            104
+          ],
+          "textSHA256": "0018d8a4b43c77fb9c9e5d0dbda8c902ddca61d0d78ff92c3f9333ca41cae2b3"
+        },
+        {
+          "verse": 49,
+          "text": "לִשְׁכֹּחַ אֶת־הַתּוֹרָה וּלְהַחֲלִיף כָּל־הַחֻקִּים׃",
+          "sourcePages": [
+            104
+          ],
+          "textSHA256": "751967f92c9b81bfb7432547a7cca4ea3985286a41c6f71449953cc66a347fc2"
+        },
+        {
+          "verse": 50,
+          "text": "וַאֲשֶׁר לֹא־יַעֲשֶׂה כִּדְבַר־הַמֶּלֶךְ יָמֹת׃ כְּכָל־הַדְּבָרִים הָאֵלֶּה כָּתַב לְמַלְכוּתוֹ וַיִּפְקֹד פְּקִידִים עַל־כָּל־הָעָם וַיְצַו לְעָרֵי יְהוּדָה לְהַקְרִיב בְּעִיר וָעִיר׃",
+          "sourcePages": [
+            104
+          ],
+          "textSHA256": "b284bd360bab59b6315fcae28008c3b94266da4afc9cc3a8e5102e7c6848c6bf",
+          "endVerse": 51
+        },
+        {
+          "verse": 52,
+          "text": "וַיִּתְחַבְּרוּ אֲלֵיהֶם רַבִּים מִן־הָעָם כָּל־עוֹזֵב אֶת־הַתּוֹרָה וַיַּעֲשׂוּ רָעוֹת בָּאָרֶץ׃",
+          "sourcePages": [
+            104
+          ],
+          "textSHA256": "26be0e8a438fe9a5dd843da5dbcc01ce0477550cd1f928d5e5cc246b6de5c6fb"
+        },
+        {
+          "verse": 53,
+          "text": "וַיָּשִׂימוּ אֶת־יִשְׂרָאֵל בַּמַּחֲבוֹאִים בְּכָל־מְנוּסָם׃",
+          "sourcePages": [
+            104
+          ],
+          "textSHA256": "de305d46b32d927ecd398e9fccebad3236357c6769220b795de80b29709dcf05"
+        },
+        {
+          "verse": 54,
+          "text": "וּבַחֲמִשָּׁה עָשָׂר יוֹם בְּכִסְלֵו בְּחָמֵשׁ וְאַרְבָּעִים וּמֵאָה שָׁנָה בָּנוּ שִׁקּוּץ מְשׁוֹמֵם עַל־הַמִּזְבֵּחַ וּבְעָרֵי יְהוּדָה מִסָּבִיב בָּנוּ בָּמוֹת׃",
+          "sourcePages": [
+            104
+          ],
+          "textSHA256": "7483c3287aff490f35dc422147507cefc1ed582e86b9361a946d79a766f765df"
+        },
+        {
+          "verse": 55,
+          "text": "וּבְפִתְחֵי הַבָּתִּים וּבִרְחוֹבוֹת זָבָחוּ׃",
+          "sourcePages": [
+            104,
+            105
+          ],
+          "textSHA256": "2cd4eea5f624b68b49ef7a9dc10690ab11943cf54dbb724ba298ee96d95dc86e"
+        },
+        {
+          "verse": 56,
+          "text": "וְסִפְרֵי הַתּוֹרָה אֲשֶׁר מָצָאוּ שָׂרְפוּ בָאֵשׁ בְּקָרְעָם׃",
+          "sourcePages": [
+            105
+          ],
+          "textSHA256": "1ebbefbf64b1a894e44f1966ecbdd06568c5c0480d247b8e42069fd78f3afb61"
+        },
+        {
+          "verse": 57,
+          "text": "וּבְכָל אֲשֶׁר־יִמָּצֵא בִּידֵי אִישׁ סֵפֶר בְּרִית וְכָל אֲשֶׁר יַחְפֹּץ בַּתּוֹרָה דַּת־הַמֶּלֶךְ לַהֲמִיתוֹ׃",
+          "sourcePages": [
+            105
+          ],
+          "textSHA256": "18f598955c656aad8918c92eda40aa24bc3f777fbe436fff766bc71170214bac"
+        },
+        {
+          "verse": 58,
+          "text": "בְּתָקְפָּם עָשׂוּ כֵּן לְיִשְׂרָאֵל לַנִּמְצָאִים חֹדֶשׁ בְּחָדְשׁוֹ בֶּעָרִים׃",
+          "sourcePages": [
+            105
+          ],
+          "textSHA256": "b7714c6080043bfbed7fad4d06c413bdbcbcdbb7879e255b47a7c39fdf067faf"
+        },
+        {
+          "verse": 59,
+          "text": "וּבַחֲמִשָּׁה וְעֶשְׂרִים לַחֹדֶשׁ הִקְרִיבוּ עַל־הַבָּמָה אֲשֶׁר הָיְתָה עַל־הַמִּזְבֵּחַ׃",
+          "sourcePages": [
+            105
+          ],
+          "textSHA256": "65efec4e48bb79cd89b95902968a51d90b61d252eba3b1d3e4418076422c4939"
+        },
+        {
+          "verse": 60,
+          "text": "וְאֶת־הַנָּשִׁים אֲשֶׁר מָלוּ אֶת־בְּנֵיהֶן הֵמִיתוּ עַל־פִּי הַפְּקֻדָּה׃",
+          "sourcePages": [
+            105
+          ],
+          "textSHA256": "e3e53fd902d596e0d0b8cf918ce2d476d8f53531b48cfe06e05f46401d8927b0"
+        },
+        {
+          "verse": 61,
+          "text": "וַיִּתְלוּ אֶת־הָעוֹלָלִים בְּצַוְּארֵיהֶן וְאֶת־בְּנֵי־בֵיתֵיהֶן וְאֵת הַמָּלִים אוֹתָם [הֵמִיתוּ]׃",
+          "sourcePages": [
+            105
+          ],
+          "textSHA256": "56c5854076768eefc2d98a528b8b9d1ad838747d2707c40e671cbd87738a4026"
+        },
+        {
+          "verse": 62,
+          "text": "וְרַבִּים בְּיִשְׂרָאֵל הָיוּ אַמִּיצִים וַיִּתְחַזְּקוּ לְבִלְתִּי אֲכֹל טָמֵא׃",
+          "sourcePages": [
+            105
+          ],
+          "textSHA256": "de8aac1c93086fdb06381c3d8984ab8ddcca56f08ed405e93464a52071b276e5"
+        },
+        {
+          "verse": 63,
+          "text": "וַיִּבְחֲרוּ לָמוּת לְבִלְתִּי הִטָּמֵא בַּמַּאֲכָלִים וּלְבִלְתִּי חַלֵּל בְּרִית־קֹדֶשׁ וַיָּמֻתוּ׃",
+          "sourcePages": [
+            105
+          ],
+          "textSHA256": "84cb0d4e9dc8906dbc9a2027b84f007c3d3586064165983defa3b04bc7347715"
+        },
+        {
+          "verse": 64,
+          "text": "וַיְהִי קֶצֶף גָּדוֹל עַל־יִשְׂרָאֵל מְאֹד׃",
+          "sourcePages": [
+            105
+          ],
+          "textSHA256": "191b7e37b021417e81cfc0f6253827262bbbaa003a05ca855f51f756230186a6"
+        }
+      ],
+      "isComplete": false,
+      "lastVerse": 64
+    }
+  }
+}

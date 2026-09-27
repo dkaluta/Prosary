@@ -32,6 +32,9 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
+import androidx.compose.material3.SingleChoiceSegmentedButtonRow
+import androidx.compose.material3.SegmentedButton
+import androidx.compose.material3.SegmentedButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
@@ -47,6 +50,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.produceState
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.saveable.rememberSaveableStateHolder
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -92,6 +96,34 @@ import kotlinx.coroutines.withContext
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ReadingsScreen(onOpenSettings: () -> Unit, browsingDate: TodayBrowsingDate = rememberTodayBrowsingDate()) {
+    var mode by rememberSaveable { mutableStateOf("daily") }
+    val holder = rememberSaveableStateHolder()
+    Scaffold(topBar = {
+        TopAppBar(title = { Text(stringResource(R.string.tab_readings)) }, actions = {
+            IconButton(onClick = onOpenSettings) {
+                Icon(Icons.Filled.Settings, contentDescription = stringResource(R.string.common_settings))
+            }
+        })
+    }) { padding ->
+        Column(Modifier.padding(padding).fillMaxSize()) {
+            SingleChoiceSegmentedButtonRow(Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 8.dp)) {
+                listOf("daily" to R.string.bible_daily_readings, "bible" to R.string.bible_title).forEachIndexed { index, (id, title) ->
+                    SegmentedButton(selected = mode == id, onClick = { mode = id },
+                        shape = SegmentedButtonDefaults.itemShape(index, 2), modifier = Modifier.testTag("readingsMode.$id")) {
+                        Text(stringResource(title))
+                    }
+                }
+            }
+            holder.SaveableStateProvider(mode) {
+                if (mode == "bible") BibleScreen() else DailyReadingsContent(browsingDate)
+            }
+        }
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun DailyReadingsContent(browsingDate: TodayBrowsingDate) {
     val context = LocalContext.current
     val language = TodayTranslationLanguage.resolve(LocalConfiguration.current.locales[0].toLanguageTag())
     var currentDate by remember { mutableStateOf(LocalDate.now()) }
@@ -176,15 +208,8 @@ fun ReadingsScreen(onOpenSettings: () -> Unit, browsingDate: TodayBrowsingDate =
                 })
             }
         }
-        Scaffold(topBar = {
-            TopAppBar(title = { Text(stringResource(R.string.tab_readings)) }, actions = {
-                IconButton(onClick = onOpenSettings) {
-                    Icon(Icons.Filled.Settings, contentDescription = stringResource(R.string.common_settings))
-                }
-            })
-        }) { padding ->
             LazyColumn(
-                modifier = Modifier.padding(padding).fillMaxSize().testTag("readingsList"),
+                modifier = Modifier.fillMaxSize().testTag("readingsList"),
                 contentPadding = PaddingValues(16.dp),
                 verticalArrangement = Arrangement.spacedBy(12.dp),
             ) {
@@ -274,7 +299,6 @@ fun ReadingsScreen(onOpenSettings: () -> Unit, browsingDate: TodayBrowsingDate =
                     }
                 }
             }
-        }
     }
 }
 
@@ -370,7 +394,7 @@ internal fun ReadingCard(citation: ReadingCitation, language: String, edition: R
                                             modifier = Modifier.fillMaxWidth())
                                     }
                                     val visibleText = verse.displayedText(edition, readingScript)
-                                    Text("\u2066${verse.verse}\u2069  $visibleText",
+                                    Text("\u2066${verse.verseLabel}\u2069  $visibleText",
                                         style = PrayerTypography.styleForText(visibleText, isScripture = true),
                                         modifier = Modifier.fillMaxWidth())
                                 }

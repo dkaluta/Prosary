@@ -55,6 +55,7 @@
       "properties": {
         "chapter": {"type": "integer", "minimum": 1},
         "verse": {"type": "integer", "minimum": 1},
+        "endVerse": {"type": "integer", "minimum": 1, "description": "Optional inclusive last label of an indivisible printed verse unit. Must be greater than or equal to verse and below the next unit's start. Display a range and let jumps within it resolve to this single unit; never split or duplicate its text."},
         "text": {"type": "string", "minLength": 1},
         "transliteratedText": {"type": "string", "minLength": 1, "description": "Paired script of the same complete verse, never another translation. Required in every verse of an edition declaring paired scripts; readers reject an incomplete pair."}
       }

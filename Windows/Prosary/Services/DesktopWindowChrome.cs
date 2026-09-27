@@ -90,6 +90,7 @@ internal static class DesktopWindowChrome
         var view = new MenuBarItem { Title = Loc.Tr("desktop_menu_view", "View") };
         view.Items.Add(Item("desktop_show_library", "Show Library", () => DesktopWindowManager.ShowLibrary(), VirtualKey.L));
         view.Items.Add(Item("desktop_today", "Today", () => DesktopWindowManager.ShowLibrary("today")));
+        view.Items.Add(Item("readings_title", "Readings", () => DesktopWindowManager.ShowLibrary("readings")));
         view.Items.Add(Item("desktop_gallery", "Gallery", () => DesktopWindowManager.ShowLibrary("gallery")));
         view.Items.Add(Item("BasicPrayersTitle/Text", "Basic Prayers", () => DesktopWindowManager.ShowLibrary("basic")));
         view.Items.Add(Item("SearchTitle/Text", "Search", () => DesktopWindowManager.ShowLibrary("search"), VirtualKey.F));

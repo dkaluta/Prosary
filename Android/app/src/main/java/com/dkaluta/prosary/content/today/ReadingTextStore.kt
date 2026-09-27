@@ -23,7 +23,9 @@ data class ReadingEdition(
 
 @Serializable
 data class ReadingVerse(val chapter: Int, val verse: Int, val text: String,
-    val transliteratedText: String? = null) {
+    val transliteratedText: String? = null, val endVerse: Int? = null) {
+    val lastVerse: Int get() = endVerse ?: verse
+    val verseLabel: String get() = if (lastVerse > verse) "$verse–$lastVerse" else verse.toString()
     fun displayedText(edition: ReadingEdition?, script: String): String =
         if (edition?.hasAramaicScripts == true && script == edition.transliteratedTextScript)
             transliteratedText.orEmpty() else text
@@ -64,7 +66,9 @@ class ReadingTextStore(private val openData: (String) -> InputStream?) {
         val file = data ?: return null
         val key = "${if (isTorah) "torah" else "daily"}|${citation.full}"
         val verses = file.passages[key]?.get(editionId)
-            ?.takeIf { verses -> verses.isNotEmpty() && verses.all { it.chapter > 0 && it.verse > 0 && it.text.isNotBlank() } }
+            ?.takeIf { verses -> verses.isNotEmpty() && verses.all {
+                it.chapter > 0 && it.verse > 0 && it.lastVerse >= it.verse && it.text.isNotBlank()
+            } }
             ?: return null
         // A paired edition must be complete in both scripts: never mix a fallback into a verse.
         if (editions.firstOrNull { it.id == editionId }?.hasAramaicScripts == true

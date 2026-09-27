@@ -1,0 +1,471 @@
+{
+  "schemaVersion": 1,
+  "purpose": "review-only",
+  "relationship": "scan-transcription",
+  "referenceStatus": "unreviewed",
+  "productionEligible": false,
+  "referenceSHA256": "076b5b2d922d81a96a52cdc295b085300b7aa55515e9385f65b4088df1097499",
+  "observedSHA256": "87fdcd780941d2abd0e283127258c982b1c95f16f7eaa8fdf20de02089f10298",
+  "normalization": "Combining marks and punctuation removed for comparison only; spelling preserved.",
+  "referenceWords": 52,
+  "observedWords": 45,
+  "wordOperations": {
+    "equal": 29,
+    "replace": 16,
+    "delete": 7,
+    "insert": 0
+  },
+  "matchingReferenceFraction": 0.5576923076923077,
+  "tokenDifferenceRate": 0.4423076923076923,
+  "alignment": [
+    {
+      "kind": "equal",
+      "referenceStart": 0,
+      "referenceEnd": 2,
+      "observedStart": 0,
+      "observedEnd": 2,
+      "reference": [
+        "נשאים",
+        "על"
+      ],
+      "observed": [
+        "נשאים",
+        "על"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 2,
+      "referenceEnd": 3,
+      "observedStart": 2,
+      "observedEnd": 3,
+      "reference": [
+        "כתף"
+      ],
+      "observed": [
+        "בתף"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 3,
+      "referenceEnd": 5,
+      "observedStart": 3,
+      "observedEnd": 5,
+      "reference": [
+        "ואת",
+        "מוראם"
+      ],
+      "observed": [
+        "ואת",
+        "מוראם"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 5,
+      "referenceEnd": 6,
+      "observedStart": 5,
+      "observedEnd": 6,
+      "reference": [
+        "יראו"
+      ],
+      "observed": [
+        "ייראו"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 6,
+      "referenceEnd": 7,
+      "observedStart": 6,
+      "observedEnd": 7,
+      "reference": [
+        "הגוים"
+      ],
+      "observed": [
+        "הגוים"
+      ]
+    },
+    {
+      "kind": "delete",
+      "referenceStart": 7,
+      "referenceEnd": 9,
+      "observedStart": 7,
+      "observedEnd": 7,
+      "reference": [
+        "השמרו",
+        "לכם"
+      ],
+      "observed": []
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 9,
+      "referenceEnd": 12,
+      "observedStart": 7,
+      "observedEnd": 10,
+      "reference": [
+        "פן",
+        "דמות",
+        "תדמו"
+      ],
+      "observed": [
+        "העמרו",
+        "לכםמדדמה",
+        "תרמו"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 12,
+      "referenceEnd": 16,
+      "observedStart": 10,
+      "observedEnd": 14,
+      "reference": [
+        "גם",
+        "אתם",
+        "לבני",
+        "הנכר"
+      ],
+      "observed": [
+        "גם",
+        "אתם",
+        "לבני",
+        "הנכר"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 16,
+      "referenceEnd": 17,
+      "observedStart": 14,
+      "observedEnd": 15,
+      "reference": [
+        "ויאחז"
+      ],
+      "observed": [
+        "ויאמ"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 17,
+      "referenceEnd": 20,
+      "observedStart": 15,
+      "observedEnd": 18,
+      "reference": [
+        "אתכם",
+        "פחד",
+        "אליהם"
+      ],
+      "observed": [
+        "אתכם",
+        "פחד",
+        "אליהם"
+      ]
+    },
+    {
+      "kind": "delete",
+      "referenceStart": 20,
+      "referenceEnd": 21,
+      "observedStart": 18,
+      "observedEnd": 18,
+      "reference": [
+        "וכי"
+      ],
+      "observed": []
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 21,
+      "referenceEnd": 22,
+      "observedStart": 18,
+      "observedEnd": 19,
+      "reference": [
+        "תראו"
+      ],
+      "observed": [
+        "וכיתראו"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 22,
+      "referenceEnd": 29,
+      "observedStart": 19,
+      "observedEnd": 26,
+      "reference": [
+        "המון",
+        "רב",
+        "לפניהם",
+        "ואחריהם",
+        "והמה",
+        "משתחוים",
+        "להם"
+      ],
+      "observed": [
+        "המון",
+        "רב",
+        "לפניהם",
+        "ואחריהם",
+        "והמה",
+        "משתחוים",
+        "להם"
+      ]
+    },
+    {
+      "kind": "delete",
+      "referenceStart": 29,
+      "referenceEnd": 30,
+      "observedStart": 26,
+      "observedEnd": 26,
+      "reference": [
+        "אמרו"
+      ],
+      "observed": []
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 30,
+      "referenceEnd": 32,
+      "observedStart": 26,
+      "observedEnd": 28,
+      "reference": [
+        "בלבבכם",
+        "לך"
+      ],
+      "observed": [
+        "אמרובלכבכם",
+        "לף"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 32,
+      "referenceEnd": 33,
+      "observedStart": 28,
+      "observedEnd": 29,
+      "reference": [
+        "אדני"
+      ],
+      "observed": [
+        "אדני"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 33,
+      "referenceEnd": 34,
+      "observedStart": 29,
+      "observedEnd": 30,
+      "reference": [
+        "נשתחוה"
+      ],
+      "observed": [
+        "נשתהוה"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 34,
+      "referenceEnd": 35,
+      "observedStart": 30,
+      "observedEnd": 31,
+      "reference": [
+        "כי"
+      ],
+      "observed": [
+        "כי"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 35,
+      "referenceEnd": 36,
+      "observedStart": 31,
+      "observedEnd": 32,
+      "reference": [
+        "מלאכי"
+      ],
+      "observed": [
+        "מקאכי"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 36,
+      "referenceEnd": 38,
+      "observedStart": 32,
+      "observedEnd": 34,
+      "reference": [
+        "אתכם",
+        "והוא"
+      ],
+      "observed": [
+        "אתכם",
+        "והוא"
+      ]
+    },
+    {
+      "kind": "delete",
+      "referenceStart": 38,
+      "referenceEnd": 40,
+      "observedStart": 34,
+      "observedEnd": 34,
+      "reference": [
+        "חוקר",
+        "את"
+      ],
+      "observed": []
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 40,
+      "referenceEnd": 41,
+      "observedStart": 34,
+      "observedEnd": 35,
+      "reference": [
+        "נפשותיכם"
+      ],
+      "observed": [
+        "חוקראתהנמשותיכם"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 41,
+      "referenceEnd": 42,
+      "observedStart": 35,
+      "observedEnd": 36,
+      "reference": [
+        "כי"
+      ],
+      "observed": [
+        "כי"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 42,
+      "referenceEnd": 43,
+      "observedStart": 36,
+      "observedEnd": 37,
+      "reference": [
+        "לשונם"
+      ],
+      "observed": [
+        "לשגם"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 43,
+      "referenceEnd": 46,
+      "observedStart": 37,
+      "observedEnd": 40,
+      "reference": [
+        "הקצעה",
+        "ביד",
+        "חרש"
+      ],
+      "observed": [
+        "הקצעה",
+        "ביד",
+        "חרש"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 46,
+      "referenceEnd": 47,
+      "observedStart": 40,
+      "observedEnd": 41,
+      "reference": [
+        "והמה"
+      ],
+      "observed": [
+        "וכמה"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 47,
+      "referenceEnd": 48,
+      "observedStart": 41,
+      "observedEnd": 42,
+      "reference": [
+        "מצפים"
+      ],
+      "observed": [
+        "מצפים"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 48,
+      "referenceEnd": 49,
+      "observedStart": 42,
+      "observedEnd": 43,
+      "reference": [
+        "זהב"
+      ],
+      "observed": [
+        "זרב"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 49,
+      "referenceEnd": 50,
+      "observedStart": 43,
+      "observedEnd": 44,
+      "reference": [
+        "וכסף"
+      ],
+      "observed": [
+        "וכסף"
+      ]
+    },
+    {
+      "kind": "delete",
+      "referenceStart": 50,
+      "referenceEnd": 51,
+      "observedStart": 44,
+      "observedEnd": 44,
+      "reference": [
+        "ושקר"
+      ],
+      "observed": []
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 51,
+      "referenceEnd": 52,
+      "observedStart": 44,
+      "observedEnd": 45,
+      "reference": [
+        "הם"
+      ],
+      "observed": [
+        "ושקרהם"
+      ]
+    }
+  ],
+  "notes": [
+    "An alignment is a review aid, not a verified verse crosswalk.",
+    "Niqqud and punctuation still require separate image comparison.",
+    "Text differences are not an OCR accuracy measurement without a scan-checked matching reference."
+  ],
+  "scope": {
+    "volume": "A2",
+    "pdfPage": 15,
+    "cropVerticalFraction": [
+      0.095,
+      0.228
+    ]
+  },
+  "exclusions": "Only explicit isolated OCR margin labels followed by | removed; scripture words unchanged.",
+  "engine": "Tesseract.js Hebrew best_int PSM6",
+  "engineReportedConfidence": 34
+}

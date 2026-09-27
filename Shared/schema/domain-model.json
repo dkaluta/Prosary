@@ -848,7 +848,7 @@
         "readingsEditionId": {
           "type": "string",
           "default": "",
-          "description": "Bible edition selected in phone Readings and desktop Today. Empty follows the interface language by matching an edition in readings-editions.json, normalizing iw/he and fil/tl aliases and regional subtags. A nonempty value selects that exact metadata ID. An unavailable language or removed explicit edition stays unavailable; never substitute English or another edition. This preference is independent of prayer language, feastCalendarId and easternPaschaStyle, and never changes appointed citations. Metadata loads separately from the optional passage corpus."
+          "description": "Bible edition shared by Daily Readings, the downloadable Bible viewer and desktop Today. Empty follows the interface language by matching an edition in readings-editions.json, normalizing iw/he and fil/tl aliases and regional subtags. A nonempty value selects that exact metadata ID. An unavailable language or removed explicit edition stays unavailable; never substitute English or another edition. This preference is independent of prayer language, feastCalendarId and easternPaschaStyle, and never changes appointed citations. Metadata loads separately from the optional passage corpus."
         },
         "aramaicDefaultScript": {
           "type": "string",

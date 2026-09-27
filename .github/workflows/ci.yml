@@ -50,6 +50,11 @@ jobs:
           uv run --script Shared/tools/test-reading-texts.py
           uv run --script Shared/tools/test-peshitta-readings.py
           uv run --script Shared/tools/test-greek-readings.py
+          uv run --script Shared/tools/test-bible-library.py
+          uv run --script Shared/tools/test-hebrew-ocr-baseline.py
+          uv run --script Shared/tools/test-1maccabees-ocr-baseline.py
+          uv run --script Shared/tools/test-hebrew-deuterocanon.py
+          uv run --script Shared/tools/hebrew_deuterocanon.py
       - name: Erez's Aramaic converter and generated packs stay in step
         run: uv run --script Shared/tools/test-import-scripture.py
       - name: Old Jesuit Arabic Scripture keeps its reviewed source and native copies

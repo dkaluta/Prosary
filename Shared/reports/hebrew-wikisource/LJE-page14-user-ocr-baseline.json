@@ -1,0 +1,290 @@
+{
+  "schemaVersion": 1,
+  "purpose": "review-only",
+  "productionEligible": false,
+  "book": "LJE",
+  "pdfPages": [
+    14
+  ],
+  "scan": {
+    "volume": "A2",
+    "sha256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5"
+  },
+  "reference": {
+    "origin": "User transcription supplied27 September2026, compared directly with attached crop.",
+    "attachment": "download-1.png",
+    "attachmentSHA256": "95c7ba3cca120be7e91a0b23dd01578e37f0dcdcea51875bf147a74d056b5121",
+    "scope": "Complete scriptural introduction, verses1–2 and verse3 opening; consonants only.",
+    "corrections": [
+      {
+        "supplied": "פתשנן",
+        "reference": "פתשגן",
+        "location": "Introduction opening",
+        "evidence": "Visible gimel in the scan, not nun."
+      }
+    ],
+    "text": "פתשגן הכתב אשר שלח ירמיהו אל־העתידים לגלות ביד מלך בבל בבלה להגיד להם כאשר צוה מאת האלהים׃ על החטאים אשר חטאתם לפני האלהים תגלו בבלה ביד נבוכדראצר מלך בבל׃ וכי תבאו אל־בבל והייתם שם שנים רבות וזמן רב עד־שבעה דורות אחרי־כן אוציא אתכם משם בשלום׃ והיה כי תראו בבבל אלהי כסף ואלהי זהב ואלהי עץ",
+    "punctuation": "Explicit user-designated sof pasuq U+05C3; excluded from consonantal scoring."
+  },
+  "ocr": {
+    "engine": "Kraken7.1.1",
+    "modelURL": "https://zenodo.org/records/21788405",
+    "modelSHA256": "3108259779f5abfed3908a1c9eafba64d17e4a2a169368c539ecfeff04c018f3",
+    "configuration": [
+      "ocr",
+      "-s",
+      "-n",
+      "--base-dir",
+      "R"
+    ],
+    "dictionary": false,
+    "lineSegmentation": "Manually selected full scripture-body rectangle; horizontal ink bands merged across gaps of at most7 rows at4x PDF scale; six resulting lines visually checked.",
+    "rawText": "פתשגן הכתב אשר שלח ירמיהו אל-העתידים לגלות ביד\nמלך בבל בבלה להגיד להם כאָשר צוה מאת האלהים:\nעל החטאים אשר חטאתם לפני האלהים תגלו בבלה ביד\nנבוכךראצר מלך בבל: וכי תבאו אָל-בבל והייתם שם שנים\nרבות וזמן רב עד-שבעה דורות אחרי-כן אוציא אתכם משם\nבשלום: והיה כי תראו בבבל אלהי כסף ואלהי זהב ואלהי עץ",
+    "lines": [
+      {
+        "rectInBodyImage": [
+          0,
+          13,
+          1304,
+          73
+        ],
+        "imageSHA256": "6dbbfe9b72b04b41db65afa51556cc5d0b33d12910bfac0997929cfe322f6796",
+        "text": "פתשגן הכתב אשר שלח ירמיהו אל-העתידים לגלות ביד"
+      },
+      {
+        "rectInBodyImage": [
+          0,
+          76,
+          1304,
+          141
+        ],
+        "imageSHA256": "38627b2b4741ffa02430eaa08a86da9451945b1034efa09cd76c8a5ae64449dd",
+        "text": "מלך בבל בבלה להגיד להם כאָשר צוה מאת האלהים:"
+      },
+      {
+        "rectInBodyImage": [
+          0,
+          166,
+          1304,
+          226
+        ],
+        "imageSHA256": "6e8f0630d3bf1ec9de39bf41d97da4c077c9943e3417fb18f1d74047190d316b",
+        "text": "על החטאים אשר חטאתם לפני האלהים תגלו בבלה ביד"
+      },
+      {
+        "rectInBodyImage": [
+          0,
+          234,
+          1304,
+          292
+        ],
+        "imageSHA256": "1d334966b63c3ab6dd103970b572d248ccdee1ac38d08fa3bf5f268958760f9f",
+        "text": "נבוכךראצר מלך בבל: וכי תבאו אָל-בבל והייתם שם שנים"
+      },
+      {
+        "rectInBodyImage": [
+          0,
+          305,
+          1304,
+          360
+        ],
+        "imageSHA256": "2e163eceba687c6bbcec7cdb56fb9202933aeac2f501f6b50ad65bfd43d5aa85",
+        "text": "רבות וזמן רב עד-שבעה דורות אחרי-כן אוציא אתכם משם"
+      },
+      {
+        "rectInBodyImage": [
+          0,
+          367,
+          1304,
+          426
+        ],
+        "imageSHA256": "6ee1d75c534037c71d53412aec30b0d604065781f859c0e21b13e2c10aa14c66",
+        "text": "בשלום: והיה כי תראו בבבל אלהי כסף ואלהי זהב ואלהי עץ"
+      }
+    ],
+    "runtimeNote": "Local Python3.13; SciPy1.16.3 scratch override as documented in sirach-kraken-trial.json."
+  },
+  "comparison": {
+    "schemaVersion": 1,
+    "purpose": "review-only",
+    "relationship": "scan-transcription",
+    "referenceStatus": "scan-checked",
+    "productionEligible": false,
+    "referenceSHA256": "3b1268f5b022ad2a5244f64d10f2b489492279c2a14ba511dd88c58e0bcb8686",
+    "observedSHA256": "0b03566a27b006208b60511b9e9b3d328a356c47332626668f13ad192cb61f84",
+    "normalization": "Combining marks and punctuation removed for comparison only; spelling preserved.",
+    "referenceWords": 59,
+    "observedWords": 59,
+    "wordOperations": {
+      "equal": 58,
+      "replace": 1,
+      "delete": 0,
+      "insert": 0
+    },
+    "matchingReferenceFraction": 0.9830508474576272,
+    "tokenDifferenceRate": 0.01694915254237288,
+    "alignment": [
+      {
+        "kind": "equal",
+        "referenceStart": 0,
+        "referenceEnd": 27,
+        "observedStart": 0,
+        "observedEnd": 27,
+        "reference": [
+          "פתשגן",
+          "הכתב",
+          "אשר",
+          "שלח",
+          "ירמיהו",
+          "אל",
+          "העתידים",
+          "לגלות",
+          "ביד",
+          "מלך",
+          "בבל",
+          "בבלה",
+          "להגיד",
+          "להם",
+          "כאשר",
+          "צוה",
+          "מאת",
+          "האלהים",
+          "על",
+          "החטאים",
+          "אשר",
+          "חטאתם",
+          "לפני",
+          "האלהים",
+          "תגלו",
+          "בבלה",
+          "ביד"
+        ],
+        "observed": [
+          "פתשגן",
+          "הכתב",
+          "אשר",
+          "שלח",
+          "ירמיהו",
+          "אל",
+          "העתידים",
+          "לגלות",
+          "ביד",
+          "מלך",
+          "בבל",
+          "בבלה",
+          "להגיד",
+          "להם",
+          "כאשר",
+          "צוה",
+          "מאת",
+          "האלהים",
+          "על",
+          "החטאים",
+          "אשר",
+          "חטאתם",
+          "לפני",
+          "האלהים",
+          "תגלו",
+          "בבלה",
+          "ביד"
+        ]
+      },
+      {
+        "kind": "replace",
+        "referenceStart": 27,
+        "referenceEnd": 28,
+        "observedStart": 27,
+        "observedEnd": 28,
+        "reference": [
+          "נבוכדראצר"
+        ],
+        "observed": [
+          "נבוכךראצר"
+        ]
+      },
+      {
+        "kind": "equal",
+        "referenceStart": 28,
+        "referenceEnd": 59,
+        "observedStart": 28,
+        "observedEnd": 59,
+        "reference": [
+          "מלך",
+          "בבל",
+          "וכי",
+          "תבאו",
+          "אל",
+          "בבל",
+          "והייתם",
+          "שם",
+          "שנים",
+          "רבות",
+          "וזמן",
+          "רב",
+          "עד",
+          "שבעה",
+          "דורות",
+          "אחרי",
+          "כן",
+          "אוציא",
+          "אתכם",
+          "משם",
+          "בשלום",
+          "והיה",
+          "כי",
+          "תראו",
+          "בבבל",
+          "אלהי",
+          "כסף",
+          "ואלהי",
+          "זהב",
+          "ואלהי",
+          "עץ"
+        ],
+        "observed": [
+          "מלך",
+          "בבל",
+          "וכי",
+          "תבאו",
+          "אל",
+          "בבל",
+          "והייתם",
+          "שם",
+          "שנים",
+          "רבות",
+          "וזמן",
+          "רב",
+          "עד",
+          "שבעה",
+          "דורות",
+          "אחרי",
+          "כן",
+          "אוציא",
+          "אתכם",
+          "משם",
+          "בשלום",
+          "והיה",
+          "כי",
+          "תראו",
+          "בבבל",
+          "אלהי",
+          "כסף",
+          "ואלהי",
+          "זהב",
+          "ואלהי",
+          "עץ"
+        ]
+      }
+    ],
+    "notes": [
+      "An alignment is a review aid, not a verified verse crosswalk.",
+      "Niqqud and punctuation still require separate image comparison."
+    ],
+    "consonantalWordErrorRate": 0.01694915254237288
+  },
+  "limitations": [
+    "One crop is not a full-book accuracy measurement.",
+    "Raw OCR was scored without correction.",
+    "No niqqud, punctuation or whole-book completion certification."
+  ]
+}

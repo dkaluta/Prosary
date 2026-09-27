@@ -71,6 +71,7 @@
                                     <ToggleSwitch x:Uid="SetShowTodayIntention" Header="Show the Pope's intention"
                                                   IsOn="{x:Bind Options.ShowTodayIntention, Mode=TwoWay}" />
                                     <ToggleSwitch x:Uid="SetShowTodayReadingsDesktop" Header="Show readings"
+                                                  Visibility="{x:Bind ShowsReadingOptions, Converter={StaticResource BoolToVisibility}}"
                                                   IsOn="{x:Bind Options.ShowTodayReadings, Mode=TwoWay}"
                                                   AutomationProperties.AutomationId="showTodayReadings" />
                                     <ToggleSwitch x:Uid="SetExpandReadingsByDefault" Header="Expand readings by default"
@@ -147,7 +148,7 @@
                  Pope's monthly prayer intention. Rows hide when the bundled datasets have no
                  entry (ferial days; dates past the generated years). -->
             <Border Style="{StaticResource SectionCardStyle}"
-                    Visibility="{x:Bind ViewModel.ShowsTodaySection, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
+                    Visibility="{x:Bind ShowsDailySection, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
                     FlowDirection="{x:Bind ViewModel.TodayIsRightToLeft, Mode=OneWay, Converter={StaticResource BoolToFlowDirection}}">
                 <StackPanel Spacing="10">
                     <Grid ColumnSpacing="8" Visibility="{x:Bind ViewModel.ShowsTodayDay, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
@@ -211,7 +212,9 @@
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
                     </Expander>
-                    <Grid ColumnSpacing="8" Visibility="{x:Bind ViewModel.ShowsTodayReadings, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
+                    <TextBlock Text="{x:Bind NoReadingsText}" TextWrapping="Wrap"
+                               Visibility="{x:Bind ShowsNoReadings, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
+                    <Grid ColumnSpacing="8" Visibility="{x:Bind ShowsDailyReadings, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="*" />

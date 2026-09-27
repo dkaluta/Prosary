@@ -38,8 +38,10 @@ Titus (135), Philemon (136), Hebrews (137), James (138), 1/2 Peter (139/140),
 edition and the same Digital Syriac Corpus CC BY 4.0 terms and contributor credits.
 
 `peshitta_reading_source.py` reuses the existing importer and Erez's supplied converter.
-Per verse, `text` is the Hebrew-script projection and `transliteratedText` is the unchanged
-pointed Syriac source. The metadata explicitly declares `textScript: "Hebr"` and
+Per verse, `text` is the Hebrew-script projection and `transliteratedText` is the
+pointed Syriac source wording. The OT reader excludes exact editorial captions recorded
+in its source-pinned review; the surrounding Scripture words are preserved. The metadata
+explicitly declares `textScript: "Hebr"` and
 `transliteratedTextScript: "Syrc"`; this follows the prayer-pack Aramaic convention even
 though the field called transliteration contains the source script. The reader starts with
 the existing `aramaicDefaultScript` preference and can switch both verse text and typeface.
@@ -56,13 +58,17 @@ is inserted, and no source verse is renumbered to make a chapter appear complete
 On 2026-09-27 the user explicitly requested expansion of the supplied Old Testament in
 the reader. The separate `peshitta_supplied_ot.py` adapter imports named, hash-pinned OT
 books and records source defects and boundary exclusions. The
-[OT reader review](PESHITTA-OT-READER-REVIEW.markdown) explains its ordinary-numbering
-inference, independent reference witnesses, and deliberately unavailable chapters. The
+[OT reader review](PESHITTA-OT-READER-REVIEW.markdown) records the complete comparison of
+25,095 imported OT entries with a published transcription, the semantic boundary review
+of all 3,827 OT coordinates used by the initial expansion, and printed-source checks of
+questionable wording. Availability is limited to explicitly reviewed verse units, with
+shifted clauses kept in indivisible groups; matching chapter totals cannot enable text.
+Unresolved source defects and unreviewed coordinates remain unavailable. The
 reader credit retains the unresolved OT edition and rights status separately from the NT.
 Appointments still need a valid, unambiguous numbering correspondence and every requested
 source verse; no partial passage is displayed. The expanded reader now includes OT daily
 and Torah passages; the exact generated totals and all exclusions are in the
-[coverage report](../reports/readings-text-coverage.json) records every unavailable passage.
+[coverage report](../reports/readings-text-coverage.json), which records every unavailable passage.
 
 ## Old Testament
 

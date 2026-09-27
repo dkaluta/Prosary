@@ -24,6 +24,16 @@ nonisolated struct ReadingTextVerse: Decodable, Equatable, Sendable {
   let verse: Int
   let text: String
   var transliteratedText: String? = nil
+  var endVerse: Int? = nil
+
+  var verseLabel: String {
+    if let endVerse, endVerse > verse { return "\(verse)–\(endVerse)" }
+    return String(verse)
+  }
+
+  func contains(verse number: Int) -> Bool {
+    number >= verse && number <= (endVerse ?? verse)
+  }
 
   func displayedText(script: String, edition: ReadingTextEdition) -> String {
     if edition.supportsAramaicScriptChoice, script == edition.transliteratedTextScript,
@@ -85,7 +95,8 @@ nonisolated struct ReadingTextDataset: Decodable, Sendable {
           let edition = editions.first(where: { $0.id == editionID }),
           let verses = passages["\(isTorah ? "torah" : "daily")|\(citation)"]?[editionID],
           !verses.isEmpty,
-          verses.allSatisfy({ $0.chapter > 0 && $0.verse > 0 && !$0.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty }),
+          verses.allSatisfy({ $0.chapter > 0 && $0.verse > 0 && ($0.endVerse ?? $0.verse) >= $0.verse
+            && !$0.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty }),
           !edition.supportsAramaicScriptChoice || verses.allSatisfy({
             !($0.transliteratedText ?? "").trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
           })

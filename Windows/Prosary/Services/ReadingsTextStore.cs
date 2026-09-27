@@ -10,8 +10,9 @@ public sealed record ScriptureEdition(string Id, string LanguageCode, string Nam
         && (uri.Scheme == Uri.UriSchemeHttps || uri.Scheme == Uri.UriSchemeHttp) ? uri : null;
 }
 
-public sealed record ScriptureVerse(int Chapter, int Verse, string Text, string? TransliteratedText = null)
+public sealed record ScriptureVerse(int Chapter, int Verse, string Text, string? TransliteratedText = null, int? EndVerse = null)
 {
+    public string VerseLabel => EndVerse is { } end && end > Verse ? $"{Verse}–{end}" : Verse.ToString(System.Globalization.CultureInfo.InvariantCulture);
     public string DisplayedText(ScriptureEdition? edition, string script) =>
         edition?.HasAramaicScripts == true && script == edition.TransliteratedTextScript
             ? TransliteratedText ?? "" : Text;
@@ -79,7 +80,7 @@ public sealed class ReadingsTextStore
             return null;
         // A damaged row must not display a silently shortened or partially missing passage.
         var requiresBothScripts = Editions.First(edition => edition.Id == editionId).HasAramaicScripts;
-        return verses.All(verse => verse is not null && verse.Chapter > 0 && verse.Verse > 0 && !string.IsNullOrWhiteSpace(verse.Text)
+        return verses.All(verse => verse is not null && verse.Chapter > 0 && verse.Verse > 0 && (verse.EndVerse is null || verse.EndVerse >= verse.Verse) && !string.IsNullOrWhiteSpace(verse.Text)
             && (!requiresBothScripts || !string.IsNullOrWhiteSpace(verse.TransliteratedText)))
             ? new ScripturePassage(verses, _corpus.Value.WholeVersePassages?.Contains($"{scope}|{rawCitation}") == true)
             : null;

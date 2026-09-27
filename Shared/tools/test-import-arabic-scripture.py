@@ -166,6 +166,33 @@ class ArabicImportTests(unittest.TestCase):
 
 
 class CommittedArabicCorpusTests(unittest.TestCase):
+    def test_full_visual_audit_covers_exact_current_wording(self):
+        audit = json.loads((TOOLS / "arabic-scripture-audit.json").read_text())
+        self.assertEqual(audit["schemaVersion"], 1)
+        self.assertEqual(sum(row["verseCount"] for row in audit["corpora"]), 665)
+        seen = set()
+        for corpus in audit["corpora"]:
+            raw = (ROOT / corpus["path"]).read_bytes()
+            self.assertEqual(hashlib.sha256(raw).hexdigest(), corpus["sha256"])
+            data = json.loads(raw)
+            expected = {}
+            for book, chapters in data["verses"].items():
+                for chapter, verses in chapters.items():
+                    for verse, words in verses.items():
+                        reference = f"{book} {chapter}:{verse}"
+                        self.assertNotIn(reference, seen)
+                        seen.add(reference)
+                        expected[reference] = {
+                            "reference": reference,
+                            "pdfPages": data["pages"][book][chapter][verse],
+                            "textSHA256": hashlib.sha256(words.encode()).hexdigest(),
+                        }
+            actual = {row["reference"]: row for row in corpus["verses"]}
+            self.assertEqual(len(actual), len(corpus["verses"]))
+            self.assertEqual(actual, expected)
+            self.assertEqual(corpus["verseCount"], len(expected))
+            self.assertEqual(corpus["unitCount"], len(data["reviewUnits"]))
+
     def test_source_is_complete_and_generated_outputs_are_current(self):
         plan = IMPORTER.build_plan()
         self.assertEqual(len(plan), 9)

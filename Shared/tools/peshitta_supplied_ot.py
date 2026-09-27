@@ -5,8 +5,9 @@
 """Guarded reader-only import of the user's pinned, pointed Peshitta OT.
 
 The prayer importer deliberately remains unchanged. This adapter neither repairs
-source words nor infers missing verses. Its checked review lists every rejected
-chapter, and changing the source or its observed defects fails closed.
+source words nor infers missing verses. It removes only individually reviewed,
+hash-pinned editorial captions. Its checked review lists every rejected chapter,
+and changing the source, caption boundaries or observed defects fails closed.
 """
 from collections import Counter
 from functools import lru_cache
@@ -92,7 +93,7 @@ def parsed_books(raw: bytes):
     return root.findall("BIBLEBOOK")
 
 
-def load_supplied_ot(source: dict, raw: bytes) -> dict:
+def load_supplied_ot(source: dict, raw: bytes, *, exclude_editorial: bool = True) -> dict:
     book = source.get("book")
     if book not in BOOKS:
         raise ValueError("Unreviewed supplied Peshitta OT book")
@@ -135,4 +136,9 @@ def load_supplied_ot(source: dict, raw: bytes) -> dict:
             raise ValueError("Supplied Peshitta OT lost a previously reviewed verse")
         values = {key: text for key, text in values.items()
                   if key[0] != chapter or key[1] in allowed}
-    return values
+    if not exclude_editorial:
+        # Reference audits compare the supplied source itself, not the reader's
+        # reviewed removal of editorial captions.
+        return values
+    from peshitta_ot_semantic_review import reading_text
+    return {key: reading_text(book, *key, text) for key, text in values.items()}

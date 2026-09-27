@@ -39,7 +39,7 @@ from reading_step_mapping import Unavailable
 Reference = tuple[str, int, int]
 EDITION_ID = "jesuit-arabic-1897"
 SOURCE_ID = "old-jesuit-arabic-1897"
-SOURCE_SHA256 = "9495719b3f1573e7a446dc22dbeb3014e913d69b5bfff71239dd9602c0efeda8"
+SOURCE_SHA256 = "dbb7c4736218f730506d5eedb05708983420712c02076e008b16839665d9f39c"
 SOURCE_PATH = Path(__file__).resolve().parents[1] / "content/arabic-jesuit-1897.json"
 EXTENSION_PATH = Path(__file__).with_name("arabic-reading-extensions.json")
 # This separate review contains only reference coordinates, page evidence and

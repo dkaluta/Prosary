@@ -140,6 +140,8 @@ class StepMapper:
                  subverse_labels: Iterable[Atom] | None = None,
                  local_rule_lines: Iterable[int] | None = None,
                  excluded_rule_lines: Iterable[int] = (),
+                 reviewed_source_references: Iterable[Reference] | None = None,
+                 review_required_books: Iterable[str] = (),
                  excluded_chapters: Iterable[tuple[str, int | str]] = ()):
         self.corpus = corpus
         self.excluded_chapters = frozenset(excluded_chapters)
@@ -172,6 +174,17 @@ class StepMapper:
                     raise ValueError("STEP override source verse does not exist")
                 self.forward[reference] = set(targets)
                 self.blocked_sources.discard(reference)
+        if reviewed_source_references is not None:
+            reviewed = frozenset(reviewed_source_references)
+            required_books = frozenset(review_required_books)
+            if any(ref[0] not in required_books or not self._exists(ref) for ref in reviewed):
+                raise ValueError("Reviewed STEP source coordinate is unavailable")
+            # Apply before boundary alignment and reverse construction: a unit
+            # containing any unreviewed source member must fail in both directions.
+            for source, targets in self.forward.items():
+                if source[0] in required_books and source not in reviewed:
+                    self.blocked_sources.add(source)
+                    self.blocked_targets.update(targets)
         self._align_variable_boundaries()
         self.reverse: dict[Reference, set[Reference]] = defaultdict(set)
         for source, targets in self.forward.items():

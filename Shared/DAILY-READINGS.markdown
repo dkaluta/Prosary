@@ -262,26 +262,53 @@ to STEP English Standard is documented in the
 [Arabic passage-boundary review](content/ARABIC-REFERENCE-REVIEW.markdown), including
 Isaiah 9:2's distinction from Masoretic numbering and the whole Isaiah 11:2–3 envelope.
 The Magnificat is the one newly available daily citation; all previously emitted reading rows remain unchanged.
-The original prayer transcription remains pinned to SHA-256
-`9495719b3f1573e7a446dc22dbeb3014e913d69b5bfff71239dd9602c0efeda8`.
+The subsequent complete visual audit corrected ten verses in that prayer transcription;
+its current SHA-256 is
+`dbb7c4736218f730506d5eedb05708983420712c02076e008b16839665d9f39c`.
 The September 27 reader extension adds 222 Psalm verses and the 204 verses of Luke 6, 10,
 11 and 12, bringing 123 more daily citations into Arabic. The
 [Psalm review](content/ARABIC-JESUIT-1897-PSALMS-REVIEW.markdown) and
-[Gospel review](content/ARABIC-GOSPEL-READINGS-REVIEW.markdown) record independent visual
-wording checks, printed numbering and indivisible boundaries. Their separate source pins
+[Gospel review](content/ARABIC-GOSPEL-READINGS-REVIEW.markdown) record printed numbering
+and indivisible boundaries. Their separate source pins
 and word hashes live in [reference-only extension metadata](tools/arabic-reading-extensions.json).
-Existing prayer packs and previously emitted reading rows are unchanged.
+The [complete Arabic visual audit](content/ARABIC-FULL-AUDIT.markdown) subsequently checked
+all 665 verses against the 1897 scan and corrected 26 transcribed verses: ten in the
+original prayer corpus, two in Psalms and fourteen in the Gospel extension. Scripture in
+affected prayer packs, native fallbacks, Terminal content and reader assets is regenerated
+from those corrected sources. Its per-verse ledger pins the exact reviewed wording;
+the earlier extension's unchanged-wording claim does not apply to these corrections.
 
-The Peshitta addition supplies 1,995 daily citations and 29 Torah passages, adding 225 daily
-and 29 Torah citations. Its pinned source inventory contains 7,912 NT verse labels and
-25,095 structurally valid supplied OT entries; the conservative OT reference profile admits
-14,290 entries before appointment resolution. Its ordinary numbering outside known
-alternative-boundary chapters is an explicitly documented inference, supported by 27
-independent chapter comparisons and targeted endpoint checks. Damaged chapters, unreviewed
-Psalm/deuterocanonical mappings, Genesis 2/5/6 and unconvertible script remain unavailable.
-Luke 10/11, Philippians 1, 3 John and Revelation 12/13 remain unavailable
-for the structural/boundary reasons in [the source review](content/PESHITTA-SOURCES.markdown).
-The full-text JSON is about 50.2 MB before app-package compression; edition metadata is about 3.6 KB.
+The Peshitta addition now supplies 1,994 daily citations and 23 Torah passages.
+Its pinned inventory contains 7,912 NT verse labels and 25,095 structurally valid supplied
+OT entries. Every one of the 3,827 previously emitted OT coordinates received a semantic
+review. The reader now uses an explicit coordinate gate, 41 indivisible compound units,
+and 23 exact source-pinned editorial exclusions instead of inferring matching boundaries
+from chapter lengths. Eight unresolved or print-confirmed defective coordinates are
+withheld; six initially suspicious coordinates are retained as print-supported variants.
+An automated consonantal collation covers all 25,095 imported OT entries, with every
+reported disagreement triaged. This is not a claim of printed verification of every verse.
+See the [completed OT review](content/PESHITTA-OT-READER-REVIEW.markdown) for scope,
+primary witnesses and individual dispositions. Luke 10/11, Philippians 1, 3 John and
+Revelation 12/13 retain the existing structural/boundary exclusions.
+
+## Downloadable Bible library
+
+Readings also contains a Bible mode with source-native book, chapter and verse navigation.
+It shares the selected edition with Daily Readings, while keeping its position independent
+of the prayer date. Only the small catalog is bundled; each edition is an explicit,
+individually removable offline download. Book titles follow the edition language and
+paired script. Partial chapters retain their exact verse labels and show a visible notice.
+
+The separate [Bible library contract](BIBLE-VIEWER.markdown) and
+[schema](schema/bible-library.json) define immutable ZIP archives, source credits,
+content hashes, bounds and atomic installation. Generate them with
+`uv run --script Shared/tools/build-bible-library.py --sync`; verify with
+`uv run --script Shared/tools/test-bible-library.py` and the generator's `--check` mode.
+Archives live once in `Shared/dist/bibles`, and only `bible-catalog.json` is copied into
+native resources. [Coverage](reports/bible-library-coverage.json) reports actual inventory;
+a Bible viewer does not imply that every offered edition supplies the complete Catholic
+canon. Known damaged chapters and unreviewed Syriac material are withheld, and the
+reviewed Arabic collection remains partial. No missing Scripture is filled by inference.
 
 ## Data and native contract
 

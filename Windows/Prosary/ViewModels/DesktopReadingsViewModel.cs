@@ -126,7 +126,7 @@ public partial class ReadingPassageViewModel : ObservableObject
         var chapterLabel = ReadingChapterHeading.Label(headingLanguage, EffectiveScript);
         foreach (var verse in _verses)
         {
-            var text = $"\u2066{verse.Verse}\u2069  {verse.DisplayedText(_edition, EffectiveScript)}";
+            var text = $"\u2066{verse.VerseLabel}\u2069  {verse.DisplayedText(_edition, EffectiveScript)}";
             if (sections.Count == 0 || sections[^1].Number != verse.Chapter)
                 sections.Add(new ReadingChapterSection(chapterLabel, verse.Chapter,
                     ReadingChapterHeading.Number(verse.Chapter, headingLanguage, EffectiveScript), text));

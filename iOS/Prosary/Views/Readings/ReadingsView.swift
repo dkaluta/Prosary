@@ -2,7 +2,7 @@
 import SwiftUI
 
 /// Browsing civil dates leaves prayer mysteries and continuation unchanged.
-struct ReadingsView: View {
+struct DailyReadingsView: View {
   @Environment(\.scenePhase) private var scenePhase
   @AppStorage(TodayInfoStore.calendarDefaultsKey) private var calendarID = ""
   @AppStorage(TodayInfoStore.paschaStyleDefaultsKey) private var paschaStyle = "julian"
