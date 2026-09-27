@@ -112,6 +112,13 @@ struct RosaryOptionsSections: View {
         }
         Toggle("favoriteEditor.closingIntentions", isOn: $rosary.effectiveClosingIntentions)
         Toggle("favoriteEditor.stMichaelPrayer", isOn: $rosary.includeStMichaelPrayer)
+        Toggle(String(localized: "favoriteEditor.litanyOfLoreto", defaultValue: "Pray the Litany of Loreto afterward", bundle: UILanguage.bundle, locale: UILanguage.locale),
+               isOn: $rosary.includeLitanyOfLoreto)
+          .accessibilityIdentifier("litanyOfLoretoToggle")
+        Toggle(String(localized: "favoriteEditor.rosaryCollect", defaultValue: "Rosary collect", bundle: UILanguage.bundle, locale: UILanguage.locale),
+               isOn: Binding(get: { rosary.effectiveRosaryCollect }, set: { rosary.includeRosaryCollect = $0 }))
+          .disabled(rosary.includeLitanyOfLoreto)
+          .accessibilityIdentifier("rosaryCollectToggle")
         Toggle("favoriteEditor.finalSignOfCross", isOn: $rosary.includeFinalSignOfCross)
       }
     }

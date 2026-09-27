@@ -136,6 +136,10 @@ data class CustomDevotionStep(
          * names a choice option whose cases are antiphon ids plus "seasonal" and "none". */
         @SerialName("marianAntiphon")
         MarianAntiphon,
+
+        /** Built-in Rosary continuation, without the Litany's own final collect. */
+        @SerialName("rosaryLitany")
+        RosaryLitany,
     }
 }
 

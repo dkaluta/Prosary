@@ -42,7 +42,9 @@
     "mysteryGroupJoyfulTitle": "Joyful",
     "mysteryGroupSorrowfulTitle": "Sorrowful",
     "mysteryGroupGloriousTitle": "Glorious",
-    "mysteryGroupLuminousTitle": "Luminous"
+    "mysteryGroupLuminousTitle": "Luminous",
+    "rosaryCollect": "Let us pray. O God, whose only-begotten Son, by His life, death, and resurrection, has purchased for us the rewards of eternal life; grant, we beseech Thee, that, meditating upon these mysteries of the most holy Rosary of the Blessed Virgin Mary, we may imitate what they contain and obtain what they promise, through the same Christ our Lord. Amen.",
+    "rosaryCollectTitle": "Let Us Pray"
   },
   "mysteries": {
     "joyful_01_annunciation": {
@@ -145,5 +147,6 @@
       "fruit": "Adoration and Love of the Eucharist",
       "description": "And whilst they were at supper, Jesus took bread, and blessed, and broke: and gave to his disciples, and said: Take ye, and eat. This is my body. And taking the chalice, he gave thanks: and gave to them, saying: Drink ye all of this. For this is my blood of the new testament, which shall be shed for many unto remission of sins.\n\n— Matthew 26:26–28 (Douay-Rheims)"
     }
-  }
+  },
+  "$rosaryCollectSource": "Rosary-only separate step: unchanged collectaStandard text; when absent (Spanish/Mission Hebrew), unchanged sourced collectAfterRosary from litanyOfLoreto. Basic Marian antiphon texts remain unchanged. Hebrew heading נתפללה supplied explicitly by the user, 2026-09-27."
 }

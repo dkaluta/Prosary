@@ -95,6 +95,8 @@ Useful commands:
 ```sh
 ./prosary --list
 ./prosary --pray rosary --group joyful --language en
+./prosary --pray rosary --litany-of-loreto
+./prosary --dump rosary --no-rosary-collect
 ./prosary --dump angelus --language la
 ./prosary --restart
 ./prosary --no-state
@@ -154,3 +156,9 @@ Run those commands from the repository root. Never edit the snapshot's prayer te
 directly. Source attribution remains in the canonical devotion manifests and source
 notes included or referenced by the snapshot. The [root license](../LICENSE)
 covers this port; third-party prayer and Scripture texts retain their source terms.
+
+The Rosary’s Settings include the Litany of Loreto (off by default) and its closing
+collect (on by default). Selecting the Litany keeps the collect on; deselecting it
+restores the prior collect choice. The antiphon, optional Litany, collect, and final
+cross stay in one prayer session. The standalone Litany retains its own collect.
+Old Rosary bookmarks restart once because the separate collect changes the sequence.

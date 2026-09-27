@@ -59,10 +59,10 @@ int main(int argc, char **argv) {
     char error[512];
     const char *data = argc > 1 ? argv[1] : "data";
     ProsaryEngine *e;
-    ProsarySelection selection = {"en", 0, -1, 0, 2026, 9, 23, 0};
+    ProsarySelection selection = {"en", 0, -1, 0, 2026, 9, 23, 0, 0, 0};
     ProsarySession *s;
     size_t i, l, cases = 0, fallback_cases = 0, mixed_steps = 0;
-    static const size_t expected[] = {79, 11, 63, 90, 69, 18, 17, 6, 5, 16};
+    static const size_t expected[] = {80, 11, 63, 90, 69, 18, 17, 6, 5, 16};
     parse_tests();
     e = engine_open(data, error, sizeof(error));
     if (!e) { fprintf(stderr, "%s\n", error); return 1; }
@@ -93,6 +93,43 @@ int main(int argc, char **argv) {
             }
         }
     }
+    selection.variant = -1; selection.day = 0;
+    for (l = 0; l < engine_language_count(); ++l) {
+        int litany, collect, season;
+        selection.language = engine_language_code(l);
+        for (season = 0; season < 2; ++season) {
+            selection.month = season ? 4 : 9; selection.day_of_month = season ? 5 : 23;
+            for (litany = 0; litany <= 1; ++litany) for (collect = 0; collect <= 1; ++collect) {
+                ProsarySession *standalone;
+                size_t j, matches = 0;
+                selection.include_litany_of_loreto = litany; selection.omit_rosary_collect = !collect;
+                s = build(e, "rosary", &selection);
+                standalone = build(e, "litanyOfLoreto", &selection);
+                assert(standalone->count == 16);
+                assert(s->count == (size_t)(79 + (litany || collect) + litany * 15));
+                if (litany || collect) {
+                    const char *body = s->steps[s->count - 2].body;
+                    for (j = 0; j < s->count; ++j) if (!strcmp(body, s->steps[j].body)) ++matches;
+                    assert(matches == 1);
+                }
+                if (litany) {
+                    size_t start = s->count - 17;
+                    for (j = 0; j < 15; ++j) {
+                        assert(!strcmp(s->steps[start + j].body, standalone->steps[j].body));
+                        assert(!strcmp(s->steps[start + j].title, standalone->steps[j].title));
+                        if (!strcmp(selection.language, "arc")) {
+                            assert(!strcmp(s->steps[start + j].language, "la"));
+                            assert(s->steps[start + j].used_fallback);
+                        }
+                    }
+                    assert(strcmp(s->steps[s->count - 2].body, standalone->steps[15].body));
+                }
+                engine_session_free(standalone); engine_session_free(s);
+            }
+        }
+    }
+    selection.include_litany_of_loreto = selection.omit_rosary_collect = 0;
+    selection.month = 9; selection.day_of_month = 23;
     selection.language = "en"; selection.variant = -1; selection.day = 0;
     for (i = 0; i < 4; ++i) {
         size_t j, beads = 0; selection.group = (int)i; s = build(e, "rosary", &selection);

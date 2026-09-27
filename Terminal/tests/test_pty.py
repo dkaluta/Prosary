@@ -42,7 +42,7 @@ class Terminal:
         self.master, slave = pty.openpty()
         fcntl.ioctl(slave, termios.TIOCSWINSZ, struct.pack("HHHH", 30, 105, 0, 0))
         self.process = subprocess.Popen([str(binary), *args], stdin=slave, stdout=slave, stderr=slave,
-            env={**os.environ, "TERM": "xterm-256color", "LC_ALL": utf8_locale()})
+            env={**os.environ, "TERM": "xterm-256color", "LC_ALL": utf8_locale(), "ESCDELAY": "100"})
         os.close(slave)
         self.initial = self.read(0.7)
         if b"Prosary" not in self.initial:

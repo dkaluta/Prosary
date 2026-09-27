@@ -53,7 +53,7 @@ public class PrayerRunStateTests : IClassFixture<PrayerPackLoaderFixture>
             IncludeClosingBishopIntention = false,
             IncludeClosingDepartedIntention = false,
         }));
-        Assert.EndsWith("|closing-v2:1,1,1", PrayerRunSignatures.Rosary(legacy));
+        Assert.Contains("|closing-v2:1,1,1", PrayerRunSignatures.Rosary(legacy));
         Assert.DoesNotContain("closing-v2", PrayerRunSignatures.Rosary(new RosaryOptions()));
     }
 
@@ -72,17 +72,19 @@ public class PrayerRunStateTests : IClassFixture<PrayerPackLoaderFixture>
         };
         var signature = PrayerRunSignatures.Rosary(options);
         Assert.Equal(opening && fatima, signature.Contains("|opening-fatima-v2"));
-        Assert.EndsWith(opening && fatima ? "|closing-v2:1,1,1|opening-fatima-v2" : "|closing-v2:1,1,1", signature);
+        Assert.Contains("|closing-v2:1,1,1", signature);
+        Assert.Contains("|rosary-ending-v3:0,1", signature);
     }
 
     [Fact]
-    public void RosaryLitanyContinuationPreservesTheSelectedLanguageAndUsesItsClosingCollect()
+    public void RosaryEndingSignatureTracksEffectiveCollectAndInvalidatesOldBookmarks()
     {
-        var destination = RosaryViewModel.LitanyContinuation("he-x-gamliel");
-        Assert.Null(destination.PrayerId);
-        Assert.Equal("litanyOfLoreto", destination.BundleId);
-        Assert.Equal("he-x-gamliel", destination.LanguageCode);
-        Assert.Equal("afterRosary", destination.VariantId);
+        var plain = new RosaryOptions();
+        Assert.EndsWith("|rosary-ending-v3:0,1", PrayerRunSignatures.Rosary(plain));
+        Assert.NotEqual(PrayerRunSignatures.Rosary(plain), PrayerRunSignatures.Rosary(plain with { IncludeRosaryCollect = false }));
+        var litany = plain with { IncludeLitanyOfLoreto = true };
+        Assert.Equal(PrayerRunSignatures.Rosary(litany), PrayerRunSignatures.Rosary(litany with { IncludeRosaryCollect = false }));
+        Assert.NotEqual(PrayerRunSignatures.Rosary(plain), PrayerRunSignatures.Rosary(litany));
     }
 
     [Fact]
@@ -126,7 +128,7 @@ public class PrayerRunStateTests : IClassFixture<PrayerPackLoaderFixture>
     }
 
     [Fact]
-    public async Task RosaryCompletionOffersTheLitanyOnlyAfterTheFinalStepAndClearsTheRun()
+    public async Task RosaryCompletionClearsTheRunAfterTheFinalStep()
     {
         var prayer = new Prayer { LanguageCode = "en", Rosary = new RosaryOptions { MysterySelectionMode = MysterySelectionMode.SingleMystery } };
         var presets = new MemoryPresetStore(prayer);
@@ -134,15 +136,11 @@ public class PrayerRunStateTests : IClassFixture<PrayerPackLoaderFixture>
         var runs = new LocalPrayerRunStore(() => json, value => json = value);
         var calendar = new LiturgicalCalendarService();
         var viewModel = new RosaryViewModel(presets, new PrayerEngine(calendar), calendar, runs);
-        var offers = 0;
-        viewModel.OfferLitany = () => { offers++; return Task.FromResult(false); };
         await viewModel.LoadAsync(prayer.Id);
-        for (var i = 0; !viewModel.IsLastStep && i < 100; i++) await viewModel.NextCommand.ExecuteAsync(null);
+        for (var i = 0; !viewModel.IsLastStep && i < 100; i++) viewModel.NextCommand.Execute(null);
         Assert.True(viewModel.IsLastStep);
-        Assert.Equal(0, offers);
         Assert.NotNull(runs.Get(PrayerRunKeys.Rosary(prayer.Id)));
-        await viewModel.NextCommand.ExecuteAsync(null);
-        Assert.Equal(1, offers);
+        viewModel.NextCommand.Execute(null);
         Assert.Null(runs.Get(PrayerRunKeys.Rosary(prayer.Id)));
     }
 
@@ -162,7 +160,7 @@ public class PrayerRunStateTests : IClassFixture<PrayerPackLoaderFixture>
             new SilentReminders(), new LocalPrayerRunStore(() => null, _ => { }));
         await viewModel.LoadAsync(favorite.Id, "litanyOfLoreto",
             afterRosary ? "en" : null, afterRosary ? "afterRosary" : null);
-        var expectedVariant = afterRosary ? "afterRosary" : "standard";
+        var expectedVariant = "standard";
         Assert.Equal(expectedVariant, viewModel.CurrentVariantId);
         Assert.False(viewModel.ShowsVariantMenu);
         await viewModel.SelectVariantAsync(afterRosary ? "standard" : "afterRosary");
@@ -170,7 +168,7 @@ public class PrayerRunStateTests : IClassFixture<PrayerPackLoaderFixture>
         for (var i = 0; !viewModel.IsLastStep && i < 100; i++) viewModel.NextCommand.Execute(null);
         Assert.True(viewModel.IsLastStep);
         Assert.Equal(PrayerPackStore.ResolveBodyText("litanyOfLoreto", "en",
-            afterRosary ? "collectAfterRosary" : "collectStandard"), viewModel.Body);
+            "collectStandard"), viewModel.Body);
         Assert.Equal(favorite, await presets.GetAsync(favorite.Id));
     }
 
@@ -204,7 +202,7 @@ public class PrayerRunStateTests : IClassFixture<PrayerPackLoaderFixture>
             await custom.LoadAsync(null, "angelus", "he");
             basic.Load("hailMary");
             for (var i = 0; !rosary.Body.Contains("מְלֵאַת הַחֶסֶד") && i < 20; i++)
-                await rosary.NextCommand.ExecuteAsync(null);
+                rosary.NextCommand.Execute(null);
             for (var i = 0; !custom.Body.Contains("מְלֵאַת הַחֶסֶד") && i < 20; i++)
                 custom.NextCommand.Execute(null);
             IPrayerStepFlowViewModel[] flows = [rosary, custom, basic];
@@ -478,6 +476,44 @@ public class PrayerRunStateTests : IClassFixture<PrayerPackLoaderFixture>
         var reopened = new RemindersOnlyEditorViewModel(presets, new SilentReminders());
         await reopened.LoadAsync(saved.Id);
         Assert.Equal(enabled, reopened.OptionRows.Single(row => row.Key == "closingIntentions").IsOn);
+    }
+
+    [Fact]
+    public async Task BothRosaryEditorsForceCollectAndRestoreTheStoredChoice()
+    {
+        var typed = new Prayer { Rosary = new RosaryOptions { IncludeRosaryCollect = false } };
+        var custom = new Prayer { Kind = PrayerKind.Custom, CustomDevotionId = "rosary",
+            CustomOptions = new() { ["litanyOfLoreto"] = "false", ["rosaryCollect"] = "false" } };
+        var presets = new MemoryPresetStore(typed, custom);
+        var editor = new FavoriteEditorViewModel(presets, new SilentReminders());
+        await editor.LoadAsync(typed.Id, PrayerKind.Rosary);
+        Assert.False(editor.EffectiveIncludeRosaryCollect);
+        editor.IncludeLitanyOfLoreto = true;
+        Assert.True(editor.EffectiveIncludeRosaryCollect);
+        Assert.False(editor.CanEditRosaryCollect);
+        editor.EffectiveIncludeRosaryCollect = false;
+        Assert.True(editor.EffectiveIncludeRosaryCollect);
+        editor.IncludeLitanyOfLoreto = false;
+        Assert.False(editor.EffectiveIncludeRosaryCollect);
+        Assert.True(editor.CanEditRosaryCollect);
+
+        var generic = new RemindersOnlyEditorViewModel(presets, new SilentReminders());
+        await generic.LoadAsync(custom.Id);
+        var litany = generic.OptionRows.Single(row => row.Key == "litanyOfLoreto");
+        var collect = generic.OptionRows.Single(row => row.Key == "rosaryCollect");
+        Assert.False(collect.EffectiveIsOn);
+        litany.IsOn = true;
+        Assert.True(collect.EffectiveIsOn);
+        Assert.False(collect.IsEditable);
+        collect.EffectiveIsOn = false;
+        Assert.True(collect.EffectiveIsOn);
+        await generic.SaveCommand.ExecuteAsync(null);
+        var saved = Assert.IsType<Prayer>(await presets.GetAsync(custom.Id));
+        Assert.Equal("false", saved.CustomOptions["rosaryCollect"]);
+        Assert.Equal("true", saved.CustomOptions["litanyOfLoreto"]);
+        litany.IsOn = false;
+        Assert.False(collect.EffectiveIsOn);
+        Assert.True(collect.IsEditable);
     }
 
     [Fact]

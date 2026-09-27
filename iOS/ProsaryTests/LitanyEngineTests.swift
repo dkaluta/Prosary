@@ -3,7 +3,7 @@ import XCTest
 
 @MainActor
 final class LitanyEngineTests: XCTestCase {
-  func testEverySupportedLanguageHasOneContextAppropriateFinalCollect() throws {
+  func testEveryStandaloneLitanyKeepsItsCollectEvenWithTheObsoleteAfterRosaryVariant() throws {
     let bundle = "litanyOfLoreto"
     let info = try XCTUnwrap(PrayerPackStore.info(for: bundle))
     let engine = PrayerEngine(calendar: MockLiturgicalCalendar())
@@ -21,9 +21,9 @@ final class LitanyEngineTests: XCTestCase {
       XCTAssertEqual(after.count, 16, language)
       XCTAssertNotEqual(standaloneCollect, rosaryCollect, language)
       XCTAssertEqual(standard.last?.body, standaloneCollect, language)
-      XCTAssertEqual(after.last?.body, rosaryCollect, language)
+      XCTAssertEqual(after.last?.body, standaloneCollect, language)
       XCTAssertFalse(standard.contains { $0.body == rosaryCollect }, language)
-      XCTAssertFalse(after.contains { $0.body == standaloneCollect }, language)
+      XCTAssertFalse(after.contains { $0.body == rosaryCollect }, language)
       XCTAssertEqual(standard.dropLast().map(\.body), after.dropLast().map(\.body), language)
       XCTAssertFalse((standard + after).contains { $0.body.isEmpty }, language)
     }

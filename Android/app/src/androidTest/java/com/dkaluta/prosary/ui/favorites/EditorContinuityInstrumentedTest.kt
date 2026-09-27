@@ -2,6 +2,8 @@ package com.dkaluta.prosary.ui.favorites
 
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertIsNotEnabled
+import androidx.compose.ui.test.assertIsEnabled
+import androidx.compose.ui.test.assertIsOn
 import androidx.compose.ui.test.assertIsOff
 import androidx.compose.ui.test.assertIsSelected
 import androidx.compose.ui.test.assertTextEquals
@@ -9,7 +11,7 @@ import androidx.compose.ui.test.hasAnyAncestor
 import androidx.compose.ui.test.hasTestTag
 import androidx.compose.ui.test.hasText
 import androidx.compose.ui.test.isDialog
-import androidx.compose.ui.test.junit4.createEmptyComposeRule
+import androidx.compose.ui.test.junit4.v2.createEmptyComposeRule
 import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
@@ -154,4 +156,73 @@ class EditorContinuityInstrumentedTest {
         compose.onNodeWithText("Open Jesus Prayer setup").performClick()
         compose.onNodeWithText("33").assertIsSelected()
     }
+    @Test fun rosaryLitanyRequiresCollectWhileRememberingTheIndependentChoice() {
+        val original = Prayer(name = "Rosary options")
+        launch(original)
+        compose.onNodeWithText("Open favorite editor").performClick()
+        compose.onNodeWithText(label(R.string.rosary_options)).performScrollTo().performClick()
+        val collect = compose.onNode(hasTestTag("rosaryOption:rosaryCollect"))
+        val litany = compose.onNode(hasTestTag("rosaryOption:litanyOfLoreto"))
+        collect.performScrollTo().assertIsOn().performClick().assertIsOff()
+        litany.performScrollTo().performClick()
+        collect.performScrollTo().assertIsOn().assertIsNotEnabled()
+        scenario.recreate()
+        collect.performScrollTo().assertIsOn().assertIsNotEnabled()
+        litany.performScrollTo().performClick()
+        collect.performScrollTo().assertIsOff().assertIsEnabled()
+        litany.performScrollTo().performClick()
+        compose.onNodeWithContentDescription(label(R.string.common_back)).performClick()
+        compose.onNodeWithText(label(R.string.common_save)).performClick()
+        val saved = requireNotNull(runBlocking { store.get(original.id) })
+        assertTrue(saved.rosary.includeLitanyOfLoreto)
+        assertFalse(saved.rosary.includeRosaryCollect)
+        val row = com.dkaluta.prosary.persistence.PresetEntity.from(saved)
+        assertEquals(saved.rosary, row.toPrayer().rosary)
+    }
+
+    @Test fun genericRosaryLitanyAlsoRequiresCollectAndPersistsIndependentOverrides() {
+        PrayerPackStore.initialize(context.assets)
+        val original = Prayer(name = "Generic Rosary", kind = PrayerKind.Custom, customDevotionId = "rosary",
+            customOptions = mapOf("rosaryCollect" to "false"))
+        launch(original)
+        compose.onNodeWithText("Open reminder editor").performClick()
+        val collect = compose.onNode(hasTestTag("customOption:rosaryCollect"))
+        val litany = compose.onNode(hasTestTag("customOption:litanyOfLoreto"))
+        collect.performScrollTo().assertIsOff().assertIsEnabled()
+        litany.performScrollTo().performClick()
+        collect.performScrollTo().assertIsOn().assertIsNotEnabled()
+        scenario.recreate()
+        collect.performScrollTo().assertIsOn().assertIsNotEnabled()
+        litany.performScrollTo().performClick()
+        collect.performScrollTo().assertIsOff().assertIsEnabled()
+        litany.performScrollTo().performClick()
+        compose.onNodeWithText(label(R.string.common_save)).performClick()
+        val saved = requireNotNull(runBlocking { store.get(original.id) })
+        assertEquals("true", saved.customOptions["litanyOfLoreto"])
+        assertEquals("false", saved.customOptions["rosaryCollect"])
+    }
+
+    @Test fun versionElevenFavoritesGainSafeRosaryOptionDefaults() {
+        val helper = androidx.sqlite.db.framework.FrameworkSQLiteOpenHelperFactory().create(
+            androidx.sqlite.db.SupportSQLiteOpenHelper.Configuration.builder(context)
+                .callback(object : androidx.sqlite.db.SupportSQLiteOpenHelper.Callback(1) {
+                    override fun onCreate(db: androidx.sqlite.db.SupportSQLiteDatabase) {
+                        db.execSQL("CREATE TABLE presets (id TEXT NOT NULL PRIMARY KEY, name TEXT NOT NULL)")
+                        db.execSQL("INSERT INTO presets (id, name) VALUES ('saved', 'Existing prayer')")
+                    }
+                    override fun onUpgrade(db: androidx.sqlite.db.SupportSQLiteDatabase, oldVersion: Int, newVersion: Int) = Unit
+                }).build())
+        helper.use {
+            val db = helper.writableDatabase
+            com.dkaluta.prosary.persistence.MIGRATION_11_12.migrate(db)
+            db.query("SELECT id, name, includeLitanyOfLoreto, includeRosaryCollect FROM presets").use { row ->
+                assertTrue(row.moveToFirst())
+                assertEquals("saved", row.getString(0))
+                assertEquals("Existing prayer", row.getString(1))
+                assertEquals(0, row.getInt(2))
+                assertEquals(1, row.getInt(3))
+            }
+        }
+    }
+
 }

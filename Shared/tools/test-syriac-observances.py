@@ -23,52 +23,18 @@ LANGUAGES = ("en", "he", "ar", "ru", "tl", "fr", "it", "uk")
 CATALOG_LANGUAGES = tuple(language for language in LANGUAGES if language not in {"en", "ar"})
 
 
-def reviewed_catalogs():
-    """Read the credited names independently of the generator's localization helpers."""
-    catalogs = {language: {} for language in CATALOG_LANGUAGES}
-    for path in feasts.DISPLAY_TITLE_CATALOGS:
-        for title, values in json.loads(path.read_text())["titles"].items():
-            for language in CATALOG_LANGUAGES:
-                if language in values:
-                    catalogs[language][title] = values[language]
-    for path in feasts.HEBREW_TITLE_CATALOGS:
-        for title, values in json.loads(path.read_text())["titles"].items():
-            assert values["source"] and values["he"], (path.name, title)
-            catalogs["he"][title] = values["he"]
-    for event in json.loads(feasts.LOCALIZED_TITLE_CATALOG.read_text())["events"].values():
-        for language, value in event["titleByLanguage"].items():
-            if language not in catalogs:
-                continue
-            assert event["sources"][language] and value
-            for title in event["englishTitles"] + event.get("reviewedEnglishAliases", []):
-                catalogs[language][title] = value
-    return catalogs
+def rejects(action, text=None):
+    try:
+        action()
+    except ValueError as error:
+        assert text is None or text in str(error), error
+    else:
+        raise AssertionError("Invalid source or incomplete localization was accepted")
 
 
-def alias_path(title, aliases):
-    path = [title]
-    while title in aliases:
-        title = aliases[title]
-        assert title not in path, ("Cyclic reviewed alias", path, title)
-        path.append(title)
-    return path
+def components(row):
+    return [(part["title"], part["identity"]) for part in row["observances"]]
 
-
-reviewed_names = reviewed_catalogs()
-all_aliases = json.loads((TOOLS / "feast-title-aliases.json").read_text())["aliases"] | identities[1]
-
-
-def reviewed_name(identity, language):
-    catalog = reviewed_names[language]
-    # Exact identity names take precedence. Only reviewed aliases may supply a missing name;
-    # never look up an ambiguous component display name such as plain "St. Matthew".
-    for title in alias_path(identity, all_aliases):
-        if title in catalog:
-            return catalog[title]
-    for title, value in catalog.items():
-        if alias_path(title, identities[1])[-1] == identity:
-            return value
-    return None
 
 def build(date):
     row = fixtures[date]
@@ -107,7 +73,7 @@ for date, source_name, reviewed_identity in (
     ("2026-11-14", "St. Philip", "Saint Philip the Apostle"),
 ):
     row = build(date)
-    assert {"title": source_name, "identity": reviewed_identity} in row["observances"], row
+    assert (source_name, reviewed_identity) in components(row), row
     assert row["title"].split("; ").count(source_name) == 1, row
 assert "Matthias" in build("2026-08-09")["title"]  # Distinct from English Matthew.
 
@@ -121,24 +87,49 @@ assert feasts.localized_feast_entry_title(october, catalog).startswith("Reviewed
 assert feasts.localized_feast_entry_title(build("2026-09-18"), catalog) is None
 assert feasts.localized_feast_entry_title(build("2026-11-16"), catalog) == "Reviewed apostle translation"
 
-# Exercise mixed translated/source components separately for every localized interface. These
-# are test markers, not authored prayer or feast translations. An unreviewed name must not
-# disappear, and an ambiguous display-name alias must not override its reviewed identity.
-for language in CATALOG_LANGUAGES:
-    marker = f"Reviewed name ({language})"
-    source_title = "St. Uncatalogued Source Name"
-    case = {"title": f"St. Matthew; {source_title}", "observances": [
-        {"title": "St. Matthew", "identity": "Saint Matthew the Hermit, Confessor and Abbot"},
-        {"title": source_title, "identity": "Uncatalogued identity"},
-    ], "titleByLanguage": {"ar": "Published Arabic caption"}}
-    labels = {"St. Matthew": "Wrong apostle label", "Saint Matthew the Hermit, Confessor and Abbot": marker}
-    if language == "he":
-        feasts.localize_feast_days({"test": case}, labels)
-    else:
-        feasts.add_sourced_feast_titles({"test": case}, {language: labels})
-    assert case["titleByLanguage"] == {"ar": "Published Arabic caption", language: f"{marker}; {source_title}"}, language
-    assert case["title"] == f"St. Matthew; {source_title}", language
-    assert feasts.localized_feast_entry_title(case, {"St. Matthew": "Wrong apostle label"}) is None, language
+# Every locale must translate every reviewed unit; source fallback and partial compound
+# translations cannot masquerade as complete coverage. Markers here are fixtures only.
+from copy import deepcopy
+localized_languages = tuple(language for language in LANGUAGES if language != "en")
+def sample(identity="Fixture A"):
+    return {"2026-01-01": {"title": identity, "observances": [{"title": identity, "identity": identity}]}}
+labels = {language: {"Fixture A": f"Reviewed A ({language})", "Fixture B": f"Reviewed B ({language})"}
+          for language in localized_languages}
+with tempfile.TemporaryDirectory() as directory, patch.object(feasts, "TOOLS", Path(directory)):
+    for language in localized_languages:
+        missing = deepcopy(labels)
+        missing[language].pop("Fixture A")
+        rejects(lambda: feasts.localize_syriac_days(sample(), missing), "Untranslated Syriac")
+        missing[language]["Fixture A"] = "  "
+        rejects(lambda: feasts.localize_syriac_days(sample(), missing), "Untranslated Syriac")
+    rejects(lambda: feasts.localize_syriac_days(sample("Fixture A; Fixture B"), labels), "Untranslated Syriac")
+    partial = sample()
+    assert len(feasts.localize_syriac_days(partial, {}, require_complete=False)) == 7
+    assert partial["2026-01-01"]["titleByLanguage"] == {}
+    (Path(directory) / "syriac-feast-titles-reviewed-test.json").write_text(
+        json.dumps({"titles": {"Fixture A": {"fr": " "}}}))
+    rejects(lambda: feasts.localize_syriac_days(sample(), labels), "Invalid reviewed Syriac translation")
+
+# Published Arabic is immutable source metadata. Editorial Arabic can be refreshed on
+# subsequent localizations and must never be mistaken for a newly published source caption.
+case = sample()
+case["2026-01-01"]["observances"][0]["sourceTitleByLanguage"] = {"ar": "النص المنشور (تذكار)"}
+case["2026-01-01"]["observances"].append({"title": "Fixture B", "identity": "Fixture B"})
+case["2026-01-01"]["title"] = "Fixture A; Fixture B"
+feasts.localize_syriac_days(case, labels)
+first = deepcopy(case)
+feasts.localize_syriac_days(case, labels)
+assert case == first
+labels["ar"]["Fixture B"] = "Updated editorial Arabic marker"
+feasts.localize_syriac_days(case, labels)
+a, b = case["2026-01-01"]["observances"]
+assert a["titleByLanguage"]["ar"] == a["sourceTitleByLanguage"]["ar"] == "النص المنشور (تذكار)"
+assert b["titleByLanguage"]["ar"] == labels["ar"]["Fixture B"] and "sourceTitleByLanguage" not in b
+with tempfile.TemporaryDirectory() as directory, patch.object(feasts, "DATA", Path(directory)):
+    target = Path(directory) / "feasts-syriac.json"
+    target.write_text("Last complete dataset")
+    rejects(lambda: feasts.write_syriac_dataset(sample("Unreviewed future saint")), "Untranslated Syriac")
+    assert target.read_text() == "Last complete dataset"
 
 # Repeated identical source rows collapse; an untranslated Arabic saint stays visible.
 base = {"liturgic_title": "Sunday of Pascha", "saints": [{"name": "St. Example"}] * 2}
@@ -182,53 +173,31 @@ for results in ((None, fixtures["2026-01-01"]["SYA"]), (fixtures["2026-01-01"]["
             assert "horizons disagree" in str(error)
 
 canonical = json.loads((TOOLS.parent / "data/feasts-syriac.json").read_text())["days"]
-fallback_counts = Counter()
-fallback_identities = {language: set() for language in LANGUAGES if language != "en"}
 coverage = {language: Counter() for language in LANGUAGES}
+assert "2026-02-10" not in canonical  # Published invalid spreadsheet marker, not a feast.
+assert "#REF!" not in json.dumps(canonical)
+assert len(canonical["2026-01-22"]["observances"]) == 1
+assert canonical["2026-01-22"]["observances"][0]["identity"] == "St. Timothy"
 for date, row in canonical.items():
-    components = row["observances"]
-    assert components and all(part["title"] and part["identity"] for part in components), date
-    assert row["title"] == "; ".join(part["title"] for part in components), date
-    assert len({part["identity"] for part in components}) == len(components), date
+    parts = row["observances"]
+    assert parts and len({part["identity"] for part in parts}) == len(parts), date
+    assert row["title"] == "; ".join(part["title"] for part in parts), date
     for language in LANGUAGES:
-        display = row["title"] if language == "en" else row["titleByLanguage"][language]
-        parts = display.split("; ")
-        assert len(parts) == len(components), (date, language, display, components)
-        assert all(part.strip() for part in parts), (date, language)
-        for component, text in zip(components, parts, strict=True):
-            identity = component["identity"]
-            coverage[language][identity] += 1
+        values = [part["titleByLanguage"][language] for part in parts]
+        assert all(isinstance(value, str) and value.strip() for value in values), (date, language)
+        assert (row["title"] if language == "en" else row["titleByLanguage"][language]) == "; ".join(values)
+        for part, value in zip(parts, values):
+            coverage[language][part["identity"]] += 1
             if language == "en":
-                assert text == component["title"], (date, language, component)
-                continue
-            if language == "ar":
-                # Published source captions win over translated metadata. Where an exact
-                # Arabic caption has been reviewed, verify its identity in this position.
-                if text in identities[0]:
-                    assert alias_path(identities[0][text], identities[1])[-1] == identity, (date, text, component)
-                fallback = text == component["title"]
-            else:
-                localized = reviewed_name(identity, language)
-                expected = localized or component["title"]
-                if language == "he":
-                    expected = re.sub(r"(?<=[\u0590-\u05ff])-(?=[\u0590-\u05ff0-9])", "־", expected)
-                assert text == expected, (date, language, identity, text, expected)
-                fallback = localized is None
-            if fallback:
-                fallback_counts[language] += 1
-                fallback_identities[language].add(identity)
+                assert value == part["title"]
+            if language == "ar" and "ar" in part.get("sourceTitleByLanguage", {}):
+                assert value == part["sourceTitleByLanguage"]["ar"], (date, part)
 assert all(counts == coverage["en"] for counts in coverage.values())
-
-# The same published English label belongs to distinct saints. Missing reviewed translations
-# of the hermit retain his source name in every locale, never the apostle's catalog entry.
-for language in CATALOG_LANGUAGES:
-    hermit = canonical["2026-09-18"]
-    hermit_identity = hermit["observances"][0]["identity"]
-    assert hermit["titleByLanguage"][language] == (reviewed_name(hermit_identity, language) or "St. Matthew"), language
-    apostle = canonical["2026-11-16"]
-    apostle_identity = apostle["observances"][0]["identity"]
-    assert apostle_identity != hermit_identity
-    assert apostle["titleByLanguage"][language] == (reviewed_name(apostle_identity, language) or "St. Matthew"), language
+# Genuine identical French names are allowed only by explicit reviewed catalog entries;
+# completeness is established by exact lookup, not by rejecting all English-looking strings.
+charles = next(part for day in canonical.values() for part in day["observances"]
+               if part["identity"] == "Saint Charles de Foucauld")
+assert charles["titleByLanguage"]["fr"] == "Saint Charles de Foucauld"
 for date in fixtures:
     expected = build(date)
     if expected is None:
@@ -236,8 +205,13 @@ for date in fixtures:
     else:
         assert canonical[date]["title"] == expected["title"], date
         assert canonical[date]["rank"] == expected["rank"], date
-        assert canonical[date]["observances"] == expected["observances"], date
-        assert canonical[date]["titleByLanguage"]["ar"] == expected["titleByLanguage"]["ar"], date
+        assert components(canonical[date]) == components(expected), date
+        for actual, source in zip(canonical[date]["observances"], expected["observances"]):
+            if source.get("sourceTitleByLanguage", {}).get("ar"):
+                assert actual["titleByLanguage"]["ar"] == source["sourceTitleByLanguage"]["ar"], date
+# Arabic alone supplements a ferial English day without dropping its source identity.
+assert components(canonical["2026-02-02"]) == components(build("2026-02-02"))
+assert all(part["sourceTitleByLanguage"]["ar"] for part in canonical["2026-02-02"]["observances"])
 
 # Re-localizing an existing dataset keeps source spellings, identity metadata and Arabic.
 with tempfile.TemporaryDirectory() as directory:
@@ -254,7 +228,4 @@ for target in ("iOS/Prosary/Data", "Android/app/src/main/assets/data", "Windows/
     assert (TOOLS.parent / "data/feasts-syriac.json").read_bytes() == (TOOLS.parents[1] / target / "feasts-syriac.json").read_bytes()
 print(f"All eight locales retain {sum(coverage['en'].values())} observances across {len(canonical)} dates "
       f"({len(coverage['en'])} distinct identities).")
-print("Source-name fallbacks by locale (observance occurrences / distinct identities): " + "; ".join(
-    f"{language}: {fallback_counts[language]} / {len(fallback_identities[language])}"
-    for language in LANGUAGES if language != "en"))
-print("English source names, reviewed locale names, Arabic captions, identity coverage, source errors and native data parity passed.")
+print("All-language completeness, Arabic source preservation, editorial refresh, identity deduplication, source errors and native data parity passed.")

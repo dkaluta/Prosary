@@ -32,7 +32,9 @@
     "mysteryGroupJoyfulTitle": "Gozosos",
     "mysteryGroupSorrowfulTitle": "Dolorosos",
     "mysteryGroupGloriousTitle": "Gloriosos",
-    "mysteryGroupLuminousTitle": "Luminosos"
+    "mysteryGroupLuminousTitle": "Luminosos",
+    "rosaryCollect": "Oremos. Oh Dios, cuyo Hijo por medio de su vida, muerte y resurrección, nos otorgó los premios de la vida eterna, te rogamos que venerando humildemente los misterios del Rosario de la Santísima Virgen María, imitemos lo que contienen y consigamos lo que nos prometen. Por Jesucristo, nuestro Señor. Amén.",
+    "rosaryCollectTitle": "Oremos"
   },
   "$comment": "Published Spanish fixed prayers fill the former per-key Latin fallbacks. Creed: Vatican Compendium profession of faith (not only its appendix); Fatima: Sanctuary of Fatima; Jesus Prayer: Pope Francis audience, 21 April 2021; Saint Michael: Vatican News; Marian antiphons: Basilica of Guadalupe. Source wrapping and capitalization are normalized; Ave Regina's printed 'entre todas las más bella' has its extra plural s removed. The invitatory follows the published Liturgy of the Hours. Descriptive headings and intention introductions are Prosary translations of the app's existing metadata. Mystery names and fruits are Prosary descriptive translations; Scripture is imported separately from Torres Amat.",
   "$sources": {
@@ -42,7 +44,8 @@
     "sanctusMichael": "https://www.vaticannews.va/es/oraciones/san-miguel-arcangel.html",
     "almaRedemptorisMater": "https://virgendeguadalupe.org.mx/oraciones/",
     "aveReginaCaelorum": "https://virgendeguadalupe.org.mx/oraciones/",
-    "invitatoryBody": "https://www.liturgiadelashoras.com.ar/completas"
+    "invitatoryBody": "https://www.liturgiadelashoras.com.ar/completas",
+    "rosaryCollect": "https://www.vatican.va/archive/compendium_ccc/documents/archive_2005_compendium-ccc_sp.html"
   },
   "mysteries": {
     "joyful_01_annunciation": {
@@ -171,5 +174,6 @@
       "sorrowful_05_crucifixion"
     ]
   },
-  "$scriptureSource": "Scripture imported from Félix Torres Amat's Spanish Bible (1836) by Shared/tools/import-scripture.py — re-run it rather than editing these by hand. Torres Amat translated the Vulgate, so its chapter-and-verse is the same one these devotions cite and no versification map is needed. Spelling and accentuation are the 1836 printing's own. The New Testament follows Wikisource's transcription. Nine Isaiah verses are independently transcribed and visually checked against volume IX (https://archive.org/details/lasagradabiblian10torr); exact pages and source checksum are recorded in Shared/content/spanish-torres-amat-1836-isaiah.json."
+  "$scriptureSource": "Scripture imported from Félix Torres Amat's Spanish Bible (1836) by Shared/tools/import-scripture.py — re-run it rather than editing these by hand. Torres Amat translated the Vulgate, so its chapter-and-verse is the same one these devotions cite and no versification map is needed. Spelling and accentuation are the 1836 printing's own. The New Testament follows Wikisource's transcription. Nine Isaiah verses are independently transcribed and visually checked against volume IX (https://archive.org/details/lasagradabiblian10torr); exact pages and source checksum are recorded in Shared/content/spanish-torres-amat-1836-isaiah.json.",
+  "$rosaryCollectSource": "Rosary-only separate step: unchanged collectaStandard text; when absent (Spanish/Mission Hebrew), unchanged sourced collectAfterRosary from litanyOfLoreto. Basic Marian antiphon texts remain unchanged. Hebrew heading נתפללה supplied explicitly by the user, 2026-09-27."
 }

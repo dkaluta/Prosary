@@ -114,9 +114,10 @@ private struct ScripturePassageBody: View {
         VStack(alignment: .leading, spacing: 12) {
           ForEach(Array(passage.verses.enumerated()), id: \.offset) { index, verse in
             if index == 0 || passage.verses[index - 1].chapter != verse.chapter {
-              (Text(String(localized: "readings.chapter", defaultValue: "Chapter", bundle: UILanguage.bundle, locale: UILanguage.locale)).bold()
-                + Text(verbatim: " \(verse.chapter)").italic())
-                .font(.body)
+              let heading = ScriptureChapterHeading(chapter: verse.chapter, edition: passage.edition, script: script)
+              (Text(verbatim: heading.label).bold() + Text(verbatim: " \(heading.number)"))
+                .font(PrayerTypography.font(languageCode: passage.edition.languageCode, isScripture: true,
+                                           text: heading.text, typefaces: typography.typefaces))
                 .accessibilityAddTraits(.isHeader)
                 .accessibilityIdentifier("readings.chapter.\(verse.chapter)")
             }

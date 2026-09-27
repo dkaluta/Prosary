@@ -44,7 +44,7 @@ public sealed class PrayerEngine
         PrayerKind.Custom => prayer.CustomDevotionId is { } bundleId
             ? BuildCustomDevotionSteps(
                 bundleId, PrayerPackStore.EffectiveLanguage(bundleId, prayer.LanguageCode),
-                prayer.VariantId, prayer.CustomOptions, dayIndex: prayer.DayIndex ?? 0)
+                bundleId == "litanyOfLoreto" ? "standard" : prayer.VariantId, prayer.CustomOptions, dayIndex: prayer.DayIndex ?? 0)
             : [],
         _ => throw new ArgumentOutOfRangeException(nameof(prayer), prayer.Kind, "Unhandled PrayerKind in PrayerEngine.BuildSteps")
     };
@@ -94,6 +94,8 @@ public sealed class PrayerEngine
         ["closingBishopIntention"] = rosary.EffectiveClosingBishopIntention ? "true" : "false",
         ["closingDepartedIntention"] = rosary.EffectiveClosingDepartedIntention ? "true" : "false",
         ["stMichael"] = rosary.IncludeStMichaelPrayer ? "true" : "false",
+        ["litanyOfLoreto"] = rosary.IncludeLitanyOfLoreto ? "true" : "false",
+        ["rosaryCollect"] = rosary.EffectiveRosaryCollect ? "true" : "false",
         ["finalSignOfCross"] = rosary.IncludeFinalSignOfCross ? "true" : "false",
         ["imageStyle"] = CamelCase(rosary.MysteryImageStyle.ToString()),
         };
@@ -106,7 +108,8 @@ public sealed class PrayerEngine
 
     private enum AntiphonStyle { Standard, Paschal, Standalone }
 
-    private static RosaryStep BuildMarianAntiphonStep(MarianAntiphonOption antiphon, string? languageCode)
+    private static RosaryStep BuildMarianAntiphonStep(MarianAntiphonOption antiphon, string? languageCode,
+        bool includeCollect = true)
     {
         string Text(string key) => PrayerTranslations.Get(languageCode, key);
 
@@ -126,7 +129,7 @@ public sealed class PrayerEngine
             ? Text(titleKey)
             : $"{Text(titleKey)}\n\n{Text(style == AntiphonStyle.Paschal ? PrayerKey.VersiculumPaschale : PrayerKey.VersiculumStandard)}" +
               $"\n**{Text(style == AntiphonStyle.Paschal ? PrayerKey.ResponsiumPaschale : PrayerKey.ResponsiumStandard)}**" +
-              $"\n\n{Text(style == AntiphonStyle.Paschal ? PrayerKey.CollectaPaschale : PrayerKey.CollectaStandard)}";
+              (includeCollect ? $"\n\n{Text(style == AntiphonStyle.Paschal ? PrayerKey.CollectaPaschale : PrayerKey.CollectaStandard)}" : string.Empty);
 
         return new RosaryStep(Text(GetMarianAntiphonHeaderKey(antiphon)), null, body) with { IsAntiphon = true, ImageOverrideKey = "madonna_and_child" };
     }
@@ -229,6 +232,8 @@ public sealed class PrayerEngine
                 : option.Key;
             optionValues[option.Key] = normalizedOverrides.GetValueOrDefault(overrideKey) ?? option.DefaultValue;
         }
+        if (bundleId == "rosary" && optionValues.GetValueOrDefault("litanyOfLoreto") == "true")
+            optionValues["rosaryCollect"] = "true";
 
         // Calendar facts an entry may gate on beside the user's own choices — the Alleluia that
         // leaves the invitatory during Lent is the first of them. Seeded after the declared
@@ -304,7 +309,18 @@ public sealed class PrayerEngine
 
         if (entry.Kind == CustomDevotionStep.SpecialKind.SeasonalMarianAntiphon)
         {
-            return [BuildMarianAntiphonStep(seasonalAntiphon, languageCode)];
+            return [BuildMarianAntiphonStep(seasonalAntiphon, languageCode, includeCollect: bundleId != "rosary")];
+        }
+
+        if (entry.Kind == CustomDevotionStep.SpecialKind.RosaryLitany)
+        {
+            if (bundleId != "rosary") return [];
+            var litany = PrayerPackStore.Definition("litanyOfLoreto");
+            var entries = litany?.ResolvedSteps("afterRosary").Steps;
+            if (entries is not { Count: > 0 } || entries[^1].BodyKey != "collectAfterRosary") return [];
+            var litanyLanguage = PrayerPackStore.EffectiveLanguage("litanyOfLoreto", languageCode);
+            return entries.Take(entries.Count - 1)
+                .SelectMany(e => Expand(e, "litanyOfLoreto", litanyLanguage, seasonalAntiphon)).ToList();
         }
 
         if (entry.Kind == CustomDevotionStep.SpecialKind.MarianAntiphon)
@@ -321,7 +337,7 @@ public sealed class PrayerEngine
             }
 
             var antiphon = chosen == MarianAntiphonOption.Seasonal ? seasonalAntiphon : chosen;
-            return [BuildMarianAntiphonStep(antiphon, languageCode)];
+            return [BuildMarianAntiphonStep(antiphon, languageCode, includeCollect: bundleId != "rosary")];
         }
 
         var baseTitle = entry.TitleKey is { } titleKey

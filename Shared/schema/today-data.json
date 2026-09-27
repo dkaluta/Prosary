@@ -77,8 +77,8 @@
           "description": "Semicolon-separated observances for the date. Syriac rows keep Evangelizo SYE saint names and spelling, supplemented with observances from SYA; a ferial main title never hides its saints. A matching English saint name takes precedence over the main liturgy's alternate spelling."
         },
         "observances": {
-          "type": "{title: string, identity: string}[]?",
-          "description": "Optional ordered generator metadata for Syriac components. Title is the published display spelling; identity is the reviewed deduplication/localization key, including source-UUID disambiguation for reused names. Native readers consume the assembled title/titleByLanguage fields. Offline localization uses these identities rather than guessing from ambiguous names such as St. Matthew."
+          "type": "FeastObservance[]? (see domain-model.json)",
+          "description": "Optional ordered Syriac components: title/identity plus titleByLanguage, sourceTitleByLanguage and optional descriptionByLanguage/descriptionSourceByLanguage/descriptionCreditByLanguage maps. Native feast headings consume assembled day titles; saint disclosures consume exact-interface-language component biographies with no foreign fallback. The supplied Hebrew 2026 Urtotho reference joins exact source UID/date/identity, applies only to Syriac, and never changes calendar dates or ranks."
         },
         "rank": {
           "type": "string",
@@ -87,7 +87,7 @@
         "titleByLanguage": {
           "type": "map<string, string>",
           "default": {},
-          "description": "Localized metadata in Hebrew, Arabic, Russian, Filipino, French, Italian and Ukrainian. Sourced identities take precedence over editorial metadata; reviewed aliases never change dates, ranks or observances. Syriac Arabic captions preserve the actual SYA component labels. Newly imported identities without a reviewed translation retain their published source name, also within compound titles; no guessed liturgical Hebrew. Hebrew Pentecost uses שבועות."
+          "description": "Localized metadata in Hebrew, Arabic, Russian, Filipino, French, Italian and Ukrainian. Sourced identities take precedence over editorial metadata; reviewed aliases never change dates, ranks or observances. Syriac Arabic captions preserve actual SYA component labels, with reviewed translations for English-only saints. Syriac generation requires every localized component and fails before writing when one is missing; English copied into a locale is not a translation. Hebrew Pentecost uses שבועות."
         }
       }
     }

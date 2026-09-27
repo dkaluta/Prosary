@@ -31,7 +31,7 @@
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Column="0" Text="{Binding Label}" VerticalAlignment="Center" TextWrapping="Wrap" />
-                    <ToggleSwitch Grid.Column="1" OnContent="" OffContent="" IsOn="{Binding IsOn, Mode=TwoWay}" />
+                    <ToggleSwitch Grid.Column="1" OnContent="" OffContent="" IsOn="{Binding EffectiveIsOn, Mode=TwoWay}" IsEnabled="{Binding IsEditable}" AutomationProperties.Name="{Binding Label}" />
                 </Grid>
                 <Grid ColumnSpacing="8" Visibility="{Binding IsChoice, Converter={StaticResource BoolToVisibility}}">
                     <Grid.ColumnDefinitions>

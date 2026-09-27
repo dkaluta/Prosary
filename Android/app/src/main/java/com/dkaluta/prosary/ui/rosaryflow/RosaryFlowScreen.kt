@@ -6,9 +6,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.SkipNext
 import androidx.compose.material.icons.filled.SkipPrevious
-import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import com.dkaluta.prosary.content.prayerpack.PrayerPackStore
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -46,7 +44,7 @@ import kotlinx.coroutines.launch
  * this screen no longer needs its own "resolve id, fall back to default" logic. */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun RosaryFlowScreen(prayer: Prayer, onBack: () -> Unit, onOpenDevotion: (String, String?, String?) -> Unit) {
+fun RosaryFlowScreen(prayer: Prayer, onBack: () -> Unit) {
     val services = LocalAppServices.current
     val context = LocalContext.current
     val runKey = remember(prayer.id) { PrayerRunKeys.rosary(prayer.id) }
@@ -62,7 +60,6 @@ fun RosaryFlowScreen(prayer: Prayer, onBack: () -> Unit, onOpenDevotion: (String
     var languageMenuExpanded by session.languageMenuExpanded
     var pendingResume by session.pendingResume
     var runReady by session.runReady
-    var showsLitanyOffer by session.showsLitanyOffer
 
     LaunchedEffect(prayer.id, configurationSignature) {
         if (session.loadedSignature == configurationSignature) return@LaunchedEffect
@@ -173,22 +170,7 @@ fun RosaryFlowScreen(prayer: Prayer, onBack: () -> Unit, onOpenDevotion: (String
     fun finish() {
         PrayerRunProgressStore.clear(context, runKey)
         runReady = false
-        if (PrayerPackStore.definition("litanyOfLoreto") != null) showsLitanyOffer = true else onBack()
-    }
-
-    if (showsLitanyOffer) {
-        AlertDialog(
-            onDismissRequest = { showsLitanyOffer = false; onBack() },
-            title = { Text(stringResource(R.string.common_done)) },
-            text = { Text(stringResource(R.string.rosary_litany_offer)) },
-            confirmButton = { TextButton(onClick = {
-                showsLitanyOffer = false
-                onOpenDevotion("litanyOfLoreto", "afterRosary", languageCode)
-            }) { Text(stringResource(R.string.rosary_pray_litany)) } },
-            dismissButton = { TextButton(onClick = { showsLitanyOffer = false; onBack() }) {
-                Text(stringResource(R.string.common_finish))
-            } },
-        )
+        onBack()
     }
 
     BackHandler(onBack = ::leave)
@@ -197,7 +179,7 @@ fun RosaryFlowScreen(prayer: Prayer, onBack: () -> Unit, onOpenDevotion: (String
         title = stringResource(R.string.rosary_praying),
         step = currentStep,
         currentIndex = currentIndex,
-        sessionPaused = !runReady || showsLitanyOffer,
+        sessionPaused = !runReady,
         totalSteps = steps.size,
         seasonColor = seasonColor,
         isRightToLeft = isRightToLeft,

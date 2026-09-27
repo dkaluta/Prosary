@@ -33,6 +33,8 @@ data class RosaryOptions(
     var includeClosingBishopIntention: Boolean? = null,
     var includeClosingDepartedIntention: Boolean? = null,
     var includeStMichaelPrayer: Boolean = false,
+    var includeLitanyOfLoreto: Boolean = false,
+    var includeRosaryCollect: Boolean = true,
     var includeFinalSignOfCross: Boolean = true,
     /** Per-Rosary Aramaic form, ignored when Aramaic is the app-wide default language. */
     var aramaicSignOfCrossForm: String = AppSettings.ARAMAIC_SIGN_OF_CROSS_FORM_A,
@@ -61,6 +63,8 @@ data class RosaryOptions(
             return (options - legacyClosingIntentionKeys) + ("closingIntentions" to enabled.toString())
         }
     }
+
+    val effectiveRosaryCollect: Boolean get() = includeLitanyOfLoreto || includeRosaryCollect
 
     val effectiveClosingIntentions: Boolean
         get() = (includeClosingPopeIntention ?: includeClosingIntentions) ||

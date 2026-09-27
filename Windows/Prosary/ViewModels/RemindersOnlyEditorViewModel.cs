@@ -75,10 +75,24 @@ public partial class RemindersOnlyEditorViewModel : ObservableObject
             }
         }
 
+        foreach (var row in OptionRows)
+            row.PropertyChanged += (_, args) =>
+            {
+                if (args.PropertyName == nameof(DevotionOptionRowViewModel.IsOn)) RefreshRosaryCollect();
+            };
+        RefreshRosaryCollect();
         HasOptions = OptionRows.Count > 0;
         RemindersEditor.PresetHours = info?.ReminderPresetHours ?? [];
         RemindersEditor.PresetFooter = info?.LocalizedReminderPresetFooter;
         RemindersEditor.Reminders = new ObservableCollection<PrayerReminder>(prayer.Reminders);
+    }
+
+    private void RefreshRosaryCollect()
+    {
+        if (_originalPrayer?.CustomDevotionId != "rosary") return;
+        var collect = OptionRows.FirstOrDefault(row => row.Key == "rosaryCollect");
+        if (collect is not null)
+            collect.IsForcedOn = OptionRows.FirstOrDefault(row => row.Key == "litanyOfLoreto")?.IsOn == true;
     }
 
     [RelayCommand]
@@ -128,7 +142,20 @@ public partial class DevotionOptionRowViewModel : ObservableObject
     private readonly CustomDevotionOption _option;
 
     [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(EffectiveIsOn))]
     private bool _isOn;
+
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(EffectiveIsOn))]
+    [NotifyPropertyChangedFor(nameof(IsEditable))]
+    private bool _isForcedOn;
+
+    public bool IsEditable => !IsForcedOn;
+    public bool EffectiveIsOn
+    {
+        get => IsForcedOn || IsOn;
+        set { if (!IsForcedOn) IsOn = value; }
+    }
 
     [ObservableProperty]
     private CustomDevotionOption.Case? _selectedCase;

@@ -28,7 +28,7 @@ test("legacy native bundles need no explicit format or schema version", async ()
   assert.equal(savedManifest.formatVersion, undefined);
 });
 
-test("all shipped canonical runtime definitions remain publishable with a community identity", async () => {
+test("portable canonical definitions remain publishable while the built-in Rosary extension is rejected", async () => {
   const root = new URL("../../Shared/content/", import.meta.url);
   let checked = 0;
   for (const directory of await readdir(root, { withFileTypes: true })) {
@@ -50,6 +50,12 @@ test("all shipped canonical runtime definitions remain publishable with a commun
     files.push({ name: "manifest.json", data: json({ ...communityManifest, id: "nativeExample" }) });
     for (const name of await readdir(new URL("content/", base))) {
       if (name.endsWith(".json")) files.push({ name: `content/${name}`, data: await readFile(new URL(`content/${name}`, base)) });
+    }
+    if (directory.name === "rosary") {
+      await assert.rejects(() => validateAndRestamp(buildZip(files), "pilgrim"),
+        (error: unknown) => error instanceof BundleError && error.message.includes("native apps"));
+      checked++;
+      continue;
     }
     const result = await validateAndRestamp(buildZip(files), "pilgrim");
     const output = ZipReader.open(result.bytes);

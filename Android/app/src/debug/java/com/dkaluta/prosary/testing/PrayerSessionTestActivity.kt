@@ -137,7 +137,7 @@ class PrayerSessionTestActivity : AppCompatActivity() {
                                         isRightToLeft = true, languageCode = "arc", canGoBack = false, onBack = {},
                                         onNext = { navigation.popBackStack() }, onNavigateUp = { navigation.popBackStack() })
                                 }
-                                "rosary" -> RosaryFlowScreen(prayer, { navigation.popBackStack() }, { _, _, _ -> navigation.popBackStack() })
+                                "rosary" -> RosaryFlowScreen(prayer, { navigation.popBackStack() })
                                 "jesus" -> JesusPrayerFlowScreen(prayer = prayer,
                                     onNavigateUp = { navigation.popBackStack() }, onFinish = { navigation.popBackStack() })
                                 else -> CustomDevotionFlowScreen(devotionId, prayer = prayer, onBack = { navigation.popBackStack() })

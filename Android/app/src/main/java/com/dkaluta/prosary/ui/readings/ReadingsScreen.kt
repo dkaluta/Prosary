@@ -58,11 +58,8 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
-import androidx.compose.ui.text.SpanStyle
-import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
@@ -75,6 +72,7 @@ import com.dkaluta.prosary.content.today.ReadingEdition
 import com.dkaluta.prosary.content.today.ReadingPassage
 import com.dkaluta.prosary.content.today.ReadingTextStore
 import com.dkaluta.prosary.ui.shared.TodayBrowsingDate
+import com.dkaluta.prosary.ui.shared.SaintDescriptionsCard
 import com.dkaluta.prosary.ui.shared.rememberTodayBrowsingDate
 import com.dkaluta.prosary.content.today.TodayDateSelection
 import com.dkaluta.prosary.content.today.TodayInfoStore
@@ -128,6 +126,10 @@ fun ReadingsScreen(onOpenSettings: () -> Unit, browsingDate: TodayBrowsingDate =
         AppSettings.expandReadingsByDefault) { mutableStateOf(emptyMap<String, Boolean>()) }
     val readings = remember(lookupDate, calendarId, AppSettings.easternPaschaStyle, generation) {
         TodayInfoStore.readings(lookupDate)
+    }
+    val saints = remember(lookupDate, calendarId, language, AppSettings.showTodayFeast, generation) {
+        if (AppSettings.showTodayFeast) TodayInfoStore.feast(lookupDate)?.saintDescriptions(calendarId, language).orEmpty()
+        else emptyList()
     }
     val torah = remember(lookupDate, AppSettings.showTodayTorahPortion, generation) {
         if (AppSettings.showTodayTorahPortion) TodayInfoStore.torahPortion(lookupDate) else null
@@ -235,6 +237,9 @@ fun ReadingsScreen(onOpenSettings: () -> Unit, browsingDate: TodayBrowsingDate =
                         }
                     }
                 }
+                if (saints.isNotEmpty()) item(key = "saints") {
+                    SaintDescriptionsCard(saints, selectedDate.toString(), language)
+                }
                 if (readings.isEmpty()) item(key = "empty") {
                     Text(stringResource(R.string.readings_empty), color = MaterialTheme.colorScheme.onSurfaceVariant,
                         modifier = Modifier.testTag("readingsEmpty"))
@@ -284,6 +289,7 @@ internal fun ReadingCard(citation: ReadingCitation, language: String, edition: R
     editionId: String?, store: ReadingTextStore, isTorah: Boolean, expanded: Boolean,
     onToggleExpanded: () -> Unit) {
     val uriHandler = LocalUriHandler.current
+    val context = LocalContext.current
     // A local reading aid survives collapse/lazy recycling; the setting applies until a choice.
     var scriptOverride by rememberSaveable(citation.full, editionId, isTorah) { mutableStateOf<String?>(null) }
     var showsAvailableEditions by remember(citation.full, editionId, isTorah) { mutableStateOf(false) }
@@ -358,16 +364,9 @@ internal fun ReadingCard(citation: ReadingCitation, language: String, edition: R
                             Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
                                 for ((index, verse) in passage.verses.withIndex()) {
                                     if (index == 0 || passage.verses[index - 1].chapter != verse.chapter) {
-                                        val chapterNumber = verse.chapter.toString()
-                                        val chapterLabel = stringResource(R.string.readings_chapter, chapterNumber)
-                                        val numberStart = chapterLabel.indexOf(chapterNumber)
-                                        Text(buildAnnotatedString {
-                                            withStyle(SpanStyle(fontWeight = FontWeight.Bold)) {
-                                                append(chapterLabel)
-                                            }
-                                            if (numberStart >= 0) addStyle(SpanStyle(fontStyle = FontStyle.Italic),
-                                                numberStart, numberStart + chapterNumber.length)
-                                        }, style = MaterialTheme.typography.titleMedium,
+                                        Text(ReadingChapterHeading.label(context, verse.chapter, edition?.languageCode ?: "en", readingScript),
+                                            style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold,
+                                            fontStyle = FontStyle.Normal,
                                             modifier = Modifier.fillMaxWidth())
                                     }
                                     val visibleText = verse.displayedText(edition, readingScript)

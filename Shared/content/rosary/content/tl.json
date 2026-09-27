@@ -42,7 +42,9 @@
     "mysteryGroupJoyfulTitle": "Tuwa",
     "mysteryGroupSorrowfulTitle": "Hapis",
     "mysteryGroupGloriousTitle": "Luwalhati",
-    "mysteryGroupLuminousTitle": "Liwanag"
+    "mysteryGroupLuminousTitle": "Liwanag",
+    "rosaryCollect": "Manalangin tayo. O Diyos, na ang bugtong na Anak, sa pamamagitan ng kanyang buhay, kamatayan, at muling pagkabuhay, ay binili para sa amin ang mga gantimpala ng buhay na walang hanggan; ipagkaloob, aming hinihiling, na tayo, sa pamamagitan ng pagbubulay-bulay ng mga misteryo ng pinakabanal na Rosaryo ng Mahal na Birheng Maria, ay tularan ang nilalaman nito at makamit ang iniaalok nito, sa pamamagitan ng parehong Kristong aming Panginoon. Amen.",
+    "rosaryCollectTitle": "Manalangin tayo"
   },
   "mysteries": {
     "joyful_01_annunciation": {
@@ -145,5 +147,6 @@
       "fruit": "Pagsamba at Pagmamahal sa Eukaristiya",
       "description": "At samantalang sila'y nagsisikain, ay dumampot si Jesus ng tinapay, at pagkatapos na siya'y magpasalamat, ay pinagputolputol niya, at ibinigay sa mga alagad, at sinabi, Kunin ninyo, kanin ninyo; ito ang aking katawan. At dumampot siya ng isang saro, at nagpasalamat, at ibinigay sa kanila, na sinasabi, Inumin ninyong lahat ng ito; Sapagka't ito ang aking dugo ng tipan, na naibubuhos para sa marami sa ikapagpapatawad ng mga kasalanan.\n\n— Mateo 26:26–28 (Ang Dating Biblia)"
     }
-  }
+  },
+  "$rosaryCollectSource": "Rosary-only separate step: unchanged collectaStandard text; when absent (Spanish/Mission Hebrew), unchanged sourced collectAfterRosary from litanyOfLoreto. Basic Marian antiphon texts remain unchanged. Hebrew heading נתפללה supplied explicitly by the user, 2026-09-27."
 }

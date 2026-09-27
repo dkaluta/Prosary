@@ -11,9 +11,11 @@ Readings start collapsed on entry and date/calendar changes. The shared
 manual disclosure choices survive ordinary refreshes and edition changes.
 `showTodayReadings` (on by default) controls readings in Pray and the native desktop Today
 surface; the dedicated phone Readings tab stays available independently.
-Each available passage shows selectable Bible text under a localized **Chapter** *n*
-heading at each chapter transition, with verse-only numbers, the chosen edition and
-source credit. The optional weekly Torah portion uses the same reader.
+Each available passage shows selectable Bible text under a **Chapter** n
+heading at each chapter transition. The word and number style follow the selected Bible,
+independently of the interface: Hebrew gematria, Arabic digits, or the Aramaic reader's
+selected Hebrew/Syriac script. The number is upright. Each passage also shows verse-only numbers,
+the chosen edition and source credit. The optional weekly Torah portion uses the same reader.
 When a passage is unavailable in the selected edition, its Bible-edition menu lists editions
 with complete text for that passage. Choosing one explicitly updates `readingsEditionId`;
 there is no automatic language or edition substitution, and the chosen source credit remains visible.
@@ -43,6 +45,19 @@ of Scripture. The generated corpus is separate from existing `.prosaryprayer` pa
 | Ukrainian | Kulish, Nechui-Levytsky and Puluj, 1905 | [eBible `ukr1871`](https://ebible.org/ukr1871/copyright.htm), public-domain text. Uses the same pinned VPL payload as the existing Scripture importer. |
 | Arabic | Old Jesuit translation, Beirut printing, 1897 | [Reviewed canonical transcription](content/arabic-jesuit-1897.json) relayed from the [historical scan](https://archive.org/details/AlKitabAlMoqadas). Only visually checked passages are included, with their printed verse boundaries and PDF page evidence. This is a limited public-domain selection, not a complete Arabic Bible or the modern Dar el-Machreq revision. |
 | Aramaic (selectable) | Peshitta, BFBS 1905 New Testament; nine approved supplied Isaiah verses | [Source review](content/PESHITTA-SOURCES.markdown). Pointed Digital Syriac Corpus NT, CC BY 4.0, paired with Erez's established Hebrew-script projection. Supplied Isaiah edition/rights remain unresolved and are credited separately; no other OT is imported. |
+| Greek (selectable) | Brenton Septuagint, Old Testament only | [eBible `grcbrent`](https://ebible.org/Scriptures/details.php?id=grcbrent), public-domain Greek text. The exact VPL payload and its own Greek verse mapping are pinned. No Greek New Testament or replacement edition is supplied. |
+
+The Greek option (`brenton-lxx`, language `el`) uses the same Brenton source already used
+for Greek Old Testament excerpts. It preserves the source words, accents and integer verse
+labels. Its source is not a generic Latin or English numbering system: for example,
+Standard Psalm 103 maps to Greek Psalm 102, and Isaiah 9:2 maps to Greek 9:1.
+[The Greek source adapter](tools/brenton_reading_source.py) withholds whole chapters containing
+lettered labels or gaps because the native verse contract cannot represent those labels
+without dropping or relabeling text. Combined Ezra/Nehemiah chapters, separate Greek additions,
+Sirach 33, and uncertain reference boundaries also remain unavailable. The inspected import
+provides 908 complete integer-label chapters from 43 source books; 305 daily appointments
+and 55 Torah appointments are available in the current corpus. These are coverage limits,
+not permission to fill missing passages from the Greek New Testament or another Bible.
 
 The Hebrew reader uses **vocalized Scripture in both testaments**. The New Testament now
 comes from the complete Delitzsch 1901 transcription at delitz.fr, replacing the previous
@@ -195,7 +210,7 @@ before any generic fallback. See the dated [mapping verification](reports/readin
 and reusable source and numerical audits.
 
 The [edition mapper](tools/reading_edition_mapping.py) now supplies independently reviewed
-profiles for all nine bundled editions, using the same STEP Standard hub. Its
+profiles for all ten bundled editions, using the same STEP Standard hub. Its
 [numeric inventories](tools/versification/editions/README.markdown) contain source pins,
 chapter/verse identifiers, measured word counts and hashes, with no Scripture wording.
 The reusable mapper opens only this metadata; the passage builder separately verifies the
@@ -292,6 +307,7 @@ uv run --script Shared/tools/build-reading-texts.py --fetch --sync
 uv run --script Shared/tools/build-reading-texts.py --check --sync
 uv run --script Shared/tools/test-reading-texts.py
 uv run --script Shared/tools/test-peshitta-readings.py
+uv run --script Shared/tools/test-greek-readings.py
 uv run --script Shared/tools/test-reading-versification.py
 uv run --script Shared/tools/test-reading-appointment-reviews.py
 uv run --script Shared/tools/test-reading-source-numbering.py

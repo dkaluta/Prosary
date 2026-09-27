@@ -23,6 +23,58 @@ def presentation_normalized_hebrew(text):
 
 
 class LitanyContentTests(unittest.TestCase):
+    def test_rosary_litany_precedes_one_separate_rosary_collect(self):
+        rosary = ROOT / 'Shared/content/rosary'
+        closing = read(rosary / 'devotion.json')['closing']
+        litany = next(i for i, step in enumerate(closing) if step.get('kind') == 'rosaryLitany')
+        self.assertEqual({'kind': 'rosaryLitany', 'if': 'litanyOfLoreto'}, closing[litany])
+        self.assertEqual('rosaryCollect', closing[litany + 1]['bodyKey'])
+        self.assertEqual('rosaryCollect', closing[litany + 1]['if'])
+        self.assertTrue(all(s['bodyKey'].startswith('signumCrucis') for s in closing[litany + 2:]))
+        self.assertEqual(1, sum(s.get('bodyKey') == 'rosaryCollect' for s in closing))
+        options = {o['key']: o for o in read(rosary / 'options.json')['options']}
+        self.assertFalse(options['litanyOfLoreto']['default'])
+        self.assertTrue(options['rosaryCollect']['default'])
+        for key in ('litanyOfLoreto', 'rosaryCollect'):
+            self.assertEqual({'he', 'ar', 'ru', 'tl', 'fr', 'it', 'uk'}, set(options[key]['nameByLanguage']))
+
+    def test_separate_rosary_collect_reuses_sourced_words_and_preserves_basic_antiphon_collects(self):
+        rosary = ROOT / 'Shared/content/rosary/content'
+        for path in rosary.glob('*.json'):
+            language = path.stem
+            actual = read(path)
+            prayers = actual['prayers']
+            if language == 'arc':
+                self.assertNotIn('rosaryCollect', prayers)  # No invented Syriac collect.
+                continue
+            if language in {'es', 'he-x-gamliel'}:
+                source_language = 'he' if language == 'he-x-gamliel' else language
+                expected = read(BUNDLE / f'content/{source_language}.json')['prayers']['collectAfterRosary']
+            else:
+                # The original remains available to a standalone Marian antiphon.
+                expected = prayers['collectaStandard']
+                self.assertTrue(prayers['collectaPaschale'])
+            with self.subTest(language=language):
+                self.assertEqual(expected, prayers['rosaryCollect'])
+                self.assertTrue(prayers['rosaryCollectTitle'])
+                if language.startswith('he'):
+                    self.assertEqual('נתפללה', prayers['rosaryCollectTitle'])
+        self.assertEqual('vicariate', read(rosary / 'he.json')['$prayerTraditionByKey']['rosaryCollect'])
+        self.assertEqual('נתפללה', read(BUNDLE / 'content/he.json')['prayers']['collectTitle'])
+
+    def test_hebrew_oremus_headings_use_the_requested_form_in_every_bundle(self):
+        found = set()
+        for latin in (ROOT / 'Shared/content').glob('*/content/la.json'):
+            hebrew = latin.with_name('he.json')
+            if not hebrew.exists():
+                continue
+            headings = read(hebrew)['prayers']
+            for key, value in read(latin)['prayers'].items():
+                if key.endswith('Title') and value.strip().casefold().rstrip('.') == 'oremus':
+                    self.assertEqual('נתפללה', headings[key], str(hebrew) + ':' + key)
+                    found.add(latin.parent.parent.name)
+        self.assertTrue({'angelus', 'rosary', 'litanyOfLoreto'} <= found)
+
     def test_supported_forms_preserve_their_own_sourced_collect(self):
         manifest = read(BUNDLE / 'manifest.json')
         variants = read(BUNDLE / 'devotion.json')['variants']

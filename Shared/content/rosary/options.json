@@ -388,6 +388,36 @@
       }
     },
     {
+      "key": "litanyOfLoreto",
+      "kind": "toggle",
+      "name": "Pray the Litany of Loreto afterward",
+      "default": false,
+      "nameByLanguage": {
+        "he": "אמירת התחנון למרים לאחר המחרוזת",
+        "ar": "صلاة طلبات العذراء بعد المسبحة",
+        "ru": "Лоретанская литания после Розария",
+        "tl": "Litanya sa Mahal na Birheng Maria pagkatapos ng Rosaryo",
+        "fr": "Litanies de Lorette après le Rosaire",
+        "it": "Litanie lauretane dopo il Rosario",
+        "uk": "Лоретанська літанія після Розарію"
+      }
+    },
+    {
+      "key": "rosaryCollect",
+      "kind": "toggle",
+      "name": "Rosary collect",
+      "default": true,
+      "nameByLanguage": {
+        "he": "מעתר המחרוזת",
+        "ar": "صلاة ختام المسبحة",
+        "ru": "Заключительная молитва Розария",
+        "tl": "Pangwakas na panalangin ng Rosaryo",
+        "fr": "Oraison du Rosaire",
+        "it": "Orazione del Rosario",
+        "uk": "Заключна молитва Розарію"
+      }
+    },
+    {
       "key": "finalSignOfCross",
       "kind": "toggle",
       "name": "Final Sign of the Cross",

@@ -77,6 +77,7 @@ CALENDAR_CONDITION_KEYS = {"isLent", "isEasterSeason"}
 SIGN_OF_CROSS_KEY = "signumCrucis"
 ANTIPHON_KIND = "seasonalMarianAntiphon"
 OPTION_ANTIPHON_KIND = "marianAntiphon"
+ROSARY_LITANY_KIND = "rosaryLitany"
 SLOT_KIND = "proper"
 BUNDLE_ID_PATTERN = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]*$")
 
@@ -309,6 +310,10 @@ def validate_entry(entry: dict, where: str, allow_kind: bool, slots: set | None 
         extra = set(entry) - {"kind", "if"}
         if extra:
             err(f"{where}: a {ANTIPHON_KIND} entry must have no other fields (has {sorted(extra)})")
+        return
+    if allow_kind and entry.get("kind") == ROSARY_LITANY_KIND:
+        if set(entry) != {"kind", "if"} or entry.get("if") != "litanyOfLoreto":
+            err(f"{where}: rosaryLitany requires only kind and if: litanyOfLoreto")
         return
     if allow_kind and entry.get("kind") == OPTION_ANTIPHON_KIND:
         extra = set(entry) - {"kind", "optionKey", "if"}
@@ -597,6 +602,22 @@ def main() -> int:
 
     devotion = load_json(devotion_path)
     dtype = devotion.get("type")
+    def special_litany_entries(value):
+        if isinstance(value, dict):
+            if value.get("kind") == ROSARY_LITANY_KIND:
+                yield value
+            for child in value.values():
+                yield from special_litany_entries(child)
+        elif isinstance(value, list):
+            for child in value:
+                yield from special_litany_entries(child)
+    litanies = list(special_litany_entries(devotion))
+    if litanies:
+        closing = devotion.get("closing", [])
+        if bundle_id != "rosary" or dtype != "rosary" or len(litanies) != 1 or litanies[0] not in closing:
+            err("rosaryLitany is reserved for the built-in Rosary closing")
+        elif closing.index(litanies[0]) + 1 >= len(closing) or closing[closing.index(litanies[0]) + 1].get("bodyKey") != "rosaryCollect":
+            err("rosaryLitany must be followed immediately by the Rosary collect")
 
     # --- options.json: user-configurable toggles/choices whose keys entry-level "if"s gate on ---
     declared_options: dict = {}

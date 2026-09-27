@@ -363,6 +363,20 @@ final class TodayInfoStoreTests: XCTestCase {
     }
   }
 
+  func testSyriacBundledSaintDescriptionsUseOnlyTheSuppliedHebrewProse() throws {
+    select("syriac")
+    let feast = try XCTUnwrap(TodayInfoStore.feast(on: date("2026-10-01")))
+    let rows = feast.saintDescriptions(calendarID: "syriac", language: "he")
+    XCTAssertEqual(rows.count, 3)
+    XCTAssertEqual(rows.map(\.title), feast.localizedTitle("he").components(separatedBy: "; "))
+    XCTAssertTrue(rows.allSatisfy { !$0.text.isEmpty && $0.sourceURL?.host == "alingilalyawmi.org" })
+    XCTAssertTrue(rows.allSatisfy { $0.credit?.contains("Urtotho") == true })
+    for language in ["en", "ar", "ru", "tl", "fr", "it", "uk"] {
+      XCTAssertTrue(feast.saintDescriptions(calendarID: "syriac", language: language).isEmpty)
+    }
+    XCTAssertTrue(feast.saintDescriptions(calendarID: "roman", language: "he").isEmpty)
+  }
+
   /// October 25, 2026 wears four different faces: the LPJ's patronal solemnity, a plain
   /// Sunday of Ordinary Time in the general calendar, Christ the King in the 1962 books
   /// (which place the feast on October's last Sunday), and a numbered Sunday after Pentecost

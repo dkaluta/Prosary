@@ -59,7 +59,46 @@ public class ReadingsTextStoreTests
         Assert.All(row.Chapters, chapter => Assert.Equal("Chapter", chapter.Label));
         Assert.Equal("\u206616\u2069  First" + Environment.NewLine + Environment.NewLine + "\u206618\u2069  Second", row.Chapters[0].Text);
         Assert.DoesNotContain("3:16", row.PassageText);
-        Assert.Contains("Chapter \u20664\u2069", row.PassageText);
+        Assert.Contains("Chapter \u20684\u2069", row.PassageText);
+    }
+
+    [Theory]
+    [InlineData("he", "en", "פרק", "ט״ו")]
+    [InlineData("ar", "he", "الإصحاح", "١٥")]
+    [InlineData("en", "he", "Chapter", "15")]
+    [InlineData("fr", "ar", "Chapitre", "15")]
+    [InlineData("el", "en", "Κεφάλαιο", "15")]
+    public void ChapterHeadingsFollowSelectedBibleInsteadOfInterface(string bibleLanguage, string interfaceLanguage,
+        string label, string number)
+    {
+        var fixture = $$$$"""
+            {"schemaVersion":1,"editions":[{"id":"fixture","languageCode":"{{{{bibleLanguage}}}}","name":"Fixture",
+            "attribution":"Fixture credit","sourceURL":"https://example.test"}],
+            "passages":{"daily|Fixture":{"fixture":[{"chapter":15,"verse":16,"text":"Body"}]}}}
+            """;
+        var store = new ReadingsTextStore(() => fixture);
+        var row = new ReadingPassageViewModel(store, store.ResolveEdition("fixture", interfaceLanguage), "daily",
+            new ReadingCitation("reading", "Fixture", "Fixture"), interfaceLanguage, "context", "configuration");
+        row.IsExpanded = true;
+        var chapter = Assert.Single(row.Chapters);
+        Assert.Equal(label, chapter.Label);
+        Assert.Equal(number, chapter.DisplayNumber);
+        Assert.Equal("\u206616\u2069  Body", chapter.Text);
+    }
+
+    [Fact]
+    public void AramaicChapterHeadingFollowsPassageScriptToggle()
+    {
+        var store = new ReadingsTextStore(() => PairedFixture);
+        var row = new ReadingPassageViewModel(store, store.ResolveEdition("peshitta-1905", "en"), "daily",
+            new ReadingCitation("reading", "Fixture", "Fixture 1:1"), "en", "context", "configuration");
+        row.ScriptOverride = "Hebr";
+        row.IsExpanded = true;
+        Assert.Equal("קפלאון", Assert.Single(row.Chapters).Label);
+        Assert.Equal("א׳", row.Chapters[0].DisplayNumber);
+        row.ToggleScriptCommand.Execute(null);
+        Assert.Equal("ܩܦܠܐܘܢ", Assert.Single(row.Chapters).Label);
+        Assert.Equal("ܐ", row.Chapters[0].DisplayNumber);
     }
 
     [Fact]

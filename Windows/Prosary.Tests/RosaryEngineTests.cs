@@ -386,7 +386,7 @@ public class RosaryEngineTests : IClassFixture<PrayerPackLoaderFixture>
             SpecificMysteryGroup = MysteryGroup.Joyful,
             PresenterMode = false,
         });
-        Assert.Equal(79, _engine.BuildSteps(prayer).Count);
+        Assert.Equal(80, _engine.BuildSteps(prayer).Count);
     }
 
     [Fact]

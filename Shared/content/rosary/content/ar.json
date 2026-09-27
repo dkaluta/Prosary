@@ -42,7 +42,9 @@
     "mysteryGroupJoyfulTitle": "الفرحة",
     "mysteryGroupSorrowfulTitle": "الحزينة",
     "mysteryGroupGloriousTitle": "المجيدة",
-    "mysteryGroupLuminousTitle": "النورانية"
+    "mysteryGroupLuminousTitle": "النورانية",
+    "rosaryCollect": "لنصلِّ. اللهمَّ، إنَّ ابنَكَ الوحيدَ، بحياتِه وموتِه وقيامتِه، أعدَّ لنا أجرَ الحياةِ الأبديةِ، فامنحنا، إذ نتأملُ في أسرارِ مسبحةِ العذراءِ مريمَ القدوسةِ، أن نقتديَ بما تحتويه، وننالَ ما تعِد به، بالمسيحِ ربِّنا. آمين.",
+    "rosaryCollectTitle": "لنصلِّ"
   },
   "mysteries": {
     "joyful_01_annunciation": {
@@ -174,5 +176,6 @@
       "sorrowful_04_carrying_of_the_cross",
       "sorrowful_05_crucifixion"
     ]
-  }
+  },
+  "$rosaryCollectSource": "Rosary-only separate step: unchanged collectaStandard text; when absent (Spanish/Mission Hebrew), unchanged sourced collectAfterRosary from litanyOfLoreto. Basic Marian antiphon texts remain unchanged. Hebrew heading נתפללה supplied explicitly by the user, 2026-09-27."
 }

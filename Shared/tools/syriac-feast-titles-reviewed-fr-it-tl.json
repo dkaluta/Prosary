@@ -1,0 +1,875 @@
+{
+  "$comment": "Prosary editorial calendar display labels, scoped to the Syriac feast calendar. These are ordinary saint names and observance metadata, not official prayer or liturgical translations. English Evangelizo identities retain precedence; titles do not alter dates, rank, saint identity or biographies. Reviewed Arabic/Hebrew labels support name disambiguation, without replacing a differing English source name, number or epithet. Conventional vernacular names are used where known; uncertain proper names are retained or transliterated conservatively. Selected exact identities reuse existing credited feast-title catalogs; no fuzzy or date-based matching is used.",
+  "reviewedCatalogReuse": {
+    "Saint Anthony of Padua, Priest and Doctor of the Church": "St. Anthony of Padua",
+    "Saint Matthias, Apostle": "Saint Matthias the Apostle",
+    "St. Ambrose of Milan": "Saint Ambrose, Bishop and Doctor of the Church",
+    "St. Augustine of Hippo": "Saint Augustine, Bishop and Doctor of the Church",
+    "St. Ephrem": "Saint Ephrem, Deacon and Doctor of the Church",
+    "St. Gregory the Theologian": "Saint Gregory the Theologian",
+    "St. John of Damascus": "Saint John Damascene, Priest and Doctor of the Church",
+    "St. Luke": "Saint Luke, Evangelist",
+    "St. Polycarp of Izmir": "Saint Polycarp, Bishop and Martyr",
+    "The Passion of Saint John the Baptist": "The Beheading of Saint John the Baptist, Martyr"
+  },
+  "titles": {
+    "Archangels and all other angels": {
+      "fr": "Les archanges et tous les autres anges",
+      "it": "Gli arcangeli e tutti gli altri angeli",
+      "tl": "Mga arkanghel at lahat ng iba pang anghel"
+    },
+    "Blessed Estephan Nehme": {
+      "fr": "Bienheureux Estephan Nehme",
+      "it": "Beato Estephan Nehme",
+      "tl": "Beato Estephan Nehme"
+    },
+    "Blessed Ignatius Maloyan, Bishop and Martyr": {
+      "fr": "Bienheureux Ignace Maloyan, évêque et martyr",
+      "it": "Beato Ignazio Maloyan, vescovo e martire",
+      "tl": "Beato Ignacio Maloyan, Obispo at Martir"
+    },
+    "Blessed Jacob of Ghazir, Capuchin": {
+      "fr": "Bienheureux Jacques de Ghazir, capucin",
+      "it": "Beato Giacomo di Ghazir, cappuccino",
+      "tl": "Beato Santiago ng Ghazir, Kapusino"
+    },
+    "Chair of Saint Peter at Antioch": {
+      "fr": "Chaire de saint Pierre à Antioche",
+      "it": "Cattedra di san Pietro ad Antiochia",
+      "tl": "Luklukan ni San Pedro sa Antioquia"
+    },
+    "Finding of the Relics of Saint Stephen, First Martyr": {
+      "fr": "Découverte des reliques de saint Étienne, premier martyr",
+      "it": "Ritrovamento delle reliquie di santo Stefano, primo martire",
+      "tl": "Pagkatagpo sa mga Relikya ni San Esteban, Unang Martir"
+    },
+    "Martyrdom of Father Francois Mourad (Ghassaniyeh, Syria)": {
+      "fr": "Martyre du père François Mourad (Ghassaniyeh, Syrie)",
+      "it": "Martirio di padre François Mourad (Ghassaniyeh, Siria)",
+      "tl": "Pagkamartir ni Padre François Mourad (Ghassaniyeh, Syria)"
+    },
+    "Martyrdom of Fathers Behnam Khazimi and Youssef Zakaria (Qaraqosh, Iraq)": {
+      "fr": "Martyre des pères Behnam Khazimi et Youssef Zakaria (Qaraqosh, Irak)",
+      "it": "Martirio dei padri Behnam Khazimi e Youssef Zakaria (Qaraqosh, Iraq)",
+      "tl": "Pagkamartir nina Padre Behnam Khazimi at Padre Youssef Zakaria (Qaraqosh, Iraq)"
+    },
+    "Martyrs of Our Lady of Salvation Cathedral in Baghdad": {
+      "fr": "Martyrs de la cathédrale Notre-Dame-du-Salut de Bagdad",
+      "it": "Martiri della cattedrale di Nostra Signora della Salvezza a Baghdad",
+      "tl": "Mga Martir ng Katedral ng Mahal na Birhen ng Kaligtasan sa Baghdad"
+    },
+    "Saint Anthony of Padua, Priest and Doctor of the Church": {
+      "tl": "San Antonio de Padua"
+    },
+    "Saint Barbara, Martyr": {
+      "fr": "Sainte Barbe, martyre",
+      "it": "Santa Barbara, martire",
+      "tl": "Santa Barbara, Martir"
+    },
+    "Saint Barses of Edessa, Bishop": {
+      "fr": "Saint Barsès d’Édesse, évêque",
+      "it": "San Barse di Edessa, vescovo",
+      "tl": "San Barses ng Edessa, Obispo"
+    },
+    "Saint Bernadette Soubirous": {
+      "fr": "Sainte Bernadette Soubirous",
+      "it": "Santa Bernadette Soubirous",
+      "tl": "Santa Bernadette Soubirous"
+    },
+    "Saint Bishoy, Hermit": {
+      "fr": "Saint Bichoï, ermite",
+      "it": "San Bishoy, eremita",
+      "tl": "San Bishoy, Ermitanyo"
+    },
+    "Saint Charles de Foucauld": {
+      "fr": "Saint Charles de Foucauld",
+      "it": "San Carlo de Foucauld",
+      "tl": "San Carlos de Foucauld"
+    },
+    "Saint Cornelius the Centurion, Martyr": {
+      "fr": "Saint Corneille le Centurion, martyr",
+      "it": "San Cornelio il Centurione, martire",
+      "tl": "San Cornelio na Senturyon, Martir"
+    },
+    "Saint Cyril of Jerusalem, Bishop and Doctor of the Church": {
+      "fr": "Saint Cyrille de Jérusalem, évêque et docteur de l’Église",
+      "it": "San Cirillo di Gerusalemme, vescovo e dottore della Chiesa",
+      "tl": "San Cirilo ng Jerusalem, Obispo at Pantas ng Simbahan"
+    },
+    "Saint Hermias, Martyr": {
+      "fr": "Saint Hermias, martyr",
+      "it": "Sant’Ermia, martire",
+      "tl": "San Hermias, Martir"
+    },
+    "Saint Isaac of Nineveh": {
+      "fr": "Saint Isaac de Ninive",
+      "it": "Sant’Isacco di Ninive",
+      "tl": "San Isaac ng Nineve"
+    },
+    "Saint Jacob of Serugh": {
+      "fr": "Saint Jacques de Saroug",
+      "it": "San Giacomo di Sarug",
+      "tl": "San Santiago ng Serugh"
+    },
+    "Saint John the Hermit": {
+      "fr": "Saint Jean l’Ermite",
+      "it": "San Giovanni l’Eremita",
+      "tl": "San Juan na Ermitanyo"
+    },
+    "Saint Jude (Lebbaeus), Apostle": {
+      "fr": "Saint Jude (Lebbée), apôtre",
+      "it": "San Giuda (Lebbeo), apostolo",
+      "tl": "San Judas (Lebeo), Apostol"
+    },
+    "Saint Justus of Egypt, Martyr": {
+      "fr": "Saint Just d’Égypte, martyr",
+      "it": "San Giusto d’Egitto, martire",
+      "tl": "San Justo ng Ehipto, Martir"
+    },
+    "Saint Marie-Alphonsine of Palestine": {
+      "fr": "Sainte Marie-Alphonsine de Palestine",
+      "it": "Santa Maria Alfonsina di Palestina",
+      "tl": "Santa Maria Alfonsina ng Palestina"
+    },
+    "Saint Matthew the Hermit, Confessor and Abbot": {
+      "fr": "Saint Matthieu l’Ermite, confesseur et abbé",
+      "it": "San Matteo l’Eremita, confessore e abate",
+      "tl": "San Mateo na Ermitanyo, Tagapagpahayag ng Pananampalataya at Abad"
+    },
+    "Saint Matthias, Apostle": {
+      "fr": "Saint Matthias, Apôtre",
+      "it": "San Mattia, apostolo",
+      "tl": "Apostol San Matias"
+    },
+    "Saint Philip the Deacon": {
+      "fr": "Saint Philippe le Diacre",
+      "it": "San Filippo il Diacono",
+      "tl": "San Felipe na Diyakono"
+    },
+    "Saint Rafqa of Lebanon": {
+      "fr": "Sainte Rafqa du Liban",
+      "it": "Santa Rafqa del Libano",
+      "tl": "Santa Rafqa ng Lebanon"
+    },
+    "Saint Sabas the Elder, Confessor": {
+      "fr": "Saint Sabas l’Ancien, confesseur",
+      "it": "San Saba il Vecchio, confessore",
+      "tl": "San Sabas na Nakatatanda, Tagapagpahayag ng Pananampalataya"
+    },
+    "Saint Serapion of Thmuis, Bishop and Confessor": {
+      "fr": "Saint Sérapion de Thmuis, évêque et confesseur",
+      "it": "San Serapione di Thmuis, vescovo e confessore",
+      "tl": "San Serapion ng Thmuis, Obispo at Tagapagpahayag ng Pananampalataya"
+    },
+    "Saint Simeon Salos, Confessor": {
+      "fr": "Saint Syméon Salos, confesseur",
+      "it": "San Simeone Salos, confessore",
+      "tl": "San Simeon Salos, Tagapagpahayag ng Pananampalataya"
+    },
+    "Saint Sixtus III, Pope": {
+      "fr": "Saint Sixte III, pape",
+      "it": "San Sisto III, papa",
+      "tl": "San Sixto III, Papa"
+    },
+    "Saints Abda of Seleucia and Benjamin the Deacon, Martyrs": {
+      "fr": "Saints Abda de Séleucie et Benjamin le Diacre, martyrs",
+      "it": "Santi Abda di Seleucia e Beniamino il Diacono, martiri",
+      "tl": "Sina San Abda ng Seleucia at San Benjamin na Diyakono, mga Martir"
+    },
+    "St. Abed Eshoue of Ctesiphon": {
+      "fr": "Saint Abed Eshoue de Ctésiphon",
+      "it": "Sant’Abed Eshoue di Ctesifonte",
+      "tl": "San Abed Eshoue ng Ctesifonte"
+    },
+    "St. Abi": {
+      "fr": "Saint Abi",
+      "it": "Sant’Abi",
+      "tl": "San Abi"
+    },
+    "St. Adday": {
+      "fr": "Saint Addaï",
+      "it": "Sant’Addai",
+      "tl": "San Adday"
+    },
+    "St. Alexius of Rome": {
+      "fr": "Saint Alexis de Rome",
+      "it": "Sant’Alessio di Roma",
+      "tl": "San Alejo ng Roma"
+    },
+    "St. Ambrose of Milan": {
+      "fr": "Saint Ambroise, évêque et docteur de l'Église",
+      "it": "Sant'Ambrogio, vescovo e dottore",
+      "tl": "San Ambrosio, Obispo at Pantas ng Simbahan"
+    },
+    "St. Andrew the Soldier": {
+      "fr": "Saint André le Soldat",
+      "it": "Sant’Andrea il Soldato",
+      "tl": "San Andres na Kawal"
+    },
+    "St. Anna": {
+      "fr": "Sainte Anne",
+      "it": "Sant’Anna",
+      "tl": "Santa Ana"
+    },
+    "St. Antimus": {
+      "fr": "Saint Anthime",
+      "it": "Sant’Antimo",
+      "tl": "San Antimo"
+    },
+    "St. Aqaq of Amed": {
+      "fr": "Saint Aqaq d’Amid",
+      "it": "Sant’Aqaq di Amida",
+      "tl": "San Aqaq ng Amed"
+    },
+    "St. Aquindon and compagnions": {
+      "fr": "Saint Aquindon et ses compagnons",
+      "it": "Sant’Aquindon e compagni",
+      "tl": "San Aquindon at mga Kasama"
+    },
+    "St. Armlaus": {
+      "fr": "Saint Armlaus",
+      "it": "Sant’Armlaus",
+      "tl": "San Armlaus"
+    },
+    "St. Augustine of Hippo": {
+      "fr": "Saint Augustin, évêque et docteur de l'Église",
+      "it": "Sant'Agostino di Ippona, vescovo e dottore della Chiesa",
+      "tl": "San Agustin, Obispo at Pantas ng Simbahan"
+    },
+    "St. Babola of Antioch": {
+      "fr": "Saint Babola d’Antioche",
+      "it": "San Babola di Antiochia",
+      "tl": "San Babola ng Antioquia"
+    },
+    "St. Bartimaeus of Edessa": {
+      "fr": "Saint Bartimée d’Édesse",
+      "it": "San Bartimeo di Edessa",
+      "tl": "San Bartimeo ng Edessa"
+    },
+    "St. Basiliqes": {
+      "fr": "Saint Basilisque",
+      "it": "San Basilisco",
+      "tl": "San Basilisco"
+    },
+    "St. Bassa": {
+      "fr": "Sainte Bassa",
+      "it": "Santa Bassa",
+      "tl": "Santa Bassa"
+    },
+    "St. Berlaha": {
+      "fr": "Saint Berlaha",
+      "it": "San Berlaha",
+      "tl": "San Berlaha"
+    },
+    "St. Blasius of Sebastia": {
+      "fr": "Saint Blaise de Sébaste",
+      "it": "San Biagio di Sebaste",
+      "tl": "San Blas ng Sebaste"
+    },
+    "St. Capitolina": {
+      "fr": "Sainte Capitoline",
+      "it": "Santa Capitolina",
+      "tl": "Santa Capitolina"
+    },
+    "St. Carpus": {
+      "fr": "Saint Carpe",
+      "it": "San Carpo",
+      "tl": "San Carpo"
+    },
+    "St. Catherine": {
+      "fr": "Sainte Catherine",
+      "it": "Santa Caterina",
+      "tl": "Santa Catalina"
+    },
+    "St. Celestine": {
+      "fr": "Saint Célestin",
+      "it": "San Celestino",
+      "tl": "San Celestino"
+    },
+    "St. Charbel": {
+      "fr": "Saint Charbel",
+      "it": "San Charbel",
+      "tl": "San Charbel"
+    },
+    "St. Christopheros": {
+      "fr": "Saint Christophe",
+      "it": "San Cristoforo",
+      "tl": "San Cristobal"
+    },
+    "St. Clements of Angora": {
+      "fr": "Saint Clément d’Ancyre",
+      "it": "San Clemente di Ancira",
+      "tl": "San Clemente ng Ancira"
+    },
+    "St. Custos": {
+      "fr": "Saint Custos",
+      "it": "San Custos",
+      "tl": "San Custos"
+    },
+    "St. Cyril": {
+      "fr": "Saint Cyrille",
+      "it": "San Cirillo",
+      "tl": "San Cirilo"
+    },
+    "St. Dimitri": {
+      "fr": "Saint Démétrius",
+      "it": "San Demetrio",
+      "tl": "San Demetrio"
+    },
+    "St. Dionysius the Areopagite": {
+      "fr": "Saint Denys l’Aréopagite",
+      "it": "San Dionigi l’Areopagita",
+      "tl": "San Dionisio na Areopagita"
+    },
+    "St. Domat": {
+      "fr": "Saint Domat",
+      "it": "San Domat",
+      "tl": "San Domat"
+    },
+    "St. Domitus": {
+      "fr": "Saint Domitius",
+      "it": "San Domizio",
+      "tl": "San Domicio"
+    },
+    "St. Dorotheos": {
+      "fr": "Saint Dorothée",
+      "it": "San Doroteo",
+      "tl": "San Doroteo"
+    },
+    "St. Ephrem": {
+      "fr": "Saint Ephrem, diacre et docteur de l'Église",
+      "it": "Sant'Efrem, diacono e dottore",
+      "tl": "San Efren, Diyakono at Pantas ng Simbahan"
+    },
+    "St. Epiphanius of Salamis": {
+      "fr": "Saint Épiphane de Salamine",
+      "it": "Sant’Epifanio di Salamina",
+      "tl": "San Epifanio ng Salamina"
+    },
+    "St. Eudokia of Heliopolis": {
+      "fr": "Sainte Eudocie d’Héliopolis",
+      "it": "Santa Eudocia di Eliopoli",
+      "tl": "Santa Eudocia ng Heliopolis"
+    },
+    "St. Eugenius": {
+      "fr": "Saint Eugène",
+      "it": "Sant’Eugenio",
+      "tl": "San Eugenio"
+    },
+    "St. Euphemia": {
+      "fr": "Sainte Euphémie",
+      "it": "Sant’Eufemia",
+      "tl": "Santa Eufemia"
+    },
+    "St. Eusebius of Simissat": {
+      "fr": "Saint Eusèbe de Samosate",
+      "it": "Sant’Eusebio di Samosata",
+      "tl": "San Eusebio ng Samosata"
+    },
+    "St. Eustathius of Antioch": {
+      "fr": "Saint Eustathe d’Antioche",
+      "it": "Sant’Eustazio di Antiochia",
+      "tl": "San Eustacio ng Antioquia"
+    },
+    "St. Fawka": {
+      "fr": "Saint Fawka",
+      "it": "San Fawka",
+      "tl": "San Fawka"
+    },
+    "St. Febronia of Nisibis": {
+      "fr": "Sainte Fébronie de Nisibe",
+      "it": "Santa Febronia di Nisibi",
+      "tl": "Santa Febronia ng Nisibis"
+    },
+    "St. Flavianus Michael Malke": {
+      "fr": "Saint Flavien Michel Malke",
+      "it": "San Flaviano Michele Malke",
+      "tl": "San Flaviano Miguel Malke"
+    },
+    "St. Gerasim": {
+      "fr": "Saint Gérasime",
+      "it": "San Gerasimo",
+      "tl": "San Gerasimo"
+    },
+    "St. Gregory of Caesarea": {
+      "fr": "Saint Grégoire de Césarée",
+      "it": "San Gregorio di Cesarea",
+      "tl": "San Gregorio ng Cesarea"
+    },
+    "St. Gregory of the Ten Cities": {
+      "fr": "Saint Grégoire de la Décapole",
+      "it": "San Gregorio della Decapoli",
+      "tl": "San Gregorio ng Sampung Lungsod"
+    },
+    "St. Gregory the Illuminator": {
+      "fr": "Saint Grégoire l’Illuminateur",
+      "it": "San Gregorio l’Illuminatore",
+      "tl": "San Gregorio na Tagapagbigay-liwanag"
+    },
+    "St. Gregory the Theologian": {
+      "fr": "Saint Grégoire le Théologien",
+      "it": "San Gregorio il Teologo",
+      "tl": "San Gregorio na Teologo"
+    },
+    "St. Habib": {
+      "fr": "Saint Habib",
+      "it": "San Habib",
+      "tl": "San Habib"
+    },
+    "St. Helena the Queen": {
+      "fr": "Sainte Hélène la Reine",
+      "it": "Sant’Elena la Regina",
+      "tl": "Santa Elena na Reyna"
+    },
+    "St. Hermes": {
+      "fr": "Saint Hermès",
+      "it": "Sant’Ermete",
+      "tl": "San Hermes"
+    },
+    "St. Hilarion the Great": {
+      "fr": "Saint Hilarion le Grand",
+      "it": "Sant’Ilarione il Grande",
+      "tl": "San Hilarion na Dakila"
+    },
+    "St. Isidore": {
+      "fr": "Saint Isidore",
+      "it": "Sant’Isidoro",
+      "tl": "San Isidoro"
+    },
+    "St. Jacob Intercisus": {
+      "fr": "Saint Jacques l’Intercis",
+      "it": "San Giacomo Interciso",
+      "tl": "San Santiago Interciso"
+    },
+    "St. Jacob of Nisibis": {
+      "fr": "Saint Jacques de Nisibe",
+      "it": "San Giacomo di Nisibi",
+      "tl": "San Santiago ng Nisibis"
+    },
+    "St. John Climacus": {
+      "fr": "Saint Jean Climaque",
+      "it": "San Giovanni Climaco",
+      "tl": "San Juan Climaco"
+    },
+    "St. John of Damascus": {
+      "fr": "Saint Jean Damascène, prêtre et docteur de l'Église",
+      "it": "San Giovanni Damasceno, sacerdote e dottore",
+      "tl": "San Juan Damasceno, Pari at Pantas ng Simbahan"
+    },
+    "St. John the Merciful": {
+      "fr": "Saint Jean le Miséricordieux",
+      "it": "San Giovanni il Misericordioso",
+      "tl": "San Juan na Maawain"
+    },
+    "St. Julian": {
+      "fr": "Saint Julien",
+      "it": "San Giuliano",
+      "tl": "San Julian"
+    },
+    "St. Justus of Beauvais": {
+      "fr": "Saint Just de Beauvais",
+      "it": "San Giusto di Beauvais",
+      "tl": "San Justo ng Beauvais"
+    },
+    "St. Khreitoun": {
+      "fr": "Saint Khreitoun",
+      "it": "San Khreitoun",
+      "tl": "San Khreitoun"
+    },
+    "St. Klinikos": {
+      "fr": "Saint Clinicos",
+      "it": "San Clinico",
+      "tl": "San Clinico"
+    },
+    "St. Konan": {
+      "fr": "Saint Conan",
+      "it": "San Conone",
+      "tl": "San Conon"
+    },
+    "St. Kyriakos": {
+      "fr": "Saint Cyriaque",
+      "it": "San Ciriaco",
+      "tl": "San Ciriaco"
+    },
+    "St. Leontius": {
+      "fr": "Saint Léonce",
+      "it": "San Leonzio",
+      "tl": "San Leoncio"
+    },
+    "St. Lucius of Persia": {
+      "fr": "Saint Lucius de Perse",
+      "it": "San Lucio di Persia",
+      "tl": "San Lucio ng Persia"
+    },
+    "St. Luke": {
+      "fr": "Saint Luc, évangéliste",
+      "it": "San Luca Evangelista",
+      "tl": "San Lucas, Ebanghelista"
+    },
+    "St. Macarius the Great": {
+      "fr": "Saint Macaire le Grand",
+      "it": "San Macario il Grande",
+      "tl": "San Macario na Dakila"
+    },
+    "St. Mamlicta": {
+      "fr": "Sainte Mamlicta",
+      "it": "Santa Mamlicta",
+      "tl": "Santa Mamlicta"
+    },
+    "St. Manuel and companions": {
+      "fr": "Saint Manuel et ses compagnons",
+      "it": "San Manuele e compagni",
+      "tl": "San Manuel at mga Kasama"
+    },
+    "St. Marina": {
+      "fr": "Sainte Marine",
+      "it": "Santa Marina",
+      "tl": "Santa Marina"
+    },
+    "St. Marotha of Mayfarqin": {
+      "fr": "Saint Maroutha de Mayafaraqin",
+      "it": "San Maruta di Mayafaraqin",
+      "tl": "San Maruta ng Mayfarqin"
+    },
+    "St. Mary of Egypt": {
+      "fr": "Sainte Marie l’Égyptienne",
+      "it": "Santa Maria Egiziaca",
+      "tl": "Santa Maria ng Ehipto"
+    },
+    "St. Maximus": {
+      "fr": "Saint Maxime",
+      "it": "San Massimo",
+      "tl": "San Maximo"
+    },
+    "St. Melatius of Antioch": {
+      "fr": "Saint Mélèce d’Antioche",
+      "it": "San Melezio di Antiochia",
+      "tl": "San Melecio ng Antioquia"
+    },
+    "St. Melis of Persia": {
+      "fr": "Saint Mélis de Perse",
+      "it": "San Melis di Persia",
+      "tl": "San Melis ng Persia"
+    },
+    "St. Methodius of Constantinople": {
+      "fr": "Saint Méthode de Constantinople",
+      "it": "San Metodio di Costantinopoli",
+      "tl": "San Metodio ng Constantinopla"
+    },
+    "St. Metrofanos of Constantinople": {
+      "fr": "Saint Métrophane de Constantinople",
+      "it": "San Metrofane di Costantinopoli",
+      "tl": "San Metrofano ng Constantinopla"
+    },
+    "St. Mina and companions": {
+      "fr": "Saint Ménas et ses compagnons",
+      "it": "San Mena e compagni",
+      "tl": "San Menas at mga Kasama"
+    },
+    "St. Moses Abyssinia": {
+      "fr": "Saint Moïse l’Abyssin",
+      "it": "San Mosè d’Abissinia",
+      "tl": "San Moises ng Abisinya"
+    },
+    "St. Nicholas of Mora": {
+      "fr": "Saint Nicolas de Mora",
+      "it": "San Nicola di Mora",
+      "tl": "San Nicolas ng Mora"
+    },
+    "St. Nichophoros": {
+      "fr": "Saint Nicéphore",
+      "it": "San Niceforo",
+      "tl": "San Niceforo"
+    },
+    "St. Nikitia": {
+      "fr": "Saint Nicétas",
+      "it": "San Niceta",
+      "tl": "San Nicetas"
+    },
+    "St. Odious of Antioch": {
+      "fr": "Saint Odious d’Antioche",
+      "it": "Sant’Odious di Antiochia",
+      "tl": "San Odious ng Antioquia"
+    },
+    "St. Ofrosona": {
+      "fr": "Sainte Ofrosona",
+      "it": "Santa Ofrosona",
+      "tl": "Santa Ofrosona"
+    },
+    "St. Onesimus": {
+      "fr": "Saint Onésime",
+      "it": "Sant’Onesimo",
+      "tl": "San Onesimo"
+    },
+    "St. Paphnutius": {
+      "fr": "Saint Paphnuce",
+      "it": "San Pafnuzio",
+      "tl": "San Pafnucio"
+    },
+    "St. Paul of Constantinople": {
+      "fr": "Saint Paul de Constantinople",
+      "it": "San Paolo di Costantinopoli",
+      "tl": "San Pablo ng Constantinopla"
+    },
+    "St. Pentalmon": {
+      "fr": "Saint Pantaléon",
+      "it": "San Pantaleone",
+      "tl": "San Pantaleon"
+    },
+    "St. Peter of Alexandria": {
+      "fr": "Saint Pierre d’Alexandrie",
+      "it": "San Pietro di Alessandria",
+      "tl": "San Pedro ng Alejandria"
+    },
+    "St. Phlabianus of Antioch": {
+      "fr": "Saint Flavien d’Antioche",
+      "it": "San Flaviano di Antiochia",
+      "tl": "San Flaviano ng Antioquia"
+    },
+    "St. Phyton": {
+      "fr": "Saint Phyton",
+      "it": "San Phyton",
+      "tl": "San Phyton"
+    },
+    "St. Polycarp of Izmir": {
+      "fr": "Saint Polycarpe de Smyrne",
+      "it": "San Policarpo di Smirne",
+      "tl": "San Policarpo ng Esmirna"
+    },
+    "St. Prisma of Edessa": {
+      "fr": "Saint Prisma d’Édesse",
+      "it": "San Prisma di Edessa",
+      "tl": "San Prisma ng Edessa"
+    },
+    "St. Procopius": {
+      "fr": "Saint Procope",
+      "it": "San Procopio",
+      "tl": "San Procopio"
+    },
+    "St. Romans": {
+      "fr": "Saint Romain",
+      "it": "San Romano",
+      "tl": "San Romano"
+    },
+    "St. Saba and companions": {
+      "fr": "Saint Sabas et ses compagnons",
+      "it": "San Saba e compagni",
+      "tl": "San Sabas at mga Kasama"
+    },
+    "St. Serapion of Alexandria": {
+      "fr": "Saint Sérapion d’Alexandrie",
+      "it": "San Serapione di Alessandria",
+      "tl": "San Serapion ng Alejandria"
+    },
+    "St. Shahdost of Persia": {
+      "fr": "Saint Shahdost de Perse",
+      "it": "San Shahdost di Persia",
+      "tl": "San Shahdost ng Persia"
+    },
+    "St. Shallita": {
+      "fr": "Saint Shallita",
+      "it": "San Shallita",
+      "tl": "San Shallita"
+    },
+    "St. Sherine": {
+      "fr": "Sainte Chirine",
+      "it": "Santa Shirin",
+      "tl": "Santa Shirin"
+    },
+    "St. Simeon Barsabae and companions": {
+      "fr": "Saint Syméon Barsabbaé et ses compagnons",
+      "it": "San Simeone Barsaba e compagni",
+      "tl": "San Simeon Barsabae at mga Kasama"
+    },
+    "St. Simeon of Jerusalem": {
+      "fr": "Saint Syméon de Jérusalem",
+      "it": "San Simeone di Gerusalemme",
+      "tl": "San Simeon ng Jerusalem"
+    },
+    "St. Simeon the Zealot": {
+      "fr": "Saint Simon le Zélote",
+      "it": "San Simone lo Zelota",
+      "tl": "San Simon na Makabayan"
+    },
+    "St. Sophronius of Jerusalem": {
+      "fr": "Saint Sophrone de Jérusalem",
+      "it": "San Sofronio di Gerusalemme",
+      "tl": "San Sofronio ng Jerusalem"
+    },
+    "St. Sozon": {
+      "fr": "Saint Sozon",
+      "it": "San Sozone",
+      "tl": "San Sozon"
+    },
+    "St. Vichai": {
+      "fr": "Saint Vichai",
+      "it": "San Vichai",
+      "tl": "San Vichai"
+    },
+    "St. Zosimus": {
+      "fr": "Saint Zosime",
+      "it": "San Zosimo",
+      "tl": "San Zosimo"
+    },
+    "Sts. Adrian and Natalia": {
+      "fr": "Saints Adrien et Nathalie",
+      "it": "Santi Adriano e Natalia",
+      "tl": "Sina San Adriano at Santa Natalia"
+    },
+    "Sts. Athanasius and Cyril": {
+      "fr": "Saints Athanase et Cyrille",
+      "it": "Santi Atanasio e Cirillo",
+      "tl": "Sina San Atanasio at San Cirilo"
+    },
+    "Sts. Avlus and Susan": {
+      "fr": "Saints Avlus et Susan",
+      "it": "Santi Avlus e Susan",
+      "tl": "Mga Santong Avlus at Susan"
+    },
+    "Sts. Barbara and Elena": {
+      "fr": "Saintes Barbe et Hélène",
+      "it": "Sante Barbara ed Elena",
+      "tl": "Sina Santa Barbara at Santa Elena"
+    },
+    "Sts. Barlam and Azd": {
+      "fr": "Saints Barlaam et Azd",
+      "it": "Santi Barlaam e Azd",
+      "tl": "Sina San Barlaam at San Azd"
+    },
+    "Sts. Basilica and Clinica": {
+      "fr": "Saintes Basilissa et Clinica",
+      "it": "Sante Basilissa e Clinica",
+      "tl": "Sina Santa Basilissa at Santa Clinica"
+    },
+    "Sts. Charbel and Babaa": {
+      "fr": "Saints Charbel et Babaa",
+      "it": "Santi Charbel e Babaa",
+      "tl": "Sina San Charbel at San Babaa"
+    },
+    "Sts. Cyprian and Justina": {
+      "fr": "Saints Cyprien et Justine",
+      "it": "Santi Cipriano e Giustina",
+      "tl": "Sina San Cipriano at Santa Justina"
+    },
+    "Sts. Cyrus and John": {
+      "fr": "Saints Cyr et Jean",
+      "it": "Santi Ciro e Giovanni",
+      "tl": "Sina San Ciro at San Juan"
+    },
+    "Sts. Eleven Martyrs of Persia": {
+      "fr": "Les onze saints martyrs de Perse",
+      "it": "Gli undici santi martiri di Persia",
+      "tl": "Ang Labing-isang Banal na Martir ng Persia"
+    },
+    "Sts. Ephrem and Isaac the Syrian": {
+      "fr": "Saints Éphrem et Isaac le Syrien",
+      "it": "Santi Efrem e Isacco il Siro",
+      "tl": "Sina San Efren at San Isaac na Siryano"
+    },
+    "Sts. Florus and Laurus": {
+      "fr": "Saints Flore et Laure",
+      "it": "Santi Floro e Lauro",
+      "tl": "Sina San Floro at San Lauro"
+    },
+    "Sts. Forty Martyrs of Sebaste": {
+      "fr": "Les quarante saints martyrs de Sébaste",
+      "it": "I quaranta santi martiri di Sebaste",
+      "tl": "Ang Apatnapung Banal na Martir ng Sebaste"
+    },
+    "Sts. Forty-two Martyrs of Syria": {
+      "fr": "Les quarante-deux saints martyrs de Syrie",
+      "it": "I quarantadue santi martiri di Siria",
+      "tl": "Ang Apatnapu’t Dalawang Banal na Martir ng Syria"
+    },
+    "Sts. Frobus and Tarrakos Andronicos": {
+      "fr": "Saints Frobus, Tarrakos et Andronicos",
+      "it": "Santi Frobus, Tarrakos e Andronico",
+      "tl": "Sina San Frobus, San Tarrakos at San Andronico"
+    },
+    "Sts. Guria and companions": {
+      "fr": "Saint Guria et ses compagnons",
+      "it": "San Guria e compagni",
+      "tl": "San Guria at mga Kasama"
+    },
+    "Sts. Isaac the Teacher and Claukaria": {
+      "fr": "Saints Isaac le Maître et Claukaria",
+      "it": "Santi Isacco il Maestro e Claukaria",
+      "tl": "Mga Santong Isaac na Guro at Claukaria"
+    },
+    "Sts. Martyrs of Mount Sinai": {
+      "fr": "Les saints martyrs du mont Sinaï",
+      "it": "I santi martiri del monte Sinai",
+      "tl": "Mga Banal na Martir ng Bundok Sinai"
+    },
+    "Sts. Olympias and Olympia": {
+      "fr": "Saints Olympias et Olympia",
+      "it": "Santi Olympias e Olympia",
+      "tl": "Mga Santong Olympias at Olympia"
+    },
+    "Sts. Porphyrios and Onesiphorus": {
+      "fr": "Saints Porphyre et Onésiphore",
+      "it": "Santi Porfirio e Onesiforo",
+      "tl": "Sina San Porfirio at San Onesiforo"
+    },
+    "Sts. Sergius and Bacchus": {
+      "fr": "Saints Serge et Bacchus",
+      "it": "Santi Sergio e Bacco",
+      "tl": "Sina San Sergio at San Baco"
+    },
+    "Sts. Servant of the high priest of Seleucia and companions": {
+      "fr": "Le saint serviteur du grand prêtre de Séleucie et ses compagnons",
+      "it": "Il santo servo del sommo sacerdote di Seleucia e compagni",
+      "tl": "Ang Banal na Lingkod ng Punong Pari ng Seleucia at mga Kasama"
+    },
+    "Sts. Seven Martyrs of Corinth": {
+      "fr": "Les sept saints martyrs de Corinthe",
+      "it": "I sette santi martiri di Corinto",
+      "tl": "Ang Pitong Banal na Martir ng Corinto"
+    },
+    "Sts. Seventy-two Disciples": {
+      "fr": "Les soixante-douze saints disciples",
+      "it": "I settantadue santi discepoli",
+      "tl": "Ang Pitumpu’t Dalawang Banal na Alagad"
+    },
+    "Sts. the 33 Martyrs of Malatya": {
+      "fr": "Les trente-trois saints martyrs de Malatya",
+      "it": "I trentatré santi martiri di Malatya",
+      "tl": "Ang Tatlumpu’t Tatlong Banal na Martir ng Malatya"
+    },
+    "Sunday of the Birth of John the Baptist": {
+      "fr": "Dimanche de la naissance de Jean-Baptiste",
+      "it": "Domenica della nascita di Giovanni Battista",
+      "tl": "Linggo ng Kapanganakan ni San Juan Bautista"
+    },
+    "Sunday of the Visitation to Elizabeth": {
+      "fr": "Dimanche de la Visitation à Élisabeth",
+      "it": "Domenica della Visitazione a Elisabetta",
+      "tl": "Linggo ng Pagdalaw kay Santa Isabel"
+    },
+    "The Passion of Saint John the Baptist": {
+      "fr": "Le martyre de saint Jean-Baptiste",
+      "it": "Martirio di San Giovanni Battista",
+      "tl": "Pagpugot ng Ulo kay San Juan Bautista, Martir"
+    },
+    "Translation of the Relics of Saint Ignatius of Antioch": {
+      "fr": "Translation des reliques de saint Ignace d’Antioche",
+      "it": "Traslazione delle reliquie di sant’Ignazio di Antiochia",
+      "tl": "Paglilipat ng mga Relikya ni San Ignacio ng Antioquia"
+    },
+    "Translation of the Relics of Saint John Chrysostom": {
+      "fr": "Translation des reliques de saint Jean Chrysostome",
+      "it": "Traslazione delle reliquie di san Giovanni Crisostomo",
+      "tl": "Paglilipat ng mga Relikya ni San Juan Crisostomo"
+    },
+    "Venerable Mar Ivanios, Syro-Malankara Bishop": {
+      "fr": "Vénérable Mar Ivanios, évêque syro-malankare",
+      "it": "Venerabile Mar Ivanios, vescovo siro-malankarese",
+      "tl": "Kagalang-galang na Mar Ivanios, Obispong Siro-Malankara"
+    },
+    "World Day of Peace": {
+      "fr": "Journée mondiale de la paix",
+      "it": "Giornata mondiale della pace",
+      "tl": "Pandaigdigang Araw ng Kapayapaan"
+    }
+  }
+}

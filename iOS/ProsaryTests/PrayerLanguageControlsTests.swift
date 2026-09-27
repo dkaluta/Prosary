@@ -198,10 +198,12 @@ final class PrayerLanguageControlsTests: XCTestCase {
     var options = RosaryOptions()
     let baseline = PrayerRunSignature.rosary(options)
     XCTAssertFalse(baseline.contains("closing-v2"))
+    XCTAssertTrue(baseline.hasSuffix("rosary-closing-v3:0,1"),
+                  "A separate collect invalidates all pre-change closing step positions")
     options.includeClosingPopeIntention = false
     XCTAssertEqual(PrayerRunSignature.rosary(options), baseline)
     options.includeClosingPopeIntention = true
-    XCTAssertTrue(PrayerRunSignature.rosary(options).hasSuffix("closing-v2:1,1,1"))
+    XCTAssertTrue(PrayerRunSignature.rosary(options).contains("closing-v2:1,1,1"))
     options.includeClosingIntentions = true
     options.includeClosingPopeIntention = false
     options.includeClosingBishopIntention = false
@@ -213,7 +215,7 @@ final class PrayerLanguageControlsTests: XCTestCase {
     var options = RosaryOptions()
     XCTAssertFalse(PrayerRunSignature.rosary(options).contains("opening-fatima-v2"))
     options.includeOpeningFatimaPrayer = true
-    XCTAssertTrue(PrayerRunSignature.rosary(options).hasSuffix("opening-fatima-v2"))
+    XCTAssertTrue(PrayerRunSignature.rosary(options).contains("opening-fatima-v2"))
     options.includeOpeningPrayers = false
     XCTAssertFalse(PrayerRunSignature.rosary(options).contains("opening-fatima-v2"))
   }
@@ -222,10 +224,10 @@ final class PrayerLanguageControlsTests: XCTestCase {
     func signature(_ options: [String: String], bundle: String = "rosary") -> String {
       PrayerRunSignature.custom(bundle, effectiveVariantId: nil, dayIndex: 0, options: options)
     }
-    XCTAssertEqual(signature([:]), "custom|rosary||0|")
+    XCTAssertEqual(signature([:]), "custom|rosary||0||rosary-closing-v3")
     XCTAssertEqual(signature(["closingPopeIntention": "true"]), signature(["closingIntentions": "true"]))
-    XCTAssertTrue(signature(["closingIntentions": "true"]).hasSuffix("closing-v2:1,1,1"))
-    XCTAssertTrue(signature(["openingFatimaPrayer": "true"]).hasSuffix("opening-fatima-v2"))
+    XCTAssertTrue(signature(["closingIntentions": "true"]).contains("closing-v2:1,1,1"))
+    XCTAssertTrue(signature(["openingFatimaPrayer": "true"]).contains("opening-fatima-v2"))
     XCTAssertFalse(signature(["openingFatimaPrayer": "true", "openingPrayers": "false"]).contains("opening-fatima-v2"))
     XCTAssertFalse(signature(["openingFatimaPrayer": "true"], bundle: "anotherRosary").contains("opening-fatima-v2"))
   }

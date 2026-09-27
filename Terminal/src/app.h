@@ -17,6 +17,8 @@ typedef struct {
     int keyboard_arrow_navigation_enabled;
     int keyboard_space_advance_enabled;
     int skip_fifth_decade;
+    int include_litany_of_loreto;
+    int include_rosary_collect;
     int year, month, day_of_month; /* The session's liturgical date; zero before starting. */
 } AppState;
 

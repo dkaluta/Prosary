@@ -42,7 +42,9 @@
     "mysteryGroupJoyfulTitle": "Радостные",
     "mysteryGroupSorrowfulTitle": "Скорбные",
     "mysteryGroupGloriousTitle": "Славные",
-    "mysteryGroupLuminousTitle": "Светлые"
+    "mysteryGroupLuminousTitle": "Светлые",
+    "rosaryCollect": "Помолимся. Боже, единородный Сын Которого жизнью, смертью и воскресением Своим стяжал нам награду вечной жизни; молим Тебя, да мы, размышляя о тайнах Пресвятого Розария Пресвятой Девы Марии, будем подражать тому, что они содержат, и получим то, что они обещают, через Того же Христа Господа нашего. Аминь.",
+    "rosaryCollectTitle": "Помолимся"
   },
   "mysteries": {
     "joyful_01_annunciation": {
@@ -145,5 +147,6 @@
       "fruit": "Поклонение и любовь к Евхаристии",
       "description": "И когда они ели, Иисус взял хлеб и, благословив, преломил и, раздавая ученикам, сказал: приимите, ядите: сие есть Тело Моё. И, взяв чашу и благодарив, подал им и сказал: пейте из неё все, ибо сие есть Кровь Моя Нового Завета, за многих изливаемая во оставление грехов.\n\n— Мф 26:26–28 (Синодальный)"
     }
-  }
+  },
+  "$rosaryCollectSource": "Rosary-only separate step: unchanged collectaStandard text; when absent (Spanish/Mission Hebrew), unchanged sourced collectAfterRosary from litanyOfLoreto. Basic Marian antiphon texts remain unchanged. Hebrew heading נתפללה supplied explicitly by the user, 2026-09-27."
 }

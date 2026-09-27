@@ -7710,6 +7710,16 @@
       "sha256": "4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88",
       "license": "Edition and redistribution terms unresolved; limited to the nine previously user-approved Isaiah verses. BFBS 1905 and CC BY 4.0 NT terms do not apply.",
       "rightsURL": "https://archive.org/details/peshitta-complete-bible-otnt"
+    },
+    {
+      "id": "grcbrent",
+      "cache": "el-ot-archive",
+      "url": "https://ebible.org/Scriptures/grcbrent_vpl.zip",
+      "format": "brenton-vplzip",
+      "member": "grcbrent_vpl.txt",
+      "sha256": "dcd97e62bab7ff629dd6c5201d1b7ff6237254c665a79535f622e31e72fc4b50",
+      "license": "Public domain",
+      "rightsURL": "https://ebible.org/grcbrent/copyright.htm"
     }
   ],
   "editions": [
@@ -10301,6 +10311,21 @@
           "id": "peshitta-supplied-isaiah-nine"
         }
       ]
+    },
+    {
+      "id": "brenton-lxx",
+      "languageCode": "el",
+      "name": "Septuagint — Ἑβδομήκοντα (Brenton)",
+      "attribution": "Greek Septuagint with Apocrypha, compiled by Sir Lancelot C. L. Brenton. Public domain; eBible.org grcbrent. Old Testament only. Chapters with lettered verse labels or gaps, combined Ezra/Nehemiah, Greek additions, and unreviewed boundaries are unavailable; no New Testament is supplied.",
+      "sourceURL": "https://ebible.org/Scriptures/details.php?id=grcbrent",
+      "otSystem": "brenton",
+      "ntSystem": "brenton",
+      "sources": [
+        {
+          "id": "grcbrent",
+          "testament": "ot"
+        }
+      ]
     }
   ],
   "policy": {
@@ -10309,6 +10334,7 @@
     "arabic": "Old Jesuit Arabic Bible, inspected 1897 Beirut printing. Sparse canonical transcription with page evidence; only exact concatenations of whole reviewed passage units may be displayed. Do not infer textual boundaries from numeric identity, slice reviewed units, or fill absent words from OCR or another edition.",
     "french": "Whole chapters containing any empty verse are withheld: existing transcription has merged/shifted verse boundaries. Numeric validation alone is not proof of editorial accuracy.",
     "italian": "NT and Pentateuch source inventory. 1 Peter 5 is incomplete upstream (only 11–14); entire chapter withheld.",
-    "verseNumbers": "Verse labels follow the selected Bible edition. Partial verses and larger mapping envelopes display enclosing whole verses with a notice. Daily source numbering requires agreement among supported systems or a bounded source review covering every calendar context. Reviewed NABRE appointments use the reference-only published marker inventory and STEP correspondences; the pinned DRA target maps directly from STEP Standard, while other editions use the explicit Standard-to-SIL-English bridge before reversible SIL mappings. The vocalized Delitzsch adapter preserves its published splits and accepts merged units only when their complete source text is requested. Other ambiguous or unreviewed mappings remain unavailable."
+    "verseNumbers": "Verse labels follow the selected Bible edition. Partial verses and larger mapping envelopes display enclosing whole verses with a notice. Daily source numbering requires agreement among supported systems or a bounded source review covering every calendar context. Reviewed NABRE appointments use the reference-only published marker inventory and STEP correspondences; the pinned DRA target maps directly from STEP Standard, while other editions use the explicit Standard-to-SIL-English bridge before reversible SIL mappings. The vocalized Delitzsch adapter preserves its published splits and accepts merged units only when their complete source text is requested. Other ambiguous or unreviewed mappings remain unavailable.",
+    "greek": "Pinned Brenton Septuagint VPL, OT only. Preserve exact source wording and integer labels. Chapters containing lettered labels or gaps, combined Ezra chapters11–23, unsupported Greek-book layouts, and Sirach33 are withheld rather than dropping source text. Exact imported corpus digest and source-specific STEP Greek/Brenton conditional rules establish correspondence; uncertain rules, source additions, unreviewed appointment boundaries, and unavailable books fail closed. No Greek NT or fallback source."
   }
 }

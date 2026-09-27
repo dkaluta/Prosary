@@ -50,6 +50,10 @@ struct ReadingsView: View {
           Text(feast.localizedTitle(language))
             .font(.title3.weight(.semibold)).accessibilityAddTraits(.isHeader)
         }
+        if let feast {
+          SaintDescriptionsView(feast: feast, calendarID: TodayInfoStore.selectedCalendarId, language: language)
+            .id("\(passageContext)|\(language)")
+        }
         ReadingEditionPicker()
         VStack(alignment: .leading, spacing: 14) {
           Text(String(localized: "home.today.selectedReadings", defaultValue: "Readings", bundle: UILanguage.bundle, locale: UILanguage.locale))

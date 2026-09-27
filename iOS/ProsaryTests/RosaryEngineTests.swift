@@ -91,9 +91,9 @@ final class RosaryEngineTests: XCTestCase {
     // 1 sign of cross + 1 creed + 1 OurFather + 3 HailMarys + 1 GloryBe = 7 opening
     // Per decade: 1 mystery + 1 OurFather + 10 HailMarys + 1 GloryBe + 1 Fatima = 14
     // 5 decades = 70
-    // 1 antiphon + 1 closing cross = 2
-    // Total = 7 + 70 + 2 = 79
-    XCTAssertEqual(steps.count, 79)
+    // 1 antiphon + 1 separate Rosary collect + 1 closing cross = 3
+    // Total = 7 + 70 + 3 = 80
+    XCTAssertEqual(steps.count, 80)
   }
 
   func testNoOpeningPrayersReducesCount() {
@@ -130,7 +130,7 @@ final class RosaryEngineTests: XCTestCase {
     XCTAssertEqual(steps[charity + 2].title, "Fatima Prayer")
     XCTAssertNotNil(steps[charity + 3].mystery)
     XCTAssertEqual(steps.filter { $0.title == "Fatima Prayer" }.count, 6)
-    XCTAssertEqual(steps.count, 80)
+    XCTAssertEqual(steps.count, 81)
   }
 
   func testOpeningAndDecadeFatimaOptionsRemainIndependentInBothPresentationModes() {
@@ -618,7 +618,7 @@ final class RosaryEngineTests: XCTestCase {
   func testPresenterModeOffReproducesExistingStepCount() {
     let engine = makeEngine()
     let steps = engine.buildSteps(for: prayer(presenterMode: false))
-    XCTAssertEqual(steps.count, 79)
+    XCTAssertEqual(steps.count, 80)
   }
 
   func testPresenterModeCollapsesHailMaryAndGloryBeIntoOneStepPerDecade() {

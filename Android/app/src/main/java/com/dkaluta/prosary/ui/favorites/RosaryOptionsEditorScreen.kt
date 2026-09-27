@@ -186,6 +186,14 @@ fun RosaryOptionsEditorScreen(
                 SwitchRow(stringResource(R.string.ro_st_michael), rosary.includeStMichaelPrayer) {
                     onRosaryChange(rosary.copy(includeStMichaelPrayer = it))
                 }
+                SwitchRow(stringResource(R.string.ro_litany_of_loreto), rosary.includeLitanyOfLoreto,
+                    switchModifier = Modifier.testTag("rosaryOption:litanyOfLoreto")) {
+                    onRosaryChange(rosary.copy(includeLitanyOfLoreto = it))
+                }
+                SwitchRow(stringResource(R.string.ro_rosary_collect), rosary.effectiveRosaryCollect,
+                    switchModifier = Modifier.testTag("rosaryOption:rosaryCollect"), enabled = !rosary.includeLitanyOfLoreto) {
+                    onRosaryChange(rosary.copy(includeRosaryCollect = it))
+                }
                 SwitchRow(stringResource(R.string.ro_final_sign), rosary.includeFinalSignOfCross) {
                     onRosaryChange(rosary.copy(includeFinalSignOfCross = it))
                 }

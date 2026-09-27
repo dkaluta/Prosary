@@ -49,6 +49,7 @@ jobs:
           uv run --script Shared/tools/test-delitzsch-source.py
           uv run --script Shared/tools/test-reading-texts.py
           uv run --script Shared/tools/test-peshitta-readings.py
+          uv run --script Shared/tools/test-greek-readings.py
       - name: Erez's Aramaic converter and generated packs stay in step
         run: uv run --script Shared/tools/test-import-scripture.py
       - name: Old Jesuit Arabic Scripture keeps its reviewed source and native copies
@@ -73,6 +74,7 @@ jobs:
           uv run --script Shared/tools/fetch-feasts.py --self-test
           uv run --script Shared/tools/fetch-feasts.py --localize-only --sync
           uv run --script Shared/tools/test-syriac-observances.py
+          uv run --script Shared/tools/test-syriac-hebrew-calendar.py
           uv run --script Shared/tools/fetch-readings.py --self-test
           uv run --script Shared/tools/fetch-readings.py --localize-only --sync
           uv run --script Shared/tools/import-ugcc-calendar.py --self-test

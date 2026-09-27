@@ -215,6 +215,16 @@
       "if": "eternalRest=atEndOnly"
     },
     {
+      "kind": "rosaryLitany",
+      "if": "litanyOfLoreto"
+    },
+    {
+      "titleKey": "rosaryCollectTitle",
+      "bodyKey": "rosaryCollect",
+      "imageKey": "madonna_and_child",
+      "if": "rosaryCollect"
+    },
+    {
       "titleKey": "signumCrucisTitle",
       "bodyKey": "signumCrucisFormB",
       "imageKey": "crucifix",

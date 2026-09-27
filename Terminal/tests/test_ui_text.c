@@ -51,6 +51,16 @@ static void check_keyboard_navigation(void)
     assert(!state.keyboard_arrow_navigation_enabled && !state.keyboard_space_advance_enabled && state.step == 2);
     handle_key(&ui, KEY_DOWN); handle_key(&ui, KEY_RIGHT);
     assert(!state.keyboard_arrow_navigation_enabled && state.keyboard_space_advance_enabled && state.step == 2);
+    /* Collect is forced on while the Litany is selected and restores the prior off choice. */
+    ui.locale = 0;
+    for (ui.setting = 0; items[ui.setting] != SET_COLLECT; ++ui.setting) {}
+    change_setting(&ui, 1); assert(!state.include_rosary_collect && state.step == 0);
+    for (ui.setting = 0; items[ui.setting] != SET_LITANY; ++ui.setting) {}
+    change_setting(&ui, 1); assert(state.include_litany_of_loreto && ui.session->count == 95);
+    for (ui.setting = 0; items[ui.setting] != SET_COLLECT; ++ui.setting) {}
+    change_setting(&ui, 1); assert(!state.include_rosary_collect && ui.session->count == 95);
+    for (ui.setting = 0; items[ui.setting] != SET_LITANY; ++ui.setting) {}
+    change_setting(&ui, 1); assert(!state.include_litany_of_loreto && ui.session->count == 79);
     ui.view = VIEW_PRAYER;
     state.step = ui.session->count - 1;
     handle_key(&ui, ' '); assert(state.completed);

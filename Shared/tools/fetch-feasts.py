@@ -284,7 +284,7 @@ def syriac_day(english: dict, arabic: dict,
     entries: dict[str, dict] = {}
     def add(title, arabic_title=None, *, identity_title=None, priority=0):
         title = clean(title)
-        if not title:
+        if not title or title in {"#REF!", "#VALUE!", "#N/A", "#NAME?"}:
             return
         key = identity(clean(identity_title) if identity_title else title)
         row = entries.setdefault(key, {"title": title, "identity": key, "priority": priority})
@@ -321,7 +321,8 @@ def syriac_day(english: dict, arabic: dict,
     else:
         rank = "Feast"
     return {"title": "; ".join(row["title"] for row in entries.values()), "rank": rank,
-            "observances": [{"title": row["title"], "identity": row["identity"]}
+            "observances": [{"title": row["title"], "identity": row["identity"],
+                             **({"sourceTitleByLanguage": {"ar": row["ar"]}} if row.get("ar") else {})}
                             for row in entries.values()],
             "titleByLanguage": {"ar": "; ".join(row.get("ar", row["title"]) for row in entries.values())}}
 
@@ -508,7 +509,69 @@ def add_sourced_feast_titles(days: dict, catalogs: dict[str, dict[str, str]]) ->
     return updates
 
 
-def localize_existing_datasets(only: set[str] | None = None) -> None:
+def localize_syriac_days(days: dict, catalogs: dict[str, dict[str, str]], *, require_complete: bool = True) -> list[tuple[str, str, str]]:
+    """Localize each retained observance; a locale key must contain an actual translation.
+
+    SYA captions remain authoritative Arabic, with catalog labels filling English-only
+    observances. The supplied Hebrew reference is applied only here, after shared labels.
+    New untranslated identities fail regeneration instead of masquerading as seven locales.
+    """
+    from syriac_hebrew_calendar import apply_hebrew_reference
+
+    languages = ("he", "ar", "ru", "tl", "fr", "it", "uk")
+    catalogs = {language: syriac_identity_catalog(values) for language, values in catalogs.items()}
+    for scoped_path in sorted(TOOLS.glob("syriac-feast-titles-reviewed*.json")):
+        scoped = json.loads(scoped_path.read_text())["titles"]
+        for identity, values in scoped.items():
+            if not isinstance(identity, str) or not identity.strip() or not isinstance(values, dict):
+                raise ValueError(f"Invalid reviewed Syriac identity in {scoped_path.name}")
+            for language, value in values.items():
+                if language not in languages or not isinstance(value, str) or not value.strip():
+                    raise ValueError(f"Invalid reviewed Syriac translation: {scoped_path.name}/{identity}/{language}")
+                catalogs.setdefault(language, {})[identity] = value
+    for day in days.values():
+        # Compatibility with the first component format, before Arabic was stored per saint.
+        arabic_parts = day.get("titleByLanguage", {}).get("ar", "").split("; ")
+        for index, part in enumerate(day["observances"]):
+            arabic = part.get("sourceTitleByLanguage", {}).get("ar")
+            if not arabic and "titleByLanguage" not in part and len(arabic_parts) == len(day["observances"]):
+                candidate = arabic_parts[index]
+                if candidate != part["title"]:
+                    arabic = candidate
+                    part.setdefault("sourceTitleByLanguage", {})["ar"] = candidate
+            part["titleByLanguage"] = {"en": part["title"]}
+            for language in languages:
+                # An observance is already a reviewed unit. Never let a partly translated
+                # compound fall through to localized_feast_title's generic source fallback.
+                value = catalogs.get(language, {}).get(part["identity"])
+                if isinstance(value, str) and value.strip():
+                    part["titleByLanguage"][language] = value
+            if arabic:
+                part["titleByLanguage"]["ar"] = arabic
+    # Preserve already sourced names and the user's chosen descriptors, Thomas spelling
+    # and Pentecost terminology. The supplied reference fills remaining Syriac names.
+    preferred_hebrew = {key: value for key, value in catalogs.get("he", {}).items()
+                        if "Pentecost" in key}
+    preferred_hebrew.update(syriac_identity_catalog(hebrew_title_catalog()))
+    apply_hebrew_reference(days, syriac_identities()[1], preferred_hebrew)
+    missing = []
+    for date, day in days.items():
+        day["titleByLanguage"] = {}
+        for language in languages:
+            values = [part["titleByLanguage"].get(language) for part in day["observances"]]
+            for part, value in zip(day["observances"], values):
+                if not value:
+                    missing.append((date, language, part["identity"]))
+            if all(values):
+                day["titleByLanguage"][language] = "; ".join(values)
+    if missing and require_complete:
+        raise ValueError(f"Untranslated Syriac observances ({len(missing)}): " +
+                         "; ".join(f"{date}/{language}: {identity}" for date, language, identity in missing[:20]))
+    return missing
+
+
+def feast_title_catalogs() -> dict[str, dict[str, str]]:
+    """Load sourced and editorial names without mutating any calendar dataset."""
     display_catalogs: dict[str, dict[str, str]] = {}
     for path in DISPLAY_TITLE_CATALOGS:
         if path.exists():
@@ -517,11 +580,11 @@ def localize_existing_datasets(only: set[str] | None = None) -> None:
                     if language in {"he", "ar", "ru", "tl", "fr", "it", "uk"}:
                         if not value.strip():
                             raise ValueError(f"Empty display translation: {path.name}/{title}/{language}")
-                        display_catalogs.setdefault(language, {})[title] = value
-    catalog = display_catalogs.pop("he", {}) | hebrew_title_catalog()
+                        display_catalogs.setdefault(language, {})[evangelizo_label(title)] = value
+    catalog = display_catalogs.pop("he", {}) | {evangelizo_label(key): value for key, value in hebrew_title_catalog().items()}
     sourced_catalogs = sourced_title_catalogs()
     for language, values in sourced_catalogs.items():
-        display_catalogs[language] = display_catalogs.get(language, {}) | values
+        display_catalogs[language] = display_catalogs.get(language, {}) | {evangelizo_label(key): value for key, value in values.items()}
     # Aliases are reviewed named identities, never fuzzy matching or same-date matching.
     # Fill only missing values so exact published labels retain precedence.
     aliases_path = TOOLS / "feast-title-aliases.json"
@@ -537,6 +600,13 @@ def localize_existing_datasets(only: set[str] | None = None) -> None:
                         changed = True
                 if not changed:
                     break
+    return {**display_catalogs, "he": catalog}
+
+
+def localize_existing_datasets(only: set[str] | None = None) -> None:
+    catalogs = feast_title_catalogs()
+    catalog = catalogs["he"]
+    display_catalogs = {language: values for language, values in catalogs.items() if language != "he"}
     registry = json.loads((DATA / "calendars.json").read_text(encoding="utf-8"))
     names = [calendar["file"] for calendar in registry["calendars"]]
     names += [variant["file"] for calendar in registry["calendars"]
@@ -546,20 +616,12 @@ def localize_existing_datasets(only: set[str] | None = None) -> None:
             continue
         path = DATA / f"{name}.json"
         payload = json.loads(path.read_text(encoding="utf-8"))
-        applicable_hebrew = syriac_identity_catalog(catalog) if name == "feasts-syriac" else catalog
-        updated, missing = localize_feast_days(payload["days"], applicable_hebrew)
-        # Syriac Arabic captions were already assembled from the actual SYA components.
-        # Partial English-title catalogs must never replace them or drop Arabic-only saints.
-        applicable_catalogs = ({key: syriac_identity_catalog(value)
-                                for key, value in display_catalogs.items() if key != "ar"}
-                              if name == "feasts-syriac" else display_catalogs)
-        sourced_updates = add_sourced_feast_titles(payload["days"], applicable_catalogs)
         if name == "feasts-syriac":
-            # Every interface gets a complete display value, but unreviewed names remain
-            # in the source language. Presence here is not a claim of translated wording.
-            for entry in payload["days"].values():
-                for language in ("he", "ar", "ru", "tl", "fr", "it", "uk"):
-                    entry.setdefault("titleByLanguage", {}).setdefault(language, entry["title"])
+            localize_syriac_days(payload["days"], catalogs)
+            updated, missing, sourced_updates = len(payload["days"]), set(), {}
+        else:
+            updated, missing = localize_feast_days(payload["days"], catalog)
+            sourced_updates = add_sourced_feast_titles(payload["days"], display_catalogs)
         credit = (
             " Hebrew feast and saint names use the credited source catalogs in "
             "Shared/tools/hebrew-feast-titles.json and hebrew-saint-titles.json; "
@@ -930,6 +992,8 @@ def main() -> int:
 
 
 def write_syriac_dataset(days: dict) -> None:
+    # Validate every locale before replacing the last complete generated dataset.
+    localize_syriac_days(days, feast_title_catalogs())
     write_dataset(DATA / "feasts-syriac.json",
                   "West Syriac — Syriac Catholic: liturgical day titles and every listed saint "
                   "from Evangelizo.org — Daily Gospel (© Evangelizo.org), publication editions "
@@ -938,9 +1002,12 @@ def write_syriac_dataset(days: dict) -> None:
                   "array positions or another rite's dates. Plain-date ferial captions are omitted "
                   "without discarding their saints. English saint names retain SYE spelling; "
                   "Arabic supplies additional observances. Reviewed identities are separate "
-                  "from display names. Arabic source labels are retained; other "
-                  "languages use credited title catalogs with source-name fallback for uncovered "
-                  "identities. Source class suffixes are not converted into Roman ranks. "
+                  "from display names. Arabic source labels are retained; all eight interface "
+                  "languages have reviewed labels, and missing translations block regeneration. "
+                  "The supplied Urtotho Hebrew Syriac calendar (2026), preserved in Shared/tools/sources, "
+                  "provides Syriac-only labels and exact-day saint descriptions through a reviewed UID index; "
+                  "it does not change dates, ranks, or other calendars. Existing preferred Hebrew Thomas "
+                  "and Pentecost labels remain. Source class suffixes are not converted into Roman ranks. "
                   "Regenerate with Shared/tools/fetch-feasts.py --syriac-only --sync; Evangelizo "
                   "has a rolling future horizon, and --until may bound a refresh to a known range.",
                   sorted({int(key[:4]) for key in days}), days)

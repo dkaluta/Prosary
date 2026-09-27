@@ -11,7 +11,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.test.hasText
 import androidx.compose.ui.test.hasTestTag
-import androidx.compose.ui.test.junit4.createAndroidComposeRule
+import androidx.compose.ui.test.junit4.v2.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.performClick
@@ -44,7 +44,7 @@ class RealReadingCorpusInstrumentedTest {
         val store = ReadingTextStore { name -> context.assets.open("data/$name.json") }
         try {
             val editions = store.editions
-            assertEquals(8, editions.size)
+            assertEquals(10, editions.size)
             val luke = ReadingCitation("gospel", "Lk. 6", "Luke 6:27–38")
             for (edition in editions) {
                 InstrumentationRegistry.getInstrumentation().runOnMainSync { AppSettings.readingsEditionId = edition.id }
@@ -59,7 +59,7 @@ class RealReadingCorpusInstrumentedTest {
                     "firstDecodeMs=${SystemClock.elapsedRealtime() - start}; heapBefore=$heapBefore; " +
                         "heapAfter=${runtime.totalMemory() - runtime.freeMemory()}; heapLimit=${runtime.maxMemory()}")
                 // The reviewed Arabic corpus does not contain this Gospel yet.
-                if (edition.languageCode == "ar") {
+                if (edition.languageCode in listOf("ar", "el")) {
                     org.junit.Assert.assertNull(edition.id, verses)
                     continue
                 }

@@ -87,7 +87,7 @@ public class RosaryCustomOptionsTests
         var partial = new Dictionary<string, string> { ["closingBishopIntention"] = "true" };
         var signature = PrayerRunSignatures.Custom("rosary", null, 0, modern);
         Assert.Equal(signature, PrayerRunSignatures.Custom("rosary", null, 0, partial));
-        Assert.Equal("custom|rosary||0|closingIntentions=true|closing-v2:1,1,1", signature);
+        Assert.Equal("custom|rosary||0|closingIntentions=true|rosary-ending-v3|closing-v2:1,1,1", signature);
         Assert.NotEqual("custom|rosary||0|closingIntentions=true", signature);
 
         var allOff = new Dictionary<string, string>
@@ -95,9 +95,9 @@ public class RosaryCustomOptionsTests
             ["closingIntentions"] = "true", ["closingPopeIntention"] = "false",
             ["closingBishopIntention"] = "false", ["closingDepartedIntention"] = "false",
         };
-        Assert.Equal("custom|rosary||0|closingIntentions=false",
+        Assert.Equal("custom|rosary||0|closingIntentions=false|rosary-ending-v3",
             PrayerRunSignatures.Custom("rosary", null, 0, allOff));
-        Assert.Equal("custom|rosary||0|", PrayerRunSignatures.Custom("rosary", null, 0));
+        Assert.Equal("custom|rosary||0||rosary-ending-v3", PrayerRunSignatures.Custom("rosary", null, 0));
     }
 
     [Theory]

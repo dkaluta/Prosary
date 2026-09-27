@@ -30,18 +30,6 @@ public sealed partial class RosaryPrayerPage : Page
         _reader = new PrayerFlowReader(NarrowReader, NarrowBody);
         _reader.Register(WideReader, WideBody);
         ViewModel.PropertyChanged += OnFlowPropertyChanged;
-        ViewModel.OfferLitany = async () =>
-        {
-            var dialog = new ContentDialog
-            {
-                XamlRoot = XamlRoot,
-                Title = Loc.Tr("rosary_litany_prompt", "Continue with the Litany of the Blessed Virgin Mary?"),
-                PrimaryButtonText = Loc.Tr("rosary_pray_litany", "Pray the Litany"),
-                CloseButtonText = Loc.Tr("common_finish", "Finish"),
-                DefaultButton = ContentDialogButton.Close,
-            };
-            return await dialog.ShowAsync() == ContentDialogResult.Primary;
-        };
         Loaded += (_, _) =>
         {
             AppSettings.TypographyChanged += OnTypographyChanged;

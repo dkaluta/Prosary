@@ -42,7 +42,9 @@
     "mysteryGroupJoyfulTitle": "השמחה",
     "mysteryGroupSorrowfulTitle": "המוכאבות",
     "mysteryGroupGloriousTitle": "הכבוד",
-    "mysteryGroupLuminousTitle": "האור"
+    "mysteryGroupLuminousTitle": "האור",
+    "rosaryCollect": "נִתְפַּלְּלָה. אֱלֹהִים, אֲשֶׁר בְּנְךָ הַיָּחִיד, בְּחַיָּיו וּבְמוֹתוֹ וּבִתְחִיָּתוֹ, קָנָה לָנוּ אֶת שְׂכַר חַיֵּי עוֹלָם, תֵּן נָא, בְּהִרְהוּרֵנוּ בְּרָזֵי הַמַּחְרֹזֶת הַקְּדוֹשָׁה שֶׁל מִרְיָם הַבְּתוּלָה, שֶׁנְּחַקֶּה אֶת אֲשֶׁר הֵם מְכִילִים וְנִזְכֶּה לְמַה שֶּׁהֵם מַבְטִיחִים, בְּיֵשׁוּעַ הַמָּשִׁיחַ אֲדוֹנֵנוּ. אָמֵן.",
+    "rosaryCollectTitle": "נתפללה"
   },
   "mysteries": {
     "joyful_01_annunciation": {
@@ -176,6 +178,8 @@
     "subTuumPraesidium": "vicariate",
     "symbolumApostolorumTitle": "vicariate",
     "versiculumPaschale": "vicariate",
-    "versiculumStandard": "vicariate"
-  }
+    "versiculumStandard": "vicariate",
+    "rosaryCollect": "vicariate"
+  },
+  "$rosaryCollectSource": "Rosary-only separate step: unchanged collectaStandard text; when absent (Spanish/Mission Hebrew), unchanged sourced collectAfterRosary from litanyOfLoreto. Basic Marian antiphon texts remain unchanged. Hebrew heading נתפללה supplied explicitly by the user, 2026-09-27."
 }
