@@ -1,0 +1,1657 @@
+{
+  "schemaVersion": 1,
+  "book": "BAR",
+  "purpose": "Independent second visual inventory of every printed margin label and physical page continuation; no numbering inferred from another Bible edition.",
+  "reviewStatus": "Margin-label and page-crossing audit completed against enlarged original PDF crops. The absent chapter3 label38 is explicitly documented. This does not approve the words, pointing, or complete transcription.",
+  "productionEligible": false,
+  "scan": {
+    "volume": "A2",
+    "sha256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+    "textPages": [
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35
+    ]
+  },
+  "method": "Read every margin on PDF29–35 and inspect all chapter/page transitions at higher resolution. Read adjacent body text only to locate a unit start within a physical row: a margin label can begin later on that row. No body OCR or transcription JSON used to infer labels.",
+  "hasUnnumberedScripturalOpening": false,
+  "chapters": [
+    {
+      "number": 1,
+      "lastPrintedLabel": 22,
+      "units": [
+        {
+          "first": 1,
+          "last": 1,
+          "sourcePages": [
+            29
+          ]
+        },
+        {
+          "first": 2,
+          "last": 2,
+          "sourcePages": [
+            29
+          ]
+        },
+        {
+          "first": 3,
+          "last": 3,
+          "sourcePages": [
+            29
+          ]
+        },
+        {
+          "first": 4,
+          "last": 4,
+          "sourcePages": [
+            29
+          ]
+        },
+        {
+          "first": 5,
+          "last": 5,
+          "sourcePages": [
+            29
+          ]
+        },
+        {
+          "first": 6,
+          "last": 7,
+          "sourcePages": [
+            29
+          ]
+        },
+        {
+          "first": 8,
+          "last": 8,
+          "sourcePages": [
+            29,
+            30
+          ]
+        },
+        {
+          "first": 9,
+          "last": 9,
+          "sourcePages": [
+            30
+          ]
+        },
+        {
+          "first": 10,
+          "last": 10,
+          "sourcePages": [
+            30
+          ]
+        },
+        {
+          "first": 11,
+          "last": 11,
+          "sourcePages": [
+            30
+          ]
+        },
+        {
+          "first": 12,
+          "last": 12,
+          "sourcePages": [
+            30
+          ]
+        },
+        {
+          "first": 13,
+          "last": 13,
+          "sourcePages": [
+            30
+          ]
+        },
+        {
+          "first": 14,
+          "last": 14,
+          "sourcePages": [
+            30
+          ]
+        },
+        {
+          "first": 15,
+          "last": 15,
+          "sourcePages": [
+            30
+          ]
+        },
+        {
+          "first": 16,
+          "last": 17,
+          "sourcePages": [
+            30
+          ]
+        },
+        {
+          "first": 18,
+          "last": 18,
+          "sourcePages": [
+            30
+          ]
+        },
+        {
+          "first": 19,
+          "last": 19,
+          "sourcePages": [
+            30
+          ]
+        },
+        {
+          "first": 20,
+          "last": 20,
+          "sourcePages": [
+            30
+          ]
+        },
+        {
+          "first": 21,
+          "last": 21,
+          "sourcePages": [
+            30
+          ]
+        },
+        {
+          "first": 22,
+          "last": 22,
+          "sourcePages": [
+            30
+          ]
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "lastPrintedLabel": 35,
+      "units": [
+        {
+          "first": 1,
+          "last": 1,
+          "sourcePages": [
+            31
+          ]
+        },
+        {
+          "first": 2,
+          "last": 2,
+          "sourcePages": [
+            31
+          ]
+        },
+        {
+          "first": 3,
+          "last": 3,
+          "sourcePages": [
+            31
+          ]
+        },
+        {
+          "first": 4,
+          "last": 4,
+          "sourcePages": [
+            31
+          ]
+        },
+        {
+          "first": 5,
+          "last": 5,
+          "sourcePages": [
+            31
+          ]
+        },
+        {
+          "first": 6,
+          "last": 6,
+          "sourcePages": [
+            31
+          ]
+        },
+        {
+          "first": 7,
+          "last": 7,
+          "sourcePages": [
+            31
+          ]
+        },
+        {
+          "first": 8,
+          "last": 9,
+          "sourcePages": [
+            31
+          ]
+        },
+        {
+          "first": 10,
+          "last": 10,
+          "sourcePages": [
+            31
+          ]
+        },
+        {
+          "first": 11,
+          "last": 11,
+          "sourcePages": [
+            31
+          ]
+        },
+        {
+          "first": 12,
+          "last": 12,
+          "sourcePages": [
+            31
+          ]
+        },
+        {
+          "first": 13,
+          "last": 13,
+          "sourcePages": [
+            31
+          ]
+        },
+        {
+          "first": 14,
+          "last": 14,
+          "sourcePages": [
+            31
+          ]
+        },
+        {
+          "first": 15,
+          "last": 15,
+          "sourcePages": [
+            31
+          ]
+        },
+        {
+          "first": 16,
+          "last": 16,
+          "sourcePages": [
+            31
+          ]
+        },
+        {
+          "first": 17,
+          "last": 17,
+          "sourcePages": [
+            31
+          ]
+        },
+        {
+          "first": 18,
+          "last": 18,
+          "sourcePages": [
+            31
+          ]
+        },
+        {
+          "first": 19,
+          "last": 19,
+          "sourcePages": [
+            31
+          ]
+        },
+        {
+          "first": 20,
+          "last": 20,
+          "sourcePages": [
+            31
+          ]
+        },
+        {
+          "first": 21,
+          "last": 21,
+          "sourcePages": [
+            31
+          ]
+        },
+        {
+          "first": 22,
+          "last": 22,
+          "sourcePages": [
+            31
+          ]
+        },
+        {
+          "first": 23,
+          "last": 23,
+          "sourcePages": [
+            31,
+            32
+          ]
+        },
+        {
+          "first": 24,
+          "last": 24,
+          "sourcePages": [
+            32
+          ]
+        },
+        {
+          "first": 25,
+          "last": 25,
+          "sourcePages": [
+            32
+          ]
+        },
+        {
+          "first": 26,
+          "last": 26,
+          "sourcePages": [
+            32
+          ]
+        },
+        {
+          "first": 27,
+          "last": 27,
+          "sourcePages": [
+            32
+          ]
+        },
+        {
+          "first": 28,
+          "last": 28,
+          "sourcePages": [
+            32
+          ]
+        },
+        {
+          "first": 29,
+          "last": 29,
+          "sourcePages": [
+            32
+          ]
+        },
+        {
+          "first": 30,
+          "last": 30,
+          "sourcePages": [
+            32
+          ]
+        },
+        {
+          "first": 31,
+          "last": 31,
+          "sourcePages": [
+            32
+          ]
+        },
+        {
+          "first": 32,
+          "last": 32,
+          "sourcePages": [
+            32
+          ]
+        },
+        {
+          "first": 33,
+          "last": 33,
+          "sourcePages": [
+            32
+          ]
+        },
+        {
+          "first": 34,
+          "last": 34,
+          "sourcePages": [
+            32
+          ]
+        },
+        {
+          "first": 35,
+          "last": 35,
+          "sourcePages": [
+            32
+          ]
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "lastPrintedLabel": 37,
+      "units": [
+        {
+          "first": 1,
+          "last": 1,
+          "sourcePages": [
+            32
+          ]
+        },
+        {
+          "first": 2,
+          "last": 3,
+          "sourcePages": [
+            32
+          ]
+        },
+        {
+          "first": 4,
+          "last": 4,
+          "sourcePages": [
+            32
+          ]
+        },
+        {
+          "first": 5,
+          "last": 5,
+          "sourcePages": [
+            32
+          ]
+        },
+        {
+          "first": 6,
+          "last": 7,
+          "sourcePages": [
+            32
+          ]
+        },
+        {
+          "first": 8,
+          "last": 8,
+          "sourcePages": [
+            32
+          ]
+        },
+        {
+          "first": 9,
+          "last": 9,
+          "sourcePages": [
+            32
+          ]
+        },
+        {
+          "first": 10,
+          "last": 10,
+          "sourcePages": [
+            32,
+            33
+          ]
+        },
+        {
+          "first": 11,
+          "last": 11,
+          "sourcePages": [
+            33
+          ]
+        },
+        {
+          "first": 12,
+          "last": 13,
+          "sourcePages": [
+            33
+          ]
+        },
+        {
+          "first": 14,
+          "last": 14,
+          "sourcePages": [
+            33
+          ]
+        },
+        {
+          "first": 15,
+          "last": 15,
+          "sourcePages": [
+            33
+          ]
+        },
+        {
+          "first": 16,
+          "last": 16,
+          "sourcePages": [
+            33
+          ]
+        },
+        {
+          "first": 17,
+          "last": 17,
+          "sourcePages": [
+            33
+          ]
+        },
+        {
+          "first": 18,
+          "last": 18,
+          "sourcePages": [
+            33
+          ]
+        },
+        {
+          "first": 19,
+          "last": 20,
+          "sourcePages": [
+            33
+          ]
+        },
+        {
+          "first": 21,
+          "last": 21,
+          "sourcePages": [
+            33
+          ]
+        },
+        {
+          "first": 22,
+          "last": 22,
+          "sourcePages": [
+            33
+          ]
+        },
+        {
+          "first": 23,
+          "last": 23,
+          "sourcePages": [
+            33
+          ]
+        },
+        {
+          "first": 24,
+          "last": 24,
+          "sourcePages": [
+            33
+          ]
+        },
+        {
+          "first": 25,
+          "last": 25,
+          "sourcePages": [
+            33
+          ]
+        },
+        {
+          "first": 26,
+          "last": 26,
+          "sourcePages": [
+            33
+          ]
+        },
+        {
+          "first": 27,
+          "last": 27,
+          "sourcePages": [
+            33
+          ]
+        },
+        {
+          "first": 28,
+          "last": 29,
+          "sourcePages": [
+            33
+          ]
+        },
+        {
+          "first": 30,
+          "last": 30,
+          "sourcePages": [
+            33
+          ]
+        },
+        {
+          "first": 31,
+          "last": 32,
+          "sourcePages": [
+            33
+          ]
+        },
+        {
+          "first": 33,
+          "last": 34,
+          "sourcePages": [
+            33
+          ]
+        },
+        {
+          "first": 35,
+          "last": 36,
+          "sourcePages": [
+            33
+          ]
+        },
+        {
+          "first": 37,
+          "last": 37,
+          "sourcePages": [
+            33
+          ]
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "lastPrintedLabel": 37,
+      "units": [
+        {
+          "first": 1,
+          "last": 1,
+          "sourcePages": [
+            33
+          ]
+        },
+        {
+          "first": 2,
+          "last": 2,
+          "sourcePages": [
+            33
+          ]
+        },
+        {
+          "first": 3,
+          "last": 4,
+          "sourcePages": [
+            33,
+            34
+          ]
+        },
+        {
+          "first": 5,
+          "last": 5,
+          "sourcePages": [
+            34
+          ]
+        },
+        {
+          "first": 6,
+          "last": 6,
+          "sourcePages": [
+            34
+          ]
+        },
+        {
+          "first": 7,
+          "last": 8,
+          "sourcePages": [
+            34
+          ]
+        },
+        {
+          "first": 9,
+          "last": 9,
+          "sourcePages": [
+            34
+          ]
+        },
+        {
+          "first": 10,
+          "last": 10,
+          "sourcePages": [
+            34
+          ]
+        },
+        {
+          "first": 11,
+          "last": 12,
+          "sourcePages": [
+            34
+          ]
+        },
+        {
+          "first": 13,
+          "last": 13,
+          "sourcePages": [
+            34
+          ]
+        },
+        {
+          "first": 14,
+          "last": 14,
+          "sourcePages": [
+            34
+          ]
+        },
+        {
+          "first": 15,
+          "last": 15,
+          "sourcePages": [
+            34
+          ]
+        },
+        {
+          "first": 16,
+          "last": 16,
+          "sourcePages": [
+            34
+          ]
+        },
+        {
+          "first": 17,
+          "last": 17,
+          "sourcePages": [
+            34
+          ]
+        },
+        {
+          "first": 18,
+          "last": 19,
+          "sourcePages": [
+            34
+          ]
+        },
+        {
+          "first": 20,
+          "last": 20,
+          "sourcePages": [
+            34
+          ]
+        },
+        {
+          "first": 21,
+          "last": 21,
+          "sourcePages": [
+            34
+          ]
+        },
+        {
+          "first": 22,
+          "last": 22,
+          "sourcePages": [
+            34
+          ]
+        },
+        {
+          "first": 23,
+          "last": 23,
+          "sourcePages": [
+            34
+          ]
+        },
+        {
+          "first": 24,
+          "last": 24,
+          "sourcePages": [
+            34
+          ]
+        },
+        {
+          "first": 25,
+          "last": 25,
+          "sourcePages": [
+            34
+          ]
+        },
+        {
+          "first": 26,
+          "last": 26,
+          "sourcePages": [
+            34
+          ]
+        },
+        {
+          "first": 27,
+          "last": 27,
+          "sourcePages": [
+            34
+          ]
+        },
+        {
+          "first": 28,
+          "last": 28,
+          "sourcePages": [
+            34
+          ]
+        },
+        {
+          "first": 29,
+          "last": 29,
+          "sourcePages": [
+            34
+          ]
+        },
+        {
+          "first": 30,
+          "last": 30,
+          "sourcePages": [
+            34
+          ]
+        },
+        {
+          "first": 31,
+          "last": 32,
+          "sourcePages": [
+            34,
+            35
+          ]
+        },
+        {
+          "first": 33,
+          "last": 33,
+          "sourcePages": [
+            35
+          ]
+        },
+        {
+          "first": 34,
+          "last": 34,
+          "sourcePages": [
+            35
+          ]
+        },
+        {
+          "first": 35,
+          "last": 35,
+          "sourcePages": [
+            35
+          ]
+        },
+        {
+          "first": 36,
+          "last": 36,
+          "sourcePages": [
+            35
+          ]
+        },
+        {
+          "first": 37,
+          "last": 37,
+          "sourcePages": [
+            35
+          ]
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "lastPrintedLabel": 9,
+      "units": [
+        {
+          "first": 1,
+          "last": 1,
+          "sourcePages": [
+            35
+          ]
+        },
+        {
+          "first": 2,
+          "last": 2,
+          "sourcePages": [
+            35
+          ]
+        },
+        {
+          "first": 3,
+          "last": 4,
+          "sourcePages": [
+            35
+          ]
+        },
+        {
+          "first": 5,
+          "last": 5,
+          "sourcePages": [
+            35
+          ]
+        },
+        {
+          "first": 6,
+          "last": 6,
+          "sourcePages": [
+            35
+          ]
+        },
+        {
+          "first": 7,
+          "last": 7,
+          "sourcePages": [
+            35
+          ]
+        },
+        {
+          "first": 8,
+          "last": 8,
+          "sourcePages": [
+            35
+          ]
+        },
+        {
+          "first": 9,
+          "last": 9,
+          "sourcePages": [
+            35
+          ]
+        }
+      ]
+    }
+  ],
+  "sourceImages": [
+    {
+      "pdfPage": 29,
+      "renderScale": 2,
+      "sha256": "51a9c4ee9acb869cc4c3df5e35229125137aea2aa9aadbfeef5daafe053b224e"
+    },
+    {
+      "pdfPage": 30,
+      "renderScale": 2,
+      "sha256": "e26e55531a0e0b21bcae52ee755bf118f6794a2e880caaf8318dc51b0c92f1af"
+    },
+    {
+      "pdfPage": 31,
+      "renderScale": 2,
+      "sha256": "5dbec11a20ef19dfab5e87e0736729a5010d7614f67ec37b7ae80e1d1e34d30b"
+    },
+    {
+      "pdfPage": 32,
+      "renderScale": 2,
+      "sha256": "eb668df5e01371b6d307e63e10ee605fbcb021486edc8472a3baaaf568a541c9"
+    },
+    {
+      "pdfPage": 33,
+      "renderScale": 2,
+      "sha256": "28502e848b08f00c82317d27110bdbc4a79e0267397a73331b733cc15ee36189"
+    },
+    {
+      "pdfPage": 34,
+      "renderScale": 2,
+      "sha256": "1272002107a42fc984fff842de7e075e9b9c7a77a172c37c3ddd2d288b87a843"
+    },
+    {
+      "pdfPage": 35,
+      "renderScale": 2,
+      "sha256": "ef4f1fd1c884ffc10c71da6b90ba303b88231f679c8f7a2d4eacf6403ea80fca"
+    }
+  ],
+  "notes": [
+    "A margin label applies to a unit starting somewhere on its row, not necessarily to the first word of that row. Sof pasuq and line breaks do not manufacture new numeric labels.",
+    "Printed pairs are1:6–7,1:16–17;2:8–9;3:2–3,3:6–7,3:12–13,3:19–20,3:28–29,3:31–32,3:33–34,3:35–36;4:3–4,4:7–8,4:11–12,4:18–19,4:31–32;5:3–4.",
+    "Physical PDF-page crossings are1:8(29–30),2:23(31–32),3:10(32–33),4:3–4(33–34),4:31–32(34–35).",
+    "Chapter3 ends with a single printed37 label and an unnumbered continuation clause. No printed38 or37–38 range is visible. Retain all source words; do not assert a textual omission or import a numeral from another edition.",
+    "The former inventory entry38 is recorded only as a superseded comparator expectation. This margin audit does not establish a crosswalk from this edition's printed37 to another edition's37–38.",
+    "The last text is5:9 onPDF35. This numbering audit is not a completed word/niqqud review or import approval."
+  ],
+  "marginAudit": {
+    "date": "2026-09-27",
+    "sourcePDFSHA256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+    "rawPageLabelRuns": [
+      {
+        "pdfPage": 29,
+        "chapter": 1,
+        "labels": [
+          "א",
+          "ב",
+          "ג",
+          "ד",
+          "ה",
+          "ו–ז",
+          "ח"
+        ]
+      },
+      {
+        "pdfPage": 30,
+        "chapter": 1,
+        "labels": [
+          "ט",
+          "י",
+          "יא",
+          "יב",
+          "יג",
+          "יד",
+          "טו",
+          "טז–יז",
+          "יח",
+          "יט",
+          "כ",
+          "כא",
+          "כב"
+        ]
+      },
+      {
+        "pdfPage": 31,
+        "chapter": 2,
+        "labels": [
+          "chapter ב (verse1)",
+          "ב",
+          "ג",
+          "ד",
+          "ה",
+          "ו",
+          "ז",
+          "ח–ט",
+          "י",
+          "יא",
+          "יב",
+          "יג",
+          "יד",
+          "טו",
+          "טז",
+          "יז",
+          "יח",
+          "יט",
+          "כ",
+          "כא",
+          "כב",
+          "כג"
+        ]
+      },
+      {
+        "pdfPage": 32,
+        "chapter": 2,
+        "labels": [
+          "כד",
+          "כה",
+          "כו",
+          "כז",
+          "כח",
+          "כט",
+          "ל",
+          "לא",
+          "לב",
+          "לג",
+          "לד",
+          "לה"
+        ]
+      },
+      {
+        "pdfPage": 32,
+        "chapter": 3,
+        "labels": [
+          "chapter ג (verse1)",
+          "ב–ג",
+          "ד",
+          "ה",
+          "ו–ז",
+          "ח",
+          "ט",
+          "י"
+        ]
+      },
+      {
+        "pdfPage": 33,
+        "chapter": 3,
+        "labels": [
+          "יא",
+          "יב–יג",
+          "יד",
+          "טו",
+          "טז",
+          "יז",
+          "יח",
+          "יט–כ",
+          "כא",
+          "כב",
+          "כג",
+          "כד",
+          "כה",
+          "כו",
+          "כז",
+          "כח–כט",
+          "ל",
+          "לא–לב",
+          "לג–לד",
+          "לה–לו",
+          "לז"
+        ]
+      },
+      {
+        "pdfPage": 33,
+        "chapter": 4,
+        "labels": [
+          "chapter ד (verse1)",
+          "ב",
+          "ג–ד"
+        ]
+      },
+      {
+        "pdfPage": 34,
+        "chapter": 4,
+        "labels": [
+          "ה",
+          "ו",
+          "ז–ח",
+          "ט",
+          "י",
+          "יא–יב",
+          "יג",
+          "יד",
+          "טו",
+          "טז",
+          "יז",
+          "יח–יט",
+          "כ",
+          "כא",
+          "כב",
+          "כג",
+          "כד",
+          "כה",
+          "כו",
+          "כז",
+          "כח",
+          "כט",
+          "ל",
+          "לא–לב"
+        ]
+      },
+      {
+        "pdfPage": 35,
+        "chapter": 4,
+        "labels": [
+          "לג",
+          "לד",
+          "לה",
+          "לו",
+          "לז"
+        ]
+      },
+      {
+        "pdfPage": 35,
+        "chapter": 5,
+        "labels": [
+          "chapter ה (verse1)",
+          "ב",
+          "ג–ד",
+          "ה",
+          "ו",
+          "ז",
+          "ח",
+          "ט"
+        ]
+      }
+    ],
+    "corrections": [
+      {
+        "chapter": 1,
+        "before": [
+          [
+            16,
+            16
+          ],
+          [
+            17,
+            17
+          ],
+          [
+            19,
+            20
+          ]
+        ],
+        "after": [
+          [
+            16,
+            17
+          ],
+          [
+            19,
+            19
+          ],
+          [
+            20,
+            20
+          ]
+        ],
+        "pdfPage": 30
+      },
+      {
+        "chapter": 2,
+        "before": [
+          [
+            8,
+            8
+          ],
+          [
+            9,
+            10
+          ]
+        ],
+        "after": [
+          [
+            8,
+            9
+          ],
+          [
+            10,
+            10
+          ]
+        ],
+        "pdfPage": 31
+      },
+      {
+        "chapter": 3,
+        "before": [
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            5,
+            6
+          ],
+          [
+            7,
+            7
+          ]
+        ],
+        "after": [
+          [
+            2,
+            3
+          ],
+          [
+            5,
+            5
+          ],
+          [
+            6,
+            7
+          ]
+        ],
+        "pdfPage": 32
+      },
+      {
+        "chapter": 3,
+        "unit": [
+          10,
+          10
+        ],
+        "beforeSourcePages": [
+          32
+        ],
+        "afterSourcePages": [
+          32,
+          33
+        ]
+      },
+      {
+        "chapter": 3,
+        "before": [
+          [
+            37,
+            37
+          ],
+          [
+            38,
+            38
+          ]
+        ],
+        "after": [
+          [
+            37,
+            37
+          ]
+        ],
+        "pdfPage": 33,
+        "explanation": "The final source margin is לז only. The following clause is present but has no לח label or printed לז–לח range. This is a numbering observation, not a missing-text assertion."
+      },
+      {
+        "chapter": 4,
+        "before": [
+          [
+            6,
+            7
+          ],
+          [
+            8,
+            8
+          ],
+          [
+            10,
+            11
+          ],
+          [
+            12,
+            12
+          ]
+        ],
+        "after": [
+          [
+            6,
+            6
+          ],
+          [
+            7,
+            8
+          ],
+          [
+            10,
+            10
+          ],
+          [
+            11,
+            12
+          ]
+        ],
+        "pdfPage": 34
+      }
+    ],
+    "boundaryChecks": [
+      {
+        "unit": "1:8",
+        "pages": [
+          29,
+          30
+        ],
+        "detail": "PDF29 ends כלי־כסף אשר; PDF30 continues עשה צדקיהו... through יהודה before9 begins אחרי הגלות within the first row."
+      },
+      {
+        "unit": "2:23",
+        "pages": [
+          31,
+          32
+        ],
+        "detail": "PDF31 ends קול ששון וקול שמחה; PDF32 continues קול חתן וקול כלה... before24 ולא שמעו within the first row."
+      },
+      {
+        "unit": "3:10",
+        "pages": [
+          32,
+          33
+        ],
+        "detail": "PDF32 starts מה־לך ישראל בארץ אויב; PDF33 continues למה בלית בארץ נכריה before11 נטמאת within the first row."
+      },
+      {
+        "unit": "3:30",
+        "pages": [
+          33
+        ],
+        "detail": "The physical next line begins לא־לנבחר, completing30 before31 אין יודע. Do not treat every new row as a new unit."
+      },
+      {
+        "unit": "3:37",
+        "pages": [
+          33
+        ],
+        "detail": "Final explicit label לז covers חקר כל־דרך בינה... then אז על־הארץ נראתה ובתוך אנשים התהלכה. No further numbered label precedes chapter4."
+      },
+      {
+        "unit": "4:3–4",
+        "pages": [
+          33,
+          34
+        ],
+        "detail": "PDF33 ends אשרינו; PDF34 continues ישראל כי טוב אלהים לנו נודע before5 אל־תירא within the first row."
+      },
+      {
+        "unit": "4:31–32",
+        "pages": [
+          34,
+          35
+        ],
+        "detail": "PDF34 ends שר לערים אשר; PDF35 continues העבידו את־בניך... before33 כי כאשר within the first row."
+      }
+    ],
+    "cropEvidence": [
+      {
+        "pdfPage": 29,
+        "bounds": [
+          0.8,
+          0.105,
+          0.96,
+          0.44
+        ],
+        "scale": 6,
+        "sha256": "b55daeb560db13e61ce7c88fb3df0a816879641df57665a3b75d6d56c7c20201",
+        "filename": "A2-29-margin-0.png"
+      },
+      {
+        "pdfPage": 29,
+        "bounds": [
+          0.8,
+          0.43,
+          0.96,
+          0.7
+        ],
+        "scale": 6,
+        "sha256": "d6e3f3dad7357ae37c47f14bebee37c4b0e6068b918e23d4311fee8ac6b0a8ba",
+        "filename": "A2-29-margin-1.png"
+      },
+      {
+        "pdfPage": 30,
+        "bounds": [
+          0.72,
+          0.105,
+          0.85,
+          0.44
+        ],
+        "scale": 6,
+        "sha256": "f0c3722ac9df978f6461dd884183cc060f7593aaa95f87605bcce8ec48b3f87f",
+        "filename": "A2-30-margin-0.png"
+      },
+      {
+        "pdfPage": 30,
+        "bounds": [
+          0.72,
+          0.43,
+          0.85,
+          0.7
+        ],
+        "scale": 6,
+        "sha256": "a45a56cdb4a28ad813cde32324c831177ccb071a354ad82adb6393e748d19b49",
+        "filename": "A2-30-margin-1.png"
+      },
+      {
+        "pdfPage": 31,
+        "bounds": [
+          0.8,
+          0.105,
+          0.96,
+          0.44
+        ],
+        "scale": 6,
+        "sha256": "9299c8e0a5e437c06918b31c8e6329c20522d0dbb28cff9bd69505f0bf289b93",
+        "filename": "A2-31-margin-0.png"
+      },
+      {
+        "pdfPage": 31,
+        "bounds": [
+          0.8,
+          0.43,
+          0.96,
+          0.7
+        ],
+        "scale": 6,
+        "sha256": "b90080ac278b465deb9c7b6b8d368000fe9f55b82027c8b4ae0470234a3fcc39",
+        "filename": "A2-31-margin-1.png"
+      },
+      {
+        "pdfPage": 31,
+        "bounds": [
+          0.8,
+          0.69,
+          0.96,
+          0.875
+        ],
+        "scale": 6,
+        "sha256": "557402f42be56abd1cbf8246a0db0bf9d19722142727e90ce6c3be35a0328f6e",
+        "filename": "A2-31-margin-2.png"
+      },
+      {
+        "pdfPage": 32,
+        "bounds": [
+          0.72,
+          0.105,
+          0.85,
+          0.44
+        ],
+        "scale": 6,
+        "sha256": "7b4809058e0ca8ef125b9c6d3ba2322590ec4031df18a0e70163203f41446068",
+        "filename": "A2-32-margin-0.png"
+      },
+      {
+        "pdfPage": 32,
+        "bounds": [
+          0.72,
+          0.43,
+          0.85,
+          0.7
+        ],
+        "scale": 6,
+        "sha256": "7270fec60c6e4331f49eb92c4713af4f6adad5fabf167be86343b38ee63fe8c2",
+        "filename": "A2-32-margin-1.png"
+      },
+      {
+        "pdfPage": 32,
+        "bounds": [
+          0.72,
+          0.69,
+          0.85,
+          0.875
+        ],
+        "scale": 6,
+        "sha256": "2bac09b2739fb3facea238bb349645efde043f2efc095cc6c40b80eed7736718",
+        "filename": "A2-32-margin-2.png"
+      },
+      {
+        "pdfPage": 33,
+        "bounds": [
+          0.8,
+          0.105,
+          0.96,
+          0.44
+        ],
+        "scale": 6,
+        "sha256": "b81db65f4d37f600277730f8c6d31465535d678cecf1c43157607b40ccdbc2b6",
+        "filename": "A2-33-margin-0.png"
+      },
+      {
+        "pdfPage": 33,
+        "bounds": [
+          0.8,
+          0.43,
+          0.96,
+          0.7
+        ],
+        "scale": 6,
+        "sha256": "38bfca01920d79aca244424b591b4b2b8dd97175f7dc2994b910fc15dfecff65",
+        "filename": "A2-33-margin-1.png"
+      },
+      {
+        "pdfPage": 33,
+        "bounds": [
+          0.8,
+          0.69,
+          0.96,
+          0.875
+        ],
+        "scale": 6,
+        "sha256": "d28915eee37e6121a15f21195241e1253e0813e281e600e74d8c600ef075ea9a",
+        "filename": "A2-33-margin-2.png"
+      },
+      {
+        "pdfPage": 35,
+        "bounds": [
+          0.8,
+          0.105,
+          0.96,
+          0.44
+        ],
+        "scale": 6,
+        "sha256": "de63b7673cdc4163decf9fcd13fb3feb534b811d10f0d4bd705efe6f364faf20",
+        "filename": "A2-35-margin-0.png"
+      },
+      {
+        "pdfPage": 35,
+        "bounds": [
+          0.8,
+          0.43,
+          0.96,
+          0.7
+        ],
+        "scale": 6,
+        "sha256": "75caaf0290b72b3a51f189e0982554e592626485f97793ff9d9a29e480e86e06",
+        "filename": "A2-35-margin-1.png"
+      },
+      {
+        "pdfPage": 33,
+        "bounds": [
+          0.15,
+          0.645,
+          0.915,
+          0.762
+        ],
+        "scale": 6,
+        "sha256": "07db1cceb0c66b5acf4958631a3b879a8d11961a9b89160f0919a1a36bd90869",
+        "filename": "A2-33-chapter3-ending.png"
+      },
+      {
+        "pdfPage": 34,
+        "bounds": [
+          0.8,
+          0.106,
+          0.935,
+          0.446
+        ],
+        "scale": 6,
+        "sha256": "7a4dc581fdb9abf8386ee110e703f25435ab0ada1e22c64cc95cc1414f8fe9d8",
+        "filename": "A2-34-margin-upper.png"
+      },
+      {
+        "pdfPage": 34,
+        "bounds": [
+          0.8,
+          0.435,
+          0.935,
+          0.715
+        ],
+        "scale": 6,
+        "sha256": "11e0428dcca231272dd1f7f68006464f7dd326e10162c1a9bbc4b56c61389a26",
+        "filename": "A2-34-margin-middle.png"
+      },
+      {
+        "pdfPage": 34,
+        "bounds": [
+          0.8,
+          0.705,
+          0.935,
+          0.916
+        ],
+        "scale": 6,
+        "sha256": "53e97152b3b037a4bbf1c06186a21c93ba92f3075e500de3a24c67b6e345862c",
+        "filename": "A2-34-margin-bottom.png"
+      },
+      {
+        "pdfPage": 33,
+        "bounds": [
+          0.15,
+          0.112,
+          0.916,
+          0.159
+        ],
+        "scale": 6,
+        "sha256": "7ddd42aff8da3a44c37a5b8d68ad75823343dbdb7d598af0a9192f5f95c9cc1b",
+        "filename": "A2-33-top-crossing.png"
+      },
+      {
+        "pdfPage": 32,
+        "bounds": [
+          0.08,
+          0.812,
+          0.793,
+          0.865
+        ],
+        "scale": 6,
+        "sha256": "4971514605ca0527849ba3a9259c837f37b2d30085b41cb93aaac59c4959d892",
+        "filename": "A2-32-bottom-crossing.png"
+      },
+      {
+        "pdfPage": 35,
+        "bounds": [
+          0.1,
+          0.077,
+          0.892,
+          0.119
+        ],
+        "scale": 6,
+        "sha256": "b3618579fd6476619cbb68d1f0547f8f92ee1da7bb5ffefaa92c69bf13b8f52b",
+        "filename": "A2-35-top-crossing.png"
+      },
+      {
+        "pdfPage": 34,
+        "bounds": [
+          0.06,
+          0.865,
+          0.94,
+          0.921
+        ],
+        "scale": 6,
+        "sha256": "028a97625d8af7682d8174a24e09ba13dae12c01ed403d541fd19f352b04eaeb",
+        "filename": "A2-34-bottom-crossing.png"
+      }
+    ]
+  }
+}

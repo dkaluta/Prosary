@@ -1,0 +1,5028 @@
+{
+  "schemaVersion": 1,
+  "book": "BAR",
+  "purpose": "First-draft discrepancy review; neither source is certified ground truth.",
+  "productionEligible": false,
+  "scanSHA256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+  "rawRecognitionSHA256": "390445b89f35a4ce06f3b15147139b4fd3952769aaa3772ec81751f5951e7254",
+  "modelSHA256": "3108259779f5abfed3908a1c9eafba64d17e4a2a169368c539ecfeff04c018f3",
+  "note": "No automatic correction or inference of marks. Similarity is not final text or niqqud approval.",
+  "chapters": [
+    {
+      "schemaVersion": 1,
+      "purpose": "review-only",
+      "relationship": "scan-transcription",
+      "referenceStatus": "unreviewed",
+      "productionEligible": false,
+      "referenceSHA256": "0dab7cd2e07e795590823f039526dd8ce299c86529a53c6cc8e2fee07bd1c2b9",
+      "observedSHA256": "ad6314a7c5a7c87eec461b752637c503950c2571c1887bc1f451705d289eb51b",
+      "normalization": "Combining marks and punctuation removed for comparison only; spelling preserved.",
+      "referenceWords": 478,
+      "observedWords": 492,
+      "wordOperations": {
+        "equal": 437,
+        "replace": 41,
+        "delete": 0,
+        "insert": 14
+      },
+      "matchingReferenceFraction": 0.9142259414225942,
+      "tokenDifferenceRate": 0.11506276150627615,
+      "alignment": [
+        {
+          "kind": "equal",
+          "referenceStart": 0,
+          "referenceEnd": 8,
+          "observedStart": 0,
+          "observedEnd": 8,
+          "reference": [
+            "ויקם",
+            "יי",
+            "את",
+            "דברו",
+            "אשר",
+            "דבר",
+            "עלינו",
+            "ועל"
+          ],
+          "observed": [
+            "ויקם",
+            "יי",
+            "את",
+            "דברו",
+            "אשר",
+            "דבר",
+            "עלינו",
+            "ועל"
+          ]
+        },
+        {
+          "kind": "insert",
+          "referenceStart": 8,
+          "referenceEnd": 8,
+          "observedStart": 8,
+          "observedEnd": 9,
+          "reference": [],
+          "observed": [
+            "שופט"
+          ]
+        },
+        {
+          "kind": "replace",
+          "referenceStart": 8,
+          "referenceEnd": 9,
+          "observedStart": 9,
+          "observedEnd": 10,
+          "reference": [
+            "שופטינו"
+          ],
+          "observed": [
+            "נו"
+          ]
+        },
+        {
+          "kind": "equal",
+          "referenceStart": 9,
+          "referenceEnd": 35,
+          "observedStart": 10,
+          "observedEnd": 36,
+          "reference": [
+            "אשר",
+            "שפטו",
+            "את",
+            "ישראל",
+            "ועל",
+            "מלכינו",
+            "ועל",
+            "שרינו",
+            "ועל",
+            "איש",
+            "ישראל",
+            "ויהודה",
+            "להביא",
+            "עלינו",
+            "רעה",
+            "גדולה",
+            "אשר",
+            "לא",
+            "נעשתה",
+            "תחת",
+            "כל",
+            "השמים",
+            "כאשר",
+            "עשה",
+            "בירושלם",
+            "ככתוב"
+          ],
+          "observed": [
+            "אשר",
+            "שפטו",
+            "את",
+            "ישראל",
+            "ועל",
+            "מלכינו",
+            "ועל",
+            "שרינו",
+            "ועל",
+            "איש",
+            "ישראל",
+            "ויהודה",
+            "להביא",
+            "עלינו",
+            "רעה",
+            "גדולה",
+            "אשר",
+            "לא",
+            "נעשתה",
+            "תחת",
+            "כל",
+            "השמים",
+            "כאשר",
+            "עשה",
+            "בירושלם",
+            "ככתוב"
+          ]
+        },
+        {
+          "kind": "insert",
+          "referenceStart": 35,
+          "referenceEnd": 35,
+          "observedStart": 36,
+          "observedEnd": 37,
+          "reference": [],
+          "observed": [
+            "בת"
+          ]
+        },
+        {
+          "kind": "replace",
+          "referenceStart": 35,
+          "referenceEnd": 36,
+          "observedStart": 37,
+          "observedEnd": 38,
+          "reference": [
+            "בתורת"
+          ],
+          "observed": [
+            "רת"
+          ]
+        },
+        {
+          "kind": "equal",
+          "referenceStart": 36,
+          "referenceEnd": 48,
+          "observedStart": 38,
+          "observedEnd": 50,
+          "reference": [
+            "משה",
+            "לאכלנו",
+            "איש",
+            "בשר",
+            "בנו",
+            "ואיש",
+            "בשר",
+            "בתו",
+            "ויתן",
+            "אותנו",
+            "לזעוה",
+            "לכל"
+          ],
+          "observed": [
+            "משה",
+            "לאכלנו",
+            "איש",
+            "בשר",
+            "בנו",
+            "ואיש",
+            "בשר",
+            "בתו",
+            "ויתן",
+            "אותנו",
+            "לזעוה",
+            "לכל"
+          ]
+        },
+        {
+          "kind": "replace",
+          "referenceStart": 48,
+          "referenceEnd": 49,
+          "observedStart": 50,
+          "observedEnd": 51,
+          "reference": [
+            "הממלכות"
+          ],
+          "observed": [
+            "הממלכית"
+          ]
+        },
+        {
+          "kind": "equal",
+          "referenceStart": 49,
+          "referenceEnd": 53,
+          "observedStart": 51,
+          "observedEnd": 55,
+          "reference": [
+            "אשר",
+            "סביבותינו",
+            "לחרפה",
+            "ולשמה"
+          ],
+          "observed": [
+            "אשר",
+            "סביבותינו",
+            "לחרפה",
+            "ולשמה"
+          ]
+        },
+        {
+          "kind": "replace",
+          "referenceStart": 53,
+          "referenceEnd": 54,
+          "observedStart": 55,
+          "observedEnd": 56,
+          "reference": [
+            "בכל"
+          ],
+          "observed": [
+            "בלל"
+          ]
+        },
+        {
+          "kind": "equal",
+          "referenceStart": 54,
+          "referenceEnd": 73,
+          "observedStart": 56,
+          "observedEnd": 75,
+          "reference": [
+            "הגוים",
+            "מסביב",
+            "אשר",
+            "הדיחם",
+            "יי",
+            "שמה",
+            "ויהיו",
+            "למטה",
+            "ולא",
+            "למעלה",
+            "כי",
+            "חטאנו",
+            "ליי",
+            "אלהינו",
+            "לבלתי",
+            "שמע",
+            "בקולו",
+            "ליי",
+            "אלהינו"
+          ],
+          "observed": [
+            "הגוים",
+            "מסביב",
+            "אשר",
+            "הדיחם",
+            "יי",
+            "שמה",
+            "ויהיו",
+            "למטה",
+            "ולא",
+            "למעלה",
+            "כי",
+            "חטאנו",
+            "ליי",
+            "אלהינו",
+            "לבלתי",
+            "שמע",
+            "בקולו",
+            "ליי",
+            "אלהינו"
+          ]
+        },
+        {
+          "kind": "replace",
+          "referenceStart": 73,
+          "referenceEnd": 74,
+          "observedStart": 75,
+          "observedEnd": 76,
+          "reference": [
+            "הצדקה"
+          ],
+          "observed": [
+            "הצרקה"
+          ]
+        },
+        {
+          "kind": "equal",
+          "referenceStart": 74,
+          "referenceEnd": 86,
+          "observedStart": 76,
+          "observedEnd": 88,
+          "reference": [
+            "ולנו",
+            "ולאבותינו",
+            "בשת",
+            "הפנים",
+            "כיום",
+            "הזה",
+            "אשר",
+            "דבר",
+            "יי",
+            "עלינו",
+            "כל",
+            "הרעות"
+          ],
+          "observed": [
+            "ולנו",
+            "ולאבותינו",
+            "בשת",
+            "הפנים",
+            "כיום",
+            "הזה",
+            "אשר",
+            "דבר",
+            "יי",
+            "עלינו",
+            "כל",
+            "הרעות"
+          ]
+        },
+        {
+          "kind": "replace",
+          "referenceStart": 86,
+          "referenceEnd": 87,
+          "observedStart": 88,
+          "observedEnd": 89,
+          "reference": [
+            "האלה"
+          ],
+          "observed": [
+            "דאלה"
+          ]
+        },
+        {
+          "kind": "equal",
+          "referenceStart": 87,
+          "referenceEnd": 90,
+          "observedStart": 89,
+          "observedEnd": 92,
+          "reference": [
+            "אשר",
+            "באו",
+            "עלינו"
+          ],
+          "observed": [
+            "אשר",
+            "באו",
+            "עלינו"
+          ]
+        },
+        {
+          "kind": "insert",
+          "referenceStart": 90,
+          "referenceEnd": 90,
+          "observedStart": 92,
+          "observedEnd": 93,
+          "reference": [],
+          "observed": [
+            "ט"
+          ]
+        },
+        {
+          "kind": "equal",
+          "referenceStart": 90,
+          "referenceEnd": 91,
+          "observedStart": 93,
+          "observedEnd": 94,
+          "reference": [
+            "ולא"
+          ],
+          "observed": [
+            "ולא"
+          ]
+        },
+        {
+          "kind": "replace",
+          "referenceStart": 91,
+          "referenceEnd": 92,
+          "observedStart": 94,
+          "observedEnd": 95,
+          "reference": [
+            "חלינו"
+          ],
+          "observed": [
+            "הלינו"
+          ]
+        },
+        {
+          "kind": "equal",
+          "referenceStart": 92,
+          "referenceEnd": 95,
+          "observedStart": 95,
+          "observedEnd": 98,
+          "reference": [
+            "את",
+            "פני",
+            "יי"
+          ],
+          "observed": [
+            "את",
+            "פני",
+            "יי"
+          ]
+        },
+        {
+          "kind": "replace",
+          "referenceStart": 95,
+          "referenceEnd": 96,
+          "observedStart": 98,
+          "observedEnd": 99,
+          "reference": [
+            "לשוב"
+          ],
+          "observed": [
+            "לשיב"
+          ]
+        },
+        {
+          "kind": "equal",
+          "referenceStart": 96,
+          "referenceEnd": 97,
+          "observedStart": 99,
+          "observedEnd": 100,
+          "reference": [
+            "איש"
+          ],
+          "observed": [
+            "איש"
+          ]
+        },
+        {
+          "kind": "insert",
+          "referenceStart": 97,
+          "referenceEnd": 97,
+          "observedStart": 100,
+          "observedEnd": 101,
+          "reference": [],
+          "observed": [
+            "ממועצ"
+          ]
+        },
+        {
+          "kind": "replace",
+          "referenceStart": 97,
+          "referenceEnd": 98,
+          "observedStart": 101,
+          "observedEnd": 102,
+          "reference": [
+            "ממועצות"
+          ],
+          "observed": [
+            "ת"
+          ]
+        },
+        {
+          "kind": "equal",
+          "referenceStart": 98,
+          "referenceEnd": 100,
+          "observedStart": 102,
+          "observedEnd": 104,
+          "reference": [
+            "לבו",
+            "הרע"
+          ],
+          "observed": [
+            "לבו",
+            "הרע"
+          ]
+        },
+        {
+          "kind": "replace",
+          "referenceStart": 100,
+          "referenceEnd": 101,
+          "observedStart": 104,
+          "observedEnd": 105,
+          "reference": [
+            "וישקד"
+          ],
+          "observed": [
+            "וישקר"
+          ]
+        },
+        {
+          "kind": "equal",
+          "referenceStart": 101,
+          "referenceEnd": 106,
+          "observedStart": 105,
+          "observedEnd": 110,
+          "reference": [
+            "יי",
+            "על",
+            "הרעות",
+            "ויבא",
+            "יי"
+          ],
+          "observed": [
+            "יי",
+            "על",
+            "הרעות",
+            "ויבא",
+            "יי"
+          ]
+        },
+        {
+          "kind": "insert",
+          "referenceStart": 106,
+          "referenceEnd": 106,
+          "observedStart": 110,
+          "observedEnd": 111,
+          "reference": [],
+          "observed": [
+            "על"
+          ]
+        },
+        {
+          "kind": "replace",
+          "referenceStart": 106,
+          "referenceEnd": 107,
+          "observedStart": 111,
+          "observedEnd": 112,
+          "reference": [
+            "עלינו"
+          ],
+          "observed": [
+            "נו"
+          ]
+        },
+        {
+          "kind": "equal",
+          "referenceStart": 107,
+          "referenceEnd": 113,
+          "observedStart": 112,
+          "observedEnd": 118,
+          "reference": [
+            "כי",
+            "צדיק",
+            "הוא",
+            "יי",
+            "על",
+            "כל"
+          ],
+          "observed": [
+            "כי",
+            "צדיק",
+            "הוא",
+            "יי",
+            "על",
+            "כל"
+          ]
+        },
+        {
+          "kind": "replace",
+          "referenceStart": 113,
+          "referenceEnd": 114,
+          "observedStart": 118,
+          "observedEnd": 119,
+          "reference": [
+            "דבריו"
+          ],
+          "observed": [
+            "דקריו"
+          ]
+        },
+        {
+          "kind": "equal",
+          "referenceStart": 114,
+          "referenceEnd": 116,
+          "observedStart": 119,
+          "observedEnd": 121,
+          "reference": [
+            "אשר",
+            "צוה"
+          ],
+          "observed": [
+            "אשר",
+            "צוה"
+          ]
+        },
+        {
+          "kind": "insert",
+          "referenceStart": 116,
+          "referenceEnd": 116,
+          "observedStart": 121,
+          "observedEnd": 122,
+          "reference": [],
+          "observed": [
+            "א"
+          ]
+        },
+        {
+          "kind": "replace",
+          "referenceStart": 116,
+          "referenceEnd": 117,
+          "observedStart": 122,
+          "observedEnd": 123,
+          "reference": [
+            "אתנו"
+          ],
+          "observed": [
+            "תנו"
+          ]
+        },
+        {
+          "kind": "equal",
+          "referenceStart": 117,
+          "referenceEnd": 125,
+          "observedStart": 123,
+          "observedEnd": 131,
+          "reference": [
+            "ולא",
+            "שמענו",
+            "בקולו",
+            "ללכת",
+            "בתורת",
+            "יי",
+            "אשר",
+            "נתן"
+          ],
+          "observed": [
+            "ולא",
+            "שמענו",
+            "בקולו",
+            "ללכת",
+            "בתורת",
+            "יי",
+            "אשר",
+            "נתן"
+          ]
+        },
+        {
+          "kind": "replace",
+          "referenceStart": 125,
+          "referenceEnd": 126,
+          "observedStart": 131,
+          "observedEnd": 132,
+          "reference": [
+            "לפנינו"
+          ],
+          "observed": [
+            "פנינו"
+          ]
+        },
+        {
+          "kind": "equal",
+          "referenceStart": 126,
+          "referenceEnd": 142,
+          "observedStart": 132,
+          "observedEnd": 148,
+          "reference": [
+            "ועתה",
+            "יי",
+            "אלהי",
+            "ישראל",
+            "אשר",
+            "הוצאת",
+            "את",
+            "עמך",
+            "מארץ",
+            "מצרים",
+            "ביד",
+            "חזקה",
+            "ובאותות",
+            "ובמופתים",
+            "ובכח",
+            "גדול"
+          ],
+          "observed": [
+            "ועתה",
+            "יי",
+            "אלהי",
+            "ישראל",
+            "אשר",
+            "הוצאת",
+            "את",
+            "עמך",
+            "מארץ",
+            "מצרים",
+            "ביד",
+            "חזקה",
+            "ובאותות",
+            "ובמופתים",
+            "ובכח",
+            "גדול"
+          ]
+        },
+        {
+          "kind": "insert",
+          "referenceStart": 142,
+          "referenceEnd": 142,
+          "observedStart": 148,
+          "observedEnd": 149,
+          "reference": [],
+          "observed": [
+            "ובז"
+          ]
+        },
+        {
+          "kind": "replace",
+          "referenceStart": 142,
+          "referenceEnd": 143,
+          "observedStart": 149,
+          "observedEnd": 150,
+          "reference": [
+            "ובזרוע"
+          ],
+          "observed": [
+            "וע"
+          ]
+        },
+        {
+          "kind": "equal",
+          "referenceStart": 143,
+          "referenceEnd": 145,
+          "observedStart": 150,
+          "observedEnd": 152,
+          "reference": [
+            "נטויה",
+            "ותעש"
+          ],
+          "observed": [
+            "נטויה",
+            "ותעש"
+          ]
+        },
+        {
+          "kind": "replace",
+          "referenceStart": 145,
+          "referenceEnd": 146,
+          "observedStart": 152,
+          "observedEnd": 153,
+          "reference": [
+            "לך"
+          ],
+          "observed": [
+            "ך"
+          ]
+        },
+        {
+          "kind": "equal",
+          "referenceStart": 146,
+          "referenceEnd": 153,
+          "observedStart": 153,
+          "observedEnd": 160,
+          "reference": [
+            "שם",
+            "כיום",
+            "הזה",
+            "חטאנו",
+            "והעוינו",
+            "והרשענו",
+            "יי"
+          ],
+          "observed": [
+            "שם",
+            "כיום",
+            "הזה",
+            "חטאנו",
+            "והעוינו",
+            "והרשענו",
+            "יי"
+          ]
+        },
+        {
+          "kind": "replace",
+          "referenceStart": 153,
+          "referenceEnd": 154,
+          "observedStart": 160,
+          "observedEnd": 161,
+          "reference": [
+            "אלהינו"
+          ],
+          "observed": [
+            "אלמינו"
+          ]
+        },
+        {
+          "kind": "equal",
+          "referenceStart": 154,
+          "referenceEnd": 155,
+          "observedStart": 161,
+          "observedEnd": 162,
+          "reference": [
+            "בכל"
+          ],
+          "observed": [
+            "בכל"
+          ]
+        },
+        {
+          "kind": "insert",
+          "referenceStart": 155,
+          "referenceEnd": 155,
+          "observedStart": 162,
+          "observedEnd": 163,
+          "reference": [],
+          "observed": [
+            "צדק"
+          ]
+        },
+        {
+          "kind": "replace",
+          "referenceStart": 155,
+          "referenceEnd": 156,
+          "observedStart": 163,
+          "observedEnd": 164,
+          "reference": [
+            "צדקתיך"
+          ],
+          "observed": [
+            "תיף"
+          ]
+        },
+        {
+          "kind": "equal",
+          "referenceStart": 156,
+          "referenceEnd": 163,
+          "observedStart": 164,
+          "observedEnd": 171,
+          "reference": [
+            "ישב",
+            "נא",
+            "אפך",
+            "ממנו",
+            "כי",
+            "נשארנו",
+            "מעט"
+          ],
+          "observed": [
+            "ישב",
+            "נא",
+            "אפך",
+            "ממנו",
+            "כי",
+            "נשארנו",
+            "מעט"
+          ]
+        },
+        {
+          "kind": "replace",
+          "referenceStart": 163,
+          "referenceEnd": 164,
+          "observedStart": 171,
+          "observedEnd": 172,
+          "reference": [
+            "בגוים"
+          ],
+          "observed": [
+            "בנוים"
+          ]
+        },
+        {
+          "kind": "equal",
+          "referenceStart": 164,
+          "referenceEnd": 165,
+          "observedStart": 172,
+          "observedEnd": 173,
+          "reference": [
+            "אשר"
+          ],
+          "observed": [
+            "אשר"
+          ]
+        },
+        {
+          "kind": "insert",
+          "referenceStart": 165,
+          "referenceEnd": 165,
+          "observedStart": 173,
+          "observedEnd": 174,
+          "reference": [],
+          "observed": [
+            "הפיצ"
+          ]
+        },
+        {
+          "kind": "replace",
+          "referenceStart": 165,
+          "referenceEnd": 166,
+          "observedStart": 174,
+          "observedEnd": 175,
+          "reference": [
+            "הפיצתנו"
+          ],
+          "observed": [
+            "תנו"
+          ]
+        },
+        {
+          "kind": "equal",
+          "referenceStart": 166,
+          "referenceEnd": 174,
+          "observedStart": 175,
+          "observedEnd": 183,
+          "reference": [
+            "שמה",
+            "שמע",
+            "יי",
+            "אל",
+            "תפלתנו",
+            "ואל",
+            "תחנתנו",
+            "ופלטנו"
+          ],
+          "observed": [
+            "שמה",
+            "שמע",
+            "יי",
+            "אל",
+            "תפלתנו",
+            "ואל",
+            "תחנתנו",
+            "ופלטנו"
+          ]
+        },
+        {
+          "kind": "replace",
+          "referenceStart": 174,
+          "referenceEnd": 175,
+          "observedStart": 183,
+          "observedEnd": 184,
+          "reference": [
+            "למענך"
+          ],
+          "observed": [
+            "למננף"
+          ]
+        },
+        {
+          "kind": "equal",
+          "referenceStart": 175,
+          "referenceEnd": 179,
+          "observedStart": 184,
+          "observedEnd": 188,
+          "reference": [
+            "ותן",
+            "לנו",
+            "חן",
+            "לפני"
+          ],
+          "observed": [
+            "ותן",
+            "לנו",
+            "חן",
+            "לפני"
+          ]
+        },
+        {
+          "kind": "insert",
+          "referenceStart": 179,
+          "referenceEnd": 179,
+          "observedStart": 188,
+          "observedEnd": 189,
+          "reference": [],
+          "observed": [
+            "ש"
+          ]
+        },
+        {
+          "kind": "replace",
+          "referenceStart": 179,
+          "referenceEnd": 180,
+          "observedStart": 189,
+          "observedEnd": 190,
+          "reference": [
+            "שובינו"
+          ],
+          "observed": [
+            "בינו"
+          ]
+        },
+        {
+          "kind": "equal",
+          "referenceStart": 180,
+          "referenceEnd": 189,
+          "observedStart": 190,
+          "observedEnd": 199,
+          "reference": [
+            "למען",
+            "דעת",
+            "כל",
+            "הארץ",
+            "כי",
+            "אתה",
+            "יי",
+            "אלהינו",
+            "כי"
+          ],
+          "observed": [
+            "למען",
+            "דעת",
+            "כל",
+            "הארץ",
+            "כי",
+            "אתה",
+            "יי",
+            "אלהינו",
+            "כי"
+          ]
+        },
+        {
+          "kind": "replace",
+          "referenceStart": 189,
+          "referenceEnd": 190,
+          "observedStart": 199,
+          "observedEnd": 200,
+          "reference": [
+            "שמך"
+          ],
+          "observed": [
+            "שמד"
+          ]
+        },
+        {
+          "kind": "equal",
+          "referenceStart": 190,
+          "referenceEnd": 198,
+          "observedStart": 200,
+          "observedEnd": 208,
+          "reference": [
+            "נקרא",
+            "על",
+            "ישראל",
+            "ועל",
+            "זרעו",
+            "יי",
+            "השקיפה",
+            "ממעון"
+          ],
+          "observed": [
+            "נקרא",
+            "על",
+            "ישראל",
+            "ועל",
+            "זרעו",
+            "יי",
+            "השקיפה",
+            "ממעון"
+          ]
+        },
+        {
+          "kind": "replace",
+          "referenceStart": 198,
+          "referenceEnd": 199,
+          "observedStart": 208,
+          "observedEnd": 209,
+          "reference": [
+            "קדשך"
+          ],
+          "observed": [
+            "קדשף"
+          ]
+        },
+        {
+          "kind": "equal",
+          "referenceStart": 199,
+          "referenceEnd": 204,
+          "observedStart": 209,
+          "observedEnd": 214,
+          "reference": [
+            "ושים",
+            "לבך",
+            "אלינו",
+            "הטה",
+            "יי"
+          ],
+          "observed": [
+            "ושים",
+            "לבך",
+            "אלינו",
+            "הטה",
+            "יי"
+          ]
+        },
+        {
+          "kind": "replace",
+          "referenceStart": 204,
+          "referenceEnd": 205,
+          "observedStart": 214,
+          "observedEnd": 215,
+          "reference": [
+            "אזנך"
+          ],
+          "observed": [
+            "אזנף"
+          ]
+        },
+        {
+          "kind": "equal",
+          "referenceStart": 205,
+          "referenceEnd": 207,
+          "observedStart": 215,
+          "observedEnd": 217,
+          "reference": [
+            "ושמע",
+            "פקח"
+          ],
+          "observed": [
+            "ושמע",
+            "פקח"
+          ]
+        },
+        {
+          "kind": "replace",
+          "referenceStart": 207,
+          "referenceEnd": 208,
+          "observedStart": 217,
+          "observedEnd": 218,
+          "reference": [
+            "עיניך"
+          ],
+          "observed": [
+            "עיניף"
+          ]
+        },
+        {
+          "kind": "equal",
+          "referenceStart": 208,
+          "referenceEnd": 229,
+          "observedStart": 218,
+          "observedEnd": 239,
+          "reference": [
+            "וראה",
+            "כי",
+            "לא",
+            "המתים",
+            "בשאול",
+            "אשר",
+            "לקחה",
+            "רוחם",
+            "מקרבם",
+            "יתנו",
+            "כבוד",
+            "וצדק",
+            "ליי",
+            "כי",
+            "הנפש",
+            "המצרה",
+            "על",
+            "גדלה",
+            "ואשר",
+            "עברה",
+            "ההולך"
+          ],
+          "observed": [
+            "וראה",
+            "כי",
+            "לא",
+            "המתים",
+            "בשאול",
+            "אשר",
+            "לקחה",
+            "רוחם",
+            "מקרבם",
+            "יתנו",
+            "כבוד",
+            "וצדק",
+            "ליי",
+            "כי",
+            "הנפש",
+            "המצרה",
+            "על",
+            "גדלה",
+            "ואשר",
+            "עברה",
+            "ההולך"
+          ]
+        },
+        {
+          "kind": "insert",
+          "referenceStart": 229,
+          "referenceEnd": 229,
+          "observedStart": 239,
+          "observedEnd": 240,
+          "reference": [],
+          "observed": [
+            "שח"
+          ]
+        },
+        {
+          "kind": "replace",
+          "referenceStart": 229,
+          "referenceEnd": 230,
+          "observedStart": 240,
+          "observedEnd": 241,
+          "reference": [
+            "שחוח"
+          ],
+          "observed": [
+            "ח"
+          ]
+        },
+        {
+          "kind": "equal",
+          "referenceStart": 230,
+          "referenceEnd": 244,
+          "observedStart": 241,
+          "observedEnd": 255,
+          "reference": [
+            "וכושל",
+            "ועינים",
+            "כלות",
+            "ונפש",
+            "נענה",
+            "המה",
+            "יתנו",
+            "לך",
+            "יי",
+            "כבוד",
+            "וצדק",
+            "כי",
+            "לא",
+            "על"
+          ],
+          "observed": [
+            "וכושל",
+            "ועינים",
+            "כלות",
+            "ונפש",
+            "נענה",
+            "המה",
+            "יתנו",
+            "לך",
+            "יי",
+            "כבוד",
+            "וצדק",
+            "כי",
+            "לא",
+            "על"
+          ]
+        },
+        {
+          "kind": "insert",
+          "referenceStart": 244,
+          "referenceEnd": 244,
+          "observedStart": 255,
+          "observedEnd": 258,
+          "reference": [],
+          "observed": [
+            "צדק",
+            "ת",
+            "אב"
+          ]
+        },
+        {
+          "kind": "replace",
+          "referenceStart": 244,
+          "referenceEnd": 246,
+          "observedStart": 258,
+          "observedEnd": 260,
+          "reference": [
+            "צדקות",
+            "אבותינו"
+          ],
+          "observed": [
+            "ת",
+            "נו"
+          ]
+        },
+        {
+          "kind": "equal",
+          "referenceStart": 246,
+          "referenceEnd": 249,
+          "observedStart": 260,
+          "observedEnd": 263,
+          "reference": [
+            "ומלכינו",
+            "אנחנו",
+            "מפילים"
+          ],
+          "observed": [
+            "ומלכינו",
+            "אנחנו",
+            "מפילים"
+          ]
+        },
+        {
+          "kind": "replace",
+          "referenceStart": 249,
+          "referenceEnd": 251,
+          "observedStart": 263,
+          "observedEnd": 265,
+          "reference": [
+            "תחנתנו",
+            "לפניך"
+          ],
+          "observed": [
+            "תדנתנו",
+            "לקניך"
+          ]
+        },
+        {
+          "kind": "equal",
+          "referenceStart": 251,
+          "referenceEnd": 261,
+          "observedStart": 265,
+          "observedEnd": 275,
+          "reference": [
+            "יי",
+            "אלהינו",
+            "כי",
+            "שלחת",
+            "אפך",
+            "וחמתך",
+            "בנו",
+            "כאשר",
+            "דברת",
+            "ביד"
+          ],
+          "observed": [
+            "יי",
+            "אלהינו",
+            "כי",
+            "שלחת",
+            "אפך",
+            "וחמתך",
+            "בנו",
+            "כאשר",
+            "דברת",
+            "ביד"
+          ]
+        },
+        {
+          "kind": "replace",
+          "referenceStart": 261,
+          "referenceEnd": 262,
+          "observedStart": 275,
+          "observedEnd": 276,
+          "reference": [
+            "עבדיך"
+          ],
+          "observed": [
+            "עבדיף"
+          ]
+        },
+        {
+          "kind": "equal",
+          "referenceStart": 262,
+          "referenceEnd": 279,
+          "observedStart": 276,
+          "observedEnd": 293,
+          "reference": [
+            "הנביאים",
+            "לאמר",
+            "כה",
+            "אמר",
+            "יי",
+            "הטו",
+            "שכמכם",
+            "ועבדו",
+            "את",
+            "מלך",
+            "בבל",
+            "ושבו",
+            "על",
+            "האדמה",
+            "אשר",
+            "נתתי",
+            "לאבותיכם"
+          ],
+          "observed": [
+            "הנביאים",
+            "לאמר",
+            "כה",
+            "אמר",
+            "יי",
+            "הטו",
+            "שכמכם",
+            "ועבדו",
+            "את",
+            "מלך",
+            "בבל",
+            "ושבו",
+            "על",
+            "האדמה",
+            "אשר",
+            "נתתי",
+            "לאבותיכם"
+          ]
+        },
+        {
+          "kind": "replace",
+          "referenceStart": 279,
+          "referenceEnd": 280,
+          "observedStart": 293,
+          "observedEnd": 294,
+          "reference": [
+            "ואם"
+          ],
+          "observed": [
+            "ואס"
+          ]
+        },
+        {
+          "kind": "equal",
+          "referenceStart": 280,
+          "referenceEnd": 288,
+          "observedStart": 294,
+          "observedEnd": 302,
+          "reference": [
+            "לא",
+            "תשמעו",
+            "בקול",
+            "יי",
+            "לעבד",
+            "את",
+            "מלך",
+            "בבל"
+          ],
+          "observed": [
+            "לא",
+            "תשמעו",
+            "בקול",
+            "יי",
+            "לעבד",
+            "את",
+            "מלך",
+            "בבל"
+          ]
+        },
+        {
+          "kind": "replace",
+          "referenceStart": 288,
+          "referenceEnd": 289,
+          "observedStart": 302,
+          "observedEnd": 303,
+          "reference": [
+            "והשבתי"
+          ],
+          "observed": [
+            "והשכתי"
+          ]
+        },
+        {
+          "kind": "equal",
+          "referenceStart": 289,
+          "referenceEnd": 327,
+          "observedStart": 303,
+          "observedEnd": 341,
+          "reference": [
+            "מערי",
+            "יהודה",
+            "ומחוצות",
+            "ירושלם",
+            "קול",
+            "ששון",
+            "וקול",
+            "שמחה",
+            "קול",
+            "חתן",
+            "וקול",
+            "כלה",
+            "והיתה",
+            "כל",
+            "הארץ",
+            "לשמה",
+            "מאין",
+            "יושב",
+            "ולא",
+            "שמענו",
+            "בקולך",
+            "לעבד",
+            "את",
+            "מלך",
+            "בבל",
+            "ותקם",
+            "את",
+            "דבריך",
+            "אשר",
+            "דברת",
+            "ביד",
+            "עבדיך",
+            "הנביאים",
+            "להוציא",
+            "את",
+            "עצמות",
+            "מלכינו",
+            "ואת"
+          ],
+          "observed": [
+            "מערי",
+            "יהודה",
+            "ומחוצות",
+            "ירושלם",
+            "קול",
+            "ששון",
+            "וקול",
+            "שמחה",
+            "קול",
+            "חתן",
+            "וקול",
+            "כלה",
+            "והיתה",
+            "כל",
+            "הארץ",
+            "לשמה",
+            "מאין",
+            "יושב",
+            "ולא",
+            "שמענו",
+            "בקולך",
+            "לעבד",
+            "את",
+            "מלך",
+            "בבל",
+            "ותקם",
+            "את",
+            "דבריך",
+            "אשר",
+            "דברת",
+            "ביד",
+            "עבדיך",
+            "הנביאים",
+            "להוציא",
+            "את",
+            "עצמות",
+            "מלכינו",
+            "ואת"
+          ]
+        },
+        {
+          "kind": "replace",
+          "referenceStart": 327,
+          "referenceEnd": 328,
+          "observedStart": 341,
+          "observedEnd": 342,
+          "reference": [
+            "עצמות"
+          ],
+          "observed": [
+            "עצמית"
+          ]
+        },
+        {
+          "kind": "equal",
+          "referenceStart": 328,
+          "referenceEnd": 345,
+          "observedStart": 342,
+          "observedEnd": 359,
+          "reference": [
+            "אבותינו",
+            "ממקומן",
+            "והנה",
+            "הן",
+            "משלכות",
+            "לחרב",
+            "היום",
+            "ולקרח",
+            "הלילה",
+            "וימותו",
+            "בתחלואים",
+            "רעים",
+            "ברעב",
+            "ובחרב",
+            "ובדבר",
+            "ותתן",
+            "את"
+          ],
+          "observed": [
+            "אבותינו",
+            "ממקומן",
+            "והנה",
+            "הן",
+            "משלכות",
+            "לחרב",
+            "היום",
+            "ולקרח",
+            "הלילה",
+            "וימותו",
+            "בתחלואים",
+            "רעים",
+            "ברעב",
+            "ובחרב",
+            "ובדבר",
+            "ותתן",
+            "את"
+          ]
+        },
+        {
+          "kind": "replace",
+          "referenceStart": 345,
+          "referenceEnd": 346,
+          "observedStart": 359,
+          "observedEnd": 360,
+          "reference": [
+            "הבית"
+          ],
+          "observed": [
+            "הכית"
+          ]
+        },
+        {
+          "kind": "equal",
+          "referenceStart": 346,
+          "referenceEnd": 363,
+          "observedStart": 360,
+          "observedEnd": 377,
+          "reference": [
+            "אשר",
+            "נקרא",
+            "שמך",
+            "עליו",
+            "כיום",
+            "הזה",
+            "בגלל",
+            "רעת",
+            "בית",
+            "ישראל",
+            "ובית",
+            "יהודה",
+            "ולשמה",
+            "ועשית",
+            "לנו",
+            "אלהינו",
+            "ככל"
+          ],
+          "observed": [
+            "אשר",
+            "נקרא",
+            "שמך",
+            "עליו",
+            "כיום",
+            "הזה",
+            "בגלל",
+            "רעת",
+            "בית",
+            "ישראל",
+            "ובית",
+            "יהודה",
+            "ולשמה",
+            "ועשית",
+            "לנו",
+            "אלהינו",
+            "ככל"
+          ]
+        },
+        {
+          "kind": "replace",
+          "referenceStart": 363,
+          "referenceEnd": 364,
+          "observedStart": 377,
+          "observedEnd": 378,
+          "reference": [
+            "חסדך"
+          ],
+          "observed": [
+            "חסדף"
+          ]
+        },
+        {
+          "kind": "equal",
+          "referenceStart": 364,
+          "referenceEnd": 365,
+          "observedStart": 378,
+          "observedEnd": 379,
+          "reference": [
+            "וככל"
+          ],
+          "observed": [
+            "וככל"
+          ]
+        },
+        {
+          "kind": "replace",
+          "referenceStart": 365,
+          "referenceEnd": 366,
+          "observedStart": 379,
+          "observedEnd": 380,
+          "reference": [
+            "רחמיך"
+          ],
+          "observed": [
+            "רחמיף"
+          ]
+        },
+        {
+          "kind": "equal",
+          "referenceStart": 366,
+          "referenceEnd": 388,
+          "observedStart": 380,
+          "observedEnd": 402,
+          "reference": [
+            "הגדולים",
+            "כאשר",
+            "דברת",
+            "ביד",
+            "משה",
+            "עבדך",
+            "ביום",
+            "צותך",
+            "אותו",
+            "לכתב",
+            "את",
+            "תורתך",
+            "לפני",
+            "בני",
+            "ישראל",
+            "לאמר",
+            "אם",
+            "לא",
+            "תשמעו",
+            "בקולי",
+            "והיה",
+            "ההמון"
+          ],
+          "observed": [
+            "הגדולים",
+            "כאשר",
+            "דברת",
+            "ביד",
+            "משה",
+            "עבדך",
+            "ביום",
+            "צותך",
+            "אותו",
+            "לכתב",
+            "את",
+            "תורתך",
+            "לפני",
+            "בני",
+            "ישראל",
+            "לאמר",
+            "אם",
+            "לא",
+            "תשמעו",
+            "בקולי",
+            "והיה",
+            "ההמון"
+          ]
+        },
+        {
+          "kind": "replace",
+          "referenceStart": 388,
+          "referenceEnd": 389,
+          "observedStart": 402,
+          "observedEnd": 403,
+          "reference": [
+            "הגדול"
+          ],
+          "observed": [
+            "הנדול"
+          ]
+        },
+        {
+          "kind": "equal",
+          "referenceStart": 389,
+          "referenceEnd": 392,
+          "observedStart": 403,
+          "observedEnd": 406,
+          "reference": [
+            "הרב",
+            "הזה",
+            "למעט"
+          ],
+          "observed": [
+            "הרב",
+            "הזה",
+            "למעט"
+          ]
+        },
+        {
+          "kind": "replace",
+          "referenceStart": 392,
+          "referenceEnd": 393,
+          "observedStart": 406,
+          "observedEnd": 407,
+          "reference": [
+            "בגוים"
+          ],
+          "observed": [
+            "בנויים"
+          ]
+        },
+        {
+          "kind": "equal",
+          "referenceStart": 393,
+          "referenceEnd": 409,
+          "observedStart": 407,
+          "observedEnd": 423,
+          "reference": [
+            "אשר",
+            "אפיצם",
+            "שמה",
+            "כי",
+            "ידעתי",
+            "כי",
+            "לא",
+            "ישמעו",
+            "אלי",
+            "כי",
+            "עם",
+            "קשה",
+            "ערף",
+            "הוא",
+            "והשיבו",
+            "אל"
+          ],
+          "observed": [
+            "אשר",
+            "אפיצם",
+            "שמה",
+            "כי",
+            "ידעתי",
+            "כי",
+            "לא",
+            "ישמעו",
+            "אלי",
+            "כי",
+            "עם",
+            "קשה",
+            "ערף",
+            "הוא",
+            "והשיבו",
+            "אל"
+          ]
+        },
+        {
+          "kind": "replace",
+          "referenceStart": 409,
+          "referenceEnd": 410,
+          "observedStart": 423,
+          "observedEnd": 424,
+          "reference": [
+            "לבם"
+          ],
+          "observed": [
+            "לכם"
+          ]
+        },
+        {
+          "kind": "equal",
+          "referenceStart": 410,
+          "referenceEnd": 478,
+          "observedStart": 424,
+          "observedEnd": 492,
+          "reference": [
+            "בארץ",
+            "שבים",
+            "וידעו",
+            "כי",
+            "אני",
+            "יי",
+            "אלהיהם",
+            "ונתתי",
+            "להם",
+            "לב",
+            "ואזנים",
+            "קשובות",
+            "והודו",
+            "לי",
+            "בארץ",
+            "שבים",
+            "וזכרו",
+            "את",
+            "שמי",
+            "ושבו",
+            "מקשי",
+            "ערפם",
+            "ומרע",
+            "מעלליהם",
+            "כי",
+            "יזכרו",
+            "את",
+            "דרך",
+            "אבותיהם",
+            "אשר",
+            "חטאו",
+            "לפני",
+            "יי",
+            "והשיבותים",
+            "אל",
+            "הארץ",
+            "אשר",
+            "נשבעתי",
+            "לאבותם",
+            "לאברהם",
+            "ליצחק",
+            "וליעקב",
+            "וירשוה",
+            "והרביתים",
+            "ולא",
+            "ימעטו",
+            "והקימותי",
+            "להם",
+            "ברית",
+            "עולם",
+            "להיות",
+            "להם",
+            "לאלהים",
+            "והמה",
+            "יהיו",
+            "לי",
+            "לעם",
+            "ולא",
+            "אתש",
+            "עוד",
+            "את",
+            "עמי",
+            "ישראל",
+            "מעל",
+            "האדמה",
+            "אשר",
+            "נתתי",
+            "להם"
+          ],
+          "observed": [
+            "בארץ",
+            "שבים",
+            "וידעו",
+            "כי",
+            "אני",
+            "יי",
+            "אלהיהם",
+            "ונתתי",
+            "להם",
+            "לב",
+            "ואזנים",
+            "קשובות",
+            "והודו",
+            "לי",
+            "בארץ",
+            "שבים",
+            "וזכרו",
+            "את",
+            "שמי",
+            "ושבו",
+            "מקשי",
+            "ערפם",
+            "ומרע",
+            "מעלליהם",
+            "כי",
+            "יזכרו",
+            "את",
+            "דרך",
+            "אבותיהם",
+            "אשר",
+            "חטאו",
+            "לפני",
+            "יי",
+            "והשיבותים",
+            "אל",
+            "הארץ",
+            "אשר",
+            "נשבעתי",
+            "לאבותם",
+            "לאברהם",
+            "ליצחק",
+            "וליעקב",
+            "וירשוה",
+            "והרביתים",
+            "ולא",
+            "ימעטו",
+            "והקימותי",
+            "להם",
+            "ברית",
+            "עולם",
+            "להיות",
+            "להם",
+            "לאלהים",
+            "והמה",
+            "יהיו",
+            "לי",
+            "לעם",
+            "ולא",
+            "אתש",
+            "עוד",
+            "את",
+            "עמי",
+            "ישראל",
+            "מעל",
+            "האדמה",
+            "אשר",
+            "נתתי",
+            "להם"
+          ]
+        }
+      ],
+      "notes": [
+        "An alignment is a review aid, not a verified verse crosswalk.",
+        "Niqqud and punctuation still require separate image comparison.",
+        "Text differences are not an OCR accuracy measurement without a scan-checked matching reference."
+      ],
+      "chapter": 2,
+      "draftText": "וַיָּקֶם יְיָ אֶת־דְּבָרוֹ אֲשֶׁר דִּבֶּר עָלֵינוּ וְעַל־שׁוֹפְטֵינוּ אֲשֶׁר שָׁפְטוּ אֶת־יִשְׂרָאֵל וְעַל־מְלָכֵינוּ וְעַל־שָׂרֵינוּ וְעַל־אִישׁ יִשְׂרָאֵל וִיהוּדָה׃ לְהָבִיא עָלֵינוּ רָעָה גְדוֹלָה אֲשֶׁר־לֹא נַעֲשְׂתָה תַּחַת כָּל־הַשָּׁמַיִם כַּאֲשֶׁר עָשָׂה בִירוּשָׁלַם כַּכָּתוּב בְּתוֹרַת מֹשֶׁה׃ לְאָכְלֵנוּ אִישׁ בְּשַׂר בְּנוֹ וְאִישׁ בְּשַׂר בִּתּוֹ׃ וַיִּתֵּן אוֹתָנוּ לְזַעֲוָה לְכָל־הַמַּמְלָכוֹת אֲשֶׁר סְבִיבוֹתֵינוּ לְחֶרְפָּה וּלְשַׁמָּה בְּכָל הַגּוֹיִם מִסָּבִיב אֲשֶׁר הֱדִיחָם יְיָ שָׁמָּה׃ וַיִּהְיוּ לְמַטָּה וְלֹא לְמָעְלָה כִּי חָטָאנוּ לַיְיָ אֱלֹהֵינוּ לְבִלְתִּי שְׁמֹעַ בְּקוֹלוֹ׃ לַיְיָ אֱלֹהֵינוּ הַצְּדָקָה וְלָנוּ וְלַאֲבוֹתֵינוּ בֹּשֶׁת הַפָּנִים כַּיּוֹם הַזֶּה׃ אֲשֶׁר דִּבֶּר יְיָ עָלֵינוּ כָּל־הָרָעוֹת הָאֵלֶּה אֲשֶׁר בָּאוּ עָלֵינוּ׃ וְלֹא חִלִּינוּ אֶת־פְּנֵי יְיָ לָשׁוּב אִישׁ מִמּוֹעֲצוֹת לִבּוֹ הָרָע׃ וַיִּשְׁקֹד יְיָ עַל־הָרָעוֹת וַיָּבֵא יְיָ עָלֵינוּ כִּי צַדִּיק הוּא יְיָ עַל־כָּל־דְּבָרָיו אֲשֶׁר צִוָּה אֹתָנוּ׃ וְלֹא שָׁמַעְנוּ בְּקוֹלוֹ לָלֶכֶת בְּתוֹרַת יְיָ אֲשֶׁר נָתַן לְפָנֵינוּ׃ וְעַתָּה יְיָ אֱלֹהֵי יִשְׂרָאֵל אֲשֶׁר הוֹצֵאתָ אֶת־עַמְּךָ מֵאֶרֶץ מִצְרַיִם בְּיָד חֲזָקָה וּבְאוֹתוֹת וּבְמוֹפְתִים וּבְכֹחַ גָּדוֹל וּבִזְרוֹעַ נְטוּיָה וַתַּעַשׂ־לְךָ שֵׁם כַּיּוֹם הַזֶּה׃ חָטָאנוּ וְהֶעֱוִינוּ וְהִרְשַׁעְנוּ יְיָ אֱלֹהֵינוּ בְּכָל־צִדְקֹתֶיךָ׃ יָשָׁב־נָא אַפְּךָ מִמֶּנּוּ כִּי נִשְׁאַרְנוּ מְעַט בַּגּוֹיִם אֲשֶׁר הֲפִיצֹתָנוּ שָׁמָּה׃ שְׁמַע יְיָ אֶל־תְּפִלָּתֵנוּ וְאֶל־תְּחִנָּתֵנוּ וּפַלְּטֵנוּ לְמַעֲנֶךָ וְתֶן־לָנוּ חֵן לִפְנֵי שׁוֹבֵינוּ׃ לְמַעַן דַּעַת כָּל־הָאָרֶץ כִּי אַתָּה יְיָ אֱלֹהֵינוּ כִּי שִׁמְךָ נִקְרָא עַל־יִשְׂרָאֵל וְעַל־זַרְעוֹ׃ יְיָ הַשְׁקִיפָה מִמְּעוֹן קָדְשְׁךָ וְשִׂים לִבְּךָ אֵלֵינוּ הַטֵּה יְיָ אָזְנְךָ וּשְׁמָע פְּקַח עֵינֶיךָ וּרְאֵה׃ כִּי לֹא הַמֵּתִים בִּשְׁאוֹל אֲשֶׁר לֻקְחָה רוּחָם מִקִּרְבָּם יִתְּנוּ כָבוֹד וָצֶדֶק לַיְיָ׃ כִּי הַנֶּפֶשׁ הַמְּצֵרָה עַל־גָּדְלָהּ [וַאֲשֶׁר עֲבָרָהּ] הַהוֹלֵךְ שָׁחוֹחַ וְכוֹשֵׁל וְעֵינַיִם כָּלוֹת וְנֶפֶשׁ נַעֲנָה הֵמָּה יִתְּנוּ לְךָ יְיָ כָּבוֹד וָצֶדֶק׃ כִּי לֹא עַל־צִדְקוֹת אֲבוֹתֵינוּ וּמַלְכֵּינוּ אֲנַחְנוּ מַפִּילִים תְּחִנָּתֵנוּ לְפָנֶיךָ יְיָ אֱלֹהֵינוּ׃ כִּי שִׁלַּחְתָּ אַפְּךָ וַחֲמָתְךָ בָּנוּ כַּאֲשֶׁר דִּבַּרְתָּ בְּיַד עֲבָדֶיךָ הַנְּבִיאִים לֵאמֹר׃ כֹּה אָמַר יְיָ הַטּוּ שִׁכְמְכֶם וְעִבְדוּ אֶת־מֶלֶךְ בָּבֶל וּשְׁבוּ עַל־הָאֲדָמָה אֲשֶׁר נָתַתִּי לַאֲבוֹתֵיכֶם׃ וְאִם־לֹא תִשְׁמְעוּ בְּקוֹל יְיָ לַעֲבֹד אֶת־מֶלֶךְ בָּבֶל׃ וְהִשְׁבַּתִּי מֵעָרֵי יְהוּדָה וּמֵחוּצוֹת יְרוּשָׁלַם קוֹל שָׂשׂוֹן וְקוֹל שִׂמְחָה קוֹל חָתָן וְקוֹל כַּלָּה וְהָיְתָה כָל־הָאָרֶץ לְשַׁמָּה מֵאֵין יוֹשֵׁב׃ וְלֹא שָׁמַעְנוּ בְּקוֹלְךָ לַעֲבֹד אֶת־מֶלֶךְ בָּבֶל וַתָּקֶם אֶת־דְּבָרֶיךָ אֲשֶׁר דִּבַּרְתָּ בְּיַד עֲבָדֶיךָ הַנְּבִיאִים לְהוֹצִיא אֶת־עַצְמוֹת מְלָכֵינוּ וְאֶת־עַצְמוֹת אֲבוֹתֵינוּ מִמְּקוֹמָן׃ וְהִנֵּה הֵן מֻשְׁלָכוֹת לְחֹרֶב הַיּוֹם וּלְקֶרַח הַלַּיְלָה וַיָּמוּתוּ בְּתַחֲלוּאִים רָעִים בָּרָעָב וּבַחֶרֶב וּבַדָּבֶר׃ וַתִּתֵּן אֶת־הַבַּיִת אֲשֶׁר נִקְרָא שִׁמְךָ עָלָיו כַּיּוֹם הַזֶּה בִּגְלַל רָעַת בֵּית יִשְׂרָאֵל וּבֵית יְהוּדָה [וּלְשַׁמָּה]׃ וַעֲשִׂיתָ לָּנוּ אֱלֹהֵינוּ כְּכָל־חַסְדְּךָ וּכְכָל־רַחֲמֶיךָ הַגְּדוֹלִים׃ כַּאֲשֶׁר דִּבַּרְתָּ בְּיַד מֹשֶׁה עַבְדְּךָ בְּיוֹם צַוֹּתְךָ אוֹתוֹ לִכְתֹּב אֶת־תּוֹרָתְךָ לִפְנֵי בְנֵי יִשְׂרָאֵל לֵאמֹר׃ אִם־לֹא תִשְׁמְעוּ בְקוֹלִי וְהָיָה הֶהָמוֹן הַגָּדוֹל הָרַב הַזֶּה לִמְעַט בַּגּוֹיִם אֲשֶׁר אֲפִיצֵם שָׁמָּה׃ כִּי יָדַעְתִּי כִּי־לֹא יִשְׁמְעוּ אֵלַי כִּי עַם־קְשֵׁה־עֹרֶף הוּא וְהֵשִׁיבוּ אֶל־לִבָּם בְּאֶרֶץ שִׁבְיָם וְיָדְעוּ כִּי אֲנִי יְיָ אֱלֹהֵיהֶם וְנָתַתִּי לָהֶם לֵב וְאָזְנַיִם קַשּׁוּבוֹת׃ וְהוֹדוּ לִי בְּאֶרֶץ שִׁבְיָם וְזָכְרוּ אֶת־שְׁמִי וְשָׁבוּ מִקְּשִׁי עָרְפָּם וּמֵרֹעַ מַעַלְלֵיהֶם׃ כִּי יִזְכְּרוּ אֶת־דֶּרֶךְ אֲבוֹתֵיהֶם אֲשֶׁר חָטְאוּ לִפְנֵי יְיָ׃ וַהֲשִׁיבוֹתִים אֶל־הָאָרֶץ אֲשֶׁר נִשְׁבַּעְתִּי לַאֲבוֹתָם לְאַבְרָהָם לְיִצְחָק וּלְיַעֲקֹב וִירֵשׁוּהָ וְהִרְבֵּיתִים וְלֹא יִמְעָטוּ׃ וַהֲקִימוֹתִי לָהֶם בְּרִית עוֹלָם לִהְיוֹת לָהֶם לֵאלֹהִים וְהֵמָּה יִהְיוּ לִי לְעָם וְלֹא אֶתֹּשׁ עוֹד אֶת־עַמִּי יִשְׂרָאֵל מֵעַל הָאֲדָמָה אֲשֶׁר נָתַתִּי לָהֶם׃",
+      "rawOCRText": "ויקם יי את-דברו אשר דבר עלינו ועל-שופט-נו אשר שפטו\nאת-ישראַל ועל-מלכינו ועל-שרינו ועל-איש ישראַל ויהודה:\nלהביא עלינו רעה גדולה אשר-לא נעשתה תחת כל-השמים\nכאשר עשה בירושלם ככתוב בת'רת משה: לאָכלנו איש בשר\nבנו ואיש בשר בתו: ויתן אותנו לזעוה לכל-הממלכית אשר\nסביבותינו לחרפה ולשמה בלל הגוים מסביב אשר הדיחם יי\nשמה: ויהיו למטה ולא למעלה כי חטאנו ליי אלהינו לבלתי\nשמע בקולו: ליי אלהינו הצרקה ולנו ולאבותינו בשת הפנים\nכיום הזה: אשר דבר יי עלינו כל-הרעות דאַלה אשר בּאו עלינו:\nט ולא הלינו אָת-פני יי לשיב איש ממועצ'ת לבו הרע: וישקר יי על-\nהרעות ויבא יי על נו כי צדיק הוא יי על-כּל-דקריו אַשר צוה \nא תנו: ולא שמענו בקולו ללכת בתורת יי אשר נתן פנינו:\nועתה יי אלהי ישראַל אָשר הוצאת את-עמך מאָרץ מצרים ביד\nחזקה ובאותות ובמופתים ובכח גדול ובז-וע נטויה ותעש-ך שם\nכיום הזה: חטאנו והעוינו והרשענו יי אַלמינו בכל-צדק תיף: \nישב-נא אַפך ממנו כי נשאַרנו מעט בנוים אַשר הפיצ'תנו שמה: \nשמע יי אָל-תפלתנו ואָל-תחנתנו ופלטנו למננף ותן-לנו חן לפני\nש'בינו: למען דעת כל-האָרץ כי אתה יי אלהינו כי שמד נקרא\nעל-ישראַל ועל-זרעו: יי השקיפה ממעון קדשף ושים לבך אַלינו\nהטה יי אָזנף ושמע פקח עיניף וראַה: כי לא המתים בשאול\nאשר לקחה רוחם מקרבם יתנו כבוד וצדק ליי: כי הנפש המצרה\nעל-גדלה ואשר עברה] ההולך שח'ח וכושל ועינים כלות ונפש\nנענה המה יתנו לך יי כבוד וצדק: כי לא על-צדק'ת אב ת נו\nומלכינו אנחנו מפילים תדנתנו לקניך יי אלהינו: כי שלחת אַפך\nוחמתך בּנו כאַשר דברת ביד עבדיף הנביאים לאמר: כה אָמר\nיי הטו שכמכם ועבדו אָת-מלך בּבל ושבו על-האדמה אשר\nנתתי לאבותיכם: ואס-לא תשמעו בקול יי לעבד את-מלך בבל:\nוהשכתי מערי יהודה ומחוצות ירושלם קול ששון וקול שמחה\nקול חתן וקול כלה והיתה כל-הארץ לשמה מאין יושב: ולא\nשמענו בקולך לעבד אָת-מלך בבל ותקם את-דבריך אשר דברת\nביד עבדיך הנביאים להוציא אָת-עצמות מלכינו ואת-עצמית\nאבותינו ממקומן: והנה הן משלכות לחרב היום ולקרח הלילה\nוימותו בתחלואים רעים ברעב ובחרב ובדבר: ותתן את-הכית\nאשר נקרא שמך עליו כיום הזה בגלל רעת בית ישראַל ובית\nיהודה ולשמה]: ועשית לנו אלהינו ככל - חסדף וככל-רחמיף\nהגדולים: כאשר דברת ביד משה עבדך ביום צותך אותו לכתב\nאת-תורתך לפני בני ישראל לאמר: אם-לא תשמעו בקולי והיה\nההמון הנדול הרב הזה למעט בנויים אשר אפיצם שמה: כי\nידעתי כי-לא ישמעו אלי כי עם-קשה-ערף הוא והשיבו אל-לכם\nבאָרץ שבים וידעו כי אני יי אלהיהם: ונתתי להם לב ואָזנים\nקשובות: והודו לי באָרץ שבים וזכרו את-שמי ושבו מקשי ערפם\nומרע מעלליהם: כי יזכרו את-דרך אָבותיהם אשר חטאו לפני יי:\nוהשיבותים אל-האָרץ אשר נשבעתי לאבותם לאברהם ליצחק\nוליעקב וירשוה והרביתים ולא ימעטו: והקימותי להם ברית עולם\nלהיות להם לאלהים והמה יהיו לי לעם ולא אתש עוד את-עמי\nישראל מעל האדמה אשר נתתי להם:"
+    },
+    {
+      "schemaVersion": 1,
+      "purpose": "review-only",
+      "relationship": "scan-transcription",
+      "referenceStatus": "unreviewed",
+      "productionEligible": false,
+      "referenceSHA256": "c190be6c2e0e6379b53ab1d799cdff7b9156e0e4423f57baf0c9270626e59237",
+      "observedSHA256": "cfb02baebc805b2b214a83302bb9ac4cfe3284f81e03755ffb572f6b2fdf934b",
+      "normalization": "Combining marks and punctuation removed for comparison only; spelling preserved.",
+      "referenceWords": 369,
+      "observedWords": 368,
+      "wordOperations": {
+        "equal": 352,
+        "replace": 16,
+        "delete": 1,
+        "insert": 0
+      },
+      "matchingReferenceFraction": 0.9539295392953929,
+      "tokenDifferenceRate": 0.04607046070460705,
+      "alignment": [
+        {
+          "kind": "equal",
+          "referenceStart": 0,
+          "referenceEnd": 7,
+          "observedStart": 0,
+          "observedEnd": 7,
+          "reference": [
+            "יי",
+            "צבאות",
+            "אלהי",
+            "ישראל",
+            "נפש",
+            "מצרה",
+            "ורוח"
+          ],
+          "observed": [
+            "יי",
+            "צבאות",
+            "אלהי",
+            "ישראל",
+            "נפש",
+            "מצרה",
+            "ורוח"
+          ]
+        },
+        {
+          "kind": "replace",
+          "referenceStart": 7,
+          "referenceEnd": 8,
+          "observedStart": 7,
+          "observedEnd": 8,
+          "reference": [
+            "עטופה"
+          ],
+          "observed": [
+            "עטוסה"
+          ]
+        },
+        {
+          "kind": "equal",
+          "referenceStart": 8,
+          "referenceEnd": 39,
+          "observedStart": 8,
+          "observedEnd": 39,
+          "reference": [
+            "צועקת",
+            "אליך",
+            "שמע",
+            "יי",
+            "וחננו",
+            "כי",
+            "חטאנו",
+            "לך",
+            "כי",
+            "אתה",
+            "שוכן",
+            "עד",
+            "ואנחנו",
+            "אובדי",
+            "עד",
+            "יי",
+            "צבאות",
+            "אלהי",
+            "ישראל",
+            "שמע",
+            "נא",
+            "אל",
+            "תפלת",
+            "מתי",
+            "ישראל",
+            "ובני",
+            "החוטאים",
+            "לך",
+            "אשר",
+            "לא",
+            "שמעו"
+          ],
+          "observed": [
+            "צועקת",
+            "אליך",
+            "שמע",
+            "יי",
+            "וחננו",
+            "כי",
+            "חטאנו",
+            "לך",
+            "כי",
+            "אתה",
+            "שוכן",
+            "עד",
+            "ואנחנו",
+            "אובדי",
+            "עד",
+            "יי",
+            "צבאות",
+            "אלהי",
+            "ישראל",
+            "שמע",
+            "נא",
+            "אל",
+            "תפלת",
+            "מתי",
+            "ישראל",
+            "ובני",
+            "החוטאים",
+            "לך",
+            "אשר",
+            "לא",
+            "שמעו"
+          ]
+        },
+        {
+          "kind": "replace",
+          "referenceStart": 39,
+          "referenceEnd": 41,
+          "observedStart": 39,
+          "observedEnd": 41,
+          "reference": [
+            "בקולך",
+            "יי"
+          ],
+          "observed": [
+            "בקולף",
+            "וי"
+          ]
+        },
+        {
+          "kind": "equal",
+          "referenceStart": 41,
+          "referenceEnd": 51,
+          "observedStart": 41,
+          "observedEnd": 51,
+          "reference": [
+            "אלהיהם",
+            "ותתך",
+            "עלינו",
+            "הרעה",
+            "אל",
+            "תזכר",
+            "עונות",
+            "אבותינו",
+            "וזכרת",
+            "את"
+          ],
+          "observed": [
+            "אלהיהם",
+            "ותתך",
+            "עלינו",
+            "הרעה",
+            "אל",
+            "תזכר",
+            "עונות",
+            "אבותינו",
+            "וזכרת",
+            "את"
+          ]
+        },
+        {
+          "kind": "replace",
+          "referenceStart": 51,
+          "referenceEnd": 52,
+          "observedStart": 51,
+          "observedEnd": 52,
+          "reference": [
+            "ידך"
+          ],
+          "observed": [
+            "יךף"
+          ]
+        },
+        {
+          "kind": "equal",
+          "referenceStart": 52,
+          "referenceEnd": 71,
+          "observedStart": 52,
+          "observedEnd": 71,
+          "reference": [
+            "ואת",
+            "שמך",
+            "בימים",
+            "האלה",
+            "כי",
+            "אתה",
+            "יי",
+            "אלהינו",
+            "ולך",
+            "יי",
+            "נודה",
+            "כי",
+            "על",
+            "כן",
+            "נתת",
+            "יראתך",
+            "בלבנו",
+            "למען",
+            "נקרא"
+          ],
+          "observed": [
+            "ואת",
+            "שמך",
+            "בימים",
+            "האלה",
+            "כי",
+            "אתה",
+            "יי",
+            "אלהינו",
+            "ולך",
+            "יי",
+            "נודה",
+            "כי",
+            "על",
+            "כן",
+            "נתת",
+            "יראתך",
+            "בלבנו",
+            "למען",
+            "נקרא"
+          ]
+        },
+        {
+          "kind": "replace",
+          "referenceStart": 71,
+          "referenceEnd": 73,
+          "observedStart": 71,
+          "observedEnd": 73,
+          "reference": [
+            "בשמך",
+            "ונודה"
+          ],
+          "observed": [
+            "בשמף",
+            "ונודף"
+          ]
+        },
+        {
+          "kind": "equal",
+          "referenceStart": 73,
+          "referenceEnd": 77,
+          "observedStart": 73,
+          "observedEnd": 77,
+          "reference": [
+            "בארץ",
+            "שבינו",
+            "כי",
+            "הסירונו"
+          ],
+          "observed": [
+            "בארץ",
+            "שבינו",
+            "כי",
+            "הסירונו"
+          ]
+        },
+        {
+          "kind": "replace",
+          "referenceStart": 77,
+          "referenceEnd": 78,
+          "observedStart": 77,
+          "observedEnd": 78,
+          "reference": [
+            "מלבבנו"
+          ],
+          "observed": [
+            "מלכבנו"
+          ]
+        },
+        {
+          "kind": "equal",
+          "referenceStart": 78,
+          "referenceEnd": 128,
+          "observedStart": 78,
+          "observedEnd": 128,
+          "reference": [
+            "כל",
+            "עון",
+            "אבותינו",
+            "החוטאים",
+            "לפניך",
+            "הנה",
+            "אנחנו",
+            "היום",
+            "בארץ",
+            "שבינו",
+            "אשר",
+            "הפיצותנו",
+            "שמה",
+            "לחרפה",
+            "ולאלה",
+            "ולשמה",
+            "בכל",
+            "עונות",
+            "אבותינו",
+            "אשר",
+            "סרו",
+            "מאחרי",
+            "יי",
+            "אלהינו",
+            "שמע",
+            "ישראל",
+            "מצות",
+            "החיים",
+            "האזינו",
+            "לדעת",
+            "בינה",
+            "מה",
+            "לך",
+            "ישראל",
+            "בארץ",
+            "אויב",
+            "למה",
+            "בלית",
+            "בארץ",
+            "נכריה",
+            "נטמאת",
+            "במתים",
+            "נחשבת",
+            "עם",
+            "יורדי",
+            "בור",
+            "עזבת",
+            "מקור",
+            "חכמה",
+            "ונטשת"
+          ],
+          "observed": [
+            "כל",
+            "עון",
+            "אבותינו",
+            "החוטאים",
+            "לפניך",
+            "הנה",
+            "אנחנו",
+            "היום",
+            "בארץ",
+            "שבינו",
+            "אשר",
+            "הפיצותנו",
+            "שמה",
+            "לחרפה",
+            "ולאלה",
+            "ולשמה",
+            "בכל",
+            "עונות",
+            "אבותינו",
+            "אשר",
+            "סרו",
+            "מאחרי",
+            "יי",
+            "אלהינו",
+            "שמע",
+            "ישראל",
+            "מצות",
+            "החיים",
+            "האזינו",
+            "לדעת",
+            "בינה",
+            "מה",
+            "לך",
+            "ישראל",
+            "בארץ",
+            "אויב",
+            "למה",
+            "בלית",
+            "בארץ",
+            "נכריה",
+            "נטמאת",
+            "במתים",
+            "נחשבת",
+            "עם",
+            "יורדי",
+            "בור",
+            "עזבת",
+            "מקור",
+            "חכמה",
+            "ונטשת"
+          ]
+        },
+        {
+          "kind": "replace",
+          "referenceStart": 128,
+          "referenceEnd": 129,
+          "observedStart": 128,
+          "observedEnd": 129,
+          "reference": [
+            "מעון"
+          ],
+          "observed": [
+            "מעין"
+          ]
+        },
+        {
+          "kind": "equal",
+          "referenceStart": 129,
+          "referenceEnd": 204,
+          "observedStart": 129,
+          "observedEnd": 204,
+          "reference": [
+            "בינה",
+            "לו",
+            "הלכת",
+            "בדרך",
+            "אלהים",
+            "ותשב",
+            "בשלום",
+            "עד",
+            "עולם",
+            "למדה",
+            "אי",
+            "זה",
+            "מקום",
+            "בינה",
+            "איה",
+            "גבורה",
+            "איה",
+            "תבונה",
+            "לדעת",
+            "אי",
+            "ארך",
+            "ימים",
+            "וחיים",
+            "ואי",
+            "מאור",
+            "עינים",
+            "ושלום",
+            "מי",
+            "מצא",
+            "מקומה",
+            "ומי",
+            "בא",
+            "אל",
+            "אוצרותיה",
+            "איה",
+            "מושלי",
+            "העמים",
+            "ורודי",
+            "בחיתו",
+            "ארץ",
+            "משחקי",
+            "בצפר",
+            "שמים",
+            "ואוצרי",
+            "כסף",
+            "וזהב",
+            "בו",
+            "בטחו",
+            "אנשים",
+            "ואין",
+            "קצה",
+            "לקנינם",
+            "אי",
+            "חרשי",
+            "הכסף",
+            "והדאגים",
+            "ואין",
+            "חקר",
+            "למעשיהם",
+            "הם",
+            "אבדו",
+            "וירדו",
+            "שאלה",
+            "ואחרים",
+            "קמו",
+            "תחתם",
+            "אחרונים",
+            "ראו",
+            "אור",
+            "וישבו",
+            "בארץ",
+            "ומקום",
+            "החכמה",
+            "לא",
+            "ראו"
+          ],
+          "observed": [
+            "בינה",
+            "לו",
+            "הלכת",
+            "בדרך",
+            "אלהים",
+            "ותשב",
+            "בשלום",
+            "עד",
+            "עולם",
+            "למדה",
+            "אי",
+            "זה",
+            "מקום",
+            "בינה",
+            "איה",
+            "גבורה",
+            "איה",
+            "תבונה",
+            "לדעת",
+            "אי",
+            "ארך",
+            "ימים",
+            "וחיים",
+            "ואי",
+            "מאור",
+            "עינים",
+            "ושלום",
+            "מי",
+            "מצא",
+            "מקומה",
+            "ומי",
+            "בא",
+            "אל",
+            "אוצרותיה",
+            "איה",
+            "מושלי",
+            "העמים",
+            "ורודי",
+            "בחיתו",
+            "ארץ",
+            "משחקי",
+            "בצפר",
+            "שמים",
+            "ואוצרי",
+            "כסף",
+            "וזהב",
+            "בו",
+            "בטחו",
+            "אנשים",
+            "ואין",
+            "קצה",
+            "לקנינם",
+            "אי",
+            "חרשי",
+            "הכסף",
+            "והדאגים",
+            "ואין",
+            "חקר",
+            "למעשיהם",
+            "הם",
+            "אבדו",
+            "וירדו",
+            "שאלה",
+            "ואחרים",
+            "קמו",
+            "תחתם",
+            "אחרונים",
+            "ראו",
+            "אור",
+            "וישבו",
+            "בארץ",
+            "ומקום",
+            "החכמה",
+            "לא",
+            "ראו"
+          ]
+        },
+        {
+          "kind": "replace",
+          "referenceStart": 204,
+          "referenceEnd": 205,
+          "observedStart": 204,
+          "observedEnd": 205,
+          "reference": [
+            "ודרך"
+          ],
+          "observed": [
+            "דרך"
+          ]
+        },
+        {
+          "kind": "equal",
+          "referenceStart": 205,
+          "referenceEnd": 211,
+          "observedStart": 205,
+          "observedEnd": 211,
+          "reference": [
+            "בינה",
+            "לא",
+            "ידעו",
+            "לא",
+            "הבינו",
+            "נתיבותיה"
+          ],
+          "observed": [
+            "בינה",
+            "לא",
+            "ידעו",
+            "לא",
+            "הבינו",
+            "נתיבותיה"
+          ]
+        },
+        {
+          "kind": "replace",
+          "referenceStart": 211,
+          "referenceEnd": 212,
+          "observedStart": 211,
+          "observedEnd": 212,
+          "reference": [
+            "ומעגלותיה"
+          ],
+          "observed": [
+            "וומעגלותיה"
+          ]
+        },
+        {
+          "kind": "equal",
+          "referenceStart": 212,
+          "referenceEnd": 228,
+          "observedStart": 212,
+          "observedEnd": 228,
+          "reference": [
+            "לא",
+            "ידעו",
+            "ולא",
+            "החזיקו",
+            "בה",
+            "בניהם",
+            "מדרכה",
+            "רחקו",
+            "ויסורו",
+            "לא",
+            "נשמעה",
+            "בכנען",
+            "ולא",
+            "נראתה",
+            "בתימן",
+            "בני"
+          ],
+          "observed": [
+            "לא",
+            "ידעו",
+            "ולא",
+            "החזיקו",
+            "בה",
+            "בניהם",
+            "מדרכה",
+            "רחקו",
+            "ויסורו",
+            "לא",
+            "נשמעה",
+            "בכנען",
+            "ולא",
+            "נראתה",
+            "בתימן",
+            "בני"
+          ]
+        },
+        {
+          "kind": "replace",
+          "referenceStart": 228,
+          "referenceEnd": 229,
+          "observedStart": 228,
+          "observedEnd": 229,
+          "reference": [
+            "הגר"
+          ],
+          "observed": [
+            "הנר"
+          ]
+        },
+        {
+          "kind": "equal",
+          "referenceStart": 229,
+          "referenceEnd": 235,
+          "observedStart": 229,
+          "observedEnd": 235,
+          "reference": [
+            "שוחרי",
+            "תבונה",
+            "בארץ",
+            "רוכלי",
+            "מדן",
+            "ותימא"
+          ],
+          "observed": [
+            "שוחרי",
+            "תבונה",
+            "בארץ",
+            "רוכלי",
+            "מדן",
+            "ותימא"
+          ]
+        },
+        {
+          "kind": "replace",
+          "referenceStart": 235,
+          "referenceEnd": 236,
+          "observedStart": 235,
+          "observedEnd": 236,
+          "reference": [
+            "המשלים"
+          ],
+          "observed": [
+            "והמשלים"
+          ]
+        },
+        {
+          "kind": "equal",
+          "referenceStart": 236,
+          "referenceEnd": 302,
+          "observedStart": 236,
+          "observedEnd": 302,
+          "reference": [
+            "ודורשי",
+            "תבונה",
+            "דרך",
+            "חכמה",
+            "לא",
+            "ידעו",
+            "ולא",
+            "זכרו",
+            "נתיבותיה",
+            "הה",
+            "ישראל",
+            "מה",
+            "גדול",
+            "בית",
+            "אלהים",
+            "ורם",
+            "מקום",
+            "קנינו",
+            "גדול",
+            "הוא",
+            "ואין",
+            "קץ",
+            "גבוה",
+            "ואין",
+            "מדה",
+            "שם",
+            "היו",
+            "הנפילים",
+            "אנשי",
+            "השם",
+            "אשר",
+            "מעולם",
+            "אנשי",
+            "מדות",
+            "יודעי",
+            "מלחמה",
+            "לא",
+            "באלה",
+            "בחר",
+            "אלהים",
+            "ודרך",
+            "בינה",
+            "לא",
+            "להם",
+            "נתן",
+            "ויאבדו",
+            "בבלי",
+            "דעת",
+            "ספו",
+            "באולתם",
+            "מי",
+            "עלה",
+            "שמים",
+            "ויקחה",
+            "ומני",
+            "שחקים",
+            "ומי",
+            "הורידה",
+            "מי",
+            "עבר",
+            "אל",
+            "עבר",
+            "הים",
+            "וימצאה",
+            "ויקנה",
+            "בחרוץ"
+          ],
+          "observed": [
+            "ודורשי",
+            "תבונה",
+            "דרך",
+            "חכמה",
+            "לא",
+            "ידעו",
+            "ולא",
+            "זכרו",
+            "נתיבותיה",
+            "הה",
+            "ישראל",
+            "מה",
+            "גדול",
+            "בית",
+            "אלהים",
+            "ורם",
+            "מקום",
+            "קנינו",
+            "גדול",
+            "הוא",
+            "ואין",
+            "קץ",
+            "גבוה",
+            "ואין",
+            "מדה",
+            "שם",
+            "היו",
+            "הנפילים",
+            "אנשי",
+            "השם",
+            "אשר",
+            "מעולם",
+            "אנשי",
+            "מדות",
+            "יודעי",
+            "מלחמה",
+            "לא",
+            "באלה",
+            "בחר",
+            "אלהים",
+            "ודרך",
+            "בינה",
+            "לא",
+            "להם",
+            "נתן",
+            "ויאבדו",
+            "בבלי",
+            "דעת",
+            "ספו",
+            "באולתם",
+            "מי",
+            "עלה",
+            "שמים",
+            "ויקחה",
+            "ומני",
+            "שחקים",
+            "ומי",
+            "הורידה",
+            "מי",
+            "עבר",
+            "אל",
+            "עבר",
+            "הים",
+            "וימצאה",
+            "ויקנה",
+            "בחרוץ"
+          ]
+        },
+        {
+          "kind": "delete",
+          "referenceStart": 302,
+          "referenceEnd": 303,
+          "observedStart": 302,
+          "observedEnd": 302,
+          "reference": [
+            "לא"
+          ],
+          "observed": []
+        },
+        {
+          "kind": "equal",
+          "referenceStart": 303,
+          "referenceEnd": 309,
+          "observedStart": 302,
+          "observedEnd": 308,
+          "reference": [
+            "נבחר",
+            "אין",
+            "יודע",
+            "דרכה",
+            "ואין",
+            "מבין"
+          ],
+          "observed": [
+            "נבחר",
+            "אין",
+            "יודע",
+            "דרכה",
+            "ואין",
+            "מבין"
+          ]
+        },
+        {
+          "kind": "replace",
+          "referenceStart": 309,
+          "referenceEnd": 310,
+          "observedStart": 308,
+          "observedEnd": 309,
+          "reference": [
+            "נתיבתה"
+          ],
+          "observed": [
+            "נתיכתה"
+          ]
+        },
+        {
+          "kind": "equal",
+          "referenceStart": 310,
+          "referenceEnd": 331,
+          "observedStart": 309,
+          "observedEnd": 330,
+          "reference": [
+            "רואה",
+            "כל",
+            "הוא",
+            "ידעה",
+            "הוא",
+            "חקרה",
+            "בתבונתו",
+            "המכין",
+            "ארץ",
+            "עד",
+            "עולם",
+            "מלאה",
+            "הולכי",
+            "על",
+            "ארבע",
+            "המשלח",
+            "אור",
+            "וילך",
+            "יקראהו",
+            "וישמע",
+            "אליו"
+          ],
+          "observed": [
+            "רואה",
+            "כל",
+            "הוא",
+            "ידעה",
+            "הוא",
+            "חקרה",
+            "בתבונתו",
+            "המכין",
+            "ארץ",
+            "עד",
+            "עולם",
+            "מלאה",
+            "הולכי",
+            "על",
+            "ארבע",
+            "המשלח",
+            "אור",
+            "וילך",
+            "יקראהו",
+            "וישמע",
+            "אליו"
+          ]
+        },
+        {
+          "kind": "replace",
+          "referenceStart": 331,
+          "referenceEnd": 332,
+          "observedStart": 330,
+          "observedEnd": 331,
+          "reference": [
+            "ברעדה"
+          ],
+          "observed": [
+            "ברעךה"
+          ]
+        },
+        {
+          "kind": "equal",
+          "referenceStart": 332,
+          "referenceEnd": 333,
+          "observedStart": 331,
+          "observedEnd": 332,
+          "reference": [
+            "והכוכבים"
+          ],
+          "observed": [
+            "והכוכבים"
+          ]
+        },
+        {
+          "kind": "replace",
+          "referenceStart": 333,
+          "referenceEnd": 334,
+          "observedStart": 332,
+          "observedEnd": 333,
+          "reference": [
+            "במשמרותם"
+          ],
+          "observed": [
+            "כמשמרותם"
+          ]
+        },
+        {
+          "kind": "equal",
+          "referenceStart": 334,
+          "referenceEnd": 343,
+          "observedStart": 333,
+          "observedEnd": 342,
+          "reference": [
+            "יאירו",
+            "וישישו",
+            "יקרא",
+            "להם",
+            "ויאמרו",
+            "הננו",
+            "יאירו",
+            "בששון",
+            "לפני"
+          ],
+          "observed": [
+            "יאירו",
+            "וישישו",
+            "יקרא",
+            "להם",
+            "ויאמרו",
+            "הננו",
+            "יאירו",
+            "בששון",
+            "לפני"
+          ]
+        },
+        {
+          "kind": "replace",
+          "referenceStart": 343,
+          "referenceEnd": 344,
+          "observedStart": 342,
+          "observedEnd": 343,
+          "reference": [
+            "עושיהם"
+          ],
+          "observed": [
+            "עושהם"
+          ]
+        },
+        {
+          "kind": "equal",
+          "referenceStart": 344,
+          "referenceEnd": 369,
+          "observedStart": 343,
+          "observedEnd": 368,
+          "reference": [
+            "הוא",
+            "אלהינו",
+            "ואין",
+            "זולתו",
+            "אחר",
+            "לא",
+            "יחשב",
+            "מבלעדיו",
+            "הוא",
+            "חקר",
+            "כל",
+            "דרך",
+            "בינה",
+            "ויתנה",
+            "ליעקב",
+            "עבדו",
+            "ולישראל",
+            "ידידו",
+            "אז",
+            "על",
+            "הארץ",
+            "נראתה",
+            "ובתוך",
+            "אנשים",
+            "התהלכה"
+          ],
+          "observed": [
+            "הוא",
+            "אלהינו",
+            "ואין",
+            "זולתו",
+            "אחר",
+            "לא",
+            "יחשב",
+            "מבלעדיו",
+            "הוא",
+            "חקר",
+            "כל",
+            "דרך",
+            "בינה",
+            "ויתנה",
+            "ליעקב",
+            "עבדו",
+            "ולישראל",
+            "ידידו",
+            "אז",
+            "על",
+            "הארץ",
+            "נראתה",
+            "ובתוך",
+            "אנשים",
+            "התהלכה"
+          ]
+        }
+      ],
+      "notes": [
+        "An alignment is a review aid, not a verified verse crosswalk.",
+        "Niqqud and punctuation still require separate image comparison.",
+        "Text differences are not an OCR accuracy measurement without a scan-checked matching reference."
+      ],
+      "chapter": 3,
+      "draftText": "יְיָ צְבָאוֹת אֱלֹהֵי יִשְׂרָאֵל נֶפֶשׁ מְצֵרָה וְרוּחַ עֲטוּפָה צוֹעֶקֶת אֵלֶיךָ׃ שְׁמַע יְיָ וְחָנֵּנוּ כִּי חָטָאנוּ־לָךְ׃ כִּי אַתָּה שׁוֹכֵן עַד וַאֲנַחְנוּ אוֹבְדֵי־עַד׃ יְיָ צְבָאוֹת אֱלֹהֵי יִשְׂרָאֵל שְׁמַע־נָא אֶל־תְּפִלַּת מֵתֵי יִשְׂרָאֵל וּבְנֵי הַחוֹטְאִים לְךָ אֲשֶׁר לֹא־שָׁמְעוּ בְקוֹלֶךָ יְיָ אֱלֹהֵיהֶם וַתִּתַּךְ עָלֵינוּ הָרָעָה׃ אַל־תִּזְכֹּר עֲוֹנוֹת אֲבוֹתֵינוּ וְזָכַרְתָּ אֶת־יָדְךָ וְאֶת־שִׁמְךָ בַּיָּמִים הָאֵלֶּה׃ כִּי אַתָּה יְיָ אֱלֹהֵינוּ וּלְךָ יְיָ נוֹדֶה׃ כִּי עַל־כֵּן נָתַתָּ יִרְאָתְךָ בְּלִבֵּנוּ לְמַעַן נִקְרָא בְשִׁמְךָ וְנוֹדֶה בְּאֶרֶץ שִׁבְיֵנוּ כִּי הֲסִירוֹנוּ מִלְּבָבֵנוּ כָּל־עֲוֹן אֲבוֹתֵינוּ הַחוֹטְאִים לְפָנֶיךָ׃ הִנֵּה אֲנַחְנוּ הַיּוֹם בְּאֶרֶץ שִׁבְיֵנוּ אֲשֶׁר הֲפִיצוֹתָנוּ שָׁמָּה לְחֶרְפָּה וּלְאָלָה וּלְשַׁמָּה בְּכָל־עֲוֹנוֹת אֲבוֹתֵינוּ אֲשֶׁר סָרוּ מֵאַחֲרֵי יְיָ אֱלֹהֵינוּ׃ שְׁמַע יִשְׂרָאֵל מִצְוֹת הַחַיִּים הַאֲזִינוּ לָדַעַת בִּינָה׃ מַה־לְּךָ יִשְׂרָאֵל בְּאֶרֶץ אוֹיֵב לָמָּה בָּלִיתָ בְאֶרֶץ נָכְרִיָּה׃ נִטְמֵאתָ בַּמֵּתִים נֶחְשַׁבְתָּ עִם־יוֹרְדֵי־בוֹר׃ עָזַבְתָּ מְקוֹר חָכְמָה [וְנָטַשְׁתָּ מְעוֹן בִּינָה]׃ לוּ הָלַכְתָּ בְּדֶרֶךְ אֱלֹהִים וַתֵּשֶׁב בְּשָׁלוֹם עַד־עוֹלָם׃ לְמָדָה אֵי־זֶה מְקוֹם בִּינָה אֵיֵּה גְבוּרָה אֵיֵּה תְבוּנָה לָדַעַת אֵי אֹרֶךְ יָמִים וְחַיִּים וְאֵי מְאוֹר עֵינַיִם וְשָׁלוֹם׃ מִי מָצָא מְקוֹמָהּ וּמִי בָא אֶל־אוֹצְרוֹתֶיהָ׃ אֵיֵּה מוֹשְׁלֵי הָעַמִּים וְרוֹדֵי בְחַיְתוֹ־אָרֶץ׃ מְשַׂחֲקֵי בַּצִּפֹּר שָׁמַיִם וְאוֹצְרֵי כֶסֶף וְזָהָב בּוֹ בָּטְחוּ אֲנָשִׁים וְאֵין־קֵצֶה לְקִנְיָנָם׃ אֵי חָרָשֵׁי הַכֶּסֶף וְהַדֹּאֲגִים וְאֵין חֵקֶר לְמַעֲשֵׂיהֶם׃ הֵם אָבְדוּ וַיֵּרְדוּ שְׁאֹלָה וַאֲחֵרִים קָמוּ תַחְתָּם׃ אַחֲרוֹנִים רָאוּ אוֹר וַיֵּשְׁבוּ בָאָרֶץ [וּמְקוֹם הַחָכְמָה לֹא רָאוּ] וְדֶרֶךְ בִּינָה לֹא יָדָעוּ׃ לֹא הֵבִינוּ נְתִיבוֹתֶיהָ [וּמַעְגְּלוֹתֶיהָ לֹא יָדָעוּ] וְלֹא הֶחֱזִיקוּ בָהּ בְּנֵיהֶם מִדַּרְכָּהּ רָחֲקוּ וַיָּסוּרוּ׃ לֹא נִשְׁמְעָה בִּכְנַעַן וְלֹא נִרְאֲתָה בְתֵימָן׃ בְּנֵי הָגָר שׁוֹחֲרֵי תְבוּנָה בָאָרֶץ רוֹכְלֵי מְדָן וְתֵימָא הַמֹּשְׁלִים וְדוֹרְשֵׁי תְבוּנָה דֶּרֶךְ חָכְמָה לֹא יָדָעוּ וְלֹא זָכְרוּ נְתִיבוֹתֶיהָ׃ הָהּ יִשְׂרָאֵל מַה־גָּדוֹל בֵּית־אֱלֹהִים וְרָם מְקוֹם קִנְיָנוֹ׃ גָּדוֹל הוּא וְאֵין־קֵץ גָּבוֹהַּ וְאֵין מִדָּה׃ שָׁם הָיוּ הַנְּפִילִים אַנְשֵׁי הַשֵּׁם אֲשֶׁר מֵעוֹלָם אַנְשֵׁי מִדּוֹת יוֹדְעֵי מִלְחָמָה׃ לֹא בְאֵלֶּה בָחַר אֱלֹהִים וְדֶרֶךְ בִּינָה לֹא לָהֶם נָתָן׃ וַיֹּאבְדוּ בִבְלִי־דַעַת סָפוּ בְאוַּלְתָּם׃ מִי עָלָה שָׁמַיִם וַיִּקָּחֶהָ וּמִנִּי־שְׁחָקִים [וּמִי] הוֹרִידָהּ׃ מִי עָבַר אֶל־עֵבֶר הַיָּם וַיִּמְצָאֶהָ וַיִּקְנֶהָ בֶחָרוּץ לֹא־נִבְחָר׃ אֵין יוֹדֵעַ דַּרְכָּהּ וְאֵין מֵבִין נְתִיבָתָהּ׃ רוֹאֵה־כֹל הוּא יָדָעָהּ הוּא חֲקָרָהּ בִּתְבוּנָתוֹ הַמֵּכִין אֶרֶץ עַד־עוֹלָם מְלֵאָה הוֹלְכֵי עַל־אַרְבַּע׃ הַמְשַׁלֵּחַ אוֹר וַיֵּלֶךְ יִקְרָאֵהוּ וְיִשְׁמַע אֵלָיו בִּרְעָדָה׃ וְהַכּוֹכָבִים בְּמִשְׁמְרוֹתָם יָאִירוּ וְיָשִׂישׂוּ יִקְרָא לָהֶם וְיֹאמְרוּ הִנְנוּ יָאִירוּ בְשָׂשׂוֹן לִפְנֵי עוֹשֵׂיהֶם׃ הוּא אֱלֹהֵינוּ [וְאֵין זוּלָתוֹ] אַחֵר לֹא יֵחָשֵׁב מִבַּלְעָדָיו׃ הוּא חָקַר כָּל־דֶּרֶךְ בִּינָה וַיִּתְּנָהּ לְיַעֲקֹב עַבְדּוֹ וּלְיִשְׂרָאֵל יְדִידוֹ׃ אָז עַל־הָאָרֶץ נִרְאָתָה וּבְתוֹךְ אֲנָשִׁים הִתְהַלָּכָה׃",
+      "rawOCRText": "יי צבאות אלהי ישראַל נפש מצרה ורוח עטוסה צועקת\n: אַליך: שמע יי וחננו כי חטאנו-לך: כי אתָה שוכן עד ואָנחנו\nאובדי-עד: יי צבאות אלהי ישראַל שמע-נא אל-תפלת מתי\nישראַל ובני החוטאים לך אשר לא-שמעו בקולף וי אלהיהם\nותתך עלינו הרעה: אל-תזכר עונות אָבותינו וזכרת את-יךף ואת-\nשמך בימים האלה: כי אַתה יי אלהינו ולך יי נודה: כי על-כן\nנתת יראתך בלבנו למען נקרא בשמף ונודף באָרץ שבינו כי\nהסירונו מלכבנו כל-עון אבותינו החוטאים לפניך: הנה אנחנו\nהיום בארץ שבינו אשר הפיצותנו שמה לחרפה ולאלה ולשמה\nבכל-עונות אבותינו אָשר סרו מאַחרי יי אלהינו: שמע ישראל\nמצות החיים האָזינו לדעת בינה: מה-לך ישראַל בארץ אויב\nלמה בלית באָרץ נכריה: נטמאת במתים נחשבת עם-יורדי-בור:\nעזבת מקור חכמה ונטשת מעין בינה]: לו הלכת בדרך אלהים ותשב\nבשלום עד-עולם : למדה אי-זה מקום בינה איה גבורה איה תבונה\nלדעת אי ארך ימים וחיים ואי מאור עינים ושלום: מי מצא\nמקומה ומי בא אל-אוצרותיה: איה מושלי העמים ורודי בחיתו-\nאָרץ: משחקי בצפר שמים ואוצרי כסף וזהב בו בטחו אָנשים\nואין-קצה לקנינם: אי חרשי הכּסף והדאָגים ואין חקר למעשיהם:\nהם אָבדו וירדו שאלה ואָחרים קמו תחתם: אחרונים ראו אור\nוישבו באָרץ ומקום החכמה לא ראו] (דרך בינה לא ידעו: לא\nהבינו נתיבותיה וומעגלותיה לא ידעו] ולא החזיקו בה בניהם\nמדרכה רחקו ויסורו: לא נשמעה בכנען ולא נראָתה בתימן:\nבני הנר שוחרי תבונה באָרץ רוכלי מדן ותימא והמשלים ודורשי\nתבונה דרך חכמה לא ידעו ולא זכרו נתיבותיה: הה ישראל\nמה-גדול בית-אלהים ורם מקום קנינו: גדול הוא ואין-קץ גבוה\nואין מדה: שם היו הנפילים אַנשי השם אשר מעולם אַנשי מדות\nיודעי מלחמה: לא באַלה בחר אלהים ודרך בינה לא להם נתן:\nויאבדו בבלי-דעת ספו באולתם: מי עלה שמים ויקחה ומני-\nשחקים ומי] הורידה: מי עבר אָל-עבר הים וימצאָה ויקנה בחרוץ\nנבחָר: אין יודע דרכּה ואין מבין נתיכתָה: רואַה-כל הוא ידעה\nהוא חקרה בתבונתו המכין ארץ עד-עולם מלאָה הולכי על-\nאַרבּע: המשלח אור וילך יקראַהו וישמע אַליו ברעךה: והכוכבים\nכמשמרותם יאירו וישישו יקרא להם ויאמרו הננו יאירו בששון\nלפני עושהם: הוא אלהינו (ואין זולתו] אחר לא יחשב מבלעדיו: הוא\nחקר כל-דרך בינה ויתנה ליעקב עבדו ולישראַל ידידו: אָז על-\nהאָרץ נראָתה ובתוך אנשים התהלכה:"
+    },
+    {
+      "schemaVersion": 1,
+      "purpose": "review-only",
+      "relationship": "scan-transcription",
+      "referenceStatus": "unreviewed",
+      "productionEligible": false,
+      "referenceSHA256": "56cefcc34e9d75589984eeccb44b7dde340de0b0e99c675f4a2f58bac4198b71",
+      "observedSHA256": "390f2f70aa51d39d36b688b33938f2edf8fcb5f7d59f8fc628244165337f3424",
+      "normalization": "Combining marks and punctuation removed for comparison only; spelling preserved.",
+      "referenceWords": 399,
+      "observedWords": 403,
+      "wordOperations": {
+        "equal": 373,
+        "replace": 26,
+        "delete": 0,
+        "insert": 4
+      },
+      "matchingReferenceFraction": 0.9348370927318296,
+      "tokenDifferenceRate": 0.07518796992481203,
+      "alignment": [
+        {
+          "kind": "equal",
+          "referenceStart": 0,
+          "referenceEnd": 5,
+          "observedStart": 0,
+          "observedEnd": 5,
+          "reference": [
+            "זה",
+            "ספר",
+            "מצות",
+            "האלהים",
+            "והתורה"
+          ],
+          "observed": [
+            "זה",
+            "ספר",
+            "מצות",
+            "האלהים",
+            "והתורה"
+          ]
+        },
+        {
+          "kind": "replace",
+          "referenceStart": 5,
+          "referenceEnd": 6,
+          "observedStart": 5,
+          "observedEnd": 6,
+          "reference": [
+            "העומדת"
+          ],
+          "observed": [
+            "העמדת"
+          ]
+        },
+        {
+          "kind": "equal",
+          "referenceStart": 6,
+          "referenceEnd": 24,
+          "observedStart": 6,
+          "observedEnd": 24,
+          "reference": [
+            "לעולם",
+            "כל",
+            "מחזיקיה",
+            "לחיים",
+            "ועוזביה",
+            "ימותו",
+            "שובה",
+            "יעקב",
+            "והחזק",
+            "בה",
+            "התהלך",
+            "לנגהה",
+            "לפני",
+            "אורה",
+            "אל",
+            "תתן",
+            "לאחר",
+            "כבודך"
+          ],
+          "observed": [
+            "לעולם",
+            "כל",
+            "מחזיקיה",
+            "לחיים",
+            "ועוזביה",
+            "ימותו",
+            "שובה",
+            "יעקב",
+            "והחזק",
+            "בה",
+            "התהלך",
+            "לנגהה",
+            "לפני",
+            "אורה",
+            "אל",
+            "תתן",
+            "לאחר",
+            "כבודך"
+          ]
+        },
+        {
+          "kind": "replace",
+          "referenceStart": 24,
+          "referenceEnd": 25,
+          "observedStart": 24,
+          "observedEnd": 25,
+          "reference": [
+            "ויתרונך"
+          ],
+          "observed": [
+            "ויתרונף"
+          ]
+        },
+        {
+          "kind": "equal",
+          "referenceStart": 25,
+          "referenceEnd": 40,
+          "observedStart": 25,
+          "observedEnd": 40,
+          "reference": [
+            "לעם",
+            "נכרי",
+            "אשרינו",
+            "ישראל",
+            "כי",
+            "טוב",
+            "האלהים",
+            "לנו",
+            "נודע",
+            "אל",
+            "תירא",
+            "עמי",
+            "זכר",
+            "ישראל",
+            "נמכרתם"
+          ],
+          "observed": [
+            "לעם",
+            "נכרי",
+            "אשרינו",
+            "ישראל",
+            "כי",
+            "טוב",
+            "האלהים",
+            "לנו",
+            "נודע",
+            "אל",
+            "תירא",
+            "עמי",
+            "זכר",
+            "ישראל",
+            "נמכרתם"
+          ]
+        },
+        {
+          "kind": "replace",
+          "referenceStart": 40,
+          "referenceEnd": 41,
+          "observedStart": 40,
+          "observedEnd": 41,
+          "reference": [
+            "לגוים"
+          ],
+          "observed": [
+            "לנוים"
+          ]
+        },
+        {
+          "kind": "equal",
+          "referenceStart": 41,
+          "referenceEnd": 48,
+          "observedStart": 41,
+          "observedEnd": 48,
+          "reference": [
+            "לא",
+            "להשמיד",
+            "כי",
+            "יען",
+            "הכעסתם",
+            "את",
+            "אלהים"
+          ],
+          "observed": [
+            "לא",
+            "להשמיד",
+            "כי",
+            "יען",
+            "הכעסתם",
+            "את",
+            "אלהים"
+          ]
+        },
+        {
+          "kind": "replace",
+          "referenceStart": 48,
+          "referenceEnd": 49,
+          "observedStart": 48,
+          "observedEnd": 49,
+          "reference": [
+            "הסגרתם"
+          ],
+          "observed": [
+            "הסגרתל"
+          ]
+        },
+        {
+          "kind": "equal",
+          "referenceStart": 49,
+          "referenceEnd": 51,
+          "observedStart": 49,
+          "observedEnd": 51,
+          "reference": [
+            "לצרים",
+            "כי"
+          ],
+          "observed": [
+            "לצרים",
+            "כי"
+          ]
+        },
+        {
+          "kind": "replace",
+          "referenceStart": 51,
+          "referenceEnd": 52,
+          "observedStart": 51,
+          "observedEnd": 52,
+          "reference": [
+            "הקנאתם"
+          ],
+          "observed": [
+            "הקיאתם"
+          ]
+        },
+        {
+          "kind": "equal",
+          "referenceStart": 52,
+          "referenceEnd": 57,
+          "observedStart": 52,
+          "observedEnd": 57,
+          "reference": [
+            "עושכם",
+            "זבחתם",
+            "לשדים",
+            "לא",
+            "אלוה"
+          ],
+          "observed": [
+            "עושכם",
+            "זבחתם",
+            "לשדים",
+            "לא",
+            "אלוה"
+          ]
+        },
+        {
+          "kind": "replace",
+          "referenceStart": 57,
+          "referenceEnd": 58,
+          "observedStart": 57,
+          "observedEnd": 58,
+          "reference": [
+            "ותשכחו"
+          ],
+          "observed": [
+            "ותשקחו"
+          ]
+        },
+        {
+          "kind": "equal",
+          "referenceStart": 58,
+          "referenceEnd": 61,
+          "observedStart": 58,
+          "observedEnd": 61,
+          "reference": [
+            "אל",
+            "מחוללכם",
+            "אל"
+          ],
+          "observed": [
+            "אל",
+            "מחוללכם",
+            "אל"
+          ]
+        },
+        {
+          "kind": "replace",
+          "referenceStart": 61,
+          "referenceEnd": 62,
+          "observedStart": 61,
+          "observedEnd": 62,
+          "reference": [
+            "עולם"
+          ],
+          "observed": [
+            "עילם"
+          ]
+        },
+        {
+          "kind": "equal",
+          "referenceStart": 62,
+          "referenceEnd": 66,
+          "observedStart": 62,
+          "observedEnd": 66,
+          "reference": [
+            "אף",
+            "העצבתם",
+            "ירושלם",
+            "זו"
+          ],
+          "observed": [
+            "אף",
+            "העצבתם",
+            "ירושלם",
+            "זו"
+          ]
+        },
+        {
+          "kind": "replace",
+          "referenceStart": 66,
+          "referenceEnd": 67,
+          "observedStart": 66,
+          "observedEnd": 67,
+          "reference": [
+            "יולדתכם"
+          ],
+          "observed": [
+            "יולךתכם"
+          ]
+        },
+        {
+          "kind": "equal",
+          "referenceStart": 67,
+          "referenceEnd": 83,
+          "observedStart": 67,
+          "observedEnd": 83,
+          "reference": [
+            "ראתה",
+            "חמת",
+            "האלהים",
+            "עליכם",
+            "ותאמר",
+            "שמענה",
+            "שכנות",
+            "ציון",
+            "הביא",
+            "אלהים",
+            "עלי",
+            "אבל",
+            "גדול",
+            "כי",
+            "ראיתי",
+            "שבי"
+          ],
+          "observed": [
+            "ראתה",
+            "חמת",
+            "האלהים",
+            "עליכם",
+            "ותאמר",
+            "שמענה",
+            "שכנות",
+            "ציון",
+            "הביא",
+            "אלהים",
+            "עלי",
+            "אבל",
+            "גדול",
+            "כי",
+            "ראיתי",
+            "שבי"
+          ]
+        },
+        {
+          "kind": "replace",
+          "referenceStart": 83,
+          "referenceEnd": 84,
+          "observedStart": 83,
+          "observedEnd": 84,
+          "reference": [
+            "בני"
+          ],
+          "observed": [
+            "כני"
+          ]
+        },
+        {
+          "kind": "equal",
+          "referenceStart": 84,
+          "referenceEnd": 91,
+          "observedStart": 84,
+          "observedEnd": 91,
+          "reference": [
+            "ובנותי",
+            "אשר",
+            "הביא",
+            "עליהם",
+            "אל",
+            "עולם",
+            "בששון"
+          ],
+          "observed": [
+            "ובנותי",
+            "אשר",
+            "הביא",
+            "עליהם",
+            "אל",
+            "עולם",
+            "בששון"
+          ]
+        },
+        {
+          "kind": "insert",
+          "referenceStart": 91,
+          "referenceEnd": 91,
+          "observedStart": 91,
+          "observedEnd": 92,
+          "reference": [],
+          "observed": [
+            "נדל"
+          ]
+        },
+        {
+          "kind": "replace",
+          "referenceStart": 91,
+          "referenceEnd": 92,
+          "observedStart": 92,
+          "observedEnd": 93,
+          "reference": [
+            "גדלתים"
+          ],
+          "observed": [
+            "תים"
+          ]
+        },
+        {
+          "kind": "equal",
+          "referenceStart": 92,
+          "referenceEnd": 99,
+          "observedStart": 93,
+          "observedEnd": 100,
+          "reference": [
+            "ובבכי",
+            "ואבל",
+            "שלחתים",
+            "איש",
+            "אל",
+            "ישמח",
+            "לי"
+          ],
+          "observed": [
+            "ובבכי",
+            "ואבל",
+            "שלחתים",
+            "איש",
+            "אל",
+            "ישמח",
+            "לי"
+          ]
+        },
+        {
+          "kind": "replace",
+          "referenceStart": 99,
+          "referenceEnd": 100,
+          "observedStart": 100,
+          "observedEnd": 101,
+          "reference": [
+            "ואל"
+          ],
+          "observed": [
+            "וואל"
+          ]
+        },
+        {
+          "kind": "equal",
+          "referenceStart": 100,
+          "referenceEnd": 106,
+          "observedStart": 101,
+          "observedEnd": 107,
+          "reference": [
+            "יגדל",
+            "פיו",
+            "האלמנה",
+            "ועזובת",
+            "הרבים",
+            "על"
+          ],
+          "observed": [
+            "יגדל",
+            "פיו",
+            "האלמנה",
+            "ועזובת",
+            "הרבים",
+            "על"
+          ]
+        },
+        {
+          "kind": "replace",
+          "referenceStart": 106,
+          "referenceEnd": 107,
+          "observedStart": 107,
+          "observedEnd": 108,
+          "reference": [
+            "חטאת"
+          ],
+          "observed": [
+            "הטאת"
+          ]
+        },
+        {
+          "kind": "equal",
+          "referenceStart": 107,
+          "referenceEnd": 123,
+          "observedStart": 108,
+          "observedEnd": 124,
+          "reference": [
+            "בני",
+            "נשמותי",
+            "יען",
+            "מתורת",
+            "אלהים",
+            "סרו",
+            "וחקותיו",
+            "לא",
+            "ידעו",
+            "בדרכי",
+            "מצות",
+            "אלהים",
+            "לא",
+            "הלכו",
+            "ונתיבות",
+            "מוסר"
+          ],
+          "observed": [
+            "בני",
+            "נשמותי",
+            "יען",
+            "מתורת",
+            "אלהים",
+            "סרו",
+            "וחקותיו",
+            "לא",
+            "ידעו",
+            "בדרכי",
+            "מצות",
+            "אלהים",
+            "לא",
+            "הלכו",
+            "ונתיבות",
+            "מוסר"
+          ]
+        },
+        {
+          "kind": "replace",
+          "referenceStart": 123,
+          "referenceEnd": 124,
+          "observedStart": 124,
+          "observedEnd": 125,
+          "reference": [
+            "צדקתו"
+          ],
+          "observed": [
+            "צךקתו"
+          ]
+        },
+        {
+          "kind": "equal",
+          "referenceStart": 124,
+          "referenceEnd": 162,
+          "observedStart": 125,
+          "observedEnd": 163,
+          "reference": [
+            "לא",
+            "דרכו",
+            "באנה",
+            "שכנות",
+            "ציון",
+            "וישבות",
+            "סביבותיה",
+            "זכרנה",
+            "גלות",
+            "בני",
+            "ובנותי",
+            "אשר",
+            "הביא",
+            "עליהם",
+            "אל",
+            "עולם",
+            "כי",
+            "נשא",
+            "עליהם",
+            "גוי",
+            "מרחוק",
+            "גוי",
+            "עז",
+            "פנים",
+            "ונלעג",
+            "לשון",
+            "פני",
+            "זקן",
+            "לא",
+            "נשאו",
+            "ונער",
+            "לא",
+            "חננו",
+            "ויוליכו",
+            "את",
+            "אהובי",
+            "האלמנה",
+            "ואת"
+          ],
+          "observed": [
+            "לא",
+            "דרכו",
+            "באנה",
+            "שכנות",
+            "ציון",
+            "וישבות",
+            "סביבותיה",
+            "זכרנה",
+            "גלות",
+            "בני",
+            "ובנותי",
+            "אשר",
+            "הביא",
+            "עליהם",
+            "אל",
+            "עולם",
+            "כי",
+            "נשא",
+            "עליהם",
+            "גוי",
+            "מרחוק",
+            "גוי",
+            "עז",
+            "פנים",
+            "ונלעג",
+            "לשון",
+            "פני",
+            "זקן",
+            "לא",
+            "נשאו",
+            "ונער",
+            "לא",
+            "חננו",
+            "ויוליכו",
+            "את",
+            "אהובי",
+            "האלמנה",
+            "ואת"
+          ]
+        },
+        {
+          "kind": "replace",
+          "referenceStart": 162,
+          "referenceEnd": 163,
+          "observedStart": 163,
+          "observedEnd": 164,
+          "reference": [
+            "הגמודה"
+          ],
+          "observed": [
+            "הגןמודה"
+          ]
+        },
+        {
+          "kind": "equal",
+          "referenceStart": 163,
+          "referenceEnd": 174,
+          "observedStart": 164,
+          "observedEnd": 175,
+          "reference": [
+            "שכלו",
+            "מבנותיה",
+            "ואני",
+            "מה",
+            "כחי",
+            "כי",
+            "אושיעכם",
+            "וכי",
+            "אצילכם",
+            "מיד",
+            "בני"
+          ],
+          "observed": [
+            "שכלו",
+            "מבנותיה",
+            "ואני",
+            "מה",
+            "כחי",
+            "כי",
+            "אושיעכם",
+            "וכי",
+            "אצילכם",
+            "מיד",
+            "בני"
+          ]
+        },
+        {
+          "kind": "insert",
+          "referenceStart": 174,
+          "referenceEnd": 174,
+          "observedStart": 175,
+          "observedEnd": 176,
+          "reference": [],
+          "observed": [
+            "נבר"
+          ]
+        },
+        {
+          "kind": "replace",
+          "referenceStart": 174,
+          "referenceEnd": 175,
+          "observedStart": 176,
+          "observedEnd": 177,
+          "reference": [
+            "נכר"
+          ],
+          "observed": [
+            "ט"
+          ]
+        },
+        {
+          "kind": "equal",
+          "referenceStart": 175,
+          "referenceEnd": 198,
+          "observedStart": 177,
+          "observedEnd": 200,
+          "reference": [
+            "המביא",
+            "הרעות",
+            "עליכם",
+            "הוא",
+            "יציל",
+            "אתכם",
+            "מיד",
+            "אויביכם",
+            "לכו",
+            "בנים",
+            "לכו",
+            "ואני",
+            "שוממה",
+            "נשארתי",
+            "בגדי",
+            "שלום",
+            "פשטתי",
+            "ושק",
+            "ענותי",
+            "לבשתי",
+            "בימי",
+            "אקרא",
+            "יה"
+          ],
+          "observed": [
+            "המביא",
+            "הרעות",
+            "עליכם",
+            "הוא",
+            "יציל",
+            "אתכם",
+            "מיד",
+            "אויביכם",
+            "לכו",
+            "בנים",
+            "לכו",
+            "ואני",
+            "שוממה",
+            "נשארתי",
+            "בגדי",
+            "שלום",
+            "פשטתי",
+            "ושק",
+            "ענותי",
+            "לבשתי",
+            "בימי",
+            "אקרא",
+            "יה"
+          ]
+        },
+        {
+          "kind": "replace",
+          "referenceStart": 198,
+          "referenceEnd": 199,
+          "observedStart": 200,
+          "observedEnd": 201,
+          "reference": [
+            "ואל"
+          ],
+          "observed": [
+            "וואל"
+          ]
+        },
+        {
+          "kind": "equal",
+          "referenceStart": 199,
+          "referenceEnd": 207,
+          "observedStart": 201,
+          "observedEnd": 209,
+          "reference": [
+            "אלהים",
+            "ארים",
+            "קולי",
+            "אל",
+            "נא",
+            "בנים",
+            "תיראו",
+            "קראו"
+          ],
+          "observed": [
+            "אלהים",
+            "ארים",
+            "קולי",
+            "אל",
+            "נא",
+            "בנים",
+            "תיראו",
+            "קראו"
+          ]
+        },
+        {
+          "kind": "insert",
+          "referenceStart": 207,
+          "referenceEnd": 207,
+          "observedStart": 209,
+          "observedEnd": 210,
+          "reference": [],
+          "observed": [
+            "אל"
+          ]
+        },
+        {
+          "kind": "equal",
+          "referenceStart": 207,
+          "referenceEnd": 208,
+          "observedStart": 210,
+          "observedEnd": 211,
+          "reference": [
+            "אל"
+          ],
+          "observed": [
+            "אל"
+          ]
+        },
+        {
+          "kind": "replace",
+          "referenceStart": 208,
+          "referenceEnd": 209,
+          "observedStart": 211,
+          "observedEnd": 212,
+          "reference": [
+            "אלהים"
+          ],
+          "observed": [
+            "הים"
+          ]
+        },
+        {
+          "kind": "equal",
+          "referenceStart": 209,
+          "referenceEnd": 210,
+          "observedStart": 212,
+          "observedEnd": 213,
+          "reference": [
+            "והצילכם"
+          ],
+          "observed": [
+            "והצילכם"
+          ]
+        },
+        {
+          "kind": "replace",
+          "referenceStart": 210,
+          "referenceEnd": 211,
+          "observedStart": 213,
+          "observedEnd": 214,
+          "reference": [
+            "מעושק"
+          ],
+          "observed": [
+            "מעשק"
+          ]
+        },
+        {
+          "kind": "equal",
+          "referenceStart": 211,
+          "referenceEnd": 266,
+          "observedStart": 214,
+          "observedEnd": 269,
+          "reference": [
+            "מיד",
+            "אויב",
+            "ואני",
+            "אל",
+            "אל",
+            "עולם",
+            "אקוה",
+            "ישועתכם",
+            "ובאה",
+            "לי",
+            "שמחה",
+            "מעם",
+            "קדוש",
+            "על",
+            "החסד",
+            "יבואכם",
+            "מהרה",
+            "מאת",
+            "אל",
+            "מושיעכם",
+            "כי",
+            "באבל",
+            "ובבכי",
+            "שלחתיכם",
+            "ובששון",
+            "ובשמחת",
+            "עולם",
+            "ישיבכם",
+            "לי",
+            "האלהים",
+            "וכאשר",
+            "ראו",
+            "עתה",
+            "שכנות",
+            "ציון",
+            "גלותכם",
+            "כן",
+            "תראינה",
+            "מהרה",
+            "ישועת",
+            "אלהיכם",
+            "תבואכם",
+            "בכבוד",
+            "גדול",
+            "ובהדר",
+            "אל",
+            "עולם",
+            "הבליגו",
+            "בנים",
+            "על",
+            "חמת",
+            "אל",
+            "באתכם",
+            "אם",
+            "רדפך"
+          ],
+          "observed": [
+            "מיד",
+            "אויב",
+            "ואני",
+            "אל",
+            "אל",
+            "עולם",
+            "אקוה",
+            "ישועתכם",
+            "ובאה",
+            "לי",
+            "שמחה",
+            "מעם",
+            "קדוש",
+            "על",
+            "החסד",
+            "יבואכם",
+            "מהרה",
+            "מאת",
+            "אל",
+            "מושיעכם",
+            "כי",
+            "באבל",
+            "ובבכי",
+            "שלחתיכם",
+            "ובששון",
+            "ובשמחת",
+            "עולם",
+            "ישיבכם",
+            "לי",
+            "האלהים",
+            "וכאשר",
+            "ראו",
+            "עתה",
+            "שכנות",
+            "ציון",
+            "גלותכם",
+            "כן",
+            "תראינה",
+            "מהרה",
+            "ישועת",
+            "אלהיכם",
+            "תבואכם",
+            "בכבוד",
+            "גדול",
+            "ובהדר",
+            "אל",
+            "עולם",
+            "הבליגו",
+            "בנים",
+            "על",
+            "חמת",
+            "אל",
+            "באתכם",
+            "אם",
+            "רדפך"
+          ]
+        },
+        {
+          "kind": "insert",
+          "referenceStart": 266,
+          "referenceEnd": 266,
+          "observedStart": 269,
+          "observedEnd": 270,
+          "reference": [],
+          "observed": [
+            "הא"
+          ]
+        },
+        {
+          "kind": "replace",
+          "referenceStart": 266,
+          "referenceEnd": 267,
+          "observedStart": 270,
+          "observedEnd": 271,
+          "reference": [
+            "האויב"
+          ],
+          "observed": [
+            "יב"
+          ]
+        },
+        {
+          "kind": "equal",
+          "referenceStart": 267,
+          "referenceEnd": 300,
+          "observedStart": 271,
+          "observedEnd": 304,
+          "reference": [
+            "מהרה",
+            "תראה",
+            "באבדו",
+            "ואתה",
+            "על",
+            "צואריהם",
+            "תדרך",
+            "בני",
+            "טפוחי",
+            "הלכו",
+            "ארחות",
+            "עקלקלות",
+            "הובלו",
+            "כעדר",
+            "גזול",
+            "ביד",
+            "אויב",
+            "אל",
+            "תיראו",
+            "בני",
+            "וקראו",
+            "אל",
+            "האלהים",
+            "והיה",
+            "לכם",
+            "זכרון",
+            "לפני",
+            "המביא",
+            "ואת",
+            "הרעה",
+            "וכאשר",
+            "היה",
+            "עם"
+          ],
+          "observed": [
+            "מהרה",
+            "תראה",
+            "באבדו",
+            "ואתה",
+            "על",
+            "צואריהם",
+            "תדרך",
+            "בני",
+            "טפוחי",
+            "הלכו",
+            "ארחות",
+            "עקלקלות",
+            "הובלו",
+            "כעדר",
+            "גזול",
+            "ביד",
+            "אויב",
+            "אל",
+            "תיראו",
+            "בני",
+            "וקראו",
+            "אל",
+            "האלהים",
+            "והיה",
+            "לכם",
+            "זכרון",
+            "לפני",
+            "המביא",
+            "ואת",
+            "הרעה",
+            "וכאשר",
+            "היה",
+            "עם"
+          ]
+        },
+        {
+          "kind": "replace",
+          "referenceStart": 300,
+          "referenceEnd": 301,
+          "observedStart": 304,
+          "observedEnd": 305,
+          "reference": [
+            "לבבכם"
+          ],
+          "observed": [
+            "לכבכם"
+          ]
+        },
+        {
+          "kind": "equal",
+          "referenceStart": 301,
+          "referenceEnd": 327,
+          "observedStart": 305,
+          "observedEnd": 331,
+          "reference": [
+            "לתעות",
+            "מאחרי",
+            "אלהים",
+            "כן",
+            "תשובו",
+            "פי",
+            "עשרה",
+            "לבקשו",
+            "והמביא",
+            "עליכם",
+            "את",
+            "הרעות",
+            "שמחת",
+            "עולם",
+            "הוא",
+            "יביא",
+            "לכם",
+            "בישועתכם",
+            "אל",
+            "תיראי",
+            "ירושלם",
+            "אשר",
+            "נקרא",
+            "שמו",
+            "עליך",
+            "הוא"
+          ],
+          "observed": [
+            "לתעות",
+            "מאחרי",
+            "אלהים",
+            "כן",
+            "תשובו",
+            "פי",
+            "עשרה",
+            "לבקשו",
+            "והמביא",
+            "עליכם",
+            "את",
+            "הרעות",
+            "שמחת",
+            "עולם",
+            "הוא",
+            "יביא",
+            "לכם",
+            "בישועתכם",
+            "אל",
+            "תיראי",
+            "ירושלם",
+            "אשר",
+            "נקרא",
+            "שמו",
+            "עליך",
+            "הוא"
+          ]
+        },
+        {
+          "kind": "replace",
+          "referenceStart": 327,
+          "referenceEnd": 328,
+          "observedStart": 331,
+          "observedEnd": 332,
+          "reference": [
+            "ינחמך"
+          ],
+          "observed": [
+            "לנינחמך"
+          ]
+        },
+        {
+          "kind": "equal",
+          "referenceStart": 328,
+          "referenceEnd": 340,
+          "observedStart": 332,
+          "observedEnd": 344,
+          "reference": [
+            "והביא",
+            "שד",
+            "למעניך",
+            "ולשמחים",
+            "לאידך",
+            "שד",
+            "לערים",
+            "אשר",
+            "העבידו",
+            "את",
+            "בניך",
+            "שד"
+          ],
+          "observed": [
+            "והביא",
+            "שד",
+            "למעניך",
+            "ולשמחים",
+            "לאידך",
+            "שד",
+            "לערים",
+            "אשר",
+            "העבידו",
+            "את",
+            "בניך",
+            "שד"
+          ]
+        },
+        {
+          "kind": "replace",
+          "referenceStart": 340,
+          "referenceEnd": 341,
+          "observedStart": 344,
+          "observedEnd": 345,
+          "reference": [
+            "לגוזלת"
+          ],
+          "observed": [
+            "לנזלת"
+          ]
+        },
+        {
+          "kind": "equal",
+          "referenceStart": 341,
+          "referenceEnd": 355,
+          "observedStart": 345,
+          "observedEnd": 359,
+          "reference": [
+            "את",
+            "בניך",
+            "כי",
+            "כאשר",
+            "שמחה",
+            "לאידך",
+            "וששה",
+            "לשברך",
+            "כן",
+            "תעצב",
+            "על",
+            "שוממותה",
+            "היא",
+            "ומשוש"
+          ],
+          "observed": [
+            "את",
+            "בניך",
+            "כי",
+            "כאשר",
+            "שמחה",
+            "לאידך",
+            "וששה",
+            "לשברך",
+            "כן",
+            "תעצב",
+            "על",
+            "שוממותה",
+            "היא",
+            "ומשוש"
+          ]
+        },
+        {
+          "kind": "replace",
+          "referenceStart": 355,
+          "referenceEnd": 356,
+          "observedStart": 359,
+          "observedEnd": 360,
+          "reference": [
+            "המונה"
+          ],
+          "observed": [
+            "המינה"
+          ]
+        },
+        {
+          "kind": "equal",
+          "referenceStart": 356,
+          "referenceEnd": 385,
+          "observedStart": 360,
+          "observedEnd": 389,
+          "reference": [
+            "אשבית",
+            "ממנה",
+            "ועליצותה",
+            "אהפך",
+            "לאבל",
+            "כי",
+            "אש",
+            "מעם",
+            "יי",
+            "תבא",
+            "עליה",
+            "לימים",
+            "רבים",
+            "והיתה",
+            "מושב",
+            "לשעירים",
+            "לנצח",
+            "נצחים",
+            "שאי",
+            "עיניך",
+            "מזרחה",
+            "ירושלם",
+            "וראי",
+            "השמחה",
+            "הבאה",
+            "לך",
+            "מאת",
+            "אלהים",
+            "הנה"
+          ],
+          "observed": [
+            "אשבית",
+            "ממנה",
+            "ועליצותה",
+            "אהפך",
+            "לאבל",
+            "כי",
+            "אש",
+            "מעם",
+            "יי",
+            "תבא",
+            "עליה",
+            "לימים",
+            "רבים",
+            "והיתה",
+            "מושב",
+            "לשעירים",
+            "לנצח",
+            "נצחים",
+            "שאי",
+            "עיניך",
+            "מזרחה",
+            "ירושלם",
+            "וראי",
+            "השמחה",
+            "הבאה",
+            "לך",
+            "מאת",
+            "אלהים",
+            "הנה"
+          ]
+        },
+        {
+          "kind": "replace",
+          "referenceStart": 385,
+          "referenceEnd": 386,
+          "observedStart": 389,
+          "observedEnd": 390,
+          "reference": [
+            "בניך"
+          ],
+          "observed": [
+            "כניך"
+          ]
+        },
+        {
+          "kind": "equal",
+          "referenceStart": 386,
+          "referenceEnd": 391,
+          "observedStart": 390,
+          "observedEnd": 395,
+          "reference": [
+            "אשר",
+            "שלחת",
+            "יבאו",
+            "לך",
+            "נקבצים"
+          ],
+          "observed": [
+            "אשר",
+            "שלחת",
+            "יבאו",
+            "לך",
+            "נקבצים"
+          ]
+        },
+        {
+          "kind": "replace",
+          "referenceStart": 391,
+          "referenceEnd": 392,
+          "observedStart": 395,
+          "observedEnd": 396,
+          "reference": [
+            "ממזרח"
+          ],
+          "observed": [
+            "ממןרח"
+          ]
+        },
+        {
+          "kind": "equal",
+          "referenceStart": 392,
+          "referenceEnd": 393,
+          "observedStart": 396,
+          "observedEnd": 397,
+          "reference": [
+            "וממערב"
+          ],
+          "observed": [
+            "וממערב"
+          ]
+        },
+        {
+          "kind": "replace",
+          "referenceStart": 393,
+          "referenceEnd": 394,
+          "observedStart": 397,
+          "observedEnd": 398,
+          "reference": [
+            "בדבר"
+          ],
+          "observed": [
+            "בךבר"
+          ]
+        },
+        {
+          "kind": "equal",
+          "referenceStart": 394,
+          "referenceEnd": 399,
+          "observedStart": 398,
+          "observedEnd": 403,
+          "reference": [
+            "קדוש",
+            "וישמחו",
+            "בכבוד",
+            "אלהים",
+            "יעלזו"
+          ],
+          "observed": [
+            "קדוש",
+            "וישמחו",
+            "בכבוד",
+            "אלהים",
+            "יעלזו"
+          ]
+        }
+      ],
+      "notes": [
+        "An alignment is a review aid, not a verified verse crosswalk.",
+        "Niqqud and punctuation still require separate image comparison.",
+        "Text differences are not an OCR accuracy measurement without a scan-checked matching reference."
+      ],
+      "chapter": 4,
+      "draftText": "זֶה־סֵפֶר מִצְוֹת הָאֱלֹהִים וְהַתּוֹרָה הָעוֹמֶדֶת לְעוֹלָם כָּל־מַחֲזִיקֶיהָ לְחַיִּים וְעוֹזְבֶיהָ יָמוּתוּ׃ שׁוּבָה יַעֲקֹב וְהַחֲזֵק־בָּהּ הִתְהַלֵּךְ לְנָגְהָהּ לִפְנֵי אוֹרָהּ׃ אַל־תִּתֵּן לְאַחֵר כְּבוֹדֶךָ וְיִתְרוֹנְךָ לְעַם נָכְרִי׃ אַשְׁרֵינוּ יִשְׂרָאֵל כִּי טוֹב הָאֱלֹהִים לָנוּ נוֹדָע׃ אַל־תִּירָא עַמִּי זֵכֶר יִשְׂרָאֵל׃ נִמְכַּרְתֶּם לַגּוֹיִם לֹא לְהַשְׁמִיד כִּי יַעַן הִכְעַסְתֶּם אֶת־אֱלֹהִים הֻסְגַּרְתֶּם לַצָּרִים׃ כִּי הִקְנֵאתֶם עוֹשְׂכֶם זְבַחְתֶּם לַשֵּׁדִים לֹא אֱלוֹהַּ׃ וַתִּשְׁכְּחוּ אֵל מְחוֹלֶלְכֶם אֵל עוֹלָם אַף הֶעֱצַבְתֶּם יְרוּשָׁלַם זוּ יוֹלַדְתְּכֶם׃ רָאֲתָה חֲמַת הָאֱלֹהִים עֲלֵיכֶם וַתֹּאמַר שְׁמַעְנָה שְׁכֵנוֹת צִיּוֹן הֵבִיא אֱלֹהִים עָלַי אֵבֶל גָּדוֹל׃ כִּי רָאִיתִי שְׁבִי בָנַי וּבְנוֹתַי אֲשֶׁר הֵבִיא עֲלֵיהֶם אֵל עוֹלָם׃ בְּשָׂשׂוֹן גִּדַּלְתִּים וּבִבְכִי וְאֵבֶל שִׁלַּחְתִּים׃ אִישׁ אַל יִשְׂמַח־לִי [וְאַל־יַגְדֵּל פִּיו] הָאַלְמָנָה וַעֲזוּבַת הָרַבִּים עַל־חַטֹּאת בָּנַי נְשַׁמּוֹתִי׃ יַעַן מִתּוֹרַת אֱלֹהִים סָרוּ וְחֻקּוֹתָיו לֹא יָדָעוּ בְּדַרְכֵי מִצְוֹת אֱלֹהִים לֹא הָלָכוּ וּנְתִיבוֹת מוּסַר צִדְקָתוֹ לֹא דָרָכוּ׃ בֹּאנָה שְׁכֵנוֹת צִיּוֹן [וְיֹשְׁבוֹת סְבִיבוֹתֶיהָ] זְכֹרְנָה גָּלוּת בָּנַי וּבְנוֹתַי אֲשֶׁר הֵבִיא עֲלֵיהֶם אֵל עוֹלָם׃ כִּי נָשָׂא עֲלֵיהֶם גּוֹי מֵרָחוֹק גּוֹי עַז־פָּנִים וְנִלְעַג לָשׁוֹן פְּנֵי זָקֵן לֹא נָשָׂאוּ וְנַעַר לֹא חָנָנוּ׃ וַיּוֹלִיכוּ אֶת־אֲהוּבֵי הָאַלְמָנָה וְאֶת־הַגְּמוּדָה שִׁכְּלוּ מִבְּנוֹתֶיהָ׃ וַאֲנִי מַה־כֹּחִי כִּי אוֹשִׁיעֲכֶם [וְכִי אַצִּילְכֶם מִיַּד בְּנֵי־נֵכָר]׃ הַמֵּבִיא הָרָעוֹת עֲלֵיכֶם [הוּא] יַצִּיל אֶתְכֶם מִיַּד אוֹיְבֵיכֶם׃ לְכוּ בָנִים לְכוּ וַאֲנִי שׁוֹמֵמָה נִשְׁאַרְתִּי׃ בִּגְדֵי שָׁלוֹם פָּשַׁטְתִּי וְשַׂק עֱנוּתִי לָבַשְׁתִּי בְּיָמַי אֶקְרָא יָהּ [וְאֶל־אֱלֹהִים אָרִים קוֹלִי]׃ אַל־נָא בָנִים תִּירָאוּ קִרְאוּ אֶל־אֱלֹהִים וְהִצִּילְכֶם מֵעוֹשֶׁק מִיַּד אוֹיֵב׃ וַאֲנִי אֶל־אֵל־עוֹלָם אֲקַוֶּה יְשׁוּעַתְכֶם וּבָאָה לִי שִׂמְחָה מֵעַם־קָדוֹשׁ עַל־הַחֶסֶד יְבוֹאֲכֶם מְהֵרָה מֵאֵת אֵל מוֹשִׁיעֲכֶם׃ כִּי בְאֵבֶל וּבִבְכִי שִׁלַּחְתִּיכֶם וּבְשָׂשׂוֹן וּבְשִׂמְחַת־עוֹלָם יְשִׁיבְכֶם־לִי הָאֱלֹהִים׃ וְכַאֲשֶׁר רָאוּ עַתָּה שְׁכֵנוֹת צִיּוֹן גָּלוּתְכֶם כֵּן תִּרְאֶינָה מְהֵרָה יְשׁוּעַת אֱלֹהֵיכֶם תְּבוֹאֲכֶם בְּכָבוֹד גָּדוֹל וּבַהֲדַר אֵל עוֹלָם׃ הַבְלִיגוּ בָנִים עַל חֲמַת־אֵל בָּאַתְכֶם אִם רְדָפְךָ הָאוֹיֵב מְהֵרָה תִרְאֶה בְאָבְדוֹ וְאַתָּה עַל־צַוָּארֵיהֶם תִּדְרֹךְ׃ בָּנַי טִפּוּחַי הָלְכוּ אָרְחוֹת עֲקַלְקַלּוֹת הוּבְלוּ כְּעֵדֶר גָּזוּל בְּיַד אוֹיֵב׃ אַל־תִּירְאוּ בָנַי [וְקִרְאוּ אֶל־הָאֱלֹהִים וְהָיָה לָכֶם זִכָּרוֹן לִפְנֵי הַמֵּבִיא וְאֶת־הָרָעָה]׃ וְכַאֲשֶׁר הָיָה עִם־לְבַבְכֶם לִתְעוֹת מֵאַחֲרֵי אֱלֹהִים כֵּן תָּשׁוּבוּ פִּי־עֲשָׂרָה לְבַקְשׁוֹ׃ וְהַמֵּבִיא עֲלֵיכֶם אֶת־הָרָעוֹת שִׂמְחַת עוֹלָם הוּא יָבִיא לָכֶם בִּישׁוּעַתְכֶם׃ אַל תִּירְאִי יְרוּשָׁלַם אֲשֶׁר נִקְרָא שְׁמוֹ עָלַיִךְ הוּא יְנַחֲמֵךְ׃ [וְהֵבִיא] שֹׁד לִמְעַנַּיִךְ וְלַשְּׂמֵחִים לְאֵידֵךְ׃ שֹׁד לְעָרִים אֲשֶׁר הֶעֱבִידוּ אֶת־בָּנַיִךְ שֹׁד לְגוֹזֶלֶת אֶת־בָּנָיִךְ׃ כִּי כַאֲשֶׁר שָׂמְחָה לְאֵידֵךְ וְשָׂשָׂה לְשִׁבְרֵךְ כֵּן תֶּעֱצַב עַל־שׁוֹמְמוּתָהּ־הִיא׃ וּמְשׂוֹשׂ הֲמוֹנָהּ אַשְׁבִּית מִמֶּנָּהּ וַעֲלִיצוּתָהּ אֶהֱפֹךְ לְאֵבֶל׃ כִּי־אֵשׁ מֵעִם־יְיָ תָּבֹא עָלֶיהָ לְיָמִים רַבִּים וְהָיְתָה מוֹשַׁב לַשְּׂעִירִים לְנֵצַח נְצָחִים׃ שְׂאִי עֵינַיִךְ מִזְרָחָה יְרוּשָׁלַם וּרְאִי הַשִּׂמְחָה הַבָּאָה לָךְ מֵאֵת אֱלֹהִים׃ הִנֵּה בָנַיִךְ אֲשֶׁר שִׁלַּחְתְּ יָבֹאוּ לָךְ נִקְבָּצִים מִמִּזְרָח וּמִמַּעֲרָב בִּדְבַר קָדוֹשׁ [וְיִשְׂמְחוּ] בִּכְבוֹד אֱלֹהִים יַעֲלֹזוּ׃",
+      "rawOCRText": "זה-ספר מצות האלהים והתורה העמדת לעולם כל-מחזיקיה\nלחיים ועוזביה ימותו: שובה יעקב והחזק-בה התהלך לנגהה\nלפני אורה: אַל-תתן לאַחר כּבודך ויתרונף לעם נכרי: אַשרינו\nישראַל כי טוב האלהים לנו נודע: אַל-תירא עמי זכר ישראַל:\nנמכרתם לנוים לא להשמיד כי יען הכעסתם את-אלהים הסגרתל\nלצרים: כי הקיאתם עושכם זבחתם לשדים לא אלוה: ותשקחו\nאל מחוללכם אל עילם אף העצבתם ירושלם זו יולךתכם: ראָתה\nחמת האלהים עליכם ותאמר שמענה שכנות ציון הביא אלהים\nעלי אַבל גדול: כי ראיתי שבי כני ובנותי אשר הביא עליהם\nאל עולם: בששון נדל'תים ובבכי ואבל שלחתים: איש אַל\nישמח-לי וואַל-יגדל פיו] האלמנה ועזובת הרבים על-הטאת בני\nנשמותי: יען מתורת אלהים סרו וחקותיו לא ידעו בדרכי מצות\nאלהים לא הלכו ונתיבות מוסר צךקתו לא דרכו: באנה שכנות\nציון וישבות סביבותיה) זכרנה גלות בּני ובנותי אשר הביא עליהם אַל\nעולם: כי נשא עליהם גוי מרחוק גוי עז-פנים ונלעג לשון פני זקן\nלא נשאו ונער לא חננו: ויוליכו את-אָהובי האַלמנה ואָת-הגןמודה\nשכלו מבנותיה: ואָני מה-כחי כי אושיעכם (וכי אַצילכם מיד בני-נבר]:\nט המביא הרעות עליכם (הוא] יציל אתכם מיד אויביכם: לכו בנים לכו\nואני שוממה נשארתי: בגדי שלום פשטתי ושק ענותי לבשתי בימי\nאקרא יה וואָל-אלהים ארים קולי]: אל-נא בנים תיראו קראו אָל-\nאל הים והצילכם מעשק מיד אויב: ואני אל-אַל-עולם אקוה ישועתכם\nובאה לי שמחה מעם-קדוש על-החסד יבואָכם מהרה מאת אל\nמושיעכם: כי באבל ובבכי שלחתיכם ובששון ובשמחת-עולם\nישיבכם-לי האלהים: וכאשר ראו עתה שכנות ציון גלותכם כן\nתראינה מהרה ישועת אלהיכם תבואכם בכבוד גדול ובהדר אל\nעולם: הבליגו בנים על חמת-אל באַתכם אם רדפך הא יב\nמהרה תראָה באָבדו ואַתה על-צואריהם תדרך: בני טפּוחי הלכו\nארחות עקלקלות הובלו כעדר גזול ביד אויב: אַל-תיראו בני\nוקראו אָל-האָלהים והיה לכם זכרון לפני המביא ואָת-הרעה]:\nוכאשר היה עם-לכבכם לתעות מאחרי אלהים כן תשובו פי-\nעשרה לבקשו: והמביא עליכם את-הרעות שמחת עולם הוא יביא\nלכם בישועתכם: אל תיראי ירושלם אשר נקרא שמו עליך הוא\n-לנינחמך: (והביא] שד למעניך ולשמחים לאידך: שד לערים אשר\nהעבידו את-בּניך שד לנזלת אָת-בּניך: כי כאשר שמחה לאידך\nוששה לשברך כן תעצב על-שוממותה-היא: ומשוש המינה\nאשבית ממנה ועליצותה אהפך לאבל: כי-אש מעם-יי תבא עליה\nלימים רבים והיתה מושב לשעירים לנצח נצחים: שאי עיניך\nמזרחה ירושלם וראי השמחה הבאה לך מאַת אלהים: הנה כניך\nאשר שלחת יבאו לך נקבּצים ממןרח וממערב בךבר קדוש וישמחו]\nבכבוד אלהים יעלזו:"
+    },
+    {
+      "schemaVersion": 1,
+      "purpose": "review-only",
+      "relationship": "scan-transcription",
+      "referenceStatus": "unreviewed",
+      "productionEligible": false,
+      "referenceSHA256": "e33ca66ba333e53539c35ebae6f05dd910f44ac1992c0b06b3efde5819fd90cd",
+      "observedSHA256": "15e51f31d2164c3ec89ebbbcfcb2d31fa9182f177f78f21b617b5a1510b884e0",
+      "normalization": "Combining marks and punctuation removed for comparison only; spelling preserved.",
+      "referenceWords": 113,
+      "observedWords": 113,
+      "wordOperations": {
+        "equal": 105,
+        "replace": 8,
+        "delete": 0,
+        "insert": 0
+      },
+      "matchingReferenceFraction": 0.9292035398230089,
+      "tokenDifferenceRate": 0.07079646017699115,
+      "alignment": [
+        {
+          "kind": "equal",
+          "referenceStart": 0,
+          "referenceEnd": 12,
+          "observedStart": 0,
+          "observedEnd": 12,
+          "reference": [
+            "הסירי",
+            "ירושלם",
+            "בגדי",
+            "אבלך",
+            "ועניך",
+            "ולבשי",
+            "תפארת",
+            "כבוד",
+            "אלהים",
+            "לעולם",
+            "עטי",
+            "מעיל"
+          ],
+          "observed": [
+            "הסירי",
+            "ירושלם",
+            "בגדי",
+            "אבלך",
+            "ועניך",
+            "ולבשי",
+            "תפארת",
+            "כבוד",
+            "אלהים",
+            "לעולם",
+            "עטי",
+            "מעיל"
+          ]
+        },
+        {
+          "kind": "replace",
+          "referenceStart": 12,
+          "referenceEnd": 13,
+          "observedStart": 12,
+          "observedEnd": 13,
+          "reference": [
+            "צדקת"
+          ],
+          "observed": [
+            "צךקת"
+          ]
+        },
+        {
+          "kind": "equal",
+          "referenceStart": 13,
+          "referenceEnd": 19,
+          "observedStart": 13,
+          "observedEnd": 19,
+          "reference": [
+            "אלהים",
+            "ושימי",
+            "על",
+            "ראשך",
+            "פאר",
+            "כבוד"
+          ],
+          "observed": [
+            "אלהים",
+            "ושימי",
+            "על",
+            "ראשך",
+            "פאר",
+            "כבוד"
+          ]
+        },
+        {
+          "kind": "replace",
+          "referenceStart": 19,
+          "referenceEnd": 20,
+          "observedStart": 19,
+          "observedEnd": 20,
+          "reference": [
+            "יי"
+          ],
+          "observed": [
+            "וי"
+          ]
+        },
+        {
+          "kind": "equal",
+          "referenceStart": 20,
+          "referenceEnd": 43,
+          "observedStart": 20,
+          "observedEnd": 43,
+          "reference": [
+            "כי",
+            "תחת",
+            "כל",
+            "השמים",
+            "יראה",
+            "אלהים",
+            "הדרך",
+            "וקרא",
+            "לך",
+            "מאת",
+            "אלהים",
+            "שם",
+            "עולם",
+            "שלום",
+            "צדקה",
+            "וכבוד",
+            "יראת",
+            "יי",
+            "קומי",
+            "ירושלם",
+            "ועמדי",
+            "על",
+            "הר"
+          ],
+          "observed": [
+            "כי",
+            "תחת",
+            "כל",
+            "השמים",
+            "יראה",
+            "אלהים",
+            "הדרך",
+            "וקרא",
+            "לך",
+            "מאת",
+            "אלהים",
+            "שם",
+            "עולם",
+            "שלום",
+            "צדקה",
+            "וכבוד",
+            "יראת",
+            "יי",
+            "קומי",
+            "ירושלם",
+            "ועמדי",
+            "על",
+            "הר"
+          ]
+        },
+        {
+          "kind": "replace",
+          "referenceStart": 43,
+          "referenceEnd": 44,
+          "observedStart": 43,
+          "observedEnd": 44,
+          "reference": [
+            "גבה"
+          ],
+          "observed": [
+            "גבוה"
+          ]
+        },
+        {
+          "kind": "equal",
+          "referenceStart": 44,
+          "referenceEnd": 63,
+          "observedStart": 44,
+          "observedEnd": 63,
+          "reference": [
+            "ושאי",
+            "עיניך",
+            "מזרחה",
+            "וראי",
+            "בניך",
+            "נקבצו",
+            "ממערב",
+            "שמש",
+            "וממזרחה",
+            "שמחים",
+            "לאמרת",
+            "קדוש",
+            "כי",
+            "זכרם",
+            "אלהים",
+            "כי",
+            "ברגל",
+            "מעמך",
+            "יצאו"
+          ],
+          "observed": [
+            "ושאי",
+            "עיניך",
+            "מזרחה",
+            "וראי",
+            "בניך",
+            "נקבצו",
+            "ממערב",
+            "שמש",
+            "וממזרחה",
+            "שמחים",
+            "לאמרת",
+            "קדוש",
+            "כי",
+            "זכרם",
+            "אלהים",
+            "כי",
+            "ברגל",
+            "מעמך",
+            "יצאו"
+          ]
+        },
+        {
+          "kind": "replace",
+          "referenceStart": 63,
+          "referenceEnd": 64,
+          "observedStart": 63,
+          "observedEnd": 64,
+          "reference": [
+            "נתונים"
+          ],
+          "observed": [
+            "נהונים"
+          ]
+        },
+        {
+          "kind": "equal",
+          "referenceStart": 64,
+          "referenceEnd": 77,
+          "observedStart": 64,
+          "observedEnd": 77,
+          "reference": [
+            "ביד",
+            "אויב",
+            "וכעל",
+            "כסא",
+            "מלוכה",
+            "מובלים",
+            "בכבוד",
+            "יביאם",
+            "לך",
+            "אלהים",
+            "כי",
+            "כל",
+            "הר"
+          ],
+          "observed": [
+            "ביד",
+            "אויב",
+            "וכעל",
+            "כסא",
+            "מלוכה",
+            "מובלים",
+            "בכבוד",
+            "יביאם",
+            "לך",
+            "אלהים",
+            "כי",
+            "כל",
+            "הר"
+          ]
+        },
+        {
+          "kind": "replace",
+          "referenceStart": 77,
+          "referenceEnd": 78,
+          "observedStart": 77,
+          "observedEnd": 78,
+          "reference": [
+            "גבה"
+          ],
+          "observed": [
+            "גבוה"
+          ]
+        },
+        {
+          "kind": "equal",
+          "referenceStart": 78,
+          "referenceEnd": 80,
+          "observedStart": 78,
+          "observedEnd": 80,
+          "reference": [
+            "וגבעות",
+            "עולם"
+          ],
+          "observed": [
+            "וגבעות",
+            "עולם"
+          ]
+        },
+        {
+          "kind": "replace",
+          "referenceStart": 80,
+          "referenceEnd": 81,
+          "observedStart": 80,
+          "observedEnd": 81,
+          "reference": [
+            "בדבר"
+          ],
+          "observed": [
+            "בךבר"
+          ]
+        },
+        {
+          "kind": "equal",
+          "referenceStart": 81,
+          "referenceEnd": 83,
+          "observedStart": 81,
+          "observedEnd": 83,
+          "reference": [
+            "אלהים",
+            "ישפלו"
+          ],
+          "observed": [
+            "אלהים",
+            "ישפלו"
+          ]
+        },
+        {
+          "kind": "replace",
+          "referenceStart": 83,
+          "referenceEnd": 84,
+          "observedStart": 83,
+          "observedEnd": 84,
+          "reference": [
+            "וגיאות"
+          ],
+          "observed": [
+            "וניאיות"
+          ]
+        },
+        {
+          "kind": "equal",
+          "referenceStart": 84,
+          "referenceEnd": 97,
+          "observedStart": 84,
+          "observedEnd": 97,
+          "reference": [
+            "ינשאו",
+            "למישור",
+            "הארץ",
+            "למען",
+            "ילכו",
+            "ישראל",
+            "לבטח",
+            "לכבוד",
+            "אלהים",
+            "ויערות",
+            "וכל",
+            "עצי",
+            "בשם"
+          ],
+          "observed": [
+            "ינשאו",
+            "למישור",
+            "הארץ",
+            "למען",
+            "ילכו",
+            "ישראל",
+            "לבטח",
+            "לכבוד",
+            "אלהים",
+            "ויערות",
+            "וכל",
+            "עצי",
+            "בשם"
+          ]
+        },
+        {
+          "kind": "replace",
+          "referenceStart": 97,
+          "referenceEnd": 98,
+          "observedStart": 97,
+          "observedEnd": 98,
+          "reference": [
+            "בדבר"
+          ],
+          "observed": [
+            "בךבר"
+          ]
+        },
+        {
+          "kind": "equal",
+          "referenceStart": 98,
+          "referenceEnd": 113,
+          "observedStart": 98,
+          "observedEnd": 113,
+          "reference": [
+            "אלהים",
+            "על",
+            "ישראל",
+            "יסכו",
+            "כי",
+            "בשמחה",
+            "יוביל",
+            "אלהים",
+            "את",
+            "ישראל",
+            "באור",
+            "כבודו",
+            "ובחסד",
+            "ובצדקה",
+            "מאתו"
+          ],
+          "observed": [
+            "אלהים",
+            "על",
+            "ישראל",
+            "יסכו",
+            "כי",
+            "בשמחה",
+            "יוביל",
+            "אלהים",
+            "את",
+            "ישראל",
+            "באור",
+            "כבודו",
+            "ובחסד",
+            "ובצדקה",
+            "מאתו"
+          ]
+        }
+      ],
+      "notes": [
+        "An alignment is a review aid, not a verified verse crosswalk.",
+        "Niqqud and punctuation still require separate image comparison.",
+        "Text differences are not an OCR accuracy measurement without a scan-checked matching reference."
+      ],
+      "chapter": 5,
+      "draftText": "הָסִירִי יְרוּשָׁלַם בִּגְדֵי אֶבְלֵךְ וְעָנְיֵךְ וְלִבְשִׁי תִּפְאֶרֶת כְּבוֹד אֱלֹהִים לְעוֹלָם׃ עֲטִי מְעִיל צִדְקַת אֱלֹהִים וְשִׂימִי עַל־רֹאשֵׁךְ פְּאֵר כְּבוֹד יְיָ׃ כִּי תַחַת כָּל־הַשָּׁמַיִם יַרְאֶה אֱלֹהִים הֲדָרֵךְ׃ וְקָרָא לָךְ מֵאֵת אֱלֹהִים שֵׁם עוֹלָם שְׁלוֹם־צְדָקָה וּכְבוֹד יִרְאַת יְיָ׃ קוּמִי יְרוּשָׁלַם וְעִמְדִי עַל־הַר גָּבֹהַּ וּשְׂאִי עֵינַיִךְ מִזְרָחָה וּרְאִי בָנַיִךְ נִקְבָּצוּ מִמַּעֲרַב שֶׁמֶשׁ וּמִמִּזְרָחָה שְׂמֵחִים לְאִמְרַת קָדוֹשׁ כִּי זְכָרָם אֱלֹהִים׃ כִּי בְרֶגֶל מֵעִמֵּךְ יָצָאוּ נְתוּנִים בְּיַד אוֹיֵב וּכְעַל כִּסֵּא־מְלוּכָה מוּבָלִים בְּכָבוֹד יְבִיאֵם לָךְ אֱלֹהִים׃ כִּי כָל־הַר גָּבֹהַּ וְגִבְעוֹת עוֹלָם בִּדְבַר אֱלֹהִים יִשְׁפְּלוּ וּגְיָאוֹת יִנָּשְׂאוּ לְמִישׁוֹר הָאָרֶץ לְמַעַן יֵלְכוּ יִשְׂרָאֵל לָבֶטַח לִכְבוֹד אֱלֹהִים׃ וִיעָרוֹת וְכָל־עֲצֵי־בֹשֶׂם בִּדְבַר אֱלֹהִים עַל־יִשְׂרָאֵל יָסֹכּוּ׃ כִּי בְשִׂמְחָה יוֹבִיל אֱלֹהִים אֶת־יִשְׂרָאֵל בְּאוֹר כְּבוֹדוֹ וּבְחֶסֶד וּבִצְדָקָה מֵאִתּוֹ׃",
+      "rawOCRText": "הסירי ירושלם בגדי אבלך ועניך ולבשי תפאָרת כּבוד\nאלהים לעולם: עטי מעיל צךקת אלהים ושימי על-ראשך פאר\n כבוד וי: כי תחת כל-השמים יראָה אלהים הדרך: וקרא לך\nמאַת אלהים שם עולם שלום-צדקה וכבוד יראַת יי: קומי\nירושלם ועמדי על-הר גבוה ושאי עיניך מזרחה וראי בניך נקבּצו\nממערב שמש וממזרחה שמחים לאמרת קדוש כי זכרם אלהים:\nכי ברגל מעמך יצאו נהונים ביד אויב וכעל כסא-מלוכה מובלים\nבכבוד יביאַם לך אלהים: כי כל-הר גבוה וגבעות עולם בךבר\nאלהים ישפלו וניאיות ינשאו למישור הארץ למען ילכו ישראל\nלבטח לכבוד אלהים: ויערות וכל-עצי-בשם בךבר אלהים על-\nישראל יסכּו: כי בשמחה יוביל אלהים את-ישראל באור כבודו\nובחסד ובצדקה מאתו:"
+    }
+  ]
+}

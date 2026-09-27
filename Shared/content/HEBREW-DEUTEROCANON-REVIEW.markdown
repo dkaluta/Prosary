@@ -43,6 +43,9 @@ headers, footnote markers or conjectured repairs. A verse continuing onto the ne
 records both pages. Text hashes cover the exact UTF-8 text alone. A missing or uncertain
 word remains an unresolved finding and prevents a complete review status. OCR and online
 transcriptions may provide a draft, but are not evidence of a completed print comparison.
+The user explicitly confirmed on 27 September 2026 that the reader must retain the
+printed vowel points. Unpointed reference excerpts are useful for checking consonants,
+but do not replace or approve the source's niqqud.
 
 Wikisource comparisons retain the source page revision, translator and relationship to
 the printed edition. `Shared/tools/hebrew_ocr_baseline.py` aligns explicitly selected
@@ -83,6 +86,28 @@ as its translator. The two recensions' numbering is not interchangeable.
 
 The reference scans remain in local research storage, rather than being copied into each
 native app. Completed text imports and source evidence are canonical shared data.
+
+An additional scan of volume B from Wikisource provides clearer letter and vowel detail:
+[`Apocrypha_Kahana_B_extra_scan.pdf`](https://he.wikisource.org/wiki/קובץ:Apocrypha_Kahana_B_extra_scan.pdf),
+272 spreads, SHA-256 `b72eaf5d2d858fabb7c3438ac0436ccd64c394a7dd2fad609efabe628d5534c7`.
+Match each spread side to the original scan by wording, layout and printed page number;
+there is no reliable single page offset throughout the volume. Book-specific evidence
+records those pairings and crop hashes. The original scan remains the canonical page
+reference. Clearer images can supersede earlier tentative letter or vowel readings;
+retain the correction history and never treat the old draft as ground truth.
+
+Source structure also needs independent checking. Baruch's separately audited margin
+inventory is `Shared/reports/hebrew-wikisource/BAR-print-inventory.json`: 123 printed
+units across five chapters. Its last chapter 3 label is 37, followed by an unnumbered
+continuation before chapter 4. That continuation is preserved; a printed label 38 or
+a crosswalk to another edition is not invented. Margin labels may begin a new unit
+partway through a physical line, so page crossings cannot be inferred from line starts.
+
+Sirach's draft records internal headings, repeated main-body manuscript witnesses,
+subverse labels, and cross-chapter physical-order exceptions separately in review
+evidence. These require a shared representation before import. Do not discard them,
+merge distinct witnesses into one verse, or silently relabel them to satisfy the current
+numeric unit contract. Their presence in review evidence is not production support.
 
 ## Import and release gates
 

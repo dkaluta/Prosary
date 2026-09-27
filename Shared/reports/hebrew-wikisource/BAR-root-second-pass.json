@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "book": "BAR",
+  "productionEligible": false,
+  "status": "partial second comparison, not completed page review",
+  "findings": [
+    {
+      "unit": "1:22",
+      "before": "בִּשְׁרִרוּת",
+      "after": "בִּשְׁרִירוּת",
+      "basis": "Independent second reader and root both confirmed the additional yod from A2-30-v22-shrirut-correct.png."
+    },
+    {
+      "unit": "3:35",
+      "before": "עוֹשֵׂיהֶם",
+      "after": "עוֹשֵׂהֶם",
+      "basis": "Enlarged final block on PDF33 prints the defective suffix spelling; no yod between shin and heh."
+    },
+    {
+      "unit": "4:1",
+      "before": "הָעוֹמֶדֶת",
+      "after": "הָעֹמֶדֶת",
+      "basis": "Enlarged chapter4 opening on PDF33 clearly prints העמדת without vav after ayin."
+    },
+    {
+      "unit": "4:21",
+      "before": "מֵעוֹשֶׁק",
+      "after": "מֵעֹשֶׁק",
+      "basis": "Source PDF34 prints מעשק without vav; preserve the visible defective spelling."
+    }
+  ],
+  "openQueries": [
+    "Literal lamed marks in Baruch1 Jerusalem forms; name yod dagesh queries are in BAR-chapter1-review.json.",
+    "4:31–32 לגזלת versus לגוזלת: recheck the possible vav separately.",
+    "All remaining page31–35 vowel points and punctuation require complete comparison."
+  ]
+}

@@ -1,0 +1,729 @@
+{
+  "schemaVersion": 1,
+  "book": "BAR",
+  "chapter": 1,
+  "reviewDate": "2026-09-27",
+  "status": "chapter1-comparison-complete-with-scoped-source-decisions",
+  "productionEligible": false,
+  "scope": "All20 source units covering printed labels1–22 on A2 PDF29–30. This is a bounded second visual comparison, not a whole-book review.",
+  "method": "Compared the current pointed draft word by word with enlarged source body crops, including names, full/defective spelling, brackets, maqaf and sof pasuq. Targeted questionable glyphs with12× PDF renders. No OCR or another translation supplied any wording. Margin units independently established in BAR-print-inventory.json.",
+  "scan": {
+    "volume": "A2",
+    "sha256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+    "pageCount": 325,
+    "textPages": [
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35
+    ]
+  },
+  "sourceDraftFile": "Shared/content/hebrew-deuterocanon/BAR.json",
+  "sourceDraftFileSHA256": "becb82d560bfce25492001a1a2d746e6b2375a76dee09e803ba4be68aeadd9b7",
+  "reviewedPages": [
+    29,
+    30
+  ],
+  "pageDisposition": [
+    {
+      "pdfPage": 29,
+      "status": "complete-independent-word-point-punctuation-comparison",
+      "reason": "All scripture on this page has been compared; the explicit findings/queries are resolved through the recorded source-backed correction and scoped user/source-glyph decisions. No other unresolved issue was identified."
+    },
+    {
+      "pdfPage": 30,
+      "status": "complete-independent-word-point-punctuation-comparison",
+      "reason": "All scripture on this page has been compared; the explicit findings/queries are resolved through the recorded source-backed correction and scoped user/source-glyph decisions. No other unresolved issue was identified."
+    }
+  ],
+  "findings": [
+    {
+      "id": "BAR-1-22-full-spelling",
+      "unit": "1:22",
+      "kind": "source-visible-consonantal-deviation",
+      "status": "independently-confirmed-and-applied-by-owner",
+      "current": "בִּשְׁרִרוּת",
+      "sourceReading": "בִּשְׁרִירוּת",
+      "description": "The print has a discrete yod between the two resh letters. Retain this full spelling; do not normalize to the defective spelling used in the draft. This finding concerns the additional printed consonant; the surrounding marks are retained from the draft after visual comparison.",
+      "pdfPage": 30,
+      "evidence": [
+        "A2-30-v22-shrirut-correct.png",
+        "A2-30-e.png"
+      ],
+      "resolution": "Root independently confirmed the source yod in בשרירות and applied בִּשְׁרִירוּת. Checked current chapter1 snapshot contains it."
+    }
+  ],
+  "queries": [
+    {
+      "id": "BAR-1-jerusalem-lamed",
+      "units": [
+        "1:2",
+        "1:6–7",
+        "1:9",
+        "1:15"
+      ],
+      "kind": "unresolved-fine-mark",
+      "currentReading": "Jerusalem forms use lamed patah alone.",
+      "question": "In the tightly cropped 1:6–7 בירושלם, the lamed mark looks like a horizontal mark with a short stem, accompanied by a separate dot to its left. Determine whether the print has qamats plus hiriq, patah plus hiriq, or only patah with incidental ink. Compare each occurrence independently; the earlier user interpretation for 1MA is not authority for these BAR instances.",
+      "pdfPages": [
+        29,
+        30
+      ],
+      "evidence": [
+        "A2-29-v7-jerusalem.png",
+        "A2-29-a.png",
+        "A2-30-a.png",
+        "A2-30-d.png"
+      ],
+      "resolved": true,
+      "resolutionBasis": "user-reading-plus-independent-comparison",
+      "resolution": "The shown1:6–7 crop is read by the user as qamats+hiriq, with the optional simplification wording preserved verbatim in the decision file. Both printed marks are retained. The other listed1:2/9/15 occurrences were separately compared by the root reviewer; no global replacement.",
+      "decisionEvidence": "BAR-user-point-decisions.json"
+    },
+    {
+      "id": "BAR-1-7-yerushalaymah",
+      "units": [
+        "1:6–7"
+      ],
+      "kind": "unresolved-fine-mark",
+      "currentReading": "יְרוּשָׁלַיְמָה",
+      "question": "The yod shewa is visible; the separate lamed patah is not independently distinct from the lower lamed stroke to this reader. Confirm the printed lamed vowel without supplying conventional pointing.",
+      "pdfPages": [
+        29
+      ],
+      "evidence": [
+        "A2-29-v6-jerusalem.png",
+        "A2-29-b.png"
+      ],
+      "resolved": true,
+      "resolutionBasis": "scoped-user-reading",
+      "resolution": "User identifies patah under lamed in the shown ירושלימה; existing יְרוּשָׁלַיְמָה retained.",
+      "decisionEvidence": "BAR-user-point-decisions.json"
+    },
+    {
+      "id": "BAR-1-name-yod-dagesh",
+      "units": [
+        "1:1",
+        "1:8"
+      ],
+      "kind": "unresolved-fine-mark",
+      "currentReading": "חִלְקִיָּהוּ; יֹאשִׁיָּהוּ",
+      "question": "The current draft includes yod dagesh in these names. The enlarged scan shows the yod and qamats, but a distinct dagesh dot cannot be separated confidently from its thick body in these two crops. Retain as provisional pending a second reading; no proposed deletion solely because the scan is thick.",
+      "pdfPages": [
+        29,
+        30
+      ],
+      "evidence": [
+        "A2-29-v1-hasdyahu.png",
+        "A2-30-v8-josiah.png"
+      ],
+      "resolved": true,
+      "resolutionBasis": "qualified-scoped-user-reading",
+      "resolution": "User says the yod seems to have dagesh in both shown names. Existing dagesh retained; the qualified seems wording is preserved rather than promoted to unambiguous visual certainty.",
+      "decisionEvidence": "BAR-user-point-decisions.json"
+    }
+  ],
+  "resolvedChecks": [
+    {
+      "units": [
+        "1:1"
+      ],
+      "detail": "The enlarged מחסיהו supports the existing hataf-patah under het in מַחֲסֵיָהוּ; no replacement with simple shewa is proposed.",
+      "evidence": [
+        "A2-29-v1-mahse.png"
+      ]
+    },
+    {
+      "units": [
+        "1:4"
+      ],
+      "detail": "Keep the source consonants למקטן and existing provisional לְמִקָּטֹן; do not substitute the more familiar למקטון/מקטן wording. זקנים and סוד match the source.",
+      "evidence": [
+        "A2-29-v4-small.png",
+        "A2-29-b.png"
+      ]
+    },
+    {
+      "units": [
+        "1:6–7"
+      ],
+      "detail": "The source name consonants are יויקים, חלקיה and שלום; no modernization of the names is indicated. Two sof-pasuq clauses remain inside the printed combined unit.",
+      "evidence": [
+        "A2-29-v7-names.png",
+        "A2-29-c.png"
+      ]
+    },
+    {
+      "units": [
+        "1:9"
+      ],
+      "detail": "The source ויבאם has no inserted vav or yod mater beyond these consonants. Current וַיְבִאֵם is retained.",
+      "evidence": [
+        "A2-30-a.png"
+      ]
+    },
+    {
+      "units": [
+        "1:14"
+      ],
+      "detail": "The source brackets around בבואכם and the existing להתודות consonants/pointing are retained. No extra yod or change of the vav vowel is justified.",
+      "evidence": [
+        "A2-30-v14-hitvadot.png",
+        "A2-30-c.png"
+      ]
+    },
+    {
+      "units": [
+        "1:16–17",
+        "1:19",
+        "1:20"
+      ],
+      "detail": "The print distinguishes defective אבתינו in16–17 and19 from full אבותינו in20. The current draft preserves that distinction. Preserve both clauses in combined16–17, separate19 and20, and the brackets within19.",
+      "evidence": [
+        "A2-30-d.png",
+        "A2-30-e.png"
+      ]
+    }
+  ],
+  "unitLedger": [
+    {
+      "unit": "1:1",
+      "sourcePages": [
+        29
+      ],
+      "draftText": "וְאֵלֶּה דִּבְרֵי הַסֵּפֶר אֲשֶׁר כָּתַב בָּרוּךְ בֶּן־נֵרִיָּהוּ בֶּן־מַחֲסֵיָהוּ בֶּן־צִדְקִיָּהוּ בֶּן־חֲסַדְיָהוּ בֶּן־חִלְקִיָּהוּ בְּבָבֶל׃",
+      "draftTextSHA256": "d046bba99f0ebcc639ba801027c1996760cac10c7f6fc7b28d5d9f0ad9a8b977",
+      "comparison": "All words, printed punctuation, and visible vowel marks compared against the source body; see explicit limitations and unresolved fine marks.",
+      "findings": [],
+      "openQueries": [],
+      "status": "checked-with-recorded-scoped-decisions",
+      "reviewedText": "וְאֵלֶּה דִּבְרֵי הַסֵּפֶר אֲשֶׁר כָּתַב בָּרוּךְ בֶּן־נֵרִיָּהוּ בֶּן־מַחֲסֵיָהוּ בֶּן־צִדְקִיָּהוּ בֶּן־חֲסַדְיָהוּ בֶּן־חִלְקִיָּהוּ בְּבָבֶל׃",
+      "reviewedTextSHA256": "d046bba99f0ebcc639ba801027c1996760cac10c7f6fc7b28d5d9f0ad9a8b977",
+      "resolvedQueries": [
+        "BAR-1-name-yod-dagesh"
+      ]
+    },
+    {
+      "unit": "1:2",
+      "sourcePages": [
+        29
+      ],
+      "draftText": "בַּשָּׁנָה הַחֲמִישִׁית בְּשִׁבְעָה לַחֹדֶשׁ בְּעֵת לָכְדוּ הַכַּשְׂדִּים אֶת־יְרוּשָׁלַם וַיִּשְׂרְפוּהָ בָאֵשׁ׃",
+      "draftTextSHA256": "a9cce4761aaa1d34b137ec6c18f0e9dc3998caac983b845d46eed2b10010f906",
+      "comparison": "All words, printed punctuation, and visible vowel marks compared against the source body; see explicit limitations and unresolved fine marks.",
+      "findings": [],
+      "openQueries": [],
+      "status": "checked-with-recorded-scoped-decisions",
+      "reviewedText": "בַּשָּׁנָה הַחֲמִישִׁית בְּשִׁבְעָה לַחֹדֶשׁ בְּעֵת לָכְדוּ הַכַּשְׂדִּים אֶת־יְרוּשָׁלִָם וַיִּשְׂרְפוּהָ בָאֵשׁ׃",
+      "reviewedTextSHA256": "bab056c51acc22575986da4aa01f9d2c0928ed9a157bf6e9603997188524d0d4",
+      "resolvedQueries": [
+        "BAR-1-jerusalem-lamed"
+      ]
+    },
+    {
+      "unit": "1:3",
+      "sourcePages": [
+        29
+      ],
+      "draftText": "וַיִּקְרָא בָרוּךְ אֶת־דִּבְרֵי הַסֵּפֶר הַזֶּה בְּאָזְנֵי יְכָנְיָה בֶּן־יְהוֹיָקִים מֶלֶךְ יְהוּדָה וּבְאָזְנֵי כָל־הָעָם הַבָּאִים [לִשְׁמֹעַ] אֶל־הַסֵּפֶר׃",
+      "draftTextSHA256": "57202887cf4ce3dad41f22baf8c61bcc505613d972af0fe638a073f40ccb5651",
+      "comparison": "All words, printed punctuation, and visible vowel marks compared against the source body; see explicit limitations and unresolved fine marks.",
+      "findings": [],
+      "openQueries": [],
+      "status": "checked-no-additional-deviation-observed",
+      "reviewedText": "וַיִּקְרָא בָרוּךְ אֶת־דִּבְרֵי הַסֵּפֶר הַזֶּה בְּאָזְנֵי יְכָנְיָה בֶּן־יְהוֹיָקִים מֶלֶךְ יְהוּדָה וּבְאָזְנֵי כָל־הָעָם הַבָּאִים [לִשְׁמֹעַ] אֶל־הַסֵּפֶר׃",
+      "reviewedTextSHA256": "57202887cf4ce3dad41f22baf8c61bcc505613d972af0fe638a073f40ccb5651",
+      "resolvedQueries": []
+    },
+    {
+      "unit": "1:4",
+      "sourcePages": [
+        29
+      ],
+      "draftText": "וּבְאָזְנֵי הַגִּבּוֹרִים וּבְנֵי הַמְּלָכִים וּבְאָזְנֵי הַזְּקֵנִים וּבְאָזְנֵי כָל־הָעָם לְמִקָּטֹן וְעַד־גָּדוֹל כָּל־הַיּוֹשְׁבִים בְּבָבֶל עַל־נְהַר־סוּד׃",
+      "draftTextSHA256": "e118a5e2b143fab86a991f7326b9c112787cf9b93aadb16b6f3adcba29648572",
+      "comparison": "All words, printed punctuation, and visible vowel marks compared against the source body; see explicit limitations and unresolved fine marks.",
+      "findings": [],
+      "openQueries": [],
+      "status": "checked-no-additional-deviation-observed",
+      "reviewedText": "וּבְאָזְנֵי הַגִּבּוֹרִים וּבְנֵי הַמְּלָכִים וּבְאָזְנֵי הַזְּקֵנִים וּבְאָזְנֵי כָל־הָעָם לְמִקָּטֹן וְעַד־גָּדוֹל כָּל־הַיּוֹשְׁבִים בְּבָבֶל עַל־נְהַר־סוּד׃",
+      "reviewedTextSHA256": "e118a5e2b143fab86a991f7326b9c112787cf9b93aadb16b6f3adcba29648572",
+      "resolvedQueries": []
+    },
+    {
+      "unit": "1:5",
+      "sourcePages": [
+        29
+      ],
+      "draftText": "וַיִּבְכּוּ וַיָּצוּמוּ וַיִּתְפַּלְלוּ לִפְנֵי יְיָ׃",
+      "draftTextSHA256": "e336b82f84d0a9ddd282ccfff3481aefed4ea19a47f04b22d039827e62deede2",
+      "comparison": "All words, printed punctuation, and visible vowel marks compared against the source body; see explicit limitations and unresolved fine marks.",
+      "findings": [],
+      "openQueries": [],
+      "status": "checked-no-additional-deviation-observed",
+      "reviewedText": "וַיִּבְכּוּ וַיָּצוּמוּ וַיִּתְפַּלְלוּ לִפְנֵי יְיָ׃",
+      "reviewedTextSHA256": "e336b82f84d0a9ddd282ccfff3481aefed4ea19a47f04b22d039827e62deede2",
+      "resolvedQueries": []
+    },
+    {
+      "unit": "1:6–7",
+      "sourcePages": [
+        29
+      ],
+      "draftText": "וַיִּקְבְּצוּ כֶסֶף אִישׁ כַּאֲשֶׁר הִשִּׂיגָה יָדוֹ׃ וַיִּשְׁלְחוּ יְרוּשָׁלַיְמָה אֶל־יוֹיָקִים בֶּן־חִלְקִיָה בֶּן־שַׁלּוּם הַכֹּהֵן וְאֶל־הַכֹּהֲנִים וְאֶל־כָּל־הָעָם הַנִּמְצָאִים אִתּוֹ בִּירוּשָׁלַם׃",
+      "draftTextSHA256": "99542335692456acfd848e155943ed1676022eb8ed077f9a80abc18fe5779e30",
+      "comparison": "All words, printed punctuation, and visible vowel marks compared against the source body; see explicit limitations and unresolved fine marks.",
+      "findings": [],
+      "openQueries": [],
+      "status": "checked-with-recorded-scoped-decisions",
+      "reviewedText": "וַיִּקְבְּצוּ כֶסֶף אִישׁ כַּאֲשֶׁר הִשִּׂיגָה יָדוֹ׃ וַיִּשְׁלְחוּ יְרוּשָׁלַיְמָה אֶל־יוֹיָקִים בֶּן־חִלְקִיָה בֶּן־שַׁלּוּם הַכֹּהֵן וְאֶל־הַכֹּהֲנִים וְאֶל־כָּל־הָעָם הַנִּמְצָאִים אִתּוֹ בִּירוּשָׁלִָם׃",
+      "reviewedTextSHA256": "0a9ac73b45620eab99fbe6057253f40921fab43ddbddc16965ebe08c72ed4456",
+      "resolvedQueries": [
+        "BAR-1-jerusalem-lamed",
+        "BAR-1-7-yerushalaymah"
+      ]
+    },
+    {
+      "unit": "1:8",
+      "sourcePages": [
+        29,
+        30
+      ],
+      "draftText": "בְּקַחְתּוֹ אֶת־כְּלֵי בֵית יְיָ אֲשֶׁר הוּצְאוּ מִן־הַהֵיכָל לְהָשִׁיב אֶל־אֶרֶץ יְהוּדָה בֶּעָשִׂירִי בְּסִיוָן כְּלֵי־כֶסֶף אֲשֶׁר עָשָׂה צִדְקִיָּהוּ בֶן־יֹאשִׁיָּהוּ מֶלֶךְ יְהוּדָה׃",
+      "draftTextSHA256": "8eb94a36f81ddb8919e38dfc909ac170680e24369b90a31a26a99a6d3c836448",
+      "comparison": "All words, printed punctuation, and visible vowel marks compared against the source body; see explicit limitations and unresolved fine marks.",
+      "findings": [],
+      "openQueries": [],
+      "status": "checked-with-recorded-scoped-decisions",
+      "reviewedText": "בְּקַחְתּוֹ אֶת־כְּלֵי בֵית יְיָ אֲשֶׁר הוּצְאוּ מִן־הַהֵיכָל לְהָשִׁיב אֶל־אֶרֶץ יְהוּדָה בֶּעָשִׂירִי בְּסִיוָן כְּלֵי־כֶסֶף אֲשֶׁר עָשָׂה צִדְקִיָּהוּ בֶן־יֹאשִׁיָּהוּ מֶלֶךְ יְהוּדָה׃",
+      "reviewedTextSHA256": "8eb94a36f81ddb8919e38dfc909ac170680e24369b90a31a26a99a6d3c836448",
+      "resolvedQueries": [
+        "BAR-1-name-yod-dagesh"
+      ]
+    },
+    {
+      "unit": "1:9",
+      "sourcePages": [
+        30
+      ],
+      "draftText": "אַחֲרֵי הַגְלוֹת נְבוּכַדְרֶאצַּר מֶלֶךְ בָּבֶל אֶת־יְכָנְיָה וְאֶת־הַשָּׂרִים וְאֶת־הַמַּסְגֵּר וְאֶת־הַגִּבּוֹרִים וְאֶת־עַם־הָאָרֶץ מִירוּשָׁלַם וַיְבִאֵם בָּבֶל׃",
+      "draftTextSHA256": "c788fa0f1399039495a522a74997dbe58622a9997f9eee5f4e2f5a48909b979f",
+      "comparison": "All words, printed punctuation, and visible vowel marks compared against the source body; see explicit limitations and unresolved fine marks.",
+      "findings": [],
+      "openQueries": [],
+      "status": "checked-with-recorded-scoped-decisions",
+      "reviewedText": "אַחֲרֵי הַגְלוֹת נְבוּכַדְרֶאצַּר מֶלֶךְ בָּבֶל אֶת־יְכָנְיָה וְאֶת־הַשָּׂרִים וְאֶת־הַמַּסְגֵּר וְאֶת־הַגִּבּוֹרִים וְאֶת־עַם־הָאָרֶץ מִירוּשָׁלִָם וַיְבִאֵם בָּבֶל׃",
+      "reviewedTextSHA256": "d4a4dd36084266a4abe2e4e2522388596338db67e437446e773063633013f051",
+      "resolvedQueries": [
+        "BAR-1-jerusalem-lamed"
+      ]
+    },
+    {
+      "unit": "1:10",
+      "sourcePages": [
+        30
+      ],
+      "draftText": "וַיֹּאמְרוּ הִנֵּה שָׁלַחְנוּ אֲלֵיכֶם כֶּסֶף וּקְנִיתֶם בַּכֶּסֶף עֹלוֹת וְחַטָּאוֹת וּלְבוֹנָה וַעֲשִׂיתֶם מִנְחָה וְהַעֲלִיתֶם עַל־מִזְבַּח יְיָ אֱלֹהֵינוּ׃",
+      "draftTextSHA256": "80a22fc55ae8e66311f18ea9edb432a96bf26a7b687af6dd05c0449724cb50c7",
+      "comparison": "All words, printed punctuation, and visible vowel marks compared against the source body; see explicit limitations and unresolved fine marks.",
+      "findings": [],
+      "openQueries": [],
+      "status": "checked-no-additional-deviation-observed",
+      "reviewedText": "וַיֹּאמְרוּ הִנֵּה שָׁלַחְנוּ אֲלֵיכֶם כֶּסֶף וּקְנִיתֶם בַּכֶּסֶף עֹלוֹת וְחַטָּאוֹת וּלְבוֹנָה וַעֲשִׂיתֶם מִנְחָה וְהַעֲלִיתֶם עַל־מִזְבַּח יְיָ אֱלֹהֵינוּ׃",
+      "reviewedTextSHA256": "80a22fc55ae8e66311f18ea9edb432a96bf26a7b687af6dd05c0449724cb50c7",
+      "resolvedQueries": []
+    },
+    {
+      "unit": "1:11",
+      "sourcePages": [
+        30
+      ],
+      "draftText": "וְהִתְפַּלַּלְתֶּם לְחַיֵּי נְבוּכַדְרֶאצַּר מֶלֶךְ בָּבֶל וּלְחַיֵּי בֵּלְשַׁאצַּר בְּנוֹ כִּי יִהְיוּ יְמֵיהֶם כִּימֵי הַשָּׁמַיִם עַל־הָאָרֶץ׃",
+      "draftTextSHA256": "e590348307086332d2323fcfc98b519233df0499240dd0c97c7998171118dd9a",
+      "comparison": "All words, printed punctuation, and visible vowel marks compared against the source body; see explicit limitations and unresolved fine marks.",
+      "findings": [],
+      "openQueries": [],
+      "status": "checked-no-additional-deviation-observed",
+      "reviewedText": "וְהִתְפַּלַּלְתֶּם לְחַיֵּי נְבוּכַדְרֶאצַּר מֶלֶךְ בָּבֶל וּלְחַיֵּי בֵּלְשַׁאצַּר בְּנוֹ כִּי יִהְיוּ יְמֵיהֶם כִּימֵי הַשָּׁמַיִם עַל־הָאָרֶץ׃",
+      "reviewedTextSHA256": "e590348307086332d2323fcfc98b519233df0499240dd0c97c7998171118dd9a",
+      "resolvedQueries": []
+    },
+    {
+      "unit": "1:12",
+      "sourcePages": [
+        30
+      ],
+      "draftText": "וַיְיָ יִתֶּן־עֹז לָנוּ וְיָאִיר עֵינֵינוּ וְנִחְיֶה בְּצֵל נְבוּכַדְרֶאצַּר מֶלֶךְ בָּבֶל וּבְצֵל בֵּלְשַׁאצַּר בְּנוֹ וְנַעַבְדֵם יָמִים רַבִּים וְנִמְצָא־חֵן לִפְנֵיהֶם׃",
+      "draftTextSHA256": "9448b09257352d775a5ae1507e3ed3056b1f03d0e874f4b3996b7ff0e30d9a90",
+      "comparison": "All words, printed punctuation, and visible vowel marks compared against the source body; see explicit limitations and unresolved fine marks.",
+      "findings": [],
+      "openQueries": [],
+      "status": "checked-no-additional-deviation-observed",
+      "reviewedText": "וַיְיָ יִתֶּן־עֹז לָנוּ וְיָאִיר עֵינֵינוּ וְנִחְיֶה בְּצֵל נְבוּכַדְרֶאצַּר מֶלֶךְ בָּבֶל וּבְצֵל בֵּלְשַׁאצַּר בְּנוֹ וְנַעַבְדֵם יָמִים רַבִּים וְנִמְצָא־חֵן לִפְנֵיהֶם׃",
+      "reviewedTextSHA256": "9448b09257352d775a5ae1507e3ed3056b1f03d0e874f4b3996b7ff0e30d9a90",
+      "resolvedQueries": []
+    },
+    {
+      "unit": "1:13",
+      "sourcePages": [
+        30
+      ],
+      "draftText": "וְהִתְפַּלַּלְתֶּם בַּעֲדֵנוּ אֶל־יְיָ אֱלֹהֵינוּ כִּי חָטָאנוּ לַיְיָ אֱלֹהֵינוּ וְלֹא שָׁב אַף יְיָ וַחֲמָתוֹ מִמֶּנּוּ עַד־הַיּוֹם הַזֶּה׃",
+      "draftTextSHA256": "490df633ec3b600e763a86388c87464adbb0159215ba253b8edd2485248fb977",
+      "comparison": "All words, printed punctuation, and visible vowel marks compared against the source body; see explicit limitations and unresolved fine marks.",
+      "findings": [],
+      "openQueries": [],
+      "status": "checked-no-additional-deviation-observed",
+      "reviewedText": "וְהִתְפַּלַּלְתֶּם בַּעֲדֵנוּ אֶל־יְיָ אֱלֹהֵינוּ כִּי חָטָאנוּ לַיְיָ אֱלֹהֵינוּ וְלֹא שָׁב אַף יְיָ וַחֲמָתוֹ מִמֶּנּוּ עַד־הַיּוֹם הַזֶּה׃",
+      "reviewedTextSHA256": "490df633ec3b600e763a86388c87464adbb0159215ba253b8edd2485248fb977",
+      "resolvedQueries": []
+    },
+    {
+      "unit": "1:14",
+      "sourcePages": [
+        30
+      ],
+      "draftText": "וּקְרָאתֶם אֶת־הַסֵּפֶר הַזֶּה אֲשֶׁר שָׁלַחְנוּ אֲלֵיכֶם [בְּבוֹאֲכֶם] לְהִתְוַדּוֹת בְּבֵית יְיָ בְּיוֹם־חַג וּבִימֵי מוֹעֵד׃",
+      "draftTextSHA256": "7d5bd7ef1a873bbc2e0078fb06b51fdd6e6c963067bcad0eacdb3fe2ce0a3045",
+      "comparison": "All words, printed punctuation, and visible vowel marks compared against the source body; see explicit limitations and unresolved fine marks.",
+      "findings": [],
+      "openQueries": [],
+      "status": "checked-no-additional-deviation-observed",
+      "reviewedText": "וּקְרָאתֶם אֶת־הַסֵּפֶר הַזֶּה אֲשֶׁר שָׁלַחְנוּ אֲלֵיכֶם [בְּבוֹאֲכֶם] לְהִתְוַדּוֹת בְּבֵית יְיָ בְּיוֹם־חַג וּבִימֵי מוֹעֵד׃",
+      "reviewedTextSHA256": "7d5bd7ef1a873bbc2e0078fb06b51fdd6e6c963067bcad0eacdb3fe2ce0a3045",
+      "resolvedQueries": []
+    },
+    {
+      "unit": "1:15",
+      "sourcePages": [
+        30
+      ],
+      "draftText": "וַאֲמַרְתֶּם לַיְיָ אֱלֹהֵינוּ הַצְּדָקָה וְלָנוּ בֹּשֶׁת הַפָּנִים כַּיּוֹם הַזֶּה לְאִישׁ יְהוּדָה וּלְיוֹשְׁבֵי יְרוּשָׁלַם׃",
+      "draftTextSHA256": "daa5181934859c3d8f2f5849fe96c673090e246ee1899cde5a09d5f1f30ced57",
+      "comparison": "All words, printed punctuation, and visible vowel marks compared against the source body; see explicit limitations and unresolved fine marks.",
+      "findings": [],
+      "openQueries": [],
+      "status": "checked-with-recorded-scoped-decisions",
+      "reviewedText": "וַאֲמַרְתֶּם לַיְיָ אֱלֹהֵינוּ הַצְּדָקָה וְלָנוּ בֹּשֶׁת הַפָּנִים כַּיּוֹם הַזֶּה לְאִישׁ יְהוּדָה וּלְיוֹשְׁבֵי יְרוּשָׁלִָם׃",
+      "reviewedTextSHA256": "7df1ea50107e95ad4a1ea5120e2b99b9aec42a198dc3e0399cce810ada23cd8b",
+      "resolvedQueries": [
+        "BAR-1-jerusalem-lamed"
+      ]
+    },
+    {
+      "unit": "1:16–17",
+      "sourcePages": [
+        30
+      ],
+      "draftText": "וּלְמַלְכֵּינוּ וּלְשָׂרֵינוּ וּלְכֹהֲנֵינוּ וְלִנְבִיאֵינוּ וּלַאֲבֹתֵינוּ׃ אֲשֶׁר חָטָאנוּ לַיְיָ וּמָרַדְנוּ־בוֹ׃",
+      "draftTextSHA256": "30571cd7178c7f875b02862000b4fee231a4c8b2737b52d26fc6fb02e7773bd1",
+      "comparison": "All words, printed punctuation, and visible vowel marks compared against the source body; see explicit limitations and unresolved fine marks.",
+      "findings": [],
+      "openQueries": [],
+      "status": "checked-no-additional-deviation-observed",
+      "reviewedText": "וּלְמַלְכֵּינוּ וּלְשָׂרֵינוּ וּלְכֹהֲנֵינוּ וְלִנְבִיאֵינוּ וּלַאֲבֹתֵינוּ׃ אֲשֶׁר חָטָאנוּ לַיְיָ וּמָרַדְנוּ־בוֹ׃",
+      "reviewedTextSHA256": "30571cd7178c7f875b02862000b4fee231a4c8b2737b52d26fc6fb02e7773bd1",
+      "resolvedQueries": []
+    },
+    {
+      "unit": "1:18",
+      "sourcePages": [
+        30
+      ],
+      "draftText": "וְלֹא שָׁמַעְנוּ בְּקוֹל יְיָ אֱלֹהֵינוּ לָלֶכֶת בְּתוֹרַת יְיָ אֲשֶׁר נָתַן לְפָנֵינוּ׃",
+      "draftTextSHA256": "2a22f4f673ae8153c0120e811b9ecd7d2761e7c2434485c160bc051163f43a8e",
+      "comparison": "All words, printed punctuation, and visible vowel marks compared against the source body; see explicit limitations and unresolved fine marks.",
+      "findings": [],
+      "openQueries": [],
+      "status": "checked-no-additional-deviation-observed",
+      "reviewedText": "וְלֹא שָׁמַעְנוּ בְּקוֹל יְיָ אֱלֹהֵינוּ לָלֶכֶת בְּתוֹרַת יְיָ אֲשֶׁר נָתַן לְפָנֵינוּ׃",
+      "reviewedTextSHA256": "2a22f4f673ae8153c0120e811b9ecd7d2761e7c2434485c160bc051163f43a8e",
+      "resolvedQueries": []
+    },
+    {
+      "unit": "1:19",
+      "sourcePages": [
+        30
+      ],
+      "draftText": "לְמִן־הַיּוֹם אֲשֶׁר הוֹצִיא יְיָ אֶת־אֲבֹתֵינוּ מֵאֶרֶץ מִצְרַיִם [עַד־הַיּוֹם הַזֶּה מַמְרִים הָיִינוּ עִם־יְיָ אֱלֹהֵינוּ וּמָרַדְנוּ־בוֹ] לְבִלְתִּי שְׁמֹעַ בְּקֹלוֹ׃",
+      "draftTextSHA256": "b3dd997196be117e510cf1b3becea62f6e91ab9fba598b699cd08376fe61e0ac",
+      "comparison": "All words, printed punctuation, and visible vowel marks compared against the source body; see explicit limitations and unresolved fine marks.",
+      "findings": [],
+      "openQueries": [],
+      "status": "checked-no-additional-deviation-observed",
+      "reviewedText": "לְמִן־הַיּוֹם אֲשֶׁר הוֹצִיא יְיָ אֶת־אֲבֹתֵינוּ מֵאֶרֶץ מִצְרַיִם [עַד־הַיּוֹם הַזֶּה מַמְרִים הָיִינוּ עִם־יְיָ אֱלֹהֵינוּ וּמָרַדְנוּ־בוֹ] לְבִלְתִּי שְׁמֹעַ בְּקֹלוֹ׃",
+      "reviewedTextSHA256": "b3dd997196be117e510cf1b3becea62f6e91ab9fba598b699cd08376fe61e0ac",
+      "resolvedQueries": []
+    },
+    {
+      "unit": "1:20",
+      "sourcePages": [
+        30
+      ],
+      "draftText": "וַתִּתַּךְ עָלֵינוּ הָרָעָה וְהָאָלָה אֲשֶׁר צִוָּה יְיָ אֶת־מֹשֶׁה עַבְדּוֹ בַּיּוֹם אֲשֶׁר הוֹצִיא אֶת־אֲבוֹתֵינוּ מֵאֶרֶץ מִצְרַיִם לָתֶת־לָנוּ אֶרֶץ זָבַת חָלָב וּדְבַשׁ כַּיּוֹם הַזֶּה׃",
+      "draftTextSHA256": "afeccfc631b873f400aac15ffc3de36d89e10b4b6eca7dcbd8edac64ae0a94ad",
+      "comparison": "All words, printed punctuation, and visible vowel marks compared against the source body; see explicit limitations and unresolved fine marks.",
+      "findings": [],
+      "openQueries": [],
+      "status": "checked-no-additional-deviation-observed",
+      "reviewedText": "וַתִּתַּךְ עָלֵינוּ הָרָעָה וְהָאָלָה אֲשֶׁר צִוָּה יְיָ אֶת־מֹשֶׁה עַבְדּוֹ בַּיּוֹם אֲשֶׁר הוֹצִיא אֶת־אֲבוֹתֵינוּ מֵאֶרֶץ מִצְרַיִם לָתֶת־לָנוּ אֶרֶץ זָבַת חָלָב וּדְבַשׁ כַּיּוֹם הַזֶּה׃",
+      "reviewedTextSHA256": "afeccfc631b873f400aac15ffc3de36d89e10b4b6eca7dcbd8edac64ae0a94ad",
+      "resolvedQueries": []
+    },
+    {
+      "unit": "1:21",
+      "sourcePages": [
+        30
+      ],
+      "draftText": "וְלֹא שָׁמַעְנוּ בְּקוֹל יְיָ אֱלֹהֵינוּ כְּכָל־דִּבְרֵי הַנְּבִיאִים אֲשֶׁר שָׁלַח אֵלֵינוּ׃",
+      "draftTextSHA256": "9875570c40c8a5b72528674504cd48728589c92ba9a6847d271321ecdd41561f",
+      "comparison": "All words, printed punctuation, and visible vowel marks compared against the source body; see explicit limitations and unresolved fine marks.",
+      "findings": [],
+      "openQueries": [],
+      "status": "checked-no-additional-deviation-observed",
+      "reviewedText": "וְלֹא שָׁמַעְנוּ בְּקוֹל יְיָ אֱלֹהֵינוּ כְּכָל־דִּבְרֵי הַנְּבִיאִים אֲשֶׁר שָׁלַח אֵלֵינוּ׃",
+      "reviewedTextSHA256": "9875570c40c8a5b72528674504cd48728589c92ba9a6847d271321ecdd41561f",
+      "resolvedQueries": []
+    },
+    {
+      "unit": "1:22",
+      "sourcePages": [
+        30
+      ],
+      "draftText": "וַנֵּלֶךְ אִישׁ בִּשְׁרִרוּת לִבּוֹ הָרָע לַעֲבֹד אֱלֹהִים אֲחֵרִים וְלַעֲשֹׂת הָרַע בְּעֵינֵי יְיָ אֱלֹהֵינוּ׃",
+      "draftTextSHA256": "26c7956b247666f107961dfdd24c7ed37581150b89187f0c1f1e9833734a31dc",
+      "comparison": "All words, printed punctuation, and visible vowel marks compared against the source body; see explicit limitations and unresolved fine marks.",
+      "findings": [
+        "BAR-1-22-full-spelling"
+      ],
+      "openQueries": [],
+      "status": "checked-with-source-correction",
+      "reviewedText": "וַנֵּלֶךְ אִישׁ בִּשְׁרִירוּת לִבּוֹ הָרָע לַעֲבֹד אֱלֹהִים אֲחֵרִים וְלַעֲשֹׂת הָרַע בְּעֵינֵי יְיָ אֱלֹהֵינוּ׃",
+      "reviewedTextSHA256": "c9d2cc070544c7720d7670ea25921a50a30d1484d842a5793a71be1df76a3efa",
+      "resolvedQueries": []
+    }
+  ],
+  "cropDirectory": "/private/tmp/prosary-bar-chapter1-audit",
+  "cropEvidence": [
+    {
+      "pdfPage": 29,
+      "bounds": [
+        0.16,
+        0.203,
+        0.843,
+        0.325
+      ],
+      "scale": 6,
+      "filename": "A2-29-a.png",
+      "sha256": "ea229e60c3fe99c3c13358c7f8afcfd0499db594d85f7470c380693c6ab9599d"
+    },
+    {
+      "pdfPage": 29,
+      "bounds": [
+        0.16,
+        0.311,
+        0.843,
+        0.415
+      ],
+      "scale": 6,
+      "filename": "A2-29-b.png",
+      "sha256": "c97f843dfb949ed5bc5b5da983bb94ab67ff70807c301c1d69e439ee3c75c238"
+    },
+    {
+      "pdfPage": 29,
+      "bounds": [
+        0.16,
+        0.389,
+        0.843,
+        0.49
+      ],
+      "scale": 6,
+      "filename": "A2-29-c.png",
+      "sha256": "343305259367859eb262edbed1680ea42e4d87369f039de17e72b49dce6515d5"
+    },
+    {
+      "pdfPage": 30,
+      "bounds": [
+        0.08,
+        0.13,
+        0.747,
+        0.25
+      ],
+      "scale": 6,
+      "filename": "A2-30-a.png",
+      "sha256": "dbb59c2ae62cbbc7354bcab73e08a1cc78f2acc0a933d2c2b3a16a5181c1af07"
+    },
+    {
+      "pdfPage": 30,
+      "bounds": [
+        0.08,
+        0.233,
+        0.747,
+        0.35
+      ],
+      "scale": 6,
+      "filename": "A2-30-b.png",
+      "sha256": "b3bb29dae4f8e8093f1d53e3714788dece130b9edc9f2dca00c2d9a5638a4533"
+    },
+    {
+      "pdfPage": 30,
+      "bounds": [
+        0.08,
+        0.332,
+        0.747,
+        0.447
+      ],
+      "scale": 6,
+      "filename": "A2-30-c.png",
+      "sha256": "01c8792fe9388e4bbc94989fe6889dbb4c8f6bd184fa380fe37353a260cba7d2"
+    },
+    {
+      "pdfPage": 30,
+      "bounds": [
+        0.08,
+        0.43,
+        0.747,
+        0.548
+      ],
+      "scale": 6,
+      "filename": "A2-30-d.png",
+      "sha256": "572ba64cff827e7aac59022bf2beb07a851673a478a05146b008e03a61aa61d0"
+    },
+    {
+      "pdfPage": 30,
+      "bounds": [
+        0.08,
+        0.532,
+        0.747,
+        0.657
+      ],
+      "scale": 6,
+      "filename": "A2-30-e.png",
+      "sha256": "ba982de66b5d5f6f392cdab67021dfc54d5912c6ef26a69abca88a3b31b2a5b5"
+    },
+    {
+      "pdfPage": 30,
+      "bounds": [
+        0.532,
+        0.38,
+        0.667,
+        0.41
+      ],
+      "scale": 12,
+      "filename": "A2-30-v14-hitvadot.png",
+      "sha256": "8fde51dd814c24961291b2815bbb4dc6e36d870304bb9a165eb57aff53495e9d"
+    },
+    {
+      "pdfPage": 29,
+      "bounds": [
+        0.467,
+        0.233,
+        0.72,
+        0.261
+      ],
+      "scale": 12,
+      "filename": "A2-29-v1-hasdyahu.png",
+      "sha256": "e5ba70c266c921c29c1bc456a1d2d9246f392130dacc7c5eff2b42a9dcabeffb"
+    },
+    {
+      "pdfPage": 29,
+      "bounds": [
+        0.217,
+        0.382,
+        0.409,
+        0.411
+      ],
+      "scale": 12,
+      "filename": "A2-29-v6-jerusalem.png",
+      "sha256": "cf1a87bb3dc82eae7a5c071c2c14416ad7da31ee205dbf4237bae472ff1eb622"
+    },
+    {
+      "pdfPage": 29,
+      "bounds": [
+        0.5,
+        0.405,
+        0.84,
+        0.437
+      ],
+      "scale": 12,
+      "filename": "A2-29-v7-names.png",
+      "sha256": "bddaaf2e405b2aa4ca3375478739eee4aff97e7de00d6edd4fafe0b1f962aea5"
+    },
+    {
+      "pdfPage": 29,
+      "bounds": [
+        0.558,
+        0.434,
+        0.698,
+        0.459
+      ],
+      "scale": 12,
+      "filename": "A2-29-v7-jerusalem.png",
+      "sha256": "5fc3d2cf2c0fd42f172c2011dfd46887036f9f34bb7157ccb3454cf927e8c661"
+    },
+    {
+      "pdfPage": 29,
+      "bounds": [
+        0.331,
+        0.327,
+        0.411,
+        0.36
+      ],
+      "scale": 12,
+      "filename": "A2-29-v4-small.png",
+      "sha256": "a2dd02046c01e2b60fcd88d7a798b4a64266aef29e4ddcdab5c9271da98b003c"
+    },
+    {
+      "pdfPage": 30,
+      "bounds": [
+        0.472,
+        0.13,
+        0.587,
+        0.159
+      ],
+      "scale": 12,
+      "filename": "A2-30-v8-josiah.png",
+      "sha256": "b5e7f91ad8946e434a05c994d8eea96235ee443f4f129af473f1ec16b9569a8c"
+    },
+    {
+      "pdfPage": 30,
+      "bounds": [
+        0.118,
+        0.608,
+        0.34,
+        0.644
+      ],
+      "scale": 12,
+      "filename": "A2-30-v22-shrirut-correct.png",
+      "sha256": "caef4fe3bd8af7854b110cda9f7294ea237467bbcb39cb4908399f6996b0b36a"
+    },
+    {
+      "pdfPage": 29,
+      "bounds": [
+        0.166,
+        0.21,
+        0.325,
+        0.239
+      ],
+      "scale": 12,
+      "filename": "A2-29-v1-mahse.png",
+      "sha256": "cc72010fa93d229ddc3e35f3a81bb5593d9c875a5413f429adffe120ed4f2c4b"
+    }
+  ],
+  "limitations": [
+    "No changes made to BAR.json by this reviewer. The owner applied the source spelling and point decisions.",
+    "The original per-unit draft snapshots remain for provenance; reviewedText snapshots include only the subsequent owner-applied chapter1 resolutions.",
+    "Both chapter1 source pages have completed the independent comparison, including scoped qualified readings documented here. This is not whole-book approval or production eligibility.",
+    "The prior1MA user mark choices were not extrapolated to BAR."
+  ],
+  "decisionEvidence": {
+    "file": "BAR-user-point-decisions.json",
+    "sha256": "51932c0c8d8595158afcc2c8b072949d4cbb032645d6e059d710017d428d6467",
+    "rawUserFeedback": "the marks for ירושלם are like a kamaz and hiriq (but could be written with just a kamaz), mark under the ל is a patah, י seems to have a dagesh in both cases",
+    "note": "This feedback addresses only the shown marks. Whole-page comparison was performed separately by the reviewing agent; the user did not approve entire pages or the book."
+  },
+  "resolvedDraftFileSHA256": "20efca6e28ef3771101641f524cec83582da20d688f203c7982845a57f3fd1ca"
+}

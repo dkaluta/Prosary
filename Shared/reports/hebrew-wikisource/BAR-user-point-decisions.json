@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "book": "BAR",
+  "date": "2026-09-27",
+  "status": "Scoped user and source-glyph decisions; not whole-book approval",
+  "productionEligible": false,
+  "rawUserFeedback": "the marks for ירושלם are like a kamaz and hiriq (but could be written with just a kamaz), mark under the ל is a patah, י seems to have a dagesh in both cases",
+  "priorDraftSHA256": "59d4c1a603f3c48662e900a43caa02eebf0135319e3984a7fcfa26225884ff3e",
+  "updatedDraftSHA256": "20efca6e28ef3771101641f524cec83582da20d688f203c7982845a57f3fd1ca",
+  "decisions": [
+    {
+      "units": [
+        "1:6–7"
+      ],
+      "form": "בִּירוּשָׁלִָם",
+      "basis": "User reading of the shown crop; retain qamats and hiriq as printed, not the optional simplified form mentioned in the reply."
+    },
+    {
+      "units": [
+        "1:2",
+        "1:9",
+        "1:15"
+      ],
+      "form": "יְרוּשָׁלִָם with source-specific prefixes",
+      "basis": "Separate root comparison of A2-29-a, A2-30-a and A2-30-d; not an extrapolation to other books or chapters."
+    },
+    {
+      "units": [
+        "1:6–7"
+      ],
+      "form": "יְרוּשָׁלַיְמָה",
+      "basis": "User confirms lamed patah; existing draft retained."
+    },
+    {
+      "units": [
+        "1:1",
+        "1:8"
+      ],
+      "forms": [
+        "חִלְקִיָּהוּ",
+        "יֹאשִׁיָּהוּ"
+      ],
+      "basis": "User says yod seems to have dagesh in both images; retain existing marks and preserve this qualification."
+    }
+  ],
+  "evidence": [
+    {
+      "file": "/private/tmp/prosary-bar-chapter1-audit/A2-29-v7-jerusalem.png",
+      "sha256": "5fc3d2cf2c0fd42f172c2011dfd46887036f9f34bb7157ccb3454cf927e8c661"
+    },
+    {
+      "file": "/private/tmp/prosary-bar-chapter1-audit/A2-29-v6-jerusalem.png",
+      "sha256": "cf1a87bb3dc82eae7a5c071c2c14416ad7da31ee205dbf4237bae472ff1eb622"
+    },
+    {
+      "file": "/private/tmp/prosary-bar-chapter1-audit/A2-29-v1-hasdyahu.png",
+      "sha256": "e5ba70c266c921c29c1bc456a1d2d9246f392130dacc7c5eff2b42a9dcabeffb"
+    },
+    {
+      "file": "/private/tmp/prosary-bar-chapter1-audit/A2-30-v8-josiah.png",
+      "sha256": "b5e7f91ad8946e434a05c994d8eea96235ee443f4f129af473f1ec16b9569a8c"
+    },
+    {
+      "file": "/private/tmp/prosary-bar-chapter1-audit/A2-29-a.png",
+      "sha256": "ea229e60c3fe99c3c13358c7f8afcfd0499db594d85f7470c380693c6ab9599d"
+    },
+    {
+      "file": "/private/tmp/prosary-bar-chapter1-audit/A2-30-a.png",
+      "sha256": "dbb59c2ae62cbbc7354bcab73e08a1cc78f2acc0a933d2c2b3a16a5181c1af07"
+    },
+    {
+      "file": "/private/tmp/prosary-bar-chapter1-audit/A2-30-d.png",
+      "sha256": "572ba64cff827e7aac59022bf2beb07a851673a478a05146b008e03a61aa61d0"
+    }
+  ]
+}

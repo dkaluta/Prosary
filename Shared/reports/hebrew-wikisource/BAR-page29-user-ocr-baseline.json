@@ -1,0 +1,678 @@
+{
+  "schemaVersion": 1,
+  "purpose": "review-only",
+  "productionEligible": false,
+  "book": "BAR",
+  "pdfPages": [
+    29
+  ],
+  "additionalReview": {
+    "independentConsonantalCheck": "A second reviewer independently checked all six consonantal corrections against the enlarged supplied page: לחדש, הכשדים, הזקנים, נהר־סוד, השיגה, ידו. The printed combined margin label ו–ז and unusual למקטן were also confirmed.",
+    "userFeedback": "The user subsequently stated that the corrections so far were right. This confirms the corrections discussed; it is not an approval of the whole book or its vowel points."
+  },
+  "scan": {
+    "volume": "A2",
+    "sha256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5"
+  },
+  "reference": {
+    "origin": "User transcription supplied27 September2026, checked against the enlarged supplied PDF page.",
+    "attachment": "download-5.png",
+    "attachmentSHA256": "2c3d3c9c3e779bc6ed0177ddd2f476097cfdb699c4fb95d670cb93d984ddbb95",
+    "rawUserText": "ואלה דברי הספר אשר כתב ברוך בן־נריהו בן־מחסיהו בן־צדקיהו בן־חסדיהו בן־חלקיהו בבבל(sp) בשנה החמישית בשבעה. לחודש בעת לכדו הכשדם את־ירושלם וישרפוה באש(sp) ויקרא ברוך את־דברי הספר הזה באזני יכניה בן־יהויקים מלך יהודה ובאזני כל־העם הבאים [לשמע] אל־הספר(sp) ובאזני הגבורים ובני המלכים ובאזני הזקיים ובאזני כל־העם למקטן ועד־גדול כל־היושבים בבבל על נהר־סיד(sp) ויבכו ויצומו ויתפללו לפני יי(sp) ויקבצו כסף איש כאשר השינה ירו(sp) וישלחו ירושלימה אל־יויקים בן־חלקיה בן־שלום הכהן ואל־הכהנים ואל־כל־העם הנמצאים אתו בירושלם(sp) בקחתו את־כלי בית יי אשר הוצאו מן־ההיכל להשיב אל־ארץ יהודה בעשירי בסיון כלי־כסף אשר…",
+    "rawUserTextSHA256": "be72dc54b7021384cf8c645092a282cc1e6f3d4493d43238d489229b8245b608",
+    "text": "ואלה דברי הספר אשר כתב ברוך בן־נריהו בן־מחסיהו בן־צדקיהו בן־חסדיהו בן־חלקיהו בבבל׃ בשנה החמישית בשבעה לחדש בעת לכדו הכשדים את־ירושלם וישרפוה באש׃ ויקרא ברוך את־דברי הספר הזה באזני יכניה בן־יהויקים מלך יהודה ובאזני כל־העם הבאים [לשמע] אל־הספר׃ ובאזני הגבורים ובני המלכים ובאזני הזקנים ובאזני כל־העם למקטן ועד־גדול כל־היושבים בבבל על־נהר־סוד׃ ויבכו ויצומו ויתפללו לפני יי׃ ויקבצו כסף איש כאשר השיגה ידו׃ וישלחו ירושלימה אל־יויקים בן־חלקיה בן־שלום הכהן ואל־הכהנים ואל־כל־העם הנמצאים אתו בירושלם׃ בקחתו את־כלי בית יי אשר הוצאו מן־ההיכל להשיב אל־ארץ יהודה בעשירי בסיון כלי־כסף אשר",
+    "scope": "Chapter1:1–7 and opening of1:8, consonants only. Verse8 continues on PDF30; the reference does not supply its ending.",
+    "corrections": [
+      {
+        "location": "1:2",
+        "supplied": "בשבעה.",
+        "reference": "בשבעה",
+        "evidence": "No full stop follows the word in the printed line."
+      },
+      {
+        "location": "1:2",
+        "supplied": "לחודש",
+        "reference": "לחדש",
+        "evidence": "Printed defective spelling has no vav."
+      },
+      {
+        "location": "1:2",
+        "supplied": "הכשדם",
+        "reference": "הכשדים",
+        "evidence": "Printed yod between dalet and final mem."
+      },
+      {
+        "location": "1:4",
+        "supplied": "הזקיים",
+        "reference": "הזקנים",
+        "evidence": "Printed nun, not second yod."
+      },
+      {
+        "location": "1:4",
+        "supplied": "על נהר־סיד",
+        "reference": "על־נהר־סוד",
+        "evidence": "Printed maqaf after al; river spelling has vav."
+      },
+      {
+        "location": "1:6–7",
+        "supplied": "השינה",
+        "reference": "השיגה",
+        "evidence": "Printed gimel."
+      },
+      {
+        "location": "1:6–7",
+        "supplied": "ירו",
+        "reference": "ידו",
+        "evidence": "Printed dalet."
+      }
+    ],
+    "retainedSourceReadings": [
+      "למקטן",
+      "יויקים בן־חלקיה בן־שלום",
+      "[לשמע]"
+    ],
+    "punctuation": "User sp markers interpreted as sof pasuq U+05C3, consistent with preceding supplied excerpts; the final ellipsis denotes continuation and is not Scripture."
+  },
+  "ocr": {
+    "engine": "Kraken7.1.1",
+    "modelURL": "https://zenodo.org/records/21788405",
+    "modelSHA256": "3108259779f5abfed3908a1c9eafba64d17e4a2a169368c539ecfeff04c018f3",
+    "configuration": [
+      "ocr",
+      "-s",
+      "-n",
+      "--base-dir",
+      "R"
+    ],
+    "dictionary": false,
+    "lineSegmentation": "Manually selected scripture-body rectangle from the supplied PDF, rendered4x. Horizontal ink bands joined across gaps up to7rows. Eleven resulting lines checked against the full page; margin labels and commentary excluded.",
+    "rawText": "ואַלה דברי הספר אָשר כתב ברוך בן-נריהו בן-מחסיהו\nבן-צךקיהו בן-חסךיהו בן-חלקיהו בבבל: בשנה החמישית בשבעה\nלחדש בעת לכדו הכשדים אָת-ירושלם וישרפוה באש: ויקרא\nברוך אָת-דברי הפפר הזה בּאָזני יכניה בּן-יהויקים מלך יהודה\nובאָזני כל-העם הבאים [לשמע] אָל-הספר: ובאָזני הגבורים ובני\nהמלכים ובאָזני הןק:ים ובאָזני כל-העם למקטן ועד-גדול כל-\nהיושבים בככל על-נהר-סוד: ויבכו ויצומו ויתפללו לפני יי:\nויקבּצו כסף איש כאשר השינה ידו: וישלחו ירושלימה אל-\nיויקים בן-חלקיה בן-שלום הכהן ואל-הכהנים ואל-כל-העם\nהנמצאים אתו בירושלם: בקחתו את-כלי בית יי אָשר הוצאו \nמן-ההיכל להשיב אָל-אָרץ יהודה בּעשירי בסיון כלי-כסף אָשר",
+    "lines": [
+      {
+        "bodyRect": [
+          70,
+          136,
+          405,
+          320
+        ],
+        "rectInBodyImage": [
+          0,
+          13,
+          1340,
+          62
+        ],
+        "imageSHA256": "a467494c335a6cf5a87d8e9f9a5a1977b726f2d2c45b6067ac75995ccccd156e",
+        "text": "ואַלה דברי הספר אָשר כתב ברוך בן-נריהו בן-מחסיהו"
+      },
+      {
+        "bodyRect": [
+          70,
+          136,
+          405,
+          320
+        ],
+        "rectInBodyImage": [
+          0,
+          78,
+          1340,
+          132
+        ],
+        "imageSHA256": "69782cada45853d87a34e50583f34dd05cab24cbca452402f268e7537bc2837b",
+        "text": "בן-צךקיהו בן-חסךיהו בן-חלקיהו בבבל: בשנה החמישית בשבעה"
+      },
+      {
+        "bodyRect": [
+          70,
+          136,
+          405,
+          320
+        ],
+        "rectInBodyImage": [
+          0,
+          143,
+          1340,
+          200
+        ],
+        "imageSHA256": "d448d1a3a3a3c61ed1954307405dfd85f28a84768740ccaebfcffd6b0a5f13f1",
+        "text": "לחדש בעת לכדו הכשדים אָת-ירושלם וישרפוה באש: ויקרא"
+      },
+      {
+        "bodyRect": [
+          70,
+          136,
+          405,
+          320
+        ],
+        "rectInBodyImage": [
+          0,
+          216,
+          1340,
+          266
+        ],
+        "imageSHA256": "742e6beb4d3e6991d016254716353be56b31ca5248cf31b0fcedc0c21038a189",
+        "text": "ברוך אָת-דברי הפפר הזה בּאָזני יכניה בּן-יהויקים מלך יהודה"
+      },
+      {
+        "bodyRect": [
+          70,
+          136,
+          405,
+          320
+        ],
+        "rectInBodyImage": [
+          0,
+          277,
+          1340,
+          334
+        ],
+        "imageSHA256": "3e51b6415e5bf7fd2da8b3225585eeccd79498de436cd74444cc45f2561f0fa3",
+        "text": "ובאָזני כל-העם הבאים [לשמע] אָל-הספר: ובאָזני הגבורים ובני"
+      },
+      {
+        "bodyRect": [
+          70,
+          136,
+          405,
+          320
+        ],
+        "rectInBodyImage": [
+          0,
+          340,
+          1340,
+          400
+        ],
+        "imageSHA256": "672cf3cfdc97b89948cc39fd0f98a6b865bb4e9433fbbaf5c669ff08ccff9fa5",
+        "text": "המלכים ובאָזני הןק:ים ובאָזני כל-העם למקטן ועד-גדול כל-"
+      },
+      {
+        "bodyRect": [
+          70,
+          136,
+          405,
+          320
+        ],
+        "rectInBodyImage": [
+          0,
+          406,
+          1340,
+          466
+        ],
+        "imageSHA256": "87f2a5b25cbdd94ac380235c2499e66e164363369f6d75dde6923c3f26185ad4",
+        "text": "היושבים בככל על-נהר-סוד: ויבכו ויצומו ויתפללו לפני יי:"
+      },
+      {
+        "bodyRect": [
+          70,
+          136,
+          405,
+          320
+        ],
+        "rectInBodyImage": [
+          0,
+          476,
+          1340,
+          533
+        ],
+        "imageSHA256": "447c30c850e907199091ba3a0fbb1ff4415c8a9dfc8ad847d83cc17c07a63d96",
+        "text": "ויקבּצו כסף איש כאשר השינה ידו: וישלחו ירושלימה אל-"
+      },
+      {
+        "bodyRect": [
+          70,
+          136,
+          405,
+          320
+        ],
+        "rectInBodyImage": [
+          0,
+          540,
+          1340,
+          602
+        ],
+        "imageSHA256": "613ab633a5064d49f29d26afc23daf4603c81e0fb463f794c0e2339cf840608f",
+        "text": "יויקים בן-חלקיה בן-שלום הכהן ואל-הכהנים ואל-כל-העם"
+      },
+      {
+        "bodyRect": [
+          70,
+          136,
+          405,
+          320
+        ],
+        "rectInBodyImage": [
+          0,
+          616,
+          1340,
+          670
+        ],
+        "imageSHA256": "dde9a371814d62f32f8302eb282b393efd9ae9e32678fa5310160529414fffa1",
+        "text": "הנמצאים אתו בירושלם: בקחתו את-כלי בית יי אָשר הוצאו "
+      },
+      {
+        "bodyRect": [
+          70,
+          136,
+          405,
+          320
+        ],
+        "rectInBodyImage": [
+          0,
+          681,
+          1340,
+          736
+        ],
+        "imageSHA256": "566f5642a91d1218f88a65f0fb06a7780d4d64ecbe26fd29afe13d305273de58",
+        "text": "מן-ההיכל להשיב אָל-אָרץ יהודה בּעשירי בסיון כלי-כסף אָשר"
+      }
+    ],
+    "runtimeNote": "Local Python3.13 with SciPy1.16.3 scratch override, as documented in sirach-kraken-trial.json. Existing model only; no training."
+  },
+  "comparison": {
+    "schemaVersion": 1,
+    "purpose": "review-only",
+    "relationship": "scan-transcription",
+    "referenceStatus": "scan-checked",
+    "productionEligible": false,
+    "referenceSHA256": "a7ae34047639117758e1a01b9e85c7e1b02b9f8022999f4948dff56fd6c94ad5",
+    "observedSHA256": "5775594396ac43d33b948acb94fc914a5f4fc22ac97a752697b3c6cbfb415cba",
+    "normalization": "Combining marks and punctuation removed for comparison only; spelling preserved.",
+    "referenceWords": 111,
+    "observedWords": 112,
+    "wordOperations": {
+      "equal": 105,
+      "replace": 6,
+      "delete": 0,
+      "insert": 1
+    },
+    "matchingReferenceFraction": 0.9459459459459459,
+    "tokenDifferenceRate": 0.06306306306306306,
+    "alignment": [
+      {
+        "kind": "equal",
+        "referenceStart": 0,
+        "referenceEnd": 11,
+        "observedStart": 0,
+        "observedEnd": 11,
+        "reference": [
+          "ואלה",
+          "דברי",
+          "הספר",
+          "אשר",
+          "כתב",
+          "ברוך",
+          "בן",
+          "נריהו",
+          "בן",
+          "מחסיהו",
+          "בן"
+        ],
+        "observed": [
+          "ואלה",
+          "דברי",
+          "הספר",
+          "אשר",
+          "כתב",
+          "ברוך",
+          "בן",
+          "נריהו",
+          "בן",
+          "מחסיהו",
+          "בן"
+        ]
+      },
+      {
+        "kind": "replace",
+        "referenceStart": 11,
+        "referenceEnd": 12,
+        "observedStart": 11,
+        "observedEnd": 12,
+        "reference": [
+          "צדקיהו"
+        ],
+        "observed": [
+          "צךקיהו"
+        ]
+      },
+      {
+        "kind": "equal",
+        "referenceStart": 12,
+        "referenceEnd": 13,
+        "observedStart": 12,
+        "observedEnd": 13,
+        "reference": [
+          "בן"
+        ],
+        "observed": [
+          "בן"
+        ]
+      },
+      {
+        "kind": "replace",
+        "referenceStart": 13,
+        "referenceEnd": 14,
+        "observedStart": 13,
+        "observedEnd": 14,
+        "reference": [
+          "חסדיהו"
+        ],
+        "observed": [
+          "חסךיהו"
+        ]
+      },
+      {
+        "kind": "equal",
+        "referenceStart": 14,
+        "referenceEnd": 32,
+        "observedStart": 14,
+        "observedEnd": 32,
+        "reference": [
+          "בן",
+          "חלקיהו",
+          "בבבל",
+          "בשנה",
+          "החמישית",
+          "בשבעה",
+          "לחדש",
+          "בעת",
+          "לכדו",
+          "הכשדים",
+          "את",
+          "ירושלם",
+          "וישרפוה",
+          "באש",
+          "ויקרא",
+          "ברוך",
+          "את",
+          "דברי"
+        ],
+        "observed": [
+          "בן",
+          "חלקיהו",
+          "בבבל",
+          "בשנה",
+          "החמישית",
+          "בשבעה",
+          "לחדש",
+          "בעת",
+          "לכדו",
+          "הכשדים",
+          "את",
+          "ירושלם",
+          "וישרפוה",
+          "באש",
+          "ויקרא",
+          "ברוך",
+          "את",
+          "דברי"
+        ]
+      },
+      {
+        "kind": "replace",
+        "referenceStart": 32,
+        "referenceEnd": 33,
+        "observedStart": 32,
+        "observedEnd": 33,
+        "reference": [
+          "הספר"
+        ],
+        "observed": [
+          "הפפר"
+        ]
+      },
+      {
+        "kind": "equal",
+        "referenceStart": 33,
+        "referenceEnd": 52,
+        "observedStart": 33,
+        "observedEnd": 52,
+        "reference": [
+          "הזה",
+          "באזני",
+          "יכניה",
+          "בן",
+          "יהויקים",
+          "מלך",
+          "יהודה",
+          "ובאזני",
+          "כל",
+          "העם",
+          "הבאים",
+          "לשמע",
+          "אל",
+          "הספר",
+          "ובאזני",
+          "הגבורים",
+          "ובני",
+          "המלכים",
+          "ובאזני"
+        ],
+        "observed": [
+          "הזה",
+          "באזני",
+          "יכניה",
+          "בן",
+          "יהויקים",
+          "מלך",
+          "יהודה",
+          "ובאזני",
+          "כל",
+          "העם",
+          "הבאים",
+          "לשמע",
+          "אל",
+          "הספר",
+          "ובאזני",
+          "הגבורים",
+          "ובני",
+          "המלכים",
+          "ובאזני"
+        ]
+      },
+      {
+        "kind": "insert",
+        "referenceStart": 52,
+        "referenceEnd": 52,
+        "observedStart": 52,
+        "observedEnd": 53,
+        "reference": [],
+        "observed": [
+          "הןק"
+        ]
+      },
+      {
+        "kind": "replace",
+        "referenceStart": 52,
+        "referenceEnd": 53,
+        "observedStart": 53,
+        "observedEnd": 54,
+        "reference": [
+          "הזקנים"
+        ],
+        "observed": [
+          "ים"
+        ]
+      },
+      {
+        "kind": "equal",
+        "referenceStart": 53,
+        "referenceEnd": 61,
+        "observedStart": 54,
+        "observedEnd": 62,
+        "reference": [
+          "ובאזני",
+          "כל",
+          "העם",
+          "למקטן",
+          "ועד",
+          "גדול",
+          "כל",
+          "היושבים"
+        ],
+        "observed": [
+          "ובאזני",
+          "כל",
+          "העם",
+          "למקטן",
+          "ועד",
+          "גדול",
+          "כל",
+          "היושבים"
+        ]
+      },
+      {
+        "kind": "replace",
+        "referenceStart": 61,
+        "referenceEnd": 62,
+        "observedStart": 62,
+        "observedEnd": 63,
+        "reference": [
+          "בבבל"
+        ],
+        "observed": [
+          "בככל"
+        ]
+      },
+      {
+        "kind": "equal",
+        "referenceStart": 62,
+        "referenceEnd": 74,
+        "observedStart": 63,
+        "observedEnd": 75,
+        "reference": [
+          "על",
+          "נהר",
+          "סוד",
+          "ויבכו",
+          "ויצומו",
+          "ויתפללו",
+          "לפני",
+          "יי",
+          "ויקבצו",
+          "כסף",
+          "איש",
+          "כאשר"
+        ],
+        "observed": [
+          "על",
+          "נהר",
+          "סוד",
+          "ויבכו",
+          "ויצומו",
+          "ויתפללו",
+          "לפני",
+          "יי",
+          "ויקבצו",
+          "כסף",
+          "איש",
+          "כאשר"
+        ]
+      },
+      {
+        "kind": "replace",
+        "referenceStart": 74,
+        "referenceEnd": 75,
+        "observedStart": 75,
+        "observedEnd": 76,
+        "reference": [
+          "השיגה"
+        ],
+        "observed": [
+          "השינה"
+        ]
+      },
+      {
+        "kind": "equal",
+        "referenceStart": 75,
+        "referenceEnd": 111,
+        "observedStart": 76,
+        "observedEnd": 112,
+        "reference": [
+          "ידו",
+          "וישלחו",
+          "ירושלימה",
+          "אל",
+          "יויקים",
+          "בן",
+          "חלקיה",
+          "בן",
+          "שלום",
+          "הכהן",
+          "ואל",
+          "הכהנים",
+          "ואל",
+          "כל",
+          "העם",
+          "הנמצאים",
+          "אתו",
+          "בירושלם",
+          "בקחתו",
+          "את",
+          "כלי",
+          "בית",
+          "יי",
+          "אשר",
+          "הוצאו",
+          "מן",
+          "ההיכל",
+          "להשיב",
+          "אל",
+          "ארץ",
+          "יהודה",
+          "בעשירי",
+          "בסיון",
+          "כלי",
+          "כסף",
+          "אשר"
+        ],
+        "observed": [
+          "ידו",
+          "וישלחו",
+          "ירושלימה",
+          "אל",
+          "יויקים",
+          "בן",
+          "חלקיה",
+          "בן",
+          "שלום",
+          "הכהן",
+          "ואל",
+          "הכהנים",
+          "ואל",
+          "כל",
+          "העם",
+          "הנמצאים",
+          "אתו",
+          "בירושלם",
+          "בקחתו",
+          "את",
+          "כלי",
+          "בית",
+          "יי",
+          "אשר",
+          "הוצאו",
+          "מן",
+          "ההיכל",
+          "להשיב",
+          "אל",
+          "ארץ",
+          "יהודה",
+          "בעשירי",
+          "בסיון",
+          "כלי",
+          "כסף",
+          "אשר"
+        ]
+      }
+    ],
+    "notes": [
+      "An alignment is a review aid, not a verified verse crosswalk.",
+      "Niqqud and punctuation still require separate image comparison."
+    ],
+    "consonantalWordErrorRate": 0.06306306306306306
+  },
+  "limitations": [
+    "This one-page consonantal comparison does not measure whole-book OCR accuracy.",
+    "Printed vowel points must still be transcribed and verified separately, as expressly requested by the user.",
+    "No page approval, completed book inventory or production import follows from OCR agreement."
+  ]
+}
