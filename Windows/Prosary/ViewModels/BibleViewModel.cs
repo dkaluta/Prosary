@@ -9,7 +9,7 @@ namespace Prosary.ViewModels;
 
 public sealed record BibleBookChoice(BibleBook Book, string Label);
 public sealed record BibleChapterChoice(BibleChapter Chapter, string Label);
-public sealed record BibleVerseRow(int Verse, string Text, int? EndVerse = null)
+public sealed record BibleVerseRow(int Verse, string Text, int? EndVerse = null, IReadOnlyList<ScriptureSourceNote>? SourceNotes = null)
 {
     public string VerseLabel => EndVerse is { } end && end > Verse ? $"{Verse}–{end}" : Verse.ToString(System.Globalization.CultureInfo.InvariantCulture);
     public string DisplayText => $"\u2066{VerseLabel}\u2069  {Text}";
@@ -235,7 +235,7 @@ public partial class BibleViewModel : ObservableObject
     }
     private void RefreshText()
     {
-        Verses = new(_sourceVerses.Select(verse => new BibleVerseRow(verse.Verse, verse.DisplayedText(EffectiveEdition?.Scripture, EffectiveScript), verse.EndVerse)));
+        Verses = new(_sourceVerses.Select(verse => new BibleVerseRow(verse.Verse, verse.DisplayedText(EffectiveEdition?.Scripture, EffectiveScript), verse.EndVerse, verse.SourceNotes)));
         SelectedVerse = Verses.FirstOrDefault(verse => _versePosition is { } position && verse.ContainsVerse(position)) ?? Verses.FirstOrDefault();
         NotifyDisplay();
     }

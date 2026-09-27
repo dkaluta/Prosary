@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "book": "LJE",
+  "status": "Complete source comparison with one explicitly disclosed unreadable vowel",
+  "userPolicyQuestion": "For isolated vowel marks that remain unreadable in the scan—such as the ק in בקבה—should the reader explicitly flag the uncertain mark with a source note, or should release wait for a clearer copy? This would not excuse missing words, verses, or unfinished proofreading.",
+  "userPolicyResponse": "Flag uncertain vowels with source notes",
+  "note": {
+    "id": "lje-1-9-qoph-vowel",
+    "kind": "unreadablePoint",
+    "anchor": "בַּקּבָּה",
+    "occurrence": 1,
+    "letterIndex": 2,
+    "mark": "vowel",
+    "sourcePages": [
+      16
+    ],
+    "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=16"
+  },
+  "unit": {
+    "chapter": 1,
+    "verse": 9,
+    "before": "וְיֵשׁ אֲשֶׁר יִגְנְבוּ הַכֹּהֲנִים זָהָב וָכֶסֶף מֵעַל אֱלֹהֵיהֶם וְיִקְחוּ לְנַפְשָׁם אַף יִתְּנוּ מֵהֶם לִקְדֵשׁוֹת אֲשֶׁר בַּקֻּבָּה׃",
+    "after": "וְיֵשׁ אֲשֶׁר יִגְנְבוּ הַכֹּהֲנִים זָהָב וָכֶסֶף מֵעַל אֱלֹהֵיהֶם וְיִקְחוּ לְנַפְשָׁם אַף יִתְּנוּ מֵהֶם לִקְדֵשׁוֹת אֲשֶׁר בַּקּבָּה׃",
+    "textSHA256": "deedda0ab16ddafedd5f2533338d82217cc8b3a9670c7b11e11397ba3024260b"
+  },
+  "evidence": {
+    "crop": "root-lje-v9-bakuba.png",
+    "cropSHA256": "c9ced8daa1adfefdcac9ca74f0b69cd34c6307ec83084c324a610110f4eda184",
+    "readings": "Root, independent reviewer and user could not distinguish the vowel. Qoph dagesh and other readable marks are retained; only the provisional qibbuts is removed.",
+    "previousFullReview": "LJE-root-second-pass.json",
+    "scopedUserReadings": [
+      "LJE-user-points-3-9-17.json",
+      "LJE-user-point-70.json",
+      "LJE-user-review-67.json"
+    ],
+    "independentInventory": "LJE-print-inventory.json",
+    "independentInventorySHA256": "c8f5f9ee5641d19f2681a69a18cf7f8d572abedaaa75bef6e7c9fdc8ef9b7a57"
+  },
+  "reviewedPages": [
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23
+  ],
+  "contentSHA256": "90ba62cf79c28f973b48ddb541b027999f717abaf136a691eb30a86e9ec583f8",
+  "releaseStatus": "Excluded until all twelve books are complete and native source-note support is verified. No daily-reading crosswalk is asserted."
+}

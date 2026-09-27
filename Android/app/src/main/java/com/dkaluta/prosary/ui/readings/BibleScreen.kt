@@ -252,9 +252,12 @@ private fun BibleInstalledReader(edition: BibleEdition, library: BibleLibrary, m
                         }
                         items(chapter.verses, key = { "${chapter.book}.${it.chapter}.${it.verse}" }) { verse ->
                             CompositionLocalProvider(LocalLayoutDirection provides direction) {
-                                val text = verse.displayedText(readingEdition, script)
-                                Text("\u2066${verse.verseLabel}\u2069  $text", style = PrayerTypography.styleForText(text, isScripture = true),
-                                    modifier = Modifier.fillMaxWidth().testTag("bibleVerse.${verse.verse}"))
+                                Column {
+                                    val text = verse.displayedText(readingEdition, script)
+                                    Text("\u2066${verse.verseLabel}\u2069  $text", style = PrayerTypography.styleForText(text, isScripture = true),
+                                        modifier = Modifier.fillMaxWidth().testTag("bibleVerse.${verse.verse}"))
+                                    ScriptureSourceNotes(verse.sourceNotes)
+                                }
                             }
                         }
                         item(key = "source") {

@@ -397,6 +397,7 @@ internal fun ReadingCard(citation: ReadingCitation, language: String, edition: R
                                     Text("\u2066${verse.verseLabel}\u2069  $visibleText",
                                         style = PrayerTypography.styleForText(visibleText, isScripture = true),
                                         modifier = Modifier.fillMaxWidth())
+                                    ScriptureSourceNotes(verse.sourceNotes)
                                 }
                             }
                         }

@@ -22,7 +22,7 @@
                             Visibility="{x:Bind HasScriptToggle, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
                     <TextBlock Text="{x:Bind WholeVersesNotice}" TextWrapping="Wrap" Style="{StaticResource MutedCaptionTextStyle}"
                                Visibility="{x:Bind IncludesWholeVerses, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
-                    <TextBlock controls:ScripturePassageText.Chapters="{x:Bind Chapters, Mode=OneWay}" IsTextSelectionEnabled="True" TextWrapping="Wrap"
+                    <controls:ScripturePassageBody Chapters="{x:Bind Chapters, Mode=OneWay}"
                                FontFamily="{x:Bind BodyFontFamily, Mode=OneWay}" FontSize="{x:Bind BodyFontSize, Mode=OneWay}"
                                FlowDirection="{x:Bind IsRightToLeft, Mode=OneWay, Converter={StaticResource BoolToFlowDirection}}"
                                Visibility="{x:Bind HasPassage, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />

@@ -1642,6 +1642,12 @@ are in [BIBLE-VIEWER.markdown](BIBLE-VIEWER.markdown); `schema/bible-library.jso
 the metadata and chapter shapes. Daily reading text remains bundled and independent of
 Bible downloads. Terminal has no readings or download features.
 
+Isolated unreadable Hebrew points may be omitted only with an explicit source note.
+The shared verse carries an exact word/letter anchor and scan-page link; all native
+readers show the note separately from scripture. Bible archives with notes use
+version 2 so older readers reject them. The contract and strict review rules are in
+[SCRIPTURE-SOURCE-NOTES.markdown](SCRIPTURE-SOURCE-NOTES.markdown).
+
 Phone Readings and Mac/Windows Today retain the calendar's complete localized citation above
 each collapsible Bible passage. Daily and enabled Torah passages start collapsed unless
 `expandReadingsByDefault` is enabled when entering the view or changing the date/calendar.

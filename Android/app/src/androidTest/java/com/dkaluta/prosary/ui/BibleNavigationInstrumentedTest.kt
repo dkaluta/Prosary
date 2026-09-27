@@ -20,6 +20,7 @@ import com.dkaluta.prosary.content.bible.BibleEdition
 import com.dkaluta.prosary.content.bible.BibleLibrary
 import com.dkaluta.prosary.content.bible.BibleStore
 import com.dkaluta.prosary.content.today.ReadingVerse
+import com.dkaluta.prosary.content.today.ReadingSourceNote
 import com.dkaluta.prosary.models.AppSettings
 import com.dkaluta.prosary.ui.readings.BibleScreen
 import com.dkaluta.prosary.ui.readings.ReadingsScreen
@@ -39,6 +40,31 @@ import org.junit.Test
 class BibleNavigationInstrumentedTest {
     @get:Rule val compose = createAndroidComposeRule<AdaptiveLayoutTestActivity>()
     private val json = Json { encodeDefaults = true }
+
+    @Test fun downloadedBibleShowsSourceNoteAndKeepsItOutOfVerseNavigation() {
+        val directory = File(compose.activity.cacheDir, "bible-note-test-${UUID.randomUUID()}").apply { mkdirs() }
+        val previous = AppSettings.readingsEditionId
+        val (edition, archive) = fixture(directory, withSourceNote = true)
+        val library = BibleLibrary(BibleStore(File(directory, "installed")), File(directory, "download"))
+        library.store.install(edition, archive)
+        val catalog = json.encodeToString(BibleCatalog(1, listOf(edition)))
+        try {
+            AppSettings.readingsEditionId = edition.id
+            compose.setContent { MaterialTheme { BibleScreen(library) { catalog.byteInputStream() } } }
+            waitFor("scriptureSourceNote.bible-note")
+            val explanation = compose.activity.getString(R.string.scripture_source_note_vowel)
+            compose.onNodeWithText(explanation).assertDoesNotExist()
+            compose.onNodeWithTag("scriptureSourceNote.bible-note").performClick()
+            compose.onNodeWithText(explanation).assertExists()
+            compose.onNodeWithTag("bibleVerse.1").assertTextContains("בַּקּבָּה", substring = true)
+            compose.onNodeWithTag("bibleVerse").performClick()
+            compose.onNodeWithTag("bibleChoice.5").performClick()
+            compose.onNodeWithTag("bibleVerse.4").assertTextContains("4–5", substring = true)
+            compose.onNodeWithTag("bibleNextChapter").performClick()
+            waitFor("bibleVerse.1")
+            compose.onNodeWithTag("scriptureSourceNote.bible-note").assertDoesNotExist()
+        } finally { AppSettings.readingsEditionId = previous; directory.deleteRecursively() }
+    }
 
     @Test fun sparseChapterNavigationVerseJumpAndRemovalStayWithinTheSelectedEdition() {
         val directory = File(compose.activity.cacheDir, "bible-test-${UUID.randomUUID()}").apply { mkdirs() }
@@ -119,16 +145,21 @@ class BibleNavigationInstrumentedTest {
     private fun waitFor(tag: String) {
         compose.waitUntil(10_000) { compose.onAllNodes(hasTestTag(tag)).fetchSemanticsNodes().isNotEmpty() }
     }
-    private fun fixture(directory: File): Pair<BibleEdition, File> {
+    private fun fixture(directory: File, withSourceNote: Boolean = false): Pair<BibleEdition, File> {
         val books = listOf(BibleBook("GEN", "Genesis", listOf(BibleChapterInfo(1, 2, false), BibleChapterInfo(3, 1, true)),
             introduction = "Unnumbered opening"),
             BibleBook("EXO", "Exodus", listOf(BibleChapterInfo(2, 1, false))))
         val revision = "a".repeat(64)
-        val files = linkedMapOf("manifest.json" to """{"schemaVersion":1,"editionId":"fixture","revision":"$revision","books":${json.encodeToString(books)}}""")
+        val version = if (withSourceNote) 2 else 1
+        val files = linkedMapOf("manifest.json" to """{"schemaVersion":$version,"editionId":"fixture","revision":"$revision","books":${json.encodeToString(books)}}""")
         books.forEach { book -> book.chapters.forEach { info ->
-            val verses = if (info.verseCount == 2) listOf(ReadingVerse(info.number, 1, "Source verse one"), ReadingVerse(info.number, 4, "Source verse four", endVerse = 5))
+            var verses = if (info.verseCount == 2) listOf(ReadingVerse(info.number, 1, "Source verse one"), ReadingVerse(info.number, 4, "Source verse four", endVerse = 5))
                 else listOf(ReadingVerse(info.number, 1, "Source chapter ${info.number}"))
-            files[BibleStore.chapterPath(book.id, info.number)] = json.encodeToString(BibleChapter(1, "fixture", book.id, info.number, verses))
+            if (withSourceNote && book.id == "GEN" && info.number == 1) verses = verses.map { verse ->
+                if (verse.verse == 1) verse.copy(text = "בַּקּבָּה", sourceNotes = listOf(ReadingSourceNote("bible-note",
+                    "unreadablePoint", "בַּקּבָּה", 1, 2, "vowel", listOf(16), "https://example.org/scan.pdf#page=16"))) else verse
+            }
+            files[BibleStore.chapterPath(book.id, info.number)] = json.encodeToString(BibleChapter(version, "fixture", book.id, info.number, verses))
         } }
         val archive = File(directory, "fixture.zip")
         ZipOutputStream(archive.outputStream()).use { zip -> files.forEach { (name, text) ->
@@ -137,6 +168,6 @@ class BibleNavigationInstrumentedTest {
         val hash = MessageDigest.getInstance("SHA-256").digest(archive.readBytes()).joinToString("") { "%02x".format(it) }
         return BibleEdition("fixture", "en", "Fixture Bible", "Fixture credit", "https://example.org",
             revision, "https://raw.githubusercontent.com/dkaluta/Prosary/main/Shared/dist/bibles/fixture.zip", hash,
-            archive.length(), files.values.sumOf { it.toByteArray().size.toLong() }, books) to archive
+            archive.length(), files.values.sumOf { it.toByteArray().size.toLong() }, books, archiveSchemaVersion = version) to archive
     }
 }

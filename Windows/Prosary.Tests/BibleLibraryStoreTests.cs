@@ -16,12 +16,13 @@ public sealed class BibleLibraryStoreTests : IDisposable
     private static List<BibleBook> Books => [new("GEN", "Genesis", [new(1, 2, false), new(3, 1, true)]),
         new("EXO", "Exodus", [new(2, 1, true)])];
 
-    private static Fixture Make(string id = "test-bible", string revision = "a", string? mutation = null, bool paired = false, string? introduction = null)
+    private static Fixture Make(string id = "test-bible", string revision = "a", string? mutation = null, bool paired = false, string? introduction = null,
+        int archiveVersion = 1, int? manifestVersion = null, int? chapterVersion = null, bool sourceNotes = false)
     {
         var books = Books;
         books[0] = books[0] with { Introduction = introduction };
         if (mutation == "sourceOrder") books[0].Chapters[0] = new(1, 5, false);
-        var manifest = new BibleManifest(1, id, new string(revision[0], 64), books);
+        var manifest = new BibleManifest(manifestVersion ?? archiveVersion, id, new string(revision[0], 64), books);
         var entries = new List<(string Name, byte[] Bytes)>();
         void Add(string name, object value) => entries.Add((name, JsonSerializer.SerializeToUtf8Bytes(value, Json)));
         Add("manifest.json", mutation == "manifest" ? manifest with { EditionId = "wrong" } : manifest);
@@ -33,6 +34,9 @@ public sealed class BibleLibraryStoreTests : IDisposable
             if (mutation == "sourceOrder" && chapter.Number == 1) labels = [24, 26, 27, 25, 28];
             var verses = labels.Select(number => new ScriptureVerse(chapter.Number, number, "Source " + number,
                 paired ? "Paired " + number : null)).ToList();
+            if (sourceNotes && book.Id == "GEN")
+                verses[0] = verses[0] with { Text = "בַּקּבָּה", SourceNotes = [ScriptureSourceNoteTests.ValidNote with {
+                    Id = mutation == "duplicateBookNoteId" ? "repeated-note" : $"gen-{chapter.Number}-note" }] };
             if (book.Id == "GEN" && chapter.Number == 1)
             {
                 if (mutation == "duplicateVerse") verses[1] = verses[1] with { Verse = 2 };
@@ -46,7 +50,7 @@ public sealed class BibleLibraryStoreTests : IDisposable
                 if (mutation == "reversedRange") verses[0] = verses[0] with { EndVerse = 1 };
                 if (mutation == "nonAdjacentOverlap") { verses.Reverse(); verses[1] = verses[1] with { EndVerse = 4 }; }
             }
-            Add($"chapters/{book.Id}/{chapter.Number}.json", new BibleChapterText(1, id, book.Id, chapter.Number, verses));
+            Add($"chapters/{book.Id}/{chapter.Number}.json", new BibleChapterText(chapterVersion ?? archiveVersion, id, book.Id, chapter.Number, verses));
         }
         if (mutation == "traversal") entries.Add(("../outside.json", Encoding.UTF8.GetBytes("{}")));
         if (mutation == "directory") entries.Add(("chapters/", []));
@@ -64,7 +68,7 @@ public sealed class BibleLibraryStoreTests : IDisposable
         var edition = new BibleEdition(id, paired ? "arc" : "en", "Test Bible", "Source credit", "https://example.org/source",
             manifest.Revision, BibleLibraryStore.DownloadPrefix + id + "-" + manifest.Revision + ".zip",
             Convert.ToHexStringLower(SHA256.HashData(raw)), raw.Length, entries.Sum(entry => (long)entry.Bytes.Length), books,
-            paired ? "Hebr" : null, paired ? "Syrc" : null);
+            paired ? "Hebr" : null, paired ? "Syrc" : null, archiveVersion);
         return new(edition, raw);
     }
     private BibleLibraryStore Store(params Fixture[] fixtures) => new(_directory,
@@ -259,6 +263,55 @@ public sealed class BibleLibraryStoreTests : IDisposable
             } }, Json);
         var store = new ReadingsTextStore(() => json);
         Assert.Equal(available, store.LoadPassage("daily", "Genesis 1:2–4", fixture.Edition.Id) is not null);
+    }
+
+    [Fact]
+    public async Task VersionTwoArchiveReopensOfflineWithNotesOutsideTheCopiedVerse()
+    {
+        var fixture = Make(archiveVersion: 2, sourceNotes: true);
+        await Install(Store(fixture), fixture);
+        var reopened = Store(fixture);
+        Assert.Equal(2, (await reopened.InstalledAsync(fixture.Edition.Id))!.SchemaVersion);
+        var chapter = await reopened.LoadChapterAsync(fixture.Edition.Id, "GEN", 1);
+        var verse = chapter.Verses[0];
+        Assert.Single(verse.SourceNotes!);
+        var row = new BibleVerseRow(verse.Verse, verse.Text, verse.EndVerse, verse.SourceNotes);
+        Assert.Equal("\u20662\u2069  בַּקּבָּה", row.DisplayText);
+        Assert.Equal("ק", row.SourceNotes![0].Letter());
+        Assert.True(row.ContainsVerse(2));
+    }
+
+    [Theory]
+    [InlineData(1, 1, 1)]
+    [InlineData(2, 1, 2)]
+    [InlineData(2, 2, 1)]
+    [InlineData(2, 3, 2)]
+    [InlineData(2, 2, 3)]
+    public async Task SourceNotesRequireMatchingVersionTwoManifestAndChapters(int archiveVersion, int manifestVersion, int chapterVersion)
+    {
+        var fixture = Make(archiveVersion: archiveVersion, manifestVersion: manifestVersion, chapterVersion: chapterVersion, sourceNotes: true);
+        var store = Store(fixture);
+        await Assert.ThrowsAsync<InvalidDataException>(() => Install(store, fixture));
+        Assert.Null(await store.InstalledAsync(fixture.Edition.Id));
+    }
+
+    [Theory]
+    [InlineData(0)]
+    [InlineData(3)]
+    public void UnknownArchiveVersionsAreNotOffered(int version) => Assert.Empty(Store(Make(archiveVersion: version)).Editions);
+
+    [Fact]
+    public async Task NoteIdsMustBeUniqueAcrossAllChaptersOfOneBook()
+    {
+        var fixture = Make(archiveVersion: 2, sourceNotes: true, mutation: "duplicateBookNoteId");
+        await Assert.ThrowsAsync<InvalidDataException>(() => Install(Store(fixture), fixture));
+    }
+
+    [Fact]
+    public async Task PairedScriptArchiveCannotCarryUnpairedNoteAnchors()
+    {
+        var fixture = Make(archiveVersion: 2, sourceNotes: true, paired: true);
+        await Assert.ThrowsAsync<InvalidDataException>(() => Install(Store(fixture), fixture));
     }
     public void Dispose() { if (Directory.Exists(_directory)) Directory.Delete(_directory, true); }
 }

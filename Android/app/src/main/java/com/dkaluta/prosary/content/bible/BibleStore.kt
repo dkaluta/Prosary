@@ -2,6 +2,7 @@ package com.dkaluta.prosary.content.bible
 
 import com.dkaluta.prosary.content.today.ReadingEdition
 import com.dkaluta.prosary.content.today.ReadingVerse
+import com.dkaluta.prosary.content.today.validateSourceNotes
 import java.io.File
 import java.io.FileOutputStream
 import java.io.InputStream
@@ -31,6 +32,7 @@ data class BibleEdition(
     val archiveSHA256: String, val archiveByteCount: Long, val unpackedByteCount: Long,
     val books: List<BibleBook>, val textScript: String? = null,
     val transliteratedTextScript: String? = null,
+    val archiveSchemaVersion: Int = 1,
 ) {
     fun readingEdition() = ReadingEdition(id, languageCode, name, attribution, sourceURL,
         textScript, transliteratedTextScript)
@@ -107,6 +109,7 @@ class BibleStore(private val directory: File) {
                 require(entries.size == expected.size && entries.map { it.name }.toSet() == expected)
                 require(entries.all { !it.isDirectory && it.method in listOf(ZipEntry.STORED, ZipEntry.DEFLATED) })
                 var expanded = 0L
+                val sourceNoteIds = mutableMapOf<String, MutableSet<String>>()
                 // Exact allowlisted paths prohibit traversal, absolute paths, duplicates and undeclared files.
                 for (entry in entries) {
                     require(entry.size in 0..MAX_CHAPTER_BYTES)
@@ -116,13 +119,13 @@ class BibleStore(private val directory: File) {
                     require(expanded <= MAX_EXPANDED_BYTES && expanded <= edition.unpackedByteCount)
                     if (entry.name == "manifest.json") {
                         val manifest = json.decodeFromString<BibleManifest>(bytes.decodeToString())
-                        require(manifest.schemaVersion == 1 && manifest.editionId == edition.id &&
+                        require(manifest.schemaVersion == edition.archiveSchemaVersion && manifest.editionId == edition.id &&
                             manifest.revision == edition.revision && manifest.books == edition.books)
                     } else {
                         val parts = entry.name.split('/')
                         val book = edition.books.single { it.id == parts[1] }
                         val chapter = book.chapters.single { "${it.number}.json" == parts[2] }
-                        decodeChapter(bytes, edition, book, chapter)
+                        decodeChapter(bytes, edition, book, chapter, sourceNoteIds.getOrPut(book.id) { mutableSetOf() })
                     }
                     val target = File(staging, entry.name)
                     check(target.parentFile!!.mkdirs() || target.parentFile!!.isDirectory)
@@ -180,15 +183,17 @@ class BibleStore(private val directory: File) {
     }
 
     private fun decodeChapter(bytes: ByteArray, edition: BibleEdition, book: BibleBook,
-        info: BibleChapterInfo): BibleChapter {
+        info: BibleChapterInfo, sourceNoteIds: MutableSet<String> = mutableSetOf()): BibleChapter {
         val chapter = json.decodeFromString<BibleChapter>(bytes.decodeToString())
-        require(chapter.schemaVersion == 1 && chapter.editionId == edition.id && chapter.book == book.id && chapter.chapter == info.number)
+        require(chapter.schemaVersion == edition.archiveSchemaVersion && chapter.editionId == edition.id && chapter.book == book.id && chapter.chapter == info.number)
         require(chapter.verses.size == info.verseCount)
         val labels = mutableSetOf<Int>()
         for (verse in chapter.verses) {
             require(verse.chapter == chapter.chapter && verse.verse > 0 &&
                 verse.lastVerse in verse.verse..1000 && verse.text.isNotBlank())
             require(!edition.readingEdition().hasAramaicScripts || !verse.transliteratedText.isNullOrBlank())
+            verse.validateSourceNotes(allowed = edition.archiveSchemaVersion == 2,
+                paired = edition.readingEdition().hasAramaicScripts, ids = sourceNoteIds)
             // Some editions print displaced labels. Preserve their order while rejecting
             // duplicate coordinates, including overlaps with any earlier combined unit.
             require((verse.verse..verse.lastVerse).all { labels.add(it) })
@@ -206,6 +211,7 @@ class BibleStore(private val directory: File) {
         fun chapterPath(book: String, chapter: Int) = "chapters/$book/$chapter.json"
 
         fun validateEdition(edition: BibleEdition) {
+            require(edition.archiveSchemaVersion in 1..2)
             require(ID.matches(edition.id) && HASH.matches(edition.revision) && HASH.matches(edition.archiveSHA256))
             require(edition.name.isNotBlank() && edition.languageCode.isNotBlank() && edition.attribution.isNotBlank())
             require(edition.archiveByteCount in 1..MAX_ARCHIVE_BYTES && edition.unpackedByteCount in 1..MAX_EXPANDED_BYTES)

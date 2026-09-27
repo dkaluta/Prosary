@@ -8,7 +8,7 @@ using Prosary.Services;
 namespace Prosary.ViewModels;
 
 public sealed record ReadingEditionChoice(string Id, string Label);
-public sealed record ReadingChapterSection(string Label, int Number, string DisplayNumber, string Text);
+public sealed record ReadingChapterSection(string Label, int Number, string DisplayNumber, string Text, IReadOnlyList<BibleVerseRow>? Verses = null);
 
 /// <summary>Each full citation keeps an independent, lazy Bible-text expansion.</summary>
 public partial class ReadingPassageViewModel : ObservableObject
@@ -127,11 +127,13 @@ public partial class ReadingPassageViewModel : ObservableObject
         foreach (var verse in _verses)
         {
             var text = $"\u2066{verse.VerseLabel}\u2069  {verse.DisplayedText(_edition, EffectiveScript)}";
+            var row = new BibleVerseRow(verse.Verse, verse.DisplayedText(_edition, EffectiveScript), verse.EndVerse, verse.SourceNotes);
             if (sections.Count == 0 || sections[^1].Number != verse.Chapter)
                 sections.Add(new ReadingChapterSection(chapterLabel, verse.Chapter,
-                    ReadingChapterHeading.Number(verse.Chapter, headingLanguage, EffectiveScript), text));
+                    ReadingChapterHeading.Number(verse.Chapter, headingLanguage, EffectiveScript), text, [row]));
             else
-                sections[^1] = sections[^1] with { Text = sections[^1].Text + Environment.NewLine + Environment.NewLine + text };
+                sections[^1] = sections[^1] with { Text = sections[^1].Text + Environment.NewLine + Environment.NewLine + text,
+                    Verses = [.. sections[^1].Verses ?? [], row] };
         }
         Chapters = sections;
         PassageText = string.Join(Environment.NewLine + Environment.NewLine,

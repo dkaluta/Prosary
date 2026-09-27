@@ -126,6 +126,23 @@ class HebrewReviewTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "opening hash"):
             validate_book(self.book, self.catalog, self.approval)
 
+    def test_disclosed_point_requires_exact_review_and_approval_inventories(self):
+        row = self.book["chapters"][0]["verses"][0]
+        row["text"] = "קּ"
+        row["textSHA256"] = hashlib.sha256(row["text"].encode()).hexdigest()
+        row["sourceNotes"] = [{"id": "test-qoph", "kind": "unreadablePoint", "anchor": "קּ",
+            "occurrence": 1, "letterIndex": 1, "mark": "vowel", "sourcePages": [14],
+            "sourceURL": "https://example.org/source.pdf#page=14"}]
+        self.repin()
+        with self.assertRaisesRegex(ValueError, "source-note review inventory"):
+            validate_book(self.book, self.catalog, self.approval)
+        self.book["review"]["acceptedSourceNoteIds"] = ["test-qoph"]
+        self.approval["sourceNoteIds"] = ["test-qoph"]
+        validate_book(self.book, self.catalog, self.approval)
+        self.book["review"]["unresolvedFindings"] = ["An unread consonant remains"]
+        with self.assertRaisesRegex(ValueError, "unresolved"):
+            validate_book(self.book, self.catalog, self.approval)
+
 
 if __name__ == "__main__":
     unittest.main()

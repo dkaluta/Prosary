@@ -1,4 +1,5 @@
 using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace Prosary.Services;
 
@@ -10,7 +11,10 @@ public sealed record ScriptureEdition(string Id, string LanguageCode, string Nam
         && (uri.Scheme == Uri.UriSchemeHttps || uri.Scheme == Uri.UriSchemeHttp) ? uri : null;
 }
 
-public sealed record ScriptureVerse(int Chapter, int Verse, string Text, string? TransliteratedText = null, int? EndVerse = null)
+[JsonConverter(typeof(ScriptureVerseConverter))]
+public sealed record ScriptureVerse(int Chapter, int Verse, string Text, string? TransliteratedText = null, int? EndVerse = null,
+    [property: JsonConverter(typeof(ScriptureSourceNotesConverter))]
+    [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)] List<ScriptureSourceNote>? SourceNotes = null)
 {
     public string VerseLabel => EndVerse is { } end && end > Verse ? $"{Verse}–{end}" : Verse.ToString(System.Globalization.CultureInfo.InvariantCulture);
     public string DisplayedText(ScriptureEdition? edition, string script) =>
@@ -79,9 +83,13 @@ public sealed class ReadingsTextStore
             || versions is null || !versions.TryGetValue(editionId, out var verses) || verses is null || verses.Count == 0)
             return null;
         // A damaged row must not display a silently shortened or partially missing passage.
-        var requiresBothScripts = Editions.First(edition => edition.Id == editionId).HasAramaicScripts;
+        var edition = Editions.First(edition => edition.Id == editionId);
+        var requiresBothScripts = edition.HasAramaicScripts;
+        var hasScriptMetadata = edition.TextScript is not null || edition.TransliteratedTextScript is not null;
+        var noteIds = new HashSet<string>(StringComparer.Ordinal);
         return verses.All(verse => verse is not null && verse.Chapter > 0 && verse.Verse > 0 && (verse.EndVerse is null || verse.EndVerse >= verse.Verse) && !string.IsNullOrWhiteSpace(verse.Text)
-            && (!requiresBothScripts || !string.IsNullOrWhiteSpace(verse.TransliteratedText)))
+            && (!requiresBothScripts || !string.IsNullOrWhiteSpace(verse.TransliteratedText))
+            && ScriptureSourceNote.ValidForVerse(verse, hasScriptMetadata, noteIds))
             ? new ScripturePassage(verses, _corpus.Value.WholeVersePassages?.Contains($"{scope}|{rawCitation}") == true)
             : null;
     }

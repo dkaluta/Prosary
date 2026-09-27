@@ -101,6 +101,46 @@ final class BibleStoreTests: XCTestCase {
     }
   }
 
+  func testSourceNotesRequireVersionTwoAndSurviveOfflineInstall() async throws {
+    let note = sourceNote()
+    let (edition, data) = try fixture(sourceNotes:[note], archiveVersion:2)
+    let folder = FileManager.default.temporaryDirectory.appending(path: UUID().uuidString)
+    defer { try? FileManager.default.removeItem(at: folder) }
+    let store = BibleStore(catalogURL:nil, directory:folder)
+    try await store.install(data, edition:edition)
+    let chapter = try await store.chapter(edition:edition, book:"GEN", number:1)
+    XCTAssertEqual(chapter.schemaVersion, 2)
+    XCTAssertEqual(chapter.verses[0].sourceNotes?.first?.anchor, "בַּקּבָּה")
+    XCTAssertEqual(chapter.verses[0].text, "בַּקּבָּה")
+    XCTAssertEqual(chapter.unitStart(containing:1), 1)
+    for settings in [(1,1,1),(2,1,2),(2,2,1),(3,3,3)] {
+      let (badEdition, badData) = try fixture(sourceNotes:[note], archiveVersion:settings.0,
+        chapterVersion:settings.1, manifestVersion:settings.2)
+      XCTAssertThrowsError(try BibleStore.validatedArchive(badData, edition:badEdition), "\(settings)")
+    }
+    // Explicit version 1 and legacy absence remain supported for unchanged no-note books.
+    let (oldEdition, oldData) = try fixture()
+    XCTAssertNil(oldEdition.archiveSchemaVersion)
+    _ = try BibleStore.validatedArchive(oldData, edition:oldEdition)
+    XCTAssertThrowsError(try fixture(changes:["archiveSchemaVersion":NSNull()]))
+    XCTAssertThrowsError(try fixture(changes:["archiveSchemaVersion":true]))
+  }
+
+  func testArchiveRejectsInvalidPairedAndBookWideDuplicateSourceNotes() throws {
+    for (notes, paired, duplicate) in [([sourceNote(["anchor":"missing"])],false,false),
+      ([sourceNote()],true,false),([sourceNote()],false,true),([],false,false)] {
+      let (edition, data) = try fixture(sourceNotes:notes, archiveVersion:2,
+        duplicateNoteInSecondChapter:duplicate, pairedNotes:paired)
+      XCTAssertThrowsError(try BibleStore.validatedArchive(data, edition:edition))
+    }
+  }
+
+  private func sourceNote(_ changes: [String: Any] = [:]) -> [String: Any] {
+    var note: [String: Any] = ["id":"fixture-qoph-vowel", "kind":"unreadablePoint", "anchor":"בַּקּבָּה",
+      "occurrence":1,"letterIndex":2,"mark":"vowel","sourcePages":[16],"sourceURL":"https://example.org/source.pdf#page=16"]
+    note.merge(changes) { _, new in new }; return note
+  }
+
   func testChapterNavigationFollowsAvailableInventoryAcrossBooks() async throws {
     let editions = try await BibleStore.shared.editions()
     let edition = try XCTUnwrap(editions.first)
@@ -112,7 +152,9 @@ final class BibleStoreTests: XCTestCase {
     XCTAssertEqual(end.moving(by: 1, in: edition), BiblePosition(book: second.id, chapter: second.chapters[0].number))
   }
 
-  private func fixture(defect: String = "", changes: [String: Any] = [:]) throws -> (BibleEdition, Data) {
+  private func fixture(defect: String = "", changes: [String: Any] = [:], sourceNotes: [[String:Any]]? = nil,
+                       archiveVersion: Int = 1, chapterVersion: Int? = nil, manifestVersion: Int? = nil,
+                       duplicateNoteInSecondChapter: Bool = false, pairedNotes: Bool = false) throws -> (BibleEdition, Data) {
     let revision = String(repeating: "a", count: 64)
     let sourceOrder = defect.hasPrefix("sourceOrder")
     let book = sourceOrder ? "SIR" : "GEN", chapterNumber = sourceOrder ? 3 : 1
@@ -121,7 +163,10 @@ final class BibleStoreTests: XCTestCase {
     if ["introduction", "wrongIntroduction", "emptyIntroduction"].contains(defect) {
       books[0]["introduction"] = defect == "emptyIntroduction" ? " \n " : "פְּתִיחָה בְּלִי מִסְפָּר"
     }
-    let manifest: [String: Any] = ["schemaVersion":1,"editionId":defect == "wrongManifest" ? "other" : "test", "revision":revision,"books":books]
+    if duplicateNoteInSecondChapter {
+      books[0]["chapters"] = [["number":1,"verseCount":2,"isComplete":false],["number":2,"verseCount":1,"isComplete":false]]
+    }
+    let manifest: [String: Any] = ["schemaVersion":manifestVersion ?? archiveVersion,"editionId":defect == "wrongManifest" ? "other" : "test", "revision":revision,"books":books]
     var verses: [[String: Any]] = [["chapter":1,"verse":1,"text":"אב","transliteratedText":"ܐܒ"],
       ["chapter":defect == "wrongChapter" ? 2 : 1,"verse":defect == "duplicate" ? 1 : 3,"text":"גד","transliteratedText":defect == "unpaired" ? "" : "ܓܕ"]]
     if ["combined", "overlap", "reversedRange"].contains(defect) {
@@ -131,9 +176,18 @@ final class BibleStoreTests: XCTestCase {
       verses = [24, 26, 27, 25, 28].map { ["chapter":3,"verse":$0,"text":"אב","transliteratedText":"ܐܒ"] }
       if defect == "sourceOrderOverlap" { verses[0]["endVerse"] = 25 }
     }
-    let chapter: [String: Any] = ["schemaVersion":1,"editionId":"test","book":book,"chapter":chapterNumber,"verses":verses]
+    if let sourceNotes {
+      verses[0]["text"] = "בַּקּבָּה"; verses[0]["sourceNotes"] = sourceNotes
+      if !pairedNotes { for index in verses.indices { verses[index].removeValue(forKey:"transliteratedText") } }
+    }
+    let chapter: [String: Any] = ["schemaVersion":chapterVersion ?? archiveVersion,"editionId":"test","book":book,"chapter":chapterNumber,"verses":verses]
     var files = [("manifest.json", try JSONSerialization.data(withJSONObject: manifest)),
                  ("chapters/\(book)/\(chapterNumber).json", try JSONSerialization.data(withJSONObject: chapter))]
+    if duplicateNoteInSecondChapter {
+      var repeated = verses[0]; repeated["chapter"] = 2
+      let second: [String:Any] = ["schemaVersion":archiveVersion,"editionId":"test","book":book,"chapter":2,"verses":[repeated]]
+      files.append(("chapters/\(book)/2.json",try JSONSerialization.data(withJSONObject:second)))
+    }
     if defect == "extra" { files.append(("extra.json", Data("{}".utf8))) }
     let data = Self.zip(files)
     if defect == "wrongIntroduction" { books[0]["introduction"] = "Different source opening" }
@@ -142,6 +196,10 @@ final class BibleStoreTests: XCTestCase {
       "revision":revision,"downloadURL":"https://raw.githubusercontent.com/dkaluta/Prosary/main/Shared/dist/bibles/test.zip",
       "archiveSHA256":SHA256.hash(data: data).map { String(format:"%02x",$0) }.joined(),
       "archiveByteCount":data.count,"unpackedByteCount":files.reduce(0) { $0 + $1.1.count } + (defect == "size" ? 1 : 0),"books":books]
+    if archiveVersion != 1 { object["archiveSchemaVersion"] = archiveVersion }
+    if sourceNotes != nil && !pairedNotes {
+      object["languageCode"] = "he"; object.removeValue(forKey:"textScript"); object.removeValue(forKey:"transliteratedTextScript")
+    }
     object.merge(changes) { _, new in new }
     let edition = try JSONDecoder().decode(BibleEdition.self, from: JSONSerialization.data(withJSONObject: object))
     return (edition, data)

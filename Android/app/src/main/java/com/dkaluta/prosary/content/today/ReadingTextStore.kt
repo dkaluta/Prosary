@@ -21,9 +21,10 @@ data class ReadingEdition(
         && textScript == "Hebr" && transliteratedTextScript == "Syrc"
 }
 
-@Serializable
+@Serializable(with = ReadingVerseSerializer::class)
 data class ReadingVerse(val chapter: Int, val verse: Int, val text: String,
-    val transliteratedText: String? = null, val endVerse: Int? = null) {
+    val transliteratedText: String? = null, val endVerse: Int? = null,
+    val sourceNotes: List<ReadingSourceNote>? = null) {
     val lastVerse: Int get() = endVerse ?: verse
     val verseLabel: String get() = if (lastVerse > verse) "$verse–$lastVerse" else verse.toString()
     fun displayedText(edition: ReadingEdition?, script: String): String =
@@ -73,6 +74,9 @@ class ReadingTextStore(private val openData: (String) -> InputStream?) {
         // A paired edition must be complete in both scripts: never mix a fallback into a verse.
         if (editions.firstOrNull { it.id == editionId }?.hasAramaicScripts == true
             && verses.any { it.transliteratedText.isNullOrBlank() }) return null
+        val paired = editions.firstOrNull { it.id == editionId }?.hasAramaicScripts == true
+        val noteIds = mutableSetOf<String>()
+        if (runCatching { verses.forEach { it.validateSourceNotes(paired = paired, ids = noteIds) } }.isFailure) return null
         return ReadingPassage(verses, includesWholeVerses = key in file.wholeVersePassages)
     }
 

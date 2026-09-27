@@ -16,6 +16,8 @@ import json
 from pathlib import Path
 from urllib.parse import urlsplit
 
+from scripture_source_notes import validate_source_notes
+
 ROOT = Path(__file__).resolve().parents[2]
 CONTENT = ROOT / "Shared/content"
 BOOKS = ("TOB", "JDT", "WIS", "SIR", "BAR", "1MA", "2MA", "LJE", "ESG", "S3Y", "SUS", "BEL")
@@ -85,7 +87,7 @@ def validate_book(book: dict, catalog: dict, approval: dict | None = None) -> di
                 f"{code}: opening evidence without text")
     chapters = book.get("chapters")
     require(isinstance(chapters, list) and bool(chapters), f"{code}: no chapters")
-    numbers, units, label_inventory = [], 0, []
+    numbers, units, label_inventory, source_note_ids = [], 0, [], []
     for chapter in chapters:
         number = chapter.get("number")
         require(positive(number) and number not in numbers, f"{code}: duplicate/invalid chapter")
@@ -106,11 +108,15 @@ def validate_book(book: dict, catalog: dict, approval: dict | None = None) -> di
             require(nonempty(text), f"{code} {number}:{first}: empty source text")
             require(hashlib.sha256(text.encode()).hexdigest() == row.get("textSHA256"),
                     f"{code} {number}:{first}: text hash mismatch")
-            used_pages |= page_list(row.get("sourcePages"), total, f"{code} {number}:{first}",
-                                    allow_empty=not complete)
+            row_pages = page_list(row.get("sourcePages"), total, f"{code} {number}:{first}",
+                                  allow_empty=not complete)
+            used_pages |= row_pages
+            source_note_ids.extend(validate_source_notes(row, label=f"{code} {number}:{first}",
+                                                         source_pages=row_pages))
             units += 1
         label_inventory.append({"number": number, "units": ranges})
     require(numbers == sorted(numbers), f"{code}: chapter order is not ascending")
+    require(len(set(source_note_ids)) == len(source_note_ids), f"{code}: duplicate source-note ID in book")
     declared = set()
     if "textPages" in scan:
         declared = page_list(scan["textPages"], total, f"{code} text inventory")
@@ -126,6 +132,8 @@ def validate_book(book: dict, catalog: dict, approval: dict | None = None) -> di
         require(used_pages == expected_pages == reviewed == declared,
                 f"{code}: not every source page is represented and reviewed")
         require(nonempty(approval.get("method")), f"{code}: missing inventory review method")
+        require(review.get("acceptedSourceNoteIds", []) == sorted(source_note_ids) ==
+                approval.get("sourceNoteIds", []), f"{code}: source-note review inventory mismatch")
         require(type(approval.get("hasIntroduction")) is bool and
                 approval["hasIntroduction"] == ("introduction" in book), f"{code}: opening inventory mismatch")
         # Source gaps may be faithfully transcribed, but cannot be advertised as a

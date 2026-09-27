@@ -1,6 +1,7 @@
 package com.dkaluta.prosary.content.bible
 
 import com.dkaluta.prosary.content.today.ReadingVerse
+import com.dkaluta.prosary.content.today.ReadingSourceNote
 import java.io.File
 import java.security.MessageDigest
 import java.util.zip.ZipEntry
@@ -29,12 +30,12 @@ class BibleStoreTest {
         if (paired) "Hebr" else null, if (paired) "Syrc" else null,
     )
     private fun entries(edition: BibleEdition): LinkedHashMap<String, ByteArray> {
-        val manifest = """{"schemaVersion":1,"editionId":"${edition.id}","revision":"${edition.revision}","books":${json.encodeToString(edition.books)}}"""
+        val manifest = """{"schemaVersion":${edition.archiveSchemaVersion},"editionId":"${edition.id}","revision":"${edition.revision}","books":${json.encodeToString(edition.books)}}"""
         return linkedMapOf("manifest.json" to manifest.toByteArray()).apply {
             edition.books.forEach { book -> book.chapters.forEach { info ->
                 val labels = if (info.verseCount == 2) listOf(1, 4) else listOf(1)
                 val verses = labels.map { ReadingVerse(info.number, it, "Printed $it", if (edition.textScript != null) "ܟܬܒܐ $it" else null) }
-                put(BibleStore.chapterPath(book.id, info.number), json.encodeToString(BibleChapter(1, edition.id, book.id, info.number, verses)).toByteArray())
+                put(BibleStore.chapterPath(book.id, info.number), json.encodeToString(BibleChapter(edition.archiveSchemaVersion, edition.id, book.id, info.number, verses)).toByteArray())
             } }
         }
     }
@@ -61,6 +62,48 @@ class BibleStoreTest {
         assertNull(reopened.chapter(edition, "GEN", 2))
         assertNull(reopened.chapter(edition, "MAT", 1))
         assertFalse(edition.books.first().chapters.first().isComplete)
+    }
+
+    @Test fun versionTwoSourceNotesSurviveInstallationAndRequireMatchingArchiveVersions() {
+        val note = ReadingSourceNote("source-word", "unreadablePoint", "בַּקּבָּה", 1, 2,
+            "vowel", listOf(16), "https://example.org/source.pdf#page=16")
+        val initial = base().copy(archiveSchemaVersion = 2)
+        val chapter = BibleChapter(2, initial.id, "GEN", 1,
+            listOf(ReadingVerse(1, 1, note.anchor, sourceNotes = listOf(note)), ReadingVerse(1, 4, "Four")))
+        val files = entries(initial).apply { put("chapters/GEN/1.json", json.encodeToString(chapter).toByteArray()) }
+        val (edition, zip) = archive(initial, files)
+        val store = store()
+        store.install(edition, zip)
+        assertEquals(note, store.chapter(edition, "GEN", 1)!!.verses.first().sourceNotes!!.single())
+        rejected { store().install(edition.copy(archiveSchemaVersion = 1), zip) }
+        for (wrong in listOf(1, 3)) {
+            val mismatched = files.toMutableMap().apply {
+                put("chapters/GEN/1.json", json.encodeToString(chapter.copy(schemaVersion = wrong)).toByteArray())
+            }
+            val (bad, badZip) = archive(initial, mismatched)
+            rejected { store().install(bad, badZip) }
+        }
+        for (version in listOf(0, 3)) rejected { BibleStore.validateEdition(initial.copy(archiveSchemaVersion = version)) }
+        val old = base()
+        val oldFiles = entries(old).apply {
+            put("chapters/GEN/1.json", json.encodeToString(chapter.copy(schemaVersion = 1)).toByteArray())
+        }
+        val (oldEdition, oldZip) = archive(old, oldFiles)
+        rejected { store().install(oldEdition, oldZip) }
+    }
+
+    @Test fun sourceNoteIdsAreUniqueAcrossEveryChapterOfOneBook() {
+        val note = ReadingSourceNote("duplicate", "unreadablePoint", "ק", 1, 1, "vowel", listOf(1), "https://example.org")
+        val initial = base().copy(archiveSchemaVersion = 2)
+        val files = entries(initial).apply {
+            for (chapter in listOf(1, 3)) {
+                val units = listOf(ReadingVerse(chapter, 1, "ק", sourceNotes = listOf(note))) +
+                    if (chapter == 1) listOf(ReadingVerse(1, 4, "Four")) else emptyList()
+                put("chapters/GEN/$chapter.json", json.encodeToString(BibleChapter(2, initial.id, "GEN", chapter, units)).toByteArray())
+            }
+        }
+        val (edition, zip) = archive(initial, files)
+        rejected { store().install(edition, zip) }
     }
     @Test fun rejectsWrongHashAndByteCount() {
         val (edition, zip) = archive(base())

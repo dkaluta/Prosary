@@ -39,6 +39,9 @@ nonisolated struct BibleEdition: Decodable, Equatable, Identifiable, Sendable {
   let archiveByteCount: Int
   let unpackedByteCount: Int
   let books: [BibleBook]
+  var archiveSchemaVersion: Int? = nil
+
+  var resolvedArchiveSchemaVersion: Int { archiveSchemaVersion ?? 1 }
 
   var readingEdition: ReadingTextEdition {
     ReadingTextEdition(id: id, languageCode: languageCode, name: name, attribution: attribution,
@@ -50,6 +53,31 @@ nonisolated struct BibleEdition: Decodable, Equatable, Identifiable, Sendable {
 nonisolated struct BibleCatalog: Decodable, Sendable {
   let schemaVersion: Int
   let editions: [BibleEdition]
+}
+
+extension BibleEdition {
+  private enum CodingKeys: String, CodingKey {
+    case id, languageCode, name, attribution, sourceURL, textScript, transliteratedTextScript
+    case revision, downloadURL, archiveSHA256, archiveByteCount, unpackedByteCount, books, archiveSchemaVersion
+  }
+
+  init(from decoder: Decoder) throws {
+    let values = try decoder.container(keyedBy: CodingKeys.self)
+    id = try values.decode(String.self, forKey: .id)
+    languageCode = try values.decode(String.self, forKey: .languageCode)
+    name = try values.decode(String.self, forKey: .name)
+    attribution = try values.decode(String.self, forKey: .attribution)
+    sourceURL = try values.decode(String.self, forKey: .sourceURL)
+    textScript = try values.decodeIfPresent(String.self, forKey: .textScript)
+    transliteratedTextScript = try values.decodeIfPresent(String.self, forKey: .transliteratedTextScript)
+    revision = try values.decode(String.self, forKey: .revision)
+    downloadURL = try values.decode(String.self, forKey: .downloadURL)
+    archiveSHA256 = try values.decode(String.self, forKey: .archiveSHA256)
+    archiveByteCount = try values.decode(Int.self, forKey: .archiveByteCount)
+    unpackedByteCount = try values.decode(Int.self, forKey: .unpackedByteCount)
+    books = try values.decode([BibleBook].self, forKey: .books)
+    archiveSchemaVersion = values.contains(.archiveSchemaVersion) ? try values.decode(Int.self, forKey: .archiveSchemaVersion) : nil
+  }
 }
 
 nonisolated struct BibleManifest: Decodable, Sendable {
@@ -110,6 +138,7 @@ actor BibleStore {
           (1...maximumArchiveBytes).contains(edition.archiveByteCount),
           (1...maximumExpandedBytes).contains(edition.unpackedByteCount),
           !edition.name.isEmpty, !edition.books.isEmpty,
+          (1...2).contains(edition.resolvedArchiveSchemaVersion),
           Set(edition.books.map(\.id)).count == edition.books.count,
           (edition.textScript == nil) == (edition.transliteratedTextScript == nil) else {
       throw BibleStoreError.invalidCatalog
@@ -204,12 +233,18 @@ actor BibleStore {
     guard reader.expandedByteCount == edition.unpackedByteCount else { throw BibleStoreError.invalidArchive }
     let manifest = try JSONDecoder().decode(BibleManifest.self,
       from: reader.contents(of: "manifest.json", maximumBytes: maximumChapterBytes))
-    guard manifest.schemaVersion == 1, manifest.editionId == edition.id,
+    guard manifest.schemaVersion == edition.resolvedArchiveSchemaVersion, manifest.editionId == edition.id,
           manifest.revision == edition.revision, manifest.books == edition.books else {
       throw BibleStoreError.invalidArchive
     }
     for book in edition.books {
-      for info in book.chapters { _ = try decodeChapter(reader, edition: edition, book: book.id, info: info) }
+      var noteIDs = Set<String>()
+      for info in book.chapters {
+        let chapter = try decodeChapter(reader, edition: edition, book: book.id, info: info)
+        for note in chapter.verses.flatMap({ $0.sourceNotes ?? [] }) {
+          guard noteIDs.insert(note.id).inserted else { throw BibleStoreError.invalidArchive }
+        }
+      }
     }
     return reader
   }
@@ -221,11 +256,13 @@ actor BibleStore {
     // Numbering may be displaced in the source (Sirach 3:26,27,25). Sort only
     // this validation copy; the reader and verse picker retain the printed order.
     let numbered = value.verses.sorted { $0.verse < $1.verse }
-    guard value.schemaVersion == 1, value.editionId == edition.id, value.book == book,
+    guard value.schemaVersion == edition.resolvedArchiveSchemaVersion, value.editionId == edition.id, value.book == book,
           value.chapter == info.number, value.verses.count == info.verseCount,
           zip(numbered, numbered.dropFirst()).allSatisfy({ $1.verse > ($0.endVerse ?? $0.verse) }),
           value.verses.allSatisfy({ $0.chapter == info.number && $0.verse > 0 && ($0.endVerse ?? $0.verse) >= $0.verse
             && !$0.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+            && $0.hasValidSourceNotes
+            && ($0.sourceNotes == nil || edition.resolvedArchiveSchemaVersion == 2 && edition.transliteratedTextScript == nil)
             && (edition.transliteratedTextScript == nil || !($0.transliteratedText ?? "").trimmingCharacters(in: .whitespacesAndNewlines).isEmpty) }) else {
       throw BibleStoreError.invalidArchive
     }

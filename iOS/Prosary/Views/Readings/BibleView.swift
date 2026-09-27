@@ -347,9 +347,13 @@ struct ScriptureVerseList: View {
         }
         .id(verse.verse)
         .accessibilityIdentifier("bible.verse.\(verse.verse)")
+        .textSelection(.enabled)
+        ForEach(verse.sourceNotes ?? []) { note in
+          ScriptureSourceNoteView(note: note)
+        }
       }
     }
     .environment(\.layoutDirection, edition.isBibleRightToLeft ? .rightToLeft : .leftToRight)
-    .textSelection(.enabled).accessibilityIdentifier("readings.verses")
+    .accessibilityIdentifier("readings.verses")
   }
 }

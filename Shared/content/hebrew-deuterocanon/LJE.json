@@ -24,11 +24,12 @@
     ]
   },
   "review": {
-    "status": "draft",
-    "method": "Direct full-body second visual comparison with the supplied print, focused glyph crops, independent selected-point review, and scoped user readings. Independent source-margin inventory is separate. One page remains open for a fused vowel mark.",
+    "status": "complete",
+    "method": "Complete second visual comparison of the scriptural introduction and every printed unit across A2 PDF14–23; independent margin/page inventory; focused peer and scoped user readings. One unreadable qoph vowel is omitted and explicitly disclosed under the user-approved source-note policy, not guessed.",
     "reviewedPages": [
       14,
       15,
+      16,
       17,
       18,
       19,
@@ -50,16 +51,12 @@
       "Further PDF16/23 image comparison:7 continuation has והדבר,65–66 אותות (full spelling), corrected draft. Confirm67 לנוס/לנום from original print before final approval; model reads לנום and scan character remains uncertain. All pointing and source-page final review remain incomplete.",
       "User review27September2026 of PDF23 verse67: shown tight word and wider line crops, asked final letter ס versus ם; user replied \"I would say לנוס\". Retain לנוס (current draft לָנוּס). This resolves the selected consonantal reading with the user; it does not certify the points or remaining page. Evidence: LJE-user-review-67.json.",
       "Full second comparison recorded in LJE-root-second-pass.json. Historical draft open-check notes above are superseded by its current findings: only the qoph vowel at9 and initial kaf vowel at70 remain unresolved. User confirmed qamats at3 and qibbuts at17; raw response retained in LJE-user-points-3-9-17.json. Book remains draft until both remaining queries are settled.",
-      "User identifies the initial kaf vowel at70 as sheva, recorded in LJE-user-point-70.json. Page23 is now closed. Only the qoph vowel at9 remains unresolved; book stays draft."
+      "User identifies the initial kaf vowel at70 as sheva, recorded in LJE-user-point-70.json. Page23 is now closed. Only the qoph vowel at9 remains unresolved; book stays draft.",
+      "Final source review completed with a disclosed limitation: verse9 qoph vowel remains unreadable. The former provisional qibbuts has been removed; lje-1-9-qoph-vowel is shown beside the verse with the source page. All earlier notes above are chronological research history, not remaining open findings. Production still awaits all twelve works."
     ],
-    "unresolvedFindings": [
-      {
-        "unit": "1:9",
-        "word": "בַּקֻּבָּה",
-        "point": "qoph vowel",
-        "page": 16,
-        "status": "Root and peer cannot distinguish fused marks; user also reports unclear. Draft qibbuts is provisional."
-      }
+    "unresolvedFindings": [],
+    "acceptedSourceNoteIds": [
+      "lje-1-9-qoph-vowel"
     ]
   },
   "introduction": "פַּתְשֶׁגֶן הַכְּתָב אֲשֶׁר שָׁלַח יִרְמְיָהוּ אֶל־הָעֲתִידִים לִגְלוֹת בְּיַד מֶלֶךְ בָּבֶל בָּבֶלָה לְהַגִּיד לָהֶם כַּאֲשֶׁר צֻוָּה מֵאֵת הָאֱלֹהִים׃",
@@ -139,11 +136,25 @@
         },
         {
           "verse": 9,
-          "text": "וְיֵשׁ אֲשֶׁר יִגְנְבוּ הַכֹּהֲנִים זָהָב וָכֶסֶף מֵעַל אֱלֹהֵיהֶם וְיִקְחוּ לְנַפְשָׁם אַף יִתְּנוּ מֵהֶם לִקְדֵשׁוֹת אֲשֶׁר בַּקֻּבָּה׃",
+          "text": "וְיֵשׁ אֲשֶׁר יִגְנְבוּ הַכֹּהֲנִים זָהָב וָכֶסֶף מֵעַל אֱלֹהֵיהֶם וְיִקְחוּ לְנַפְשָׁם אַף יִתְּנוּ מֵהֶם לִקְדֵשׁוֹת אֲשֶׁר בַּקּבָּה׃",
           "sourcePages": [
             16
           ],
-          "textSHA256": "08fcc34120f152ac97b1ecc99998ebcc2939b7d27ce16809ee4635f1684ad373"
+          "textSHA256": "deedda0ab16ddafedd5f2533338d82217cc8b3a9670c7b11e11397ba3024260b",
+          "sourceNotes": [
+            {
+              "id": "lje-1-9-qoph-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "בַּקּבָּה",
+              "occurrence": 1,
+              "letterIndex": 2,
+              "mark": "vowel",
+              "sourcePages": [
+                16
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=16"
+            }
+          ]
         },
         {
           "verse": 10,

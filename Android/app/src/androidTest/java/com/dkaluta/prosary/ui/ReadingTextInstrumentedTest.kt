@@ -26,6 +26,32 @@ import java.util.Locale
 class ReadingTextInstrumentedTest {
     @get:Rule val compose = createAndroidComposeRule<AdaptiveLayoutTestActivity>()
 
+    @Test fun dailySourceNoteExpandsSeparatelyWithoutChangingScripture() {
+        val text = "בַּקּבָּה"
+        val store = ReadingTextStore {
+            """{"schemaVersion":1,"passages":{"daily|Fixture 1:9":{"fixture":[{"chapter":1,"verse":9,"text":"$text",
+                "sourceNotes":[{"id":"daily-note","kind":"unreadablePoint","anchor":"$text","occurrence":1,
+                "letterIndex":2,"mark":"vowel","sourcePages":[16],"sourceURL":"https://example.org/scan.pdf#page=16"}]}]}}}""".byteInputStream()
+        }
+        val edition = ReadingEdition("fixture", "he", "Fixture", "Credit", "https://example.org")
+        compose.setContent { MaterialTheme {
+            ReadingCard(ReadingCitation("reading", "Fixture", "Fixture 1:9"), "en", edition,
+                edition.id, store, false, expanded = true, onToggleExpanded = {})
+        } }
+        compose.waitUntil(5_000) { compose.onAllNodes(androidx.compose.ui.test.hasTestTag("scriptureSourceNote.daily-note"))
+            .fetchSemanticsNodes().isNotEmpty() }
+        val explanation = compose.activity.getString(R.string.scripture_source_note_vowel)
+        compose.onNodeWithText(explanation).assertDoesNotExist()
+        compose.onNodeWithTag("scriptureSourceNote.daily-note").performClick()
+        compose.onNodeWithText(explanation).assertExists()
+        compose.onNodeWithText(text).assertExists()
+        compose.onNodeWithText("\u20669\u2069  $text").assertExists()
+        compose.onNodeWithText(compose.activity.getString(R.string.scripture_source_note_scan)).assertExists()
+        compose.onNodeWithTag("scriptureSourceNote.daily-note").performClick()
+        compose.onNodeWithText(explanation).assertDoesNotExist()
+        compose.onNodeWithText("\u20669\u2069  $text").assertExists()
+    }
+
     @Test fun chapterWordsAndNumeralsFollowTheBibleInsteadOfTheInterface() {
         val context = compose.activity
         val hebrewInterface = context.createConfigurationContext(Configuration(context.resources.configuration).apply {

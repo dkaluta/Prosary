@@ -25,6 +25,15 @@ nonisolated struct ReadingTextVerse: Decodable, Equatable, Sendable {
   let text: String
   var transliteratedText: String? = nil
   var endVerse: Int? = nil
+  var sourceNotes: [ScriptureSourceNote]? = nil
+
+  var hasValidSourceNotes: Bool {
+    guard let sourceNotes else { return true }
+    return !sourceNotes.isEmpty && transliteratedText == nil
+      && Set(sourceNotes.map(\.id)).count == sourceNotes.count
+      && sourceNotes.allSatisfy { $0.isValid(in: text) }
+      && Set(sourceNotes.compactMap { $0.position(in: text) }).count == sourceNotes.count
+  }
 
   var verseLabel: String {
     if let endVerse, endVerse > verse { return "\(verse)–\(endVerse)" }
@@ -39,6 +48,23 @@ nonisolated struct ReadingTextVerse: Decodable, Equatable, Sendable {
     if edition.supportsAramaicScriptChoice, script == edition.transliteratedTextScript,
        let transliteratedText { return transliteratedText }
     return text
+  }
+}
+
+extension ReadingTextVerse {
+  private enum CodingKeys: String, CodingKey { case chapter, verse, text, transliteratedText, endVerse, sourceNotes }
+
+  init(from decoder: Decoder) throws {
+    let values = try decoder.container(keyedBy: CodingKeys.self)
+    chapter = try values.decode(Int.self, forKey: .chapter)
+    verse = try values.decode(Int.self, forKey: .verse)
+    text = try values.decode(String.self, forKey: .text)
+    transliteratedText = try values.decodeIfPresent(String.self, forKey: .transliteratedText)
+    endVerse = try values.decodeIfPresent(Int.self, forKey: .endVerse)
+    sourceNotes = values.contains(.sourceNotes) ? try values.decode([ScriptureSourceNote].self, forKey: .sourceNotes) : nil
+    if sourceNotes != nil && values.contains(.transliteratedText) {
+      throw DecodingError.dataCorruptedError(forKey: .sourceNotes, in: values, debugDescription: "Paired source-note anchors are unsupported")
+    }
   }
 }
 
@@ -96,7 +122,9 @@ nonisolated struct ReadingTextDataset: Decodable, Sendable {
           let verses = passages["\(isTorah ? "torah" : "daily")|\(citation)"]?[editionID],
           !verses.isEmpty,
           verses.allSatisfy({ $0.chapter > 0 && $0.verse > 0 && ($0.endVerse ?? $0.verse) >= $0.verse
-            && !$0.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty }),
+            && !$0.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty && $0.hasValidSourceNotes }),
+          Set(verses.flatMap { $0.sourceNotes ?? [] }.map(\.id)).count == verses.reduce(0, { $0 + ($1.sourceNotes?.count ?? 0) }),
+          edition.transliteratedTextScript == nil || verses.allSatisfy({ $0.sourceNotes == nil }),
           !edition.supportsAramaicScriptChoice || verses.allSatisfy({
             !($0.transliteratedText ?? "").trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
           })

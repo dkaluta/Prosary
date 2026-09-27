@@ -22,13 +22,21 @@
   "review": {
     "status": "draft",
     "method": "First direct visual transcription of the lower parallel Theodotion text only. Upper old Greek text and commentary are excluded. Every word, mark and boundary still needs a second visual comparison.",
-    "reviewedPages": [],
+    "reviewedPages": [
+      237
+    ],
     "notes": [
       "Full first draft through source label64,59 units across237–242. No page approved. Independent source-margin inventory is SUS-print-inventory.json; combined12–13,33–34,44–45,49–50 retained. At expected40–41 the margin appears to printכ–כא (20–21), independently reviewed; preserve that literal-looking label separately and leave its editorial address provisional until the source-label contract supports it.",
       "Open first-pass checks include9 initial word and marks;12–13 בבואה/בבואה spelling;17 opening bracket and matching close;18 ביתכם and צוו spelling/points;22 אסבה and אם־כה;23 divine-name prefix;27 source punctuation;31 ענגה points. These examples are not an exhaustive substitute for reviewing every unit.",
       "No verse text has been filled from the parallel old Greek recension or another Hebrew translation. Source headings identify the chosen recension explicitly.",
       "77 manually bounded lower-text lines were compared with unchanged local Kraken OCR;25 image-backed corrections from the first draft are recorded in SUS-word-comparison-review.json. Source words with unsettled points are temporarily unpointed in this draft, not invented or release-ready. No page has yet completed full second word/point review. Several old first-pass queries above are superseded by the new report.",
-      "Independent focused bracket comparison:5 has [לעין] without extra vav (OCR confused the bracket);32 has a distinct actual vav inside [ואת־ראשה]. Corrected the latter consonant. Its vav point remains open, temporarily left unpointed in the draft."
+      "Independent focused bracket comparison:5 has [לעין] without extra vav (OCR confused the bracket);32 has a distinct actual vav inside [ואת־ראשה]. Corrected the latter consonant. Its vav point remains open, temporarily left unpointed in the draft.",
+      "Second full visual comparison completed for A2 page237, source units1–8. Corrected2 יפה yod to printed qamats. Three isolated unreadable points on4 מכלם,5 כמנהיגי,6 ויתחזקו are omitted and explicitly disclosed under the approved source-note policy. Independent focused reading agrees they remain unclear. Other five pages and source-label disposition remain open."
+    ],
+    "acceptedSourceNoteIds": [
+      "sus-1-4-letter-2-vowel",
+      "sus-1-5-letter-1-vowel",
+      "sus-1-6-letter-2-dagesh"
     ]
   },
   "chapters": [
@@ -46,11 +54,11 @@
         },
         {
           "verse": 2,
-          "text": "וַיִּקַּח אִשָּׁה וּשְׁמָהּ שׁוֹשַׁנָּה בַּת־חִלְקִיָּה יְפָה מְאֹד וְיִרְאַת יְיָ׃",
+          "text": "וַיִּקַּח אִשָּׁה וּשְׁמָהּ שׁוֹשַׁנָּה בַּת־חִלְקִיָּה יָפָה מְאֹד וְיִרְאַת יְיָ׃",
           "sourcePages": [
             237
           ],
-          "textSHA256": "60205716ec00420f55fe293e115ba58a643145a9edea8b6dfedc1e10369ba7d6"
+          "textSHA256": "d47e232da15d001f0e189d23dc2d49c30439fc6cae507554cc40253aa3f2f832"
         },
         {
           "verse": 3,
@@ -62,27 +70,69 @@
         },
         {
           "verse": 4,
-          "text": "וַיְהִי יְהוֹיָקִים עָשִׁיר מְאֹד וַיְהִי לוֹ פַרְדֵּס קָרוֹב אֶל־בֵּיתוֹ וַיִּקָּהֲלוּ אֶצְלוֹ הַיְּהוּדִים כִּי הוּא הָיָה נִכְבָּד מִכֻּלָּם׃",
+          "text": "וַיְהִי יְהוֹיָקִים עָשִׁיר מְאֹד וַיְהִי לוֹ פַרְדֵּס קָרוֹב אֶל־בֵּיתוֹ וַיִּקָּהֲלוּ אֶצְלוֹ הַיְּהוּדִים כִּי הוּא הָיָה נִכְבָּד מִכּלָּם׃",
           "sourcePages": [
             237
           ],
-          "textSHA256": "6e8972d866eba92c61cfe7679db5c874bfde6e6687d04d1275b82dab24d00dc7"
+          "textSHA256": "264f95a4302667b545113513c30511ea93270727230560aae6395d838437b119",
+          "sourceNotes": [
+            {
+              "id": "sus-1-4-letter-2-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "מִכּלָּם",
+              "occurrence": 1,
+              "letterIndex": 2,
+              "mark": "vowel",
+              "sourcePages": [
+                237
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=237"
+            }
+          ]
         },
         {
           "verse": 5,
-          "text": "בַּשָּׁנָה הַהִיא הֻפְקְדוּ לְשׁוֹפְטִים שְׁנַיִם מִזִּקְנֵי הָעָם אֲשֶׁר עֲלֵיהֶם דִּבֶּר יְיָ לֵאמֹר מִבָּבֶל תֵּצֵא הָרִשְׁעָה מִזִּקְנֵי הַדַּיָּנִים אֲשֶׁר נִרְאוּ [לְעֵין] כְּמַנְהִיגֵי הָעָם׃",
+          "text": "בַּשָּׁנָה הַהִיא הֻפְקְדוּ לְשׁוֹפְטִים שְׁנַיִם מִזִּקְנֵי הָעָם אֲשֶׁר עֲלֵיהֶם דִּבֶּר יְיָ לֵאמֹר מִבָּבֶל תֵּצֵא הָרִשְׁעָה מִזִּקְנֵי הַדַּיָּנִים אֲשֶׁר נִרְאוּ [לְעֵין] כּמַנְהִיגֵי הָעָם׃",
           "sourcePages": [
             237
           ],
-          "textSHA256": "ef5f3ec3700afefb0bec19396bcf6d9f91f1a5119ba0df9649b0ccbb1b710374"
+          "textSHA256": "d0c2f53e967a694f3551208c67ce53c94b417dd3d5eadc9f090cb4d3823b46b7",
+          "sourceNotes": [
+            {
+              "id": "sus-1-5-letter-1-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "כּמַנְהִיגֵי",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "vowel",
+              "sourcePages": [
+                237
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=237"
+            }
+          ]
         },
         {
           "verse": 6,
-          "text": "וַיִּתְחַזְּקוּ בְּבֵית יְהוֹיָקִים וַיָּבֹאוּ אֲלֵיהֶם כָּל־בַּעַל דְּבָרִים׃",
+          "text": "וַיִתְחַזְּקוּ בְּבֵית יְהוֹיָקִים וַיָּבֹאוּ אֲלֵיהֶם כָּל־בַּעַל דְּבָרִים׃",
           "sourcePages": [
             237
           ],
-          "textSHA256": "7584ad8d29e8974e16ce271653010034ecad9c78b33b90637cf5ffd60a945dae"
+          "textSHA256": "466349850e0fc987032bec7b923f2503053c37db27183d806ba06bac141ec7b7",
+          "sourceNotes": [
+            {
+              "id": "sus-1-6-letter-2-dagesh",
+              "kind": "unreadablePoint",
+              "anchor": "וַיִתְחַזְּקוּ",
+              "occurrence": 1,
+              "letterIndex": 2,
+              "mark": "dagesh",
+              "sourcePages": [
+                237
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=237"
+            }
+          ]
         },
         {
           "verse": 7,

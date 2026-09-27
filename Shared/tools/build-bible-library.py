@@ -22,6 +22,7 @@ from pathlib import Path
 import zipfile
 
 from hebrew_deuterocanon import load_books as load_hebrew_supplement
+from scripture_source_notes import validate_source_notes
 
 ROOT = Path(__file__).resolve().parents[2]
 TOOLS = ROOT / "Shared/tools"
@@ -102,8 +103,18 @@ def chapter_rows(builder, edition, corpus):
 def make_archive(edition, chapters, names):
     files = {}
     books = defaultdict(list)
+    chapters = list(chapters)
+    version = 2 if any("sourceNotes" in row for _, _, rows, _ in chapters for row in rows) else 1
+    note_ids = defaultdict(set)
     for book, chapter, verses, complete in chapters:
-        data = encode({"schemaVersion": 1, "editionId": edition["id"], "book": book,
+        for row in verses:
+            ids = validate_source_notes(row, label=f"{book} {chapter}:{row['verse']}")
+            if note_ids[book].intersection(ids):
+                raise ValueError(f"{book}: duplicate source-note ID in book")
+            if ids and edition.get("textScript"):
+                raise ValueError("Paired source-note anchors are unsupported")
+            note_ids[book].update(ids)
+        data = encode({"schemaVersion": version, "editionId": edition["id"], "book": book,
                        "chapter": chapter, "verses": verses})
         if len(data) > MAX_CHAPTER:
             raise ValueError("Bible chapter exceeds the native resource limit")
@@ -120,7 +131,7 @@ def make_archive(edition, chapters, names):
     for path, data in sorted(files.items()):
         digest.update(path.encode() + b"\0" + data)
     revision = digest.hexdigest()
-    files["manifest.json"] = encode({"schemaVersion": 1, "editionId": edition["id"],
+    files["manifest.json"] = encode({"schemaVersion": version, "editionId": edition["id"],
                                       "revision": revision, "books": book_rows})
     unpacked = sum(map(len, files.values()))
     if unpacked > MAX_UNPACKED:
@@ -142,6 +153,8 @@ def make_archive(edition, chapters, names):
     entry.update(revision=revision, downloadURL=DOWNLOAD_ROOT + filename,
                  archiveSHA256=hashlib.sha256(raw).hexdigest(), archiveByteCount=len(raw),
                  unpackedByteCount=unpacked, books=book_rows)
+    if version != 1:
+        entry["archiveSchemaVersion"] = version
     return filename, raw, entry
 
 
@@ -166,7 +179,8 @@ def build(*, require_hebrew_supplement=False, fetch=False):
                 for chapter in book["chapters"]:
                     verses = [{"chapter": chapter["number"], "verse": row["verse"],
                                **({"endVerse": row["endVerse"]} if "endVerse" in row else {}),
-                               "text": builder.preserve_divine_name_accents(row["text"])}
+                               "text": builder.preserve_divine_name_accents(row["text"]),
+                               **({"sourceNotes": row["sourceNotes"]} if "sourceNotes" in row else {})}
                               for row in chapter["verses"]]
                     chapters.append((book["book"], chapter["number"], verses, chapter.get("isComplete", True)))
         filename, raw, entry = make_archive(edition, chapters, names)

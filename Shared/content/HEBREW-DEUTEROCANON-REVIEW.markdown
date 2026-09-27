@@ -47,6 +47,14 @@ The user explicitly confirmed on 27 September 2026 that the reader must retain t
 printed vowel points. Unpointed reference excerpts are useful for checking consonants,
 but do not replace or approve the source's niqqud.
 
+The user subsequently approved source notes for isolated unreadable points. Under
+[`SCRIPTURE-SOURCE-NOTES.markdown`](../SCRIPTURE-SOURCE-NOTES.markdown), omit only the
+unreadable vowel or dagesh, retain the word and all readable marks, and attach an exact
+anchor and scan-page link. Accepted notes are part of the content digest and have a
+separate review/approval inventory. They do not excuse uncertain consonants, missing
+words or verses, unfinished comparison, or unreviewed numbering. A completed review
+with such notes means the source limitation is explicitly disclosed, not resolved.
+
 Wikisource comparisons retain the source page revision, translator and relationship to
 the printed edition. `Shared/tools/hebrew_ocr_baseline.py` aligns explicitly selected
 excerpts and records equal, replaced, omitted and inserted words without changing either
@@ -124,11 +132,12 @@ certified as an ordinary 40–41 source label.
 
 ## Import and release gates
 
-The first completed source reviews are Judith (16 chapters, 332 source units, all
-23 text pages) and Baruch (five chapters, 123 source units, all seven text pages).
+The completed source reviews are Judith (16 chapters, 332 source units, all
+23 text pages), Baruch (five chapters, 123 source units, all seven text pages), and
+Letter of Jeremiah (66 units, all ten pages, one disclosed unreadable vowel).
 Their exact content is pinned in `hebrew-deuterocanon-review.json` against separately
-recorded source inventories. The other ten selected works remain unfinished; these
-two completed books do not open the production gate by themselves. Completion here
+recorded source inventories. The other nine selected works remain unfinished; these
+three completed books do not open the production gate by themselves. Completion here
 means the chosen Hebrew edition has been transcribed and checked, not that its
 numbering has already been reconciled with every daily-reading citation.
 
@@ -149,7 +158,8 @@ alignment. The validator never writes approvals.
 Every completed chapter declares `lastVerse`. A printed gap is documented in the
 approval's `sourceGaps`, keyed by chapter number, with `omittedLabels` and `reason`;
 the chapter remains `isComplete: false`. The complete review must have no
-`unresolvedFindings`, and its reviewed pages must exactly match the independently
+`unresolvedFindings`; accepted, displayed point notes must instead match the separate
+`acceptedSourceNoteIds` and approval `sourceNoteIds` inventories. Its reviewed pages must exactly match the independently
 inventoried pages and the text's page evidence. The approved digest invalidates the
 review if text, spelling, pointing, page evidence or credits subsequently change,
 even if individual text hashes are recomputed.

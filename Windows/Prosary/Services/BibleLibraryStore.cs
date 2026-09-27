@@ -14,7 +14,7 @@ public sealed record BibleBook(string Id, string Name, List<BibleChapter> Chapte
 }
 public sealed record BibleEdition(string Id, string LanguageCode, string Name, string Attribution, string SourceURL,
     string Revision, string DownloadURL, string ArchiveSHA256, long ArchiveByteCount, long UnpackedByteCount,
-    List<BibleBook> Books, string? TextScript = null, string? TransliteratedTextScript = null)
+    List<BibleBook> Books, string? TextScript = null, string? TransliteratedTextScript = null, int ArchiveSchemaVersion = 1)
 {
     public ScriptureEdition Scripture => new(Id, LanguageCode, Name, Attribution, SourceURL, TextScript, TransliteratedTextScript);
 }
@@ -73,6 +73,7 @@ public sealed class BibleLibraryStore
         && edition.DownloadURL == DownloadPrefix + edition.Id + "-" + edition.Revision + ".zip"
         && edition.ArchiveByteCount is > 0 and <= MaxArchiveBytes
         && edition.UnpackedByteCount is > 0 and <= MaxExpandedBytes && ValidBooks(edition.Books)
+        && edition.ArchiveSchemaVersion is 1 or 2
         && ((edition.TextScript is null && edition.TransliteratedTextScript is null) || edition.Scripture.HasAramaicScripts);
 
     public static bool ValidDownloadUri(string? value) => Uri.TryCreate(value, UriKind.Absolute, out var uri)
@@ -107,7 +108,7 @@ public sealed class BibleLibraryStore
             {
                 using var archive = ZipFile.OpenRead(path);
                 var manifest = ReadEntry<BibleManifest>(archive.GetEntry("manifest.json"));
-                return manifest is { SchemaVersion: 1 } && manifest.EditionId == id && Hash(manifest.Revision)
+                return manifest.SchemaVersion == Edition(id).ArchiveSchemaVersion && manifest.EditionId == id && Hash(manifest.Revision)
                     && ValidBooks(manifest.Books) ? manifest : null;
             }, cancellationToken);
         }
@@ -185,15 +186,18 @@ public sealed class BibleLibraryStore
         if (expanded != edition.UnpackedByteCount)
             throw new InvalidDataException("The Bible archive expanded size does not match its catalog.");
         var manifest = ReadEntry<BibleManifest>(archive.GetEntry("manifest.json"));
-        if (manifest is not { SchemaVersion: 1 } || manifest.EditionId != edition.Id || manifest.Revision != edition.Revision
+        if (manifest.SchemaVersion != edition.ArchiveSchemaVersion || manifest.EditionId != edition.Id || manifest.Revision != edition.Revision
             || JsonSerializer.Serialize(manifest.Books, Json) != JsonSerializer.Serialize(edition.Books, Json))
             throw new InvalidDataException("The Bible manifest does not match its catalog.");
         foreach (var book in edition.Books)
+        {
+            var noteIds = new HashSet<string>(StringComparer.Ordinal);
             foreach (var chapter in book.Chapters)
             {
                 cancellationToken.ThrowIfCancellationRequested();
-                ValidateChapter(ReadEntry<BibleChapterText>(archive.GetEntry($"chapters/{book.Id}/{chapter.Number}.json")), edition, book.Id, chapter);
+                ValidateChapter(ReadEntry<BibleChapterText>(archive.GetEntry($"chapters/{book.Id}/{chapter.Number}.json")), edition, book.Id, chapter, noteIds);
             }
+        }
     }
 
     private static T ReadEntry<T>(ZipArchiveEntry? entry)
@@ -209,15 +213,19 @@ public sealed class BibleLibraryStore
             bytes.Write(buffer, 0, count);
         }
         if (bytes.Length != entry.Length) throw new InvalidDataException("Incomplete Bible entry.");
-        return JsonSerializer.Deserialize<T>(bytes.ToArray(), Json) ?? throw new InvalidDataException("Invalid Bible JSON.");
+        try { return JsonSerializer.Deserialize<T>(bytes.ToArray(), Json) ?? throw new InvalidDataException("Invalid Bible JSON."); }
+        catch (JsonException error) { throw new InvalidDataException("Invalid Bible JSON.", error); }
     }
 
-    private static void ValidateChapter(BibleChapterText? text, BibleEdition edition, string book, BibleChapter chapter)
+    private static void ValidateChapter(BibleChapterText? text, BibleEdition edition, string book, BibleChapter chapter, HashSet<string>? bookNoteIds = null)
     {
-        if (text is not { SchemaVersion: 1 } || text.EditionId != edition.Id || text.Book != book || text.Chapter != chapter.Number
+        bookNoteIds ??= new HashSet<string>(StringComparer.Ordinal);
+        if (text is null || text.SchemaVersion != edition.ArchiveSchemaVersion || text.EditionId != edition.Id || text.Book != book || text.Chapter != chapter.Number
             || text.Verses is null || text.Verses.Count != chapter.VerseCount
             || text.Verses.Any(verse => verse is null || verse.Chapter != chapter.Number || verse.Verse <= 0 || verse.EndVerse < verse.Verse
-                || string.IsNullOrWhiteSpace(verse.Text) || edition.Scripture.HasAramaicScripts && string.IsNullOrWhiteSpace(verse.TransliteratedText))
+                || string.IsNullOrWhiteSpace(verse.Text) || edition.Scripture.HasAramaicScripts && string.IsNullOrWhiteSpace(verse.TransliteratedText)
+                || verse.SourceNotes is not null && edition.ArchiveSchemaVersion != 2
+                || !ScriptureSourceNote.ValidForVerse(verse, edition.TextScript is not null || edition.TransliteratedTextScript is not null, bookNoteIds))
             || OverlappingVerseRanges(text.Verses))
             throw new InvalidDataException("Invalid Bible chapter.");
     }
@@ -240,7 +248,7 @@ public sealed class BibleLibraryStore
             {
                 using var archive = ZipFile.OpenRead(ArchivePath(id));
                 var manifest = ReadEntry<BibleManifest>(archive.GetEntry("manifest.json"));
-                if (manifest.SchemaVersion != 1 || manifest.EditionId != id || !ValidBooks(manifest.Books))
+                if (manifest.SchemaVersion != edition.ArchiveSchemaVersion || manifest.EditionId != id || !ValidBooks(manifest.Books))
                     throw new InvalidDataException("Invalid installed Bible manifest.");
                 var metadata = manifest.Books.FirstOrDefault(item => item.Id == book)?.Chapters.FirstOrDefault(item => item.Number == chapter)
                     ?? throw new InvalidDataException("The selected chapter is not available.");

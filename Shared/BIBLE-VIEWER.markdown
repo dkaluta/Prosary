@@ -10,7 +10,7 @@ credit, and the existing paired-script control. Hebrew chapter numbers use gemat
 Missing content never falls back to another edition. Partial chapters carry a visible
 “Only part of this chapter is available” notice; gaps retain their source verse labels.
 
-## Distribution contract (version 1)
+## Distribution contract
 
 Only `Shared/data/bible-catalog.json` is bundled and copied into the three native
 data directories. Bibles are independent, optional downloads with explicit Download
@@ -22,6 +22,8 @@ existing reading-edition metadata (`id`, `languageCode`, `name`, `attribution`,
 `sourceURL`, and optional paired `textScript`/`transliteratedTextScript`) and adds:
 
 - `revision`: 64 lowercase hexadecimal characters identifying the uncompressed content.
+- Optional `archiveSchemaVersion`: 1 or 2; absent means 1. Version 2 archives support
+  disclosed source notes. The manifest and every chapter must match this version.
 - `downloadURL`: HTTPS URL of an immutable archive under
   `https://raw.githubusercontent.com/dkaluta/Prosary/main/Shared/dist/bibles/`.
 - `archiveSHA256`, `archiveByteCount`, `unpackedByteCount`: pinned archive identity and sizes.
@@ -49,6 +51,15 @@ enclosing chapter. Preserve the array's source order, including editorial orderi
 such as Kahana Sirach 3:24,26,27,25,28. Neither display nor navigation sorts the units;
 the verse picker follows source order and a requested label finds its containing unit.
 All paired verses must have both texts. The reader does not remap these labels.
+
+Version 2 adds optional `sourceNotes` on verses, identifying an unreadable printed
+point that is omitted from the transcription. Notes appear beside the affected verse
+and link to its scan page; they are not included in selectable scripture text. Both
+Bible and daily readers use the shared note model. Version 1 archives reject notes,
+and old clients reject a version 2 manifest instead of silently dropping them.
+See [SCRIPTURE-SOURCE-NOTES.markdown](SCRIPTURE-SOURCE-NOTES.markdown) for the exact
+anchor, Unicode, source and review contract. Note-free archives keep version 1 and
+their existing byte identity.
 
 Before installing, validate HTTPS, the exact byte count and SHA-256, archive paths,
 manifest identity, declared chapter set, verse counts and nonempty text/pairs. Bound
