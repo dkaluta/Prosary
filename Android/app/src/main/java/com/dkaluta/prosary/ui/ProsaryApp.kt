@@ -59,6 +59,7 @@ import com.dkaluta.prosary.ui.rosaryflow.RosaryFlowScreen
 import com.dkaluta.prosary.ui.jesusprayer.JesusPrayerFlowScreen
 import com.dkaluta.prosary.ui.jesusprayer.JesusPrayerSetupScreen
 import com.dkaluta.prosary.ui.settings.SettingsScreen
+import com.dkaluta.prosary.ui.settings.AppearanceScreen
 import com.dkaluta.prosary.ui.shared.CustomDevotionFlowScreen
 import com.dkaluta.prosary.ui.shared.PrayerDispatchScreen
 import com.dkaluta.prosary.models.Prayer
@@ -89,6 +90,7 @@ private object Routes {
     const val RemindersOnlyEditor = "favorites/reminders/{prayerId}"
     const val About = "about"
     const val Settings = "settings"
+    const val Appearance = "settings/appearance"
     const val Prayer = "prayer/{id}"
     // Home -> Rosary preset picker; the ad-hoc session rides a holder object because Compose
     // routes are strings (same reasoning as FavoriteEditor's kind param above).
@@ -430,7 +432,13 @@ private fun AppNavHost(navController: NavHostController, modifier: Modifier = Mo
         }
 
         composable(Routes.Settings) {
-            SettingsScreen(onBack = { navController.popBackStack() })
+            SettingsScreen(
+                onBack = { navController.popBackStack() },
+                onOpenAppearance = { navController.navigateSingleTop(Routes.Appearance) },
+            )
+        }
+        composable(Routes.Appearance) {
+            AppearanceScreen(onBack = { navController.popBackStack() })
         }
 
         composable(

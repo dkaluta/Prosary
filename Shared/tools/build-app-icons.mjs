@@ -1,10 +1,15 @@
 #!/usr/bin/env node
 // Rebuild native icon resources from the existing cross template and canonical palette.
 // Requires Shared/website's installed sharp dependency. --check verifies without writing.
-import { readFile, writeFile, mkdir } from "node:fs/promises";
+// --render-apple-previews refreshes the checked-in Icon Composer exports on macOS.
+import { readFile, writeFile, mkdir, mkdtemp, rm } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { createRequire } from "node:module";
+import { createHash } from "node:crypto";
+import { execFile as execFileCallback } from "node:child_process";
+import { promisify } from "node:util";
+import { tmpdir } from "node:os";
 
 const root = fileURLToPath(new URL("../..", import.meta.url));
 const require = createRequire(join(root, "Shared/website/package.json"));
@@ -19,6 +24,57 @@ const output = new Map();
 const json = value => Buffer.from(JSON.stringify(value, null, 2) + "\n");
 const rgb = hex => [1, 3, 5].map(start => parseInt(hex.slice(start, start + 2), 16));
 const composerColor = hex => "srgb:" + [...rgb(hex).map(n => (n / 255).toFixed(6)), "1.000000"].join(",");
+const execFile = promisify(execFileCallback);
+const renderApplePreviews = process.argv.includes("--render-apple-previews");
+const applePreviewSpec = { platform: "iOS", rendition: "Default", width: 512, height: 512, scale: 1 };
+const applePreviewDirectory = "Shared/Branding/apple-icon-previews";
+const applePreviewManifestPath = `${applePreviewDirectory}/manifest.json`;
+const cachedApplePreviews = renderApplePreviews ? {}
+  : JSON.parse(await readFile(join(root, applePreviewManifestPath), "utf8").catch(() => "{}"));
+const applePreviewManifest = {};
+
+async function applePreview(packageName, packagePath) {
+  const files = [...output.entries()]
+    .filter(([path]) => path.startsWith(`${packagePath}/`))
+    .map(([path, bytes]) => [path.slice(packagePath.length + 1), bytes])
+    .sort(([left], [right]) => left < right ? -1 : left > right ? 1 : 0);
+  const hash = createHash("sha256").update(json(applePreviewSpec)).update("\0");
+  for (const [path, bytes] of files) hash.update(path).update("\0").update(bytes).update("\0");
+  const sourceSha256 = hash.digest("hex");
+  const previewPath = `${applePreviewDirectory}/${packageName}.png`;
+  let bytes;
+  if (renderApplePreviews) {
+    const { stdout } = await execFile("xcode-select", ["-p"]);
+    const renderer = join(dirname(stdout.trim()), "Applications/Icon Composer.app/Contents/Executables/ictool");
+    const temporaryDirectory = await mkdtemp(join(tmpdir(), "prosary-apple-preview-"));
+    try {
+      const document = join(temporaryDirectory, `${packageName}.icon`);
+      for (const [path, contents] of files) {
+        const target = join(document, path);
+        await mkdir(dirname(target), { recursive: true });
+        await writeFile(target, contents);
+      }
+      const rendered = join(temporaryDirectory, "preview.png");
+      await execFile(renderer, [document, "--export-image", "--output-file", rendered,
+        "--platform", applePreviewSpec.platform, "--rendition", applePreviewSpec.rendition,
+        "--width", String(applePreviewSpec.width), "--height", String(applePreviewSpec.height), "--scale", String(applePreviewSpec.scale)]);
+      bytes = await readFile(rendered);
+    } finally {
+      await rm(temporaryDirectory, { recursive: true, force: true });
+    }
+  } else {
+    if (cachedApplePreviews[packageName]?.sourceSha256 !== sourceSha256) {
+      throw new Error(`${packageName} preview is stale. On macOS run build-app-icons.mjs --render-apple-previews.`);
+    }
+    bytes = await readFile(join(root, previewPath));
+    if (cachedApplePreviews[packageName]?.imageSha256 !== createHash("sha256").update(bytes).digest("hex")) {
+      throw new Error(`${packageName} preview differs from its Icon Composer export. Regenerate with --render-apple-previews.`);
+    }
+  }
+  applePreviewManifest[packageName] = { sourceSha256, imageSha256: createHash("sha256").update(bytes).digest("hex") };
+  output.set(previewPath, bytes);
+  return bytes;
+}
 
 async function tintedGlyph(color) {
   return sharp({ create: { width: glyphInfo.width, height: glyphInfo.height, channels: 4, background: color } })
@@ -79,8 +135,7 @@ for (const color of palette.colors) {
   }
   output.set(`${packagePath}/icon.json`, json(appleIcon));
   const previewPath = `iOS/Prosary/Assets.xcassets/AppIcon${name}.imageset`;
-  const previewMask = Buffer.from('<svg width="1024" height="1024"><rect width="1024" height="1024" rx="236" fill="white"/></svg>');
-  output.set(`${previewPath}/icon.png`, await sharp(icon).composite([{ input: previewMask, blend: "dest-in" }]).png().toBuffer());
+  output.set(`${previewPath}/icon.png`, await applePreview(packageName, packagePath));
   output.set(`${previewPath}/Contents.json`, json({ images: [{ filename: "icon.png", idiom: "universal" }], info: { author: "xcode", version: 1 } }));
   output.set(`Windows/Prosary/Assets/Icons/prosary-${color.id}.ico`, await ico(icon));
   output.set(`Android/app/src/main/res/drawable/ic_launcher_background_${color.id}.xml`, Buffer.from(
@@ -116,6 +171,7 @@ for (const color of palette.colors) {
     }
   }
 }
+output.set(applePreviewManifestPath, json(applePreviewManifest));
 
 let mismatches = 0;
 for (const [relativePath, bytes] of output) {

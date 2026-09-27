@@ -231,8 +231,17 @@ back to blue. `Shared/Branding/app-colors.json` defines icon backgrounds/crosses
 light/dark accent pairs; white uses a gold cross and gold controls. Prayer artwork and
 liturgical-calendar status colors keep their own meanings.
 
+Settings exposes one Appearance navigation row with an icon.
+It opens a dedicated native page with a grouped list of seven color choices: large app-icon
+previews beside localized names, inset row separators, and a checkmark or native selection
+indicator. Selecting a row applies it immediately and keeps the page open; Back returns to
+the existing Settings position. Previews retain their distinguishing colors in dark mode,
+while the installed Apple dark icon remains the original artwork. Mac keeps its native
+Appearance Settings pane with the same icon-and-name choices alongside typography.
+
 On Android 12+, `useSystemColors` defaults to true: Material You wallpaper colors take
-precedence for controls. Turning it off applies the selected manual palette. The control is
+precedence for controls. Its switch lives on the Appearance page; turning it off applies
+the selected manual palette. The control is
 hidden on older Android versions, which use that palette directly. Launcher icon choice
 remains independent. Stable launcher aliases point to an always-enabled `MainActivity` so
 existing intents, widgets and notifications remain usable.
@@ -425,7 +434,7 @@ quits another minimized session.
 The Dock menu and File → Recently Prayed retain up to eight playable routes locally, refresh
 their titles and remove unavailable entries. Selecting a recent prayer opens that prayer.
 
-Mac Settings uses four native panes: Language, Praying, Typography, and Downloads.
+Mac Settings uses four native panes: Language, Praying, Appearance, and Downloads.
 Today is a separate Library sidebar reference view, with its own date navigator, full reading
 and Torah citations, expandable Bible passages, an edition picker, and options popover for
 calendar/Pascha and row visibility; it is not a Settings

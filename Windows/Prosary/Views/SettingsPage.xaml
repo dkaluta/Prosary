@@ -26,7 +26,7 @@
             <TextBlock x:Uid="SetTitle" Grid.Column="1" Text="Settings" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource SubHeadlineTextStyle}" />
         </Grid>
 
-        <ScrollViewer Grid.Row="1">
+        <ScrollViewer x:Name="SettingsScroll" Grid.Row="1" Loaded="OnSettingsScrollLoaded">
             <StackPanel Padding="24" Spacing="16" MaxWidth="560" HorizontalAlignment="Center" VerticalAlignment="Top">
                 <ComboBox x:Uid="SetAppLanguageCombo" Header="App Language" HorizontalAlignment="Stretch"
                           ItemsSource="{x:Bind ViewModel.AppLanguageOptions}" DisplayMemberPath="Label"
@@ -38,10 +38,22 @@
                 <TextBlock x:Uid="SetAppLanguageFooter" Text="Restart Prosary to apply the new app language."
                            TextWrapping="Wrap" Style="{StaticResource MutedCaptionTextStyle}" />
 
-                <ComboBox x:Uid="SetAppColor" Header="App color" HorizontalAlignment="Stretch"
-                          ItemsSource="{x:Bind ViewModel.AppColorOptions}" DisplayMemberPath="Label"
-                          SelectedItem="{x:Bind ViewModel.SelectedAppColor, Mode=TwoWay}"
-                          AutomationProperties.AutomationId="appColor" />
+                <Button HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch"
+                        Padding="12" Command="{x:Bind ViewModel.OpenAppearanceCommand}"
+                        AutomationProperties.AutomationId="openAppearance">
+                    <Grid ColumnSpacing="12">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <FontIcon Glyph="&#xE790;" VerticalAlignment="Center" />
+                        <TextBlock Grid.Column="1" Text="{x:Bind ViewModel.AppearanceTitle}"
+                                   VerticalAlignment="Center" />
+                        <FontIcon Grid.Column="2" Glyph="&#xE76C;" FontSize="12"
+                                  MirroredWhenRightToLeft="True" VerticalAlignment="Center" />
+                    </Grid>
+                </Button>
 
                 <ComboBox x:Uid="SetLanguageCombo" Header="Prayer Language" HorizontalAlignment="Stretch"
                           ItemsSource="{x:Bind ViewModel.LanguageOptions}" DisplayMemberPath="NativeName"

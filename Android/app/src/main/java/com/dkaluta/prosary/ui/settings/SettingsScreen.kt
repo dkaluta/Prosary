@@ -3,8 +3,6 @@ package com.dkaluta.prosary.ui.settings
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import android.content.Context
-import android.os.Build
-import android.widget.Toast
 import android.text.format.Formatter
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -13,9 +11,12 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
+import androidx.compose.material.icons.filled.Palette
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.FileUpload
 import androidx.compose.material3.AlertDialog
@@ -23,6 +24,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.ListItem
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Switch
@@ -46,13 +48,13 @@ import com.dkaluta.prosary.typography.SystemSansFontProbe
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.unit.dp
 import com.dkaluta.prosary.R
 import com.dkaluta.prosary.content.prayerpack.PrayerPackStore
 import com.dkaluta.prosary.content.today.TodayInfoStore
 import com.dkaluta.prosary.models.AppSettings
 import com.dkaluta.prosary.models.AppColor
-import com.dkaluta.prosary.LauncherIconController
 import com.dkaluta.prosary.ui.shared.rememberHardwareKeyboardAvailable
 import com.dkaluta.prosary.models.HomeOrder
 import com.dkaluta.prosary.models.LanguageCatalog
@@ -76,7 +78,7 @@ import java.io.File
  * to extend. */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SettingsScreen(onBack: () -> Unit) {
+fun SettingsScreen(onBack: () -> Unit, onOpenAppearance: () -> Unit) {
     val hardwareKeyboardAvailable = rememberHardwareKeyboardAvailable()
     val context = LocalContext.current
     val services = LocalAppServices.current
@@ -166,6 +168,7 @@ fun SettingsScreen(onBack: () -> Unit) {
                 .fillMaxSize()
                 .padding(padding)
                 .verticalScroll(rememberScrollState())
+                .testTag("settingsList")
                 .padding(16.dp),
         ) {
             OptionPickerField(
@@ -179,35 +182,14 @@ fun SettingsScreen(onBack: () -> Unit) {
             Text(stringResource(R.string.settings_app_language_hint),
                 style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
 
-            OptionPickerField(
-                label = stringResource(R.string.settings_app_color),
-                options = AppColor.entries.map { it.id },
-                selected = AppSettings.appColor,
-                optionLabel = { context.getString(AppColor.resolve(it).labelRes) },
-                onSelect = { color ->
-                    if (!LauncherIconController.select(context, color)) {
-                        Toast.makeText(context, R.string.settings_app_color_error, Toast.LENGTH_LONG).show()
-                    }
-                },
-                modifier = Modifier.testTag("appColorPicker"),
+            ListItem(
+                headlineContent = { Text(stringResource(R.string.settings_appearance)) },
+                supportingContent = { Text(stringResource(AppColor.resolve(AppSettings.appColor).labelRes)) },
+                leadingContent = { Icon(Icons.Filled.Palette, contentDescription = null) },
+                trailingContent = { Icon(Icons.AutoMirrored.Filled.KeyboardArrowRight, contentDescription = null) },
+                modifier = Modifier.fillMaxWidth().clickable(role = Role.Button, onClick = onOpenAppearance)
+                    .testTag("settingsAppearance"),
             )
-            Text(stringResource(R.string.settings_app_color_hint),
-                style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
-
-            if (Build.VERSION.SDK_INT >= 31) {
-                Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
-                    Column(Modifier.weight(1f)) {
-                        Text(stringResource(R.string.settings_use_system_colors))
-                        Text(stringResource(R.string.settings_use_system_colors_hint),
-                            style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
-                    }
-                    Switch(
-                        checked = AppSettings.useSystemColors,
-                        onCheckedChange = { AppSettings.useSystemColors = it },
-                        modifier = Modifier.testTag("useSystemColors"),
-                    )
-                }
-            }
 
             OptionPickerField(
                 label = stringResource(R.string.settings_prayer_language),

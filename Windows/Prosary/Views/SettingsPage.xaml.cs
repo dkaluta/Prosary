@@ -7,11 +7,16 @@ using Prosary.ViewModels;
 using Prosary.Localization;
 using Prosary.Models;
 using System.Collections.ObjectModel;
+using System.Runtime.CompilerServices;
 
 namespace Prosary.Views;
 
 public sealed partial class SettingsPage : Page
 {
+    // Preserve only the position: returning recreates snapshot-backed settings from storage.
+    private sealed class ScrollPosition { public double Offset; }
+    private static readonly ConditionalWeakTable<Frame, ScrollPosition> ScrollPositions = new();
+    private double? _restoredScrollOffset;
     public SettingsViewModel ViewModel { get; }
 
     public SettingsPage()
@@ -45,6 +50,24 @@ public sealed partial class SettingsPage : Page
     {
         base.OnNavigatedTo(e);
         ViewModel.RefreshInstalledDevotions();
+        if (e.NavigationMode == NavigationMode.Back && ScrollPositions.TryGetValue(Frame, out var position))
+            _restoredScrollOffset = position.Offset;
+    }
+
+    protected override void OnNavigatedFrom(NavigationEventArgs e)
+    {
+        if (Frame is { } frame) ScrollPositions.GetValue(frame, _ => new()).Offset = SettingsScroll.VerticalOffset;
+        base.OnNavigatedFrom(e);
+    }
+
+    private void OnSettingsScrollLoaded(object sender, RoutedEventArgs e)
+    {
+        if (_restoredScrollOffset is not { } offset) return;
+        _restoredScrollOffset = null;
+        DispatcherQueue.TryEnqueue(() =>
+        {
+            if (IsLoaded) SettingsScroll.ChangeView(null, offset, null, disableAnimation: true);
+        });
     }
 
     private async void OnEditLanguageFallbackOrder(object sender, RoutedEventArgs e)

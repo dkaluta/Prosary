@@ -20,6 +20,19 @@ Dock/settings, Android launcher resources, Windows `.ico` and package logos, and
 blue marketing icon. Android adaptive-icon XML and native settings/code are maintained by
 their respective ports. All palette ids are persisted as `appColor`.
 
+Apple's large Appearance previews and custom Mac Dock icons use actual Icon Composer
+Default exports. `apple-icon-previews/` holds these rendered inputs with a manifest of
+document and image hashes, so Linux generation and CI can verify them without Apple's
+renderer. When the `.icon` sources change, regenerate these previews on a Mac with Xcode:
+
+```sh
+node Shared/tools/build-app-icons.mjs --render-apple-previews
+```
+
+This exports directly from the generated Icon Composer documents at 512 pixels and copies
+the matching previews into Apple's image catalog. Default previews remain colorful when
+the Appearance page is dark so each choice is recognizable.
+
 The iPhone app uses the `.icon` documents themselves, not flattened alternate app icons.
 The document specializes the Default background to the selected color and Dark to
 `system-dark`, retaining the original cross layer's automatic fill. White specializes its
