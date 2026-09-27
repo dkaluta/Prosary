@@ -146,6 +146,11 @@ def _resolve_marked_rish(text: str) -> str:
 def _filtered_chars(text: str, *, keep_plural_dots: bool) -> list[str]:
     filtered: list[str] = []
     for ch in _resolve_marked_rish(text):
+        # U+0724 is the independently encoded final form of semkath, not a
+        # different consonant (Unicode 17, section 9.3.1). Normalize it only in
+        # the projection; the original Syriac remains stored verbatim.
+        if ch == "ܤ":
+            ch = "ܣ"
         if ch == "̈":
             if keep_plural_dots:
                 filtered.append(ch)

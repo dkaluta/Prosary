@@ -1650,9 +1650,12 @@ Delitzsch 12th edition (1901). Source vowels and cantillation are preserved; onl
 points on the four letters of יהוה are removed. Delitzsch's source chapter files, reviewed
 numbering differences and print-verified transcription corrections are pinned at build time.
 The selectable Peshitta edition (`peshitta-1905`, `arc`) pairs source Syriac with the existing
-Hebrew-square projection. It covers the pinned BFBS 1905 NT and only the nine previously
-approved supplied Isaiah verses; malformed/unreviewed chapters and other OT remain unavailable.
-The credit distinguishes the NT's CC BY 4.0 edition from Isaiah's unresolved source rights.
+Hebrew-square projection. It covers the pinned BFBS 1905 NT and the structurally readable
+chapters of the supplied pointed OT whose numbering profile is available. Damaged chapters,
+Psalms, deuterocanonical numbering and unresolved source boundaries remain unavailable.
+The credit distinguishes the NT's CC BY 4.0 edition from the OT's unresolved edition and rights.
+The reader expansion leaves the nine Isaiah verses used in prayer packs unchanged; see
+`content/PESHITTA-OT-READER-REVIEW.markdown` for exclusions and the limits of the review.
 
 `readings-editions.json` is the small metadata companion: `schemaVersion: 1` and `editions`
 with stable `id`, `languageCode`, `name`, `attribution` and `sourceURL` fields. The picker reads
@@ -1670,11 +1673,11 @@ direction together. An incomplete pair makes the complete passage unavailable; n
 conversion or script fallback is permitted.
 
 For appointments with an explicitly reviewed source numbering, the shared edition mapper
-uses STEP Standard as a reference hub for all nine pinned Bible editions. Each edition has
+uses STEP Standard as a reference hub for all ten pinned Bible editions. Each edition has
 its own reviewed rules, numeric inventory and completeness exclusions. The standalone mapper
 reads no Scripture wording; the passage builder verifies the imported text's digest before
 using its references. Psalm headings and split/merged verse boundaries remain whole units,
-and the sparse Arabic edition retains only its existing 64 reviewed units. Numeric mapping
+and the sparse Arabic edition accepts only its explicitly reviewed source/Standard units. Numeric mapping
 metadata lives under `Shared/tools/versification/editions`; it is not bundled into native apps.
 See `Shared/DAILY-READINGS.markdown` for source reviews, limitations and regeneration order.
 All 103 currently bundled Psalm citations have exact Roman source-numbering reviews. Their
@@ -1797,8 +1800,12 @@ Arabic Scripture uses the public-domain old Jesuit translation, transcribed and 
 checked against its 1897 Beirut printing. `content/arabic-jesuit-1897.json` records the 239
 reviewed verses and their printed source pages; `tools/import-arabic-scripture.py` replaces
 76 canonical Scripture fields and generates all three native Rosary fallback tables.
-Fixed prayers and authored meditations keep their own sources. Offline readings accept only
-complete reviewed passage units from this partial corpus. See
+Fixed prayers and authored meditations keep their own sources. Reader-only extensions in
+`content/arabic-jesuit-1897-readings.json` and `content/arabic-jesuit-1897-gospel-readings.json`
+add 22 printed Psalms and complete Luke 6, 10, 11 and 12, bringing the reading corpus to
+665 verses. Their independent page and boundary reviews are pinned in the text-free
+`tools/arabic-reading-extensions.json`. Offline readings accept only complete reviewed
+source/Standard units, preserving Psalm offsets and indivisible clause groups. See
 `content/ARABIC-SCRIPTURE-SOURCES.markdown` for provenance, transcription conventions,
 edition boundaries, and regeneration. Dar el-Machreq remains credited separately for book-name
 metadata; it is no longer the source credited for the Arabic Scripture passages.

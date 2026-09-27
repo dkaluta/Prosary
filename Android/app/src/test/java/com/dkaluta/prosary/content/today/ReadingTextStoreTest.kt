@@ -169,6 +169,35 @@ class ReadingTextStoreTest {
         assertTrue(passage.verses.all { verse -> verse.displayedText(edition, "Syrc") == verse.transliteratedText })
     }
 
+    @Test fun expandedPeshittaOldTestamentKeepsTheSourcePairAndExplicitGaps() {
+        val store = bundledStore()
+        val edition = store.editions.single { it.id == "peshitta-1905" }
+        val genesis = requireNotNull(store.passage(ReadingCitation("reading", "Gn", "Genesis 1:1–13"), edition.id))
+        assertEquals((1..13).toList(), genesis.verses.map { it.verse })
+        assertTrue(genesis.verses.all { it.chapter == 1 })
+        assertTrue(genesis.verses.first().transliteratedText.orEmpty().startsWith("ܒܪܺܝܫܺܝܬ݂ ܒܪܳܐ"))
+        assertTrue(genesis.verses.all { verse -> verse.displayedText(edition, "Hebr").any { it in '\u05D0'..'\u05EA' } })
+        assertTrue(genesis.verses.all { verse -> verse.displayedText(edition, "Syrc") == verse.transliteratedText })
+        val torah = requireNotNull(store.passage(ReadingCitation("torah", "Gn", "Genesis 47:28–50:26"), edition.id, isTorah = true))
+        assertEquals(85, torah.verses.size)
+        assertEquals(47, torah.verses.first().chapter)
+        assertEquals(50, torah.verses.last().chapter)
+        assertTrue(torah.verses.all { !it.transliteratedText.isNullOrBlank() })
+        assertNull(store.passage(ReadingCitation("psalm", "Ps", "Psalm 23:1–3a; 23:3b–4; 23:5–5; 23:6–6"), edition.id))
+    }
+
+    @Test fun expandedArabicKeepsPrintedPsalmNumberingAndCompleteGospelVerses() {
+        val store = bundledStore()
+        val editionId = "jesuit-arabic-1897"
+        val gospel = requireNotNull(store.passage(ReadingCitation("gospel", "Lk", "Luke 12:8–12"), editionId))
+        assertEquals((8..12).toList(), gospel.verses.map { it.verse })
+        assertTrue(gospel.verses.all { it.chapter == 12 && it.text.any { c -> c in '\u0621'..'\u064A' } })
+        val psalm = requireNotNull(store.passage(ReadingCitation("psalm", "Ps", "Psalm 23:1–3a; 23:3b–4; 23:5–5; 23:6–6"), editionId))
+        assertEquals((1..6).toList(), psalm.verses.map { it.verse })
+        assertTrue(psalm.verses.all { it.chapter == 22 })
+        assertEquals("مزمور لداود. الرب راعي فلا يعوزني شيء.", psalm.verses.first().text)
+    }
+
     @Test fun bundledSeptemberThirteenthReadingsUseTheSelectedEditionsNumbering() {
         val store = bundledStore()
         val cases = listOf(
@@ -188,6 +217,7 @@ class ReadingTextStoreTest {
             "douay-rheims-1899" to 102, "synodal-1876" to 102,
             "masoretic-delitzsch" to 103, "ang-dating-biblia-1905" to 103,
             "crampon-1923" to 103, "kulish-1905" to 103,
+            "jesuit-arabic-1897" to 102,
         )
         for ((editionId, chapter) in psalmEditions) {
             val psalm = requireNotNull(store.passage(psalmCitation, editionId)) { editionId }
@@ -195,7 +225,7 @@ class ReadingTextStoreTest {
             assertTrue(editionId, psalm.verses.all { it.chapter == chapter })
             assertTrue(editionId, psalm.includesWholeVerses)
         }
-        for (editionId in listOf("martini", "jesuit-arabic-1897")) {
+        for (editionId in listOf("martini")) {
             assertNull(editionId, store.passage(psalmCitation, editionId))
         }
         val french = requireNotNull(store.passage(ReadingCitation("reading", "Sirach", cases[0].first), "crampon-1923"))
@@ -261,7 +291,7 @@ class ReadingTextStoreTest {
         assertEquals("فقالت مريم هاءنذا أمة الرب فليكن لي بحسب قولك. وانصرف الملاك من عندها.", verses.last().text)
         assertTrue(TodayTranslationLanguage.isRightToLeft(edition.languageCode))
 
-        assertNull(store.passage(citation.copy(full = "Luke 6:27–38"), editionId))
+        assertNull(store.passage(citation.copy(full = "Luke 13:1–9"), editionId))
         assertNull(store.passage(citation.copy(full = "Genesis 47:28–50:26"), editionId, isTorah = true))
     }
 

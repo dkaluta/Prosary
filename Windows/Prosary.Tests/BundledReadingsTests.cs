@@ -55,7 +55,8 @@ public class BundledReadingsTests
         {
             ["douay-rheims-1899"] = 102, ["synodal-1876"] = 102,
             ["masoretic-delitzsch"] = 103, ["ang-dating-biblia-1905"] = 103,
-            ["crampon-1923"] = 103, ["kulish-1905"] = 103
+            ["crampon-1923"] = 103, ["kulish-1905"] = 103,
+            ["jesuit-arabic-1897"] = 102
         };
         foreach (var (editionId, chapter) in psalmEditions)
         {
@@ -65,8 +66,7 @@ public class BundledReadingsTests
             Assert.All(psalm.Verses, verse => Assert.Equal(chapter, verse.Chapter));
             Assert.True(psalm.IncludesWholeVerses);
         }
-        foreach (var editionId in new[] { "martini", "jesuit-arabic-1897" })
-            Assert.Null(Store.LoadPassage("daily", cases[1].Citation, editionId));
+        Assert.Null(Store.LoadPassage("daily", cases[1].Citation, "martini"));
         var french = Store.LoadPassage("daily", cases[0].Citation, "crampon-1923");
         Assert.NotNull(french);
         Assert.Equal(new[] { "27:30" }.Concat(Enumerable.Range(1, 7).Select(v => $"28:{v}")),
@@ -192,6 +192,47 @@ public class BundledReadingsTests
     }
 
     [Fact]
+    public void ExpandedPeshittaOldTestamentKeepsSourcePairAndExplicitGaps()
+    {
+        var edition = Store.ResolveEdition("peshitta-1905", "en");
+        Assert.NotNull(edition);
+        var genesis = Store.LoadPassage("daily", "Genesis 1:1–13", edition.Id);
+        Assert.NotNull(genesis);
+        Assert.Equal(Enumerable.Range(1, 13), genesis.Verses.Select(verse => verse.Verse));
+        Assert.StartsWith("ܒܪܺܝܫܺܝܬ݂ ܒܪܳܐ", genesis.Verses.First().TransliteratedText);
+        Assert.All(genesis.Verses, verse =>
+        {
+            Assert.Equal(1, verse.Chapter);
+            Assert.Equal(PrayerTypography.Script.Hebrew, PrayerTypography.ScriptOf(verse.DisplayedText(edition, "Hebr")));
+            Assert.Equal(PrayerTypography.Script.Syriac, PrayerTypography.ScriptOf(verse.DisplayedText(edition, "Syrc")));
+            Assert.Equal(verse.TransliteratedText, verse.DisplayedText(edition, "Syrc"));
+        });
+        var torah = Store.Passage("torah", "Genesis 47:28–50:26", edition.Id);
+        Assert.Equal(85, torah.Count);
+        Assert.Equal(47, torah.First().Chapter);
+        Assert.Equal(50, torah.Last().Chapter);
+        Assert.All(torah, verse => Assert.False(string.IsNullOrWhiteSpace(verse.TransliteratedText)));
+        Assert.Empty(Store.Passage("daily", "Psalm 23:1–3a; 23:3b–4; 23:5–5; 23:6–6", edition.Id));
+    }
+
+    [Fact]
+    public void ExpandedArabicKeepsPrintedPsalmNumberingAndCompleteGospelVerses()
+    {
+        const string editionId = "jesuit-arabic-1897";
+        var gospel = Store.Passage("daily", "Luke 12:8–12", editionId);
+        Assert.Equal(Enumerable.Range(8, 5), gospel.Select(verse => verse.Verse));
+        Assert.All(gospel, verse =>
+        {
+            Assert.Equal(12, verse.Chapter);
+            Assert.Equal(PrayerTypography.Script.Arabic, PrayerTypography.ScriptOf(verse.Text));
+        });
+        var psalm = Store.Passage("daily", "Psalm 23:1–3a; 23:3b–4; 23:5–5; 23:6–6", editionId);
+        Assert.Equal(Enumerable.Range(1, 6), psalm.Select(verse => verse.Verse));
+        Assert.All(psalm, verse => Assert.Equal(22, verse.Chapter));
+        Assert.Equal("مزمور لداود. الرب راعي فلا يعوزني شيء.", psalm.First().Text);
+    }
+
+    [Fact]
     public void BundledOldJesuitArabicOpensReviewedPassagesWithoutBorrowingMissingText()
     {
         var edition = Store.ResolveEdition("", "ar-LB");
@@ -211,7 +252,7 @@ public class BundledReadingsTests
         Assert.True(row.IsRightToLeft);
         Assert.Contains(verses.Last().Text, row.PassageText);
 
-        Assert.Empty(Store.Passage("daily", "Luke 6:27–38", edition.Id));
+        Assert.Empty(Store.Passage("daily", "Luke 13:1–9", edition.Id));
         Assert.Empty(Store.Passage("torah", "Genesis 47:28–50:26", edition.Id));
     }
 

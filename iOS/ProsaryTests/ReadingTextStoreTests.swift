@@ -145,7 +145,7 @@ final class ReadingTextStoreTests: XCTestCase {
       XCTAssertEqual(passage.verses.map { "\($0.chapter):\($0.verse)" }, expected, citation)
       XCTAssertTrue(passage.verses.allSatisfy { !$0.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty })
     }
-    let psalmEditions = ["douay-rheims-1899": 102, "synodal-1876": 102,
+    let psalmEditions = ["douay-rheims-1899": 102, "synodal-1876": 102, "jesuit-arabic-1897": 102,
                         "masoretic-delitzsch": 103, "ang-dating-biblia-1905": 103,
                         "crampon-1923": 103, "kulish-1905": 103]
     for (editionID, chapter) in psalmEditions {
@@ -155,7 +155,7 @@ final class ReadingTextStoreTests: XCTestCase {
       XCTAssertTrue(psalm.verses.allSatisfy { $0.chapter == chapter }, editionID)
       XCTAssertTrue(psalm.includesWholeVerses, editionID)
     }
-    for editionID in ["martini", "jesuit-arabic-1897"] {
+    for editionID in ["martini", "peshitta-1905"] {
       let result = await store.passage(citation: cases[1].0, isTorah: false, editionID: editionID)
       XCTAssertNil(result, editionID)
     }
@@ -252,8 +252,47 @@ final class ReadingTextStoreTests: XCTestCase {
       XCTAssertEqual(verse.displayedText(script: "Syrc", edition: edition), syriac)
       XCTAssertEqual(verse.displayedText(script: "Hebr", edition: edition), verse.text)
     }
-    let unavailable = await store.passage(citation: "Genesis 47:28–50:26", isTorah: true, editionID: edition.id)
-    XCTAssertNil(unavailable, "Unreviewed Old Testament source text is never substituted")
+    let torahResult = await store.passage(citation: "Genesis 47:28–50:26", isTorah: true, editionID: edition.id)
+    let torah = try XCTUnwrap(torahResult)
+    XCTAssertEqual(torah.verses.count, 85)
+    XCTAssertEqual(torah.verses.first?.chapter, 47)
+    XCTAssertEqual(torah.verses.last?.chapter, 50)
+    XCTAssertTrue(torah.verses.allSatisfy { $0.transliteratedText?.isEmpty == false })
+  }
+
+  func testBundledPeshittaOldTestamentKeepsBothScriptsAndWithholdsUnreviewedPsalms() async throws {
+    let store = ReadingTextStore()
+    let result = await store.passage(citation: "Genesis 1:1–13", isTorah: false, editionID: "peshitta-1905")
+    let passage = try XCTUnwrap(result)
+    XCTAssertEqual(passage.verses.map(\.verse), Array(1...13))
+    XCTAssertTrue(passage.verses.allSatisfy { $0.chapter == 1 })
+    for verse in passage.verses {
+      XCTAssertEqual(PrayerTypography.script(of: verse.text), .hebrew)
+      let source = try XCTUnwrap(verse.transliteratedText)
+      XCTAssertEqual(PrayerTypography.script(of: source), .syriac)
+      XCTAssertEqual(verse.displayedText(script: "Syrc", edition: passage.edition), source)
+      XCTAssertEqual(verse.displayedText(script: "Hebr", edition: passage.edition), verse.text)
+    }
+    XCTAssertTrue(passage.verses.first?.transliteratedText?.hasPrefix("ܒܪܺܝܫܺܝܬ݂ ܒܪܳܐ") == true,
+                  "The source's consonants and vowel marks must survive native decoding")
+    let unavailable = await store.passage(citation: "Psalm 23:1–3a; 23:3b–4; 23:5–5; 23:6–6",
+                                          isTorah: false, editionID: "peshitta-1905")
+    XCTAssertNil(unavailable, "Peshitta Psalm numbering remains unreviewed; no edition is substituted")
+  }
+
+  func testBundledArabicExpansionUsesThePrintedPsalmChapter() async throws {
+    let store = ReadingTextStore()
+    let result = await store.passage(citation: "Luke 12:8–12", isTorah: false, editionID: "jesuit-arabic-1897")
+    let gospel = try XCTUnwrap(result)
+    XCTAssertEqual(gospel.verses.map(\.verse), Array(8...12))
+    XCTAssertTrue(gospel.verses.allSatisfy { $0.chapter == 12 && PrayerTypography.script(of: $0.text) == .arabic })
+    let psalmResult = await store.passage(citation: "Psalm 23:1–3a; 23:3b–4; 23:5–5; 23:6–6",
+                                          isTorah: false, editionID: "jesuit-arabic-1897")
+    let psalm = try XCTUnwrap(psalmResult)
+    XCTAssertEqual(psalm.verses.map(\.verse), Array(1...6))
+    XCTAssertTrue(psalm.verses.allSatisfy { $0.chapter == 22 && PrayerTypography.script(of: $0.text) == .arabic })
+    XCTAssertEqual(ScriptureChapterHeading(chapter: 22, edition: psalm.edition, script: "Arab").text,
+                   "الفصل ٢٢")
   }
 
   func testBundledOldJesuitArabicOpensReviewedPassagesWithoutBorrowingMissingText() async throws {
@@ -273,7 +312,7 @@ final class ReadingTextStoreTests: XCTestCase {
     XCTAssertEqual(passage.verses.last?.text,
       "فقالت مريم هاءنذا أمة الرب فليكن لي بحسب قولك. وانصرف الملاك من عندها.")
 
-    let missingDaily = await store.passage(citation: "Luke 6:27–38", isTorah: false, editionID: edition.id)
+    let missingDaily = await store.passage(citation: "Luke 13:1–9", isTorah: false, editionID: edition.id)
     let missingTorah = await store.passage(citation: "Genesis 47:28–50:26", isTorah: true, editionID: edition.id)
     XCTAssertNil(missingDaily)
     XCTAssertNil(missingTorah)

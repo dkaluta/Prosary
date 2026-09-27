@@ -72,6 +72,7 @@ def test_converter() -> None:
         "rish seyame after vowel": ("ܖܰ̈", "רַ"),
         "rish seyame at word end": ("ܡܠܖ̈", "מלר"),
         "ordinary dalath and rish stay distinct": ("ܕܰ ܪܰ", "דַ רַ"),
+        "final semkath is the same consonant": ("ܦܳܪܰܤ ܤ ܤܳ", "פָרַס ס סָ"),
         "medial letters": ("ܟܐ ܡܐ ܢܐ ܦܐ ܨܐ", "כא מא נא פא צא"),
         "vowels": ("ܒܰ ܒܳ ܒܶ ܒܺ ܒܽ", "בַ בָ בֶ בִ בֻ"),
         "qushshaya and rukkakha": ("ܒ݁ ܒ݂", "בּ ב"),

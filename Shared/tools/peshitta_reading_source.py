@@ -4,13 +4,15 @@
 # ///
 """Source-preserving Peshitta imports and their existing Hebrew-script projection.
 
-The NT uses the same pinned BFBS 1905 TEI as the prayer importer. Isaiah remains
-restricted to that importer's nine accepted verses; no other OT text is exposed.
+The NT uses the same pinned BFBS 1905 TEI as the prayer importer. The separate
+reader-only OT adapter imports the user's hash-pinned XML with explicit source
+and reference exclusions; the prayer importer's nine-verse scope is unchanged.
 """
 from functools import lru_cache
 import importlib.util
 from pathlib import Path
 import re
+import unicodedata
 import xml.etree.ElementTree as ET
 
 from aramaic_script_converter import to_hebrew
@@ -26,6 +28,9 @@ def scripture_importer():
 
 
 def load_verses(source: dict, raw: bytes) -> dict:
+    if source["format"] == "peshitta-supplied-ot":
+        from peshitta_supplied_ot import load_supplied_ot
+        return load_supplied_ot(source, raw)
     importer = scripture_importer()
     if source["format"] == "peshitta-isaiah":
         importer.verify_supplied_peshitta_hash(raw)
@@ -62,4 +67,8 @@ def paired_text(syriac: str) -> tuple[str, str]:
     hebrew = to_hebrew(syriac)
     if not re.search(r"[\u05d0-\u05ea]", hebrew):
         raise ValueError("Peshitta verse lacks its Hebrew-script projection")
+    if any(ord(char) == 0x0711 or
+           (0x0700 <= ord(char) <= 0x074F and unicodedata.category(char).startswith("L"))
+           for char in hebrew):
+        raise ValueError("Peshitta Hebrew projection retains an unsupported Syriac letter")
     return hebrew, syriac

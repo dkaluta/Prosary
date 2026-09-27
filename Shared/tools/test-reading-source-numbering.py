@@ -15,8 +15,10 @@ from types import SimpleNamespace
 from unittest.mock import patch
 
 from nabre_versification import InvalidInventory
+from reading_edition_mapping import convert_references
 from reading_nabre_mapping import NabreMapper
 from reading_source_numbering_reviews import load_reviews, reviewed_numbering
+from reading_step_mapping import Unavailable as MappingUnavailable
 
 TOOLS = Path(__file__).resolve().parent
 
@@ -78,18 +80,33 @@ class SourceNumberingReviewTests(unittest.TestCase):
 
     def test_shipped_psalms_are_available_in_every_complete_psalm_edition(self):
         data = json.loads((builder.DATA / 'readings-texts.json').read_text())
+        arabic = json.loads((builder.ROOT / 'Shared/content/arabic-jesuit-1897-readings.json').read_text())
         expected = {'douay-rheims-1899', 'masoretic-delitzsch', 'synodal-1876',
                     'ang-dating-biblia-1905', 'crampon-1923', 'kulish-1905'}
+        arabic_keys = set()
         for key in builder.appointments():
             if not key.startswith('daily|Psalm '):
                 continue
             with self.subTest(key=key):
-                # Brenton's reviewed Greek Psalms are additional partial coverage;
+                # Reviewed Greek and Arabic Psalms are additional partial coverage;
                 # the six previously complete editions must still be present exactly.
-                self.assertEqual(set(data['passages'][key]) - {'brenton-lxx'}, expected)
+                self.assertEqual(set(data['passages'][key]) - {'brenton-lxx', 'jesuit-arabic-1897'}, expected)
                 for verses in data['passages'][key].values():
                     self.assertTrue(verses)
                     self.assertTrue(all(row['text'].strip() for row in verses))
+                dra_refs = [('PSA', row['chapter'], row['verse'])
+                            for row in data['passages'][key]['douay-rheims-1899']]
+                try:
+                    reviewed_refs, _ = convert_references('douay-rheims-1899', 'jesuit-arabic-1897', dra_refs)
+                except MappingUnavailable:
+                    self.assertNotIn('jesuit-arabic-1897', data['passages'][key])
+                else:
+                    arabic_keys.add(key)
+                    verses = data['passages'][key]['jesuit-arabic-1897']
+                    self.assertEqual([('PSA', row['chapter'], row['verse']) for row in verses], reviewed_refs)
+                    for row in verses:
+                        self.assertEqual(row['text'], arabic['verses']['Psalm'][str(row['chapter'])][str(row['verse'])])
+        self.assertEqual(len(arabic_keys), 31)
         key = 'daily|Psalm 33:2–3; 33:4–5; 33:12; 33:22'
         self.assertEqual([(row['chapter'], row['verse'])
                           for row in data['passages'][key]['douay-rheims-1899']],
@@ -192,7 +209,7 @@ class SourceNumberingIntegrationTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         lock = json.loads(builder.LOCK.read_text())
-        if any(source["format"] != "reviewed-verses" and not (builder.CACHE / source["cache"]).exists()
+        if any("path" not in source and not (builder.CACHE / source["cache"]).is_file()
                for source in lock["sources"]):
             raise unittest.SkipTest("Pinned Bible source assemblies are not cached")
         cls.lock, cls.corpora = builder.load_pinned_corpora()

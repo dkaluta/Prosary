@@ -15,8 +15,9 @@ AllBibles empty-verse notices (27491, 27492, 27495) do not authorize losing word
 a sparse transcription cannot prove absence. ARABIC-REFERENCE-REVIEW.markdown
 records the eight added units' printed clause boundaries and KJV Standard
 witnesses, including Isaiah 9:2's distinction from Hebrew numbering. Those manual
-reviews, not a Vulgate label, establish the explicit units below. No new wording,
-OCR, or transcription is introduced by this adapter.
+reviews, not a Vulgate label, establish the explicit units below. Reader-only Psalm and Gospel extensions add explicit printed source/Standard units
+from the same scan, with independent wording and boundary reviews. Their reference-only
+manifest carries no Scripture words. No OCR is imported by this adapter.
 
 reference_metadata() extracts references, page evidence, counts and hashes at build
 time. from_metadata() reads only that exported, hash-pinned metadata and never
@@ -39,9 +40,16 @@ Reference = tuple[str, int, int]
 EDITION_ID = "jesuit-arabic-1897"
 SOURCE_ID = "old-jesuit-arabic-1897"
 SOURCE_SHA256 = "9495719b3f1573e7a446dc22dbeb3014e913d69b5bfff71239dd9602c0efeda8"
-SOURCE_PIN_DIGEST = "c6d5d35959ddd11e9f44d01098d32a2bcd127ebf734b4519ff3b01e3613e7a96"
 SOURCE_PATH = Path(__file__).resolve().parents[1] / "content/arabic-jesuit-1897.json"
-_BOOKS = {"Isaiah": "ISA", "Matthew": "MAT", "Mark": "MRK", "Luke": "LUK",
+EXTENSION_PATH = Path(__file__).with_name("arabic-reading-extensions.json")
+# This separate review contains only reference coordinates, page evidence and
+# hashes. Runtime reference conversion never opens Scripture transcriptions.
+_EXTENSIONS = json.loads(EXTENSION_PATH.read_text())
+if set(_EXTENSIONS) != {"schemaVersion", "sources", "verses", "units"} or _EXTENSIONS["schemaVersion"] != 1:
+    raise ValueError("Invalid Arabic extension review")
+SOURCE_PINS = {SOURCE_ID: SOURCE_SHA256, **{row["id"]: row["sha256"] for row in _EXTENSIONS["sources"]}}
+SOURCE_PIN_DIGEST = hashlib.sha256(json.dumps(SOURCE_PINS, sort_keys=True, separators=(",", ":")).encode()).hexdigest()
+_BOOKS = {"Psalm": "PSA", "Isaiah": "ISA", "Matthew": "MAT", "Mark": "MRK", "Luke": "LUK",
           "John": "JHN", "Acts": "ACT", "Revelation": "REV"}
 _ORDER = {book: index for index, book in enumerate(_BOOKS.values())}
 
@@ -85,10 +93,15 @@ _SPANS = (
     ("ISA", 22, ((22, 22),)), ("ISA", 9, ((2, 2),)),
     ("ISA", 28, ((16, 16),)), ("ISA", 7, ((14, 14),)),
 )
-REVIEWED_UNITS = tuple(tuple((book, chapter, verse)
+BASE_REVIEWED_UNITS = tuple(tuple((book, chapter, verse)
                             for start, end in spans for verse in range(start, end + 1))
                        for book, chapter, spans in _SPANS)
+REVIEWED_UNITS = BASE_REVIEWED_UNITS + tuple(tuple(tuple(ref) for ref in unit["source"])
+                                           for unit in _EXTENSIONS["units"])
+STANDARD_UNITS = BASE_REVIEWED_UNITS + tuple(tuple(tuple(ref) for ref in unit["standard"])
+                                           for unit in _EXTENSIONS["units"])
 _REFERENCES = frozenset(ref for unit in REVIEWED_UNITS for ref in unit)
+UNIT_MAPPINGS = tuple(zip(REVIEWED_UNITS, STANDARD_UNITS, strict=True))
 
 PROFILES = {
     EDITION_ID: {
@@ -96,7 +109,7 @@ PROFILES = {
         "blocked_chapters": set(), "source_pin_digest": SOURCE_PIN_DIGEST,
         "notes": [
             "Dispatch through ReviewedArabicMapper; never a generic StepMapper.",
-            "239 source verses in 72 indivisible reviewed units; no unreviewed text.",
+            "Pinned source verses and explicit reviewed source/Standard units; no unreviewed text.",
             "Empty broad STEP selections do not authorize identity outside those units.",
             "Luke 1:32-33 and 22:43-44 retain their entire previously reviewed envelopes.",
             "Sparse inventory does not establish chapter Last or a missing verse.",
@@ -138,7 +151,7 @@ def reference_metadata(source_path: Path = SOURCE_PATH) -> dict:
         raise ValueError("Arabic source changed; review its words and boundaries before updating the adapter")
     data = json.loads(raw)
     if (data["edition"]["id"] != EDITION_ID
-            or tuple(_parse_unit(citation) for citation in data["reviewUnits"]) != REVIEWED_UNITS):
+            or tuple(_parse_unit(citation) for citation in data["reviewUnits"]) != BASE_REVIEWED_UNITS):
         raise ValueError("Arabic reviewed units differ from their pinned mapping")
     verses = []
     for name, chapters in data["verses"].items():
@@ -152,13 +165,45 @@ def reference_metadata(source_path: Path = SOURCE_PATH) -> dict:
                 verses.append({"reference": list(ref), "wordCount": len(words.split()),
                                "textSHA256": hashlib.sha256(words.encode("utf-8")).hexdigest(),
                                "pdfPages": list(pages)})
+    for source in _EXTENSIONS["sources"]:
+        path = Path(__file__).resolve().parents[2] / source["path"]
+        if not path.resolve().is_relative_to(SOURCE_PATH.parent.resolve()):
+            raise ValueError("Arabic extension must remain inside canonical content")
+        raw = path.read_bytes()
+        if hashlib.sha256(raw).hexdigest() != source["sha256"]:
+            raise ValueError("Arabic extension source changed; review before updating its pin")
+        extension = json.loads(raw)
+        if (extension["editionId"] != EDITION_ID
+                or extension["sourcePDFSHA256"] != "2bca3535b75532044bdc2889b497b16b59e0337ee775f42de8aedc4e2809c09d"):
+            raise ValueError("Arabic extension changed edition or printing")
+        actual_units = [(list(map(list, _parse_unit(row["source"]))), list(map(list, _parse_unit(row["standard"]))))
+                        for row in extension["reviewUnits"]]
+        expected_units = [(row["source"], row["standard"]) for row in _EXTENSIONS["units"] if row["sourceId"] == source["id"]]
+        if actual_units != expected_units:
+            raise ValueError("Arabic extension boundary review differs from its source")
+        actual_verses = []
+        for name, chapters in extension["verses"].items():
+            for chapter, values in chapters.items():
+                for verse, words in values.items():
+                    pages = extension["pages"][name][chapter][verse]
+                    pages = pages if isinstance(pages, list) else [pages]
+                    actual_verses.append({"reference": [_BOOKS[name], int(chapter), int(verse)],
+                                          "wordCount": len(words.split()),
+                                          "textSHA256": hashlib.sha256(words.encode()).hexdigest(),
+                                          "pdfPages": pages})
+        expected_verses = [{key: value for key, value in row.items() if key != "sourceId"}
+                           for row in _EXTENSIONS["verses"] if row["sourceId"] == source["id"]]
+        key = lambda row: _order(tuple(row["reference"]))
+        if sorted(actual_verses, key=key) != sorted(expected_verses, key=key):
+            raise ValueError("Arabic extension words or pages differ from their review")
+        verses.extend(actual_verses)
     metadata = {
         "schemaVersion": 1, "editionId": EDITION_ID,
-        "sourcePins": {SOURCE_ID: SOURCE_SHA256}, "sourcePinDigest": SOURCE_PIN_DIGEST,
-        "coveragePolicy": "reviewed-units", "verseCount": 239, "unitCount": 72,
+        "sourcePins": dict(SOURCE_PINS), "sourcePinDigest": SOURCE_PIN_DIGEST,
+        "coveragePolicy": "reviewed-units", "verseCount": len(_REFERENCES), "unitCount": len(REVIEWED_UNITS),
         "verses": sorted(verses, key=lambda row: _order(tuple(row["reference"]))),
-        "units": [{"source": [list(ref) for ref in unit], "standard": [list(ref) for ref in unit]}
-                  for unit in REVIEWED_UNITS],
+        "units": [{"source": list(map(list, source)), "standard": list(map(list, standard))}
+                  for source, standard in UNIT_MAPPINGS],
     }
     ReviewedArabicMapper.from_metadata(metadata)  # Check the exported contract itself.
     return metadata
@@ -196,15 +241,15 @@ class ReviewedArabicMapper:
         digest = hashlib.sha256(json.dumps(pins, sort_keys=True, separators=(",", ":")).encode()).hexdigest()
         if (metadata.get("schemaVersion") != 1 or metadata.get("editionId") != EDITION_ID
                 or metadata.get("coveragePolicy") != "reviewed-units"
-                or pins != {SOURCE_ID: SOURCE_SHA256} or digest != SOURCE_PIN_DIGEST
+                or pins != SOURCE_PINS or digest != SOURCE_PIN_DIGEST
                 or metadata.get("sourcePinDigest") != digest
-                or metadata.get("verseCount") != 239 or metadata.get("unitCount") != 72):
+                or metadata.get("verseCount") != len(_REFERENCES) or metadata.get("unitCount") != len(REVIEWED_UNITS)):
             raise ValueError("Arabic reference metadata differs from its reviewed source pin")
         units = metadata.get("units", [])
-        if (len(units) != 72
-                or any(tuple(_reference(ref) for ref in row.get("source", ())) != expected
-                       or tuple(_reference(ref) for ref in row.get("standard", ())) != expected
-                       for row, expected in zip(units, REVIEWED_UNITS, strict=True))):
+        if (len(units) != len(UNIT_MAPPINGS)
+                or any(tuple(_reference(ref) for ref in row.get("source", ())) != source
+                       or tuple(_reference(ref) for ref in row.get("standard", ())) != standard
+                       for row, (source, standard) in zip(units, UNIT_MAPPINGS, strict=True))):
             raise ValueError("Arabic reference metadata changes an indivisible reviewed unit")
         evidence = {}
         for row in metadata.get("verses", []):
@@ -216,11 +261,11 @@ class ReviewedArabicMapper:
                     or any(type(page) is not int or not 1 <= page <= 570 for page in pages)):
                 raise ValueError("Arabic reference metadata has invalid or missing source evidence")
             evidence[ref] = (count, sha, tuple(pages))
-        if set(evidence) != _REFERENCES or len(evidence) != 239:
-            raise ValueError("Arabic reference metadata must retain all 239 reviewed verse records")
+        if set(evidence) != _REFERENCES:
+            raise ValueError("Arabic reference metadata must retain every reviewed verse record")
         self.source_pins = dict(pins)
         self.source_pin_digest = digest
-        self.unit_mappings = tuple((unit, unit) for unit in REVIEWED_UNITS)
+        self.unit_mappings = UNIT_MAPPINGS
         inventory = defaultdict(set)
         for book, chapter, verse in evidence:
             inventory[book, chapter].add(verse)
