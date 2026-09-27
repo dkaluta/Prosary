@@ -1,0 +1,264 @@
+{
+  "book": "1MA",
+  "status": "First visual pointed draft, not final source review",
+  "primarySourcePDFSHA256": "656891d377d2e3d4a9216723d94205488423907bf01df424b9f0b9de1560051e",
+  "additionalSourcePDFSHA256": "b72eaf5d2d858fabb7c3438ac0436ccd64c394a7dd2fad609efabe628d5534c7",
+  "sourcePages": [
+    120,
+    121,
+    122
+  ],
+  "additionalPages": [
+    {
+      "number": 62,
+      "side": "right",
+      "primary": 120
+    },
+    {
+      "number": 62,
+      "side": "left",
+      "primary": 121
+    },
+    {
+      "number": 63,
+      "side": "right",
+      "primary": 122,
+      "scope": "5:15 final word only"
+    }
+  ],
+  "method": "Read each word and visible mark in matched print crops. Consonants and punctuation mechanically checked unchanged. Proper names use visible marks only; no grammar normalization or inferred niqqud. Every new pointed draft still requires complete second comparison.",
+  "queries": [
+    {
+      "units": [
+        "5:6",
+        "5:11"
+      ],
+      "word": "טימותאוס",
+      "scope": "Tav vowel only",
+      "detail": "Tet hiriq and both vav holams visible. The tav mark is small/fused and remains unpointed pending independent direct reading.",
+      "resolved": true,
+      "evidence": [
+        "crop-62-0.198-0.114-0.346-0.151.png",
+        "crop-62-0.084-0.245-0.162-0.291.png"
+      ],
+      "resolution": "Independent reader and transcription reviewer distinguish two vertically separated dots below tav, clearest at5:11. Applied sheva only to the two shown source occurrences:טִימוֹתְאוֹס."
+    },
+    {
+      "units": [
+        "5:1"
+      ],
+      "word": "כשמע",
+      "scope": "Initial kaf dagesh only",
+      "detail": "Expanded crop establishes mem holam and ayin patah. Initial kaf interior remains unclear; current first draft includes a provisional dagesh. Sent for independent direct reading.",
+      "resolved": true,
+      "evidence": [
+        "crop-62-0.785-0.34-0.858-0.383.png"
+      ],
+      "resolution": "Both readers see a clean kaf interior; hiriq is detached below. Mem holam and ayin patah clear. Corrected כִּשְׁמֹעַ to כִשְׁמֹעַ only at5:1."
+    },
+    {
+      "units": [
+        "5:4"
+      ],
+      "word": "בעון",
+      "scope": "Name bet dagesh only, after the maqaf (not bet in בני)",
+      "detail": "No securely isolated bet dot established in this crop. Independent reader also cannot distinguish dot from letter inner stroke. Current first draft has no dagesh; remains unresolved.",
+      "resolved": false,
+      "evidence": [
+        "crop-62-0.705-0.447-0.773-0.48.png"
+      ]
+    }
+  ],
+  "notes": [
+    "5:3 source בֶּאֱדוֹם preserves initial bet segol, not conventional replacement.",
+    "5:9 initial dalet of לְדָתֵימָה retained; clear crop supports sheva/qamats/tsere/qamats.",
+    "5:5 source מגדליה feminine suffix retained; no replacement with conventional masculine.",
+    "5:15 begins onB121 and its final word לְכַלּוֹתֵנוּ continues onB122."
+  ],
+  "cropEvidence": [
+    {
+      "filename": "crop-62-0.541-0.342-0.9-0.505.png",
+      "sha256": "c590247fc648a86bff3976b0f49ca9822652cd22f4339be0485721cabc756fb0"
+    },
+    {
+      "filename": "crop-62-0.045-0.092-0.438-0.278.png",
+      "sha256": "aba781c982c7a79977c53e75ca28070d5ba04effc54cc6cfbd62466960643c25"
+    },
+    {
+      "filename": "crop-62-0.045-0.273-0.438-0.414.png",
+      "sha256": "0b8352f8945c3de3ca2b9c76f37e20ce089641361010f4d6febcdf1c7f73fd82"
+    },
+    {
+      "filename": "crop-63-0.546-0.094-0.9-0.13.png",
+      "sha256": "496b287efd9d481a3732f8515d496aa5ddfa843c1571fc0683cfa0a3754d7586"
+    },
+    {
+      "filename": "crop-62-0.737-0.368-0.896-0.445.png",
+      "sha256": "aae1e8c83c91c9db696c760006120cc29da41df17a9157c11bd75c2b94129014"
+    },
+    {
+      "filename": "crop-62-0.198-0.114-0.346-0.151.png",
+      "sha256": "2a8f86c26e2c5e56d786f3796036587f88e4ae08d379f4d8d99176017619e763"
+    },
+    {
+      "filename": "crop-62-0.263-0.187-0.354-0.232.png",
+      "sha256": "876ad4eb4c7b6f56762702de1719117446f769b4bc5decf13a84ab62b91e1f5a"
+    },
+    {
+      "filename": "crop-62-0.588-0.398-0.66-0.437.png",
+      "sha256": "3d865b86b63b39f191dd5b1f1ff3dc65f95668ebef79b538066c7227f4d4970f"
+    },
+    {
+      "filename": "crop-62-0.084-0.245-0.162-0.291.png",
+      "sha256": "98f7a5f3034850002574799789184685a5f557837d2c3e8a87e580b5507cb3c7"
+    },
+    {
+      "filename": "crop-62-0.785-0.34-0.858-0.383.png",
+      "sha256": "84ae54b3ec83baa9cb4fae0e65ff97928b47fc1744a59488a92ae1070a7d3275"
+    },
+    {
+      "filename": "crop-62-0.705-0.447-0.773-0.48.png",
+      "sha256": "db5d27d8ed589b8f18342d1a009c2dbf8115aba72d13c3176886e60722fae2c8"
+    }
+  ],
+  "draftUnits": [
+    {
+      "chapter": 5,
+      "verse": 1,
+      "text": "וַיְהִי כִשְׁמֹעַ הַגּוֹיִם מִסָּבִיב כִּי־נִבְנָה הַמִּזְבֵּחַ וְחֻדַּשׁ הַמִּקְדָּשׁ כְּבָרִאשׁוֹנָה וַיִּקְצְפוּ מְאֹד׃",
+      "sourcePages": [
+        120
+      ],
+      "textSHA256": "65aa8c1258ed41250aa954bcf3ae3626d1c1a95513789ddbeb5098cb5bcdd6cc"
+    },
+    {
+      "chapter": 5,
+      "verse": 2,
+      "text": "וַיִּוָּעֲצוּ לְהַכְחִיד זֶרַע יַעֲקֹב אֲשֶׁר בְּקִרְבָּם וַיָּחֵלּוּ לְהָמִית בָּעָם וּלְהַשְׁמִיד׃",
+      "sourcePages": [
+        120
+      ],
+      "textSHA256": "a228d16bd2798ca76e4151f06b967fde44f6ed60e5849f4a9890f844c5bf6e7b"
+    },
+    {
+      "chapter": 5,
+      "verse": 3,
+      "text": "וַיִּלָּחֶם יְהוּדָה בִּבְנֵי־עֵשָׂו בֶּאֱדוֹם אֶת־עַקְרַבָּה כִּי־צָרְרוּ אֶת־יִשְׂרָאֵל וַיַּךְ אוֹתָם מַכָּה גְדוֹלָה וַיַּכְנִיעֵם וַיִּקַּח אֶת־שְׁלָלָם׃",
+      "sourcePages": [
+        120
+      ],
+      "textSHA256": "2cda969b52fce510bd9bf05b0554088d58006f8a60249db5506962f201d24edd"
+    },
+    {
+      "chapter": 5,
+      "verse": 4,
+      "text": "וַיִּזְכֹּר אֶת־רָעוֹת בְּנֵי־בְעוֹן אֲשֶׁר הָיוּ לָעָם לְפַח וּלְמוֹקֵשׁ בְּאָרְבָּם לָהֶם עַל־הַדְּרָכִים׃",
+      "sourcePages": [
+        120
+      ],
+      "textSHA256": "fe7000ca6324cbd8a1ecc320400a156e02f9f7c66fa514a56d1c78958ec5c53d"
+    },
+    {
+      "chapter": 5,
+      "verse": 5,
+      "text": "וַיִּסָּגְרוּ עַל־יָדוֹ בַּמִּגְדָּלִים וַיַּחַן עֲלֵיהֶם וַיַּחֲרִימֵם וַיִּשְׂרֹף אֶת־מִגְדָּלֶיהָ בָּאֵשׁ עִם־כָּל־אֲשֶׁר בָּהֶם׃",
+      "sourcePages": [
+        120,
+        121
+      ],
+      "textSHA256": "ce1fb6e9c9ff9442f6647ace07fa849268b729886a10170b6a1dc9e478d113e5"
+    },
+    {
+      "chapter": 5,
+      "verse": 6,
+      "text": "וַיַּעֲבֹר אֶל־בְּנֵי־עַמּוֹן וַיִּמְצָא יָד חֲזָקָה וְעַם רָב וְטִימוֹתְאוֹס מַנְהִיגָם׃",
+      "sourcePages": [
+        121
+      ],
+      "textSHA256": "d1fd16518bab895463f5bca52e7335179a97c8997e6dd638517858bd995e4e70"
+    },
+    {
+      "chapter": 5,
+      "verse": 7,
+      "text": "וַיַּעֲרֹךְ אִתָּם מִלְחָמוֹת רַבּוֹת וַיִּנָּגְפוּ לְפָנָיו וַיַּכֵּם׃",
+      "sourcePages": [
+        121
+      ],
+      "textSHA256": "8d5bfc6ba1375d8a8bcf22aebad40f43dbdfb5febcacebc3068308af1e0564a9"
+    },
+    {
+      "chapter": 5,
+      "verse": 8,
+      "text": "וַיִּקַּח אֶת־יַעְזֵר וְאֶת־בְּנוֹתֶיהָ וַיָּשָׁב לִיהוּדָה׃",
+      "sourcePages": [
+        121
+      ],
+      "textSHA256": "0b5b29f324cdd856818ae77e39b4514a2a3cfb0b97e5361489eb1cf207aacd38"
+    },
+    {
+      "chapter": 5,
+      "verse": 9,
+      "text": "וַיֵּאָסְפוּ הַגּוֹיִם אֲשֶׁר בַּגִּלְעָד עַל־יִשְׂרָאֵל אֲשֶׁר בִּגְבוּלָם לְהַכְחִידָם וַיִּבְרְחוּ לְדָתֵימָה הַמִּבְצָר׃",
+      "sourcePages": [
+        121
+      ],
+      "textSHA256": "bf18e83dbf8e04b499addd09335908178fd9da009819ae6905785c64ad59a720"
+    },
+    {
+      "chapter": 5,
+      "verse": 10,
+      "text": "וַיִּשְׁלְחוּ מִכְתָּבִים אֶל־יְהוּדָה וְאָחִיו לֵאמֹר נֶאֶסְפוּ עָלֵינוּ הַגּוֹיִם מִסְּבִיבֵנוּ לְהַכְחִידֵנוּ׃",
+      "sourcePages": [
+        121
+      ],
+      "textSHA256": "24191a38876db593b6b254475fc361a78de60fd275f9687e59ecc04355266062"
+    },
+    {
+      "chapter": 5,
+      "verse": 11,
+      "text": "וְהֵם מִתְכּוֹנְנִים לָבוֹא וְלָקַחַת אֶת־הַמִּבְצָר אֲשֶׁר נִמְלַטְנוּ שָׁמָּה וְטִימוֹתְאוֹס מוֹלִיךְ אֶת־מַחֲנֵיהֶם׃",
+      "sourcePages": [
+        121
+      ],
+      "textSHA256": "4389c152ef3613867b0e72794f9d486243822382c4d6b9f578a07c125742cd27"
+    },
+    {
+      "chapter": 5,
+      "verse": 12,
+      "text": "וְעַתָּה בּוֹאָה לְהַצִּילֵנוּ מִיָּדָם כִּי־נָפְלוּ מִמֶּנּוּ רַבִּים׃",
+      "sourcePages": [
+        121
+      ],
+      "textSHA256": "66aa811617f7eb4adb050f4c40a6a450be3b6d8cfb6b296df2fb9a589a70097a"
+    },
+    {
+      "chapter": 5,
+      "verse": 13,
+      "text": "וְכָל־אַחֵינוּ הַנִּמְצָאִים בְּאֶרֶץ טוֹב הוּמְתוּ וַיִּשְׁבּוּ אֶת־נְשֵׁיהֶם וְאֶת־טַפָּם וְאֶת־הָרְכוּשׁ וַיָּמִיתוּ שָׁם כְּאֶלֶף אִישׁ׃",
+      "sourcePages": [
+        121
+      ],
+      "textSHA256": "80dcb86de151d16f6936637e29178fcf3fec83dd8e69b965d71c2492e7bba8cd"
+    },
+    {
+      "chapter": 5,
+      "verse": 14,
+      "text": "עוֹד הַמִּכְתָּבִים נִקְרָאִים וְהִנֵּה שְׁלִיחִים אֲחֵרִים בָּאוּ מִן־הַגָּלִיל קְרוּעֵי בְגָדִים מְבַשְּׂרִים כַּדְּבָרִים הָאֵלֶּה׃",
+      "sourcePages": [
+        121
+      ],
+      "textSHA256": "12d9cdd5c4c08ebdd15227e7aeef0c3c045a59c3247a134c95bd25294ecf106e"
+    },
+    {
+      "chapter": 5,
+      "verse": 15,
+      "text": "לֵאמֹר נֶאֶסְפוּ עֲלֵיהֶם מֵעַכּוֹ וּמִצּוֹר וּמִצִּידוֹן וְכָל־גְּלִיל הַגּוֹיִם לְכַלּוֹתֵנוּ׃",
+      "sourcePages": [
+        121,
+        122
+      ],
+      "textSHA256": "f148ae8dc51a78e37585b4289dd3cb683d8787bc4da7597eff6489e5204ebc1c"
+    }
+  ],
+  "productionEligible": false
+}

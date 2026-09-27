@@ -1,0 +1,389 @@
+{
+  "book": "1MA",
+  "primarySourcePDFSHA256": "656891d377d2e3d4a9216723d94205488423907bf01df424b9f0b9de1560051e",
+  "additionalSourcePDFSHA256": "b72eaf5d2d858fabb7c3438ac0436ccd64c394a7dd2fad609efabe628d5534c7",
+  "status": "B102 checked; B100–101 word-and-mark pass has explicit fine-mark queries; book remains draft",
+  "method": "Complete direct comparison of every scripture word and printed vowel mark/punctuation on these pages with the existing draft. The clearer additional scan matches the same page headers and typesetting; commentary excluded. No OCR points or conventional name vowels used.",
+  "pages": [
+    {
+      "primaryPDFPage": 100,
+      "additionalPDFPage": 52,
+      "side": "right",
+      "printedPage": "צח",
+      "unitSegments": [
+        "1:10 ending למלכות היונים",
+        "1:11–13 complete",
+        "1:14–15 opening through ויעשו"
+      ],
+      "finalReviewComplete": false,
+      "unresolved": [
+        "1MA-1-14-jerusalem-lamed"
+      ]
+    },
+    {
+      "primaryPDFPage": 101,
+      "additionalPDFPage": 52,
+      "side": "left",
+      "printedPage": "צט",
+      "unitSegments": [
+        "1:14–15 continuation להם ערלה through end",
+        "1:16–20 complete",
+        "1:21 opening through ויקח"
+      ],
+      "finalReviewComplete": false,
+      "unresolved": [
+        "1MA-1-20-jerusalem-lamed"
+      ]
+    },
+    {
+      "primaryPDFPage": 102,
+      "additionalPDFPage": 53,
+      "side": "right",
+      "printedPage": "ק",
+      "unitSegments": [
+        "1:21 continuation את־מזבח through end",
+        "1:22–28 complete"
+      ],
+      "finalReviewComplete": true,
+      "unresolved": []
+    }
+  ],
+  "corrections": [
+    {
+      "unit": "1:16 /1:20",
+      "before": "אנטיוכוס",
+      "after": "אַנְטִיוֹכוֹס",
+      "basis": "Distinct visible points recovered from the clearer same-typesetting scan; prior bare name was a provisional low-resolution reading."
+    },
+    {
+      "unit": "1:18 (both occurrences)",
+      "before": "תלמי",
+      "after": "תַּלְמַי",
+      "basis": "Visible tau patah/dagesh, lamed shewa and mem patah. Do not supply a different conventional spelling."
+    },
+    {
+      "unit": "1:23",
+      "before": "אוֹצְרוֹת",
+      "after": "אֹצְרוֹת",
+      "basis": "No consonantal vav occurs between alef and tsadi in this source; holam is over alef. Independently inspectable tight crop."
+    }
+  ],
+  "queries": [
+    {
+      "id": "1MA-1-14-jerusalem-lamed",
+      "unit": "1:14–15",
+      "currentReading": "בִּירוּשָׁלִַם",
+      "candidates": [
+        "lamed patah plus hiriq",
+        "lamed qamats plus hiriq"
+      ],
+      "detail": "Separate left dot is visible. First reader sees a short stem on the horizontal mark; independent second reader cannot distinguish the stem confidently from the adjacent dot at this scale. Retain existing provisional mark, not final page approval. Prior user answer for2:1/6 is not applied here.",
+      "evidence": "crop-52-0.66-0.19-0.727-0.222.png",
+      "resolved": false
+    },
+    {
+      "id": "1MA-1-20-jerusalem-lamed",
+      "unit": "1:20",
+      "currentReading": "יְרוּשָׁלִַם",
+      "candidates": [
+        "lamed patah plus hiriq",
+        "lamed qamats plus hiriq"
+      ],
+      "detail": "The analogous mark on this separate instance needs its own final glyph check. Current draft retained provisionally.",
+      "evidence": "crop-52-0.035-0.092-0.414-0.305.png",
+      "resolved": false
+    }
+  ],
+  "retainedChecks": [
+    "1:18 וַיִּסּוֹג retains the printed vav; the enlarged crop rejects a preliminary suspicion of defective ויסג.",
+    "1:22 printed פרכת is retained with its existing consonants and points.",
+    "1:26 bracketed three-dash lacuna and two poetic lines retained; chapter1 remains partial.",
+    "1:27 יוֹשֶׁבֶת בְּחֻפָּה הִתְאַבָּלָה matches the source; no smoothing of the elliptical poetic wording.",
+    "No sof pasuq inserted across1:10,1:14–15 or1:21 physical-page boundaries."
+  ],
+  "textUnits": [
+    {
+      "verse": 10,
+      "text": "וַיֵּצֵא מֵהֶם שֹׁרֶשׁ רֶשַׁע אַנְטִיוֹכוֹס אֶפִּיפָנֶס בֶּן־אַנְטִיוֹכוֹס הַמֶּלֶךְ אֲשֶׁר הָיָה בֶּן־תַּעֲרוּבוֹת בְּרוֹמִי וַיִּמְלֹךְ בִּשְׁנַת מֵאָה וּשְׁלֹשִׁים וָשֶׁבַע לְמַלְכוּת הַיְּוָנִים׃",
+      "sourcePages": [
+        99,
+        100
+      ],
+      "textSHA256": "c5af9427777db27b6f3b4566c05d83e079f4e56a1ef8cafd9dc5134749e00abf"
+    },
+    {
+      "verse": 11,
+      "text": "בַּיָּמִים הָהֵם יָצְאוּ מִקֶּרֶב יִשְׂרָאֵל בְּנֵי־בְלִיַּעַל וַיַּדִּיחוּ רַבִּים לֵאמֹר נֵלְכָה וְנִכְרְתָה בְרִית אֶת־הַגּוֹיִם אֲשֶׁר סְבִיבוֹתֵינוּ כִּי מִן־הַיּוֹם אֲשֶׁר סַרְנוּ מֵעִמָּהֶם מְצָאוּנוּ רָעוֹת רַבּוֹת׃",
+      "sourcePages": [
+        100
+      ],
+      "textSHA256": "0137dea82d1593f496d657da56765aed5d564abe1230bd90f98cd7268549cb0d"
+    },
+    {
+      "verse": 12,
+      "text": "וַיִּיטַב הַדָּבָר בְּעֵינֵיהֶם׃",
+      "sourcePages": [
+        100
+      ],
+      "textSHA256": "2c18b9c94fe570261dfb9660d274930056a11f88d90f4cbc9b5ce3ec28c6f0c8"
+    },
+    {
+      "verse": 13,
+      "text": "וַיִּתְנַדְּבוּ אֲנָשִׁים מִן־הָעָם וַיֵּלְכוּ אֶל־הַמֶּלֶךְ וַיַּשְׁלִיטֵם הַמֶּלֶךְ לַעֲשׂוֹת כְּחֻקֵּי הַגּוֹיִם׃",
+      "sourcePages": [
+        100
+      ],
+      "textSHA256": "492d6c75a8a52d1f056ea7ee669f99d6416430d8ce8df44ea3604105c30ae4a3"
+    },
+    {
+      "verse": 14,
+      "text": "וַיִּבְנוּ גִּמְנַסְיוֹן בִּירוּשָׁלִַם כְּמִשְׁפְּטֵי הַגּוֹיִם׃ וַיַּעֲשׂוּ לָהֶם עָרְלָה וַיַּעַזְבוּ בְּרִית־קֹדֶשׁ וַיִּצָּמְדוּ לַגּוֹיִם וַיִּתְמַכְּרוּ לַעֲשׂוֹת רָע׃",
+      "sourcePages": [
+        100,
+        101
+      ],
+      "textSHA256": "4a384aa76d1bc16c54535df4473953196e57f5016efa287bfc3411c9ba70b883",
+      "endVerse": 15
+    },
+    {
+      "verse": 16,
+      "text": "וַתִּכּוֹן הַמְּלוּכָה לִפְנֵי אַנְטִיוֹכוֹס וַיִּתְנַשֵּׂא לִמְלֹךְ בְּאֶרֶץ מִצְרַיִם לְמַעַן מְלֹךְ עַל־שְׁתֵּי הַמַּמְלָכוֹת׃",
+      "sourcePages": [
+        101
+      ],
+      "textSHA256": "ffb2a38caf1893b50da1a069edebf488f77111e9f8e555335c9e41f823e18e14"
+    },
+    {
+      "verse": 17,
+      "text": "וַיָּבֹא מִצְרַיְמָה בְּעַם כָּבֵד בְּרֶכֶב וּבְפִילִים וּבְפָרָשִׁים וּבָאֳנִי גָּדוֹל׃",
+      "sourcePages": [
+        101
+      ],
+      "textSHA256": "1313e2fabcb8b990d9b6fbfd62c55e86bd24365a74b0a889e3a280b101bf48c2"
+    },
+    {
+      "verse": 18,
+      "text": "וַיַּעֲרֹךְ מִלְחָמָה עִם־תַּלְמַי מֶלֶךְ מִצְרַיִם וַיִּסּוֹג תַּלְמַי מִפָּנָיו וַיָּנָס וַיִּפְּלוּ חֲלָלִים רַבִּים׃",
+      "sourcePages": [
+        101
+      ],
+      "textSHA256": "515eefaebba7f581698d990df1dc7460e100caf62e5162ca361de8bf7cfd8a83"
+    },
+    {
+      "verse": 19,
+      "text": "וַיִּלְכְּדוּ עָרֵי הַמִּבְצָר בְּאֶרֶץ מִצְרַיִם וַיִּקַּח שְׁלַל אֶרֶץ מִצְרַיִם׃",
+      "sourcePages": [
+        101
+      ],
+      "textSHA256": "7721f2d23d33246719564cc8e45e47d91d5c795b18fdc0363589916774d36ae4"
+    },
+    {
+      "verse": 20,
+      "text": "וַיָּשָׁב אַנְטִיוֹכוֹס אַחֲרֵי הַכּוֹתוֹ אֶת־מִצְרַיִם בִּשְׁנַת מֵאָה וְאַרְבָּעִים וְשָׁלֹשׁ וַיַּעַל עַל־יִשְׂרָאֵל וְעַל־יְרוּשָׁלִַם בְּעַם כָּבֵד׃",
+      "sourcePages": [
+        101
+      ],
+      "textSHA256": "2a66088bd4736ed0173cb6c4cc39471a684ac5ecbd3be63c6ecdab4a1a3f546f"
+    },
+    {
+      "verse": 21,
+      "text": "וַיָּבֹא אֶל־הַמִּקְדָּשׁ בְּגַאֲוָה וַיִּקַּח אֶת־מִזְבַּח הַזָּהָב וְאֶת־מְנוֹרַת הַמָּאוֹר וְאֶת־כָּל־כֵּלֶיהָ׃",
+      "sourcePages": [
+        101,
+        102
+      ],
+      "textSHA256": "828ba44d4196d84b028e094b2c49ff62409188e8ce698b179fbc7b410b163358"
+    },
+    {
+      "verse": 22,
+      "text": "וְאֶת־שֻׁלְחַן הַמַּעֲרֶכֶת וְאֶת־הַקְּשָׂוֹת וְאֶת־הַמִּזְרָקוֹת וְאֶת־כַּפּוֹת הַזָּהָב וְאֶת־הַפָּרֹכֶת וְאֶת־הָעֲטָרוֹת וְאֵת עֲדִי־הַזָּהָב אֲשֶׁר לִפְנֵי הַהֵיכָל וַיְפַצֵּל הַכֹּל׃",
+      "sourcePages": [
+        102
+      ],
+      "textSHA256": "920094bf1541d0c33720e2e85ba9dcd99d1efff5f2d270ab9c581594efa25cd2"
+    },
+    {
+      "verse": 23,
+      "text": "וַיִּקַּח אֶת־הַכֶּסֶף וְאֶת־הַזָּהָב וְאֶת־כְּלֵי־הַחֶמְדָּה וַיִּקַּח אֶת־אֹצְרוֹת הַמַּטְמוֹנִים אֲשֶׁר מָצָא׃",
+      "sourcePages": [
+        102
+      ],
+      "textSHA256": "9fef70f0f4902442f048e5954f9e962df4a4bb2c770ef59e4b49c681c3456381"
+    },
+    {
+      "verse": 24,
+      "text": "וּבְקַחְתּוֹ הַכֹּל שָׁב לְאַרְצוֹ וַיַּעַשׂ הֶרֶג רַב וַיְדַבֵּר בְּגֵאוּת רַבָּה׃",
+      "sourcePages": [
+        102
+      ],
+      "textSHA256": "06b9c4ea2664cabf75d5f12bedaf7283cb3f8e1bbab1db34d77832183a04cc4f"
+    },
+    {
+      "verse": 25,
+      "text": "וַיְהִי אֵבֶל גָּדוֹל בְּיִשְׂרָאֵל בְּכָל־מְקוֹמוֹתֵיהֶם׃",
+      "sourcePages": [
+        102
+      ],
+      "textSHA256": "f698800f2a4d80c68c6ff0025875fc1175ce331f305b577e525bda24e8fe937b"
+    },
+    {
+      "verse": 26,
+      "text": "[ — — — ] וַיֵּאָנְחוּ רָאשִׁים וּזְקֵנִים\nבְּתוּלוֹת וּבַחוּרִים אֻמְלָלוּ וְיֹפִי נָשִׁים שֻׁנָּה׃",
+      "sourcePages": [
+        102
+      ],
+      "textSHA256": "6b7180dd6f31204d3d8beb34fee400eecb5767bcd8649f492878008e6073b469"
+    },
+    {
+      "verse": 27,
+      "text": "וְכָל־חָתָן נָשָׂא קִינָה יוֹשֶׁבֶת בְּחֻפָּה הִתְאַבָּלָה׃",
+      "sourcePages": [
+        102
+      ],
+      "textSHA256": "6847d6f9cd2defbb7ae2f21e6fa8e9307c1a1d5ad439925001b65475989893e5"
+    },
+    {
+      "verse": 28,
+      "text": "וְהָאָרֶץ חָלָה עַל־יוֹשְׁבֶיהָ וְכָל־בֵּית יַעֲקֹב לָבַשׁ בֹּשֶׁת׃",
+      "sourcePages": [
+        102
+      ],
+      "textSHA256": "e99f91e21c680e960bd9de1994b188092cba292bd4137c5140c91e6b87054af5"
+    }
+  ],
+  "cropDirectory": "/private/tmp/prosary-1ma-extra",
+  "cropEvidence": [
+    {
+      "additionalPDFPage": 52,
+      "bounds": [
+        0.537,
+        0.092,
+        0.901,
+        0.228
+      ],
+      "scale": 8,
+      "filename": "crop-52-0.537-0.092-0.901-0.228.png",
+      "sha256": "1d31a5611cdecb8a6c66ce11afffd6e0198bcb954e3f16cd829d0e6032fca85d"
+    },
+    {
+      "additionalPDFPage": 52,
+      "bounds": [
+        0.66,
+        0.19,
+        0.727,
+        0.222
+      ],
+      "scale": 8,
+      "filename": "crop-52-0.66-0.19-0.727-0.222.png",
+      "sha256": "ecff6b941e7dd364bac311c8d6ee50e4c3d3266562228c4c24612e0c74195ffa"
+    },
+    {
+      "additionalPDFPage": 52,
+      "bounds": [
+        0.035,
+        0.092,
+        0.414,
+        0.305
+      ],
+      "scale": 8,
+      "filename": "crop-52-0.035-0.092-0.414-0.305.png",
+      "sha256": "54f93fb7e1a453239e39c46e1b7b8271e2bc564b5a89f28367dac2b3311c9ada"
+    },
+    {
+      "additionalPDFPage": 52,
+      "bounds": [
+        0.09,
+        0.169,
+        0.19,
+        0.203
+      ],
+      "scale": 8,
+      "filename": "crop-52-0.09-0.169-0.19-0.203.png",
+      "sha256": "5946c5102d60f77d049bb0213aaf9390a487b616d1c76961b6c29b3788969559"
+    },
+    {
+      "additionalPDFPage": 52,
+      "bounds": [
+        0.29,
+        0.2,
+        0.387,
+        0.234
+      ],
+      "scale": 8,
+      "filename": "crop-52-0.29-0.2-0.387-0.234.png",
+      "sha256": "3300ec936c30ab6609bedef5d219d9661b40b5b0c5dad16305b970127050797c"
+    },
+    {
+      "additionalPDFPage": 52,
+      "bounds": [
+        0.2,
+        0.117,
+        0.249,
+        0.149
+      ],
+      "scale": 8,
+      "filename": "crop-52-0.2-0.117-0.249-0.149.png",
+      "sha256": "2871b51b1dd1e7afc07556a6d777f60505860412870e2cb3de61d673226ffb6a"
+    },
+    {
+      "additionalPDFPage": 52,
+      "bounds": [
+        0.053,
+        0.17,
+        0.13,
+        0.202
+      ],
+      "scale": 8,
+      "filename": "crop-52-0.053-0.17-0.13-0.202.png",
+      "sha256": "35df722bcb06ac182d55e5340796ffdb4791e4d0ec5ff39116b385bb756b2735"
+    },
+    {
+      "additionalPDFPage": 52,
+      "bounds": [
+        0.66,
+        0.197,
+        0.82,
+        0.222
+      ],
+      "scale": 8,
+      "filename": "crop-52-0.66-0.197-0.82-0.222.png",
+      "sha256": "5c9256f048af1fb7f032353c27cb24396203eead0f242ba414713e2f8f962ebf"
+    },
+    {
+      "additionalPDFPage": 53,
+      "bounds": [
+        0.537,
+        0.09,
+        0.902,
+        0.252
+      ],
+      "scale": 8,
+      "filename": "crop-53-0.537-0.09-0.902-0.252.png",
+      "sha256": "9d7f45e7110f0958dfb26f4c0c67bebe36490233dea60df3a0f59bb12214ecd9"
+    },
+    {
+      "additionalPDFPage": 53,
+      "bounds": [
+        0.537,
+        0.25,
+        0.902,
+        0.361
+      ],
+      "scale": 8,
+      "filename": "crop-53-0.537-0.25-0.902-0.361.png",
+      "sha256": "f8b118b542d06003927b7a13cfbe1a65a97b8af90e0363e6c8f3c895eb0fe9f9"
+    },
+    {
+      "additionalPDFPage": 53,
+      "bounds": [
+        0.59,
+        0.171,
+        0.659,
+        0.195
+      ],
+      "scale": 8,
+      "filename": "crop-53-0.59-0.171-0.659-0.195.png",
+      "sha256": "2f5feb29b2dab716d6250f8c2c57e8e659ebae6cecb901103fd65e3801192f35"
+    }
+  ]
+}

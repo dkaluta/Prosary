@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "purpose": "review-only",
+  "book": "LJE",
+  "scanSHA256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+  "question": "For these three Letter of Jeremiah crops, what vowel do you see (1) under ש in נשאים, (2) under ק in בקבה, and (3) under ש in ישדדו? The marks merge with the letters in this scan, so “unclear” is useful; please distinguish a visible reading from what the word ought to have.",
+  "userResponse": "under the last shin it's a quvuz, under the first shin is a qamaz, unclear for the remaining",
+  "interpretation": [
+    {
+      "unit": "1:3",
+      "word": "נשאים",
+      "vowel": "qamats",
+      "basis": "first shin"
+    },
+    {
+      "unit": "1:9",
+      "word": "בקבה",
+      "vowel": null,
+      "basis": "remaining query unclear"
+    },
+    {
+      "unit": "1:17",
+      "word": "ישדדו",
+      "vowel": "qibbuts",
+      "basis": "last shin"
+    }
+  ],
+  "images": [
+    {
+      "name": "root-lje-v3-nesuim.png",
+      "sha256": "517e41a5062d61e778329ee2afae3355e1aec5cd277bb945de5adc1657aba536"
+    },
+    {
+      "name": "root-lje-v9-bakuba.png",
+      "sha256": "c9ced8daa1adfefdcac9ca74f0b69cd34c6307ec83084c324a610110f4eda184"
+    },
+    {
+      "name": "root-lje-v17-yishaddu-full.png",
+      "sha256": "afc32775e99894fb098110eef16aa74424b76006db351f99de9244b36d43ea60"
+    }
+  ],
+  "scope": "These three specific occurrences only. This response does not approve other text or remaining marks."
+}

@@ -1,0 +1,79 @@
+{
+  "book": "1MA",
+  "status": "targeted source resolutions; no chapter certification",
+  "primarySourcePDFSHA256": "656891d377d2e3d4a9216723d94205488423907bf01df424b9f0b9de1560051e",
+  "additionalSourcePDFSHA256": "b72eaf5d2d858fabb7c3438ac0436ccd64c394a7dd2fad609efabe628d5534c7",
+  "additionalSourcePages": 272,
+  "pageMap": [
+    {
+      "primaryPDFPage": 107,
+      "additionalPDFPage": 55,
+      "side": "left",
+      "printedPage": "קה",
+      "header": "מקבים א ב ו–יד"
+    }
+  ],
+  "method": "Match printed header, page label and body wording, then read the clearer glyphs directly. No expected-vocabulary or inferred pointing used.",
+  "resolutions": [
+    {
+      "unit": "2:8–9",
+      "word": "הֹרְגוּ",
+      "marks": "Holam above he, shewa below resh, shuruq in vav."
+    },
+    {
+      "unit": "2:11",
+      "word": "חָפְשִׁיָּה",
+      "marks": "Qamats below het, shewa below pe, shin dot and hiriq on shin, dagesh and qamats on yod."
+    }
+  ],
+  "crops": [
+    {
+      "name": "2-8-word",
+      "page": 55,
+      "bounds": [
+        0.336,
+        0.211,
+        0.374,
+        0.246
+      ],
+      "path": "/private/tmp/prosary-1ma-extra/2-8-word.png",
+      "sha256": "4d2e681eef05fb50d8e628b5cad97110ab54e55c322e134b9e575f3774b686fb"
+    },
+    {
+      "name": "2-8-context",
+      "page": 55,
+      "bounds": [
+        0.05,
+        0.188,
+        0.43,
+        0.247
+      ],
+      "path": "/private/tmp/prosary-1ma-extra/2-8-context.png",
+      "sha256": "56233fc7fd407bf03ced7993456a7c466efd42bbd46b326e03341020d09b0fb4"
+    },
+    {
+      "name": "2-11-word",
+      "page": 55,
+      "bounds": [
+        0.127,
+        0.265,
+        0.179,
+        0.3
+      ],
+      "path": "/private/tmp/prosary-1ma-extra/2-11-word.png",
+      "sha256": "8d2041018d7989b14d9e1343291be7552321b2c6921a7728a511ec4bfbb21e74"
+    },
+    {
+      "name": "2-11-context",
+      "page": 55,
+      "bounds": [
+        0.05,
+        0.241,
+        0.43,
+        0.302
+      ],
+      "path": "/private/tmp/prosary-1ma-extra/2-11-context.png",
+      "sha256": "81462456fbd844632a86375669b08ff3ef2393d6ed53fe6c18c41a6754b7cb1d"
+    }
+  ]
+}

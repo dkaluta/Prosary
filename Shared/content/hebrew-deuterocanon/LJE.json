@@ -25,8 +25,18 @@
   },
   "review": {
     "status": "draft",
-    "method": "Direct visual comparison with the supplied printed source.",
-    "reviewedPages": [],
+    "method": "Direct full-body second visual comparison with the supplied print, focused glyph crops, independent selected-point review, and scoped user readings. Independent source-margin inventory is separate. One page remains open for a fused vowel mark.",
+    "reviewedPages": [
+      14,
+      15,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23
+    ],
     "notes": [
       "First visual transcription through source verse13 from PDF14–16. Pointing and words require a second comparison before approval.",
       "Unnumbered scriptural introduction is separate from source verse1. Source labels10–11 form one indivisible text unit.",
@@ -36,7 +46,20 @@
       "Second focused image check of PDF15,18,23 corrected consonants/word order in4 דמה,20 גום,65–66 לעמים,69 כקסמים and bracketed ולא,70 עליו ישכן,71 כמק and omitted נרקבו. Pointing remains provisional, especially4,20,69,71; these edits are not completed page review. Footnote70 identifies האטד, corroborating the unusual printed shape; retain that wording.",
       "User supplied a consonantal reference for PDF15 (download.png SHA2564bde79029bb53171100edb663ac5c207da3cfa65f171ef1b93fd8cb17658f767), covering3 continuation through7 opening. Confirmed defective הגוים and דמה; rendered verse3–6 ends as Hebrew sof pasuq U+05C3. Users אכם in6 is a typing omission; image confirms אתכם. Niqqud is not supplied by this reference and still needs scan review.",
       "PDF15 user reference also confirms the two-yod spelling ייראו in verse3; corrected the earlier one-yod draft. Vowels remain provisional.",
-      "User supplied PDF14 reference (download-1.png SHA25695c7ba3cca120be7e91a0b23dd01578e37f0dcdcea51875bf147a74d056b5121): opening reads פתשגן (typed פתשנן was a slip),2 reads אחרי־כן. Full PDF14–23 body rectangles then compared with separate local Kraken line OCR. Image-backed draft consonant corrections:10–11 מן־החלאה ומן־האכל;13 ושבט יאחז;19 יסעדו;25 וגלו/יבושו;32 יגזלו;34 אגורת;38 יבושו;42 ברחובות;43 נחשבה;61 כלה עשה. Pointing remains provisional for each correction. Earlier note claiming נרקבו at71 was an erroneous image reading: clear line and OCR show גם־הם. Corrected accordingly. Printed two-point body separators now use U+05C3 throughout, excluding metadata. No complete-page or niqqud certification."
+      "User supplied PDF14 reference (download-1.png SHA25695c7ba3cca120be7e91a0b23dd01578e37f0dcdcea51875bf147a74d056b5121): opening reads פתשגן (typed פתשנן was a slip),2 reads אחרי־כן. Full PDF14–23 body rectangles then compared with separate local Kraken line OCR. Image-backed draft consonant corrections:10–11 מן־החלאה ומן־האכל;13 ושבט יאחז;19 יסעדו;25 וגלו/יבושו;32 יגזלו;34 אגורת;38 יבושו;42 ברחובות;43 נחשבה;61 כלה עשה. Pointing remains provisional for each correction. Earlier note claiming נרקבו at71 was an erroneous image reading: clear line and OCR show גם־הם. Corrected accordingly. Printed two-point body separators now use U+05C3 throughout, excluding metadata. No complete-page or niqqud certification.",
+      "Further PDF16/23 image comparison:7 continuation has והדבר,65–66 אותות (full spelling), corrected draft. Confirm67 לנוס/לנום from original print before final approval; model reads לנום and scan character remains uncertain. All pointing and source-page final review remain incomplete.",
+      "User review27September2026 of PDF23 verse67: shown tight word and wider line crops, asked final letter ס versus ם; user replied \"I would say לנוס\". Retain לנוס (current draft לָנוּס). This resolves the selected consonantal reading with the user; it does not certify the points or remaining page. Evidence: LJE-user-review-67.json.",
+      "Full second comparison recorded in LJE-root-second-pass.json. Historical draft open-check notes above are superseded by its current findings: only the qoph vowel at9 and initial kaf vowel at70 remain unresolved. User confirmed qamats at3 and qibbuts at17; raw response retained in LJE-user-points-3-9-17.json. Book remains draft until both remaining queries are settled.",
+      "User identifies the initial kaf vowel at70 as sheva, recorded in LJE-user-point-70.json. Page23 is now closed. Only the qoph vowel at9 remains unresolved; book stays draft."
+    ],
+    "unresolvedFindings": [
+      {
+        "unit": "1:9",
+        "word": "בַּקֻּבָּה",
+        "point": "qoph vowel",
+        "page": 16,
+        "status": "Root and peer cannot distinguish fused marks; user also reports unclear. Draft qibbuts is provisional."
+      }
     ]
   },
   "introduction": "פַּתְשֶׁגֶן הַכְּתָב אֲשֶׁר שָׁלַח יִרְמְיָהוּ אֶל־הָעֲתִידִים לִגְלוֹת בְּיַד מֶלֶךְ בָּבֶל בָּבֶלָה לְהַגִּיד לָהֶם כַּאֲשֶׁר צֻוָּה מֵאֵת הָאֱלֹהִים׃",
@@ -66,12 +89,12 @@
         },
         {
           "verse": 3,
-          "text": "וְהָיָה כִּי תִרְאוּ בְבָבֶל אֱלֹהֵי כֶסֶף וֵאלֹהֵי זָהָב וֵאלֹהֵי עֵץ נְשֻׂאִים עַל־כָּתֵף וְאֶת־מוֹרָאָם יִירָאוּ הַגּוֹיִם׃",
+          "text": "וְהָיָה כִּי תִרְאוּ בְבָבֶל אֱלֹהֵי כֶסֶף וֵאלֹהֵי זָהָב וֵאלֹהֵי עֵץ נְשָׂאִים עַל־כָּתֵף וְאֶת־מוֹרָאָם יִירָאוּ הַגּוֹיִם׃",
           "sourcePages": [
             14,
             15
           ],
-          "textSHA256": "87de87a3e5a12447fc4bdeb6d9f8a60f691ced71d563dc8483433e819262c127"
+          "textSHA256": "636731063296d3dd1ede4338654e5fb659ef1d3cce4ce6bbe6f8246485d46fd1"
         },
         {
           "verse": 4,
@@ -99,12 +122,12 @@
         },
         {
           "verse": 7,
-          "text": "כִּי לְשׁוֹנָם הֻקְצְעָה בְּיַד חָרָשׁ וְהֵמָּה מְצֻפִּים זָהָב וָכֶסֶף וְשֶׁקֶר הֵם וְדַבֵּר אֵין בָּהֶם׃",
+          "text": "כִּי לְשׁוֹנָם הֻקְצְעָה בְּיַד חָרָשׁ וְהֵמָּה מְצֻפִּים זָהָב וָכֶסֶף וְשֶׁקֶר הֵם וְהַדַּבֵּר אֵין בָּהֶם׃",
           "sourcePages": [
             15,
             16
           ],
-          "textSHA256": "1ecb337ec5feb11343696b1bb135a5e80f11aad028c38c52b32fef7e55f3155a"
+          "textSHA256": "c5495086bd74caf7fbda14f00e672ba8f39311c0e95fa224f0927c297857796e"
         },
         {
           "verse": 8,
@@ -167,11 +190,11 @@
         },
         {
           "verse": 17,
-          "text": "כָּאִישׁ אֲשֶׁר חָטָא לַמֶּלֶךְ וְסָגְרוּ עָלָיו דְּלָתַיִם כְּעַל הוֹלֵךְ לָמוּת כֵּן יִסְגְּרוּ הַכֹּהֲנִים אֶת־בָּתֵּיהֶם בִּדְלָתַיִם וּבְמַנְעוּלִים וּבִבְרִיחִים פֶּן־יְשָׁדְדוּ בִידֵי שׁוֹדְדִים׃",
+          "text": "כָּאִישׁ אֲשֶׁר חָטָא לַמֶּלֶךְ וְסָגְרוּ עָלָיו דְּלָתַיִם כְּעַל הוֹלֵךְ לָמוּת כֵּן יִסְגְּרוּ הַכֹּהֲנִים אֶת־בָּתֵּיהֶם בִּדְלָתַיִם וּבְמַנְעוּלִים וּבִבְרִיחִים פֶּן־יְשֻׁדְדוּ בִידֵי שׁוֹדְדִים׃",
           "sourcePages": [
             17
           ],
-          "textSHA256": "5f3359950538ee73847366963c74264aa3e841dab8189b52796e10bb51615b92"
+          "textSHA256": "cd511b18209f7fbb477ed1d72c59dc231d515a2bd78cf53352d94b0a58a70028"
         },
         {
           "verse": 18,
@@ -437,11 +460,11 @@
         },
         {
           "verse": 53,
-          "text": "כִּי כָעֹרְבִיּוֹת הֵם בֵּין הַשָּׁמַיִם וּבֵין הָאָרֶץ׃",
+          "text": "כִּי כְּעֹרְבִיּוֹת הֵם בֵּין הַשָּׁמַיִם וּבֵין הָאָרֶץ׃",
           "sourcePages": [
             21
           ],
-          "textSHA256": "5d6c19e569898ca51aefab4cbf7880ca3d230427143fc554c89d928c117a5500"
+          "textSHA256": "a15075094662085371db1381950be45043fb055367437c99ea09cfaa7df4e043"
         },
         {
           "verse": 54,
@@ -535,12 +558,12 @@
         {
           "verse": 65,
           "endVerse": 66,
-          "text": "לֹא יָבִיאוּ עַל־הַמְּלָכִים קְלָלָה אוֹ בְרָכָה׃ לֹא יִתְּנוּ לְעַמִּים אֹתוֹת בַּשָּׁמַיִם לֹא יִזְרְחוּ כַשֶּׁמֶשׁ וְלֹא יָאִירוּ כַיָּרֵחַ׃",
+          "text": "לֹא יָבִיאוּ עַל־הַמְּלָכִים קְלָלָה אוֹ בְרָכָה׃ לֹא יִתְּנוּ לְעַמִּים אוֹתוֹת בַּשָּׁמַיִם לֹא יִזְרְחוּ כַשֶּׁמֶשׁ וְלֹא יָאִירוּ כַיָּרֵחַ׃",
           "sourcePages": [
             22,
             23
           ],
-          "textSHA256": "3ed000c68088371fdbdec144e8eccacbf4016aecd6e6d995a7e2b841156521f7"
+          "textSHA256": "63520a87b410110271c21784d75e787cb5eb4b72b6ff68773135e98afbe5d456"
         },
         {
           "verse": 67,
@@ -560,19 +583,19 @@
         },
         {
           "verse": 69,
-          "text": "כִּי כִּקְסָמִים בְּמִקְשָׁה לֹא יִשְׁמֹרוּ כֵּן אֱלֹהֵיהֶם אֱלֹהֵי־עֵץ מְצֻפֵּי זָהָב וָכֶסֶף [וְלֹא יִשְׁמֹרוּ]׃",
+          "text": "כִּי כִקְסָמִים בְּמִקְשָׁה לֹא יִשְׁמֹרוּ כֵּן אֱלֹהֵיהֶם אֱלֹהֵי־עֵץ מְצֻפֵּי זָהָב וָכֶסֶף [וְלֹא יִשְׁמֹרוּ]׃",
           "sourcePages": [
             23
           ],
-          "textSHA256": "7e3f77e4e037494a51b04287893dbbc7f33c11b934854616f7e3936268410597"
+          "textSHA256": "20e155209ad3d4cce0d742df784d360b3782b7e26a1bedb784828a7a59f3b3f1"
         },
         {
           "verse": 70,
-          "text": "כְּאַטָּד בַּגַּן אֲשֶׁר כָּל־עוֹף עָלָיו יִשְׁכֹּן כֵּן לְמֵת מֻשְׁלָךְ בַּחֹשֶׁךְ יִדְמוּ אֱלֹהֵיהֶם אֱלֹהֵי עֵץ מְצֻפֵּי זָהָב וָכָסֶף׃",
+          "text": "כְּאָטָד בַּגַּן אֲשֶׁר כָּל־עוֹף עָלָיו יִשְׁכֹּן כֵּן לְמֵת מֻשְׁלָךְ בַּחֹשֶׁךְ יִדְמוּ אֱלֹהֵיהֶם אֱלֹהֵי עֵץ מְצֻפֵּי זָהָב וָכָסֶף׃",
           "sourcePages": [
             23
           ],
-          "textSHA256": "37cfd01afca6e74a0dcf4bf91d15cbca78a3411e31c74e5c09fad18db5dc2bd0"
+          "textSHA256": "d331343a6e41ee59ceb3d23f87e6d153cb27a55ff9f87cdbf7f3ce5d7b702fc9"
         },
         {
           "verse": 71,

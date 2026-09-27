@@ -1,0 +1,130 @@
+{
+  "book": "1MA",
+  "status": "First visual draft and complete second comparison of6:1–2 finished; no open local findings",
+  "primarySourcePDFSHA256": "656891d377d2e3d4a9216723d94205488423907bf01df424b9f0b9de1560051e",
+  "additionalSourcePDFSHA256": "b72eaf5d2d858fabb7c3438ac0436ccd64c394a7dd2fad609efabe628d5534c7",
+  "sourcePages": [
+    126,
+    127
+  ],
+  "additionalPages": [
+    {
+      "number": 65,
+      "side": "right",
+      "primary": 126
+    },
+    {
+      "number": 65,
+      "side": "left",
+      "primary": 127
+    }
+  ],
+  "method": "Direct visual transcription from print, using online text only as an initial scaffold. Printed points retained; no OCR-generated points. All text remains draft.",
+  "sourceSpellingCorrections": [
+    {
+      "unit": "6:1",
+      "changes": [
+        "מפוארת→מפארת",
+        "בעושר→בעשר",
+        "כי יש→כי־יש"
+      ]
+    },
+    {
+      "unit": "6:2",
+      "changes": [
+        "מאוד→מאד",
+        "פיליפוס→פילפוס",
+        "היוונים→היונים",
+        "בן פיליפוס→בן־פילפוס",
+        "על היוונים→על־היונים"
+      ]
+    }
+  ],
+  "notes": [
+    "6:2 מָסַכֵּי has clear mem qamats in local crop; it was read from this source occurrence.",
+    "6:2 source begins on126 and finishes on127; no invented chapter/source boundary.",
+    "Source punctuation uses Hebrew sof pasuq.",
+    "6:2 שריונות is fully spelled with both printed vavs; פילפוס is defective without an extra yod after lamed. Confirmed with separate tight crops."
+  ],
+  "cropEvidence": [
+    {
+      "filename": "crop-65-0.53-0.367-0.906-0.429.png",
+      "sha256": "a05dc05de1a85cbfd33f7bd10f634f3432f8545487955e33e89e00306a989c91"
+    },
+    {
+      "filename": "crop-65-0.062-0.093-0.424-0.166.png",
+      "sha256": "925d0b100debf16bd66a60adb3214bd312f70d8d2c833a18e14250bbad7cc3ac"
+    },
+    {
+      "filename": "crop-65-0.273-0.143-0.424-0.181.png",
+      "sha256": "a1d9d5fc4b3536cf00650fee386e1994e1faf304c02ff2eb98fe0f1b6d37c0e9"
+    },
+    {
+      "filename": "crop-65-0.293-0.117-0.418-0.159.png",
+      "sha256": "42afc1c3ba166e5825ed838e2c4621afd06c1ef89a1f047d854c7d4a433d9122"
+    },
+    {
+      "filename": "crop-65-0.244-0.094-0.32-0.133.png",
+      "sha256": "0d910b94944ee38e19aae4be54d2f273f9af1bda9ce3e65c41814c002d76370a"
+    },
+    {
+      "filename": "crop-65-0.67-0.364-0.775-0.401.png",
+      "sha256": "6e5e088554e1af16805aca784b0ba06969ce2f910298913ef7b71afccb92a053"
+    },
+    {
+      "filename": "crop-65-0.157-0.097-0.253-0.134.png",
+      "sha256": "6719dca95db1c21e14ae1a27fc0e947925282a7544350f646c6d685cd2b29f01"
+    },
+    {
+      "filename": "crop-65-0.25-0.118-0.324-0.159.png",
+      "sha256": "73a2de62c53f777019b59754ff6d5a99cae2d1ced92bf969f490562566dc598f"
+    }
+  ],
+  "onlineScaffoldBefore": [
+    {
+      "verse": 1,
+      "text": "והמלך אנטיוכוס עבר בארצות העליונות וישמע כי יש עילם בפרס עיר מפוארת בעושר בכסף ובזהב:",
+      "sourcePages": [],
+      "textSHA256": "507b54a03df5e1973fea52b0c582d0e685bb0c57229e93f2473be36c86493156"
+    },
+    {
+      "verse": 2,
+      "text": "והמקדש אשר בתוכה עשיר מאוד ושם מסכי זהב ושריונות ונשק אשר השאיר שם אלכסנדר בן פיליפוס המלך המקדוני אשר מלך בראשונה על היוונים:",
+      "sourcePages": [],
+      "textSHA256": "8afb57d269bcf6803b02afcae32d2e368d6f8c8589c189ec7688dd5cd3d79ec5"
+    }
+  ],
+  "productionEligible": false,
+  "reviewedUnitSnapshots": [
+    {
+      "chapter": 6,
+      "verse": 1,
+      "text": "וְהַמֶּלֶךְ אַנְטִיוֹכוֹס עָבַר בָּאֲרָצוֹת הָעֶלְיוֹנוֹת וַיִּשְׁמַע כִּי־יֵשׁ עֵילָם בְּפָרַס עִיר מְפֹאֶרֶת בְּעֹשֶׁר בְּכֶסֶף וּבְזָהָב׃",
+      "sourcePages": [
+        126
+      ],
+      "textSHA256": "fe436bbd31ceb7d43de0af4ede79ef2c727fc73d2296613ef4e2443f2b871462"
+    },
+    {
+      "chapter": 6,
+      "verse": 2,
+      "text": "וְהַמִּקְדָּשׁ אֲשֶׁר בְּתוֹכָהּ עָשִׁיר מְאֹד וְשָׁם מָסַכֵּי זָהָב וְשִׁרְיוֹנוֹת וְנֶשֶׁק אֲשֶׁר הִשְׁאִיר שָׁם אֶלֶכְּסַנְדַּר בֶּן־פִילִפּוֹס הַמֶּלֶךְ הַמַּקְדוֹנִי אֲשֶׁר מָלַךְ בָּרִאשׁוֹנָה עַל־הַיְּוָנִים׃",
+      "sourcePages": [
+        126,
+        127
+      ],
+      "textSHA256": "03ff96ec0c8f3bb03974e356b899de20a3ea86bbb34f465dc74b976c652baae6"
+    }
+  ],
+  "secondComparison": {
+    "method": "Second complete visual comparison with the same paired print, additionally checking tight proper-name, שריונות and מסכי crops. Printed points, defective spelling, maqaf and sof pasuq individually retained.",
+    "unresolved": [],
+    "completedPages": [
+      126
+    ],
+    "notCompletedPages": [
+      127
+    ],
+    "scopeNote": "B126 chapter5 ending separately completed. Only6:2 continuation on127 reviewed; remaining127 scripture is not approved."
+  }
+}

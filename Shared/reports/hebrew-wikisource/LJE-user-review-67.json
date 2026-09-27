@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "purpose": "review-only",
+  "productionEligible": false,
+  "book": "LJE",
+  "reference": {
+    "chapter": 1,
+    "verse": 67
+  },
+  "scan": {
+    "volume": "A2",
+    "page": 23,
+    "sha256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5"
+  },
+  "question": "Printed word after יכולות; specifically final samekh or final mem.",
+  "userResponse": "i1. i would say לנוס it's יודע (ivadea), hiriq, qamaz, zere, patah",
+  "responseScope": "First clause answers this Letter of Jeremiah query; remaining clause answers the separate Sirach19:5–6 query.",
+  "selectedReading": "לנוס",
+  "decision": "Retain the user-supported reading. Record the user's tentative wording exactly; do not report this as a complete-page or niqqud approval.",
+  "images": [
+    {
+      "name": "lje67-word.png",
+      "sourcePDFRectangle": [
+        215,
+        81,
+        258,
+        103
+      ],
+      "renderScale": 10,
+      "sha256": "6a4439d966f6f217eb4f528729859037e99ade54b7799b87da85339484703d58"
+    },
+    {
+      "name": "lje67-context.png",
+      "sourcePDFRectangle": [
+        64,
+        81,
+        390,
+        104
+      ],
+      "renderScale": 4,
+      "sha256": "3ad343c7ba9f3f4c8373bb4663ef7cbff750919e7e7eaf67da5d578daf62928e"
+    }
+  ],
+  "textChanged": false
+}

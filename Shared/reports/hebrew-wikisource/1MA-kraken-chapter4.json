@@ -1,0 +1,5344 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Independent consonantal omission check against a provisional visual draft. No vocabulary or expected words supplied to recognition. No niqqud evaluation or generation.",
+  "relationship": "scan-transcription",
+  "referenceStatus": "unreviewed",
+  "productionEligible": false,
+  "referenceSHA256": "2c690547be78c00db9f4e2f833e97050101779c6dae1ad1a94883a30824e953e",
+  "observedSHA256": "2e772d9d6f9fd592bc7ec58db85341307db59be7bc7fd42d27e5e2eb0bfdcc98",
+  "normalization": "Combining marks and punctuation removed for comparison only; spelling preserved.",
+  "referenceWords": 722,
+  "observedWords": 721,
+  "wordOperations": {
+    "equal": 638,
+    "replace": 82,
+    "delete": 2,
+    "insert": 1
+  },
+  "matchingReferenceFraction": 0.8836565096952909,
+  "tokenDifferenceRate": 0.11772853185595568,
+  "alignment": [
+    {
+      "kind": "equal",
+      "referenceStart": 0,
+      "referenceEnd": 6,
+      "observedStart": 0,
+      "observedEnd": 6,
+      "reference": [
+        "ויקח",
+        "גרגיאס",
+        "חמשת",
+        "אלפים",
+        "איש",
+        "ואלף"
+      ],
+      "observed": [
+        "ויקח",
+        "גרגיאס",
+        "חמשת",
+        "אלפים",
+        "איש",
+        "ואלף"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 6,
+      "referenceEnd": 7,
+      "observedStart": 6,
+      "observedEnd": 7,
+      "reference": [
+        "פרשים"
+      ],
+      "observed": [
+        "קרשים"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 7,
+      "referenceEnd": 16,
+      "observedStart": 7,
+      "observedEnd": 16,
+      "reference": [
+        "בחור",
+        "ויסע",
+        "המחנה",
+        "לילה",
+        "לנפל",
+        "על",
+        "מחנה",
+        "היהודים",
+        "ולהכותם"
+      ],
+      "observed": [
+        "בחור",
+        "ויסע",
+        "המחנה",
+        "לילה",
+        "לנפל",
+        "על",
+        "מחנה",
+        "היהודים",
+        "ולהכותם"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 16,
+      "referenceEnd": 17,
+      "observedStart": 16,
+      "observedEnd": 17,
+      "reference": [
+        "פתאם"
+      ],
+      "observed": [
+        "סתאם"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 17,
+      "referenceEnd": 25,
+      "observedStart": 17,
+      "observedEnd": 25,
+      "reference": [
+        "ובני",
+        "המצודה",
+        "היו",
+        "לו",
+        "למורי",
+        "דרך",
+        "וישמע",
+        "יהודה"
+      ],
+      "observed": [
+        "ובני",
+        "המצודה",
+        "היו",
+        "לו",
+        "למורי",
+        "דרך",
+        "וישמע",
+        "יהודה"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 25,
+      "referenceEnd": 26,
+      "observedStart": 25,
+      "observedEnd": 26,
+      "reference": [
+        "ויסע"
+      ],
+      "observed": [
+        "ויפע"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 26,
+      "referenceEnd": 27,
+      "observedStart": 26,
+      "observedEnd": 27,
+      "reference": [
+        "הוא"
+      ],
+      "observed": [
+        "הוא"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 27,
+      "referenceEnd": 28,
+      "observedStart": 27,
+      "observedEnd": 28,
+      "reference": [
+        "והגבורים"
+      ],
+      "observed": [
+        "והגבירים"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 28,
+      "referenceEnd": 33,
+      "observedStart": 28,
+      "observedEnd": 33,
+      "reference": [
+        "להכות",
+        "את",
+        "חיל",
+        "המלך",
+        "אשר"
+      ],
+      "observed": [
+        "להכות",
+        "את",
+        "חיל",
+        "המלך",
+        "אשר"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 33,
+      "referenceEnd": 34,
+      "observedStart": 33,
+      "observedEnd": 34,
+      "reference": [
+        "בעמאוס"
+      ],
+      "observed": [
+        "בעמאום"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 34,
+      "referenceEnd": 36,
+      "observedStart": 34,
+      "observedEnd": 36,
+      "reference": [
+        "עד",
+        "החיל"
+      ],
+      "observed": [
+        "עד",
+        "החיל"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 36,
+      "referenceEnd": 37,
+      "observedStart": 36,
+      "observedEnd": 37,
+      "reference": [
+        "מפזרים"
+      ],
+      "observed": [
+        "מקזרים"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 37,
+      "referenceEnd": 61,
+      "observedStart": 37,
+      "observedEnd": 61,
+      "reference": [
+        "היו",
+        "מחוץ",
+        "למחנה",
+        "ויבא",
+        "גרגיאס",
+        "אל",
+        "מחנה",
+        "יהודה",
+        "לילה",
+        "ולא",
+        "מצא",
+        "איש",
+        "ויחפש",
+        "אותם",
+        "בהרים",
+        "כי",
+        "אמר",
+        "נסים",
+        "הם",
+        "ממנו",
+        "וכאור",
+        "הבקר",
+        "נראה",
+        "יהודה"
+      ],
+      "observed": [
+        "היו",
+        "מחוץ",
+        "למחנה",
+        "ויבא",
+        "גרגיאס",
+        "אל",
+        "מחנה",
+        "יהודה",
+        "לילה",
+        "ולא",
+        "מצא",
+        "איש",
+        "ויחפש",
+        "אותם",
+        "בהרים",
+        "כי",
+        "אמר",
+        "נסים",
+        "הם",
+        "ממנו",
+        "וכאור",
+        "הבקר",
+        "נראה",
+        "יהודה"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 61,
+      "referenceEnd": 62,
+      "observedStart": 61,
+      "observedEnd": 62,
+      "reference": [
+        "בשפלה"
+      ],
+      "observed": [
+        "כשפלה"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 62,
+      "referenceEnd": 73,
+      "observedStart": 62,
+      "observedEnd": 73,
+      "reference": [
+        "בשלשת",
+        "אלפי",
+        "איש",
+        "אך",
+        "מגנים",
+        "וחרבות",
+        "לא",
+        "היו",
+        "להם",
+        "כאשר",
+        "חפצו"
+      ],
+      "observed": [
+        "בשלשת",
+        "אלפי",
+        "איש",
+        "אך",
+        "מגנים",
+        "וחרבות",
+        "לא",
+        "היו",
+        "להם",
+        "כאשר",
+        "חפצו"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 73,
+      "referenceEnd": 74,
+      "observedStart": 73,
+      "observedEnd": 74,
+      "reference": [
+        "ויראו"
+      ],
+      "observed": [
+        "ויךאו"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 74,
+      "referenceEnd": 75,
+      "observedStart": 74,
+      "observedEnd": 75,
+      "reference": [
+        "מחנה"
+      ],
+      "observed": [
+        "מחנה"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 75,
+      "referenceEnd": 76,
+      "observedStart": 75,
+      "observedEnd": 76,
+      "reference": [
+        "גוים"
+      ],
+      "observed": [
+        "נוים"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 76,
+      "referenceEnd": 78,
+      "observedStart": 76,
+      "observedEnd": 78,
+      "reference": [
+        "חזק",
+        "מבצר"
+      ],
+      "observed": [
+        "חזק",
+        "מבצר"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 78,
+      "referenceEnd": 80,
+      "observedStart": 78,
+      "observedEnd": 80,
+      "reference": [
+        "ופרשים",
+        "סובבים"
+      ],
+      "observed": [
+        "וסרשים",
+        "סוכבים"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 80,
+      "referenceEnd": 110,
+      "observedStart": 80,
+      "observedEnd": 110,
+      "reference": [
+        "אותו",
+        "והם",
+        "מלמדי",
+        "מלחמה",
+        "ויאמר",
+        "יהודה",
+        "לאנשים",
+        "אשר",
+        "אתו",
+        "אל",
+        "תיראו",
+        "מהמונם",
+        "ומעברתם",
+        "אל",
+        "תפחדו",
+        "זכרו",
+        "איך",
+        "נושעו",
+        "אבותינו",
+        "בים",
+        "סוף",
+        "כאשר",
+        "רדף",
+        "אחריהם",
+        "פרעה",
+        "בחיל",
+        "ועתה",
+        "נקרא",
+        "לשמים",
+        "אם"
+      ],
+      "observed": [
+        "אותו",
+        "והם",
+        "מלמדי",
+        "מלחמה",
+        "ויאמר",
+        "יהודה",
+        "לאנשים",
+        "אשר",
+        "אתו",
+        "אל",
+        "תיראו",
+        "מהמונם",
+        "ומעברתם",
+        "אל",
+        "תפחדו",
+        "זכרו",
+        "איך",
+        "נושעו",
+        "אבותינו",
+        "בים",
+        "סוף",
+        "כאשר",
+        "רדף",
+        "אחריהם",
+        "פרעה",
+        "בחיל",
+        "ועתה",
+        "נקרא",
+        "לשמים",
+        "אם"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 110,
+      "referenceEnd": 111,
+      "observedStart": 110,
+      "observedEnd": 111,
+      "reference": [
+        "יחפץ"
+      ],
+      "observed": [
+        "יחקץ"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 111,
+      "referenceEnd": 123,
+      "observedStart": 111,
+      "observedEnd": 123,
+      "reference": [
+        "בנו",
+        "ויזכר",
+        "ברית",
+        "אבות",
+        "והשמיד",
+        "את",
+        "המחנה",
+        "הזה",
+        "מפנינו",
+        "היום",
+        "וידעו",
+        "כל"
+      ],
+      "observed": [
+        "בנו",
+        "ויזכר",
+        "ברית",
+        "אבות",
+        "והשמיד",
+        "את",
+        "המחנה",
+        "הזה",
+        "מפנינו",
+        "היום",
+        "וידעו",
+        "כל"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 123,
+      "referenceEnd": 124,
+      "observedStart": 123,
+      "observedEnd": 124,
+      "reference": [
+        "הגוים"
+      ],
+      "observed": [
+        "הנוים"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 124,
+      "referenceEnd": 144,
+      "observedStart": 124,
+      "observedEnd": 144,
+      "reference": [
+        "כי",
+        "יש",
+        "פודה",
+        "ומציל",
+        "לישראל",
+        "וישאו",
+        "הנכרים",
+        "את",
+        "עיניהם",
+        "ויראו",
+        "אותם",
+        "באים",
+        "מנגד",
+        "ויצאו",
+        "מן",
+        "המחנה",
+        "למלחמה",
+        "ויתקעו",
+        "אשר",
+        "עם"
+      ],
+      "observed": [
+        "כי",
+        "יש",
+        "פודה",
+        "ומציל",
+        "לישראל",
+        "וישאו",
+        "הנכרים",
+        "את",
+        "עיניהם",
+        "ויראו",
+        "אותם",
+        "באים",
+        "מנגד",
+        "ויצאו",
+        "מן",
+        "המחנה",
+        "למלחמה",
+        "ויתקעו",
+        "אשר",
+        "עם"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 144,
+      "referenceEnd": 145,
+      "observedStart": 144,
+      "observedEnd": 145,
+      "reference": [
+        "יהודה"
+      ],
+      "observed": [
+        "יהוךה"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 145,
+      "referenceEnd": 148,
+      "observedStart": 145,
+      "observedEnd": 148,
+      "reference": [
+        "ויתגרו",
+        "ויגפו",
+        "את"
+      ],
+      "observed": [
+        "ויתגרו",
+        "ויגפו",
+        "את"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 148,
+      "referenceEnd": 149,
+      "observedStart": 148,
+      "observedEnd": 149,
+      "reference": [
+        "הגוים"
+      ],
+      "observed": [
+        "הנוים"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 149,
+      "referenceEnd": 152,
+      "observedStart": 149,
+      "observedEnd": 152,
+      "reference": [
+        "וינוסו",
+        "אל",
+        "הבקעה"
+      ],
+      "observed": [
+        "וינוסו",
+        "אל",
+        "הבקעה"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 152,
+      "referenceEnd": 153,
+      "observedStart": 152,
+      "observedEnd": 153,
+      "reference": [
+        "המאסף"
+      ],
+      "observed": [
+        "והמאסף"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 153,
+      "referenceEnd": 154,
+      "observedStart": 153,
+      "observedEnd": 154,
+      "reference": [
+        "כלו"
+      ],
+      "observed": [
+        "כלו"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 154,
+      "referenceEnd": 155,
+      "observedStart": 154,
+      "observedEnd": 155,
+      "reference": [
+        "נפל"
+      ],
+      "observed": [
+        "נסל"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 155,
+      "referenceEnd": 156,
+      "observedStart": 155,
+      "observedEnd": 156,
+      "reference": [
+        "בחרב"
+      ],
+      "observed": [
+        "בחרב"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 156,
+      "referenceEnd": 157,
+      "observedStart": 156,
+      "observedEnd": 157,
+      "reference": [
+        "וירדפו"
+      ],
+      "observed": [
+        "וירךדפו"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 157,
+      "referenceEnd": 165,
+      "observedStart": 157,
+      "observedEnd": 165,
+      "reference": [
+        "אחריהם",
+        "עד",
+        "גזר",
+        "ועד",
+        "שדות",
+        "אדום",
+        "ואשדוד",
+        "ויבנה"
+      ],
+      "observed": [
+        "אחריהם",
+        "עד",
+        "גזר",
+        "ועד",
+        "שדות",
+        "אדום",
+        "ואשדוד",
+        "ויבנה"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 165,
+      "referenceEnd": 166,
+      "observedStart": 165,
+      "observedEnd": 166,
+      "reference": [
+        "ויפלו"
+      ],
+      "observed": [
+        "ויקלו"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 166,
+      "referenceEnd": 168,
+      "observedStart": 166,
+      "observedEnd": 168,
+      "reference": [
+        "מהם",
+        "כשלשת"
+      ],
+      "observed": [
+        "מהם",
+        "כשלשת"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 168,
+      "referenceEnd": 169,
+      "observedStart": 168,
+      "observedEnd": 169,
+      "reference": [
+        "אלפים"
+      ],
+      "observed": [
+        "אלסים"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 169,
+      "referenceEnd": 184,
+      "observedStart": 169,
+      "observedEnd": 184,
+      "reference": [
+        "איש",
+        "וישב",
+        "יהודה",
+        "והחיל",
+        "מרדף",
+        "אחריהם",
+        "ויאמר",
+        "לעם",
+        "אל",
+        "תחמדו",
+        "את",
+        "השלל",
+        "כי",
+        "מלחמה",
+        "נגדנו"
+      ],
+      "observed": [
+        "איש",
+        "וישב",
+        "יהודה",
+        "והחיל",
+        "מרדף",
+        "אחריהם",
+        "ויאמר",
+        "לעם",
+        "אל",
+        "תחמדו",
+        "את",
+        "השלל",
+        "כי",
+        "מלחמה",
+        "נגדנו"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 184,
+      "referenceEnd": 185,
+      "observedStart": 184,
+      "observedEnd": 185,
+      "reference": [
+        "וגרגיאס"
+      ],
+      "observed": [
+        "וגרגיאם"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 185,
+      "referenceEnd": 191,
+      "observedStart": 185,
+      "observedEnd": 191,
+      "reference": [
+        "והחיל",
+        "בהר",
+        "קרוב",
+        "לנו",
+        "ועתה",
+        "עמדו"
+      ],
+      "observed": [
+        "והחיל",
+        "בהר",
+        "קרוב",
+        "לנו",
+        "ועתה",
+        "עמדו"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 191,
+      "referenceEnd": 192,
+      "observedStart": 191,
+      "observedEnd": 192,
+      "reference": [
+        "בפני"
+      ],
+      "observed": [
+        "בסני"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 192,
+      "referenceEnd": 193,
+      "observedStart": 192,
+      "observedEnd": 193,
+      "reference": [
+        "אויבינו"
+      ],
+      "observed": [
+        "אויבינו"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 193,
+      "referenceEnd": 194,
+      "observedStart": 193,
+      "observedEnd": 194,
+      "reference": [
+        "והלחמו"
+      ],
+      "observed": [
+        "והלחמי"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 194,
+      "referenceEnd": 201,
+      "observedStart": 194,
+      "observedEnd": 201,
+      "reference": [
+        "אותם",
+        "ואחרי",
+        "כן",
+        "תקחו",
+        "שלל",
+        "קוממיות",
+        "עד"
+      ],
+      "observed": [
+        "אותם",
+        "ואחרי",
+        "כן",
+        "תקחו",
+        "שלל",
+        "קוממיות",
+        "עד"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 201,
+      "referenceEnd": 203,
+      "observedStart": 201,
+      "observedEnd": 203,
+      "reference": [
+        "יהודה",
+        "מדבר"
+      ],
+      "observed": [
+        "יהוךה",
+        "מדפר"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 203,
+      "referenceEnd": 209,
+      "observedStart": 203,
+      "observedEnd": 209,
+      "reference": [
+        "אלה",
+        "וירא",
+        "חלק",
+        "נשקף",
+        "מן",
+        "ההר"
+      ],
+      "observed": [
+        "אלה",
+        "וירא",
+        "חלק",
+        "נשקף",
+        "מן",
+        "ההר"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 209,
+      "referenceEnd": 210,
+      "observedStart": 209,
+      "observedEnd": 210,
+      "reference": [
+        "וירא"
+      ],
+      "observed": [
+        "ויךא"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 210,
+      "referenceEnd": 211,
+      "observedStart": 210,
+      "observedEnd": 211,
+      "reference": [
+        "כי"
+      ],
+      "observed": [
+        "כי"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 211,
+      "referenceEnd": 213,
+      "observedStart": 211,
+      "observedEnd": 213,
+      "reference": [
+        "נגפו",
+        "ושורפים"
+      ],
+      "observed": [
+        "נגסו",
+        "שורפים"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 213,
+      "referenceEnd": 226,
+      "observedStart": 213,
+      "observedEnd": 226,
+      "reference": [
+        "את",
+        "המחנה",
+        "כי",
+        "העשן",
+        "הנראה",
+        "גלה",
+        "את",
+        "אשר",
+        "נהיה",
+        "וכאשר",
+        "ראו",
+        "את",
+        "אלה"
+      ],
+      "observed": [
+        "את",
+        "המחנה",
+        "כי",
+        "העשן",
+        "הנראה",
+        "גלה",
+        "את",
+        "אשר",
+        "נהיה",
+        "וכאשר",
+        "ראו",
+        "את",
+        "אלה"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 226,
+      "referenceEnd": 227,
+      "observedStart": 226,
+      "observedEnd": 227,
+      "reference": [
+        "ויבהלו"
+      ],
+      "observed": [
+        "ויכהלו"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 227,
+      "referenceEnd": 231,
+      "observedStart": 227,
+      "observedEnd": 231,
+      "reference": [
+        "מאד",
+        "וכאשר",
+        "ראו",
+        "את"
+      ],
+      "observed": [
+        "מאד",
+        "וכאשר",
+        "ראו",
+        "את"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 231,
+      "referenceEnd": 232,
+      "observedStart": 231,
+      "observedEnd": 232,
+      "reference": [
+        "מחנה"
+      ],
+      "observed": [
+        "מחגה"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 232,
+      "referenceEnd": 234,
+      "observedStart": 232,
+      "observedEnd": 234,
+      "reference": [
+        "יהודה",
+        "בעמק"
+      ],
+      "observed": [
+        "יהודה",
+        "בעמק"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 234,
+      "referenceEnd": 235,
+      "observedStart": 234,
+      "observedEnd": 235,
+      "reference": [
+        "נכון"
+      ],
+      "observed": [
+        "גכון"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 235,
+      "referenceEnd": 236,
+      "observedStart": 235,
+      "observedEnd": 236,
+      "reference": [
+        "לקרב"
+      ],
+      "observed": [
+        "לקרב"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 236,
+      "referenceEnd": 237,
+      "observedStart": 236,
+      "observedEnd": 237,
+      "reference": [
+        "ויברחו"
+      ],
+      "observed": [
+        "ויברתי"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 237,
+      "referenceEnd": 240,
+      "observedStart": 237,
+      "observedEnd": 240,
+      "reference": [
+        "כלם",
+        "אל",
+        "ארץ"
+      ],
+      "observed": [
+        "כלם",
+        "אל",
+        "ארץ"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 240,
+      "referenceEnd": 241,
+      "observedStart": 240,
+      "observedEnd": 241,
+      "reference": [
+        "פלשתים"
+      ],
+      "observed": [
+        "מלשתים"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 241,
+      "referenceEnd": 243,
+      "observedStart": 241,
+      "observedEnd": 243,
+      "reference": [
+        "ויהודה",
+        "שב"
+      ],
+      "observed": [
+        "ויהודה",
+        "שב"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 243,
+      "referenceEnd": 244,
+      "observedStart": 243,
+      "observedEnd": 244,
+      "reference": [
+        "לבז"
+      ],
+      "observed": [
+        "לבו"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 244,
+      "referenceEnd": 251,
+      "observedStart": 244,
+      "observedEnd": 251,
+      "reference": [
+        "את",
+        "המחנה",
+        "ויקח",
+        "זהב",
+        "רב",
+        "וכסף",
+        "ותכלת"
+      ],
+      "observed": [
+        "את",
+        "המחנה",
+        "ויקח",
+        "זהב",
+        "רב",
+        "וכסף",
+        "ותכלת"
+      ]
+    },
+    {
+      "kind": "insert",
+      "referenceStart": 251,
+      "referenceEnd": 251,
+      "observedStart": 251,
+      "observedEnd": 252,
+      "reference": [],
+      "observed": [
+        "וארגמן"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 251,
+      "referenceEnd": 252,
+      "observedStart": 252,
+      "observedEnd": 253,
+      "reference": [
+        "וארגמנים"
+      ],
+      "observed": [
+        "ים"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 252,
+      "referenceEnd": 254,
+      "observedStart": 253,
+      "observedEnd": 255,
+      "reference": [
+        "ורכוש",
+        "גדול"
+      ],
+      "observed": [
+        "ורכוש",
+        "גדול"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 254,
+      "referenceEnd": 255,
+      "observedStart": 255,
+      "observedEnd": 256,
+      "reference": [
+        "ובשובם"
+      ],
+      "observed": [
+        "ובשוכם"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 255,
+      "referenceEnd": 286,
+      "observedStart": 256,
+      "observedEnd": 287,
+      "reference": [
+        "שרו",
+        "והללו",
+        "לשמים",
+        "כי",
+        "טוב",
+        "כי",
+        "לעולם",
+        "חסדו",
+        "ותהי",
+        "תשועה",
+        "גדולה",
+        "בישראל",
+        "ביום",
+        "ההוא",
+        "ואשר",
+        "נמלטו",
+        "מן",
+        "הנכרים",
+        "ויבאו",
+        "ויגידו",
+        "ללוסיאס",
+        "את",
+        "כל",
+        "הקרות",
+        "וכשמעו",
+        "נבהל",
+        "ויחר",
+        "לו",
+        "כי",
+        "לא",
+        "היה"
+      ],
+      "observed": [
+        "שרו",
+        "והללו",
+        "לשמים",
+        "כי",
+        "טוב",
+        "כי",
+        "לעולם",
+        "חסדו",
+        "ותהי",
+        "תשועה",
+        "גדולה",
+        "בישראל",
+        "ביום",
+        "ההוא",
+        "ואשר",
+        "נמלטו",
+        "מן",
+        "הנכרים",
+        "ויבאו",
+        "ויגידו",
+        "ללוסיאס",
+        "את",
+        "כל",
+        "הקרות",
+        "וכשמעו",
+        "נבהל",
+        "ויחר",
+        "לו",
+        "כי",
+        "לא",
+        "היה"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 286,
+      "referenceEnd": 287,
+      "observedStart": 287,
+      "observedEnd": 288,
+      "reference": [
+        "כחפצו"
+      ],
+      "observed": [
+        "כחקצו"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 287,
+      "referenceEnd": 303,
+      "observedStart": 288,
+      "observedEnd": 304,
+      "reference": [
+        "לישראל",
+        "ולא",
+        "נעשה",
+        "אשר",
+        "צוה",
+        "לו",
+        "המלך",
+        "ומקץ",
+        "שנה",
+        "אסף",
+        "לגדודים",
+        "ששים",
+        "אלף",
+        "איש",
+        "בחור",
+        "וחמשת"
+      ],
+      "observed": [
+        "לישראל",
+        "ולא",
+        "נעשה",
+        "אשר",
+        "צוה",
+        "לו",
+        "המלך",
+        "ומקץ",
+        "שנה",
+        "אסף",
+        "לגדודים",
+        "ששים",
+        "אלף",
+        "איש",
+        "בחור",
+        "וחמשת"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 303,
+      "referenceEnd": 304,
+      "observedStart": 304,
+      "observedEnd": 305,
+      "reference": [
+        "אלפים"
+      ],
+      "observed": [
+        "אלסים"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 304,
+      "referenceEnd": 338,
+      "observedStart": 305,
+      "observedEnd": 339,
+      "reference": [
+        "פרשים",
+        "להלחם",
+        "אותם",
+        "ויבאו",
+        "ליהודה",
+        "ויחנו",
+        "בבית",
+        "צור",
+        "ויפגשם",
+        "יהודה",
+        "בעשרת",
+        "אלפים",
+        "איש",
+        "וירא",
+        "את",
+        "המחנה",
+        "הכבד",
+        "ויתפלל",
+        "ויאמר",
+        "ברוך",
+        "אתה",
+        "מושיע",
+        "ישראל",
+        "המשבית",
+        "עברת",
+        "הגבור",
+        "ביד",
+        "דוד",
+        "עבדך",
+        "והמוסר",
+        "מחנה",
+        "פלשתים",
+        "בידי",
+        "יהונתן"
+      ],
+      "observed": [
+        "פרשים",
+        "להלחם",
+        "אותם",
+        "ויבאו",
+        "ליהודה",
+        "ויחנו",
+        "בבית",
+        "צור",
+        "ויפגשם",
+        "יהודה",
+        "בעשרת",
+        "אלפים",
+        "איש",
+        "וירא",
+        "את",
+        "המחנה",
+        "הכבד",
+        "ויתפלל",
+        "ויאמר",
+        "ברוך",
+        "אתה",
+        "מושיע",
+        "ישראל",
+        "המשבית",
+        "עברת",
+        "הגבור",
+        "ביד",
+        "דוד",
+        "עבדך",
+        "והמוסר",
+        "מחנה",
+        "פלשתים",
+        "בידי",
+        "יהונתן"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 338,
+      "referenceEnd": 339,
+      "observedStart": 339,
+      "observedEnd": 340,
+      "reference": [
+        "בן"
+      ],
+      "observed": [
+        "כן"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 339,
+      "referenceEnd": 342,
+      "observedStart": 340,
+      "observedEnd": 343,
+      "reference": [
+        "שאול",
+        "ונושא",
+        "כליו"
+      ],
+      "observed": [
+        "שאול",
+        "ונושא",
+        "כליו"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 342,
+      "referenceEnd": 343,
+      "observedStart": 343,
+      "observedEnd": 344,
+      "reference": [
+        "סגר"
+      ],
+      "observed": [
+        "סנר"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 343,
+      "referenceEnd": 358,
+      "observedStart": 344,
+      "observedEnd": 359,
+      "reference": [
+        "נא",
+        "את",
+        "המחנה",
+        "הזה",
+        "ביד",
+        "עמך",
+        "ישראל",
+        "ויבושו",
+        "בחילם",
+        "ובסוסיהם",
+        "תן",
+        "להם",
+        "מרך",
+        "ושבר",
+        "אמץ"
+      ],
+      "observed": [
+        "נא",
+        "את",
+        "המחנה",
+        "הזה",
+        "ביד",
+        "עמך",
+        "ישראל",
+        "ויבושו",
+        "בחילם",
+        "ובסוסיהם",
+        "תן",
+        "להם",
+        "מרך",
+        "ושבר",
+        "אמץ"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 358,
+      "referenceEnd": 360,
+      "observedStart": 359,
+      "observedEnd": 361,
+      "reference": [
+        "חזקם",
+        "ורעדו"
+      ],
+      "observed": [
+        "חןקם",
+        "ורערו"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 360,
+      "referenceEnd": 368,
+      "observedStart": 361,
+      "observedEnd": 369,
+      "reference": [
+        "בשברם",
+        "הפילם",
+        "בחרב",
+        "אוהביך",
+        "ויהללוך",
+        "כל",
+        "יודעי",
+        "שמך"
+      ],
+      "observed": [
+        "בשברם",
+        "הפילם",
+        "בחרב",
+        "אוהביך",
+        "ויהללוך",
+        "כל",
+        "יודעי",
+        "שמך"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 368,
+      "referenceEnd": 369,
+      "observedStart": 369,
+      "observedEnd": 370,
+      "reference": [
+        "בתודה"
+      ],
+      "observed": [
+        "בתוךה"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 369,
+      "referenceEnd": 370,
+      "observedStart": 370,
+      "observedEnd": 371,
+      "reference": [
+        "ויתגרו"
+      ],
+      "observed": [
+        "ויתגרו"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 370,
+      "referenceEnd": 371,
+      "observedStart": 371,
+      "observedEnd": 372,
+      "reference": [
+        "ויפלו"
+      ],
+      "observed": [
+        "ויקלו"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 371,
+      "referenceEnd": 372,
+      "observedStart": 372,
+      "observedEnd": 373,
+      "reference": [
+        "ממחנה"
+      ],
+      "observed": [
+        "ממחנה"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 372,
+      "referenceEnd": 373,
+      "observedStart": 373,
+      "observedEnd": 374,
+      "reference": [
+        "לוסיאס"
+      ],
+      "observed": [
+        "לוסיאם"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 373,
+      "referenceEnd": 374,
+      "observedStart": 374,
+      "observedEnd": 375,
+      "reference": [
+        "כחמשת"
+      ],
+      "observed": [
+        "כחמשת"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 374,
+      "referenceEnd": 375,
+      "observedStart": 375,
+      "observedEnd": 376,
+      "reference": [
+        "אלפים"
+      ],
+      "observed": [
+        "אלסים"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 375,
+      "referenceEnd": 377,
+      "observedStart": 376,
+      "observedEnd": 378,
+      "reference": [
+        "איש",
+        "ויפלו"
+      ],
+      "observed": [
+        "איש",
+        "ויפלו"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 377,
+      "referenceEnd": 378,
+      "observedStart": 378,
+      "observedEnd": 379,
+      "reference": [
+        "לפניהם"
+      ],
+      "observed": [
+        "לקניהם"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 378,
+      "referenceEnd": 379,
+      "observedStart": 379,
+      "observedEnd": 380,
+      "reference": [
+        "וכראות"
+      ],
+      "observed": [
+        "וכראות"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 379,
+      "referenceEnd": 380,
+      "observedStart": 380,
+      "observedEnd": 381,
+      "reference": [
+        "לוסיאס"
+      ],
+      "observed": [
+        "ליסיאם"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 380,
+      "referenceEnd": 398,
+      "observedStart": 381,
+      "observedEnd": 399,
+      "reference": [
+        "את",
+        "המכה",
+        "אשר",
+        "היתה",
+        "בצבאו",
+        "ואת",
+        "האמץ",
+        "אשר",
+        "היה",
+        "ליהודה",
+        "וכי",
+        "נכונים",
+        "הם",
+        "אם",
+        "לחיות",
+        "אם",
+        "למות",
+        "בגבורה"
+      ],
+      "observed": [
+        "את",
+        "המכה",
+        "אשר",
+        "היתה",
+        "בצבאו",
+        "ואת",
+        "האמץ",
+        "אשר",
+        "היה",
+        "ליהודה",
+        "וכי",
+        "נכונים",
+        "הם",
+        "אם",
+        "לחיות",
+        "אם",
+        "למות",
+        "בגבורה"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 398,
+      "referenceEnd": 399,
+      "observedStart": 399,
+      "observedEnd": 400,
+      "reference": [
+        "ויסע"
+      ],
+      "observed": [
+        "וישע"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 399,
+      "referenceEnd": 418,
+      "observedStart": 400,
+      "observedEnd": 419,
+      "reference": [
+        "לאנטיוכיה",
+        "וירב",
+        "לאסף",
+        "חיל",
+        "שכירים",
+        "לעלות",
+        "עוד",
+        "הפעם",
+        "ליהודה",
+        "ויהודה",
+        "אמר",
+        "לאחיו",
+        "הנה",
+        "נגפו",
+        "אויבינו",
+        "נעלה",
+        "לטהר",
+        "את",
+        "המקדש"
+      ],
+      "observed": [
+        "לאנטיוכיה",
+        "וירב",
+        "לאסף",
+        "חיל",
+        "שכירים",
+        "לעלות",
+        "עוד",
+        "הפעם",
+        "ליהודה",
+        "ויהודה",
+        "אמר",
+        "לאחיו",
+        "הנה",
+        "נגפו",
+        "אויבינו",
+        "נעלה",
+        "לטהר",
+        "את",
+        "המקדש"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 418,
+      "referenceEnd": 419,
+      "observedStart": 419,
+      "observedEnd": 420,
+      "reference": [
+        "ולחנכהו"
+      ],
+      "observed": [
+        "חולחנכהו"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 419,
+      "referenceEnd": 435,
+      "observedStart": 420,
+      "observedEnd": 436,
+      "reference": [
+        "ויקהל",
+        "כל",
+        "המחנה",
+        "ויעלו",
+        "הר",
+        "ציון",
+        "ויראו",
+        "את",
+        "המקדש",
+        "שומם",
+        "והמזבח",
+        "מחלל",
+        "והשערים",
+        "שרופים",
+        "ובחצרות",
+        "גדלים"
+      ],
+      "observed": [
+        "ויקהל",
+        "כל",
+        "המחנה",
+        "ויעלו",
+        "הר",
+        "ציון",
+        "ויראו",
+        "את",
+        "המקדש",
+        "שומם",
+        "והמזבח",
+        "מחלל",
+        "והשערים",
+        "שרופים",
+        "ובחצרות",
+        "גדלים"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 435,
+      "referenceEnd": 436,
+      "observedStart": 436,
+      "observedEnd": 437,
+      "reference": [
+        "סבכים"
+      ],
+      "observed": [
+        "סככים"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 436,
+      "referenceEnd": 441,
+      "observedStart": 437,
+      "observedEnd": 442,
+      "reference": [
+        "כמו",
+        "ביער",
+        "או",
+        "כמו",
+        "באחד"
+      ],
+      "observed": [
+        "כמו",
+        "ביער",
+        "או",
+        "כמו",
+        "באחד"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 441,
+      "referenceEnd": 442,
+      "observedStart": 442,
+      "observedEnd": 443,
+      "reference": [
+        "ההרים"
+      ],
+      "observed": [
+        "הדרים"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 442,
+      "referenceEnd": 451,
+      "observedStart": 443,
+      "observedEnd": 452,
+      "reference": [
+        "והלשכות",
+        "שוממות",
+        "ויקרעו",
+        "את",
+        "בגדיהם",
+        "ויבכו",
+        "בכי",
+        "גדול",
+        "ויעלו"
+      ],
+      "observed": [
+        "והלשכות",
+        "שוממות",
+        "ויקרעו",
+        "את",
+        "בגדיהם",
+        "ויבכו",
+        "בכי",
+        "גדול",
+        "ויעלו"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 451,
+      "referenceEnd": 453,
+      "observedStart": 452,
+      "observedEnd": 454,
+      "reference": [
+        "אפר",
+        "על"
+      ],
+      "observed": [
+        "אסר",
+        "ועל"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 453,
+      "referenceEnd": 454,
+      "observedStart": 454,
+      "observedEnd": 455,
+      "reference": [
+        "ראשיהם"
+      ],
+      "observed": [
+        "ראשיהם"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 454,
+      "referenceEnd": 455,
+      "observedStart": 455,
+      "observedEnd": 456,
+      "reference": [
+        "ויפלו"
+      ],
+      "observed": [
+        "ויקלו"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 455,
+      "referenceEnd": 493,
+      "observedStart": 456,
+      "observedEnd": 494,
+      "reference": [
+        "על",
+        "פניהם",
+        "ארצה",
+        "ויתקעו",
+        "בחצצרות",
+        "התרועה",
+        "ויצעקו",
+        "אל",
+        "השמים",
+        "אז",
+        "אמר",
+        "יהודה",
+        "לאנשים",
+        "להלחם",
+        "את",
+        "אשר",
+        "במצודה",
+        "עד",
+        "אשר",
+        "יטהר",
+        "את",
+        "המקדש",
+        "ויבחר",
+        "כהנים",
+        "תמימים",
+        "חפצי",
+        "תורה",
+        "ויטהרו",
+        "את",
+        "המקדש",
+        "ויוציאו",
+        "את",
+        "אבני",
+        "השקוץ",
+        "למקום",
+        "טמא",
+        "ויועצו",
+        "על"
+      ],
+      "observed": [
+        "על",
+        "פניהם",
+        "ארצה",
+        "ויתקעו",
+        "בחצצרות",
+        "התרועה",
+        "ויצעקו",
+        "אל",
+        "השמים",
+        "אז",
+        "אמר",
+        "יהודה",
+        "לאנשים",
+        "להלחם",
+        "את",
+        "אשר",
+        "במצודה",
+        "עד",
+        "אשר",
+        "יטהר",
+        "את",
+        "המקדש",
+        "ויבחר",
+        "כהנים",
+        "תמימים",
+        "חפצי",
+        "תורה",
+        "ויטהרו",
+        "את",
+        "המקדש",
+        "ויוציאו",
+        "את",
+        "אבני",
+        "השקוץ",
+        "למקום",
+        "טמא",
+        "ויועצו",
+        "על"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 493,
+      "referenceEnd": 494,
+      "observedStart": 494,
+      "observedEnd": 495,
+      "reference": [
+        "מזבח"
+      ],
+      "observed": [
+        "מזפח"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 494,
+      "referenceEnd": 514,
+      "observedStart": 495,
+      "observedEnd": 515,
+      "reference": [
+        "העולה",
+        "המחלל",
+        "מה",
+        "לעשות",
+        "לו",
+        "ותצלח",
+        "עליהם",
+        "מחשבה",
+        "טובה",
+        "לנתץ",
+        "אותו",
+        "לבלתי",
+        "היות",
+        "להם",
+        "למוקש",
+        "כי",
+        "הגוים",
+        "טמאוהו",
+        "ויתצו",
+        "את"
+      ],
+      "observed": [
+        "העולה",
+        "המחלל",
+        "מה",
+        "לעשות",
+        "לו",
+        "ותצלח",
+        "עליהם",
+        "מחשבה",
+        "טובה",
+        "לנתץ",
+        "אותו",
+        "לבלתי",
+        "היות",
+        "להם",
+        "למוקש",
+        "כי",
+        "הגוים",
+        "טמאוהו",
+        "ויתצו",
+        "את"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 514,
+      "referenceEnd": 515,
+      "observedStart": 515,
+      "observedEnd": 516,
+      "reference": [
+        "המזבח"
+      ],
+      "observed": [
+        "המןבח"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 515,
+      "referenceEnd": 525,
+      "observedStart": 516,
+      "observedEnd": 526,
+      "reference": [
+        "ויניחו",
+        "את",
+        "האבנים",
+        "על",
+        "הר",
+        "הבית",
+        "במקום",
+        "מיחד",
+        "עד",
+        "בוא"
+      ],
+      "observed": [
+        "ויניחו",
+        "את",
+        "האבנים",
+        "על",
+        "הר",
+        "הבית",
+        "במקום",
+        "מיחד",
+        "עד",
+        "בוא"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 525,
+      "referenceEnd": 526,
+      "observedStart": 526,
+      "observedEnd": 527,
+      "reference": [
+        "נביא"
+      ],
+      "observed": [
+        "גביא"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 526,
+      "referenceEnd": 535,
+      "observedStart": 527,
+      "observedEnd": 536,
+      "reference": [
+        "להורות",
+        "עליהן",
+        "ויקחו",
+        "אבנים",
+        "שלמות",
+        "על",
+        "פי",
+        "התורה",
+        "ויבנו"
+      ],
+      "observed": [
+        "להורות",
+        "עליהן",
+        "ויקחו",
+        "אבנים",
+        "שלמות",
+        "על",
+        "פי",
+        "התורה",
+        "ויבנו"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 535,
+      "referenceEnd": 536,
+      "observedStart": 536,
+      "observedEnd": 537,
+      "reference": [
+        "מזבח"
+      ],
+      "observed": [
+        "מןבח"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 536,
+      "referenceEnd": 553,
+      "observedStart": 537,
+      "observedEnd": 554,
+      "reference": [
+        "חדש",
+        "כראשון",
+        "ויבנו",
+        "את",
+        "המקדש",
+        "ואת",
+        "פנים",
+        "הבית",
+        "ואת",
+        "החצרות",
+        "קדשו",
+        "ויעשו",
+        "כלי",
+        "קדש",
+        "חדשים",
+        "ויביאו",
+        "את"
+      ],
+      "observed": [
+        "חדש",
+        "כראשון",
+        "ויבנו",
+        "את",
+        "המקדש",
+        "ואת",
+        "פנים",
+        "הבית",
+        "ואת",
+        "החצרות",
+        "קדשו",
+        "ויעשו",
+        "כלי",
+        "קדש",
+        "חדשים",
+        "ויביאו",
+        "את"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 553,
+      "referenceEnd": 554,
+      "observedStart": 554,
+      "observedEnd": 555,
+      "reference": [
+        "המנורה"
+      ],
+      "observed": [
+        "המנוךה"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 554,
+      "referenceEnd": 562,
+      "observedStart": 555,
+      "observedEnd": 563,
+      "reference": [
+        "ואת",
+        "מזבח",
+        "הקטרת",
+        "ואת",
+        "השלחן",
+        "להיכל",
+        "ויקטרו",
+        "על"
+      ],
+      "observed": [
+        "ואת",
+        "מזבח",
+        "הקטרת",
+        "ואת",
+        "השלחן",
+        "להיכל",
+        "ויקטרו",
+        "על"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 562,
+      "referenceEnd": 563,
+      "observedStart": 563,
+      "observedEnd": 564,
+      "reference": [
+        "המזבח"
+      ],
+      "observed": [
+        "המןבח"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 563,
+      "referenceEnd": 565,
+      "observedStart": 564,
+      "observedEnd": 566,
+      "reference": [
+        "ויעלו",
+        "את"
+      ],
+      "observed": [
+        "ויעלו",
+        "את"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 565,
+      "referenceEnd": 566,
+      "observedStart": 566,
+      "observedEnd": 567,
+      "reference": [
+        "הנרות"
+      ],
+      "observed": [
+        "הגרות"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 566,
+      "referenceEnd": 576,
+      "observedStart": 567,
+      "observedEnd": 577,
+      "reference": [
+        "אשר",
+        "במנורה",
+        "ויאירו",
+        "בהיכל",
+        "וישימו",
+        "על",
+        "השלחן",
+        "לחם",
+        "ויורידו",
+        "את"
+      ],
+      "observed": [
+        "אשר",
+        "במנורה",
+        "ויאירו",
+        "בהיכל",
+        "וישימו",
+        "על",
+        "השלחן",
+        "לחם",
+        "ויורידו",
+        "את"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 576,
+      "referenceEnd": 577,
+      "observedStart": 577,
+      "observedEnd": 578,
+      "reference": [
+        "הפרכת"
+      ],
+      "observed": [
+        "הפרכות"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 577,
+      "referenceEnd": 600,
+      "observedStart": 578,
+      "observedEnd": 601,
+      "reference": [
+        "ויכלו",
+        "את",
+        "כל",
+        "המעשים",
+        "אשר",
+        "עשו",
+        "וישכימו",
+        "בבקר",
+        "בחמשה",
+        "ועשרים",
+        "לחדש",
+        "התשיעי",
+        "הוא",
+        "חדש",
+        "כסלו",
+        "בשמנה",
+        "וארבעים",
+        "ומאה",
+        "שנה",
+        "ויקריבו",
+        "קרבן",
+        "על",
+        "פי"
+      ],
+      "observed": [
+        "ויכלו",
+        "את",
+        "כל",
+        "המעשים",
+        "אשר",
+        "עשו",
+        "וישכימו",
+        "בבקר",
+        "בחמשה",
+        "ועשרים",
+        "לחדש",
+        "התשיעי",
+        "הוא",
+        "חדש",
+        "כסלו",
+        "בשמנה",
+        "וארבעים",
+        "ומאה",
+        "שנה",
+        "ויקריבו",
+        "קרבן",
+        "על",
+        "פי"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 600,
+      "referenceEnd": 601,
+      "observedStart": 601,
+      "observedEnd": 602,
+      "reference": [
+        "התורה"
+      ],
+      "observed": [
+        "התוךה"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 601,
+      "referenceEnd": 611,
+      "observedStart": 602,
+      "observedEnd": 612,
+      "reference": [
+        "על",
+        "מזבח",
+        "העולה",
+        "החדש",
+        "אשר",
+        "עשו",
+        "בעת",
+        "וביום",
+        "אשר",
+        "טמאוהו"
+      ],
+      "observed": [
+        "על",
+        "מזבח",
+        "העולה",
+        "החדש",
+        "אשר",
+        "עשו",
+        "בעת",
+        "וביום",
+        "אשר",
+        "טמאוהו"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 611,
+      "referenceEnd": 612,
+      "observedStart": 612,
+      "observedEnd": 613,
+      "reference": [
+        "הגוים"
+      ],
+      "observed": [
+        "הנוים"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 612,
+      "referenceEnd": 615,
+      "observedStart": 613,
+      "observedEnd": 616,
+      "reference": [
+        "בעצם",
+        "היום",
+        "ההוא"
+      ],
+      "observed": [
+        "בעצם",
+        "היום",
+        "ההוא"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 615,
+      "referenceEnd": 616,
+      "observedStart": 616,
+      "observedEnd": 617,
+      "reference": [
+        "נחנך"
+      ],
+      "observed": [
+        "קחנך"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 616,
+      "referenceEnd": 625,
+      "observedStart": 617,
+      "observedEnd": 626,
+      "reference": [
+        "בשירים",
+        "ובנבלים",
+        "ובכנורות",
+        "ובמצלתים",
+        "ויפלו",
+        "כל",
+        "העם",
+        "על",
+        "פניהם"
+      ],
+      "observed": [
+        "בשירים",
+        "ובנבלים",
+        "ובכנורות",
+        "ובמצלתים",
+        "ויפלו",
+        "כל",
+        "העם",
+        "על",
+        "פניהם"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 625,
+      "referenceEnd": 626,
+      "observedStart": 626,
+      "observedEnd": 627,
+      "reference": [
+        "ויתפללו"
+      ],
+      "observed": [
+        "ויתסללו"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 626,
+      "referenceEnd": 634,
+      "observedStart": 627,
+      "observedEnd": 635,
+      "reference": [
+        "ויברכו",
+        "לשמים",
+        "אשר",
+        "הצליח",
+        "להם",
+        "ויעשו",
+        "את",
+        "חנכת"
+      ],
+      "observed": [
+        "ויברכו",
+        "לשמים",
+        "אשר",
+        "הצליח",
+        "להם",
+        "ויעשו",
+        "את",
+        "חנכת"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 634,
+      "referenceEnd": 635,
+      "observedStart": 635,
+      "observedEnd": 636,
+      "reference": [
+        "המזבח"
+      ],
+      "observed": [
+        "דמןבח"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 635,
+      "referenceEnd": 644,
+      "observedStart": 636,
+      "observedEnd": 645,
+      "reference": [
+        "ימים",
+        "שמונה",
+        "ויקריבו",
+        "עלות",
+        "בשמחה",
+        "ויקריבו",
+        "זבח",
+        "שלמים",
+        "ותודה"
+      ],
+      "observed": [
+        "ימים",
+        "שמונה",
+        "ויקריבו",
+        "עלות",
+        "בשמחה",
+        "ויקריבו",
+        "זבח",
+        "שלמים",
+        "ותודה"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 644,
+      "referenceEnd": 645,
+      "observedStart": 645,
+      "observedEnd": 646,
+      "reference": [
+        "ויפארו"
+      ],
+      "observed": [
+        "ויסארו"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 645,
+      "referenceEnd": 646,
+      "observedStart": 646,
+      "observedEnd": 647,
+      "reference": [
+        "את"
+      ],
+      "observed": [
+        "את"
+      ]
+    },
+    {
+      "kind": "delete",
+      "referenceStart": 646,
+      "referenceEnd": 647,
+      "observedStart": 647,
+      "observedEnd": 647,
+      "reference": [
+        "פני"
+      ],
+      "observed": []
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 647,
+      "referenceEnd": 649,
+      "observedStart": 647,
+      "observedEnd": 649,
+      "reference": [
+        "היכל",
+        "בעטרות"
+      ],
+      "observed": [
+        "פנירההיכל",
+        "בעמרות"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 649,
+      "referenceEnd": 650,
+      "observedStart": 649,
+      "observedEnd": 650,
+      "reference": [
+        "זהב"
+      ],
+      "observed": [
+        "זהב"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 650,
+      "referenceEnd": 651,
+      "observedStart": 650,
+      "observedEnd": 651,
+      "reference": [
+        "ובמשבצות"
+      ],
+      "observed": [
+        "ובמשקצות"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 651,
+      "referenceEnd": 666,
+      "observedStart": 651,
+      "observedEnd": 666,
+      "reference": [
+        "ויחנכו",
+        "את",
+        "השערים",
+        "והלשכות",
+        "ויעשו",
+        "להם",
+        "דלתות",
+        "ותהי",
+        "שמחה",
+        "גדולה",
+        "בעם",
+        "מאד",
+        "ותסר",
+        "חרפת",
+        "גוים"
+      ],
+      "observed": [
+        "ויחנכו",
+        "את",
+        "השערים",
+        "והלשכות",
+        "ויעשו",
+        "להם",
+        "דלתות",
+        "ותהי",
+        "שמחה",
+        "גדולה",
+        "בעם",
+        "מאד",
+        "ותסר",
+        "חרפת",
+        "גוים"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 666,
+      "referenceEnd": 668,
+      "observedStart": 666,
+      "observedEnd": 668,
+      "reference": [
+        "ויקם",
+        "יהודה"
+      ],
+      "observed": [
+        "ויקים",
+        "יהוךה"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 668,
+      "referenceEnd": 675,
+      "observedStart": 668,
+      "observedEnd": 675,
+      "reference": [
+        "ואחיו",
+        "וכל",
+        "קהל",
+        "ישראל",
+        "להיות",
+        "ימי",
+        "חנכת"
+      ],
+      "observed": [
+        "ואחיו",
+        "וכל",
+        "קהל",
+        "ישראל",
+        "להיות",
+        "ימי",
+        "חנכת"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 675,
+      "referenceEnd": 676,
+      "observedStart": 675,
+      "observedEnd": 676,
+      "reference": [
+        "המזבח"
+      ],
+      "observed": [
+        "המןכח"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 676,
+      "referenceEnd": 677,
+      "observedStart": 676,
+      "observedEnd": 677,
+      "reference": [
+        "נעשים"
+      ],
+      "observed": [
+        "נעשים"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 677,
+      "referenceEnd": 678,
+      "observedStart": 677,
+      "observedEnd": 678,
+      "reference": [
+        "במועדם"
+      ],
+      "observed": [
+        "במועךם"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 678,
+      "referenceEnd": 688,
+      "observedStart": 678,
+      "observedEnd": 688,
+      "reference": [
+        "שנה",
+        "בשנה",
+        "ימים",
+        "שמונה",
+        "מיום",
+        "חמשה",
+        "ועשרים",
+        "לחדש",
+        "כסלו",
+        "בשמחה"
+      ],
+      "observed": [
+        "שנה",
+        "בשנה",
+        "ימים",
+        "שמונה",
+        "מיום",
+        "חמשה",
+        "ועשרים",
+        "לחדש",
+        "כסלו",
+        "בשמחה"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 688,
+      "referenceEnd": 689,
+      "observedStart": 688,
+      "observedEnd": 689,
+      "reference": [
+        "וגיל"
+      ],
+      "observed": [
+        "וניל"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 689,
+      "referenceEnd": 690,
+      "observedStart": 689,
+      "observedEnd": 690,
+      "reference": [
+        "ויבנו"
+      ],
+      "observed": [
+        "ויבנו"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 690,
+      "referenceEnd": 691,
+      "observedStart": 690,
+      "observedEnd": 691,
+      "reference": [
+        "בעת"
+      ],
+      "observed": [
+        "כעת"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 691,
+      "referenceEnd": 693,
+      "observedStart": 691,
+      "observedEnd": 693,
+      "reference": [
+        "ההיא",
+        "את"
+      ],
+      "observed": [
+        "ההיא",
+        "את"
+      ]
+    },
+    {
+      "kind": "delete",
+      "referenceStart": 693,
+      "referenceEnd": 694,
+      "observedStart": 693,
+      "observedEnd": 693,
+      "reference": [
+        "הר"
+      ],
+      "observed": []
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 694,
+      "referenceEnd": 695,
+      "observedStart": 693,
+      "observedEnd": 694,
+      "reference": [
+        "ציון"
+      ],
+      "observed": [
+        "הרציון"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 695,
+      "referenceEnd": 700,
+      "observedStart": 694,
+      "observedEnd": 699,
+      "reference": [
+        "מסביב",
+        "חומה",
+        "גבוהה",
+        "ומגדלים",
+        "חזקים"
+      ],
+      "observed": [
+        "מסביב",
+        "חומה",
+        "גבוהה",
+        "ומגדלים",
+        "חזקים"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 700,
+      "referenceEnd": 701,
+      "observedStart": 699,
+      "observedEnd": 700,
+      "reference": [
+        "בל"
+      ],
+      "observed": [
+        "כל"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 701,
+      "referenceEnd": 702,
+      "observedStart": 700,
+      "observedEnd": 701,
+      "reference": [
+        "יבאו"
+      ],
+      "observed": [
+        "יבאו"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 702,
+      "referenceEnd": 704,
+      "observedStart": 701,
+      "observedEnd": 703,
+      "reference": [
+        "הגוים",
+        "וירמסום"
+      ],
+      "observed": [
+        "הטים",
+        "וירממים"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 704,
+      "referenceEnd": 722,
+      "observedStart": 703,
+      "observedEnd": 721,
+      "reference": [
+        "כאשר",
+        "עשו",
+        "בראשונה",
+        "וישם",
+        "שם",
+        "חיל",
+        "לשמרו",
+        "ויבצר",
+        "לשמר",
+        "אותו",
+        "את",
+        "בית",
+        "צור",
+        "להיות",
+        "לעם",
+        "מבצר",
+        "בפני",
+        "אדום"
+      ],
+      "observed": [
+        "כאשר",
+        "עשו",
+        "בראשונה",
+        "וישם",
+        "שם",
+        "חיל",
+        "לשמרו",
+        "ויבצר",
+        "לשמר",
+        "אותו",
+        "את",
+        "בית",
+        "צור",
+        "להיות",
+        "לעם",
+        "מבצר",
+        "בפני",
+        "אדום"
+      ]
+    }
+  ],
+  "notes": [
+    "An alignment is a review aid, not a verified verse crosswalk.",
+    "Niqqud and punctuation still require separate image comparison.",
+    "Text differences are not an OCR accuracy measurement without a scan-checked matching reference."
+  ],
+  "book": "1MA",
+  "chapter": 4,
+  "reference": "ויקח גרגיאס חמשת אלפים איש ואלף פרשים בחור ויסע המחנה לילה׃ לנפל על־מחנה היהודים ולהכותם פתאם ובני המצודה היו לו למורי דרך׃ וישמע יהודה ויסע הוא והגבורים להכות את־חיל המלך אשר בעמאוס׃ עד החיל מפזרים היו מחוץ למחנה׃ ויבא גרגיאס אל־מחנה יהודה לילה ולא מצא איש ויחפש אותם בהרים כי אמר נסים הם ממנו׃ וכאור הבקר נראה יהודה בשפלה בשלשת אלפי איש אך מגנים וחרבות לא־היו להם כאשר חפצו׃ ויראו מחנה גוים חזק מבצר ופרשים סובבים אותו והם מלמדי מלחמה׃ ויאמר יהודה לאנשים אשר אתו אל־תיראו מהמונם ומעברתם אל־תפחדו׃ זכרו איך נושעו אבותינו בים־סוף כאשר רדף אחריהם פרעה בחיל׃ ועתה נקרא לשמים אם יחפץ־בנו ויזכר ברית אבות והשמיד את־המחנה הזה מפנינו היום׃ וידעו כל־הגוים כי יש פודה ומציל לישראל׃ וישאו הנכרים את־עיניהם ויראו אותם באים מנגד׃ ויצאו מן־המחנה למלחמה ויתקעו אשר עם־יהודה׃ ויתגרו ויגפו את־הגוים וינוסו אל־הבקעה׃ המאסף כלו נפל בחרב וירדפו אחריהם עד־גזר ועד־שדות אדום ואשדוד ויבנה ויפלו מהם כשלשת אלפים איש׃ וישב יהודה והחיל מרדף אחריהם׃ ויאמר לעם אל־תחמדו את־השלל כי מלחמה נגדנו׃ וגרגיאס והחיל בהר קרוב לנו ועתה עמדו בפני אויבינו והלחמו אותם ואחרי־כן תקחו שלל קוממיות׃ עד יהודה מדבר אלה וירא חלק נשקף מן־ההר׃ וירא כי נגפו ושורפים את־המחנה כי העשן הנראה גלה את אשר נהיה׃ וכאשר ראו את־אלה ויבהלו מאד׃ וכאשר ראו את־מחנה יהודה בעמק נכון לקרב ויברחו כלם אל־ארץ פלשתים׃ ויהודה שב לבז את־המחנה ויקח זהב רב וכסף ותכלת וארגמנים ורכוש גדול׃ ובשובם שרו והללו לשמים כי טוב כי לעולם חסדו׃ ותהי תשועה גדולה בישראל ביום ההוא׃ ואשר נמלטו מן־הנכרים ויבאו ויגידו ללוסיאס את כל־הקרות׃ וכשמעו נבהל ויחר לו כי לא־היה כחפצו לישראל ולא נעשה אשר צוה לו המלך׃ ומקץ שנה אסף לגדודים ששים אלף איש בחור וחמשת אלפים פרשים להלחם אותם׃ ויבאו ליהודה ויחנו בבית־צור ויפגשם יהודה בעשרת אלפים איש׃ וירא את־המחנה הכבד ויתפלל ויאמר ברוך אתה מושיע ישראל המשבית עברת הגבור ביד־דוד עבדך והמוסר מחנה פלשתים בידי יהונתן בן־שאול ונושא כליו׃ סגר־נא את־המחנה הזה ביד־עמך ישראל ויבושו בחילם ובסוסיהם׃ תן להם מרך ושבר אמץ חזקם ורעדו בשברם׃ הפילם בחרב אוהביך ויהללוך כל־יודעי שמך בתודה׃ ויתגרו ויפלו ממחנה לוסיאס כחמשת אלפים איש ויפלו לפניהם׃ וכראות לוסיאס את־המכה אשר היתה בצבאו ואת־האמץ אשר היה ליהודה וכי־נכונים הם אם־לחיות אם־למות בגבורה ויסע לאנטיוכיה וירב לאסף חיל־שכירים לעלות עוד הפעם ליהודה׃ ויהודה אמר לאחיו הנה נגפו אויבינו נעלה לטהר את־המקדש ולחנכהו׃ ויקהל כל־המחנה ויעלו הר־ציון׃ ויראו את־המקדש שומם והמזבח מחלל והשערים שרופים ובחצרות גדלים סבכים כמו ביער או כמו באחד ההרים והלשכות שוממות׃ ויקרעו את־בגדיהם ויבכו בכי גדול ויעלו אפר [על־ראשיהם]׃ ויפלו על פניהם ארצה ויתקעו בחצצרות התרועה ויצעקו אל־השמים׃ אז אמר יהודה לאנשים להלחם את אשר־במצודה עד־אשר יטהר את־המקדש׃ ויבחר כהנים תמימים חפצי תורה׃ ויטהרו את־המקדש ויוציאו את־אבני השקוץ למקום טמא׃ ויועצו על־מזבח העולה המחלל מה־לעשות לו׃ ותצלח עליהם מחשבה טובה לנתץ אותו לבלתי־היות להם למוקש כי הגוים טמאוהו ויתצו את־המזבח׃ ויניחו את־האבנים על־הר הבית במקום מיחד עד־בוא נביא להורות עליהן׃ ויקחו אבנים שלמות על־פי התורה ויבנו מזבח חדש כראשון׃ ויבנו את־המקדש ואת־פנים הבית ואת־החצרות קדשו׃ ויעשו כלי־קדש חדשים ויביאו את־המנורה ואת־מזבח הקטרת ואת־השלחן להיכל׃ ויקטרו על־המזבח ויעלו את־הנרות אשר במנורה ויאירו בהיכל׃ וישימו על־השלחן לחם ויורידו את־הפרכת ויכלו את־כל־המעשים אשר עשו׃ וישכימו בבקר בחמשה ועשרים לחדש התשיעי הוא חדש כסלו בשמנה וארבעים ומאה שנה׃ ויקריבו קרבן על־פי התורה על־מזבח העולה החדש אשר עשו׃ בעת וביום אשר טמאוהו הגוים בעצם היום ההוא נחנך בשירים ובנבלים ובכנורות ובמצלתים׃ ויפלו כל־העם על־פניהם ויתפללו ויברכו לשמים אשר הצליח להם׃ ויעשו את־חנכת המזבח ימים שמונה ויקריבו עלות בשמחה ויקריבו זבח שלמים ותודה׃ ויפארו את־פני־היכל בעטרות זהב ובמשבצות ויחנכו את־השערים והלשכות ויעשו להם דלתות ותהי שמחה גדולה בעם מאד ותסר חרפת גוים׃ ויקם יהודה ואחיו וכל־קהל ישראל להיות ימי חנכת המזבח נעשים במועדם שנה בשנה ימים שמונה מיום חמשה ועשרים לחדש כסלו בשמחה וגיל׃ ויבנו בעת ההיא את־הר־ציון מסביב חומה גבוהה ומגדלים חזקים בל־יבאו הגוים וירמסום כאשר עשו בראשונה׃ וישם שם חיל לשמרו ויבצר לשמר אותו את־בית־צור להיות לעם מבצר בפני אדום׃",
+  "rawOCR": "ויקח גרגיאס חמשת אלפים איש ואלף קרשים בחור ויסע\nהמחנה לילה: לנפל על-מחנה היהודים ולהכותם סתאם ובני\nהמצודה היו לו למורי דרך: וישמע יהודה ויפע הוא והגבירים\nלהכות את-חיל המלך אשר בעמאום: עד החיל מקזרים היו מחוץ\nלמחנה: ויבא גרגיאַס אל-מחנה יהודה לילה ולא מצא איש\nויחפש אותם בהרים כי אמר נסים הם ממנו: וכאור הבקר נראָה\nיהודה כשפלה בשלשת אלפי איש אך מגנים וחרבות לא-היו\n\nלהם כאשר חפצו: ויךאו מחנה נוים חזק מבצר וסרשים סוכבים\nאותו והם מלמדי מלחמה: ויאמר יהודה לאנשים אשר אתו אל-\nתיראו מהמונם ומעברתם אַל-תפחדו: זכרו איך נושעו אבותינו\nבים-סוף כאשר רדף אחריהם פרעה בחיל: ועתה נקרא לשמים\nאם יחקץ-בנו ויזכר ברית אָבות והשמיד את-המחנה הזה מפנינו\n היום: וידעו כל-הנוים כי יש פודה ומציל לישראל: וישאו הנכרים\nאת-עיניהם ויראו אותם באים מנגד: ויצאו מן-המחנה למלחמה\nויתקעו אשר עם-יהוךה: ויתגרו ויגפו את-הנוים וינוסו אָל-הבקעה:\nוהמאסף כלו נסל בחרב וירךדפו אחריהם עד-גזר ועד-שדות אדום\nואשדוד ויבנה ויקלו מהם כשלשת אלסים איש: וישב יהודה והחיל\n\nמרדף אחריהם: ויאמר לעם אל-תחמדו את-השלל כי מלחמה נגדנו:\nוגרגיאם והחיל בהר קרוב לנו ועתה עמדו בסני אויבינו והלחמי\nאותם ואחרי-כן תקחו שלל קוממיות: עד יהוךה מדפר אלה\nוירא חלק נשקף מן-ההר: ויךא כי נגסו (שורפים את-המחנה כי\nהעשן הנראה גלה את אשר נהיה: וכאשר ראו את-אלה ויכהלו\nמאד: וכאָשר ראו את-מחגה יהודה בעמק גכון לקרב ויברתי\nכלם אל-אָרץ מלשתים: ויהודה שב לבו את-המחנה ויקח זהב\nרב וכסף ותכלת וארגמן-ים ורכוש גדול: ובשוכם שרו והללו\nלשמים כי טוב כי לעולם חסדו: ותהי תשועה גדולה בישראל\nביום ההוא:\nואשר נמלטו מן-הנכרים ויבאו ויגידו ללוסיאס את כל-הקרות:\nוכשמעו נבהל ויחר לו כי לא-היה כחקצו לישראל ולא נעשה\nאשר צוה לו המלך: ומקץ שנה אָסף לגדודים ששים אלף איש\nבחור וחמשת אלסים פרשים להלחם אותם: ויבאו ליהודה ויחנו\n\nבבית-צור ויפגשם יהודה בעשרת אלפים איש: וירא את-המחנה\nהכבד ויתפלל ויאמר ברוך אתה מושיע ישראל המשבית עברת\nהגבור ביד-דוד עבדך והמוסר מחנה פלשתים בידי יהונתן כן-\nשאול ונושא כליו: סנר-נא את-המחנה הזה ביד-עמך ישראל\nויבושו בחילם ובסוסיהם: תן להם מרך ושבר אמץ חןקם ורערו\nבשברם: הפילם בחרב אוהביך ויהללוך כל-יודעי שמך בתוךה:\nויתגרו ויקלו ממחנה לוסיאם כחמשת אלסים איש ויפלו לקניהם:\nוכראות ליסיאם את-המכה אשר היתה בצבאו ואת-האמץ אשר\nהיה ליהודה וכי-נכונים הם אם-לחיות אם-למות בגבורה וישע\nלאנטיוכיה וירב לאסף חיל-שכירים לעלות עוד הפעם ליהודה:\nויהודה אמר לאחיו הנה נגפו אויבינו נעלה לטהר את-המקדש\nחולחנכהו: ויקהל כל-המחנה ויעלו הר-ציון: ויראו את-המקדש\nשומם והמזבח מחלל והשערים שרופים ובחצרות גדלים סככים\nכמו ביער או כמו באחד הדרים והלשכות שוממות: ויקרעו את-\nבגדיהם ויבכו בכי גדול ויעלו אסר ועל-ראשיהם]: ויקלו על\nפניהם ארצה ויתקעו בחצצרות התרועה ויצעקו אל-השמים: אז\nאמר יהודה לאנשים להלחם את אשר-במצודה עד-אשר יטהר\n\nאָת-המקדש: ויבחר כהנים תמימים חפצי תורה: ויטהרו אָת-\nהמקדש ויוציאו את-אַבני השקוץ למקום טמא: ויועצו על-מזפח\nהעולה המחלל מה-לעשות לו: ותצלח עליהם מחשבה טובה\nלנתץ אותו לבלתי-היות להם למוקש כי הגוים טמאוהו ויתצו את-\nהמןבח: ויניחו את-האָבנים על-הר הבית במקום מיחד עד-בוא\nגביא להורות עליהן: ויקחו אבנים שלמות על-פי התורה ויבנו\nמןבח חדש כראשון: ויבנו את-המקדש ואת-פנים הבית ואת-\nהחצרות קדשו: ויעשו כלי-קדש חדשים ויביאו את-המנוךה ואת-\nמזבח הקטרת ואת-השלחן להיכל: ויקטרו על-המןבח ויעלו את-\nהגרות אשר במנורה ויאירו בהיכל: וישימו על-השלחן לחם ויורידו\nאת-הפרכות ויכלו את-כל-המעשים אשר עשו: וישכימו בבקר\nבחמשה ועשרים לחדש התשיעי הוא חדש כסלו בשמנה וארבעים\nומאה שנה: ויקריבו קרבן על-פי התוךה על-מזבח העולה החדש\nאשר עשו: בעת וביום אשר טמאוהו הנוים בעצם היום ההוא\nקחנך בשירים ובנבלים ובכנורות ובמצלתים: ויפלו כל-העם על-\n\nפניהם ויתסללו ויברכו לשמים אשר הצליח להם: ויעשו את-\nחנכת דמןבח ימים שמונה ויקריבו עלות בשמחה ויקריבו זבח\nשלמים ותודה: ויסארו את-פנירההיכל בעמרות זהב ובמשקצות\nויחנכו את-השערים והלשכות ויעשו להם דלתות ותהי שמחה\nגדולה בעם מאד ותסר חרפת גוים: ויקים יהוךה ואחיו וכל-קהל\nישראל להיות ימי חנכת המןכח נעשים במועךם שנה בשנה ימים\nשמונה מיום חמשה ועשרים לחדש כסלו בשמחה וניל: ויבנו\nכעת ההיא את-הרציון מסביב חומה גבוהה ומגדלים חזקים כל-\nיבאו הטים וירממים כאשר עשו בראשונה: וישם שם חיל לשמרו\nויבצר לשמר אותו את-בית-צור להיות לעם מבצר בפני אדום:\n",
+  "pages": [
+    {
+      "page": 115,
+      "recognition": {
+        "sourceImage": "/private/tmp/prosary-1ma-ch4/B115.png",
+        "sourceImageSHA256": "979a655cbcd2533fe9f0545da86a29cfbb722ba091529cfd089e2cb632a41e45",
+        "sourceImageSize": [
+          1980,
+          530
+        ],
+        "model": "/private/tmp/prosary-kraken-ocr/small.safetensors",
+        "modelSHA256": "3108259779f5abfed3908a1c9eafba64d17e4a2a169368c539ecfeff04c018f3",
+        "command": [
+          "/private/tmp/prosary-kraken-ocr/bin/kraken",
+          "-i",
+          "/private/tmp/prosary-1ma-ch4/ocr/115/result/line-001.png",
+          "/private/tmp/prosary-1ma-ch4/ocr/115/result/line-001.txt",
+          "-i",
+          "/private/tmp/prosary-1ma-ch4/ocr/115/result/line-002.png",
+          "/private/tmp/prosary-1ma-ch4/ocr/115/result/line-002.txt",
+          "-i",
+          "/private/tmp/prosary-1ma-ch4/ocr/115/result/line-003.png",
+          "/private/tmp/prosary-1ma-ch4/ocr/115/result/line-003.txt",
+          "-i",
+          "/private/tmp/prosary-1ma-ch4/ocr/115/result/line-004.png",
+          "/private/tmp/prosary-1ma-ch4/ocr/115/result/line-004.txt",
+          "-i",
+          "/private/tmp/prosary-1ma-ch4/ocr/115/result/line-005.png",
+          "/private/tmp/prosary-1ma-ch4/ocr/115/result/line-005.txt",
+          "-i",
+          "/private/tmp/prosary-1ma-ch4/ocr/115/result/line-006.png",
+          "/private/tmp/prosary-1ma-ch4/ocr/115/result/line-006.txt",
+          "-i",
+          "/private/tmp/prosary-1ma-ch4/ocr/115/result/line-007.png",
+          "/private/tmp/prosary-1ma-ch4/ocr/115/result/line-007.txt",
+          "ocr",
+          "-s",
+          "-n",
+          "--base-dir",
+          "R",
+          "-m",
+          "/private/tmp/prosary-kraken-ocr/small.safetensors"
+        ],
+        "elapsedSeconds": 7.4,
+        "exitCode": 0,
+        "lines": [
+          {
+            "index": 1,
+            "unit": "chapter4 B115 line1",
+            "rect": [
+              240,
+              4,
+              1620,
+              74
+            ],
+            "image": "/private/tmp/prosary-1ma-ch4/ocr/115/result/line-001.png",
+            "imageSHA256": "a31396ba1f8daec576d4dfc89924cfe83aeaeb3f951d009e26ab21245fd28b45",
+            "textFile": "/private/tmp/prosary-1ma-ch4/ocr/115/result/line-001.txt",
+            "text": "ויקח גרגיאס חמשת אלפים איש ואלף קרשים בחור ויסע"
+          },
+          {
+            "index": 2,
+            "unit": "chapter4 B115 line2",
+            "rect": [
+              240,
+              78,
+              1620,
+              150
+            ],
+            "image": "/private/tmp/prosary-1ma-ch4/ocr/115/result/line-002.png",
+            "imageSHA256": "1e5aef06cc4f8e59a8134318aec648b894f96231e0d6825763e2bb767d69240d",
+            "textFile": "/private/tmp/prosary-1ma-ch4/ocr/115/result/line-002.txt",
+            "text": "המחנה לילה: לנפל על-מחנה היהודים ולהכותם סתאם ובני"
+          },
+          {
+            "index": 3,
+            "unit": "chapter4 B115 line3",
+            "rect": [
+              240,
+              155,
+              1620,
+              225
+            ],
+            "image": "/private/tmp/prosary-1ma-ch4/ocr/115/result/line-003.png",
+            "imageSHA256": "e5a387f3239ad0e9a9effc863485bd8a303c052ec953bcbd579a67c8f9a9d12c",
+            "textFile": "/private/tmp/prosary-1ma-ch4/ocr/115/result/line-003.txt",
+            "text": "המצודה היו לו למורי דרך: וישמע יהודה ויפע הוא והגבירים"
+          },
+          {
+            "index": 4,
+            "unit": "chapter4 B115 line4",
+            "rect": [
+              240,
+              229,
+              1620,
+              300
+            ],
+            "image": "/private/tmp/prosary-1ma-ch4/ocr/115/result/line-004.png",
+            "imageSHA256": "8216b78df785482ab1942dbbe1d1216f9f9fbb8d966a4bef76b3cee0e2f192a4",
+            "textFile": "/private/tmp/prosary-1ma-ch4/ocr/115/result/line-004.txt",
+            "text": "להכות את-חיל המלך אשר בעמאום: עד החיל מקזרים היו מחוץ"
+          },
+          {
+            "index": 5,
+            "unit": "chapter4 B115 line5",
+            "rect": [
+              240,
+              303,
+              1620,
+              374
+            ],
+            "image": "/private/tmp/prosary-1ma-ch4/ocr/115/result/line-005.png",
+            "imageSHA256": "2a7f7e4dbcab69776015d206b1af53292ac2424dbc65374c34197cb19ec1d72f",
+            "textFile": "/private/tmp/prosary-1ma-ch4/ocr/115/result/line-005.txt",
+            "text": "למחנה: ויבא גרגיאַס אל-מחנה יהודה לילה ולא מצא איש"
+          },
+          {
+            "index": 6,
+            "unit": "chapter4 B115 line6",
+            "rect": [
+              240,
+              386,
+              1620,
+              450
+            ],
+            "image": "/private/tmp/prosary-1ma-ch4/ocr/115/result/line-006.png",
+            "imageSHA256": "b84af5e04a5b44b9e48935c5fc8ca0f5f27f19c3e1690bec8621d0b49cbcae32",
+            "textFile": "/private/tmp/prosary-1ma-ch4/ocr/115/result/line-006.txt",
+            "text": "ויחפש אותם בהרים כי אמר נסים הם ממנו: וכאור הבקר נראָה"
+          },
+          {
+            "index": 7,
+            "unit": "chapter4 B115 line7",
+            "rect": [
+              240,
+              453,
+              1620,
+              525
+            ],
+            "image": "/private/tmp/prosary-1ma-ch4/ocr/115/result/line-007.png",
+            "imageSHA256": "a3c20f989157c646020fd398a86dfac53be0b0246bd76dfef5418486d56acf08",
+            "textFile": "/private/tmp/prosary-1ma-ch4/ocr/115/result/line-007.txt",
+            "text": "יהודה כשפלה בשלשת אלפי איש אך מגנים וחרבות לא-היו"
+          }
+        ],
+        "notice": "Uncorrected local OCR draft. Manual line bounds supplied; vowels and lexical fidelity require independent comparison to the print."
+      },
+      "lineBounds": [
+        {
+          "rect": [
+            240,
+            4,
+            1620,
+            74
+          ],
+          "unit": "chapter4 B115 line1"
+        },
+        {
+          "rect": [
+            240,
+            78,
+            1620,
+            150
+          ],
+          "unit": "chapter4 B115 line2"
+        },
+        {
+          "rect": [
+            240,
+            155,
+            1620,
+            225
+          ],
+          "unit": "chapter4 B115 line3"
+        },
+        {
+          "rect": [
+            240,
+            229,
+            1620,
+            300
+          ],
+          "unit": "chapter4 B115 line4"
+        },
+        {
+          "rect": [
+            240,
+            303,
+            1620,
+            374
+          ],
+          "unit": "chapter4 B115 line5"
+        },
+        {
+          "rect": [
+            240,
+            386,
+            1620,
+            450
+          ],
+          "unit": "chapter4 B115 line6"
+        },
+        {
+          "rect": [
+            240,
+            453,
+            1620,
+            525
+          ],
+          "unit": "chapter4 B115 line7"
+        }
+      ],
+      "rawOCR": "ויקח גרגיאס חמשת אלפים איש ואלף קרשים בחור ויסע\nהמחנה לילה: לנפל על-מחנה היהודים ולהכותם סתאם ובני\nהמצודה היו לו למורי דרך: וישמע יהודה ויפע הוא והגבירים\nלהכות את-חיל המלך אשר בעמאום: עד החיל מקזרים היו מחוץ\nלמחנה: ויבא גרגיאַס אל-מחנה יהודה לילה ולא מצא איש\nויחפש אותם בהרים כי אמר נסים הם ממנו: וכאור הבקר נראָה\nיהודה כשפלה בשלשת אלפי איש אך מגנים וחרבות לא-היו\n"
+    },
+    {
+      "page": 116,
+      "recognition": {
+        "sourceImage": "/private/tmp/prosary-1ma-ch4/B116.png",
+        "sourceImageSHA256": "3d83abe47ceea989be4f9302ec339d8315f9d2a75fa751fbf1ccf14700d5088b",
+        "sourceImageSize": [
+          1980,
+          766
+        ],
+        "model": "/private/tmp/prosary-kraken-ocr/small.safetensors",
+        "modelSHA256": "3108259779f5abfed3908a1c9eafba64d17e4a2a169368c539ecfeff04c018f3",
+        "command": [
+          "/private/tmp/prosary-kraken-ocr/bin/kraken",
+          "-i",
+          "/private/tmp/prosary-1ma-ch4/ocr/116/result/line-001.png",
+          "/private/tmp/prosary-1ma-ch4/ocr/116/result/line-001.txt",
+          "-i",
+          "/private/tmp/prosary-1ma-ch4/ocr/116/result/line-002.png",
+          "/private/tmp/prosary-1ma-ch4/ocr/116/result/line-002.txt",
+          "-i",
+          "/private/tmp/prosary-1ma-ch4/ocr/116/result/line-003.png",
+          "/private/tmp/prosary-1ma-ch4/ocr/116/result/line-003.txt",
+          "-i",
+          "/private/tmp/prosary-1ma-ch4/ocr/116/result/line-004.png",
+          "/private/tmp/prosary-1ma-ch4/ocr/116/result/line-004.txt",
+          "-i",
+          "/private/tmp/prosary-1ma-ch4/ocr/116/result/line-005.png",
+          "/private/tmp/prosary-1ma-ch4/ocr/116/result/line-005.txt",
+          "-i",
+          "/private/tmp/prosary-1ma-ch4/ocr/116/result/line-006.png",
+          "/private/tmp/prosary-1ma-ch4/ocr/116/result/line-006.txt",
+          "-i",
+          "/private/tmp/prosary-1ma-ch4/ocr/116/result/line-007.png",
+          "/private/tmp/prosary-1ma-ch4/ocr/116/result/line-007.txt",
+          "-i",
+          "/private/tmp/prosary-1ma-ch4/ocr/116/result/line-008.png",
+          "/private/tmp/prosary-1ma-ch4/ocr/116/result/line-008.txt",
+          "-i",
+          "/private/tmp/prosary-1ma-ch4/ocr/116/result/line-009.png",
+          "/private/tmp/prosary-1ma-ch4/ocr/116/result/line-009.txt",
+          "-i",
+          "/private/tmp/prosary-1ma-ch4/ocr/116/result/line-010.png",
+          "/private/tmp/prosary-1ma-ch4/ocr/116/result/line-010.txt",
+          "ocr",
+          "-s",
+          "-n",
+          "--base-dir",
+          "R",
+          "-m",
+          "/private/tmp/prosary-kraken-ocr/small.safetensors"
+        ],
+        "elapsedSeconds": 7.75,
+        "exitCode": 0,
+        "lines": [
+          {
+            "index": 1,
+            "unit": "chapter4 B116 line1",
+            "rect": [
+              240,
+              4,
+              1620,
+              90
+            ],
+            "image": "/private/tmp/prosary-1ma-ch4/ocr/116/result/line-001.png",
+            "imageSHA256": "47ac753917bdefdff0a722959d02ee6e0ced67f5270363d47ac4abaf25a5a419",
+            "textFile": "/private/tmp/prosary-1ma-ch4/ocr/116/result/line-001.txt",
+            "text": "להם כאשר חפצו: ויךאו מחנה נוים חזק מבצר וסרשים סוכבים"
+          },
+          {
+            "index": 2,
+            "unit": "chapter4 B116 line2",
+            "rect": [
+              240,
+              90,
+              1620,
+              161
+            ],
+            "image": "/private/tmp/prosary-1ma-ch4/ocr/116/result/line-002.png",
+            "imageSHA256": "3f64d047cc731cc392d0fb406b92856b65b5a1b5337607407f927f80ba7ac03e",
+            "textFile": "/private/tmp/prosary-1ma-ch4/ocr/116/result/line-002.txt",
+            "text": "אותו והם מלמדי מלחמה: ויאמר יהודה לאנשים אשר אתו אל-"
+          },
+          {
+            "index": 3,
+            "unit": "chapter4 B116 line3",
+            "rect": [
+              240,
+              165,
+              1620,
+              237
+            ],
+            "image": "/private/tmp/prosary-1ma-ch4/ocr/116/result/line-003.png",
+            "imageSHA256": "accf3a20ad77d592d6a53548ce6efe457e265d437b60995fa27c2e1afda0d9d3",
+            "textFile": "/private/tmp/prosary-1ma-ch4/ocr/116/result/line-003.txt",
+            "text": "תיראו מהמונם ומעברתם אַל-תפחדו: זכרו איך נושעו אבותינו"
+          },
+          {
+            "index": 4,
+            "unit": "chapter4 B116 line4",
+            "rect": [
+              240,
+              242,
+              1620,
+              312
+            ],
+            "image": "/private/tmp/prosary-1ma-ch4/ocr/116/result/line-004.png",
+            "imageSHA256": "f848217519497fe56a87e6ded32ad9303c74393359579d4428e5d883920394f6",
+            "textFile": "/private/tmp/prosary-1ma-ch4/ocr/116/result/line-004.txt",
+            "text": "בים-סוף כאשר רדף אחריהם פרעה בחיל: ועתה נקרא לשמים"
+          },
+          {
+            "index": 5,
+            "unit": "chapter4 B116 line5",
+            "rect": [
+              240,
+              320,
+              1620,
+              385
+            ],
+            "image": "/private/tmp/prosary-1ma-ch4/ocr/116/result/line-005.png",
+            "imageSHA256": "3c9c73214aeae60a533eb5a9a9cbfac664b87a62cba87fdc1fc6d9ebebd25ca6",
+            "textFile": "/private/tmp/prosary-1ma-ch4/ocr/116/result/line-005.txt",
+            "text": "אם יחקץ-בנו ויזכר ברית אָבות והשמיד את-המחנה הזה מפנינו"
+          },
+          {
+            "index": 6,
+            "unit": "chapter4 B116 line6",
+            "rect": [
+              240,
+              387,
+              1605,
+              461
+            ],
+            "image": "/private/tmp/prosary-1ma-ch4/ocr/116/result/line-006.png",
+            "imageSHA256": "5d0a102eed7222b12583288fd0793055b7af36ec9257c59de0e27287cf5be728",
+            "textFile": "/private/tmp/prosary-1ma-ch4/ocr/116/result/line-006.txt",
+            "text": " היום: וידעו כל-הנוים כי יש פודה ומציל לישראל: וישאו הנכרים"
+          },
+          {
+            "index": 7,
+            "unit": "chapter4 B116 line7",
+            "rect": [
+              240,
+              466,
+              1620,
+              537
+            ],
+            "image": "/private/tmp/prosary-1ma-ch4/ocr/116/result/line-007.png",
+            "imageSHA256": "bc0a871da0e2ca18d4bb9e2ab20f0f71a19fe369f20bf7e32b66771e13c2e0ef",
+            "textFile": "/private/tmp/prosary-1ma-ch4/ocr/116/result/line-007.txt",
+            "text": "את-עיניהם ויראו אותם באים מנגד: ויצאו מן-המחנה למלחמה"
+          },
+          {
+            "index": 8,
+            "unit": "chapter4 B116 line8",
+            "rect": [
+              240,
+              543,
+              1620,
+              613
+            ],
+            "image": "/private/tmp/prosary-1ma-ch4/ocr/116/result/line-008.png",
+            "imageSHA256": "44e12745d5bf93a22ff7af61faee6c7a041c8350565b3fd68a3be105c8ca6846",
+            "textFile": "/private/tmp/prosary-1ma-ch4/ocr/116/result/line-008.txt",
+            "text": "ויתקעו אשר עם-יהוךה: ויתגרו ויגפו את-הנוים וינוסו אָל-הבקעה:"
+          },
+          {
+            "index": 9,
+            "unit": "chapter4 B116 line9",
+            "rect": [
+              240,
+              607,
+              1620,
+              684
+            ],
+            "image": "/private/tmp/prosary-1ma-ch4/ocr/116/result/line-009.png",
+            "imageSHA256": "58dfbc50f783bd5dc5a34dba8d41eb480935e4e0520df6409b21353411fdd536",
+            "textFile": "/private/tmp/prosary-1ma-ch4/ocr/116/result/line-009.txt",
+            "text": "והמאסף כלו נסל בחרב וירךדפו אחריהם עד-גזר ועד-שדות אדום"
+          },
+          {
+            "index": 10,
+            "unit": "chapter4 B116 line10",
+            "rect": [
+              240,
+              686,
+              1620,
+              760
+            ],
+            "image": "/private/tmp/prosary-1ma-ch4/ocr/116/result/line-010.png",
+            "imageSHA256": "21b1ae9ca2d85268c369eb426982f0ba89ae98fea34c3fa2595b4ce92c7d9d82",
+            "textFile": "/private/tmp/prosary-1ma-ch4/ocr/116/result/line-010.txt",
+            "text": "ואשדוד ויבנה ויקלו מהם כשלשת אלסים איש: וישב יהודה והחיל"
+          }
+        ],
+        "notice": "Uncorrected local OCR draft. Manual line bounds supplied; vowels and lexical fidelity require independent comparison to the print."
+      },
+      "lineBounds": [
+        {
+          "rect": [
+            240,
+            4,
+            1620,
+            90
+          ],
+          "unit": "chapter4 B116 line1"
+        },
+        {
+          "rect": [
+            240,
+            90,
+            1620,
+            161
+          ],
+          "unit": "chapter4 B116 line2"
+        },
+        {
+          "rect": [
+            240,
+            165,
+            1620,
+            237
+          ],
+          "unit": "chapter4 B116 line3"
+        },
+        {
+          "rect": [
+            240,
+            242,
+            1620,
+            312
+          ],
+          "unit": "chapter4 B116 line4"
+        },
+        {
+          "rect": [
+            240,
+            320,
+            1620,
+            385
+          ],
+          "unit": "chapter4 B116 line5"
+        },
+        {
+          "rect": [
+            240,
+            387,
+            1605,
+            461
+          ],
+          "unit": "chapter4 B116 line6"
+        },
+        {
+          "rect": [
+            240,
+            466,
+            1620,
+            537
+          ],
+          "unit": "chapter4 B116 line7"
+        },
+        {
+          "rect": [
+            240,
+            543,
+            1620,
+            613
+          ],
+          "unit": "chapter4 B116 line8"
+        },
+        {
+          "rect": [
+            240,
+            607,
+            1620,
+            684
+          ],
+          "unit": "chapter4 B116 line9"
+        },
+        {
+          "rect": [
+            240,
+            686,
+            1620,
+            760
+          ],
+          "unit": "chapter4 B116 line10"
+        }
+      ],
+      "rawOCR": "להם כאשר חפצו: ויךאו מחנה נוים חזק מבצר וסרשים סוכבים\nאותו והם מלמדי מלחמה: ויאמר יהודה לאנשים אשר אתו אל-\nתיראו מהמונם ומעברתם אַל-תפחדו: זכרו איך נושעו אבותינו\nבים-סוף כאשר רדף אחריהם פרעה בחיל: ועתה נקרא לשמים\nאם יחקץ-בנו ויזכר ברית אָבות והשמיד את-המחנה הזה מפנינו\n היום: וידעו כל-הנוים כי יש פודה ומציל לישראל: וישאו הנכרים\nאת-עיניהם ויראו אותם באים מנגד: ויצאו מן-המחנה למלחמה\nויתקעו אשר עם-יהוךה: ויתגרו ויגפו את-הנוים וינוסו אָל-הבקעה:\nוהמאסף כלו נסל בחרב וירךדפו אחריהם עד-גזר ועד-שדות אדום\nואשדוד ויבנה ויקלו מהם כשלשת אלסים איש: וישב יהודה והחיל\n"
+    },
+    {
+      "page": 117,
+      "recognition": {
+        "sourceImage": "/private/tmp/prosary-1ma-ch4/B117.png",
+        "sourceImageSHA256": "b7637991b27ee5c47aa85bd7e3dc91da45569b906ae0e522ec8bca62ac37c768",
+        "sourceImageSize": [
+          1980,
+          1057
+        ],
+        "model": "/private/tmp/prosary-kraken-ocr/small.safetensors",
+        "modelSHA256": "3108259779f5abfed3908a1c9eafba64d17e4a2a169368c539ecfeff04c018f3",
+        "command": [
+          "/private/tmp/prosary-kraken-ocr/bin/kraken",
+          "-i",
+          "/private/tmp/prosary-1ma-ch4/ocr/117/result/line-001.png",
+          "/private/tmp/prosary-1ma-ch4/ocr/117/result/line-001.txt",
+          "-i",
+          "/private/tmp/prosary-1ma-ch4/ocr/117/result/line-002.png",
+          "/private/tmp/prosary-1ma-ch4/ocr/117/result/line-002.txt",
+          "-i",
+          "/private/tmp/prosary-1ma-ch4/ocr/117/result/line-003.png",
+          "/private/tmp/prosary-1ma-ch4/ocr/117/result/line-003.txt",
+          "-i",
+          "/private/tmp/prosary-1ma-ch4/ocr/117/result/line-004.png",
+          "/private/tmp/prosary-1ma-ch4/ocr/117/result/line-004.txt",
+          "-i",
+          "/private/tmp/prosary-1ma-ch4/ocr/117/result/line-005.png",
+          "/private/tmp/prosary-1ma-ch4/ocr/117/result/line-005.txt",
+          "-i",
+          "/private/tmp/prosary-1ma-ch4/ocr/117/result/line-006.png",
+          "/private/tmp/prosary-1ma-ch4/ocr/117/result/line-006.txt",
+          "-i",
+          "/private/tmp/prosary-1ma-ch4/ocr/117/result/line-007.png",
+          "/private/tmp/prosary-1ma-ch4/ocr/117/result/line-007.txt",
+          "-i",
+          "/private/tmp/prosary-1ma-ch4/ocr/117/result/line-008.png",
+          "/private/tmp/prosary-1ma-ch4/ocr/117/result/line-008.txt",
+          "-i",
+          "/private/tmp/prosary-1ma-ch4/ocr/117/result/line-009.png",
+          "/private/tmp/prosary-1ma-ch4/ocr/117/result/line-009.txt",
+          "-i",
+          "/private/tmp/prosary-1ma-ch4/ocr/117/result/line-010.png",
+          "/private/tmp/prosary-1ma-ch4/ocr/117/result/line-010.txt",
+          "-i",
+          "/private/tmp/prosary-1ma-ch4/ocr/117/result/line-011.png",
+          "/private/tmp/prosary-1ma-ch4/ocr/117/result/line-011.txt",
+          "-i",
+          "/private/tmp/prosary-1ma-ch4/ocr/117/result/line-012.png",
+          "/private/tmp/prosary-1ma-ch4/ocr/117/result/line-012.txt",
+          "-i",
+          "/private/tmp/prosary-1ma-ch4/ocr/117/result/line-013.png",
+          "/private/tmp/prosary-1ma-ch4/ocr/117/result/line-013.txt",
+          "-i",
+          "/private/tmp/prosary-1ma-ch4/ocr/117/result/line-014.png",
+          "/private/tmp/prosary-1ma-ch4/ocr/117/result/line-014.txt",
+          "ocr",
+          "-s",
+          "-n",
+          "--base-dir",
+          "R",
+          "-m",
+          "/private/tmp/prosary-kraken-ocr/small.safetensors"
+        ],
+        "elapsedSeconds": 8.15,
+        "exitCode": 0,
+        "lines": [
+          {
+            "index": 1,
+            "unit": "chapter4 B117 line1",
+            "rect": [
+              240,
+              5,
+              1620,
+              77
+            ],
+            "image": "/private/tmp/prosary-1ma-ch4/ocr/117/result/line-001.png",
+            "imageSHA256": "fb430fc8e03e17c75cdd4a4d83058786b4efe19b492332ed27652f594c064cde",
+            "textFile": "/private/tmp/prosary-1ma-ch4/ocr/117/result/line-001.txt",
+            "text": "מרדף אחריהם: ויאמר לעם אל-תחמדו את-השלל כי מלחמה נגדנו:"
+          },
+          {
+            "index": 2,
+            "unit": "chapter4 B117 line2",
+            "rect": [
+              240,
+              75,
+              1620,
+              153
+            ],
+            "image": "/private/tmp/prosary-1ma-ch4/ocr/117/result/line-002.png",
+            "imageSHA256": "69b555faf9c2bd9767d923404c3e49425fb9c34be26b687196f411214b46e136",
+            "textFile": "/private/tmp/prosary-1ma-ch4/ocr/117/result/line-002.txt",
+            "text": "וגרגיאם והחיל בהר קרוב לנו ועתה עמדו בסני אויבינו והלחמי"
+          },
+          {
+            "index": 3,
+            "unit": "chapter4 B117 line3",
+            "rect": [
+              240,
+              157,
+              1620,
+              228
+            ],
+            "image": "/private/tmp/prosary-1ma-ch4/ocr/117/result/line-003.png",
+            "imageSHA256": "e84f23c0a590c62fd3cbef9db95f43b87279b0a43f38fd725227d0e8f2399a50",
+            "textFile": "/private/tmp/prosary-1ma-ch4/ocr/117/result/line-003.txt",
+            "text": "אותם ואחרי-כן תקחו שלל קוממיות: עד יהוךה מדפר אלה"
+          },
+          {
+            "index": 4,
+            "unit": "chapter4 B117 line4",
+            "rect": [
+              240,
+              232,
+              1620,
+              304
+            ],
+            "image": "/private/tmp/prosary-1ma-ch4/ocr/117/result/line-004.png",
+            "imageSHA256": "c4ea559fa8ab760323dd9de608f6a7d6cf7e3af0d1934e360fbe14f99f46d408",
+            "textFile": "/private/tmp/prosary-1ma-ch4/ocr/117/result/line-004.txt",
+            "text": "וירא חלק נשקף מן-ההר: ויךא כי נגסו (שורפים את-המחנה כי"
+          },
+          {
+            "index": 5,
+            "unit": "chapter4 B117 line5",
+            "rect": [
+              240,
+              307,
+              1620,
+              378
+            ],
+            "image": "/private/tmp/prosary-1ma-ch4/ocr/117/result/line-005.png",
+            "imageSHA256": "1ea03716ff262aa184bc710edc5e690ac029ec041c3711ffa80a05a4f28b26a9",
+            "textFile": "/private/tmp/prosary-1ma-ch4/ocr/117/result/line-005.txt",
+            "text": "העשן הנראה גלה את אשר נהיה: וכאשר ראו את-אלה ויכהלו"
+          },
+          {
+            "index": 6,
+            "unit": "chapter4 B117 line6",
+            "rect": [
+              240,
+              384,
+              1620,
+              455
+            ],
+            "image": "/private/tmp/prosary-1ma-ch4/ocr/117/result/line-006.png",
+            "imageSHA256": "62edef1eef2ac976ba8b8ea4c493254143d77dcc0c31f203db20cf340484a1cd",
+            "textFile": "/private/tmp/prosary-1ma-ch4/ocr/117/result/line-006.txt",
+            "text": "מאד: וכאָשר ראו את-מחגה יהודה בעמק גכון לקרב ויברתי"
+          },
+          {
+            "index": 7,
+            "unit": "chapter4 B117 line7",
+            "rect": [
+              240,
+              458,
+              1620,
+              532
+            ],
+            "image": "/private/tmp/prosary-1ma-ch4/ocr/117/result/line-007.png",
+            "imageSHA256": "e3db35c2691560b6cb6a12b6ba03d9763a8969334f6b8dab615361909f1ab4c0",
+            "textFile": "/private/tmp/prosary-1ma-ch4/ocr/117/result/line-007.txt",
+            "text": "כלם אל-אָרץ מלשתים: ויהודה שב לבו את-המחנה ויקח זהב"
+          },
+          {
+            "index": 8,
+            "unit": "chapter4 B117 line8",
+            "rect": [
+              240,
+              533,
+              1620,
+              604
+            ],
+            "image": "/private/tmp/prosary-1ma-ch4/ocr/117/result/line-008.png",
+            "imageSHA256": "475979d058c9dca5b81d80439885055e26ec135d6b96467defd4e4e186ac65d5",
+            "textFile": "/private/tmp/prosary-1ma-ch4/ocr/117/result/line-008.txt",
+            "text": "רב וכסף ותכלת וארגמן-ים ורכוש גדול: ובשוכם שרו והללו"
+          },
+          {
+            "index": 9,
+            "unit": "chapter4 B117 line9",
+            "rect": [
+              240,
+              607,
+              1620,
+              681
+            ],
+            "image": "/private/tmp/prosary-1ma-ch4/ocr/117/result/line-009.png",
+            "imageSHA256": "3c563782de801ad3cf10744406e23f1326d0b9e487efa9a997b4a8dee0c0a68c",
+            "textFile": "/private/tmp/prosary-1ma-ch4/ocr/117/result/line-009.txt",
+            "text": "לשמים כי טוב כי לעולם חסדו: ותהי תשועה גדולה בישראל"
+          },
+          {
+            "index": 10,
+            "unit": "chapter4 B117 line10",
+            "rect": [
+              240,
+              692,
+              1620,
+              746
+            ],
+            "image": "/private/tmp/prosary-1ma-ch4/ocr/117/result/line-010.png",
+            "imageSHA256": "04fd9afbb656bbde4a5f127517b31937c6307ca8d32b8e73755b68766e524f53",
+            "textFile": "/private/tmp/prosary-1ma-ch4/ocr/117/result/line-010.txt",
+            "text": "ביום ההוא:"
+          },
+          {
+            "index": 11,
+            "unit": "chapter4 B117 line11",
+            "rect": [
+              240,
+              760,
+              1620,
+              830
+            ],
+            "image": "/private/tmp/prosary-1ma-ch4/ocr/117/result/line-011.png",
+            "imageSHA256": "4d126036b3c1d949f1a295a59db1cb86345cc6b1d6e7a046fdad30b46b427b6b",
+            "textFile": "/private/tmp/prosary-1ma-ch4/ocr/117/result/line-011.txt",
+            "text": "ואשר נמלטו מן-הנכרים ויבאו ויגידו ללוסיאס את כל-הקרות:"
+          },
+          {
+            "index": 12,
+            "unit": "chapter4 B117 line12",
+            "rect": [
+              240,
+              835,
+              1620,
+              905
+            ],
+            "image": "/private/tmp/prosary-1ma-ch4/ocr/117/result/line-012.png",
+            "imageSHA256": "f2c17c9089af0521565f185972f4baef21a0fd98710cc7a8fb2b1c306538239d",
+            "textFile": "/private/tmp/prosary-1ma-ch4/ocr/117/result/line-012.txt",
+            "text": "וכשמעו נבהל ויחר לו כי לא-היה כחקצו לישראל ולא נעשה"
+          },
+          {
+            "index": 13,
+            "unit": "chapter4 B117 line13",
+            "rect": [
+              240,
+              910,
+              1620,
+              981
+            ],
+            "image": "/private/tmp/prosary-1ma-ch4/ocr/117/result/line-013.png",
+            "imageSHA256": "1979fe375bfb420fcaa294c52e6b44eef5091dd12b46e1505d941d42b3c94985",
+            "textFile": "/private/tmp/prosary-1ma-ch4/ocr/117/result/line-013.txt",
+            "text": "אשר צוה לו המלך: ומקץ שנה אָסף לגדודים ששים אלף איש"
+          },
+          {
+            "index": 14,
+            "unit": "chapter4 B117 line14",
+            "rect": [
+              240,
+              984,
+              1620,
+              1056
+            ],
+            "image": "/private/tmp/prosary-1ma-ch4/ocr/117/result/line-014.png",
+            "imageSHA256": "1dd0a4364e09e5024006276f95dbf36c5e5bf5ec3589344a06141f6995876ad6",
+            "textFile": "/private/tmp/prosary-1ma-ch4/ocr/117/result/line-014.txt",
+            "text": "בחור וחמשת אלסים פרשים להלחם אותם: ויבאו ליהודה ויחנו"
+          }
+        ],
+        "notice": "Uncorrected local OCR draft. Manual line bounds supplied; vowels and lexical fidelity require independent comparison to the print."
+      },
+      "lineBounds": [
+        {
+          "rect": [
+            240,
+            5,
+            1620,
+            77
+          ],
+          "unit": "chapter4 B117 line1"
+        },
+        {
+          "rect": [
+            240,
+            75,
+            1620,
+            153
+          ],
+          "unit": "chapter4 B117 line2"
+        },
+        {
+          "rect": [
+            240,
+            157,
+            1620,
+            228
+          ],
+          "unit": "chapter4 B117 line3"
+        },
+        {
+          "rect": [
+            240,
+            232,
+            1620,
+            304
+          ],
+          "unit": "chapter4 B117 line4"
+        },
+        {
+          "rect": [
+            240,
+            307,
+            1620,
+            378
+          ],
+          "unit": "chapter4 B117 line5"
+        },
+        {
+          "rect": [
+            240,
+            384,
+            1620,
+            455
+          ],
+          "unit": "chapter4 B117 line6"
+        },
+        {
+          "rect": [
+            240,
+            458,
+            1620,
+            532
+          ],
+          "unit": "chapter4 B117 line7"
+        },
+        {
+          "rect": [
+            240,
+            533,
+            1620,
+            604
+          ],
+          "unit": "chapter4 B117 line8"
+        },
+        {
+          "rect": [
+            240,
+            607,
+            1620,
+            681
+          ],
+          "unit": "chapter4 B117 line9"
+        },
+        {
+          "rect": [
+            240,
+            692,
+            1620,
+            746
+          ],
+          "unit": "chapter4 B117 line10"
+        },
+        {
+          "rect": [
+            240,
+            760,
+            1620,
+            830
+          ],
+          "unit": "chapter4 B117 line11"
+        },
+        {
+          "rect": [
+            240,
+            835,
+            1620,
+            905
+          ],
+          "unit": "chapter4 B117 line12"
+        },
+        {
+          "rect": [
+            240,
+            910,
+            1620,
+            981
+          ],
+          "unit": "chapter4 B117 line13"
+        },
+        {
+          "rect": [
+            240,
+            984,
+            1620,
+            1056
+          ],
+          "unit": "chapter4 B117 line14"
+        }
+      ],
+      "rawOCR": "מרדף אחריהם: ויאמר לעם אל-תחמדו את-השלל כי מלחמה נגדנו:\nוגרגיאם והחיל בהר קרוב לנו ועתה עמדו בסני אויבינו והלחמי\nאותם ואחרי-כן תקחו שלל קוממיות: עד יהוךה מדפר אלה\nוירא חלק נשקף מן-ההר: ויךא כי נגסו (שורפים את-המחנה כי\nהעשן הנראה גלה את אשר נהיה: וכאשר ראו את-אלה ויכהלו\nמאד: וכאָשר ראו את-מחגה יהודה בעמק גכון לקרב ויברתי\nכלם אל-אָרץ מלשתים: ויהודה שב לבו את-המחנה ויקח זהב\nרב וכסף ותכלת וארגמן-ים ורכוש גדול: ובשוכם שרו והללו\nלשמים כי טוב כי לעולם חסדו: ותהי תשועה גדולה בישראל\nביום ההוא:\nואשר נמלטו מן-הנכרים ויבאו ויגידו ללוסיאס את כל-הקרות:\nוכשמעו נבהל ויחר לו כי לא-היה כחקצו לישראל ולא נעשה\nאשר צוה לו המלך: ומקץ שנה אָסף לגדודים ששים אלף איש\nבחור וחמשת אלסים פרשים להלחם אותם: ויבאו ליהודה ויחנו\n"
+    },
+    {
+      "page": 118,
+      "recognition": {
+        "sourceImage": "/private/tmp/prosary-1ma-ch4/B118.png",
+        "sourceImageSHA256": "8212453233a506328ddd2091aef6cdc3bd04fe26f86858b25314d1fe8939c3cc",
+        "sourceImageSize": [
+          1980,
+          1301
+        ],
+        "model": "/private/tmp/prosary-kraken-ocr/small.safetensors",
+        "modelSHA256": "3108259779f5abfed3908a1c9eafba64d17e4a2a169368c539ecfeff04c018f3",
+        "command": [
+          "/private/tmp/prosary-kraken-ocr/bin/kraken",
+          "-i",
+          "/private/tmp/prosary-1ma-ch4/ocr/118/result/line-001.png",
+          "/private/tmp/prosary-1ma-ch4/ocr/118/result/line-001.txt",
+          "-i",
+          "/private/tmp/prosary-1ma-ch4/ocr/118/result/line-002.png",
+          "/private/tmp/prosary-1ma-ch4/ocr/118/result/line-002.txt",
+          "-i",
+          "/private/tmp/prosary-1ma-ch4/ocr/118/result/line-003.png",
+          "/private/tmp/prosary-1ma-ch4/ocr/118/result/line-003.txt",
+          "-i",
+          "/private/tmp/prosary-1ma-ch4/ocr/118/result/line-004.png",
+          "/private/tmp/prosary-1ma-ch4/ocr/118/result/line-004.txt",
+          "-i",
+          "/private/tmp/prosary-1ma-ch4/ocr/118/result/line-005.png",
+          "/private/tmp/prosary-1ma-ch4/ocr/118/result/line-005.txt",
+          "-i",
+          "/private/tmp/prosary-1ma-ch4/ocr/118/result/line-006.png",
+          "/private/tmp/prosary-1ma-ch4/ocr/118/result/line-006.txt",
+          "-i",
+          "/private/tmp/prosary-1ma-ch4/ocr/118/result/line-007.png",
+          "/private/tmp/prosary-1ma-ch4/ocr/118/result/line-007.txt",
+          "-i",
+          "/private/tmp/prosary-1ma-ch4/ocr/118/result/line-008.png",
+          "/private/tmp/prosary-1ma-ch4/ocr/118/result/line-008.txt",
+          "-i",
+          "/private/tmp/prosary-1ma-ch4/ocr/118/result/line-009.png",
+          "/private/tmp/prosary-1ma-ch4/ocr/118/result/line-009.txt",
+          "-i",
+          "/private/tmp/prosary-1ma-ch4/ocr/118/result/line-010.png",
+          "/private/tmp/prosary-1ma-ch4/ocr/118/result/line-010.txt",
+          "-i",
+          "/private/tmp/prosary-1ma-ch4/ocr/118/result/line-011.png",
+          "/private/tmp/prosary-1ma-ch4/ocr/118/result/line-011.txt",
+          "-i",
+          "/private/tmp/prosary-1ma-ch4/ocr/118/result/line-012.png",
+          "/private/tmp/prosary-1ma-ch4/ocr/118/result/line-012.txt",
+          "-i",
+          "/private/tmp/prosary-1ma-ch4/ocr/118/result/line-013.png",
+          "/private/tmp/prosary-1ma-ch4/ocr/118/result/line-013.txt",
+          "-i",
+          "/private/tmp/prosary-1ma-ch4/ocr/118/result/line-014.png",
+          "/private/tmp/prosary-1ma-ch4/ocr/118/result/line-014.txt",
+          "-i",
+          "/private/tmp/prosary-1ma-ch4/ocr/118/result/line-015.png",
+          "/private/tmp/prosary-1ma-ch4/ocr/118/result/line-015.txt",
+          "-i",
+          "/private/tmp/prosary-1ma-ch4/ocr/118/result/line-016.png",
+          "/private/tmp/prosary-1ma-ch4/ocr/118/result/line-016.txt",
+          "-i",
+          "/private/tmp/prosary-1ma-ch4/ocr/118/result/line-017.png",
+          "/private/tmp/prosary-1ma-ch4/ocr/118/result/line-017.txt",
+          "ocr",
+          "-s",
+          "-n",
+          "--base-dir",
+          "R",
+          "-m",
+          "/private/tmp/prosary-kraken-ocr/small.safetensors"
+        ],
+        "elapsedSeconds": 8.49,
+        "exitCode": 0,
+        "lines": [
+          {
+            "index": 1,
+            "unit": "chapter4 B118 line1",
+            "rect": [
+              240,
+              6,
+              1620,
+              76
+            ],
+            "image": "/private/tmp/prosary-1ma-ch4/ocr/118/result/line-001.png",
+            "imageSHA256": "1c8243f14d036b09c64c40ccc33b15e53b2e5ea72db393326a0f6ddac82a1df2",
+            "textFile": "/private/tmp/prosary-1ma-ch4/ocr/118/result/line-001.txt",
+            "text": "בבית-צור ויפגשם יהודה בעשרת אלפים איש: וירא את-המחנה"
+          },
+          {
+            "index": 2,
+            "unit": "chapter4 B118 line2",
+            "rect": [
+              240,
+              78,
+              1620,
+              152
+            ],
+            "image": "/private/tmp/prosary-1ma-ch4/ocr/118/result/line-002.png",
+            "imageSHA256": "17aca32aee95d005f49293c3692c7c59ff2633fbe1e434989bc1ba6aae3d6af1",
+            "textFile": "/private/tmp/prosary-1ma-ch4/ocr/118/result/line-002.txt",
+            "text": "הכבד ויתפלל ויאמר ברוך אתה מושיע ישראל המשבית עברת"
+          },
+          {
+            "index": 3,
+            "unit": "chapter4 B118 line3",
+            "rect": [
+              240,
+              156,
+              1620,
+              226
+            ],
+            "image": "/private/tmp/prosary-1ma-ch4/ocr/118/result/line-003.png",
+            "imageSHA256": "00f5c4fd854cc83f97ed9397f01849b99ed2c73fe66e4df742195e65af300d45",
+            "textFile": "/private/tmp/prosary-1ma-ch4/ocr/118/result/line-003.txt",
+            "text": "הגבור ביד-דוד עבדך והמוסר מחנה פלשתים בידי יהונתן כן-"
+          },
+          {
+            "index": 4,
+            "unit": "chapter4 B118 line4",
+            "rect": [
+              240,
+              228,
+              1620,
+              302
+            ],
+            "image": "/private/tmp/prosary-1ma-ch4/ocr/118/result/line-004.png",
+            "imageSHA256": "922165b46a47253644c0dbdf14e0015ece2b35dcaea95264becae8d6224d3c95",
+            "textFile": "/private/tmp/prosary-1ma-ch4/ocr/118/result/line-004.txt",
+            "text": "שאול ונושא כליו: סנר-נא את-המחנה הזה ביד-עמך ישראל"
+          },
+          {
+            "index": 5,
+            "unit": "chapter4 B118 line5",
+            "rect": [
+              240,
+              306,
+              1620,
+              378
+            ],
+            "image": "/private/tmp/prosary-1ma-ch4/ocr/118/result/line-005.png",
+            "imageSHA256": "b721ce0e6fa4ae7e6fd39b387e67fe5bf611d7499482589eb7a6a68706c47a02",
+            "textFile": "/private/tmp/prosary-1ma-ch4/ocr/118/result/line-005.txt",
+            "text": "ויבושו בחילם ובסוסיהם: תן להם מרך ושבר אמץ חןקם ורערו"
+          },
+          {
+            "index": 6,
+            "unit": "chapter4 B118 line6",
+            "rect": [
+              240,
+              379,
+              1620,
+              452
+            ],
+            "image": "/private/tmp/prosary-1ma-ch4/ocr/118/result/line-006.png",
+            "imageSHA256": "ad1b58382d5481cc7f4f61657d13e31418d5aabc1503a31c192ef539dd6beefd",
+            "textFile": "/private/tmp/prosary-1ma-ch4/ocr/118/result/line-006.txt",
+            "text": "בשברם: הפילם בחרב אוהביך ויהללוך כל-יודעי שמך בתוךה:"
+          },
+          {
+            "index": 7,
+            "unit": "chapter4 B118 line7",
+            "rect": [
+              240,
+              455,
+              1620,
+              526
+            ],
+            "image": "/private/tmp/prosary-1ma-ch4/ocr/118/result/line-007.png",
+            "imageSHA256": "2a80d601492c742894adbcddce728372be626795a70f024095603b73672bc952",
+            "textFile": "/private/tmp/prosary-1ma-ch4/ocr/118/result/line-007.txt",
+            "text": "ויתגרו ויקלו ממחנה לוסיאם כחמשת אלסים איש ויפלו לקניהם:"
+          },
+          {
+            "index": 8,
+            "unit": "chapter4 B118 line8",
+            "rect": [
+              240,
+              531,
+              1620,
+              603
+            ],
+            "image": "/private/tmp/prosary-1ma-ch4/ocr/118/result/line-008.png",
+            "imageSHA256": "b3e4bd053a5e6dd43485f351c440a4c0ac12fb8c88189d5ed47e8c594b4aa3ff",
+            "textFile": "/private/tmp/prosary-1ma-ch4/ocr/118/result/line-008.txt",
+            "text": "וכראות ליסיאם את-המכה אשר היתה בצבאו ואת-האמץ אשר"
+          },
+          {
+            "index": 9,
+            "unit": "chapter4 B118 line9",
+            "rect": [
+              240,
+              605,
+              1620,
+              677
+            ],
+            "image": "/private/tmp/prosary-1ma-ch4/ocr/118/result/line-009.png",
+            "imageSHA256": "cd74174adb05cca20d85221a869372a60c1c22ec83c73d18060c9eba298978fa",
+            "textFile": "/private/tmp/prosary-1ma-ch4/ocr/118/result/line-009.txt",
+            "text": "היה ליהודה וכי-נכונים הם אם-לחיות אם-למות בגבורה וישע"
+          },
+          {
+            "index": 10,
+            "unit": "chapter4 B118 line10",
+            "rect": [
+              240,
+              680,
+              1620,
+              753
+            ],
+            "image": "/private/tmp/prosary-1ma-ch4/ocr/118/result/line-010.png",
+            "imageSHA256": "5e786fd90f085c76bcd6c39efabc88edc7d821c59abf8aef52a785406a11a58d",
+            "textFile": "/private/tmp/prosary-1ma-ch4/ocr/118/result/line-010.txt",
+            "text": "לאנטיוכיה וירב לאסף חיל-שכירים לעלות עוד הפעם ליהודה:"
+          },
+          {
+            "index": 11,
+            "unit": "chapter4 B118 line11",
+            "rect": [
+              240,
+              757,
+              1620,
+              828
+            ],
+            "image": "/private/tmp/prosary-1ma-ch4/ocr/118/result/line-011.png",
+            "imageSHA256": "2dd6c41c0bef7065977b3e07ac06827e5c818511d50e65634d36f0d99580affa",
+            "textFile": "/private/tmp/prosary-1ma-ch4/ocr/118/result/line-011.txt",
+            "text": "ויהודה אמר לאחיו הנה נגפו אויבינו נעלה לטהר את-המקדש"
+          },
+          {
+            "index": 12,
+            "unit": "chapter4 B118 line12",
+            "rect": [
+              240,
+              829,
+              1605,
+              903
+            ],
+            "image": "/private/tmp/prosary-1ma-ch4/ocr/118/result/line-012.png",
+            "imageSHA256": "b262afec4733ceb74d22d83b8e73c9d1b5522930afae3b2076c34ec2701ffbe7",
+            "textFile": "/private/tmp/prosary-1ma-ch4/ocr/118/result/line-012.txt",
+            "text": "חולחנכהו: ויקהל כל-המחנה ויעלו הר-ציון: ויראו את-המקדש"
+          },
+          {
+            "index": 13,
+            "unit": "chapter4 B118 line13",
+            "rect": [
+              240,
+              906,
+              1620,
+              979
+            ],
+            "image": "/private/tmp/prosary-1ma-ch4/ocr/118/result/line-013.png",
+            "imageSHA256": "08e482b6d931c4bec168de694ed401a0251cc0a1baee67a9df37c9779a544156",
+            "textFile": "/private/tmp/prosary-1ma-ch4/ocr/118/result/line-013.txt",
+            "text": "שומם והמזבח מחלל והשערים שרופים ובחצרות גדלים סככים"
+          },
+          {
+            "index": 14,
+            "unit": "chapter4 B118 line14",
+            "rect": [
+              240,
+              982,
+              1620,
+              1052
+            ],
+            "image": "/private/tmp/prosary-1ma-ch4/ocr/118/result/line-014.png",
+            "imageSHA256": "489ed72bb06e0282bd47a54081d18b1b4b89d9c6b1f879bc2d47d47085e819a3",
+            "textFile": "/private/tmp/prosary-1ma-ch4/ocr/118/result/line-014.txt",
+            "text": "כמו ביער או כמו באחד הדרים והלשכות שוממות: ויקרעו את-"
+          },
+          {
+            "index": 15,
+            "unit": "chapter4 B118 line15",
+            "rect": [
+              240,
+              1056,
+              1620,
+              1126
+            ],
+            "image": "/private/tmp/prosary-1ma-ch4/ocr/118/result/line-015.png",
+            "imageSHA256": "fdbfab70bc2dc06a5debd79a6848d2d3fa37c7347d0782526cfe73512b98f829",
+            "textFile": "/private/tmp/prosary-1ma-ch4/ocr/118/result/line-015.txt",
+            "text": "בגדיהם ויבכו בכי גדול ויעלו אסר ועל-ראשיהם]: ויקלו על"
+          },
+          {
+            "index": 16,
+            "unit": "chapter4 B118 line16",
+            "rect": [
+              240,
+              1132,
+              1620,
+              1203
+            ],
+            "image": "/private/tmp/prosary-1ma-ch4/ocr/118/result/line-016.png",
+            "imageSHA256": "60c926322c647dca862c4e497f600339dcd924eb0c5d8edb850ee2bf60c831a8",
+            "textFile": "/private/tmp/prosary-1ma-ch4/ocr/118/result/line-016.txt",
+            "text": "פניהם ארצה ויתקעו בחצצרות התרועה ויצעקו אל-השמים: אז"
+          },
+          {
+            "index": 17,
+            "unit": "chapter4 B118 line17",
+            "rect": [
+              240,
+              1204,
+              1620,
+              1275
+            ],
+            "image": "/private/tmp/prosary-1ma-ch4/ocr/118/result/line-017.png",
+            "imageSHA256": "41454b80c9e421f00924edb015bc84a0fdeba720a8dd64231ae6de83c37257bd",
+            "textFile": "/private/tmp/prosary-1ma-ch4/ocr/118/result/line-017.txt",
+            "text": "אמר יהודה לאנשים להלחם את אשר-במצודה עד-אשר יטהר"
+          }
+        ],
+        "notice": "Uncorrected local OCR draft. Manual line bounds supplied; vowels and lexical fidelity require independent comparison to the print."
+      },
+      "lineBounds": [
+        {
+          "rect": [
+            240,
+            6,
+            1620,
+            76
+          ],
+          "unit": "chapter4 B118 line1"
+        },
+        {
+          "rect": [
+            240,
+            78,
+            1620,
+            152
+          ],
+          "unit": "chapter4 B118 line2"
+        },
+        {
+          "rect": [
+            240,
+            156,
+            1620,
+            226
+          ],
+          "unit": "chapter4 B118 line3"
+        },
+        {
+          "rect": [
+            240,
+            228,
+            1620,
+            302
+          ],
+          "unit": "chapter4 B118 line4"
+        },
+        {
+          "rect": [
+            240,
+            306,
+            1620,
+            378
+          ],
+          "unit": "chapter4 B118 line5"
+        },
+        {
+          "rect": [
+            240,
+            379,
+            1620,
+            452
+          ],
+          "unit": "chapter4 B118 line6"
+        },
+        {
+          "rect": [
+            240,
+            455,
+            1620,
+            526
+          ],
+          "unit": "chapter4 B118 line7"
+        },
+        {
+          "rect": [
+            240,
+            531,
+            1620,
+            603
+          ],
+          "unit": "chapter4 B118 line8"
+        },
+        {
+          "rect": [
+            240,
+            605,
+            1620,
+            677
+          ],
+          "unit": "chapter4 B118 line9"
+        },
+        {
+          "rect": [
+            240,
+            680,
+            1620,
+            753
+          ],
+          "unit": "chapter4 B118 line10"
+        },
+        {
+          "rect": [
+            240,
+            757,
+            1620,
+            828
+          ],
+          "unit": "chapter4 B118 line11"
+        },
+        {
+          "rect": [
+            240,
+            829,
+            1605,
+            903
+          ],
+          "unit": "chapter4 B118 line12"
+        },
+        {
+          "rect": [
+            240,
+            906,
+            1620,
+            979
+          ],
+          "unit": "chapter4 B118 line13"
+        },
+        {
+          "rect": [
+            240,
+            982,
+            1620,
+            1052
+          ],
+          "unit": "chapter4 B118 line14"
+        },
+        {
+          "rect": [
+            240,
+            1056,
+            1620,
+            1126
+          ],
+          "unit": "chapter4 B118 line15"
+        },
+        {
+          "rect": [
+            240,
+            1132,
+            1620,
+            1203
+          ],
+          "unit": "chapter4 B118 line16"
+        },
+        {
+          "rect": [
+            240,
+            1204,
+            1620,
+            1275
+          ],
+          "unit": "chapter4 B118 line17"
+        }
+      ],
+      "rawOCR": "בבית-צור ויפגשם יהודה בעשרת אלפים איש: וירא את-המחנה\nהכבד ויתפלל ויאמר ברוך אתה מושיע ישראל המשבית עברת\nהגבור ביד-דוד עבדך והמוסר מחנה פלשתים בידי יהונתן כן-\nשאול ונושא כליו: סנר-נא את-המחנה הזה ביד-עמך ישראל\nויבושו בחילם ובסוסיהם: תן להם מרך ושבר אמץ חןקם ורערו\nבשברם: הפילם בחרב אוהביך ויהללוך כל-יודעי שמך בתוךה:\nויתגרו ויקלו ממחנה לוסיאם כחמשת אלסים איש ויפלו לקניהם:\nוכראות ליסיאם את-המכה אשר היתה בצבאו ואת-האמץ אשר\nהיה ליהודה וכי-נכונים הם אם-לחיות אם-למות בגבורה וישע\nלאנטיוכיה וירב לאסף חיל-שכירים לעלות עוד הפעם ליהודה:\nויהודה אמר לאחיו הנה נגפו אויבינו נעלה לטהר את-המקדש\nחולחנכהו: ויקהל כל-המחנה ויעלו הר-ציון: ויראו את-המקדש\nשומם והמזבח מחלל והשערים שרופים ובחצרות גדלים סככים\nכמו ביער או כמו באחד הדרים והלשכות שוממות: ויקרעו את-\nבגדיהם ויבכו בכי גדול ויעלו אסר ועל-ראשיהם]: ויקלו על\nפניהם ארצה ויתקעו בחצצרות התרועה ויצעקו אל-השמים: אז\nאמר יהודה לאנשים להלחם את אשר-במצודה עד-אשר יטהר\n"
+    },
+    {
+      "page": 119,
+      "recognition": {
+        "sourceImage": "/private/tmp/prosary-1ma-ch4/B119.png",
+        "sourceImageSHA256": "7434c9d33364f701211698b773bdfe5d73bd81270d994d688840a2206b09b321",
+        "sourceImageSize": [
+          1980,
+          1145
+        ],
+        "model": "/private/tmp/prosary-kraken-ocr/small.safetensors",
+        "modelSHA256": "3108259779f5abfed3908a1c9eafba64d17e4a2a169368c539ecfeff04c018f3",
+        "command": [
+          "/private/tmp/prosary-kraken-ocr/bin/kraken",
+          "-i",
+          "/private/tmp/prosary-1ma-ch4/ocr/119/result/line-001.png",
+          "/private/tmp/prosary-1ma-ch4/ocr/119/result/line-001.txt",
+          "-i",
+          "/private/tmp/prosary-1ma-ch4/ocr/119/result/line-002.png",
+          "/private/tmp/prosary-1ma-ch4/ocr/119/result/line-002.txt",
+          "-i",
+          "/private/tmp/prosary-1ma-ch4/ocr/119/result/line-003.png",
+          "/private/tmp/prosary-1ma-ch4/ocr/119/result/line-003.txt",
+          "-i",
+          "/private/tmp/prosary-1ma-ch4/ocr/119/result/line-004.png",
+          "/private/tmp/prosary-1ma-ch4/ocr/119/result/line-004.txt",
+          "-i",
+          "/private/tmp/prosary-1ma-ch4/ocr/119/result/line-005.png",
+          "/private/tmp/prosary-1ma-ch4/ocr/119/result/line-005.txt",
+          "-i",
+          "/private/tmp/prosary-1ma-ch4/ocr/119/result/line-006.png",
+          "/private/tmp/prosary-1ma-ch4/ocr/119/result/line-006.txt",
+          "-i",
+          "/private/tmp/prosary-1ma-ch4/ocr/119/result/line-007.png",
+          "/private/tmp/prosary-1ma-ch4/ocr/119/result/line-007.txt",
+          "-i",
+          "/private/tmp/prosary-1ma-ch4/ocr/119/result/line-008.png",
+          "/private/tmp/prosary-1ma-ch4/ocr/119/result/line-008.txt",
+          "-i",
+          "/private/tmp/prosary-1ma-ch4/ocr/119/result/line-009.png",
+          "/private/tmp/prosary-1ma-ch4/ocr/119/result/line-009.txt",
+          "-i",
+          "/private/tmp/prosary-1ma-ch4/ocr/119/result/line-010.png",
+          "/private/tmp/prosary-1ma-ch4/ocr/119/result/line-010.txt",
+          "-i",
+          "/private/tmp/prosary-1ma-ch4/ocr/119/result/line-011.png",
+          "/private/tmp/prosary-1ma-ch4/ocr/119/result/line-011.txt",
+          "-i",
+          "/private/tmp/prosary-1ma-ch4/ocr/119/result/line-012.png",
+          "/private/tmp/prosary-1ma-ch4/ocr/119/result/line-012.txt",
+          "-i",
+          "/private/tmp/prosary-1ma-ch4/ocr/119/result/line-013.png",
+          "/private/tmp/prosary-1ma-ch4/ocr/119/result/line-013.txt",
+          "-i",
+          "/private/tmp/prosary-1ma-ch4/ocr/119/result/line-014.png",
+          "/private/tmp/prosary-1ma-ch4/ocr/119/result/line-014.txt",
+          "-i",
+          "/private/tmp/prosary-1ma-ch4/ocr/119/result/line-015.png",
+          "/private/tmp/prosary-1ma-ch4/ocr/119/result/line-015.txt",
+          "ocr",
+          "-s",
+          "-n",
+          "--base-dir",
+          "R",
+          "-m",
+          "/private/tmp/prosary-kraken-ocr/small.safetensors"
+        ],
+        "elapsedSeconds": 8.32,
+        "exitCode": 0,
+        "lines": [
+          {
+            "index": 1,
+            "unit": "chapter4 B119 line1",
+            "rect": [
+              240,
+              9,
+              1605,
+              75
+            ],
+            "image": "/private/tmp/prosary-1ma-ch4/ocr/119/result/line-001.png",
+            "imageSHA256": "a0d4816aa40b9d21616b8e5721e771aa00e87e642c8a59ee239aee6f18647ff3",
+            "textFile": "/private/tmp/prosary-1ma-ch4/ocr/119/result/line-001.txt",
+            "text": "אָת-המקדש: ויבחר כהנים תמימים חפצי תורה: ויטהרו אָת-"
+          },
+          {
+            "index": 2,
+            "unit": "chapter4 B119 line2",
+            "rect": [
+              240,
+              81,
+              1620,
+              151
+            ],
+            "image": "/private/tmp/prosary-1ma-ch4/ocr/119/result/line-002.png",
+            "imageSHA256": "f6a6feb72e5aaaf9bd661cbf99bfe1348f2cac89a35fbcd7f14874031bf360e4",
+            "textFile": "/private/tmp/prosary-1ma-ch4/ocr/119/result/line-002.txt",
+            "text": "המקדש ויוציאו את-אַבני השקוץ למקום טמא: ויועצו על-מזפח"
+          },
+          {
+            "index": 3,
+            "unit": "chapter4 B119 line3",
+            "rect": [
+              240,
+              152,
+              1620,
+              228
+            ],
+            "image": "/private/tmp/prosary-1ma-ch4/ocr/119/result/line-003.png",
+            "imageSHA256": "0abf07ea0f463da8b2a165784883bc677c464e74fc0cf3e65f3706c0819f204b",
+            "textFile": "/private/tmp/prosary-1ma-ch4/ocr/119/result/line-003.txt",
+            "text": "העולה המחלל מה-לעשות לו: ותצלח עליהם מחשבה טובה"
+          },
+          {
+            "index": 4,
+            "unit": "chapter4 B119 line4",
+            "rect": [
+              240,
+              229,
+              1620,
+              302
+            ],
+            "image": "/private/tmp/prosary-1ma-ch4/ocr/119/result/line-004.png",
+            "imageSHA256": "cb6a0c74f83a8d753831cea56cc4cb91d2f90d8aa24f61e39f599060c998d11e",
+            "textFile": "/private/tmp/prosary-1ma-ch4/ocr/119/result/line-004.txt",
+            "text": "לנתץ אותו לבלתי-היות להם למוקש כי הגוים טמאוהו ויתצו את-"
+          },
+          {
+            "index": 5,
+            "unit": "chapter4 B119 line5",
+            "rect": [
+              240,
+              306,
+              1620,
+              380
+            ],
+            "image": "/private/tmp/prosary-1ma-ch4/ocr/119/result/line-005.png",
+            "imageSHA256": "2e19575340bc810807f356fe12fcea676ae68ed343fd19524bf4c6cc06731960",
+            "textFile": "/private/tmp/prosary-1ma-ch4/ocr/119/result/line-005.txt",
+            "text": "המןבח: ויניחו את-האָבנים על-הר הבית במקום מיחד עד-בוא"
+          },
+          {
+            "index": 6,
+            "unit": "chapter4 B119 line6",
+            "rect": [
+              240,
+              379,
+              1620,
+              453
+            ],
+            "image": "/private/tmp/prosary-1ma-ch4/ocr/119/result/line-006.png",
+            "imageSHA256": "3459c2efd08403496deeb5eb5b4524a7ad6daa5094e0a53f0bd8674967697759",
+            "textFile": "/private/tmp/prosary-1ma-ch4/ocr/119/result/line-006.txt",
+            "text": "גביא להורות עליהן: ויקחו אבנים שלמות על-פי התורה ויבנו"
+          },
+          {
+            "index": 7,
+            "unit": "chapter4 B119 line7",
+            "rect": [
+              240,
+              463,
+              1620,
+              529
+            ],
+            "image": "/private/tmp/prosary-1ma-ch4/ocr/119/result/line-007.png",
+            "imageSHA256": "6400622e81d1efe424316b8a70be687a497ce68bf214861eafe0dc6e9d60b9f5",
+            "textFile": "/private/tmp/prosary-1ma-ch4/ocr/119/result/line-007.txt",
+            "text": "מןבח חדש כראשון: ויבנו את-המקדש ואת-פנים הבית ואת-"
+          },
+          {
+            "index": 8,
+            "unit": "chapter4 B119 line8",
+            "rect": [
+              240,
+              533,
+              1620,
+              604
+            ],
+            "image": "/private/tmp/prosary-1ma-ch4/ocr/119/result/line-008.png",
+            "imageSHA256": "259a68899f9bb3a575efec10754ba936083518d077b7b2a38c2e47ab339b2830",
+            "textFile": "/private/tmp/prosary-1ma-ch4/ocr/119/result/line-008.txt",
+            "text": "החצרות קדשו: ויעשו כלי-קדש חדשים ויביאו את-המנוךה ואת-"
+          },
+          {
+            "index": 9,
+            "unit": "chapter4 B119 line9",
+            "rect": [
+              240,
+              608,
+              1620,
+              681
+            ],
+            "image": "/private/tmp/prosary-1ma-ch4/ocr/119/result/line-009.png",
+            "imageSHA256": "7155dbeac2a7c09f550934afd8df6f3a4e8b75ea7312f47b053540c9fbdc29ad",
+            "textFile": "/private/tmp/prosary-1ma-ch4/ocr/119/result/line-009.txt",
+            "text": "מזבח הקטרת ואת-השלחן להיכל: ויקטרו על-המןבח ויעלו את-"
+          },
+          {
+            "index": 10,
+            "unit": "chapter4 B119 line10",
+            "rect": [
+              240,
+              684,
+              1620,
+              758
+            ],
+            "image": "/private/tmp/prosary-1ma-ch4/ocr/119/result/line-010.png",
+            "imageSHA256": "d0c8536dcceb2fa9efeedd1fb59a4d8db1afb3580b46e4877e501e7644c5204e",
+            "textFile": "/private/tmp/prosary-1ma-ch4/ocr/119/result/line-010.txt",
+            "text": "הגרות אשר במנורה ויאירו בהיכל: וישימו על-השלחן לחם ויורידו"
+          },
+          {
+            "index": 11,
+            "unit": "chapter4 B119 line11",
+            "rect": [
+              240,
+              757,
+              1620,
+              830
+            ],
+            "image": "/private/tmp/prosary-1ma-ch4/ocr/119/result/line-011.png",
+            "imageSHA256": "3373abdb8845d9b5ab806b3d4333fb848a24c870fa5cf4a878a687f1af4e3e2d",
+            "textFile": "/private/tmp/prosary-1ma-ch4/ocr/119/result/line-011.txt",
+            "text": "את-הפרכות ויכלו את-כל-המעשים אשר עשו: וישכימו בבקר"
+          },
+          {
+            "index": 12,
+            "unit": "chapter4 B119 line12",
+            "rect": [
+              240,
+              834,
+              1620,
+              904
+            ],
+            "image": "/private/tmp/prosary-1ma-ch4/ocr/119/result/line-012.png",
+            "imageSHA256": "25485bf7fc25d8a31a56995f560b5e6d2cb1ab2f27b258d4d312bff4a23ffcf2",
+            "textFile": "/private/tmp/prosary-1ma-ch4/ocr/119/result/line-012.txt",
+            "text": "בחמשה ועשרים לחדש התשיעי הוא חדש כסלו בשמנה וארבעים"
+          },
+          {
+            "index": 13,
+            "unit": "chapter4 B119 line13",
+            "rect": [
+              240,
+              909,
+              1620,
+              979
+            ],
+            "image": "/private/tmp/prosary-1ma-ch4/ocr/119/result/line-013.png",
+            "imageSHA256": "ec4078bf3668ef08cb2bd0e1f671c02998036ebf308a21674190678f1c866625",
+            "textFile": "/private/tmp/prosary-1ma-ch4/ocr/119/result/line-013.txt",
+            "text": "ומאה שנה: ויקריבו קרבן על-פי התוךה על-מזבח העולה החדש"
+          },
+          {
+            "index": 14,
+            "unit": "chapter4 B119 line14",
+            "rect": [
+              240,
+              990,
+              1620,
+              1054
+            ],
+            "image": "/private/tmp/prosary-1ma-ch4/ocr/119/result/line-014.png",
+            "imageSHA256": "3fb30911da9daac37424af4d11f6b67b9dc75aa350829e205fa0d959f23bbf1f",
+            "textFile": "/private/tmp/prosary-1ma-ch4/ocr/119/result/line-014.txt",
+            "text": "אשר עשו: בעת וביום אשר טמאוהו הנוים בעצם היום ההוא"
+          },
+          {
+            "index": 15,
+            "unit": "chapter4 B119 line15",
+            "rect": [
+              240,
+              1059,
+              1620,
+              1132
+            ],
+            "image": "/private/tmp/prosary-1ma-ch4/ocr/119/result/line-015.png",
+            "imageSHA256": "b8af84c6fab91c8caf1e73a3ef2f688da9cca07928ff5d81716c1b17df29636e",
+            "textFile": "/private/tmp/prosary-1ma-ch4/ocr/119/result/line-015.txt",
+            "text": "קחנך בשירים ובנבלים ובכנורות ובמצלתים: ויפלו כל-העם על-"
+          }
+        ],
+        "notice": "Uncorrected local OCR draft. Manual line bounds supplied; vowels and lexical fidelity require independent comparison to the print."
+      },
+      "lineBounds": [
+        {
+          "rect": [
+            240,
+            9,
+            1605,
+            75
+          ],
+          "unit": "chapter4 B119 line1"
+        },
+        {
+          "rect": [
+            240,
+            81,
+            1620,
+            151
+          ],
+          "unit": "chapter4 B119 line2"
+        },
+        {
+          "rect": [
+            240,
+            152,
+            1620,
+            228
+          ],
+          "unit": "chapter4 B119 line3"
+        },
+        {
+          "rect": [
+            240,
+            229,
+            1620,
+            302
+          ],
+          "unit": "chapter4 B119 line4"
+        },
+        {
+          "rect": [
+            240,
+            306,
+            1620,
+            380
+          ],
+          "unit": "chapter4 B119 line5"
+        },
+        {
+          "rect": [
+            240,
+            379,
+            1620,
+            453
+          ],
+          "unit": "chapter4 B119 line6"
+        },
+        {
+          "rect": [
+            240,
+            463,
+            1620,
+            529
+          ],
+          "unit": "chapter4 B119 line7"
+        },
+        {
+          "rect": [
+            240,
+            533,
+            1620,
+            604
+          ],
+          "unit": "chapter4 B119 line8"
+        },
+        {
+          "rect": [
+            240,
+            608,
+            1620,
+            681
+          ],
+          "unit": "chapter4 B119 line9"
+        },
+        {
+          "rect": [
+            240,
+            684,
+            1620,
+            758
+          ],
+          "unit": "chapter4 B119 line10"
+        },
+        {
+          "rect": [
+            240,
+            757,
+            1620,
+            830
+          ],
+          "unit": "chapter4 B119 line11"
+        },
+        {
+          "rect": [
+            240,
+            834,
+            1620,
+            904
+          ],
+          "unit": "chapter4 B119 line12"
+        },
+        {
+          "rect": [
+            240,
+            909,
+            1620,
+            979
+          ],
+          "unit": "chapter4 B119 line13"
+        },
+        {
+          "rect": [
+            240,
+            990,
+            1620,
+            1054
+          ],
+          "unit": "chapter4 B119 line14"
+        },
+        {
+          "rect": [
+            240,
+            1059,
+            1620,
+            1132
+          ],
+          "unit": "chapter4 B119 line15"
+        }
+      ],
+      "rawOCR": "אָת-המקדש: ויבחר כהנים תמימים חפצי תורה: ויטהרו אָת-\nהמקדש ויוציאו את-אַבני השקוץ למקום טמא: ויועצו על-מזפח\nהעולה המחלל מה-לעשות לו: ותצלח עליהם מחשבה טובה\nלנתץ אותו לבלתי-היות להם למוקש כי הגוים טמאוהו ויתצו את-\nהמןבח: ויניחו את-האָבנים על-הר הבית במקום מיחד עד-בוא\nגביא להורות עליהן: ויקחו אבנים שלמות על-פי התורה ויבנו\nמןבח חדש כראשון: ויבנו את-המקדש ואת-פנים הבית ואת-\nהחצרות קדשו: ויעשו כלי-קדש חדשים ויביאו את-המנוךה ואת-\nמזבח הקטרת ואת-השלחן להיכל: ויקטרו על-המןבח ויעלו את-\nהגרות אשר במנורה ויאירו בהיכל: וישימו על-השלחן לחם ויורידו\nאת-הפרכות ויכלו את-כל-המעשים אשר עשו: וישכימו בבקר\nבחמשה ועשרים לחדש התשיעי הוא חדש כסלו בשמנה וארבעים\nומאה שנה: ויקריבו קרבן על-פי התוךה על-מזבח העולה החדש\nאשר עשו: בעת וביום אשר טמאוהו הנוים בעצם היום ההוא\nקחנך בשירים ובנבלים ובכנורות ובמצלתים: ויפלו כל-העם על-\n"
+    },
+    {
+      "page": 120,
+      "recognition": {
+        "sourceImage": "/private/tmp/prosary-1ma-ch4/B120.png",
+        "sourceImageSHA256": "e9c6155e1f48612341dfa12dc090e4a7027bc0238c40fba2ff6b68cf8bc92e8a",
+        "sourceImageSize": [
+          1980,
+          766
+        ],
+        "model": "/private/tmp/prosary-kraken-ocr/small.safetensors",
+        "modelSHA256": "3108259779f5abfed3908a1c9eafba64d17e4a2a169368c539ecfeff04c018f3",
+        "command": [
+          "/private/tmp/prosary-kraken-ocr/bin/kraken",
+          "-i",
+          "/private/tmp/prosary-1ma-ch4/ocr/120/result/line-001.png",
+          "/private/tmp/prosary-1ma-ch4/ocr/120/result/line-001.txt",
+          "-i",
+          "/private/tmp/prosary-1ma-ch4/ocr/120/result/line-002.png",
+          "/private/tmp/prosary-1ma-ch4/ocr/120/result/line-002.txt",
+          "-i",
+          "/private/tmp/prosary-1ma-ch4/ocr/120/result/line-003.png",
+          "/private/tmp/prosary-1ma-ch4/ocr/120/result/line-003.txt",
+          "-i",
+          "/private/tmp/prosary-1ma-ch4/ocr/120/result/line-004.png",
+          "/private/tmp/prosary-1ma-ch4/ocr/120/result/line-004.txt",
+          "-i",
+          "/private/tmp/prosary-1ma-ch4/ocr/120/result/line-005.png",
+          "/private/tmp/prosary-1ma-ch4/ocr/120/result/line-005.txt",
+          "-i",
+          "/private/tmp/prosary-1ma-ch4/ocr/120/result/line-006.png",
+          "/private/tmp/prosary-1ma-ch4/ocr/120/result/line-006.txt",
+          "-i",
+          "/private/tmp/prosary-1ma-ch4/ocr/120/result/line-007.png",
+          "/private/tmp/prosary-1ma-ch4/ocr/120/result/line-007.txt",
+          "-i",
+          "/private/tmp/prosary-1ma-ch4/ocr/120/result/line-008.png",
+          "/private/tmp/prosary-1ma-ch4/ocr/120/result/line-008.txt",
+          "-i",
+          "/private/tmp/prosary-1ma-ch4/ocr/120/result/line-009.png",
+          "/private/tmp/prosary-1ma-ch4/ocr/120/result/line-009.txt",
+          "-i",
+          "/private/tmp/prosary-1ma-ch4/ocr/120/result/line-010.png",
+          "/private/tmp/prosary-1ma-ch4/ocr/120/result/line-010.txt",
+          "ocr",
+          "-s",
+          "-n",
+          "--base-dir",
+          "R",
+          "-m",
+          "/private/tmp/prosary-kraken-ocr/small.safetensors"
+        ],
+        "elapsedSeconds": 7.71,
+        "exitCode": 0,
+        "lines": [
+          {
+            "index": 1,
+            "unit": "chapter4 B120 line1",
+            "rect": [
+              240,
+              16,
+              1620,
+              89
+            ],
+            "image": "/private/tmp/prosary-1ma-ch4/ocr/120/result/line-001.png",
+            "imageSHA256": "b9de1a3560bfdaed95d3b90001e6a73f15ecd8b2ef59a30d35a1dc42c4c48c7f",
+            "textFile": "/private/tmp/prosary-1ma-ch4/ocr/120/result/line-001.txt",
+            "text": "פניהם ויתסללו ויברכו לשמים אשר הצליח להם: ויעשו את-"
+          },
+          {
+            "index": 2,
+            "unit": "chapter4 B120 line2",
+            "rect": [
+              240,
+              92,
+              1620,
+              165
+            ],
+            "image": "/private/tmp/prosary-1ma-ch4/ocr/120/result/line-002.png",
+            "imageSHA256": "b4e53ca1d3136d507d7ea7afa4103a0f73336374a84ea5ad7eddd0faa94c96a2",
+            "textFile": "/private/tmp/prosary-1ma-ch4/ocr/120/result/line-002.txt",
+            "text": "חנכת דמןבח ימים שמונה ויקריבו עלות בשמחה ויקריבו זבח"
+          },
+          {
+            "index": 3,
+            "unit": "chapter4 B120 line3",
+            "rect": [
+              240,
+              166,
+              1620,
+              237
+            ],
+            "image": "/private/tmp/prosary-1ma-ch4/ocr/120/result/line-003.png",
+            "imageSHA256": "429ae097f4cadb7c1f1f01b8cfeddbdcf6df8ce736ac930b266b5e851e63084e",
+            "textFile": "/private/tmp/prosary-1ma-ch4/ocr/120/result/line-003.txt",
+            "text": "שלמים ותודה: ויסארו את-פנירההיכל בעמרות זהב ובמשקצות"
+          },
+          {
+            "index": 4,
+            "unit": "chapter4 B120 line4",
+            "rect": [
+              240,
+              239,
+              1620,
+              312
+            ],
+            "image": "/private/tmp/prosary-1ma-ch4/ocr/120/result/line-004.png",
+            "imageSHA256": "5bb60ce1f36dfe4f3c85ac967ed9f2d71118e9fb9d8af15c569e13409820326d",
+            "textFile": "/private/tmp/prosary-1ma-ch4/ocr/120/result/line-004.txt",
+            "text": "ויחנכו את-השערים והלשכות ויעשו להם דלתות ותהי שמחה"
+          },
+          {
+            "index": 5,
+            "unit": "chapter4 B120 line5",
+            "rect": [
+              240,
+              311,
+              1620,
+              386
+            ],
+            "image": "/private/tmp/prosary-1ma-ch4/ocr/120/result/line-005.png",
+            "imageSHA256": "90a4b68e2ded749d2f18993051990216dd2d26944dc905760e74a8fe93104dd6",
+            "textFile": "/private/tmp/prosary-1ma-ch4/ocr/120/result/line-005.txt",
+            "text": "גדולה בעם מאד ותסר חרפת גוים: ויקים יהוךה ואחיו וכל-קהל"
+          },
+          {
+            "index": 6,
+            "unit": "chapter4 B120 line6",
+            "rect": [
+              240,
+              391,
+              1620,
+              463
+            ],
+            "image": "/private/tmp/prosary-1ma-ch4/ocr/120/result/line-006.png",
+            "imageSHA256": "0cb725e4fe182b8ea203239b69e8101b1dfc15aedac8693746adf64df587d4dd",
+            "textFile": "/private/tmp/prosary-1ma-ch4/ocr/120/result/line-006.txt",
+            "text": "ישראל להיות ימי חנכת המןכח נעשים במועךם שנה בשנה ימים"
+          },
+          {
+            "index": 7,
+            "unit": "chapter4 B120 line7",
+            "rect": [
+              240,
+              463,
+              1620,
+              534
+            ],
+            "image": "/private/tmp/prosary-1ma-ch4/ocr/120/result/line-007.png",
+            "imageSHA256": "0f31a320f1e4223297b77f61e30614555660cc2db27f752fb66cd5a39a8868ec",
+            "textFile": "/private/tmp/prosary-1ma-ch4/ocr/120/result/line-007.txt",
+            "text": "שמונה מיום חמשה ועשרים לחדש כסלו בשמחה וניל: ויבנו"
+          },
+          {
+            "index": 8,
+            "unit": "chapter4 B120 line8",
+            "rect": [
+              240,
+              536,
+              1620,
+              608
+            ],
+            "image": "/private/tmp/prosary-1ma-ch4/ocr/120/result/line-008.png",
+            "imageSHA256": "a55e174c8f101f8bea5818c08f3aabbdde823f771d7c4dad078f45bb8cac995c",
+            "textFile": "/private/tmp/prosary-1ma-ch4/ocr/120/result/line-008.txt",
+            "text": "כעת ההיא את-הרציון מסביב חומה גבוהה ומגדלים חזקים כל-"
+          },
+          {
+            "index": 9,
+            "unit": "chapter4 B120 line9",
+            "rect": [
+              240,
+              610,
+              1620,
+              685
+            ],
+            "image": "/private/tmp/prosary-1ma-ch4/ocr/120/result/line-009.png",
+            "imageSHA256": "8b3df73b491e90e09f90b127f318e2b165961840edfbae817fd2b3bb26bcffbd",
+            "textFile": "/private/tmp/prosary-1ma-ch4/ocr/120/result/line-009.txt",
+            "text": "יבאו הטים וירממים כאשר עשו בראשונה: וישם שם חיל לשמרו"
+          },
+          {
+            "index": 10,
+            "unit": "chapter4 B120 line10",
+            "rect": [
+              240,
+              686,
+              1620,
+              757
+            ],
+            "image": "/private/tmp/prosary-1ma-ch4/ocr/120/result/line-010.png",
+            "imageSHA256": "ee58e80eec02ade652f9785c5d2e86fb84faf6b4c0758de0b1042337a6bb857d",
+            "textFile": "/private/tmp/prosary-1ma-ch4/ocr/120/result/line-010.txt",
+            "text": "ויבצר לשמר אותו את-בית-צור להיות לעם מבצר בפני אדום:"
+          }
+        ],
+        "notice": "Uncorrected local OCR draft. Manual line bounds supplied; vowels and lexical fidelity require independent comparison to the print."
+      },
+      "lineBounds": [
+        {
+          "rect": [
+            240,
+            16,
+            1620,
+            89
+          ],
+          "unit": "chapter4 B120 line1"
+        },
+        {
+          "rect": [
+            240,
+            92,
+            1620,
+            165
+          ],
+          "unit": "chapter4 B120 line2"
+        },
+        {
+          "rect": [
+            240,
+            166,
+            1620,
+            237
+          ],
+          "unit": "chapter4 B120 line3"
+        },
+        {
+          "rect": [
+            240,
+            239,
+            1620,
+            312
+          ],
+          "unit": "chapter4 B120 line4"
+        },
+        {
+          "rect": [
+            240,
+            311,
+            1620,
+            386
+          ],
+          "unit": "chapter4 B120 line5"
+        },
+        {
+          "rect": [
+            240,
+            391,
+            1620,
+            463
+          ],
+          "unit": "chapter4 B120 line6"
+        },
+        {
+          "rect": [
+            240,
+            463,
+            1620,
+            534
+          ],
+          "unit": "chapter4 B120 line7"
+        },
+        {
+          "rect": [
+            240,
+            536,
+            1620,
+            608
+          ],
+          "unit": "chapter4 B120 line8"
+        },
+        {
+          "rect": [
+            240,
+            610,
+            1620,
+            685
+          ],
+          "unit": "chapter4 B120 line9"
+        },
+        {
+          "rect": [
+            240,
+            686,
+            1620,
+            757
+          ],
+          "unit": "chapter4 B120 line10"
+        }
+      ],
+      "rawOCR": "פניהם ויתסללו ויברכו לשמים אשר הצליח להם: ויעשו את-\nחנכת דמןבח ימים שמונה ויקריבו עלות בשמחה ויקריבו זבח\nשלמים ותודה: ויסארו את-פנירההיכל בעמרות זהב ובמשקצות\nויחנכו את-השערים והלשכות ויעשו להם דלתות ותהי שמחה\nגדולה בעם מאד ותסר חרפת גוים: ויקים יהוךה ואחיו וכל-קהל\nישראל להיות ימי חנכת המןכח נעשים במועךם שנה בשנה ימים\nשמונה מיום חמשה ועשרים לחדש כסלו בשמחה וניל: ויבנו\nכעת ההיא את-הרציון מסביב חומה גבוהה ומגדלים חזקים כל-\nיבאו הטים וירממים כאשר עשו בראשונה: וישם שם חיל לשמרו\nויבצר לשמר אותו את-בית-צור להיות לעם מבצר בפני אדום:\n"
+    }
+  ],
+  "sourcePDFSHA256": "656891d377d2e3d4a9216723d94205488423907bf01df424b9f0b9de1560051e",
+  "reviewedDisagreements": [
+    {
+      "verse": 3,
+      "page": 115,
+      "bounds": [
+        0.11,
+        0.465,
+        0.455,
+        0.495
+      ],
+      "scale": 12,
+      "imageSHA256": "f56c6d5c599c8d6f0334a3c883bb3899cdf5cdc7c2d1edd6d4dc8318566276ac",
+      "draft": "והגבורים",
+      "printedSource": "והגבירים",
+      "disposition": "Corrected from enlarged print crop, not automatic OCR replacement."
+    },
+    {
+      "verse": 15,
+      "page": 116,
+      "bounds": [
+        0.565,
+        0.32,
+        0.83,
+        0.352
+      ],
+      "scale": 12,
+      "imageSHA256": "dff3001bc82ed9d3478343058a8819437c75702461977cb387cb1955f9f91fd9",
+      "draft": "המאסף",
+      "printedSource": "והמאסף",
+      "disposition": "Corrected from enlarged print crop, not automatic OCR replacement."
+    },
+    {
+      "verse": 23,
+      "page": 117,
+      "bounds": [
+        0.385,
+        0.299,
+        0.78,
+        0.338
+      ],
+      "scale": 12,
+      "imageSHA256": "4a1a8cf99ddefe58ec5622e7e2691bd86e20804625b99251eef8541746a667ba",
+      "draft": "וארגמנים",
+      "printedSource": "וארגמן־ים",
+      "disposition": "Corrected from enlarged print crop, not automatic OCR replacement."
+    },
+    {
+      "verse": 51,
+      "page": 119,
+      "bounds": [
+        0.58,
+        0.373,
+        0.835,
+        0.405
+      ],
+      "scale": 12,
+      "imageSHA256": "d445ed978c673e4084b5e6869b3b10e79a5990027e20cb98309f365cafb082bb",
+      "draft": "הפרכת",
+      "printedSource": "הפרכות",
+      "disposition": "Corrected from enlarged print crop, not automatic OCR replacement."
+    },
+    {
+      "verse": 57,
+      "page": 120,
+      "bounds": [
+        0.32,
+        0.177,
+        0.67,
+        0.213
+      ],
+      "scale": 12,
+      "imageSHA256": "5632927cce976c3ffda4b0732ec6609be09fbc09407b2d7a493c7115a27c3d91",
+      "draft": "פני־היכל",
+      "printedSource": "פני־ההיכל",
+      "disposition": "Corrected from enlarged print crop, not automatic OCR replacement."
+    },
+    {
+      "verse": 20,
+      "page": 117,
+      "bounds": [
+        0.195,
+        0.2,
+        0.63,
+        0.239
+      ],
+      "scale": 12,
+      "imageSHA256": "a2175832b8cf9f776ce66c31fc78867ce2e276142e4934075d09435047fc1c26",
+      "draft": "ושורפים",
+      "printedSource": "ושורפים",
+      "disposition": "Retained: enlarged print confirms initial vav, omitted by OCR."
+    },
+    {
+      "verse": 58,
+      "page": 120,
+      "bounds": [
+        0.29,
+        0.229,
+        0.51,
+        0.269
+      ],
+      "scale": 12,
+      "imageSHA256": "8853df2270c072b4b22b42f7303c2e2596f47cc63d0c3352aa78991e06b43b98",
+      "draft": "ויקם",
+      "ocr": "ויקים",
+      "disposition": "Independent second-eye glyph comparison confirms ויקם. The disputed descending stroke belongs to ק; there is no separate י-shaped head. Existing draft retained.",
+      "printedSource": "ויקם"
+    }
+  ],
+  "limitations": [
+    "This is a consonantal comparison against a provisional draft, not an accuracy certificate.",
+    "No vowel marks are evaluated or generated.",
+    "All line bounds were visually checked. Two merged row candidates were split, long marginal-label rows narrowed, and B116 crop expanded to retain a tall first-line lamed.",
+    "Other discrepancies were checked against the body images; joined tokens and ordinary OCR confusions remain recorded, not silently corrected."
+  ]
+}

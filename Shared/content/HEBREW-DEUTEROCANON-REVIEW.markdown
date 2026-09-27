@@ -74,9 +74,14 @@ Book IDs: `TOB`, `JDT`, `WIS`, `SIR`, `BAR`, `1MA`, `2MA`; additions are separat
 numbering and document it. Do not overwrite Masoretic Daniel or silently assign Vulgate
 chapter labels. Daily-reading crosswalks will be reviewed separately against these units.
 
-Tobit uses the explicitly identified long Greek recension printed in Hiller's parallel
-translation. The shorter recension is not interleaved with it. Credit Hiller, not Kahana,
-as its translator. The two recensions' numbering is not interchangeable.
+Tobit uses the explicitly identified **short Greek recension** printed in the upper
+part of Hiller's parallel translation. Independent inventory found all 14 chapters,
+228 printed units and 35 text pages without missing labels. The introduction explicitly
+attributes gaps in the long recension's chapters 4 and 13 to lost manuscript leaves;
+that incomplete draft is archived separately under `Shared/reports/hebrew-wikisource/`
+and is not blended into the chosen text. `TOB-recension-decision.json` records the
+source-backed change of selection. Credit Hiller, not Kahana, as translator. The two
+recensions' numbering is not interchangeable.
 
 ## Reference scans
 
@@ -108,6 +113,14 @@ subverse labels, and cross-chapter physical-order exceptions separately in revie
 evidence. These require a shared representation before import. Do not discard them,
 merge distinct witnesses into one verse, or silently relabel them to satisfy the current
 numeric unit contract. Their presence in review evidence is not production support.
+
+Susanna uses the separately titled lower Theodotion text in A2 pages 237–242. The
+upper old Greek text and the following Bel and the Dragon are separate works/versions.
+Its independent margin inventory finds 59 units ending at printed label 64, including
+an apparent repeated `כ–כא` margin label after 39 and before 42. The draft's positional
+40–41 address is provisional; the literal-looking label is retained as `printedLabel`
+and requires explicit source-label support before production. It must not be silently
+certified as an ordinary 40–41 source label.
 
 ## Import and release gates
 

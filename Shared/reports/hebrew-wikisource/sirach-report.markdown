@@ -58,7 +58,7 @@ The comparison uses the provisional manual draft of supplied PDF 449–452 (64 s
 Concrete print-checked counterexamples:
 
 -1:8: supplied Abraham print has the one wise and greatly fearsome figure seated on his throne; David’s version instead describes the fearsome one alone, ruling the treasures. It cannot fill this verse.
--3:15: supplied scan ends `להשבית שרך`; David/Manuscript A/Smend baselines end `להשבית עוניך`. The baseline may clarify context but would erase the supplied reading if auto-applied.
+-3:15: **correction from the clearer-scan second pass:** both source scans end `להשבית עוניך`, agreeing with these baselines at this phrase. The earlier `שרך` report was a mistaken image reading, not a source variant. `SIR-page452-second-pass.json` retains the before/after evidence. The historical comparison scores above still describe the old provisional draft and must not be interpreted as current source differences.
 -3:13: supplied scan reads `וגם אם יחסר`; David’s page reads `וגם איש יחסר`. Manuscript A/Smend have `אם`. The name of the edition is not enough to decide an OCR correction.
 -3:26,27,25: manuscript A preserves the same displaced source order as supplied PDF 453; David’s edited page lists25 before26. The reader should preserve the scan’s order.
 
@@ -130,3 +130,39 @@ objects. It refuses to overwrite a nonempty output directory and preserves cropp
 images, uncorrected text, logs, hashes and the exact command. The successful trial
 used `ocr -s -n --base-dir R`. This separate layout assistance must remain explicit
 when comparing it to whole-page OCR.
+
+## Further transcription observations (working, not approval)
+
+During the main-print draft through B472, the manuscript-A chapter-14 snapshot
+(revision 2914682) has malformed/truncated material around its apparent verses7–8.
+Those labels are absent from the continuous main text of Kahana B472. Their mere
+presence in a Wikisource page inventory is therefore not evidence of usable verse
+text or a reason to fill the printed source. The original limited sample metrics
+above remain limited to their stated sample; they do not certify these later pages.
+
+The print also interleaves Sirach12:1 before an explicitly labelled11:34 on B468,
+then returns to12:2–3. A structured `review.sourceOrderExceptions` entry in the
+Sirach draft records that physical sequence while each chapter/verse identity is
+stored exactly once. This is source evidence, not a claim that ordinary grouped
+chapter navigation reproduces the interleaving. The complete source inventory and
+subsequent visual review remain unfinished.
+
+## Complete first draft and source-structure inventory
+
+The first pointed draft now reaches supplied B PDF530, covering all82 main-text pages
+449–530 and51 chapter containers, with1,333 primary numbered units. This is **not** a
+completed proofreading: zero pages are approved and the production importer still
+excludes the book. The draft preserves five separately recorded repeated main-text
+witnesses, three internal headings, one subverse/range unit, one unnumbered lacuna,
+an unnumbered thanksgiving hymn, a closing blessing and the closing colophons.
+
+The machine-readable `sirach-print-inventory.json` records all current chapter
+sequences and the separately retained texts with source pages/hashes. It derives
+counts from the draft, not from an independent margin-label approval. A proposed
+minimal reader extension is in `sirach-structure-proposal.markdown`; it is not yet an
+adopted contract. Word/point review and final identity decisions remain mandatory.
+
+Structural checks currently pass: all51 chapter numbers occur once; all82 drafted
+pages occur once; primary verse ranges remain globally nonoverlapping; all current
+text hashes match; no Hebrew combining mark is stranded after a bracket. These checks
+say nothing about whether an individual letter or vowel matches the printed source.

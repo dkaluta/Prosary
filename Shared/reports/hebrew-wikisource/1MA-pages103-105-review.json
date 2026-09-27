@@ -1,0 +1,583 @@
+{
+  "book": "1MA",
+  "primarySourcePDFSHA256": "656891d377d2e3d4a9216723d94205488423907bf01df424b9f0b9de1560051e",
+  "additionalSourcePDFSHA256": "b72eaf5d2d858fabb7c3438ac0436ccd64c394a7dd2fad609efabe628d5534c7",
+  "status": "B105 checked; B103–104 have complete second-reading passes with explicit point queries; book remains draft",
+  "method": "Direct word-by-word, mark-by-mark comparison of all scripture on these pages with the pointed draft. Commentary excluded. Matres, maqaf, source brackets, punctuation and physical-page continuations checked. Enlarged additional scan is the same typesetting with matching headers. No OCR or grammatical normalization used.",
+  "pages": [
+    {
+      "primaryPDFPage": 103,
+      "additionalPDFPage": 53,
+      "side": "left",
+      "printedPage": "קא",
+      "unitSegments": [
+        "1:29–40 complete",
+        "1:41–42 combined complete",
+        "1:43 opening ורבים"
+      ],
+      "finalReviewComplete": false,
+      "unresolved": [
+        "1MA-1-35-jerusalem-lamed",
+        "1MA-1-38-jerusalem-lamed"
+      ]
+    },
+    {
+      "primaryPDFPage": 104,
+      "additionalPDFPage": 54,
+      "side": "right",
+      "printedPage": "קב",
+      "unitSegments": [
+        "1:43 continuation מישראל through end",
+        "1:44–54 complete, including combined46–47 and50–51",
+        "1:55 opening ובפתחי"
+      ],
+      "finalReviewComplete": false,
+      "unresolved": [
+        "1MA-1-44-jerusalem-lamed"
+      ]
+    },
+    {
+      "primaryPDFPage": 105,
+      "additionalPDFPage": 54,
+      "side": "left",
+      "printedPage": "קג",
+      "unitSegments": [
+        "1:55 continuation הבתים through end",
+        "1:56–64 complete",
+        "2:1 opening through יהויריב"
+      ],
+      "finalReviewComplete": true,
+      "unresolved": []
+    }
+  ],
+  "corrections": [
+    {
+      "unit": "1:29",
+      "before": "הַמּוּסִים",
+      "after": "הַמּוֹסִים",
+      "basis": "Distinct holam above vav in targeted source crop; independently confirmed. Consonants unchanged."
+    }
+  ],
+  "queries": [
+    {
+      "id": "1MA-1-29-mosim",
+      "unit": "1:29",
+      "currentReading": "הַמּוּסִים",
+      "candidate": "הַמּוֹסִים",
+      "detail": "The source has the consonants המוסים. The vav point appears above the letter, suggesting holam rather than the current shuruq. Pending independent second reading. No conventional substitution of מסים.",
+      "evidence": "crop-53-0.1-0.103-0.197-0.131.png",
+      "resolved": true,
+      "resolvedReading": "הַמּוֹסִים",
+      "resolution": "Second reader independently confirms a holam above vav, not a shuruq dot midway. Source reading applied to canonical draft."
+    },
+    {
+      "id": "1MA-1-35-jerusalem-lamed",
+      "unit": "1:35",
+      "currentReading": "lamed patah plus hiriq",
+      "candidates": [
+        "lamed patah plus hiriq",
+        "lamed qamats plus hiriq"
+      ],
+      "detail": "Separate left dot is visible. As with the other individually recorded chapter1 occurrences, the horizontal mark and possible short stem need adjudication; retain the existing provisional text. The prior user answer concerning2:1/6 is not applied here.",
+      "evidence": "crop-53-0.186-0.286-0.24-0.313.png",
+      "resolved": false
+    },
+    {
+      "id": "1MA-1-38-jerusalem-lamed",
+      "unit": "1:38",
+      "currentReading": "lamed patah plus hiriq",
+      "candidates": [
+        "lamed patah plus hiriq",
+        "lamed qamats plus hiriq"
+      ],
+      "detail": "Separate left dot is visible. As with the other individually recorded chapter1 occurrences, the horizontal mark and possible short stem need adjudication; retain the existing provisional text. The prior user answer concerning2:1/6 is not applied here.",
+      "evidence": "crop-53-0.283-0.363-0.336-0.39.png",
+      "resolved": false
+    },
+    {
+      "id": "1MA-1-44-jerusalem-lamed",
+      "unit": "1:44",
+      "currentReading": "lamed patah plus hiriq",
+      "candidates": [
+        "lamed patah plus hiriq",
+        "lamed qamats plus hiriq"
+      ],
+      "detail": "Separate left dot is visible. As with the other individually recorded chapter1 occurrences, the horizontal mark and possible short stem need adjudication; retain the existing provisional text. The prior user answer concerning2:1/6 is not applied here.",
+      "evidence": "crop-54-0.536-0.092-0.902-0.246.png",
+      "resolved": false
+    }
+  ],
+  "retainedChecks": [
+    "1:29 retains source consonants המוסים, with independently confirmed holam over vav: הַמּוֹסִים.",
+    "1:31 printed חומותיה retains the full spelling and its existing marks.",
+    "1:33 no maqaf is introduced between את and עיר; the source עיר־דוד remains intact.",
+    "1:39 retains defective הֻשַׁם and the poetic line layout.",
+    "1:40 retains final mappiq in וְגָדְלָהּ, not a grammatical modernization.",
+    "Combined41–42,46–47 and50–51 remain intact.",
+    "1:54 clearer בכסלו supports בְּכִסְלֵו, resolving the worn-point question from the primary scan.",
+    "1:61 retains feminine צואריהן and ביתיהן; vav shewa in בְּצַוְּארֵיהֶן is visible in the targeted crop, not changed to qamats. Bracketed [המיתו] remains.",
+    "2:1 printed names מַתִּתְיָהוּ, יוֹחָנָן, שִׁמְעוֹן and יְהוֹיָרִיב match the draft.",
+    "No sof pasuq added at physical breaks inside1:43,1:55 or2:1."
+  ],
+  "textUnits": [
+    {
+      "verse": 29,
+      "text": "מִקֵּץ שְׁנָתַיִם יָמִים שָׁלַח הַמֶּלֶךְ אֶת־שַׂר־הַמּוֹסִים לְעָרֵי יְהוּדָה וַיָּבֹא יְרוּשָׁלַיְמָה בְּחַיִל כָּבֵד׃",
+      "sourcePages": [
+        103
+      ],
+      "textSHA256": "8d29f1484a0dcaba80c1969300cdceee1a7b444976cb40361a2092802ad1f1ee",
+      "chapter": 1
+    },
+    {
+      "verse": 30,
+      "text": "וַיְדַבֵּר אֲלֵיהֶם דִּבְרֵי שָׁלוֹם בְּמִרְמָה וַיַּאֲמִינוּ לוֹ וַיִּפֹּל עַל־הָעִיר פִּתְאֹם וַיַּךְ בָּהּ מַכָּה רַבָּה וַיְאַבֵּד עַם רַב מִיִּשְׂרָאֵל׃",
+      "sourcePages": [
+        103
+      ],
+      "textSHA256": "85939b836d593e0b4205b20cb480881b57435bdd02048e2ae65932c081904f29",
+      "chapter": 1
+    },
+    {
+      "verse": 31,
+      "text": "וַיִּקַּח אֶת־שְׁלַל הָעִיר וַיִּשְׂרְפֶהָ בָּאֵשׁ וַיַּהֲרֹס אֶת־בָּתֶּיהָ וְאֶת־חוֹמוֹתֶיהָ מִסָּבִיב׃",
+      "sourcePages": [
+        103
+      ],
+      "textSHA256": "81ca163c5c0a5754f8666685f3d496a905e7b1a7dee124fbd6c5b77ca838835d",
+      "chapter": 1
+    },
+    {
+      "verse": 32,
+      "text": "וַיִּשְׁבּוּ אֶת־הַנָּשִׁים וְאֶת־הַטַּף וְאֶת־הַבְּהֵמָה בָּזָזוּ׃",
+      "sourcePages": [
+        103
+      ],
+      "textSHA256": "1340ec48df67d989124c686ac2a6b6f92b590ea69270e519338b711b203e42ef",
+      "chapter": 1
+    },
+    {
+      "verse": 33,
+      "text": "וַיִּבְנוּ אֶת עִיר־דָּוִד בְּחוֹמָה גְדוֹלָה וַחֲזָקָה וּבְמִגְדָּלִים בְּצוּרִים וַתְּהִי לָהֶם לִמְצוּדָה׃",
+      "sourcePages": [
+        103
+      ],
+      "textSHA256": "c49a7885efdd16941c7add5ba1425c81a145712260f9abe9ceba52a97904f7d2",
+      "chapter": 1
+    },
+    {
+      "verse": 34,
+      "text": "וַיִּשְׁכֹּן־שָׁם גּוֹי חוֹטֵא אַנְשֵׁי־אָוֶן וַיִּתְבַּצְּרוּ בָהּ׃",
+      "sourcePages": [
+        103
+      ],
+      "textSHA256": "24a802d4d4afc52e2cf66e8b03e2da96939b1103588db5f122243690aeadb5d3",
+      "chapter": 1
+    },
+    {
+      "verse": 35,
+      "text": "וַיִּצְבְּרוּ נֶשֶׁק וְאֹכֶל וּבְאָסְפָם שְׁלַל־יְרוּשָׁלִַם שָׂמוּ שָׁם וַיְהִי לְמוֹקֵשׁ גָּדוֹל׃",
+      "sourcePages": [
+        103
+      ],
+      "textSHA256": "670b34ea75f6ac677b318863a04c995fd11f2ffd08765009572abedd3169f082",
+      "chapter": 1
+    },
+    {
+      "verse": 36,
+      "text": "וַיְהִי לְמַאֲרָב לְבֵית־הַמִּקְדָּשׁ וּלְשָׂטָן רַע לְיִשְׂרָאֵל תָּמִיד׃",
+      "sourcePages": [
+        103
+      ],
+      "textSHA256": "dbe011afddc2f899d79dc45de9c17460cdbee6cf99cce104c98a9a34fdb9d65f",
+      "chapter": 1
+    },
+    {
+      "verse": 37,
+      "text": "וַיִּשְׁפְּכוּ דָם נָקִי מִסָּבִיב לַמִּקְדָּשׁ וַיְטַמְּאוּ אֶת־הַמִּקְדָּשׁ׃",
+      "sourcePages": [
+        103
+      ],
+      "textSHA256": "4371d0d936edeffa52e8fa50e3dfb0969e8e5775a024e1565ee36c95c87fdde7",
+      "chapter": 1
+    },
+    {
+      "verse": 38,
+      "text": "וַיָּנוּסוּ יוֹשְׁבֵי יְרוּשָׁלִַם בִּגְלָלָם וַתְּהִי מוֹשַׁב זָרִים\nוַתְּהִי נָכְרִיָּה לְזַרְעָהּ וּבָנֶיהָ עֲזָבוּהָ׃",
+      "sourcePages": [
+        103
+      ],
+      "textSHA256": "a44626b7aa17b1e5358493b15890085fccf4808ebdd83d6a3f6d70541d9ded20",
+      "chapter": 1
+    },
+    {
+      "verse": 39,
+      "text": "בֵּית־הַמִּקְדָּשׁ הֻשַׁם כַּמִּדְבָּר חַגֶּיהָ נֶהֶפְכוּ לְאֵבֶל\nשַׁבְּתוֹתֶיהָ לִכְלִמָּה כְּבוֹדָהּ לָבוּז׃",
+      "sourcePages": [
+        103
+      ],
+      "textSHA256": "a60f317f4b79c54c437d5b69786a73aba0f5c9f7302e79656546b4d39bcd5c7b",
+      "chapter": 1
+    },
+    {
+      "verse": 40,
+      "text": "כְּרֹב כְּבוֹדָהּ גָּדַל קְלוֹנָהּ וְגָדְלָהּ נֶהְפַּךְ לְאֵבֶל׃",
+      "sourcePages": [
+        103
+      ],
+      "textSHA256": "a57b12b62d08b491ab2952035130f802b429d10cfc767f3023c39501dac93df5",
+      "chapter": 1
+    },
+    {
+      "verse": 41,
+      "text": "וַיִּכְתֹּב הַמֶּלֶךְ אֶל־כָּל־מַלְכוּתוֹ לִהְיוֹת כֻּלָּם לְעַם אֶחָד׃ וְלַעֲזֹב כָּל־אִישׁ אֶת־חֻקּוֹתָיו וַיְקַבְּלוּ כָּל־הָעַמִּים כִּדְבַר הַמֶּלֶךְ׃",
+      "sourcePages": [
+        103
+      ],
+      "textSHA256": "afd56f7b9efa326f36c67b4d6bd26d361939fb00ebdc75fb10ef0d8ad9043179",
+      "endVerse": 42,
+      "chapter": 1
+    },
+    {
+      "verse": 43,
+      "text": "וְרַבִּים מִיִּשְׂרָאֵל רָצוּ בַעֲבוֹדָתוֹ וַיִּזְבְּחוּ לָאֱלִילִים וַיְחַלְּלוּ אֶת־הַשַּׁבָּת׃",
+      "sourcePages": [
+        103,
+        104
+      ],
+      "textSHA256": "cd665f9a10cd2428ece271eacb8afd9fb8c3982903451aee70d3e98d870f7230",
+      "chapter": 1
+    },
+    {
+      "verse": 44,
+      "text": "וַיִּשְׁלַח הַמֶּלֶךְ סְפָרִים בְּיַד־מַלְאָכִים לִירוּשָׁלִַם וּלְעָרֵי יְהוּדָה לָלֶכֶת אַחֲרֵי חֻקִּים נָכְרִים לָאָרֶץ׃",
+      "sourcePages": [
+        104
+      ],
+      "textSHA256": "b59e13700b0ad572955f7f805758a61479696a29791e420d02e721f210fa0aaa",
+      "chapter": 1
+    },
+    {
+      "verse": 45,
+      "text": "וְלִמְנֹעַ עֹלוֹת וָזֶבַח וָנֶסֶךְ מִן־הַמִּקְדָּשׁ וּלְחַלֵּל שַׁבָּתוֹת וְחַגִּים׃",
+      "sourcePages": [
+        104
+      ],
+      "textSHA256": "b25c32a51764c4201731542e9adc7228f63d0c85d9c1268358481bc9765ea769",
+      "chapter": 1
+    },
+    {
+      "verse": 46,
+      "text": "וּלְטַמֵּא מִקְדָּשׁ וְקָדוֹשִׁים׃ לִבְנוֹת בָּמוֹת וְהֵיכָלוֹת וּפְסִילִים וּלְהַקְרִיב חֲזִירִים וּבְהֵמוֹת טְמֵאוֹת׃",
+      "sourcePages": [
+        104
+      ],
+      "textSHA256": "2aaa6c66a57cb8e21baff792f39ee03bc542f743abda4c84429c91b92af52b63",
+      "endVerse": 47,
+      "chapter": 1
+    },
+    {
+      "verse": 48,
+      "text": "וּלְהַנִּיחַ אֶת־בְּנֵיהֶם בִּלְתִּי מוּלִים וּלְשַׁקֵּץ אֶת־נַפְשׁוֹתֵיהֶם בְּכָל־טָמֵא וּפִגּוּל׃",
+      "sourcePages": [
+        104
+      ],
+      "textSHA256": "0018d8a4b43c77fb9c9e5d0dbda8c902ddca61d0d78ff92c3f9333ca41cae2b3",
+      "chapter": 1
+    },
+    {
+      "verse": 49,
+      "text": "לִשְׁכֹּחַ אֶת־הַתּוֹרָה וּלְהַחֲלִיף כָּל־הַחֻקִּים׃",
+      "sourcePages": [
+        104
+      ],
+      "textSHA256": "751967f92c9b81bfb7432547a7cca4ea3985286a41c6f71449953cc66a347fc2",
+      "chapter": 1
+    },
+    {
+      "verse": 50,
+      "text": "וַאֲשֶׁר לֹא־יַעֲשֶׂה כִּדְבַר־הַמֶּלֶךְ יָמֹת׃ כְּכָל־הַדְּבָרִים הָאֵלֶּה כָּתַב לְמַלְכוּתוֹ וַיִּפְקֹד פְּקִידִים עַל־כָּל־הָעָם וַיְצַו לְעָרֵי יְהוּדָה לְהַקְרִיב בְּעִיר וָעִיר׃",
+      "sourcePages": [
+        104
+      ],
+      "textSHA256": "b284bd360bab59b6315fcae28008c3b94266da4afc9cc3a8e5102e7c6848c6bf",
+      "endVerse": 51,
+      "chapter": 1
+    },
+    {
+      "verse": 52,
+      "text": "וַיִּתְחַבְּרוּ אֲלֵיהֶם רַבִּים מִן־הָעָם כָּל־עוֹזֵב אֶת־הַתּוֹרָה וַיַּעֲשׂוּ רָעוֹת בָּאָרֶץ׃",
+      "sourcePages": [
+        104
+      ],
+      "textSHA256": "26be0e8a438fe9a5dd843da5dbcc01ce0477550cd1f928d5e5cc246b6de5c6fb",
+      "chapter": 1
+    },
+    {
+      "verse": 53,
+      "text": "וַיָּשִׂימוּ אֶת־יִשְׂרָאֵל בַּמַּחֲבוֹאִים בְּכָל־מְנוּסָם׃",
+      "sourcePages": [
+        104
+      ],
+      "textSHA256": "de305d46b32d927ecd398e9fccebad3236357c6769220b795de80b29709dcf05",
+      "chapter": 1
+    },
+    {
+      "verse": 54,
+      "text": "וּבַחֲמִשָּׁה עָשָׂר יוֹם בְּכִסְלֵו בְּחָמֵשׁ וְאַרְבָּעִים וּמֵאָה שָׁנָה בָּנוּ שִׁקּוּץ מְשׁוֹמֵם עַל־הַמִּזְבֵּחַ וּבְעָרֵי יְהוּדָה מִסָּבִיב בָּנוּ בָּמוֹת׃",
+      "sourcePages": [
+        104
+      ],
+      "textSHA256": "7483c3287aff490f35dc422147507cefc1ed582e86b9361a946d79a766f765df",
+      "chapter": 1
+    },
+    {
+      "verse": 55,
+      "text": "וּבְפִתְחֵי הַבָּתִּים וּבִרְחוֹבוֹת זָבָחוּ׃",
+      "sourcePages": [
+        104,
+        105
+      ],
+      "textSHA256": "2cd4eea5f624b68b49ef7a9dc10690ab11943cf54dbb724ba298ee96d95dc86e",
+      "chapter": 1
+    },
+    {
+      "verse": 56,
+      "text": "וְסִפְרֵי הַתּוֹרָה אֲשֶׁר מָצָאוּ שָׂרְפוּ בָאֵשׁ בְּקָרְעָם׃",
+      "sourcePages": [
+        105
+      ],
+      "textSHA256": "1ebbefbf64b1a894e44f1966ecbdd06568c5c0480d247b8e42069fd78f3afb61",
+      "chapter": 1
+    },
+    {
+      "verse": 57,
+      "text": "וּבְכָל אֲשֶׁר־יִמָּצֵא בִּידֵי אִישׁ סֵפֶר בְּרִית וְכָל אֲשֶׁר יַחְפֹּץ בַּתּוֹרָה דַּת־הַמֶּלֶךְ לַהֲמִיתוֹ׃",
+      "sourcePages": [
+        105
+      ],
+      "textSHA256": "18f598955c656aad8918c92eda40aa24bc3f777fbe436fff766bc71170214bac",
+      "chapter": 1
+    },
+    {
+      "verse": 58,
+      "text": "בְּתָקְפָּם עָשׂוּ כֵּן לְיִשְׂרָאֵל לַנִּמְצָאִים חֹדֶשׁ בְּחָדְשׁוֹ בֶּעָרִים׃",
+      "sourcePages": [
+        105
+      ],
+      "textSHA256": "b7714c6080043bfbed7fad4d06c413bdbcbcdbb7879e255b47a7c39fdf067faf",
+      "chapter": 1
+    },
+    {
+      "verse": 59,
+      "text": "וּבַחֲמִשָּׁה וְעֶשְׂרִים לַחֹדֶשׁ הִקְרִיבוּ עַל־הַבָּמָה אֲשֶׁר הָיְתָה עַל־הַמִּזְבֵּחַ׃",
+      "sourcePages": [
+        105
+      ],
+      "textSHA256": "65efec4e48bb79cd89b95902968a51d90b61d252eba3b1d3e4418076422c4939",
+      "chapter": 1
+    },
+    {
+      "verse": 60,
+      "text": "וְאֶת־הַנָּשִׁים אֲשֶׁר מָלוּ אֶת־בְּנֵיהֶן הֵמִיתוּ עַל־פִּי הַפְּקֻדָּה׃",
+      "sourcePages": [
+        105
+      ],
+      "textSHA256": "e3e53fd902d596e0d0b8cf918ce2d476d8f53531b48cfe06e05f46401d8927b0",
+      "chapter": 1
+    },
+    {
+      "verse": 61,
+      "text": "וַיִּתְלוּ אֶת־הָעוֹלָלִים בְּצַוְּארֵיהֶן וְאֶת־בְּנֵי־בֵיתֵיהֶן וְאֵת הַמָּלִים אוֹתָם [הֵמִיתוּ]׃",
+      "sourcePages": [
+        105
+      ],
+      "textSHA256": "56c5854076768eefc2d98a528b8b9d1ad838747d2707c40e671cbd87738a4026",
+      "chapter": 1
+    },
+    {
+      "verse": 62,
+      "text": "וְרַבִּים בְּיִשְׂרָאֵל הָיוּ אַמִּיצִים וַיִּתְחַזְּקוּ לְבִלְתִּי אֲכֹל טָמֵא׃",
+      "sourcePages": [
+        105
+      ],
+      "textSHA256": "de8aac1c93086fdb06381c3d8984ab8ddcca56f08ed405e93464a52071b276e5",
+      "chapter": 1
+    },
+    {
+      "verse": 63,
+      "text": "וַיִּבְחֲרוּ לָמוּת לְבִלְתִּי הִטָּמֵא בַּמַּאֲכָלִים וּלְבִלְתִּי חַלֵּל בְּרִית־קֹדֶשׁ וַיָּמֻתוּ׃",
+      "sourcePages": [
+        105
+      ],
+      "textSHA256": "84cb0d4e9dc8906dbc9a2027b84f007c3d3586064165983defa3b04bc7347715",
+      "chapter": 1
+    },
+    {
+      "verse": 64,
+      "text": "וַיְהִי קֶצֶף גָּדוֹל עַל־יִשְׂרָאֵל מְאֹד׃",
+      "sourcePages": [
+        105
+      ],
+      "textSHA256": "191b7e37b021417e81cfc0f6253827262bbbaa003a05ca855f51f756230186a6",
+      "chapter": 1
+    },
+    {
+      "verse": 1,
+      "text": "בַּיָּמִים הָהֵם קָם מַתִּתְיָהוּ בֶּן־יוֹחָנָן בֶּן־שִׁמְעוֹן כֹּהֵן מִבְּנֵי יְהוֹיָרִיב מִירוּשָׁלַם וַיֵּשֶׁב בְּמוֹדִיעִים׃",
+      "sourcePages": [
+        105,
+        106
+      ],
+      "textSHA256": "6751666e1a94aa6f38f25dad6e835443cff0b9e7ee6e8c978d2e16a648a82af1",
+      "chapter": 2
+    }
+  ],
+  "cropDirectory": "/private/tmp/prosary-1ma-extra",
+  "cropEvidence": [
+    {
+      "additionalPDFPage": 53,
+      "bounds": [
+        0.045,
+        0.102,
+        0.401,
+        0.246
+      ],
+      "scale": 8,
+      "filename": "crop-53-0.045-0.102-0.401-0.246.png",
+      "sha256": "7504b191572178d67368c5cd1dcf5e64c60a539616457189dc29f4aecb9550ba"
+    },
+    {
+      "additionalPDFPage": 53,
+      "bounds": [
+        0.045,
+        0.242,
+        0.401,
+        0.386
+      ],
+      "scale": 8,
+      "filename": "crop-53-0.045-0.242-0.401-0.386.png",
+      "sha256": "11f4812890674e4500d7ebd6cac8cb71874f93188a904fc6ce592de9e1e1568b"
+    },
+    {
+      "additionalPDFPage": 53,
+      "bounds": [
+        0.045,
+        0.382,
+        0.401,
+        0.55
+      ],
+      "scale": 8,
+      "filename": "crop-53-0.045-0.382-0.401-0.55.png",
+      "sha256": "0c6c6c3e04bbbc26487b2679c6a940e7c01a2be2473a77a7d424b3807433d8e2"
+    },
+    {
+      "additionalPDFPage": 53,
+      "bounds": [
+        0.1,
+        0.103,
+        0.197,
+        0.131
+      ],
+      "scale": 8,
+      "filename": "crop-53-0.1-0.103-0.197-0.131.png",
+      "sha256": "4313dca8a8f88326f7e628b8622b3939763bc5ba1d303fd34edb23d70e98817f"
+    },
+    {
+      "additionalPDFPage": 53,
+      "bounds": [
+        0.186,
+        0.286,
+        0.24,
+        0.313
+      ],
+      "scale": 8,
+      "filename": "crop-53-0.186-0.286-0.24-0.313.png",
+      "sha256": "d4c45d1151c596187cb196fa10d956e8c8c9525773835780ba337b208f22bbb7"
+    },
+    {
+      "additionalPDFPage": 53,
+      "bounds": [
+        0.283,
+        0.363,
+        0.336,
+        0.39
+      ],
+      "scale": 8,
+      "filename": "crop-53-0.283-0.363-0.336-0.39.png",
+      "sha256": "f9c208907fa8e28778be771cd6560ee37ba02f7214a0ecee259d3678d32da728"
+    },
+    {
+      "additionalPDFPage": 54,
+      "bounds": [
+        0.536,
+        0.092,
+        0.902,
+        0.246
+      ],
+      "scale": 8,
+      "filename": "crop-54-0.536-0.092-0.902-0.246.png",
+      "sha256": "7c73b4a911372941a496b487066b029cdfd7e45694b7bd22bd5e9a0f69df5349"
+    },
+    {
+      "additionalPDFPage": 54,
+      "bounds": [
+        0.536,
+        0.237,
+        0.902,
+        0.411
+      ],
+      "scale": 8,
+      "filename": "crop-54-0.536-0.237-0.902-0.411.png",
+      "sha256": "d333094095f94a06cc358acda17afde14a942cb8c90c7b5abf8bcb09ddb2505a"
+    },
+    {
+      "additionalPDFPage": 54,
+      "bounds": [
+        0.045,
+        0.096,
+        0.398,
+        0.24
+      ],
+      "scale": 8,
+      "filename": "crop-54-0.045-0.096-0.398-0.24.png",
+      "sha256": "6abe15b2c8c776ff40e74b413ba7e8428fc4b5a73ccc8e302d80286892ba44bb"
+    },
+    {
+      "additionalPDFPage": 54,
+      "bounds": [
+        0.045,
+        0.23,
+        0.398,
+        0.369
+      ],
+      "scale": 8,
+      "filename": "crop-54-0.045-0.23-0.398-0.369.png",
+      "sha256": "1d9a036222a157b2fd5a11c8596dc45ee0c1ada130a172db83d2b0e592a07bbb"
+    },
+    {
+      "additionalPDFPage": 54,
+      "bounds": [
+        0.229,
+        0.225,
+        0.31,
+        0.254
+      ],
+      "scale": 8,
+      "filename": "crop-54-0.229-0.225-0.31-0.254.png",
+      "sha256": "30dac6af4fd65111546bdeca81dbe75eb053d44b7d4b362519dba1b781e5d774"
+    },
+    {
+      "additionalPDFPage": 54,
+      "bounds": [
+        0.705,
+        0.355,
+        0.752,
+        0.385
+      ],
+      "scale": 8,
+      "filename": "crop-54-0.705-0.355-0.752-0.385.png",
+      "sha256": "067e16fca5deffbbbabfbc2249e0385bfec182a8b72f4acdeef0b5e993ea63bc"
+    }
+  ]
+}

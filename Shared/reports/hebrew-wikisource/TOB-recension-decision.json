@@ -1,0 +1,85 @@
+{
+  "book": "TOB",
+  "selectedRecension": "short",
+  "translator": "דב היליר",
+  "collectionEditor": "אברהם כהנא",
+  "authorization": "Parent instructed use of the complete printed short recension after independently inventorying its entire book, to satisfy the user request for complete Hebrew books; preserve the long draft and never blend recensions.",
+  "primaryEvidence": [
+    {
+      "page": 293,
+      "description": "The introduction identifies the short Greek recension with Codex Vaticanus and long with Codex Sinaiticus; it discusses them as distinct textual recensions."
+    },
+    {
+      "page": 294,
+      "description": "The introduction explicitly identifies two long-recension omissions, in Tobit’s instruction(chapter4) and thanksgiving(chapter13), and says a leaf or leaves appear to have been lost from the manuscript. This is not a publisher instruction to read the upper text once for both recensions.",
+      "exactKeySentence": "נראה שנאבד גליון או גליונות מן הכתב."
+    },
+    {
+      "pages": [
+        321,
+        322,
+        323
+      ],
+      "description": "Lower long body has labels1–7,20,21; upper short body contains continuous teaching with labels1–20."
+    },
+    {
+      "pages": [
+        341,
+        342,
+        343
+      ],
+      "description": "Lower long body jumps7→11–12; upper short body retains8 and9–10 and continues to19."
+    }
+  ],
+  "clearerScanPair": {
+    "originalPage": 294,
+    "alternatePage": 149,
+    "side": "right",
+    "method": "Visually matched header, paragraphs, exact wording and layout."
+  },
+  "preservedLongDraft": {
+    "path": "Shared/reports/hebrew-wikisource/TOB-long-recension-draft.json",
+    "sha256": "7dc416efb777e6b6ab9073bbf1b88af1fb4a141dbcbc2adf91fa76276e44cfd5",
+    "chapters": 4,
+    "units": 58,
+    "status": "draft; no pages approved; not a production source"
+  },
+  "shortInventory": {
+    "path": "Shared/reports/hebrew-wikisource/TOB-print-inventory.json",
+    "chapters": 14,
+    "sourceUnits": 228,
+    "textPages": 35,
+    "missingLabels": []
+  },
+  "policy": "Replace canonical draft with a fresh explicitly credited short-recension transcription only. No long-recension text is reused without direct comparison to the short print; no apparent lacuna is filled from another edition.",
+  "cropEvidence": [
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-introduction-lacunae.png",
+      "sha256": "22e140a91017d0b49dceea9c1ac3adc0659148eea31cbdc595132c15f32e5209"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-introduction-second-gap-label2.png",
+      "sha256": "860b3d28327485bbf822b7fa65680de0abf40e84783f9f1d23623b008e91c8ec"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-end.png",
+      "sha256": "6364cc5b63af634ba7b7708a774e473ca0bef1eb6f0e98df0ba7b6e0917e792c"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-2-end-correct.png",
+      "sha256": "c9442e5bf9f719b035f97f593e4861240b400f8c35ff5d3a9cd4142e4f8229d2"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-8-labels.png",
+      "sha256": "3202e040f59fe0e3130baa9182cbcbb9c31d10c2195966fbc41737fef0cf9ff2"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/B322-long-margin.png",
+      "sha256": "31499c27faed4e7e97bf2505088d5dab8e8ba2586d86208daf7bd9ff7f91a37f"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/B323-long-margin.png",
+      "sha256": "2f8df13aa76f24e42af5b90378be17c4fedbcaefabd5a5abead421bc2e7097a9"
+    }
+  ]
+}

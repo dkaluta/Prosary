@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "purpose": "review-only",
+  "productionEligible": false,
+  "book": "SIR",
+  "chapter": 19,
+  "verse": 5,
+  "endVerse": 6,
+  "primarySource": {
+    "volume": "B",
+    "page": 478,
+    "sha256": "656891d377d2e3d4a9216723d94205488423907bf01df424b9f0b9de1560051e"
+  },
+  "additionalScan": {
+    "spread": 246,
+    "side": "right",
+    "sha256": "b72eaf5d2d858fabb7c3438ac0436ccd64c394a7dd2fad609efabe628d5534c7",
+    "sourceURL": "https://he.wikisource.org/wiki/קובץ:Apocrypha_Kahana_B_extra_scan.pdf"
+  },
+  "userFeedback": {
+    "received": "2026-09-27",
+    "raw": "it's יודע (ivadea), hiriq, qamaz, zere, patah",
+    "transcription": "יִוָדֵעַ",
+    "letters": [
+      "י",
+      "ו",
+      "ד",
+      "ע"
+    ],
+    "marks": [
+      "HIRIQ U+05B4",
+      "QAMATS U+05B8",
+      "TSERE U+05B5",
+      "PATAH U+05B7"
+    ],
+    "scope": "User-confirmed consonants and the four named vowels of one printed word; no approval of adjacent text, page or book."
+  },
+  "correctionToPriorAgentReading": "The earlier proposed יורע and claim that the footnote supported resh were misreadings. The user explicitly identifies dalet in יודע; that correction is accepted, rather than privileging a meaning-based guess or the prior model reading. The earlier temporary candidate יֹדֵעַ also lacked printed vav and had incorrect pointing.",
+  "draftChange": {
+    "before": "שָׂמֵחַ בְּלֵב יֹדֵעַ וְשׂוֹנֵא שִׂיחַ יֶחְסַר רָעָה׃",
+    "after": "שָׂמֵחַ בְּלֵב יִוָדֵעַ וְשׂוֹנֵא שִׂיחַ יֶחְסַר רָעָה׃",
+    "afterTextSHA256": "5fb87caa3afe17695b40996439cc0679c0dba79ea4b9dbf6f37edfc8ac4d65af"
+  },
+  "openFineMarkQuery": "A dagesh in vav was not specified by the user and is not added. Check the exact dot against the image during full pointed review; this does not reopen the confirmed consonants or four vowel signs.",
+  "status": "Word correction recorded; whole-book draft remains unapproved."
+}

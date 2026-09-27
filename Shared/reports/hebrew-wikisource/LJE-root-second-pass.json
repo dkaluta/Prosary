@@ -1,0 +1,655 @@
+{
+  "schemaVersion": 1,
+  "book": "LJE",
+  "status": "Second full visual comparison performed; one fused mark unresolved",
+  "scanSHA256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+  "reviewedPages": [
+    14,
+    15,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23
+  ],
+  "method": "Direct full-body second visual comparison with the supplied print, focused glyph crops, independent selected-point review, and scoped user readings. Independent source-margin inventory is separate. One page remains open for a fused vowel mark.",
+  "findings": [
+    {
+      "unit": "1:3",
+      "before": "נְשֻׂאִים",
+      "after": "נְשָׂאִים",
+      "basis": "User identifies qamats under the first queried shin.",
+      "image": {
+        "name": "root-lje-v3-nesuim.png",
+        "sha256": "517e41a5062d61e778329ee2afae3355e1aec5cd277bb945de5adc1657aba536"
+      }
+    },
+    {
+      "unit": "1:17",
+      "before": "יְשָׁדְדוּ",
+      "after": "יְשֻׁדְדוּ",
+      "basis": "User identifies qibbuts under the last queried shin.",
+      "image": {
+        "name": "root-lje-v17-yishaddu-full.png",
+        "sha256": "afc32775e99894fb098110eef16aa74424b76006db351f99de9244b36d43ea60"
+      }
+    },
+    {
+      "unit": "1:53",
+      "before": "כָעֹרְבִיּוֹת",
+      "after": "כְּעֹרְבִיּוֹת",
+      "basis": "Root and independent reviewer identify kaf dagesh and sheva.",
+      "image": {
+        "name": "root-lje-v53-oreviyot-tight.png",
+        "sha256": "2df63d5f8df0e004b31d518e4c8a6e2e19c80d538163982a29a8f74ec4ec1550"
+      }
+    },
+    {
+      "unit": "1:69",
+      "before": "כִּקְסָמִים",
+      "after": "כִקְסָמִים",
+      "basis": "Root and independent reviewer identify hiriq and a clear empty kaf interior; no dagesh.",
+      "image": {
+        "name": "root-lje-v69-kiksamim.png",
+        "sha256": "0296d4096085cf8ae7898a7b4384370c79577c627bd7bc80ce2e7c8a6de245f1"
+      }
+    },
+    {
+      "unit": "1:70",
+      "before": "כְּאַטָּד",
+      "after": "כְּאָטָד",
+      "basis": "Root and independent reviewer identify qamats under alef and tet, no tet dagesh. Initial kaf vowel remains unresolved.",
+      "image": {
+        "name": "root-lje-v70-keatad-tight.png",
+        "sha256": "5ee9db1dce0e6d7f403d4f3ba6624fec429caa06b3b5b14d195145f1ba4274b8"
+      }
+    }
+  ],
+  "unresolvedFindings": [
+    {
+      "unit": "1:9",
+      "word": "בַּקֻּבָּה",
+      "point": "qoph vowel",
+      "page": 16,
+      "status": "Root and peer cannot distinguish fused marks; user also reports unclear. Draft qibbuts is provisional."
+    }
+  ],
+  "retainedSourceFeatures": [
+    "Unnumbered introduction remains separate from verse1.",
+    "Printed labels1–72 form66 units, with combined10–11,15–16,20–21,39–40,50–51,65–66. Independent inventory is LJE-print-inventory.json.",
+    "Source brackets and page continuations retained; no invented verses or daily-reading crosswalk.",
+    "47 יתיעצו has qamats under the second yod; earlier tentative suspicion of patah is rejected after tight image comparison.",
+    "25 and38 יבושו contain a printed vav;34 אגורת also contains a printed vav.",
+    "67 לנוס retained per the separately recorded qualified user reading;71 גם־הם retained rather than the earlier retracted נרקבו claim."
+  ],
+  "introductionSHA256": "f547c0c17ae98368d0fe33713861ed1cc43f7d24566585d1d83c704cdc8f3a16",
+  "unitLedger": [
+    {
+      "verse": 1,
+      "endVerse": 1,
+      "sourcePages": [
+        14
+      ],
+      "textSHA256": "9050419768eb1efa46194118aeab1e3dc1234b0ae29f56b46218583fe80b0753"
+    },
+    {
+      "verse": 2,
+      "endVerse": 2,
+      "sourcePages": [
+        14
+      ],
+      "textSHA256": "52e99ea32b07f9c7a7b86d84a3f7217aa21f29767846fdb5e3117e2d79c82236"
+    },
+    {
+      "verse": 3,
+      "endVerse": 3,
+      "sourcePages": [
+        14,
+        15
+      ],
+      "textSHA256": "636731063296d3dd1ede4338654e5fb659ef1d3cce4ce6bbe6f8246485d46fd1"
+    },
+    {
+      "verse": 4,
+      "endVerse": 4,
+      "sourcePages": [
+        15
+      ],
+      "textSHA256": "76d49abb45dc98801bbdd86569e74252496e0bd7ff90f302d287962712f7d077"
+    },
+    {
+      "verse": 5,
+      "endVerse": 5,
+      "sourcePages": [
+        15
+      ],
+      "textSHA256": "a4689759e4a8d6a3acdc3a7ddd55d8a1c51467a7e45adb5d24df6a653e7b2886"
+    },
+    {
+      "verse": 6,
+      "endVerse": 6,
+      "sourcePages": [
+        15
+      ],
+      "textSHA256": "d67b6768637ee177faa5ce4f37a00025f65bfefd249e4bab0d6c08d015e1346d"
+    },
+    {
+      "verse": 7,
+      "endVerse": 7,
+      "sourcePages": [
+        15,
+        16
+      ],
+      "textSHA256": "c5495086bd74caf7fbda14f00e672ba8f39311c0e95fa224f0927c297857796e"
+    },
+    {
+      "verse": 8,
+      "endVerse": 8,
+      "sourcePages": [
+        16
+      ],
+      "textSHA256": "f222fd4e7d5fd081488beb9e52aaf1468606c46d2881543630dece34a1501ab4"
+    },
+    {
+      "verse": 9,
+      "endVerse": 9,
+      "sourcePages": [
+        16
+      ],
+      "textSHA256": "08fcc34120f152ac97b1ecc99998ebcc2939b7d27ce16809ee4635f1684ad373"
+    },
+    {
+      "verse": 10,
+      "endVerse": 11,
+      "sourcePages": [
+        16
+      ],
+      "textSHA256": "11557b140d8f5a0ae053ee46b48bee9dad4e195999f50928ba89357d2e8d55f3"
+    },
+    {
+      "verse": 12,
+      "endVerse": 12,
+      "sourcePages": [
+        16
+      ],
+      "textSHA256": "ce3e279c1a3356e6a119156e71bfeb4f2d58042830ec050d320298bd04dd46bb"
+    },
+    {
+      "verse": 13,
+      "endVerse": 13,
+      "sourcePages": [
+        16
+      ],
+      "textSHA256": "c4030abbca7eafdd53ad7d0ed709b760d53df1bc8fd7c4a52d390d0514dd4f0e"
+    },
+    {
+      "verse": 14,
+      "endVerse": 14,
+      "sourcePages": [
+        16,
+        17
+      ],
+      "textSHA256": "a0190fdf0de8d8da8db8dd577a2c22e76c25a0d5c50ef16df356ba51bf328f6d"
+    },
+    {
+      "verse": 15,
+      "endVerse": 16,
+      "sourcePages": [
+        17
+      ],
+      "textSHA256": "e81ba6f619ba55d53cf5ea76aa2876153e3c3815518e102608072e259eb5171e"
+    },
+    {
+      "verse": 17,
+      "endVerse": 17,
+      "sourcePages": [
+        17
+      ],
+      "textSHA256": "cd511b18209f7fbb477ed1d72c59dc231d515a2bd78cf53352d94b0a58a70028"
+    },
+    {
+      "verse": 18,
+      "endVerse": 18,
+      "sourcePages": [
+        17
+      ],
+      "textSHA256": "935e7c587f5a8423cea5cfca6fe5f8efbde616385dc5b2cb45dfb31631cb95fe"
+    },
+    {
+      "verse": 19,
+      "endVerse": 19,
+      "sourcePages": [
+        17,
+        18
+      ],
+      "textSHA256": "f4e20773c2a6f84f27c0cf76be9931e3964bdd52527ff7ca74c99a158f39fb73"
+    },
+    {
+      "verse": 20,
+      "endVerse": 21,
+      "sourcePages": [
+        18
+      ],
+      "textSHA256": "fe8e955447939438d5c0302d30f138a22b56fbb6b86004de50b686e1822fc5d0"
+    },
+    {
+      "verse": 22,
+      "endVerse": 22,
+      "sourcePages": [
+        18
+      ],
+      "textSHA256": "164113fc7228d5f74fb5ee2e64a350abef16df0105ca090627977f1c326b2bd5"
+    },
+    {
+      "verse": 23,
+      "endVerse": 23,
+      "sourcePages": [
+        18
+      ],
+      "textSHA256": "352874d7a8b0d9721ed3dba348dc25303a62d2667cdb162f32fd9986a78cf836"
+    },
+    {
+      "verse": 24,
+      "endVerse": 24,
+      "sourcePages": [
+        18
+      ],
+      "textSHA256": "ce4aac76bce21410101093d4814e9c468a0cac156763daf2a50c2e7bfdff6c44"
+    },
+    {
+      "verse": 25,
+      "endVerse": 25,
+      "sourcePages": [
+        18
+      ],
+      "textSHA256": "77d8e7b34ceb8de2f7007d4cf6baf68b9c2836348692f255c7ed2c074d98f277"
+    },
+    {
+      "verse": 26,
+      "endVerse": 26,
+      "sourcePages": [
+        18
+      ],
+      "textSHA256": "984d9a30578cfdac76fbfa4008273cf4046f2312a43295820c5f88ea0a072020"
+    },
+    {
+      "verse": 27,
+      "endVerse": 27,
+      "sourcePages": [
+        18
+      ],
+      "textSHA256": "073cacd20ed5a2d555fe01bea82aee0f9bc90ed0a9ccab52e77a8cf78d1f4d22"
+    },
+    {
+      "verse": 28,
+      "endVerse": 28,
+      "sourcePages": [
+        19
+      ],
+      "textSHA256": "25d71a09abf786e8655706081ab5c14ba78d1b624b32396049344d4e770add89"
+    },
+    {
+      "verse": 29,
+      "endVerse": 29,
+      "sourcePages": [
+        19
+      ],
+      "textSHA256": "092cd2523a47c5631cb3b488d7bbcbc317d302970aa28f962db8695edc5d3087"
+    },
+    {
+      "verse": 30,
+      "endVerse": 30,
+      "sourcePages": [
+        19
+      ],
+      "textSHA256": "696f14c9a8612faa4cc4355517910671a953fd66bc6d3dcb6150beffc25981bd"
+    },
+    {
+      "verse": 31,
+      "endVerse": 31,
+      "sourcePages": [
+        19
+      ],
+      "textSHA256": "205c8c1d4ad7cc8f4c6911523b322c1763b038081aa1afd6d3326c5da110ea2f"
+    },
+    {
+      "verse": 32,
+      "endVerse": 32,
+      "sourcePages": [
+        19
+      ],
+      "textSHA256": "f8ceff01483edc3a65843f60704a90c757be59f802c2fa4e7785a2450ca00931"
+    },
+    {
+      "verse": 33,
+      "endVerse": 33,
+      "sourcePages": [
+        19
+      ],
+      "textSHA256": "af3819048479a8ad86819b4254cc5a4f3f3a45c3122f0652375195ecccc6186b"
+    },
+    {
+      "verse": 34,
+      "endVerse": 34,
+      "sourcePages": [
+        19
+      ],
+      "textSHA256": "7b869f026d82af759135138303d7abd201028ab4b09777803dacb1fa754f80dc"
+    },
+    {
+      "verse": 35,
+      "endVerse": 35,
+      "sourcePages": [
+        19
+      ],
+      "textSHA256": "1e18bcccb71bf5abb930234dd50ae4e8e2779068fe7dc83dc7e179d5f14aeae6"
+    },
+    {
+      "verse": 36,
+      "endVerse": 36,
+      "sourcePages": [
+        19
+      ],
+      "textSHA256": "260434b6c0d857fe52a2742569976cd12479569d8fe856eea076d1a107c01164"
+    },
+    {
+      "verse": 37,
+      "endVerse": 37,
+      "sourcePages": [
+        19
+      ],
+      "textSHA256": "c96688760e2568894fc641ad51131e56668fed4cd74bc8b0dc6cb61081fde9dc"
+    },
+    {
+      "verse": 38,
+      "endVerse": 38,
+      "sourcePages": [
+        19
+      ],
+      "textSHA256": "30312f34241be972b2812fd020d235c065ac9d7e1237f03c012af6af94ffcda4"
+    },
+    {
+      "verse": 39,
+      "endVerse": 40,
+      "sourcePages": [
+        19,
+        20
+      ],
+      "textSHA256": "3e392cdff4458f088f9c2e6ea6c701f9dae328a937e564d9f44ae85ce0385360"
+    },
+    {
+      "verse": 41,
+      "endVerse": 41,
+      "sourcePages": [
+        20
+      ],
+      "textSHA256": "3f889f367498c42e3341b42e33516de777fcea24218298ad3c8bdfc0d7910abc"
+    },
+    {
+      "verse": 42,
+      "endVerse": 42,
+      "sourcePages": [
+        20
+      ],
+      "textSHA256": "c64628fdf7523ff2eeaf4dceade1dbcbd91dba26157bf1653c9f424d185ab388"
+    },
+    {
+      "verse": 43,
+      "endVerse": 43,
+      "sourcePages": [
+        20
+      ],
+      "textSHA256": "6b185522b830e730746a1d3bcee94419fd99225ef4b1b1ebe9a51bc245bee118"
+    },
+    {
+      "verse": 44,
+      "endVerse": 44,
+      "sourcePages": [
+        20
+      ],
+      "textSHA256": "fcd37faf43ba6f395ff5df041db718226b4534c40ce55ac41f6e213e6379851f"
+    },
+    {
+      "verse": 45,
+      "endVerse": 45,
+      "sourcePages": [
+        20
+      ],
+      "textSHA256": "407bfde2bf51c3358a8f6302dbb30d6770e04ff9cc20271a46ce8a078919f108"
+    },
+    {
+      "verse": 46,
+      "endVerse": 46,
+      "sourcePages": [
+        20
+      ],
+      "textSHA256": "5421d06618d256b200a0df56ae6493ff79660b69419929402ade7e6bfc468741"
+    },
+    {
+      "verse": 47,
+      "endVerse": 47,
+      "sourcePages": [
+        20,
+        21
+      ],
+      "textSHA256": "0b2409b2da72a5e72c19a4817d78d1a680ac52a0ac786458d6f8ee8d616921db"
+    },
+    {
+      "verse": 48,
+      "endVerse": 48,
+      "sourcePages": [
+        21
+      ],
+      "textSHA256": "f92123433b6534d2966e0fb6d468a26e3186112e69f794ad33bf9ce356db5b10"
+    },
+    {
+      "verse": 49,
+      "endVerse": 49,
+      "sourcePages": [
+        21
+      ],
+      "textSHA256": "b9c2f69a87d9f74df675c80ac8eca74fe56adb2363c9355666e1ca558e05badb"
+    },
+    {
+      "verse": 50,
+      "endVerse": 51,
+      "sourcePages": [
+        21
+      ],
+      "textSHA256": "ddca7faa3c0730a81ee53cd127d48237d98bdd1fbb41bf4c7229beb7eb99e304"
+    },
+    {
+      "verse": 52,
+      "endVerse": 52,
+      "sourcePages": [
+        21
+      ],
+      "textSHA256": "34e2ab15a20f3eeba5ece60b0bb17ee0dc0634f0d4e7313dce7b9ce443cd26f2"
+    },
+    {
+      "verse": 53,
+      "endVerse": 53,
+      "sourcePages": [
+        21
+      ],
+      "textSHA256": "a15075094662085371db1381950be45043fb055367437c99ea09cfaa7df4e043"
+    },
+    {
+      "verse": 54,
+      "endVerse": 54,
+      "sourcePages": [
+        21,
+        22
+      ],
+      "textSHA256": "8071a7150978f568bd781553fe5f9796a108e4c59791816dc8197155610631f0"
+    },
+    {
+      "verse": 55,
+      "endVerse": 55,
+      "sourcePages": [
+        22
+      ],
+      "textSHA256": "5f428519e89f99ef2b220c712b0b17f5b101bcb63fdfcb84aa874fe0b71da9a6"
+    },
+    {
+      "verse": 56,
+      "endVerse": 56,
+      "sourcePages": [
+        22
+      ],
+      "textSHA256": "358645c1d33237add5a1f8817588e78b153803284ccfbf92f73072d4ccf0405b"
+    },
+    {
+      "verse": 57,
+      "endVerse": 57,
+      "sourcePages": [
+        22
+      ],
+      "textSHA256": "a5f41bfdde733aaf64e99620caf4efc5869519fae2b7ae7ef5b7fb7bb76ee98d"
+    },
+    {
+      "verse": 58,
+      "endVerse": 58,
+      "sourcePages": [
+        22
+      ],
+      "textSHA256": "ec07422a702afe186d516efb2b037413d3a8238937b0cb9666bd107cb0265c35"
+    },
+    {
+      "verse": 59,
+      "endVerse": 59,
+      "sourcePages": [
+        22
+      ],
+      "textSHA256": "70a43abb2071ad2f01469b0a1bee5f0a10130d551ff2fbf592939a5c37beed48"
+    },
+    {
+      "verse": 60,
+      "endVerse": 60,
+      "sourcePages": [
+        22
+      ],
+      "textSHA256": "5fa49a153cbaf9def55d99e0ba2415b734a1bc3e190d50157686d75ac079a8b4"
+    },
+    {
+      "verse": 61,
+      "endVerse": 61,
+      "sourcePages": [
+        22
+      ],
+      "textSHA256": "88257e0f80d51fd7277d855e9aba8b66e320f15305ae7a70d6c787545fffde48"
+    },
+    {
+      "verse": 62,
+      "endVerse": 62,
+      "sourcePages": [
+        22
+      ],
+      "textSHA256": "fd207b878657b8829e50b2f9993ab11c0e0bd4f334e1387e6cbcd98f76ab22e4"
+    },
+    {
+      "verse": 63,
+      "endVerse": 63,
+      "sourcePages": [
+        22
+      ],
+      "textSHA256": "00d585e68c3bd56d58fa93b26fd1d0078bc44dfd1208ef83b769f28869665623"
+    },
+    {
+      "verse": 64,
+      "endVerse": 64,
+      "sourcePages": [
+        22
+      ],
+      "textSHA256": "4c76354f027aa84d6bc4d8a27c0bf77eb68db687fde3b2806b3e12d8c726198e"
+    },
+    {
+      "verse": 65,
+      "endVerse": 66,
+      "sourcePages": [
+        22,
+        23
+      ],
+      "textSHA256": "63520a87b410110271c21784d75e787cb5eb4b72b6ff68773135e98afbe5d456"
+    },
+    {
+      "verse": 67,
+      "endVerse": 67,
+      "sourcePages": [
+        23
+      ],
+      "textSHA256": "4ea648f79c3dcce64f7a8a84bb28210db964f3354dc6d5e2bcd6c29493e997fd"
+    },
+    {
+      "verse": 68,
+      "endVerse": 68,
+      "sourcePages": [
+        23
+      ],
+      "textSHA256": "17c011dbff782050cc7fd8f65229e66d4b277036b7189f9cec0f235d9051ad1f"
+    },
+    {
+      "verse": 69,
+      "endVerse": 69,
+      "sourcePages": [
+        23
+      ],
+      "textSHA256": "20e155209ad3d4cce0d742df784d360b3782b7e26a1bedb784828a7a59f3b3f1"
+    },
+    {
+      "verse": 70,
+      "endVerse": 70,
+      "sourcePages": [
+        23
+      ],
+      "textSHA256": "d331343a6e41ee59ceb3d23f87e6d153cb27a55ff9f87cdbf7f3ce5d7b702fc9"
+    },
+    {
+      "verse": 71,
+      "endVerse": 71,
+      "sourcePages": [
+        23
+      ],
+      "textSHA256": "0ea95a84920c8960f336c9a6992f76b322a68058b499c6d4bd6154062319cd1e"
+    },
+    {
+      "verse": 72,
+      "endVerse": 72,
+      "sourcePages": [
+        23
+      ],
+      "textSHA256": "35074e4bc1747c6f8ca6a40c56bdab414b78ef93f7163ef9bfd723e7abef29e1"
+    }
+  ],
+  "focusedEvidence": [
+    {
+      "name": "root-lje-v47-yityaatsu-tight.png",
+      "sha256": "0143a7283dc43308ee5d73a9c24c74e688bb6bc73eef1a6430b54df11a697678"
+    },
+    {
+      "name": "root-lje-v25-full-line.png",
+      "sha256": "c8dbd9d7aa6a0a1c108bc592f96ce1ba723ec2bae16fee1e00c150fadb44718f"
+    },
+    {
+      "name": "root-lje-v38-yevoshu.png",
+      "sha256": "6d6ba722f4a583af49e476a989a684e00ade0dad23ab1738b3fd901a808c626c"
+    },
+    {
+      "name": "root-lje-v31-full-line.png",
+      "sha256": "a847509589af10193e7450c64b15e5f800735b79234b74ba7d371e1406ce1e11"
+    },
+    {
+      "name": "root-lje-v34-agorat.png",
+      "sha256": "96ca77a6950067ca5dcfb3084a573a3590f875fa72ce5d5cb358fc4b8fdec445"
+    }
+  ],
+  "followUpDecisions": [
+    {
+      "unit": "1:70",
+      "decision": "User confirms initial kaf sheva; draft retained and page23 closed.",
+      "evidence": "LJE-user-point-70.json"
+    }
+  ]
+}
