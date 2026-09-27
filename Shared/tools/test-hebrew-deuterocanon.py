@@ -89,6 +89,80 @@ class HebrewReviewTests(unittest.TestCase):
                 with self.assertRaisesRegex(ValueError, message):
                     validate_book(altered, self.catalog, self.approval)
 
+    def test_printed_witness_can_supply_a_label_absent_from_primary_index(self):
+        chapter = self.book["chapters"][0]
+        chapter["verses"].pop()
+        self.approval["chapters"][0]["units"].pop()
+        chapter["contentBlocks"] = [
+            {"id": "unit-1", "kind": "verse", "chapter": 1, "verse": 1},
+            {"id": "second-source", "kind": "witness", "printedLabel": "1a–2",
+             "text": "Synthetic distinct source text", "addresses": [
+                 {"chapter": 1, "verse": 1, "endVerse": 2, "part": "a"}],
+             "sourcePages": [14],
+             "textSHA256": hashlib.sha256(b"Synthetic distinct source text").hexdigest()},
+            {"id": "unit-3", "kind": "verse", "chapter": 1, "verse": 3},
+        ]
+        self.approval["contentBlocks"] = [
+            {"number": 1, "ids": ["unit-1", "second-source", "unit-3"]}]
+        self.repin()
+        self.assertEqual(validate_book(self.book, self.catalog, self.approval)["units"], 2)
+        # A changed display label on an unnumbered passage cannot cover verse2.
+        block = chapter["contentBlocks"][1]
+        block["kind"] = "passage"
+        del block["addresses"], block["printedLabel"]
+        self.repin()
+        with self.assertRaisesRegex(ValueError, "omitted labels"):
+            validate_book(self.book, self.catalog, self.approval)
+
+    def test_witness_coverage_uses_addressed_chapter_not_display_chapter(self):
+        first = self.book["chapters"][0]
+        first["verses"].pop()
+        self.approval["chapters"][0]["units"].pop()
+        self.book["chapters"].append({"number": 2, "lastVerse": 1, "verses": [self.row(1)],
+            "contentBlocks": [
+                {"id": "second-chapter", "kind": "verse", "chapter": 2, "verse": 1},
+                {"id": "earlier-witness", "kind": "witness", "printedLabel": "1:2",
+                 "text": "Synthetic earlier source", "addresses": [{"chapter": 1, "verse": 2}],
+                 "sourcePages": [14],
+                 "textSHA256": hashlib.sha256(b"Synthetic earlier source").hexdigest()},
+            ]})
+        self.approval["chapters"].append({"number": 2, "units": [[1, 1]]})
+        self.approval["contentBlocks"] = [
+            {"number": 2, "ids": ["second-chapter", "earlier-witness"]}]
+        self.repin()
+        self.assertEqual(validate_book(self.book, self.catalog, self.approval)["chapters"], 2)
+
+    def test_witness_cannot_extend_the_reviewed_terminal_source_label(self):
+        chapter = self.book["chapters"][0]
+        chapter["contentBlocks"] = [{"id": f"unit-{r['verse']}", "kind": "verse", "chapter": 1,
+                                     "verse": r["verse"]} for r in chapter["verses"]]
+        chapter["contentBlocks"].append({"id": "beyond-end", "kind": "witness", "printedLabel": "5",
+            "text": "Synthetic witness", "addresses": [{"chapter": 1, "verse": 5}],
+            "sourcePages": [14], "textSHA256": hashlib.sha256(b"Synthetic witness").hexdigest()})
+        self.approval["contentBlocks"] = [
+            {"number": 1, "ids": ["unit-1", "unit-3", "unit-2", "beyond-end"]}]
+        self.repin()
+        with self.assertRaisesRegex(ValueError, "label exceeds"):
+            validate_book(self.book, self.catalog, self.approval)
+
+    def test_draft_witness_range_is_bounded_before_label_expansion(self):
+        self.book["review"]["status"] = "draft"
+        chapter = self.book["chapters"][0]
+        chapter["contentBlocks"] = [{"id": f"unit-{r['verse']}", "kind": "verse", "chapter": 1,
+                                     "verse": r["verse"]} for r in chapter["verses"]]
+        witness = {"id": "bounded-witness", "kind": "witness", "printedLabel": "1–1000",
+                   "text": "Synthetic witness", "addresses": [{"chapter": 1, "verse": 1,
+                                                               "endVerse": 1000}],
+                   "sourcePages": [14], "textSHA256": hashlib.sha256(b"Synthetic witness").hexdigest()}
+        chapter["contentBlocks"].append(witness)
+        self.assertEqual(validate_book(self.book, self.catalog)["status"], "draft")
+        for address in ({"chapter": 1, "verse": 1, "endVerse": 1001},
+                        {"chapter": 1, "verse": 1001}):
+            with self.subTest(address=address):
+                witness["addresses"] = [address]
+                with self.assertRaisesRegex(ValueError, "invalid witness address"):
+                    validate_book(self.book, self.catalog)
+
     def test_unreviewed_page_open_finding_and_missing_inventory_prevent_completion(self):
         for change, message in (
             (lambda b: b["review"].update(reviewedPages=[]), "every source page"),

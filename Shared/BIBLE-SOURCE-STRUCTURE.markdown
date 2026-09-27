@@ -113,6 +113,17 @@ exact `addressRoutes` array (absent means empty for both). No source material ke
 under `review` is imported as production text. Migrating draft material into blocks
 does not approve its wording, points, source identity or completeness.
 
+The Hebrew completion gate counts numbered source labels from both primary ranges
+and validated witness addresses. A witness counts toward its addressed chapter,
+even when printed in another chapter; overlapping ranges count each number once.
+Unnumbered passages, headings and colophons cannot fill a numeric gap. A label
+present only in a witness is not an omitted source label. This is label coverage,
+not a claim that a labeled part contains an entire standard-edition verse: literal
+part labels remain visible, and every printed word and boundary still requires
+review. The complete digest pins the witness text and addresses, while the
+independent block inventory pins its presence and physical order. Actual omitted
+labels still require explicit source-gap evidence and a partial-chapter label.
+
 Concrete fixtures must cover the 11:33 / 12:1 / 11:34 / 12:2 interleaving, repeated
 51:13, overlapping 41:14ב and 14א–16, the unnumbered thanksgiving hymn, colophons and
 the Susanna printed-label discrepancy. Reject missing or duplicated presentations,

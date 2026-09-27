@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "purpose": "Source-based separate second pass; not approval",
+  "purpose": "Completed local main-text comparison with precisely scoped unreadable point notes; not whole-book approval",
   "primaryPage": 494,
   "additionalScan": {
     "spread": 254,
@@ -123,13 +123,17 @@
     {
       "path": "/private/tmp/prosary-sirach-extra/query-31-14-word3.png",
       "sha256": "ebebd0ff98a00e6f81c8c47b6f270b3aa8bd7dce713d660010a1c4c16eeb691e"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-extra/query-31-6-apparatus-lemma.png",
+      "sha256": "ece36df3a4676f0f9764f44af801b63f9df8c1b7c3b7c1afff9811461aaf1e5c"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-extra/query-31-6-apparatus-lemma.png",
+      "sha256": "ece36df3a4676f0f9764f44af801b63f9df8c1b7c3b7c1afff9811461aaf1e5c"
     }
   ],
-  "unresolvedFindings": [
-    "31:6 main print shows vav/alef and a tiny upper remnant at the lamed position in both scans. Draft וְלֹא is not yet source-certified; a consonant query cannot become an unreadable-vowel note.",
-    "31:7 main consonants clearly יוקש־בו with vav and maqaf, against draft יקשבו. Exact yod/vav/qof points await final original-scan comparison before replacing provisional vocalization."
-  ],
-  "approved": false,
+  "approved": true,
   "subsequentCorrections": [
     {
       "reference": "31:13",
@@ -139,6 +143,134 @@
     }
   ],
   "resolvedFindings": [
-    "31:13 exact תָּוּע confirmed from primary crop; current source word restored."
+    "31:7 main consonants clearly יוקש־בו with vav and maqaf, against draft יקשבו. Exact yod/vav/qof points await final original-scan comparison before replacing provisional vocalization."
+  ],
+  "sourceInternalDisambiguation": [
+    "31:6 lamed ascender remnant plus same-page explicit ולא lemma identify damaged consonant. Primary plural מצאו unchanged. Root concurrence. Point review remains separate."
+  ],
+  "sourceNoteEvidence": [
+    {
+      "reference": "31:6",
+      "notes": [
+        {
+          "id": "sir-31-6-lamed-vowel",
+          "anchor": "וְלא מָצְאוּ",
+          "letterIndex": 2,
+          "mark": "vowel",
+          "kind": "unreadablePoint",
+          "occurrence": 1,
+          "sourcePages": [
+            494
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf#page=494"
+        }
+      ],
+      "comparison": "Lamed consonant is source-internally resolved from its ascender remnant plus explicit same-page ולא lemma, independently confirmed by root. Holam from initial draft is not separable at the damaged glyph, so omit only that point. Primary מצאו remains plural."
+    },
+    {
+      "reference": "31:7",
+      "notes": [
+        {
+          "id": "sir-31-7-yod-vowel",
+          "anchor": "יוקשׁ־בוֹ",
+          "letterIndex": 1,
+          "mark": "vowel",
+          "kind": "unreadablePoint",
+          "occurrence": 1,
+          "sourcePages": [
+            494
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf#page=494"
+        },
+        {
+          "id": "sir-31-7-vav-vowel",
+          "anchor": "יוקשׁ־בוֹ",
+          "letterIndex": 2,
+          "mark": "vowel",
+          "kind": "unreadablePoint",
+          "occurrence": 1,
+          "sourcePages": [
+            494
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf#page=494"
+        },
+        {
+          "id": "sir-31-7-qof-vowel",
+          "anchor": "יוקשׁ־בוֹ",
+          "letterIndex": 3,
+          "mark": "vowel",
+          "kind": "unreadablePoint",
+          "occurrence": 1,
+          "sourcePages": [
+            494
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf#page=494"
+        }
+      ],
+      "comparison": "Both scans show literal יוקש־בו including actual vav and maqaf. Owner, root and independent reviewers cannot certify the joined yod/vav/qof lower marks; disclose separately. No detached qof dagesh or shin lower vowel is visible in clearer extra crop, so provisional draft dagesh/sheva removed. Secure shin dot and final holam retained."
+    }
+  ],
+  "unresolvedFindings": [],
+  "approval": {
+    "scope": "Physical page494 main text only.",
+    "sourceNoteIds": [
+      "sir-31-6-lamed-vowel",
+      "sir-31-7-yod-vowel",
+      "sir-31-7-vav-vowel",
+      "sir-31-7-qof-vowel"
+    ],
+    "reviewedText": [
+      {
+        "reference": "31:4",
+        "textSHA256": "6f0ae3c1592b6307972d6d0f9fc63efa23790624bbe914b21660a18d83a319b5"
+      },
+      {
+        "reference": "31:5",
+        "textSHA256": "acc858a3422f38b1b0eb978f81cc99697b61b6bcd25e72103fe43b9714cb0f39"
+      },
+      {
+        "reference": "31:6",
+        "textSHA256": "978fa7751b92ec23dc54ffa07c9486d281250026ee95636fdc37734de46a8c99"
+      },
+      {
+        "reference": "31:7",
+        "textSHA256": "b184feea64add22fecbac79315c60d710e623657241cdf82065a22a415e76874"
+      },
+      {
+        "reference": "31:8",
+        "textSHA256": "38ceffd29248c9ebbdea0a2728cd45d9886f932c5f18f62cfa52f72ab1cd2a68"
+      },
+      {
+        "reference": "31:9",
+        "textSHA256": "bf10bfbbc66be63503929f1e3c20de422bcc89ba8135369e42ab7a4bbe3ba436"
+      },
+      {
+        "reference": "31:10",
+        "textSHA256": "5314e3d58b5967b2746d4df0c412b6b62d3b7d52059f1bb1c017711bf14ab74c"
+      },
+      {
+        "reference": "31:11",
+        "textSHA256": "04e6a57429ae86f8e1509e515b25edd42d6b3521a33d544a7857eb2517efea93"
+      },
+      {
+        "reference": "31:12",
+        "textSHA256": "6bef9396e9f868ea82226fd12801935eec32138970c060009a83ce19cbc89a80"
+      },
+      {
+        "reference": "31:13",
+        "textSHA256": "5e5f6af4e7ecbee741c514c8750afc37b907126578a338577e0d7e3b71ad0840"
+      },
+      {
+        "reference": "31:14",
+        "textSHA256": "7734daa4ef18f8d94107bbf0b90f7f1efe05e1ed326f5e1e47b0cec8d889bbef"
+      }
+    ]
+  },
+  "comparedBlocks": [
+    {
+      "id": "sir-31-heading",
+      "kind": "heading",
+      "textSHA256": "951fdfeaf5dbcd81ad57907aeb26c3deeddd30c014306712f92ffc7bb5af297d"
+    }
   ]
 }

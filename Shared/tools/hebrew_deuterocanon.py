@@ -121,6 +121,19 @@ def validate_book(book: dict, catalog: dict, approval: dict | None = None) -> di
     structure = validate_structure(chapters, routes=book.get("addressRoutes", ABSENT),
                                    authoring=True, page_count=total, allow_empty_pages=not complete,
                                    label=code)
+    # A printed label can live only in a distinct source witness, rather than in
+    # the unique primary address index. Count its addressed chapter, not the
+    # chapter where the source physically presents it. Structure validation has
+    # already checked every witness address and its source text/page evidence.
+    source_labels = {entry["number"]: {n for first, last in entry["units"]
+                                       for n in range(first, last + 1)}
+                     for entry in label_inventory}
+    for chapter in chapters:
+        for block in chapter.get("contentBlocks", []):
+            if block["kind"] == "witness":
+                for address in block["addresses"]:
+                    source_labels[address["chapter"]].update(
+                        range(address["verse"], address.get("endVerse", address["verse"]) + 1))
     used_pages |= structure["sourcePages"]
     source_note_ids = structure["sourceNoteIds"]
     declared = set()
@@ -148,10 +161,10 @@ def validate_book(book: dict, catalog: dict, approval: dict | None = None) -> di
                 approval["hasIntroduction"] == ("introduction" in book), f"{code}: opening inventory mismatch")
         # Source gaps may be faithfully transcribed, but cannot be advertised as a
         # gap-free chapter. Require explicit evidence, not inferred missing labels.
-        for chapter, expected in zip(chapters, approval["chapters"], strict=True):
+        for chapter in chapters:
             last = chapter.get("lastVerse")
             require(positive(last), f"{code} {chapter['number']}: missing source terminal label")
-            labels = {n for first, end in expected["units"] for n in range(first, end + 1)}
+            labels = source_labels[chapter["number"]]
             require(max(labels) <= last, f"{code}: label exceeds source terminal label")
             omitted = sorted(set(range(1, last + 1)) - labels)
             gaps = approval.get("sourceGaps", {}).get(str(chapter["number"]), {})

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "purpose": "Source-based separate second pass; not approval",
+  "purpose": "Completed local main-text comparison with precisely scoped unreadable point notes; not whole-book approval",
   "primaryPage": 485,
   "additionalScan": {
     "spread": 249,
@@ -197,11 +197,205 @@
     {
       "path": "/private/tmp/prosary-sirach-extra/query-24-33.png",
       "sha256": "19db21067e49cf530bcc4f45f67105d23e6e72f2aa4d78b827d4ec3892e2c437"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-extra/query-24-15-myrrh2.png",
+      "sha256": "bfac969d5a70ef12dc67cf5ab4c28102167203db43383f195528295cd82d1652"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-extra/query-24-15-primary.png",
+      "sha256": "0a7b508c5e6591c1fd88a5be33166043e594010f002e8ad568ea3ad491cf21d7"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-extra/query-24-17-buds.png",
+      "sha256": "f1b47cf4faf738bd5daf8e24434dd8d6aeae909c25f436db16a4d5020c0cb59d"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-extra/query-24-17-primary.png",
+      "sha256": "8a5926ecd8e47260a8f5e35d598845cf37ef7ef1872bfee3e819035d1aef7c65"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-extra/query-24-27-river2.png",
+      "sha256": "89efad3d5a8b1dd3af05c28a6bb1cb1258c4f8f08766add0c06762254b76abf7"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-extra/query-24-27-primary.png",
+      "sha256": "87638c90558faace5c50b29994ae07e09f8da27c821e0681e1aa8b348eec883e"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-extra/query-24-32-whole.png",
+      "sha256": "cb58f5f62f941c85b0d649dbeffee83a460f9dc8a5724f352a0cc02ac3072b44"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-extra/query-24-32-primary.png",
+      "sha256": "7af784f29f99601291643816156f535d412a36e9d523c59bd3e05dda52db6cc6"
     }
   ],
-  "unresolvedFindings": [
+  "approved": true,
+  "sourceNoteEvidence": [
+    {
+      "reference": "24:15",
+      "notes": [],
+      "comparison": "Mem in וכמר has a clear horizontal bar with centered descending stem. Apple and Android independently confirm qamats, retaining the sourced form."
+    },
+    {
+      "reference": "24:17",
+      "notes": [
+        {
+          "id": "sir-24-17-nun-dagesh",
+          "anchor": "וְנִצַּנִי",
+          "letterIndex": 4,
+          "mark": "dagesh",
+          "kind": "unreadablePoint",
+          "occurrence": 1,
+          "sourcePages": [
+            485
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf#page=485"
+        }
+      ],
+      "comparison": "The second nun hiriq is detached and readable; the alleged interior dagesh cannot be separated from the glyph in either scan. Windows independently confirms that limitation. Omit only the uncertain dagesh."
+    },
+    {
+      "reference": "24:27",
+      "notes": [],
+      "comparison": "Bracketed yod has two vertically separated lower dots, independently confirmed by Apple and Android as sheva. Printed bracket span remains unchanged."
+    },
+    {
+      "reference": "24:32",
+      "notes": [
+        {
+          "id": "sir-24-32-resh-vowel",
+          "anchor": "וְאוֹריתִיו",
+          "letterIndex": 4,
+          "mark": "vowel",
+          "kind": "unreadablePoint",
+          "occurrence": 1,
+          "sourcePages": [
+            485
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf#page=485"
+        }
+      ],
+      "comparison": "Both scans preserve the exact letters ואוריתיו. The lower resh region has one detached dot and another ink fragment joined to its stem; Apple and Windows cannot securely distinguish hiriq from sheva. Omit just that vowel, retaining the remaining visible points."
+    }
+  ],
+  "resolvedFindings": [
     "24:17 נצני nun vowel/dagesh and24:15 מר־דרור mem vowel need final narrow comparison.",
     "24:27 bracketed yod's sheva and24:32 אוריתיו precise spelling/points require final fine check before page approval."
   ],
-  "approved": false
+  "unresolvedFindings": [],
+  "approval": {
+    "scope": "Physical page485 main text only.",
+    "sourceNoteIds": [
+      "sir-24-17-nun-dagesh",
+      "sir-24-32-resh-vowel"
+    ],
+    "reviewedText": [
+      {
+        "reference": "24:6",
+        "textSHA256": "e6b9d8c126ddaf22d37b31b3e2be074e9956462bd83022170d82d7e696991a01"
+      },
+      {
+        "reference": "24:7",
+        "textSHA256": "4a415a0986a4a7ae0b5f2d4f00b994d6111ea05400f38f3c25eaf64166124047"
+      },
+      {
+        "reference": "24:8",
+        "textSHA256": "1fd15d17bc8bc170381e7e66a49efbce90bab1e8e48b86d560059277dc8ee058"
+      },
+      {
+        "reference": "24:9",
+        "textSHA256": "1c878bdd7eeb75b39539136582ee0142283d8fcca936506b9d9693d7910e3f70"
+      },
+      {
+        "reference": "24:10",
+        "textSHA256": "19ec5d4199f1c2c8828f0e6b5dc23b4ce8079d1b2e1755a2ea19da4c761b8aba"
+      },
+      {
+        "reference": "24:11",
+        "textSHA256": "e11564069bd8fb7af1fc6b1d42126e4b24aa4d0459fab348eafde83224806720"
+      },
+      {
+        "reference": "24:12",
+        "textSHA256": "5687905dafa3d4bdf30e92342e79c4e4e4f1f5a2ea3a286fc8e032db066e1847"
+      },
+      {
+        "reference": "24:13",
+        "textSHA256": "ca5daae7d6a5a9029dac77c8c8e5b12ca577b1871aec414f90574648f3e853bd"
+      },
+      {
+        "reference": "24:14",
+        "textSHA256": "da9f606b7d6e66ed8246c995e2690c2bb0f45f3b8a14fd001dac9bb9694aab1b"
+      },
+      {
+        "reference": "24:15",
+        "textSHA256": "e0483f7ff83be2364c1c4d1e045efcbb789202fbf2f526ed9ccbf1fc0bb75f8e"
+      },
+      {
+        "reference": "24:16",
+        "textSHA256": "10bc0eff5916c1c7c3f3c9dd44e3e684f6061864bc2468cc39c387dd4bb4ff5e"
+      },
+      {
+        "reference": "24:17",
+        "textSHA256": "4fdcc19cd39d5c3953f1939043573e2e9a33564d0f7f4ecf53d172b95fc14d6b"
+      },
+      {
+        "reference": "24:19",
+        "textSHA256": "1752f39dd01facaa12ff5e07a42c334341d8611d689c593254a66327526ce4ed"
+      },
+      {
+        "reference": "24:20",
+        "textSHA256": "0f7717c3847e4be60d5f813221de86acffa6a420c5e7926688e172b7dca7dcfa"
+      },
+      {
+        "reference": "24:21",
+        "textSHA256": "63cf75fc76d9f83653e85c2f9e35dc0cf76a6f2f4ca8df7cdd05d28992f16d49"
+      },
+      {
+        "reference": "24:22",
+        "textSHA256": "93939f865c26f82d28ed06c7e257ebddc895914940df237c7356c9d927ff81e5"
+      },
+      {
+        "reference": "24:23",
+        "textSHA256": "1c20b7163da790ebe4f856c0edf7715227bdca82db8d8b648f9990a727748521"
+      },
+      {
+        "reference": "24:25",
+        "textSHA256": "f3de93af293187e75696a0b8a34254a24b939e2cf8473eace19e4884da6c5c22"
+      },
+      {
+        "reference": "24:26",
+        "textSHA256": "d3fb8dc42a08e497b9146e9207167fda4aedbb6f415874305784065b7fd18fc9"
+      },
+      {
+        "reference": "24:27",
+        "textSHA256": "46040435b543e9d8e19994af959658262cf6a8180e99fdea8aadc2c90194c040"
+      },
+      {
+        "reference": "24:28",
+        "textSHA256": "57bcd8e00fee65431509c20eac02ead5ebed25f24ea82e734aa4872bbeb38180"
+      },
+      {
+        "reference": "24:29",
+        "textSHA256": "cf7e99fe8547e3d944a33a1b146ca2ed35dd8d24fcf8b8057e71b7a70842738d"
+      },
+      {
+        "reference": "24:30",
+        "textSHA256": "f050236d7536c004a37d1c1929f1790157c5b02b2148a2d37de434d9953b684e"
+      },
+      {
+        "reference": "24:31",
+        "textSHA256": "843a72152d47ac9ede18e5f49d381908cc42bf688090d1a4c20529e05f865687"
+      },
+      {
+        "reference": "24:32",
+        "textSHA256": "cd03f7387edef1d552f36aa561dbeccb4b88883115b603ca08823182f71610c3"
+      },
+      {
+        "reference": "24:33",
+        "textSHA256": "83770384d0fdf54dcf42de694562f448882e019d9db049828f5d54bcdb243ad8"
+      }
+    ]
+  }
 }

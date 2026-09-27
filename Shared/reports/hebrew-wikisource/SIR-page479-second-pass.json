@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "purpose": "Source-based separate second pass; not approval",
+  "purpose": "Completed local main-text comparison with precisely scoped unreadable point notes; not whole-book approval",
   "primaryPage": 479,
   "additionalScan": {
     "spread": 246,
@@ -203,11 +203,142 @@
     {
       "path": "/private/tmp/prosary-sirach-extra/query-20-12.png",
       "sha256": "c112659beb6d74ebcb343711960d67a5925b5678b2f56f7f019b0bed3f54e53e"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-extra/query-20-6-without.png",
+      "sha256": "a17890270740813622a04cb867d3a2a1b7464e28ffc1a47921f7a469a3e568d1"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-extra/query-19-29-first.png",
+      "sha256": "decca062abd66644b22f2e93b88854fb1b7dbd8bde30af8815d613b852cfe7da"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-extra/query-19-29-secondwhole.png",
+      "sha256": "386680a05afe63c5ce57f7dd739aaa2ab02bc6befcb309eeecf256fbd6e18367"
     }
   ],
-  "unresolvedFindings": [
+  "approved": true,
+  "sourceNoteEvidence": [
+    {
+      "reference": "19:29",
+      "notes": [],
+      "comparison": "Each close crop separates a vav dagesh and a flat dalet patah. The first occurrence's yod has hiriq, whereas the second has two vertical lower dots, independently confirmed by Apple and Windows as sheva. Preserve this printed within-verse difference instead of normalizing repeated words."
+    },
+    {
+      "reference": "20:6",
+      "notes": [],
+      "comparison": "The additional-scan crop separates three alef dots in a triangle; Apple and Windows independently identify segol. Correct the provisional tsere while retaining mem tsere and the source letters."
+    }
+  ],
+  "resolvedFindings": [
     "20:6 מאין alef vowel needs a final fine comparison; do not change to grammatical expectation.",
     "19:29 two יודַע forms: vav dagesh and dalet vowel need final narrow comparison before approval."
   ],
-  "approved": false
+  "unresolvedFindings": [],
+  "approval": {
+    "scope": "Physical page479 main text only.",
+    "sourceNoteIds": [],
+    "reviewedText": [
+      {
+        "reference": "19:15",
+        "textSHA256": "40cee8dcf02add5cf9312d33c1f56a181a9e6b650df5e89078495e85b5f193f8"
+      },
+      {
+        "reference": "19:16",
+        "textSHA256": "931c997df5cf11445a022cef27bf4ae5a75537e8601e243721f5d5e64ef5be47"
+      },
+      {
+        "reference": "19:17",
+        "textSHA256": "2dfe5e16dc50e40a0a7362ba4affb02e766a38044274247ded811622effa7193"
+      },
+      {
+        "reference": "19:20",
+        "textSHA256": "c0c37d6a47571d007fd53589ccd5ba91b0397d9ff3b98c5824c71dd771dceaab"
+      },
+      {
+        "reference": "19:22",
+        "textSHA256": "6014ada09d4a4c127860ead53f7c88cf7e9c122f536c0266d54b1b23c2bf5e7e"
+      },
+      {
+        "reference": "19:23",
+        "textSHA256": "a32815456e77f8033c85a069a41e1c8116cfa66beed90038d929926839bc0fdf"
+      },
+      {
+        "reference": "19:24",
+        "textSHA256": "987ed9399272b851681221469ceb88e2bbf11b39b617dadf56095589d43f8b9d"
+      },
+      {
+        "reference": "19:25",
+        "textSHA256": "f0f71a65fd74a96ff15cae6d337e369f18cb122c0f976d5af993618736b9ba3c"
+      },
+      {
+        "reference": "19:26",
+        "textSHA256": "66b5dd8a6ad3f2f1cc7944f8da22060d8ecc8753170bfcac43b409c83b6c8e36"
+      },
+      {
+        "reference": "19:27",
+        "textSHA256": "624b0103c2b2107a7a8e7001168b1b13cc636cc23eccfe51fc5074a6666f2ab7"
+      },
+      {
+        "reference": "19:28",
+        "textSHA256": "d00e91b948d3184f595d27b0fbc1033ce937cc2953f0bd532e8290a28ed519c4"
+      },
+      {
+        "reference": "19:29",
+        "textSHA256": "2a4550b8acb714180f8e48dccaf57fd44dd0448e05b0efc5961c83519feb297b"
+      },
+      {
+        "reference": "19:30",
+        "textSHA256": "640c7bcfef11f14ec5b52220425cd17c4f9f065fe0202640a97984c51688dbba"
+      },
+      {
+        "reference": "20:1",
+        "textSHA256": "757bb4b2df7b11c33dedb9f4d5ccb80907a3fd1a2932f4ce850a4be4dcdc750b"
+      },
+      {
+        "reference": "20:2",
+        "textSHA256": "919a03fe6f5eeff09cbfc3804bca6923a34a4ebeaefd1870a741b7ea7ed803b0"
+      },
+      {
+        "reference": "20:4",
+        "textSHA256": "c3325f02b8b8f9f0f4f61e37d77c08db8dd930412e4b9b59dfbf55000f0adee6"
+      },
+      {
+        "reference": "20:5",
+        "textSHA256": "6f3c0226d7ffc16cf10b2fa390349ee2db9853bd63c3e4c8b695ddfecdd925b9"
+      },
+      {
+        "reference": "20:6",
+        "textSHA256": "2f079aaefcbbb2a858c368af0857cb89e435e0c4bcc518f36e7a6f96f26daf5d"
+      },
+      {
+        "reference": "20:7",
+        "textSHA256": "07f8e632ac6ccdb6968534f674081fe2abc720db5b8fe257ee4af3f71094990e"
+      },
+      {
+        "reference": "20:8",
+        "textSHA256": "10a6376b111847cb3bb1b7215027497218f753f83ec19a7b9788edfc94662700"
+      },
+      {
+        "reference": "20:9",
+        "textSHA256": "afb115ae686ac533223549426088f6238bd4070040148de6a15a2d988f4f49f9"
+      },
+      {
+        "reference": "20:10",
+        "textSHA256": "7aee404d67db3fda2ee7d7a42c293a9b312db1c128262ad758631bafc14a9e2c"
+      },
+      {
+        "reference": "20:11",
+        "textSHA256": "e47f9a2ef9b534b10cc86c9043b48baf5713a23d57e717f1b370b7163b37743f"
+      },
+      {
+        "reference": "20:12",
+        "textSHA256": "300c153465f14e54b1c799c922c63b2774e74a86dfa30fa352d776467839f250"
+      },
+      {
+        "reference": "20:13",
+        "textSHA256": "402585bf9908cb92858401b571e8cd23ff8f7a18004872fd01dd608eb71d0f12"
+      }
+    ]
+  }
 }

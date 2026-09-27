@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "purpose": "Source-based separate second pass; not approval",
+  "purpose": "Completed local main-text comparison with precisely scoped unreadable point notes; not whole-book approval",
   "primaryPage": 478,
   "additionalScan": {
     "spread": 246,
@@ -171,11 +171,139 @@
     {
       "path": "/private/tmp/prosary-sirach-extra/query-19-1-2-right.png",
       "sha256": "d54d4f6ee05083318e6f0eba76a967d98cf15f229ff7b3d55be17d1568030c2d"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-extra/query-19-3-root.png",
+      "sha256": "450782de0217314662c85183143aee26b80d33f624d0339e4e00709ad718571a"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-extra/query-19-4-guilty.png",
+      "sha256": "a0855b6780b71ff2ee172bb5c0abe4f9f707e985cdb6cc6dda92e3f7a07530b7"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-extra/query-19-5-known.png",
+      "sha256": "29af7567982effeeb1ec330f28fd519ae771279b714ffdfe6e51c353e5f24041"
     }
   ],
-  "unresolvedFindings": [
+  "approved": true,
+  "sourceNoteEvidence": [
+    {
+      "reference": "19:3",
+      "notes": [],
+      "comparison": "Fresh extra-scan crop separates two vertical dots beneath initial tav and a clean interior. Apple and Android independently confirm sheva and no dagesh, correcting the first draft's qibbuts/dagesh without altering the letters."
+    },
+    {
+      "reference": "19:4",
+      "notes": [],
+      "comparison": "Tight crop separates two vertical dots under alef in יאשם. Retain the printed sheva and the remaining secure points."
+    },
+    {
+      "reference": "19:5",
+      "notes": [],
+      "comparison": "The user independently supplied י־ו־ד־ע with hiriq,qamats,tsere,patah; that feedback remains controlling for those points. A new tighter extra-scan crop additionally separates one detached dot beside vav, independently confirmed by Apple and Android. Add only that now-visible dagesh; this supersedes the earlier coarse-view uncertainty and does not transfer23:21's reading."
+    }
+  ],
+  "resolvedFindings": [
     "19:5–6 vav dagesh remains unconfirmed; the user specified the consonants and vowels יִוָדֵעַ, without dagesh, so none is added.",
     "19:4 יאשם exact alef mark and19:3 תשרש first vowel require final close comparison before page approval."
   ],
-  "approved": false
+  "unresolvedFindings": [],
+  "approval": {
+    "scope": "Physical page478 main text only.",
+    "sourceNoteIds": [],
+    "reviewedText": [
+      {
+        "reference": "18:24",
+        "textSHA256": "1bb991566568809b0001e86450c9796fe26a161aa5461be8828ebc443eb29efd"
+      },
+      {
+        "reference": "18:25",
+        "textSHA256": "a68b38a7b9ab5c934ca3923e08b24177d5a6259a340b20b4df4d9fffcb205542"
+      },
+      {
+        "reference": "18:26",
+        "textSHA256": "2f284bc855f0be7dfdafcefea6ba9f01a346bcbf757106a1ed48c5abd81d1eeb"
+      },
+      {
+        "reference": "18:27",
+        "textSHA256": "ff481f1a5912d182310aa76e2165d576091fba40956d5f763acd746071860b85"
+      },
+      {
+        "reference": "18:28",
+        "textSHA256": "fa536b079545903fac64a33e150ddfc9038e700bd6ca2a84faaffc2144b47ab5"
+      },
+      {
+        "reference": "18:29",
+        "textSHA256": "074d799131301640819591c8c4a19a533da8065d5a7cc978e65bbe1c1905776a"
+      },
+      {
+        "reference": "18:30",
+        "textSHA256": "f3677a4445a7ebaad62e58b6e0466dc5524a4a05fec6fa93d483b3c3554898a8"
+      },
+      {
+        "reference": "18:31",
+        "textSHA256": "845b59025cb69fab7536312a630fe9e5b32ca01729d13043c6b471d9b7e2ab28"
+      },
+      {
+        "reference": "18:32",
+        "textSHA256": "2535956ef901a9917d1478a6168f22f6febf4885175c94751c419638b4f82259"
+      },
+      {
+        "reference": "18:33",
+        "textSHA256": "fcfce2e6ecfe9f2653977864809ea297fce5e724aa2688209de7fdd5531b0d07"
+      },
+      {
+        "reference": "19:1",
+        "textSHA256": "91d24af41611b9ac37c47af7d6560ac4728522f9d693bbeef332f8fabaada431"
+      },
+      {
+        "reference": "19:2",
+        "textSHA256": "3a424128355590c8733f0fbb60b671477b815e7cad3b0a1bd26637d50e208317"
+      },
+      {
+        "reference": "19:3",
+        "textSHA256": "33101e3034a6030c53fb7b4d3b7d8cf32db391d6f5f0aa35ba8d75bdaf75279b"
+      },
+      {
+        "reference": "19:4",
+        "textSHA256": "30952ab26830ce7b709533a449c7eda1e02d57377707e5a10d6f638adf01ec0c"
+      },
+      {
+        "reference": "19:5",
+        "textSHA256": "a13f4f3fc7ad9b7640a961e03157dd540873da2fd769106d10722dcf9c955ad1"
+      },
+      {
+        "reference": "19:7",
+        "textSHA256": "2b558bd449b117f858e470313949b9ebc581dbc399ccbb0f7f5ea0c34a987a1d"
+      },
+      {
+        "reference": "19:8",
+        "textSHA256": "7492722e9e89a61e7f8095637752ad34e26f5c6a831a7a5055d4767e55b46735"
+      },
+      {
+        "reference": "19:9",
+        "textSHA256": "9115ea0a295a1f6e6312896193d825cf4cdb25f8033c62a1697569e3ac66dd7b"
+      },
+      {
+        "reference": "19:10",
+        "textSHA256": "7a47b861c7e443fa638afd2b2bf391cdbd690460ff10ea29cda60d1947c5929d"
+      },
+      {
+        "reference": "19:11",
+        "textSHA256": "9c6847c884d18fd4769917bcb5f77418536b8b4c85d80087fa7b81d146782d01"
+      },
+      {
+        "reference": "19:12",
+        "textSHA256": "92e720341a7325e86f5fc572c1fac04c285a117a2ba994da71ddf6beefe64367"
+      },
+      {
+        "reference": "19:13",
+        "textSHA256": "09a79344d8cd95790a3b46c839449ecf45f5acb6f00adf45aa3bc1c0fa365e5a"
+      },
+      {
+        "reference": "19:14",
+        "textSHA256": "3c8fbe037394c54771e16535f17fb5812c5784dc23df79c6569a52fac58563f1"
+      }
+    ]
+  }
 }

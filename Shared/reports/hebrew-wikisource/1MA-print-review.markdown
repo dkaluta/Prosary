@@ -377,3 +377,26 @@ is disclosed, retaining the clear dagesh. The complete 9:4 continuation
 on B141 is checked, but the rest of B141 remains unreviewed.
 ReviewedPages is 44 (B97–140), with 12 accepted notes.
 See `1MA-pointing-B140.json`.
+
+B141 is completely first/second-compared (9:5–20, including the
+20 continuation on B142). The actual9:5 bet sheva without dagesh
+replaces the provisional form; the full medial vav in9:16 is restored.
+ReviewedPages is45(B97–141), with12accepted isolated-point notes.
+9:21 onward remains unreviewed. See `1MA-pointing-B141.json`.
+
+B142 is completely first/second-compared (9:21–35, including35's
+continuation onB143). Actual printed21–22 and32–33 ranges are
+preserved. Source גדול and וכל־צבאו replace the online wording
+errors; exact35 brackets remain. ReviewedPages is46(B97–142),
+with12accepted notes. See `1MA-pointing-B142.json`.
+
+B143 is completely first/second-compared (9:36–47, including47's
+continuation onB144). Printed42–43 remains combined. Exact37nun
+qamats+dagesh replaces provisional sheva. ReviewedPages is47
+(B97–143), with12accepted notes. See `1MA-pointing-B143.json`.
+
+B144 is completely first/second-compared (9:48–57). Printed51–52
+remains combined;48restores[השני],57restoresיהודה. One isolated
+resh vowel in56 remains unreadable in both scans and is disclosed,
+with every clear neighboring point retained. ReviewedPages is48
+(B97–144), with13accepted notes. See `1MA-pointing-B144.json`.

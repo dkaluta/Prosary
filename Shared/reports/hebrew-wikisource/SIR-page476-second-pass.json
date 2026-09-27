@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "purpose": "Source-based separate second pass; not approval",
+  "purpose": "Completed local main-text comparison with precisely scoped unreadable point notes; not whole-book approval",
   "primaryPage": 476,
   "additionalScan": {
     "spread": 245,
@@ -187,11 +187,210 @@
     {
       "path": "/private/tmp/prosary-sirach-extra/B-476-full.png",
       "sha256": "b0f90f300d860a5fcdc22530e16b28999b6ac89f4a2f4f164a7872205ea32898"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-extra/query-16-27-rule.png",
+      "sha256": "bb89d5b4e7fef55c3526ded3b50fd30354222c69ea2c08545c37f2c8cb06fbc0"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-extra/query-17-2-rule.png",
+      "sha256": "d40f5d039e90e00f239ef4ec68a9a977d755612def39c31ebd6e9ac292c17fdd"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-extra/query-17-8-great.png",
+      "sha256": "d6646c54189ee17548165531aaa61e776ae240a704934ef187680d696917fba6"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-extra/query-17-8-primary.png",
+      "sha256": "63d6397beb39797a5f4733ff3156109557d67d83b438907d255dfd43dbad969d"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-extra/query-17-13-great.png",
+      "sha256": "edabd027790bfcfdbe34b1cfb5aa8f4ce8ced3d0c4ebc00112b65fdeef7fb311"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-extra/query-17-13-primary.png",
+      "sha256": "50d2e383b5533870abeb43a2fdc31dd0dd21414cf6a99146c356d19ddaad6a52"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-extra/query-17-20-sins.png",
+      "sha256": "dfece26b66b49d31208713a94da3bfa8f76e413d4d727d64741a05a7d082f1e3"
     }
   ],
-  "unresolvedFindings": [
+  "approved": true,
+  "sourceNoteEvidence": [
+    {
+      "reference": "16:27",
+      "notes": [],
+      "comparison": "Close full-word crop confirms the recorded suffix letters, separate vav holam points, tav tsere/qamats in their respective words and heh segol. Retain the source's exact two-word forms."
+    },
+    {
+      "reference": "17:2",
+      "notes": [],
+      "comparison": "Lamed below-mark separates into two horizontal dots, supporting tsere. The neighboring source letters and shin hiriq are visible; no suffix normalization."
+    },
+    {
+      "reference": "17:8",
+      "notes": [
+        {
+          "id": "sir-17-8-gimel-dagesh",
+          "anchor": "גֹדֶל",
+          "letterIndex": 1,
+          "mark": "dagesh",
+          "kind": "unreadablePoint",
+          "occurrence": 1,
+          "sourcePages": [
+            476
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf#page=476"
+        }
+      ],
+      "comparison": "Holam above gimel is detached and secure. The purported interior dagesh is fused with the tiny gimel body in both original and clearer scans; omit that uncertain mark alone."
+    },
+    {
+      "reference": "17:13",
+      "notes": [
+        {
+          "id": "sir-17-13-gimel-dagesh",
+          "anchor": "גֹדֶל",
+          "letterIndex": 1,
+          "mark": "dagesh",
+          "kind": "unreadablePoint",
+          "occurrence": 1,
+          "sourcePages": [
+            476
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf#page=476"
+        }
+      ],
+      "comparison": "This separate occurrence also has a clear holam and an interior region too merged to certify a dagesh in either scan. Its limitation is documented independently, not transferred from17:8."
+    },
+    {
+      "reference": "17:20",
+      "notes": [],
+      "comparison": "Close crop confirms tav tsere and heh segol in the suffix, with the source's recorded letters unchanged."
+    }
+  ],
+  "resolvedFindings": [
     "16:27 ממשלותיהם/דורותם and17:2 וימשילם suffix vowels need final narrow comparison.",
     "17:8/13 גדל initial gimel dagesh versus only holam,17:20 חטאתיהם suffix points require direct fine check."
   ],
-  "approved": false
+  "unresolvedFindings": [],
+  "approval": {
+    "scope": "Physical page476 main text only.",
+    "sourceNoteIds": [
+      "sir-17-8-gimel-dagesh",
+      "sir-17-13-gimel-dagesh"
+    ],
+    "reviewedText": [
+      {
+        "reference": "16:27",
+        "textSHA256": "b75f007ac70a6d6ec9566a4ea5d0941662665b4d0c42050d50496f084b9084fb"
+      },
+      {
+        "reference": "16:28",
+        "textSHA256": "07391cd585eca53197f9e74411f0900a6118d5e872d06579cdcd37098a277d39"
+      },
+      {
+        "reference": "16:29",
+        "textSHA256": "665493bb5d9ad0e559eb40ebe110d02fd96a128ec0be8766f33696aefdffb021"
+      },
+      {
+        "reference": "16:30",
+        "textSHA256": "13b05d8856eeb17421f86d620f1c53884085a615b0be0baab26e4e9e934248ab"
+      },
+      {
+        "reference": "17:1",
+        "textSHA256": "48789cb42a6c539accdc19090977e6cfc6a42e5aca2f3d5a132343c7e4b238ff"
+      },
+      {
+        "reference": "17:2",
+        "textSHA256": "a64762ca9b752eb3e4fc6cd2fe893ccc0e4331c6631eba617959ede8d2620c28"
+      },
+      {
+        "reference": "17:3",
+        "textSHA256": "69c2ab9554dd1702257400ba999bfe529f0447df7fcaf817524d7f12230355f3"
+      },
+      {
+        "reference": "17:4",
+        "textSHA256": "890d7a67b2e96c12fd2558fba3a1c9cb38a4e9a9d165d2e0bbbc6bad9ea9f0b8"
+      },
+      {
+        "reference": "17:6",
+        "textSHA256": "73df3fb09c267fe7f822e2ccad26298e6036476a6c1b54c7bc3897f275506fda"
+      },
+      {
+        "reference": "17:7",
+        "textSHA256": "6c942da36be234aba823176ee219bcc4b1ff02d895481967ff62dde4465d575b"
+      },
+      {
+        "reference": "17:8",
+        "textSHA256": "41b9d376daa5a759a9166dc1b29f48a624bdb7eeda51ba7de330619ae1fe1fd4"
+      },
+      {
+        "reference": "17:10",
+        "textSHA256": "5d4ba92599715e2b8e2bef3b38e5a25fb1aadcd25c37cfa32d813cf0d4440281"
+      },
+      {
+        "reference": "17:11",
+        "textSHA256": "e1faa24021409c7d6a8792b6f58c739fa07d02320fcc2977723b096adfc82a70"
+      },
+      {
+        "reference": "17:12",
+        "textSHA256": "86e3c7584e31cccd005677869b4b61621cde94e83889eb95878dff5604b6fa34"
+      },
+      {
+        "reference": "17:13",
+        "textSHA256": "69ecc917f61e1670f99ab6c3a80dd7a74a8b3fa3da1dfa395736abb8e0496161"
+      },
+      {
+        "reference": "17:14",
+        "textSHA256": "12f4d161eea0d1637f1a898319db2d3f65919768b0bc90455bc4c3433aec57d4"
+      },
+      {
+        "reference": "17:15",
+        "textSHA256": "c8ba601cdc2f6788ff0710233d4540d7ee36a349ee5e2495469192755ad7ca5b"
+      },
+      {
+        "reference": "17:17",
+        "textSHA256": "efc623f3454e9b8c9b669c8e4b3e3f150a5c1d59730388f04059a1ae5d6fb4a9"
+      },
+      {
+        "reference": "17:19",
+        "textSHA256": "41f820d079099ff62ab04db141b4d14426f8f7f057ae5d222c8cede166b9592c"
+      },
+      {
+        "reference": "17:20",
+        "textSHA256": "8f68b659f793287acefecefa836a855d98fcbec106f85b03f1ca306ae76544e5"
+      },
+      {
+        "reference": "17:22",
+        "textSHA256": "c35a21e834fda8f25f09f0a192c6063bc6cf9df5b3654d3f725418253e4b2514"
+      },
+      {
+        "reference": "17:23",
+        "textSHA256": "29fd5d92ac64e13744c61c928334679213c4b204561a6a09897f6b4b52f1cd30"
+      },
+      {
+        "reference": "17:24",
+        "textSHA256": "95ee7b9a55a38417e05a11a644e0822ba31b9df031b2e16400444f1ec8b650c5"
+      },
+      {
+        "reference": "17:25",
+        "textSHA256": "cae576177bea022f3479180fe03f5892bd3a0a660d757b4bc3cb72e02a25160a"
+      },
+      {
+        "reference": "17:26",
+        "textSHA256": "49df0e942a6caa782c85fab6d2e13d60c9ad279792fea4fadc65056179cf6637"
+      },
+      {
+        "reference": "17:27",
+        "textSHA256": "c9caa867e1075637ff149e7999bcc07488edd8a22d66f7c5ea9f50c7be2c266e"
+      },
+      {
+        "reference": "17:28",
+        "textSHA256": "f400d49090c5e610d0793609ec5c775d4ce51ba93570a56fbead132a84a2c5c5"
+      }
+    ]
+  }
 }

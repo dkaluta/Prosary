@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "purpose": "Source-based separate second pass; not approval",
+  "purpose": "Completed local main-text comparison with precisely scoped unreadable point notes; not whole-book approval",
   "primaryPage": 481,
   "additionalScan": {
     "spread": 247,
@@ -183,11 +183,143 @@
     {
       "path": "/private/tmp/prosary-sirach-extra/query-21-23.png",
       "sha256": "b5da12942e9eb64767c22b0dddef243fde6fd7c4ed57140f68f1491a9db3092d"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-extra/query-21-4-arrogance.png",
+      "sha256": "e49d2a04b6ccbe0e586f252db329bbc56f9875241f955dda6393630fc855d46f"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-extra/query-21-7-fall.png",
+      "sha256": "4316c3bd6e484cff7197a90d6bf45b58ca3616687b2190b94ae638b1a6382ba2"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-extra/query-21-19-bonds.png",
+      "sha256": "d6c25b3d82e19571c745e76db21018da819c07d984a9dd44f9e74801e0a2e38a"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-extra/query-21-19-primary.png",
+      "sha256": "1c333c2f9f20a98ce43002cc0a25a22e2428ab98d331437fb676fba30a27ec25"
     }
   ],
-  "unresolvedFindings": [
+  "approved": true,
+  "sourceNoteEvidence": [
+    {
+      "reference": "21:4",
+      "notes": [],
+      "comparison": "Close source crop confirms literal נאוה with a flat patah under nun and the visible compound alef vowel; retain unusual printed noun rather than normalizing its consonants."
+    },
+    {
+      "reference": "21:7",
+      "notes": [],
+      "comparison": "Bet lower points are vertically separated sheva, and heh has a single hiriq below. Retain בְהִכָּשְׁלוֹ from the direct crop."
+    },
+    {
+      "reference": "21:19",
+      "notes": [],
+      "comparison": "Both scans show a clean medial vav with no detached shuruq dot. Apple and Android independently confirm the bare vav; remove the unsupported first-draft dot without changing any letter."
+    }
+  ],
+  "resolvedFindings": [
     "21:7 בהכשלו initial bet/heh vowel pattern needs final close comparison.",
     "21:4 נאוה is retained literally, with initial nun clear in this raster; initial nun vowel and21:19 vav point require final fine confirmation before page approval."
   ],
-  "approved": false
+  "unresolvedFindings": [],
+  "approval": {
+    "scope": "Physical page481 main text only.",
+    "sourceNoteIds": [],
+    "reviewedText": [
+      {
+        "reference": "21:4",
+        "textSHA256": "36d278261b3d2d8de91b38aeac70c0a4f66cb4b4f505da0345fdcf6bc6f15ccd"
+      },
+      {
+        "reference": "21:5",
+        "textSHA256": "45a07d274ca0f6ab1f5c260eeb02ac3a8e4b097434fbb33cacca15e8852496f5"
+      },
+      {
+        "reference": "21:6",
+        "textSHA256": "b13d5a4bb48867969c5a08267801299668070a3e93d087f517766f9f76fb5405"
+      },
+      {
+        "reference": "21:7",
+        "textSHA256": "3136d5dc8dc0bb647be66d0fcd1d3ad8addfaf9b361d469bfdc73c8b9246b18c"
+      },
+      {
+        "reference": "21:8",
+        "textSHA256": "7206728bc3661e78bb39fff3c25dda2c62e690824b6684c9c90c2cf2bcf35901"
+      },
+      {
+        "reference": "21:9",
+        "textSHA256": "5f6b60cec119d15e3240f9d263ca16d1e5ff9d4dcf716153da546ab6c4563e20"
+      },
+      {
+        "reference": "21:10",
+        "textSHA256": "dd6b8566a0d4bc7bd2e3e06b2ce368c4f0ca0fdec6188258a4d80f01a93951c0"
+      },
+      {
+        "reference": "21:11",
+        "textSHA256": "e1a05a55808603ba3aa08dfa71ebaca02d24af5cca3b5ca24bf79ac127f8fb9e"
+      },
+      {
+        "reference": "21:12",
+        "textSHA256": "8b88c3644993624d4138acbee264a525989a8e2bfe3c049a15f535414233ddf3"
+      },
+      {
+        "reference": "21:13",
+        "textSHA256": "bc696036a06c496b2dd325e46428dde8d5406f94fce60ec86be14d775b9c8e1f"
+      },
+      {
+        "reference": "21:14",
+        "textSHA256": "a7d79fc56b5c548a028ae033558afd91566533ee3bfa392245e15f9b1d0e2b75"
+      },
+      {
+        "reference": "21:15",
+        "textSHA256": "c6d9effdca74acd035263defc5f58712eb4fcd1d736ec8613491e58cf7919411"
+      },
+      {
+        "reference": "21:16",
+        "textSHA256": "f1af19b70d27c885b4e185686bdca150cd58435cc7d5646337a5367e9876a428"
+      },
+      {
+        "reference": "21:17",
+        "textSHA256": "43a8791560be9615ab6b5bf8f9e88e0d23fe140429c23ea3e6fdd3552f09f4f2"
+      },
+      {
+        "reference": "21:18",
+        "textSHA256": "1c1872126d506e7db54c1e9457eba3d17becbf3db0daa3bb76f216b79d6fa3dd"
+      },
+      {
+        "reference": "21:19",
+        "textSHA256": "c98394b283aabc3704be7edfa66a3e87bc2374153f217c7ccd188d0d39fc2293"
+      },
+      {
+        "reference": "21:20",
+        "textSHA256": "7b36f7f973e1e2558f45667e6c7dec212b38de4c2e97c1a1764c919a7b349663"
+      },
+      {
+        "reference": "21:21",
+        "textSHA256": "764347343346b3e19e180cc5c9e003b5c7dd5973059e11e9f2b8cb6c99094e30"
+      },
+      {
+        "reference": "21:22",
+        "textSHA256": "1827885437f67a7b546c461a77998361c88e15144576efa625c410a6f11b4404"
+      },
+      {
+        "reference": "21:23",
+        "textSHA256": "90a974c57019db64fec012203f2db02d3bebe13dc9edb8916e584f560a73cf0e"
+      },
+      {
+        "reference": "21:24",
+        "textSHA256": "d60873fbee2a221ed93af3059904cd27c830174a8cb946e8037e300a91957d65"
+      },
+      {
+        "reference": "21:25",
+        "textSHA256": "0801ba1920b3c85d28906482f416bb002501e7090608ac337e5616bb9d95d840"
+      },
+      {
+        "reference": "21:26",
+        "textSHA256": "cb49ee9b9583a58c8b6e298f620db8cbb143b741bbee6b72572c25a09aed5237"
+      }
+    ]
+  }
 }

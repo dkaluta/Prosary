@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "purpose": "Source-based separate second pass; not approval",
+  "purpose": "Completed local main-text comparison with precisely scoped unreadable point notes; not whole-book approval",
   "primaryPage": 484,
   "additionalScan": {
     "spread": 249,
@@ -151,13 +151,113 @@
     {
       "path": "/private/tmp/prosary-sirach-extra/query-23-27.png",
       "sha256": "983ba18efeea8ee5b063a11d05493843dcfe62062ec3a3257a1da6fdca5238b5"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-extra/query-23-16-sin.png",
+      "sha256": "00eaee2509650a75c123f5532a6e14508e122837ac8be84c745d72a0e82da4c4"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-extra/query-24-1-glory.png",
+      "sha256": "550533757c2b5d37144ce33f70308525cc8a94959a12cb0dd453e3ab20521824"
     }
   ],
-  "unresolvedFindings": [
+  "approved": true,
+  "resolvedFindings": [
     "23:16 חטא vowel marks and24:1 תתפאר final alef qamats need final close confirmation."
   ],
-  "approved": false,
-  "resolvedFindings": [
-    "23:21 source יִוָּדֵעַ independently confirmed: yod hiriq, vav qamats/interior point, dalet tsere, ayin patah."
-  ]
+  "sourceNoteEvidence": [
+    {
+      "reference": "23:16",
+      "notes": [],
+      "comparison": "The additional scan separates one detached dot below het. Apple and Windows independently identify hiriq rather than the first-draft tsere; tet sheva and consonants remain unchanged."
+    },
+    {
+      "reference": "24:1",
+      "notes": [],
+      "comparison": "The close additional-scan crop separates the alef qamats horizontal bar and central downward stem. Retain visible תִּתְפָּאָר; no normalization from expected grammar."
+    }
+  ],
+  "unresolvedFindings": [],
+  "approval": {
+    "scope": "Physical page484 main text only.",
+    "sourceNoteIds": [],
+    "reviewedText": [
+      {
+        "reference": "23:14",
+        "textSHA256": "14a000fe67ad9ac9239f44e25e6c1870c2bb949d50f450bae11eed0d52f2cbd2"
+      },
+      {
+        "reference": "23:15",
+        "textSHA256": "475ac5b6b24f5cf713e9a0cb1f72883ede481d9afacb77dc08202ec9abcde7c4"
+      },
+      {
+        "reference": "23:16",
+        "textSHA256": "4e7c8c25ad67be3aaf2b4116d9132ad8697daad7719462554264c4cf16869043"
+      },
+      {
+        "reference": "23:17",
+        "textSHA256": "097cfa4c49fbac95afc70a6ba9c28abe7660d2ad4da6a740104bfc6a6a339928"
+      },
+      {
+        "reference": "23:18",
+        "textSHA256": "615295cc8d848a5e1bb409ac857e3647bc7cd2976c7e3a5b63457828eacd77b6"
+      },
+      {
+        "reference": "23:19",
+        "textSHA256": "abc44e210e4481e93df0b378bc7f730d35e998f1de8f3f1a4a7df51b3873f96f"
+      },
+      {
+        "reference": "23:20",
+        "textSHA256": "08f1017204d36860df87a34c9166b979d27bbcc35cdb75c0ec3e076fbfb9721b"
+      },
+      {
+        "reference": "23:21",
+        "textSHA256": "a1d393126698ccf785b9a5977f71674e61ec1390f8a13973e46a0b999f170a3f"
+      },
+      {
+        "reference": "23:22",
+        "textSHA256": "5df38cce0aa56423e341e32348ea3d83e45bd594ea1459b4e3a65e11ebeaaab2"
+      },
+      {
+        "reference": "23:23",
+        "textSHA256": "5248295d8fe50060a77f8015bd3600dc52968d7540d1cd5e7533abfc375d70fd"
+      },
+      {
+        "reference": "23:24",
+        "textSHA256": "11c05fe09a4a39b20202730d3c4f2230d670a997c4404c2775a80646d581429b"
+      },
+      {
+        "reference": "23:25",
+        "textSHA256": "6ba22756bb64b7eac27b38465b8350d8ec120104d92a7b3bb6ed5623dde63aed"
+      },
+      {
+        "reference": "23:26",
+        "textSHA256": "8c395ebb58829d4d3437cf0add1ecd84f53886e9b5d02bfb22cf859e69695bac"
+      },
+      {
+        "reference": "23:27",
+        "textSHA256": "b155b456f5aaec2920e51df0be4bb878c1d4f8fdd2b81745132ebebe80aa532c"
+      },
+      {
+        "reference": "24:1",
+        "textSHA256": "225b05f9e8abfaab01afce7bf315bd88950e0dd64c849894d507959e38262c8b"
+      },
+      {
+        "reference": "24:2",
+        "textSHA256": "2189249fc7e7452cf61865a900aa03fd5469cf0417321535a189c495c25e6410"
+      },
+      {
+        "reference": "24:3",
+        "textSHA256": "45bcff75018082011ff4ceba5eeac8da3ce5c37bac7566ffe1706822cd01fc7e"
+      },
+      {
+        "reference": "24:4",
+        "textSHA256": "29762fd49375937e37a2d32dc8c1ebec604533c890710d2aae5148f16b040fb6"
+      },
+      {
+        "reference": "24:5",
+        "textSHA256": "05acc98d951eb0878cb98de9c7758f217ee3ecfaf193a491e5fcfeeada684d61"
+      }
+    ]
+  }
 }

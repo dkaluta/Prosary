@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "purpose": "Source-based separate second pass; not approval",
+  "purpose": "Completed local primary-main-text comparison; not whole-book approval",
   "primaryPage": 507,
   "additionalScan": {
     "spread": 260,
@@ -137,13 +137,92 @@
     {
       "path": "/private/tmp/prosary-sirach-extra/query-38-17-wide.png",
       "sha256": "dc7873a3789ff285d1e2d15d5f7e374beb0ddd92f1568359adf6cffdad85d367"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-extra/query-38-11-apparatus-lemma.png",
+      "sha256": "357f7ccbcde0c92d590c9c8c0e79e37eaae0fbf2661c459e9469ae8a87b99aa6"
     }
   ],
-  "unresolvedFindings": [
+  "unresolvedFindings": [],
+  "approved": true,
+  "resolvedFindings": [
     {
       "reference": "38:11",
       "finding": "Second glyph of word following incense remains uncertain vav versus zayin in both scan crops. Draft אֲזְכָּרָה retained provisionally; no point note can settle a consonant. Compare clear neighboring glyphs in same font before approval."
     }
   ],
-  "approved": false
+  "sourceInternalDisambiguation": [
+    "Main narrow glyph and explicit same-page lemma jointly identify vav; root independently confirmed. Source אֲוְכָּרָה replaces normalized draft אֲזְכָּרָה, with other visible points unchanged."
+  ],
+  "approval": {
+    "scope": "Physical page507 main text only.",
+    "method": "Full separate comparison with scoped independent checks for questioned glyphs as recorded in source report.",
+    "sourceNoteIds": [],
+    "reviewedText": [
+      {
+        "reference": "38:1",
+        "textSHA256": "525ce0d78d5d9c6d5d52505353d1c4b2de11e1b196ab1af0d290f4fda8462b54"
+      },
+      {
+        "reference": "38:2",
+        "textSHA256": "6bafb25af14008eb9a1a9dd9dde4e72d2ff48e2020c68eb2ef78da1085822ba2"
+      },
+      {
+        "reference": "38:3",
+        "textSHA256": "85e608fff0fb5c5d4aa57852ddf2c176882585fa42b7d21e978f88604786a2eb"
+      },
+      {
+        "reference": "38:4",
+        "textSHA256": "d1ac0872e38f4688ec4998913e6cb4b3e94937ca6bc2464b3deb40bc80ed9db0"
+      },
+      {
+        "reference": "38:5",
+        "textSHA256": "4ebc1d3c19faba69ea01e3a6d2086476faccd4d170d45b2fd96a8bff900b0ae1"
+      },
+      {
+        "reference": "38:6",
+        "textSHA256": "2191f6566efccd11bfd4c464a5a10e4193ad46eb420e48cc5ffb24ef83e9beee"
+      },
+      {
+        "reference": "38:7",
+        "textSHA256": "2651d5aa5e4d4422e12019f2051e0269bcf651ce35999287e255d53698ffb365"
+      },
+      {
+        "reference": "38:8",
+        "textSHA256": "a6099ddde7f5aadb3ab2d7eb67188092e4f632de23f73366d5ac802e25246dc1"
+      },
+      {
+        "reference": "38:9",
+        "textSHA256": "9f163d9d6fdbf92d4f335f6c0714d263728a5540720a0bb3e79a3993fb304b86"
+      },
+      {
+        "reference": "38:10",
+        "textSHA256": "f970df77c547ff2d9dd55be945007e58142a4b56db8c1d02f00f9607640f3d54"
+      },
+      {
+        "reference": "38:11",
+        "textSHA256": "944b93911c68c3bdac434e20beb3018f25f6153f91d204c1aee013858bdaf404"
+      },
+      {
+        "reference": "38:12",
+        "textSHA256": "278035de3d46b034ea091ef19b904e76a3735e7d7ffe40d048a2b29e26f442da"
+      },
+      {
+        "reference": "38:13",
+        "textSHA256": "30f88255202dc02105651a897317638a42ca8a46005634179fd00c5bf973e7ea"
+      },
+      {
+        "reference": "38:15",
+        "textSHA256": "ef674498d47ece45b0d9f5f38910c3899b1a77f64f21c68b589102ff53c3b9dc"
+      },
+      {
+        "reference": "38:16",
+        "textSHA256": "2b698f649cd79a3ffd89cc9a730559597deb4d3f6fe9ddb1b719d5831b112b65"
+      },
+      {
+        "reference": "38:17",
+        "textSHA256": "1585584096a8fb4453df932bc97e8851220682a9bca562b9efbc0cf122706e0d"
+      }
+    ]
+  }
 }
