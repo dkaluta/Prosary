@@ -21,35 +21,25 @@
     ]
   },
   "review": {
-    "status": "draft",
-    "method": "First visual transcription from the supplied print; each word and vowel point requires separate final comparison.",
+    "status": "complete",
+    "method": "Complete visual word, point, punctuation and source-boundary review of all123 units on PDF29–35. Independent source-margin inventory and chapter1 peer review; root second comparison of chapters2–5; scoped user readings of unresolved printed marks. No grammatical normalization or OCR-generated vowel points.",
     "reviewedPages": [
       29,
-      30
+      30,
+      31,
+      32,
+      33,
+      34,
+      35
     ],
+    "unresolvedFindings": [],
     "notes": [
-      "Text body located at PDF29–35, printed chapters1–5. Following PDF36 begins a different Baruch work and is excluded.",
-      "First pointed draft through1:8. Chapter1 is still incomplete. User supplied a checked consonantal reference through the opening of1:8; see BAR-page29-user-ocr-baseline.json. This does not certify niqqud.",
-      "Two independent image readings confirm the combined margin label ו–ז. Keep1:6–7 one unit with both printed sof pasuq separators. Verse8 continues onto PDF30, whose first clause is included here.",
-      "Source spellings למקטן, יויקים and בן־שלום retained. Bracketed לשמע is part of the source main text, not an editorial footnote.",
-      "Fine-mark queries before final review:1:1 vowel marks in מחסיהו/חסדיהו;1:4 points in למקטן and הזקנים;1:6–7 ירושלימה, חלקיה and שלום. All pointing remains provisional; no full page is approved.",
-      "Chapter1 first visual draft now covers all printed labels1–22 in20 units, PDF29–30. Source19–20 has a combined margin label, retained as one unit with both printed separators. No final page or niqqud approval.",
-      "Fine-mark and spelling checks for second pass:1:9 ויבאם letters;1:10 וקניתם/ועשיתם initial vowels and עלות;1:11/12 name בלשאצר;1:14 להתודות;1:15 ואמרתם;1:16/19 defective אבתינו versus20 full אבותינו. Keep printed brackets around בבואכם and the long parenthesis inside19–20.",
-      "Chapter 2: first pointed visual draft, PDF31–32, 34 units covering labels1–35 with combined9–10. Verse23 crosses the page. Separate final comparison of wording, pointing, punctuation and boundaries remains required; no page approved.",
-      "Chapter2 fine-mark checks:1 ויקם and שופטינו;3 לאכלנו;4 לזעוה;5 initial ויהיו;12 צדקתיך;13 ישב/הפצתנו;17 לקחה;18 the printed על־גדלה [ואשר עברה] and final-heh marks;25 בתחלואים;28 צותך;31 קשובות. These spellings and marks are provisional image readings, not restored conventional grammar.",
-      "Chapter2 source spellings and bracket evidence:8 ממועצות;11 ובאותות;24 both עצמות;25 לחרב היום;26 [ולשמה];34 לאבותם. The last two source suffixes should be checked again against the full page. Verse32/33 boundary needs explicit margin comparison because the text runs continuously.",
-      "Second full-margin look corrected the provisional inventory: chapter2 combined label is8–9, not9–10. Verse31 contains two sof-pasuq clauses;32 includes ושבו…מעלליהם and33 begins כי יזכרו. Removed an invented separator after30 and moved the incorrect32 boundary. Added the printed vav in2:11 ובאותות. No full-page approval; independent margin audit requested.",
-      "Consonantal alignment prompted direct image rechecks on PDF31–32, correcting omitted matres in the first pointed draft:2:5/10 בקולו;13 הפיצתנו;25 בתחלואים;29 בקולי;31 קשובות;34 והשיבותים. These are source-visible letters, not spelling modernization. OCR differences do not certify the remaining words or points.",
-      "Independent enlarged margin audit corrected chapter1 grouping:16–17 is one printed unit, while19 and20 have separate labels. Both clauses and punctuation retained. Prior grouping statements in these chronological notes are superseded; audited margin inventory is BAR-print-inventory.json.",
-      "Chapter3 first pointed visual draft now has all29 printed units through the last printed label37. The final unnumbered clause אז על־הארץ נראתה… is preserved inside37; no printed38 label or37–38 range was invented, and no standard-reference crosswalk is claimed.",
-      "Chapter3 margin groupings independently confirmed:2–3,6–7,12–13,19–20,28–29,31–32,33–34,35–36. Verse10 crosses PDF32–33. The35–36 unit begins יקרא להם after וישישו without adding an unprinted separator.",
-      "Chapter3 fine-mark queries for final source review:4 מתי and בקולך;6–7 הסירונו;8 הפיצותנו;14 איה;17 בצפר;18 חרשי/הדאגים;23 הגר/מדן/המשלים;24 הה;25 גבוה;28–29 באולתם;30 בחרוץ;31–32 נתיבתה/חקרה;35–36 ויאמרו. Chapter3 remains a first visual transcription; no approved source page.",
-      "All five chapters now have first visual pointed drafts:123 source units, PDF29–35. Printed labels/page crossings were separately audited; words, niqqud and punctuation remain under review, so the book is still draft and excluded from the app.",
-      "Chapter4 fine checks before final review:1 העמדת spelling;2 לנגהה;7–8 הקנאתם/יולדתכם;11–12 גדלתים/נשמותי;13 חקותיו and הלכו/דרכו;16 הגמודה;20 ענותי;22 יבואכם;26 טפוחי;27 bracket extent [וקראו…ואת־הרעה];31–32 גוזלת;33 שוממותה;37 ממזרח. Source brackets are retained without silently repairing grammatical oddities.",
-      "Chapter5 fine checks:1 initial vowel on הסירי;5/7 defective גבה versus full גבוה in prior chapters;7 וגיאות;8 יסכו;9 מאתו. The first draft needs direct comparison of every point, not merely conventional Hebrew vocalization.",
-      "Second source comparison corrected1:22 בשרירות,3:35–36 עושהם,4:1 העמדת and4:21 מעשק. Exact findings retained in BAR-root-second-pass.json. Baruch1 fine-mark questions sent to the user remain pending; no page approval.",
-      "User read the shown1:6–7 בירושלם as qamats+hiriq, the lamed in ירושלימה as patah, and the yod dagesh in1:1 חלקיהו and1:8 יאשיהו as present (qualified “seems”). Both visible marks retained rather than simplifying to qamats alone. Root separately inspected the other chapter1 Jerusalem occurrences in the full crops and applied the same visible qamats+hiriq there; this is not a global spelling change. Raw reply and scope are in BAR-user-point-decisions.json.",
-      "Chapter1 full word/point/punctuation comparison is complete on PDF29–30. The independent reviewer closed all20 unit snapshots after the source-visible spelling correction and scoped user glyph decisions. Evidence:BAR-chapter1-review.json and BAR-user-point-decisions.json. This approves those two source pages only; PDF31–35 and the book remain under review."
+      "All five chapters are complete against the selected printed source. PDF36 starts a different Baruch work and is excluded.",
+      "Source numbering is preserved: last printed label3:37 includes the unnumbered final clause. This is not yet an approved canonical daily-reading crosswalk.",
+      "Margin groupings and page continuations were independently read from the print in BAR-print-inventory.json.",
+      "Final full-text review evidence: BAR-chapter1-review.json, BAR-chapter2-review.json, BAR-chapters3-5-review.json. User decisions: BAR-user-point-decisions.json and BAR-user-final-point-decisions.json.",
+      "Earlier superseded readings are preserved in BAR-review-history.json and BAR-first-draft-discrepancies.json. The first-draft discrepancy report is historical, not a current accuracy claim.",
+      "This completed book remains excluded from production until every required Hebrew book passes the complete-supplement gate."
     ]
   },
   "chapters": [
@@ -238,11 +228,11 @@
         },
         {
           "verse": 2,
-          "text": "לְהָבִיא עָלֵינוּ רָעָה גְדוֹלָה אֲשֶׁר־לֹא נַעֲשְׂתָה תַּחַת כָּל־הַשָּׁמַיִם כַּאֲשֶׁר עָשָׂה בִירוּשָׁלַם כַּכָּתוּב בְּתוֹרַת מֹשֶׁה׃",
+          "text": "לְהָבִיא עָלֵינוּ רָעָה גְדוֹלָה אֲשֶׁר־לֹא נַעֲשְׂתָה תַּחַת כָּל־הַשָּׁמַיִם כַּאֲשֶׁר עָשָׂה בִירוּשָׁלִָם כַּכָּתוּב בְּתוֹרַת מֹשֶׁה׃",
           "sourcePages": [
             31
           ],
-          "textSHA256": "e5da8ae139bccf6cc7613313bca5b0e219592dce5d06512f31ea10f5155933a2"
+          "textSHA256": "c3d55b3bb19de08043c72be62ea0eddf9183827a35da51fac46902ae07c9a712"
         },
         {
           "verse": 3,
@@ -367,11 +357,11 @@
         },
         {
           "verse": 19,
-          "text": "כִּי לֹא עַל־צִדְקוֹת אֲבוֹתֵינוּ וּמַלְכֵּינוּ אֲנַחְנוּ מַפִּילִים תְּחִנָּתֵנוּ לְפָנֶיךָ יְיָ אֱלֹהֵינוּ׃",
+          "text": "כִּי לֹא עַל־צִדְקוֹת אֲבֹתֵינוּ וּמַלְכֵּינוּ אֲנַחְנוּ מַפִּילִים תְּחִנָּתֵנוּ לְפָנֶיךָ יְיָ אֱלֹהֵינוּ׃",
           "sourcePages": [
             31
           ],
-          "textSHA256": "6a595b9b048be4147610e29b9ea39245f450639003ede403812aa6820072b565"
+          "textSHA256": "e685d1e35a5ecd3620292d4529b2801aebde257a0c52fdff966b90b1631bbf20"
         },
         {
           "verse": 20,
@@ -399,12 +389,12 @@
         },
         {
           "verse": 23,
-          "text": "וְהִשְׁבַּתִּי מֵעָרֵי יְהוּדָה וּמֵחוּצוֹת יְרוּשָׁלַם קוֹל שָׂשׂוֹן וְקוֹל שִׂמְחָה קוֹל חָתָן וְקוֹל כַּלָּה וְהָיְתָה כָל־הָאָרֶץ לְשַׁמָּה מֵאֵין יוֹשֵׁב׃",
+          "text": "וְהִשְׁבַּתִּי מֵעָרֵי יְהוּדָה וּמֵחוּצוֹת יְרוּשָׁלִָם קוֹל שָׂשׂוֹן וְקוֹל שִׂמְחָה קוֹל חָתָן וְקוֹל כַּלָּה וְהָיְתָה כָל־הָאָרֶץ לְשַׁמָּה מֵאֵין יוֹשֵׁב׃",
           "sourcePages": [
             31,
             32
           ],
-          "textSHA256": "696738b656b9a8c194502f41488245535340e1a87d236f063f616fadb441e4e3"
+          "textSHA256": "98aefc276f7a267a48bffae66d0ea59924129a38cf8de064fb874ec8c297d670"
         },
         {
           "verse": 24,
@@ -464,11 +454,11 @@
         },
         {
           "verse": 31,
-          "text": "וְיָדְעוּ כִּי אֲנִי יְיָ אֱלֹהֵיהֶם וְנָתַתִּי לָהֶם לֵב וְאָזְנַיִם קַשּׁוּבוֹת׃",
+          "text": "וְיָדְעוּ כִּי אֲנִי יְיָ אֱלֹהֵיהֶם׃ וְנָתַתִּי לָהֶם לֵב וְאָזְנַיִם קַשּׁוּבוֹת׃",
           "sourcePages": [
             32
           ],
-          "textSHA256": "708d8dc8d3b9a0a63ea1275d3b413997ac71d94fc54de3941aa8cdc702d93f32"
+          "textSHA256": "a5ff5ebd1872f7cac058dc5d61ce28845165f0687f276a65f4186cc54112e9cf"
         },
         {
           "verse": 32,
@@ -528,11 +518,11 @@
         },
         {
           "verse": 4,
-          "text": "יְיָ צְבָאוֹת אֱלֹהֵי יִשְׂרָאֵל שְׁמַע־נָא אֶל־תְּפִלַּת מֵתֵי יִשְׂרָאֵל וּבְנֵי הַחוֹטְאִים לְךָ אֲשֶׁר לֹא־שָׁמְעוּ בְקוֹלֶךָ יְיָ אֱלֹהֵיהֶם וַתִּתַּךְ עָלֵינוּ הָרָעָה׃",
+          "text": "יְיָ צְבָאוֹת אֱלֹהֵי יִשְׂרָאֵל שְׁמַע־נָא אֶל־תְּפִלַּת מֵתֵי יִשְׂרָאֵל וּבְנֵי הַחוֹטְאִים לְךָ אֲשֶׁר לֹא־שָׁמְעוּ בְקוֹלְךָ יְיָ אֱלֹהֵיהֶם וַתִּתַּךְ עָלֵינוּ הָרָעָה׃",
           "sourcePages": [
             32
           ],
-          "textSHA256": "8dc54111d7ebe6c123e9b465034ed3b23ac0bb59372eb1a07c1de2671a1548ac"
+          "textSHA256": "93e442dcb04c43989c47c6c1a7b0e7412bebd7225d4654d51f2042e388ab4d02"
         },
         {
           "verse": 5,
@@ -802,11 +792,11 @@
         {
           "verse": 7,
           "endVerse": 8,
-          "text": "כִּי הִקְנֵאתֶם עוֹשְׂכֶם זְבַחְתֶּם לַשֵּׁדִים לֹא אֱלוֹהַּ׃ וַתִּשְׁכְּחוּ אֵל מְחוֹלֶלְכֶם אֵל עוֹלָם אַף הֶעֱצַבְתֶּם יְרוּשָׁלַם זוּ יוֹלַדְתְּכֶם׃",
+          "text": "כִּי הִקְנֵאתֶם עוֹשֵׂכֶם זְבַחְתֶּם לַשֵּׁדִים לֹא אֱלוֹהַּ׃ וַתִּשְׁכְּחוּ אֵל מְחוֹלֶלְכֶם אֵל עוֹלָם אַף הֶעֱצַבְתֶּם יְרוּשָׁלִַם זוּ יוֹלַדְתְּכֶם׃",
           "sourcePages": [
             34
           ],
-          "textSHA256": "b184414073aa191abacd9511448090b49f5ef0e91ece6c0c8025445d88784a15"
+          "textSHA256": "586402c6dee5fcf2832507f44007d3887839a38d44bf000b50d5dea662c5e977"
         },
         {
           "verse": 9,
@@ -964,21 +954,21 @@
         },
         {
           "verse": 30,
-          "text": "אַל תִּירְאִי יְרוּשָׁלַם אֲשֶׁר נִקְרָא שְׁמוֹ עָלַיִךְ הוּא יְנַחֲמֵךְ׃",
+          "text": "אַל תִּירְאִי יְרוּשָׁלִָם אֲשֶׁר נִקְרָא שְׁמוֹ עָלַיִךְ הוּא יְנַחֲמֵךְ׃",
           "sourcePages": [
             34
           ],
-          "textSHA256": "28096dcfeeec0e3266258f1429bb352d48c1f9ae04a8c3314c412c1e1126b5e8"
+          "textSHA256": "39f89f091dafae9edbdc3c99c8e8f016eea5fba1ac21f729e6fa8f4eb124ae8c"
         },
         {
           "verse": 31,
           "endVerse": 32,
-          "text": "[וְהֵבִיא] שֹׁד לִמְעַנַּיִךְ וְלַשְּׂמֵחִים לְאֵידֵךְ׃ שֹׁד לְעָרִים אֲשֶׁר הֶעֱבִידוּ אֶת־בָּנַיִךְ שֹׁד לְגוֹזֶלֶת אֶת־בָּנָיִךְ׃",
+          "text": "[וְהֵבִיא] שֹׁד לִמְעַנַּיִךְ וְלַשְּׂמֵחִים לְאֵידֵךְ׃ שֹׁד לְעָרִים אֲשֶׁר הֶעֱבִידוּ אֶת־בָּנַיִךְ שֹׁד לְגֹזֶלֶת אֶת־בָּנָיִךְ׃",
           "sourcePages": [
             34,
             35
           ],
-          "textSHA256": "8efc988b582d061ba6a2fbbc6217749128d04bfe8612bfbfebea9294e6c915f4"
+          "textSHA256": "1f8625c4bb50873fdf1776300ebab3a35fe0148b7cd9c0e28ebd09b224c0d215"
         },
         {
           "verse": 33,
@@ -990,11 +980,11 @@
         },
         {
           "verse": 34,
-          "text": "וּמְשׂוֹשׂ הֲמוֹנָהּ אַשְׁבִּית מִמֶּנָּהּ וַעֲלִיצוּתָהּ אֶהֱפֹךְ לְאֵבֶל׃",
+          "text": "וּמְשׂוֹשׂ הֲמוֹנָהּ אַשְׁבִּית מִמֶּנָּה וַעֲלִיצוּתָהּ אֶהֱפֹךְ לְאֵבֶל׃",
           "sourcePages": [
             35
           ],
-          "textSHA256": "90aa4f8e3f44d29fa348d1cbd0ea8f06caa7370304d812b2c14ea753b427c842"
+          "textSHA256": "2ec0f7751e02583664fd55a2144a55405a18d70298fa423cf39e8e76f8d940c0"
         },
         {
           "verse": 35,
@@ -1006,11 +996,11 @@
         },
         {
           "verse": 36,
-          "text": "שְׂאִי עֵינַיִךְ מִזְרָחָה יְרוּשָׁלַם וּרְאִי הַשִּׂמְחָה הַבָּאָה לָךְ מֵאֵת אֱלֹהִים׃",
+          "text": "שְׂאִי עֵינַיִךְ מִזְרָחָה יְרוּשָׁלִָם וּרְאִי הַשִּׂמְחָה הַבָּאָה לָךְ מֵאֵת אֱלֹהִים׃",
           "sourcePages": [
             35
           ],
-          "textSHA256": "20b2b04ce786781a15d424f47506138a0686c53d9475849af1d66208973644d3"
+          "textSHA256": "78055d8f664a3fc236d76fa02f71be150f78ff917692b4896b1ffc7c02596a54"
         },
         {
           "verse": 37,
@@ -1029,11 +1019,11 @@
       "verses": [
         {
           "verse": 1,
-          "text": "הָסִירִי יְרוּשָׁלַם בִּגְדֵי אֶבְלֵךְ וְעָנְיֵךְ וְלִבְשִׁי תִּפְאֶרֶת כְּבוֹד אֱלֹהִים לְעוֹלָם׃",
+          "text": "הָסִירִי יְרוּשָׁלִַם בִּגְדֵי אֶבְלֵךְ וְעָנְיֵךְ וְלִבְשִׁי תִּפְאֶרֶת כְּבוֹד אֱלֹהִים לְעוֹלָם׃",
           "sourcePages": [
             35
           ],
-          "textSHA256": "6b7f2980026e637ae9d56f02efcea0ef7c2dc14e553bddc04be93172e8b0f244"
+          "textSHA256": "307a68f38bd7b3e18a01b1b9bd41214bd4f51311f8d79a6af66cb83d436a1cdf"
         },
         {
           "verse": 2,
@@ -1054,11 +1044,11 @@
         },
         {
           "verse": 5,
-          "text": "קוּמִי יְרוּשָׁלַם וְעִמְדִי עַל־הַר גָּבֹהַּ וּשְׂאִי עֵינַיִךְ מִזְרָחָה וּרְאִי בָנַיִךְ נִקְבָּצוּ מִמַּעֲרַב שֶׁמֶשׁ וּמִמִּזְרָחָה שְׂמֵחִים לְאִמְרַת קָדוֹשׁ כִּי זְכָרָם אֱלֹהִים׃",
+          "text": "קוּמִי יְרוּשָׁלִַם וְעִמְדִי עַל־הַר גָּבוֹהַּ וּשְׂאִי עֵינַיִךְ מִזְרָחָה וּרְאִי בָנַיִךְ נִקְבָּצוּ מִמַּעֲרַב שֶׁמֶשׁ וּמִמִּזְרָחָה שְׂמֵחִים לְאִמְרַת קָדוֹשׁ כִּי זְכָרָם אֱלֹהִים׃",
           "sourcePages": [
             35
           ],
-          "textSHA256": "34e5412ff57b7be24b336642453fa91233d72d6a3b7b0e2e2683b6f6a2e25dd7"
+          "textSHA256": "31ee579f6c11bdfb8032f04c6a1d26b311fd2c91bce13685d2b0a81d3f31e371"
         },
         {
           "verse": 6,

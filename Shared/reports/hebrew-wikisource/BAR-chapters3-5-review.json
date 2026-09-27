@@ -1,0 +1,809 @@
+{
+  "schemaVersion": 1,
+  "book": "BAR",
+  "status": "Full second visual comparison complete",
+  "scanSHA256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+  "method": "Root compared every word, printed vowel point, bracket and separator against enlarged original scan images, then inspected queried glyphs separately. An independent agent verified selected spelling and distinct Jerusalem marks; user readings resolved two indistinguishable vowel groups. Separate margin inventory was read independently from the source, not generated from this text.",
+  "findings": [
+    {
+      "unit": "3:4",
+      "before": "בְקוֹלֶךָ",
+      "after": "בְקוֹלְךָ",
+      "basis": "User identified the printed lamed vowel as sheva in the exact 3:4 crop."
+    },
+    {
+      "unit": "4:7",
+      "before": "עוֹשְׂכֶם",
+      "after": "עוֹשֵׂכֶם",
+      "basis": "User identified the printed shin vowel as tsere in the exact 4:7 crop."
+    },
+    {
+      "unit": "4:7",
+      "before": "יְרוּשָׁלַם",
+      "after": "יְרוּשָׁלִַם",
+      "basis": "This occurrence has a flat patah and separate hiriq, independently confirmed from the crop."
+    },
+    {
+      "unit": "4:30",
+      "before": "יְרוּשָׁלַם",
+      "after": "יְרוּשָׁלִָם",
+      "basis": "This occurrence has a clear downward qamats stem and separate hiriq, independently confirmed."
+    },
+    {
+      "unit": "4:31",
+      "before": "לְגוֹזֶלֶת",
+      "after": "לְגֹזֶלֶת",
+      "basis": "The print has no separate vav between gimel and zayin; independently confirmed."
+    },
+    {
+      "unit": "4:34",
+      "before": "מִמֶּנָּהּ",
+      "after": "מִמֶּנָּה",
+      "basis": "The enlarged source heh has no mappiq; remove the unsupported dot."
+    },
+    {
+      "unit": "4:36",
+      "before": "יְרוּשָׁלַם",
+      "after": "יְרוּשָׁלִָם",
+      "basis": "This specific occurrence visibly has qamats and a separate hiriq."
+    },
+    {
+      "unit": "5:1",
+      "before": "יְרוּשָׁלַם",
+      "after": "יְרוּשָׁלִַם",
+      "basis": "This specific occurrence has flat patah plus hiriq, independently confirmed."
+    },
+    {
+      "unit": "5:5",
+      "before": "יְרוּשָׁלַם",
+      "after": "יְרוּשָׁלִַם",
+      "basis": "This occurrence separately inspected: flat patah and left hiriq."
+    },
+    {
+      "unit": "5:5",
+      "before": "גָּבֹהַּ",
+      "after": "גָּבוֹהַּ",
+      "basis": "The print contains a distinct vav; 5:7 remains separately verified defective גבה."
+    }
+  ],
+  "unresolvedFindings": [],
+  "retainedSourceFeatures": [
+    "Chapter3 last printed label is37, with the following unnumbered clause retained in that unit. No invented38 label or daily-reading crosswalk.",
+    "Chapter3 unit33–34 has no final sof pasuq before35–36.",
+    "Printed bracket phrases, including the unusual wording in4:27, remain unchanged.",
+    "Jerusalem lamed points vary by occurrence: retain individually observed patah+hiriq or qamats+hiriq.",
+    "5:5 has full גבוה while5:7 has defective גבה; do not normalize either spelling."
+  ],
+  "unitLedger": [
+    {
+      "chapter": 3,
+      "verse": 1,
+      "endVerse": 1,
+      "textSHA256": "22c0fecadf39d8fd3a460909427de68dfce304771e264605c71a6675661e3863",
+      "sourcePages": [
+        32
+      ]
+    },
+    {
+      "chapter": 3,
+      "verse": 2,
+      "endVerse": 3,
+      "textSHA256": "da9095e255ad02bac172097d28500a747a1288e05b34a258bad17a8c72dffae6",
+      "sourcePages": [
+        32
+      ]
+    },
+    {
+      "chapter": 3,
+      "verse": 4,
+      "endVerse": 4,
+      "textSHA256": "93e442dcb04c43989c47c6c1a7b0e7412bebd7225d4654d51f2042e388ab4d02",
+      "sourcePages": [
+        32
+      ]
+    },
+    {
+      "chapter": 3,
+      "verse": 5,
+      "endVerse": 5,
+      "textSHA256": "bafbbc9232ca69aad81b6bc89ef1be7adf5f31e7b3f26ea7d5da302056fd7b1c",
+      "sourcePages": [
+        32
+      ]
+    },
+    {
+      "chapter": 3,
+      "verse": 6,
+      "endVerse": 7,
+      "textSHA256": "746b11f6dfe54d2c94c383cfc6666dfd274c1a817c477b6febc4adbc0541bf53",
+      "sourcePages": [
+        32
+      ]
+    },
+    {
+      "chapter": 3,
+      "verse": 8,
+      "endVerse": 8,
+      "textSHA256": "906680fbf1efcefbd94c4074aad6c4994585118019452c39d0f4a38b681b6bbd",
+      "sourcePages": [
+        32
+      ]
+    },
+    {
+      "chapter": 3,
+      "verse": 9,
+      "endVerse": 9,
+      "textSHA256": "1601297299826fee7c3a6a67a1209537e5e56af0bacf17af05e1e1618c0a12be",
+      "sourcePages": [
+        32
+      ]
+    },
+    {
+      "chapter": 3,
+      "verse": 10,
+      "endVerse": 10,
+      "textSHA256": "64a79307f4cf0cb6522802d9bb4228e9fc7679fa728f78acf9cac33297b30b82",
+      "sourcePages": [
+        32,
+        33
+      ]
+    },
+    {
+      "chapter": 3,
+      "verse": 11,
+      "endVerse": 11,
+      "textSHA256": "8feffc653a2406b7cc60e6efac001b49314b058be9e774ff964b3b48954fbcbe",
+      "sourcePages": [
+        33
+      ]
+    },
+    {
+      "chapter": 3,
+      "verse": 12,
+      "endVerse": 13,
+      "textSHA256": "5388fa5703e9401ad61276835dd57639397ee0be51d92256338107bbe322ee77",
+      "sourcePages": [
+        33
+      ]
+    },
+    {
+      "chapter": 3,
+      "verse": 14,
+      "endVerse": 14,
+      "textSHA256": "86467332d4307c27a918036f9dd5143fcc191ae03b35777723364b9917710615",
+      "sourcePages": [
+        33
+      ]
+    },
+    {
+      "chapter": 3,
+      "verse": 15,
+      "endVerse": 15,
+      "textSHA256": "3a927f47ea14f4e3c82fae500f665e70bb824779ceb75ea45f9f47bdf054d556",
+      "sourcePages": [
+        33
+      ]
+    },
+    {
+      "chapter": 3,
+      "verse": 16,
+      "endVerse": 16,
+      "textSHA256": "46a4237ca13bd357b9d8a448b2fe5953349dbad11bd84c106aac7645c7e6a3b5",
+      "sourcePages": [
+        33
+      ]
+    },
+    {
+      "chapter": 3,
+      "verse": 17,
+      "endVerse": 17,
+      "textSHA256": "dc412655731940cd4eb20be8a21c84e8e00698d2878927e920186c2ed5015540",
+      "sourcePages": [
+        33
+      ]
+    },
+    {
+      "chapter": 3,
+      "verse": 18,
+      "endVerse": 18,
+      "textSHA256": "e11a94fc4fe6cee2ceda93e6632fa5ff6ae99db2ff254b7080f004813c0e8736",
+      "sourcePages": [
+        33
+      ]
+    },
+    {
+      "chapter": 3,
+      "verse": 19,
+      "endVerse": 20,
+      "textSHA256": "d60cf67284dbc389e07c2bba39b1b25083ddf12d28cf4d97c520c6ba9d9dab2c",
+      "sourcePages": [
+        33
+      ]
+    },
+    {
+      "chapter": 3,
+      "verse": 21,
+      "endVerse": 21,
+      "textSHA256": "f7680ed3589a95bdde20423afd23ce36d7a26cfbec96cdbdf41883766181fc5b",
+      "sourcePages": [
+        33
+      ]
+    },
+    {
+      "chapter": 3,
+      "verse": 22,
+      "endVerse": 22,
+      "textSHA256": "429fd8f54c8737b094fef6d15066b5ac44d6a8f9f5014da7653ce11bca151000",
+      "sourcePages": [
+        33
+      ]
+    },
+    {
+      "chapter": 3,
+      "verse": 23,
+      "endVerse": 23,
+      "textSHA256": "6b48f64a69cd2f59ebfcaeb7efddd4b981553d86ea8f12c65b65e6aefa745a12",
+      "sourcePages": [
+        33
+      ]
+    },
+    {
+      "chapter": 3,
+      "verse": 24,
+      "endVerse": 24,
+      "textSHA256": "d5b8d92bd3ea7728df60967d39867927fb8e23657994eb3db1935c6f06285a3f",
+      "sourcePages": [
+        33
+      ]
+    },
+    {
+      "chapter": 3,
+      "verse": 25,
+      "endVerse": 25,
+      "textSHA256": "3d48075dc7387569f2125d5e0177bc4a68efff3387cc0628cc1cdb52b76cfe66",
+      "sourcePages": [
+        33
+      ]
+    },
+    {
+      "chapter": 3,
+      "verse": 26,
+      "endVerse": 26,
+      "textSHA256": "62ab740fa5b718698cc1688b1e443e241383d67284a385aab521b8f250481a49",
+      "sourcePages": [
+        33
+      ]
+    },
+    {
+      "chapter": 3,
+      "verse": 27,
+      "endVerse": 27,
+      "textSHA256": "dc93b44c671921ca0f810d59eecfd1d3eeaebe4e2a8655ea7176cb016251c6cc",
+      "sourcePages": [
+        33
+      ]
+    },
+    {
+      "chapter": 3,
+      "verse": 28,
+      "endVerse": 29,
+      "textSHA256": "8811f740c7c4d7356052ec8ac30f935bf12925c1fae691873551c7216a642cde",
+      "sourcePages": [
+        33
+      ]
+    },
+    {
+      "chapter": 3,
+      "verse": 30,
+      "endVerse": 30,
+      "textSHA256": "58e0961b021caf1ceef6b7662c3b93c5fc84b96b20ee78c22a0f79f5ba7a8511",
+      "sourcePages": [
+        33
+      ]
+    },
+    {
+      "chapter": 3,
+      "verse": 31,
+      "endVerse": 32,
+      "textSHA256": "693cd880accb5753f82e197066792e768fe86b2a75bcf9cbd81a43da099e3f62",
+      "sourcePages": [
+        33
+      ]
+    },
+    {
+      "chapter": 3,
+      "verse": 33,
+      "endVerse": 34,
+      "textSHA256": "74774a9f5a01055c6006f8053f226c968f531d010f2008d99ebcc2acca4a5c4c",
+      "sourcePages": [
+        33
+      ]
+    },
+    {
+      "chapter": 3,
+      "verse": 35,
+      "endVerse": 36,
+      "textSHA256": "0e0962896e2397f758dc5357c040c08a6b5699112290005fcef2fbd84084c610",
+      "sourcePages": [
+        33
+      ]
+    },
+    {
+      "chapter": 3,
+      "verse": 37,
+      "endVerse": 37,
+      "textSHA256": "5110f9ff6270fb978996ae635f8ede1d5493f644437f51838e4cf7fc97e3b910",
+      "sourcePages": [
+        33
+      ]
+    },
+    {
+      "chapter": 4,
+      "verse": 1,
+      "endVerse": 1,
+      "textSHA256": "ac3dab7105cc5966eefb6e4e2c40c2c35ea2332086adfce90af743a69360ebbf",
+      "sourcePages": [
+        33
+      ]
+    },
+    {
+      "chapter": 4,
+      "verse": 2,
+      "endVerse": 2,
+      "textSHA256": "5904fce95492fe6a22d2ae28947761ec2bef03118bc32c09b8c4cfc0bc906ead",
+      "sourcePages": [
+        33
+      ]
+    },
+    {
+      "chapter": 4,
+      "verse": 3,
+      "endVerse": 4,
+      "textSHA256": "fb6b86b9000a33e22481954bf2584e07dd5bf8af022d56b58b69cc98a02b931d",
+      "sourcePages": [
+        33,
+        34
+      ]
+    },
+    {
+      "chapter": 4,
+      "verse": 5,
+      "endVerse": 5,
+      "textSHA256": "20a5027632dd91b4af3e8a9669049f389499b8dd3186400a602d96f25b1f4be1",
+      "sourcePages": [
+        34
+      ]
+    },
+    {
+      "chapter": 4,
+      "verse": 6,
+      "endVerse": 6,
+      "textSHA256": "46763d2cdfab456208680d5ee90c29a5476344a99ce4e1c3cf160ff85d75444d",
+      "sourcePages": [
+        34
+      ]
+    },
+    {
+      "chapter": 4,
+      "verse": 7,
+      "endVerse": 8,
+      "textSHA256": "586402c6dee5fcf2832507f44007d3887839a38d44bf000b50d5dea662c5e977",
+      "sourcePages": [
+        34
+      ]
+    },
+    {
+      "chapter": 4,
+      "verse": 9,
+      "endVerse": 9,
+      "textSHA256": "8c3cbafb8fd83ed87233d883f7e94a683c00c3296d79b4c8d33c092034227f87",
+      "sourcePages": [
+        34
+      ]
+    },
+    {
+      "chapter": 4,
+      "verse": 10,
+      "endVerse": 10,
+      "textSHA256": "6cc9f7eb33b6f73dcf96e306bf2539f031c20cf66995b95495b164ebd8c60c6b",
+      "sourcePages": [
+        34
+      ]
+    },
+    {
+      "chapter": 4,
+      "verse": 11,
+      "endVerse": 12,
+      "textSHA256": "41a1540bd2f451d121046faa3f60f4c488b583d2b2aa567874b48a196d2b5418",
+      "sourcePages": [
+        34
+      ]
+    },
+    {
+      "chapter": 4,
+      "verse": 13,
+      "endVerse": 13,
+      "textSHA256": "e1620645227252dc8ebbfa76357e558633cf104521055f154fbbfd6b77273d15",
+      "sourcePages": [
+        34
+      ]
+    },
+    {
+      "chapter": 4,
+      "verse": 14,
+      "endVerse": 14,
+      "textSHA256": "fd447fe57a3155878cb42332c8aa6f677c931eee79c38dc0142d0331660e56f7",
+      "sourcePages": [
+        34
+      ]
+    },
+    {
+      "chapter": 4,
+      "verse": 15,
+      "endVerse": 15,
+      "textSHA256": "477293d2d71ad4cd1ff9319d716b700b012d255fea7377aa9e5cc58b598bf431",
+      "sourcePages": [
+        34
+      ]
+    },
+    {
+      "chapter": 4,
+      "verse": 16,
+      "endVerse": 16,
+      "textSHA256": "2d5c93d12f9af3c104a8007ee4c919bbede167e70225cd7caa0d678d28513f4d",
+      "sourcePages": [
+        34
+      ]
+    },
+    {
+      "chapter": 4,
+      "verse": 17,
+      "endVerse": 17,
+      "textSHA256": "8ab9a0f9f9d60b0a42d4d5f61622ce76623c3e73934194c6aa8b222292a15a4c",
+      "sourcePages": [
+        34
+      ]
+    },
+    {
+      "chapter": 4,
+      "verse": 18,
+      "endVerse": 19,
+      "textSHA256": "a5bbfe50d4d3dc42c04af3075ed4f9139a41c6512feb9f8e35cc817004d637bc",
+      "sourcePages": [
+        34
+      ]
+    },
+    {
+      "chapter": 4,
+      "verse": 20,
+      "endVerse": 20,
+      "textSHA256": "c8fabf888c98120fd84cacb825485e4cfa24d3f9b5b81c695e65c7a5e712fa66",
+      "sourcePages": [
+        34
+      ]
+    },
+    {
+      "chapter": 4,
+      "verse": 21,
+      "endVerse": 21,
+      "textSHA256": "f186aa12fc79cf799ab1debd3f405d81c57f4eef0c3c13a0fe36d9b2010be357",
+      "sourcePages": [
+        34
+      ]
+    },
+    {
+      "chapter": 4,
+      "verse": 22,
+      "endVerse": 22,
+      "textSHA256": "d08c3ca0fdee6e89be5ed700888f370fe720170e9961b2749c33db501c23a894",
+      "sourcePages": [
+        34
+      ]
+    },
+    {
+      "chapter": 4,
+      "verse": 23,
+      "endVerse": 23,
+      "textSHA256": "0295d29dd2c27ada451be17a9902cc6aff8debfa0d975cbf028c1264b6ff6ed3",
+      "sourcePages": [
+        34
+      ]
+    },
+    {
+      "chapter": 4,
+      "verse": 24,
+      "endVerse": 24,
+      "textSHA256": "065d6061ba98fda2a59ab5ee3c3d57e94d154dd4c551010115bcdd0ad62dfd48",
+      "sourcePages": [
+        34
+      ]
+    },
+    {
+      "chapter": 4,
+      "verse": 25,
+      "endVerse": 25,
+      "textSHA256": "115f6432a7401ecf41b9da28581b2c556d02cffbb5a37788a23a9714635a5073",
+      "sourcePages": [
+        34
+      ]
+    },
+    {
+      "chapter": 4,
+      "verse": 26,
+      "endVerse": 26,
+      "textSHA256": "c5faab66b2b25709bef62e8fb70d19bf9ab700c9abae2448492bd57bdfd761af",
+      "sourcePages": [
+        34
+      ]
+    },
+    {
+      "chapter": 4,
+      "verse": 27,
+      "endVerse": 27,
+      "textSHA256": "b3fcedb2a4860a8026594c58170f1d9c0fe023ac7271b469dbe64bab9baf39d9",
+      "sourcePages": [
+        34
+      ]
+    },
+    {
+      "chapter": 4,
+      "verse": 28,
+      "endVerse": 28,
+      "textSHA256": "4110cbffb31de2710700aa177c55ac18f109bb3b56fd88c95558550954f104d3",
+      "sourcePages": [
+        34
+      ]
+    },
+    {
+      "chapter": 4,
+      "verse": 29,
+      "endVerse": 29,
+      "textSHA256": "555e445d50869d439937e4973384293b83155796ddd1c88c10cb8ad8823b305b",
+      "sourcePages": [
+        34
+      ]
+    },
+    {
+      "chapter": 4,
+      "verse": 30,
+      "endVerse": 30,
+      "textSHA256": "39f89f091dafae9edbdc3c99c8e8f016eea5fba1ac21f729e6fa8f4eb124ae8c",
+      "sourcePages": [
+        34
+      ]
+    },
+    {
+      "chapter": 4,
+      "verse": 31,
+      "endVerse": 32,
+      "textSHA256": "1f8625c4bb50873fdf1776300ebab3a35fe0148b7cd9c0e28ebd09b224c0d215",
+      "sourcePages": [
+        34,
+        35
+      ]
+    },
+    {
+      "chapter": 4,
+      "verse": 33,
+      "endVerse": 33,
+      "textSHA256": "3c905ed68baa9456d92ed10766dfbd18ae74340022bffe04080b7097b570bba7",
+      "sourcePages": [
+        35
+      ]
+    },
+    {
+      "chapter": 4,
+      "verse": 34,
+      "endVerse": 34,
+      "textSHA256": "2ec0f7751e02583664fd55a2144a55405a18d70298fa423cf39e8e76f8d940c0",
+      "sourcePages": [
+        35
+      ]
+    },
+    {
+      "chapter": 4,
+      "verse": 35,
+      "endVerse": 35,
+      "textSHA256": "2c120f40c5836eb22598ff439070e42f5c3d6ed55755e52d736dbe45a009fec4",
+      "sourcePages": [
+        35
+      ]
+    },
+    {
+      "chapter": 4,
+      "verse": 36,
+      "endVerse": 36,
+      "textSHA256": "78055d8f664a3fc236d76fa02f71be150f78ff917692b4896b1ffc7c02596a54",
+      "sourcePages": [
+        35
+      ]
+    },
+    {
+      "chapter": 4,
+      "verse": 37,
+      "endVerse": 37,
+      "textSHA256": "b7ac567319fa8112175f2ab56c750b83552fba95ba053823ebd41b7585d52d6a",
+      "sourcePages": [
+        35
+      ]
+    },
+    {
+      "chapter": 5,
+      "verse": 1,
+      "endVerse": 1,
+      "textSHA256": "307a68f38bd7b3e18a01b1b9bd41214bd4f51311f8d79a6af66cb83d436a1cdf",
+      "sourcePages": [
+        35
+      ]
+    },
+    {
+      "chapter": 5,
+      "verse": 2,
+      "endVerse": 2,
+      "textSHA256": "938fed36d820d92254fe9a1d452f6752a50487029d225be017cbe6d243b47a21",
+      "sourcePages": [
+        35
+      ]
+    },
+    {
+      "chapter": 5,
+      "verse": 3,
+      "endVerse": 4,
+      "textSHA256": "80c94d0d61ad73606784279c8f78eead590b100cad6fe40f8fe94948181753ab",
+      "sourcePages": [
+        35
+      ]
+    },
+    {
+      "chapter": 5,
+      "verse": 5,
+      "endVerse": 5,
+      "textSHA256": "31ee579f6c11bdfb8032f04c6a1d26b311fd2c91bce13685d2b0a81d3f31e371",
+      "sourcePages": [
+        35
+      ]
+    },
+    {
+      "chapter": 5,
+      "verse": 6,
+      "endVerse": 6,
+      "textSHA256": "599804dccb5d02a8c99cfe68a480d71da7811a35cb780822c767d4c32a2cdf62",
+      "sourcePages": [
+        35
+      ]
+    },
+    {
+      "chapter": 5,
+      "verse": 7,
+      "endVerse": 7,
+      "textSHA256": "3f0234f22d9d1fd4f4f097a0869c694dbc54c7bfec0517396680c28ddb4e255a",
+      "sourcePages": [
+        35
+      ]
+    },
+    {
+      "chapter": 5,
+      "verse": 8,
+      "endVerse": 8,
+      "textSHA256": "c1a3b7340657b872ed3cfe25f6989f73a983bf0ef496601ce8a6493940a3d971",
+      "sourcePages": [
+        35
+      ]
+    },
+    {
+      "chapter": 5,
+      "verse": 9,
+      "endVerse": 9,
+      "textSHA256": "5fc49c8422f884984b1812ccd2773df004e0c78fab062849d13c04961c075448",
+      "sourcePages": [
+        35
+      ]
+    }
+  ],
+  "cropEvidence": [
+    {
+      "file": "/private/tmp/prosary-kahana-reference/pages/root-bar3-review-1-10.png",
+      "sha256": "4bce89a6d53b904e8ad398e7e5f7e3dfdd6bf42f705c179f4b420b88ea069400"
+    },
+    {
+      "file": "/private/tmp/prosary-kahana-reference/pages/root-bar3-review-10-23.png",
+      "sha256": "94f105fe885b8458272e40836c9df6a1d0790a679a2ff7f433538c45e704e637"
+    },
+    {
+      "file": "/private/tmp/prosary-kahana-reference/pages/root-bar3-review-23-37.png",
+      "sha256": "54b6ef38eac7525a4121a4da2f87adb605a2fbee62271b2c1bba991839d8db53"
+    },
+    {
+      "file": "/private/tmp/prosary-kahana-reference/pages/root-bar3-review-end.png",
+      "sha256": "2e7d20b3f2fbd7e01145a3835c3d1f0996dc9f24207e581c124d3c6e42ab4fed"
+    },
+    {
+      "file": "/private/tmp/prosary-kahana-reference/pages/root-bar3-v4-bekol.png",
+      "sha256": "fcf77645dd56a076ca14262eb60e58ed23ca49896f5463b99ec9bef6e1046cec"
+    },
+    {
+      "file": "/private/tmp/prosary-kahana-reference/pages/root-bar3-v19-sheola.png",
+      "sha256": "32c8fa2a65464b0157ad0a4992e3bca3ca05440091f70c156e318168091359da"
+    },
+    {
+      "file": "/private/tmp/prosary-kahana-reference/pages/root-bar3-v31-netivata.png",
+      "sha256": "4c0d206409097508eb3b1b8687033b0980453c9f7d2cddd7a08f6b5591e4adeb"
+    },
+    {
+      "file": "/private/tmp/prosary-kahana-reference/pages/root-bar3-v18-brackets.png",
+      "sha256": "2165413da970b3a9bbb3cb3face0a93b6f1ba706d6f40bc10f9109b7d7eed166"
+    },
+    {
+      "file": "/private/tmp/prosary-kahana-reference/pages/root-bar4-review-1-4.png",
+      "sha256": "edbc7bed310a4e938ede39adeedad33f4e9a3ac29a2d516fbf3480ed86ac8ab2"
+    },
+    {
+      "file": "/private/tmp/prosary-kahana-reference/pages/root-bar4-review-4-14.png",
+      "sha256": "1edafb52e5e93d878adb059a77e31a7cff4ee9054852e42099bf4c4bb423bc77"
+    },
+    {
+      "file": "/private/tmp/prosary-kahana-reference/pages/root-bar4-review-14-24.png",
+      "sha256": "15fe72d2ec3f18daedca743e8442a6480584534f80613ec649ba78b506fb4ac2"
+    },
+    {
+      "file": "/private/tmp/prosary-kahana-reference/pages/root-bar4-review-24-32.png",
+      "sha256": "b4d7a20626476c7829200520763ad8ebb451ad5aec4681cdd7c6d6a11b68122d"
+    },
+    {
+      "file": "/private/tmp/prosary-kahana-reference/pages/root-bar4-review-32-37.png",
+      "sha256": "7d3b41c9e4c425da2b44fbf87096fef2a8d49d081811cbeff790943a7e95e312"
+    },
+    {
+      "file": "/private/tmp/prosary-kahana-reference/pages/root-bar5-review.png",
+      "sha256": "2704825b1bfe8c314e84915a64fbc193f84dbdeabc0bc0bed941e18346aac215"
+    },
+    {
+      "file": "/private/tmp/prosary-kahana-reference/pages/root-bar4-v7-osekhem-full.png",
+      "sha256": "4b160a6b593ab2abb4564dbd5e2644e0191b6fbb8ddeb64b15afce06792c75e4"
+    },
+    {
+      "file": "/private/tmp/prosary-kahana-reference/pages/root-bar4-v7-eloah.png",
+      "sha256": "66fc6653156b7ef4751e6883fa254b80d244dd8972218a70f07119e19e7e456e"
+    },
+    {
+      "file": "/private/tmp/prosary-kahana-reference/pages/root-bar4-v8-jerusalem.png",
+      "sha256": "0c05f5e4a2aa11b8fded3e0fc7173ab5a32a981ad2d4c971d743f8dfd948039f"
+    },
+    {
+      "file": "/private/tmp/prosary-kahana-reference/pages/root-bar4-v30-jerusalem.png",
+      "sha256": "ff351b7d1207cf65cf00bebff1efe079a49e5a2cec9c06fa0f401a2b0a3a00f1"
+    },
+    {
+      "file": "/private/tmp/prosary-kahana-reference/pages/root-bar4-v34-mimena-full.png",
+      "sha256": "4e138a9c3d6165219dc0f19eb203e5b9089dd53261e336e5482c765b3209f505"
+    },
+    {
+      "file": "/private/tmp/prosary-kahana-reference/pages/root-bar4-v36-jerusalem.png",
+      "sha256": "6a9e6be455048fdf6b97d6f2dea50d434d722ca2b094193ae47087bed7ae0b99"
+    },
+    {
+      "file": "/private/tmp/prosary-kahana-reference/pages/root-bar4-v32-gozelet.png",
+      "sha256": "5ab1b577382dc627704617b99e931f9f9033e3418e802a58e2422d6e658148aa"
+    },
+    {
+      "file": "/private/tmp/prosary-kahana-reference/pages/root-bar5-v1-jerusalem-full.png",
+      "sha256": "e0e31642a6507b8e36d583ced19951e02d32f73a710c1b0c76430a2148204027"
+    },
+    {
+      "file": "/private/tmp/prosary-kahana-reference/pages/root-bar5-v5-gavoah.png",
+      "sha256": "4bbaaabb4eddc49ef784b50b3b9d5a211095ed0f7b13f8b1887871b87ea28c06"
+    },
+    {
+      "file": "/private/tmp/prosary-kahana-reference/pages/root-bar5-v5-gavoah-full.png",
+      "sha256": "5d6a3fbfb9a2da15696f28a4172026bd7663f7db0b1b9040dd453d8faf8613b2"
+    },
+    {
+      "file": "/private/tmp/prosary-kahana-reference/pages/root-bar5-v7-line.png",
+      "sha256": "fd9937ab391220c8d77442d2ca0764a6610b3d57f50ad9cf5856b13eabbd9025"
+    },
+    {
+      "file": "/private/tmp/prosary-kahana-reference/pages/root-bar5-v8-bosem.png",
+      "sha256": "1512e09c2c62a7f6819f9ab8a7a2ed21d9fb8cc0213e39d1fdb036fd2552f852"
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "book": "BAR",
+  "rawUserReply": "1. yes, 2. a schwa, a zere",
+  "question": "In the three Baruch crops just shown, can you distinguish (1) a patah under the first ו of ויהיו (2:5), (2) any vowel under ל in בקולך (3:4), and (3) the vowel under ש in עושכם (4:7)? Please report only what you can see in the print; “unclear” is useful.",
+  "decisions": [
+    {
+      "unit": "2:5",
+      "word": "וַיִּהְיוּ",
+      "decision": "Retain patah on the initial vav; user confirmed the specific printed mark."
+    },
+    {
+      "unit": "3:4",
+      "word": "בְקוֹלְךָ",
+      "decision": "Replace provisional segol under lamed with the user-read sheva."
+    },
+    {
+      "unit": "4:7",
+      "word": "עוֹשֵׂכֶם",
+      "decision": "Replace provisional sheva under shin with the user-read tsere."
+    }
+  ],
+  "scope": "Only the three shown occurrences. No generic pointing normalization.",
+  "cropEvidence": [
+    {
+      "file": "/private/tmp/prosary-kahana-reference/pages/root-bar2-v5-vihyu-full.png",
+      "sha256": "b3d462b7fdc558a856633a960117f5fcf12b4b85630a36f79045840b6c76b8f8"
+    },
+    {
+      "file": "/private/tmp/prosary-kahana-reference/pages/root-bar3-v4-bekol.png",
+      "sha256": "fcf77645dd56a076ca14262eb60e58ed23ca49896f5463b99ec9bef6e1046cec"
+    },
+    {
+      "file": "/private/tmp/prosary-kahana-reference/pages/root-bar4-v7-osekhem-full.png",
+      "sha256": "4b160a6b593ab2abb4564dbd5e2644e0191b6fbb8ddeb64b15afce06792c75e4"
+    }
+  ]
+}

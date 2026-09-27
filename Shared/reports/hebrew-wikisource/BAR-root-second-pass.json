@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "book": "BAR",
   "productionEligible": false,
-  "status": "partial second comparison, not completed page review",
+  "status": "Historical partial second-comparison findings; final source review completed in the chapter reports",
   "findings": [
     {
       "unit": "1:22",
@@ -29,9 +29,11 @@
       "basis": "Source PDF34 prints מעשק without vav; preserve the visible defective spelling."
     }
   ],
-  "openQueries": [
+  "historicalQueries": [
     "Literal lamed marks in Baruch1 Jerusalem forms; name yod dagesh queries are in BAR-chapter1-review.json.",
     "4:31–32 לגזלת versus לגוזלת: recheck the possible vav separately.",
     "All remaining page31–35 vowel points and punctuation require complete comparison."
-  ]
+  ],
+  "openQueries": [],
+  "resolution": "All historical queries were resolved by full chapter comparisons and scoped user decisions. See BAR-chapter1-review.json, BAR-chapter2-review.json, BAR-chapters3-5-review.json and BAR-user-final-point-decisions.json. Completed source is pinned in Shared/content/hebrew-deuterocanon-review.json; production remains gated on all12 works."
 }

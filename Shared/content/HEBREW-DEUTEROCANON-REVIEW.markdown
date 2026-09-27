@@ -111,6 +111,14 @@ numeric unit contract. Their presence in review evidence is not production suppo
 
 ## Import and release gates
 
+The first completed source reviews are Judith (16 chapters, 332 source units, all
+23 text pages) and Baruch (five chapters, 123 source units, all seven text pages).
+Their exact content is pinned in `hebrew-deuterocanon-review.json` against separately
+recorded source inventories. The other ten selected works remain unfinished; these
+two completed books do not open the production gate by themselves. Completion here
+means the chosen Hebrew edition has been transcribed and checked, not that its
+numbering has already been reconciled with every daily-reading citation.
+
 `Shared/tools/hebrew_deuterocanon.py` validates source hashes, contributor credits,
 text-unit hashes, page evidence and nonoverlapping labels. Drafts may contain missing
 pages or chapters; they never enter a production archive. The Bible generator imports
