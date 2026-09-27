@@ -114,12 +114,10 @@ public partial class SettingsViewModel : ObservableObject
     partial void OnSelectedAramaicSignOfCrossChanged(AramaicSignOfCrossOption value) =>
         AppSettings.SetAramaicSignOfCrossForm(value.Value);
 
-    public IReadOnlyList<AppColorOption> AppColorOptions => AppColorPalette.All;
+    public string AppearanceTitle => Loc.Tr("settings_appearance", "Appearance");
 
-    [ObservableProperty]
-    private AppColorOption _selectedAppColor = AppColorPalette.Resolve(AppSettings.AppColor);
-
-    partial void OnSelectedAppColorChanged(AppColorOption value) => AppSettings.SetAppColor(value.Id);
+    [RelayCommand]
+    private void OpenAppearance() => Navigation.Navigate<Views.AppearancePage>();
 
     public bool ShowsAramaicSignOfCrossPicker =>
         (LanguageCatalog.BaseLanguage(SelectedLanguage.Code) ?? SelectedLanguage.Code) == "arc";

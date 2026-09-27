@@ -842,27 +842,40 @@ final class AppShellUITests: XCTestCase {
   @MainActor
   func testAppColorOffersThePaletteAndPersistsWhiteWithGoldAccent() throws {
     let app = XCUIApplication()
-    app.launchArguments = ["-useInMemoryStore", "-AppleLanguages", "(en)", "-interfaceLanguageCode", "en"]
+    app.launchArguments = ["-useInMemoryStore", "-AppleLanguages", "(en)", "-interfaceLanguageCode", "en", "-AppleInterfaceStyle", "Dark"]
     app.launch()
     func openColorSettings() -> XCUIElement {
       XCTAssertTrue(app.buttons["settingsButton"].waitForExistence(timeout: 10))
       app.buttons["settingsButton"].tap()
-      let picker = app.buttons["appColorPicker"]
-      for _ in 0..<5 where !picker.isHittable { app.swipeUp() }
-      XCTAssertTrue(picker.isHittable)
-      return picker
+      let link = app.buttons["appearanceSettingsLink"]
+      for _ in 0..<5 where !link.isHittable { app.swipeUp() }
+      XCTAssertTrue(link.isHittable)
+      return link
     }
-    var picker = openColorSettings()
-    picker.tap()
+    var link = openColorSettings()
+    let settingsPosition = link.frame.midY
+    link.tap()
+    XCTAssertTrue(app.navigationBars["Appearance"].waitForExistence(timeout: 5))
+    XCTAssertFalse(app.buttons["appColorPicker"].exists)
     for name in ["Blue", "Green", "Red", "Purple", "Rose", "White", "Gold"] {
-      XCTAssertTrue(app.buttons[name].waitForExistence(timeout: 3), name)
+      let row = app.buttons["appColorOption-\(name.lowercased())"]
+      for _ in 0..<3 where !row.isHittable { app.swipeUp() }
+      XCTAssertTrue(row.isHittable, name)
+      XCTAssertEqual(row.label, name)
+      XCTAssertGreaterThanOrEqual(row.frame.height, 90, "Icon choices have comfortable full-size rows")
     }
-    app.buttons["White"].tap()
-    XCTAssertEqual(picker.value as? String, "White")
+    let white = app.buttons["appColorOption-white"]
+    white.tap()
+    XCTAssertTrue(white.isSelected)
+    XCTAssertTrue(app.navigationBars["Appearance"].exists, "Choosing a color stays on Appearance")
     let settings = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
-    settings.name = "white-icon-gold-accent-settings"
+    settings.name = "appearance-colors-white-selected"
     settings.lifetime = .keepAlways
     add(settings)
+    app.navigationBars["Appearance"].buttons.element(boundBy: 0).tap()
+    XCTAssertTrue(app.navigationBars["Settings"].waitForExistence(timeout: 5))
+    XCTAssertEqual(link.value as? String, "White")
+    XCTAssertEqual(link.frame.midY, settingsPosition, accuracy: 3, "Back preserves the Settings scroll position")
     app.buttons["Done"].tap()
     let home = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
     home.name = "white-palette-pray-accent"
@@ -870,12 +883,89 @@ final class AppShellUITests: XCTestCase {
     add(home)
     app.terminate()
     app.launch()
-    picker = openColorSettings()
-    XCTAssertEqual(picker.value as? String, "White")
-    picker.tap()
-    app.buttons["Blue"].tap()
-    XCTAssertEqual(picker.value as? String, "Blue")
+    link = openColorSettings()
+    XCTAssertEqual(link.value as? String, "White")
+    link.tap()
+    for _ in 0..<3 where !white.isHittable { app.swipeUp() }
+    XCTAssertTrue(white.isSelected, "The selected color persists after relaunch")
+    let blue = app.buttons["appColorOption-blue"]
+    for _ in 0..<3 where !blue.isHittable { app.swipeDown() }
+    blue.tap()
+    XCTAssertTrue(blue.isSelected)
+    let bluePage = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
+    bluePage.name = "appearance-colors-blue-selected"
+    bluePage.lifetime = .keepAlways
+    add(bluePage)
+    app.navigationBars["Appearance"].buttons.element(boundBy: 0).tap()
+    XCTAssertEqual(link.value as? String, "Blue")
     app.buttons["Done"].tap()
+  }
+
+  @MainActor
+  func testAppearanceUsesNativeBackNavigationInHebrew() throws {
+    let app = XCUIApplication()
+    app.launchArguments = ["-useInMemoryStore", "-AppleLanguages", "(he)", "-interfaceLanguageCode", "he", "-AppleLocale", "he_IL"]
+    app.launch()
+    XCTAssertTrue(app.buttons["settingsButton"].waitForExistence(timeout: 10))
+    app.buttons["settingsButton"].tap()
+    let link = app.buttons["appearanceSettingsLink"]
+    for _ in 0..<5 where !link.isHittable { app.swipeUp() }
+    XCTAssertTrue(link.isHittable)
+    link.tap()
+    let bar = app.navigationBars["מראה"]
+    XCTAssertTrue(bar.waitForExistence(timeout: 5))
+    let blue = app.buttons["appColorOption-blue"]
+    XCTAssertTrue(blue.isHittable)
+    blue.tap()
+    XCTAssertTrue(blue.isSelected)
+    let back = bar.buttons.element(boundBy: 0)
+    XCTAssertGreaterThan(back.frame.midX, bar.frame.midX, "The native back control follows RTL layout")
+    let screenshot = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
+    screenshot.name = "appearance-colors-hebrew"
+    screenshot.lifetime = .keepAlways
+    add(screenshot)
+    back.tap()
+    XCTAssertTrue(app.navigationBars["הגדרות"].waitForExistence(timeout: 5))
+    XCTAssertTrue(link.isHittable)
+  }
+
+  @MainActor
+  func testAppearanceKeepsLargeTextChoicesReachable() throws {
+    let app = XCUIApplication()
+    app.launchArguments = ["-useInMemoryStore", "-AppleLanguages", "(en)", "-interfaceLanguageCode", "en",
+                           "-UIPreferredContentSizeCategoryName", "UICTContentSizeCategoryAccessibilityXXXL"]
+    app.launch()
+    let settings = app.buttons.matching(NSPredicate(format: "identifier == %@ OR label == %@", "settingsButton", "Settings")).firstMatch
+    if !settings.waitForExistence(timeout: 5) {
+      // iPad's native toolbar moves secondary actions into More at large text sizes.
+      let more = app.buttons["More"]
+      XCTAssertTrue(more.waitForExistence(timeout: 5), app.debugDescription)
+      more.tap()
+    }
+    XCTAssertTrue(settings.waitForExistence(timeout: 5))
+    settings.tap()
+    let link = app.buttons["appearanceSettingsLink"]
+    for _ in 0..<12 where !link.isHittable { app.swipeUp() }
+    XCTAssertTrue(link.isHittable)
+    link.tap()
+    XCTAssertTrue(app.navigationBars["Appearance"].waitForExistence(timeout: 5))
+    for color in ["blue", "green", "red", "purple", "rose", "white", "gold"] {
+      let row = app.buttons["appColorOption-\(color)"]
+      for _ in 0..<4 where !row.isHittable { app.swipeUp() }
+      XCTAssertTrue(row.isHittable, color)
+      row.tap()
+      XCTAssertTrue(row.isSelected, color)
+    }
+    let screenshot = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
+    screenshot.name = "appearance-colors-large-text"
+    screenshot.lifetime = .keepAlways
+    add(screenshot)
+    let blue = app.buttons["appColorOption-blue"]
+    for _ in 0..<8 where !blue.isHittable { app.swipeDown() }
+    blue.tap()
+    app.navigationBars["Appearance"].buttons.element(boundBy: 0).tap()
+    XCTAssertTrue(app.navigationBars["Settings"].waitForExistence(timeout: 5))
+    XCTAssertTrue(link.isHittable)
   }
 
   @MainActor

@@ -62,10 +62,12 @@ struct SettingsView: View {
 
   var body: some View {
     settingsContent
+    #if os(macOS)
     .alert(String(localized: "settings.appColor.iconError", defaultValue: "Could Not Change App Icon", bundle: UILanguage.bundle, locale: UILanguage.locale),
            isPresented: Binding(get: { iconController.errorMessage != nil }, set: { if !$0 { iconController.errorMessage = nil } })) {
       Button("common.ok") { iconController.errorMessage = nil }
     } message: { Text(iconController.errorMessage ?? "") }
+    #endif
     .confirmationDialog(
       String(localized: "settings.removeAllDownloads.title",
              defaultValue: "Remove Unused Downloads?", bundle: UILanguage.bundle, locale: UILanguage.locale),
@@ -164,6 +166,7 @@ struct SettingsView: View {
   #endif
 
   private var appearanceSettings: some View {
+    #if os(macOS)
     Section {
       Picker(String(localized: "settings.appColor", defaultValue: "App Color", bundle: UILanguage.bundle, locale: UILanguage.locale),
              selection: Binding(get: { AppColor.resolved(appColor) }, set: { appColor = $0.rawValue })) {
@@ -181,14 +184,24 @@ struct SettingsView: View {
     } header: {
       Text(String(localized: "settings.appearanceHeader", defaultValue: "Appearance", bundle: UILanguage.bundle, locale: UILanguage.locale))
     } footer: {
-      #if os(macOS)
       Text(String(localized: "settings.appColor.macFooter", defaultValue: "Changes the accent color and Dock icon while Prosary is open.", bundle: UILanguage.bundle, locale: UILanguage.locale))
-      #elseif os(visionOS)
-      Text(String(localized: "settings.appColor.visionFooter", defaultValue: "Changes the accent color. The app icon stays blue on visionOS.", bundle: UILanguage.bundle, locale: UILanguage.locale))
-      #else
-      Text(String(localized: "settings.appColor.footer", defaultValue: "Changes the accent color and app icon.", bundle: UILanguage.bundle, locale: UILanguage.locale))
-      #endif
     }
+    #else
+    Section {
+      NavigationLink {
+        AppearanceSettingsView()
+      } label: {
+        HStack {
+          Label(String(localized: "settings.appearanceHeader", defaultValue: "Appearance", bundle: UILanguage.bundle, locale: UILanguage.locale), systemImage: "paintpalette")
+          Spacer()
+          Text(AppColor.resolved(appColor).title).foregroundStyle(.secondary)
+        }
+      }
+      .accessibilityIdentifier("appearanceSettingsLink")
+      .accessibilityLabel(String(localized: "settings.appearanceHeader", defaultValue: "Appearance", bundle: UILanguage.bundle, locale: UILanguage.locale))
+      .accessibilityValue(AppColor.resolved(appColor).title)
+    }
+    #endif
   }
   private var languageSettings: some View {
     Section(String(localized: "settings.prayerLanguageHeader", defaultValue: "Language", bundle: UILanguage.bundle, locale: UILanguage.locale)) {

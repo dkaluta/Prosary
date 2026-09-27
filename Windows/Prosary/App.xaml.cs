@@ -80,6 +80,7 @@ public partial class App : Application
         services.AddTransient<BasicPrayersViewModel>();
         services.AddTransient<BasicPrayerViewModel>();
         services.AddTransient<SettingsViewModel>();
+        services.AddTransient<AppearanceViewModel>();
         services.AddTransient<CustomDevotionViewModel>();
 
         return services.BuildServiceProvider();
