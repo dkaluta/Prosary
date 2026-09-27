@@ -21,9 +21,14 @@ data class FeastDay(
      * "Solemnity" and "1st Class". */
     val rank: String,
     val titleByLanguage: Map<String, String>? = null,
+    val observances: List<FeastObservance> = emptyList(),
 ) {
     fun localizedTitle(language: String): String =
         HebrewDisplayText.unpoint(titleByLanguage.localized(language) ?: title)
+
+    /** Descriptions are optional source material for this calendar, never a language fallback. */
+    fun saintDescriptions(calendarId: String, language: String): List<SaintDescription> =
+        if (calendarId == "syriac") observances.mapNotNull { it.description(language) } else emptyList()
 
     /** Follow the Today toggle rather than the app UI language. Roman rank terms follow the
      * Saint James Vicariate's 2025–2026 calendar, pp. 4, 6–7:
@@ -52,6 +57,37 @@ data class FeastDay(
         }.getOrDefault(fallback)
     }
 }
+
+@Serializable
+data class FeastObservance(
+    val title: String,
+    val identity: String,
+    val titleByLanguage: Map<String, String>? = null,
+    val descriptionByLanguage: Map<String, String>? = null,
+    val descriptionSourceByLanguage: Map<String, String>? = null,
+    val descriptionCreditByLanguage: Map<String, String>? = null,
+) {
+    fun description(language: String): SaintDescription? {
+        val normalized = LanguageCatalog.uiLanguageCode(language)
+        val code = LanguageCatalog.baseLanguage(normalized) ?: normalized
+        val body = descriptionByLanguage?.get(code)?.trim()?.takeIf(String::isNotEmpty) ?: return null
+        return SaintDescription(
+            identity = identity,
+            title = HebrewDisplayText.unpoint(titleByLanguage.localized(code) ?: title),
+            text = body,
+            sourceURL = descriptionSourceByLanguage?.get(code)?.trim()?.takeIf { url ->
+                runCatching {
+                    val uri = java.net.URI(url)
+                    uri.scheme in setOf("https", "http") && !uri.host.isNullOrBlank()
+                }.getOrDefault(false)
+            },
+            credit = descriptionCreditByLanguage?.get(code)?.trim()?.takeIf(String::isNotEmpty),
+        )
+    }
+}
+
+data class SaintDescription(val identity: String, val title: String, val text: String,
+    val sourceURL: String? = null, val credit: String? = null)
 
 @Serializable
 data class PopeIntention(

@@ -102,6 +102,10 @@ struct MacTodayView: View {
           }
           .accessibilityIdentifier("macToday.intention")
         }
+        if let feast {
+          SaintDescriptionsView(feast: feast, calendarID: TodayInfoStore.selectedCalendarId, language: language)
+            .id("\(passageContext)|\(language)")
+        }
         if !readings.isEmpty || torah != nil { ReadingEditionPicker() }
         if !readings.isEmpty { readingsSection }
         if let torah { torahSection(torah) }

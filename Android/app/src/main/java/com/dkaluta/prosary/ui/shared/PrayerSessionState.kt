@@ -24,7 +24,6 @@ internal class RosaryPrayerSession(prayer: Prayer) : ViewModel() {
     val languageMenuExpanded = mutableStateOf(false)
     val pendingResume = mutableStateOf<PrayerRunProgress?>(null)
     val runReady = mutableStateOf(false)
-    val showsLitanyOffer = mutableStateOf(false)
     var loadedSignature: String? = null
 }
 

@@ -1,6 +1,27 @@
 {
   "$comment": "Canonical shape of Prosary's domain model, independent of any one platform's language. Field names here are the camelCase form; each platform's own idiom (Swift camelCase, Kotlin camelCase, C# PascalCase) maps 1:1. See ../ARCHITECTURE.markdown for the prose version and per-file source locations. Keep this file in sync whenever a field is added, removed, renamed, or its default changes on any platform — see README.markdown in this directory.",
   "types": {
+    "FeastDay": {
+      "description": "One calendar's observances for a civil date. Calendar identity, date and rank never change with interface language.",
+      "fields": {
+        "title": { "type": "string", "description": "Original provider title; Syriac retains exact English SYE spelling plus distinct reviewed Arabic supplements." },
+        "rank": { "type": "string" },
+        "titleByLanguage": { "type": "map<string, string>?", "description": "Assembled localized display title. Syriac generation requires every component in all eight interface languages; copying English under another locale is not coverage." },
+        "observances": { "type": "FeastObservance[]?", "description": "Optional identity-preserving components, currently supplied by the Syriac calendar. Older datasets without these remain valid." }
+      }
+    },
+    "FeastObservance": {
+      "description": "Reviewed identity and language-specific display metadata for a single observance. The supplied 2026 Hebrew Urtotho calendar applies only to Syriac; descriptions join exact source UID, date and identity, never date alone or array position.",
+      "fields": {
+        "title": { "type": "string", "description": "Original English display spelling where SYE supplies it." },
+        "identity": { "type": "string", "description": "Reviewed canonical identity, distinct from display spelling." },
+        "sourceTitleByLanguage": { "type": "map<string, string>?", "description": "Generator provenance: exact published Arabic captions take precedence over editorial Arabic supplements during re-localization. Native clients may ignore this field." },
+        "titleByLanguage": { "type": "map<string, string>?" },
+        "descriptionByLanguage": { "type": "map<string, string>?", "description": "Sourced biography. Render only the normalized exact interface locale (iw->he, fil->tl); never fall back to another language. Initially only supplied Hebrew descriptions are available." },
+        "descriptionSourceByLanguage": { "type": "map<string, string>?", "description": "Matching source URL, exposed only when a safe HTTPS URL and a corresponding description exist." },
+        "descriptionCreditByLanguage": { "type": "map<string, string>?", "description": "Attribution accompanying the description, including the supplied Hebrew reference and its underlying Evangelizo source." }
+      }
+    },
     "PrayerPackGalleryImage": {
       "description": "Portable authored Gallery artwork in manifest.json. All three native loaders preserve the metadata; this does not introduce a Gallery image editor on phones or Windows.",
       "newExportConvention": {
@@ -162,6 +183,16 @@
         "marianAntiphon": {
           "type": "MarianAntiphonOption",
           "default": "seasonal"
+        },
+        "includeLitanyOfLoreto": {
+          "type": "boolean",
+          "default": false,
+          "description": "Insert the Litany of Loreto body into the Rosary's continuous closing sequence before the single Rosary collect. No completion popup or second prayer route. This forces the effective Rosary collect on."
+        },
+        "includeRosaryCollect": {
+          "type": "boolean",
+          "default": true,
+          "description": "A separate Rosary collect step, independent of Marian antiphon/season. Effective value is includeRosaryCollect OR includeLitanyOfLoreto. The editor shows this on and disabled while the Litany is enabled, retaining the saved independent choice for when the Litany is off. Bundle keys are rosaryCollect and litanyOfLoreto."
         },
         "includeClosingIntentions": {
           "type": "boolean",
@@ -345,7 +376,7 @@
         },
         "configurationSignature": {
           "type": "string",
-          "description": "Stable signature of sequence-producing options. Mismatch discards the checkpoint. Rosary uses the effective combined choice in its closing-intentions field and appends |closing-v2:1,1,1 when enabled, preserving whole-group bookmarks and invalidating former partial groups. It then appends |opening-fatima-v2 only when both opening prayers and their Fatima Prayer are enabled, invalidating bookmarks affected by moving Fatima after the opening Glory Be."
+          "description": "Stable signature of sequence-producing options. Mismatch discards the checkpoint. Rosary uses the effective combined choice in its closing-intentions field and appends |closing-v2:1,1,1 when enabled, preserving whole-group bookmarks and invalidating former partial groups. It then appends |opening-fatima-v2 only when both opening prayers and their Fatima Prayer are enabled, invalidating bookmarks affected by moving Fatima after the opening Glory Be. Rosary closing-v3 signatures include the Litany and effective collect choices and invalidate positions saved before the antiphon collect became a separate step."
         },
         "stepIndex": {
           "type": "int",
@@ -542,7 +573,7 @@
         },
         "kind": {
           "type": "string?",
-          "description": "\"seasonalMarianAntiphon\" (closing only): emitted by the engine's shared, calendar-dependent antiphon builder instead of bundle data (the Franciscan Crown, and an hours-type closing). \"marianAntiphon\" (closing only): option-selected antiphon (the Rosary) — optionKey names a choice option whose value picks the antiphon, with \"seasonal\" calendar-resolved and \"none\" dropping the step. \"proper\" (hours type only): not a step at all but a named hole in an office — see slot/default below."
+          "description": "\"seasonalMarianAntiphon\" (closing only): emitted by the engine's shared, calendar-dependent antiphon builder instead of bundle data (the Franciscan Crown, and an hours-type closing). \"marianAntiphon\" (closing only): option-selected antiphon (the Rosary) — optionKey names a choice option whose value picks the antiphon, with \"seasonal\" calendar-resolved and \"none\" dropping the step. \"proper\" (hours type only): not a step at all but a named hole in an office — see slot/default below. \"rosaryLitany\" is reserved for the built-in Rosary closing, gated by litanyOfLoreto and followed immediately by rosaryCollect. It expands the Litany afterRosary body except its final collect so the following Rosary collect is the sole collect. It has only kind and if fields."
         },
         "slot": {
           "type": "string?",

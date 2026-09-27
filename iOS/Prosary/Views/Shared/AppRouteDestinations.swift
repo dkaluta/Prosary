@@ -34,10 +34,7 @@ private struct AppRouteDestinations: ViewModifier {
           CustomDevotionFlowView(devotionId: devotionId, initialLanguageCode: languageCode, initialVariantId: variantId)
             .tabBarHiddenWhilePraying()
         case .rosaryQuickPray(let prayer):
-          RosaryFlowView(prayer: prayer) { languageCode in
-            path.removeLast()
-            RunLoop.main.perform { path.push(.custom(devotionId: "litanyOfLoreto", languageCode: languageCode, variantId: "afterRosary")) }
-          }
+          RosaryFlowView(prayer: prayer)
             .tabBarHiddenWhilePraying()
         case .basicPrayers:
           BasicPrayersView(path: $path)

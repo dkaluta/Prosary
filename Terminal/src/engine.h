@@ -38,6 +38,8 @@ typedef struct {
     int day;     /* Zero based for daily devotions; -1 selects today when applicable. */
     int year, month, day_of_month; /* All zero means local today. */
     int skip_fifth_decade; /* Omit mystery five from a Rosary set; default false. */
+    int include_litany_of_loreto; /* Rosary continuation, default false. */
+    int omit_rosary_collect; /* Default false; ignored when the Litany is included. */
 } ProsarySelection;
 
 ProsaryEngine *engine_open(const char *data_dir, char *error, size_t error_size);

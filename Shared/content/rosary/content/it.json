@@ -184,7 +184,9 @@
     "mysteryGroupJoyfulTitle": "Gaudiosi",
     "mysteryGroupSorrowfulTitle": "Dolorosi",
     "mysteryGroupGloriousTitle": "Gloriosi",
-    "mysteryGroupLuminousTitle": "Luminosi"
+    "mysteryGroupLuminousTitle": "Luminosi",
+    "rosaryCollect": "Preghiamo. O Dio, il tuo unico Figlio ci ha acquistato con la sua vita, morte e risurrezione i beni della salvezza eterna: concedi a noi che, venerando questi misteri del santo Rosario della Vergine Maria, imitiamo ciò che contengono e otteniamo ciò che promettono. Per Cristo nostro Signore. Amen.",
+    "rosaryCollectTitle": "Preghiamo"
   },
   "$sources": {
     "commonPrayers": "https://www.vatican.va/archive/compendium_ccc/documents/archive_2005_compendium-ccc_it.html",
@@ -196,5 +198,6 @@
     "almaRedemptorisMater": "https://www.vatican.va/content/john-paul-ii/it/angelus/1982/documents/hf_jp-ii_ang_19821208.html",
     "invitatoryBody": "https://www.chiesacattolica.it/la-liturgia-delle-ore/?data-liturgia=20260815&ora=compieta-dopo-i-secondi-vespri"
   },
-  "$scriptureSource": "Scripture: Bibbia di Antonio Martini (1769–1781), public domain. Structured data by Giovanni Novelli, Parola Viva (https://parolaviva.art/opendata), CC BY 4.0. Imported passages retain this edition's wording and numbering. Isaiah 28:16 joins the upstream split word fonda mento to fondamento, verified in the Martini print, p. 673 (https://www.e-rara.ch/download/pdf/14913584.pdf#page=76). Other prayers have separately credited published sources."
+  "$scriptureSource": "Scripture: Bibbia di Antonio Martini (1769–1781), public domain. Structured data by Giovanni Novelli, Parola Viva (https://parolaviva.art/opendata), CC BY 4.0. Imported passages retain this edition's wording and numbering. Isaiah 28:16 joins the upstream split word fonda mento to fondamento, verified in the Martini print, p. 673 (https://www.e-rara.ch/download/pdf/14913584.pdf#page=76). Other prayers have separately credited published sources.",
+  "$rosaryCollectSource": "Rosary-only separate step: unchanged collectaStandard text; when absent (Spanish/Mission Hebrew), unchanged sourced collectAfterRosary from litanyOfLoreto. Basic Marian antiphon texts remain unchanged. Hebrew heading נתפללה supplied explicitly by the user, 2026-09-27."
 }

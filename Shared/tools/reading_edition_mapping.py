@@ -23,13 +23,14 @@ DIRECTORY = TOOLS / "versification/editions"
 INVENTORIES = DIRECTORY / "inventories.json"
 EDITION_IDS = frozenset({"douay-rheims-1899", "masoretic-delitzsch", "synodal-1876",
     "ang-dating-biblia-1905", "crampon-1923", "martini", "kulish-1905", "jesuit-arabic-1897",
-    "peshitta-1905"})
+    "peshitta-1905", "brenton-lxx"})
 METHOD = "pinned-imported-verse-word-counts-v1"
 REVIEW_FILES = (
     "reading-text-sources.json", "build-reading-texts.py", "build-edition-mappings.py",
     "reading_edition_mapping.py", "reading_edition_reviews_hebrew.py",
     "reading_edition_reviews_western.py", "reading_edition_reviews_arabic.py",
     "reading_edition_reviews_peshitta.py", "peshitta_reading_source.py",
+    "reading_edition_reviews_greek.py", "brenton_reading_source.py",
     "import-scripture.py", "aramaic_script_converter.py",
     "reading_step_mapping.py", "reading_psalm_mapping.py", "reading_boundary_groups.py",
     "reading_versification.py", "delitzsch_numbering.py", "versification/sources.json",
@@ -66,7 +67,8 @@ def profile_for(edition_id: str) -> dict:
     from reading_edition_reviews_western import PROFILES as western
     from reading_edition_reviews_arabic import PROFILES as arabic
     from reading_edition_reviews_peshitta import PROFILES as peshitta
-    profiles = hebrew | western | arabic | peshitta
+    from reading_edition_reviews_greek import PROFILES as greek
+    profiles = hebrew | western | arabic | peshitta | greek
     if edition_id not in profiles:
         raise ValueError("Bible edition has no reviewed reference profile")
     return profiles[edition_id]
@@ -83,7 +85,7 @@ def validate_record(record: dict) -> dict:
             or not isinstance(record["corpusSHA256"], str) or not _HASH.fullmatch(record["corpusSHA256"])):
         raise ValueError("Invalid edition inventory provenance")
     if (not isinstance(record["systems"], dict) or set(record["systems"]) != {"ot", "nt"}
-            or any(not isinstance(value, str) or value not in {"org", "eng", "vul", "rso", "delitzsch-1901"}
+            or any(not isinstance(value, str) or value not in {"org", "eng", "vul", "rso", "delitzsch-1901", "brenton"}
                    for value in record["systems"].values())):
         raise ValueError("Invalid edition inventory baseline")
     if not isinstance(record["chapters"], list) or not record["chapters"]:
@@ -151,7 +153,7 @@ def excluded_chapters(edition_id: str, corpus: dict, systems: dict, profile: dic
                 or set(values) != set(range(1, max(values) + 1))):
             excluded.add((book, chapter))
             continue
-        if edition_id == "douay-rheims-1899" or (book, chapter) in exceptions:
+        if edition_id in {"douay-rheims-1899", "brenton-lxx"} or (book, chapter) in exceptions:
             continue
         system = systems["nt" if book in nt else "ot"]
         # The existing validators inspect verse keys, so synthetic nonempty
@@ -172,6 +174,9 @@ class EditionMapper:
         profile = profile if profile is not None else profile_for(edition_id)
         if source_pin_digest(record["sourcePins"]) != profile["source_pin_digest"]:
             raise ValueError("Edition sources differ from their reviewed mapping profile")
+        if (profile.get("source_corpus_sha256") is not None
+                and record["corpusSHA256"] != profile["source_corpus_sha256"]):
+            raise ValueError("Edition inventory differs from its reviewed source layout")
         self.excluded_chapters = set()
         if edition_id == "jesuit-arabic-1897":
             from reading_edition_reviews_arabic import ReviewedArabicMapper

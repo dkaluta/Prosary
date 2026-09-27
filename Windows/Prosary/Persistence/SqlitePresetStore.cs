@@ -46,6 +46,8 @@ public sealed class SqlitePresetStore : IPresetStore
         ("AramaicSignOfCrossForm", "varchar NOT NULL DEFAULT 'formA'"),
         ("RemindersJson", "varchar NOT NULL DEFAULT '[]'"),
         ("SkipFifthDecade", "integer NOT NULL DEFAULT 0"),
+        ("IncludeLitanyOfLoreto", "integer NOT NULL DEFAULT 0"),
+        ("IncludeRosaryCollect", "integer NOT NULL DEFAULT 1"),
     ];
 
     private async Task InitializeAsync()

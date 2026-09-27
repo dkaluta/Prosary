@@ -23,12 +23,28 @@ struct FeastDay: Decodable, Equatable {
   /// "Optional Memorial" (Roman), "1st Class" … "3rd Class" (1962). Display styling bolds
   /// "Solemnity" and "1st Class".
   let rank: String
+  let observances: [FeastObservance]?
+
+  init(title: String, titleByLanguage: [String: String]? = nil, rank: String,
+       observances: [FeastObservance]? = nil) {
+    self.title = title
+    self.titleByLanguage = titleByLanguage
+    self.rank = rank
+    self.observances = observances
+  }
 
   func localizedTitle(_ language: String) -> String {
     HebrewDisplayText.unpointed(localizedValue(titleByLanguage, language: language) ?? title)
   }
 
-  /// Captions follow the Today language selection, independently of the app UI language.
+  /// Descriptions are optional sourced prose, never translated or borrowed from another
+  /// language or rite at runtime. The assembled feast title remains independent of them.
+  func saintDescriptions(calendarID: String, language: String) -> [FeastSaintDescription] {
+    guard calendarID == "syriac" else { return [] }
+    return (observances ?? []).compactMap { $0.saintDescription(language: language) }
+  }
+
+  /// Captions follow Today's interface language, independently of prayer-language choices.
   /// Roman rank terms follow the Saint James Vicariate's 2025–2026 calendar, pp. 4, 6–7:
   /// https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf
   /// Other entries are ordinary UI descriptions; canonical ranks remain unchanged.
@@ -53,6 +69,38 @@ struct FeastDay: Decodable, Equatable {
     let key = "home.today.rank.\(rank.lowercased().replacingOccurrences(of: " ", with: "_"))"
     return UILanguage.text(key, language: displayLanguage, fallback: fallback)
   }
+}
+
+struct FeastObservance: Decodable, Equatable {
+  let title: String
+  let identity: String
+  let titleByLanguage: [String: String]?
+  let descriptionByLanguage: [String: String]?
+  let descriptionSourceByLanguage: [String: String]?
+  let descriptionCreditByLanguage: [String: String]?
+
+  func saintDescription(language: String) -> FeastSaintDescription? {
+    let code = UILanguage.normalized(language)
+    guard let description = descriptionByLanguage?[code],
+          !description.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else { return nil }
+    let source = descriptionSourceByLanguage?[code].flatMap(URL.init(string:))
+    let sourceURL = source.flatMap { url in
+      ["https", "http"].contains(url.scheme?.lowercased() ?? "") && url.host != nil ? url : nil
+    }
+    return FeastSaintDescription(
+      title: HebrewDisplayText.unpointed(localizedValue(titleByLanguage, language: code) ?? title),
+      text: description, sourceURL: sourceURL,
+      credit: descriptionCreditByLanguage?[code].flatMap {
+        $0.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? nil : $0
+      })
+  }
+}
+
+struct FeastSaintDescription: Equatable {
+  let title: String
+  let text: String
+  let sourceURL: URL?
+  let credit: String?
 }
 
 struct PopeIntention: Decodable, Equatable {

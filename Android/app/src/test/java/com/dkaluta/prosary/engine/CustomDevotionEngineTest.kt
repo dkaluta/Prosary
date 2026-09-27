@@ -58,27 +58,52 @@ class CustomDevotionEngineTest {
     }
 
     @Test
-    fun litanyIsBuiltInWithDistinctStandaloneAndAfterRosaryForms() {
-        val definition = requireNotNull(PrayerPackStore.definition("litanyOfLoreto"))
-        assertEquals("standard", definition.effectiveVariantId(null, "he") ?: definition.variants?.firstOrNull()?.id)
-        assertTrue(definition.variants.orEmpty().map { it.id }.containsAll(listOf("standard", "afterRosary")))
-        val standard = steps("litanyOfLoreto", language = "he", variantId = "standard")
-        val afterRosary = steps("litanyOfLoreto", language = "he", variantId = "afterRosary")
-        assertTrue(standard.size > 2)
-        assertTrue(afterRosary.size > 2)
-        assertTrue((standard + afterRosary).all { it.title.isNotBlank() && it.body.isNotBlank() })
-        assertEquals(standard.map { it.body }, steps("litanyOfLoreto", language = "he").map { it.body })
-        assertFalse(standard.map { it.body } == afterRosary.map { it.body })
-        assertTrue(afterRosary.last().body.any { it in '\u05D0'..'\u05EA' })
+    fun standaloneLitanyAlwaysKeepsItsOwnCollectEvenForObsoleteSavedVariants() {
         for (language in requireNotNull(PrayerPackStore.info("litanyOfLoreto")).languages) {
             val ordinary = steps("litanyOfLoreto", language = language, variantId = "standard")
-            val continued = steps("litanyOfLoreto", language = language, variantId = "afterRosary")
-            assertEquals("$language standalone", 16, ordinary.size)
-            assertEquals("$language after Rosary", 16, continued.size)
-            assertEquals(ordinary.dropLast(1).map { it.body }, continued.dropLast(1).map { it.body })
-            assertFalse("$language must have different collects", ordinary.last().body == continued.last().body)
-            assertTrue((ordinary + continued).all { it.title.isNotBlank() && it.body.isNotBlank() })
+            val obsolete = steps("litanyOfLoreto", language = language, variantId = "afterRosary")
+            assertEquals(language, 16, ordinary.size)
+            assertEquals(language, ordinary.map { it.body }, obsolete.map { it.body })
+            assertTrue(ordinary.all { it.title.isNotBlank() && it.body.isNotBlank() })
+            val internal = PrayerEngine().buildCustomDevotionSteps("litanyOfLoreto", language, "afterRosary")
+            assertEquals(ordinary.dropLast(1).map { it.body }, internal.dropLast(1).map { it.body })
+            assertNotEquals(ordinary.last().body, internal.last().body)
         }
+    }
+
+    @Test
+    fun rosaryLitanyUsesOneCollectAndKeepsAntiphonResponsesAcrossOptionsAndLanguages() {
+        for (language in listOf("en", "he", "he-x-gamliel", "ar", "ru", "tl", "fr", "it", "uk", "arc")) {
+            val engine = PrayerEngine(FixedLiturgicalCalendar())
+            val collect = PrayerPackStore.resolveBodyText("rosary", language, "rosaryCollect")
+            val litany = engine.buildCustomDevotionSteps("litanyOfLoreto",
+                PrayerPackStore.effectiveLanguage("litanyOfLoreto", language), "afterRosary").dropLast(1)
+            for (antiphon in listOf(MarianAntiphonOption.SalveRegina, MarianAntiphonOption.ReginaCaeli,
+                    MarianAntiphonOption.SubTuumPraesidium, MarianAntiphonOption.None)) {
+                for (includeLitany in listOf(false, true)) for (includeCollect in listOf(false, true)) {
+                    val options = RosaryOptions(marianAntiphon = antiphon, includeLitanyOfLoreto = includeLitany,
+                        includeRosaryCollect = includeCollect)
+                    val prayer = Prayer(languageCode = language, rosary = options)
+                    val built = engine.buildSteps(prayer)
+                    assertEquals("$language/$antiphon/$includeLitany/$includeCollect", if (includeCollect || includeLitany) 1 else 0,
+                        built.count { it.body == collect })
+                    if (includeLitany) {
+                        assertEquals(litany.map { it.body }, built.takeLast(17).take(15).map { it.body })
+                        assertEquals(collect, built[built.lastIndex - 1].body)
+                    }
+                    assertTrue(built.filter { it.isAntiphon }.none { it.body.contains(collect) })
+                    val generic = engine.buildCustomDevotionSteps("rosary", language,
+                        optionOverrides = engine.rosaryOptionValues(options) + ("rosaryCollect" to includeCollect.toString()))
+                    assertEquals(built.map { it.body }, generic.map { it.body })
+                }
+            }
+            if (language.startsWith("he")) {
+                val built = engine.buildSteps(Prayer(languageCode = language))
+                assertEquals("נתפללה", built.single { it.body == collect }.title)
+            }
+        }
+        val franciscan = steps("franciscanCrown").single { it.isAntiphon }
+        assertTrue(franciscan.body.contains(PrayerTranslations.get("en", com.dkaluta.prosary.content.PrayerKey.CollectaStandard)))
     }
 
     private fun steps(

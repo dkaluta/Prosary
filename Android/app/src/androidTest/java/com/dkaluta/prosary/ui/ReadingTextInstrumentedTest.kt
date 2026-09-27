@@ -2,23 +2,42 @@ package com.dkaluta.prosary.ui
 
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.ui.test.junit4.createAndroidComposeRule
+import android.content.res.Configuration
+import androidx.compose.ui.test.junit4.v2.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.performClick
+import androidx.compose.ui.test.performSemanticsAction
+import androidx.compose.ui.semantics.SemanticsActions
+import androidx.compose.ui.text.font.FontStyle
 import com.dkaluta.prosary.R
 import com.dkaluta.prosary.content.today.ReadingCitation
 import com.dkaluta.prosary.content.today.ReadingEdition
 import com.dkaluta.prosary.content.today.ReadingTextStore
 import com.dkaluta.prosary.models.AppSettings
 import com.dkaluta.prosary.ui.readings.ReadingCard
+import com.dkaluta.prosary.ui.readings.ReadingChapterHeading
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Rule
 import org.junit.Test
+import java.util.Locale
 
 class ReadingTextInstrumentedTest {
     @get:Rule val compose = createAndroidComposeRule<AdaptiveLayoutTestActivity>()
+
+    @Test fun chapterWordsAndNumeralsFollowTheBibleInsteadOfTheInterface() {
+        val context = compose.activity
+        val hebrewInterface = context.createConfigurationContext(Configuration(context.resources.configuration).apply {
+            setLocale(Locale.forLanguageTag("he"))
+        })
+        assertEquals("Chapter 15", ReadingChapterHeading.label(hebrewInterface, 15, "en"))
+        assertEquals("פרק ט״ו", ReadingChapterHeading.label(context, 15, "he"))
+        assertEquals("الفصل ١٥", ReadingChapterHeading.label(context, 15, "ar"))
+        assertEquals("Κεφάλαιο 15", ReadingChapterHeading.label(context, 15, "el"))
+        assertEquals("קפלאון ט״ו", ReadingChapterHeading.label(context, 15, "arc", "Hebr"))
+        assertEquals("ܩܦܠܐܘܢ ܝܗ", ReadingChapterHeading.label(context, 15, "arc", "Syrc"))
+    }
 
     @Test fun chapterHeadingsSeparateChapterTransitionsAndVersesUseOnlyTheirNumber() {
         val store = ReadingTextStore { name ->
@@ -148,6 +167,13 @@ class ReadingTextInstrumentedTest {
         compose.onNodeWithText(compose.activity.getString(R.string.readings_show_text)).performClick()
         compose.waitUntil(5_000) { compose.onAllNodes(androidx.compose.ui.test.hasText(markedText, substring = true)).fetchSemanticsNodes().isNotEmpty() }
         compose.onNodeWithText(markedText, substring = true).assertExists()
+        compose.onNodeWithText("פרק א׳").assertExists()
+        compose.onNodeWithText("Chapter 1").assertDoesNotExist()
+        compose.onNodeWithText("פרק א׳").performSemanticsAction(SemanticsActions.GetTextLayoutResult) { action ->
+            val layouts = mutableListOf<androidx.compose.ui.text.TextLayoutResult>()
+            assertTrue(action(layouts))
+            assertEquals(FontStyle.Normal, layouts.single().layoutInput.style.fontStyle)
+        }
         compose.onNodeWithText("Fixture source credit").assertExists()
         compose.onNodeWithText("Genesis 1:1").assertExists()
         compose.onNodeWithText(compose.activity.getString(R.string.readings_whole_verses_notice)).assertDoesNotExist()

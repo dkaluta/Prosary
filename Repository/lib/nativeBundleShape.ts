@@ -63,6 +63,8 @@ const step = object({}, {
   bodyKey: string, acclamationKey: string, imageKey: string, optionKey: string,
   repeat: integer, counterIndex: integer, counterTotal: integer,
   isScripture: boolean, isScriptureByLanguage: map(boolean), if: string,
+  // rosaryLitany is intentionally reserved for the built-in Rosary. Restamping it
+  // with a community id would make native engines omit that sequence silently.
   kind: choice("seasonalMarianAntiphon", "marianAntiphon"),
 });
 const steps = array(step);

@@ -8,7 +8,7 @@ using Prosary.Services;
 namespace Prosary.ViewModels;
 
 public sealed record ReadingEditionChoice(string Id, string Label);
-public sealed record ReadingChapterSection(string Label, int Number, string Text);
+public sealed record ReadingChapterSection(string Label, int Number, string DisplayNumber, string Text);
 
 /// <summary>Each full citation keeps an independent, lazy Bible-text expansion.</summary>
 public partial class ReadingPassageViewModel : ObservableObject
@@ -17,7 +17,6 @@ public partial class ReadingPassageViewModel : ObservableObject
     private readonly ScriptureEdition? _edition;
     private readonly string _scope;
     private readonly string _rawCitation;
-    private readonly string _interfaceLanguage;
     private bool _didLoad;
     private IReadOnlyList<ScriptureVerse> _verses = [];
     public string ContextKey { get; }
@@ -87,7 +86,6 @@ public partial class ReadingPassageViewModel : ObservableObject
         _edition = edition;
         _scope = scope;
         _rawCitation = citation.Full;
-        _interfaceLanguage = interfaceLanguage;
         Citation = citation.LocalizedFull(interfaceLanguage);
         ContextKey = contextKey;
         ConfigurationKey = configurationKey;
@@ -124,18 +122,20 @@ public partial class ReadingPassageViewModel : ObservableObject
     private void RefreshDisplayedText()
     {
         var sections = new List<ReadingChapterSection>();
-        var chapterLabel = Loc.Tr("readings_chapter", "Chapter", _interfaceLanguage);
+        var headingLanguage = _edition?.LanguageCode ?? "en";
+        var chapterLabel = ReadingChapterHeading.Label(headingLanguage, EffectiveScript);
         foreach (var verse in _verses)
         {
             var text = $"\u2066{verse.Verse}\u2069  {verse.DisplayedText(_edition, EffectiveScript)}";
             if (sections.Count == 0 || sections[^1].Number != verse.Chapter)
-                sections.Add(new ReadingChapterSection(chapterLabel, verse.Chapter, text));
+                sections.Add(new ReadingChapterSection(chapterLabel, verse.Chapter,
+                    ReadingChapterHeading.Number(verse.Chapter, headingLanguage, EffectiveScript), text));
             else
                 sections[^1] = sections[^1] with { Text = sections[^1].Text + Environment.NewLine + Environment.NewLine + text };
         }
         Chapters = sections;
         PassageText = string.Join(Environment.NewLine + Environment.NewLine,
-            sections.Select(section => $"{section.Label} \u2066{section.Number}\u2069{Environment.NewLine}{section.Text}"));
+            sections.Select(section => $"{section.Label} \u2068{section.DisplayNumber}\u2069{Environment.NewLine}{section.Text}"));
         OnPropertyChanged(nameof(EffectiveScript));
         OnPropertyChanged(nameof(CurrentScriptLabel));
         OnPropertyChanged(nameof(ScriptToggleLabel));

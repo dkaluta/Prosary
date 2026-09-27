@@ -79,15 +79,22 @@ public class BundledReadingsTests
     public void SeptemberSixteenthPsalmOpensWithTheSelectedEditionsNumbering()
     {
         const string citation = "Psalm 33:2–3; 33:4–5; 33:12; 33:22";
-        var passage = Store.LoadPassage("daily", citation, "douay-rheims-1899");
-        Assert.NotNull(passage);
-        Assert.Equal(new[] { 2, 3, 4, 5, 12, 22 }, passage.Verses.Select(verse => verse.Verse));
-        Assert.All(passage.Verses, verse =>
+        foreach (var (editionId, chapter) in new[]
         {
-            Assert.Equal(32, verse.Chapter);
-            Assert.False(string.IsNullOrWhiteSpace(verse.Text));
-        });
-        Assert.Equal(new[] { "ang-dating-biblia-1905", "crampon-1923", "douay-rheims-1899",
+            ("douay-rheims-1899", 32), ("brenton-lxx", 32), ("masoretic-delitzsch", 33),
+        })
+        {
+            var passage = Store.LoadPassage("daily", citation, editionId);
+            Assert.NotNull(passage);
+            Assert.Equal(new[] { 2, 3, 4, 5, 12, 22 }, passage.Verses.Select(verse => verse.Verse));
+            Assert.All(passage.Verses, verse =>
+            {
+                Assert.Equal(chapter, verse.Chapter);
+                Assert.False(string.IsNullOrWhiteSpace(verse.Text));
+            });
+        }
+        Assert.StartsWith("Ἐξομολογεῖσθε τῷ Κυρίῳ", Store.LoadPassage("daily", citation, "brenton-lxx")!.Verses[0].Text);
+        Assert.Equal(new[] { "ang-dating-biblia-1905", "brenton-lxx", "crampon-1923", "douay-rheims-1899",
             "kulish-1905", "masoretic-delitzsch", "synodal-1876" },
             Store.AvailableEditions("daily", citation).Select(edition => edition.Id).Order());
     }
@@ -133,22 +140,36 @@ public class BundledReadingsTests
     }
 
     [Fact]
-    public void BundledCatalogHasNineEditionsAndPreservesTheSevenFullBibleEditions()
+    public void BundledCatalogHasTenEditionsAndPreservesTheSevenFullBibleEditions()
     {
-        Assert.Equal(9, Store.Editions.Count);
-        Assert.Equal(new[] { "ar", "arc", "en", "fr", "he", "it", "ru", "tl", "uk" },
+        Assert.Equal(10, Store.Editions.Count);
+        Assert.Equal(new[] { "ar", "arc", "el", "en", "fr", "he", "it", "ru", "tl", "uk" },
             Store.Editions.Select(edition => edition.LanguageCode).Order());
         foreach (var edition in Store.Editions)
         {
             Assert.NotNull(edition.SourceUri);
             Assert.False(string.IsNullOrWhiteSpace(edition.Attribution));
             // Arabic currently contains only the passages reviewed against the old print.
-            if (edition.LanguageCode is "ar" or "arc") continue;
+            if (edition.LanguageCode is "ar" or "arc" or "el") continue;
             var passage = Store.Passage("daily", "Luke 6:27–38", edition.Id);
             Assert.Equal(Enumerable.Range(27, 12), passage.Select(verse => verse.Verse));
             Assert.All(passage, verse => Assert.Equal(6, verse.Chapter));
             Assert.All(passage, verse => Assert.False(string.IsNullOrWhiteSpace(verse.Text)));
         }
+    }
+
+    [Fact]
+    public void GreekSeptuagintIsSelectableAndNeverBorrowsANewTestament()
+    {
+        var edition = Store.ResolveEdition("brenton-lxx", "he");
+        Assert.NotNull(edition);
+        Assert.Equal("el", edition.LanguageCode);
+        Assert.Contains("Old Testament only", edition.Attribution);
+        Assert.Empty(Store.Passage("daily", "Luke 6:27–38", edition.Id));
+        var psalm = Store.LoadPassage("daily", "Psalm 103:1–2; 103:3–4; 103:9–10; 103:11–12", edition.Id);
+        Assert.NotNull(psalm);
+        Assert.All(psalm.Verses, verse => Assert.Equal(102, verse.Chapter));
+        Assert.Equal(new[] { 1, 2, 3, 4, 9, 10, 11, 12 }, psalm.Verses.Select(verse => verse.Verse));
     }
 
     [Fact]

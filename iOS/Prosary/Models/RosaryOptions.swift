@@ -84,6 +84,11 @@ struct RosaryOptions: Hashable, Codable {
 
   var includeStMichaelPrayer: Bool = false
 
+  var includeLitanyOfLoreto: Bool = false
+  var includeRosaryCollect: Bool = true
+
+  var effectiveRosaryCollect: Bool { includeRosaryCollect || includeLitanyOfLoreto }
+
   var includeFinalSignOfCross: Bool = true
 
   /// Per-Rosary Aramaic form. Used only when this Rosary explicitly selects Aramaic while the
@@ -115,6 +120,8 @@ struct RosaryOptions: Hashable, Codable {
     case includeClosingBishopIntention
     case includeClosingDepartedIntention
     case includeStMichaelPrayer
+    case includeLitanyOfLoreto
+    case includeRosaryCollect
     case includeFinalSignOfCross
     case aramaicSignOfCrossForm
     case presenterMode
@@ -161,6 +168,8 @@ extension RosaryOptions {
     includeClosingBishopIntention = try values.decodeIfPresent(Bool.self, forKey: .includeClosingBishopIntention)
     includeClosingDepartedIntention = try values.decodeIfPresent(Bool.self, forKey: .includeClosingDepartedIntention)
     includeStMichaelPrayer = try values.decodeIfPresent(Bool.self, forKey: .includeStMichaelPrayer) ?? includeStMichaelPrayer
+    includeLitanyOfLoreto = try values.decodeIfPresent(Bool.self, forKey: .includeLitanyOfLoreto) ?? includeLitanyOfLoreto
+    includeRosaryCollect = try values.decodeIfPresent(Bool.self, forKey: .includeRosaryCollect) ?? includeRosaryCollect
     includeFinalSignOfCross = try values.decodeIfPresent(Bool.self, forKey: .includeFinalSignOfCross) ?? includeFinalSignOfCross
     aramaicSignOfCrossForm = try values.decodeIfPresent(String.self, forKey: .aramaicSignOfCrossForm) ?? aramaicSignOfCrossForm
     presenterMode = try values.decodeIfPresent(Bool.self, forKey: .presenterMode) ?? presenterMode

@@ -194,6 +194,8 @@
                     <HyperlinkButton Content="CC BY 4.0" NavigateUri="https://creativecommons.org/licenses/by/4.0/" />
                     <TextBlock x:Uid="AbtCalendarDataBody" Text="Calendar and readings data: LitCal; Missale Meum; Evangelizo.org — Daily Gospel, © Evangelizo.org; the Ukrainian Greek Catholic Church and its Patriarchal Liturgical Commission for Julian Pascha; Royal Doors for Gregorian Pascha."
                                Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" HorizontalAlignment="Left" />
+                    <TextBlock x:Uid="AbtSyriacHebrewCalendar" Text="Hebrew Syriac calendar — Urtotho (2026), supplied to Prosary."
+                               Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" />
                     <HyperlinkButton Content="ugcc.ua" NavigateUri="https://ugcc.ua/data/tserkovnyy-kalendar-ugkts-na-2026-rik-8059/" />
                     <TextBlock x:Uid="AbtHebrewBookIndex" Text="Additional Hebrew Bible book names: Mechon Mamre’s Hebrew Bible index. Names only; no Scripture text."
                                Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" />

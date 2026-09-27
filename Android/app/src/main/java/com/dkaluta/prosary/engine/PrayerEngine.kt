@@ -62,7 +62,7 @@ class PrayerEngine(
                     buildCustomDevotionSteps(
                         bundleId,
                         PrayerPackStore.effectiveLanguage(bundleId, prayer.languageCode),
-                        prayer.variantId, prayer.customOptions,
+                        if (bundleId == "litanyOfLoreto") "standard" else prayer.variantId, prayer.customOptions,
                         dayIndex = prayer.dayIndex ?: 0,
                     )
                 } else {
@@ -122,6 +122,8 @@ class PrayerEngine(
         "closingDepartedIntention" to rosary.effectiveClosingIntentions.toString(),
         "closingIntentions" to rosary.effectiveClosingIntentions.toString(),
         "stMichael" to rosary.includeStMichaelPrayer.toString(),
+        "litanyOfLoreto" to rosary.includeLitanyOfLoreto.toString(),
+        "rosaryCollect" to rosary.effectiveRosaryCollect.toString(),
         "finalSignOfCross" to rosary.includeFinalSignOfCross.toString(),
         "imageStyle" to rosary.mysteryImageStyle.name.replaceFirstChar { it.lowercaseChar() },
         )
@@ -131,7 +133,7 @@ class PrayerEngine(
 
     private enum class AntiphonStyle { Standard, Paschal, Standalone }
 
-    private fun buildMarianAntiphonStep(antiphon: MarianAntiphonOption, languageCode: String?): RosaryStep {
+    private fun buildMarianAntiphonStep(antiphon: MarianAntiphonOption, languageCode: String?, includeCollect: Boolean = true): RosaryStep {
         fun text(key: PrayerKey): String = PrayerTranslations.get(languageCode, key)
 
         val (titleKey, style) = when (antiphon) {
@@ -146,11 +148,11 @@ class PrayerEngine(
         val body = when (style) {
             AntiphonStyle.Standalone -> text(titleKey)
             AntiphonStyle.Standard ->
-                "${text(titleKey)}\n\n${text(PrayerKey.VersiculumStandard)}\n**${text(PrayerKey.ResponsiumStandard)}**\n\n" +
-                    text(PrayerKey.CollectaStandard)
+                "${text(titleKey)}\n\n${text(PrayerKey.VersiculumStandard)}\n**${text(PrayerKey.ResponsiumStandard)}**" +
+                    if (includeCollect) "\n\n${text(PrayerKey.CollectaStandard)}" else ""
             AntiphonStyle.Paschal ->
-                "${text(titleKey)}\n\n${text(PrayerKey.VersiculumPaschale)}\n**${text(PrayerKey.ResponsiumPaschale)}**\n\n" +
-                    text(PrayerKey.CollectaPaschale)
+                "${text(titleKey)}\n\n${text(PrayerKey.VersiculumPaschale)}\n**${text(PrayerKey.ResponsiumPaschale)}**" +
+                    if (includeCollect) "\n\n${text(PrayerKey.CollectaPaschale)}" else ""
         }
 
         val step = RosaryStep(title = text(marianAntiphonHeaderKey(antiphon)), body = body)
@@ -243,7 +245,7 @@ class PrayerEngine(
         // Effective option values: the bundle's declared defaults overlaid with the favorite's
         // stored choices. Overrides for keys the bundle no longer declares are ignored, so a
         // stale favorite can't gate on options that stopped existing.
-        val optionValues = PrayerPackStore.options(bundleId).associate { option ->
+        val optionValues = (PrayerPackStore.options(bundleId).associate { option ->
             val override = if (bundleId == "rosary" && option.key in RosaryOptions.legacyClosingIntentionKeys) {
                 // An older installed Rosary pack can still declare the separate keys.
                 (normalizedOverrides["closingIntentions"]?.toBooleanStrictOrNull() ?: false).toString()
@@ -256,7 +258,10 @@ class PrayerEngine(
             // option of the same name and shadow the season.
             "isLent" to calendar.isLentToday().toString(),
             "isEasterSeason" to calendar.isEasterSeasonToday().toString(),
-        )
+        )).let { values ->
+            if (bundleId == "rosary" && values["litanyOfLoreto"] == "true") values + ("rosaryCollect" to "true")
+            else values
+        }
         return when (definition.type) {
             CustomDevotionDefinition.DevotionType.Steps -> {
                 val (baseSteps, eastertideSteps) = definition.resolvedSteps(variantId)
@@ -318,6 +323,12 @@ class PrayerEngine(
         if (condition != null && !evaluateCondition(condition, optionValues)) {
             return emptyList()
         }
+        if (entry.kind == CustomDevotionStep.SpecialKind.RosaryLitany) {
+            if (bundleId != "rosary") return emptyList()
+            return buildCustomDevotionSteps(
+                "litanyOfLoreto", PrayerPackStore.effectiveLanguage("litanyOfLoreto", languageCode), "afterRosary",
+            ).dropLast(1)
+        }
         if (entry.kind == CustomDevotionStep.SpecialKind.SeasonalMarianAntiphon) {
             return listOf(buildMarianAntiphonStep(calendar.seasonalMarianAntiphonToday(), languageCode))
         }
@@ -334,7 +345,7 @@ class PrayerEngine(
             } else {
                 chosen
             }
-            return listOf(buildMarianAntiphonStep(antiphon, languageCode))
+            return listOf(buildMarianAntiphonStep(antiphon, languageCode, includeCollect = bundleId != "rosary"))
         }
         val title = entry.titleKey?.let { PrayerPackStore.resolveBodyText(bundleId, languageCode, it) }
             ?: entry.title.orEmpty()

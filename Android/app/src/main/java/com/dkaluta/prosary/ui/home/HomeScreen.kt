@@ -72,6 +72,7 @@ import com.dkaluta.prosary.R
 import com.dkaluta.prosary.content.prayerpack.CustomDevotionInfo
 import com.dkaluta.prosary.content.prayerpack.PrayerPackStore
 import com.dkaluta.prosary.content.today.TodayInfoStore
+import com.dkaluta.prosary.ui.shared.SaintDescriptionsCard
 import com.dkaluta.prosary.content.today.TodayTranslationLanguage
 import com.dkaluta.prosary.ui.shared.TodayBrowsingDate
 import com.dkaluta.prosary.ui.shared.rememberTodayBrowsingDate
@@ -572,6 +573,10 @@ fun HomeScreen(
                                     )
                                 }
                             }
+                        }
+                        todayFeast?.let {
+                            SaintDescriptionsCard(it.saintDescriptions(TodayInfoStore.selectedCalendarId, todayLanguage),
+                                selectedDate.toString(), todayLanguage)
                         }
                         if (todayReadings.isNotEmpty()) {
                             Row(horizontalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.testTag("todayReadings")) {

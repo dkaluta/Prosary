@@ -28,7 +28,7 @@ public static class ScripturePassageText
                 textBlock.Inlines.Add(new LineBreak());
             }
             textBlock.Inlines.Add(new Run { Text = chapter.Label + " ", FontWeight = FontWeights.Bold });
-            textBlock.Inlines.Add(new Run { Text = $"\u2066{chapter.Number}\u2069", FontStyle = Windows.UI.Text.FontStyle.Italic });
+            textBlock.Inlines.Add(new Run { Text = $"\u2068{chapter.DisplayNumber}\u2069" });
             textBlock.Inlines.Add(new LineBreak());
             textBlock.Inlines.Add(new Run { Text = chapter.Text });
         }

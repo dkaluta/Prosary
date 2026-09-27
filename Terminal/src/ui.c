@@ -34,7 +34,7 @@ typedef struct {
 } Ui;
 
 enum { VIEW_PRAYER, VIEW_SETTINGS, VIEW_HELP };
-enum { SET_INTERFACE, SET_LANGUAGE, SET_GROUP, SET_VARIANT, SET_DAY, SET_SKIP_FIFTH, SET_KEYBOARD_ARROWS, SET_KEYBOARD_SPACE, SET_COUNT };
+enum { SET_INTERFACE, SET_LANGUAGE, SET_GROUP, SET_VARIANT, SET_DAY, SET_SKIP_FIFTH, SET_LITANY, SET_COLLECT, SET_KEYBOARD_ARROWS, SET_KEYBOARD_SPACE, SET_COUNT };
 static volatile sig_atomic_t ui_stopped;
 
 static void stop_ui(int sig) { (void)sig; ui_stopped = 1; }
@@ -274,6 +274,8 @@ static int rebuild(Ui *ui, const char *id, int resume)
     selection.variant = ui->state->variant;
     selection.day = ui->state->day;
     selection.skip_fifth_decade = ui->state->skip_fifth_decade;
+    selection.include_litany_of_loreto = ui->state->include_litany_of_loreto;
+    selection.omit_rosary_collect = !ui->state->include_rosary_collect;
     selection.year = ui->state->year;
     selection.month = ui->state->month;
     selection.day_of_month = ui->state->day_of_month;
@@ -406,6 +408,8 @@ static int settings_list(Ui *ui, int *items)
     if (!strcmp(ui->state->devotion_id, "rosary")) {
         items[count++] = SET_GROUP;
         items[count++] = SET_SKIP_FIFTH;
+        items[count++] = SET_LITANY;
+        items[count++] = SET_COLLECT;
     }
     if (engine_variant_count(ui->engine, ui->state->devotion_id) > 1) items[count++] = SET_VARIANT;
     if (engine_day_count(ui->engine, ui->state->devotion_id) > 1) items[count++] = SET_DAY;
@@ -436,13 +440,16 @@ static void draw_settings(Ui *ui, int x, int width, int top, int height)
         case SET_GROUP: label = tr(ui, U_MYSTERIES); value = tr(ui, (enum UiText)(U_JOYFUL + (ui->state->group < 0 ? 0 : ui->state->group % 4))); break;
         case SET_VARIANT: label = tr(ui, U_FORM); value = engine_variant_name(ui->engine, ui->state->devotion_id, (size_t)(ui->state->variant < 0 ? 0 : ui->state->variant), ui->state->ui_language); break;
         case SET_DAY: label = tr(ui, U_DAY); value = engine_day_name(ui->engine, ui->state->devotion_id, (size_t)(ui->state->day < 0 ? 0 : ui->state->day), ui->state->ui_language); break;
+        case SET_LITANY: label = tr(ui, U_LITANY); value = tr(ui, ui->state->include_litany_of_loreto ? U_ON : U_OFF); break;
+        case SET_COLLECT: label = tr(ui, U_COLLECT); value = tr(ui, ui->state->include_litany_of_loreto || ui->state->include_rosary_collect ? U_ON : U_OFF); break;
         case SET_SKIP_FIFTH: label = tr(ui, U_SKIP_FIFTH); value = tr(ui, ui->state->skip_fifth_decade ? U_ON : U_OFF); break;
         case SET_KEYBOARD_ARROWS: label = tr(ui, U_KEYBOARD_ARROWS); value = tr(ui, ui->state->keyboard_arrow_navigation_enabled ? U_ON : U_OFF); break;
         case SET_KEYBOARD_SPACE: label = tr(ui, U_KEYBOARD_SPACE); value = tr(ui, ui->state->keyboard_space_advance_enabled ? U_ON : U_OFF); break;
         }
         snprintf(line, sizeof(line), "%s: %s", label, value ? value : "");
         draw_text(top + 2 + (i - first) * 2, x, width, line, ui_rtl(ui),
-                  ui->focus && i == ui->setting ? A_REVERSE : A_NORMAL);
+                  (ui->focus && i == ui->setting ? A_REVERSE : A_NORMAL) |
+                  (items[i] == SET_COLLECT && ui->state->include_litany_of_loreto ? A_DIM : A_NORMAL));
     }
     if (top + 2 + (count - first) * 2 < top + height - 1)
         draw_text(top + height - 1, x, width, tr(ui, U_SETTINGS_HINT), ui_rtl(ui), A_DIM);
@@ -476,6 +483,11 @@ static void change_setting(Ui *ui, int direction)
         ui->state->variant = -1;
     } else if (item == SET_GROUP) {
         ui->state->group = (ui->state->group + direction + 4) % 4;
+    } else if (item == SET_LITANY) {
+        ui->state->include_litany_of_loreto = !ui->state->include_litany_of_loreto;
+    } else if (item == SET_COLLECT) {
+        if (ui->state->include_litany_of_loreto) return;
+        ui->state->include_rosary_collect = !ui->state->include_rosary_collect;
     } else if (item == SET_SKIP_FIFTH) {
         ui->state->skip_fifth_decade = !ui->state->skip_fifth_decade;
     } else if (item == SET_VARIANT) {

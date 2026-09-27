@@ -189,6 +189,8 @@ enum PrayerRunSignature {
     if options.skipFifthDecade && options.mysterySelectionMode != .singleMystery {
       fields.append("skip-fifth-decade")
     }
+    // The collect is now a separate step, so pre-change bookmarks must not resume mid-closing.
+    fields.append("rosary-closing-v3:\(flag(options.includeLitanyOfLoreto)),\(flag(options.effectiveRosaryCollect))")
     return fields.joined(separator: "|")
   }
 
@@ -206,6 +208,9 @@ enum PrayerRunSignature {
     }
     if devotionId == "rosary", options["openingPrayers"] != "false", options["openingFatimaPrayer"] == "true" {
       signature += "|opening-fatima-v2"
+    }
+    if devotionId == "rosary" {
+      signature += "|rosary-closing-v3"
     }
     return signature
   }

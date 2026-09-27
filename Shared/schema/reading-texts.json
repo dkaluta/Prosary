@@ -39,7 +39,7 @@
       "additionalProperties": false,
       "properties": {
         "id": {"type": "string", "minLength": 1},
-        "languageCode": {"type": "string", "minLength": 2},
+        "languageCode": {"type": "string", "minLength": 2, "description": "Controls chapter heading language and numerals independently of interface language. Hebrew uses gematria; Arabic Eastern Arabic digits; Aramaic follows the actual selected paired script; Greek el uses Κεφάλαιο with decimal numbers. Chapter numbers are never italicized."},
         "name": {"type": "string", "minLength": 1},
         "attribution": {"type": "string", "minLength": 1},
         "sourceURL": {"type": "string", "format": "uri", "pattern": "^https://"},

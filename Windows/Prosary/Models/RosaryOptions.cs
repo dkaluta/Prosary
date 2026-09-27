@@ -55,6 +55,10 @@ public sealed record RosaryOptions
 
     public bool IncludeStMichaelPrayer { get; init; } = false;
 
+    public bool IncludeLitanyOfLoreto { get; init; } = false;
+    public bool IncludeRosaryCollect { get; init; } = true;
+    public bool EffectiveRosaryCollect => IncludeLitanyOfLoreto || IncludeRosaryCollect;
+
     public bool IncludeFinalSignOfCross { get; init; } = true;
 
     /// <summary>Per-Rosary Aramaic form, ignored when Aramaic is the app-wide default.</summary>

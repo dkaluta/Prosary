@@ -100,6 +100,17 @@ public partial class HomeViewModel : ObservableObject
     private FeastDay? _todayFeast;
 
     [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(ShowsSaintDescriptions))]
+    private IReadOnlyList<SaintDescription> _saintDescriptions = [];
+
+    [ObservableProperty]
+    private bool _isSaintDescriptionsExpanded;
+
+    private string? _saintDescriptionsContext;
+    public bool ShowsSaintDescriptions => SaintDescriptions.Count > 0;
+    public string SaintDescriptionsTitle => Loc.Tr("home_today_about_saints", "About the saints", TodayLanguage);
+
+    [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(ShowsMonthIntention))]
     [NotifyPropertyChangedFor(nameof(MonthIntentionTitle))]
     [NotifyPropertyChangedFor(nameof(MonthIntentionText))]
@@ -508,6 +519,15 @@ public partial class HomeViewModel : ObservableObject
     {
         var today = SelectedDate;
         TodayFeast = AppSettings.ShowTodayFeast ? TodayInfoStore.Feast(today) : null;
+        var descriptionContext = $"{today:yyyy-MM-dd}|{TodayInfoStore.ResolvedCalendarId}|{TodayLanguage}|{AppSettings.ShowTodayFeast}";
+        if (_saintDescriptionsContext != descriptionContext)
+        {
+            _saintDescriptionsContext = descriptionContext;
+            IsSaintDescriptionsExpanded = false;
+            OnPropertyChanged(nameof(SaintDescriptionsTitle));
+        }
+        SaintDescriptions = TodayInfoStore.ResolvedCalendarId == "syriac"
+            ? TodayFeast?.LocalizedDescriptions(TodayLanguage) ?? [] : [];
         MonthIntention = AppSettings.ShowTodayIntention ? TodayInfoStore.Intention(today) : null;
         TodayDay = TodayInfoStore.LiturgicalDay(today);
         TodayReadings = AppSettings.ShowTodayReadings ? TodayInfoStore.Readings(today) : [];

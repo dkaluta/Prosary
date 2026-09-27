@@ -6,6 +6,21 @@ at the user's request on 26 September 2026; old saved preferences no longer subs
 text. Source selection and the distinction between Vicariate, Mission, generic Hebrew and
 Scripture remain unchanged.
 
+## Separate Rosary collect, September 2026
+
+`rosaryCollect` reuses the existing, sourced `collectaStandard` body unchanged in each
+language that supplies it. Spanish and Mission Hebrew reuse their existing credited
+`collectAfterRosary` from the Litany of Loreto. Vicariate Hebrew retains its per-key
+tradition marker; Mission Hebrew retains Erez's supplied wording. No Aramaic collect is
+invented. Existing fallback behavior is not a claim of Aramaic coverage.
+
+The Rosary removes the embedded collect from every Marian antiphon choice and displays
+its own collect separately. Enabling the optional Litany of Loreto includes its body
+before that one Rosary collect. The standalone Litany keeps its existing standard collect;
+standalone basic Marian antiphons keep their existing complete bodies and collects.
+The Hebrew heading **נתפללה** is the user's explicit wording for Oremus, supplied on
+27 September 2026 and also applied to the corresponding headings in other prayer bundles.
+
 ## Mystery and navigation metadata, September 2026
 
 Missing mystery names, spiritual-fruit labels, intention captions and navigation headings

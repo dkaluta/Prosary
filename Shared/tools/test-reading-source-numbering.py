@@ -84,7 +84,9 @@ class SourceNumberingReviewTests(unittest.TestCase):
             if not key.startswith('daily|Psalm '):
                 continue
             with self.subTest(key=key):
-                self.assertEqual(set(data['passages'][key]), expected)
+                # Brenton's reviewed Greek Psalms are additional partial coverage;
+                # the six previously complete editions must still be present exactly.
+                self.assertEqual(set(data['passages'][key]) - {'brenton-lxx'}, expected)
                 for verses in data['passages'][key].values():
                     self.assertTrue(verses)
                     self.assertTrue(all(row['text'].strip() for row in verses))

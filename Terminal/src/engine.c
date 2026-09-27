@@ -17,7 +17,7 @@ typedef struct {
     const char *language;
     char *error;
     size_t error_size;
-    int failed, season, step_fallback, step_mixed, skip_fifth_decade;
+    int failed, season, step_fallback, step_mixed, skip_fifth_decade, include_litany_of_loreto, omit_rosary_collect;
 } Builder;
 static const char *language_codes[] = {"en", "he", "ar", "ru", "tl", "fr", "it", "uk", "la", "es", "el", "arc", "he-x-gamliel"};
 static const char *language_names[] = {"English", "עברית", "العربية", "Русский", "Filipino", "Français", "Italiano", "Українська", "Latina", "Español", "Ελληνικά", "ܐܪܡܐܝܬ / ארמית", "עברית — גמליאל"};
@@ -102,7 +102,7 @@ static const char *localized(const Json *object, const char *key, const char *la
 const char *engine_catalog_name(const ProsaryEngine *e, size_t i, const char *language) {
     return e ? localized(json_get(json_at(e->packs, i), "manifest"), "displayName", language) : NULL;
 }
-size_t engine_variant_count(const ProsaryEngine *e, const char *id) { return json_count(json_get(json_get(pack_by_id(e, id), "devotion"), "variants")); }
+size_t engine_variant_count(const ProsaryEngine *e, const char *id) { return equal(id, "litanyOfLoreto") ? 0 : json_count(json_get(json_get(pack_by_id(e, id), "devotion"), "variants")); }
 const char *engine_variant_name(const ProsaryEngine *e, const char *id, size_t i, const char *language) {
     return localized(json_at(json_get(json_get(pack_by_id(e, id), "devotion"), "variants"), i), "name", language);
 }
@@ -157,6 +157,22 @@ static const char *prayer(Builder *b, const char *key, const char **actual) {
     build_error(b, "Missing sourced prayer", key);
     if (actual) *actual = b->language;
     return "";
+}
+/* Select one declared, sourced Litany language before composing titles and bodies.
+ * Heading-only overlays (notably Aramaic) cannot establish another authored form. */
+static const char *litany_language(Builder *b) {
+    const char *chain[5];
+    const Json *available = json_get(json_get(b->pack, "manifest"), "languages"), *language;
+    size_t i, count = fallback_chain(b->language, chain);
+    for (i = 0; i < count; ++i) {
+        const char *code = equal(chain[i], "he-x-vicariate") ? "he" : chain[i];
+        for (language = available ? available->child : NULL; language; language = language->next) {
+            int declared = equal(json_string(language), code) ||
+                (equal(code, "he-x-gamliel") && equal(json_string(language), "he"));
+            if (declared && lookup_at(b, chain[i], "step01Body")) return code;
+        }
+    }
+    return b->language;
 }
 static const char *mystery(Builder *b, const char *key, const char *field, const char **actual, int required) {
     const char *chain[5], *s;
@@ -223,6 +239,10 @@ static int condition(Builder *b, const char *expression) {
         while (*p == ' ') ++p;
         v = option(b, key);
         truth = equal(key, "isLent") ? b->season == 1 : json_bool(v, 0);
+        if (equal(json_text(json_get(b->pack, "manifest"), "id"), "rosary")) {
+            if (equal(key, "litanyOfLoreto")) truth = b->include_litany_of_loreto;
+            if (equal(key, "rosaryCollect")) truth = b->include_litany_of_loreto || !b->omit_rosary_collect;
+        }
         if (*p == '=') {
             ++p; n = 0;
             while (*p == ' ') ++p;
@@ -257,11 +277,14 @@ static void antiphon(Builder *b, const Json *entry) {
     if (!equal(lang, component_lang)) b->step_mixed = 1;
     response = prayer(b, paschal ? "responsiumPaschale" : "responsiumStandard", &component_lang);
     if (!equal(lang, component_lang)) b->step_mixed = 1;
-    collect = prayer(b, paschal ? "collectaPaschale" : "collectaStandard", &component_lang);
-    if (!equal(lang, component_lang)) b->step_mixed = 1;
+    collect = NULL;
+    if (!equal(json_text(json_get(b->pack, "manifest"), "id"), "rosary")) {
+        collect = prayer(b, paschal ? "collectaPaschale" : "collectaStandard", &component_lang);
+        if (!equal(lang, component_lang)) b->step_mixed = 1;
+    }
     a = joined(b, body, "\n\n", verse);
     c = a ? joined(b, a, "\n", response) : NULL;
-    d = c ? joined(b, c, "\n\n", collect) : NULL;
+    d = c ? (collect ? joined(b, c, "\n\n", collect) : copy(c)) : NULL;
     if (d) append(b, title, d, "", lang, -1, 0, 0, 0, 0);
     free(a); free(c); free(d);
 }
@@ -275,6 +298,33 @@ static void entry(Builder *b, const Json *e, const char *context, int decade, in
     kind = json_text(e, "kind");
     if (kind) {
         if (equal(kind, "marianAntiphon") || equal(kind, "seasonalMarianAntiphon")) antiphon(b, e);
+        else if (equal(kind, "rosaryLitany")) {
+            const Json *saved = b->pack, *litany, *variants, *variant, *list = NULL, *part;
+            const char *saved_language = b->language;
+            size_t first = b->session->count, position;
+            if (!equal(json_text(json_get(saved, "manifest"), "id"), "rosary")) {
+                build_error(b, "Rosary Litany is restricted to the Rosary", NULL); return;
+            }
+            litany = pack_by_id(b->engine, "litanyOfLoreto");
+            variants = json_get(json_get(litany, "devotion"), "variants");
+            for (variant = variants ? variants->child : NULL; variant; variant = variant->next)
+                if (equal(json_text(variant, "id"), "afterRosary")) list = json_get(variant, "steps");
+            if (!list || list->type != JSON_ARRAY || !json_count(list) ||
+                !equal(json_text(json_at(list, json_count(list) - 1), "bodyKey"), "collectAfterRosary")) {
+                build_error(b, "Missing Rosary Litany sequence", NULL); return;
+            }
+            b->pack = litany;
+            b->language = litany_language(b);
+            for (part = list->child; part && part->next && !b->failed; part = part->next)
+                entry(b, part, "", -1, 0, 0);
+            if (!equal(b->language, saved_language)) {
+                b->session->used_fallback = 1;
+                for (position = first; position < b->session->count; ++position)
+                    b->session->steps[position].used_fallback = 1;
+            }
+            b->language = saved_language;
+            b->pack = saved;
+        }
         else build_error(b, "Unsupported prayer entry", kind);
         return;
     }
@@ -391,7 +441,7 @@ static int calendar(Builder *b, const ProsarySelection *s, int *month, int *day)
         weekday == 0 && b->season == 3 ? 0 : weekday == 0 && b->season == 1 ? 1 : 2;
 }
 ProsarySession *engine_build(const ProsaryEngine *e, const char *id, const ProsarySelection *selection, char *error, size_t error_size) {
-    ProsarySelection defaults = {"en", -1, -1, -1, 0, 0, 0, 0};
+    ProsarySelection defaults = {"en", -1, -1, -1, 0, 0, 0, 0, 0, 0};
     Builder b;
     const Json *definition, *form, *variants, *days;
     const char *type;
@@ -403,12 +453,15 @@ ProsarySession *engine_build(const ProsaryEngine *e, const char *id, const Prosa
     if (!b.pack) { errorf(error, error_size, "Unknown devotion: %s", id ? id : ""); return NULL; }
     if (!selection) selection = &defaults;
     b.skip_fifth_decade = equal(id, "rosary") && selection->skip_fifth_decade;
+    b.include_litany_of_loreto = selection->include_litany_of_loreto;
+    b.omit_rosary_collect = selection->omit_rosary_collect;
     b.language = normalized(selection->language);
     for (i = 0; i < engine_language_count(); ++i) if (equal(b.language, language_codes[i])) break;
     if (i == engine_language_count()) { errorf(error, error_size, "Unsupported prayer language: %s", b.language); return NULL; }
     if (selection->group < -1 || selection->group > 3 || selection->variant < -1 || selection->day < -1) {
         errorf(error, error_size, "Invalid prayer selection"); return NULL;
     }
+    if (equal(id, "litanyOfLoreto")) b.language = litany_language(&b);
     b.session = (ProsarySession *)calloc(1, sizeof(*b.session));
     if (!b.session) { errorf(error, error_size, "Out of memory"); return NULL; }
     b.session->title = copy(localized(json_get(b.pack, "manifest"), "displayName", b.language));
@@ -420,7 +473,7 @@ ProsarySession *engine_build(const ProsaryEngine *e, const char *id, const Prosa
     type = json_text(definition, "type"); variants = json_get(definition, "variants");
     if (variants) {
         size_t count = json_count(variants);
-        int choice = selection->variant;
+        int choice = equal(id, "litanyOfLoreto") ? 0 : selection->variant;
         if (!count || count > 64) build_error(&b, "Invalid variant list", NULL);
         if (choice < 0) {
             choice = 0;
@@ -450,6 +503,10 @@ ProsarySession *engine_build(const ProsaryEngine *e, const char *id, const Prosa
     else if (!b.failed) build_error(&b, "Unsupported devotion type", type);
     if (!b.failed && !b.session->count) build_error(&b, "Devotion produced no prayer steps", NULL);
     if (b.failed) { engine_session_free(b.session); return NULL; }
+    if (!equal(b.language, normalized(selection->language))) {
+        b.session->used_fallback = 1;
+        for (i = 0; i < b.session->count; ++i) b.session->steps[i].used_fallback = 1;
+    }
     return b.session;
 }
 void engine_session_free(ProsarySession *s) {

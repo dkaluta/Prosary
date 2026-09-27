@@ -312,6 +312,11 @@
                                 <TextBlock x:Uid="EdStMichael" Grid.Column="0" Text="St. Michael Prayer" VerticalAlignment="Center" />
                                 <ToggleSwitch Grid.Column="1" OnContent="" OffContent="" IsOn="{x:Bind ViewModel.IncludeStMichaelPrayer, Mode=TwoWay}" />
                             </Grid>
+                            <ToggleSwitch x:Uid="EdLitanyOfLoreto" Header="Pray the Litany of Loreto afterward"
+                                          OnContent="" OffContent="" IsOn="{x:Bind ViewModel.IncludeLitanyOfLoreto, Mode=TwoWay}" />
+                            <ToggleSwitch x:Uid="EdRosaryCollect" Header="Rosary collect"
+                                          OnContent="" OffContent="" IsOn="{x:Bind ViewModel.EffectiveIncludeRosaryCollect, Mode=TwoWay}"
+                                          IsEnabled="{x:Bind ViewModel.CanEditRosaryCollect, Mode=OneWay}" />
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*" />

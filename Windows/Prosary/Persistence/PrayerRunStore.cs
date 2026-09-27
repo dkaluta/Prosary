@@ -163,6 +163,9 @@ public static class PrayerRunSignatures
             : original;
         if (options.SkipFifthDecade && options.MysterySelectionMode != Models.MysterySelectionMode.SingleMystery)
             signature += "|skip-fifth";
+        // The collect is now its own step even with default options; old numeric bookmarks
+        // must not resume at a different prayer in this new ending sequence.
+        signature += $"|rosary-ending-v3:{Flag(options.IncludeLitanyOfLoreto)},{Flag(options.EffectiveRosaryCollect)}";
         return options.IncludeOpeningPrayers && options.IncludeOpeningFatimaPrayer
             ? signature + "|opening-fatima-v2"
             : signature;
@@ -179,6 +182,7 @@ public static class PrayerRunSignatures
             .Select(pair => $"{pair.Key}={pair.Value}"));
         var signature = $"custom|{bundleId}|{effectiveVariantId ?? string.Empty}|{dayIndex}|{optionText}";
         if (bundleId != "rosary") return signature;
+        signature += "|rosary-ending-v3";
 
         if (RosaryCustomOptions.Boolean(normalizedOptions, "closingIntentions", false))
             signature += "|closing-v2:1,1,1";

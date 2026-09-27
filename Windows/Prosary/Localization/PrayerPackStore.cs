@@ -1393,6 +1393,9 @@ public sealed record CustomDevotionStep(
         /// <summary>An option-selected Marian antiphon (the Rosary) — <see cref="OptionKey"/>
         /// names a choice option whose cases are antiphon ids plus "seasonal" and "none".</summary>
         MarianAntiphon,
+
+        /// <summary>The built-in Rosary's optional Litany, excluding its duplicated collect.</summary>
+        RosaryLitany,
     }
 }
 

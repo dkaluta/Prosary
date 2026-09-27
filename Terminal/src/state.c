@@ -15,6 +15,7 @@ void app_state_defaults(AppState *state)
     strcpy(state->language, "en");
     strcpy(state->ui_language, "en");
     state->group = state->variant = state->day = -1;
+    state->include_rosary_collect = 1;
     state->keyboard_arrow_navigation_enabled = 1;
     state->keyboard_space_advance_enabled = 1;
 }
@@ -65,6 +66,8 @@ static int valid_state(const AppState *state)
         (state->keyboard_arrow_navigation_enabled == 0 || state->keyboard_arrow_navigation_enabled == 1) &&
         (state->keyboard_space_advance_enabled == 0 || state->keyboard_space_advance_enabled == 1) &&
         (state->skip_fifth_decade == 0 || state->skip_fifth_decade == 1) &&
+        (state->include_litany_of_loreto == 0 || state->include_litany_of_loreto == 1) &&
+        (state->include_rosary_collect == 0 || state->include_rosary_collect == 1) &&
         valid_date(state);
 }
 
@@ -119,6 +122,8 @@ int app_state_load(AppState *state, const char *path)
             else if (!strcmp(key, "keyboardArrowNavigationEnabled")) { next.keyboard_arrow_navigation_enabled = number; field = 2048; }
             else if (!strcmp(key, "keyboardSpaceAdvanceEnabled")) { next.keyboard_space_advance_enabled = number; field = 4096; }
             else if (!strcmp(key, "skipFifthDecade")) { next.skip_fifth_decade = number; field = 8192; }
+            else if (!strcmp(key, "includeLitanyOfLoreto")) { next.include_litany_of_loreto = number; field = 16384; }
+            else if (!strcmp(key, "includeRosaryCollect")) { next.include_rosary_collect = number; field = 32768; }
             else goto invalid;
         }
         if (fields & field) goto invalid;
@@ -127,6 +132,12 @@ int app_state_load(AppState *state, const char *path)
     /* Older state files omit the optional keyboard preferences and inherit defaults. */
     if (ferror(file) || (fields & 2047) != 2047 || !valid_state(&next)) goto invalid;
     fclose(file);
+    /* The separate Rosary collect changes step positions. Old Rosary bookmarks
+     * restart once; other devotions keep their saved position. */
+    if (!(fields & 32768) && !strcmp(next.devotion_id, "rosary")) {
+        next.step = 0;
+        next.completed = 0;
+    }
     *state = next;
     return 1;
 invalid:
@@ -174,12 +185,13 @@ int app_state_save(const AppState *state, const char *path)
         "devotion %s\ndefaultLanguageCode %s\ninterfaceLanguageCode %s\n"
         "step %lu\ngroup %d\nvariant %d\nday %d\ncompleted %d\n"
         "year %d\nmonth %d\ndayOfMonth %d\n"
-        "keyboardArrowNavigationEnabled %d\nkeyboardSpaceAdvanceEnabled %d\nskipFifthDecade %d\n",
+        "keyboardArrowNavigationEnabled %d\nkeyboardSpaceAdvanceEnabled %d\nskipFifthDecade %d\n"
+        "includeLitanyOfLoreto %d\nincludeRosaryCollect %d\n",
         state->devotion_id, state->language, state->ui_language,
         (unsigned long)state->step, state->group, state->variant,
         state->day, state->completed, state->year, state->month, state->day_of_month,
         state->keyboard_arrow_navigation_enabled, state->keyboard_space_advance_enabled,
-        state->skip_fifth_decade) < 0;
+        state->skip_fifth_decade, state->include_litany_of_loreto, state->include_rosary_collect) < 0;
     if (fflush(file) || fsync(fd)) failed = 1;
     if (fclose(file)) failed = 1;
     if (!failed && rename(temporary, path)) failed = 1;

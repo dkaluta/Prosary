@@ -229,7 +229,7 @@ def source_bytes(source: dict, fetch: bool = False) -> bytes:
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_bytes(raw)
     raw = path.read_bytes()
-    if source["format"] == "vplzip":
+    if source["format"] in {"vplzip", "brenton-vplzip"}:
         with zipfile.ZipFile(io.BytesIO(raw)) as archive:
             raw = archive.read(source["member"])
     actual = hashlib.sha256(raw).hexdigest()
@@ -245,6 +245,9 @@ def load_source(source: dict) -> dict[tuple[str, int], dict[int, str]]:
         if verse in chapters[book, chapter]:
             raise ValueError(f"Duplicate verse: {source['id']} {book} {chapter}:{verse}")
         chapters[book, chapter][verse] = text
+    if source["format"] == "brenton-vplzip":
+        from brenton_reading_source import load_verses
+        return load_verses(raw)
     if source["format"] == "vplzip":
         for line in raw.decode("utf-8-sig").splitlines():
             match = re.fullmatch(r"(\S+) (\d+):(\d+) (.*)", line)
@@ -405,7 +408,7 @@ def resolve(key: str, contexts: set[str], edition: dict, corpus: dict) -> Resolv
         # Ambiguous references stay visible as citations, without text.
         source_systems = ["org", "eng", "vul", "rso"]
     target_system = edition["ntSystem"] if book in NT else edition["otSystem"]
-    canonical_target_system = "eng" if target_system == "delitzsch-1901" else target_system
+    canonical_target_system = "eng" if target_system in {"delitzsch-1901", "brenton"} else target_system
     candidates = []
     whole = includes_whole_verses(citation)
     uses_step_inventory = False
@@ -453,6 +456,19 @@ def resolve(key: str, contexts: set[str], edition: dict, corpus: dict) -> Resolv
         candidates.append(references)
     if any(candidate != candidates[0] for candidate in candidates[1:]):
         raise Unavailable("ambiguous appointment numbering")
+    if target_system == "brenton" and not uses_step_inventory:
+        from reading_edition_reviews_greek import sil_english_ot_to_standard
+        from reading_step_mapping import Unavailable as MappingUnavailable
+        try:
+            standard = sil_english_ot_to_standard(candidates[0])
+            references, mapped_whole = edition_mapper(edition["id"], corpus).from_standard(standard)
+        except MappingUnavailable as error:
+            raise Unavailable(str(error)) from error
+        if any(ref[0] != book or not isinstance(ref[1], int) or ref[1] < 1 or ref[2] < 1 for ref in references):
+            raise Unavailable("target edition cannot represent this source book or verse label")
+        candidates = [references]
+        whole |= mapped_whole
+        uses_step_inventory = True
     if target_system == "delitzsch-1901" and not uses_step_inventory:
         from delitzsch_numbering import source_references
         try:

@@ -7,7 +7,6 @@ import SwiftUI
 
 struct RosaryFlowView: View {
   let prayer: Prayer
-  let onPrayLitany: ((String) -> Void)?
 
   @Environment(\.appServices) private var services
   @Environment(\.dismiss) private var dismiss
@@ -24,14 +23,12 @@ struct RosaryFlowView: View {
   @State private var hasLoaded = false
   @State private var sessionLoader = PrayerSessionLoader()
   @State private var didFinish = false
-  @State private var showsLitanyOffer = false
 
   @Environment(\.prayerProgressNamespace) private var progressNamespace
   private var progressStore: PrayerRunProgressStore { PrayerRunProgressStore(namespace: progressNamespace) }
 
-  init(prayer: Prayer, onPrayLitany: ((String) -> Void)? = nil) {
+  init(prayer: Prayer) {
     self.prayer = prayer
-    self.onPrayLitany = onPrayLitany
     _sessionPrayer = State(initialValue: prayer)
   }
 
@@ -82,19 +79,6 @@ struct RosaryFlowView: View {
       accessoryWidth: { beadColumnAreaWidth(hasRoomForSingleMinorColumn: $0) },
       flowActions: AnyView(flowActions)
     )
-    .alert(String(localized: "rosaryFlow.litanyPrompt", defaultValue: "Continue with the Litany of the Blessed Virgin Mary?", bundle: UILanguage.bundle, locale: UILanguage.locale), isPresented: $showsLitanyOffer) {
-      Button(String(localized: "rosaryFlow.prayLitany", defaultValue: "Pray the Litany", bundle: UILanguage.bundle, locale: UILanguage.locale)) {
-        complete()
-        finishPrayerSession?()
-        onPrayLitany?(sessionPrayer.resolvedLanguageCode)
-      }
-      .accessibilityIdentifier("prayLitanyButton")
-      .keyboardShortcut(.defaultAction)
-      Button(String(localized: "prayerFlow.finish", defaultValue: "Finish", bundle: UILanguage.bundle, locale: UILanguage.locale), role: .cancel) {
-        complete()
-        finishSession()
-      }
-    }
     .alert(
       String(localized: "prayerFlow.continue.title", defaultValue: "Continue this prayer?", bundle: UILanguage.bundle, locale: UILanguage.locale),
       isPresented: .init(
@@ -207,12 +191,8 @@ struct RosaryFlowView: View {
 
   private func next() {
     if currentIndex >= steps.count - 1 {
-      if onPrayLitany != nil, PrayerPackStore.info(for: "litanyOfLoreto") != nil {
-        showsLitanyOffer = true
-      } else {
-        complete()
-        finishSession()
-      }
+      complete()
+      finishSession()
       return
     }
     currentIndex += 1

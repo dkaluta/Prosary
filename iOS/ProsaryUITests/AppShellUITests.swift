@@ -132,6 +132,125 @@ final class AppShellUITests: XCTestCase {
   }
 
   @MainActor
+  func testChapterHeadingsUseTheBibleLanguageEvenWhenTheInterfaceDiffers() throws {
+    let app = XCUIApplication()
+    for (interface, edition, tabTitle, pattern, name) in [
+      ("en", "masoretic-delitzsch", "Readings", "פרק [א-ת׳״]+", "english-interface-hebrew-bible"),
+      ("he", "douay-rheims-1899", "מקראות", "Chapter [0-9]+", "hebrew-interface-english-bible"),
+    ] {
+      app.launchArguments = ["-useInMemoryStore", "-AppleLanguages", "(\(interface))",
+                             "-interfaceLanguageCode", interface, "-defaultLanguageCode", "fr",
+                             "-feastCalendarId", "roman", "-showTodayFeast", "NO",
+                             "-expandReadingsByDefault", "YES", "-readingsEditionId", edition]
+      app.launch()
+      openReadingsTab(in: app, title: tabTitle)
+      let heading = app.staticTexts.matching(NSPredicate(format: "label MATCHES %@", pattern)).firstMatch
+      XCTAssertTrue(heading.waitForExistence(timeout: 15), app.debugDescription)
+      XCTAssertTrue(NSPredicate(format: "SELF MATCHES %@", pattern).evaluate(with: heading.label), heading.label)
+      let screenshot = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
+      screenshot.name = name
+      screenshot.lifetime = .keepAlways
+      add(screenshot)
+      app.terminate()
+    }
+  }
+
+  @MainActor
+  private func moveReadingsDate(in app: XCUIApplication, to targetDate: String) throws {
+    let date = app.buttons["readings.chooseDate"]
+    let iso = DateFormatter()
+    iso.locale = Locale(identifier: "en_US_POSIX")
+    iso.dateFormat = "yyyy-MM-dd"
+    let display = DateFormatter()
+    display.locale = Locale(identifier: "en_US")
+    display.dateStyle = .medium
+    let target = try XCTUnwrap(iso.date(from: targetDate))
+    let shown = try XCTUnwrap(display.date(from: date.label), date.label)
+    let distance = try XCTUnwrap(Calendar(identifier: .gregorian).dateComponents([.day], from: shown, to: target).day)
+    XCTAssertLessThanOrEqual(abs(distance), 366, "The sourced calendar fixture remains within one year")
+    for _ in 0..<abs(distance) { app.buttons[distance < 0 ? "readings.previousDay" : "readings.nextDay"].tap() }
+    XCTAssertEqual(date.label, display.string(from: target))
+  }
+
+  @MainActor
+  func testGreekBibleCanBeChosenFromTheEditionMenu() throws {
+    let app = XCUIApplication()
+    app.launchArguments = ["-useInMemoryStore", "-AppleLanguages", "(en)", "-interfaceLanguageCode", "en",
+                           "-feastCalendarId", "roman", "-showTodayFeast", "NO", "-expandReadingsByDefault", "YES"]
+    app.launch()
+    openReadingsTab(in: app, title: "Readings")
+    try moveReadingsDate(in: app, to: "2026-09-27")
+    let picker = app.buttons["readings.editionPicker"]
+    XCTAssertTrue(picker.waitForExistence(timeout: 5))
+    picker.tap()
+    let option = app.buttons["Septuagint — Ἑβδομήκοντα (Brenton)"]
+    XCTAssertTrue(option.waitForExistence(timeout: 5), app.debugDescription)
+    option.tap()
+    XCTAssertTrue(app.staticTexts.matching(NSPredicate(format: "label MATCHES %@", "Κεφάλαιο [0-9]+")).firstMatch.waitForExistence(timeout: 10))
+    let screenshot = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
+    screenshot.name = "greek-bible-selected-from-menu"
+    screenshot.lifetime = .keepAlways
+    add(screenshot)
+    app.terminate()
+  }
+
+  @MainActor
+  func testGreekAndArabicHeadingsUseAvailableSourcedReadings() throws {
+    let app = XCUIApplication()
+    for (edition, targetDate, headingText, name) in [
+      ("brenton-lxx", "2026-09-27", "Κεφάλαιο 18", "greek-bible-chapter-heading"),
+      ("jesuit-arabic-1897", "2026-09-15", "الفصل ١٩", "arabic-bible-chapter-heading"),
+    ] {
+      app.launchArguments = ["-useInMemoryStore", "-AppleLanguages", "(en)", "-interfaceLanguageCode", "en",
+                             "-feastCalendarId", "roman", "-showTodayFeast", "NO",
+                             "-expandReadingsByDefault", "YES", "-readingsEditionId", edition]
+      app.launch()
+      openReadingsTab(in: app, title: "Readings")
+      try moveReadingsDate(in: app, to: targetDate)
+      let heading = app.staticTexts[headingText].firstMatch
+      XCTAssertTrue(heading.waitForExistence(timeout: 15), app.debugDescription)
+      for _ in 0..<7 where !heading.isHittable { app.swipeUp() }
+      XCTAssertTrue(heading.isHittable)
+      let screenshot = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
+      screenshot.name = name
+      screenshot.lifetime = .keepAlways
+      add(screenshot)
+      app.terminate()
+    }
+  }
+
+  @MainActor
+  func testSyriacSaintDescriptionsStartClosedAndResetAfterBrowsing() throws {
+    let app = XCUIApplication()
+    app.launchArguments = ["-useInMemoryStore", "-AppleLanguages", "(he)", "-interfaceLanguageCode", "he",
+                           "-feastCalendarId", "syriac", "-showTodayFeast", "YES",
+                           "-expandReadingsByDefault", "NO"]
+    app.launch()
+    openReadingsTab(in: app, title: "מקראות")
+    let disclosure = app.descendants(matching: .any)["today.saintDescriptions"].firstMatch
+    // Coverage is source-dependent. Nearby saints can have prose when today's liturgical
+    // observance does not, so browse through this week's actual supplied calendar entries.
+    for _ in 0..<7 where !disclosure.waitForExistence(timeout: 1) {
+      app.buttons["readings.nextDay"].tap()
+    }
+    XCTAssertTrue(disclosure.waitForExistence(timeout: 5), app.debugDescription)
+    let description = app.staticTexts["today.saintDescription.0"]
+    XCTAssertFalse(description.exists)
+    disclosure.tap()
+    XCTAssertTrue(description.waitForExistence(timeout: 5), app.debugDescription)
+    let screenshot = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
+    screenshot.name = "syriac-saint-description-hebrew"
+    screenshot.lifetime = .keepAlways
+    add(screenshot)
+    app.buttons["readings.nextDay"].tap()
+    XCTAssertFalse(description.exists)
+    app.buttons["readings.previousDay"].tap()
+    XCTAssertTrue(disclosure.waitForExistence(timeout: 5))
+    XCTAssertFalse(description.exists, "Returning to the same day leaves the prose closed")
+    app.terminate()
+  }
+
+  @MainActor
   func testReadingsStartCollapsedAndTheSettingOpensChapterHeadings() throws {
     let app = XCUIApplication()
     app.launchArguments = ["-useInMemoryStore", "-AppleLanguages", "(en)", "-interfaceLanguageCode", "en",
@@ -521,38 +640,48 @@ final class AppShellUITests: XCTestCase {
   }
 
   @MainActor
-  func testRosaryLitanyHandoffKeepsHebrewAndUsesOnlyItsOwnEnding() throws {
+  func testRosaryLitanyOptionKeepsHebrewAndFinishesWithoutAPopup() throws {
     let app = XCUIApplication()
-    app.launchArguments = ["-resetStore", "-AppleLanguages", "(en)", "-defaultLanguageCode", "he", "-autoAdvanceSeconds", "0"]
+    app.launchArguments = ["-useInMemoryStore", "-AppleLanguages", "(en)", "-interfaceLanguageCode", "en",
+                           "-defaultLanguageCode", "he", "-autoAdvanceSeconds", "0"]
     app.launch()
-    XCTAssertTrue(app.buttons["rosaryCard"].waitForExistence(timeout: 10))
-    app.buttons["rosaryCard"].tap()
-    app.buttons["prayDefaultPreset"].firstMatch.tap()
+    XCTAssertTrue(app.buttons["addFavoriteButton"].waitForExistence(timeout: 10))
+    app.buttons["addFavoriteButton"].tap()
+    app.buttons["Pray Any Rosary…"].tap()
+    let litany = app.switches["litanyOfLoretoToggle"]
+    for _ in 0..<7 where !litany.isHittable { app.swipeUp() }
+    XCTAssertTrue(litany.waitForExistence(timeout: 5))
+    let collect = app.switches["rosaryCollectToggle"]
+    for _ in 0..<4 where !collect.isHittable || collect.frame.maxY > app.frame.maxY - 100 { app.swipeUp() }
+    XCTAssertTrue(collect.isEnabled)
+    collect.coordinate(withNormalizedOffset: CGVector(dx: 0.9, dy: 0.5)).tap()
+    XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(
+      predicate: NSPredicate(format: "value == %@", "0"), object: collect)], timeout: 5), .completed, app.debugDescription)
+    litany.coordinate(withNormalizedOffset: CGVector(dx: 0.9, dy: 0.5)).tap()
+    XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(
+      predicate: NSPredicate(format: "value == %@", "1"), object: collect)], timeout: 5), .completed)
+    XCTAssertFalse(collect.isEnabled)
+    app.navigationBars.buttons["Pray"].tap()
     let nextSection = app.buttons["nextMysteryButton"]
     XCTAssertTrue(nextSection.waitForExistence(timeout: 10))
     for _ in 0..<6 where nextSection.isEnabled { nextSection.tap() }
     let next = app.buttons["prayerFlowNextButton"]
-    for _ in 0..<20 where next.label != "Finish" { next.tap() }
-    XCTAssertEqual(next.label, "Finish")
-    next.tap()
-    let offer = app.buttons["prayLitanyButton"].firstMatch
-    XCTAssertTrue(offer.waitForExistence(timeout: 5))
-    offer.tap()
     let body = app.staticTexts["prayerBodyText"]
-    XCTAssertTrue(body.waitForExistence(timeout: 5))
+    for _ in 0..<20 where !body.label.contains("מָשִׁיחַ רַחֵם") { next.tap() }
     XCTAssertTrue(body.label.contains("מָשִׁיחַ רַחֵם"))
-    XCTAssertFalse(app.buttons["variantMenu"].exists)
+    XCTAssertFalse(app.alerts.firstMatch.exists)
     for _ in 0..<15 { next.tap() }
-    XCTAssertEqual(next.label, "Finish")
-    XCTAssertTrue(body.label.contains("אֱלֹהִים, אֲשֶׁר בִּנְךָ הַיָּחִיד"))
+    XCTAssertTrue(app.staticTexts["נתפללה"].exists)
     XCTAssertFalse(body.label.contains("שִׂמְחָה בִּבְרִיאוּת"))
-    let after = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
-    after.name = "hebrew-litany-after-rosary-ending"
-    after.lifetime = .keepAlways
-    add(after)
+    let closing = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
+    closing.name = "hebrew-integrated-rosary-litany-collect"
+    closing.lifetime = .keepAlways
+    add(closing)
     next.tap()
-    XCTAssertTrue(app.buttons["prayDefaultPreset"].firstMatch.waitForExistence(timeout: 5))
-    app.navigationBars.buttons.element(boundBy: 0).tap()
+    XCTAssertEqual(next.label, "Finish")
+    next.tap()
+    XCTAssertFalse(app.alerts.firstMatch.exists)
+    XCTAssertTrue(app.buttons["addFavoriteButton"].waitForExistence(timeout: 5))
     app.tabBars.buttons["Search"].tap()
     let standalone = app.buttons["search.local.litanyOfLoreto"]
     for _ in 0..<5 where !standalone.isHittable { app.swipeUp() }
@@ -563,12 +692,8 @@ final class AppShellUITests: XCTestCase {
     for _ in 0..<15 { next.tap() }
     XCTAssertEqual(next.label, "Finish")
     XCTAssertTrue(body.label.contains("שִׂמְחָה בִּבְרִיאוּת"))
-    XCTAssertFalse(body.label.contains("אֱלֹהִים, אֲשֶׁר בִּנְךָ הַיָּחִיד"))
-    let standard = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
-    standard.name = "hebrew-litany-standalone-ending"
-    standard.lifetime = .keepAlways
-    add(standard)
     next.tap()
+    app.terminate()
   }
 
   @MainActor

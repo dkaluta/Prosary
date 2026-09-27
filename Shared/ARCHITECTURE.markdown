@@ -187,9 +187,10 @@ selects one of the eight translated interfaces and never changes that sourced pr
 - **Rosary** — the richest: opening (Sign of the Cross, optional Creed, optional opening Our
   Father/3 Hail Marys for Faith/Hope/Charity/Glory Be, then an independently optional Fatima Prayer), one loop per decade across every resolved
   `MysteryGroup` (mystery announcement → Our Father → 10 Hail Marys → Glory Be → optional Fatima
-  Prayer → optional per-decade eternal rest), closing (Marian antiphon → optional closing intentions: three intercessions each unfolding
+  Prayer → optional per-decade eternal rest), closing (Marian antiphon without an embedded collect → optional closing intentions: three intercessions each unfolding
   into Our Father/Hail Mary/Glory Be and closed by "May they rest in peace" → optional St.
-  Michael prayer → optional end-of-session eternal rest → optional final Sign of the Cross). The
+  Michael prayer → optional end-of-session eternal rest → optional Litany of Loreto → separate
+  Rosary collect → optional final Sign of the Cross). The
   single-mystery mode (`mysterySelectionMode == singleMystery`) resolves to the same one-group
   shape as the fixed-set mode, but the per-group loop only builds the one decade at
   `specificMysteryOrder - 1`, keeping the mystery's true ordinal (e.g. "3rd Mystery") for its
@@ -217,7 +218,10 @@ Two pieces of logic are shared internally by `PrayerEngine` rather than duplicat
   Franciscan Crown/Seven Sorrows keep showing that decade's own illustration).
 - **The Marian antiphon step builder** — used by the Rosary's closing antiphon and by the generic
   builder's `seasonalMarianAntiphon` special step (the Franciscan Crown's fixed seasonal
-  antiphon), which stays runtime-composed because it is calendar-dependent.
+  antiphon), which stays runtime-composed because it is calendar-dependent. Only the built-in
+  Rosary omits its embedded collect. Standalone basic antiphons and the Franciscan Crown retain
+  their existing complete text. The Rosary's separate collect always uses its own standard
+  prayer, independent of the chosen antiphon or season.
 - **`LiturgicalCalendarService`** — the traditional weekday mystery assignment (Mon/Sat Joyful,
   Tue/Fri Sorrowful, Wed Glorious, Thu Luminous, Sunday follows the liturgical season instead),
   the Meeus/Jones/Butcher Gregorian Easter algorithm, liturgical season (Advent/Christmas/Lent/
@@ -609,16 +613,19 @@ The shared prayer-only checkpoint remains the latest saved continuation for a ne
 window or an upgrade from the earlier app. A window claims it once, then uses its independent
 checkpoint. Clearing an older window does not erase a newer shared continuation.
 
-At Rosary completion, **Pray the Litany** and **Finish** are explicit alternatives. Choosing the
-Litany opens the generic `litanyOfLoreto` flow with the resolved Rosary prayer language and
-`variantId: "afterRosary"`; it does not start automatically or rewrite a saved Litany configuration.
-Every standalone Litany entry, including a saved favorite, forces `standard`, regardless of a
-previously saved variant. This built-in devotion hides its manual variant menu: the entry context
-selects the ending, while the two canonical variants keep each final collect exclusive to its
-own form in every supplied language. The generic custom route therefore accepts optional
-`languageCode` and `variantId` session overrides. An old bookmark in another language cannot
-replace an explicit incoming language. Apple replaces the outgoing route across main-run-loop
-turns so same-depth navigation is not coalesced into a no-op.
+Rosary options include `includeLitanyOfLoreto` (default `false`) and `includeRosaryCollect`
+(default `true`), mapped to bundle keys `litanyOfLoreto` and `rosaryCollect`. Enabling the Litany
+forces the effective collect on; the collect switch remains on and disabled until the Litany is
+off, preserving the user's independent saved choice. There is no completion popup or second route.
+The reserved built-in `rosaryLitany` closing entry expands the Litany's `afterRosary` body without
+its final collect, followed immediately by the Rosary's one separate `rosaryCollect` step. This
+keeps navigation, progress and bookmarks in one continuous sequence and never leaves a Litany
+without a collect. Sequence signatures invalidate older bookmarks whose closing positions changed.
+Every standalone Litany entry, including saved favorites and obsolete `afterRosary` entry values,
+uses `standard` and its existing collect. Its manual variant menu remains hidden. The canonical
+Litany variants retain their separately sourced collects for content integrity, but runtime Rosary
+assembly supplies only the Rosary collect. Hebrew “Oremus / Let us pray” headings use the exact
+user-provided `נתפללה` across bundles, including Angelus, Rosary and Litany; prayer bodies stay sourced.
 
 ## Persistence
 
@@ -1485,13 +1492,28 @@ copies, same convention as the bundles; per-platform `TodayInfoStore` providers)
     precedence over an equivalent main-liturgy heading. Arabic supplies additional observances
     after the English entries. Optional `observances` components retain separate `title` and
     reviewed `identity` values for offline localization, so reused English names such as
-    St. Matthew cannot acquire another saint's translation. Native readers use the assembled
-    title fields. Unknown identities retain their published name for review.
-    ranks are title-derived ("Sunday" / "Fast" / "Feast", with Pascha as "Great Feast").
+    St. Matthew cannot acquire another saint's translation. Components retain exact published
+    Arabic captions in `sourceTitleByLanguage`; editorial supplements can therefore be
+    refreshed without replacing those captions. All eight interface languages require actual
+    labels for every component. Missing translations stop regeneration before overwriting the
+    last complete table. Known source spreadsheet error markers are excluded, not shown as feasts.
+    Ranks are title-derived ("Sunday" / "Fast" / "Feast", with Pascha as "Great Feast").
     `fetch-feasts.py --syriac-only --until YYYY-MM-DD --sync` can refresh a bounded range.
     Evangelizo serves a rolling ~3-month horizon, so new Hebrew Roman titles from that feed and the
     `syriac` table end where the API did at generation time and extend on each rerun — regenerate more often
     than yearly.
+    The supplied Hebrew Urtotho calendar is preserved verbatim at
+    `Shared/tools/sources/syriac-calendar-2026-he.ics`, pinned by a checksum and a reviewed
+    UID-to-identity index. It fills Hebrew labels **only for Syriac** and supplies saint
+    descriptions joined by exact date and identity. Existing sourced Hebrew names and requested
+    descriptor terminology remain preferred, including `תאמא השליח` and `שבועות`. Source
+    descriptions remain verbatim apart from moving their trailing attribution into separate
+    source/credit fields. Neither RRULE nor the supplied dates changes any appointed calendar.
+    A collapsed “About the saints” disclosure sits above readings in Pray/Today and Readings,
+    obeys `showTodayFeast`, and resets on date/calendar/interface-language changes. It appears
+    only for the Syriac calendar when a biography exists in the exact interface language;
+    descriptions never fall back to another language. Initially the supplied biographies are
+    Hebrew only. All three About screens credit Urtotho and Evangelizo.
   - `maronite` — **`feasts-maronite.json`** and **`readings-maronite.json`**: Evangelizo's
     separate MAE edition. `Shared/tools/fetch-maronite.py` downloads each day once and emits
     both tables. Ordinary ferial captions are omitted from the feast table; Sundays, named
@@ -1527,8 +1549,11 @@ copies, same convention as the bundles; per-platform `TodayInfoStore` providers)
   same window. Explicit browsing retains that civil date; Today resumes local-day following.
   The `showTodayReadings` preference (default `true`) controls readings in Pray/native
   desktop Today. The reader starts collapsed unless `expandReadingsByDefault` (default
-  `false`) is enabled. Chapter transitions have localized chapter headings and verse-only
-  numbers. The navigation row has previous/next arrows and a
+  `false`) is enabled. Chapter transitions use the selected Bible edition's language, independent
+  of interface and prayer language. Chapter numbers are regular, never italic: Hebrew uses
+  traditional gematria (including ט״ו/ט״ז), Arabic uses Eastern Arabic digits, and Aramaic
+  follows the selected Hebrew/Syriac script. Greek uses Κεφάλαιο and decimal chapter numbers.
+  Verse-only numbers follow each chapter heading. The navigation row has previous/next arrows and a
   centered date button opening a native calendar, with a Today action inside the popup.
   Prayer-day computations, mystery assignment and Marian antiphons remain independent of
   browsing dates. The supplementary day heading is hidden on Sundays. On weekdays it uses

@@ -359,22 +359,14 @@ private fun AppNavHost(navController: NavHostController, modifier: Modifier = Mo
                     rosary = saved.rosary.copy(mysterySelectionMode = MysterySelectionMode.TodaysMysteries))
             }
             prayer?.let { resolved ->
-                RosaryFlowScreen(prayer = resolved, onBack = { navController.popBackStack() },
-                    onOpenDevotion = { id, variant, language ->
-                        navController.popBackStack()
-                        navController.navigateSingleTop(Routes.custom(id, variant, language))
-                    })
+                RosaryFlowScreen(prayer = resolved, onBack = { navController.popBackStack() })
             }
         }
 
         composable(Routes.RosaryQuickPray) {
             val prayer = AdHocRosaryHolder.prayer
             if (prayer != null) {
-                RosaryFlowScreen(prayer = prayer, onBack = { navController.popBackStack() },
-                    onOpenDevotion = { id, variant, language ->
-                        navController.popBackStack()
-                        navController.navigateSingleTop(Routes.custom(id, variant, language))
-                    })
+                RosaryFlowScreen(prayer = prayer, onBack = { navController.popBackStack() })
             }
         }
 
@@ -447,11 +439,7 @@ private fun AppNavHost(navController: NavHostController, modifier: Modifier = Mo
         ) { backStackEntry ->
             val id = backStackEntry.arguments?.getString("id")
             if (id != null) {
-                PrayerDispatchScreen(prayerId = id, onBack = { navController.popBackStack() },
-                    onOpenDevotion = { devotionId, variant, language ->
-                        navController.popBackStack()
-                        navController.navigateSingleTop(Routes.custom(devotionId, variant, language))
-                    })
+                PrayerDispatchScreen(prayerId = id, onBack = { navController.popBackStack() })
             }
         }
     }

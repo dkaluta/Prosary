@@ -52,7 +52,7 @@ class PrayerRunProgressTest {
     @Test
     fun signaturesCoverSequenceOptionsAndSortCustomOverrides() {
         assertEquals(
-            "rosary|todaysMysteries|joyful|1|1|1|0|1|none|seasonal|0|0|1|formA|0|classic",
+            "rosary-closing-v3|0|1|todaysMysteries|joyful|1|1|1|0|1|none|seasonal|0|0|1|formA|0|classic",
             PrayerRunSignatures.rosary(RosaryOptions()),
         )
         assertFalse(
@@ -94,10 +94,10 @@ class PrayerRunProgressTest {
         fun signature(options: Map<String, String>, devotionId: String = "rosary") =
             PrayerRunSignatures.custom(devotionId, null, 0, options)
 
-        assertEquals("custom|rosary||0|", signature(emptyMap()))
+        assertEquals("custom|rosary||0||closing-v3", signature(emptyMap()))
         val current = signature(mapOf("closingIntentions" to "true", "openingFatimaPrayer" to "true"))
         assertEquals(
-            "custom|rosary||0|closingIntentions=true|openingFatimaPrayer=true|closing-v2:1,1,1|opening-fatima-v2",
+            "custom|rosary||0|closingIntentions=true|openingFatimaPrayer=true|closing-v2:1,1,1|opening-fatima-v2|closing-v3",
             current,
         )
         assertEquals(current, signature(mapOf("closingPopeIntention" to "true", "openingFatimaPrayer" to "true")))

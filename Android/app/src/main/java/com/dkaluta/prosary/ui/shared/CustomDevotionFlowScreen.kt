@@ -74,7 +74,7 @@ import kotlinx.coroutines.launch
 fun CustomDevotionFlowScreen(
     devotionId: String,
     prayer: Prayer? = null,
-    /** Explicit handoffs (Rosary → Litany) retain the just-prayed language and closing form. */
+    /** Explicit links may request a language/form; standalone Litany always uses its own collect. */
     initialVariantId: String? = null,
     initialLanguageCode: String? = null,
     onBack: () -> Unit,

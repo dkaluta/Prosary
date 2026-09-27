@@ -72,26 +72,25 @@ class PrayerPreferencesTest {
         assertEquals(listOf("he"), LanguageCatalog.availableOptions(listOf("he", "he-x-gamliel")).map { it.code })
     }
 
-    @Test fun rosaryLitanyHandoffRetainsTheLanguageAndExplicitClosingForm() {
-        val flow = File("src/main/java/com/dkaluta/prosary/ui/rosaryflow/RosaryFlowScreen.kt").readText()
-        assertTrue(flow.contains("onOpenDevotion(\"litanyOfLoreto\", \"afterRosary\", languageCode)"))
-        val destination = File("src/main/java/com/dkaluta/prosary/ui/shared/CustomDevotionFlowScreen.kt").readText()
+    @Test fun litanyOptionForcesCollectAndChangesSavedRunIdentity() {
+        val base = RosaryOptions(includeRosaryCollect = false)
+        assertFalse(base.effectiveRosaryCollect)
+        val continued = base.copy(includeLitanyOfLoreto = true)
+        assertTrue(continued.effectiveRosaryCollect)
+        assertFalse(continued.copy(includeLitanyOfLoreto = false).effectiveRosaryCollect)
+        assertNotEquals(PrayerRunSignatures.rosary(base), PrayerRunSignatures.rosary(continued))
+        assertNotEquals(PrayerRunSignatures.rosary(base), PrayerRunSignatures.rosary(base.copy(includeRosaryCollect = true)))
         val favorite = Prayer(kind = PrayerKind.Custom, customDevotionId = "litanyOfLoreto",
-            variantId = "standard", languageCode = "en")
-        val handoff = CustomDevotionPrayerSession("litanyOfLoreto", favorite, "afterRosary", "he")
-        assertEquals("afterRosary", handoff.variantId.value)
-        assertEquals("he", handoff.chosenLanguage.value)
-        val ordinary = CustomDevotionPrayerSession("litanyOfLoreto", favorite, null, null)
+            variantId = "afterRosary", languageCode = "en")
+        val ordinary = CustomDevotionPrayerSession("litanyOfLoreto", favorite, "afterRosary", "he")
         assertEquals("standard", ordinary.variantId.value)
-        assertEquals("en", ordinary.chosenLanguage.value)
-        assertTrue(destination.contains("initialVariantId == null && initialLanguageCode == null"))
-        assertTrue(destination.contains("initialLanguageCode == null || it.languageCode == configuredLanguage"))
+        assertEquals("he", ordinary.chosenLanguage.value)
     }
 
     @Test fun litanyEndingFollowsEntryEvenWhenFavoriteSavedAfterRosary() {
         assertEquals("standard", DevotionEntryContext.initialVariant("litanyOfLoreto", null, "afterRosary"))
         assertEquals("standard", DevotionEntryContext.initialVariant("litanyOfLoreto", null, null))
-        assertEquals("afterRosary", DevotionEntryContext.initialVariant("litanyOfLoreto", "afterRosary", "standard"))
+        assertEquals("standard", DevotionEntryContext.initialVariant("litanyOfLoreto", "afterRosary", "standard"))
         assertEquals("scriptural", DevotionEntryContext.initialVariant("stations", null, "scriptural"))
         val flow = File("src/main/java/com/dkaluta/prosary/ui/shared/CustomDevotionFlowScreen.kt").readText()
         assertTrue(flow.contains("if (!variantFollowsEntry && variants != null"))

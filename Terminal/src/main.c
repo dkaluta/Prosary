@@ -22,6 +22,8 @@ static void usage(FILE *out)
           "  --ui-language CODE     Interface: en, he, ar, ru, tl, fr, it, uk\n"
           "  --group GROUP          today, joyful, sorrowful, glorious, luminous\n"
           "  --skip-fifth-decade     Omit the fifth Rosary decade\n"
+          "  --litany-of-loreto      Include the Litany after the Rosary\n"
+          "  --no-rosary-collect     Omit the collect unless the Litany is included\n"
           "  --variant N            Devotion form (1-based; 0 = language default)\n"
           "  --day N                Day of a multi-day devotion (1-based)\n"
           "  --restart              Begin the selected prayer again\n"
@@ -177,6 +179,8 @@ int main(int argc, char **argv)
         if (!strcmp(argv[i], "--no-state")) continue;
         if (!strcmp(argv[i], "--list")) { list = 1; continue; }
         if (!strcmp(argv[i], "--restart")) { reset = 1; continue; }
+        if (!strcmp(argv[i], "--litany-of-loreto")) { state.include_litany_of_loreto = 1; reset = 1; continue; }
+        if (!strcmp(argv[i], "--no-rosary-collect")) { state.include_rosary_collect = 0; reset = 1; continue; }
         if (!strcmp(argv[i], "--skip-fifth-decade")) { state.skip_fifth_decade = 1; reset = 1; continue; }
         if (i + 1 >= argc) { fprintf(stderr, "Prosary: missing value or unknown option: %s\n", argv[i]); return 2; }
         value = argv[++i];
@@ -252,6 +256,8 @@ int main(int argc, char **argv)
         selection.variant = state.variant;
         selection.day = state.day;
         selection.skip_fifth_decade = state.skip_fifth_decade;
+        selection.include_litany_of_loreto = state.include_litany_of_loreto;
+        selection.omit_rosary_collect = !state.include_rosary_collect;
         session = engine_build(engine, dump_id, &selection, error, sizeof(error));
         if (!session) { fprintf(stderr, "Prosary: %s\n", error); engine_close(engine); return 1; }
         printf("%s (%lu steps)\n", session->title, (unsigned long)session->count);

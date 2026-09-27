@@ -23,6 +23,13 @@ test -s "$temporary/latin"
 ./prosary --no-state --list --language tl > "$temporary/tl"
 cmp "$temporary/fil" "$temporary/tl"
 
+./prosary --no-state --dump rosary --group joyful --litany-of-loreto > "$temporary/with-litany"
+./prosary --no-state --dump rosary --group joyful --litany-of-loreto --no-rosary-collect > "$temporary/forced-collect"
+cmp "$temporary/with-litany" "$temporary/forced-collect"
+./prosary --no-state --dump rosary --group joyful --no-rosary-collect > "$temporary/no-collect"
+grep -q 'Queen of the most holy Rosary' "$temporary/with-litany"
+if grep -q 'O God, whose only begotten Son' "$temporary/no-collect"; then exit 1; fi
+
 # Option order must not silently select a different recension.
 ./prosary --no-state --dump trisagion --variant 2 --language la > "$temporary/form-first"
 ./prosary --no-state --dump trisagion --language la --variant 2 > "$temporary/language-first"

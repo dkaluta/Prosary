@@ -1,12 +1,12 @@
 package com.dkaluta.prosary.models
 
-/** Loreto's collect follows how this session began, never a saved favorite's form. */
+/** Standalone Loreto always has its own collect; embedded Rosary expansion is engine-owned. */
 object DevotionEntryContext {
     fun locksVariant(devotionId: String): Boolean = devotionId == "litanyOfLoreto"
 
     fun initialVariant(devotionId: String, handoffVariant: String?, savedVariant: String?): String? =
         if (locksVariant(devotionId)) {
-            if (handoffVariant == "afterRosary") "afterRosary" else "standard"
+            "standard"
         } else {
             handoffVariant ?: savedVariant
         }

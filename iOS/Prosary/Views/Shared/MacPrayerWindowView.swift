@@ -146,9 +146,7 @@ struct MacPrayerWindowView: View {
     if let prayer {
       switch prayer.kind {
       case .rosary:
-        RosaryFlowView(prayer: prayer) { language in
-          openRoute(.custom(devotionId: "litanyOfLoreto", languageCode: language, variantId: "afterRosary"))
-        }
+        RosaryFlowView(prayer: prayer)
       case .jesusPrayer: JesusPrayerFlowView(path: $legacyPath, prayer: prayer)
       case .custom:
         if let id = prayer.customDevotionId { CustomDevotionFlowView(devotionId: id, prayer: prayer) }

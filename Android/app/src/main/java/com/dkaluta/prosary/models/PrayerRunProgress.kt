@@ -37,7 +37,9 @@ data class PrayerRunProgress(
  * these values describe configuration that can change the generated sequence or visual identity. */
 object PrayerRunSignatures {
     fun rosary(options: RosaryOptions): String = listOf(
-        "rosary",
+        "rosary-closing-v3",
+        options.includeLitanyOfLoreto.flag,
+        options.effectiveRosaryCollect.flag,
         options.mysterySelectionMode.stableValue,
         options.specificMysteryGroup.stableValue,
         options.specificMysteryOrder.toString(),
@@ -83,7 +85,8 @@ object PrayerRunSignatures {
             (normalized["openingPrayers"]?.toBooleanStrictOrNull() ?: true) &&
             normalized["openingFatimaPrayer"] == "true"
         ) "|opening-fatima-v2" else ""
-        return "custom|$devotionId|${effectiveVariantId.orEmpty()}|$dayIndex|$optionText$closingSuffix$openingSuffix"
+        val collectSuffix = if (devotionId == "rosary") "|closing-v3" else ""
+        return "custom|$devotionId|${effectiveVariantId.orEmpty()}|$dayIndex|$optionText$closingSuffix$openingSuffix$collectSuffix"
     }
 
     fun jesus(target: JesusPrayerTarget): String = when (target) {

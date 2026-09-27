@@ -116,6 +116,22 @@ public partial class FavoriteEditorViewModel : ObservableObject
     private bool _includeStMichaelPrayer;
 
     [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(EffectiveIncludeRosaryCollect))]
+    [NotifyPropertyChangedFor(nameof(CanEditRosaryCollect))]
+    private bool _includeLitanyOfLoreto;
+
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(EffectiveIncludeRosaryCollect))]
+    private bool _includeRosaryCollect = true;
+
+    public bool CanEditRosaryCollect => !IncludeLitanyOfLoreto;
+    public bool EffectiveIncludeRosaryCollect
+    {
+        get => IncludeLitanyOfLoreto || IncludeRosaryCollect;
+        set { if (!IncludeLitanyOfLoreto) IncludeRosaryCollect = value; }
+    }
+
+    [ObservableProperty]
     private bool _includeFinalSignOfCross = true;
 
     [ObservableProperty]
@@ -256,6 +272,8 @@ public partial class FavoriteEditorViewModel : ObservableObject
         MarianAntiphon = prayer.Rosary.MarianAntiphon;
         IncludeClosingIntentions = prayer.Rosary.EffectiveClosingIntentions;
         IncludeStMichaelPrayer = prayer.Rosary.IncludeStMichaelPrayer;
+        IncludeLitanyOfLoreto = prayer.Rosary.IncludeLitanyOfLoreto;
+        IncludeRosaryCollect = prayer.Rosary.IncludeRosaryCollect;
         IncludeFinalSignOfCross = prayer.Rosary.IncludeFinalSignOfCross;
         AramaicSignOfCrossForm = prayer.Rosary.AramaicSignOfCrossForm;
         PresenterMode = prayer.Rosary.PresenterMode;
@@ -288,6 +306,8 @@ public partial class FavoriteEditorViewModel : ObservableObject
             IncludeClosingBishopIntention = null,
             IncludeClosingDepartedIntention = null,
             IncludeStMichaelPrayer = IncludeStMichaelPrayer,
+            IncludeLitanyOfLoreto = IncludeLitanyOfLoreto,
+            IncludeRosaryCollect = IncludeRosaryCollect,
             IncludeFinalSignOfCross = IncludeFinalSignOfCross,
             AramaicSignOfCrossForm = AramaicSignOfCrossForm,
             PresenterMode = PresenterMode,

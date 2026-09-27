@@ -47,7 +47,7 @@ struct PrayerEngine {
       return buildCustomDevotionSteps(
         bundleId: bundleId,
         languageCode: PrayerPackStore.effectiveLanguage(for: bundleId, chosen: prayer.languageCode),
-        variantId: prayer.variantId,
+        variantId: CustomDevotionLaunch.variantId(devotionId: bundleId, incoming: nil, saved: prayer.variantId),
         optionOverrides: prayer.customOptions, dayIndex: prayer.dayIndex ?? 0)
     }
   }
@@ -96,6 +96,8 @@ struct PrayerEngine {
       "closingBishopIntention": rosary.effectiveClosingBishopIntention ? "true" : "false",
       "closingDepartedIntention": rosary.effectiveClosingDepartedIntention ? "true" : "false",
       "stMichael": rosary.includeStMichaelPrayer ? "true" : "false",
+      "litanyOfLoreto": rosary.includeLitanyOfLoreto ? "true" : "false",
+      "rosaryCollect": rosary.effectiveRosaryCollect ? "true" : "false",
       "finalSignOfCross": rosary.includeFinalSignOfCross ? "true" : "false",
       "imageStyle": rosary.mysteryImageStyle.rawValue,
     ]
@@ -105,7 +107,8 @@ struct PrayerEngine {
 
   private enum AntiphonStyle { case standard, paschal, standalone }
 
-  private func buildMarianAntiphonStep(_ antiphon: MarianAntiphonOption, languageCode: String?) -> RosaryStep {
+  private func buildMarianAntiphonStep(_ antiphon: MarianAntiphonOption, languageCode: String?,
+                                       includeCollect: Bool = true) -> RosaryStep {
     func text(_ key: PrayerKey) -> String {
       PrayerTranslations.get(languageCode: languageCode, key: key)
     }
@@ -126,9 +129,11 @@ struct PrayerEngine {
     case .standalone:
       body = text(titleKey)
     case .standard:
-      body = "\(text(titleKey))\n\n\(text(.versiculumStandard))\n**\(text(.responsiumStandard))**\n\n\(text(.collectaStandard))"
+      body = "\(text(titleKey))\n\n\(text(.versiculumStandard))\n**\(text(.responsiumStandard))**"
+        + (includeCollect ? "\n\n\(text(.collectaStandard))" : "")
     case .paschal:
-      body = "\(text(titleKey))\n\n\(text(.versiculumPaschale))\n**\(text(.responsiumPaschale))**\n\n\(text(.collectaPaschale))"
+      body = "\(text(titleKey))\n\n\(text(.versiculumPaschale))\n**\(text(.responsiumPaschale))**"
+        + (includeCollect ? "\n\n\(text(.collectaPaschale))" : "")
     }
 
     var step = RosaryStep(title: text(marianAntiphonHeaderKey(for: antiphon)), subtitle: nil, body: body)
@@ -200,6 +205,9 @@ struct PrayerEngine {
       let key = bundleId == "rosary" && RosaryOptions.legacyClosingOptionKeys.contains(option.key)
         ? "closingIntentions" : option.key
       optionValues[option.key] = normalizedOverrides[key] ?? option.defaultValue
+    }
+    if bundleId == "rosary", optionValues["litanyOfLoreto"] == "true" {
+      optionValues["rosaryCollect"] = "true"
     }
     // Calendar facts an entry may gate on beside the user's own choices — the Alleluia that
     // leaves the invitatory during Lent is the first of them. Seeded after the declared
@@ -274,7 +282,17 @@ struct PrayerEngine {
             let chosen = MarianAntiphonOption(rawValue: optionValues[optionKey] ?? "seasonal"),
             chosen != .none else { return [] }
       let antiphon = chosen == .seasonal ? calendar.seasonalMarianAntiphonToday() : chosen
-      return [buildMarianAntiphonStep(antiphon, languageCode: languageCode)]
+      return [buildMarianAntiphonStep(antiphon, languageCode: languageCode, includeCollect: bundleId != "rosary")]
+    }
+    if entry.kind == .rosaryLitany {
+      guard bundleId == "rosary" else { return [] }
+      // The authored afterRosary variant ends with its collect. In this integrated flow
+      // the next Rosary entry supplies the single concluding collect instead.
+      let litany = buildCustomDevotionSteps(
+        bundleId: "litanyOfLoreto",
+        languageCode: PrayerPackStore.effectiveLanguage(for: "litanyOfLoreto", chosen: languageCode),
+        variantId: "afterRosary")
+      return Array(litany.dropLast())
     }
     let baseTitle = entry.titleKey.map {
       PrayerPackStore.resolveBodyText(bundleId: bundleId, languageCode: languageCode, key: $0)

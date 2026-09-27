@@ -72,6 +72,10 @@ public sealed class PresetEntry
     public bool? IncludeClosingDepartedIntention { get; set; }
 
     public bool IncludeStMichaelPrayer { get; set; }
+    [NotNull]
+    public bool IncludeLitanyOfLoreto { get; set; }
+    [NotNull]
+    public bool IncludeRosaryCollect { get; set; } = true;
     public bool IncludeFinalSignOfCross { get; set; } = true;
 
     [NotNull]
@@ -121,6 +125,8 @@ public sealed class PresetEntry
             IncludeClosingBishopIntention = IncludeClosingBishopIntention,
             IncludeClosingDepartedIntention = IncludeClosingDepartedIntention,
             IncludeStMichaelPrayer = IncludeStMichaelPrayer,
+            IncludeLitanyOfLoreto = IncludeLitanyOfLoreto,
+            IncludeRosaryCollect = IncludeRosaryCollect,
             IncludeFinalSignOfCross = IncludeFinalSignOfCross,
             AramaicSignOfCrossForm = AramaicSignOfCrossForm,
             PresenterMode = PresenterMode,
@@ -161,6 +167,8 @@ public sealed class PresetEntry
         IncludeClosingBishopIntention = prayer.Rosary.IncludeClosingBishopIntention,
         IncludeClosingDepartedIntention = prayer.Rosary.IncludeClosingDepartedIntention,
         IncludeStMichaelPrayer = prayer.Rosary.IncludeStMichaelPrayer,
+        IncludeLitanyOfLoreto = prayer.Rosary.IncludeLitanyOfLoreto,
+        IncludeRosaryCollect = prayer.Rosary.IncludeRosaryCollect,
         IncludeFinalSignOfCross = prayer.Rosary.IncludeFinalSignOfCross,
         AramaicSignOfCrossForm = prayer.Rosary.AramaicSignOfCrossForm,
         PresenterMode = prayer.Rosary.PresenterMode,

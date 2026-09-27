@@ -58,6 +58,8 @@ final class PresetEntry {
   var includeClosingBishopIntention: Bool? = nil
   var includeClosingDepartedIntention: Bool? = nil
   var includeStMichaelPrayer: Bool = false
+  var includeLitanyOfLoreto: Bool = false
+  var includeRosaryCollect: Bool = true
   var includeFinalSignOfCross: Bool = true
   // Raw String for safe lightweight migration of existing SwiftData rows.
   var aramaicSignOfCrossForm: String = AramaicSignOfCrossForm.formA
@@ -102,6 +104,8 @@ final class PresetEntry {
     includeClosingBishopIntention = prayer.rosary.includeClosingBishopIntention
     includeClosingDepartedIntention = prayer.rosary.includeClosingDepartedIntention
     includeStMichaelPrayer = prayer.rosary.includeStMichaelPrayer
+    includeLitanyOfLoreto = prayer.rosary.includeLitanyOfLoreto
+    includeRosaryCollect = prayer.rosary.includeRosaryCollect
     includeFinalSignOfCross = prayer.rosary.includeFinalSignOfCross
     aramaicSignOfCrossForm = prayer.rosary.aramaicSignOfCrossForm
     presenterMode = prayer.rosary.presenterMode
@@ -142,6 +146,8 @@ final class PresetEntry {
     includeClosingBishopIntention = prayer.rosary.includeClosingBishopIntention
     includeClosingDepartedIntention = prayer.rosary.includeClosingDepartedIntention
     includeStMichaelPrayer = prayer.rosary.includeStMichaelPrayer
+    includeLitanyOfLoreto = prayer.rosary.includeLitanyOfLoreto
+    includeRosaryCollect = prayer.rosary.includeRosaryCollect
     includeFinalSignOfCross = prayer.rosary.includeFinalSignOfCross
     aramaicSignOfCrossForm = prayer.rosary.aramaicSignOfCrossForm
     presenterMode = prayer.rosary.presenterMode
@@ -197,6 +203,8 @@ final class PresetEntry {
         includeClosingBishopIntention: includeClosingBishopIntention,
         includeClosingDepartedIntention: includeClosingDepartedIntention,
         includeStMichaelPrayer: includeStMichaelPrayer,
+        includeLitanyOfLoreto: includeLitanyOfLoreto,
+        includeRosaryCollect: includeRosaryCollect,
         includeFinalSignOfCross: includeFinalSignOfCross,
         aramaicSignOfCrossForm: aramaicSignOfCrossForm,
         presenterMode: presenterMode,

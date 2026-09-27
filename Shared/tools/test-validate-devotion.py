@@ -402,6 +402,14 @@ def main() -> int:
         "unresolved key 'nope'",
     )
 
+    check_rejects("Rosary Litany cannot be used by another devotion",
+                  lambda d: d['closing'].append({'kind': 'rosaryLitany', 'if': 'litanyOfLoreto'}),
+                  "reserved for the built-in Rosary")
+    check_rejects("Rosary Litany must lead directly into its collect",
+                  lambda d: d['closing'].insert(next(i for i, e in enumerate(d['closing']) if e.get('bodyKey') == 'rosaryCollect'),
+                                                {'title': 'Interruption', 'bodyKey': 'aveMaria', 'imageKey': 'madonna_and_child'}),
+                  "followed immediately by the Rosary collect", fixture=SHARED_CONTENT / 'rosary')
+
     for failure in failures:
         print(f"FAIL {failure}", file=sys.stderr)
     if failures:

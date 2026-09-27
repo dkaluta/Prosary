@@ -1,7 +1,7 @@
 import Foundation
 
-/// The Marian litany's final collect follows where it was opened. Its two forms remain
-/// bundle-driven, while other devotions retain their freely selectable saved variants.
+/// Every standalone Litany uses its own collect. The Rosary embeds its invocations directly;
+/// old routes and saved variants cannot turn a standalone prayer into that embedded form.
 enum CustomDevotionLaunch {
   static func allowsVariantChoice(_ devotionId: String) -> Bool {
     devotionId != "litanyOfLoreto"
@@ -9,6 +9,6 @@ enum CustomDevotionLaunch {
 
   static func variantId(devotionId: String, incoming: String?, saved: String?) -> String? {
     guard devotionId == "litanyOfLoreto" else { return incoming ?? saved }
-    return incoming == "afterRosary" ? "afterRosary" : "standard"
+    return "standard"
   }
 }

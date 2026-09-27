@@ -111,20 +111,32 @@ class ReadingTextStoreTest {
 
     @Test fun bundledCatalogPreservesAllLanguagesAndTheSevenFullBibleEditions() {
         val store = bundledStore()
-        assertEquals(listOf("ar", "arc", "en", "fr", "he", "it", "ru", "tl", "uk"),
+        assertEquals(listOf("ar", "arc", "el", "en", "fr", "he", "it", "ru", "tl", "uk"),
             store.editions.map { it.languageCode }.sorted())
         val citation = ReadingCitation("gospel", "Lk", "Luke 6:27–38")
         for (edition in store.editions) {
             assertTrue(edition.attribution.isNotBlank())
             assertTrue(edition.sourceURL.startsWith("https://"))
             // Arabic currently contains only the passages reviewed against the old print.
-            if (edition.languageCode in listOf("ar", "arc")) continue
+            if (edition.languageCode in listOf("ar", "el")) continue
             val passage = requireNotNull(store.passage(citation, edition.id))
             assertFalse(passage.includesWholeVerses)
             val verses = passage.verses
             assertEquals((27..38).toList(), verses.map { it.verse })
             assertTrue(verses.all { it.chapter == 6 && it.text.isNotBlank() })
         }
+    }
+
+    @Test fun greekOldTestamentKeepsItsNumberingAndDoesNotBorrowNewTestamentText() {
+        val store = bundledStore()
+        val edition = store.editions.single { it.id == "brenton-lxx" }
+        assertEquals("el", edition.languageCode)
+        assertEquals(edition.id, ReadingTextStore.effectiveEditionId(edition.id, "he", store.editions))
+        val citation = ReadingCitation("psalm", "Ps. 103", "Psalm 103:1–2; 103:3–4; 103:9–10; 103:11–12")
+        val passage = requireNotNull(store.passage(citation, edition.id))
+        assertEquals(listOf(1, 2, 3, 4, 9, 10, 11, 12), passage.verses.map { it.verse })
+        assertTrue(passage.verses.all { it.chapter == 102 && it.text.any { letter -> letter in '\u0370'..'\u03ff' } })
+        assertNull(store.passage(ReadingCitation("gospel", "Lk", "Luke 6:27–38"), edition.id))
     }
 
     @Test fun bundledSeptemberTenthPartialReadingsExposeCompleteVersesWithTheNotice() {
@@ -198,7 +210,7 @@ class ReadingTextStoreTest {
         val passage = requireNotNull(store.passage(citation, "douay-rheims-1899"))
         assertEquals(listOf(2, 3, 4, 5, 12, 22), passage.verses.map { it.verse })
         assertTrue(passage.verses.all { it.chapter == 32 && it.text.isNotBlank() })
-        assertEquals(listOf("ang-dating-biblia-1905", "crampon-1923", "douay-rheims-1899",
+        assertEquals(listOf("ang-dating-biblia-1905", "brenton-lxx", "crampon-1923", "douay-rheims-1899",
             "kulish-1905", "masoretic-delitzsch", "synodal-1876"),
             store.availableEditions(citation).map { it.id }.sorted())
     }

@@ -180,6 +180,9 @@ struct AboutView: View {
           Text("about.calendarData")
             .font(.footnote)
             .foregroundStyle(.secondary)
+          Text(String(localized: "about.hebrewSyriacCalendar",
+                      defaultValue: "Hebrew Syriac calendar — Urtotho (2026), supplied to Prosary.", bundle: UILanguage.bundle, locale: UILanguage.locale))
+            .font(.footnote).foregroundStyle(.secondary)
           Text("about.readingBookSources")
             .font(.footnote)
             .foregroundStyle(.secondary)

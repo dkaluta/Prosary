@@ -11,7 +11,7 @@ enum UiText {
     U_RTL_LIMIT, U_FALLBACK, U_SAVE_ERROR, U_LOAD_ERROR, U_EMPTY,
     U_SMALL, U_JOYFUL, U_SORROWFUL, U_GLORIOUS, U_LUMINOUS,
     U_COMPLETE_HINT, U_SETTINGS_HINT, U_READY, U_NO_TEXT, U_MIXED, U_FALLBACK_TEXT,
-    U_KEYBOARD_ARROWS, U_KEYBOARD_SPACE, U_ON, U_OFF, U_SKIP_FIFTH
+    U_KEYBOARD_ARROWS, U_KEYBOARD_SPACE, U_ON, U_OFF, U_SKIP_FIFTH, U_LITANY, U_COLLECT
 };
 static const char *const ui_codes[] = { "en", "he", "ar", "ru", "tl", "fr", "it", "uk" };
 static const char *const ui_names[] = {
@@ -64,7 +64,9 @@ static const char *const ui_text[][8] = {
     {"Press Space to advance", "התקדמות באמצעות מקש הרווח", "التقدم بمفتاح المسافة", "Переход вперёд клавишей пробела", "Pindutin ang Space para magpatuloy", "Avancer avec la barre d’espace", "Avanza con la barra spaziatrice", "Перехід уперед клавішею пробілу"},
     {"On", "פעיל", "مفعّل", "Вкл.", "Naka-on", "Activé", "Attivo", "Увімкнено"},
     {"Off", "כבוי", "معطّل", "Выкл.", "Naka-off", "Désactivé", "Disattivo", "Вимкнено"},
-    {"Skip the fifth decade", "דילוג על העשור החמישי", "تخطّي العقد الخامس", "Пропустить пятую декаду", "Laktawan ang ikalimang dekada", "Passer la cinquième dizaine", "Salta la quinta decina", "Пропустити п’яту декаду"}
+    {"Skip the fifth decade", "דילוג על העשור החמישי", "تخطّي العقد الخامس", "Пропустить пятую декаду", "Laktawan ang ikalimang dekada", "Passer la cinquième dizaine", "Salta la quinta decina", "Пропустити п’яту декаду"},
+    {"Pray the Litany of Loreto afterward", "אמירת התחנון למרים לאחר המחרוזת", "صلاة طلبات العذراء بعد المسبحة", "Лоретанская литания после Розария", "Litanya sa Mahal na Birheng Maria pagkatapos ng Rosaryo", "Litanies de Lorette après le Rosaire", "Litanie lauretane dopo il Rosario", "Лоретанська літанія після Розарію"},
+    {"Rosary collect", "מעתר המחרוזת", "صلاة ختام المسبحة", "Заключительная молитва Розария", "Pangwakas na panalangin ng Rosaryo", "Oraison du Rosaire", "Orazione del Rosario", "Заключна молитва Розарію"}
 };
 
 #endif

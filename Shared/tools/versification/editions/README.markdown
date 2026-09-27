@@ -1,6 +1,6 @@
 # Pinned edition reference inventories
 
-`inventories.json` records the exact numbered inventories imported by Prosary's nine
+`inventories.json` records the exact numbered inventories imported by Prosary's ten
 existing Bible editions. It contains book/chapter/verse identifiers, word counts and SHA-256
 digests only. No Bible wording is copied into this directory. Arabic additionally records
 the numeric source/Standard ranges of its existing reviewed units and their page evidence.
@@ -21,6 +21,7 @@ checks the actual assembled text digest before selecting existing source rows.
 | Kulish | 66 | 1,189 | 31,082 | 31,046 |
 | Old Jesuit Arabic | 7 | 24 sparse | 220 | 220 within 64 reviewed units |
 | Peshitta | 28 | 264 (including five sparse Isaiah chapters) | 7,912 | 7,791 |
+| Brenton Septuagint | 43 | 908 complete integer-label chapters | 22,377 | 22,186 |
 
 These counts describe the existing pinned imports, not a claim that every printed edition
 or every daily appointment is fully available. Whole source verses can overlap more than one
@@ -47,6 +48,16 @@ source/boundary reviews; only its exact nine already approved Isaiah verses bypa
 complete-chapter validation, with their full sparse inventory checked against the profile.
 No other Old Testament source is exposed. See the [Peshitta source review](../../../content/PESHITTA-SOURCES.markdown).
 
+The [Greek profile](../../reading_edition_reviews_greek.py) binds the exact public-domain
+eBible `grcbrent` VPL payload and the filtered corpus digest. It selects STEP's conditional
+Greek/Brenton variants against that source's actual labels and word counts, including its
+Psalm headings and Isaiah 8/9 boundary. It selects no Latin family and does not invent a
+blanket Psalm offset. The source adapter explicitly withholds 195 chapters containing
+unrepresentable labels, gaps or unsupported layouts; seven additional ambiguous Exodus and
+1 Kings endpoints have no accepted correspondence. Source additions and uncertain rules
+remain unavailable. The Old Testament SIL-English bridge is checked against both pinned
+inventories; it does not assume that the New Testament bridge is an identity.
+
 From the repository root:
 
 ```sh
@@ -54,6 +65,7 @@ uv run --script Shared/tools/build-edition-mappings.py
 uv run --script Shared/tools/build-edition-mappings.py --check
 uv run --script Shared/tools/build-reading-texts.py --sync
 uv run --script Shared/tools/test-reading-edition-mapping.py
+uv run --script Shared/tools/test-greek-readings.py
 ```
 
 Regeneration uses existing hash-checked imports, without downloading new editions. `--fetch`

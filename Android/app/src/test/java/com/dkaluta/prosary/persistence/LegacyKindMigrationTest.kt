@@ -111,4 +111,17 @@ class LegacyKindMigrationTest {
             fresh.resolvedKind, legacy.resolvedKind,
         )
     }
+    @Test fun rosaryCollectAndLitanyPersistIndependentlyWithCompatibleDefaults() {
+        val old = PresetEntity(id = "legacy", name = "Legacy", isDefault = false, languageCode = "en")
+        assertEquals(false, old.toPrayer().rosary.includeLitanyOfLoreto)
+        assertEquals(true, old.toPrayer().rosary.includeRosaryCollect)
+        for (litany in listOf(false, true)) for (collect in listOf(false, true)) {
+            val row = old.copy(includeLitanyOfLoreto = litany, includeRosaryCollect = collect)
+            val prayer = row.toPrayer()
+            assertEquals(litany || collect, prayer.rosary.effectiveRosaryCollect)
+            assertEquals(litany, prayer.rosary.includeLitanyOfLoreto)
+            assertEquals(collect, prayer.rosary.includeRosaryCollect)
+        }
+    }
+
 }

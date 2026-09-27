@@ -94,6 +94,8 @@ public sealed class SchemaMigrationTests : IDisposable
         Assert.Empty(prayer.CustomOptions);
         Assert.Equal(AppSettings.AramaicSignOfCrossFormA, prayer.Rosary.AramaicSignOfCrossForm);
         Assert.False(prayer.Rosary.IncludeOpeningFatimaPrayer);
+        Assert.False(prayer.Rosary.IncludeLitanyOfLoreto);
+        Assert.True(prayer.Rosary.IncludeRosaryCollect);
     }
 
     [Fact]

@@ -401,22 +401,15 @@ public partial class RosaryViewModel : ObservableObject, IPrayerStepFlowViewMode
         ShowBottomBeads = layout.ShowBottomBeads;
     }
 
-    public Func<Task<bool>>? OfferLitany { get; set; }
     IRelayCommand IPrayerStepFlowViewModel.NextCommand => NextCommand;
 
-    internal static CustomDevotionFlowParams LitanyContinuation(string languageCode) =>
-        new(null, "litanyOfLoreto", languageCode, "afterRosary");
-
     [RelayCommand]
-    private async Task Next()
+    private void Next()
     {
         if (IsLastStep)
         {
             ClearProgress();
-            var prayLitany = PrayerPackStore.Definition("litanyOfLoreto") is not null
-                && OfferLitany is not null && await OfferLitany();
-            if (prayLitany) Navigation.Replace<Views.CustomDevotionFlowPage>(LitanyContinuation(_languageCode));
-            else Navigation.GoBack();
+            Navigation.GoBack();
             return;
         }
 

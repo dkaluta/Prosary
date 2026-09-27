@@ -290,9 +290,9 @@ internal fun FormSection(title: String?, content: @Composable ColumnScope.() -> 
 }
 
 @Composable
-internal fun SwitchRow(label: String, checked: Boolean, switchModifier: Modifier = Modifier, onCheckedChange: (Boolean) -> Unit) {
+internal fun SwitchRow(label: String, checked: Boolean, switchModifier: Modifier = Modifier, enabled: Boolean = true, onCheckedChange: (Boolean) -> Unit) {
     Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.fillMaxWidth()) {
         Text(label, modifier = Modifier.weight(1f))
-        Switch(checked = checked, onCheckedChange = onCheckedChange, modifier = switchModifier)
+        Switch(checked = checked, onCheckedChange = onCheckedChange, modifier = switchModifier, enabled = enabled)
     }
 }

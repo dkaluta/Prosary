@@ -18,6 +18,7 @@ int main(void)
     app_state_defaults(&saved);
     assert(saved.keyboard_arrow_navigation_enabled && saved.keyboard_space_advance_enabled);
     assert(!saved.skip_fifth_decade);
+    assert(!saved.include_litany_of_loreto && saved.include_rosary_collect);
     assert(app_state_load(&saved, path) == 0);
     saved.step = 34;
     saved.group = 2;
@@ -40,10 +41,13 @@ int main(void)
     saved.keyboard_arrow_navigation_enabled = 0;
     saved.keyboard_space_advance_enabled = 0;
     saved.skip_fifth_decade = 1;
+    saved.include_litany_of_loreto = 1;
+    saved.include_rosary_collect = 0;
     assert(app_state_save(&saved, path) == 0);
     assert(app_state_load(&loaded, path) == 1 && loaded.completed && loaded.step == 75);
     assert(!loaded.keyboard_arrow_navigation_enabled && !loaded.keyboard_space_advance_enabled);
     assert(loaded.skip_fifth_decade);
+    assert(loaded.include_litany_of_loreto && !loaded.include_rosary_collect);
     original = loaded;
 
     file = fopen(path, "a"); assert(file);
@@ -59,11 +63,12 @@ int main(void)
     fputs("prosary-terminal-state 1\ndevotion rosary\ndefaultLanguageCode en\n"
           "interfaceLanguageCode en\nstep 5\ngroup 0\nvariant 0\nday 0\ncompleted 0\n"
           "year 2026\nmonth 9\ndayOfMonth 23\n", file); fclose(file);
-    assert(app_state_load(&loaded, path) == 1 && loaded.step == 5);
+    assert(app_state_load(&loaded, path) == 1 && loaded.step == 0);
     assert(loaded.keyboard_arrow_navigation_enabled && loaded.keyboard_space_advance_enabled);
+    assert(!loaded.include_litany_of_loreto && loaded.include_rosary_collect);
     file = fopen(path, "a"); assert(file);
     fputs("keyboardSpaceAdvanceEnabled 2\n", file); fclose(file);
-    assert(app_state_load(&loaded, path) == -1 && loaded.step == 5);
+    assert(app_state_load(&loaded, path) == -1 && loaded.step == 0);
     saved.step = (size_t)-1;
     assert(app_state_save(&saved, path) == -1);
     saved.step = 1;

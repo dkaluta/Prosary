@@ -157,9 +157,9 @@ class RosaryEngineTest {
         // 1 sign of cross + 1 creed + 1 OurFather + 3 HailMarys + 1 GloryBe = 7 opening
         // Per decade: 1 mystery + 1 OurFather + 10 HailMarys + 1 GloryBe + 1 Fatima = 14
         // 5 decades = 70
-        // 1 antiphon + 1 closing cross = 2
-        // Total = 7 + 70 + 2 = 79
-        assertEquals(79, steps.size)
+        // 1 antiphon + 1 distinct collect + 1 closing cross = 3
+        // Total = 7 + 70 + 3 = 80
+        assertEquals(80, steps.size)
     }
 
     @Test
@@ -636,7 +636,7 @@ class RosaryEngineTest {
     @Test
     fun presenterModeOffReproducesExistingStepCount() {
         val steps = engine().buildSteps(prayer(presenterMode = false))
-        assertEquals(79, steps.size)
+        assertEquals(80, steps.size)
     }
 
     @Test

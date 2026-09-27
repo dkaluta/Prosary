@@ -117,6 +117,8 @@ struct CustomDevotionStep: Decodable {
     /// An option-selected Marian antiphon (the Rosary) — `optionKey` names a choice option
     /// whose cases are antiphon ids plus "seasonal" and "none".
     case marianAntiphon
+    /// Built-in Rosary only: the Litany body, followed by the Rosary's separate collect.
+    case rosaryLitany
   }
 
   private enum CodingKeys: String, CodingKey {

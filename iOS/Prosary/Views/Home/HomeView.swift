@@ -556,6 +556,11 @@ struct HomeView: View {
             }
           }
         }
+        if let feast = todayFeast {
+          SaintDescriptionsView(feast: feast, calendarID: TodayInfoStore.selectedCalendarId,
+                                language: todayLanguageCode)
+            .id("\(dateSelection.day)|\(feastCalendarId)|\(todayLanguageCode)")
+        }
         if !todayReadings.isEmpty {
           HStack(alignment: .firstTextBaseline, spacing: 8) {
             Image(systemName: "book.closed").foregroundStyle(Color.appAccent)

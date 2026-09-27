@@ -115,6 +115,7 @@ struct RemindersOnlyEditorView: View {
           switch option.kind {
           case .toggle:
             Toggle(option.localizedName, isOn: toggleBinding(for: option))
+              .disabled(isRequiredRosaryCollect(option))
           case .choice:
             Picker(option.localizedName, selection: choiceBinding(for: option)) {
               ForEach(option.cases ?? [], id: \.id) { optionCase in
@@ -133,9 +134,14 @@ struct RemindersOnlyEditorView: View {
 
   // Bindings read through to the option's declared default so the rows show the effective
   // value even before the user has ever touched them; writes store an explicit override.
+  private func isRequiredRosaryCollect(_ option: CustomDevotionOption) -> Bool {
+    prayer.customDevotionId == "rosary" && option.key == "rosaryCollect"
+      && prayer.customOptions["litanyOfLoreto"] == "true"
+  }
+
   private func toggleBinding(for option: CustomDevotionOption) -> Binding<Bool> {
     Binding(
-      get: { (prayer.customOptions[option.key] ?? option.defaultValue) == "true" },
+      get: { isRequiredRosaryCollect(option) || (prayer.customOptions[option.key] ?? option.defaultValue) == "true" },
       set: { prayer.customOptions[option.key] = $0 ? "true" : "false" })
   }
 

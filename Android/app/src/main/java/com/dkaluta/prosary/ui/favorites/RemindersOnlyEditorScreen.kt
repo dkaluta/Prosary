@@ -141,14 +141,15 @@ fun RemindersOnlyEditorScreen(prayerId: String, onDone: () -> Unit) {
                         // Rows read through to the option's declared default so they show the
                         // effective value even before the user has ever touched them; changes
                         // store an explicit override.
-                        val value = editableValues[option.key] ?: option.defaultValue
+                        val collectRequired = isRosary && option.key == "rosaryCollect" && editableValues["litanyOfLoreto"] == "true"
+                        val value = if (collectRequired) "true" else editableValues[option.key] ?: option.defaultValue
                         fun set(newValue: String) {
                             setOption(option.key, newValue)
                         }
                         when (option.kind) {
                             CustomDevotionOption.Kind.Toggle ->
                                 SwitchRow(option.localizedName, value == "true",
-                                    switchModifier = Modifier.testTag("customOption:${option.key}")) {
+                                    switchModifier = Modifier.testTag("customOption:${option.key}"), enabled = !collectRequired) {
                                     set(if (it) "true" else "false")
                                 }
                             CustomDevotionOption.Kind.Choice ->

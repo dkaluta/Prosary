@@ -287,8 +287,10 @@ public class TodayInfoStoreTests
         Assert.NotNull(apostle);
         Assert.Equal("St. Matthew", hermit.Title);
         Assert.Equal("St. Matthew", apostle.Title);
-        Assert.Equal("St. Matthew", hermit.LocalizedTitle("he"));
+        Assert.Equal("חג מתי הקדוש המוודה, אב המנזר, דרגה ג׳", hermit.LocalizedTitle("he"));
         Assert.Equal("חג מתי השליח והמבשר", apostle.LocalizedTitle("he"));
+        Assert.Equal("Saint Matthew the Hermit, Confessor and Abbot", Assert.Single(hermit.Observances!).Identity);
+        Assert.Equal("Saint Matthew, Apostle", Assert.Single(apostle.Observances!).Identity);
         Assert.NotEqual(hermit.LocalizedTitle("ar"), apostle.LocalizedTitle("ar"));
     }
 

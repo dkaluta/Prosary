@@ -9,8 +9,13 @@ namespace Prosary.Services;
 public sealed record FeastDay(
     string Title,
     string Rank,
-    Dictionary<string, string>? TitleByLanguage = null)
+    Dictionary<string, string>? TitleByLanguage = null,
+    IReadOnlyList<FeastObservance>? Observances = null)
 {
+    public IReadOnlyList<SaintDescription> LocalizedDescriptions(string language) =>
+        (Observances ?? []).Select(observance => observance.LocalizedDescription(language))
+            .OfType<SaintDescription>().ToList();
+
     public string LocalizedTitle(string language) => HebrewDisplayText.WithoutMarks(
         UiLanguageCatalog.Localized(TitleByLanguage, language)
         ?? Title);
@@ -42,6 +47,36 @@ public sealed record FeastDay(
         var key = $"home_today_rank_{Rank.ToLowerInvariant().Replace(' ', '_')}";
         return Loc.Tr(key, fallback, displayLanguage);
     }
+}
+
+/// <summary>Descriptions are optional sourced prose, never a foreign-language fallback.</summary>
+public sealed record FeastObservance(
+    string Title,
+    string Identity,
+    Dictionary<string, string>? TitleByLanguage = null,
+    Dictionary<string, string>? DescriptionByLanguage = null,
+    Dictionary<string, string>? DescriptionSourceByLanguage = null,
+    Dictionary<string, string>? DescriptionCreditByLanguage = null)
+{
+    public SaintDescription? LocalizedDescription(string language)
+    {
+        var text = UiLanguageCatalog.Localized(DescriptionByLanguage, language);
+        if (string.IsNullOrWhiteSpace(text)) return null;
+        var source = UiLanguageCatalog.Localized(DescriptionSourceByLanguage, language);
+        var sourceUri = Uri.TryCreate(source, UriKind.Absolute, out var uri)
+            && (uri.Scheme == Uri.UriSchemeHttps || uri.Scheme == Uri.UriSchemeHttp) ? uri : null;
+        return new SaintDescription(Identity,
+            HebrewDisplayText.WithoutMarks(UiLanguageCatalog.Localized(TitleByLanguage, language) ?? Title),
+            text, UiLanguageCatalog.Localized(DescriptionCreditByLanguage, language) ?? string.Empty,
+            sourceUri, Loc.Tr("home_today_saint_source", "Text source", language));
+    }
+}
+
+public sealed record SaintDescription(string Identity, string Title, string Text, string Credit, Uri? SourceUri,
+    string SourceLabel)
+{
+    public bool HasCredit => !string.IsNullOrWhiteSpace(Credit);
+    public bool HasSource => SourceUri is not null;
 }
 
 public sealed record PopeIntention(

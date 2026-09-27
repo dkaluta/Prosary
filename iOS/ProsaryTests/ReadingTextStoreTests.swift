@@ -200,10 +200,11 @@ final class ReadingTextStoreTests: XCTestCase {
     XCTAssertNotNil(Bundle.main.url(forResource: "readings-texts", withExtension: "json"))
     let store = ReadingTextStore()
     let editions = await store.editions()
-    XCTAssertEqual(editions.map(\.languageCode).sorted(), ["ar", "arc", "en", "fr", "he", "it", "ru", "tl", "uk"])
-    // The reviewed Arabic source is a limited corpus; keep complete Luke 6
+    XCTAssertEqual(editions.map(\.languageCode).sorted(), ["ar", "arc", "el", "en", "fr", "he", "it", "ru", "tl", "uk"])
+    // Arabic and Aramaic have limited reviewed coverage; Greek is Old Testament only.
+    // Keep complete Luke 6
     // coverage assertions for each of the seven full Bible editions.
-    for edition in editions where !["ar", "arc"].contains(edition.languageCode) {
+    for edition in editions where !["ar", "arc", "el"].contains(edition.languageCode) {
       let daily = await store.passage(citation: "Luke 6:27–38", isTorah: false, editionID: edition.id)
       XCTAssertEqual(daily?.verses.count, 12, edition.id)
       XCTAssertEqual(daily?.verses.first?.verse, 27, edition.id)
@@ -219,6 +220,21 @@ final class ReadingTextStoreTests: XCTestCase {
       verse.text.unicodeScalars.contains { (0x0591...0x05AF).contains($0.value) }
     }, "The native reader must retain the source cantillation")
     XCTAssertNotNil(torah.edition.sourceLink)
+  }
+
+  func testBundledGreekEditionKeepsSeptuagintChaptersAndOmitsNewTestament() async throws {
+    let store = ReadingTextStore()
+    let editions = await store.editions()
+    let edition = try XCTUnwrap(editions.first { $0.id == "brenton-lxx" })
+    XCTAssertEqual(edition.languageCode, "el")
+    let result = await store.passage(citation: "Psalm 103:1–2; 103:3–4; 103:9–10; 103:11–12",
+                                     isTorah: false, editionID: edition.id)
+    let passage = try XCTUnwrap(result)
+    XCTAssertTrue(passage.verses.allSatisfy { $0.chapter == 102 })
+    XCTAssertTrue(passage.verses.first?.text.unicodeScalars.contains { (0x0370...0x03FF).contains($0.value) } == true)
+    XCTAssertEqual(ScriptureChapterHeading(chapter: 102, edition: edition, script: "Grek").text, "Κεφάλαιο 102")
+    let gospel = await store.passage(citation: "Luke 6:27–38", isTorah: false, editionID: edition.id)
+    XCTAssertNil(gospel)
   }
 
   func testBundledPeshittaKeepsSourceSyriacAndHebrewProjectionTogether() async throws {
