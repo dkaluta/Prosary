@@ -11,6 +11,7 @@ const require = createRequire(join(root, "Shared/website/package.json"));
 const sharp = require("sharp");
 const brand = join(root, "Shared/Branding");
 const palette = JSON.parse(await readFile(join(brand, "app-colors.json"), "utf8"));
+const originalAppleIcon = JSON.parse(await readFile(join(brand, "apple-original-icon.json"), "utf8"));
 const glyph = await readFile(join(brand, "cross-template.png"));
 const glyphInfo = await sharp(glyph).metadata();
 const androidTemplate = await readFile(join(brand, "android-cross-template.png"));
@@ -18,10 +19,6 @@ const output = new Map();
 const json = value => Buffer.from(JSON.stringify(value, null, 2) + "\n");
 const rgb = hex => [1, 3, 5].map(start => parseInt(hex.slice(start, start + 2), 16));
 const composerColor = hex => "srgb:" + [...rgb(hex).map(n => (n / 255).toFixed(6)), "1.000000"].join(",");
-const fills = hex => [
-  { value: { solid: composerColor(hex) } },
-  { appearance: "dark", value: { solid: composerColor(hex) } },
-];
 
 async function tintedGlyph(color) {
   return sharp({ create: { width: glyphInfo.width, height: glyphInfo.height, channels: 4, background: color } })
@@ -64,14 +61,23 @@ for (const color of palette.colors) {
   const packageName = color.id === palette.default ? "Prosary" : `Prosary${name}`;
   const packagePath = `iOS/Prosary/${packageName}.icon`;
   output.set(`${packagePath}/Assets/Path 2.png`, glyph);
-  output.set(`${packagePath}/icon.json`, json({
-    "fill-specializations": fills(color.background),
-    groups: [{ layers: [{
-      "fill-specializations": fills(color.cross), "image-name": "Path 2.png", name: "Path 2",
-      position: { scale: 1.1, "translation-in-points": [0, 0] },
-    }], shadow: { kind: "neutral", opacity: 0.5 }, translucency: { enabled: true, value: 0.5 } }],
-    "supported-platforms": { circles: ["watchOS"], squares: "shared" },
-  }));
+  const appleIcon = structuredClone(originalAppleIcon);
+  // System Dark and the original automatic glyph fill reproduce the original dark icon.
+  appleIcon["fill-specializations"] = [
+    { value: { solid: composerColor(color.background) } },
+    { appearance: "dark", value: "system-dark" },
+  ];
+  delete appleIcon.fill;
+  if (color.id === "white") {
+    const layer = appleIcon.groups[0].layers[0];
+    delete layer["image-name"];
+    layer["image-name-specializations"] = [
+      { value: "Path 2.png" },
+      { appearance: "light", value: "Gold.png" },
+    ];
+    output.set(`${packagePath}/Assets/Gold.png`, foreground);
+  }
+  output.set(`${packagePath}/icon.json`, json(appleIcon));
   const previewPath = `iOS/Prosary/Assets.xcassets/AppIcon${name}.imageset`;
   const previewMask = Buffer.from('<svg width="1024" height="1024"><rect width="1024" height="1024" rx="236" fill="white"/></svg>');
   output.set(`${previewPath}/icon.png`, await sharp(icon).composite([{ input: previewMask, blend: "dest-in" }]).png().toBuffer());

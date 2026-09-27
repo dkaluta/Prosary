@@ -237,9 +237,11 @@ hidden on older Android versions, which use that palette directly. Launcher icon
 remains independent. Stable launcher aliases point to an always-enabled `MainActivity` so
 existing intents, widgets and notifications remain usable.
 
-Apple icons are seven native Icon Composer `.icon` documents. Explicit matching Default/Dark
-fill specializations at both background and cross layers keep dark-mode artwork unchanged.
-Never combine those specializations with a sibling `fill`, which overrides them. iPhone/iPad
+Apple icons are seven native Icon Composer `.icon` documents. Default background fills
+apply the chosen color; Dark uses `system-dark` and the original automatic cross fill.
+White specializes the cross image only for Light, preserving the original dark artwork.
+Never combine a property's specializations with the same unspecialized property, which
+overrides them. iPhone/iPad
 use native alternate-icon support; Mac updates its Dock icon. visionOS retains the installed
 blue icon while applying the selected accent. Windows applies the accent and window icon;
 the packaged Start/store identity remains blue. Native high-contrast treatments take precedence.

@@ -757,7 +757,7 @@
           "type": "string",
           "default": "blue",
           "values": ["blue", "green", "red", "purple", "rose", "white", "gold"],
-          "description": "App icon and manual accent palette. Blue honors Mary and is also the fallback for unknown values. Canonical colors live in Shared/Branding/app-colors.json. White has a gold cross and readable gold controls. Icon artwork stays identical in light/dark. Apple uses Icon Composer alternate icons on supported devices and the Mac Dock; Windows changes window icons while package/Start branding remains blue. Android launcher icons follow this choice independently of Material You. Semantic calendar/rank colors remain independent."
+          "description": "App icon and manual accent palette. Blue honors Mary and is also the fallback for unknown values. Canonical colors live in Shared/Branding/app-colors.json. White has a gold cross and readable gold controls. Every Apple color choice preserves the original dark icon; its light appearance uses the selected palette. Apple uses Icon Composer alternate icons on supported devices and the Mac Dock; Windows changes window icons while package/Start branding remains blue. Android launcher icons follow this choice independently of Material You. Semantic calendar/rank colors remain independent."
         },
         "useSystemColors": {
           "type": "boolean",
