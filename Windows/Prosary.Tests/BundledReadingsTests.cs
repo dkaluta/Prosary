@@ -79,15 +79,22 @@ public class BundledReadingsTests
     public void SeptemberSixteenthPsalmOpensWithTheSelectedEditionsNumbering()
     {
         const string citation = "Psalm 33:2–3; 33:4–5; 33:12; 33:22";
-        var passage = Store.LoadPassage("daily", citation, "douay-rheims-1899");
-        Assert.NotNull(passage);
-        Assert.Equal(new[] { 2, 3, 4, 5, 12, 22 }, passage.Verses.Select(verse => verse.Verse));
-        Assert.All(passage.Verses, verse =>
+        foreach (var (editionId, chapter) in new[]
         {
-            Assert.Equal(32, verse.Chapter);
-            Assert.False(string.IsNullOrWhiteSpace(verse.Text));
-        });
-        Assert.Equal(new[] { "ang-dating-biblia-1905", "crampon-1923", "douay-rheims-1899",
+            ("douay-rheims-1899", 32), ("brenton-lxx", 32), ("masoretic-delitzsch", 33),
+        })
+        {
+            var passage = Store.LoadPassage("daily", citation, editionId);
+            Assert.NotNull(passage);
+            Assert.Equal(new[] { 2, 3, 4, 5, 12, 22 }, passage.Verses.Select(verse => verse.Verse));
+            Assert.All(passage.Verses, verse =>
+            {
+                Assert.Equal(chapter, verse.Chapter);
+                Assert.False(string.IsNullOrWhiteSpace(verse.Text));
+            });
+        }
+        Assert.StartsWith("Ἐξομολογεῖσθε τῷ Κυρίῳ", Store.LoadPassage("daily", citation, "brenton-lxx")!.Verses[0].Text);
+        Assert.Equal(new[] { "ang-dating-biblia-1905", "brenton-lxx", "crampon-1923", "douay-rheims-1899",
             "kulish-1905", "masoretic-delitzsch", "synodal-1876" },
             Store.AvailableEditions("daily", citation).Select(edition => edition.Id).Order());
     }
