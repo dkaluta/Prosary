@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "purpose": "Source-based separate second pass; not approval",
+  "purpose": "Completed local primary-main-text comparison; not whole-book approval",
   "primaryPage": 514,
   "additionalScan": {
     "spread": 264,
@@ -8,7 +8,7 @@
     "primaryPage": 514,
     "sha256": "b72eaf5d2d858fabb7c3438ac0436ccd64c394a7dd2fad609efabe628d5534c7"
   },
-  "sourceMatch": "Extra264 right matches primaryB514,41:12–42:2. Fullmainpairedtext, separate מוסרבשת heading and14א–16 witness compared. Primary14ב remains distinct. Apparatus excluded. One firstword41:21 still unresolved; no page approval.",
+  "sourceMatch": "Extra264 right matches primaryB514,41:12–42:2. Fullmainpairedtext, separate מוסרבשת heading and14א–16 witness compared. Primary14ב remains distinct. Apparatus excluded. Both queriedwords resolved by scoped independent comparisons; no uncertainword promoted.",
   "comparedReferences": [
     "41:12",
     "41:13",
@@ -123,19 +123,28 @@
     {
       "path": "/private/tmp/prosary-sirach-extra/query-41-21-primarypoints.png",
       "sha256": "13120c1cb22bd54e05b5ac2c26321008e67b9d4c2aa684f0b159a99271ee6420"
-    }
-  ],
-  "unresolvedFindings": [
+    },
     {
-      "reference": "41:18",
-      "finding": "Point pattern of משכחת requires scoped peer check, especiallyshin/kaf; draftpoints not independentlycertified."
+      "path": "/private/tmp/prosary-sirach-extra/query-41-18-forget-tall.png",
+      "sha256": "84821292bc1bc23cd30854297a4a083640e95d2ceb2019bb7e02d03d141643ef"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-extra/query-41-18-fullcontext.png",
+      "sha256": "afc4220135fcee64d6d18538928909d8f036455368a002b175b153d9727270cf"
     }
   ],
-  "approved": false,
+  "unresolvedFindings": [],
+  "approved": true,
   "resolvedFindings": [
     {
       "reference": "41:21",
       "resolution": "41:21 initial word resolved from extra/primary crop comparison and independent reviewer: literal מהש]בית, secondletterheh(not preliminaryhet), standaloneclosingbracketaftershin,bet,yod,finaltav,noextra vav. Extra scan separately supports memtsere,hehpatah,shinsheva,bethiriq: מֵהַשְׁ]בִית. Preserve unmatchedbracket; no normalization to familiar מחשבות."
+    },
+    {
+      "reference": "41:18",
+      "resolution": "B51441:18 full word/context resolves literal four letters משכת, not draft fivelettersמשכחת. Both owner and independent reviewer identify memhiriq/shinsheva; no detached shindagesh or printed kaf/tavvowel. Preserve [מִשְׁכת [אָלָה without adding a missinghet or expected vowels. Alllocalword/pointqueries nowclosed.",
+      "before": "מֵאָדוֹן וּגְבֶרֶת עַל־שָׁקֶר מֵעֵדָה וָעָם עַל־פֶּשַׁע׃ [מֵחָבֵר] וָרֵעַ עַל־מַעַל וּמִמְּקוֹם תָּגוּר עַל־זָר׃ [מִשִּׁכְחַת [אָלָה וּבְרִית מִמַּטֵּה אַצִּיל אֶל־לֶחֶם׃ [מִמְּנוֹעַ מַתַּת] שְׁאֵלָה מֵהָשֵׁב אַפֵּי רֵעֶךָ׃",
+      "after": "מֵאָדוֹן וּגְבֶרֶת עַל־שָׁקֶר מֵעֵדָה וָעָם עַל־פֶּשַׁע׃ [מֵחָבֵר] וָרֵעַ עַל־מַעַל וּמִמְּקוֹם תָּגוּר עַל־זָר׃ [מִשְׁכת [אָלָה וּבְרִית מִמַּטֵּה אַצִּיל אֶל־לֶחֶם׃ [מִמְּנוֹעַ מַתַּת] שְׁאֵלָה מֵהָשֵׁב אַפֵּי רֵעֶךָ׃"
     }
   ],
   "lateSourceCorrection": {
@@ -143,5 +152,60 @@
     "before": "מֵהֲשָׁבַת מַ[חֲ]לֹקֶ[ת וּ]מָנָה [מִשְּׁ]אוֹל שָׁלוֹם מֵהַחֲרִישׁ׃ מֵהַבִּיט [אֶל־]אִשָּׁה [זָרָה] וּמֵהִתְקָרֵב אֶל־נַ[עֲ]רָה׃ מֵאוֹהֵב עַל־[דִּבְ]רֵי חֶרְפָּה וּמֵאַחֲרֵי מַ[תַּת] אֶל־נָאוֹ[ץ]׃",
     "after": "מֵהַשְׁ]בִית מַ[חֲ]לֹקֶ[ת וּ]מָנָה [מִשְּׁ]אוֹל שָׁלוֹם מֵהַחֲרִישׁ׃ מֵהַבִּיט [אֶל־]אִשָּׁה [זָרָה] וּמֵהִתְקָרֵב אֶל־נַ[עֲ]רָה׃ מֵאוֹהֵב עַל־[דִּבְ]רֵי חֶרְפָּה וּמֵאַחֲרֵי מַ[תַּת] אֶל־נָאוֹ[ץ]׃",
     "comparison": "41:21 initial word resolved from extra/primary crop comparison and independent reviewer: literal מהש]בית, secondletterheh(not preliminaryhet), standaloneclosingbracketaftershin,bet,yod,finaltav,noextra vav. Extra scan separately supports memtsere,hehpatah,shinsheva,bethiriq: מֵהַשְׁ]בִית. Preserve unmatchedbracket; no normalization to familiar מחשבות."
+  },
+  "comparedBlocks": [
+    {
+      "id": "sir-41-heading",
+      "text": "מוּסַר בֹּשֶׁת",
+      "textSHA256": "7e389f41a99a9ab4b36071916e7d0990c7f4b2064b2270bf89699cd41be29472"
+    },
+    {
+      "id": "sir-41-14a-16",
+      "text": "מוּסַר בֹּשֶׁת שִׁמְעוּ בָנִים וְהִכָּלְמוּ עַל־מִשְׁפָּטִי׃ לֹא כָל־בֹּשֶׁת נָאָה לִשְׁמֹר וְלֹא כָל־הִכָּלֵם נִבְחָר׃",
+      "textSHA256": "6aaae67b04172afcdf47c8ec8aaa26f9b6c7f1b8d0eb64532e3437e96fe1e1f9"
+    }
+  ],
+  "approval": {
+    "scope": "Physical page514 main text only.",
+    "method": "Full separate comparison with scoped independent checks for questioned glyphs as recorded in source report.",
+    "sourceNoteIds": [],
+    "reviewedText": [
+      {
+        "reference": "41:12",
+        "textSHA256": "f0558a55cc76028d7a767d85ad0806f5ace7f6e2ba782ecc4a8a9c89868ef657"
+      },
+      {
+        "reference": "41:13",
+        "textSHA256": "87d74752c80bebe5a9dec1503d65c8a240f9571ec9a844c04e1e024875e2b3d9"
+      },
+      {
+        "reference": "41:14",
+        "textSHA256": "bab0b440e95281f8fe159fc424a7e6599797112fe00a69242ee4d3e2354cf751"
+      },
+      {
+        "reference": "41:15",
+        "textSHA256": "89667abb82c14ad7c81c56086b91acd582d5f4959126acba21743144139a2e43"
+      },
+      {
+        "reference": "41:17",
+        "textSHA256": "b98a01e83a0c2ad8ebfcd2c8072f8f5815c35e47e7d2028e379b16e1c6a06def"
+      },
+      {
+        "reference": "41:18",
+        "textSHA256": "86e53f7b5f99a511ab8cd72addfe7427c5f74db47fabbbe79b771386e510939a"
+      },
+      {
+        "reference": "41:21",
+        "textSHA256": "7057d863c695e6522cb3eb51f9cf50c324f523bde096b004d12232dba4e32a56"
+      },
+      {
+        "reference": "42:1",
+        "textSHA256": "3c7dbb1f1bd20411be6fbb4160b335a14180cf2e81923e34cb6383b896cf460a"
+      },
+      {
+        "reference": "42:2",
+        "textSHA256": "269eb1c6ea978287db9f653dbfb01b0cae58b79602d7684a95bb79463ccab895"
+      }
+    ]
   }
 }

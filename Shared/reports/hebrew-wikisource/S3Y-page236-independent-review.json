@@ -1,0 +1,300 @@
+{
+  "scope": "Independent read-only comparison of S3Y A2 PDF page 236, printed units 48–71 and the following unnumbered narrative.",
+  "auditedDraftSHA256": "c66ff819b2c64d181d26e8ff8d3872d71e86bc121dcf58991f434227640ac189",
+  "sourcePDFSHA256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+  "method": "Direct visual comparison of every word, printed point and punctuation in the named page against the audited draft. OCR line images were inspected as source pixels only; OCR output and familiar wording were not substituted.",
+  "clearWordOrPunctuationCorrections": [],
+  "unitLedger": [
+    {
+      "unit": "1:48",
+      "wordsAndBoundary": "Compared; no clear correction found",
+      "points": "No additional source-visible discrepancy found"
+    },
+    {
+      "unit": "1:49",
+      "wordsAndBoundary": "Compared; no clear correction found",
+      "points": "No additional source-visible discrepancy found"
+    },
+    {
+      "unit": "1:50",
+      "wordsAndBoundary": "Compared; no clear correction found",
+      "points": "No additional source-visible discrepancy found"
+    },
+    {
+      "unit": "1:51",
+      "wordsAndBoundary": "Compared; no clear correction found",
+      "points": "No additional source-visible discrepancy found"
+    },
+    {
+      "unit": "1:52",
+      "wordsAndBoundary": "Compared; no clear correction found",
+      "points": "Queried separately"
+    },
+    {
+      "unit": "1:53",
+      "wordsAndBoundary": "Compared; no clear correction found",
+      "points": "No additional source-visible discrepancy found"
+    },
+    {
+      "unit": "1:54",
+      "wordsAndBoundary": "Compared; no clear correction found",
+      "points": "No additional source-visible discrepancy found"
+    },
+    {
+      "unit": "1:55",
+      "wordsAndBoundary": "Compared; no clear correction found",
+      "points": "No additional source-visible discrepancy found"
+    },
+    {
+      "unit": "1:56",
+      "wordsAndBoundary": "Compared; no clear correction found",
+      "points": "No additional source-visible discrepancy found"
+    },
+    {
+      "unit": "1:57",
+      "wordsAndBoundary": "Compared; no clear correction found",
+      "points": "No additional source-visible discrepancy found"
+    },
+    {
+      "unit": "1:58",
+      "wordsAndBoundary": "Compared; no clear correction found",
+      "points": "No additional source-visible discrepancy found"
+    },
+    {
+      "unit": "1:59",
+      "wordsAndBoundary": "Compared; no clear correction found",
+      "points": "No additional source-visible discrepancy found"
+    },
+    {
+      "unit": "1:60",
+      "wordsAndBoundary": "Compared; no clear correction found",
+      "points": "Queried separately"
+    },
+    {
+      "unit": "1:61",
+      "wordsAndBoundary": "Compared; no clear correction found",
+      "points": "No additional source-visible discrepancy found"
+    },
+    {
+      "unit": "1:62",
+      "wordsAndBoundary": "Compared; no clear correction found",
+      "points": "No additional source-visible discrepancy found"
+    },
+    {
+      "unit": "1:63",
+      "wordsAndBoundary": "Compared; no clear correction found",
+      "points": "No additional source-visible discrepancy found"
+    },
+    {
+      "unit": "1:64",
+      "wordsAndBoundary": "Compared; no clear correction found",
+      "points": "No additional source-visible discrepancy found"
+    },
+    {
+      "unit": "1:65",
+      "wordsAndBoundary": "Compared; no clear correction found",
+      "points": "No additional source-visible discrepancy found"
+    },
+    {
+      "unit": "1:66",
+      "wordsAndBoundary": "Compared; no clear correction found",
+      "points": "No additional source-visible discrepancy found"
+    },
+    {
+      "unit": "1:67",
+      "wordsAndBoundary": "Compared; no clear correction found",
+      "points": "No additional source-visible discrepancy found"
+    },
+    {
+      "unit": "1:68",
+      "wordsAndBoundary": "Compared; no clear correction found",
+      "points": "Queried separately"
+    },
+    {
+      "unit": "1:69",
+      "wordsAndBoundary": "Compared; no clear correction found",
+      "points": "No additional source-visible discrepancy found"
+    },
+    {
+      "unit": "1:70",
+      "wordsAndBoundary": "Compared; no clear correction found",
+      "points": "No additional source-visible discrepancy found"
+    },
+    {
+      "unit": "1:71",
+      "wordsAndBoundary": "Compared; no clear correction found",
+      "points": "No additional source-visible discrepancy found"
+    },
+    {
+      "unit": "unnumbered closing passage",
+      "wordsAndBoundary": "Compared; separate paragraph after printed 71 retained, no invented label 72. Three em dashes and final sof pasuq match.",
+      "points": "Queried separately"
+    }
+  ],
+  "boundaryNotes": [
+    "Printed 70 has no closing punctuation, matching the audited draft.",
+    "Printed 71 ends after ולעלמי עולמים׃. The following ויהי כאשר שמע המלך paragraph is unnumbered and separate."
+  ],
+  "unresolvedPointQueries": [
+    {
+      "unit": "1:52",
+      "word": "וַעֲנָנִים",
+      "queriedMarks": [
+        "initial vav vowel"
+      ],
+      "status": "unresolved-print-mark",
+      "observation": "The initial vav lower shape merges into its printed foot. I cannot isolate a patah. The crop partly clips the ayin lower marks; no conclusion is drawn about them.",
+      "evidence": {
+        "path": "/private/tmp/prosary-s3y-inventory/independent-v52-ananim.png",
+        "sha256": "dacae9686604c1ac672c27a7ac0d96437370bce22e82abb0f3b330f0faea87c0",
+        "method": "Original source pixels enlarged with nearest-neighbor interpolation; no inferred detail."
+      },
+      "recommendation": "Preserve independently readable companion marks; do not certify the queried mark from expected vocalization. Root should check source and record a scoped unreadable-mark note if unresolved."
+    },
+    {
+      "unit": "1:60",
+      "word": "וְחַיַּת",
+      "queriedMarks": [
+        "yod dagesh",
+        "initial vav vowel"
+      ],
+      "status": "unresolved-print-mark",
+      "observation": "The yod interior material is joined to the heavy glyph, rather than visibly isolated. The initial vav lower shape has two lobes but remains joined to the foot. The het and yod lower patah marks remain visible.",
+      "evidence": {
+        "path": "/private/tmp/prosary-s3y-inventory/independent-v60-hayat.png",
+        "sha256": "2358ea74e561a249151b6b27b0d7ff0fa6ddabbf55a07e273e80d92bf31d31c8",
+        "method": "Original source pixels enlarged with nearest-neighbor interpolation; no inferred detail."
+      },
+      "recommendation": "Preserve independently readable companion marks; do not certify the queried mark from expected vocalization. Root should check source and record a scoped unreadable-mark note if unresolved."
+    },
+    {
+      "unit": "1:68",
+      "word": "מִשְּׁאוֹל",
+      "queriedMarks": [
+        "shin dagesh"
+      ],
+      "status": "unresolved-print-mark",
+      "observation": "The medial material cannot be separated confidently from the thick shin branch. The upper shin dot is visible; this does not establish absence of the interior point.",
+      "evidence": {
+        "path": "/private/tmp/prosary-s3y-inventory/independent-v68-sheol.png",
+        "sha256": "341bb006417ce7969696f137762ae2656b7dc81d4bccc5639407f5feccc33af6",
+        "method": "Original source pixels enlarged with nearest-neighbor interpolation; no inferred detail."
+      },
+      "recommendation": "Preserve independently readable companion marks; do not certify the queried mark from expected vocalization. Root should check source and record a scoped unreadable-mark note if unresolved."
+    },
+    {
+      "unit": "unnumbered closing passage",
+      "word": "וַיְהִי",
+      "queriedMarks": [
+        "initial vav vowel"
+      ],
+      "status": "unresolved-print-mark",
+      "observation": "The initial vav lower bar merges with its foot. Where a yod dagesh is queried, its dark material is inseparable from the heavy glyph. This is limited to the named marks; clipped neighboring marks are not assessed from the detail crop.",
+      "evidence": {
+        "path": "/private/tmp/prosary-s3y-inventory/independent-tail-vayhi-complete.png",
+        "sha256": "1b2581f6b09577eff8d10f4fc006937ab403bd7c1f8f546f3e951a3ac7b68a8e",
+        "method": "Original source pixels enlarged with nearest-neighbor interpolation; no inferred detail."
+      },
+      "recommendation": "Preserve independently readable companion marks; do not certify the queried mark from expected vocalization. Root should check source and record a scoped unreadable-mark note if unresolved."
+    },
+    {
+      "unit": "unnumbered closing passage",
+      "word": "וַיָּקָם",
+      "queriedMarks": [
+        "initial vav vowel",
+        "yod dagesh"
+      ],
+      "status": "unresolved-print-mark",
+      "observation": "The initial vav lower bar merges with its foot. Where a yod dagesh is queried, its dark material is inseparable from the heavy glyph. This is limited to the named marks; clipped neighboring marks are not assessed from the detail crop.",
+      "evidence": {
+        "path": "/private/tmp/prosary-s3y-inventory/independent-tail-vayakam-full.png",
+        "sha256": "72d8de08ca686a12bb6446bdd3678e5b103dd25a45d324eec89aaf492945027a",
+        "method": "Original source pixels enlarged with nearest-neighbor interpolation; no inferred detail."
+      },
+      "recommendation": "Preserve independently readable companion marks; do not certify the queried mark from expected vocalization. Root should check source and record a scoped unreadable-mark note if unresolved."
+    },
+    {
+      "unit": "unnumbered closing passage",
+      "word": "וַיַּרְא",
+      "queriedMarks": [
+        "initial vav vowel",
+        "yod dagesh"
+      ],
+      "status": "unresolved-print-mark",
+      "observation": "The initial vav lower bar merges with its foot. Where a yod dagesh is queried, its dark material is inseparable from the heavy glyph. This is limited to the named marks; clipped neighboring marks are not assessed from the detail crop.",
+      "evidence": {
+        "path": "/private/tmp/prosary-s3y-inventory/independent-tail-vayar-complete.png",
+        "sha256": "9898b90c5d8a03ee192c7fa1f863da805849d899b804da09c353e1f65b723ecb",
+        "method": "Original source pixels enlarged with nearest-neighbor interpolation; no inferred detail."
+      },
+      "recommendation": "Preserve independently readable companion marks; do not certify the queried mark from expected vocalization. Root should check source and record a scoped unreadable-mark note if unresolved."
+    },
+    {
+      "unit": "unnumbered closing passage",
+      "word": "וַיִּתְמַהּ",
+      "queriedMarks": [
+        "initial vav vowel",
+        "yod dagesh"
+      ],
+      "status": "unresolved-print-mark",
+      "observation": "The initial vav lower bar merges with its foot. Where a yod dagesh is queried, its dark material is inseparable from the heavy glyph. This is limited to the named marks; clipped neighboring marks are not assessed from the detail crop.",
+      "evidence": {
+        "path": "/private/tmp/prosary-s3y-inventory/independent-tail-vayitmah.png",
+        "sha256": "bbc96ba41c2f748e0e070bbf4829dfaad9bc261091629354608e28e9a6a43cde",
+        "method": "Original source pixels enlarged with nearest-neighbor interpolation; no inferred detail."
+      },
+      "recommendation": "Preserve independently readable companion marks; do not certify the queried mark from expected vocalization. Root should check source and record a scoped unreadable-mark note if unresolved."
+    },
+    {
+      "unit": "unnumbered closing passage",
+      "word": "וַיְמַהֵר",
+      "queriedMarks": [
+        "initial vav vowel"
+      ],
+      "status": "unresolved-print-mark",
+      "observation": "The initial vav lower bar merges with its foot. Where a yod dagesh is queried, its dark material is inseparable from the heavy glyph. This is limited to the named marks; clipped neighboring marks are not assessed from the detail crop.",
+      "evidence": {
+        "path": "/private/tmp/prosary-s3y-inventory/independent-tail-vaymaher.png",
+        "sha256": "dab7a79a9f44a63a0214d234e7f0ac671ea5d45dc40c5c11c522c3b9583169e2",
+        "method": "Original source pixels enlarged with nearest-neighbor interpolation; no inferred detail."
+      },
+      "recommendation": "Preserve independently readable companion marks; do not certify the queried mark from expected vocalization. Root should check source and record a scoped unreadable-mark note if unresolved."
+    },
+    {
+      "unit": "unnumbered closing passage",
+      "word": "וַיֹּאמֶר",
+      "queriedMarks": [
+        "initial vav vowel",
+        "yod dagesh"
+      ],
+      "status": "unresolved-print-mark",
+      "observation": "The initial vav lower bar merges with its foot. Where a yod dagesh is queried, its dark material is inseparable from the heavy glyph. This is limited to the named marks; clipped neighboring marks are not assessed from the detail crop.",
+      "evidence": {
+        "path": "/private/tmp/prosary-s3y-inventory/independent-tail-vayomer.png",
+        "sha256": "67537dbfa1efa89ceb8cd7c27647fc9d77866aa5f1e68de9f8142f1f56f1eb5b",
+        "method": "Original source pixels enlarged with nearest-neighbor interpolation; no inferred detail."
+      },
+      "recommendation": "Preserve independently readable companion marks; do not certify the queried mark from expected vocalization. Root should check source and record a scoped unreadable-mark note if unresolved."
+    }
+  ],
+  "pageApproval": false,
+  "limitation": "No canonical text edited. This report does not certify unreadable marks or independently approve the whole page. The lack of a clear word correction does not resolve the listed point queries.",
+  "contextEvidence": [
+    {
+      "path": "/private/tmp/prosary-kahana-reference/pages/root-s3y236-top.png",
+      "sha256": "8003fc427d3d4371a898dfc1aaa0199c06703985db78a72c476d052e5ace39c2"
+    },
+    {
+      "path": "/private/tmp/prosary-kahana-reference/pages/root-s3y236-middle.png",
+      "sha256": "58f8737eac69853d6e2e783c6805c79ecc309e98dc04cf1fd98fceb8cc703e19"
+    },
+    {
+      "path": "/private/tmp/prosary-kahana-reference/pages/root-s3y236-bottom.png",
+      "sha256": "ca9f5c52f626981ee7b6d1ccf9513a741f1b71d652c696a55d9e5ac5909b8ecc"
+    },
+    {
+      "path": "/private/tmp/prosary-kahana-reference/pages/root-s3y236-tail-review.png",
+      "sha256": "6d1936082e5e86a8a73e5f2de4a26a90c67370a717767854ce6a18678e2d5ebd"
+    }
+  ]
+}

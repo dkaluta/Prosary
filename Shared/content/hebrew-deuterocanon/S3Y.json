@@ -18,17 +18,95 @@
     ]
   },
   "review": {
-    "status": "draft",
-    "method": "First direct visual pointed transcription of all four main-body pages from the supplied print; independent printed margin inventory precedes transcription. Full second word/point/punctuation comparison remains pending.",
-    "reviewedPages": [],
+    "status": "complete",
+    "method": "Complete direct pointed transcription and full second physical-page word, vowel, punctuation and boundary comparison of the printed Septuagint recension. Independent margin inventory and final structure/source-note audit pin all 69 primary units and the separate unnumbered closing narrative. Sixty-five individually unreadable marks are omitted with exact source notes under the user-approved policy; no word or boundary finding remains.",
+    "reviewedPages": [
+      233,
+      234,
+      235,
+      236
+    ],
     "notes": [
       "Full first pointed draft,69 primary units for printed labels1–71, with printed combined8–9 and22–23 retained. Source29 alone crosses234→235. No page is approved and this draft is not production eligible.",
       "Independent margin inventory is S3Y-print-inventory.json. Both readers confirm71 aligns with והודו לו. The following distinct unnumbered narrative paragraph remains a passage block after71; no invented72 and no attachment to71. This resolves the inventory boundary question while preserving its original evidence.",
       "Retain the explicitly printed Septuagint recension. The Theodotion label on subsequent Susanna does not apply here. No wording was filled from another Hebrew translation or recension.",
       "Focused original-print rechecks confirm34 משביח (bet, not inferred gimel) and29 עד־מה (not a silently expanded adverb). All other words and points still require the full second comparison.",
       "Open first-pass examples, not an exhaustive review substitute:1 pointing and defective spelling;7 Jerusalem lamed points;17 bracketed altar text;21 תבישנו points;25 nephth and kindle wording/points;30 initial vavs;48–67 every repeated response individually;69 initial gimel point;closing narrative vav and dagesh marks.",
-      "The unchanged local Kraken model supplied a separate consonantal comparison for85 visually bounded source lines. Image rechecks corrected defective spellings in1/19/22/25/29/34 and the actual verb ובגדנו in8. Every repeated imperative response in36–67(except differently worded53) and70 is printed with qibbuts, not an added medial vav; each occurrence has been corrected from its visible line. This is source-word comparison, not completed second pointing review or page approval."
-    ]
+      "The unchanged local Kraken model supplied a separate consonantal comparison for85 visually bounded source lines. Image rechecks corrected defective spellings in1/19/22/25/29/34 and the actual verb ובגדנו in8. Every repeated imperative response in36–67(except differently worded53) and70 is printed with qibbuts, not an added medial vav; each occurrence has been corrected from its visible line. This is source-word comparison, not completed second pointing review or page approval.",
+      "Full second physical-page235 word/point/punctuation comparison completed, from continuation29 through47. Retain literal29 עד־מה and34 משביח and all defective response spellings. Six isolated unreadable points across30/35 are omitted with exact source notes after independent focused comparison; all clearly visible neighboring points retained. Pages233/234/236 and independent whole-book approval remain open.",
+      "Full second page236 comparison completed independently for every printed48–71 unit and the separate unnumbered closing narrative; root separately reviewed all disputed point crops. No new word, boundary or punctuation correction. Fourteen isolated unreadable points across52/60/68 and six closing-narrative words are omitted with exact source notes. Preserve no terminal punctuation at70, the separate71 line, allthree closing dashes and finalsofpasuq. Pages233–234 remain open.",
+      "Complete independent and root comparison of page233, source1–14 including combined8–9. All words, consonants, labels and punctuation match. Root separately inspected each queried crop and the retracted6/10 readings: retain both clearly printed lamed dageshes in לנו. Twenty-three isolated marks remain unreadable and are omitted with exact source notes, keeping the visible neighboring vowels. No word or boundary finding remains on this page.",
+      "Complete second physical-page234 word, point and punctuation comparison of every main-body line, source15–29 (29 continues on235). Restore the clearly printed medial vav in ויסוגו within combined22–23, independently confirmed. Twenty-two isolated vowel/dagesh positions are disclosed with exact notes after enlarged source inspection. Retain the visibly separate nun dagesh in ונהי, no invented bet dagesh in תבישנו, and the printed brackets in17/24/25. All words and printed boundaries are resolved; whole-book final approval remains open.",
+      "Final closure supersedes the earlier chronological draft/open-page notes: all four source pages have completed full comparison; the independent final audit has no findings. It pins69 primary units and the separate closing passage, with65 accepted exact mark notes. The whole twelve-work supplement remains release-gated."
+    ],
+    "acceptedSourceNoteIds": [
+      "s3y-1-1-word1-letter1-vowel",
+      "s3y-1-1-word12-letter1-dagesh",
+      "s3y-1-1-word14-letter2-dagesh",
+      "s3y-1-1-word14-letter3-vowel",
+      "s3y-1-1-word15-letter1-vowel",
+      "s3y-1-1-word17-letter1-vowel",
+      "s3y-1-1-word17-letter2-dagesh",
+      "s3y-1-11-word1-letter1-vowel",
+      "s3y-1-16-word5-letter1-vowel",
+      "s3y-1-19-word10-letter1-vowel",
+      "s3y-1-19-word5-letter2-vowel",
+      "s3y-1-2-word1-letter1-vowel",
+      "s3y-1-2-word10-letter1-vowel",
+      "s3y-1-22-word7-letter1-vowel",
+      "s3y-1-25-word10-letter1-dagesh",
+      "s3y-1-25-word10-letter2-vowel",
+      "s3y-1-25-word10-letter3-vowel",
+      "s3y-1-25-word21-letter1-vowel",
+      "s3y-1-25-word21-letter2-dagesh",
+      "s3y-1-25-word25-letter1-vowel",
+      "s3y-1-25-word28-letter1-vowel",
+      "s3y-1-26-word1-letter1-vowel",
+      "s3y-1-26-word1-letter2-dagesh",
+      "s3y-1-27-word1-letter1-vowel",
+      "s3y-1-27-word1-letter2-dagesh",
+      "s3y-1-27-word2-letter1-vowel",
+      "s3y-1-27-word2-letter2-dagesh",
+      "s3y-1-28-word5-letter1-vowel",
+      "s3y-1-28-word7-letter1-vowel",
+      "s3y-1-28-word7-letter2-dagesh",
+      "s3y-1-29-word1-letter1-vowel",
+      "s3y-1-29-word1-letter2-dagesh",
+      "s3y-1-3-word1-letter1-vowel",
+      "s3y-1-3-word1-letter2-dagesh",
+      "s3y-1-3-word5-letter1-vowel",
+      "s3y-1-30-vayaanu-vav-vowel",
+      "s3y-1-30-vayaanu-yod-dagesh",
+      "s3y-1-30-vayhalelu-vav-vowel",
+      "s3y-1-30-vayromemu-vav-vowel",
+      "s3y-1-30-vayshabehu-vav-vowel",
+      "s3y-1-35-rakiya-resh-vowel",
+      "s3y-1-4-word1-letter1-vowel",
+      "s3y-1-4-word1-letter2-dagesh",
+      "s3y-1-4-word15-letter1-vowel",
+      "s3y-1-4-word15-letter2-dagesh",
+      "s3y-1-4-word3-letter1-vowel",
+      "s3y-1-4-word3-letter2-dagesh",
+      "s3y-1-4-word4-letter1-vowel",
+      "s3y-1-4-word4-letter2-dagesh",
+      "s3y-1-4-word6-letter1-vowel",
+      "s3y-1-4-word6-letter2-dagesh",
+      "s3y-1-52-word1-letter1-vowel",
+      "s3y-1-60-word2-letter1-vowel",
+      "s3y-1-60-word2-letter3-dagesh",
+      "s3y-1-68-word3-letter2-dagesh",
+      "s3y-1-tail-word4-letter1-vowel",
+      "s3y-1-tail-word5-letter1-vowel",
+      "s3y-1-tail-word5-letter2-dagesh",
+      "s3y-1-tail-word6-letter1-vowel",
+      "s3y-1-tail-word6-letter2-dagesh",
+      "s3y-1-tail-word7-letter1-vowel",
+      "s3y-1-tail-word7-letter2-dagesh",
+      "s3y-1-tail-word8-letter1-vowel",
+      "s3y-1-tail-word9-letter1-vowel",
+      "s3y-1-tail-word9-letter2-dagesh"
+    ],
+    "unresolvedFindings": []
   },
   "chapters": [
     {
@@ -38,35 +116,307 @@
       "verses": [
         {
           "verse": 1,
-          "text": "וְיַעַן אֲשֶׁר הָיְתָה מִצְוַת הַמֶּלֶךְ חֲזָקָה הֻסַּק הַכִּבְשָׁן שִׁבְעָתַיִם מֵאֲשֶׁר לְפָנִי־זֶה וּבְאָסְרָם הָאֲנָשִׁים הַמְּקִמִים וַיְבִיאוּם אֶל־הַכִּבְשָׁן וַיַּשְׁלִיכוּם אֶל־תּוֹכוֹ׃",
+          "text": "ויַעַן אֲשֶׁר הָיְתָה מִצְוַת הַמֶּלֶךְ חֲזָקָה הֻסַּק הַכִּבְשָׁן שִׁבְעָתַיִם מֵאֲשֶׁר לְפָנִי־זֶה ובְאָסְרָם הָאֲנָשִׁים הַמְקמִים ויְבִיאוּם אֶל־הַכִּבְשָׁן ויַשְׁלִיכוּם אֶל־תּוֹכוֹ׃",
           "sourcePages": [
             233
           ],
-          "textSHA256": "6be7854245c598ec49d86033ae697be0cc52f91cc1d9b58fe3b4b326b4cf5580"
+          "textSHA256": "dff6a817a2c9355362c94fdbe193c78583b716d1de33406e9898f3e74369283b",
+          "sourceNotes": [
+            {
+              "id": "s3y-1-1-word1-letter1-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "ויַעַן",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "vowel",
+              "sourcePages": [
+                233
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=233"
+            },
+            {
+              "id": "s3y-1-1-word12-letter1-dagesh",
+              "kind": "unreadablePoint",
+              "anchor": "ובְאָסְרָם",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "dagesh",
+              "sourcePages": [
+                233
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=233"
+            },
+            {
+              "id": "s3y-1-1-word14-letter2-dagesh",
+              "kind": "unreadablePoint",
+              "anchor": "הַמְקמִים",
+              "occurrence": 1,
+              "letterIndex": 2,
+              "mark": "dagesh",
+              "sourcePages": [
+                233
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=233"
+            },
+            {
+              "id": "s3y-1-1-word14-letter3-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "הַמְקמִים",
+              "occurrence": 1,
+              "letterIndex": 3,
+              "mark": "vowel",
+              "sourcePages": [
+                233
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=233"
+            },
+            {
+              "id": "s3y-1-1-word15-letter1-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "ויְבִיאוּם",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "vowel",
+              "sourcePages": [
+                233
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=233"
+            },
+            {
+              "id": "s3y-1-1-word17-letter1-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "ויַשְׁלִיכוּם",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "vowel",
+              "sourcePages": [
+                233
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=233"
+            },
+            {
+              "id": "s3y-1-1-word17-letter2-dagesh",
+              "kind": "unreadablePoint",
+              "anchor": "ויַשְׁלִיכוּם",
+              "occurrence": 1,
+              "letterIndex": 2,
+              "mark": "dagesh",
+              "sourcePages": [
+                233
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=233"
+            }
+          ]
         },
         {
           "verse": 2,
-          "text": "וַתִּשְׂרֹף הַלֶּהָבָה הַיּוֹצֵאת מִן־הַכִּבְשָׁן אֶת־הָאֲנָשִׁים אֲשֶׁר אָסְרוּ אֶת־עֲזַרְיָה וְאֶת־חֲבֵרָיו וַתֹּאכְלֵם וְהֵם נִשְׁמָרוּ׃",
+          "text": "ותִּשְׂרֹף הַלֶּהָבָה הַיּוֹצֵאת מִן־הַכִּבְשָׁן אֶת־הָאֲנָשִׁים אֲשֶׁר אָסְרוּ אֶת־עֲזַרְיָה וְאֶת־חֲבֵרָיו ותֹּאכְלֵם וְהֵם נִשְׁמָרוּ׃",
           "sourcePages": [
             233
           ],
-          "textSHA256": "713e54de1b55690b0f8f29ebf0651ebb5606764bedd6acbc5efcf63a2927c57e"
+          "textSHA256": "7b842a006670f9448c5eefd3d98be58cb629363668f51a3ff88aa4c28ae6dc91",
+          "sourceNotes": [
+            {
+              "id": "s3y-1-2-word1-letter1-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "ותִּשְׂרֹף",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "vowel",
+              "sourcePages": [
+                233
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=233"
+            },
+            {
+              "id": "s3y-1-2-word10-letter1-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "ותֹּאכְלֵם",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "vowel",
+              "sourcePages": [
+                233
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=233"
+            }
+          ]
         },
         {
           "verse": 3,
-          "text": "וַיִּתְפַּלְלוּ חֲנַנְיָה עֲזַרְיָה וּמִישָׁאֵל וַיְהַלְלוּ אֶת־יְיָ כַּאֲשֶׁר צִוָּה הַמֶּלֶךְ לְהַשְׁלִיכֵם לְתוֹךְ־הַכִּבְשָׁן׃",
+          "text": "ויִתְפַּלְלוּ חֲנַנְיָה עֲזַרְיָה וּמִישָׁאֵל ויְהַלְלוּ אֶת־יְיָ כַּאֲשֶׁר צִוָּה הַמֶּלֶךְ לְהַשְׁלִיכֵם לְתוֹךְ־הַכִּבְשָׁן׃",
           "sourcePages": [
             233
           ],
-          "textSHA256": "93e65db15cbf8f8d5cc23aa6598710c26e31df4e0fbf3c962287b29cea40d129"
+          "textSHA256": "7f147c7ef7060dbc57a74c364878d82731276c700bffd4d467357aa33ee978fb",
+          "sourceNotes": [
+            {
+              "id": "s3y-1-3-word1-letter1-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "ויִתְפַּלְלוּ",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "vowel",
+              "sourcePages": [
+                233
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=233"
+            },
+            {
+              "id": "s3y-1-3-word1-letter2-dagesh",
+              "kind": "unreadablePoint",
+              "anchor": "ויִתְפַּלְלוּ",
+              "occurrence": 1,
+              "letterIndex": 2,
+              "mark": "dagesh",
+              "sourcePages": [
+                233
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=233"
+            },
+            {
+              "id": "s3y-1-3-word5-letter1-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "ויְהַלְלוּ",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "vowel",
+              "sourcePages": [
+                233
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=233"
+            }
+          ]
         },
         {
           "verse": 4,
-          "text": "וַיָּקָם עֲזַרְיָה וַיִּתְפַּלֵּל וַיִּפְתַּח אֶת־פִּיו וַיּוֹדֶה אֶת־יְיָ הוּא וַחֲבֵרָיו בְּתוֹךְ־הָאֵשׁ וְהַכַּשְׂדִּים הֵסִיקוּ אֶת־הַכִּבְשָׁן מְאֹד וַיֹּאמְרוּ׃",
+          "text": "ויָקָם עֲזַרְיָה ויִתְפַּלֵּל ויִפְתַּח אֶת־פִּיו ויוֹדֶה אֶת־יְיָ הוּא וַחֲבֵרָיו בְּתוֹךְ־הָאֵשׁ וְהַכַּשְׂדִּים הֵסִיקוּ אֶת־הַכִּבְשָׁן מְאֹד ויֹאמְרוּ׃",
           "sourcePages": [
             233
           ],
-          "textSHA256": "23dc0cda0758ccd89182630a8e9b22e252dc752550e80a8013d67488aeb11d34"
+          "textSHA256": "f7f74410d3f54b15ae2a1b71c4281ac58064aaca65a49416ee9e1ac95d672fde",
+          "sourceNotes": [
+            {
+              "id": "s3y-1-4-word1-letter1-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "ויָקָם",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "vowel",
+              "sourcePages": [
+                233
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=233"
+            },
+            {
+              "id": "s3y-1-4-word1-letter2-dagesh",
+              "kind": "unreadablePoint",
+              "anchor": "ויָקָם",
+              "occurrence": 1,
+              "letterIndex": 2,
+              "mark": "dagesh",
+              "sourcePages": [
+                233
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=233"
+            },
+            {
+              "id": "s3y-1-4-word3-letter1-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "ויִתְפַּלֵּל",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "vowel",
+              "sourcePages": [
+                233
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=233"
+            },
+            {
+              "id": "s3y-1-4-word3-letter2-dagesh",
+              "kind": "unreadablePoint",
+              "anchor": "ויִתְפַּלֵּל",
+              "occurrence": 1,
+              "letterIndex": 2,
+              "mark": "dagesh",
+              "sourcePages": [
+                233
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=233"
+            },
+            {
+              "id": "s3y-1-4-word4-letter1-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "ויִפְתַּח",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "vowel",
+              "sourcePages": [
+                233
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=233"
+            },
+            {
+              "id": "s3y-1-4-word4-letter2-dagesh",
+              "kind": "unreadablePoint",
+              "anchor": "ויִפְתַּח",
+              "occurrence": 1,
+              "letterIndex": 2,
+              "mark": "dagesh",
+              "sourcePages": [
+                233
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=233"
+            },
+            {
+              "id": "s3y-1-4-word6-letter1-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "ויוֹדֶה",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "vowel",
+              "sourcePages": [
+                233
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=233"
+            },
+            {
+              "id": "s3y-1-4-word6-letter2-dagesh",
+              "kind": "unreadablePoint",
+              "anchor": "ויוֹדֶה",
+              "occurrence": 1,
+              "letterIndex": 2,
+              "mark": "dagesh",
+              "sourcePages": [
+                233
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=233"
+            },
+            {
+              "id": "s3y-1-4-word15-letter1-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "ויֹאמְרוּ׃",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "vowel",
+              "sourcePages": [
+                233
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=233"
+            },
+            {
+              "id": "s3y-1-4-word15-letter2-dagesh",
+              "kind": "unreadablePoint",
+              "anchor": "ויֹאמְרוּ׃",
+              "occurrence": 1,
+              "letterIndex": 2,
+              "mark": "dagesh",
+              "sourcePages": [
+                233
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=233"
+            }
+          ]
         },
         {
           "verse": 5,
@@ -111,11 +461,25 @@
         },
         {
           "verse": 11,
-          "text": "וַתִּתֵּן אוֹתָנוּ בִּידֵי אוֹיְבֵינוּ הָרְשָׁעִים וּבִידֵי שׂוֹנְאֵינוּ הַפּוֹשְׁעִים וּבְיַד מֶלֶךְ עַוָּל וְרַע מִכָּל־הָאָרֶץ׃",
+          "text": "ותִּתֵּן אוֹתָנוּ בִּידֵי אוֹיְבֵינוּ הָרְשָׁעִים וּבִידֵי שׂוֹנְאֵינוּ הַפּוֹשְׁעִים וּבְיַד מֶלֶךְ עַוָּל וְרַע מִכָּל־הָאָרֶץ׃",
           "sourcePages": [
             233
           ],
-          "textSHA256": "e5dd9d064c967a0fa805f999e3fd63b3e466364e325a3a198066ed412efd0a96"
+          "textSHA256": "ed8b7f6bd475c9baed908e480f5e491bc71c7f9ed163dea831f2842c6798ef5f",
+          "sourceNotes": [
+            {
+              "id": "s3y-1-11-word1-letter1-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "ותִּתֵּן",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "vowel",
+              "sourcePages": [
+                233
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=233"
+            }
+          ]
         },
         {
           "verse": 12,
@@ -151,11 +515,25 @@
         },
         {
           "verse": 16,
-          "text": "כִּי מָעַטְנוּ אֲדֹנֵינוּ מִכָּל־הַגּוֹיִם וַנְּהִי הַיּוֹם דַּלִּים בְּכָל־הָאָרֶץ בַּעֲוֹנוֹתֵינוּ׃",
+          "text": "כִּי מָעַטְנוּ אֲדֹנֵינוּ מִכָּל־הַגּוֹיִם ונְּהִי הַיּוֹם דַּלִּים בְּכָל־הָאָרֶץ בַּעֲוֹנוֹתֵינוּ׃",
           "sourcePages": [
             234
           ],
-          "textSHA256": "0cfe0d9ff5e1228a504efce74b5e0e74f155ad58d14ac6f8bb93f859a5c5a5f7"
+          "textSHA256": "d10438ecf65d3f33658e15aa2205ce40ea4a44134806761bae936bd43f8ae999",
+          "sourceNotes": [
+            {
+              "id": "s3y-1-16-word5-letter1-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "ונְּהִי",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "vowel",
+              "sourcePages": [
+                234
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=234"
+            }
+          ]
         },
         {
           "verse": 17,
@@ -175,11 +553,37 @@
         },
         {
           "verse": 19,
-          "text": "כְּמוֹ עֹלוֹת אֵילִים וּפָרִים וְרִבְבוֹת כְּבָשִׂים מְרִיאִים כֵּן יִהְיֶה קָרְבָּנֵנוּ הַיּוֹם לִרְצוֹת פָּנֶיךָ כִּי לֹא־יֵבוֹשׁוּ הַבּוֹטְחִים בָּךְ וְהַמְמַלְאִים אַחֲרֶיךָ׃",
+          "text": "כְּמוֹ עֹלוֹת אֵילִים וּפָרִים וְרבְבוֹת כְּבָשִׂים מְרִיאִים כֵּן יִהְיֶה קרְבָּנֵנוּ הַיּוֹם לִרְצוֹת פָּנֶיךָ כִּי לֹא־יֵבוֹשׁוּ הַבּוֹטְחִים בָּךְ וְהַמְמַלְאִים אַחֲרֶיךָ׃",
           "sourcePages": [
             234
           ],
-          "textSHA256": "88123dad591a41cffe35e78c83de3c021a80cdd6e91bb113e0c1a588dadd6ccb"
+          "textSHA256": "50266b800cb23507914f045e7f9cf066680a6d21d8b718f2246729d16a9a0214",
+          "sourceNotes": [
+            {
+              "id": "s3y-1-19-word5-letter2-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "וְרבְבוֹת",
+              "occurrence": 1,
+              "letterIndex": 2,
+              "mark": "vowel",
+              "sourcePages": [
+                234
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=234"
+            },
+            {
+              "id": "s3y-1-19-word10-letter1-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "קרְבָּנֵנוּ",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "vowel",
+              "sourcePages": [
+                234
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=234"
+            }
+          ]
         },
         {
           "verse": 20,
@@ -199,12 +603,26 @@
         },
         {
           "verse": 22,
-          "text": "וְהַצִּילֵנוּ כְנִפְלְאוֹתֶיךָ וְתֵן כָּבוֹד לְשִׁמְךָ יְיָ׃ וְיִסֹּגוּ אָחוֹר כָּל־הַגֹּמְלִים לַעֲבָדֶיךָ רָעָה וְיֵבוֹשׁוּ מִכָּל־גְּבוּרָתָם וְכֹחָם יִשָּׁבֵר׃",
+          "text": "וְהַצִּילֵנוּ כְנִפְלְאוֹתֶיךָ וְתֵן כָּבוֹד לְשִׁמְךָ יְיָ׃ ויִסּוֹגוּ אָחוֹר כָּל־הַגֹּמְלִים לַעֲבָדֶיךָ רָעָה וְיֵבוֹשׁוּ מִכָּל־גְּבוּרָתָם וְכֹחָם יִשָּׁבֵר׃",
           "sourcePages": [
             234
           ],
           "endVerse": 23,
-          "textSHA256": "15c40c2e2e3b7bb81a7dbe981a58378b9160cf673ebbd5a036dab26f98def805"
+          "textSHA256": "aff71abebf30fbfbd425cba72037f2901214cfc10aba938dacb21cde82a50d3a",
+          "sourceNotes": [
+            {
+              "id": "s3y-1-22-word7-letter1-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "ויִסּוֹגוּ",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "vowel",
+              "sourcePages": [
+                234
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=234"
+            }
+          ]
         },
         {
           "verse": 24,
@@ -216,52 +634,340 @@
         },
         {
           "verse": 25,
-          "text": "וְעַבְדֵי הַמֶּלֶךְ אֲשֶׁר הִשְׁלִיכוּ אוֹתָם לֹא חָדְלוּ לְהַסִּיק אֶת־הַכִּבְשָׁן וּכְאַשֶׁר הִשְׁלִיכוּ אֶת־שְׁלָשְׁתָּם יַחַד אֶל־הַכִּבְשָׁן וְהַכִּבְשָׁן בּוֹעֵר שִׁבְעָתַיִם בְּחֻמּוֹ וּבְהַשְׁלִיכָם אוֹתָם וַיִּהְיוּ הַמַּשְׁלִיכִים מִמַּעַל לָהֶם [וַאֲחֵרִים] הִצִּיתוּ מִתַּחְתֵּיהֶם נֵפְט וּנְעֹרֶת וְזֶפֶת וּזְמֹרוֹת׃",
+          "text": "וְעַבְדֵי הַמֶּלֶךְ אֲשֶׁר הִשְׁלִיכוּ אוֹתָם לֹא חָדְלוּ לְהַסִּיק אֶת־הַכִּבְשָׁן וכאשֶׁר הִשְׁלִיכוּ אֶת־שְׁלָשְׁתָּם יַחַד אֶל־הַכִּבְשָׁן וְהַכִּבְשָׁן בּוֹעֵר שִׁבְעָתַיִם בְּחֻמּוֹ וּבְהַשְׁלִיכָם אוֹתָם ויִהְיוּ הַמַּשְׁלִיכִים מִמַּעַל לָהֶם [ואֲחֵרִים] הִצִּיתוּ מִתַּחְתֵּיהֶם נפְט וּנְעֹרֶת וְזֶפֶת וּזְמֹרוֹת׃",
           "sourcePages": [
             234
           ],
-          "textSHA256": "6c6c38211520d1489733043ddffc59c43394d7a64edfaa50fad37c7eff1fdbf9"
+          "textSHA256": "06d47ec9831e3e7318833fc58d1e0d96bab909fd9446595accc58394ca4e6f36",
+          "sourceNotes": [
+            {
+              "id": "s3y-1-25-word10-letter1-dagesh",
+              "kind": "unreadablePoint",
+              "anchor": "וכאשֶׁר",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "dagesh",
+              "sourcePages": [
+                234
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=234"
+            },
+            {
+              "id": "s3y-1-25-word10-letter2-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "וכאשֶׁר",
+              "occurrence": 1,
+              "letterIndex": 2,
+              "mark": "vowel",
+              "sourcePages": [
+                234
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=234"
+            },
+            {
+              "id": "s3y-1-25-word10-letter3-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "וכאשֶׁר",
+              "occurrence": 1,
+              "letterIndex": 3,
+              "mark": "vowel",
+              "sourcePages": [
+                234
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=234"
+            },
+            {
+              "id": "s3y-1-25-word28-letter1-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "נפְט",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "vowel",
+              "sourcePages": [
+                234
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=234"
+            },
+            {
+              "id": "s3y-1-25-word21-letter1-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "ויִהְיוּ",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "vowel",
+              "sourcePages": [
+                234
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=234"
+            },
+            {
+              "id": "s3y-1-25-word21-letter2-dagesh",
+              "kind": "unreadablePoint",
+              "anchor": "ויִהְיוּ",
+              "occurrence": 1,
+              "letterIndex": 2,
+              "mark": "dagesh",
+              "sourcePages": [
+                234
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=234"
+            },
+            {
+              "id": "s3y-1-25-word25-letter1-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "[ואֲחֵרִים]",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "vowel",
+              "sourcePages": [
+                234
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=234"
+            }
+          ]
         },
         {
           "verse": 26,
-          "text": "וַיַּעַל הַלַּהַב מֵעַל הַכִּבְשָׁן כְּתֵשַׁע וְאַרְבָּעִים אַמָּה׃",
+          "text": "ויַעַל הַלַּהַב מֵעַל הַכִּבְשָׁן כְּתֵשַׁע וְאַרְבָּעִים אַמָּה׃",
           "sourcePages": [
             234
           ],
-          "textSHA256": "2082796267bc725d1656e0fa081a52fe3a97b3b34b9495f6810dcb99f856b444"
+          "textSHA256": "d50309ce177b7730d3bad7666fdad0c3470de6b338fcaf2858eaaebc4059c7a0",
+          "sourceNotes": [
+            {
+              "id": "s3y-1-26-word1-letter1-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "ויַעַל",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "vowel",
+              "sourcePages": [
+                234
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=234"
+            },
+            {
+              "id": "s3y-1-26-word1-letter2-dagesh",
+              "kind": "unreadablePoint",
+              "anchor": "ויַעַל",
+              "occurrence": 1,
+              "letterIndex": 2,
+              "mark": "dagesh",
+              "sourcePages": [
+                234
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=234"
+            }
+          ]
         },
         {
           "verse": 27,
-          "text": "וַיֵּצֵא וַיִּשְׂרֹף אֵת אֲשֶׁר־מָצָא מִן־הַכַּשְׂדִּים סָבִיב לַכִּבְשָׁן׃",
+          "text": "ויֵצֵא ויִשְׂרֹף אֵת אֲשֶׁר־מָצָא מִן־הַכַּשְׂדִּים סָבִיב לַכִּבְשָׁן׃",
           "sourcePages": [
             234
           ],
-          "textSHA256": "2618e117d7749cfed34fb1ca0f1119401b0ed652bb84d813ae403d5ce64f40fb"
+          "textSHA256": "e9b7612c125c9e27bed0805b73bedcc85f763327fcdf124fab8fa2b8f8ef1edd",
+          "sourceNotes": [
+            {
+              "id": "s3y-1-27-word1-letter1-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "ויֵצֵא",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "vowel",
+              "sourcePages": [
+                234
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=234"
+            },
+            {
+              "id": "s3y-1-27-word1-letter2-dagesh",
+              "kind": "unreadablePoint",
+              "anchor": "ויֵצֵא",
+              "occurrence": 1,
+              "letterIndex": 2,
+              "mark": "dagesh",
+              "sourcePages": [
+                234
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=234"
+            },
+            {
+              "id": "s3y-1-27-word2-letter1-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "ויִשְׂרֹף",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "vowel",
+              "sourcePages": [
+                234
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=234"
+            },
+            {
+              "id": "s3y-1-27-word2-letter2-dagesh",
+              "kind": "unreadablePoint",
+              "anchor": "ויִשְׂרֹף",
+              "occurrence": 1,
+              "letterIndex": 2,
+              "mark": "dagesh",
+              "sourcePages": [
+                234
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=234"
+            }
+          ]
         },
         {
           "verse": 28,
-          "text": "וּמַלְאַךְ יְיָ יָרַד עִם־עֲזַרְיָה וַחֲבֵרָיו אֶל־הַכִּבְשָׁן וַיֶּהֱדֹף אֶת־לַהַב הָאֵשׁ׃",
+          "text": "וּמַלְאַךְ יְיָ יָרַד עִם־עֲזַרְיָה וחֲבֵרָיו אֶל־הַכִּבְשָׁן ויֶהֱדֹף אֶת־לַהַב הָאֵשׁ׃",
           "sourcePages": [
             234
           ],
-          "textSHA256": "23d43451fa0d1921223ed330423b521a9f0bd82d14b681c3b2f2b312598ab900"
+          "textSHA256": "33f51894de324b88e929c6e7dc9da4f93663783299da46055d52db21cdbfb09d",
+          "sourceNotes": [
+            {
+              "id": "s3y-1-28-word5-letter1-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "וחֲבֵרָיו",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "vowel",
+              "sourcePages": [
+                234
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=234"
+            },
+            {
+              "id": "s3y-1-28-word7-letter1-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "ויֶהֱדֹף",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "vowel",
+              "sourcePages": [
+                234
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=234"
+            },
+            {
+              "id": "s3y-1-28-word7-letter2-dagesh",
+              "kind": "unreadablePoint",
+              "anchor": "ויֶהֱדֹף",
+              "occurrence": 1,
+              "letterIndex": 2,
+              "mark": "dagesh",
+              "sourcePages": [
+                234
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=234"
+            }
+          ]
         },
         {
           "verse": 29,
-          "text": "וַיַּעַשׂ אֶת־תּוֹךְ הַכִּבְשָׁן כְּמוֹ רוּחַ טַל נֹשֶׁבֶת וְלֹא נָגְעָה בָהֶם הָאֵשׁ עַד־מָה וְלֹא הִכְאִיבָה אוֹתָם וְלֹא הֵצִיקָה לָהֶם׃",
+          "text": "ויַעַשׂ אֶת־תּוֹךְ הַכִּבְשָׁן כְּמוֹ רוּחַ טַל נֹשֶׁבֶת וְלֹא נָגְעָה בָהֶם הָאֵשׁ עַד־מָה וְלֹא הִכְאִיבָה אוֹתָם וְלֹא הֵצִיקָה לָהֶם׃",
           "sourcePages": [
             234,
             235
           ],
-          "textSHA256": "cb7688daf0c18721c11c659542f9b4f0f3c6038c52a441b5a7474f1fc1ec4ca8"
+          "textSHA256": "b5b04f83857c8e03aee0f9636d242cd89ccd82536f4b2214c7f375265014a30a",
+          "sourceNotes": [
+            {
+              "id": "s3y-1-29-word1-letter1-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "ויַעַשׂ",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "vowel",
+              "sourcePages": [
+                234
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=234"
+            },
+            {
+              "id": "s3y-1-29-word1-letter2-dagesh",
+              "kind": "unreadablePoint",
+              "anchor": "ויַעַשׂ",
+              "occurrence": 1,
+              "letterIndex": 2,
+              "mark": "dagesh",
+              "sourcePages": [
+                234
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=234"
+            }
+          ]
         },
         {
           "verse": 30,
-          "text": "וַיַּעֲנוּ שְׁלָשְׁתָּם פֶּה אֶחָד וַיְהַלְלוּ וַיְשַׁבְּחוּ וַיְרוֹמְמוּ אֶת־הָאֱלֹהִים בְּתוֹךְ־הַכִּבְשָׁן לֵאמֹר׃",
+          "text": "ויַעֲנוּ שְׁלָשְׁתָּם פֶּה אֶחָד ויְהַלְלוּ ויְשַׁבְּחוּ ויְרוֹמְמוּ אֶת־הָאֱלֹהִים בְּתוֹךְ־הַכִּבְשָׁן לֵאמֹר׃",
           "sourcePages": [
             235
           ],
-          "textSHA256": "5cedd1cca1a25b80b50631b585ed40a394892ca324a4dfaa1d5f2933423a3599"
+          "textSHA256": "6e64f44531a1f6e6a04b6ad1045dc68c863a06a7b42e1cec0ae12a519c2b7e7a",
+          "sourceNotes": [
+            {
+              "id": "s3y-1-30-vayaanu-vav-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "ויַעֲנוּ",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "vowel",
+              "sourcePages": [
+                235
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=235"
+            },
+            {
+              "id": "s3y-1-30-vayaanu-yod-dagesh",
+              "kind": "unreadablePoint",
+              "anchor": "ויַעֲנוּ",
+              "occurrence": 1,
+              "letterIndex": 2,
+              "mark": "dagesh",
+              "sourcePages": [
+                235
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=235"
+            },
+            {
+              "id": "s3y-1-30-vayhalelu-vav-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "ויְהַלְלוּ",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "vowel",
+              "sourcePages": [
+                235
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=235"
+            },
+            {
+              "id": "s3y-1-30-vayshabehu-vav-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "ויְשַׁבְּחוּ",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "vowel",
+              "sourcePages": [
+                235
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=235"
+            },
+            {
+              "id": "s3y-1-30-vayromemu-vav-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "ויְרוֹמְמוּ",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "vowel",
+              "sourcePages": [
+                235
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=235"
+            }
+          ]
         },
         {
           "verse": 31,
@@ -297,11 +1003,25 @@
         },
         {
           "verse": 35,
-          "text": "בָּרוּךְ אַתָּה בִּרְקִיעַ הַשָּׁמַיִם וּמְהֻלָּל וּמְכֻבָּד לְעוֹלָמִים׃",
+          "text": "בָּרוּךְ אַתָּה בִּרקִיעַ הַשָּׁמַיִם וּמְהֻלָּל וּמְכֻבָּד לְעוֹלָמִים׃",
           "sourcePages": [
             235
           ],
-          "textSHA256": "780864270868a9261945907bda151369cd8049ab7790cfa7fe0a5040e7aca5c9"
+          "textSHA256": "e1225061c2cc419f63441752197e7c3c0518889b389fec81bbc0a19a95f40d4c",
+          "sourceNotes": [
+            {
+              "id": "s3y-1-35-rakiya-resh-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "בִּרקִיעַ",
+              "occurrence": 1,
+              "letterIndex": 2,
+              "mark": "vowel",
+              "sourcePages": [
+                235
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=235"
+            }
+          ]
         },
         {
           "verse": 36,
@@ -433,11 +1153,25 @@
         },
         {
           "verse": 52,
-          "text": "בָּרְכוּ אֶת־יְיָ בְּרָקִים וַעֲנָנִים הַלְלֻהוּ וְרוֹמְמֻהוּ לְעוֹלָמִים׃",
+          "text": "בָּרְכוּ אֶת־יְיָ בְּרָקִים ועֲנָנִים הַלְלֻהוּ וְרוֹמְמֻהוּ לְעוֹלָמִים׃",
           "sourcePages": [
             236
           ],
-          "textSHA256": "d92719102dd5e0db8731e625861b1901ba26204e87f590123e5a215b6077e250"
+          "textSHA256": "44bff5df3c2cc3c49fad547350ea668c38656ba14c2ec3a468e4457813247103",
+          "sourceNotes": [
+            {
+              "id": "s3y-1-52-word1-letter1-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "ועֲנָנִים",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "vowel",
+              "sourcePages": [
+                236
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=236"
+            }
+          ]
         },
         {
           "verse": 53,
@@ -497,11 +1231,37 @@
         },
         {
           "verse": 60,
-          "text": "בָּרְכוּ אֶת־יְיָ בְּהֵמוֹת וְחַיַּת הָאָרֶץ הַלְלֻהוּ וְרוֹמְמֻהוּ לְעוֹלָמִים׃",
+          "text": "בָּרְכוּ אֶת־יְיָ בְּהֵמוֹת וחַיַת הָאָרֶץ הַלְלֻהוּ וְרוֹמְמֻהוּ לְעוֹלָמִים׃",
           "sourcePages": [
             236
           ],
-          "textSHA256": "349599257bee5225cb7212ce85ad1450fa632f447fddc8c14836aa95cacea608"
+          "textSHA256": "a1c681807130835c6343544b181ae624a5d599018390454b1010723eae5ce83d",
+          "sourceNotes": [
+            {
+              "id": "s3y-1-60-word2-letter1-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "וחַיַת",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "vowel",
+              "sourcePages": [
+                236
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=236"
+            },
+            {
+              "id": "s3y-1-60-word2-letter3-dagesh",
+              "kind": "unreadablePoint",
+              "anchor": "וחַיַת",
+              "occurrence": 1,
+              "letterIndex": 3,
+              "mark": "dagesh",
+              "sourcePages": [
+                236
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=236"
+            }
+          ]
         },
         {
           "verse": 61,
@@ -561,11 +1321,25 @@
         },
         {
           "verse": 68,
-          "text": "כִּי פָדָה אֶתְכֶם מִשְּׁאוֹל וְהוֹשִׁיעַ אֶתְכֶם מִיַּד הַמָּוֶת וְהִצִּיל אֶתְכֶם מִתּוֹךְ־לֶהָבָה בּוֹעֶרֶת׃",
+          "text": "כִּי פָדָה אֶתְכֶם מִשְׁאוֹל וְהוֹשִׁיעַ אֶתְכֶם מִיַּד הַמָּוֶת וְהִצִּיל אֶתְכֶם מִתּוֹךְ־לֶהָבָה בּוֹעֶרֶת׃",
           "sourcePages": [
             236
           ],
-          "textSHA256": "fee5c487e1c8729ec9b8e5405d5cd72ce3c556e925834d4deb334f155524c731"
+          "textSHA256": "1320e8bd256f4598f6e918d87c97098008a1a3bfd8f7ec4d492469c6772a4d12",
+          "sourceNotes": [
+            {
+              "id": "s3y-1-68-word3-letter2-dagesh",
+              "kind": "unreadablePoint",
+              "anchor": "מִשְׁאוֹל",
+              "occurrence": 1,
+              "letterIndex": 2,
+              "mark": "dagesh",
+              "sourcePages": [
+                236
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=236"
+            }
+          ]
         },
         {
           "verse": 69,
@@ -1010,11 +1784,133 @@
         {
           "id": "s3y-closing-narrative",
           "kind": "passage",
-          "text": "וַיְהִי כַּאֲשֶׁר שָׁמַע הַמֶּלֶךְ אוֹתָם מְהַלְלִים וַיָּקָם וַיַּרְא אוֹתָם כִּי חַיִּים הֵם וַיִּתְמַהּ הַמֶּלֶךְ נְבוּכַדְנֶאצַּר וַיְמַהֵר לָקוּם וַיֹּאמֶר לְאֹהֲבָיו — — —׃",
+          "text": "ויְהִי כַּאֲשֶׁר שָׁמַע הַמֶּלֶךְ אוֹתָם מְהַלְלִים ויָקָם ויַרְא אוֹתָם כִּי חַיִּים הֵם ויִתְמַהּ הַמֶּלֶךְ נְבוּכַדְנֶאצַּר ויְמַהֵר לָקוּם ויֹאמֶר לְאֹהֲבָיו — — —׃",
           "sourcePages": [
             236
           ],
-          "textSHA256": "bc25ec15e58c0ebea70ed6cd93711bfec8e90eeaf05b872a8c2f2b6577d951ab"
+          "textSHA256": "fcf278ccad8be39d5fa4237ca87d28f9020503539ceae138b02e1f0fe882b7dd",
+          "sourceNotes": [
+            {
+              "id": "s3y-1-tail-word4-letter1-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "ויְהִי",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "vowel",
+              "sourcePages": [
+                236
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=236"
+            },
+            {
+              "id": "s3y-1-tail-word5-letter1-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "ויָקָם",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "vowel",
+              "sourcePages": [
+                236
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=236"
+            },
+            {
+              "id": "s3y-1-tail-word5-letter2-dagesh",
+              "kind": "unreadablePoint",
+              "anchor": "ויָקָם",
+              "occurrence": 1,
+              "letterIndex": 2,
+              "mark": "dagesh",
+              "sourcePages": [
+                236
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=236"
+            },
+            {
+              "id": "s3y-1-tail-word6-letter1-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "ויַרְא",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "vowel",
+              "sourcePages": [
+                236
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=236"
+            },
+            {
+              "id": "s3y-1-tail-word6-letter2-dagesh",
+              "kind": "unreadablePoint",
+              "anchor": "ויַרְא",
+              "occurrence": 1,
+              "letterIndex": 2,
+              "mark": "dagesh",
+              "sourcePages": [
+                236
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=236"
+            },
+            {
+              "id": "s3y-1-tail-word7-letter1-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "ויִתְמַהּ",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "vowel",
+              "sourcePages": [
+                236
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=236"
+            },
+            {
+              "id": "s3y-1-tail-word7-letter2-dagesh",
+              "kind": "unreadablePoint",
+              "anchor": "ויִתְמַהּ",
+              "occurrence": 1,
+              "letterIndex": 2,
+              "mark": "dagesh",
+              "sourcePages": [
+                236
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=236"
+            },
+            {
+              "id": "s3y-1-tail-word8-letter1-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "ויְמַהֵר",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "vowel",
+              "sourcePages": [
+                236
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=236"
+            },
+            {
+              "id": "s3y-1-tail-word9-letter1-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "ויֹאמֶר",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "vowel",
+              "sourcePages": [
+                236
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=236"
+            },
+            {
+              "id": "s3y-1-tail-word9-letter2-dagesh",
+              "kind": "unreadablePoint",
+              "anchor": "ויֹאמֶר",
+              "occurrence": 1,
+              "letterIndex": 2,
+              "mark": "dagesh",
+              "sourcePages": [
+                236
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=236"
+            }
+          ]
         }
       ]
     }

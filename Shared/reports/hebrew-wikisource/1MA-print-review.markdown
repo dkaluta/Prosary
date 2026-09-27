@@ -357,3 +357,23 @@ Lydia spelling. Expanded glyphs resolve the names’ actual points;
 Hellas’s provisional tsere/patah is explicitly retracted in favor of
 visible segol/qamats. ReviewedPages is41(B97–137), with11accepted
 notes.8:10 onward remains scaffold. See `1MA-pointing-B136-137.json`.
+
+B138 is completely first/second-compared (8:10–16). Defective
+מלכיות and full לעזור follow the print; all seven margin labels
+remain separate. ReviewedPages is42(B97–138), with11accepted
+notes.8:17 onward remains scaffold. See `1MA-pointing-B138.json`.
+
+B139 is completely first/second-compared (8:17–26). Verse 26 continues
+onto B140 and its complete text was compared; B140 as a whole remains
+unreviewed. The treaty starts with printed טוב יהי. The name
+אָבְפּוֹלֵימוֹס, mem tsere in ויאמרו, and this occurrence's Jerusalem
+qamats+hiriq were independently checked. ReviewedPages is 43 (B97–139),
+with 11 accepted notes. See `1MA-pointing-B139.json`.
+
+B140 is completely first/second-compared (8:26 continuation through
+9:4). Chapters 1–8 now have a complete first/second print comparison.
+The isolated bet vowel in 9:1 remains unreadable in both scans and
+is disclosed, retaining the clear dagesh. The complete 9:4 continuation
+on B141 is checked, but the rest of B141 remains unreviewed.
+ReviewedPages is 44 (B97–140), with 12 accepted notes.
+See `1MA-pointing-B140.json`.
