@@ -7,6 +7,8 @@ struct ContentView: View {
   @State private var prayPath: [AppRoute]
   @State private var browsePath: [AppRoute] = []
   @State private var readingsPath: [AppRoute] = []
+  // Civil-date browsing belongs to this window and is shared by Pray and Readings.
+  @State private var dateSelection = MacTodayDateSelection()
   @State private var searchPath: [AppRoute] = []
   @State private var routeLandingGeneration = 0
   @State private var pendingLandingRoute: AppRoute?
@@ -145,7 +147,7 @@ struct ContentView: View {
     switch section {
     case .pray:
       NavigationStack(path: $prayPath) {
-        HomeView(path: $prayPath)
+        HomeView(path: $prayPath, dateSelection: $dateSelection)
           .appRouteDestinations(path: $prayPath)
       }
       // A replaced stack needs a new identity so AppKit's Back control and the path agree.
@@ -161,7 +163,7 @@ struct ContentView: View {
         MacTodayView()
           .appRouteDestinations(path: $readingsPath)
         #else
-        ReadingsView()
+        ReadingsView(dateSelection: $dateSelection)
           .appRouteDestinations(path: $readingsPath)
         #endif
       }
@@ -204,6 +206,7 @@ struct ContentView: View {
   private func openWidgetLink(_ link: ProsaryWidgetLink) {
     switch link {
     case .today, .library:
+      if case .today = link { dateSelection.select(Date()) }
       routeLandingGeneration += 1
       pendingLandingRoute = nil
       selectedTab = .pray

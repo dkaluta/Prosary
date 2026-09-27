@@ -73,6 +73,8 @@ import com.dkaluta.prosary.content.prayerpack.CustomDevotionInfo
 import com.dkaluta.prosary.content.prayerpack.PrayerPackStore
 import com.dkaluta.prosary.content.today.TodayInfoStore
 import com.dkaluta.prosary.content.today.TodayTranslationLanguage
+import com.dkaluta.prosary.ui.shared.TodayBrowsingDate
+import com.dkaluta.prosary.ui.shared.rememberTodayBrowsingDate
 import com.dkaluta.prosary.content.today.TodayDateSelection
 import com.dkaluta.prosary.models.AppSettings
 import com.dkaluta.prosary.models.BasicPrayerCatalog
@@ -143,6 +145,7 @@ fun HomeScreen(
     onOpenBasicPrayers: () -> Unit,
     onOpenBasicPrayer: (String) -> Unit,
     todayWidgetRequest: Long = 0,
+    browsingDate: TodayBrowsingDate = rememberTodayBrowsingDate(),
 ) {
     val services = LocalAppServices.current
     val isDarkTheme = isSystemInDarkTheme()
@@ -150,9 +153,7 @@ fun HomeScreen(
     // A null selection follows the current day, including midnight and returning to the app.
     // An explicit date stays where the reader put it until Today is tapped.
     var currentDate by remember { mutableStateOf(LocalDate.now()) }
-    var selectedEpochDay by rememberSaveable { mutableStateOf<Long?>(null) }
-    val selectedDate = (selectedEpochDay?.let(LocalDate::ofEpochDay) ?: currentDate)
-        .coerceIn(TodayDateSelection.earliest, TodayDateSelection.latest)
+    val selectedDate = browsingDate.selectedDate(currentDate)
     // Rebuild the instant in the current zone on resume; an explicitly selected civil date
     // must stay that date even after the device changes time zone.
     val lookupDate = TodayDateSelection.lookupDate(selectedDate)
@@ -162,7 +163,7 @@ fun HomeScreen(
     LaunchedEffect(todayWidgetRequest) {
         if (todayWidgetRequest != 0L && todayWidgetRequest != handledTodayWidgetRequest) {
             handledTodayWidgetRequest = todayWidgetRequest
-            selectedEpochDay = null
+            browsingDate.selectedEpochDay = null
             currentDate = LocalDate.now()
             showsDatePicker = false
             gridState.scrollToItem(0)
@@ -186,7 +187,9 @@ fun HomeScreen(
     val liturgicalDayInfo = remember(lookupDate, AppSettings.feastCalendarId) {
         if (TodayInfoStore.shouldShowLiturgicalDay(lookupDate)) TodayInfoStore.liturgicalDayInfo(lookupDate) else null
     }
-    val todayReadings = remember(lookupDate, AppSettings.feastCalendarId, AppSettings.easternPaschaStyle) { TodayInfoStore.readings(lookupDate) }
+    val todayReadings = remember(lookupDate, AppSettings.feastCalendarId, AppSettings.easternPaschaStyle, AppSettings.showTodayReadings) {
+        if (AppSettings.showTodayReadings) TodayInfoStore.readings(lookupDate) else emptyList()
+    }
     val torahPortion = remember(lookupDate, AppSettings.showTodayTorahPortion) {
         if (AppSettings.showTodayTorahPortion) TodayInfoStore.torahPortion(lookupDate) else null
     }
@@ -387,7 +390,7 @@ fun HomeScreen(
                     enabled = datePickerState.selectedDateMillis != null,
                     onClick = {
                         datePickerState.selectedDateMillis?.let {
-                            selectedEpochDay = TodayDateSelection.fromPickerMillis(it).toEpochDay()
+                            browsingDate.selectedEpochDay = TodayDateSelection.fromPickerMillis(it).toEpochDay()
                         }
                         showsDatePicker = false
                     },
@@ -400,7 +403,7 @@ fun HomeScreen(
                 modifier = Modifier.testTag("todayDatePicker"),
                 title = {
                     TextButton(
-                        onClick = { currentDate = LocalDate.now(); selectedEpochDay = null; showsDatePicker = false },
+                        onClick = { currentDate = LocalDate.now(); browsingDate.selectedEpochDay = null; showsDatePicker = false },
                         modifier = Modifier.padding(horizontal = 12.dp).testTag("todayReset"),
                     ) { Text(stringResource(R.string.home_today_reset)) }
                 },
@@ -483,7 +486,7 @@ fun HomeScreen(
             item(key = "todayNavigation", span = { GridItemSpan(maxLineSpan) }) {
                 Row(Modifier.fillMaxWidth().height(IntrinsicSize.Min), verticalAlignment = Alignment.CenterVertically) {
                     IconButton(
-                        onClick = { selectedEpochDay = selectedDate.minusDays(1).toEpochDay() },
+                        onClick = { browsingDate.selectedEpochDay = selectedDate.minusDays(1).toEpochDay() },
                         enabled = selectedDate > TodayDateSelection.earliest,
                         modifier = Modifier.heightIn(min = 48.dp).fillMaxHeight().testTag("todayYesterday"),
                     ) {
@@ -494,7 +497,7 @@ fun HomeScreen(
                         Text(dateLabel, textAlign = TextAlign.Center)
                     }
                     IconButton(
-                        onClick = { selectedEpochDay = selectedDate.plusDays(1).toEpochDay() },
+                        onClick = { browsingDate.selectedEpochDay = selectedDate.plusDays(1).toEpochDay() },
                         enabled = selectedDate < TodayDateSelection.latest,
                         modifier = Modifier.heightIn(min = 48.dp).fillMaxHeight().testTag("todayTomorrow"),
                     ) {
@@ -571,7 +574,7 @@ fun HomeScreen(
                             }
                         }
                         if (todayReadings.isNotEmpty()) {
-                            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                            Row(horizontalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.testTag("todayReadings")) {
                                 Icon(Icons.AutoMirrored.Filled.MenuBook, contentDescription = null, tint = MaterialTheme.colorScheme.primary)
                                 Column(verticalArrangement = Arrangement.spacedBy(2.dp), modifier = Modifier.weight(1f)) {
                                     Text(todayReadingsTitle, style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.SemiBold)
@@ -657,6 +660,17 @@ fun HomeScreen(
                                 pinGeneration++
                             },
                         )
+                        if (card.basicPrayerId == null && card.devotionId in PrayerPackStore.installedBundleIds()
+                            && !PrayerPackStore.isBuiltInBundle(card.devotionId)) {
+                            DropdownMenuItem(
+                                text = { Text(stringResource(R.string.download_remove_action), color = MaterialTheme.colorScheme.error) },
+                                onClick = {
+                                    cardMenu = false
+                                    removalRequest = PrayerRemovalRequest.Download(card.devotionId)
+                                },
+                                modifier = Modifier.testTag("removeDownload.${card.devotionId}"),
+                            )
+                        }
                         if (card.basicPrayerId == null && card.devotionId != "rosary") {
                             val copies = savedPrayers.filter {
                                 if (card.devotionId == "jesusPrayer") it.kind == PrayerKind.JesusPrayer

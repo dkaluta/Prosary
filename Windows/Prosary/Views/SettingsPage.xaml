@@ -38,6 +38,11 @@
                 <TextBlock x:Uid="SetAppLanguageFooter" Text="Restart Prosary to apply the new app language."
                            TextWrapping="Wrap" Style="{StaticResource MutedCaptionTextStyle}" />
 
+                <ComboBox x:Uid="SetAppColor" Header="App color" HorizontalAlignment="Stretch"
+                          ItemsSource="{x:Bind ViewModel.AppColorOptions}" DisplayMemberPath="Label"
+                          SelectedItem="{x:Bind ViewModel.SelectedAppColor, Mode=TwoWay}"
+                          AutomationProperties.AutomationId="appColor" />
+
                 <ComboBox x:Uid="SetLanguageCombo" Header="Prayer Language" HorizontalAlignment="Stretch"
                           ItemsSource="{x:Bind ViewModel.LanguageOptions}" DisplayMemberPath="NativeName"
                           SelectedItem="{x:Bind ViewModel.SelectedLanguage, Mode=TwoWay}"
@@ -56,13 +61,6 @@
 
                 <Button x:Uid="SetLanguageFallbackOrder" Content="Language fallback order…"
                         HorizontalAlignment="Stretch" Click="OnEditLanguageFallbackOrder" />
-
-                <ToggleSwitch x:Uid="SetJaffaWording" Header="Alternative Hail Mary wording"
-                              IsOn="{x:Bind ViewModel.UseJaffaHailMaryWording, Mode=TwoWay}"
-                              AutomationProperties.AutomationId="useJaffaHailMaryWording" />
-                <TextBlock x:Uid="SetJaffaWordingFooter"
-                           Text="Use בְּרוּכַת הַחֶסֶד instead of מְלֵאַת הַחֶסֶד in Vicariate prayers."
-                           TextWrapping="Wrap" Style="{StaticResource MutedCaptionTextStyle}" />
 
                 <TextBlock x:Uid="SetPrayingHeader" Text="Praying" Style="{StaticResource BaseTextBlockStyle}" Margin="0,8,0,0" />
 
@@ -121,6 +119,12 @@
                               IsOn="{x:Bind ViewModel.ShowTodayFeast, Mode=TwoWay}" />
                 <ToggleSwitch x:Uid="SetShowTodayIntention" Header="Show the Pope's intention"
                               IsOn="{x:Bind ViewModel.ShowTodayIntention, Mode=TwoWay}" />
+                <ToggleSwitch x:Uid="SetShowTodayReadingsDesktop" Header="Show readings"
+                              IsOn="{x:Bind ViewModel.ShowTodayReadings, Mode=TwoWay}"
+                              AutomationProperties.AutomationId="showTodayReadings" />
+                <ToggleSwitch x:Uid="SetExpandReadingsByDefault" Header="Expand readings by default"
+                              IsOn="{x:Bind ViewModel.ExpandReadingsByDefault, Mode=TwoWay}"
+                              AutomationProperties.AutomationId="expandReadingsByDefault" />
                 <ToggleSwitch x:Uid="SetShowTodayTorahPortion" Header="Show the weekly Torah portion"
                               IsOn="{x:Bind ViewModel.ShowTodayTorahPortion, Mode=TwoWay}"
                               AutomationProperties.AutomationId="showTodayTorahPortion" />

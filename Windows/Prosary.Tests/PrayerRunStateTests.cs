@@ -179,7 +179,7 @@ public class PrayerRunStateTests : IClassFixture<PrayerPackLoaderFixture>
     }
 
     [Fact]
-    public async Task JaffaPreferenceRefreshesOpenFlowsWithoutMovingTheirPrayerPosition()
+    public async Task RetiredHailMaryPreferenceCannotChangeOpenFlowsOrTheirPosition()
     {
         var previousLanguage = AppSettings.BasicPrayersLanguageCode;
         var previousWording = AppSettings.UseJaffaHailMaryWording;
@@ -212,9 +212,10 @@ public class PrayerRunStateTests : IClassFixture<PrayerPackLoaderFixture>
             var positions = flows.Select(flow => flow.ProgressText).ToArray();
             Assert.All(originals, body => Assert.Contains("מְלֵאַת הַחֶסֶד", body));
 
-            AppSettings.PrayerWordingChanged += Refresh;
             AppSettings.SetUseJaffaHailMaryWording(true);
-            Assert.All(flows, flow => Assert.Contains("בְּרוּכַת הַחֶסֶד", flow.Body));
+            Refresh();
+            Assert.False(AppSettings.UseJaffaHailMaryWording);
+            Assert.Equal(originals, flows.Select(flow => flow.Body));
             Assert.Equal(positions, flows.Select(flow => flow.ProgressText));
             AppSettings.SetUseJaffaHailMaryWording(false);
             Assert.Equal(originals, flows.Select(flow => flow.Body));
@@ -222,7 +223,6 @@ public class PrayerRunStateTests : IClassFixture<PrayerPackLoaderFixture>
         }
         finally
         {
-            AppSettings.PrayerWordingChanged -= Refresh;
             AppSettings.SetBasicPrayersLanguageCode(previousLanguage);
             AppSettings.SetUseJaffaHailMaryWording(previousWording);
         }

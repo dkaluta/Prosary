@@ -45,6 +45,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.dkaluta.prosary.R
+import com.dkaluta.prosary.content.prayerpack.PrayerPackStore
 import com.dkaluta.prosary.models.AppSettings
 import com.dkaluta.prosary.models.JesusPrayerOptions
 import com.dkaluta.prosary.models.JesusPrayerTarget
@@ -177,7 +178,12 @@ fun FavoriteEditorScreen(prayerId: String?, newFavoriteKind: PrayerKind = Prayer
                     modifier = Modifier.fillMaxWidth(),
                 )
 
-                if (LanguageCatalog.pickerLanguageCode(prayer.resolvedLanguageCode) == "he") {
+                val hasHebrewTraditions = when (prayer.kind) {
+                    PrayerKind.Rosary -> PrayerPackStore.hasHebrewTraditionChoice("rosary")
+                    PrayerKind.JesusPrayer -> PrayerPackStore.hasHebrewTraditionChoice("rosary", "oratioIesu")
+                    PrayerKind.Custom -> prayer.customDevotionId?.let { PrayerPackStore.hasHebrewTraditionChoice(it) } == true
+                }
+                if (hasHebrewTraditions && LanguageCatalog.pickerLanguageCode(prayer.resolvedLanguageCode) == "he") {
                     OptionPickerField(
                         label = stringResource(R.string.prayer_tradition),
                         options = listOf("he", "he-x-gamliel"),

@@ -95,6 +95,9 @@ public partial class BasicPrayerViewModel : ObservableObject, IPrayerStepFlowVie
 
     private string? _prayerId;
 
+    public IReadOnlyList<LanguageOption> HebrewRites => _prayerId is { } id && BasicPrayerCatalog.Prayer(id) is { } prayer
+        ? PrayerPackStore.AuthoredHebrewRites(prayer.BundleId, prayer.BodyKey) : [];
+
     public string HeaderFontFamily => PrayerTypography.ResolveHeadingFontFamily(Header);
 
     [ObservableProperty]
@@ -184,7 +187,7 @@ public partial class BasicPrayerViewModel : ObservableObject, IPrayerStepFlowVie
     private void RenderPrayer()
     {
         if (_prayerId is null || BasicPrayerCatalog.Prayer(_prayerId) is not { } prayer) return;
-        var language = LanguageCatalog.Resolve(CurrentLanguageRaw);
+        var language = BasicPrayerCatalog.EffectiveLanguage(prayer, CurrentLanguageRaw);
         var step = BasicPrayerCatalog.Step(prayer, language.Code);
         if (_initializedScriptLanguage != language.Code)
         {

@@ -4,8 +4,15 @@ Prosary now has a Readings tab on iPhone, iPad and Android. It replaces the Cate
 button; Search retains category browsing and combines the selected category with the text
 query across local and community devotions. Mac and Windows show the reader in Today.
 The date picker sits above the readings. Desktop references are always written out in full.
-Readings open expanded when entering the reader and when its date or calendar changes.
-Each available passage shows selectable, numbered Bible text with the chosen edition and
+Pray and Readings share one browsed civil date within each window. Choosing Today restores
+local-day following in both; browsing never changes a prayer session or widget date.
+Readings start collapsed on entry and date/calendar changes. The shared
+`expandReadingsByDefault` setting (off by default) opens them automatically when enabled;
+manual disclosure choices survive ordinary refreshes and edition changes.
+`showTodayReadings` (on by default) controls readings in Pray and the native desktop Today
+surface; the dedicated phone Readings tab stays available independently.
+Each available passage shows selectable Bible text under a localized **Chapter** *n*
+heading at each chapter transition, with verse-only numbers, the chosen edition and
 source credit. The optional weekly Torah portion uses the same reader.
 When a passage is unavailable in the selected edition, its Bible-edition menu lists editions
 with complete text for that passage. Choosing one explicitly updates `readingsEditionId`;

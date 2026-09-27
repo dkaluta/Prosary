@@ -66,13 +66,23 @@
 
     <!-- Settings -->
     <string name="settings_default_prayer_language">"Язык молитвы по умолчанию"</string>
+    <string name="settings_app_color">"Цвет приложения"</string>
+    <string name="settings_app_color_hint">"Выберите цвет значка и акцента приложения."</string>
+    <string name="settings_app_color_error">"Не удалось изменить значок приложения. Попробуйте ещё раз."</string>
+    <string name="app_color_blue">"Синий"</string>
+    <string name="app_color_green">"Зелёный"</string>
+    <string name="app_color_red">"Красный"</string>
+    <string name="app_color_purple">"Фиолетовый"</string>
+    <string name="app_color_rose">"Розовый"</string>
+    <string name="app_color_white">"Белый"</string>
+    <string name="app_color_gold">"Золотой"</string>
+    <string name="settings_use_system_colors">"Использовать цвета системы"</string>
+    <string name="settings_use_system_colors_hint">"Использовать цвета обоев вместо выбранного акцента."</string>
     <string name="settings_app_language">"Язык приложения"</string>
     <string name="settings_prayer_language">"Язык молитв"</string>
     <string name="settings_follow_app_language">"Язык приложения (%1$s)"</string>
     <string name="settings_language_system_default">"Язык системы"</string>
     <string name="settings_app_language_hint">"Используется для интерфейса и автоматического выбора издания Библии. Молитвы следуют ей, если не выбран отдельный язык молитв."</string>
-    <string name="settings_jaffa_wording">"Альтернативный текст «Радуйся, Мария»"</string>
-    <string name="settings_jaffa_wording_hint">"Использовать בְּרוּכַת הַחֶסֶד вместо מְלֵאַת הַחֶסֶד в молитвах Викариата."</string>
     <string name="settings_language_fallback_order">"Порядок запасных языков…"…</string>
     <string name="settings_language_fallback_order_title">"Порядок запасных языков"</string>
     <string name="settings_language_fallback_order_footer">Если текста нет на выбранном языке, Prosary следует этому порядку. Общие для обеих традиций тексты на иврите, включая молитвы из репозитория, используют более высокую из двух позиций иврита.</string>
@@ -88,6 +98,9 @@
     <string name="auto_advance_every">"Каждые %1$d секунд"</string>
     <string name="settings_reset_home_order">"Сбросить порядок на главной"</string>
     <string name="settings_today_header">"Сегодня"</string>
+    <string name="settings_show_today_readings">"Показывать чтения на вкладке «Молитва»"</string>
+    <string name="settings_expand_readings">"Раскрывать чтения по умолчанию"</string>
+    <string name="readings_chapter">"Глава %1$s"</string>
     <string name="settings_show_today_feast">"Показывать праздник дня"</string>
     <string name="settings_show_today_intention">"Показывать намерение Папы"</string>
     <string name="settings_feast_calendar">"Литургический календарь"</string>
@@ -163,6 +176,7 @@
 
     <!-- Rosary options editor -->
     <string name="ro_which_mysteries">"Какие тайны?"</string>
+    <string name="ro_skip_fifth_decade">"Пропускать пятый десяток"</string>
     <string name="ro_mysteries">"Тайны"</string>
     <string name="ro_specific_set">"Определённая группа"</string>
     <string name="ro_which_mystery">"Какая тайна"</string>

@@ -41,6 +41,28 @@ public class ReadingsTextStoreTests
     }
 
     [Fact]
+    public void ChapterHeadingsPreserveOrderedChapterBoundariesAndVerseOnlyNumbers()
+    {
+        const string fixture = """
+            {"schemaVersion":1,"editions":[{"id":"fixture","languageCode":"en","name":"Fixture",
+            "attribution":"Fixture credit","sourceURL":"https://example.test"}],
+            "passages":{"daily|Fixture":{"fixture":[
+              {"chapter":3,"verse":16,"text":"First"},{"chapter":3,"verse":18,"text":"Second"},
+              {"chapter":4,"verse":1,"text":"Third"},{"chapter":3,"verse":20,"text":"Fourth"}]}}}
+            """;
+        var store = new ReadingsTextStore(() => fixture);
+        var row = new ReadingPassageViewModel(store, store.ResolveEdition("fixture", "en"), "daily",
+            new ReadingCitation("reading", "Fixture", "Fixture"), "en", "context", "configuration");
+        Assert.Empty(row.Chapters);
+        row.IsExpanded = true;
+        Assert.Equal(new[] { 3, 4, 3 }, row.Chapters.Select(chapter => chapter.Number));
+        Assert.All(row.Chapters, chapter => Assert.Equal("Chapter", chapter.Label));
+        Assert.Equal("\u206616\u2069  First" + Environment.NewLine + Environment.NewLine + "\u206618\u2069  Second", row.Chapters[0].Text);
+        Assert.DoesNotContain("3:16", row.PassageText);
+        Assert.Contains("Chapter \u20664\u2069", row.PassageText);
+    }
+
+    [Fact]
     public void AutomaticEditionUsesLanguageAliasesWithoutAnEnglishFallback()
     {
         var store = new ReadingsTextStore(() => Fixture);

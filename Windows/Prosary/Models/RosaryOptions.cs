@@ -18,6 +18,9 @@ public sealed record RosaryOptions
     /// only when <see cref="MysterySelectionMode"/> is <see cref="Models.MysterySelectionMode.SingleMystery"/>.</summary>
     public int SpecificMysteryOrder { get; init; } = 1;
 
+    /// <summary>Omit the fifth mystery of each full set; an explicitly chosen single mystery stays available.</summary>
+    public bool SkipFifthDecade { get; init; } = false;
+
     public bool IncludeApostlesCreed { get; init; } = true;
 
     /// <summary>The opening Our Father + 3 Hail Marys (for faith, hope, and charity) + Glory Be.</summary>

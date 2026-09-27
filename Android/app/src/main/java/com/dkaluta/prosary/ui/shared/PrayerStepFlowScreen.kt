@@ -717,7 +717,8 @@ internal fun MysteryImage(imageKey: String, modifier: Modifier = Modifier) {
         painter = painterResource(id = R.drawable.cross_placeholder),
         contentDescription = null,
         contentScale = ContentScale.Crop,
-        modifier = modifier,
+        colorFilter = androidx.compose.ui.graphics.ColorFilter.tint(MaterialTheme.colorScheme.primary),
+        modifier = modifier.background(MaterialTheme.colorScheme.surfaceVariant),
     )
 }
 

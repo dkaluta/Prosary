@@ -12,6 +12,43 @@ public class HebrewFallbackTests : IClassFixture<PrayerPackLoaderFixture>
     public HebrewFallbackTests(PrayerPackLoaderFixture _) { }
 
     [Fact]
+    public void HebrewTraditionChoicesUseTheSpecificAuthoredPrayerInsteadOfFallbacks()
+    {
+        Assert.Equal(new[] { "he" }, PrayerPackStore.AuthoredHebrewRites("rosary", "sanctusMichael").Select(rite => rite.Code));
+        Assert.Equal(new[] { "he", "he-x-gamliel" }, PrayerPackStore.AuthoredHebrewRites("rosary", "aveMaria").Select(rite => rite.Code));
+        Assert.Empty(PrayerPackStore.AuthoredHebrewRites("rosary", "missing_authored_prayer"));
+        var michael = new Prosary.ViewModels.BasicPrayerViewModel();
+        michael.Load("stMichael");
+        Assert.Single(michael.HebrewRites);
+        var prayer = BasicPrayerCatalog.Prayer("stMichael")!;
+        Assert.Equal("he", BasicPrayerCatalog.EffectiveLanguage(prayer, "he-x-gamliel").Code);
+        Assert.Equal(BasicPrayerCatalog.Step(prayer, "he"), BasicPrayerCatalog.Step(prayer, "he-x-gamliel"));
+        Assert.Equal("en", BasicPrayerCatalog.EffectiveLanguage(prayer, "en").Code);
+    }
+
+    [Theory]
+    [InlineData(false)]
+    [InlineData(true)]
+    public void GenericHebrewAndTraditionTitlesDoNotInventASecondPrayerVariant(bool hasVicariateBody)
+    {
+        using var fixture = new ImportedPack(new Dictionary<string, object>
+        {
+            ["he"] = new Dictionary<string, object>
+            {
+                ["prayers"] = new { genericBody = "Hebrew body", genericTitle = "Hebrew title" },
+                ["$prayerTraditionByKey"] = hasVicariateBody
+                    ? new Dictionary<string, string> { ["genericBody"] = "vicariate", ["genericTitle"] = "vicariate" }
+                    : new Dictionary<string, string> { ["genericTitle"] = "vicariate" },
+            },
+            ["he-x-gamliel"] = new { prayers = new { genericBody = "Mission body" } },
+        });
+        var expected = hasVicariateBody ? new[] { "he", "he-x-gamliel" } : new[] { "he-x-gamliel" };
+        Assert.Equal(expected, PrayerPackStore.AuthoredHebrewRites(fixture.Id).Select(rite => rite.Code));
+        Assert.Equal(expected, PrayerPackStore.AuthoredHebrewRites(fixture.Id, "genericBody").Select(rite => rite.Code));
+        if (!hasVicariateBody) Assert.Equal("he-x-gamliel", PrayerPackStore.EffectiveLanguage(fixture.Id, "he"));
+    }
+
+    [Fact]
     public void ImportedAramaicHeadingsKeepLocalPairsAndSupportReverseScriptOrder()
     {
         var pointed = PrayerPackStore.ResolveBodyText("trisagion", "arc", "trisagionAcclamationTitle");
@@ -127,7 +164,7 @@ public class HebrewFallbackTests : IClassFixture<PrayerPackLoaderFixture>
     }
 
     [Fact]
-    public void JaffaWordingChangesOnlyResolvedVicariateTextAndRestoresTheOriginal()
+    public void RetiredHailMaryPreferenceCannotChangeTheSourcedVicariateText()
     {
         var previous = AppSettings.UseJaffaHailMaryWording;
         try
@@ -139,9 +176,9 @@ public class HebrewFallbackTests : IClassFixture<PrayerPackLoaderFixture>
             Assert.Contains("מְלֵאַת הַחֶסֶד", original);
 
             AppSettings.SetUseJaffaHailMaryWording(true);
-            var expected = original.Replace("מְלֵאַת הַחֶסֶד", "בְּרוּכַת הַחֶסֶד");
-            Assert.Equal(expected, PrayerTranslations.Get("he", PrayerKey.AveMaria));
-            Assert.Equal(expected, PrayerPackStore.ResolveBodyText("missing_bundle", "he", "aveMaria"));
+            Assert.False(AppSettings.UseJaffaHailMaryWording);
+            Assert.Equal(original, PrayerTranslations.Get("he", PrayerKey.AveMaria));
+            Assert.Equal(original, PrayerPackStore.ResolveBodyText("missing_bundle", "he", "aveMaria"));
             Assert.Equal(mission, PrayerTranslations.Get("he-x-gamliel", PrayerKey.AveMaria));
             Assert.Equal(native, PrayerTranslations.NativeTextAtProbe(LanguageCatalog.VicariateContentCode, PrayerKey.AveMaria));
 
@@ -153,10 +190,9 @@ public class HebrewFallbackTests : IClassFixture<PrayerPackLoaderFixture>
     }
 
     [Theory]
-    [InlineData("מְלֵאַת הַחֶסֶד", "בְּרוּכַת הַחֶסֶד")]
-    [InlineData("מלאת החסד", "ברוכת החסד")]
-    public void JaffaWordingFollowsMarkedFallbackContentAndSuppressesOnlyMismatchedAids(
-        string originalPhrase, string replacementPhrase)
+    [InlineData("מְלֵאַת הַחֶסֶד")]
+    [InlineData("מלאת החסד")]
+    public void RetiredHailMaryPreferenceKeepsMarkedFallbackTextAndItsReadingAid(string originalPhrase)
     {
         using var fixture = new ImportedPack(new Dictionary<string, object>
         {
@@ -174,9 +210,8 @@ public class HebrewFallbackTests : IClassFixture<PrayerPackLoaderFixture>
         Assert.Equal("original matching aid", PrayerPackStore.Transliteration(fixture.Id, "he-x-gamliel", "genericBody"));
 
         AppSettings.SetUseJaffaHailMaryWording(true);
-        Assert.Equal($"Before {replacementPhrase}. After {replacementPhrase}.",
-            PrayerPackStore.ResolveBodyText(fixture.Id, "he-x-gamliel", "genericBody"));
-        Assert.Null(PrayerPackStore.Transliteration(fixture.Id, "he-x-gamliel", "genericBody"));
+        Assert.Equal(original, PrayerPackStore.ResolveBodyText(fixture.Id, "he-x-gamliel", "genericBody"));
+        Assert.Equal("original matching aid", PrayerPackStore.Transliteration(fixture.Id, "he-x-gamliel", "genericBody"));
         Assert.Equal("unaltered Vicariate body", PrayerPackStore.ResolveBodyText(fixture.Id, "he-x-gamliel", "noChange"));
         Assert.Equal("unaltered matching aid", PrayerPackStore.Transliteration(fixture.Id, "he-x-gamliel", "noChange"));
 
@@ -188,7 +223,7 @@ public class HebrewFallbackTests : IClassFixture<PrayerPackLoaderFixture>
     [Theory]
     [InlineData("he")]
     [InlineData("he-x-gamliel")]
-    public void JaffaWordingLeavesGenericRepositoryAndMissionTextAndScriptureUntouched(string contentLanguage)
+    public void RetiredHailMaryPreferenceLeavesGenericRepositoryAndMissionTextAndScriptureUntouched(string contentLanguage)
     {
         const string original = "מְלֵאַת הַחֶסֶד / מלאת החסד";
         using var fixture = new ImportedPack(new Dictionary<string, object>

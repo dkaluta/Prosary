@@ -15,9 +15,10 @@ import AppKit
 struct SettingsView: View {
   @Environment(\.appServices) private var services
   @Bindable private var interfaceLanguage = InterfaceLanguageStore.shared
+  @AppStorage(AppColor.defaultsKey) private var appColor = AppColor.blue.rawValue
+  @ObservedObject private var iconController = AppIconController.shared
   @AppStorage(LanguageCatalog.defaultsKey) private var languageCode = LanguageCatalog.defaultSentinel
   @AppStorage(AramaicSignOfCrossForm.defaultsKey) private var aramaicSignOfCrossForm = AramaicSignOfCrossForm.formA
-  @AppStorage(JaffaHailMaryWording.defaultsKey) private var usesJaffaHailMaryWording = false
   @AppStorage("autoAdvanceSeconds") private var autoAdvanceSeconds = 0
   @AppStorage("hapticsOnAdvance") private var hapticsOnAdvance = false
   @AppStorage(PrayerKeyboardNavigation.arrowsKey) private var keyboardArrowNavigationEnabled = true
@@ -47,6 +48,8 @@ struct SettingsView: View {
   @AppStorage(TodayInfoStore.paschaStyleDefaultsKey) private var easternPaschaStyle = "julian"
   @AppStorage("showTodayFeast") private var showsTodayFeast = true
   @AppStorage("showTodayIntention") private var showsTodayIntention = true
+  @AppStorage("showTodayReadings") private var showsTodayReadings = true
+  @AppStorage("expandReadingsByDefault") private var expandReadingsByDefault = false
   @AppStorage("showTodayTorahPortion") private var showsTodayTorahPortion = false
   @AppStorage(PrayerNamePresentation.defaultsKey) private var showsPrayerNameInPrayerLanguage = false
 
@@ -59,6 +62,10 @@ struct SettingsView: View {
 
   var body: some View {
     settingsContent
+    .alert(String(localized: "settings.appColor.iconError", defaultValue: "Could Not Change App Icon", bundle: UILanguage.bundle, locale: UILanguage.locale),
+           isPresented: Binding(get: { iconController.errorMessage != nil }, set: { if !$0 { iconController.errorMessage = nil } })) {
+      Button("common.ok") { iconController.errorMessage = nil }
+    } message: { Text(iconController.errorMessage ?? "") }
     .confirmationDialog(
       String(localized: "settings.removeAllDownloads.title",
              defaultValue: "Remove Unused Downloads?", bundle: UILanguage.bundle, locale: UILanguage.locale),
@@ -111,8 +118,8 @@ struct SettingsView: View {
       MacPrayerEditorForm { prayingSettings }
         .tabItem { Label(String(localized: "settings.prayingHeader", defaultValue: "Praying", bundle: UILanguage.bundle, locale: UILanguage.locale), systemImage: "hands.and.sparkles") }
         .tag(SettingsPane.praying)
-      MacPrayerEditorForm { typographySettings }
-        .tabItem { Label(String(localized: "settings.typographyHeader", defaultValue: "Typography", bundle: UILanguage.bundle, locale: UILanguage.locale), systemImage: "textformat") }
+      MacPrayerEditorForm { appearanceSettings; typographySettings }
+        .tabItem { Label(String(localized: "settings.appearanceHeader", defaultValue: "Appearance", bundle: UILanguage.bundle, locale: UILanguage.locale), systemImage: "paintpalette") }
         .tag(SettingsPane.typography)
       MacPrayerEditorForm {
         downloadsSettings
@@ -128,6 +135,7 @@ struct SettingsView: View {
     #else
     Form {
       languageSettings
+      appearanceSettings
       prayingSettings
       typographySettings
       todaySettings
@@ -148,13 +156,40 @@ struct SettingsView: View {
       switch self {
       case .language: String(localized: "settings.prayerLanguageHeader", defaultValue: "Language", bundle: UILanguage.bundle, locale: UILanguage.locale)
       case .praying: String(localized: "settings.prayingHeader", defaultValue: "Praying", bundle: UILanguage.bundle, locale: UILanguage.locale)
-      case .typography: String(localized: "settings.typographyHeader", defaultValue: "Typography", bundle: UILanguage.bundle, locale: UILanguage.locale)
+      case .typography: String(localized: "settings.appearanceHeader", defaultValue: "Appearance", bundle: UILanguage.bundle, locale: UILanguage.locale)
       case .downloads: String(localized: "settings.downloadsHeader", defaultValue: "Downloads", bundle: UILanguage.bundle, locale: UILanguage.locale)
       }
     }
   }
   #endif
 
+  private var appearanceSettings: some View {
+    Section {
+      Picker(String(localized: "settings.appColor", defaultValue: "App Color", bundle: UILanguage.bundle, locale: UILanguage.locale),
+             selection: Binding(get: { AppColor.resolved(appColor) }, set: { appColor = $0.rawValue })) {
+        ForEach(AppColor.allCases) { color in
+          Label {
+            Text(color.title)
+          } icon: {
+            Image(color.previewAssetName).resizable().scaledToFit().frame(width: 24, height: 24)
+          }
+          .tag(color)
+        }
+      }
+      .accessibilityIdentifier("appColorPicker")
+      .accessibilityValue(AppColor.resolved(appColor).title)
+    } header: {
+      Text(String(localized: "settings.appearanceHeader", defaultValue: "Appearance", bundle: UILanguage.bundle, locale: UILanguage.locale))
+    } footer: {
+      #if os(macOS)
+      Text(String(localized: "settings.appColor.macFooter", defaultValue: "Changes the accent color and Dock icon while Prosary is open.", bundle: UILanguage.bundle, locale: UILanguage.locale))
+      #elseif os(visionOS)
+      Text(String(localized: "settings.appColor.visionFooter", defaultValue: "Changes the accent color. The app icon stays blue on visionOS.", bundle: UILanguage.bundle, locale: UILanguage.locale))
+      #else
+      Text(String(localized: "settings.appColor.footer", defaultValue: "Changes the accent color and app icon.", bundle: UILanguage.bundle, locale: UILanguage.locale))
+      #endif
+    }
+  }
   private var languageSettings: some View {
     Section(String(localized: "settings.prayerLanguageHeader", defaultValue: "Language", bundle: UILanguage.bundle, locale: UILanguage.locale)) {
       Picker(String(localized: "settings.interfaceLanguage", defaultValue: "App Language", bundle: UILanguage.bundle, locale: UILanguage.locale),
@@ -176,12 +211,6 @@ struct SettingsView: View {
         code: $languageCode,
         defaultLabel: String(localized: "settings.prayerLanguage.appLanguage",
                              defaultValue: "App Language (\(LanguageCatalog.resolve(UILanguage.current).nativeName))", bundle: UILanguage.bundle, locale: UILanguage.locale))
-      Toggle(String(localized: "settings.jaffaWording", defaultValue: "Alternative Hail Mary wording", bundle: UILanguage.bundle, locale: UILanguage.locale),
-             isOn: $usesJaffaHailMaryWording)
-        .accessibilityIdentifier("useJaffaHailMaryWording")
-      Text(String(localized: "settings.jaffaWording.footer",
-                  defaultValue: "Use בְּרוּכַת הַחֶסֶד instead of מְלֵאַת הַחֶסֶד in Vicariate prayers.", bundle: UILanguage.bundle, locale: UILanguage.locale))
-        .font(.caption).foregroundStyle(.secondary)
       Toggle(String(localized: "settings.showPrayerNameInPrayerLanguage",
                     defaultValue: "Show prayer names in the prayer language", bundle: UILanguage.bundle, locale: UILanguage.locale),
              isOn: $showsPrayerNameInPrayerLanguage)
@@ -314,6 +343,12 @@ struct SettingsView: View {
       Toggle(String(localized: "settings.showTodayIntention",
                     defaultValue: "Show the Pope's intention", bundle: UILanguage.bundle, locale: UILanguage.locale),
              isOn: $showsTodayIntention)
+      Toggle(String(localized: "settings.showTodayReadings", defaultValue: "Show readings in Pray", bundle: UILanguage.bundle, locale: UILanguage.locale),
+             isOn: $showsTodayReadings)
+        .accessibilityIdentifier("showTodayReadingsToggle")
+      Toggle(String(localized: "settings.expandReadingsByDefault", defaultValue: "Expand readings by default", bundle: UILanguage.bundle, locale: UILanguage.locale),
+             isOn: $expandReadingsByDefault)
+        .accessibilityIdentifier("expandReadingsByDefaultToggle")
       Toggle(String(localized: "settings.showTodayTorahPortion", defaultValue: "Show the weekly Torah portion", bundle: UILanguage.bundle, locale: UILanguage.locale),
              isOn: $showsTodayTorahPortion)
         .accessibilityIdentifier("showTodayTorahPortionToggle")

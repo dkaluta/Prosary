@@ -1,0 +1,13 @@
+{
+  "$comment": "Canonical app palette. English ids are persisted verbatim as appColor on all native clients. Icon artwork is identical in light and dark. Android Material You takes precedence for controls when useSystemColors is enabled.",
+  "default": "blue",
+  "colors": [
+    { "id": "blue", "light": "#1768AC", "dark": "#8DC8FF", "background": "#1768AC", "cross": "#FFFFFF" },
+    { "id": "green", "light": "#287D49", "dark": "#8AD4A1", "background": "#24733F", "cross": "#FFFFFF" },
+    { "id": "red", "light": "#B52E3E", "dark": "#FFB1B5", "background": "#B52E3E", "cross": "#FFFFFF" },
+    { "id": "purple", "light": "#7545A0", "dark": "#D7B4F4", "background": "#7545A0", "cross": "#FFFFFF" },
+    { "id": "rose", "light": "#AD3F70", "dark": "#F3B0CB", "background": "#C45D8B", "cross": "#FFFFFF" },
+    { "id": "white", "light": "#8B681B", "dark": "#F0D389", "background": "#FFFFFF", "cross": "#9C751E" },
+    { "id": "gold", "light": "#886419", "dark": "#F0D389", "background": "#A5761D", "cross": "#FFFFFF" }
+  ]
+}

@@ -15,7 +15,7 @@
         <Style x:Key="SectionHeaderStyle" TargetType="TextBlock">
             <Setter Property="FontSize" Value="13" />
             <Setter Property="FontWeight" Value="SemiBold" />
-            <Setter Property="Foreground" Value="{StaticResource BrandPrimaryBrush}" />
+            <Setter Property="Foreground" Value="{ThemeResource BrandPrimaryBrush}" />
         </Style>
         <Style x:Key="SectionCardStyle" TargetType="Border">
             <Setter Property="Background" Value="{ThemeResource CardBackgroundFillColorDefaultBrush}" />

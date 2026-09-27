@@ -68,6 +68,26 @@ public class BasicPrayerCatalogTests : IClassFixture<PrayerPackLoaderFixture>
     {
     }
 
+    [Fact]
+    public void SaintMichaelUsesTheExistingSourcedPrayerAndArtworkInEveryLanguage()
+    {
+        var prayer = Assert.Single(BasicPrayerCatalog.All, prayer => prayer.Id == "stMichael");
+        Assert.Equal("basic:stMichael", prayer.HomeCardId);
+        foreach (var language in new[] { "la", "en", "he", "he-x-gamliel", "arc", "ar", "el", "es", "ru", "tl", "fr", "it", "uk" })
+        {
+            var step = BasicPrayerCatalog.Step(prayer, language);
+            var sourceLanguage = BasicPrayerCatalog.EffectiveLanguage(prayer, language).Code;
+            Assert.Equal(PrayerPackStore.ResolveDisplayText("rosary", sourceLanguage, "sanctusMichaelTitle"), step.Title);
+            Assert.Equal(PrayerPackStore.ResolveBodyText("rosary", sourceLanguage, "sanctusMichael"), step.Body);
+            Assert.False(string.IsNullOrWhiteSpace(step.Body));
+            Assert.NotEqual("sanctusMichael", step.Body);
+            Assert.Equal("st_michael", step.ImageOverrideKey);
+        }
+        var list = new BasicPrayersViewModel();
+        list.Load();
+        Assert.Contains(list.Rows, row => row.Id == "stMichael");
+    }
+
     [Theory]
     [InlineData("salveRegina")]
     [InlineData("almaRedemptorisMater")]
@@ -83,13 +103,14 @@ public class BasicPrayerCatalogTests : IClassFixture<PrayerPackLoaderFixture>
         foreach (var language in new[] { "la", "en", "he", "he-x-gamliel", "arc", "ar", "el", "es", "ru", "tl", "fr", "it", "uk" })
         {
             var step = BasicPrayerCatalog.Step(prayer, language);
+            var sourceLanguage = BasicPrayerCatalog.EffectiveLanguage(prayer, language).Code;
             // Bundle-local translations take precedence over the older shared dictionaries.
-            Assert.Equal(PrayerPackStore.ResolveDisplayText("rosary", language, $"{id}Title"), step.Title);
+            Assert.Equal(PrayerPackStore.ResolveDisplayText("rosary", sourceLanguage, $"{id}Title"), step.Title);
             // Exact equality excludes the versicle/response/collect added by the Rosary flow.
-            Assert.Equal(PrayerPackStore.ResolveBodyText("rosary", language, id), step.Body);
+            Assert.Equal(PrayerPackStore.ResolveBodyText("rosary", sourceLanguage, id), step.Body);
             Assert.False(string.IsNullOrWhiteSpace(step.Body));
             Assert.Equal("madonna_and_child", step.ImageOverrideKey);
-            Assert.Equal(PrayerPackStore.Transliteration("rosary", language, prayer.BodyKey), step.TransliteratedBody);
+            Assert.Equal(PrayerPackStore.Transliteration("rosary", sourceLanguage, prayer.BodyKey), step.TransliteratedBody);
         }
     }
 

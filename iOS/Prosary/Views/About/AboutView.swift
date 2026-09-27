@@ -39,7 +39,7 @@ struct AboutView: View {
         VStack(alignment: .leading, spacing: 4) {
           Text("about.title")
             .font(.largeTitle.bold())
-            .foregroundStyle(Color.brandHeadline)
+            .foregroundStyle(Color.appAccent)
           Text("about.tagline")
             .foregroundStyle(.secondary)
         }
@@ -215,7 +215,7 @@ struct AboutView: View {
     VStack(alignment: .leading, spacing: 8) {
       Text(title)
         .font(.title3.weight(.semibold))
-        .foregroundStyle(Color.brandHeadline)
+        .foregroundStyle(Color.appAccent)
       content()
     }
   }

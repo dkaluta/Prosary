@@ -25,6 +25,8 @@ public static class AppSettings
     private const string KeyKeyboardSpaceAdvanceEnabled = "keyboardSpaceAdvanceEnabled";
     private const string KeyShowTodayFeast = "showTodayFeast";
     private const string KeyShowTodayIntention = "showTodayIntention";
+    private const string KeyShowTodayReadings = "showTodayReadings";
+    private const string KeyExpandReadingsByDefault = "expandReadingsByDefault";
     private const string KeyShowTodayTorahPortion = "showTodayTorahPortion";
     private const string KeyShowPrayerNameInPrayerLanguage = "showPrayerNameInPrayerLanguage";
     private const string KeyReadingsEdition = "readingsEditionId";
@@ -38,12 +40,12 @@ public static class AppSettings
     private const string KeyFavoriteBasicPrayers = "favoriteBasicPrayerIds";
     private const string KeyFavoriteBasicPrayersFirst = "favoriteBasicPrayersFirst";
     private const string KeyLanguageFallbackOrder = "languageFallbackOrder";
+    private const string KeyAppColor = "appColor";
 
     private static string? _interfaceLanguageCode;
     private static string? _prayerLanguageCode;
     private static string? _basicPrayersLanguageCode;
     private static string? _aramaicSignOfCrossForm;
-    private static bool? _useJaffaHailMaryWording;
     private static string? _feastCalendarId;
     private static string? _easternPaschaStyle;
     private static int? _autoAdvanceSeconds;
@@ -51,6 +53,8 @@ public static class AppSettings
     private static bool? _keyboardSpaceAdvanceEnabled;
     private static bool? _showTodayFeast;
     private static bool? _showTodayIntention;
+    private static bool? _showTodayReadings;
+    private static bool? _expandReadingsByDefault;
     private static bool? _showTodayTorahPortion;
     private static bool? _showPrayerNameInPrayerLanguage;
     private static string? _todayLanguageCode;
@@ -64,6 +68,21 @@ public static class AppSettings
     private static HashSet<string>? _favoriteBasicPrayerIds;
     private static bool? _favoriteBasicPrayersFirst;
     private static IReadOnlyList<string>? _languageFallbackOrder;
+    private static string? _appColor;
+
+    public static string AppColor => _appColor ??=
+        AppColorPalette.Resolve(ReadLocalSetting(KeyAppColor) as string).Id;
+
+    public static event Action? AppColorChanged;
+
+    public static void SetAppColor(string value)
+    {
+        var selected = AppColorPalette.Resolve(value).Id;
+        if (AppColor == selected) return;
+        _appColor = selected;
+        WriteLocalSetting(KeyAppColor, selected);
+        AppColorChanged?.Invoke();
+    }
 
     /// <summary>The saved interface choice; empty follows Windows. Applied together with
     /// XAML resources on the next launch so existing prayer windows retain a coherent locale.</summary>
@@ -114,17 +133,14 @@ public static class AppSettings
         WriteLocalSetting(KeyBasicPrayersLanguage, code);
     }
 
-    public static bool UseJaffaHailMaryWording => _useJaffaHailMaryWording ??=
-        ReadLocalSetting(KeyUseJaffaHailMaryWording) as bool? ?? false;
+    // Compatibility for older callers/settings: the retired variant never changes source text.
+    public static bool UseJaffaHailMaryWording => false;
 
     public static event Action? PrayerWordingChanged;
 
     public static void SetUseJaffaHailMaryWording(bool value)
     {
-        if (UseJaffaHailMaryWording == value) return;
-        _useJaffaHailMaryWording = value;
-        WriteLocalSetting(KeyUseJaffaHailMaryWording, value);
-        PrayerWordingChanged?.Invoke();
+        WriteLocalSetting(KeyUseJaffaHailMaryWording, false);
     }
 
     public const string AramaicSignOfCrossFormA = "formA";
@@ -354,6 +370,24 @@ public static class AppSettings
 
     public static bool ShowTodayTorahPortion => _showTodayTorahPortion ??=
         ReadLocalSetting(KeyShowTodayTorahPortion) as bool? ?? false;
+
+    public static bool ShowTodayReadings => _showTodayReadings ??=
+        ReadLocalSetting(KeyShowTodayReadings) as bool? ?? true;
+
+    public static void SetShowTodayReadings(bool value)
+    {
+        _showTodayReadings = value;
+        WriteLocalSetting(KeyShowTodayReadings, value);
+    }
+
+    public static bool ExpandReadingsByDefault => _expandReadingsByDefault ??=
+        ReadLocalSetting(KeyExpandReadingsByDefault) as bool? ?? false;
+
+    public static void SetExpandReadingsByDefault(bool value)
+    {
+        _expandReadingsByDefault = value;
+        WriteLocalSetting(KeyExpandReadingsByDefault, value);
+    }
 
     public static string EasternPaschaStyle => _easternPaschaStyle ??=
         (ReadLocalSetting(KeyEasternPaschaStyle) as string == "gregorian" ? "gregorian" : "julian");

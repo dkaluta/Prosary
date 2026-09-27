@@ -159,6 +159,59 @@ public class PrayerRemovalTests : IClassFixture<PrayerPackLoaderFixture>
     }
 
     [Fact]
+    public async Task GalleryRemovesOnlyTheSelectedDownloadAfterConfirmation()
+    {
+        var harness = new Harness();
+        harness.Installed.AddRange(["repo.example.selected", "repo.example.other"]);
+        var selected = new DesktopGalleryItem("repo.example.selected", "Selected", "", "", IsDownloaded: true);
+        var gallery = new DesktopLibraryViewModel(harness.Store, harness.Service)
+        {
+            SelectedTemplate = selected,
+            ConfirmRemoveDownload = _ => Task.FromResult(false)
+        };
+        Assert.True(gallery.RemoveDownloadCommand.CanExecute(selected));
+        await gallery.RemoveDownloadCommand.ExecuteAsync(selected);
+        Assert.Equal(2, harness.Installed.Count);
+        gallery.ConfirmRemoveDownload = item => Task.FromResult(item == selected);
+        await gallery.RemoveDownloadCommand.ExecuteAsync(selected);
+        Assert.Equal(new[] { "repo.example.other" }, harness.Installed);
+        Assert.Equal(new[] { selected.Id }, harness.Unpinned);
+        Assert.Equal(new[] { selected.Id }, harness.ClearedSeries);
+        Assert.Empty(harness.Store.Prayers);
+    }
+
+    [Fact]
+    public async Task GalleryExplainsUsedDownloadsAndRechecksCopiesAddedDuringConfirmation()
+    {
+        var prayer = Download();
+        var harness = new Harness(prayer);
+        harness.Installed.Add(prayer.CustomDevotionId!);
+        var selected = new DesktopGalleryItem(prayer.CustomDevotionId!, "Selected", "", "", IsDownloaded: true);
+        var errors = new List<string>();
+        var confirmations = 0;
+        var gallery = new DesktopLibraryViewModel(harness.Store, harness.Service)
+        {
+            ShowError = message => { errors.Add(message); return Task.CompletedTask; },
+            ConfirmRemoveDownload = _ => { confirmations++; harness.Store.Prayers.Add(prayer); return Task.FromResult(true); }
+        };
+        await gallery.RemoveDownloadCommand.ExecuteAsync(selected);
+        Assert.Contains("Delete the saved copies", Assert.Single(errors));
+        Assert.Equal(0, confirmations);
+        harness.Store.Prayers.Clear();
+        errors.Clear();
+        await gallery.RemoveDownloadCommand.ExecuteAsync(selected);
+        Assert.Equal(1, confirmations);
+        Assert.Contains("Delete the saved copies", Assert.Single(errors));
+        Assert.Single(harness.Installed);
+        Assert.Single(harness.Store.Prayers);
+        Assert.Empty(harness.Unpinned);
+        var builtIn = new DesktopGalleryItem("rosary", "Rosary", "", "", IsDownloaded: true);
+        Assert.False(gallery.RemoveDownloadCommand.CanExecute(builtIn));
+        await gallery.RemoveDownloadCommand.ExecuteAsync(builtIn);
+        Assert.Equal(1, confirmations);
+    }
+
+    [Fact]
     public async Task BulkRemovalPreservesUsedAndBuiltInPacksAndContinuesAfterOneFailure()
     {
         var prayer = Download();

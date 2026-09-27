@@ -8,6 +8,7 @@ using Prosary.Services;
 namespace Prosary.ViewModels;
 
 public sealed record ReadingEditionChoice(string Id, string Label);
+public sealed record ReadingChapterSection(string Label, int Number, string Text);
 
 /// <summary>Each full citation keeps an independent, lazy Bible-text expansion.</summary>
 public partial class ReadingPassageViewModel : ObservableObject
@@ -16,6 +17,7 @@ public partial class ReadingPassageViewModel : ObservableObject
     private readonly ScriptureEdition? _edition;
     private readonly string _scope;
     private readonly string _rawCitation;
+    private readonly string _interfaceLanguage;
     private bool _didLoad;
     private IReadOnlyList<ScriptureVerse> _verses = [];
     public string ContextKey { get; }
@@ -31,11 +33,13 @@ public partial class ReadingPassageViewModel : ObservableObject
     public string Attribution => _edition?.Attribution ?? "";
     public Uri? SourceUri => _edition?.SourceUri;
     public bool HasSource => SourceUri is not null;
-    public bool IsRightToLeft => PrayerTypography.IsRightToLeft(PrayerTypography.ScriptOf(PassageText));
+    private PrayerTypography.Script PassageScript => PrayerTypography.ScriptOf(string.Concat(
+        _verses.Select(verse => verse.DisplayedText(_edition, EffectiveScript))));
+    public bool IsRightToLeft => PrayerTypography.IsRightToLeft(PassageScript);
     public string BodyFontFamily => PrayerTypography.ResolveBodyFontFamily(_edition?.LanguageCode,
-        isScripture: true, PrayerTypography.ScriptOf(PassageText));
+        isScripture: true, PassageScript);
     public double BodyFontSize => PrayerTypography.ResolveBodyFontSize(_edition?.LanguageCode,
-        isScripture: true, PrayerTypography.ScriptOf(PassageText));
+        isScripture: true, PassageScript);
     public string EffectiveScript => ScriptOverride ?? AppSettings.AramaicDefaultScript;
     public string CurrentScriptLabel => EffectiveScript == "Syrc"
         ? Loc.Tr("settings_script_syriac", "Syriac Script") : Loc.Tr("settings_script_hebrew", "Hebrew Script");
@@ -56,6 +60,9 @@ public partial class ReadingPassageViewModel : ObservableObject
     [NotifyPropertyChangedFor(nameof(BodyFontSize))]
     [NotifyPropertyChangedFor(nameof(IsRightToLeft))]
     private string _passageText = "";
+
+    [ObservableProperty]
+    private IReadOnlyList<ReadingChapterSection> _chapters = [];
 
     [ObservableProperty]
     private bool _includesWholeVerses;
@@ -80,6 +87,7 @@ public partial class ReadingPassageViewModel : ObservableObject
         _edition = edition;
         _scope = scope;
         _rawCitation = citation.Full;
+        _interfaceLanguage = interfaceLanguage;
         Citation = citation.LocalizedFull(interfaceLanguage);
         ContextKey = contextKey;
         ConfigurationKey = configurationKey;
@@ -115,8 +123,19 @@ public partial class ReadingPassageViewModel : ObservableObject
 
     private void RefreshDisplayedText()
     {
+        var sections = new List<ReadingChapterSection>();
+        var chapterLabel = Loc.Tr("readings_chapter", "Chapter", _interfaceLanguage);
+        foreach (var verse in _verses)
+        {
+            var text = $"\u2066{verse.Verse}\u2069  {verse.DisplayedText(_edition, EffectiveScript)}";
+            if (sections.Count == 0 || sections[^1].Number != verse.Chapter)
+                sections.Add(new ReadingChapterSection(chapterLabel, verse.Chapter, text));
+            else
+                sections[^1] = sections[^1] with { Text = sections[^1].Text + Environment.NewLine + Environment.NewLine + text };
+        }
+        Chapters = sections;
         PassageText = string.Join(Environment.NewLine + Environment.NewLine,
-            _verses.Select(verse => $"\u2066{verse.Chapter}:{verse.Verse}\u2069  {verse.DisplayedText(_edition, EffectiveScript)}"));
+            sections.Select(section => $"{section.Label} \u2066{section.Number}\u2069{Environment.NewLine}{section.Text}"));
         OnPropertyChanged(nameof(EffectiveScript));
         OnPropertyChanged(nameof(CurrentScriptLabel));
         OnPropertyChanged(nameof(ScriptToggleLabel));
@@ -193,7 +212,7 @@ public partial class DesktopReadingsViewModel : ObservableObject
     public void Open(HomeViewModel today)
     {
         Refresh(today);
-        foreach (var row in Daily.Concat(Torah)) row.IsExpanded = true;
+        foreach (var row in Daily.Concat(Torah)) row.IsExpanded = AppSettings.ExpandReadingsByDefault;
     }
 
     private ObservableCollection<ReadingPassageViewModel> Rows(ObservableCollection<ReadingPassageViewModel> previous,
@@ -206,7 +225,7 @@ public partial class DesktopReadingsViewModel : ObservableObject
             var old = previous.FirstOrDefault(row => row.ContextKey == contextKey);
             if (old?.ConfigurationKey == configurationKey) return old;
             return new ReadingPassageViewModel(_store, edition, scope, citation, today.TodayLanguage, contextKey, configurationKey)
-            { IsExpanded = old?.IsExpanded ?? true };
+            { IsExpanded = old?.IsExpanded ?? AppSettings.ExpandReadingsByDefault };
         }).ToList();
         return previous.SequenceEqual(rows) ? previous : new ObservableCollection<ReadingPassageViewModel>(rows);
     }

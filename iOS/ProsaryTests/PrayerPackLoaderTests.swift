@@ -97,15 +97,15 @@ final class PrayerPackLoaderTests: XCTestCase {
     }
   }
 
-  func testJaffaWordingUsesWinningTraditionAndDropsOnlyAnAlteredTextsReadingAid() throws {
+  func testRetiredWordingPreferencePreservesSourcedPrayerAndReadingAid() throws {
     let defaults = UserDefaults.standard
-    let savedOption = defaults.object(forKey: JaffaHailMaryWording.defaultsKey)
+    let savedOption = defaults.object(forKey: "useJaffaHailMaryWording")
     let savedOrder = defaults.object(forKey: LanguageCatalog.fallbackOrderKey)
     let savedDirectory = PrayerPackStore.installedPacksDirectory
     let directory = FileManager.default.temporaryDirectory.appendingPathComponent("jaffa-fixture-\(UUID().uuidString)", isDirectory: true)
     defer {
-      if let savedOption { defaults.set(savedOption, forKey: JaffaHailMaryWording.defaultsKey) }
-      else { defaults.removeObject(forKey: JaffaHailMaryWording.defaultsKey) }
+      if let savedOption { defaults.set(savedOption, forKey: "useJaffaHailMaryWording") }
+      else { defaults.removeObject(forKey: "useJaffaHailMaryWording") }
       if let savedOrder { defaults.set(savedOrder, forKey: LanguageCatalog.fallbackOrderKey) }
       else { LanguageCatalog.resetFallbackOrder() }
       PrayerPackStore.installedPacksDirectory = savedDirectory
@@ -117,7 +117,6 @@ final class PrayerPackLoaderTests: XCTestCase {
       let id = "repo.jaffa.\(UUID().uuidString)"
       let mysteryID = "\(id).mystery"
       let original = "מְלֵאַת הַחֶסֶד / מלאת החסד"
-      let expected = "בְּרוּכַת הַחֶסֶד / ברוכת החסד"
       func json(_ value: Any) throws -> Data { try JSONSerialization.data(withJSONObject: value) }
       let manifest: [String: Any] = ["schemaVersion": 1, "id": id, "kind": id,
         "displayName": "Jaffa fixture", "languages": ["he", "arc", "he-x-gamliel"], "hasCatalog": false, "images": []]
@@ -133,13 +132,24 @@ final class PrayerPackLoaderTests: XCTestCase {
         ("devotion.json", Data(#"{"type":"steps","steps":[{"title":"Fixture","bodyKey":"marked"}]}"#.utf8)),
       ]))
       defer { PrayerPackStore.removeInstalledPack(id: id) }
-      defaults.set(false, forKey: JaffaHailMaryWording.defaultsKey)
+      defaults.set(false, forKey: "useJaffaHailMaryWording")
+      XCTAssertEqual(PrayerPackStore.hebrewTraditions(bundleId: id, bodyKey: "marked"), ["he"])
+      XCTAssertEqual(PrayerPackStore.hebrewTraditions(bundleId: id, bodyKey: "missionOnly"), ["he-x-gamliel"])
+      XCTAssertEqual(PrayerPackStore.hebrewTraditions(bundleId: id, bodyKey: "generic"), [])
+      XCTAssertEqual(PrayerPackStore.hebrewTraditions(bundleId: id), ["he"],
+                     "Only the referenced body counts; unused Mission content does not add a tradition")
+      XCTAssertEqual(PrayerPackStore.hebrewTraditions(bundleId: "rosary", bodyKey: "aveMaria"), ["he", "he-x-gamliel"])
+      XCTAssertEqual(PrayerPackStore.effectiveLanguage(for: id, chosen: "he-x-gamliel"), "he")
+      let antiphon = try XCTUnwrap(BasicPrayerCatalog.prayer(id: "salveRegina"))
+      XCTAssertEqual(BasicPrayerCatalog.languageCode(for: antiphon, requested: "he-x-gamliel"), "he")
+      XCTAssertEqual(BasicPrayerCatalog.step(for: antiphon, languageCode: "he-x-gamliel").body,
+                     BasicPrayerCatalog.step(for: antiphon, languageCode: "he").body)
       XCTAssertEqual(PrayerPackStore.resolveBodyText(bundleId: id, languageCode: "arc", key: "marked"), original)
       XCTAssertEqual(PrayerPackStore.transliteration(bundleId: id, languageCode: "arc", key: "marked"), "Original marked aid")
-      defaults.set(true, forKey: JaffaHailMaryWording.defaultsKey)
+      defaults.set(true, forKey: "useJaffaHailMaryWording")
       for requested in ["he", "arc", "he-x-gamliel"] {
-        XCTAssertEqual(PrayerPackStore.resolveBodyText(bundleId: id, languageCode: requested, key: "marked"), expected)
-        XCTAssertNil(PrayerPackStore.transliteration(bundleId: id, languageCode: requested, key: "marked"))
+        XCTAssertEqual(PrayerPackStore.resolveBodyText(bundleId: id, languageCode: requested, key: "marked"), original)
+        XCTAssertEqual(PrayerPackStore.transliteration(bundleId: id, languageCode: requested, key: "marked"), "Original marked aid")
         XCTAssertEqual(PrayerPackStore.resolveBodyText(bundleId: id, languageCode: requested, key: "generic"), original)
         XCTAssertEqual(PrayerPackStore.transliteration(bundleId: id, languageCode: requested, key: "generic"), "Generic aid")
         XCTAssertEqual(PrayerPackStore.resolveBodyText(bundleId: id, languageCode: requested, key: "missionOnly"), original)
@@ -149,7 +159,7 @@ final class PrayerPackLoaderTests: XCTestCase {
       let scripture = MysteryTranslations.get(languageCode: "he", imageKey: mysteryID)
       XCTAssertEqual(scripture.description, original)
       XCTAssertEqual(scripture.transliteratedDescription, "Scripture aid")
-      defaults.set(false, forKey: JaffaHailMaryWording.defaultsKey)
+      defaults.set(false, forKey: "useJaffaHailMaryWording")
       XCTAssertEqual(PrayerPackStore.resolveBodyText(bundleId: id, languageCode: "he", key: "marked"), original)
       XCTAssertEqual(PrayerPackStore.transliteration(bundleId: id, languageCode: "he", key: "marked"), "Original marked aid")
     }
@@ -266,7 +276,7 @@ final class PrayerPackLoaderTests: XCTestCase {
         ("devotion.json", Data(#"{"type":"steps","steps":[{"title":"Fixture","bodyKey":"example"}]}"#.utf8)),
       ]))
       defer { PrayerPackStore.removeInstalledPack(id: id) }
-      XCTAssertEqual(PrayerPackStore.effectiveLanguage(for: id, chosen: "he-x-gamliel"), specific ? "arc" : "he-x-gamliel")
+      XCTAssertEqual(PrayerPackStore.effectiveLanguage(for: id, chosen: "he-x-gamliel"), specific ? "he" : "he-x-gamliel")
       XCTAssertEqual(PrayerPackStore.effectiveLanguage(for: id, chosen: "he"), "he")
       XCTAssertNotEqual(PrayerPackStore.effectiveLanguage(for: id, chosen: "he"), LanguageCatalog.vicariateContentCode)
     }
@@ -659,7 +669,12 @@ final class PrayerPackLoaderTests: XCTestCase {
     XCTAssertEqual(options.map(\.key), ["seventyTwoHailMarys", "popeIntentions"])
     XCTAssertTrue(options.allSatisfy { $0.kind == .toggle && $0.defaultValue == "true" })
     XCTAssertEqual(options[0].name, "Complete the 72 Hail Marys")
-    XCTAssertTrue(PrayerPackStore.options(for: "angelus").isEmpty)
+  }
+
+  func testAngelusDeclaresItsClosingOptions() {
+    let options = PrayerPackStore.options(for: "angelus")
+    XCTAssertEqual(options.map(\.key), ["threeGloryBes", "eternalRest"])
+    XCTAssertTrue(options.allSatisfy { $0.kind == .toggle && $0.defaultValue == "true" })
   }
 
   // MARK: - User-installed bundles

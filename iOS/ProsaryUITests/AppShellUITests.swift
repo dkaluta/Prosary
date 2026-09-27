@@ -61,7 +61,7 @@ final class AppShellUITests: XCTestCase {
     add(home)
     app.buttons["settingsButton"].tap()
     XCTAssertTrue(app.navigationBars["Налаштування"].waitForExistence(timeout: 5))
-    XCTAssertTrue(app.switches["useJaffaHailMaryWording"].label.contains("Альтернативний текст «Радуйся, Маріє»"))
+    XCTAssertFalse(app.switches["useJaffaHailMaryWording"].exists)
     let settings = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
     settings.name = "ukrainian-settings"
     settings.lifetime = .keepAlways
@@ -83,47 +83,90 @@ final class AppShellUITests: XCTestCase {
 
   #if !os(macOS)
   @MainActor
-  func testJaffaWordingToggleIsAvailableToFallbackUsersAndRestoresThePrayer() throws {
+  func testRetiredWordingPreferenceHasNoToggleAndPreservesTheSourcedPrayer() throws {
     let app = XCUIApplication()
-    app.launchArguments = ["-resetStore", "-AppleLanguages", "(en)", "-defaultLanguageCode", "arc",
-                           "-basicPrayersLanguageCode", "he", "-autoAdvanceSeconds", "0"]
-    for enabled in [false, true, false] {
-      app.launch()
-      XCTAssertTrue(app.buttons["settingsButton"].waitForExistence(timeout: 10))
-      app.buttons["settingsButton"].tap()
-      let toggle = app.switches["useJaffaHailMaryWording"]
-      XCTAssertTrue(toggle.waitForExistence(timeout: 5), "The option is available even with Aramaic selected")
-      let expectedValue = enabled ? "1" : "0"
-      if (toggle.value as? String) != expectedValue {
-        // SwiftUI exposes the whole labelled row as the switch's accessibility frame.
-        // The English interface places the native switch at its trailing edge.
-        toggle.coordinate(withNormalizedOffset: CGVector(dx: 0.9, dy: 0.5)).tap()
-      }
-      let changed = XCTNSPredicateExpectation(predicate: NSPredicate(format: "value == %@", expectedValue),
-                                              object: toggle)
-      XCTAssertEqual(XCTWaiter.wait(for: [changed], timeout: 5), .completed)
-      app.buttons["Done"].tap()
-      let basic = app.buttons["basicPrayersRow"]
-      XCTAssertTrue(basic.waitForExistence(timeout: 5))
-      for _ in 0..<4 where !basic.isHittable { app.swipeUp() }
-      basic.tap()
-      let hailMary = app.buttons["basicPrayer-hailMary"]
-      XCTAssertTrue(hailMary.waitForExistence(timeout: 5))
-      hailMary.tap()
-      let body = app.staticTexts["prayerBodyText"]
-      XCTAssertTrue(body.waitForExistence(timeout: 5))
-      XCTAssertTrue(body.label.contains(enabled ? "בְּרוּכַת הַחֶסֶד" : "מְלֵאַת הַחֶסֶד"))
-      XCTAssertFalse(body.label.contains(enabled ? "מְלֵאַת הַחֶסֶד" : "בְּרוּכַת הַחֶסֶד"))
-      if enabled {
-        let attachment = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
-        attachment.name = "jaffa-hail-mary-wording"
-        attachment.lifetime = .keepAlways
-        add(attachment)
-      }
-      app.terminate()
-      app.launchArguments.removeAll { $0 == "-resetStore" }
-    }
+    app.launchArguments = ["-useInMemoryStore", "-AppleLanguages", "(en)", "-interfaceLanguageCode", "en",
+                           "-defaultLanguageCode", "arc", "-basicPrayersLanguageCode", "he",
+                           "-useJaffaHailMaryWording", "YES", "-autoAdvanceSeconds", "0"]
+    app.launch()
+    XCTAssertTrue(app.buttons["settingsButton"].waitForExistence(timeout: 10))
+    app.buttons["settingsButton"].tap()
+    XCTAssertTrue(app.navigationBars["Settings"].waitForExistence(timeout: 5))
+    XCTAssertFalse(app.switches["useJaffaHailMaryWording"].exists)
+    app.buttons["Done"].tap()
+    let basic = app.buttons["basicPrayersRow"]
+    XCTAssertTrue(basic.waitForExistence(timeout: 5))
+    for _ in 0..<4 where !basic.isHittable { app.swipeUp() }
+    basic.tap()
+    let hailMary = app.buttons["basicPrayer-hailMary"]
+    XCTAssertTrue(hailMary.waitForExistence(timeout: 5))
+    hailMary.tap()
+    let body = app.staticTexts["prayerBodyText"]
+    XCTAssertTrue(body.waitForExistence(timeout: 5))
+    XCTAssertTrue(body.label.contains("מְלֵאַת הַחֶסֶד"))
+    XCTAssertFalse(body.label.contains("בְּרוּכַת הַחֶסֶד"))
+    app.terminate()
   }
+
+  #if os(iOS)
+  @MainActor
+  func testPrayAndReadingsShareTheirBrowsedDateInBothDirections() throws {
+    let app = XCUIApplication()
+    app.launchArguments = ["-useInMemoryStore", "-AppleLanguages", "(en)", "-interfaceLanguageCode", "en"]
+    app.launch()
+    let prayDate = app.buttons["todayDateButton"]
+    XCTAssertTrue(prayDate.waitForExistence(timeout: 10))
+    for _ in 0..<4 where !prayDate.isHittable { app.swipeUp() }
+    let initialDate = prayDate.label
+    app.buttons["todayTomorrowButton"].tap()
+    let browsedDate = prayDate.label
+    XCTAssertNotEqual(browsedDate, initialDate)
+    openReadingsTab(in: app, title: "Readings")
+    XCTAssertEqual(app.buttons["readings.chooseDate"].label, browsedDate)
+    app.buttons["readings.previousDay"].tap()
+    XCTAssertEqual(app.buttons["readings.chooseDate"].label, initialDate)
+    app.tabBars.buttons["Pray"].tap()
+    XCTAssertTrue(prayDate.waitForExistence(timeout: 5))
+    XCTAssertEqual(prayDate.label, initialDate)
+    app.terminate()
+  }
+
+  @MainActor
+  func testReadingsStartCollapsedAndTheSettingOpensChapterHeadings() throws {
+    let app = XCUIApplication()
+    app.launchArguments = ["-useInMemoryStore", "-AppleLanguages", "(en)", "-interfaceLanguageCode", "en",
+                           "-feastCalendarId", "roman", "-expandReadingsByDefault", "NO", "-readingsEditionId", ""]
+    app.launch()
+    openReadingsTab(in: app, title: "Readings")
+    let passage = app.descendants(matching: .any).matching(NSPredicate(format: "identifier BEGINSWITH %@", "readings.passage.daily.")).firstMatch
+    XCTAssertTrue(passage.waitForExistence(timeout: 10))
+    let chapter = app.staticTexts.matching(NSPredicate(format: "label MATCHES %@", "Chapter [0-9]+")).firstMatch
+    XCTAssertFalse(chapter.exists)
+    // Launch-argument defaults take precedence over persisted values. Remove that override
+    // before exercising a live Settings change, so the test does not lock the preference.
+    app.terminate()
+    app.launchArguments.removeLast(4)
+    app.launch()
+    openReadingsTab(in: app, title: "Readings")
+    app.buttons["readings.options"].tap()
+    let toggle = app.switches["expandReadingsByDefaultToggle"]
+    XCTAssertTrue(toggle.waitForExistence(timeout: 5))
+    if (toggle.value as? String) != "1" {
+      toggle.coordinate(withNormalizedOffset: CGVector(dx: 0.9, dy: 0.5)).tap()
+    }
+    XCTAssertEqual(toggle.value as? String, "1")
+    app.buttons["Done"].tap()
+    XCTAssertTrue(chapter.waitForExistence(timeout: 10), app.debugDescription)
+    XCTAssertTrue(chapter.label.hasPrefix("Chapter "))
+    XCTAssertTrue(app.staticTexts.matching(NSPredicate(format: "label MATCHES %@", "[0-9]+")).firstMatch.exists)
+    XCTAssertFalse(app.staticTexts.matching(NSPredicate(format: "label MATCHES %@", "[0-9]+:[0-9]+")).firstMatch.exists)
+    let attachment = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
+    attachment.name = "readings-chapters-and-verse-numbers"
+    attachment.lifetime = .keepAlways
+    add(attachment)
+    app.terminate()
+  }
+  #endif
 
   @MainActor
   func testBasicPrayerNamesOfferBilingualDisplayWithoutChangingPrayerLanguage() throws {
@@ -796,6 +839,45 @@ final class AppShellUITests: XCTestCase {
   #endif
 
   #if os(iOS)
+  @MainActor
+  func testAppColorOffersThePaletteAndPersistsWhiteWithGoldAccent() throws {
+    let app = XCUIApplication()
+    app.launchArguments = ["-useInMemoryStore", "-AppleLanguages", "(en)", "-interfaceLanguageCode", "en"]
+    app.launch()
+    func openColorSettings() -> XCUIElement {
+      XCTAssertTrue(app.buttons["settingsButton"].waitForExistence(timeout: 10))
+      app.buttons["settingsButton"].tap()
+      let picker = app.buttons["appColorPicker"]
+      for _ in 0..<5 where !picker.isHittable { app.swipeUp() }
+      XCTAssertTrue(picker.isHittable)
+      return picker
+    }
+    var picker = openColorSettings()
+    picker.tap()
+    for name in ["Blue", "Green", "Red", "Purple", "Rose", "White", "Gold"] {
+      XCTAssertTrue(app.buttons[name].waitForExistence(timeout: 3), name)
+    }
+    app.buttons["White"].tap()
+    XCTAssertEqual(picker.value as? String, "White")
+    let settings = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
+    settings.name = "white-icon-gold-accent-settings"
+    settings.lifetime = .keepAlways
+    add(settings)
+    app.buttons["Done"].tap()
+    let home = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
+    home.name = "white-palette-pray-accent"
+    home.lifetime = .keepAlways
+    add(home)
+    app.terminate()
+    app.launch()
+    picker = openColorSettings()
+    XCTAssertEqual(picker.value as? String, "White")
+    picker.tap()
+    app.buttons["Blue"].tap()
+    XCTAssertEqual(picker.value as? String, "Blue")
+    app.buttons["Done"].tap()
+  }
+
   @MainActor
   func testAppLanguageUpdatesInterfaceAndInheritedPrayersWhileKeepingExplicitChoices() throws {
     let app = XCUIApplication()

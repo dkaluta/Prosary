@@ -186,6 +186,9 @@ enum PrayerRunSignature {
     if options.includeOpeningPrayers && options.includeOpeningFatimaPrayer {
       fields.append("opening-fatima-v2")
     }
+    if options.skipFifthDecade && options.mysterySelectionMode != .singleMystery {
+      fields.append("skip-fifth-decade")
+    }
     return fields.joined(separator: "|")
   }
 

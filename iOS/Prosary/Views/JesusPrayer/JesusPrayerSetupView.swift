@@ -90,13 +90,13 @@ struct JesusPrayerSetupView: View {
         .buttonStyle(.borderless)
         .background(
           RoundedRectangle(cornerRadius: 8)
-            .fill(isSelected ? Color.brandPrimary.opacity(0.18) : Color.secondary.opacity(0.12))
+            .fill(isSelected ? Color.appAccent.opacity(0.18) : Color.secondary.opacity(0.12))
         )
         .overlay(
           RoundedRectangle(cornerRadius: 8)
-            .strokeBorder(isSelected ? Color.brandPrimary : .clear, lineWidth: 1.5)
+            .strokeBorder(isSelected ? Color.appAccent : .clear, lineWidth: 1.5)
         )
-        .foregroundStyle(isSelected ? Color.brandPrimary : .primary)
+        .foregroundStyle(isSelected ? Color.appAccent : .primary)
         .accessibilityAddTraits(isSelected ? [.isButton, .isSelected] : [.isButton])
       }
     }

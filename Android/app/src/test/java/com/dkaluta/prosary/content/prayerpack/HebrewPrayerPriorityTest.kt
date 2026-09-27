@@ -24,7 +24,6 @@ class HebrewPrayerPriorityTest {
     private lateinit var savedOrder: List<String>
     private lateinit var savedDefault: String
     private lateinit var savedBasic: String
-    private var savedJaffa = false
     private val mission = "he-x-gamliel"
     private val vicariate = LanguageCatalog.hebrewVicariateContentCode
     private val target = "priorityFixture"
@@ -33,8 +32,6 @@ class HebrewPrayerPriorityTest {
         savedOrder = AppSettings.languageFallbackOrder
         savedDefault = AppSettings.defaultLanguageCode
         savedBasic = AppSettings.basicPrayersLanguageCode
-        savedJaffa = AppSettings.useJaffaHailMaryWording
-        AppSettings.useJaffaHailMaryWording = false
         AppSettings.setDefaultLanguageCode("en")
         order(mission, "arc", "he")
         PrayerPackStore.resetForTesting()
@@ -44,7 +41,6 @@ class HebrewPrayerPriorityTest {
         AppSettings.setLanguageFallbackOrder(savedOrder)
         AppSettings.setDefaultLanguageCode(savedDefault)
         AppSettings.setBasicPrayersLanguageCode(savedBasic)
-        AppSettings.useJaffaHailMaryWording = savedJaffa
         PrayerPackStore.resetForTesting()
         PrayerPackStore.initialize { name -> File("src/main/assets/$name.prosaryprayer").takeIf { it.exists() }?.inputStream() }
     }
@@ -278,72 +274,55 @@ class HebrewPrayerPriorityTest {
         assertFalse(PrayerKey.AveMaria in PrayerTranslations.byLanguage.getValue("he"))
     }
 
-    @Test fun jaffaNativeHailMarySwitchesOnAndOffWithoutChangingTheStoredText() {
+    @Test fun nativeHailMaryKeepsItsSourcedWording() {
         val original = PrayerTranslations.byLanguage.getValue(vicariate).getValue(PrayerKey.AveMaria)
         assertTrue(original.contains("מְלֵאַת הַחֶסֶד"))
         assertEquals(original, PrayerTranslations.get("he", PrayerKey.AveMaria))
-        val displayed = androidx.compose.runtime.derivedStateOf { PrayerTranslations.get("he", PrayerKey.AveMaria) }
-        assertEquals(original, displayed.value)
-        AppSettings.useJaffaHailMaryWording = true
-        val jaffa = original.replace("מְלֵאַת הַחֶסֶד", "בְּרוּכַת הַחֶסֶד")
-        assertEquals(jaffa, displayed.value)
-        assertEquals(jaffa, PrayerPackStore.resolveBodyText("missingBundle", "he", "aveMaria"))
-        assertEquals(original, PrayerTranslations.byLanguage.getValue(vicariate).getValue(PrayerKey.AveMaria))
-        AppSettings.useJaffaHailMaryWording = false
-        assertEquals(original, displayed.value)
         assertEquals(original, PrayerPackStore.resolveBodyText("missingBundle", "he", "aveMaria"))
     }
 
-    @Test fun jaffaMarkedPackUsesTheWinningFallbackProbeAndRemovesOnlyItsChangedAid() {
+    @Test fun traditionChoiceRequiresDifferentAuthoredBodiesForThePrayer() {
+        load(mapOf("he" to content("Only Vicariate body", marked = true, key = "choiceBody")), bodyKey = "choiceBody")
+        assertFalse(PrayerPackStore.hasHebrewTraditionChoice(target, "choiceBody"))
+        assertFalse(PrayerPackStore.hasHebrewTraditionChoice(target))
+        load(mapOf("he" to content("Only generic body", key = "choiceBody")), bodyKey = "choiceBody")
+        assertFalse(PrayerPackStore.hasHebrewTraditionChoice(target, "choiceBody"))
+        assertTrue(PrayerPackStore.authoredHebrewTraditions(target, "choiceBody").isEmpty())
+        assertEquals("he-x-gamliel", PrayerPackStore.effectiveLanguage(target, "he-x-gamliel"))
+        load(mapOf("he" to content("Shared body", marked = true, key = "choiceBody"),
+            mission to content("Shared body", key = "choiceBody")), bodyKey = "choiceBody")
+        assertFalse(PrayerPackStore.hasHebrewTraditionChoice(target))
+        load(mapOf("he" to content("Vicariate body", marked = true, key = "choiceBody"),
+            mission to content("Mission body", key = "choiceBody")), bodyKey = "choiceBody")
+        assertTrue(PrayerPackStore.hasHebrewTraditionChoice(target, "choiceBody"))
+        assertTrue(PrayerPackStore.hasHebrewTraditionChoice(target))
+        assertFalse(PrayerPackStore.hasHebrewTraditionChoice(target, "missingBody"))
+    }
+
+    @Test fun explicitHebrewDevotionUsesItsSingleAuthoredTraditionBeforeNonHebrewFallbacks() {
+        order(mission, "en", "he")
+        load(mapOf("he" to content("Vicariate body", marked = true, key = "choiceBody"),
+            "en" to content("English body", key = "choiceBody")), bodyKey = "choiceBody")
+        assertEquals("he", PrayerPackStore.effectiveLanguage(target, mission))
+        assertEquals("en", PrayerPackStore.effectiveLanguage(target, "en"))
+        val steps = PrayerEngine().buildSteps(Prayer(kind = PrayerKind.Custom,
+            customDevotionId = target, languageCode = mission))
+        assertEquals("Vicariate body", steps.single().body)
+    }
+
+    @Test fun markedPackKeepsSourcedPointedAndUnpointedTextWithItsReadingAid() {
         val original = "מְלֵאַת הַחֶסֶד / מלאת החסד"
-        load(mapOf("he" to content(original, "Original source aid", marked = true, key = "jaffaFixture")))
-        assertEquals(original, body("jaffaFixture"))
-        assertEquals("Original source aid", aid("jaffaFixture"))
-        AppSettings.useJaffaHailMaryWording = true
-        assertEquals("בְּרוּכַת הַחֶסֶד / ברוכת החסד", body("jaffaFixture"))
-        assertNull(aid("jaffaFixture"))
-        AppSettings.useJaffaHailMaryWording = false
-        assertEquals(original, body("jaffaFixture"))
-        assertEquals("Original source aid", aid("jaffaFixture"))
+        load(mapOf("he" to content(original, "Original source aid", marked = true, key = "wordingFixture")))
+        assertEquals(original, body("wordingFixture"))
+        assertEquals("Original source aid", aid("wordingFixture"))
     }
 
-    @Test fun jaffaLeavesMissionGenericHebrewAndMysteryScriptureUntouched() {
-        val original = "מְלֵאַת הַחֶסֶד / מלאת החסד"
-        AppSettings.useJaffaHailMaryWording = true
-        load(mapOf(
-            mission to content(original, "Mission aid", key = "jaffaFixture"),
-            "he" to content(original, "Generic aid", key = "genericFixture"),
-        ), shared = mapOf("he" to """{"mysteries":{"jaffaScripture":{"title":"Fixture","description":"$original","transliteratedDescription":"Scripture aid"}}}"""))
-        assertEquals(original, body("jaffaFixture")); assertEquals("Mission aid", aid("jaffaFixture"))
-        assertEquals(original, body("genericFixture")); assertEquals("Generic aid", aid("genericFixture"))
-        val scripture = MysteryTranslations.get("he", "jaffaScripture")
-        assertEquals(original, scripture.description)
-        assertEquals("Scripture aid", scripture.transliteratedDescription)
-        assertEquals(PrayerTranslations.byLanguage.getValue(mission)[PrayerKey.AveMaria],
-            PrayerTranslations.get(mission, PrayerKey.AveMaria))
-    }
-
-    @Test fun jaffaDoesNotTreatAnAramaicWinnerAsVicariateAndPreservesUnchangedAids() {
-        val original = "מְלֵאַת הַחֶסֶד"
-        AppSettings.useJaffaHailMaryWording = true
-        load(mapOf("he" to content(original, "Vicariate aid", marked = true, key = "jaffaFixture"),
-            "arc" to content(original, "Aramaic aid", key = "jaffaFixture")))
-        assertEquals(original, body("jaffaFixture")); assertEquals("Aramaic aid", aid("jaffaFixture"))
-        load(mapOf("he" to content("Unchanged specific source", "Matching aid", marked = true, key = "jaffaFixture")))
-        assertEquals("Unchanged specific source", body("jaffaFixture"))
-        assertEquals("Matching aid", aid("jaffaFixture"))
-    }
-
-    @Test fun jaffaGlobalMarkedOverrideTransformsFixedLookupAndPairWithoutMutatingItsSource() {
+    @Test fun markedGlobalOverrideKeepsItsMatchingReadingAid() {
         val original = "מְלֵאַת הַחֶסֶד"
         load(emptyMap(), laterShared = mapOf("he" to content(original, "Original global aid", marked = true)))
-        AppSettings.useJaffaHailMaryWording = true
-        assertEquals("בְּרוּכַת הַחֶסֶד", PrayerTranslations.get("he", PrayerKey.OratioFatimae))
-        assertEquals("בְּרוּכַת הַחֶסֶד", PrayerPackStore.resolveBodyText("missingBundle", "he", "oratioFatimae"))
-        assertNull(PrayerPackStore.transliteration("missingBundle", "he", "oratioFatimae"))
-        assertEquals(original, PrayerPackStore.prayerOverride(vicariate, PrayerKey.OratioFatimae))
-        AppSettings.useJaffaHailMaryWording = false
         assertEquals(original, PrayerTranslations.get("he", PrayerKey.OratioFatimae))
+        assertEquals(original, PrayerPackStore.resolveBodyText("missingBundle", "he", "oratioFatimae"))
         assertEquals("Original global aid", PrayerPackStore.transliteration("missingBundle", "he", "oratioFatimae"))
+        assertEquals(original, PrayerPackStore.prayerOverride(vicariate, PrayerKey.OratioFatimae))
     }
 }

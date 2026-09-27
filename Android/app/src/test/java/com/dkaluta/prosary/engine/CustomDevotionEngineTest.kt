@@ -256,33 +256,80 @@ class CustomDevotionEngineTest {
     @Test
     fun angelusStandardFormOutsideEastertide() {
         val steps = steps("angelus")
-        assertEquals(7, steps.size)
+        assertEquals(11, steps.size)
         assertEquals(
             listOf(
                 "The Annunciation", "Hail Mary",
                 "The Fiat", "Hail Mary",
                 "The Incarnation", "Hail Mary",
                 "Let Us Pray",
+                "Glory Be (1 of 3)", "Glory Be (2 of 3)", "Glory Be (3 of 3)",
+                "For the Faithful Departed",
             ),
             steps.map { it.title },
         )
         assertTrue(steps[0].body.contains("The Angel of the Lord declared unto Mary"))
         assertTrue(steps[0].body.contains("**And she conceived of the Holy Spirit.**"))
         assertTrue(steps[1].body.contains("Hail Mary,\nfull of grace"))
-        assertTrue(steps.last().body.contains("Pour forth, we beseech Thee"))
+        assertTrue(steps[6].body.contains("Pour forth, we beseech Thee"))
+        assertTrue(steps.last().body.contains("Eternal rest"))
         assertFalse(steps.any { it.body.contains("Queen of Heaven") })
-        assertTrue(steps.all { it.imageKey == "joyful_01_annunciation" })
+        assertEquals(
+            List(7) { "joyful_01_annunciation" } + List(3) { "glory_be" } + "eternal_rest",
+            steps.map { it.imageKey },
+        )
     }
 
     @Test
     fun angelusReginaCaeliSubstitutionDuringEastertide() {
         val steps = steps("angelus", calendar = FixedLiturgicalCalendar(isEasterSeasonValue = true))
-        assertEquals(1, steps.size)
-        assertEquals("Regina Caeli", steps[0].title)
+        assertEquals(5, steps.size)
+        assertEquals(
+            listOf("Regina Caeli", "Glory Be (1 of 3)", "Glory Be (2 of 3)", "Glory Be (3 of 3)", "For the Faithful Departed"),
+            steps.map { it.title },
+        )
         assertTrue(steps[0].body.contains("Queen of Heaven, rejoice"))
         assertTrue(steps[0].body.contains("Rejoice and be glad, O Virgin Mary"))
         assertFalse(steps[0].body.contains("Pour forth, we beseech Thee"))
         assertEquals("madonna_and_child", steps[0].imageKey)
+    }
+
+    @Test
+    fun angelusClosingOptionsAreIndependentInBothSeasons() {
+        val gloryBe = PrayerPackStore.resolveBodyText("angelus", "en", "gloriaPatri")
+        val eternalRest = PrayerPackStore.resolveBodyText("angelus", "en", "requiemAeternam")
+        for (eastertide in listOf(false, true)) {
+            val calendar = FixedLiturgicalCalendar(isEasterSeasonValue = eastertide)
+            val base = steps(
+                "angelus", calendar = calendar,
+                customOptions = mapOf("threeGloryBes" to "false", "eternalRest" to "false"),
+            )
+            assertEquals(if (eastertide) 1 else 7, base.size)
+            for (threeGloryBes in listOf(false, true)) {
+                for (includeEternalRest in listOf(false, true)) {
+                    val configured = steps(
+                        "angelus", calendar = calendar,
+                        customOptions = mapOf(
+                            "threeGloryBes" to threeGloryBes.toString(),
+                            "eternalRest" to includeEternalRest.toString(),
+                        ),
+                    )
+                    val closingBodies = (if (threeGloryBes) List(3) { gloryBe } else emptyList()) +
+                        (if (includeEternalRest) listOf(eternalRest) else emptyList())
+                    assertEquals(base.map { it.body } + closingBodies, configured.map { it.body })
+                }
+            }
+            // Saved prayers store overrides only; missing keys inherit the new defaults.
+            assertEquals(base.size + 4, steps("angelus", calendar = calendar).size)
+            assertEquals(
+                base.map { it.body } + eternalRest,
+                steps("angelus", calendar = calendar, customOptions = mapOf("threeGloryBes" to "false")).map { it.body },
+            )
+            assertEquals(
+                base.map { it.body } + List(3) { gloryBe },
+                steps("angelus", calendar = calendar, customOptions = mapOf("eternalRest" to "false")).map { it.body },
+            )
+        }
     }
 
     @Test

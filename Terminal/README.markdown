@@ -81,8 +81,10 @@ The terminal emulator sends input only to its active terminal. Traditional termi
 input does not distinguish held-key repeats from separate presses.
 
 Prayer language and interface language are independent. Settings also select the
-Rosary mystery group, a devotion's form, and its day where applicable. Changing
-prayer configuration starts that sequence at its first step. Current progress and
+Rosary mystery group, a devotion's form, and its day where applicable.
+The Rosary's “Skip the fifth decade” option omits that complete decade while retaining
+the closing prayers. It defaults off and is also available as `--skip-fifth-decade`.
+Changing prayer configuration starts that sequence at its first step. Current progress and
 the effective group/form/day and liturgical date are saved atomically after changes,
 and restored on the next launch. State lives at `$XDG_STATE_HOME/prosary/state`, or
 `$HOME/.local/state/prosary/state`; it never touches the native apps' settings.
@@ -106,9 +108,11 @@ Useful commands:
 
 The snapshot includes all ten built-in stepped devotions, their sourced prayer
 languages, Rosary mysteries, alternate forms, and multi-day content. The terminal
-engine uses the existing default option values. This is a prayer-reader prototype,
-not full feature parity: it has no community downloads or ZIP import, readings,
-notifications, audio, prayer editing, a transliteration toggle, or per-option editor.
+engine uses the existing default option values, including three Glory Bes followed
+by an Eternal Rest after the Angelus or its Eastertime Regina Caeli. This is a
+prayer-reader prototype, not full feature parity: it has no community downloads or
+ZIP import, readings, notifications, audio, prayer editing, a transliteration toggle,
+or per-option editor.
 Fallback order is fixed (requested language, applicable Hebrew tradition, then
 Latin), rather than independently configurable. The counter-only Jesus
 Prayer is not part of the bundle catalog.

@@ -72,6 +72,8 @@ public partial class HomeViewModel : ObservableObject
 
     private Prayer? _defaultRosary;
     private Prayer? _defaultJesusPrayer;
+    private DateOnly _localDate = DateOnly.FromDateTime(DateTime.Today);
+    private bool _followsToday = true;
 
     /// <summary>Default favorite per discovered generic devotion, keyed by bundle id.</summary>
     private readonly Dictionary<string, Prayer?> _defaultCustomDevotions = [];
@@ -119,7 +121,7 @@ public partial class HomeViewModel : ObservableObject
     public DateTimeOffset MinimumTodayDate => new(new DateTime(1900, 1, 1));
     public DateTimeOffset MaximumTodayDate => new(new DateTime(2100, 12, 31));
     public DateOnly SelectedDate => DateOnly.FromDateTime((SelectedTodayDate ?? new DateTimeOffset(DateTime.Today)).Date);
-    public bool IsSelectedDateToday => SelectedDate == DateOnly.FromDateTime(DateTime.Today);
+    public bool IsSelectedDateToday => SelectedDate == _localDate;
     public bool CanSelectYesterday => SelectedDate > DateOnly.FromDateTime(MinimumTodayDate.Date);
     public bool CanSelectTomorrow => SelectedDate < DateOnly.FromDateTime(MaximumTodayDate.Date);
 
@@ -139,6 +141,7 @@ public partial class HomeViewModel : ObservableObject
 
     partial void OnSelectedTodayDateChanged(DateTimeOffset? value)
     {
+        _followsToday = SelectedDate == _localDate;
         RefreshToday();
     }
 
@@ -149,7 +152,21 @@ public partial class HomeViewModel : ObservableObject
     private void Tomorrow() => SelectedTodayDate = new DateTimeOffset(SelectedDate.AddDays(1).ToDateTime(TimeOnly.MinValue));
 
     [RelayCommand]
-    private void SelectToday() => SelectedTodayDate = new DateTimeOffset(DateTime.Today);
+    private void SelectToday()
+    {
+        _followsToday = true;
+        RefreshForClock(DateOnly.FromDateTime(DateTime.Today));
+    }
+
+    /// <summary>Keep calendar browsing local to this window; only a Today selection follows the clock.</summary>
+    public void RefreshForClock(DateOnly localDate)
+    {
+        _localDate = localDate;
+        if (_followsToday)
+            SelectedTodayDate = new DateTimeOffset(localDate.ToDateTime(TimeOnly.MinValue));
+        OnPropertyChanged(nameof(IsSelectedDateToday));
+        RefreshToday();
+    }
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(ShowsTodayReadings))]
@@ -493,7 +510,7 @@ public partial class HomeViewModel : ObservableObject
         TodayFeast = AppSettings.ShowTodayFeast ? TodayInfoStore.Feast(today) : null;
         MonthIntention = AppSettings.ShowTodayIntention ? TodayInfoStore.Intention(today) : null;
         TodayDay = TodayInfoStore.LiturgicalDay(today);
-        TodayReadings = TodayInfoStore.Readings(today);
+        TodayReadings = AppSettings.ShowTodayReadings ? TodayInfoStore.Readings(today) : [];
         TodayTorahPortion = AppSettings.ShowTodayTorahPortion ? TodayInfoStore.WeeklyTorahPortion(today) : null;
     }
 

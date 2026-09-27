@@ -1,6 +1,21 @@
 {
   "options": [
     {
+      "key": "skipFifthDecade",
+      "kind": "toggle",
+      "name": "Skip the fifth decade",
+      "default": false,
+      "nameByLanguage": {
+        "he": "דילוג על העשור החמישי",
+        "ar": "تخطّي العقد الخامس",
+        "ru": "Пропустить пятую декаду",
+        "tl": "Laktawan ang ikalimang dekada",
+        "fr": "Passer la cinquième dizaine",
+        "it": "Salta la quinta decina",
+        "uk": "Пропустити п’яту декаду"
+      }
+    },
+    {
       "key": "invitatory",
       "kind": "toggle",
       "name": "Opening versicle (O God, come to my assistance)",

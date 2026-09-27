@@ -17,6 +17,7 @@ int main(void)
     assert(snprintf(path, sizeof(path), "%s/nested/state", directory) > 0);
     app_state_defaults(&saved);
     assert(saved.keyboard_arrow_navigation_enabled && saved.keyboard_space_advance_enabled);
+    assert(!saved.skip_fifth_decade);
     assert(app_state_load(&saved, path) == 0);
     saved.step = 34;
     saved.group = 2;
@@ -38,9 +39,11 @@ int main(void)
     saved.step = 75;
     saved.keyboard_arrow_navigation_enabled = 0;
     saved.keyboard_space_advance_enabled = 0;
+    saved.skip_fifth_decade = 1;
     assert(app_state_save(&saved, path) == 0);
     assert(app_state_load(&loaded, path) == 1 && loaded.completed && loaded.step == 75);
     assert(!loaded.keyboard_arrow_navigation_enabled && !loaded.keyboard_space_advance_enabled);
+    assert(loaded.skip_fifth_decade);
     original = loaded;
 
     file = fopen(path, "a"); assert(file);

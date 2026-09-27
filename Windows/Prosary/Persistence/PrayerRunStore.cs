@@ -161,6 +161,8 @@ public static class PrayerRunSignatures
         var signature = options.EffectiveClosingIntentions
             ? original + "|closing-v2:1,1,1"
             : original;
+        if (options.SkipFifthDecade && options.MysterySelectionMode != Models.MysterySelectionMode.SingleMystery)
+            signature += "|skip-fifth";
         return options.IncludeOpeningPrayers && options.IncludeOpeningFatimaPrayer
             ? signature + "|opening-fatima-v2"
             : signature;

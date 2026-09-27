@@ -4,6 +4,7 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:vm="using:Prosary.ViewModels"
+    xmlns:controls="using:Prosary.Controls"
     FlowDirection="{x:Bind ViewModel.TodayIsRightToLeft, Mode=OneWay, Converter={StaticResource BoolToFlowDirection}}">
     <Page.Resources>
         <DataTemplate x:Key="ReadingPassageTemplate" x:DataType="vm:ReadingPassageViewModel">
@@ -20,7 +21,7 @@
                             Visibility="{x:Bind HasScriptToggle, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
                     <TextBlock Text="{x:Bind WholeVersesNotice}" TextWrapping="Wrap" Style="{StaticResource MutedCaptionTextStyle}"
                                Visibility="{x:Bind IncludesWholeVerses, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
-                    <TextBlock Text="{x:Bind PassageText, Mode=OneWay}" IsTextSelectionEnabled="True" TextWrapping="Wrap"
+                    <TextBlock controls:ScripturePassageText.Chapters="{x:Bind Chapters, Mode=OneWay}" IsTextSelectionEnabled="True" TextWrapping="Wrap"
                                FontFamily="{x:Bind BodyFontFamily, Mode=OneWay}" FontSize="{x:Bind BodyFontSize, Mode=OneWay}"
                                FlowDirection="{x:Bind IsRightToLeft, Mode=OneWay, Converter={StaticResource BoolToFlowDirection}}"
                                Visibility="{x:Bind HasPassage, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
@@ -68,6 +69,12 @@
                                                   IsOn="{x:Bind Options.ShowTodayFeast, Mode=TwoWay}" />
                                     <ToggleSwitch x:Uid="SetShowTodayIntention" Header="Show the Pope's intention"
                                                   IsOn="{x:Bind Options.ShowTodayIntention, Mode=TwoWay}" />
+                                    <ToggleSwitch x:Uid="SetShowTodayReadingsDesktop" Header="Show readings"
+                                                  IsOn="{x:Bind Options.ShowTodayReadings, Mode=TwoWay}"
+                                                  AutomationProperties.AutomationId="showTodayReadings" />
+                                    <ToggleSwitch x:Uid="SetExpandReadingsByDefault" Header="Expand readings by default"
+                                                  IsOn="{x:Bind Options.ExpandReadingsByDefault, Mode=TwoWay}"
+                                                  AutomationProperties.AutomationId="expandReadingsByDefault" />
                                     <ToggleSwitch x:Uid="SetShowTodayTorahPortion" Header="Show the weekly Torah portion"
                                                   IsOn="{x:Bind Options.ShowTodayTorahPortion, Mode=TwoWay}"
                                                   AutomationProperties.AutomationId="showTodayTorahPortion" />
@@ -149,7 +156,7 @@
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
-                        <FontIcon Grid.Column="0" Glyph="&#xE787;" Foreground="{StaticResource BrandPrimaryBrush}" VerticalAlignment="Center" />
+                        <FontIcon Grid.Column="0" Glyph="&#xE787;" Foreground="{ThemeResource BrandPrimaryBrush}" VerticalAlignment="Center" />
                         <TextBlock Grid.Column="1" Text="{x:Bind ViewModel.TodayDayText, Mode=OneWay}" IsTextSelectionEnabled="True" FontWeight="SemiBold" TextWrapping="Wrap" VerticalAlignment="Center"
                                    TextAlignment="{x:Bind ViewModel.TodayTextAlignment, Mode=OneWay}" />
                     </Grid>
@@ -158,7 +165,7 @@
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <FontIcon Grid.Column="0" Glyph="&#xE787;" Foreground="{StaticResource BrandPrimaryBrush}" VerticalAlignment="Top" />
+                        <FontIcon Grid.Column="0" Glyph="&#xE787;" Foreground="{ThemeResource BrandPrimaryBrush}" VerticalAlignment="Top" />
                         <StackPanel Grid.Column="1" Spacing="2">
                             <TextBlock Text="{x:Bind ViewModel.TodayFeastTitle, Mode=OneWay}" IsTextSelectionEnabled="True" FontWeight="SemiBold" TextWrapping="Wrap"
                                        TextAlignment="{x:Bind ViewModel.TodayTextAlignment, Mode=OneWay}" />
@@ -171,7 +178,7 @@
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <FontIcon Grid.Column="0" Glyph="&#xEB51;" Foreground="{StaticResource BrandPrimaryBrush}" VerticalAlignment="Top" />
+                        <FontIcon Grid.Column="0" Glyph="&#xEB51;" Foreground="{ThemeResource BrandPrimaryBrush}" VerticalAlignment="Top" />
                         <StackPanel Grid.Column="1" Spacing="2">
                             <TextBlock Text="{x:Bind ViewModel.MonthIntentionTitle, Mode=OneWay}" IsTextSelectionEnabled="True" FontWeight="SemiBold" TextWrapping="Wrap"
                                        TextAlignment="{x:Bind ViewModel.TodayTextAlignment, Mode=OneWay}" />
@@ -184,7 +191,7 @@
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <FontIcon Grid.Column="0" Glyph="&#xE8A9;" Foreground="{StaticResource BrandPrimaryBrush}" VerticalAlignment="Top" />
+                        <FontIcon Grid.Column="0" Glyph="&#xE8A9;" Foreground="{ThemeResource BrandPrimaryBrush}" VerticalAlignment="Top" />
                         <StackPanel Grid.Column="1" Spacing="2">
                             <TextBlock Text="{x:Bind ViewModel.TodayReadingsTitle, Mode=OneWay}" IsTextSelectionEnabled="True" FontWeight="SemiBold"
                                        TextAlignment="{x:Bind ViewModel.TodayTextAlignment, Mode=OneWay}" />
@@ -198,7 +205,7 @@
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <FontIcon Grid.Column="0" Glyph="&#xE8A9;" Foreground="{StaticResource BrandPrimaryBrush}" VerticalAlignment="Top" />
+                        <FontIcon Grid.Column="0" Glyph="&#xE8A9;" Foreground="{ThemeResource BrandPrimaryBrush}" VerticalAlignment="Top" />
                         <StackPanel Grid.Column="1" Spacing="2">
                             <TextBlock Text="{x:Bind ViewModel.TorahPortionHeading, Mode=OneWay}" IsTextSelectionEnabled="True" FontWeight="SemiBold" TextWrapping="Wrap"
                                        TextAlignment="{x:Bind ViewModel.TodayTextAlignment, Mode=OneWay}" />

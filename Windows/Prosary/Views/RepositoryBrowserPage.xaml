@@ -99,7 +99,7 @@
                                         <TextBlock Text="{x:Bind Bundle.Description}" TextWrapping="Wrap"
                                                    Style="{StaticResource MutedCaptionTextStyle}"
                                                    Visibility="{x:Bind HasDescription, Converter={StaticResource BoolToVisibility}}" />
-                                        <TextBlock Text="{x:Bind TagsLine}" Foreground="{StaticResource BrandPrimaryBrush}"
+                                        <TextBlock Text="{x:Bind TagsLine}" Foreground="{ThemeResource BrandPrimaryBrush}"
                                                    FontSize="11"
                                                    Visibility="{x:Bind HasTags, Converter={StaticResource BoolToVisibility}}" />
                                     </StackPanel>

@@ -122,6 +122,11 @@
           "default": 1,
           "description": "1-based index into MysteryCatalog.forGroup(specificMysteryGroup) (always 5 mysteries per group). Used only when mysterySelectionMode == singleMystery."
         },
+        "skipFifthDecade": {
+          "type": "boolean",
+          "default": false,
+          "description": "Omit the fifth mystery and its complete decade from each selected five-decade set, preserving all opening/closing prayers and continuations. Full Rosaries become 16 or 12 decades. Explicit singleMystery selections are unchanged and hide this option. Existing saved prayers default to false; progress identity includes the option."
+        },
         "aramaicSignOfCrossForm": {
           "type": "string",
           "default": "formA",
@@ -748,6 +753,17 @@
     "AppSettings": {
       "description": "Relevant shared preference keys, stored verbatim in UserDefaults, Android prosary_settings SharedPreferences, and Windows LocalSettings. App Language selects the interface and automatic Bible edition. Global Prayer Language follows it by default, or overrides it with any supported prayer language. Explicit per-prayer languages and Bible edition IDs remain independent.",
       "fields": {
+        "appColor": {
+          "type": "string",
+          "default": "blue",
+          "values": ["blue", "green", "red", "purple", "rose", "white", "gold"],
+          "description": "App icon and manual accent palette. Blue honors Mary and is also the fallback for unknown values. Canonical colors live in Shared/Branding/app-colors.json. White has a gold cross and readable gold controls. Icon artwork stays identical in light/dark. Apple uses Icon Composer alternate icons on supported devices and the Mac Dock; Windows changes window icons while package/Start branding remains blue. Android launcher icons follow this choice independently of Material You. Semantic calendar/rank colors remain independent."
+        },
+        "useSystemColors": {
+          "type": "boolean",
+          "default": true,
+          "description": "Android capability-specific preference: use Material You wallpaper colors on API31+ before the manual appColor accent palette. The toggle is shown only where supported. Other platforms do not show this Android-only preference; launcher icon selection is unchanged."
+        },
         "keyboardArrowNavigationEnabled": {
           "type": "boolean",
           "default": true,
@@ -790,8 +806,8 @@
         },
         "useJaffaHailMaryWording": {
           "type": "boolean",
-          "default": false,
-          "description": "After resolving a Vicariate-sourced prayer (internal he-x-vicariate), replace מְלֵאַת הַחֶסֶד with בְּרוּכַת הַחֶסֶד, preserving unpointed style for an exact unpointed phrase. Applies to native and explicitly marked bundle text, including fallback; never changes Mission, generic Hebrew or Scripture. Source text remains intact. Omit the original reading aid only when the body changes, since no matching Jaffa aid was supplied. The always-available in-app toggle refreshes open prayer text without resetting progress. See Shared/content/rosary/SOURCES.markdown for the user-reported pastoral source."
+          "deprecated": true,
+          "description": "Retired alternative Hail Mary wording option. Existing values are ignored; sourced Vicariate text and its matching reading aid are always retained."
         },
         "todayLanguageCode": {
           "type": "string",
@@ -865,6 +881,16 @@
           "type": "boolean",
           "default": false,
           "description": "Show the Eretz Israel Torah portion for the selected date, or its Saturday holiday reading."
+        },
+        "showTodayReadings": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show readings in Pray and native desktop Today. The dedicated phone Readings tab remains available independently."
+        },
+        "expandReadingsByDefault": {
+          "type": "boolean",
+          "default": false,
+          "description": "Automatically expand passage sections on reader entry and date/calendar changes. Off starts collapsed. Ordinary refreshes and edition changes preserve manual disclosure choices."
         },
         "showPrayerNameInPrayerLanguage": {
           "type": "boolean",

@@ -73,7 +73,12 @@
     "FeastDay": {
       "fields": {
         "title": {
-          "type": "string"
+          "type": "string",
+          "description": "Semicolon-separated observances for the date. Syriac rows keep Evangelizo SYE saint names and spelling, supplemented with observances from SYA; a ferial main title never hides its saints. A matching English saint name takes precedence over the main liturgy's alternate spelling."
+        },
+        "observances": {
+          "type": "{title: string, identity: string}[]?",
+          "description": "Optional ordered generator metadata for Syriac components. Title is the published display spelling; identity is the reviewed deduplication/localization key, including source-UUID disambiguation for reused names. Native readers consume the assembled title/titleByLanguage fields. Offline localization uses these identities rather than guessing from ambiguous names such as St. Matthew."
         },
         "rank": {
           "type": "string",
@@ -82,7 +87,7 @@
         "titleByLanguage": {
           "type": "map<string, string>",
           "default": {},
-          "description": "All seven non-English interface locales (Hebrew, Arabic, Russian, Filipino, French, Italian and Ukrainian) are populated for shipped dates. Sourced identities take precedence over credited editorial display metadata; reviewed aliases never change dates, ranks or observances. Hebrew Pentecost uses שבועות. Future unsupported labels fall back to the source title."
+          "description": "Localized metadata in Hebrew, Arabic, Russian, Filipino, French, Italian and Ukrainian. Sourced identities take precedence over editorial metadata; reviewed aliases never change dates, ranks or observances. Syriac Arabic captions preserve the actual SYA component labels. Newly imported identities without a reviewed translation retain their published source name, also within compound titles; no guessed liturgical Hebrew. Hebrew Pentecost uses שבועות."
         }
       }
     }

@@ -94,7 +94,8 @@ struct RemindersOnlyEditorView: View {
       PrayerLanguagePicker(
         label: String(localized: "favoriteEditor.language", defaultValue: "Language", bundle: UILanguage.bundle, locale: UILanguage.locale),
         code: $prayer.languageCode,
-        defaultLabel: String(localized: "macLibrary.default", defaultValue: "Default", bundle: UILanguage.bundle, locale: UILanguage.locale))
+        defaultLabel: String(localized: "macLibrary.default", defaultValue: "Default", bundle: UILanguage.bundle, locale: UILanguage.locale),
+        hebrewTraditions: prayer.customDevotionId.map { PrayerPackStore.hebrewTraditions(bundleId: $0) } ?? ["he", "he-x-gamliel"])
       if let id = prayer.customDevotionId,
          CustomDevotionLaunch.allowsVariantChoice(id),
          let definition = PrayerPackStore.definition(for: id),

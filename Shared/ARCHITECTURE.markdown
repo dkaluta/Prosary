@@ -166,7 +166,7 @@ built by one fully generic builder from a bundle's `devotion.json` (see "Content
 The six per-devotion builders the engine once carried (the Rosary's plus
 Angelus/Stations/Franciscan Crown/Seven Sorrows/Divine Mercy) are gone — their step sequences
 are reproduced byte-for-byte by the generic builder from bundle data. Each platform's
-`CustomDevotionEngineTests` pins the generic sequences (step counts 7/18/17/90/69/63, the Angelus's
+`CustomDevotionEngineTests` pins the generic sequences (step counts 11/18/17/90/69/63, the Angelus's
 Eastertide Regina Caeli swap, the Seven Sorrows' 7-minor decades and non-scripture 4th sorrow,
 the Divine Mercy's identical per-decade lines and single reused image, closing repeats without
 bead fields), and `RosaryEngineTests` pins the Rosary's — its hardcoded builder was deleted only
@@ -222,6 +222,32 @@ Two pieces of logic are shared internally by `PrayerEngine` rather than duplicat
   Tue/Fri Sorrowful, Wed Glorious, Thu Luminous, Sunday follows the liturgical season instead),
   the Meeus/Jones/Butcher Gregorian Easter algorithm, liturgical season (Advent/Christmas/Lent/
   Easter season/Ordinary Time) and its accent color, and the seasonal Marian antiphon.
+
+## App color and icons
+
+`appColor` persists the same seven ids on Apple, Android and Windows: `blue` (the default,
+honoring Mary), `green`, `red`, `purple`, `rose`, `white`, and `gold`. Unknown values fall
+back to blue. `Shared/Branding/app-colors.json` defines icon backgrounds/crosses and readable
+light/dark accent pairs; white uses a gold cross and gold controls. Prayer artwork and
+liturgical-calendar status colors keep their own meanings.
+
+On Android 12+, `useSystemColors` defaults to true: Material You wallpaper colors take
+precedence for controls. Turning it off applies the selected manual palette. The control is
+hidden on older Android versions, which use that palette directly. Launcher icon choice
+remains independent. Stable launcher aliases point to an always-enabled `MainActivity` so
+existing intents, widgets and notifications remain usable.
+
+Apple icons are seven native Icon Composer `.icon` documents. Explicit matching Default/Dark
+fill specializations at both background and cross layers keep dark-mode artwork unchanged.
+Never combine those specializations with a sibling `fill`, which overrides them. iPhone/iPad
+use native alternate-icon support; Mac updates its Dock icon. visionOS retains the installed
+blue icon while applying the selected accent. Windows applies the accent and window icon;
+the packaged Start/store identity remains blue. Native high-contrast treatments take precedence.
+
+`node Shared/tools/build-app-icons.mjs` regenerates the native resources from the existing
+cross template, using the installed `sharp` dependency in `Shared/website`. Its `--check`
+mode detects drift. `node Shared/tools/sync-web-branding.mjs` updates displayed web icon
+copies. See `Shared/Branding/README.markdown` for source and verification details.
 
 ## Bead progress track
 
@@ -664,7 +690,9 @@ add menu can restore an unpinned devotion. A devotion with an existing saved row
 on first migration so the navigation change does not hide anyone's prayers.
 
 The **Basic Prayers** directory contains Sign of the Cross, Our Father, Hail Mary, Glory Be,
-the Creed, Holy God, and the four Marian antiphons: Salve Regina, Alma Redemptoris Mater,
+the Creed, Holy God, St. Michael the Archangel (`stMichael`, reusing the Rosary's
+`sanctusMichaelTitle` / `sanctusMichael` text and `st_michael` artwork), and the four Marian
+antiphons: Salve Regina, Alma Redemptoris Mater,
 Ave Regina Caelorum, and Regina Caeli. Each antiphon is its own single-step prayer, using the
 existing sourced Rosary title/body and reading aids, without adding versicles or collects.
 The Mac Library sidebar and Go menu expose this directory; activating a prayer opens its own
@@ -679,10 +707,28 @@ in every visible Home view. `BasicPrayersOrder` remains the list's drag order; t
 The directory and single-prayer flow both offer “Pin to Pray” / “Remove from Pray”, with native
 pin icons. Removing a pin keeps the prayer available in the directory.
 
+The Hebrew tradition control is contextual: a Basic Prayer checks its exact authored body,
+and a devotion checks the bodies it actually references. Shared generic Hebrew and fallback
+resolution do not manufacture a second tradition. When only one Hebrew tradition has the
+prayer, the Hebrew reader uses that source directly and hides the other-tradition button,
+without changing saved/global language preferences. App-wide fallback ordering remains intact.
+
+Downloaded prayer cards expose a direct **Remove Download** action as well as the existing
+Downloads settings list. Removal uses the same confirmation and saved-copy usage checks;
+built-ins are protected and an in-use download explains why it cannot yet be removed.
+
 The Rosary is the one devotion with a dedicated presets surface: its Pray row opens the default
 preset, an ad-hoc "Pray any Rosary" setup, and the remaining named presets, with full editors and
 reminder actions. The Jesus Prayer row prays its default saved target or opens setup when none
 exists; the Pray add menu can create another named Rosary or Jesus Prayer configuration.
+
+Each Rosary has `skipFifthDecade` (default `false`). Enabled, the mystery source excludes
+order five from every complete five-decade set before constructing the prayer sequence;
+opening prayers, closing prayers and selected continuations remain. Full twenty/fifteen
+mystery runs become sixteen/twelve decades. An explicit single mystery, including the fifth,
+is preserved and hides this control. Original mystery ordinals remain intact while progress
+uses dense decade indices. Persisted copies and progress signatures include this preference;
+older copies retain all five decades. Terminal offers the same switch for its single set.
 
 Every generic bundle is still constrained at the UI layer to at most one `Prayer` row, matched by
 **bundle id** rather than language. Pinning it from a flow creates that row with the sentinel
@@ -921,18 +967,10 @@ Compose retains title/body provenance independently when importing, saving a pro
 repacking it, even though the generated prayer keys change. It emits the same per-key metadata
 so editing a sourced Vicariate prayer cannot silently turn it into generic repository Hebrew.
 
-The app-wide `useJaffaHailMaryWording` Boolean (default `false`), displayed as “Alternative Hail Mary wording”, offers
-**בְּרוּכַת הַחֶסֶד** in place of **מְלֵאַת הַחֶסֶד**. Its in-app Settings toggle is always
-available beside prayer-language preferences, including when another language is selected
-and Vicariate may be reached through fallback. Apply the exact substitution only after the
-winning source is known to be `he-x-vicariate`, in both native and marked bundle text. Preserve
-unpointed style for an exact unpointed phrase. Never alter Mission text, unmarked repository
-Hebrew, mystery Scripture, the stored source tables, or the language priority order. Resolve
-the preference at lookup time and refresh open prayers without resetting session progress.
-If a body changes, omit its old reading aid; no corresponding Jaffa aid was supplied.
-Unchanged bodies retain their paired aids. The supplied pastoral attribution and exact
-wording are documented in [the Rosary source notes](content/rosary/SOURCES.markdown) and
-[`tools/vicariate-wording.json`](tools/vicariate-wording.json).
+Vicariate prayers retain their sourced **מְלֵאַת הַחֶסֶד** wording and paired reading aids.
+The former alternative Hail Mary wording option is retired; a previously persisted
+`useJaffaHailMaryWording` value has no effect. Mission, generic Hebrew and Scripture keep
+their own source text. See [the Rosary source notes](content/rosary/SOURCES.markdown).
 
 Loaded overlays merge into the same `PrayerTranslations` lookup used by built-in text, so
 Mission, generic Hebrew and Vicariate wording each retain their own place in the configured precedence.
@@ -1089,6 +1127,13 @@ of its own — its entire step sequence and per-step text are data-driven from i
   72-completion Hail Marys, the Our Father for the Pope's intentions), both defaulting on so
   the traditional sequence is unchanged out of the box. The validator checks the declarations
   and that every `if` references a declared option/case.
+  The Angelus declares independent `threeGloryBes` and `eternalRest` toggles, both defaulting
+  on: its collect is followed by three Glory Bes, then one Eternal Rest. The same options
+  follow the Eastertide Regina Caeli, giving 11 ordinary steps or 5 Eastertide steps; switching
+  both off retains the shorter 7/1-step forms. Existing saved prayers inherit enabled defaults
+  when they have no stored override. These are per-prayer options in the existing editor.
+  The closing order follows the [Bishops' Conference's published Angelus](https://www.cbcew.org.uk/home/events/previous-events/days-of-prayer/prayer-for-the-nation/the-angelus/);
+  prayer bodies and headings reuse the existing sourced translations.
 - **Multi-day devotions** — `{"type": "days"}`: one step list per day
   (`days: [{name, nameByLanguage?, period?, periodByLanguage?, steps: [Entry…]}]` — `period` carries the
   Montfort-style grouping labels and `periodByLanguage` localizes them or date labels in the
@@ -1418,11 +1463,21 @@ copies, same convention as the bundles; per-platform `TodayInfoStore` providers)
     calendar usages, not a blanket substitution of one Eastern church's lectionary for another.
   - `syriac` — **`feasts-syriac.json`**: "West Aramaic — Syriac Catholic" (the Mission's
     own chosen name for its tradition),
-    liturgical day titles **courtesy of Evangelizo.org — Daily Gospel (© Evangelizo.org)**,
-    via its publication API's English Syriac-calendar edition ("SYE"), one request per day;
+    liturgical day titles and all listed saints
+    **courtesy of Evangelizo.org — Daily Gospel (© Evangelizo.org)**,
+    via both English and Arabic Syriac-calendar editions (`SYE` / `SYA`);
     the credit is required and carried on every platform's About screen ("Calendar Data"
-    section, which also names LitCal and Missale Meum). Plain-date ferial titles are omitted;
+    section, which also names LitCal and Missale Meum). Plain-date ferial titles are omitted
+    without dropping their saint lists. Reviewed bilingual identities join equivalent names
+    and remove repetition between the main liturgy and saints; distinct English/Arabic
+    observances remain visible. English saint names retain their exact SYE spelling and take
+    precedence over an equivalent main-liturgy heading. Arabic supplies additional observances
+    after the English entries. Optional `observances` components retain separate `title` and
+    reviewed `identity` values for offline localization, so reused English names such as
+    St. Matthew cannot acquire another saint's translation. Native readers use the assembled
+    title fields. Unknown identities retain their published name for review.
     ranks are title-derived ("Sunday" / "Fast" / "Feast", with Pascha as "Great Feast").
+    `fetch-feasts.py --syriac-only --until YYYY-MM-DD --sync` can refresh a bounded range.
     Evangelizo serves a rolling ~3-month horizon, so new Hebrew Roman titles from that feed and the
     `syriac` table end where the API did at generation time and extend on each rerun — regenerate more often
     than yearly.
@@ -1457,7 +1512,12 @@ copies, same convention as the bundles; per-platform `TodayInfoStore` providers)
   their tables and the other rites retain their own observances.
   `TodayInfoStore` reloads both the feast and reading tables when the selected calendar changes.
   The calendar choice affects the Today feast and its lectionary citations together. A local
-  selected date drives every Today row. The navigation row has previous/next arrows and a
+  selected date drives every Today row and is shared between Pray and Readings within the
+  same window. Explicit browsing retains that civil date; Today resumes local-day following.
+  The `showTodayReadings` preference (default `true`) controls readings in Pray/native
+  desktop Today. The reader starts collapsed unless `expandReadingsByDefault` (default
+  `false`) is enabled. Chapter transitions have localized chapter headings and verse-only
+  numbers. The navigation row has previous/next arrows and a
   centered date button opening a native calendar, with a Today action inside the popup.
   Prayer-day computations, mystery assignment and Marian antiphons remain independent of
   browsing dates. The supplementary day heading is hidden on Sundays. On weekdays it uses
@@ -1537,14 +1597,17 @@ See [calendar research and coverage](calendar-research.markdown) for source rule
 ### Offline Bible passages
 
 Phone Readings and Mac/Windows Today retain the calendar's complete localized citation above
-each collapsible Bible passage. Daily and enabled Torah passages open expanded when entering
-the view or changing the date or calendar. Individual collapses remain in place during ordinary
+each collapsible Bible passage. Daily and enabled Torah passages start collapsed unless
+`expandReadingsByDefault` is enabled when entering the view or changing the date/calendar.
+Individual disclosure choices remain in place during ordinary
 refreshes and edition changes. The date controls use native glass on supported Apple systems,
 translucent Material surfaces on Android, and Acrylic on Windows, with platform fallbacks.
 They label the result as a Bible passage, identify its edition,
 and show that edition's attribution and source link. An edition's wording is not represented
-as the exact local Mass lectionary. Scripture text remains selectable, numbered by chapter
-and verse, and rendered with the existing Scripture typography. Hebrew marks are retained;
+as the exact local Mass lectionary. Scripture text remains selectable, with a localized
+chapter heading at every chapter transition and verse-only numbers below it, rendered with
+the existing Scripture typography. Each passage is already constrained to one book by the
+corpus builder, and its citation supplies the book context. Hebrew marks are retained;
 Arabic and Hebrew passages use their own RTL layout independently of the surrounding UI.
 Hebrew Bible text is vocalized in both testaments: Masoretic Tanakh plus the complete
 Delitzsch 12th edition (1901). Source vowels and cantillation are preserved; only vowel

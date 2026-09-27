@@ -3,6 +3,8 @@ package com.dkaluta.prosary.ui.settings
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import android.content.Context
+import android.os.Build
+import android.widget.Toast
 import android.text.format.Formatter
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -49,6 +51,8 @@ import com.dkaluta.prosary.R
 import com.dkaluta.prosary.content.prayerpack.PrayerPackStore
 import com.dkaluta.prosary.content.today.TodayInfoStore
 import com.dkaluta.prosary.models.AppSettings
+import com.dkaluta.prosary.models.AppColor
+import com.dkaluta.prosary.LauncherIconController
 import com.dkaluta.prosary.ui.shared.rememberHardwareKeyboardAvailable
 import com.dkaluta.prosary.models.HomeOrder
 import com.dkaluta.prosary.models.LanguageCatalog
@@ -176,6 +180,36 @@ fun SettingsScreen(onBack: () -> Unit) {
                 style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
 
             OptionPickerField(
+                label = stringResource(R.string.settings_app_color),
+                options = AppColor.entries.map { it.id },
+                selected = AppSettings.appColor,
+                optionLabel = { context.getString(AppColor.resolve(it).labelRes) },
+                onSelect = { color ->
+                    if (!LauncherIconController.select(context, color)) {
+                        Toast.makeText(context, R.string.settings_app_color_error, Toast.LENGTH_LONG).show()
+                    }
+                },
+                modifier = Modifier.testTag("appColorPicker"),
+            )
+            Text(stringResource(R.string.settings_app_color_hint),
+                style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+
+            if (Build.VERSION.SDK_INT >= 31) {
+                Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+                    Column(Modifier.weight(1f)) {
+                        Text(stringResource(R.string.settings_use_system_colors))
+                        Text(stringResource(R.string.settings_use_system_colors_hint),
+                            style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                    }
+                    Switch(
+                        checked = AppSettings.useSystemColors,
+                        onCheckedChange = { AppSettings.useSystemColors = it },
+                        modifier = Modifier.testTag("useSystemColors"),
+                    )
+                }
+            }
+
+            OptionPickerField(
                 label = stringResource(R.string.settings_prayer_language),
                 options = listOf("") + LanguageCatalog.publicOptions.map { it.code },
                 selected = LanguageCatalog.pickerLanguageCode(defaultLanguageCode),
@@ -193,19 +227,6 @@ fun SettingsScreen(onBack: () -> Unit) {
                     selected = defaultLanguageCode,
                     optionLabel = { context.getString(if (it == "he") R.string.prayer_tradition_vicariate else R.string.prayer_tradition_mission) },
                     onSelect = { defaultLanguageCode = it; AppSettings.setDefaultLanguageCode(it) },
-                )
-            }
-
-            Row(modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
-                Column(Modifier.weight(1f)) {
-                    Text(stringResource(R.string.settings_jaffa_wording))
-                    Text(stringResource(R.string.settings_jaffa_wording_hint), style = MaterialTheme.typography.bodySmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant)
-                }
-                Switch(
-                    checked = AppSettings.useJaffaHailMaryWording,
-                    onCheckedChange = { AppSettings.useJaffaHailMaryWording = it },
-                    modifier = Modifier.testTag("useJaffaHailMaryWording"),
                 )
             }
 
@@ -413,6 +434,20 @@ fun SettingsScreen(onBack: () -> Unit) {
             // registry default.
             SectionHeader(stringResource(R.string.settings_today_header))
 
+            Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+                Text(stringResource(R.string.settings_show_today_readings), Modifier.weight(1f))
+                Switch(checked = AppSettings.showTodayReadings,
+                    onCheckedChange = { AppSettings.showTodayReadings = it },
+                    modifier = Modifier.testTag("showTodayReadings"))
+            }
+            Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+                Text(stringResource(R.string.settings_expand_readings), Modifier.weight(1f))
+                Switch(checked = AppSettings.expandReadingsByDefault,
+                    onCheckedChange = { AppSettings.expandReadingsByDefault = it },
+                    modifier = Modifier.testTag("expandReadingsByDefault"))
+            }
+
+
             Row(modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
                 Column(Modifier.weight(1f)) {
                     Text(stringResource(R.string.settings_show_today_torah))
@@ -519,13 +554,10 @@ fun SettingsScreen(onBack: () -> Unit) {
                             contentDescription = stringResource(R.string.favorites_export),
                         )
                     }
-                    IconButton(onClick = {
+                    TextButton(onClick = {
                         removalRequest = PrayerRemovalRequest.Download(bundleId)
-                    }) {
-                        Icon(
-                            Icons.Filled.Delete,
-                            contentDescription = stringResource(R.string.download_remove_action),
-                        )
+                    }, modifier = Modifier.testTag("removeDownload.$bundleId")) {
+                        Text(stringResource(R.string.download_remove_action), color = MaterialTheme.colorScheme.error)
                     }
                 }
             }

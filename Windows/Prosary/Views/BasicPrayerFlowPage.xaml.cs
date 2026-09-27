@@ -42,7 +42,7 @@ public sealed partial class BasicPrayerFlowPage : Page
             ViewModel.SelectLanguage(raw);
             BuildLanguageFlyout();
             return Task.CompletedTask;
-        });
+        }, ViewModel.HebrewRites);
 
     private void OnNavigateUp(object sender, RoutedEventArgs e) => Router.For(this).GoBack();
 }

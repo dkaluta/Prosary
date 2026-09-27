@@ -34,7 +34,7 @@ enum DevotionDirectory {
       title: PrayerKind.rosary.displayName,
       translatedTitle: PrayerKind.rosary.namePresentation().translation,
       systemImage: PrayerKind.rosary.systemImage,
-      accentColor: .brandPrimary,
+      accentColor: .appAccent,
       tags: PrayerPackStore.info(for: "rosary")?.tags ?? ["marian"],
       route: .rosaryQuickPray(prayer: Prayer(name: "", kind: .rosary, rosary: RosaryOptions()))))
 
@@ -44,7 +44,7 @@ enum DevotionDirectory {
       if let light = info.accentColorHex, let dark = info.accentColorDarkHex {
         accent = .adaptive(light: light, dark: dark)
       } else {
-        accent = info.accentColorHex.map { Color(hex: $0) } ?? .brandPrimary
+        accent = info.accentColorHex.map { Color(hex: $0) } ?? .appAccent
       }
       listings.append(DevotionListing(
         id: bundleId,

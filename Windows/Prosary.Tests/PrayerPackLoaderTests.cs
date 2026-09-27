@@ -270,7 +270,19 @@ public class PrayerPackLoaderTests : IClassFixture<PrayerPackLoaderFixture>
             Assert.Equal("true", o.DefaultValue);
         });
         Assert.Equal("Complete the 72 Hail Marys", options[0].Name);
-        Assert.Empty(PrayerPackStore.Options("angelus"));
+    }
+
+    [Fact]
+    public void AngelusDeclaresBothClosingOptionsEnabledByDefault()
+    {
+        var options = PrayerPackStore.Options("angelus");
+        Assert.Equal(["threeGloryBes", "eternalRest"], options.Select(o => o.Key));
+        Assert.All(options, o =>
+        {
+            Assert.Equal(CustomDevotionOption.OptionKind.Toggle, o.Kind);
+            Assert.Equal("true", o.DefaultValue);
+        });
+        Assert.Equal(["Three Glory Bes", "Eternal Rest"], options.Select(o => o.Name));
     }
 
     // User-installed bundles

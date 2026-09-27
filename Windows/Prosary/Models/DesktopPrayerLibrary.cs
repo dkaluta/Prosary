@@ -10,7 +10,7 @@ public sealed record DesktopPrayerItem(Prayer Prayer)
     public string ImageUri => DesktopPrayerLibrary.ImageUri(DesktopPrayerLibrary.DevotionId(Prayer));
 }
 
-public sealed record DesktopGalleryItem(string Id, string Title, string Subtitle, string ImageUri);
+public sealed record DesktopGalleryItem(string Id, string Title, string Subtitle, string ImageUri, bool IsDownloaded = false);
 
 /// <summary>Library operations create saved copies; gallery templates are never edited in place.</summary>
 public static class DesktopPrayerLibrary
@@ -26,6 +26,7 @@ public static class DesktopPrayerLibrary
 
     public static IReadOnlyList<DesktopGalleryItem> Gallery()
     {
+        var downloads = PrayerPackStore.InstalledBundleIds().ToHashSet(StringComparer.Ordinal);
         var ids = new[] { "rosary" }.Concat(PrayerPackStore.CustomDevotionIds())
             .Concat(new[] { "jesusPrayer" }).Distinct();
         return ids.Select(id =>
@@ -36,7 +37,8 @@ public static class DesktopPrayerLibrary
                 : Loc.Tr("kind_rosary", "Rosary"));
             var subtitle = info is null ? "" : string.Join(" · ", info.Tags.Select(tag =>
                 Loc.Tr("category_" + tag, tag)));
-            return new DesktopGalleryItem(id, title, subtitle, ImageUri(id));
+            return new DesktopGalleryItem(id, title, subtitle, ImageUri(id),
+                downloads.Contains(id) && !PrayerPackStore.IsBuiltInBundle(id));
         }).ToList();
     }
 

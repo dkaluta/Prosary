@@ -44,6 +44,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.unit.dp
@@ -52,6 +53,8 @@ import com.dkaluta.prosary.content.prayerpack.PrayerPackStore
 import com.dkaluta.prosary.content.repository.RepositoryBundle
 import com.dkaluta.prosary.content.repository.RepositoryClient
 import com.dkaluta.prosary.ui.shared.installErrorMessage
+import com.dkaluta.prosary.ui.shared.PrayerRemovalDialog
+import com.dkaluta.prosary.ui.shared.PrayerRemovalRequest
 import com.dkaluta.prosary.content.repository.RepositoryInstallStamps
 import com.dkaluta.prosary.models.LanguageCatalog
 import com.dkaluta.prosary.typography.HebrewDisplayText
@@ -75,6 +78,7 @@ fun RepositoryBrowserScreen(onBack: () -> Unit, showsBackButton: Boolean = true)
     var busyIds by remember { mutableStateOf(setOf<String>()) }
     var installedGeneration by remember { mutableIntStateOf(0) }
     var installError by remember { mutableStateOf<String?>(null) }
+    var removalRequest by remember { mutableStateOf<PrayerRemovalRequest?>(null) }
     var reloadToken by remember { mutableIntStateOf(0) }
 
     var isRefreshing by remember { mutableStateOf(false) }
@@ -257,6 +261,15 @@ fun RepositoryBrowserScreen(onBack: () -> Unit, showsBackButton: Boolean = true)
                                     color = MaterialTheme.colorScheme.primary,
                                 )
                             }
+                            if (bundle.id in PrayerPackStore.installedBundleIds() && !PrayerPackStore.isBuiltInBundle(bundle.id)) {
+                                TextButton(
+                                    enabled = bundle.id !in busyIds,
+                                    onClick = { removalRequest = PrayerRemovalRequest.Download(bundle.id) },
+                                    modifier = Modifier.testTag("removeDownload.${bundle.id}"),
+                                ) {
+                                    Text(stringResource(R.string.download_remove_action), color = MaterialTheme.colorScheme.error)
+                                }
+                            }
                         }
                     }
                 }
@@ -272,6 +285,10 @@ fun RepositoryBrowserScreen(onBack: () -> Unit, showsBackButton: Boolean = true)
                 }
             }
         }
+    }
+
+    removalRequest?.let { request ->
+        PrayerRemovalDialog(request, onDismiss = { removalRequest = null }, onRemoved = { installedGeneration++ })
     }
 
     installError?.let { message ->

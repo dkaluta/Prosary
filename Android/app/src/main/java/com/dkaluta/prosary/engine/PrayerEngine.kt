@@ -113,6 +113,7 @@ class PrayerEngine(
         "openingPrayers" to rosary.includeOpeningPrayers.toString(),
         "openingFatimaPrayer" to rosary.includeOpeningFatimaPrayer.toString(),
         "presenterMode" to rosary.presenterMode.toString(),
+        "skipFifthDecade" to rosary.skipFifthDecade.toString(),
         "fatimaPrayer" to rosary.includeFatimaPrayer.toString(),
         "eternalRest" to rosary.eternalRestForDeceased.name.replaceFirstChar { it.lowercaseChar() },
         "antiphon" to rosary.marianAntiphon.name.replaceFirstChar { it.lowercaseChar() },
@@ -508,7 +509,7 @@ class PrayerEngine(
             val indices = if (rosary.mysterySelectionMode == MysterySelectionMode.SingleMystery) {
                 listOf(rosary.specificMysteryOrder - 1)
             } else {
-                mysteries.indices.toList()
+                mysteries.indices.filterNot { it == 4 && optionValues["skipFifthDecade"] == "true" }
             }
 
             for (d in indices) {

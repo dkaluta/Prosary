@@ -4,13 +4,14 @@ using Prosary.Models;
 
 namespace Prosary.Controls;
 
-/// <summary>All prayer flows show one language row and a separate Hebrew tradition submenu.</summary>
+/// <summary>Prayer flows offer a Hebrew tradition submenu only for their authored alternatives.</summary>
 public static class PrayerLanguageMenu
 {
     public static void Populate(MenuFlyout menu, IEnumerable<LanguageOption> languages,
-        string current, Func<string, Task> select)
+        string current, Func<string, Task> select, IReadOnlyList<LanguageOption>? hebrewRites = null)
     {
         menu.Items.Clear();
+        var rites = hebrewRites ?? LanguageCatalog.Rites("he");
         var choices = new[] { new LanguageOption("", string.Format(
             Loc.Tr("language_default_parenthesized", "Default ({0})"),
             LanguageCatalog.Resolve("").NativeName), false) }
@@ -22,13 +23,14 @@ public static class PrayerLanguageMenu
                 Text = language.NativeName,
                 IsChecked = LanguageCatalog.PickerLanguageCode(current) == language.Code,
             };
-            item.Click += async (_, _) => await select(LanguageCatalog.SelectingLanguage(language.Code, current));
+            item.Click += async (_, _) => await select(language.Code == "he" && rites.Count == 1
+                ? rites[0].Code : LanguageCatalog.SelectingLanguage(language.Code, current));
             menu.Items.Add(item);
         }
         var resolved = LanguageCatalog.Resolve(current).Code;
-        if (LanguageCatalog.PickerLanguageCode(resolved) != "he") return;
+        if (LanguageCatalog.PickerLanguageCode(resolved) != "he" || rites.Count <= 1) return;
         var tradition = new MenuFlyoutSubItem { Text = Loc.Tr("prayer_tradition", "Prayer tradition") };
-        foreach (var rite in LanguageCatalog.Rites(resolved))
+        foreach (var rite in rites)
         {
             var item = new ToggleMenuFlyoutItem { Text = rite.NativeName, IsChecked = resolved == rite.Code };
             item.Click += async (_, _) => await select(rite.Code);

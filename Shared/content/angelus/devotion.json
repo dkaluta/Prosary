@@ -35,6 +35,19 @@
       "titleKey": "angelusCollectTitle",
       "bodyKey": "angelusCollectBody",
       "imageKey": "joyful_01_annunciation"
+    },
+    {
+      "titleKey": "gloriaPatriTitle",
+      "bodyKey": "gloriaPatri",
+      "imageKey": "glory_be",
+      "repeat": 3,
+      "if": "threeGloryBes"
+    },
+    {
+      "titleKey": "requiemAeternamTitle",
+      "bodyKey": "requiemAeternam",
+      "imageKey": "eternal_rest",
+      "if": "eternalRest"
     }
   ],
   "eastertideSteps": [
@@ -42,6 +55,19 @@
       "titleKey": "reginaCaeliTitle",
       "bodyKey": "reginaCaeliBody",
       "imageKey": "madonna_and_child"
+    },
+    {
+      "titleKey": "gloriaPatriTitle",
+      "bodyKey": "gloriaPatri",
+      "imageKey": "glory_be",
+      "repeat": 3,
+      "if": "threeGloryBes"
+    },
+    {
+      "titleKey": "requiemAeternamTitle",
+      "bodyKey": "requiemAeternam",
+      "imageKey": "eternal_rest",
+      "if": "eternalRest"
     }
   ]
 }

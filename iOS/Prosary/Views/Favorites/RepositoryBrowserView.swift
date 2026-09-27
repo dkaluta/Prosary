@@ -17,6 +17,7 @@ struct RepositoryBrowserView: View {
   var presentedAsSheet = true
 
   @Environment(\.dismiss) private var dismiss
+  @Environment(\.appServices) private var services
 
   /// Installed rows read their localized manifest name in the prayer language; the monitor is
   /// the one mechanism that survives the Mac's Settings menu — see PrayerLanguageMonitor's
@@ -32,6 +33,8 @@ struct RepositoryBrowserView: View {
   @State private var installedIds: Set<String> = []
   @State private var installError: String?
   @State private var showsImporter = false
+  @State private var removingDownload: String?
+  @State private var unusedDownloads: Set<String> = []
 
   private var allTags: [String] {
     Array(Set(bundles.flatMap(\.tags))).sorted()
@@ -125,6 +128,10 @@ struct RepositoryBrowserView: View {
     .frame(minWidth: presentedAsSheet ? 560 : nil, minHeight: presentedAsSheet ? 460 : nil)
     #endif
     .task { await load() }
+    .modifier(PrayerDownloadRemovalDialogs(bundleID: $removingDownload, onRemoved: { await refreshDownloads() }))
+    .onReceive(NotificationCenter.default.publisher(for: .prayerLibraryDidChange)) { _ in
+      Task { await refreshDownloads() }
+    }
   }
 
   private var list: some View {
@@ -170,7 +177,7 @@ struct RepositoryBrowserView: View {
         #if !os(visionOS)
         .padding(.horizontal, 12)
         .padding(.vertical, 5)
-        .background(Capsule().fill(selectedTag == tag ? Color.brandPrimary : Color.secondary.opacity(0.15)))
+        .background(Capsule().fill(selectedTag == tag ? Color.appAccent : Color.secondary.opacity(0.15)))
         .foregroundStyle(selectedTag == tag ? Color(uiColorInverse: ()) : .primary)
         #endif
         #if os(iOS)
@@ -192,6 +199,7 @@ struct RepositoryBrowserView: View {
   @ViewBuilder
   private func bundleRow(_ bundle: RepositoryBundle) -> some View {
     let isInstalled = installedIds.contains(bundle.id) || PrayerPackStore.customDevotionIds().contains(bundle.id)
+    let isDownloaded = PrayerPackStore.installedBundleIds().contains(bundle.id)
     // The repository listing is English-only, but once a bundle is installed its own manifest
     // is on disk — so an installed row reads like the Pray card it just became (Erez: his
     // bundles' Hebrew names), and follows the prayer language live via the monitor above.
@@ -216,7 +224,7 @@ struct RepositoryBrowserView: View {
             install(bundle, replacingExisting: true)
           }
           .buttonStyle(.borderedProminent)
-          .tint(.brandPrimary)
+          .tint(.appAccent)
         } else if isInstalled {
           Label(String(localized: "repository.installed", defaultValue: "Installed", bundle: UILanguage.bundle, locale: UILanguage.locale), systemImage: "checkmark")
             .font(.subheadline)
@@ -229,7 +237,7 @@ struct RepositoryBrowserView: View {
             install(bundle)
           }
           .buttonStyle(.borderedProminent)
-          .tint(.brandPrimary)
+          .tint(.appAccent)
         }
       }
       if !bundle.description.isEmpty {
@@ -240,7 +248,19 @@ struct RepositoryBrowserView: View {
       if !bundle.tags.isEmpty {
         Text(bundle.tags.map { UILanguage.tag($0) }.joined(separator: " · "))
           .font(.caption2)
-          .foregroundStyle(Color.brandPrimary)
+          .foregroundStyle(Color.appAccent)
+      }
+      if isDownloaded {
+        Button(role: .destructive) { removingDownload = bundle.id } label: {
+          Label(String(localized: "removal.removeDownloadAction", defaultValue: "Remove Download…", bundle: UILanguage.bundle, locale: UILanguage.locale), systemImage: "trash")
+        }
+        .buttonStyle(.borderless)
+        .disabled(busyBundleIds.contains(bundle.id) || !unusedDownloads.contains(bundle.id))
+        .accessibilityIdentifier("repository.removeDownload.\(bundle.id)")
+        if !unusedDownloads.contains(bundle.id) {
+          Text(String(localized: "removal.downloadInUse", defaultValue: "Delete all saved copies of this prayer before removing its download.", bundle: UILanguage.bundle, locale: UILanguage.locale))
+            .font(.caption).foregroundStyle(.secondary)
+        }
       }
     }
     .padding(.vertical, 4)
@@ -252,6 +272,7 @@ struct RepositoryBrowserView: View {
   }
 
   private func load() async {
+    await refreshDownloads()
     // Only the initial load gets the full-screen spinner: flipping isLoading during a
     // pull-to-refresh would remove the List — which cancels the .refreshable task that is
     // running this very function, a self-inflicted eternal spinner.
@@ -269,6 +290,11 @@ struct RepositoryBrowserView: View {
     } catch {
       loadError = error.localizedDescription
     }
+  }
+
+  private func refreshDownloads() async {
+    installedIds = Set(PrayerPackStore.installedBundleIds())
+    unusedDownloads = Set((try? await PrayerRemovalService(store: services.presetStore).unusedDownloadIDs()) ?? [])
   }
 
   private func install(_ bundle: RepositoryBundle, replacingExisting: Bool = false) {

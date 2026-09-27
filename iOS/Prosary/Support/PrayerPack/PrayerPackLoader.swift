@@ -814,7 +814,9 @@ enum PrayerPackStore {
   /// Select a declared language using the actual content buckets. Sparse overlays keep their
   /// existing eligibility rules; the internal Vicariate code never becomes a saved choice.
   static func effectiveLanguage(for bundleId: String, chosen rawChoice: String?) -> String {
-    let resolved = LanguageCatalog.resolve(rawChoice ?? LanguageCatalog.defaultSentinel).code
+    let requested = LanguageCatalog.resolve(rawChoice ?? LanguageCatalog.defaultSentinel).code
+    let traditions = LanguageCatalog.pickerLanguageCode(requested) == "he" ? hebrewTraditions(bundleId: bundleId) : []
+    let resolved = traditions.count == 1 ? traditions[0] : requested
     let available = info(for: bundleId)?.languages ?? []
     if available.isEmpty { return resolved }
     for code in LanguageCatalog.contentFallbackChain(for: resolved) {
@@ -994,12 +996,6 @@ enum PrayerPackStore {
   private struct ResolvedText {
     let text: String
     let transliteration: String?
-
-    func applyingWording(contentCode: String) -> Self {
-      let adjusted = JaffaHailMaryWording.applying(to: text, contentCode: contentCode)
-      // No corresponding reading aid for the Jaffa wording has been supplied.
-      return adjusted == text ? self : Self(text: adjusted, transliteration: nil)
-    }
   }
 
   /// Body and reading aid share one resolution path. An absent aid at the winning source
@@ -1014,6 +1010,60 @@ enum PrayerPackStore {
 
   static func resolveSharedPrayer(languageCode: String?, key: PrayerKey) -> String? {
     resolvedText(bundleId: nil, languageCode: languageCode, key: key.rawValue)?.text
+  }
+
+  /// Availability is authored content, never the result of the fallback chain. Generic
+  /// Hebrew is usable by either community but does not manufacture a second recension.
+  static func hebrewTraditions(bundleId: String, bodyKey: String) -> [String] {
+    ensureLoaded()
+    func authored(_ code: String) -> String? {
+      if let text = localText(bundleId: bundleId, contentCode: code, key: bodyKey)?.text { return text }
+      guard let key = PrayerKey(rawValue: bodyKey) else { return nil }
+      return prayerOverride(languageCode: code, key: key) ?? PrayerTranslations.nativeText(contentCode: code, key: key)
+    }
+    var traditions: [String] = []
+    if let text = authored(LanguageCatalog.vicariateContentCode), !text.isEmpty { traditions.append("he") }
+    if let text = authored("he-x-gamliel"), !text.isEmpty { traditions.append("he-x-gamliel") }
+    return traditions
+  }
+
+  /// A devotion's own bodies decide its traditions; a shared opening Sign of the Cross or
+  /// a translated title alone must not make a one-tradition devotion look like it has two.
+  static func hebrewTraditions(bundleId: String) -> [String] {
+    ensureLoaded()
+    guard let definition = definitionByBundle[bundleId] else { return [] }
+    var keys = Set<String>()
+    func collect(_ steps: [CustomDevotionStep]?) {
+      keys.formUnion((steps ?? []).compactMap(\.bodyKey))
+      keys.formUnion((steps ?? []).compactMap(\.acclamationKey))
+    }
+    func collect(_ decades: CustomDevotionDefinition.Decades?) {
+      guard let decades else { return }
+      keys.insert(decades.majorStep.bodyKey)
+      keys.insert(decades.minorStep.bodyKey)
+      keys.formUnion(decades.presenter?.bodyKeys ?? [])
+      collect(decades.preAnnouncement)
+      collect(decades.postMinor)
+    }
+    collect(definition.steps); collect(definition.eastertideSteps)
+    collect(definition.opening); collect(definition.closing); collect(definition.decades)
+    for day in definition.days ?? [] { collect(day.steps) }
+    for variant in definition.variants ?? [] {
+      collect(variant.steps); collect(variant.eastertideSteps)
+      collect(variant.opening); collect(variant.closing); collect(variant.decades)
+    }
+    let content = rawContentByBundle[bundleId] ?? [:]
+    let localBodyKeys = keys.filter { key in
+      ["he", LanguageCatalog.vicariateContentCode, "he-x-gamliel"].contains { content[$0]?[key] != nil }
+    }
+    if localBodyKeys.isEmpty {
+      let shared = Set(keys.flatMap { hebrewTraditions(bundleId: bundleId, bodyKey: $0) })
+      return ["he", "he-x-gamliel"].filter { shared.contains($0) }
+    }
+    var traditions: [String] = []
+    if localBodyKeys.contains(where: { content[LanguageCatalog.vicariateContentCode]?[$0]?.isEmpty == false }) { traditions.append("he") }
+    if localBodyKeys.contains(where: { content["he-x-gamliel"]?[$0]?.isEmpty == false }) { traditions.append("he-x-gamliel") }
+    return traditions
   }
 
   /// Exact authored heading/reading-aid pairs. A local heading without an alternate remains
@@ -1080,14 +1130,14 @@ enum PrayerPackStore {
          AramaicSignOfCrossForm.isSystemWideActive,
          AramaicSignOfCrossForm.current == AramaicSignOfCrossForm.formB,
          let form = localText(bundleId: "rosary", contentCode: code, key: "signumCrucisFormB") {
-        return form.applyingWording(contentCode: code)
+        return form
       }
       if let bundleId, let local = localText(bundleId: bundleId, contentCode: code, key: key) {
-        return local.applyingWording(contentCode: code)
+        return local
       }
       if sharedPrayerTitleKeys.contains(key),
          let shared = localText(bundleId: "rosary", contentCode: code, key: key) {
-        return shared.applyingWording(contentCode: code)
+        return shared
       }
       guard let prayerKey else { continue }
       if let text = prayerOverride(languageCode: code, key: prayerKey) {
@@ -1096,10 +1146,10 @@ enum PrayerPackStore {
           && AramaicSignOfCrossForm.current == AramaicSignOfCrossForm.formB
           ? transliterationsByBundle["rosary"]?["arc"]?["signumCrucisFormB"]
           : prayerTransliterations[code]?[prayerKey]
-        return ResolvedText(text: text, transliteration: alternate).applyingWording(contentCode: code)
+        return ResolvedText(text: text, transliteration: alternate)
       }
       if let text = PrayerTranslations.nativeText(contentCode: code, key: prayerKey) {
-        return ResolvedText(text: text, transliteration: nil).applyingWording(contentCode: code)
+        return ResolvedText(text: text, transliteration: nil)
       }
     }
     return nil

@@ -2,15 +2,15 @@ package com.dkaluta.prosary.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-// Ported from Prosary iOS's Assets.xcassets color sets.
-val BrandPrimaryLight = Color(0xFF7A1F3D)
-val BrandPrimaryDark = Color(0xFFD8A8B5)
+// Default Marian blue; user-selected palettes live in AppColor.
+val BrandPrimaryLight = Color(0xFF1768AC)
+val BrandPrimaryDark = Color(0xFF8DC8FF)
 
-val BrandHeadlineLight = Color(0xFF4A0E23)
+val BrandHeadlineLight = BrandPrimaryLight
 val BrandHeadlineDark = Color(0xFFFFFFFF)
 
-val BeadCurrentLight = Color(0xFF7A1F3D)
-val BeadCurrentDark = Color(0xFFE04F7D)
+val BeadCurrentLight = BrandPrimaryLight
+val BeadCurrentDark = BrandPrimaryDark
 
 val BeadCompleted = Color(0xFF6E6E6E)
 val BeadUpcoming = Color(0xFFACACAC)

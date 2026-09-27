@@ -47,6 +47,7 @@ public sealed class SqlitePresetStoreTests : IDisposable
         {
             var loaded = (await migrated.GetAsync(id))!;
             Assert.NotNull(loaded);
+            Assert.False(loaded.Rosary.SkipFifthDecade);
             Assert.True(loaded.Rosary.IncludeClosingIntentions);
             Assert.Null(loaded.Rosary.IncludeClosingPopeIntention);
             Assert.Null(loaded.Rosary.IncludeClosingBishopIntention);
@@ -310,6 +311,7 @@ public sealed class SqlitePresetStoreTests : IDisposable
                 SpecificMysteryGroup = MysteryGroup.Sorrowful,
                 IncludeApostlesCreed = false,
                 IncludeOpeningFatimaPrayer = true,
+                SkipFifthDecade = true,
                 EternalRestForDeceased = EternalRestPlacement.AfterEachDecade,
                 MarianAntiphon = MarianAntiphonOption.ReginaCaeli,
             },
@@ -324,6 +326,7 @@ public sealed class SqlitePresetStoreTests : IDisposable
         Assert.Equal(MysteryGroup.Sorrowful, loaded.Rosary.SpecificMysteryGroup);
         Assert.False(loaded.Rosary.IncludeApostlesCreed);
         Assert.True(loaded.Rosary.IncludeOpeningFatimaPrayer);
+        Assert.True(loaded.Rosary.SkipFifthDecade);
         Assert.Equal(EternalRestPlacement.AfterEachDecade, loaded.Rosary.EternalRestForDeceased);
         Assert.Equal(MarianAntiphonOption.ReginaCaeli, loaded.Rosary.MarianAntiphon);
         Assert.Equal(2, loaded.Reminders.Count);

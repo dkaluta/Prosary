@@ -12,6 +12,7 @@ struct MacTodayView: View {
   @AppStorage("showTodayFeast") private var showsFeast = true
   @AppStorage("showTodayIntention") private var showsIntention = true
   @AppStorage("showTodayTorahPortion") private var showsTorah = false
+  @AppStorage("expandReadingsByDefault") private var expandReadingsByDefault = false
 
   @State private var dateSelection = MacTodayDateSelection()
   @State private var showsDatePicker = false
@@ -217,13 +218,15 @@ struct MacTodayView: View {
           .accessibilityIdentifier("macToday.showIntention")
         Toggle(label("settings.showTodayTorahPortion", "Show the weekly Torah portion"), isOn: $showsTorah)
           .accessibilityIdentifier("macToday.showTorah")
+        Toggle(label("settings.expandReadingsByDefault", "Expand readings by default"), isOn: $expandReadingsByDefault)
+          .accessibilityIdentifier("expandReadingsByDefaultToggle")
         if showsTorah {
           Text(label("settings.torahPortionFooter", "The upcoming Sabbath’s Torah reading, following the Eretz Israel schedule."))
             .font(.caption).foregroundStyle(.secondary)
         }
       }
     }
-    .frame(width: 400, height: 340)
+    .frame(width: 400, height: 380)
   }
 
   private var readingsSection: some View {

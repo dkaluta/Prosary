@@ -66,13 +66,23 @@
 
     <!-- Settings -->
     <string name="settings_default_prayer_language">"Мова молитви за замовчуванням"</string>
+    <string name="settings_app_color">"Колір застосунку"</string>
+    <string name="settings_app_color_hint">"Виберіть колір піктограми та акцентний колір."</string>
+    <string name="settings_app_color_error">"Не вдалося змінити піктограму застосунку. Спробуйте ще раз."</string>
+    <string name="app_color_blue">"Синій"</string>
+    <string name="app_color_green">"Зелений"</string>
+    <string name="app_color_red">"Червоний"</string>
+    <string name="app_color_purple">"Фіолетовий"</string>
+    <string name="app_color_rose">"Рожевий"</string>
+    <string name="app_color_white">"Білий"</string>
+    <string name="app_color_gold">"Золотий"</string>
+    <string name="settings_use_system_colors">"Використовувати кольори системи"</string>
+    <string name="settings_use_system_colors_hint">"Використовувати кольори шпалер замість вибраного акцентного кольору."</string>
     <string name="settings_app_language">"Мова застосунку"</string>
     <string name="settings_prayer_language">"Мова молитов"</string>
     <string name="settings_follow_app_language">"Мова застосунку (%1$s)"</string>
     <string name="settings_language_system_default">"Мова системи"</string>
     <string name="settings_app_language_hint">"Використовується для інтерфейсу й автоматичного вибору видання Біблії. Молитви використовують її, якщо не вибрано окрему мову молитов."</string>
-    <string name="settings_jaffa_wording">"Альтернативний текст «Радуйся, Маріє»"</string>
-    <string name="settings_jaffa_wording_hint">"Використовувати בְּרוּכַת הַחֶסֶד замість מְלֵאַת הַחֶסֶד у молитвах Вікаріату."</string>
     <string name="settings_language_fallback_order">"Порядок резервних мов…"…</string>
     <string name="settings_language_fallback_order_title">"Порядок резервних мов"</string>
     <string name="settings_language_fallback_order_footer">"Якщо тексту немає вибраною мовою, Prosary перевіряє інші мови в цьому порядку. Спільні тексти івритом, зокрема молитви з каталогу, займають вищу з двох позицій івриту."</string>
@@ -88,6 +98,9 @@
     <string name="auto_advance_every">"Кожні %1$d секунд"</string>
     <string name="settings_reset_home_order">"Скинути порядок головного екрана"</string>
     <string name="settings_today_header">"Сьогодні"</string>
+    <string name="settings_show_today_readings">"Показувати читання на вкладці «Молитва»"</string>
+    <string name="settings_expand_readings">"Розгортати читання за замовчуванням"</string>
+    <string name="readings_chapter">"Розділ %1$s"</string>
     <string name="settings_show_today_feast">"Показувати свято дня"</string>
     <string name="settings_show_today_intention">"Показувати намірення Папи"</string>
     <string name="settings_feast_calendar">"Літургійний календар"</string>
@@ -163,6 +176,7 @@
 
     <!-- Rosary options editor -->
     <string name="ro_which_mysteries">"Які таємниці?"</string>
+    <string name="ro_skip_fifth_decade">"Пропускати п’ятий десяток"</string>
     <string name="ro_mysteries">"Таємниці"</string>
     <string name="ro_specific_set">"Вибраний цикл"</string>
     <string name="ro_which_mystery">"Яка таємниця"</string>

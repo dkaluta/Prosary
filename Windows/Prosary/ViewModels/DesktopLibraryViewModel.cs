@@ -15,6 +15,7 @@ public partial class DesktopLibraryViewModel(IPresetStore presets, PrayerRemoval
     public WindowNavigation Navigation { get; set; } = WindowNavigation.Detached;
     public Func<string, Task>? ShowError { get; set; }
     public Func<PrayerRemovalPlan, Task<bool>>? ConfirmDelete { get; set; }
+    public Func<DesktopGalleryItem, Task<bool>>? ConfirmRemoveDownload { get; set; }
     private List<Prayer> _prayers = [];
     private int _loadGeneration;
 
@@ -23,9 +24,13 @@ public partial class DesktopLibraryViewModel(IPresetStore presets, PrayerRemoval
 
     [ObservableProperty] private string _searchText = "";
     [ObservableProperty] private string _statusMessage = "";
-    [ObservableProperty] private bool _isBusy;
+    [ObservableProperty]
+    [NotifyCanExecuteChangedFor(nameof(RemoveDownloadCommand))]
+    private bool _isBusy;
     [ObservableProperty] private DesktopPrayerItem? _selectedItem;
-    [ObservableProperty] private DesktopGalleryItem? _selectedTemplate;
+    [ObservableProperty]
+    [NotifyCanExecuteChangedFor(nameof(RemoveDownloadCommand))]
+    private DesktopGalleryItem? _selectedTemplate;
     [ObservableProperty] private bool _isEmpty;
     [ObservableProperty] private bool _hasNoMatches;
 
@@ -43,6 +48,7 @@ public partial class DesktopLibraryViewModel(IPresetStore presets, PrayerRemoval
     public string NoMatchesTitle => Loc.Tr("desktop_no_matches", "No Matching Prayers");
     public string NoMatchesDetail => Loc.Tr("desktop_no_matches_detail", "Try another search.");
     public string AddLabel => Loc.Tr("desktop_add_to_library", "Add to Library");
+    public string RemoveDownloadLabel => Loc.Tr("prayerRemoval_removeDownloadAction", "Remove Download…");
     public string GalleryDetail => Loc.Tr("desktop_gallery_detail", "Choose a prayer to add a saved copy to your library.");
 
     partial void OnSearchTextChanged(string value) => Filter();
@@ -133,6 +139,37 @@ public partial class DesktopLibraryViewModel(IPresetStore presets, PrayerRemoval
             StatusMessage = Loc.Tr("desktop_added", "Added to Library") + ": " + copy.DisplayName;
             await LoadAsync();
         });
+    }
+
+    private bool CanRemoveDownload(DesktopGalleryItem? template)
+    {
+        template ??= SelectedTemplate;
+        return !IsBusy && template is { IsDownloaded: true } && !PrayerPackStore.IsBuiltInBundle(template.Id);
+    }
+
+    [RelayCommand(CanExecute = nameof(CanRemoveDownload))]
+    private async Task RemoveDownloadAsync(DesktopGalleryItem? template)
+    {
+        template ??= SelectedTemplate;
+        if (template is null || !CanRemoveDownload(template)) return;
+        IsBusy = true;
+        try
+        {
+            if (await removal.HasSavedCopiesAsync(template.Id))
+                throw new PrayerRemovalException(Loc.Tr("prayerRemoval_downloadInUse",
+                    "Delete the saved copies of this prayer before removing its download."), false);
+            if (ConfirmRemoveDownload is null || !await ConfirmRemoveDownload(template)) return;
+            // The removal service checks saved-copy usage again after the confirmation.
+            await removal.RemoveDownloadAsync(template.Id);
+            StatusMessage = "";
+            DesktopLibraryChanges.Publish();
+            await LoadAsync();
+        }
+        catch (Exception error)
+        {
+            await Report(Loc.Tr("prayerRemoval_failedTitle", "Could Not Remove Prayer"), error);
+        }
+        finally { IsBusy = false; }
     }
 
     public async Task RenameAsync(DesktopPrayerItem item, string name)

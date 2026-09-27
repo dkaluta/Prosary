@@ -11,7 +11,7 @@ enum UiText {
     U_RTL_LIMIT, U_FALLBACK, U_SAVE_ERROR, U_LOAD_ERROR, U_EMPTY,
     U_SMALL, U_JOYFUL, U_SORROWFUL, U_GLORIOUS, U_LUMINOUS,
     U_COMPLETE_HINT, U_SETTINGS_HINT, U_READY, U_NO_TEXT, U_MIXED, U_FALLBACK_TEXT,
-    U_KEYBOARD_ARROWS, U_KEYBOARD_SPACE, U_ON, U_OFF
+    U_KEYBOARD_ARROWS, U_KEYBOARD_SPACE, U_ON, U_OFF, U_SKIP_FIFTH
 };
 static const char *const ui_codes[] = { "en", "he", "ar", "ru", "tl", "fr", "it", "uk" };
 static const char *const ui_names[] = {
@@ -63,7 +63,8 @@ static const char *const ui_text[][8] = {
     {"Use arrow keys to navigate", "ניווט באמצעות מקשי החצים", "التنقل بمفاتيح الأسهم", "Навигация клавишами со стрелками", "Gamitin ang mga arrow key sa pag-navigate", "Naviguer avec les touches fléchées", "Naviga con i tasti freccia", "Навігація клавішами зі стрілками"},
     {"Press Space to advance", "התקדמות באמצעות מקש הרווח", "التقدم بمفتاح المسافة", "Переход вперёд клавишей пробела", "Pindutin ang Space para magpatuloy", "Avancer avec la barre d’espace", "Avanza con la barra spaziatrice", "Перехід уперед клавішею пробілу"},
     {"On", "פעיל", "مفعّل", "Вкл.", "Naka-on", "Activé", "Attivo", "Увімкнено"},
-    {"Off", "כבוי", "معطّل", "Выкл.", "Naka-off", "Désactivé", "Disattivo", "Вимкнено"}
+    {"Off", "כבוי", "معطّل", "Выкл.", "Naka-off", "Désactivé", "Disattivo", "Вимкнено"},
+    {"Skip the fifth decade", "דילוג על העשור החמישי", "تخطّي العقد الخامس", "Пропустить пятую декаду", "Laktawan ang ikalimang dekada", "Passer la cinquième dizaine", "Salta la quinta decina", "Пропустити п’яту декаду"}
 };
 
 #endif

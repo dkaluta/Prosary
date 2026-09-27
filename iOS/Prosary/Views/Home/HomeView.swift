@@ -22,6 +22,7 @@ struct HomeView: View {
   @ObservedObject private var prayerLanguage = PrayerLanguageMonitor.shared
 
   @Binding var path: [AppRoute]
+  @Binding var dateSelection: MacTodayDateSelection
 
   @Environment(\.appServices) private var services
   @Environment(\.scenePhase) private var scenePhase
@@ -34,8 +35,7 @@ struct HomeView: View {
   @State private var liturgicalDayInfo: LiturgicalDayInfo? = nil
   @State private var todayReadings: [ReadingCitation] = []
   @State private var todayTorahPortion: TorahPortion?
-  @State private var selectedDate = Calendar(identifier: .gregorian).startOfDay(for: Date())
-  @State private var followsToday = true
+  private var selectedDate: Date { dateSelection.localDate() }
   @State private var showsTodayDatePicker = false
   @State private var showsFullCitations = false
 
@@ -69,6 +69,7 @@ struct HomeView: View {
   /// row simply never loads, and with both off the whole section stays away.
   @AppStorage("showTodayFeast") private var showsTodayFeast = true
   @AppStorage("showTodayIntention") private var showsTodayIntention = true
+  @AppStorage("showTodayReadings") private var showsTodayReadings = true
   @AppStorage("showTodayTorahPortion") private var showsTodayTorahPortion = false
   private var showsPrayerNameInPrayerLanguage: Bool { prayerLanguage.showsPrayerNameInPrayerLanguage }
   @AppStorage(TodayInfoStore.calendarDefaultsKey) private var feastCalendarId = ""
@@ -103,7 +104,7 @@ struct HomeView: View {
       rows.append(DevotionRow(
         id: BasicPrayerFavorites.homeRowID(prayer.id),
         title: name.title, translatedTitle: name.translation,
-        systemImage: "text.book.closed", iconGlyph: nil, accent: .brandPrimary,
+        systemImage: "text.book.closed", iconGlyph: nil, accent: .appAccent,
         subtitle: String(localized: "basicPrayers.title", defaultValue: "Basic Prayers", bundle: UILanguage.bundle, locale: UILanguage.locale), presetsRoute: nil,
         route: .basicPrayer(id: prayer.id)))
     }
@@ -128,7 +129,7 @@ struct HomeView: View {
       DevotionRow(
         id: "rosary", title: rosaryName.title, translatedTitle: rosaryName.translation,
         systemImage: PrayerKind.rosary.systemImage, iconGlyph: nil,
-        accent: todayMysteryGroup?.color ?? .brandPrimary,
+        accent: todayMysteryGroup?.color ?? .appAccent,
         // The whole row leads to the presets screen, so no separate disclosure button: the
         // card's own chevron says it goes somewhere.
         subtitle: rosarySubtitle, presetsRoute: nil,
@@ -140,7 +141,7 @@ struct HomeView: View {
       if let light = info.accentColorHex, let dark = info.accentColorDarkHex {
         accent = .adaptive(light: light, dark: dark)
       } else {
-        accent = info.accentColorHex.map { Color(hex: $0) } ?? .brandPrimary
+        accent = info.accentColorHex.map { Color(hex: $0) } ?? .appAccent
       }
       rows.append(DevotionRow(
         id: bundleId, title: nameForBundle(info, bundleId: bundleId).title,
@@ -312,6 +313,7 @@ struct HomeView: View {
     .onChange(of: easternPaschaStyle) { _, _ in showsFullCitations = false; loadToday() }
     .onChange(of: showsTodayFeast) { _, _ in loadToday() }
     .onChange(of: showsTodayIntention) { _, _ in loadToday() }
+    .onChange(of: showsTodayReadings) { _, _ in loadToday() }
     .onChange(of: showsTodayTorahPortion) { _, _ in loadToday() }
     // macOS Settings is another scene; deliver after the native menu has left its tracking
     // loop, the same timing the prayer-name monitor uses.
@@ -319,12 +321,16 @@ struct HomeView: View {
       .receive(on: RunLoop.main)) { _ in loadToday() }
     .onChange(of: scenePhase) { _, phase in
       if phase == .active {
-        if followsToday { selectedDate = Calendar(identifier: .gregorian).startOfDay(for: Date()) }
+        dateSelection.refresh()
         loadToday()
       }
     }
     .onReceive(NotificationCenter.default.publisher(for: .NSCalendarDayChanged)) { _ in
-      if followsToday { selectedDate = Calendar(identifier: .gregorian).startOfDay(for: Date()) }
+      dateSelection.refresh()
+      loadToday()
+    }
+    .onReceive(NotificationCenter.default.publisher(for: .NSSystemTimeZoneDidChange)) { _ in
+      dateSelection.refresh()
       loadToday()
     }
   }
@@ -404,8 +410,7 @@ struct HomeView: View {
 
   private var todayDateBinding: Binding<Date> {
     Binding(get: { selectedDate }, set: { date in
-      selectedDate = Calendar(identifier: .gregorian).startOfDay(for: date)
-      followsToday = Calendar(identifier: .gregorian).isDateInToday(date)
+      dateSelection.select(date)
       showsTodayDatePicker = false
     })
   }
@@ -421,7 +426,7 @@ struct HomeView: View {
   private var todayDateNavigation: some View {
     HStack(spacing: 12) {
       Button {
-        todayDateBinding.wrappedValue = TodayInfoStore.dateByMoving(-1, from: selectedDate)
+        dateSelection.move(by: -1)
       } label: {
         Image(systemName: "chevron.backward")
           .prosaryDateControlLabel()
@@ -429,6 +434,7 @@ struct HomeView: View {
       .accessibilityLabel(String(localized: "home.today.previousDay", defaultValue: "Previous Day", bundle: UILanguage.bundle, locale: UILanguage.locale))
       .help(String(localized: "home.today.previousDay", defaultValue: "Previous Day", bundle: UILanguage.bundle, locale: UILanguage.locale))
       .accessibilityIdentifier("todayYesterdayButton")
+      .disabled(!dateSelection.canMoveBackward)
       Button {
         showsTodayDatePicker = true
       } label: {
@@ -447,7 +453,7 @@ struct HomeView: View {
           #endif
       }
       Button {
-        todayDateBinding.wrappedValue = TodayInfoStore.dateByMoving(1, from: selectedDate)
+        dateSelection.move(by: 1)
       } label: {
         Image(systemName: "chevron.forward")
           .prosaryDateControlLabel()
@@ -455,6 +461,7 @@ struct HomeView: View {
       .accessibilityLabel(String(localized: "home.today.nextDay", defaultValue: "Next Day", bundle: UILanguage.bundle, locale: UILanguage.locale))
       .help(String(localized: "home.today.nextDay", defaultValue: "Next Day", bundle: UILanguage.bundle, locale: UILanguage.locale))
       .accessibilityIdentifier("todayTomorrowButton")
+      .disabled(!dateSelection.canMoveForward)
     }
     // This date row scrolls with Today content; it is not a floating navigation bar.
     .buttonStyle(.bordered)
@@ -473,6 +480,7 @@ struct HomeView: View {
 
   private var todayDatePopover: some View {
     ReadingDatePickerPopover(selection: todayDateBinding,
+                             range: MacTodayDateSelection.pickerRange(),
                              pickerIdentifier: "todayDatePicker",
                              todayIdentifier: "todayResetButton",
                              doneIdentifier: "todayDateDoneButton") {
@@ -516,7 +524,7 @@ struct HomeView: View {
       VStack(alignment: .leading, spacing: 10) {
         if let info = liturgicalDayInfo {
           HStack(alignment: .firstTextBaseline, spacing: 8) {
-            Image(systemName: "sun.max").foregroundStyle(Color.brandPrimary)
+            Image(systemName: "sun.max").foregroundStyle(Color.appAccent)
             Text(HebrewDisplayText.unpointed(info.localized(todayLanguageCode)))
               .font(.subheadline.weight(.semibold))
               .frame(maxWidth: .infinity, alignment: .leading)
@@ -525,7 +533,7 @@ struct HomeView: View {
         }
         if let feast = todayFeast {
           HStack(alignment: .firstTextBaseline, spacing: 8) {
-            Image(systemName: "calendar").foregroundStyle(Color.brandPrimary)
+            Image(systemName: "calendar").foregroundStyle(Color.appAccent)
             VStack(alignment: .leading, spacing: 2) {
               Text(feast.localizedTitle(todayLanguageCode))
                 // Each calendar's own top rank: Roman "Solemnity", 1962 "1st Class",
@@ -539,7 +547,7 @@ struct HomeView: View {
         }
         if let intention = monthIntention {
           HStack(alignment: .firstTextBaseline, spacing: 8) {
-            Image(systemName: "hands.sparkles").foregroundStyle(Color.brandPrimary)
+            Image(systemName: "hands.sparkles").foregroundStyle(Color.appAccent)
             VStack(alignment: .leading, spacing: 2) {
               Text(todayPopeIntentionHeading(intention))
                 .font(.subheadline.weight(.semibold))
@@ -550,7 +558,7 @@ struct HomeView: View {
         }
         if !todayReadings.isEmpty {
           HStack(alignment: .firstTextBaseline, spacing: 8) {
-            Image(systemName: "book.closed").foregroundStyle(Color.brandPrimary)
+            Image(systemName: "book.closed").foregroundStyle(Color.appAccent)
             VStack(alignment: .leading, spacing: 3) {
               Text(todayReadingsHeading)
                 .font(.subheadline.weight(.semibold))
@@ -592,7 +600,7 @@ struct HomeView: View {
         }
         if let portion = todayTorahPortion {
           HStack(alignment: .firstTextBaseline, spacing: 8) {
-            Image(systemName: "book").foregroundStyle(Color.brandPrimary)
+            Image(systemName: "book").foregroundStyle(Color.appAccent)
             VStack(alignment: .leading, spacing: 3) {
               Text(portion.isHoliday
                 ? String(localized: "home.today.festivalTorahReading", defaultValue: "Festival Torah reading", bundle: UILanguage.bundle, locale: UILanguage.locale)
@@ -766,6 +774,7 @@ struct HomeView: View {
 
 
   private func load() async {
+    dateSelection.refresh()
     todayMysteryGroup = services.calendar.mysteryGroupToday()
     loadToday()
     prayers = (try? await services.presetStore.all()) ?? []
@@ -779,7 +788,8 @@ struct HomeView: View {
     monthIntention = (defaults.object(forKey: "showTodayIntention") as? Bool ?? true)
       ? TodayInfoStore.intention(for: selectedDate) : nil
     liturgicalDayInfo = TodayInfoStore.displayDayInfo(on: selectedDate)
-    todayReadings = TodayInfoStore.readings(on: selectedDate)
+    todayReadings = (defaults.object(forKey: "showTodayReadings") as? Bool ?? true)
+      ? TodayInfoStore.readings(on: selectedDate) : []
     todayTorahPortion = defaults.bool(forKey: "showTodayTorahPortion")
       ? TodayInfoStore.torahPortion(on: selectedDate) : nil
   }
@@ -899,6 +909,6 @@ private struct DevotionRow: Identifiable {
 
 #Preview {
   NavigationStack {
-    HomeView(path: .constant([]))
+    HomeView(path: .constant([]), dateSelection: .constant(MacTodayDateSelection()))
   }
 }

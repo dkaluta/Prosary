@@ -105,6 +105,12 @@ fun RosaryOptionsEditorScreen(
                         modifier = Modifier.fillMaxWidth(),
                     )
                 }
+                if (rosary.mysterySelectionMode != MysterySelectionMode.SingleMystery) {
+                    SwitchRow(stringResource(R.string.ro_skip_fifth_decade), rosary.skipFifthDecade,
+                        switchModifier = Modifier.testTag("rosaryOption:skipFifthDecade")) {
+                        onRosaryChange(rosary.copy(skipFifthDecade = it))
+                    }
+                }
                 if (rosary.mysterySelectionMode == MysterySelectionMode.SingleMystery) {
                     val mysteries = MysteryCatalog.forGroup(rosary.specificMysteryGroup)
                     val selectedMystery = mysteries.firstOrNull { it.order == rosary.specificMysteryOrder } ?: mysteries.first()

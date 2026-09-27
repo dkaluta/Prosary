@@ -256,14 +256,18 @@ public class BundledReadingsTests
         Assert.Equal("ang-dating-biblia-1905", Store.ResolveEdition("", "fil-PH")?.Id);
     }
 
-    [Fact]
-    public void PassagesExpandOnEntryAndContextChangesWhileRefreshKeepsUserCollapses()
+    [Theory]
+    [InlineData(false)]
+    [InlineData(true)]
+    public void PassagesUseTheExpansionPreferenceOnEntryAndContextChangesWhileRefreshKeepsUserChoices(bool expand)
     {
         var previousEdition = AppSettings.ReadingsEditionId;
+        var previousExpansion = AppSettings.ExpandReadingsByDefault;
         var previousCalendar = TodayInfoStore.SelectedCalendarId;
         try
         {
             AppSettings.SetReadingsEditionId("douay-rheims-1899");
+            AppSettings.SetExpandReadingsByDefault(expand);
             var today = new HomeViewModel(new EmptyPresetStore(), new LiturgicalCalendarService());
             var reader = new DesktopReadingsViewModel(Store);
             today.SelectedTodayDate = new DateTimeOffset(2026, 9, 10, 0, 0, 0, TimeSpan.Zero);
@@ -272,28 +276,28 @@ public class BundledReadingsTests
                 [new ReadingCitation("torah", "Gn", "Genesis 47:28–50:26")], null);
             reader.Open(today);
             var first = Assert.Single(reader.Daily);
-            Assert.True(first.IsExpanded);
-            Assert.True(first.HasPassage);
+            Assert.Equal(expand, first.IsExpanded);
+            Assert.Equal(expand, first.HasPassage);
             var torah = Assert.Single(reader.Torah);
-            Assert.True(torah.IsExpanded);
-            first.IsExpanded = false;
-            torah.IsExpanded = false;
+            Assert.Equal(expand, torah.IsExpanded);
+            first.IsExpanded = !expand;
+            torah.IsExpanded = !expand;
 
             // Even if two appointed dates happen to repeat a citation, each day
             // has its own expansion state. An unrelated timer refresh retains it.
             reader.Refresh(today);
             Assert.Same(first, Assert.Single(reader.Daily));
-            Assert.False(first.IsExpanded);
+            Assert.Equal(!expand, first.IsExpanded);
             Assert.Same(torah, Assert.Single(reader.Torah));
-            Assert.False(torah.IsExpanded);
+            Assert.Equal(!expand, torah.IsExpanded);
 
             AppSettings.SetReadingsEditionId("masoretic-delitzsch");
             reader.Refresh(today);
-            Assert.False(Assert.Single(reader.Daily).IsExpanded);
-            Assert.False(Assert.Single(reader.Torah).IsExpanded);
+            Assert.Equal(!expand, Assert.Single(reader.Daily).IsExpanded);
+            Assert.Equal(!expand, Assert.Single(reader.Torah).IsExpanded);
             reader.Open(today);
-            Assert.True(Assert.Single(reader.Daily).IsExpanded);
-            Assert.True(Assert.Single(reader.Torah).IsExpanded);
+            Assert.Equal(expand, Assert.Single(reader.Daily).IsExpanded);
+            Assert.Equal(expand, Assert.Single(reader.Torah).IsExpanded);
 
             today.SelectedTodayDate = today.SelectedTodayDate!.Value.AddDays(1);
             today.TodayReadings = [new ReadingCitation("gospel", "Lk", "Luke 6:27–38")];
@@ -302,19 +306,19 @@ public class BundledReadingsTests
             reader.Refresh(today);
             var second = Assert.Single(reader.Daily);
             Assert.NotSame(first, second);
-            Assert.True(second.IsExpanded);
-            Assert.True(second.HasPassage);
+            Assert.Equal(expand, second.IsExpanded);
+            Assert.Equal(expand, second.HasPassage);
             var secondTorah = Assert.Single(reader.Torah);
-            Assert.True(secondTorah.IsExpanded);
-            second.IsExpanded = false;
-            secondTorah.IsExpanded = false;
+            Assert.Equal(expand, secondTorah.IsExpanded);
+            second.IsExpanded = !expand;
+            secondTorah.IsExpanded = !expand;
 
-            // A calendar change opens the new appointments even when their
+            // A calendar change applies the default to new appointments even when their
             // citations happen to match those in the previous calendar.
             TodayInfoStore.SelectedCalendarId = TodayInfoStore.ResolvedCalendarId == "roman" ? "roman1962" : "roman";
             reader.Refresh(today);
-            Assert.True(Assert.Single(reader.Daily).IsExpanded);
-            Assert.True(Assert.Single(reader.Torah).IsExpanded);
+            Assert.Equal(expand, Assert.Single(reader.Daily).IsExpanded);
+            Assert.Equal(expand, Assert.Single(reader.Torah).IsExpanded);
 
             today.SelectedTodayDate = today.MaximumTodayDate;
             reader.Refresh(today);
@@ -324,6 +328,7 @@ public class BundledReadingsTests
         finally
         {
             AppSettings.SetReadingsEditionId(previousEdition);
+            AppSettings.SetExpandReadingsByDefault(previousExpansion);
             TodayInfoStore.SelectedCalendarId = previousCalendar;
         }
     }

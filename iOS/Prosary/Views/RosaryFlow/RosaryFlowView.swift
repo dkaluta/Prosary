@@ -120,11 +120,6 @@ struct RosaryFlowView: View {
       steps = services.engine.buildSteps(for: sessionPrayer)
       currentIndex = min(currentIndex, max(steps.count - 1, 0))
     }
-    .onChange(of: prayerLanguage.usesJaffaHailMaryWording) { _, _ in
-      guard hasLoaded, !didFinish else { return }
-      steps = services.engine.buildSteps(for: sessionPrayer)
-      currentIndex = min(currentIndex, max(steps.count - 1, 0))
-    }
     .onDisappear {
       guard hasLoaded, pendingContinuation == nil, !didFinish else { return }
       persistProgress()

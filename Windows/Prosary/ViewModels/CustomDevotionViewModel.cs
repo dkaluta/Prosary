@@ -309,6 +309,7 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
     /// and testers didn't find it — they assumed the devotion shipped fewer languages than it
     /// does.</summary>
     public IReadOnlyList<LanguageOption> Languages { get; private set; } = [];
+    public IReadOnlyList<LanguageOption> HebrewRites => PrayerPackStore.AuthoredHebrewRites(_bundleId);
 
     public bool ShowsLanguageMenu => Languages.Count > 1 || Languages.Any(language => language.Code == "he");
 

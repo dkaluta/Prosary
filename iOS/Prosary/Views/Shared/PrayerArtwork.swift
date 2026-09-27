@@ -106,8 +106,16 @@ struct PrayerArtworkView: View {
         Image(decorative: artwork.image, scale: 1)
           .resizable()
       } else if placeholder == .prayerArtwork {
-        Image(decorative: PrayerArtwork.fallbackAssetName)
-          .resizable()
+        // A missing illustration is a neutral app symbol, not devotional artwork.
+        GeometryReader { geometry in
+          Image(systemName: "cross")
+            .resizable().scaledToFit()
+            .padding(min(geometry.size.width, geometry.size.height) * 0.24)
+            .frame(width: geometry.size.width, height: geometry.size.height)
+            .foregroundStyle(Color.appAccent)
+            .background(Color.secondary.opacity(0.08))
+            .accessibilityHidden(true)
+        }
       } else {
         // Gallery covers must not briefly show another prayer's illustration while decoding.
         Rectangle().fill(Color.secondary.opacity(0.08))

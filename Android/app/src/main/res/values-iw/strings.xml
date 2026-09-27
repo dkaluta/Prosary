@@ -71,13 +71,23 @@
 
     <!-- Settings -->
     <string name="settings_default_prayer_language">שפת תפילה כברירת מחדל</string>
+    <string name="settings_app_color">"צבע האפליקציה"</string>
+    <string name="settings_app_color_hint">"בחירת צבע סמל האפליקציה וצבע ההדגשה."</string>
+    <string name="settings_app_color_error">"לא ניתן לשנות את סמל האפליקציה. נסו שוב."</string>
+    <string name="app_color_blue">"כחול"</string>
+    <string name="app_color_green">"ירוק"</string>
+    <string name="app_color_red">"אדום"</string>
+    <string name="app_color_purple">"סגול"</string>
+    <string name="app_color_rose">"ורוד"</string>
+    <string name="app_color_white">"לבן"</string>
+    <string name="app_color_gold">"זהב"</string>
+    <string name="settings_use_system_colors">"שימוש בצבעי המערכת"</string>
+    <string name="settings_use_system_colors_hint">"שימוש בצבעים מתמונת הרקע במקום בצבע ההדגשה שנבחר."</string>
     <string name="settings_app_language">"שפת היישומון"</string>
     <string name="settings_prayer_language">"שפת התפילה"</string>
     <string name="settings_follow_app_language">"שפת היישומון (%1$s)"</string>
     <string name="settings_language_system_default">"ברירת המחדל של המערכת"</string>
     <string name="settings_app_language_hint">"משמשת לממשק ולבחירה האוטומטית של מהדורת המקרא. התפילות משתמשות בה אלא אם נבחרה שפת תפילה אחרת."</string>
-    <string name="settings_jaffa_wording">"נוסח חלופי ל“שמחי מרים”"</string>
-    <string name="settings_jaffa_wording_hint">"בתפילות הנציגות, החליפו את מְלֵאַת הַחֶסֶד ב־בְּרוּכַת הַחֶסֶד."</string>
     <string name="settings_language_fallback_order">סדר עדיפות לשפות…</string>
     <string name="settings_language_fallback_order_title">סדר עדיפות לשפות</string>
     <string name="settings_language_fallback_order_footer">כשחסר טקסט בשפת התפילה שנבחרה, Prosary מחפש לפי הסדר הזה. עברית משותפת לשני הנוסחים, כולל תפילות מהמאגר, מקבלת את העדיפות של הנוסח העברי הגבוה יותר ברשימה.</string>
@@ -93,6 +103,9 @@
     <string name="auto_advance_every">כל %1$d שניות</string>
     <string name="settings_reset_home_order">איפוס סדר מסך הבית</string>
     <string name="settings_today_header">היום</string>
+    <string name="settings_show_today_readings">"הצגת קריאות בלשונית תפילה"</string>
+    <string name="settings_expand_readings">"פתיחת הקריאות כברירת מחדל"</string>
+    <string name="readings_chapter">"פרק %1$s"</string>
     <string name="settings_show_today_feast">הצגת חג היום</string>
     <string name="settings_show_today_intention">הצגת כוונת האפיפיור</string>
     <string name="settings_feast_calendar">הלוח הליטורגי</string>
@@ -168,6 +181,7 @@
 
     <!-- Rosary options editor -->
     <string name="ro_which_mysteries">אילו רזים?</string>
+    <string name="ro_skip_fifth_decade">"דילוג על העשור החמישי"</string>
     <string name="ro_mysteries">רזים</string>
     <string name="ro_specific_set">אוסף ספציפי</string>
     <string name="ro_which_mystery">איזה רז</string>

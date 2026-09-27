@@ -30,12 +30,7 @@ struct BeadInfo: Identifiable {
 
   var color: Color {
     switch state {
-    // Not `.brandPrimary` — that dark-mode variant is deliberately a pale, low-saturation
-    // pink for text legibility, which reads as barely different from the neutral gray
-    // "upcoming"/"completed" beads against a near-black background. `BeadCurrent` keeps the
-    // same light-mode maroon but uses a more saturated dark-mode value so the current bead
-    // still visibly pops against its gray neighbors.
-    case .current: return Color("BeadCurrent")
+    case .current: return .appAccent
     case .completed:
       // On visionOS the window is glass, not near-black — the mid-gray "completed" reads
       // as dirty smoke there; white is the bead that has been prayed (user request, v0.7).

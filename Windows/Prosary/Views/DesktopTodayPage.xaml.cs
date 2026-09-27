@@ -16,7 +16,6 @@ namespace Prosary.Views;
 public sealed partial class DesktopTodayPage : Page
 {
     private readonly DispatcherQueueTimer _dateTimer;
-    private DateOnly _lastLocalDate = DateOnly.FromDateTime(DateTime.Today);
     private bool _updatingTodayCalendar;
 
     public HomeViewModel ViewModel { get; }
@@ -62,6 +61,8 @@ public sealed partial class DesktopTodayPage : Page
         Options.PropertyChanged -= OnOptionsChanged;
         Options.ShowTodayFeast = AppSettings.ShowTodayFeast;
         Options.ShowTodayIntention = AppSettings.ShowTodayIntention;
+        Options.ShowTodayReadings = AppSettings.ShowTodayReadings;
+        Options.ExpandReadingsByDefault = AppSettings.ExpandReadingsByDefault;
         Options.ShowTodayTorahPortion = AppSettings.ShowTodayTorahPortion;
         Options.SelectedFeastCalendar = Options.FeastCalendarOptions.FirstOrDefault(c => c.Id == TodayInfoStore.ResolvedCalendarId);
         Options.SelectedEasternPascha = Options.CurrentEasternPascha;
@@ -97,6 +98,7 @@ public sealed partial class DesktopTodayPage : Page
     {
         if (e.PropertyName is nameof(SettingsViewModel.ShowTodayFeast)
             or nameof(SettingsViewModel.ShowTodayIntention)
+            or nameof(SettingsViewModel.ShowTodayReadings)
             or nameof(SettingsViewModel.ShowTodayTorahPortion)
             or nameof(SettingsViewModel.SelectedFeastCalendar)
             or nameof(SettingsViewModel.SelectedEasternPascha))
@@ -107,13 +109,7 @@ public sealed partial class DesktopTodayPage : Page
 
     private void RefreshForClock()
     {
-        var today = DateOnly.FromDateTime(DateTime.Today);
-        // A reader browsing a date keeps it. A page that followed today advances at midnight
-        // and after returning from sleep, including a change in the device's time zone.
-        if (today != _lastLocalDate && ViewModel.SelectedDate == _lastLocalDate)
-            ViewModel.SelectTodayCommand.Execute(null);
-        _lastLocalDate = today;
-        ViewModel.RefreshToday();
+        ViewModel.RefreshForClock(DateOnly.FromDateTime(DateTime.Today));
     }
 
     private void OnTodayDateFlyoutOpened(object sender, object e)

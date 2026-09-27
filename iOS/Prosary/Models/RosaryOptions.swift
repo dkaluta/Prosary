@@ -17,6 +17,8 @@ struct RosaryOptions: Hashable, Codable {
   /// 1-based index into `MysteryCatalog.forGroup(specificMysteryGroup)`. Used only when
   /// `mysterySelectionMode` is `.singleMystery`.
   var specificMysteryOrder: Int = 1
+  /// Omit the fifth decade of each full set; explicit single-mystery choices remain intact.
+  var skipFifthDecade: Bool = false
 
   var includeApostlesCreed: Bool = true
 
@@ -97,6 +99,28 @@ struct RosaryOptions: Hashable, Codable {
   /// into `RosaryStep.imageVariantKey`, never by rewriting `Mystery.imageKey`.
   var mysteryImageStyle: MysteryImageStyle = .classic
 
+  private enum CodingKeys: String, CodingKey {
+    case mysterySelectionMode
+    case specificMysteryGroup
+    case specificMysteryOrder
+    case skipFifthDecade
+    case includeApostlesCreed
+    case includeOpeningPrayers
+    case includeOpeningFatimaPrayer
+    case includeFatimaPrayer
+    case eternalRestForDeceased
+    case marianAntiphon
+    case includeClosingIntentions
+    case includeClosingPopeIntention
+    case includeClosingBishopIntention
+    case includeClosingDepartedIntention
+    case includeStMichaelPrayer
+    case includeFinalSignOfCross
+    case aramaicSignOfCrossForm
+    case presenterMode
+    case mysteryImageStyle
+  }
+
   var mysterySelectionSummary: String {
     switch mysterySelectionMode {
     case .specific:
@@ -114,5 +138,32 @@ struct RosaryOptions: Hashable, Codable {
     case .todaysMysteries:
       return String(localized: "mysterySelectionMode.todaysMysteries", defaultValue: "Today's Mysteries", bundle: UILanguage.bundle, locale: UILanguage.locale)
     }
+  }
+}
+
+// An absent option in an older exported prayer keeps the model default.
+extension RosaryOptions {
+  init(from decoder: Decoder) throws {
+    self.init()
+    let values = try decoder.container(keyedBy: CodingKeys.self)
+    mysterySelectionMode = try values.decodeIfPresent(MysterySelectionMode.self, forKey: .mysterySelectionMode) ?? mysterySelectionMode
+    specificMysteryGroup = try values.decodeIfPresent(MysteryGroup.self, forKey: .specificMysteryGroup) ?? specificMysteryGroup
+    specificMysteryOrder = try values.decodeIfPresent(Int.self, forKey: .specificMysteryOrder) ?? specificMysteryOrder
+    skipFifthDecade = try values.decodeIfPresent(Bool.self, forKey: .skipFifthDecade) ?? skipFifthDecade
+    includeApostlesCreed = try values.decodeIfPresent(Bool.self, forKey: .includeApostlesCreed) ?? includeApostlesCreed
+    includeOpeningPrayers = try values.decodeIfPresent(Bool.self, forKey: .includeOpeningPrayers) ?? includeOpeningPrayers
+    includeOpeningFatimaPrayer = try values.decodeIfPresent(Bool.self, forKey: .includeOpeningFatimaPrayer) ?? includeOpeningFatimaPrayer
+    includeFatimaPrayer = try values.decodeIfPresent(Bool.self, forKey: .includeFatimaPrayer) ?? includeFatimaPrayer
+    eternalRestForDeceased = try values.decodeIfPresent(EternalRestPlacement.self, forKey: .eternalRestForDeceased) ?? eternalRestForDeceased
+    marianAntiphon = try values.decodeIfPresent(MarianAntiphonOption.self, forKey: .marianAntiphon) ?? marianAntiphon
+    includeClosingIntentions = try values.decodeIfPresent(Bool.self, forKey: .includeClosingIntentions) ?? includeClosingIntentions
+    includeClosingPopeIntention = try values.decodeIfPresent(Bool.self, forKey: .includeClosingPopeIntention)
+    includeClosingBishopIntention = try values.decodeIfPresent(Bool.self, forKey: .includeClosingBishopIntention)
+    includeClosingDepartedIntention = try values.decodeIfPresent(Bool.self, forKey: .includeClosingDepartedIntention)
+    includeStMichaelPrayer = try values.decodeIfPresent(Bool.self, forKey: .includeStMichaelPrayer) ?? includeStMichaelPrayer
+    includeFinalSignOfCross = try values.decodeIfPresent(Bool.self, forKey: .includeFinalSignOfCross) ?? includeFinalSignOfCross
+    aramaicSignOfCrossForm = try values.decodeIfPresent(String.self, forKey: .aramaicSignOfCrossForm) ?? aramaicSignOfCrossForm
+    presenterMode = try values.decodeIfPresent(Bool.self, forKey: .presenterMode) ?? presenterMode
+    mysteryImageStyle = try values.decodeIfPresent(MysteryImageStyle.self, forKey: .mysteryImageStyle) ?? mysteryImageStyle
   }
 }

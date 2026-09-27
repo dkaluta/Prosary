@@ -41,7 +41,9 @@ struct ScripturePassageView: View {
   var isTorah = false
   var interfaceLanguage: String = UILanguage.current
   @AppStorage(ReadingEditionSelection.defaultsKey) private var preference = ""
-  @State private var expanded = true
+  @AppStorage("expandReadingsByDefault") private var expandReadingsByDefault = false
+  @State private var expanded = false
+  @State private var hasInitializedExpansion = false
   @AppStorage(PrayerTranslations.aramaicDefaultScriptKey) private var defaultAramaicScript = "Hebr"
   // Keep the passage's choice when its disclosure closes, without rewriting the app default.
   @State private var scriptOverride: String?
@@ -64,8 +66,13 @@ struct ScripturePassageView: View {
         .frame(maxWidth: .infinity, alignment: .leading)
     }
     .accessibilityIdentifier("readings.passage.\(isTorah ? "torah" : "daily").\(reading.full)")
-    .onAppear { expanded = true }
-    .onChange(of: reading.full) { _, _ in expanded = true; scriptOverride = nil }
+    .onAppear {
+      guard !hasInitializedExpansion else { return }
+      expanded = expandReadingsByDefault
+      hasInitializedExpansion = true
+    }
+    .onChange(of: reading.full) { _, _ in expanded = expandReadingsByDefault; scriptOverride = nil }
+    .onChange(of: expandReadingsByDefault) { _, value in expanded = value }
     .onChange(of: isTorah) { _, _ in scriptOverride = nil }
     .onChange(of: preference) { _, _ in scriptOverride = nil }
   }
@@ -105,10 +112,17 @@ private struct ScripturePassageBody: View {
             .accessibilityIdentifier("readings.wholeVersesNotice")
         }
         VStack(alignment: .leading, spacing: 12) {
-          ForEach(Array(passage.verses.enumerated()), id: \.offset) { _, verse in
+          ForEach(Array(passage.verses.enumerated()), id: \.offset) { index, verse in
+            if index == 0 || passage.verses[index - 1].chapter != verse.chapter {
+              (Text(String(localized: "readings.chapter", defaultValue: "Chapter", bundle: UILanguage.bundle, locale: UILanguage.locale)).bold()
+                + Text(verbatim: " \(verse.chapter)").italic())
+                .font(.body)
+                .accessibilityAddTraits(.isHeader)
+                .accessibilityIdentifier("readings.chapter.\(verse.chapter)")
+            }
             let text = verse.displayedText(script: script, edition: passage.edition)
             HStack(alignment: .firstTextBaseline, spacing: 8) {
-              Text(verbatim: "\(verse.chapter):\(verse.verse)")
+              Text(verbatim: "\(verse.verse)")
                 .font(.caption).monospacedDigit().foregroundStyle(.secondary)
                 .fixedSize()
               Text(text)

@@ -342,7 +342,7 @@ final class MacPrayerLibraryModel {
         // Removing a source pack must never conceal an existing saved configuration.
         return MacPrayerLibraryItem(id: prayer.id.uuidString, title: prayer.name,
           subtitle: prayer.languageNativeName, systemImage: prayer.kind.systemImage,
-          iconGlyph: nil, color: .brandPrimary, prayer: prayer,
+          iconGlyph: nil, color: .appAccent, prayer: prayer,
           devotionID: Self.devotionID(for: prayer), tagIDs: tagStore.tagIDs(for: prayer.id.uuidString))
       } + galleryItems.filter { membership.contains($0.devotionID) && !savedIDs.contains($0.devotionID) }
       items.sort { $0.title.localizedStandardCompare($1.title) == .orderedAscending }

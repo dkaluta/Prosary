@@ -167,7 +167,7 @@ public sealed partial class CustomDevotionFlowPage : Page
         {
             await ViewModel.SelectLanguageAsync(raw);
             BuildLanguageFlyout();
-        });
+        }, ViewModel.HebrewRites);
 
     private void OnActualThemeChanged(FrameworkElement sender, object args)
         => ViewModel.HasDarkTheme = ActualTheme == ElementTheme.Dark;

@@ -43,14 +43,26 @@ static ProsarySession *build(ProsaryEngine *e, const char *id, ProsarySelection 
     if (!s) fprintf(stderr, "%s/%s: %s\n", id, selection->language, error);
     assert(s); return s;
 }
+static void angelus_ending(const ProsarySession *session, size_t count) {
+    size_t i;
+    assert(session->count == count);
+    for (i = count - 4; i < count - 1; ++i) {
+        assert(!strcmp(session->steps[i].title, "Glory Be"));
+        assert(strstr(session->steps[i].body, "Glory be to the Father"));
+        assert(session->steps[i].counter_index == (int)(i - (count - 4) + 1));
+        assert(session->steps[i].counter_total == 3);
+    }
+    assert(!strcmp(session->steps[count - 1].title, "For the Faithful Departed"));
+    assert(strstr(session->steps[count - 1].body, "Eternal rest"));
+}
 int main(int argc, char **argv) {
     char error[512];
     const char *data = argc > 1 ? argv[1] : "data";
     ProsaryEngine *e;
-    ProsarySelection selection = {"en", 0, -1, 0, 2026, 9, 23};
+    ProsarySelection selection = {"en", 0, -1, 0, 2026, 9, 23, 0};
     ProsarySession *s;
     size_t i, l, cases = 0, fallback_cases = 0, mixed_steps = 0;
-    static const size_t expected[] = {79, 7, 63, 90, 69, 18, 17, 6, 5, 16};
+    static const size_t expected[] = {79, 11, 63, 90, 69, 18, 17, 6, 5, 16};
     parse_tests();
     e = engine_open(data, error, sizeof(error));
     if (!e) { fprintf(stderr, "%s\n", error); return 1; }
@@ -86,14 +98,25 @@ int main(int argc, char **argv) {
         size_t j, beads = 0; selection.group = (int)i; s = build(e, "rosary", &selection);
         for (j = 0; j < s->count; ++j) if (s->steps[j].bead_index) ++beads;
         assert(beads == 50); assert(s->group == (int)i); engine_session_free(s);
+        selection.skip_fifth_decade = 1;
+        s = build(e, "rosary", &selection); beads = 0;
+        for (j = 0; j < s->count; ++j) {
+            if (s->steps[j].bead_index) ++beads;
+            assert(s->steps[j].decade_index != 4);
+        }
+        assert(beads == 40);
+        assert(s->steps[s->count - 1].decade_index == -1);
+        assert(strstr(s->steps[s->count - 1].body, "Father"));
+        engine_session_free(s);
+        selection.skip_fifth_decade = 0;
     }
     selection.group = -1; selection.year = 2026; selection.month = 4; selection.day_of_month = 5;
-    s = build(e, "angelus", &selection); assert(s->count == 1); engine_session_free(s);
+    s = build(e, "angelus", &selection); angelus_ending(s, 5); engine_session_free(s);
     s = build(e, "rosary", &selection); assert(s->group == 2); engine_session_free(s);
     selection.month = 5; selection.day_of_month = 23;
-    s = build(e, "angelus", &selection); assert(s->count == 1); engine_session_free(s);
+    s = build(e, "angelus", &selection); angelus_ending(s, 5); engine_session_free(s);
     selection.day_of_month = 24; /* Pentecost is excluded by the existing native calendar. */
-    s = build(e, "angelus", &selection); assert(s->count == 7); engine_session_free(s);
+    s = build(e, "angelus", &selection); angelus_ending(s, 11); engine_session_free(s);
     selection.month = 3; selection.day_of_month = 1;
     s = build(e, "rosary", &selection); assert(s->group == 1); engine_session_free(s);
     selection.month = 11; selection.day_of_month = 29;

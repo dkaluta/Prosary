@@ -9,14 +9,12 @@ final class PrayerLanguageMonitorTests: XCTestCase {
     let defaults = try XCTUnwrap(UserDefaults(suiteName: suite))
     defer { defaults.removePersistentDomain(forName: suite) }
     defaults.set(true, forKey: PrayerNamePresentation.defaultsKey)
-    defaults.set(true, forKey: JaffaHailMaryWording.defaultsKey)
     let monitor = PrayerLanguageMonitor(defaults: defaults, notificationCenter: NotificationCenter(),
       resolveCode: { "ar" }, resolveFallbackOrder: { ["he-x-gamliel", "he", "en", "la"] })
 
     XCTAssertEqual(monitor.code, "ar")
     XCTAssertEqual(monitor.fallbackOrder, ["he-x-gamliel", "he", "en", "la"])
     XCTAssertTrue(monitor.showsPrayerNameInPrayerLanguage)
-    XCTAssertTrue(monitor.usesJaffaHailMaryWording)
   }
 
   func testFallbackOnlyChangePublishesAfterTheMainRunLoopWithoutChangingSelectedLanguage() async throws {

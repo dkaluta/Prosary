@@ -58,6 +58,11 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
@@ -69,6 +74,8 @@ import com.dkaluta.prosary.content.today.ReadingCitation
 import com.dkaluta.prosary.content.today.ReadingEdition
 import com.dkaluta.prosary.content.today.ReadingPassage
 import com.dkaluta.prosary.content.today.ReadingTextStore
+import com.dkaluta.prosary.ui.shared.TodayBrowsingDate
+import com.dkaluta.prosary.ui.shared.rememberTodayBrowsingDate
 import com.dkaluta.prosary.content.today.TodayDateSelection
 import com.dkaluta.prosary.content.today.TodayInfoStore
 import com.dkaluta.prosary.content.today.TodayTranslationLanguage
@@ -83,15 +90,14 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
 
-/** A reference reader: browsing dates never changes prayer sessions or the Today widget. */
+/** A reference reader sharing Pray's date without changing prayer sessions or widget dates. */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ReadingsScreen(onOpenSettings: () -> Unit) {
+fun ReadingsScreen(onOpenSettings: () -> Unit, browsingDate: TodayBrowsingDate = rememberTodayBrowsingDate()) {
     val context = LocalContext.current
     val language = TodayTranslationLanguage.resolve(LocalConfiguration.current.locales[0].toLanguageTag())
     var currentDate by remember { mutableStateOf(LocalDate.now()) }
     var currentZone by remember { mutableStateOf(ZoneId.systemDefault()) }
-    var selectedEpochDay by rememberSaveable { mutableStateOf<Long?>(null) }
     var generation by remember { mutableIntStateOf(0) }
     var showsDatePicker by rememberSaveable { mutableStateOf(false) }
     val lifecycleOwner = LocalLifecycleOwner.current
@@ -113,15 +119,13 @@ fun ReadingsScreen(onOpenSettings: () -> Unit) {
             delay(30_000)
         }
     }
-    val selectedDate = (selectedEpochDay?.let(LocalDate::ofEpochDay) ?: currentDate)
-        .coerceIn(TodayDateSelection.earliest, TodayDateSelection.latest)
+    val selectedDate = browsingDate.selectedDate(currentDate)
     val lookupDate = TodayDateSelection.lookupDate(selectedDate, currentZone)
     val calendarId = TodayInfoStore.selectedCalendarId
-    // A new tab visit or date starts open. Keep collapse choices outside the lazy cards
-    // so scrolling, edition changes and same-date foreground refreshes preserve them.
-    var collapsedReadings by remember(selectedDate, calendarId, AppSettings.easternPaschaStyle) {
-        mutableStateOf(emptySet<String>())
-    }
+    // Only explicit choices override the default. Keep them outside lazy cards so edition
+    // changes, scrolling and same-date foreground refreshes preserve the reader's choice.
+    var expansionOverrides by remember(selectedDate, calendarId, AppSettings.easternPaschaStyle,
+        AppSettings.expandReadingsByDefault) { mutableStateOf(emptyMap<String, Boolean>()) }
     val readings = remember(lookupDate, calendarId, AppSettings.easternPaschaStyle, generation) {
         TodayInfoStore.readings(lookupDate)
     }
@@ -151,7 +155,7 @@ fun ReadingsScreen(onOpenSettings: () -> Unit) {
                 onDismissRequest = { showsDatePicker = false },
                 confirmButton = {
                     TextButton(enabled = picker.selectedDateMillis != null, onClick = {
-                        picker.selectedDateMillis?.let { selectedEpochDay = TodayDateSelection.fromPickerMillis(it).toEpochDay() }
+                        picker.selectedDateMillis?.let { browsingDate.selectedEpochDay = TodayDateSelection.fromPickerMillis(it).toEpochDay() }
                         showsDatePicker = false
                     }) { Text(stringResource(R.string.common_ok)) }
                 },
@@ -161,7 +165,7 @@ fun ReadingsScreen(onOpenSettings: () -> Unit) {
             ) {
                 DatePicker(state = picker, modifier = Modifier.testTag("readingsDatePicker"), title = {
                     TextButton(onClick = {
-                        selectedEpochDay = null
+                        browsingDate.selectedEpochDay = null
                         currentDate = LocalDate.now()
                         showsDatePicker = false
                     }, modifier = Modifier.padding(horizontal = 12.dp).testTag("readingsReset")) {
@@ -192,7 +196,7 @@ fun ReadingsScreen(onOpenSettings: () -> Unit) {
                         shadowElevation = 2.dp,
                     ) {
                         Row(Modifier.fillMaxWidth().padding(4.dp).height(IntrinsicSize.Min), verticalAlignment = Alignment.CenterVertically) {
-                            IconButton(onClick = { selectedEpochDay = selectedDate.minusDays(1).toEpochDay() },
+                            IconButton(onClick = { browsingDate.selectedEpochDay = selectedDate.minusDays(1).toEpochDay() },
                                 enabled = selectedDate > TodayDateSelection.earliest,
                                 modifier = Modifier.heightIn(min = 48.dp).fillMaxHeight().testTag("readingsPrevious")) {
                                 Icon(Icons.AutoMirrored.Filled.KeyboardArrowLeft, stringResource(R.string.home_today_yesterday))
@@ -201,7 +205,7 @@ fun ReadingsScreen(onOpenSettings: () -> Unit) {
                                 modifier = Modifier.weight(1f).heightIn(min = 48.dp).fillMaxHeight().testTag("readingsChooseDate")) {
                                 Text(dateLabel, textAlign = TextAlign.Center)
                             }
-                            IconButton(onClick = { selectedEpochDay = selectedDate.plusDays(1).toEpochDay() },
+                            IconButton(onClick = { browsingDate.selectedEpochDay = selectedDate.plusDays(1).toEpochDay() },
                                 enabled = selectedDate < TodayDateSelection.latest,
                                 modifier = Modifier.heightIn(min = 48.dp).fillMaxHeight().testTag("readingsNext")) {
                                 Icon(Icons.AutoMirrored.Filled.KeyboardArrowRight, stringResource(R.string.home_today_tomorrow))
@@ -239,10 +243,10 @@ fun ReadingsScreen(onOpenSettings: () -> Unit) {
                     val passageKey = "daily.$index.${citation.full}"
                     item(key = "daily.$selectedDate.$calendarId.$index.${citation.full}") {
                         ReadingCard(citation, language, edition, editionId, store, false,
-                            expanded = passageKey !in collapsedReadings,
+                            expanded = expansionOverrides[passageKey] ?: AppSettings.expandReadingsByDefault,
                             onToggleExpanded = {
-                                collapsedReadings = if (passageKey in collapsedReadings) collapsedReadings - passageKey
-                                    else collapsedReadings + passageKey
+                                expansionOverrides = expansionOverrides +
+                                    (passageKey to !(expansionOverrides[passageKey] ?: AppSettings.expandReadingsByDefault))
                             })
                     }
                 }
@@ -256,10 +260,10 @@ fun ReadingsScreen(onOpenSettings: () -> Unit) {
                         val passageKey = "torah.$index.${citation.full}"
                         item(key = "torah.$selectedDate.$index.${citation.full}") {
                             ReadingCard(citation, language, edition, editionId, store, true,
-                                expanded = passageKey !in collapsedReadings,
+                                expanded = expansionOverrides[passageKey] ?: AppSettings.expandReadingsByDefault,
                                 onToggleExpanded = {
-                                    collapsedReadings = if (passageKey in collapsedReadings) collapsedReadings - passageKey
-                                        else collapsedReadings + passageKey
+                                    expansionOverrides = expansionOverrides +
+                                        (passageKey to !(expansionOverrides[passageKey] ?: AppSettings.expandReadingsByDefault))
                                 })
                         }
                     }
@@ -352,9 +356,22 @@ internal fun ReadingCard(citation: ReadingCitation, language: String, edition: R
                                 PrayerTypography.Script.Syriac)) LayoutDirection.Rtl else LayoutDirection.Ltr) {
                         SelectionContainer {
                             Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
-                                for (verse in passage.verses) {
+                                for ((index, verse) in passage.verses.withIndex()) {
+                                    if (index == 0 || passage.verses[index - 1].chapter != verse.chapter) {
+                                        val chapterNumber = verse.chapter.toString()
+                                        val chapterLabel = stringResource(R.string.readings_chapter, chapterNumber)
+                                        val numberStart = chapterLabel.indexOf(chapterNumber)
+                                        Text(buildAnnotatedString {
+                                            withStyle(SpanStyle(fontWeight = FontWeight.Bold)) {
+                                                append(chapterLabel)
+                                            }
+                                            if (numberStart >= 0) addStyle(SpanStyle(fontStyle = FontStyle.Italic),
+                                                numberStart, numberStart + chapterNumber.length)
+                                        }, style = MaterialTheme.typography.titleMedium,
+                                            modifier = Modifier.fillMaxWidth())
+                                    }
                                     val visibleText = verse.displayedText(edition, readingScript)
-                                    Text("\u2066${verse.chapter}:${verse.verse}\u2069  $visibleText",
+                                    Text("\u2066${verse.verse}\u2069  $visibleText",
                                         style = PrayerTypography.styleForText(visibleText, isScripture = true),
                                         modifier = Modifier.fillMaxWidth())
                                 }

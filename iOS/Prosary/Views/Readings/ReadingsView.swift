@@ -8,7 +8,8 @@ struct ReadingsView: View {
   @AppStorage(TodayInfoStore.paschaStyleDefaultsKey) private var paschaStyle = "julian"
   @AppStorage("showTodayFeast") private var showsFeast = true
   @AppStorage("showTodayTorahPortion") private var showsTorah = false
-  @State private var dateSelection = MacTodayDateSelection()
+  @AppStorage("expandReadingsByDefault") private var expandReadingsByDefault = false
+  @Binding var dateSelection: MacTodayDateSelection
   @State private var showsDatePicker = false
   @State private var showsOptions = false
   @State private var readings: [ReadingCitation] = []
@@ -230,6 +231,8 @@ struct ReadingsView: View {
           }
         }
         Toggle(String(localized: "settings.showTodayTorahPortion", defaultValue: "Show the weekly Torah portion", bundle: UILanguage.bundle, locale: UILanguage.locale), isOn: $showsTorah)
+        Toggle(String(localized: "settings.expandReadingsByDefault", defaultValue: "Expand readings by default", bundle: UILanguage.bundle, locale: UILanguage.locale), isOn: $expandReadingsByDefault)
+          .accessibilityIdentifier("expandReadingsByDefaultToggle")
       }
       .navigationTitle(String(localized: "tabs.readings", defaultValue: "Readings", bundle: UILanguage.bundle, locale: UILanguage.locale))
       .toolbar {

@@ -175,7 +175,9 @@ struct BasicPrayerFlowView: View {
 
   var body: some View {
     let _ = prayerLanguage.code
-    let language = LanguageCatalog.resolve(chosenLanguage)
+    let language = LanguageCatalog.resolve(BasicPrayerCatalog.prayer(id: prayerId).map {
+      BasicPrayerCatalog.languageCode(for: $0, requested: chosenLanguage)
+    } ?? chosenLanguage)
     let step = BasicPrayerCatalog.prayer(id: prayerId).map {
       BasicPrayerCatalog.step(for: $0, languageCode: language.code)
     }
@@ -190,7 +192,7 @@ struct BasicPrayerFlowView: View {
       canGoBack: false,
       onBack: {},
       onNext: { if let finishPrayerSession { finishPrayerSession() } else { dismiss() } },
-      flowActions: AnyView(BasicPrayersLanguageMenu(chosenLanguage: $chosenLanguage)),
+      flowActions: AnyView(BasicPrayersLanguageMenu(chosenLanguage: $chosenLanguage, prayer: BasicPrayerCatalog.prayer(id: prayerId))),
       contentBundleID: BasicPrayerCatalog.prayer(id: prayerId)?.bundleId ?? "rosary",
       navigationTitleIsPrayerHeading: true)
     .onAppear {
@@ -201,10 +203,14 @@ struct BasicPrayerFlowView: View {
 
 private struct BasicPrayersLanguageMenu: View {
   @Binding var chosenLanguage: String
+  var prayer: BasicPrayer? = nil
 
   var body: some View {
     Menu {
-      PrayerLanguageMenuContent(code: chosenLanguage, identifierPrefix: "basicPrayerLanguage") { chosenLanguage = $0 }
+      PrayerLanguageMenuContent(code: chosenLanguage,
+                               resolvedCode: prayer.map { BasicPrayerCatalog.languageCode(for: $0, requested: chosenLanguage) },
+                               identifierPrefix: "basicPrayerLanguage",
+                               hebrewTraditions: prayer.map { PrayerPackStore.hebrewTraditions(bundleId: $0.bundleId, bodyKey: $0.bodyKey) } ?? ["he", "he-x-gamliel"]) { chosenLanguage = $0 }
     } label: {
       Label(String(localized: "prayerFlow.language", defaultValue: "Prayer Language", bundle: UILanguage.bundle, locale: UILanguage.locale), systemImage: "globe")
     }

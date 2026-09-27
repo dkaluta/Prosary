@@ -85,6 +85,7 @@ public sealed class PrayerEngine
         ["openingPrayers"] = rosary.IncludeOpeningPrayers ? "true" : "false",
         ["openingFatimaPrayer"] = rosary.IncludeOpeningFatimaPrayer ? "true" : "false",
         ["presenterMode"] = rosary.PresenterMode ? "true" : "false",
+        ["skipFifthDecade"] = rosary.SkipFifthDecade ? "true" : "false",
         ["fatimaPrayer"] = rosary.IncludeFatimaPrayer ? "true" : "false",
         ["eternalRest"] = CamelCase(rosary.EternalRestForDeceased.ToString()),
         ["antiphon"] = CamelCase(rosary.MarianAntiphon.ToString()),
@@ -490,6 +491,9 @@ public sealed class PrayerEngine
             IEnumerable<int> indices = rosary.MysterySelectionMode == MysterySelectionMode.SingleMystery
                 ? [rosary.SpecificMysteryOrder - 1]
                 : Enumerable.Range(0, mysteries.Count);
+            if (rosary.MysterySelectionMode != MysterySelectionMode.SingleMystery
+                && (rosary.SkipFifthDecade || optionValues?.GetValueOrDefault("skipFifthDecade") == "true"))
+                indices = indices.Where(index => mysteries[index].Order != 5);
 
             foreach (var d in indices)
             {

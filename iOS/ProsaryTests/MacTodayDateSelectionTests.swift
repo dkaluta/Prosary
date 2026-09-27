@@ -1,4 +1,3 @@
-#if os(macOS)
 import Foundation
 import XCTest
 @testable import Prosary
@@ -86,4 +85,3 @@ final class MacTodayDateSelectionTests: XCTestCase {
     assertDay(selection, 2028, 3, 1)
   }
 }
-#endif

@@ -95,13 +95,11 @@ fun RosaryFlowScreen(prayer: Prayer, onBack: () -> Unit, onOpenDevotion: (String
         }
         runReady = pendingResume == null
         session.loadedSignature = configurationSignature
-        session.appliedJaffaWording = AppSettings.useJaffaHailMaryWording
     }
 
     val resolvedLanguage = LanguageCatalog.resolve(chosenLanguage).code
-    LaunchedEffect(resolvedLanguage, AppSettings.useJaffaHailMaryWording) {
-        if (languageCode == resolvedLanguage &&
-            session.appliedJaffaWording == AppSettings.useJaffaHailMaryWording) return@LaunchedEffect
+    LaunchedEffect(resolvedLanguage) {
+        if (languageCode == resolvedLanguage) return@LaunchedEffect
         if (steps.isNotEmpty()) {
             val position = currentIndex
             // AppCompat retains this session across a locale recreation. Refresh inherited
@@ -109,7 +107,6 @@ fun RosaryFlowScreen(prayer: Prayer, onBack: () -> Unit, onOpenDevotion: (String
             languageCode = resolvedLanguage
             steps = services.engine.buildSteps(prayer.copy(languageCode = resolvedLanguage))
             currentIndex = position.coerceIn(0, (steps.size - 1).coerceAtLeast(0))
-            session.appliedJaffaWording = AppSettings.useJaffaHailMaryWording
         }
     }
 
