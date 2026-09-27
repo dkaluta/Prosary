@@ -21,13 +21,15 @@ import org.junit.Test
 class ReadingsExpansionInstrumentedTest {
     @get:Rule val compose = createEmptyComposeRule()
 
-    @Test fun passagesOpenPerVisitAndDateWhileCollapseSurvivesRefresh() {
+    @Test fun passagesFollowExpansionPreferenceWhileChoicesSurviveRefresh() {
         val context = InstrumentationRegistry.getInstrumentation().targetContext
         ActivityScenario.launch(MainActivity::class.java).use { scenario ->
             compose.waitUntil(15_000) { compose.onAllNodes(hasTestTag("todayChooseDate")).fetchSemanticsNodes().isNotEmpty() }
             val originalCalendar = AppSettings.feastCalendarId
             val originalEdition = AppSettings.readingsEditionId
             val originalTorah = AppSettings.showTodayTorahPortion
+            val originalExpansion = AppSettings.expandReadingsByDefault
+            val originalShowReadings = AppSettings.showTodayReadings
             val today = LocalDate.now()
             val dates = listOf(today, today.minusDays(1))
             val citation = """{"type":"reading","short":"Gen. 1","full":"Genesis 1:1"}"""
@@ -47,19 +49,24 @@ class ReadingsExpansionInstrumentedTest {
                     AppSettings.feastCalendarId = "fixture"
                     AppSettings.readingsEditionId = "fixture-unavailable"
                     AppSettings.showTodayTorahPortion = true
+                    AppSettings.expandReadingsByDefault = false
+                    AppSettings.showTodayReadings = true
                 }
                 compose.onNodeWithText(context.getString(R.string.tab_readings)).performClick()
-                assertExpansion("daily", true)
-                assertExpansion("torah", true)
+                assertExpansion("daily", false)
+                assertExpansion("torah", false)
                 toggle("daily")
                 toggle("torah")
                 scenario.onActivity { AppSettings.readingsEditionId = "fixture-other-unavailable" }
                 scenario.moveToState(Lifecycle.State.STARTED)
                 scenario.moveToState(Lifecycle.State.RESUMED)
-                assertExpansion("daily", false)
-                assertExpansion("torah", false)
+                assertExpansion("daily", true)
+                assertExpansion("torah", true)
 
                 navigateDate("readingsPrevious")
+                assertExpansion("daily", false)
+                assertExpansion("torah", false)
+                scenario.onActivity { AppSettings.expandReadingsByDefault = true }
                 assertExpansion("daily", true)
                 assertExpansion("torah", true)
                 navigateDate("readingsNext")
@@ -73,6 +80,11 @@ class ReadingsExpansionInstrumentedTest {
                 toggle("daily")
                 toggle("torah")
                 compose.onNodeWithText(context.getString(R.string.tab_pray)).performClick()
+                compose.onNodeWithTag("todayReadings").assertExists()
+                scenario.onActivity { AppSettings.showTodayReadings = false }
+                compose.onNodeWithTag("todayReadings").assertDoesNotExist()
+                scenario.onActivity { AppSettings.showTodayReadings = true }
+                compose.onNodeWithTag("todayReadings").assertExists()
                 compose.onNodeWithText(context.getString(R.string.tab_readings)).performClick()
                 assertExpansion("daily", true)
                 assertExpansion("torah", true)
@@ -83,6 +95,8 @@ class ReadingsExpansionInstrumentedTest {
                     AppSettings.feastCalendarId = originalCalendar
                     AppSettings.readingsEditionId = originalEdition
                     AppSettings.showTodayTorahPortion = originalTorah
+                    AppSettings.expandReadingsByDefault = originalExpansion
+                    AppSettings.showTodayReadings = originalShowReadings
                 }
             }
         }

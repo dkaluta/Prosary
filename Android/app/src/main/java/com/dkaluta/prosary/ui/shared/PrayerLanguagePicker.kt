@@ -29,6 +29,7 @@ fun PrayerLanguagePicker(
     expanded: Boolean,
     onExpandedChange: (Boolean) -> Unit,
     onSelect: (String) -> Unit,
+    showsHebrewTraditions: Boolean = devotionId?.let { PrayerPackStore.hasHebrewTraditionChoice(it) } ?: true,
 ) {
     val options = if (devotionId == null) LanguageCatalog.publicOptions else {
         val bundleLanguages = PrayerPackStore.info(devotionId)?.languages.orEmpty()
@@ -64,7 +65,7 @@ fun PrayerLanguagePicker(
             )
         }
     }
-    if (LanguageCatalog.pickerLanguageCode(LanguageCatalog.resolve(chosenLanguage).code) == "he") {
+    if (showsHebrewTraditions && LanguageCatalog.pickerLanguageCode(LanguageCatalog.resolve(chosenLanguage).code) == "he") {
         var traditionExpanded by remember { mutableStateOf(false) }
         IconButton(onClick = { traditionExpanded = true }) {
             Icon(Icons.Filled.AccountBalance, contentDescription = stringResource(R.string.prayer_tradition))

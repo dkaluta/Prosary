@@ -66,13 +66,23 @@
 
     <!-- Settings -->
     <string name="settings_default_prayer_language">"Paunang Piniling Wika ng Panalangin"</string>
+    <string name="settings_app_color">"Kulay ng App"</string>
+    <string name="settings_app_color_hint">"Piliin ang kulay ng icon at accent ng app."</string>
+    <string name="settings_app_color_error">"Hindi mabago ang icon ng app. Pakisubukang muli."</string>
+    <string name="app_color_blue">"Asul"</string>
+    <string name="app_color_green">"Berde"</string>
+    <string name="app_color_red">"Pula"</string>
+    <string name="app_color_purple">"Lila"</string>
+    <string name="app_color_rose">"Rosas"</string>
+    <string name="app_color_white">"Puti"</string>
+    <string name="app_color_gold">"Ginto"</string>
+    <string name="settings_use_system_colors">"Gamitin ang mga kulay ng system"</string>
+    <string name="settings_use_system_colors_hint">"Gamitin ang mga kulay ng wallpaper sa halip na ang napiling accent."</string>
     <string name="settings_app_language">"Wika ng App"</string>
     <string name="settings_prayer_language">"Wika ng Panalangin"</string>
     <string name="settings_follow_app_language">"Wika ng App (%1$s)"</string>
     <string name="settings_language_system_default">"Default ng System"</string>
     <string name="settings_app_language_hint">"Ginagamit sa interface at awtomatikong pagpili ng edisyon ng Bibliya. Sinusunod ito ng mga panalangin maliban kung may piniling wika ng panalangin."</string>
-    <string name="settings_jaffa_wording">"Alternatibong teksto ng Aba Ginoong Maria"</string>
-    <string name="settings_jaffa_wording_hint">"Gamitin ang בְּרוּכַת הַחֶסֶד sa halip na מְלֵאַת הַחֶסֶד sa mga panalangin ng Bikaryato."</string>
     <string name="settings_language_fallback_order">"Pagkakasunod-sunod ng pamalit na wika…"…</string>
     <string name="settings_language_fallback_order_title">"Pagkakasunod-sunod ng pamalit na wika"</string>
     <string name="settings_language_fallback_order_footer">Kapag wala ang teksto sa piniling wika, sinusunod ng Prosary ang ayos na ito. Ang tekstong Hebreo na pareho sa dalawang tradisyon, kasama ang mga panalangin mula sa repositoryo, ay gumagamit ng mas mataas sa dalawang puwesto ng Hebreo.</string>
@@ -88,6 +98,9 @@
     <string name="auto_advance_every">"Tuwing %1$d segundo"</string>
     <string name="settings_reset_home_order">"I-reset ang Pagkakasunod-sunod sa Home"</string>
     <string name="settings_today_header">"Ngayon"</string>
+    <string name="settings_show_today_readings">"Ipakita ang mga pagbasa sa Manalangin"</string>
+    <string name="settings_expand_readings">"Palawakin ang mga pagbasa bilang default"</string>
+    <string name="readings_chapter">"Kabanata %1$s"</string>
     <string name="settings_show_today_feast">"Ipakita ang kapistahan ngayon"</string>
     <string name="settings_show_today_intention">"Ipakita ang intensiyon ng Papa"</string>
     <string name="settings_feast_calendar">"Kalendaryong liturhiko"</string>
@@ -163,6 +176,7 @@
 
     <!-- Rosary options editor -->
     <string name="ro_which_mysteries">"Aling mga misteryo?"</string>
+    <string name="ro_skip_fifth_decade">"Laktawan ang ikalimang dekada"</string>
     <string name="ro_mysteries">"Mga Misteryo"</string>
     <string name="ro_specific_set">"Tiyak na pangkat"</string>
     <string name="ro_which_mystery">"Aling misteryo"</string>

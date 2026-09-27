@@ -48,7 +48,7 @@
     "settings": ["feastCalendarId", "easternPaschaStyle", "showTodayFeast", "showTodayIntention", "showTodayTorahPortion", "readingsEditionId"],
     "clock": "Advance at local midnight when following today; retain a deliberately browsed date.",
     "fullScriptureText": {
-      "presentation": "Daily and enabled Torah passages start expanded on entry and date/calendar changes. They remain independently collapsible, showing selectable numbered Bible verses with edition name, attribution and source link. Edition text is identified as a Bible passage and may differ from local Mass wording.",
+      "presentation": "Daily and enabled Torah passages start collapsed on entry and date/calendar changes unless expandReadingsByDefault is enabled. They remain independently collapsible, showing selectable numbered Bible verses with edition name, attribution and source link. Edition text is identified as a Bible passage and may differ from local Mass wording.",
       "loading": "The small readings-editions.json manifest populates the picker; readings-texts.json loads only on passage expansion.",
       "lookup": "Exact daily|<raw ReadingCitation.Full> or torah|<raw ReadingCitation.Full> plus edition ID. No runtime reference parser or inferred versification.",
       "selection": "readingsEditionId empty matches the interface language with iw/he and fil/tl normalization. Explicit choices use only that metadata ID. No matching edition, missing appointment, or invalid verse rows show unavailable without changing the citation or falling back to another edition.",

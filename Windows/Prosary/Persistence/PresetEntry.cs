@@ -53,6 +53,9 @@ public sealed class PresetEntry
     /// MysterySelectionMode is SingleMystery. Defaults to 1 for existing rows.</summary>
     public int SpecificMysteryOrder { get; set; } = 1;
 
+    [NotNull]
+    public bool SkipFifthDecade { get; set; }
+
     public bool IncludeApostlesCreed { get; set; } = true;
     public bool IncludeOpeningPrayers { get; set; } = true;
     public bool IncludeOpeningFatimaPrayer { get; set; }
@@ -110,6 +113,7 @@ public sealed class PresetEntry
             IncludeOpeningPrayers = IncludeOpeningPrayers,
             IncludeOpeningFatimaPrayer = IncludeOpeningFatimaPrayer,
             IncludeFatimaPrayer = IncludeFatimaPrayer,
+            SkipFifthDecade = SkipFifthDecade,
             EternalRestForDeceased = EternalRestForDeceased,
             MarianAntiphon = MarianAntiphon,
             IncludeClosingIntentions = IncludeClosingIntentions,
@@ -149,6 +153,7 @@ public sealed class PresetEntry
         IncludeOpeningPrayers = prayer.Rosary.IncludeOpeningPrayers,
         IncludeOpeningFatimaPrayer = prayer.Rosary.IncludeOpeningFatimaPrayer,
         IncludeFatimaPrayer = prayer.Rosary.IncludeFatimaPrayer,
+        SkipFifthDecade = prayer.Rosary.SkipFifthDecade,
         EternalRestForDeceased = prayer.Rosary.EternalRestForDeceased,
         MarianAntiphon = prayer.Rosary.MarianAntiphon,
         IncludeClosingIntentions = prayer.Rosary.IncludeClosingIntentions,

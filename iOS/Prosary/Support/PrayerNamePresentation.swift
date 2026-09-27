@@ -27,9 +27,9 @@ struct PrayerNamePresentation: Equatable {
                           showPrayerLanguage: Bool) -> Self {
     let interfaceLanguage = interfaceLanguage ?? UILanguage.current
     let interfaceTitle = HebrewDisplayText.unpointed(PrayerPackStore.resolveBodyText(
-      bundleId: prayer.bundleId, languageCode: interfaceLanguage, key: prayer.titleKey))
+      bundleId: prayer.bundleId, languageCode: BasicPrayerCatalog.languageCode(for: prayer, requested: interfaceLanguage), key: prayer.titleKey))
     let prayerTitle = HebrewDisplayText.unpointed(PrayerPackStore.resolveBodyText(
-      bundleId: prayer.bundleId, languageCode: languageCode, key: prayer.titleKey))
+      bundleId: prayer.bundleId, languageCode: BasicPrayerCatalog.languageCode(for: prayer, requested: languageCode), key: prayer.titleKey))
     return Self(title: prayerTitle,
                 translation: showPrayerLanguage && interfaceTitle != prayerTitle ? interfaceTitle : nil)
   }

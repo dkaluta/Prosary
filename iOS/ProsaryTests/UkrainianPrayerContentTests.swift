@@ -23,7 +23,7 @@ final class UkrainianPrayerContentTests: XCTestCase {
 
   func testBasicPrayersUseUkrainianTitlesAndSourcedBodiesOrDeclaredFallbacks() {
     let titles = ["Знак хреста", "Отче наш", "Радуйся, Маріє", "Слава Отцю",
-                  "Апостольський символ віри", "Святий Боже", "Слався, Царице",
+                  "Апостольський символ віри", "Святий Боже", "Святий архангел Михаїл", "Слався, Царице",
                   "Мати Відкупителя", "Радуйся, Царице небес", "Царице Неба"]
     XCTAssertEqual(titles.count, BasicPrayerCatalog.all.count)
     for (prayer, title) in zip(BasicPrayerCatalog.all, titles) {

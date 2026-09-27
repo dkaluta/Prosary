@@ -26,7 +26,6 @@ internal class RosaryPrayerSession(prayer: Prayer) : ViewModel() {
     val runReady = mutableStateOf(false)
     val showsLitanyOffer = mutableStateOf(false)
     var loadedSignature: String? = null
-    var appliedJaffaWording: Boolean? = null
 }
 
 internal class JesusPrayerSession(prayer: Prayer?, target: JesusPrayerTarget) : ViewModel() {
@@ -75,7 +74,6 @@ internal class CustomDevotionPrayerSession(
 
     var entryLoaded = false
     var loadedSelection: Pair<String?, Int>? = null
-    var appliedJaffaWording: Boolean? = null
     val audio = AudioPlaybackController()
     var observedAudioChapter: Pair<String?, Int?>? = null
 

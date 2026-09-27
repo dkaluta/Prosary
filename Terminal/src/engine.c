@@ -17,7 +17,7 @@ typedef struct {
     const char *language;
     char *error;
     size_t error_size;
-    int failed, season, step_fallback, step_mixed;
+    int failed, season, step_fallback, step_mixed, skip_fifth_decade;
 } Builder;
 static const char *language_codes[] = {"en", "he", "ar", "ru", "tl", "fr", "it", "uk", "la", "es", "el", "arc", "he-x-gamliel"};
 static const char *language_names[] = {"English", "עברית", "العربية", "Русский", "Filipino", "Français", "Italiano", "Українська", "Latina", "Español", "Ελληνικά", "ܐܪܡܐܝܬ / ארמית", "עברית — גמליאל"};
@@ -327,6 +327,7 @@ static void rosary(Builder *b, const Json *form, int group) {
             if (!equal(json_text(item, "group"), groups[group])) continue;
             number = json_int(json_get(item, "order"), 0); decade_index = number - 1;
             if (number < 1 || number > 5) { build_error(b, "Invalid mystery order", NULL); return; }
+            if (number == 5 && b->skip_fifth_decade) continue;
         }
         b->step_fallback = b->step_mixed = 0;
         key = item ? json_text(item, "imageKey") : json_text(decades, "fixedImageKey");
@@ -390,7 +391,7 @@ static int calendar(Builder *b, const ProsarySelection *s, int *month, int *day)
         weekday == 0 && b->season == 3 ? 0 : weekday == 0 && b->season == 1 ? 1 : 2;
 }
 ProsarySession *engine_build(const ProsaryEngine *e, const char *id, const ProsarySelection *selection, char *error, size_t error_size) {
-    ProsarySelection defaults = {"en", -1, -1, -1, 0, 0, 0};
+    ProsarySelection defaults = {"en", -1, -1, -1, 0, 0, 0, 0};
     Builder b;
     const Json *definition, *form, *variants, *days;
     const char *type;
@@ -401,6 +402,7 @@ ProsarySession *engine_build(const ProsaryEngine *e, const char *id, const Prosa
     b.pack = pack_by_id(e, id);
     if (!b.pack) { errorf(error, error_size, "Unknown devotion: %s", id ? id : ""); return NULL; }
     if (!selection) selection = &defaults;
+    b.skip_fifth_decade = equal(id, "rosary") && selection->skip_fifth_decade;
     b.language = normalized(selection->language);
     for (i = 0; i < engine_language_count(); ++i) if (equal(b.language, language_codes[i])) break;
     if (i == engine_language_count()) { errorf(error, error_size, "Unsupported prayer language: %s", b.language); return NULL; }

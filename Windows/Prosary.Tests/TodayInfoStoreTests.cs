@@ -149,11 +149,13 @@ public class TodayInfoStoreTests
         var vetus = TodayInfoStore.Feast(new DateOnly(2026, 9, 5));
         Assert.Equal("St. Lawrence Justinian", vetus?.Title);
         Assert.Equal("3rd Class", vetus?.Rank);
-        foreach (var calendarId in new[] { "ugcc", "syriac" })
-        {
-            TodayInfoStore.SelectedCalendarId = calendarId;
-            Assert.Null(TodayInfoStore.Feast(new DateOnly(2026, 9, 5)));
-        }
+        TodayInfoStore.SelectedCalendarId = "ugcc";
+        Assert.Null(TodayInfoStore.Feast(new DateOnly(2026, 9, 5)));
+
+        TodayInfoStore.SelectedCalendarId = "syriac";
+        var syriac = TodayInfoStore.Feast(new DateOnly(2026, 9, 5));
+        Assert.Equal("St. Charbel", syriac?.Title);
+        Assert.Equal("Feast", syriac?.Rank);
     }
 
     [Fact]
@@ -166,7 +168,7 @@ public class TodayInfoStoreTests
             ("roman", "2026-07-15", "Saint Bonaventure, Bishop and Doctor of the Church", "Memorial", "בונבנטורה הקדוש, הגמון ודוקטור הכנסייה"),
             ("roman1962", "2026-07-14", "St. Bonaventure", "3rd Class", "בונבנטורה הקדוש, הגמון ודוקטור הכנסייה"),
             ("roman", "2026-07-03", "Saint Thomas the Apostle", "Feast", "תאמא השליח"),
-            ("syriac", "2026-10-06", "Feast of Saint Thomas the Apostle", "Feast", "תאמא השליח"),
+            ("syriac", "2026-10-06", "St. Thomas", "Feast", "תאמא השליח"),
             ("roman1962", "2026-12-21", "St. Thomas", "2nd Class", "תאמא השליח"),
             ("roman", "2026-01-28", "Saint Thomas Aquinas, Priest and Doctor of the Church", "Memorial", "תומאס אקווינס, כהן ודוקטור הכנסייה"),
         };
@@ -235,19 +237,59 @@ public class TodayInfoStoreTests
 
     /// <summary>The Syriac Catholic table comes from Evangelizo.org's Daily Gospel (credited
     /// on the About screen): the Antiochene year names its Sundays from the season's anchor
-    /// feasts, and Evangelizo's plain-date ferial titles are omitted like ferial days
-    /// everywhere else.</summary>
+    /// feasts. Plain-date ferial titles are omitted, while their saints and saints listed
+    /// alongside a Sunday remain visible.</summary>
     [Fact]
     public void SyriacCalendarNamesTheAntiocheneSeasons()
     {
         TodayInfoStore.SelectedCalendarId = "syriac";
         var sunday = TodayInfoStore.Feast(new DateOnly(2026, 10, 25));
-        Assert.Equal("Sixth Sunday after the Feast of the Cross", sunday?.Title);
+        Assert.Equal("Sixth Sunday after the Feast of the Cross; St. Phyton", sunday?.Title);
         Assert.Equal("Sunday", sunday?.Rank);
         Assert.Equal(
             "Assumption of the Mother of God",
             TodayInfoStore.Feast(new DateOnly(2026, 8, 15))?.Title);
-        Assert.Null(TodayInfoStore.Feast(new DateOnly(2026, 7, 27)));
+        Assert.Equal("St. Pentalmon", TodayInfoStore.Feast(new DateOnly(2026, 7, 27))?.Title);
+    }
+
+    [Theory]
+    [InlineData(9, 30,
+        "St. Gregory the Illuminator; St. Jerome of Stridon",
+        "عيد القدّيس غريغوريوس النورانيّ رئيس كهنة أرمينيا - الدرجة ب -; عيد القدّيس هيرونيموس الكاهن والملفان - الدرجة ب -",
+        2)]
+    [InlineData(10, 1,
+        "St. Ananias; St. Abi; Saint Thérèse of the Child Jesus, Virgin and Doctor of the Church",
+        "عيد القدّيس حننيا الرسول - الدرجة ج -; عيد القدّيس أباي الشهيد - الدرجة ج -; عيد القدّيسة تريزا الطفل يسوع،",
+        3)]
+    public void SyriacCalendarIncludesEveryEnglishAndArabicSourceObservance(
+        int month, int day, string english, string arabic, int observanceCount)
+    {
+        TodayInfoStore.SelectedCalendarId = "syriac";
+        var feast = TodayInfoStore.Feast(new DateOnly(2026, month, day));
+
+        Assert.NotNull(feast);
+        Assert.Equal(english, feast.Title);
+        Assert.Equal("Feast", feast.Rank);
+        Assert.Equal(english, feast.LocalizedTitle("en"));
+        Assert.Equal(arabic, feast.LocalizedTitle("ar"));
+        foreach (var language in new[] { "en", "he", "ar", "ru", "tl", "fr", "it", "uk" })
+            Assert.Equal(observanceCount, feast.LocalizedTitle(language).Split("; ").Length);
+    }
+
+    [Fact]
+    public void SyriacRepeatedEnglishNameKeepsItsDistinctLocalizedIdentity()
+    {
+        TodayInfoStore.SelectedCalendarId = "syriac";
+        var hermit = TodayInfoStore.Feast(new DateOnly(2026, 9, 18));
+        var apostle = TodayInfoStore.Feast(new DateOnly(2026, 11, 16));
+
+        Assert.NotNull(hermit);
+        Assert.NotNull(apostle);
+        Assert.Equal("St. Matthew", hermit.Title);
+        Assert.Equal("St. Matthew", apostle.Title);
+        Assert.Equal("St. Matthew", hermit.LocalizedTitle("he"));
+        Assert.Equal("חג מתי השליח והמבשר", apostle.LocalizedTitle("he"));
+        Assert.NotEqual(hermit.LocalizedTitle("ar"), apostle.LocalizedTitle("ar"));
     }
 
     /// <summary>October 25, 2026 wears four different faces: the LPJ's patronal solemnity, a

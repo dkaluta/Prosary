@@ -77,7 +77,26 @@ Coverage reflects the sources available at generation time, not a promise that e
 the native picker has data. Modern Roman and 1962 feasts, and both Byzantine feast variants,
 cover 2026–2027. The Maronite source currently stops at 31 October 2026 (304 reading days);
 its named observances end at the last Sunday in that range. Syriac readings currently reach
-8 December 2026, with feast coverage ending 24 November. The official UGCC and Gregorian
+8 December 2026. The Syriac feast refresh on 26 September 2026 now covers the same
+1 January–8 December range: 261 dates with named observances. It combines the main liturgy
+and every saint from both [English SYE](https://publication.evangelizo.ws/SYE/days/2026-10-01)
+and [Arabic SYA](https://publication.evangelizo.ws/SYA/days/2026-10-01). The former importer
+discarded saint arrays entirely. September 30 now includes Gregory the Illuminator and
+Jerome of Stridon; October 1 includes St. Ananias, St. Abi, and Arabic-only Thérèse.
+English saint names retain SYE's published spelling, taking precedence over alternate
+main-liturgy headings and reviewed matching metadata. Arabic supplements the English list.
+The generated `observances` components separate display names from reviewed identities,
+preserving safe offline localization when the English source reuses a name for different saints.
+Reviewed identities deduplicate equivalent names; differing identities, including the
+English Simeon Stylites and Arabic Simeon Salos on July 21, remain separate in every
+language. Arabic captions retain source class suffixes without assigning Roman ranks.
+Untranslated saint names retain their published source name; locale-map presence does not
+claim a reviewed translation. Source evidence and disputed identities are recorded in
+`tools/syriac-observance-identities-first.json` and `tools/syriac-observance-identities-second.json`.
+`test-syriac-observances.py` checks the reported examples, both editions, deduplication,
+safe source failures and platform parity.
+
+The official UGCC and Gregorian
 Byzantine readings cover 2026; the 1962 table contains all 365 source days and 770 appointed citations. Modern Roman readings
 currently span 31 July–5 December 2026. Missing entries are not synthesized.
 

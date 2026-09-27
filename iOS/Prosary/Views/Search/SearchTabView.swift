@@ -114,6 +114,13 @@ struct SearchTabView: View {
           .prosarySpatialHoverEffect(in: RoundedRectangle(cornerRadius: 12))
           .tag(listing.id)
           .accessibilityIdentifier("search.local.\(listing.id)")
+          .swipeActions(edge: .trailing, allowsFullSwipe: false) {
+            if unusedDownloads.contains(listing.id) {
+              Button(role: .destructive) { removingDownload = listing.id } label: {
+                Label(String(localized: "removal.removeDownloadAction", defaultValue: "Remove Download…", bundle: UILanguage.bundle, locale: UILanguage.locale), systemImage: "trash")
+              }
+            }
+          }
           .contextMenu {
             if PrayerPackStore.installedBundleIds().contains(listing.id) {
               Button(role: .destructive) { removingDownload = listing.id } label: {
@@ -149,7 +156,7 @@ struct SearchTabView: View {
                   install(bundle)
                 }
                 .buttonStyle(.borderedProminent)
-                .tint(.brandPrimary)
+                .tint(.appAccent)
               }
             }
           }

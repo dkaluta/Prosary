@@ -34,7 +34,7 @@ typedef struct {
 } Ui;
 
 enum { VIEW_PRAYER, VIEW_SETTINGS, VIEW_HELP };
-enum { SET_INTERFACE, SET_LANGUAGE, SET_GROUP, SET_VARIANT, SET_DAY, SET_KEYBOARD_ARROWS, SET_KEYBOARD_SPACE, SET_COUNT };
+enum { SET_INTERFACE, SET_LANGUAGE, SET_GROUP, SET_VARIANT, SET_DAY, SET_SKIP_FIFTH, SET_KEYBOARD_ARROWS, SET_KEYBOARD_SPACE, SET_COUNT };
 static volatile sig_atomic_t ui_stopped;
 
 static void stop_ui(int sig) { (void)sig; ui_stopped = 1; }
@@ -273,6 +273,7 @@ static int rebuild(Ui *ui, const char *id, int resume)
     selection.group = ui->state->group;
     selection.variant = ui->state->variant;
     selection.day = ui->state->day;
+    selection.skip_fifth_decade = ui->state->skip_fifth_decade;
     selection.year = ui->state->year;
     selection.month = ui->state->month;
     selection.day_of_month = ui->state->day_of_month;
@@ -402,7 +403,10 @@ static int settings_list(Ui *ui, int *items)
     int count = 0;
     items[count++] = SET_INTERFACE;
     items[count++] = SET_LANGUAGE;
-    if (!strcmp(ui->state->devotion_id, "rosary")) items[count++] = SET_GROUP;
+    if (!strcmp(ui->state->devotion_id, "rosary")) {
+        items[count++] = SET_GROUP;
+        items[count++] = SET_SKIP_FIFTH;
+    }
     if (engine_variant_count(ui->engine, ui->state->devotion_id) > 1) items[count++] = SET_VARIANT;
     if (engine_day_count(ui->engine, ui->state->devotion_id) > 1) items[count++] = SET_DAY;
     items[count++] = SET_KEYBOARD_ARROWS;
@@ -432,6 +436,7 @@ static void draw_settings(Ui *ui, int x, int width, int top, int height)
         case SET_GROUP: label = tr(ui, U_MYSTERIES); value = tr(ui, (enum UiText)(U_JOYFUL + (ui->state->group < 0 ? 0 : ui->state->group % 4))); break;
         case SET_VARIANT: label = tr(ui, U_FORM); value = engine_variant_name(ui->engine, ui->state->devotion_id, (size_t)(ui->state->variant < 0 ? 0 : ui->state->variant), ui->state->ui_language); break;
         case SET_DAY: label = tr(ui, U_DAY); value = engine_day_name(ui->engine, ui->state->devotion_id, (size_t)(ui->state->day < 0 ? 0 : ui->state->day), ui->state->ui_language); break;
+        case SET_SKIP_FIFTH: label = tr(ui, U_SKIP_FIFTH); value = tr(ui, ui->state->skip_fifth_decade ? U_ON : U_OFF); break;
         case SET_KEYBOARD_ARROWS: label = tr(ui, U_KEYBOARD_ARROWS); value = tr(ui, ui->state->keyboard_arrow_navigation_enabled ? U_ON : U_OFF); break;
         case SET_KEYBOARD_SPACE: label = tr(ui, U_KEYBOARD_SPACE); value = tr(ui, ui->state->keyboard_space_advance_enabled ? U_ON : U_OFF); break;
         }
@@ -471,6 +476,8 @@ static void change_setting(Ui *ui, int direction)
         ui->state->variant = -1;
     } else if (item == SET_GROUP) {
         ui->state->group = (ui->state->group + direction + 4) % 4;
+    } else if (item == SET_SKIP_FIFTH) {
+        ui->state->skip_fifth_decade = !ui->state->skip_fifth_decade;
     } else if (item == SET_VARIANT) {
         int total = (int)engine_variant_count(ui->engine, ui->state->devotion_id);
         ui->state->variant = (ui->state->variant + direction + total) % total;

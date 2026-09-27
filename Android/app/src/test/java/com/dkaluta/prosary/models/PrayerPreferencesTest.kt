@@ -7,6 +7,15 @@ import org.junit.Assert.*
 import org.junit.Test
 
 class PrayerPreferencesTest {
+    @Test fun shorteningARosaryInvalidatesItsSavedPositionButDoesNotAlterSingleMysteryIdentity() {
+        val complete = RosaryOptions()
+        assertFalse(complete.skipFifthDecade)
+        assertNotEquals(PrayerRunSignatures.rosary(complete),
+            PrayerRunSignatures.rosary(complete.copy(skipFifthDecade = true)))
+        val single = complete.copy(mysterySelectionMode = MysterySelectionMode.SingleMystery, specificMysteryOrder = 5)
+        assertEquals(PrayerRunSignatures.rosary(single), PrayerRunSignatures.rosary(single.copy(skipFifthDecade = true)))
+    }
+
     @Test fun oneHebrewLanguageRetainsTraditionAndExistingCodes() {
         assertEquals(listOf("he"), LanguageCatalog.publicOptions.filter { it.code.startsWith("he") }.map { it.code })
         assertEquals("he", LanguageCatalog.pickerLanguageCode("he-x-gamliel"))

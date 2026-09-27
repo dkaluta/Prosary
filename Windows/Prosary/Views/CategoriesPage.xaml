@@ -17,7 +17,7 @@
                 <ItemsControl.ItemTemplate>
                     <DataTemplate x:DataType="vm:CategorySection">
                         <StackPanel Spacing="2" Margin="0,0,0,14">
-                            <TextBlock Text="{x:Bind Title}" Foreground="{StaticResource BrandPrimaryBrush}"
+                            <TextBlock Text="{x:Bind Title}" Foreground="{ThemeResource BrandPrimaryBrush}"
                                        FontWeight="SemiBold" Margin="4,0,0,4" />
                             <ItemsControl ItemsSource="{x:Bind Listings}">
                                 <ItemsControl.ItemTemplate>
@@ -27,7 +27,7 @@
                                                 Command="{Binding ElementName=Root, Path=ViewModel.OpenCommand}"
                                                 CommandParameter="{Binding}">
                                             <StackPanel Orientation="Horizontal" Spacing="12">
-                                                <FontIcon Glyph="{x:Bind IconGlyph}" Foreground="{StaticResource BrandPrimaryBrush}" />
+                                                <FontIcon Glyph="{x:Bind IconGlyph}" Foreground="{ThemeResource BrandPrimaryBrush}" />
                                                 <StackPanel Spacing="2">
                                                     <TextBlock Text="{x:Bind Title}" FontSize="15" TextWrapping="Wrap" />
                                                     <TextBlock Text="{x:Bind InterfaceSubtitle}" Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap"

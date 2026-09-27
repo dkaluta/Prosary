@@ -16,6 +16,39 @@ public class RosaryEngineTests : IClassFixture<PrayerPackLoaderFixture>
     {
     }
 
+    [Theory]
+    [InlineData(MysterySelectionMode.Specific, 4)]
+    [InlineData(MysterySelectionMode.FifteenMystery, 12)]
+    [InlineData(MysterySelectionMode.TwentyMystery, 16)]
+    public void SkippingTheFifthDecadeKeepsClosingPrayersAndDenseProgress(MysterySelectionMode mode, int count)
+    {
+        var options = new RosaryOptions { MysterySelectionMode = mode, SkipFifthDecade = true,
+            IncludeStMichaelPrayer = true, IncludeClosingIntentions = true, IncludeFinalSignOfCross = true };
+        var full = _engine.BuildSteps(SpecificRosary(options with { SkipFifthDecade = false }));
+        var shortened = _engine.BuildSteps(SpecificRosary(options));
+        Assert.Equal(Enumerable.Range(0, count), shortened.Where(step => step.DecadeIndex is not null)
+            .Select(step => step.DecadeIndex!.Value).Distinct());
+        Assert.DoesNotContain(shortened, step => step.Mystery?.Order == 5);
+        Assert.Equal(full.Where(step => step.DecadeIndex is null).Select(step => step.Body),
+            shortened.Where(step => step.DecadeIndex is null).Select(step => step.Body));
+        Assert.NotEqual(Prosary.Persistence.PrayerRunSignatures.Rosary(options with { SkipFifthDecade = false }),
+            Prosary.Persistence.PrayerRunSignatures.Rosary(options));
+        Assert.Equal("true", PrayerEngine.RosaryOptionValues(options)["skipFifthDecade"]);
+    }
+
+    [Fact]
+    public void ExplicitSingleFifthMysteryIsPreservedEvenWithTheSkipPreference()
+    {
+        var options = new RosaryOptions { MysterySelectionMode = MysterySelectionMode.SingleMystery,
+            SpecificMysteryOrder = 5, SkipFifthDecade = true };
+        var steps = _engine.BuildSteps(SpecificRosary(options));
+        Assert.Single(steps.Where(step => step.Mystery is not null).Select(step => step.Mystery).Distinct());
+        Assert.Contains(steps, step => step.Mystery?.Order == 5);
+        Assert.Equal(Prosary.Persistence.PrayerRunSignatures.Rosary(options with { SkipFifthDecade = false }),
+            Prosary.Persistence.PrayerRunSignatures.Rosary(options));
+        Assert.False(new RosaryOptions().SkipFifthDecade);
+    }
+
     private static Prayer SpecificRosary(RosaryOptions? options = null, string languageCode = "en") => new()
     {
         Kind = PrayerKind.Rosary,

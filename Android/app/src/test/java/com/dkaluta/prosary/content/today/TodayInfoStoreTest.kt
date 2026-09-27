@@ -222,10 +222,10 @@ class TodayInfoStoreTest {
         val vetus = TodayInfoStore.feast(date("2026-09-05"))
         assertEquals("St. Lawrence Justinian", vetus?.title)
         assertEquals("3rd Class", vetus?.rank)
-        for (calendarId in listOf("ugcc", "syriac")) {
-            AppSettings.feastCalendarId = calendarId
-            assertNull(calendarId, TodayInfoStore.feast(date("2026-09-05")))
-        }
+        AppSettings.feastCalendarId = "ugcc"
+        assertNull(TodayInfoStore.feast(date("2026-09-05")))
+        AppSettings.feastCalendarId = "syriac"
+        assertEquals("St. Charbel", TodayInfoStore.feast(date("2026-09-05"))?.title)
     }
 
     @Test
@@ -236,7 +236,7 @@ class TodayInfoStoreTest {
             listOf("roman", "2026-07-15", "Saint Bonaventure, Bishop and Doctor of the Church", "Memorial", "בונבנטורה הקדוש, הגמון ודוקטור הכנסייה"),
             listOf("roman1962", "2026-07-14", "St. Bonaventure", "3rd Class", "בונבנטורה הקדוש, הגמון ודוקטור הכנסייה"),
             listOf("roman", "2026-07-03", "Saint Thomas the Apostle", "Feast", "תאמא השליח"),
-            listOf("syriac", "2026-10-06", "Feast of Saint Thomas the Apostle", "Feast", "תאמא השליח"),
+            listOf("syriac", "2026-10-06", "St. Thomas", "Feast", "תאמא השליח"),
             listOf("roman1962", "2026-12-21", "St. Thomas", "2nd Class", "תאמא השליח"),
             listOf("roman", "2026-01-28", "Saint Thomas Aquinas, Priest and Doctor of the Church", "Memorial", "תומאס אקווינס, כהן ודוקטור הכנסייה"),
         )
@@ -281,18 +281,53 @@ class TodayInfoStoreTest {
 
     /** The Syriac Catholic table comes from Evangelizo.org's Daily Gospel (credited on the
      * About screen): the Antiochene year names its Sundays from the season's anchor feasts,
-     * and Evangelizo's plain-date ferial titles are omitted like ferial days everywhere else. */
+     * and plain-date ferial titles are omitted while that day's saints remain visible. */
     @Test
     fun syriacCalendarNamesTheAntiocheneSeasons() {
         AppSettings.feastCalendarId = "syriac"
         val sunday = TodayInfoStore.feast(date("2026-10-25"))
-        assertEquals("Sixth Sunday after the Feast of the Cross", sunday?.title)
+        assertEquals(
+            listOf("Sixth Sunday after the Feast of the Cross", "St. Phyton"),
+            sunday?.title?.split("; "),
+        )
         assertEquals("Sunday", sunday?.rank)
         assertEquals(
             "Assumption of the Mother of God",
             TodayInfoStore.feast(date("2026-08-15"))?.title,
         )
-        assertNull(TodayInfoStore.feast(date("2026-07-27")))
+        assertEquals("St. Pentalmon", TodayInfoStore.feast(date("2026-07-27"))?.title)
+        assertNull(TodayInfoStore.feast(date("2026-01-09")))
+    }
+
+    @Test
+    fun syriacCalendarKeepsEnglishNamesAndAddsArabicOnlyObservances() {
+        AppSettings.feastCalendarId = "syriac"
+        val expected = listOf(
+            Triple(
+                "2026-09-30",
+                listOf("St. Gregory the Illuminator", "St. Jerome of Stridon"),
+                listOf("غريغوريوس", "هيرونيموس"),
+            ),
+            Triple(
+                "2026-10-01",
+                listOf(
+                    "St. Ananias",
+                    "St. Abi",
+                    "Saint Thérèse of the Child Jesus, Virgin and Doctor of the Church",
+                ),
+                listOf("حننيا", "أباي", "تريزا"),
+            ),
+        )
+        for ((day, names, arabicNames) in expected) {
+            val feast = requireNotNull(TodayInfoStore.feast(date(day)))
+            assertEquals(day, names, feast.title.split("; "))
+            assertEquals(day, "Feast", feast.rank)
+            for (language in TodayTranslationLanguage.supportedCodes) {
+                assertEquals("$day/$language", names.size, feast.localizedTitle(language).split("; ").size)
+            }
+            val arabic = feast.localizedTitle("ar")
+            arabicNames.forEach { name -> assertTrue("$day: $arabic", arabic.contains(name)) }
+        }
     }
 
     /** October 25, 2026 wears four different faces: the LPJ's patronal solemnity, a plain

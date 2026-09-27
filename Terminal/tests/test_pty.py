@@ -182,12 +182,13 @@ def main():
             "year 2026\nmonth 4\ndayOfMonth 5\n")
         today_before = datetime.date.today()
         with Terminal(binary, "--state", str(state)) as term:
-            assert b"Step 1 / 1" in term.initial
+            assert b"Step 1 / 5" in term.initial
             assert date_of(saved(state)) == datetime.date(2026, 4, 5)
-            term.key(RIGHT)
+            for _ in range(5):
+                term.key(RIGHT)
             assert saved(state)["completed"] == "1"
             term.key(LEFT)
-            assert saved(state)["completed"] == "0" and saved(state)["step"] == "0"
+            assert saved(state)["completed"] == "0" and saved(state)["step"] == "4"
             term.key(RIGHT)
             term.key(b"\x1b")
             term.key(b"\r")

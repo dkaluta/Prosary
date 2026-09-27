@@ -1,37 +1,59 @@
 {
-  "fill" : {
-    "automatic-gradient" : "display-p3:0.76471,0.89020,0.41961,1.00000"
-  },
-  "groups" : [
+  "fill-specializations": [
     {
-      "layers" : [
+      "value": {
+        "solid": "srgb:0.090196,0.407843,0.674510,1.000000"
+      }
+    },
+    {
+      "appearance": "dark",
+      "value": {
+        "solid": "srgb:0.090196,0.407843,0.674510,1.000000"
+      }
+    }
+  ],
+  "groups": [
+    {
+      "layers": [
         {
-          "fill" : "automatic",
-          "image-name" : "Path 2.png",
-          "name" : "Path 2",
-          "position" : {
-            "scale" : 1.1,
-            "translation-in-points" : [
+          "fill-specializations": [
+            {
+              "value": {
+                "solid": "srgb:1.000000,1.000000,1.000000,1.000000"
+              }
+            },
+            {
+              "appearance": "dark",
+              "value": {
+                "solid": "srgb:1.000000,1.000000,1.000000,1.000000"
+              }
+            }
+          ],
+          "image-name": "Path 2.png",
+          "name": "Path 2",
+          "position": {
+            "scale": 1.1,
+            "translation-in-points": [
               0,
               0
             ]
           }
         }
       ],
-      "shadow" : {
-        "kind" : "neutral",
-        "opacity" : 0.5
+      "shadow": {
+        "kind": "neutral",
+        "opacity": 0.5
       },
-      "translucency" : {
-        "enabled" : true,
-        "value" : 0.5
+      "translucency": {
+        "enabled": true,
+        "value": 0.5
       }
     }
   ],
-  "supported-platforms" : {
-    "circles" : [
+  "supported-platforms": {
+    "circles": [
       "watchOS"
     ],
-    "squares" : "shared"
+    "squares": "shared"
   }
 }

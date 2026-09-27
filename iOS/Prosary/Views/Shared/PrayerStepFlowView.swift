@@ -477,7 +477,7 @@ struct PrayerStepFlowView: View {
       Text(heading)
         .font(PrayerTypography.aramaicHeadingFont(text: heading, languageCode: languageCode,
                 typefaces: typefaces, pointSize: 22) ?? .title2.weight(.semibold))
-        .foregroundStyle(Color.brandHeadline)
+        .foregroundStyle(Color.appAccent)
         .multilineTextAlignment(.center)
         .accessibilityIdentifier("prayerStepTitle")
 

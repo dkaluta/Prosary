@@ -52,6 +52,9 @@
     <Content Include="Assets\Images\cross_placeholder.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\Icons\*.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <!-- .prosaryprayer content bundles (see Shared/ARCHITECTURE.markdown's "Content bundles" section) —

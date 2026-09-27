@@ -26,6 +26,7 @@ public partial class App : Application
     {
         UiLanguageCatalog.Initialize();
         InitializeComponent();
+        AppAppearance.Initialize();
     }
 
     protected override void OnLaunched(LaunchActivatedEventArgs args)

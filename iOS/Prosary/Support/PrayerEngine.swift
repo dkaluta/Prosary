@@ -87,6 +87,7 @@ struct PrayerEngine {
       "openingPrayers": rosary.includeOpeningPrayers ? "true" : "false",
       "openingFatimaPrayer": rosary.includeOpeningFatimaPrayer ? "true" : "false",
       "presenterMode": rosary.presenterMode ? "true" : "false",
+      "skipFifthDecade": rosary.skipFifthDecade ? "true" : "false",
       "fatimaPrayer": rosary.includeFatimaPrayer ? "true" : "false",
       "eternalRest": rosary.eternalRestForDeceased.rawValue,
       "antiphon": rosary.marianAntiphon.rawValue,
@@ -459,7 +460,10 @@ struct PrayerEngine {
       let mysteries = MysteryCatalog.forGroup(group)
       let indices = rosary.mysterySelectionMode == .singleMystery
         ? [rosary.specificMysteryOrder - 1]
-        : Array(mysteries.indices)
+        : mysteries.indices.filter { index in
+          !(bundleId == "rosary" && (rosary.skipFifthDecade || optionValues["skipFifthDecade"] == "true")
+            && mysteries[index].order == 5)
+        }
 
       for d in indices {
         let mystery = mysteries[d]

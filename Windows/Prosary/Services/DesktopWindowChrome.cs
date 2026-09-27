@@ -30,6 +30,7 @@ internal static class DesktopWindowChrome
             ? FlowDirection.RightToLeft : FlowDirection.LeftToRight;
         var hwnd = WindowNative.GetWindowHandle(window);
         var appWindow = AppWindow.GetFromWindowId(Win32Interop.GetWindowIdFromWindow(hwnd));
+        AppAppearance.Attach(window, root, appWindow);
         if (appWindow.Presenter is OverlappedPresenter presenter)
         {
             var scale = GetDpiForWindow(hwnd) / 96.0;

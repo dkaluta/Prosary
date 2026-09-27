@@ -39,13 +39,22 @@ object BasicPrayerCatalog {
         BasicPrayer("almaRedemptorisMater", "rosary", "almaRedemptorisMaterTitle", "almaRedemptorisMater", "madonna_and_child"),
         BasicPrayer("aveReginaCaelorum", "rosary", "aveReginaCaelorumTitle", "aveReginaCaelorum", "madonna_and_child"),
         BasicPrayer("reginaCaeli", "rosary", "reginaCaeliTitle", "reginaCaeli", "madonna_and_child"),
+        BasicPrayer("stMichael", "rosary", "sanctusMichaelTitle", "sanctusMichael", "st_michael"),
     )
 
     fun prayer(id: String): BasicPrayer? = all.firstOrNull { it.id == id }
 
+    /** An explicit Hebrew request uses this prayer's sole authored Hebrew source before any
+     * non-Hebrew fallback. Global ordering and other requested languages stay unchanged. */
+    fun effectiveLanguage(prayer: BasicPrayer, languageCode: String?): String {
+        val resolved = LanguageCatalog.resolve(languageCode).code
+        if (LanguageCatalog.pickerLanguageCode(resolved) != "he") return resolved
+        return PrayerPackStore.authoredHebrewTraditions(prayer.bundleId, prayer.bodyKey).singleOrNull() ?: resolved
+    }
+
     fun title(prayer: BasicPrayer, languageCode: String): String =
         HebrewDisplayText.unpoint(
-            PrayerPackStore.resolveBodyText(prayer.bundleId, languageCode, prayer.titleKey),
+            PrayerPackStore.resolveBodyText(prayer.bundleId, effectiveLanguage(prayer, languageCode), prayer.titleKey),
         )
 
     /** A basic prayer's heading identifies the selected language/tradition. The card option
@@ -66,7 +75,7 @@ object BasicPrayerCatalog {
      * step the flows render, so typography, RTL, the ✠ mark and the transliteration toggle all
      * come along without any new machinery. */
     fun step(prayer: BasicPrayer, languageCode: String? = null): RosaryStep {
-        val language = LanguageCatalog.resolve(languageCode).code
+        val language = effectiveLanguage(prayer, languageCode)
         return RosaryStep(
             title = title(prayer, language),
             body = PrayerPackStore.resolveBodyText(prayer.bundleId, language, prayer.bodyKey),

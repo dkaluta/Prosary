@@ -17,6 +17,8 @@ import androidx.compose.runtime.setValue
  */
 object AppSettings {
     private const val PREFS_NAME = "prosary_settings"
+    private const val KEY_APP_COLOR = "appColor"
+    private const val KEY_SYSTEM_COLORS = "useSystemColors"
     private const val KEY_DEFAULT_LANGUAGE = "defaultLanguageCode"
     private const val KEY_BASIC_PRAYERS_LANGUAGE = "basicPrayersLanguageCode"
     private const val KEY_ARAMAIC_SIGN_OF_CROSS_FORM = "aramaicSignOfCrossForm"
@@ -27,6 +29,8 @@ object AppSettings {
     private const val KEY_FEAST_CALENDAR = "feastCalendarId"
     private const val KEY_SHOW_TODAY_FEAST = "showTodayFeast"
     private const val KEY_SHOW_TODAY_INTENTION = "showTodayIntention"
+    private const val KEY_SHOW_TODAY_READINGS = "showTodayReadings"
+    private const val KEY_EXPAND_READINGS = "expandReadingsByDefault"
     private const val KEY_SHOW_TODAY_TORAH = "showTodayTorahPortion"
     private const val KEY_PRAYER_NAME_LANGUAGE = "showPrayerNameInPrayerLanguage"
     private const val KEY_EASTERN_PASCHA_STYLE = "easternPaschaStyle"
@@ -41,8 +45,16 @@ object AppSettings {
     private const val KEY_CYRILLIC_PRAYER_TYPEFACE = "cyrillicPrayerTypeface"
     private const val KEY_FAVORITE_BASIC_PRAYERS_FIRST = "favoriteBasicPrayersFirst"
     private const val KEY_LANGUAGE_FALLBACK_ORDER = "languageFallbackOrder"
-    private const val KEY_JAFFA_HAIL_MARY_WORDING = "useJaffaHailMaryWording"
 
+    private var appColorState by mutableStateOf(AppColor.Blue.id)
+    val appColor: String get() = appColorState
+    private var useSystemColorsState by mutableStateOf(true)
+    var useSystemColors: Boolean
+        get() = useSystemColorsState
+        set(value) {
+            useSystemColorsState = value
+            prefs?.edit()?.putBoolean(KEY_SYSTEM_COLORS, value)?.apply()
+        }
     private var interfaceLanguageState by mutableStateOf("")
     val interfaceLanguageCode: String get() = interfaceLanguageState
     private var effectiveInterfaceLanguageState by mutableStateOf(InterfaceLanguage.effective(listOf(java.util.Locale.getDefault().toLanguageTag())))
@@ -56,15 +68,6 @@ object AppSettings {
 
     private var basicPrayersLanguageState by mutableStateOf(LanguageCatalog.defaultSentinel)
     val basicPrayersLanguageCode: String get() = basicPrayersLanguageState
-
-    private var jaffaHailMaryWordingState by mutableStateOf(false)
-    /** Local Vicariate wording preference, also available when Hebrew is a fallback. */
-    var useJaffaHailMaryWording: Boolean
-        get() = jaffaHailMaryWordingState
-        set(value) {
-            jaffaHailMaryWordingState = value
-            prefs?.edit()?.putBoolean(KEY_JAFFA_HAIL_MARY_WORDING, value)?.apply()
-        }
 
     /** Legacy override retained for storage compatibility; Today now ignores it. */
     private var todayLanguageState by mutableStateOf("")
@@ -144,6 +147,22 @@ object AppSettings {
             prefs?.edit()?.putBoolean(KEY_SHOW_TODAY_INTENTION, value)?.apply()
         }
 
+    private var showTodayReadingsState by mutableStateOf(true)
+    var showTodayReadings: Boolean
+        get() = showTodayReadingsState
+        set(value) {
+            showTodayReadingsState = value
+            prefs?.edit()?.putBoolean(KEY_SHOW_TODAY_READINGS, value)?.apply()
+        }
+
+    private var expandReadingsState by mutableStateOf(false)
+    var expandReadingsByDefault: Boolean
+        get() = expandReadingsState
+        set(value) {
+            expandReadingsState = value
+            prefs?.edit()?.putBoolean(KEY_EXPAND_READINGS, value)?.apply()
+        }
+
     private var showTodayTorahState by mutableStateOf(false)
     var showTodayTorahPortion: Boolean
         get() = showTodayTorahState
@@ -200,6 +219,8 @@ object AppSettings {
     fun init(context: Context) {
         val resolved = context.applicationContext.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
         prefs = resolved
+        appColorState = AppColor.resolve(resolved.getString(KEY_APP_COLOR, null)).id
+        useSystemColorsState = resolved.getBoolean(KEY_SYSTEM_COLORS, true)
         defaultLanguageState = resolved.getString(KEY_DEFAULT_LANGUAGE, "").orEmpty()
         val selected = if (android.os.Build.VERSION.SDK_INT >= 33) {
             context.getSystemService(android.app.LocaleManager::class.java).applicationLocales[0]?.toLanguageTag().orEmpty()
@@ -210,7 +231,8 @@ object AppSettings {
         })
         basicPrayersLanguageState = resolved.getString(KEY_BASIC_PRAYERS_LANGUAGE, LanguageCatalog.defaultSentinel)
             ?: LanguageCatalog.defaultSentinel
-        jaffaHailMaryWordingState = resolved.getBoolean(KEY_JAFFA_HAIL_MARY_WORDING, false)
+        // Retired wording must never be restored by an older saved preference.
+        resolved.edit().remove("useJaffaHailMaryWording").apply()
         aramaicSignOfCrossForm = resolved
             .getString(KEY_ARAMAIC_SIGN_OF_CROSS_FORM, ARAMAIC_SIGN_OF_CROSS_FORM_A)
             .takeIf { it == ARAMAIC_SIGN_OF_CROSS_FORM_B }
@@ -224,6 +246,8 @@ object AppSettings {
         showTodayFeast = resolved.getBoolean(KEY_SHOW_TODAY_FEAST, true)
         showTodayIntention = resolved.getBoolean(KEY_SHOW_TODAY_INTENTION, true)
         showTodayTorahPortion = resolved.getBoolean(KEY_SHOW_TODAY_TORAH, false)
+        showTodayReadings = resolved.getBoolean(KEY_SHOW_TODAY_READINGS, true)
+        expandReadingsByDefault = resolved.getBoolean(KEY_EXPAND_READINGS, false)
         showPrayerNameInPrayerLanguage = resolved.getBoolean(KEY_PRAYER_NAME_LANGUAGE, false)
         easternPaschaStyle = resolved.getString(KEY_EASTERN_PASCHA_STYLE, "julian") ?: "julian"
         todayLanguageState = resolved.getString(KEY_TODAY_LANGUAGE, "").orEmpty()
@@ -245,6 +269,11 @@ object AppSettings {
         languageFallbackOrder = resolved.getString(KEY_LANGUAGE_FALLBACK_ORDER, "")
             .orEmpty().split('\n').filter { it.isNotEmpty() }
         com.dkaluta.prosary.widgets.WidgetUpdates.observe(context)
+    }
+
+    fun setAppColor(id: String) {
+        appColorState = AppColor.resolve(id).id
+        prefs?.edit()?.putString(KEY_APP_COLOR, appColorState)?.apply()
     }
 
     fun setInterfaceLanguageCode(code: String) {

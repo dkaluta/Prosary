@@ -69,6 +69,7 @@ struct MacPrayerLibraryView: View {
   @State private var removalRequest: MacPrayerRemovalRequest?
   @AppStorage("macLibraryDisplayStyle") private var displayStyle = DisplayStyle.icons.rawValue
   @ObservedObject private var prayerLanguage = PrayerLanguageMonitor.shared
+  @AppStorage(AppColor.defaultsKey) private var appColor = AppColor.blue.rawValue
   @Environment(\.openWindow) private var openWindow
 
   init(model: MacPrayerLibraryModel) {
@@ -253,7 +254,7 @@ struct MacPrayerLibraryView: View {
 
   var body: some View {
     libraryPresentation
-    .task(id: "\(UILanguage.current)|\(prayerLanguage.code)|\(prayerLanguage.showsPrayerNameInPrayerLanguage)|\(prayerLanguage.fallbackOrder.joined(separator: ","))") {
+    .task(id: "\(UILanguage.current)|\(prayerLanguage.code)|\(prayerLanguage.showsPrayerNameInPrayerLanguage)|\(prayerLanguage.fallbackOrder.joined(separator: ","))|\(appColor)") {
       await model.reload()
     }
     .onReceive(NotificationCenter.default.publisher(for: .prayerLibraryDidChange)) { _ in
@@ -656,6 +657,7 @@ struct MacPrayerCollection: NSViewRepresentable {
       guard let collection else { return }
       let signature = parent.items.map { "\($0.id)|\($0.title)|\($0.subtitle)|\($0.tagIDs.sorted().joined(separator: ","))" }
         + parent.tags.map { "\($0.id)|\($0.title)|\($0.colorID ?? "none")" }
+        + [AppColor.current.rawValue]
       updating = true
       if signature != self.signature {
         self.signature = signature
@@ -841,7 +843,7 @@ private final class PrayerCollectionItem: NSCollectionViewItem {
     tile.glyph.isHidden = item.iconGlyph == nil
     tile.icon.isHidden = item.iconGlyph != nil
     tile.icon.image = NSImage(systemSymbolName: item.systemImage, accessibilityDescription: nil)
-    tile.accentColor = NSColor(item.color)
+    tile.accentColor = NSColor(item.color == .appAccent ? AppColor.current.color : item.color)
     tile.setAccessibilityLabel(item.title)
     tile.setAccessibilityHelp(item.subtitle)
     tile.setAccessibilityIdentifier("macLibrary.item.\(item.id)")

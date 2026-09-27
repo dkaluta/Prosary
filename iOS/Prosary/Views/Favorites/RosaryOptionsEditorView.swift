@@ -67,6 +67,11 @@ struct RosaryOptionsSections: View {
             }
           }
         }
+        if rosary.mysterySelectionMode != .singleMystery {
+          Toggle(String(localized: "favoriteEditor.skipFifthDecade", defaultValue: "Skip the fifth decade", bundle: UILanguage.bundle, locale: UILanguage.locale),
+                 isOn: $rosary.skipFifthDecade)
+            .accessibilityIdentifier("skipFifthDecadeToggle")
+        }
       }
 
       Section("favoriteEditor.openingDecadePrayers") {

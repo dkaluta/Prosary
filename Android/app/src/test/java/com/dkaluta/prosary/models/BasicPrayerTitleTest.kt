@@ -70,9 +70,38 @@ class BasicPrayerTitleTest {
                 assertTrue("$id, $language body", step.body.isNotBlank())
                 assertNotEquals(prayer.bodyKey, step.body)
                 assertNotEquals(prayer.titleKey, step.title)
-                assertEquals(PrayerPackStore.resolveBodyText("rosary", language, id), step.body)
-                assertEquals(PrayerPackStore.transliteration("rosary", language, id), step.transliteratedBody)
+                assertEquals(PrayerPackStore.resolveBodyText("rosary", BasicPrayerCatalog.effectiveLanguage(prayer, language), id), step.body)
+                assertEquals(PrayerPackStore.transliteration("rosary", BasicPrayerCatalog.effectiveLanguage(prayer, language), id), step.transliteratedBody)
             }
         }
+    }
+
+    @Test fun stMichaelUsesTheExistingRosaryTextReadingAidAndArtwork() {
+        val prayer = requireNotNull(BasicPrayerCatalog.prayer("stMichael"))
+        assertFalse(PrayerPackStore.hasHebrewTraditionChoice(prayer.bundleId, prayer.bodyKey))
+        assertTrue(PrayerPackStore.hasHebrewTraditionChoice("rosary", "aveMaria"))
+        for (language in LanguageCatalog.all.map { it.code }) {
+            val step = BasicPrayerCatalog.step(prayer, language)
+            assertEquals("st_michael", step.imageOverrideKey)
+            assertTrue("$language body", step.body.isNotBlank())
+            assertNotEquals("sanctusMichael", step.body)
+            assertNotEquals("sanctusMichaelTitle", step.title)
+            assertEquals(PrayerPackStore.resolveBodyText("rosary", BasicPrayerCatalog.effectiveLanguage(prayer, language), "sanctusMichael"), step.body)
+            assertEquals(PrayerPackStore.transliteration("rosary", BasicPrayerCatalog.effectiveLanguage(prayer, language), "sanctusMichael"), step.transliteratedBody)
+        }
+    }
+
+    @Test fun anExplicitHebrewRequestUsesTheOnlyAuthoredHebrewTraditionBeforeEnglishFallback() {
+        val original = AppSettings.languageFallbackOrder
+        try {
+            AppSettings.setLanguageFallbackOrder(listOf("he-x-gamliel", "en", "he", "la"))
+            val prayer = requireNotNull(BasicPrayerCatalog.prayer("stMichael"))
+            assertEquals("he", BasicPrayerCatalog.effectiveLanguage(prayer, "he-x-gamliel"))
+            assertEquals(BasicPrayerCatalog.step(prayer, "he").body,
+                BasicPrayerCatalog.step(prayer, "he-x-gamliel").body)
+            assertEquals("en", BasicPrayerCatalog.effectiveLanguage(prayer, "en"))
+            assertEquals("he-x-gamliel", BasicPrayerCatalog.effectiveLanguage(
+                requireNotNull(BasicPrayerCatalog.prayer("hailMary")), "he-x-gamliel"))
+        } finally { AppSettings.setLanguageFallbackOrder(original) }
     }
 }

@@ -20,8 +20,8 @@ class AngelusFlowInstrumentedTest {
         composeTestRule.onNodeWithTag("angelusCard").performClick()
         composeTestRule.onNodeWithText("The Annunciation").assertIsDisplayed()
 
-        // 7 steps total: tapping Next 6 times reaches the last one, where the button becomes Finish.
-        repeat(6) {
+        // 11 default steps: the three Glory Bes and Eternal Rest follow the collect.
+        repeat(10) {
             composeTestRule.onNodeWithText("Next").performClick()
         }
 

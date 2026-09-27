@@ -161,6 +161,7 @@ private struct AppInterfaceLanguageModifier: ViewModifier {
   func body(content: Content) -> some View {
     let code = language.code
     content
+      .appAppearance()
       .environment(\.locale, Locale(identifier: UILanguage.resourceLanguage(code)))
       .environment(\.layoutDirection, UILanguage.isRightToLeft(code) ? .rightToLeft : .leftToRight)
   }

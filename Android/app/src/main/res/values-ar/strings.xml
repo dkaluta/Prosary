@@ -66,13 +66,23 @@
 
     <!-- Settings -->
     <string name="settings_default_prayer_language">"لغة الصلاة الافتراضية"</string>
+    <string name="settings_app_color">"لون التطبيق"</string>
+    <string name="settings_app_color_hint">"اختر لون رمز التطبيق ولون التمييز."</string>
+    <string name="settings_app_color_error">"تعذّر تغيير رمز التطبيق. يُرجى المحاولة مجددًا."</string>
+    <string name="app_color_blue">"أزرق"</string>
+    <string name="app_color_green">"أخضر"</string>
+    <string name="app_color_red">"أحمر"</string>
+    <string name="app_color_purple">"أرجواني"</string>
+    <string name="app_color_rose">"وردي"</string>
+    <string name="app_color_white">"أبيض"</string>
+    <string name="app_color_gold">"ذهبي"</string>
+    <string name="settings_use_system_colors">"استخدام ألوان النظام"</string>
+    <string name="settings_use_system_colors_hint">"استخدام ألوان خلفية الشاشة بدلًا من لون التمييز المحدد."</string>
     <string name="settings_app_language">"لغة التطبيق"</string>
     <string name="settings_prayer_language">"لغة الصلاة"</string>
     <string name="settings_follow_app_language">"لغة التطبيق (%1$s)"</string>
     <string name="settings_language_system_default">"لغة النظام الافتراضية"</string>
     <string name="settings_app_language_hint">"تُستخدم للواجهة وللاختيار التلقائي لطبعة الكتاب المقدس. وتتبعها الصلوات ما لم تُحدَّد لغة للصلاة."</string>
-    <string name="settings_jaffa_wording">"صيغة بديلة لصلاة السلام عليك يا مريم"</string>
-    <string name="settings_jaffa_wording_hint">"استخدم בְּרוּכַת הַחֶסֶד بدلاً من מְלֵאַת הַחֶסֶד في صلوات النيابة."</string>
     <string name="settings_language_fallback_order">"ترتيب اللغات البديلة…"…</string>
     <string name="settings_language_fallback_order_title">"ترتيب اللغات البديلة"</string>
     <string name="settings_language_fallback_order_footer">عند غياب النص باللغة المختارة، يتبع Prosary هذا الترتيب. تستخدم النصوص العبرية المشتركة بين التقليدين، بما فيها صلوات المستودع، الموضع الأعلى بين الموضعين العبريين.</string>
@@ -88,6 +98,9 @@
     <string name="auto_advance_every">"كل %1$d ثانية"</string>
     <string name="settings_reset_home_order">"أعد ضبط ترتيب الصفحة الرئيسية"</string>
     <string name="settings_today_header">"اليوم"</string>
+    <string name="settings_show_today_readings">"إظهار القراءات في تبويب الصلاة"</string>
+    <string name="settings_expand_readings">"توسيع القراءات افتراضيًا"</string>
+    <string name="readings_chapter">"الفصل %1$s"</string>
     <string name="settings_show_today_feast">"أظهر عيد اليوم"</string>
     <string name="settings_show_today_intention">"أظهر نية البابا"</string>
     <string name="settings_feast_calendar">"التقويم الطقسي"</string>
@@ -163,6 +176,7 @@
 
     <!-- Rosary options editor -->
     <string name="ro_which_mysteries">"أي أسرار؟"</string>
+    <string name="ro_skip_fifth_decade">"تخطي العشرة الخامسة"</string>
     <string name="ro_mysteries">"الأسرار"</string>
     <string name="ro_specific_set">"مجموعة محددة"</string>
     <string name="ro_which_mystery">"أي سرّ"</string>

@@ -43,6 +43,7 @@ public sealed partial class DesktopGalleryPage : Page
         _isActive = true;
         ViewModel.Navigation = Router.For(this);
         ViewModel.ShowError = ShowErrorAsync;
+        ViewModel.ConfirmRemoveDownload = ConfirmRemoveDownloadAsync;
         ViewModel.PropertyChanged += OnViewModelChanged;
         ViewModel.Gallery.CollectionChanged += OnGalleryChanged;
         DesktopLibraryChanges.Changed += OnLibraryChanged;
@@ -59,6 +60,7 @@ public sealed partial class DesktopGalleryPage : Page
         ViewModel.PropertyChanged -= OnViewModelChanged;
         ViewModel.Gallery.CollectionChanged -= OnGalleryChanged;
         ViewModel.ShowError = null;
+        ViewModel.ConfirmRemoveDownload = null;
     }
 
     private void OnLibraryChanged() => DispatcherQueue.TryEnqueue(async () =>
@@ -92,6 +94,8 @@ public sealed partial class DesktopGalleryPage : Page
     private void UpdateActions()
     {
         AddButton.IsEnabled = ViewModel.SelectedTemplate is not null && !ViewModel.IsBusy && !_dialogOpen;
+        RemoveDownloadButton.Visibility = ViewModel.SelectedTemplate?.IsDownloaded == true ? Visibility.Visible : Visibility.Collapsed;
+        RemoveDownloadButton.IsEnabled = ViewModel.RemoveDownloadCommand.CanExecute(ViewModel.SelectedTemplate) && !_dialogOpen;
         LibraryButton.IsEnabled = GalleryGrid.IsEnabled = !ViewModel.IsBusy && !_dialogOpen;
         NoMatchesPanel.Visibility = _didLoad && ViewModel.Gallery.Count == 0 ? Visibility.Visible : Visibility.Collapsed;
     }
@@ -148,6 +152,9 @@ public sealed partial class DesktopGalleryPage : Page
         presenter.Setters.Add(new Setter(FrameworkElement.FlowDirectionProperty, FlowDirection));
         menu.MenuFlyoutPresenterStyle = presenter;
         menu.Items.Add(new MenuFlyoutItem { Text = ViewModel.AddLabel, Command = ViewModel.AddCommand, CommandParameter = item });
+        if (item.IsDownloaded)
+            menu.Items.Add(new MenuFlyoutItem { Text = ViewModel.RemoveDownloadLabel,
+                Command = ViewModel.RemoveDownloadCommand, CommandParameter = item });
         if (e.TryGetPosition(element, out var point)) menu.ShowAt(element, point);
         else menu.ShowAt(element);
         e.Handled = true;
@@ -167,6 +174,15 @@ public sealed partial class DesktopGalleryPage : Page
                 DefaultButton = ContentDialogButton.Close
             }.ShowAsync();
         }
+        finally { _dialogOpen = false; UpdateActions(); }
+    }
+
+    private async Task<bool> ConfirmRemoveDownloadAsync(DesktopGalleryItem item)
+    {
+        if (!_isActive || _dialogOpen) return false;
+        _dialogOpen = true;
+        UpdateActions();
+        try { return await PrayerRemovalDialogs.ConfirmDownloadAsync(XamlRoot, item.Title); }
         finally { _dialogOpen = false; UpdateActions(); }
     }
 

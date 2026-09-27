@@ -30,7 +30,6 @@ final class PrayerLanguageMonitor: ObservableObject {
   /// view's body is what registers the dependency — see the header for why nothing less works.
   @Published private(set) var code: String
   @Published private(set) var showsPrayerNameInPrayerLanguage: Bool
-  @Published private(set) var usesJaffaHailMaryWording: Bool
   /// Effective labels can change when fallback priority changes, even if the chosen language
   /// does not. Preserve the order rather than treating it as an unordered set of languages.
   @Published private(set) var fallbackOrder: [String]
@@ -38,7 +37,6 @@ final class PrayerLanguageMonitor: ObservableObject {
   private struct NameSettings: Equatable {
     let code: String
     let showsPrayerName: Bool
-    let usesJaffaWording: Bool
     let fallbackOrder: [String]
   }
 
@@ -51,13 +49,11 @@ final class PrayerLanguageMonitor: ObservableObject {
     let readSettings = {
       NameSettings(code: resolveCode(),
         showsPrayerName: defaults.bool(forKey: PrayerNamePresentation.defaultsKey),
-        usesJaffaWording: defaults.bool(forKey: JaffaHailMaryWording.defaultsKey),
         fallbackOrder: resolveFallbackOrder())
     }
     let initial = readSettings()
     code = initial.code
     showsPrayerNameInPrayerLanguage = initial.showsPrayerName
-    usesJaffaHailMaryWording = initial.usesJaffaWording
     fallbackOrder = initial.fallbackOrder
     cancellable = Publishers.Merge(
       notificationCenter.publisher(for: UserDefaults.didChangeNotification),
@@ -68,7 +64,6 @@ final class PrayerLanguageMonitor: ObservableObject {
       .sink { [weak self] resolved in
         self?.code = resolved.code
         self?.showsPrayerNameInPrayerLanguage = resolved.showsPrayerName
-        self?.usesJaffaHailMaryWording = resolved.usesJaffaWording
         self?.fallbackOrder = resolved.fallbackOrder
       }
   }

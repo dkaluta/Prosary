@@ -101,6 +101,9 @@ public partial class FavoriteEditorViewModel : ObservableObject
     private bool _includeFatimaPrayer = true;
 
     [ObservableProperty]
+    private bool _skipFifthDecade;
+
+    [ObservableProperty]
     private EternalRestPlacement _eternalRestForDeceased = EternalRestPlacement.None;
 
     [ObservableProperty]
@@ -248,6 +251,7 @@ public partial class FavoriteEditorViewModel : ObservableObject
         IncludeOpeningPrayers = prayer.Rosary.IncludeOpeningPrayers;
         IncludeOpeningFatimaPrayer = prayer.Rosary.IncludeOpeningFatimaPrayer;
         IncludeFatimaPrayer = prayer.Rosary.IncludeFatimaPrayer;
+        SkipFifthDecade = prayer.Rosary.SkipFifthDecade;
         EternalRestForDeceased = prayer.Rosary.EternalRestForDeceased;
         MarianAntiphon = prayer.Rosary.MarianAntiphon;
         IncludeClosingIntentions = prayer.Rosary.EffectiveClosingIntentions;
@@ -276,6 +280,7 @@ public partial class FavoriteEditorViewModel : ObservableObject
             IncludeOpeningPrayers = IncludeOpeningPrayers,
             IncludeOpeningFatimaPrayer = IncludeOpeningFatimaPrayer,
             IncludeFatimaPrayer = IncludeFatimaPrayer,
+            SkipFifthDecade = SkipFifthDecade,
             EternalRestForDeceased = EternalRestForDeceased,
             MarianAntiphon = MarianAntiphon,
             IncludeClosingIntentions = IncludeClosingIntentions,

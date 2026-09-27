@@ -267,21 +267,26 @@ public class CustomDevotionEngineTests : IClassFixture<PrayerPackLoaderFixture>
     {
         var steps = BuildSteps("angelus", "en");
 
-        Assert.Equal(7, steps.Count);
+        Assert.Equal(11, steps.Count);
         Assert.Equal(
             [
                 "The Annunciation", "Hail Mary",
                 "The Fiat", "Hail Mary",
                 "The Incarnation", "Hail Mary",
                 "Let Us Pray",
+                "Glory Be (1 of 3)", "Glory Be (2 of 3)", "Glory Be (3 of 3)",
+                "For the Faithful Departed",
             ],
             steps.Select(s => s.Title));
         Assert.Contains("The Angel of the Lord declared unto Mary", steps[0].Body);
         Assert.Contains("**And she conceived of the Holy Spirit.**", steps[0].Body);
         Assert.Contains("Hail Mary,\nfull of grace", steps[1].Body);
-        Assert.Contains("Pour forth, we beseech Thee", steps[^1].Body);
+        Assert.Contains("Pour forth, we beseech Thee", steps[6].Body);
+        Assert.Contains("Eternal rest", steps[^1].Body);
         Assert.DoesNotContain(steps, s => s.Body.Contains("Queen of Heaven"));
-        Assert.All(steps, s => Assert.Equal("joyful_01_annunciation", s.ImageOverrideKey));
+        Assert.Equal(
+            Enumerable.Repeat("joyful_01_annunciation", 7).Concat(Enumerable.Repeat("glory_be", 3)).Append("eternal_rest"),
+            steps.Select(s => s.ImageOverrideKey));
     }
 
     [Fact]
@@ -289,12 +294,62 @@ public class CustomDevotionEngineTests : IClassFixture<PrayerPackLoaderFixture>
     {
         var steps = BuildSteps("angelus", "en", isEasterSeason: true);
 
-        var step = Assert.Single(steps);
-        Assert.Equal("Regina Caeli", step.Title);
+        Assert.Equal(5, steps.Count);
+        Assert.Equal(
+            ["Regina Caeli", "Glory Be (1 of 3)", "Glory Be (2 of 3)", "Glory Be (3 of 3)", "For the Faithful Departed"],
+            steps.Select(s => s.Title));
+        var step = steps[0];
         Assert.Contains("Queen of Heaven, rejoice", step.Body);
         Assert.Contains("Rejoice and be glad, O Virgin Mary", step.Body);
         Assert.DoesNotContain("Pour forth, we beseech Thee", step.Body);
         Assert.Equal("madonna_and_child", step.ImageOverrideKey);
+    }
+
+    [Theory]
+    [InlineData(false, false, false)]
+    [InlineData(false, false, true)]
+    [InlineData(false, true, false)]
+    [InlineData(false, true, true)]
+    [InlineData(true, false, false)]
+    [InlineData(true, false, true)]
+    [InlineData(true, true, false)]
+    [InlineData(true, true, true)]
+    public void AngelusClosingOptionsAreIndependentInBothSeasons(bool eastertide, bool threeGloryBes, bool eternalRest)
+    {
+        var basis = BuildSteps("angelus", "en", isEasterSeason: eastertide,
+            customOptions: new Dictionary<string, string> { ["threeGloryBes"] = "false", ["eternalRest"] = "false" });
+        Assert.Equal(eastertide ? 1 : 7, basis.Count);
+        var configured = BuildSteps("angelus", "en", isEasterSeason: eastertide,
+            customOptions: new Dictionary<string, string>
+            {
+                ["threeGloryBes"] = threeGloryBes ? "true" : "false",
+                ["eternalRest"] = eternalRest ? "true" : "false",
+            });
+        var expected = basis.Select(s => s.Body).ToList();
+        if (threeGloryBes)
+            expected.AddRange(Enumerable.Repeat(PrayerPackStore.ResolveBodyText("angelus", "en", "gloriaPatri"), 3));
+        if (eternalRest)
+            expected.Add(PrayerPackStore.ResolveBodyText("angelus", "en", "requiemAeternam"));
+        Assert.Equal(expected, configured.Select(s => s.Body));
+    }
+
+    [Theory]
+    [InlineData(false)]
+    [InlineData(true)]
+    public void AngelusMissingSavedOptionsInheritEnabledDefaults(bool eastertide)
+    {
+        var defaults = BuildSteps("angelus", "en", isEasterSeason: eastertide);
+        var emptySavedOptions = BuildSteps("angelus", "en", isEasterSeason: eastertide, customOptions: []);
+        Assert.Equal(eastertide ? 5 : 11, defaults.Count);
+        Assert.Equal(defaults.Select(s => s.Body), emptySavedOptions.Select(s => s.Body));
+
+        var baseCount = eastertide ? 1 : 7;
+        var withoutGloryBes = BuildSteps("angelus", "en", isEasterSeason: eastertide,
+            customOptions: new Dictionary<string, string> { ["threeGloryBes"] = "false" });
+        Assert.Equal(defaults.Take(baseCount).Append(defaults[^1]).Select(s => s.Body), withoutGloryBes.Select(s => s.Body));
+        var withoutEternalRest = BuildSteps("angelus", "en", isEasterSeason: eastertide,
+            customOptions: new Dictionary<string, string> { ["eternalRest"] = "false" });
+        Assert.Equal(defaults.SkipLast(1).Select(s => s.Body), withoutEternalRest.Select(s => s.Body));
     }
 
     [Fact]

@@ -25,10 +25,10 @@ Calendars and their sources:
                          1962 class ranks ("1st Class" … "3rd Class"; IV-class days and bare
                          ferias are omitted the same way ferial days are omitted elsewhere).
   feasts-syriac.json     West Syriac — Syriac Catholic: Evangelizo.org's Daily Gospel
-                         publication API (the "SYE" English Syriac-calendar edition — the
-                         very rite Erez's Mission belongs to), one request per day, taking
-                         only the liturgical day title; ferial days arrive as plain date
-                         titles ("The fourteenth day of August") and are skipped. CREDIT IS
+                         publication API ("SYE" English and "SYA" Arabic editions), taking
+                         named liturgy plus every saint from both editions. Reviewed bilingual
+                         identities prevent duplicates. Plain-date ferial titles are omitted
+                         without discarding their saints. CREDIT IS
                          REQUIRED AND GIVEN — dataset comment, ARCHITECTURE.markdown, and every
                          platform's About screen carry "courtesy of Evangelizo.org (Daily
                          Gospel), © Evangelizo.org". The API serves a rolling window only
@@ -69,6 +69,7 @@ from __future__ import annotations
 import argparse
 import datetime as dt
 import json
+import html
 import re
 import shutil
 import time
@@ -240,21 +241,140 @@ def evangelizo_titles(edition: str, start_year: int) -> dict[str, str]:
     return titles
 
 
-def syriac_days(start_year: int) -> dict:
-    """One entry per named day of the Syriac Catholic calendar (Evangelizo edition SYE).
-    Sundays rank "Sunday", fast-season weekdays "Fast", the rest "Feast"."""
+def evangelizo_label(value: str | None) -> str:
+    """Normalize source presentation only, never spelling or saint identity."""
+    return " ".join(html.unescape(value or "").split())
+
+
+def syriac_identities() -> tuple[dict[str, str], dict[str, str], dict[str, str]]:
+    """Reviewed bilingual identities, never matched by date or array position."""
+    arabic: dict[str, str] = {}
+    aliases: dict[str, str] = {}
+    english_ids: dict[str, str] = {}
+    for path in sorted(TOOLS.glob("syriac-observance-identities-*.json")):
+        payload = json.loads(path.read_text(encoding="utf-8"))
+        for target, name in ((arabic, "arabic"), (aliases, "aliases"), (english_ids, "englishSaintIds")):
+            for key, value in payload.get(name, {}).items():
+                key, value = evangelizo_label(key), evangelizo_label(value)
+                if key in target and target[key] != value:
+                    raise ValueError(f"Conflicting Syriac identity: {key}")
+                target[key] = value
+    return arabic, aliases, english_ids
+
+
+def syriac_day(english: dict, arabic: dict,
+               identities: tuple[dict[str, str], dict[str, str], dict[str, str]]) -> dict | None:
+    """Retain named liturgy plus every saint in either edition, deduplicated by identity.
+
+    English saint names take display precedence over equivalent liturgy/Arabic labels.
+    Reviewed identities are separate metadata, never replacements for English spelling.
+    Unknown Arabic identities retain their published Arabic name rather than being guessed
+    or dropped. The source's class suffix is part of its Arabic caption, not a Roman rank.
+    """
+    translations, aliases, english_ids = identities
+    clean = evangelizo_label
+    def identity(title):
+        seen = set()
+        while title in aliases:
+            if title in seen:
+                raise ValueError(f"Cyclic Syriac identity alias: {title}")
+            seen.add(title)
+            title = aliases[title]
+        return title
+    entries: dict[str, dict] = {}
+    def add(title, arabic_title=None, *, identity_title=None, priority=0):
+        title = clean(title)
+        if not title:
+            return
+        key = identity(clean(identity_title) if identity_title else title)
+        row = entries.setdefault(key, {"title": title, "identity": key, "priority": priority})
+        if priority > row["priority"]:
+            row.update(title=title, priority=priority)
+        if arabic_title:
+            row["ar"] = clean(arabic_title)
+    title = clean(english.get("liturgic_title"))
+    arabic_title = clean(arabic.get("liturgic_title"))
+    named_liturgy = bool(title and not EVANGELIZO_FERIAL["SYE"].fullmatch(title))
+    named_arabic_liturgy = bool(arabic_title and not re.match(r"^اليوم .*شهر ", arabic_title))
+    arabic_identity = translations.get(arabic_title)
+    different_liturgy = bool(named_liturgy and named_arabic_liturgy and arabic_identity
+                            and identity(arabic_identity) != identity(title))
+    if named_liturgy:
+        add("; ".join(part.strip() for part in title.split("|")),
+            arabic_title if named_arabic_liturgy and not different_liturgy else None, priority=1)
+    for saint in english.get("saints") or []:
+        add(saint.get("name"), identity_title=english_ids.get(saint.get("id")), priority=2)
+    if named_arabic_liturgy and (not named_liturgy or different_liturgy):
+        # A reviewed difference must remain visible, after the English observances.
+        add(arabic_identity or arabic_title, arabic_title)
+    for saint in arabic.get("saints") or []:
+        name = clean(saint.get("name"))
+        add(translations.get(name, name), name)
+    if not entries:
+        return None
+    if named_liturgy and "Pascha" in title:
+        rank = "Great Feast"
+    elif named_liturgy and "Sunday" in title:
+        rank = "Sunday"
+    elif named_liturgy and "Fast" in title:
+        rank = "Fast"
+    else:
+        rank = "Feast"
+    return {"title": "; ".join(row["title"] for row in entries.values()), "rank": rank,
+            "observances": [{"title": row["title"], "identity": row["identity"]}
+                            for row in entries.values()],
+            "titleByLanguage": {"ar": "; ".join(row.get("ar", row["title"]) for row in entries.values())}}
+
+
+def evangelizo_day(edition: str, date: str) -> dict | None:
+    """None marks the documented future horizon; other persistent errors abort safely."""
+    for attempt in range(6):
+        try:
+            payload = fetch_json(EVANGELIZO.format(edition=edition, date=date),
+                                 f"evangelizo-{edition.lower()}-{date}")
+            data = payload.get("data") if isinstance(payload, dict) else None
+            if (not isinstance(data, dict) or data.get("date") != date
+                    or not isinstance(data.get("liturgic_title"), str)
+                    or not data["liturgic_title"].strip()
+                    or not isinstance(data.get("saints"), list)
+                    or any(not isinstance(saint, dict) or not isinstance(saint.get("name"), str)
+                           or not saint["name"].strip() for saint in data["saints"])):
+                raise ValueError(f"Incomplete Evangelizo {edition} payload for {date}")
+            return data
+        except requests.HTTPError as error:
+            response = error.response
+            if response is not None and response.status_code == 400 and "future" in response.text.lower():
+                return None
+            if attempt == 5:
+                raise
+            retry = response.headers.get("Retry-After", "30") if response is not None else "30"
+            time.sleep(max(2 * (attempt + 1), int(retry) if retry.isdigit() else 30))
+        except requests.RequestException:
+            if attempt == 5:
+                raise
+            time.sleep(2 * (attempt + 1))
+    raise AssertionError("unreachable")
+
+
+def syriac_days(start_year: int, until: dt.date | None = None) -> dict:
+    """Merge English and Arabic Syriac liturgy/saints without cross-rite substitution."""
     days: dict[str, dict] = {}
-    for date, title in evangelizo_titles("SYE", start_year).items():
-        if "Pascha" in title:
-            # The feast of feasts outranks its own Sunday — and gets the bolded top rank.
-            rank = "Great Feast"
-        elif "Sunday" in title:
-            rank = "Sunday"
-        elif "Fast" in title:
-            rank = "Fast"
-        else:
-            rank = "Feast"
-        days[date] = {"title": title, "rank": rank}
+    identities = syriac_identities()
+    day = dt.date(start_year, 1, 1)
+    while until is None or day <= until:
+        date = day.isoformat()
+        english = evangelizo_day("SYE", date)
+        arabic = evangelizo_day("SYA", date)
+        if english is None and arabic is None:
+            break
+        if english is None or arabic is None:
+            raise ValueError(f"Syriac source horizons disagree on {date}; retaining previous dataset")
+        entry = syriac_day(english, arabic, identities)
+        if entry:
+            days[date] = entry
+        day += dt.timedelta(days=1)
+    if not days:
+        raise ValueError("Evangelizo returned no Syriac observances")
     return days
 
 
@@ -307,13 +427,39 @@ def hebrew_title_typography(title: str) -> str:
     return re.sub(r"(?<=[\u0590-\u05ff])-(?=[\u0590-\u05ff0-9])", "־", title)
 
 
+def localized_feast_entry_title(entry: dict, catalog: dict[str, str]) -> str | None:
+    """Use reviewed component identities when source spellings are ambiguous."""
+    components = entry.get("observances")
+    if not components:
+        return localized_feast_title(entry["title"], catalog)
+    translated = [localized_feast_title(part["identity"], catalog) for part in components]
+    if any(translated):
+        return "; ".join(value or part["title"] for part, value in zip(components, translated))
+    return None
+
+
+def syriac_identity_catalog(catalog: dict[str, str]) -> dict[str, str]:
+    """Reuse exact reviewed aliases without treating ambiguous source names as identities."""
+    result = dict(catalog)
+    aliases = syriac_identities()[1]
+    for title, value in catalog.items():
+        seen = set()
+        while title in aliases:
+            if title in seen:
+                raise ValueError(f"Cyclic Syriac identity alias: {title}")
+            seen.add(title)
+            title = aliases[title]
+        result.setdefault(title, value)
+    return result
+
+
 def localize_feast_days(days: dict, catalog: dict[str, str]) -> tuple[int, set[str]]:
     """Apply catalog edits by identity, retaining other languages and uncatalogued titles."""
     updated = 0
     missing: set[str] = set()
     for entry in days.values():
         title = entry["title"]
-        translated = localized_feast_title(title, catalog) or entry.get("titleByLanguage", {}).get("he")
+        translated = localized_feast_entry_title(entry, catalog) or entry.get("titleByLanguage", {}).get("he")
         if translated:
             translated = hebrew_title_typography(translated)
             if entry.get("titleByLanguage", {}).get("he") != translated:
@@ -355,14 +501,14 @@ def add_sourced_feast_titles(days: dict, catalogs: dict[str, dict[str, str]]) ->
     updates = {language: 0 for language in catalogs}
     for entry in days.values():
         for language, catalog in catalogs.items():
-            translated = localized_feast_title(entry["title"], catalog)
+            translated = localized_feast_entry_title(entry, catalog)
             if translated and entry.get("titleByLanguage", {}).get(language) != translated:
                 entry.setdefault("titleByLanguage", {})[language] = translated
                 updates[language] += 1
     return updates
 
 
-def localize_existing_datasets() -> None:
+def localize_existing_datasets(only: set[str] | None = None) -> None:
     display_catalogs: dict[str, dict[str, str]] = {}
     for path in DISPLAY_TITLE_CATALOGS:
         if path.exists():
@@ -381,6 +527,7 @@ def localize_existing_datasets() -> None:
     aliases_path = TOOLS / "feast-title-aliases.json"
     if aliases_path.exists():
         aliases = json.loads(aliases_path.read_text(encoding="utf-8"))["aliases"]
+        aliases.update(syriac_identities()[1])
         for values in [catalog, *display_catalogs.values()]:
             for _ in range(len(aliases)):
                 changed = False
@@ -395,10 +542,24 @@ def localize_existing_datasets() -> None:
     names += [variant["file"] for calendar in registry["calendars"]
               for variant in calendar.get("paschaVariants", {}).values()]
     for name in dict.fromkeys(names):
+        if only is not None and name not in only:
+            continue
         path = DATA / f"{name}.json"
         payload = json.loads(path.read_text(encoding="utf-8"))
-        updated, missing = localize_feast_days(payload["days"], catalog)
-        sourced_updates = add_sourced_feast_titles(payload["days"], display_catalogs)
+        applicable_hebrew = syriac_identity_catalog(catalog) if name == "feasts-syriac" else catalog
+        updated, missing = localize_feast_days(payload["days"], applicable_hebrew)
+        # Syriac Arabic captions were already assembled from the actual SYA components.
+        # Partial English-title catalogs must never replace them or drop Arabic-only saints.
+        applicable_catalogs = ({key: syriac_identity_catalog(value)
+                                for key, value in display_catalogs.items() if key != "ar"}
+                              if name == "feasts-syriac" else display_catalogs)
+        sourced_updates = add_sourced_feast_titles(payload["days"], applicable_catalogs)
+        if name == "feasts-syriac":
+            # Every interface gets a complete display value, but unreviewed names remain
+            # in the source language. Presence here is not a claim of translated wording.
+            for entry in payload["days"].values():
+                for language in ("he", "ar", "ru", "tl", "fr", "it", "uk"):
+                    entry.setdefault("titleByLanguage", {}).setdefault(language, entry["title"])
         credit = (
             " Hebrew feast and saint names use the credited source catalogs in "
             "Shared/tools/hebrew-feast-titles.json and hebrew-saint-titles.json; "
@@ -546,12 +707,17 @@ def ugcc_days(year: int, pascha_style: str = "julian") -> dict:
 
 
 CACHE_DIR: Path | None = None
+LAST_EVANGELIZO_REQUEST = 0.0
 
 
 def fetch_json(url: str, cache_name: str):
     cache_file = CACHE_DIR / f"{cache_name}.json" if CACHE_DIR else None
     if cache_file and cache_file.exists():
         return json.loads(cache_file.read_text(encoding="utf-8"))
+    if url.startswith("https://publication.evangelizo.ws/"):
+        global LAST_EVANGELIZO_REQUEST
+        time.sleep(max(0.0, LAST_EVANGELIZO_REQUEST + 1.1 - time.monotonic()))
+        LAST_EVANGELIZO_REQUEST = time.monotonic()
     response = requests.get(url, headers={"Accept": "application/json", "Accept-Language": "en"}, timeout=60)
     response.raise_for_status()
     if cache_file:
@@ -623,6 +789,8 @@ def main() -> int:
     parser.add_argument("--localize-only", action="store_true", help="apply sourced names offline without changing calendar coverage")
     parser.add_argument("--self-test", action="store_true", help="check exact-title localization without fetching data")
     parser.add_argument("--ugcc-only", action="store_true", help="regenerate both Byzantine Pascha styles offline")
+    parser.add_argument("--syriac-only", action="store_true", help="refresh English/Arabic Syriac liturgy and saints only")
+    parser.add_argument("--until", type=dt.date.fromisoformat, help="last Syriac date to fetch (otherwise follow the source horizon)")
     args = parser.parse_args()
     if args.self_test:
         assert julian_easter(2026) == dt.date(2026, 4, 12)
@@ -704,6 +872,13 @@ def main() -> int:
         CACHE_DIR = args.cache
         CACHE_DIR.mkdir(parents=True, exist_ok=True)
 
+    if args.syriac_only:
+        write_syriac_dataset(syriac_days(years[0], args.until))
+        localize_existing_datasets({"feasts-syriac"})
+        if args.sync:
+            sync_datasets()
+        return 0
+
     roman: dict = {}
     vetus: dict = {}
     ugcc: dict = {}
@@ -711,7 +886,7 @@ def main() -> int:
         roman.update(roman_days(year))
         vetus.update(roman1962_days(year))
         ugcc.update(ugcc_days(year))
-    syriac = syriac_days(years[0])
+    syriac = syriac_days(years[0], args.until)
     roman = add_hebrew_titles(roman, evangelizo_titles("HE", years[0]))
 
     lpj = dict(roman)
@@ -740,15 +915,7 @@ def main() -> int:
         "with the 1962 class ranks; IV-class days and bare ferias are omitted. Generated by "
         "Shared/tools/fetch-feasts.py; see feasts.json for the conventions.",
         years, vetus)
-    write_dataset(
-        DATA / "feasts-syriac.json",
-        "Per-day table, West Syriac — Syriac Catholic: liturgical day titles courtesy of "
-        "Evangelizo.org — Daily Gospel (© Evangelizo.org), publication edition SYE, used "
-        "with attribution (also on every platform's About screen). Ferial plain-date titles "
-        "are omitted. Evangelizo serves a rolling ~3-month horizon, so this table ends where "
-        "the API did at generation time and extends on each rerun of "
-        "Shared/tools/fetch-feasts.py — regenerate more often than yearly.",
-        sorted({int(key[:4]) for key in syriac}), syriac)
+    write_syriac_dataset(syriac)
     obsolete = DATA / "feasts-roman-he.json"
     if obsolete.exists():
         obsolete.unlink()
@@ -760,6 +927,23 @@ def main() -> int:
     if args.sync:
         sync_datasets()
     return 0
+
+
+def write_syriac_dataset(days: dict) -> None:
+    write_dataset(DATA / "feasts-syriac.json",
+                  "West Syriac — Syriac Catholic: liturgical day titles and every listed saint "
+                  "from Evangelizo.org — Daily Gospel (© Evangelizo.org), publication editions "
+                  "SYE and SYA, with attribution on every platform's About screen. Named liturgy "
+                  "and commemorations are combined using reviewed bilingual identities, not "
+                  "array positions or another rite's dates. Plain-date ferial captions are omitted "
+                  "without discarding their saints. English saint names retain SYE spelling; "
+                  "Arabic supplies additional observances. Reviewed identities are separate "
+                  "from display names. Arabic source labels are retained; other "
+                  "languages use credited title catalogs with source-name fallback for uncovered "
+                  "identities. Source class suffixes are not converted into Roman ranks. "
+                  "Regenerate with Shared/tools/fetch-feasts.py --syriac-only --sync; Evangelizo "
+                  "has a rolling future horizon, and --until may bound a refresh to a known range.",
+                  sorted({int(key[:4]) for key in days}), days)
 
 
 def write_ugcc_datasets(years: list[int]) -> None:

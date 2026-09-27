@@ -19,6 +19,9 @@
         <CommandBar Grid.Row="1" DefaultLabelPosition="Right">
             <AppBarButton x:Name="AddButton" Label="{x:Bind ViewModel.AddLabel}" Icon="Add"
                           Command="{x:Bind ViewModel.AddCommand}" CommandParameter="{x:Bind ViewModel.SelectedTemplate, Mode=OneWay}" />
+            <AppBarButton x:Name="RemoveDownloadButton" Label="{x:Bind ViewModel.RemoveDownloadLabel}" Icon="Delete"
+                          Command="{x:Bind ViewModel.RemoveDownloadCommand}" CommandParameter="{x:Bind ViewModel.SelectedTemplate, Mode=OneWay}"
+                          AutomationProperties.AutomationId="galleryRemoveDownload" Visibility="Collapsed" />
             <AppBarButton x:Name="LibraryButton" Label="{x:Bind ViewModel.LibraryTitle}" Icon="Library" Click="OnShowLibrary" />
         </CommandBar>
         <TextBox Grid.Row="2" x:Name="SearchBox" PlaceholderText="{x:Bind ViewModel.SearchGalleryLabel}"

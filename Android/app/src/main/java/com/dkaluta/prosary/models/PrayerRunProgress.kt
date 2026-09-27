@@ -53,7 +53,8 @@ object PrayerRunSignatures {
         options.aramaicSignOfCrossForm,
         options.presenterMode.flag,
         options.mysteryImageStyle.stableValue,
-    ).joinToString("|") + closingIntentionsSuffix(options) + openingFatimaSuffix(options)
+    ).joinToString("|") + closingIntentionsSuffix(options) + openingFatimaSuffix(options) +
+        if (options.skipFifthDecade && options.mysterySelectionMode != MysterySelectionMode.SingleMystery) "|skip-fifth" else ""
 
     private fun closingIntentionsSuffix(options: RosaryOptions): String {
         // New intention introductions shift existing closing sequences. No-closing runs keep

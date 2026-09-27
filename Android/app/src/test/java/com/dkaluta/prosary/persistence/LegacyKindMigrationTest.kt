@@ -93,6 +93,12 @@ class LegacyKindMigrationTest {
         assertEquals(true, optedIn.toPrayer().rosary.includeOpeningFatimaPrayer)
     }
 
+    @Test fun fifthDecadeOptionDefaultsOffAndSurvivesTheEntityMapping() {
+        val oldRow = legacyEntity(PrayerKind.Rosary.name)
+        assertEquals(false, oldRow.toPrayer().rosary.skipFifthDecade)
+        assertEquals(true, oldRow.copy(skipFifthDecade = true).toPrayer().rosary.skipFifthDecade)
+    }
+
     /** A migrated legacy row and a freshly created Custom favorite must share one default slot. */
     @Test
     fun defaultScopingTreatsLegacyAndMigratedRowsAsTheSameDevotion() {

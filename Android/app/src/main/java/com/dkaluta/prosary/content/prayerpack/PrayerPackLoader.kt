@@ -9,7 +9,6 @@ import com.dkaluta.prosary.typography.HebrewDisplayText
 
 import com.dkaluta.prosary.content.PrayerKey
 import com.dkaluta.prosary.content.PrayerTranslations
-import com.dkaluta.prosary.content.JaffaPrayerWording
 import java.io.File
 import java.io.InputStream
 import java.io.OutputStream
@@ -759,6 +758,10 @@ object PrayerPackStore {
         val resolved = LanguageCatalog.resolve(chosen ?: LanguageCatalog.defaultSentinel).code
         val available = info(bundleId)?.languages.orEmpty()
         if (available.isEmpty()) return resolved
+        if (LanguageCatalog.pickerLanguageCode(resolved) == "he"
+            && available.any { LanguageCatalog.pickerLanguageCode(it) == "he" }) {
+            authoredHebrewTraditions(bundleId).singleOrNull()?.let { return it }
+        }
         val buckets = contentLanguagesByBundle[bundleId].orEmpty()
         for (probe in LanguageCatalog.contentFallbackChain(resolved)) {
             val eligible = when (probe) {
@@ -774,15 +777,9 @@ object PrayerPackStore {
 
     private data class ResolvedPrayerContent(val text: String, val readingAid: String?)
 
-    private fun ResolvedPrayerContent.forProbe(probe: String): ResolvedPrayerContent {
-        val displayed = JaffaPrayerWording.apply(probe, text)
-        // No sourced reading aid was supplied for the substituted wording.
-        return if (displayed == text) this else ResolvedPrayerContent(displayed, null)
-    }
-
     private fun localPrayerContent(bundleId: String, probe: String, key: String): ResolvedPrayerContent? =
         rawContentByBundle[bundleId]?.get(probe)?.get(key)?.let { text ->
-            ResolvedPrayerContent(text, transliterationsByBundle[bundleId]?.get(probe)?.get(key)).forProbe(probe)
+            ResolvedPrayerContent(text, transliterationsByBundle[bundleId]?.get(probe)?.get(key))
         }
 
     /** Resolve text and its reading aid together, with the same precedence at every probe:
@@ -807,10 +804,10 @@ object PrayerPackStore {
             }
             if (prayerKey != null) {
                 prayerOverride(probe, prayerKey)?.let { text ->
-                    return ResolvedPrayerContent(text, prayerTransliterations[probe]?.get(prayerKey)).forProbe(probe)
+                    return ResolvedPrayerContent(text, prayerTransliterations[probe]?.get(prayerKey))
                 }
                 PrayerTranslations.byLanguage[probe]?.get(prayerKey)?.let { text ->
-                    return ResolvedPrayerContent(text, null).forProbe(probe)
+                    return ResolvedPrayerContent(text, null)
                 }
             }
         }
@@ -823,6 +820,65 @@ object PrayerPackStore {
 
     fun resolveBodyText(bundleId: String, languageCode: String?, key: String): String =
         resolvePrayerContent(bundleId, languageCode, key)?.text ?: key
+
+    /** A tradition choice requires two authored bodies. Language fallback and translated
+     * headings alone never create a second Hebrew prayer. */
+    private fun authoredPrayerBody(bundleId: String, probe: String, key: String): String? {
+        rawContentByBundle[bundleId]?.get(probe)?.get(key)?.let { return it.takeIf(String::isNotBlank) }
+        val fixedKey = keyToPrayerKey(key) ?: return null
+        return (prayerOverride(probe, fixedKey) ?: PrayerTranslations.byLanguage[probe]?.get(fixedKey))
+            ?.takeIf(String::isNotBlank)
+    }
+
+    fun authoredHebrewTraditions(bundleId: String, bodyKey: String? = null): List<String> {
+        val keys = bodyKey?.let(::setOf) ?: devotionBodyKeys(bundleId)
+        return buildList {
+            if (keys.any { authoredPrayerBody(bundleId, LanguageCatalog.hebrewVicariateContentCode, it) != null }) add("he")
+            if (keys.any { authoredPrayerBody(bundleId, "he-x-gamliel", it) != null }) add("he-x-gamliel")
+        }
+    }
+
+    fun hasHebrewTraditionChoice(bundleId: String, bodyKey: String? = null): Boolean {
+        val keys = bodyKey?.let(::setOf) ?: devotionBodyKeys(bundleId)
+        return keys.any { key ->
+            val mission = authoredPrayerBody(bundleId, "he-x-gamliel", key)
+            val vicariate = authoredPrayerBody(bundleId, LanguageCatalog.hebrewVicariateContentCode, key)
+            mission != null && vicariate != null && mission != vicariate
+        }
+    }
+
+    private fun devotionBodyKeys(bundleId: String): Set<String> {
+        val definition = definition(bundleId) ?: return emptySet()
+        val keys = mutableSetOf<String>()
+        fun addSteps(steps: List<CustomDevotionStep>?) {
+            steps.orEmpty().forEach { step ->
+                step.bodyKey?.let(keys::add)
+                step.acclamationKey?.let(keys::add)
+            }
+        }
+        fun addDecades(decades: CustomDevotionDefinition.Decades?) {
+            if (decades == null) return
+            keys += decades.majorStep.bodyKey
+            keys += decades.minorStep.bodyKey
+            keys += decades.presenter?.bodyKeys.orEmpty()
+            addSteps(decades.preAnnouncement)
+            addSteps(decades.postMinor)
+        }
+        addSteps(definition.steps)
+        addSteps(definition.eastertideSteps)
+        addSteps(definition.opening)
+        addSteps(definition.closing)
+        addDecades(definition.decades)
+        definition.days.orEmpty().forEach { addSteps(it.steps) }
+        definition.variants.orEmpty().forEach {
+            addSteps(it.steps)
+            addSteps(it.eastertideSteps)
+            addSteps(it.opening)
+            addSteps(it.closing)
+            addDecades(it.decades)
+        }
+        return keys
+    }
 
     /** Exact authored heading pairs, with bundle-local wording ahead of shared Rosary titles.
      * An unpaired local heading must not acquire an alternate from a different wording. */

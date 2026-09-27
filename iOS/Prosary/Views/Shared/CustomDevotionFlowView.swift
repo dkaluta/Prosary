@@ -150,11 +150,6 @@ struct CustomDevotionFlowView: View {
       }
       audio.stop()
     }
-    .onChange(of: prayerLanguage.usesJaffaHailMaryWording) { _, _ in
-      guard hasLoaded, !didFinish else { return }
-      steps = builtSteps()
-      currentIndex = min(currentIndex, max(steps.count - 1, 0))
-    }
     .onChange(of: prayerLanguage.code) { _, _ in refreshInheritedLanguage() }
     .confirmationDialog(
       completionSuggestion.map {
@@ -232,7 +227,8 @@ struct CustomDevotionFlowView: View {
        languages.count > 1 || languages.contains("he") {
       Menu {
         PrayerLanguageMenuContent(code: chosenLanguage, resolvedCode: languageCode,
-                                 options: LanguageCatalog.availableOptions(for: languages)) { switchLanguage(to: $0) }
+                                 options: LanguageCatalog.availableOptions(for: languages),
+                                 hebrewTraditions: PrayerPackStore.hebrewTraditions(bundleId: devotionId)) { switchLanguage(to: $0) }
       } label: {
         Label(String(localized: "prayerFlow.language", defaultValue: "Prayer Language", bundle: UILanguage.bundle, locale: UILanguage.locale), systemImage: "globe")
       }

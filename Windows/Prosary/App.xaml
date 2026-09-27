@@ -19,19 +19,27 @@
                 <ResourceDictionary Source="ms-appx:///Microsoft.UI.Xaml/DensityStyles/Compact.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
-            <!-- Brand colors — ported from iOS's Assets.xcassets / Android's ui/theme/Color.kt,
-                 including their light/dark variants: BrandHeadline in particular is a dark maroon
-                 that reads fine on a light background but is nearly illegible against a dark one,
-                 so both platforms swap it for near-white (and BrandPrimary for a pale, desaturated
-                 pink) in dark mode rather than keeping one flat color across both themes. -->
+            <!-- Blue is the default. AppAppearance updates light/dark palette values while
+                 Windows owns contrast colors and the native control interaction states. -->
             <ResourceDictionary.ThemeDictionaries>
                 <ResourceDictionary x:Key="Light">
-                    <Color x:Key="BrandPrimaryColor">#7A1F3D</Color>
-                    <Color x:Key="BrandHeadlineColor">#4A0E23</Color>
+                    <Color x:Key="BrandPrimaryColor">#1768AC</Color>
+                    <Color x:Key="BrandHeadlineColor">#1768AC</Color>
+                    <SolidColorBrush x:Key="BrandPrimaryBrush" Color="{StaticResource BrandPrimaryColor}" />
+                    <SolidColorBrush x:Key="BrandPrimaryFaintBrush" Color="{StaticResource BrandPrimaryColor}" Opacity="0.15" />
+                    <SolidColorBrush x:Key="BrandHeadlineBrush" Color="{StaticResource BrandHeadlineColor}" />
                 </ResourceDictionary>
                 <ResourceDictionary x:Key="Dark">
-                    <Color x:Key="BrandPrimaryColor">#D8A8B5</Color>
-                    <Color x:Key="BrandHeadlineColor">#FFFFFF</Color>
+                    <Color x:Key="BrandPrimaryColor">#8DC8FF</Color>
+                    <Color x:Key="BrandHeadlineColor">#8DC8FF</Color>
+                    <SolidColorBrush x:Key="BrandPrimaryBrush" Color="{StaticResource BrandPrimaryColor}" />
+                    <SolidColorBrush x:Key="BrandPrimaryFaintBrush" Color="{StaticResource BrandPrimaryColor}" Opacity="0.15" />
+                    <SolidColorBrush x:Key="BrandHeadlineBrush" Color="{StaticResource BrandHeadlineColor}" />
+                </ResourceDictionary>
+                <ResourceDictionary x:Key="HighContrast">
+                    <SolidColorBrush x:Key="BrandPrimaryBrush" Color="{ThemeResource SystemColorWindowTextColor}" />
+                    <SolidColorBrush x:Key="BrandPrimaryFaintBrush" Color="{ThemeResource SystemColorWindowColor}" />
+                    <SolidColorBrush x:Key="BrandHeadlineBrush" Color="{ThemeResource SystemColorWindowTextColor}" />
                 </ResourceDictionary>
             </ResourceDictionary.ThemeDictionaries>
 
@@ -59,13 +67,6 @@
                 <Setter Property="Background" Value="{ThemeResource AcrylicInAppFillColorDefaultBrush}" />
             </Style>
 
-            <SolidColorBrush x:Key="BrandPrimaryBrush" Color="{ThemeResource BrandPrimaryColor}" />
-            <!-- Translucent brand wash for chip/tag backgrounds whose text is BrandPrimaryBrush —
-                 a solid brand background with white text is unreadable in dark mode, where
-                 BrandPrimary is a pale rose. Mirrors iOS's accentColor.opacity(0.15) capsules. -->
-            <SolidColorBrush x:Key="BrandPrimaryFaintBrush" Color="{ThemeResource BrandPrimaryColor}" Opacity="0.15" />
-            <SolidColorBrush x:Key="BrandHeadlineBrush" Color="{ThemeResource BrandHeadlineColor}" />
-
             <conv:ColorToBrushConverter x:Key="ColorToBrush" />
             <conv:BoolToFlowDirectionConverter x:Key="BoolToFlowDirection" />
             <conv:BoolToVisibilityConverter x:Key="BoolToVisibility" />
@@ -83,12 +84,12 @@
             <Style x:Key="HeadlineTextStyle" TargetType="TextBlock">
                 <Setter Property="FontSize" Value="28" />
                 <Setter Property="FontWeight" Value="Bold" />
-                <Setter Property="Foreground" Value="{StaticResource BrandHeadlineBrush}" />
+                <Setter Property="Foreground" Value="{ThemeResource BrandHeadlineBrush}" />
             </Style>
             <Style x:Key="SubHeadlineTextStyle" TargetType="TextBlock">
                 <Setter Property="FontSize" Value="20" />
                 <Setter Property="FontWeight" Value="SemiBold" />
-                <Setter Property="Foreground" Value="{StaticResource BrandHeadlineBrush}" />
+                <Setter Property="Foreground" Value="{ThemeResource BrandHeadlineBrush}" />
                 <Setter Property="TextWrapping" Value="Wrap" />
                 <Setter Property="TextAlignment" Value="Center" />
             </Style>

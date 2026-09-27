@@ -88,7 +88,10 @@ struct FavoriteEditorView: View {
       PrayerLanguagePicker(
         label: String(localized: "favoriteEditor.language", defaultValue: "Language", bundle: UILanguage.bundle, locale: UILanguage.locale),
         code: $prayer.languageCode,
-        defaultLabel: String(localized: "favoriteEditor.defaultLanguageOption", defaultValue: "Default — \(defaultName)", bundle: UILanguage.bundle, locale: UILanguage.locale))
+        defaultLabel: String(localized: "favoriteEditor.defaultLanguageOption", defaultValue: "Default — \(defaultName)", bundle: UILanguage.bundle, locale: UILanguage.locale),
+        hebrewTraditions: prayer.kind == .custom
+          ? prayer.customDevotionId.map { PrayerPackStore.hebrewTraditions(bundleId: $0) } ?? ["he", "he-x-gamliel"]
+          : ["he", "he-x-gamliel"])
 
       let prayerBase = prayer.languageCode == LanguageCatalog.defaultSentinel
         ? prayer.languageCode

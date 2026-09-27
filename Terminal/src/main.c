@@ -21,6 +21,7 @@ static void usage(FILE *out)
           "  --language CODE        Prayer language, e.g. en, la, he, ar\n"
           "  --ui-language CODE     Interface: en, he, ar, ru, tl, fr, it, uk\n"
           "  --group GROUP          today, joyful, sorrowful, glorious, luminous\n"
+          "  --skip-fifth-decade     Omit the fifth Rosary decade\n"
           "  --variant N            Devotion form (1-based; 0 = language default)\n"
           "  --day N                Day of a multi-day devotion (1-based)\n"
           "  --restart              Begin the selected prayer again\n"
@@ -176,6 +177,7 @@ int main(int argc, char **argv)
         if (!strcmp(argv[i], "--no-state")) continue;
         if (!strcmp(argv[i], "--list")) { list = 1; continue; }
         if (!strcmp(argv[i], "--restart")) { reset = 1; continue; }
+        if (!strcmp(argv[i], "--skip-fifth-decade")) { state.skip_fifth_decade = 1; reset = 1; continue; }
         if (i + 1 >= argc) { fprintf(stderr, "Prosary: missing value or unknown option: %s\n", argv[i]); return 2; }
         value = argv[++i];
         if (!strcmp(argv[i - 1], "--state")) continue;
@@ -249,6 +251,7 @@ int main(int argc, char **argv)
         selection.group = state.group;
         selection.variant = state.variant;
         selection.day = state.day;
+        selection.skip_fifth_decade = state.skip_fifth_decade;
         session = engine_build(engine, dump_id, &selection, error, sizeof(error));
         if (!session) { fprintf(stderr, "Prosary: %s\n", error); engine_close(engine); return 1; }
         printf("%s (%lu steps)\n", session->title, (unsigned long)session->count);

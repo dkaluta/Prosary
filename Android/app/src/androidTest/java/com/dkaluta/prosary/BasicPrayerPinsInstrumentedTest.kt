@@ -21,7 +21,7 @@ class BasicPrayerPinsInstrumentedTest {
     @get:Rule val compose = createAndroidComposeRule<MainActivity>()
 
     @Test fun directoryPinAppearsOnPrayAndDetailUnpinSurvivesReopening() {
-        val id = "signOfCross"
+        val id = "stMichael"
         var original = false
         compose.runOnIdle {
             original = id in AppSettings.pinnedBasicPrayerIds

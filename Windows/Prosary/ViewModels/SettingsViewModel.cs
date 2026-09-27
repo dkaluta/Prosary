@@ -51,11 +51,6 @@ public partial class SettingsViewModel : ObservableObject
     [ObservableProperty]
     private LanguageOption _selectedLanguage = null!;
 
-    [ObservableProperty]
-    private bool _useJaffaHailMaryWording = AppSettings.UseJaffaHailMaryWording;
-
-    partial void OnUseJaffaHailMaryWordingChanged(bool value) => AppSettings.SetUseJaffaHailMaryWording(value);
-
     public SettingsViewModel(PrayerRemovalService? removal = null)
         : this(AudioCacheSize(), removal) { }
 
@@ -118,6 +113,13 @@ public partial class SettingsViewModel : ObservableObject
 
     partial void OnSelectedAramaicSignOfCrossChanged(AramaicSignOfCrossOption value) =>
         AppSettings.SetAramaicSignOfCrossForm(value.Value);
+
+    public IReadOnlyList<AppColorOption> AppColorOptions => AppColorPalette.All;
+
+    [ObservableProperty]
+    private AppColorOption _selectedAppColor = AppColorPalette.Resolve(AppSettings.AppColor);
+
+    partial void OnSelectedAppColorChanged(AppColorOption value) => AppSettings.SetAppColor(value.Id);
 
     public bool ShowsAramaicSignOfCrossPicker =>
         (LanguageCatalog.BaseLanguage(SelectedLanguage.Code) ?? SelectedLanguage.Code) == "arc";
@@ -253,6 +255,16 @@ public partial class SettingsViewModel : ObservableObject
     private bool _showTodayIntention = AppSettings.ShowTodayIntention;
 
     partial void OnShowTodayIntentionChanged(bool value) => AppSettings.SetShowTodayIntention(value);
+
+    [ObservableProperty]
+    private bool _showTodayReadings = AppSettings.ShowTodayReadings;
+
+    partial void OnShowTodayReadingsChanged(bool value) => AppSettings.SetShowTodayReadings(value);
+
+    [ObservableProperty]
+    private bool _expandReadingsByDefault = AppSettings.ExpandReadingsByDefault;
+
+    partial void OnExpandReadingsByDefaultChanged(bool value) => AppSettings.SetExpandReadingsByDefault(value);
 
     [ObservableProperty]
     private bool _showTodayTorahPortion = AppSettings.ShowTodayTorahPortion;

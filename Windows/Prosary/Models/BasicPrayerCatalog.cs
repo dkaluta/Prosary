@@ -5,7 +5,8 @@ namespace Prosary.Models;
 /// <summary>
 /// The handful of prayers worth praying on their own, outside any devotion — tester-requested
 /// (Erez, 2026-08-07): the Sign of the Cross, the Our Father, the Hail Mary, the Glory Be, and
-/// the Trisagion's Holy God, and the four Marian antiphons. Nothing here carries text: each entry names the same keys the
+/// the Trisagion's Holy God, the four Marian antiphons, and the prayer to St. Michael.
+/// Nothing here carries text: each entry names the same keys the
 /// devotions already resolve, so a basic prayer reads in the prayer language with every chain
 /// the flows use — rites included. Mirrors iOS's BasicPrayerCatalog.swift.
 /// </summary>
@@ -36,13 +37,22 @@ public static class BasicPrayerCatalog
         new("almaRedemptorisMater", "rosary", "almaRedemptorisMaterTitle", "almaRedemptorisMater", "madonna_and_child"),
         new("aveReginaCaelorum", "rosary", "aveReginaCaelorumTitle", "aveReginaCaelorum", "madonna_and_child"),
         new("reginaCaeli", "rosary", "reginaCaeliTitle", "reginaCaeli", "madonna_and_child"),
+        new("stMichael", "rosary", "sanctusMichaelTitle", "sanctusMichael", "st_michael"),
     ];
 
     public static BasicPrayer? Prayer(string id) => All.FirstOrDefault(p => p.Id == id);
 
-    public static RosaryStep Step(BasicPrayer prayer, string? languageCode = null)
+    public static LanguageOption EffectiveLanguage(BasicPrayer prayer, string? languageCode)
     {
         var language = LanguageCatalog.Resolve(languageCode);
+        if (LanguageCatalog.PickerLanguageCode(language.Code) != "he") return language;
+        var rites = PrayerPackStore.AuthoredHebrewRites(prayer.BundleId, prayer.BodyKey);
+        return rites.Count == 1 ? LanguageCatalog.Resolve(rites[0].Code) : language;
+    }
+
+    public static RosaryStep Step(BasicPrayer prayer, string? languageCode = null)
+    {
+        var language = EffectiveLanguage(prayer, languageCode);
         return new RosaryStep(
             Title: PrayerPackStore.ResolveDisplayText(prayer.BundleId, language.Code, prayer.TitleKey),
             Subtitle: null,

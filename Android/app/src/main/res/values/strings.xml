@@ -66,13 +66,23 @@
 
     <!-- Settings -->
     <string name="settings_default_prayer_language">Default Prayer Language</string>
+    <string name="settings_app_color">"App Color"</string>
+    <string name="settings_app_color_hint">"Choose the app icon and accent color."</string>
+    <string name="settings_app_color_error">"Could not change the app icon. Please try again."</string>
+    <string name="app_color_blue">"Blue"</string>
+    <string name="app_color_green">"Green"</string>
+    <string name="app_color_red">"Red"</string>
+    <string name="app_color_purple">"Purple"</string>
+    <string name="app_color_rose">"Rose"</string>
+    <string name="app_color_white">"White"</string>
+    <string name="app_color_gold">"Gold"</string>
+    <string name="settings_use_system_colors">"Use system colors"</string>
+    <string name="settings_use_system_colors_hint">"Use colors from your wallpaper instead of the chosen accent."</string>
     <string name="settings_app_language">"App Language"</string>
     <string name="settings_prayer_language">"Prayer Language"</string>
     <string name="settings_follow_app_language">"App Language (%1$s)"</string>
     <string name="settings_language_system_default">"System Default"</string>
     <string name="settings_app_language_hint">"Used for the interface and automatic Bible edition. Prayers follow it unless a prayer language is selected."</string>
-    <string name="settings_jaffa_wording">"Alternative Hail Mary wording"</string>
-    <string name="settings_jaffa_wording_hint">"Use בְּרוּכַת הַחֶסֶד instead of מְלֵאַת הַחֶסֶד in Vicariate prayers."</string>
     <string name="settings_language_fallback_order">Language Fallback Order…</string>
     <string name="settings_language_fallback_order_title">Language Fallback Order</string>
     <string name="settings_language_fallback_order_footer">When text is missing, Prosary follows this order after the chosen language. Shared Hebrew, including repository prayers, uses the higher of the two Hebrew positions.</string>
@@ -88,6 +98,9 @@
     <string name="auto_advance_every">Every %1$d Seconds</string>
     <string name="settings_reset_home_order">Reset Home Order</string>
     <string name="settings_today_header">Today</string>
+    <string name="settings_show_today_readings">"Show readings in Pray"</string>
+    <string name="settings_expand_readings">"Expand readings by default"</string>
+    <string name="readings_chapter">"Chapter %1$s"</string>
     <string name="settings_show_today_feast">Show the day\'s feast</string>
     <string name="settings_show_today_intention">Show the Pope\'s intention</string>
     <string name="settings_feast_calendar">Liturgical calendar</string>
@@ -163,6 +176,7 @@
 
     <!-- Rosary options editor -->
     <string name="ro_which_mysteries">Which mysteries?</string>
+    <string name="ro_skip_fifth_decade">"Skip the fifth decade"</string>
     <string name="ro_mysteries">Mysteries</string>
     <string name="ro_specific_set">Specific set</string>
     <string name="ro_which_mystery">Which mystery</string>

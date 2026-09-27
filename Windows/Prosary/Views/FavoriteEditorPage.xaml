@@ -15,7 +15,7 @@
         <Style x:Key="SectionHeaderStyle" TargetType="TextBlock">
             <Setter Property="FontSize" Value="13" />
             <Setter Property="FontWeight" Value="SemiBold" />
-            <Setter Property="Foreground" Value="{StaticResource BrandPrimaryBrush}" />
+            <Setter Property="Foreground" Value="{ThemeResource BrandPrimaryBrush}" />
         </Style>
         <Style x:Key="SectionCardStyle" TargetType="Border">
             <Setter Property="Background" Value="{ThemeResource CardBackgroundFillColorDefaultBrush}" />
@@ -208,6 +208,10 @@
                                     </DataTemplate>
                                 </ComboBox.ItemTemplate>
                             </ComboBox>
+                            <ToggleSwitch x:Uid="EdSkipFifthDecade" Header="Skip the fifth decade"
+                                          IsOn="{x:Bind ViewModel.SkipFifthDecade, Mode=TwoWay}"
+                                          Visibility="{x:Bind ViewModel.IsSingleMystery, Mode=OneWay, Converter={StaticResource InverseBoolToVisibility}}"
+                                          AutomationProperties.AutomationId="skipFifthDecade" />
                         </StackPanel>
                     </Border>
 

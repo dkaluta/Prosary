@@ -8,14 +8,15 @@ final class LitanyEngineTests: XCTestCase {
     let info = try XCTUnwrap(PrayerPackStore.info(for: bundle))
     let engine = PrayerEngine(calendar: MockLiturgicalCalendar())
     for language in info.languages + ["he-x-gamliel"] {
+      let effectiveLanguage = PrayerPackStore.effectiveLanguage(for: bundle, chosen: language)
       let standard = engine.buildSteps(for: Prayer(
         kind: .custom, languageCode: language, customDevotionId: bundle, variantId: "standard"))
       let after = engine.buildSteps(for: Prayer(
         kind: .custom, languageCode: language, customDevotionId: bundle, variantId: "afterRosary"))
       let standaloneCollect = PrayerPackStore.resolveBodyText(
-        bundleId: bundle, languageCode: language, key: "collectStandard")
+        bundleId: bundle, languageCode: effectiveLanguage, key: "collectStandard")
       let rosaryCollect = PrayerPackStore.resolveBodyText(
-        bundleId: bundle, languageCode: language, key: "collectAfterRosary")
+        bundleId: bundle, languageCode: effectiveLanguage, key: "collectAfterRosary")
       XCTAssertEqual(standard.count, 16, language)
       XCTAssertEqual(after.count, 16, language)
       XCTAssertNotEqual(standaloneCollect, rosaryCollect, language)

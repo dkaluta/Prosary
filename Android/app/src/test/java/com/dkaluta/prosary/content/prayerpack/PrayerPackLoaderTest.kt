@@ -376,7 +376,14 @@ class PrayerPackLoaderTest {
         assertEquals(listOf("seventyTwoHailMarys", "popeIntentions"), options.map { it.key })
         assertTrue(options.all { it.kind == CustomDevotionOption.Kind.Toggle && it.defaultValue == "true" })
         assertEquals("Complete the 72 Hail Marys", options[0].name)
-        assertTrue(PrayerPackStore.options("angelus").isEmpty())
+    }
+
+    @Test
+    fun angelusDeclaresBothClosingOptionsEnabledByDefault() {
+        val options = PrayerPackStore.options("angelus")
+        assertEquals(listOf("threeGloryBes", "eternalRest"), options.map { it.key })
+        assertTrue(options.all { it.kind == CustomDevotionOption.Kind.Toggle && it.defaultValue == "true" })
+        assertEquals(listOf("Three Glory Bes", "Eternal Rest"), options.map { it.name })
     }
 
     // MARK: User-installed bundles

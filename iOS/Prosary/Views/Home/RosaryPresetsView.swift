@@ -39,7 +39,7 @@ struct RosaryPresetsView: View {
         } label: {
           HStack(spacing: 12) {
             Image(systemName: "sparkles")
-              .foregroundStyle(Color.brandPrimary)
+              .foregroundStyle(Color.appAccent)
             VStack(alignment: .leading, spacing: 2) {
               Text("rosaryPicker.anyRosaryAction")
                 .font(.headline)
@@ -139,7 +139,7 @@ struct RosaryPresetsView: View {
   private func presetCardBody(_ preset: Prayer, prominent: Bool) -> some View {
     HStack(spacing: 0) {
       Rectangle()
-        .fill(Color.brandPrimary)
+        .fill(Color.appAccent)
         .frame(width: 4)
 
       VStack(alignment: .leading, spacing: 6) {
@@ -166,7 +166,7 @@ struct RosaryPresetsView: View {
             .prosarySpatialTarget()
         }
         .buttonStyle(.borderedProminent)
-        .tint(Color.brandPrimary)
+        .tint(Color.appAccent)
         .padding(.top, 2)
         .accessibilityLabel(String(localized: "favorites.prayPrayer", defaultValue: "Pray \(preset.name)", bundle: UILanguage.bundle, locale: UILanguage.locale))
         .accessibilityIdentifier(preset.isDefault ? "prayDefaultPreset" : "prayPreset")

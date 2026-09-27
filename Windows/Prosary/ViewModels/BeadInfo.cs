@@ -13,12 +13,8 @@ public enum BeadState { Completed, Current, Upcoming }
 /// version this file originally mirrored).</summary>
 public sealed class BeadInfo
 {
-    // Completed/upcoming stay the same flat gray in both themes on every platform (iOS's
-    // BeadModels.swift and Android's Color.kt both hardcode these two with no dark-mode variant)
-    // — only the current bead's maroon is dark enough to need a lighter dark-mode replacement,
-    // matching iOS's BeadCurrent/Android's BeadCurrentLight+BeadCurrentDark asset colors exactly.
-    private static readonly Color CurrentColorLight = ColorFromHex("#7A1F3D");
-    private static readonly Color CurrentColorDark = ColorFromHex("#E04F7D");
+    // Only the current bead takes the user's app color; completed/upcoming retain their
+    // neutral progress states. The page rebuilds these values when its theme changes.
     private static readonly Color CompletedColor = ColorFromHex("#6E6E6E");
     private static readonly Color UpcomingColor = ColorFromHex("#ACACAC");
 
@@ -40,7 +36,7 @@ public sealed class BeadInfo
 
     public Color Color => State switch
     {
-        BeadState.Current => IsDarkTheme ? CurrentColorDark : CurrentColorLight,
+        BeadState.Current => AppColorPalette.Resolve(AppSettings.AppColor).Accent(IsDarkTheme),
         BeadState.Completed => CompletedColor,
         _ => UpcomingColor
     };

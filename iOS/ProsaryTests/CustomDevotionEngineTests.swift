@@ -130,9 +130,9 @@ final class CustomDevotionEngineTests: XCTestCase {
         XCTAssertNotEqual(step.body, id)
         XCTAssertNotEqual(step.title, "\(id)Title")
         XCTAssertEqual(step.body, PrayerPackStore.resolveBodyText(
-          bundleId: "rosary", languageCode: language.code, key: id))
+          bundleId: "rosary", languageCode: BasicPrayerCatalog.languageCode(for: prayer, requested: language.code), key: id))
         XCTAssertEqual(step.transliteratedBody, PrayerPackStore.transliteration(
-          bundleId: "rosary", languageCode: language.code, key: id))
+          bundleId: "rosary", languageCode: BasicPrayerCatalog.languageCode(for: prayer, requested: language.code), key: id))
         XCTAssertEqual(step.imageOverrideKey, "madonna_and_child")
       }
     }
@@ -140,6 +140,20 @@ final class CustomDevotionEngineTests: XCTestCase {
       BasicPrayerCatalog.step(for: try XCTUnwrap(BasicPrayerCatalog.prayer(id: id)), languageCode: "en").title
     }
     XCTAssertEqual(Set(titles).count, 4)
+  }
+
+  func testSaintMichaelIsAStandalonePrayerWithItsSourcedTextAndArtwork() throws {
+    let prayer = try XCTUnwrap(BasicPrayerCatalog.prayer(id: "stMichael"))
+    for language in LanguageCatalog.all {
+      let step = BasicPrayerCatalog.step(for: prayer, languageCode: language.code)
+      XCTAssertFalse(step.body.isEmpty, language.code)
+      XCTAssertNotEqual(step.body, "sanctusMichael", language.code)
+      XCTAssertNotEqual(step.title, "sanctusMichaelTitle", language.code)
+      XCTAssertEqual(step.imageOverrideKey, "st_michael")
+      XCTAssertEqual(step.body, PrayerTranslations.get(
+        languageCode: BasicPrayerCatalog.languageCode(for: prayer, requested: language.code), key: .sanctusMichael))
+    }
+    XCTAssertEqual(BasicPrayerFavorites.prayerID(homeRowID: "basic:stMichael"), "stMichael")
   }
 
   /// The basic-prayers list resolves through the same chains the flows use, so it follows the
@@ -155,7 +169,7 @@ final class CustomDevotionEngineTests: XCTestCase {
     }
 
     XCTAssertEqual(BasicPrayerCatalog.all.map(\.id),
-                   ["signOfCross", "ourFather", "hailMary", "gloryBe", "creed", "holyGod",
+                   ["signOfCross", "ourFather", "hailMary", "gloryBe", "creed", "holyGod", "stMichael",
                     "salveRegina", "almaRedemptorisMater", "aveReginaCaelorum", "reginaCaeli"])
 
     InterfaceLanguageStore.shared.selection = "en"
@@ -361,29 +375,89 @@ final class CustomDevotionEngineTests: XCTestCase {
 
   func testAngelusStandardFormOutsideEastertide() {
     let steps = steps("angelus")
-    XCTAssertEqual(steps.count, 7)
+    XCTAssertEqual(steps.count, 11)
     XCTAssertEqual(steps.map(\.title), [
       "The Annunciation", "Hail Mary",
       "The Fiat", "Hail Mary",
       "The Incarnation", "Hail Mary",
       "Let Us Pray",
+      "Glory Be (1 of 3)", "Glory Be (2 of 3)", "Glory Be (3 of 3)",
+      "For the Faithful Departed",
     ])
     XCTAssertTrue(steps[0].body.contains("The Angel of the Lord declared unto Mary"))
     XCTAssertTrue(steps[0].body.contains("**And she conceived of the Holy Spirit.**"))
     XCTAssertTrue(steps[1].body.contains("Hail Mary,\nfull of grace"))
-    XCTAssertTrue(steps.last!.body.contains("Pour forth, we beseech Thee"))
+    XCTAssertTrue(steps[6].body.contains("Pour forth, we beseech Thee"))
+    XCTAssertTrue(steps.last!.body.contains("Eternal rest\ngrant unto them"))
     XCTAssertFalse(steps.contains { $0.body.contains("Queen of Heaven") })
-    XCTAssertTrue(steps.allSatisfy { $0.imageKey == "joyful_01_annunciation" })
+    XCTAssertTrue(steps.prefix(7).allSatisfy { $0.imageKey == "joyful_01_annunciation" })
   }
 
   func testAngelusReginaCaeliSubstitutionDuringEastertide() {
     let steps = steps("angelus", calendar: FixedLiturgicalCalendar(isEasterSeasonValue: true))
-    XCTAssertEqual(steps.count, 1)
+    XCTAssertEqual(steps.count, 5)
     XCTAssertEqual(steps[0].title, "Regina Caeli")
     XCTAssertTrue(steps[0].body.contains("Queen of Heaven, rejoice"))
     XCTAssertTrue(steps[0].body.contains("Rejoice and be glad, O Virgin Mary"))
     XCTAssertFalse(steps[0].body.contains("Pour forth, we beseech Thee"))
     XCTAssertEqual(steps[0].imageKey, "madonna_and_child")
+    XCTAssertEqual(steps.dropFirst().map(\.title), [
+      "Glory Be (1 of 3)", "Glory Be (2 of 3)", "Glory Be (3 of 3)",
+      "For the Faithful Departed",
+    ])
+  }
+
+  func testAngelusClosingOptionsAreIndependentInBothSeasons() {
+    for eastertide in [false, true] {
+      let calendar = FixedLiturgicalCalendar(isEasterSeasonValue: eastertide)
+      let base = steps("angelus", customOptions: [
+        "threeGloryBes": "false", "eternalRest": "false",
+      ], calendar: calendar)
+      XCTAssertEqual(base.count, eastertide ? 1 : 7)
+
+      for gloryBes in [false, true] {
+        for eternalRest in [false, true] {
+          let result = steps("angelus", customOptions: [
+            "threeGloryBes": String(gloryBes), "eternalRest": String(eternalRest),
+          ], calendar: calendar)
+          let closingTitles = (gloryBes ? [
+            "Glory Be (1 of 3)", "Glory Be (2 of 3)", "Glory Be (3 of 3)",
+          ] : []) + (eternalRest ? ["For the Faithful Departed"] : [])
+          XCTAssertEqual(result.map(\.title), base.map(\.title) + closingTitles)
+          XCTAssertEqual(result.prefix(base.count).map(\.body), base.map(\.body))
+          if gloryBes {
+            let glorias = result.dropFirst(base.count).prefix(3)
+            XCTAssertTrue(glorias.allSatisfy { $0.body.contains("Glory be to the Father") })
+            XCTAssertEqual(Set(glorias.map(\.body)).count, 1)
+          }
+          if eternalRest {
+            XCTAssertTrue(result.last!.body.contains("Eternal rest\ngrant unto them"))
+          }
+        }
+      }
+    }
+  }
+
+  func testAngelusMissingClosingOptionsInheritEnabledDefaults() {
+    for eastertide in [false, true] {
+      let calendar = FixedLiturgicalCalendar(isEasterSeasonValue: eastertide)
+      let inherited = steps("angelus", calendar: calendar)
+      let explicit = steps("angelus", customOptions: [
+        "threeGloryBes": "true", "eternalRest": "true",
+      ], calendar: calendar)
+      XCTAssertEqual(inherited.map(\.title), explicit.map(\.title))
+      XCTAssertEqual(inherited.map(\.body), explicit.map(\.body))
+
+      let onlyEternalRest = steps("angelus", customOptions: ["threeGloryBes": "false"], calendar: calendar)
+      XCTAssertEqual(onlyEternalRest.count, eastertide ? 2 : 8)
+      XCTAssertEqual(onlyEternalRest.last?.title, "For the Faithful Departed")
+
+      let onlyGloryBes = steps("angelus", customOptions: ["eternalRest": "false"], calendar: calendar)
+      XCTAssertEqual(onlyGloryBes.count, eastertide ? 4 : 10)
+      XCTAssertEqual(onlyGloryBes.suffix(3).map(\.title), [
+        "Glory Be (1 of 3)", "Glory Be (2 of 3)", "Glory Be (3 of 3)",
+      ])
+    }
   }
 
   func testAngelusSentinelFollowsInterfaceLanguageUntilPrayerLanguageIsOverridden() {

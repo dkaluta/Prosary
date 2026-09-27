@@ -614,6 +614,25 @@ class RosaryEngineTest {
 
     // MARK: - Presenter Mode
 
+    @Test fun skippingFifthDecadesKeepsDenseBeadsAndAllClosingPrayers() {
+        for ((mode, expectedCount) in listOf(
+            MysterySelectionMode.Specific to 4,
+            MysterySelectionMode.FifteenMystery to 12,
+            MysterySelectionMode.TwentyMystery to 16,
+        )) for (presenter in listOf(false, true)) {
+            val originalPrayer = prayer(mode = mode, presenterMode = presenter)
+            val full = engine().buildSteps(originalPrayer)
+            val shortened = engine().buildSteps(originalPrayer.copy(rosary = originalPrayer.rosary.copy(skipFifthDecade = true)))
+            assertEquals((0 until expectedCount).toList(), shortened.mapNotNull { it.decadeIndex }.distinct())
+            assertTrue(shortened.mapNotNull { it.mystery }.none { it.order == 5 })
+            assertEquals(full.filter { it.decadeIndex == null }.map { it.body },
+                shortened.filter { it.decadeIndex == null }.map { it.body })
+        }
+        val single = prayer(mode = MysterySelectionMode.SingleMystery, order = 5)
+        assertEquals(engine().buildSteps(single).map { it.body },
+            engine().buildSteps(single.copy(rosary = single.rosary.copy(skipFifthDecade = true))).map { it.body })
+    }
+
     @Test
     fun presenterModeOffReproducesExistingStepCount() {
         val steps = engine().buildSteps(prayer(presenterMode = false))

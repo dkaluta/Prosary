@@ -15,6 +15,19 @@ import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
 class InterfaceLanguageInstrumentedTest {
+    @Test fun retiredHailMaryPreferenceCannotRestoreTheAlternativeWording() {
+        val context = InstrumentationRegistry.getInstrumentation().targetContext
+        val preferences = context.getSharedPreferences("prosary_settings", Context.MODE_PRIVATE)
+        preferences.edit().putBoolean("useJaffaHailMaryWording", true).commit()
+        InstrumentationRegistry.getInstrumentation().runOnMainSync { AppSettings.init(context) }
+        assertFalse(preferences.contains("useJaffaHailMaryWording"))
+        val original = com.dkaluta.prosary.content.PrayerTranslations.byLanguage
+            .getValue(com.dkaluta.prosary.models.LanguageCatalog.hebrewVicariateContentCode)
+            .getValue(com.dkaluta.prosary.content.PrayerKey.AveMaria)
+        assertEquals(original, com.dkaluta.prosary.content.PrayerTranslations.get("he",
+            com.dkaluta.prosary.content.PrayerKey.AveMaria))
+    }
+
     @Test fun nativeLocaleChangesRecreateWithTranslatedResourcesRtlAndIndependentSavedPrayers() {
         val instrumentation = InstrumentationRegistry.getInstrumentation()
         val preferences = instrumentation.targetContext.getSharedPreferences("prosary_settings", Context.MODE_PRIVATE)

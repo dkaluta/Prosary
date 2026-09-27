@@ -20,6 +20,7 @@ struct MacPrayerGalleryCollection: NSViewRepresentable {
   @Environment(\.layoutDirection) private var layoutDirection
   @Environment(\.locale) private var locale
   @Environment(\.isEnabled) private var isEnabled
+  @AppStorage(AppColor.defaultsKey) private var appColor = AppColor.blue.rawValue
 
   func makeCoordinator() -> Coordinator { Coordinator(self) }
 
@@ -28,6 +29,7 @@ struct MacPrayerGalleryCollection: NSViewRepresentable {
   }
 
   func updateNSView(_ scroll: NSScrollView, context: Context) {
+    let _ = appColor
     context.coordinator.update(self, scroll: scroll)
   }
 
@@ -476,7 +478,8 @@ private final class GalleryTileView: NSView {
     let resource = customImage == nil ? MacPrayerGalleryArtwork.resource(for: item.devotionID) : nil
     let next = GalleryCover(resource: resource, customImage: customImage,
       cacheKey: customImage != nil ? "local:\(item.devotionID):\(store.revision)" : resource?.cacheKey,
-      glyph: item.iconGlyph, symbol: item.systemImage, tint: item.color)
+      glyph: item.iconGlyph, symbol: item.systemImage,
+      tint: item.color == .appAccent ? AppColor.current.color : item.color)
     if cover?.hasSameArtwork(as: next) != true {
       cover = next
       if let coverHost { coverHost.rootView = next }
@@ -526,7 +529,7 @@ private final class GalleryTileView: NSView {
       NSBezierPath(roundedRect: title.frame.insetBy(dx: -4, dy: -2), xRadius: 4, yRadius: 4).fill()
     }
     if dropTarget {
-      NSColor.controlAccentColor.setStroke()
+      NSColor(AppColor.current.color).setStroke()
       let border = NSBezierPath(roundedRect: pictureBacking.insetBy(dx: 1.5, dy: 1.5), xRadius: 7, yRadius: 7)
       border.lineWidth = 3
       border.stroke()

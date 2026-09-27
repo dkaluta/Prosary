@@ -249,10 +249,12 @@ final class TodayInfoStoreTests: XCTestCase {
     let vetus = TodayInfoStore.feast(on: date("2026-09-05"))
     XCTAssertEqual(vetus?.title, "St. Lawrence Justinian")
     XCTAssertEqual(vetus?.rank, "3rd Class")
-    for calendarId in ["ugcc", "syriac"] {
-      select(calendarId)
-      XCTAssertNil(TodayInfoStore.feast(on: date("2026-09-05")), calendarId)
-    }
+    select("ugcc")
+    XCTAssertNil(TodayInfoStore.feast(on: date("2026-09-05")))
+    select("syriac")
+    let syriac = try XCTUnwrap(TodayInfoStore.feast(on: date("2026-09-05")))
+    XCTAssertEqual(syriac.title, "St. Charbel")
+    XCTAssertEqual(syriac.rank, "Feast")
   }
 
   func testSaintTitlesRetainTheirRolesAcrossCalendarAliases() throws {
@@ -262,7 +264,7 @@ final class TodayInfoStoreTests: XCTestCase {
       ("roman", "2026-07-15", "Saint Bonaventure, Bishop and Doctor of the Church", "Memorial", "בונבנטורה הקדוש, הגמון ודוקטור הכנסייה"),
       ("roman1962", "2026-07-14", "St. Bonaventure", "3rd Class", "בונבנטורה הקדוש, הגמון ודוקטור הכנסייה"),
       ("roman", "2026-07-03", "Saint Thomas the Apostle", "Feast", "תאמא השליח"),
-      ("syriac", "2026-10-06", "Feast of Saint Thomas the Apostle", "Feast", "תאמא השליח"),
+      ("syriac", "2026-10-06", "St. Thomas", "Feast", "תאמא השליח"),
       ("roman1962", "2026-12-21", "St. Thomas", "2nd Class", "תאמא השליח"),
       ("roman", "2026-01-28", "Saint Thomas Aquinas, Priest and Doctor of the Church", "Memorial", "תומאס אקווינס, כהן ודוקטור הכנסייה"),
     ]
@@ -325,15 +327,40 @@ final class TodayInfoStoreTests: XCTestCase {
 
   /// The Syriac Catholic table comes from Evangelizo.org's Daily Gospel (credited on the
   /// About screen): the Antiochene year names its Sundays from the season's anchor feasts,
-  /// and Evangelizo's plain-date ferial titles are omitted like ferial days everywhere else.
+  /// while supplementary saints remain visible alongside the principal observance.
   func testSyriacCalendarNamesTheAntiocheneSeasons() {
     select("syriac")
     let sunday = TodayInfoStore.feast(on: date("2026-10-25"))
-    XCTAssertEqual(sunday?.title, "Sixth Sunday after the Feast of the Cross")
+    XCTAssertEqual(sunday?.title.components(separatedBy: "; "),
+                   ["Sixth Sunday after the Feast of the Cross", "St. Phyton"])
     XCTAssertEqual(sunday?.rank, "Sunday")
     XCTAssertEqual(
       TodayInfoStore.feast(on: date("2026-08-15"))?.title, "Assumption of the Mother of God")
-    XCTAssertNil(TodayInfoStore.feast(on: date("2026-07-27")))
+    XCTAssertEqual(TodayInfoStore.feast(on: date("2026-07-27"))?.title, "St. Pentalmon")
+    XCTAssertNil(TodayInfoStore.feast(on: date("2026-09-01")))
+  }
+
+  func testSyriacCalendarIncludesAllSaintsOnTheReportedDates() throws {
+    select("syriac")
+    let expected = [
+      ("2026-09-30", ["St. Gregory the Illuminator", "St. Jerome of Stridon"],
+       ["غريغوريوس", "هيرونيموس"]),
+      ("2026-10-01", ["St. Ananias", "St. Abi",
+                      "Saint Thérèse of the Child Jesus, Virgin and Doctor of the Church"],
+       ["حننيا", "أباي", "تريزا"]),
+    ]
+    for (day, saints, arabicNames) in expected {
+      let feast = try XCTUnwrap(TodayInfoStore.feast(on: date(day)), day)
+      XCTAssertEqual(feast.title.components(separatedBy: "; "), saints, day)
+      XCTAssertEqual(feast.rank, "Feast", day)
+      for language in ["en", "he", "he-x-gamliel", "ar", "ru", "tl", "fil", "fr", "it", "uk"] {
+        XCTAssertEqual(feast.localizedTitle(language).components(separatedBy: "; ").count,
+                       saints.count, "\(day), \(language)")
+      }
+      for name in arabicNames {
+        XCTAssertTrue(feast.localizedTitle("ar").contains(name), "\(day), \(name)")
+      }
+    }
   }
 
   /// October 25, 2026 wears four different faces: the LPJ's patronal solemnity, a plain

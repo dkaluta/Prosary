@@ -49,6 +49,8 @@ enum BasicPrayerCatalog {
     BasicPrayer(id: "holyGod", bundleId: "trisagion",
                 titleKey: "trisagionAcclamationTitle", bodyKey: "trisagionAcclamation",
                 imageKey: "jesus_portrait"),
+    BasicPrayer(id: "stMichael", bundleId: "rosary",
+                titleKey: "sanctusMichaelTitle", bodyKey: "sanctusMichael", imageKey: "st_michael"),
     BasicPrayer(id: "salveRegina", bundleId: "rosary",
                 titleKey: "salveReginaTitle", bodyKey: "salveRegina", imageKey: "madonna_and_child"),
     BasicPrayer(id: "almaRedemptorisMater", bundleId: "rosary",
@@ -63,12 +65,20 @@ enum BasicPrayerCatalog {
     all.first { $0.id == id }
   }
 
+  @MainActor
+  static func languageCode(for prayer: BasicPrayer, requested: String?) -> String {
+    let resolved = LanguageCatalog.resolve(requested).code
+    let traditions = PrayerPackStore.hebrewTraditions(bundleId: prayer.bundleId, bodyKey: prayer.bodyKey)
+    return LanguageCatalog.pickerLanguageCode(resolved) == "he" && traditions.count == 1
+      ? traditions[0] : resolved
+  }
+
   /// The prayer as one step, in the selected or app-default prayer language — the same
   /// `RosaryStep` the flows render, so typography, RTL, the ✠ mark and the transliteration
   /// toggle all come along without any new machinery.
   @MainActor
   static func step(for prayer: BasicPrayer, languageCode: String? = nil) -> RosaryStep {
-    let language = LanguageCatalog.resolve(languageCode).code
+    let language = Self.languageCode(for: prayer, requested: languageCode)
     return RosaryStep(
       title: PrayerPackStore.resolveBodyText(
         bundleId: prayer.bundleId, languageCode: language, key: prayer.titleKey),

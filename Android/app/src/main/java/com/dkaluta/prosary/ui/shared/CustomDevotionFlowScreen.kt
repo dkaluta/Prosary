@@ -288,13 +288,11 @@ fun CustomDevotionFlowScreen(
         resetAudioOnNextRebuild = false
         if (pendingResume != null) currentIndex = 0
         session.loadedSelection = variantId to dayIndex
-        session.appliedJaffaWording = AppSettings.useJaffaHailMaryWording
     }
 
     val resolvedLanguage = PrayerPackStore.effectiveLanguage(devotionId, frozenLanguageCode ?: chosenLanguage)
-    LaunchedEffect(resolvedLanguage, AppSettings.useJaffaHailMaryWording) {
-        if (languageCode == resolvedLanguage &&
-            session.appliedJaffaWording == AppSettings.useJaffaHailMaryWording) return@LaunchedEffect
+    LaunchedEffect(resolvedLanguage) {
+        if (languageCode == resolvedLanguage) return@LaunchedEffect
         if (steps.isNotEmpty()) {
             val definition = PrayerPackStore.definition(devotionId)
             if (definition?.effectiveVariantId(variantId, languageCode) !=
@@ -316,7 +314,6 @@ fun CustomDevotionFlowScreen(
             ))
             currentIndex = position.coerceIn(0, (steps.size - 1).coerceAtLeast(0))
             if (languageChanged) pickAudioTrack(currentIndex, allowStoredPosition = false)
-            session.appliedJaffaWording = AppSettings.useJaffaHailMaryWording
         }
     }
 

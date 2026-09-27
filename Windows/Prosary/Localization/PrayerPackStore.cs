@@ -189,6 +189,11 @@ public static class PrayerPackStore
     {
         var resolved = Prosary.Models.LanguageCatalog.Resolve(
             chosen ?? Prosary.Models.LanguageCatalog.DefaultSentinel).Code;
+        if (LanguageCatalog.PickerLanguageCode(resolved) == "he")
+        {
+            var rites = AuthoredHebrewRites(bundleId);
+            if (rites.Count == 1) return rites[0].Code;
+        }
         var available = Info(bundleId)?.Languages ?? [];
         if (available.Count == 0) return resolved;
         foreach (var code in LanguageCatalog.ContentFallbackChain(resolved))
@@ -314,6 +319,64 @@ public static class PrayerPackStore
 
     public static bool IsBuiltInBundle(string id) => PackNames.Contains(id);
 
+    /// <summary>Only exact authored prayer bodies establish a Hebrew tradition. Titles,
+    /// generic Hebrew and the ordinary language fallback chain do not add another variant.</summary>
+    public static IReadOnlyList<LanguageOption> AuthoredHebrewRites(string bundleId, string? bodyKey = null)
+    {
+        var keys = new HashSet<string>(StringComparer.Ordinal);
+        void AddSteps(IEnumerable<CustomDevotionStep>? steps)
+        {
+            foreach (var step in steps ?? [])
+            {
+                if (step.BodyKey is { } body) keys.Add(body);
+                if (step.AcclamationKey is { } acclamation) keys.Add(acclamation);
+            }
+        }
+        void AddDecades(CustomDevotionDefinition.DecadesDefinition? decades)
+        {
+            if (decades is null) return;
+            keys.Add(decades.MajorStep.BodyKey);
+            keys.Add(decades.MinorStep.BodyKey);
+            foreach (var key in decades.Presenter?.BodyKeys ?? []) keys.Add(key);
+            AddSteps(decades.PreAnnouncement);
+            AddSteps(decades.PostMinor);
+        }
+        if (bodyKey is not null) keys.Add(bodyKey);
+        else if (Definition(bundleId) is { } definition)
+        {
+            AddSteps(definition.Steps);
+            AddSteps(definition.EastertideSteps);
+            AddSteps(definition.Opening);
+            AddSteps(definition.Closing);
+            AddDecades(definition.Decades);
+            foreach (var day in definition.Days ?? []) AddSteps(day.Steps);
+            foreach (var variant in definition.Variants ?? [])
+            {
+                AddSteps(variant.Steps);
+                AddSteps(variant.EastertideSteps);
+                AddSteps(variant.Opening);
+                AddSteps(variant.Closing);
+                AddDecades(variant.Decades);
+            }
+        }
+        var content = RawContentByBundle.GetValueOrDefault(bundleId);
+        return LanguageCatalog.Rites("he").Where(rite =>
+        {
+            var probe = rite.Code == "he" ? LanguageCatalog.VicariateContentCode : rite.Code;
+            var authored = content?.GetValueOrDefault(probe);
+            return keys.Any(key =>
+            {
+                if (!string.IsNullOrWhiteSpace(authored?.GetValueOrDefault(key))) return true;
+                // Basic prayers may be sourced from the shared prayer tables. Probe this
+                // exact tradition only; resolving through another language would invent a choice.
+                var sharedKey = ToPascalCase(key);
+                return bodyKey is not null && SharedPrayerKeys.Contains(sharedKey)
+                    && !string.IsNullOrWhiteSpace(PrayerOverride(probe, sharedKey)
+                        ?? PrayerTranslations.NativeTextAtProbe(probe, sharedKey));
+            });
+        }).ToList();
+    }
+
     /// <summary>The options a bundle's <c>options.json</c> declares, in authored order (the
     /// editor's display order). Empty for bundles without one.</summary>
     public static IReadOnlyList<CustomDevotionOption> Options(string bundleId) =>
@@ -388,10 +451,7 @@ public static class PrayerPackStore
     {
         public static ResolvedPrayerContent FromSource(string text, string? readingAid, string probe)
         {
-            var displayed = VicariatePrayerWording.Apply(text, probe);
-            // No sourced Jaffa reading aid is supplied. Never pair changed wording with the
-            // original aid, while retaining aids for unaffected prayers from the same source.
-            return new(displayed, displayed == text ? readingAid : null);
+            return new(text, readingAid);
         }
     }
 

@@ -4,21 +4,22 @@
     "generator": "Terminal/tools/sync-content.py",
     "notes": "Exact sourced text; canonical packs plus native base prayers. Native Hebrew retains Vicariate provenance. Regenerate with uv; runtime needs only this JSON.",
     "sources": {
-      "Shared/content/angelus/content/ar.json": "41f79e4ba5db3f9e639f91ee65e0f4f904245f890376815d321442198ddbb2cf",
-      "Shared/content/angelus/content/arc.json": "ccab091ebdcb46a2d1184b38c6481f7f2252bc61590672aacfe4f1b77d98cbdd",
-      "Shared/content/angelus/content/el.json": "f2abf1b3b9e76b56e2aa2be9cca412be1e02d95c45caca4214a7f485097d6938",
-      "Shared/content/angelus/content/en.json": "ffa111bfda231e5cc8deab2817f68853c9b19e8162f72842bfe4cc5cd3b70793",
-      "Shared/content/angelus/content/es.json": "fa37f6df3e1796a4858ebb6099112758dec04c2f24e7dc71d66be9c187926c4d",
-      "Shared/content/angelus/content/fr.json": "179b9c47249f67e80d25ce87216f16a2c01f6d14ace1309ac104fd595e998d20",
-      "Shared/content/angelus/content/he-x-gamliel.json": "43ab8d511b2892dc665663b6615ffc566f386e8a4be73514c7d00e9e4411d409",
-      "Shared/content/angelus/content/he.json": "9627fdbbad58f01ec64192ae810f5fe9403a4d52dfaacbc2e74caade9af0a570",
-      "Shared/content/angelus/content/it.json": "d1d68d9c3965879329dbf8e3ef3c2bb8560532b1a10c11b66b5a4e09b3ab48ab",
-      "Shared/content/angelus/content/la.json": "7074daa44a6b1a9725fb00f0fc15060d378814616b0104d2726f1924612c177d",
-      "Shared/content/angelus/content/ru.json": "2841b28482e63688b121db1cc5d8f601b2bbfc719ec8a9a785453ddde61bfd09",
-      "Shared/content/angelus/content/tl.json": "7d06257eda105c1229b4b563bd614a3d08a15b113311887fecae8308f8fba61e",
-      "Shared/content/angelus/content/uk.json": "909f29d9645ecafb5d586130ff7df2dc7bff845d43e243259c0ff35a3c500255",
-      "Shared/content/angelus/devotion.json": "8c1881ad0f0b26d72be02ac45b5b2a3b1287e9d270fe8f864ee0853e7251a856",
-      "Shared/content/angelus/manifest.json": "467ed162e2b6e9186459a0ab3c628540bdda9ab8ab830215a6719137835139d8",
+      "Shared/content/angelus/content/ar.json": "0154cdd432d02590d2a13773e01103e2c95b64951da934171a8ae49b33975b20",
+      "Shared/content/angelus/content/arc.json": "b0233b06ba9b0f8b5ff7fcfed0d314a32d2fb6ffd2479963f0363291364d662d",
+      "Shared/content/angelus/content/el.json": "fcf55731b38ee462c10a6f97b9109082f6b9aff0dfb16697652bdf69353159d1",
+      "Shared/content/angelus/content/en.json": "eb4fe60e55a6ba06540c1f7ed5b16c350264a1eb22842e053cd14643cc253367",
+      "Shared/content/angelus/content/es.json": "138a9e1db2cad7e26f7e191c6defc74fadf00fb14a480cf8f958ab585fff034e",
+      "Shared/content/angelus/content/fr.json": "b62845db3589a2dc9383b946627f8896939374b69fb4a920692a1166511bcd6f",
+      "Shared/content/angelus/content/he-x-gamliel.json": "c73cb5853138171008471d427889156c073e612eaf36c6112ba62562bbeab7d1",
+      "Shared/content/angelus/content/he.json": "0bfafef23d89d8dbbd075d6f5c7867bd68de883affc23ce4c722568258ea53f3",
+      "Shared/content/angelus/content/it.json": "0d0e68998bf37b5196650d3d0d0416f0bc60a3b3e9e743f8996b1aa88edbe8c7",
+      "Shared/content/angelus/content/la.json": "f5cd7671f3e8487709ad853108e76fc372d41be05d706f533317f3fffbaf65a2",
+      "Shared/content/angelus/content/ru.json": "b570429ba4765e6db9271b52f59665eac1cd90f02bc03ecafdd7bb690ac15c94",
+      "Shared/content/angelus/content/tl.json": "6b62f34ca27ffa164fd821e8d0ec58430dcf45dc7a3f93a5005369eb409bc48a",
+      "Shared/content/angelus/content/uk.json": "71bbcdcf3dc14a3774a1e75ddfe5cb45ba5011604dbe66aa25e4d32208443e8e",
+      "Shared/content/angelus/devotion.json": "ef85fd7d6322d64cac6fdc4de58d90735a18ff24474dd2ded02c101d21ecfd14",
+      "Shared/content/angelus/manifest.json": "77a68319ae50eda4e11b8b6ff8aae5944302e308cdae5bad15c9b83567a1ead1",
+      "Shared/content/angelus/options.json": "14ff8bf2f4d2b8bc08339e233473356002a8750eb6bb4432916c6c5ccd704bf5",
       "Shared/content/divineMercyChaplet/content/ar.json": "166f069d7535d6fead67d99466daa121789dc1ddfe58ba78f3aa9cf4c4f8452a",
       "Shared/content/divineMercyChaplet/content/arc.json": "0db2e5c8e07843141f43e743f64909ecb0a4c217e4b4731cb790584dc2b7b4f4",
       "Shared/content/divineMercyChaplet/content/el.json": "200b891f3e6352821ddf31f8af689fa715b0c579ca4bb15e3240eb2d07f901c2",
@@ -94,7 +95,7 @@
       "Shared/content/rosary/content/uk.json": "e47a4007c1c4bba5ef3b26ed4d016bde0a511876e95481aae7bf5a97de68df93",
       "Shared/content/rosary/devotion.json": "4fb9e91f6cbe22ae55c72aecbeba873a368070a1e7b94eaf8153db322754711b",
       "Shared/content/rosary/manifest.json": "820d6d66b9852fc1ebe2f13ea5513303e67011bcf89ca9455355f62e11300f28",
-      "Shared/content/rosary/options.json": "75afbe9aa661e17fc487fed02961349f38395fa59fce46d959d39e85b12f9965",
+      "Shared/content/rosary/options.json": "aee8ce8e36afa50113cf3141e5ca52e12c9448936604d16bbb4b2a51b39b7424",
       "Shared/content/sevenSorrows/content/ar.json": "ca61984e3b1fc5b26e3fc26e225c1fe9b158c2b0e72abea97976aefe5847efbf",
       "Shared/content/sevenSorrows/content/arc.json": "f82fc10644ce8e66256368eab059b7723c4e4ddd7f32de0e7b70b464506dca4a",
       "Shared/content/sevenSorrows/content/el.json": "71a5bd549c52cd80de5be5750be28ed22b85948d060dd2f18cf0615d2529b182",
@@ -4939,6 +4940,21 @@
       "options": {
         "options": [
           {
+            "key": "skipFifthDecade",
+            "kind": "toggle",
+            "name": "Skip the fifth decade",
+            "default": false,
+            "nameByLanguage": {
+              "he": "דילוג על העשור החמישי",
+              "ar": "تخطّي العقد الخامس",
+              "ru": "Пропустить пятую декаду",
+              "tl": "Laktawan ang ikalimang dekada",
+              "fr": "Passer la cinquième dizaine",
+              "it": "Salta la quinta decina",
+              "uk": "Пропустити п’яту декаду"
+            }
+          },
+          {
             "key": "invitatory",
             "kind": "toggle",
             "name": "Opening versicle (O God, come to my assistance)",
@@ -5461,10 +5477,13 @@
         "images": [
           "gallery_angelus",
           "joyful_01_annunciation",
-          "madonna_and_child"
+          "madonna_and_child",
+          "glory_be",
+          "eternal_rest"
         ],
         "mainPrayerKeysOmitted": [
-          "aveMaria"
+          "aveMaria",
+          "gloriaPatri"
         ],
         "displayNameByLanguage": {
           "he": "המלאך",
@@ -5550,6 +5569,19 @@
             "titleKey": "angelusCollectTitle",
             "bodyKey": "angelusCollectBody",
             "imageKey": "joyful_01_annunciation"
+          },
+          {
+            "titleKey": "gloriaPatriTitle",
+            "bodyKey": "gloriaPatri",
+            "imageKey": "glory_be",
+            "repeat": 3,
+            "if": "threeGloryBes"
+          },
+          {
+            "titleKey": "requiemAeternamTitle",
+            "bodyKey": "requiemAeternam",
+            "imageKey": "eternal_rest",
+            "if": "eternalRest"
           }
         ],
         "eastertideSteps": [
@@ -5557,6 +5589,19 @@
             "titleKey": "reginaCaeliTitle",
             "bodyKey": "reginaCaeliBody",
             "imageKey": "madonna_and_child"
+          },
+          {
+            "titleKey": "gloriaPatriTitle",
+            "bodyKey": "gloriaPatri",
+            "imageKey": "glory_be",
+            "repeat": 3,
+            "if": "threeGloryBes"
+          },
+          {
+            "titleKey": "requiemAeternamTitle",
+            "bodyKey": "requiemAeternam",
+            "imageKey": "eternal_rest",
+            "if": "eternalRest"
           }
         ]
       },
@@ -5573,7 +5618,9 @@
             "angelusFiatTitle": "هوذا أمة الرب",
             "angelusIncarnationTitle": "التجسد",
             "aveMariaTitle": "السلام عليك يا مريم",
-            "reginaCaeliTitle": "يا ملكة السماء"
+            "reginaCaeliTitle": "يا ملكة السماء",
+            "gloriaPatriTitle": "المجد للآب",
+            "requiemAeternamTitle": "من أجل المؤمنين الراقدين"
           },
           "mysteries": {}
         },
@@ -5584,7 +5631,9 @@
             "angelusIncarnationTitle": "מתגשמנותא",
             "angelusCollectTitle": "צלותא",
             "aveMariaTitle": "שלָם לֶך מַריַם",
-            "reginaCaeliTitle": "מלכתא דשמיא"
+            "reginaCaeliTitle": "מלכתא דשמיא",
+            "gloriaPatriTitle": "שוּבחָא לַאבָא",
+            "requiemAeternamTitle": "ניחא דלעלם"
           },
           "mysteries": {},
           "transliterations": {
@@ -5593,7 +5642,9 @@
             "angelusIncarnationTitle": "ܡܬܓܫܡܢܘܬܐ",
             "angelusCollectTitle": "ܨܠܘܬܐ",
             "aveMariaTitle": "ܫܠܳܡ ܠܶܟ ܡܰܪܝܰܡ",
-            "reginaCaeliTitle": "ܡܠܟܬܐ ܕܫܡܝܐ"
+            "reginaCaeliTitle": "ܡܠܟܬܐ ܕܫܡܝܐ",
+            "gloriaPatriTitle": "ܫܽܘܒܚܳܐ ܠܰܐܒܳܐ",
+            "requiemAeternamTitle": "ܢܝܚܐ ܕܠܥܠܡ"
           },
           "$editorialTranslation": {
             "keys": [
@@ -5617,7 +5668,9 @@
             "angelusFiatBody": "Είμαι η δούλη του Κυρίου,\n**ας γίνει σ’ εμένα, σύμφωνα με τον λόγο σου.**",
             "angelusIncarnationBody": "Και ο Λόγος έγινε σάρκα,\n**και κατοίκησε ανάμεσά μας.**",
             "angelusCollectBody": "Πρέσβευε για μας, υπεραγία Θεοτόκε,\n**για ν΄ αξιωθούμε ν΄ απολαύσουμε τις υποσχέσεις του Ιησού Χριστού.**\n\nΑς προσευχηθούμε:\nΔώρισε, Κύριε, στο πνεύμα μας άφθονη τη χάρη Σου, εσύ ο οποίος μας αποκάλυψες με τον ευαγγελισμό του αγγέλου την ενσάρκωση του Χριστού του Υιού Σου, και χάρη στη μεσιτεία της αειπαρθένου Μαρίας, οδήγησέ μας, μέσω των αγίων Παθών και του Σταυρού, στη δόξα της Αναστάσεως.\n\nΔια του Κυρίου μας Ιησού Χριστού, του Υιού σου, ο οποίος ζει και βασιλεύει στους αιώνες των αιώνων. Αμήν.",
-            "reginaCaeliBody": "Ἄνασσα τῶν οὐρανῶν εὐφραίνου, ἀλληλούϊα,\nὍτι, ὃν ἠξίωσας βαστάζειν, ἀλληλούϊα,\nἘξανέστη, ὡς εἶπεν, ἀλληλούϊα·\nΕὔχου ὑπὲρ ἡμῶν τῷ Θεῷ, ἀλληλούϊα.\n\nΧαῖρε καὶ ἀγάλλου, Παρθένε Μαρία, ἀλληλούϊα.\n**Ὅτι ὄντως ἀνέστη ὁ Κύριος, ἀλληλούϊα.**\n\nΕὐχώμεθα.\nὉ Θεὸς, ὃς δι’ ἀναστάσεως τοῦ Υἱοῦ σου Κυρίου ἡμῶν Ἰησοῦ Χριστοῦ τὴν πανοικίαν σου εὐφραίνειν ἠξίωσας, διάνυσον, δεόμεθα, ἵνα διὰ τῆς αὐτοῦ Μητρὸς Παρθένου Μαρίας ἀϊδίου ληψώμεθα χάρματα ζωῆς. Διὰ τοῦ αὐτοῦ Χριστοῦ Κυρίου ἡμῶν.\n℟. Ἀμήν."
+            "reginaCaeliBody": "Ἄνασσα τῶν οὐρανῶν εὐφραίνου, ἀλληλούϊα,\nὍτι, ὃν ἠξίωσας βαστάζειν, ἀλληλούϊα,\nἘξανέστη, ὡς εἶπεν, ἀλληλούϊα·\nΕὔχου ὑπὲρ ἡμῶν τῷ Θεῷ, ἀλληλούϊα.\n\nΧαῖρε καὶ ἀγάλλου, Παρθένε Μαρία, ἀλληλούϊα.\n**Ὅτι ὄντως ἀνέστη ὁ Κύριος, ἀλληλούϊα.**\n\nΕὐχώμεθα.\nὉ Θεὸς, ὃς δι’ ἀναστάσεως τοῦ Υἱοῦ σου Κυρίου ἡμῶν Ἰησοῦ Χριστοῦ τὴν πανοικίαν σου εὐφραίνειν ἠξίωσας, διάνυσον, δεόμεθα, ἵνα διὰ τῆς αὐτοῦ Μητρὸς Παρθένου Μαρίας ἀϊδίου ληψώμεθα χάρματα ζωῆς. Διὰ τοῦ αὐτοῦ Χριστοῦ Κυρίου ἡμῶν.\n℟. Ἀμήν.",
+            "gloriaPatriTitle": "Δόξα Πατρὶ",
+            "requiemAeternamTitle": "Υπέρ των κεκοιμημένων"
           },
           "mysteries": {},
           "$sources": {
@@ -5641,7 +5694,9 @@
             "angelusFiatTitle": "The Fiat",
             "angelusIncarnationTitle": "The Incarnation",
             "aveMariaTitle": "Hail Mary",
-            "reginaCaeliTitle": "Regina Caeli"
+            "reginaCaeliTitle": "Regina Caeli",
+            "gloriaPatriTitle": "Glory Be",
+            "requiemAeternamTitle": "For the Faithful Departed"
           },
           "mysteries": {}
         },
@@ -5657,7 +5712,9 @@
             "angelusFiatBody": "He aquí la esclava del Señor.\n**Hágase en mí según tu palabra.**",
             "angelusIncarnationBody": "Y el Verbo de Dios se hizo carne.\n**Y habitó entre nosotros.**",
             "angelusCollectBody": "Ruega por nosotros, Santa Madre de Dios.\n**Para que seamos dignos de alcanzar las promesas de Jesucristo.**\n\nOremos. Infunde, Señor, tu gracia en nuestras almas, para que, los que hemos conocido, por el anuncio del Ángel, la Encarnación de tu Hijo Jesucristo, lleguemos por los Méritos de su Pasión y su Cruz, a la gloria de la Resurrección. Por Jesucristo Nuestro Señor. Amén.",
-            "reginaCaeliBody": "Reina del cielo alégrate; aleluya.\nPorque el Señor a quien has merecido llevar; aleluya.\nHa resucitado según su palabra; aleluya.\nRuega al Señor por nosotros; aleluya.\n\nGózate y alégrate, Virgen María; aleluya.\n**Porque verdaderamente ha resucitado el Señor; aleluya.**\n\nOremos. Oh Dios, que por la resurrección de tu Hijo, nuestro Señor Jesucristo, has llenado el mundo de alegría, concédenos, por intercesión de su Madre, la Virgen María, llegar a alcanzar los gozos eternos. Por nuestro Señor Jesucristo. Amén."
+            "reginaCaeliBody": "Reina del cielo alégrate; aleluya.\nPorque el Señor a quien has merecido llevar; aleluya.\nHa resucitado según su palabra; aleluya.\nRuega al Señor por nosotros; aleluya.\n\nGózate y alégrate, Virgen María; aleluya.\n**Porque verdaderamente ha resucitado el Señor; aleluya.**\n\nOremos. Oh Dios, que por la resurrección de tu Hijo, nuestro Señor Jesucristo, has llenado el mundo de alegría, concédenos, por intercesión de su Madre, la Virgen María, llegar a alcanzar los gozos eternos. Por nuestro Señor Jesucristo. Amén.",
+            "gloriaPatriTitle": "Gloria al Padre",
+            "requiemAeternamTitle": "Por los fieles difuntos"
           },
           "mysteries": {},
           "$comment": "Spanish Angelus and Easter Regina Caeli relayed from the Vatican Compendium appendix. Line wraps normalized and responses emphasized. The source typo \"los gozos eterno\" is corrected to \"los gozos eternos\". Section headings are Prosary interface translations.",
@@ -5678,7 +5735,9 @@
             "aveMariaTitle": "Je vous salue, Marie",
             "reginaCaeliTitle": "Regina Caeli",
             "reginaCaeliBody": "Reine du ciel, réjouis-toi, alleluia.\nCar celui qu’il te fut donné de porter, alleluia,\nEst ressuscité comme il l’avait dit, alleluia.\nPrie Dieu pour nous, alleluia.\n\nSois heureuse et réjouis-toi, Vierge Marie, alleluia.\n**Car le Seigneur est vraiment ressuscité, alleluia.**\n\nPrions. Dieu qui, par la résurrection de ton Fils notre Seigneur Jésus Christ, as bien voulu réjouir le monde, fais, nous t’en prions, que par la Vierge Marie, sa mère, nous arrivions aux joies de la vie éternelle. Par le Christ notre Seigneur. Amen.",
-            "aveMaria": "Je vous salue, Marie, pleine de grâce; Le Seigneur est avec vous; Vous êtes bénie entre toutes les femmes; Et Jésus, le fruit de vos entrailles, est béni. Sainte Marie, Mère de Dieu, Priez pour nous, pauvres pécheurs Maintenant et à l’heure de notre mort. Amen."
+            "aveMaria": "Je vous salue, Marie, pleine de grâce; Le Seigneur est avec vous; Vous êtes bénie entre toutes les femmes; Et Jésus, le fruit de vos entrailles, est béni. Sainte Marie, Mère de Dieu, Priez pour nous, pauvres pécheurs Maintenant et à l’heure de notre mort. Amen.",
+            "gloriaPatriTitle": "Gloire au Père",
+            "requiemAeternamTitle": "Pour les fidèles défunts"
           },
           "mysteries": {},
           "$comment": "Angelus, Regina Caeli and Hail Mary relayed from the Vatican Compendium appendix; source line wraps normalized and responses emphasized for display.",
@@ -5688,7 +5747,8 @@
         },
         "he-x-gamliel": {
           "prayers": {
-            "aveMariaTitle": "שָׁלוֹם לָךְ מִרְיָם"
+            "aveMariaTitle": "שָׁלוֹם לָךְ מִרְיָם",
+            "gloriaPatriTitle": "הַשֶּׁבַח לָאָב"
           },
           "mysteries": {}
         },
@@ -5704,7 +5764,9 @@
             "angelusFiatTitle": "הִנְנִי שִׁפְחַת ה׳",
             "angelusIncarnationTitle": "הַדָּבָר נִהְיָה בָשָׂר",
             "aveMariaTitle": "שִׂמְחִי מִרְיָם",
-            "reginaCaeliTitle": "רוֹנִּי מַלְכַּת שָׁמַיִם"
+            "reginaCaeliTitle": "רוֹנִּי מַלְכַּת שָׁמַיִם",
+            "gloriaPatriTitle": "כָּבוֹד לָאָב",
+            "requiemAeternamTitle": "לְמַעַן הַנִּפְטָרִים"
           },
           "mysteries": {},
           "$prayerTraditionByKey": {
@@ -5714,7 +5776,9 @@
             "angelusCollectBody": "vicariate",
             "reginaCaeliBody": "vicariate",
             "aveMariaTitle": "vicariate",
-            "reginaCaeliTitle": "vicariate"
+            "reginaCaeliTitle": "vicariate",
+            "gloriaPatriTitle": "vicariate",
+            "requiemAeternamTitle": "vicariate"
           }
         },
         "it": {
@@ -5730,7 +5794,9 @@
             "aveMariaTitle": "Ave Maria",
             "reginaCaeliTitle": "Regina Caeli",
             "reginaCaeliBody": "Regina dei cieli, rallegrati, alleluia.\nCristo, che hai portato nel grembo, alleluia,\nè risorto, come aveva promesso, alleluia.\nPrega il Signore per noi, alleluia.\n\nRallegrati, Vergine Maria, alleluia.\n**Il Signore è veramente risorto, alleluia.**\n\nPreghiamo. O Dio, che nella gloriosa risurrezione del tuo Figlio hai ridato la gioia al mondo intero, per intercessione di Maria Vergine, concedi a noi di godere la gioia della vita senza fine. Per Cristo nostro Signore. Amen.",
-            "aveMaria": "Ave, o Maria, piena di grazia, il Signore è con te. Tu sei benedetta fra le donne e benedetto è il frutto del tuo seno, Gesù. Santa Maria, Madre di Dio, prega per noi peccatori, adesso e nell'ora della nostra morte. Amen."
+            "aveMaria": "Ave, o Maria, piena di grazia, il Signore è con te. Tu sei benedetta fra le donne e benedetto è il frutto del tuo seno, Gesù. Santa Maria, Madre di Dio, prega per noi peccatori, adesso e nell'ora della nostra morte. Amen.",
+            "gloriaPatriTitle": "Gloria al Padre",
+            "requiemAeternamTitle": "Per i fedeli defunti"
           },
           "mysteries": {},
           "$comment": "Angelus, Regina Caeli and Hail Mary relayed from the Vatican Compendium appendix; source line wraps normalized and responses emphasized for display.",
@@ -5750,7 +5816,9 @@
             "angelusFiatTitle": "Ecce Ancilla Domini",
             "angelusIncarnationTitle": "Verbum Caro Factum Est",
             "aveMariaTitle": "Ave Maria",
-            "reginaCaeliTitle": "Regina Caeli"
+            "reginaCaeliTitle": "Regina Caeli",
+            "gloriaPatriTitle": "Gloria Patri",
+            "requiemAeternamTitle": "Requiem Aeternam"
           },
           "mysteries": {}
         },
@@ -5766,7 +5834,9 @@
             "angelusFiatTitle": "Се, Раба Господня",
             "angelusIncarnationTitle": "Воплощение",
             "aveMariaTitle": "Радуйся, Мария",
-            "reginaCaeliTitle": "Царица Небесная"
+            "reginaCaeliTitle": "Царица Небесная",
+            "gloriaPatriTitle": "Слава Отцу",
+            "requiemAeternamTitle": "О усопших"
           },
           "mysteries": {}
         },
@@ -5782,7 +5852,9 @@
             "angelusFiatTitle": "Ang Pagsang-ayon",
             "angelusIncarnationTitle": "Ang Pagkakatawang-tao",
             "aveMariaTitle": "Aba Ginoong Maria",
-            "reginaCaeliTitle": "Reyna ng Langit"
+            "reginaCaeliTitle": "Reyna ng Langit",
+            "gloriaPatriTitle": "Luwalhati sa Ama",
+            "requiemAeternamTitle": "Para sa mga Yumaong Tapat"
           },
           "mysteries": {}
         },
@@ -5799,7 +5871,9 @@
             "angelusFiatBody": "Ось я, Господня Слугиня –\n**Хай станеться мені за Твоїм Словом.**",
             "angelusIncarnationBody": "І Слово стало тілом,\n**І оселилося між нами.**",
             "angelusCollectBody": "Молись за нас, Пресвята Богородице Діво.\n**Щоб ми удостоїлись обітниць Христових.**\n\nМолімося: Просимо, Господи: влий у наші серця свою благодать, щоб ми, які завдяки ангельському благовіщенню пізнали втілення Христа, Твого Сина, через Його страсті та хрест були прилучені до слави воскресіння. Через того ж Христа, Господа нашого. Амінь.",
-            "reginaCaeliBody": "Царице Неба, веселись. Алілуя.\nБо Той, Кого носила Ти. Алілуя.\nВоскрес з мертвих, як сказав нам. Алілуя.\nМолись за нас до Бога. Алілуя.\n\nРадій і веселися, Діво Маріє. Алілуя.\n**Бо воістину воскрес Господь наш. Алілуя.**\n\nМолімося: Боже, Ти звеселив світ воскресінням Твого Сина, Господа нашого Ісуса Христа, дай, просимо Тебе, щоб через Богородицю, Діву Марію, ми осягли радість вічного життя. Через того ж Христа, Господа нашого. Амінь."
+            "reginaCaeliBody": "Царице Неба, веселись. Алілуя.\nБо Той, Кого носила Ти. Алілуя.\nВоскрес з мертвих, як сказав нам. Алілуя.\nМолись за нас до Бога. Алілуя.\n\nРадій і веселися, Діво Маріє. Алілуя.\n**Бо воістину воскрес Господь наш. Алілуя.**\n\nМолімося: Боже, Ти звеселив світ воскресінням Твого Сина, Господа нашого Ісуса Христа, дай, просимо Тебе, щоб через Богородицю, Діву Марію, ми осягли радість вічного життя. Через того ж Христа, Господа нашого. Амінь.",
+            "gloriaPatriTitle": "Слава Отцю",
+            "requiemAeternamTitle": "За померлих вірних"
           },
           "mysteries": {},
           "$comment": "Prayer bodies are relayed from the official Roman Catholic Church in Ukraine prayerbook, Щоденно з Богом. Reuse is permitted with a link to https://rkc.org.ua/. Paragraph breaks, response emphasis and Prosary gesture cues are presentation changes; source wording is retained. Titles, intentions, fruits and non-Scripture narrative summaries are Prosary translations of canonical editorial metadata. Scripture is separately imported and credited.",
@@ -5808,6 +5882,46 @@
             "aveMaria": "https://rkc.org.ua/duhovnist/molytovnyk/osnovni-molytvy/"
           }
         }
+      },
+      "options": {
+        "options": [
+          {
+            "key": "threeGloryBes",
+            "kind": "toggle",
+            "name": "Three Glory Bes",
+            "default": true,
+            "nameByLanguage": {
+              "he": "שלוש תפילות כבוד לאב",
+              "ar": "ثلاث صلوات المجد للآب",
+              "ru": "Три молитвы «Слава Отцу»",
+              "tl": "Tatlong Luwalhati sa Ama",
+              "fr": "Trois Gloire au Père",
+              "it": "Tre Gloria al Padre",
+              "uk": "Три молитви «Слава Отцю»",
+              "es": "Tres Gloria al Padre",
+              "la": "Gloria Patri ter",
+              "el": "Τρεις φορές το «Δόξα Πατρί»"
+            }
+          },
+          {
+            "key": "eternalRest",
+            "kind": "toggle",
+            "name": "Eternal Rest",
+            "default": true,
+            "nameByLanguage": {
+              "he": "מנוחת עולמים",
+              "ar": "الراحة الأبدية",
+              "ru": "Вечный покой",
+              "tl": "Walang Hanggang Kapahingahan",
+              "fr": "Repos éternel",
+              "it": "Eterno riposo",
+              "uk": "Вічне спочивання",
+              "es": "Descanso eterno",
+              "la": "Requiem aeternam",
+              "el": "Αιώνια ανάπαυση"
+            }
+          }
+        ]
       }
     },
     {

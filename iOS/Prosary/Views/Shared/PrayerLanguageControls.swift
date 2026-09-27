@@ -6,10 +6,15 @@ struct PrayerLanguagePicker: View {
   let label: String
   @Binding var code: String
   var defaultLabel: String? = nil
+  var hebrewTraditions = ["he", "he-x-gamliel"]
 
   private var language: Binding<String> {
     Binding(get: { LanguageCatalog.pickerLanguageCode(code) },
-            set: { code = LanguageCatalog.selectingLanguage($0, current: code) })
+            set: {
+              let chosen = LanguageCatalog.selectingLanguage($0, current: code)
+              code = LanguageCatalog.pickerLanguageCode(chosen) == "he" && hebrewTraditions.count == 1
+                ? hebrewTraditions[0] : chosen
+            })
   }
 
   var body: some View {
@@ -20,10 +25,11 @@ struct PrayerLanguagePicker: View {
       }
     }
     .accessibilityIdentifier("prayerLanguagePicker")
-    if LanguageCatalog.pickerLanguageCode(code) == "he" {
+    if LanguageCatalog.pickerLanguageCode(code) == "he", hebrewTraditions.count > 1 {
       Picker(String(localized: "prayerLanguage.tradition", defaultValue: "Prayer Tradition", bundle: UILanguage.bundle, locale: UILanguage.locale), selection: $code) {
-        Text(LanguageCatalog.traditionName("he")).tag("he")
-        Text(LanguageCatalog.traditionName("he-x-gamliel")).tag("he-x-gamliel")
+        ForEach(hebrewTraditions, id: \.self) { tradition in
+          Text(LanguageCatalog.traditionName(tradition)).tag(tradition)
+        }
       }
       .accessibilityIdentifier("prayerTraditionPicker")
     }
@@ -36,6 +42,7 @@ struct PrayerLanguageMenuContent: View {
   var resolvedCode: String? = nil
   var options = LanguageCatalog.languages
   var identifierPrefix = "prayerLanguage"
+  var hebrewTraditions = ["he", "he-x-gamliel"]
   let onSelect: (String) -> Void
 
   var body: some View {
@@ -50,10 +57,10 @@ struct PrayerLanguageMenuContent: View {
     ForEach(options) { language in
       option(code: language.code, name: language.nativeName)
     }
-    if LanguageCatalog.pickerLanguageCode(effectiveCode) == "he" {
+    if LanguageCatalog.pickerLanguageCode(effectiveCode) == "he", hebrewTraditions.count > 1 {
       Divider()
       Menu(String(localized: "prayerLanguage.tradition", defaultValue: "Prayer Tradition", bundle: UILanguage.bundle, locale: UILanguage.locale)) {
-        ForEach(["he", "he-x-gamliel"], id: \.self) { tradition in
+        ForEach(hebrewTraditions, id: \.self) { tradition in
           Button { onSelect(tradition) } label: {
             if effectiveCode == tradition {
               Label(LanguageCatalog.traditionName(tradition), systemImage: "checkmark")
@@ -69,7 +76,11 @@ struct PrayerLanguageMenuContent: View {
   }
 
   private func option(code selected: String, name: String) -> some View {
-    Button { onSelect(LanguageCatalog.selectingLanguage(selected, current: code)) } label: {
+    Button {
+      let chosen = LanguageCatalog.selectingLanguage(selected, current: code)
+      onSelect(LanguageCatalog.pickerLanguageCode(chosen) == "he" && hebrewTraditions.count == 1
+        ? hebrewTraditions[0] : chosen)
+    } label: {
       if LanguageCatalog.pickerLanguageCode(code) == selected {
         Label(name, systemImage: "checkmark")
       } else {

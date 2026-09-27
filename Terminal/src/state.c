@@ -64,6 +64,7 @@ static int valid_state(const AppState *state)
         (state->completed == 0 || state->completed == 1) &&
         (state->keyboard_arrow_navigation_enabled == 0 || state->keyboard_arrow_navigation_enabled == 1) &&
         (state->keyboard_space_advance_enabled == 0 || state->keyboard_space_advance_enabled == 1) &&
+        (state->skip_fifth_decade == 0 || state->skip_fifth_decade == 1) &&
         valid_date(state);
 }
 
@@ -117,6 +118,7 @@ int app_state_load(AppState *state, const char *path)
             else if (!strcmp(key, "dayOfMonth")) { next.day_of_month = number; field = 1024; }
             else if (!strcmp(key, "keyboardArrowNavigationEnabled")) { next.keyboard_arrow_navigation_enabled = number; field = 2048; }
             else if (!strcmp(key, "keyboardSpaceAdvanceEnabled")) { next.keyboard_space_advance_enabled = number; field = 4096; }
+            else if (!strcmp(key, "skipFifthDecade")) { next.skip_fifth_decade = number; field = 8192; }
             else goto invalid;
         }
         if (fields & field) goto invalid;
@@ -172,11 +174,12 @@ int app_state_save(const AppState *state, const char *path)
         "devotion %s\ndefaultLanguageCode %s\ninterfaceLanguageCode %s\n"
         "step %lu\ngroup %d\nvariant %d\nday %d\ncompleted %d\n"
         "year %d\nmonth %d\ndayOfMonth %d\n"
-        "keyboardArrowNavigationEnabled %d\nkeyboardSpaceAdvanceEnabled %d\n",
+        "keyboardArrowNavigationEnabled %d\nkeyboardSpaceAdvanceEnabled %d\nskipFifthDecade %d\n",
         state->devotion_id, state->language, state->ui_language,
         (unsigned long)state->step, state->group, state->variant,
         state->day, state->completed, state->year, state->month, state->day_of_month,
-        state->keyboard_arrow_navigation_enabled, state->keyboard_space_advance_enabled) < 0;
+        state->keyboard_arrow_navigation_enabled, state->keyboard_space_advance_enabled,
+        state->skip_fifth_decade) < 0;
     if (fflush(file) || fsync(fd)) failed = 1;
     if (fclose(file)) failed = 1;
     if (!failed && rename(temporary, path)) failed = 1;

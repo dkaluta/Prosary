@@ -20,6 +20,31 @@ import org.junit.Test
 class ReadingTextInstrumentedTest {
     @get:Rule val compose = createAndroidComposeRule<AdaptiveLayoutTestActivity>()
 
+    @Test fun chapterHeadingsSeparateChapterTransitionsAndVersesUseOnlyTheirNumber() {
+        val store = ReadingTextStore { name ->
+            when (name) {
+                "readings-editions" -> """{"schemaVersion":1,"editions":[{"id":"fixture","languageCode":"en","name":"Fixture edition","attribution":"Fixture credit","sourceURL":"https://example.org"}]}"""
+                else -> """{"schemaVersion":1,"passages":{"daily|Fixture 1:9; 2:1":{"fixture":[{"chapter":1,"verse":9,"text":"First chapter text"},{"chapter":2,"verse":1,"text":"Second chapter text"}]}}}"""
+            }.byteInputStream()
+        }
+        val edition = store.editions.single()
+        compose.setContent {
+            MaterialTheme {
+                ReadingCard(ReadingCitation("reading", "Fixture", "Fixture 1:9; 2:1"), "en", edition,
+                    edition.id, store, false, expanded = true, onToggleExpanded = {})
+            }
+        }
+        compose.waitUntil(5_000) {
+            compose.onAllNodes(androidx.compose.ui.test.hasText("First chapter text", substring = true))
+                .fetchSemanticsNodes().isNotEmpty()
+        }
+        compose.onNodeWithText(compose.activity.getString(R.string.readings_chapter, 1)).assertExists()
+        compose.onNodeWithText(compose.activity.getString(R.string.readings_chapter, 2)).assertExists()
+        compose.onNodeWithText("\u20669\u2069  First chapter text").assertExists()
+        compose.onNodeWithText("\u20661\u2069  Second chapter text").assertExists()
+        compose.onNodeWithText("1:9\u2069  First chapter text", substring = true).assertDoesNotExist()
+    }
+
     @Test fun unavailablePassageOffersOnlyAvailableEditionsAndChangesEditionAfterExplicitChoice() {
         val previousEdition = AppSettings.readingsEditionId
         val store = ReadingTextStore { name ->

@@ -30,7 +30,7 @@
         </StackPanel>
         <ScrollViewer Grid.Row="3">
             <StackPanel Spacing="8" MaxWidth="640" HorizontalAlignment="Stretch">
-                <TextBlock Visibility="{x:Bind ViewModel.HasLocalMatches, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" x:Uid="SearchOnDevice" Text="On this device" Foreground="{StaticResource BrandPrimaryBrush}" FontWeight="SemiBold" />
+                <TextBlock Visibility="{x:Bind ViewModel.HasLocalMatches, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" x:Uid="SearchOnDevice" Text="On this device" Foreground="{ThemeResource BrandPrimaryBrush}" FontWeight="SemiBold" />
                 <ItemsControl ItemsSource="{x:Bind ViewModel.LocalMatches, Mode=OneWay}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate x:DataType="svc:DevotionListing">
@@ -39,7 +39,7 @@
                                     Command="{Binding ElementName=Root, Path=ViewModel.OpenCommand}"
                                     CommandParameter="{Binding}">
                                 <StackPanel Orientation="Horizontal" Spacing="12">
-                                    <FontIcon Glyph="{x:Bind IconGlyph}" Foreground="{StaticResource BrandPrimaryBrush}" />
+                                    <FontIcon Glyph="{x:Bind IconGlyph}" Foreground="{ThemeResource BrandPrimaryBrush}" />
                                     <StackPanel Spacing="2">
                                         <TextBlock Text="{x:Bind Title}" FontSize="15" TextWrapping="Wrap" />
                                         <TextBlock Text="{x:Bind InterfaceSubtitle}" Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap"
@@ -51,7 +51,7 @@
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
 
-                <TextBlock x:Uid="SearchCommunity" Text="From the community" Foreground="{StaticResource BrandPrimaryBrush}" FontWeight="SemiBold"
+                <TextBlock x:Uid="SearchCommunity" Text="From the community" Foreground="{ThemeResource BrandPrimaryBrush}" FontWeight="SemiBold"
                            Visibility="{x:Bind ViewModel.HasCommunityMatches, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
                 <ItemsControl ItemsSource="{x:Bind ViewModel.CommunityMatches, Mode=OneWay}">
                     <ItemsControl.ItemTemplate>

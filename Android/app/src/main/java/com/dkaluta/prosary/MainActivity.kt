@@ -37,6 +37,7 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
 
         AppSettings.init(this)
+        LauncherIconController.synchronize(this)
         InterfaceLanguageController.synchronize(this)
         readWidgetIntent(intent)
         WidgetUpdates.refresh(this)

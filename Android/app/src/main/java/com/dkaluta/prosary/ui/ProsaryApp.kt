@@ -41,6 +41,7 @@ import androidx.compose.runtime.produceState
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import com.dkaluta.prosary.R
+import com.dkaluta.prosary.ui.shared.rememberTodayBrowsingDate
 import com.dkaluta.prosary.ui.readings.ReadingsScreen
 import com.dkaluta.prosary.ui.search.SearchScreen
 import com.dkaluta.prosary.ui.shared.BasicPrayerFlowScreen
@@ -272,18 +273,20 @@ private fun NavHostController.launch(target: LaunchTarget) {
 
 @Composable
 private fun AppNavHost(navController: NavHostController, modifier: Modifier = Modifier, todayWidgetRequest: Long = 0) {
+    val browsingDate = rememberTodayBrowsingDate()
     NavHost(navController = navController, startDestination = Routes.Home, modifier = modifier) {
         composable(Routes.Browse) {
             com.dkaluta.prosary.ui.favorites.RepositoryBrowserScreen(onBack = {}, showsBackButton = false)
         }
         composable(Routes.Readings) {
-            ReadingsScreen(onOpenSettings = { navController.navigateSingleTop(Routes.Settings) })
+            ReadingsScreen(onOpenSettings = { navController.navigateSingleTop(Routes.Settings) }, browsingDate = browsingDate)
         }
         composable(Routes.Search) {
             SearchScreen(onLaunch = { target -> navController.launch(target) })
         }
         composable(Routes.Home) {
             HomeScreen(
+                browsingDate = browsingDate,
                 todayWidgetRequest = todayWidgetRequest,
                 onOpenPrayer = { id -> navController.navigateSingleTop(Routes.prayer(id)) },
                 onOpenRosaryPicker = { navController.navigateSingleTop(Routes.RosaryPicker) },

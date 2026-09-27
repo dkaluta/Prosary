@@ -37,6 +37,7 @@ typedef struct {
     int variant; /* -1 means language-specific default; otherwise zero based. */
     int day;     /* Zero based for daily devotions; -1 selects today when applicable. */
     int year, month, day_of_month; /* All zero means local today. */
+    int skip_fifth_decade; /* Omit mystery five from a Rosary set; default false. */
 } ProsarySelection;
 
 ProsaryEngine *engine_open(const char *data_dir, char *error, size_t error_size);

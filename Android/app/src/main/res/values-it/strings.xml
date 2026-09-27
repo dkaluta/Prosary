@@ -66,13 +66,23 @@
 
     <!-- Settings -->
     <string name="settings_default_prayer_language">"Lingua predefinita delle preghiere"</string>
+    <string name="settings_app_color">"Colore dell’app"</string>
+    <string name="settings_app_color_hint">"Scegli il colore dell’icona e il colore di risalto."</string>
+    <string name="settings_app_color_error">"Impossibile cambiare l’icona dell’app. Riprova."</string>
+    <string name="app_color_blue">"Blu"</string>
+    <string name="app_color_green">"Verde"</string>
+    <string name="app_color_red">"Rosso"</string>
+    <string name="app_color_purple">"Viola"</string>
+    <string name="app_color_rose">"Rosa"</string>
+    <string name="app_color_white">"Bianco"</string>
+    <string name="app_color_gold">"Oro"</string>
+    <string name="settings_use_system_colors">"Usa i colori del sistema"</string>
+    <string name="settings_use_system_colors_hint">"Usa i colori dello sfondo al posto del colore di risalto scelto."</string>
     <string name="settings_app_language">"Lingua dell’app"</string>
     <string name="settings_prayer_language">"Lingua delle preghiere"</string>
     <string name="settings_follow_app_language">"Lingua dell’app (%1$s)"</string>
     <string name="settings_language_system_default">"Lingua del sistema"</string>
     <string name="settings_app_language_hint">"Usata per l’interfaccia e la scelta automatica dell’edizione biblica. Le preghiere la seguono salvo quando viene selezionata una lingua di preghiera."</string>
-    <string name="settings_jaffa_wording">"Formula alternativa dell’Ave Maria"</string>
-    <string name="settings_jaffa_wording_hint">"Usa בְּרוּכַת הַחֶסֶד al posto di מְלֵאַת הַחֶסֶד nelle preghiere del Vicariato."</string>
     <string name="settings_language_fallback_order">"Ordine delle lingue alternative…"…</string>
     <string name="settings_language_fallback_order_title">"Ordine delle lingue alternative"</string>
     <string name="settings_language_fallback_order_footer">Se il testo manca nella lingua scelta, Prosary segue questo ordine. I testi ebraici comuni alle due tradizioni, incluse le preghiere del repository, usano la più alta delle due posizioni dell’ebraico.</string>
@@ -88,6 +98,9 @@
     <string name="auto_advance_every">"Ogni %1$d secondi"</string>
     <string name="settings_reset_home_order">"Reimposta l’ordine iniziale"</string>
     <string name="settings_today_header">"Oggi"</string>
+    <string name="settings_show_today_readings">"Mostra le letture in Prega"</string>
+    <string name="settings_expand_readings">"Espandi le letture per impostazione predefinita"</string>
+    <string name="readings_chapter">"Capitolo %1$s"</string>
     <string name="settings_show_today_feast">"Mostra la festa del giorno"</string>
     <string name="settings_show_today_intention">"Mostra l’intenzione del Papa"</string>
     <string name="settings_feast_calendar">"Calendario liturgico"</string>
@@ -163,6 +176,7 @@
 
     <!-- Rosary options editor -->
     <string name="ro_which_mysteries">"Quali misteri?"</string>
+    <string name="ro_skip_fifth_decade">"Salta la quinta decina"</string>
     <string name="ro_mysteries">"Misteri"</string>
     <string name="ro_specific_set">"Serie specifica"</string>
     <string name="ro_which_mystery">"Quale mistero"</string>

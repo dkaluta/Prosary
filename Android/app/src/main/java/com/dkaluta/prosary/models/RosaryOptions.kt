@@ -12,6 +12,8 @@ data class RosaryOptions(
     /** 1-based index into `MysteryCatalog.forGroup(specificMysteryGroup)`. Used only when
      * [mysterySelectionMode] is [MysterySelectionMode.SingleMystery]. */
     var specificMysteryOrder: Int = 1,
+    /** Omit the fifth decade of each complete mystery set; explicit single mysteries stay selectable. */
+    var skipFifthDecade: Boolean = false,
     var includeApostlesCreed: Boolean = true,
     /** The opening Our Father + 3 Hail Marys (for faith, hope, and charity) + Glory Be. */
     var includeOpeningPrayers: Boolean = true,

@@ -38,6 +38,7 @@ import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import com.dkaluta.prosary.R
 import com.dkaluta.prosary.models.BasicPrayerCatalog
+import com.dkaluta.prosary.content.prayerpack.PrayerPackStore
 import com.dkaluta.prosary.models.BasicPrayersOrder
 import com.dkaluta.prosary.models.AppSettings
 import com.dkaluta.prosary.models.LanguageCatalog
@@ -158,12 +159,13 @@ fun BasicPrayersScreen(onOpen: (String) -> Unit, onNavigateUp: () -> Unit) {
 fun BasicPrayerFlowScreen(prayerId: String, onNavigateUp: () -> Unit) {
     val prayer = BasicPrayerCatalog.prayer(prayerId) ?: run { onNavigateUp(); return }
     val chosenLanguage = AppSettings.basicPrayersLanguageCode
-    val language = LanguageCatalog.resolve(chosenLanguage)
+    val language = LanguageCatalog.resolve(BasicPrayerCatalog.effectiveLanguage(prayer, chosenLanguage))
+    val displayedLanguageChoice = if (language.code == LanguageCatalog.resolve(chosenLanguage).code) chosenLanguage else language.code
     var languageMenuExpanded by rememberSaveable { mutableStateOf(false) }
-    val step = remember(prayerId, language.code, AppSettings.useJaffaHailMaryWording) {
+    val step = remember(prayerId, language.code) {
         BasicPrayerCatalog.step(prayer, language.code).copy(
             // Recreating a one-step reader must not look like advancing to a new prayer.
-            id = "basic:$prayerId:${language.code}:${AppSettings.useJaffaHailMaryWording}",
+            id = "basic:$prayerId:${language.code}",
         )
     }
     PrayerStepFlowScreen(
@@ -183,7 +185,8 @@ fun BasicPrayerFlowScreen(prayerId: String, onNavigateUp: () -> Unit) {
         topBarActions = {
             BasicPrayerPinButton(prayer.id)
             PrayerLanguagePicker(
-                chosenLanguage = chosenLanguage,
+                showsHebrewTraditions = PrayerPackStore.hasHebrewTraditionChoice(prayer.bundleId, prayer.bodyKey),
+                chosenLanguage = displayedLanguageChoice,
                 expanded = languageMenuExpanded,
                 onExpandedChange = { languageMenuExpanded = it },
                 onSelect = AppSettings::setBasicPrayersLanguageCode,

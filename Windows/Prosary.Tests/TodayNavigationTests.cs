@@ -197,6 +197,62 @@ public class TodayNavigationTests
         }
     }
 
+    [Fact]
+    public void CalendarDateFollowsTodayOnlyUntilTheWindowBrowsesAnotherDay()
+    {
+        var browsing = new HomeViewModel(new EmptyPresetStore(), new LiturgicalCalendarService());
+        var following = new HomeViewModel(new EmptyPresetStore(), new LiturgicalCalendarService());
+        var december = new DateOnly(2026, 12, 31);
+        browsing.RefreshForClock(december);
+        following.RefreshForClock(december);
+        Assert.Equal(december, browsing.SelectedDate);
+        browsing.SelectedTodayDate = new DateTimeOffset(2026, 9, 30, 0, 0, 0, TimeSpan.FromHours(14));
+        var january = december.AddDays(1);
+        browsing.RefreshForClock(january);
+        following.RefreshForClock(january);
+        Assert.Equal(new DateOnly(2026, 9, 30), browsing.SelectedDate);
+        Assert.Equal(january, following.SelectedDate);
+        Assert.False(browsing.IsSelectedDateToday);
+        Assert.True(following.IsSelectedDateToday);
+        browsing.SelectTodayCommand.Execute(null);
+        browsing.RefreshForClock(january);
+        Assert.Equal(january, browsing.SelectedDate);
+    }
+
+    [Fact]
+    public void HidingTodayReadingsKeepsTheSelectedDateAndOtherRows()
+    {
+        var previousReadings = AppSettings.ShowTodayReadings;
+        var previousCalendar = TodayInfoStore.SelectedCalendarId;
+        try
+        {
+            TodayInfoStore.SelectedCalendarId = "roman";
+            AppSettings.SetShowTodayReadings(true);
+            var today = new HomeViewModel(new EmptyPresetStore(), new LiturgicalCalendarService());
+            today.SelectedTodayDate = new DateTimeOffset(2026, 9, 10, 0, 0, 0, TimeSpan.Zero);
+            Assert.True(today.ShowsTodayReadings);
+            var date = today.SelectedDate;
+            var feast = today.TodayFeast;
+            var intention = today.MonthIntention;
+            var torah = today.TodayTorahPortion;
+            AppSettings.SetShowTodayReadings(false);
+            today.RefreshToday();
+            Assert.False(today.ShowsTodayReadings);
+            Assert.Equal(date, today.SelectedDate);
+            Assert.Equal(feast, today.TodayFeast);
+            Assert.Equal(intention, today.MonthIntention);
+            Assert.Equal(torah, today.TodayTorahPortion);
+            AppSettings.SetShowTodayReadings(true);
+            today.RefreshToday();
+            Assert.Equal(TodayInfoStore.Readings(date), today.TodayReadings);
+        }
+        finally
+        {
+            AppSettings.SetShowTodayReadings(previousReadings);
+            TodayInfoStore.SelectedCalendarId = previousCalendar;
+        }
+    }
+
     private sealed class EmptyPresetStore : IPresetStore
     {
         public Task<List<Prayer>> GetAllAsync() => Task.FromResult(new List<Prayer>());

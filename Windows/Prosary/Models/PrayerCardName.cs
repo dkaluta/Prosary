@@ -40,7 +40,7 @@ public sealed record PrayerCardName(string Title, string InterfaceSubtitle)
         string? interfaceLanguage = null)
     {
         var interfaceName = PrayerPackStore.ResolveDisplayText(prayer.BundleId, interfaceLanguage ?? UiLanguageCatalog.Current, prayer.TitleKey);
-        var prayerName = PrayerPackStore.ResolveDisplayText(prayer.BundleId, LanguageCatalog.Resolve(prayerLanguage).Code, prayer.TitleKey);
+        var prayerName = PrayerPackStore.ResolveDisplayText(prayer.BundleId, BasicPrayerCatalog.EffectiveLanguage(prayer, prayerLanguage).Code, prayer.TitleKey);
         return new(prayerName, AppSettings.ShowPrayerNameInPrayerLanguage && prayerName != interfaceName
             ? interfaceName : string.Empty);
     }
