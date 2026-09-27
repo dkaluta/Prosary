@@ -4,7 +4,7 @@
 // Shared/tools/validate-devotion.py from the shell (see package.json's e2e script) — proving
 // the webapp and the CLI packer are two writers of one format.
 
-import { mkdirSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
 import { buildBundle, buildBundleFiles } from "../src/format/pack";
 import type { EditorStep } from "../src/format/project";
 import {
@@ -613,7 +613,10 @@ console.log(
 // acquire a colliding authoring identifier in Compose.
 {
   for (const name of readdirSync("../Shared/content", { withFileTypes: true }).filter((entry) => entry.isDirectory())) {
-    const manifest = JSON.parse(readFileSync(`../Shared/content/${name.name}/manifest.json`, "utf8"));
+    // Shared/content also holds Scripture sources, which are not devotion packs.
+    const manifestPath = `../Shared/content/${name.name}/manifest.json`;
+    if (!existsSync(manifestPath)) continue;
+    const manifest = JSON.parse(readFileSync(manifestPath, "utf8"));
     const project = newProject();
     project.name = "Authoring collision check";
     project.id = manifest.id;

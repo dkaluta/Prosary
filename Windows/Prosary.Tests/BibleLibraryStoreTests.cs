@@ -242,12 +242,17 @@ public sealed class BibleLibraryStoreTests : IDisposable
         Assert.Equal(new[] { 24, 26, 27, 25, 28 }, chapter.Verses.Select(verse => verse.Verse));
     }
     [Theory]
+    [InlineData(null, true)]
+    [InlineData(2, true)]
     [InlineData(3, true)]
-    [InlineData(4, false)]
+    [InlineData(4, true)]
     [InlineData(1, false)]
-    public void DailyPassagesValidateCombinedVerseEndpoints(int endVerse, bool available)
+    [InlineData(0, false)]
+    public void DailyPassagesValidateCombinedVerseEndpoints(int? endVerse, bool available)
     {
         var fixture = Make();
+        // Daily appointments validate each unit's endpoint; unlike a complete Bible
+        // chapter, their ordered selections may repeat a verse across units.
         var json = JsonSerializer.Serialize(new { schemaVersion = 1, editions = new[] { fixture.Edition },
             passages = new Dictionary<string, Dictionary<string, ScriptureVerse[]>> {
                 ["daily|Genesis 1:2–4"] = new() { [fixture.Edition.Id] = [new(1, 2, "Combined", EndVerse: endVerse), new(1, 4, "Next")] }

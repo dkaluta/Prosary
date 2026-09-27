@@ -574,8 +574,11 @@ def load_pinned_corpora(fetch: bool = False) -> tuple[dict, dict]:
     sources = lock["sources"]
     pins_by_source = {source["id"]: source["sha256"] for source in sources}
     if fetch:
+        # Several book adapters read the same source file. Download it once to
+        # avoid concurrent writes to the same cache path on a clean checkout.
+        unique_sources = {source.get("cache", source.get("path")): source for source in sources}
         with ThreadPoolExecutor(max_workers=4) as pool:
-            list(pool.map(lambda source: source_bytes(source, True), sources))
+            list(pool.map(lambda source: source_bytes(source, True), unique_sources.values()))
     raw_corpora = {}
     for source in sources:
         raw_corpora[source["id"]] = load_source(source)

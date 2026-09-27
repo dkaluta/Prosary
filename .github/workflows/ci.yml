@@ -50,7 +50,6 @@ jobs:
           uv run --script Shared/tools/test-reading-texts.py
           uv run --script Shared/tools/test-peshitta-readings.py
           uv run --script Shared/tools/test-greek-readings.py
-          uv run --script Shared/tools/test-bible-library.py
           uv run --script Shared/tools/test-hebrew-ocr-baseline.py
           uv run --script Shared/tools/test-1maccabees-ocr-baseline.py
           uv run --script Shared/tools/test-hebrew-deuterocanon.py
@@ -87,6 +86,22 @@ jobs:
           uv run --script Shared/tools/fetch-torah-portions.py --self-test
           uv run --script Shared/tools/test-today-data.py
           git diff --exit-code -- Shared/data iOS/Prosary/Data Android/app/src/main/assets/data Windows/Prosary/Data
+
+  bible:
+    name: Bible library (pinned sources + every downloaded verse)
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v6
+      - uses: actions/cache@v4
+        with:
+          path: Shared/tools/.scripture-cache
+          key: scripture-sources-${{ hashFiles('Shared/tools/reading-text-sources.json') }}
+      - name: Fetch pinned sources and reproduce shipped Bible archives
+        run: uv run --script Shared/tools/build-bible-library.py --fetch --check
+      - name: Verify every permitted source verse and native catalog
+        run: uv run --script Shared/tools/test-bible-library.py
 
   android:
     name: Android (unit tests + packaged-asset contract)

@@ -7,7 +7,8 @@
 No appointment-number conversion occurs here: chapter files retain their edition's
 own labels. Known source defects and unreviewed sparse material stay unavailable.
 Run --sync to copy only the small catalog into native apps; archives live once in
-Shared/dist/bibles and are downloaded explicitly. --check is entirely read-only.
+Shared/dist/bibles and are downloaded explicitly. --check leaves outputs unchanged;
+--fetch can populate the ignored, hash-checked source cache on a clean checkout.
 """
 from __future__ import annotations
 
@@ -144,9 +145,9 @@ def make_archive(edition, chapters, names):
     return filename, raw, entry
 
 
-def build(*, require_hebrew_supplement=False):
+def build(*, require_hebrew_supplement=False, fetch=False):
     builder = reading_builder()
-    lock, corpora = builder.load_pinned_corpora()
+    lock, corpora = builder.load_pinned_corpora(fetch=fetch)
     supplement, _ = load_hebrew_supplement(require_complete=require_hebrew_supplement)
     archives, editions = {}, []
     coverage = {}
@@ -181,10 +182,12 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--sync", action="store_true")
     parser.add_argument("--check", action="store_true")
+    parser.add_argument("--fetch", action="store_true", help="Fetch missing hash-pinned source files")
     parser.add_argument("--require-hebrew-supplement", action="store_true",
                         help="Require all Hebrew additions to have completed source review before release")
     args = parser.parse_args()
-    catalog, archives, coverage = build(require_hebrew_supplement=args.require_hebrew_supplement)
+    catalog, archives, coverage = build(require_hebrew_supplement=args.require_hebrew_supplement,
+                                      fetch=args.fetch)
     outputs = {DATA / "bible-catalog.json": catalog,
                ROOT / "Shared/reports/bible-library-coverage.json": encode(coverage)}
     outputs.update({DIST / filename: raw for filename, raw in archives.items()})

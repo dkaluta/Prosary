@@ -61,6 +61,10 @@ clears that edition's local files and in-memory text without affecting daily pas
 ## Sources and completeness
 
 The generator reuses hash-pinned Scripture imports and source-specific exclusions.
+On a clean checkout, `build-bible-library.py --fetch --check` downloads missing
+source files into the ignored cache, verifies their pinned hashes, and checks the
+committed archives and native catalogs without changing them. CI runs this source
+audit separately from the offline bundle checks and caches only source downloads.
 It does not infer missing verses, translate wording, or claim that every edition
 contains the complete Catholic canon. Sparse reviewed Arabic and Syriac material
 remains explicitly partial. Per-book credits identify the translator when a
