@@ -1,6 +1,6 @@
 {
   "book": "1MA",
-  "status": "Full second visual comparison of chapter5:1–33; B121/122 complete; three local mark queries keep B120/123 open",
+  "status": "Full second comparison complete for these pages; isolated unreadable marks explicitly disclosed by accepted source notes. Book remains draft.",
   "primarySourcePDFSHA256": "656891d377d2e3d4a9216723d94205488423907bf01df424b9f0b9de1560051e",
   "additionalSourcePDFSHA256": "b72eaf5d2d858fabb7c3438ac0436ccd64c394a7dd2fad609efabe628d5534c7",
   "method": "Every scripture word, point, punctuation mark and physical unit/page boundary compared against the matched clearer source. Margin/body boundaries preserved. Two local marks remain explicitly open; no whole-book approval.",
@@ -14,9 +14,10 @@
         "5:1–4 complete",
         "5:5 beginning through ויחרימם"
       ],
-      "finalReviewComplete": false,
-      "unresolved": [
-        "1MA-5-4-beon-bet"
+      "finalReviewComplete": true,
+      "unresolved": [],
+      "acceptedSourceNoteIds": [
+        "1ma-5-4-bet-dagesh"
       ]
     },
     {
@@ -51,10 +52,11 @@
         "5:25 final word בגלעד",
         "5:26–33 complete, including29–30 and32–33"
       ],
-      "finalReviewComplete": false,
-      "unresolved": [
-        "1MA-5-26-kasphan-samekh",
-        "1MA-5-26-makeda-qoph"
+      "finalReviewComplete": true,
+      "unresolved": [],
+      "acceptedSourceNoteIds": [
+        "1ma-5-26-samekh-vowel",
+        "1ma-5-26-qoph-dagesh"
       ]
     }
   ],
@@ -64,21 +66,30 @@
       "unit": "5:4",
       "detail": "Bet dagesh in בעון cannot be cleanly detached from the letter inner stroke. Current בְעוֹן is provisional, not a claim of source absence.",
       "evidence": "crop-62-0.705-0.447-0.773-0.48.png",
-      "resolved": false
+      "resolved": true,
+      "resolutionType": "acceptedSourceNote",
+      "acceptedSourceNoteId": "1ma-5-4-bet-dagesh",
+      "resolution": "The glyph is still unreadable. Its guessed mark is omitted and disclosed under the approved policy; see1MA-source-note-decisions.json."
     },
     {
       "id": "1MA-5-26-kasphan-samekh",
       "unit": "5:26",
       "detail": "Kaf hiriq and pe qamats are clear; samekh mark is fused with its baseline. Independent reader also cannot certify sheva versus another mark. Current כִספָן deliberately leaves this mark unresolved.",
       "evidence": "crop-63-0.052-0.098-0.103-0.126.png",
-      "resolved": false
+      "resolved": true,
+      "resolutionType": "acceptedSourceNote",
+      "acceptedSourceNoteId": "1ma-5-26-samekh-vowel",
+      "resolution": "The glyph is still unreadable. Its guessed mark is omitted and disclosed under the approved policy; see1MA-source-note-decisions.json."
     },
     {
       "id": "1MA-5-26-makeda-qoph",
       "unit": "5:26",
       "detail": "Separate reinspection of this earlier occurrence does not confidently separate qoph dagesh from its inner stroke. Added query rather than extrapolating from5:36.",
       "evidence": "crop-63-0.343-0.122-0.415-0.158.png",
-      "resolved": false
+      "resolved": true,
+      "resolutionType": "acceptedSourceNote",
+      "acceptedSourceNoteId": "1ma-5-26-qoph-dagesh",
+      "resolution": "The glyph is still unreadable. Its guessed mark is omitted and disclosed under the approved policy; see1MA-source-note-decisions.json."
     }
   ],
   "retainedChecks": [
@@ -210,7 +221,21 @@
       "sourcePages": [
         120
       ],
-      "textSHA256": "fe7000ca6324cbd8a1ecc320400a156e02f9f7c66fa514a56d1c78958ec5c53d"
+      "textSHA256": "fe7000ca6324cbd8a1ecc320400a156e02f9f7c66fa514a56d1c78958ec5c53d",
+      "sourceNotes": [
+        {
+          "id": "1ma-5-4-bet-dagesh",
+          "kind": "unreadablePoint",
+          "anchor": "בְעוֹן",
+          "occurrence": 1,
+          "letterIndex": 1,
+          "mark": "dagesh",
+          "sourcePages": [
+            120
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf#page=120"
+        }
+      ]
     },
     {
       "chapter": 5,
@@ -407,11 +432,37 @@
     {
       "chapter": 5,
       "verse": 26,
-      "text": "וְכִי רַבִּים מֵהֶם סְגוּרִים אֶל־בָּצְרָה וּבֶצֶר בָּאֲלִים כִספָן מַקֵּדָה וְקַרְנַיִם כָּל־הֶעָרִים הָאֵלֶּה בְּצוּרוֹת וּגְדוֹלוֹת׃",
+      "text": "וְכִי רַבִּים מֵהֶם סְגוּרִים אֶל־בָּצְרָה וּבֶצֶר בָּאֲלִים כִספָן מַקֵדָה וְקַרְנַיִם כָּל־הֶעָרִים הָאֵלֶּה בְּצוּרוֹת וּגְדוֹלוֹת׃",
       "sourcePages": [
         123
       ],
-      "textSHA256": "46d3dd595855ec6cf6aa6ca33748aa49ad2f6c8969610b8459378f6f628bde5b"
+      "textSHA256": "814a29303e52036d17a020b1b7b3108fff51726c2f5c71cfeb1aba79431e0f65",
+      "sourceNotes": [
+        {
+          "id": "1ma-5-26-samekh-vowel",
+          "kind": "unreadablePoint",
+          "anchor": "כִספָן",
+          "occurrence": 1,
+          "letterIndex": 2,
+          "mark": "vowel",
+          "sourcePages": [
+            123
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf#page=123"
+        },
+        {
+          "id": "1ma-5-26-qoph-dagesh",
+          "kind": "unreadablePoint",
+          "anchor": "מַקֵדָה",
+          "occurrence": 1,
+          "letterIndex": 2,
+          "mark": "dagesh",
+          "sourcePages": [
+            123
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf#page=123"
+        }
+      ]
     },
     {
       "chapter": 5,
@@ -462,5 +513,6 @@
     }
   ],
   "productionEligible": false,
-  "additionalReviewNote": "Later local name check reopens Makeda qoph dagesh at5:26; other completed pages unchanged."
+  "additionalReviewNote": "Later local name check reopens Makeda qoph dagesh at5:26; other completed pages unchanged.",
+  "sourceNoteDecisionReport": "1MA-source-note-decisions.json"
 }

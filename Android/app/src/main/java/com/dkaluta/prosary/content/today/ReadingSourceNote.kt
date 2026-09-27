@@ -47,7 +47,7 @@ data class ReadingSourceNote(val id: String, val kind: String, val anchor: Strin
         if (retainedVowels != null) require(mark == "vowel" && retainedVowels.size == 1 &&
             retainedVowels.single().singleOrNull()?.let(::isVowel) == true)
         when (mark) {
-            "vowel" -> require(marks.filter(::isVowel).map { it.toString() }.toSet() == retainedVowels.orEmpty().toSet())
+            "vowel" -> require(marks.filter(::isVowel).map { it.toString() } == retainedVowels.orEmpty())
             "dagesh" -> require('\u05bc' !in marks)
             else -> throw IllegalArgumentException("Unknown source mark")
         }

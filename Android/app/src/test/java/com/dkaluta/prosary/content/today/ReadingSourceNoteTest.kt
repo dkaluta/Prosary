@@ -52,6 +52,7 @@ class ReadingSourceNoteTest {
         rejected { value.copy(retainedVowels = listOf("ַ")).validate(word) }
         rejected { value.copy(anchor = "יְרוּשָׁלם").validate("יְרוּשָׁלם") }
         rejected { value.copy(anchor = "יְרוּשָׁלִַם").validate("יְרוּשָׁלִַם") }
+        rejected { value.copy(anchor = "ל", letterIndex = 1).validate("לִִ") }
         for (invalid in listOf(emptyList(), listOf("ִ", "ַ"), listOf("ִִ"), listOf("x"), listOf("ּ"))) {
             rejected { value.copy(retainedVowels = invalid).validate(word) }
         }

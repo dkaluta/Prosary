@@ -103,7 +103,7 @@ nonisolated struct ScriptureSourceNote: Decodable, Equatable, Identifiable, Send
       guard retainedVowels.count == 1, retainedVowels[0].unicodeScalars.count == 1,
             retainedVowels[0].unicodeScalars.allSatisfy(isVowel) else { return false }
     }
-    let actual = Set(letters.filter(isVowel).map { String($0) })
-    return actual == Set(retainedVowels ?? [])
+    let actual = letters.filter(isVowel).map { String($0) }
+    return actual == (retainedVowels ?? [])
   }
 }

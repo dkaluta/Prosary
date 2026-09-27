@@ -274,3 +274,57 @@ including the boundary acrossB126–127. This finishes the remaining
 scripture onB126; reviewedPages is now19. B127’s later verses are
 still unreviewed scaffold. Evidence and exact online-to-print
 spelling changes are in `1MA-pointing-chapter6-opening.json`.
+
+Chapter6:3–10 now has its full second comparison. B127 is complete,
+bringing reviewedPages to20. The unreadable yod dagesh at6:10 is
+omitted with a visible source note, retaining its readable qamats.
+Only that unit has been checked onB128;6:11 onward is still scaffold.
+See `1MA-pointing-B127.json` for the scoped evidence and note decision.
+
+The seven remaining chapter4–5 point queries now have explicit
+source notes after the completed full-page comparisons and separate
+crop checks. Readable marks are retained; the two provisional
+Makeda qoph dageshes are omitted. This closes B116,117,120,123,124
+and brings reviewedPages to25. Chapter1–2 Jerusalem queries and
+unreviewed chapter6+ remain open. See `1MA-source-note-decisions.json`.
+
+All seven remaining Jerusalem-lamed queries now resolve from
+original-pixel crops and independent local glyph checks. The print
+uses qamats+hiriq at1:14–15 and2:18, and patah+hiriq at the other
+five queried occurrences. These exact local distinctions are retained;
+no source notes or omitted points were needed for them. The earlier
+complete word/point/page comparisons therefore close six more pages.
+B97–127 are now reviewed (31pages); B128 onward still needs work.
+See `1MA-jerusalem-final-crop-review.json`.
+
+B128 is fully second-compared, including the actual combined16–17 and
+its succession sentence missing from the online scaffold. The one new
+unreadable bet dagesh in6:11 has a source note; its clear sheva remains.
+The earlier absence assessment was explicitly retracted after tighter
+inspection, and is not used as evidence. ReviewedPages is now32
+(B97–128); only6:24 has been checked onB129. See `1MA-pointing-B128.json`.
+
+B129 is fully first/second-compared, including the bracketed final
+letter in6:25 and the actual wording of6:29. One unreadable yod
+dagesh in6:26 is omitted with a note after both scan views and an
+independent local reading. The distinct Jerusalem form retains its
+visible patah+hiriq. ReviewedPages is33 (B97–129); only6:36 checked
+onB130. See `1MA-pointing-B129.json`.
+
+B130 is fully first/second-compared. The source’s brackets at6:37
+and final מעליהם at6:47 are retained. One fused kaf vowel at6:38
+is omitted/disclosed after comparison with both scans and the
+separately visible qibbuts in6:37. ReviewedPages is34 (B97–130);
+6:48 onward still needs source transcription. See `1MA-pointing-B130.json`.
+
+Chapter6 now has a complete first and second print comparison. B131
+is complete; only the chapter6 ending has been checked onB132, whose
+chapter7 scripture remains unreviewed. The distinct48 Jerusalem mark
+is qamats+hiriq, corrected from provisional patah after a tight crop
+and independent reading. ReviewedPages is35 (B97–131), with no new
+source note. See `1MA-pointing-B131-132.json`.
+
+B132 is now complete after the full second comparison of7:1–5 and
+independent source-name point checks. The genuine combined4–5 is
+one unit, continuing only its last word ontoB133. ReviewedPages is36
+(B97–132); no new source note. See `1MA-pointing-B132.json`.

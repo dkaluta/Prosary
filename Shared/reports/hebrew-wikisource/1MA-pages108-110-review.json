@@ -2,7 +2,7 @@
   "book": "1MA",
   "primarySourcePDFSHA256": "656891d377d2e3d4a9216723d94205488423907bf01df424b9f0b9de1560051e",
   "additionalSourcePDFSHA256": "b72eaf5d2d858fabb7c3438ac0436ccd64c394a7dd2fad609efabe628d5534c7",
-  "status": "B110 checked; B108–109 have complete second-reading passes with two point queries; book remains draft",
+  "status": "Full second word/point/punctuation and page-boundary comparison complete; all local queries resolved by source evidence. Book remains draft.",
   "method": "Direct comparison of every source scripture word, visible point, punctuation and boundary with the existing draft. Additional scan has matching headers/typesetting. Commentary excluded. Targeted dagesh/name glyphs independently read by a second reviewer. No OCR vowel points or grammatical restoration.",
   "pages": [
     {
@@ -13,10 +13,8 @@
       "unitSegments": [
         "2:15–28 complete, including16–17 and20–21"
       ],
-      "finalReviewComplete": false,
-      "unresolved": [
-        "1MA-2-18-jerusalem-lamed"
-      ]
+      "finalReviewComplete": true,
+      "unresolved": []
     },
     {
       "primaryPDFPage": 109,
@@ -27,10 +25,8 @@
         "2:29–44 complete, including30–31 and38–39",
         "2:45 opening through בגבול"
       ],
-      "finalReviewComplete": false,
-      "unresolved": [
-        "1MA-2-30–31-jerusalem-lamed"
-      ]
+      "finalReviewComplete": true,
+      "unresolved": []
     },
     {
       "primaryPDFPage": 110,
@@ -123,7 +119,9 @@
       "candidate": "בִּירוּשָׁלִָם",
       "detail": "The clearer source shows a separate left dot with the horizontal lamed mark. The possible short stem suggests qamats+hiriq, rather than the draft patah alone, but retain as an explicit query pending second adjudication. The user’s earlier2:1/6 mark reading is not extrapolated here.",
       "evidence": "crop-56-0.542-0.194-0.606-0.224.png",
-      "resolved": false
+      "resolved": true,
+      "resolvedReading": "qamats+hiriq",
+      "resolution": "Source-visible local mark confirmed by two independent crop readings; see1MA-jerusalem-final-crop-review.json. No point omitted and no source note required."
     },
     {
       "id": "1MA-2-30–31-jerusalem-lamed",
@@ -132,7 +130,9 @@
       "candidate": "בִּירוּשָׁלִָם",
       "detail": "The clearer source shows a separate left dot with the horizontal lamed mark. The possible short stem suggests qamats+hiriq, rather than the draft patah alone, but retain as an explicit query pending second adjudication. The user’s earlier2:1/6 mark reading is not extrapolated here.",
       "evidence": "crop-56-0.21-0.138-0.289-0.167.png",
-      "resolved": false
+      "resolved": true,
+      "resolvedReading": "patah+hiriq",
+      "resolution": "Source-visible local mark confirmed by two independent crop readings; see1MA-jerusalem-final-crop-review.json. No point omitted and no source note required."
     }
   ],
   "retainedChecks": [
@@ -853,5 +853,6 @@
       "filename": "crop-57-0.64-0.607-0.686-0.643.png",
       "sha256": "248a7bbcd27d997cfeee706b33e23784a726e5310cc6044cf4ae987f0f68f76f"
     }
-  ]
+  ],
+  "finalPointDecisionReport": "1MA-jerusalem-final-crop-review.json"
 }

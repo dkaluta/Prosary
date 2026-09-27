@@ -1,0 +1,107 @@
+{
+  "schemaVersion": 1,
+  "book": "SUS",
+  "sourcePage": 242,
+  "scanSHA256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+  "review": "Complete physical-page lower-Theodotion word, point and punctuation comparison. Source order, maqaf, punctuation and page-crossing continuations retained. Independent whole-book margin inventory remains a separate artifact.",
+  "changes": [
+    {
+      "verse": 62,
+      "before": "וַיִּמָּלֵט",
+      "after": "ויִמָלֵט",
+      "basis": "Root and independent reviewer cannot classify the fused vav lower mark, yod interior or mem interior. Keep clearly readable yod hiriq and mem qamats; omit only the three uncertain points with exact source notes."
+    }
+  ],
+  "focusedEvidence": [
+    {
+      "crop": "root-sus242-emar.png",
+      "cropSHA256": "9173b99479b4ddd1f99525f96a0aafee3239f1870f2196776857a01f720af90e"
+    },
+    {
+      "crop": "root-sus242-vayimalet.png",
+      "cropSHA256": "53c99cfb39d76e1671cce98a14584a7b066a7a7c19caf4e097c5d76ab9ff607e"
+    },
+    {
+      "crop": "root-sus242-vayhalelu.png",
+      "cropSHA256": "c2d6df514e6e2d5c0353b655dae229a91f511d0ad61ace10eae6b1beb276905c"
+    },
+    {
+      "crop": "root-sus242-vatara.png",
+      "cropSHA256": "277d6aa7774aa8a50b02ba9a53dedeb46993665039de226718b065887ee4e33b"
+    }
+  ],
+  "acceptedSourceNoteIds": [
+    "sus-1-62-letter-1-vowel",
+    "sus-1-62-letter-2-dagesh",
+    "sus-1-62-letter-3-dagesh"
+  ],
+  "unitLedger": [
+    {
+      "verse": 57,
+      "endVerse": 57,
+      "textSHA256": "4ec6adbb9bc1754c553d3d5c43f51be066135c96c80cfeddb1cb5eb81fd08f31",
+      "sourcePages": [
+        241,
+        242
+      ]
+    },
+    {
+      "verse": 58,
+      "endVerse": 58,
+      "textSHA256": "540f9c8569eb6263221467ab5059eef4dd14f3c18330fa1a2991036a3adefcf8",
+      "sourcePages": [
+        242
+      ]
+    },
+    {
+      "verse": 59,
+      "endVerse": 59,
+      "textSHA256": "4f2265cf6d833b66cf2569042c0d5574e7db95a0d8ad519b5d158dbcce0ddea5",
+      "sourcePages": [
+        242
+      ]
+    },
+    {
+      "verse": 60,
+      "endVerse": 60,
+      "textSHA256": "ce6fad381fb7a08341d1953a15f5b480effe2cacef31f11d19bcce060fd06ba9",
+      "sourcePages": [
+        242
+      ]
+    },
+    {
+      "verse": 61,
+      "endVerse": 61,
+      "textSHA256": "c3f8fdeace06d6db5a2714a9d5af9fc10952a2d68392e1faea64d1412d2c5ac5",
+      "sourcePages": [
+        242
+      ]
+    },
+    {
+      "verse": 62,
+      "endVerse": 62,
+      "textSHA256": "70f2fd5420ff7a27710a3582c99f54b87ee069638ec552b265607565d2beddfc",
+      "sourcePages": [
+        242
+      ]
+    },
+    {
+      "verse": 63,
+      "endVerse": 63,
+      "textSHA256": "1429c9adddbefce968db932cc2e53848d9b63eaab4476fc7ee6b0e49b2dd32a1",
+      "sourcePages": [
+        242
+      ]
+    },
+    {
+      "verse": 64,
+      "endVerse": 64,
+      "textSHA256": "2933285e50a6a331c15d7f8d36d6ce31ed5160094b9082f57411823f304cc6c8",
+      "sourcePages": [
+        242
+      ]
+    }
+  ],
+  "releaseEligible": false,
+  "remainingBlocker": "Unusual printed label כ–כא at editorial40–41 lacks final display/address disposition and approval pin."
+}

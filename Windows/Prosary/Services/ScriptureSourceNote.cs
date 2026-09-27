@@ -55,13 +55,13 @@ public sealed record ScriptureSourceNote(
             if (note.LetterIndex > letters.Count) return false;
             var position = found + letters[note.LetterIndex - 1];
             if (!positions.Add((position, note.Mark))) return false;
-            var vowels = new HashSet<char>();
+            var vowels = new List<char>();
             for (var index = position + 1; index < verse.Text.Length && IsCombining(verse.Text[index]); index++)
             {
                 if (note.Mark == "dagesh" && verse.Text[index] == '\u05bc') return false;
                 if (IsVowel(verse.Text[index])) vowels.Add(verse.Text[index]);
             }
-            if (note.Mark == "vowel" && !vowels.SetEquals((note.RetainedVowels ?? []).Select(value => value[0]))) return false;
+            if (note.Mark == "vowel" && !vowels.SequenceEqual((note.RetainedVowels ?? []).Select(value => value[0]))) return false;
         }
         return true;
     }

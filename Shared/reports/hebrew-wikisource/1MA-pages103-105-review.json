@@ -2,7 +2,7 @@
   "book": "1MA",
   "primarySourcePDFSHA256": "656891d377d2e3d4a9216723d94205488423907bf01df424b9f0b9de1560051e",
   "additionalSourcePDFSHA256": "b72eaf5d2d858fabb7c3438ac0436ccd64c394a7dd2fad609efabe628d5534c7",
-  "status": "B105 checked; B103–104 have complete second-reading passes with explicit point queries; book remains draft",
+  "status": "Full second word/point/punctuation and page-boundary comparison complete; all local queries resolved by source evidence. Book remains draft.",
   "method": "Direct word-by-word, mark-by-mark comparison of all scripture on these pages with the pointed draft. Commentary excluded. Matres, maqaf, source brackets, punctuation and physical-page continuations checked. Enlarged additional scan is the same typesetting with matching headers. No OCR or grammatical normalization used.",
   "pages": [
     {
@@ -15,11 +15,8 @@
         "1:41–42 combined complete",
         "1:43 opening ורבים"
       ],
-      "finalReviewComplete": false,
-      "unresolved": [
-        "1MA-1-35-jerusalem-lamed",
-        "1MA-1-38-jerusalem-lamed"
-      ]
+      "finalReviewComplete": true,
+      "unresolved": []
     },
     {
       "primaryPDFPage": 104,
@@ -31,10 +28,8 @@
         "1:44–54 complete, including combined46–47 and50–51",
         "1:55 opening ובפתחי"
       ],
-      "finalReviewComplete": false,
-      "unresolved": [
-        "1MA-1-44-jerusalem-lamed"
-      ]
+      "finalReviewComplete": true,
+      "unresolved": []
     },
     {
       "primaryPDFPage": 105,
@@ -80,7 +75,9 @@
       ],
       "detail": "Separate left dot is visible. As with the other individually recorded chapter1 occurrences, the horizontal mark and possible short stem need adjudication; retain the existing provisional text. The prior user answer concerning2:1/6 is not applied here.",
       "evidence": "crop-53-0.186-0.286-0.24-0.313.png",
-      "resolved": false
+      "resolved": true,
+      "resolvedReading": "patah+hiriq",
+      "resolution": "Source-visible local mark confirmed by two independent crop readings; see1MA-jerusalem-final-crop-review.json. No point omitted and no source note required."
     },
     {
       "id": "1MA-1-38-jerusalem-lamed",
@@ -92,7 +89,9 @@
       ],
       "detail": "Separate left dot is visible. As with the other individually recorded chapter1 occurrences, the horizontal mark and possible short stem need adjudication; retain the existing provisional text. The prior user answer concerning2:1/6 is not applied here.",
       "evidence": "crop-53-0.283-0.363-0.336-0.39.png",
-      "resolved": false
+      "resolved": true,
+      "resolvedReading": "patah+hiriq",
+      "resolution": "Source-visible local mark confirmed by two independent crop readings; see1MA-jerusalem-final-crop-review.json. No point omitted and no source note required."
     },
     {
       "id": "1MA-1-44-jerusalem-lamed",
@@ -104,7 +103,9 @@
       ],
       "detail": "Separate left dot is visible. As with the other individually recorded chapter1 occurrences, the horizontal mark and possible short stem need adjudication; retain the existing provisional text. The prior user answer concerning2:1/6 is not applied here.",
       "evidence": "crop-54-0.536-0.092-0.902-0.246.png",
-      "resolved": false
+      "resolved": true,
+      "resolvedReading": "patah+hiriq",
+      "resolution": "Source-visible local mark confirmed by two independent crop readings; see1MA-jerusalem-final-crop-review.json. No point omitted and no source note required."
     }
   ],
   "retainedChecks": [
@@ -579,5 +580,6 @@
       "filename": "crop-54-0.705-0.355-0.752-0.385.png",
       "sha256": "067e16fca5deffbbbabfbc2249e0385bfec182a8b72f4acdeef0b5e993ea63bc"
     }
-  ]
+  ],
+  "finalPointDecisionReport": "1MA-jerusalem-final-crop-review.json"
 }

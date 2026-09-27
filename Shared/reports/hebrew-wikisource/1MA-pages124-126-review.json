@@ -1,6 +1,6 @@
 {
   "book": "1MA",
-  "status": "Full second comparison of5:34–68; B125/126 complete; B124 retains two local point queries",
+  "status": "Full second comparison complete for these pages; isolated unreadable marks explicitly disclosed by accepted source notes. Book remains draft.",
   "primarySourcePDFSHA256": "656891d377d2e3d4a9216723d94205488423907bf01df424b9f0b9de1560051e",
   "additionalSourcePDFSHA256": "b72eaf5d2d858fabb7c3438ac0436ccd64c394a7dd2fad609efabe628d5534c7",
   "method": "Every chapter5 scripture word, point, punctuation mark, margin range and physical page boundary compared at native crop resolution with the clearer paired print. Local indistinct marks retained as explicit queries. No automatic or conventional vocalization. Chapter6 source is outside this completed comparison.",
@@ -13,10 +13,11 @@
         "5:34–43 complete, including36–37",
         "5:44 initial וילכדו"
       ],
-      "finalReviewComplete": false,
-      "unresolved": [
-        "1MA-5-34-bayom-yod",
-        "1MA-5-36-makeda-qoph"
+      "finalReviewComplete": true,
+      "unresolved": [],
+      "acceptedSourceNoteIds": [
+        "1ma-5-34-yod-dagesh",
+        "1ma-5-36-qoph-dagesh"
       ]
     },
     {
@@ -51,21 +52,30 @@
       "unit": "5:34",
       "detail": "Bet dagesh/patah clear. A dark projection below/left of yod head is not cleanly detached from its bend. Both readers cannot certify a separate dagesh. Current בַּיוֹם omission is provisional, not certified absence.",
       "evidence": "crop-64-0.79-0.11-0.855-0.148.png",
-      "resolved": false
+      "resolved": true,
+      "resolutionType": "acceptedSourceNote",
+      "acceptedSourceNoteId": "1ma-5-34-yod-dagesh",
+      "resolution": "The glyph is still unreadable. Its guessed mark is omitted and disclosed under the approved policy; see1MA-source-note-decisions.json."
     },
     {
       "id": "1MA-5-36-makeda-qoph",
       "unit": "5:36–37",
       "detail": "Dark qoph inner material cannot be separated confidently from its inner/right stroke; independent reader also leaves dagesh unclear. Current מַקֵּדָה dagesh remains provisional, not certified presence.",
       "evidence": "crop-64-0.704-0.162-0.775-0.2.png",
-      "resolved": false
+      "resolved": true,
+      "resolutionType": "acceptedSourceNote",
+      "acceptedSourceNoteId": "1ma-5-36-qoph-dagesh",
+      "resolution": "The glyph is still unreadable. Its guessed mark is omitted and disclosed under the approved policy; see1MA-source-note-decisions.json."
     },
     {
       "id": "1MA-5-26-makeda-qoph",
       "unit": "5:26",
       "detail": "Separate reinspection of this earlier occurrence does not confidently separate qoph dagesh from its inner stroke. Added query rather than extrapolating from5:36.",
       "evidence": "crop-63-0.343-0.122-0.415-0.158.png",
-      "resolved": false
+      "resolved": true,
+      "resolutionType": "acceptedSourceNote",
+      "acceptedSourceNoteId": "1ma-5-26-qoph-dagesh",
+      "resolution": "The glyph is still unreadable. Its guessed mark is omitted and disclosed under the approved policy; see1MA-source-note-decisions.json."
     }
   ],
   "retainedChecks": [
@@ -152,7 +162,21 @@
       "sourcePages": [
         124
       ],
-      "textSHA256": "48c85a8beb8d62fb13d774725e89bab7dc3a4ce5321b224d3c2e9b26b3acb412"
+      "textSHA256": "48c85a8beb8d62fb13d774725e89bab7dc3a4ce5321b224d3c2e9b26b3acb412",
+      "sourceNotes": [
+        {
+          "id": "1ma-5-34-yod-dagesh",
+          "kind": "unreadablePoint",
+          "anchor": "בַּיוֹם",
+          "occurrence": 1,
+          "letterIndex": 2,
+          "mark": "dagesh",
+          "sourcePages": [
+            124
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf#page=124"
+        }
+      ]
     },
     {
       "chapter": 5,
@@ -166,12 +190,26 @@
     {
       "chapter": 5,
       "verse": 36,
-      "text": "וּמִשָּׁם נָסַע וַיִּקַּח אֶת כִסְפָן מַקֵּדָה וּבֶצֶר וּשְׁאָר־עָרֵי הַגִּלְעָד׃ אַחַר הַדְּבָרִים הָאֵלֶּה אָסַף טִימוֹתְאוֹס מַחֲנֶה אַחֵר וַיַּחַן לִפְנֵי רָפוֹן מֵעֵבֶר לַנָּחַל׃",
+      "text": "וּמִשָּׁם נָסַע וַיִּקַּח אֶת כִסְפָן מַקֵדָה וּבֶצֶר וּשְׁאָר־עָרֵי הַגִּלְעָד׃ אַחַר הַדְּבָרִים הָאֵלֶּה אָסַף טִימוֹתְאוֹס מַחֲנֶה אַחֵר וַיַּחַן לִפְנֵי רָפוֹן מֵעֵבֶר לַנָּחַל׃",
       "sourcePages": [
         124
       ],
-      "textSHA256": "99ea04a3f15e393803bdbdd2b49565e8e5a85ba16c14905111f0b02b5b46e945",
-      "endVerse": 37
+      "textSHA256": "e873de4bb938bcda508e697bf707a5bc1014377f5367304b47b2aa0164ea738f",
+      "endVerse": 37,
+      "sourceNotes": [
+        {
+          "id": "1ma-5-36-qoph-dagesh",
+          "kind": "unreadablePoint",
+          "anchor": "מַקֵדָה",
+          "occurrence": 1,
+          "letterIndex": 2,
+          "mark": "dagesh",
+          "sourcePages": [
+            124
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf#page=124"
+        }
+      ]
     },
     {
       "chapter": 5,
@@ -447,5 +485,6 @@
       "textSHA256": "c085cd16b2a35db463b706ba329d1286fe9dc28245ab0c614d9e94beb4324f8b"
     }
   ],
-  "productionEligible": false
+  "productionEligible": false,
+  "sourceNoteDecisionReport": "1MA-source-note-decisions.json"
 }

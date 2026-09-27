@@ -33,6 +33,7 @@ public sealed class ScriptureSourceNoteTests
         Assert.False(ScriptureSourceNote.ValidForVerse(verse with { SourceNotes = [note with { RetainedVowels = null }] }, false));
         Assert.False(ScriptureSourceNote.ValidForVerse(verse with { SourceNotes = [note with { RetainedVowels = ["ָ"] }] }, false));
         Assert.False(ScriptureSourceNote.ValidForVerse(verse with { Text = "לִָם", SourceNotes = [note with { Anchor = "לִָם" }] }, false));
+        Assert.False(ScriptureSourceNote.ValidForVerse(verse with { Text = "לִִם", SourceNotes = [note with { Anchor = "ל" }] }, false));
     }
 
     [Theory]

@@ -2,7 +2,7 @@
   "book": "1MA",
   "primarySourcePDFSHA256": "656891d377d2e3d4a9216723d94205488423907bf01df424b9f0b9de1560051e",
   "additionalSourcePDFSHA256": "b72eaf5d2d858fabb7c3438ac0436ccd64c394a7dd2fad609efabe628d5534c7",
-  "status": "Chapter4 second comparison completed with two explicit local mark queries; B115/118/119 fully checked; book remains draft",
+  "status": "Full second comparison complete for these pages; isolated unreadable marks explicitly disclosed by accepted source notes. Book remains draft.",
   "method": "Complete second visual word/point/punctuation comparison of all57 chapter4 source units against matched clearer print. Page endings/continuations and combined labels retained. No grammatical or conventional point normalization. Local uncertain marks remain open.",
   "pages": [
     {
@@ -28,9 +28,10 @@
         "4:7–15 complete, including11–12",
         "4:16 beginning through והחיל"
       ],
-      "finalReviewComplete": false,
-      "unresolved": [
-        "1MA-4-10-hayom-yod"
+      "finalReviewComplete": true,
+      "unresolved": [],
+      "acceptedSourceNoteIds": [
+        "1ma-4-10-yod-dagesh"
       ]
     },
     {
@@ -43,9 +44,10 @@
         "4:17–28 complete",
         "4:29 beginning through ויחנו"
       ],
-      "finalReviewComplete": false,
-      "unresolved": [
-        "1MA-4-18-qomemiyot-yod"
+      "finalReviewComplete": true,
+      "unresolved": [],
+      "acceptedSourceNoteIds": [
+        "1ma-4-18-yod-dagesh"
       ]
     },
     {
@@ -83,9 +85,10 @@
         "4:55 continuation פניהם",
         "4:56–60 complete"
       ],
-      "finalReviewComplete": false,
-      "unresolved": [
-        "Chapter5 segment fully compared in1MA-pages120-123-review.json; only5:4 bet dagesh remains open."
+      "finalReviewComplete": true,
+      "unresolved": [],
+      "acceptedSourceNoteIds": [
+        "1ma-5-4-bet-dagesh"
       ]
     }
   ],
@@ -110,15 +113,21 @@
       "id": "1MA-4-10-hayom-yod",
       "unit": "4:10",
       "detail": "Draft הַיוֹם has no yod dagesh; tiny source glyph does not establish a separate additional point to this reader. Sent for independent local reading.",
-      "resolved": false,
-      "evidence": "crop-60-0.858-0.21-0.895-0.239.png"
+      "resolved": true,
+      "evidence": "crop-60-0.858-0.21-0.895-0.239.png",
+      "resolutionType": "acceptedSourceNote",
+      "acceptedSourceNoteId": "1ma-4-10-yod-dagesh",
+      "resolution": "The glyph is still unreadable. Its guessed mark is omitted and disclosed under the approved policy; see1MA-source-note-decisions.json."
     },
     {
       "id": "1MA-4-18-qomemiyot-yod",
       "unit": "4:18",
       "detail": "Certain points restored as קוֹמְמִיוֹת. Final-vav holam independently confirmed. Possible yod dagesh is not cleanly detached from its letter in the crop, so remains unresolved.",
-      "resolved": false,
-      "evidence": "crop-60-0.184-0.14-0.248-0.165.png"
+      "resolved": true,
+      "evidence": "crop-60-0.184-0.14-0.248-0.165.png",
+      "resolutionType": "acceptedSourceNote",
+      "acceptedSourceNoteId": "1ma-4-18-yod-dagesh",
+      "resolution": "The glyph is still unreadable. Its guessed mark is omitted and disclosed under the approved policy; see1MA-source-note-decisions.json."
     }
   ],
   "retainedChecks": [
@@ -728,5 +737,6 @@
       "textSHA256": "d37c165fb0ce887a1430eaea883cb66858436674ac5a70c00dd8a5ce7ee6bbf7"
     }
   ],
-  "productionEligible": false
+  "productionEligible": false,
+  "sourceNoteDecisionReport": "1MA-source-note-decisions.json"
 }

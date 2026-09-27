@@ -96,6 +96,7 @@ final class ScriptureSourceNoteTests: XCTestCase {
     let shortened = try decode(object(["anchor":"ל","letterIndex":1,"retainedVowels":["ִ"]]))
     XCTAssertTrue(shortened.isValid(in:"לִ"), "Validate the full resolved source letter")
     XCTAssertFalse(shortened.isValid(in:"לִָ"))
+    XCTAssertFalse(shortened.isValid(in:"לִִ"), "Duplicate source scalars are not one retained point")
     for retained in [[],["ִ","ִ"],["ִ","ַ"],["ִַ"],["ּ"],["א"],[""]] {
       XCTAssertFalse(try decode(object(["anchor":text,"letterIndex":5,"retainedVowels":retained])).isValid(in:text), "\(retained)")
     }
