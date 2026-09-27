@@ -1,0 +1,639 @@
+{
+  "schemaVersion": 1,
+  "book": "S3Y",
+  "purpose": "Independent printed margin/range/page-boundary inventory before source transcription; not derived from S3Y.json, another edition or OCR.",
+  "reviewStatus": "All actual margin labels are clear. The final unlabelled narrative paragraph is separately recorded for explicit boundary disposition; this inventory does not invent another verse or silently attach it to71. No wording/pointing approval.",
+  "productionEligible": false,
+  "scan": {
+    "volume": "A2",
+    "sha256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+    "textPages": [
+      233,
+      234,
+      235,
+      236
+    ],
+    "inspectedPages": [
+      233,
+      234,
+      235,
+      236,
+      237
+    ]
+  },
+  "recension": {
+    "sourceCollectionLabel": "תוספות לספר דניאל",
+    "sourceTitle": "תפלת עזריה ושירת שלשת הנערים בכבשן",
+    "sourceRecensionLabel": "נוסח השבעים",
+    "sourceSectionMarker": "א.",
+    "notes": "This work is explicitly the Septuagint recension in the print; do not assume the lower Theodotion label of the subsequent Susanna also applies here.",
+    "beginning": "PDF233 title and recension heading, then marginא immediately before scripture. No unnumbered opening.",
+    "ending": "PDF236 last printed marginעא(71), then a distinct unlabelled narrative paragraph ending with three spaced dashes and sof pasuq before the apparatus. The next work is Susanna on237."
+  },
+  "method": "Inspect the four full original PDF page renders, then every body margin in6x crops. Recheck both combined labels with wider adjacent text and the29 continuation using crops of the bottom234/top235. Body text and couplet layout are distinguished from running headers and commentary labels.",
+  "hasIntroduction": false,
+  "hasUnnumberedScripturalOpening": false,
+  "chapters": [
+    {
+      "number": 1,
+      "lastPrintedLabel": 71,
+      "units": [
+        {
+          "first": 1,
+          "last": 1,
+          "sourcePages": [
+            233
+          ]
+        },
+        {
+          "first": 2,
+          "last": 2,
+          "sourcePages": [
+            233
+          ]
+        },
+        {
+          "first": 3,
+          "last": 3,
+          "sourcePages": [
+            233
+          ]
+        },
+        {
+          "first": 4,
+          "last": 4,
+          "sourcePages": [
+            233
+          ]
+        },
+        {
+          "first": 5,
+          "last": 5,
+          "sourcePages": [
+            233
+          ]
+        },
+        {
+          "first": 6,
+          "last": 6,
+          "sourcePages": [
+            233
+          ]
+        },
+        {
+          "first": 7,
+          "last": 7,
+          "sourcePages": [
+            233
+          ]
+        },
+        {
+          "first": 8,
+          "last": 9,
+          "sourcePages": [
+            233
+          ],
+          "printedLabel": "ח–ט"
+        },
+        {
+          "first": 10,
+          "last": 10,
+          "sourcePages": [
+            233
+          ]
+        },
+        {
+          "first": 11,
+          "last": 11,
+          "sourcePages": [
+            233
+          ]
+        },
+        {
+          "first": 12,
+          "last": 12,
+          "sourcePages": [
+            233
+          ]
+        },
+        {
+          "first": 13,
+          "last": 13,
+          "sourcePages": [
+            233
+          ]
+        },
+        {
+          "first": 14,
+          "last": 14,
+          "sourcePages": [
+            233
+          ]
+        },
+        {
+          "first": 15,
+          "last": 15,
+          "sourcePages": [
+            234
+          ]
+        },
+        {
+          "first": 16,
+          "last": 16,
+          "sourcePages": [
+            234
+          ]
+        },
+        {
+          "first": 17,
+          "last": 17,
+          "sourcePages": [
+            234
+          ]
+        },
+        {
+          "first": 18,
+          "last": 18,
+          "sourcePages": [
+            234
+          ]
+        },
+        {
+          "first": 19,
+          "last": 19,
+          "sourcePages": [
+            234
+          ]
+        },
+        {
+          "first": 20,
+          "last": 20,
+          "sourcePages": [
+            234
+          ]
+        },
+        {
+          "first": 21,
+          "last": 21,
+          "sourcePages": [
+            234
+          ]
+        },
+        {
+          "first": 22,
+          "last": 23,
+          "sourcePages": [
+            234
+          ],
+          "printedLabel": "כב–כג"
+        },
+        {
+          "first": 24,
+          "last": 24,
+          "sourcePages": [
+            234
+          ]
+        },
+        {
+          "first": 25,
+          "last": 25,
+          "sourcePages": [
+            234
+          ]
+        },
+        {
+          "first": 26,
+          "last": 26,
+          "sourcePages": [
+            234
+          ]
+        },
+        {
+          "first": 27,
+          "last": 27,
+          "sourcePages": [
+            234
+          ]
+        },
+        {
+          "first": 28,
+          "last": 28,
+          "sourcePages": [
+            234
+          ]
+        },
+        {
+          "first": 29,
+          "last": 29,
+          "sourcePages": [
+            234,
+            235
+          ]
+        },
+        {
+          "first": 30,
+          "last": 30,
+          "sourcePages": [
+            235
+          ]
+        },
+        {
+          "first": 31,
+          "last": 31,
+          "sourcePages": [
+            235
+          ]
+        },
+        {
+          "first": 32,
+          "last": 32,
+          "sourcePages": [
+            235
+          ]
+        },
+        {
+          "first": 33,
+          "last": 33,
+          "sourcePages": [
+            235
+          ]
+        },
+        {
+          "first": 34,
+          "last": 34,
+          "sourcePages": [
+            235
+          ]
+        },
+        {
+          "first": 35,
+          "last": 35,
+          "sourcePages": [
+            235
+          ]
+        },
+        {
+          "first": 36,
+          "last": 36,
+          "sourcePages": [
+            235
+          ]
+        },
+        {
+          "first": 37,
+          "last": 37,
+          "sourcePages": [
+            235
+          ]
+        },
+        {
+          "first": 38,
+          "last": 38,
+          "sourcePages": [
+            235
+          ]
+        },
+        {
+          "first": 39,
+          "last": 39,
+          "sourcePages": [
+            235
+          ]
+        },
+        {
+          "first": 40,
+          "last": 40,
+          "sourcePages": [
+            235
+          ]
+        },
+        {
+          "first": 41,
+          "last": 41,
+          "sourcePages": [
+            235
+          ]
+        },
+        {
+          "first": 42,
+          "last": 42,
+          "sourcePages": [
+            235
+          ]
+        },
+        {
+          "first": 43,
+          "last": 43,
+          "sourcePages": [
+            235
+          ]
+        },
+        {
+          "first": 44,
+          "last": 44,
+          "sourcePages": [
+            235
+          ]
+        },
+        {
+          "first": 45,
+          "last": 45,
+          "sourcePages": [
+            235
+          ]
+        },
+        {
+          "first": 46,
+          "last": 46,
+          "sourcePages": [
+            235
+          ]
+        },
+        {
+          "first": 47,
+          "last": 47,
+          "sourcePages": [
+            235
+          ]
+        },
+        {
+          "first": 48,
+          "last": 48,
+          "sourcePages": [
+            236
+          ]
+        },
+        {
+          "first": 49,
+          "last": 49,
+          "sourcePages": [
+            236
+          ]
+        },
+        {
+          "first": 50,
+          "last": 50,
+          "sourcePages": [
+            236
+          ]
+        },
+        {
+          "first": 51,
+          "last": 51,
+          "sourcePages": [
+            236
+          ]
+        },
+        {
+          "first": 52,
+          "last": 52,
+          "sourcePages": [
+            236
+          ]
+        },
+        {
+          "first": 53,
+          "last": 53,
+          "sourcePages": [
+            236
+          ]
+        },
+        {
+          "first": 54,
+          "last": 54,
+          "sourcePages": [
+            236
+          ]
+        },
+        {
+          "first": 55,
+          "last": 55,
+          "sourcePages": [
+            236
+          ]
+        },
+        {
+          "first": 56,
+          "last": 56,
+          "sourcePages": [
+            236
+          ]
+        },
+        {
+          "first": 57,
+          "last": 57,
+          "sourcePages": [
+            236
+          ]
+        },
+        {
+          "first": 58,
+          "last": 58,
+          "sourcePages": [
+            236
+          ]
+        },
+        {
+          "first": 59,
+          "last": 59,
+          "sourcePages": [
+            236
+          ]
+        },
+        {
+          "first": 60,
+          "last": 60,
+          "sourcePages": [
+            236
+          ]
+        },
+        {
+          "first": 61,
+          "last": 61,
+          "sourcePages": [
+            236
+          ]
+        },
+        {
+          "first": 62,
+          "last": 62,
+          "sourcePages": [
+            236
+          ]
+        },
+        {
+          "first": 63,
+          "last": 63,
+          "sourcePages": [
+            236
+          ]
+        },
+        {
+          "first": 64,
+          "last": 64,
+          "sourcePages": [
+            236
+          ]
+        },
+        {
+          "first": 65,
+          "last": 65,
+          "sourcePages": [
+            236
+          ]
+        },
+        {
+          "first": 66,
+          "last": 66,
+          "sourcePages": [
+            236
+          ]
+        },
+        {
+          "first": 67,
+          "last": 67,
+          "sourcePages": [
+            236
+          ]
+        },
+        {
+          "first": 68,
+          "last": 68,
+          "sourcePages": [
+            236
+          ]
+        },
+        {
+          "first": 69,
+          "last": 69,
+          "sourcePages": [
+            236
+          ]
+        },
+        {
+          "first": 70,
+          "last": 70,
+          "sourcePages": [
+            236
+          ]
+        },
+        {
+          "first": 71,
+          "last": 71,
+          "sourcePages": [
+            236
+          ]
+        }
+      ]
+    }
+  ],
+  "unitCount": 69,
+  "combinedUnits": [
+    {
+      "first": 8,
+      "last": 9,
+      "printedLabel": "ח–ט",
+      "sourcePages": [
+        233
+      ]
+    },
+    {
+      "first": 22,
+      "last": 23,
+      "printedLabel": "כב–כג",
+      "sourcePages": [
+        234
+      ]
+    }
+  ],
+  "pageCrossings": [
+    {
+      "unit": 29,
+      "sourcePages": [
+        234,
+        235
+      ],
+      "previousPageEnd": "כמו רוח",
+      "nextPageBeginning": "טל נשבת",
+      "nextUnit": 30,
+      "nextUnitBeginsAfter": "הציקה להם׃",
+      "nextUnitOpening": "ויענו שלשתם פה אחד",
+      "notes": "Labelל shares the row with the29 ending; it does not begin at the first word of that row."
+    }
+  ],
+  "pageBoundaries": [
+    {
+      "pages": [
+        233,
+        234
+      ],
+      "precedingUnit": 14,
+      "followingUnit": 15,
+      "notes": "14endsישראל קדושך׃ on233;15startsכאשר דברתon234. No unit crossing."
+    },
+    {
+      "pages": [
+        235,
+        236
+      ],
+      "precedingUnit": 47,
+      "followingUnit": 48,
+      "notes": "47 is a complete two-column couplet on235, including its left response.48 begins the next page. No crossing."
+    }
+  ],
+  "finalParagraphObservation": {
+    "sourcePages": [
+      236
+    ],
+    "lastMarginLabel": "עא",
+    "labelAlignment": "Beside the lineוהודו לו כי לעולם חסדו ולעלמי עולמים׃, immediately above a separate narrative paragraph.",
+    "followingUnlabelledParagraphOpening": "ויהי כאשר שמע המלך אותם מהללים",
+    "followingUnlabelledParagraphClosing": "ויאמר לאהביו — — —׃",
+    "boundaryStatus": "Needs explicit source-boundary disposition during full transcription: whether71 belongs to the aligned final response line or the following narrative. Preserve every printed word without inventing72; no attribution to a Daniel verse was inferred."
+  },
+  "unresolvedFindings": [
+    "Final unlabelled narrative paragraph boundary relative to margin71 requires explicit disposition; all printed label identities and page spans are clear."
+  ],
+  "cropEvidence": [
+    {
+      "filename": "page-233-0.12-0.115-0.89-0.28.png",
+      "sha256": "572b33e527a9ca0dd9045f88dfea362c60527d9baed0d8abd434a94aec445440"
+    },
+    {
+      "filename": "page-233-0.75-0.51-0.895-0.58.png",
+      "sha256": "df2f48456327c46a3c6867ba56421cd7e40fa2012be774c64fab6dce6c4a1476"
+    },
+    {
+      "filename": "page-233-0.825-0.22-0.89-0.74.png",
+      "sha256": "922b84e98ff34a44fbac99e6ffcd38505130156f44c6fdaf02d3835fa8796782"
+    },
+    {
+      "filename": "page-234-0.08-0.542-0.89-0.613.png",
+      "sha256": "f4384229a566445032845146f0d99204c72f0edf8dcf0a32075d7fc816b5229f"
+    },
+    {
+      "filename": "page-234-0.73-0.31-0.9-0.385.png",
+      "sha256": "704c2751bebc6c131fb147e841288478d8de12ebe6aa49f4e64ebc6ed33eec08"
+    },
+    {
+      "filename": "page-234-0.81-0.08-0.89-0.62.png",
+      "sha256": "e6ee62cac5a47e21073c64477a31561f3cb7c21c067327643a1af68c8bccbdd7"
+    },
+    {
+      "filename": "page-235-0.08-0.076-0.89-0.162.png",
+      "sha256": "829b4c4eb62aa496e2be9f811b4e4a6da354de22772c9a0e43cea968a3316771"
+    },
+    {
+      "filename": "page-235-0.8-0.085-0.88-0.65.png",
+      "sha256": "dccbf10a91ca25696725abb68115e4c92e62983d0eb80af854b6633b1a92ca41"
+    },
+    {
+      "filename": "page-236-0.075-0.57-0.89-0.81.png",
+      "sha256": "f2bbe33a0eb993bc7f2fd4d878342b23e7c088540015f6d27fb28bea6040502c"
+    },
+    {
+      "filename": "page-236-0.815-0.085-0.9-0.81.png",
+      "sha256": "fa1ad7c9051e357b8cc739e06755cd79da0f897d7914a76da16316c21a6c243c"
+    }
+  ]
+}

@@ -4,8 +4,18 @@
   "sourceScanSHA256": "656891d377d2e3d4a9216723d94205488423907bf01df424b9f0b9de1560051e",
   "clearerScanSHA256": "b72eaf5d2d858fabb7c3438ac0436ccd64c394a7dd2fad609efabe628d5534c7",
   "transcriptionProgress": {
-    "draftSourceUnits": 50,
-    "approvedPages": 9
+    "draftSourceUnits": 68,
+    "approvedPages": 9,
+    "draftChapters": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "provisionalEditorialGroups": [
+      "4:4–5",
+      "4:6–7"
+    ]
   },
   "sourcePairs": [
     {
@@ -56,6 +66,16 @@
     {
       "originalPage": 321,
       "alternatePage": 167,
+      "side": "left"
+    },
+    {
+      "originalPage": 322,
+      "alternatePage": 168,
+      "side": "right"
+    },
+    {
+      "originalPage": 323,
+      "alternatePage": 168,
       "side": "left"
     }
   ],
@@ -470,6 +490,23 @@
       "retained": "וַיִּשָּׁלַח",
       "basis": "Earlier word-scale view appeared fused at initial vav. Windows saw possible white separation; tighter native-source crop confirms the white gap between stem and flat patah bar. Original scan remains merged. Supersedes uncertainty about this mark, with no grammatical restoration.",
       "evidence": "TOB-short-3-16-vav-tight.png"
+    },
+    {
+      "reference": "TOB1:14",
+      "old": "גַּבָאֵל",
+      "new": "גַּבָּאֵל",
+      "basis": "Later exact occurrence comparison found isolated interior bet point separated by white from roof, right stem and baseline. Apple independently confirms same glyph. Supersedes omission in earlier reviewed draft; no normalization of other occurrences.",
+      "evidence": "TOB-short-1-14-gabael2.png"
+    },
+    {
+      "reference": "TOB4 physical pages321–323",
+      "basis": "Independent OCR35manually bounded lines generated32candidate diff groups. Nineteen printed-source corrections recorded in TOB-short-chapter4-page-draft.json. Marginal starts and exact point/full-page comparison remain pending, so no new canonical units or reviewedPages claimed.",
+      "evidence": "TOB-short-chapter4-page-draft.json"
+    },
+    {
+      "reference": "TOB4",
+      "basis": "Every printed word preserved in18 provisional units. Root authorizes editorial draft grouping4–5 while the source-margin start is unresolved;6–7 has the same physical-row ambiguity. Internal commentary search finds no explicit anchor. Shared commentary heading1–21 conflicts with the short body final visible20; document rather than import another edition. Full point review pending and book stays draft.",
+      "evidence": "TOB-short-chapter4-page-draft.json"
     }
   ],
   "cropEvidence": [
@@ -932,6 +969,186 @@
     {
       "path": "/private/tmp/prosary-tob-review/TOB-short-3-10-daughter.png",
       "sha256": "ffeeb6e6ef55bb728165c352bc004eb7561d5f9180e5cb5263a069bc6ff03529"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-5-margin.png",
+      "sha256": "7ec95fb068ebce3e0581f5f45eb690629759bfeb29d77c440c7d3021b6fecab2"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-7-margin.png",
+      "sha256": "f48a6002ab956872356e5acb107b0bedb4daec25dfba7b0f0c3452eb5f35b869"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-be.png",
+      "sha256": "6a31f5ef47eb632e9e593ad269bc91f1ebaa1ea43e18acb2107fca5549bdef16"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-children.png",
+      "sha256": "c88e56d1c52cae33ce7451f265d67eaac8827ccfab58a86c6948b0ed6b95b0cd"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-closing3.png",
+      "sha256": "6b63ebcd6f7a47539fe7731a77848c02eebd2bb9a33b3eb0884c2ae1a57f90f7"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-commentary.png",
+      "sha256": "ffd513032999302850190bbc5559f17ac21c3811544dff9a93f34b109b7909b5"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-destruction-full.png",
+      "sha256": "11142bc5575ae46ef4a4ef8cf263caf632f2af849f80846e630bff95fb5f7c6b"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-destruction.png",
+      "sha256": "d32059f26a92cdd1682c9476562e9a05535e872f337d764f20d640ed8225ec8d"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-do-alms.png",
+      "sha256": "100ef1d7e0a1d0d584c674905b8b9bd92365f889365148b90ff6d3fda7ce93fa"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-drink.png",
+      "sha256": "73c7253f8b7b8dbb8725c78c8460711341172ac0db78a87b769bc3af983c992e"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-end.png",
+      "sha256": "6364cc5b63af634ba7b7708a774e473ca0bef1eb6f0e98df0ba7b6e0917e792c"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-face.png",
+      "sha256": "dc2a4720e04453a8efcbcb7c044f9b683fbf8e2c128b41ad32eec6566e64fa77"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-fornication.png",
+      "sha256": "33da207ad9e4fad3aae609dd8852c30320fff85877693ce85903ef0c6fa0b0b2"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-gabael-wide.png",
+      "sha256": "dbb3c735b76b684a2a79f9ec14d2a9224e8768fcea21460ae1c8b2456aefee58"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-gabael.png",
+      "sha256": "daa04b99ac48df4a91d3ecd1ad3152da81a1084f20be3e23d801d898d1a3a742"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-garment-full.png",
+      "sha256": "88c6e2273ace6fc8fd141cd8caa9627af3eb701715799b26330eac1cded85c90"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-garments.png",
+      "sha256": "9a46f308b80d845d84e9f0d6612fbaea6417824ec54ebf492317d33b1caa01ed"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-hated.png",
+      "sha256": "69398f513b96bcc7de67820ee7967e804573c7d2d70b647830c5ad778123b548"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-inherit.png",
+      "sha256": "ad8634d2aca8cb57367168483a18afefc1a096e6d1edba8d64313f8c13aa9e1e"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-laziness-full.png",
+      "sha256": "25fb642b9bee9045f236453273eeb73f394ce18668194f4bf05ad9fa6bce2f34"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-laziness.png",
+      "sha256": "eaa41d63c12ee87747e793999cb22fdb91dc8f69d9c59640c082b6668ca5b210"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-notes.png",
+      "sha256": "1b9f01e1fa9eb2e6cf28e98aee48f9ffa7752c317c8aa3c8e5330ed8fc725bc7"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-remember-ancestors-full.png",
+      "sha256": "b8ca4e8283ad16fc27bb0897055705ddce8802b56a068e55a8df940cd79e6add"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-remember-ancestors.png",
+      "sha256": "b71cf5fa5a54696c78e670d83d44bf6cd17638f6a8e8f14674912a8a5d839169"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-remember-exact.png",
+      "sha256": "1c07cf4e4f3ea9079613d30644e7af45b74d578015856ee4fbf4715d26b992e6"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-remember-lord.png",
+      "sha256": "4894bd37dca4109bcbcc63496275aeda162b052db82ce6e14026d2a05dcf6bcb"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-remember.png",
+      "sha256": "c66b47337eb775df0d01879b0ff0ffbe55bf809e0c51012e2cbf987185e7e1b6"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-take-exact.png",
+      "sha256": "82bf4a9ef7344046b963541e9bc048378bbe2bab02224bfd84b5444fb8af1c50"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-take.png",
+      "sha256": "a9bf9e4dbd7e979f4b7424b333f592ccb64feb5ed5690c918328c29a48773247"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-tavuz-wide.png",
+      "sha256": "e222ea8089a729bb14df52a4536b4938d33b5fff921de0aa2725a696ebcde3ec"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-tavuz.png",
+      "sha256": "b2891f0ed56f365a107b9a843e52da7794ab9c87b6fdea3bd17a8167e72d296e"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-useful.png",
+      "sha256": "e66af39762c64335a9cf604eaa37895a024f9bc34f9c7e3fbcf76ad41987fe63"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-will.png",
+      "sha256": "92b6e7e038dc7e1ad604af2acd2c997dcccf0c712ac8bacb1ad9331f9cc25d00"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-womb-full.png",
+      "sha256": "b45c672c3536ae82280e18e4b36ba3a25831dd2414ad145d54792714d775403a"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-womb-right.png",
+      "sha256": "c771e7920ad7c60d86ce3dd59dd93e7ff4a8bf3bdd7947b865c8f08903cff43b"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-womb.png",
+      "sha256": "b7af317fba1cd5ba76e7657540a5ac15546228d3878151a1312faf8104794d3c"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-321-full-margin.png",
+      "sha256": "88d04084ba873fbe591f8e15a9d051e97114b6b21a1a3fbcf07ae646a3c7b32d"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-322-full-margin.png",
+      "sha256": "8af2a9c81b512e810e6916378709d63492cfe428ac34826dcb799d131fe0b943"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-323-commentary.png",
+      "sha256": "00e2c8684290610fbdb0b8e72edae86904df45037e9cc2f52994aa687f60bc13"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-323-full-margin.png",
+      "sha256": "0365cb22fb81c221527aeb3c307916123545287734429efaad93ada0e1001916"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-alms-letter.png",
+      "sha256": "ffe4094ce16a47f34aae821d99eab77be1ba47989a44829d52e3fb438ecc8a3e"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-alms-tav.png",
+      "sha256": "be9a71a85a627aac5dcd2dafad1711c804bb6e79135389b902c5b8540a1c5955"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-commentary-lower.png",
+      "sha256": "8038f7b7fbab5bea2ec87bb393db1c140c1b23d96def6bf758749f2b1a1284f0"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-laziness-context.png",
+      "sha256": "2d80828554dd42838056081c8d5d2b3beb3ffdae5804276f706f73c5b6b07269"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-remember-context.png",
+      "sha256": "ff94ee2fc15ce5c5bbbe14bff9ffce2f27189ce10324eba4350abb1871568866"
     }
   ],
   "chapter1ConsonantComparison": {

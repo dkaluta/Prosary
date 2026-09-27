@@ -1,14 +1,14 @@
 {
   "schemaVersion": 1,
   "book": "SIR",
-  "purpose": "first-draft source-structure inventory; not full textual approval",
+  "purpose": "Current source-structure and local review inventory; not whole-book textual approval",
   "productionEligible": false,
   "source": {
     "volume": "B",
     "sha256": "656891d377d2e3d4a9216723d94205488423907bf01df424b9f0b9de1560051e",
     "pageCount": 530
   },
-  "draftSHA256": "2d0f450056cd3ab0de8cd62ecd2c403f49495cbaefba26fa8d4647a57a50e913",
+  "draftSHA256": "f537341abcda41b6034a989ca36016756aeff7b6e5b4f9c872308883bdbf96da",
   "primaryScanSHA256": "656891d377d2e3d4a9216723d94205488423907bf01df424b9f0b9de1560051e",
   "additionalScanSHA256": "b72eaf5d2d858fabb7c3438ac0436ccd64c394a7dd2fad609efabe628d5534c7",
   "draftScope": {
@@ -98,6 +98,74 @@
       529,
       530
     ],
+    "separateComparisonPages": [
+      449,
+      450,
+      451,
+      452,
+      453,
+      454,
+      455,
+      456,
+      457,
+      458,
+      459,
+      460,
+      461,
+      462,
+      463,
+      464,
+      465,
+      466,
+      467,
+      468,
+      469,
+      470,
+      471,
+      472,
+      473,
+      474,
+      475,
+      476,
+      477,
+      478,
+      479,
+      480,
+      481,
+      482,
+      483,
+      484,
+      485,
+      486,
+      487,
+      488,
+      489,
+      490,
+      491,
+      492,
+      493,
+      494,
+      495,
+      496,
+      497,
+      498,
+      499,
+      500,
+      501,
+      502,
+      503,
+      504,
+      505,
+      506,
+      507,
+      508,
+      509,
+      510,
+      511,
+      512,
+      513,
+      514
+    ],
     "approvedPages": [
       474,
       486,
@@ -115,7 +183,17 @@
       499,
       500,
       501,
-      502
+      502,
+      503,
+      504,
+      505,
+      506,
+      508,
+      509,
+      510,
+      511,
+      512,
+      513
     ]
   },
   "chapterInventories": [
@@ -159,7 +237,8 @@
         450,
         451
       ],
-      "isComplete": true
+      "isComplete": true,
+      "contentBlocks": []
     },
     {
       "chapter": 2,
@@ -188,7 +267,8 @@
         451,
         452
       ],
-      "isComplete": true
+      "isComplete": true,
+      "contentBlocks": []
     },
     {
       "chapter": 3,
@@ -228,7 +308,8 @@
         452,
         453
       ],
-      "isComplete": false
+      "isComplete": false,
+      "contentBlocks": []
     },
     {
       "chapter": 4,
@@ -270,7 +351,8 @@
         455,
         456
       ],
-      "isComplete": false
+      "isComplete": false,
+      "contentBlocks": []
     },
     {
       "chapter": 5,
@@ -296,7 +378,8 @@
         456,
         457
       ],
-      "isComplete": true
+      "isComplete": true,
+      "contentBlocks": []
     },
     {
       "chapter": 6,
@@ -339,7 +422,8 @@
         458,
         459
       ],
-      "isComplete": false
+      "isComplete": false,
+      "contentBlocks": []
     },
     {
       "chapter": 7,
@@ -385,7 +469,8 @@
         461,
         462
       ],
-      "isComplete": false
+      "isComplete": false,
+      "contentBlocks": []
     },
     {
       "chapter": 8,
@@ -415,7 +500,8 @@
         462,
         463
       ],
-      "isComplete": true
+      "isComplete": true,
+      "contentBlocks": []
     },
     {
       "chapter": 9,
@@ -444,7 +530,8 @@
         463,
         464
       ],
-      "isComplete": true
+      "isComplete": true,
+      "contentBlocks": []
     },
     {
       "chapter": 10,
@@ -485,7 +572,8 @@
         465,
         466
       ],
-      "isComplete": false
+      "isComplete": false,
+      "contentBlocks": []
     },
     {
       "chapter": 11,
@@ -530,7 +618,201 @@
         467,
         468
       ],
-      "isComplete": false
+      "isComplete": false,
+      "contentBlocks": [
+        {
+          "id": "sir-11-1",
+          "kind": "verse",
+          "chapter": 11,
+          "verse": 1
+        },
+        {
+          "id": "sir-11-2",
+          "kind": "verse",
+          "chapter": 11,
+          "verse": 2
+        },
+        {
+          "id": "sir-11-3",
+          "kind": "verse",
+          "chapter": 11,
+          "verse": 3
+        },
+        {
+          "id": "sir-11-4",
+          "kind": "verse",
+          "chapter": 11,
+          "verse": 4
+        },
+        {
+          "id": "sir-11-5",
+          "kind": "verse",
+          "chapter": 11,
+          "verse": 5
+        },
+        {
+          "id": "sir-11-6",
+          "kind": "verse",
+          "chapter": 11,
+          "verse": 6
+        },
+        {
+          "id": "sir-11-7",
+          "kind": "verse",
+          "chapter": 11,
+          "verse": 7
+        },
+        {
+          "id": "sir-11-8",
+          "kind": "verse",
+          "chapter": 11,
+          "verse": 8
+        },
+        {
+          "id": "sir-11-9",
+          "kind": "verse",
+          "chapter": 11,
+          "verse": 9
+        },
+        {
+          "id": "sir-11-10",
+          "kind": "verse",
+          "chapter": 11,
+          "verse": 10
+        },
+        {
+          "id": "sir-11-11",
+          "kind": "verse",
+          "chapter": 11,
+          "verse": 11
+        },
+        {
+          "id": "sir-11-12",
+          "kind": "verse",
+          "chapter": 11,
+          "verse": 12
+        },
+        {
+          "id": "sir-11-13",
+          "kind": "verse",
+          "chapter": 11,
+          "verse": 13
+        },
+        {
+          "id": "sir-11-14",
+          "kind": "verse",
+          "chapter": 11,
+          "verse": 14
+        },
+        {
+          "id": "sir-11-15",
+          "kind": "verse",
+          "chapter": 11,
+          "verse": 15
+        },
+        {
+          "id": "sir-11-16",
+          "kind": "verse",
+          "chapter": 11,
+          "verse": 16
+        },
+        {
+          "id": "sir-11-17",
+          "kind": "verse",
+          "chapter": 11,
+          "verse": 17
+        },
+        {
+          "id": "sir-11-18",
+          "kind": "verse",
+          "chapter": 11,
+          "verse": 18
+        },
+        {
+          "id": "sir-11-19",
+          "kind": "verse",
+          "chapter": 11,
+          "verse": 19
+        },
+        {
+          "id": "sir-11-20",
+          "kind": "verse",
+          "chapter": 11,
+          "verse": 20
+        },
+        {
+          "id": "sir-11-21",
+          "kind": "verse",
+          "chapter": 11,
+          "verse": 21
+        },
+        {
+          "id": "sir-11-22",
+          "kind": "verse",
+          "chapter": 11,
+          "verse": 22
+        },
+        {
+          "id": "sir-11-23",
+          "kind": "verse",
+          "chapter": 11,
+          "verse": 23
+        },
+        {
+          "id": "sir-11-24",
+          "kind": "verse",
+          "chapter": 11,
+          "verse": 24
+        },
+        {
+          "id": "sir-11-25",
+          "kind": "verse",
+          "chapter": 11,
+          "verse": 25
+        },
+        {
+          "id": "sir-11-27",
+          "kind": "verse",
+          "chapter": 11,
+          "verse": 27
+        },
+        {
+          "id": "sir-11-28",
+          "kind": "verse",
+          "chapter": 11,
+          "verse": 28
+        },
+        {
+          "id": "sir-11-29",
+          "kind": "verse",
+          "chapter": 11,
+          "verse": 29
+        },
+        {
+          "id": "sir-11-30",
+          "kind": "verse",
+          "chapter": 11,
+          "verse": 30
+        },
+        {
+          "id": "sir-11-31",
+          "kind": "verse",
+          "chapter": 11,
+          "verse": 31
+        },
+        {
+          "id": "sir-11-32",
+          "kind": "verse",
+          "chapter": 11,
+          "verse": 32
+        },
+        {
+          "id": "sir-11-33",
+          "kind": "verse",
+          "chapter": 11,
+          "verse": 33
+        }
+      ]
     },
     {
       "chapter": 12,
@@ -558,7 +840,117 @@
         468,
         469
       ],
-      "isComplete": false
+      "isComplete": false,
+      "contentBlocks": [
+        {
+          "id": "sir-12-1",
+          "kind": "verse",
+          "chapter": 12,
+          "verse": 1
+        },
+        {
+          "id": "sir-11-34",
+          "kind": "verse",
+          "chapter": 11,
+          "verse": 34
+        },
+        {
+          "id": "sir-12-2",
+          "kind": "verse",
+          "chapter": 12,
+          "verse": 2
+        },
+        {
+          "id": "sir-12-3",
+          "kind": "verse",
+          "chapter": 12,
+          "verse": 3
+        },
+        {
+          "id": "sir-12-5",
+          "kind": "verse",
+          "chapter": 12,
+          "verse": 5
+        },
+        {
+          "id": "sir-12-6",
+          "kind": "verse",
+          "chapter": 12,
+          "verse": 6
+        },
+        {
+          "id": "sir-12-7",
+          "kind": "verse",
+          "chapter": 12,
+          "verse": 7
+        },
+        {
+          "id": "sir-12-8",
+          "kind": "verse",
+          "chapter": 12,
+          "verse": 8
+        },
+        {
+          "id": "sir-12-9",
+          "kind": "verse",
+          "chapter": 12,
+          "verse": 9
+        },
+        {
+          "id": "sir-12-10",
+          "kind": "verse",
+          "chapter": 12,
+          "verse": 10
+        },
+        {
+          "id": "sir-12-11",
+          "kind": "verse",
+          "chapter": 12,
+          "verse": 11
+        },
+        {
+          "id": "sir-12-12",
+          "kind": "verse",
+          "chapter": 12,
+          "verse": 12
+        },
+        {
+          "id": "sir-12-13",
+          "kind": "verse",
+          "chapter": 12,
+          "verse": 13
+        },
+        {
+          "id": "sir-12-14",
+          "kind": "verse",
+          "chapter": 12,
+          "verse": 14
+        },
+        {
+          "id": "sir-12-15",
+          "kind": "verse",
+          "chapter": 12,
+          "verse": 15
+        },
+        {
+          "id": "sir-12-16",
+          "kind": "verse",
+          "chapter": 12,
+          "verse": 16
+        },
+        {
+          "id": "sir-12-17",
+          "kind": "verse",
+          "chapter": 12,
+          "verse": 17
+        },
+        {
+          "id": "sir-12-18",
+          "kind": "verse",
+          "chapter": 12,
+          "verse": 18
+        }
+      ]
     },
     {
       "chapter": 13,
@@ -594,7 +986,8 @@
         470,
         471
       ],
-      "isComplete": false
+      "isComplete": false,
+      "contentBlocks": []
     },
     {
       "chapter": 14,
@@ -631,7 +1024,8 @@
         472,
         473
       ],
-      "isComplete": false
+      "isComplete": false,
+      "contentBlocks": []
     },
     {
       "chapter": 15,
@@ -662,7 +1056,8 @@
         473,
         474
       ],
-      "isComplete": false
+      "isComplete": false,
+      "contentBlocks": []
     },
     {
       "chapter": 16,
@@ -704,7 +1099,8 @@
         475,
         476
       ],
-      "isComplete": false
+      "isComplete": false,
+      "contentBlocks": []
     },
     {
       "chapter": 17,
@@ -742,7 +1138,8 @@
         476,
         477
       ],
-      "isComplete": false
+      "isComplete": false,
+      "contentBlocks": []
     },
     {
       "chapter": 18,
@@ -785,7 +1182,8 @@
         477,
         478
       ],
-      "isComplete": false
+      "isComplete": false,
+      "contentBlocks": []
     },
     {
       "chapter": 19,
@@ -822,7 +1220,8 @@
         478,
         479
       ],
-      "isComplete": false
+      "isComplete": false,
+      "contentBlocks": []
     },
     {
       "chapter": 20,
@@ -863,7 +1262,204 @@
         479,
         480
       ],
-      "isComplete": true
+      "isComplete": true,
+      "contentBlocks": [
+        {
+          "id": "sir-20-1",
+          "kind": "verse",
+          "chapter": 20,
+          "verse": 1
+        },
+        {
+          "id": "sir-20-2",
+          "kind": "verse",
+          "chapter": 20,
+          "verse": 2
+        },
+        {
+          "id": "sir-20-4",
+          "kind": "verse",
+          "chapter": 20,
+          "verse": 4
+        },
+        {
+          "id": "sir-20-5",
+          "kind": "verse",
+          "chapter": 20,
+          "verse": 5
+        },
+        {
+          "id": "sir-20-6",
+          "kind": "verse",
+          "chapter": 20,
+          "verse": 6
+        },
+        {
+          "id": "sir-20-7",
+          "kind": "verse",
+          "chapter": 20,
+          "verse": 7
+        },
+        {
+          "id": "sir-20-8",
+          "kind": "verse",
+          "chapter": 20,
+          "verse": 8
+        },
+        {
+          "id": "sir-20-9",
+          "kind": "verse",
+          "chapter": 20,
+          "verse": 9
+        },
+        {
+          "id": "sir-20-10",
+          "kind": "verse",
+          "chapter": 20,
+          "verse": 10
+        },
+        {
+          "id": "sir-20-11",
+          "kind": "verse",
+          "chapter": 20,
+          "verse": 11
+        },
+        {
+          "id": "sir-20-12",
+          "kind": "verse",
+          "chapter": 20,
+          "verse": 12
+        },
+        {
+          "id": "sir-20-13",
+          "kind": "verse",
+          "chapter": 20,
+          "verse": 13
+        },
+        {
+          "id": "sir-20-13-second",
+          "kind": "witness",
+          "printedLabel": "יג",
+          "addresses": [
+            {
+              "chapter": 20,
+              "verse": 13
+            }
+          ],
+          "sourcePages": [
+            480
+          ],
+          "textSHA256": "497da5a956c6720d893d75b9ade5a3b073aed9c9176e83249c2f088548c13aee"
+        },
+        {
+          "id": "sir-20-14",
+          "kind": "verse",
+          "chapter": 20,
+          "verse": 14
+        },
+        {
+          "id": "sir-20-15",
+          "kind": "verse",
+          "chapter": 20,
+          "verse": 15
+        },
+        {
+          "id": "sir-20-16",
+          "kind": "verse",
+          "chapter": 20,
+          "verse": 16
+        },
+        {
+          "id": "sir-20-17",
+          "kind": "verse",
+          "chapter": 20,
+          "verse": 17
+        },
+        {
+          "id": "sir-20-18",
+          "kind": "verse",
+          "chapter": 20,
+          "verse": 18
+        },
+        {
+          "id": "sir-20-19",
+          "kind": "verse",
+          "chapter": 20,
+          "verse": 19
+        },
+        {
+          "id": "sir-20-20",
+          "kind": "verse",
+          "chapter": 20,
+          "verse": 20
+        },
+        {
+          "id": "sir-20-21",
+          "kind": "verse",
+          "chapter": 20,
+          "verse": 21
+        },
+        {
+          "id": "sir-20-22",
+          "kind": "verse",
+          "chapter": 20,
+          "verse": 22
+        },
+        {
+          "id": "sir-20-23",
+          "kind": "verse",
+          "chapter": 20,
+          "verse": 23
+        },
+        {
+          "id": "sir-20-24",
+          "kind": "verse",
+          "chapter": 20,
+          "verse": 24
+        },
+        {
+          "id": "sir-20-25",
+          "kind": "verse",
+          "chapter": 20,
+          "verse": 25
+        },
+        {
+          "id": "sir-20-26",
+          "kind": "verse",
+          "chapter": 20,
+          "verse": 26
+        },
+        {
+          "id": "sir-20-27",
+          "kind": "verse",
+          "chapter": 20,
+          "verse": 27
+        },
+        {
+          "id": "sir-20-28",
+          "kind": "verse",
+          "chapter": 20,
+          "verse": 28
+        },
+        {
+          "id": "sir-20-29",
+          "kind": "verse",
+          "chapter": 20,
+          "verse": 29
+        },
+        {
+          "id": "sir-20-30",
+          "kind": "verse",
+          "chapter": 20,
+          "verse": 30
+        },
+        {
+          "id": "sir-20-31",
+          "kind": "verse",
+          "chapter": 20,
+          "verse": 31
+        }
+      ]
     },
     {
       "chapter": 21,
@@ -903,7 +1499,8 @@
         481,
         482
       ],
-      "isComplete": true
+      "isComplete": true,
+      "contentBlocks": []
     },
     {
       "chapter": 22,
@@ -939,7 +1536,8 @@
         482,
         483
       ],
-      "isComplete": false
+      "isComplete": false,
+      "contentBlocks": []
     },
     {
       "chapter": 23,
@@ -977,7 +1575,8 @@
         483,
         484
       ],
-      "isComplete": false
+      "isComplete": false,
+      "contentBlocks": []
     },
     {
       "chapter": 24,
@@ -1021,7 +1620,8 @@
         485,
         486
       ],
-      "isComplete": false
+      "isComplete": false,
+      "contentBlocks": []
     },
     {
       "chapter": 25,
@@ -1057,7 +1657,8 @@
         486,
         487
       ],
-      "isComplete": false
+      "isComplete": false,
+      "contentBlocks": []
     },
     {
       "chapter": 26,
@@ -1097,7 +1698,8 @@
         487,
         488
       ],
-      "isComplete": false
+      "isComplete": false,
+      "contentBlocks": []
     },
     {
       "chapter": 27,
@@ -1138,7 +1740,8 @@
         488,
         489
       ],
-      "isComplete": true
+      "isComplete": true,
+      "contentBlocks": []
     },
     {
       "chapter": 28,
@@ -1175,7 +1778,8 @@
         490,
         491
       ],
-      "isComplete": false
+      "isComplete": false,
+      "contentBlocks": []
     },
     {
       "chapter": 29,
@@ -1214,7 +1818,8 @@
         491,
         492
       ],
-      "isComplete": false
+      "isComplete": false,
+      "contentBlocks": []
     },
     {
       "chapter": 30,
@@ -1250,7 +1855,8 @@
         492,
         493
       ],
-      "isComplete": false
+      "isComplete": false,
+      "contentBlocks": []
     },
     {
       "chapter": 31,
@@ -1294,7 +1900,218 @@
         495,
         496
       ],
-      "isComplete": false
+      "isComplete": false,
+      "contentBlocks": [
+        {
+          "id": "sir-31-1",
+          "kind": "verse",
+          "chapter": 31,
+          "verse": 1
+        },
+        {
+          "id": "sir-31-2",
+          "kind": "verse",
+          "chapter": 31,
+          "verse": 2
+        },
+        {
+          "id": "sir-31-3",
+          "kind": "verse",
+          "chapter": 31,
+          "verse": 3
+        },
+        {
+          "id": "sir-31-4",
+          "kind": "verse",
+          "chapter": 31,
+          "verse": 4
+        },
+        {
+          "id": "sir-31-5",
+          "kind": "verse",
+          "chapter": 31,
+          "verse": 5
+        },
+        {
+          "id": "sir-31-6",
+          "kind": "verse",
+          "chapter": 31,
+          "verse": 6
+        },
+        {
+          "id": "sir-31-7",
+          "kind": "verse",
+          "chapter": 31,
+          "verse": 7
+        },
+        {
+          "id": "sir-31-8",
+          "kind": "verse",
+          "chapter": 31,
+          "verse": 8
+        },
+        {
+          "id": "sir-31-9",
+          "kind": "verse",
+          "chapter": 31,
+          "verse": 9
+        },
+        {
+          "id": "sir-31-10",
+          "kind": "verse",
+          "chapter": 31,
+          "verse": 10
+        },
+        {
+          "id": "sir-31-11",
+          "kind": "verse",
+          "chapter": 31,
+          "verse": 11
+        },
+        {
+          "id": "sir-31-heading",
+          "kind": "heading",
+          "sourcePages": [
+            494
+          ],
+          "textSHA256": "951fdfeaf5dbcd81ad57907aeb26c3deeddd30c014306712f92ffc7bb5af297d"
+        },
+        {
+          "id": "sir-31-12",
+          "kind": "verse",
+          "chapter": 31,
+          "verse": 12
+        },
+        {
+          "id": "sir-31-13",
+          "kind": "verse",
+          "chapter": 31,
+          "verse": 13
+        },
+        {
+          "id": "sir-31-14",
+          "kind": "verse",
+          "chapter": 31,
+          "verse": 14
+        },
+        {
+          "id": "sir-31-15",
+          "kind": "verse",
+          "chapter": 31,
+          "verse": 15
+        },
+        {
+          "id": "sir-31-16",
+          "kind": "verse",
+          "chapter": 31,
+          "verse": 16
+        },
+        {
+          "id": "sir-31-17",
+          "kind": "verse",
+          "chapter": 31,
+          "verse": 17
+        },
+        {
+          "id": "sir-31-18",
+          "kind": "verse",
+          "chapter": 31,
+          "verse": 18
+        },
+        {
+          "id": "sir-31-19",
+          "kind": "verse",
+          "chapter": 31,
+          "verse": 19
+        },
+        {
+          "id": "sir-31-20",
+          "kind": "verse",
+          "chapter": 31,
+          "verse": 20
+        },
+        {
+          "id": "sir-31-22",
+          "kind": "verse",
+          "chapter": 31,
+          "verse": 22
+        },
+        {
+          "id": "sir-31-21",
+          "kind": "verse",
+          "chapter": 31,
+          "verse": 21
+        },
+        {
+          "id": "sir-31-22-second",
+          "kind": "witness",
+          "printedLabel": "כב",
+          "addresses": [
+            {
+              "chapter": 31,
+              "verse": 22
+            }
+          ],
+          "sourcePages": [
+            495
+          ],
+          "textSHA256": "d7a2335486d26b37812da88f7fa392d8bce11b00e70ca82c7283ed2bef0f145a"
+        },
+        {
+          "id": "sir-31-23",
+          "kind": "verse",
+          "chapter": 31,
+          "verse": 23
+        },
+        {
+          "id": "sir-31-24",
+          "kind": "verse",
+          "chapter": 31,
+          "verse": 24
+        },
+        {
+          "id": "sir-31-25",
+          "kind": "verse",
+          "chapter": 31,
+          "verse": 25
+        },
+        {
+          "id": "sir-31-26",
+          "kind": "verse",
+          "chapter": 31,
+          "verse": 26
+        },
+        {
+          "id": "sir-31-27",
+          "kind": "verse",
+          "chapter": 31,
+          "verse": 27
+        },
+        {
+          "id": "sir-31-28",
+          "kind": "verse",
+          "chapter": 31,
+          "verse": 28
+        },
+        {
+          "id": "sir-31-29",
+          "kind": "verse",
+          "chapter": 31,
+          "verse": 29
+        },
+        {
+          "id": "sir-31-30",
+          "kind": "verse",
+          "chapter": 31,
+          "verse": 30
+        },
+        {
+          "id": "sir-31-31",
+          "kind": "verse",
+          "chapter": 31,
+          "verse": 31
+        }
+      ]
     },
     {
       "chapter": 32,
@@ -1330,7 +2147,8 @@
         497,
         498
       ],
-      "isComplete": false
+      "isComplete": false,
+      "contentBlocks": []
     },
     {
       "chapter": 33,
@@ -1373,7 +2191,8 @@
         499,
         500
       ],
-      "isComplete": false
+      "isComplete": false,
+      "contentBlocks": []
     },
     {
       "chapter": 34,
@@ -1410,7 +2229,8 @@
         500,
         501
       ],
-      "isComplete": false
+      "isComplete": false,
+      "contentBlocks": []
     },
     {
       "chapter": 35,
@@ -1442,7 +2262,143 @@
         501,
         502
       ],
-      "isComplete": false
+      "isComplete": false,
+      "contentBlocks": [
+        {
+          "id": "sir-35-2",
+          "kind": "verse",
+          "chapter": 35,
+          "verse": 2
+        },
+        {
+          "id": "sir-35-3",
+          "kind": "verse",
+          "chapter": 35,
+          "verse": 3
+        },
+        {
+          "id": "sir-35-5",
+          "kind": "verse",
+          "chapter": 35,
+          "verse": 5
+        },
+        {
+          "id": "sir-35-6",
+          "kind": "verse",
+          "chapter": 35,
+          "verse": 6
+        },
+        {
+          "id": "sir-35-8",
+          "kind": "verse",
+          "chapter": 35,
+          "verse": 8
+        },
+        {
+          "id": "sir-35-9",
+          "kind": "verse",
+          "chapter": 35,
+          "verse": 9
+        },
+        {
+          "id": "sir-35-10",
+          "kind": "verse",
+          "chapter": 35,
+          "verse": 10
+        },
+        {
+          "id": "sir-35-11",
+          "kind": "verse",
+          "chapter": 35,
+          "verse": 11
+        },
+        {
+          "id": "sir-35-12",
+          "kind": "verse",
+          "chapter": 35,
+          "verse": 12
+        },
+        {
+          "id": "sir-35-13",
+          "kind": "verse",
+          "chapter": 35,
+          "verse": 13
+        },
+        {
+          "id": "sir-35-14",
+          "kind": "verse",
+          "chapter": 35,
+          "verse": 14
+        },
+        {
+          "id": "sir-35-16",
+          "kind": "verse",
+          "chapter": 35,
+          "verse": 16
+        },
+        {
+          "id": "sir-35-17",
+          "kind": "verse",
+          "chapter": 35,
+          "verse": 17
+        },
+        {
+          "id": "sir-35-18",
+          "kind": "verse",
+          "chapter": 35,
+          "verse": 18
+        },
+        {
+          "id": "sir-35-20",
+          "kind": "verse",
+          "chapter": 35,
+          "verse": 20
+        },
+        {
+          "id": "sir-35-21",
+          "kind": "verse",
+          "chapter": 35,
+          "verse": 21
+        },
+        {
+          "id": "sir-35-22",
+          "kind": "verse",
+          "chapter": 35,
+          "verse": 22
+        },
+        {
+          "id": "sir-35-23",
+          "kind": "verse",
+          "chapter": 35,
+          "verse": 23
+        },
+        {
+          "id": "sir-35-24",
+          "kind": "verse",
+          "chapter": 35,
+          "verse": 24
+        },
+        {
+          "id": "sir-35-25",
+          "kind": "verse",
+          "chapter": 35,
+          "verse": 25
+        },
+        {
+          "id": "sir-35-26",
+          "kind": "verse",
+          "chapter": 35,
+          "verse": 26
+        },
+        {
+          "id": "sir-35-unnumbered-lacuna",
+          "kind": "passage",
+          "sourcePages": [
+            502
+          ],
+          "textSHA256": "5a2ebe4218ee2053522a7e14f4c9213c11c73848c4160fa6dd212be98d47db6a"
+        }
+      ]
     },
     {
       "chapter": 36,
@@ -1477,7 +2433,8 @@
         502,
         503
       ],
-      "isComplete": false
+      "isComplete": false,
+      "contentBlocks": []
     },
     {
       "chapter": 37,
@@ -1518,7 +2475,185 @@
         505,
         506
       ],
-      "isComplete": false
+      "isComplete": false,
+      "contentBlocks": [
+        {
+          "id": "sir-37-1",
+          "kind": "verse",
+          "chapter": 37,
+          "verse": 1
+        },
+        {
+          "id": "sir-37-2",
+          "kind": "verse",
+          "chapter": 37,
+          "verse": 2
+        },
+        {
+          "id": "sir-37-3",
+          "kind": "verse",
+          "chapter": 37,
+          "verse": 3
+        },
+        {
+          "id": "sir-37-4",
+          "kind": "verse",
+          "chapter": 37,
+          "verse": 4
+        },
+        {
+          "id": "sir-37-5",
+          "kind": "verse",
+          "chapter": 37,
+          "verse": 5
+        },
+        {
+          "id": "sir-37-6",
+          "kind": "verse",
+          "chapter": 37,
+          "verse": 6
+        },
+        {
+          "id": "sir-37-7",
+          "kind": "verse",
+          "chapter": 37,
+          "verse": 7
+        },
+        {
+          "id": "sir-37-8",
+          "kind": "verse",
+          "chapter": 37,
+          "verse": 8
+        },
+        {
+          "id": "sir-37-9",
+          "kind": "verse",
+          "chapter": 37,
+          "verse": 9
+        },
+        {
+          "id": "sir-37-10",
+          "kind": "verse",
+          "chapter": 37,
+          "verse": 10
+        },
+        {
+          "id": "sir-37-11",
+          "kind": "verse",
+          "chapter": 37,
+          "verse": 11
+        },
+        {
+          "id": "sir-37-12",
+          "kind": "verse",
+          "chapter": 37,
+          "verse": 12
+        },
+        {
+          "id": "sir-37-13",
+          "kind": "verse",
+          "chapter": 37,
+          "verse": 13
+        },
+        {
+          "id": "sir-37-14",
+          "kind": "verse",
+          "chapter": 37,
+          "verse": 14
+        },
+        {
+          "id": "sir-37-15",
+          "kind": "verse",
+          "chapter": 37,
+          "verse": 15
+        },
+        {
+          "id": "sir-37-16",
+          "kind": "verse",
+          "chapter": 37,
+          "verse": 16
+        },
+        {
+          "id": "sir-37-17",
+          "kind": "verse",
+          "chapter": 37,
+          "verse": 17
+        },
+        {
+          "id": "sir-37-19",
+          "kind": "verse",
+          "chapter": 37,
+          "verse": 19
+        },
+        {
+          "id": "sir-37-20",
+          "kind": "verse",
+          "chapter": 37,
+          "verse": 20
+        },
+        {
+          "id": "sir-37-22",
+          "kind": "verse",
+          "chapter": 37,
+          "verse": 22
+        },
+        {
+          "id": "sir-37-unnumbered-couplet-after22",
+          "kind": "passage",
+          "sourcePages": [
+            506
+          ],
+          "textSHA256": "9161f9756677c27ed653d9c35187781589c9350b92abf947e2d5fb7e1be8f867"
+        },
+        {
+          "id": "sir-37-25",
+          "kind": "verse",
+          "chapter": 37,
+          "verse": 25
+        },
+        {
+          "id": "sir-37-24",
+          "kind": "verse",
+          "chapter": 37,
+          "verse": 24
+        },
+        {
+          "id": "sir-37-26",
+          "kind": "verse",
+          "chapter": 37,
+          "verse": 26
+        },
+        {
+          "id": "sir-37-27",
+          "kind": "verse",
+          "chapter": 37,
+          "verse": 27
+        },
+        {
+          "id": "sir-37-28",
+          "kind": "verse",
+          "chapter": 37,
+          "verse": 28
+        },
+        {
+          "id": "sir-37-29",
+          "kind": "verse",
+          "chapter": 37,
+          "verse": 29
+        },
+        {
+          "id": "sir-37-30",
+          "kind": "verse",
+          "chapter": 37,
+          "verse": 30
+        },
+        {
+          "id": "sir-37-31",
+          "kind": "verse",
+          "chapter": 37,
+          "verse": 31
+        }
+      ]
     },
     {
       "chapter": 38,
@@ -1562,7 +2697,8 @@
         508,
         509
       ],
-      "isComplete": false
+      "isComplete": false,
+      "contentBlocks": []
     },
     {
       "chapter": 39,
@@ -1608,7 +2744,8 @@
         509,
         510
       ],
-      "isComplete": false
+      "isComplete": false,
+      "contentBlocks": []
     },
     {
       "chapter": 40,
@@ -1651,7 +2788,197 @@
         512,
         513
       ],
-      "isComplete": false
+      "isComplete": false,
+      "contentBlocks": [
+        {
+          "id": "sir-40-1",
+          "kind": "verse",
+          "chapter": 40,
+          "verse": 1
+        },
+        {
+          "id": "sir-40-2",
+          "kind": "verse",
+          "chapter": 40,
+          "verse": 2
+        },
+        {
+          "id": "sir-40-3",
+          "kind": "verse",
+          "chapter": 40,
+          "verse": 3
+        },
+        {
+          "id": "sir-40-4",
+          "kind": "verse",
+          "chapter": 40,
+          "verse": 4
+        },
+        {
+          "id": "sir-40-5",
+          "kind": "verse",
+          "chapter": 40,
+          "verse": 5
+        },
+        {
+          "id": "sir-40-6",
+          "kind": "verse",
+          "chapter": 40,
+          "verse": 6
+        },
+        {
+          "id": "sir-40-7",
+          "kind": "verse",
+          "chapter": 40,
+          "verse": 7
+        },
+        {
+          "id": "sir-40-8",
+          "kind": "verse",
+          "chapter": 40,
+          "verse": 8
+        },
+        {
+          "id": "sir-40-9",
+          "kind": "verse",
+          "chapter": 40,
+          "verse": 9
+        },
+        {
+          "id": "sir-40-10",
+          "kind": "verse",
+          "chapter": 40,
+          "verse": 10
+        },
+        {
+          "id": "sir-40-11",
+          "kind": "verse",
+          "chapter": 40,
+          "verse": 11
+        },
+        {
+          "id": "sir-40-12",
+          "kind": "verse",
+          "chapter": 40,
+          "verse": 12
+        },
+        {
+          "id": "sir-40-13",
+          "kind": "verse",
+          "chapter": 40,
+          "verse": 13
+        },
+        {
+          "id": "sir-40-14",
+          "kind": "verse",
+          "chapter": 40,
+          "verse": 14
+        },
+        {
+          "id": "sir-40-15",
+          "kind": "verse",
+          "chapter": 40,
+          "verse": 15
+        },
+        {
+          "id": "sir-40-16",
+          "kind": "verse",
+          "chapter": 40,
+          "verse": 16
+        },
+        {
+          "id": "sir-40-17",
+          "kind": "verse",
+          "chapter": 40,
+          "verse": 17
+        },
+        {
+          "id": "sir-40-18",
+          "kind": "verse",
+          "chapter": 40,
+          "verse": 18
+        },
+        {
+          "id": "sir-40-19",
+          "kind": "verse",
+          "chapter": 40,
+          "verse": 19
+        },
+        {
+          "id": "sir-40-unnumbered-couplet-after19",
+          "kind": "passage",
+          "sourcePages": [
+            512
+          ],
+          "textSHA256": "4d4d63ffc7dfb995e29ee913f981f3989ced21ab1723d5cf08110edcb4ab52f9"
+        },
+        {
+          "id": "sir-40-20",
+          "kind": "verse",
+          "chapter": 40,
+          "verse": 20
+        },
+        {
+          "id": "sir-40-21",
+          "kind": "verse",
+          "chapter": 40,
+          "verse": 21
+        },
+        {
+          "id": "sir-40-22",
+          "kind": "verse",
+          "chapter": 40,
+          "verse": 22
+        },
+        {
+          "id": "sir-40-23",
+          "kind": "verse",
+          "chapter": 40,
+          "verse": 23
+        },
+        {
+          "id": "sir-40-24",
+          "kind": "verse",
+          "chapter": 40,
+          "verse": 24
+        },
+        {
+          "id": "sir-40-25",
+          "kind": "verse",
+          "chapter": 40,
+          "verse": 25
+        },
+        {
+          "id": "sir-40-26",
+          "kind": "verse",
+          "chapter": 40,
+          "verse": 26
+        },
+        {
+          "id": "sir-40-27",
+          "kind": "verse",
+          "chapter": 40,
+          "verse": 27
+        },
+        {
+          "id": "sir-40-28",
+          "kind": "verse",
+          "chapter": 40,
+          "verse": 28
+        },
+        {
+          "id": "sir-40-29",
+          "kind": "verse",
+          "chapter": 40,
+          "verse": 29
+        },
+        {
+          "id": "sir-40-30",
+          "kind": "verse",
+          "chapter": 40,
+          "verse": 30
+        }
+      ]
     },
     {
       "chapter": 41,
@@ -1680,7 +3007,143 @@
         513,
         514
       ],
-      "isComplete": false
+      "isComplete": false,
+      "contentBlocks": [
+        {
+          "id": "sir-41-1",
+          "kind": "verse",
+          "chapter": 41,
+          "verse": 1
+        },
+        {
+          "id": "sir-41-2",
+          "kind": "verse",
+          "chapter": 41,
+          "verse": 2
+        },
+        {
+          "id": "sir-41-3",
+          "kind": "verse",
+          "chapter": 41,
+          "verse": 3
+        },
+        {
+          "id": "sir-41-4",
+          "kind": "verse",
+          "chapter": 41,
+          "verse": 4
+        },
+        {
+          "id": "sir-41-5",
+          "kind": "verse",
+          "chapter": 41,
+          "verse": 5
+        },
+        {
+          "id": "sir-41-6",
+          "kind": "verse",
+          "chapter": 41,
+          "verse": 6
+        },
+        {
+          "id": "sir-41-7",
+          "kind": "verse",
+          "chapter": 41,
+          "verse": 7
+        },
+        {
+          "id": "sir-41-8",
+          "kind": "verse",
+          "chapter": 41,
+          "verse": 8
+        },
+        {
+          "id": "sir-41-9",
+          "kind": "verse",
+          "chapter": 41,
+          "verse": 9
+        },
+        {
+          "id": "sir-41-10",
+          "kind": "verse",
+          "chapter": 41,
+          "verse": 10
+        },
+        {
+          "id": "sir-41-11",
+          "kind": "verse",
+          "chapter": 41,
+          "verse": 11
+        },
+        {
+          "id": "sir-41-12",
+          "kind": "verse",
+          "chapter": 41,
+          "verse": 12
+        },
+        {
+          "id": "sir-41-13",
+          "kind": "verse",
+          "chapter": 41,
+          "verse": 13
+        },
+        {
+          "id": "sir-41-14",
+          "kind": "verse",
+          "chapter": 41,
+          "verse": 14,
+          "printedLabel": "ידב"
+        },
+        {
+          "id": "sir-41-15",
+          "kind": "verse",
+          "chapter": 41,
+          "verse": 15
+        },
+        {
+          "id": "sir-41-heading",
+          "kind": "heading",
+          "sourcePages": [
+            514
+          ],
+          "textSHA256": "7e389f41a99a9ab4b36071916e7d0990c7f4b2064b2270bf89699cd41be29472"
+        },
+        {
+          "id": "sir-41-14a-16",
+          "kind": "witness",
+          "printedLabel": "ידא–טז",
+          "addresses": [
+            {
+              "chapter": 41,
+              "verse": 14,
+              "endVerse": 16,
+              "part": "א"
+            }
+          ],
+          "sourcePages": [
+            514
+          ],
+          "textSHA256": "6aaae67b04172afcdf47c8ec8aaa26f9b6c7f1b8d0eb64532e3437e96fe1e1f9"
+        },
+        {
+          "id": "sir-41-17",
+          "kind": "verse",
+          "chapter": 41,
+          "verse": 17
+        },
+        {
+          "id": "sir-41-18",
+          "kind": "verse",
+          "chapter": 41,
+          "verse": 18
+        },
+        {
+          "id": "sir-41-21",
+          "kind": "verse",
+          "chapter": 41,
+          "verse": 21
+        }
+      ]
     },
     {
       "chapter": 42,
@@ -1716,7 +3179,8 @@
         516,
         517
       ],
-      "isComplete": false
+      "isComplete": false,
+      "contentBlocks": []
     },
     {
       "chapter": 43,
@@ -1759,7 +3223,8 @@
         518,
         519
       ],
-      "isComplete": false
+      "isComplete": false,
+      "contentBlocks": []
     },
     {
       "chapter": 44,
@@ -1792,7 +3257,149 @@
         519,
         520
       ],
-      "isComplete": false
+      "isComplete": false,
+      "contentBlocks": [
+        {
+          "id": "sir-44-heading",
+          "kind": "heading",
+          "sourcePages": [
+            519
+          ],
+          "textSHA256": "630aff65ab333c591e9b7312d73df431f381018c9a086abc9556a3fc986a358c"
+        },
+        {
+          "id": "sir-44-1",
+          "kind": "verse",
+          "chapter": 44,
+          "verse": 1
+        },
+        {
+          "id": "sir-44-2",
+          "kind": "verse",
+          "chapter": 44,
+          "verse": 2
+        },
+        {
+          "id": "sir-44-3",
+          "kind": "verse",
+          "chapter": 44,
+          "verse": 3
+        },
+        {
+          "id": "sir-44-4",
+          "kind": "verse",
+          "chapter": 44,
+          "verse": 4
+        },
+        {
+          "id": "sir-44-5",
+          "kind": "verse",
+          "chapter": 44,
+          "verse": 5
+        },
+        {
+          "id": "sir-44-6",
+          "kind": "verse",
+          "chapter": 44,
+          "verse": 6
+        },
+        {
+          "id": "sir-44-7",
+          "kind": "verse",
+          "chapter": 44,
+          "verse": 7
+        },
+        {
+          "id": "sir-44-8",
+          "kind": "verse",
+          "chapter": 44,
+          "verse": 8
+        },
+        {
+          "id": "sir-44-9",
+          "kind": "verse",
+          "chapter": 44,
+          "verse": 9
+        },
+        {
+          "id": "sir-44-10",
+          "kind": "verse",
+          "chapter": 44,
+          "verse": 10
+        },
+        {
+          "id": "sir-44-11",
+          "kind": "verse",
+          "chapter": 44,
+          "verse": 11
+        },
+        {
+          "id": "sir-44-13",
+          "kind": "verse",
+          "chapter": 44,
+          "verse": 13
+        },
+        {
+          "id": "sir-44-14",
+          "kind": "verse",
+          "chapter": 44,
+          "verse": 14
+        },
+        {
+          "id": "sir-44-15",
+          "kind": "verse",
+          "chapter": 44,
+          "verse": 15
+        },
+        {
+          "id": "sir-44-16",
+          "kind": "verse",
+          "chapter": 44,
+          "verse": 16
+        },
+        {
+          "id": "sir-44-17",
+          "kind": "verse",
+          "chapter": 44,
+          "verse": 17
+        },
+        {
+          "id": "sir-44-18",
+          "kind": "verse",
+          "chapter": 44,
+          "verse": 18
+        },
+        {
+          "id": "sir-44-19",
+          "kind": "verse",
+          "chapter": 44,
+          "verse": 19
+        },
+        {
+          "id": "sir-44-20",
+          "kind": "verse",
+          "chapter": 44,
+          "verse": 20
+        },
+        {
+          "id": "sir-44-21",
+          "kind": "verse",
+          "chapter": 44,
+          "verse": 21
+        },
+        {
+          "id": "sir-44-22",
+          "kind": "verse",
+          "chapter": 44,
+          "verse": 22
+        },
+        {
+          "id": "sir-44-23",
+          "kind": "verse",
+          "chapter": 44,
+          "verse": 23
+        }
+      ]
     },
     {
       "chapter": 45,
@@ -1829,7 +3436,8 @@
         521,
         522
       ],
-      "isComplete": false
+      "isComplete": false,
+      "contentBlocks": []
     },
     {
       "chapter": 46,
@@ -1861,7 +3469,8 @@
         523,
         524
       ],
-      "isComplete": false
+      "isComplete": false,
+      "contentBlocks": []
     },
     {
       "chapter": 47,
@@ -1895,7 +3504,8 @@
         524,
         525
       ],
-      "isComplete": false
+      "isComplete": false,
+      "contentBlocks": []
     },
     {
       "chapter": 48,
@@ -1931,7 +3541,8 @@
         525,
         526
       ],
-      "isComplete": false
+      "isComplete": false,
+      "contentBlocks": []
     },
     {
       "chapter": 49,
@@ -1958,7 +3569,8 @@
         526,
         527
       ],
-      "isComplete": false
+      "isComplete": false,
+      "contentBlocks": []
     },
     {
       "chapter": 50,
@@ -1996,7 +3608,8 @@
         527,
         528
       ],
-      "isComplete": false
+      "isComplete": false,
+      "contentBlocks": []
     },
     {
       "chapter": 51,
@@ -2037,10 +3650,264 @@
         529,
         530
       ],
-      "isComplete": false
+      "isComplete": false,
+      "contentBlocks": [
+        {
+          "id": "sir-51-1",
+          "kind": "verse",
+          "chapter": 51,
+          "verse": 1
+        },
+        {
+          "id": "sir-51-2",
+          "kind": "verse",
+          "chapter": 51,
+          "verse": 2
+        },
+        {
+          "id": "sir-51-3",
+          "kind": "verse",
+          "chapter": 51,
+          "verse": 3
+        },
+        {
+          "id": "sir-51-4",
+          "kind": "verse",
+          "chapter": 51,
+          "verse": 4
+        },
+        {
+          "id": "sir-51-5",
+          "kind": "verse",
+          "chapter": 51,
+          "verse": 5
+        },
+        {
+          "id": "sir-51-6",
+          "kind": "verse",
+          "chapter": 51,
+          "verse": 6
+        },
+        {
+          "id": "sir-51-7",
+          "kind": "verse",
+          "chapter": 51,
+          "verse": 7
+        },
+        {
+          "id": "sir-51-8",
+          "kind": "verse",
+          "chapter": 51,
+          "verse": 8
+        },
+        {
+          "id": "sir-51-9",
+          "kind": "verse",
+          "chapter": 51,
+          "verse": 9
+        },
+        {
+          "id": "sir-51-10",
+          "kind": "verse",
+          "chapter": 51,
+          "verse": 10
+        },
+        {
+          "id": "sir-51-11",
+          "kind": "verse",
+          "chapter": 51,
+          "verse": 11
+        },
+        {
+          "id": "sir-51-12",
+          "kind": "verse",
+          "chapter": 51,
+          "verse": 12
+        },
+        {
+          "id": "sir-51-thanksgiving",
+          "kind": "passage",
+          "sourcePages": [
+            529,
+            530
+          ],
+          "textSHA256": "106e6b3f72ba5e5afaca0b5ab49a6b793832773411d5d8af8a9e94e38c1e0f5e"
+        },
+        {
+          "id": "sir-51-13",
+          "kind": "verse",
+          "chapter": 51,
+          "verse": 13
+        },
+        {
+          "id": "sir-51-15",
+          "kind": "verse",
+          "chapter": 51,
+          "verse": 15
+        },
+        {
+          "id": "sir-51-13-second",
+          "kind": "witness",
+          "printedLabel": "יג",
+          "addresses": [
+            {
+              "chapter": 51,
+              "verse": 13
+            }
+          ],
+          "sourcePages": [
+            530
+          ],
+          "textSHA256": "e9d86f5caf9586d84c3ad5a42accca5e2029253f0a3866ebc234a7851800af93"
+        },
+        {
+          "id": "sir-51-16",
+          "kind": "verse",
+          "chapter": 51,
+          "verse": 16
+        },
+        {
+          "id": "sir-51-17",
+          "kind": "verse",
+          "chapter": 51,
+          "verse": 17
+        },
+        {
+          "id": "sir-51-18",
+          "kind": "verse",
+          "chapter": 51,
+          "verse": 18
+        },
+        {
+          "id": "sir-51-19",
+          "kind": "verse",
+          "chapter": 51,
+          "verse": 19
+        },
+        {
+          "id": "sir-51-20",
+          "kind": "verse",
+          "chapter": 51,
+          "verse": 20
+        },
+        {
+          "id": "sir-51-19-second",
+          "kind": "witness",
+          "printedLabel": "יט",
+          "addresses": [
+            {
+              "chapter": 51,
+              "verse": 19
+            }
+          ],
+          "sourcePages": [
+            530
+          ],
+          "textSHA256": "6ec5b7dbade93a2e03a88a2529cce3ba99b6392266abf01b6211fdb798ac6517"
+        },
+        {
+          "id": "sir-51-20-second",
+          "kind": "witness",
+          "printedLabel": "כ",
+          "addresses": [
+            {
+              "chapter": 51,
+              "verse": 20
+            }
+          ],
+          "sourcePages": [
+            530
+          ],
+          "textSHA256": "ec428e8a3ee4ae684d17b39279af9409a1401e33f1c30023e4f91023c0f14961"
+        },
+        {
+          "id": "sir-51-21",
+          "kind": "verse",
+          "chapter": 51,
+          "verse": 21
+        },
+        {
+          "id": "sir-51-22",
+          "kind": "verse",
+          "chapter": 51,
+          "verse": 22
+        },
+        {
+          "id": "sir-51-23",
+          "kind": "verse",
+          "chapter": 51,
+          "verse": 23
+        },
+        {
+          "id": "sir-51-24",
+          "kind": "verse",
+          "chapter": 51,
+          "verse": 24
+        },
+        {
+          "id": "sir-51-25",
+          "kind": "verse",
+          "chapter": 51,
+          "verse": 25
+        },
+        {
+          "id": "sir-51-26",
+          "kind": "verse",
+          "chapter": 51,
+          "verse": 26
+        },
+        {
+          "id": "sir-51-27",
+          "kind": "verse",
+          "chapter": 51,
+          "verse": 27
+        },
+        {
+          "id": "sir-51-28",
+          "kind": "verse",
+          "chapter": 51,
+          "verse": 28
+        },
+        {
+          "id": "sir-51-29",
+          "kind": "verse",
+          "chapter": 51,
+          "verse": 29
+        },
+        {
+          "id": "sir-51-30",
+          "kind": "verse",
+          "chapter": 51,
+          "verse": 30
+        },
+        {
+          "id": "sir-51-closing-blessing",
+          "kind": "passage",
+          "sourcePages": [
+            530
+          ],
+          "textSHA256": "2c5cdd02039e577c5bdbf541f37024ae1207e9a985fdde1c16df1e186c83223e"
+        },
+        {
+          "id": "sir-closing-colophons",
+          "kind": "colophon",
+          "sourcePages": [
+            530
+          ],
+          "textSHA256": "39ef8462c575726463e78472a0d2719bb94f5babfd057ba9af80777781552442"
+        }
+      ]
     }
   ],
-  "structuralEvidence": {
+  "addressRoutes": [
+    {
+      "chapter": 11,
+      "verse": 34,
+      "displayChapter": 12,
+      "blockId": "sir-11-34"
+    }
+  ],
+  "historicalStructuralEvidence": {
     "sourceOrderExceptions": [
       {
         "sourcePages": [
@@ -2406,18 +4273,11 @@
       "handling": "Three centered closing source colophon lines; retain as metadata, not numbered scripture. First-pass fine marks unapproved."
     }
   },
-  "integrityChecks": {
-    "uniqueChapterContainers": true,
-    "positiveGloballyNonoverlappingCanonicalVerseRanges": true,
-    "all82DraftedPagesPresentExactlyOnce": true,
-    "allCanonicalTextHashesMatch": true,
-    "noCombiningMarksStrandedOnBracketPunctuation": true
-  },
   "limits": [
-    "Full first draft covers all82pages; separate second comparison covers449–503 with exact corrections and local unresolved queries in per-page reports. The draftScope approvedPages list records pages locally reviewed, including explicitly accepted isolated source-note limitations; all other pages remain unapproved while local findings or full comparison are pending.",
-    "Absent printed labels do not authorize invention or completion from another edition.",
-    "Several unlabelled main rows are provisionally attached to preceding printed label; complete identity/layout review remains open.",
+    "Full first draft covers all82pages. Separate main-text comparison covers449–514; exact corrections and unresolved local findings are recorded per-page. Only approvedPages are locally reviewed, including explicitly accepted isolated point-note limitations.",
+    "Canonical contentBlocks now preserve separately presented main witnesses, unnumbered passages, section headings and colophons; addressRoutes preserve cross-chapter physical order. Historical review payloads are evidence only, never imported text.",
+    "Absent printed labels do not authorize invention or completion from another edition. Some unlabelled continuation rows remain attached to preceding labels pending complete independent source inventory.",
     "Critical apparatus and separately ruled alternate manuscript blocks are excluded from continuous main draft; inline main witnesses are retained in source order.",
-    "The current positive integer verse model cannot publish all preserved subverse, unnumbered and repeated-witness material faithfully. No source content may be silently dropped to fit it."
+    "Neither the initial draft nor structural migration approves wording, points or completeness. Whole-book independent review and remaining page comparisons still block production."
   ]
 }

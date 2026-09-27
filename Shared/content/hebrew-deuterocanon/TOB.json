@@ -63,8 +63,11 @@
       320
     ],
     "unresolvedFindings": [
-      "Only chapters1–3 drafted; chapters4–14 of the short recension remain untranscribed.",
-      "Page321 remains in exact printed-point/full-page review and also contains undrafted chapter4. Pages312–320 have been completely compared, with two isolated unreadable vowels disclosed on312 and316."
+      "Chapters1–4 are drafted; chapters5–14 of the short recension remain untranscribed.",
+      "Pages321–323 remain in exact printed-point/full-page review. Pages312–320 have been completely compared, with two isolated unreadable vowels disclosed on312 and316, and a later scoped bet-dagesh correction on314.",
+      "Provisional editorial grouping4–5: margin ה is on the physical row containing the end of maternal-troubles sentence and ובמותה after sof pasuq, while זכר־בני את־יי begins the next row. The internal commentary contains no explicit anchor settling the intended start. Do not claim that the print itself combines these labels.",
+      "Provisional editorial grouping6–7: margin ז shares the row containing תצליח במעשיך׃ וגם־לכל־עושי צדקה תעשה צדקה. It does not establish whether7 starts at וגם or תעשה. No conventional or long-recension division imported.",
+      "The printed short body ends with label20; the shared chapter commentary heading says1–21. Full right margin on B323 contains no21 marker. Text is preserved without inventing label21; this source discrepancy remains documented."
     ],
     "notes": [
       "Selected complete short recension after the introductionB294 explicitly identifies two manuscript gaps in the long recension. Decision and independent full label inventory saved in Shared/reports/hebrew-wikisource/TOB-recension-decision.json and TOB-print-inventory.json.",
@@ -85,7 +88,9 @@
       "Chapter3 consonant cross-check completed on33 manually inspected upper-recension lines. Initial345draft/346OCR words yielded19candidate differences. Direct source review confirmed ten scoped corrections (including omitted גם־היא); rejected OCR extra yod, bracket/margin artefacts and gimel/nun confusion. No new page approved by this check.",
       "Entire upper short-recension page318 compared, including crossing2:14 and chapter3 opening1–6. Initial bet in בעבורה has a clean empty bowl: removed unsupported draft dagesh. Locally checked different bet instances in3:4 בתוכם (no dagesh) and3:5 בעשותך (clear dagesh), retaining each printed occurrence independently. No new accepted source notes on this page.",
       "Full upper-recension page319 compared from crossing3:6 through opening3:10. Fine crops confirm source pe dagesh and maqaf in3:6 חרפות־שוא, yod dagesh in3:6 מחיי (independent Windows second eye), and bet dagesh in3:8 בנשים. Preserve incomplete sentence at3:8 and all actual boundaries. No source note needed on this page. Three separately inspected page320 draft marks are corrected, without claiming that page finished.",
-      "Full upper-recension page320 compared from crossing3:10 through first word of3:16–17 following the sof pasuq. Every word, source bracket, point and boundary checked. Remove unsupported lamed dagesh in3:10 לוֹ. Prior three local corrections retained. The initially queried vav vowel in וישלח is resolved by a tighter clearer-scan crop: a white gap separates the flat patah bar from the vav stem. Windows second eye supports that mark; original scan alone remains merged. Preserve all readable marks and require no additional source note."
+      "Full upper-recension page320 compared from crossing3:10 through first word of3:16–17 following the sof pasuq. Every word, source bracket, point and boundary checked. Remove unsupported lamed dagesh in3:10 לוֹ. Prior three local corrections retained. The initially queried vav vowel in וישלח is resolved by a tighter clearer-scan crop: a white gap separates the flat patah bar from the vav stem. Windows second eye supports that mark; original scan alone remains merged. Preserve all readable marks and require no additional source note.",
+      "Later local recheck of1:14 גבאל found a clearly separated bet dagesh omitted in the first comparison. Corrected to גַּבָּאֵל; Apple independently confirmed this exact occurrence, separately from4:1. No other occurrence normalized. This is an explicit scoped correction to an already compared draft page, not a claim that earlier review was infallible. Chapter4 consonant review is preserved separately as physical-page draft strings pending exact source verse starts and full point comparison.",
+      "Chapter4 has18 provisional draft units covering the entire printed short-recension text on B321–323. Ranges4–5 and6–7 are explicitly editorial temporary groupings to preserve text while physical-margin division questions remain open: they are not represented as printed combined labels and cannot receive complete review approval. The chapter commentary heading1–21 conflicts with the short body whose final visible label is20; no label21 invented. Word/point review proceeds independently, and no new reviewedPages are claimed."
     ],
     "acceptedSourceNoteIds": [
       "tob-1-1-gimel-vowel",
@@ -219,11 +224,11 @@
         },
         {
           "verse": 14,
-          "text": "וָאֵלֵךְ לְמָדַי וְהִפְקַדְתִּי בְּיַד גַּבָאֵל אֲחִי גִּבְרִי בְּרָגָא בְּמָדַי עֶשֶׂר כִּכְּרֵי־כֶסֶף׃",
+          "text": "וָאֵלֵךְ לְמָדַי וְהִפְקַדְתִּי בְּיַד גַּבָּאֵל אֲחִי גִּבְרִי בְּרָגָא בְּמָדַי עֶשֶׂר כִּכְּרֵי־כֶסֶף׃",
           "sourcePages": [
             314
           ],
-          "textSHA256": "e939403ed696d554196df44e4a45473246f76c58d272ede839ed2fb109f35d71"
+          "textSHA256": "f58d6744897eec6099534e02c5c5320c6be062cce180aade6b7a853ef9a5be0d"
         },
         {
           "verse": 15,
@@ -548,6 +553,159 @@
           ],
           "textSHA256": "afaa38caf2891f2a2cfd3ff25fba6af86d280841ad35380b6cbebf1de069e4f1",
           "endVerse": 17
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "verses": [
+        {
+          "verse": 1,
+          "text": "בַּיּוֹם הַהוּא זָכַר טוֹבִי אֶת־הַכֶּסֶף אֲשֶׁר הִפְקִיד בְּיַד גַּבָּאֵל בְּרָגָא [בְּאֶרֶץ] מָדַי׃",
+          "sourcePages": [
+            321
+          ],
+          "textSHA256": "17f124d3cdd6d71eb26d24bd654210aa6396a439b469f33317495753d9546c91"
+        },
+        {
+          "verse": 2,
+          "text": "וַיֹּאמֶר בְּקִרְבּוֹ הֵן אֲנִי בִקַּשְׁתִּי הַמָּוֶת וּמַדּוּעַ לֹא אֶקְרָא לְטוֹבִיָּה בְנִי לְהַגִּיד־לוֹ [דְּבָרַי] בְּטֶרֶם אָמוּת׃",
+          "sourcePages": [
+            321
+          ],
+          "textSHA256": "4bcfacd6a09ab1ce71518a0051b4e71df73b6d3287965fb1b2c146b42daeef06"
+        },
+        {
+          "verse": 3,
+          "text": "וַיִּקְרָא לוֹ וַיֹּאמֶר בְּנִי בְמוֹתִי וּקְבַרְתַּנִי וְאַל־תָּבֹז לְאִמֶּךָ כַּבְּדָהּ כָּל־יְמֵי חַיֶּיךָ וַעֲשֵׂה הַטּוֹב לָהּ וְאַל־תַּעֲצֵב אוֹתָהּ׃",
+          "sourcePages": [
+            321
+          ],
+          "textSHA256": "9885d832f0eab5dad32e4a80150294fcf7b7df7bf23dcb11ee44b9393cfecc05"
+        },
+        {
+          "verse": 4,
+          "text": "זְכָר־בְּנִי כִּי סַכָּנוֹת רַבּוֹת רָאֲתָה בִגְלָלְךָ בִּהְיוֹתְךָ בַּבָּטֶן׃ וּבְמוֹתָהּ וּקְבַרְתָּהּ אֶצְלִי בְּקֶבֶר אֶחָד׃ זְכָר־בְּנִי אֶת־יְיָ אֱלֹהֵינוּ כָּל־יָמֶיךָ וְאַל־תֹּאבֶה לַחֲטֹא וְלַעֲבֹר מִצְוֹתָיו עֲשֵׂה צְדָקָה כָּל־יְמֵי חַיֶּיךָ וְאַל־תֵּלֵךְ בְּדַרְכֵי עַוְלָה׃",
+          "sourcePages": [
+            321
+          ],
+          "textSHA256": "9de13a7c52edfb629bdf6fb37633e99b8e705e7bbd46c5f24e4b92b28fa203d7",
+          "endVerse": 5
+        },
+        {
+          "verse": 6,
+          "text": "וְאִם־תִּפְעַל אֱמֶת תַּצְלִיחַ בְּמַעֲשֶׂיךָ׃ וְגַם־לְכָל־עוֹשֵׂי צְדָקָה תַּעֲשֵׂה צְדָקָה מֵאֲשֶׁר יֶשׁ־לָךְ וְאַל־תָּרַע עֵינְךָ בַּעֲשׂוֹתְךָ צְדָקָה וְאַל־תַּסְתֵּר פָּנֶיךָ מִכָּל־עָנִי וְלֹא יִסָּתְרוּ מִפָּנֶיךָ פְּנֵי־הָאֱלֹהִים׃",
+          "sourcePages": [
+            321,
+            322
+          ],
+          "textSHA256": "c30b5f07764ceadca0c2773f591d511db675b7dc1e50c203d34a7c3b775c291b",
+          "endVerse": 7
+        },
+        {
+          "verse": 8,
+          "text": "אִם־יֶשׁ־לְךָ רַב עֲשֵׂה צְדָקָה לְפִי הָרַב וְאִם־מְעַט יֶשׁ־לְךָ אַל־תִּירָא מֵעֲשׂוֹת צְדָקָה לְפִי הַמְּעָט׃",
+          "sourcePages": [
+            322
+          ],
+          "textSHA256": "553c39712a99df3b99c73da4863582037b52d5711270cd27c3a744a4a2b75302"
+        },
+        {
+          "verse": 9,
+          "text": "כִּי אוֹצָר טוֹב תַּאֲצֹר־לְךָ לְיוֹם צָרָה׃",
+          "sourcePages": [
+            322
+          ],
+          "textSHA256": "ca4e18579e52a4fbfb78dad581e8513c4954a624f27a9c44bd5a91caf774432a"
+        },
+        {
+          "verse": 10,
+          "text": "כִּי צְדָקָה תַּצִּיל מִמָּוֶת וְלֹא תִתֵּן לָבֹא בַּחֹשֶׁךְ׃",
+          "sourcePages": [
+            322
+          ],
+          "textSHA256": "431d692d5d886a5e06ae549fb461142b24fa6782d63755dc371437de7f358961"
+        },
+        {
+          "verse": 11,
+          "text": "כִּי מַתָּנָה טוֹבָה הַצְּדָקָה לְכָל־הָעוֹשִׂים אוֹתָהּ לִפְנֵי הָעֶלְיוֹן׃",
+          "sourcePages": [
+            322
+          ],
+          "textSHA256": "1dd803df79903d3c2b8f9a3ae54df5322e0aa6dfa3b1b66a87ddc939193878dc"
+        },
+        {
+          "verse": 12,
+          "text": "הִשָּׁמֵר בְּנִי מִכָּל־זְנוּנִים וְרֵאשִׁית דָּבָר תִּקַּח לְךָ אִשָּׁה מִזֶּרַע אֲבוֹתֶיךָ אַל־תִּקַּח אִשָּׁה נָכְרִיָּה אֲשֶׁר־לֹא מִשֵּׁבֶט אָבִיךָ הִיא כִּי בְּנֵי נְבִיאִים אֲנַחְנוּ זְכָר־נָא בְּנִי כִּי נֹחַ אַבְרָהָם יִצְחָק וְיַעֲקֹב אֲבוֹתֵינוּ מֵעוֹלָם נָשְׂאוּ כֻלָּם נָשִׁים מִקֶּרֶב אֲחֵיהֶם וַיְבֹרְכוּ בְילְדֵיהֶם וְזַרְעָם יִרַשׁ אָרֶץ׃",
+          "sourcePages": [
+            322
+          ],
+          "textSHA256": "e4555c35d05ccbda59862332dd9d19674a114480fa88e476143f05a3a1715f99"
+        },
+        {
+          "verse": 13,
+          "text": "וְעַתָּה בְּנִי אֱהַב אֶת־אַחֶיךָ וְאַל־יָרוּם לְבָבְךָ עַל־אַחֶיךָ וְעַל־בְּנֵי עַמֶּךָ וְעַל־בְּנוֹת עַמֶּךָ מִקַּחַת מֵהֶן אִשָּׁה כִּי בְגַאֲוָה אָבְדוּ וּמְהוּמָה רַבָּה וּבְשִׁפְלוּת חֶסְרוֹן וּמִסְכֵּנוּת רַבָּה כִּי הַנְּבָלָה אֵם הָרָעָב׃",
+          "sourcePages": [
+            322
+          ],
+          "textSHA256": "c37908fa491bb89d04a73d7280dfa7216069d665ce883f2c2a533ad3ea6ef735"
+        },
+        {
+          "verse": 14,
+          "text": "וְלֹא תָלִין אִתְּךָ פְּעֻלַּת כָּל־אָדָם הָעוֹשֶׂה לְךָ מְלָאכָה כִּי מִיַּד תִּתֵּן אוֹתָהּ לוֹ אִם־תַּעֲבֹד אֶת־הָאֱלֹהִים יְשַׁלֵּם לָךְ הִשָּׁמֶר לְךָ בְּנִי בְּכָל־מַעֲשֶׂיךָ וֶהְיֵה אִישׁ־מוּסָר בְּכָל־אָרְחוֹתֶיךָ׃",
+          "sourcePages": [
+            322
+          ],
+          "textSHA256": "8d1ec8acbc741dabd088f81d5bba4a7e2bee3bc5ad378d15ea1a31c990590183"
+        },
+        {
+          "verse": 15,
+          "text": "אֲשֶׁר יִשָּׂנֵא לְךָ אַל־תַּעֲשֵׂה לְכָל־אָדָם אַל־תֵּשְׁתְּ יַיִן עַד־לְשִׁכְרוֹן וְאַל־יֵלֵךְ הַשִּׁכְרוֹן עִמְּךָ בִּדְרָכֶךָ׃",
+          "sourcePages": [
+            322
+          ],
+          "textSHA256": "69f39bcea3f01aa4cde61ffcddf7e03333d5a309cf0f562ddab3045fcc591059"
+        },
+        {
+          "verse": 16,
+          "text": "מִלַּחְמְךָ תֵּן לָרָעֵב מִשִּׂמְלָתְךָ לָעֵירֹם מִכָּל־מוֹתָרְךָ עֲשֵׂה צְדָקָה וְאַל תָּרַע עֵינְךָ בַּעֲשׂוֹתְךָ צְדָקָה׃",
+          "sourcePages": [
+            322,
+            323
+          ],
+          "textSHA256": "e73a7e4a45a2590ab8748924ce311c44f93fba2f154273c3cac69ca8f922ef2f"
+        },
+        {
+          "verse": 17,
+          "text": "שְׁלַח לַחְמְךָ עַל־קֶבֶר הַצַּדִּיקִים וְאַל־תִּתֵּן אוֹתוֹ לַחֲטָּאִים׃",
+          "sourcePages": [
+            323
+          ],
+          "textSHA256": "e04ad48b7c61e23fdbdeac031ceb129ddfb444c8ddd28fbef33c4005295f8252"
+        },
+        {
+          "verse": 18,
+          "text": "מִכָּל־נָבוֹן תְּבַקֵּשׁ עֵצָה וְאַל־תִּבְזֶה כָּל־עֵצָה אֲשֶׁר יֶשׁ־בָּהּ, מוֹעִיל׃",
+          "sourcePages": [
+            323
+          ],
+          "textSHA256": "62f64a5e178077cbac0300700ec27c9ebbf561aab9296f0f5f9cc42ee6b42974"
+        },
+        {
+          "verse": 19,
+          "text": "בְּכָל־עֵת בָּרֵךְ אֶת־יְיָ אֱלֹהִים וּמִמֶּנּוּ תְּבַקֵּשׁ כִּי יִכּוֹנוּ דְרָכֶיךָ וְיִצְלְחוּ כָּל־אָרְחוֹתֶיךָ וְכָל־עֲצוֹתֶיךָ כִּי לְכָל־גּוֹי אֵין עֵצָה כִּי אִם־יְיָ הוּא נוֹתֵן כָּל־טוֹב וְאֶת־אֲשֶׁר יַחְפֹּץ יַשְׁפִּיל כִּרְצוֹנוֹ וְעַתָּה בְּנִי זְכָר־נָא אֶת־מִצְוֹתַי וְלֹא תִמָּחֶינָה מִלְּבָבֶךָ׃",
+          "sourcePages": [
+            323
+          ],
+          "textSHA256": "26f258a579c6179426e314d8dfe828c20570ad2f458ed4fc13f1141b155c55af"
+        },
+        {
+          "verse": 20,
+          "text": "וְעַתָּה בְנִי אַגִּידָה־לְךָ כִּי עֶשֶׂר כִּכְּרֵי־כֶסֶף הִפְקַדְתִּי בְּיַד גַּבָאֵל בֶּן־גַבְרִי בְּרָגָא בְּמָדָי׃ וְאַל־תִּירָא בְּנִי כִּי רָשַׁשְׁנוּ יֶשׁ־לְךָ רַב אִם־תִּירָא אֶת־הָאֱלֹהִים וְאִם־תִּרְחַק מִכָּל־חֵטְא וְהַטּוֹב בְּעֵינָיו תַּעֲשֶׂה׃",
+          "sourcePages": [
+            323
+          ],
+          "textSHA256": "038d548e5c05306d5ed6623d825e18096b809081e0bc94fb8a30f6c363688e60"
         }
       ]
     }

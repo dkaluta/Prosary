@@ -328,3 +328,32 @@ B132 is now complete after the full second comparison of7:1–5 and
 independent source-name point checks. The genuine combined4–5 is
 one unit, continuing only its last word ontoB133. ReviewedPages is36
 (B97–132); no new source note. See `1MA-pointing-B132.json`.
+
+B133 is completely first/second-compared through7:19, whose ending
+is verified onB134. Separate12/13 labels remain separate. Targeted
+crops retain source עַוְלָה and the undageshed kaf/dalet in כַדָבָר;
+the different Jerusalem-lamed points at17/19 are independently
+confirmed. ReviewedPages is37(B97–133), with no new point note.
+Only19 is checked onB134;7:20 onward remains online scaffold.
+See `1MA-pointing-B133.json`.
+
+B134 is completely first/second-compared through7:33, whose ending
+is checked onB135. Three local crop decisions resolve the yod tsere
+in7:24, the patah-only Jerusalem lamed in7:27, and the two qamats
+marks in7:31 כפר. ReviewedPages is38(B97–134); no new source note.
+Only33 is checked onB135;7:34 onward remains scaffold.
+See `1MA-pointing-B134.json`.
+
+Chapter7 now has a complete first and second print comparison. B135
+retains every separate34–50 label and excludes the commentary below.
+The two Jerusalem forms retain their locally confirmed patah+hiriq;
+no unprinted yod dageshes are added to היום. ReviewedPages is39
+(B97–135), with11accepted isolated-point notes. Chapters8–16 remain
+unreviewed scaffold; book is still draft. See `1MA-pointing-B135.json`.
+
+B136–137 are completely first/second-compared (8:1–9), including4’s
+page crossing. The source corrects the online8:2 predicate and8:8
+Lydia spelling. Expanded glyphs resolve the names’ actual points;
+Hellas’s provisional tsere/patah is explicitly retracted in favor of
+visible segol/qamats. ReviewedPages is41(B97–137), with11accepted
+notes.8:10 onward remains scaffold. See `1MA-pointing-B136-137.json`.

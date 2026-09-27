@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "purpose": "Source-based separate second pass; not approval",
+  "purpose": "Completed local main-text comparison with one disclosed isolated point; not whole-book approval",
   "primaryPage": 505,
   "additionalScan": {
     "spread": 259,
@@ -95,11 +95,76 @@
       "sha256": "d1381dae70373d759d319f984c587d91bfa7afce2d35708a000502e16230a852"
     }
   ],
-  "unresolvedFindings": [
+  "approved": true,
+  "sourceNoteEvidence": [
+    {
+      "reference": "37:12",
+      "notes": [
+        {
+          "id": "sir-37-12-alef-vowel",
+          "kind": "unreadablePoint",
+          "anchor": "אם־אִישׁ",
+          "occurrence": 1,
+          "letterIndex": 1,
+          "mark": "vowel",
+          "sourcePages": [
+            505
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf#page=505"
+        }
+      ],
+      "comparison": "Owner and independent reviewer confirm literal alef-mem. Extra scan shows one detached dot but potential companion dots merge into the alef lower stroke; primary scan fully merges them. Cannot certify segol or another vowel class. Omit only the provisional alef vowel.",
+      "crops": [
+        "/private/tmp/prosary-sirach-extra/query-37-12-word.png",
+        "/private/tmp/prosary-sirach-extra/query-37-12-primary.png"
+      ]
+    }
+  ],
+  "resolvedFindings": [
     {
       "reference": "37:12",
       "finding": "Literal אם is confirmed, not normalized to עם; provisional alef segol cannot yet be independently resolved in two scan crops. Need scoped point check/note if unreadable, not word replacement."
     }
   ],
-  "approved": false
+  "unresolvedFindings": [],
+  "approval": {
+    "scope": "Physical page505 continuous main text only.",
+    "sourceNoteIds": [
+      "sir-37-12-alef-vowel"
+    ],
+    "reviewedText": [
+      {
+        "reference": "37:11",
+        "textSHA256": "f6e6654679a4a2cc06d4dc8811a85aa1409541ad6d056908bd321884fa8bc182"
+      },
+      {
+        "reference": "37:12",
+        "textSHA256": "f36751e676da0676dab2464d425936788429e6edbfed735cfa1e36a67c70b39e"
+      },
+      {
+        "reference": "37:13",
+        "textSHA256": "2b11a46c888f727c242b611d84fdaaba0675d35921dddd8565d512b47366b7a9"
+      },
+      {
+        "reference": "37:14",
+        "textSHA256": "616c66ee65b1a14da9d55afe74ea221572e0fe6cdf83c0ec1eda917709fa1c2c"
+      },
+      {
+        "reference": "37:15",
+        "textSHA256": "be826e0798e574a742c3f97952e4847a0b344fe1ad6aa7764ef6e915dfe21ff0"
+      },
+      {
+        "reference": "37:16",
+        "textSHA256": "e2de99cb6bb10480fe2cce535a668f135d55525dfe4022c1cca1f07901a58d3b"
+      },
+      {
+        "reference": "37:17",
+        "textSHA256": "9a04ab04850e4ccba4d21e67bcf3060f60b27d34e40a23247cf6c30d9dfb6ae1"
+      },
+      {
+        "reference": "37:19",
+        "textSHA256": "63530e1e12e9876348bd7841d66babe37e60de68e70fc01f4115878db4486e75"
+      }
+    ]
+  }
 }

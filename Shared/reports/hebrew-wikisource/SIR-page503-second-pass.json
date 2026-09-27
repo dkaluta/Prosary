@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "purpose": "Source-based separate second pass; not approval",
+  "purpose": "Completed local primary-main-text comparison; not whole-book approval",
   "primaryPage": 503,
   "additionalScan": {
     "spread": 258,
@@ -119,11 +119,77 @@
       "sha256": "f42dd8b2569271e351a2eeff0e887f798b5e97695c70f1827327d2d11aacee1c"
     }
   ],
-  "unresolvedFindings": [
+  "unresolvedFindings": [],
+  "approved": true,
+  "resolvedFindings": [
     {
       "reference": "36:25",
       "finding": "Draft נֵד appears to be literal nun plus bracket. Independent second eye sees bent nun followed by tall bracket with top/bottom caps and another separated opposite bracket, not normal dalet; no detached nun vowel clear. Keep page unapproved pending exact source bracket encoding; do not silently turn into source-point note or replace from apparatus."
     }
   ],
-  "approved": false
+  "lateSourceCorrection": {
+    "reference": "36:25",
+    "before": "לֵב עָקוֹב יִתֵּן עַצֶּבֶת וְאִישׁ וָתִיק יְשִׁיבֶנָּה׃ כָּל־נֵד [ ] תֹּאכַל חַיָּה אַךְ יֵשׁ מַכָּה מִמַּכָּה תִּנְעַם׃",
+    "after": "לֵב עָקוֹב יִתֵּן עַצֶּבֶת וְאִישׁ וָתִיק יְשִׁיבֶנָּה׃ כָּל־נ[ ] תֹּאכַל חַיָּה אַךְ יֵשׁ מַכָּה מִמַּכָּה תִּנְעַם׃",
+    "comparison": "36:25 primary and extra scan show nun immediately followed by literal bracket and open gap, not draft dalet. No distinct detached nun vowel is readable as printed. Preserve כָּל־נ[ ] without inventing a letter or point; independent reviewer confirmed nun then bracket, no dalet.",
+    "crops": [
+      "/private/tmp/prosary-sirach-extra/query-36-25-primary.png",
+      "/private/tmp/prosary-sirach-extra/query-36-25-word.png"
+    ]
+  },
+  "approval": {
+    "scope": "Physical page503 main text only.",
+    "method": "Full separate comparison with scoped independent checks for questioned glyphs as recorded in source report.",
+    "sourceNoteIds": [],
+    "reviewedText": [
+      {
+        "reference": "36:22",
+        "textSHA256": "2f5d7da9c4b6dce3752fd3004e5fcf539025cccfc120e93333b1ac81d1f5be75"
+      },
+      {
+        "reference": "36:23",
+        "textSHA256": "0dcf6f617aa3783a831c8098358a5a8edf440c46ebc34f399446d8f7c790018e"
+      },
+      {
+        "reference": "36:26",
+        "textSHA256": "f37713d9d0905edcca6b3b75d65913fdf07df26406e643be52b5e49f556155df"
+      },
+      {
+        "reference": "36:24",
+        "textSHA256": "a28d9e6da8696a63ac649aa956db33bffc9042bb91f9e17ef0dc4f54d1d1971c"
+      },
+      {
+        "reference": "36:25",
+        "textSHA256": "73c4d346e1b649b2d5475cbcf07d3aae47aee1d5c1ec1837f43e01053fffa3e4"
+      },
+      {
+        "reference": "36:27",
+        "textSHA256": "a3f876d78f750e9dca069ac752cf2bf9c46aa8ffc19648e5ef73e9cdb50610bb"
+      },
+      {
+        "reference": "36:28",
+        "textSHA256": "89e416766b857ddb7d7bd8d002e5782cbd9970a80c9895e692731fbf4fb83ecd"
+      },
+      {
+        "reference": "36:29",
+        "textSHA256": "3a31cf13877d82f373bef569e81a991347dbf885b34a83acb3e6a7382d9501c1"
+      },
+      {
+        "reference": "36:30",
+        "textSHA256": "c336161cc55eca3fb26105ec4d860f9087aded5088e068b17b9d149fc5d622d8"
+      },
+      {
+        "reference": "36:31",
+        "textSHA256": "09847b43b8775ede2504695df0ff04d838e6d496ef0b50abca0e65c77f3348f3"
+      },
+      {
+        "reference": "37:1",
+        "textSHA256": "471336d492c58c7f5a17dda5adae1858c77d1425bc1750f47cfab8d6fc6adaa8"
+      },
+      {
+        "reference": "37:2",
+        "textSHA256": "c897a777ff8d53c69c83d1cc0a07f26bafe30c06be7354576325390ec662fc7e"
+      }
+    ]
+  }
 }
