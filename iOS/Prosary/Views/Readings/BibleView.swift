@@ -191,9 +191,10 @@ struct BibleChapterView: View {
   @State private var chapterNumber = 0
   @State private var bookOverride: String?
   @State private var jumpGeneration = 0
-  @State private var chapter: BibleChapter?
+  @State private var chapter: BibleDisplayChapter?
   @State private var unavailable = false
-  @State private var jumpVerse: Int?
+  @State private var jumpBlockID: String?
+  @State private var pendingJumpBlockID: String?
 
   private var number: Int { chapterNumber == 0 ? initialChapter : chapterNumber }
   private var script: Binding<String> {
@@ -216,7 +217,7 @@ struct BibleChapterView: View {
             if let introduction = activeBook.introduction(for: number) {
               ScriptureIntroduction(text: introduction, edition: edition.readingEdition)
             }
-            ScriptureVerseList(edition: edition.readingEdition, verses: chapter.verses, script: script.wrappedValue)
+            BibleSourceBlockList(edition: edition.readingEdition, display: chapter, script: script.wrappedValue)
           } else if unavailable {
             Text(bibleLabel("chapterUnavailable", "This chapter is not available offline. Return to Bible to download the edition."))
               .foregroundStyle(.secondary).accessibilityIdentifier("bible.unavailable")
@@ -226,7 +227,7 @@ struct BibleChapterView: View {
         .frame(maxWidth: 720, alignment: .leading).frame(maxWidth: .infinity)
         .padding(20).id("chapter.top")
       }
-      .onChange(of: jumpGeneration) { _, _ in if let verse = jumpVerse { proxy.scrollTo(verse, anchor: .top) } }
+      .onChange(of: jumpGeneration) { _, _ in if let block = jumpBlockID { proxy.scrollTo(block, anchor: .top) } }
       .onChange(of: "\(activeBook.id)|\(number)") { _, _ in proxy.scrollTo("chapter.top", anchor: .top) }
     }
     .navigationTitle(activeBook.displayedName(script: script.wrappedValue))
@@ -248,10 +249,12 @@ struct BibleChapterView: View {
           .disabled(position.moving(by: 1, in: edition) == nil).accessibilityIdentifier("bible.nextChapter")
         if let chapter {
           Menu {
-            ForEach(chapter.verses, id: \.verse) { verse in
-              ForEach(verse.verse...(verse.endVerse ?? verse.verse), id: \.self) { number in
-                Button(ScriptureChapterHeading.number(number, language: edition.languageCode, script: script.wrappedValue)) {
-                  jumpVerse = chapter.unitStart(containing: number)
+            ForEach(chapter.choices) { block in
+              Button(bibleVerseChoiceLabel(block, display: chapter, edition: edition.readingEdition, script: script.wrappedValue)) {
+                if let unit = block.unit {
+                  Task { await jump(chapter: unit.chapter, verse: unit.verse) }
+                } else {
+                  jumpBlockID = block.id
                   jumpGeneration += 1
                 }
               }
@@ -265,6 +268,19 @@ struct BibleChapterView: View {
     .onReceive(NotificationCenter.default.publisher(for: .bibleDownloadsChanged)) { _ in Task { await load() } }
   }
 
+  private func jump(chapter sourceChapter: Int, verse: Int) async {
+    let requestedBook = activeBook.id
+    guard let target = try? await BibleStore.shared.verseTarget(edition: edition, book: requestedBook, chapter: sourceChapter, verse: verse),
+          requestedBook == activeBook.id else { return }
+    if target.displayChapter == number {
+      jumpBlockID = target.blockId
+      jumpGeneration += 1
+    } else {
+      pendingJumpBlockID = target.blockId
+      chapterNumber = target.displayChapter
+    }
+  }
+
   private func move(_ delta: Int) {
     if let target = position.moving(by: delta, in: edition) {
       bookOverride = target.book
@@ -273,11 +289,16 @@ struct BibleChapterView: View {
   }
   private func load() async {
     let requested = position
-    chapter = nil; unavailable = false; jumpVerse = nil
+    chapter = nil; unavailable = false; jumpBlockID = nil
     do {
-      let value = try await BibleStore.shared.chapter(edition: edition, book: requested.book, number: requested.chapter)
+      let value = try await BibleStore.shared.displayChapter(edition: edition, book: requested.book, number: requested.chapter)
       guard !Task.isCancelled, position == requested else { return }
       chapter = value
+      if let pendingJumpBlockID {
+        jumpBlockID = pendingJumpBlockID
+        self.pendingJumpBlockID = nil
+        jumpGeneration += 1
+      }
     } catch { if !Task.isCancelled, position == requested { unavailable = true } }
   }
 }

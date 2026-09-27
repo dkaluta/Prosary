@@ -297,7 +297,7 @@ public sealed class BibleLibraryStoreTests : IDisposable
 
     [Theory]
     [InlineData(0)]
-    [InlineData(3)]
+    [InlineData(4)]
     public void UnknownArchiveVersionsAreNotOffered(int version) => Assert.Empty(Store(Make(archiveVersion: version)).Editions);
 
     [Fact]

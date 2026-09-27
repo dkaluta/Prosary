@@ -143,6 +143,27 @@ class HebrewReviewTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "unresolved"):
             validate_book(self.book, self.catalog, self.approval)
 
+    def test_source_blocks_require_independent_order_inventory_and_page_review(self):
+        chapter = self.book["chapters"][0]
+        chapter["contentBlocks"] = [{"id": f"unit-{r['verse']}", "kind": "verse", "chapter": 1,
+                                     "verse": r["verse"]} for r in chapter["verses"]]
+        chapter["contentBlocks"].insert(1, {"id": "hymn", "kind": "passage", "text": "Test hymn",
+            "sourcePages": [15], "textSHA256": hashlib.sha256(b"Test hymn").hexdigest()})
+        self.book["scan"]["textPages"] = [14, 15]
+        self.repin()
+        with self.assertRaisesRegex(ValueError, "source block review inventory"):
+            validate_book(self.book, self.catalog, self.approval)
+        self.approval["contentBlocks"] = [{"number": 1, "ids": ["unit-1", "hymn", "unit-3", "unit-2"]}]
+        self.approval["textPages"] = [14, 15]
+        with self.assertRaisesRegex(ValueError, "every source page"):
+            validate_book(self.book, self.catalog, self.approval)
+        self.book["review"]["reviewedPages"] = [14, 15]
+        validate_book(self.book, self.catalog, self.approval)
+        chapter["contentBlocks"].pop(1)
+        self.repin()
+        with self.assertRaisesRegex(ValueError, "source block review inventory"):
+            validate_book(self.book, self.catalog, self.approval)
+
 
 if __name__ == "__main__":
     unittest.main()

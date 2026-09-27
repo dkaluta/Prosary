@@ -41,7 +41,7 @@
             <ComboBox Grid.Column="1" Header="{x:Bind ViewModel.ChapterLabel}" ItemsSource="{x:Bind ViewModel.Chapters, Mode=OneWay}" DisplayMemberPath="Label"
                       SelectedItem="{x:Bind ViewModel.SelectedChapter, Mode=TwoWay}" HorizontalAlignment="Stretch"
                       AutomationProperties.AutomationId="bibleChapter" />
-            <ComboBox Grid.Column="2" Header="{x:Bind ViewModel.VerseLabel}" ItemsSource="{x:Bind ViewModel.Verses, Mode=OneWay}" DisplayMemberPath="VerseLabel"
+            <ComboBox Grid.Column="2" Header="{x:Bind ViewModel.VerseLabel}" ItemsSource="{x:Bind ViewModel.VerseChoices, Mode=OneWay}" DisplayMemberPath="VerseLabel"
                       SelectedItem="{x:Bind ViewModel.SelectedVerse, Mode=TwoWay}" HorizontalAlignment="Stretch"
                       AutomationProperties.AutomationId="bibleVerse" />
         </Grid>
@@ -58,8 +58,7 @@
                        FlowDirection="{x:Bind ViewModel.IsRightToLeft, Mode=OneWay, Converter={StaticResource BoolToFlowDirection}}" />
         </StackPanel>
         <Grid Grid.Row="3">
-            <ListView x:Name="VerseList" ItemsSource="{x:Bind ViewModel.Verses, Mode=OneWay}" SelectionMode="Single"
-                      SelectedItem="{x:Bind ViewModel.SelectedVerse, Mode=TwoWay}" IsItemClickEnabled="False"
+            <ListView x:Name="VerseList" ItemsSource="{x:Bind ViewModel.Verses, Mode=OneWay}" SelectionMode="None" IsItemClickEnabled="False"
                       FontFamily="{x:Bind ViewModel.BodyFontFamily, Mode=OneWay}" FontSize="{x:Bind ViewModel.BodyFontSize, Mode=OneWay}"
                       FlowDirection="{x:Bind ViewModel.IsRightToLeft, Mode=OneWay, Converter={StaticResource BoolToFlowDirection}}"
                       AutomationProperties.Name="{x:Bind ViewModel.ChapterHeading, Mode=OneWay}" AutomationProperties.AutomationId="bibleVerses">
@@ -70,7 +69,14 @@
                 <ListView.ItemContainerStyle><Style TargetType="ListViewItem"><Setter Property="HorizontalContentAlignment" Value="Stretch"/><Setter Property="Padding" Value="8,8"/></Style></ListView.ItemContainerStyle>
                 <ListView.ItemTemplate><DataTemplate x:DataType="vm:BibleVerseRow">
                     <StackPanel>
-                        <TextBlock Text="{x:Bind DisplayText}" TextWrapping="Wrap" IsTextSelectionEnabled="True" />
+                        <TextBlock Text="{x:Bind DisplayText}" TextWrapping="Wrap" IsTextSelectionEnabled="True"
+                                   Visibility="{x:Bind IsScripture, Converter={StaticResource BoolToVisibility}}" />
+                        <TextBlock Text="{x:Bind PrintedLabelAnnotation}" TextWrapping="Wrap" Style="{StaticResource MutedCaptionTextStyle}"
+                                   Visibility="{x:Bind HasPrintedLabel, Converter={StaticResource BoolToVisibility}}" />
+                        <TextBlock Text="{x:Bind Text}" TextWrapping="Wrap" FontWeight="SemiBold" Margin="0,12,0,4"
+                                   Visibility="{x:Bind IsHeading, Converter={StaticResource BoolToVisibility}}" />
+                        <TextBlock Text="{x:Bind Text}" TextWrapping="Wrap" Style="{StaticResource MutedCaptionTextStyle}"
+                                   Visibility="{x:Bind IsColophon, Converter={StaticResource BoolToVisibility}}" />
                         <controls:ScriptureSourceNotesControl SourceNotes="{x:Bind SourceNotes}" />
                     </StackPanel>
                 </DataTemplate></ListView.ItemTemplate>

@@ -9,11 +9,56 @@ namespace Prosary.ViewModels;
 
 public sealed record BibleBookChoice(BibleBook Book, string Label);
 public sealed record BibleChapterChoice(BibleChapter Chapter, string Label);
-public sealed record BibleVerseRow(int Verse, string Text, int? EndVerse = null, IReadOnlyList<ScriptureSourceNote>? SourceNotes = null)
+public sealed record BibleVerseRow(int Verse, string Text, int? EndVerse = null, IReadOnlyList<ScriptureSourceNote>? SourceNotes = null,
+    int Chapter = 0, string Id = "", string Kind = "verse", string? PrintedLabel = null, string? PickerLabel = null, bool ShowChapter = false, string? SourceChapterLabel = null, string? SourceVerseLabel = null)
 {
-    public string VerseLabel => EndVerse is { } end && end > Verse ? $"{Verse}–{end}" : Verse.ToString(System.Globalization.CultureInfo.InvariantCulture);
-    public string DisplayText => $"\u2066{VerseLabel}\u2069  {Text}";
-    public bool ContainsVerse(int number) => number >= Verse && number <= (EndVerse ?? Verse);
+    private string NumericLabel => EndVerse is { } end && end > Verse ? $"{Verse}–{end}" : Verse.ToString(System.Globalization.CultureInfo.InvariantCulture);
+    public string VerseLabel => PickerLabel ?? (ShowChapter ? $"{SourceChapterLabel ?? Chapter.ToString(System.Globalization.CultureInfo.InvariantCulture)}:{SourceVerseLabel ?? NumericLabel}" : NumericLabel);
+    public string DisplayText => Kind == "verse" ? $"\u2066{VerseLabel}\u2069  {Text}"
+        : Kind == "witness" ? $"\u2068{PrintedLabel}\u2069  {Text}" : Text;
+    public bool IsScripture => Kind is "verse" or "witness" or "passage";
+    public bool IsHeading => Kind == "heading";
+    public bool IsColophon => Kind == "colophon";
+    public bool IsVerseChoice => Kind is "verse" or "witness";
+    public bool HasPrintedLabel => Kind == "verse" && PrintedLabel is not null;
+    public string PrintedLabelAnnotation => HasPrintedLabel
+        ? string.Format(Loc.Tr("bible_printed_label", "Printed label: {0}"), $"\u2068{PrintedLabel}\u2069") : "";
+    public bool ContainsVerse(int number) => Kind == "verse" && number >= Verse && number <= (EndVerse ?? Verse);
+
+    public static IReadOnlyList<BibleVerseRow> FromDisplay(BibleDisplayChapter display, ScriptureEdition? edition, string script)
+    {
+        static IEnumerable<BibleAddress> Addresses(BibleDisplayUnit unit) => unit.Primary is { } primary
+            ? [new(primary.Chapter, primary.Verse, primary.EndVerse)] : unit.Addresses ?? [];
+        static bool Overlap(BibleAddress left, BibleAddress right) => left.Chapter == right.Chapter
+            && left.Verse <= (right.EndVerse ?? right.Verse) && right.Verse <= (left.EndVerse ?? left.Verse);
+        var rows = new List<BibleVerseRow>();
+        for (var index = 0; index < display.Units.Count; index++)
+        {
+            var unit = display.Units[index];
+            if (unit.Primary is { } primary)
+                rows.Add(new(primary.Verse, primary.DisplayedText(edition, script), primary.EndVerse, primary.SourceNotes,
+                    primary.Chapter, unit.Id, unit.Kind, unit.PrintedLabel, ShowChapter: primary.Chapter != display.Chapter.Chapter,
+                    SourceChapterLabel: ReadingChapterHeading.Number(primary.Chapter, edition?.LanguageCode ?? "en", script),
+                    SourceVerseLabel: ReadingChapterHeading.Number(primary.Verse, edition?.LanguageCode ?? "en", script)
+                        + (primary.EndVerse is { } end && end > primary.Verse ? "–" + ReadingChapterHeading.Number(end, edition?.LanguageCode ?? "en", script) : "")));
+            else
+            {
+                string? label = unit.PrintedLabel;
+                if (unit.Kind == "witness")
+                {
+                    bool Matches(BibleDisplayUnit other) => Addresses(unit).Any(address => Addresses(other).Any(candidate => Overlap(address, candidate)));
+                    if (display.Units.Where((_, otherIndex) => otherIndex != index).Any(Matches))
+                    {
+                        var occurrence = display.Units.Take(index).Count(Matches) + 1;
+                        label = string.Format(Loc.Tr("bible_occurrence", "{0} — occurrence {1}"), $"\u2068{label}\u2069", occurrence);
+                    }
+                }
+                rows.Add(new(0, unit.Text!, SourceNotes: unit.SourceNotes, Id: unit.Id, Kind: unit.Kind,
+                    PrintedLabel: unit.PrintedLabel, PickerLabel: label));
+            }
+        }
+        return rows;
+    }
 }
 public sealed record BibleLocation(string Book, int Chapter);
 public static class BibleNavigation
@@ -35,8 +80,8 @@ public partial class BibleViewModel : ObservableObject
     private CancellationTokenSource? _chapterCancellation;
     private CancellationTokenSource? _downloadCancellation;
     private BibleManifest? _installed;
-    private IReadOnlyList<ScriptureVerse> _sourceVerses = [];
-    private int? _versePosition;
+    private BibleDisplayChapter? _sourceChapter;
+    private string? _selectedBlockId;
     private enum RetryOperation { Chapter, Download, Remove }
     private RetryOperation _retryOperation;
     public BibleViewModel(BibleLibraryStore? store = null) { _store = store ?? BibleLibraryStore.Default; SynchronizeEdition(); }
@@ -94,6 +139,7 @@ public partial class BibleViewModel : ObservableObject
     [ObservableProperty] private ObservableCollection<BibleChapterChoice> _chapters = [];
     [ObservableProperty] private BibleChapterChoice? _selectedChapter;
     [ObservableProperty] private ObservableCollection<BibleVerseRow> _verses = [];
+    [ObservableProperty] private ObservableCollection<BibleVerseRow> _verseChoices = [];
     [ObservableProperty] private BibleVerseRow? _selectedVerse;
     [ObservableProperty] private string? _scriptOverride;
     [ObservableProperty] private bool _isInstalled;
@@ -109,28 +155,28 @@ public partial class BibleViewModel : ObservableObject
     partial void OnSelectedVerseChanged(BibleVerseRow? value)
     {
         if (value is null) return;
-        _versePosition = value.Verse;
+        _selectedBlockId = value.Id;
         VerseRequested?.Invoke(value);
     }
     partial void OnScriptOverrideChanged(string? value) { RefreshChoices(); RefreshText(); }
     partial void OnSelectedEditionChanged(ReadingEditionChoice? value)
     {
         if (_synchronizing || value is null) return;
-        _versePosition = null;
+        _selectedBlockId = null;
         AppSettings.SetReadingsEditionId(value.Id);
         _ = RefreshAsync();
     }
     partial void OnSelectedBookChanged(BibleBookChoice? value)
     {
         if (_synchronizing) return;
-        _versePosition = null;
+        _selectedBlockId = null;
         RefreshChapters();
         _ = LoadChapterAsync();
     }
     partial void OnSelectedChapterChanged(BibleChapterChoice? value)
     {
         if (_synchronizing) return;
-        _versePosition = null;
+        _selectedBlockId = null;
         _ = LoadChapterAsync();
     }
 
@@ -145,7 +191,7 @@ public partial class BibleViewModel : ObservableObject
                 foreach (var edition in _store.Editions) Editions.Add(new(edition.Id, edition.Name));
             }
             var id = AppSettings.ReadingsEditionId;
-            if (SelectedEdition?.Id != id) _versePosition = null;
+            if (SelectedEdition?.Id != id) _selectedBlockId = null;
             var choice = Editions.FirstOrDefault(edition => edition.Id == id);
             if (choice is null) { choice = new(id, UnavailableNotice); Editions.Add(choice); }
             SelectedEdition = choice;
@@ -158,8 +204,9 @@ public partial class BibleViewModel : ObservableObject
     {
         var request = ++_request;
         _chapterCancellation?.Cancel();
-        _sourceVerses = [];
+        _sourceChapter = null;
         Verses = [];
+        VerseChoices = [];
         IsPartial = false;
         SynchronizeEdition();
         var edition = EffectiveEdition;
@@ -207,8 +254,9 @@ public partial class BibleViewModel : ObservableObject
         _chapterCancellation?.Cancel();
         var cancellation = _chapterCancellation = new();
         var request = ++_request;
-        _sourceVerses = [];
+        _sourceChapter = null;
         Verses = [];
+        VerseChoices = [];
         IsPartial = false;
         Error = null;
         if (!IsInstalled || EffectiveEdition is not { } edition || SelectedBook is not { } book || SelectedChapter is not { } chapter)
@@ -216,9 +264,9 @@ public partial class BibleViewModel : ObservableObject
         IsLoading = true;
         try
         {
-            var text = await _store.LoadChapterAsync(edition.Id, book.Book.Id, chapter.Chapter.Number, cancellation.Token);
+            var text = await _store.LoadDisplayChapterAsync(edition.Id, book.Book.Id, chapter.Chapter.Number, cancellation.Token);
             if (request != _request) return;
-            _sourceVerses = text.Verses;
+            _sourceChapter = text;
             IsPartial = !chapter.Chapter.IsComplete;
             RefreshText();
         }
@@ -235,17 +283,32 @@ public partial class BibleViewModel : ObservableObject
     }
     private void RefreshText()
     {
-        Verses = new(_sourceVerses.Select(verse => new BibleVerseRow(verse.Verse, verse.DisplayedText(EffectiveEdition?.Scripture, EffectiveScript), verse.EndVerse, verse.SourceNotes)));
-        SelectedVerse = Verses.FirstOrDefault(verse => _versePosition is { } position && verse.ContainsVerse(position)) ?? Verses.FirstOrDefault();
+        Verses = new(_sourceChapter is null ? [] : BibleVerseRow.FromDisplay(_sourceChapter, EffectiveEdition?.Scripture, EffectiveScript));
+        VerseChoices = new(Verses.Where(row => row.IsVerseChoice));
+        SelectedVerse = VerseChoices.FirstOrDefault(row => row.Id == _selectedBlockId) ?? VerseChoices.FirstOrDefault();
         NotifyDisplay();
     }
     public bool SelectVerse(int number)
     {
-        var row = Verses.FirstOrDefault(verse => verse.ContainsVerse(number));
+        var row = VerseChoices.FirstOrDefault(verse => verse.Chapter == SelectedChapter?.Chapter.Number && verse.ContainsVerse(number));
         if (row is null) return false;
         SelectedVerse = row;
         VerseRequested?.Invoke(row);
         return true;
+    }
+    /// <summary>A numeric address always resolves the primary unit, even when it is printed in another chapter.</summary>
+    public async Task<bool> SelectAddressAsync(int chapter, int verse, CancellationToken cancellationToken = default)
+    {
+        if (EffectiveEdition is not { } edition || SelectedBook is not { } book || !IsInstalled) return false;
+        var request = _request;
+        var target = await _store.ResolveAddressAsync(edition.Id, book.Book.Id, chapter, verse, cancellationToken);
+        if (target is null || request != _request) return false;
+        _selectedBlockId = target.BlockId;
+        _synchronizing = true;
+        try { SelectedChapter = Chapters.First(item => item.Chapter.Number == target.DisplayChapter); }
+        finally { _synchronizing = false; }
+        await LoadChapterAsync();
+        return SelectedVerse?.Id == target.BlockId;
     }
     public void RefreshTypography() { RefreshChoices(); RefreshText(); }
 
@@ -255,7 +318,7 @@ public partial class BibleViewModel : ObservableObject
     private void Move(int direction)
     {
         if (Location is not { } current || BibleNavigation.Adjacent(_installed?.Books ?? [], current, direction) is not { } next) return;
-        _versePosition = null;
+        _selectedBlockId = null;
         _synchronizing = true;
         try
         {

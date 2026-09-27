@@ -2,6 +2,7 @@ using System.IO.Compression;
 using System.Net.Http;
 using System.Security.Cryptography;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
 
 namespace Prosary.Services;
@@ -10,6 +11,10 @@ public sealed record BibleChapter(int Number, int VerseCount, bool IsComplete);
 public sealed record BibleBook(string Id, string Name, List<BibleChapter> Chapters,
     string? TransliteratedName = null, string? Attribution = null, string? SourceURL = null, string? Introduction = null)
 {
+    private List<BibleAddressRoute>? _addressRoutes;
+    [JsonIgnore] public bool HasAddressRoutes { get; private set; }
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public List<BibleAddressRoute>? AddressRoutes { get => _addressRoutes; init { _addressRoutes = value; HasAddressRoutes = true; } }
     public string? IntroductionForChapter(int number) => Chapters.FirstOrDefault()?.Number == number ? Introduction : null;
 }
 public sealed record BibleEdition(string Id, string LanguageCode, string Name, string Attribution, string SourceURL,
@@ -19,7 +24,13 @@ public sealed record BibleEdition(string Id, string LanguageCode, string Name, s
     public ScriptureEdition Scripture => new(Id, LanguageCode, Name, Attribution, SourceURL, TextScript, TransliteratedTextScript);
 }
 public sealed record BibleManifest(int SchemaVersion, string EditionId, string Revision, List<BibleBook> Books);
-public sealed record BibleChapterText(int SchemaVersion, string EditionId, string Book, int Chapter, List<ScriptureVerse> Verses);
+public sealed record BibleChapterText(int SchemaVersion, string EditionId, string Book, int Chapter, List<ScriptureVerse> Verses)
+{
+    private List<BibleContentBlock>? _contentBlocks;
+    [JsonIgnore] public bool HasContentBlocks { get; private set; }
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public List<BibleContentBlock>? ContentBlocks { get => _contentBlocks; init { _contentBlocks = value; HasContentBlocks = true; } }
+}
 
 /// <summary>Optional Bible archives, independent of prayer packs and bundled daily passages.</summary>
 public sealed class BibleLibraryStore
@@ -73,7 +84,9 @@ public sealed class BibleLibraryStore
         && edition.DownloadURL == DownloadPrefix + edition.Id + "-" + edition.Revision + ".zip"
         && edition.ArchiveByteCount is > 0 and <= MaxArchiveBytes
         && edition.UnpackedByteCount is > 0 and <= MaxExpandedBytes && ValidBooks(edition.Books)
-        && edition.ArchiveSchemaVersion is 1 or 2
+        && edition.ArchiveSchemaVersion is 1 or 2 or 3
+        && edition.Books.All(book => BibleSourceStructure.ValidRoutes(book, edition.ArchiveSchemaVersion))
+        && (edition.ArchiveSchemaVersion != 3 || edition.TextScript is null && edition.TransliteratedTextScript is null)
         && ((edition.TextScript is null && edition.TransliteratedTextScript is null) || edition.Scripture.HasAramaicScripts);
 
     public static bool ValidDownloadUri(string? value) => Uri.TryCreate(value, UriKind.Absolute, out var uri)
@@ -109,7 +122,7 @@ public sealed class BibleLibraryStore
                 using var archive = ZipFile.OpenRead(path);
                 var manifest = ReadEntry<BibleManifest>(archive.GetEntry("manifest.json"));
                 return manifest.SchemaVersion == Edition(id).ArchiveSchemaVersion && manifest.EditionId == id && Hash(manifest.Revision)
-                    && ValidBooks(manifest.Books) ? manifest : null;
+                    && ValidBooks(manifest.Books) && manifest.Books.All(book => BibleSourceStructure.ValidRoutes(book, manifest.SchemaVersion)) ? manifest : null;
             }, cancellationToken);
         }
         catch (Exception error) when (error is IOException or JsonException or UnauthorizedAccessException) { return null; }
@@ -192,11 +205,16 @@ public sealed class BibleLibraryStore
         foreach (var book in edition.Books)
         {
             var noteIds = new HashSet<string>(StringComparer.Ordinal);
+            var chapters = new Dictionary<int, BibleChapterText>();
             foreach (var chapter in book.Chapters)
             {
                 cancellationToken.ThrowIfCancellationRequested();
-                ValidateChapter(ReadEntry<BibleChapterText>(archive.GetEntry($"chapters/{book.Id}/{chapter.Number}.json")), edition, book.Id, chapter, noteIds);
+                var text = ReadEntry<BibleChapterText>(archive.GetEntry($"chapters/{book.Id}/{chapter.Number}.json"));
+                ValidateChapter(text, edition, book.Id, chapter, noteIds);
+                BibleSourceStructure.ValidateBlocks(text, edition, book, noteIds);
+                chapters.Add(chapter.Number, text);
             }
+            BibleSourceStructure.ValidateBook(book, chapters);
         }
     }
 
@@ -224,8 +242,9 @@ public sealed class BibleLibraryStore
             || text.Verses is null || text.Verses.Count != chapter.VerseCount
             || text.Verses.Any(verse => verse is null || verse.Chapter != chapter.Number || verse.Verse <= 0 || verse.EndVerse < verse.Verse
                 || string.IsNullOrWhiteSpace(verse.Text) || edition.Scripture.HasAramaicScripts && string.IsNullOrWhiteSpace(verse.TransliteratedText)
-                || verse.SourceNotes is not null && edition.ArchiveSchemaVersion != 2
+                || verse.SourceNotes is not null && edition.ArchiveSchemaVersion is not (2 or 3)
                 || !ScriptureSourceNote.ValidForVerse(verse, edition.TextScript is not null || edition.TransliteratedTextScript is not null, bookNoteIds))
+            || text.HasContentBlocks && (edition.ArchiveSchemaVersion != 3 || text.ContentBlocks is not { Count: > 0 })
             || OverlappingVerseRanges(text.Verses))
             throw new InvalidDataException("Invalid Bible chapter.");
     }
@@ -238,7 +257,25 @@ public sealed class BibleLibraryStore
         return ordered.Zip(ordered.Skip(1)).Any(pair => pair.Second.Verse <= (pair.First.EndVerse ?? pair.First.Verse));
     }
 
-    public async Task<BibleChapterText> LoadChapterAsync(string id, string book, int chapter, CancellationToken cancellationToken = default)
+    private BibleBook ReadBook(ZipArchive archive, BibleEdition edition, string book)
+    {
+        var manifest = ReadEntry<BibleManifest>(archive.GetEntry("manifest.json"));
+        if (manifest.SchemaVersion != edition.ArchiveSchemaVersion || manifest.EditionId != edition.Id || !ValidBooks(manifest.Books)
+            || manifest.Books.Any(item => !BibleSourceStructure.ValidRoutes(item, manifest.SchemaVersion)))
+            throw new InvalidDataException("Invalid installed Bible manifest.");
+        return manifest.Books.FirstOrDefault(item => item.Id == book) ?? throw new InvalidDataException("The selected book is not available.");
+    }
+    private static BibleChapterText ReadChapter(ZipArchive archive, BibleEdition edition, BibleBook book, int chapter)
+    {
+        var metadata = book.Chapters.FirstOrDefault(item => item.Number == chapter)
+            ?? throw new InvalidDataException("The selected chapter is not available.");
+        var result = ReadEntry<BibleChapterText>(archive.GetEntry($"chapters/{book.Id}/{chapter}.json"));
+        var noteIds = new HashSet<string>(StringComparer.Ordinal);
+        ValidateChapter(result, edition, book.Id, metadata, noteIds);
+        BibleSourceStructure.ValidateBlocks(result, edition, book, noteIds);
+        return result;
+    }
+    private async Task<T> ReadInstalledAsync<T>(string id, string book, Func<ZipArchive, BibleEdition, BibleBook, T> read, CancellationToken cancellationToken)
     {
         var edition = Edition(id);
         await _files.WaitAsync(cancellationToken);
@@ -247,18 +284,40 @@ public sealed class BibleLibraryStore
             return await Task.Run(() =>
             {
                 using var archive = ZipFile.OpenRead(ArchivePath(id));
-                var manifest = ReadEntry<BibleManifest>(archive.GetEntry("manifest.json"));
-                if (manifest.SchemaVersion != edition.ArchiveSchemaVersion || manifest.EditionId != id || !ValidBooks(manifest.Books))
-                    throw new InvalidDataException("Invalid installed Bible manifest.");
-                var metadata = manifest.Books.FirstOrDefault(item => item.Id == book)?.Chapters.FirstOrDefault(item => item.Number == chapter)
-                    ?? throw new InvalidDataException("The selected chapter is not available.");
-                var result = ReadEntry<BibleChapterText>(archive.GetEntry($"chapters/{book}/{chapter}.json"));
-                ValidateChapter(result, edition, book, metadata);
-                return result;
+                return read(archive, edition, ReadBook(archive, edition, book));
             }, cancellationToken);
         }
         finally { _files.Release(); }
     }
+    public Task<BibleChapterText> LoadChapterAsync(string id, string book, int chapter, CancellationToken cancellationToken = default) =>
+        ReadInstalledAsync(id, book, (archive, edition, metadata) => ReadChapter(archive, edition, metadata, chapter), cancellationToken);
+
+    /// <summary>Only the display chapter and its direct primary references are opened; blocks never recurse.</summary>
+    public Task<BibleDisplayChapter> LoadDisplayChapterAsync(string id, string book, int chapter, CancellationToken cancellationToken = default) =>
+        ReadInstalledAsync(id, book, (archive, edition, metadata) =>
+        {
+            var display = ReadChapter(archive, edition, metadata, chapter);
+            var primary = new Dictionary<int, BibleChapterText> { [chapter] = display };
+            foreach (var number in (display.ContentBlocks ?? []).Where(block => block.Kind == "verse").Select(block => block.Chapter!.Value).Distinct())
+            {
+                cancellationToken.ThrowIfCancellationRequested();
+                if (!primary.ContainsKey(number)) primary.Add(number, ReadChapter(archive, edition, metadata, number));
+            }
+            return new BibleDisplayChapter(display, BibleSourceStructure.Resolve(display, primary));
+        }, cancellationToken);
+
+    public Task<BibleAddressTarget?> ResolveAddressAsync(string id, string book, int chapter, int verse, CancellationToken cancellationToken = default) =>
+        ReadInstalledAsync<BibleAddressTarget?>(id, book, (archive, edition, metadata) =>
+        {
+            var source = ReadChapter(archive, edition, metadata, chapter);
+            var primary = source.Verses.FirstOrDefault(item => verse >= item.Verse && verse <= (item.EndVerse ?? item.Verse));
+            if (primary is null) return null;
+            var route = metadata.AddressRoutes?.FirstOrDefault(item => item.Chapter == chapter && item.Verse == primary.Verse);
+            if (route is not null) return new(route.DisplayChapter, route.BlockId);
+            var block = source.ContentBlocks?.SingleOrDefault(item => item.Kind == "verse" && item.Chapter == chapter && item.Verse == primary.Verse);
+            if (source.ContentBlocks is not null && block is null) throw new InvalidDataException("Missing primary presentation.");
+            return new(chapter, block?.Id ?? BibleSourceStructure.PrimaryId(chapter, primary.Verse));
+        }, cancellationToken);
 
     public async Task RemoveAsync(string id, CancellationToken cancellationToken = default)
     {

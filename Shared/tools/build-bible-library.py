@@ -23,6 +23,7 @@ import zipfile
 
 from hebrew_deuterocanon import load_books as load_hebrew_supplement
 from scripture_source_notes import validate_source_notes
+from bible_source_structure import ABSENT, published_blocks, validate_structure
 
 ROOT = Path(__file__).resolve().parents[2]
 TOOLS = ROOT / "Shared/tools"
@@ -100,12 +101,17 @@ def chapter_rows(builder, edition, corpus):
         yield book, chapter, rows, complete
 
 
-def make_archive(edition, chapters, names):
+def make_archive(edition, chapters, names, presentations=None):
     files = {}
     books = defaultdict(list)
     chapters = list(chapters)
-    version = 2 if any("sourceNotes" in row for _, _, rows, _ in chapters for row in rows) else 1
+    presentations = presentations or {}
+    if set(presentations) - {(book, chapter) for book, chapter, _, _ in chapters}:
+        raise ValueError("Source presentation has no primary chapter")
+    structured = bool(presentations) or any("addressRoutes" in name for name in names.values())
+    version = 3 if structured else (2 if any("sourceNotes" in row for _, _, rows, _ in chapters for row in rows) else 1)
     note_ids = defaultdict(set)
+    chapter_payloads = defaultdict(list)
     for book, chapter, verses, complete in chapters:
         for row in verses:
             ids = validate_source_notes(row, label=f"{book} {chapter}:{row['verse']}")
@@ -114,12 +120,20 @@ def make_archive(edition, chapters, names):
             if ids and edition.get("textScript"):
                 raise ValueError("Paired source-note anchors are unsupported")
             note_ids[book].update(ids)
-        data = encode({"schemaVersion": version, "editionId": edition["id"], "book": book,
-                       "chapter": chapter, "verses": verses})
+        payload = {"schemaVersion": version, "editionId": edition["id"], "book": book,
+                   "chapter": chapter, "verses": verses}
+        if (book, chapter) in presentations:
+            payload["contentBlocks"] = presentations[book, chapter]
+        chapter_payloads[book].append(payload)
+        data = encode(payload)
         if len(data) > MAX_CHAPTER:
             raise ValueError("Bible chapter exceeds the native resource limit")
         files[f"chapters/{book}/{chapter}.json"] = data
         books[book].append({"number": chapter, "verseCount": len(verses), "isComplete": complete})
+    for book, payloads in chapter_payloads.items():
+        validate_structure(payloads, routes=names[book].get("addressRoutes", ABSENT),
+                           archive_version=version,
+                           paired=any(key in edition for key in ("textScript", "transliteratedTextScript")), label=book)
     builder = reading_builder()
     order = builder.CODES[:39] + builder.CODES[66:] + ["LJE", "ESG", "S3Y", "SUS", "BEL"] + builder.CODES[39:66]
     book_rows = [{"id": book, **names[book], "chapters": books[book]}
@@ -167,6 +181,7 @@ def build(*, require_hebrew_supplement=False, fetch=False):
     for edition in lock["editions"]:
         chapters = list(chapter_rows(builder, edition, corpora[edition["id"]]))
         names = book_names(edition, {row[0] for row in chapters})
+        presentations = {}
         if edition["id"] == "masoretic-delitzsch":
             for book in supplement:
                 if book["book"] in names:
@@ -175,6 +190,8 @@ def build(*, require_hebrew_supplement=False, fetch=False):
                             "sourceURL": book["sourceURL"]}
                 if "introduction" in book:
                     metadata["introduction"] = builder.preserve_divine_name_accents(book["introduction"])
+                if "addressRoutes" in book:
+                    metadata["addressRoutes"] = book["addressRoutes"]
                 names[book["book"]] = metadata
                 for chapter in book["chapters"]:
                     verses = [{"chapter": chapter["number"], "verse": row["verse"],
@@ -183,7 +200,13 @@ def build(*, require_hebrew_supplement=False, fetch=False):
                                **({"sourceNotes": row["sourceNotes"]} if "sourceNotes" in row else {})}
                               for row in chapter["verses"]]
                     chapters.append((book["book"], chapter["number"], verses, chapter.get("isComplete", True)))
-        filename, raw, entry = make_archive(edition, chapters, names)
+                    if "contentBlocks" in chapter:
+                        blocks = published_blocks(chapter["contentBlocks"])
+                        for block in blocks:
+                            if "text" in block:
+                                block["text"] = builder.preserve_divine_name_accents(block["text"])
+                        presentations[book["book"], chapter["number"]] = blocks
+        filename, raw, entry = make_archive(edition, chapters, names, presentations)
         archives[filename] = raw
         editions.append(entry)
         coverage[edition["id"]] = {"books": len(entry["books"]), "chapters": len(chapters),

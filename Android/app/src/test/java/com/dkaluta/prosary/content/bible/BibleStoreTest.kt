@@ -83,7 +83,7 @@ class BibleStoreTest {
             val (bad, badZip) = archive(initial, mismatched)
             rejected { store().install(bad, badZip) }
         }
-        for (version in listOf(0, 3)) rejected { BibleStore.validateEdition(initial.copy(archiveSchemaVersion = version)) }
+        for (version in listOf(0, 4)) rejected { BibleStore.validateEdition(initial.copy(archiveSchemaVersion = version)) }
         val old = base()
         val oldFiles = entries(old).apply {
             put("chapters/GEN/1.json", json.encodeToString(chapter.copy(schemaVersion = 1)).toByteArray())

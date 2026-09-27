@@ -121,23 +121,32 @@ subverse labels, and cross-chapter physical-order exceptions separately in revie
 evidence. These require a shared representation before import. Do not discard them,
 merge distinct witnesses into one verse, or silently relabel them to satisfy the current
 numeric unit contract. Their presence in review evidence is not production support.
+The implemented source contract is specified in
+[`BIBLE-SOURCE-STRUCTURE.markdown`](../BIBLE-SOURCE-STRUCTURE.markdown): ordered
+`contentBlocks`, exact source hashes/pages on self-contained blocks, and explicit
+`addressRoutes` for cross-chapter primary presentations. The approval separately
+pins ordered block IDs and routes in addition to the full content digest. Migration
+does not approve draft words or source identities.
 
 Susanna uses the separately titled lower Theodotion text in A2 pages 237–242. The
 upper old Greek text and the following Bel and the Dragon are separate works/versions.
 Its independent margin inventory finds 59 units ending at printed label 64, including
-an apparent repeated `כ–כא` margin label after 39 and before 42. The draft's positional
-40–41 address is provisional; the literal-looking label is retained as `printedLabel`
-and requires explicit source-label support before production. It must not be silently
-certified as an ordinary 40–41 source label.
+an apparent repeated `כ–כא` margin label after 39 and before 42. The separately reviewed
+disposition in `SUS-label-disposition.json` retains positional 40–41 for navigation
+and the literal-looking `כ–כא` as a visible `printedLabel` annotation on its version 3
+presentation reference. The original margin inventory remains unchanged. This does
+not certify the misprint as an ordinary printed 40–41 label.
 
 ## Import and release gates
 
 The completed source reviews are Judith (16 chapters, 332 source units, all
-23 text pages), Baruch (five chapters, 123 source units, all seven text pages), and
-Letter of Jeremiah (66 units, all ten pages, one disclosed unreadable vowel).
+23 text pages), Baruch (five chapters, 123 source units, all seven text pages),
+Letter of Jeremiah (66 units, all ten pages, one disclosed unreadable vowel), and
+Susanna (59 units, all six pages, 25 disclosed isolated unreadable points and an
+explicit printed-label disposition).
 Their exact content is pinned in `hebrew-deuterocanon-review.json` against separately
-recorded source inventories. The other nine selected works remain unfinished; these
-three completed books do not open the production gate by themselves. Completion here
+recorded source inventories. The other eight selected works remain unfinished; these
+four completed books do not open the production gate by themselves. Completion here
 means the chosen Hebrew edition has been transcribed and checked, not that its
 numbering has already been reconciled with every daily-reading citation.
 

@@ -49,6 +49,7 @@ jobs:
           uv run --script Shared/tools/test-delitzsch-source.py
           uv run --script Shared/tools/test-reading-texts.py
           uv run --script Shared/tools/test-scripture-source-notes.py
+          uv run --script Shared/tools/test-bible-source-structure.py
           uv run --script Shared/tools/test-peshitta-readings.py
           uv run --script Shared/tools/test-greek-readings.py
           uv run --script Shared/tools/test-hebrew-ocr-baseline.py

@@ -1648,6 +1648,12 @@ readers show the note separately from scripture. Bible archives with notes use
 version 2 so older readers reject them. The contract and strict review rules are in
 [SCRIPTURE-SOURCE-NOTES.markdown](SCRIPTURE-SOURCE-NOTES.markdown).
 
+Bible archive version 3 preserves exceptional printed source order through chapter
+`contentBlocks` and explicit book `addressRoutes`, without duplicating primary text.
+The complete-book installation validator accounts for every primary presentation;
+the reader displays distinct witnesses, unnumbered scripture and source labels.
+See [BIBLE-SOURCE-STRUCTURE.markdown](BIBLE-SOURCE-STRUCTURE.markdown).
+
 Phone Readings and Mac/Windows Today retain the calendar's complete localized citation above
 each collapsible Bible passage. Daily and enabled Torah passages start collapsed unless
 `expandReadingsByDefault` is enabled when entering the view or changing the date/calendar.

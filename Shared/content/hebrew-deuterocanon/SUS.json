@@ -20,8 +20,8 @@
     ]
   },
   "review": {
-    "status": "draft",
-    "method": "Direct full visual transcription and separate complete word/point/punctuation comparison of all six lower-Theodotion pages. Independent focused readings for unclear points; explicit omissions carry source notes. Independent margin inventory is available. Structural source-label disposition is still open; not production approved.",
+    "status": "complete",
+    "method": "Full direct word, point and punctuation comparison of all59 lower-Theodotion units on A2 pages237–242, with independent actual-margin inventory. Unreadable isolated points are explicitly omitted and disclosed;25 accepted source-note IDs are separately inventoried. The apparent כ–כא misprint at positional40–41 is preserved through a visible version3 source-label annotation, under separately recorded independent structural disposition.",
     "reviewedPages": [
       237,
       238,
@@ -40,7 +40,9 @@
       "A2 page238 full lower-Theodotion body second comparison completed, source9 through first part22. Defective11 בשו, explicit14 source vowels,17 false bracket,18 source pointing and22 absent maqaf corrected. Seven isolated unreadable marks are explicitly omitted/disclosed. Page239 continuation of22 remains to be checked; no whole-book completion or label disposition is claimed.",
       "A2 page239 full lower-Theodotion body second word/point/punctuation comparison completed, finishing22 and continuing through the opening of35. Readable points restored in22/23 and33; six isolated unreadable marks in22/23/27 disclosed. Native-detail recheck retracts earlier32 extra-vav concurrence: actual source [את־ראשה], only bracket then alef. Three remaining pages and unusual source label40–41 are still open.",
       "A2 page240 full lower-Theodotion body second word/point/punctuation comparison completed, finishing35 through most of49–50. Bet sheva and nun dagesh restored at38; six unreadable points across38/40/47/48 explicitly disclosed after independent focused reading. Literal margin כ–כא at editorial40–41 remains preserved, with display/address disposition open; no silent relabelling. Pages241–242 and structural disposition remain open.",
-      "Full second visual word/point/punctuation comparison now covers all six lower-Theodotion pages237–242 and all59 source units. Page241 required no further transcription change; page242 has three explicitly omitted unreadable points in62 וימלט. Both reviewers distinguish yod hiriq but cannot separate its dagesh, mem dagesh or vav lower vowel from heavy ink. Initial vav patah in60 ותרע and63 ויהללו is retained based on visible flat horizontal lower bars, independently recognized as patah-shaped. Whole book remains draft solely pending source-label presentation/address disposition for printed כ–כא at editorial40–41, with final independent inventory/approval not yet pinned."
+      "Full second visual word/point/punctuation comparison now covers all six lower-Theodotion pages237–242 and all59 source units. Page241 required no further transcription change; page242 has three explicitly omitted unreadable points in62 וימלט. Both reviewers distinguish yod hiriq but cannot separate its dagesh, mem dagesh or vav lower vowel from heavy ink. Initial vav patah in60 ותרע and63 ויהללו is retained based on visible flat horizontal lower bars, independently recognized as patah-shaped. Whole book remains draft solely pending source-label presentation/address disposition for printed כ–כא at editorial40–41, with final independent inventory/approval not yet pinned.",
+      "Migrated literal source margin כ–כא to the version3 presentation reference for positional40–41. Numeric address is retained for navigation; the reader must visibly annotate the printed label. No text/point changes. Whole-book approval awaits final contract/reader verification and explicit inventory disposition.",
+      "Complete review closure: all six pages and59 units reconciled with the independent margin inventory;25 disclosed point notes match the physical-page reviews. SUS-label-disposition.json records why positional40–41 remains the navigation address while כ–כא remains visibly preserved. Earlier notes describe historical draft queries, now superseded by the completed page comparisons and this explicit disposition. No unseen vowel is restored; the all-twelve-book production gate remains closed."
     ],
     "acceptedSourceNoteIds": [
       "sus-1-14-letter-1-vowel",
@@ -69,9 +71,7 @@
       "sus-1-62-letter-3-dagesh",
       "sus-1-9-letter-1-vowel"
     ],
-    "unresolvedFindings": [
-      "Printed source label כ–כא at editorial40–41 requires explicit reader presentation and reviewed navigation/address disposition."
-    ]
+    "unresolvedFindings": []
   },
   "chapters": [
     {
@@ -624,7 +624,6 @@
             240
           ],
           "textSHA256": "cb48051a67d44b73060c042e0938cd0c79a4427b2c52a05c5bdc42fd163b697c",
-          "printedLabel": "כ–כא",
           "sourceNotes": [
             {
               "id": "sus-1-40-letter-1-vowel",
@@ -889,6 +888,363 @@
             242
           ],
           "textSHA256": "2933285e50a6a331c15d7f8d36d6ce31ed5160094b9082f57411823f304cc6c8"
+        }
+      ],
+      "contentBlocks": [
+        {
+          "id": "sus-1-1",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 1
+        },
+        {
+          "id": "sus-1-2",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 2
+        },
+        {
+          "id": "sus-1-3",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 3
+        },
+        {
+          "id": "sus-1-4",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 4
+        },
+        {
+          "id": "sus-1-5",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 5
+        },
+        {
+          "id": "sus-1-6",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 6
+        },
+        {
+          "id": "sus-1-7",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 7
+        },
+        {
+          "id": "sus-1-8",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 8
+        },
+        {
+          "id": "sus-1-9",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 9
+        },
+        {
+          "id": "sus-1-10",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 10
+        },
+        {
+          "id": "sus-1-11",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 11
+        },
+        {
+          "id": "sus-1-12",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 12
+        },
+        {
+          "id": "sus-1-14",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 14
+        },
+        {
+          "id": "sus-1-15",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 15
+        },
+        {
+          "id": "sus-1-16",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 16
+        },
+        {
+          "id": "sus-1-17",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 17
+        },
+        {
+          "id": "sus-1-18",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 18
+        },
+        {
+          "id": "sus-1-19",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 19
+        },
+        {
+          "id": "sus-1-20",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 20
+        },
+        {
+          "id": "sus-1-21",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 21
+        },
+        {
+          "id": "sus-1-22",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 22
+        },
+        {
+          "id": "sus-1-23",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 23
+        },
+        {
+          "id": "sus-1-24",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 24
+        },
+        {
+          "id": "sus-1-25",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 25
+        },
+        {
+          "id": "sus-1-26",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 26
+        },
+        {
+          "id": "sus-1-27",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 27
+        },
+        {
+          "id": "sus-1-28",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 28
+        },
+        {
+          "id": "sus-1-29",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 29
+        },
+        {
+          "id": "sus-1-30",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 30
+        },
+        {
+          "id": "sus-1-31",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 31
+        },
+        {
+          "id": "sus-1-32",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 32
+        },
+        {
+          "id": "sus-1-33",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 33
+        },
+        {
+          "id": "sus-1-35",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 35
+        },
+        {
+          "id": "sus-1-36",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 36
+        },
+        {
+          "id": "sus-1-37",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 37
+        },
+        {
+          "id": "sus-1-38",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 38
+        },
+        {
+          "id": "sus-1-39",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 39
+        },
+        {
+          "id": "sus-1-40",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 40,
+          "printedLabel": "כ–כא"
+        },
+        {
+          "id": "sus-1-42",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 42
+        },
+        {
+          "id": "sus-1-43",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 43
+        },
+        {
+          "id": "sus-1-44",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 44
+        },
+        {
+          "id": "sus-1-46",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 46
+        },
+        {
+          "id": "sus-1-47",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 47
+        },
+        {
+          "id": "sus-1-48",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 48
+        },
+        {
+          "id": "sus-1-49",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 49
+        },
+        {
+          "id": "sus-1-51",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 51
+        },
+        {
+          "id": "sus-1-52",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 52
+        },
+        {
+          "id": "sus-1-53",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 53
+        },
+        {
+          "id": "sus-1-54",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 54
+        },
+        {
+          "id": "sus-1-55",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 55
+        },
+        {
+          "id": "sus-1-56",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 56
+        },
+        {
+          "id": "sus-1-57",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 57
+        },
+        {
+          "id": "sus-1-58",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 58
+        },
+        {
+          "id": "sus-1-59",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 59
+        },
+        {
+          "id": "sus-1-60",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 60
+        },
+        {
+          "id": "sus-1-61",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 61
+        },
+        {
+          "id": "sus-1-62",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 62
+        },
+        {
+          "id": "sus-1-63",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 63
+        },
+        {
+          "id": "sus-1-64",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 64
         }
       ]
     }

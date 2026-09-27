@@ -113,7 +113,9 @@ final class BibleStoreTests: XCTestCase {
     XCTAssertEqual(chapter.verses[0].sourceNotes?.first?.anchor, "בַּקּבָּה")
     XCTAssertEqual(chapter.verses[0].text, "בַּקּבָּה")
     XCTAssertEqual(chapter.unitStart(containing:1), 1)
-    for settings in [(1,1,1),(2,1,2),(2,2,1),(3,3,3)] {
+    let (versionThree, versionThreeData) = try fixture(sourceNotes:[note], archiveVersion:3)
+    _ = try BibleStore.validatedArchive(versionThreeData, edition:versionThree)
+    for settings in [(1,1,1),(2,1,2),(2,2,1),(4,4,4)] {
       let (badEdition, badData) = try fixture(sourceNotes:[note], archiveVersion:settings.0,
         chapterVersion:settings.1, manifestVersion:settings.2)
       XCTAssertThrowsError(try BibleStore.validatedArchive(badData, edition:badEdition), "\(settings)")
@@ -205,7 +207,7 @@ final class BibleStoreTests: XCTestCase {
     return (edition, data)
   }
 
-  private static func zip(_ files: [(String, Data)]) -> Data {
+  static func zip(_ files: [(String, Data)]) -> Data {
     func n16(_ v: Int) -> Data { Data([UInt8(v & 255), UInt8((v >> 8) & 255)]) }
     func n32(_ v: Int) -> Data { n16(v) + n16(v >> 16) }
     func crc(_ data: Data) -> Int {

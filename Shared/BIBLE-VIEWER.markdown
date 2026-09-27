@@ -22,8 +22,9 @@ existing reading-edition metadata (`id`, `languageCode`, `name`, `attribution`,
 `sourceURL`, and optional paired `textScript`/`transliteratedTextScript`) and adds:
 
 - `revision`: 64 lowercase hexadecimal characters identifying the uncompressed content.
-- Optional `archiveSchemaVersion`: 1 or 2; absent means 1. Version 2 archives support
-  disclosed source notes. The manifest and every chapter must match this version.
+- Optional `archiveSchemaVersion`: 1, 2 or 3; absent means 1. Version 2 archives support
+  disclosed source notes; version 3 also supports printed source structure. The manifest
+  and every chapter must match this version.
 - `downloadURL`: HTTPS URL of an immutable archive under
   `https://raw.githubusercontent.com/dkaluta/Prosary/main/Shared/dist/bibles/`.
 - `archiveSHA256`, `archiveByteCount`, `unpackedByteCount`: pinned archive identity and sizes.
@@ -60,6 +61,15 @@ and old clients reject a version 2 manifest instead of silently dropping them.
 See [SCRIPTURE-SOURCE-NOTES.markdown](SCRIPTURE-SOURCE-NOTES.markdown) for the exact
 anchor, Unicode, source and review contract. Note-free archives keep version 1 and
 their existing byte identity.
+
+Version 3 adds optional chapter `contentBlocks` and explicit book `addressRoutes`.
+These preserve repeated manuscript witnesses, overlapping parts, unnumbered scripture,
+source headings, colophons and cross-chapter physical order. The primary `verses`
+array remains the unique address index. Installation validates the complete book so
+each primary unit is displayed exactly once and every route points to its actual
+block. Older archive versions reject these fields. See
+[BIBLE-SOURCE-STRUCTURE.markdown](BIBLE-SOURCE-STRUCTURE.markdown) for strict field,
+navigation, source-note and review requirements.
 
 Before installing, validate HTTPS, the exact byte count and SHA-256, archive paths,
 manifest identity, declared chapter set, verse counts and nonempty text/pairs. Bound

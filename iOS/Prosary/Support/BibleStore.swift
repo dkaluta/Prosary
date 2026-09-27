@@ -15,6 +15,7 @@ nonisolated struct BibleBook: Codable, Equatable, Identifiable, Sendable {
   var sourceURL: String? = nil
   var introduction: String? = nil
   let chapters: [BibleChapterInfo]
+  var addressRoutes: [BibleAddressRoute]? = nil
 
   func displayedName(script: String) -> String {
     script == "Syrc" ? transliteratedName ?? name : name
@@ -22,6 +23,21 @@ nonisolated struct BibleBook: Codable, Equatable, Identifiable, Sendable {
 
   func introduction(for chapter: Int) -> String? {
     chapter == chapters.first?.number ? introduction : nil
+  }
+}
+
+extension BibleBook {
+  private enum CodingKeys: String, CodingKey { case id, name, transliteratedName, attribution, sourceURL, introduction, chapters, addressRoutes }
+  init(from decoder: Decoder) throws {
+    let values = try decoder.container(keyedBy: CodingKeys.self)
+    id = try values.decode(String.self, forKey: .id)
+    name = try values.decode(String.self, forKey: .name)
+    transliteratedName = try values.decodeIfPresent(String.self, forKey: .transliteratedName)
+    attribution = try values.decodeIfPresent(String.self, forKey: .attribution)
+    sourceURL = try values.decodeIfPresent(String.self, forKey: .sourceURL)
+    introduction = try values.decodeIfPresent(String.self, forKey: .introduction)
+    chapters = try values.decode([BibleChapterInfo].self, forKey: .chapters)
+    addressRoutes = values.contains(.addressRoutes) ? try values.decode([BibleAddressRoute].self, forKey: .addressRoutes) : nil
   }
 }
 
@@ -93,9 +109,23 @@ nonisolated struct BibleChapter: Decodable, Sendable {
   let book: String
   let chapter: Int
   let verses: [ReadingTextVerse]
+  var contentBlocks: [BibleContentBlock]? = nil
 
   func unitStart(containing verse: Int) -> Int? {
     verses.first { $0.contains(verse: verse) }?.verse
+  }
+}
+
+extension BibleChapter {
+  private enum CodingKeys: String, CodingKey { case schemaVersion, editionId, book, chapter, verses, contentBlocks }
+  init(from decoder: Decoder) throws {
+    let values = try decoder.container(keyedBy: CodingKeys.self)
+    schemaVersion = try values.decode(Int.self, forKey: .schemaVersion)
+    editionId = try values.decode(String.self, forKey: .editionId)
+    book = try values.decode(String.self, forKey: .book)
+    chapter = try values.decode(Int.self, forKey: .chapter)
+    verses = try values.decode([ReadingTextVerse].self, forKey: .verses)
+    contentBlocks = values.contains(.contentBlocks) ? try values.decode([BibleContentBlock].self, forKey: .contentBlocks) : nil
   }
 }
 
@@ -138,7 +168,8 @@ actor BibleStore {
           (1...maximumArchiveBytes).contains(edition.archiveByteCount),
           (1...maximumExpandedBytes).contains(edition.unpackedByteCount),
           !edition.name.isEmpty, !edition.books.isEmpty,
-          (1...2).contains(edition.resolvedArchiveSchemaVersion),
+          (1...3).contains(edition.resolvedArchiveSchemaVersion),
+          (edition.resolvedArchiveSchemaVersion != 3 || edition.textScript == nil && edition.transliteratedTextScript == nil),
           Set(edition.books.map(\.id)).count == edition.books.count,
           (edition.textScript == nil) == (edition.transliteratedTextScript == nil) else {
       throw BibleStoreError.invalidCatalog
@@ -150,6 +181,13 @@ actor BibleStore {
             book.chapters.map(\.number) == Array(Set(book.chapters.map(\.number))).sorted(),
             book.chapters.allSatisfy({ $0.number > 0 && $0.verseCount > 0 }) else {
         throw BibleStoreError.invalidCatalog
+      }
+      if let routes = book.addressRoutes {
+        guard edition.resolvedArchiveSchemaVersion == 3, !routes.isEmpty,
+              Set(routes.map { "\($0.chapter):\($0.verse)" }).count == routes.count,
+              routes.allSatisfy({ route in route.chapter != route.displayChapter
+                && book.chapters.contains { $0.number == route.chapter }
+                && book.chapters.contains { $0.number == route.displayChapter } }) else { throw BibleStoreError.invalidCatalog }
       }
     }
   }
@@ -238,13 +276,11 @@ actor BibleStore {
       throw BibleStoreError.invalidArchive
     }
     for book in edition.books {
-      var noteIDs = Set<String>()
+      var chapters: [Int: BibleChapter] = [:]
       for info in book.chapters {
-        let chapter = try decodeChapter(reader, edition: edition, book: book.id, info: info)
-        for note in chapter.verses.flatMap({ $0.sourceNotes ?? [] }) {
-          guard noteIDs.insert(note.id).inserted else { throw BibleStoreError.invalidArchive }
-        }
+        chapters[info.number] = try decodeChapter(reader, edition: edition, book: book.id, info: info)
       }
+      try validatePresentations(book: book, chapters: chapters)
     }
     return reader
   }
@@ -262,11 +298,78 @@ actor BibleStore {
           value.verses.allSatisfy({ $0.chapter == info.number && $0.verse > 0 && ($0.endVerse ?? $0.verse) >= $0.verse
             && !$0.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
             && $0.hasValidSourceNotes
-            && ($0.sourceNotes == nil || edition.resolvedArchiveSchemaVersion == 2 && edition.transliteratedTextScript == nil)
+            && ($0.sourceNotes == nil || edition.resolvedArchiveSchemaVersion >= 2 && edition.transliteratedTextScript == nil)
             && (edition.transliteratedTextScript == nil || !($0.transliteratedText ?? "").trimmingCharacters(in: .whitespacesAndNewlines).isEmpty) }) else {
       throw BibleStoreError.invalidArchive
     }
+    if let blocks = value.contentBlocks {
+      guard value.schemaVersion == 3, !blocks.isEmpty, edition.transliteratedTextScript == nil,
+            value.verses.allSatisfy({ $0.transliteratedText == nil }) else { throw BibleStoreError.invalidArchive }
+    }
     return value
+  }
+
+  /// Validate complete presentation before a single byte is installed. Implicit
+  /// ordinary chapter rows count too, so a moved verse cannot also remain hidden there.
+  nonisolated static func validatePresentations(book: BibleBook, chapters: [Int: BibleChapter]) throws {
+    var expected = Set<String>(), seen = Set<String>(), blockIDs = Set<String>(), noteIDs = Set<String>()
+    var routes = Set<BibleAddressRoute>()
+    func address(_ chapter: Int, _ verse: Int) -> String { "\(chapter):\(verse)" }
+    func recordNotes(_ notes: [ScriptureSourceNote]) throws {
+      for note in notes where !noteIDs.insert(note.id).inserted { throw BibleStoreError.invalidArchive }
+    }
+    for chapter in chapters.values {
+      for unit in chapter.verses {
+        expected.insert(address(chapter.chapter, unit.verse))
+        try recordNotes(unit.sourceNotes ?? [])
+      }
+    }
+    for chapter in chapters.values {
+      if let blocks = chapter.contentBlocks {
+        for block in blocks {
+          guard blockIDs.insert(block.id).inserted else { throw BibleStoreError.invalidArchive }
+          if block.kind == .verse {
+            guard let sourceChapter = block.chapter, let verse = block.verse,
+                  expected.contains(address(sourceChapter, verse)), seen.insert(address(sourceChapter, verse)).inserted else {
+              throw BibleStoreError.invalidArchive
+            }
+            if sourceChapter != chapter.chapter {
+              routes.insert(BibleAddressRoute(chapter: sourceChapter, verse: verse, displayChapter: chapter.chapter, blockId: block.id))
+            }
+          } else {
+            guard (block.addresses ?? []).allSatisfy({ chapters[$0.chapter] != nil }) else { throw BibleStoreError.invalidArchive }
+            try recordNotes(block.sourceNotes ?? [])
+          }
+        }
+      } else {
+        for unit in chapter.verses where !seen.insert(address(chapter.chapter, unit.verse)).inserted { throw BibleStoreError.invalidArchive }
+      }
+    }
+    guard seen == expected, routes == Set(book.addressRoutes ?? []) else { throw BibleStoreError.invalidArchive }
+  }
+
+  /// Load just the display chapter and its direct primary references, never the book.
+  func displayChapter(edition: BibleEdition, book: String, number: Int) throws -> BibleDisplayChapter {
+    let selected = try chapter(edition: edition, book: book, number: number)
+    var primary = [number: selected]
+    for referenced in Set((selected.contentBlocks ?? []).compactMap { $0.kind == .verse ? $0.chapter : nil }) where referenced != number {
+      primary[referenced] = try chapter(edition: edition, book: book, number: referenced)
+    }
+    return try BibleDisplayChapter.resolve(selected, primaryChapters: primary)
+  }
+
+  func verseTarget(edition: BibleEdition, book: String, chapter number: Int, verse: Int) throws -> BibleVerseTarget? {
+    guard let metadata = edition.books.first(where: { $0.id == book }) else { throw BibleStoreError.invalidArchive }
+    let primary = try chapter(edition: edition, book: book, number: number)
+    guard let start = primary.unitStart(containing: verse) else { return nil }
+    if let route = metadata.addressRoutes?.first(where: { $0.chapter == number && $0.verse == start }) {
+      return BibleVerseTarget(displayChapter: route.displayChapter, blockId: route.blockId)
+    }
+    if let blocks = primary.contentBlocks {
+      guard let block = blocks.first(where: { $0.kind == .verse && $0.chapter == number && $0.verse == start }) else { throw BibleStoreError.invalidArchive }
+      return BibleVerseTarget(displayChapter: number, blockId: block.id)
+    }
+    return BibleVerseTarget(displayChapter: number, blockId: "primary-\(number)-\(start)")
   }
 
   func download(_ edition: BibleEdition, progress: @escaping @Sendable (Double) -> Void) async throws {

@@ -31,7 +31,8 @@
       499,
       500,
       501,
-      502
+      502,
+      504
     ],
     "draftedPages": [
       449,
@@ -289,7 +290,12 @@
       "B501 locally reviewed after complete separate main-text comparison and resolution of recorded local queries. Whole-book source inventory/representation remains separately open.",
       "B502 full separate comparison corrects35:26 literal [נָאָה (no vav; printed initial bracket) and timing restoration בִּ[זְמַ]ן.36:18 lamed has two separately readable points, hiriq plus patah; both retained, independently confirmed.36:8 ayin vowel remains fused/unclear between tsere and segol in both scans and a second reviewer; omit only this vowel with explicit source note.36:19 no yod dagesh invented;36:21 separate source vav holam/segol retained.",
       "B502 locally reviewed after complete separate comparison. One isolated ayin-vowel note at36:8 records unreadable tsere/segol; no wording is supplied from grammar. Both clear lamed points at36:18 are preserved. Separate dashed main row remains in structural inventory.",
-      "B503 full separate comparison restores source vav in36:30 יְבוֹעַר and37:2 דָּוֹן (dalet dagesh/qamats, vav holam; second reviewer independently confirms detached interior dalet point).36:27 literal יְהַלִּיל retained after wide crop.36:25 draft נֵד is unsupported: crop appears nun plus bracket rather than dalet, but exact bracket representation and any nun point remain open. Page is not locally approved."
+      "B503 full separate comparison restores source vav in36:30 יְבוֹעַר and37:2 דָּוֹן (dalet dagesh/qamats, vav holam; second reviewer independently confirms detached interior dalet point).36:27 literal יְהַלִּיל retained after wide crop.36:25 draft נֵד is unsupported: crop appears nun plus bracket rather than dalet, but exact bracket representation and any nun point remain open. Page is not locally approved.",
+      "Version3 structure migration: all previously separate draft source witnesses, part-range unit, three headings, unnumbered hymn/lacuna/closing blessing and colophons now live in canonical contentBlocks with source pages and exact text hashes. Primary text/labels unchanged;11:34 has one explicit presentation in chapter12. Historical review payloads above are retained as prior evidence, not the production source. Subsequent proofreading must edit the canonical blocks. Fine points, provisional unlabeled rows and source completeness remain unapproved; draft status is unchanged.",
+      "B504 complete separate main-text comparison corrects37:3 literal [ר]ע (only resh restored; no draft opening bracket after resh) and37:9 מֵ[טוֹב] (mem immediately followed by bracket; no outside vav; restored tet-vav-bet). A second reviewer independently confirms mem tsere/internal vav holam and bracket positions.37:6 חֲבֵיר retained after tight comparison.37:7 middle glyph/point classification remains explicitly open; page not locally approved.",
+      "B505 complete separate comparison corrects37:11 four source letters תתגר, with first tav hiriq/dagesh, second tav sheva, gimel qamats; no additional gimel dagesh certified. A second reviewer independently confirms these glyphs/points.37:14 source שעיותיו has no vav between ayin/yod; diagonal ayin qibbuts retained as שְׁעֻיוֹתָיו, independently confirmed.37:12 literal alef-mem consonants retained; exact initial alef point remains too merged in primary/extra crops to certify provisional segol, so page stays unapproved.",
+      "B50437:7 independently resolved from exact crop as נִיוּף: nun, short separate yod, longer vav, final peh; no middle peh bowl. Nun hiriq/vav shuruq visible. No normalization to a more familiar phrase.",
+      "B504 locally reviewed after complete separate main-text comparison and resolution of recorded local queries. Whole-book source inventory/representation remains separately open."
     ],
     "sourceOrderExceptions": [
       {
@@ -1090,7 +1096,13 @@
       "sir-32-12-tet-vowel",
       "sir-32-4-mem-vowel",
       "sir-36-8-ayin-vowel"
-    ]
+    ],
+    "structureMigration": {
+      "report": "Shared/reports/hebrew-wikisource/SIR-structure-migration.json",
+      "historicalReviewPayloadsAreCanonical": false,
+      "primaryContentUnchangedSHA256": "1532c6605f26bd9ed30f7c34b282b949172f5e3c4b20c8b22ac20285f3ed4783",
+      "newTextualBlockCount": 13
+    }
   },
   "chapters": [
     {
@@ -3444,7 +3456,201 @@
         }
       ],
       "lastVerse": 34,
-      "isComplete": false
+      "isComplete": false,
+      "contentBlocks": [
+        {
+          "id": "sir-11-1",
+          "kind": "verse",
+          "chapter": 11,
+          "verse": 1
+        },
+        {
+          "id": "sir-11-2",
+          "kind": "verse",
+          "chapter": 11,
+          "verse": 2
+        },
+        {
+          "id": "sir-11-3",
+          "kind": "verse",
+          "chapter": 11,
+          "verse": 3
+        },
+        {
+          "id": "sir-11-4",
+          "kind": "verse",
+          "chapter": 11,
+          "verse": 4
+        },
+        {
+          "id": "sir-11-5",
+          "kind": "verse",
+          "chapter": 11,
+          "verse": 5
+        },
+        {
+          "id": "sir-11-6",
+          "kind": "verse",
+          "chapter": 11,
+          "verse": 6
+        },
+        {
+          "id": "sir-11-7",
+          "kind": "verse",
+          "chapter": 11,
+          "verse": 7
+        },
+        {
+          "id": "sir-11-8",
+          "kind": "verse",
+          "chapter": 11,
+          "verse": 8
+        },
+        {
+          "id": "sir-11-9",
+          "kind": "verse",
+          "chapter": 11,
+          "verse": 9
+        },
+        {
+          "id": "sir-11-10",
+          "kind": "verse",
+          "chapter": 11,
+          "verse": 10
+        },
+        {
+          "id": "sir-11-11",
+          "kind": "verse",
+          "chapter": 11,
+          "verse": 11
+        },
+        {
+          "id": "sir-11-12",
+          "kind": "verse",
+          "chapter": 11,
+          "verse": 12
+        },
+        {
+          "id": "sir-11-13",
+          "kind": "verse",
+          "chapter": 11,
+          "verse": 13
+        },
+        {
+          "id": "sir-11-14",
+          "kind": "verse",
+          "chapter": 11,
+          "verse": 14
+        },
+        {
+          "id": "sir-11-15",
+          "kind": "verse",
+          "chapter": 11,
+          "verse": 15
+        },
+        {
+          "id": "sir-11-16",
+          "kind": "verse",
+          "chapter": 11,
+          "verse": 16
+        },
+        {
+          "id": "sir-11-17",
+          "kind": "verse",
+          "chapter": 11,
+          "verse": 17
+        },
+        {
+          "id": "sir-11-18",
+          "kind": "verse",
+          "chapter": 11,
+          "verse": 18
+        },
+        {
+          "id": "sir-11-19",
+          "kind": "verse",
+          "chapter": 11,
+          "verse": 19
+        },
+        {
+          "id": "sir-11-20",
+          "kind": "verse",
+          "chapter": 11,
+          "verse": 20
+        },
+        {
+          "id": "sir-11-21",
+          "kind": "verse",
+          "chapter": 11,
+          "verse": 21
+        },
+        {
+          "id": "sir-11-22",
+          "kind": "verse",
+          "chapter": 11,
+          "verse": 22
+        },
+        {
+          "id": "sir-11-23",
+          "kind": "verse",
+          "chapter": 11,
+          "verse": 23
+        },
+        {
+          "id": "sir-11-24",
+          "kind": "verse",
+          "chapter": 11,
+          "verse": 24
+        },
+        {
+          "id": "sir-11-25",
+          "kind": "verse",
+          "chapter": 11,
+          "verse": 25
+        },
+        {
+          "id": "sir-11-27",
+          "kind": "verse",
+          "chapter": 11,
+          "verse": 27
+        },
+        {
+          "id": "sir-11-28",
+          "kind": "verse",
+          "chapter": 11,
+          "verse": 28
+        },
+        {
+          "id": "sir-11-29",
+          "kind": "verse",
+          "chapter": 11,
+          "verse": 29
+        },
+        {
+          "id": "sir-11-30",
+          "kind": "verse",
+          "chapter": 11,
+          "verse": 30
+        },
+        {
+          "id": "sir-11-31",
+          "kind": "verse",
+          "chapter": 11,
+          "verse": 31
+        },
+        {
+          "id": "sir-11-32",
+          "kind": "verse",
+          "chapter": 11,
+          "verse": 32
+        },
+        {
+          "id": "sir-11-33",
+          "kind": "verse",
+          "chapter": 11,
+          "verse": 33
+        }
+      ]
     },
     {
       "number": 12,
@@ -3587,7 +3793,117 @@
         }
       ],
       "lastVerse": 18,
-      "isComplete": false
+      "isComplete": false,
+      "contentBlocks": [
+        {
+          "id": "sir-12-1",
+          "kind": "verse",
+          "chapter": 12,
+          "verse": 1
+        },
+        {
+          "id": "sir-11-34",
+          "kind": "verse",
+          "chapter": 11,
+          "verse": 34
+        },
+        {
+          "id": "sir-12-2",
+          "kind": "verse",
+          "chapter": 12,
+          "verse": 2
+        },
+        {
+          "id": "sir-12-3",
+          "kind": "verse",
+          "chapter": 12,
+          "verse": 3
+        },
+        {
+          "id": "sir-12-5",
+          "kind": "verse",
+          "chapter": 12,
+          "verse": 5
+        },
+        {
+          "id": "sir-12-6",
+          "kind": "verse",
+          "chapter": 12,
+          "verse": 6
+        },
+        {
+          "id": "sir-12-7",
+          "kind": "verse",
+          "chapter": 12,
+          "verse": 7
+        },
+        {
+          "id": "sir-12-8",
+          "kind": "verse",
+          "chapter": 12,
+          "verse": 8
+        },
+        {
+          "id": "sir-12-9",
+          "kind": "verse",
+          "chapter": 12,
+          "verse": 9
+        },
+        {
+          "id": "sir-12-10",
+          "kind": "verse",
+          "chapter": 12,
+          "verse": 10
+        },
+        {
+          "id": "sir-12-11",
+          "kind": "verse",
+          "chapter": 12,
+          "verse": 11
+        },
+        {
+          "id": "sir-12-12",
+          "kind": "verse",
+          "chapter": 12,
+          "verse": 12
+        },
+        {
+          "id": "sir-12-13",
+          "kind": "verse",
+          "chapter": 12,
+          "verse": 13
+        },
+        {
+          "id": "sir-12-14",
+          "kind": "verse",
+          "chapter": 12,
+          "verse": 14
+        },
+        {
+          "id": "sir-12-15",
+          "kind": "verse",
+          "chapter": 12,
+          "verse": 15
+        },
+        {
+          "id": "sir-12-16",
+          "kind": "verse",
+          "chapter": 12,
+          "verse": 16
+        },
+        {
+          "id": "sir-12-17",
+          "kind": "verse",
+          "chapter": 12,
+          "verse": 17
+        },
+        {
+          "id": "sir-12-18",
+          "kind": "verse",
+          "chapter": 12,
+          "verse": 18
+        }
+      ]
     },
     {
       "number": 13,
@@ -5378,7 +5694,205 @@
           "textSHA256": "89667abb82c14ad7c81c56086b91acd582d5f4959126acba21743144139a2e43"
         }
       ],
-      "lastVerse": 31
+      "lastVerse": 31,
+      "contentBlocks": [
+        {
+          "id": "sir-20-1",
+          "kind": "verse",
+          "chapter": 20,
+          "verse": 1
+        },
+        {
+          "id": "sir-20-2",
+          "kind": "verse",
+          "chapter": 20,
+          "verse": 2
+        },
+        {
+          "id": "sir-20-4",
+          "kind": "verse",
+          "chapter": 20,
+          "verse": 4
+        },
+        {
+          "id": "sir-20-5",
+          "kind": "verse",
+          "chapter": 20,
+          "verse": 5
+        },
+        {
+          "id": "sir-20-6",
+          "kind": "verse",
+          "chapter": 20,
+          "verse": 6
+        },
+        {
+          "id": "sir-20-7",
+          "kind": "verse",
+          "chapter": 20,
+          "verse": 7
+        },
+        {
+          "id": "sir-20-8",
+          "kind": "verse",
+          "chapter": 20,
+          "verse": 8
+        },
+        {
+          "id": "sir-20-9",
+          "kind": "verse",
+          "chapter": 20,
+          "verse": 9
+        },
+        {
+          "id": "sir-20-10",
+          "kind": "verse",
+          "chapter": 20,
+          "verse": 10
+        },
+        {
+          "id": "sir-20-11",
+          "kind": "verse",
+          "chapter": 20,
+          "verse": 11
+        },
+        {
+          "id": "sir-20-12",
+          "kind": "verse",
+          "chapter": 20,
+          "verse": 12
+        },
+        {
+          "id": "sir-20-13",
+          "kind": "verse",
+          "chapter": 20,
+          "verse": 13
+        },
+        {
+          "id": "sir-20-13-second",
+          "kind": "witness",
+          "text": "חָכָם בִּמְעַט דָּבָר נַפְשׁוֹ וְטוֹבַת כְּסִילִים יִשְׁפּוֹךְ חָכְמָה׃",
+          "sourcePages": [
+            480
+          ],
+          "textSHA256": "497da5a956c6720d893d75b9ade5a3b073aed9c9176e83249c2f088548c13aee",
+          "printedLabel": "יג",
+          "addresses": [
+            {
+              "chapter": 20,
+              "verse": 13
+            }
+          ]
+        },
+        {
+          "id": "sir-20-14",
+          "kind": "verse",
+          "chapter": 20,
+          "verse": 14
+        },
+        {
+          "id": "sir-20-15",
+          "kind": "verse",
+          "chapter": 20,
+          "verse": 15
+        },
+        {
+          "id": "sir-20-16",
+          "kind": "verse",
+          "chapter": 20,
+          "verse": 16
+        },
+        {
+          "id": "sir-20-17",
+          "kind": "verse",
+          "chapter": 20,
+          "verse": 17
+        },
+        {
+          "id": "sir-20-18",
+          "kind": "verse",
+          "chapter": 20,
+          "verse": 18
+        },
+        {
+          "id": "sir-20-19",
+          "kind": "verse",
+          "chapter": 20,
+          "verse": 19
+        },
+        {
+          "id": "sir-20-20",
+          "kind": "verse",
+          "chapter": 20,
+          "verse": 20
+        },
+        {
+          "id": "sir-20-21",
+          "kind": "verse",
+          "chapter": 20,
+          "verse": 21
+        },
+        {
+          "id": "sir-20-22",
+          "kind": "verse",
+          "chapter": 20,
+          "verse": 22
+        },
+        {
+          "id": "sir-20-23",
+          "kind": "verse",
+          "chapter": 20,
+          "verse": 23
+        },
+        {
+          "id": "sir-20-24",
+          "kind": "verse",
+          "chapter": 20,
+          "verse": 24
+        },
+        {
+          "id": "sir-20-25",
+          "kind": "verse",
+          "chapter": 20,
+          "verse": 25
+        },
+        {
+          "id": "sir-20-26",
+          "kind": "verse",
+          "chapter": 20,
+          "verse": 26
+        },
+        {
+          "id": "sir-20-27",
+          "kind": "verse",
+          "chapter": 20,
+          "verse": 27
+        },
+        {
+          "id": "sir-20-28",
+          "kind": "verse",
+          "chapter": 20,
+          "verse": 28
+        },
+        {
+          "id": "sir-20-29",
+          "kind": "verse",
+          "chapter": 20,
+          "verse": 29
+        },
+        {
+          "id": "sir-20-30",
+          "kind": "verse",
+          "chapter": 20,
+          "verse": 30
+        },
+        {
+          "id": "sir-20-31",
+          "kind": "verse",
+          "chapter": 20,
+          "verse": 31
+        }
+      ]
     },
     {
       "number": 21,
@@ -8012,7 +8526,220 @@
         }
       ],
       "isComplete": false,
-      "lastVerse": 31
+      "lastVerse": 31,
+      "contentBlocks": [
+        {
+          "id": "sir-31-1",
+          "kind": "verse",
+          "chapter": 31,
+          "verse": 1
+        },
+        {
+          "id": "sir-31-2",
+          "kind": "verse",
+          "chapter": 31,
+          "verse": 2
+        },
+        {
+          "id": "sir-31-3",
+          "kind": "verse",
+          "chapter": 31,
+          "verse": 3
+        },
+        {
+          "id": "sir-31-4",
+          "kind": "verse",
+          "chapter": 31,
+          "verse": 4
+        },
+        {
+          "id": "sir-31-5",
+          "kind": "verse",
+          "chapter": 31,
+          "verse": 5
+        },
+        {
+          "id": "sir-31-6",
+          "kind": "verse",
+          "chapter": 31,
+          "verse": 6
+        },
+        {
+          "id": "sir-31-7",
+          "kind": "verse",
+          "chapter": 31,
+          "verse": 7
+        },
+        {
+          "id": "sir-31-8",
+          "kind": "verse",
+          "chapter": 31,
+          "verse": 8
+        },
+        {
+          "id": "sir-31-9",
+          "kind": "verse",
+          "chapter": 31,
+          "verse": 9
+        },
+        {
+          "id": "sir-31-10",
+          "kind": "verse",
+          "chapter": 31,
+          "verse": 10
+        },
+        {
+          "id": "sir-31-11",
+          "kind": "verse",
+          "chapter": 31,
+          "verse": 11
+        },
+        {
+          "id": "sir-31-heading",
+          "kind": "heading",
+          "text": "מוּסַר לֶחֶם וְיַיִן יַחְדָּו׃",
+          "sourcePages": [
+            494
+          ],
+          "textSHA256": "951fdfeaf5dbcd81ad57907aeb26c3deeddd30c014306712f92ffc7bb5af297d"
+        },
+        {
+          "id": "sir-31-12",
+          "kind": "verse",
+          "chapter": 31,
+          "verse": 12
+        },
+        {
+          "id": "sir-31-13",
+          "kind": "verse",
+          "chapter": 31,
+          "verse": 13
+        },
+        {
+          "id": "sir-31-14",
+          "kind": "verse",
+          "chapter": 31,
+          "verse": 14
+        },
+        {
+          "id": "sir-31-15",
+          "kind": "verse",
+          "chapter": 31,
+          "verse": 15
+        },
+        {
+          "id": "sir-31-16",
+          "kind": "verse",
+          "chapter": 31,
+          "verse": 16
+        },
+        {
+          "id": "sir-31-17",
+          "kind": "verse",
+          "chapter": 31,
+          "verse": 17
+        },
+        {
+          "id": "sir-31-18",
+          "kind": "verse",
+          "chapter": 31,
+          "verse": 18
+        },
+        {
+          "id": "sir-31-19",
+          "kind": "verse",
+          "chapter": 31,
+          "verse": 19
+        },
+        {
+          "id": "sir-31-20",
+          "kind": "verse",
+          "chapter": 31,
+          "verse": 20
+        },
+        {
+          "id": "sir-31-22",
+          "kind": "verse",
+          "chapter": 31,
+          "verse": 22
+        },
+        {
+          "id": "sir-31-21",
+          "kind": "verse",
+          "chapter": 31,
+          "verse": 21
+        },
+        {
+          "id": "sir-31-22-second",
+          "kind": "witness",
+          "text": "שְׁמַע בְּנִי וְאַל־תָּבוּז לִי וּבְאַחֲרִית תַּשִּׂיג אֲמָרָי׃ שְׁמַע בְּנִי וְקַח מוּסָרִי וְאַל־תַּלְעִיג עָלַי וּבְאַחֲרִית תִּמְצָא דְּבָרָי׃",
+          "sourcePages": [
+            495
+          ],
+          "textSHA256": "d7a2335486d26b37812da88f7fa392d8bce11b00e70ca82c7283ed2bef0f145a",
+          "printedLabel": "כב",
+          "addresses": [
+            {
+              "chapter": 31,
+              "verse": 22
+            }
+          ]
+        },
+        {
+          "id": "sir-31-23",
+          "kind": "verse",
+          "chapter": 31,
+          "verse": 23
+        },
+        {
+          "id": "sir-31-24",
+          "kind": "verse",
+          "chapter": 31,
+          "verse": 24
+        },
+        {
+          "id": "sir-31-25",
+          "kind": "verse",
+          "chapter": 31,
+          "verse": 25
+        },
+        {
+          "id": "sir-31-26",
+          "kind": "verse",
+          "chapter": 31,
+          "verse": 26
+        },
+        {
+          "id": "sir-31-27",
+          "kind": "verse",
+          "chapter": 31,
+          "verse": 27
+        },
+        {
+          "id": "sir-31-28",
+          "kind": "verse",
+          "chapter": 31,
+          "verse": 28
+        },
+        {
+          "id": "sir-31-29",
+          "kind": "verse",
+          "chapter": 31,
+          "verse": 29
+        },
+        {
+          "id": "sir-31-30",
+          "kind": "verse",
+          "chapter": 31,
+          "verse": 30
+        },
+        {
+          "id": "sir-31-31",
+          "kind": "verse",
+          "chapter": 31,
+          "verse": 31
+        }
+      ]
     },
     {
       "number": 32,
@@ -8887,7 +9614,144 @@
           "textSHA256": "903f193becd873b3220549ee8d473f9c7dc1e42cbf0c1dafac431fd2bc9418f6"
         }
       ],
-      "number": 35
+      "number": 35,
+      "contentBlocks": [
+        {
+          "id": "sir-35-2",
+          "kind": "verse",
+          "chapter": 35,
+          "verse": 2
+        },
+        {
+          "id": "sir-35-3",
+          "kind": "verse",
+          "chapter": 35,
+          "verse": 3
+        },
+        {
+          "id": "sir-35-5",
+          "kind": "verse",
+          "chapter": 35,
+          "verse": 5
+        },
+        {
+          "id": "sir-35-6",
+          "kind": "verse",
+          "chapter": 35,
+          "verse": 6
+        },
+        {
+          "id": "sir-35-8",
+          "kind": "verse",
+          "chapter": 35,
+          "verse": 8
+        },
+        {
+          "id": "sir-35-9",
+          "kind": "verse",
+          "chapter": 35,
+          "verse": 9
+        },
+        {
+          "id": "sir-35-10",
+          "kind": "verse",
+          "chapter": 35,
+          "verse": 10
+        },
+        {
+          "id": "sir-35-11",
+          "kind": "verse",
+          "chapter": 35,
+          "verse": 11
+        },
+        {
+          "id": "sir-35-12",
+          "kind": "verse",
+          "chapter": 35,
+          "verse": 12
+        },
+        {
+          "id": "sir-35-13",
+          "kind": "verse",
+          "chapter": 35,
+          "verse": 13
+        },
+        {
+          "id": "sir-35-14",
+          "kind": "verse",
+          "chapter": 35,
+          "verse": 14
+        },
+        {
+          "id": "sir-35-16",
+          "kind": "verse",
+          "chapter": 35,
+          "verse": 16
+        },
+        {
+          "id": "sir-35-17",
+          "kind": "verse",
+          "chapter": 35,
+          "verse": 17
+        },
+        {
+          "id": "sir-35-18",
+          "kind": "verse",
+          "chapter": 35,
+          "verse": 18
+        },
+        {
+          "id": "sir-35-20",
+          "kind": "verse",
+          "chapter": 35,
+          "verse": 20
+        },
+        {
+          "id": "sir-35-21",
+          "kind": "verse",
+          "chapter": 35,
+          "verse": 21
+        },
+        {
+          "id": "sir-35-22",
+          "kind": "verse",
+          "chapter": 35,
+          "verse": 22
+        },
+        {
+          "id": "sir-35-23",
+          "kind": "verse",
+          "chapter": 35,
+          "verse": 23
+        },
+        {
+          "id": "sir-35-24",
+          "kind": "verse",
+          "chapter": 35,
+          "verse": 24
+        },
+        {
+          "id": "sir-35-25",
+          "kind": "verse",
+          "chapter": 35,
+          "verse": 25
+        },
+        {
+          "id": "sir-35-26",
+          "kind": "verse",
+          "chapter": 35,
+          "verse": 26
+        },
+        {
+          "id": "sir-35-unnumbered-lacuna",
+          "kind": "passage",
+          "text": "[— —] [— — —]׃",
+          "sourcePages": [
+            502
+          ],
+          "textSHA256": "5a2ebe4218ee2053522a7e14f4c9213c11c73848c4160fa6dd212be98d47db6a"
+        }
+      ]
     },
     {
       "isComplete": false,
@@ -9125,11 +9989,11 @@
         },
         {
           "verse": 3,
-          "text": "הוֹי רַ[ע שָׁאָמַר מַדּוּעַ כֵּן נוֹצָרְתִּי לְמַלֵּא פְּנֵי תֵבֵל תַּרְמִית׃",
+          "text": "הוֹי [ר]ע שָׁאָמַר מַדּוּעַ כֵּן נוֹצָרְתִּי לְמַלֵּא פְּנֵי תֵבֵל תַּרְמִית׃",
           "sourcePages": [
             504
           ],
-          "textSHA256": "45ddcd1652534d386ba358afa12b8dd809e1318aff1fa969b6d1a7a26b7364c4"
+          "textSHA256": "0a7262988fd3a669f3e6f819ae999a6b11f1ce1026a1b19360393f7177674960"
         },
         {
           "verse": 4,
@@ -9157,11 +10021,11 @@
         },
         {
           "verse": 7,
-          "text": "כָּל־יוֹעֵץ נִפוּף יָד אַךְ יֵשׁ יוֹעֵץ דֶּרֶךְ אֶל־רָע׃",
+          "text": "כָּל־יוֹעֵץ נִיוּף יָד אַךְ יֵשׁ יוֹעֵץ דֶּרֶךְ אֶל־רָע׃",
           "sourcePages": [
             504
           ],
-          "textSHA256": "5f968d901a7a236b9eff692532ba66bce3b207aafdbbcd8b2a2bb3e9811c57e8"
+          "textSHA256": "4a1c7105b0f25a6741a30c400b4647e9ceab7c1be1f0ed9c09fdeac5fa80e9b9"
         },
         {
           "verse": 8,
@@ -9173,11 +10037,11 @@
         },
         {
           "verse": 9,
-          "text": "[וְיֹאמַר] לָךְ מוּ[טָב] דַּרְכֶּךָ וְ[קָם מִנֶּגֶד] לְהַבִּיט רֹאשֶׁךָ׃",
+          "text": "[וְיֹאמַר] לָךְ מֵ[טוֹב] דַּרְכֶּךָ וְ[קָם מִנֶּגֶד] לְהַבִּיט רֹאשֶׁךָ׃",
           "sourcePages": [
             504
           ],
-          "textSHA256": "2b2fc5bffa5acc814aea40427f4e2955e504420fc037b42b7983b5efaf73b313"
+          "textSHA256": "9fa91e73d41a39004553dc07e62720fb643b4491e2c00b5e63fee963afc66918"
         },
         {
           "verse": 10,
@@ -9189,12 +10053,12 @@
         },
         {
           "verse": 11,
-          "text": "עִם־אִשָּׁה עַל־צָרָתָהּ וּמִצַּר אֶל־מִלְחַמְתּוֹ׃ עִם־סוֹחֵר אַל־תָּתֻר וּמִמִּקְנֶה עַל־מִמְכָּר׃ עִם־אִישׁ רַע אֶל־תִּגְמַל חָסֶד וְאַכְזָרִי עַל־טוּב בָּשָׂר׃ פּוֹעֵל שָׁוְא עַל־מְלַאכְתּוֹ שׁוֹמֵר שָׁוְא עַל־מוֹצִיא רָע׃",
+          "text": "עִם־אִשָּׁה עַל־צָרָתָהּ וּמִצַּר אֶל־מִלְחַמְתּוֹ׃ עִם־סוֹחֵר אַל־תִּתְגָר וּמִמִּקְנֶה עַל־מִמְכָּר׃ עִם־אִישׁ רַע אֶל־תִּגְמַל חָסֶד וְאַכְזָרִי עַל־טוּב בָּשָׂר׃ פּוֹעֵל שָׁוְא עַל־מְלַאכְתּוֹ שׁוֹמֵר שָׁוְא עַל־מוֹצִיא רָע׃",
           "sourcePages": [
             504,
             505
           ],
-          "textSHA256": "ffdfb8c2f935e42a1c595e2c26762c962033dd497a566c430628a694bedf6207"
+          "textSHA256": "f6e6654679a4a2cc06d4dc8811a85aa1409541ad6d056908bd321884fa8bc182"
         },
         {
           "verse": 12,
@@ -9214,11 +10078,11 @@
         },
         {
           "verse": 14,
-          "text": "לֵב אֱנוֹשׁ יַגִּיד שְׁעוּיוֹתָיו מִשִּׁבְעָה צוֹפִים עַל־מִצְפֶּה׃",
+          "text": "לֵב אֱנוֹשׁ יַגִּיד שְׁעֻיוֹתָיו מִשִּׁבְעָה צוֹפִים עַל־מִצְפֶּה׃",
           "sourcePages": [
             505
           ],
-          "textSHA256": "eafbffdab7277d8323fa064993a2678701220ab9310e6f7a18d815c83478cbe6"
+          "textSHA256": "616c66ee65b1a14da9d55afe74ea221572e0fe6cdf83c0ec1eda917709fa1c2c"
         },
         {
           "verse": 15,
@@ -10279,6 +11143,144 @@
           ],
           "textSHA256": "c21722049a99085931bde864a1f60b4c36e80ed8adfb7c1bd5b1552c011fe1a5"
         }
+      ],
+      "contentBlocks": [
+        {
+          "id": "sir-41-1",
+          "kind": "verse",
+          "chapter": 41,
+          "verse": 1
+        },
+        {
+          "id": "sir-41-2",
+          "kind": "verse",
+          "chapter": 41,
+          "verse": 2
+        },
+        {
+          "id": "sir-41-3",
+          "kind": "verse",
+          "chapter": 41,
+          "verse": 3
+        },
+        {
+          "id": "sir-41-4",
+          "kind": "verse",
+          "chapter": 41,
+          "verse": 4
+        },
+        {
+          "id": "sir-41-5",
+          "kind": "verse",
+          "chapter": 41,
+          "verse": 5
+        },
+        {
+          "id": "sir-41-6",
+          "kind": "verse",
+          "chapter": 41,
+          "verse": 6
+        },
+        {
+          "id": "sir-41-7",
+          "kind": "verse",
+          "chapter": 41,
+          "verse": 7
+        },
+        {
+          "id": "sir-41-8",
+          "kind": "verse",
+          "chapter": 41,
+          "verse": 8
+        },
+        {
+          "id": "sir-41-9",
+          "kind": "verse",
+          "chapter": 41,
+          "verse": 9
+        },
+        {
+          "id": "sir-41-10",
+          "kind": "verse",
+          "chapter": 41,
+          "verse": 10
+        },
+        {
+          "id": "sir-41-11",
+          "kind": "verse",
+          "chapter": 41,
+          "verse": 11
+        },
+        {
+          "id": "sir-41-12",
+          "kind": "verse",
+          "chapter": 41,
+          "verse": 12
+        },
+        {
+          "id": "sir-41-13",
+          "kind": "verse",
+          "chapter": 41,
+          "verse": 13
+        },
+        {
+          "id": "sir-41-14",
+          "kind": "verse",
+          "chapter": 41,
+          "verse": 14,
+          "printedLabel": "ידב"
+        },
+        {
+          "id": "sir-41-15",
+          "kind": "verse",
+          "chapter": 41,
+          "verse": 15
+        },
+        {
+          "id": "sir-41-heading",
+          "kind": "heading",
+          "text": "מוּסַר בֹּשֶׁת",
+          "sourcePages": [
+            514
+          ],
+          "textSHA256": "7e389f41a99a9ab4b36071916e7d0990c7f4b2064b2270bf89699cd41be29472"
+        },
+        {
+          "id": "sir-41-14a-16",
+          "kind": "witness",
+          "text": "מוּסַר בֹּשֶׁת שִׁמְעוּ בָנִים וְהִכָּלְמוּ עַל־מִשְׁפָּטִי׃ לֹא כָל־בֹּשֶׁת נָאָה לִשְׁמֹר וְלֹא כָל־הִכָּלֵם נִבְחָר׃",
+          "sourcePages": [
+            514
+          ],
+          "textSHA256": "6aaae67b04172afcdf47c8ec8aaa26f9b6c7f1b8d0eb64532e3437e96fe1e1f9",
+          "printedLabel": "ידא–טז",
+          "addresses": [
+            {
+              "chapter": 41,
+              "verse": 14,
+              "endVerse": 16,
+              "part": "א"
+            }
+          ]
+        },
+        {
+          "id": "sir-41-17",
+          "kind": "verse",
+          "chapter": 41,
+          "verse": 17
+        },
+        {
+          "id": "sir-41-18",
+          "kind": "verse",
+          "chapter": 41,
+          "verse": 18
+        },
+        {
+          "id": "sir-41-21",
+          "kind": "verse",
+          "chapter": 41,
+          "verse": 21
+        }
       ]
     },
     {
@@ -10906,6 +11908,149 @@
             520
           ],
           "textSHA256": "2ce06096b0e932f6bb9b2fbd1cc399c1db996d5d0f4f0943027306038be7c86a"
+        }
+      ],
+      "contentBlocks": [
+        {
+          "id": "sir-44-heading",
+          "kind": "heading",
+          "text": "שֶׁבַח אֲבוֹת עוֹלָם׃",
+          "sourcePages": [
+            519
+          ],
+          "textSHA256": "630aff65ab333c591e9b7312d73df431f381018c9a086abc9556a3fc986a358c"
+        },
+        {
+          "id": "sir-44-1",
+          "kind": "verse",
+          "chapter": 44,
+          "verse": 1
+        },
+        {
+          "id": "sir-44-2",
+          "kind": "verse",
+          "chapter": 44,
+          "verse": 2
+        },
+        {
+          "id": "sir-44-3",
+          "kind": "verse",
+          "chapter": 44,
+          "verse": 3
+        },
+        {
+          "id": "sir-44-4",
+          "kind": "verse",
+          "chapter": 44,
+          "verse": 4
+        },
+        {
+          "id": "sir-44-5",
+          "kind": "verse",
+          "chapter": 44,
+          "verse": 5
+        },
+        {
+          "id": "sir-44-6",
+          "kind": "verse",
+          "chapter": 44,
+          "verse": 6
+        },
+        {
+          "id": "sir-44-7",
+          "kind": "verse",
+          "chapter": 44,
+          "verse": 7
+        },
+        {
+          "id": "sir-44-8",
+          "kind": "verse",
+          "chapter": 44,
+          "verse": 8
+        },
+        {
+          "id": "sir-44-9",
+          "kind": "verse",
+          "chapter": 44,
+          "verse": 9
+        },
+        {
+          "id": "sir-44-10",
+          "kind": "verse",
+          "chapter": 44,
+          "verse": 10
+        },
+        {
+          "id": "sir-44-11",
+          "kind": "verse",
+          "chapter": 44,
+          "verse": 11
+        },
+        {
+          "id": "sir-44-13",
+          "kind": "verse",
+          "chapter": 44,
+          "verse": 13
+        },
+        {
+          "id": "sir-44-14",
+          "kind": "verse",
+          "chapter": 44,
+          "verse": 14
+        },
+        {
+          "id": "sir-44-15",
+          "kind": "verse",
+          "chapter": 44,
+          "verse": 15
+        },
+        {
+          "id": "sir-44-16",
+          "kind": "verse",
+          "chapter": 44,
+          "verse": 16
+        },
+        {
+          "id": "sir-44-17",
+          "kind": "verse",
+          "chapter": 44,
+          "verse": 17
+        },
+        {
+          "id": "sir-44-18",
+          "kind": "verse",
+          "chapter": 44,
+          "verse": 18
+        },
+        {
+          "id": "sir-44-19",
+          "kind": "verse",
+          "chapter": 44,
+          "verse": 19
+        },
+        {
+          "id": "sir-44-20",
+          "kind": "verse",
+          "chapter": 44,
+          "verse": 20
+        },
+        {
+          "id": "sir-44-21",
+          "kind": "verse",
+          "chapter": 44,
+          "verse": 21
+        },
+        {
+          "id": "sir-44-22",
+          "kind": "verse",
+          "chapter": 44,
+          "verse": 22
+        },
+        {
+          "id": "sir-44-23",
+          "kind": "verse",
+          "chapter": 44,
+          "verse": 23
         }
       ]
     },
@@ -12273,7 +13418,267 @@
           ],
           "textSHA256": "02ec4b0c59691a126d506037d704fb83712bc82ac036396143224072ad1b3f13"
         }
+      ],
+      "contentBlocks": [
+        {
+          "id": "sir-51-1",
+          "kind": "verse",
+          "chapter": 51,
+          "verse": 1
+        },
+        {
+          "id": "sir-51-2",
+          "kind": "verse",
+          "chapter": 51,
+          "verse": 2
+        },
+        {
+          "id": "sir-51-3",
+          "kind": "verse",
+          "chapter": 51,
+          "verse": 3
+        },
+        {
+          "id": "sir-51-4",
+          "kind": "verse",
+          "chapter": 51,
+          "verse": 4
+        },
+        {
+          "id": "sir-51-5",
+          "kind": "verse",
+          "chapter": 51,
+          "verse": 5
+        },
+        {
+          "id": "sir-51-6",
+          "kind": "verse",
+          "chapter": 51,
+          "verse": 6
+        },
+        {
+          "id": "sir-51-7",
+          "kind": "verse",
+          "chapter": 51,
+          "verse": 7
+        },
+        {
+          "id": "sir-51-8",
+          "kind": "verse",
+          "chapter": 51,
+          "verse": 8
+        },
+        {
+          "id": "sir-51-9",
+          "kind": "verse",
+          "chapter": 51,
+          "verse": 9
+        },
+        {
+          "id": "sir-51-10",
+          "kind": "verse",
+          "chapter": 51,
+          "verse": 10
+        },
+        {
+          "id": "sir-51-11",
+          "kind": "verse",
+          "chapter": 51,
+          "verse": 11
+        },
+        {
+          "id": "sir-51-12",
+          "kind": "verse",
+          "chapter": 51,
+          "verse": 12
+        },
+        {
+          "id": "sir-51-thanksgiving",
+          "kind": "passage",
+          "text": "הוֹדוּ לַייָ כִּי טוֹב כִּי לְעוֹלָם חַסְדּוֹ׃\nהוֹדוּ לָאֵל הַתִּשְׁבָּחוֹת כִּי לְעוֹלָם חַסְדּוֹ׃\nהוֹדוּ לְשׁוֹמֵר יִשְׂרָאֵל כִּי לְעוֹלָם חַסְדּוֹ׃\nהוֹדוּ לְיוֹצֵר הַכֹּל כִּי לְעוֹלָם חַסְדּוֹ׃\nהוֹדוּ לְגוֹאֵל יִשְׂרָאֵל כִּי לְעוֹלָם חַסְדּוֹ׃\nהוֹדוּ לִמְקַבֵּץ נִדְחֵי יִשְׂרָאֵל כִּי לְעוֹלָם חַסְדּוֹ׃\nהוֹדוּ לְבוֹנֵה עִירוֹ וּמִקְדָּשׁוֹ כִּי לְעוֹלָם חַסְדּוֹ׃\nהוֹדוּ לְמַצְמִיחַ קֶרֶן לְבֵית דָּוִד כִּי לְעוֹלָם חַסְדּוֹ׃\nהוֹדוּ לְבוֹחֵר בִּבְנֵי צָדוֹק לְכַהֵן כִּי לְעוֹלָם חַסְדּוֹ׃\nהוֹדוּ לְמָגֵן אַבְרָהָם כִּי לְעוֹלָם חַסְדּוֹ׃\nהוֹדוּ לְצוּר יִצְחָק כִּי לְעוֹלָם חַסְדּוֹ׃\nהוֹדוּ לַאֲבִיר יַעֲקֹב כִּי לְעוֹלָם חַסְדּוֹ׃\nהוֹדוּ לְבוֹחֵר בְּצִיּוֹן כִּי לְעוֹלָם חַסְדּוֹ׃\nהוֹדוּ לְמֶלֶךְ מַלְכֵי הַמְּלָכִים כִּי לְעוֹלָם חַסְדּוֹ׃\nוַיָּרֶם קֶרֶן לְעַמּוֹ תְּהִלָּה לְכָל־חֲסִידָיו׃\nלִבְנֵי יִשְׂרָאֵל עַם קְרוֹבוֹ הַלְלוּיָהּ׃",
+          "sourcePages": [
+            529,
+            530
+          ],
+          "textSHA256": "106e6b3f72ba5e5afaca0b5ab49a6b793832773411d5d8af8a9e94e38c1e0f5e"
+        },
+        {
+          "id": "sir-51-13",
+          "kind": "verse",
+          "chapter": 51,
+          "verse": 13
+        },
+        {
+          "id": "sir-51-15",
+          "kind": "verse",
+          "chapter": 51,
+          "verse": 15
+        },
+        {
+          "id": "sir-51-13-second",
+          "kind": "witness",
+          "text": "וָאֶתְפַּלֵּל תְּפִלָּה בִּנְעוּרוֹתִי [— — —]׃",
+          "sourcePages": [
+            530
+          ],
+          "textSHA256": "e9d86f5caf9586d84c3ad5a42accca5e2029253f0a3866ebc234a7851800af93",
+          "printedLabel": "יג",
+          "addresses": [
+            {
+              "chapter": 51,
+              "verse": 13
+            }
+          ]
+        },
+        {
+          "id": "sir-51-16",
+          "kind": "verse",
+          "chapter": 51,
+          "verse": 16
+        },
+        {
+          "id": "sir-51-17",
+          "kind": "verse",
+          "chapter": 51,
+          "verse": 17
+        },
+        {
+          "id": "sir-51-18",
+          "kind": "verse",
+          "chapter": 51,
+          "verse": 18
+        },
+        {
+          "id": "sir-51-19",
+          "kind": "verse",
+          "chapter": 51,
+          "verse": 19
+        },
+        {
+          "id": "sir-51-20",
+          "kind": "verse",
+          "chapter": 51,
+          "verse": 20
+        },
+        {
+          "id": "sir-51-19-second",
+          "kind": "witness",
+          "text": "יָדִי פָתְחָה שְׁעָרֶיהָ וְלָהּ אָחֹז וְאַבִּיט בָּ[הּ]׃",
+          "sourcePages": [
+            530
+          ],
+          "textSHA256": "6ec5b7dbade93a2e03a88a2529cce3ba99b6392266abf01b6211fdb798ac6517",
+          "printedLabel": "יט",
+          "addresses": [
+            {
+              "chapter": 51,
+              "verse": 19
+            }
+          ]
+        },
+        {
+          "id": "sir-51-20-second",
+          "kind": "witness",
+          "text": "[— — —] וּבְטָהֳרָה מְצָאתִיהָ׃ [וְ]לֵב קָנִיתִי לָהּ מִתְּחִלָּתָהּ בַּעֲבוּר כֵּן [לֹא אֶעֶזְבֶנָּה]׃",
+          "sourcePages": [
+            530
+          ],
+          "textSHA256": "ec428e8a3ee4ae684d17b39279af9409a1401e33f1c30023e4f91023c0f14961",
+          "printedLabel": "כ",
+          "addresses": [
+            {
+              "chapter": 51,
+              "verse": 20
+            }
+          ]
+        },
+        {
+          "id": "sir-51-21",
+          "kind": "verse",
+          "chapter": 51,
+          "verse": 21
+        },
+        {
+          "id": "sir-51-22",
+          "kind": "verse",
+          "chapter": 51,
+          "verse": 22
+        },
+        {
+          "id": "sir-51-23",
+          "kind": "verse",
+          "chapter": 51,
+          "verse": 23
+        },
+        {
+          "id": "sir-51-24",
+          "kind": "verse",
+          "chapter": 51,
+          "verse": 24
+        },
+        {
+          "id": "sir-51-25",
+          "kind": "verse",
+          "chapter": 51,
+          "verse": 25
+        },
+        {
+          "id": "sir-51-26",
+          "kind": "verse",
+          "chapter": 51,
+          "verse": 26
+        },
+        {
+          "id": "sir-51-27",
+          "kind": "verse",
+          "chapter": 51,
+          "verse": 27
+        },
+        {
+          "id": "sir-51-28",
+          "kind": "verse",
+          "chapter": 51,
+          "verse": 28
+        },
+        {
+          "id": "sir-51-29",
+          "kind": "verse",
+          "chapter": 51,
+          "verse": 29
+        },
+        {
+          "id": "sir-51-30",
+          "kind": "verse",
+          "chapter": 51,
+          "verse": 30
+        },
+        {
+          "id": "sir-51-closing-blessing",
+          "kind": "passage",
+          "text": "בָּרוּךְ יְיָ לְעוֹלָם וּמְשֻׁבָּח שְׁמוֹ לְדוֹר וָדוֹר׃",
+          "sourcePages": [
+            530
+          ],
+          "textSHA256": "2c5cdd02039e577c5bdbf541f37024ae1207e9a985fdde1c16df1e186c83223e"
+        },
+        {
+          "id": "sir-closing-colophons",
+          "kind": "colophon",
+          "text": "עַד־הֵנָּה דִּבְרֵי שִׁמְעוֹן בֶּן־יֵשׁוּעַ שֶׁנִּקְרָא בֶּן־סִירָא׃\nחָכְמַת שִׁמְעוֹן בֶּן־יֵשׁוּעַ בֶּן־אֶלְעָזָר בֶּן־סִירָא׃\nיְהִי שֵׁם יְיָ מְבֹרָךְ מֵעַתָּה וְעַד־עוֹלָם׃",
+          "sourcePages": [
+            530
+          ],
+          "textSHA256": "39ef8462c575726463e78472a0d2719bb94f5babfd057ba9af80777781552442"
+        }
       ]
+    }
+  ],
+  "addressRoutes": [
+    {
+      "chapter": 11,
+      "verse": 34,
+      "displayChapter": 12,
+      "blockId": "sir-11-34"
     }
   ]
 }

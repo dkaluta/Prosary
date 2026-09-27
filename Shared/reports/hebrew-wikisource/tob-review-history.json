@@ -5,7 +5,7 @@
   "clearerScanSHA256": "b72eaf5d2d858fabb7c3438ac0436ccd64c394a7dd2fad609efabe628d5534c7",
   "transcriptionProgress": {
     "draftSourceUnits": 50,
-    "approvedPages": 7
+    "approvedPages": 9
   },
   "sourcePairs": [
     {
@@ -430,6 +430,46 @@
       "new": "בַעֲבוּרָהּ",
       "basis": "Clearer scan crop expanded to include initial bet; its bowl is empty. Remove unsupported dagesh, retaining printed patah and following marks. This is the short-recension occurrence, independently inspected.",
       "evidence": "TOB-short-2-14-because-wide.png"
+    },
+    {
+      "reference": "TOB3:10",
+      "old": "בְּיָגוֹן",
+      "new": "בְיָגוֹן",
+      "basis": "Initial bet bowl is clearly empty; retain sheva and omit unsupported draft dagesh.",
+      "evidence": "TOB-short-3-10-sorrow.png"
+    },
+    {
+      "reference": "TOB3:15",
+      "old": "זֶּה־לִּי",
+      "new": "זֶּה־לִי",
+      "basis": "Local lamed has no detached interior dot; hiriq clear. Independent Windows reader confirms absence.",
+      "evidence": "TOB-short-3-15-this.png"
+    },
+    {
+      "reference": "TOB3:15",
+      "old": "פְנֵה",
+      "new": "פְּנֵה",
+      "basis": "Pe has detached interior dagesh and clear sheva. Independent Windows reader confirms both marks.",
+      "evidence": "TOB-short-3-15-turn.png"
+    },
+    {
+      "reference": "TOB3:6",
+      "retained": "מֵחַיַּי",
+      "basis": "Medial yod has distinct detached dagesh; Windows independently identifies isolated dark mark separated by white from head/right stem. Other visible local marks retained.",
+      "evidence": "TOB-short-3-6-my-life.png"
+    },
+    {
+      "reference": "TOB3:10",
+      "old": "תִּהְיֶה־לּוֹ",
+      "new": "תִּהְיֶה־לוֹ",
+      "basis": "Local lamed interior clean, unlike holam separately printed over neighboring vav; remove unsupported draft dagesh.",
+      "evidence": "TOB-short-3-10-to-him2.png"
+    },
+    {
+      "reference": "TOB3:16–17",
+      "retained": "וַיִּשָּׁלַח",
+      "basis": "Earlier word-scale view appeared fused at initial vav. Windows saw possible white separation; tighter native-source crop confirms the white gap between stem and flat patah bar. Original scan remains merged. Supersedes uncertainty about this mark, with no grammatical restoration.",
+      "evidence": "TOB-short-3-16-vav-tight.png"
     }
   ],
   "cropEvidence": [
@@ -828,6 +868,70 @@
     {
       "path": "/private/tmp/prosary-tob-review/TOB-short-3-5-doing.png",
       "sha256": "215b71a62165238b70f85e082befa565355f4a279146d3b73a29fc4deff25b60"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-3-6-reproaches.png",
+      "sha256": "4073fbec7f6273c88198c4b40ddefc597d9f7fb36e6e9f15ab4e06eac105c127"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-3-6-my-life.png",
+      "sha256": "8679fe71796b37bb2cc77747cf8d5721bd28754f3df558c81c91870d3e52894d"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-3-8-women-point2.png",
+      "sha256": "45d2ba985972985d23aca5281f6546a0f536de2e39bca338f2efac4a07c55370"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-3-10-sorrow.png",
+      "sha256": "c51c1e3efe4b751c032be3eeb63fe667ef372fcafd57bc9ed1df8dcaf0d984ce"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-3-15-this.png",
+      "sha256": "d6e91bfc3f994d71af7c601bd82991fc211d644048106c88c37ad7f826750db8"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-3-15-turn.png",
+      "sha256": "afeee036df754f22ce3e79c88ef6a7abba719d2d3e1045e87b6ee83646ac7158"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-3-11-bless.png",
+      "sha256": "9e6dcda222d5132a5e4e3af43c67fa35258542ab607dbb36cfc55e46c36c0201"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-3-15-land.png",
+      "sha256": "9f7feb38ef88e24742d8975a5b8762cda5f6eac64c198023f904228f37e55531"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-3-15-already.png",
+      "sha256": "9e202b67459ff28d9702840a299114c20fe58c5d17377137d9a36b446f8a7786"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-3-15-why.png",
+      "sha256": "e95332bd398e8a450d0c7aa8390cb3f02fe506e39b5fb29443e53fa2086adbaa"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-3-11-honored2.png",
+      "sha256": "9bd49298a1e3a23a2426a9447e65df10ffda07c2ee21ee0fb2efa982dfb9c768"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-3-10-to-him2.png",
+      "sha256": "fbd124d3126744225afbb8fea35992b4aef247911dfc3d623402349e1c2d2d90"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-3-16-sent.png",
+      "sha256": "54c214eff9d526ec973fd76bc3c30a9196e6332986596cd471830b87d1cc4e73"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-3-16-sent-original.png",
+      "sha256": "c8edc8d00a1e73ec5e7ede3e295e11a225db28458db100e7c04ea7fee24b70cf"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-3-16-vav-tight.png",
+      "sha256": "e15d44607be41821556c9b417e3c6d6bd3d695502c966293a2cf4fdca004dca1"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-3-10-daughter.png",
+      "sha256": "ffeeb6e6ef55bb728165c352bc004eb7561d5f9180e5cb5263a069bc6ff03529"
     }
   ],
   "chapter1ConsonantComparison": {
@@ -892,6 +996,20 @@
       "alternatePage": 166,
       "side": "right",
       "scope": "Every word, consonant, printed mark, punctuation and boundary of the upper short recension, closing2:14 and chapter3:1 through opening3:6. Local bet occurrences examined separately; bracket in3:4 retained.",
+      "acceptedSourceNoteIds": []
+    },
+    {
+      "sourcePage": 319,
+      "alternatePage": 166,
+      "side": "left",
+      "scope": "Every word, consonant, printed mark, punctuation and boundary of the upper short recension, crossing3:6 through opening3:10. Exact pe/yod/bet marks verified in tight source crops; yod independently confirmed.",
+      "acceptedSourceNoteIds": []
+    },
+    {
+      "sourcePage": 320,
+      "alternatePage": 167,
+      "side": "right",
+      "scope": "Every word, consonant, printed mark, punctuation and boundary of the upper short recension, crossing3:10 through first word וישלח of3:16–17 after sof pasuq. Individual disputed marks compared in tighter source crops; initial-vav patah resolved.",
       "acceptedSourceNoteIds": []
     }
   ],

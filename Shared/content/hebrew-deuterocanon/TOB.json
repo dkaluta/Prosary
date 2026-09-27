@@ -58,12 +58,13 @@
       315,
       316,
       317,
-      318
+      318,
+      319,
+      320
     ],
     "unresolvedFindings": [
       "Only chapters1–3 drafted; chapters4–14 of the short recension remain untranscribed.",
-      "Pages318–321 remain in independent consonant and point review;321 also contains undrafted chapter4; pages312–317 have been completely compared, with two isolated unreadable vowels disclosed on312 and316.",
-      "Chapter3 first draft requires independent consonant, exact printed-point, punctuation and boundary comparisons.15source units across318–321; none of these new pages approved."
+      "Page321 remains in exact printed-point/full-page review and also contains undrafted chapter4. Pages312–320 have been completely compared, with two isolated unreadable vowels disclosed on312 and316."
     ],
     "notes": [
       "Selected complete short recension after the introductionB294 explicitly identifies two manuscript gaps in the long recension. Decision and independent full label inventory saved in Shared/reports/hebrew-wikisource/TOB-recension-decision.json and TOB-print-inventory.json.",
@@ -82,7 +83,9 @@
       "Full upper-recension page317 compared from crossing2:7–8 through crossing2:14. Same-font ayin adjudication and its exact patah are settled; no additional source note needed. Both separate צִפֳּרִים occurrences and both בְּעֵינַי occurrences inspected locally; restore visibly printed first bet dagesh. Chapter2 closing lines on318 will be recorded with that page’s complete chapter3 comparison.",
       "Chapter3 upper short-recension first draft saved with combined12–13 and16–17; source spelling, brackets, incomplete sentence at labels3/8 and surprising source כבוד רפאל retained rather than emended. Two sources matched independently by their entire upper/lower layout and text.",
       "Chapter3 consonant cross-check completed on33 manually inspected upper-recension lines. Initial345draft/346OCR words yielded19candidate differences. Direct source review confirmed ten scoped corrections (including omitted גם־היא); rejected OCR extra yod, bracket/margin artefacts and gimel/nun confusion. No new page approved by this check.",
-      "Entire upper short-recension page318 compared, including crossing2:14 and chapter3 opening1–6. Initial bet in בעבורה has a clean empty bowl: removed unsupported draft dagesh. Locally checked different bet instances in3:4 בתוכם (no dagesh) and3:5 בעשותך (clear dagesh), retaining each printed occurrence independently. No new accepted source notes on this page."
+      "Entire upper short-recension page318 compared, including crossing2:14 and chapter3 opening1–6. Initial bet in בעבורה has a clean empty bowl: removed unsupported draft dagesh. Locally checked different bet instances in3:4 בתוכם (no dagesh) and3:5 בעשותך (clear dagesh), retaining each printed occurrence independently. No new accepted source notes on this page.",
+      "Full upper-recension page319 compared from crossing3:6 through opening3:10. Fine crops confirm source pe dagesh and maqaf in3:6 חרפות־שוא, yod dagesh in3:6 מחיי (independent Windows second eye), and bet dagesh in3:8 בנשים. Preserve incomplete sentence at3:8 and all actual boundaries. No source note needed on this page. Three separately inspected page320 draft marks are corrected, without claiming that page finished.",
+      "Full upper-recension page320 compared from crossing3:10 through first word of3:16–17 following the sof pasuq. Every word, source bracket, point and boundary checked. Remove unsupported lamed dagesh in3:10 לוֹ. Prior three local corrections retained. The initially queried vav vowel in וישלח is resolved by a tighter clearer-scan crop: a white gap separates the flat patah bar from the vav stem. Windows second eye supports that mark; original scan alone remains merged. Preserve all readable marks and require no additional source note."
     ],
     "acceptedSourceNoteIds": [
       "tob-1-1-gimel-vowel",
@@ -496,12 +499,12 @@
         },
         {
           "verse": 10,
-          "text": "כַּאֲשֶׁר שָׁמְעָה זֹאת הִתְעַצְּבָה מְאֹד עַד לְהֵחָנֵק וַתֹּאמֶר הֵן בַּת יְחִידָה אָנֹכִי לְאָבִי וְאִם אֶעֱשֶׂה זֹאת תִּהְיֶה־לּוֹ לְחֶרְפָּה וְהוֹרַדְתִּי אֶת־שֵׂיבָתוֹ בְּיָגוֹן שְׁאוֹלָה׃",
+          "text": "כַּאֲשֶׁר שָׁמְעָה זֹאת הִתְעַצְּבָה מְאֹד עַד לְהֵחָנֵק וַתֹּאמֶר הֵן בַּת יְחִידָה אָנֹכִי לְאָבִי וְאִם אֶעֱשֶׂה זֹאת תִּהְיֶה־לוֹ לְחֶרְפָּה וְהוֹרַדְתִּי אֶת־שֵׂיבָתוֹ בְיָגוֹן שְׁאוֹלָה׃",
           "sourcePages": [
             319,
             320
           ],
-          "textSHA256": "618b9b423e27cd2f1265ab173ac21e5cfa611f03e6e5fa1397a1bcd57aa6a65b"
+          "textSHA256": "ab18259e6380e13583f1a45f632192c7153d0e4b7e6d237c7b7367246dca61f8"
         },
         {
           "verse": 11,
@@ -530,11 +533,11 @@
         },
         {
           "verse": 15,
-          "text": "וְלֹא חִלַּלְתִּי אֶת־שְׁמִי וְאֶת־שֵׁם אָבִי בְּאֶרֶץ גָּלוּתִי יְחִידָה אֲנִי לְאָבִי וְאֵין־לוֹ יֶלֶד אֲשֶׁר יִירַשׁ אוֹתוֹ אַף־אֵין־לוֹ אָח קָרוֹב אוֹ בֶן־אָחִיו אֲשֶׁר אֶשְׁמֹר אֶת־נַפְשִׁי לוֹ לְאִשָּׁה כְּבָר אָבְדוּ־לִי שִׁבְעָה וְלָמָּה זֶּה־לִּי חַיִּים וְאִם־לֹא טוֹב לְךָ לַהֲמִיתֵנִי הוֹאִילָה־נָא פְנֵה אֵלַי וְרַחֲמֵנִי אֲשֶׁר לֹא אֶשְׁמַע־עוֹד חֶרְפָּה׃",
+          "text": "וְלֹא חִלַּלְתִּי אֶת־שְׁמִי וְאֶת־שֵׁם אָבִי בְּאֶרֶץ גָּלוּתִי יְחִידָה אֲנִי לְאָבִי וְאֵין־לוֹ יֶלֶד אֲשֶׁר יִירַשׁ אוֹתוֹ אַף־אֵין־לוֹ אָח קָרוֹב אוֹ בֶן־אָחִיו אֲשֶׁר אֶשְׁמֹר אֶת־נַפְשִׁי לוֹ לְאִשָּׁה כְּבָר אָבְדוּ־לִי שִׁבְעָה וְלָמָּה זֶּה־לִי חַיִּים וְאִם־לֹא טוֹב לְךָ לַהֲמִיתֵנִי הוֹאִילָה־נָא פְּנֵה אֵלַי וְרַחֲמֵנִי אֲשֶׁר לֹא אֶשְׁמַע־עוֹד חֶרְפָּה׃",
           "sourcePages": [
             320
           ],
-          "textSHA256": "771dbddd8add829b0147314ff3009c5920e6480e97804fc69424592df468efba"
+          "textSHA256": "e1423ec8992fedbfde1067472bab6f32174f4ceb9164fba570adb069f932fb68"
         },
         {
           "verse": 16,

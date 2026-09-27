@@ -17,6 +17,7 @@ from pathlib import Path
 from urllib.parse import urlsplit
 
 from scripture_source_notes import validate_source_notes
+from bible_source_structure import ABSENT, validate_structure
 
 ROOT = Path(__file__).resolve().parents[2]
 CONTENT = ROOT / "Shared/content"
@@ -97,6 +98,7 @@ def validate_book(book: dict, catalog: dict, approval: dict | None = None) -> di
         require(isinstance(verses, list) and bool(verses), f"{code} {number}: no text units")
         labels, ranges = set(), []
         for row in verses:
+            require("printedLabel" not in row, f"{code} {number}: printed labels belong on presentation references")
             first, last = row.get("verse"), row.get("endVerse", row.get("verse"))
             require(positive(first) and positive(last) and first <= last <= 1000,
                     f"{code} {number}: invalid verse range")
@@ -116,7 +118,11 @@ def validate_book(book: dict, catalog: dict, approval: dict | None = None) -> di
             units += 1
         label_inventory.append({"number": number, "units": ranges})
     require(numbers == sorted(numbers), f"{code}: chapter order is not ascending")
-    require(len(set(source_note_ids)) == len(source_note_ids), f"{code}: duplicate source-note ID in book")
+    structure = validate_structure(chapters, routes=book.get("addressRoutes", ABSENT),
+                                   authoring=True, page_count=total, allow_empty_pages=not complete,
+                                   label=code)
+    used_pages |= structure["sourcePages"]
+    source_note_ids = structure["sourceNoteIds"]
     declared = set()
     if "textPages" in scan:
         declared = page_list(scan["textPages"], total, f"{code} text inventory")
@@ -129,6 +135,10 @@ def validate_book(book: dict, catalog: dict, approval: dict | None = None) -> di
         expected_pages = page_list(approval.get("textPages"), total, f"{code} approved inventory")
         require(approval.get("scanSHA256") == scan["sha256"], f"{code}: inventory uses another scan")
         require(approval.get("chapters") == label_inventory, f"{code}: missing, added or reordered source units")
+        require(approval.get("contentBlocks", []) == structure["contentBlocks"],
+                f"{code}: source block review inventory mismatch")
+        require(approval.get("addressRoutes", []) == structure["addressRoutes"],
+                f"{code}: source route review inventory mismatch")
         require(used_pages == expected_pages == reviewed == declared,
                 f"{code}: not every source page is represented and reviewed")
         require(nonempty(approval.get("method")), f"{code}: missing inventory review method")
