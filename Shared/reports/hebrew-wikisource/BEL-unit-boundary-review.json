@@ -1,0 +1,75 @@
+{
+  "schemaVersion": 1,
+  "book": "BEL",
+  "sourcePage": 247,
+  "scanSHA256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+  "status": "37–40 source starts independently resolved; whole-book pointing review still open",
+  "method": "Root and a second reader separately inspected only the lower Theodotion text, its Hebrew margin labels and sof-pasuq punctuation. A label can share a physical line with the end of the preceding unit; a newline is not a verse boundary.",
+  "openings": [
+    {
+      "verse": 37,
+      "opening": "ויקרא חבקוק ויאמר",
+      "placement": "After ממעל לבור׃ on the row carrying37; the call continues through האלהים׃ on the next physical row."
+    },
+    {
+      "verse": 38,
+      "opening": "ויאמר דניאל זכר זכרתני",
+      "placement": "Begins with ויאמר at the end of the row carrying38; continues through את־אהביך׃."
+    },
+    {
+      "verse": 39,
+      "opening": "ויקם דניאל",
+      "placement": "Begins near the end of the row carrying39; includes ויאכל ומלאך האלהים and the return through למקומו׃."
+    },
+    {
+      "verse": 40,
+      "opening": "והמלך הלך ביום השביעי",
+      "placement": "Begins with והמלך at the end of the row carrying40; ends with דניאל יושב׃ before41."
+    }
+  ],
+  "contextSpellingNotice": "Unpointed opening/placement excerpts identify boundaries, not a separately approved literal word transcription. Canonical words and points remain unchanged by this operation.",
+  "before": [
+    {
+      "verse": 37,
+      "text": "ויִקְרָא חֲבַקּוּק ויֹאמֶר"
+    },
+    {
+      "verse": 38,
+      "text": "דָּנִיֵּאל דָּנִיֵּאל קַח־נָא אֶת־הַמַּאֲכָל אֲשֶׁר שָׁלַח לְךָ הָאֱלֹהִים׃"
+    },
+    {
+      "verse": 39,
+      "text": "ויֹאמֶר דָּנִיֵּאל זָכַר זְכַרְתַּנִי אֱלֹהִים וְלֹא תַעֲזֹב אֶת־אוֹהֲבֶיךָ׃ ויָקָם דָּנִיֵּאל ויֹאכַל"
+    },
+    {
+      "verse": 40,
+      "text": "וּמַלְאַךְ הָאֱלֹהִים הֵשִׁיב אֶת־חֲבַקּוּק כְּרֶגַע לִמְקוֹמוֹ׃ וְהַמֶּלֶךְ הָלַךְ בַּיּוֹם הַשְּׁבִיעִי לִסְפֹּד לְדָנִיֵּאל ויָבֹא אֶל־הַבּוֹר ויַרְא וְהִנֵּה דָּנִיֵּאל יוֹשֵׁב׃"
+    }
+  ],
+  "after": [
+    {
+      "verse": 37,
+      "text": "ויִקְרָא חֲבַקּוּק ויֹאמֶר דָּנִיֵּאל דָּנִיֵּאל קַח־נָא אֶת־הַמַּאֲכָל אֲשֶׁר שָׁלַח לְךָ הָאֱלֹהִים׃",
+      "textSHA256": "0411baedcc8fe672b5d3dbf3c899353b920ee402a16650a73000b77897edd905"
+    },
+    {
+      "verse": 38,
+      "text": "ויֹאמֶר דָּנִיֵּאל זָכַר זְכַרְתַּנִי אֱלֹהִים וְלֹא תַעֲזֹב אֶת־אוֹהֲבֶיךָ׃",
+      "textSHA256": "4c55a81da55b645b31603821cfc1a6509a379db9a8c7cc39acd564d77aa7d9e3"
+    },
+    {
+      "verse": 39,
+      "text": "ויָקָם דָּנִיֵּאל ויֹאכַל וּמַלְאַךְ הָאֱלֹהִים הֵשִׁיב אֶת־חֲבַקּוּק כְּרֶגַע לִמְקוֹמוֹ׃",
+      "textSHA256": "bb10ef630720fe1808c34a94815598c7b2a514b6ae72d5305153b08cd30b0abb"
+    },
+    {
+      "verse": 40,
+      "text": "וְהַמֶּלֶךְ הָלַךְ בַּיּוֹם הַשְּׁבִיעִי לִסְפֹּד לְדָנִיֵּאל ויָבֹא אֶל־הַבּוֹר ויַרְא וְהִנֵּה דָּנִיֵּאל יוֹשֵׁב׃",
+      "textSHA256": "a4d5858c3fa985d3935c8229ab941b4ba7d8e1d34ccdcd4fb3b8f343bf0bee82"
+    }
+  ],
+  "continuousTextSHA256": "e78a389cacf5bc057f16532a26a4b6a382c474db50a1bac6e5b5b81c4ab7f4f9",
+  "continuousTextUnchanged": true,
+  "supersedes": "Provisional unit starts37–40 in BEL-first-page-draft.json. The independent printed-label inventory is unchanged; it did not previously approve these exact within-line starts.",
+  "remainingBlocker": "Full comparison of every point on246–247, final source-note review and whole-book closure."
+}

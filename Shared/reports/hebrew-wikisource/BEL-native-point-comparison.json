@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "book": "BEL",
+  "sourceVolume": "A2",
+  "scanSHA256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+  "method": "Extract the original one-bit raster embedded in the PDF, map known PDF line coordinates to its native pixels, then enlarge each tight crop fivefold with nearest-neighbor interpolation. No smoothing, OCR, inferred pixels or new model training.",
+  "scope": "Three representative narrative-prefix queries only; this does not claim a new full-page or corpus-wide review.",
+  "result": "In each isolated native-pixel crop the initial vav stem and lower mass remain physically connected. No separate vowel class is established. Existing exact source notes are retained; no canonical text changes.",
+  "samples": [
+    {
+      "page": 243,
+      "line": 1,
+      "crop": "243-vayehi-vav-native.png",
+      "cropSHA256": "fee28fdfc8e9073f0be28c1988d45ff6ce1aa7abfd8daa1aedd02c0b6ca2125c",
+      "sourceImageSize": [
+        2633,
+        3499
+      ],
+      "nativePixelBounds": [
+        1743,
+        1219,
+        1785,
+        1330
+      ],
+      "nearestScale": 5
+    },
+    {
+      "page": 243,
+      "line": 6,
+      "crop": "243-vayomer6-vav-native.png",
+      "cropSHA256": "d0e73c8bc3fa934d6f72b8b0323643902de9ff39cf11927d7ed33b5f8f4fbb58",
+      "sourceImageSize": [
+        2633,
+        3499
+      ],
+      "nativePixelBounds": [
+        2004,
+        1691,
+        2055,
+        1799
+      ],
+      "nearestScale": 5
+    },
+    {
+      "page": 244,
+      "line": 1,
+      "crop": "244-vayikra-vav-native.png",
+      "cropSHA256": "d3550f9530a22fbf836b55a4f30cb20e08e0d47c5623e07b0d35b9ef32c77f37",
+      "sourceImageSize": [
+        2543,
+        3529
+      ],
+      "nativePixelBounds": [
+        2036,
+        1833,
+        2092,
+        1942
+      ],
+      "nearestScale": 5
+    }
+  ]
+}
