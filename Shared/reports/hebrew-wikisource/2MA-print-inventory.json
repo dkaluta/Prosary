@@ -3855,7 +3855,7 @@
           "continuesFromPreviousPage": false
         }
       ],
-      "observedNote": "New7:10 opens אחרי־כן. Printed combined יג–יד and טו–טז.7:24 ends דבר־.",
+      "observedNote": "New7:10 opens אחרי־כן. Printed combined יג–יד and טו–טז.7:24 ends תדבר.",
       "image": "/private/tmp/prosary-2ma/page202.png",
       "imageSHA256": "612e3f7fc11e6111a2f329891aa84a06bedef41ee358225ee258f92261ea2a27"
     },
@@ -9700,6 +9700,11 @@
         "page": 194,
         "before": "4:30 continues opening עד מלך;31 begins ועל־כן.4:42 ends main page המקדש.",
         "after": "4:30 continues opening על־היותם;31 begins ועל־כן.4:42 ends main page המקדש."
+      },
+      {
+        "page": 202,
+        "before": "New7:10 opens אחרי־כן. Printed combined יג–יד and טו–טז.7:24 ends דבר־.",
+        "after": "New7:10 opens אחרי־כן. Printed combined יג–יד and טו–טז.7:24 ends תדבר."
       }
     ],
     "evidence": [
@@ -9722,6 +9727,10 @@
       {
         "file": "/private/tmp/prosary-2ma/ch4-proof-194-1.png",
         "sha256": "08637fc1800bd68a74bf21003548454d2a7c163241ce82fad58d4f572fbfa3c7"
+      },
+      {
+        "file": "/private/tmp/prosary-2ma/page202.png",
+        "sha256": "612e3f7fc11e6111a2f329891aa84a06bedef41ee358225ee258f92261ea2a27"
       }
     ]
   }

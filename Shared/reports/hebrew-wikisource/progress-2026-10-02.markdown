@@ -1,0 +1,48 @@
+# Hebrew Scripture and release progress — 2 October 2026
+
+Nine of the twelve Hebrew source works are complete and reviewed. Wisdom and both Maccabees books remain in progress. The supplement is still excluded from production, as requested: all twelve works must be complete before release.
+
+The count treats the Esther additions and the three Daniel additions as separate source works. Nine of twelve is a count of completed works, not an estimate that 75% of the effort is finished.
+
+## Completed source work
+
+| Work | Status |
+| --- | --- |
+| Tobit | Complete; all 14 chapters reviewed |
+| Judith | Complete; all 16 chapters reviewed |
+| Sirach | Complete; all 51 chapters and required source material reviewed |
+| Baruch | Complete; all 5 chapters reviewed |
+| Letter of Jeremiah | Complete; Frenkel text with the public-domain Brenton mapping |
+| Additions to Esther | Complete; source blocks and boundaries reviewed |
+| Prayer of Azariah / Song of the Three | Complete |
+| Susanna | Complete |
+| Bel and the Dragon | Complete |
+
+## Remaining source work
+
+| Work | Saved draft | Finished comparison | Remaining work |
+| --- | --- | --- | --- |
+| Wisdom | Chapters 1–13 of 19; printed vowel points retained where readable | Chapters 1–5 and 7–12 have completed separate author and independent comparisons. Chapter 6 is compared except for the faded opening word of 6:2. | Independently review chapter 13; transcribe and review chapters 14–19; resolve the faded consonants in 6:2. |
+| 1 Maccabees | A full text scaffold exists, with pointed print comparison through 12:9 | Chapters 1–11 and 12:1–9; 63 source pages reviewed | Complete the pointed transcription and comparison from 12:10 through chapter 16. The unreviewed scaffold is not finished text. |
+| 2 Maccabees | Chapters 1–8 of 15 | Chapters 1–5 reconciled; chapters 6–8 have separate author proofs | Independently review chapters 6–8; transcribe and review chapters 9–15. |
+
+Wisdom and 2 Maccabees still require substantial transcription. First Maccabees has a full scaffold, but its remaining letters, points, and boundaries still need the same detailed source comparison as the earlier chapters.
+
+## Progress since the preceding pushed checkpoint
+
+- Wisdom 10–12 completed independent review and reconciliation; chapters 11–13 gained saved drafts and complete author comparisons.
+- First Maccabees advanced from source page B154 through B159, completing chapter 11 and the opening of chapter 12.
+- Second Maccabees 4–5 completed reconciliation; chapters 6–8 advanced through author proofreading.
+- Corrections preserve the printing's actual spelling, point placement, brackets, combined verse labels, and text crossing page boundaries.
+
+Unreadable isolated vowel marks receive exact source notes. The notes identify the affected letter; readable neighboring marks remain. The approved restoration of ל in Wisdom 1:16 remains explicitly disclosed. No new consonant reconstruction has been approved for Wisdom 6:2.
+
+## Validation and release
+
+The preceding pushed checkpoint, `c6534bb24bc95f5c93369b91ab9994b2360c976d`, passed both [CI](https://github.com/dkaluta/Prosary/actions/runs/36991265783) and [Terminal CI](https://github.com/dkaluta/Prosary/actions/runs/36991265821). Those results were checked again for this report.
+
+All 20 source-validation tests pass for the current checkpoint, and the corpus validator confirms nine complete works, three drafts, and zero production imports. These checks cover source identities, verse hashes, inventories, exact note anchors, and completion requirements. Automated validation complements the full visual comparisons; it does not replace proofreading the print.
+
+No merge into `main` or release has been made for this work. After the remaining books are complete, the outstanding release steps are to generate and synchronize the production assets, run the relevant platform and integration checks, merge and push the finished work, and verify the authorized release delivery. Store acceptance and public availability must be reported separately from a successful build or upload.
+
+This is a dated snapshot. The canonical status and detailed comparison evidence are in `Shared/content/hebrew-deuterocanon/` and the adjacent per-chapter and per-page reports.
