@@ -60,7 +60,12 @@ def validate_book(book: dict, catalog: dict, approval: dict | None = None) -> di
     require(len(works) == 1, f"{code}: missing unique contributor record")
     work = works[0]
     require(book.get("translator") == work["translatorCredit"], f"{code}: wrong translator credit")
-    require(book.get("collectionEditor") == catalog["collectionEditor"], f"{code}: wrong editor credit")
+    # A replacement edition can have its own editor, or explicitly no collection
+    # editor. Absence of the work override alone inherits the catalog's credit.
+    editor = work.get("collectionEditor", catalog["collectionEditor"])
+    require(editor is None or nonempty(editor), f"{code}: invalid source editor credit")
+    require("collectionEditor" in book and book["collectionEditor"] == editor,
+            f"{code}: wrong editor credit")
     for key in ("title", "attribution", "sourceURL"):
         require(nonempty(book.get(key)), f"{code}: missing {key}")
     url = urlsplit(book["sourceURL"])

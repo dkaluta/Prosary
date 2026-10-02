@@ -37,7 +37,16 @@ requires `review.status` to be `complete` and every verse's pages and text hash 
 }
 ```
 
-`sourcePages` are one-based PDF pages, not printed Hebrew page labels. Preserve source
+The selected work's contributor record controls its translator and reference scan.
+`collectionEditor` normally inherits the catalog's collection editor. A work may instead
+declare its own nonempty editor credit, or explicitly set `collectionEditor: null` when
+the selected edition has no collection-editor credit. The canonical book must include
+the same field and exact value; omitting it does not silently erase or inherit a credit.
+Replacing a source still requires its own catalogued scan, exact translator credit,
+page evidence and independent completion approval. The changed metadata invalidates
+the previous approved content digest; an old edition's review cannot approve a replacement.
+
+`sourcePages` are one-based pages of the pinned PDF or DjVu scan, not printed Hebrew page labels. Preserve source
 spelling, niqqud, punctuation and translator-supplied brackets; do not insert commentary,
 headers, footnote markers or conjectured repairs. A verse continuing onto the next page
 records both pages. Text hashes cover the exact UTF-8 text alone. A missing or uncertain
@@ -82,6 +91,18 @@ Book IDs: `TOB`, `JDT`, `WIS`, `SIR`, `BAR`, `1MA`, `2MA`; additions are separat
 numbering and document it. Do not overwrite Masoretic Daniel or silently assign Vulgate
 chapter labels. Daily-reading crosswalks will be reviewed separately against these units.
 
+For **Letter of Jeremiah only**, the user selected Frenkel's *Ketuvim Aharonim*
+(Warsaw, 1863) in place of Hartom, and explicitly selected Brenton's Greek-English
+Septuagint as the authority for verse boundaries. The reader therefore uses Brenton's
+73 verses, including the epistolary opening as verse 1. Frenkel's 79 original sections
+remain in the source crosswalk; resegmentation must preserve every Hebrew word in order.
+Brenton supplies boundaries, not replacement Hebrew wording, spelling or vowel points.
+The modernized Wikisource text is only a working reference: the pointed print on scan
+pages 113–116 controls the transcription. In particular, the print has the correct
+section label לה where the web transcription duplicates לח. The former Hartom approval
+has been withdrawn and cannot approve Frenkel. See the `LJE-brenton-boundary-source.json`
+and `LJE-frenkel-*` evidence under `Shared/reports/hebrew-wikisource/`.
+
 Tobit uses the explicitly identified **short Greek recension** printed in the upper
 part of Hiller's parallel translation. Independent inventory found all 14 chapters,
 228 printed units and 35 text pages without missing labels. The introduction explicitly
@@ -96,6 +117,7 @@ recensions' numbering is not interchangeable.
 - A1: 343 pages, SHA-256 `d187d4a7844b1d59cd462c5d5130b04c5f5554dff390d27841be8cf03043597a`.
 - A2: 325 pages, SHA-256 `d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5`.
 - B: 530 pages, SHA-256 `656891d377d2e3d4a9216723d94205488423907bf01df424b9f0b9de1560051e`.
+- Frenkel 1863: 244 DjVu pages, SHA-256 `e67bcdad0d6d8e528f79bf8e5ed403c13c1cd220a19cc75038728a0572136345`; Letter of Jeremiah is on pages 113–116.
 
 The reference scans remain in local research storage, rather than being copied into each
 native app. Completed text imports and source evidence are canonical shared data.
@@ -141,12 +163,15 @@ not certify the misprint as an ordinary printed 40–41 label.
 
 The completed source reviews are Judith (16 chapters, 332 source units, all
 23 text pages), Baruch (five chapters, 123 source units, all seven text pages),
-Letter of Jeremiah (66 units, all ten pages, one disclosed unreadable vowel), and
+Frenkel's Letter of Jeremiah (73 Brenton verses preserving 79 source sections,
+all four text pages, one disclosed unreadable dagesh),
+the Prayer of Azariah and Song of the Three (69 units plus the unnumbered closing
+narrative, all four pages, 65 disclosed unreadable points), and
 Susanna (59 units, all six pages, 25 disclosed isolated unreadable points and an
 explicit printed-label disposition).
 Their exact content is pinned in `hebrew-deuterocanon-review.json` against separately
-recorded source inventories. The other eight selected works remain unfinished; these
-four completed books do not open the production gate by themselves. Completion here
+recorded source inventories. The other seven selected works remain unfinished; these
+five completed books do not open the production gate by themselves. Completion here
 means the chosen Hebrew edition has been transcribed and checked, not that its
 numbering has already been reconciled with every daily-reading citation.
 

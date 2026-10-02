@@ -1,0 +1,161 @@
+{
+  "schemaVersion": 1,
+  "book": "LJE",
+  "translation": "Isaac Seckel Frenkel, Ketuvim Aharonim, Warsaw 1863",
+  "reviewDate": "2026-10-02",
+  "reviewScope": "Every body word and printed vowel on native scan pages 113–114, independently compared with first transcription; source ordinals 1–38 complete across the two pages plus the opening of 39. Root owns final 73-unit Brenton boundary mapping.",
+  "status": "independent-page-proofread-with-one-disclosed-unreadable-dagesh",
+  "sourceURL": "https://upload.wikimedia.org/wikipedia/commons/d/db/Ketuvim_Aharonim_Fraenkel_%28Warsaw_1863%29.djvu",
+  "scanSHA256": "e67bcdad0d6d8e528f79bf8e5ed403c13c1cd220a19cc75038728a0572136345",
+  "sourcePages": [
+    113,
+    114
+  ],
+  "nativeImages": [
+    {
+      "scanPage": 113,
+      "sha256": "40abc25706922bee67efc82201b7694d796163641fe4161fcc63b1eefdf3a122"
+    },
+    {
+      "scanPage": 114,
+      "sha256": "fb291b5915202c92082301b2abcc652af13b06a2eddd4f45a4495aeca3a185d3"
+    }
+  ],
+  "inputDraftSHA256": "9b5c8e33c8fab9a74786996fec37f4d43cc8a3394be554d2167860772608a6c3",
+  "reviewedDraftSHA256": "36240cda412b7655c65148add4c3a4827135d5b1e139edc29ca3bb6c771bebb0",
+  "reviewedDraftPath": "/private/tmp/prosary-frenkel-20261002/reviewed-pages113-114.json",
+  "method": "Full-page body review in overlapping native-pixel panels, followed by fourfold nearest-neighbor crops for every draft query and additional doubtful point. No OCR wording, modernized Wikisource spelling, grammatical emendation, or Hartom division used.",
+  "changes": [
+    {
+      "sourceOrdinal": 1,
+      "before": "וַיַגֵּד",
+      "after": "וַיַּגֵּד",
+      "evidence": "Yod dagesh is a separate visible dot in the native crop. Both patahs and the gimmel dagesh/tsere remain readable.",
+      "crop": "/private/tmp/prosary-frenkel-20261002/review-query-1-vayaged.png"
+    },
+    {
+      "sourceOrdinal": 8,
+      "before": "פִסְלָם",
+      "after": "פְּסָלָם",
+      "evidence": "Native print has pe dagesh and sheva, followed by samekh qamats; lamed qamats unchanged.",
+      "crop": "/private/tmp/prosary-frenkel-20261002/review-query-8-pislam.png"
+    },
+    {
+      "sourceOrdinal": 9,
+      "before": "יַעְדֵם",
+      "after": "יַעֲדֵם",
+      "evidence": "Ayin has hataf-patah: a horizontal stroke beside two vertical dots. Dalet interior is clear with no dagesh.",
+      "crop": "/private/tmp/prosary-frenkel-20261002/review-query-9-yaadem.png"
+    },
+    {
+      "sourceOrdinal": 19,
+      "before": "הַסֹהַר",
+      "after": "הַסֹּהַר",
+      "evidence": "Samekh has a clear interior dagesh.",
+      "crop": "/private/tmp/prosary-frenkel-20261002/review-query-19-hasohar.png"
+    },
+    {
+      "sourceOrdinal": 25,
+      "before": "הֻסַר",
+      "after": "הֻסַּר",
+      "evidence": "Samekh has a clear interior dagesh; he qibbuts and samekh patah are legible.",
+      "crop": "/private/tmp/prosary-frenkel-20261002/review-query-25-husar.png"
+    },
+    {
+      "sourceOrdinal": 37,
+      "before": "וְיָחֵל",
+      "after": "וְיַחֵל",
+      "evidence": "Yod has a horizontal patah with no downward qamats stem; nearby qamats gives a within-line comparison.",
+      "crop": "/private/tmp/prosary-frenkel-20261002/review-expanded-37-veyachel.png"
+    }
+  ],
+  "resolvedQueries": [
+    {
+      "sourceOrdinal": 1,
+      "token": "יְיָ",
+      "finding": "First yod sheva and second yod qamats are separate readable marks; no change."
+    },
+    {
+      "sourceOrdinal": 11,
+      "token": "לְהִשָּׁמֵר",
+      "finding": "Shin interior dagesh, qamats, and final mem tsere confirmed."
+    },
+    {
+      "sourceOrdinal": 13,
+      "token": "יְיַסֵּר",
+      "finding": "First yod sheva, second yod patah, samekh dagesh/tsere confirmed."
+    },
+    {
+      "sourceOrdinal": 16,
+      "token": "יַעֲבֹד",
+      "finding": "Yod patah, ayin hataf-patah and bet holam confirmed in expanded native crop."
+    },
+    {
+      "sourceOrdinal": 23,
+      "token": "הַיַּנְשׁוּף",
+      "finding": "Yod has a readable interior dagesh and horizontal patah; preceding he patah and following nun sheva confirmed."
+    },
+    {
+      "sourceOrdinal": 25,
+      "token": "הֻצָּקוּ",
+      "finding": "He qibbuts and tsadi dagesh/qamats confirmed."
+    },
+    {
+      "sourceOrdinal": 34,
+      "token": "וְיֵילִילוּ",
+      "finding": "Initial vav sheva and first yod tsere confirmed. The second yod is unpointed; tsere dots sit leftward across the gap."
+    },
+    {
+      "sourceOrdinal": 36,
+      "token": "הֲסִירוֹ",
+      "finding": "He shows literal hataf-patah, not normalized to a predicted grammatical vowel."
+    }
+  ],
+  "unresolvedFindings": [
+    {
+      "sourceOrdinal": 33,
+      "scanPage": 114,
+      "word": "תַּנַחְנָה",
+      "mark": "dagesh",
+      "letterIndex": 2,
+      "finding": "The first nun interior has a dark spur merged with its stem. The native bilevel source does not distinguish a dagesh from the letter contour confidently. No dagesh is supplied; the clear patah and every other readable mark are retained.",
+      "crop": "/private/tmp/prosary-frenkel-20261002/review-query-33-tanahna.png",
+      "sourceNoteId": "frenkel-lje-f33-nun-dagesh",
+      "disposition": "disclosed omission of uncertain dagesh only"
+    }
+  ],
+  "sourceNotes": [
+    {
+      "id": "frenkel-lje-f33-nun-dagesh",
+      "kind": "unreadablePoint",
+      "anchor": "תַּנַחְנָה",
+      "occurrence": 1,
+      "letterIndex": 2,
+      "mark": "dagesh",
+      "sourcePages": [
+        114
+      ],
+      "sourceURL": "https://commons.wikimedia.org/wiki/File:Ketuvim_Aharonim_Fraenkel_(Warsaw_1863).djvu?page=114"
+    }
+  ],
+  "textualControls": [
+    "Frenkel consonants, historical spellings, and syntactic choices retained even where Wikisource or Brenton English differs.",
+    "The source reads the tenth generation; this is not changed to Brenton's seventh.",
+    "The source ordinals are provenance; Brenton target numbers are assigned only by the separate full crosswalk.",
+    "Printed section numbers, running headers, ornaments, and catchwords are outside the body.",
+    "The point-only source note retains the readable patah under the first nun in תנחנה."
+  ],
+  "validation": {
+    "pagePieceCount": 40,
+    "uniqueCompleteOrPartialSourceOrdinals": 39,
+    "correctedTokens": 6,
+    "sourceNoteCount": 1,
+    "sourceNotesPassExistingValidator": true,
+    "missingBodyWordsFound": 0,
+    "remainingWordBoundaryQuestions": 0
+  },
+  "limitations": [
+    "A native bilevel scan cannot recover ink detail it does not contain; the one fused nun interior is disclosed.",
+    "This report approves the compared page transcription with disclosure, not other books, UI, release builds, or final Brenton verse assignment."
+  ]
+}

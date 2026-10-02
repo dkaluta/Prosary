@@ -30,6 +30,13 @@
       "pageCount": 530,
       "sha256": "656891d377d2e3d4a9216723d94205488423907bf01df424b9f0b9de1560051e",
       "suppliedByUser": "2026-09-27"
+    },
+    {
+      "volume": "Frenkel1863",
+      "filename": "Ketuvim_Aharonim_Fraenkel_Warsaw_1863.djvu",
+      "pageCount": 244,
+      "sha256": "e67bcdad0d6d8e528f79bf8e5ed403c13c1cd220a19cc75038728a0572136345",
+      "sourceURL": "https://upload.wikimedia.org/wikipedia/commons/d/db/Ketuvim_Aharonim_Fraenkel_%28Warsaw_1863%29.djvu"
     }
   ],
   "works": [
@@ -98,7 +105,8 @@
         "אליהו ש' הרטום"
       ],
       "workURL": "https://he.wikisource.org/w/index.php?title=%D7%90%D7%92%D7%A8%D7%AA_%D7%99%D7%A8%D7%9E%D7%99%D7%94%D7%95_(%D7%94%D7%A8%D7%98%D7%95%D7%9D)&action=edit&redlink=1",
-      "scriptureBook": "LJE"
+      "selectionStatus": "withdrawn-for-LJE-at-user-request",
+      "selectionNote": "Historical contributor record retained; this translation is not selected for the Hebrew Bible supplement."
     },
     {
       "workTitle": "ספר ברוך",
@@ -279,6 +287,17 @@
       ],
       "workURL": "https://he.wikisource.org/w/index.php?title=%D7%93%D7%91%D7%A8%D7%99_%D7%A9%D7%9E%D7%A2%D7%95%D7%9F_%D7%91%D7%9F_%D7%A1%D7%99%D7%A8%D7%90&action=edit&redlink=1",
       "scriptureBook": "SIR"
+    },
+    {
+      "workTitle": "אגרת ירמיהו",
+      "translatorCredit": "יצחק זקיל פרנקל",
+      "collectionEditor": null,
+      "collectionTitle": "כתובים אחרונים",
+      "referenceVolume": "Frenkel1863",
+      "workURL": "https://he.wikisource.org/wiki/כתובים_אחרונים_(1863)/אגרת_ירמיהו",
+      "scriptureBook": "LJE",
+      "creditSourceURL": "https://he.wikisource.org/w/index.php?oldid=2889578",
+      "selectionNote": "Frenkel wording, with verse boundaries from the public-domain Brenton Greek-English Septuagint, as requested 2 October 2026. The pointed print is verified separately from the modernized web text."
     }
   ],
   "status": "Source discovery and contributor catalog only. No Scripture wording imported; this catalog does not certify textual completeness, numbering correspondence, liturgical approval, or redistribution rights."

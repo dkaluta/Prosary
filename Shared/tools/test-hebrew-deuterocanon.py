@@ -18,8 +18,8 @@ class HebrewReviewTests(unittest.TestCase):
         self.catalog = json.loads((CONTENT / "hebrew-kahana-source-catalog.json").read_text())
         scan = next(row for row in self.catalog["referenceScans"] if row["volume"] == "A2")
         self.book = {
-            "schemaVersion": 1, "book": "LJE", "title": "אגרת ירמיהו",
-            "translator": "אליהו ש' הרטום", "collectionEditor": "אברהם כהנא",
+            "schemaVersion": 1, "book": "BAR", "title": "ספר ברוך",
+            "translator": "אברהם כהנא", "collectionEditor": "אברהם כהנא",
             "attribution": "Synthetic validation fixture; not Scripture.",
             "sourceURL": "https://example.org/reference",
             "scan": {key: scan[key] for key in ("volume", "sha256", "pageCount")},
@@ -50,6 +50,68 @@ class HebrewReviewTests(unittest.TestCase):
         self.assertEqual(report["units"], 3)
         self.assertEqual([row["verse"] for row in self.book["chapters"][0]["verses"]], [1, 3, 2])
 
+    def test_work_editor_override_is_exact_and_requires_new_review(self):
+        work = next(row for row in self.catalog["works"] if row.get("scriptureBook") == "BAR")
+        work["collectionEditor"] = "Synthetic replacement editor"
+        with self.assertRaisesRegex(ValueError, "wrong editor credit"):
+            validate_book(self.book, self.catalog, self.approval)
+        self.book["collectionEditor"] = work["collectionEditor"]
+        with self.assertRaisesRegex(ValueError, "digest is stale"):
+            validate_book(self.book, self.catalog, self.approval)
+        self.repin()
+        self.assertEqual(validate_book(self.book, self.catalog, self.approval)["status"], "complete")
+
+    def test_no_collection_editor_is_explicit_and_source_specific(self):
+        self.book["collectionEditor"] = None
+        self.repin()
+        with self.assertRaisesRegex(ValueError, "wrong editor credit"):
+            validate_book(self.book, self.catalog, self.approval)
+        work = next(row for row in self.catalog["works"] if row.get("scriptureBook") == "BAR")
+        work["collectionEditor"] = None
+        self.assertEqual(validate_book(self.book, self.catalog, self.approval)["status"], "complete")
+        del self.book["collectionEditor"]
+        self.repin()
+        with self.assertRaisesRegex(ValueError, "wrong editor credit"):
+            validate_book(self.book, self.catalog, self.approval)
+
+    def test_editor_override_cannot_be_empty_or_an_invalid_type(self):
+        work = next(row for row in self.catalog["works"] if row.get("scriptureBook") == "BAR")
+        for invalid in ("", "  ", False, [], {}):
+            with self.subTest(editor=invalid):
+                work["collectionEditor"] = invalid
+                self.book["collectionEditor"] = invalid
+                self.repin()
+                with self.assertRaisesRegex(ValueError, "invalid source editor credit"):
+                    validate_book(self.book, self.catalog, self.approval)
+
+    def test_replacement_source_requires_its_translator_scan_and_new_inventory(self):
+        work = next(row for row in self.catalog["works"] if row.get("scriptureBook") == "BAR")
+        original_scan = copy.deepcopy(self.book["scan"])
+        work.update(translatorCredit="Synthetic replacement translator", collectionEditor=None,
+                    referenceVolume="synthetic-replacement")
+        scan = {"volume": "synthetic-replacement", "sha256": "1" * 64, "pageCount": 100}
+        self.catalog["referenceScans"].append(scan)
+        self.book["collectionEditor"] = None
+        with self.assertRaisesRegex(ValueError, "wrong translator credit"):
+            validate_book(self.book, self.catalog, self.approval)
+        self.book["translator"] = work["translatorCredit"]
+        with self.assertRaisesRegex(ValueError, "mismatched scan volume"):
+            validate_book(self.book, self.catalog, self.approval)
+        self.book["scan"] = dict(scan, textPages=[14])
+        with self.assertRaisesRegex(ValueError, "digest is stale"):
+            validate_book(self.book, self.catalog, self.approval)
+        self.repin()
+        with self.assertRaisesRegex(ValueError, "inventory uses another scan"):
+            validate_book(self.book, self.catalog, self.approval)
+        self.approval["scanSHA256"] = scan["sha256"]
+        self.assertEqual(validate_book(self.book, self.catalog, self.approval)["status"], "complete")
+        # Changing the approval as well cannot legitimize the unselected old scan.
+        self.book["scan"] = original_scan
+        self.approval["scanSHA256"] = original_scan["sha256"]
+        self.repin()
+        with self.assertRaisesRegex(ValueError, "mismatched scan volume"):
+            validate_book(self.book, self.catalog, self.approval)
+
     def test_recomputed_verse_hash_cannot_reuse_completed_review(self):
         row = self.book["chapters"][0]["verses"][0]
         row["text"] += " changed"
@@ -79,7 +141,7 @@ class HebrewReviewTests(unittest.TestCase):
 
     def test_wrong_translator_or_scan_and_overlap_are_rejected(self):
         for change, message in (
-            (lambda b: b.update(translator="אברהם כהנא"), "translator"),
+            (lambda b: b.update(translator="אליהו ש' הרטום"), "translator"),
             (lambda b: b["scan"].update(sha256="0" * 64), "scan"),
             (lambda b: b["chapters"][0]["verses"].append(self.row(4)), "overlapping"),
         ):
@@ -179,12 +241,12 @@ class HebrewReviewTests(unittest.TestCase):
     def test_whole_supplement_is_required_even_if_one_book_is_complete(self):
         with tempfile.TemporaryDirectory() as temporary:
             directory = Path(temporary)
-            (directory / "LJE.json").write_text(json.dumps(self.book))
+            (directory / "BAR.json").write_text(json.dumps(self.book))
             inventory = directory / "review.json"
-            inventory.write_text(json.dumps({"schemaVersion": 1, "books": {"LJE": self.approval}}))
+            inventory.write_text(json.dumps({"schemaVersion": 1, "books": {"BAR": self.approval}}))
             books, report = load_books(directory, inventory_path=inventory)
             self.assertEqual(books, [])
-            self.assertEqual(next(row for row in report if row["book"] == "LJE")["status"], "complete")
+            self.assertEqual(next(row for row in report if row["book"] == "BAR")["status"], "complete")
             with self.assertRaisesRegex(ValueError, "not release-ready"):
                 load_books(directory, inventory_path=inventory, require_complete=True)
 
@@ -237,6 +299,52 @@ class HebrewReviewTests(unittest.TestCase):
         self.repin()
         with self.assertRaisesRegex(ValueError, "source block review inventory"):
             validate_book(self.book, self.catalog, self.approval)
+
+
+class FrenkelBoundaryTests(unittest.TestCase):
+    def test_brenton_mapping_preserves_every_pointed_source_span_once_in_order(self):
+        reports = CONTENT.parent / "reports" / "hebrew-wikisource"
+        mapping = json.loads((reports / "LJE-frenkel-pointed-crosswalk.json").read_text())
+        book = json.loads((CONTENT / "hebrew-deuterocanon" / "LJE.json").read_text())
+        sections = {s["sourceOrdinal"]: s for s in mapping["sourceSections"]}
+        self.assertEqual(list(sections), list(range(1, 80)))
+        self.assertEqual(sections[35]["sourceLabel"], "לה")
+        self.assertEqual([v["verse"] for v in mapping["verses"]], list(range(1, 74)))
+        self.assertEqual([v["verse"] for v in book["chapters"][0]["verses"]], list(range(1, 74)))
+        self.assertEqual(book["scan"]["sha256"], mapping["scanSHA256"])
+
+        # A verse-count check alone misses lost words, repeated clauses, or a cut
+        # inside a pointed letter. Reconstruct the source and each target exactly.
+        recovered = {number: "" for number in sections}
+        next_offsets = {number: 0 for number in sections}
+        source_order = []
+        for mapped, verse in zip(mapping["verses"], book["chapters"][0]["verses"]):
+            fragments, pages = [], set()
+            for span in mapped["sourceSpans"]:
+                number, start, end = span["sourceOrdinal"], span["start"], span["end"]
+                section = sections[number]
+                self.assertEqual(start, next_offsets[number])
+                self.assertGreater(end, start)
+                self.assertLessEqual(end, len(section["text"]))
+                if start:
+                    self.assertTrue(section["text"][start - 1].isspace())
+                fragment = section["text"][start:end]
+                recovered[number] += fragment
+                next_offsets[number] = end
+                fragments.append(fragment.strip())
+                source_order.append(number)
+                pages.update(p["sourcePage"] for p in section["pageSpans"]
+                             if p["start"] < end and p["end"] > start)
+            self.assertEqual(verse["text"], " ".join(fragments))
+            self.assertEqual(verse["text"], mapped["hebrew"])
+            self.assertEqual(verse["sourcePages"], sorted(pages))
+        self.assertEqual(source_order, sorted(source_order))
+        for number, section in sections.items():
+            self.assertEqual(recovered[number], section["text"])
+            self.assertEqual(hashlib.sha256(section["text"].encode()).hexdigest(), section["textSHA256"])
+        source_notes = [n for s in sections.values() for n in s.get("sourceNotes", [])]
+        target_notes = [n for v in book["chapters"][0]["verses"] for n in v.get("sourceNotes", [])]
+        self.assertEqual(source_notes, target_notes)
 
 
 if __name__ == "__main__":
