@@ -416,9 +416,9 @@ class TodayInfoStoreTest {
         val readings = TodayInfoStore.readings(date("2026-08-31"))
         assertEquals(listOf("1 Cor. 2", "Ps. 119", "Lk. 4"), readings.map { it.short })
         assertEquals("Luke 4:16–30", readings.last().full)
-        assertEquals("לוקס ד׳", readings.last().localizedShort("he"))
+        assertEquals("לוק׳ ד׳", readings.last().localizedShort("he"))
         assertEquals("הבשורה על־פי לוקס ד׳ 16–30", readings.last().localizedFull("he"))
-        assertEquals("לוקס ד׳", readings.last().localizedShort("he-x-gamliel"))
+        assertEquals("לוק׳ ד׳", readings.last().localizedShort("he-x-gamliel"))
         assertEquals("הבשורה על־פי לוקס ד׳ 16–30", readings.last().localizedFull("he-x-gamliel"))
 
         val day = TodayInfoStore.liturgicalDayInfo(date("2026-08-31"))
@@ -432,7 +432,7 @@ class TodayInfoStoreTest {
     @Test
     fun hebrewEpistleShorthandPreservesFullSourceCitation() {
         val corinthians = TodayInfoStore.readings(date("2026-09-04")).first()
-        assertEquals("הראשונה אל הקורינתים ד׳", corinthians.localizedShort("he"))
+        assertEquals("קור״א ד׳", corinthians.localizedShort("he"))
         assertEquals(
             "אגרת שאול הראשונה אל הקורינתים ד׳ 1–5",
             corinthians.localizedFull("he"),
@@ -442,10 +442,10 @@ class TodayInfoStoreTest {
             type = "reading",
             short = "2 Pet. 2",
             full = "2 Peter 2:1–3",
-            shortByLanguage = mapOf("he" to "השנייה של כיפא ב׳"),
+            shortByLanguage = mapOf("he" to "כיפ״ב ב׳"),
             fullByLanguage = mapOf("he" to "אגרת כיפא השניה ב׳ 1–3"),
         )
-        assertEquals("השנייה של כיפא ב׳", petrine.localizedShort("he"))
+        assertEquals("כיפ״ב ב׳", petrine.localizedShort("he"))
         assertEquals("אגרת כיפא השניה ב׳ 1–3", petrine.localizedFull("he"))
     }
 
@@ -482,24 +482,24 @@ class TodayInfoStoreTest {
     fun otherCalendarsLocalizeTheirOwnAppointedReadingsInHebrew() {
         AppSettings.feastCalendarId = "roman1962"
         val vetus = TodayInfoStore.readings(date("2026-09-03"))
-        assertEquals("הראשונה אל התסלוניקים ב׳", vetus.first().localizedShort("he"))
+        assertEquals("תס״א ב׳", vetus.first().localizedShort("he"))
         assertEquals("הבשורה  על־פי יוחנן כ״א 15–17", vetus.last().localizedFull("he"))
 
         AppSettings.feastCalendarId = "ugcc"
         val sunday = TodayInfoStore.readings(date("2026-09-06"))
-        assertEquals("השנייה אל הקורינתים א׳", sunday.first().localizedShort("he"))
+        assertEquals("קור״ב א׳", sunday.first().localizedShort("he"))
         assertEquals("הבשורה על־פי מתי כ״ב 1–14", sunday.last().localizedFull("he"))
         AppSettings.easternPaschaStyle = "gregorian"
         val byzantine = TodayInfoStore.readings(date("2026-09-03"))
-        assertEquals("אל הגלטים ג׳", byzantine.first().localizedShort("he"))
+        assertEquals("גלט׳ ג׳", byzantine.first().localizedShort("he"))
         assertEquals("אגרת שאול אל הגלטים ג׳ 23–ד׳ 5", byzantine.first().localizedFull("he"))
-        assertEquals("השנייה של כיפא א׳", TodayInfoStore.readings(date("2026-08-06")).first().localizedShort("he"))
+        assertEquals("כיפ״ב א׳", TodayInfoStore.readings(date("2026-08-06")).first().localizedShort("he"))
 
         AppSettings.feastCalendarId = "syriac"
         val syriac = TodayInfoStore.readings(date("2026-09-03"))
-        assertEquals("אל הפיליפים א׳", syriac.first().localizedShort("he-x-gamliel"))
+        assertEquals("פיל׳ א׳", syriac.first().localizedShort("he-x-gamliel"))
         assertEquals("אגרת שאול אל הפיליפים א׳ 12–21", syriac.first().localizedFull("he"))
-        assertEquals("השנייה אל טימותיאוס ב׳", TodayInfoStore.readings(date("2026-08-08")).first().localizedShort("he"))
+        assertEquals("טימ״ב ב׳", TodayInfoStore.readings(date("2026-08-08")).first().localizedShort("he"))
         assertEquals(listOf("Hebrews 11:32–40", "Matthew 10:24–33"), TodayInfoStore.readings(date("2026-08-01")).map { it.full })
     }
 

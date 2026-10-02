@@ -467,10 +467,10 @@ final class TodayInfoStoreTests: XCTestCase {
     XCTAssertEqual(readings.last?.full, "Luke 4:16–30")
     XCTAssertEqual(readings.last?.hebrew, "הבשורה על־פי לוקס ד׳ 16–30")
     XCTAssertEqual(readings.map { $0.localizedShort("he") }, [
-      "הראשונה אל הקורינתים ב׳", "תהלים קי״ט", "לוקס ד׳",
+      "קור״א ב׳", "תה׳ קי״ט", "לוק׳ ד׳",
     ])
     XCTAssertEqual(readings.map { $0.localizedShort("he-x-gamliel") }, [
-      "הראשונה אל הקורינתים ב׳", "תהלים קי״ט", "לוקס ד׳",
+      "קור״א ב׳", "תה׳ קי״ט", "לוק׳ ד׳",
     ], "Hebrew prayer-language variants inherit the authored Hebrew citations unchanged")
     XCTAssertEqual(readings.last?.localizedFull("he-x-gamliel"), "הבשורה על־פי לוקס ד׳ 16–30")
 
@@ -484,39 +484,39 @@ final class TodayInfoStoreTests: XCTestCase {
 
   func testHebrewEpistleShorthandPreservesFullSourceCitation() throws {
     let corinthians = TodayInfoStore.readings(on: date("2026-09-04")).first
-    XCTAssertEqual(corinthians?.localizedShort("he"), "הראשונה אל הקורינתים ד׳")
+    XCTAssertEqual(corinthians?.localizedShort("he"), "קור״א ד׳")
     XCTAssertEqual(
       corinthians?.localizedFull("he"),
       "אגרת שאול הראשונה אל הקורינתים ד׳ 1–5")
 
     let petrine = try JSONDecoder().decode(
       ReadingCitation.self,
-      from: Data(#"{"type":"reading","short":"2 Pet. 2","full":"2 Peter 2:1–3","shortByLanguage":{"he":"השנייה של כיפא ב׳"},"fullByLanguage":{"he":"אגרת כיפא השניה ב׳ 1–3"}}"#.utf8))
-    XCTAssertEqual(petrine.localizedShort("he"), "השנייה של כיפא ב׳")
+      from: Data(#"{"type":"reading","short":"2 Pet. 2","full":"2 Peter 2:1–3","shortByLanguage":{"he":"כיפ״ב ב׳"},"fullByLanguage":{"he":"אגרת כיפא השניה ב׳ 1–3"}}"#.utf8))
+    XCTAssertEqual(petrine.localizedShort("he"), "כיפ״ב ב׳")
     XCTAssertEqual(petrine.localizedFull("he"), "אגרת כיפא השניה ב׳ 1–3")
   }
 
   func testOtherCalendarsLocalizeTheirOwnAppointedReadingsInHebrew() {
     select("roman1962")
     let vetus = TodayInfoStore.readings(on: date("2026-09-03"))
-    XCTAssertEqual(vetus.first?.localizedShort("he"), "הראשונה אל התסלוניקים ב׳")
+    XCTAssertEqual(vetus.first?.localizedShort("he"), "תס״א ב׳")
     XCTAssertEqual(vetus.last?.localizedFull("he"), "הבשורה  על־פי יוחנן כ״א 15–17")
 
     select("ugcc")
     let byzantine = TodayInfoStore.readings(on: date("2026-09-06"))
-    XCTAssertEqual(byzantine.first?.localizedShort("he"), "השנייה אל הקורינתים א׳")
+    XCTAssertEqual(byzantine.first?.localizedShort("he"), "קור״ב א׳")
     XCTAssertEqual(byzantine.first?.localizedFull("he"), "אגרת שאול השניה אל הקורינתים א׳ 21–ב׳ 4")
     XCTAssertEqual(
       TodayInfoStore.readings(on: date("2026-08-06")).first?.localizedShort("he"),
-      "השנייה של כיפא א׳")
+      "כיפ״ב א׳")
 
     select("syriac")
     let syriac = TodayInfoStore.readings(on: date("2026-09-03"))
-    XCTAssertEqual(syriac.first?.localizedShort("he-x-gamliel"), "אל הפיליפים א׳")
+    XCTAssertEqual(syriac.first?.localizedShort("he-x-gamliel"), "פיל׳ א׳")
     XCTAssertEqual(syriac.first?.localizedFull("he"), "אגרת שאול אל הפיליפים א׳ 12–21")
     XCTAssertEqual(
       TodayInfoStore.readings(on: date("2026-08-08")).first?.localizedShort("he"),
-      "השנייה אל טימותיאוס ב׳")
+      "טימ״ב ב׳")
     XCTAssertTrue(TodayInfoStore.readings(on: date("2031-08-01")).isEmpty)
   }
 

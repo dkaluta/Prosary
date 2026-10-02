@@ -376,7 +376,7 @@ public class TodayInfoStoreTests
     {
         var readings = TodayInfoStore.Readings(new DateOnly(2026, 8, 31));
         Assert.Equal(new[] { "1 Cor. 2", "Ps. 119", "Lk. 4" }, readings.Select(r => r.Short));
-        Assert.Equal(new[] { "הראשונה אל הקורינתים ב׳", "תהלים קי״ט", "לוקס ד׳" },
+        Assert.Equal(new[] { "קור״א ב׳", "תה׳ קי״ט", "לוק׳ ד׳" },
             readings.Select(r => r.LocalizedShort("he")));
         Assert.Equal("Luke 4:16–30", readings.Last().Full);
         Assert.Equal("הבשורה על־פי לוקס ד׳ 16–30", readings.Last().LocalizedFull("he"));
@@ -397,7 +397,7 @@ public class TodayInfoStoreTests
     public void HebrewEpistleShorthandPreservesFullSourceCitation()
     {
         var corinthians = TodayInfoStore.Readings(new DateOnly(2026, 9, 4)).First();
-        Assert.Equal("הראשונה אל הקורינתים ד׳", corinthians.LocalizedShort("he"));
+        Assert.Equal("קור״א ד׳", corinthians.LocalizedShort("he"));
         Assert.Equal(
             "אגרת שאול הראשונה אל הקורינתים ד׳ 1–5",
             corinthians.LocalizedFull("he"));
@@ -406,9 +406,9 @@ public class TodayInfoStoreTests
             "reading",
             "2 Pet. 2",
             "2 Peter 2:1–3",
-            ShortByLanguage: new Dictionary<string, string> { ["he"] = "השנייה של כיפא ב׳" },
+            ShortByLanguage: new Dictionary<string, string> { ["he"] = "כיפ״ב ב׳" },
             FullByLanguage: new Dictionary<string, string> { ["he"] = "אגרת כיפא השניה ב׳ 1–3" });
-        Assert.Equal("השנייה של כיפא ב׳", petrine.LocalizedShort("he"));
+        Assert.Equal("כיפ״ב ב׳", petrine.LocalizedShort("he"));
         Assert.Equal("אגרת כיפא השניה ב׳ 1–3", petrine.LocalizedFull("he"));
     }
 
@@ -417,7 +417,7 @@ public class TodayInfoStoreTests
     {
         TodayInfoStore.SelectedCalendarId = "roman1962";
         var vetus = TodayInfoStore.Readings(new DateOnly(2026, 9, 3));
-        Assert.Equal("הראשונה אל התסלוניקים ב׳", vetus.First().LocalizedShort("he"));
+        Assert.Equal("תס״א ב׳", vetus.First().LocalizedShort("he"));
         Assert.Equal("הבשורה  על־פי יוחנן כ״א 15–17", vetus.Last().LocalizedFull("he"));
 
         TodayInfoStore.SelectedCalendarId = "ugcc";
@@ -425,21 +425,21 @@ public class TodayInfoStoreTests
         try
         {
             var byzantine = TodayInfoStore.Readings(new DateOnly(2026, 9, 3));
-            Assert.Equal("אל הגלטים ג׳", byzantine.First().LocalizedShort("he"));
+            Assert.Equal("גלט׳ ג׳", byzantine.First().LocalizedShort("he"));
             Assert.Equal("אגרת שאול אל הגלטים ג׳ 23–ד׳ 5", byzantine.First().LocalizedFull("he"));
-            Assert.Equal("השנייה של כיפא א׳", TodayInfoStore.Readings(new DateOnly(2026, 8, 6)).First().LocalizedShort("he"));
+            Assert.Equal("כיפ״ב א׳", TodayInfoStore.Readings(new DateOnly(2026, 8, 6)).First().LocalizedShort("he"));
         }
         finally { AppSettings.SetEasternPaschaStyle("julian"); }
 
         TodayInfoStore.SelectedCalendarId = "syriac";
         var syriac = TodayInfoStore.Readings(new DateOnly(2026, 9, 3));
-        Assert.Equal("אל הפיליפים א׳", syriac.First().LocalizedShort("he-x-gamliel"));
+        Assert.Equal("פיל׳ א׳", syriac.First().LocalizedShort("he-x-gamliel"));
         Assert.Equal("אגרת שאול אל הפיליפים א׳ 12–21", syriac.First().LocalizedFull("he"));
-        Assert.Equal("השנייה אל טימותיאוס ב׳", TodayInfoStore.Readings(new DateOnly(2026, 8, 8)).First().LocalizedShort("he"));
+        Assert.Equal("טימ״ב ב׳", TodayInfoStore.Readings(new DateOnly(2026, 8, 8)).First().LocalizedShort("he"));
         var syriacAugustFirst = TodayInfoStore.Readings(new DateOnly(2026, 8, 1));
         Assert.Equal(new[] { "Hebrews 11:32–40", "Matthew 10:24–33" },
             syriacAugustFirst.Select(r => r.Full));
-        Assert.Equal(new[] { "אל העברים י״א", "מתי י׳" },
+        Assert.Equal(new[] { "עבר׳ י״א", "מתי י׳" },
             syriacAugustFirst.Select(r => r.LocalizedShort("he")));
     }
 

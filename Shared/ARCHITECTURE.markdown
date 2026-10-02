@@ -1590,20 +1590,26 @@ copies, same convention as the bundles; per-platform `TodayInfoStore` providers)
   Russian translation for 2026 (credited to t.me/ihsovs), plus Prosary's
   Hebrew and Ukrainian translations. `sourceByLanguage` records sources and
   `translationCreditByLanguage` distinguishes authored translations. These two versions are not
-  official Vatican editions. `Shared/tools/import-pope-intentions.py --source-dir <pdf-cache>
+  official Vatican editions. Both Hebrew annual snapshots preserve the authored wording and
+  link each month to its published English original; the link does not represent a published
+  Hebrew edition. `Shared/tools/import-pope-intentions.py --source-dir <pdf-cache>
   --sync` imports the 2026 PDFs and reviewed 2027 snapshots. Arabic and Italian source PDFs
   with broken character maps have visually reviewed transcriptions; corrections from other
   official publications are recorded in the source snapshot. Missing languages use English,
   and months outside the table hide the row.
 - **Reading tables, selected through `readingsFile`** — each date contains ordered citation
   objects (`type`, `short`, `full`, and optional `shortByLanguage`/`fullByLanguage`). These tables
-  contain appointments only; optional Bible text lives in the separate reading-text dataset
+  use the user's 73 Hebrew book abbreviations for compact captions, encoded with Hebrew
+  geresh/gershayim and combined with the existing gematria chapter numbers. The catalog and
+  provenance are in `tools/hebrew-reading-books.json`; `fetch-readings.py --localize-only
+  --sync` refreshes these captions in both calendar readings and Torah portions while
+  preserving sourced full titles and appointed references.
+  The tables contain appointments only; optional Bible text lives in the separate reading-text dataset
   described below. `readings-roman.json` is the Novus Ordo table from
   Evangelizo HE and is shared by `lpj` and `roman`; its Hebrew full book names are relayed in
-  the per-language maps. Hebrew short epistle names are deterministic compact forms of those
-  sourced titles (`הראשונה אל הקורינתים`, `השנייה של כיפא`, `אל הרומים`): the
-  generator removes redundant “epistle”/author wording, standardizes the compact ordinal phrase,
-  and does not translate or alter the complete citation's wording. Hebrew word joins and
+  the per-language maps. Compact epistle names use forms such as `קור״א`, `כיפ״ב`, and
+  `רומ׳`; regeneration refreshes these even when retaining a source-specific full title.
+  It does not alter the complete citation's wording. Hebrew word joins and
   numeric prefixes use maqaf (`־`), while verse ranges keep en dashes (`–`).
   `readings-roman1962.json` is the Vetus
   Ordo table from Missale Meum's

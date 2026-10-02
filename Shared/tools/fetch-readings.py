@@ -8,7 +8,7 @@
 Only Scripture *citations* are retained, never the Scripture text. The generated files are:
 
 * ``readings-roman.json`` — Novus Ordo, Evangelizo HE; sourced Hebrew full book names are
-  retained in ``fullByLanguage.he`` and compacted deterministically for ``shortByLanguage.he``.
+  retained in ``fullByLanguage.he``; ``shortByLanguage.he`` uses the supplied abbreviation catalog.
 * ``readings-roman1962.json`` — Vetus Ordo, Missale Meum's public v5 proper API.
 * ``readings-ugcc.json`` — UGCC Ukraine, Gregorian fixed feasts and Julian Pascha;
   imported from the official 2026 calendar's reviewed citation snapshot.
@@ -596,7 +596,9 @@ def localize_hebrew_readings(
                     ("shortByLanguage", hebrew_short_citation(f"{names['short']} {chapter}")),
                     ("fullByLanguage", f"{names['full']} {hebrew_reference(reference)}")):
                 localized = item.setdefault(key, {})
-                if not preserve_existing or not localized.get("he"):
+                # The compact form is an app display convention. Refresh it even
+                # when preserving the source's existing full Hebrew title.
+                if key == "shortByLanguage" or not preserve_existing or not localized.get("he"):
                     localized["he"] = value
     return missing
 
@@ -624,13 +626,17 @@ def localize_reading_names(days: dict[str, dict], books: dict[str, dict]) -> set
 
 
 def citation_dataset_paths() -> list[Path]:
-    """Only registry-appointed tables: readings-* also includes the Bible corpus."""
+    """Registry-appointed tables and Torah citations, never the readings-texts corpus."""
     registry = json.loads((DATA / "calendars.json").read_text(encoding="utf-8"))
     names = set()
     for calendar in registry["calendars"]:
         names.add(calendar["readingsFile"])
         names.update(variant["readingsFile"] for variant in calendar.get("paschaVariants", {}).values())
-    return [DATA / f"{name}.json" for name in sorted(names)]
+    paths = [DATA / f"{name}.json" for name in sorted(names)]
+    torah = DATA / "torah-portions.json"
+    if torah.exists():
+        paths.append(torah)
+    return paths
 
 
 def localize_existing_datasets() -> None:
@@ -639,6 +645,9 @@ def localize_existing_datasets() -> None:
     for path in citation_dataset_paths():
         name = path.stem.removeprefix("readings-")
         payload = json.loads(path.read_text(encoding="utf-8"))
+        payload["$comment"] = payload["$comment"].replace(
+            "short titles are source-preserving compact forms",
+            "short titles use the supplied abbreviation catalog")
         payload["days"] = normalized_existing_days(path)
         if name in {"maronite", "syriac"}:
             for row in payload["days"].values():
@@ -646,7 +655,8 @@ def localize_existing_datasets() -> None:
                     book = re.match(r"(.+?) \d+:", item["full"])
                     if book:
                         item["type"] = type_for_book(book[1])
-        missing = localize_hebrew_readings(payload["days"], books, preserve_existing=name == "roman")
+        missing = localize_hebrew_readings(
+            payload["days"], books, preserve_existing=name in {"roman", "torah-portions"})
         if missing:
             print(f"  warning: {path.name} has no sourced Hebrew book name for: {', '.join(sorted(missing))}")
         missing_localized = localize_reading_names(payload["days"], localized_books)
@@ -660,7 +670,10 @@ def localize_existing_datasets() -> None:
             payload["$comment"] += credit
         if "reading-books-localized.json" not in payload["$comment"]:
             payload["$comment"] += " Arabic, Russian, Filipino, French, Italian and Ukrainian book metadata sources are recorded in Shared/tools/reading-books-localized.json; source chapter and verse numbering is preserved."
-        path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        if "user-supplied Hebrew abbreviations" not in payload["$comment"]:
+            payload["$comment"] += " Compact citations use the user-supplied Hebrew abbreviations recorded in Shared/tools/hebrew-reading-books.json."
+        indent = 1 if name == "torah-portions" else 2
+        path.write_text(json.dumps(payload, ensure_ascii=False, indent=indent) + "\n", encoding="utf-8")
         print(f"localized {path.relative_to(ROOT)} ({len(payload['days'])} dates retained)")
 
 
@@ -761,7 +774,7 @@ def main() -> None:
         ]}}
         assert not localize_hebrew_readings(samples, books)
         peter, corinthians = samples["2026-08-06"]["readings"]
-        assert peter["shortByLanguage"]["he"] == "השנייה של כיפא א׳"
+        assert peter["shortByLanguage"]["he"] == "כיפ״ב א׳"
         assert peter["fullByLanguage"]["he"] == "אגרת כיפא השניה א׳ 10–19"
         assert corinthians["full"] == "2 Corinthians 2:14–3:3; 4:1–2"
         assert corinthians["fullByLanguage"]["he"] == \
@@ -769,6 +782,19 @@ def main() -> None:
         snapshot = json.dumps(samples, ensure_ascii=False)
         localize_hebrew_readings(samples, books)
         assert json.dumps(samples, ensure_ascii=False) == snapshot
+        # Roman source titles may be deliberately preserved, but a stale compact
+        # source label must not mask the user's abbreviations on regeneration.
+        peter["shortByLanguage"]["he"] = "השנייה של כיפא א׳"
+        peter["fullByLanguage"]["he"] = "Source-specific full Hebrew title"
+        localize_hebrew_readings(samples, books)
+        assert peter["shortByLanguage"]["he"] == "כיפ״ב א׳"
+        assert peter["fullByLanguage"]["he"] == "Source-specific full Hebrew title"
+        for book, short in (("1 Corinthians", "קור״א"), ("1 Samuel", "שמ״א"),
+                            ("2 Maccabees", "מק״ב"), ("Philemon", "פימ׳"),
+                            ("Judith", "יוד׳"), ("Song of Songs", "שה״ש")):
+            assert books[book]["short"] == short
+        assert len(books) == 73
+        assert all("'" not in row["short"] and '"' not in row["short"] for row in books.values())
         unknown = {"2026-08-06": {"readings": [citation("Unknown", "Unknown", "1:2")]}}
         assert localize_hebrew_readings(unknown, books) == {"Unknown"}
         assert "fullByLanguage" not in unknown["2026-08-06"]["readings"][0]
@@ -841,7 +867,7 @@ def main() -> None:
             "readings-roman",
             "Novus Ordo daily lectionary citations courtesy of Evangelizo.org — Daily "
             "Gospel (© Evangelizo.org), publication edition HE. Hebrew full book titles "
-            "are relayed from the source; short titles are source-preserving compact forms. "
+            "are relayed from the source; short titles use the supplied abbreviation catalog. "
             "Scripture text is not included.",
             rows["roman"], legacy="readings.json")
     if "roman1962" in selected:
