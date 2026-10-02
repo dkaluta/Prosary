@@ -1,0 +1,964 @@
+{
+  "book": "1MA",
+  "sourcePages": [
+    165
+  ],
+  "additionalPages": [
+    {
+      "page": 84,
+      "side": "left",
+      "primary": 165
+    },
+    {
+      "page": 85,
+      "side": "right",
+      "primary": 166,
+      "scope": "34 continuation only"
+    }
+  ],
+  "primarySourcePDFSHA256": "656891d377d2e3d4a9216723d94205488423907bf01df424b9f0b9de1560051e",
+  "additionalSourcePDFSHA256": "b72eaf5d2d858fabb7c3438ac0436ccd64c394a7dd2fad609efabe628d5534c7",
+  "status": "B165 completely first/second-compared; 13:35 onward remains unreviewed; book remains draft",
+  "method": "All 8 body rows first transcribed from native extra84 left, then separately author-compared word by word and point by point against B165. Focused paired native crops resolved provisional points. The B166 opening continuation was compared in both scans. These are author first/second comparisons, not a separate whole-page peer review. No external text used as authority.",
+  "onlineScaffoldBefore": [
+    {
+      "verse": 29,
+      "text": "ולהן עשה מלאכת מחשבת ויעמד מסביב עמודים גדולים ויעש על העמודים חליצות לשם עולם ועל יד החליצות פיתוחי אניות להראות לכל יורד הים:",
+      "sourcePages": [],
+      "textSHA256": "87f15f403084211bad4b49e4c08c31705b1571d9d1bf87112cd11410cbe98a7a"
+    },
+    {
+      "verse": 30,
+      "text": "זה הקבר אשר עשה במודיעים עד היום הזה:",
+      "sourcePages": [],
+      "textSHA256": "8da183490a11b0172e3a1c1b8e9df33d6d41ecda8517a86223caaf7af2527f15"
+    },
+    {
+      "verse": 31,
+      "text": "וטריפון הלך במרמה עם אנטיוכוס המלך הצעיר וימיתהו:",
+      "sourcePages": [],
+      "textSHA256": "172c89568221e3adb564dbf0d8b1bad4beb0a02062ad16913ca0a541fc44f364"
+    },
+    {
+      "verse": 32,
+      "text": "וימלוך תחתיו וישם על ראשו כתר אסיה ויעש רעה גדולה בארץ:",
+      "sourcePages": [],
+      "textSHA256": "2eb3d514250c09f8e01451c88108109d11ac088f6e75c57c46a8ed45a2e04c75"
+    },
+    {
+      "verse": 33,
+      "text": "וייבן שמעון את מבצרי יהודה ויקיפם במגדלים גבוהים ובחומות גדולות ובשערים ובבריחים וישם אוכל במבצרים:",
+      "sourcePages": [],
+      "textSHA256": "d5227bb26f318c18417a9e4e6e0c74f7c3f522a2fcbec2310a4d36d87f5686ef"
+    },
+    {
+      "verse": 34,
+      "text": "ויבחר שמעון אנשים וישלח אל דמיטריוס המלך לעשות הנחה לארץ כי כל מעשי טריפון היו חמס:",
+      "sourcePages": [],
+      "textSHA256": "6b2d87b1f981f054d832de32d9bd6ad995431869838c6f89b8dea46546945dfe"
+    }
+  ],
+  "firstPointedDraftRows": [
+    {
+      "row": 1,
+      "text": "וְלָהֶן עָשָׂה מְלֶאכֶת מַחֲשֶׁבֶת וַיַּעֲמֵד מִסָּבִיב עַמּוּדִים גְּדוֹלִים וַיַּעַשׂ עַל־"
+    },
+    {
+      "row": 2,
+      "text": "הָעַמּוּדִים חֲלִיצוֹת לְשֵׁם־עוֹלָם וְעַל־יַד־הַחֲלִיצוֹת פִּתּוּחֵי אֳנִיּוֹת לְהֵרָאוֹת"
+    },
+    {
+      "row": 3,
+      "text": "לְכָל־יוֹרְדֵי הַיָּם׃ זֶה הַקֶּבֶר אֲשֶׁר עָשָׂה בְּמוֹדִיעִים עַד־הַיּוֹם הַזֶּה׃"
+    },
+    {
+      "row": 4,
+      "text": "וּטְרִיפוֹן הָלַךְ בְּמִרְמָה עִם־אַנְטְיוֹכוֹס הַמֶּלֶךְ הַצָּעִיר וַיְמִיתֵהוּ׃"
+    },
+    {
+      "row": 5,
+      "text": "וַיִּמְלֹךְ תַּחְתָּיו וַיָּשֶׂם עַל־רֹאשׁוֹ כֶּתֶר אַסְיָה וַיַּעַשׂ רָעָה גְדוֹלָה בָּאָרֶץ׃"
+    },
+    {
+      "row": 6,
+      "text": "וַיִּבֶן שִׁמְעוֹן אֶת־מִבְצְרֵי יְהוּדָה וַיַּקֵּפֵם בְּמִגְדָּלִים גְּבוֹהִים וּבְחוֹמוֹת"
+    },
+    {
+      "row": 7,
+      "text": "גְּדֹלוֹת וּבִשְׁעָרִים וּבִבְרִיחִים וַיָּשֶׂם אֹכֶל בַּמִּבְצָרִים׃ וַיִּבְחַר שִׁמְעוֹן"
+    },
+    {
+      "row": 8,
+      "text": "אֲנָשִׁים וַיִּשְׁלַח אֶל־דְּמֵטְרִיוֹס הַמֶּלֶךְ לַעֲשׂוֹת הֲנָחָה לָאָרֶץ כִּי כָל־"
+    }
+  ],
+  "checkedSourceRows": [
+    {
+      "row": 1,
+      "text": "וְלָהֶן עָשָׂה מְלֶאכֶת מַחֲשֶׁבֶת וַיַּעֲמֵד מִסָּבִיב עַמּוּדִים גְּדוֹלִים וַיַּעַשׂ עַל־"
+    },
+    {
+      "row": 2,
+      "text": "הָעַמּוּדִים חֲלִיצוֹת לְשֵׁם־עוֹלָם וְעַל־יַד־הַחֲלִיצוֹת פִּתּוּחֵי אֳנִיּוֹת לְהֵרָאוֹת"
+    },
+    {
+      "row": 3,
+      "text": "לְכָל־יוֹרְדֵי הַיָּם׃ זֶה הַקֶּבֶר אֲשֶׁר עָשָׂה בְּמוֹדִיעִים עַד־הַיּוֹם הַזֶּה׃"
+    },
+    {
+      "row": 4,
+      "text": "וּטְרִיפוֹן הָלַךְ בְּמִרְמָה עִם־אַנְטְיוֹכוֹס הַמֶּלֶךְ הַצָּעִיר וַיְמִיתֵהוּ׃"
+    },
+    {
+      "row": 5,
+      "text": "וַיִּמְלֹךְ תַּחְתָּיו וַיָּשֶׂם עַל־רֹאשׁוֹ כֶּתֶר אַסְיָה וַיַּעַשׂ רָעָה גְדוֹלָה בָּאָרֶץ׃"
+    },
+    {
+      "row": 6,
+      "text": "וַיִּבֶן שִׁמְעוֹן אֶת־מִבְצְרֵי יְהוּדָה וַיַּקִּפֵם בְּמִגְדָּלִים גְּבוֹהִים וּבְחוֹמוֹת"
+    },
+    {
+      "row": 7,
+      "text": "גְּדֹלוֹת וּבִשְׁעָרִים וּבִבְרִיחִים וַיָּשֶׂם אֹכֶל בַּמִּבְצָרִים׃ וַיִּבְחַר שִׁמְעוֹן"
+    },
+    {
+      "row": 8,
+      "text": "אֲנָשִׁים וַיִּשְׁלַח אֶל־דְּמֵטְרִיוֹס הַמֶּלֶךְ לַעֲשׂוֹת הֲנָחָה לָאָרֶץ כִּי כָל־"
+    }
+  ],
+  "followingContinuation": "מַעֲשֵׂי טְרִיפוֹן הָיוּ חָמָס׃",
+  "checkedUnits": [
+    {
+      "chapter": 13,
+      "verse": 29,
+      "text": "וְלָהֶן עָשָׂה מְלֶאכֶת מַחֲשֶׁבֶת וַיַּעֲמֵד מִסָּבִיב עַמּוּדִים גְּדוֹלִים וַיַּעַשׂ עַל־הָעַמּוּדִים חֲלִיצוֹת לְשֵׁם־עוֹלָם וְעַל־יַד־הַחֲלִיצוֹת פִּתּוּחֵי אֳנִיּוֹת לְהֵרָאוֹת לְכָל־יוֹרְדֵי הַיָּם׃",
+      "sourcePages": [
+        165
+      ],
+      "textSHA256": "f3ae1cb4b070573068ec00fb268a726dd2ec06d3d0f73e8aa79b7060ba20965c"
+    },
+    {
+      "chapter": 13,
+      "verse": 30,
+      "text": "זֶה הַקֶּבֶר אֲשֶׁר עָשָׂה בְּמוֹדִיעִים עַד־הַיּוֹם הַזֶּה׃",
+      "sourcePages": [
+        165
+      ],
+      "textSHA256": "852bf020c034718b249798490779e75bc536baf11d7c5ec51849b7bf7bc5c9e4"
+    },
+    {
+      "chapter": 13,
+      "verse": 31,
+      "text": "וּטְרִיפוֹן הָלַךְ בְּמִרְמָה עִם־אַנְטְיוֹכוֹס הַמֶּלֶךְ הַצָּעִיר וַיְמִיתֵהוּ׃",
+      "sourcePages": [
+        165
+      ],
+      "textSHA256": "f9d26178be21347fd12b3f1171f4115b5f293a5211b74d7af56377e423836876"
+    },
+    {
+      "chapter": 13,
+      "verse": 32,
+      "text": "וַיִּמְלֹךְ תַּחְתָּיו וַיָּשֶׂם עַל־רֹאשׁוֹ כֶּתֶר אַסְיָה וַיַּעַשׂ רָעָה גְדוֹלָה בָּאָרֶץ׃",
+      "sourcePages": [
+        165
+      ],
+      "textSHA256": "3184bff95f161ab9fd10be4a3df5cac3401d5c3afbe76aadd3809c3a79f80cb2"
+    },
+    {
+      "chapter": 13,
+      "verse": 33,
+      "text": "וַיִּבֶן שִׁמְעוֹן אֶת־מִבְצְרֵי יְהוּדָה וַיַּקִּפֵם בְּמִגְדָּלִים גְּבוֹהִים וּבְחוֹמוֹת גְּדֹלוֹת וּבִשְׁעָרִים וּבִבְרִיחִים וַיָּשֶׂם אֹכֶל בַּמִּבְצָרִים׃",
+      "sourcePages": [
+        165
+      ],
+      "textSHA256": "9a06a3ff84419b3b65374e89383c689a4f40939af3c86e5500cfa61005d54f64"
+    },
+    {
+      "chapter": 13,
+      "verse": 34,
+      "text": "וַיִּבְחַר שִׁמְעוֹן אֲנָשִׁים וַיִּשְׁלַח אֶל־דְּמֵטְרִיוֹס הַמֶּלֶךְ לַעֲשׂוֹת הֲנָחָה לָאָרֶץ כִּי כָל־מַעֲשֵׂי טְרִיפוֹן הָיוּ חָמָס׃",
+      "sourcePages": [
+        165,
+        166
+      ],
+      "textSHA256": "78be2af810f7e2229069111748722c585bfd8fbf380e0b7f169acfb2b72196b7"
+    }
+  ],
+  "correctionsFromFirstDraft": [
+    {
+      "row": 6,
+      "before": "וַיַּקֵּפֵם",
+      "after": "וַיַּקִּפֵם",
+      "evidence": "Both scans show one detached dot below qoph, hiriq. The interior qoph dagesh and following pe tsere remain visible; preserve the local defective consonant spelling."
+    }
+  ],
+  "boundaries": [
+    "29 begins row1 ולהן and ends row3 הים׃. 30 follows זה through הזה׃ at the end of row3.",
+    "31 is row4 וטריפון through וימיתהו׃. 32 is row5 וימלך through בארץ׃.",
+    "33 starts row6 ויבן and continues row7 through במבצרים׃. 34 follows ויבחר on that same row.",
+    "34 continues through row8 כי כל־, then B166 opening מעשי טריפון היו חמס׃. The marginal 35 label is aligned with this continuation and belongs to the new clause following its separator; no new punctuation invented."
+  ],
+  "localFindings": [
+    {
+      "unit": "13:29",
+      "reading": "פִּתּוּחֵי אֳנִיּוֹת",
+      "decision": "Written medial vav in carvings is visible; pe/tav dageshes and shuruq retained. Alef lower hataf-qamats in ships is separated in the companion, compatible with primary."
+    },
+    {
+      "unit": "13:31",
+      "reading": "וּטְרִיפוֹן",
+      "decision": "Initial vav has a separate medial shuruq dot in primary; tet sheva and resh hiriq clear in companion."
+    },
+    {
+      "unit": "13:31",
+      "reading": "אַנְטְיוֹכוֹס",
+      "decision": "Both written vavs carry holam in the companion; tet sheva preserved."
+    },
+    {
+      "unit": "13:32",
+      "reading": "גְדוֹלָה",
+      "decision": "Gimel has no detached interior dagesh in either focused scan. Keep the source absence."
+    },
+    {
+      "unit": "13:33",
+      "reading": "וַיַּקִּפֵם",
+      "decision": "One detached lower qoph dot in both scans supports hiriq, correcting provisional tsere. Keep qoph dagesh and pe tsere."
+    },
+    {
+      "unit": "13:34",
+      "reading": "לַעֲשׂוֹת הֲנָחָה",
+      "decision": "Lamed flat patah, he hataf-patah, nun/het qamats retained literally; no grammatical normalization."
+    }
+  ],
+  "rowCrops": [
+    {
+      "source": "/private/tmp/prosary-kahana-reference/1MA-extra-84-native.png",
+      "row": 1,
+      "witness": "extra",
+      "side": "right",
+      "bounds": [
+        930,
+        161,
+        1445,
+        210
+      ],
+      "path": "/private/tmp/prosary-kahana-reference/1MA-B165-extra-row01-right.png",
+      "sha256": "11ba1807622d2e5be08dc4e5caf22c2c7113bbf83f15e6a6a322ca47a1bd74ba"
+    },
+    {
+      "source": "/private/tmp/prosary-kahana-reference/1MA-extra-84-native.png",
+      "row": 1,
+      "witness": "extra",
+      "side": "left",
+      "bounds": [
+        450,
+        161,
+        990,
+        210
+      ],
+      "path": "/private/tmp/prosary-kahana-reference/1MA-B165-extra-row01-left.png",
+      "sha256": "89ddc3371c13c5306dbdf71d5043d8d521818ffe3f58038fd54e69945cbcb624"
+    },
+    {
+      "source": "/private/tmp/prosary-kahana-reference/1MA-extra-84-native.png",
+      "row": 2,
+      "witness": "extra",
+      "side": "right",
+      "bounds": [
+        930,
+        208,
+        1445,
+        256
+      ],
+      "path": "/private/tmp/prosary-kahana-reference/1MA-B165-extra-row02-right.png",
+      "sha256": "b0baab9fe2dc9011cba33aa2f22b3eb3c0efaf35bb935ca399c2663c361cd595"
+    },
+    {
+      "source": "/private/tmp/prosary-kahana-reference/1MA-extra-84-native.png",
+      "row": 2,
+      "witness": "extra",
+      "side": "left",
+      "bounds": [
+        450,
+        208,
+        990,
+        256
+      ],
+      "path": "/private/tmp/prosary-kahana-reference/1MA-B165-extra-row02-left.png",
+      "sha256": "34a9771aa209efa45df5afee5148e6aad1a42295c9005de52de51a6a707e0a2f"
+    },
+    {
+      "source": "/private/tmp/prosary-kahana-reference/1MA-extra-84-native.png",
+      "row": 3,
+      "witness": "extra",
+      "side": "right",
+      "bounds": [
+        930,
+        256,
+        1445,
+        304
+      ],
+      "path": "/private/tmp/prosary-kahana-reference/1MA-B165-extra-row03-right.png",
+      "sha256": "76b80294d231fc45c452b3ce44ad5481ae8a963aa0364eb5d7fa1ad30cef0dde"
+    },
+    {
+      "source": "/private/tmp/prosary-kahana-reference/1MA-extra-84-native.png",
+      "row": 3,
+      "witness": "extra",
+      "side": "left",
+      "bounds": [
+        450,
+        256,
+        990,
+        304
+      ],
+      "path": "/private/tmp/prosary-kahana-reference/1MA-B165-extra-row03-left.png",
+      "sha256": "9a4d63861b8b1e1675736c7f76a8b6ea75230fd6426e21e3a5594632704ef8e0"
+    },
+    {
+      "source": "/private/tmp/prosary-kahana-reference/1MA-extra-84-native.png",
+      "row": 4,
+      "witness": "extra",
+      "side": "right",
+      "bounds": [
+        930,
+        303,
+        1445,
+        352
+      ],
+      "path": "/private/tmp/prosary-kahana-reference/1MA-B165-extra-row04-right.png",
+      "sha256": "954ff93ab2e76616d53cc7aec86f8ec153929320fafd3c09ad41182c5adfdc7a"
+    },
+    {
+      "source": "/private/tmp/prosary-kahana-reference/1MA-extra-84-native.png",
+      "row": 4,
+      "witness": "extra",
+      "side": "left",
+      "bounds": [
+        450,
+        303,
+        990,
+        352
+      ],
+      "path": "/private/tmp/prosary-kahana-reference/1MA-B165-extra-row04-left.png",
+      "sha256": "90415a9d20ce2e8cc630c58cf669977e8d44ef750af7e015e37ffea8b887d2ff"
+    },
+    {
+      "source": "/private/tmp/prosary-kahana-reference/1MA-extra-84-native.png",
+      "row": 5,
+      "witness": "extra",
+      "side": "right",
+      "bounds": [
+        930,
+        349,
+        1445,
+        398
+      ],
+      "path": "/private/tmp/prosary-kahana-reference/1MA-B165-extra-row05-right.png",
+      "sha256": "0d05b72931274b25d99f61cc8267ac375c9d0933a23e5fe05534f534a7b6b8f2"
+    },
+    {
+      "source": "/private/tmp/prosary-kahana-reference/1MA-extra-84-native.png",
+      "row": 5,
+      "witness": "extra",
+      "side": "left",
+      "bounds": [
+        450,
+        349,
+        990,
+        398
+      ],
+      "path": "/private/tmp/prosary-kahana-reference/1MA-B165-extra-row05-left.png",
+      "sha256": "3271f39dde4b66d778f49df60a46c52e729537ac1fe3ee7d413df22460d9d3e4"
+    },
+    {
+      "source": "/private/tmp/prosary-kahana-reference/1MA-extra-84-native.png",
+      "row": 6,
+      "witness": "extra",
+      "side": "right",
+      "bounds": [
+        930,
+        396,
+        1445,
+        444
+      ],
+      "path": "/private/tmp/prosary-kahana-reference/1MA-B165-extra-row06-right.png",
+      "sha256": "9f5c336ba6d9c993a6fd0cde9e07d14d981d4f61afc3cbb5153dbdab8966c042"
+    },
+    {
+      "source": "/private/tmp/prosary-kahana-reference/1MA-extra-84-native.png",
+      "row": 6,
+      "witness": "extra",
+      "side": "left",
+      "bounds": [
+        450,
+        396,
+        990,
+        444
+      ],
+      "path": "/private/tmp/prosary-kahana-reference/1MA-B165-extra-row06-left.png",
+      "sha256": "a5983693d745fd333d3d0f590d1a530ee95b4bb201cc2c4083e235a78595c7e2"
+    },
+    {
+      "source": "/private/tmp/prosary-kahana-reference/1MA-extra-84-native.png",
+      "row": 7,
+      "witness": "extra",
+      "side": "right",
+      "bounds": [
+        930,
+        443,
+        1445,
+        491
+      ],
+      "path": "/private/tmp/prosary-kahana-reference/1MA-B165-extra-row07-right.png",
+      "sha256": "7c92b2dcfc109399bf4f225ff893676de2535c84236d49327c55d745557c702b"
+    },
+    {
+      "source": "/private/tmp/prosary-kahana-reference/1MA-extra-84-native.png",
+      "row": 7,
+      "witness": "extra",
+      "side": "left",
+      "bounds": [
+        450,
+        443,
+        990,
+        491
+      ],
+      "path": "/private/tmp/prosary-kahana-reference/1MA-B165-extra-row07-left.png",
+      "sha256": "1b2a85c9edcd137593892c145329a94014713d83e6c44e93ca20f37c927d91c2"
+    },
+    {
+      "source": "/private/tmp/prosary-kahana-reference/1MA-extra-84-native.png",
+      "row": 8,
+      "witness": "extra",
+      "side": "right",
+      "bounds": [
+        930,
+        489,
+        1445,
+        540
+      ],
+      "path": "/private/tmp/prosary-kahana-reference/1MA-B165-extra-row08-right.png",
+      "sha256": "373a7fc85683c5721f8ead1d4a0432e80c7facaff1ae54ac29736b7738049cae"
+    },
+    {
+      "source": "/private/tmp/prosary-kahana-reference/1MA-extra-84-native.png",
+      "row": 8,
+      "witness": "extra",
+      "side": "left",
+      "bounds": [
+        450,
+        489,
+        990,
+        540
+      ],
+      "path": "/private/tmp/prosary-kahana-reference/1MA-B165-extra-row08-left.png",
+      "sha256": "a95fd69f05b8032a7bca57b7c77ea04d6cced14925b9295f172ac27867dc69a5"
+    },
+    {
+      "source": "/private/tmp/prosary-kahana-reference/1MA-B-165-native.png",
+      "row": 1,
+      "witness": "primary",
+      "side": "right",
+      "bounds": [
+        750,
+        318,
+        1450,
+        377
+      ],
+      "path": "/private/tmp/prosary-kahana-reference/1MA-B165-primary-row01-right.png",
+      "sha256": "e5c19ea71eaf646f0146b92e9a7ba2a4835e33694dcc44044b1b6f42928bd7e1"
+    },
+    {
+      "source": "/private/tmp/prosary-kahana-reference/1MA-B-165-native.png",
+      "row": 1,
+      "witness": "primary",
+      "side": "left",
+      "bounds": [
+        200,
+        318,
+        800,
+        377
+      ],
+      "path": "/private/tmp/prosary-kahana-reference/1MA-B165-primary-row01-left.png",
+      "sha256": "a15c85e27b1b82ed47a5c7587b151144c2370735b77742bf63a7861ec4d45aa5"
+    },
+    {
+      "source": "/private/tmp/prosary-kahana-reference/1MA-B-165-native.png",
+      "row": 2,
+      "witness": "primary",
+      "side": "right",
+      "bounds": [
+        750,
+        377,
+        1450,
+        440
+      ],
+      "path": "/private/tmp/prosary-kahana-reference/1MA-B165-primary-row02-right.png",
+      "sha256": "9311303c3194475de28379d77f6b978946e7b8659e6206a07f93f38af9a5507f"
+    },
+    {
+      "source": "/private/tmp/prosary-kahana-reference/1MA-B-165-native.png",
+      "row": 2,
+      "witness": "primary",
+      "side": "left",
+      "bounds": [
+        200,
+        377,
+        800,
+        440
+      ],
+      "path": "/private/tmp/prosary-kahana-reference/1MA-B165-primary-row02-left.png",
+      "sha256": "9aec001f8b004b669919a4cbb89cc4c8a3a19bfa251c5a5da625462424704194"
+    },
+    {
+      "source": "/private/tmp/prosary-kahana-reference/1MA-B-165-native.png",
+      "row": 3,
+      "witness": "primary",
+      "side": "right",
+      "bounds": [
+        750,
+        445,
+        1450,
+        504
+      ],
+      "path": "/private/tmp/prosary-kahana-reference/1MA-B165-primary-row03-right.png",
+      "sha256": "f5a67d92f3526a1b7bc517e1659b5ff3f30da56d8d263f3b1c96cb8cb1158ac2"
+    },
+    {
+      "source": "/private/tmp/prosary-kahana-reference/1MA-B-165-native.png",
+      "row": 3,
+      "witness": "primary",
+      "side": "left",
+      "bounds": [
+        200,
+        445,
+        800,
+        504
+      ],
+      "path": "/private/tmp/prosary-kahana-reference/1MA-B165-primary-row03-left.png",
+      "sha256": "f875e8f9e0c0665e64eeee6e37eb023983f83a12fb88c5480b6f819f6fba6e93"
+    },
+    {
+      "source": "/private/tmp/prosary-kahana-reference/1MA-B-165-native.png",
+      "row": 4,
+      "witness": "primary",
+      "side": "right",
+      "bounds": [
+        750,
+        508,
+        1450,
+        567
+      ],
+      "path": "/private/tmp/prosary-kahana-reference/1MA-B165-primary-row04-right.png",
+      "sha256": "3df7844e2bafc54b96065596a24a8bb6a5685f71cea81d3a7dd0f5a7ea6f91f2"
+    },
+    {
+      "source": "/private/tmp/prosary-kahana-reference/1MA-B-165-native.png",
+      "row": 4,
+      "witness": "primary",
+      "side": "left",
+      "bounds": [
+        200,
+        508,
+        800,
+        567
+      ],
+      "path": "/private/tmp/prosary-kahana-reference/1MA-B165-primary-row04-left.png",
+      "sha256": "e3f60866e39cdeff3ec56948dd8d21bda80519c1018d21b30e4928d1f2ef38ac"
+    },
+    {
+      "source": "/private/tmp/prosary-kahana-reference/1MA-B-165-native.png",
+      "row": 5,
+      "witness": "primary",
+      "side": "right",
+      "bounds": [
+        750,
+        566,
+        1450,
+        629
+      ],
+      "path": "/private/tmp/prosary-kahana-reference/1MA-B165-primary-row05-right.png",
+      "sha256": "698d27d72a9d759cfc3a24f027d9214ddbb81151894d2fcf4e5592632101feb6"
+    },
+    {
+      "source": "/private/tmp/prosary-kahana-reference/1MA-B-165-native.png",
+      "row": 5,
+      "witness": "primary",
+      "side": "left",
+      "bounds": [
+        200,
+        566,
+        800,
+        629
+      ],
+      "path": "/private/tmp/prosary-kahana-reference/1MA-B165-primary-row05-left.png",
+      "sha256": "50c8e58b43beee944960e42a29773e57bb7ad7809d3e23370cce3779f95bfde3"
+    },
+    {
+      "source": "/private/tmp/prosary-kahana-reference/1MA-B-165-native.png",
+      "row": 6,
+      "witness": "primary",
+      "side": "right",
+      "bounds": [
+        750,
+        633,
+        1450,
+        691
+      ],
+      "path": "/private/tmp/prosary-kahana-reference/1MA-B165-primary-row06-right.png",
+      "sha256": "30a2121c65bab4cd9bc7decf2635c4d5993eaf9ebb65d77bc54c7d6789a5f22f"
+    },
+    {
+      "source": "/private/tmp/prosary-kahana-reference/1MA-B-165-native.png",
+      "row": 6,
+      "witness": "primary",
+      "side": "left",
+      "bounds": [
+        200,
+        633,
+        800,
+        691
+      ],
+      "path": "/private/tmp/prosary-kahana-reference/1MA-B165-primary-row06-left.png",
+      "sha256": "5263b1c02e86d50ef99a4186e5f82312d33a7cc4d37e8c5792534554e073735c"
+    },
+    {
+      "source": "/private/tmp/prosary-kahana-reference/1MA-B-165-native.png",
+      "row": 7,
+      "witness": "primary",
+      "side": "right",
+      "bounds": [
+        750,
+        695,
+        1450,
+        753
+      ],
+      "path": "/private/tmp/prosary-kahana-reference/1MA-B165-primary-row07-right.png",
+      "sha256": "45d632586f2d8d014582f87c3a5e83b75958f66e0908a86375993fac26f0dd27"
+    },
+    {
+      "source": "/private/tmp/prosary-kahana-reference/1MA-B-165-native.png",
+      "row": 7,
+      "witness": "primary",
+      "side": "left",
+      "bounds": [
+        200,
+        695,
+        800,
+        753
+      ],
+      "path": "/private/tmp/prosary-kahana-reference/1MA-B165-primary-row07-left.png",
+      "sha256": "9f57a6c8eaa0babbeaca0fe2c795e4cefc324800c53b9638cdfc5c66562381f8"
+    },
+    {
+      "source": "/private/tmp/prosary-kahana-reference/1MA-B-165-native.png",
+      "row": 8,
+      "witness": "primary",
+      "side": "right",
+      "bounds": [
+        750,
+        753,
+        1450,
+        817
+      ],
+      "path": "/private/tmp/prosary-kahana-reference/1MA-B165-primary-row08-right.png",
+      "sha256": "c0689fa597c4765f53765e4385b717988edf16ecf5de8d829c3473a7d9b75864"
+    },
+    {
+      "source": "/private/tmp/prosary-kahana-reference/1MA-B-165-native.png",
+      "row": 8,
+      "witness": "primary",
+      "side": "left",
+      "bounds": [
+        200,
+        753,
+        800,
+        817
+      ],
+      "path": "/private/tmp/prosary-kahana-reference/1MA-B165-primary-row08-left.png",
+      "sha256": "cb28c6dc97776c9d1036a91db13f5c098682bfa0edf185949daecea672414298"
+    }
+  ],
+  "focusedCrops": [
+    {
+      "source": "/private/tmp/prosary-kahana-reference/1MA-extra-84-native.png",
+      "sourceSHA256": "ede7b69fe49189896ba79ea5fbad032579c581a6c8d8912b9065e2967dcfdd52",
+      "name": "29-carvings-ships-extra",
+      "bounds": [
+        570,
+        210,
+        1010,
+        255
+      ],
+      "path": "/private/tmp/prosary-kahana-reference/1MA-B165-query-29-carvings-ships-extra.png",
+      "sha256": "74ad4120204366194b6c8d765f19c647c52cfc7cc9bbd3c1f5917fd6be7d085c"
+    },
+    {
+      "source": "/private/tmp/prosary-kahana-reference/1MA-extra-84-native.png",
+      "sourceSHA256": "ede7b69fe49189896ba79ea5fbad032579c581a6c8d8912b9065e2967dcfdd52",
+      "name": "31-tryphon-extra",
+      "bounds": [
+        1125,
+        302,
+        1370,
+        350
+      ],
+      "path": "/private/tmp/prosary-kahana-reference/1MA-B165-query-31-tryphon-extra.png",
+      "sha256": "a0b2d9e95324df61ac7a216dd67b31507c2377030f2cad68243fcfaca59736df"
+    },
+    {
+      "source": "/private/tmp/prosary-kahana-reference/1MA-extra-84-native.png",
+      "sourceSHA256": "ede7b69fe49189896ba79ea5fbad032579c581a6c8d8912b9065e2967dcfdd52",
+      "name": "32-gedolah-extra",
+      "bounds": [
+        550,
+        350,
+        760,
+        394
+      ],
+      "path": "/private/tmp/prosary-kahana-reference/1MA-B165-query-32-gedolah-extra.png",
+      "sha256": "5172bad996788e3cb7a3dff31e3d168d73c1dc44f6a3eee02503a7564d0e7a69"
+    },
+    {
+      "source": "/private/tmp/prosary-kahana-reference/1MA-extra-84-native.png",
+      "sourceSHA256": "ede7b69fe49189896ba79ea5fbad032579c581a6c8d8912b9065e2967dcfdd52",
+      "name": "33-vayaqqefem-extra",
+      "bounds": [
+        830,
+        396,
+        1055,
+        445
+      ],
+      "path": "/private/tmp/prosary-kahana-reference/1MA-B165-query-33-vayaqqefem-extra.png",
+      "sha256": "010bf30f6c0b1f997843f7021ff994308e2080077032f6a594a7ec40eb1d3dc9"
+    },
+    {
+      "source": "/private/tmp/prosary-kahana-reference/1MA-extra-84-native.png",
+      "sourceSHA256": "ede7b69fe49189896ba79ea5fbad032579c581a6c8d8912b9065e2967dcfdd52",
+      "name": "34-hanacha-extra",
+      "bounds": [
+        600,
+        490,
+        1000,
+        540
+      ],
+      "path": "/private/tmp/prosary-kahana-reference/1MA-B165-query-34-hanacha-extra.png",
+      "sha256": "93b422fbb9834cb18b8f440a34e161a2a26971711202e85c86cb2d9f6beb2872"
+    },
+    {
+      "source": "/private/tmp/prosary-kahana-reference/1MA-B-165-native.png",
+      "sourceSHA256": "e8897d90ee26c15cc98ee26a3fac1b81244a7d13d18369d37f42c990a54a2d13",
+      "name": "29-carvings-ships-primary",
+      "bounds": [
+        330,
+        379,
+        600,
+        443
+      ],
+      "path": "/private/tmp/prosary-kahana-reference/1MA-B165-query-29-carvings-ships-primary.png",
+      "sha256": "6ac96a1ec4fc4123d373a6abc4d54dd49e134cca2939c163534527d6a06e1c14"
+    },
+    {
+      "source": "/private/tmp/prosary-kahana-reference/1MA-B-165-native.png",
+      "sourceSHA256": "e8897d90ee26c15cc98ee26a3fac1b81244a7d13d18369d37f42c990a54a2d13",
+      "name": "31-tryphon-primary",
+      "bounds": [
+        1110,
+        508,
+        1255,
+        571
+      ],
+      "path": "/private/tmp/prosary-kahana-reference/1MA-B165-query-31-tryphon-primary.png",
+      "sha256": "c9507b584650710320b8464a5195e73c538d4f56c1cd7abaac4ba35e79a1a777"
+    },
+    {
+      "source": "/private/tmp/prosary-kahana-reference/1MA-B-165-native.png",
+      "sourceSHA256": "e8897d90ee26c15cc98ee26a3fac1b81244a7d13d18369d37f42c990a54a2d13",
+      "name": "32-gedolah-primary",
+      "bounds": [
+        340,
+        575,
+        510,
+        635
+      ],
+      "path": "/private/tmp/prosary-kahana-reference/1MA-B165-query-32-gedolah-primary.png",
+      "sha256": "9a352323b04a32d8ecac49376be38fce71512ad61cee36d84e0c31bf9fb83fcd"
+    },
+    {
+      "source": "/private/tmp/prosary-kahana-reference/1MA-B-165-native.png",
+      "sourceSHA256": "e8897d90ee26c15cc98ee26a3fac1b81244a7d13d18369d37f42c990a54a2d13",
+      "name": "33-vayaqqifem-primary",
+      "bounds": [
+        665,
+        636,
+        810,
+        689
+      ],
+      "path": "/private/tmp/prosary-kahana-reference/1MA-B165-query-33-vayaqqifem-primary.png",
+      "sha256": "95cece1584e4a926b999950c1ec9770729522b0d4ef90e1d4db766be6eb6b7fd"
+    },
+    {
+      "source": "/private/tmp/prosary-kahana-reference/1MA-B-166-native.png",
+      "sourceSHA256": "431a1fa7d4e0c59fcaf8935b254d5ca691abf4da17fc9273afd3e8f90bde2ef6",
+      "name": "34-continuation-primary",
+      "bounds": [
+        890,
+        311,
+        1370,
+        381
+      ],
+      "path": "/private/tmp/prosary-kahana-reference/1MA-B165-query-34-continuation-primary.png",
+      "sha256": "6c09bb7eea31176aa10ec798db5f81191f88bea94b57a7e1821f4776f7427442"
+    },
+    {
+      "source": "/private/tmp/prosary-kahana-reference/1MA-extra-85-native.png",
+      "sourceSHA256": "2aaecde349f912db7bf56daf35e740196f0ef0875e5231682de524d8f488ff92",
+      "name": "34-continuation-extra",
+      "bounds": [
+        2230,
+        150,
+        2600,
+        206
+      ],
+      "path": "/private/tmp/prosary-kahana-reference/1MA-B165-query-34-continuation-extra.png",
+      "sha256": "3617da8e518d7bee671fca8d905f38558dec3c87b1930f41fb49b48433c6c2c2"
+    },
+    {
+      "source": "/private/tmp/prosary-kahana-reference/1MA-B-165-native.png",
+      "sourceSHA256": "e8897d90ee26c15cc98ee26a3fac1b81244a7d13d18369d37f42c990a54a2d13",
+      "name": "34-hanacha-primary",
+      "bounds": [
+        390,
+        752,
+        750,
+        815
+      ],
+      "path": "/private/tmp/prosary-kahana-reference/1MA-B165-query-34-hanacha-primary.png",
+      "sha256": "4de909411ffb024208807701cb10a33daa4cf14101fdf95a06036a09cc2e915d"
+    },
+    {
+      "source": "/private/tmp/prosary-kahana-reference/1MA-extra-84-native.png",
+      "sourceSHA256": "ede7b69fe49189896ba79ea5fbad032579c581a6c8d8912b9065e2967dcfdd52",
+      "name": "31-antiochos-extra",
+      "bounds": [
+        780,
+        302,
+        955,
+        351
+      ],
+      "path": "/private/tmp/prosary-kahana-reference/1MA-B165-query-31-antiochos-extra.png",
+      "sha256": "2be110d77d20ac2de3d1bec00b139fa7bd917a04200ab8ebe32ab52a03b89707"
+    },
+    {
+      "source": "/private/tmp/prosary-kahana-reference/1MA-B-165-native.png",
+      "sourceSHA256": "e8897d90ee26c15cc98ee26a3fac1b81244a7d13d18369d37f42c990a54a2d13",
+      "name": "31-antiochos-primary",
+      "bounds": [
+        630,
+        508,
+        860,
+        572
+      ],
+      "path": "/private/tmp/prosary-kahana-reference/1MA-B165-query-31-antiochos-primary.png",
+      "sha256": "f0974afb37d61b803ee8a555ee244498011266844eea08bca88cb2e96eb7a95b"
+    }
+  ],
+  "disclosedUnreadableMarks": [],
+  "unresolvedFindingsWithinReviewedPage": [],
+  "reviewedPages": [
+    97,
+    98,
+    99,
+    100,
+    101,
+    102,
+    103,
+    104,
+    105,
+    106,
+    107,
+    108,
+    109,
+    110,
+    111,
+    112,
+    113,
+    114,
+    115,
+    116,
+    117,
+    118,
+    119,
+    120,
+    121,
+    122,
+    123,
+    124,
+    125,
+    126,
+    127,
+    128,
+    129,
+    130,
+    131,
+    132,
+    133,
+    134,
+    135,
+    136,
+    137,
+    138,
+    139,
+    140,
+    141,
+    142,
+    143,
+    144,
+    145,
+    146,
+    147,
+    148,
+    149,
+    150,
+    151,
+    152,
+    153,
+    154,
+    155,
+    156,
+    157,
+    158,
+    159,
+    160,
+    161,
+    162,
+    163,
+    164,
+    165
+  ],
+  "acceptedSourceNoteIds": [
+    "1ma-10-37-ayin-vowel",
+    "1ma-10-46-vav-vowel",
+    "1ma-10-57-pe-dagesh",
+    "1ma-4-10-yod-dagesh",
+    "1ma-4-18-yod-dagesh",
+    "1ma-5-26-qoph-dagesh",
+    "1ma-5-26-samekh-vowel",
+    "1ma-5-34-yod-dagesh",
+    "1ma-5-36-qoph-dagesh",
+    "1ma-5-4-bet-dagesh",
+    "1ma-6-10-yod-dagesh",
+    "1ma-6-11-bet-dagesh",
+    "1ma-6-26-yod-dagesh",
+    "1ma-6-38-kaf-vowel",
+    "1ma-9-1-bet-vowel",
+    "1ma-9-56-resh-vowel",
+    "1ma-12-25-het-vowel"
+  ],
+  "integrity": {
+    "checkedTextSHA256": "a600db5eeee63dfeb7354f171f1973b5ee9fa645cef9b488b2a660f26f646fb9",
+    "sourceRowsPlusContinuationMatchUnits": true,
+    "integrityNotVisualApproval": true
+  }
+}

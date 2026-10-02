@@ -1,0 +1,1384 @@
+{
+  "schemaVersion": 1,
+  "book": "WIS",
+  "chapter": 15,
+  "reviewer": "source_gate, independent of root first draft and author pass",
+  "status": "Full independent 29-row comparison complete; five visible point correction entries and five exact omission-note proposals ready for reconciliation",
+  "releaseApproved": false,
+  "canonicalChanged": false,
+  "newReviewedPages": [],
+  "method": [
+    "Compared every word, visible point, bracket, punctuation separator and unit start in all19 units across29 physical rows using all10 source-body halves. This is a complete comparison, not a sample of author focal queries.",
+    "Separately inspected both native page contexts, all19 printed labels, the 10 page join and both chapter transitions.",
+    "Focused crops preserve native pixels with nearest-neighbor scaling. No grammar, commentary or other translation was used to fill an unreadable mark or select a consonant.",
+    "Root independently viewed and concurred with all five clear correction entries, all five exact omissions, and the named difficult retained points after this independent pass. This limited focal concurrence does not replace the full chapter comparison recorded here."
+  ],
+  "source": {
+    "volume": "A2",
+    "sha256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+    "pages": [
+      175,
+      176
+    ],
+    "nativeImages": [
+      {
+        "page": 175,
+        "file": "/private/tmp/prosary-wis-review/WIS-native-175.png",
+        "sha256": "c9b5a29401d66da94a875bf6d6e8031ba69293326566c046856387157a474296"
+      },
+      {
+        "page": 176,
+        "file": "/private/tmp/prosary-wis-review/WIS-native-176.png",
+        "sha256": "f11a42ae085b6f68e2b9c54efd6b5bc31865a5cf235ea500792659f96aeb933d"
+      }
+    ]
+  },
+  "coverage": {
+    "units": 19,
+    "printedLabels": 19,
+    "physicalRows": 29,
+    "rowsByPage": {
+      "175": 15,
+      "176": 14
+    },
+    "bodyHalfCropsCompared": 10,
+    "comparedReferences": [
+      "15:1",
+      "15:2",
+      "15:3",
+      "15:4",
+      "15:5",
+      "15:6",
+      "15:7",
+      "15:8",
+      "15:9",
+      "15:10",
+      "15:11",
+      "15:12",
+      "15:13",
+      "15:14",
+      "15:15",
+      "15:16",
+      "15:17",
+      "15:18",
+      "15:19"
+    ],
+    "boundaries": [
+      "175 chapter15 begins ואתה after chapter14 closes הרשעים׃. Its fifteen rows contain distinct starts2 ואף,3 כי,4 כי,5 אשר,6 תקוה,7 כי,8 וגם,9 ולא,10 לבבו. Each agrees with the printed separator and marginal label. Chapter14 and commentary excluded.",
+      "175 bottom ends לב־ within10;176 opens אפר and continues10 through נבזים׃. 11 begins כי לא־ידע את־ and crosses the next physical row at יוצרו. 12 begins אמנם after חיים׃;13 איש after רע׃;14 וכלם after להשבר׃;15 כי after ירדו׃;16 הלא after ללכת׃;17 בהיותו after אליו׃;18 גם־ישתחוו after לעד׃;19 גם חסרות after לבערות׃.",
+      "176 row14 ends ומברכתו׃, completing19. The next row starts separate chapter16 לכן, which is excluded. No commentary enters this chapter."
+    ],
+    "brackets": "Preserve6 [הפסילים],12 מ[מקום] with the prefix mem outside the bracket,17 [אליל] and [יחיו].",
+    "maqaf": "Preserve all printed joins, including10 לב־אפר across the page and11 את־יוצרו across the physical row; no invented punctuation."
+  },
+  "corroboratedAuthorCorrections": [
+    {
+      "verse": 10,
+      "before": "לְבִי־",
+      "after": "לְב־",
+      "reason": "Tight original crop clearly contains only lamed and bet before the maqaf, with no written yod or distinct bet vowel. The lamed lower group remains a provisional point query; retained draft sheva is not certified."
+    },
+    {
+      "verse": 12,
+      "before": "חַיֵּתְנוּ",
+      "after": "חַיֵּתֵנוּ",
+      "reason": "The tav lower mark has two horizontal lobes, rather than a vertical sheva pair; change to tsere for independent corroboration."
+    },
+    {
+      "verse": 19,
+      "before": "יָי",
+      "after": "יְיָ",
+      "reason": "Focused original crop shows first/right yod sheva and second/left yod qamats."
+    }
+  ],
+  "authorCorrectionCaveat": "The10 consonant correction removing the invented written yod is corroborated; its retained provisional lamed sheva receives the additional visible segol correction below.",
+  "clearFindings": [
+    {
+      "verse": 2,
+      "before": "עֻזֶּךָ",
+      "after": "עֻזְּךָ",
+      "finding": "Zayin lower points form two clearly vertical lobes, not a triangular segol. Preserve the three diagonal ayin qibbuts lobes and zayin interior dagesh.",
+      "evidence": [
+        "source-gate-WIS15-oz2.png"
+      ]
+    },
+    {
+      "verse": 3,
+      "before": "עֻזֶּךָ",
+      "after": "עֻזְּךָ",
+      "finding": "This second occurrence independently shows the same vertical zayin sheva, with ayin qibbuts and zayin interior dagesh retained.",
+      "evidence": [
+        "source-gate-WIS15-oz3.png"
+      ]
+    },
+    {
+      "verse": 5,
+      "before": "יֶחְשַׁק",
+      "after": "יֶחֱשַׁק",
+      "finding": "Five distinct points under het form a left segol triangle plus a right vertical pair: hataf-segol. Preserve initial-yod segol, shin patah/dot and all consonants.",
+      "evidence": [
+        "source-gate-WIS15-yehshak5-complete.png",
+        "source-gate-WIS15-yehshak5.png"
+      ]
+    },
+    {
+      "verse": 10,
+      "before": "לְב־",
+      "after": "לֶב־",
+      "finding": "Lamed lower group has two discernible horizontal upper lobes and a third below: segol, not draft sheva. Only lamed and bet precede the printed maqaf; no written yod or bet vowel is supplied.",
+      "evidence": [
+        "WIS15-author-heart10-tight.png"
+      ]
+    },
+    {
+      "verse": 19,
+      "before": "חֲסֵרוֹת",
+      "after": "חַסְרוֹת",
+      "finding": "Het has a single flat detached patah bar with no right dot pair. Samekh has two vertically arranged lower lobes, sheva, not tsere. Preserve the written vav and its holam.",
+      "evidence": [
+        "source-gate-WIS15-chasrot19-complete.png"
+      ]
+    }
+  ],
+  "pointNoteProposals": [
+    {
+      "verse": 1,
+      "id": "wis-15-1-kaf-2-vowel",
+      "kind": "unreadablePoint",
+      "anchor": "תְּכלְכֵּל",
+      "occurrence": 1,
+      "letterIndex": 2,
+      "mark": "vowel",
+      "sourcePages": [
+        175
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=175",
+      "finding": "First kaf lower ink is fused into the broad foot; no distinct patah bar can be certified. Retain its empty interior, tav dagesh/sheva, first-lamed sheva, and second-kaf dagesh/tsere.",
+      "evidence": [
+        "source-gate-WIS15-tekalkel1.png"
+      ]
+    },
+    {
+      "verse": 8,
+      "id": "wis-15-8-lamed-1-vowel",
+      "kind": "unreadablePoint",
+      "anchor": "לקָּח",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        175
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=175",
+      "finding": "Initial lamed lower point is merged into its descending foot. The provisional qibbuts cannot be independently resolved. Preserve qof dagesh/qamats and the final unpointed het.",
+      "evidence": [
+        "WIS15-author-taken8.png"
+      ]
+    },
+    {
+      "verse": 8,
+      "id": "wis-15-8-shin-2-dagesh",
+      "kind": "unreadablePoint",
+      "anchor": "יַשׁוּ",
+      "occurrence": 1,
+      "letterIndex": 2,
+      "mark": "dagesh",
+      "sourcePages": [
+        175
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=175",
+      "finding": "The inner mound is fused with the shin central arm; a distinct dagesh cannot be separated. Preserve shin dot, clear initial-yod patah and final-vav shuruq.",
+      "evidence": [
+        "source-gate-WIS15-yashu8.png"
+      ]
+    },
+    {
+      "verse": 18,
+      "id": "wis-15-18-mem-1-vowel",
+      "kind": "unreadablePoint",
+      "anchor": "משְׁלָן",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        176
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=176",
+      "finding": "The mem lower cluster is fused with its foot and cannot distinguish the provisional qamats from another point. Preserve clearly vertical shin sheva and lamed qamats, with the source defective spelling.",
+      "evidence": [
+        "source-gate-WIS15-moshlan18-complete.png"
+      ]
+    },
+    {
+      "verse": 19,
+      "id": "wis-15-19-het-2-vowel",
+      "kind": "unreadablePoint",
+      "anchor": "רָחקוּ",
+      "occurrence": 1,
+      "letterIndex": 2,
+      "mark": "vowel",
+      "sourcePages": [
+        176
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=176",
+      "finding": "Het lower group merges with the letter foot; a unique compound/simple vowel cannot be distinguished. Retain the clear resh qamats, already-bare qof and final shuruq. No qof sheva is supplied.",
+      "evidence": [
+        "source-gate-WIS15-rakhqu19-complete.png"
+      ]
+    }
+  ],
+  "proposedWordReplacements": [
+    {
+      "verse": 1,
+      "before": "תְּכַלְכֵּל",
+      "after": "תְּכלְכֵּל",
+      "evidence": [
+        "source-gate-WIS15-tekalkel1.png"
+      ]
+    },
+    {
+      "verse": 2,
+      "before": "עֻזֶּךָ",
+      "after": "עֻזְּךָ",
+      "evidence": [
+        "source-gate-WIS15-oz2.png"
+      ]
+    },
+    {
+      "verse": 3,
+      "before": "עֻזֶּךָ",
+      "after": "עֻזְּךָ",
+      "evidence": [
+        "source-gate-WIS15-oz3.png"
+      ]
+    },
+    {
+      "verse": 5,
+      "before": "יֶחְשַׁק",
+      "after": "יֶחֱשַׁק",
+      "evidence": [
+        "source-gate-WIS15-yehshak5-complete.png",
+        "source-gate-WIS15-yehshak5.png"
+      ]
+    },
+    {
+      "verse": 8,
+      "before": "לֻקָּח",
+      "after": "לקָּח",
+      "evidence": [
+        "WIS15-author-taken8.png"
+      ]
+    },
+    {
+      "verse": 8,
+      "before": "יַשּׁוּ",
+      "after": "יַשׁוּ",
+      "evidence": [
+        "source-gate-WIS15-yashu8.png"
+      ]
+    },
+    {
+      "verse": 10,
+      "before": "לְב־",
+      "after": "לֶב־",
+      "evidence": [
+        "WIS15-author-heart10-tight.png"
+      ]
+    },
+    {
+      "verse": 18,
+      "before": "מָשְׁלָן",
+      "after": "משְׁלָן",
+      "evidence": [
+        "source-gate-WIS15-moshlan18-complete.png"
+      ]
+    },
+    {
+      "verse": 19,
+      "before": "חֲסֵרוֹת",
+      "after": "חַסְרוֹת",
+      "evidence": [
+        "source-gate-WIS15-chasrot19-complete.png"
+      ]
+    },
+    {
+      "verse": 19,
+      "before": "רָחֲקוּ",
+      "after": "רָחקוּ",
+      "evidence": [
+        "source-gate-WIS15-rakhqu19-complete.png"
+      ]
+    }
+  ],
+  "retainedFindings": [
+    {
+      "verse": 1,
+      "token": "וְאַתָּה /תְּכלְכֵּל",
+      "finding": "Initial vav has two touching vertical sheva lobes. In תכלכל, tav dagesh/sheva, first-lamed sheva and second-kaf dagesh/tsere remain distinguishable; only the first-kaf lower point is omitted.",
+      "evidence": [
+        "source-gate-WIS15-veata1.png",
+        "source-gate-WIS15-tekalkel1.png"
+      ]
+    },
+    {
+      "verse": 3,
+      "token": "הַכֵּר",
+      "finding": "He has a flat patah and kaf two horizontal tsere lobes plus its interior dagesh.",
+      "evidence": [
+        "source-gate-WIS15-haker3.png"
+      ]
+    },
+    {
+      "verse": 4,
+      "token": "מְזִמַּת",
+      "finding": "Initial mem sheva, zayin single hiriq, second-mem dagesh and flat patah are independently visible.",
+      "evidence": [
+        "source-gate-WIS15-mezimat4.png"
+      ]
+    },
+    {
+      "verse": 7,
+      "token": "לָלוּשׁ /וְיִיצַר",
+      "finding": "First lamed lower bar and downward stem support qamats. In וייצר, initial vav has vertical sheva, first yod a single hiriq, second written yod remains bare. No extra dagesh is introduced.",
+      "evidence": [
+        "source-gate-WIS15-lalush7.png",
+        "source-gate-WIS15-veyitsar7.png"
+      ]
+    },
+    {
+      "verse": 7,
+      "token": "חֲפָצִים /לְשָׁרֵת",
+      "finding": "Het lower group shows a flat left bar and joined upper/lower right lobes of hataf-patah. Pe qamats and tsadi hiriq remain. In לשרת, shin qamats has a distinct horizontal shoulder and descending stem.",
+      "evidence": [
+        "source-gate-WIS15-hafatsim7.png",
+        "source-gate-WIS15-lesharet7.png"
+      ]
+    },
+    {
+      "verse": 8,
+      "token": "לְקָרֵץ",
+      "finding": "Complete native crop confirms four consonants lamed-qof-resh-finaltsadi. The lamed has vertical sheva lobes, qof qamats a right bar and stem alongside its descender, resh tsere two horizontal lobes with one touching its leg. Retain these visible marks, not a normalization from grammar.",
+      "evidence": [
+        "WIS15-author-carve8-complete.png",
+        "source-gate-WIS15-carve8-large.png"
+      ]
+    },
+    {
+      "verse": 12,
+      "token": "חַיֵּתֵנוּ",
+      "finding": "Tav has two horizontal lower lobes, tsere, independently corroborating the author correction. Preserve the single printed yod.",
+      "evidence": [
+        "WIS15-author-lives12.png",
+        "WIS15-176-upper-right.png"
+      ]
+    },
+    {
+      "verse": 14,
+      "token": "יִרְדּוּ",
+      "finding": "Initial yod has one distinctly separated hiriq dot; resh vertical sheva, dalet interior dagesh and final shuruq remain visible.",
+      "evidence": [
+        "source-gate-WIS15-yirdu14.png"
+      ]
+    },
+    {
+      "verse": 16,
+      "token": "הָפְקַד /אִתּוֹ יְצָרָם",
+      "finding": "He qamats bar/stem and pe two vertical lower sheva lobes are distinguishable. Preserve qof patah, literal defective אתו and independently visible יצרם points.",
+      "evidence": [
+        "source-gate-WIS15-hufkad16.png",
+        "WIS15-author-deposited16.png"
+      ]
+    },
+    {
+      "verse": 18,
+      "token": "מִכֻּלָּן /משְׁלָן",
+      "finding": "מכלן has initial mem hiriq, three descending diagonal kaf qibbuts lobes and both kaf/lamed dageshes; lamed qamats. Separate משלן retains shin sheva/lamed qamats, with only initial mem vowel unreadable.",
+      "evidence": [
+        "source-gate-WIS15-mikulam18.png",
+        "source-gate-WIS15-moshlan18-complete.png"
+      ]
+    },
+    {
+      "verse": 19,
+      "token": "יְיָ /רָחקוּ",
+      "finding": "First/right yod has sheva and second/left yod qamats. In רחקו retain resh qamats and final shuruq; qof remains bare as in the existing draft, with no invented sheva.",
+      "evidence": [
+        "WIS15-author-yy19.png",
+        "source-gate-WIS15-rakhqu19-complete.png"
+      ]
+    }
+  ],
+  "unresolvedFindings": [],
+  "comparedAuthorReport": {
+    "path": "Shared/reports/hebrew-wikisource/WIS-chapter15-author-review.json",
+    "sha256": "d29a9d4899358726c25153d5f55bd45a77e7165341fdfaa44d586d787637bbc0"
+  },
+  "comparedCanonicalSnapshot": {
+    "file": "/private/tmp/prosary-wis-review/source-gate-WIS15-starting-canonical.json",
+    "sha256": "ae63156dae68acc32a2c704e4873fb56b6b1228a6f5050d8c91efaa09901f48d",
+    "chapter": {
+      "number": 15,
+      "verses": [
+        {
+          "verse": 1,
+          "text": "וְאַתָּה אֱלֹהֵינוּ טוֹב וְנֶאֱמָן אֶרֶךְ אַפַּיִם וּבְרַחֲמִים תְּכַלְכֵּל הַכֹּל׃",
+          "sourcePages": [
+            175
+          ],
+          "textSHA256": "b411c361d89e65b8764f31394a1834205e7e79d3fb6ea2892b1b1a34bda6df5f"
+        },
+        {
+          "verse": 2,
+          "text": "וְאַף כִּי־נֶחֱטָא לְךָ אֲנַחְנוּ כִּי נֵדַע אֶת־עֻזֶּךָ אָמְנָם לֹא־נֶחֱטָא בְּדַעְתֵּנוּ אֲשֶׁר לְקִנְיָנְךָ נֵחָשֵׁב׃",
+          "sourcePages": [
+            175
+          ],
+          "textSHA256": "164aa336990e94cb03c349e43f8079f431d7387fbbab1068cb8647c794c10d90"
+        },
+        {
+          "verse": 3,
+          "text": "כִּי הַכֵּר אוֹתְךָ צֶדֶק תָּמִים וְדַעַת עֻזֶּךָ שֹׁרֶשׁ אַל־מָוֶת׃",
+          "sourcePages": [
+            175
+          ],
+          "textSHA256": "8b094feb4c0fdc30390b92e7234ff562064e8f101f4bcdc1d9b357ca25348035"
+        },
+        {
+          "verse": 4,
+          "text": "כִּי לֹא תַתְעֶה אוֹתָנוּ מְזִמַּת אֲנָשִׁים רָעִים וְלֹא הַבְלֵי עֲבוֹדַת הַצַּיָּרִים תַּבְנִית מְשׁוּחָה בִּשְׁלַל צְבָעִים׃",
+          "sourcePages": [
+            175
+          ],
+          "textSHA256": "fde0e869d74bc7a7d94808713adba44382d76ada5adc4277ed1690f793f6cf92"
+        },
+        {
+          "verse": 5,
+          "text": "אֲשֶׁר מַרְאֶה יָבִיא כְּסִילִים לְקָלוֹן כִּי יֶחְשַׁק בְּצֶלֶם תְּמוּנָה מֵתָה אֵין רוּחַ בְּאַפּוֹ׃",
+          "sourcePages": [
+            175
+          ],
+          "textSHA256": "62c5b47632b77e229ce725bb797de0bccdfaa667b188e6033ee05d9dfe4b31fe"
+        },
+        {
+          "verse": 6,
+          "text": "תִּקְוָה כָּזֹאת יָאָתָה לְאוֹהֲבֵי רֶשַׁע לְעוֹשֵׂי [הַפְּסִילִים] לְחוֹשְׁקֵיהֶם וּלְעוֹבְדֵיהֶם׃",
+          "sourcePages": [
+            175
+          ],
+          "textSHA256": "378dd15c1fea17656e1d59fc72fb484347ec82e8c46781b0eedfcf53fbe3c00e"
+        },
+        {
+          "verse": 7,
+          "text": "כִּי יוֹצֵר חֶרֶשׂ יוֹגֵעַ לָלוּשׁ טִיט רַךְ וְיִיצַר לָנוּ כָּל־כְּלִי שָׁרֵת אָמְנָם מֵחֹמֶר אֶחָד יַעֲשֶׂה חֲפָצִים לְשָׁרֵת־בָּם לִצְרָכִים טְהוֹרִים וּלְכָל־דָּבָר בִּלְתִּי טָהוֹר לְלֹא־הַבְדֵּל עַל־צֹרֶךְ כָּל־אֶחָד מֵהֶם יֶחֱרַץ מִשְׁפַּט הַיּוֹצֵר׃",
+          "sourcePages": [
+            175
+          ],
+          "textSHA256": "64f92001bb20ff79ef630ef8d8f802568cc5a73ca9739a4488750bfcf96b9279"
+        },
+        {
+          "verse": 8,
+          "text": "וְגַם יוֹגֵעַ לָרִיק לְקָרֵץ אֱלִיל הֶבֶל מִן־הַחֹמֶר הַזֶּה וְהוּא נוֹלַד מִקָּרוֹב מִן־הָאֲדָמָה וְאַחֲרֵי זְמַן מִצְעָר יָשׁוּב אֵלֶיהָ אֲשֶׁר מִמֶּנָּה לֻקָּח כִּי יַשּׁוּ מִמֶּנּוּ פִּקְּדוֹן נַפְשׁוֹ׃",
+          "sourcePages": [
+            175
+          ],
+          "textSHA256": "0a45fcfdff414f2adb2efe19dbb73c9258dbb79f26d6580e8912396f0a849aac"
+        },
+        {
+          "verse": 9,
+          "text": "וְלֹא יִדְאַג כִּי הִנּוֹ הוֹלֵךְ לָמוּת וְכִי קְצָרִים חַיָּיו אַךְ יִתְחָרֶה בְרוֹקְעֵי זָהָב וּבְצוֹרְפֵי כֶסֶף וְיַעֲשֶׂה כְּמַעֲשֵׂה חָרָשֵׁי נְחֹשֶׁת וּלְכָבוֹד יֵחָשֵׁב־לוֹ כִּי יָצַר דִּבְרֵי תֹהוּ׃",
+          "sourcePages": [
+            175
+          ],
+          "textSHA256": "6815ce522d045bd47cb4fdb761527df8d6a4fe1d7a363c0a713eba2c7896c73d"
+        },
+        {
+          "verse": 10,
+          "text": "לְבָבוֹ לְב־אֵפֶר וְתִקְוָתוֹ מֵעָפָר נְקַלָּה וְחַיָּיו מִדֹּמֶן נְבָזִים׃",
+          "sourcePages": [
+            175,
+            176
+          ],
+          "textSHA256": "3e8c170eff84e1ec0b4ed840c983183d529c704597d2d7af32d10600e57c4335"
+        },
+        {
+          "verse": 11,
+          "text": "כִּי לֹא־יָדַע אֶת־יוֹצְרוֹ אֲשֶׁר נָשַׁף־בּוֹ נֶפֶשׁ פּוֹעֶלֶת וַיִּפַּח בְּאַפָּיו נִשְׁמַת חַיִּים׃",
+          "sourcePages": [
+            176
+          ],
+          "textSHA256": "e449b2bbac9aebdc04a1f8082168bb3ff5a110a0d8d00151c867b02f8ca1377f"
+        },
+        {
+          "verse": 12,
+          "text": "אָמְנָם הוּא יַחְשֹׁב אֶת־חַיֵּתֵנוּ לְמִשְׂחָק וְחַיֵּינוּ לְמַרְכֹּלֶת תַּעֲשִׁיר אִישׁ כִּי יֹאמַר לִבְצֹעַ בֶּצַע שׂוּמָה עָלֵינוּ מִכָּל־מָקוֹם גַּם מִ[מָּקוֹם] רָע׃",
+          "sourcePages": [
+            176
+          ],
+          "textSHA256": "276ef88a3467c8fbcf6b5eda12536d2cf5e0a3780d34012bff7cbe2241d0f7f7"
+        },
+        {
+          "verse": 13,
+          "text": "אִישׁ אֲשֶׁר כָּזֶה יָדַע יוֹתֵר מִכָּל־הָאֲנָשִׁים כִּי פוֹשֵׁעַ הוּא בַּעֲשׂוֹתוֹ מֵחֹמֶר עָפָר כֵּלִים וּפְסִילִים נוֹחִים לְהִשָּׁבֵר׃",
+          "sourcePages": [
+            176
+          ],
+          "textSHA256": "9c020f86236079c33863a61732bf2d1a46db49099acb0d6fbb1ac3709c4ab591"
+        },
+        {
+          "verse": 14,
+          "text": "וְכֻלָּם נִבְעָרִים מִדַּעַת וְנִקְלִים מִנֶּפֶשׁ עוֹלֵל וְהֵם אוֹיְבֵי עַמְּךָ וּבוֹ יִרְדּוּ׃",
+          "sourcePages": [
+            176
+          ],
+          "textSHA256": "9ee17766876bd4c02868bb7cd258c8655ac5599f03760196247289e5c9a70fee"
+        },
+        {
+          "verse": 15,
+          "text": "כִּי כָּל־אֱלִילֵי הַגּוֹיִם לֵאלֹהִים יֵחָשֵׁבוּ אֲשֶׁר אֵין לָהֶם עֵינַיִם לִרְאוֹת וְאַף לִשְׁאֹף־רֵיחַ וְאָזְנַיִם לִשְׁמֹעַ וְאֶצְבְּעוֹת יָדַיִם לְמַשֵּׁשׁ וּלְרַגְלֵיהֶם אֵין כֹּחַ לָלֶכֶת׃",
+          "sourcePages": [
+            176
+          ],
+          "textSHA256": "4b239e211eb47f308e160b62a17c0f34658cf9da886819c70a3fef64d1a29552"
+        },
+        {
+          "verse": 16,
+          "text": "הֲלֹא אָדָם עֲשָׂם וַאֲשֶׁר רוּחַ הָפְקַד אִתּוֹ יְצָרָם וְאֵין בְּכֹחַ אִישׁ לַעֲשׂוֹת אֱלֹהִים אֲשֶׁר יִדְמֶה אֵלָיו׃",
+          "sourcePages": [
+            176
+          ],
+          "textSHA256": "4d9a35f04340a04ad9304f655a62eb2fd0f2026e292cac438464fb67709b65fe"
+        },
+        {
+          "verse": 17,
+          "text": "בִּהְיוֹתוֹ בֶּן־תְּמוּתָה יַעֲשֶׂה [אֱלִיל] מֵת בְּכֹחַ רֶשַׁע הֲלֹא טוֹב הוּא מֵאֲשֶׁר יַעֲרִיץ כִּי הוּא חַי וְהֵמָּה לֹא [יִחְיוּ] לָעַד׃",
+          "sourcePages": [
+            176
+          ],
+          "textSHA256": "022fd302bf86708f4c790e100093f4add0bd8fb0faab5fe4b9e496d8187bf7b3"
+        },
+        {
+          "verse": 18,
+          "text": "גַּם־יִשְׁתַּחֲווּ לַחַיּוֹת הַנְּבָזוֹת מִכֻּלָּן וְאֵין בֵּין כָּל־הָאֲחֵרוֹת מָשְׁלָן לְבַעֲרוּת׃",
+          "sourcePages": [
+            176
+          ],
+          "textSHA256": "b0cc343c71f13222edabbfc79a70f3a5ac53dfceb9f3d42b59212b06e31e0e5d"
+        },
+        {
+          "verse": 19,
+          "text": "גַּם חֲסֵרוֹת יֹפִי הֵן וְאֵין בָּהֶן חֵפֶץ כַּאֲשֶׁר בְּמַרְאֵה הַחַיּוֹת אָכֵן רָחֲקוּ מִתְּהִלַּת יְיָ וּמִבִּרְכָתוֹ׃",
+          "sourcePages": [
+            176
+          ],
+          "textSHA256": "baaadb74f4489e7f8d57fac14565f6810b1be8b669201add47dfd71d783e5952"
+        }
+      ]
+    }
+  },
+  "proposedChapterAfterIntegration": {
+    "number": 15,
+    "verses": [
+      {
+        "verse": 1,
+        "text": "וְאַתָּה אֱלֹהֵינוּ טוֹב וְנֶאֱמָן אֶרֶךְ אַפַּיִם וּבְרַחֲמִים תְּכלְכֵּל הַכֹּל׃",
+        "sourcePages": [
+          175
+        ],
+        "textSHA256": "5213450de8c9957c3a8f51152fd6d8cb9d0fb0383782f40bb98913c630ca3b39",
+        "sourceNotes": [
+          {
+            "id": "wis-15-1-kaf-2-vowel",
+            "kind": "unreadablePoint",
+            "anchor": "תְּכלְכֵּל",
+            "occurrence": 1,
+            "letterIndex": 2,
+            "mark": "vowel",
+            "sourcePages": [
+              175
+            ],
+            "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=175"
+          }
+        ]
+      },
+      {
+        "verse": 2,
+        "text": "וְאַף כִּי־נֶחֱטָא לְךָ אֲנַחְנוּ כִּי נֵדַע אֶת־עֻזְּךָ אָמְנָם לֹא־נֶחֱטָא בְּדַעְתֵּנוּ אֲשֶׁר לְקִנְיָנְךָ נֵחָשֵׁב׃",
+        "sourcePages": [
+          175
+        ],
+        "textSHA256": "cd3f7f34d9175e76e5810fc13cdb81e0c13ec49591765bce6617b78aa0549965"
+      },
+      {
+        "verse": 3,
+        "text": "כִּי הַכֵּר אוֹתְךָ צֶדֶק תָּמִים וְדַעַת עֻזְּךָ שֹׁרֶשׁ אַל־מָוֶת׃",
+        "sourcePages": [
+          175
+        ],
+        "textSHA256": "2ef4b57db4c6975af69417ce5a1079e0150b4a9afe85e7495a7f6c89f8b10558"
+      },
+      {
+        "verse": 4,
+        "text": "כִּי לֹא תַתְעֶה אוֹתָנוּ מְזִמַּת אֲנָשִׁים רָעִים וְלֹא הַבְלֵי עֲבוֹדַת הַצַּיָּרִים תַּבְנִית מְשׁוּחָה בִּשְׁלַל צְבָעִים׃",
+        "sourcePages": [
+          175
+        ],
+        "textSHA256": "fde0e869d74bc7a7d94808713adba44382d76ada5adc4277ed1690f793f6cf92"
+      },
+      {
+        "verse": 5,
+        "text": "אֲשֶׁר מַרְאֶה יָבִיא כְּסִילִים לְקָלוֹן כִּי יֶחֱשַׁק בְּצֶלֶם תְּמוּנָה מֵתָה אֵין רוּחַ בְּאַפּוֹ׃",
+        "sourcePages": [
+          175
+        ],
+        "textSHA256": "f63d43f14cd0851e297a8b30dc3119a3640cfe38ad974e7a0ba979d180fc6e07"
+      },
+      {
+        "verse": 6,
+        "text": "תִּקְוָה כָּזֹאת יָאָתָה לְאוֹהֲבֵי רֶשַׁע לְעוֹשֵׂי [הַפְּסִילִים] לְחוֹשְׁקֵיהֶם וּלְעוֹבְדֵיהֶם׃",
+        "sourcePages": [
+          175
+        ],
+        "textSHA256": "378dd15c1fea17656e1d59fc72fb484347ec82e8c46781b0eedfcf53fbe3c00e"
+      },
+      {
+        "verse": 7,
+        "text": "כִּי יוֹצֵר חֶרֶשׂ יוֹגֵעַ לָלוּשׁ טִיט רַךְ וְיִיצַר לָנוּ כָּל־כְּלִי שָׁרֵת אָמְנָם מֵחֹמֶר אֶחָד יַעֲשֶׂה חֲפָצִים לְשָׁרֵת־בָּם לִצְרָכִים טְהוֹרִים וּלְכָל־דָּבָר בִּלְתִּי טָהוֹר לְלֹא־הַבְדֵּל עַל־צֹרֶךְ כָּל־אֶחָד מֵהֶם יֶחֱרַץ מִשְׁפַּט הַיּוֹצֵר׃",
+        "sourcePages": [
+          175
+        ],
+        "textSHA256": "64f92001bb20ff79ef630ef8d8f802568cc5a73ca9739a4488750bfcf96b9279"
+      },
+      {
+        "verse": 8,
+        "text": "וְגַם יוֹגֵעַ לָרִיק לְקָרֵץ אֱלִיל הֶבֶל מִן־הַחֹמֶר הַזֶּה וְהוּא נוֹלַד מִקָּרוֹב מִן־הָאֲדָמָה וְאַחֲרֵי זְמַן מִצְעָר יָשׁוּב אֵלֶיהָ אֲשֶׁר מִמֶּנָּה לקָּח כִּי יַשׁוּ מִמֶּנּוּ פִּקְּדוֹן נַפְשׁוֹ׃",
+        "sourcePages": [
+          175
+        ],
+        "textSHA256": "0c71fd3a958add5acb4e12f5d30f7da2a5ede6c5ee06e34307f6002326961756",
+        "sourceNotes": [
+          {
+            "id": "wis-15-8-lamed-1-vowel",
+            "kind": "unreadablePoint",
+            "anchor": "לקָּח",
+            "occurrence": 1,
+            "letterIndex": 1,
+            "mark": "vowel",
+            "sourcePages": [
+              175
+            ],
+            "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=175"
+          },
+          {
+            "id": "wis-15-8-shin-2-dagesh",
+            "kind": "unreadablePoint",
+            "anchor": "יַשׁוּ",
+            "occurrence": 1,
+            "letterIndex": 2,
+            "mark": "dagesh",
+            "sourcePages": [
+              175
+            ],
+            "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=175"
+          }
+        ]
+      },
+      {
+        "verse": 9,
+        "text": "וְלֹא יִדְאַג כִּי הִנּוֹ הוֹלֵךְ לָמוּת וְכִי קְצָרִים חַיָּיו אַךְ יִתְחָרֶה בְרוֹקְעֵי זָהָב וּבְצוֹרְפֵי כֶסֶף וְיַעֲשֶׂה כְּמַעֲשֵׂה חָרָשֵׁי נְחֹשֶׁת וּלְכָבוֹד יֵחָשֵׁב־לוֹ כִּי יָצַר דִּבְרֵי תֹהוּ׃",
+        "sourcePages": [
+          175
+        ],
+        "textSHA256": "6815ce522d045bd47cb4fdb761527df8d6a4fe1d7a363c0a713eba2c7896c73d"
+      },
+      {
+        "verse": 10,
+        "text": "לְבָבוֹ לֶב־אֵפֶר וְתִקְוָתוֹ מֵעָפָר נְקַלָּה וְחַיָּיו מִדֹּמֶן נְבָזִים׃",
+        "sourcePages": [
+          175,
+          176
+        ],
+        "textSHA256": "46f114b6447966d2e28171c2b60d6fabde1e174b7aaf6738dec151ee6939440c"
+      },
+      {
+        "verse": 11,
+        "text": "כִּי לֹא־יָדַע אֶת־יוֹצְרוֹ אֲשֶׁר נָשַׁף־בּוֹ נֶפֶשׁ פּוֹעֶלֶת וַיִּפַּח בְּאַפָּיו נִשְׁמַת חַיִּים׃",
+        "sourcePages": [
+          176
+        ],
+        "textSHA256": "e449b2bbac9aebdc04a1f8082168bb3ff5a110a0d8d00151c867b02f8ca1377f"
+      },
+      {
+        "verse": 12,
+        "text": "אָמְנָם הוּא יַחְשֹׁב אֶת־חַיֵּתֵנוּ לְמִשְׂחָק וְחַיֵּינוּ לְמַרְכֹּלֶת תַּעֲשִׁיר אִישׁ כִּי יֹאמַר לִבְצֹעַ בֶּצַע שׂוּמָה עָלֵינוּ מִכָּל־מָקוֹם גַּם מִ[מָּקוֹם] רָע׃",
+        "sourcePages": [
+          176
+        ],
+        "textSHA256": "276ef88a3467c8fbcf6b5eda12536d2cf5e0a3780d34012bff7cbe2241d0f7f7"
+      },
+      {
+        "verse": 13,
+        "text": "אִישׁ אֲשֶׁר כָּזֶה יָדַע יוֹתֵר מִכָּל־הָאֲנָשִׁים כִּי פוֹשֵׁעַ הוּא בַּעֲשׂוֹתוֹ מֵחֹמֶר עָפָר כֵּלִים וּפְסִילִים נוֹחִים לְהִשָּׁבֵר׃",
+        "sourcePages": [
+          176
+        ],
+        "textSHA256": "9c020f86236079c33863a61732bf2d1a46db49099acb0d6fbb1ac3709c4ab591"
+      },
+      {
+        "verse": 14,
+        "text": "וְכֻלָּם נִבְעָרִים מִדַּעַת וְנִקְלִים מִנֶּפֶשׁ עוֹלֵל וְהֵם אוֹיְבֵי עַמְּךָ וּבוֹ יִרְדּוּ׃",
+        "sourcePages": [
+          176
+        ],
+        "textSHA256": "9ee17766876bd4c02868bb7cd258c8655ac5599f03760196247289e5c9a70fee"
+      },
+      {
+        "verse": 15,
+        "text": "כִּי כָּל־אֱלִילֵי הַגּוֹיִם לֵאלֹהִים יֵחָשֵׁבוּ אֲשֶׁר אֵין לָהֶם עֵינַיִם לִרְאוֹת וְאַף לִשְׁאֹף־רֵיחַ וְאָזְנַיִם לִשְׁמֹעַ וְאֶצְבְּעוֹת יָדַיִם לְמַשֵּׁשׁ וּלְרַגְלֵיהֶם אֵין כֹּחַ לָלֶכֶת׃",
+        "sourcePages": [
+          176
+        ],
+        "textSHA256": "4b239e211eb47f308e160b62a17c0f34658cf9da886819c70a3fef64d1a29552"
+      },
+      {
+        "verse": 16,
+        "text": "הֲלֹא אָדָם עֲשָׂם וַאֲשֶׁר רוּחַ הָפְקַד אִתּוֹ יְצָרָם וְאֵין בְּכֹחַ אִישׁ לַעֲשׂוֹת אֱלֹהִים אֲשֶׁר יִדְמֶה אֵלָיו׃",
+        "sourcePages": [
+          176
+        ],
+        "textSHA256": "4d9a35f04340a04ad9304f655a62eb2fd0f2026e292cac438464fb67709b65fe"
+      },
+      {
+        "verse": 17,
+        "text": "בִּהְיוֹתוֹ בֶּן־תְּמוּתָה יַעֲשֶׂה [אֱלִיל] מֵת בְּכֹחַ רֶשַׁע הֲלֹא טוֹב הוּא מֵאֲשֶׁר יַעֲרִיץ כִּי הוּא חַי וְהֵמָּה לֹא [יִחְיוּ] לָעַד׃",
+        "sourcePages": [
+          176
+        ],
+        "textSHA256": "022fd302bf86708f4c790e100093f4add0bd8fb0faab5fe4b9e496d8187bf7b3"
+      },
+      {
+        "verse": 18,
+        "text": "גַּם־יִשְׁתַּחֲווּ לַחַיּוֹת הַנְּבָזוֹת מִכֻּלָּן וְאֵין בֵּין כָּל־הָאֲחֵרוֹת משְׁלָן לְבַעֲרוּת׃",
+        "sourcePages": [
+          176
+        ],
+        "textSHA256": "4ffe531beaa1eedcb0b98ef80a1ca6f5fca7cb78a939dc0d1bca216ccaaab0d1",
+        "sourceNotes": [
+          {
+            "id": "wis-15-18-mem-1-vowel",
+            "kind": "unreadablePoint",
+            "anchor": "משְׁלָן",
+            "occurrence": 1,
+            "letterIndex": 1,
+            "mark": "vowel",
+            "sourcePages": [
+              176
+            ],
+            "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=176"
+          }
+        ]
+      },
+      {
+        "verse": 19,
+        "text": "גַּם חַסְרוֹת יֹפִי הֵן וְאֵין בָּהֶן חֵפֶץ כַּאֲשֶׁר בְּמַרְאֵה הַחַיּוֹת אָכֵן רָחקוּ מִתְּהִלַּת יְיָ וּמִבִּרְכָתוֹ׃",
+        "sourcePages": [
+          176
+        ],
+        "textSHA256": "bb46a72dbf796596d402d4f22d48bd5ef6b2bf7aa18792e8042753b3b6767a1f",
+        "sourceNotes": [
+          {
+            "id": "wis-15-19-het-2-vowel",
+            "kind": "unreadablePoint",
+            "anchor": "רָחקוּ",
+            "occurrence": 1,
+            "letterIndex": 2,
+            "mark": "vowel",
+            "sourcePages": [
+              176
+            ],
+            "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=176"
+          }
+        ]
+      }
+    ]
+  },
+  "sourceCrops": [
+    {
+      "page": 175,
+      "label": "upper",
+      "side": "right",
+      "nativeBounds": [
+        1017,
+        770,
+        2050,
+        1350
+      ],
+      "file": "/private/tmp/prosary-wis-review/WIS15-175-upper-right.png",
+      "sha256": "d616ca6a29aa5de3baf2d7418a05a530b4862048c52fb359733a059fc3ac52c7",
+      "sourceSHA256": "c9b5a29401d66da94a875bf6d6e8031ba69293326566c046856387157a474296",
+      "scale": 2
+    },
+    {
+      "page": 175,
+      "label": "upper",
+      "side": "left",
+      "nativeBounds": [
+        155,
+        770,
+        1187,
+        1350
+      ],
+      "file": "/private/tmp/prosary-wis-review/WIS15-175-upper-left.png",
+      "sha256": "60ed64de0e142511229ecf308dff4979427cee5578557d5184502cc1783dcc45",
+      "sourceSHA256": "c9b5a29401d66da94a875bf6d6e8031ba69293326566c046856387157a474296",
+      "scale": 2
+    },
+    {
+      "page": 175,
+      "label": "middle",
+      "side": "right",
+      "nativeBounds": [
+        1017,
+        1300,
+        2050,
+        1760
+      ],
+      "file": "/private/tmp/prosary-wis-review/WIS15-175-middle-right.png",
+      "sha256": "9a2bb922cbeb3b3bc20f4f3a94e9ef58d00ba52f42a789953fa2210d719d8d82",
+      "sourceSHA256": "c9b5a29401d66da94a875bf6d6e8031ba69293326566c046856387157a474296",
+      "scale": 2
+    },
+    {
+      "page": 175,
+      "label": "middle",
+      "side": "left",
+      "nativeBounds": [
+        155,
+        1300,
+        1187,
+        1760
+      ],
+      "file": "/private/tmp/prosary-wis-review/WIS15-175-middle-left.png",
+      "sha256": "05c8d6ed3e0724a09a59680df649d5dff27c4af45b396995b12646df68891a9f",
+      "sourceSHA256": "c9b5a29401d66da94a875bf6d6e8031ba69293326566c046856387157a474296",
+      "scale": 2
+    },
+    {
+      "page": 175,
+      "label": "lower",
+      "side": "right",
+      "nativeBounds": [
+        1017,
+        1710,
+        2050,
+        2180
+      ],
+      "file": "/private/tmp/prosary-wis-review/WIS15-175-lower-right.png",
+      "sha256": "fb7ed7aa144604b6f8b56fcfa7f2eca1dc08b8218d61074777588a61581aa621",
+      "sourceSHA256": "c9b5a29401d66da94a875bf6d6e8031ba69293326566c046856387157a474296",
+      "scale": 2
+    },
+    {
+      "page": 175,
+      "label": "lower",
+      "side": "left",
+      "nativeBounds": [
+        155,
+        1710,
+        1187,
+        2180
+      ],
+      "file": "/private/tmp/prosary-wis-review/WIS15-175-lower-left.png",
+      "sha256": "0f4da9daae7cb123c4da102651e0d7de5b5d3f864c8949435e0a11381ecb3909",
+      "sourceSHA256": "c9b5a29401d66da94a875bf6d6e8031ba69293326566c046856387157a474296",
+      "scale": 2
+    },
+    {
+      "page": 176,
+      "label": "upper",
+      "side": "right",
+      "nativeBounds": [
+        1230,
+        380,
+        2280,
+        1010
+      ],
+      "file": "/private/tmp/prosary-wis-review/WIS15-176-upper-right.png",
+      "sha256": "86abf26493f5ed32c1ff4525765502838eeba08225839ad4376b4341a4f66fd2",
+      "sourceSHA256": "f11a42ae085b6f68e2b9c54efd6b5bc31865a5cf235ea500792659f96aeb933d",
+      "scale": 2
+    },
+    {
+      "page": 176,
+      "label": "upper",
+      "side": "left",
+      "nativeBounds": [
+        350,
+        380,
+        1400,
+        1010
+      ],
+      "file": "/private/tmp/prosary-wis-review/WIS15-176-upper-left.png",
+      "sha256": "cf5a9cc4ab8cd9b5534b58d67f0724896b9dd7ae9776d0f240af2a9940957098",
+      "sourceSHA256": "f11a42ae085b6f68e2b9c54efd6b5bc31865a5cf235ea500792659f96aeb933d",
+      "scale": 2
+    },
+    {
+      "page": 176,
+      "label": "lower",
+      "side": "right",
+      "nativeBounds": [
+        1230,
+        960,
+        2280,
+        1650
+      ],
+      "file": "/private/tmp/prosary-wis-review/WIS15-176-lower-right.png",
+      "sha256": "73e591be3c3b4a2e1e6d3285dce1b50acbea503cdfb4c4fe68c313f9a8f2e89d",
+      "sourceSHA256": "f11a42ae085b6f68e2b9c54efd6b5bc31865a5cf235ea500792659f96aeb933d",
+      "scale": 2
+    },
+    {
+      "page": 176,
+      "label": "lower",
+      "side": "left",
+      "nativeBounds": [
+        350,
+        960,
+        1400,
+        1650
+      ],
+      "file": "/private/tmp/prosary-wis-review/WIS15-176-lower-left.png",
+      "sha256": "50d241b88cd29a662b4960c790f582f010b7ea0418fa0814d7e3b9b041934006",
+      "sourceSHA256": "f11a42ae085b6f68e2b9c54efd6b5bc31865a5cf235ea500792659f96aeb933d",
+      "scale": 2
+    },
+    {
+      "page": 175,
+      "label": "heart10-tight",
+      "nativeBounds": [
+        220,
+        2090,
+        425,
+        2190
+      ],
+      "file": "/private/tmp/prosary-wis-review/WIS15-author-heart10-tight.png",
+      "sha256": "04a4b012fe460f085d326c0c0fad835915308f9044d3326279c3504b0e567f0f",
+      "sourceSHA256": "c9b5a29401d66da94a875bf6d6e8031ba69293326566c046856387157a474296",
+      "scale": 3
+    },
+    {
+      "page": 175,
+      "label": "carve8-complete",
+      "nativeBounds": [
+        1080,
+        1710,
+        1360,
+        1835
+      ],
+      "file": "/private/tmp/prosary-wis-review/WIS15-author-carve8-complete.png",
+      "sha256": "7a043ce161a32df8281cbf11f2c30a0e24eaedc0f2776154b5e5292d8897e46d",
+      "sourceSHA256": "c9b5a29401d66da94a875bf6d6e8031ba69293326566c046856387157a474296",
+      "scale": 3
+    },
+    {
+      "page": 175,
+      "label": "taken8",
+      "nativeBounds": [
+        175,
+        1800,
+        530,
+        1915
+      ],
+      "file": "/private/tmp/prosary-wis-review/WIS15-author-taken8.png",
+      "sha256": "2243ac50067b74b91fd8515f6811cbafe7ec63eb774fd1b3e3fcc6553ce7f6bf",
+      "sourceSHA256": "c9b5a29401d66da94a875bf6d6e8031ba69293326566c046856387157a474296",
+      "scale": 3
+    },
+    {
+      "page": 176,
+      "label": "lives12",
+      "nativeBounds": [
+        1300,
+        590,
+        1630,
+        725
+      ],
+      "file": "/private/tmp/prosary-wis-review/WIS15-author-lives12.png",
+      "sha256": "76678d85367c8d6694812b4aa2f4a22985195b5c357a2eae7abc79486b5bb054",
+      "sourceSHA256": "f11a42ae085b6f68e2b9c54efd6b5bc31865a5cf235ea500792659f96aeb933d",
+      "scale": 3
+    },
+    {
+      "page": 176,
+      "label": "deposited16",
+      "nativeBounds": [
+        1290,
+        1220,
+        1690,
+        1350
+      ],
+      "file": "/private/tmp/prosary-wis-review/WIS15-author-deposited16.png",
+      "sha256": "aa249c8a32989fea637aa0b22af3a456627632824b584a3b54bfa21365c02dc9",
+      "sourceSHA256": "f11a42ae085b6f68e2b9c54efd6b5bc31865a5cf235ea500792659f96aeb933d",
+      "scale": 3
+    },
+    {
+      "page": 176,
+      "label": "foolish18",
+      "nativeBounds": [
+        360,
+        1480,
+        1140,
+        1605
+      ],
+      "file": "/private/tmp/prosary-wis-review/WIS15-author-foolish18.png",
+      "sha256": "aac3a5c6457239107acf731cedf6ba46d99d84f048ad5d0acf908e3271c8bb1f",
+      "sourceSHA256": "f11a42ae085b6f68e2b9c54efd6b5bc31865a5cf235ea500792659f96aeb933d",
+      "scale": 3
+    },
+    {
+      "page": 176,
+      "label": "yy19",
+      "nativeBounds": [
+        560,
+        1580,
+        800,
+        1710
+      ],
+      "file": "/private/tmp/prosary-wis-review/WIS15-author-yy19.png",
+      "sha256": "cca9740823227d87d27fb670df88aa275e5d8cf84df72ce24b53653f138ea44d",
+      "sourceSHA256": "f11a42ae085b6f68e2b9c54efd6b5bc31865a5cf235ea500792659f96aeb933d",
+      "scale": 3
+    },
+    {
+      "page": 175,
+      "label": "veata1",
+      "nativeBounds": [
+        1615,
+        775,
+        1795,
+        880
+      ],
+      "file": "/private/tmp/prosary-wis-review/source-gate-WIS15-veata1.png",
+      "sha256": "4584ea3eb88b02782fbff2c9a114703e13fc3801f63176292468fdc111a4d99a",
+      "source": "/private/tmp/prosary-wis-review/WIS-native-175.png",
+      "sourceSHA256": "c9b5a29401d66da94a875bf6d6e8031ba69293326566c046856387157a474296",
+      "scale": 4
+    },
+    {
+      "page": 175,
+      "label": "tekalkel1",
+      "nativeBounds": [
+        360,
+        775,
+        565,
+        880
+      ],
+      "file": "/private/tmp/prosary-wis-review/source-gate-WIS15-tekalkel1.png",
+      "sha256": "65616e9ba5b366aaaa8b224c4317ba06ae5a139bd8fef3b01b2a46a8e873ac3c",
+      "source": "/private/tmp/prosary-wis-review/WIS-native-175.png",
+      "sourceSHA256": "c9b5a29401d66da94a875bf6d6e8031ba69293326566c046856387157a474296",
+      "scale": 4
+    },
+    {
+      "page": 175,
+      "label": "haker3",
+      "nativeBounds": [
+        1145,
+        970,
+        1300,
+        1050
+      ],
+      "file": "/private/tmp/prosary-wis-review/source-gate-WIS15-haker3.png",
+      "sha256": "0d6690113048a6de7e029af0c07b9dd023bde120dcd86613bd914c07ed650878",
+      "source": "/private/tmp/prosary-wis-review/WIS-native-175.png",
+      "sourceSHA256": "c9b5a29401d66da94a875bf6d6e8031ba69293326566c046856387157a474296",
+      "scale": 4
+    },
+    {
+      "page": 175,
+      "label": "oz3",
+      "nativeBounds": [
+        345,
+        970,
+        460,
+        1060
+      ],
+      "file": "/private/tmp/prosary-wis-review/source-gate-WIS15-oz3.png",
+      "sha256": "ea97a13d6551971460b1c91a1110465b7df1b866f2f4e8e7d2684a9122544d2b",
+      "source": "/private/tmp/prosary-wis-review/WIS-native-175.png",
+      "sourceSHA256": "c9b5a29401d66da94a875bf6d6e8031ba69293326566c046856387157a474296",
+      "scale": 4
+    },
+    {
+      "page": 175,
+      "label": "mezimat4",
+      "nativeBounds": [
+        900,
+        1060,
+        1060,
+        1155
+      ],
+      "file": "/private/tmp/prosary-wis-review/source-gate-WIS15-mezimat4.png",
+      "sha256": "bc891436c8d40300121d18df95e5d9cb47eb36bdba690262fc383351b4c59fe1",
+      "source": "/private/tmp/prosary-wis-review/WIS-native-175.png",
+      "sourceSHA256": "c9b5a29401d66da94a875bf6d6e8031ba69293326566c046856387157a474296",
+      "scale": 4
+    },
+    {
+      "page": 175,
+      "label": "yehshak5",
+      "nativeBounds": [
+        1365,
+        1235,
+        1515,
+        1335
+      ],
+      "file": "/private/tmp/prosary-wis-review/source-gate-WIS15-yehshak5.png",
+      "sha256": "7756e6347396dac8b7d5c33541bcc687840a49e82571bb85531b17ff5df2fea1",
+      "source": "/private/tmp/prosary-wis-review/WIS-native-175.png",
+      "sourceSHA256": "c9b5a29401d66da94a875bf6d6e8031ba69293326566c046856387157a474296",
+      "scale": 4
+    },
+    {
+      "page": 175,
+      "label": "lalush7",
+      "nativeBounds": [
+        1255,
+        1430,
+        1445,
+        1515
+      ],
+      "file": "/private/tmp/prosary-wis-review/source-gate-WIS15-lalush7.png",
+      "sha256": "b70ecb43040460ed9789c1d8d5062c7152b6fefd2893885481876ebb30f5749e",
+      "source": "/private/tmp/prosary-wis-review/WIS-native-175.png",
+      "sourceSHA256": "c9b5a29401d66da94a875bf6d6e8031ba69293326566c046856387157a474296",
+      "scale": 4
+    },
+    {
+      "page": 175,
+      "label": "veyitsar7",
+      "nativeBounds": [
+        845,
+        1430,
+        1010,
+        1520
+      ],
+      "file": "/private/tmp/prosary-wis-review/source-gate-WIS15-veyitsar7.png",
+      "sha256": "cab7cb9ec0b643fb2b190fd43df3dad884ebcb318e0fcba8a2d9296dd99b0ccc",
+      "source": "/private/tmp/prosary-wis-review/WIS-native-175.png",
+      "sourceSHA256": "c9b5a29401d66da94a875bf6d6e8031ba69293326566c046856387157a474296",
+      "scale": 4
+    },
+    {
+      "page": 175,
+      "label": "hafatsim7",
+      "nativeBounds": [
+        1230,
+        1530,
+        1440,
+        1610
+      ],
+      "file": "/private/tmp/prosary-wis-review/source-gate-WIS15-hafatsim7.png",
+      "sha256": "a37801fc9ca5fd1ae98f86b190f3991427576b124c2071e3e2e7a919471cdeb3",
+      "source": "/private/tmp/prosary-wis-review/WIS-native-175.png",
+      "sourceSHA256": "c9b5a29401d66da94a875bf6d6e8031ba69293326566c046856387157a474296",
+      "scale": 4
+    },
+    {
+      "page": 175,
+      "label": "lesharet7",
+      "nativeBounds": [
+        1075,
+        1525,
+        1250,
+        1615
+      ],
+      "file": "/private/tmp/prosary-wis-review/source-gate-WIS15-lesharet7.png",
+      "sha256": "fce738cff38fd348ce77e12f9495d231b693597ebaac24514553057877c1ac60",
+      "source": "/private/tmp/prosary-wis-review/WIS-native-175.png",
+      "sourceSHA256": "c9b5a29401d66da94a875bf6d6e8031ba69293326566c046856387157a474296",
+      "scale": 4
+    },
+    {
+      "page": 175,
+      "label": "yashu8",
+      "nativeBounds": [
+        1750,
+        1910,
+        1855,
+        2010
+      ],
+      "file": "/private/tmp/prosary-wis-review/source-gate-WIS15-yashu8.png",
+      "sha256": "babcd20e9e0de6d6f28400319fbb1031139836b1f64296071fa9397fe65fd5ff",
+      "source": "/private/tmp/prosary-wis-review/WIS-native-175.png",
+      "sourceSHA256": "c9b5a29401d66da94a875bf6d6e8031ba69293326566c046856387157a474296",
+      "scale": 4
+    },
+    {
+      "page": 176,
+      "label": "yirdu14",
+      "nativeBounds": [
+        1120,
+        950,
+        1260,
+        1050
+      ],
+      "file": "/private/tmp/prosary-wis-review/source-gate-WIS15-yirdu14.png",
+      "sha256": "8cc30f95ecd5e138ee00242584081d3b7c70588115b4fa3b4aa2bd9e1b1ff8dc",
+      "source": "/private/tmp/prosary-wis-review/WIS-native-176.png",
+      "sourceSHA256": "f11a42ae085b6f68e2b9c54efd6b5bc31865a5cf235ea500792659f96aeb933d",
+      "scale": 4
+    },
+    {
+      "page": 176,
+      "label": "hufkad16",
+      "nativeBounds": [
+        1640,
+        1220,
+        1815,
+        1320
+      ],
+      "file": "/private/tmp/prosary-wis-review/source-gate-WIS15-hufkad16.png",
+      "sha256": "fadf64b404a1df5b8cc26bd6ec768e555f931baec060e2efbc99bfb95812463d",
+      "source": "/private/tmp/prosary-wis-review/WIS-native-176.png",
+      "sourceSHA256": "f11a42ae085b6f68e2b9c54efd6b5bc31865a5cf235ea500792659f96aeb933d",
+      "scale": 4
+    },
+    {
+      "page": 176,
+      "label": "mikulam18",
+      "nativeBounds": [
+        1720,
+        1500,
+        1880,
+        1600
+      ],
+      "file": "/private/tmp/prosary-wis-review/source-gate-WIS15-mikulam18.png",
+      "sha256": "b259d9a8290a3f514f2940cb60c70bd08315364abd425450cf03d4df1a4b9396",
+      "source": "/private/tmp/prosary-wis-review/WIS-native-176.png",
+      "sourceSHA256": "f11a42ae085b6f68e2b9c54efd6b5bc31865a5cf235ea500792659f96aeb933d",
+      "scale": 4
+    },
+    {
+      "page": 176,
+      "label": "chasrot19-complete",
+      "nativeBounds": [
+        475,
+        1495,
+        790,
+        1600
+      ],
+      "file": "/private/tmp/prosary-wis-review/source-gate-WIS15-chasrot19-complete.png",
+      "sha256": "265217b2512719612dfe56f69faa84c670410d3917ebf39e90e71dbf53ab1b7f",
+      "source": "/private/tmp/prosary-wis-review/WIS-native-176.png",
+      "sourceSHA256": "f11a42ae085b6f68e2b9c54efd6b5bc31865a5cf235ea500792659f96aeb933d",
+      "scale": 4
+    },
+    {
+      "page": 176,
+      "label": "rakhqu19-complete",
+      "nativeBounds": [
+        830,
+        1590,
+        1180,
+        1695
+      ],
+      "file": "/private/tmp/prosary-wis-review/source-gate-WIS15-rakhqu19-complete.png",
+      "sha256": "e214d2c3551e4d7235e77437f6efce444c821bd733a8803ba311446896f2b254",
+      "source": "/private/tmp/prosary-wis-review/WIS-native-176.png",
+      "sourceSHA256": "f11a42ae085b6f68e2b9c54efd6b5bc31865a5cf235ea500792659f96aeb933d",
+      "scale": 4
+    },
+    {
+      "page": 176,
+      "label": "moshlan18-complete",
+      "nativeBounds": [
+        1005,
+        1490,
+        1265,
+        1600
+      ],
+      "file": "/private/tmp/prosary-wis-review/source-gate-WIS15-moshlan18-complete.png",
+      "sha256": "d7ef346b03514cec2f792db8b58fe03a9ca5ea40ebe248149b19b6f904ff90c0",
+      "source": "/private/tmp/prosary-wis-review/WIS-native-176.png",
+      "sourceSHA256": "f11a42ae085b6f68e2b9c54efd6b5bc31865a5cf235ea500792659f96aeb933d",
+      "scale": 4
+    },
+    {
+      "page": 175,
+      "label": "yehshak5-complete",
+      "nativeBounds": [
+        1295,
+        1230,
+        1525,
+        1335
+      ],
+      "file": "/private/tmp/prosary-wis-review/source-gate-WIS15-yehshak5-complete.png",
+      "sha256": "c60033319c11a8f075e553123cdb6668fd21a05faa14b8658036aeb54c9671d6",
+      "source": "/private/tmp/prosary-wis-review/WIS-native-175.png",
+      "sourceSHA256": "c9b5a29401d66da94a875bf6d6e8031ba69293326566c046856387157a474296",
+      "scale": 4
+    },
+    {
+      "page": 175,
+      "label": "carve8-large",
+      "nativeBounds": [
+        1150,
+        1710,
+        1350,
+        1840
+      ],
+      "file": "/private/tmp/prosary-wis-review/source-gate-WIS15-carve8-large.png",
+      "sha256": "df860a71c8301cc3d5ae3f1b36151835d4b059a22c90920842854403f81ef5bb",
+      "source": "/private/tmp/prosary-wis-review/WIS-native-175.png",
+      "sourceSHA256": "c9b5a29401d66da94a875bf6d6e8031ba69293326566c046856387157a474296",
+      "scale": 4
+    },
+    {
+      "page": 175,
+      "label": "oz2",
+      "nativeBounds": [
+        815,
+        870,
+        945,
+        965
+      ],
+      "file": "/private/tmp/prosary-wis-review/source-gate-WIS15-oz2.png",
+      "sha256": "cd3acb00eff19724ea88fa2c998a3559d0f521ad36fa44dade032a324d9c7f8a",
+      "source": "/private/tmp/prosary-wis-review/WIS-native-175.png",
+      "sourceSHA256": "c9b5a29401d66da94a875bf6d6e8031ba69293326566c046856387157a474296",
+      "scale": 4
+    }
+  ],
+  "excludedExploratoryCrops": [
+    {
+      "file": "/private/tmp/prosary-wis-review/source-gate-WIS15-chasrot19.png",
+      "reason": "Bounds did not fully isolate the intended glyph and points, or missed the target; superseded by the complete native crop and not used for the final reading decision."
+    },
+    {
+      "file": "/private/tmp/prosary-wis-review/source-gate-WIS15-hufkad16-lower.png",
+      "reason": "Bounds did not fully isolate the intended glyph and points, or missed the target; superseded by the complete native crop and not used for the final reading decision."
+    },
+    {
+      "file": "/private/tmp/prosary-wis-review/source-gate-WIS15-moshlan18.png",
+      "reason": "Bounds did not fully isolate the intended glyph and points, or missed the target; superseded by the complete native crop and not used for the final reading decision."
+    },
+    {
+      "file": "/private/tmp/prosary-wis-review/source-gate-WIS15-rakhqu19.png",
+      "reason": "Bounds did not fully isolate the intended glyph and points, or missed the target; superseded by the complete native crop and not used for the final reading decision."
+    }
+  ],
+  "validation": {
+    "startingCanonicalChapterUnchanged": true,
+    "allEvidenceHashesVerified": true,
+    "allConsonantsPunctuationAndBoundariesUnchanged": true,
+    "noteIDsUniqueAcrossBook": true,
+    "noteAnchorsExactAndUnique": true,
+    "omittedMarksAbsentAtSpecifiedLetters": true,
+    "exactNotes": 5,
+    "vowelNotes": 4,
+    "dageshNotes": 1,
+    "approvalScope": "Independent report only; no canonical or page approval changes."
+  }
+}
