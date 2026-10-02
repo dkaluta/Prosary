@@ -1,0 +1,237 @@
+{
+  "schemaVersion": 1,
+  "book": "WIS",
+  "chapter": 4,
+  "status": "full separate author comparison complete; independent/focused reconciliation pending",
+  "releaseApproved": false,
+  "canonicalChanged": false,
+  "coverage": {
+    "units": 20,
+    "physicalRows": 32,
+    "rowsByPage": {
+      "151": 5,
+      "152": 16,
+      "153": 11
+    },
+    "rowsByVerse": {
+      "1": 2,
+      "2": 3,
+      "3": 2,
+      "4": 2,
+      "5": 2,
+      "6": 1,
+      "7": 1,
+      "8": 1,
+      "9": 1,
+      "10": 1,
+      "11": 1,
+      "12": 1,
+      "13": 2,
+      "14": 1,
+      "15": 1,
+      "16": 3,
+      "17": 1,
+      "18": 1,
+      "19": 4,
+      "20": 1
+    },
+    "boundaries": "All20 printed starts and continuation rows compared. Preserve source13 containing both עד מהרה and כי נפשו clauses;14 starts והעמים. No verse restructuring to another edition. Brackets in10,12,20 and all printed terminal separators compared."
+  },
+  "method": "Root separately reread every word and readable point against ten twofold lossless half-body enlargements after saving the first draft. Margin/chapter markers and commentary remain outside body text. This is a second author pass, not independent approval; all findings below await focused/independent reconciliation.",
+  "sourceCrops": [
+    {
+      "page": 151,
+      "nativeBounds": [
+        1295,
+        1390,
+        2420,
+        1930
+      ],
+      "scale": 2,
+      "file": "/private/tmp/prosary-wis-review/WIS4-151-opening-author-right.png",
+      "sha256": "5818457e3b283e43bfd82c19f81e55fdc43b72e19e98dea0705c182535a98f4c"
+    },
+    {
+      "page": 151,
+      "nativeBounds": [
+        210,
+        1390,
+        1335,
+        1930
+      ],
+      "scale": 2,
+      "file": "/private/tmp/prosary-wis-review/WIS4-151-opening-author-left.png",
+      "sha256": "88cd8b5d9f1cdb48ab13a522f4b3f00af3af81904cfec0dba729d7d3380a3cf4"
+    },
+    {
+      "page": 152,
+      "nativeBounds": [
+        1230,
+        350,
+        2370,
+        960
+      ],
+      "scale": 2,
+      "file": "/private/tmp/prosary-wis-review/WIS4-152-upper-author-right.png",
+      "sha256": "856ef86474149e27319fc0e8d4c5294deb56dfdc9eb7b77c46d1d220165260b8"
+    },
+    {
+      "page": 152,
+      "nativeBounds": [
+        130,
+        350,
+        1270,
+        960
+      ],
+      "scale": 2,
+      "file": "/private/tmp/prosary-wis-review/WIS4-152-upper-author-left.png",
+      "sha256": "bdf867d036427442027546106ae235b29fdcd838ea8f652f3c9eeeabb754ea6f"
+    },
+    {
+      "page": 152,
+      "nativeBounds": [
+        1230,
+        945,
+        2370,
+        1960
+      ],
+      "scale": 2,
+      "file": "/private/tmp/prosary-wis-review/WIS4-152-lower-author-right.png",
+      "sha256": "432589200de31a46ea4f6e827120d2091baf467baf13dcb71f4b49285f1e2ad8"
+    },
+    {
+      "page": 152,
+      "nativeBounds": [
+        130,
+        945,
+        1270,
+        1960
+      ],
+      "scale": 2,
+      "file": "/private/tmp/prosary-wis-review/WIS4-152-lower-author-left.png",
+      "sha256": "7665e07e4166f1455acb2d400c02003c05111cd1a24a5d5c1aef51ae55d6d499"
+    },
+    {
+      "page": 153,
+      "nativeBounds": [
+        1290,
+        290,
+        2410,
+        820
+      ],
+      "scale": 2,
+      "file": "/private/tmp/prosary-wis-review/WIS4-153-upper-author-right.png",
+      "sha256": "7aa78b7b8074d9f10e642dc19502e92ca8dbbfa5ff2fbca2c9af46096a68affc"
+    },
+    {
+      "page": 153,
+      "nativeBounds": [
+        210,
+        290,
+        1330,
+        820
+      ],
+      "scale": 2,
+      "file": "/private/tmp/prosary-wis-review/WIS4-153-upper-author-left.png",
+      "sha256": "0b0acce893abbddeaf9a3c9e341507af9de4a3c378c1d7a6b735fa0a2015e1ed"
+    },
+    {
+      "page": 153,
+      "nativeBounds": [
+        1290,
+        795,
+        2410,
+        1335
+      ],
+      "scale": 2,
+      "file": "/private/tmp/prosary-wis-review/WIS4-153-lower-author-right.png",
+      "sha256": "79284a0f122ab565f3de668a02753fc586c36c88ba25e2f95da85828b24c13ff"
+    },
+    {
+      "page": 153,
+      "nativeBounds": [
+        210,
+        795,
+        1330,
+        1335
+      ],
+      "scale": 2,
+      "file": "/private/tmp/prosary-wis-review/WIS4-153-lower-author-left.png",
+      "sha256": "47c918746fce384112133fb80901deffb17cc6dddaa8e902937d8dfb9a348796"
+    }
+  ],
+  "startingTextSHA256": {
+    "1": "67b66a5c7527ea17dd14269411db96643215d1ff784b032b31d21d8a551fb4ab",
+    "2": "8ee0f1293e9ffe24743c85b1571b8ce594c6f638f7a9aa309af9d5e8115bbda1",
+    "3": "4195be2937ff24ae7153fce225f5f47ebcd3235f5b062f8df62d139565945716",
+    "4": "89395881b8bf963c171d41ded4ea1fa0f762f7d223137981f93322ab847d9db5",
+    "5": "646105de23ae71e541cfe716aed0c94f0000bcf3c50eeddb1cfaf12a6a38037e",
+    "6": "4cc62b5ef02b59f7da11d1d76a3c234398c2c8c167935214b92d191870f72dce",
+    "7": "b375c210aef01f8589d8b2807cf9fa4107c515e9b8d4530082f3314bc012673a",
+    "8": "a2e349666f39b0473106137f58e7660687cac004dce137cc6788c6f3bbb8c045",
+    "9": "3b99dfc1afc28c6d15a59f45a5b3fab7c588cb2acab7c230ff25225b94fdecb6",
+    "10": "fe7fa22c24dfc4466f8e7322ead2e816c645ab75a2f3b52a501317001560f594",
+    "11": "6d5f4efc358f528bf1266d241ced7f5f1c5ad3fda6783f72fddb504578f9c3ee",
+    "12": "8cf38f5094943ad9beb1a2a27fa9f9a15247c0d79bb01169edfb4821f833777e",
+    "13": "855204e363f55a4a107224005c8e24fd32d107b6adf5bad0ea652872dad6bd3b",
+    "14": "334b33be112756e83440b3d9d33bc088c647257c4a42387c59cdb01fe31f6a3b",
+    "15": "d9580e8b9bc89dc7dffa175ab1f3153227cf3814172d6a0a68aa7c776d61eb04",
+    "16": "57f1c72ba720eaa49aa3a5909cb0d3db6a54db1e33e2bd0dffa01f81416828b6",
+    "17": "1348655ca17b1c62955a6244f517fafdab606458974bcb5b48af2db3899d6671",
+    "18": "fa8121ec564b5595f95dd7f6ebf044c54065b6d5f008886d9936b2b3d1b3c84a",
+    "19": "086637d31bcbc69feb331e799522139305751363410a4a32dac7a3cc5333d82f",
+    "20": "5046681750f73724c7b7233cda71cd8ab03cefc34e294fd9bda4ab1dddd78ae9"
+  },
+  "queries": [
+    {
+      "verse": 1,
+      "token": "לאלהים",
+      "finding": "Alef has a clear hataf-segol missing in draft; preceding lamed lower vowel fused. זכרה initial zayin remains an earlier point query."
+    },
+    {
+      "verse": 2,
+      "token": "בתהלוכת",
+      "finding": "Written vav/holam visible between lamed and kaf; draft omitted this consonant and supplied lamed qibbuts."
+    },
+    {
+      "verse": 3,
+      "token": "ויכוננו / ויעצמו",
+      "finding": "יכוננו initial yod appears sheva rather than draft hiriq. ויעצמו fine points need close native read."
+    },
+    {
+      "verse": 4,
+      "token": "ישלחו / ישרשו / יסערו",
+      "finding": "ישלחו appears yod sheva/shin patah/lamed dagesh. ישרשו appears yod sheva/first shin holam/resh qamats. יסערו yod sheva and samekh holam are visible; ayin lower vowel still fused."
+    },
+    {
+      "verse": 8,
+      "token": "תהדר",
+      "finding": "Initial tav lower cluster appears triangular, unlike draft tsere; require independent tight read."
+    },
+    {
+      "verse": 10,
+      "token": "העבר",
+      "finding": "Earlier query: retain no replacement for ambiguous ayin point without close read."
+    },
+    {
+      "verse": 12,
+      "token": "תהפך",
+      "finding": "Initial tav lower mark appears triangular, unlike draft patah; require independent tight read."
+    },
+    {
+      "verse": 17,
+      "token": "יעץ",
+      "finding": "No detached yod interior mark visible in broad source crop; draft dagesh must be rechecked."
+    },
+    {
+      "verse": 19,
+      "token": "וישליכֵם",
+      "finding": "Initial yod lower mark appears hiriq rather than draft patah."
+    },
+    {
+      "verse": 20,
+      "token": "וב[יום]",
+      "finding": "Source brackets contain יום only. Bet lower point before bracket needs focused reading."
+    }
+  ]
+}

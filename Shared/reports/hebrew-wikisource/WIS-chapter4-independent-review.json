@@ -1,0 +1,997 @@
+{
+  "schemaVersion": 1,
+  "book": "WIS",
+  "chapter": 4,
+  "reviewer": "source_gate, independent of root first draft and author second pass",
+  "status": "full independent comparison complete; seven token corrections and five exact vowel omissions reconciled with root",
+  "releaseApproved": false,
+  "newReviewedPages": [],
+  "canonicalChanged": false,
+  "method": [
+    "Compared all 20 starting draft units against all 32 physical source rows on native A2 pages 151–153. Ten twofold nearest-neighbor half-body enlargements cover every word, readable point, full/defective spelling, bracket and separator. Focused fourfold nearest-neighbor crops resolve or precisely identify the damaged points.",
+    "Root first-draft queries and subsequent author observations were available; independent findings and retentions were checked against native pixels, including rejecting several broad-crop point hypotheses. Root owns reconciliation and canonical integration.",
+    "The original page153 lower-body crops clipped several lowest points in verse20. Expanded full right/left verse20 crops and the focused prefix crop include the whole row and establish its points and the following chapter5 boundary.",
+    "No grammatical normalization, automatic OCR fill, page approval or release approval is made by this report."
+  ],
+  "coverage": {
+    "units": 20,
+    "lastVerse": 20,
+    "physicalRows": 32,
+    "sourcePages": [
+      151,
+      152,
+      153
+    ],
+    "rowsByPage": {
+      "151": 5,
+      "152": 16,
+      "153": 11
+    },
+    "rowsByVerse": {
+      "1": 2,
+      "2": 3,
+      "3": 2,
+      "4": 2,
+      "5": 2,
+      "6": 1,
+      "7": 1,
+      "8": 1,
+      "9": 1,
+      "10": 1,
+      "11": 1,
+      "12": 1,
+      "13": 2,
+      "14": 1,
+      "15": 1,
+      "16": 3,
+      "17": 1,
+      "18": 1,
+      "19": 4,
+      "20": 1
+    },
+    "boundaries": "All20 starts and continuations independently compared. The chapter4 heading and units1–2 follow chapter3 on151;152 begins3 and ends14;153 begins15, ends20 and is followed by chapter5. Source13 deliberately includes both עד מהרה and כי נפשו clauses;14 begins והעמים. No unresolved boundary or missing source word identified.",
+    "brackets": "10 [אֵלָיו], 12 [זֹהַר], 20 [יוֹם] match the print. The prefix וּבְ in20 is outside the brackets. All terminal sof-pasuq separators retained."
+  },
+  "source": {
+    "volume": "A2",
+    "pageCount": 325,
+    "sha256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+    "nativeImages": [
+      {
+        "page": 151,
+        "file": "/private/tmp/prosary-wis-review/WIS-native-151.png",
+        "sha256": "5d268c020ae6fac51e7d1c8fafd1d5fef058bc567d8d38e85e6fd5cc7ea88cdb"
+      },
+      {
+        "page": 152,
+        "file": "/private/tmp/prosary-wis-review/WIS-native-152.png",
+        "sha256": "acf179011ee065c1f72103b061cf7409a1ad6659fc4ea0cda4eea4a60dd4e3a7"
+      },
+      {
+        "page": 153,
+        "file": "/private/tmp/prosary-wis-review/WIS-native-153.png",
+        "sha256": "77b4ba86060f9363793348361e708fbae9cb5a3f63acca97ce5dbe12c7957b86"
+      }
+    ]
+  },
+  "clearFindings": [
+    {
+      "verse": 1,
+      "before": "לֵאלֹהִים",
+      "after": "לָאֱלֹהִים",
+      "finding": "Initial lamed has a detached horizontal bar and central descending stem (qamats). Alef has three-dot segol on the left and a vertical pair on the right (hataf-segol), omitted in the draft. Root independently concurred after viewing this crop.",
+      "evidence": [
+        "independent-WIS4-v1-elo.png"
+      ]
+    },
+    {
+      "verse": 2,
+      "before": "בְּתַהֲלֻכַת",
+      "consonantsAfter": "בתהלוכת",
+      "finding": "A written vav appears between lamed and kaf, with an inner mid-height dot (shuruq), not holam. Remove the draft lamed qibbuts and retain the written shuruq-vav. Root independently corrected its broad holam hypothesis after viewing the focused crop. Separate he/kaf point dispositions are below. Final disposition: retain he hataf-patah; omit only the unreadable kaf vowel with an exact note.",
+      "evidence": [
+        "independent-WIS4-v2-tahalukhat-full.png",
+        "independent-WIS4-v2-kaf-he.png"
+      ],
+      "after": "בְּתַהֲלוּכת"
+    },
+    {
+      "verse": 3,
+      "before": "וַיַּעֲצְמוּ",
+      "partialAfter": "וְיַעצְמוּ",
+      "finding": "Initial vav has two vertically arranged lower lobes (sheva); yod has a horizontal lower bar (patah) and no detached interior dagesh. Ayin lower point is unreadable and provisionally omitted in partialAfter. Other readable points, including tsadi sheva and final shuruq, are retained. Root independently corroborated initial vav sheva, yod patah and empty yod interior; ayin vowel omission accepted.",
+      "evidence": [
+        "independent-WIS4-v3-yatzmu-full.png",
+        "independent-WIS4-v3-yatzmu-ayin-tsadi.png"
+      ]
+    },
+    {
+      "verse": 3,
+      "before": "יִכּוֹנָנוּ",
+      "after": "יְכוֹנָנוּ",
+      "finding": "Initial yod has two vertically arranged lower lobes (sheva). Kaf has a wide empty cavity and no detached dagesh. Written vav holam, nun qamats and final shuruq are retained. Root independently corroborated the yod sheva and empty kaf cavity.",
+      "evidence": [
+        "independent-WIS4-v3-yikonanu.png"
+      ]
+    },
+    {
+      "verse": 4,
+      "before": "יִשְׁלְחוּ",
+      "after": "יְשַׁלְּחוּ",
+      "finding": "Initial yod has a clear vertical pair (sheva); shin has a separate flat horizontal bar (patah); lamed has a distinct detached interior dagesh and lower sheva. Preserve the literal pointing.",
+      "evidence": [
+        "independent-WIS4-v4-yishalhu.png"
+      ]
+    },
+    {
+      "verse": 4,
+      "before": "יִשָּׁרֵשׁוּ",
+      "after": "יְשֹׁרָשׁוּ",
+      "finding": "Initial yod sheva; first shin has both right shin dot and left holam, with no detached interior dagesh; resh has a lower horizontal bar and stem (qamats). Last shin and final shuruq retained.",
+      "evidence": [
+        "independent-WIS4-v4-yishoresho.png"
+      ]
+    },
+    {
+      "verse": 17,
+      "before": "יָּעַץ",
+      "after": "יָעַץ",
+      "finding": "Yod has no detached interior dagesh. Its clear qamats and the following ayin patah remain. This removes a draft mark rather than changing the consonants.",
+      "evidence": [
+        "independent-WIS4-v17-yaats.png"
+      ]
+    }
+  ],
+  "retainedQueries": [
+    {
+      "verse": 8,
+      "token": "תֵּהָדָר",
+      "finding": "Initial tav has two side-by-side lower lobes, with no lower third point: retain tsere. Root independently concurred; its broad triangular/segol hypothesis was rejected.",
+      "evidence": [
+        "independent-WIS4-v8-tehadar.png"
+      ]
+    },
+    {
+      "verse": 10,
+      "token": "הָעֳבר",
+      "finding": "He lower horizontal bar and central stem are detached (qamats). Ayin has left bar+stem and two right dots (hataf-qamats). These are retained; only bet lower point is unresolved.",
+      "evidence": [
+        "independent-WIS4-v10-haovar-full.png"
+      ]
+    },
+    {
+      "verse": 12,
+      "token": "תַּהֲפֹךְ",
+      "finding": "Tav lower mark is a flat horizontal bar, with no third lower point: retain patah. Root independently concurred; its broad segol hypothesis was rejected.",
+      "evidence": [
+        "independent-WIS4-v12-tahafokh.png"
+      ]
+    },
+    {
+      "verse": 19,
+      "token": "וְיַשְׁלִיכֵם",
+      "finding": "Initial yod lower mark is a flat horizontal bar: retain patah. Root independently concurred; its broad hiriq hypothesis was rejected.",
+      "evidence": [
+        "independent-WIS4-v19-vayashlikhem.png"
+      ]
+    },
+    {
+      "verse": 20,
+      "token": "וּבְ[יוֹם]",
+      "finding": "Expanded crop shows two vertically arranged lobes under bet (sheva), distinct from the opening bracket. Retain the prefix and bracket only יוֹם.",
+      "evidence": [
+        "independent-WIS4-v20-uve-full.png",
+        "independent-WIS4-v20-left-full.png",
+        "independent-WIS4-v20-right-full.png"
+      ]
+    },
+    {
+      "verse": 2,
+      "token": "בְּתַהֲלוּכת",
+      "finding": "Root independently compared both native crops and corroborated the literal hataf-patah. Retain it; no omission note for he.",
+      "evidence": [
+        "independent-WIS4-v2-kaf-he.png",
+        "independent-WIS4-v6-hibahanam.png"
+      ]
+    }
+  ],
+  "comparedCanonicalSnapshot": {
+    "number": 4,
+    "verses": [
+      {
+        "verse": 1,
+        "text": "טוֹב מִזֶּה שְׁכֹל בִּצְדָקָה כִּי זִכְרָהּ לָנֶצַח וְגַם לֵאלֹהִים וְגַם לַאֲנָשִׁים תִּוָּדַע׃",
+        "sourcePages": [
+          151
+        ],
+        "textSHA256": "67b66a5c7527ea17dd14269411db96643215d1ff784b032b31d21d8a551fb4ab"
+      },
+      {
+        "verse": 2,
+        "text": "בְּבוֹאָהּ יֵלְכוּ בְּעִקְּבוֹתֶיהָ וּבְלֶכְתָּהּ יְבַקְשׁוּהָ וּלְעוֹלָם תִּדְרֹךְ בְּתַהֲלֻכַת נִצָּחוֹן וּכְלִיל בְּרֹאשָׁהּ אַחֲרֵי נָצְחָהּ בְּמִלְחֶמֶת הַתַּחֲרוּת בִּקְרָבוֹת אֵין דֹּפִי׃",
+        "sourcePages": [
+          151
+        ],
+        "textSHA256": "8ee0f1293e9ffe24743c85b1571b8ce594c6f638f7a9aa309af9d5e8115bbda1"
+      },
+      {
+        "verse": 3,
+        "text": "וַהֲמוֹן רְשָׁעִים כִּי־יִרְבּוּ וַיַּעֲצְמוּ לֹא יַצְלִיחוּ וְנִטְעֵי זוֹנִים לֹא־יַעֲמִיקוּ הַכּוֹת שֹׁרֶשׁ וִיסוֹד אֵיתָן בַּל־יִכּוֹנָנוּ׃",
+        "sourcePages": [
+          152
+        ],
+        "textSHA256": "4195be2937ff24ae7153fce225f5f47ebcd3235f5b062f8df62d139565945716"
+      },
+      {
+        "verse": 4,
+        "text": "וְאִם לְרֶגַע יִשְׁלְחוּ עַנְפֵיהֶם לֹא לָבֶטַח יִגְדָּלוּ כִּי בְסוּפָה יְסֹעָרוּ וּבְרַעַשׁ רוּחוֹת יִשָּׁרֵשׁוּ׃",
+        "sourcePages": [
+          152
+        ],
+        "textSHA256": "89395881b8bf963c171d41ded4ea1fa0f762f7d223137981f93322ab847d9db5"
+      },
+      {
+        "verse": 5,
+        "text": "בַּדֵּיהֶם יִשָּׁבְרוּ בְּלֹא עֵת וּפִרְיָם לֹא יִצְלָח בֹּסֶר יִהְיוּ מַאֲכָל וְלֹא יוֹעִילוּ לְכָל־דָּבָר׃",
+        "sourcePages": [
+          152
+        ],
+        "textSHA256": "646105de23ae71e541cfe716aed0c94f0000bcf3c50eeddb1cfaf12a6a38037e"
+      },
+      {
+        "verse": 6,
+        "text": "כִּי הַבָּנִים הַנּוֹלָדִים מִמִּשְׁכַּב עָוֹן עַל־רַעַת אֲבוֹתֵיהֶם יָעִידוּ לְעֵת הִבָּחֲנָם׃",
+        "sourcePages": [
+          152
+        ],
+        "textSHA256": "4cc62b5ef02b59f7da11d1d76a3c234398c2c8c167935214b92d191870f72dce"
+      },
+      {
+        "verse": 7,
+        "text": "וְצַדִּיק כִּי יָמוּת בְּלֹא עֵת בְּשָׁלוֹם יָנוּחַ׃",
+        "sourcePages": [
+          152
+        ],
+        "textSHA256": "b375c210aef01f8589d8b2807cf9fa4107c515e9b8d4530082f3314bc012673a"
+      },
+      {
+        "verse": 8,
+        "text": "כִּי לֹא זִקְנָה רַבַּת יָמִים תֵּהָדָר וְלֹא בְּמִסְפַּר שָׁנִים תִּמָּנֶה׃",
+        "sourcePages": [
+          152
+        ],
+        "textSHA256": "a2e349666f39b0473106137f58e7660687cac004dce137cc6788c6f3bbb8c045"
+      },
+      {
+        "verse": 9,
+        "text": "בִּינָה הִיא שֵׂיבָה לִבְנֵי אָדָם וְגִיל זִקְנָה חַיֵּי אֵין דֹּפִי׃",
+        "sourcePages": [
+          152
+        ],
+        "textSHA256": "3b99dfc1afc28c6d15a59f45a5b3fab7c588cb2acab7c230ff25225b94fdecb6"
+      },
+      {
+        "verse": 10,
+        "text": "בְּמָצְאוֹ חֵן בְּעֵינֵי יְיָ נֶאֱהַב וּבִחְיוֹתוֹ בֵּין פּוֹשְׁעִים הָעֳבַר [אֵלָיו]׃",
+        "sourcePages": [
+          152
+        ],
+        "textSHA256": "fe7fa22c24dfc4466f8e7322ead2e816c645ab75a2f3b52a501317001560f594"
+      },
+      {
+        "verse": 11,
+        "text": "לֻקַּח לְבַל־תְּשַׁנֶּה הָרִשְׁעָה אֶת־דַּעְתּוֹ וְלֹא תָצוּד מִרְמָה נַפְשׁוֹ׃",
+        "sourcePages": [
+          152
+        ],
+        "textSHA256": "6d5f4efc358f528bf1266d241ced7f5f1c5ad3fda6783f72fddb504578f9c3ee"
+      },
+      {
+        "verse": 12,
+        "text": "כִּי קֶסֶם הָרִשְׁעָה יַחְשִׁיךְ אֶת־[זֹהַר] הַנָּאוֶה וּמְשׁוּבַת תַּאֲוָה תַּהֲפֹךְ לֵב תָּמִים׃",
+        "sourcePages": [
+          152
+        ],
+        "textSHA256": "8cf38f5094943ad9beb1a2a27fa9f9a15247c0d79bb01169edfb4821f833777e"
+      },
+      {
+        "verse": 13,
+        "text": "עַד מְהֵרָה הָיָה לְתָמִים וְיָמִים רַבִּים מִלֵּא כִּי נַפְשׁוֹ יָשְׁרָה בְּעֵינֵי אֱלֹהִים וַיְמַהֵר לְקַחְתָּהּ מִקֶּרֶב הָרִשְׁעָה׃",
+        "sourcePages": [
+          152
+        ],
+        "textSHA256": "855204e363f55a4a107224005c8e24fd32d107b6adf5bad0ea652872dad6bd3b"
+      },
+      {
+        "verse": 14,
+        "text": "וְהָעַמִּים רָאוּ וְלֹא יָבִינוּ וְלֹא יָשִׂימוּ לֵב לָזֹאת׃",
+        "sourcePages": [
+          152
+        ],
+        "textSHA256": "334b33be112756e83440b3d9d33bc088c647257c4a42387c59cdb01fe31f6a3b"
+      },
+      {
+        "verse": 15,
+        "text": "כִּי חֶסֶד וְרַחֲמִים לִבְחִירָיו וְעֵינָיו עַל־חֲסִידָיו׃",
+        "sourcePages": [
+          153
+        ],
+        "textSHA256": "d9580e8b9bc89dc7dffa175ab1f3153227cf3814172d6a0a68aa7c776d61eb04"
+      },
+      {
+        "verse": 16,
+        "text": "וְהַצַּדִּיק הַמֵּת יַרְשִׁיעַ אֶת־הַפּוֹשְׁעִים הַחַיִּים וְנַעֲרוּת תְּמִימָה בְּלֹא עִתָּהּ אֶת־זִקְנַת הָרָשָׁע רַבַּת הַשָּׁנִים׃",
+        "sourcePages": [
+          153
+        ],
+        "textSHA256": "57f1c72ba720eaa49aa3a5909cb0d3db6a54db1e33e2bd0dffa01f81416828b6"
+      },
+      {
+        "verse": 17,
+        "text": "כִּי יִרְאוּ אַחֲרִית חָכָם וְלֹא יָבִינוּ מַה־יָּעַץ עָלָיו וְלָמָּה שְׁמָרוֹ יְיָ׃",
+        "sourcePages": [
+          153
+        ],
+        "textSHA256": "1348655ca17b1c62955a6244f517fafdab606458974bcb5b48af2db3899d6671"
+      },
+      {
+        "verse": 18,
+        "text": "הֵמָּה יִרְאוּ וְיִלְעָגוּ וַיְיָ יִשְׂחַק לָמוֹ׃",
+        "sourcePages": [
+          153
+        ],
+        "textSHA256": "fa8121ec564b5595f95dd7f6ebf044c54065b6d5f008886d9936b2b3d1b3c84a"
+      },
+      {
+        "verse": 19,
+        "text": "וְאַחֲרֵי כֵן יִהְיוּ לְנֵפֶל נִתְעָב לְבוּשָׁה בַּמֵּתִים לְעוֹלָם כִּי יַפִּילֵם עַל־קָדְקֳדָם וְאֵין הֶגֶה בְּפִיהֶם וְיַשְׁלִיכֵם מִמּוֹסְדוֹתֵיהֶם וְלָנֶצַח יֶחֱרָבוּ וְיִהְיוּ בְּצָרָה וְאָבַד זִכְרָם׃",
+        "sourcePages": [
+          153
+        ],
+        "textSHA256": "086637d31bcbc69feb331e799522139305751363410a4a32dac7a3cc5333d82f"
+      },
+      {
+        "verse": 20,
+        "text": "וּבְ[יוֹם] חֶשְׁבּוֹן עֲוֹנוֹתֵיהֶם יֵצְאוּ מְבֹהָלִים וּפִשְׁעֵיהֶם בִּפְנֵיהֶם יָעִירוּ׃",
+        "sourcePages": [
+          153
+        ],
+        "textSHA256": "5046681750f73724c7b7233cda71cd8ab03cefc34e294fd9bda4ab1dddd78ae9"
+      }
+    ]
+  },
+  "sourceCrops": [
+    {
+      "page": 151,
+      "nativeBounds": [
+        1315,
+        1390,
+        2420,
+        1930
+      ],
+      "scale": 2,
+      "resampling": "nearest-neighbor",
+      "file": "/private/tmp/prosary-wis-review/WIS4-151-opening-independent-right.png",
+      "sha256": "e503b8ef38f3d6f8445f91fd5a2eef7d0975812ca35cbc1e49870cfb37551619"
+    },
+    {
+      "page": 151,
+      "nativeBounds": [
+        210,
+        1390,
+        1315,
+        1930
+      ],
+      "scale": 2,
+      "resampling": "nearest-neighbor",
+      "file": "/private/tmp/prosary-wis-review/WIS4-151-opening-independent-left.png",
+      "sha256": "354acacd9d8fb4798838d5937dc050ba953db842230e090fefd205b758eddb6e"
+    },
+    {
+      "page": 152,
+      "nativeBounds": [
+        1250,
+        350,
+        2370,
+        960
+      ],
+      "scale": 2,
+      "resampling": "nearest-neighbor",
+      "file": "/private/tmp/prosary-wis-review/WIS4-152-upper-independent-right.png",
+      "sha256": "9df5f19bbea88a0657f58f56fd92e5f0769479a3815480a4ad3655521f0bb61b"
+    },
+    {
+      "page": 152,
+      "nativeBounds": [
+        130,
+        350,
+        1250,
+        960
+      ],
+      "scale": 2,
+      "resampling": "nearest-neighbor",
+      "file": "/private/tmp/prosary-wis-review/WIS4-152-upper-independent-left.png",
+      "sha256": "929a5d7009fce260c4cecaa7c5aab6d1b3145789de5422066b1d3654785a5e02"
+    },
+    {
+      "page": 152,
+      "nativeBounds": [
+        1250,
+        945,
+        2370,
+        1960
+      ],
+      "scale": 2,
+      "resampling": "nearest-neighbor",
+      "file": "/private/tmp/prosary-wis-review/WIS4-152-lower-independent-right.png",
+      "sha256": "149239c04311820139095efe83a1fcb489425b3e119c2efb47f05185fce3c5cb"
+    },
+    {
+      "page": 152,
+      "nativeBounds": [
+        130,
+        945,
+        1250,
+        1960
+      ],
+      "scale": 2,
+      "resampling": "nearest-neighbor",
+      "file": "/private/tmp/prosary-wis-review/WIS4-152-lower-independent-left.png",
+      "sha256": "88bdb3d0cf7a2f3bef817cd0403d5293bf1f2b8e0102b1fff92c2084b2858d31"
+    },
+    {
+      "page": 153,
+      "nativeBounds": [
+        1310,
+        290,
+        2410,
+        820
+      ],
+      "scale": 2,
+      "resampling": "nearest-neighbor",
+      "file": "/private/tmp/prosary-wis-review/WIS4-153-upper-independent-right.png",
+      "sha256": "e4f562e039940c1b8d20011b78431090696fbf7700b440b18af91a3b0e77b5cc"
+    },
+    {
+      "page": 153,
+      "nativeBounds": [
+        210,
+        290,
+        1310,
+        820
+      ],
+      "scale": 2,
+      "resampling": "nearest-neighbor",
+      "file": "/private/tmp/prosary-wis-review/WIS4-153-upper-independent-left.png",
+      "sha256": "f70e66d68bd4150fc52bf9ad1012aedc35d9bf32909beca2efe37c4803e197d9"
+    },
+    {
+      "page": 153,
+      "nativeBounds": [
+        1310,
+        795,
+        2410,
+        1335
+      ],
+      "scale": 2,
+      "resampling": "nearest-neighbor",
+      "file": "/private/tmp/prosary-wis-review/WIS4-153-lower-independent-right.png",
+      "sha256": "ac4c3b62d60d4f8e065b9b0f26497193ece682649c623b158b465023a5d3b442"
+    },
+    {
+      "page": 153,
+      "nativeBounds": [
+        210,
+        795,
+        1310,
+        1335
+      ],
+      "scale": 2,
+      "resampling": "nearest-neighbor",
+      "file": "/private/tmp/prosary-wis-review/WIS4-153-lower-independent-left.png",
+      "sha256": "6e18e10ebccff6f04e2a9158481c2ea889f871c4ede122e08e823c43db670184"
+    },
+    {
+      "source": "/private/tmp/prosary-wis-review/WIS-native-151.png",
+      "page": 151,
+      "nativeBounds": [
+        1640,
+        1700,
+        1875,
+        1800
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "file": "/private/tmp/prosary-wis-review/independent-WIS4-v2-tahalukhat.png",
+      "sha256": "7332097373a93f45da312bba2609213dac373e0b4481896e0c5006f046693c05"
+    },
+    {
+      "source": "/private/tmp/prosary-wis-review/WIS-native-152.png",
+      "page": 152,
+      "nativeBounds": [
+        1490,
+        390,
+        1735,
+        485
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "file": "/private/tmp/prosary-wis-review/independent-WIS4-v3-yitsemu.png",
+      "sha256": "ed22ce1bc78cbf8f2f73e5fe52c7738b658fe64f64bbf8c57947c2a4babd8430"
+    },
+    {
+      "source": "/private/tmp/prosary-wis-review/WIS-native-152.png",
+      "page": 152,
+      "nativeBounds": [
+        885,
+        510,
+        1070,
+        605
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "file": "/private/tmp/prosary-wis-review/independent-WIS4-v3-yikonanu.png",
+      "sha256": "297d7b14226151cb190958700465522d505999b7ab65bdac0bb8a368701ad068"
+    },
+    {
+      "source": "/private/tmp/prosary-wis-review/WIS-native-152.png",
+      "page": 152,
+      "nativeBounds": [
+        1730,
+        585,
+        1910,
+        695
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "file": "/private/tmp/prosary-wis-review/independent-WIS4-v4-yishalhu.png",
+      "sha256": "0dbbdcc08ed425cc8288abfa99f0338437e3bda511ce06fcba860501dc90db8e"
+    },
+    {
+      "source": "/private/tmp/prosary-wis-review/WIS-native-152.png",
+      "page": 152,
+      "nativeBounds": [
+        1730,
+        670,
+        1925,
+        780
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "file": "/private/tmp/prosary-wis-review/independent-WIS4-v4-yisoaru.png",
+      "sha256": "8d4dbfa7ffbc391201132356813ba3b892fbee188cd45a36ce2c0817ac4924d7"
+    },
+    {
+      "source": "/private/tmp/prosary-wis-review/WIS-native-152.png",
+      "page": 152,
+      "nativeBounds": [
+        595,
+        685,
+        775,
+        790
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "file": "/private/tmp/prosary-wis-review/independent-WIS4-v4-yishoresho.png",
+      "sha256": "1af8856881a90b5c449f1b2bfef0447b8ca8e636c53f785ec68b20f209956e6d"
+    },
+    {
+      "source": "/private/tmp/prosary-wis-review/WIS-native-151.png",
+      "page": 151,
+      "nativeBounds": [
+        1535,
+        1660,
+        1885,
+        1830
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "file": "/private/tmp/prosary-wis-review/independent-WIS4-v2-tahalukhat-full.png",
+      "sha256": "23b9f13b7ba2777751be426aeae5f30124e0fdcddfbe0c1d902510a633b8f653"
+    },
+    {
+      "source": "/private/tmp/prosary-wis-review/WIS-native-151.png",
+      "page": 151,
+      "nativeBounds": [
+        825,
+        1475,
+        1110,
+        1595
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "file": "/private/tmp/prosary-wis-review/independent-WIS4-v1-elo.png",
+      "sha256": "9b035ffa2a54263758b9ec04e1edf0e4fdbfc40a4c1653d7ab426308c6ba00bc"
+    },
+    {
+      "source": "/private/tmp/prosary-wis-review/WIS-native-151.png",
+      "page": 151,
+      "nativeBounds": [
+        2015,
+        1510,
+        2180,
+        1610
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "file": "/private/tmp/prosary-wis-review/independent-WIS4-v1-zikra.png",
+      "sha256": "1d03411533798bc66f4f55525ce474acffc1db48f0c4e9b7654a51e83a4e7cad"
+    },
+    {
+      "source": "/private/tmp/prosary-wis-review/WIS-native-152.png",
+      "page": 152,
+      "nativeBounds": [
+        1390,
+        385,
+        1665,
+        490
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "file": "/private/tmp/prosary-wis-review/independent-WIS4-v3-yatzmu-full.png",
+      "sha256": "7d5a1c1144f050f88abfee18434a698624f72f629cf86e877d868a9f462502ab"
+    },
+    {
+      "source": "/private/tmp/prosary-wis-review/WIS-native-152.png",
+      "page": 152,
+      "nativeBounds": [
+        1375,
+        1150,
+        1570,
+        1260
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "file": "/private/tmp/prosary-wis-review/independent-WIS4-v8-tehadar.png",
+      "sha256": "0bfe71d2aaebd76d8594f092f0a85bdccaa1dd54c4fe33cc73b5048d35ccdc74"
+    },
+    {
+      "source": "/private/tmp/prosary-wis-review/WIS-native-152.png",
+      "page": 152,
+      "nativeBounds": [
+        400,
+        1320,
+        545,
+        1430
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "file": "/private/tmp/prosary-wis-review/independent-WIS4-v10-haovar.png",
+      "sha256": "e8adc68835eb54529713b5614289e0910b617fb24226043ee432397abbd920e0"
+    },
+    {
+      "source": "/private/tmp/prosary-wis-review/WIS-native-152.png",
+      "page": 152,
+      "nativeBounds": [
+        600,
+        1510,
+        810,
+        1615
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "file": "/private/tmp/prosary-wis-review/independent-WIS4-v12-tahafokh.png",
+      "sha256": "6051692fd864dca6a59fe348cc5a6ae066867f487840323634f844840bd9e0bc"
+    },
+    {
+      "source": "/private/tmp/prosary-wis-review/WIS-native-153.png",
+      "page": 153,
+      "nativeBounds": [
+        1010,
+        700,
+        1105,
+        810
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "file": "/private/tmp/prosary-wis-review/independent-WIS4-v17-yaats.png",
+      "sha256": "39f5669873ed07d56cc27eb5f631897a2f06a34c14ee6951ba181096a7e277b6"
+    },
+    {
+      "source": "/private/tmp/prosary-wis-review/WIS-native-153.png",
+      "page": 153,
+      "nativeBounds": [
+        2035,
+        1090,
+        2245,
+        1210
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "file": "/private/tmp/prosary-wis-review/independent-WIS4-v19-vayashlikhem.png",
+      "sha256": "81dfc90a308beab3aedba06563955e849182f749cc4d76f3a4ca8c74ff58aeda"
+    },
+    {
+      "source": "/private/tmp/prosary-wis-review/WIS-native-153.png",
+      "page": 153,
+      "nativeBounds": [
+        2110,
+        1210,
+        2300,
+        1345
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "file": "/private/tmp/prosary-wis-review/independent-WIS4-v20-uve.png",
+      "sha256": "1678514f48bf840f538c23b6dc62553d9138c7795e0d82bdde5009f16460a3aa"
+    },
+    {
+      "source": "/private/tmp/prosary-wis-review/WIS-native-152.png",
+      "page": 152,
+      "nativeBounds": [
+        380,
+        1300,
+        590,
+        1450
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "file": "/private/tmp/prosary-wis-review/independent-WIS4-v10-haovar-full.png",
+      "sha256": "c3c8e28da41670377f6fd3881961124e8f9e228b3806b3b6b1ebb9536c06cb1b"
+    },
+    {
+      "source": "/private/tmp/prosary-wis-review/WIS-native-153.png",
+      "page": 153,
+      "nativeBounds": [
+        2000,
+        1240,
+        2350,
+        1400
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "file": "/private/tmp/prosary-wis-review/independent-WIS4-v20-uve-full.png",
+      "sha256": "a83a96fd27eb80b5e33c7e381e4afe6d81c3ca75bb2d3c5229c9b7c19bb7c7c1"
+    },
+    {
+      "source": "/private/tmp/prosary-wis-review/WIS-native-153.png",
+      "page": 153,
+      "nativeBounds": [
+        200,
+        1240,
+        1340,
+        1420
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "file": "/private/tmp/prosary-wis-review/independent-WIS4-v20-left-full.png",
+      "sha256": "e6b7f29374f4aad7a7828031ec15520328f93e96bcef7447d11e9e71765977e1"
+    },
+    {
+      "source": "/private/tmp/prosary-wis-review/WIS-native-153.png",
+      "page": 153,
+      "nativeBounds": [
+        1300,
+        1240,
+        2370,
+        1420
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "file": "/private/tmp/prosary-wis-review/independent-WIS4-v20-right-full.png",
+      "sha256": "5100c66b01f2b741ca0a3b79c265fb9f7b810cf98527fa53eb6f8d973cf8226f"
+    },
+    {
+      "source": "/private/tmp/prosary-wis-review/WIS-native-151.png",
+      "page": 151,
+      "nativeBounds": [
+        1610,
+        1710,
+        1790,
+        1820
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "file": "/private/tmp/prosary-wis-review/independent-WIS4-v2-kaf-he.png",
+      "sha256": "5c3bc16cd74cd6f36aff918690325ecc9f0fac28f45c465f2058a769d6797e51"
+    },
+    {
+      "source": "/private/tmp/prosary-wis-review/WIS-native-152.png",
+      "page": 152,
+      "nativeBounds": [
+        105,
+        940,
+        350,
+        1075
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "file": "/private/tmp/prosary-wis-review/independent-WIS4-v6-hibahanam.png",
+      "sha256": "e4c51a70afc01ca0d597c4d5acbe210b36886b3e4258f1afebaffcb2c7a77ff5"
+    },
+    {
+      "source": "/private/tmp/prosary-wis-review/WIS-native-152.png",
+      "page": 152,
+      "nativeBounds": [
+        1515,
+        425,
+        1570,
+        495
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "file": "/private/tmp/prosary-wis-review/independent-WIS4-v3-yatzmu-ayin-tsadi.png",
+      "sha256": "a204e92cd846c98ecb4d757f53077eadc87e1dfd6c188659270bc1f0c985f3e4"
+    },
+    {
+      "source": "/private/tmp/prosary-wis-review/WIS-native-152.png",
+      "page": 152,
+      "nativeBounds": [
+        1810,
+        710,
+        1855,
+        765
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "file": "/private/tmp/prosary-wis-review/independent-WIS4-v4-yisoaru-ayin.png",
+      "sha256": "35d1771385b765acde6b218d49620a5feea902e34979b979588fc139badef634"
+    },
+    {
+      "source": "/private/tmp/prosary-wis-review/WIS-native-152.png",
+      "page": 152,
+      "nativeBounds": [
+        450,
+        1355,
+        497,
+        1430
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "file": "/private/tmp/prosary-wis-review/independent-WIS4-v10-bet-vowel.png",
+      "sha256": "fc27ecc1328480cb3dd9baaed2ee68d38f4eb4145378fe24a8751f7180d34f13"
+    }
+  ],
+  "validation": {
+    "evidenceHashesVerified": true,
+    "startingTextHashesVerified": true,
+    "sourceWordAndBoundaryComparison": "complete",
+    "approvalScope": "Independent chapter comparison only. Root owns canonical reconciliation, its verification and page/release approval."
+  },
+  "focusedReconciliationHistory": [
+    {
+      "verse": 1,
+      "anchor": "זכְרָהּ",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "disposition": "propose exact omission note",
+      "finding": "Initial zayin has a fused lower spur; a separate hiriq cannot be certified. Retain all other readable points, including final he mappiq.",
+      "evidence": [
+        "independent-WIS4-v1-zikra.png"
+      ],
+      "resolution": "Root independently inspected the native crop and concurred that the vowel cannot be certified. Omit only this vowel with an exact source note; preserve all readable points and consonants."
+    },
+    {
+      "verse": 2,
+      "anchor": "בְּתַהֲלוּכת",
+      "letterIndex": 3,
+      "mark": "vowel",
+      "disposition": "proposed retention, pending root comparison",
+      "finding": "He lower cluster shows a left horizontal bar and two right lobes, the upper right joined to its stem. The visible pattern resembles the clear hataf-patah under het in6 הִבָּחֲנָם. Independent reviewer leans retaining the draft hataf-patah, without grammatical inference; root comparison remains pending.",
+      "evidence": [
+        "independent-WIS4-v2-kaf-he.png",
+        "independent-WIS4-v6-hibahanam.png"
+      ],
+      "resolution": "Root independently compared both native crops and corroborated the literal hataf-patah. Retain it; no omission note for he."
+    },
+    {
+      "verse": 2,
+      "anchor": "בְּתַהֲלוּכת",
+      "letterIndex": 6,
+      "mark": "vowel",
+      "disposition": "propose exact omission note",
+      "finding": "Kaf lower mark is entirely merged into its thick lower foot. The draft patah cannot be independently certified; omit only that vowel if unresolved.",
+      "evidence": [
+        "independent-WIS4-v2-kaf-he.png",
+        "independent-WIS4-v2-tahalukhat-full.png"
+      ],
+      "resolution": "Root independently inspected the native crop and concurred that the vowel cannot be certified. Omit only this vowel with an exact source note; preserve all readable points and consonants."
+    },
+    {
+      "verse": 3,
+      "anchor": "וְיַעצְמוּ",
+      "letterIndex": 3,
+      "mark": "vowel",
+      "disposition": "propose exact omission note",
+      "finding": "Ayin lower mark is fused into its broad lower-left foot; the draft hataf-patah cannot be certified. Preserve all other clear points.",
+      "evidence": [
+        "independent-WIS4-v3-yatzmu-full.png"
+      ],
+      "resolution": "Root independently inspected the native crop and concurred that the vowel cannot be certified. Omit only this vowel with an exact source note; preserve all readable points and consonants."
+    },
+    {
+      "verse": 4,
+      "anchor": "יְסֹערוּ",
+      "letterIndex": 3,
+      "mark": "vowel",
+      "disposition": "root independent comparison pending",
+      "finding": "Ayin lower foot has a small horizontal projection and downward stem compatible with qamats, but the whole lower mark is joined to the letter. Do not force a qamats if the independent comparison cannot distinguish it.",
+      "evidence": [
+        "independent-WIS4-v4-yisoaru.png",
+        "independent-WIS4-v4-yisoaru-ayin.png"
+      ],
+      "resolution": "Root independently inspected the native crop and concurred that the vowel cannot be certified. Omit only this vowel with an exact source note; preserve all readable points and consonants."
+    },
+    {
+      "verse": 10,
+      "anchor": "הָעֳבר",
+      "letterIndex": 3,
+      "mark": "vowel",
+      "disposition": "propose exact omission note",
+      "finding": "Bet lower point is merged into the thick lower foot and a descending cluster. The draft patah cannot be certified, and no different vowel is supplied from grammar. He qamats and ayin hataf-qamats are clear and retained.",
+      "evidence": [
+        "independent-WIS4-v10-haovar-full.png",
+        "independent-WIS4-v10-bet-vowel.png"
+      ],
+      "resolution": "Root independently inspected the native crop and concurred that the vowel cannot be certified. Omit only this vowel with an exact source note; preserve all readable points and consonants."
+    }
+  ],
+  "pointNoteProposals": [
+    {
+      "id": "wis-4-1-letter-1-vowel",
+      "verse": 1,
+      "anchor": "זכְרָהּ",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "finding": "Initial zayin has a fused lower spur; a separate hiriq cannot be certified. Retain all other readable points, including final he mappiq.",
+      "disposition": "exact vowel omission accepted by root",
+      "evidence": [
+        "independent-WIS4-v1-zikra.png"
+      ]
+    },
+    {
+      "id": "wis-4-2-letter-6-vowel",
+      "verse": 2,
+      "anchor": "בְּתַהֲלוּכת",
+      "letterIndex": 6,
+      "mark": "vowel",
+      "finding": "Kaf lower mark is entirely merged into its thick lower foot. The draft patah cannot be independently certified; omit only that vowel if unresolved.",
+      "disposition": "exact vowel omission accepted by root",
+      "evidence": [
+        "independent-WIS4-v2-kaf-he.png",
+        "independent-WIS4-v2-tahalukhat-full.png"
+      ]
+    },
+    {
+      "id": "wis-4-3-letter-3-vowel",
+      "verse": 3,
+      "anchor": "וְיַעצְמוּ",
+      "letterIndex": 3,
+      "mark": "vowel",
+      "finding": "Ayin lower mark is fused into its broad lower-left foot; the draft hataf-patah cannot be certified. Preserve all other clear points.",
+      "disposition": "exact vowel omission accepted by root",
+      "evidence": [
+        "independent-WIS4-v3-yatzmu-full.png"
+      ]
+    },
+    {
+      "id": "wis-4-4-letter-3-vowel",
+      "verse": 4,
+      "anchor": "יְסֹערוּ",
+      "letterIndex": 3,
+      "mark": "vowel",
+      "finding": "Ayin lower foot has a small horizontal projection and downward stem compatible with qamats, but the whole lower mark is joined to the letter. Do not force a qamats if the independent comparison cannot distinguish it.",
+      "disposition": "exact vowel omission accepted by root",
+      "evidence": [
+        "independent-WIS4-v4-yisoaru.png",
+        "independent-WIS4-v4-yisoaru-ayin.png"
+      ]
+    },
+    {
+      "id": "wis-4-10-letter-3-vowel",
+      "verse": 10,
+      "anchor": "הָעֳבר",
+      "letterIndex": 3,
+      "mark": "vowel",
+      "finding": "Bet lower point is merged into the thick lower foot and a descending cluster. The draft patah cannot be certified, and no different vowel is supplied from grammar. He qamats and ayin hataf-qamats are clear and retained.",
+      "disposition": "exact vowel omission accepted by root",
+      "evidence": [
+        "independent-WIS4-v10-haovar-full.png",
+        "independent-WIS4-v10-bet-vowel.png"
+      ]
+    }
+  ],
+  "coordination": {
+    "rootConcurrence": "Root independently reviewed the focused native crops and accepted the seven token corrections, five exact vowel omissions and retained draft points. The broader author hypotheses at8,12,19 were rejected by clearer tight crops. Root owns canonical integration and approval."
+  }
+}
