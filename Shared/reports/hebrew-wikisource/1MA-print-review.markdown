@@ -1,12 +1,22 @@
-# 1 Maccabees print comparison in progress
+# 1 Maccabees print comparison
+
+All 16 chapters now have full source transcription and recorded author first/separate
+second comparisons: **866 source units across 81 PDF pages, B97–177**, with **28
+exact source notes** for isolated unreadable marks. Canonical source status is now **complete**, accepted after root inventory
+reconciliation. This is not release approval.
 
 The source is the supplied Kahana volume B, SHA-256
 `656891d377d2e3d4a9216723d94205488423907bf01df424b9f0b9de1560051e`.
-All page numbers below are PDF pages. The canonical book remains **draft**.
-Pages B97–99, B102, B105–107 and B110 have completed the whole-page second comparison recorded below;
-the remaining pages are not certified. This report is not a book import approval.
+The additional scanned copy is recorded in the individual page reports. Source spellings,
+points, bracketed gaps, punctuation, and combined labels are retained literally. Focused
+independent corroboration is distinguished from the author's full first/separate second
+comparisons. Counts and hashes alone are not visual approval.
 
-## Current extent
+See `1MA-final-source-inventory.json` for final chapter, label, page, and note coverage.
+The chronological entries below are retained as historical checkpoints; their partial
+statuses do not describe the final extent.
+
+## Historical initial extent
 
 - Chapter 1, B97–105: first pointed draft, 59 printed units covering labels 1–64.
   Whole-page second comparison is complete for B97–99; final vowel-mark
@@ -454,3 +464,17 @@ B169 is completely first/second-compared (14:7–22). All24 body rows checked, p
 B170 is completely first/second-compared (14:23–34). All 22 body rows checked. Literal 26 וַיְקִימוּ־לוֹ חֻפְשָׁה and 30 וַיַּקְהֵל retained; 32 initial pointing corrected with one exact mem-vowel omission note. 34 גֶּזֶר has both segols/gimel dagesh, and its B171 continuation has one exact tav-vowel note in לתקן. Root corroborated these scoped findings. 74 reviewed pages (B97–170), 21 accepted notes, 871 units. 14:35 onward remains unreviewed; see `1MA-pointing-B170.json`.
 
 B171 is completely first/second-compared (14:35–47). All 21 body rows checked. Literal יִכְתְּבוּ (43), וְלִקְוֹם קֶרֶם (44), יַעֲשֶׂה (45), and לְקַיֵּם with one written yod (46) retained. 36 Jerusalem has lamed qamats+hiriq; 39 bet cavity has no dagesh. One exact shin-dagesh note in 43 השטרות; root corroborated the scoped 43, 44, 46 findings. 75 reviewed pages (B97–171), 22 accepted notes, 871 units. 14:48 onward remains unreviewed; see `1MA-pointing-B171.json`.
+
+B172 is completely first/second-compared (14:48–49 and 15:1–9). All 17 rows checked; chapter 14 now fully compared. Actual source combined label 8–9 retained. 14:48 גֶּדֶר has two segols; both Antiochos names have tet sheva. Literal 15:3 אֲקֹימֵם preserves short written yod after qof holam, independently corroborated by root against full-vav comparator נקומם. No new notes; 76 reviewed pages (B97–172), 22 accepted notes, 870 units. 15:10 onward remains unreviewed; see `1MA-pointing-B172.json`.
+
+B173 is completely first/second-compared (15:10–23), including three B174 continuation rows. All 17 page rows checked. Printed combined labels 20–21 and 22–23 retained; 10 ends without an invented colon. Literal וַיֶּאֱסֹף, נוֹמִינִיוֹס, לֻקִּיוֹס and יִקֹּם retained; one exact 14 bet-dagesh note. B174 names preserve local print, including וּלְסִקִּיּוֹן, וּלְקַפְריסִין with visibly absent resh point, and וּלְקוּרִינִי. Root corroborated these scoped findings. 77 reviewed pages (B97–173), 23 accepted notes, 868 units. 15:24 onward remains unreviewed; see `1MA-pointing-B173.json`.
+
+B174 is completely first/second-compared (15:24–29), including the two-word B175 continuation. All 11 page rows are covered (first three reviewed with B173 continuation). Literal וְדֵי־אֹכֶל, אַתֵּנָבִּיוֹס, and Antiochos tet sheva retained; Jerusalem keeps local patah+hiriq and הֲשִׁמּוֹתֶם keeps its compound initial vowel. No new notes. 78 reviewed pages (B97–174), 23 accepted notes, 868 units. 15:30 onward remains unreviewed; see `1MA-pointing-B174.json`.
+
+B175 is completely first/separate second-compared (15:30–41 and 16:1–2), including the B176 continuation. All 22 body rows checked. Printed combined 37–38 and source-specific points are preserved. Three exact qof-vowel notes disclose fused marks in קנְדֶּבִּיוֹס; literal וְלִנְחֹל is retained. Root corroborated these focused findings, not the whole page. At this checkpoint: 79 reviewed pages (B97–175), 26 notes, 867 units; 16:3 onward remained unreviewed. See `1MA-pointing-B175.json`.
+
+B176 is completely first/second-compared (16:3–15), including the two-word B177 continuation. All 21 rows checked; printed combined 12–13 retained. Literal bracketed [שָׁמִים] preserved; לְאָרְכֵיהֶן corrected from first draft. Two exact qof-vowel notes retain clear neighboring marks. Root corroborated those scoped findings. 80 reviewed pages (B97–176), 28 accepted notes, 866 units. 16:16 onward remains unreviewed; see `1MA-pointing-B176.json`.
+
+B177 is completely first/separate second-compared (16:16–24), finishing the source transcription. All 13 rows checked; prior 15 continuation preserved. Both תַּלְמַי occurrences restore clear tav dagesh; final כֹהֵן removes a guessed kaf dagesh, with visible holam/tsere retained. Jerusalem preserves local patah+hiriq. No new notes. All 16 chapters now have author first/separate second comparisons: 81 reviewed pages (B97–177), 28 accepted notes, 866 source units. Whole-book reconciliation and source-completion approval remain pending; see `1MA-pointing-B177.json`.
+
+Final whole-book label inventory caught two projection metadata typos: the already verified printed ranges 15:37–38 and 16:12–13 had been saved as verseEnd rather than the canonical endVerse field. Corrected the field and removed the redundant noncanonical sourceVerseLabel from the canonical units. Exact printed labels remain in the page reports. No text, vowel, punctuation, or source boundary changed.

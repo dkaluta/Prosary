@@ -1,0 +1,801 @@
+{
+  "schemaVersion": 1,
+  "book": "WIS",
+  "chapter": 19,
+  "status": "Separate full author comparison complete; independent full comparison and exact point reconciliation pending",
+  "releaseApproved": false,
+  "newReviewedPages": [],
+  "source": {
+    "volume": "A2",
+    "sha256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+    "pages": [
+      183,
+      184,
+      185,
+      186
+    ]
+  },
+  "coverage": {
+    "physicalRows": 35,
+    "rowsByPage": {
+      "183": 1,
+      "184": 15,
+      "185": 14,
+      "186": 5
+    },
+    "units": 22,
+    "printedLabels": 22
+  },
+  "method": "After saving the first draft, root separately reread all seven complete overlapping body regions against all22 canonical units, then inspected eighteen native-pixel focal crops. Some targeted frames clip or miss a word; those are expressly excluded from certifying that target. Two visible consonant corrections are integrated; dense point queries remain for independent review.",
+  "bodyRegions": [
+    {
+      "page": 183,
+      "path": "/private/tmp/prosary-wis-review/WIS19-183-opening.png",
+      "box": [
+        220,
+        1795,
+        2060,
+        1915
+      ],
+      "sha256": "47f2b0c6fe37c2b3703df926a1c7cf3e399f5b9bb6c721d3911b26a6343bc378"
+    },
+    {
+      "page": 184,
+      "path": "/private/tmp/prosary-wis-review/WIS19-184-upper.png",
+      "box": [
+        280,
+        345,
+        2080,
+        915
+      ],
+      "sha256": "bd18a3e29867f988f0bcbbf59a8b0bb91f9220d86fb339a3923d063b2d4800de"
+    },
+    {
+      "page": 184,
+      "path": "/private/tmp/prosary-wis-review/WIS19-184-middle.png",
+      "box": [
+        280,
+        860,
+        2080,
+        1390
+      ],
+      "sha256": "e99c0e3550d666e4a0b4c698804a42a5d7971cc2c16b5d266835b46404a8cbf6"
+    },
+    {
+      "page": 184,
+      "path": "/private/tmp/prosary-wis-review/WIS19-184-lower.png",
+      "box": [
+        280,
+        1330,
+        2080,
+        1785
+      ],
+      "sha256": "cc195b69fa317cc320ce4b15ae7c1e6922f41221cfe670e07853bff944cb483c"
+    },
+    {
+      "page": 185,
+      "path": "/private/tmp/prosary-wis-review/WIS19-185-upper.png",
+      "box": [
+        195,
+        310,
+        2025,
+        980
+      ],
+      "sha256": "3e31fc71d4ad565d238a2eb7062f63a7eca52457c9277d86a7bb3d101a5e68ca"
+    },
+    {
+      "page": 185,
+      "path": "/private/tmp/prosary-wis-review/WIS19-185-lower.png",
+      "box": [
+        195,
+        915,
+        2025,
+        1660
+      ],
+      "sha256": "9cd853eb8b42dee162157a6cb61e43878853220cffc45713ac979b8b8b9586e8"
+    },
+    {
+      "page": 186,
+      "path": "/private/tmp/prosary-wis-review/WIS19-186-closing.png",
+      "box": [
+        190,
+        325,
+        2010,
+        805
+      ],
+      "sha256": "48206d7a38c5611c1fcb2b97a223cf88739de85ec55040bb0ad667c066a4cdc0"
+    }
+  ],
+  "focalCrops": [
+    {
+      "path": "/private/tmp/prosary-wis-review/WIS19-author-saat4.png",
+      "source": "WIS19-184-upper.png",
+      "box": [
+        700,
+        470,
+        1140,
+        570
+      ],
+      "scale": 3,
+      "resampling": "nearest",
+      "sha256": "0a39a35e5f27c2ddd5d79fd62d6306643b84aa8d0e0d3034a5b0cb9c487a4578"
+    },
+    {
+      "path": "/private/tmp/prosary-wis-review/WIS19-author-yishameru6.png",
+      "source": "WIS19-184-middle.png",
+      "box": [
+        385,
+        160,
+        710,
+        280
+      ],
+      "scale": 3,
+      "resampling": "nearest",
+      "sha256": "5603e8dc02e2278e7d4d08585beeec90660e7d9beeea3a669506d0b71a88634e"
+    },
+    {
+      "path": "/private/tmp/prosary-wis-review/WIS19-author-pequdot6.png",
+      "source": "WIS19-184-middle.png",
+      "box": [
+        850,
+        160,
+        1220,
+        280
+      ],
+      "scale": 3,
+      "resampling": "nearest",
+      "sha256": "7d0158e35908a3b56b24cec21bf93881e9ddc49c9bf25e41531cd3431f33bed5"
+    },
+    {
+      "path": "/private/tmp/prosary-wis-review/WIS19-author-hayeor10.png",
+      "source": "WIS19-184-lower.png",
+      "box": [
+        1450,
+        345,
+        1770,
+        455
+      ],
+      "scale": 3,
+      "resampling": "nearest",
+      "sha256": "37ab54b64832c3ba0ce75a6a25feb2396b3a532f3c2576c4364adf076dcecdaf"
+    },
+    {
+      "path": "/private/tmp/prosary-wis-review/WIS19-author-tzlilei18.png",
+      "source": "WIS19-185-lower.png",
+      "box": [
+        0,
+        350,
+        415,
+        490
+      ],
+      "scale": 3,
+      "resampling": "nearest",
+      "sha256": "61f56419ee62fb2172b2207ac7f30fdc15ba2809a8fc6478a755279e70a7e134"
+    },
+    {
+      "path": "/private/tmp/prosary-wis-review/WIS19-author-avonoteihem13.png",
+      "source": "WIS19-185-upper.png",
+      "box": [
+        0,
+        200,
+        410,
+        310
+      ],
+      "scale": 3,
+      "resampling": "nearest",
+      "sha256": "e70ac2d8458a30cc408ac3d4579fb6acdf2041b6e7c5d780b2b83c69135caf00"
+    },
+    {
+      "path": "/private/tmp/prosary-wis-review/WIS19-author-yeilelu3.png",
+      "source": "WIS19-184-upper.png",
+      "box": [
+        960,
+        160,
+        1300,
+        285
+      ],
+      "scale": 3,
+      "resampling": "nearest",
+      "sha256": "362e826f867300649302b65f71d832c5c36be17eda7c987913f8139f15a927f7"
+    },
+    {
+      "path": "/private/tmp/prosary-wis-review/WIS19-author-gereshum3.png",
+      "source": "WIS19-184-upper.png",
+      "box": [
+        920,
+        265,
+        1220,
+        380
+      ],
+      "scale": 3,
+      "resampling": "nearest",
+      "sha256": "efdbcb98f5cd9a7bbad97ffbdc4a8384e03a47fae2b54bbfd119935a466fd340"
+    },
+    {
+      "path": "/private/tmp/prosary-wis-review/WIS19-author-huku17.png",
+      "source": "WIS19-185-lower.png",
+      "box": [
+        1160,
+        165,
+        1390,
+        295
+      ],
+      "scale": 3,
+      "resampling": "nearest",
+      "sha256": "ac0a9b2d773b8d16c1095f0b0c97886d5e3604cb9f6f331bac5bf447f21c953a"
+    },
+    {
+      "path": "/private/tmp/prosary-wis-review/WIS19-author-meshunnah5.png",
+      "source": "WIS19-184-middle.png",
+      "box": [
+        650,
+        65,
+        880,
+        175
+      ],
+      "scale": 3,
+      "resampling": "nearest",
+      "sha256": "bbfebcf251161d8774708f9fb265ca40228283d6aecc463d1e206d4a7529377d"
+    },
+    {
+      "path": "/private/tmp/prosary-wis-review/WIS19-author-hasah4.png",
+      "source": "WIS19-184-upper.png",
+      "box": [
+        1000,
+        365,
+        1275,
+        480
+      ],
+      "scale": 3,
+      "resampling": "nearest",
+      "sha256": "da6b4c3bc278f613c625c9dc631891ad1b20e41bde607e673fb70b21ab47968b"
+    },
+    {
+      "path": "/private/tmp/prosary-wis-review/WIS19-author-mekhuseh7.png",
+      "source": "WIS19-184-lower.png",
+      "box": [
+        1570,
+        0,
+        1800,
+        105
+      ],
+      "scale": 3,
+      "resampling": "nearest",
+      "sha256": "b59cf709496bd38c404497024dd284734948ab42e70d6cd6a68edb1755d5ded6"
+    },
+    {
+      "path": "/private/tmp/prosary-wis-review/WIS19-author-saat4-whole.png",
+      "sourcePage": 184,
+      "box": [
+        1020,
+        825,
+        1325,
+        960
+      ],
+      "scale": 3,
+      "resampling": "nearest",
+      "sha256": "d69d2dc79ffe75eac081cf2cb2df2c866109436bca597aec491f60a86ddfd1e7"
+    },
+    {
+      "path": "/private/tmp/prosary-wis-review/WIS19-author-gereshum3-correct.png",
+      "sourcePage": 184,
+      "box": [
+        1510,
+        605,
+        1740,
+        735
+      ],
+      "scale": 3,
+      "resampling": "nearest",
+      "sha256": "5dfea8e0ff4d43b9c94539331e09a83ceed848adc2fb18a163053d0fbb22e921"
+    },
+    {
+      "path": "/private/tmp/prosary-wis-review/WIS19-author-huku17-correct.png",
+      "sourcePage": 185,
+      "box": [
+        1540,
+        1080,
+        1760,
+        1215
+      ],
+      "scale": 3,
+      "resampling": "nearest",
+      "sha256": "2f752beda53909f06ce1f18216199c631e48c956f059578bd67917a50ee7d0cc"
+    },
+    {
+      "path": "/private/tmp/prosary-wis-review/WIS19-author-mehoshiam22.png",
+      "sourcePage": 186,
+      "box": [
+        215,
+        580,
+        630,
+        730
+      ],
+      "scale": 3,
+      "resampling": "nearest",
+      "sha256": "a7b7138ce1b29a89129f69f10e9e856a8a463344cbfe92a00729c5bf7f5781e2"
+    },
+    {
+      "path": "/private/tmp/prosary-wis-review/WIS19-author-hithallekhu21.png",
+      "sourcePage": 186,
+      "box": [
+        220,
+        420,
+        505,
+        565
+      ],
+      "scale": 3,
+      "resampling": "nearest",
+      "sha256": "0e9021685624dfd46aad2b03b98c17a27486575ffd72695399a47af47b4a5938"
+    },
+    {
+      "path": "/private/tmp/prosary-wis-review/WIS19-author-yeilelu3-whole.png",
+      "sourcePage": 184,
+      "box": [
+        1430,
+        505,
+        1620,
+        650
+      ],
+      "scale": 3,
+      "resampling": "nearest",
+      "sha256": "c9c1ff97c98ac34579f64672a48dec7a0340e34995638fd332624baa6f8f8337"
+    }
+  ],
+  "excludedFromTargetCertification": [
+    "WIS19-author-saat4.png clips lower marks; WIS19-author-saat4-whole.png misses samekh/alef, showing mostly ענשם.",
+    "WIS19-author-gereshum3.png shows בתחנונים; corrected frame shows target but clips final mem.",
+    "WIS19-author-huku17.png shows בסנורים; corrected frame shows target.",
+    "WIS19-author-meshunnah5.png clips initial mem; use full body region for word inventory.",
+    "WIS19-author-yeilelu3-whole.png clips closing lamed/vav but retains initial queried yods; full body region establishes whole word."
+  ],
+  "corrections": [
+    {
+      "verse": 10,
+      "before": "הַיְאֹר",
+      "after": "הַיְאוֹר",
+      "finding": "A separate written vav follows alef, bearing holam. Restore the visible consonant omitted in first draft.",
+      "evidence": [
+        "WIS19-author-hayeor10.png",
+        "WIS19-184-lower.png"
+      ]
+    },
+    {
+      "verse": 18,
+      "before": "צִלְצְלֵי",
+      "after": "צִלִילֵי",
+      "finding": "Five printed consonants are tsadi-lamed-yod-lamed-yod, not tsadi-lamed-tsadi-lamed-yod. Short central yod clearly differs from initial full-height tsadi. Lamed lower groups remain independently queried.",
+      "evidence": [
+        "WIS19-author-tzlilei18.png",
+        "WIS19-185-lower.png"
+      ]
+    }
+  ],
+  "queries": [
+    {
+      "verse": 3,
+      "finding": "First two written yods in יילילו visible; first sheva and second tsere lower silhouettes joined. Recheck exact points in גרשום, where gimel lower group is fused and resh/sheva touches stem."
+    },
+    {
+      "verse": 4,
+      "finding": "Literal הסה confirmed by rounded samekh and detached dagesh. In סאת initial lower group and absence/presence of alef vowel require correctly framed independent crop; author focal attempts do not certify this word."
+    },
+    {
+      "verse": 5,
+      "finding": "משנה shin lower points form a fused diagonal, nun lower mark joined. Do not infer individual marks solely from expected word."
+    },
+    {
+      "verse": 6,
+      "finding": "לפקדותיך source has no extra vav before dalet; draft written letters corroborated. Qof lower group fused; ישמרו shin interior/lower cluster not fully separable."
+    },
+    {
+      "verse": 7,
+      "finding": "מכסה initial mem sheva clear, kaf lower diagonal and samekh lower group dense. Recheck סוכך kaf points."
+    },
+    {
+      "verse": 9,
+      "finding": "Literal וישממו confirmed (no added vav before first mem); its lower marks and המצאות10 initial marks are dense."
+    },
+    {
+      "verse": 10,
+      "finding": "Visible source vav restored in היאור. Source suffix למיניהן retained and not normalized to adjacent masculine grammar."
+    },
+    {
+      "verse": 13,
+      "finding": "Written עונותיהם inventory confirmed; ayin compound lower point and tav lower group dense."
+    },
+    {
+      "verse": 17,
+      "finding": "הכו three consonants confirmed, kaf dagesh and final shuruq clear. He lower diagonal is fused; exact qibbuts still requires independent classification. Verify חשך visible upper/lower marks."
+    },
+    {
+      "verse": 18,
+      "finding": "Literal צלילי confirmed, source initial tsadi lower point fused and two lamed lower marks merged. No additional tsadi. Full source spellings and segmentation retained."
+    },
+    {
+      "verse": 21,
+      "finding": "Correct tight frame supports התהלכו he hiriq, tav sheva, next he patah and lamed dagesh/qamats; corroborate without normalizing."
+    },
+    {
+      "verse": 22,
+      "finding": "מהושיעם initial mem lower group fused and ayin point dense; shin hiriq and written yod clear. No point certified solely from expected vocalization."
+    }
+  ],
+  "boundaryChecks": [
+    "1 spans183–184 after מראש;1endsלעשות before2כי הם.",
+    "3startsהם היו after2אחריהם and endsרדפו before4כי המשפט.4endsבצרותיהם before5ולמען;5endsמשנה before6כי כל.",
+    "6endsפגע before7הן נראה;7endsדשא before8בו עברו;8endsונפלאות before9וישממו;9endsגואלם before10כי זכרו.",
+    "10endsלרב before11אחרי־כן,11spans184–185 afterחדשות and endsמעדנים before12כי שלו.12endsשאלתם before13ועל.",
+    "13endsעונותיהם before14יען;14endsחסד before15מבלעדי;15endsהגרים before16והמה;16endsנשתוו before17וגם.",
+    "17endsביתו before18כי היסודות;18endsהמעשים before19הן חיות.19spans185–186 afterעל־הארץ and endsדרכו before20האש.",
+    "20endsלכבות before21ולהפך;21endsנמס before22כי בכל.22endsבכל־עת ובכל־מקום. Three printed bracket spans10/14/19 retained."
+  ],
+  "before": {
+    "number": 19,
+    "verses": [
+      {
+        "verse": 1,
+        "text": "וְאֶת הָרְשָׁעִים רָדַף בְּאַפּוֹ בְּלִי חֶמְלָה עַד־כָּלָה בְּדַעְתּוֹ מֵרֹאשׁ אֶת־אֲשֶׁר עֲתִידִים הֵם לַעֲשׂוֹת׃",
+        "sourcePages": [
+          183,
+          184
+        ],
+        "textSHA256": "ba777288ffbb80ac01e4d658cd53f2180538a2bf0a3e202cddf46661d3b58a04"
+      },
+      {
+        "verse": 2,
+        "text": "כִּי הֵם צִוּוּם לָלֶכֶת וַיִּשְׁקְדוּ לְשַׁלְּחָם בְּחִפָּזוֹן וַיֵּהָפֵךְ לְבָבָם לִרְדֹּף אַחֲרֵיהֶם׃",
+        "sourcePages": [
+          184
+        ],
+        "textSHA256": "1bc9a6db614700a40b300918d6462f1309cc99da37596573eb4493140a9a1d72"
+      },
+      {
+        "verse": 3,
+        "text": "הֵם הָיוּ בְּעֶצֶם מַכְאוֹבֵיהֶם וְעַל־קִבְרוֹת מֵתִים יְיֵלִילוּ וַתִּישַׁר בְּעֵינֵיהֶם עֲצַת אִוֶּלֶת אַחֶרֶת וְאַחֲרֵי הָאֲנָשִׁים אֲשֶׁר גֵּרְשׁוּם בְּתַחֲנוּנִים כְּאַחֲרֵי בוֹרְחִים רָדָפוּ׃",
+        "sourcePages": [
+          184
+        ],
+        "textSHA256": "62a62a2b3a30f7ea839b32791d0bbe51cb81abbbec785dba27f5b9a485f72b26"
+      },
+      {
+        "verse": 4,
+        "text": "כִּי הַמִּשְׁפָּט אֲשֶׁר נִגְזַר בְּצֶדֶק הִסָּה אוֹתָם לִנְתִיב זֶה הוּא הִשְׁכִּיחֵם אֶת־אֲשֶׁר מָצָא אוֹתָם לְמַעַן יְמַלְּאוּ סְאַת עָנְשָׁם בְּצָרוֹתֵיהֶם׃",
+        "sourcePages": [
+          184
+        ],
+        "textSHA256": "5435c813ceca0ea28bedd206ae8575ea7fb9c456f4d4d156b3f6b8759b5d0983"
+      },
+      {
+        "verse": 5,
+        "text": "וּלְמַעַן יַעֲבֹר עַמְּךָ דֶּרֶךְ פְּלָאִים וְהֵם יִמְצְאוּ מִיתָה מְשֻׁנָּה׃",
+        "sourcePages": [
+          184
+        ],
+        "textSHA256": "4c6d65512ccb36ab8140a73e6154ebcc2b5933937bfa6487b4495d73a10b41cf"
+      },
+      {
+        "verse": 6,
+        "text": "כִּי כָּל־הַיְצוּרִים לְמִינֵיהֶם נֶהֶפְכוּ מֵחָדָשׁ לְשָׁרֵת לִפְקֻדּוֹתֶיךָ בַּעֲבוּר יִשָּׁמְרוּ בָנֶיךָ מִכָּל פֶּגַע׃",
+        "sourcePages": [
+          184
+        ],
+        "textSHA256": "4f6798fa72b0d31701f5e96b4768ee12310e5187ab05376b29451997087b3622"
+      },
+      {
+        "verse": 7,
+        "text": "הֵן נִרְאָה עָנָן סוֹכֵךְ עַל־הַמַּחֲנֶה וּמְקוֹם שָׁם מַיִם לְפָנִים יַבֶּשֶׁת הוֹפִיעָה מִיַּם־סוּף דֶּרֶךְ סְלוּלָה וּמִמִּשְׁבָּרִים אַדִּירִים מִישׁוֹר מְכֻסֶּה דֶּשֶׁא׃",
+        "sourcePages": [
+          184
+        ],
+        "textSHA256": "b8b45a89bc212f14e88ec64ece71d24b3faaed3f0dfae30586d046ce662bc4fc"
+      },
+      {
+        "verse": 8,
+        "text": "בּוֹ עָבְרוּ כָּל־הָעָם בְּפָרְשְׂךָ עֲלֵיהֶם יָדְךָ וַיִּרְאוּ נִסִּים וְנִפְלָאוֹת׃",
+        "sourcePages": [
+          184
+        ],
+        "textSHA256": "b530c9bae0c253ca8d23376df40f808b86c2b3b36ad9c48ad2f1489f5041f8bf"
+      },
+      {
+        "verse": 9,
+        "text": "וַיִּשְׁמְמוּ כְּסוּסִים בַּמִּרְעֶה וְכִכְבָשִׂים יִרְקְדוּ וַיְהַלְלוּ לְךָ יְיָ גּוֹאֲלָם׃",
+        "sourcePages": [
+          184
+        ],
+        "textSHA256": "a6afcb54823c1939def8a25b17214c463014ea3df1927d68c4826282d8228977"
+      },
+      {
+        "verse": 10,
+        "text": "כִּי זָכְרוּ עוֹד אֶת־הַמְּצָאוֹת אוֹתָם בְּאֶרֶץ מְגוּרֵיהֶם אֵיךְ הָאָרֶץ הוֹצִיאָה כִּנִּים תַּחַת חַיּוֹת [הַיַּבָּשָׁה] לְמִינֵיהֶן וְתַחַת חַיּוֹת הַמַּיִם שָׁרַץ הַיְאֹר צְפַרְדְּעִים לָרֹב׃",
+        "sourcePages": [
+          184
+        ],
+        "textSHA256": "d16aec6472055db7a3c91c710e3f54465006a9a46aed85e97c22d1594c96bd3b"
+      },
+      {
+        "verse": 11,
+        "text": "אַחֲרֵי־כֵן רָאוּ גַּם מִין צִפֳּרִים חֲדָשׁוֹת כְּעוֹרֵר אוֹתָם תַּאֲוָתָם לִדְרשׁ מַאֲכָלֵי מַעֲדַנִּים׃",
+        "sourcePages": [
+          184,
+          185
+        ],
+        "textSHA256": "6ca0c919fa52724672e2a13bd1b45e8f07ea487b2952e73f78cb29fb06853f70"
+      },
+      {
+        "verse": 12,
+        "text": "כִּי שְׂלָו עָלָה לָהֶם מִן־הַיָּם לְמַלֵּא שְׁאֵלָתָם׃",
+        "sourcePages": [
+          185
+        ],
+        "textSHA256": "0c7afaaac75bee98956232fa1eee7e66360d2fd3e2fb490e9d9655c336d60201"
+      },
+      {
+        "verse": 13,
+        "text": "וְעַל הַחַטָּאִים לֹא בָאוּ הַפְּגָעִים עַד־אֲשֶׁר הָרְעָמִים נָתְנוּ עֵדוּתָם בְּעֹז הֵמָּה סָבְלוּ בְּצֶדֶק בִּגְלַל עֲוֹנוֹתֵיהֶם׃",
+        "sourcePages": [
+          185
+        ],
+        "textSHA256": "cf95bfb75a5f06c6af2e28cde9041feaaf0b96f18b5ef75ce96f7bf506d71442"
+      },
+      {
+        "verse": 14,
+        "text": "יַעַן כִּי הִרְבּוּ לְהַרְאוֹת מַשְׂטֵמָה עַזָּה לַגֵּרִים [מִן־הָאֲחֵרִים] כִּי אֵלֶּה לֹא אָסְפוּ זָרִים אֲשֶׁר בָּאוּ אֲלֵיהֶם וְהֵמָּה עָשׂוּ לַעֲבָדִים אֲנָשִׁים גֵּרִים אֲשֶׁר עָשׂוּ עִמָּם חָסֶד׃",
+        "sourcePages": [
+          185
+        ],
+        "textSHA256": "5d9d55cbe594bc02321f569d30e3566eec2dd7776ad46719c89f067d312d168f"
+      },
+      {
+        "verse": 15,
+        "text": "מִבַּלְעֲדֵי זֶה שׁוֹנֶה יִהְיֶה עָנְשָׁם אֲשֶׁר אֵלֶּה יָצְאוּ בְּשִׂנְאָה נֶגֶד הַגֵּרִים׃",
+        "sourcePages": [
+          185
+        ],
+        "textSHA256": "3da87ef98559cbc5b9f358656b561494deba659c7b597b73f46fc2b38f528b6c"
+      },
+      {
+        "verse": 16,
+        "text": "וְהֵמָּה קִבְּלוּ אוֹתָם בְּהִלּוּלִים וְאַחֲרֵי־כֵן עִנּוּ אוֹתָם בַּעֲבוֹדָה קָשָׁה אַף־כִּי בְּחֻקֵּי הָאָרֶץ כְּבָר לָהֶם נִשְׁתַּוּוּ׃",
+        "sourcePages": [
+          185
+        ],
+        "textSHA256": "14cf0c1ed49239380647b281d9baffba44868418f90351ba4216aa439bce3252"
+      },
+      {
+        "verse": 17,
+        "text": "וְגַם הֵם הֻכּוּ בַּסַּנְוֵרִים כְּמוֹ אֵלֶּה לִפְנֵי פֶּתַח הַצַּדִּיק כַּאֲשֶׁר כִּסָּה אוֹתָם חשֶׁךְ וְצַלְמָוֶת וַיְבַקֵּשׁ כָּל־אִישׁ מֵהֶם אֶת־הַדֶּרֶךְ אֶל־שַׁעַר בֵּיתוֹ׃",
+        "sourcePages": [
+          185
+        ],
+        "textSHA256": "eeef583810c3cbef536bfc94682af53b27fabe733d792b170f6bcfe8a24e3685"
+      },
+      {
+        "verse": 18,
+        "text": "כִּי הַיְסוֹדוֹת אֶת־סִדְרָם הֶחֱלִיפוּ כַּאֲשֶׁר יִשְׁתַּנֶּה קֶצֶב צִלְצְלֵי הַנֵּבֶל בְּהִשְׁתַּנּוֹת מֵיתָרָיו אַף כִּי־קוֹלָם יִשָּׁאֵר תָּמִיד כָּל־עֻמַּת שֶׁהָיָה וְזֹאת יוּכַל הָאִישׁ לִשְׁפֹּט לְנָכוֹן בִּרְאוֹתוֹ אֶת־הַמַּעֲשִׂים׃",
+        "sourcePages": [
+          185
+        ],
+        "textSHA256": "061cee1b519b6b15df2644cd60ee0a31223328ff5b19c9e4dfb0f31a5ef6e7b8"
+      },
+      {
+        "verse": 19,
+        "text": "הֵן חַיּוֹת הַיַּבָּשָׁה נֶהֶפְכוּ לְחַיּוֹת הַמַּיִם וְהַחַיּוֹת הַשָּׁטוֹת [בַּמַּיִם] עַל־הָאָרֶץ דָּרָכוּ׃",
+        "sourcePages": [
+          185,
+          186
+        ],
+        "textSHA256": "c6e0d74c7cd8b14af1a7d622e5c1e4b2b52e3e6d0ae7903d0a4e415cfcd18b55"
+      },
+      {
+        "verse": 20,
+        "text": "הָאֵשׁ שָׁמְרָה בַּמַּיִם עַל־תְּכוּנָתָהּ וְהַמַּיִם רָפָה כֹחָם לְכַבּוֹת׃",
+        "sourcePages": [
+          186
+        ],
+        "textSHA256": "87894acefd8ae593fbe352847557386da5f556eb8ae84eeec63d9efd77240e9a"
+      },
+      {
+        "verse": 21,
+        "text": "וּלְהֵפֶךְ הָאֵשׁ לֹא אָכְלָה בְּשַׂר חַיּוֹת בְּנוֹת חֲלוֹף אֲשֶׁר בָּהּ הִתְהַלָּכוּ וּמֶגֶד הַשָּׁמַיִם אֲשֶׁר עֵינוֹ כְּעֵין הַקֶּרַח קַל לְהִמֵּס לֹא נָמָס׃",
+        "sourcePages": [
+          186
+        ],
+        "textSHA256": "a8542f17cdb940efe9956306d3e2be9a1321b9a5e26eb3f088fe28913fc579ea"
+      },
+      {
+        "verse": 22,
+        "text": "כִּי בְּכָל אֵלֶּה יְיָ הִגְדַּלְתָּ וְרוֹמַמְתָּ אֶת עַמְּךָ וְלֹא הֶעְלַמְתָּ מֵהֶם עַיִן מֵהוֹשִׁיעָם בְּכָל־עֵת וּבְכָל־מָקוֹם׃",
+        "sourcePages": [
+          186
+        ],
+        "textSHA256": "923c6dac349696567905e5f36c818392ef9171f45f8056f20aa68ffc75279783"
+      }
+    ]
+  },
+  "after": {
+    "number": 19,
+    "verses": [
+      {
+        "verse": 1,
+        "text": "וְאֶת הָרְשָׁעִים רָדַף בְּאַפּוֹ בְּלִי חֶמְלָה עַד־כָּלָה בְּדַעְתּוֹ מֵרֹאשׁ אֶת־אֲשֶׁר עֲתִידִים הֵם לַעֲשׂוֹת׃",
+        "sourcePages": [
+          183,
+          184
+        ],
+        "textSHA256": "ba777288ffbb80ac01e4d658cd53f2180538a2bf0a3e202cddf46661d3b58a04"
+      },
+      {
+        "verse": 2,
+        "text": "כִּי הֵם צִוּוּם לָלֶכֶת וַיִּשְׁקְדוּ לְשַׁלְּחָם בְּחִפָּזוֹן וַיֵּהָפֵךְ לְבָבָם לִרְדֹּף אַחֲרֵיהֶם׃",
+        "sourcePages": [
+          184
+        ],
+        "textSHA256": "1bc9a6db614700a40b300918d6462f1309cc99da37596573eb4493140a9a1d72"
+      },
+      {
+        "verse": 3,
+        "text": "הֵם הָיוּ בְּעֶצֶם מַכְאוֹבֵיהֶם וְעַל־קִבְרוֹת מֵתִים יְיֵלִילוּ וַתִּישַׁר בְּעֵינֵיהֶם עֲצַת אִוֶּלֶת אַחֶרֶת וְאַחֲרֵי הָאֲנָשִׁים אֲשֶׁר גֵּרְשׁוּם בְּתַחֲנוּנִים כְּאַחֲרֵי בוֹרְחִים רָדָפוּ׃",
+        "sourcePages": [
+          184
+        ],
+        "textSHA256": "62a62a2b3a30f7ea839b32791d0bbe51cb81abbbec785dba27f5b9a485f72b26"
+      },
+      {
+        "verse": 4,
+        "text": "כִּי הַמִּשְׁפָּט אֲשֶׁר נִגְזַר בְּצֶדֶק הִסָּה אוֹתָם לִנְתִיב זֶה הוּא הִשְׁכִּיחֵם אֶת־אֲשֶׁר מָצָא אוֹתָם לְמַעַן יְמַלְּאוּ סְאַת עָנְשָׁם בְּצָרוֹתֵיהֶם׃",
+        "sourcePages": [
+          184
+        ],
+        "textSHA256": "5435c813ceca0ea28bedd206ae8575ea7fb9c456f4d4d156b3f6b8759b5d0983"
+      },
+      {
+        "verse": 5,
+        "text": "וּלְמַעַן יַעֲבֹר עַמְּךָ דֶּרֶךְ פְּלָאִים וְהֵם יִמְצְאוּ מִיתָה מְשֻׁנָּה׃",
+        "sourcePages": [
+          184
+        ],
+        "textSHA256": "4c6d65512ccb36ab8140a73e6154ebcc2b5933937bfa6487b4495d73a10b41cf"
+      },
+      {
+        "verse": 6,
+        "text": "כִּי כָּל־הַיְצוּרִים לְמִינֵיהֶם נֶהֶפְכוּ מֵחָדָשׁ לְשָׁרֵת לִפְקֻדּוֹתֶיךָ בַּעֲבוּר יִשָּׁמְרוּ בָנֶיךָ מִכָּל פֶּגַע׃",
+        "sourcePages": [
+          184
+        ],
+        "textSHA256": "4f6798fa72b0d31701f5e96b4768ee12310e5187ab05376b29451997087b3622"
+      },
+      {
+        "verse": 7,
+        "text": "הֵן נִרְאָה עָנָן סוֹכֵךְ עַל־הַמַּחֲנֶה וּמְקוֹם שָׁם מַיִם לְפָנִים יַבֶּשֶׁת הוֹפִיעָה מִיַּם־סוּף דֶּרֶךְ סְלוּלָה וּמִמִּשְׁבָּרִים אַדִּירִים מִישׁוֹר מְכֻסֶּה דֶּשֶׁא׃",
+        "sourcePages": [
+          184
+        ],
+        "textSHA256": "b8b45a89bc212f14e88ec64ece71d24b3faaed3f0dfae30586d046ce662bc4fc"
+      },
+      {
+        "verse": 8,
+        "text": "בּוֹ עָבְרוּ כָּל־הָעָם בְּפָרְשְׂךָ עֲלֵיהֶם יָדְךָ וַיִּרְאוּ נִסִּים וְנִפְלָאוֹת׃",
+        "sourcePages": [
+          184
+        ],
+        "textSHA256": "b530c9bae0c253ca8d23376df40f808b86c2b3b36ad9c48ad2f1489f5041f8bf"
+      },
+      {
+        "verse": 9,
+        "text": "וַיִּשְׁמְמוּ כְּסוּסִים בַּמִּרְעֶה וְכִכְבָשִׂים יִרְקְדוּ וַיְהַלְלוּ לְךָ יְיָ גּוֹאֲלָם׃",
+        "sourcePages": [
+          184
+        ],
+        "textSHA256": "a6afcb54823c1939def8a25b17214c463014ea3df1927d68c4826282d8228977"
+      },
+      {
+        "verse": 10,
+        "text": "כִּי זָכְרוּ עוֹד אֶת־הַמְּצָאוֹת אוֹתָם בְּאֶרֶץ מְגוּרֵיהֶם אֵיךְ הָאָרֶץ הוֹצִיאָה כִּנִּים תַּחַת חַיּוֹת [הַיַּבָּשָׁה] לְמִינֵיהֶן וְתַחַת חַיּוֹת הַמַּיִם שָׁרַץ הַיְאוֹר צְפַרְדְּעִים לָרֹב׃",
+        "sourcePages": [
+          184
+        ],
+        "textSHA256": "ddc9850bd5aadc2401aea75efd7bd68669a5f385975525a3bdc5c7a5b0c6566d"
+      },
+      {
+        "verse": 11,
+        "text": "אַחֲרֵי־כֵן רָאוּ גַּם מִין צִפֳּרִים חֲדָשׁוֹת כְּעוֹרֵר אוֹתָם תַּאֲוָתָם לִדְרשׁ מַאֲכָלֵי מַעֲדַנִּים׃",
+        "sourcePages": [
+          184,
+          185
+        ],
+        "textSHA256": "6ca0c919fa52724672e2a13bd1b45e8f07ea487b2952e73f78cb29fb06853f70"
+      },
+      {
+        "verse": 12,
+        "text": "כִּי שְׂלָו עָלָה לָהֶם מִן־הַיָּם לְמַלֵּא שְׁאֵלָתָם׃",
+        "sourcePages": [
+          185
+        ],
+        "textSHA256": "0c7afaaac75bee98956232fa1eee7e66360d2fd3e2fb490e9d9655c336d60201"
+      },
+      {
+        "verse": 13,
+        "text": "וְעַל הַחַטָּאִים לֹא בָאוּ הַפְּגָעִים עַד־אֲשֶׁר הָרְעָמִים נָתְנוּ עֵדוּתָם בְּעֹז הֵמָּה סָבְלוּ בְּצֶדֶק בִּגְלַל עֲוֹנוֹתֵיהֶם׃",
+        "sourcePages": [
+          185
+        ],
+        "textSHA256": "cf95bfb75a5f06c6af2e28cde9041feaaf0b96f18b5ef75ce96f7bf506d71442"
+      },
+      {
+        "verse": 14,
+        "text": "יַעַן כִּי הִרְבּוּ לְהַרְאוֹת מַשְׂטֵמָה עַזָּה לַגֵּרִים [מִן־הָאֲחֵרִים] כִּי אֵלֶּה לֹא אָסְפוּ זָרִים אֲשֶׁר בָּאוּ אֲלֵיהֶם וְהֵמָּה עָשׂוּ לַעֲבָדִים אֲנָשִׁים גֵּרִים אֲשֶׁר עָשׂוּ עִמָּם חָסֶד׃",
+        "sourcePages": [
+          185
+        ],
+        "textSHA256": "5d9d55cbe594bc02321f569d30e3566eec2dd7776ad46719c89f067d312d168f"
+      },
+      {
+        "verse": 15,
+        "text": "מִבַּלְעֲדֵי זֶה שׁוֹנֶה יִהְיֶה עָנְשָׁם אֲשֶׁר אֵלֶּה יָצְאוּ בְּשִׂנְאָה נֶגֶד הַגֵּרִים׃",
+        "sourcePages": [
+          185
+        ],
+        "textSHA256": "3da87ef98559cbc5b9f358656b561494deba659c7b597b73f46fc2b38f528b6c"
+      },
+      {
+        "verse": 16,
+        "text": "וְהֵמָּה קִבְּלוּ אוֹתָם בְּהִלּוּלִים וְאַחֲרֵי־כֵן עִנּוּ אוֹתָם בַּעֲבוֹדָה קָשָׁה אַף־כִּי בְּחֻקֵּי הָאָרֶץ כְּבָר לָהֶם נִשְׁתַּוּוּ׃",
+        "sourcePages": [
+          185
+        ],
+        "textSHA256": "14cf0c1ed49239380647b281d9baffba44868418f90351ba4216aa439bce3252"
+      },
+      {
+        "verse": 17,
+        "text": "וְגַם הֵם הֻכּוּ בַּסַּנְוֵרִים כְּמוֹ אֵלֶּה לִפְנֵי פֶּתַח הַצַּדִּיק כַּאֲשֶׁר כִּסָּה אוֹתָם חשֶׁךְ וְצַלְמָוֶת וַיְבַקֵּשׁ כָּל־אִישׁ מֵהֶם אֶת־הַדֶּרֶךְ אֶל־שַׁעַר בֵּיתוֹ׃",
+        "sourcePages": [
+          185
+        ],
+        "textSHA256": "eeef583810c3cbef536bfc94682af53b27fabe733d792b170f6bcfe8a24e3685"
+      },
+      {
+        "verse": 18,
+        "text": "כִּי הַיְסוֹדוֹת אֶת־סִדְרָם הֶחֱלִיפוּ כַּאֲשֶׁר יִשְׁתַּנֶּה קֶצֶב צִלִילֵי הַנֵּבֶל בְּהִשְׁתַּנּוֹת מֵיתָרָיו אַף כִּי־קוֹלָם יִשָּׁאֵר תָּמִיד כָּל־עֻמַּת שֶׁהָיָה וְזֹאת יוּכַל הָאִישׁ לִשְׁפֹּט לְנָכוֹן בִּרְאוֹתוֹ אֶת־הַמַּעֲשִׂים׃",
+        "sourcePages": [
+          185
+        ],
+        "textSHA256": "1cea8662aee988101d7f00a23716d53f93ca94aa78bed1cf994316ceeff2141a"
+      },
+      {
+        "verse": 19,
+        "text": "הֵן חַיּוֹת הַיַּבָּשָׁה נֶהֶפְכוּ לְחַיּוֹת הַמַּיִם וְהַחַיּוֹת הַשָּׁטוֹת [בַּמַּיִם] עַל־הָאָרֶץ דָּרָכוּ׃",
+        "sourcePages": [
+          185,
+          186
+        ],
+        "textSHA256": "c6e0d74c7cd8b14af1a7d622e5c1e4b2b52e3e6d0ae7903d0a4e415cfcd18b55"
+      },
+      {
+        "verse": 20,
+        "text": "הָאֵשׁ שָׁמְרָה בַּמַּיִם עַל־תְּכוּנָתָהּ וְהַמַּיִם רָפָה כֹחָם לְכַבּוֹת׃",
+        "sourcePages": [
+          186
+        ],
+        "textSHA256": "87894acefd8ae593fbe352847557386da5f556eb8ae84eeec63d9efd77240e9a"
+      },
+      {
+        "verse": 21,
+        "text": "וּלְהֵפֶךְ הָאֵשׁ לֹא אָכְלָה בְּשַׂר חַיּוֹת בְּנוֹת חֲלוֹף אֲשֶׁר בָּהּ הִתְהַלָּכוּ וּמֶגֶד הַשָּׁמַיִם אֲשֶׁר עֵינוֹ כְּעֵין הַקֶּרַח קַל לְהִמֵּס לֹא נָמָס׃",
+        "sourcePages": [
+          186
+        ],
+        "textSHA256": "a8542f17cdb940efe9956306d3e2be9a1321b9a5e26eb3f088fe28913fc579ea"
+      },
+      {
+        "verse": 22,
+        "text": "כִּי בְּכָל אֵלֶּה יְיָ הִגְדַּלְתָּ וְרוֹמַמְתָּ אֶת עַמְּךָ וְלֹא הֶעְלַמְתָּ מֵהֶם עַיִן מֵהוֹשִׁיעָם בְּכָל־עֵת וּבְכָל־מָקוֹם׃",
+        "sourcePages": [
+          186
+        ],
+        "textSHA256": "923c6dac349696567905e5f36c818392ef9171f45f8056f20aa68ffc75279783"
+      }
+    ]
+  }
+}

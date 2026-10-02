@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "book": "1MA",
+  "status": "Source transcription complete and accepted; production release remains closed",
+  "sourceInventory": "Shared/reports/hebrew-wikisource/1MA-final-source-inventory.json",
+  "sourceInventorySHA256": "e819f6811ef48ca690e6147d2758db61da6b3f9cbd4461feca683b13318d02c1",
+  "contentSHA256": "2f8f59e375019a3a710ebcd3c24d8b61469e8dd7d1f35c50f2aa4dcf36230e57",
+  "method": "Recorded full author first/separate second word, point, punctuation and boundary comparisons across all 81 source pages; root/peer corroboration is limited to the exact focused queries documented in the page reports. Whole-book label, page, source-note and hash reconciliation completed. This inventory does not claim an independent full-book visual pass.",
+  "reviewedPages": 81,
+  "sourceUnits": 866,
+  "sourceLabels": 923,
+  "acceptedSourceNoteIds": [
+    "1ma-10-37-ayin-vowel",
+    "1ma-10-46-vav-vowel",
+    "1ma-10-57-pe-dagesh",
+    "1ma-12-25-het-vowel",
+    "1ma-13-41-42-shin-dagesh",
+    "1ma-13-51-yod-dagesh",
+    "1ma-14-32-mem-vowel",
+    "1ma-14-34-tav-vowel",
+    "1ma-14-43-shin-dagesh",
+    "1ma-15-14-bet-dagesh",
+    "1ma-15-37-qof-vowel",
+    "1ma-15-40-qof-vowel",
+    "1ma-16-1-qof-vowel",
+    "1ma-16-4-qof-vowel",
+    "1ma-16-8-qof-vowel",
+    "1ma-4-10-yod-dagesh",
+    "1ma-4-18-yod-dagesh",
+    "1ma-5-26-qoph-dagesh",
+    "1ma-5-26-samekh-vowel",
+    "1ma-5-34-yod-dagesh",
+    "1ma-5-36-qoph-dagesh",
+    "1ma-5-4-bet-dagesh",
+    "1ma-6-10-yod-dagesh",
+    "1ma-6-11-bet-dagesh",
+    "1ma-6-26-yod-dagesh",
+    "1ma-6-38-kaf-vowel",
+    "1ma-9-1-bet-vowel",
+    "1ma-9-56-resh-vowel"
+  ],
+  "sourceGaps": {
+    "1": {
+      "omittedLabels": [],
+      "reason": "Kahana prints a bracketed three-dash lacuna at 1:26. It is transcribed literally; the chapter remains explicitly partial rather than represented as gap-free."
+    },
+    "2": {
+      "omittedLabels": [],
+      "reason": "Kahana prints the bracketed lacuna [ אִם־ — — — ] at 2:13. It is transcribed literally; the chapter remains explicitly partial rather than represented as gap-free."
+    }
+  },
+  "remainingSourceFindings": [],
+  "independentFullBookVisualPassClaimed": false,
+  "releaseApproved": false,
+  "rootScope": "Reviewed final inventory, coverage, reference hashes and documented full comparisons; corroborated the scoped source glyph queries recorded in page reports. Structural checks support but do not replace the recorded visual comparisons."
+}

@@ -9,11 +9,94 @@
   "scan": {
     "volume": "B",
     "sha256": "656891d377d2e3d4a9216723d94205488423907bf01df424b9f0b9de1560051e",
-    "pageCount": 530
+    "pageCount": 530,
+    "textPages": [
+      97,
+      98,
+      99,
+      100,
+      101,
+      102,
+      103,
+      104,
+      105,
+      106,
+      107,
+      108,
+      109,
+      110,
+      111,
+      112,
+      113,
+      114,
+      115,
+      116,
+      117,
+      118,
+      119,
+      120,
+      121,
+      122,
+      123,
+      124,
+      125,
+      126,
+      127,
+      128,
+      129,
+      130,
+      131,
+      132,
+      133,
+      134,
+      135,
+      136,
+      137,
+      138,
+      139,
+      140,
+      141,
+      142,
+      143,
+      144,
+      145,
+      146,
+      147,
+      148,
+      149,
+      150,
+      151,
+      152,
+      153,
+      154,
+      155,
+      156,
+      157,
+      158,
+      159,
+      160,
+      161,
+      162,
+      163,
+      164,
+      165,
+      166,
+      167,
+      168,
+      169,
+      170,
+      171,
+      172,
+      173,
+      174,
+      175,
+      176,
+      177
+    ]
   },
   "review": {
-    "status": "draft",
-    "method": "Direct visual comparison of every verse with the supplied printed source.",
+    "status": "complete",
+    "method": "Recorded full author first/separate second word, point, punctuation and boundary comparisons across all 81 source pages; root/peer corroboration is limited to the exact focused queries documented in the page reports. Whole-book label, page, source-note and hash reconciliation completed. This inventory does not claim an independent full-book visual pass.",
     "reviewedPages": [
       97,
       98,
@@ -89,7 +172,13 @@
       168,
       169,
       170,
-      171
+      171,
+      172,
+      173,
+      174,
+      175,
+      176,
+      177
     ],
     "notes": [
       "Initial Wikisource scaffold is not a complete pointed transcription. Every sourcePages-empty verse remains unreviewed and must not be imported.",
@@ -206,15 +295,33 @@
       "B168 completely first/second-compared: 13:54 and 14:1–6. All 10 body rows checked. Chapter 13 now fully compared; 54 retains literal וַיָּרְא and בְּגָזֶר. 14:3 Arshakha has no kaf dagesh, unlike 14:2. No new notes. 72 reviewed pages (B97–168), 19 notes, 872 units; 14:7 onward unreviewed. See 1MA-pointing-B168.json.",
       "B169 completely first/second-compared: 14:7–22, preserving printed combined19–20 and22 continuation onto170. All24 body rows checked.9 bracketed בתולות clause corrected;7 preserves local בְגֶזֶר;19–20 Jerusalem lamed qamats+hiriq.14 first-yod dagesh independently corroborated by root. No new notes.73 reviewed pages (B97–169),19 notes,871 units;14:23 onward unreviewed. See 1MA-pointing-B169.json.",
       "B170 completely first/second-compared: 14:23–34, including the 34 continuation onto B171. All 22 body rows checked. Literal 26 וַיְקִימוּ־לוֹ חֻפְשָׁה and 30 וַיַּקְהֵל retained. 32 has yod patah/dagesh and het hataf-patah; omit only unreadable mem vowel. 34 גֶּזֶר retains both segols and gimel dagesh; continuation omits only unreadable tav vowel in לתקן. All scoped queries independently corroborated by root. 74 reviewed pages (B97–170), 21 notes, 871 units; 14:35 onward unreviewed. See 1MA-pointing-B170.json.",
-      "B171 completely first/second-compared: 14:35–47, including 47 ending on B172. All 21 body rows checked. Literal יִכְתְּבוּ (43), וְלִקְוֹם קֶרֶם (44), יַעֲשֶׂה (45), and לְקַיֵּם with one written yod (46) retained. 36 Jerusalem lamed qamats+hiriq; 39 bet dagesh removed from clean cavity. One exact shin-dagesh note in 43 השטרות. Root corroborated focused 43, 44, 46 findings, not whole page. 75 reviewed pages (B97–171), 22 notes, 871 units; 14:48 onward unreviewed. See 1MA-pointing-B171.json."
+      "B171 completely first/second-compared: 14:35–47, including 47 ending on B172. All 21 body rows checked. Literal יִכְתְּבוּ (43), וְלִקְוֹם קֶרֶם (44), יַעֲשֶׂה (45), and לְקַיֵּם with one written yod (46) retained. 36 Jerusalem lamed qamats+hiriq; 39 bet dagesh removed from clean cavity. One exact shin-dagesh note in 43 השטרות. Root corroborated focused 43, 44, 46 findings, not whole page. 75 reviewed pages (B97–171), 22 notes, 871 units; 14:48 onward unreviewed. See 1MA-pointing-B171.json.",
+      "B172 completely first/second-compared: 14:48–49 and 15:1–9. All 17 body rows checked; chapter 14 now fully compared. Source combined label 15:8–9 retained. 14:48 גֶּדֶר has two segols; both Antiochos occurrences have tet sheva. 15:3 literal אֲקֹימֵם preserves short written yod after qof holam, independently corroborated by root against full-vav comparator 8–9 נקומם. No new notes. 76 reviewed pages (B97–172), 22 notes, 870 units; 15:10 onward unreviewed. See 1MA-pointing-B172.json.",
+      "B173 completely first/second-compared: 15:10–23, including 22–23 continuation through B174 first three rows. All 17 page rows checked. Printed combined labels 20–21 and 22–23 retained; no unprinted terminal colon added to 10. Literal וַיֶּאֱסֹף, נוֹמִינִיוֹס, לֻקִּיוֹס and יִקֹּם retained. One exact 14 bet-dagesh omission note. B174 names retain local points/spelling, including וּלְסִקִּיּוֹן, וּלְקַפְריסִין with visibly absent resh point, and וּלְקוּרִינִי. Root corroborated the note and these three name queries. 77 reviewed pages (B97–173), 23 notes, 868 units; 15:24 onward unreviewed. See 1MA-pointing-B173.json.",
+      "B174 completely first/second-compared: 15:24–29, with 29 ending on B175. All 11 page rows now checked (first three already checked as 22–23 continuation in B173 report). Literal וְדֵי־אֹכֶל, אַתֵּנָבִּיוֹס, and local Antiochos tet sheva retained; 28 Jerusalem lamed patah+hiriq and 29 הֲשִׁמּוֹתֶם points corroborated by paired crops. No new notes. 78 reviewed pages (B97–174), 23 notes, 868 units; 15:30 onward unreviewed. See 1MA-pointing-B174.json.",
+      "B175 completely first/separate second-compared: 15:30–41 and 16:1–2, including the two-row B176 continuation. All 22 rows checked, with the preceding 29 continuation unchanged. Printed combined 37–38 retained. Literal 32 אַתֵּנָבִּיוֹס, 40 וְלִנְחֹל, and three קנְדֶּבִּיוֹס occurrences retained; exact qof-vowel omissions in all three names preserve the neighboring dalet dagesh. Root corroborated these four focused findings only. At this checkpoint: 79 reviewed pages (B97–175), 26 notes, 867 units; 16:3 onward was unreviewed. See 1MA-pointing-B175.json.",
+      "B176 completely first/second-compared: 16:3–15, including the two-word B177 continuation. All 21 rows checked; prior 16:2 continuation unchanged. Printed combined 12–13 retained. Literal bracketed [שָׁמִים] with broad mem preserved; 14 לְאָרְכֵיהֶן corrected from first draft. Two exact qof-vowel notes at 4 and 8 retain the clear dalet dagesh and neighboring points. Root corroborated these scoped findings. 80 reviewed pages (B97–176), 28 notes, 866 units; 16:16 onward unreviewed. See 1MA-pointing-B176.json.",
+      "B177 completely first/second-compared: 16:16–24, finishing the book. All 13 rows checked; prior 15 continuation unchanged. Both 16/18 תַּלְמַי occurrences retain clear tav dagesh, unlike the previous page. Final 24 כֹהֵן removes the first-draft inferred kaf dagesh, preserving a clean empty printed cavity. Local 20 Jerusalem patah+hiriq and 24 כְהֻנָּתוֹ points retained. No new notes. 81 reviewed pages (B97–177), 28 notes, 866 source units. All 16 chapters have author first/separate second comparisons; whole-book reconciliation/source-completion approval still pending. See 1MA-pointing-B177.json.",
+      "Final whole-book label inventory caught two projection metadata typos: the already verified printed ranges 15:37–38 and 16:12–13 had been saved as verseEnd rather than the canonical endVerse field. Corrected the field and removed the redundant noncanonical sourceVerseLabel from the canonical units. Exact printed labels remain in the page reports. No text, vowel, punctuation, or source boundary changed.",
+      "Root accepted source completion after reviewing the final sixteen-chapter inventory and the recorded full first/separate second visual comparisons, verifying all64 referenced evidence hashes and exact candidate content, and corroborating the final B172–177 focused glyph findings. All81 source pages and866 source units are represented;28 isolated point omissions are disclosed. Source lacunae at1:26 and2:13 remain literal and the affected chapters remain explicitly partial. The earlier draft-only approval-pending statements are historical. This acceptance does not claim an independent full-book visual pass and does not approve production release; the twelve-work supplement gate remains closed."
     ],
-    "unresolvedFindings": [
-      "The full 16-chapter text has not been visually verified. Chapters 1–13 and 14:1–47 are first/second-compared with disclosed isolated-point notes. 14:48 onward and chapters 15–16 remain unreviewed online scaffold."
-    ],
+    "unresolvedFindings": [],
     "acceptedSourceNoteIds": [
       "1ma-10-37-ayin-vowel",
       "1ma-10-46-vav-vowel",
       "1ma-10-57-pe-dagesh",
+      "1ma-12-25-het-vowel",
+      "1ma-13-41-42-shin-dagesh",
+      "1ma-13-51-yod-dagesh",
+      "1ma-14-32-mem-vowel",
+      "1ma-14-34-tav-vowel",
+      "1ma-14-43-shin-dagesh",
+      "1ma-15-14-bet-dagesh",
+      "1ma-15-37-qof-vowel",
+      "1ma-15-40-qof-vowel",
+      "1ma-16-1-qof-vowel",
+      "1ma-16-4-qof-vowel",
+      "1ma-16-8-qof-vowel",
       "1ma-4-10-yod-dagesh",
       "1ma-4-18-yod-dagesh",
       "1ma-5-26-qoph-dagesh",
@@ -227,13 +334,7 @@
       "1ma-6-26-yod-dagesh",
       "1ma-6-38-kaf-vowel",
       "1ma-9-1-bet-vowel",
-      "1ma-9-56-resh-vowel",
-      "1ma-12-25-het-vowel",
-      "1ma-13-41-42-shin-dagesh",
-      "1ma-13-51-yod-dagesh",
-      "1ma-14-32-mem-vowel",
-      "1ma-14-34-tav-vowel",
-      "1ma-14-43-shin-dagesh"
+      "1ma-9-56-resh-vowel"
     ]
   },
   "chapters": [
@@ -3321,7 +3422,8 @@
           ],
           "textSHA256": "8dd2511c1b6de7feb965622c60c3619b24a57e1296dd92e7542ab9b7425133c4"
         }
-      ]
+      ],
+      "lastVerse": 63
     },
     {
       "number": 7,
@@ -3722,7 +3824,8 @@
           ],
           "textSHA256": "d1766c4c2a7d2a428f2967640a3d5135519d646519964fe05de1b48e1668142d"
         }
-      ]
+      ],
+      "lastVerse": 50
     },
     {
       "number": 8,
@@ -3985,7 +4088,8 @@
           ],
           "textSHA256": "8c4daab0373d32497280e96126400caa62bf1f1a6cf05bd1f4696aa2c080baf2"
         }
-      ]
+      ],
+      "lastVerse": 32
     },
     {
       "number": 9,
@@ -4571,7 +4675,8 @@
           ],
           "textSHA256": "d6e042da5d3b6aba90b80d025ca5a5edfc87ed17e8b264f417399c761afd1652"
         }
-      ]
+      ],
+      "lastVerse": 73
     },
     {
       "number": 10,
@@ -5300,7 +5405,8 @@
           ],
           "textSHA256": "25a65e80014a65388667d59ee44c2459cf1ddd071137e6d1ebfb97eb7fa63392"
         }
-      ]
+      ],
+      "lastVerse": 89
     },
     {
       "number": 11,
@@ -5860,7 +5966,8 @@
           ],
           "textSHA256": "a12e60435a22b176ee98b2906ceee54c0d161a5da6eeabdd05ae0b9e2632167a"
         }
-      ]
+      ],
+      "lastVerse": 74
     },
     {
       "number": 12,
@@ -6285,7 +6392,8 @@
           ],
           "textSHA256": "42c009f99458db0d1e512b825a069ba59f6bc61844dcd39fe32fd72c6e8712d2"
         }
-      ]
+      ],
+      "lastVerse": 53
     },
     {
       "number": 13,
@@ -6740,7 +6848,8 @@
           ],
           "textSHA256": "9c80fd451be031eb72e972dcc0986da4fd8563a45ad624af57a25e28666e965c"
         }
-      ]
+      ],
+      "lastVerse": 54
     },
     {
       "number": 14,
@@ -7161,417 +7270,607 @@
         },
         {
           "verse": 48,
-          "text": "ואת הכתב הזה ציוו לשים על לוחות ולהעמידם בתוך גדר המקדש במקום מצויין:",
-          "sourcePages": [],
-          "textSHA256": "49402f2656079209457ec546ef38db9977741a4fc4d69c95ee84a84ebf4cc9b7"
+          "text": "וְאֶת־הַכְּתָב הַזֶּה צִוּוּ לָשִׂים עַל־לוּחוֹת וּלְהַעֲמִידָם בְּתוֹךְ גֶּדֶר הַמִּקְדָּשׁ בְּמָקוֹם מֵאִיר׃",
+          "sourcePages": [
+            172
+          ],
+          "textSHA256": "30580f6633ee96fe5d0e48351e8dfaa86ff0051a8d3dfbdb3d32459a1795ffd3"
         },
         {
           "verse": 49,
-          "text": "ופתשגן מאלה להניח בלשכת האוצר למען יהיה לשמעון ולבניו:",
-          "sourcePages": [],
-          "textSHA256": "347e31f0d976be01d54b3c5e5262a119561abde019b377d93888aac559d2aa9a"
+          "text": "וּפַתְשֶׁגֶן מֵאֵלֶּה לְהָנִיחַ בְּלִשְׁכַת הָאוֹצָר לְמַעַן יִהְיֶה לְשִׁמְעוֹן וּלְבָנָיו׃",
+          "sourcePages": [
+            172
+          ],
+          "textSHA256": "2feace40692fbaede05b68e175d8210f19a971827c88fb6d24cd71a52144c6d9"
         }
-      ]
+      ],
+      "lastVerse": 49
     },
     {
       "number": 15,
       "verses": [
         {
           "verse": 1,
-          "text": "וישלח אנטיוכוס בן דמיטריוס המלך אגרות מאיי הים אל שמעון הכהן ושר היהודים ולכל העם:",
-          "sourcePages": [],
-          "textSHA256": "95e403d7c64e0a029380acd1e36195233a41af289757479d1c16c3a4bd03a91c"
+          "text": "וַיִּשְׁלַח אַנְטְיוֹכוֹס בֶּן־דְּמֵטְרִיוֹס הַמֶּלֶךְ אִגְּרוֹת מֵאִיֵּי הַיָּם אֶל־שִׁמְעוֹן הַכֹּהֵן וְשַׂר הַיְּהוּדִים וּלְכָל־הָעָם׃",
+          "sourcePages": [
+            172
+          ],
+          "textSHA256": "e98b1430a1e2386de5bfe8f6ead2f832deb276f01b52cdb6a75397f7c36e8504"
         },
         {
           "verse": 2,
-          "text": "ובהם היה כדבר הזה: המלך אנטיוכוס לשמעון כהן גדול ושר האומה ולעם היהודים שלום:",
-          "sourcePages": [],
-          "textSHA256": "7027b0a59cc473f82949cec3e1b8b06ae79303c76b3de6aebfce9c6f9e7f8c60"
+          "text": "וַיִּתֵּן בָּהּ כַּדָּבָר הַזֶּה׃ הַמֶּלֶךְ אַנְטְיוֹכוֹס לְשִׁמְעוֹן כֹּהֵן גָּדוֹל וְשַׂר הָאֻמָּה וּלְעַם הַיְּהוּדִים שָׁלוֹם׃",
+          "sourcePages": [
+            172
+          ],
+          "textSHA256": "d78ef8068ffff79ebe1b33fa8cba48cc1013d4364e4849df1a4abca4332faa6a"
         },
         {
           "verse": 3,
-          "text": "אחרי אשר אנשי בליעל תפשו את מלכות אבותינו אחפוץ לדרוש את המלכות למען אקומם אותה כאשר הייתה בראשונה ואאסוף המון חיל ואכין אניות מלחמה:",
-          "sourcePages": [],
-          "textSHA256": "d1e90c3160471ab296a0cb22bdf5dce26bbaa2faa60979ca172e775d8a7fb748"
+          "text": "אַחֲרֵי אֲשֶׁר אַנְשֵׁי בְלִיַּעַל תָּפְשׂוּ אֶת־מַלְכוּת אֲבוֹתֵינוּ אֶחְפֹּץ לִדְרֹשׁ אֶת־הַמַּלְכוּת לְמַעַן אֲקֹימֵם אוֹתָהּ כַּאֲשֶׁר הָיְתָה בָּרִאשׁוֹנָה וָאֶאֱסֹף הֲמוֹן־חַיִל וָאָכִין אֳנִיּוֹת מִלְחָמָה׃",
+          "sourcePages": [
+            172
+          ],
+          "textSHA256": "bced05f77ff915f8199d9592eb37bf015389c59dbff474ff29fe2644e2f21b52"
         },
         {
           "verse": 4,
-          "text": "ואחפוץ לעבור בארץ למען אענוש את מחריבי ארצנו והמשימים ערים רבות במלכותי:",
-          "sourcePages": [],
-          "textSHA256": "a7829421c1235317aac23b704745d68711d2ee3d01bc4979aea4e4fc3a76e9f0"
+          "text": "וָאֶחְפֹּץ לַעֲבֹר בָּאָרֶץ לְמַעַן אֶעֱנֹשׁ אֶת־מַחֲרִיבֵי אַרְצֵנוּ וְהַמְשַׁמִּים עָרִים רַבּוֹת בְּמַלְכוּתִי׃",
+          "sourcePages": [
+            172
+          ],
+          "textSHA256": "c888719465e58aaded73a93ea0b82d3533ee082074ff5a2f3d76ba71bb215eb9"
         },
         {
           "verse": 5,
-          "text": "ועתה קיימתי לך את כל ההנחות אשר עשו לך המלכים אשר היו לפניי ושאר המתנות אשר הניחו לך:",
-          "sourcePages": [],
-          "textSHA256": "1f5147aaa056dee69b318d5ff9a23ad6ba3ce5b79dbbc00f0e17d4ecef383b7d"
+          "text": "וְעַתָּה קִיֵּמְתִּי לְךָ אֶת־כָּל־הַהֲנָחוֹת אֲשֶׁר־עָשׂוּ לְךָ הַמְּלָכִים אֲשֶׁר הָיוּ לְפָנַי וּשְׁאָר הַמַּתָּנוֹת אֲשֶׁר־הִנִּיחוּ לָךְ׃",
+          "sourcePages": [
+            172
+          ],
+          "textSHA256": "b2dfe473bb1b0079b65aaa2e8a39cbf7a0543c76f6817c1e0b5f78fd6f263172"
         },
         {
           "verse": 6,
-          "text": "ומניח אנכי לך לעשות מטבע שלך מטבע בארצך:",
-          "sourcePages": [],
-          "textSHA256": "156c72d0936aab27e975a557727ff235757999cc00ac8016c89563f40692ad64"
+          "text": "וּמַנִּיחַ אָנֹכִי לְךָ לַעֲשׂוֹת מַטְבֵּעַ שֶׁלְּךָ מְטֻבָּע בְּאַרְצֶךָ׃",
+          "sourcePages": [
+            172
+          ],
+          "textSHA256": "8cc711a0bfc3c56c698917d33c7b81a639e0d8fdc8b1d0d892ffff16af2f1978"
         },
         {
           "verse": 7,
-          "text": "וירושלים והמקדש יהיו חופשיים וכל הנשק אשר הכינות והמבצרים אשר בנית אשר תמשול בהם יישארו לך:",
-          "sourcePages": [],
-          "textSHA256": "a6656a8be1931893afd9f45784d361a5bd1f6c514f3728ffaba6835399c61321"
+          "text": "וִירוּשָׁלִַם וְהַמִּקְדָּשׁ יִהְיוּ חָפְשִׁים וְכָל־הַנֶּשֶׁק אֲשֶׁר־הֲכִינוֹתָ וְהַמִּבְצָרִים אֲשֶׁר־בָּנִיתָ אֲשֶׁר תִּמְשֹׁל בָּהֶם יִשָׁאֲרוּ לָךְ׃",
+          "sourcePages": [
+            172
+          ],
+          "textSHA256": "91f23beb0b2e1fed8e72882082cba56fd42c2f180e7b24b79b5548f7aaa482d3"
         },
         {
           "verse": 8,
-          "text": "וכל חוב המלך ומסי המלך מעתה לכל הימים מונחים לך:",
-          "sourcePages": [],
-          "textSHA256": "66e3749ab35167efe49eadd7cb23f5c4f1bc452e8349c36bce572320a7c87d4f"
-        },
-        {
-          "verse": 9,
-          "text": "וכאשר נקומם את מלכותנו נכבד אותך ואת עמך ואת המקדש בכבוד גדול להיות כבודכם נראה בכל הארץ:",
-          "sourcePages": [],
-          "textSHA256": "523bc618aeb23e78a8af1eca0efd53534253228c3c29ff53a68d40360f361afc"
+          "text": "וְכָל־חוֹב הַמֶּלֶךְ וּמִסֵּי הַמֶּלֶךְ מֵעַתָּה לְכָל־הַיָּמִים מוּנָחִים לָךְ׃ וְכַאֲשֶׁר נְקוֹמֵם אֶת־מַלְכוּתֵנוּ נְכַבֵּד אוֹתְךָ וְאֶת־עַמְּךָ וְאֶת־הַמִּקְדָּשׁ בְּכָבוֹד גָּדוֹל לִהְיוֹת כְּבוֹדְכֶם נִרְאֶה בְּכָל־הָאָרֶץ׃",
+          "sourcePages": [
+            172
+          ],
+          "textSHA256": "8a825ed0b26e16aa7f65446dce0d7f9bb40cae8cc51c51206eb9baf1a8b752f5",
+          "endVerse": 9
         },
         {
           "verse": 10,
-          "text": "בשנת ארבע ושבעים ומאה יצא אנטיוכוס לארץ אבותיו ויאסוף אליו את כל החיל עד אשר מעטים היו עם טריפון:",
-          "sourcePages": [],
-          "textSHA256": "29d0cf22d259fdc627cf9c3c412855de040a5754dbb470f623531d00be529983"
+          "text": "בִּשְׁנַת אַרְבַּע וְשִׁבְעִים וּמֵאָה יָצָא אַנְטְיוֹכוֹס לְאֶרֶץ אֲבוֹתָיו",
+          "sourcePages": [
+            173
+          ],
+          "textSHA256": "055e949217343b57ba1c8a9ddb8546600282a762e3b87bacd7bb370d32ca1197"
         },
         {
           "verse": 11,
-          "text": "וירדוף אחריו אנטיוכוס המלך וילך אל דור בורח עד הים:",
-          "sourcePages": [],
-          "textSHA256": "44d8229e23a5f4519b3003ae80fd3034e75c9a24a6cc4b3a4f7f1160908e6ff9"
+          "text": "וַיֶּאֱסֹף אֵלָיו אֶת־כָּל־הַחַיִל עַד־אֲשֶׁר מְעַטִּים הָיוּ עִם־טְרִיפוֹן׃",
+          "sourcePages": [
+            173
+          ],
+          "textSHA256": "064fb5507e09a53ccb5f0c7df627add5e32ce5c7408f5d74c6e461fde5889e6f"
         },
         {
           "verse": 12,
-          "text": "כי ראה כי נאספו עליו הרעות וחילו עזבהו:",
-          "sourcePages": [],
-          "textSHA256": "f0634425ebe2c609dd911b1661f54f9f53d95c9bce5da03155265442206f22ec"
+          "text": "וַיִּרְדֹּף אַחֲרָיו אַנְטְיוֹכוֹס הַמֶּלֶךְ וַיֵּלֶךְ אֶל־דוֹר בּוֹרֵחַ עַל־הַיָּם׃ כִּי־רָאָה כִּי נֶאֶסְפוּ עָלָיו הָרָעוֹת וְחֵילוֹ עֲזָבֻהוּ׃",
+          "sourcePages": [
+            173
+          ],
+          "textSHA256": "da7dcfffce9748fd965df16734cd179af792874b3a4ab8fbd7982f54ab25a2a7"
         },
         {
           "verse": 13,
-          "text": "ויחן אנטיוכוס על דור ואתו שתים עשרה ריבוא אדם לוחמים ושמונת אלפים פרשים:",
-          "sourcePages": [],
-          "textSHA256": "1505226ce2b43924cc55a78f93b38a9213eedb021babc49b4b00c4826159a19e"
+          "text": "וַיִּחַן אַנְטְיוֹכוֹס עַל־דוֹר וְאִתּוֹ שְׁתֵּים עֶשְׂרֵה רִבּוֹא אָדָם לוֹחֲמִים וּשְׁמוֹנַת אֲלָפִים פָּרָשִׁים׃",
+          "sourcePages": [
+            173
+          ],
+          "textSHA256": "5025caccbe3f597a0b7d780b4e9885b983fb1b4032461ea200a5dcadf4b8b58e"
         },
         {
           "verse": 14,
-          "text": "ויסובו את העיר והאניות מן הים קרבו ויך את העיר מן הארץ ומן הים ולא נתן לאיש לצאת ולבוא:",
-          "sourcePages": [],
-          "textSHA256": "aa07ab98ef2477c0eccffae140eb377f8621d7cf5cce2ebe9c640e8c235d87ff"
+          "text": "וַיָּסֹבוּ אֶת־הָעִיר וְהָאֳנִיּוֹת מִן־הַיָּם קָרָבוּ וַיַּךְ אֶת־הָעִיר מִן־הָאָרֶץ וּמִן־הַיָּם וְלֹא נָתַן לְאִישׁ לָצֵאת וְלָבוֹא׃",
+          "sourcePages": [
+            173
+          ],
+          "textSHA256": "f8d1c13ec27e2b588c9e6622f4f3c58a2c9a9d918ff246ac4b6643a50de86e47",
+          "sourceNotes": [
+            {
+              "id": "1ma-15-14-bet-dagesh",
+              "kind": "unreadablePoint",
+              "anchor": "וַיָּסֹבוּ",
+              "occurrence": 1,
+              "letterIndex": 4,
+              "mark": "dagesh",
+              "sourcePages": [
+                173
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf#page=173"
+            }
+          ]
         },
         {
           "verse": 15,
-          "text": "ויבוא נומיניוס ואשר אתו מרומי ולהם אגרות אל המלכים ואל הארצות ובהן היה כתוב ככה:",
-          "sourcePages": [],
-          "textSHA256": "08dc1c348dada7a0e995aab322d76baa8e49b2587f3bff11ecbe165f92c8fcd0"
+          "text": "וַיָּבֹא נוֹמִינִיוֹס וַאֲשֶׁר אִתּוֹ מֵרוֹמִי וְלָהֶם אִגְּרוֹת אֶל־הַמְּלָכִים וְאֶל־הָאֲרָצוֹת וּבָהֶן הָיָה כָּתוּב כָּכָה׃",
+          "sourcePages": [
+            173
+          ],
+          "textSHA256": "1e10675b3c49927ba9d42be21521d2cf59d461a3143dd5746e2bb460da2ae3ef"
         },
         {
           "verse": 16,
-          "text": "לוקיוס יועץ הרומיים לתלמי המלך שלום:",
-          "sourcePages": [],
-          "textSHA256": "b8890cbb9f2ed308b221775489b55d17572a90c76aa100d7f41325bf7fbf6e8a"
+          "text": "לֻקִּיוֹס יוֹעֵץ הָרוֹמִיִּים לְתַלְמַי הַמֶּלֶךְ שָׁלוֹם׃",
+          "sourcePages": [
+            173
+          ],
+          "textSHA256": "e3e1a056646a9d67391ab07bdf1d13ce97d2b51bdfb806ea63cc1776c3a7f0a6"
         },
         {
           "verse": 17,
-          "text": "מלאכי היהודים באו אלינו אהבנו ובני ברית לחדש את האהבה ואת הברית אשר מבראשונה שלוחים מאת שמעון הכהן הגדול ועם היהודים:",
-          "sourcePages": [],
-          "textSHA256": "3ad6ee7d8fcc2ac248aba6df4253d9120cb2d6f4e05e98db82785112f1461665"
+          "text": "מַלְאֲכֵי הַיְּהוּדִים בָּאוּ אֵלֵינוּ אוֹהֲבֵינוּ וּבְנֵי־בְרִית לְחַדֵּשׁ אֶת־הָאַהֲבָה וְאֶת־הַבְּרִית אֲשֶׁר מִבָּרִאשׁוֹנָה שְׁלוּחִים מֵאֵת שִׁמְעוֹן הַכֹּהֵן הַגָּדוֹל וְעַם־הַיְּהוּדִים׃",
+          "sourcePages": [
+            173
+          ],
+          "textSHA256": "3d39fd2b68f421545d925d3e4a43788f388cb06679e82f2d238695287d3f08ae"
         },
         {
           "verse": 18,
-          "text": "והביאו מגן זהב אלף מנה:",
-          "sourcePages": [],
-          "textSHA256": "2e3d86043305ea30d69f4b40644908851eb5896396a60e42d8a083414486c72e"
+          "text": "וְהֵבִיאוּ מָגֵן זָהָב אֶלֶף מָנֶה׃",
+          "sourcePages": [
+            173
+          ],
+          "textSHA256": "03206d3621b67311124b476b78b8ee25616bfaa6e8015580ba3ab83ae959b08a"
         },
         {
           "verse": 19,
-          "text": "וייטב לנו לכתוב למלכים ולארצות כי לא יבקשו להם רעה וכי לא ילחמו אותם ואת עריהם ואת ארצם וכי לא יעזרו לנלחמים אתם:",
-          "sourcePages": [],
-          "textSHA256": "c01454d200c50394fdfdd6df1520d992a430307d9ece5d020b2e34642b4683c1"
+          "text": "וַיִּיטַב לָנוּ לִכְתֹּב לַמְּלָכִים וְלָאֲרָצוֹת כִּי לֹא־יְבַקְשׁוּ לָהֶם רָעָה וְכִי לֹא־יִלָּחֲמוּ אוֹתָם וְאֶת־עָרֵיהֶם וְאֶת־אַרְצָם וְכִי לֹא־יַעֲזֹרוּ לַנִּלְחָמִים אִתָּם׃",
+          "sourcePages": [
+            173
+          ],
+          "textSHA256": "b72ff38c91229bda5ed8125c88a5cb7973ee1a62f6bbcaddbaa371cd886995bc"
         },
         {
           "verse": 20,
-          "text": "וייטב לנו לקבל את המגן מהם:",
-          "sourcePages": [],
-          "textSHA256": "b778f4c0405150b071d62623101e45bd91ceff1862cf03b915f3c6ed40fa3eda"
-        },
-        {
-          "verse": 21,
-          "text": "ואם ינוסו אנשי בליעל מארצם אליכם תמסרו אותם לשמעון הכהן הגדול למען יקום בהם כתורתם:",
-          "sourcePages": [],
-          "textSHA256": "a7d8c5dac5ffde4104971d5ed2766f37e4a53b0a73707251290085f95f34ccd7"
+          "text": "וַיִּיטַב לָנוּ לְקַבֵּל הַמָּגֵן מֵהֶם׃ וְאִם יָנוּסוּ אַנְשֵׁי בְלִיַּעַל מֵאַרְצָם אֲלֵיכֶם תִּמְסְרוּ אוֹתָם לְשִׁמְעוֹן הַכֹּהֵן הַגָּדוֹל לְמַעַן יִקֹּם בָּהֶם כְּתוֹרָתָם׃",
+          "sourcePages": [
+            173
+          ],
+          "textSHA256": "1f46b8ceb218dceba89d43def919d95f6f00e4658e7aafc3a170f7d96aad1743",
+          "endVerse": 21
         },
         {
           "verse": 22,
-          "text": "וככה כתב לדמיטריוס המלך ולאטלוס ולארתס ולארשכה:",
-          "sourcePages": [],
-          "textSHA256": "e5d5e5030b8c9436af1271f8ebb2c18bd4a09b6a4853b79fc7724028a89ddab2"
-        },
-        {
-          "verse": 23,
-          "text": "ולכל הארצות לשמשכה ולבני אשפרטה ולדלוס ולמונדוס ולסיקיון ולקאריס ולסמוס ולפמפוליה וללוקייה ולהליקרנסוס ולרודוס ולפסיליס ולקוס ולסידי ולארדוס ולגורטונה ולקנידוס ולקפריסין ולקוריני:",
-          "sourcePages": [],
-          "textSHA256": "3d9df8d4cddc2016e3526841fd0d67b6d1c32dc02fe2e0ae82c36c45efe40dfb"
+          "text": "וְכָכָה כָּתַב לְדְמֵטְרִיוֹס הַמֶּלֶךְ וּלְאַטָּלוֹס וּלְאַרָתֵם וּלְאַרְשָׁכָּה׃ וּלְכָל־הָאֲרָצוֹת לְשַׁמְשַׁכָּה וְלִבְנֵי אַשְׁפַּרְטָה וּלְדֵלוֹס וּלְמֻנְדּוֹס וּלְסִקִּיּוֹן וּלְקָרִים וּלְסָמוֹס וּלְפַמְפּוּלִיָּה וּלְלֻקִּיָּה וּלְהָלִיקַרְנַסּוֹס וּלְרוֹדוֹס וּלְפָסֵילִים וּלְקוֹס וּלְסִידִי וּלְאַרָדוֹס וּלְגוֹרְטוּנָה וְלִקְנִידוֹס וּלְקַפְריסִין וּלְקוּרִינִי׃",
+          "sourcePages": [
+            173,
+            174
+          ],
+          "textSHA256": "825e02a46e644b30a9664999d5c48409eff707045530d4206468947640b38b63",
+          "endVerse": 23
         },
         {
           "verse": 24,
-          "text": "ופתשגן הכתבים ההם כתב לשמעון הכהן הגדול:",
-          "sourcePages": [],
-          "textSHA256": "10db648cf3a141178a50634d4537ff8cfe9da842f9002fe1e3fcda86dfe0a5ad"
+          "text": "וּפַתְשֶׁגֶן הַכְּתָבִים הָהֵם כָּתַב לְשִׁמְעוֹן הַכֹּהֵן הַגָּדוֹל׃",
+          "sourcePages": [
+            174
+          ],
+          "textSHA256": "fe07ddff10f456855524cce2a7e4b1cd1e66e5137859fcfa79aa1aac10e9b641"
         },
         {
           "verse": 25,
-          "text": "ואנטיוכוס המלך חנה על דור ביום השני ויקרב אליה את חילו בעשותו מכונות ויסגור את טריפון מצאת ומבוא:",
-          "sourcePages": [],
-          "textSHA256": "9293611879bef9a659d70f1c5705ae2ff9a0038ac5033dd6c95d6c4b4dbeef0f"
+          "text": "וְאַנְטְיוֹכוֹס הַמֶּלֶךְ חָנָה עַל־דוֹר בַּיּוֹם הַשֵּׁנִי וַיִּקְרַב אֵלֶיהָ אֶת־חֵילוֹ בַּעֲשׂוֹתוֹ מְכוֹנוֹת וַיִּסְגֹּר אֶת־טְרִיפוֹן מִצֵּאת וּמִבּוֹא׃",
+          "sourcePages": [
+            174
+          ],
+          "textSHA256": "713ef4144734f9b53868414305dafda7c3ca8f22487e27857cc6d57d5964ee3a"
         },
         {
           "verse": 26,
-          "text": "וישלח אליו שמעון אלפים איש בחור לעזור לו וכסף וזהב ודי אוכל:",
-          "sourcePages": [],
-          "textSHA256": "2543c44ca095b0041d45cf3d9edcaf8eb981058523b0ee6cb98b12ac49294746"
+          "text": "וַיִּשְׁלַח אֵלָיו שִׁמְעוֹן אַלְפַּיִם אִישׁ בָּחוּר לַעֲזֹר־לוֹ וְכֶסֶף וְזָהָב וְדֵי־אֹכֶל׃",
+          "sourcePages": [
+            174
+          ],
+          "textSHA256": "cf6ac0d8e45eb26670acb03763b6d959678ec4ddf0630b67b3ad4516fcce2f32"
         },
         {
           "verse": 27,
-          "text": "ולא חפץ לקבלם וישם לאל את כל אשר נדבר אתו בראשונה ויתנכר אליו:",
-          "sourcePages": [],
-          "textSHA256": "f6d26bcf37d27ed763eb350dfd504210894e9900b5c15bdbd36aed6e9431f767"
+          "text": "וְלֹא חָפֵץ לְקַבְּלָם וַיָּשֶׂם לְאַל אֶת־כָּל אֲשֶׁר־נִדְבַּר אִתּוֹ בָּרִאשׁוֹנָה וַיִּתְנַכֵּר אֵלָיו׃",
+          "sourcePages": [
+            174
+          ],
+          "textSHA256": "387b693e5f20222bb1d0497b8ef9992e8c94972d3d6770f6006e4db7d996d7f7"
         },
         {
           "verse": 28,
-          "text": "וישלח אליו את אתנביוס אחד מאוהביו לדבר עמו לאמור אתם מושלים ביפו ובגזר ובמצודה אשר בירושלים ערי ממלכתי:",
-          "sourcePages": [],
-          "textSHA256": "49b594a554fc12ccc4428b2f198b96b69e208635eaee5013d03fce0c97521616"
+          "text": "וַיִּשְׁלַח אֵלָיו אֶת־אַתֵּנָבִּיוֹס אֶחָד מֵאוֹהֲבָיו לְדַבֵּר עִמּוֹ לֵאמֹר אַתֶּם מוֹשְׁלִים בְּיָפוֹ וּבְגֶזֶר וּבַמְּצוּדָה אֲשֶׁר בִּירוּשָׁלִַם עָרֵי מַמְלַכְתִּי׃",
+          "sourcePages": [
+            174
+          ],
+          "textSHA256": "afdfc3966a8e6af2ceb84303ce9f8c449119d5b2f1898485a741d247d2195672"
         },
         {
           "verse": 29,
-          "text": "את גבולותיהם השימותם ותעשו רעה גדולה בארץ ותשתררו במקומות רבים בממלכתי:",
-          "sourcePages": [],
-          "textSHA256": "2adfe3e4c60b271bb4584fe1419b04f99b6c50bd09e5529ba09cc1bafd3e58c6"
+          "text": "אֶת־גְּבוּלוֹתֵיהֶם הֲשִׁמּוֹתֶם וַתַּעֲשׂוּ רָעָה גְדוֹלָה בָּאָרֶץ וַתִּשְׂתָּרְרוּ בַּמְּקוֹמוֹת רַבִּים בְּמַמְלַכְתִּי׃",
+          "sourcePages": [
+            174,
+            175
+          ],
+          "textSHA256": "09ab19ae106351475a04a2e6e0757941af2740a084548f2e2e1281d8897c2b75"
         },
         {
           "verse": 30,
-          "text": "ועתה השיבו את הערים אשר לקחתם ואת מסי המקומות אשר השתררתם עליהם מחוץ לגבולות יהודה:",
-          "sourcePages": [],
-          "textSHA256": "b57408c0e95734634e3226698e2e9ea2508fd0189ea6389b524a3731b957c3c0"
+          "text": "וְעַתָּה הָשִׁיבוּ אֶת־הֶעָרִים אֲשֶׁר לְקַחְתֶּם וְאֵת מִכְסֵי הַמְּקוֹמוֹת אֲשֶׁר־הִשְׂתָּרַרְתֶּם עֲלֵיהֶם מִחוּץ לִגְבוּלוֹת יְהוּדָה׃",
+          "sourcePages": [
+            175
+          ],
+          "textSHA256": "9d3f8611b7f4fe4f7d3c23fdf71098b1c1f905582a02d6c35da872ae3a2be420"
         },
         {
           "verse": 31,
-          "text": "ולא ונתתם תחתם חמש מאות ככרי כסף ובעד ההשחתה אשר השחתם ומס הערים עוד ככרים חמש מאות ולא ובאנו ונלחמנו אתכם:",
-          "sourcePages": [],
-          "textSHA256": "2eb41c76412c07cf00be75ac77a13fb17342b042969b7fb7a20d16603cf1f9c9"
+          "text": "וְלֹא וּנְתַתֶּם תַּחְתָּם חֲמֵשׁ מֵאוֹת כִּכְּרֵי כֶסֶף וּבְעַד הַהַשְׁחָתָה אֲשֶׁר הִשְׁחַתֶּם וּמַס הֶעָרִים עוֹד כִּכָּרִים חֲמֵשׁ מֵאוֹת וְלֹא וּבָאנוּ וְנִלְחַמְנוּ אִתְּכֶם׃",
+          "sourcePages": [
+            175
+          ],
+          "textSHA256": "96f9a5410230b1ee1d15d09d5f3e047ccf53158265a0cd6af6adc34e6794a5d5"
         },
         {
           "verse": 32,
-          "text": "ויבוא אתנביוס אוהב המלך ירושלים וירא כבוד שמעון ואת מערכת הכלים ועם כלי הזהב וכלי הכסף ואת המעמד הגדול וישתומם ויודע לו את דברי המלך:",
-          "sourcePages": [],
-          "textSHA256": "5b1b125707ff260b3bbdf3027cf71b6a6b85de3e0b9ed9fbb35147c730a4ce34"
+          "text": "וַיָּבֹא אַתֵּנָבִּיוֹס אוֹהֵב הַמֶּלֶךְ יְרוּשָׁלִַם וַיַּרְא אֶת־כְּבוֹד שִׁמְעוֹן וְאֵת מַעֲרֶכֶת הַכֵּלִים עִם־כְּלֵי־הַזָּהָב וּכְלֵי־הַכֶּסֶף וְאֵת הַמַּעֲמָד הַגָּדוֹל וַיִּשְׁתּוֹמֵם וַיּוֹדַע־לוֹ אֶת־דִּבְרֵי הַמֶּלֶךְ׃",
+          "sourcePages": [
+            175
+          ],
+          "textSHA256": "2c470b14cfd099d0541a1f989a9bd97ee31125314d6915398a3ffeffde3eeaf5"
         },
         {
           "verse": 33,
-          "text": "ויען שמעון ויאמר לו לא ארץ נָכריה לקחנו ולא ברכוש נָכרים מָשָלְנו כי אם נחלת אבותינו אשר בידי אויבינו בעת מן העתים בלא משפט נכבשה:",
-          "sourcePages": [],
-          "textSHA256": "bf00152e09134441672353ee7575d2d37e19b611a93e6d58ccda3a93d8d163cc"
+          "text": "וַיַּעַן שִׁמְעוֹן וַיֹּאמֶר־לוֹ לֹא אֶרֶץ נָכְרִיָּה לָקַחְנוּ וְלֹא בִּרְכוּשׁ נָכְרִים מָשַׁלְנוּ כִּי אִם־נַחֲלַת אֲבוֹתֵינוּ אֲשֶׁר בִּידֵי אוֹיְבֵינוּ בְּעֵת מִן־הָעִתִּים בְּלֹא־מִשְׁפָּט נִכְבָּשָׁה׃",
+          "sourcePages": [
+            175
+          ],
+          "textSHA256": "462bd0816518e55c271f3e24dffcfd4e48ced711059276879dac4d2af74b04c5"
         },
         {
           "verse": 34,
-          "text": "ואנחנו כאשר הייתה לנו עת השיבונו את נחלת אבותינו:",
-          "sourcePages": [],
-          "textSHA256": "94140671e2c623c7f73c2313d80f88f82dd0e20393615634b8f0c7cf517aca9c"
+          "text": "וַאֲנַחְנוּ כַּאֲשֶׁר הָיְתָה לָנוּ עֵת הֲשִׁיבֹנוּ אֶת־נַחֲלַת אֲבוֹתֵינוּ׃",
+          "sourcePages": [
+            175
+          ],
+          "textSHA256": "79cea83860b1bd65369a005caa760a9a8fe8662b677d3d3a01e17b896e9f5c8e"
         },
         {
           "verse": 35,
-          "text": "ועל יפו וגזר תדרוש הן עשו בעמנו רעה גדולה ובארצנו בעדן ניתן מאה ככר ולא ענהו דבר:",
-          "sourcePages": [],
-          "textSHA256": "4049b447429bcd00ce9dc27d9f979f2ed14eb9b67deae895f126f65709479c1d"
+          "text": "וְעַל יָפוֹ וְגֶזֶר תֹּדְרֹשׁ הֵן עָשׂוּ בְּעַמֵּנוּ רָעָה גְדוֹלָה וּבְאַרְצֵנוּ בַּעֲדָן נִתֵּן מֵאָה כִּכָּר וְלֹא עָנָהוּ דָּבָר׃",
+          "sourcePages": [
+            175
+          ],
+          "textSHA256": "ee058da598c3ed9978045c9b5ad54a40162b683c46f20ec1d3614074953984eb"
         },
         {
           "verse": 36,
-          "text": "וישב בחרי אף אל המלך ויודע לו את הדברים האלה ואת כבוד שמעון וכל אשר ראה ויכעס המלך כעס גדול:",
-          "sourcePages": [],
-          "textSHA256": "100aeaac948c7b29c1f39640a17d6af1b6701b59a0f4d8c0c9f49328cb8260e0"
+          "text": "וַיָּשָׁב בָּחֳרִי־אַף אֶל־הַמֶּלֶךְ וַיּוֹדַע לוֹ אֶת־הַדְּבָרִים הָאֵלֶּה וְאֶת־כְּבוֹד שִׁמְעוֹן וְכֹל אֲשֶׁר־רָאָה וַיִּכְעַס הַמֶּלֶךְ כַּעַס גָּדוֹל׃",
+          "sourcePages": [
+            175
+          ],
+          "textSHA256": "a4d3053e5098894cec8ae13a8aa4729078c21a8a76b1c50a4f7c42367a988871"
         },
         {
           "verse": 37,
-          "text": "וטריפון ירד באניה ויברח לארתוסיה:",
-          "sourcePages": [],
-          "textSHA256": "25217c8e5c601d91f558a8bb0c451a388ac2f465100dcc4b22807ae0a30c070d"
-        },
-        {
-          "verse": 38,
-          "text": "ויעמד המלך את קנדביוס לשר צבא שני על ארץ החוף וחיל רגלים ופרשים נתן לו:",
-          "sourcePages": [],
-          "textSHA256": "cd51fbd880085f6b7eabb6f19603266aaf7e04a04a37e34621a31e6e4c0ee6f8"
+          "text": "וּטְרִיפוֹן יָרַד בָּאֳנִיָּה וַיִּבְרַח לְאָרְתוֹסִיָּה׃ וַיַּעֲמֵד הַמֶּלֶךְ אֶת־קנְדֶּבִּיוֹס לְשַׂר־צָבָא שֵׁנִי עַל־אֶרֶץ הַחוֹף וְחֵיל רַגְלִים וּפָרָשִׁים נָתַן־לוֹ׃",
+          "sourcePages": [
+            175
+          ],
+          "textSHA256": "5732892dc1788d32de405e7c0bb8bdb56f6913fa8f7431cf9353c0c6a3c44db8",
+          "sourceNotes": [
+            {
+              "id": "1ma-15-37-qof-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "קנְדֶּבִּיוֹס",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "vowel",
+              "sourcePages": [
+                175
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf#page=175"
+            }
+          ],
+          "endVerse": 38
         },
         {
           "verse": 39,
-          "text": "ויצו עליו לחנות לפני יהודה ויצו עליו לבנות את הקדרון ולבצר את השערים ולהלחם את העם והמלך רדף אחרי טריפון:",
-          "sourcePages": [],
-          "textSHA256": "620d5bde4f1d7d600ae865d668f104bebd0798ab5a69be46874af3642e4d5c9e"
+          "text": "וַיְצַו עָלָיו לַחֲנוֹת לִפְנֵי יְהוּדָה וַיְצַו עָלָיו לִבְנוֹת אֶת־הַקֶּדְרוֹן וּלְבַצֵּר אֶת־הַשְּׁעָרִים וּלְהִלָּחֵם אֶת־הָעָם וְהַמֶּלֶךְ רָדַף אַחֲרֵי טְרִיפוֹן׃",
+          "sourcePages": [
+            175
+          ],
+          "textSHA256": "cbeac99ed5b2bbd010df16da82bfb39083f2bf4a97883140c15ec11da72f8fd3"
         },
         {
           "verse": 40,
-          "text": "ויבוא קנדביוס ליבנה ויחל להרגיז את העם ולנחול ביהודה ולקחת את העם בשבי ולהרוג:",
-          "sourcePages": [],
-          "textSHA256": "fb71e7654aab156bec6c00be2583a1fefc5bd98da84b7605b256a4b52e6d69e7"
+          "text": "וַיָּבֹא קנְדֶּבִּיוֹס לְיַבְנֶה וַיָּחֶל לְהַרְגִּיז אֶת־הָעָם וְלִנְחֹל בִּיהוּדָה וְלָקַחַת אֶת־הָעָם בַּשֶּׁבִי וְלַהֲרֹג׃",
+          "sourcePages": [
+            175
+          ],
+          "textSHA256": "847babb959dde5d3c7271ca21fbd3db2a94c126894548c55211c580556e708bb",
+          "sourceNotes": [
+            {
+              "id": "1ma-15-40-qof-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "קנְדֶּבִּיוֹס",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "vowel",
+              "sourcePages": [
+                175
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf#page=175"
+            }
+          ]
         },
         {
           "verse": 41,
-          "text": "ויִבֶן את הקדרון וינח שם סוס וחיל למען ישׁוֹדו בצאתם את דרכי יהודה כאשר ציווה לו המלך:",
-          "sourcePages": [],
-          "textSHA256": "813bb0f5f7c0e04386315ebc954be2951f1681b76b7acd1432fa24daef11a6f2"
+          "text": "וַיִּבֶן אֶת־הַקֶּדְרוֹן וַיַּנַּח שָׁם סוּס וְחַיִל לְמַעַן יָשֹׁדּוּ בְּצֵאתָם אֶת־דַּרְכֵי יְהוּדָה כַּאֲשֶׁר צִוָּה לוֹ הַמֶּלֶךְ׃",
+          "sourcePages": [
+            175
+          ],
+          "textSHA256": "135ee5d752b04ab8cf5b85843e3e9fce6431539b7084e3bc1c7d713dcf9123e8"
         }
-      ]
+      ],
+      "lastVerse": 41
     },
     {
       "number": 16,
       "verses": [
         {
           "verse": 1,
-          "text": "ויעל יוחנן מגזר ויודע לשמעון אביו את אשר פעל קנדביוס:",
-          "sourcePages": [],
-          "textSHA256": "734caab6bb03e29d51f41fd92f8bab72aea3d7f415dfc7272701f1ae190cabf0"
+          "text": "וַיַּעַל יוֹחָנָן מִגֶּזֶר וַיּוֹדַע לְשִׁמְעוֹן אָבִיו אֵת אֲשֶׁר פָּעַל קנְדֶּבִּיוֹס׃",
+          "sourcePages": [
+            175
+          ],
+          "textSHA256": "a770e1a960d644a481e75aeaf8a53215ebbc1317f432e8c7bc06a41164d99b13",
+          "sourceNotes": [
+            {
+              "id": "1ma-16-1-qof-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "קנְדֶּבִּיוֹס",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "vowel",
+              "sourcePages": [
+                175
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf#page=175"
+            }
+          ]
         },
         {
           "verse": 2,
-          "text": "ויקרא שמעון את שני בניו הגדולים את יהודה ואת יוחנן ויאמר להם אני ואחיי ובית אבי נלחמנו מלחמות ישראל למן ימי הנעורים ועד היום הזה ויצלח בידינו להושיע את ישראל פעמים רבות:",
-          "sourcePages": [],
-          "textSHA256": "db7480ea5613a21bc3084c16063f87fb09c9ba27bd16d1f4206103c8d3c84a0e"
+          "text": "וַיִּקְרָא שִׁמְעוֹן אֶת־שְׁנֵי בָנָיו הַגְּדוֹלִים אֶת־יְהוּדָה וְאֶת־יוֹחָנָן וַיֹּאמֶר לָהֶם אֲנִי וְאַחַי וּבֵית־אָבִי נִלְחַמְנוּ מִלְחֲמוֹת יִשְׂרָאֵל לְמִן־יְמֵי־הַנְּעוּרִים וְעַד הַיּוֹם הַזֶּה וַיִּצְלַח בְּיָדֵינוּ לְהוֹשִׁיעַ אֶת־יִשְׂרָאֵל פְּעָמִים רַבּוֹת׃",
+          "sourcePages": [
+            175,
+            176
+          ],
+          "textSHA256": "fde84d9ff15421dddcb699251e5784e2a877a0bd1d600f23b6bdfc86d7bc474f"
         },
         {
           "verse": 3,
-          "text": "ועתה זקנתי ואתם בחסד שמים רבים אתם בשנים היו תחתי ותחת אחיי ויצאתם ונלחמתם בעד עמינו ומן השמים יהי עזר לכם:",
-          "sourcePages": [],
-          "textSHA256": "2b774652adb022c3c7bf4399f25f90f63dadc5a94d7211e3f7795b797b9b6845"
+          "text": "וְעַתָּה זָקַנְתִּי וְאַתֶּם בְּחֶסֶר [שָׁמִים] רַבִּים אַתֶּם בַּשָּׁנִים הֱיוּ תַחְתַּי וְתַחַת אָחִי וִיצָאתֶם וְנִלְחַמְתֶּם בְּעַד עַמֵּנוּ וּמִן־הַשָּׁמַיִם יְהִי עֵזֶר לָכֶם׃",
+          "sourcePages": [
+            176
+          ],
+          "textSHA256": "48be6e9da18414286c62506f482bea27ff42ee9d1876211e97c52da25c2b7288"
         },
         {
           "verse": 4,
-          "text": "ויאסוף מן הארץ עשרים אלף איש מלחמה ופרשים וילכו נגד קנדביוס וילינו במודיעים:",
-          "sourcePages": [],
-          "textSHA256": "1160c47a4b93e63cbda9108402f60093d895e47f1ff8da18f92d79840e08fa7e"
+          "text": "וַיֶּאֱסֹף מִן־הָאָרֶץ עֶשְׂרִים אֶלֶף אִישׁ מִלְחָמָה וּפָרָשִׁים וַיֵּלְכוּ נֶגֶד קנְדֶּבִּיוֹס וַיָּלִינוּ בַּמוֹדִיעִים׃",
+          "sourcePages": [
+            176
+          ],
+          "textSHA256": "4b0fd62731a8a30201a8808e65695ceec4af32c6e565b1e3bcffec2d3723e990",
+          "sourceNotes": [
+            {
+              "id": "1ma-16-4-qof-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "קנְדֶּבִּיוֹס",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "vowel",
+              "sourcePages": [
+                176
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf#page=176"
+            }
+          ]
         },
         {
           "verse": 5,
-          "text": "ויקומו בבוקר ויצאו לעמק והנה חיל רב לקראתם רגלים ופרשים ונחל היה ביניהם:",
-          "sourcePages": [],
-          "textSHA256": "cc189f8a0cb21addd287e6bb921dd5201a4c71b641e3fca8b891f8bf6420e6e9"
+          "text": "וַיָּקוּמוּ בַּבֹּקֶר וַיֵּצְאוּ לָעֵמֶק וְהִנֵּה חַיִל רַב לִקְרָאתָם רַגְלִים וּפָרָשִׁים וְנַחַל הָיָה בֵּינֵיהֶם׃",
+          "sourcePages": [
+            176
+          ],
+          "textSHA256": "5f42859a11d3fca2083c3056f13a85032360a25844308f0bb5aa77876a7e4f9e"
         },
         {
           "verse": 6,
-          "text": "ויחן על פניהם הוא ועמו וירא את העם ירא לעבור את הנחל, ויעבור ראשון ויראו אותו האנשים ויעברו אחריו:",
-          "sourcePages": [],
-          "textSHA256": "3f41e699b1f49a2a3b4cf78a5d2a20151b1c91120e7a3d0f428e67d3c05a0ced"
+          "text": "וַיִּחַן עַל־פְּנֵיהֶם הוּא וְעַמּוֹ וַיַּרְא אֶת־הָעָם יָרֵא לַעֲבֹר אֶת־הַנַּחַל וַיַּעֲבֹר רִאשׁוֹן וַיִּרְאוּ אֹתוֹ הָאֲנָשִׁים וַיַּעַבְרוּ אַחֲרָיו׃",
+          "sourcePages": [
+            176
+          ],
+          "textSHA256": "50104f8193317e13e8f85bcd6de547c0e48efc58124d7efe3eea7452375e8e43"
         },
         {
           "verse": 7,
-          "text": "ויחץ את העם והפרשים בתוך הרגלים, ופרשי האויבים רבים מאוד:",
-          "sourcePages": [],
-          "textSHA256": "c565964ebc43b4ebc197537ab1214b51bb29832fbcba462d222501f891b3fa15"
+          "text": "וַיַּחַץ אֶת־הָעָם וְהַפָּרָשִׁים בְּתוֹךְ הָרַגְלִים וּפָרָשֵׁי הָאוֹיְבִים רַבִּים מְאֹד׃",
+          "sourcePages": [
+            176
+          ],
+          "textSHA256": "1e891a875ff8d45cfc34740b70423a2968014fdaee82f7d501d15402c0d030ce"
         },
         {
           "verse": 8,
-          "text": "ויתקעו בחצוצרות וינגף קנדביוס ומחנהו ויפלו מהם חללים רבים והנשארים ברחו למבצר:",
-          "sourcePages": [],
-          "textSHA256": "473cc43384f711aee4c8062b14a814adb6dad52090431678807a865990742a5c"
+          "text": "וַיִּתְקְעוּ בַּחֲצֹצְרוֹת וַיִּנָּגֶף קנְדֶּבִּיוֹס וּמַחֲנֵהוּ וַיִּפְּלוּ מֵהֶם חֲלָלִים רַבִּים וְהַנִּשְׁאָרִים בָּרְחוּ לַמִּבְצָר׃",
+          "sourcePages": [
+            176
+          ],
+          "textSHA256": "b39b8c125ecb21d664a80cc7945061f15ad42c8b6ad3a51fd5576827ac7e358d",
+          "sourceNotes": [
+            {
+              "id": "1ma-16-8-qof-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "קנְדֶּבִּיוֹס",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "vowel",
+              "sourcePages": [
+                176
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf#page=176"
+            }
+          ]
         },
         {
           "verse": 9,
-          "text": "אז נפצע יהודה אחי יוחנן, ויוחנן רדף אותם עד בואו אל קדרון אשר בנה:",
-          "sourcePages": [],
-          "textSHA256": "b8499ab618a2f9b74445067ae733cae3406d6aebbc495d4132634a724654d92f"
+          "text": "אָז נִפְצַע יְהוּדָה אֲחִי יוֹחָנָן וְיוֹחָנָן רָדַף אוֹתָם עַד בֹּאוֹ אֶל־קֶדְרוֹן אֲשֶׁר־בָּנָה׃",
+          "sourcePages": [
+            176
+          ],
+          "textSHA256": "be697be190341641fe9f5a005f03a36aed658380f9ca3a0b6b86ef44ded402e5"
         },
         {
           "verse": 10,
-          "text": "וינוסו עד למגדלים אשר בשדות אשדוד וישרפה באש ויפלו מהם כאלפיים איש וישב ליהודה בשלום:",
-          "sourcePages": [],
-          "textSHA256": "be9b7f463e74b78baf424d85f069180c6653ce2feac88941d142bedef46ecedf"
+          "text": "וַיָּנוּסוּ עַד לַמִּגְדָּלִים אֲשֶׁר בִּשְׂדוֹת אַשְׁדּוֹד וַיִּשְׂרְפֶהָ בָּאֵשׁ וַיִּפְּלוּ מֵהֶם כְּאַלְפַּיִם אִישׁ וַיָּשָׁב לִיהוּדָה בְשָׁלוֹם׃",
+          "sourcePages": [
+            176
+          ],
+          "textSHA256": "92cb68cf5527098c0d8236b1d29406666829fac2f3c58d83cb7c6838be3f5aec"
         },
         {
           "verse": 11,
-          "text": "ותלמי בן חבובו הופקד שר צבא בערבות יריחו ויהי לו כסף וזהב הרבה:",
-          "sourcePages": [],
-          "textSHA256": "f14cba4955b817297ecaf62885636305717f11c4ec50315437b1a42a84ed72e6"
+          "text": "וְתַלְמַי בֶּן חֲבוּבוֹ הֻפְקַד שַׂר־צָבָא בְּעַרְבוֹת יְרִיחוֹ וַיְהִי לוֹ כֶּסֶף וְזָהָב הַרְבֵּה׃",
+          "sourcePages": [
+            176
+          ],
+          "textSHA256": "18c526d55804923be968908b84e4d3339822eeec53ccb79ce0f7cb3acdf9cdaf"
         },
         {
           "verse": 12,
-          "text": "כי היה חתן הכהן הגדול:",
-          "sourcePages": [],
-          "textSHA256": "2252e0ccdd1805d246a924b92353fd0d391426e26f58719e3eabd08c94f24e39"
-        },
-        {
-          "verse": 13,
-          "text": "ויגבה ליבו ויחפוץ לכבוש את הארץ וייוועץ במרמה על שמעון ועל בניו לאבדם:",
-          "sourcePages": [],
-          "textSHA256": "5a0e72759f3669fed84a0a6fb233d6f159f28a4828ac989066492f6f9d8e658d"
+          "text": "כִּי הָיָה חָתָן הַכֹּהֵן הַגָּדוֹל׃ וַיִּגְבַּהּ לְבָבוֹ וַיַּחְפֹּץ לִכְבֹּשׁ אֶת־הָאָרֶץ וַיִּוָּעַץ בְּמִרְמָה עַל־שִׁמְעוֹן וְעַל־בָּנָיו לְאַבְּדָם׃",
+          "sourcePages": [
+            176
+          ],
+          "textSHA256": "4d82edc62a3ca246c5ed9044a065f4ee34a2e8e07fb0a659835f7ab36c4077d5",
+          "endVerse": 13
         },
         {
           "verse": 14,
-          "text": "ושמעון היה עובר את הערים אשר בארץ וידאג לצורכיהם וירד ליריחו הוא ומתתיהו ויהודה בניו, בשנת שבע ושבעים ומאה בחודש אחד עשר הוא חודש שבט:",
-          "sourcePages": [],
-          "textSHA256": "1779bb122b0211fb0a32fd1d886098bfd1a5ebda184ae6b09cca9bb1679ef824"
+          "text": "וְשִׁמְעוֹן הָיָה עוֹבֵר אֶת־הֶעָרִים אֲשֶׁר בָּאָרֶץ וַיִּדְאַג לְאָרְכֵיהֶן וַיֵּרֶד לִירִיחוֹ הוּא וּמַתִּתְיָהוּ וִיהוּדָה בָנָיו בִּשְׁנַת שֶׁבַע וְשִׁבְעִים וּמֵאָה בַּחֹדֶשׁ אַחַד עָשָׂר הוּא חֹדֶשׁ שְׁבָט׃",
+          "sourcePages": [
+            176
+          ],
+          "textSHA256": "ef34e1e5c4f5d8db0ddb752bb892c3220ac6888ebcbc2689b47d1a5edb05008b"
         },
         {
           "verse": 15,
-          "text": "ויקבל אותם בן חבובו במרמה אל המבצר הנקרא דוק [דָיֵק] אשר בנה, ויעש להם משתה גדול ויחבא שם אנשים:",
-          "sourcePages": [],
-          "textSHA256": "5acc75e24a4836ec910b8eda26acdb520008eb1183f1442bd1a68316194cd7b6"
+          "text": "וַיְקַבֵּל אוֹתָם בֶּן־חֲבוּבוֹ בְּמִרְמָה אֶל־הַמִּבְצָר הַנִּקְרָא דוֹק אֲשֶׁר־בָּנָה וַיַּעַשׂ לָהֶם מִשְׁתֶּה גָדוֹל וַיַּחְבֵּא שָׁם אֲנָשִׁים׃",
+          "sourcePages": [
+            176,
+            177
+          ],
+          "textSHA256": "474d25d2edd50ca36984d6aacf80f67aa3c248aa7bd44bd65d7e17131067aebf"
         },
         {
           "verse": 16,
-          "text": "וכאשר השתכר שמעון ובניו, קם תלמי ואשר אתו וייקחו את נשקם ויבואו אל שמעון אל המשתה וימיתו אותו את שני בניו ואחדים מנעריו:",
-          "sourcePages": [],
-          "textSHA256": "7812fe018ec5e1a3aea57cd2c9be3ca3ac5e6f108eedb25b4114fe8fa6df3243"
+          "text": "וְכַאֲשֶׁר הִשְׁתַּכֵּר שִׁמְעוֹן וּבָנָיו קָם תַּלְמַי וַאֲשֶׁר אִתּוֹ וַיִּקְחוּ אֶת־נִשְׁקָם וַיָּבֹאוּ אֶל־שִׁמְעוֹן אֶל־הַמִּשְׁתֶּה וַיְמִיתוּ אוֹתוֹ וְאֶת־שְׁנֵי בָנָיו וַאֲחָדִים מִנְּעָרָיו׃",
+          "sourcePages": [
+            177
+          ],
+          "textSHA256": "07f04c0c2e6b199eace2b78294b6d764a3b08a2d5b60ce3c050b4abd5785bb6d"
         },
         {
           "verse": 17,
-          "text": "ויעש חמס גדול ויגמול רעה תחת טובה:",
-          "sourcePages": [],
-          "textSHA256": "a13e3207bf9b7e64ed2702ab56dd145808973082e70b84c1fd3cf5425dcfda5b"
+          "text": "וַיַּעַשׂ חָמָס גָּדוֹל וַיִּגְמֹל רָעָה תַּחַת טוֹבָה׃",
+          "sourcePages": [
+            177
+          ],
+          "textSHA256": "613d683b3dc01cefbc7f2e9f1f65d462e41fc2375b5b65767b5bda6cb3723967"
         },
         {
           "verse": 18,
-          "text": "ויכתוב תלמי את הדבר הזה וישלח אל המלך, כי ישלח לו חיל לעזר ומסר את הארץ לו ואת הערים:",
-          "sourcePages": [],
-          "textSHA256": "45651d7289be5dba427f45e624c0e2340fa0712f7e683410758faac8033409ac"
+          "text": "וַיִּכְתֹּב תַּלְמַי אֶת־הַדָּבָר הַזֶּה וַיִּשְׁלַח אֶל־הַמֶּלֶךְ כִּי יִשְׁלַח־לוֹ חַיִל לַעֲזֹר וְיִמְסֹר אֶת־הָאָרֶץ לוֹ וְאֶת־הֶעָרִים׃",
+          "sourcePages": [
+            177
+          ],
+          "textSHA256": "8909bc6a20558523aeae3bf7f941219ccc643982e379ed28080601c54f14d990"
         },
         {
           "verse": 19,
-          "text": "וישלח אחרים לגזר לאבד את יוחנן, ולשרי האלף שלח איגרות לבוא אליו למען ייתן להם כסף וזהב ומתנות:",
-          "sourcePages": [],
-          "textSHA256": "f58fc97a7b782489be809789e8b8d76c8dca2d40cd1c0a4370afbcc790c0768c"
+          "text": "וַיִּשְׁלַח אֲחֵרִים לְגֶזֶר לְאַבֵּד אֶת־יוֹחָנָן וּלְשָׂרֵי הָאֶלֶף שָׁלַח אִגְרוֹת לָבוֹא אֵלָיו לְמַעַן יִתֵּן לָהֶם כֶּסֶף וְזָהָב וּמַתָּנוֹת׃",
+          "sourcePages": [
+            177
+          ],
+          "textSHA256": "1a20f4ad26cc9944b33e5734fa5e2041f4fce239284a0fb1f9d586ab0bf25fb5"
         },
         {
           "verse": 20,
-          "text": "ואחרים שלח לכבוש את ירושלים ואת הר המקדש:",
-          "sourcePages": [],
-          "textSHA256": "fdda80a41480225424f3fbb4552218ac01ab3c71b4f7c4bab1d8d6eff56826c9"
+          "text": "וַאֲחֵרִים שָׁלַח לִכְבֹּשׁ אֶת־יְרוּשָׁלִַם וְאֵת הַר־הַמִּקְדָּשׁ׃",
+          "sourcePages": [
+            177
+          ],
+          "textSHA256": "fefaba54118173a884072014894563e4a294765b601015faa579f7e0f15c1bd3"
         },
         {
           "verse": 21,
-          "text": "ויבוא פליט להודיע ליוחנן לגזר, כי הומתו אביו ואחיו וכי שלח להמית גם אותך:",
-          "sourcePages": [],
-          "textSHA256": "69cb806a5981c3de6f7f28193166403c20695ee7cfeae4b1aec1de358182a4a1"
+          "text": "וַיָּבֹא פָּלִיט לְהוֹדִיעַ לְיוֹחָנָן לְגֶזֶר כִּי־הוּמְתוּ אָבִיו וְאֶחָיו וְכִי שָׁלַח לְהָמִית גַּם אוֹתָךְ׃",
+          "sourcePages": [
+            177
+          ],
+          "textSHA256": "dec435d9b93039aa815401929a5e122f060d64a89c77ac26483f000fe3d64572"
         },
         {
           "verse": 22,
-          "text": "ובשומעו ויתחלחל מאוד, ויתפוס את האנשים הבאים לאבדו וימיתם, כי ידע אשר ביקשו לאבדו:",
-          "sourcePages": [],
-          "textSHA256": "307d38876450f3d739c780f5e9657030339be4a052b691f20bc4096cef85b1d5"
+          "text": "וּבְשָׁמְעוֹ וַיִּתְחַלְחַל מְאֹד וַיִּתְפֹּשׂ אֶת־הָאֲנָשִׁים הַבָּאִים לְאַבְּדוֹ וַיְמִיתֵם כִּי־יָדַע אֲשֶׁר בִּקְשׁוּ לְאַבְּדוֹ׃",
+          "sourcePages": [
+            177
+          ],
+          "textSHA256": "6c4fe6ce9eefc866894873b1cc60fb32a57e94fe3de913d33638eada94dca5da"
         },
         {
           "verse": 23,
-          "text": "ויתר דברי יוחנן ומלחמותיו וגבורותיו אשר עשה ובניין החומות אשר בנה ומעשיו:",
-          "sourcePages": [],
-          "textSHA256": "586ed3ebc1b9f3c4402f2bf5a458cd9c2b91c0e0f959c60c2cace8fda3fbb959"
+          "text": "וְיֶתֶר דִּבְרֵי יוֹחָנָן וּמִלְחֲמוֹתָיו וּגְבוּרוֹתָיו אֲשֶׁר עָשָׂה וּבִנְיַן הַחֹמוֹת אֲשֶׁר בָּנָה וּמַעֲשָׂיו׃",
+          "sourcePages": [
+            177
+          ],
+          "textSHA256": "a351d9dde659ba5c5f133a459ce47d7817201c7d5ef853d7c3465039c326ac56"
         },
         {
           "verse": 24,
-          "text": "הנה הם כתובים על ספר דברי ימי כהונתו הגדולה, למן אשר היה כהן גדול אחרי אביו:",
-          "sourcePages": [],
-          "textSHA256": "89c8aa98237c8260484107f87a55dbde35451619e4d5772804984ef7b875409a"
+          "text": "הִנֵּה הֵם כְּתוּבִים עַל־סֵפֶר יְמֵי־כְהֻנָּתוֹ הַגְּדוֹלָה לְמִן־אֲשֶׁר־הָיָה כֹהֵן גָּדוֹל אַחֲרֵי אָבִיו׃",
+          "sourcePages": [
+            177
+          ],
+          "textSHA256": "26e9e0ba655ba595679ff7fe106f391867baeed2ff4ac68995bdcc47bb89f4ed"
         }
-      ]
+      ],
+      "lastVerse": 24
     }
   ]
 }

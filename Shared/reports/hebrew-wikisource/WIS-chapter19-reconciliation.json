@@ -1,0 +1,700 @@
+{
+  "schemaVersion": 1,
+  "book": "WIS",
+  "chapter": 19,
+  "status": "Full author and independent comparisons reconciled with exact point notes",
+  "independentReport": "Shared/reports/hebrew-wikisource/WIS-chapter19-independent-review.json",
+  "independentReportSHA256": "bea63b4add038d7f56d6be1a341ef31a7a84663465a9d1e0317311b57a3282c6",
+  "method": "Root compared the full independent report against its separate full35-row author pass and reviewed16 targeted original-pixel focal images covering both token corrections and all22 exact note anchors. The independent seven-letter19:9 finding supersedes the earlier author six-letter claim; the correction is source-backed, not an editorial reconstruction. Only unreadable marks are omitted with explicit notes.",
+  "physicalRows": 35,
+  "units": 22,
+  "printedLabels": 22,
+  "acceptedSourceNoteIds": [
+    "wis-19-1-word1-vav-1-vowel",
+    "wis-19-1-word1-alef-2-vowel",
+    "wis-19-3-word2-gimel-1-vowel",
+    "wis-19-4-word3-samekh-1-vowel",
+    "wis-19-4-word3-alef-2-vowel",
+    "wis-19-5-word4-shin-2-vowel",
+    "wis-19-5-word4-nun-3-vowel",
+    "wis-19-6-word5-qof-3-vowel",
+    "wis-19-6-word6-shin-2-vowel",
+    "wis-19-6-word6-shin-2-dagesh",
+    "wis-19-7-word7-kaf-2-vowel",
+    "wis-19-9-word8-vav-1-vowel",
+    "wis-19-9-word9-vav-1-vowel",
+    "wis-19-10-word10-mem-2-vowel",
+    "wis-19-13-word11-ayin-1-vowel",
+    "wis-19-17-word12-he-1-vowel",
+    "wis-19-18-word13-tsadi-1-vowel",
+    "wis-19-18-word13-lamed-2-vowel",
+    "wis-19-18-word13-lamed-4-vowel",
+    "wis-19-18-word14-kaf-1-vowel",
+    "wis-19-22-word15-mem-1-vowel",
+    "wis-19-22-word15-ayin-6-vowel"
+  ],
+  "newReviewedPages": [
+    183,
+    184,
+    185,
+    186
+  ],
+  "releaseApproved": false,
+  "before": {
+    "number": 19,
+    "verses": [
+      {
+        "verse": 1,
+        "text": "וְאֶת הָרְשָׁעִים רָדַף בְּאַפּוֹ בְּלִי חֶמְלָה עַד־כָּלָה בְּדַעְתּוֹ מֵרֹאשׁ אֶת־אֲשֶׁר עֲתִידִים הֵם לַעֲשׂוֹת׃",
+        "sourcePages": [
+          183,
+          184
+        ],
+        "textSHA256": "ba777288ffbb80ac01e4d658cd53f2180538a2bf0a3e202cddf46661d3b58a04"
+      },
+      {
+        "verse": 2,
+        "text": "כִּי הֵם צִוּוּם לָלֶכֶת וַיִּשְׁקְדוּ לְשַׁלְּחָם בְּחִפָּזוֹן וַיֵּהָפֵךְ לְבָבָם לִרְדֹּף אַחֲרֵיהֶם׃",
+        "sourcePages": [
+          184
+        ],
+        "textSHA256": "1bc9a6db614700a40b300918d6462f1309cc99da37596573eb4493140a9a1d72"
+      },
+      {
+        "verse": 3,
+        "text": "הֵם הָיוּ בְּעֶצֶם מַכְאוֹבֵיהֶם וְעַל־קִבְרוֹת מֵתִים יְיֵלִילוּ וַתִּישַׁר בְּעֵינֵיהֶם עֲצַת אִוֶּלֶת אַחֶרֶת וְאַחֲרֵי הָאֲנָשִׁים אֲשֶׁר גֵּרְשׁוּם בְּתַחֲנוּנִים כְּאַחֲרֵי בוֹרְחִים רָדָפוּ׃",
+        "sourcePages": [
+          184
+        ],
+        "textSHA256": "62a62a2b3a30f7ea839b32791d0bbe51cb81abbbec785dba27f5b9a485f72b26"
+      },
+      {
+        "verse": 4,
+        "text": "כִּי הַמִּשְׁפָּט אֲשֶׁר נִגְזַר בְּצֶדֶק הִסָּה אוֹתָם לִנְתִיב זֶה הוּא הִשְׁכִּיחֵם אֶת־אֲשֶׁר מָצָא אוֹתָם לְמַעַן יְמַלְּאוּ סְאַת עָנְשָׁם בְּצָרוֹתֵיהֶם׃",
+        "sourcePages": [
+          184
+        ],
+        "textSHA256": "5435c813ceca0ea28bedd206ae8575ea7fb9c456f4d4d156b3f6b8759b5d0983"
+      },
+      {
+        "verse": 5,
+        "text": "וּלְמַעַן יַעֲבֹר עַמְּךָ דֶּרֶךְ פְּלָאִים וְהֵם יִמְצְאוּ מִיתָה מְשֻׁנָּה׃",
+        "sourcePages": [
+          184
+        ],
+        "textSHA256": "4c6d65512ccb36ab8140a73e6154ebcc2b5933937bfa6487b4495d73a10b41cf"
+      },
+      {
+        "verse": 6,
+        "text": "כִּי כָּל־הַיְצוּרִים לְמִינֵיהֶם נֶהֶפְכוּ מֵחָדָשׁ לְשָׁרֵת לִפְקֻדּוֹתֶיךָ בַּעֲבוּר יִשָּׁמְרוּ בָנֶיךָ מִכָּל פֶּגַע׃",
+        "sourcePages": [
+          184
+        ],
+        "textSHA256": "4f6798fa72b0d31701f5e96b4768ee12310e5187ab05376b29451997087b3622"
+      },
+      {
+        "verse": 7,
+        "text": "הֵן נִרְאָה עָנָן סוֹכֵךְ עַל־הַמַּחֲנֶה וּמְקוֹם שָׁם מַיִם לְפָנִים יַבֶּשֶׁת הוֹפִיעָה מִיַּם־סוּף דֶּרֶךְ סְלוּלָה וּמִמִּשְׁבָּרִים אַדִּירִים מִישׁוֹר מְכֻסֶּה דֶּשֶׁא׃",
+        "sourcePages": [
+          184
+        ],
+        "textSHA256": "b8b45a89bc212f14e88ec64ece71d24b3faaed3f0dfae30586d046ce662bc4fc"
+      },
+      {
+        "verse": 8,
+        "text": "בּוֹ עָבְרוּ כָּל־הָעָם בְּפָרְשְׂךָ עֲלֵיהֶם יָדְךָ וַיִּרְאוּ נִסִּים וְנִפְלָאוֹת׃",
+        "sourcePages": [
+          184
+        ],
+        "textSHA256": "b530c9bae0c253ca8d23376df40f808b86c2b3b36ad9c48ad2f1489f5041f8bf"
+      },
+      {
+        "verse": 9,
+        "text": "וַיִּשְׁמְמוּ כְּסוּסִים בַּמִּרְעֶה וְכִכְבָשִׂים יִרְקְדוּ וַיְהַלְלוּ לְךָ יְיָ גּוֹאֲלָם׃",
+        "sourcePages": [
+          184
+        ],
+        "textSHA256": "a6afcb54823c1939def8a25b17214c463014ea3df1927d68c4826282d8228977"
+      },
+      {
+        "verse": 10,
+        "text": "כִּי זָכְרוּ עוֹד אֶת־הַמְּצָאוֹת אוֹתָם בְּאֶרֶץ מְגוּרֵיהֶם אֵיךְ הָאָרֶץ הוֹצִיאָה כִּנִּים תַּחַת חַיּוֹת [הַיַּבָּשָׁה] לְמִינֵיהֶן וְתַחַת חַיּוֹת הַמַּיִם שָׁרַץ הַיְאוֹר צְפַרְדְּעִים לָרֹב׃",
+        "sourcePages": [
+          184
+        ],
+        "textSHA256": "ddc9850bd5aadc2401aea75efd7bd68669a5f385975525a3bdc5c7a5b0c6566d"
+      },
+      {
+        "verse": 11,
+        "text": "אַחֲרֵי־כֵן רָאוּ גַּם מִין צִפֳּרִים חֲדָשׁוֹת כְּעוֹרֵר אוֹתָם תַּאֲוָתָם לִדְרשׁ מַאֲכָלֵי מַעֲדַנִּים׃",
+        "sourcePages": [
+          184,
+          185
+        ],
+        "textSHA256": "6ca0c919fa52724672e2a13bd1b45e8f07ea487b2952e73f78cb29fb06853f70"
+      },
+      {
+        "verse": 12,
+        "text": "כִּי שְׂלָו עָלָה לָהֶם מִן־הַיָּם לְמַלֵּא שְׁאֵלָתָם׃",
+        "sourcePages": [
+          185
+        ],
+        "textSHA256": "0c7afaaac75bee98956232fa1eee7e66360d2fd3e2fb490e9d9655c336d60201"
+      },
+      {
+        "verse": 13,
+        "text": "וְעַל הַחַטָּאִים לֹא בָאוּ הַפְּגָעִים עַד־אֲשֶׁר הָרְעָמִים נָתְנוּ עֵדוּתָם בְּעֹז הֵמָּה סָבְלוּ בְּצֶדֶק בִּגְלַל עֲוֹנוֹתֵיהֶם׃",
+        "sourcePages": [
+          185
+        ],
+        "textSHA256": "cf95bfb75a5f06c6af2e28cde9041feaaf0b96f18b5ef75ce96f7bf506d71442"
+      },
+      {
+        "verse": 14,
+        "text": "יַעַן כִּי הִרְבּוּ לְהַרְאוֹת מַשְׂטֵמָה עַזָּה לַגֵּרִים [מִן־הָאֲחֵרִים] כִּי אֵלֶּה לֹא אָסְפוּ זָרִים אֲשֶׁר בָּאוּ אֲלֵיהֶם וְהֵמָּה עָשׂוּ לַעֲבָדִים אֲנָשִׁים גֵּרִים אֲשֶׁר עָשׂוּ עִמָּם חָסֶד׃",
+        "sourcePages": [
+          185
+        ],
+        "textSHA256": "5d9d55cbe594bc02321f569d30e3566eec2dd7776ad46719c89f067d312d168f"
+      },
+      {
+        "verse": 15,
+        "text": "מִבַּלְעֲדֵי זֶה שׁוֹנֶה יִהְיֶה עָנְשָׁם אֲשֶׁר אֵלֶּה יָצְאוּ בְּשִׂנְאָה נֶגֶד הַגֵּרִים׃",
+        "sourcePages": [
+          185
+        ],
+        "textSHA256": "3da87ef98559cbc5b9f358656b561494deba659c7b597b73f46fc2b38f528b6c"
+      },
+      {
+        "verse": 16,
+        "text": "וְהֵמָּה קִבְּלוּ אוֹתָם בְּהִלּוּלִים וְאַחֲרֵי־כֵן עִנּוּ אוֹתָם בַּעֲבוֹדָה קָשָׁה אַף־כִּי בְּחֻקֵּי הָאָרֶץ כְּבָר לָהֶם נִשְׁתַּוּוּ׃",
+        "sourcePages": [
+          185
+        ],
+        "textSHA256": "14cf0c1ed49239380647b281d9baffba44868418f90351ba4216aa439bce3252"
+      },
+      {
+        "verse": 17,
+        "text": "וְגַם הֵם הֻכּוּ בַּסַּנְוֵרִים כְּמוֹ אֵלֶּה לִפְנֵי פֶּתַח הַצַּדִּיק כַּאֲשֶׁר כִּסָּה אוֹתָם חשֶׁךְ וְצַלְמָוֶת וַיְבַקֵּשׁ כָּל־אִישׁ מֵהֶם אֶת־הַדֶּרֶךְ אֶל־שַׁעַר בֵּיתוֹ׃",
+        "sourcePages": [
+          185
+        ],
+        "textSHA256": "eeef583810c3cbef536bfc94682af53b27fabe733d792b170f6bcfe8a24e3685"
+      },
+      {
+        "verse": 18,
+        "text": "כִּי הַיְסוֹדוֹת אֶת־סִדְרָם הֶחֱלִיפוּ כַּאֲשֶׁר יִשְׁתַּנֶּה קֶצֶב צִלִילֵי הַנֵּבֶל בְּהִשְׁתַּנּוֹת מֵיתָרָיו אַף כִּי־קוֹלָם יִשָּׁאֵר תָּמִיד כָּל־עֻמַּת שֶׁהָיָה וְזֹאת יוּכַל הָאִישׁ לִשְׁפֹּט לְנָכוֹן בִּרְאוֹתוֹ אֶת־הַמַּעֲשִׂים׃",
+        "sourcePages": [
+          185
+        ],
+        "textSHA256": "1cea8662aee988101d7f00a23716d53f93ca94aa78bed1cf994316ceeff2141a"
+      },
+      {
+        "verse": 19,
+        "text": "הֵן חַיּוֹת הַיַּבָּשָׁה נֶהֶפְכוּ לְחַיּוֹת הַמַּיִם וְהַחַיּוֹת הַשָּׁטוֹת [בַּמַּיִם] עַל־הָאָרֶץ דָּרָכוּ׃",
+        "sourcePages": [
+          185,
+          186
+        ],
+        "textSHA256": "c6e0d74c7cd8b14af1a7d622e5c1e4b2b52e3e6d0ae7903d0a4e415cfcd18b55"
+      },
+      {
+        "verse": 20,
+        "text": "הָאֵשׁ שָׁמְרָה בַּמַּיִם עַל־תְּכוּנָתָהּ וְהַמַּיִם רָפָה כֹחָם לְכַבּוֹת׃",
+        "sourcePages": [
+          186
+        ],
+        "textSHA256": "87894acefd8ae593fbe352847557386da5f556eb8ae84eeec63d9efd77240e9a"
+      },
+      {
+        "verse": 21,
+        "text": "וּלְהֵפֶךְ הָאֵשׁ לֹא אָכְלָה בְּשַׂר חַיּוֹת בְּנוֹת חֲלוֹף אֲשֶׁר בָּהּ הִתְהַלָּכוּ וּמֶגֶד הַשָּׁמַיִם אֲשֶׁר עֵינוֹ כְּעֵין הַקֶּרַח קַל לְהִמֵּס לֹא נָמָס׃",
+        "sourcePages": [
+          186
+        ],
+        "textSHA256": "a8542f17cdb940efe9956306d3e2be9a1321b9a5e26eb3f088fe28913fc579ea"
+      },
+      {
+        "verse": 22,
+        "text": "כִּי בְּכָל אֵלֶּה יְיָ הִגְדַּלְתָּ וְרוֹמַמְתָּ אֶת עַמְּךָ וְלֹא הֶעְלַמְתָּ מֵהֶם עַיִן מֵהוֹשִׁיעָם בְּכָל־עֵת וּבְכָל־מָקוֹם׃",
+        "sourcePages": [
+          186
+        ],
+        "textSHA256": "923c6dac349696567905e5f36c818392ef9171f45f8056f20aa68ffc75279783"
+      }
+    ]
+  },
+  "after": {
+    "number": 19,
+    "verses": [
+      {
+        "verse": 1,
+        "text": "ואת הָרְשָׁעִים רָדַף בְּאַפּוֹ בְּלִי חֶמְלָה עַד־כָּלָה בְּדַעְתּוֹ מֵרֹאשׁ אֶת־אֲשֶׁר עֲתִידִים הֵם לַעֲשׂוֹת׃",
+        "sourcePages": [
+          183,
+          184
+        ],
+        "textSHA256": "dae520109c2cb4af18eac6360aab3f80fadf01366596b3a8233be48745200428",
+        "sourceNotes": [
+          {
+            "id": "wis-19-1-word1-vav-1-vowel",
+            "kind": "unreadablePoint",
+            "anchor": "ואת",
+            "occurrence": 1,
+            "letterIndex": 1,
+            "mark": "vowel",
+            "sourcePages": [
+              183
+            ],
+            "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=183"
+          },
+          {
+            "id": "wis-19-1-word1-alef-2-vowel",
+            "kind": "unreadablePoint",
+            "anchor": "ואת",
+            "occurrence": 1,
+            "letterIndex": 2,
+            "mark": "vowel",
+            "sourcePages": [
+              183
+            ],
+            "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=183"
+          }
+        ]
+      },
+      {
+        "verse": 2,
+        "text": "כִּי הֵם צִוּוּם לָלֶכֶת וַיִּשְׁקְדוּ לְשַׁלְּחָם בְּחִפָּזוֹן וַיֵּהָפֵךְ לְבָבָם לִרְדֹּף אַחֲרֵיהֶם׃",
+        "sourcePages": [
+          184
+        ],
+        "textSHA256": "1bc9a6db614700a40b300918d6462f1309cc99da37596573eb4493140a9a1d72"
+      },
+      {
+        "verse": 3,
+        "text": "הֵם הָיוּ בְּעֶצֶם מַכְאוֹבֵיהֶם וְעַל־קִבְרוֹת מֵתִים יְיֵלִילוּ וַתִּישַׁר בְּעֵינֵיהֶם עֲצַת אִוֶּלֶת אַחֶרֶת וְאַחֲרֵי הָאֲנָשִׁים אֲשֶׁר גּרְשׁוּם בְּתַחֲנוּנִים כְּאַחֲרֵי בוֹרְחִים רָדָפוּ׃",
+        "sourcePages": [
+          184
+        ],
+        "textSHA256": "afd2e28291ce042bbc530883e4fa06e16c6bd70df57c8d0ca965bdccba804afa",
+        "sourceNotes": [
+          {
+            "id": "wis-19-3-word2-gimel-1-vowel",
+            "kind": "unreadablePoint",
+            "anchor": "גּרְשׁוּם",
+            "occurrence": 1,
+            "letterIndex": 1,
+            "mark": "vowel",
+            "sourcePages": [
+              184
+            ],
+            "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=184"
+          }
+        ]
+      },
+      {
+        "verse": 4,
+        "text": "כִּי הַמִּשְׁפָּט אֲשֶׁר נִגְזַר בְּצֶדֶק הִסָּה אוֹתָם לִנְתִיב זֶה הוּא הִשְׁכִּיחֵם אֶת־אֲשֶׁר מָצָא אוֹתָם לְמַעַן יְמַלְּאוּ סאת עָנְשָׁם בְּצָרוֹתֵיהֶם׃",
+        "sourcePages": [
+          184
+        ],
+        "textSHA256": "55ca65a5272f283ced47498c42c608f2f995c20d6c10ccdf84da0d87b97d0970",
+        "sourceNotes": [
+          {
+            "id": "wis-19-4-word3-samekh-1-vowel",
+            "kind": "unreadablePoint",
+            "anchor": "סאת",
+            "occurrence": 1,
+            "letterIndex": 1,
+            "mark": "vowel",
+            "sourcePages": [
+              184
+            ],
+            "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=184"
+          },
+          {
+            "id": "wis-19-4-word3-alef-2-vowel",
+            "kind": "unreadablePoint",
+            "anchor": "סאת",
+            "occurrence": 1,
+            "letterIndex": 2,
+            "mark": "vowel",
+            "sourcePages": [
+              184
+            ],
+            "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=184"
+          }
+        ]
+      },
+      {
+        "verse": 5,
+        "text": "וּלְמַעַן יַעֲבֹר עַמְּךָ דֶּרֶךְ פְּלָאִים וְהֵם יִמְצְאוּ מִיתָה מְשׁנּה׃",
+        "sourcePages": [
+          184
+        ],
+        "textSHA256": "49dc0b3f54012657f51e8c37088e295b70179ba615468ebf868a53edf560dbbf",
+        "sourceNotes": [
+          {
+            "id": "wis-19-5-word4-shin-2-vowel",
+            "kind": "unreadablePoint",
+            "anchor": "מְשׁנּה",
+            "occurrence": 1,
+            "letterIndex": 2,
+            "mark": "vowel",
+            "sourcePages": [
+              184
+            ],
+            "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=184"
+          },
+          {
+            "id": "wis-19-5-word4-nun-3-vowel",
+            "kind": "unreadablePoint",
+            "anchor": "מְשׁנּה",
+            "occurrence": 1,
+            "letterIndex": 3,
+            "mark": "vowel",
+            "sourcePages": [
+              184
+            ],
+            "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=184"
+          }
+        ]
+      },
+      {
+        "verse": 6,
+        "text": "כִּי כָּל־הַיְצוּרִים לְמִינֵיהֶם נֶהֶפְכוּ מֵחָדָשׁ לְשָׁרֵת לִפְקדּוֹתֶיךָ בַּעֲבוּר יִשׁמְרוּ בָנֶיךָ מִכָּל פֶּגַע׃",
+        "sourcePages": [
+          184
+        ],
+        "textSHA256": "862d9e8ee2e51aa2c2337d515d873744d65a40e7c0ce22566b54d3737f5a8465",
+        "sourceNotes": [
+          {
+            "id": "wis-19-6-word5-qof-3-vowel",
+            "kind": "unreadablePoint",
+            "anchor": "לִפְקדּוֹתֶיךָ",
+            "occurrence": 1,
+            "letterIndex": 3,
+            "mark": "vowel",
+            "sourcePages": [
+              184
+            ],
+            "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=184"
+          },
+          {
+            "id": "wis-19-6-word6-shin-2-vowel",
+            "kind": "unreadablePoint",
+            "anchor": "יִשׁמְרוּ",
+            "occurrence": 1,
+            "letterIndex": 2,
+            "mark": "vowel",
+            "sourcePages": [
+              184
+            ],
+            "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=184"
+          },
+          {
+            "id": "wis-19-6-word6-shin-2-dagesh",
+            "kind": "unreadablePoint",
+            "anchor": "יִשׁמְרוּ",
+            "occurrence": 1,
+            "letterIndex": 2,
+            "mark": "dagesh",
+            "sourcePages": [
+              184
+            ],
+            "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=184"
+          }
+        ]
+      },
+      {
+        "verse": 7,
+        "text": "הֵן נִרְאָה עָנָן סוֹכֵךְ עַל־הַמַּחֲנֶה וּמְקוֹם שָׁם מַיִם לְפָנִים יַבֶּשֶׁת הוֹפִיעָה מִיַּם־סוּף דֶּרֶךְ סְלוּלָה וּמִמִּשְׁבָּרִים אַדִּירִים מִישׁוֹר מְכסֶּה דֶּשֶׁא׃",
+        "sourcePages": [
+          184
+        ],
+        "textSHA256": "e7021a85e2cef6c6fb6c6a79a6270b53805a0913cbf00978f0d66d0e7b66c1e6",
+        "sourceNotes": [
+          {
+            "id": "wis-19-7-word7-kaf-2-vowel",
+            "kind": "unreadablePoint",
+            "anchor": "מְכסֶּה",
+            "occurrence": 1,
+            "letterIndex": 2,
+            "mark": "vowel",
+            "sourcePages": [
+              184
+            ],
+            "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=184"
+          }
+        ]
+      },
+      {
+        "verse": 8,
+        "text": "בּוֹ עָבְרוּ כָּל־הָעָם בְּפָרְשְׂךָ עֲלֵיהֶם יָדְךָ וַיִּרְאוּ נִסִּים וְנִפְלָאוֹת׃",
+        "sourcePages": [
+          184
+        ],
+        "textSHA256": "b530c9bae0c253ca8d23376df40f808b86c2b3b36ad9c48ad2f1489f5041f8bf"
+      },
+      {
+        "verse": 9,
+        "text": "ויְשׁוֹמָמוּ כְּסוּסִים בַּמִּרְעֶה וְכִכְבָשִׂים יִרְקְדוּ ויְהַלָלוּ לְךָ יְיָ גּוֹאֲלָם׃",
+        "sourcePages": [
+          184
+        ],
+        "textSHA256": "45a7d4227e97058ded6e1efc768cf1fb2fedba4358761557665bca9665d20d46",
+        "sourceNotes": [
+          {
+            "id": "wis-19-9-word8-vav-1-vowel",
+            "kind": "unreadablePoint",
+            "anchor": "ויְשׁוֹמָמוּ",
+            "occurrence": 1,
+            "letterIndex": 1,
+            "mark": "vowel",
+            "sourcePages": [
+              184
+            ],
+            "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=184"
+          },
+          {
+            "id": "wis-19-9-word9-vav-1-vowel",
+            "kind": "unreadablePoint",
+            "anchor": "ויְהַלָלוּ",
+            "occurrence": 1,
+            "letterIndex": 1,
+            "mark": "vowel",
+            "sourcePages": [
+              184
+            ],
+            "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=184"
+          }
+        ]
+      },
+      {
+        "verse": 10,
+        "text": "כִּי זָכְרוּ עוֹד אֶת־הַמּצָאוֹת אוֹתָם בְּאֶרֶץ מְגוּרֵיהֶם אֵיךְ הָאָרֶץ הוֹצִיאָה כִּנִּים תַּחַת חַיּוֹת [הַיַּבָּשָׁה] לְמִינֵיהֶן וְתַחַת חַיּוֹת הַמַּיִם שָׁרַץ הַיְאוֹר צְפַרְדְּעִים לָרֹב׃",
+        "sourcePages": [
+          184
+        ],
+        "textSHA256": "e5520ea91e9aa8d8fad1ea0902658bfd9e0d41ab98087fbf20562c7375c58d22",
+        "sourceNotes": [
+          {
+            "id": "wis-19-10-word10-mem-2-vowel",
+            "kind": "unreadablePoint",
+            "anchor": "הַמּצָאוֹת",
+            "occurrence": 1,
+            "letterIndex": 2,
+            "mark": "vowel",
+            "sourcePages": [
+              184
+            ],
+            "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=184"
+          }
+        ]
+      },
+      {
+        "verse": 11,
+        "text": "אַחֲרֵי־כֵן רָאוּ גַּם מִין צִפֳּרִים חֲדָשׁוֹת כְּעוֹרֵר אוֹתָם תַּאֲוָתָם לִדְרשׁ מַאֲכָלֵי מַעֲדַנִּים׃",
+        "sourcePages": [
+          184,
+          185
+        ],
+        "textSHA256": "6ca0c919fa52724672e2a13bd1b45e8f07ea487b2952e73f78cb29fb06853f70"
+      },
+      {
+        "verse": 12,
+        "text": "כִּי שְׂלָו עָלָה לָהֶם מִן־הַיָּם לְמַלֵּא שְׁאֵלָתָם׃",
+        "sourcePages": [
+          185
+        ],
+        "textSHA256": "0c7afaaac75bee98956232fa1eee7e66360d2fd3e2fb490e9d9655c336d60201"
+      },
+      {
+        "verse": 13,
+        "text": "וְעַל הַחַטָּאִים לֹא בָאוּ הַפְּגָעִים עַד־אֲשֶׁר הָרְעָמִים נָתְנוּ עֵדוּתָם בְּעֹז הֵמָּה סָבְלוּ בְּצֶדֶק בִּגְלַל עוֹנוֹתֵיהֶם׃",
+        "sourcePages": [
+          185
+        ],
+        "textSHA256": "cd7d33ed2d470f8e363acece6fb7fbbba2ff9c1bc5a0a3671a35bde426a2d9fe",
+        "sourceNotes": [
+          {
+            "id": "wis-19-13-word11-ayin-1-vowel",
+            "kind": "unreadablePoint",
+            "anchor": "עוֹנוֹתֵיהֶם",
+            "occurrence": 1,
+            "letterIndex": 1,
+            "mark": "vowel",
+            "sourcePages": [
+              185
+            ],
+            "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=185"
+          }
+        ]
+      },
+      {
+        "verse": 14,
+        "text": "יַעַן כִּי הִרְבּוּ לְהַרְאוֹת מַשְׂטֵמָה עַזָּה לַגֵּרִים [מִן־הָאֲחֵרִים] כִּי אֵלֶּה לֹא אָסְפוּ זָרִים אֲשֶׁר בָּאוּ אֲלֵיהֶם וְהֵמָּה עָשׂוּ לַעֲבָדִים אֲנָשִׁים גֵּרִים אֲשֶׁר עָשׂוּ עִמָּם חָסֶד׃",
+        "sourcePages": [
+          185
+        ],
+        "textSHA256": "5d9d55cbe594bc02321f569d30e3566eec2dd7776ad46719c89f067d312d168f"
+      },
+      {
+        "verse": 15,
+        "text": "מִבַּלְעֲדֵי זֶה שׁוֹנֶה יִהְיֶה עָנְשָׁם אֲשֶׁר אֵלֶּה יָצְאוּ בְּשִׂנְאָה נֶגֶד הַגֵּרִים׃",
+        "sourcePages": [
+          185
+        ],
+        "textSHA256": "3da87ef98559cbc5b9f358656b561494deba659c7b597b73f46fc2b38f528b6c"
+      },
+      {
+        "verse": 16,
+        "text": "וְהֵמָּה קִבְּלוּ אוֹתָם בְּהִלּוּלִים וְאַחֲרֵי־כֵן עִנּוּ אוֹתָם בַּעֲבוֹדָה קָשָׁה אַף־כִּי בְּחֻקֵּי הָאָרֶץ כְּבָר לָהֶם נִשְׁתַּוּוּ׃",
+        "sourcePages": [
+          185
+        ],
+        "textSHA256": "14cf0c1ed49239380647b281d9baffba44868418f90351ba4216aa439bce3252"
+      },
+      {
+        "verse": 17,
+        "text": "וְגַם הֵם הכּוּ בַּסַּנְוֵרִים כְּמוֹ אֵלֶּה לִפְנֵי פֶּתַח הַצַּדִּיק כַּאֲשֶׁר כִּסָּה אוֹתָם חשֶׁךְ וְצַלְמָוֶת וַיְבַקֵּשׁ כָּל־אִישׁ מֵהֶם אֶת־הַדֶּרֶךְ אֶל־שַׁעַר בֵּיתוֹ׃",
+        "sourcePages": [
+          185
+        ],
+        "textSHA256": "259855a30b2fa55bf6684b6b7fceb9e511dd3459e6805fce24355103f8c71d96",
+        "sourceNotes": [
+          {
+            "id": "wis-19-17-word12-he-1-vowel",
+            "kind": "unreadablePoint",
+            "anchor": "הכּוּ",
+            "occurrence": 1,
+            "letterIndex": 1,
+            "mark": "vowel",
+            "sourcePages": [
+              185
+            ],
+            "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=185"
+          }
+        ]
+      },
+      {
+        "verse": 18,
+        "text": "כִּי הַיְסוֹדוֹת אֶת־סִדְרָם הֶחֱלִיפוּ כּאֲשֶׁר יִשְׁתַּנֶּה קֶצֶב צלילי הַנֵּבֶל בְּהִשְׁתַּנּוֹת מֵיתָרָיו אַף כִּי־קוֹלָם יִשָּׁאֵר תָּמִיד כָּל־עֻמַּת שֶׁהָיָה וְזֹאת יוּכַל הָאִישׁ לִשְׁפֹּט לְנָכוֹן בִּרְאוֹתוֹ אֶת־הַמַּעֲשִׂים׃",
+        "sourcePages": [
+          185
+        ],
+        "textSHA256": "ea76ba956a6135bfe4b470a68917bafdc92c4fd26768a6a01793ab3e4d3a9c9e",
+        "sourceNotes": [
+          {
+            "id": "wis-19-18-word13-tsadi-1-vowel",
+            "kind": "unreadablePoint",
+            "anchor": "צלילי",
+            "occurrence": 1,
+            "letterIndex": 1,
+            "mark": "vowel",
+            "sourcePages": [
+              185
+            ],
+            "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=185"
+          },
+          {
+            "id": "wis-19-18-word13-lamed-2-vowel",
+            "kind": "unreadablePoint",
+            "anchor": "צלילי",
+            "occurrence": 1,
+            "letterIndex": 2,
+            "mark": "vowel",
+            "sourcePages": [
+              185
+            ],
+            "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=185"
+          },
+          {
+            "id": "wis-19-18-word13-lamed-4-vowel",
+            "kind": "unreadablePoint",
+            "anchor": "צלילי",
+            "occurrence": 1,
+            "letterIndex": 4,
+            "mark": "vowel",
+            "sourcePages": [
+              185
+            ],
+            "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=185"
+          },
+          {
+            "id": "wis-19-18-word14-kaf-1-vowel",
+            "kind": "unreadablePoint",
+            "anchor": "כּאֲשֶׁר",
+            "occurrence": 1,
+            "letterIndex": 1,
+            "mark": "vowel",
+            "sourcePages": [
+              185
+            ],
+            "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=185"
+          }
+        ]
+      },
+      {
+        "verse": 19,
+        "text": "הֵן חַיּוֹת הַיַּבָּשָׁה נֶהֶפְכוּ לְחַיּוֹת הַמַּיִם וְהַחַיּוֹת הַשָּׁטוֹת [בַּמַּיִם] עַל־הָאָרֶץ דָּרָכוּ׃",
+        "sourcePages": [
+          185,
+          186
+        ],
+        "textSHA256": "c6e0d74c7cd8b14af1a7d622e5c1e4b2b52e3e6d0ae7903d0a4e415cfcd18b55"
+      },
+      {
+        "verse": 20,
+        "text": "הָאֵשׁ שָׁמְרָה בַּמַּיִם עַל־תְּכוּנָתָהּ וְהַמַּיִם רָפָה כֹחָם לְכַבּוֹת׃",
+        "sourcePages": [
+          186
+        ],
+        "textSHA256": "87894acefd8ae593fbe352847557386da5f556eb8ae84eeec63d9efd77240e9a"
+      },
+      {
+        "verse": 21,
+        "text": "וּלְהֵפֶךְ הָאֵשׁ לֹא אָכְלָה בְּשַׂר חַיּוֹת בְּנוֹת חֲלוֹף אֲשֶׁר בָּהּ הִתְהַלָּכוּ וּמֶגֶד הַשָּׁמַיִם אֲשֶׁר עֵינוֹ כְּעֵין הַקֶּרַח קַל לְהִמֵּס לֹא נָמָס׃",
+        "sourcePages": [
+          186
+        ],
+        "textSHA256": "a8542f17cdb940efe9956306d3e2be9a1321b9a5e26eb3f088fe28913fc579ea"
+      },
+      {
+        "verse": 22,
+        "text": "כִּי בְּכָל אֵלֶּה יְיָ הִגְדַּלְתָּ וְרוֹמַמְתָּ אֶת עַמְּךָ וְלֹא הֶעְלַמְתָּ מֵהֶם עַיִן מהוֹשִׁיעם בְּכָל־עֵת וּבְכָל־מָקוֹם׃",
+        "sourcePages": [
+          186
+        ],
+        "textSHA256": "b3c3492b8ab6e73441b5d497673bc7e79cffe73ba3ac2ce7421e7fa5d05911d7",
+        "sourceNotes": [
+          {
+            "id": "wis-19-22-word15-mem-1-vowel",
+            "kind": "unreadablePoint",
+            "anchor": "מהוֹשִׁיעם",
+            "occurrence": 1,
+            "letterIndex": 1,
+            "mark": "vowel",
+            "sourcePages": [
+              186
+            ],
+            "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=186"
+          },
+          {
+            "id": "wis-19-22-word15-ayin-6-vowel",
+            "kind": "unreadablePoint",
+            "anchor": "מהוֹשִׁיעם",
+            "occurrence": 1,
+            "letterIndex": 6,
+            "mark": "vowel",
+            "sourcePages": [
+              186
+            ],
+            "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=186"
+          }
+        ]
+      }
+    ]
+  },
+  "remainingFindings": []
+}

@@ -1,0 +1,85 @@
+{
+  "schemaVersion": 1,
+  "book": "2MA",
+  "reference": "14:4",
+  "status": "Clearer same-edition copy research; damaged word unresolved",
+  "releaseApproved": false,
+  "sourcePage": 227,
+  "printedPage": 225,
+  "neededEvidence": "The year word immediately after מאה וחמשים and before ויבא לו עטרת זהב. Both existing scans have missing ink; do not infer the unseen consonants from historical date or another translation.",
+  "currentCanonicalToken": "וָז׳",
+  "currentTokenCertified": false,
+  "checkedSources": [
+    {
+      "provider": "Wikisource original and companion PDFs",
+      "result": "Both native witnesses inspected; neither certifies all consonants in year word.",
+      "evidence": [
+        {
+          "path": "/private/tmp/prosary-2ma/ch14-focus4-year4-full.png",
+          "sha256": "3f5519268793f13749dca41f2014dfb25ab36f7dff05cf67d43794f4de17acba"
+        },
+        {
+          "path": "/private/tmp/prosary-2ma/ch14-focus3-year4-primary.png",
+          "sha256": "c8240869e2f6f373b6ed33db5e030190dd693fe09282408335d235485b76ccbb"
+        }
+      ]
+    },
+    {
+      "provider": "Google Books",
+      "url": "https://books.google.com/books?id=uTyzSKEXEkkC",
+      "edition": "מסדה1956,volume2; University of Florida copy digitized2023-11-29",
+      "result": "A distinct physical scan is available in public snippet view. Snippet of printed225 inspected:13end and14:1 are clear, but public search has not exposed14:4. No unseen word transcribed.",
+      "observedSnippetPages": [
+        225,
+        226
+      ],
+      "fullAccessAvailable": false
+    },
+    {
+      "provider": "Kotar",
+      "url": "https://kotar.cet.ac.il/KotarApp/Index/Chapter.aspx?nBookID=116615866&nTocEntryID=116616939",
+      "edition": "Carmel2025 photographic reprint of Masada1956",
+      "result": "Public metadata confirms photographic reprint. Maccabees reader requires purchase/login; no protected content retrieved."
+    },
+    {
+      "provider": "Internet Archive",
+      "url": "https://archive.org/details/apocryphakahanab",
+      "result": "Public metadata marks item dark; no files listed or retrieved.",
+      "metadataPath": "/private/tmp/prosary-2ma/14-archive-metadata.json"
+    },
+    {
+      "provider": "Internet Archive via Open Library",
+      "url": "https://openlibrary.org/borrow/ia/hasefarimhahtson0001unse?ref=ol",
+      "result": "Different available record is volume1 and access-restricted, not required volume2. No restricted files retrieved.",
+      "metadataPath": "/private/tmp/prosary-2ma/14-archive-second-metadata.json"
+    },
+    {
+      "provider": "National Library of Israel",
+      "url": "https://www.nli.org.il/he/books/NNL_ALEPH990013254340205171/NLI",
+      "edition": "מקורות1937",
+      "result": "Normal public online resolver sent to unrelated Otzar item אגרת יוסף; rejected as wrong source."
+    },
+    {
+      "provider": "National Library of Israel",
+      "url": "https://www.nli.org.il/he/books/NNL_ALEPH990013009560205171/NLI",
+      "edition": "מסדה1956 special הארץ edition,volume2 has530printedpages",
+      "result": "Public resolver specifically labels second-volume PSIK service. It redirects to https://ebooks.psik.io/book?book_id=4720, whose page says הספר לא נמצא; no source text available.",
+      "linkedRecord": "https://ebooks.psik.io/book?book_id=4720"
+    },
+    {
+      "provider": "DEVONthink MCP",
+      "result": "Read-only accessible-database inventory exposes Inbox only. Focused Kahana/כהנא/ספרים חיצונים title query returned no matches. No excluded records or database internals accessed."
+    },
+    {
+      "provider": "PSIK current catalog",
+      "url": "https://ebooks.psik.io/book/12307/הספרים-החיצונים--לתורה-לנביאים-לכתובים-ושאר-ספרים-חיצונים--כרך-ב",
+      "edition": "Carmel2025,534pages",
+      "result": "Normal public catalog search found replacement for broken NLI link. Public first-chapter preview displays title and copyright pages; page2 explicitly says photographic Masada1956 origin. Full access advertised via subscription or institutional login. Required14:4 body was not viewed.",
+      "restriction": "Automatic approval review rejected entering page231 in the normal preview page box because this could exceed the permitted-sample boundary. No rejected navigation occurred; no workaround attempted. No subscription/login/purchase or restricted download performed.",
+      "consequence": "This copy cannot presently certify the damaged word; need a legitimately accessible full-view copy or source photo."
+    }
+  ],
+  "nextUsefulEvidence": "A clear photo or scan of printed225 in the same Kahana Masada volume2, or legitimately accessible full Florida1956/2025photographic copy. Existing draft stays unapproved until literal consonants can be read.",
+  "canonicalChanged": false,
+  "sourceResearchCurrentDisposition": "No further unrestricted lead found. All source research preserves unresolved14:4 consonants; no inferred letter restored."
+}
