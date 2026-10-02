@@ -69,7 +69,10 @@
       148,
       149,
       150,
-      151
+      151,
+      152,
+      153,
+      154
     ],
     "notes": [
       "Initial Wikisource scaffold is not a complete pointed transcription. Every sourcePages-empty verse remains unreviewed and must not be imported.",
@@ -166,10 +169,13 @@
       "B148 completely first/second-compared: 10:30 continuation through 37, with 37 ending on B149 first line. All labels 31–37 are separate. Source 31 retains [מן־] and distinct local Jerusalem points in 31/32. Source 36 is וכתבו (no added nun), and 37 defective והעמדו/יעמדו retains actual consonants. Only the 37 ayin vowel remains unclassifiable in both scans and independent local inspection; it is omitted with an exact source note. ReviewedPages 52 (B97–148), 14 accepted notes; 10:38 onward remains unreviewed. See 1MA-pointing-B148.json.",
       "B149 completely first/second-compared: 10:37 continuation through 47, with 47 ending on B150 first line. Labels 38–47 are separate. 39 restores [הארץ] and actual אליה; 43 restores [הוא] and corrects online הרחיב to printed החיב. 41/42 defective הראשנות and 45 ולהבנות follow print. 42 הוּנָחוּ and 47 ayin sheva independently confirmed from local crops. Only the 46 initial-vav vowel is unreadable in both scans/nearest pixels; omit it with exact note, retaining other points. ReviewedPages 53 (B97–149), 15 accepted notes; 10:48 onward remains unreviewed. See 1MA-pointing-B149.json.",
       "B150 completely first/second-compared: 10:47 continuation through 65. Actual combined 59–60 retained. The source reads 48 ויחן, 57/58 defective קליאפטרה and 59–60 לצאת. All five אלכסנדר occurrences independently inspected here have alef segol and no kaf dagesh; all four דמטריוס occurrences have initial dalet sheva and no dagesh. Root independently corroborated 48 verb/name, 58 name and 61 yod dagesh. Only the 57 pe dagesh remains inseparable from its inner stroke in both scans; exact source note omits that dot, retaining pe patah and all other points, while clear 58 pe dagesh remains. ReviewedPages 54 (B97–150), 16 accepted notes, 885 source units; 10:66 onward remains unreviewed. See 1MA-pointing-B150.json.",
-      "B151 completely first/second-compared: 10:66–73. Actual combined66–67 preserves both source sentences. The local66 Jerusalem lamed has patah+hiriq;67 first Demetrios has no dalet dagesh while the father after בן has a detached dot. Root independently confirmed those exact local marks. Printed69 אַפּוֹלוֹנִיוֹס and70 תָקְפְּךָ were enlarged and retained literally. No new source notes. ReviewedPages55(B97–151),16accepted notes,884source units;10:74 onward unreviewed. See1MA-pointing-B151.json."
+      "B151 completely first/second-compared: 10:66–73. Actual combined66–67 preserves both source sentences. The local66 Jerusalem lamed has patah+hiriq;67 first Demetrios has no dalet dagesh while the father after בן has a detached dot. Root independently confirmed those exact local marks. Printed69 אַפּוֹלוֹנִיוֹס and70 תָקְפְּךָ were enlarged and retained literally. No new source notes. ReviewedPages55(B97–151),16accepted notes,884source units;10:74 onward unreviewed. See1MA-pointing-B151.json.",
+      "B152 completely first/second-compared: 10:74–89 and11:1 with first-word continuation on B153. Actual combined79–80 retained. Literal77 וַיַּצְרְף has yod patah/dagesh and both tsade/resh sheva;74 Jerusalem qamats+hiriq contrasts with87 patah+hiriq. Local88/11:1 Alexander initial alef hataf-patah differs from prior occurrences. Root independently confirmed77, both Jerusalem vowels and88 initial alef. No new notes. Chapters1–10 plus11:1 compared;56reviewedPages(B97–152),16notes,883units. B153onlyfirstword checked here. See1MA-pointing-B152.json.",
+      "B153 completely first/second-compared:11:2–17, with17first-two-token continuation onB154. All21bodyrows plus continuation checked, retaining brackets in15. Corrected3initialkaf dagesh,14initialbet absent dagesh and15gimel sheva. Final-yod dageshes in8Seleukia,13Antioch and14Cilicia individually corroborated from extra scan by root; no new notes. ReviewedPages57(B97–153),16notes,883units;11:18 onward remains unreviewed. See1MA-pointing-B153.json.",
+      "B154 completely first/second-compared:11:18–31, actual combined30–31 ends with B155opening למען תקראו׃. All19bodyrows checked.18first word corrected to בְּמִבְצָרָיו with literal יו suffix and source points;23 corrected to וַיִּסְכֵּן with kaf tsere. Root independently corroborated both focal pairs. No new notes.58reviewedPages(B97–154),16notes,882units;11:32 onward unreviewed. See1MA-pointing-B154.json."
     ],
     "unresolvedFindings": [
-      "The full 16-chapter text has not been visually verified. Chapters 1–9 and 10:1–73 are first/second-compared with disclosed isolated-point notes. 10:74 onward and chapters 11–16 remain unreviewed online scaffold."
+      "The full 16-chapter text has not been visually verified. Chapters 1–10 and 11:1–31 are first/second-compared with disclosed isolated-point notes. 11:32 onward and chapters 12–16 remain unreviewed online scaffold."
     ],
     "acceptedSourceNoteIds": [
       "1ma-10-37-ayin-vowel",
@@ -5135,99 +5141,124 @@
         },
         {
           "verse": 74,
-          "text": "וכשמוע יונתן את דברי אפולוניוס ויסער לבו ויבחר עשרת אלפים איש ויצא מירושלים ויצא לפניו שמעון אחיו לעזרתו:",
-          "sourcePages": [],
-          "textSHA256": "a1223dac856b97172d8da8f654cfe08536460cc9aac2e3de4e28257098938063"
+          "text": "וְכִשְׁמֹעַ יוֹנָתָן אֶת־דִּבְרֵי אַפּוֹלוֹנִיוֹס וַיִּסְעַר לִבּוֹ וַיִּבְחַר עֲשֶׂרֶת אֲלָפִים אִישׁ וַיֵּצֵא מִירוּשָׁלִָם וַיֵּצֵא לְפָנָיו שִׁמְעוֹן אָחִיו לְעֶזְרָתוֹ׃",
+          "sourcePages": [
+            152
+          ],
+          "textSHA256": "f63c4f058d7df22863fbb20164397fe054af20879a75c7ada95279f1ae312a1d"
         },
         {
           "verse": 75,
-          "text": "ויחן על יפו ויסגרו בעדו האנשים מן העיר כי מצב אפולוניוס ביפו וילחמו אותה:",
-          "sourcePages": [],
-          "textSHA256": "4c5d2cc8c28474535d96f73506bfca90326337a050739bab1f1a484fea5ce746"
+          "text": "וַיִּחַן עַל־יָפוֹ וַיִּסְגְּרוּ בַעֲדוֹ הָאֲנָשִׁים מִן־הָעִיר כִּי מַצַּב אַפּוֹלוֹנִיוֹס בְּיָפוֹ וַיִּלָּחֲמוּ אוֹתָהּ׃",
+          "sourcePages": [
+            152
+          ],
+          "textSHA256": "daae4886516ede219d915293034268e40f18aca9ae136bf31f685ef1e8d1e1e3"
         },
         {
           "verse": 76,
-          "text": "ואנשים מן העיר יראו ויפתחו וימשול יונתן ביפו:",
-          "sourcePages": [],
-          "textSHA256": "79976ef7f33dd9cfc98f26fce3cbb8139ba62e7347101ec04c773a18aa4d7a9c"
+          "text": "וַאֲנָשִׁים מִן־הָעִיר יָרְאוּ וַיִּפְתָּחוּ וַיִּמְשֹׁל יוֹנָתָן בְּיָפוֹ׃",
+          "sourcePages": [
+            152
+          ],
+          "textSHA256": "d42e2d363bb7d2eac809ba5490d7111a36fbc4f42d69569e3b3801e7a8fe7fe7"
         },
         {
           "verse": 77,
-          "text": "וישמע אפולוניוס ויערוך שלושת אלפים סוס וחיל רב וילך אשדודה כמו עובר ויסוג אל העמק כי היה לו המון פרשים ויבטח בהם:",
-          "sourcePages": [],
-          "textSHA256": "cc4b2bc39ec8de685b9355bb1381d296df876d5579d680d3b6fe0b0b6bda23d4"
+          "text": "וַיִּשְׁמַע אַפּוֹלוֹנִיוֹס וַיַּצְרְף שְׁלֹשֶׁת אֲלָפִים סוּס וְחַיִל רָב וַיֵּלֶךְ אַשְׁדּוֹדָה כְּמוֹ עוֹבֵר וַיִּסֹּג אֶל־הָעֵמֶק כִּי הִגְדִּילוֹ הֲמוֹן פָּרָשִׁים וַיִּבְטַח בָּהֶם׃",
+          "sourcePages": [
+            152
+          ],
+          "textSHA256": "4d3814e1d2be55347caec810550e5fc56ca24c1ce02bd33bc7bad2b843af4997"
         },
         {
           "verse": 78,
-          "text": "וירדוף אחריו אשדודה ויאסרו המחנות המלחמה:",
-          "sourcePages": [],
-          "textSHA256": "1c7ee5d2ae6be1ccadd6bfab50adaca93a63bf4c2febca6b96617c394bedea13"
+          "text": "וַיִּרְדֹּף אַחֲרָיו אַשְׁדּוֹדָה וַיַּאַסְרוּ הַמַּחֲנוֹת הַמִּלְחָמָה׃",
+          "sourcePages": [
+            152
+          ],
+          "textSHA256": "f2252de8290398864dfae2503a150fb4c4b89a4be2d969b4f974160415332201"
         },
         {
           "verse": 79,
-          "text": "וישאר אפולוניוס אלף פרשים בהחבא מאחוריהם:",
-          "sourcePages": [],
-          "textSHA256": "255b6c2d09a4e2ff3a2dfe0c50bc5eab28aff07f991357a74af778ec7c92b651"
-        },
-        {
-          "verse": 80,
-          "text": "וידע יונתן כי יש מארב מאחוריו ויסובו את מחנהו וישפכו את החיצים בעם מן הבוקר עד הערב:",
-          "sourcePages": [],
-          "textSHA256": "8eb9046ab1ad12d1c4faf877cc0578d82d2da8351ee11317c696029e0641e92a"
+          "text": "וַיַּשְׁאֵר אַפּוֹלוֹנִיוֹס אֶלֶף פָּרָשִׁים בְּהֵחָבֵא מֵאֲחוֹרֵיהֶם׃ וַיֵּדַע יוֹנָתָן כִּי יֵשׁ מַאֲרָב מֵאֲחוֹרָיו וַיָּסֹבּוּ אֶת־מַחֲנֵהוּ וַיִּשְׁפְּכוּ אֶת־הַחִצִּים בָּעָם מִן־הַבֹּקֶר וְעַד־הָעָרֶב׃",
+          "sourcePages": [
+            152
+          ],
+          "textSHA256": "7184c388a0e6cf54712873e3543c2265dcd901dfb5260b050ee1a0d6b53e99dc",
+          "endVerse": 80
         },
         {
           "verse": 81,
-          "text": "והעם עמד כאשר ציווה יונתן וילאו סוסיהם:",
-          "sourcePages": [],
-          "textSHA256": "6b4e81129ee554c3690029dce5d88c2eacc1bd37d493ade692cc9d0b5c746958"
+          "text": "וְהָעָם עָמַד כַּאֲשֶׁר צִוָּה יוֹנָתָן וַיִּלְאוּ סוּסֵיהֶם׃",
+          "sourcePages": [
+            152
+          ],
+          "textSHA256": "12a0de44b1adb7ab9da6b19c4d5f82d64988e48e541ea5293419195ad7a20c6e"
         },
         {
           "verse": 82,
-          "text": "וינהג שמעון את חילו וילחם עם הגדוד והפרשים עייפו וינגפו מפניו וינוסו:",
-          "sourcePages": [],
-          "textSHA256": "a8ba033430067da82995d3ac88d27b3f748d6072cab75209ea13f4c87b6cea61"
+          "text": "וַיִּנְהַג שִׁמְעוֹן אֶת־חֵילוֹ וַיִּלָּחֶם עִם־הַגְּדוּד וְהַפָּרָשִׁים עָיֵפוּ וַיִּנָּגְפוּ מִפָּנָיו וַיָּנוּסוּ׃",
+          "sourcePages": [
+            152
+          ],
+          "textSHA256": "bbc83acffd138a0b5b32ada8c308c1a9ff11f33ca99db806076db5cba5d75ab4"
         },
         {
           "verse": 83,
-          "text": "והפרשים נפוצו בעמק וינוסו אשדודה ויבואו לבית דגון היכל אלילם להינצל:",
-          "sourcePages": [],
-          "textSHA256": "1f9524c049b0fc601aaebd5a31a1a57a465abd319efc90053e7c54ec402fcd4b"
+          "text": "וְהַפָּרָשִׁים נָפוֹצוּ בָעֵמֶק וַיָּנוּסוּ אַשְׁדּוֹדָה וַיָּבֹאוּ לְבֵית־דָּגוֹן הֵיכַל אֱלִילָם לְהִנָּצֵל׃",
+          "sourcePages": [
+            152
+          ],
+          "textSHA256": "af61c90fcc8005abb0cf38b8f2fa6ebb013874bf41754041945b9a72896a9a36"
         },
         {
           "verse": 84,
-          "text": "וישרוף יונתן את אשדוד ואת הערים אשר סביבותיה וייקח את שללן ואת היכל דגון ואת אשר נסו אליו שרף באש:",
-          "sourcePages": [],
-          "textSHA256": "70534bce34a22758ec6ccf765a315460653e85726b57d17337c65c6ef5d4421c"
+          "text": "וַיִּשְׂרֹף יוֹנָתָן אֶת־אַשְׁדּוֹד וְאֶת־הֶעָרִים אֲשֶׁר סְבִיבוֹתֶיהָ וַיִּקַּח אֶת־שְׁלָלָן וְאֶת־הֵיכַל דָּגוֹן וְאֵת אֲשֶׁר נָסוּ אֵלָיו שָׂרַף בָּאֵשׁ׃",
+          "sourcePages": [
+            152
+          ],
+          "textSHA256": "4f269a2c1d13beed737e92050bd350952640be984676df8ddc5e7e95b0077df3"
         },
         {
           "verse": 85,
-          "text": "ויהיו הנופלים בחרב עם השרופים כשמונת אלפים איש:",
-          "sourcePages": [],
-          "textSHA256": "75b064f6239a16b6096a695d4eca480a7be1ae147bca4c9122812eaaae070cca"
+          "text": "וַיִּהְיוּ הַנֹּפְלִים בֶּחָרֶב עִם־הַשְּׂרוּפִים כִּשְׁמוֹנַת אֲלָפִים אִישׁ׃",
+          "sourcePages": [
+            152
+          ],
+          "textSHA256": "e8178a9d76d1aca12450b73652f38bd96ec5c3701ac8a1759190017746682e41"
         },
         {
           "verse": 86,
-          "text": "ויסע משם יונתן ויחן על אשקלון ויצאו האנשים מן העיר לפניו בכבוד גדול:",
-          "sourcePages": [],
-          "textSHA256": "b6a98a1c5794dac82f3333aa3c7be84337f43dfab3c200667bc2000f1a5a7cac"
+          "text": "וַיִּסַּע מִשָּׁם יוֹנָתָן וַיִּחַן עַל־אַשְׁקְלוֹן וַיֵּצְאוּ הָאֲנָשִׁים מִן־הָעִיר לְפָנָיו בְּכָבוֹד גָּדוֹל׃",
+          "sourcePages": [
+            152
+          ],
+          "textSHA256": "264de92ccd103c40d7f1eb279494c1d9a331f4d38cd74d80c25b449a1de0dbf4"
         },
         {
           "verse": 87,
-          "text": "וישב יונתן ירושלים עם האנשים אשר אתו ולהם שלל רב:",
-          "sourcePages": [],
-          "textSHA256": "671e0005f2ce99be99f020a6d89bf6cb2e044267518d633db6db11d41df6b41e"
+          "text": "וַיָּשָׁב יוֹנָתָן יְרוּשָׁלִַם עִם־הָאֲנָשִׁים אֲשֶׁר אִתּוֹ וְלָהֶם שָׁלָל רָב׃",
+          "sourcePages": [
+            152
+          ],
+          "textSHA256": "18c79079b86726b9b50a2ce62501f26294637f5aa9da32715a4fbfa492407464"
         },
         {
           "verse": 88,
-          "text": "ויהי כשמוע אלכסנדר המלך את הדברים האלה ויוסף עוד לכבד את יונתן:",
-          "sourcePages": [],
-          "textSHA256": "09a74f0c4e641f987a9ac5c68b073f2d42e0ad0d9b9b8d274315c77e90e9ddcc"
+          "text": "וַיְהִי כִּשְׁמֹעַ אֲלֶכְסַנְדַּר הַמֶּלֶךְ אֶת־הַדְּבָרִים הָאֵלֶּה וַיּוֹסֶף עוֹד לְכַבֵּד אֶת־יוֹנָתָן׃",
+          "sourcePages": [
+            152
+          ],
+          "textSHA256": "5378bd086c53e101ed38531a2cfc921cb89073fb7a5f43d7be249d737cb774d8"
         },
         {
           "verse": 89,
-          "text": "וישלח לו קרס זהב כמשפטו לתת לשארי המלכים וייתן לו את עקרון ואת כל גבולה לנחלה:",
-          "sourcePages": [],
-          "textSHA256": "52456522a3e3d47e237dd66c241e0dd8dd261b5b2189a85b9e55b31f5d0a2d08"
+          "text": "וַיִּשְׁלַח־לוֹ קֶרֶס־זָהָב כַּמִּשְׁפָּט לָתֵת לִשְׁאֵרֵי הַמְּלָכִים וַיִּתֶּן־לוֹ אֶת־עֶקְרוֹן וְאֵת כָּל־גְּבוּלָהּ לְנַחֲלָה׃",
+          "sourcePages": [
+            152
+          ],
+          "textSHA256": "25a65e80014a65388667d59ee44c2459cf1ddd071137e6d1ebfb97eb7fa63392"
         }
       ]
     },
@@ -5236,189 +5267,247 @@
       "verses": [
         {
           "verse": 1,
-          "text": "ומלך מצרים אסף חיל רב כחול אשר על שפת הים ואניות הרבה ויבקש לכבוש את מלכות אלכסנדר במרמה ולספחה אל מלכותו:",
-          "sourcePages": [],
-          "textSHA256": "b6cc19bcc74b522a7f45c86062c4fa6c9fedfdbf3f5ae08e52cce8bfa2d812ef"
+          "text": "וּמֶלֶךְ מִצְרַיִם אָסַף חַיִל רָב כַּחוֹל אֲשֶׁר עַל־שְׂפַת הַיָּם וָאֳנִיּוֹת הַרְבֵּה וַיְבַקֵּשׁ לִכְבֹּשׁ אֶת־מַלְכוּת אֲלֶכְסַנְדַּר בְּמִרְמָה וּלְסַפְּחָהּ אֶל־מַלְכוּתוֹ׃",
+          "sourcePages": [
+            152,
+            153
+          ],
+          "textSHA256": "567f0d1d962be8b049a3388555d671a28d84424878e88ca770a25ec489053d38"
         },
         {
           "verse": 2,
-          "text": "ויבוא לארם בדברי שלום ויפתחו לו אנשי הערים ויבואו אליו כי מצוות אלכסנדר המלך הייתה לבוא אליו כי חותנו הוא:",
-          "sourcePages": [],
-          "textSHA256": "2b0cba98a2a49832ff880514dee4ea4b44200bdb3cb6efd719a1396f1e6dd07a"
+          "text": "וַיָּבֹא לְאָרָם בְּדִבְרֵי שָׁלוֹם וַיִּפְתְּחוּ־לוֹ אַנְשֵׁי הֶעָרִים וַיָּבֹאוּ אֵלָיו כִּי מִצְוַת אֲלֶכְסַנְדַּר הַמֶּלֶךְ הָיְתָה לָבֹא אֵלָיו כִּי חוֹתְנוֹ הוּא׃",
+          "sourcePages": [
+            153
+          ],
+          "textSHA256": "8131245b817b7dc0bff7ae723e1fdaf630a354126859ed651a410705a91bab43"
         },
         {
           "verse": 3,
-          "text": "ויהי כאשר בא תלמי אל הערים ויעמד את החיל למצב בכל עיר:",
-          "sourcePages": [],
-          "textSHA256": "cd2dab8e0cb4fde19c3ad9a0be61eb13ce17ad261433c9376dc8beb17ef24c25"
+          "text": "וַיְהִי כַּאֲשֶׁר בָּא תַלְמַי אֶל־הֶעָרִים וַיַּעֲמֵד אֶת־הַחַיִל לְמַצָּב בְּכָל־עִיר׃",
+          "sourcePages": [
+            153
+          ],
+          "textSHA256": "ffe50ff8cc8ae0d339e7fdeed612c8262f11af2b1cb664e6630d0c06de197014"
         },
         {
           "verse": 4,
-          "text": "וכאשר קרב אל אשדוד הראו לו את מקדש דגון הנשרף ואשדוד וסביבותיה שוממות והגויות מושלכות ואת הנשרפים אשר שרפו במלחמה כי עשו מהם תלים בדרכו:",
-          "sourcePages": [],
-          "textSHA256": "7188506d3b48a9db18973763d8ae283fd2a6b4238b5044a57896260929ccf68e"
+          "text": "וְכַאֲשֶׁר קָרַב אֶל־אַשְׁדּוֹד הֶרְאוּ לוֹ אֶת־מִקְדַּשׁ דָּגוֹן הַנִּשְׂרָף וְאַשְׁדּוֹד וּסְבִיבוֹתֶיהָ שׁוֹמֵמוֹת וְהַגְּוִיּוֹת מֻשְׁלָכוֹת וְאֵת הַנִּשְׂרָפִים אֲשֶׁר שָׂרְפוּ בַמִּלְחָמָה כִּי־עָשׂוּ מֵהֶם תִּלִּים בְּדַרְכּוֹ׃",
+          "sourcePages": [
+            153
+          ],
+          "textSHA256": "2c80b9b91dbe7092be37338f739256e4ce1efaa22bd5549db99c693bf4e41f98"
         },
         {
           "verse": 5,
-          "text": "ויספרו למלך את אשר עשה יונתן להוציא עליו דיבה והמלך החשה:",
-          "sourcePages": [],
-          "textSHA256": "5e5d6739dd36ff34cdd926bb4f5576732917941a87d6950f0f473d048d521448"
+          "text": "וַיְסַפְּרוּ לַמֶּלֶךְ אֵת אֲשֶׁר־עָשָׂה יוֹנָתָן לְהוֹצִיא עָלָיו דִּבָּה וְהַמֶּלֶךְ הֶחֱשָׁה׃",
+          "sourcePages": [
+            153
+          ],
+          "textSHA256": "f628aec010f925ca54ff68685b9e0988b9ed2a9ca2cd3ee10388b092fa45b5f8"
         },
         {
           "verse": 6,
-          "text": "ויבוא יונתן אל המלך ליפו בכבוד וישאלו איש לשלום רעהו וילינו שם:",
-          "sourcePages": [],
-          "textSHA256": "4a66fd9515e03e8d8e85ba0693f3398ae12114da4c456fb5e28e9998a447535c"
+          "text": "וַיָּבֹא יוֹנָתָן אֶל־הַמֶּלֶךְ תַלְמַי בְּכָבוֹד וַיִּשְׁאֲלוּ אִישׁ לִשְׁלוֹם רֵעֵהוּ וַיָּלִינוּ שָׁם׃",
+          "sourcePages": [
+            153
+          ],
+          "textSHA256": "63ebb0b7d9c50cff02a6677b26ca96e873a18e3aee9e58fa80f80597d4542507"
         },
         {
           "verse": 7,
-          "text": "וילך יונתן עם המלך עד הנהר הנקרא כביר וישב ירושלים:",
-          "sourcePages": [],
-          "textSHA256": "55ccfd638bed5ca32c936af5669a2719a040dcbc516ecd363ff7129875bea3da"
+          "text": "וַיֵּלֶךְ יוֹנָתָן עִם־הַמֶּלֶךְ עַד־הַנָּהָר הַנִּקְרָא כְבִיר וַיָּשָׁב יְרוּשָׁלִָם׃",
+          "sourcePages": [
+            153
+          ],
+          "textSHA256": "65aef85908a1e6f7d268f8ccd134dd14cb0294fa2b5cf24d473234e9371fc809"
         },
         {
           "verse": 8,
-          "text": "והמלך תלמי השתרר על ערי החוף עד סלבקיה אשר על הים ויחשוב על אלכסנדר מחשבות רעות:",
-          "sourcePages": [],
-          "textSHA256": "2071271c100ac128555bc59f8fdd25730ff686f1c161a9b4a7d3f4482f4941fc"
+          "text": "וְהַמֶּלֶךְ תַלְמַי הִשְׂתָּרֵר עַל־עָרֵי הַחוֹף עַד־סֶלֶבְקִיָּה אֲשֶׁר עַל־הַיָּם וַיַּחְשֹׁב עַל־אֲלֶכְסַנְדַּר מַחֲשָׁבוֹת רָעוֹת׃",
+          "sourcePages": [
+            153
+          ],
+          "textSHA256": "37db5efa46092f828bdfb7ac15b1e3c56f154e739acb96b203ea500de3cb45c9"
         },
         {
           "verse": 9,
-          "text": "וישלח מלאכים אל דמיטריוס המלך לאמור בוא נכרתה ברית בנינו ונתתי לך את בתי אשר לאכסנדר ומלכת על ממלכת אביך:",
-          "sourcePages": [],
-          "textSHA256": "a8f5d42b6a4954a286fdd209a54ed4b655903b52b4c818c43cce537ed86e56c3"
+          "text": "וַיִּשְׁלַח מַלְאָכִים אֶל־דְּמֵטְרִיוֹס הַמֶּלֶךְ לֵאמֹר בֹּא נִכְרְתָה בְרִית בֵּינֵינוּ וְנָתַתִּי לְךָ אֶת־בִּתִּי אֲשֶׁר לַאֲלֶכְסַנְדַּר וּמָלַכְתָּ עַל־מַמְלֶכֶת אָבִיךָ׃",
+          "sourcePages": [
+            153
+          ],
+          "textSHA256": "7d7529ff4ba9b9157c3e9acb70aa1fa2f6e9497d877767b345ad98a318ef4211"
         },
         {
           "verse": 10,
-          "text": "כי ניחמתי כי נתתי לו את בתי כי ביקש להמיתני:",
-          "sourcePages": [],
-          "textSHA256": "4c6aecb8f0cb9dede51abeeda2e361a7839c2d1cb51b0c3be9573b4c38ed4d38"
+          "text": "כִּי־נִחַמְתִּי כִּי נָתַתִּי־לוֹ אֶת־בִּתִּי כִּי־בִקֵּשׁ לַהֲמִיתֵנִי׃",
+          "sourcePages": [
+            153
+          ],
+          "textSHA256": "4a3450ce639a4a209965a091a1f723ee282df99de6b5d1403a62d3fab4331e83"
         },
         {
           "verse": 11,
-          "text": "ויוצא עליו דיבה מחמדו את ממלכתו:",
-          "sourcePages": [],
-          "textSHA256": "04fa9f194afc7cfe9f5645fa118d4f154e14cb3a4eed9a59dd0d05a850c5d754"
+          "text": "וַיּוֹצֵא עָלָיו דִּבָּה מֵחֶמְדוֹ אֶת־מַמְלַכְתּוֹ׃",
+          "sourcePages": [
+            153
+          ],
+          "textSHA256": "d7980d6c373d17464ad410ff95ce3eb04dd32230443f339bd203a1c544aa1a9f"
         },
         {
           "verse": 12,
-          "text": "ויקח את בתו ויתנהָ לדמיטריוס ויתנכר אל אלכסנדר ותגל שנאתם:",
-          "sourcePages": [],
-          "textSHA256": "0f84c6e4fbb6109362f981bec37d965cc223e31b5c9e7f296d04e5a9f27a773d"
+          "text": "וַיִּקַּח אֶת־בִּתּוֹ וַיִּתְּנָהּ לִדְמֵטְרִיוֹס וַיִּתְנַכֵּר אֶל־אֲלֶכְסַנְדַּר וַתִּגָּל שִׂנְאָתָם׃",
+          "sourcePages": [
+            153
+          ],
+          "textSHA256": "5c4976100fe34880fffa159b944be8f14ce249af4a1c017dea7da893a555787d"
         },
         {
           "verse": 13,
-          "text": "ויבוא תלמי לאנטיוכיה וישם על ראשו כתר אסיה וישם שני כתרים על ראשו כתר אסיה וכתר מצרים:",
-          "sourcePages": [],
-          "textSHA256": "f1e4d111601fb191ea76062a714e42ac29b17d06217d8d288cfdb1ce672c7707"
+          "text": "וַיָּבֹא תַלְמַי לְאַנְטִיוֹכִיָּה וַיָּשֶׂם עַל־רֹאשׁוֹ כֶּתֶר אַסְיָה וַיָּשֶׂם שְׁנֵי כְתָרִים עַל־רֹאשׁוֹ כֶּתֶר אַסְיָה וּמִצְרָיִם׃",
+          "sourcePages": [
+            153
+          ],
+          "textSHA256": "f88ec3bee1a50af45709ed834929530a18145a8f076017122ecc004593f4b189"
         },
         {
           "verse": 14,
-          "text": "ואלכסנדר המלך היה בקיליקיה בעת ההיא כי מרדו אנשי המקומות ההם:",
-          "sourcePages": [],
-          "textSHA256": "c483c148d5dec6ed437ca1cf1978daf16ade4247c0ec93fab50c2de6da65c1e7"
+          "text": "וַאֲלֶכְסַנְדַּר הַמֶּלֶךְ הָיָה בְקִילִיקִיָּה בָּעֵת הַהִיא כִּי־מָרְדוּ אַנְשֵׁי הַמְּקוֹמוֹת הָהֵם׃",
+          "sourcePages": [
+            153
+          ],
+          "textSHA256": "4441b44b347eaac9e332045ed24b614268af74a22e47546546fe6434f99645d0"
         },
         {
           "verse": 15,
-          "text": "וישמע אלכסנדר וילך לקראתו במלחמה ויוצא תלמי את חילו ויבוא אליו ביד חזקה ויגפהו:",
-          "sourcePages": [],
-          "textSHA256": "dee760c87c5354ae2ff6329a4c91badff85b8c343f3cdb8f91f55db64903104c"
+          "text": "וַיִּשְׁמַע אֲלֶכְסַנְדַּר וַיֵּלֶךְ לִקְרָאתוֹ בַּמִּלְחָמָה וַיּוֹצֵא תַלְמַי [אֶת־חֵילוֹ] וַיָּבֹא אֵלָיו בְּיָד חֲזָקָה וַיִּנָּגְפוּ׃",
+          "sourcePages": [
+            153
+          ],
+          "textSHA256": "03f3dfa01d154466a4fda4f9dad55a4ed4958f678464c8a8dba05d2fbda79b62"
         },
         {
           "verse": 16,
-          "text": "ויברח אלכסנדר לערב ולהסתר שם והמלך תלמי גבה:",
-          "sourcePages": [],
-          "textSHA256": "7b32ba35db7899dc210af73a459e9eaa9cc4742fcd7990fda628dea7f8145fd7"
+          "text": "וַיִּבְרַח אֲלֶכְסַנְדַּר לַעֲרָב לְהִסָּתֵר שָׁם וְהַמֶּלֶךְ תַלְמַי גָּבַהּ׃",
+          "sourcePages": [
+            153
+          ],
+          "textSHA256": "9fe14b213d8d51afb2f5571749a7c9d706d438f2b5a075ef0f1491fcbf6dec45"
         },
         {
           "verse": 17,
-          "text": "ויסר זבדיאל הערבי את ראש אלכסנדר וישלח אל תלמי:",
-          "sourcePages": [],
-          "textSHA256": "49a40048cb2f5ca8b49b55b150ed14b4fcaa5c288c172ae5deb7e24a709c86f7"
+          "text": "וַיָּסַר זַבְדִּיאֵל הָעֲרָבִי אֶת־רֹאשׁ אֲלֶכְסַנְדַּר וַיִּשְׁלַח אֶל־תַּלְמַי׃",
+          "sourcePages": [
+            153,
+            154
+          ],
+          "textSHA256": "1c9ed3c6b7336a4b6e702c617320ebcc7b05e9d8c97c0cb8db0f720c6c7a3735"
         },
         {
           "verse": 18,
-          "text": "והמלך תלמי מת ביום שלישי ואשר היו במבצריו נהרגו בידי האנשים אשר במבצרים:",
-          "sourcePages": [],
-          "textSHA256": "f8d034976a517dfaa06f220443a12be0bef5133af40891f048d6cd76acc5f4d4"
+          "text": "וְהַמֶּלֶךְ תַלְמַי מֵת בַּיּוֹם הַשְּׁלִישִׁי וַאֲשֶׁר הָיוּ בְּמִבְצָרָיו נֶהֶרְגוּ בִידֵי הָאֲנָשִׁים אֲשֶׁר בַּמִּבְצָרִים׃",
+          "sourcePages": [
+            154
+          ],
+          "textSHA256": "1d2aacb1632b5db2a19ba0f3b747fbb128f1d752b1d35481c4db79d47ecd8a98"
         },
         {
           "verse": 19,
-          "text": "וימלוך דמיטריוס בשנת שבע וששים ומאה:",
-          "sourcePages": [],
-          "textSHA256": "a2a6b67594f38fd2986ecbe04750dc2b6402a1be232f6c1c25daaa7c1ab061fb"
+          "text": "וַיִּמְלֹךְ דְּמֵטְרִיוֹס בִּשְׁנַת שֶׁבַע וְשִׁשִּׁים וּמֵאָה׃",
+          "sourcePages": [
+            154
+          ],
+          "textSHA256": "a1d7ad65ba52bc825e480f562a952f458ed913014c0c5d4e0353d3aa60d3470a"
         },
         {
           "verse": 20,
-          "text": "בימים ההם אסף יונתן את האנשים מיהודה לכבוש את המצודה אשר בירושלים ויעשו עליה מכונות הרבה:",
-          "sourcePages": [],
-          "textSHA256": "279261ccb6eaa93326406caa5ea514a581d3b4f478180ceb22b31a44f1bdb499"
+          "text": "בַּיָּמִים הָהֵם אָסַף יוֹנָתָן אֶת־הָאֲנָשִׁים מִיהוּדָה לִכְבֹּשׁ אֶת־הַמְּצוּדָה אֲשֶׁר בִּירוּשָׁלִָם וַיַּעֲשׂוּ עָלֶיהָ מְכוֹנוֹת הַרְבֵּה׃",
+          "sourcePages": [
+            154
+          ],
+          "textSHA256": "56cd4715944ce4e53fd5434d57ebf0f1ed69febed9212e379f29403e480fc717"
         },
         {
           "verse": 21,
-          "text": "ויבואו שונאים לעמם אנשים פושעים אל המלך ויודיעו לו כי יונתן צר על המצודה:",
-          "sourcePages": [],
-          "textSHA256": "41c2df4dcbe5fbe4b16c700d487fbffa11a823ee364e913b9dcf8237d928541d"
+          "text": "וַיָּבֹאוּ שׂוֹנְאִים לְעַמָּם אֲנָשִׁים פּוֹשְׁעִים אֶל־הַמֶּלֶךְ וַיּוֹדִיעוּ לוֹ כִּי־יוֹנָתָן צַר עַל־הַמְּצוּדָה׃",
+          "sourcePages": [
+            154
+          ],
+          "textSHA256": "11b509b8d86aeb2f8a75e90006edf4eddf139bd1ed9fee2b750d33bc941e34a9"
         },
         {
           "verse": 22,
-          "text": "ובשמעו קצף וכשמעו מיהר וילך ויבוא לעכו ויכתוב ליונתן לבלתי צור ולבוא אליו ולשוחח אתו בעכו עד מהרה:",
-          "sourcePages": [],
-          "textSHA256": "254c33e517b269c1c85fc5e71ed4067ed25def7b928a5b639c7e10d52f80b55a"
+          "text": "וּבְשָׁמְעוֹ קָצַף וּכְשָׁמְעוֹ מִהֵר וַיֵּלֶךְ וַיָּבֹא לְעַכּוֹ וַיִּכְתֹּב לְיוֹנָתָן לְבִלְתִּי־צוּר וְלָבֹא אֵלָיו וּלְשׂוֹחֵחַ אִתּוֹ בְּעַכּוֹ עַד־מְהֵרָה׃",
+          "sourcePages": [
+            154
+          ],
+          "textSHA256": "c12035f660ed51a2ed121edfc3e4e519a629b6df5a4c15da6edbc70c90823030"
         },
         {
           "verse": 23,
-          "text": "וכשמוע יונתן ציווה לצור ויבחר מזקני ישראל ומן הכהנים ויסכן את נפשו:",
-          "sourcePages": [],
-          "textSHA256": "27d9197257e6637c9745fe199d87c4497fa79749bb9cc416b0d84f95eff23ef8"
+          "text": "וְכִשְׁמֹעַ יוֹנָתָן צִוָּה לָצוּר וַיִּבְחַר מִזִּקְנֵי יִשְׂרָאֵל וּמִן־הַכֹּהֲנִים וַיִּסְכֵּן אֶת־נַפְשׁוֹ׃",
+          "sourcePages": [
+            154
+          ],
+          "textSHA256": "5ccb65461d4634934cd6cfb488d0219b811363230302b9464b182fbcd4d466cc"
         },
         {
           "verse": 24,
-          "text": "ויקח כסף וזהב ומלבושים ושאר מתנות הרבה וילך אל המלך לעכו ימצא חן בעיניו:",
-          "sourcePages": [],
-          "textSHA256": "6217d2a96416de866ba3e5181724326a493c96a0dc98ba2bf846053aca6b2f2e"
+          "text": "וַיִּקַּח כֶּסֶף וְזָהָב וּמַלְבּוּשִׁים וּשְׁאָר מַתְּנוֹת הַרְבֵּה וַיֵּלֶךְ אֶל־הַמֶּלֶךְ לְעַכּוֹ וַיִּמְצָא חֵן בְּעֵינָיו׃",
+          "sourcePages": [
+            154
+          ],
+          "textSHA256": "972fe32cc4e487436a9302354c5df08db1e1214101226a58517bf1250b29101a"
         },
         {
           "verse": 25,
-          "text": "ויתאוננו עליו פושעים אחדים מן העם:",
-          "sourcePages": [],
-          "textSHA256": "41a99969b1afbaa2812b50bed4c696b5288a0ccb5b534ee0f50d6de6e2fb68de"
+          "text": "וַיִּתְאוֹנְנוּ עָלָיו פּוֹשְׁעִים אֲחֵרִים מִן־הָעָם׃",
+          "sourcePages": [
+            154
+          ],
+          "textSHA256": "89af5d84be1c6f7383df7644610d04a19525460b2758b2e5c4776c8e8a1e7425"
         },
         {
           "verse": 26,
-          "text": "ויעש לו המלך כאשר עשו לו אשר היו לפניו וינשאוהו לפני כל אוהביו:",
-          "sourcePages": [],
-          "textSHA256": "173f63868923f8f8a718f70e76cfc9ac60dcfd23cf9818a95dd10b10e327ceb7"
+          "text": "וַיַּעַשׂ לוֹ הַמֶּלֶךְ כַּאֲשֶׁר עָשׂוּ־לוֹ אֲשֶׁר־הָיוּ לְפָנָיו וַיְנַשְׂאֵהוּ לִפְנֵי כָל־אוֹהֲבָיו׃",
+          "sourcePages": [
+            154
+          ],
+          "textSHA256": "10bc19a08e7c943ff5807770998c0393a88747f15acabf00d71891922b70b359"
         },
         {
           "verse": 27,
-          "text": "ויקיים לו את הכהונה הגדולה וכל המעלות אשר היו לו לפנים ויעשהו לנשיא ראשוני האוהבים:",
-          "sourcePages": [],
-          "textSHA256": "672c20e6890d9ebc70914e835967fe682d07ca4f9ac7254791e056caea8628b5"
+          "text": "וַיָּקֶם־לוֹ אֶת־הַכְּהֻנָּה הַגְּדוֹלָה וְכָל־הַמַּעֲלוֹת אֲשֶׁר הָיוּ לוֹ לְפָנִים וַיַּעֲשֵׂהוּ לִנְשִׂיא רִאשׁוֹנֵי הָאוֹהֲבִים׃",
+          "sourcePages": [
+            154
+          ],
+          "textSHA256": "5f2e2aa6d49f21c2a18c61ce331ddd391102e40326850a79ca4596ea7226f32f"
         },
         {
           "verse": 28,
-          "text": "ויבקש יונתן מאת המלך לעשות את יהודה חפשיה ממס ושלושת הגלילות שומרון ויבטח לו שלוש מאות כיכר:",
-          "sourcePages": [],
-          "textSHA256": "8a083eab3975556f2e8c499262c8a2b393393249d612c759fcbdffb2502d66df"
+          "text": "וַיְבַקֵּשׁ יוֹנָתָן מֵאֵת הַמֶּלֶךְ לַעֲשׂוֹת אֶת־יְהוּדָה חָפְשִׁיָּה מִמַּס וּשְׁלֹשֶׁת גְּלִילוֹת שֹׁמְרוֹן וַיַּבְטַח־לוֹ שְׁלֹשׁ מֵאוֹת כִּכָּר׃",
+          "sourcePages": [
+            154
+          ],
+          "textSHA256": "c8b773e68a5bfd5cc8b13b2ec05d6a9d708a45a5a3a07b41c3c398f47324e5be"
         },
         {
           "verse": 29,
-          "text": "ויאות המלך ויכתוב ליונתן אגרות על כל אלה כמשפט הזה:",
-          "sourcePages": [],
-          "textSHA256": "77f8ecf28255d4d77749ece42d0f47ecaf0bd949ed4e3c1391bf1fca2e1b8446"
+          "text": "וַיֵּאוֹת הַמֶּלֶךְ וַיִּכְתֹּב לְיוֹנָתָן אִגְּרוֹת עַל־כָּל אֵלֶּה כַּמִּשְׁפָּט הַזֶּה׃",
+          "sourcePages": [
+            154
+          ],
+          "textSHA256": "c6c07e9db797b8bcce424f1fa6a288e3335aef9f2f3a2f53defa91746a91511c"
         },
         {
           "verse": 30,
-          "text": "המלך דמיטריוס ליונתן האח שלום ולעם היהודים:",
-          "sourcePages": [],
-          "textSHA256": "2aa5f6f9b5ba843e71001bce752be652656320e9b97c272bb62681f32759c78e"
-        },
-        {
-          "verse": 31,
-          "text": "פתשגן האגרת אשר כתבנו אל לסתנס שארנו עליכם גם אליכם כתבנו למען תראו:",
-          "sourcePages": [],
-          "textSHA256": "8e21a953f951f651545ff89f035ed5a60df7f445317e80516b25b6468e7e31f8"
+          "text": "הַמֶּלֶךְ דְּמֵטְרִיוֹס לְיוֹנָתָן הָאָח שָׁלוֹם וּלְעַם־הַיְּהוּדִים׃ פַּתְשֶׁגֶן הָאִגֶּרֶת אֲשֶׁר־כָּתַבְנוּ אֶל־לַסְתֵנֵס שְׁאֵרֵנוּ עֲלֵיכֶם גַּם־אֲלֵיכֶם כָּתַבְנוּ לְמַעַן תִּקְרָאוּ׃",
+          "sourcePages": [
+            154,
+            155
+          ],
+          "textSHA256": "63f599d6189623e3c6cf6cd37bf355b1c12416bac44372e60d844c850cc7c98a",
+          "endVerse": 31
         },
         {
           "verse": 32,

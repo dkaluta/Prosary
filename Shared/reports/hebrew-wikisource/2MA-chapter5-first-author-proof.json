@@ -1,0 +1,1218 @@
+{
+  "schemaVersion": 1,
+  "book": "2MA",
+  "status": "Chapter 5 separate first-author proof complete; independent review pending",
+  "approved": false,
+  "independentReviewComplete": false,
+  "scope": {
+    "chapter": 5,
+    "primaryUnits": 27,
+    "representedLabels": 27,
+    "sourcePages": [
+      195,
+      196,
+      197,
+      198
+    ],
+    "physicalLines": 52
+  },
+  "method": "After freezing the first pointed draft, separately revisited all 52 physical source rows in contiguous overlapping native companion-scan crops, with original page contexts and paired focused crops. Comparison includes every word, point, punctuation, source start and page continuation. Limited root corroboration is recorded only for focal glyphs actually reviewed. This does not replace full independent chapter review.",
+  "source": {
+    "source": "/private/tmp/prosary-kahana-reference/Apocrypha_Kahana_B_extra_scan.pdf",
+    "sourceSHA256": "b72eaf5d2d858fabb7c3438ac0436ccd64c394a7dd2fad609efabe628d5534c7",
+    "pageCount": 272,
+    "images": [
+      {
+        "page": 99,
+        "imageXref": 391,
+        "pixelDimensions": [
+          2872,
+          2024
+        ],
+        "file": "/private/tmp/prosary-2ma/ch5-extra99-native.png",
+        "sha256": "c48c4d09d454a30947c74ed463ec8679dca1065a30719af0d32b567f55e8ffc0"
+      },
+      {
+        "page": 100,
+        "imageXref": 395,
+        "pixelDimensions": [
+          2872,
+          2024
+        ],
+        "file": "/private/tmp/prosary-2ma/ch5-extra100-native.png",
+        "sha256": "a92066a98b97d2a08124e7b47149713d728fecfe3cae199e9b7dd1ebaf2ea142"
+      },
+      {
+        "page": 101,
+        "imageXref": 399,
+        "pixelDimensions": [
+          2872,
+          2024
+        ],
+        "file": "/private/tmp/prosary-2ma/ch5-extra101-native.png",
+        "sha256": "17c70054f960bcb46db52def17675be84fa6c5195811a981ed3450bc0e87ac36"
+      }
+    ],
+    "mapping": [
+      {
+        "primaryPage": 195,
+        "extraPage": 99,
+        "side": "left"
+      },
+      {
+        "primaryPage": 196,
+        "extraPage": 100,
+        "side": "right"
+      },
+      {
+        "primaryPage": 197,
+        "extraPage": 100,
+        "side": "left"
+      },
+      {
+        "primaryPage": 198,
+        "extraPage": 101,
+        "side": "right"
+      }
+    ]
+  },
+  "sourceInventory": "Shared/reports/hebrew-wikisource/2MA-print-inventory.json",
+  "firstDraftChapterTextHash": "276897535a211fd8dbbbe280f504c9b91c265f867213bb8be0de6243c7155277",
+  "canonicalChapterTextHashAtProof": "3bc5e92168b677afb6ef8b8dfe0125e31d62a9ba2cc45ada81e14137f600d665",
+  "wholeLineProofEvidence": [
+    {
+      "path": "/private/tmp/prosary-2ma/ch5-proof-195-1.png",
+      "sha256": "c225f61d4a5568b037cfc367e6941d073092b31a73eea6c9e0cf23a0e9fd9498"
+    },
+    {
+      "path": "/private/tmp/prosary-2ma/ch5-proof-195-2.png",
+      "sha256": "bab5dc4562a51ec579363cdcbefb90523a32a25b3189df2aedcb5ec40bf65a6d"
+    },
+    {
+      "path": "/private/tmp/prosary-2ma/ch5-proof-195-3.png",
+      "sha256": "d035332540af42b2a41cb28652b5df89c57d87ac4e6e2ac090ae7a17484b7205"
+    },
+    {
+      "path": "/private/tmp/prosary-2ma/ch5-proof-196-1.png",
+      "sha256": "495be9a02ccb08987aaf6f0abfd62af30acba479a4da48389acdd3a431422227"
+    },
+    {
+      "path": "/private/tmp/prosary-2ma/ch5-proof-196-2.png",
+      "sha256": "ad83439c5859c262be48e9d51b795ef4b015ca03fc9ca098b479a81c0c300a39"
+    },
+    {
+      "path": "/private/tmp/prosary-2ma/ch5-proof-196-3.png",
+      "sha256": "463ace3d7626988a03ac3d875e265915b3811dc70057ba4470c335fe551cc17a"
+    },
+    {
+      "path": "/private/tmp/prosary-2ma/ch5-proof-196-4.png",
+      "sha256": "6c6581a606c72eb9d54517bd3a300ce8d1e6c565e58ca9cf04527f1ada799b63"
+    },
+    {
+      "path": "/private/tmp/prosary-2ma/ch5-proof-196-5.png",
+      "sha256": "baa339f7402f9f885afe70094c6cf5c23b878c43b25c265c626cf60d26fafb11"
+    },
+    {
+      "path": "/private/tmp/prosary-2ma/ch5-proof-197-1.png",
+      "sha256": "3a4ab54162c051e19197f9f4e5e961a5c80d8e0b9b6a88af86b2fe0700822ac7"
+    },
+    {
+      "path": "/private/tmp/prosary-2ma/ch5-proof-197-2.png",
+      "sha256": "40480ac7b2032e137338aad5ed49a864b57d37ac444afd903cd72c492e62a568"
+    },
+    {
+      "path": "/private/tmp/prosary-2ma/ch5-proof-197-3.png",
+      "sha256": "30efa71117a0eef790b0eb01423a40f78b44c68244cbd99e4a58a0e1ac574d8e"
+    },
+    {
+      "path": "/private/tmp/prosary-2ma/ch5-proof-197-4.png",
+      "sha256": "df887f159dbcb272349acafe286f049871adac547cd978fe9d5d1466f814f294"
+    },
+    {
+      "path": "/private/tmp/prosary-2ma/ch5-proof-197-5.png",
+      "sha256": "1fe1aad4929323f6d6702956f10f9193fb941af3d4bad5129fafc300c05d9fc3"
+    },
+    {
+      "path": "/private/tmp/prosary-2ma/ch5-proof-197-6.png",
+      "sha256": "445a43b41de294b353e581020f032d6a245b6e108a6e14e6e3228108f9c885a9"
+    },
+    {
+      "path": "/private/tmp/prosary-2ma/ch5-proof-198-1.png",
+      "sha256": "cb9dd298f35f0ef461f8029e8fc2be548bb741925db3b00eb80b288e88ddd2a5"
+    }
+  ],
+  "primaryPageContextEvidence": [
+    {
+      "path": "/private/tmp/prosary-2ma/page195.png",
+      "sha256": "a5d4a9403279c84467359dbcf9d6a03beec22a4f7973127c03100cddde47a175"
+    },
+    {
+      "path": "/private/tmp/prosary-2ma/page196.png",
+      "sha256": "b3c6da06a21061eeaf0cb26af3b4e94e81dac966e4f29565cfcf236fdbf3e962"
+    },
+    {
+      "path": "/private/tmp/prosary-2ma/page197.png",
+      "sha256": "004b052333e3e30b690293fd73f888e8dc8a0aca017beb2ffc346b618a3ced28"
+    },
+    {
+      "path": "/private/tmp/prosary-2ma/page198.png",
+      "sha256": "852b96960716b1f0ee76bc3818b5146311b3c69fe9873be14145aa6174cb10fd"
+    }
+  ],
+  "changedReadings": [
+    {
+      "reference": "5:2",
+      "before": "וַיִּקְרוּ",
+      "after": "וַיִּקָּרוּ",
+      "detail": "The isolated qof has a separate interior dot and a lower bar with descending stem, identifying dagesh and qamats rather than the draft sheva.",
+      "cropEvidence": [
+        {
+          "path": "/private/tmp/prosary-2ma/ch5-focus-pitum2.png",
+          "sha256": "9c3cbb9d8a5332f5bf5bb3b8f7b253e26ea01d9f2ff6b751ab0ac074b4f33989"
+        }
+      ],
+      "rootFocalCorroboration": true
+    },
+    {
+      "reference": "5:8",
+      "before": "חֲרֵתַת",
+      "after": "חְרֵתָת",
+      "detail": "The proper name has two vertical dots under het (sheva), two horizontal dots under resh (tsere), and qamats under the first tav. Both scans were compared and root independently corroborated the focused source.",
+      "cropEvidence": [
+        {
+          "path": "/private/tmp/prosary-2ma/ch5-focus-haretat8.png",
+          "sha256": "3aa0c51d68d1333966f3c53afefe9e3d8295528f03dd9215515b78a3bcc4fda9"
+        },
+        {
+          "path": "/private/tmp/prosary-2ma/ch5-focus-haretat8-primary.png",
+          "sha256": "01fc8082c52eee8293c3666268e1ae3dbd1a170ad854878274bcc37f079ea793"
+        }
+      ],
+      "rootFocalCorroboration": true
+    },
+    {
+      "reference": "5:9",
+      "before": "לָקֶדֶמוֹן",
+      "after": "לָקְדֶמוֹן",
+      "detail": "The qof lower points are a vertical pair, rather than the draft segol. Lamed qamats and dalet segol remain.",
+      "cropEvidence": [
+        {
+          "path": "/private/tmp/prosary-2ma/ch5-focus-lakedemon9.png",
+          "sha256": "613a948a28e13d3ac3766f07b9c7fbbf67799f839083803eb265c73b82229b32"
+        },
+        {
+          "path": "/private/tmp/prosary-2ma/ch5-focus-lakedemon9-primary.png",
+          "sha256": "a8431ac30623eace03c2e30faa3f3326115247153b963d35fb19d4701e6ae3f7"
+        }
+      ],
+      "rootFocalCorroboration": false
+    },
+    {
+      "reference": "5:10",
+      "before": "קָבוּרוּהוּ",
+      "after": "קְבוּרָה",
+      "detail": "The print has qof-bet-vav-resh-he, with qof sheva, shuruq and resh qamats. The additional draft suffix consonants are not in the source.",
+      "cropEvidence": [
+        {
+          "path": "/private/tmp/prosary-2ma/ch5-focus-kevurah10-full.png",
+          "sha256": "d02d59a40bfd6b1cb4fd9f7aec0ddf236c7e5de31087677fb7547ef70b3908dc"
+        }
+      ],
+      "rootFocalCorroboration": false
+    },
+    {
+      "reference": "5:12",
+      "before": "וְאֶת הָעוֹלִים",
+      "after": "וְאֶת־הָעוֹלִים",
+      "detail": "Restore the literal maqaf after tav at the end of the physical row. The following row continues the same phrase.",
+      "cropEvidence": [
+        {
+          "path": "/private/tmp/prosary-2ma/ch5-proof-196-4.png",
+          "sha256": "6c6581a606c72eb9d54517bd3a300ce8d1e6c565e58ca9cf04527f1ada799b63"
+        },
+        {
+          "path": "/private/tmp/prosary-2ma/ch5-focus-metzav12-primary.png",
+          "sha256": "cd3eb9d6047c2ec7a52ad6fff1a5970d16f6bade2827904221616614487f8483"
+        }
+      ],
+      "rootFocalCorroboration": false
+    },
+    {
+      "reference": "5:15",
+      "before": "בִּבְלִי־",
+      "after": "בְּכָל־",
+      "detail": "The line ends with bet-kaf-lamed and maqaf, not the draft extra bet/yod. Bet sheva and kaf qamats are visible.",
+      "cropEvidence": [
+        {
+          "path": "/private/tmp/prosary-2ma/ch5-proof-196-5.png",
+          "sha256": "baa339f7402f9f885afe70094c6cf5c23b878c43b25c265c626cf60d26fafb11"
+        }
+      ],
+      "rootFocalCorroboration": false
+    },
+    {
+      "reference": "5:16",
+      "before": "נָתְנוּ",
+      "after": "נִתּן",
+      "detail": "The source has only nun-tav-final nun, no final vav. Nun hiriq and tav dagesh are clear; omit only the merged lower tav vowel pending independent resolution.",
+      "cropEvidence": [
+        {
+          "path": "/private/tmp/prosary-2ma/ch5-focus-nitten16-full.png",
+          "sha256": "59647b4cd93691bdb87ff4e3786e3ed043921dde1aa8980116fc971170e598c6"
+        },
+        {
+          "path": "/private/tmp/prosary-2ma/ch5-focus-nitten16-primary.png",
+          "sha256": "5414d1671dc09a80643c68e2f9003912d52ae499cbde8635415732f183eed8b5"
+        }
+      ],
+      "rootFocalCorroboration": false
+    },
+    {
+      "reference": "5:17",
+      "before": "מִטָּרְפָה",
+      "after": "נִטְרְפָה",
+      "detail": "The initial letter is nun rather than mem; its hiriq, tet sheva, resh sheva and pe qamats are visible in the companion. Root independently corroborated the isolated crop.",
+      "cropEvidence": [
+        {
+          "path": "/private/tmp/prosary-2ma/ch5-focus-nitrefa17-full.png",
+          "sha256": "62b11c50fc4f45d689b7d871ef941d50f14bdb295610284d546017d5e1da56b3"
+        },
+        {
+          "path": "/private/tmp/prosary-2ma/ch5-focus-nitrefa17-primary.png",
+          "sha256": "64479aa6ef2f631bd52c621c558ff7778c41c679abbf2ad4ea71d72477266797"
+        }
+      ],
+      "rootFocalCorroboration": true
+    },
+    {
+      "reference": "5:18",
+      "before": "בַּעֲווֹנוֹת",
+      "after": "בַּעֲוֹנוֹת",
+      "detail": "The complete paired source word has one written vav before nun and one after it; remove only the extra first-draft vav. Root independently corroborated the full paired crops.",
+      "cropEvidence": [
+        {
+          "path": "/private/tmp/prosary-2ma/ch5-focus-baavon18-full.png",
+          "sha256": "6bce142b7158a341462d5fff249fc8fe58b2929e44baceebf64ff7b8cea694fa"
+        },
+        {
+          "path": "/private/tmp/prosary-2ma/ch5-focus-baavon18-primary.png",
+          "sha256": "2b19fc89e9895624abea6f89e246563962a279447891160f04b26b985e012b56"
+        }
+      ],
+      "rootFocalCorroboration": true
+    },
+    {
+      "reference": "5:18",
+      "before": "מֵעֲווֹנוֹ",
+      "after": "מֵעַזּוּתוֹ",
+      "detail": "The isolated native word has mem tsere, ayin patah, a zayin with head projecting on both sides of its stem and an interior dagesh, vav shuruq, tav with visible left leg and final vav holam. Earlier wide-crop impressions of vav/nun are superseded by the tight original pixels. Root independently corroborated the final literal reading.",
+      "cropEvidence": [
+        {
+          "path": "/private/tmp/prosary-2ma/ch5-focus-meavon18-tight.png",
+          "sha256": "e20607c98b889257fc3cffbe19ae777bf36746579c974ff2880c42a8c032d5ed"
+        },
+        {
+          "path": "/private/tmp/prosary-2ma/ch5-focus-meavon18.png",
+          "sha256": "60d511b4bf8b2d404341430940a54d7f80c2e6ccf1fc1576b1c9a560b6b62c40"
+        },
+        {
+          "path": "/private/tmp/prosary-2ma/ch5-focus-meavon18-primary.png",
+          "sha256": "4eb837fb6cee4837947b0c8f2238ae5ee643d525d403bf53c5b6d6e47b1f7f1a"
+        }
+      ],
+      "rootFocalCorroboration": true
+    },
+    {
+      "reference": "5:19",
+      "before": "ייָ",
+      "after": "יְיָ",
+      "detail": "Restore the clear sheva printed under the right/first yod; qamats remains under the left/second yod.",
+      "cropEvidence": [
+        {
+          "path": "/private/tmp/prosary-2ma/ch5-focus-yy19.png",
+          "sha256": "ce0ee4f7ce03bb50927551bc2ac5a37f65edf01312c4b7a2480f3f2ca4b7a73b"
+        }
+      ],
+      "rootFocalCorroboration": false
+    },
+    {
+      "reference": "5:22",
+      "before": "פִּילִיפּוֹס",
+      "after": "פִּילפּוֹס",
+      "detail": "The proper name has pe-yod-lamed-pe-vav-samekh, only one written yod before lamed. The lamed lower point is merged with its foot in both scans; omit only that vowel pending independent resolution.",
+      "cropEvidence": [
+        {
+          "path": "/private/tmp/prosary-2ma/ch5-focus-pilip22-full.png",
+          "sha256": "c3b05b51e20e11c3035214a2b41b4210acde6d68ca47cff4d2050f3eb3397baa"
+        },
+        {
+          "path": "/private/tmp/prosary-2ma/ch5-focus-pilip22-primary.png",
+          "sha256": "b9a5d3c881eb32b32ab7dab2e0eba1b2d4e3a0709dad764e0b59ac43a8a50e8b"
+        }
+      ],
+      "rootFocalCorroboration": true
+    },
+    {
+      "reference": "5:24",
+      "before": "הַמּוֹסִים",
+      "after": "הַמּוּסִים",
+      "detail": "The written vav has an interior left dot/shuruq, not a holam above. Do not replace this literal title with a different word inferred from context.",
+      "cropEvidence": [
+        {
+          "path": "/private/tmp/prosary-2ma/ch5-focus-musim24-only.png",
+          "sha256": "99414a36df467ee56efd180982993747b2986676d88e10f2320b2366c9010ca6"
+        },
+        {
+          "path": "/private/tmp/prosary-2ma/ch5-focus-musim24-primary.png",
+          "sha256": "8d06d161891d67276514a2003b6c4189ec58461456a3a73af9555e5e6efa5a14"
+        }
+      ],
+      "rootFocalCorroboration": true
+    },
+    {
+      "reference": "5:27",
+      "before": "הַמַּכַּבִּי",
+      "after": "הַמְכֻנֶּה",
+      "detail": "The source has he-mem-kaf-nun-he. Initial he patah, mem sheva, kaf qibbuts, nun dagesh/segol are visible in expanded companion; the primary corroborates consonant count.",
+      "cropEvidence": [
+        {
+          "path": "/private/tmp/prosary-2ma/ch5-focus-mekune27-full.png",
+          "sha256": "44c6de609d6b6f3c06b72146a68f639b2986552aa7d024834ef6175ea7e4226b"
+        },
+        {
+          "path": "/private/tmp/prosary-2ma/ch5-focus-mekune27-primary.png",
+          "sha256": "2d8d2d2400b367e96a5bdbfc492770f0a33d33441075515c79c856918103e64d"
+        }
+      ],
+      "rootFocalCorroboration": true
+    },
+    {
+      "reference": "5:27",
+      "before": "מִקַּבֵּי",
+      "after": "מַקָּבִי",
+      "detail": "The source has mem patah, qof dagesh/qamats and bet hiriq; the bet cavity is empty, so no bet dagesh is supplied.",
+      "cropEvidence": [
+        {
+          "path": "/private/tmp/prosary-2ma/ch5-focus-makabi27-only.png",
+          "sha256": "c6eb4d137820c756182d730820890eb533ff1d7c5e3df2530f5a647d84de7322"
+        },
+        {
+          "path": "/private/tmp/prosary-2ma/ch5-focus-mekune27-primary.png",
+          "sha256": "2d8d2d2400b367e96a5bdbfc492770f0a33d33441075515c79c856918103e64d"
+        }
+      ],
+      "rootFocalCorroboration": true
+    }
+  ],
+  "queries": [
+    {
+      "reference": "5:16",
+      "anchor": "נִתּן",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "detail": "The tav lower mark is fused with its letter foot in both native scans. Preserve every visible companion mark and omit only this vowel with an exact proposed source note; full independent review remains pending.",
+      "sourceNoteId": "2ma-5-16-tav-2-vowel",
+      "cropEvidence": [
+        {
+          "path": "/private/tmp/prosary-2ma/ch5-focus-nitten16-full.png",
+          "sha256": "59647b4cd93691bdb87ff4e3786e3ed043921dde1aa8980116fc971170e598c6"
+        },
+        {
+          "path": "/private/tmp/prosary-2ma/ch5-focus-nitten16-primary.png",
+          "sha256": "5414d1671dc09a80643c68e2f9003912d52ae499cbde8635415732f183eed8b5"
+        }
+      ],
+      "accepted": false
+    },
+    {
+      "reference": "5:22",
+      "anchor": "פִּילפּוֹס",
+      "letterIndex": 3,
+      "mark": "vowel",
+      "detail": "The lamed lower mark is fused with its letter foot in both native scans. Preserve every visible companion mark and omit only this vowel with an exact proposed source note; full independent review remains pending.",
+      "sourceNoteId": "2ma-5-22-lamed-3-vowel",
+      "cropEvidence": [
+        {
+          "path": "/private/tmp/prosary-2ma/ch5-focus-pilip22-full.png",
+          "sha256": "c3b05b51e20e11c3035214a2b41b4210acde6d68ca47cff4d2050f3eb3397baa"
+        },
+        {
+          "path": "/private/tmp/prosary-2ma/ch5-focus-pilip22-primary.png",
+          "sha256": "b9a5d3c881eb32b32ab7dab2e0eba1b2d4e3a0709dad764e0b59ac43a8a50e8b"
+        }
+      ],
+      "accepted": false
+    }
+  ],
+  "acceptedSourceNoteIds": [],
+  "proposedSourceNoteIds": [
+    "2ma-5-16-tav-2-vowel",
+    "2ma-5-22-lamed-3-vowel"
+  ],
+  "physicalLines": [
+    {
+      "page": 195,
+      "lineWithinPageBody": 12,
+      "parts": [
+        {
+          "verse": 1,
+          "text": "בָּעֵת הַהִיא הָלַךְ אַנְטִיוֹכוֹס לְהִלָּחֵם שֵׁנִית אֶת־מִצְרַיִם׃"
+        },
+        {
+          "verse": 2,
+          "text": "וַיִּקָּרוּ"
+        }
+      ],
+      "text": "בָּעֵת הַהִיא הָלַךְ אַנְטִיוֹכוֹס לְהִלָּחֵם שֵׁנִית אֶת־מִצְרַיִם׃ וַיִּקָּרוּ",
+      "textSHA256": "c11255c398669c43423e42898130d4931595a915cd36761cb0fbec407f81ef26"
+    },
+    {
+      "page": 195,
+      "lineWithinPageBody": 13,
+      "parts": [
+        {
+          "verse": 2,
+          "text": "שֶׁמִּמַּעַל לְכָל־הָעִיר הָיוּ נִרְאִים פּוֹרְחִים בָּאֲוִיר כִּמְעַט אַרְבָּעִים יוֹם"
+        }
+      ],
+      "text": "שֶׁמִּמַּעַל לְכָל־הָעִיר הָיוּ נִרְאִים פּוֹרְחִים בָּאֲוִיר כִּמְעַט אַרְבָּעִים יוֹם",
+      "textSHA256": "e91a722ca3ea1d8f750aecdea54dbe55847736cd10dc5497b4bc00f20315b4b5"
+    },
+    {
+      "page": 195,
+      "lineWithinPageBody": 14,
+      "parts": [
+        {
+          "verse": 2,
+          "text": "פָּרָשִׁים וַעֲלֵיהֶם מַלְבּוּשִׁים שְׁזוּרִים זָהָב וְהֵם גְּדוּדִים חֲמוּשִׁים חֲנִיתוֹת"
+        }
+      ],
+      "text": "פָּרָשִׁים וַעֲלֵיהֶם מַלְבּוּשִׁים שְׁזוּרִים זָהָב וְהֵם גְּדוּדִים חֲמוּשִׁים חֲנִיתוֹת",
+      "textSHA256": "472698c6380baed004879823e003e7a1797098d384c603c30f181ba4553c5c63"
+    },
+    {
+      "page": 195,
+      "lineWithinPageBody": 15,
+      "parts": [
+        {
+          "verse": 2,
+          "text": "וְחַרְבוֹת שְׁלוּפוֹת׃"
+        },
+        {
+          "verse": 3,
+          "text": "וּמַעַרְכוֹת פָּרָשִׁים סְדוּרוֹת וְהִתְנַפְּלוּת וַהֲגָנָה מִזֶּה"
+        }
+      ],
+      "text": "וְחַרְבוֹת שְׁלוּפוֹת׃ וּמַעַרְכוֹת פָּרָשִׁים סְדוּרוֹת וְהִתְנַפְּלוּת וַהֲגָנָה מִזֶּה",
+      "textSHA256": "a425404e7a7adea97afa3eca04babd25c6242903116f9c26543c4a511d3d0a6c"
+    },
+    {
+      "page": 195,
+      "lineWithinPageBody": 16,
+      "parts": [
+        {
+          "verse": 3,
+          "text": "וּמִזֶּה וְרַעַשׁ מָגִנִּים וַהֲמוֹן רְמָחִים וּזְרִיקַת כִּידוֹנִים וְהַבְרָקַת עֲדִיֵי זָהָב"
+        }
+      ],
+      "text": "וּמִזֶּה וְרַעַשׁ מָגִנִּים וַהֲמוֹן רְמָחִים וּזְרִיקַת כִּידוֹנִים וְהַבְרָקַת עֲדִיֵי זָהָב",
+      "textSHA256": "e62c96bc363b3ae0c23b29b32464ae946dbcc1f499bdc429ba1ece2df649f37f"
+    },
+    {
+      "page": 195,
+      "lineWithinPageBody": 17,
+      "parts": [
+        {
+          "verse": 3,
+          "text": "וְשִׁרְיוֹנִים שׁוֹנִים׃"
+        },
+        {
+          "verse": 4,
+          "text": "וְעַל־כֵּן הָיוּ מִתְפַּלְלִים כֻּלָּם כִּי יְהִי הַמַּרְאֶה"
+        }
+      ],
+      "text": "וְשִׁרְיוֹנִים שׁוֹנִים׃ וְעַל־כֵּן הָיוּ מִתְפַּלְלִים כֻּלָּם כִּי יְהִי הַמַּרְאֶה",
+      "textSHA256": "cdaa6e8e22511ed700b3bc67496dd314c23165c4db7cab3709c8538f27521a49"
+    },
+    {
+      "page": 195,
+      "lineWithinPageBody": 18,
+      "parts": [
+        {
+          "verse": 4,
+          "text": "לְטוֹבָה׃"
+        },
+        {
+          "verse": 5,
+          "text": "וּבִהְיוֹת שְׁמוּעַת שֶׁקֶר עַל־אַנְטִיוֹכוֹס כִּי מֵת וַיִּקַּח יָסוֹן"
+        }
+      ],
+      "text": "לְטוֹבָה׃ וּבִהְיוֹת שְׁמוּעַת שֶׁקֶר עַל־אַנְטִיוֹכוֹס כִּי מֵת וַיִּקַּח יָסוֹן",
+      "textSHA256": "ff321a94d638d97a7400bf50e3cecc1d0be3fa528587b2872f792a599003a550"
+    },
+    {
+      "page": 195,
+      "lineWithinPageBody": 19,
+      "parts": [
+        {
+          "verse": 5,
+          "text": "לֹא־פָּחוֹת מֵאֶלֶף אִישׁ וַיִּתְנַפֵּל פִּתְאֹם עַל־הָעִיר וְאַחֲרֵי אֲשֶׁר"
+        }
+      ],
+      "text": "לֹא־פָּחוֹת מֵאֶלֶף אִישׁ וַיִּתְנַפֵּל פִּתְאֹם עַל־הָעִיר וְאַחֲרֵי אֲשֶׁר",
+      "textSHA256": "4a003586fd64280b5850ec4f5e8ec44ef29b42198442e9a7fbc4d94fdbafa5a7"
+    },
+    {
+      "page": 195,
+      "lineWithinPageBody": 20,
+      "parts": [
+        {
+          "verse": 5,
+          "text": "נֶאֶסְפוּ הָאֲנָשִׁים עַל־הַחוֹמָה וְהָעִיר נִלְכְּדָה בָּרַח מֶנֶלָאוֹס אֶל־הַמְּצוּדָה׃"
+        }
+      ],
+      "text": "נֶאֶסְפוּ הָאֲנָשִׁים עַל־הַחוֹמָה וְהָעִיר נִלְכְּדָה בָּרַח מֶנֶלָאוֹס אֶל־הַמְּצוּדָה׃",
+      "textSHA256": "90f035f4cc91d93c3cb43382d7856eab41fab0b3a4d331239b5526b6b80d9a80"
+    },
+    {
+      "page": 196,
+      "lineWithinPageBody": 1,
+      "parts": [
+        {
+          "verse": 6,
+          "text": "וְיָסוֹן עָשָׂה טֶבַח אַכְזָרִי לִבְנֵי־עַמּוֹ וְהוּא לֹא רָאָה בְּהַצְלָחַת הַמִּלְחָמָה"
+        }
+      ],
+      "text": "וְיָסוֹן עָשָׂה טֶבַח אַכְזָרִי לִבְנֵי־עַמּוֹ וְהוּא לֹא רָאָה בְּהַצְלָחַת הַמִּלְחָמָה",
+      "textSHA256": "5dfe88ce711f673b1f3fd865fda64a42e37351da71bb2007aa82c5076ce1dc77"
+    },
+    {
+      "page": 196,
+      "lineWithinPageBody": 2,
+      "parts": [
+        {
+          "verse": 6,
+          "text": "בִּבְנֵי עַמּוֹ אֶת־הָאָסוֹן הַגָּדוֹל מְאֹד וְדִמָּה בְנַפְשׁוֹ לְקַבֵּל אוֹת נִצָּחוֹן"
+        }
+      ],
+      "text": "בִּבְנֵי עַמּוֹ אֶת־הָאָסוֹן הַגָּדוֹל מְאֹד וְדִמָּה בְנַפְשׁוֹ לְקַבֵּל אוֹת נִצָּחוֹן",
+      "textSHA256": "6b147c92416206c6ad2a3962bae1df804ec44ed26c1119ac23ee6a1c48d1b029"
+    },
+    {
+      "page": 196,
+      "lineWithinPageBody": 3,
+      "parts": [
+        {
+          "verse": 6,
+          "text": "עַל אוֹיְבִים וְלֹא עַל־בְּנֵי־עַמּוֹ׃"
+        },
+        {
+          "verse": 7,
+          "text": "וְלַשִּׁלְטוֹן לֹא־הִגִּיעַ כִּי תַכְלִית"
+        }
+      ],
+      "text": "עַל אוֹיְבִים וְלֹא עַל־בְּנֵי־עַמּוֹ׃ וְלַשִּׁלְטוֹן לֹא־הִגִּיעַ כִּי תַכְלִית",
+      "textSHA256": "e744a7e735b0c539b9671f2500f8f7dd1b1167a255ebc4efd3f4ab5e39cf474c"
+    },
+    {
+      "page": 196,
+      "lineWithinPageBody": 4,
+      "parts": [
+        {
+          "verse": 7,
+          "text": "מְזִמּוֹתָיו הָיְתָה חֶרְפָּה וְכִבְרוֹחַ בָּא אַרְצָה בְנֵי־עַמּוֹן׃"
+        },
+        {
+          "verse": 8,
+          "text": "וּבַסּוֹף הָיָה"
+        }
+      ],
+      "text": "מְזִמּוֹתָיו הָיְתָה חֶרְפָּה וְכִבְרוֹחַ בָּא אַרְצָה בְנֵי־עַמּוֹן׃ וּבַסּוֹף הָיָה",
+      "textSHA256": "8207559c556e90d82aba80e3824440711cdf54b5771aaecef576fc121cd30b6d"
+    },
+    {
+      "page": 196,
+      "lineWithinPageBody": 5,
+      "parts": [
+        {
+          "verse": 8,
+          "text": "גּוֹרָלוֹ רַע כִּי אֵצֶל חְרֵתָת שׁוֹלֵט הָעֲרָבִים נִכְלָא וּמֵעִיר לָעִיר הָיָה"
+        }
+      ],
+      "text": "גּוֹרָלוֹ רַע כִּי אֵצֶל חְרֵתָת שׁוֹלֵט הָעֲרָבִים נִכְלָא וּמֵעִיר לָעִיר הָיָה",
+      "textSHA256": "7b0ae612b916cb628540f497b28b719de23556b0eb93193735fc289f838320aa"
+    },
+    {
+      "page": 196,
+      "lineWithinPageBody": 6,
+      "parts": [
+        {
+          "verse": 8,
+          "text": "בּוֹרֵחַ נִרְדָּף בְּיַד־כֹּל וּמְרֻחָק כְּפוֹשֵׁעַ בַּתּוֹרָה וּמְתֹעָב כְּאוֹיֵב"
+        }
+      ],
+      "text": "בּוֹרֵחַ נִרְדָּף בְּיַד־כֹּל וּמְרֻחָק כְּפוֹשֵׁעַ בַּתּוֹרָה וּמְתֹעָב כְּאוֹיֵב",
+      "textSHA256": "7fc83108f356903a0e9985fce914a32373ba2a070b199ce546ee9f2add091ce7"
+    },
+    {
+      "page": 196,
+      "lineWithinPageBody": 7,
+      "parts": [
+        {
+          "verse": 8,
+          "text": "לְאֶרֶץ מוֹלַדְתּוֹ וְלִבְנֵי עַמּוֹ וּמִצְרַיְמָה הָגְלָה׃"
+        },
+        {
+          "verse": 9,
+          "text": "וַאֲשֶׁר הָיָה מְגָרֵשׁ"
+        }
+      ],
+      "text": "לְאֶרֶץ מוֹלַדְתּוֹ וְלִבְנֵי עַמּוֹ וּמִצְרַיְמָה הָגְלָה׃ וַאֲשֶׁר הָיָה מְגָרֵשׁ",
+      "textSHA256": "962fc817c6e410989ee693838d9e4550530c512a76477142fa662c1bdf43683a"
+    },
+    {
+      "page": 196,
+      "lineWithinPageBody": 8,
+      "parts": [
+        {
+          "verse": 9,
+          "text": "הֲמוֹנִים מֵאֶרֶץ מוֹלַדְתָּם הָיָה אֹבֵד בְּנֵכָר וְיַעַל אֶל־אַנְשֵׁי לָקְדֶמוֹן"
+        }
+      ],
+      "text": "הֲמוֹנִים מֵאֶרֶץ מוֹלַדְתָּם הָיָה אֹבֵד בְּנֵכָר וְיַעַל אֶל־אַנְשֵׁי לָקְדֶמוֹן",
+      "textSHA256": "76ff1dffe26374b6acd18ec9183931dfe89c72f4487da5e6cdd22796c064f012"
+    },
+    {
+      "page": 196,
+      "lineWithinPageBody": 9,
+      "parts": [
+        {
+          "verse": 9,
+          "text": "וְשָׁם בִּקֵּשׁ מָגֵן לוֹ יַעַן אֲשֶׁר הֵם קְרוֹבִים אֶל־עַמּוֹ׃"
+        },
+        {
+          "verse": 10,
+          "text": "וַאֲשֶׁר הָיָה"
+        }
+      ],
+      "text": "וְשָׁם בִּקֵּשׁ מָגֵן לוֹ יַעַן אֲשֶׁר הֵם קְרוֹבִים אֶל־עַמּוֹ׃ וַאֲשֶׁר הָיָה",
+      "textSHA256": "f9d54b0c06056c68d950a70e19278dd81934ef9569b77b462c2effe14a17c874"
+    },
+    {
+      "page": 196,
+      "lineWithinPageBody": 10,
+      "parts": [
+        {
+          "verse": 10,
+          "text": "מַשְׁלִיךְ הֲמוֹנִים לְאֵין־קְבוּרִים הָיָה בִּלְתִּי נִסְפָּד וְלֹא־קְבוּרָה אוֹ קֶבֶר"
+        }
+      ],
+      "text": "מַשְׁלִיךְ הֲמוֹנִים לְאֵין־קְבוּרִים הָיָה בִּלְתִּי נִסְפָּד וְלֹא־קְבוּרָה אוֹ קֶבֶר",
+      "textSHA256": "7469b4027f9f1e4d5ca36334e882592f8ab953fdd7f8f52bf6d66642fc83174c"
+    },
+    {
+      "page": 196,
+      "lineWithinPageBody": 11,
+      "parts": [
+        {
+          "verse": 10,
+          "text": "אָבוֹת לֹא הָיָה לוֹ׃"
+        }
+      ],
+      "text": "אָבוֹת לֹא הָיָה לוֹ׃",
+      "textSHA256": "dcfe1c1390465425bd2b08d92e67b7657fdeb7ffad5ce760be4817300e1b38b0"
+    },
+    {
+      "page": 196,
+      "lineWithinPageBody": 12,
+      "parts": [
+        {
+          "verse": 11,
+          "text": "וּכְבֹא הַשְּׁמוּעָה אֶל־הַמֶּלֶךְ עַל־כָּל אֲשֶׁר־הָיָה וַיַּחְשֹׁב כִּי יְהוּדָה"
+        }
+      ],
+      "text": "וּכְבֹא הַשְּׁמוּעָה אֶל־הַמֶּלֶךְ עַל־כָּל אֲשֶׁר־הָיָה וַיַּחְשֹׁב כִּי יְהוּדָה",
+      "textSHA256": "30bfcf8a00a24ed717c5b9d5e41cd5844693dcda5c9d47ba20b235044973131c"
+    },
+    {
+      "page": 196,
+      "lineWithinPageBody": 13,
+      "parts": [
+        {
+          "verse": 11,
+          "text": "פָּשְׁעָה בוֹ וַיַּעַל מִמִּצְרַיִם זוֹעֵף בְּלִבּוֹ כִּפְרִיץ־חַיּוֹת וַיִּלְכֹּד אֶת־הָעִיר"
+        }
+      ],
+      "text": "פָּשְׁעָה בוֹ וַיַּעַל מִמִּצְרַיִם זוֹעֵף בְּלִבּוֹ כִּפְרִיץ־חַיּוֹת וַיִּלְכֹּד אֶת־הָעִיר",
+      "textSHA256": "a85fb46c7d5adfacf0fad2cc4e6c787dd15294f6d08ab5a18d32da69b35ecbbf"
+    },
+    {
+      "page": 196,
+      "lineWithinPageBody": 14,
+      "parts": [
+        {
+          "verse": 11,
+          "text": "בַּנֶּשֶׁק׃"
+        },
+        {
+          "verse": 12,
+          "text": "וַיְצַו לְאַנְשֵׁי הַצָּבָא לְהַכּוֹת בְּלִי־חֶמְלָה אֶת־הַנִּמְצָאִים וְאֶת־"
+        }
+      ],
+      "text": "בַּנֶּשֶׁק׃ וַיְצַו לְאַנְשֵׁי הַצָּבָא לְהַכּוֹת בְּלִי־חֶמְלָה אֶת־הַנִּמְצָאִים וְאֶת־",
+      "textSHA256": "8665170175542bd640c2ed14264091cf405b0c20d833778bfc605a7f3eaf7704"
+    },
+    {
+      "page": 196,
+      "lineWithinPageBody": 15,
+      "parts": [
+        {
+          "verse": 12,
+          "text": "הָעוֹלִים לַבָּתִּים לַהֲרֹג׃"
+        },
+        {
+          "verse": 13,
+          "text": "וַתְּהִי מַכָּה בַּנְּעָרִים וּזְקֵנִים הֶרֶג בַּנָּשִׁים וְטַף"
+        }
+      ],
+      "text": "הָעוֹלִים לַבָּתִּים לַהֲרֹג׃ וַתְּהִי מַכָּה בַּנְּעָרִים וּזְקֵנִים הֶרֶג בַּנָּשִׁים וְטַף",
+      "textSHA256": "aced1156c0bef85e5b95887e988b52ee6bd3cd2ab7075218c520703288b2e777"
+    },
+    {
+      "page": 196,
+      "lineWithinPageBody": 16,
+      "parts": [
+        {
+          "verse": 13,
+          "text": "טֶבַח בְּתוּלוֹת וְיוֹנְקִים׃"
+        },
+        {
+          "verse": 14,
+          "text": "שְׁמוֹנֶה רְבָבוֹת בִּשְׁלשָׁה יָמִים תְּמִימִים אָבָדוּ"
+        }
+      ],
+      "text": "טֶבַח בְּתוּלוֹת וְיוֹנְקִים׃ שְׁמוֹנֶה רְבָבוֹת בִּשְׁלשָׁה יָמִים תְּמִימִים אָבָדוּ",
+      "textSHA256": "cca968fbb3bd9d1658fd1ef8119ce9f155a6cbe84e3eb19b1504c3439ccc3eba"
+    },
+    {
+      "page": 196,
+      "lineWithinPageBody": 17,
+      "parts": [
+        {
+          "verse": 14,
+          "text": "וְאַרְבָּעִים אֶלֶף בִּידֵיהֶם נִקְצְרוּ וְלֹא פָחוֹת מִן־הַנִּרְצָחִים נִמְכָּרוּ׃"
+        },
+        {
+          "verse": 15,
+          "text": "וּבְלִי־"
+        }
+      ],
+      "text": "וְאַרְבָּעִים אֶלֶף בִּידֵיהֶם נִקְצְרוּ וְלֹא פָחוֹת מִן־הַנִּרְצָחִים נִמְכָּרוּ׃ וּבְלִי־",
+      "textSHA256": "309e357cbb824130a946a0d2fe4ad6812c34578d768316ba555662eded36dd0e"
+    },
+    {
+      "page": 196,
+      "lineWithinPageBody": 18,
+      "parts": [
+        {
+          "verse": 15,
+          "text": "זֶה לֹא־שָׂבְעָה לוֹ וְעוֹד הֵעֵז לָבֹא אֶל־הַהֵיכָל הַקָּדוֹשׁ מְאֹד בְּכָל־"
+        }
+      ],
+      "text": "זֶה לֹא־שָׂבְעָה לוֹ וְעוֹד הֵעֵז לָבֹא אֶל־הַהֵיכָל הַקָּדוֹשׁ מְאֹד בְּכָל־",
+      "textSHA256": "191a47263306bfd6067a4b144183fe6097abef4172b9bdcd8876058b236fbc76"
+    },
+    {
+      "page": 196,
+      "lineWithinPageBody": 19,
+      "parts": [
+        {
+          "verse": 15,
+          "text": "הָאָרֶץ וּמֶנֶלָאוֹס הַבּוֹגֵד בַּתּוֹרָה וּבְאֶרֶץ אָבוֹת הָיָה נוֹהֵג בּוֹ׃"
+        },
+        {
+          "verse": 16,
+          "text": "וּבְיָדָיו"
+        }
+      ],
+      "text": "הָאָרֶץ וּמֶנֶלָאוֹס הַבּוֹגֵד בַּתּוֹרָה וּבְאֶרֶץ אָבוֹת הָיָה נוֹהֵג בּוֹ׃ וּבְיָדָיו",
+      "textSHA256": "1f1e80c98b6636c2798637d7a446f45c54a98de1a11e4935a09684fc7efe4c1f"
+    },
+    {
+      "page": 196,
+      "lineWithinPageBody": 20,
+      "parts": [
+        {
+          "verse": 16,
+          "text": "הַמְטֻמָּאוֹת לָקַח אֶת־כְּלֵי הַקֹּדֶשׁ וַאֲשֶׁר נִתּן נְדָבָה בִּידֵי מְלָכִים"
+        }
+      ],
+      "text": "הַמְטֻמָּאוֹת לָקַח אֶת־כְּלֵי הַקֹּדֶשׁ וַאֲשֶׁר נִתּן נְדָבָה בִּידֵי מְלָכִים",
+      "textSHA256": "815f48cc2817e1982e1c3d0b616682896e7a33b9d1b8fb9ea7f0a42195c4588c"
+    },
+    {
+      "page": 197,
+      "lineWithinPageBody": 1,
+      "parts": [
+        {
+          "verse": 16,
+          "text": "אֲחֵרִים לְגַדֵּל וּלְפָאֵר אֶת־הַמָּקוֹם וְאֶת־כְּבוֹדוֹ סָחַב הוּא בְּיָדָיו"
+        }
+      ],
+      "text": "אֲחֵרִים לְגַדֵּל וּלְפָאֵר אֶת־הַמָּקוֹם וְאֶת־כְּבוֹדוֹ סָחַב הוּא בְּיָדָיו",
+      "textSHA256": "a31ef22ac1c86817e65a886851e3291f9331a48242fb33d2508d529cc6d4a8f3"
+    },
+    {
+      "page": 197,
+      "lineWithinPageBody": 2,
+      "parts": [
+        {
+          "verse": 16,
+          "text": "הַמְתֹעָבוֹת׃"
+        },
+        {
+          "verse": 17,
+          "text": "וְאַנְטִיוֹכוֹס נִטְרְפָה דַעְתּוֹ וְלֹא רָאָה כִּי בַעֲוֹן יוֹשְׁבֵי"
+        }
+      ],
+      "text": "הַמְתֹעָבוֹת׃ וְאַנְטִיוֹכוֹס נִטְרְפָה דַעְתּוֹ וְלֹא רָאָה כִּי בַעֲוֹן יוֹשְׁבֵי",
+      "textSHA256": "98b97200e2bf1f5d7c587d5169cba73c27c65bcac339bf80f4fa107d32c909b6"
+    },
+    {
+      "page": 197,
+      "lineWithinPageBody": 3,
+      "parts": [
+        {
+          "verse": 17,
+          "text": "הָעִיר קָצַף אֲדֹנָי לִזְמַן מְעַט וַיַּסְגֵּר אֶת־הַמָּקוֹם׃"
+        },
+        {
+          "verse": 18,
+          "text": "וְלוּלֵא הָיוּ מְגֹאָלִים"
+        }
+      ],
+      "text": "הָעִיר קָצַף אֲדֹנָי לִזְמַן מְעַט וַיַּסְגֵּר אֶת־הַמָּקוֹם׃ וְלוּלֵא הָיוּ מְגֹאָלִים",
+      "textSHA256": "abc09d7c745246e7ad26ab76cbe4430a17cbe83f526efcd001bf8dbcc9fb897e"
+    },
+    {
+      "page": 197,
+      "lineWithinPageBody": 4,
+      "parts": [
+        {
+          "verse": 18,
+          "text": "בַּעֲוֹנוֹת רַבִּים כִּי עַתָּה כְּהֶלִיוֹדוֹרוֹס אֲשֶׁר נִשְׁלַח מֵאֵת סֶלֶבְקוֹס"
+        }
+      ],
+      "text": "בַּעֲוֹנוֹת רַבִּים כִּי עַתָּה כְּהֶלִיוֹדוֹרוֹס אֲשֶׁר נִשְׁלַח מֵאֵת סֶלֶבְקוֹס",
+      "textSHA256": "dea77e76f611ebb953686b70145e6295a3b2a09e3797c16f0199f3baf559a86b"
+    },
+    {
+      "page": 197,
+      "lineWithinPageBody": 5,
+      "parts": [
+        {
+          "verse": 18,
+          "text": "הַמֶּלֶךְ לְבַקֵּר אֶת־הָאוֹצָר הָיָה מֻכֶּה גַּם־הוּא וְהָיָה שָׁב מֵעַזּוּתוֹ׃"
+        }
+      ],
+      "text": "הַמֶּלֶךְ לְבַקֵּר אֶת־הָאוֹצָר הָיָה מֻכֶּה גַּם־הוּא וְהָיָה שָׁב מֵעַזּוּתוֹ׃",
+      "textSHA256": "4bb354f26a7e9ad3a36d141f075c77c8c50d1dfeacbc649b8871d448122fcffb"
+    },
+    {
+      "page": 197,
+      "lineWithinPageBody": 6,
+      "parts": [
+        {
+          "verse": 19,
+          "text": "אֲבָל לֹא לְמַעַן הַמָּקוֹם בָּחַר יְיָ אֶת־הָעָם כִּי אִם אֶת־הַמָּקוֹם לְמַעַן"
+        }
+      ],
+      "text": "אֲבָל לֹא לְמַעַן הַמָּקוֹם בָּחַר יְיָ אֶת־הָעָם כִּי אִם אֶת־הַמָּקוֹם לְמַעַן",
+      "textSHA256": "338ada709a67f864959044b759d1f2b2d145ce2fa5a9427b825a33604beae93e"
+    },
+    {
+      "page": 197,
+      "lineWithinPageBody": 7,
+      "parts": [
+        {
+          "verse": 19,
+          "text": "הָעָם׃"
+        },
+        {
+          "verse": 20,
+          "text": "וְעַל־כֵּן הַמָּקוֹם אֲשֶׁר סָבַל גַּם־הוּא הָרָעוֹת שֶׁבָּאוּ עַל־הָעָם"
+        }
+      ],
+      "text": "הָעָם׃ וְעַל־כֵּן הַמָּקוֹם אֲשֶׁר סָבַל גַּם־הוּא הָרָעוֹת שֶׁבָּאוּ עַל־הָעָם",
+      "textSHA256": "0b2b4c44708a1a02e18a782d739d641729b32e45d3de89ad9bc52c64bb903a10"
+    },
+    {
+      "page": 197,
+      "lineWithinPageBody": 8,
+      "parts": [
+        {
+          "verse": 20,
+          "text": "לָקַח אַחֲרֵי־כֵן חֵלֶק בְּטוֹבָתוֹ גַּם־הוּא וַאֲשֶׁר נֶעֱזַב בַּחֲרוֹן־אַף אֵל"
+        }
+      ],
+      "text": "לָקַח אַחֲרֵי־כֵן חֵלֶק בְּטוֹבָתוֹ גַּם־הוּא וַאֲשֶׁר נֶעֱזַב בַּחֲרוֹן־אַף אֵל",
+      "textSHA256": "0fe7a7289b4a0989ece979dcbb10e428c36bcbe108cdaa3c3a0267b4d3162f2d"
+    },
+    {
+      "page": 197,
+      "lineWithinPageBody": 9,
+      "parts": [
+        {
+          "verse": 20,
+          "text": "שַׁדַּי חֻדַּשׁ בְּכָל־כְּבוֹדוֹ בַּעֲשׂוֹת הָרִבּוֹן הַגָּדוֹל שָׁלוֹם׃"
+        }
+      ],
+      "text": "שַׁדַּי חֻדַּשׁ בְּכָל־כְּבוֹדוֹ בַּעֲשׂוֹת הָרִבּוֹן הַגָּדוֹל שָׁלוֹם׃",
+      "textSHA256": "903c49e6b7fbb12f2e83a782d5d214e10b3b52c9f735b21c95fea13dead11899"
+    },
+    {
+      "page": 197,
+      "lineWithinPageBody": 10,
+      "parts": [
+        {
+          "verse": 21,
+          "text": "וְאַחֲרֵי גָּזְלוֹ מִן־הַמִּקְדָּשׁ אֶלֶף וּשְׁמוֹנֶה מֵאוֹת כִּכָּר מִהֵר"
+        }
+      ],
+      "text": "וְאַחֲרֵי גָּזְלוֹ מִן־הַמִּקְדָּשׁ אֶלֶף וּשְׁמוֹנֶה מֵאוֹת כִּכָּר מִהֵר",
+      "textSHA256": "342aa4f9db2231e8158b2d3da18c73765e6e001e1d6469f4a4553d4f90047ebe"
+    },
+    {
+      "page": 197,
+      "lineWithinPageBody": 11,
+      "parts": [
+        {
+          "verse": 21,
+          "text": "אַנְטִיוֹכוֹס לָלֶכֶת לְאַנְטִיוֹכִיָה בְּחָשְׁבוֹ בְּגַאֲוָתוֹ לַהֲפֹךְ אֶת הַיַּבָּשָׁה"
+        }
+      ],
+      "text": "אַנְטִיוֹכוֹס לָלֶכֶת לְאַנְטִיוֹכִיָה בְּחָשְׁבוֹ בְּגַאֲוָתוֹ לַהֲפֹךְ אֶת הַיַּבָּשָׁה",
+      "textSHA256": "e05d07138abe7d7b2478b1d0e7ae1abe25d398b39ecd9318381f0cb63f2619ed"
+    },
+    {
+      "page": 197,
+      "lineWithinPageBody": 12,
+      "parts": [
+        {
+          "verse": 21,
+          "text": "לְיָם וְאֶת־הַיָּם לְיַבָּשָׁה׃"
+        },
+        {
+          "verse": 22,
+          "text": "וַיַּשְׁאֵר פְּקִידִים לְהָרֵעַ לָעָם אֶת־פִּילפּוֹס"
+        }
+      ],
+      "text": "לְיָם וְאֶת־הַיָּם לְיַבָּשָׁה׃ וַיַּשְׁאֵר פְּקִידִים לְהָרֵעַ לָעָם אֶת־פִּילפּוֹס",
+      "textSHA256": "017932c4e367a0901da6be1295ed632fccbe4ce0ebc99cd40eb16bbbea43b0f2"
+    },
+    {
+      "page": 197,
+      "lineWithinPageBody": 13,
+      "parts": [
+        {
+          "verse": 22,
+          "text": "מֵעַם־הַפְרִיגִים בִּירוּשָׁלֵם וְהוּא אַכְזָרִי בְטִבְעוֹ מִמַּפְקִידֵהוּ׃"
+        },
+        {
+          "verse": 23,
+          "text": "וְאֶת־"
+        }
+      ],
+      "text": "מֵעַם־הַפְרִיגִים בִּירוּשָׁלֵם וְהוּא אַכְזָרִי בְטִבְעוֹ מִמַּפְקִידֵהוּ׃ וְאֶת־",
+      "textSHA256": "9934cfd0df810ba732ac79ced50e13cba49debbe38784eec46c004387e574190"
+    },
+    {
+      "page": 197,
+      "lineWithinPageBody": 14,
+      "parts": [
+        {
+          "verse": 23,
+          "text": "אַנְדְרוֹנִיקוֹס בִּגְרִיזִים וּמִלְּבַד אֵלֶּה הֵרַע מִכֻּלָּם מֶנֶלָאוֹס אֲשֶׁר"
+        }
+      ],
+      "text": "אַנְדְרוֹנִיקוֹס בִּגְרִיזִים וּמִלְּבַד אֵלֶּה הֵרַע מִכֻּלָּם מֶנֶלָאוֹס אֲשֶׁר",
+      "textSHA256": "f9bb9a639c9640df7b0c5b281f6020b576bbdb86523ca16f1d3f8f1e8c241bce"
+    },
+    {
+      "page": 197,
+      "lineWithinPageBody": 15,
+      "parts": [
+        {
+          "verse": 23,
+          "text": "הִתְעַלָּה עַל־הַתּוֹשָׁבִים וַיְהִי אוֹיֵב בְּלִבּוֹ לַתּוֹשָׁבִים הַיְּהוּדִים׃"
+        },
+        {
+          "verse": 24,
+          "text": "וַיִּשְׁלַח"
+        }
+      ],
+      "text": "הִתְעַלָּה עַל־הַתּוֹשָׁבִים וַיְהִי אוֹיֵב בְּלִבּוֹ לַתּוֹשָׁבִים הַיְּהוּדִים׃ וַיִּשְׁלַח",
+      "textSHA256": "70f662da8f1327c519f3390b20c16061e368f288bf7b9ba1e1f5671e2abb57d0"
+    },
+    {
+      "page": 197,
+      "lineWithinPageBody": 16,
+      "parts": [
+        {
+          "verse": 24,
+          "text": "אֶת־אַפּוֹלוֹנִיוֹס שַׂר־הַמּוּסִים עִם־עֶשְׂרִים וּשְׁנַיִם אֶלֶף אַנְשֵׁי צָבָא"
+        }
+      ],
+      "text": "אֶת־אַפּוֹלוֹנִיוֹס שַׂר־הַמּוּסִים עִם־עֶשְׂרִים וּשְׁנַיִם אֶלֶף אַנְשֵׁי צָבָא",
+      "textSHA256": "468b29d0803cdefa8038626c8e13e6523a282bf5c65a9a6380ddeacb3cdf4de3"
+    },
+    {
+      "page": 197,
+      "lineWithinPageBody": 17,
+      "parts": [
+        {
+          "verse": 24,
+          "text": "וַיִּפְקֹד לִרְצֹחַ אֶת־כָּל־הַגְּבָרִים וְאֶת הַנָּשִׁים וְאֶת הַטַּף לִמְכֹּר׃"
+        },
+        {
+          "verse": 25,
+          "text": "וְהוּא"
+        }
+      ],
+      "text": "וַיִּפְקֹד לִרְצֹחַ אֶת־כָּל־הַגְּבָרִים וְאֶת הַנָּשִׁים וְאֶת הַטַּף לִמְכֹּר׃ וְהוּא",
+      "textSHA256": "2eb2c49bccffac149a20fb55c6dec904d878b22e198e64365e36cae9faa689d5"
+    },
+    {
+      "page": 197,
+      "lineWithinPageBody": 18,
+      "parts": [
+        {
+          "verse": 25,
+          "text": "כְּבוֹאוֹ יְרוּשָׁלֵם וַיְבַקֵּשׁ שָׁלוֹם בְּמִרְמָה וַיְּחַכֶּה עַד־הַיּוֹם הַקָּדוֹשׁ יוֹם"
+        }
+      ],
+      "text": "כְּבוֹאוֹ יְרוּשָׁלֵם וַיְבַקֵּשׁ שָׁלוֹם בְּמִרְמָה וַיְּחַכֶּה עַד־הַיּוֹם הַקָּדוֹשׁ יוֹם",
+      "textSHA256": "76ff1fa1fcb1d4de016b1fd0fdf6802b6ee94f49613d13428399bf81664cafe9"
+    },
+    {
+      "page": 197,
+      "lineWithinPageBody": 19,
+      "parts": [
+        {
+          "verse": 25,
+          "text": "הַשַּׁבָּת וּבִרְאוֹתוֹ אֶת־הַיְּהוּדִים שׁוֹבְתִים צִוָּה אֶת־אַנְשֵׁי חֵילוֹ לְהֵחָלֵץ׃"
+        }
+      ],
+      "text": "הַשַּׁבָּת וּבִרְאוֹתוֹ אֶת־הַיְּהוּדִים שׁוֹבְתִים צִוָּה אֶת־אַנְשֵׁי חֵילוֹ לְהֵחָלֵץ׃",
+      "textSHA256": "73de89e165432cd06ee4737ff2785abea3da181550be34c654fa95c53cead6f0"
+    },
+    {
+      "page": 197,
+      "lineWithinPageBody": 20,
+      "parts": [
+        {
+          "verse": 26,
+          "text": "וְאֶת כָּל־הַיּוֹצְאִים לִרְאוֹת הֵמִית וַיִּפְרֹץ אֶל־תּוֹךְ הָעִיר עִם־אֲנָשָׁיו"
+        }
+      ],
+      "text": "וְאֶת כָּל־הַיּוֹצְאִים לִרְאוֹת הֵמִית וַיִּפְרֹץ אֶל־תּוֹךְ הָעִיר עִם־אֲנָשָׁיו",
+      "textSHA256": "b686a607608ac64f183b589944e569b4f35f470e2b8e624cf374d21464f00e03"
+    },
+    {
+      "page": 197,
+      "lineWithinPageBody": 21,
+      "parts": [
+        {
+          "verse": 26,
+          "text": "הַמְזֻיָּנִים וַיַּהֲרֹג הֲמוֹן רַב׃"
+        },
+        {
+          "verse": 27,
+          "text": "וִיהוּדָה הוּא הַמְכֻנֶּה גַּם מַקָּבִי הָיָה"
+        }
+      ],
+      "text": "הַמְזֻיָּנִים וַיַּהֲרֹג הֲמוֹן רַב׃ וִיהוּדָה הוּא הַמְכֻנֶּה גַּם מַקָּבִי הָיָה",
+      "textSHA256": "8a262699ba3a29902e9c17e7df7cc36945d6376dd07b6f44c1db729bef0cb6fe"
+    },
+    {
+      "page": 198,
+      "lineWithinPageBody": 1,
+      "parts": [
+        {
+          "verse": 27,
+          "text": "הָעֲשִׂירִי וַיִּבְרַח אֶל הַמִּדְבָּר כְּחַיוֹת בֶּהָרִים חַי הוּא וַאֲשֶׁר אִתּוֹ וְהָעֵשֶׂב"
+        }
+      ],
+      "text": "הָעֲשִׂירִי וַיִּבְרַח אֶל הַמִּדְבָּר כְּחַיוֹת בֶּהָרִים חַי הוּא וַאֲשֶׁר אִתּוֹ וְהָעֵשֶׂב",
+      "textSHA256": "dc4e7785e126e6d372c04437f6d82fbb87281b1313147312421c4648f2cacfab"
+    },
+    {
+      "page": 198,
+      "lineWithinPageBody": 2,
+      "parts": [
+        {
+          "verse": 27,
+          "text": "הָיָה מַאֲכָלָם כָּל־הָעֵת לְבִלְתִּי־הֱיוֹת לָהֶם חֵלֶק בַּטֻּמְאָה׃"
+        }
+      ],
+      "text": "הָיָה מַאֲכָלָם כָּל־הָעֵת לְבִלְתִּי־הֱיוֹת לָהֶם חֵלֶק בַּטֻּמְאָה׃",
+      "textSHA256": "1f770eb720a02138be590f2dd7c6ce3da4a68253b2d783b5a27aed6954a0380a"
+    }
+  ],
+  "boundaryChecks": {
+    "physicalRows": 52,
+    "primaryUnits": 27,
+    "representedLabels": 27,
+    "combinedUnits": [],
+    "sourcePages": [
+      195,
+      196,
+      197,
+      198
+    ],
+    "pageContinuations": [
+      [
+        196,
+        197,
+        16
+      ],
+      [
+        197,
+        198,
+        27
+      ]
+    ],
+    "page195EndsComplete5": true,
+    "page196Starts6": true,
+    "chapter4Excluded": true,
+    "chapter6Excluded": true,
+    "integerLabelGaps": []
+  },
+  "supersededIntermediateReadings": [
+    {
+      "reference": "5:18",
+      "detail": "Wide crops initially suggested two vavs followed by nun in the second word. Tight native pixels distinguish zayin from the following plain vav and reveal the tav left leg; final literal reading is מֵעַזּוּתוֹ. This supersedes both the original draft מעוונו and intermediate מעוותו, rather than normalizing spelling by context."
+    },
+    {
+      "reference": "5:24",
+      "detail": "A provisional tax-title interpretation was rejected before any canonical change: the source plainly prints written vav with shuruq in הַמּוּסִים."
+    }
+  ],
+  "resolvedWithoutTextChanges": [
+    {
+      "reference": "5:3",
+      "anchor": "עֲדִיֵי",
+      "cropEvidence": [
+        {
+          "path": "/private/tmp/prosary-2ma/ch5-focus-ady3-full.png",
+          "sha256": "89bfa17ac04edd031f3577b5d35e6f0658f442c5a9661af214843bcb8fb4dc75"
+        }
+      ],
+      "detail": "The first draft’s written yods and lower points match the isolated source; no change."
+    }
+  ],
+  "unresolvedFindings": [
+    "Full independent chapter 5 word/point/boundary review pending.",
+    "Two isolated proposed vowel notes require independent resolution; no consonant or boundary query remains."
+  ]
+}
