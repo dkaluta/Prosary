@@ -50,6 +50,24 @@ class HebrewReviewTests(unittest.TestCase):
         self.assertEqual(report["units"], 3)
         self.assertEqual([row["verse"] for row in self.book["chapters"][0]["verses"]], [1, 3, 2])
 
+    def test_misspelled_range_or_note_fields_fail_even_in_drafts(self):
+        # A typo once silently changed a printed 37–38 unit into verse 37.
+        # Drafts need this protection before any completed inventory exists.
+        for field in ("verseEnd", "sourceVerseLabel", "sourceNote"):
+            with self.subTest(field=field):
+                book = copy.deepcopy(self.book)
+                book["review"]["status"] = "draft"
+                row = book["chapters"][0]["verses"][1]
+                row[field] = row.pop("endVerse") if field == "verseEnd" else "mistyped metadata"
+                with self.assertRaisesRegex(ValueError, "unknown source-unit field"):
+                    validate_book(book, self.catalog)
+
+    def test_unknown_fields_cannot_be_legitimized_by_repinning_review(self):
+        self.book["chapters"][0]["verses"][0]["transliteratedText"] = "unreviewed alternate text"
+        self.repin()
+        with self.assertRaisesRegex(ValueError, "unknown source-unit field"):
+            validate_book(self.book, self.catalog, self.approval)
+
     def test_work_editor_override_is_exact_and_requires_new_review(self):
         work = next(row for row in self.catalog["works"] if row.get("scriptureBook") == "BAR")
         work["collectionEditor"] = "Synthetic replacement editor"

@@ -28,6 +28,17 @@
         "pattern": "^(daily|torah)\\|.+$"
       }
     },
+    "passageSources": {
+      "description": "Optional exact-key, edition-specific source descriptors for reviewed supplements. A descriptor must refer to an existing passage and is required for its different source-book title, translator credit and source structure. Missing means the ordinary edition source. Invalid descriptors make that passage unavailable rather than hiding its evidence.",
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": {"pattern": "^(daily|torah)\\|.+$"},
+      "additionalProperties": {
+        "type": "object",
+        "minProperties": 1,
+        "additionalProperties": {"$ref": "#/$defs/passageSource"}
+      }
+    },
     "passages": {
       "type": "object",
       "propertyNames": {
@@ -47,6 +58,23 @@
     }
   },
   "$defs": {
+    "passageSource": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["book", "name", "attribution", "sourceURL", "isComplete"],
+      "properties": {
+        "book": {"type": "string", "pattern": "^[A-Z0-9]{3}$"},
+        "name": {"type": "string", "minLength": 1},
+        "attribution": {"type": "string", "minLength": 1},
+        "sourceURL": {"type": "string", "format": "uri", "pattern": "^https://"},
+        "isComplete": {"type": "boolean", "description": "False preserves a source partial-chapter notice; it does not conceal or fill printed gaps."},
+        "contentBlocks": {
+          "type": "array", "minItems": 1,
+          "items": {"$ref": "bible-library.json#/$defs/sourceBlock"},
+          "description": "Display in this exact reviewed appointment order; do not sort or regroup chapter references. Every primary passage row appears exactly once. Witness/passage text is a whole source block, not an invented verse. Reject duplicate/dangling primary references, duplicate block/note IDs, and invalid source notes. A source descriptor does not enable paired-script blocks."
+        }
+      }
+    },
     "edition": {
       "type": "object",
       "required": [

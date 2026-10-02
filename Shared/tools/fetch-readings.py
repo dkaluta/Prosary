@@ -481,10 +481,37 @@ def missale_meum_section_readings(section: dict) -> list[dict]:
                 break
     if not readings:
         raise ValueError(f"Missale Meum: no appointed citation in {section.get('id')}")
+    for item in readings:
+        correct_missale_meum_reference(item, identifier)
     if any(word in identifier or word in label for word in ("evangel", "gospel", "passio")):
         for item in readings:
             item["type"] = "gospel"
     return readings
+
+
+def correct_missale_meum_reference(item: dict, identifier: str) -> bool:
+    """Repair three known provider labels against their actual Latin lesson bodies.
+
+    This is deliberately outside the general citation parser. The English proper
+    labels disagree with the corresponding Latin source at Divinum Officium
+    342fd241d2e619cb6a4d270e2cf072dff263c7d9: Sancti/08-15,
+    Sancti/09-15 -> Tempora/Quad5-5, and LectioL5 -> Tempora/093-6.
+    Full source/body evidence is pinned in the Missale citation correction report.
+    """
+    corrections = {
+        ("lectio", "Judith 13:22–25; 13:15; 13:10"):
+            ("Jdt.", "Judith", "13:22–25; 15:10"),
+        ("lectio", "Judith 13:22; 13:25"):
+            ("Jdt.", "Judith", "13:22–25"),
+        ("lectiol5", "Daniel 3:49–51"):
+            ("Dan.", "Daniel", "3:47–51"),
+    }
+    corrected = corrections.get((identifier.casefold(), item.get("full")))
+    if corrected is None:
+        return False
+    item.clear()
+    item.update(citation(*corrected))
+    return True
 
 
 def missale_meum_readings(payload: list[dict]) -> list[dict]:
@@ -742,6 +769,13 @@ def main() -> None:
         assert missale_meum_citations("John 20. 19-31")[0]["full"] == "John 20:19–31"
         assert missale_meum_citations("Mark 14:32-72; 15, 1-46")[0]["full"] == \
             "Mark 14:32–72; 15:1–46"
+        # These repairs belong only to the documented Missale lesson slots.
+        # General parsing and another lesson with the same Daniel citation stay literal.
+        assert missale_meum_citations("Dan 3:49-51")[0]["full"] == "Daniel 3:49–51"
+        assert missale_meum_section_readings({
+            "id": "Lectio", "body": [["*Dan 3:49-51*"]]})[0]["full"] == "Daniel 3:49–51"
+        assert missale_meum_citations("Judith 13:22-25; 13:15; 13:10")[0]["full"] == \
+            "Judith 13:22–25; 13:15; 13:10"
         for source, expected in (
                 ("Esther 13:8-11; 15-17.", "Esther 13:8–11; 15–17"),
                 ("Num 20:1, 3; 6-13.", "Numbers 20:1, 3; 6–13"),

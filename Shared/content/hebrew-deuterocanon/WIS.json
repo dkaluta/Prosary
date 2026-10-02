@@ -9,12 +9,8 @@
   "scan": {
     "volume": "A2",
     "sha256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
-    "pageCount": 325
-  },
-  "review": {
-    "status": "draft",
-    "method": "Direct visual comparison of every verse with the supplied printed source.",
-    "reviewedPages": [
+    "pageCount": 325,
+    "textPages": [
       145,
       146,
       147,
@@ -25,6 +21,9 @@
       152,
       153,
       154,
+      155,
+      156,
+      157,
       158,
       159,
       160,
@@ -46,6 +45,55 @@
       176,
       177,
       178,
+      179,
+      180,
+      181,
+      182,
+      183,
+      184,
+      185,
+      186
+    ]
+  },
+  "review": {
+    "status": "complete",
+    "method": "Independent full visual comparison of every printed source row, word, point, bracket, unit start and page join, recorded in nineteen pinned chapter reports and final restoration reconciliation. Explicitly authorized restorations are disclosed separately from visible print. Final inventory preserves all eleven printed combined ranges; no draft-derived labels or inferred missing verses.",
+    "reviewedPages": [
+      145,
+      146,
+      147,
+      148,
+      149,
+      150,
+      151,
+      152,
+      153,
+      154,
+      155,
+      156,
+      157,
+      158,
+      159,
+      160,
+      161,
+      162,
+      163,
+      164,
+      165,
+      166,
+      167,
+      168,
+      169,
+      170,
+      171,
+      172,
+      173,
+      174,
+      175,
+      176,
+      177,
+      178,
+      179,
       180,
       181,
       182,
@@ -110,7 +158,9 @@
       "Chapter19 first pointed visual draft saved:22units/labels across35provisional physical rows onA2pages183–186. All19chapters now have drafts. Page crossings1/11/19, brackets10/14/19 and final186ending retained;187starts another work. Full separate author and independent comparisons pending; no pages approved.",
       "Chapter18 full39-row author and independent comparisons reconciled: seven corrected token/phrase groups and34 exact point notes (33vowels/one shin-dagesh) integrated with root focal corroboration. Restore visibly printed בו in7–8; retain four-consonant14השלך without draft extra yod. Readable neighboring marks retained, including opening final-kaf qamats. Pages181–182 approved;183 awaits19 comparison. Whole book remains draft.",
       "Chapter19 separate full author comparison covers35rows/22units. Two visible consonant corrections integrated:10written vav in היאור and18literal צלילי replacing misread extra tsadi. All source boundaries, page joins and three bracket spans compared. Dense point queries and mistargeted/clipped focal exclusions recorded. Independent full comparison pending; no pages approved.",
-      "Chapter19 full35-row author and independent comparisons reconciled with root focal corroboration. The independent tight comparison restores the visible written vav in19:9 וישוממו, correcting the earlier author broad-frame no-vav finding, and corrects its readable points; adjacent ויהללו first-lamed qamats is retained.22 exact point omissions (21vowels/one shin-dagesh) are disclosed; all readable neighboring marks remain. The earlier author corrections of written vav in19:10 היאור and middle yod in19:18 צלילי are corroborated. All22 units and source brackets/continuations preserved. Pages183–186 reviewed; Wisdom ends before the separate Job work on187. All19chapters have full comparisons, but6:2 and16:23 remain unresolved consonant blockers, so the book stays draft."
+      "Chapter19 full35-row author and independent comparisons reconciled with root focal corroboration. The independent tight comparison restores the visible written vav in19:9 וישוממו, correcting the earlier author broad-frame no-vav finding, and corrects its readable points; adjacent ויהללו first-lamed qamats is retained.22 exact point omissions (21vowels/one shin-dagesh) are disclosed; all readable neighboring marks remain. The earlier author corrections of written vav in19:10 היאור and middle yod in19:18 צלילי are corroborated. All22 units and source brackets/continuations preserved. Pages183–186 reviewed; Wisdom ends before the separate Job work on187. All19chapters have full comparisons, but6:2 and16:23 remain unresolved consonant blockers, so the book stays draft.",
+      "On2026-10-02 the user expressly approved the two remaining Wisdom editorial restorations with source notes (reply call_9He70Qm0qPD2l2AnzyyA4p9i). In6:2 retain visible he+patah, zayin, nun and final-vav shuruq; restore only damaged alef and missing yod with separate restoredLetter notes. Omit only unreadable alef/zayin vowels with exact notes. In16:23 restore only the damaged second consonant as vav, contextually supported by Brenton, retaining visible lamed qamats and the existing alef-vowel omission. No expected shuruq or other point supplied. These are disclosed editorial reconstructions, not newly legible print. Prior blocker descriptions remain as historical review notes, superseded by this explicit decision. Pages155–157 and179 are now locally reconciled with the previously completed full source comparisons. Correct8:20 range metadata from unknown verseEnd to endVerse21, preserving the already-reviewed printed20–21 unit and all text. Whole-book inventory records19chapters,426sourceunits/437labels,663physicalrows,42pages145–186; all lastVerse values and11combinedranges follow the independent print inventory. Book remains draft pending root final inventory acceptance.",
+      "Root accepted the final source inventory on 2026-10-02 after verifying the separately recorded full chapter comparisons, source boundaries, evidence hashes, exact content digest and approved restored-letter notes. User explicitly approved all three remaining contextual reconstructions in reply to call_9He70Qm0qPD2l2AnzyyA4p9i. Damaged consonants are disclosed as editorial restorations; unreadable points retain separate exact notes. Earlier draft-only statements are historical. This completes source transcription review, not daily-reading crosswalk review or release validation."
     ],
     "acceptedSourceNoteIds": [
       "wis-1-11-titsru-tsade",
@@ -183,6 +233,7 @@
       "wis-16-20-kaf-3-vowel",
       "wis-16-22-qof-3-vowel",
       "wis-16-23-alef-1-vowel",
+      "wis-16-23-vav-restored",
       "wis-16-29-mem-2-vowel",
       "wis-16-6-lamed-1-vowel",
       "wis-17-1-ayin-3-vowel",
@@ -300,6 +351,10 @@
       "wis-6-17-qoph",
       "wis-6-18-bet",
       "wis-6-18-resh",
+      "wis-6-2-alef-restored",
+      "wis-6-2-alef-vowel",
+      "wis-6-2-yod-restored",
+      "wis-6-2-zayin-vowel",
       "wis-6-22-mem",
       "wis-6-3-zayin",
       "wis-6-4-resh",
@@ -321,26 +376,7 @@
       "wis-9-12-qof",
       "wis-9-9-tsadi"
     ],
-    "unresolvedFindings": [
-      {
-        "id": "wis-6-2-faded-consonants",
-        "chapter": 6,
-        "verse": 2,
-        "sourcePages": [
-          155
-        ],
-        "finding": "The first token האזינו remains a candidate. Middle consonants are severely faded in the source; no exact consonant restoration or whole-word approval is authorized. Retained solely in a blocked draft, not certified source text."
-      },
-      {
-        "id": "wis-16-23-damaged-consonant",
-        "chapter": 16,
-        "verse": 23,
-        "sourcePages": [
-          179
-        ],
-        "finding": "Only a short diagonal black stroke survives between alef and lamed. It is yod-like but much smaller than separately visible same-page yods; loss of a vav shaft cannot be excluded. Candidate yod remains unapproved. The initial-alef vowel is separately omitted with an exact source note. No expected אולם or restored consonant has been supplied."
-      }
-    ]
+    "unresolvedFindings": []
   },
   "chapters": [
     {
@@ -569,7 +605,9 @@
             }
           ]
         }
-      ]
+      ],
+      "lastVerse": 16,
+      "isComplete": true
     },
     {
       "number": 2,
@@ -808,7 +846,9 @@
             }
           ]
         }
-      ]
+      ],
+      "lastVerse": 24,
+      "isComplete": true
     },
     {
       "number": 3,
@@ -993,7 +1033,9 @@
           ],
           "textSHA256": "d547116e908a435b8e580bfd346fe949fc2642d59c409d00a820c289d70dce7e"
         }
-      ]
+      ],
+      "lastVerse": 19,
+      "isComplete": true
     },
     {
       "number": 4,
@@ -1228,7 +1270,9 @@
           ],
           "textSHA256": "5046681750f73724c7b7233cda71cd8ab03cefc34e294fd9bda4ab1dddd78ae9"
         }
-      ]
+      ],
+      "lastVerse": 20,
+      "isComplete": true
     },
     {
       "number": 5,
@@ -1743,7 +1787,9 @@
             }
           ]
         }
-      ]
+      ],
+      "lastVerse": 23,
+      "isComplete": true
     },
     {
       "number": 6,
@@ -1784,11 +1830,61 @@
         },
         {
           "verse": 2,
-          "text": "האזינו הָרוֹדִים בָּעָם הַמִּתְנַשְּׂאִים עַל־הֲמוֹן לְאֻמִּים׃",
+          "text": "הַאזינוּ הָרוֹדִים בָּעָם הַמִּתְנַשְּׂאִים עַל־הֲמוֹן לְאֻמִּים׃",
           "sourcePages": [
             155
           ],
-          "textSHA256": "34a19582f3da93e3d573d2d5d44613186cd9d3c6db11e864b9cb7e5ee2cb8ee0"
+          "textSHA256": "4fd0eabbfb8b0cf67b51e96d676323adb107689f186ff46b4c569b664a7a84f8",
+          "sourceNotes": [
+            {
+              "id": "wis-6-2-alef-restored",
+              "kind": "restoredLetter",
+              "anchor": "הַאזינוּ",
+              "occurrence": 1,
+              "letterIndex": 2,
+              "mark": "consonant",
+              "sourcePages": [
+                155
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=155"
+            },
+            {
+              "id": "wis-6-2-yod-restored",
+              "kind": "restoredLetter",
+              "anchor": "הַאזינוּ",
+              "occurrence": 1,
+              "letterIndex": 4,
+              "mark": "consonant",
+              "sourcePages": [
+                155
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=155"
+            },
+            {
+              "id": "wis-6-2-alef-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "הַאזינוּ",
+              "occurrence": 1,
+              "letterIndex": 2,
+              "mark": "vowel",
+              "sourcePages": [
+                155
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=155"
+            },
+            {
+              "id": "wis-6-2-zayin-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "הַאזינוּ",
+              "occurrence": 1,
+              "letterIndex": 3,
+              "mark": "vowel",
+              "sourcePages": [
+                155
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=155"
+            }
+          ]
         },
         {
           "verse": 3,
@@ -2136,7 +2232,9 @@
           ],
           "textSHA256": "9cadfc1f7f83424e28869c09dbe3c5705ec2afdff1c9ea5fedb3aaa4692edaca"
         }
-      ]
+      ],
+      "lastVerse": 25,
+      "isComplete": true
     },
     {
       "number": 7,
@@ -2487,7 +2585,9 @@
           ],
           "textSHA256": "03fd78ac2039887707722d7674a740e4033c32ff7ce7cf90a5e48619e84af5d3"
         }
-      ]
+      ],
+      "lastVerse": 30,
+      "isComplete": true
     },
     {
       "number": 8,
@@ -2706,7 +2806,6 @@
             162
           ],
           "textSHA256": "7af90d05ef0d12fa5ebc07e2fe8bc675e97193d91da1451fcbec47eab8f497b0",
-          "verseEnd": 21,
           "sourceNotes": [
             {
               "id": "wis-8-20-gimel-dagesh",
@@ -2720,9 +2819,12 @@
               ],
               "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=162"
             }
-          ]
+          ],
+          "endVerse": 21
         }
-      ]
+      ],
+      "lastVerse": 21,
+      "isComplete": true
     },
     {
       "number": 9,
@@ -2907,7 +3009,9 @@
           ],
           "textSHA256": "59a6126baec25008b47634d01e29612c59856ca3c6bf32c17d2cc7d8903513a8"
         }
-      ]
+      ],
+      "lastVerse": 19,
+      "isComplete": true
     },
     {
       "number": 10,
@@ -3200,7 +3304,9 @@
             }
           ]
         }
-      ]
+      ],
+      "lastVerse": 21,
+      "isComplete": true
     },
     {
       "number": 11,
@@ -3511,7 +3617,9 @@
           ],
           "textSHA256": "47cbf94c1fd922c197b820c254b1db035341fd99803f720ae023319b161e8564"
         }
-      ]
+      ],
+      "lastVerse": 26,
+      "isComplete": true
     },
     {
       "number": 12,
@@ -3894,7 +4002,9 @@
             }
           ]
         }
-      ]
+      ],
+      "lastVerse": 27,
+      "isComplete": true
     },
     {
       "number": 13,
@@ -4179,7 +4289,9 @@
           ],
           "textSHA256": "c4c2befdb186d86064af1733430a7946b758bd2173cf634331ce4830df28bad7"
         }
-      ]
+      ],
+      "lastVerse": 19,
+      "isComplete": true
     },
     {
       "number": 14,
@@ -4528,7 +4640,9 @@
           ],
           "textSHA256": "6239380b84391378a8572ffbae7baacfd162c19583ba12cfac2f4eb5a90621b5"
         }
-      ]
+      ],
+      "lastVerse": 31,
+      "isComplete": true
     },
     {
       "number": 15,
@@ -4754,7 +4868,9 @@
             }
           ]
         }
-      ]
+      ],
+      "lastVerse": 19,
+      "isComplete": true
     },
     {
       "number": 16,
@@ -5061,20 +5177,32 @@
         },
         {
           "verse": 23,
-          "text": "אילָם לְמַעַן הַחֲיוֹת יְשָׁרִים הָאֵשׁ כֹּחָהּ נָשָׁת׃ כִּי כָּל־יְצוּר יַעֲמֹד לְשָׁרֵת אוֹתְךָ יוֹצְרֵהוּ פַּעַם יַגְבִּיר כֹּחוֹ לְיַסֵּר רְשָׁעִים וּפַעַם יַמְעִיט לְהֵיטִיב עִם־הַבּוֹטְחִים בָּךְ׃",
+          "text": "אולָם לְמַעַן הַחֲיוֹת יְשָׁרִים הָאֵשׁ כֹּחָהּ נָשָׁת׃ כִּי כָּל־יְצוּר יַעֲמֹד לְשָׁרֵת אוֹתְךָ יוֹצְרֵהוּ פַּעַם יַגְבִּיר כֹּחוֹ לְיַסֵּר רְשָׁעִים וּפַעַם יַמְעִיט לְהֵיטִיב עִם־הַבּוֹטְחִים בָּךְ׃",
           "sourcePages": [
             179
           ],
-          "textSHA256": "bdc93dc665e08c8d677a6f1019bfbb4ccf55a6cf823475ee929126445c68a9a4",
+          "textSHA256": "6b95a23be3b2fae9954a3d5b155a3cf592b44767cf9aadf093e9edc5b463f45b",
           "endVerse": 24,
           "sourceNotes": [
             {
               "id": "wis-16-23-alef-1-vowel",
               "kind": "unreadablePoint",
-              "anchor": "אילָם",
+              "anchor": "אולָם",
               "occurrence": 1,
               "letterIndex": 1,
               "mark": "vowel",
+              "sourcePages": [
+                179
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=179"
+            },
+            {
+              "id": "wis-16-23-vav-restored",
+              "kind": "restoredLetter",
+              "anchor": "אולָם",
+              "occurrence": 1,
+              "letterIndex": 2,
+              "mark": "consonant",
               "sourcePages": [
                 179
               ],
@@ -5136,7 +5264,9 @@
             }
           ]
         }
-      ]
+      ],
+      "lastVerse": 29,
+      "isComplete": true
     },
     {
       "number": 17,
@@ -5502,7 +5632,9 @@
             }
           ]
         }
-      ]
+      ],
+      "lastVerse": 21,
+      "isComplete": true
     },
     {
       "number": 18,
@@ -6130,7 +6262,9 @@
             }
           ]
         }
-      ]
+      ],
+      "lastVerse": 25,
+      "isComplete": true
     },
     {
       "number": 19,
@@ -6602,7 +6736,9 @@
             }
           ]
         }
-      ]
+      ],
+      "lastVerse": 22,
+      "isComplete": true
     }
   ]
 }

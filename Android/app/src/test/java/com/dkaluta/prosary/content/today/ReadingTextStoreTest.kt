@@ -1,6 +1,7 @@
 package com.dkaluta.prosary.content.today
 
 import java.io.File
+import kotlinx.serialization.json.*
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNull
@@ -8,6 +9,122 @@ import org.junit.Assert.assertTrue
 import org.junit.Test
 
 class ReadingTextStoreTest {
+    private val supplementCitation = ReadingCitation("reading", "Fixture", "Fixture 2:12–13; 1:1; 2:2")
+    private val supplementRows = """[
+        {"chapter":2,"verse":12,"endVerse":13,"text":"בַּקּבָּה","sourceNotes":[
+            {"id":"primary-note","kind":"unreadablePoint","anchor":"בַּקּבָּה","occurrence":1,"letterIndex":2,
+             "mark":"vowel","sourcePages":[16],"sourceURL":"https://example.org/scan.pdf#page=16"}]},
+        {"chapter":1,"verse":1,"text":"First chapter"},{"chapter":2,"verse":2,"text":"Back to second chapter"}]"""
+    private val supplementBlocks = """[
+        {"id":"second","kind":"verse","chapter":2,"verse":12,"printedLabel":"יב–יג"},
+        {"id":"parallel","kind":"witness","printedLabel":"12a","text":"בַּקּבָּה",
+         "addresses":[{"chapter":2,"verse":12}],"sourceNotes":[
+            {"id":"witness-note","kind":"unreadablePoint","anchor":"בַּקּבָּה","occurrence":1,"letterIndex":2,
+             "mark":"vowel","sourcePages":[16],"sourceURL":"https://example.org/scan.pdf#page=16"}]},
+        {"id":"unnumbered","kind":"passage","text":"Whole unnumbered source wording"},
+        {"id":"first","kind":"verse","chapter":1,"verse":1},
+        {"id":"return","kind":"verse","chapter":2,"verse":2}]"""
+
+    private fun supplementSource(blocks: String? = supplementBlocks) = """{
+        "book":"SIR","name":"Actual Hebrew source","attribution":"Actual translator credit",
+        "sourceURL":"https://example.org/source","isComplete":false${blocks?.let { ",\"contentBlocks\":$it" }.orEmpty()}}"""
+
+    private fun supplementStore(source: String = supplementSource(), rows: String = supplementRows,
+        sources: String? = null, paired: Boolean = false) = ReadingTextStore { name ->
+        (if (name == "readings-editions") """{"schemaVersion":1,"editions":[
+            {"id":"edition","languageCode":"${if (paired) "arc" else "he"}","name":"Base edition",
+             "attribution":"Base credit","sourceURL":"https://example.org/base"
+             ${if (paired) ",\"textScript\":\"Hebr\",\"transliteratedTextScript\":\"Syrc\"" else ""}}]}"""
+        else """{"schemaVersion":1,"wholeVersePassages":["daily|${supplementCitation.full}"],
+            "passages":{"daily|${supplementCitation.full}":{"edition":$rows}},
+            "passageSources":${sources ?: """{"daily|${supplementCitation.full}":{"edition":$source}}"""}}""").byteInputStream()
+    }
+
+    @Test fun supplementPreservesCreditSourceOrderRangesAndBothKindsOfNotes() {
+        val passage = requireNotNull(supplementStore().passage(supplementCitation, "edition"))
+        assertEquals("Actual translator credit", passage.source?.attribution)
+        assertEquals("https://example.org/source", passage.source?.sourceURL)
+        assertFalse(requireNotNull(passage.source).isComplete)
+        assertTrue(passage.includesWholeVerses)
+        assertEquals(listOf("second", "parallel", "unnumbered", "first", "return"), passage.displayItems.map { it.id })
+        assertEquals(listOf(2, 1, 2), passage.displayItems.mapNotNull { it.primary?.chapter })
+        assertEquals("12–13", passage.displayItems.first().primary?.verseLabel)
+        assertEquals("יב–יג", passage.displayItems.first().block.printedLabel)
+        assertEquals(listOf("primary-note", "witness-note"), passage.displayItems.flatMap { it.sourceNotes.orEmpty() }.map { it.id })
+        assertNull(passage.displayItems[2].primary)
+        assertNull(supplementStore().passage(supplementCitation, "edition", isTorah = true))
+        assertNull(supplementStore().passage(supplementCitation, "other"))
+        assertEquals(3, supplementStore(supplementSource(null)).passage(supplementCitation, "edition")?.displayItems?.size)
+    }
+
+    @Test fun malformedSupplementEvidenceNeverFallsBackToTheBaseCreditOrHidesText() {
+        val valid = supplementSource()
+        val invalid = listOf(
+            "null", "{}", valid.replace("\"SIR\"", "\"sir\""),
+            valid.replace("Actual translator credit", " "),
+            valid.replace("https://example.org/source", "http://example.org/source"),
+            valid.replace("https://example.org/source", "https://user:secret@example.org/source"),
+            valid.replace("\"isComplete\":false", "\"isComplete\":\"false\""),
+            valid.replace("\"isComplete\":false", "\"isComplete\":false,\"unknown\":true"),
+            supplementSource("null"), supplementSource("[]"),
+            supplementSource(supplementBlocks.replace("\"id\":\"parallel\"", "\"id\":\"second\"")),
+            supplementSource(supplementBlocks.replace("\"chapter\":1,\"verse\":1", "\"chapter\":1,\"verse\":9")),
+            supplementSource(supplementBlocks.replace("\"id\":\"witness-note\"", "\"id\":\"primary-note\"")),
+            supplementSource(supplementBlocks.replace("\"anchor\":\"בַּקּבָּה\"", "\"anchor\":\"missing\"")),
+            supplementSource(supplementBlocks.replace("{\"id\":\"first\",\"kind\":\"verse\",\"chapter\":1,\"verse\":1},", "")),
+        )
+        invalid.forEach { source ->
+            val store = supplementStore(source)
+            assertNull(source, store.passage(supplementCitation, "edition"))
+            assertTrue(source, store.availableEditions(supplementCitation).isEmpty())
+        }
+        for (sources in listOf("null", "{}", """{"daily|other":{"edition":$valid}}""",
+            """{"daily|${supplementCitation.full}":{}}""",
+            """{"daily|${supplementCitation.full}":{"other":$valid}}""")) {
+            assertNull(sources, supplementStore(sources = sources).passage(supplementCitation, "edition"))
+        }
+    }
+
+    @Test fun supplementRejectsOverlappingPrimaryUnitsReorderingAndPairedScriptBlocks() {
+        val overlapRows = supplementRows.replace("\"chapter\":1,\"verse\":1", "\"chapter\":2,\"verse\":13")
+        assertNull(supplementStore(supplementSource(null), overlapRows).passage(supplementCitation, "edition"))
+        val reordered = supplementBlocks.replace("\"chapter\":1,\"verse\":1", "\"chapter\":2,\"verse\":2")
+            .replace("\"id\":\"return\",\"kind\":\"verse\",\"chapter\":2,\"verse\":2",
+                "\"id\":\"return\",\"kind\":\"verse\",\"chapter\":1,\"verse\":1")
+        assertNull(supplementStore(supplementSource(reordered)).passage(supplementCitation, "edition"))
+        val pairedRows = """[{"chapter":2,"verse":12,"text":"בדיקה","transliteratedText":"ܐܒܓ"}]"""
+        assertNull(supplementStore(supplementSource(null), pairedRows, paired = true).passage(supplementCitation, "edition"))
+    }
+
+    @Test fun supplementRequiresKnownEditionEvenWhenItsPassageExists() {
+        val store = ReadingTextStore { name ->
+            (if (name == "readings-editions") """{"schemaVersion":1,"editions":[
+                {"id":"known","languageCode":"he","name":"Known edition","attribution":"Credit","sourceURL":"https://example.org"}]}"""
+            else """{"schemaVersion":1,"passages":{"daily|${supplementCitation.full}":{
+                "orphan":[{"chapter":1,"verse":1,"text":"Source text"}]}},
+                "passageSources":{"daily|${supplementCitation.full}":{"orphan":${supplementSource(null)}}}}""").byteInputStream()
+        }
+        assertNull(store.passage(supplementCitation, "orphan"))
+        assertTrue(store.availableEditions(supplementCitation).isEmpty())
+        assertEquals(listOf("known"), store.editions.map { it.id })
+    }
+
+    @Test fun supplementRejectsAnyDeclaredSecondaryScriptWithoutDependingOnAramaicPickerMetadata() {
+        for (scriptFields in listOf("", "\"textScript\":\"Hebr\",")) {
+            val store = ReadingTextStore { name ->
+                (if (name == "readings-editions") """{"schemaVersion":1,"editions":[
+                    {"id":"edition","languageCode":"he","name":"Mislabeled pair","attribution":"Credit",
+                    "sourceURL":"https://example.org",${scriptFields}"transliteratedTextScript":"Syrc"}]}"""
+                else """{"schemaVersion":1,"passages":{"daily|${supplementCitation.full}":{
+                    "edition":[{"chapter":1,"verse":1,"text":"Source text"}]}},
+                    "passageSources":{"daily|${supplementCitation.full}":{"edition":${supplementSource(null)}}}}""").byteInputStream()
+            }
+            assertFalse(store.editions.single().hasAramaicScripts)
+            assertNull(store.passage(supplementCitation, "edition"))
+            assertTrue(store.availableEditions(supplementCitation).isEmpty())
+        }
+    }
+
     private val editions = listOf(
         ReadingEdition("existing-he", "he", "Hebrew edition", "Credit", "https://example.org/he"),
         ReadingEdition("existing-tl", "tl", "Filipino edition", "Credit", "https://example.org/tl"),
@@ -245,7 +362,47 @@ class ReadingTextStoreTest {
         val french = requireNotNull(store.passage(ReadingCitation("reading", "Sirach", cases[0].first), "crampon-1923"))
         assertEquals(listOf("27:30") + (1..7).map { "28:$it" }, french.verses.map { "${it.chapter}:${it.verse}" })
         assertTrue(french.verses.all { it.text.isNotBlank() })
-        assertNull(store.passage(ReadingCitation("reading", "Sirach", cases[0].first), "masoretic-delitzsch"))
+        val hebrew = requireNotNull(store.passage(ReadingCitation("reading", "Sirach", cases[0].first), "masoretic-delitzsch"))
+        assertEquals(listOf("27:30") + (1..7).map { "28:$it" }, hebrew.verses.map { "${it.chapter}:${it.verse}" })
+        assertEquals("SIR", hebrew.source?.book)
+        assertTrue(hebrew.source?.attribution?.contains("אברהם כהנא") == true)
+    }
+
+    @Test fun everyBundledSupplementResolvesItsCompleteSourceDisplay() {
+        val raw = Json.parseToJsonElement(File("src/main/assets/data/readings-texts.json").readText()).jsonObject
+        val sources = requireNotNull(raw["passageSources"]).jsonObject
+        val store = bundledStore()
+        assertEquals(20, sources.values.sumOf { it.jsonObject.size })
+        for ((key, editions) in sources) {
+            val (namespace, citation) = key.split('|', limit = 2)
+            for ((edition, sourceJson) in editions.jsonObject) {
+                val passage = requireNotNull(store.passage(ReadingCitation("reading", "Source", citation), edition, namespace == "torah")) { key }
+                val expected = Json.decodeFromJsonElement<List<ReadingVerse>>(raw.getValue("passages").jsonObject.getValue(key).jsonObject.getValue(edition))
+                assertEquals(key, expected, passage.verses)
+                val source = requireNotNull(passage.source)
+                assertEquals(key, sourceJson.jsonObject.getValue("name").jsonPrimitive.content, source.name)
+                assertEquals(key, sourceJson.jsonObject.getValue("attribution").jsonPrimitive.content, source.attribution)
+                assertEquals(key, sourceJson.jsonObject.getValue("sourceURL").jsonPrimitive.content, source.sourceURL)
+                assertEquals(key, expected, passage.displayItems.mapNotNull { it.primary })
+                source.contentBlocks?.let { blocks ->
+                    assertEquals(key, blocks.map { it.id }, passage.displayItems.map { it.id })
+                    for ((block, shown) in blocks.zip(passage.displayItems)) {
+                        assertEquals(key, shown.primary?.sourceNotes ?: block.sourceNotes, shown.sourceNotes)
+                        if (block.kind != "verse") assertEquals(key, block.text, shown.block.text)
+                    }
+                }
+            }
+        }
+        val sirach = requireNotNull(store.passage(ReadingCitation("reading", "Sirach", "Sirach 51:13–17"), "masoretic-delitzsch"))
+        assertEquals(listOf(9, 10, 11, 12), sirach.verses.map { it.verse })
+        val note = sirach.displayItems.flatMap { it.sourceNotes.orEmpty() }.single { it.id == "sir-51-11-alef-vowel" }
+        assertEquals("וְאזְכֶּרְךָ", note.anchor)
+        assertEquals(listOf(529), note.sourcePages)
+        val daniel = requireNotNull(store.passage(ReadingCitation("reading", "Daniel", "Daniel 3:25, 34–45"), "masoretic-delitzsch"))
+        assertEquals("S3Y", daniel.source?.book)
+        assertEquals("תפלת עזריה ושירת שלשת הנערים בכבשן", daniel.source?.name)
+        assertTrue(daniel.source?.attribution?.contains("תרגום דב היליר") == true)
+        assertEquals(1 to 4, daniel.verses.first().let { it.chapter to it.verse })
     }
 
     @Test fun bundledSeptemberSixteenthPsalmOpensWithTheSelectedEditionsNumbering() {

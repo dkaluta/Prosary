@@ -103,7 +103,10 @@ def validate_book(book: dict, catalog: dict, approval: dict | None = None) -> di
         require(isinstance(verses, list) and bool(verses), f"{code} {number}: no text units")
         labels, ranges = set(), []
         for row in verses:
+            require(isinstance(row, dict), f"{code} {number}: source unit must be an object")
             require("printedLabel" not in row, f"{code} {number}: printed labels belong on presentation references")
+            require(row.keys() <= {"verse", "endVerse", "text", "textSHA256", "sourcePages", "sourceNotes"},
+                    f"{code} {number}: unknown source-unit field")
             first, last = row.get("verse"), row.get("endVerse", row.get("verse"))
             require(positive(first) and positive(last) and first <= last <= 1000,
                     f"{code} {number}: invalid verse range")

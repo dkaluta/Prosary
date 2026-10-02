@@ -1,8 +1,8 @@
 # Hebrew Scripture and release progress — 2 October 2026
 
-Ten of the twelve Hebrew source works are complete and reviewed. First Maccabees has now joined the completed works. Wisdom and Second Maccabees are fully transcribed and compared, with three damaged words still unresolved. The supplement is still excluded from production, as requested: all twelve works must be complete before release.
+All twelve Hebrew source works are complete and reviewed. The user approved the final three contextual restorations with visible source notes, and Wisdom and Second Maccabees passed final source-inventory acceptance. The complete Hebrew Bible download has been generated and synchronized to all three native catalogs. Daily-reading integration and release validation remain in progress; nothing from this work has been released.
 
-The count treats the Esther additions and the three Daniel additions as separate source works. Ten of twelve is a count of completed works, not an estimate of the percentage of effort finished.
+The count treats the Esther additions and the three Daniel additions as separate source works. All twelve have passed their source-inventory acceptance; remaining original-print gaps are disclosed rather than filled.
 
 ## Completed source work
 
@@ -18,35 +18,42 @@ The count treats the Esther additions and the three Daniel additions as separate
 | Prayer of Azariah / Song of the Three | Complete |
 | Susanna | Complete |
 | Bel and the Dragon | Complete |
+| Wisdom | Complete; all 19 chapters and 42 source pages, 426 source units, 212 source notes |
+| 2 Maccabees | Complete; all 15 chapters and 56 source pages, 542 source units, 18 source notes |
 
-## Remaining source work
+## Final source decisions
 
-| Work | Saved draft | Finished comparison | Remaining work |
-| --- | --- | --- | --- |
-| Wisdom | All 19 chapters drafted; printed vowel points retained where readable | All chapters have full author and independent comparisons. Chapters 1–5, 7–15, and 17–19 are reconciled; chapters 6 and 16 each retain one damaged-word blocker. | Resolve the damaged consonants in 6:2 and 16:23. |
-| 2 Maccabees | All 15 chapters drafted, including the closing colophon | All chapters have full author and independent comparisons; final corrections and 17 exact point notes are integrated. 55 of 56 pages are approved in full. | Resolve the damaged year-word in 14:4 on the remaining page. |
+| Location | Accepted reading | Disclosure |
+| --- | --- | --- |
+| Wisdom 6:2 | הַאזינוּ | Alef and yod restored editorially; unreadable alef and zayin vowels separately noted. Visible he patah and final shuruq retained. |
+| Wisdom 16:23 | אולָם | Vav restored editorially; visible lamed qamats retained and unreadable alef vowel noted. |
+| 2 Maccabees 14:4 | וְאֶחָת | Het restored editorially; the printed sheva, unusual segol and qamats retained. |
 
-No chapters remain to be drafted. Wisdom and Second Maccabees have completed their independent chapter comparisons and integrated the findings. First Maccabees passed its whole-book inventory reconciliation after full first and separate second comparisons, with scoped peer checks of disputed details; that is not being described as an independent full-book visual pass. Its printed lacunae at 1:26 and 2:13 are preserved and explicitly disclosed, and those chapters remain marked as containing source gaps. Three damaged words still prevent approval of the whole supplement.
+No chapters or source-transcription decisions remain unfinished. Wisdom and Second Maccabees have completed their independent chapter comparisons and integrated the findings. First Maccabees passed its whole-book inventory reconciliation after full first and separate second comparisons, with scoped peer checks of disputed details; that is not being described as an independent full-book visual pass. Printed lacunae are preserved and explicitly disclosed, and affected chapters remain marked as containing source gaps. Completing the chosen edition does not mean supplying text absent from that edition.
 
 ## Recent progress
 
 - Wisdom 13–15 and 17–19 completed independent review and reconciliation. Chapter 18's omitted word in 7–8 is restored from the visible print, and an extra draft letter in 14 is removed. Chapter 19's independent review restored a visible letter missed in the earlier pass and corrected its points; 22 exact point notes disclose what the scan cannot resolve.
 - First Maccabees advanced from source page B159 through the final page, B177, completing the pointed transcription of all 16 chapters.
-- Second Maccabees 6–15 completed reconciliation, apart from the damaged word in 14:4. The final chapter's independent review identified an unreadable compound vowel; only that mark is omitted, with an exact source note.
+- Second Maccabees 6–15 completed reconciliation, including the approved restoration in 14:4. The final chapter's independent review identified an unreadable compound vowel; only that mark is omitted, with an exact source note.
 - Corrections preserve the printing's actual spelling, point placement, brackets, combined verse labels, and text crossing page boundaries.
 
-Unreadable isolated vowel marks receive exact source notes. The notes identify the affected letter; readable neighboring marks remain. The approved restoration of ל in Wisdom 1:16 remains explicitly disclosed. A user decision is pending on whether to restore the candidate האזינו in Wisdom 6:2 with an editorial note; that reconstruction has not been applied or approved. In Wisdom 16:23, a tiny surviving stroke could be a yod or a damaged vav. In Second Maccabees 14:4, the year-word after “one hundred and fifty” is damaged in both available scans. These consonant questions remain open; provisional draft readings are not certified restorations.
+Unreadable isolated vowel marks receive exact source notes. The notes identify the affected letter; readable neighboring marks remain. The earlier approved restoration of ל in Wisdom 1:16 remains disclosed. The three additional reconstructions above were explicitly approved in the user's reply to `call_9He70Qm0qPD2l2AnzyyA4p9i`; they are identified as editorial decisions, never as newly legible print.
 
 ## Validation and release
 
 Source checkpoint `ae24df73b0c016f87610b1cf3972c01178f9ce56` is committed and pushed to `feature/expanded-arabic-peshitta-readings`. Both [CI](https://github.com/dkaluta/Prosary/actions/runs/37006719034) and [Terminal CI](https://github.com/dkaluta/Prosary/actions/runs/37006718986) passed, checked live for this report. This checkpoint includes First Maccabees' completed source inventory, Wisdom's final chapter reconciliation, and Second Maccabees' final reviews. CI passed the Bible source/verse checks, Android and Windows tests, shipped-bundle checks, and web builds. These results do not establish physical-device readiness or store acceptance.
 
-All 20 source-validation tests were rerun successfully against the current local work. The corpus validator confirms ten complete works, two drafts, and zero production imports, and the whitespace check passes. These checks cover source identities, verse hashes, inventories, exact note anchors, and completion requirements. Automated validation complements the full visual comparisons; it does not replace proofreading the print.
+The current source gate passes with all twelve works approved. Local tests pass: 22 Hebrew source-validation tests, 13 source-note tests, 12 source-structure tests and six complete Bible-archive tests. The Hebrew archive contains 78 source-book entries (the base 66 plus twelve separately represented works), 1,336 chapters and 35,363 primary units. Forty-one chapters retain explicit partial-source status for omissions in the chosen source. The tests compare archive text, notes, presentation, metadata and credits with the approved source objects. Automated validation complements the visual comparisons; it does not replace proofreading the print. The earlier CI checkpoint above does not yet validate the new integration changes.
 
 A different library scan and modern photographic reprints were located while seeking clearer copies, but the needed pages have not been inspected. The library scan requires ordinary borrowing access. Automatic approval review rejected navigation to the needed page in a publisher's sample because it might exceed the permitted preview; no page was retrieved through that attempt. These leads do not resolve or certify any disputed letter.
 
 The useful targets for a clearer same-edition copy are Wisdom 6:2 on printed page 483 (תפג), Wisdom 16:23 on printed page 507 (תקז), and Second Maccabees 14:4 on printed page 225. The supplied PDFs place them at A2 pages 155 and 179, and B page 227. Wisdom's standalone PDF repeats the same target pixels; the additional public mirror has the same visible damage at lower resolution. The source-research reports record the distinct library-copy leads and their access limitations.
 
-No merge into `main` or release has been made for this work. After the remaining books are complete, the outstanding release steps are to generate and synchronize the production assets, run the relevant platform and integration checks, merge and push the finished work, and verify the authorized release delivery. Store acceptance and public availability must be reported separately from a successful build or upload.
+The final daily review covers 31 distinct corrected appointments: 20 have approved whole-source mappings and 11 retain explicit unavailable dispositions for absent appointed material or printed gaps. The review corrected three upstream Missale citation errors and distinguished secure recension variants from missing source material. Wisdom 3:1–9, two Judith excerpts and two Sirach excerpts retain their chosen edition's different wording at verified boundaries. No replacement wording was invented. Each mapping pins its source digest, exact source units, calendar scope and endpoint evidence.
+
+Daily assets are regenerated and byte-identical across the three native ports. Apple, Android and Windows now show the actual source book's title, translator credit, source link, exact notes, combined labels and ordered source blocks. Automated mapping checks compare the generated text and evidence with the approved sources, including JSON types, and reject changed or missing source descriptions. Local Apple validation passed all 589 tests before the final strict-decoding additions; focused native checks cover those additions separately. Android's full unit suite passed; Windows execution is deferred to its CI runner.
+
+Version 0.18.0 is prepared (Android code 48, Apple project build 1800, Windows 0.18.0.0). At this source checkpoint, the final release checks, branch/main CI, merge, public archive verification and store delivery remain pending. The configured Android destination is closed testing/alpha; Apple delivery uses Xcode Cloud and TestFlight. Store acceptance and public availability remain separate from a successful build or upload.
 
 This is a dated snapshot. The canonical status and detailed comparison evidence are in `Shared/content/hebrew-deuterocanon/` and the adjacent per-chapter and per-page reports.

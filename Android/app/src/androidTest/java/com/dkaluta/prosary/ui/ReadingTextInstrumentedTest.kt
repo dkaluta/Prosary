@@ -26,6 +26,42 @@ import java.util.Locale
 class ReadingTextInstrumentedTest {
     @get:Rule val compose = createAndroidComposeRule<AdaptiveLayoutTestActivity>()
 
+    @Test fun supplementalPassageShowsItsOwnSourceAndUnnumberedTextInReviewedOrder() {
+        val citation = ReadingCitation("reading", "Fixture", "Fixture 2:12–13; 1:1")
+        val store = ReadingTextStore {
+            """{"schemaVersion":1,"wholeVersePassages":["daily|${citation.full}"],
+                "passages":{"daily|${citation.full}":{"fixture":[
+                    {"chapter":2,"verse":12,"endVerse":13,"text":"First source unit"},
+                    {"chapter":1,"verse":1,"text":"Next source unit"}]}},
+                "passageSources":{"daily|${citation.full}":{"fixture":{
+                    "book":"SIR","name":"Actual source book","attribution":"Actual translator credit",
+                    "sourceURL":"https://example.org/supplement","isComplete":false,"contentBlocks":[
+                        {"id":"first","kind":"verse","chapter":2,"verse":12,"printedLabel":"12–13"},
+                        {"id":"extra","kind":"passage","text":"Unnumbered source wording"},
+                        {"id":"next","kind":"verse","chapter":1,"verse":1}]}}}}""".byteInputStream()
+        }
+        val edition = ReadingEdition("fixture", "en", "Selected Bible", "Base credit", "https://example.org/base")
+        compose.setContent { MaterialTheme {
+            ReadingCard(citation, "en", edition, edition.id, store, false, expanded = true, onToggleExpanded = {})
+        } }
+        compose.waitUntil(5_000) { compose.onAllNodes(androidx.compose.ui.test.hasTestTag("readingSourceName"))
+            .fetchSemanticsNodes().isNotEmpty() }
+        compose.onNodeWithText("Actual source book").assertExists()
+        compose.onNodeWithText("Actual translator credit").assertExists()
+        compose.onNodeWithText("Base credit").assertDoesNotExist()
+        compose.onNodeWithText("Selected Bible").assertExists()
+        compose.onNodeWithText(citation.full).assertExists()
+        compose.onNodeWithTag("readingPartialSource").assertExists()
+        compose.onNodeWithText(compose.activity.getString(R.string.readings_whole_verses_notice)).assertExists()
+        compose.onNodeWithText("\u206612–13\u2069  First source unit").assertExists()
+        compose.onNodeWithText("Unnumbered source wording").assertExists()
+        compose.onNodeWithText("\u20661\u2069  Next source unit").assertExists()
+        val positions = listOf("first", "extra", "next").map {
+            compose.onNodeWithTag("readingBlock.$it").fetchSemanticsNode().boundsInRoot.top
+        }
+        assertTrue(positions.zipWithNext().all { (before, after) -> before < after })
+    }
+
     @Test fun dailySourceNoteExpandsSeparatelyWithoutChangingScripture() {
         val text = "בַּקּבָּה"
         val store = ReadingTextStore {

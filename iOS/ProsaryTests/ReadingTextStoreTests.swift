@@ -7,6 +7,118 @@ final class ReadingTextStoreTests: XCTestCase {
   private let hebrew = ReadingTextEdition(id: "hebrew", languageCode: "he", name: "Hebrew fixture",
     attribution: "Synthetic test data", sourceURL: "https://example.com/hebrew")
 
+  private func sourceFixture(verses: [[String: Any]]? = nil, blocks: Any? = nil,
+                             sourceChanges: [String: Any] = [:]) -> [String: Any] {
+    var source: [String: Any] = ["book":"SUS", "name":"סיפור מקור", "attribution":"Credited Hebrew translator",
+      "sourceURL":"https://example.org/hebrew-scan#page=12", "isComplete":true,
+      "contentBlocks":blocks ?? [["id":"first", "kind":"verse", "chapter":1, "verse":1]]]
+    source.merge(sourceChanges) { _, new in new }
+    return ["schemaVersion":1,
+      "editions":[["id":"fixture", "languageCode":"he", "name":"Selected Bible", "attribution":"Base Bible credit", "sourceURL":"https://example.org/base"]],
+      "passages":["daily|Daniel 13:1":["fixture":verses ?? [["chapter":1, "verse":1, "text":"טקסט מקור"]]]],
+      "passageSources":["daily|Daniel 13:1":["fixture":source]]]
+  }
+
+  private func sourceDataset(_ object: [String: Any]) throws -> ReadingTextDataset {
+    try JSONDecoder().decode(ReadingTextDataset.self, from: JSONSerialization.data(withJSONObject: object))
+  }
+
+  private func sourcePassage(_ object: [String: Any]) throws -> ReadingTextPassage? {
+    try sourceDataset(object).passage(citation: "Daniel 13:1", isTorah: false, editionID: "fixture")
+  }
+
+  func testReviewedSourceRedirectKeepsItsOwnNameCreditAndPartialNotice() throws {
+    var fixture = sourceFixture(verses: [["chapter":1, "verse":1, "endVerse":3, "text":"טקסט מקור"]],
+      sourceChanges: ["isComplete":false])
+    fixture["wholeVersePassages"] = ["daily|Daniel 13:1"]
+    let passage = try XCTUnwrap(sourcePassage(fixture))
+    XCTAssertEqual(passage.edition.name, "Selected Bible")
+    XCTAssertEqual(passage.source?.book, "SUS", "A Daniel appointment can have a separately credited Hebrew source")
+    XCTAssertEqual(passage.source?.name, "סיפור מקור")
+    XCTAssertEqual(passage.source?.attribution, "Credited Hebrew translator")
+    XCTAssertEqual(passage.source?.sourceLink?.fragment, "page=12")
+    XCTAssertEqual(passage.source?.isComplete, false)
+    XCTAssertTrue(passage.includesWholeVerses)
+    XCTAssertEqual(passage.sourceDisplays?.first?.blocks.first?.unit?.verseLabel, "1–3")
+    XCTAssertNil(try sourceDataset(fixture).passage(citation: "Susanna 1:1", isTorah: false, editionID: "fixture"))
+    XCTAssertNil(try sourceDataset(fixture).passage(citation: "Daniel 13:1", isTorah: true, editionID: "fixture"))
+  }
+
+  func testReviewedSourcePreservesReorderedChaptersWitnessesAndExactNotes() throws {
+    let restored: [String: Any] = ["id":"restored-letter", "kind":"restoredLetter", "anchor":"כָּלְתָה", "occurrence":1,
+      "letterIndex":2, "mark":"consonant", "sourcePages":[12], "sourceURL":"https://example.org/source#page=12"]
+    let uncertain: [String: Any] = ["id":"witness-point", "kind":"unreadablePoint", "anchor":"ש", "occurrence":1,
+      "letterIndex":1, "mark":"vowel", "sourcePages":[13], "sourceURL":"https://example.org/source#page=13"]
+    let verses: [[String: Any]] = [["chapter":2, "verse":4, "text":"כָּלְתָה", "sourceNotes":[restored]],
+      ["chapter":1, "verse":8, "endVerse":9, "text":"שני"], ["chapter":2, "verse":1, "text":"שלישי"]]
+    let blocks: [[String: Any]] = [["id":"first", "kind":"verse", "chapter":2, "verse":4, "printedLabel":"ד"],
+      ["id":"witness", "kind":"witness", "text":"ש", "printedLabel":"עדות", "addresses":[["chapter":2,"verse":4]], "sourceNotes":[uncertain]],
+      ["id":"second", "kind":"verse", "chapter":1, "verse":8],
+      ["id":"extra", "kind":"passage", "text":"מזמור נוסף"], ["id":"third", "kind":"verse", "chapter":2, "verse":1]]
+    let passage = try XCTUnwrap(sourcePassage(sourceFixture(verses: verses, blocks: blocks)))
+    let displays = try XCTUnwrap(passage.sourceDisplays)
+    XCTAssertEqual(displays.map { $0.chapter.chapter }, [2, 1, 2], "Chapter revisits must not be regrouped or sorted")
+    let shown = displays.flatMap(\.blocks)
+    XCTAssertEqual(shown.map(\.id), ["first", "witness", "second", "extra", "third"])
+    XCTAssertEqual(shown.map(\.text), ["כָּלְתָה", "ש", "שני", "מזמור נוסף", "שלישי"])
+    XCTAssertEqual(shown.flatMap(\.sourceNotes).map(\.id), ["restored-letter", "witness-point"])
+    XCTAssertEqual(shown[0].printedLabel, "ד")
+    XCTAssertEqual(shown[1].printedLabel, "עדות")
+    XCTAssertNil(shown[1].unit, "A witness is not duplicated in the primary numbered index")
+    XCTAssertEqual(shown[2].unit?.verseLabel, "8–9")
+  }
+
+  func testReviewedSourceRejectsMissingRepeatedReorderedAndInteriorPrimaryReferences() throws {
+    let verses: [[String: Any]] = [["chapter":1,"verse":1,"endVerse":3,"text":"ראשון"], ["chapter":1,"verse":5,"text":"שני"]]
+    let first: [String: Any] = ["id":"first","kind":"verse","chapter":1,"verse":1]
+    let second: [String: Any] = ["id":"second","kind":"verse","chapter":1,"verse":5]
+    let interior: [String: Any] = ["id":"interior","kind":"verse","chapter":1,"verse":2]
+    let repeated: [String: Any] = ["id":"again","kind":"verse","chapter":1,"verse":1]
+    for blocks in [[first], [first, second, repeated], [second, first], [interior, second], [first, first]] {
+      XCTAssertNil(try sourcePassage(sourceFixture(verses: verses, blocks: blocks)), "Invalid source coverage must not fall back to the flat list")
+    }
+    XCTAssertNil(try sourcePassage(sourceFixture(verses: [["chapter":1,"verse":1,"endVerse":3,"text":"א"],
+      ["chapter":1,"verse":2,"text":"ב"]], blocks: [first, interior])), "Overlapping primary units are invalid")
+  }
+
+  func testReviewedSourceRejectsMalformedMetadataAndOrphanCredits() throws {
+    for changes: [String: Any] in [["book":"sus"], ["name":" "], ["attribution":""], ["isComplete":1],
+      ["sourceURL":"http://example.org"], ["sourceURL":"https://name:secret@example.org"],
+      ["contentBlocks":NSNull()], ["contentBlocks":[]], ["unknown":"value"]] {
+      XCTAssertThrowsError(try sourceDataset(sourceFixture(sourceChanges: changes)), "\(changes)")
+    }
+    for metadata: Any in [NSNull(), [String: Any](), ["daily|Daniel 13:1":[String: Any]()],
+      ["daily|Missing 1:1":["fixture":(sourceFixture()["passageSources"] as! [String: [String: Any]])["daily|Daniel 13:1"]!["fixture"]!]],
+      ["daily|Daniel 13:1":["missing":(sourceFixture()["passageSources"] as! [String: [String: Any]])["daily|Daniel 13:1"]!["fixture"]!]]] {
+      var fixture = sourceFixture(); fixture["passageSources"] = metadata
+      XCTAssertThrowsError(try sourceDataset(fixture))
+    }
+  }
+
+  func testReviewedSourceRejectsPairedTextAndDuplicateOrInvalidBlockNotes() throws {
+    XCTAssertNil(try sourcePassage(sourceFixture(verses: [["chapter":1,"verse":1,"text":"טקסט","transliteratedText":"paired"]])))
+    let note: [String: Any] = ["id":"repeated", "kind":"unreadablePoint", "anchor":"ק", "occurrence":1,
+      "letterIndex":1, "mark":"vowel", "sourcePages":[12], "sourceURL":"https://example.org/source"]
+    let verses: [[String: Any]] = [["chapter":1,"verse":1,"text":"ק","sourceNotes":[note]]]
+    let blocks: [[String: Any]] = [["id":"first","kind":"verse","chapter":1,"verse":1],
+      ["id":"extra","kind":"passage","text":"ק","sourceNotes":[note]]]
+    XCTAssertNil(try sourcePassage(sourceFixture(verses: verses, blocks: blocks)))
+    var invalid = blocks; invalid[1]["text"] = "קָ"
+    XCTAssertThrowsError(try sourceDataset(sourceFixture(verses: verses, blocks: invalid)), "An uncertainty note cannot retain its guessed vowel")
+  }
+
+  func testReviewedSourceRejectsMalformedKeysEvenWhenTheyMatchPassageKeys() throws {
+    for key in ["daily|", "torah|", "other|Daniel 13:1", "Daniel 13:1"] {
+      var fixture = sourceFixture()
+      let passages = fixture["passages"] as! [String: Any]
+      let sources = fixture["passageSources"] as! [String: Any]
+      fixture["passages"] = [key: passages["daily|Daniel 13:1"]!]
+      fixture["passageSources"] = [key: sources["daily|Daniel 13:1"]!]
+      XCTAssertThrowsError(try sourceDataset(fixture), "A matching passage is insufficient for malformed source key \(key)")
+    }
+    XCTAssertNotNil(try sourcePassage(sourceFixture()))
+  }
+
   func testPairedScriptPassageRetainsBothTextsAndFollowsDefaultUntilOverridden() throws {
     let payload = #"{"schemaVersion":1,"editions":[{"id":"paired","languageCode":"arc","name":"Paired fixture","attribution":"Synthetic fixture","sourceURL":"https://example.com","textScript":"Hebr","transliteratedTextScript":"Syrc"}],"passages":{"daily|Fixture 1:1":{"paired":[{"chapter":1,"verse":1,"text":"Hebrew-script fixture","transliteratedText":"Syriac-script fixture"}]}}}"#
     let data = try JSONDecoder().decode(ReadingTextDataset.self, from: Data(payload.utf8))
@@ -163,8 +275,47 @@ final class ReadingTextStoreTests: XCTestCase {
     let french = try XCTUnwrap(frenchResult)
     XCTAssertEqual(french.verses.map { "\($0.chapter):\($0.verse)" }, ["27:30"] + (1...7).map { "28:\($0)" })
     XCTAssertTrue(french.verses.allSatisfy { !$0.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty })
-    let unavailable = await store.passage(citation: cases[0].0, isTorah: false, editionID: "masoretic-delitzsch")
-    XCTAssertNil(unavailable)
+    let hebrewResult = await store.passage(citation: cases[0].0, isTorah: false, editionID: "masoretic-delitzsch")
+    let hebrew = try XCTUnwrap(hebrewResult)
+    XCTAssertEqual(hebrew.verses.map { "\($0.chapter):\($0.verse)" }, ["27:30"] + (1...7).map { "28:\($0)" })
+    XCTAssertEqual(hebrew.source?.book, "SIR")
+    XCTAssertTrue(hebrew.source?.attribution.contains("אברהם כהנא") == true)
+  }
+
+  func testEveryBundledSupplementResolvesItsCompleteSourceDisplay() throws {
+    let url = try XCTUnwrap(Bundle.main.url(forResource: "readings-texts", withExtension: "json"))
+    let dataset = try JSONDecoder().decode(ReadingTextDataset.self, from: Data(contentsOf: url))
+    let sources = try XCTUnwrap(dataset.passageSources)
+    XCTAssertEqual(sources.values.reduce(0) { $0 + $1.count }, 20)
+    for (key, editions) in sources {
+      let parts = key.split(separator: "|", maxSplits: 1).map(String.init)
+      for (edition, source) in editions {
+        let passage = try XCTUnwrap(dataset.passage(citation: parts[1], isTorah: parts[0] == "torah", editionID: edition), key)
+        let expected = try XCTUnwrap(dataset.passages[key]?[edition])
+        XCTAssertEqual(passage.verses, expected, key)
+        XCTAssertEqual(passage.source, source, key)
+        if let authored = source.contentBlocks {
+          let displayed = try XCTUnwrap(passage.sourceDisplays, key).flatMap(\.blocks)
+          XCTAssertEqual(displayed.map(\.id), authored.map(\.id), key)
+          XCTAssertEqual(displayed.compactMap(\.unit), expected, key)
+          for (block, shown) in zip(authored, displayed) {
+            XCTAssertEqual(shown.sourceNotes, shown.unit?.sourceNotes ?? block.sourceNotes ?? [], key)
+            if block.kind != .verse { XCTAssertEqual(shown.text, block.text, key) }
+          }
+        }
+      }
+    }
+    let sirach = try XCTUnwrap(dataset.passage(citation: "Sirach 51:13–17", isTorah: false, editionID: "masoretic-delitzsch"))
+    XCTAssertEqual(sirach.verses.map(\.verse), [9, 10, 11, 12])
+    let note = try XCTUnwrap(sirach.sourceDisplays?.flatMap(\.blocks).flatMap(\.sourceNotes).first { $0.id == "sir-51-11-alef-vowel" })
+    XCTAssertEqual(note.anchor, "וְאזְכֶּרְךָ")
+    XCTAssertEqual(note.sourcePages, [529])
+    let daniel = try XCTUnwrap(dataset.passage(citation: "Daniel 3:25, 34–45", isTorah: false, editionID: "masoretic-delitzsch"))
+    XCTAssertEqual(daniel.source?.book, "S3Y")
+    XCTAssertEqual(daniel.source?.name, "תפלת עזריה ושירת שלשת הנערים בכבשן")
+    XCTAssertTrue(daniel.source?.attribution.contains("תרגום דב היליר") == true)
+    XCTAssertEqual(daniel.verses.first?.chapter, 1)
+    XCTAssertEqual(daniel.verses.first?.verse, 4)
   }
 
   func testMalformedVersionAndEmptyVersesAreUnavailable() {

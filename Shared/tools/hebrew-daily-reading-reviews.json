@@ -1,0 +1,1101 @@
+{
+  "schemaVersion": 1,
+  "appointments": {
+    "daily|2 Maccabees 12:43–46": {
+      "status": "complete",
+      "contexts": [
+        "roman1962"
+      ],
+      "sourceBook": "2MA",
+      "sourceContentSHA256": "b026d27eea5c6bcaf7f774a03d1a18eddaccc85f1859591e95880cbb0bd43953",
+      "selections": [
+        {
+          "chapter": 12,
+          "verse": 43
+        },
+        {
+          "chapter": 12,
+          "verse": 44
+        },
+        {
+          "chapter": 12,
+          "verse": 45
+        }
+      ],
+      "includesWholeVerses": false,
+      "openingText": "וְאַחֲרֵי־כֵן אָסַף נְדָבוֹת מֵאֲנָשִׁים יְחִידִים אֲשֶׁר עָלוּ לְאַלְפַּיִם אַדַרְכְּמוֹנִים כֶּסֶף וַיִּשְׁלַח יְרוּשָׁלִַם לְהָבִיא קָרְבַּן חַטָּאת וְטוֹב וְיָפֶה מְאֹד עָשָׂה בְּחָשְׁבוֹ עַל הַתְּחִיָּה׃",
+      "closingText": "וּמֵהַשִּׂיגוֹ בְּשִׂכְלוֹ כִּי הַמֵּתִים בְּיִרְאַת שָׁמַיִם מוּכָן לָהֶם הַגְּמוּל הַטּוֹב בְּיוֹתֵר וְהִיא מַחֲשֶׁבֶת קְדֻשָׁה וַחֲסִידוּת עַל־כֵּן הֵבִיא חַטָּאת בְּעַד הַמֵּתִים לְכַפֵּר עַל הַחֵטְא׃",
+      "method": "Direct clause comparison of the reviewed Hebrew source units with public-domain Douay-Rheims1899/Vulgate and the pinned Latin appointed proper; retain source wording, order and whole combined units. Distinct missing propositions are explicit blockers; ordinary lexical/numerical recension variants are recorded separately.",
+      "excludedSourceBlocks": [],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/hebrew-daily-mappings-2ma-jdt-tob-additions.json",
+          "sha256": "b1bd7ac01cfbcafe91390cfaae9323ff15db4af096950761beca19e6f36746c6"
+        }
+      ]
+    },
+    "daily|2 Maccabees 1:23–27": {
+      "status": "complete",
+      "contexts": [
+        "roman1962"
+      ],
+      "sourceBook": "2MA",
+      "sourceContentSHA256": "b026d27eea5c6bcaf7f774a03d1a18eddaccc85f1859591e95880cbb0bd43953",
+      "selections": [
+        {
+          "chapter": 1,
+          "verse": 23
+        },
+        {
+          "chapter": 1,
+          "verse": 24
+        },
+        {
+          "chapter": 1,
+          "verse": 25
+        },
+        {
+          "chapter": 1,
+          "verse": 26
+        },
+        {
+          "chapter": 1,
+          "verse": 27
+        }
+      ],
+      "includesWholeVerses": true,
+      "openingText": "וּבְהֵאָכֵל הַקָּרְבָּן עָרְכוּ הַכֹּהֲנִים תְּפִלָּה וְהַכֹּהֲנִים וְכֻלָּם בִּפְתֹחַ יוֹנָתָן וְהָאֲחֵרִים עוֹנִים כְּ[מַעֲשֵׂה] נְחֶמְיָה׃",
+      "closingText": "כַּנֵּס נְפוּצוֹתֵינוּ וּגְאַל אֶת־הָעוֹבְדִים בַּגּוֹיִם וְנִבְזִים וּמְתֹעָבִים הַבִּיטָה וְיֵדְעוּ הַגּוֹיִם כִּי אַתָּה אֱלֹהֵינוּ׃",
+      "method": "Direct clause comparison of the reviewed Hebrew source units with public-domain Douay-Rheims1899/Vulgate and the pinned Latin appointed proper; retain source wording, order and whole combined units. Distinct missing propositions are explicit blockers; ordinary lexical/numerical recension variants are recorded separately.",
+      "excludedSourceBlocks": [],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/hebrew-daily-mappings-2ma-jdt-tob-additions.json",
+          "sha256": "b1bd7ac01cfbcafe91390cfaae9323ff15db4af096950761beca19e6f36746c6"
+        }
+      ]
+    },
+    "daily|Daniel 13:1–9, 15–17, 19–30, 33–62": {
+      "status": "unavailable",
+      "contexts": [
+        "roman1962"
+      ],
+      "sourceBook": "SUS",
+      "sourceContentSHA256": "0989a562bb344ac75b6b469f5867d1c1c050b822e3847e36a8e4762e8fefbb03",
+      "reason": "Hard block for full appointed content: the escape action at13:39 has no corresponding Hebrew wording in the reviewed source. Other smaller omissions are listed rather than normalized away. Whole49–50 includes the elders’ invitation to sit and grant old-age honor. The actual Latin proper shortens that scene, keeping only the people’s return. Whole61 retains acting under Moses’s law; the Latin proper also shortens that closing detail. Printed label כ–כא on the editorially addressed40–41 unit must remain visible through its source presentation block. Never silently replace that printed label with a supposed matching Vulgate margin.",
+      "method": "Direct clause comparison of the reviewed Hebrew source units with public-domain Douay-Rheims1899/Vulgate and the pinned Latin appointed proper; retain source wording, order and whole combined units. Distinct missing propositions are explicit blockers; ordinary lexical/numerical recension variants are recorded separately.",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/hebrew-daily-mappings-2ma-jdt-tob-additions.json",
+          "sha256": "b1bd7ac01cfbcafe91390cfaae9323ff15db4af096950761beca19e6f36746c6"
+        }
+      ]
+    },
+    "daily|Daniel 14:27–42": {
+      "status": "unavailable",
+      "contexts": [
+        "roman1962"
+      ],
+      "sourceBook": "BEL",
+      "sourceContentSHA256": "0fd310e2a7d6c931cad1d73fcc5b8b1e36cd4cfa725eae3c04ff4056d0f3318d",
+      "reason": "Hard block: do not expose Hebrew28–42 as complete appointed27–42, since the final whole Vulgate verse is absent. Canonical source is the reviewed lower Theodotion translation, not the upper alternative recension on the same pages. Whole28 contains the king’s conversion accusation and priests’ death; the proper abbreviates the opening. Preserve these if a future alternative-recension option is exposed.",
+      "method": "Direct clause comparison of the reviewed Hebrew source units with public-domain Douay-Rheims1899/Vulgate and the pinned Latin appointed proper; retain source wording, order and whole combined units. Distinct missing propositions are explicit blockers; ordinary lexical/numerical recension variants are recorded separately.",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/hebrew-daily-mappings-2ma-jdt-tob-additions.json",
+          "sha256": "b1bd7ac01cfbcafe91390cfaae9323ff15db4af096950761beca19e6f36746c6"
+        }
+      ]
+    },
+    "daily|Daniel 3:25, 34–45": {
+      "status": "complete",
+      "contexts": [
+        "roman1962"
+      ],
+      "sourceBook": "S3Y",
+      "sourceContentSHA256": "b751507a6c14858a24cd3e54923c7d03ee3cb684de82b89720bc515eced0580e",
+      "selections": [
+        {
+          "chapter": 1,
+          "verse": 4
+        },
+        {
+          "chapter": 1,
+          "verse": 13
+        },
+        {
+          "chapter": 1,
+          "verse": 14
+        },
+        {
+          "chapter": 1,
+          "verse": 15
+        },
+        {
+          "chapter": 1,
+          "verse": 16
+        },
+        {
+          "chapter": 1,
+          "verse": 17
+        },
+        {
+          "chapter": 1,
+          "verse": 18
+        },
+        {
+          "chapter": 1,
+          "verse": 19
+        },
+        {
+          "chapter": 1,
+          "verse": 20
+        },
+        {
+          "chapter": 1,
+          "verse": 21
+        },
+        {
+          "chapter": 1,
+          "verse": 22
+        },
+        {
+          "chapter": 1,
+          "verse": 24
+        }
+      ],
+      "includesWholeVerses": true,
+      "openingText": "ויָקָם עֲזַרְיָה ויִתְפַּלֵּל ויִפְתַּח אֶת־פִּיו ויוֹדֶה אֶת־יְיָ הוּא וַחֲבֵרָיו בְּתוֹךְ־הָאֵשׁ וְהַכַּשְׂדִּים הֵסִיקוּ אֶת־הַכִּבְשָׁן מְאֹד ויֹאמְרוּ׃",
+      "closingText": "וְיֵדְעוּ כִּי אַתָּה יְיָ לְבַדְּךָ הָאֱלֹהִים וּמְהֻלָּל עַל־כָּל־[פְּנֵי] תֵבֵל׃",
+      "method": "Direct clause comparison of the reviewed Hebrew source units with public-domain Douay-Rheims1899/Vulgate and the pinned Latin appointed proper; retain source wording, order and whole combined units. Distinct missing propositions are explicit blockers; ordinary lexical/numerical recension variants are recorded separately.",
+      "excludedSourceBlocks": [],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/hebrew-daily-mappings-2ma-jdt-tob-additions.json",
+          "sha256": "b1bd7ac01cfbcafe91390cfaae9323ff15db4af096950761beca19e6f36746c6"
+        }
+      ]
+    },
+    "daily|Daniel 3:47–51": {
+      "status": "complete",
+      "contexts": [
+        "roman1962"
+      ],
+      "sourceBook": "S3Y",
+      "sourceContentSHA256": "b751507a6c14858a24cd3e54923c7d03ee3cb684de82b89720bc515eced0580e",
+      "selections": [
+        {
+          "chapter": 1,
+          "verse": 26
+        },
+        {
+          "chapter": 1,
+          "verse": 27
+        },
+        {
+          "chapter": 1,
+          "verse": 28
+        },
+        {
+          "chapter": 1,
+          "verse": 29
+        },
+        {
+          "chapter": 1,
+          "verse": 30
+        }
+      ],
+      "includesWholeVerses": true,
+      "openingText": "ויַעַל הַלַּהַב מֵעַל הַכִּבְשָׁן כְּתֵשַׁע וְאַרְבָּעִים אַמָּה׃",
+      "closingText": "ויַעֲנוּ שְׁלָשְׁתָּם פֶּה אֶחָד ויְהַלְלוּ ויְשַׁבְּחוּ ויְרוֹמְמוּ אֶת־הָאֱלֹהִים בְּתוֹךְ־הַכִּבְשָׁן לֵאמֹר׃",
+      "method": "Direct clause comparison of the reviewed Hebrew source units with public-domain Douay-Rheims1899/Vulgate and the pinned Latin appointed proper; retain source wording, order and whole combined units. Distinct missing propositions are explicit blockers; ordinary lexical/numerical recension variants are recorded separately.",
+      "excludedSourceBlocks": [],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/hebrew-daily-mappings-2ma-jdt-tob-additions.json",
+          "sha256": "b1bd7ac01cfbcafe91390cfaae9323ff15db4af096950761beca19e6f36746c6"
+        }
+      ]
+    },
+    "daily|Esther 13:8–11; 15–17": {
+      "status": "complete",
+      "contexts": [
+        "roman1962"
+      ],
+      "sourceBook": "ESG",
+      "sourceContentSHA256": "4bf7a5688d64abc064f226c2efbd3b21c58d83b95c49796ff4f5ab19a479f169",
+      "selections": [
+        {
+          "chapter": 3,
+          "verse": 1
+        },
+        {
+          "chapter": 3,
+          "verse": 2
+        },
+        {
+          "chapter": 3,
+          "verse": 3
+        },
+        {
+          "chapter": 3,
+          "verse": 4
+        },
+        {
+          "chapter": 3,
+          "verse": 8
+        },
+        {
+          "chapter": 3,
+          "verse": 9
+        },
+        {
+          "chapter": 3,
+          "verse": 10
+        }
+      ],
+      "includesWholeVerses": false,
+      "openingText": "וַיִּתְפַּלֵּל [מָרְדְּכי] אֶל־יְיָ בְּזָכְרוֹ אֶת־כָּל־מַעַלְלֵי יְיָ וַיֹּאמַר׃",
+      "closingText": "שְׁמַע אֶת־תְּחִנָּתִי וּרְצֵה ב[עַם] גּוֹרָלְךָ וַהֲפֹךְ אֶבְלֵנוּ לְשָׂשׂוֹן לְמַעַן נִחְיֶה וּנְהַלֵּל אֶת־שִׁמְךָ יְיָ וְאַל־תַּכְרֵת אֶת־שְׂפָתַי מְשׁבְּחֶךָ יְיָ׃",
+      "method": "Direct clause comparison of the reviewed Hebrew source units with public-domain Douay-Rheims1899/Vulgate and the pinned Latin appointed proper; retain source wording, order and whole combined units. Distinct missing propositions are explicit blockers; ordinary lexical/numerical recension variants are recorded separately.",
+      "excludedSourceBlocks": [],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/hebrew-daily-mappings-2ma-jdt-tob-additions.json",
+          "sha256": "b1bd7ac01cfbcafe91390cfaae9323ff15db4af096950761beca19e6f36746c6"
+        }
+      ]
+    },
+    "daily|Judith 13:22–25": {
+      "status": "complete",
+      "contexts": [
+        "roman1962"
+      ],
+      "sourceBook": "JDT",
+      "sourceContentSHA256": "b34d1bae000438799900061c71add7d673dad77e19d2e271946537a00c4736b1",
+      "selections": [
+        {
+          "chapter": 13,
+          "verse": 17
+        },
+        {
+          "chapter": 13,
+          "verse": 18
+        },
+        {
+          "chapter": 13,
+          "verse": 19
+        },
+        {
+          "chapter": 13,
+          "verse": 20
+        }
+      ],
+      "includesWholeVerses": true,
+      "openingText": "וַיִּחֲרַד כָּל־הָעָם מְאֹד וַיִּקְּדוּ וַיִּשְׁתַּחֲווּ לַיָי וַיֹּאמְרוּ פֶּה אֶחָד בָּרוּךְ אַתָּה אֱלֹהֵינוּ אֲשֶׁר הִשְׁמַדְתָּ הַיּוֹם הַזֶּה אוֹיְבֵי עַמֶּךָ׃",
+      "closingText": "וְיַעַשׂ יְיָ לָךְ זֹאת לִגְאוֹן עוֹלָם לְפָקְדֵךְ לְטוֹב יַעַן כִּי לֹא חַסְתְּ עַל־נַפְשֵׁךְ בִּגְלַל עֳנִי עַמֵּנוּ וַתְּקַנְאִי לְמַפַּלְתֵּנוּ וַתֵּלְכִי בְדֶרֶךְ יָשָׁר לִפְנֵי יְיָ אֱלֹהֵינוּ וַיֹּאמֶר כָּל־הָעָם אָמֵן אָמֵן׃",
+      "method": "Compare the complete corresponding assembly/blessing paragraph against pinned DRA and the actual Latin proper. Hebrew13:17 corresponds to Vulgate13:22 with a local addressee variant;13:18 includes23–24;13:19–20 include25 and the additional Amen26. Whole source units, printed wording, exact notes and reviewed span order are preserved. A legitimate recension reading at secure matching boundaries does not require verbal identity with the liturgical text.",
+      "excludedSourceBlocks": [],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/hebrew-daily-mappings-2ma-jdt-tob-additions.json",
+          "sha256": "b1bd7ac01cfbcafe91390cfaae9323ff15db4af096950761beca19e6f36746c6"
+        }
+      ]
+    },
+    "daily|Judith 13:22–25; 15:10": {
+      "status": "complete",
+      "contexts": [
+        "roman1962"
+      ],
+      "sourceBook": "JDT",
+      "sourceContentSHA256": "b34d1bae000438799900061c71add7d673dad77e19d2e271946537a00c4736b1",
+      "selections": [
+        {
+          "chapter": 13,
+          "verse": 17
+        },
+        {
+          "chapter": 13,
+          "verse": 18
+        },
+        {
+          "chapter": 13,
+          "verse": 19
+        },
+        {
+          "chapter": 13,
+          "verse": 20
+        },
+        {
+          "chapter": 15,
+          "verse": 9
+        }
+      ],
+      "includesWholeVerses": true,
+      "openingText": "וַיִּחֲרַד כָּל־הָעָם מְאֹד וַיִּקְּדוּ וַיִּשְׁתַּחֲווּ לַיָי וַיֹּאמְרוּ פֶּה אֶחָד בָּרוּךְ אַתָּה אֱלֹהֵינוּ אֲשֶׁר הִשְׁמַדְתָּ הַיּוֹם הַזֶּה אוֹיְבֵי עַמֶּךָ׃",
+      "closingText": "וַיָּבֹאוּ אֵלֶיהָ וַיְהַלְלוּ אוֹתָהּ כֻלָּם פֶּה אֶחָד וַיֹּאמְרוּ לָהּ אַתְּ גְּאוֹן יְרוּשָׁלַם אַתְּ תִּפְאֶרֶת יִשְׂרָאֵל אַתְּ כְּבוֹד זַרְעֵנוּ׃",
+      "method": "Compare the complete corresponding assembly/blessing paragraph against pinned DRA and the actual Latin proper. Hebrew13:17 corresponds to Vulgate13:22 with a local addressee variant;13:18 includes23–24;13:19–20 include25 and the additional Amen26. Whole source units, printed wording, exact notes and reviewed span order are preserved. A legitimate recension reading at secure matching boundaries does not require verbal identity with the liturgical text. The final separately appointed acclaim at Vulgate15:10 corresponds to whole Hebrew15:9; preserve its narrative introduction.",
+      "excludedSourceBlocks": [],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/hebrew-daily-mappings-2ma-jdt-tob-additions.json",
+          "sha256": "b1bd7ac01cfbcafe91390cfaae9323ff15db4af096950761beca19e6f36746c6"
+        }
+      ]
+    },
+    "daily|Sirach 24:14–16": {
+      "status": "unavailable",
+      "contexts": [
+        "roman1962"
+      ],
+      "sourceBook": "SIR",
+      "sourceContentSHA256": "363ab4b410ed35f108e598844d43add1f30473951180bc4f70432c9ffd4fc4ce",
+      "method": "Vulgate 24:16 and the inspected C10c/C10t proper end with a dwelling in the full assembly of saints. Hebrew 24:12 ends with the inheritance of the Lord and has no counterpart for that distinct final clause. The preceding creation/Zion/Jerusalem/root clauses correspond to Hebrew 24:9–12.",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/SIR-daily-boundary-review-20261002.json",
+          "sha256": "24f607595230802530157c8780cc2dea85fd44359ddd6c3a3412a0cc337f9185"
+        }
+      ],
+      "reason": "Vulgate 24:16 and the inspected C10c/C10t proper end with a dwelling in the full assembly of saints. Hebrew 24:12 ends with the inheritance of the Lord and has no counterpart for that distinct final clause. The preceding creation/Zion/Jerusalem/root clauses correspond to Hebrew 24:9–12."
+    },
+    "daily|Sirach 24:23–31": {
+      "status": "unavailable",
+      "contexts": [
+        "roman1962"
+      ],
+      "sourceBook": "SIR",
+      "sourceContentSHA256": "363ab4b410ed35f108e598844d43add1f30473951180bc4f70432c9ffd4fc4ce",
+      "method": "The vine/fruit passage corresponds to Hebrew 24:17,19–22, but Vulgate 24:24–25 (mother of fair love and the grace/hope declarations), 24:28 (memory through generations) and 24:31 (life everlasting for interpreters) are absent. Printed Hebrew label18 is omitted in the approved source inventory. Do not relabel Hebrew24:23–31, which is different river/Torah material.",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/SIR-daily-boundary-review-20261002.json",
+          "sha256": "24f607595230802530157c8780cc2dea85fd44359ddd6c3a3412a0cc337f9185"
+        }
+      ],
+      "reason": "The vine/fruit passage corresponds to Hebrew 24:17,19–22, but Vulgate 24:24–25 (mother of fair love and the grace/hope declarations), 24:28 (memory through generations) and 24:31 (life everlasting for interpreters) are absent. Printed Hebrew label18 is omitted in the approved source inventory. Do not relabel Hebrew24:23–31, which is different river/Torah material."
+    },
+    "daily|Sirach 27:30; 28:1–7": {
+      "status": "complete",
+      "contexts": [
+        "roman"
+      ],
+      "sourceBook": "SIR",
+      "sourceContentSHA256": "363ab4b410ed35f108e598844d43add1f30473951180bc4f70432c9ffd4fc4ce",
+      "method": "The existing exact Roman appointment review establishes the NABRE envelope for 2026-09-13. Compared every clause with the pinned DRA counterpart: anger/fury27:33 corresponds to Hebrew27:30; revenge, forgiveness, anger and prayer28:1–5 correspond to Hebrew28:1–5; DRA28:6–7 cohere in Hebrew28:6, and DRA28:8–9 in Hebrew28:7. The Hebrew ending is covenant and forgiveness, before the separate avoid-quarrels unit28:8. All selected Hebrew units are present; the later printed28:12 lacuna is outside this excerpt.",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/SIR-daily-boundary-review-20261002.json",
+          "sha256": "24f607595230802530157c8780cc2dea85fd44359ddd6c3a3412a0cc337f9185"
+        }
+      ],
+      "selections": [
+        {
+          "chapter": 27,
+          "verse": 30
+        },
+        {
+          "chapter": 28,
+          "verse": 1
+        },
+        {
+          "chapter": 28,
+          "verse": 2
+        },
+        {
+          "chapter": 28,
+          "verse": 3
+        },
+        {
+          "chapter": 28,
+          "verse": 4
+        },
+        {
+          "chapter": 28,
+          "verse": 5
+        },
+        {
+          "chapter": 28,
+          "verse": 6
+        },
+        {
+          "chapter": 28,
+          "verse": 7
+        }
+      ],
+      "includesWholeVerses": false,
+      "openingText": "עֶבְרָה וְזַעַם גַּם־אֵלֶּה תּוֹעֵבָה וְאִישׁ רָשָׁע יַחֲזִיק בָּם׃",
+      "closingText": "זְכֹר מִצְוָה וְאַל־תִּטֹּר לְרֵעַ וּבְרִית עֶלְיוֹן וְשָׂא פֶּשַׁע׃",
+      "excludedSourceBlocks": []
+    },
+    "daily|Sirach 31:8–11": {
+      "status": "unavailable",
+      "contexts": [
+        "roman1962"
+      ],
+      "sourceBook": "SIR",
+      "sourceContentSHA256": "363ab4b410ed35f108e598844d43add1f30473951180bc4f70432c9ffd4fc4ce",
+      "method": "The rich/righteous-person paragraph corresponds at Hebrew31:8–11, but printed31:10 contains an explicit two-dash lacuna and multiple preserved witnesses. The appointed trial/glory wording cannot be fully certified from that damaged unit; no alternate line is selected to conceal the gap.",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/SIR-daily-boundary-review-20261002.json",
+          "sha256": "24f607595230802530157c8780cc2dea85fd44359ddd6c3a3412a0cc337f9185"
+        }
+      ],
+      "reason": "The rich/righteous-person paragraph corresponds at Hebrew31:8–11, but printed31:10 contains an explicit two-dash lacuna and multiple preserved witnesses. The appointed trial/glory wording cannot be fully certified from that damaged unit; no alternate line is selected to conceal the gap."
+    },
+    "daily|Sirach 36:1–10": {
+      "status": "unavailable",
+      "contexts": [
+        "roman1962"
+      ],
+      "sourceBook": "SIR",
+      "sourceContentSHA256": "363ab4b410ed35f108e598844d43add1f30473951180bc4f70432c9ffd4fc4ce",
+      "method": "Latin Quad1-6 retains the full opening mercy/light/fear petitions in36:1–2, though its English body starts at the raise-your-hand clause. Hebrew36:1 compresses the saving/fear petitions, omits source label2, and has no light-of-mercies clause. Hebrew36:10 ends with who can ask what you do rather than the appointed final wonderful-works clause. Combined6–7 and8–9 remain intact; no numeric identity fallback. The different final wording alone would not block a secure recension correspondence; the separate opening light-of-mercies and wonders petitions have no full source counterpart. The Latin witness is section LectioL4.",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/SIR-daily-boundary-review-20261002.json",
+          "sha256": "24f607595230802530157c8780cc2dea85fd44359ddd6c3a3412a0cc337f9185"
+        }
+      ],
+      "reason": "Latin Quad1-6 retains the full opening mercy/light/fear petitions in36:1–2, though its English body starts at the raise-your-hand clause. Hebrew36:1 compresses the saving/fear petitions, omits source label2, and has no light-of-mercies clause. Hebrew36:10 ends with who can ask what you do rather than the appointed final wonderful-works clause. Combined6–7 and8–9 remain intact; no numeric identity fallback. The different final wording alone would not block a secure recension correspondence; the separate opening light-of-mercies and wonders petitions have no full source counterpart. The Latin witness is section LectioL4."
+    },
+    "daily|Sirach 39:6–14": {
+      "status": "complete",
+      "contexts": [
+        "roman1962"
+      ],
+      "sourceBook": "SIR",
+      "sourceContentSHA256": "363ab4b410ed35f108e598844d43add1f30473951180bc4f70432c9ffd4fc4ce",
+      "method": "Compared the complete pinned DRA envelope and the same-citation C4ap/C5ap proper. DRA39:6–7 are Hebrew39:5 (seeking the Maker and prayer for sins);8–9 are Hebrew39:6 (understanding/wisdom/thanks);10 is Hebrew39:7;11 is Hebrew39:8;12–13 are Hebrew39:9 (lasting praise and name);14 is Hebrew39:10 (nations and assembly). Hebrew39:11 starts a new longevity comparison and is excluded. All six primary units are whole, in print order.",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/SIR-daily-boundary-review-20261002.json",
+          "sha256": "24f607595230802530157c8780cc2dea85fd44359ddd6c3a3412a0cc337f9185"
+        }
+      ],
+      "selections": [
+        {
+          "chapter": 39,
+          "verse": 5
+        },
+        {
+          "chapter": 39,
+          "verse": 6
+        },
+        {
+          "chapter": 39,
+          "verse": 7
+        },
+        {
+          "chapter": 39,
+          "verse": 8
+        },
+        {
+          "chapter": 39,
+          "verse": 9
+        },
+        {
+          "chapter": 39,
+          "verse": 10
+        }
+      ],
+      "includesWholeVerses": false,
+      "openingText": "לִבּוֹ יָשִׁית לְשַׁחֵר יְיָ עוֹשֵׂהוּ וְלִפְנֵי עֶלְיוֹן יִתְחַנֵּן׃ יִפְתַּח פִּיו בִּתְפִלָּה וְעַל־עֲוֹנוֹתָיו יִתְחַנֵּן׃",
+      "closingText": "חָכְמָתוֹ יְסַפְּרוּ עַמִּים וּתְהִלָּתוֹ תַגִּיד עֵדָה׃",
+      "excludedSourceBlocks": []
+    },
+    "daily|Sirach 44:10–15": {
+      "status": "unavailable",
+      "contexts": [
+        "roman1962"
+      ],
+      "sourceBook": "SIR",
+      "sourceContentSHA256": "363ab4b410ed35f108e598844d43add1f30473951180bc4f70432c9ffd4fc4ce",
+      "method": "The approved Hebrew source omits44:12. The appointed posterity/seed-standing-in-covenants unit in Vulgate44:12 has no complete counterpart between Hebrew44:11 and44:13. Bracketed supplied source words in14 are retained; they do not repair omitted12.",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/SIR-daily-boundary-review-20261002.json",
+          "sha256": "24f607595230802530157c8780cc2dea85fd44359ddd6c3a3412a0cc337f9185"
+        }
+      ],
+      "reason": "The approved Hebrew source omits44:12. The appointed posterity/seed-standing-in-covenants unit in Vulgate44:12 has no complete counterpart between Hebrew44:11 and44:13. Bracketed supplied source words in14 are retained; they do not repair omitted12."
+    },
+    "daily|Sirach 44:16–27; 45:3–20": {
+      "status": "unavailable",
+      "contexts": [
+        "roman1962"
+      ],
+      "sourceBook": "SIR",
+      "sourceContentSHA256": "363ab4b410ed35f108e598844d43add1f30473951180bc4f70432c9ffd4fc4ce",
+      "method": "The printed citation is a broad envelope around a composite priestly proper. Its full Vulgate44:22–23 includes the dust/stars promise absent from Hebrew44:21; this is a distinct added proposition, not merely a differently worded parallel clause. The actual C4 proper does not itself recite that dust/stars promise, so this is a limitation of representing the full cited Bible envelope, not a claim that the proper includes it. Vulgate44:27 crosses into Hebrew45:1. The Moses/Aaron paragraph corresponds generally to Hebrew45:3–16, not3–20. Retain unavailability for this full exact citation; do not fabricate a continuous Hebrew translation of the composite priestly incipit or silently omit the cited source gap.",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/SIR-daily-boundary-review-20261002.json",
+          "sha256": "24f607595230802530157c8780cc2dea85fd44359ddd6c3a3412a0cc337f9185"
+        }
+      ],
+      "reason": "The printed citation is a broad envelope around a composite priestly proper. Its full Vulgate44:22–23 includes the dust/stars promise absent from Hebrew44:21; this is a distinct added proposition, not merely a differently worded parallel clause. The actual C4 proper does not itself recite that dust/stars promise, so this is a limitation of representing the full cited Bible envelope, not a claim that the proper includes it. Vulgate44:27 crosses into Hebrew45:1. The Moses/Aaron paragraph corresponds generally to Hebrew45:3–16, not3–20. Retain unavailability for this full exact citation; do not fabricate a continuous Hebrew translation of the composite priestly incipit or silently omit the cited source gap."
+    },
+    "daily|Sirach 44:1–15": {
+      "status": "unavailable",
+      "contexts": [
+        "roman1962"
+      ],
+      "sourceBook": "SIR",
+      "sourceContentSHA256": "363ab4b410ed35f108e598844d43add1f30473951180bc4f70432c9ffd4fc4ce",
+      "method": "The opening praise-of-ancestors sequence corresponds to Hebrew44:1–15 but the approved source omits44:12. The Vulgate covenant/posterity unit is not present; the excerpt cannot be marked complete by skipping that source gap.",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/SIR-daily-boundary-review-20261002.json",
+          "sha256": "24f607595230802530157c8780cc2dea85fd44359ddd6c3a3412a0cc337f9185"
+        }
+      ],
+      "reason": "The opening praise-of-ancestors sequence corresponds to Hebrew44:1–15 but the approved source omits44:12. The Vulgate covenant/posterity unit is not present; the excerpt cannot be marked complete by skipping that source gap."
+    },
+    "daily|Sirach 45:1–6": {
+      "status": "complete",
+      "contexts": [
+        "roman1962"
+      ],
+      "sourceBook": "SIR",
+      "sourceContentSHA256": "363ab4b410ed35f108e598844d43add1f30473951180bc4f70432c9ffd4fc4ce",
+      "method": "DRA45:1 corresponds to the Moses paragraph within Hebrew45:1; DRA45:2 spans Hebrew45:2 and the signs opening of45:3; DRA45:3 maps to the rest of45:3; DRA45:4 maps to45:4; DRA45:5–6 map to45:5. The strengthened-in-heights and signs phrases are recension readings at secure matching positions, not missing units. Complete Hebrew45:1 additionally includes the favor-in-eyes-of-all-flesh material corresponding to DRA44:27: disclose a whole-unit envelope. Preserve all printed brackets and the chapter partial flag. C4c corroborates the appointed paragraph but omits the final Jacob/Israel clause, already retained by whole45:5.",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/SIR-daily-boundary-review-20261002.json",
+          "sha256": "24f607595230802530157c8780cc2dea85fd44359ddd6c3a3412a0cc337f9185"
+        }
+      ],
+      "selections": [
+        {
+          "chapter": 45,
+          "verse": 1
+        },
+        {
+          "chapter": 45,
+          "verse": 2
+        },
+        {
+          "chapter": 45,
+          "verse": 3
+        },
+        {
+          "chapter": 45,
+          "verse": 4
+        },
+        {
+          "chapter": 45,
+          "verse": 5
+        }
+      ],
+      "includesWholeVerses": true,
+      "openingText": "[וַיּוֹצֵ]א מִמֶּנּוּ אִישׁ מוֹצֵא חֵן בְּעֵינֵי כָּל־חָי׃ אָהוּב אֱלֹהִים וַאֲנָשִׁים מֹשֶׁה זִכְרוֹ לְטוֹבָה׃",
+      "closingText": "וַיַּשְׁמִיעֵהוּ אֶת־קוֹלוֹ וַיַּגִּישֵׁהוּ לָעֲרָפֶל׃ וַיָּשֶׂם בְּיָדוֹ מִצְוָה תּוֹרַת חַיִּים וּתְבוּנָה׃ לְלַמֵּד בְּיַעֲקֹב חֻקָּיו וְעֵדוֹתָיו וּמִשְׁפָּטָיו לְיִשְׂרָאֵל׃",
+      "excludedSourceBlocks": []
+    },
+    "daily|Sirach 51:13–17": {
+      "status": "complete",
+      "contexts": [
+        "roman1962"
+      ],
+      "sourceBook": "SIR",
+      "sourceContentSHA256": "363ab4b410ed35f108e598844d43add1f30473951180bc4f70432c9ffd4fc4ce",
+      "method": "DRA51:13 corresponds to Hebrew51:9; DRA51:14 to51:10; DRA51:15 to51:11; DRA51:16–17 to51:12. Raise-voice versus exalted-dwelling and you-are-my-father versus father-of-my-lord are recension readings inside the same complete ordered prayer, not absent units. The closing rescue/thanks/blessing is explicit; stop at51:12 before the separately printed unnumbered thanksgiving psalm and wisdom poem. Preserve partial-chapter metadata without inventing words.",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/SIR-daily-boundary-review-20261002.json",
+          "sha256": "24f607595230802530157c8780cc2dea85fd44359ddd6c3a3412a0cc337f9185"
+        }
+      ],
+      "selections": [
+        {
+          "chapter": 51,
+          "verse": 9
+        },
+        {
+          "chapter": 51,
+          "verse": 10
+        },
+        {
+          "chapter": 51,
+          "verse": 11
+        },
+        {
+          "chapter": 51,
+          "verse": 12
+        }
+      ],
+      "includesWholeVerses": false,
+      "openingText": "וָאָרִים מֵאֶרֶץ קוֹלִי וּמִשַּׁעֲרֵי שְׁאוֹל שִׁוַּעְתִּי׃",
+      "closingText": "וַיִּפְדֵּנִי מִכָּל־רָע וַיְמַלְּטֵנִי בְּיוֹם צָרָה׃ עַל־כֵּן הוֹדִיתִי וַאֲהַלְלָה׃ וַאֲבָרֲכָה אֶת־שֵׁם יְיָ׃",
+      "excludedSourceBlocks": []
+    },
+    "daily|Sirach 51:1–8; 51:12": {
+      "status": "unavailable",
+      "contexts": [
+        "roman1962"
+      ],
+      "sourceBook": "SIR",
+      "sourceContentSHA256": "363ab4b410ed35f108e598844d43add1f30473951180bc4f70432c9ffd4fc4ce",
+      "method": "The rescue prayer corresponds broadly to Hebrew51:1–6 and8, but Hebrew51:2 retains an explicit lacuna, and the appointed unburnt-in-fire/unjust-king/praise-to-death clauses are absent or materially different (Hebrew6 describes reaching death/Sheol). The safe result is unavailable for this exact appointment, not silently skipping source gaps. The post12 unnumbered thanksgiving psalm is not part of this citation.",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/SIR-daily-boundary-review-20261002.json",
+          "sha256": "24f607595230802530157c8780cc2dea85fd44359ddd6c3a3412a0cc337f9185"
+        }
+      ],
+      "reason": "The rescue prayer corresponds broadly to Hebrew51:1–6 and8, but Hebrew51:2 retains an explicit lacuna, and the appointed unburnt-in-fire/unjust-king/praise-to-death clauses are absent or materially different (Hebrew6 describes reaching death/Sheol). The safe result is unavailable for this exact appointment, not silently skipping source gaps. The post12 unnumbered thanksgiving psalm is not part of this citation."
+    },
+    "daily|Tobit 12:7–15": {
+      "status": "unavailable",
+      "contexts": [
+        "roman1962"
+      ],
+      "sourceBook": "TOB",
+      "sourceContentSHA256": "e309bc3f06ad184197fb84d180a178f215355a13082208e621fd1add6f986f5d",
+      "reason": "Hard block: the entire appointed trial/temptation proposition in Vulgate12:13 is absent in this Hebrew recension. Other recensional differences: Hebrew14 does not specify release from the demon, Hebrew9 says fullness of life instead of expressly eternal life; Hebrew15 adds angels presenting prayers. Preserve wording; do not fill from another translation. Whole10–11 must remain combined; all source notes follow unchanged.",
+      "method": "Direct clause comparison of the reviewed Hebrew source units with public-domain Douay-Rheims1899/Vulgate and the pinned Latin appointed proper; retain source wording, order and whole combined units. Distinct missing propositions are explicit blockers; ordinary lexical/numerical recension variants are recorded separately.",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/hebrew-daily-mappings-2ma-jdt-tob-additions.json",
+          "sha256": "b1bd7ac01cfbcafe91390cfaae9323ff15db4af096950761beca19e6f36746c6"
+        }
+      ]
+    },
+    "daily|Wisdom 10:10–14": {
+      "contexts": [
+        "roman1962"
+      ],
+      "sourceBook": "WIS",
+      "sourceContentSHA256": "600a31cb9a69c9f9d56ae2851613fdb1ba766df247e93e303f969b635a8d17d2",
+      "selections": [
+        {
+          "chapter": 10,
+          "verse": 10
+        },
+        {
+          "chapter": 10,
+          "verse": 11
+        },
+        {
+          "chapter": 10,
+          "verse": 12
+        },
+        {
+          "chapter": 10,
+          "verse": 13
+        },
+        {
+          "chapter": 10,
+          "verse": 14
+        }
+      ],
+      "includesWholeVerses": true,
+      "openingText": "הִיא הוֹלִיכָה בְּדֶרֶךְ יָשָׁר אֶת־הַצַּדִּיק בְּבָרְחוֹ מִפְּנֵי חֲמַת אָחִיו וַתַּרְאֵהוּ מַמְלֶכֶת יְיָ וַתִּתֶּן־לוֹ דַּעַת קֹדֶשׁ וַתּוֹשַׁע לוֹ בְּתַלְאוֹתָיו וַתֶּרֶב אֶת־פְּרִי עֲמָלוֹ׃",
+      "closingText": "וַתֵּרֶד עִמּוֹ אֶל־הַבּוֹר וּבְמַאֲסָר לֹא תִטּשׁהוּ עַד־תָּבִיא לוֹ שֵׁבֶט מַלְכוּת וּמִמְשָׁל בְּלוֹחֲצָיו וַתְּגַל שֶׁקֶר מַלְשִׁינָיו וַתִּתֶּן־לוֹ שֵׁם עוֹלָם׃",
+      "method": "Direct clause/end-point comparison with the named edition/calendar witnesses; whole printed Hebrew source units only. Numeric labels are locators, not evidence of equivalence.",
+      "excludedSourceBlocks": [],
+      "status": "complete",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-daily-boundary-review-20261002.json",
+          "sha256": "5139a670ebc9c84bb4b6a6f9e2b8ed656c7e79802a0d4717cbbbe38f2aa84eae"
+        }
+      ]
+    },
+    "daily|Wisdom 10:17–20": {
+      "contexts": [
+        "roman1962"
+      ],
+      "sourceBook": "WIS",
+      "sourceContentSHA256": "600a31cb9a69c9f9d56ae2851613fdb1ba766df247e93e303f969b635a8d17d2",
+      "selections": [
+        {
+          "chapter": 10,
+          "verse": 17
+        },
+        {
+          "chapter": 10,
+          "verse": 18
+        },
+        {
+          "chapter": 10,
+          "verse": 19
+        },
+        {
+          "chapter": 10,
+          "verse": 20
+        }
+      ],
+      "includesWholeVerses": true,
+      "openingText": "[הִיא] נָתְנָה לַקְּדוֹשִׁים שְׂכַר עֲמָלָם וַתַּנְחֵם דֶּרֶךְ פְּלָאִים וַתְּהִי לָמוֹ לְמַחְסֶה יוֹמָם וּלְאוֹר כּוֹכָבִים לָיְלָה׃",
+      "closingText": "עַל־כֵּן פָּשְׁטוּ הַצַּדִּיקִים הַנֶּשֶׁק מֵעַל־הָרְשָׁעִים וַיְּזַמְּרוּ לְשִׁמְךָ הַקָּדוֹשׁ יְיָ ויְהַלָלוּ יַחְדָּו אֶת־יָדְךָ הַסּוֹככָה׃",
+      "method": "Direct clause/end-point comparison with the named edition/calendar witnesses; whole printed Hebrew source units only. Numeric labels are locators, not evidence of equivalence.",
+      "excludedSourceBlocks": [],
+      "status": "complete",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-daily-boundary-review-20261002.json",
+          "sha256": "5139a670ebc9c84bb4b6a6f9e2b8ed656c7e79802a0d4717cbbbe38f2aa84eae"
+        }
+      ]
+    },
+    "daily|Wisdom 3:1–8": {
+      "contexts": [
+        "roman1962"
+      ],
+      "sourceBook": "WIS",
+      "sourceContentSHA256": "600a31cb9a69c9f9d56ae2851613fdb1ba766df247e93e303f969b635a8d17d2",
+      "selections": [
+        {
+          "chapter": 3,
+          "verse": 1
+        },
+        {
+          "chapter": 3,
+          "verse": 2
+        },
+        {
+          "chapter": 3,
+          "verse": 3
+        },
+        {
+          "chapter": 3,
+          "verse": 4
+        },
+        {
+          "chapter": 3,
+          "verse": 5
+        },
+        {
+          "chapter": 3,
+          "verse": 6
+        },
+        {
+          "chapter": 3,
+          "verse": 7
+        },
+        {
+          "chapter": 3,
+          "verse": 8
+        }
+      ],
+      "includesWholeVerses": true,
+      "openingText": "וְנִשְׁמוֹת הַצַּדִּיקִים בְּיַד אֱלֹהִים וְצָרָה בַּל־תִּגַּע בָּהֶן׃",
+      "closingText": "יִשְׁפְּטוּ גוֹיִם וְיִמְשְׁלוּ בְּעַמִּים וַעֲלֵיהֶם יִמְלֹךְ יְיָ לְעוֹלָם וָעֶד׃",
+      "method": "Direct clause/end-point comparison with the named edition/calendar witnesses; whole printed Hebrew source units only. Numeric labels are locators, not evidence of equivalence.",
+      "excludedSourceBlocks": [],
+      "status": "complete",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-daily-boundary-review-20261002.json",
+          "sha256": "5139a670ebc9c84bb4b6a6f9e2b8ed656c7e79802a0d4717cbbbe38f2aa84eae"
+        }
+      ]
+    },
+    "daily|Wisdom 3:1–9": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceBook": "WIS",
+      "sourceContentSHA256": "600a31cb9a69c9f9d56ae2851613fdb1ba766df247e93e303f969b635a8d17d2",
+      "selections": [
+        {
+          "chapter": 3,
+          "verse": 1
+        },
+        {
+          "chapter": 3,
+          "verse": 2
+        },
+        {
+          "chapter": 3,
+          "verse": 3
+        },
+        {
+          "chapter": 3,
+          "verse": 4
+        },
+        {
+          "chapter": 3,
+          "verse": 5
+        },
+        {
+          "chapter": 3,
+          "verse": 6
+        },
+        {
+          "chapter": 3,
+          "verse": 7
+        },
+        {
+          "chapter": 3,
+          "verse": 8
+        },
+        {
+          "chapter": 3,
+          "verse": 9
+        }
+      ],
+      "includesWholeVerses": true,
+      "openingText": "וְנִשְׁמוֹת הַצַּדִּיקִים בְּיַד אֱלֹהִים וְצָרָה בַּל־תִּגַּע בָּהֶן׃",
+      "closingText": "הַבּוֹטְחִים בּוֹ יָבִינוּ אֱמֶת וְהַנֶּאֱמָנִים יִדְבְּקוּ בוֹ בְּאַהֲבָה׃ כִּי חֶסֶד וְרַחֲמִים לִבְחִירָיו׃",
+      "method": "Direct full-source-unit comparison; printed Hebrew3:9 endpoint rechecked against the following source10 label and independently corroborated by Rahlfs Greek and DRA. The longer AM/Brenton ending is documented as an edition variant; no new Hebrew text, word cuts or numbers inferred.",
+      "excludedSourceBlocks": [],
+      "status": "complete",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-daily-boundary-review-20261002.json",
+          "sha256": "5139a670ebc9c84bb4b6a6f9e2b8ed656c7e79802a0d4717cbbbe38f2aa84eae"
+        }
+      ]
+    },
+    "daily|Wisdom 4:7–15": {
+      "contexts": [
+        "ugcc-gregorian"
+      ],
+      "sourceBook": "WIS",
+      "sourceContentSHA256": "600a31cb9a69c9f9d56ae2851613fdb1ba766df247e93e303f969b635a8d17d2",
+      "selections": [
+        {
+          "chapter": 4,
+          "verse": 7
+        },
+        {
+          "chapter": 4,
+          "verse": 8
+        },
+        {
+          "chapter": 4,
+          "verse": 9
+        },
+        {
+          "chapter": 4,
+          "verse": 10
+        },
+        {
+          "chapter": 4,
+          "verse": 11
+        },
+        {
+          "chapter": 4,
+          "verse": 12
+        },
+        {
+          "chapter": 4,
+          "verse": 13
+        },
+        {
+          "chapter": 4,
+          "verse": 14
+        },
+        {
+          "chapter": 4,
+          "verse": 15
+        }
+      ],
+      "includesWholeVerses": true,
+      "openingText": "וְצַדִּיק כִּי יָמוּת בְּלֹא עֵת בְּשָׁלוֹם יָנוּחַ׃",
+      "closingText": "כִּי חֶסֶד וְרַחֲמִים לִבְחִירָיו וְעֵינָיו עַל־חֲסִידָיו׃",
+      "method": "Direct comparison with the complete Royal Doors Monday-evening proper, corroborated by its publicICS service date and Brenton; preserve whole Hebrew source units and their internal boundaries.",
+      "excludedSourceBlocks": [],
+      "status": "complete",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-daily-boundary-review-20261002.json",
+          "sha256": "5139a670ebc9c84bb4b6a6f9e2b8ed656c7e79802a0d4717cbbbe38f2aa84eae"
+        }
+      ]
+    },
+    "daily|Wisdom 5:1–1; 5:3–6; 5:8–8; 5:15–16": {
+      "contexts": [
+        "maronite"
+      ],
+      "sourceBook": "WIS",
+      "sourceContentSHA256": "600a31cb9a69c9f9d56ae2851613fdb1ba766df247e93e303f969b635a8d17d2",
+      "selections": [
+        {
+          "chapter": 5,
+          "verse": 1
+        },
+        {
+          "chapter": 5,
+          "verse": 3
+        },
+        {
+          "chapter": 5,
+          "verse": 4
+        },
+        {
+          "chapter": 5,
+          "verse": 5
+        },
+        {
+          "chapter": 5,
+          "verse": 6
+        },
+        {
+          "chapter": 5,
+          "verse": 8
+        },
+        {
+          "chapter": 5,
+          "verse": 15
+        },
+        {
+          "chapter": 5,
+          "verse": 16
+        }
+      ],
+      "includesWholeVerses": true,
+      "openingText": "אָז יַעמֹד הַצַּדִּיק הָכֵן וְקוֹמְמִיוּת בִּפְנֵי צוֹרְרָיו וּבוֹזֵי מַעֲשָׂיו׃",
+      "closingText": "לָכֵן מַמְלֶכֶת־הוֹד וַעֲטֶרֶת תִּפְאֶרֶת יִנְחֲלוּ מִיַּד יְיָ כִּי בִימִינוֹ יָסֵךְ עֲלֵיהֶם וּבִזְרוֹעוֹ יָגֵן בַּעֲדָם׃",
+      "method": "Direct clause/end-point comparison with actual same-date French and Arabic Maronite wording, corroborated by public-domain Brenton; whole printed Hebrew units retained. Numeric labels alone were not used as equivalence evidence.",
+      "excludedSourceBlocks": [],
+      "status": "complete",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-daily-boundary-review-20261002.json",
+          "sha256": "5139a670ebc9c84bb4b6a6f9e2b8ed656c7e79802a0d4717cbbbe38f2aa84eae"
+        }
+      ]
+    },
+    "daily|Wisdom 5:1–5": {
+      "contexts": [
+        "roman1962"
+      ],
+      "sourceBook": "WIS",
+      "sourceContentSHA256": "600a31cb9a69c9f9d56ae2851613fdb1ba766df247e93e303f969b635a8d17d2",
+      "selections": [
+        {
+          "chapter": 5,
+          "verse": 1
+        },
+        {
+          "chapter": 5,
+          "verse": 2
+        },
+        {
+          "chapter": 5,
+          "verse": 3
+        },
+        {
+          "chapter": 5,
+          "verse": 4
+        },
+        {
+          "chapter": 5,
+          "verse": 5
+        }
+      ],
+      "includesWholeVerses": true,
+      "openingText": "אָז יַעמֹד הַצַּדִּיק הָכֵן וְקוֹמְמִיוּת בִּפְנֵי צוֹרְרָיו וּבוֹזֵי מַעֲשָׂיו׃",
+      "closingText": "איככָה נֶחֱשַׁב בֵּין בְּנֵי אֱלֹהִים וּבֵין קְדוֹשִׁים חֶלְקוֹ׃",
+      "method": "Direct clause/end-point comparison with the named edition/calendar witnesses; whole printed Hebrew source units only. Numeric labels are locators, not evidence of equivalence.",
+      "excludedSourceBlocks": [],
+      "status": "complete",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-daily-boundary-review-20261002.json",
+          "sha256": "5139a670ebc9c84bb4b6a6f9e2b8ed656c7e79802a0d4717cbbbe38f2aa84eae"
+        }
+      ]
+    },
+    "daily|Wisdom 6:12–16": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceBook": "WIS",
+      "sourceContentSHA256": "600a31cb9a69c9f9d56ae2851613fdb1ba766df247e93e303f969b635a8d17d2",
+      "selections": [
+        {
+          "chapter": 6,
+          "verse": 12
+        },
+        {
+          "chapter": 6,
+          "verse": 13
+        },
+        {
+          "chapter": 6,
+          "verse": 14
+        },
+        {
+          "chapter": 6,
+          "verse": 15
+        },
+        {
+          "chapter": 6,
+          "verse": 16
+        }
+      ],
+      "includesWholeVerses": true,
+      "openingText": "בָּרָה הִיא הַחָכְמָה וְלֹא תִבֹּל תִּוָּדַע עַל־נְקַלָּה לְאוֹהֲבֶיהָ [וְתִמָּצֵא לִמְבַקְשֶׁיהָ]׃",
+      "closingText": "כִּי הִיא תְסוֹבֵב וּתְחַפֵּשׂ אֶת־אֲשֶׁר יָקְרוּ לָהּ וּבִנְתִיבוֹת בְּרָצוֹן תוֹפִיעַ לָמוֹ וּבכָל־זְמָמָם תִּתְמְכֵם׃",
+      "method": "Direct clause/end-point comparison with the named edition/calendar witnesses; whole printed Hebrew source units only. Numeric labels are locators, not evidence of equivalence.",
+      "excludedSourceBlocks": [],
+      "status": "complete",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-daily-boundary-review-20261002.json",
+          "sha256": "5139a670ebc9c84bb4b6a6f9e2b8ed656c7e79802a0d4717cbbbe38f2aa84eae"
+        }
+      ]
+    },
+    "daily|Wisdom 7:7–14": {
+      "contexts": [
+        "maronite"
+      ],
+      "sourceBook": "WIS",
+      "sourceContentSHA256": "600a31cb9a69c9f9d56ae2851613fdb1ba766df247e93e303f969b635a8d17d2",
+      "selections": [
+        {
+          "chapter": 7,
+          "verse": 7
+        },
+        {
+          "chapter": 7,
+          "verse": 8
+        },
+        {
+          "chapter": 7,
+          "verse": 9
+        },
+        {
+          "chapter": 7,
+          "verse": 10
+        },
+        {
+          "chapter": 7,
+          "verse": 11
+        },
+        {
+          "chapter": 7,
+          "verse": 12
+        },
+        {
+          "chapter": 7,
+          "verse": 13
+        },
+        {
+          "chapter": 7,
+          "verse": 14
+        }
+      ],
+      "includesWholeVerses": true,
+      "openingText": "לָכֵן הִתְפַּלַּלְתִּי וְנִתְּנָה־לִי בִינָה קָרָאתִי וְרוּחַ חָכְמָה בָּאָה עָלָי׃",
+      "closingText": "עַד־כִּי הוֹן עָתק הִיא לִבְנֵי אָדָם וְכָל־הַמִּתְעַנְּגִים עָלֶיהָ יְדִידוּת יְיָ יַשִּׂיגוּ כִּי בְשִׁי מוּסָר יֵרָצוּ לוֹ׃",
+      "method": "Direct clause/end-point comparison with actual same-date French and Arabic Maronite wording, corroborated by public-domain Brenton; whole printed Hebrew units retained. Numeric labels alone were not used as equivalence evidence.",
+      "excludedSourceBlocks": [],
+      "status": "complete",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-daily-boundary-review-20261002.json",
+          "sha256": "5139a670ebc9c84bb4b6a6f9e2b8ed656c7e79802a0d4717cbbbe38f2aa84eae"
+        }
+      ]
+    }
+  }
+}

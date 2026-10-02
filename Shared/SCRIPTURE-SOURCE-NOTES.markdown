@@ -11,6 +11,13 @@ not a claim that the consonant is visible or a general license to complete damag
 words. Each further restoration needs its own recorded source evidence and editorial
 decision; the ordinary point-omission rule does not approve it.
 
+Later on 2 October 2026 the user explicitly approved three further contextual
+restorations with visible notes: Wisdom 6:2 `הַאזינוּ` (alef and yod), Wisdom
+16:23 `אולָם` (vav), and 2 Maccabees 14:4 `וְאֶחָת` (het). The surviving
+printed points remain, including Second Maccabees' unusual segol. Unreadable
+points have their own omission notes. These decisions are recorded in the final
+restoration and root-acceptance reports; they do not authorize other reconstructions.
+
 ## Shared verse contract
 
 An optional, nonempty `sourceNotes` array on a scripture verse contains objects with

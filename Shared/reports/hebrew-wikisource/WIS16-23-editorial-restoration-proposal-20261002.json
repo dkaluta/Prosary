@@ -1,0 +1,145 @@
+{
+  "schemaVersion": 1,
+  "book": "WIS",
+  "chapter": 16,
+  "verse": 23,
+  "printedCombinedRange": [
+    23,
+    24
+  ],
+  "reviewer": "source_gate",
+  "date": "2026-10-02",
+  "status": "Editorial proposal only; restoration authorization pending",
+  "scope": "Prepare a concrete one-consonant restoration proposal without changing canonical text, source-note acceptance, reviewed pages or book approval.",
+  "sourceLocation": {
+    "primaryPDFPage": 179,
+    "printedPageNumber": 507,
+    "printedPageHebrew": "תקז",
+    "position": "Opening word of the first body row, beside printed combined 23–24 label",
+    "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=179"
+  },
+  "canonicalBefore": {
+    "path": "Shared/content/hebrew-deuterocanon/WIS.json",
+    "fileSHA256": "bcb47964421aa3e0f29011e2a8404204b44a4dd576e52a3223084c6ee1404e16",
+    "text": "אילָם לְמַעַן הַחֲיוֹת יְשָׁרִים הָאֵשׁ כֹּחָהּ נָשָׁת׃ כִּי כָּל־יְצוּר יַעֲמֹד לְשָׁרֵת אוֹתְךָ יוֹצְרֵהוּ פַּעַם יַגְבִּיר כֹּחוֹ לְיַסֵּר רְשָׁעִים וּפַעַם יַמְעִיט לְהֵיטִיב עִם־הַבּוֹטְחִים בָּךְ׃",
+    "sourceNotes": [
+      {
+        "id": "wis-16-23-alef-1-vowel",
+        "kind": "unreadablePoint",
+        "anchor": "אילָם",
+        "occurrence": 1,
+        "letterIndex": 1,
+        "mark": "vowel",
+        "sourcePages": [
+          179
+        ],
+        "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=179"
+      }
+    ]
+  },
+  "visibleEvidence": {
+    "certainConsonants": [
+      "א at position 1",
+      "ל at position 3",
+      "ם at position 4"
+    ],
+    "uncertainConsonant": {
+      "position": 2,
+      "observation": "Only a small diagonal upper stroke survives. It resembles a short yod fragment but is smaller than separately visible same-page yods. A damaged vav whose shaft is lost cannot be excluded.",
+      "disposition": "No literal vav or yod certification. The earlier candidate yod remains an unapproved draft reading."
+    },
+    "certainPoints": [
+      "Qamats beneath lamed, retained as לָ"
+    ],
+    "unreadablePoint": "The initial alef lower point is merged with its foot and remains omitted under the existing exact vowel note.",
+    "secondLetterPointing": "No separate shuruq dot or other vowel on the damaged second glyph is certified. The proposed restored vav is left unpointed; no expected vowel is supplied.",
+    "comparisonLimit": "The same-font long vav shafts differ from the surviving short fragment. Comparison does not resolve whether the target lost a shaft. Identical or reduced mirrors are not independent witnesses; prior research is pinned below and was not repeated."
+  },
+  "contextualEvidence": [
+    {
+      "source": "Brenton Septuagint Translation, Wisdom of Solomon 16:22–24",
+      "url": "https://ebible.org/eng-Brenton/WIS16.htm",
+      "rightsURL": "https://ebible.org/eng-Brenton/copyright.htm",
+      "rightsFinding": "The edition identifies Brenton’s translation as published in 1851 and in the public domain.",
+      "verse23Quotation": "But this again did even forget his own strength, that the righteous might be nourished.",
+      "reasoning": "The contrast between fire destroying enemies in verse 22 and sparing nourishment for the righteous in verse 23 supports the Hebrew adversative אולם. This fits the surrounding Hebrew clause למען החיות ישרים האש כחה נשת. It supplies a reason for proposing vav, not evidence that vav is visibly printed.",
+      "limit": "The English translation is a meaning check. It cannot certify Stein’s original Hebrew consonant, spelling or vowel points. No English wording is substituted into the Hebrew text."
+    }
+  ],
+  "proposal": {
+    "before": "אילָם",
+    "after": "אולָם",
+    "exactEdit": "Replace only the unapproved second-consonant candidate י with editorially restored ו. Preserve לָ and every other visible character. Add no shuruq or initial alef vowel.",
+    "proposedText": "אולָם לְמַעַן הַחֲיוֹת יְשָׁרִים הָאֵשׁ כֹּחָהּ נָשָׁת׃ כִּי כָּל־יְצוּר יַעֲמֹד לְשָׁרֵת אוֹתְךָ יוֹצְרֵהוּ פַּעַם יַגְבִּיר כֹּחוֹ לְיַסֵּר רְשָׁעִים וּפַעַם יַמְעִיט לְהֵיטִיב עִם־הַבּוֹטְחִים בָּךְ׃",
+    "proposedSourceNotes": [
+      {
+        "id": "wis-16-23-alef-1-vowel",
+        "kind": "unreadablePoint",
+        "anchor": "אולָם",
+        "occurrence": 1,
+        "letterIndex": 1,
+        "mark": "vowel",
+        "sourcePages": [
+          179
+        ],
+        "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=179"
+      },
+      {
+        "id": "wis-16-23-vav-restored",
+        "kind": "restoredLetter",
+        "anchor": "אולָם",
+        "occurrence": 1,
+        "letterIndex": 2,
+        "mark": "consonant",
+        "sourcePages": [
+          179
+        ],
+        "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=179"
+      }
+    ],
+    "readerRestorationWordingEnglish": "The letter ו at position 2 in אולָם is an editorial restoration; it is unreadable in the source scan.",
+    "readerPointWordingEnglish": "The vowel at position 1 in אולָם is unreadable in the source scan and has been omitted.",
+    "editorialRationale": "אולָם is a contextually supported reconstruction of one damaged consonant, not a newly legible source reading. The visible lamed qamats is retained. Unreadable pointing is not reconstructed.",
+    "authorization": "Needs explicit authorization for this consonant restoration. Earlier authorization for WIS 1:16 does not authorize this word. No acceptance or canonical mutation performed.",
+    "boundaryAndPunctuation": "Keep the printed combined unit 23–24 and its current punctuation unchanged."
+  },
+  "evidenceFiles": [
+    {
+      "path": "/private/tmp/prosary-wis-review/source-gate-WIS16-ulam23-tight.png",
+      "sha256": "42630d9dad7b96698342aba322c63eb96539cd0ed2c594f08c96151a3ffd8a4f"
+    },
+    {
+      "path": "/private/tmp/prosary-wis-review/WIS16-author-ulam23-wide.png",
+      "sha256": "75a491c35200ab8920f1450c20db1cc221c4d773e3e4c90774228140605dbe1f"
+    },
+    {
+      "path": "/private/tmp/prosary-wis-review/source-gate-WIS16-vav23-comparator.png",
+      "sha256": "140a681678784f6239e98a33a76945dc55a161cfa3ca4d8a6c209f79b86d49c4"
+    },
+    {
+      "path": "/private/tmp/prosary-wis-review/source-gate-WIS16-yesharim23-comparator.png",
+      "sha256": "ec804167f8cbc854a5a9b62661ad74153e67c5dd2b0651e8c7981c81078ef60a"
+    },
+    {
+      "path": "/private/tmp/prosary-wis-review/source-gate-WIS16-yod26-comparator.png",
+      "sha256": "7eda82d0cfb61d76c1fb8b516daf0ee1e677c7647cf960338a2c641ea0423ae1"
+    }
+  ],
+  "priorReports": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/WIS-chapter16-independent-review.json",
+      "sha256": "fd4fd7571c77f8a0ddf3ac58a3a7851d7758f50848edae022428df1ce544c858"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/WIS-clearer-copy-research-20261002.json",
+      "sha256": "148cfce5b151f20b8ff0227a104546e396a9397c56d420a08e02d49e5b807e92"
+    }
+  ],
+  "verification": {
+    "canonicalUnchanged": true,
+    "proposedRestorationHasNoRetainedVowelsField": true,
+    "proposedRestoredLetterHasNoAddedPoint": true,
+    "releaseGateChanged": false,
+    "unresolvedFindingRemains": "wis-16-23-damaged-consonant"
+  }
+}

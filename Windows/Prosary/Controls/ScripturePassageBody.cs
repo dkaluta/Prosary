@@ -16,7 +16,8 @@ public sealed class ScripturePassageBody : UserControl
     {
         var body = (ScripturePassageBody)sender;
         var chapters = args.NewValue as IReadOnlyList<ReadingChapterSection> ?? [];
-        if (chapters.All(chapter => chapter.Verses?.All(verse => verse.SourceNotes is null) != false))
+        if (chapters.All(chapter => chapter.Verses?.All(verse => verse.SourceNotes is null
+            && verse.Kind == "verse" && !verse.HasPrintedLabel) != false))
         {
             // Keep the existing whole-passage selection behavior for ordinary readings.
             var text = new TextBlock { TextWrapping = TextWrapping.Wrap, IsTextSelectionEnabled = true };
@@ -35,7 +36,11 @@ public sealed class ScripturePassageBody : UserControl
             foreach (var verse in chapter.Verses ?? [])
             {
                 var row = new StackPanel();
-                row.Children.Add(new TextBlock { Text = verse.DisplayText, TextWrapping = TextWrapping.Wrap, IsTextSelectionEnabled = true });
+                row.Children.Add(new TextBlock { Text = verse.DisplayText, TextWrapping = TextWrapping.Wrap,
+                    IsTextSelectionEnabled = true, FontWeight = verse.IsHeading ? FontWeights.SemiBold : FontWeights.Normal });
+                if (verse.HasPrintedLabel)
+                    row.Children.Add(new TextBlock { Text = verse.PrintedLabelAnnotation, TextWrapping = TextWrapping.Wrap,
+                        IsTextSelectionEnabled = true, Style = Application.Current.Resources["MutedCaptionTextStyle"] as Style });
                 row.Children.Add(new ScriptureSourceNotesControl { SourceNotes = verse.SourceNotes });
                 section.Children.Add(row);
             }

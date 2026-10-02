@@ -66,6 +66,26 @@ are invented or transferred onto another transcription. All 260 chapters across 
 are hash-pinned. The importer extracts only numbered verse bodies, excluding headings,
 navigation and verse-link labels. Prayer-pack excerpts retain their existing pointed source.
 
+The Hebrew edition also includes twelve fully transcribed and reviewed source works:
+Tobit, Judith, Wisdom, Sirach, Baruch, 1–2 Maccabees, Letter of Jeremiah, Esther's additions,
+the Song of the Three, Susanna, and Bel and the Dragon. Each book retains its actual
+translator credit; the Kahana collection is not treated as a single translator's work.
+Letter of Jeremiah uses Frenkel with reviewed public-domain Brenton boundaries.
+[The source review](content/HEBREW-DEUTEROCANON-REVIEW.markdown) records the complete-book
+gate, printed lacunae, separate witnesses, and explicitly approved editorial restorations.
+Completed transcription does not remove gaps in the original print.
+
+Daily excerpts use [separate endpoint reviews](tools/hebrew-daily-reading-reviews.json)
+for each exact citation and calendar. They select indivisible source units, including
+combined labels and any reviewed witnesses, with the selected edition's text unchanged.
+Documented translation or recension variants do not become invented replacement wording;
+unresolved boundaries or missing appointed source material remain unavailable.
+The optional `passageSources` table in the [dataset contract](schema/reading-texts.json)
+carries the actual book title, attribution, source link, partial-source notice and ordered
+source blocks to all three native readers. This also preserves the distinction between a
+calendar's Daniel/Esther citation and the separate source work supplying the Hebrew text.
+An enlarged whole-unit envelope displays the existing full-verse notice.
+
 [Delitzsch numbering](tools/DELITZSCH-NUMBERING.markdown) records six chapter differences
 from SIL English. All 7,961 source verses are accounted for without omission or duplication;
 split source verses retain their published labels, and merged verses require the complete

@@ -71,7 +71,7 @@ nonisolated struct BibleAddressRoute: Codable, Hashable, Sendable {
   }
 }
 
-nonisolated struct BibleContentBlock: Decodable, Sendable {
+nonisolated struct BibleContentBlock: Decodable, Equatable, Sendable {
   enum Kind: String, Decodable, Sendable { case verse, witness, passage, heading, colophon }
   let id: String
   let kind: Kind

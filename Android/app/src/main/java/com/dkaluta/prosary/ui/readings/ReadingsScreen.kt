@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.selection.SelectionContainer
+import androidx.compose.foundation.text.selection.DisableSelection
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowLeft
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
@@ -380,24 +381,52 @@ internal fun ReadingCard(citation: ReadingCitation, language: String, edition: R
                         Text(stringResource(R.string.readings_whole_verses_notice),
                             style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
                     }
+                    if (passage.source?.isComplete == false) {
+                        Text(stringResource(R.string.bible_partial_chapter),
+                            style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            modifier = Modifier.testTag("readingPartialSource"))
+                    }
                     val bodyScript = PrayerTypography.scriptOf(passage.verses.first().displayedText(edition, readingScript))
                     CompositionLocalProvider(LocalLayoutDirection provides
                         if (bodyScript in listOf(PrayerTypography.Script.Hebrew, PrayerTypography.Script.Arabic,
                                 PrayerTypography.Script.Syriac)) LayoutDirection.Rtl else LayoutDirection.Ltr) {
                         SelectionContainer {
                             Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
-                                for ((index, verse) in passage.verses.withIndex()) {
-                                    if (index == 0 || passage.verses[index - 1].chapter != verse.chapter) {
-                                        Text(ReadingChapterHeading.label(context, verse.chapter, edition?.languageCode ?: "en", readingScript),
+                                var displayedChapter: Int? = null
+                                for (item in passage.displayItems) {
+                                    val verse = item.primary
+                                    val chapter = verse?.chapter ?: displayedChapter ?: passage.verses.first().chapter
+                                    if (displayedChapter != chapter) {
+                                        Text(ReadingChapterHeading.label(context, chapter, edition?.languageCode ?: "en", readingScript),
                                             style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold,
                                             fontStyle = FontStyle.Normal,
                                             modifier = Modifier.fillMaxWidth())
+                                        displayedChapter = chapter
                                     }
-                                    val visibleText = verse.displayedText(edition, readingScript)
-                                    Text("\u2066${verse.verseLabel}\u2069  $visibleText",
-                                        style = PrayerTypography.styleForText(visibleText, isScripture = true),
-                                        modifier = Modifier.fillMaxWidth())
-                                    ScriptureSourceNotes(verse.sourceNotes)
+                                    val visibleText = verse?.displayedText(edition, readingScript) ?: item.block.text.orEmpty()
+                                    Column(Modifier.testTag("readingBlock.${item.id}")) {
+                                        when (item.block.kind) {
+                                            "heading" -> DisableSelection {
+                                                Text(visibleText, style = PrayerTypography.styleForText(visibleText, isScripture = true),
+                                                    fontWeight = FontWeight.Bold, modifier = Modifier.fillMaxWidth())
+                                            }
+                                            "colophon" -> DisableSelection {
+                                                Text(visibleText, style = MaterialTheme.typography.bodySmall,
+                                                    color = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.fillMaxWidth())
+                                            }
+                                            else -> {
+                                                val label = verse?.verseLabel ?: item.block.printedLabel
+                                                val display = if (label == null) visibleText else "\u2066$label\u2069  $visibleText"
+                                                Text(display, style = PrayerTypography.styleForText(visibleText, isScripture = true),
+                                                    modifier = Modifier.fillMaxWidth())
+                                                if (verse != null) item.block.printedLabel?.let { printed -> DisableSelection {
+                                                    Text(stringResource(R.string.bible_printed_label, "\u2068$printed\u2069"),
+                                                        style = MaterialTheme.typography.labelMedium)
+                                                } }
+                                            }
+                                        }
+                                        ScriptureSourceNotes(item.sourceNotes)
+                                    }
                                 }
                             }
                         }
@@ -405,8 +434,12 @@ internal fun ReadingCard(citation: ReadingCitation, language: String, edition: R
                 }
                 if (edition != null) {
                     Text(edition.name, style = MaterialTheme.typography.labelLarge)
-                    Text(edition.attribution, style = MaterialTheme.typography.bodySmall)
-                    if (edition.sourceURL.startsWith("https://")) TextButton(onClick = { uriHandler.openUri(edition.sourceURL) }) {
+                    val source = passage?.source
+                    source?.let { Text(it.name, style = MaterialTheme.typography.labelLarge,
+                        modifier = Modifier.testTag("readingSourceName")) }
+                    Text(source?.attribution ?: edition.attribution, style = MaterialTheme.typography.bodySmall)
+                    val sourceURL = source?.sourceURL ?: edition.sourceURL
+                    if (sourceURL.startsWith("https://")) TextButton(onClick = { uriHandler.openUri(sourceURL) }) {
                         Text(stringResource(R.string.readings_source))
                     }
                 }

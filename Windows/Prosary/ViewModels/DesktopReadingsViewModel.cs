@@ -19,6 +19,7 @@ public partial class ReadingPassageViewModel : ObservableObject
     private readonly string _rawCitation;
     private bool _didLoad;
     private IReadOnlyList<ScriptureVerse> _verses = [];
+    private ScripturePassage? _passage;
     public string ContextKey { get; }
     public string ConfigurationKey { get; }
     public string Citation { get; }
@@ -29,11 +30,16 @@ public partial class ReadingPassageViewModel : ObservableObject
     public string WholeVersesNotice => Loc.Tr("readings_whole_verses_notice", "Full verses are shown and may extend beyond the reading’s cited limits.");
     public string SourceLabel => Loc.Tr("readings_source", "Source and Edition");
     public string EditionLabel => Loc.Tr("readings_edition", "Bible Edition");
-    public string Attribution => _edition?.Attribution ?? "";
-    public Uri? SourceUri => _edition?.SourceUri;
+    public string SourceName => _passage?.Source?.Name ?? "";
+    public bool HasSourceName => !string.IsNullOrEmpty(SourceName);
+    public bool IsPartial => _passage?.Source?.IsComplete == false;
+    public string PartialNotice => Loc.Tr("bible_partial_chapter", "Only part of this chapter is available.");
+    public string Attribution => _passage?.Source?.Attribution ?? _edition?.Attribution ?? "";
+    public Uri? SourceUri => _passage?.Source?.SourceUri ?? _edition?.SourceUri;
     public bool HasSource => SourceUri is not null;
     private PrayerTypography.Script PassageScript => PrayerTypography.ScriptOf(string.Concat(
-        _verses.Select(verse => verse.DisplayedText(_edition, EffectiveScript))));
+        _verses.Select(verse => verse.DisplayedText(_edition, EffectiveScript)))
+        + string.Concat(_passage?.Source?.ContentBlocks?.Select(block => block.Text) ?? []));
     public bool IsRightToLeft => PrayerTypography.IsRightToLeft(PassageScript);
     public string BodyFontFamily => PrayerTypography.ResolveBodyFontFamily(_edition?.LanguageCode,
         isScripture: true, PassageScript);
@@ -96,12 +102,19 @@ public partial class ReadingPassageViewModel : ObservableObject
         if (!value || _didLoad) return;
         _didLoad = true;
         var passage = _edition is null ? null : _store.LoadPassage(_scope, _rawCitation, _edition.Id);
+        _passage = passage;
         _verses = passage?.Verses ?? [];
         HasPassage = _verses.Count > 0;
         AvailableEditions = HasPassage ? [] : _store.AvailableEditions(_scope, _rawCitation)
             .Select(edition => new ReadingEditionChoice(edition.Id, edition.Name)).ToList();
         HasScriptToggle = HasPassage && _edition?.HasAramaicScripts == true;
         IncludesWholeVerses = passage?.IncludesWholeVerses ?? false;
+        OnPropertyChanged(nameof(SourceName));
+        OnPropertyChanged(nameof(HasSourceName));
+        OnPropertyChanged(nameof(IsPartial));
+        OnPropertyChanged(nameof(Attribution));
+        OnPropertyChanged(nameof(SourceUri));
+        OnPropertyChanged(nameof(HasSource));
         RefreshDisplayedText();
     }
 
@@ -124,7 +137,17 @@ public partial class ReadingPassageViewModel : ObservableObject
         var sections = new List<ReadingChapterSection>();
         var headingLanguage = _edition?.LanguageCode ?? "en";
         var chapterLabel = ReadingChapterHeading.Label(headingLanguage, EffectiveScript);
-        foreach (var verse in _verses)
+        if (_edition is not null && _passage?.SourceDisplays(_edition) is { } displays)
+        {
+            foreach (var display in displays)
+            {
+                var rows = BibleVerseRow.FromDisplay(display, _edition, EffectiveScript);
+                sections.Add(new ReadingChapterSection(chapterLabel, display.Chapter.Chapter,
+                    ReadingChapterHeading.Number(display.Chapter.Chapter, headingLanguage, EffectiveScript),
+                    string.Join(Environment.NewLine + Environment.NewLine, rows.Select(row => row.DisplayText)), rows));
+            }
+        }
+        else foreach (var verse in _verses)
         {
             var text = $"\u2066{verse.VerseLabel}\u2069  {verse.DisplayedText(_edition, EffectiveScript)}";
             var row = new BibleVerseRow(verse.Verse, verse.DisplayedText(_edition, EffectiveScript), verse.EndVerse, verse.SourceNotes);

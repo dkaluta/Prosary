@@ -1,0 +1,245 @@
+{
+  "status": "Source-verified narrow provider citation repairs; not Hebrew passage approval",
+  "date": "2026-10-02",
+  "sourceCommit": "342fd241d2e619cb6a4d270e2cf072dff263c7d9",
+  "sourceRepository": "https://github.com/DivinumOfficium/divinum-officium",
+  "sourceFiles": [
+    {
+      "path": "web/www/missa/English/Sancti/08-15.txt",
+      "sha256": "525036232a9419e10f09a1b4a24c3adcd88dd49c0efccf702a08c0d52ea2eae9",
+      "url": "https://github.com/DivinumOfficium/divinum-officium/blob/342fd241d2e619cb6a4d270e2cf072dff263c7d9/web/www/missa/English/Sancti/08-15.txt"
+    },
+    {
+      "path": "web/www/missa/Latin/Sancti/08-15.txt",
+      "sha256": "7776c823e35bbdf1712cd20552c08170c4bcb2edaaa1d6b588e86da53e3ef4ae",
+      "url": "https://github.com/DivinumOfficium/divinum-officium/blob/342fd241d2e619cb6a4d270e2cf072dff263c7d9/web/www/missa/Latin/Sancti/08-15.txt"
+    },
+    {
+      "path": "web/www/missa/English/Sancti/09-15.txt",
+      "sha256": "db8e331cd07c84d2d6d3fce2f68b5cd25978f2cbc98c749d3f07aff2d1b0d4b4",
+      "url": "https://github.com/DivinumOfficium/divinum-officium/blob/342fd241d2e619cb6a4d270e2cf072dff263c7d9/web/www/missa/English/Sancti/09-15.txt"
+    },
+    {
+      "path": "web/www/missa/Latin/Sancti/09-15.txt",
+      "sha256": "80f46a6ed7283b76fd075142cc4535cbcba160111510b5108c253ba299be2afc",
+      "url": "https://github.com/DivinumOfficium/divinum-officium/blob/342fd241d2e619cb6a4d270e2cf072dff263c7d9/web/www/missa/Latin/Sancti/09-15.txt"
+    },
+    {
+      "path": "web/www/missa/Latin/Tempora/Quad5-5.txt",
+      "sha256": "1c2813ecaec8e32b08afb9b510147a410deee4ebe3e41fd04945f13ef80d8465",
+      "url": "https://github.com/DivinumOfficium/divinum-officium/blob/342fd241d2e619cb6a4d270e2cf072dff263c7d9/web/www/missa/Latin/Tempora/Quad5-5.txt"
+    },
+    {
+      "path": "web/www/missa/Latin/Tempora/Quad1-6.txt",
+      "sha256": "59b4a8f329ff79c085f8ad7ca2b343b9a2b07ffc90a51dcd1eb6feb2d07672cc",
+      "url": "https://github.com/DivinumOfficium/divinum-officium/blob/342fd241d2e619cb6a4d270e2cf072dff263c7d9/web/www/missa/Latin/Tempora/Quad1-6.txt"
+    },
+    {
+      "path": "web/www/missa/Latin/Tempora/Adv3-6.txt",
+      "sha256": "6489f012b7daf41c9112ebacf99ea1177c6581fa609d3062405c68b1ee4063e3",
+      "url": "https://github.com/DivinumOfficium/divinum-officium/blob/342fd241d2e619cb6a4d270e2cf072dff263c7d9/web/www/missa/Latin/Tempora/Adv3-6.txt"
+    },
+    {
+      "path": "web/www/missa/Latin/Tempora/093-6.txt",
+      "sha256": "8c4b2df50905ca7e7e14685f2f24d4c4a54c16b9fd597794f17c40b91bf70b53",
+      "url": "https://github.com/DivinumOfficium/divinum-officium/blob/342fd241d2e619cb6a4d270e2cf072dff263c7d9/web/www/missa/Latin/Tempora/093-6.txt"
+    },
+    {
+      "path": "web/www/missa/Latin/Tempora/Pasc7-6.txt",
+      "sha256": "b453101dcc26097affa6613a93050b7b23629db4f8b8ef84cff45b0f53f28b19",
+      "url": "https://github.com/DivinumOfficium/divinum-officium/blob/342fd241d2e619cb6a4d270e2cf072dff263c7d9/web/www/missa/Latin/Tempora/Pasc7-6.txt"
+    }
+  ],
+  "corrections": [
+    {
+      "scope": "Lectio",
+      "before": "Judith 13:22–25; 13:15; 13:10",
+      "after": "Judith 13:22–25; 15:10",
+      "evidence": "English08-15 malformed reference fragments15:10 into two13 continuations. Latin08-15 directly labels13,22–25;15:10. Both actual lesson bodies end with the praise of Judith as glory of Jerusalem, joy of Israel and honor of the people, from Vulgate15:10, not13:15 or13:10.",
+      "latinMarker": "!Judith 13, 22-25; 15:10"
+    },
+    {
+      "scope": "Lectio",
+      "before": "Judith 13:22; 13:25",
+      "after": "Judith 13:22–25",
+      "evidence": "Latin09-15 Lectio redirects toTempora/Quad5-5 whose label includes22,23–25. Actual Latin and English bodies include the daughter-blessing23 and creator-blessing24a, absent from the faulty two-verse English label. The liturgical text omits24b; whole Hebrew18 retains it and needs whole-unit notice.",
+      "latinMarker": "!Judith 13:22, 23-25"
+    },
+    {
+      "scope": "LectioL5 only",
+      "before": "Daniel 3:49–51",
+      "after": "Daniel 3:47–51",
+      "evidence": "Latin Ember lesson resolves throughTempora/093-6 LectioL5, explicitly47–51. Actual body includes forty-nine-cubit flames47 and burning Chaldeans48, reordered after49/50a. Whole Hebrew units must include26–30; no silent omission of26–27. Other Daniel3:49–51 slots and the general parser remain unchanged.",
+      "latinMarker": "!Dan 3:47-51"
+    }
+  ],
+  "currentDatasetChanges": [
+    {
+      "date": "2026-08-15",
+      "section": "Lectio",
+      "before": {
+        "type": "reading",
+        "short": "Jdt. 13",
+        "full": "Judith 13:22–25; 13:15; 13:10",
+        "shortByLanguage": {
+          "he": "יוד׳ י״ג",
+          "ar": "يهو 13",
+          "ru": "Иудиф 13",
+          "tl": "Jdt 13",
+          "fr": "Jdt 13",
+          "it": "Gdt 13",
+          "uk": "Юдт 13"
+        },
+        "fullByLanguage": {
+          "he": "יהודית י״ג 22–25; י״ג 15; י״ג 10",
+          "ar": "يهوديت ⁦13:22–25; 13:15; 13:10⁩",
+          "ru": "Иудифь 13:22–25; 13:15; 13:10",
+          "tl": "Judith 13:22–25; 13:15; 13:10",
+          "fr": "Judith 13:22–25; 13:15; 13:10",
+          "it": "Giuditta 13:22–25; 13:15; 13:10",
+          "uk": "Юдити 13:22–25; 13:15; 13:10"
+        }
+      },
+      "afterUnlocalized": {
+        "type": "reading",
+        "short": "Jdt. 13",
+        "full": "Judith 13:22–25; 15:10"
+      }
+    },
+    {
+      "date": "2026-09-15",
+      "section": "Lectio",
+      "before": {
+        "type": "reading",
+        "short": "Jdt. 13",
+        "full": "Judith 13:22; 13:25",
+        "shortByLanguage": {
+          "he": "יוד׳ י״ג",
+          "ar": "يهو 13",
+          "ru": "Иудиф 13",
+          "tl": "Jdt 13",
+          "fr": "Jdt 13",
+          "it": "Gdt 13",
+          "uk": "Юдт 13"
+        },
+        "fullByLanguage": {
+          "he": "יהודית י״ג 22; י״ג 25",
+          "ar": "يهوديت ⁦13:22; 13:25⁩",
+          "ru": "Иудифь 13:22; 13:25",
+          "tl": "Judith 13:22; 13:25",
+          "fr": "Judith 13:22; 13:25",
+          "it": "Giuditta 13:22; 13:25",
+          "uk": "Юдити 13:22; 13:25"
+        }
+      },
+      "afterUnlocalized": {
+        "type": "reading",
+        "short": "Jdt. 13",
+        "full": "Judith 13:22–25"
+      }
+    },
+    {
+      "date": "2026-02-28",
+      "section": "LectioL5",
+      "before": {
+        "type": "reading",
+        "short": "Dan. 3",
+        "full": "Daniel 3:49–51",
+        "shortByLanguage": {
+          "he": "דנ׳ ג׳",
+          "ar": "دا 3",
+          "ru": "Дан 3",
+          "tl": "Dan 3",
+          "fr": "Dn 3",
+          "it": "Dn 3",
+          "uk": "Дан 3"
+        },
+        "fullByLanguage": {
+          "he": "דניאל ג׳ 49–51",
+          "ar": "دانيال ⁦3:49–51⁩",
+          "ru": "Даниила 3:49–51",
+          "tl": "Daniel 3:49–51",
+          "fr": "Daniel 3:49–51",
+          "it": "Daniele 3:49–51",
+          "uk": "Даниїл 3:49–51"
+        }
+      },
+      "afterUnlocalized": {
+        "type": "reading",
+        "short": "Dan. 3",
+        "full": "Daniel 3:47–51"
+      }
+    },
+    {
+      "date": "2026-09-26",
+      "section": "LectioL5",
+      "before": {
+        "type": "reading",
+        "short": "Dan. 3",
+        "full": "Daniel 3:49–51",
+        "shortByLanguage": {
+          "he": "דנ׳ ג׳",
+          "ar": "دا 3",
+          "ru": "Дан 3",
+          "tl": "Dan 3",
+          "fr": "Dn 3",
+          "it": "Dn 3",
+          "uk": "Дан 3"
+        },
+        "fullByLanguage": {
+          "he": "דניאל ג׳ 49–51",
+          "ar": "دانيال ⁦3:49–51⁩",
+          "ru": "Даниила 3:49–51",
+          "tl": "Daniel 3:49–51",
+          "fr": "Daniel 3:49–51",
+          "it": "Daniele 3:49–51",
+          "uk": "Даниїл 3:49–51"
+        }
+      },
+      "afterUnlocalized": {
+        "type": "reading",
+        "short": "Dan. 3",
+        "full": "Daniel 3:47–51"
+      }
+    },
+    {
+      "date": "2026-12-19",
+      "section": "LectioL5",
+      "before": {
+        "type": "reading",
+        "short": "Dan. 3",
+        "full": "Daniel 3:49–51",
+        "shortByLanguage": {
+          "he": "דנ׳ ג׳",
+          "ar": "دا 3",
+          "ru": "Дан 3",
+          "tl": "Dan 3",
+          "fr": "Dn 3",
+          "it": "Dn 3",
+          "uk": "Дан 3"
+        },
+        "fullByLanguage": {
+          "he": "דניאל ג׳ 49–51",
+          "ar": "دانيال ⁦3:49–51⁩",
+          "ru": "Даниила 3:49–51",
+          "tl": "Daniel 3:49–51",
+          "fr": "Daniel 3:49–51",
+          "it": "Daniele 3:49–51",
+          "uk": "Даниїл 3:49–51"
+        }
+      },
+      "afterUnlocalized": {
+        "type": "reading",
+        "short": "Dan. 3",
+        "full": "Daniel 3:47–51"
+      }
+    }
+  ],
+  "futureImportGuard": "Exact normalized citation plus exact Missale sectionID, applied outside generic parsing.",
+  "regressionFixtures": "Shared/tools/missale-meum-reading-fixtures.json",
+  "limitations": [
+    "These corrected labels are whole-verse envelopes of appointed bodies, not a claim that every sentence of each envelope is recited.",
+    "No canonical Hebrew wording, source units, or approval manifest is edited by this correction.",
+    "The MissaleAPI returned403 in root research; exact public upstream revision/body evidence was used instead."
+  ]
+}

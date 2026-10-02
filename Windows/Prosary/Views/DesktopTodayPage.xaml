@@ -16,6 +16,10 @@
                 <StackPanel Spacing="12">
                     <TextBlock Text="{x:Bind PassageLabel}" FontWeight="SemiBold" />
                     <TextBlock Text="{x:Bind EditionName}" TextWrapping="Wrap" Style="{StaticResource MutedCaptionTextStyle}" />
+                    <TextBlock Text="{x:Bind SourceName, Mode=OneWay}" TextWrapping="Wrap" IsTextSelectionEnabled="True" FontWeight="SemiBold"
+                               Visibility="{x:Bind HasSourceName, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
+                    <TextBlock Text="{x:Bind PartialNotice}" TextWrapping="Wrap" Style="{StaticResource MutedCaptionTextStyle}"
+                               Visibility="{x:Bind IsPartial, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
                     <Button Content="{x:Bind ScriptToggleLabel, Mode=OneWay}" Command="{x:Bind ToggleScriptCommand}"
                             AutomationProperties.ItemStatus="{x:Bind CurrentScriptLabel, Mode=OneWay}"
                             AutomationProperties.AutomationId="readingScript"
@@ -34,9 +38,9 @@
                               AutomationProperties.AutomationId="readingAvailableEditions"
                               Visibility="{x:Bind HasAvailableEditions, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
                     <TextBlock Text="{x:Bind TextNotice}" TextWrapping="Wrap" Style="{StaticResource MutedCaptionTextStyle}" />
-                    <TextBlock Text="{x:Bind Attribution}" IsTextSelectionEnabled="True" TextWrapping="Wrap" Style="{StaticResource MutedCaptionTextStyle}" />
-                    <HyperlinkButton Content="{x:Bind SourceLabel}" NavigateUri="{x:Bind SourceUri}" Padding="0"
-                                     Visibility="{x:Bind HasSource, Converter={StaticResource BoolToVisibility}}" />
+                    <TextBlock Text="{x:Bind Attribution, Mode=OneWay}" IsTextSelectionEnabled="True" TextWrapping="Wrap" Style="{StaticResource MutedCaptionTextStyle}" />
+                    <HyperlinkButton Content="{x:Bind SourceLabel}" NavigateUri="{x:Bind SourceUri, Mode=OneWay}" Padding="0"
+                                     Visibility="{x:Bind HasSource, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
                 </StackPanel>
             </Expander>
         </DataTemplate>

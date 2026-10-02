@@ -1700,6 +1700,19 @@ is expanded. The shared generator pre-resolves appointments under `daily|<raw ci
 uses the original `ReadingCitation.full`, never its translated display value, and never
 parses references or guesses verse-number conversions at runtime. The files are copied into
 each native app's data resources, following the existing physical-copy rule.
+Reviewed Hebrew additions use the optional `passageSources[key][editionId]` descriptor
+for the actual source book's title, translator credit, HTTPS source link, completeness
+notice and ordered `contentBlocks`. The selected edition remains unchanged. A Daniel
+citation can therefore display the credited Susanna source without misattributing it to
+the Masoretic text. Readers validate every primary reference exactly once, preserve
+chapter revisits and printed witness labels, and reject malformed source metadata rather
+than suppressing its evidence. Source notes remain attached to their exact words.
+`Shared/tools/hebrew-daily-reading-reviews.json` pins each appointment's calendar scope,
+whole source units, source digest and endpoint evidence. It runs before the generic
+edition mapper; unknown boundaries and reviewed source gaps have no number-equality
+fallback. Complete source-book transcription and daily appointment coverage are separate
+checks. The reviewed printed edition may retain documented textual variants; its wording
+is never rewritten to match the calendar's translation.
 Paired editions declare optional `textScript` and `transliteratedTextScript` together, and
 every verse adds nonempty `transliteratedText`. Peshitta retains the established Aramaic
 convention: `text` is `Hebr`, `transliteratedText` is the source `Syrc` wording after the

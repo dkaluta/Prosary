@@ -66,9 +66,10 @@ class Unavailable(ValueError):
 class ResolvedPassage(list):
     """Native verse rows plus a build-time-only whole-verse envelope marker."""
 
-    def __init__(self, verses, *, includes_whole_verses: bool = False):
+    def __init__(self, verses, *, includes_whole_verses: bool = False, source: dict | None = None):
         super().__init__(verses)
         self.includes_whole_verses = includes_whole_verses
+        self.source = source
 
 
 class PinnedCorpus(dict):
@@ -401,6 +402,16 @@ def resolve(key: str, contexts: set[str], edition: dict, corpus: dict) -> Resolv
     from reading_source_numbering_reviews import has_numbering_review, reviewed_numbering
     scope, citation = key.split("|", 1)
     book, spans = parse_citation(citation, expand_subverses=True)
+    if scope == "daily" and edition["id"] == "masoretic-delitzsch":
+        from hebrew_daily_readings import default_resolver, Unavailable as HebrewUnavailable
+        supplement = default_resolver()
+        if supplement.handles(key, book):
+            try:
+                passage = supplement.resolve(key, contexts, preserve_divine_name_accents)
+            except HebrewUnavailable as error:
+                raise Unavailable(str(error)) from error
+            return ResolvedPassage(passage.verses, includes_whole_verses=passage.includes_whole_verses,
+                                   source=passage.source)
     if scope == "torah":
         source_systems = ["org"]
     elif book in NT and contexts == {"roman1962"}:
@@ -629,6 +640,10 @@ def build(fetch: bool = False) -> dict[str, bytes]:
                            if any(value.includes_whole_verses for value in values.values())]
     payload = {"schemaVersion": 1, "editions": editions, "passages": passages,
                "wholeVersePassages": whole_verse_passages}
+    passage_sources = {key: {edition: value.source for edition, value in versions.items() if value.source is not None}
+                       for key, versions in passages.items() if any(value.source is not None for value in versions.values())}
+    if passage_sources:
+        payload["passageSources"] = passage_sources
     report = {"schemaVersion": 1, "uniqueAppointments": len(keys), "passagesWithAnyEdition": len(passages),
               "coverage": {edition["id"]: {"daily": sum(key.startswith("daily|") and edition["id"] in value for key, value in passages.items()),
                   "torah": sum(key.startswith("torah|") and edition["id"] in value for key, value in passages.items()),

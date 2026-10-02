@@ -110,12 +110,27 @@ private struct ScripturePassageBody: View {
             .font(.callout).foregroundStyle(.secondary)
             .accessibilityIdentifier("readings.wholeVersesNotice")
         }
-        ScriptureVerseList(edition: passage.edition, verses: passage.verses, script: script)
+        if let source = passage.source {
+          Text(verbatim: source.name).font(.headline).accessibilityAddTraits(.isHeader)
+            .environment(\.layoutDirection, passage.edition.isBibleRightToLeft ? .rightToLeft : .leftToRight)
+            .accessibilityIdentifier("readings.sourceTitle")
+          if !source.isComplete {
+            Text(bibleLabel("partial", "Only part of this chapter is available"))
+              .font(.callout).foregroundStyle(.secondary).accessibilityIdentifier("readings.partial")
+          }
+        }
+        if let displays = passage.sourceDisplays {
+          ForEach(Array(displays.enumerated()), id: \.offset) { _, display in
+            BibleSourceBlockList(edition: passage.edition, display: display, script: script)
+          }
+        } else {
+          ScriptureVerseList(edition: passage.edition, verses: passage.verses, script: script)
+        }
 
         VStack(alignment: .leading, spacing: 5) {
           Text(passage.edition.name).fontWeight(.medium)
-          Text(passage.edition.attribution)
-          if let source = passage.edition.sourceLink {
+          Text(verbatim: passage.source?.attribution ?? passage.edition.attribution)
+          if let source = passage.source?.sourceLink ?? passage.edition.sourceLink {
             Link(String(localized: "readings.source", defaultValue: "Text source", bundle: UILanguage.bundle, locale: UILanguage.locale), destination: source)
           }
         }

@@ -70,8 +70,8 @@
     ]
   },
   "review": {
-    "status": "draft",
-    "method": "All15 chapters and separate closing formula have direct pointed transcription, separate author proof, full independent word/point/label comparison and final reconciliation. Every source page is reviewed except227, where the14:4 year word has unresolved damaged consonants. All other isolated unreadable-point notes are independently scoped and accepted; whole book remains draft.",
+    "status": "complete",
+    "method": "Reconciled against the full printed-source inventory made before canonical transcription: all56 pages,15 chapters,542 primary units and556 labels, including14 combined labels and a separate closing colophon. Each chapter also has a separate complete author pass and a full independent word/point/label comparison. Every final unit was reassembled from the reviewed physical-row evidence and every unit-to-page assignment matched the pre-transcription inventory. The sole consonant restoration at14:4 has explicit user approval and a precise source note;17 isolated unreadable-point notes are independently scoped. All readable points and the original1:9 lacuna remain literal.",
     "reviewedPages": [
       178,
       179,
@@ -122,6 +122,7 @@
       224,
       225,
       226,
+      227,
       228,
       229,
       230,
@@ -173,14 +174,20 @@
       "Chapter13 final reconciliation follows complete46-row/26-unit independent comparison and separate focused author/root corroboration. Two additional literal corrections:17–18 בְחֶסֶדֵי־יְיָ and23 פִילִפּוֹס. No notes needed. Pages224–226 now fully reviewed;227 also contains unapproved chapter14. All other chapters including14–15 preserved unchanged.",
       "Chapter14 separate author pass compared all82 physical rows/46 units and corrected12 evidenced readings. Material unresolved consonants remain at14:4 in the damaged year word; first-draft token is explicitly provisional, not certified. All other focal differences were resolved against native paired scans and same-font comparators. Full independent review remains pending, and no reviewed page or accepted note was added.",
       "Chapter15 separate author proof compared all69 body rows plus distinct closing colophon after frozen first draft. Fourteen correction records cover15 occurrences, including actual gerund prefixes, printed היכל and terminal vertical bar; one precise het34 vowel note is proposed but not yet accepted. All542 numbered units are drafted; chapters14–15 still need full independent comparison and14:4 damaged consonants remain a material blocker. No reviewed page added.",
-      "Chapters14–15 final local reconciliation follows independent82-row and69+1-row comparisons. All author correction groups corroborated. Chapter14 remains incomplete only at14:4 damaged year-word consonants; no inferred restoration made. Chapter15 accepts exact first-dalet10 vowel omission after paired author/root comparison excludes simple sheva but cannot classify the compound mark, and exact het34 vowel omission. Pages228–233 now fully reviewed;227 remains unapproved. All earlier chapters are unchanged; historical pending-status notes describe prior stages only."
+      "Chapters14–15 final local reconciliation follows independent82-row and69+1-row comparisons. All author correction groups corroborated. Chapter14 remains incomplete only at14:4 damaged year-word consonants; no inferred restoration made. Chapter15 accepts exact first-dalet10 vowel omission after paired author/root comparison excludes simple sheva but cannot classify the compound mark, and exact het34 vowel omission. Pages228–233 now fully reviewed;227 remains unapproved. All earlier chapters are unchanged; historical pending-status notes describe prior stages only.",
+      "User approval recorded in the reply to call_9He70Qm0qPD2l2AnzyyA4p9i, as relayed by root: all three proposed restorations with source notes were approved, including 2MA 14:4. Applied only the proposed ח at index 3 in וְאֶחָת, retaining visible vav sheva, alef segol and het-frame qamats. The letter remains explicitly editorial, not source-visible. Source page 227 is now reconciled. All 18 source-note IDs are accepted and sorted. Printed terminal labels are recorded for all chapters; the original bracketed lacuna at 1:9 remains disclosed through the partial-chapter flag. Whole-book publication approval is still pending; historical earlier blocker notes remain provenance.",
+      "Root accepted the final source inventory on 2026-10-02 after verifying the separately recorded full chapter comparisons, source boundaries, evidence hashes, exact content digest and approved restored-letter notes. User explicitly approved all three remaining contextual reconstructions in reply to call_9He70Qm0qPD2l2AnzyyA4p9i. Damaged consonants are disclosed as editorial restorations; unreadable points retain separate exact notes. Earlier draft-only statements are historical. This completes source transcription review, not daily-reading crosswalk review or release validation."
     ],
-    "unresolvedFindings": [
-      "14:4 damaged year-word consonants remain unresolved in both available source scans; provisional draft token is not certified. Page227 and whole-book release remain unapproved pending a clearer same-edition witness."
-    ],
+    "unresolvedFindings": [],
     "acceptedSourceNoteIds": [
       "2ma-1-10-he-1-vowel",
       "2ma-1-16-vav-1-vowel-second-word",
+      "2ma-11-25-samekh-2-vowel",
+      "2ma-11-4-bet-3-vowel",
+      "2ma-12-45-shin-3-dagesh",
+      "2ma-14-4-het-3-restored-letter",
+      "2ma-15-10-dalet-5-vowel",
+      "2ma-15-34-het-2-vowel",
       "2ma-2-28-yod-2-dagesh",
       "2ma-3-26-dalet-3-vowel",
       "2ma-5-16-tav-2-vowel",
@@ -189,13 +196,8 @@
       "2ma-6-13-shin-2-dagesh",
       "2ma-7-40-bet-1-vowel",
       "2ma-8-4-yod-2-dagesh",
-      "2ma-9-29-pe-1-dagesh",
       "2ma-9-29-lamed-3-vowel",
-      "2ma-11-4-bet-3-vowel",
-      "2ma-11-25-samekh-2-vowel",
-      "2ma-12-45-shin-3-dagesh",
-      "2ma-15-10-dalet-5-vowel",
-      "2ma-15-34-het-2-vowel"
+      "2ma-9-29-pe-1-dagesh"
     ]
   },
   "chapters": [
@@ -510,7 +512,8 @@
           ],
           "textSHA256": "6ef073be9b793e29bec4099b2a123cc9e5734a1b827124d5b31956aab9a2005c"
         }
-      ]
+      ],
+      "lastVerse": 36
     },
     {
       "number": 2,
@@ -782,7 +785,8 @@
           ],
           "textSHA256": "4af738df1796c204f8ac704600f7eb9eae467b24ef05029567aa3fa55f7216e7"
         }
-      ]
+      ],
+      "lastVerse": 32
     },
     {
       "number": 3,
@@ -1110,7 +1114,8 @@
           ],
           "textSHA256": "dadcc2461d2f756c3a0e31931f5c1fc26c90a2aa91def94f35b175e27c4c224a"
         }
-      ]
+      ],
+      "lastVerse": 40
     },
     {
       "number": 4,
@@ -1513,7 +1518,8 @@
           ],
           "textSHA256": "21c3d6a4db73f8df3c4fa39d9f27dabdebdef0b93b83dd95043af7a14399eebc"
         }
-      ]
+      ],
+      "lastVerse": 50
     },
     {
       "number": 5,
@@ -1764,7 +1770,8 @@
           ],
           "textSHA256": "2716af9dbd59bb90709c2f9b909b7c4724d18f98b15aa28488da296356e376e6"
         }
-      ]
+      ],
+      "lastVerse": 27
     },
     {
       "number": 6,
@@ -2047,7 +2054,8 @@
           ],
           "textSHA256": "ede433eb6873d9aa0d04aa682fa4477e8257220c3714ce728f1e63bb1a4e25fb"
         }
-      ]
+      ],
+      "lastVerse": 31
     },
     {
       "number": 7,
@@ -2384,7 +2392,8 @@
           ],
           "textSHA256": "b27812d8e81faec16c54d4c8b84670c8acc157b20593ec0b59b408e408bb3cd3"
         }
-      ]
+      ],
+      "lastVerse": 42
     },
     {
       "number": 8,
@@ -2687,7 +2696,8 @@
           ],
           "textSHA256": "084ceaab2bd2a7370e3c52edc64256ab4df3c77a0258dafab3248b350ba9eb07"
         }
-      ]
+      ],
+      "lastVerse": 36
     },
     {
       "number": 9,
@@ -2953,7 +2963,8 @@
             }
           ]
         }
-      ]
+      ],
+      "lastVerse": 29
     },
     {
       "number": 10,
@@ -3264,7 +3275,8 @@
           ],
           "textSHA256": "071304ae8b2e56b95ea091a94eeb8445ed93e13fdad9d3fc9b83a2f10e445aa0"
         }
-      ]
+      ],
+      "lastVerse": 38
     },
     {
       "number": 11,
@@ -3596,7 +3608,8 @@
           ],
           "textSHA256": "c3220d00122ba414c025ff6a512921e84ecbcb4c9afc6215891a7f3f6993c26d"
         }
-      ]
+      ],
+      "lastVerse": 38
     },
     {
       "number": 12,
@@ -3971,7 +3984,8 @@
             }
           ]
         }
-      ]
+      ],
+      "lastVerse": 45
     },
     {
       "number": 13,
@@ -4188,7 +4202,8 @@
           ],
           "textSHA256": "9fb7b6ce2b57f137f91e5decad7a5936730efb99a6b14c21519d9cce1bd0a3ec"
         }
-      ]
+      ],
+      "lastVerse": 27
     },
     {
       "number": 14,
@@ -4219,11 +4234,25 @@
         },
         {
           "verse": 4,
-          "text": "וַיָּבֹא אֶל־דֶּמֶטְרִיוֹס הַמֶּלֶךְ בִּשְׁנַת מֵאָה וַחֲמִשִּׁים וָז׳ וַיָּבֵא לוֹ עֲטֶרֶת זָהָב וְתֹמֶר וּמִלְּבַד אֵלֶּה עַנְפֵי זַיִת מִן־הַמִּקְדָּשׁ וּבַיּוֹם הַהוּא הָיָה שָׁקֵט׃",
+          "text": "וַיָּבֹא אֶל־דֶּמֶטְרִיוֹס הַמֶּלֶךְ בִּשְׁנַת מֵאָה וַחֲמִשִּׁים וְאֶחָת וַיָּבֵא לוֹ עֲטֶרֶת זָהָב וְתֹמֶר וּמִלְּבַד אֵלֶּה עַנְפֵי זַיִת מִן־הַמִּקְדָּשׁ וּבַיּוֹם הַהוּא הָיָה שָׁקֵט׃",
           "sourcePages": [
             227
           ],
-          "textSHA256": "1bd917354a0352eea105b1711f218962db6345d9e8d37280f6788a75beda3c1f"
+          "textSHA256": "94994629a0b80ecc90f7ae727c99a27f35b7c57d9117cf9ad7dca88d2530c723",
+          "sourceNotes": [
+            {
+              "id": "2ma-14-4-het-3-restored-letter",
+              "kind": "restoredLetter",
+              "anchor": "וְאֶחָת",
+              "occurrence": 1,
+              "letterIndex": 3,
+              "mark": "consonant",
+              "sourcePages": [
+                227
+              ],
+              "sourceURL": "https://he.wikisource.org/wiki/קובץ:Apocrypha_Kahana_B.pdf#page=227"
+            }
+          ]
         },
         {
           "verse": 5,
@@ -4563,7 +4592,8 @@
           ],
           "textSHA256": "bd0f567f02249f49e2b165419b89a4386d6c455c658dafd23e723fc59ef5f437"
         }
-      ]
+      ],
+      "lastVerse": 46
     },
     {
       "number": 15,
@@ -5142,7 +5172,8 @@
           ],
           "textSHA256": "be223e2bf0ffe6ccbfdbc6037bba3f5930a74a45a778682f716fb160a2acbc9d"
         }
-      ]
+      ],
+      "lastVerse": 39
     }
   ]
 }

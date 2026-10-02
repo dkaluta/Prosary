@@ -82,6 +82,9 @@ Each actual source verse receives its own positive integer label. A printed comb
 label such as 10–11 must stay one unit and have explicit `endVerse: 11`, rather than
 duplicating or splitting its wording. Notify the shared importer owner of such a unit;
 the chapter/archive schema must be extended consistently before importing it.
+Source units accept only `verse`, optional `endVerse`, `text`, `textSHA256`,
+`sourcePages`, and optional `sourceNotes`. Unknown fields fail validation even in
+drafts, so a misspelled range or note cannot silently disappear during publication.
 Preserve the actual array order even when the print moves a numbered verse, as in
 Sirach 3:26,27,25. Labels remain unique and ranges nonoverlapping; do not sort the text.
 
@@ -188,8 +191,14 @@ route and the literal labels of both 20:13 witnesses. Printed gaps remain visibl
 their affected chapters remain marked incomplete; supplied bracketed words are retained.
 The five stale incomplete flags on chapters 26, 34, 39, 47 and 49 were removed only after
 their complete source scopes were reread and found to contain no missing text.
-The other five selected works remain unfinished; these seven completed books do not
-open the production gate by themselves. Completion here
+Tobit, the Esther additions, First Maccabees, Wisdom and Second Maccabees have also
+completed source review. All twelve works now have approved exact content and
+source inventories. Wisdom's final inventory covers all 19 chapters and 42 pages;
+Second Maccabees covers all 15 chapters and 56 pages. The user explicitly approved
+the last three contextual restorations on 2 October 2026; their damaged letters are
+identified by visible source notes, separately from unreadable vowel omissions.
+First Maccabees retains its printed lacunae at 1:26 and 2:13, and Second Maccabees
+retains its 1:9 lacuna, with the affected chapters marked partial. Completion here
 means the chosen Hebrew edition has been transcribed and checked, not that its
 numbering has already been reconciled with every daily-reading citation.
 
