@@ -14,6 +14,7 @@ final class BibleUITests: XCTestCase {
 
   @MainActor func testBibleScopePreservesDailyDate() throws {
     let app = launch()
+    XCTAssertTrue(app.navigationBars["Readings"].staticTexts["Readings"].waitForExistence(timeout: 5))
     let previous = app.buttons["readings.previousDay"]
     XCTAssertTrue(previous.waitForExistence(timeout: 5))
     previous.tap()
@@ -21,11 +22,15 @@ final class BibleUITests: XCTestCase {
     let scope = app.segmentedControls["readings.mode"]
     scope.buttons["Bible"].tap()
     XCTAssertTrue(app.buttons["bible.book.GEN"].waitForExistence(timeout: 10))
+    XCTAssertTrue(app.navigationBars["Bible"].staticTexts["Bible"].waitForExistence(timeout: 5))
     XCTAssertFalse(app.buttons["readings.chooseDate"].exists)
     let capture = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
     capture.name = "bible-edition-and-books"; capture.lifetime = .keepAlways; add(capture)
     scope.buttons["Daily Readings"].tap()
+    XCTAssertTrue(app.navigationBars["Readings"].staticTexts["Readings"].waitForExistence(timeout: 5))
     XCTAssertEqual(app.buttons["readings.chooseDate"].label, date)
+    let dailyCapture = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
+    dailyCapture.name = "daily-readings-restored-title"; dailyCapture.lifetime = .keepAlways; add(dailyCapture)
   }
 
   /// Before running locally, copy the verified catalog's Douay archive into the disposable

@@ -71,7 +71,7 @@ struct ReadingsView: View {
       }
       .pickerStyle(.segmented)
       .padding(.horizontal, 20).padding(.vertical, 8)
-      .background(.bar)
+      .background(.bar, ignoresSafeAreaEdges: [])
       .accessibilityIdentifier("readings.mode")
     }
   }

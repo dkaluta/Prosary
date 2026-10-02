@@ -28,8 +28,11 @@ class ReadingTextInstrumentedTest {
 
     @Test fun supplementalPassageShowsItsOwnSourceAndUnnumberedTextInReviewedOrder() {
         val citation = ReadingCitation("reading", "Fixture", "Fixture 2:12–13; 1:1")
-        val store = ReadingTextStore {
-            """{"schemaVersion":1,"wholeVersePassages":["daily|${citation.full}"],
+        val store = ReadingTextStore { name ->
+            (if (name == "readings-editions") """{"schemaVersion":1,"editions":[
+                {"id":"fixture","languageCode":"en","name":"Selected Bible","attribution":"Base credit",
+                 "sourceURL":"https://example.org/base"}]}"""
+            else """{"schemaVersion":1,"wholeVersePassages":["daily|${citation.full}"],
                 "passages":{"daily|${citation.full}":{"fixture":[
                     {"chapter":2,"verse":12,"endVerse":13,"text":"First source unit"},
                     {"chapter":1,"verse":1,"text":"Next source unit"}]}},
@@ -38,9 +41,9 @@ class ReadingTextInstrumentedTest {
                     "sourceURL":"https://example.org/supplement","isComplete":false,"contentBlocks":[
                         {"id":"first","kind":"verse","chapter":2,"verse":12,"printedLabel":"12–13"},
                         {"id":"extra","kind":"passage","text":"Unnumbered source wording"},
-                        {"id":"next","kind":"verse","chapter":1,"verse":1}]}}}}""".byteInputStream()
+                        {"id":"next","kind":"verse","chapter":1,"verse":1}]}}}}""").byteInputStream()
         }
-        val edition = ReadingEdition("fixture", "en", "Selected Bible", "Base credit", "https://example.org/base")
+        val edition = store.editions.single()
         compose.setContent { MaterialTheme {
             ReadingCard(citation, "en", edition, edition.id, store, false, expanded = true, onToggleExpanded = {})
         } }
