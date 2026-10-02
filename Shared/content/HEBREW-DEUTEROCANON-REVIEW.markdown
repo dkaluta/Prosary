@@ -166,12 +166,16 @@ The completed source reviews are Judith (16 chapters, 332 source units, all
 Frenkel's Letter of Jeremiah (73 Brenton verses preserving 79 source sections,
 all four text pages, one disclosed unreadable dagesh),
 the Prayer of Azariah and Song of the Three (69 units plus the unnumbered closing
-narrative, all four pages, 65 disclosed unreadable points), and
+narrative, all four pages, 65 disclosed unreadable points),
 Susanna (59 units, all six pages, 25 disclosed isolated unreadable points and an
-explicit printed-label disposition).
+explicit printed-label disposition), and Bel and the Dragon (37 printed units
+covering labels 1–42, all six lower Theodotion pages, 225 disclosed unreadable points).
+Bel and the Dragon retains a literal unmatched opening bracket in verse 14; no
+closing bracket is supplied. Its final inventory separately checks all 61 body lines,
+74 opening/closing anchors and five page joins.
 Their exact content is pinned in `hebrew-deuterocanon-review.json` against separately
-recorded source inventories. The other seven selected works remain unfinished; these
-five completed books do not open the production gate by themselves. Completion here
+recorded source inventories. The other six selected works remain unfinished; these
+six completed books do not open the production gate by themselves. Completion here
 means the chosen Hebrew edition has been transcribed and checked, not that its
 numbering has already been reconciled with every daily-reading citation.
 

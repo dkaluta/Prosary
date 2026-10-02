@@ -1,0 +1,1742 @@
+{
+  "schemaVersion": 1,
+  "book": "BEL",
+  "sourcePage": 246,
+  "sourceRecension": "Theodotion lower body only",
+  "status": "Full page comparison accepted and integrated; whole-book source review complete",
+  "canonicalEdited": true,
+  "reviewer": "frenkel_source",
+  "source": {
+    "path": "/private/tmp/prosary-kahana-reference/Apocrypha_Kahana_A2.pdf",
+    "sha256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+    "pdfPage": 246,
+    "pdfZeroBasedIndex": 245,
+    "embeddedImage": "im246.tiff",
+    "nativePixelDimensions": [
+      2489,
+      3491
+    ],
+    "nativeImageSHA256": "31bebec796943dc6dd2536a83b38451f4cc97526915fa3fef5ceca226aa3c16a"
+  },
+  "inputCanonicalSHA256": "5f5524fcf7db086901893a030e22f9c72e956bbdda5fd0ef620bd8026a1b71a6",
+  "scope": {
+    "physicalLinesCompared": 14,
+    "begin": "26: הַמֶּלֶךְ הִנֵּה נְתַתִּיו בְיָדְךָ׃",
+    "end": "35: אֶת־, continued on 247",
+    "method": "Read every lower-recension body word and point against the native embedded PDF scan in paired line crops; then revisit each crowded mark in focused crops. Upper Old Greek, commentary and margin verse labels were excluded. No wording or vowel was filled from the other recension.",
+    "verseBoundariesChanged": false,
+    "missingWordsFound": false,
+    "unresolvedConsonants": []
+  },
+  "confirmedExistingChanges": [
+    {
+      "verse": 27,
+      "token": "ויִתְּן",
+      "finding": "Tav sheva consists of two vertically stacked points. The different 30 occurrence has horizontal tsere."
+    },
+    {
+      "verse": 33,
+      "token": "ויָבל",
+      "finding": "Clear yod qamats; clean bet cavity without dot; lower bet vowel unclassifiable. Existing note retained verbatim."
+    }
+  ],
+  "changes": [
+    {
+      "verse": 27,
+      "before": "ויִקַּח",
+      "after": "ויִקּח",
+      "basis": "The qof interior dagesh is distinct, but its lower mark merges with the returning stroke and cannot be classified.",
+      "evidence": "BEL246-detail-vayikah.png"
+    },
+    {
+      "verse": 27,
+      "before": "ויְבַשְּׁלֵם",
+      "after": "ויְבשְׁלֵם",
+      "basis": "The bet lower mark is a fused block; omit only the unreadable vowel. Subsequent independent cross-review also finds the shin dagesh unreadable; its sheva and shin dot remain.",
+      "evidence": "BEL246-detail-vayvashelm.png"
+    },
+    {
+      "verse": 27,
+      "before": "ויַּעַשׂ",
+      "after": "ויַעַשׂ",
+      "basis": "The yod interior is saturated; a distinct dagesh cannot be separated from the letter.",
+      "evidence": "BEL246-detail-vayaas27.png"
+    },
+    {
+      "verse": 27,
+      "before": "ויֹאכַל",
+      "after": "ויֹאכל",
+      "basis": "The kaf lower mark is fully fused with its base; no individual vowel can safely be read.",
+      "evidence": "BEL246-detail-vayokhal.png"
+    },
+    {
+      "verse": 27,
+      "before": "ויִבָּקַע",
+      "after": "ויִבָּקע",
+      "basis": "The qof lower mark is joined to its returning stroke; patah is not individually discernible.",
+      "evidence": "BEL246-detail-vayibaka.png"
+    },
+    {
+      "verse": 28,
+      "before": "כַּאֲשֶׁר",
+      "after": "כאֲשֶׁר",
+      "basis": "Kaf cavity is clean and lacks a dagesh. Its lower vowel is fused to the base; retain neither an inferred dagesh nor an unclassifiable vowel.",
+      "evidence": "BEL246-detail-kaasher.png"
+    },
+    {
+      "verse": 28,
+      "before": "ויִרְגְּזוּ",
+      "after": "ויִרְגְזוּ",
+      "basis": "Gimel interior dot is joined to the thick middle stroke; dagesh is not independently discernible. The lower sheva is distinct.",
+      "evidence": "BEL246-detail-vayirgezu.png"
+    },
+    {
+      "verse": 28,
+      "before": "ויֹאמְרוּ",
+      "after": "ויֹאמרוּ",
+      "basis": "The mem lower mark forms a loop fused to the base; its points cannot securely be classified as sheva.",
+      "evidence": "BEL246-detail-vayomru28.png"
+    },
+    {
+      "verse": 29,
+      "before": "ויֹאמְרוּ",
+      "after": "ויֹאמרוּ",
+      "basis": "The mem lower mark forms a loop fused to the base; its points cannot securely be classified as sheva.",
+      "evidence": "BEL246-detail-vayomru29.png"
+    },
+    {
+      "verse": 29,
+      "before": "ויָּבֹאוּ",
+      "after": "ויָבֹאוּ",
+      "basis": "Yod qamats is distinct; interior dagesh is not separable from the solid glyph.",
+      "evidence": "BEL246-native-line05-left.png"
+    },
+    {
+      "verse": 33,
+      "before": "בִּשֵּׁל",
+      "after": "בִשׁל",
+      "basis": "Bet cavity is clean with no dot; retain the distinct bet hiriq. The shin interior point merges with its middle arm, and its lower point group is an unclassifiable solid block. Independent second reader agrees.",
+      "evidence": "BEL246-detail-bishel.png"
+    },
+    {
+      "verse": 33,
+      "before": "ויֵצֵא",
+      "after": "ויֵצא",
+      "basis": "Yod tsere is distinct; the tsadi lower point group is fused with its base and cannot securely be read.",
+      "evidence": "BEL246-detail-vayetse33.png"
+    },
+    {
+      "verse": 33,
+      "before": "לָשֵׂאת",
+      "after": "לָשׂאת",
+      "basis": "The sin lower mark is fused into a solid base extension; preserve the upper sin dot and the clear lamed qamats.",
+      "evidence": "BEL246-detail-laset.png"
+    },
+    {
+      "verse": 35,
+      "before": "וְאֵינֶנִּי",
+      "after": "וְאֵינֶנִי",
+      "basis": "The second nun interior has a thick joined protrusion; a distinct dagesh cannot be separated. Preserve its clear hiriq and both nun consonants.",
+      "evidence": "BEL246-detail-veeneni.png"
+    },
+    {
+      "verse": 27,
+      "before": "דָּנִיֵּאל",
+      "after": "דָּנִיֵאל",
+      "basis": "The dalet interior point and yod tsere are distinct; the small yod is solid and its dagesh cannot be distinguished.",
+      "evidence": "BEL246-detail-daniel27.png"
+    },
+    {
+      "verse": 29,
+      "before": "דָּנִיֵּאל",
+      "after": "דָּנִיֵאל",
+      "basis": "The dalet interior point and yod tsere are distinct; the small yod is solid and its dagesh cannot be distinguished.",
+      "evidence": "BEL246-detail-daniel29.png"
+    },
+    {
+      "verse": 30,
+      "before": "דָּנִיֵּאל",
+      "after": "דָּנִיֵאל",
+      "basis": "The dalet interior point and yod tsere are distinct; the small yod is solid and its dagesh cannot be distinguished.",
+      "evidence": "BEL246-detail-daniel30.png"
+    },
+    {
+      "verse": 31,
+      "before": "דָּנִיֵּאל",
+      "after": "דָּנִיֵאל",
+      "basis": "The dalet interior point and yod tsere are distinct; the small yod is solid and its dagesh cannot be distinguished.",
+      "evidence": "BEL246-detail-daniel31.png"
+    },
+    {
+      "verse": 34,
+      "before": "דָּנִיֵּאל",
+      "after": "דָּנִיֵאל",
+      "basis": "The dalet interior point and yod tsere are distinct; the small yod is solid and its dagesh cannot be distinguished.",
+      "evidence": "BEL246-detail-daniel34.png"
+    }
+  ],
+  "pagePieces": [
+    {
+      "verse": 26,
+      "text": "הַמֶּלֶךְ הִנֵּה נְתַתִּיו בְיָדְךָ׃",
+      "sourceNotes": []
+    },
+    {
+      "verse": 27,
+      "text": "ויִקּח דָּנִיֵאל זֶפֶת וְחֵלֶב וְשֵׂעָר ויְבשְׁלֵם יַחַד ויַעַשׂ חַלּוֹת ויִתְּן אֶל־פִּי הַתַּנִּין ויֹאכל הַתַּנִּין ויִבָּקע ויֹאמֶר רְאוּ אֶת־יִרְאָתְכֶם׃",
+      "sourceNotes": [
+        {
+          "id": "bel-1-27-246-daniel-letter3-dagesh",
+          "kind": "unreadablePoint",
+          "anchor": "דָּנִיֵאל",
+          "occurrence": 1,
+          "letterIndex": 3,
+          "mark": "dagesh",
+          "sourcePages": [
+            246
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=246",
+          "reviewBasis": "Solid small yod; only its interior dot is uncertain.",
+          "evidence": "BEL246-detail-daniel27.png"
+        },
+        {
+          "id": "bel-1-27-246-vayikah-letter1-vowel",
+          "kind": "unreadablePoint",
+          "anchor": "ויִקּח",
+          "occurrence": 1,
+          "letterIndex": 1,
+          "mark": "vowel",
+          "sourcePages": [
+            246
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=246",
+          "reviewBasis": "The initial vav foot is a solid horizontal mass; an independently printed lower vowel cannot be classified.",
+          "evidence": "BEL246-native-line01-right.png / BEL246-native-line01-left.png"
+        },
+        {
+          "id": "bel-1-27-246-vayikah-letter2-dagesh",
+          "kind": "unreadablePoint",
+          "anchor": "ויִקּח",
+          "occurrence": 1,
+          "letterIndex": 2,
+          "mark": "dagesh",
+          "sourcePages": [
+            246
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=246",
+          "reviewBasis": "The compact yod is saturated; its interior dot cannot be distinguished independently.",
+          "evidence": "BEL246-native-line01-right.png / BEL246-native-line01-left.png"
+        },
+        {
+          "id": "bel-1-27-246-vayvashelm-letter1-vowel",
+          "kind": "unreadablePoint",
+          "anchor": "ויְבשְׁלֵם",
+          "occurrence": 1,
+          "letterIndex": 1,
+          "mark": "vowel",
+          "sourcePages": [
+            246
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=246",
+          "reviewBasis": "The initial vav foot is a solid horizontal mass; an independently printed lower vowel cannot be classified.",
+          "evidence": "BEL246-native-line01-right.png / BEL246-native-line01-left.png"
+        },
+        {
+          "id": "bel-1-27-246-vayaas27-letter1-vowel",
+          "kind": "unreadablePoint",
+          "anchor": "ויַעַשׂ",
+          "occurrence": 1,
+          "letterIndex": 1,
+          "mark": "vowel",
+          "sourcePages": [
+            246
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=246",
+          "reviewBasis": "The initial vav foot is a solid horizontal mass; an independently printed lower vowel cannot be classified.",
+          "evidence": "BEL246-native-line02-right.png / BEL246-native-line02-left.png"
+        },
+        {
+          "id": "bel-1-27-246-vayaas27-letter2-dagesh",
+          "kind": "unreadablePoint",
+          "anchor": "ויַעַשׂ",
+          "occurrence": 1,
+          "letterIndex": 2,
+          "mark": "dagesh",
+          "sourcePages": [
+            246
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=246",
+          "reviewBasis": "The compact yod is saturated; its interior dot cannot be distinguished independently.",
+          "evidence": "BEL246-native-line02-right.png / BEL246-native-line02-left.png"
+        },
+        {
+          "id": "bel-1-27-246-vayiten27-letter1-vowel",
+          "kind": "unreadablePoint",
+          "anchor": "ויִתְּן",
+          "occurrence": 1,
+          "letterIndex": 1,
+          "mark": "vowel",
+          "sourcePages": [
+            246
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=246",
+          "reviewBasis": "The initial vav foot is a solid horizontal mass; an independently printed lower vowel cannot be classified.",
+          "evidence": "BEL246-native-line02-right.png / BEL246-native-line02-left.png"
+        },
+        {
+          "id": "bel-1-27-246-vayiten27-letter2-dagesh",
+          "kind": "unreadablePoint",
+          "anchor": "ויִתְּן",
+          "occurrence": 1,
+          "letterIndex": 2,
+          "mark": "dagesh",
+          "sourcePages": [
+            246
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=246",
+          "reviewBasis": "The compact yod is saturated; its interior dot cannot be distinguished independently.",
+          "evidence": "BEL246-native-line02-right.png / BEL246-native-line02-left.png"
+        },
+        {
+          "id": "bel-1-27-246-vayokhal-letter1-vowel",
+          "kind": "unreadablePoint",
+          "anchor": "ויֹאכל",
+          "occurrence": 1,
+          "letterIndex": 1,
+          "mark": "vowel",
+          "sourcePages": [
+            246
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=246",
+          "reviewBasis": "The initial vav foot is a solid horizontal mass; an independently printed lower vowel cannot be classified.",
+          "evidence": "BEL246-native-line02-right.png / BEL246-native-line02-left.png"
+        },
+        {
+          "id": "bel-1-27-246-vayokhal-letter2-dagesh",
+          "kind": "unreadablePoint",
+          "anchor": "ויֹאכל",
+          "occurrence": 1,
+          "letterIndex": 2,
+          "mark": "dagesh",
+          "sourcePages": [
+            246
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=246",
+          "reviewBasis": "The compact yod is saturated; its interior dot cannot be distinguished independently.",
+          "evidence": "BEL246-native-line02-right.png / BEL246-native-line02-left.png"
+        },
+        {
+          "id": "bel-1-27-246-vayibaka-letter1-vowel",
+          "kind": "unreadablePoint",
+          "anchor": "ויִבָּקע",
+          "occurrence": 1,
+          "letterIndex": 1,
+          "mark": "vowel",
+          "sourcePages": [
+            246
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=246",
+          "reviewBasis": "The initial vav foot is a solid horizontal mass; an independently printed lower vowel cannot be classified.",
+          "evidence": "BEL246-native-line02-right.png / BEL246-native-line02-left.png"
+        },
+        {
+          "id": "bel-1-27-246-vayibaka-letter2-dagesh",
+          "kind": "unreadablePoint",
+          "anchor": "ויִבָּקע",
+          "occurrence": 1,
+          "letterIndex": 2,
+          "mark": "dagesh",
+          "sourcePages": [
+            246
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=246",
+          "reviewBasis": "The compact yod is saturated; its interior dot cannot be distinguished independently.",
+          "evidence": "BEL246-native-line02-right.png / BEL246-native-line02-left.png"
+        },
+        {
+          "id": "bel-1-27-246-vayomer27-letter1-vowel",
+          "kind": "unreadablePoint",
+          "anchor": "ויֹאמֶר",
+          "occurrence": 1,
+          "letterIndex": 1,
+          "mark": "vowel",
+          "sourcePages": [
+            246
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=246",
+          "reviewBasis": "The initial vav foot is a solid horizontal mass; an independently printed lower vowel cannot be classified.",
+          "evidence": "BEL246-native-line02-right.png / BEL246-native-line02-left.png"
+        },
+        {
+          "id": "bel-1-27-246-vayomer27-letter2-dagesh",
+          "kind": "unreadablePoint",
+          "anchor": "ויֹאמֶר",
+          "occurrence": 1,
+          "letterIndex": 2,
+          "mark": "dagesh",
+          "sourcePages": [
+            246
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=246",
+          "reviewBasis": "The compact yod is saturated; its interior dot cannot be distinguished independently.",
+          "evidence": "BEL246-native-line02-right.png / BEL246-native-line02-left.png"
+        },
+        {
+          "id": "bel-1-27-246-vayikah-letter3-vowel",
+          "kind": "unreadablePoint",
+          "anchor": "ויִקּח",
+          "occurrence": 1,
+          "letterIndex": 3,
+          "mark": "vowel",
+          "sourcePages": [
+            246
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=246",
+          "reviewBasis": "Merged qof lower mark.",
+          "evidence": "BEL246-detail-vayikah.png"
+        },
+        {
+          "id": "bel-1-27-246-vayvashelm-letter3-vowel",
+          "kind": "unreadablePoint",
+          "anchor": "ויְבשְׁלֵם",
+          "occurrence": 1,
+          "letterIndex": 3,
+          "mark": "vowel",
+          "sourcePages": [
+            246
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=246",
+          "reviewBasis": "Merged bet lower mark.",
+          "evidence": "BEL246-detail-vayvashelm.png"
+        },
+        {
+          "id": "bel-1-27-246-vayokhal-letter4-vowel",
+          "kind": "unreadablePoint",
+          "anchor": "ויֹאכל",
+          "occurrence": 1,
+          "letterIndex": 4,
+          "mark": "vowel",
+          "sourcePages": [
+            246
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=246",
+          "reviewBasis": "Merged kaf lower mark.",
+          "evidence": "BEL246-detail-vayokhal.png"
+        },
+        {
+          "id": "bel-1-27-246-vayibaka-letter4-vowel",
+          "kind": "unreadablePoint",
+          "anchor": "ויִבָּקע",
+          "occurrence": 1,
+          "letterIndex": 4,
+          "mark": "vowel",
+          "sourcePages": [
+            246
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=246",
+          "reviewBasis": "Merged qof lower mark.",
+          "evidence": "BEL246-detail-vayibaka.png"
+        },
+        {
+          "id": "bel-1-27-246-vayvashelm-letter4-dagesh",
+          "kind": "unreadablePoint",
+          "anchor": "ויְבשְׁלֵם",
+          "occurrence": 1,
+          "letterIndex": 4,
+          "mark": "dagesh",
+          "sourcePages": [
+            246
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=246",
+          "reviewBasis": "Independent second reader and root inspection cannot separate an interior dot from the shin middle arm; retain its legible sheva and shin dot.",
+          "evidence": "BEL246-detail-vayvashelm.png"
+        }
+      ]
+    },
+    {
+      "verse": 28,
+      "text": "ויְהִי כאֲשֶׁר שָׁמְעוּ אַנְשֵׁי בָבֶל ויִרְגְזוּ מְאֹד ויִלּוֹנוּ עַל־הַמֶּלֶךְ ויֹאמרוּ הַמֶּלֶךְ הִתְיַהֵד אֶת־הַבֵּל נָתַץ וְאֶת־הַתַּנִּין הָרַג וְאֶת־הַכֹּהֲנִים זָבַח׃",
+      "sourceNotes": [
+        {
+          "id": "bel-1-28-246-vayehi28-letter1-vowel",
+          "kind": "unreadablePoint",
+          "anchor": "ויְהִי",
+          "occurrence": 1,
+          "letterIndex": 1,
+          "mark": "vowel",
+          "sourcePages": [
+            246
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=246",
+          "reviewBasis": "The initial vav foot is a solid horizontal mass; an independently printed lower vowel cannot be classified.",
+          "evidence": "BEL246-native-line03-right.png / BEL246-native-line03-left.png"
+        },
+        {
+          "id": "bel-1-28-246-vayirgezu-letter1-vowel",
+          "kind": "unreadablePoint",
+          "anchor": "ויִרְגְזוּ",
+          "occurrence": 1,
+          "letterIndex": 1,
+          "mark": "vowel",
+          "sourcePages": [
+            246
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=246",
+          "reviewBasis": "The initial vav foot is a solid horizontal mass; an independently printed lower vowel cannot be classified.",
+          "evidence": "BEL246-native-line03-right.png / BEL246-native-line03-left.png"
+        },
+        {
+          "id": "bel-1-28-246-vayirgezu-letter2-dagesh",
+          "kind": "unreadablePoint",
+          "anchor": "ויִרְגְזוּ",
+          "occurrence": 1,
+          "letterIndex": 2,
+          "mark": "dagesh",
+          "sourcePages": [
+            246
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=246",
+          "reviewBasis": "The compact yod is saturated; its interior dot cannot be distinguished independently.",
+          "evidence": "BEL246-native-line03-right.png / BEL246-native-line03-left.png"
+        },
+        {
+          "id": "bel-1-28-246-vayilunu28-letter1-vowel",
+          "kind": "unreadablePoint",
+          "anchor": "ויִלּוֹנוּ",
+          "occurrence": 1,
+          "letterIndex": 1,
+          "mark": "vowel",
+          "sourcePages": [
+            246
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=246",
+          "reviewBasis": "The initial vav foot is a solid horizontal mass; an independently printed lower vowel cannot be classified.",
+          "evidence": "BEL246-native-line04-right.png / BEL246-native-line04-left.png"
+        },
+        {
+          "id": "bel-1-28-246-vayilunu28-letter2-dagesh",
+          "kind": "unreadablePoint",
+          "anchor": "ויִלּוֹנוּ",
+          "occurrence": 1,
+          "letterIndex": 2,
+          "mark": "dagesh",
+          "sourcePages": [
+            246
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=246",
+          "reviewBasis": "The compact yod is saturated; its interior dot cannot be distinguished independently.",
+          "evidence": "BEL246-native-line04-right.png / BEL246-native-line04-left.png"
+        },
+        {
+          "id": "bel-1-28-246-vayomru28-letter1-vowel",
+          "kind": "unreadablePoint",
+          "anchor": "ויֹאמרוּ",
+          "occurrence": 1,
+          "letterIndex": 1,
+          "mark": "vowel",
+          "sourcePages": [
+            246
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=246",
+          "reviewBasis": "The initial vav foot is a solid horizontal mass; an independently printed lower vowel cannot be classified.",
+          "evidence": "BEL246-native-line04-right.png / BEL246-native-line04-left.png"
+        },
+        {
+          "id": "bel-1-28-246-vayomru28-letter2-dagesh",
+          "kind": "unreadablePoint",
+          "anchor": "ויֹאמרוּ",
+          "occurrence": 1,
+          "letterIndex": 2,
+          "mark": "dagesh",
+          "sourcePages": [
+            246
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=246",
+          "reviewBasis": "The compact yod is saturated; its interior dot cannot be distinguished independently.",
+          "evidence": "BEL246-native-line04-right.png / BEL246-native-line04-left.png"
+        },
+        {
+          "id": "bel-1-28-246-kaasher-letter1-vowel",
+          "kind": "unreadablePoint",
+          "anchor": "כאֲשֶׁר",
+          "occurrence": 1,
+          "letterIndex": 1,
+          "mark": "vowel",
+          "sourcePages": [
+            246
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=246",
+          "reviewBasis": "Lower mark fused into kaf base; cavity itself is clearly undotted.",
+          "evidence": "BEL246-detail-kaasher.png"
+        },
+        {
+          "id": "bel-1-28-246-vayirgezu-letter4-dagesh",
+          "kind": "unreadablePoint",
+          "anchor": "ויִרְגְזוּ",
+          "occurrence": 1,
+          "letterIndex": 4,
+          "mark": "dagesh",
+          "sourcePages": [
+            246
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=246",
+          "reviewBasis": "Interior point joins gimel stroke.",
+          "evidence": "BEL246-detail-vayirgezu.png"
+        },
+        {
+          "id": "bel-1-28-246-vayomru-letter4-vowel",
+          "kind": "unreadablePoint",
+          "anchor": "ויֹאמרוּ",
+          "occurrence": 1,
+          "letterIndex": 4,
+          "mark": "vowel",
+          "sourcePages": [
+            246
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=246",
+          "reviewBasis": "Mem lower group fused into loop; do not assume sheva.",
+          "evidence": "BEL246-detail-vayomru28.png"
+        }
+      ]
+    },
+    {
+      "verse": 29,
+      "text": "ויָבֹאוּ אֶל־הַמֶּלֶךְ ויֹאמרוּ תֵּן אֶת־דָּנִיֵאל בְּיָדֵנוּ וְאִם־לֹא הִנְנוּ הוֹרְגִים אוֹתְךָ וְאֶת־בֵּיתֶךָ׃",
+      "sourceNotes": [
+        {
+          "id": "bel-1-29-246-daniel-letter3-dagesh",
+          "kind": "unreadablePoint",
+          "anchor": "דָּנִיֵאל",
+          "occurrence": 1,
+          "letterIndex": 3,
+          "mark": "dagesh",
+          "sourcePages": [
+            246
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=246",
+          "reviewBasis": "Solid small yod; only its interior dot is uncertain.",
+          "evidence": "BEL246-detail-daniel29.png"
+        },
+        {
+          "id": "bel-1-29-246-vayavou29-letter1-vowel",
+          "kind": "unreadablePoint",
+          "anchor": "ויָבֹאוּ",
+          "occurrence": 1,
+          "letterIndex": 1,
+          "mark": "vowel",
+          "sourcePages": [
+            246
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=246",
+          "reviewBasis": "The initial vav foot is a solid horizontal mass; an independently printed lower vowel cannot be classified.",
+          "evidence": "BEL246-native-line05-right.png / BEL246-native-line05-left.png"
+        },
+        {
+          "id": "bel-1-29-246-vayavou29-letter2-dagesh",
+          "kind": "unreadablePoint",
+          "anchor": "ויָבֹאוּ",
+          "occurrence": 1,
+          "letterIndex": 2,
+          "mark": "dagesh",
+          "sourcePages": [
+            246
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=246",
+          "reviewBasis": "The compact yod is saturated; its interior dot cannot be distinguished independently.",
+          "evidence": "BEL246-native-line05-right.png / BEL246-native-line05-left.png"
+        },
+        {
+          "id": "bel-1-29-246-vayomru29-letter1-vowel",
+          "kind": "unreadablePoint",
+          "anchor": "ויֹאמרוּ",
+          "occurrence": 1,
+          "letterIndex": 1,
+          "mark": "vowel",
+          "sourcePages": [
+            246
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=246",
+          "reviewBasis": "The initial vav foot is a solid horizontal mass; an independently printed lower vowel cannot be classified.",
+          "evidence": "BEL246-native-line05-right.png / BEL246-native-line05-left.png"
+        },
+        {
+          "id": "bel-1-29-246-vayomru29-letter2-dagesh",
+          "kind": "unreadablePoint",
+          "anchor": "ויֹאמרוּ",
+          "occurrence": 1,
+          "letterIndex": 2,
+          "mark": "dagesh",
+          "sourcePages": [
+            246
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=246",
+          "reviewBasis": "The compact yod is saturated; its interior dot cannot be distinguished independently.",
+          "evidence": "BEL246-native-line05-right.png / BEL246-native-line05-left.png"
+        },
+        {
+          "id": "bel-1-29-246-vayomru-letter4-vowel",
+          "kind": "unreadablePoint",
+          "anchor": "ויֹאמרוּ",
+          "occurrence": 1,
+          "letterIndex": 4,
+          "mark": "vowel",
+          "sourcePages": [
+            246
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=246",
+          "reviewBasis": "Mem lower group fused into loop; do not assume sheva.",
+          "evidence": "BEL246-detail-vayomru29.png"
+        }
+      ]
+    },
+    {
+      "verse": 30,
+      "text": "ויַרְא הַמֶּלֶךְ כִּי הֵצִיקוּ לוֹ מְאֹד ויִתֵּן לָהֶם מֵאֹנֶס אֶת־דָּנִיֵאל׃",
+      "sourceNotes": [
+        {
+          "id": "bel-1-30-246-daniel-letter3-dagesh",
+          "kind": "unreadablePoint",
+          "anchor": "דָּנִיֵאל",
+          "occurrence": 1,
+          "letterIndex": 3,
+          "mark": "dagesh",
+          "sourcePages": [
+            246
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=246",
+          "reviewBasis": "Solid small yod; only its interior dot is uncertain.",
+          "evidence": "BEL246-detail-daniel30.png"
+        },
+        {
+          "id": "bel-1-30-246-vayar30-letter1-vowel",
+          "kind": "unreadablePoint",
+          "anchor": "ויַרְא",
+          "occurrence": 1,
+          "letterIndex": 1,
+          "mark": "vowel",
+          "sourcePages": [
+            246
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=246",
+          "reviewBasis": "The initial vav foot is a solid horizontal mass; an independently printed lower vowel cannot be classified.",
+          "evidence": "BEL246-native-line06-right.png / BEL246-native-line06-left.png"
+        },
+        {
+          "id": "bel-1-30-246-vayar30-letter2-dagesh",
+          "kind": "unreadablePoint",
+          "anchor": "ויַרְא",
+          "occurrence": 1,
+          "letterIndex": 2,
+          "mark": "dagesh",
+          "sourcePages": [
+            246
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=246",
+          "reviewBasis": "The compact yod is saturated; its interior dot cannot be distinguished independently.",
+          "evidence": "BEL246-native-line06-right.png / BEL246-native-line06-left.png"
+        },
+        {
+          "id": "bel-1-30-246-vayiten30-letter1-vowel",
+          "kind": "unreadablePoint",
+          "anchor": "ויִתֵּן",
+          "occurrence": 1,
+          "letterIndex": 1,
+          "mark": "vowel",
+          "sourcePages": [
+            246
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=246",
+          "reviewBasis": "The initial vav foot is a solid horizontal mass; an independently printed lower vowel cannot be classified.",
+          "evidence": "BEL246-native-line07-right.png / BEL246-native-line07-left.png"
+        },
+        {
+          "id": "bel-1-30-246-vayiten30-letter2-dagesh",
+          "kind": "unreadablePoint",
+          "anchor": "ויִתֵּן",
+          "occurrence": 1,
+          "letterIndex": 2,
+          "mark": "dagesh",
+          "sourcePages": [
+            246
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=246",
+          "reviewBasis": "The compact yod is saturated; its interior dot cannot be distinguished independently.",
+          "evidence": "BEL246-native-line07-right.png / BEL246-native-line07-left.png"
+        }
+      ]
+    },
+    {
+      "verse": 31,
+      "text": "ויַשְׁלִיכוּ אוֹתוֹ אֶל־בּוֹר הָאֲרָיוֹת ויְהִי שָׁם שֵׁשֶׁת יָמִים׃ וּבַבּוֹר הָיוּ שִׁבְעָה אֲרָיוֹת וּבְכָל־יוֹם נָתְנוּ לִפְנֵיהֶם שְׁתֵּי גְוִיוֹת־אָדָם וּשְׁנֵי כְבָשִׂים וְאָז לֹא נָתַן לָהֶם מְאוּמָה לְמַעַן אֲשֶׁר יֹאכְלוּ אֶת־דָּנִיֵאל׃",
+      "sourceNotes": [
+        {
+          "id": "bel-1-31-246-daniel-letter3-dagesh",
+          "kind": "unreadablePoint",
+          "anchor": "דָּנִיֵאל",
+          "occurrence": 1,
+          "letterIndex": 3,
+          "mark": "dagesh",
+          "sourcePages": [
+            246
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=246",
+          "reviewBasis": "Solid small yod; only its interior dot is uncertain.",
+          "evidence": "BEL246-detail-daniel31.png"
+        },
+        {
+          "id": "bel-1-31-246-vayashlikhu31-letter1-vowel",
+          "kind": "unreadablePoint",
+          "anchor": "ויַשְׁלִיכוּ",
+          "occurrence": 1,
+          "letterIndex": 1,
+          "mark": "vowel",
+          "sourcePages": [
+            246
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=246",
+          "reviewBasis": "The initial vav foot is a solid horizontal mass; an independently printed lower vowel cannot be classified.",
+          "evidence": "BEL246-native-line07-right.png / BEL246-native-line07-left.png"
+        },
+        {
+          "id": "bel-1-31-246-vayashlikhu31-letter2-dagesh",
+          "kind": "unreadablePoint",
+          "anchor": "ויַשְׁלִיכוּ",
+          "occurrence": 1,
+          "letterIndex": 2,
+          "mark": "dagesh",
+          "sourcePages": [
+            246
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=246",
+          "reviewBasis": "The compact yod is saturated; its interior dot cannot be distinguished independently.",
+          "evidence": "BEL246-native-line07-right.png / BEL246-native-line07-left.png"
+        },
+        {
+          "id": "bel-1-31-246-vayehi31-letter1-vowel",
+          "kind": "unreadablePoint",
+          "anchor": "ויְהִי",
+          "occurrence": 1,
+          "letterIndex": 1,
+          "mark": "vowel",
+          "sourcePages": [
+            246
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=246",
+          "reviewBasis": "The initial vav foot is a solid horizontal mass; an independently printed lower vowel cannot be classified.",
+          "evidence": "BEL246-native-line08-right.png / BEL246-native-line08-left.png"
+        }
+      ]
+    },
+    {
+      "verse": 33,
+      "text": "וּבְאֶרֶץ יְהוּדָה הָיָה חֲבַקּוּק הַנָּבִיא וְהוּא בִשׁל נָזִיד ויָבל אֶת־הַלֶּחֶם בַּסִּיר ויֵצא הַשָּׂדֶה לָשׂאת אוֹתוֹ אֶל־הַקּוֹצְרִים׃",
+      "sourceNotes": [
+        {
+          "id": "bel-1-33-246-vayabel33-letter1-vowel",
+          "kind": "unreadablePoint",
+          "anchor": "ויָבל",
+          "occurrence": 1,
+          "letterIndex": 1,
+          "mark": "vowel",
+          "sourcePages": [
+            246
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=246",
+          "reviewBasis": "The initial vav foot is a solid horizontal mass; an independently printed lower vowel cannot be classified.",
+          "evidence": "BEL246-native-line11-right.png / BEL246-native-line11-left.png"
+        },
+        {
+          "id": "bel-1-33-246-vayabel33-letter2-dagesh",
+          "kind": "unreadablePoint",
+          "anchor": "ויָבל",
+          "occurrence": 1,
+          "letterIndex": 2,
+          "mark": "dagesh",
+          "sourcePages": [
+            246
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=246",
+          "reviewBasis": "The compact yod is saturated; its interior dot cannot be distinguished independently.",
+          "evidence": "BEL246-native-line11-right.png / BEL246-native-line11-left.png"
+        },
+        {
+          "id": "bel-1-33-246-vayetse33-letter1-vowel",
+          "kind": "unreadablePoint",
+          "anchor": "ויֵצא",
+          "occurrence": 1,
+          "letterIndex": 1,
+          "mark": "vowel",
+          "sourcePages": [
+            246
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=246",
+          "reviewBasis": "The initial vav foot is a solid horizontal mass; an independently printed lower vowel cannot be classified.",
+          "evidence": "BEL246-native-line12-right.png / BEL246-native-line12-left.png"
+        },
+        {
+          "id": "bel-1-33-246-vayetse33-letter2-dagesh",
+          "kind": "unreadablePoint",
+          "anchor": "ויֵצא",
+          "occurrence": 1,
+          "letterIndex": 2,
+          "mark": "dagesh",
+          "sourcePages": [
+            246
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=246",
+          "reviewBasis": "The compact yod is saturated; its interior dot cannot be distinguished independently.",
+          "evidence": "BEL246-native-line12-right.png / BEL246-native-line12-left.png"
+        },
+        {
+          "id": "bel-1-33-246-bishel-letter2-dagesh",
+          "kind": "unreadablePoint",
+          "anchor": "בִשׁל",
+          "occurrence": 1,
+          "letterIndex": 2,
+          "mark": "dagesh",
+          "sourcePages": [
+            246
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=246",
+          "reviewBasis": "Shin interior joins the central arm. Independently confirmed unreadable.",
+          "evidence": "BEL246-detail-bishel.png"
+        },
+        {
+          "id": "bel-1-33-246-bishel-letter2-vowel",
+          "kind": "unreadablePoint",
+          "anchor": "בִשׁל",
+          "occurrence": 1,
+          "letterIndex": 2,
+          "mark": "vowel",
+          "sourcePages": [
+            246
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=246",
+          "reviewBasis": "Shin lower point group is a single connected block. Independently confirmed unreadable.",
+          "evidence": "BEL246-detail-bishel.png"
+        },
+        {
+          "id": "bel-1-33-246-vayetse-letter3-vowel",
+          "kind": "unreadablePoint",
+          "anchor": "ויֵצא",
+          "occurrence": 1,
+          "letterIndex": 3,
+          "mark": "vowel",
+          "sourcePages": [
+            246
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=246",
+          "reviewBasis": "Tsadi lower group merges into its base.",
+          "evidence": "BEL246-detail-vayetse33.png"
+        },
+        {
+          "id": "bel-1-33-246-laset-letter2-vowel",
+          "kind": "unreadablePoint",
+          "anchor": "לָשׂאת",
+          "occurrence": 1,
+          "letterIndex": 2,
+          "mark": "vowel",
+          "sourcePages": [
+            246
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=246",
+          "reviewBasis": "Sin lower point group merges into its base.",
+          "evidence": "BEL246-detail-laset.png"
+        },
+        {
+          "id": "bel-1-33-246-vayabel-bet-vowel",
+          "kind": "unreadablePoint",
+          "anchor": "ויָבל",
+          "occurrence": 1,
+          "letterIndex": 3,
+          "mark": "vowel",
+          "sourcePages": [
+            246
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=246"
+        }
+      ]
+    },
+    {
+      "verse": 34,
+      "text": "ויֹאמֶר מַלְאַךְ יְיָ אֶל־חֲבַקּוּק שָׂא־נָא אֶת־הַמַּאֲכָל בְּיָדְךָ בָּבֶלָה אֶל־דָּנִיֵאל אֲשֶׁר בְּבוֹר הָאֲרָיוֹת׃",
+      "sourceNotes": [
+        {
+          "id": "bel-1-34-246-daniel-letter3-dagesh",
+          "kind": "unreadablePoint",
+          "anchor": "דָּנִיֵאל",
+          "occurrence": 1,
+          "letterIndex": 3,
+          "mark": "dagesh",
+          "sourcePages": [
+            246
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=246",
+          "reviewBasis": "Solid small yod; only its interior dot is uncertain.",
+          "evidence": "BEL246-detail-daniel34.png"
+        },
+        {
+          "id": "bel-1-34-246-vayomer34-letter1-vowel",
+          "kind": "unreadablePoint",
+          "anchor": "ויֹאמֶר",
+          "occurrence": 1,
+          "letterIndex": 1,
+          "mark": "vowel",
+          "sourcePages": [
+            246
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=246",
+          "reviewBasis": "The initial vav foot is a solid horizontal mass; an independently printed lower vowel cannot be classified.",
+          "evidence": "BEL246-native-line12-right.png / BEL246-native-line12-left.png"
+        },
+        {
+          "id": "bel-1-34-246-vayomer34-letter2-dagesh",
+          "kind": "unreadablePoint",
+          "anchor": "ויֹאמֶר",
+          "occurrence": 1,
+          "letterIndex": 2,
+          "mark": "dagesh",
+          "sourcePages": [
+            246
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=246",
+          "reviewBasis": "The compact yod is saturated; its interior dot cannot be distinguished independently.",
+          "evidence": "BEL246-native-line12-right.png / BEL246-native-line12-left.png"
+        }
+      ]
+    },
+    {
+      "verse": 35,
+      "text": "ויֹאמֶר חֲבַקּוּק יְיָ לֹא רָאִיתִי אֶת־בָּבֶל וְאֵינֶנִי יוֹדֵעַ אֶת־",
+      "sourceNotes": [
+        {
+          "id": "bel-1-35-246-vayomer35-letter1-vowel",
+          "kind": "unreadablePoint",
+          "anchor": "ויֹאמֶר",
+          "occurrence": 1,
+          "letterIndex": 1,
+          "mark": "vowel",
+          "sourcePages": [
+            246
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=246",
+          "reviewBasis": "The initial vav foot is a solid horizontal mass; an independently printed lower vowel cannot be classified.",
+          "evidence": "BEL246-native-line14-right.png / BEL246-native-line14-left.png"
+        },
+        {
+          "id": "bel-1-35-246-vayomer35-letter2-dagesh",
+          "kind": "unreadablePoint",
+          "anchor": "ויֹאמֶר",
+          "occurrence": 1,
+          "letterIndex": 2,
+          "mark": "dagesh",
+          "sourcePages": [
+            246
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=246",
+          "reviewBasis": "The compact yod is saturated; its interior dot cannot be distinguished independently.",
+          "evidence": "BEL246-native-line14-right.png / BEL246-native-line14-left.png"
+        },
+        {
+          "id": "bel-1-35-246-veeneni-letter5-dagesh",
+          "kind": "unreadablePoint",
+          "anchor": "וְאֵינֶנִי",
+          "occurrence": 1,
+          "letterIndex": 5,
+          "mark": "dagesh",
+          "sourcePages": [
+            246
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=246",
+          "reviewBasis": "Second nun interior joins the heavy stroke.",
+          "evidence": "BEL246-detail-veeneni.png"
+        }
+      ]
+    }
+  ],
+  "physicalLines": [
+    {
+      "line": 1,
+      "pieces": [
+        {
+          "verse": 26,
+          "text": "הַמֶּלֶךְ הִנֵּה נְתַתִּיו בְיָדְךָ׃"
+        },
+        {
+          "verse": 27,
+          "text": "ויִקּח דָּנִיֵאל זֶפֶת וְחֵלֶב וְשֵׂעָר ויְבשְׁלֵם"
+        }
+      ],
+      "evidence": [
+        "BEL246-native-line01-right.png",
+        "BEL246-native-line01-left.png"
+      ]
+    },
+    {
+      "line": 2,
+      "pieces": [
+        {
+          "verse": 27,
+          "text": "יַחַד ויַעַשׂ חַלּוֹת ויִתְּן אֶל־פִּי הַתַּנִּין ויֹאכל הַתַּנִּין ויִבָּקע ויֹאמֶר"
+        }
+      ],
+      "evidence": [
+        "BEL246-native-line02-right.png",
+        "BEL246-native-line02-left.png"
+      ]
+    },
+    {
+      "line": 3,
+      "pieces": [
+        {
+          "verse": 27,
+          "text": "רְאוּ אֶת־יִרְאָתְכֶם׃"
+        },
+        {
+          "verse": 28,
+          "text": "ויְהִי כאֲשֶׁר שָׁמְעוּ אַנְשֵׁי בָבֶל ויִרְגְזוּ מְאֹד"
+        }
+      ],
+      "evidence": [
+        "BEL246-native-line03-right.png",
+        "BEL246-native-line03-left.png"
+      ]
+    },
+    {
+      "line": 4,
+      "pieces": [
+        {
+          "verse": 28,
+          "text": "ויִלּוֹנוּ עַל־הַמֶּלֶךְ ויֹאמרוּ הַמֶּלֶךְ הִתְיַהֵד אֶת־הַבֵּל נָתַץ וְאֶת־"
+        }
+      ],
+      "evidence": [
+        "BEL246-native-line04-right.png",
+        "BEL246-native-line04-left.png"
+      ]
+    },
+    {
+      "line": 5,
+      "pieces": [
+        {
+          "verse": 28,
+          "text": "הַתַּנִּין הָרַג וְאֶת־הַכֹּהֲנִים זָבַח׃"
+        },
+        {
+          "verse": 29,
+          "text": "ויָבֹאוּ אֶל־הַמֶּלֶךְ ויֹאמרוּ תֵּן אֶת־"
+        }
+      ],
+      "evidence": [
+        "BEL246-native-line05-right.png",
+        "BEL246-native-line05-left.png"
+      ]
+    },
+    {
+      "line": 6,
+      "pieces": [
+        {
+          "verse": 29,
+          "text": "דָּנִיֵאל בְּיָדֵנוּ וְאִם־לֹא הִנְנוּ הוֹרְגִים אוֹתְךָ וְאֶת־בֵּיתֶךָ׃"
+        },
+        {
+          "verse": 30,
+          "text": "ויַרְא הַמֶּלֶךְ"
+        }
+      ],
+      "evidence": [
+        "BEL246-native-line06-right.png",
+        "BEL246-native-line06-left.png"
+      ]
+    },
+    {
+      "line": 7,
+      "pieces": [
+        {
+          "verse": 30,
+          "text": "כִּי הֵצִיקוּ לוֹ מְאֹד ויִתֵּן לָהֶם מֵאֹנֶס אֶת־דָּנִיֵאל׃"
+        },
+        {
+          "verse": 31,
+          "text": "ויַשְׁלִיכוּ אוֹתוֹ"
+        }
+      ],
+      "evidence": [
+        "BEL246-native-line07-right.png",
+        "BEL246-native-line07-left.png"
+      ]
+    },
+    {
+      "line": 8,
+      "pieces": [
+        {
+          "verse": 31,
+          "text": "אֶל־בּוֹר הָאֲרָיוֹת ויְהִי שָׁם שֵׁשֶׁת יָמִים׃ וּבַבּוֹר הָיוּ שִׁבְעָה"
+        }
+      ],
+      "evidence": [
+        "BEL246-native-line08-right.png",
+        "BEL246-native-line08-left.png"
+      ]
+    },
+    {
+      "line": 9,
+      "pieces": [
+        {
+          "verse": 31,
+          "text": "אֲרָיוֹת וּבְכָל־יוֹם נָתְנוּ לִפְנֵיהֶם שְׁתֵּי גְוִיוֹת־אָדָם וּשְׁנֵי כְבָשִׂים"
+        }
+      ],
+      "evidence": [
+        "BEL246-native-line09-right.png",
+        "BEL246-native-line09-left.png"
+      ]
+    },
+    {
+      "line": 10,
+      "pieces": [
+        {
+          "verse": 31,
+          "text": "וְאָז לֹא נָתַן לָהֶם מְאוּמָה לְמַעַן אֲשֶׁר יֹאכְלוּ אֶת־דָּנִיֵאל׃"
+        },
+        {
+          "verse": 33,
+          "text": "וּבְאֶרֶץ"
+        }
+      ],
+      "evidence": [
+        "BEL246-native-line10-right.png",
+        "BEL246-native-line10-left.png"
+      ]
+    },
+    {
+      "line": 11,
+      "pieces": [
+        {
+          "verse": 33,
+          "text": "יְהוּדָה הָיָה חֲבַקּוּק הַנָּבִיא וְהוּא בִשׁל נָזִיד ויָבל אֶת־הַלֶּחֶם בַּסִּיר"
+        }
+      ],
+      "evidence": [
+        "BEL246-native-line11-right.png",
+        "BEL246-native-line11-left.png"
+      ]
+    },
+    {
+      "line": 12,
+      "pieces": [
+        {
+          "verse": 33,
+          "text": "ויֵצא הַשָּׂדֶה לָשׂאת אוֹתוֹ אֶל־הַקּוֹצְרִים׃"
+        },
+        {
+          "verse": 34,
+          "text": "ויֹאמֶר מַלְאַךְ יְיָ אֶל־"
+        }
+      ],
+      "evidence": [
+        "BEL246-native-line12-right.png",
+        "BEL246-native-line12-left.png"
+      ]
+    },
+    {
+      "line": 13,
+      "pieces": [
+        {
+          "verse": 34,
+          "text": "חֲבַקּוּק שָׂא־נָא אֶת־הַמַּאֲכָל בְּיָדְךָ בָּבֶלָה אֶל־דָּנִיֵאל אֲשֶׁר בְּבוֹר"
+        }
+      ],
+      "evidence": [
+        "BEL246-native-line13-right.png",
+        "BEL246-native-line13-left.png"
+      ]
+    },
+    {
+      "line": 14,
+      "pieces": [
+        {
+          "verse": 34,
+          "text": "הָאֲרָיוֹת׃"
+        },
+        {
+          "verse": 35,
+          "text": "ויֹאמֶר חֲבַקּוּק יְיָ לֹא רָאִיתִי אֶת־בָּבֶל וְאֵינֶנִי יוֹדֵעַ אֶת־"
+        }
+      ],
+      "evidence": [
+        "BEL246-native-line14-right.png",
+        "BEL246-native-line14-left.png"
+      ]
+    }
+  ],
+  "additionalLiteralChecks": [
+    "All five Daniel tokens retain the distinct dalet dagesh and yod tsere; only the saturated yod dagesh is noted.",
+    "The two nun consonants in 35 ואינני are retained; no word or verse boundary changes proposed.",
+    "Both divine-name tokens on this page retain first-yod sheva and second-yod qamats; no pointing borrowed from page 245.",
+    "31 וישליכו retains the visible final shuruq.",
+    "The flat patah bars in Habakkuk, בסיר and the lower-body המאכל were compared locally; no upper-recension marks were used."
+  ],
+  "crossReview": [
+    {
+      "agent": "lje_pd_boundaries",
+      "findings": "Independently confirmed absence of kaf dagesh in כאשר and bet dagesh in בשל; the shin interior dagesh and lower vowel in בשל remain unreadable; the distinct bet hiriq is retained."
+    },
+    {
+      "agent": "root and lje_pd_boundaries",
+      "findings": "Omit the indistinguishable shin dagesh in 27 ויבשלם with an exact source note. Root also inspected the focal vowel/dagesh corrections; no consonants or word order changed."
+    }
+  ],
+  "unresolvedFindings": [],
+  "nativeCropCoordinates": [
+    {
+      "line": 1,
+      "side": "right",
+      "nativeBounds": [
+        1109,
+        1720,
+        2069,
+        1832
+      ],
+      "crop": "BEL246-native-line01-right.png",
+      "sha256": "b86170c857460dcf59fed9afe8a5d784b7258d761394b038d6df1804ce2ae3e7"
+    },
+    {
+      "line": 1,
+      "side": "left",
+      "nativeBounds": [
+        237,
+        1720,
+        1165,
+        1832
+      ],
+      "crop": "BEL246-native-line01-left.png",
+      "sha256": "dfb6ad6edda6f9bb820e62908f78648a8124549b38a97e42fb556dc5452442fb"
+    },
+    {
+      "line": 2,
+      "side": "right",
+      "nativeBounds": [
+        1109,
+        1813,
+        2069,
+        1926
+      ],
+      "crop": "BEL246-native-line02-right.png",
+      "sha256": "90a75791b5082c7ded8ee5debbbdd0b495e57ca91a7942640a0e655fdeb97b70"
+    },
+    {
+      "line": 2,
+      "side": "left",
+      "nativeBounds": [
+        237,
+        1813,
+        1165,
+        1926
+      ],
+      "crop": "BEL246-native-line02-left.png",
+      "sha256": "d080acd486bd6f002147a8eeb1b1d9a94aa6e4bb972378c19cc24f250e43864a"
+    },
+    {
+      "line": 3,
+      "side": "right",
+      "nativeBounds": [
+        1109,
+        1907,
+        2069,
+        2019
+      ],
+      "crop": "BEL246-native-line03-right.png",
+      "sha256": "14b3fdb32cce201a2ed7db63cd69e8d2b58603009a2b22271d60333499ccd71a"
+    },
+    {
+      "line": 3,
+      "side": "left",
+      "nativeBounds": [
+        237,
+        1907,
+        1165,
+        2019
+      ],
+      "crop": "BEL246-native-line03-left.png",
+      "sha256": "166d3803ba23724b185fabd0b5f500ba6092cd34eb87ce0ea9e9868a61396141"
+    },
+    {
+      "line": 4,
+      "side": "right",
+      "nativeBounds": [
+        1109,
+        2000,
+        2069,
+        2113
+      ],
+      "crop": "BEL246-native-line04-right.png",
+      "sha256": "a7e4aa8c7ba71f40ed9167270e9e50f784f6032350c0d9f95fbd45fcec484a0b"
+    },
+    {
+      "line": 4,
+      "side": "left",
+      "nativeBounds": [
+        237,
+        2000,
+        1165,
+        2113
+      ],
+      "crop": "BEL246-native-line04-left.png",
+      "sha256": "fa4ab79eecc8e96328b1d996a2db0cc431b841b074718b2670839af31046c635"
+    },
+    {
+      "line": 5,
+      "side": "right",
+      "nativeBounds": [
+        1109,
+        2094,
+        2069,
+        2206
+      ],
+      "crop": "BEL246-native-line05-right.png",
+      "sha256": "0cd6b4e3ff97df8f3c881fa79d4c9bdce5a157adc4759ac1a5f35331ab6f048a"
+    },
+    {
+      "line": 5,
+      "side": "left",
+      "nativeBounds": [
+        237,
+        2094,
+        1165,
+        2206
+      ],
+      "crop": "BEL246-native-line05-left.png",
+      "sha256": "7e5e3607d3d3fcf5135b9eacdfa7c064b2994fc9b50fc7aa0141230be6a8b50e"
+    },
+    {
+      "line": 6,
+      "side": "right",
+      "nativeBounds": [
+        1109,
+        2187,
+        2069,
+        2300
+      ],
+      "crop": "BEL246-native-line06-right.png",
+      "sha256": "e5fe9d27fe8fa7f54a4c77ae13f39b893b7c9d05a994a5e509aa404d07708096"
+    },
+    {
+      "line": 6,
+      "side": "left",
+      "nativeBounds": [
+        237,
+        2187,
+        1165,
+        2300
+      ],
+      "crop": "BEL246-native-line06-left.png",
+      "sha256": "9a8475b878761d0f5d494a806cfff5c00615bf7960f366fb69d6a93608103c7e"
+    },
+    {
+      "line": 7,
+      "side": "right",
+      "nativeBounds": [
+        1109,
+        2281,
+        2069,
+        2393
+      ],
+      "crop": "BEL246-native-line07-right.png",
+      "sha256": "cdf924e8b8e0ec99d61287ea1c3c9edc3a4d0b683bb3352fdb7d4cbeea201c19"
+    },
+    {
+      "line": 7,
+      "side": "left",
+      "nativeBounds": [
+        237,
+        2281,
+        1165,
+        2393
+      ],
+      "crop": "BEL246-native-line07-left.png",
+      "sha256": "ab8c6f59d9c8830da9c7c84b60fb9b014d5af468a35f0faccede45b7f8b3b830"
+    },
+    {
+      "line": 8,
+      "side": "right",
+      "nativeBounds": [
+        1109,
+        2374,
+        2069,
+        2487
+      ],
+      "crop": "BEL246-native-line08-right.png",
+      "sha256": "7183fcf401d1a234668cb33817286592832da64b4df64d17bab9d87312a94ca9"
+    },
+    {
+      "line": 8,
+      "side": "left",
+      "nativeBounds": [
+        237,
+        2374,
+        1165,
+        2487
+      ],
+      "crop": "BEL246-native-line08-left.png",
+      "sha256": "c0f14407dc16acda43030047b5d7a49a69bfd4a512bd63253a8339e2c46318a6"
+    },
+    {
+      "line": 9,
+      "side": "right",
+      "nativeBounds": [
+        1109,
+        2468,
+        2069,
+        2580
+      ],
+      "crop": "BEL246-native-line09-right.png",
+      "sha256": "ae993d338f0c76482cb146be4095c5a61594791abff6585a7dee0ee5ffc9f793"
+    },
+    {
+      "line": 9,
+      "side": "left",
+      "nativeBounds": [
+        237,
+        2468,
+        1165,
+        2580
+      ],
+      "crop": "BEL246-native-line09-left.png",
+      "sha256": "afe18defde976fe597dd32976b8f040ee0497464d79cc70c1118dc15d995b7a9"
+    },
+    {
+      "line": 10,
+      "side": "right",
+      "nativeBounds": [
+        1109,
+        2561,
+        2069,
+        2673
+      ],
+      "crop": "BEL246-native-line10-right.png",
+      "sha256": "8ed9fc7d4bc82c54999601f4d4456497235dec19885877ccb2e44976b66af09a"
+    },
+    {
+      "line": 10,
+      "side": "left",
+      "nativeBounds": [
+        237,
+        2561,
+        1165,
+        2673
+      ],
+      "crop": "BEL246-native-line10-left.png",
+      "sha256": "6d0b21ef7922a07b0f49fd0480b6df414ab30f6fd5866d37e49c937a97f57269"
+    },
+    {
+      "line": 11,
+      "side": "right",
+      "nativeBounds": [
+        1109,
+        2655,
+        2069,
+        2767
+      ],
+      "crop": "BEL246-native-line11-right.png",
+      "sha256": "3a11e2e8972ac724a78679998307e962a6ab23afb4053c54043462a84cb59f29"
+    },
+    {
+      "line": 11,
+      "side": "left",
+      "nativeBounds": [
+        237,
+        2655,
+        1165,
+        2767
+      ],
+      "crop": "BEL246-native-line11-left.png",
+      "sha256": "cae112a0a3d5508e30cd306c87ed336ab5613c688a9b78b0d7939e867660915e"
+    },
+    {
+      "line": 12,
+      "side": "right",
+      "nativeBounds": [
+        1109,
+        2748,
+        2069,
+        2860
+      ],
+      "crop": "BEL246-native-line12-right.png",
+      "sha256": "ecc9e48dadbe109ccf29a9b93115c9479bbedb05a3c659ac92a1b89239c7db97"
+    },
+    {
+      "line": 12,
+      "side": "left",
+      "nativeBounds": [
+        237,
+        2748,
+        1165,
+        2860
+      ],
+      "crop": "BEL246-native-line12-left.png",
+      "sha256": "4512869d49580a268c8f8f9426b07e5a449ecd8b1cfa09f1fa578f3e20b5e141"
+    },
+    {
+      "line": 13,
+      "side": "right",
+      "nativeBounds": [
+        1109,
+        2842,
+        2069,
+        2954
+      ],
+      "crop": "BEL246-native-line13-right.png",
+      "sha256": "555f1cbe46e62fc8849b2447b0eb409545a785badc00b0eebe6a631bee32662b"
+    },
+    {
+      "line": 13,
+      "side": "left",
+      "nativeBounds": [
+        237,
+        2842,
+        1165,
+        2954
+      ],
+      "crop": "BEL246-native-line13-left.png",
+      "sha256": "65aa3fa84d31f11312512baae2cf5e185b2b15457b3423fb1f457f1fe8340698"
+    },
+    {
+      "line": 14,
+      "side": "right",
+      "nativeBounds": [
+        1109,
+        2935,
+        2069,
+        3047
+      ],
+      "crop": "BEL246-native-line14-right.png",
+      "sha256": "954f2fa5e6db9fdc4caf1ee20d748e6db644854f462d9dea99510bdaf5447664"
+    },
+    {
+      "line": 14,
+      "side": "left",
+      "nativeBounds": [
+        237,
+        2935,
+        1165,
+        3047
+      ],
+      "crop": "BEL246-native-line14-left.png",
+      "sha256": "5945024e98559d8ba8a41a9462fdfa89426b0a954eaa25e4da9df2ac94841e9d"
+    }
+  ],
+  "focusedEvidence": [
+    {
+      "file": "BEL246-detail-basir.png",
+      "sha256": "8cfa68c1a36da3cb713854a220f92714460ccad435b2fae53885635d8b58782b"
+    },
+    {
+      "file": "BEL246-detail-bishel.png",
+      "sha256": "501927fb2a476aa6d4fd1ddb54374b3ca831336760e448e7ad087c8a737a8e42"
+    },
+    {
+      "file": "BEL246-detail-daniel27.png",
+      "sha256": "7c483a6a45cde204b2f95e8947db69c602766470dea925536ecd5eaddbe83614"
+    },
+    {
+      "file": "BEL246-detail-daniel29.png",
+      "sha256": "815d6bd3de24dc5f4b89a767cc3ddfcff39b338623a33c15dac57622be578e46"
+    },
+    {
+      "file": "BEL246-detail-daniel30.png",
+      "sha256": "d408f50e82449461fae2e8c30c1e82bf733f7205042e64e8de9e0fd97485b8c8"
+    },
+    {
+      "file": "BEL246-detail-daniel31.png",
+      "sha256": "0812ed688e204e188790b76f2ea7cd5585d365b8bc2d3ed4a7b98f45b2b438ec"
+    },
+    {
+      "file": "BEL246-detail-daniel34.png",
+      "sha256": "ede49977e8dda4a916e063d2aa872a71a28c36bf40fe590b5d8f1d8e8bf72bd2"
+    },
+    {
+      "file": "BEL246-detail-habakkuk33.png",
+      "sha256": "c1dcd2f3197fda6517edf1960dd866c0c33ddec8ee4d7339dc4ac38e485041e6"
+    },
+    {
+      "file": "BEL246-detail-hamaakhal.png",
+      "sha256": "d90040b11a1a93c36fa57dae702357f06e0fbbd1cfeb166ae7752bd0b2d3fd96"
+    },
+    {
+      "file": "BEL246-detail-kaasher.png",
+      "sha256": "363ee8a9b0db473fcb67beaee460a11c66a0c83918392518e8ec4f7d82fa2758"
+    },
+    {
+      "file": "BEL246-detail-laset.png",
+      "sha256": "6aa5e9e62079db33965ce53c468c9103fc61fee0e5205deda660ae2f2f9765d6"
+    },
+    {
+      "file": "BEL246-detail-malakh.png",
+      "sha256": "cb2f542caea83752035c3065725f8e0fdbf9d1534dc569d58255f067f338eaef"
+    },
+    {
+      "file": "BEL246-detail-natnu.png",
+      "sha256": "7471f40ffbd84c33edae8f807a88d46cce68921b163e265661c4d1a5baa0f5b4"
+    },
+    {
+      "file": "BEL246-detail-uvabbor.png",
+      "sha256": "3ad567f6c3b15094c81a05bd4d684be29e2a0b94d4dfeb22a93130e7fe9d97e1"
+    },
+    {
+      "file": "BEL246-detail-vayaas27.png",
+      "sha256": "a838b6951e478600fc45d4af10d065069f3185d435ef25b820aa12df6a04200e"
+    },
+    {
+      "file": "BEL246-detail-vayabel33.png",
+      "sha256": "c6008ec336572f93f3c053dee10b29ee3aa29dc76f25a422a4d3a62f73243fbd"
+    },
+    {
+      "file": "BEL246-detail-vayetse33.png",
+      "sha256": "06e51126a9d33718372791120845455c4914865d7dc57df7c742742d0bc129d2"
+    },
+    {
+      "file": "BEL246-detail-vayibaka.png",
+      "sha256": "5ead12004d53f712a14ac8603d4bc175956522a9d6d8ae43623b307361535db6"
+    },
+    {
+      "file": "BEL246-detail-vayikah.png",
+      "sha256": "c6a6ff2651a77703fb8d657c6765b8529ac3eb7695b25ea96aea8206b3f8ddff"
+    },
+    {
+      "file": "BEL246-detail-vayirgezu.png",
+      "sha256": "e8d138984d765b93538b475153e2a8273395b540eb2f7391cfc7e75a3d8d2774"
+    },
+    {
+      "file": "BEL246-detail-vayokhal.png",
+      "sha256": "757663b060129076ffd50cc7a4bbe520ccd2f0eb21265ff7f3b468834519654c"
+    },
+    {
+      "file": "BEL246-detail-vayomru28.png",
+      "sha256": "05c0a0ffc340617bbe0c96c59029eb8ad156fa99467d1d78340d32f776bfb1b5"
+    },
+    {
+      "file": "BEL246-detail-vayomru29.png",
+      "sha256": "f2757d70f28dc1d04d168dbd5b4daf935bfb550c9736092058ae54928af2892e"
+    },
+    {
+      "file": "BEL246-detail-vayvashelm.png",
+      "sha256": "b6b9ca6d56aaac1628cb3c327cf0f998230ccd7c756086a5b72abd4164dab26e"
+    },
+    {
+      "file": "BEL246-detail-veeneni.png",
+      "sha256": "da7b0b49245da8b43710e0a8b3c8ef7139f890fd6b55dd45423115c3eb8bcc28"
+    },
+    {
+      "file": "BEL246-detail-yodea.png",
+      "sha256": "f93ba05bf192d32e1d87108554585ae53dee1e66c7992e77c4d0105ad26db0fb"
+    }
+  ],
+  "integration": {
+    "decision": "Point corrections and exact source notes accepted after independent cross-review; no consonant changes.",
+    "completeBookApproved": true,
+    "remaining": "No open source-review findings; all-twelve-works production release gate remains.",
+    "approvedContentSHA256": "0fd310e2a7d6c931cad1d73fcc5b8b1e36cd4cfa725eae3c04ff4056d0f3318d"
+  },
+  "acceptedIsolatedPointCount": 59
+}

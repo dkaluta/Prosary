@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "book": "BEL",
+  "sourcePage": 246,
+  "status": "Partial point-query resolution; page not approved",
+  "scanSHA256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+  "changes": [
+    {
+      "verse": 27,
+      "before": "ויִתֵּן",
+      "after": "ויִתְּן",
+      "basis": "Two vertically stacked tav points in this occurrence, independently confirmed; the separate30 occurrence has horizontal tsere and is unchanged."
+    },
+    {
+      "verse": 33,
+      "before": "ויַבֵּל",
+      "after": "ויָבל",
+      "basis": "Visible yod qamats, clean bet interior with no isolated dot, and an unclassifiable fused lower bet vowel. Independent inspection agrees. Only the bet vowel receives a note."
+    }
+  ],
+  "acceptedSourceNoteIds": [
+    "bel-1-33-246-vayabel-bet-vowel"
+  ],
+  "sourceEvidence": [
+    {
+      "crop": "246-vayiten27.png",
+      "cropSHA256": "8bd53b20d916a7f9c7159ee6dc36dc5cbe14f8d3038f1e8d4a3467b0c363bd66"
+    },
+    {
+      "crop": "246-vayiten30.png",
+      "cropSHA256": "ddfb18bf6a5d61fbb6907106ee4aec2f394f98d5ad7aa4aded54e825c0273674"
+    },
+    {
+      "crop": "246-vayabel33-full.png",
+      "cropSHA256": "57091ea270174d2751c2e953813599955f627546542654785bff86f6b18b139c"
+    }
+  ],
+  "remainingWork": "Complete individual fine-point checks on all14 source lines, including initial prefix marks and crowded Daniel yods; update the final246 ledger only when that review is complete. Do not infer page approval from these local fixes."
+}
