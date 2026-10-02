@@ -41,6 +41,24 @@ final class BibleStoreTests: XCTestCase {
     catch { }
   }
 
+  func testRemovalDeliversDownloadChangeOnMainThread() async throws {
+    let folder = FileManager.default.temporaryDirectory.appending(path: UUID().uuidString)
+    defer { try? FileManager.default.removeItem(at: folder) }
+    let (edition, data) = try fixture()
+    let store = BibleStore(catalogURL: nil, directory: folder)
+    try await store.install(data, edition: edition)
+    let delivered = expectation(description: "Removal notification on main thread")
+    let observer = NotificationCenter.default.addObserver(forName: .bibleDownloadsChanged, object: nil, queue: nil) { _ in
+      XCTAssertTrue(Thread.isMainThread, "A nil observer queue must still receive the UI notification on the main thread")
+      delivered.fulfill()
+    }
+    defer { NotificationCenter.default.removeObserver(observer) }
+    try await Task.detached { try await store.remove(edition) }.value
+    await fulfillment(of: [delivered], timeout: 2)
+    let installed = await store.isInstalled(edition)
+    XCTAssertFalse(installed)
+  }
+
   func testRejectsHashMismatchUndeclaredPathsAndUnpairedOrDuplicateVerses() throws {
     let (edition, data) = try fixture()
     XCTAssertThrowsError(try BibleStore.validatedArchive(data + Data([0]), edition: edition))

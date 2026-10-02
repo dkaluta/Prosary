@@ -238,12 +238,12 @@ actor BibleStore {
     archives[edition.id + "|" + edition.revision] = try MinimalZipReader(contentsOf: url)
   }
 
-  func remove(_ edition: BibleEdition) throws {
+  func remove(_ edition: BibleEdition) async throws {
     try Self.validate(edition)
     let folder = directory.appending(path: edition.id)
     if FileManager.default.fileExists(atPath: folder.path) { try FileManager.default.removeItem(at: folder) }
     archives = archives.filter { !$0.key.hasPrefix(edition.id + "|") }
-    NotificationCenter.default.post(name: .bibleDownloadsChanged, object: nil)
+    await Self.postDownloadsChanged()
   }
 
   func chapter(edition: BibleEdition, book: String, number: Int) throws -> BibleChapter {
@@ -387,6 +387,12 @@ actor BibleStore {
     }
     try Task.checkCancellation()
     try install(Data(contentsOf: file, options: .mappedIfSafe), edition: edition)
+    await Self.postDownloadsChanged()
+  }
+
+  /// NotificationCenter delivers synchronously on the posting thread. SwiftUI's
+  /// subscribers must receive download changes on the main actor.
+  @MainActor private static func postDownloadsChanged() {
     NotificationCenter.default.post(name: .bibleDownloadsChanged, object: nil)
   }
 }
