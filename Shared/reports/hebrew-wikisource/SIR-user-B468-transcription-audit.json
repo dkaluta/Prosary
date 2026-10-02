@@ -351,7 +351,7 @@
     ],
     "exception": "11:33 is followed by 12:1 and then explicitly labelled 11:34. Retained once per printed chapter/verse identity in the draft; physical interleaving retained in sourceOrderExceptions, not falsely represented as chapter-grouped array order."
   },
-  "status": "Consonantal user-reference audit finished for the supplied excerpt, with explicit corrections and original raw text retained; not a completed pointed transcription review.",
+  "status": "Historical user-reference comparison plus superseding full two-scan local page review; five erroneous initial corrections explicitly withdrawn; raw user text retained unchanged. Not whole-book approval.",
   "localDraftReviewNotes": [
     "11:21 keeps ב[פת]ע and ל[העשיר דל] bracket extents, now corrected from the wider first-draft bracket.",
     "11:24 brackets enclose ומ only; 11:25 has visible opening brackets before ורעת and ואחרית; unmatched source brackets are not silently balanced.",
@@ -361,8 +361,8 @@
     "Bracket movement preserves Hebrew grapheme clusters: the existing sheva of shin in תאש is encoded before the opening bracket, not as a combining mark attached to punctuation. Parent review identified the structural issue; the point itself is neither added nor removed."
   ],
   "subsequentReview": {
-    "status": "three-earlier-corrections-withdrawn",
-    "basis": "Clearer independent extra scan, spread241 right; separate primary agent comparison and independent parent confirmation. Earlier screenshot reading was wrong at these locations. User original consonantal readings match clearer print.",
+    "status": "five-earlier-corrections-withdrawn",
+    "basis": "Clearer independent extra scan, spread241 right; separate primary agent comparison and independent parent confirmation. Earlier screenshot reading was wrong at these locations. User original consonantal readings match clearer print. Renewed tight crops from both complete PDFs and independent Apple/Windows glyph checks also overturn the earlier11:22/32 readings.",
     "resolutions": [
       {
         "reference": "11:25 row1",
@@ -378,6 +378,18 @@
         "reference": "11:29 row1",
         "previousCorrectedConsonantalLeftHalf": "ומה־רבו פו[צעי] רוכל",
         "currentCorrectedConsonantalLeftHalf": "ומה־רבו פ[צעי] רוכל"
+      },
+      {
+        "reference": "11:22",
+        "previousCorrectedConsonantalRightHalf": "ברכת־אל בגלל צדיק",
+        "currentCorrectedConsonantalRightHalf": "ברכת־אל בגרל צדיק",
+        "evidence": "Both scans show a short resh roof in the third position, with no lamed ascender; only the final lamed rises. The user original בגרל was correct."
+      },
+      {
+        "reference": "11:32",
+        "previousCorrectedConsonantalRightHalf": "מניצוץ ירבה נחלת",
+        "currentCorrectedConsonantalRightHalf": "מנצוץ ירבה נחלת",
+        "evidence": "Both scans contain exactly five glyphs mem–nun–tsadi–vav–final tsadi, with no separate yod. The user original מנצוץ was correct."
       }
     ],
     "crops": [
@@ -388,8 +400,38 @@
       {
         "path": "/private/tmp/prosary-sirach-extra/query-11-28-29.png",
         "sha256": "d05bb43aeafa92af06e41e9d26eadb9f4cc735a14121f8d38c7a41947e1a8c2d"
+      },
+      {
+        "path": "/private/tmp/prosary-sirach-extra/query-11-22-because.png",
+        "sha256": "530c40fd21aef11f3bee30fda925e88007da67ca3663b373c9d7831ad0feb574"
+      },
+      {
+        "path": "/private/tmp/prosary-sirach-extra/query-11-22-primary.png",
+        "sha256": "fd17ab818e052b2761fabb128eadcb5bdc7860bc03c6b72aaea7a8839e8a5f00"
+      },
+      {
+        "path": "/private/tmp/prosary-sirach-extra/query-11-32-spark.png",
+        "sha256": "74a264da5d3e0694f5b43b4c2796c68da39cb180398fd732dbaa055aab953abc"
+      },
+      {
+        "path": "/private/tmp/prosary-sirach-extra/query-11-32-primary.png",
+        "sha256": "49428e1bd2e79bfca75933067b526b8c19a18f9541f0b86b835a1d9b568234e7"
       }
     ],
-    "limit": "Original raw user input and earlier report rows retained as audit history; above corrections supersede the three earlier corrected rows. No full vowel approval."
+    "limit": "Original raw user input and earlier report rows remain as explicitly superseded audit history. The five corrections above replace those earlier assertions. Pointing review is tracked independently in SIR-page468-second-pass.json."
+  },
+  "pointedPageReview": {
+    "status": "locally-reviewed-with-source-notes",
+    "report": "SIR-page468-second-pass.json",
+    "scope": "Full physical page468 main text, independently of the earlier unpointed user comparison; not whole-book approval.",
+    "retainedSourceOrder": "11:33 → 12:1 → 11:34, represented by canonical source-order primary blocks plus the explicit11:34 address route.",
+    "sourceNoteIds": [
+      "sir-11-28-shin-dagesh",
+      "sir-11-32-nun-dagesh",
+      "sir-11-32-nun-vowel",
+      "sir-11-34-resh-vowel",
+      "sir-11-34-vav-vowel"
+    ],
+    "remainingLimit": "The book remains draft and release-gated; the user supplied consonants never certified unreadable vowel marks."
   }
 }

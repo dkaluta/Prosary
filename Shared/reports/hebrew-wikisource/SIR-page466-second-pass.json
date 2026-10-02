@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "purpose": "Source-based separate second pass; not approval",
+  "purpose": "Completed local main-text comparison with precisely scoped unreadable point notes; not whole-book approval",
   "primaryPage": 466,
   "additionalScan": {
     "spread": 240,
@@ -153,14 +153,186 @@
     {
       "path": "/private/tmp/prosary-sirach-extra/query-11-7-right.png",
       "sha256": "b1f606fcd6379663da602ad3b384939dda1ea71855ad554b073eb109b3a1d496"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-extra/query-10-24-restored.png",
+      "sha256": "6c4fa61fa6c570df0ee19d7c069f42ed7346b13b0e2de41feba28ac8ec9644bc"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-extra/query-10-24-first-primary-wide.png",
+      "sha256": "62f3256cd6f195fa9f076062beebc06a16676eca4c10d60a500d45144af8b7f2"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-extra/query-10-25-wise.png",
+      "sha256": "a4b0415574748a767dd8fc40b705444ac0f4759595f64381917d5fae92296aaa"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-extra/query-10-26-wide.png",
+      "sha256": "85b2da89fb20d11494824cdc180f6e8b0452b3644b1cc422ed1a8f6ac29b6f2b"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-extra/query-10-28-like.png",
+      "sha256": "03e4b99b2e65b40ed8fe199aafb158cd3203b9a92ce9839655c7fa0a7e7440a5"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-extra/query-10-28-primary.png",
+      "sha256": "a496d40adeca9d35315265efa5667b9a0e2e28cf132900e71ba8bf2e6e9e22d6"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-extra/query-11-2-form.png",
+      "sha256": "56cf030a4b46e01db2f452c9bcf37e54f54e0c4cdbc57d7cdf4e53d6a349757c"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-extra/query-11-3-small.png",
+      "sha256": "bc74cd93a277daedc0b11e1320d44985d0a2dc2be50d5776bdcdd34e16292d02"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-extra/query-11-6-lowered.png",
+      "sha256": "c4e3cdbb998947613833e8aef322de8163bf22df02c5892e7cb46c0bf2be4c43"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-extra/query-11-7-reprove.png",
+      "sha256": "85394fddfc73e71ee58f65c163979b3cf33b0cfb01e6410e0702d0d03c54c074"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-extra/query-11-7-primary.png",
+      "sha256": "759d021d62c8cec9dc5d865ea985213b721c83af35dfb711fd398955b48e0578"
     }
   ],
-  "unresolvedFindings": [
+  "approved": true,
+  "sourceNoteEvidence": [
+    {
+      "reference": "10:24",
+      "notes": [],
+      "comparison": "The first restored vav has a visibly clean side with no detached shuruq dot; Windows independently concurs. Remove that provisional mark only. Preserve the source bracket groups, spacing and the separately printed lower marks before שופט."
+    },
+    {
+      "reference": "10:25",
+      "notes": [],
+      "comparison": "The fresh crop confirms the source ח[כ]ם bracket group and the two visible qamats signs; no restoration is balanced or expanded."
+    },
+    {
+      "reference": "10:26",
+      "notes": [],
+      "comparison": "The renewed wider crop confirms the literal ת[ת]כבד sequence and the readable lower points on the correct side of each bracket; grapheme marks remain attached to their source consonants."
+    },
+    {
+      "reference": "10:28",
+      "notes": [
+        {
+          "id": "sir-10-28-yod-dagesh",
+          "anchor": "כַּיוֹצֵא",
+          "letterIndex": 2,
+          "mark": "dagesh",
+          "kind": "unreadablePoint",
+          "occurrence": 1,
+          "sourcePages": [
+            466
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf#page=466"
+        }
+      ],
+      "comparison": "Kaf's interior point and vav holam are distinct. Yod's small interior remains fused into the body in both source views, so omit only that provisional dagesh with a precise note; do not infer it from usual pointing."
+    },
+    {
+      "reference": "11:2",
+      "notes": [],
+      "comparison": "The fresh whole-word crop separates tav qamats and alef's compound lower pattern in בתארו. Retain those printed points."
+    },
+    {
+      "reference": "11:3",
+      "notes": [],
+      "comparison": "Alef's visible compound pattern in אליל is separable in the additional scan; retain it and the following source letters."
+    },
+    {
+      "reference": "11:6",
+      "notes": [],
+      "comparison": "The source crop shows heh and peh qamats in והשפלו, alongside readable shin sheva. Preserve this occurrence's unusual source pointing without conventional repointing."
+    },
+    {
+      "reference": "11:7",
+      "notes": [],
+      "comparison": "The source crop separates tav patah and dagesh, zayin hiriq, and a clean bare vav with no shuruq. Windows independently confirms these local points; the original agrees with the same glyph sequence. Preserve that source-specific distribution instead of the provisional conventional form."
+    }
+  ],
+  "resolvedFindings": [
     "10:24 initial [שר ו] and [ו]שופט points,10:25 ח[כ]ם brackets/points need final narrow comparison.",
     "10:26 ת[ת]כבד precise point distribution;10:28 כיוצא source plene vav and vowel marks.",
     "11:2 בתארו compound sheva/vowel;11:3 אליל exact vowel marks.",
     "11:6 והשפלו intentionally retained unusual source qamats, not normalized to modern hufal;11:7 final תזוף vav point should receive independent check.",
     "No neighbouring-page or full vowel approval inferred from corrected bracket spans."
   ],
-  "approved": false
+  "unresolvedFindings": [],
+  "approval": {
+    "scope": "Physical page466 main text only.",
+    "sourceNoteIds": [
+      "sir-10-28-yod-dagesh"
+    ],
+    "reviewedText": [
+      {
+        "reference": "10:24",
+        "textSHA256": "d8be74b9ac6e4dd4a26e01dd896409106aec69962a478674b47515225425e25e"
+      },
+      {
+        "reference": "10:25",
+        "textSHA256": "a16a959a96e92d159ef398bf9d13e07de1aaadda96d645f9e1253330cfa527c7"
+      },
+      {
+        "reference": "10:26",
+        "textSHA256": "039ef24fd3413f115e9b0067af935d6b5dbf31099fd0b4644e52caa1719c2c68"
+      },
+      {
+        "reference": "10:27",
+        "textSHA256": "5aae992f152982e5086c49c48e1a3d6c2929f351ebea4c72e8328706832fd467"
+      },
+      {
+        "reference": "10:28",
+        "textSHA256": "30d741b62b5baec72b51ed826bd206487bc246de4b7ae94a1987539ea3683dd8"
+      },
+      {
+        "reference": "10:29",
+        "textSHA256": "208427a19cc76405ba9139db4e62f4d58cb7d582a67ec2854f9a2fe82f5e934b"
+      },
+      {
+        "reference": "10:30",
+        "textSHA256": "4f4b89a9dd1a6b77415bb1e4230e722ec30d6744a70a486d9bedd26bf50a57c2"
+      },
+      {
+        "reference": "10:31",
+        "textSHA256": "a83b2c3b6eb942574ccbf7c629100b04be6480b18f6eb22a570c8a95df4d830b"
+      },
+      {
+        "reference": "11:1",
+        "textSHA256": "81812efc472e47d3af67b49c7f80c39bc01ff006eb6441dd77c9ca9a4c5a3bf1"
+      },
+      {
+        "reference": "11:2",
+        "textSHA256": "232c717464bccafb7db49684efa1675b0421b1a3f1f9030cea8a5060e6bae403"
+      },
+      {
+        "reference": "11:3",
+        "textSHA256": "1ccb79962dfef4f55e162cf83fad6f31ba0b7c26b36bd127b0349419dc61b790"
+      },
+      {
+        "reference": "11:4",
+        "textSHA256": "1f4545207a84c621d370a135429c25cf9df6db553809adbc294754ae44f26d2a"
+      },
+      {
+        "reference": "11:5",
+        "textSHA256": "af81e060f0d653ce520a951d6cfef75031bb381fd3c82b2e6b08d98ba4083f5d"
+      },
+      {
+        "reference": "11:6",
+        "textSHA256": "61be84c28c449134668130d3e19417ccbd3c51b2f1d20c9a7f27b0f1165e3e57"
+      },
+      {
+        "reference": "11:7",
+        "textSHA256": "18936deae074856a6fdf05021c911d1c074ac2465a76409c6dc49bed46c666b9"
+      },
+      {
+        "reference": "11:8",
+        "textSHA256": "6028d04b1693ca1fa5aaa4a440667b2afdf7f351b97dc19eea6ddb1ce3ae45b4"
+      }
+    ]
+  }
 }

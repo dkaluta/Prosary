@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "purpose": "Source-based separate second pass; not approval",
+  "purpose": "Completed local main-text comparison with precisely scoped unreadable point notes; not whole-book approval",
   "primaryPage": 475,
   "additionalScan": {
     "spread": 244,
@@ -149,14 +149,37 @@
     {
       "path": "/private/tmp/prosary-sirach-extra/query-16-18.png",
       "sha256": "bef755b538d36de24374dd7e71b475299d29b59f0909d121b10799b15869ce2c"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-extra/query-16-18-pillars.png",
+      "sha256": "f2dbca4ae0f47e1510e5ebc85b7decde183f567f68612d36622b511143eb79cf"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-extra/query-16-18-primary.png",
+      "sha256": "4cb10aa4ee57986c11ed8c691234748e626d285236ea777e948c3d0b4dc7e287"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-extra/query-16-23-fool.png",
+      "sha256": "56a96d21b35a85955e3fb94317d429a6f1b19e9546b4cd1aa6ae93491677e8f6"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-extra/query-16-25-show.png",
+      "sha256": "f032319ff3f56dcb8e94392bc7b2e2b9cfeeb0b5aafb4ca124cb47d4b631adea"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-extra/query-16-25-primary.png",
+      "sha256": "4a60cd8a307517ed6212376db8a3cbb8052df0b04c0300cdc2515f49518b11e9"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-extra/query-16-26-terms.png",
+      "sha256": "ae52f0b28ab88fe64dfbd824b12c3b7ec961e5132d532896df64dcc33cb45167"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-extra/query-16-26-primary.png",
+      "sha256": "bafebd006cfc4388f56144474f091c62889b43b724d03c642f5c4177e1648f2b"
     }
   ],
-  "unresolvedFindings": [
-    "16:18 בפקדו bet/peh/qof points and adjacent עמודים initial ayin/dagesh remain open; do not use grammatical expectations.",
-    "16:23 חסרי restored yod clear; resh vowel and initial hataph need final fine check.",
-    "16:25 אחוה exact point sequence and16:26 תניהם trailing bracket/source mark need final close review."
-  ],
-  "approved": false,
+  "approved": true,
   "subsequentCorrections": [
     {
       "reference": "16:18",
@@ -166,6 +189,124 @@
     }
   ],
   "resolvedFindings": [
-    "Two independent crop readings agree bet sheva/no visible dagesh, peh qamats, qof sheva."
-  ]
+    "16:18 בפקדו bet/peh/qof points and adjacent עמודים initial ayin/dagesh remain open; do not use grammatical expectations.",
+    "16:23 חסרי restored yod clear; resh vowel and initial hataph need final fine check.",
+    "16:25 אחוה exact point sequence and16:26 תניהם trailing bracket/source mark need final close review."
+  ],
+  "sourceNoteEvidence": [
+    {
+      "reference": "16:18",
+      "notes": [],
+      "comparison": "The original and clearer scans show an upper detached point over ayin (holam), two vertical mem dots (sheva), clean mem interior and bare vav without shuruq. Windows independently confirms this unusual visible distribution; preserve it instead of conventional repointing. Earlier root-confirmed בְפָקְדוֹ stays unchanged."
+    },
+    {
+      "reference": "16:23",
+      "notes": [],
+      "comparison": "Het has a flat patah, samekh two vertical sheva dots and resh two horizontal tsere dots. Apple and Windows independently confirm the first two corrections; keep literal חסרי spelling."
+    },
+    {
+      "reference": "16:25",
+      "notes": [],
+      "comparison": "The additional scan obscures vav's interior, but the stronger original crop cleanly separates its dagesh. Android retracts its extra-only absence impression after comparing the primary. Retain that visible dagesh and surrounding points."
+    },
+    {
+      "reference": "16:26",
+      "notes": [
+        {
+          "id": "sir-16-26-nun-dagesh",
+          "anchor": "תַנֵיהֶם]",
+          "letterIndex": 2,
+          "mark": "dagesh",
+          "kind": "unreadablePoint",
+          "occurrence": 1,
+          "sourcePages": [
+            475
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf#page=475"
+        }
+      ],
+      "comparison": "The exact source letters תניהם and following vertical editorial marker are retained. Tav interior is clean in both scans, independently confirmed by Android; remove its provisional dagesh. Nun tsere is readable, but its interior is fused in both scans, independently confirmed by Windows; omit just that uncertain dagesh with a note. Do not insert an alef from an apparatus interpretation or balance the printed marker."
+    }
+  ],
+  "unresolvedFindings": [],
+  "approval": {
+    "scope": "Physical page475 main text only.",
+    "sourceNoteIds": [
+      "sir-16-26-nun-dagesh"
+    ],
+    "reviewedText": [
+      {
+        "reference": "16:9",
+        "textSHA256": "dcbd928b7307b6e4df696c447a6e2c44e16d192f3575f0d6733d3da62b00d372"
+      },
+      {
+        "reference": "16:10",
+        "textSHA256": "c3c600f0cde370620ccec79cb1461dad9a2f59555d6f2410650f466194ca04fe"
+      },
+      {
+        "reference": "16:11",
+        "textSHA256": "2cbb57094d882d4183f5db0ca765d86f06499e3f1fd371a85282213c8c01e417"
+      },
+      {
+        "reference": "16:12",
+        "textSHA256": "ccb45235adad89360cf94495921c91dcac2af69fb1864bd7d45cce5ddac1c7ad"
+      },
+      {
+        "reference": "16:13",
+        "textSHA256": "441db2133af63f7233f2e35aa9fd7ed1e33ee5b7893b008171cec461b239c6a5"
+      },
+      {
+        "reference": "16:14",
+        "textSHA256": "0092ee7d22e464907f09bbc2e59eacc813d7ee85a8ffcfab0313f361bff241b0"
+      },
+      {
+        "reference": "16:15",
+        "textSHA256": "1515441b6d9800607dc96a668b6efbca7dbbfd6edd6a77765de3575ce29ec1f2"
+      },
+      {
+        "reference": "16:16",
+        "textSHA256": "32c715a622ea62fd62cc5b42c8372625b8eb6bfb80f8c2b5a14e3a3d8be9e030"
+      },
+      {
+        "reference": "16:17",
+        "textSHA256": "2781936ff2ba9e3a317b1588a58d18548c91aaf97b7acb04466503d96b4189b6"
+      },
+      {
+        "reference": "16:18",
+        "textSHA256": "190279185d906700fb233f7d1fe8bc8b76f5bfbd4b7f41d028f91b86f03b824d"
+      },
+      {
+        "reference": "16:19",
+        "textSHA256": "152977107790375d8ea9559814054fb7411333108865f4bf306be2f3a3abba6d"
+      },
+      {
+        "reference": "16:20",
+        "textSHA256": "0f130ad5780df5e8f087810150dd0a90c90ad2946248f568b1e7a0923d1dd722"
+      },
+      {
+        "reference": "16:21",
+        "textSHA256": "6d0ee0cb6df1a45a048582fc76e412ea0691388c394c40da0e67deee47d31817"
+      },
+      {
+        "reference": "16:22",
+        "textSHA256": "0d0c9a0fa7a2497ed187c12aedc17b0a883e186b5d46c60c8a07621661051abe"
+      },
+      {
+        "reference": "16:23",
+        "textSHA256": "2c4343f4e1a419d56ffe916d71892739daf4cccf6da4eb688b03d3e7ec9254ad"
+      },
+      {
+        "reference": "16:24",
+        "textSHA256": "0d56609cf2477594ea9c723a041433109ca3594a83a077fe634207bfb005df52"
+      },
+      {
+        "reference": "16:25",
+        "textSHA256": "0e51f9e4afa8bdd820dc057cc1e1b88b71375d9a83da96c27904c92fd78f76bd"
+      },
+      {
+        "reference": "16:26",
+        "textSHA256": "ddff3d7c37ec0d49c6829969099edbc3d40495e243ac42943451ea882393d553"
+      }
+    ]
+  }
 }

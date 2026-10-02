@@ -157,6 +157,12 @@
       "before": "נִפְּלָה־נָּא בְּיַד־יְיָ וְלֹא בְּיַד־אָדָם: כִּי כְגָדְלוֹ כֵּן גַּם חַסְדּוֹ",
       "after": "נִפְּלָה־נָּא בְּיַד־יְיָ וְלֹא בְּיַד־אָדָם׃ כִּי כְגָדְלוֹ כֵּן גַּם חַסְדּוֹ",
       "reason": "Direct main-text comparison with extra232 left; source word forms and printed sof pasuq. All full fine-mark review remains open."
+    },
+    {
+      "reference": "2:2",
+      "before": "הָכֵן לִבְּךָ וַחֲזָק וְאַל־תִּבָּהֵל בְּעֵת אֵיד׃",
+      "after": "הָכֵן לִבְּךָ וחזָק וְאַל־תִּבָּהֵל בְּעֵת אֵיד׃",
+      "reason": "Vav lower mark is fused with its stroke in both scans. Het lower composite mark has a visible bar and lower dot but no separable upper detail, so hataf-patah cannot be certified. Independent coordinator reading agrees; retain clear zayin qamats."
     }
   ],
   "crops": [
@@ -171,14 +177,74 @@
     {
       "path": "/private/tmp/prosary-sirach-extra/B-451-full.png",
       "sha256": "e1e6bcda156ed8a492103f113988abf80eebf1c1953633b5ef7f4658bac434c1"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-review/451-upper.png",
+      "sha256": "e031221474d53ac3e5edf3f7d8c10369e689ef58991bbf209a4ae1c9a7062c49",
+      "purpose": "2026-10-02 resumed visual review"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-review/451-lower.png",
+      "sha256": "0e8d7dd90869bc4779e15afd88aec576942d9f177a245f56ccac3a7d1ee8954b",
+      "purpose": "2026-10-02 resumed visual review"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-review/451-primary.png",
+      "sha256": "13db37f77e867d8a8b7ff08d9f40e2e3b993da8501b505b452d0c180b70f997e",
+      "purpose": "2026-10-02 resumed visual review"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-review/451-2-vahazaq.png",
+      "sha256": "5b098aefd05a8cad243cb0cf9d6c53e3cd9f85e036a6e274f5237abbec000827",
+      "purpose": "2026-10-02 resumed visual review"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-review/451-8-yigara.png",
+      "sha256": "3adb673ddd84b1b86bdb66ccccd2b82d0e86617355adbcc54c01aca3806dd586",
+      "purpose": "2026-10-02 resumed visual review"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-review/451-10-beyirato.png",
+      "sha256": "2be5dbbb1a47e98d0906687218201cb1f2deb3a91edf9687fdddc768aeff2878",
+      "purpose": "2026-10-02 resumed visual review"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-review/451-11-vesoleah.png",
+      "sha256": "0e75d8a5a5964bffe9bff1584ddbcae47033874c525d2ba59124b102a6a8fa15",
+      "purpose": "2026-10-02 resumed visual review"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-review/451-primary-vahazaq.png",
+      "sha256": "b734fade5329b37f08f0b96d12bf96dab39bd7c0476746314ce120f0a667cb99",
+      "purpose": "2026-10-02 resumed visual review"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-review/452-upper.png",
+      "sha256": "4b39135588f2fc67d1737e487378e35a990389359b9042df23a01757c98542ed",
+      "purpose": "2026-10-02 resumed visual review"
     }
   ],
-  "unresolvedFindings": [
+  "unresolvedFindings": [],
+  "approved": true,
+  "historicalUnresolvedFindings": [
     "2:2 exact points in וחזק.",
     "2:8 יגרע vowel/dagesh detail.",
     "2:10 ביראתו points.",
     "2:11 exact vowel/dagesh of וסלח.",
     "Remaining points and verse continuation452 require independent comparison before full page approval."
   ],
-  "approved": false
+  "approval": {
+    "date": "2026-10-02",
+    "scope": "Local main-text page only; whole-book independent inventory remains open.",
+    "method": "Full renewed comparison of primary451 and matched extra232left, every main-text word/mark/boundary, then tight crops for all residual queries and direct2:18 continuation comparison on452.",
+    "sourceNoteIds": [
+      "sir-2-2-vav-vowel",
+      "sir-2-2-het-vowel"
+    ]
+  },
+  "resolvedFindings": [
+    "2:8 gimel has an isolated dagesh and qamats;2:10 ביראתו and2:11 וסלח match the existing points.",
+    "2:18 continuation begins next page; preserve its sourcePages451/452 and absence of final punctuation in the printed continuation.",
+    "Only the merged two2:2 vowels remain unreadable; precisely anchored disclosure notes retain all other readable marks."
+  ]
 }

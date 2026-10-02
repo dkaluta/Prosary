@@ -107,6 +107,24 @@
       "reference": "4:17",
       "before": "כִּי בְּהִתְנַכֵּר אֵלֵךְ עִמּוֹ וּלְפָנִים יִבְחָרֶנּוּ בְּנִסְיוֹנוֹת:",
       "after": "כִּי בְּהִתְנַכֵּר אֵלֵךְ עִמּוֹ וּלְפָנִים יִבְחָרֶנּוּ בְּנִסְיוֹנוֹת׃"
+    },
+    {
+      "reference": "4:7",
+      "before": "הַאֲהֵב לְנַפְשְׁךָ לְעֵדָה וְלִשְׁלְטוֹן־עִיר הַכָּאֵף רֹאשׁ׃",
+      "after": "הַאֲהֵב לְנַפְשְׁךָ לְעֵדָה וְלִשְׁלְטוֹן־עִיר הַכְּאֵף רֹאשׁ׃",
+      "reason": "Two vertically separated dots under kaf are visible in the clearer scan; independently read as sheva. Preserve he patah, kaf dagesh and alef tsere."
+    },
+    {
+      "reference": "4:15",
+      "before": "שֹׁמֵעַ לִי יִשְׁפֹּט אֱמֶת וּמַאֲזִין לִי יִתֵּן בְּחַדְרֵי מִבָּיִת׃",
+      "after": "שֹׁמֵעַ לִי יִשְׁפֹּט אֱמֶת וּמַאֲזִין לִי יִתַּן בְּחַדְרֵי מִבָּיִת׃",
+      "reason": "Tav lower mark is a single flat horizontal bar without qamats stem or separable tsere pair, independently read as patah. Preserve yod hiriq and tav dagesh; no grammatical normalization."
+    },
+    {
+      "reference": "4:17",
+      "before": "כִּי בְּהִתְנַכֵּר אֵלֵךְ עִמּוֹ וּלְפָנִים יִבְחָרֶנּוּ בְּנִסְיוֹנוֹת׃",
+      "after": "כִּי בְּהִתְנַכֵּר אֵלֵךְ עִמּוֹ וּלְפָנִים יְבְחָרֶנּוּ בְּנִסְיוֹנוֹת׃",
+      "reason": "Initial yod has two vertically separated dots, independently read as sheva; preserve the remaining source marks."
     }
   ],
   "crops": [
@@ -129,13 +147,86 @@
     {
       "path": "/private/tmp/prosary-sirach-extra/454-1-2.png",
       "sha256": "b25d5d621b3f4fa52dcf173cebef75454e3ce161a0819aa6935aeba535a8ff7f"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-review/454-upper.png",
+      "sha256": "ac241b3bf9f5fdc8a5f4bab7b1ed8174edf40b145ef68fda230ab52b0c8682f2",
+      "purpose": "2026-10-02 resumed visual review"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-review/454-lower.png",
+      "sha256": "5411aa5f1c38de9a2f1eaf5f7f0c24986dd022dd7b0b7ec88e69e413c3a86b33",
+      "purpose": "2026-10-02 resumed visual review"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-review/454-primary.png",
+      "sha256": "9ee36ec8173831b3dce9c53510ad9d239b2e995057ebf55543f9dd9b8f4072b3",
+      "purpose": "2026-10-02 resumed visual review"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-review/454-1-dove.png",
+      "sha256": "33b57280463b70602891f2b9a25521bcf8692077ffcbfa0808c6b68afd8ce0d7",
+      "purpose": "2026-10-02 resumed visual review"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-review/454-2-chasera.png",
+      "sha256": "fde9322c5951abe95ccbfe5c407518d42555b7017965204eafde2f2a72022a20",
+      "purpose": "2026-10-02 resumed visual review"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-review/454-7-hakaef.png",
+      "sha256": "e27578caaf163445ef582c5f4164b33eeb822b18ae052db939537ccf7d95ddc5",
+      "purpose": "2026-10-02 resumed visual review"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-review/454-9-mutsak.png",
+      "sha256": "59a7643247f641f27692c861c5bccbd040f63351a05d1f909e2bf2ba9afe4fa3",
+      "purpose": "2026-10-02 resumed visual review"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-review/454-15-yiten.png",
+      "sha256": "de6be4b379fecba5547d4479b32dd49a2c2cad163a2132f3b94e316342b46194",
+      "purpose": "2026-10-02 resumed visual review"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-review/454-17-clause.png",
+      "sha256": "db08eb79acc68cbe843d7ad32a90139417561ec7ef8801b4f070dad9a0b492d5",
+      "purpose": "2026-10-02 resumed visual review"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-review/454-primary-hakaef-full.png",
+      "sha256": "820192ad366a86670eb4d1efc06dc9b4ef8b767391e7e04094e161977855dc62",
+      "purpose": "2026-10-02 resumed visual review"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-review/454-primary-yiten-full.png",
+      "sha256": "bb0e99eb4783c85d7c3b0043a7504c0bdbaf7dda91c6d094407e96aa0c2fc0aa",
+      "purpose": "2026-10-02 resumed visual review"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-review/454-primary-yivcharenu.png",
+      "sha256": "ad6db8d640955a6e51021b162a9ca0b4c077353a1dca25ded563b7ac51c8b1e8",
+      "purpose": "2026-10-02 resumed visual review"
     }
   ],
-  "unresolvedFindings": [
+  "unresolvedFindings": [],
+  "approved": true,
+  "historicalUnresolvedFindings": [
     "4:1 דווה exact vowel placement;4:2 חסירה spelling/points and תפיח tav vowel.",
     "4:7 הכאף points;4:9 מוצק vav/dot detail.",
     "4:15 יתן exact points and4:17 ולפנים/יבחרנו initial vowels.",
     "Full independent vowel review remains required."
   ],
-  "approved": false
+  "approval": {
+    "date": "2026-10-02",
+    "scope": "Local main-text page only; final independent whole-book inventory remains open.",
+    "method": "Complete renewed comparison of primary454 and matched extra234right, then focused fine-point reading of every residual query and independent coordinator readings of the three corrected marks.",
+    "sourceNoteIds": []
+  },
+  "resolvedFindings": [
+    "4:1 dalet dagesh, first-vav holam and second-vav segol confirmed;4:2 form/points preserved.",
+    "4:7 kaf sheva,4:15 tav patah and4:17 initial yod sheva corrected to visible print, independently corroborated.",
+    "4:9 vav shuruq and4:17 prefix shuruq visible.",
+    "4:14 unpointed clause,4:5 lacuna, missing16 and all main-text boundary/line continuations preserved."
+  ]
 }

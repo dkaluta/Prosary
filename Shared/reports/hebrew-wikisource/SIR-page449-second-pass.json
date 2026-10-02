@@ -101,6 +101,36 @@
       "before": "לִירֵא־יְיָ יִיטַב בְּאַחֲרִיתוֹ וּבְיוֹם מוֹתוֹ יְבֹרָךְ:",
       "after": "לִירֵאֵי־יְיָ יִיטַב בְּאַחֲרִיתוֹ וּבְיוֹם מוֹתוֹ יְבֹרָךְ׃",
       "reason": "Direct comparison of clearer extra231 left: source letters/word form where changed and printed sof pasuq. No full pointing approval."
+    },
+    {
+      "reference": "1:3",
+      "before": "גֹּבַהּ הַשָּׁמַיִם וְרֹחַב הָאָרֶץ וּתְהוֹם וְחָכְמָה מִי־יַחֲקֹר׃",
+      "after": "גֹבַהּ הַשָּׁמַיִם וְרֹחַב הָאָרֶץ וּתְהוֹם וְחָכְמָה מִי־יַחֲקֹר׃",
+      "reason": "Neither original449 nor extra231 permits separating an initial gimel dagesh from the ink. Retain holam and all other marks; disclose only this unreadable interior point."
+    },
+    {
+      "reference": "1:5",
+      "before": "[מְקוֹר חָכְמָה דְּבַר אֱלֹהֵי מָרוֹם וּמוֹצָאֶיהָ חֻקֵּי עוֹלָם]׃",
+      "after": "[מְקוֹר חָכְמָה דְּבַר אֱלֹהֵי מָרוֹם וּמוֹצָאֶיהָ חֻקֵי עוֹלָם]׃",
+      "reason": "The het qibbuts and qof tsere are visible. The qof interior point cannot be separated from the stroke in either scan; omit only that provisional dagesh with a source note."
+    },
+    {
+      "reference": "1:9",
+      "before": "הוּא יְצָרָה וַיַּרְא וַיִּסְפְּרֶהָ וַיִּשְׁפְּכֶהָ עַל־כָּל־מַעֲשָׂיו׃",
+      "after": "הוּא יְצָרָה וַיַּרְא וַיִּסְפְּרָהּ וַיִּשְׁפְּכֶהָ עַל־כָּל־מַעֲשָׂיו׃",
+      "reason": "Both scans show a qamats under resh and no lower vowel under final he. The isolated point inside final he is visible in the clearer scan; independent coordinator reading corroborates it."
+    },
+    {
+      "reference": "1:9",
+      "before": "הוּא יְצָרָה וַיַּרְא וַיִּסְפְּרָהּ וַיִּשְׁפְּכֶהָ עַל־כָּל־מַעֲשָׂיו׃",
+      "after": "הוּא יְצָרָה וַיַּרְא וַיִּסְפְּרָהּ וַיִּשְׁפְּכָה עַל־כָּל־מַעֲשָׂיו׃",
+      "reason": "Clearer231 and original449 show the lower qamats attached to kaf, with no lower vowel or mappiq discernible on final he; preserve the literal printed suffix, not inferred grammar."
+    },
+    {
+      "reference": "1:10",
+      "before": "אֶל־כָּל־בָּשָׂר כְּמַתְּנָתוֹ וַיִּתְּנֶהָ לְאֹהֲבָיו׃",
+      "after": "אֶל־כָּל־בָּשָׂר כְּמַתְּנָתוֹ וַיִּתְּנָה לְאֹהֲבָיו׃",
+      "reason": "Both scans show a qamats under nun and no lower point under final he. Final he interior is clean in the clearer scan; independently corroborated."
     }
   ],
   "crops": [
@@ -119,14 +149,64 @@
     {
       "path": "/private/tmp/prosary-sirach-extra/449-right-1-7.png",
       "sha256": "ce0c1191c284589f46c3e05e306eb1c21952507b958b11e43c174803f253f843"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-review/extra231-main.png",
+      "sha256": "8ff3f3886942e97080f88ff90707bb93252e64a775fc42d24c2516cdafc0abe9",
+      "purpose": "2026-10-02 resumed visual review"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-review/449-primary-queries.png",
+      "sha256": "d806c7c02197ee9e9bd1cd080c5539388a872bd1c335c1a3a82ec2fca33b7acc",
+      "purpose": "2026-10-02 resumed visual review"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-review/449-left-query.png",
+      "sha256": "9918ed12b75a95de5e399c46492e949429d951da55aea04d1df7c24fccbd35c7",
+      "purpose": "2026-10-02 resumed visual review"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-review/449-gimel-query.png",
+      "sha256": "69ef0002197b431138eaa699855fc3f3589fc128e996010dd948fd2ac1e5e966",
+      "purpose": "2026-10-02 resumed visual review"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-review/449-9-vayisperah.png",
+      "sha256": "d44f8c8a970be2ba2b613a728834ec3bed0ecea248981dcde1d5c334338bda8a",
+      "purpose": "2026-10-02 resumed visual review"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-review/449-10-vayitenah.png",
+      "sha256": "98b74d63f13e31cc39f5e32a69e9a0c369e73305294dcd12626b7f105692352a",
+      "purpose": "2026-10-02 resumed visual review"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-review/449-primary-9-10.png",
+      "sha256": "a9f7a4d177a6abc4dd2f91281d5432919613995902c6e0939a0481725ee2bb85",
+      "purpose": "2026-10-02 resumed visual review"
     }
   ],
-  "unresolvedFindings": [
+  "unresolvedFindings": [],
+  "approved": true,
+  "historicalUnresolvedFindings": [
     "1:3 initial gimel dagesh versus ink damage.",
     "1:5 exact qibbuts/dagesh in חקי.",
     "1:7 samekh dagesh and finalhe mappiq in נסיונה.",
     "1:9/10 suffix vowel points/mappiq, especially ויספרה and ויתנה.",
     "Check all remaining points against second independent eyes before approval; this pass does not certify adjacent pages."
   ],
-  "approved": false
+  "approval": {
+    "scope": "Local main-text page comparison only; whole-book source inventory and other pages remain open.",
+    "method": "Complete renewed visual comparison against original scan and independently matched clearer scan, with tight residual crops and independent coordinator reading for449 suffixes/interior-point queries.",
+    "sourceNoteIds": [
+      "sir-1-3-1-dagesh",
+      "sir-1-5-2-dagesh"
+    ],
+    "date": "2026-10-02"
+  },
+  "resolvedFindings": [
+    "All main-text words, source punctuation, printed order, brackets and readable points compared with the canonical text.",
+    "Original scan SHA256 and additional scan SHA256 verified after download; no text imported from a different translation.",
+    "1:3 gimel and1:5 qof interior points are unresolved ink, disclosed by exact notes. Het qibbuts,1:7 he mappiq and all other readable marks retained. Suffix qamats placement at1:9/10 corrected from the images."
+  ]
 }

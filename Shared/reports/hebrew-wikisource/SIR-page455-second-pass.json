@@ -89,6 +89,30 @@
       "reference": "4:30",
       "before": "אַל־תְּהִי כְּכֶלֶב בְּבֵיתֶךָ וּמוּזָר וּמוּתְרָא בִּמְלַאכְתֶּךָ:",
       "after": "אַל־תְּהִי כְּכֶלֶב בְּבֵיתֶךָ וּמוּזָר וּמְתִירָא בִּמְלַאכְתֶּךָ׃"
+    },
+    {
+      "reference": "4:19",
+      "before": "אִם־יָסוּר וּנְטוּתִיהוּ וְיִסַּרְתִּיהוּ בָּאֲסוּרִים׃ אִם־יָסוּר מֵאַחֲרַי אַשְׁלִיכֶנּוּ וְאַסְגִּירֶנּוּ לְשׁוֹדְדִים׃",
+      "after": "אִם־יָסוּר וּנְטוֹתִיהוּ וְיִסַּרְתִּיהוּ בָּאֲסוּרִים׃ אִם־יָסוּר מֵאַחֲרַי אַשְׁלִיכֶנּוּ וְאַסְגִּירֶנּוּ לְשׁוֹדְדִים׃",
+      "reason": "The middle vav has an upper holam in both scans, independently corroborated. Preserve the literal tet spelling, initial shuruq, nun sheva and tav hiriq."
+    },
+    {
+      "reference": "4:24",
+      "before": "כִּי בְּאוֹמֵר נוֹדַעַת חָכְמָה וּתְבוּנָה בְּמַעֲנֵה לָשׁוֹן׃",
+      "after": "כִּי בְּאוֹמֵר נוֹדעַת חָכְמָה וּתְבוּנָה בְּמַעֲנֵה לָשׁוֹן׃",
+      "reason": "A lower horizontal component is visible under dalet but its tiny descending feature is inseparable in the clear scan and fused in primary. Omit only this unclassifiable vowel with an exact note; ayin patah remains clear."
+    },
+    {
+      "reference": "4:29",
+      "before": "אַל־תְּהִי נַבְחָן בִּלְשׁוֹנֶךָ וְרָפִי וְרָשִׁישׁ בִּמְלַאכְתֶּךָ׃",
+      "after": "אַל־תְּהִי נַבְחָּן בִּלְשׁוֹנֶךָ וְרָפִי וְרָשִׁישׁ בִּמְלַאכְתֶּךָ׃",
+      "reason": "Primary has a distinctly separated interior dot inside het, independently corroborated; extra scan shows compatible fused ink. Preserve this unusual literal printed dagesh, without adding a bet dagesh."
+    },
+    {
+      "reference": "4:30",
+      "before": "אַל־תְּהִי כְּכֶלֶב בְּבֵיתֶךָ וּמוּזָר וּמְתִירָא בִּמְלַאכְתֶּךָ׃",
+      "after": "אַל־תְּהִי כְּכֶלֶב בְּבֵיתֶךָ וּמוּזָר וּמְתָירָא בִּמְלַאכְתֶּךָ׃",
+      "reason": "Tav has a bar with a descending stem, independently read as qamats. Preserve the printed yod and other points; middle-vav shuruq in adjacent muzar is independently distinguishable in primary."
     }
   ],
   "crops": [
@@ -111,13 +135,83 @@
     {
       "path": "/private/tmp/prosary-sirach-extra/455-29-30.png",
       "sha256": "814ea39760693c96b8db1b3aca2401ee684b2f0698d2f652bd611a27d44cc9a1"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-review/455-upper.png",
+      "sha256": "51f664b70140b2c02d26f5764d47125c5333653e2128d3a7cbf848c933a70088",
+      "purpose": "2026-10-02 resumed visual review"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-review/455-lower.png",
+      "sha256": "3e61dc914dc0b15eb70742305c0498603d83a93d56a41f46ed7cf70bad66d1a6",
+      "purpose": "2026-10-02 resumed visual review"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-review/455-primary.png",
+      "sha256": "4383794d00194d5e3eaf104681c9003288aecc2a31b7635d8faf45c55673d9f9",
+      "purpose": "2026-10-02 resumed visual review"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-review/455-19-full.png",
+      "sha256": "fd05278b16ceef9df28cb0f492307e796a9c6a3f454d797be713a973e844c19f",
+      "purpose": "2026-10-02 resumed visual review"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-review/455-24-full.png",
+      "sha256": "f0734f32147fc792bb5e2089c89d2c87ab411a2aa739d027f11694ffa57cca39",
+      "purpose": "2026-10-02 resumed visual review"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-review/455-29-full.png",
+      "sha256": "db15d53c5a0391766c4875b7e03b0efc0cac999d29c311d67005f61f8f14855d",
+      "purpose": "2026-10-02 resumed visual review"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-review/455-30-full.png",
+      "sha256": "a0a8ec603849283b9a36dca72bf6004df05f921c4b0fca85d0e4f6d2adfae427",
+      "purpose": "2026-10-02 resumed visual review"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-review/455-primary-19.png",
+      "sha256": "19db81553885acb7af1f8156492e4c51adf9fa3071e8739c2eabf0367cda6cb3",
+      "purpose": "2026-10-02 resumed visual review"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-review/455-primary-24.png",
+      "sha256": "cb663e429bc476ad9d996f0f67a46b1356acb078c481edbeec698fdf6da01b66",
+      "purpose": "2026-10-02 resumed visual review"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-review/455-primary-29.png",
+      "sha256": "3162679156ed25e8350a5e5c2cc8f4397a12b09f7f363d99fe9505a6dfbbf255",
+      "purpose": "2026-10-02 resumed visual review"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-review/455-primary-30.png",
+      "sha256": "ef353e5634797c8d0f5d214d6a8be4cbaeab403d9a2295bb572b5bc46f02f8d9",
+      "purpose": "2026-10-02 resumed visual review"
     }
   ],
-  "unresolvedFindings": [
+  "unresolvedFindings": [],
+  "approved": true,
+  "historicalUnresolvedFindings": [
     "4:19 ונטותיהו exact vowel distribution; do not substitute apparatus ונטיתיהו.",
     "4:24 נודעת exact dalet/ayin points.",
     "4:29 נבחן bet dagesh and4:30 מוזר vav point / מתירא tav vowel.",
     "Full independent vowel review remains required."
   ],
-  "approved": false
+  "approval": {
+    "date": "2026-10-02",
+    "scope": "Local main-text page only; final independent whole-book inventory remains open.",
+    "method": "Complete renewed primary455/extra234left comparison with both-scan tight crops; coordinator independently corroborated holam, literal het dagesh, tav qamats and uncertainty of dalet mark.",
+    "sourceNoteIds": [
+      "sir-4-24-dalet-vowel"
+    ]
+  },
+  "resolvedFindings": [
+    "4:19 middle-vav holam restored; primary spelling retained rather than apparatus.",
+    "4:24 dalet vowel alone disclosed as unreadable; ayin patah retained.",
+    "4:29 no bet dagesh; distinct primary het dagesh retained literally.",
+    "4:30 muzar middle-vav shuruq clear in primary; metira tav qamats restored."
+  ]
 }

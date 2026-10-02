@@ -138,9 +138,9 @@ continuation before chapter 4. That continuation is preserved; a printed label 3
 a crosswalk to another edition is not invented. Margin labels may begin a new unit
 partway through a physical line, so page crossings cannot be inferred from line starts.
 
-Sirach's draft records internal headings, repeated main-body manuscript witnesses,
-subverse labels, and cross-chapter physical-order exceptions separately in review
-evidence. These require a shared representation before import. Do not discard them,
+Sirach preserves internal headings, repeated main-body manuscript witnesses,
+subverse labels, and cross-chapter physical-order exceptions in its source structure
+and separate review evidence. Do not discard them,
 merge distinct witnesses into one verse, or silently relabel them to satisfy the current
 numeric unit contract. Their presence in review evidence is not production support.
 The implemented source contract is specified in
@@ -174,8 +174,15 @@ Bel and the Dragon retains a literal unmatched opening bracket in verse 14; no
 closing bracket is supplied. Its final inventory separately checks all 61 body lines,
 74 opening/closing anchors and five page joins.
 Their exact content is pinned in `hebrew-deuterocanon-review.json` against separately
-recorded source inventories. The other six selected works remain unfinished; these
-six completed books do not open the production gate by themselves. Completion here
+recorded source inventories. Sirach is also complete: all 51 chapters, 1,333 primary
+units and 82 text pages, with 66 disclosed isolated unreadable points. Its independent
+final inventory also pins 11 combined units, 15 self-contained blocks, the cross-chapter
+route and the literal labels of both 20:13 witnesses. Printed gaps remain visible and
+their affected chapters remain marked incomplete; supplied bracketed words are retained.
+The five stale incomplete flags on chapters 26, 34, 39, 47 and 49 were removed only after
+their complete source scopes were reread and found to contain no missing text.
+The other five selected works remain unfinished; these seven completed books do not
+open the production gate by themselves. Completion here
 means the chosen Hebrew edition has been transcribed and checked, not that its
 numbering has already been reconciled with every daily-reading citation.
 

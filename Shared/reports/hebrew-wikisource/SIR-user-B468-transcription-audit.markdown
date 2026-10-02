@@ -6,7 +6,7 @@ printed vowel points. The raw supplied wording, the two half-lines, physical ord
 source hash, and individual corrections are preserved in
 `SIR-user-B468-transcription-audit.json`. Sof pasuq is encoded as U+05C3 (׃).
 
-The image supports these corrections to the typed reference:
+The initial screenshot comparison proposed the following corrections. **Five were subsequently withdrawn**, as documented below; this table is historical evidence, not the current reading:
 
 | Printed location | Supplied | Image reading |
 | --- | --- | --- |
@@ -28,7 +28,7 @@ replacement based on expected meaning. The printed נחלת at 11:32 is retained
 The comparison also corrected the first draft: the missing nun in 11:28 ינכר and
 bracket boundaries in 11:21, 11:24, 11:25 and 11:28. The latter bracket spans both
 halves of the poetic row. Text hashes were recomputed only for those four changed
-units. The draft still has 380 units and no approved pages.
+units. At that initial comparison, the draft had 380 units and no approved pages.
 
 The source's physical order 11:33 → 12:1 → 11:34 remains recorded explicitly;
 chapter-grouped arrays are not claimed to preserve that interleaving. Printed gaps,
@@ -44,3 +44,13 @@ completed-review inventory or reviewed-page entry was added.
 ## Subsequent clearer-scan correction
 
 The separate comparison with the clearer independent scan (spread241 right), confirmed by a second reader, withdraws three earlier changes in this report. In11:25 both ורעת and ואחרית have ordinary initial vavs, without added opening brackets. In11:29 the print has פ[צעי], without the extra vav previously inserted after peh. The user’s original consonantal readings were correct at these locations. The historical comparison above remains visible; the JSON `subsequentReview` and page468 second-pass report record the correction and crop hashes. This does not approve the surrounding vowel points.
+
+
+## Further correction from both complete scans
+
+Renewed tight crops from both the original and additional scans, independently checked by two reviewers, also withdraw the earlier changes at11:22 and11:32. The source reads **בגרל**, with a short resh roof rather than a second lamed ascender, and **מנצוץ**, with five consonants and no intervening yod. The user’s original readings were correct at both locations. The previous positive claims about a lamed ascender and an inserted yod were mistaken; the JSON preserves those claims only as superseded history alongside the new crop hashes. All isolated point decisions remain separate from this consonantal correction.
+
+
+## Completed local pointed-page comparison
+
+The subsequent full two-scan comparison now closes physical page468 only. Its current corrections, exact crops and five accepted isolated-mark notes are in `SIR-page468-second-pass.json`. The canonical reader preserves11:33 → 12:1 → 11:34 with source-order primary blocks and an explicit address route; the earlier chapter-array limitation above describes the initial draft. The whole Sirach book remains a draft pending the remaining local reviews and independent final inventory.

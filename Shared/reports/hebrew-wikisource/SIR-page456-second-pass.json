@@ -113,13 +113,55 @@
     {
       "path": "/private/tmp/prosary-sirach-extra/query-5-1-word.png",
       "sha256": "e2bf547af448531291423954655a3e9c27edcec94d9476bd9391731c2e5946e9"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-review/456-upper.png",
+      "sha256": "069dfe3594889b7d688657840b2f6b11dae5ef26f8b700fc9a68b3033d4a372a",
+      "purpose": "2026-10-02 resumed visual review"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-review/456-lower.png",
+      "sha256": "55d03b1ada1b32fc9a620f63049f60be43c46a038cf8dfc974cf0eac94f3d5da",
+      "purpose": "2026-10-02 resumed visual review"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-review/456-primary.png",
+      "sha256": "975935f3340869f4a27501bf233c4ed60fe3df81f4c7c24ac20d38e38e8b84dc",
+      "purpose": "2026-10-02 resumed visual review"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-review/456-31-qof.png",
+      "sha256": "70709fc479e957d4e05fdca7b19f1de3107a1359d814257a3374df0b8b74da97",
+      "purpose": "2026-10-02 resumed visual review"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-review/456-1-cheylekha.png",
+      "sha256": "2c46a698289779077f29d7f47cb4116d82ba3e73bb97e14767039825e0f08a4d",
+      "purpose": "2026-10-02 resumed visual review"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-review/456-2-bachamudot.png",
+      "sha256": "956785529d430bd4e8d9611dfdbd02276ed682ff18156b3f9ae310817fe200f6",
+      "purpose": "2026-10-02 resumed visual review"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-review/456-primary-qof.png",
+      "sha256": "9016dad902a940ec11adfb01f714141cce3a5a52c773e712d76854b45c124328",
+      "purpose": "2026-10-02 resumed visual review"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-review/456-primary-cheylekha.png",
+      "sha256": "2eeba2232a1a91b7bb6d4c6f61f70a2933f6c72c092f0c0e410ea49d04bab1dc",
+      "purpose": "2026-10-02 resumed visual review"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-review/456-primary-bet.png",
+      "sha256": "1fab6969869ef8e96431072007b05b4d990a970316091fb3c9c4679218b16de2",
+      "purpose": "2026-10-02 resumed visual review"
     }
   ],
-  "unresolvedFindings": [
-    "4:31 qof interior point versus print noise; prior report mislabeled this letter kaf.",
-    "5:1 final kaf mark and5:2 initial bet dagesh require final close comparison; no global point normalization."
-  ],
-  "approved": false,
+  "unresolvedFindings": [],
+  "approved": true,
   "subsequentCorrections": [
     {
       "reference": "5:9",
@@ -129,8 +171,19 @@
     }
   ],
   "resolvedFindings": [
-    "5:6 full לְרוֹב confirmed; prior mater question resolved.",
-    "5:9 distinct vav and no bet dagesh in tight crop; corrected.",
-    "5:1 het segol confirmed; final kaf mark remains for check."
-  ]
+    "4:31 qof interior clear in both scans, no dagesh; preserve existing sheva.",
+    "5:1 final kaf qamats has a bar/stem in extra and matching heavier primary mark.",
+    "5:2 initial bet has a distinct interior dagesh in both scans.",
+    "All main-text clauses, points and punctuation compared; lower manuscript variants are not substituted. No new source notes or canonical text edits needed."
+  ],
+  "historicalUnresolvedFindings": [
+    "4:31 qof interior point versus print noise; prior report mislabeled this letter kaf.",
+    "5:1 final kaf mark and5:2 initial bet dagesh require final close comparison; no global point normalization."
+  ],
+  "approval": {
+    "date": "2026-10-02",
+    "scope": "Local main-text page only; final independent whole-book inventory remains open.",
+    "method": "Complete renewed primary456/extra235right reading, then paired tight crops for all remaining point questions.",
+    "sourceNoteIds": []
+  }
 }

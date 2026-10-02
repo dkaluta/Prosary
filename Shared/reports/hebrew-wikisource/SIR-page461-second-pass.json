@@ -89,6 +89,24 @@
       "reference": "7:31",
       "before": "כַּבֵּד אֵל וְהַדֵּר כֹּהֵן וְתֵן־חֶלְקָם כַּאֲשֶׁר צֻוִּיתָה׃ לֶחֶם אַבִּירִים וּתְרוּמַת יָד זִבְחֵי צֶדֶק וּתְרוּמַת קֹדֶשׁ׃",
       "after": "כַּבֵּד אֵל וְהַדֵּר כֹּהֵן וְתֵן־חֶלְקָם כַּאֲשֶׁר צֻוִּיתָה׃ לֶחֶם אַבִּירִים וּתְרוּמַת יָד זִבְחֵי צֶדֶק וּתְרוּמַת קֹדֶשׁ׃"
+    },
+    {
+      "reference": "7:21",
+      "before": "עֶבֶד מַשְׂכִּיל חַבֵּב כְּנַפְשׁוֹ[ךָ] אַל־תִּמְנַע מִמֶּנּוּ חֹפֶשׁ׃",
+      "after": "עֶבֶד מַשְׂכִּיל חַבֵּב כְּנַפְשֶׁוֹ[ךָ] אַל־תִּמְנַע מִמֶּנּוּ חֹפֶשׁ׃",
+      "reason": "Shin has a clear lower three-dot segol despite the following written vav with holam. Preserve the literal printed anomalous pointing and bracketed final-kaf qamats."
+    },
+    {
+      "reference": "7:22",
+      "before": "בְּהֵמָה לְךָ רְאֵה עֵינֶיךָ וְאִם־אֲמָנָה הִיא הַעֲמִידֶהָ׃",
+      "after": "בְּהֵמָה לְךָ רְאֵה עֵינֶיךָ וְאִם־אֲמְנָה הִיא הַעֲמִידֶהָ׃",
+      "reason": "Mem has two vertical sheva dots, not qamats; alef hataf-patah and nun qamats retained."
+    },
+    {
+      "reference": "7:26",
+      "before": "אִשָּׁה לְךָ אַל־תִּתְעַבָּה וּשְׂנוּאָה אַל־תֵּאָמֵן בָּהּ׃",
+      "after": "אִשָּׁה לְךָ אַל־תְּתַעֲבָהּ וּשְׂנוּאָה אַל־תֵּאָמֵן בָּהּ׃",
+      "reason": "Printed initial tav dagesh/sheva, second tav patah, ayin hataf-patah, bet qamats without dagesh and final he mappiq resolved in the clearer scan and compatible primary. Do not normalize source inflection."
     }
   ],
   "crops": [
@@ -107,15 +125,80 @@
     {
       "path": "/private/tmp/prosary-sirach-extra/461-20-21.png",
       "sha256": "bf55c763c9b6d2f6addb3cf655480757ce9e789a672c8e36a2840ec71e95ed03"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-review/461-21-kenafsho.png",
+      "sha256": "fd6b008c43d8ab4491784e872a337925e2f4795163c4232beb531108592c6ec2",
+      "purpose": "2026-10-02 resumed visual review"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-review/461-22-amana.png",
+      "sha256": "1a9b2a9b510234f60fd67f21a06311d95d44d9e1c65fbb6f164fdf007eaa128e",
+      "purpose": "2026-10-02 resumed visual review"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-review/461-26-full.png",
+      "sha256": "725440ce2d4990a4515c31d391f8bf80ffc244e7ea78fb5ce83f7a4c0b987ee0",
+      "purpose": "2026-10-02 resumed visual review"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-review/461-26-titaava.png",
+      "sha256": "bc6ff56c4690a7b00548de603f3ab8d94e09e69775a6e7f9f1fd01e1ff2be899",
+      "purpose": "2026-10-02 resumed visual review"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-review/461-30-ehov.png",
+      "sha256": "16934c3b7ae830fa1c4da7f8dd418fce8d4a73b20bdeeb7347e2db3051550195",
+      "purpose": "2026-10-02 resumed visual review"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-review/461-30-full.png",
+      "sha256": "4153b05686b4321481c7752e3d5efeb74aedb0244cb3dcb4b8b6ea23aec2629b",
+      "purpose": "2026-10-02 resumed visual review"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-review/461-30-meodekha.png",
+      "sha256": "8f974c192d80b3f2ae68cfc66b26d2d54880688eea5fffaa54258a1984fa976d",
+      "purpose": "2026-10-02 resumed visual review"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-review/461-lower.png",
+      "sha256": "12053c9099a2ce0e44f62a2d711a3ea95bfa983690b416293ff8b2955e793628",
+      "purpose": "2026-10-02 resumed visual review"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-review/461-primary-21.png",
+      "sha256": "38dae7d7f846d507390a15a9674c562f93e76023b8d733fb8fb8671fbc527736",
+      "purpose": "2026-10-02 resumed visual review"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-review/461-primary-22.png",
+      "sha256": "0e6917ceaf9906b9fe38b0c4103658aea921c6df6bea8f3fee6378f9df672751",
+      "purpose": "2026-10-02 resumed visual review"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-review/461-primary-26.png",
+      "sha256": "7e557e6bb779289387630566d6607fc322c2740a22b910e958d72cc20bf56af4",
+      "purpose": "2026-10-02 resumed visual review"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-review/461-primary-30.png",
+      "sha256": "ee47ff37e815696853d3b1d7d9231ad37391e5c3a1631e1adf09f42a3c26ac04",
+      "purpose": "2026-10-02 resumed visual review"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-review/461-primary.png",
+      "sha256": "672ea9b40f3aa4511641438b6c71bc3697391a9d2dd7597b46b030d62a05b801",
+      "purpose": "2026-10-02 resumed visual review"
+    },
+    {
+      "path": "/private/tmp/prosary-sirach-review/461-upper.png",
+      "sha256": "6654e06be0179ca665d17a4da9aead0cef62784613f33196fc76f47bab2ea168",
+      "purpose": "2026-10-02 resumed visual review"
     }
   ],
-  "unresolvedFindings": [
-    "7:21 כנפשו[ך] exact final kaf point (earlier draft sheva requires recheck), retain printed base and bracketed correction.",
-    "7:22 אמנה points;7:26 תתעבה tav/ayin vowels.",
-    "7:30 מאודך/אהוב plene spelling and vowel details.",
-    "Full independent vowel review remains required."
-  ],
-  "approved": false,
+  "unresolvedFindings": [],
+  "approved": true,
   "subsequentCorrections": [
     {
       "reference": "7:21",
@@ -125,6 +208,23 @@
     }
   ],
   "resolvedFindings": [
-    "7:21 final bracketed kaf has qamats: כְּנַפְשׁוֹ[ךָ], independently confirmed by parent from tight crop."
-  ]
+    "7:21 final bracketed kaf has qamats: כְּנַפְשׁוֹ[ךָ], independently confirmed by parent from tight crop.",
+    "7:21 lower shin segol before written vav holam restored literally; bracketed kaf qamats retained.",
+    "7:22 mem sheva restored; alef hataf-patah and nun qamats confirmed.",
+    "7:26 all fine vowel/interior marks resolved; literal תְּתַעֲבָהּ preserved.",
+    "7:30 very clear written vavs and existing mem sheva/alef hataf-segol confirmed; no modernization.",
+    "All main-text words, points and punctuation compared;7:31 continuation checked and lower manuscript variants remain apparatus."
+  ],
+  "historicalUnresolvedFindings": [
+    "7:21 כנפשו[ך] exact final kaf point (earlier draft sheva requires recheck), retain printed base and bracketed correction.",
+    "7:22 אמנה points;7:26 תתעבה tav/ayin vowels.",
+    "7:30 מאודך/אהוב plene spelling and vowel details.",
+    "Full independent vowel review remains required."
+  ],
+  "approval": {
+    "date": "2026-10-02",
+    "scope": "Local main-text page only; final independent whole-book inventory remains open.",
+    "method": "Complete renewed primary461/extra237left comparison; all three changed point readings independently confirmed by coordinator from tight crops.",
+    "sourceNoteIds": []
+  }
 }
