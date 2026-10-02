@@ -94,6 +94,7 @@ bundles, the calendar, the pack loader, models, and the preset store; instrument
 
 ## License
 
-All original Prosary material is licensed under the repository-wide BSD 2-Clause License — see
-[LICENSE](../LICENSE). Third-party material retains its original license — see the in-app About
-screen for details.
+Original Prosary material is covered by the repository-wide [LICENSE](../LICENSE):
+BSD 2-Clause, with a CC0 1.0 Universal dedication for all original natural-language text
+authored by David Kaluta. See the [dedication's scope](../Shared/content/TEXT-LICENSING.markdown).
+Third-party material retains its original license — see the in-app About screen for details.
