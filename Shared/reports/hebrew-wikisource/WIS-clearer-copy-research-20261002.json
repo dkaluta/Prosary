@@ -1,0 +1,231 @@
+{
+  "schemaVersion": 1,
+  "book": "WIS",
+  "reviewer": "source_gate",
+  "date": "2026-10-02",
+  "status": "Public-source research complete; neither damaged reading resolved",
+  "scope": "Read-only search for a genuinely different image of the same Stein translation/printing. No canonical text, review approval, restoration authorization or source-note disposition changed.",
+  "targets": [
+    {
+      "chapter": 6,
+      "verse": 2,
+      "primaryPDFPage": 155,
+      "printedPageHebrew": "תפג",
+      "printedPageNumber": 483,
+      "location": "Opening word of verse 2, beneath the chapter 6 opening line",
+      "provisionalCandidate": "האזינו",
+      "status": "Middle consonants and points remain uncertified; no new source witness inspected"
+    },
+    {
+      "chapter": 16,
+      "verses": [
+        23,
+        24
+      ],
+      "primaryPDFPage": 179,
+      "printedPageHebrew": "תקז",
+      "printedPageNumber": 507,
+      "location": "Opening word of first body row, beside printed combined 23–24 label",
+      "provisionalCandidate": "אילם",
+      "status": "Second consonant remains uncertain; visible short glyph does not exclude damaged vav; no restoration or normalization made"
+    }
+  ],
+  "primaryTargetPageInspection": {
+    "method": "Visually re-viewed full native pages 155 and 179 to verify printed page numbers and exact target locations. This inspection does not resolve previously recorded damage.",
+    "images": [
+      {
+        "primaryPDFPage": 155,
+        "page": 155,
+        "xref": 923,
+        "imageDimensions": [
+          2529,
+          3519
+        ],
+        "components": 1,
+        "rawSHA256": "eacd065b4376632cf537828249ddfdff29cc1f4e4176d7df8c82e688cd2147de",
+        "file": "/private/tmp/prosary-wis-review/source-gate-primary-native-155.png",
+        "pngSHA256": "6f195f26ea1110cb59da2fd0a625008e74c9b19388ec1b28ad00644a3697c135"
+      },
+      {
+        "primaryPDFPage": 179,
+        "page": 179,
+        "xref": 1067,
+        "imageDimensions": [
+          2540,
+          3526
+        ],
+        "components": 1,
+        "rawSHA256": "0cd52163fdeb82c99393e6ab49a7e1348304ae8ca311c64e4bd5d56f2f4a42ff",
+        "file": "/private/tmp/prosary-wis-review/source-gate-primary-native-179.png",
+        "pngSHA256": "3e4ba89ce1dca87f45a776a42d69f295571c0e59498bd9810cb9569b8219747e"
+      }
+    ]
+  },
+  "verifiedMirrorComparisons": [
+    {
+      "sourceURL": "https://commons.wikimedia.org/wiki/File:ספרים_חיצוניים._חכמת_שלמה._מנחם_שטיין.pdf",
+      "comparison": {
+        "file": "/private/tmp/prosary-wis-review/Stein-Wisdom-standalone.pdf",
+        "fileSHA256": "4bb6d5aeffa3ce2a1b8b08e922cec24d4c1e5bf9e44dd8d014874fab477a09a8",
+        "pages": 52,
+        "targetImages": [
+          {
+            "primaryPDFPage": 155,
+            "page": 21,
+            "xref": 597,
+            "imageDimensions": [
+              2529,
+              3519
+            ],
+            "components": 1,
+            "rawSHA256": "eacd065b4376632cf537828249ddfdff29cc1f4e4176d7df8c82e688cd2147de",
+            "file": "/private/tmp/prosary-wis-review/source-gate-standalone-native-155.png",
+            "pngSHA256": "6f195f26ea1110cb59da2fd0a625008e74c9b19388ec1b28ad00644a3697c135",
+            "sameRawPixelsAsPrimary": true
+          },
+          {
+            "primaryPDFPage": 179,
+            "page": 45,
+            "xref": 1247,
+            "imageDimensions": [
+              2540,
+              3526
+            ],
+            "components": 1,
+            "rawSHA256": "0cd52163fdeb82c99393e6ab49a7e1348304ae8ca311c64e4bd5d56f2f4a42ff",
+            "file": "/private/tmp/prosary-wis-review/source-gate-standalone-native-179.png",
+            "pngSHA256": "3e4ba89ce1dca87f45a776a42d69f295571c0e59498bd9810cb9569b8219747e",
+            "sameRawPixelsAsPrimary": true
+          }
+        ]
+      },
+      "finding": "Standalone pages 21 and 45 contain exactly the same decoded pixel bytes as primaryA2pages 155 and 179, respectively. This extends the earlier chapter 1 raster identity check to both current blockers. Different PDF container provides no new evidence."
+    },
+    {
+      "sourceURL": "https://irp.cdn-website.com/90ff6933/files/uploaded/מנשה%2C%20ירמיהו%2C%20ברוך%2C%20שלמה%2C%20דניאל%2C%20עזרא..pdf",
+      "comparison": {
+        "file": "/private/tmp/prosary-wis-review/source-gate-cdn-mirror.pdf",
+        "fileSHA256": "83e4dc0b56a61d786e487e616ce8093dbf546c794087c500250477dca512d985",
+        "pages": 325,
+        "targetImages": [
+          {
+            "primaryPDFPage": 155,
+            "page": 155,
+            "xref": 461,
+            "imageDimensions": [
+              910,
+              1267
+            ],
+            "components": 1,
+            "rawSHA256": "d82ea7411a601f2ec625db150adcffd1e54d4f7f9a62c7555156f0355e6dbb1c",
+            "file": "/private/tmp/prosary-wis-review/source-gate-cdn-native-155.png",
+            "pngSHA256": "9da8c57a2e79a084cae9d9a2d45aa91752c267c031560336cd9c1180f2ca7603",
+            "sameRawPixelsAsPrimary": false
+          },
+          {
+            "primaryPDFPage": 179,
+            "page": 179,
+            "xref": 533,
+            "imageDimensions": [
+              914,
+              1269
+            ],
+            "components": 1,
+            "rawSHA256": "351d2cbdf91bd1869dd6f4517a2da96ffaa6244fd304e9767ced103a561c9933",
+            "file": "/private/tmp/prosary-wis-review/source-gate-cdn-native-179.png",
+            "pngSHA256": "63ce13866e55862f26810df10c64211ab58870c9eba380e700e7a32ea3ab626e",
+            "sameRawPixelsAsPrimary": false
+          }
+        ]
+      },
+      "finding": "Downloaded and extracted the two target pages. Images are only 910×1267 and 914×1269, compared with primary 2529×3519 and 2540×3526. Full-page visual comparison shows the same page framing, line positions, broken opening word 6:2 and short 16:23 glyph. Images are not raw-byte-identical because dimensions differ. Their matching defects and composition are consistent with a reduced derivative of the known scan; no independent scan provenance or additional readable letter pixels established. Neither word certified."
+    },
+    {
+      "file": "/private/tmp/prosary-wis-review/kahana-a2-alternate.pdf",
+      "sha256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+      "finding": "Existing earlier downloaded alternate full A2 file was rehashed and remains byte-identical to primary; not a second witness."
+    }
+  ],
+  "potentialDifferentCopy": [
+    {
+      "catalogURL": "https://archive.org/details/hasefarimhahtson0001unse",
+      "metadataURL": "https://archive.org/metadata/hasefarimhahtson0001unse",
+      "scandataURL": "https://archive.org/download/hasefarimhahtson0001unse/hasefarimhahtson0001unse_scandata.xml",
+      "verifiedMetadata": {
+        "identifier": "hasefarimhahtson0001unse",
+        "title": "ha-Sefarim ha-hịtsonim : le-Torah, li-Neviʼim, li-Khetuvim vẹ sheʼar sefarim hịtsonim",
+        "date": "1959",
+        "volume": "1",
+        "scanner": "station38.cebu.archive.org",
+        "scandate": "20210309173557",
+        "scanningcenter": "cebu",
+        "contributor": "Internet Archive",
+        "collection": [
+          "claremont_school_of_theology",
+          "internetarchivebooks",
+          "inlibrary",
+          "printdisabled"
+        ],
+        "imagecount": "682",
+        "ppi": "360",
+        "camera": "USB PTP Class Camera",
+        "access-restricted-item": "true",
+        "oclc-id": "874431514"
+      },
+      "accessStatus": "Public catalog and page-inventory metadata retrieved. PDF and JP2 archive entries are explicitly private; item access-restricted-item=true. No restricted page images or text fetched, no borrowing/account action performed.",
+      "provenanceConclusion": "Metadata identifies a 2021 digitization associated with Claremont School of Theology and a 1959 volume 1. This is evidence of a separate digitization record, not certification that its target pages are different, clearer, or identically typeset. Target pixels and edition correspondence remain unseen.",
+      "pageMappingLimit": "Public scandata has 682 leaf records and 0 pageNumber labels; no exact 483/507 target mapping established from those labels. Do not guess a leaf URL.",
+      "metadataEvidence": {
+        "file": "/private/tmp/prosary-wis-review/source-gate-ia1959-metadata.json",
+        "sha256": "a99818b5c088845622f0f33979c24fe238cb5394a9e0935c9a9ab2f398ce77e0",
+        "bytes": 12242
+      },
+      "scandataEvidence": {
+        "file": "/private/tmp/prosary-wis-review/source-gate-ia1959-scandata.xml",
+        "sha256": "359be4cf1c9d1b309137a9e450c003e54d9afbd598c3d6e0fbf5a2290b559a60",
+        "bytes": 720587
+      }
+    },
+    {
+      "catalogURL": "https://kotar.cet.ac.il/kotarapp/index/Book.aspx?nBookID=116612394",
+      "wisdomChapterURL": "https://kotar.cet.ac.il/kotarapp/index/Chapter.aspx?nBookID=116612394&nTocEntryID=116614267",
+      "viewerURL": "https://kotar.cet.ac.il/KotarApp/Viewer.aspx?nBookID=116612394",
+      "verifiedCatalogDescription": "Kotar describes Carmel’s 2025 volume 1 as a photographic reproduction of Masada 1956, with new introduction by Ishay Rosen-Zvi. Wisdom is explicitly listed in contents.",
+      "accessStatus": "Public catalog and viewer entry inspected through web tool; viewer returned registered-user sign-in entry. No target page images obtained. Browser automation inventory was empty, so no interactive library access verified.",
+      "finding": "Potential facsimile witness only. No same-setting or pixel distinction certified without seeing target pages."
+    }
+  ],
+  "otherResearchLimits": [
+    {
+      "sourceURL": "https://yeshua12apostles.design.blog/wp-content/uploads/2020/08/d794d7a1d7a4d7a8d799d79d-d794d797d799d7a6d795d7a0d799d799d79d-d790d791d7a8d794d79d-d79bd794d7a0d790-d797d79cd7a7-d791.pdf",
+      "result": "Download failed with TLS handshake timeout; no bytes or pixels compared."
+    },
+    {
+      "sourceURL": "https://www.nli.org.il/he/books/NNL_ALEPH990013008210205171/NLI",
+      "result": "Public catalog lists online-reading control but target destination was not exposed in web output; direct catalog retrieval returned 403. No access bypass attempted and no page evidence obtained."
+    },
+    {
+      "sourceURL": "https://huggingface.co/datasets/NHLOCAL/judaic-texts-corpus",
+      "result": "Search surfaced a pointed Wisdom transcript labeled as based on Kahana; not used to resolve either reading. No independent print provenance established; secondary transcript cannot certify damaged source consonants."
+    }
+  ],
+  "researchQueries": [
+    "חכמת שלמה מנחם שטיין pdf",
+    "הספרים החיצונים כהנא archive.org1937",
+    "Apocrypha_Kahana_A2.pdf",
+    "Kahana Sefarim archive.org",
+    "חכמת שלמה שטיין האזינו",
+    "חכמת שלמה אולם למען"
+  ],
+  "catalogSearchEvidence": {
+    "file": "/private/tmp/prosary-wis-review/source-gate-ia-title-search.json",
+    "sha256": "bd635f62394359b88588bf3042e4a01649cddd292b33497991d66f4cb00c01fa",
+    "bytes": 8158
+  },
+  "nextEvidenceNeeded": "Through ordinary authorized library/borrowing access or a physical copy, obtain photographic images of Stein Wisdom printed pages 483 and 507 and the edition/title page. Verify line setting and target glyphs before using them; no text transferred from an unseen source.",
+  "canonicalChanged": false,
+  "consonantsRestored": false,
+  "pagesApproved": false,
+  "releaseGateChanged": false,
+  "finalConclusion": "No additional visible evidence resolves 6:2 or 16:23. Two potential library-copy witnesses are now identified with exact current-print page locations; known standalone and mirror copies cannot be counted as independent corroboration."
+}
