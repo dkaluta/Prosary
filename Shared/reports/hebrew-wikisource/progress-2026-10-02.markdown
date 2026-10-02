@@ -22,26 +22,26 @@ The count treats the Esther additions and the three Daniel additions as separate
 
 | Work | Saved draft | Finished comparison | Remaining work |
 | --- | --- | --- | --- |
-| Wisdom | Chapters 1–13 of 19; printed vowel points retained where readable | Chapters 1–5 and 7–12 have completed separate author and independent comparisons. Chapter 6 is compared except for the faded opening word of 6:2. | Independently review chapter 13; transcribe and review chapters 14–19; resolve the faded consonants in 6:2. |
-| 1 Maccabees | A full text scaffold exists, with pointed print comparison through 12:9 | Chapters 1–11 and 12:1–9; 63 source pages reviewed | Complete the pointed transcription and comparison from 12:10 through chapter 16. The unreviewed scaffold is not finished text. |
-| 2 Maccabees | Chapters 1–8 of 15 | Chapters 1–5 reconciled; chapters 6–8 have separate author proofs | Independently review chapters 6–8; transcribe and review chapters 9–15. |
+| Wisdom | Chapters 1–14 of 19; printed vowel points retained where readable | Chapters 1–5 and 7–13 have completed separate author and independent comparisons. Chapter 6 is compared except for the faded opening word of 6:2. Chapter 14 has a complete author comparison. | Independently review chapter 14; transcribe and review chapters 15–19; resolve the faded consonants in 6:2. |
+| 1 Maccabees | A full text scaffold exists, with pointed print comparison through 13:18 | Chapters 1–12 and 13:1–18; 67 source pages reviewed | Complete the pointed transcription and comparison from 13:19 through chapter 16. The unreviewed scaffold is not finished text. |
+| 2 Maccabees | Chapters 1–10 of 15 | Chapters 1–8 reconciled; chapter 9 has a separate author proof. | Independently review chapter 9; complete both reviews of chapter 10; transcribe and review chapters 11–15. |
 
 Wisdom and 2 Maccabees still require substantial transcription. First Maccabees has a full scaffold, but its remaining letters, points, and boundaries still need the same detailed source comparison as the earlier chapters.
 
-## Progress since the preceding pushed checkpoint
+## Progress since the latest pushed checkpoint
 
-- Wisdom 10–12 completed independent review and reconciliation; chapters 11–13 gained saved drafts and complete author comparisons.
-- First Maccabees advanced from source page B154 through B159, completing chapter 11 and the opening of chapter 12.
-- Second Maccabees 4–5 completed reconciliation; chapters 6–8 advanced through author proofreading.
+- Wisdom 13 completed independent review and reconciliation. Chapter 14 gained a full draft and a separate author comparison of all 45 printed rows.
+- First Maccabees advanced from source page B159 through B163, completing chapter 12 and the opening of chapter 13.
+- Second Maccabees 6–8 completed reconciliation. Chapter 9 has a full author proof, and chapter 10 has a full first draft.
 - Corrections preserve the printing's actual spelling, point placement, brackets, combined verse labels, and text crossing page boundaries.
 
 Unreadable isolated vowel marks receive exact source notes. The notes identify the affected letter; readable neighboring marks remain. The approved restoration of ל in Wisdom 1:16 remains explicitly disclosed. No new consonant reconstruction has been approved for Wisdom 6:2.
 
 ## Validation and release
 
-The preceding pushed checkpoint, `c6534bb24bc95f5c93369b91ab9994b2360c976d`, passed both [CI](https://github.com/dkaluta/Prosary/actions/runs/36991265783) and [Terminal CI](https://github.com/dkaluta/Prosary/actions/runs/36991265821). Those results were checked again for this report.
+The latest pushed checkpoint, `058c5ee8bcc7831ffa306fc7fabfbe027dca4cf9`, passed both [CI](https://github.com/dkaluta/Prosary/actions/runs/36994877146) and [Terminal CI](https://github.com/dkaluta/Prosary/actions/runs/36994877162). Those results were checked live for this report. The work listed above was saved after that checkpoint and is not covered by those CI results.
 
-All 20 source-validation tests pass for the current checkpoint, and the corpus validator confirms nine complete works, three drafts, and zero production imports. These checks cover source identities, verse hashes, inventories, exact note anchors, and completion requirements. Automated validation complements the full visual comparisons; it does not replace proofreading the print.
+All 20 source-validation tests were rerun successfully against the current local work. The corpus validator confirms nine complete works, three drafts, and zero production imports, and the whitespace check passes. These checks cover source identities, verse hashes, inventories, exact note anchors, and completion requirements. Automated validation complements the full visual comparisons; it does not replace proofreading the print.
 
 No merge into `main` or release has been made for this work. After the remaining books are complete, the outstanding release steps are to generate and synchronize the production assets, run the relevant platform and integration checks, merge and push the finished work, and verify the authorized release delivery. Store acceptance and public availability must be reported separately from a successful build or upload.
 
