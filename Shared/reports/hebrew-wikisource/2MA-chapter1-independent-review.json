@@ -1,0 +1,1641 @@
+{
+  "schemaVersion": 1,
+  "book": "2MA",
+  "chapter": 1,
+  "reviewer": "source_gate, independent of lje_pd_boundaries first draft and author proof",
+  "status": "Full independent 57-row comparison complete; literal corrections and two exact vowel notes ready for author integration",
+  "releaseApproved": false,
+  "canonicalChanged": false,
+  "newReviewedPages": [],
+  "method": [
+    "Compared every word, readable point, punctuation mark, bracket and all34 unit starts across all57 source main-body rows in32 overlapping native extra-scan half-body crops. Original native page contexts and targeted companions establish the same printing, line joins and difficult readings. This report does not claim a second whole-body pass of every primary-scan crop.",
+    "Extra pages91–93 were independently identified by printed page headers and exact main-text continuations: right/left91 = original178/179; right/left92 =180/181; right/left93 =182/183. Commentary was not included as Scripture.",
+    "Difficult marks were enlarged with nearest-neighbor resampling of source pixels. No generated pixels, other translation wording, grammatical normalization or semantic restoration was used.",
+    "Initial author hypotheses and first drafts remain unchanged as evidence. Focused author/peer corroboration is recorded separately from this full independent pass. Book completeness and reviewed-page flags remain for the author/root integration."
+  ],
+  "source": {
+    "volume": "B",
+    "sha256": "656891d377d2e3d4a9216723d94205488423907bf01df424b9f0b9de1560051e",
+    "pageCount": 530,
+    "sourceURL": "https://he.wikisource.org/wiki/קובץ:Apocrypha_Kahana_B.pdf",
+    "extraScan": {
+      "sha256": "b72eaf5d2d858fabb7c3438ac0436ccd64c394a7dd2fad609efabe628d5534c7",
+      "pageCount": 272,
+      "sourceURL": "https://he.wikisource.org/wiki/קובץ:Apocrypha_Kahana_B_extra_scan.pdf",
+      "directURL": "https://upload.wikimedia.org/wikisource/he/a/a8/Apocrypha_Kahana_B_extra_scan.pdf"
+    }
+  },
+  "startingEvidence": {
+    "snapshot": "/private/tmp/prosary-2ma/source-gate/chapter1-starting-canonical.json",
+    "sha256": "6ef0968a7c61857634af3ea947e6d59668962264da3fcd8a11062a7eac13810d",
+    "authorReport": "Shared/reports/hebrew-wikisource/2MA-chapter1-first-author-proof.json",
+    "authorReportSHA256": "aa268dbc968f9ce1b24ca11a84e35b85da555e12a56999f82e325e3fdc0103e0"
+  },
+  "coverage": {
+    "physicalRows": 57,
+    "rowsByPage": {
+      "178": 1,
+      "179": 6,
+      "180": 8,
+      "181": 11,
+      "182": 18,
+      "183": 13
+    },
+    "extraHalfBodyCropsCompared": 32,
+    "canonicalUnits": 34,
+    "representedLabels": 36,
+    "lastVerse": 36,
+    "printedCombinedLabels": [
+      [
+        5,
+        6
+      ],
+      [
+        30,
+        31
+      ]
+    ],
+    "provisionalEditorialRanges": [],
+    "boundaryResult": "All34 printed unit starts and two explicit combined labels agree with the canonical unit inventory. No inferred subdivision or new boundary uncertainty introduced. Chapter1 ends at נפתָי׃ before chapter2."
+  },
+  "changedReadings": [
+    {
+      "reference": "1:9",
+      "before": "אַחַי־יְמֵי",
+      "after": "אֶת־יְמֵי",
+      "occurrences": 1,
+      "sourcePages": [
+        180
+      ],
+      "detail": "Two consonants alef/tav before the maqaf; tav has its outward left foot. There is no extra yod. Alef lower mark is a three-lobed segol. This supersedes the prior author interpretation of a het vowel.",
+      "cropEvidence": [
+        {
+          "path": "/private/tmp/prosary-2ma/source-gate/focus-ahay9-extra.png",
+          "sha256": "d664f213acc1bb3737de2fd80700a0ca6c060d60112dde1c87e577cd5d7f46da"
+        }
+      ],
+      "peerCorroborated": true
+    },
+    {
+      "reference": "1:10",
+      "before": "המּשׁוּחִים",
+      "after": "המְּשׁוּחִים",
+      "occurrences": 1,
+      "sourcePages": [
+        180,
+        181
+      ],
+      "detail": "All seven consonants are distinguishable in the extra scan, including the damaged mem. Mem has two vertical lower dots, sheva, and the primary has a detached inner dagesh. Initial he lower horizontal lobes could be damaged patah or tsere; retain that exact vowel omission.",
+      "cropEvidence": [
+        {
+          "path": "/private/tmp/prosary-2ma/source-gate/focus-meshu-extra.png",
+          "sha256": "85dc0112de2c37bd022110bb3a8af9cbb3b5f93e86c38b673cc5ccf70e53cad7"
+        },
+        {
+          "path": "/private/tmp/prosary-2ma/source-gate/focus-meshu-primary.png",
+          "sha256": "03018e591ea6a76869f1ec060c0cae8c5180b1fffd023c1ae892807efc3af818"
+        },
+        {
+          "path": "/private/tmp/prosary-2ma/source-gate/focus-meshu-he-mem-extra.png",
+          "sha256": "5138ee8c1b9cd05f89468e867eae5b5d9e68ddb96791ed2594778640913ac7e0"
+        }
+      ],
+      "peerCorroborated": true
+    },
+    {
+      "reference": "1:11",
+      "before": "בֵּיְיָ",
+      "after": "בַיָי",
+      "occurrences": 1,
+      "sourcePages": [
+        181
+      ],
+      "detail": "Bet has a flat detached patah and no detached interior dagesh. Qamats is under the first/right yod; final/left yod is bare. Preserve the printed placement without grammatical normalization.",
+      "cropEvidence": [
+        {
+          "path": "/private/tmp/prosary-2ma/source-gate/focus-byy11-extra.png",
+          "sha256": "15b4ffe55a20e4ff965aa242ab8a4ca8e7d1997af2a982a71dc33814e93282d9"
+        },
+        {
+          "path": "/private/tmp/prosary-2ma/source-gate/focus-byy11-primary.png",
+          "sha256": "5027a2b9b1f17d46c302223eb49462e03a3eb665142219031f5cfd9af3d00734"
+        }
+      ],
+      "peerCorroborated": true
+    },
+    {
+      "reference": "1:13",
+      "before": "הַזידוֹנִים",
+      "after": "הַזֵידוֹנִים",
+      "occurrences": 1,
+      "sourcePages": [
+        181
+      ],
+      "detail": "Zayin has two separate horizontal dots, tsere. Retain both written yods and the other source points.",
+      "cropEvidence": [
+        {
+          "path": "/private/tmp/prosary-2ma/source-gate/focus-zedonim13-extra.png",
+          "sha256": "60d70e4c1adb7037bae938f9eeafa3a27568c2c572c7b9a063b22e43cf7f902e"
+        },
+        {
+          "path": "/private/tmp/prosary-2ma/source-gate/focus-zedonim13-primary.png",
+          "sha256": "3d45ee6c87b2d2dd8aad8d7166736a81c05e628716cd5f2bce5927dfd931d910"
+        }
+      ],
+      "peerCorroborated": true
+    },
+    {
+      "reference": "1:13",
+      "before": "נגְפוּ",
+      "after": "נִגְּפוּ",
+      "occurrences": 1,
+      "sourcePages": [
+        181
+      ],
+      "detail": "Nun has one detached hiriq. Gimel has a separate interior dagesh, distinct from its stroke and foot, and lower sheva. Pe has no detached dagesh.",
+      "cropEvidence": [
+        {
+          "path": "/private/tmp/prosary-2ma/source-gate/focus-negfu13-full-extra.png",
+          "sha256": "211903dff253519c17a6728b07d71a615197b8e9fdc17de86178a157f6f06e4c"
+        },
+        {
+          "path": "/private/tmp/prosary-2ma/source-gate/focus-negfu13-primary.png",
+          "sha256": "0f676aa5c0c8266124f5c6027a50b7819e5da8ac709b8336ecfd16cc18850714"
+        }
+      ],
+      "peerCorroborated": true
+    },
+    {
+      "reference": "1:13",
+      "before": "נַנָּיָה",
+      "after": "נְנָיָה",
+      "occurrences": 2,
+      "sourcePages": [
+        181
+      ],
+      "detail": "Each occurrence was examined separately: first nun has sheva, second nun has qamats with empty interior, and yod has qamats. Primary companion ink is fused but compatible.",
+      "cropEvidence": [
+        {
+          "path": "/private/tmp/prosary-2ma/source-gate/focus-nania13a-extra.png",
+          "sha256": "383c84d8c31c6ef8d4a064f100af976ffd49318f88eac79cefc6c57555b3e131"
+        },
+        {
+          "path": "/private/tmp/prosary-2ma/source-gate/focus-nania13b-extra.png",
+          "sha256": "436472acaa7e2479f92d724915723be55743921375090f8fc49b4a8c4247f67c"
+        },
+        {
+          "path": "/private/tmp/prosary-2ma/source-gate/focus-nania13a-primary.png",
+          "sha256": "9edafa390747dc2ea3e39eff4b2126a08c8dcf04c45b9ece1f975a34084ea060"
+        },
+        {
+          "path": "/private/tmp/prosary-2ma/source-gate/focus-nania13b-primary.png",
+          "sha256": "67d0831f15d665ab8d5d8a21875be2f7e23e8d8aa42a0b8662b74fa9fd75937d"
+        }
+      ],
+      "peerCorroborated": true
+    },
+    {
+      "reference": "1:15",
+      "before": "נַנָּיָה",
+      "after": "נְנָיָה",
+      "occurrences": 1,
+      "sourcePages": [
+        181
+      ],
+      "detail": "Third occurrence independently has initial-nun sheva, second-nun qamats/no dagesh, and yod qamats.",
+      "cropEvidence": [
+        {
+          "path": "/private/tmp/prosary-2ma/source-gate/focus-nania15-extra.png",
+          "sha256": "f18e0b1cd31c5fb31b987f2f9129e68401578a6a61b6eed6a0b7eb66f4557864"
+        }
+      ],
+      "peerCorroborated": true
+    },
+    {
+      "reference": "1:16",
+      "before": "ויפצעוּ",
+      "after": "וּפָצְעוּ",
+      "occurrences": 1,
+      "sourcePages": [
+        181
+      ],
+      "detail": "Five glyphs vav/pe/tsadi/ayin/vav, not six; the earlier yod was an invented segmentation. First and final vav have shuruq, pe has qamats, tsadi has sheva. The primary companion confirms the glyph sequence and initial shuruq.",
+      "cropEvidence": [
+        {
+          "path": "/private/tmp/prosary-2ma/source-gate/focus-vayif16-full-extra.png",
+          "sha256": "d5117b20dded98a09cfbf80896e72c94e3cf6d4ffa9a838383265318dd456241"
+        },
+        {
+          "path": "/private/tmp/prosary-2ma/source-gate/focus-vayif16-complete-primary.png",
+          "sha256": "1c821dbc492a762ca4c2ff4cbc101e3843c5f038df9ede48e3c087bda85745d4"
+        }
+      ],
+      "peerCorroborated": true
+    },
+    {
+      "reference": "1:16",
+      "before": "וינפּצוּהוּ",
+      "after": "ופִצְפְּצוּהוּ",
+      "occurrences": 1,
+      "sourcePages": [
+        181
+      ],
+      "detail": "Eight glyphs vav/pe/tsadi/pe/tsadi/vav/he/vav; no yod or nun. First pe has hiriq, first tsadi sheva, second pe dagesh/sheva (dagesh also separate in the primary), and both final vavs have shuruq. Initial vav lower ink is fused into its foot in both scans; preserve only that exact vowel uncertainty.",
+      "cropEvidence": [
+        {
+          "path": "/private/tmp/prosary-2ma/source-gate/focus-vaynat16-full-extra.png",
+          "sha256": "0ddb150b11df633739d51b83a831b4972b65c7661c166428f738ee0f09136647"
+        },
+        {
+          "path": "/private/tmp/prosary-2ma/source-gate/focus-vaynat16-primary.png",
+          "sha256": "12fbb2d5097de345e322c6a5566bffc073994809d5a56156893b4b3fd7bec8b0"
+        },
+        {
+          "path": "/private/tmp/prosary-2ma/source-gate/focus-pitsets-vav-extra.png",
+          "sha256": "448669d4e11f172592782cf097f9790adb7f72b0d4bcd285f58dd14d8f564b66"
+        }
+      ],
+      "peerCorroborated": true
+    },
+    {
+      "reference": "1:32",
+      "before": "וכזְרֹחַ",
+      "after": "וְכִזְרֹחַ",
+      "occurrences": 1,
+      "sourcePages": [
+        183
+      ],
+      "detail": "Extra scan resolves initial vav sheva and kaf hiriq. Zayin sheva, resh holam and het patah agree with the prior corrected reading.",
+      "cropEvidence": [
+        {
+          "path": "/private/tmp/prosary-2ma/source-gate/focus-kizr32-complete-extra.png",
+          "sha256": "f589fdf3ed2527c15d84e7924c7fa082dba1e803681238690a64e876a4fddee2"
+        },
+        {
+          "path": "/private/tmp/prosary-2ma/source-gate/focus-kizr32-primary.png",
+          "sha256": "32b54cf63d3ea6d7a8f1777b072e59c55eb393f7033213fb23aa8f26ec766f0e"
+        }
+      ],
+      "peerCorroborated": true
+    },
+    {
+      "reference": "1:36",
+      "before": "נפתָר",
+      "after": "נִפְתָר",
+      "occurrences": 1,
+      "sourcePages": [
+        183
+      ],
+      "detail": "First word: nun has one detached hiriq, pe has two vertical sheva dots, tav has qamats; final resh retained.",
+      "cropEvidence": [
+        {
+          "path": "/private/tmp/prosary-2ma/source-gate/focus-naphtar36-complete-extra.png",
+          "sha256": "edbc35bb90fcaed1955e566dd264dcf4c2b0f1f5b613f4a8e6751d059c163ecc"
+        },
+        {
+          "path": "/private/tmp/prosary-2ma/source-gate/focus-naphtar36-primary.png",
+          "sha256": "eba09efd90a7fffd005f6cf1126ff03097579c39a5a2d3ac36061ced071f466a"
+        }
+      ],
+      "peerCorroborated": true
+    },
+    {
+      "reference": "1:36",
+      "before": "נפתָי",
+      "after": "נִפְתָי",
+      "occurrences": 1,
+      "sourcePages": [
+        183
+      ],
+      "detail": "Second word independently has nun hiriq, pe sheva and tav qamats; final short yod is distinct.",
+      "cropEvidence": [
+        {
+          "path": "/private/tmp/prosary-2ma/source-gate/focus-naphtay36-full-extra.png",
+          "sha256": "e9a76f410c1782362ffa32165bab99ba71e5312647cbe0dc40ce65a1e3a06ca2"
+        },
+        {
+          "path": "/private/tmp/prosary-2ma/source-gate/focus-naphtay36-primary.png",
+          "sha256": "a7d26df1613d1124c10fc69cfa2d0a524b41f83205b3e17eb0638e72cbf5a961"
+        }
+      ],
+      "peerCorroborated": true
+    }
+  ],
+  "retainedReadingsAfterFocusedCheck": [
+    {
+      "reference": "1:1",
+      "anchor": "לָאַחִים",
+      "detail": "Tight crop shows qamats bar and stem below lamed, rejecting broad-crop sheva hypothesis.",
+      "cropEvidence": [
+        {
+          "path": "/private/tmp/prosary-2ma/source-gate/focus-lahim-extra.png",
+          "sha256": "c31b0c9f0a221c5dfcb64f077f28a45794ad95dc1f0505843717b99d4ba58887"
+        }
+      ]
+    },
+    {
+      "reference": "1:1",
+      "anchor": "בִּירוּשָׁלִַם",
+      "detail": "Detached lower horizontal patah plus separate hiriq under lamed, not qamats; retain draft.",
+      "cropEvidence": [
+        {
+          "path": "/private/tmp/prosary-2ma/source-gate/focus-jer1-extra.png",
+          "sha256": "60114604453a28a50595662a00de01b1ba38d4637829be853844442d9ff87f1f"
+        }
+      ]
+    },
+    {
+      "reference": "1:3",
+      "anchor": "בְּגֹדֶל",
+      "detail": "Bet lower dots are vertical sheva, not segol; retain draft.",
+      "cropEvidence": [
+        {
+          "path": "/private/tmp/prosary-2ma/source-gate/focus-begodel-extra.png",
+          "sha256": "d1e8233dd240247865c46ad6b0561ecbee316ce1afd7be6b1c6c8b537a6ccff0"
+        }
+      ]
+    },
+    {
+      "reference": "1:8",
+      "anchor": "יְיָ",
+      "detail": "Unlike the later occurrence in1:11, this occurrence has first/right yod sheva and final/left yod qamats.",
+      "cropEvidence": [
+        {
+          "path": "/private/tmp/prosary-2ma/source-gate/focus-yy8-extra.png",
+          "sha256": "2bf5a5864696348955a2193b8107a6282bdb76d7a0350a389e1ccd19dc5accb7"
+        }
+      ]
+    },
+    {
+      "reference": "1:22",
+      "anchor": "הַמְּעֻנֶּנֶת",
+      "detail": "Ayin has a descending diagonal of three dots, qibbuts. Retain the printed mark.",
+      "cropEvidence": [
+        {
+          "path": "/private/tmp/prosary-2ma/source-gate/focus-anenet22-extra.png",
+          "sha256": "7fe514f52b7d412c9315572d5ee9602af6a6cf8433a13db3eacef69bebaf6008"
+        }
+      ]
+    }
+  ],
+  "priorAuthorCorrectionsDisposition": [
+    {
+      "reference": "1:9",
+      "disposition": "superseded by literal alef/tav and maqaf correction אֶת־יְמֵי"
+    },
+    {
+      "reference": "1:10",
+      "disposition": "consonants and retained points confirmed; mem sheva resolved; he vowel remains unreadable"
+    },
+    {
+      "reference": "1:13",
+      "disposition": "הזידונים and נגפו consonants confirmed; extra resolves zayin tsere, nun hiriq and gimel dagesh; repeated name points also corrected"
+    },
+    {
+      "reference": "1:16",
+      "disposition": "both previous consonant segmentations superseded; five and eight printed glyphs respectively"
+    },
+    {
+      "reference": "1:23",
+      "disposition": "בִּפְתֹחַ confirmed in full extra pass: bet hiriq, pe sheva, tav holam, het patah"
+    },
+    {
+      "reference": "1:25",
+      "disposition": "וּקְדֹשִׁם confirmed with defective dalet holam and no yod after shin"
+    },
+    {
+      "reference": "1:27",
+      "disposition": "וּמְתֹעָבִים confirmed with tav holam, not qibbuts"
+    },
+    {
+      "reference": "1:32",
+      "disposition": "consonant resh retained; prefix vowels resolved as vav sheva/kaf hiriq"
+    },
+    {
+      "reference": "1:36",
+      "disposition": "distinct final resh and yod retained; both prefix point pairs resolved as nun hiriq/pe sheva"
+    }
+  ],
+  "remainingExactPointNotes": [
+    {
+      "reference": "1:10",
+      "id": "2ma-1-10-he-1-vowel",
+      "kind": "unreadablePoint",
+      "anchor": "המְּשׁוּחִים",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        180
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf#page=180"
+    },
+    {
+      "reference": "1:16",
+      "id": "2ma-1-16-vav-1-vowel-second-word",
+      "kind": "unreadablePoint",
+      "anchor": "ופִצְפְּצוּהוּ",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        181
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf#page=181"
+    }
+  ],
+  "noteReconciliation": {
+    "startingNotes": 18,
+    "resolvedNotes": 16,
+    "remainingNotes": 2,
+    "detail": "Preserve existing IDs for he1 in1:10 and initial-vav1 of the second word in1:16, updating their exact anchors. All other omission notes resolve in the extra scan. No uncertain consonants remain in this chapter."
+  },
+  "peerCorroboration": {
+    "reviewer": "lje_pd_boundaries",
+    "scope": "Independently viewed all12 replacement cases in supplied focused native crops, including each of the three name occurrences, both1:16 glyph sequences, second-pe primary dagesh, prefix points1:32/36; not a substitute for source_gate full review."
+  },
+  "rootCorroboration": [
+    {
+      "reference": "1:10",
+      "scope": "Root separately viewed extra initial he/mem. Mem sheva clear. He lower two-lobed horizontal mark cannot distinguish damaged patah/tsere; keep exact note."
+    }
+  ],
+  "extraBodyCropEvidence": [
+    {
+      "sourcePage": 178,
+      "extraPage": 91,
+      "extraSide": "right",
+      "nativeBounds": [
+        2140,
+        330,
+        2740,
+        400
+      ],
+      "scale": 3,
+      "file": "/private/tmp/prosary-2ma/source-gate/2MA1-extra-178-block1-right.png",
+      "sha256": "9674051b4bcf8194fb814f4fa8826722ea083f7157b91485d2c069976985b99f"
+    },
+    {
+      "sourcePage": 178,
+      "extraPage": 91,
+      "extraSide": "right",
+      "nativeBounds": [
+        1650,
+        330,
+        2200,
+        400
+      ],
+      "scale": 3,
+      "file": "/private/tmp/prosary-2ma/source-gate/2MA1-extra-178-block1-left.png",
+      "sha256": "6c282c3955f57070b07b6ae43a81fa81e9720ce4985a03f519c7c633debef245"
+    },
+    {
+      "sourcePage": 179,
+      "extraPage": 91,
+      "extraSide": "left",
+      "nativeBounds": [
+        940,
+        175,
+        1490,
+        335
+      ],
+      "scale": 3,
+      "file": "/private/tmp/prosary-2ma/source-gate/2MA1-extra-179-block1-right.png",
+      "sha256": "d64c7a0c15c3672123f3ec0452c51e63e982ab3e625dbbf6d82715a03ab9abe7"
+    },
+    {
+      "sourcePage": 179,
+      "extraPage": 91,
+      "extraSide": "left",
+      "nativeBounds": [
+        460,
+        175,
+        1000,
+        335
+      ],
+      "scale": 3,
+      "file": "/private/tmp/prosary-2ma/source-gate/2MA1-extra-179-block1-left.png",
+      "sha256": "3461c8336d4dc1f2a09ebf3d5a4d5ffa5a058270e87a73761512ab8ea5ffb2f1"
+    },
+    {
+      "sourcePage": 179,
+      "extraPage": 91,
+      "extraSide": "left",
+      "nativeBounds": [
+        940,
+        325,
+        1490,
+        475
+      ],
+      "scale": 3,
+      "file": "/private/tmp/prosary-2ma/source-gate/2MA1-extra-179-block2-right.png",
+      "sha256": "662844860178ec1803403d8da3b8c9576dfd1ec9901fa6ab747b7c6995077442"
+    },
+    {
+      "sourcePage": 179,
+      "extraPage": 91,
+      "extraSide": "left",
+      "nativeBounds": [
+        460,
+        325,
+        1000,
+        475
+      ],
+      "scale": 3,
+      "file": "/private/tmp/prosary-2ma/source-gate/2MA1-extra-179-block2-left.png",
+      "sha256": "3f6e5af66bf43925837a2ff754ab15befffec27551c91ebd280d8c73e76a14a9"
+    },
+    {
+      "sourcePage": 180,
+      "extraPage": 92,
+      "extraSide": "right",
+      "nativeBounds": [
+        2140,
+        170,
+        2740,
+        390
+      ],
+      "scale": 3,
+      "file": "/private/tmp/prosary-2ma/source-gate/2MA1-extra-180-block1-right.png",
+      "sha256": "2e8c663b5bcffe44b2d7f38f5892c2792fa35b556a79931328c39207169af044"
+    },
+    {
+      "sourcePage": 180,
+      "extraPage": 92,
+      "extraSide": "right",
+      "nativeBounds": [
+        1650,
+        170,
+        2200,
+        390
+      ],
+      "scale": 3,
+      "file": "/private/tmp/prosary-2ma/source-gate/2MA1-extra-180-block1-left.png",
+      "sha256": "3eb3f209a6ac59a58dfcd5978b59a4410d72a3006b4c890a06a14221a5188a57"
+    },
+    {
+      "sourcePage": 180,
+      "extraPage": 92,
+      "extraSide": "right",
+      "nativeBounds": [
+        2140,
+        350,
+        2740,
+        555
+      ],
+      "scale": 3,
+      "file": "/private/tmp/prosary-2ma/source-gate/2MA1-extra-180-block2-right.png",
+      "sha256": "27cc65dd8f80208c7bde6ecc7c4d8689fc58b453619af2a72e6e3e9bab0e6b57"
+    },
+    {
+      "sourcePage": 180,
+      "extraPage": 92,
+      "extraSide": "right",
+      "nativeBounds": [
+        1650,
+        350,
+        2200,
+        555
+      ],
+      "scale": 3,
+      "file": "/private/tmp/prosary-2ma/source-gate/2MA1-extra-180-block2-left.png",
+      "sha256": "f08eeb27ba5a339affddce4a324dd8a105939f7ca8d561adddef668979adc04d"
+    },
+    {
+      "sourcePage": 181,
+      "extraPage": 92,
+      "extraSide": "left",
+      "nativeBounds": [
+        940,
+        170,
+        1490,
+        390
+      ],
+      "scale": 3,
+      "file": "/private/tmp/prosary-2ma/source-gate/2MA1-extra-181-block1-right.png",
+      "sha256": "994995dcc614a8062c2ccf258086b275e8619e59d5f3e0ab76b189588331ab84"
+    },
+    {
+      "sourcePage": 181,
+      "extraPage": 92,
+      "extraSide": "left",
+      "nativeBounds": [
+        460,
+        170,
+        1000,
+        390
+      ],
+      "scale": 3,
+      "file": "/private/tmp/prosary-2ma/source-gate/2MA1-extra-181-block1-left.png",
+      "sha256": "b12bacd6b6a8b5bdd9ab38c1d62b56de4fbe68360deb12a73be264cd259446b0"
+    },
+    {
+      "sourcePage": 181,
+      "extraPage": 92,
+      "extraSide": "left",
+      "nativeBounds": [
+        940,
+        350,
+        1490,
+        590
+      ],
+      "scale": 3,
+      "file": "/private/tmp/prosary-2ma/source-gate/2MA1-extra-181-block2-right.png",
+      "sha256": "f694d6be63475032671f3ef67868ad46582ca5befac89a0e2992fcc248a3103d"
+    },
+    {
+      "sourcePage": 181,
+      "extraPage": 92,
+      "extraSide": "left",
+      "nativeBounds": [
+        460,
+        350,
+        1000,
+        590
+      ],
+      "scale": 3,
+      "file": "/private/tmp/prosary-2ma/source-gate/2MA1-extra-181-block2-left.png",
+      "sha256": "cfd1fe95a0924b415cb784a0207aea0345476f5bee3450bd352d9e6a1ec71f28"
+    },
+    {
+      "sourcePage": 181,
+      "extraPage": 92,
+      "extraSide": "left",
+      "nativeBounds": [
+        940,
+        550,
+        1490,
+        705
+      ],
+      "scale": 3,
+      "file": "/private/tmp/prosary-2ma/source-gate/2MA1-extra-181-block3-right.png",
+      "sha256": "9b3ff3c3cc359e74af509255b0d1ca7642954b1a864cb7cac954dab19d5e52ed"
+    },
+    {
+      "sourcePage": 181,
+      "extraPage": 92,
+      "extraSide": "left",
+      "nativeBounds": [
+        460,
+        550,
+        1000,
+        705
+      ],
+      "scale": 3,
+      "file": "/private/tmp/prosary-2ma/source-gate/2MA1-extra-181-block3-left.png",
+      "sha256": "499ccb6dbb81c9e2102f244aeba9ea71c054c0d907538314bb4e9e04765027e1"
+    },
+    {
+      "sourcePage": 182,
+      "extraPage": 93,
+      "extraSide": "right",
+      "nativeBounds": [
+        2140,
+        170,
+        2740,
+        390
+      ],
+      "scale": 3,
+      "file": "/private/tmp/prosary-2ma/source-gate/2MA1-extra-182-block1-right.png",
+      "sha256": "198571135490370eaa97843eb57ef41e6988337da14efd602dcb0f7b6b4a92c8"
+    },
+    {
+      "sourcePage": 182,
+      "extraPage": 93,
+      "extraSide": "right",
+      "nativeBounds": [
+        1650,
+        170,
+        2200,
+        390
+      ],
+      "scale": 3,
+      "file": "/private/tmp/prosary-2ma/source-gate/2MA1-extra-182-block1-left.png",
+      "sha256": "63e066f4cc77a3e6fa817df10b8acbe5139aae673ae131df37da7b8f6944f8a0"
+    },
+    {
+      "sourcePage": 182,
+      "extraPage": 93,
+      "extraSide": "right",
+      "nativeBounds": [
+        2140,
+        350,
+        2740,
+        590
+      ],
+      "scale": 3,
+      "file": "/private/tmp/prosary-2ma/source-gate/2MA1-extra-182-block2-right.png",
+      "sha256": "c19003c4e680b700d9f482129c37fa7caaf17eb6c04eaa1693f8eece097771d4"
+    },
+    {
+      "sourcePage": 182,
+      "extraPage": 93,
+      "extraSide": "right",
+      "nativeBounds": [
+        1650,
+        350,
+        2200,
+        590
+      ],
+      "scale": 3,
+      "file": "/private/tmp/prosary-2ma/source-gate/2MA1-extra-182-block2-left.png",
+      "sha256": "bd7ece93f7806301005c6fb010a696bd6e1df9489bbbd1049cad403037e69a4c"
+    },
+    {
+      "sourcePage": 182,
+      "extraPage": 93,
+      "extraSide": "right",
+      "nativeBounds": [
+        2140,
+        550,
+        2740,
+        785
+      ],
+      "scale": 3,
+      "file": "/private/tmp/prosary-2ma/source-gate/2MA1-extra-182-block3-right.png",
+      "sha256": "c1251f7fc8521a5953e218e514bda85dd5f8dba7c105702495bc5f0737ba8dbf"
+    },
+    {
+      "sourcePage": 182,
+      "extraPage": 93,
+      "extraSide": "right",
+      "nativeBounds": [
+        1650,
+        550,
+        2200,
+        785
+      ],
+      "scale": 3,
+      "file": "/private/tmp/prosary-2ma/source-gate/2MA1-extra-182-block3-left.png",
+      "sha256": "b1cee623589f0e8aa0f852cc3e1b5d0b55435962f861d97aa911c40123f1767f"
+    },
+    {
+      "sourcePage": 182,
+      "extraPage": 93,
+      "extraSide": "right",
+      "nativeBounds": [
+        2140,
+        745,
+        2740,
+        985
+      ],
+      "scale": 3,
+      "file": "/private/tmp/prosary-2ma/source-gate/2MA1-extra-182-block4-right.png",
+      "sha256": "0c7941b9addb38968b1bf5693fd5bb8d0c95e674fe8f0978f451d3f48257ca6b"
+    },
+    {
+      "sourcePage": 182,
+      "extraPage": 93,
+      "extraSide": "right",
+      "nativeBounds": [
+        1650,
+        745,
+        2200,
+        985
+      ],
+      "scale": 3,
+      "file": "/private/tmp/prosary-2ma/source-gate/2MA1-extra-182-block4-left.png",
+      "sha256": "179bf83c80ce7b34112bd326c2841e87ca63e58fd5518202b5a77320add8f3be"
+    },
+    {
+      "sourcePage": 182,
+      "extraPage": 93,
+      "extraSide": "right",
+      "nativeBounds": [
+        2140,
+        940,
+        2740,
+        1040
+      ],
+      "scale": 3,
+      "file": "/private/tmp/prosary-2ma/source-gate/2MA1-extra-182-block5-right.png",
+      "sha256": "565f3d3fef77066a1ea8d099302c0d6df31bf3f4b8386c510baf932f740f4482"
+    },
+    {
+      "sourcePage": 182,
+      "extraPage": 93,
+      "extraSide": "right",
+      "nativeBounds": [
+        1650,
+        940,
+        2200,
+        1040
+      ],
+      "scale": 3,
+      "file": "/private/tmp/prosary-2ma/source-gate/2MA1-extra-182-block5-left.png",
+      "sha256": "cd63441de42915c47d847dc73f71c616a52a6444e43b48ed57f4c02eed0a4c82"
+    },
+    {
+      "sourcePage": 183,
+      "extraPage": 93,
+      "extraSide": "left",
+      "nativeBounds": [
+        940,
+        175,
+        1490,
+        390
+      ],
+      "scale": 3,
+      "file": "/private/tmp/prosary-2ma/source-gate/2MA1-extra-183-block1-right.png",
+      "sha256": "2cf9ea2ead3703611fcbff0504b3175dba2c974f7dc1c8ed419f7c2f468d18f2"
+    },
+    {
+      "sourcePage": 183,
+      "extraPage": 93,
+      "extraSide": "left",
+      "nativeBounds": [
+        460,
+        175,
+        1000,
+        390
+      ],
+      "scale": 3,
+      "file": "/private/tmp/prosary-2ma/source-gate/2MA1-extra-183-block1-left.png",
+      "sha256": "8397765fa303e20edb5689695f698afe86cbea902cd2a3c4a58a8a718d3322df"
+    },
+    {
+      "sourcePage": 183,
+      "extraPage": 93,
+      "extraSide": "left",
+      "nativeBounds": [
+        940,
+        350,
+        1490,
+        590
+      ],
+      "scale": 3,
+      "file": "/private/tmp/prosary-2ma/source-gate/2MA1-extra-183-block2-right.png",
+      "sha256": "e2fac23a89739faf42f80801033def29415b1a31c1ccf69f55b2295d8018c3f2"
+    },
+    {
+      "sourcePage": 183,
+      "extraPage": 93,
+      "extraSide": "left",
+      "nativeBounds": [
+        460,
+        350,
+        1000,
+        590
+      ],
+      "scale": 3,
+      "file": "/private/tmp/prosary-2ma/source-gate/2MA1-extra-183-block2-left.png",
+      "sha256": "dc03f74d575854d22a392e42aa3159a4087a0efe6b9d16ba07aab226e90003c1"
+    },
+    {
+      "sourcePage": 183,
+      "extraPage": 93,
+      "extraSide": "left",
+      "nativeBounds": [
+        940,
+        550,
+        1490,
+        785
+      ],
+      "scale": 3,
+      "file": "/private/tmp/prosary-2ma/source-gate/2MA1-extra-183-block3-right.png",
+      "sha256": "f0b152322d5bdc8bbdd60eb3ee16b1369ad385f9037cca0bd3a5256b1685330e"
+    },
+    {
+      "sourcePage": 183,
+      "extraPage": 93,
+      "extraSide": "left",
+      "nativeBounds": [
+        460,
+        550,
+        1000,
+        785
+      ],
+      "scale": 3,
+      "file": "/private/tmp/prosary-2ma/source-gate/2MA1-extra-183-block3-left.png",
+      "sha256": "6f727300ae704f107d3eb61a5304e22e207fa8dd4fcdf16b58d82314939dcccb"
+    }
+  ],
+  "focusedCropEvidence": [
+    {
+      "source": "/private/tmp/prosary-2ma/source-gate/extra-91-native.png",
+      "sourceSHA256": "fc79f6dbd2c218438437ac9a705ab485d3c99f45f3d8cd7f3cca05a676d0e50b",
+      "bounds": [
+        2490,
+        330,
+        2585,
+        375
+      ],
+      "scale": 6,
+      "file": "/private/tmp/prosary-2ma/source-gate/focus-lahim-extra.png",
+      "sha256": "c31b0c9f0a221c5dfcb64f077f28a45794ad95dc1f0505843717b99d4ba58887"
+    },
+    {
+      "source": "/private/tmp/prosary-2ma/source-gate/extra-91-native.png",
+      "sourceSHA256": "fc79f6dbd2c218438437ac9a705ab485d3c99f45f3d8cd7f3cca05a676d0e50b",
+      "bounds": [
+        1240,
+        175,
+        1365,
+        220
+      ],
+      "scale": 6,
+      "file": "/private/tmp/prosary-2ma/source-gate/focus-jer1-extra.png",
+      "sha256": "60114604453a28a50595662a00de01b1ba38d4637829be853844442d9ff87f1f"
+    },
+    {
+      "source": "/private/tmp/prosary-2ma/source-gate/extra-91-native.png",
+      "sourceSHA256": "fc79f6dbd2c218438437ac9a705ab485d3c99f45f3d8cd7f3cca05a676d0e50b",
+      "bounds": [
+        580,
+        275,
+        665,
+        320
+      ],
+      "scale": 6,
+      "file": "/private/tmp/prosary-2ma/source-gate/focus-begodel-extra.png",
+      "sha256": "d1e8233dd240247865c46ad6b0561ecbee316ce1afd7be6b1c6c8b537a6ccff0"
+    },
+    {
+      "source": "/private/tmp/prosary-2ma/source-gate/extra-92-native.png",
+      "sourceSHA256": "7e0bbe0af02af68e3fd53bbadb62b6348506dc74dc8c8abc207b105e024f2783",
+      "bounds": [
+        1680,
+        505,
+        1810,
+        550
+      ],
+      "scale": 6,
+      "file": "/private/tmp/prosary-2ma/source-gate/focus-meshu-extra.png",
+      "sha256": "85dc0112de2c37bd022110bb3a8af9cbb3b5f93e86c38b673cc5ccf70e53cad7"
+    },
+    {
+      "source": "/private/tmp/prosary-2ma/page180.png",
+      "sourceSHA256": "1b96bc8fc36bf9fd6ce7661a942c00e400c98032602fe2bd51065191c2418290",
+      "bounds": [
+        210,
+        770,
+        440,
+        835
+      ],
+      "scale": 6,
+      "file": "/private/tmp/prosary-2ma/source-gate/focus-meshu-primary.png",
+      "sha256": "03018e591ea6a76869f1ec060c0cae8c5180b1fffd023c1ae892807efc3af818"
+    },
+    {
+      "source": "/private/tmp/prosary-2ma/source-gate/extra-92-native.png",
+      "sourceSHA256": "7e0bbe0af02af68e3fd53bbadb62b6348506dc74dc8c8abc207b105e024f2783",
+      "bounds": [
+        1310,
+        222,
+        1365,
+        265
+      ],
+      "scale": 6,
+      "file": "/private/tmp/prosary-2ma/source-gate/focus-byy11-extra.png",
+      "sha256": "15b4ffe55a20e4ff965aa242ab8a4ca8e7d1997af2a982a71dc33814e93282d9"
+    },
+    {
+      "source": "/private/tmp/prosary-2ma/source-gate/extra-92-native.png",
+      "sourceSHA256": "7e0bbe0af02af68e3fd53bbadb62b6348506dc74dc8c8abc207b105e024f2783",
+      "bounds": [
+        620,
+        325,
+        680,
+        368
+      ],
+      "scale": 6,
+      "file": "/private/tmp/prosary-2ma/source-gate/focus-nania13a-extra.png",
+      "sha256": "383c84d8c31c6ef8d4a064f100af976ffd49318f88eac79cefc6c57555b3e131"
+    },
+    {
+      "source": "/private/tmp/prosary-2ma/source-gate/extra-92-native.png",
+      "sourceSHA256": "7e0bbe0af02af68e3fd53bbadb62b6348506dc74dc8c8abc207b105e024f2783",
+      "bounds": [
+        1020,
+        367,
+        1110,
+        410
+      ],
+      "scale": 6,
+      "file": "/private/tmp/prosary-2ma/source-gate/focus-nania13b-extra.png",
+      "sha256": "436472acaa7e2479f92d724915723be55743921375090f8fc49b4a8c4247f67c"
+    },
+    {
+      "source": "/private/tmp/prosary-2ma/source-gate/extra-92-native.png",
+      "sourceSHA256": "7e0bbe0af02af68e3fd53bbadb62b6348506dc74dc8c8abc207b105e024f2783",
+      "bounds": [
+        868,
+        325,
+        972,
+        370
+      ],
+      "scale": 6,
+      "file": "/private/tmp/prosary-2ma/source-gate/focus-zedonim13-extra.png",
+      "sha256": "60d70e4c1adb7037bae938f9eeafa3a27568c2c572c7b9a063b22e43cf7f902e"
+    },
+    {
+      "source": "/private/tmp/prosary-2ma/page181.png",
+      "sourceSHA256": "b0f5d627ac5fdd1a522ab70b0b7a299cd810540a9cc7b993aa335d54433ab2cb",
+      "bounds": [
+        1280,
+        395,
+        1348,
+        455
+      ],
+      "scale": 6,
+      "file": "/private/tmp/prosary-2ma/source-gate/focus-byy11-primary.png",
+      "sha256": "5027a2b9b1f17d46c302223eb49462e03a3eb665142219031f5cfd9af3d00734"
+    },
+    {
+      "source": "/private/tmp/prosary-2ma/page181.png",
+      "sourceSHA256": "b0f5d627ac5fdd1a522ab70b0b7a299cd810540a9cc7b993aa335d54433ab2cb",
+      "bounds": [
+        355,
+        510,
+        475,
+        570
+      ],
+      "scale": 6,
+      "file": "/private/tmp/prosary-2ma/source-gate/focus-nania13a-primary.png",
+      "sha256": "9edafa390747dc2ea3e39eff4b2126a08c8dcf04c45b9ece1f975a34084ea060"
+    },
+    {
+      "source": "/private/tmp/prosary-2ma/page181.png",
+      "sourceSHA256": "b0f5d627ac5fdd1a522ab70b0b7a299cd810540a9cc7b993aa335d54433ab2cb",
+      "bounds": [
+        880,
+        580,
+        1020,
+        640
+      ],
+      "scale": 6,
+      "file": "/private/tmp/prosary-2ma/source-gate/focus-nania13b-primary.png",
+      "sha256": "67d0831f15d665ab8d5d8a21875be2f7e23e8d8aa42a0b8662b74fa9fd75937d"
+    },
+    {
+      "source": "/private/tmp/prosary-2ma/page181.png",
+      "sourceSHA256": "b0f5d627ac5fdd1a522ab70b0b7a299cd810540a9cc7b993aa335d54433ab2cb",
+      "bounds": [
+        665,
+        510,
+        865,
+        575
+      ],
+      "scale": 6,
+      "file": "/private/tmp/prosary-2ma/source-gate/focus-zedonim13-primary.png",
+      "sha256": "3d45ee6c87b2d2dd8aad8d7166736a81c05e628716cd5f2bce5927dfd931d910"
+    },
+    {
+      "source": "/private/tmp/prosary-2ma/page181.png",
+      "sourceSHA256": "b0f5d627ac5fdd1a522ab70b0b7a299cd810540a9cc7b993aa335d54433ab2cb",
+      "bounds": [
+        590,
+        510,
+        670,
+        575
+      ],
+      "scale": 6,
+      "file": "/private/tmp/prosary-2ma/source-gate/focus-negfu13-primary.png",
+      "sha256": "0f676aa5c0c8266124f5c6027a50b7819e5da8ac709b8336ecfd16cc18850714"
+    },
+    {
+      "source": "/private/tmp/prosary-2ma/source-gate/extra-92-native.png",
+      "sourceSHA256": "7e0bbe0af02af68e3fd53bbadb62b6348506dc74dc8c8abc207b105e024f2783",
+      "bounds": [
+        803,
+        320,
+        858,
+        370
+      ],
+      "scale": 6,
+      "file": "/private/tmp/prosary-2ma/source-gate/focus-negfu13-full-extra.png",
+      "sha256": "211903dff253519c17a6728b07d71a615197b8e9fdc17de86178a157f6f06e4c"
+    },
+    {
+      "source": "/private/tmp/prosary-2ma/source-gate/extra-92-native.png",
+      "sourceSHA256": "7e0bbe0af02af68e3fd53bbadb62b6348506dc74dc8c8abc207b105e024f2783",
+      "bounds": [
+        887,
+        467,
+        942,
+        512
+      ],
+      "scale": 6,
+      "file": "/private/tmp/prosary-2ma/source-gate/focus-nania15-extra.png",
+      "sha256": "f18e0b1cd31c5fb31b987f2f9129e68401578a6a61b6eed6a0b7eb66f4557864"
+    },
+    {
+      "source": "/private/tmp/prosary-2ma/source-gate/extra-92-native.png",
+      "sourceSHA256": "7e0bbe0af02af68e3fd53bbadb62b6348506dc74dc8c8abc207b105e024f2783",
+      "bounds": [
+        1870,
+        270,
+        1898,
+        315
+      ],
+      "scale": 6,
+      "file": "/private/tmp/prosary-2ma/source-gate/focus-yy8-extra.png",
+      "sha256": "2bf5a5864696348955a2193b8107a6282bdb76d7a0350a389e1ccd19dc5accb7"
+    },
+    {
+      "source": "/private/tmp/prosary-2ma/source-gate/extra-93-native.png",
+      "sourceSHA256": "0a4a221ba2e7a7bb9926e034b128e0e451c36be8731f86eaa6354d23e77b8271",
+      "bounds": [
+        2350,
+        695,
+        2435,
+        738
+      ],
+      "scale": 6,
+      "file": "/private/tmp/prosary-2ma/source-gate/focus-anenet22-extra.png",
+      "sha256": "7fe514f52b7d412c9315572d5ee9602af6a6cf8433a13db3eacef69bebaf6008"
+    },
+    {
+      "source": "/private/tmp/prosary-2ma/source-gate/extra-92-native.png",
+      "sourceSHA256": "7e0bbe0af02af68e3fd53bbadb62b6348506dc74dc8c8abc207b105e024f2783",
+      "bounds": [
+        650,
+        562,
+        805,
+        615
+      ],
+      "scale": 6,
+      "file": "/private/tmp/prosary-2ma/source-gate/focus-vayif16-full-extra.png",
+      "sha256": "d5117b20dded98a09cfbf80896e72c94e3cf6d4ffa9a838383265318dd456241"
+    },
+    {
+      "source": "/private/tmp/prosary-2ma/source-gate/extra-92-native.png",
+      "sourceSHA256": "7e0bbe0af02af68e3fd53bbadb62b6348506dc74dc8c8abc207b105e024f2783",
+      "bounds": [
+        1235,
+        600,
+        1375,
+        655
+      ],
+      "scale": 6,
+      "file": "/private/tmp/prosary-2ma/source-gate/focus-vaynat16-full-extra.png",
+      "sha256": "0ddb150b11df633739d51b83a831b4972b65c7661c166428f738ee0f09136647"
+    },
+    {
+      "source": "/private/tmp/prosary-2ma/source-gate/extra-93-native.png",
+      "sourceSHA256": "0a4a221ba2e7a7bb9926e034b128e0e451c36be8731f86eaa6354d23e77b8271",
+      "bounds": [
+        965,
+        740,
+        1050,
+        790
+      ],
+      "scale": 6,
+      "file": "/private/tmp/prosary-2ma/source-gate/focus-naphtay36-full-extra.png",
+      "sha256": "e9a76f410c1782362ffa32165bab99ba71e5312647cbe0dc40ce65a1e3a06ca2"
+    },
+    {
+      "source": "/private/tmp/prosary-2ma/page181.png",
+      "sourceSHA256": "b0f5d627ac5fdd1a522ab70b0b7a299cd810540a9cc7b993aa335d54433ab2cb",
+      "bounds": [
+        1120,
+        885,
+        1360,
+        975
+      ],
+      "scale": 6,
+      "file": "/private/tmp/prosary-2ma/source-gate/focus-vaynat16-primary.png",
+      "sha256": "12fbb2d5097de345e322c6a5566bffc073994809d5a56156893b4b3fd7bec8b0"
+    },
+    {
+      "source": "/private/tmp/prosary-2ma/page183.png",
+      "sourceSHA256": "2382ad48a78342c33da5477da4b3b87a426443bb0b022f4292449760ea596797",
+      "bounds": [
+        300,
+        1015,
+        440,
+        1080
+      ],
+      "scale": 6,
+      "file": "/private/tmp/prosary-2ma/source-gate/focus-naphtar36-primary.png",
+      "sha256": "eba09efd90a7fffd005f6cf1126ff03097579c39a5a2d3ac36061ced071f466a"
+    },
+    {
+      "source": "/private/tmp/prosary-2ma/page183.png",
+      "sourceSHA256": "2382ad48a78342c33da5477da4b3b87a426443bb0b022f4292449760ea596797",
+      "bounds": [
+        750,
+        1080,
+        895,
+        1147
+      ],
+      "scale": 6,
+      "file": "/private/tmp/prosary-2ma/source-gate/focus-naphtay36-primary.png",
+      "sha256": "a7d26df1613d1124c10fc69cfa2d0a524b41f83205b3e17eb0638e72cbf5a961"
+    },
+    {
+      "source": "/private/tmp/prosary-2ma/page183.png",
+      "sourceSHA256": "2382ad48a78342c33da5477da4b3b87a426443bb0b022f4292449760ea596797",
+      "bounds": [
+        810,
+        700,
+        965,
+        785
+      ],
+      "scale": 6,
+      "file": "/private/tmp/prosary-2ma/source-gate/focus-kizr32-primary.png",
+      "sha256": "32b54cf63d3ea6d7a8f1777b072e59c55eb393f7033213fb23aa8f26ec766f0e"
+    },
+    {
+      "source": "/private/tmp/prosary-2ma/source-gate/extra-92-native.png",
+      "sourceSHA256": "7e0bbe0af02af68e3fd53bbadb62b6348506dc74dc8c8abc207b105e024f2783",
+      "bounds": [
+        2440,
+        365,
+        2550,
+        410
+      ],
+      "scale": 6,
+      "file": "/private/tmp/prosary-2ma/source-gate/focus-ahay9-extra.png",
+      "sha256": "d664f213acc1bb3737de2fd80700a0ca6c060d60112dde1c87e577cd5d7f46da"
+    },
+    {
+      "source": "/private/tmp/prosary-2ma/source-gate/extra-93-native.png",
+      "sourceSHA256": "0a4a221ba2e7a7bb9926e034b128e0e451c36be8731f86eaa6354d23e77b8271",
+      "bounds": [
+        620,
+        690,
+        720,
+        754
+      ],
+      "scale": 6,
+      "file": "/private/tmp/prosary-2ma/source-gate/focus-naphtar36-complete-extra.png",
+      "sha256": "edbc35bb90fcaed1955e566dd264dcf4c2b0f1f5b613f4a8e6751d059c163ecc"
+    },
+    {
+      "source": "/private/tmp/prosary-2ma/source-gate/extra-93-native.png",
+      "sourceSHA256": "0a4a221ba2e7a7bb9926e034b128e0e451c36be8731f86eaa6354d23e77b8271",
+      "bounds": [
+        1015,
+        460,
+        1140,
+        525
+      ],
+      "scale": 6,
+      "file": "/private/tmp/prosary-2ma/source-gate/focus-kizr32-complete-extra.png",
+      "sha256": "f589fdf3ed2527c15d84e7924c7fa082dba1e803681238690a64e876a4fddee2"
+    },
+    {
+      "source": "/private/tmp/prosary-2ma/page181.png",
+      "sourceSHA256": "b0f5d627ac5fdd1a522ab70b0b7a299cd810540a9cc7b993aa335d54433ab2cb",
+      "bounds": [
+        360,
+        830,
+        565,
+        900
+      ],
+      "scale": 6,
+      "file": "/private/tmp/prosary-2ma/source-gate/focus-vayif16-complete-primary.png",
+      "sha256": "1c821dbc492a762ca4c2ff4cbc101e3843c5f038df9ede48e3c087bda85745d4"
+    },
+    {
+      "source": "/private/tmp/prosary-2ma/source-gate/extra-92-native.png",
+      "sourceSHA256": "7e0bbe0af02af68e3fd53bbadb62b6348506dc74dc8c8abc207b105e024f2783",
+      "bounds": [
+        1760,
+        509,
+        1815,
+        555
+      ],
+      "scale": 6,
+      "file": "/private/tmp/prosary-2ma/source-gate/focus-meshu-he-mem-extra.png",
+      "sha256": "5138ee8c1b9cd05f89468e867eae5b5d9e68ddb96791ed2594778640913ac7e0"
+    },
+    {
+      "source": "/private/tmp/prosary-2ma/source-gate/extra-92-native.png",
+      "sourceSHA256": "7e0bbe0af02af68e3fd53bbadb62b6348506dc74dc8c8abc207b105e024f2783",
+      "bounds": [
+        1350,
+        600,
+        1378,
+        650
+      ],
+      "scale": 6,
+      "file": "/private/tmp/prosary-2ma/source-gate/focus-pitsets-vav-extra.png",
+      "sha256": "448669d4e11f172592782cf097f9790adb7f72b0d4bcd285f58dd14d8f564b66"
+    }
+  ],
+  "proposedChapterAfterIntegration": {
+    "number": 1,
+    "isComplete": false,
+    "verses": [
+      {
+        "verse": 1,
+        "text": "לָאַחִים הַיְהוּדִים אֲשֶׁר בְּמִצְרַיִם בִּבְרָכָה הָאַחִים הַיְהוּדִים אֲשֶׁר בִּירוּשָׁלִַם וַאֲשֶׁר בְּאֶרֶץ יְהוּדָה שָׁלוֹם טוֹב׃",
+        "sourcePages": [
+          178,
+          179
+        ],
+        "textSHA256": "de74da17c7be0afb6d8aee989f9dd80635eb17da31b91544da6bfd352b7707e8"
+      },
+      {
+        "verse": 2,
+        "text": "וְיִיטִיב לָכֶם הָאֱלֹהִים וְיִזְכֹּר אֶת־בְּרִיתוֹ עִם־אַבְרָהָם וְיִצְחָק וְיַעֲקֹב עֲבָדָיו הַנֶּאֱמָנִים׃",
+        "sourcePages": [
+          179
+        ],
+        "textSHA256": "cc6f0d72221193ec2c93efd8037c04964d5c3322af036a52fc244db6249f03da"
+      },
+      {
+        "verse": 3,
+        "text": "וְיִתֵּן־לָכֶם לֵב לְכֻלְּכֶם לְיִרְאָה אוֹתוֹ וְלַעֲשׂוֹת רְצוֹנוֹ בְּגֹדֶל לֵבָב וּבְנֶפֶשׁ חֲפֵצָה׃",
+        "sourcePages": [
+          179
+        ],
+        "textSHA256": "1aec0d508453873e3c37c0894207f91178ff1c5a576c3656eaea2ed0e05b6f09"
+      },
+      {
+        "verse": 4,
+        "text": "וְיִפְתַּח אֶת־לִבְּכֶם בְּתוֹרָתוֹ וּבְמִצְוֹת וְיָשֵׂם שָׁלוֹם׃",
+        "sourcePages": [
+          179
+        ],
+        "textSHA256": "669dda38a7ea4ab89ab628183a50cda359840a53a4241fdedbe2b14737e0bc2a"
+      },
+      {
+        "verse": 5,
+        "endVerse": 6,
+        "text": "וְיִשְׁמַע אֶת־תְּפִלּוֹתֵיכֶם וְיֶעְתַּר לָכֶם וְאַל־יַעֲזָבְכֶם בְּעֵת רָעָה׃ וְעַתָּה הִנֵּנוּ מִתְפַּלְּלִים פֹּה בַּעַדְכֶם׃",
+        "sourcePages": [
+          179
+        ],
+        "textSHA256": "da7e67d91dbb6bc3ccb7dc7a16f9e4615c3910e9bc6db8aab4ae3d1be456fc70"
+      },
+      {
+        "verse": 7,
+        "text": "בְּמַלְכוּת דְּמֵטְרִיוֹס בִּשְׁנַת מֵאָה וְשִׁשִּׁים וָתֵשַׁע אֲנַחְנוּ הַיְהוּדִים כָּתַבְנוּ לָכֶם בַּצָּרָה וּבַמְּצוּקָה שֶׁבָּאָה עָלֵינוּ בַּשָּׁנִים הָהֵן לְמִן־סוּר יָסוֹן וַאֲשֶׁר־אִתּוֹ מִן־הָאָרֶץ הַקְּדוֹשָׁה וְהַמַּמְלָכָה׃",
+        "sourcePages": [
+          179,
+          180
+        ],
+        "textSHA256": "c6153a303c83f2f56e6b1836a777e0bca31c7de8aee28aec725e6e0612eb725d"
+      },
+      {
+        "verse": 8,
+        "text": "וַיִּשְׂרְפוּ אֶת־הַשְּׁעָרִים וַיִּשְׁפְּכוּ דָם נָקִי וַנִּתְפַּלֵּל אֶל־יְיָ וַיִּשְׁמַע אֵלֵינוּ וַנָּבֵא זֶבַח וּמִנְחָה וַנַּדְלֵק אֶת־הַנֵּרוֹת וַנָּשֶׂם אֶת־הַלֶּחֶם׃",
+        "sourcePages": [
+          180
+        ],
+        "textSHA256": "ac76c7f02584438d853edb095bdfaa9276195ab1de92e427274cdf932ccec08c"
+      },
+      {
+        "verse": 9,
+        "text": "וְעַתָּה עֲשׂוּ אֶת־יְמֵי חַג־הַסֻּכּוֹת בַּחֲמִשָּׁה [וְעֶשְׂרִים] בְּחֹדֶשׁ כִּסְלֵו [— — —] בִּשְׁנַת מֵאָה שְׁמוֹנִים וּשְׁמֹנֶה׃",
+        "sourcePages": [
+          180
+        ],
+        "textSHA256": "86576179508204b05e77f9355c43543fa1b4750f77abbeb631bd68a038fcdce4"
+      },
+      {
+        "verse": 10,
+        "text": "הָעָם אֲשֶׁר בִּירוּשָׁלִַם וַאֲשֶׁר בִּיהוּדָה וּמוֹעֶצֶת הַזְּקֵנִים וִיהוּדָה אֶל־אַרִיסְטוֹבוּלוֹס מוֹרֵה תַּלְמַי הַמֶּלֶךְ מִזֶּרַע הַכֹּהֲנִים המְּשׁוּחִים וְאֶל־הַיְהוּדִים שֶׁבְּמִצְרַיִם שָׁלוֹם וְחַיִּים׃",
+        "sourcePages": [
+          180,
+          181
+        ],
+        "textSHA256": "d5a5a5617b2585016d3dda1c6ffe231aa6597d4114e31abaf295b15972597721",
+        "sourceNotes": [
+          {
+            "id": "2ma-1-10-he-1-vowel",
+            "kind": "unreadablePoint",
+            "anchor": "המְּשׁוּחִים",
+            "occurrence": 1,
+            "letterIndex": 1,
+            "mark": "vowel",
+            "sourcePages": [
+              180
+            ],
+            "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf#page=180"
+          }
+        ]
+      },
+      {
+        "verse": 11,
+        "text": "מִסַּכָּנוֹת גְּדוֹלוֹת נוֹשַׁעְנוּ בַיָי וּמוֹדִים אֲנַחְנוּ לוֹ מְאֹד כַּאֲנָשִׁים שֶׁאָסְרוּ מִלְחָמָה בַּמֶּלֶךְ׃",
+        "sourcePages": [
+          181
+        ],
+        "textSHA256": "b089acf30e1dfe14a5cb25d31daee1bf39fc0098d0a9b59db90c4d178cdec9e2"
+      },
+      {
+        "verse": 12,
+        "text": "כִּי הוּא גֵרֵשׁ אֶת־הָאֲנָשִׁים אֲשֶׁר אָסְרוּ מִלְחָמָה בָּעִיר הַקְּדוֹשָׁה׃",
+        "sourcePages": [
+          181
+        ],
+        "textSHA256": "2fa9ef1245939df7be4f2ac3f9bb2e10ba3edcf667641e8478d7b15725e0d460"
+      },
+      {
+        "verse": 13,
+        "text": "כִּי כְּבוֹא שַׂר־הַצָּבָא לְפָרַס וְאִתּוֹ חֵיל־הַזֵידוֹנִים נִגְּפוּ בְּהֵיכַל נְנָיָה בְּעָרְמָה שֶׁנֶּעֶשְׂתָה בִּידֵי כֹּהֲנֵי נְנָיָה׃",
+        "sourcePages": [
+          181
+        ],
+        "textSHA256": "75226861ac9c1debf4519455a86b4f1a31432dc57ecccaae5362685f9e16e2c6"
+      },
+      {
+        "verse": 14,
+        "text": "כִּי כְּמוֹ לִבְעֹל אוֹתָהּ בָּא אַנְטִיוֹכוֹס זֶה אֶל־הַמָּקוֹם וְהָאוֹהֲבִים אֲשֶׁר אִתּוֹ לְמַעַן קַחַת אֶת־הָאוֹצָרוֹת הַגְּדוֹלִים כְּשִׁלּוּחִים׃",
+        "sourcePages": [
+          181
+        ],
+        "textSHA256": "4443adf6b61554c11046652eef60ef408fa4cef857eaa68df942c8ae7cf713df"
+      },
+      {
+        "verse": 15,
+        "text": "וְכַאֲשֶׁר נְתָנוּם כֹּהֲנֵי נְנָיָה וְכַאֲשֶׁר בָּא עִם־מְתֵי מִסְפָּר אֶל־תּוֹךְ הַהֵיכָל נָעֲלוּ אֶת־הַמִּקְדָּשׁ אַחֲרֵי הִכָּנֵס אַנְטִיוֹכוֹס׃",
+        "sourcePages": [
+          181
+        ],
+        "textSHA256": "9184e1bae1203a4c189b2795875e45de705cdae287f98ab0e44acea455641ed9"
+      },
+      {
+        "verse": 16,
+        "text": "וּבְפָתְחָם אֶת־הַדֶּלֶת הַנִּסְתָּרָה אֲשֶׁר בַּתִּקְרָה זָרְקוּ אֲבָנִים וּפָצְעוּ אֶת שַׂר־הַצָּבָא ופִצְפְּצוּהוּ וְאֶת־הָרָאשִׁים הִשְׁלִיכוּ לָעוֹמְדִים בַּחוּץ׃",
+        "sourcePages": [
+          181
+        ],
+        "textSHA256": "dc5640a25b22fa64916b8f58027e7204a5cda1931030a7d5276d848076cb556c",
+        "sourceNotes": [
+          {
+            "id": "2ma-1-16-vav-1-vowel-second-word",
+            "kind": "unreadablePoint",
+            "anchor": "ופִצְפְּצוּהוּ",
+            "occurrence": 1,
+            "letterIndex": 1,
+            "mark": "vowel",
+            "sourcePages": [
+              181
+            ],
+            "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf#page=181"
+          }
+        ]
+      },
+      {
+        "verse": 17,
+        "text": "עַל־הַכֹּל בָּרוּךְ אֱלֹהֵינוּ אֲשֶׁר־הִסְגִּיר אֶת־הָרְשָׁעִים׃",
+        "sourcePages": [
+          181
+        ],
+        "textSHA256": "8ecbc327bdc3f319880b59920072479072c000dcb5054e059a9d07ee9733c599"
+      },
+      {
+        "verse": 18,
+        "text": "בִּהְיוֹתֵנוּ נְכוֹנִים לַעֲשׂוֹת בְּחֹדֶשׁ כִּסְלֵו בַּחֲמִשָּׁה וְעֶשְׂרִים [בּוֹ] אֶת־[חַג] טָהֳרַת הַמִּקְדָּשׁ רָאִינוּ לְהוֹדִיעֲכֶם לְמַעַן תַּעֲשׂוּ גַּם־אַתֶּם חַג־הַסֻּכּוֹת וְהָאֵשׁ כִּנְחֶמְיָה בְּכַלְכְּלוֹ אָז אֶת־הַמִּקְדָּשׁ וְאֶת־הַמִּזְבֵּחַ הֵבִיא זְבָחִים׃",
+        "sourcePages": [
+          181,
+          182
+        ],
+        "textSHA256": "41064678704801798448de052c423566ea0a54439b8efc568ab3aabcca2c83c2"
+      },
+      {
+        "verse": 19,
+        "text": "כִּי כַּאֲשֶׁר הָגְלוּ אֲבוֹתֵינוּ לְפָרַס לָקְחוּ הַכֹּהֲנִים יִרְאֵי־שָׁמַיִם מֵאֵשׁ הַמִּזְבֵּחַ בַּסֵּתֶר וַיִּטְמְנוּהָ בְּעֹמֶק בְּאֵר אֲשֶׁר תַּחְתִּיתָהּ הָיְתָה בְלִי־מַיִם וְשָׁם שְׁמָרוּהָ לָבֶטַח כִּי לֹא נוֹדַע הַמָּקוֹם לְאִישׁ׃",
+        "sourcePages": [
+          182
+        ],
+        "textSHA256": "b73fceb97d0f48079f78f0e3aca0a8d794cae628bcb61ac77a45bb5fad61159f"
+      },
+      {
+        "verse": 20,
+        "text": "וּכְעֲבֹר שָׁנִים רַבּוֹת כְּשֶׁעָלָה בִרְצוֹן הָאֱלֹהִים וּנְחֶמְיָה נִשְׁלַח מֵאֵת מֶלֶךְ פָּרַס שָׁלַח מִצֶּאֱצָאֵי הַכֹּהֲנִים שֶׁטָּמְנוּ אֶת־הָאֵשׁ לְקַחְתָּהּ וְכַאֲשֶׁר סִפְּרוּ לָנוּ לֹא מָצְאוּ אֵשׁ כִּי אִם־מַיִם עָבִים וְצִוָּה עֲלֵיהֶם לִשְׁאֹב אוֹתָם וְלַהֲבִיאָם׃",
+        "sourcePages": [
+          182
+        ],
+        "textSHA256": "db3892f06b5e9e8cd0eb16fa249d47b0c07fd004fcabe883c124a5ff77ec2733"
+      },
+      {
+        "verse": 21,
+        "text": "וְאַחַר אֲשֶׁר הוּכַן הָרְכוּשׁ לִזְבָחִים אָמַר נְחֶמְיָה לַכֹּהֲנִים לִזְרֹק מִן־הַמַּיִם עַל־הָעֵצִים וְעַל אֲשֶׁר־עֲלֵיהֶם׃",
+        "sourcePages": [
+          182
+        ],
+        "textSHA256": "26ad113e4a560cfced74b6e4e88b493499446063a50fbf5efe4e420dc8b6d546"
+      },
+      {
+        "verse": 22,
+        "text": "וְכַאֲשֶׁר נַעֲשָׂה הַדָּבָר הַזֶּה וַיַעֲבֹר זְמַן־מָה וְהַשֶּׁמֶשׁ הַמְּעֻנֶּנֶת לִפְנֵי מִזֶּה זָרְחָה הִתְלַקְּחָה אֵשׁ גְּדוֹלָה וְכֻלָּם הִשְׁתּוֹמֵמוּ׃",
+        "sourcePages": [
+          182
+        ],
+        "textSHA256": "710e5e09e6308e38b2cbc2693de47f9419d6f60ff7e9499498bb59a2c918c66f"
+      },
+      {
+        "verse": 23,
+        "text": "וּבְהֵאָכֵל הַקָּרְבָּן עָרְכוּ הַכֹּהֲנִים תְּפִלָּה וְהַכֹּהֲנִים וְכֻלָּם בִּפְתֹחַ יוֹנָתָן וְהָאֲחֵרִים עוֹנִים כְּ[מַעֲשֵׂה] נְחֶמְיָה׃",
+        "sourcePages": [
+          182
+        ],
+        "textSHA256": "fd0db467bdf940e4e4c7840b23a81bf8f23b06c447fa3f306f3eb4833b181ec4"
+      },
+      {
+        "verse": 24,
+        "text": "וְהַתְּפִלָּה הָיְתָה כָּכָה אֲדֹנָי אֲדֹנָי הָאֱלֹהִים בּוֹרֵא הַכֹּל הַנּוֹרָא וְגִבּוֹר וְצַדִּיק וְעוֹשֵׂה חֶסֶד הַמּוֹלֵךְ לְבַדּוֹ וְטוֹב׃",
+        "sourcePages": [
+          182
+        ],
+        "textSHA256": "9dbc887c04fb83ba327d50a8882003dd32928e343c691d57706859bb00506390"
+      },
+      {
+        "verse": 25,
+        "text": "הַנּוֹתֵן הַכֹּל לְבַדּוֹ הַצַּדִּיק לְבַדּוֹ וּמוֹשֵׁל בַּכֹּל [וְאֵל] עוֹלָם הַפּוֹדֶה אֶת־יִשְׂרָאֵל מִכָּל־רָע אֲשֶׁר־עָשָׂה אֶת־הָאָבוֹת בְּחִירִים וּקְדֹשִׁם׃",
+        "sourcePages": [
+          182
+        ],
+        "textSHA256": "9a4ee0c573bf33fa1fe209a0b21582d1ecc2a75c67abae814b368260448aed01"
+      },
+      {
+        "verse": 26,
+        "text": "רְצֵה־נָא אֶת־הַקָּרְבָּן עַל כָּל־עַמְּךָ יִשְׂרָאֵל וּשְׁמֹר אֶת־נַחֲלָתְךָ וְקַדְּשָׁהּ׃",
+        "sourcePages": [
+          182,
+          183
+        ],
+        "textSHA256": "7e12df518056fc8471abbecf0af30b2f436d62971c7c20eb791c35af5d2c568e"
+      },
+      {
+        "verse": 27,
+        "text": "כַּנֵּס נְפוּצוֹתֵינוּ וּגְאַל אֶת־הָעוֹבְדִים בַּגּוֹיִם וְנִבְזִים וּמְתֹעָבִים הַבִּיטָה וְיֵדְעוּ הַגּוֹיִם כִּי אַתָּה אֱלֹהֵינוּ׃",
+        "sourcePages": [
+          183
+        ],
+        "textSHA256": "03a08892351391335b5af58720245e3af4923854b5a26da174b616f784ac2e08"
+      },
+      {
+        "verse": 28,
+        "text": "עֲנֹשׁ אֶת־הָעָרִיצִים וְהַמִּתְאַמְּרִים בְּגַאֲוָה׃",
+        "sourcePages": [
+          183
+        ],
+        "textSHA256": "88089b41f5dd4680342d73cfcf7a37cd0b40c5bd050b73fdaaf852612e3f1d65"
+      },
+      {
+        "verse": 29,
+        "text": "טַע אֶת־עַמְּךָ בִּמְקוֹם קָדְשְׁךָ כַּאֲשֶׁר אָמַר מֹשֶׁה׃",
+        "sourcePages": [
+          183
+        ],
+        "textSHA256": "f934436c5341999995133839960db46fb093168cb7176649931d76ae1a2f4ca3"
+      },
+      {
+        "verse": 30,
+        "endVerse": 31,
+        "text": "וְהַכֹּהֲנִים שָׁרוּ מִזְמוֹרֵי הַהַלֵּל׃ וּכְשֶׁאֻכְּלוּ נִתְחֵי הַקָּרְבָּן אָמַר נְחֶמְיָה לִשְׁפֹּךְ אֶת־שְׁיָרֵי הַמַּיִם עַל־אֲבָנִים גְּדוֹלוֹת׃",
+        "sourcePages": [
+          183
+        ],
+        "textSHA256": "dd7e209d3b98bf842c51e7e566d1f6cb6c93b7554a53a335f50c6b84fd2dc5d1"
+      },
+      {
+        "verse": 32,
+        "text": "וּכְהֵעָשׂוֹת הַדָּבָר הַזֶּה עָלְתָה לֶהָבָה וְכִזְרֹחַ הָאוֹר לְעֻמַּתָהּ מֵעַל־הַמִּזְבֵּחַ כָּבְתָה׃",
+        "sourcePages": [
+          183
+        ],
+        "textSHA256": "00aab50f019e19eaf5e5e3c2c40961e388732f778d5b2f2ed90fe2dc7bb45fb9"
+      },
+      {
+        "verse": 33,
+        "text": "וְכַאֲשֶׁר נוֹדַע הַדָּבָר וּלְמֶלֶךְ פָּרַס הֻגַּד כִּי בִּמְקוֹם אֲשֶׁר טָמְנוּ הַכֹּהֲנִים הַגּוֹלִים אֶת־הָאֵשׁ נִרְאוּ הַמַּיִם שֶׁקִּדְּשׁוּ בָהֶם נְחֶמְיָה וַאֲנָשָׁיו אֶת־הַקָּרְבָּנוֹת׃",
+        "sourcePages": [
+          183
+        ],
+        "textSHA256": "e8f222b8c118824a552887f6a4fde9c23e7e50d0e48823b418eb808bc88b7c56"
+      },
+      {
+        "verse": 34,
+        "text": "אַחֲרֵי אֲשֶׁר חָקַר הַמֶּלֶךְ אֶת־הַדָּבָר גָּדַר אֶת־הַמָּקוֹם הַהוּא וַיְקַדְּשֵׁהוּ׃",
+        "sourcePages": [
+          183
+        ],
+        "textSHA256": "8d2dd1047e729f574e72530513bb3f3c63b1b4df1725bc3f6d53391af9d2d715"
+      },
+      {
+        "verse": 35,
+        "text": "וְ[הַכֹּהֲנִים] אֲשֶׁר־רָצָה בָּהֶם הַמֶּלֶךְ לָקַח וְנָתַן [לָהֶם] מַתָּנוֹת רַבּוֹת׃",
+        "sourcePages": [
+          183
+        ],
+        "textSHA256": "5dbc933f0ee7004d31a0cdb8f5c367e9da034fb150a27925134299365b7fde2a"
+      },
+      {
+        "verse": 36,
+        "text": "וַאֲנָשֵׁי נְחֶמְיָה קָרְאוּ לוֹ נִפְתָר לֵאמֹר טָהֳרָה הוּא וְרַבִּים יִקְרְאוּ־לוֹ נִפְתָי׃",
+        "sourcePages": [
+          183
+        ],
+        "textSHA256": "6ef073be9b793e29bec4099b2a123cc9e5734a1b827124d5b31956aab9a2005c"
+      }
+    ]
+  },
+  "unresolvedConsonantOrBoundaryFindings": [],
+  "validation": {
+    "all34StartingCanonicalUnitsUnchangedDuringReview": true,
+    "replacementRecords": 12,
+    "replacedTokenOccurrences": 13,
+    "remainingIDsUnique": true,
+    "remainingAnchorsExactAndUnique": true,
+    "omittedVowelsAbsentOnExactLetter": true,
+    "bodyAndFocusedEvidenceHashesVerified": true
+  }
+}

@@ -1,0 +1,1401 @@
+{
+  "schemaVersion": 1,
+  "book": "2MA",
+  "status": "Chapter1 separate first-author proof complete; full independent review pending",
+  "approved": false,
+  "independentReviewComplete": false,
+  "scope": {
+    "chapter": 1,
+    "primaryUnits": 34,
+    "representedLabels": 36,
+    "sourcePages": [
+      178,
+      179,
+      180,
+      181,
+      182,
+      183
+    ],
+    "physicalLines": 57
+  },
+  "method": "Revisited every source main-body line in native full-page images and enlarged contiguous crops after freezing the first draft. Cropped difficult glyphs directly from source pixels, without generative reconstruction or replacement from another translation. Root corroboration is listed only where actually received. This is not an independent whole-chapter review.",
+  "firstDraftSHA256": "8f43dd608c857f4c0ed7f447ffd7293616c42c64536a75d514ffac46d13bd4ad",
+  "canonicalSHA256AtProof": "8371ad2d266afcae99f891772bd90f95fed5a4a07d778de98a040b9e0880b218",
+  "sourceInventory": "Shared/reports/hebrew-wikisource/2MA-print-inventory.json",
+  "changedReadings": [
+    {
+      "reference": "1:9",
+      "before": "אַחֵי־יְמֵי",
+      "after": "אַחַי־יְמֵי",
+      "page": 180,
+      "detail": "The visible horizontal mark under het is patah, correcting the first draft tsere.",
+      "cropEvidence": [
+        {
+          "path": "/private/tmp/prosary-2ma/proof1-verse9.png",
+          "sha256": "cb011f55e8a5edf050f88e2d82998d10f73ef59af905a48933d2eb6534e07bfb"
+        }
+      ]
+    },
+    {
+      "reference": "1:10",
+      "before": "כְּשַׁחֲתִים",
+      "after": "המּשׁוּחִים",
+      "page": 180,
+      "detail": "The native crop and root comparison support he-mem-shin-vav-het-yod-mem, replacing the wrong first-draft letters. Mem interior dot, shin dot, shuruq and het hiriq retained. Initial he and damaged mem require an additional independent consonant check before approval; their fused lower vowels are not supplied by grammar.",
+      "cropEvidence": [
+        {
+          "path": "/private/tmp/prosary-2ma/proof1-meshu.png",
+          "sha256": "c6f6ea5fae437c5d54a3af2272a7568be31da5369349cb9244e8d60f8464d758"
+        },
+        {
+          "path": "/private/tmp/prosary-2ma/proof1-priests.png",
+          "sha256": "109b9a9157839280ebd4dc9ae8cf0b3dd4af0f34079a910650c12cb45145efea"
+        }
+      ]
+    },
+    {
+      "reference": "1:13",
+      "before": "הַפְּרָזוֹת",
+      "after": "הַזידוֹנִים",
+      "page": 181,
+      "detail": "Root independently corroborated every consonant including the separate yod between zayin and dalet. Preserve both written yods. He patah and holam-vav are readable; the zayin lower point is fused.",
+      "cropEvidence": [
+        {
+          "path": "/private/tmp/prosary-2ma/proof1-noun-tight.png",
+          "sha256": "1b79044b8bc8178351d3a36bd68d9c08f54fa33ea06e54d53abe9fe0b15c413d"
+        }
+      ]
+    },
+    {
+      "reference": "1:13",
+      "before": "נֻפּוּ",
+      "after": "נגְפוּ",
+      "page": 181,
+      "detail": "Root independently confirmed four consonants nun-gimel-pe-vav and gimel sheva; pe interior is clear without a detached dagesh. Nun lower point is fused.",
+      "cropEvidence": [
+        {
+          "path": "/private/tmp/prosary-2ma/proof1-nufu-final.png",
+          "sha256": "e64b5eb96b74fcc289ef2d8fc9d029a0ed64334feb3f47a72225bfb420123131"
+        }
+      ]
+    },
+    {
+      "reference": "1:16",
+      "before": "וַיְּצַעֲצוּ",
+      "after": "ויפצעוּ",
+      "page": 181,
+      "detail": "Correct wrong consonant sequence to vav-yod-pe-tsadi-ayin-vav. Final shuruq retained. Prefix and pe/tsadi lower points merge with the letters and are left as exact review queries.",
+      "cropEvidence": [
+        {
+          "path": "/private/tmp/prosary-2ma/proof1-vayif-final.png",
+          "sha256": "b0ea3a3e1c26235ca46b271db33fc9939b276c4de37fd049b215b70846dab908"
+        },
+        {
+          "path": "/private/tmp/prosary-2ma/proof1-vayif2.png",
+          "sha256": "35bdf8ae3916e235b100840869fe74d5b06e1f9b52acd082137c3f129092a8c8"
+        }
+      ]
+    },
+    {
+      "reference": "1:16",
+      "before": "וַיְנַצְּחוּהוּ",
+      "after": "וינפּצוּהוּ",
+      "page": 181,
+      "detail": "Root independently confirmed pe with interior dagesh followed by tsadi; wrong tsadi-het draft sequence removed. Preserve both shuruqs and readable pe dagesh. Fused prefix and pe lower points remain exact queries.",
+      "cropEvidence": [
+        {
+          "path": "/private/tmp/prosary-2ma/proof1-vaynat3.png",
+          "sha256": "b8f211ddb5a4b733c2799b976ac4f4e9a8382291400b49df39618d454afbbaa8"
+        }
+      ]
+    },
+    {
+      "reference": "1:23",
+      "before": "בְּפֶתַח",
+      "after": "בִּפְתֹחַ",
+      "page": 182,
+      "detail": "Root independently corroborated bet hiriq, pe sheva, tav holam and het patah; retain the source infinitive form rather than the wrong first-draft noun.",
+      "cropEvidence": [
+        {
+          "path": "/private/tmp/prosary-2ma/proof1-beptach2.png",
+          "sha256": "b87de027ce677ca5357510fda6998329c22717eaf3683cbaa46abb2d4796fd88"
+        }
+      ]
+    },
+    {
+      "reference": "1:25",
+      "before": "וּקְדוֹשִׁם",
+      "after": "וּקְדֹשִׁם",
+      "page": 182,
+      "detail": "Remove invented medial vav after dalet. Actual source consonants are וקדשם, with holam and no yod after shin; preserve deficient spelling.",
+      "cropEvidence": [
+        {
+          "path": "/private/tmp/prosary-2ma/proof1-holy2.png",
+          "sha256": "4c874899aeaf4714b44ade2d8a4069195c60a9b1cfadd2a7485e9c2e96bd717e"
+        },
+        {
+          "path": "/private/tmp/prosary-2ma/proof1-holy.png",
+          "sha256": "395114e285e0484a3b7162cb86539d65462ed8b04ba6fed34e1af4638fcad01b"
+        }
+      ]
+    },
+    {
+      "reference": "1:27",
+      "before": "וּמְתֻעָבִים",
+      "after": "וּמְתֹעָבִים",
+      "page": 183,
+      "detail": "Source has holam above tav; first-draft qibbuts below tav was wrong.",
+      "cropEvidence": [
+        {
+          "path": "/private/tmp/prosary-2ma/proof1-ve-nib.png",
+          "sha256": "417f0b4272139f6d9f6a3a51070ed7d38cc76e21b3e6da32f0f0e62240f5c8df"
+        }
+      ]
+    },
+    {
+      "reference": "1:32",
+      "before": "וְכָזוֹחַ",
+      "after": "וכזְרֹחַ",
+      "page": 183,
+      "detail": "Correct misread vav to resh. Readable zayin sheva, resh holam and het patah retained; prefix lower points not inferred.",
+      "cropEvidence": [
+        {
+          "path": "/private/tmp/prosary-2ma/proof1-kizr-full.png",
+          "sha256": "32b54cf63d3ea6d7a8f1777b072e59c55eb393f7033213fb23aa8f26ec766f0e"
+        },
+        {
+          "path": "/private/tmp/prosary-2ma/proof1-vekazoach.png",
+          "sha256": "7e774de04efc826b7db577669ee751feb0e8f30fff33e1e9a105a2830be43b28"
+        }
+      ]
+    },
+    {
+      "reference": "1:36",
+      "before": "נֶפְתַר",
+      "after": "נפתָר",
+      "page": 183,
+      "detail": "Printed tav has qamats, not first-draft patah. Consonants נפתר preserved. Nun and pe lower points are fused.",
+      "cropEvidence": [
+        {
+          "path": "/private/tmp/prosary-2ma/proof1-naphtha-first.png",
+          "sha256": "eba09efd90a7fffd005f6cf1126ff03097579c39a5a2d3ac36061ced071f466a"
+        },
+        {
+          "path": "/private/tmp/prosary-2ma/proof1-last-lines.png",
+          "sha256": "351bc44c85db4e7904673dfacd1e132c0b1335518a2ce8c1f4124f2c343af4d6"
+        }
+      ]
+    },
+    {
+      "reference": "1:36",
+      "before": "נֶפְתַי",
+      "after": "נפתָי",
+      "page": 183,
+      "detail": "Printed tav has qamats, not first-draft patah; terminal yod is visible. Nun and pe lower points are fused.",
+      "cropEvidence": [
+        {
+          "path": "/private/tmp/prosary-2ma/proof1-naphtha-last.png",
+          "sha256": "a7d26df1613d1124c10fc69cfa2d0a524b41f83205b3e17eb0638e72cbf5a961"
+        },
+        {
+          "path": "/private/tmp/prosary-2ma/proof1-neftai2.png",
+          "sha256": "9dda576a7dfeb642b2390b4810f28445ae14c3ae16259c431ad6671b85a717a5"
+        }
+      ]
+    }
+  ],
+  "queries": [
+    {
+      "reference": "1:10",
+      "page": 180,
+      "anchor": "המּשׁוּחִים",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "detail": "Initial he lower region merges with the base; no exact vowel certified.",
+      "proposedSourceNoteId": "2ma-1-10-he-1-vowel",
+      "cropEvidence": [
+        {
+          "path": "/private/tmp/prosary-2ma/proof1-meshu.png",
+          "sha256": "c6f6ea5fae437c5d54a3af2272a7568be31da5369349cb9244e8d60f8464d758"
+        },
+        {
+          "path": "/private/tmp/prosary-2ma/proof1-priests.png",
+          "sha256": "109b9a9157839280ebd4dc9ae8cf0b3dd4af0f34079a910650c12cb45145efea"
+        }
+      ],
+      "independentlyAccepted": false
+    },
+    {
+      "reference": "1:10",
+      "page": 180,
+      "anchor": "המּשׁוּחִים",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "detail": "Damaged mem lower shape merges with its foot; no exact vowel certified.",
+      "proposedSourceNoteId": "2ma-1-10-mem-2-vowel",
+      "cropEvidence": [
+        {
+          "path": "/private/tmp/prosary-2ma/proof1-meshu.png",
+          "sha256": "c6f6ea5fae437c5d54a3af2272a7568be31da5369349cb9244e8d60f8464d758"
+        },
+        {
+          "path": "/private/tmp/prosary-2ma/proof1-priests.png",
+          "sha256": "109b9a9157839280ebd4dc9ae8cf0b3dd4af0f34079a910650c12cb45145efea"
+        }
+      ],
+      "independentlyAccepted": false
+    },
+    {
+      "reference": "1:13",
+      "page": 181,
+      "anchor": "הַזידוֹנִים",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "detail": "Lower point merged into zayin foot; no tsere supplied by normalization.",
+      "proposedSourceNoteId": "2ma-1-13-zayin-2-vowel",
+      "cropEvidence": [
+        {
+          "path": "/private/tmp/prosary-2ma/proof1-noun-tight.png",
+          "sha256": "1b79044b8bc8178351d3a36bd68d9c08f54fa33ea06e54d53abe9fe0b15c413d"
+        }
+      ],
+      "independentlyAccepted": false
+    },
+    {
+      "reference": "1:13",
+      "page": 181,
+      "anchor": "נגְפוּ",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "detail": "Nun lower point is fused into the foot; hiriq cannot be certified.",
+      "proposedSourceNoteId": "2ma-1-13-nun-1-vowel",
+      "cropEvidence": [
+        {
+          "path": "/private/tmp/prosary-2ma/proof1-nufu-final.png",
+          "sha256": "e64b5eb96b74fcc289ef2d8fc9d029a0ed64334feb3f47a72225bfb420123131"
+        }
+      ],
+      "independentlyAccepted": false
+    },
+    {
+      "reference": "1:16",
+      "page": 181,
+      "anchor": "ויפצעוּ",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "detail": "No detached lower vowel can be distinguished from the vav stem.",
+      "proposedSourceNoteId": "2ma-1-16-vav-1-vowel",
+      "cropEvidence": [
+        {
+          "path": "/private/tmp/prosary-2ma/proof1-vayif-final.png",
+          "sha256": "b0ea3a3e1c26235ca46b271db33fc9939b276c4de37fd049b215b70846dab908"
+        },
+        {
+          "path": "/private/tmp/prosary-2ma/proof1-vayif2.png",
+          "sha256": "35bdf8ae3916e235b100840869fe74d5b06e1f9b52acd082137c3f129092a8c8"
+        }
+      ],
+      "independentlyAccepted": false
+    },
+    {
+      "reference": "1:16",
+      "page": 181,
+      "anchor": "ויפצעוּ",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "detail": "Yod lower point is crowded into the adjacent glyph cluster.",
+      "proposedSourceNoteId": "2ma-1-16-yod-2-vowel",
+      "cropEvidence": [
+        {
+          "path": "/private/tmp/prosary-2ma/proof1-vayif-final.png",
+          "sha256": "b0ea3a3e1c26235ca46b271db33fc9939b276c4de37fd049b215b70846dab908"
+        },
+        {
+          "path": "/private/tmp/prosary-2ma/proof1-vayif2.png",
+          "sha256": "35bdf8ae3916e235b100840869fe74d5b06e1f9b52acd082137c3f129092a8c8"
+        }
+      ],
+      "independentlyAccepted": false
+    },
+    {
+      "reference": "1:16",
+      "page": 181,
+      "anchor": "ויפצעוּ",
+      "letterIndex": 3,
+      "mark": "vowel",
+      "detail": "Pe lower mark merges into the bottom of the letter; no vowel certified.",
+      "proposedSourceNoteId": "2ma-1-16-pe-3-vowel",
+      "cropEvidence": [
+        {
+          "path": "/private/tmp/prosary-2ma/proof1-vayif-final.png",
+          "sha256": "b0ea3a3e1c26235ca46b271db33fc9939b276c4de37fd049b215b70846dab908"
+        },
+        {
+          "path": "/private/tmp/prosary-2ma/proof1-vayif2.png",
+          "sha256": "35bdf8ae3916e235b100840869fe74d5b06e1f9b52acd082137c3f129092a8c8"
+        }
+      ],
+      "independentlyAccepted": false
+    },
+    {
+      "reference": "1:16",
+      "page": 181,
+      "anchor": "ויפצעוּ",
+      "letterIndex": 4,
+      "mark": "vowel",
+      "detail": "Tsadi lower mark merges with its descending stem; no vowel certified.",
+      "proposedSourceNoteId": "2ma-1-16-tsadi-4-vowel",
+      "cropEvidence": [
+        {
+          "path": "/private/tmp/prosary-2ma/proof1-vayif-final.png",
+          "sha256": "b0ea3a3e1c26235ca46b271db33fc9939b276c4de37fd049b215b70846dab908"
+        },
+        {
+          "path": "/private/tmp/prosary-2ma/proof1-vayif2.png",
+          "sha256": "35bdf8ae3916e235b100840869fe74d5b06e1f9b52acd082137c3f129092a8c8"
+        }
+      ],
+      "independentlyAccepted": false
+    },
+    {
+      "reference": "1:16",
+      "page": 181,
+      "anchor": "וינפּצוּהוּ",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "detail": "Initial vav lower vowel is not separately distinguishable.",
+      "proposedSourceNoteId": "2ma-1-16-vav-1-vowel-second-word",
+      "cropEvidence": [
+        {
+          "path": "/private/tmp/prosary-2ma/proof1-vaynat3.png",
+          "sha256": "b8f211ddb5a4b733c2799b976ac4f4e9a8382291400b49df39618d454afbbaa8"
+        }
+      ],
+      "independentlyAccepted": false
+    },
+    {
+      "reference": "1:16",
+      "page": 181,
+      "anchor": "וינפּצוּהוּ",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "detail": "Prefix yod lower vowel cannot be distinguished in fused cluster.",
+      "proposedSourceNoteId": "2ma-1-16-yod-2-vowel-second-word",
+      "cropEvidence": [
+        {
+          "path": "/private/tmp/prosary-2ma/proof1-vaynat3.png",
+          "sha256": "b8f211ddb5a4b733c2799b976ac4f4e9a8382291400b49df39618d454afbbaa8"
+        }
+      ],
+      "independentlyAccepted": false
+    },
+    {
+      "reference": "1:16",
+      "page": 181,
+      "anchor": "וינפּצוּהוּ",
+      "letterIndex": 3,
+      "mark": "vowel",
+      "detail": "Nun lower vowel merges into its base.",
+      "proposedSourceNoteId": "2ma-1-16-nun-3-vowel",
+      "cropEvidence": [
+        {
+          "path": "/private/tmp/prosary-2ma/proof1-vaynat3.png",
+          "sha256": "b8f211ddb5a4b733c2799b976ac4f4e9a8382291400b49df39618d454afbbaa8"
+        }
+      ],
+      "independentlyAccepted": false
+    },
+    {
+      "reference": "1:16",
+      "page": 181,
+      "anchor": "וינפּצוּהוּ",
+      "letterIndex": 4,
+      "mark": "vowel",
+      "detail": "Pe lower mark is fused into its stem; cannot distinguish sheva securely.",
+      "proposedSourceNoteId": "2ma-1-16-pe-4-vowel",
+      "cropEvidence": [
+        {
+          "path": "/private/tmp/prosary-2ma/proof1-vaynat3.png",
+          "sha256": "b8f211ddb5a4b733c2799b976ac4f4e9a8382291400b49df39618d454afbbaa8"
+        }
+      ],
+      "independentlyAccepted": false
+    },
+    {
+      "reference": "1:32",
+      "page": 183,
+      "anchor": "וכזְרֹחַ",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "detail": "Initial vav has no securely separable lower point; earlier sheva was not certified.",
+      "proposedSourceNoteId": "2ma-1-32-vav-1-vowel",
+      "cropEvidence": [
+        {
+          "path": "/private/tmp/prosary-2ma/proof1-kizr-full.png",
+          "sha256": "32b54cf63d3ea6d7a8f1777b072e59c55eb393f7033213fb23aa8f26ec766f0e"
+        },
+        {
+          "path": "/private/tmp/prosary-2ma/proof1-vekazoach.png",
+          "sha256": "7e774de04efc826b7db577669ee751feb0e8f30fff33e1e9a105a2830be43b28"
+        }
+      ],
+      "independentlyAccepted": false
+    },
+    {
+      "reference": "1:32",
+      "page": 183,
+      "anchor": "וכזְרֹחַ",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "detail": "Kaf lower group is fused into its base; exact vowel cannot be distinguished.",
+      "proposedSourceNoteId": "2ma-1-32-kaf-2-vowel",
+      "cropEvidence": [
+        {
+          "path": "/private/tmp/prosary-2ma/proof1-kizr-full.png",
+          "sha256": "32b54cf63d3ea6d7a8f1777b072e59c55eb393f7033213fb23aa8f26ec766f0e"
+        },
+        {
+          "path": "/private/tmp/prosary-2ma/proof1-vekazoach.png",
+          "sha256": "7e774de04efc826b7db577669ee751feb0e8f30fff33e1e9a105a2830be43b28"
+        }
+      ],
+      "independentlyAccepted": false
+    },
+    {
+      "reference": "1:36",
+      "page": 183,
+      "anchor": "נפתָר",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "detail": "Nun lower vowel fused into its base.",
+      "proposedSourceNoteId": "2ma-1-36-nun-1-vowel",
+      "cropEvidence": [
+        {
+          "path": "/private/tmp/prosary-2ma/proof1-naphtha-first.png",
+          "sha256": "eba09efd90a7fffd005f6cf1126ff03097579c39a5a2d3ac36061ced071f466a"
+        },
+        {
+          "path": "/private/tmp/prosary-2ma/proof1-last-lines.png",
+          "sha256": "351bc44c85db4e7904673dfacd1e132c0b1335518a2ce8c1f4124f2c343af4d6"
+        }
+      ],
+      "independentlyAccepted": false
+    },
+    {
+      "reference": "1:36",
+      "page": 183,
+      "anchor": "נפתָר",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "detail": "Pe lower vowel fused into its downward stroke.",
+      "proposedSourceNoteId": "2ma-1-36-pe-2-vowel",
+      "cropEvidence": [
+        {
+          "path": "/private/tmp/prosary-2ma/proof1-naphtha-first.png",
+          "sha256": "eba09efd90a7fffd005f6cf1126ff03097579c39a5a2d3ac36061ced071f466a"
+        },
+        {
+          "path": "/private/tmp/prosary-2ma/proof1-last-lines.png",
+          "sha256": "351bc44c85db4e7904673dfacd1e132c0b1335518a2ce8c1f4124f2c343af4d6"
+        }
+      ],
+      "independentlyAccepted": false
+    },
+    {
+      "reference": "1:36",
+      "page": 183,
+      "anchor": "נפתָי",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "detail": "Nun lower vowel fused into its base.",
+      "proposedSourceNoteId": "2ma-1-36-nun-1-vowel-second-word",
+      "cropEvidence": [
+        {
+          "path": "/private/tmp/prosary-2ma/proof1-naphtha-last.png",
+          "sha256": "a7d26df1613d1124c10fc69cfa2d0a524b41f83205b3e17eb0638e72cbf5a961"
+        },
+        {
+          "path": "/private/tmp/prosary-2ma/proof1-neftai2.png",
+          "sha256": "9dda576a7dfeb642b2390b4810f28445ae14c3ae16259c431ad6671b85a717a5"
+        }
+      ],
+      "independentlyAccepted": false
+    },
+    {
+      "reference": "1:36",
+      "page": 183,
+      "anchor": "נפתָי",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "detail": "Pe lower vowel fused into its downward stroke.",
+      "proposedSourceNoteId": "2ma-1-36-pe-2-vowel-second-word",
+      "cropEvidence": [
+        {
+          "path": "/private/tmp/prosary-2ma/proof1-naphtha-last.png",
+          "sha256": "a7d26df1613d1124c10fc69cfa2d0a524b41f83205b3e17eb0638e72cbf5a961"
+        },
+        {
+          "path": "/private/tmp/prosary-2ma/proof1-neftai2.png",
+          "sha256": "9dda576a7dfeb642b2390b4810f28445ae14c3ae16259c431ad6671b85a717a5"
+        }
+      ],
+      "independentlyAccepted": false
+    },
+    {
+      "reference": "1:11",
+      "page": 181,
+      "anchor": "בֵּיְיָ",
+      "detail": "Reinspect prefix bet interior/lower mark and exact double-yod point placement. Current first-draft points are provisional; native crop shows clean bet cavity and fused lower base. No silent re-pointing based on other occurrences.",
+      "cropEvidence": [
+        {
+          "path": "/private/tmp/prosary-2ma/proof1-verse11.png",
+          "sha256": "b295e82cb005689301fa84892e31f1f4bb7a3abd1b8d79ecd9c4bedd9c212b1e"
+        }
+      ],
+      "independentlyAccepted": false
+    },
+    {
+      "reference": "1:13,15",
+      "page": 181,
+      "anchor": "נַנָּיָה",
+      "detail": "Consonants נניה retained. Proper-name fine points, especially nun vowels and dagesh, require independent word/point comparison in each occurrence.",
+      "cropEvidence": [
+        {
+          "path": "/private/tmp/prosary-2ma/proof1-nekht.png",
+          "sha256": "1b1dd2c180dbe07c307b24cd32f651c7d53365234779121570f03a9694bf1ae0"
+        }
+      ],
+      "independentlyAccepted": false
+    },
+    {
+      "reference": "1:16",
+      "page": 181,
+      "anchor": "ויפצעוּ",
+      "detail": "Independent reviewer must also check whether prefix yod or tsadi has a printed dagesh; the first author cannot distinguish a detached dot in fused arms. No guessed dagesh retained.",
+      "cropEvidence": [
+        {
+          "path": "/private/tmp/prosary-2ma/proof1-vayif-final.png",
+          "sha256": "b0ea3a3e1c26235ca46b271db33fc9939b276c4de37fd049b215b70846dab908"
+        }
+      ],
+      "independentlyAccepted": false
+    }
+  ],
+  "proposedSourceNoteIds": [
+    "2ma-1-10-he-1-vowel",
+    "2ma-1-10-mem-2-vowel",
+    "2ma-1-13-zayin-2-vowel",
+    "2ma-1-13-nun-1-vowel",
+    "2ma-1-16-vav-1-vowel",
+    "2ma-1-16-yod-2-vowel",
+    "2ma-1-16-pe-3-vowel",
+    "2ma-1-16-tsadi-4-vowel",
+    "2ma-1-16-vav-1-vowel-second-word",
+    "2ma-1-16-yod-2-vowel-second-word",
+    "2ma-1-16-nun-3-vowel",
+    "2ma-1-16-pe-4-vowel",
+    "2ma-1-32-vav-1-vowel",
+    "2ma-1-32-kaf-2-vowel",
+    "2ma-1-36-nun-1-vowel",
+    "2ma-1-36-pe-2-vowel",
+    "2ma-1-36-nun-1-vowel-second-word",
+    "2ma-1-36-pe-2-vowel-second-word"
+  ],
+  "acceptedSourceNoteIds": [],
+  "physicalLines": [
+    {
+      "page": 178,
+      "lineWithinPageBody": 1,
+      "parts": [
+        {
+          "verse": 1,
+          "text": "לָאַחִים הַיְהוּדִים אֲשֶׁר בְּמִצְרַיִם בִּבְרָכָה הָאַחִים הַיְהוּדִים אֲשֶׁר"
+        }
+      ],
+      "text": "לָאַחִים הַיְהוּדִים אֲשֶׁר בְּמִצְרַיִם בִּבְרָכָה הָאַחִים הַיְהוּדִים אֲשֶׁר",
+      "textSHA256": "9da09160112ef22bc09d674dd5a44459806affd82bf5192f881dacd69e8b5f56"
+    },
+    {
+      "page": 179,
+      "lineWithinPageBody": 1,
+      "parts": [
+        {
+          "verse": 1,
+          "text": "בִּירוּשָׁלִַם וַאֲשֶׁר בְּאֶרֶץ יְהוּדָה שָׁלוֹם טוֹב׃"
+        },
+        {
+          "verse": 2,
+          "text": "וְיִיטִיב לָכֶם הָאֱלֹהִים"
+        }
+      ],
+      "text": "בִּירוּשָׁלִַם וַאֲשֶׁר בְּאֶרֶץ יְהוּדָה שָׁלוֹם טוֹב׃ וְיִיטִיב לָכֶם הָאֱלֹהִים",
+      "textSHA256": "deb6979c4b166babb4b1e151bf9d24854910364879ef08736b5a42e677ab867a"
+    },
+    {
+      "page": 179,
+      "lineWithinPageBody": 2,
+      "parts": [
+        {
+          "verse": 2,
+          "text": "וְיִזְכֹּר אֶת־בְּרִיתוֹ עִם־אַבְרָהָם וְיִצְחָק וְיַעֲקֹב עֲבָדָיו הַנֶּאֱמָנִים׃"
+        }
+      ],
+      "text": "וְיִזְכֹּר אֶת־בְּרִיתוֹ עִם־אַבְרָהָם וְיִצְחָק וְיַעֲקֹב עֲבָדָיו הַנֶּאֱמָנִים׃",
+      "textSHA256": "fce2a6a78347ac566884860f8715379d0015f02c469e2316a74198c673ef5281"
+    },
+    {
+      "page": 179,
+      "lineWithinPageBody": 3,
+      "parts": [
+        {
+          "verse": 3,
+          "text": "וְיִתֵּן־לָכֶם לֵב לְכֻלְּכֶם לְיִרְאָה אוֹתוֹ וְלַעֲשׂוֹת רְצוֹנוֹ בְּגֹדֶל לֵבָב"
+        }
+      ],
+      "text": "וְיִתֵּן־לָכֶם לֵב לְכֻלְּכֶם לְיִרְאָה אוֹתוֹ וְלַעֲשׂוֹת רְצוֹנוֹ בְּגֹדֶל לֵבָב",
+      "textSHA256": "8738e774fe83153063adf5494e9d06fde3e84676713a47c1b05b574cf5ebf243"
+    },
+    {
+      "page": 179,
+      "lineWithinPageBody": 4,
+      "parts": [
+        {
+          "verse": 3,
+          "text": "וּבְנֶפֶשׁ חֲפֵצָה׃"
+        },
+        {
+          "verse": 4,
+          "text": "וְיִפְתַּח אֶת־לִבְּכֶם בְּתוֹרָתוֹ וּבְמִצְוֹת וְיָשֵׂם שָׁלוֹם׃"
+        }
+      ],
+      "text": "וּבְנֶפֶשׁ חֲפֵצָה׃ וְיִפְתַּח אֶת־לִבְּכֶם בְּתוֹרָתוֹ וּבְמִצְוֹת וְיָשֵׂם שָׁלוֹם׃",
+      "textSHA256": "01ecdb045d333f396c4e397d41a42f89c74745e1009ad47cbc4fdfa9c9883ffa"
+    },
+    {
+      "page": 179,
+      "lineWithinPageBody": 5,
+      "parts": [
+        {
+          "verse": 5,
+          "endVerse": 6,
+          "text": "וְיִשְׁמַע אֶת־תְּפִלּוֹתֵיכֶם וְיֶעְתַּר לָכֶם וְאַל־יַעֲזָבְכֶם בְּעֵת רָעָה׃ וְעַתָּה"
+        }
+      ],
+      "text": "וְיִשְׁמַע אֶת־תְּפִלּוֹתֵיכֶם וְיֶעְתַּר לָכֶם וְאַל־יַעֲזָבְכֶם בְּעֵת רָעָה׃ וְעַתָּה",
+      "textSHA256": "1eff982b06e46a6e103814260b6e8692291df8db5d0bcf84c7b772625556189a"
+    },
+    {
+      "page": 179,
+      "lineWithinPageBody": 6,
+      "parts": [
+        {
+          "verse": 5,
+          "endVerse": 6,
+          "text": "הִנֵּנוּ מִתְפַּלְּלִים פֹּה בַּעַדְכֶם׃"
+        },
+        {
+          "verse": 7,
+          "text": "בְּמַלְכוּת דְּמֵטְרִיוֹס בִּשְׁנַת מֵאָה וְשִׁשִּׁים"
+        }
+      ],
+      "text": "הִנֵּנוּ מִתְפַּלְּלִים פֹּה בַּעַדְכֶם׃ בְּמַלְכוּת דְּמֵטְרִיוֹס בִּשְׁנַת מֵאָה וְשִׁשִּׁים",
+      "textSHA256": "ff2bd5f0c9a3b4fe185b2b9a507d34ea2897b0e0bc979d93f93fe8da94596e5e"
+    },
+    {
+      "page": 180,
+      "lineWithinPageBody": 1,
+      "parts": [
+        {
+          "verse": 7,
+          "text": "וָתֵשַׁע אֲנַחְנוּ הַיְהוּדִים כָּתַבְנוּ לָכֶם בַּצָּרָה וּבַמְּצוּקָה שֶׁבָּאָה עָלֵינוּ"
+        }
+      ],
+      "text": "וָתֵשַׁע אֲנַחְנוּ הַיְהוּדִים כָּתַבְנוּ לָכֶם בַּצָּרָה וּבַמְּצוּקָה שֶׁבָּאָה עָלֵינוּ",
+      "textSHA256": "c2a17aef51dcd4b92ccadfcb49169f3395ef38b97993af0e95a9fc271b8ae357"
+    },
+    {
+      "page": 180,
+      "lineWithinPageBody": 2,
+      "parts": [
+        {
+          "verse": 7,
+          "text": "בַּשָּׁנִים הָהֵן לְמִן־סוּר יָסוֹן וַאֲשֶׁר־אִתּוֹ מִן־הָאָרֶץ הַקְּדוֹשָׁה וְהַמַּמְלָכָה׃"
+        }
+      ],
+      "text": "בַּשָּׁנִים הָהֵן לְמִן־סוּר יָסוֹן וַאֲשֶׁר־אִתּוֹ מִן־הָאָרֶץ הַקְּדוֹשָׁה וְהַמַּמְלָכָה׃",
+      "textSHA256": "eb4351b8afdb8895021e70c48a1842e7a357a752e3c76322e7f256524dc7f03b"
+    },
+    {
+      "page": 180,
+      "lineWithinPageBody": 3,
+      "parts": [
+        {
+          "verse": 8,
+          "text": "וַיִּשְׂרְפוּ אֶת־הַשְּׁעָרִים וַיִּשְׁפְּכוּ דָם נָקִי וַנִּתְפַּלֵּל אֶל־יְיָ וַיִּשְׁמַע אֵלֵינוּ"
+        }
+      ],
+      "text": "וַיִּשְׂרְפוּ אֶת־הַשְּׁעָרִים וַיִּשְׁפְּכוּ דָם נָקִי וַנִּתְפַּלֵּל אֶל־יְיָ וַיִּשְׁמַע אֵלֵינוּ",
+      "textSHA256": "cb9d65376738b00e85829a0a492a2fc7feea63ad0dee6745c0b8ed7251209b27"
+    },
+    {
+      "page": 180,
+      "lineWithinPageBody": 4,
+      "parts": [
+        {
+          "verse": 8,
+          "text": "וַנָּבֵא זֶבַח וּמִנְחָה וַנַּדְלֵק אֶת־הַנֵּרוֹת וַנָּשֶׂם אֶת־הַלֶּחֶם׃"
+        },
+        {
+          "verse": 9,
+          "text": "וְעַתָּה עֲשׂוּ"
+        }
+      ],
+      "text": "וַנָּבֵא זֶבַח וּמִנְחָה וַנַּדְלֵק אֶת־הַנֵּרוֹת וַנָּשֶׂם אֶת־הַלֶּחֶם׃ וְעַתָּה עֲשׂוּ",
+      "textSHA256": "e2dad701065c4b01c8e535b42a0d6ed4c3a6a1d857d93dd6a87d3f93400b12e9"
+    },
+    {
+      "page": 180,
+      "lineWithinPageBody": 5,
+      "parts": [
+        {
+          "verse": 9,
+          "text": "אַחַי־יְמֵי חַג־הַסֻּכּוֹת בַּחֲמִשָּׁה [וְעֶשְׂרִים] בְּחֹדֶשׁ כִּסְלֵו [— — —] בִּשְׁנַת"
+        }
+      ],
+      "text": "אַחַי־יְמֵי חַג־הַסֻּכּוֹת בַּחֲמִשָּׁה [וְעֶשְׂרִים] בְּחֹדֶשׁ כִּסְלֵו [— — —] בִּשְׁנַת",
+      "textSHA256": "52b667121b162f3b087a682308a58871167f1e3936d45f0ae7b48042e7809e34"
+    },
+    {
+      "page": 180,
+      "lineWithinPageBody": 6,
+      "parts": [
+        {
+          "verse": 9,
+          "text": "מֵאָה שְׁמוֹנִים וּשְׁמֹנֶה׃"
+        }
+      ],
+      "text": "מֵאָה שְׁמוֹנִים וּשְׁמֹנֶה׃",
+      "textSHA256": "7899fa8bf20f5d7230330db3ce00de19530e715f892ec931c7b931e10f2099f4"
+    },
+    {
+      "page": 180,
+      "lineWithinPageBody": 7,
+      "parts": [
+        {
+          "verse": 10,
+          "text": "הָעָם אֲשֶׁר בִּירוּשָׁלִַם וַאֲשֶׁר בִּיהוּדָה וּמוֹעֶצֶת הַזְּקֵנִים וִיהוּדָה"
+        }
+      ],
+      "text": "הָעָם אֲשֶׁר בִּירוּשָׁלִַם וַאֲשֶׁר בִּיהוּדָה וּמוֹעֶצֶת הַזְּקֵנִים וִיהוּדָה",
+      "textSHA256": "f8434eec9b88b3a1c6c82d4a2b46468ab28d573893b21f8957e14ba0a504e562"
+    },
+    {
+      "page": 180,
+      "lineWithinPageBody": 8,
+      "parts": [
+        {
+          "verse": 10,
+          "text": "אֶל־אַרִיסְטוֹבוּלוֹס מוֹרֵה תַּלְמַי הַמֶּלֶךְ מִזֶּרַע הַכֹּהֲנִים המּשׁוּחִים"
+        }
+      ],
+      "text": "אֶל־אַרִיסְטוֹבוּלוֹס מוֹרֵה תַּלְמַי הַמֶּלֶךְ מִזֶּרַע הַכֹּהֲנִים המּשׁוּחִים",
+      "textSHA256": "223dca70cff8010bcc453d5baab9720cfeb6d69c0664425701694759760f76c8"
+    },
+    {
+      "page": 181,
+      "lineWithinPageBody": 1,
+      "parts": [
+        {
+          "verse": 10,
+          "text": "וְאֶל־הַיְהוּדִים שֶׁבְּמִצְרַיִם שָׁלוֹם וְחַיִּים׃"
+        },
+        {
+          "verse": 11,
+          "text": "מִסַּכָּנוֹת גְּדוֹלוֹת נוֹשַׁעְנוּ"
+        }
+      ],
+      "text": "וְאֶל־הַיְהוּדִים שֶׁבְּמִצְרַיִם שָׁלוֹם וְחַיִּים׃ מִסַּכָּנוֹת גְּדוֹלוֹת נוֹשַׁעְנוּ",
+      "textSHA256": "808df46b553a6dabf74bede17319181ba80324493ed64147d4574422e5cf4c25"
+    },
+    {
+      "page": 181,
+      "lineWithinPageBody": 2,
+      "parts": [
+        {
+          "verse": 11,
+          "text": "בֵּיְיָ וּמוֹדִים אֲנַחְנוּ לוֹ מְאֹד כַּאֲנָשִׁים שֶׁאָסְרוּ מִלְחָמָה בַּמֶּלֶךְ׃"
+        },
+        {
+          "verse": 12,
+          "text": "כִּי הוּא"
+        }
+      ],
+      "text": "בֵּיְיָ וּמוֹדִים אֲנַחְנוּ לוֹ מְאֹד כַּאֲנָשִׁים שֶׁאָסְרוּ מִלְחָמָה בַּמֶּלֶךְ׃ כִּי הוּא",
+      "textSHA256": "25ac7691908c2df5c1c622a1c79a4a770da8c02741cd3b4d40aa134a8ffae9b1"
+    },
+    {
+      "page": 181,
+      "lineWithinPageBody": 3,
+      "parts": [
+        {
+          "verse": 12,
+          "text": "גֵרֵשׁ אֶת־הָאֲנָשִׁים אֲשֶׁר אָסְרוּ מִלְחָמָה בָּעִיר הַקְּדוֹשָׁה׃"
+        },
+        {
+          "verse": 13,
+          "text": "כִּי כְּבוֹא"
+        }
+      ],
+      "text": "גֵרֵשׁ אֶת־הָאֲנָשִׁים אֲשֶׁר אָסְרוּ מִלְחָמָה בָּעִיר הַקְּדוֹשָׁה׃ כִּי כְּבוֹא",
+      "textSHA256": "cf4117c6a2a97507b0649065639341bb90a8501bc6e7ef7d52c82c8d00cd454e"
+    },
+    {
+      "page": 181,
+      "lineWithinPageBody": 4,
+      "parts": [
+        {
+          "verse": 13,
+          "text": "שַׂר־הַצָּבָא לְפָרַס וְאִתּוֹ חֵיל־הַזידוֹנִים נגְפוּ בְּהֵיכַל נַנָּיָה בְּעָרְמָה"
+        }
+      ],
+      "text": "שַׂר־הַצָּבָא לְפָרַס וְאִתּוֹ חֵיל־הַזידוֹנִים נגְפוּ בְּהֵיכַל נַנָּיָה בְּעָרְמָה",
+      "textSHA256": "757e57bf34f773f6061b10b4e09edb385614356bdce5fe79a41b72040da89124"
+    },
+    {
+      "page": 181,
+      "lineWithinPageBody": 5,
+      "parts": [
+        {
+          "verse": 13,
+          "text": "שֶׁנֶּעֶשְׂתָה בִּידֵי כֹּהֲנֵי נַנָּיָה׃"
+        },
+        {
+          "verse": 14,
+          "text": "כִּי כְּמוֹ לִבְעֹל אוֹתָהּ בָּא אַנְטִיוֹכוֹס זֶה"
+        }
+      ],
+      "text": "שֶׁנֶּעֶשְׂתָה בִּידֵי כֹּהֲנֵי נַנָּיָה׃ כִּי כְּמוֹ לִבְעֹל אוֹתָהּ בָּא אַנְטִיוֹכוֹס זֶה",
+      "textSHA256": "2e53e15c69c955c1aa286d559234a5982b6109119a3f52b380063c5950756660"
+    },
+    {
+      "page": 181,
+      "lineWithinPageBody": 6,
+      "parts": [
+        {
+          "verse": 14,
+          "text": "אֶל־הַמָּקוֹם וְהָאוֹהֲבִים אֲשֶׁר אִתּוֹ לְמַעַן קַחַת אֶת־הָאוֹצָרוֹת הַגְּדוֹלִים"
+        }
+      ],
+      "text": "אֶל־הַמָּקוֹם וְהָאוֹהֲבִים אֲשֶׁר אִתּוֹ לְמַעַן קַחַת אֶת־הָאוֹצָרוֹת הַגְּדוֹלִים",
+      "textSHA256": "91dd8195b006948da1937c32dc435cc525584052be4d90f5278781b85338114b"
+    },
+    {
+      "page": 181,
+      "lineWithinPageBody": 7,
+      "parts": [
+        {
+          "verse": 14,
+          "text": "כְּשִׁלּוּחִים׃"
+        },
+        {
+          "verse": 15,
+          "text": "וְכַאֲשֶׁר נְתָנוּם כֹּהֲנֵי נַנָּיָה וְכַאֲשֶׁר בָּא עִם־מְתֵי מִסְפָּר"
+        }
+      ],
+      "text": "כְּשִׁלּוּחִים׃ וְכַאֲשֶׁר נְתָנוּם כֹּהֲנֵי נַנָּיָה וְכַאֲשֶׁר בָּא עִם־מְתֵי מִסְפָּר",
+      "textSHA256": "d712e17759eb0b73959541148d1761c8e8bfbd5d4496ccb678d4d54ddd5ad2b7"
+    },
+    {
+      "page": 181,
+      "lineWithinPageBody": 8,
+      "parts": [
+        {
+          "verse": 15,
+          "text": "אֶל־תּוֹךְ הַהֵיכָל נָעֲלוּ אֶת־הַמִּקְדָּשׁ אַחֲרֵי הִכָּנֵס אַנְטִיוֹכוֹס׃"
+        },
+        {
+          "verse": 16,
+          "text": "וּבְפָתְחָם"
+        }
+      ],
+      "text": "אֶל־תּוֹךְ הַהֵיכָל נָעֲלוּ אֶת־הַמִּקְדָּשׁ אַחֲרֵי הִכָּנֵס אַנְטִיוֹכוֹס׃ וּבְפָתְחָם",
+      "textSHA256": "66691f9182859b65b8ad1d9ea7bdca2260cd997c85526e689a3cb2734d5ac253"
+    },
+    {
+      "page": 181,
+      "lineWithinPageBody": 9,
+      "parts": [
+        {
+          "verse": 16,
+          "text": "אֶת־הַדֶּלֶת הַנִּסְתָּרָה אֲשֶׁר בַּתִּקְרָה זָרְקוּ אֲבָנִים ויפצעוּ אֶת שַׂר־הַצָּבָא"
+        }
+      ],
+      "text": "אֶת־הַדֶּלֶת הַנִּסְתָּרָה אֲשֶׁר בַּתִּקְרָה זָרְקוּ אֲבָנִים ויפצעוּ אֶת שַׂר־הַצָּבָא",
+      "textSHA256": "3143fac746ceb01133e53482577c816af9f24e8eacf822381ffc28a77e82171f"
+    },
+    {
+      "page": 181,
+      "lineWithinPageBody": 10,
+      "parts": [
+        {
+          "verse": 16,
+          "text": "וינפּצוּהוּ וְאֶת־הָרָאשִׁים הִשְׁלִיכוּ לָעוֹמְדִים בַּחוּץ׃"
+        },
+        {
+          "verse": 17,
+          "text": "עַל־הַכֹּל בָּרוּךְ"
+        }
+      ],
+      "text": "וינפּצוּהוּ וְאֶת־הָרָאשִׁים הִשְׁלִיכוּ לָעוֹמְדִים בַּחוּץ׃ עַל־הַכֹּל בָּרוּךְ",
+      "textSHA256": "e337eec8e0df1b9817950c0e89056da19188d69d158a4bb23f378bb3ab47c577"
+    },
+    {
+      "page": 181,
+      "lineWithinPageBody": 11,
+      "parts": [
+        {
+          "verse": 17,
+          "text": "אֱלֹהֵינוּ אֲשֶׁר־הִסְגִּיר אֶת־הָרְשָׁעִים׃"
+        },
+        {
+          "verse": 18,
+          "text": "בִּהְיוֹתֵנוּ נְכוֹנִים לַעֲשׂוֹת בְּחֹדֶשׁ"
+        }
+      ],
+      "text": "אֱלֹהֵינוּ אֲשֶׁר־הִסְגִּיר אֶת־הָרְשָׁעִים׃ בִּהְיוֹתֵנוּ נְכוֹנִים לַעֲשׂוֹת בְּחֹדֶשׁ",
+      "textSHA256": "05b58f24b1be981200a89e415695eb0c7715b1890714a9054f7c5e917e247a8c"
+    },
+    {
+      "page": 182,
+      "lineWithinPageBody": 1,
+      "parts": [
+        {
+          "verse": 18,
+          "text": "כִּסְלֵו בַּחֲמִשָּׁה וְעֶשְׂרִים [בּוֹ] אֶת־[חַג] טָהֳרַת הַמִּקְדָּשׁ רָאִינוּ"
+        }
+      ],
+      "text": "כִּסְלֵו בַּחֲמִשָּׁה וְעֶשְׂרִים [בּוֹ] אֶת־[חַג] טָהֳרַת הַמִּקְדָּשׁ רָאִינוּ",
+      "textSHA256": "e7b2731f767bb902b302dbf42b49170fd21f5a7aabccf17b0cfc268a948d8e05"
+    },
+    {
+      "page": 182,
+      "lineWithinPageBody": 2,
+      "parts": [
+        {
+          "verse": 18,
+          "text": "לְהוֹדִיעֲכֶם לְמַעַן תַּעֲשׂוּ גַּם־אַתֶּם חַג־הַסֻּכּוֹת וְהָאֵשׁ כִּנְחֶמְיָה בְּכַלְכְּלוֹ"
+        }
+      ],
+      "text": "לְהוֹדִיעֲכֶם לְמַעַן תַּעֲשׂוּ גַּם־אַתֶּם חַג־הַסֻּכּוֹת וְהָאֵשׁ כִּנְחֶמְיָה בְּכַלְכְּלוֹ",
+      "textSHA256": "f11c8844998ff8760fffdaffdff4f0405b4879e37821b9a1726f7a0653b0fc27"
+    },
+    {
+      "page": 182,
+      "lineWithinPageBody": 3,
+      "parts": [
+        {
+          "verse": 18,
+          "text": "אָז אֶת־הַמִּקְדָּשׁ וְאֶת־הַמִּזְבֵּחַ הֵבִיא זְבָחִים׃"
+        },
+        {
+          "verse": 19,
+          "text": "כִּי כַּאֲשֶׁר הָגְלוּ אֲבוֹתֵינוּ"
+        }
+      ],
+      "text": "אָז אֶת־הַמִּקְדָּשׁ וְאֶת־הַמִּזְבֵּחַ הֵבִיא זְבָחִים׃ כִּי כַּאֲשֶׁר הָגְלוּ אֲבוֹתֵינוּ",
+      "textSHA256": "03d071a8f3e323c4d8df0cdf61014e5a8152a97f80f3f367dfefc79241c726e8"
+    },
+    {
+      "page": 182,
+      "lineWithinPageBody": 4,
+      "parts": [
+        {
+          "verse": 19,
+          "text": "לְפָרַס לָקְחוּ הַכֹּהֲנִים יִרְאֵי־שָׁמַיִם מֵאֵשׁ הַמִּזְבֵּחַ בַּסֵּתֶר וַיִּטְמְנוּהָ"
+        }
+      ],
+      "text": "לְפָרַס לָקְחוּ הַכֹּהֲנִים יִרְאֵי־שָׁמַיִם מֵאֵשׁ הַמִּזְבֵּחַ בַּסֵּתֶר וַיִּטְמְנוּהָ",
+      "textSHA256": "78a69ecb3888d65a0f18d7438d24047bc12ff1aa2359d42002d75003cd0b5297"
+    },
+    {
+      "page": 182,
+      "lineWithinPageBody": 5,
+      "parts": [
+        {
+          "verse": 19,
+          "text": "בְּעֹמֶק בְּאֵר אֲשֶׁר תַּחְתִּיתָהּ הָיְתָה בְלִי־מַיִם וְשָׁם שְׁמָרוּהָ לָבֶטַח כִּי"
+        }
+      ],
+      "text": "בְּעֹמֶק בְּאֵר אֲשֶׁר תַּחְתִּיתָהּ הָיְתָה בְלִי־מַיִם וְשָׁם שְׁמָרוּהָ לָבֶטַח כִּי",
+      "textSHA256": "7ccb39d31e113a0d8953fdea022843fd326f45dde1aa3410c6ecfcf1176fbecf"
+    },
+    {
+      "page": 182,
+      "lineWithinPageBody": 6,
+      "parts": [
+        {
+          "verse": 19,
+          "text": "לֹא נוֹדַע הַמָּקוֹם לְאִישׁ׃"
+        },
+        {
+          "verse": 20,
+          "text": "וּכְעֲבֹר שָׁנִים רַבּוֹת כְּשֶׁעָלָה בִרְצוֹן"
+        }
+      ],
+      "text": "לֹא נוֹדַע הַמָּקוֹם לְאִישׁ׃ וּכְעֲבֹר שָׁנִים רַבּוֹת כְּשֶׁעָלָה בִרְצוֹן",
+      "textSHA256": "1f4cd77e6ccc8dfe7a251e84b2bcb23db83a75e3aa1382ae25244366c9b49470"
+    },
+    {
+      "page": 182,
+      "lineWithinPageBody": 7,
+      "parts": [
+        {
+          "verse": 20,
+          "text": "הָאֱלֹהִים וּנְחֶמְיָה נִשְׁלַח מֵאֵת מֶלֶךְ פָּרַס שָׁלַח מִצֶּאֱצָאֵי הַכֹּהֲנִים"
+        }
+      ],
+      "text": "הָאֱלֹהִים וּנְחֶמְיָה נִשְׁלַח מֵאֵת מֶלֶךְ פָּרַס שָׁלַח מִצֶּאֱצָאֵי הַכֹּהֲנִים",
+      "textSHA256": "0e2eb7ac4e1f65bfbeac99f2bc89ab5a2044664dce86bb54c370b07aa6052f81"
+    },
+    {
+      "page": 182,
+      "lineWithinPageBody": 8,
+      "parts": [
+        {
+          "verse": 20,
+          "text": "שֶׁטָּמְנוּ אֶת־הָאֵשׁ לְקַחְתָּהּ וְכַאֲשֶׁר סִפְּרוּ לָנוּ לֹא מָצְאוּ אֵשׁ כִּי"
+        }
+      ],
+      "text": "שֶׁטָּמְנוּ אֶת־הָאֵשׁ לְקַחְתָּהּ וְכַאֲשֶׁר סִפְּרוּ לָנוּ לֹא מָצְאוּ אֵשׁ כִּי",
+      "textSHA256": "219e55bf380b4687e6c1140df2dbc5aab2dfc184aa835bb6c1f4bbe81801b97e"
+    },
+    {
+      "page": 182,
+      "lineWithinPageBody": 9,
+      "parts": [
+        {
+          "verse": 20,
+          "text": "אִם־מַיִם עָבִים וְצִוָּה עֲלֵיהֶם לִשְׁאֹב אוֹתָם וְלַהֲבִיאָם׃"
+        },
+        {
+          "verse": 21,
+          "text": "וְאַחַר אֲשֶׁר"
+        }
+      ],
+      "text": "אִם־מַיִם עָבִים וְצִוָּה עֲלֵיהֶם לִשְׁאֹב אוֹתָם וְלַהֲבִיאָם׃ וְאַחַר אֲשֶׁר",
+      "textSHA256": "254a61ac75619890e5df52c10c415e62fa96710fae711cd04233865842aa43da"
+    },
+    {
+      "page": 182,
+      "lineWithinPageBody": 10,
+      "parts": [
+        {
+          "verse": 21,
+          "text": "הוּכַן הָרְכוּשׁ לִזְבָחִים אָמַר נְחֶמְיָה לַכֹּהֲנִים לִזְרֹק מִן־הַמַּיִם עַל־"
+        }
+      ],
+      "text": "הוּכַן הָרְכוּשׁ לִזְבָחִים אָמַר נְחֶמְיָה לַכֹּהֲנִים לִזְרֹק מִן־הַמַּיִם עַל־",
+      "textSHA256": "59973e7267206c6d45a14a2468b655099cff21d5ab02aaeccf81157b79b3e316"
+    },
+    {
+      "page": 182,
+      "lineWithinPageBody": 11,
+      "parts": [
+        {
+          "verse": 21,
+          "text": "הָעֵצִים וְעַל אֲשֶׁר־עֲלֵיהֶם׃"
+        },
+        {
+          "verse": 22,
+          "text": "וְכַאֲשֶׁר נַעֲשָׂה הַדָּבָר הַזֶּה וַיַעֲבֹר זְמַן־מָה"
+        }
+      ],
+      "text": "הָעֵצִים וְעַל אֲשֶׁר־עֲלֵיהֶם׃ וְכַאֲשֶׁר נַעֲשָׂה הַדָּבָר הַזֶּה וַיַעֲבֹר זְמַן־מָה",
+      "textSHA256": "5b4bc74f5c806c18e8256919ea0c23d7d77e4b698c4aef34f13f3aa46a0a3691"
+    },
+    {
+      "page": 182,
+      "lineWithinPageBody": 12,
+      "parts": [
+        {
+          "verse": 22,
+          "text": "וְהַשֶּׁמֶשׁ הַמְּעֻנֶּנֶת לִפְנֵי מִזֶּה זָרְחָה הִתְלַקְּחָה אֵשׁ גְּדוֹלָה וְכֻלָּם"
+        }
+      ],
+      "text": "וְהַשֶּׁמֶשׁ הַמְּעֻנֶּנֶת לִפְנֵי מִזֶּה זָרְחָה הִתְלַקְּחָה אֵשׁ גְּדוֹלָה וְכֻלָּם",
+      "textSHA256": "5d671ca7dc510095d4756a35e1256d38c00ae20559cb03ef6ea5a6f2fd13ebce"
+    },
+    {
+      "page": 182,
+      "lineWithinPageBody": 13,
+      "parts": [
+        {
+          "verse": 22,
+          "text": "הִשְׁתּוֹמֵמוּ׃"
+        },
+        {
+          "verse": 23,
+          "text": "וּבְהֵאָכֵל הַקָּרְבָּן עָרְכוּ הַכֹּהֲנִים תְּפִלָּה וְהַכֹּהֲנִים וְכֻלָּם"
+        }
+      ],
+      "text": "הִשְׁתּוֹמֵמוּ׃ וּבְהֵאָכֵל הַקָּרְבָּן עָרְכוּ הַכֹּהֲנִים תְּפִלָּה וְהַכֹּהֲנִים וְכֻלָּם",
+      "textSHA256": "32ee8a753d4e39b1e22931ce11fe8111330c85eb1e3759d5032c0d9573ccc719"
+    },
+    {
+      "page": 182,
+      "lineWithinPageBody": 14,
+      "parts": [
+        {
+          "verse": 23,
+          "text": "בִּפְתֹחַ יוֹנָתָן וְהָאֲחֵרִים עוֹנִים כְּ[מַעֲשֵׂה] נְחֶמְיָה׃"
+        },
+        {
+          "verse": 24,
+          "text": "וְהַתְּפִלָּה הָיְתָה כָּכָה"
+        }
+      ],
+      "text": "בִּפְתֹחַ יוֹנָתָן וְהָאֲחֵרִים עוֹנִים כְּ[מַעֲשֵׂה] נְחֶמְיָה׃ וְהַתְּפִלָּה הָיְתָה כָּכָה",
+      "textSHA256": "17fa53577f9fc061804c2ed3b5f4d81e296864eca03dc75c81ca63a3dc911970"
+    },
+    {
+      "page": 182,
+      "lineWithinPageBody": 15,
+      "parts": [
+        {
+          "verse": 24,
+          "text": "אֲדֹנָי אֲדֹנָי הָאֱלֹהִים בּוֹרֵא הַכֹּל הַנּוֹרָא וְגִבּוֹר וְצַדִּיק"
+        }
+      ],
+      "text": "אֲדֹנָי אֲדֹנָי הָאֱלֹהִים בּוֹרֵא הַכֹּל הַנּוֹרָא וְגִבּוֹר וְצַדִּיק",
+      "textSHA256": "6d7b9e07637cebaefdfdbee283e5542a1c1fea50809171e774711a2a4687bf05"
+    },
+    {
+      "page": 182,
+      "lineWithinPageBody": 16,
+      "parts": [
+        {
+          "verse": 24,
+          "text": "וְעוֹשֵׂה חֶסֶד הַמּוֹלֵךְ לְבַדּוֹ וְטוֹב׃"
+        },
+        {
+          "verse": 25,
+          "text": "הַנּוֹתֵן הַכֹּל לְבַדּוֹ הַצַּדִּיק"
+        }
+      ],
+      "text": "וְעוֹשֵׂה חֶסֶד הַמּוֹלֵךְ לְבַדּוֹ וְטוֹב׃ הַנּוֹתֵן הַכֹּל לְבַדּוֹ הַצַּדִּיק",
+      "textSHA256": "c5e7b03e7a2187afc8a78d59da27ae5bca003471b9c67770a52bfdd1ca9982ec"
+    },
+    {
+      "page": 182,
+      "lineWithinPageBody": 17,
+      "parts": [
+        {
+          "verse": 25,
+          "text": "לְבַדּוֹ וּמוֹשֵׁל בַּכֹּל [וְאֵל] עוֹלָם הַפּוֹדֶה אֶת־יִשְׂרָאֵל מִכָּל־"
+        }
+      ],
+      "text": "לְבַדּוֹ וּמוֹשֵׁל בַּכֹּל [וְאֵל] עוֹלָם הַפּוֹדֶה אֶת־יִשְׂרָאֵל מִכָּל־",
+      "textSHA256": "9944ca69a1df8b1f89aac7b4f8265cc47bc3e110e842f27044e2df71dece6bfd"
+    },
+    {
+      "page": 182,
+      "lineWithinPageBody": 18,
+      "parts": [
+        {
+          "verse": 25,
+          "text": "רָע אֲשֶׁר־עָשָׂה אֶת־הָאָבוֹת בְּחִירִים וּקְדֹשִׁם׃"
+        },
+        {
+          "verse": 26,
+          "text": "רְצֵה־נָא אֶת־"
+        }
+      ],
+      "text": "רָע אֲשֶׁר־עָשָׂה אֶת־הָאָבוֹת בְּחִירִים וּקְדֹשִׁם׃ רְצֵה־נָא אֶת־",
+      "textSHA256": "c6eafc9749a480c5da43807f6df70ee06b1c298b41493eac844bdd6807bd0cdf"
+    },
+    {
+      "page": 183,
+      "lineWithinPageBody": 1,
+      "parts": [
+        {
+          "verse": 26,
+          "text": "הַקָּרְבָּן עַל כָּל־עַמְּךָ יִשְׂרָאֵל וּשְׁמֹר אֶת־נַחֲלָתְךָ וְקַדְּשָׁהּ׃"
+        }
+      ],
+      "text": "הַקָּרְבָּן עַל כָּל־עַמְּךָ יִשְׂרָאֵל וּשְׁמֹר אֶת־נַחֲלָתְךָ וְקַדְּשָׁהּ׃",
+      "textSHA256": "a43322522b5d929be642a23d950ca77510b3259a8f2fc205ae33aa54751ef25c"
+    },
+    {
+      "page": 183,
+      "lineWithinPageBody": 2,
+      "parts": [
+        {
+          "verse": 27,
+          "text": "כַּנֵּס נְפוּצוֹתֵינוּ וּגְאַל אֶת־הָעוֹבְדִים בַּגּוֹיִם וְנִבְזִים וּמְתֹעָבִים הַבִּיטָה"
+        }
+      ],
+      "text": "כַּנֵּס נְפוּצוֹתֵינוּ וּגְאַל אֶת־הָעוֹבְדִים בַּגּוֹיִם וְנִבְזִים וּמְתֹעָבִים הַבִּיטָה",
+      "textSHA256": "d265e18dc41dfa1cae9babc83b01ac60d145fc7d37582dbf0e3e4391e38e52f6"
+    },
+    {
+      "page": 183,
+      "lineWithinPageBody": 3,
+      "parts": [
+        {
+          "verse": 27,
+          "text": "וְיֵדְעוּ הַגּוֹיִם כִּי אַתָּה אֱלֹהֵינוּ׃"
+        },
+        {
+          "verse": 28,
+          "text": "עֲנֹשׁ אֶת־הָעָרִיצִים וְהַמִּתְאַמְּרִים בְּגַאֲוָה׃"
+        }
+      ],
+      "text": "וְיֵדְעוּ הַגּוֹיִם כִּי אַתָּה אֱלֹהֵינוּ׃ עֲנֹשׁ אֶת־הָעָרִיצִים וְהַמִּתְאַמְּרִים בְּגַאֲוָה׃",
+      "textSHA256": "8bc3dbc7401cc4600ba0965c7c7acd9dd305d8b948fd19ddacef85dc4aa5116d"
+    },
+    {
+      "page": 183,
+      "lineWithinPageBody": 4,
+      "parts": [
+        {
+          "verse": 29,
+          "text": "טַע אֶת־עַמְּךָ בִּמְקוֹם קָדְשְׁךָ כַּאֲשֶׁר אָמַר מֹשֶׁה׃"
+        }
+      ],
+      "text": "טַע אֶת־עַמְּךָ בִּמְקוֹם קָדְשְׁךָ כַּאֲשֶׁר אָמַר מֹשֶׁה׃",
+      "textSHA256": "f934436c5341999995133839960db46fb093168cb7176649931d76ae1a2f4ca3"
+    },
+    {
+      "page": 183,
+      "lineWithinPageBody": 5,
+      "parts": [
+        {
+          "verse": 30,
+          "endVerse": 31,
+          "text": "וְהַכֹּהֲנִים שָׁרוּ מִזְמוֹרֵי הַהַלֵּל׃ וּכְשֶׁאֻכְּלוּ נִתְחֵי הַקָּרְבָּן אָמַר"
+        }
+      ],
+      "text": "וְהַכֹּהֲנִים שָׁרוּ מִזְמוֹרֵי הַהַלֵּל׃ וּכְשֶׁאֻכְּלוּ נִתְחֵי הַקָּרְבָּן אָמַר",
+      "textSHA256": "c021511edc1df2701e65bfccb845bfb08270920e2823859e76d2f9f86910a9ce"
+    },
+    {
+      "page": 183,
+      "lineWithinPageBody": 6,
+      "parts": [
+        {
+          "verse": 30,
+          "endVerse": 31,
+          "text": "נְחֶמְיָה לִשְׁפֹּךְ אֶת־שְׁיָרֵי הַמַּיִם עַל־אֲבָנִים גְּדוֹלוֹת׃"
+        },
+        {
+          "verse": 32,
+          "text": "וּכְהֵעָשׂוֹת הַדָּבָר"
+        }
+      ],
+      "text": "נְחֶמְיָה לִשְׁפֹּךְ אֶת־שְׁיָרֵי הַמַּיִם עַל־אֲבָנִים גְּדוֹלוֹת׃ וּכְהֵעָשׂוֹת הַדָּבָר",
+      "textSHA256": "3d1f026d491efd61ed7e5b5ea3fb1e443a0a61c74cea9499eceea55c12ad40cb"
+    },
+    {
+      "page": 183,
+      "lineWithinPageBody": 7,
+      "parts": [
+        {
+          "verse": 32,
+          "text": "הַזֶּה עָלְתָה לֶהָבָה וכזְרֹחַ הָאוֹר לְעֻמַּתָהּ מֵעַל־הַמִּזְבֵּחַ כָּבְתָה׃"
+        }
+      ],
+      "text": "הַזֶּה עָלְתָה לֶהָבָה וכזְרֹחַ הָאוֹר לְעֻמַּתָהּ מֵעַל־הַמִּזְבֵּחַ כָּבְתָה׃",
+      "textSHA256": "6d37dae096cf6e75b3c554750ef6bf579a96e9969ef19af828e34a718f91bda7"
+    },
+    {
+      "page": 183,
+      "lineWithinPageBody": 8,
+      "parts": [
+        {
+          "verse": 33,
+          "text": "וְכַאֲשֶׁר נוֹדַע הַדָּבָר וּלְמֶלֶךְ פָּרַס הֻגַּד כִּי בִּמְקוֹם אֲשֶׁר טָמְנוּ"
+        }
+      ],
+      "text": "וְכַאֲשֶׁר נוֹדַע הַדָּבָר וּלְמֶלֶךְ פָּרַס הֻגַּד כִּי בִּמְקוֹם אֲשֶׁר טָמְנוּ",
+      "textSHA256": "0ff4d8b7446774bd64acdbabe6f8baa3a9482575c7a387c4ab73fac7fbb052aa"
+    },
+    {
+      "page": 183,
+      "lineWithinPageBody": 9,
+      "parts": [
+        {
+          "verse": 33,
+          "text": "הַכֹּהֲנִים הַגּוֹלִים אֶת־הָאֵשׁ נִרְאוּ הַמַּיִם שֶׁקִּדְּשׁוּ בָהֶם נְחֶמְיָה"
+        }
+      ],
+      "text": "הַכֹּהֲנִים הַגּוֹלִים אֶת־הָאֵשׁ נִרְאוּ הַמַּיִם שֶׁקִּדְּשׁוּ בָהֶם נְחֶמְיָה",
+      "textSHA256": "a8f3b17a7f5bc3de138070295731b481b1f0a459ecfae039effa7da2026ad993"
+    },
+    {
+      "page": 183,
+      "lineWithinPageBody": 10,
+      "parts": [
+        {
+          "verse": 33,
+          "text": "וַאֲנָשָׁיו אֶת־הַקָּרְבָּנוֹת׃"
+        },
+        {
+          "verse": 34,
+          "text": "אַחֲרֵי אֲשֶׁר חָקַר הַמֶּלֶךְ אֶת־הַדָּבָר גָּדַר"
+        }
+      ],
+      "text": "וַאֲנָשָׁיו אֶת־הַקָּרְבָּנוֹת׃ אַחֲרֵי אֲשֶׁר חָקַר הַמֶּלֶךְ אֶת־הַדָּבָר גָּדַר",
+      "textSHA256": "617594eb96eecafe59cc690bb3d269bbd504b82f4e5100c7442f4550ca39f2e5"
+    },
+    {
+      "page": 183,
+      "lineWithinPageBody": 11,
+      "parts": [
+        {
+          "verse": 34,
+          "text": "אֶת־הַמָּקוֹם הַהוּא וַיְקַדְּשֵׁהוּ׃"
+        },
+        {
+          "verse": 35,
+          "text": "וְ[הַכֹּהֲנִים] אֲשֶׁר־רָצָה בָּהֶם הַמֶּלֶךְ לָקַח"
+        }
+      ],
+      "text": "אֶת־הַמָּקוֹם הַהוּא וַיְקַדְּשֵׁהוּ׃ וְ[הַכֹּהֲנִים] אֲשֶׁר־רָצָה בָּהֶם הַמֶּלֶךְ לָקַח",
+      "textSHA256": "6f7fe044a56aa18417827f8f51ee67a5be2eb9beab3c65863226e0da122d4b25"
+    },
+    {
+      "page": 183,
+      "lineWithinPageBody": 12,
+      "parts": [
+        {
+          "verse": 35,
+          "text": "וְנָתַן [לָהֶם] מַתָּנוֹת רַבּוֹת׃"
+        },
+        {
+          "verse": 36,
+          "text": "וַאֲנָשֵׁי נְחֶמְיָה קָרְאוּ לוֹ נפתָר לֵאמֹר"
+        }
+      ],
+      "text": "וְנָתַן [לָהֶם] מַתָּנוֹת רַבּוֹת׃ וַאֲנָשֵׁי נְחֶמְיָה קָרְאוּ לוֹ נפתָר לֵאמֹר",
+      "textSHA256": "06051a39f4894a060efe0e1237529ecf2875178914293a5657026ace85a8c2bc"
+    },
+    {
+      "page": 183,
+      "lineWithinPageBody": 13,
+      "parts": [
+        {
+          "verse": 36,
+          "text": "טָהֳרָה הוּא וְרַבִּים יִקְרְאוּ־לוֹ נפתָי׃"
+        }
+      ],
+      "text": "טָהֳרָה הוּא וְרַבִּים יִקְרְאוּ־לוֹ נפתָי׃",
+      "textSHA256": "d927bb6c11f9f9556fe1188d5b44c11cc7f03a8eb78dc4bee1dab4b236fe0be6"
+    }
+  ],
+  "unresolvedFindings": [
+    "Chapters2–15 and closing formula not yet transcribed.",
+    "Chapter1 full independent word/point/boundary review pending.",
+    "The 1:10 initial he/mem are a source-backed candidate requiring another independent confirmation; no editorial letter restoration is authorized.",
+    "Proposed point omissions and remaining fine-point queries in 2MA-chapter1-first-author-proof.json require independent resolution."
+  ]
+}

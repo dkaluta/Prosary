@@ -400,3 +400,17 @@ remains combined;48restores[השני],57restoresיהודה. One isolated
 resh vowel in56 remains unreadable in both scans and is disclosed,
 with every clear neighboring point retained. ReviewedPages is48
 (B97–144), with13accepted notes. See `1MA-pointing-B144.json`.
+
+B145 is completely first/second-compared (9:58–73 and10:1, including its first-line continuation onB146). Printed59–60 is combined; source59וילכו,63ואל and65ב[מתי] are preserved. The actual66dalet holam/mem tsere and71kaf without dagesh were independently checked. No new source notes. ReviewedPages is49(B97–145); B146 beyond10:1 remains unreviewed. See `1MA-pointing-B145.json`.
+
+B146 is completely first/second-compared (10:2–20, including20continuation on147). Printed18–19 stays combined. Actual source wording and defectiveהחמת are preserved, together with the individually verified name/Jerusalem/interior marks. No new notes;50reviewedPages(B97–146),13accepted notes. See `1MA-pointing-B146.json`.
+
+B147 is completely first/second-compared (10:21–30, including30continuation on148). Printed25–26 stays combined;21קדש and22absence ofמאוד follow the actual print.30יִפָּל retains its independently confirmed pe qamats. No new notes;51reviewedPages(B97–147),13accepted notes. See `1MA-pointing-B147.json`.
+
+B148 is completely first/second-compared (10:31–37, including 37 continuation on B149). All seven printed labels remain separate; 31 retains `[מן־]`, and 31/32 preserve their different local Jerusalem points. 36 is `וכתבו`, without a conjectured nun. Only the 37 ayin vowel is disclosed as unreadable after both scans and independent inspection. There are now 52 reviewed pages (B97–148) and 14 accepted notes. See `1MA-pointing-B148.json`.
+
+B149 is completely first/second-compared (10:38–47, including 47 continuation on B150). The source restores 39 `[הארץ]`/אליה and 43 `[הוא]`/החיב, preserves defective הראשנות, and reads 45 ולהבנות. Actual 42 הוּנָחוּ and 47 ayin sheva were independently checked in local crops. Only the 46 initial-vav vowel is disclosed as unreadable. There are now 53 reviewed pages (B97–149), 15 accepted notes and 886 source units; the book remains draft. See `1MA-pointing-B149.json`.
+
+B150 is completely first/second-compared (10:48–65; actual combined59–60). Literal48ויחן,57/58קליאפטרה and59–60לצאת replace first-pass misreadings; all local name points were separately inspected. The only new disclosed mark is57pe dagesh, fused in both scans, retaining its visible patah; clear58dagesh remains. Root corroborated focused48/58/61 marks, not the whole page. ReviewedPages54(B97–150),16accepted notes,885source units. 10:66 onward remains unreviewed; see `1MA-pointing-B150.json`.
+
+B151 is completely first/second-compared (10:66–73, actual combined66–67). Local66Jerusalem patah+hiriq and the adjacent67Demetrios names with differing dalet dagesh were independently corroborated. All11rows and exact starts/separators checked; no new source notes. ReviewedPages55(B97–151),16accepted notes,884source units. 10:74 onward remains unreviewed; see `1MA-pointing-B151.json`.
