@@ -42,7 +42,7 @@ public sealed class ScriptureSourceNotesControl : UserControl
             {
                 detail.Children.Add(new TextBlock { Text = string.Format(Loc.Tr("scripture_note_letter", "Letter {0} (position {1})"),
                     "\u2067" + note.Letter() + "\u2069", note.LetterIndex), TextWrapping = TextWrapping.Wrap });
-                detail.Children.Add(new TextBlock { Text = note.Mark == "vowel"
+                detail.Children.Add(new TextBlock { Text = note.Mark is "vowel" or "shuruq"
                     ? Loc.Tr("scripture_note_vowel", "Unreadable vowel mark omitted.")
                     : Loc.Tr("scripture_note_dagesh", "Unreadable dagesh omitted."), TextWrapping = TextWrapping.Wrap });
             }

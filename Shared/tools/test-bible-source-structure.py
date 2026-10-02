@@ -147,6 +147,34 @@ class SourceStructureTests(unittest.TestCase):
             self.assertEqual(payload["verses"][0]["verse"], 40)
             self.assertEqual(payload["verses"][0]["endVerse"], 41)
 
+    def test_colophon_notes_survive_generation_and_share_book_id_and_page_checks(self):
+        note = {'id':'colophon-vav','kind':'unreadablePoint','anchor':'ו','occurrence':1,
+                'letterIndex':1,'mark':'shuruq','sourcePages':[1],'sourceURL':'https://example.org/scan.pdf#page=1'}
+        block = {'id':'closing','kind':'colophon','text':'ו','sourceNotes':[note],
+                 'sourcePages':[1],'textSHA256':hashlib.sha256('ו'.encode()).hexdigest()}
+        chapters = [{'number':1,'verses':[unit(1)],'contentBlocks':[ref('primary',1,1),block]}]
+        result = validate_structure(chapters, authoring=True, page_count=1)
+        self.assertEqual(result['sourceNoteIds'], ['colophon-vav'])
+        for changes in ({'anchor':'absent'}, {'sourcePages':[2]}):
+            invalid = copy.deepcopy(chapters)
+            invalid[0]['contentBlocks'][1]['sourceNotes'][0].update(changes)
+            with self.subTest(changes=changes), self.assertRaises(ValueError):
+                validate_structure(invalid, authoring=True, page_count=2)
+        duplicate = copy.deepcopy(chapters)
+        duplicate[0]['verses'][0]['sourceNotes'] = [note]
+        with self.assertRaisesRegex(ValueError, 'duplicate source-note'):
+            validate_structure(duplicate, authoring=True, page_count=1)
+        spec = importlib.util.spec_from_file_location('colophon_archive', Path(__file__).with_name('build-bible-library.py'))
+        library = importlib.util.module_from_spec(spec); spec.loader.exec_module(library)
+        edition = {'id':'fixture','languageCode':'he','name':'Fixture','attribution':'Source','sourceURL':'https://example.org'}
+        published = published_blocks(chapters[0]['contentBlocks'])
+        _, raw, metadata = library.make_archive(edition, [('ESG',1,[{'chapter':1,**unit(1)}],True)],
+                                               {'ESG':{'name':'Fixture'}}, {('ESG',1):published})
+        self.assertEqual(metadata['archiveSchemaVersion'], 3)
+        with zipfile.ZipFile(io.BytesIO(raw)) as archive:
+            self.assertEqual(json.loads(archive.read('chapters/ESG/1.json'))['contentBlocks'], published)
+
+
 
 if __name__ == "__main__":
     unittest.main()

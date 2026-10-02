@@ -38,6 +38,7 @@ def validate_source_notes(row: dict, *, label="Scripture", source_pages: set[int
         require(isinstance(note["kind"], str) and isinstance(note["mark"], str) and
                 (note["kind"], note["mark"]) in {
                     ("unreadablePoint", "vowel"), ("unreadablePoint", "dagesh"),
+                    ("unreadablePoint", "shuruq"),
                     ("restoredLetter", "consonant")},
                 f"{label}: unknown source-note kind or mark")
         retained = note.get("retainedVowels", [])
@@ -57,7 +58,8 @@ def validate_source_notes(row: dict, *, label="Scripture", source_pages: set[int
         offset = -len(anchor)
         for _ in range(occurrence):
             offset = text.find(anchor, offset + len(anchor))
-        position = (offset + start, note["mark"])
+        # Dagesh and shuruq use the same printed dot, with distinct reader meanings.
+        position = (offset + start, "dagesh" if note["mark"] == "shuruq" else note["mark"])
         require(position not in positions, f"{label}: duplicate source-note position")
         # A quote ending at a bare letter must not hide its following vowel in text.
         end = offset + start + 1
@@ -68,7 +70,9 @@ def validate_source_notes(row: dict, *, label="Scripture", source_pages: set[int
         if note["mark"] == "vowel":
             require([char for char in actual if char in VOWELS] == retained,
                     f"{label}: unreadable mark is still present or retained vowel does not match")
-        elif note["mark"] == "dagesh":
+        elif note["mark"] in {"dagesh", "shuruq"}:
+            if note["mark"] == "shuruq":
+                require(text[offset + start] == "ו", f"{label}: shuruq must identify vav")
             require("\u05bc" not in actual, f"{label}: unreadable mark is still present")
         pages = note["sourcePages"]
         require(isinstance(pages, list) and bool(pages) and

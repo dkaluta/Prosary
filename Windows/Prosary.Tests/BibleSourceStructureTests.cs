@@ -85,6 +85,19 @@ public sealed class BibleSourceStructureTests : IDisposable
             passage["sourceNotes"] = JsonSerializer.SerializeToNode(new[] { ScriptureSourceNoteTests.ValidNote with {
                 Id = mutation == "duplicateNoteIds" ? "primary-note" : "passage-note", Anchor = mutation == "invalidNoteAnchor" ? "absent" : "בַּקּבָּה" } }, Json);
         }
+        if (mutation is "colophonNotes" or "colophonDuplicate" or "colophonAnchor" or "colophonGuessedDot")
+        {
+            var source = nodes["chapters/SIR/51.json"]!;
+            var closing = source["contentBlocks"]![4]!;
+            var note = ScriptureSourceNoteTests.ValidNote with { Id = "closing-dot", Anchor = "ו", LetterIndex = 1, Mark = "shuruq" };
+            closing["text"] = mutation == "colophonGuessedDot" ? "וּ" : "ו";
+            closing["sourceNotes"] = JsonSerializer.SerializeToNode(new[] { note with { Anchor = mutation == "colophonAnchor" ? "absent" : "ו" } }, Json);
+            if (mutation == "colophonDuplicate")
+            {
+                source["verses"]![0]!["text"] = "ו";
+                source["verses"]![0]!["sourceNotes"] = JsonSerializer.SerializeToNode(new[] { note }, Json);
+            }
+        }
         var archiveVersion = 3;
         if (mutation is "legacyBlocks1" or "legacyBlocks2" or "legacyEmptyBlocks1" or "legacyEmptyBlocks2")
         {
@@ -106,6 +119,27 @@ public sealed class BibleSourceStructureTests : IDisposable
     }
     private BibleLibraryStore Store(Fixture fixture) => new(_directory, JsonSerializer.Serialize(new { schemaVersion = 1, editions = new[] { fixture.Edition } }, Json));
     private static Task Install(BibleLibraryStore store, Fixture fixture) => store.InstallAsync(fixture.Edition.Id, new MemoryStream(fixture.Bytes));
+
+    [Fact]
+    public async Task ColophonNotesReachDisplayWithoutBecomingScriptureOrVerseChoices()
+    {
+        var fixture = Make("colophonNotes"); var store = Store(fixture); await Install(store, fixture);
+        var display = await store.LoadDisplayChapterAsync("rich-bible", "SIR", 51);
+        var rows = BibleVerseRow.FromDisplay(display, null, "Hebr");
+        var closing = rows.Single(row => row.IsColophon);
+        Assert.Equal("ו", closing.Text);
+        Assert.Equal("shuruq", Assert.Single(closing.SourceNotes!).Mark);
+        Assert.False(closing.IsScripture);
+        Assert.False(closing.IsVerseChoice);
+    }
+
+    [Theory]
+    [InlineData("colophonDuplicate")][InlineData("colophonAnchor")][InlineData("colophonGuessedDot")]
+    public async Task ColophonNotesUseTheSameStrictEvidenceChecks(string mutation)
+    {
+        var fixture = Make(mutation);
+        await Assert.ThrowsAsync<InvalidDataException>(() => Install(Store(fixture), fixture));
+    }
 
     [Fact]
     public async Task InterleavedPrimaryUnitsReopenOfflineAndNumericJumpsFollowExplicitRoutes()

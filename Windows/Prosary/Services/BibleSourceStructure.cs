@@ -82,8 +82,8 @@ public sealed class BibleContentBlockConverter : JsonConverter<BibleContentBlock
         {
             case "verse": BibleStructureJson.Fields(item, ["id", "kind", "chapter", "verse"], "printedLabel"); break;
             case "witness": BibleStructureJson.Fields(item, ["id", "kind", "text", "printedLabel", "addresses"], "sourceNotes"); break;
-            case "passage": BibleStructureJson.Fields(item, ["id", "kind", "text"], "sourceNotes"); break;
-            case "heading": case "colophon": BibleStructureJson.Fields(item, ["id", "kind", "text"]); break;
+            case "passage": case "colophon": BibleStructureJson.Fields(item, ["id", "kind", "text"], "sourceNotes"); break;
+            case "heading": BibleStructureJson.Fields(item, ["id", "kind", "text"]); break;
             default: throw new JsonException("Unsupported source block.");
         }
         List<ScriptureSourceNote>? notes = null;

@@ -51,7 +51,6 @@ struct BibleSourceBlockList: View {
                 .environment(\.layoutDirection, UILanguage.isRightToLeft(UILanguage.current) ? .rightToLeft : .leftToRight)
                 .accessibilityIdentifier("bible.printedLabel.\(block.id)")
             }
-            ForEach(block.sourceNotes) { note in ScriptureSourceNoteView(note: note) }
           } else if block.kind == .heading {
             Text(verbatim: block.text).font(sourceFont(block.text)).bold()
               .accessibilityAddTraits(.isHeader).textSelection(.disabled)
@@ -59,6 +58,7 @@ struct BibleSourceBlockList: View {
             Text(verbatim: block.text).font(.caption).foregroundStyle(.secondary)
               .textSelection(.disabled)
           }
+          ForEach(block.sourceNotes) { note in ScriptureSourceNoteView(note: note) }
         }
         .id(block.id)
         .accessibilityIdentifier("bible.block.\(block.id)")

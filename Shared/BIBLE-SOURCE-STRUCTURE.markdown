@@ -23,7 +23,7 @@ exact shapes. Optional fields are marked with `?` here, not in JSON:
 {id, kind: "witness", text, printedLabel, addresses, sourceNotes?}
 {id, kind: "passage", text, sourceNotes?}
 {id, kind: "heading", text}
-{id, kind: "colophon", text}
+{id, kind: "colophon", text, sourceNotes?}
 ```
 
 A `verse` block references a primary unit's exact starting chapter/verse in the same
@@ -46,9 +46,10 @@ and paired-script block payloads are invalid in this first extension. Version 3
 editions reject either paired-script metadata field, including when a particular
 chapter has no blocks. Ordinary paired-script books continue to use versions 1/2.
 
-`sourceNotes` on a witness or passage follows the same exact anchor/point rules as
+`sourceNotes` on a witness, passage or colophon follows the same exact anchor/point rules as
 verse notes. Note IDs remain unique across primary verses and all textual blocks
-in the book. Headings and colophons cannot carry scripture point notes.
+in the book. Headings cannot carry point notes. Colophon notes describe source
+limitations in the closing metadata and never turn that metadata into scripture.
 
 ## Cross-chapter routing and installation
 
@@ -81,7 +82,8 @@ labels retain the existing verse-only format. Do not insert an invented heading.
 
 Render primary units, witnesses and unnumbered passages as selectable scripture with
 the selected edition's direction, font and source notes. Render source headings
-separately and colophons in attribution styling; neither joins copied scripture.
+separately and colophons in attribution styling with any source notes directly
+after their text; neither joins copied scripture.
 Never collapse or hide a witness as an editorial note. Preserve physical block order.
 
 The verse picker follows the displayed blocks. Primary references and witnesses

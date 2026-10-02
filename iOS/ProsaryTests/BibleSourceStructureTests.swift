@@ -93,6 +93,36 @@ final class BibleSourceStructureTests: XCTestCase {
     }
   }
 
+  func testColophonNotesSurviveInstallationWithoutBecomingScriptureOrVerseChoices() async throws {
+    let note: [String: Any] = ["id":"closing-dot", "kind":"unreadablePoint", "anchor":"ו", "occurrence":1,
+      "letterIndex":1, "mark":"shuruq", "sourcePages":[225], "sourceURL":"https://example.org/source.pdf#page=225"]
+    let closing: [String: Any] = ["id":"closing", "kind":"colophon", "text":"ו", "sourceNotes":[note]]
+    var chapters: [[String: Any]] = [["chapter":1, "verses":[["chapter":1,"verse":1,"text":"Primary"]],
+      "contentBlocks":[["id":"primary","kind":"verse","chapter":1,"verse":1],closing]]]
+    let (edition, data) = try fixture(book:"ESG", suppliedChapters:chapters)
+    let folder = FileManager.default.temporaryDirectory.appending(path: UUID().uuidString)
+    defer { try? FileManager.default.removeItem(at: folder) }
+    let store = BibleStore(catalogURL:nil, directory:folder)
+    try await store.install(data, edition:edition)
+    let display = try await store.displayChapter(edition:edition, book:"ESG", number:1)
+    let block = try XCTUnwrap(display.blocks.last)
+    XCTAssertEqual(block.text, "ו")
+    XCTAssertEqual(block.sourceNotes.first?.mark, .shuruq)
+    XCTAssertEqual(block.sourceNotes.first?.sourcePages, [225])
+    XCTAssertFalse(block.isScripture)
+    XCTAssertEqual(display.choices.map(\.id), ["primary"])
+    for changes: [String: Any] in [["text":"וּ"], ["text":"absent"], ["kind":"heading"]] {
+      var invalid = closing; invalid.merge(changes) { _, new in new }
+      chapters[0]["contentBlocks"] = [["id":"primary","kind":"verse","chapter":1,"verse":1],invalid]
+      let (badEdition, badData) = try fixture(book:"ESG", suppliedChapters:chapters)
+      XCTAssertThrowsError(try BibleStore.validatedArchive(badData, edition:badEdition))
+    }
+    chapters[0]["contentBlocks"] = [["id":"primary","kind":"verse","chapter":1,"verse":1],closing]
+    chapters[0]["verses"] = [["chapter":1,"verse":1,"text":"ו","sourceNotes":[note]]]
+    let (duplicateEdition, duplicateData) = try fixture(book:"ESG", suppliedChapters:chapters)
+    XCTAssertThrowsError(try BibleStore.validatedArchive(duplicateData, edition:duplicateEdition))
+  }
+
   private func fixture(defect: String = "", version: Int = 3, book: String = "SIR",
                        suppliedChapters: [[String: Any]]? = nil) throws -> (BibleEdition, Data) {
     func unit(_ chapter: Int, _ verse: Int) -> [String: Any] { ["chapter":chapter,"verse":verse,"text":"מקור"] }

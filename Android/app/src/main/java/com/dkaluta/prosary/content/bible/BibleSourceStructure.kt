@@ -44,7 +44,7 @@ data class BibleContentBlock(val id: String, val kind: String, val chapter: Int?
             }
             "passage", "heading", "colophon" -> {
                 require(chapter == null && verse == null && printedLabel == null && addresses == null && !text.isNullOrBlank())
-                require(kind == "passage" || sourceNotes == null)
+                require(kind != "heading" || sourceNotes == null)
             }
             else -> throw IllegalArgumentException("Unknown Bible content block")
         }
@@ -70,8 +70,8 @@ object BibleContentBlockSerializer : KSerializer<BibleContentBlock> {
         val (required, optional) = when (kind) {
             "verse" -> setOf("id", "kind", "chapter", "verse") to setOf("printedLabel")
             "witness" -> setOf("id", "kind", "text", "printedLabel", "addresses") to setOf("sourceNotes")
-            "passage" -> setOf("id", "kind", "text") to setOf("sourceNotes")
-            "heading", "colophon" -> setOf("id", "kind", "text") to emptySet()
+            "passage", "colophon" -> setOf("id", "kind", "text") to setOf("sourceNotes")
+            "heading" -> setOf("id", "kind", "text") to emptySet()
             else -> throw SerializationException("Unknown Bible block kind")
         }
         strictFields(value, required, optional)

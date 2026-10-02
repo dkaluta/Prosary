@@ -1651,7 +1651,7 @@ Bible downloads. Terminal has no readings or download features.
 Isolated unreadable Hebrew points may be omitted only with an explicit source note.
 An explicitly approved consonant restoration has a distinct `restoredLetter` note;
 readers identify it as editorial and retain independently readable vowel points.
-The shared verse carries an exact word/letter anchor and scan-page link; all native
+The shared verse or supported source block carries an exact word/letter anchor and scan-page link; all native
 readers show the note separately from scripture. Bible archives with notes use
 version 2 so older readers reject them. The contract and strict review rules are in
 [SCRIPTURE-SOURCE-NOTES.markdown](SCRIPTURE-SOURCE-NOTES.markdown).
@@ -1660,6 +1660,9 @@ Bible archive version 3 preserves exceptional printed source order through chapt
 `contentBlocks` and explicit book `addressRoutes`, without duplicating primary text.
 The complete-book installation validator accounts for every primary presentation;
 the reader displays distinct witnesses, unnumbered scripture and source labels.
+Colophon blocks also retain exact source notes without becoming selectable scripture
+or verse choices. An unreadable shuruq has its own validated vav-only mark category
+and uses the localized vowel-omission wording.
 See [BIBLE-SOURCE-STRUCTURE.markdown](BIBLE-SOURCE-STRUCTURE.markdown).
 
 Phone Readings and Mac/Windows Today retain the calendar's complete localized citation above

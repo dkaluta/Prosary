@@ -279,6 +279,25 @@ class HebrewReviewTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "unresolved"):
             validate_book(self.book, self.catalog, self.approval)
 
+    def test_colophon_note_requires_exact_accepted_inventory(self):
+        chapter = self.book['chapters'][0]
+        chapter['contentBlocks'] = [{'id':f"unit-{r['verse']}", 'kind':'verse', 'chapter':1,
+                                    'verse':r['verse']} for r in chapter['verses']]
+        chapter['contentBlocks'].append({'id':'closing','kind':'colophon','text':'ו',
+            'sourcePages':[14],'textSHA256':hashlib.sha256('ו'.encode()).hexdigest(),
+            'sourceNotes':[{'id':'colophon-dot','kind':'unreadablePoint','anchor':'ו',
+                'occurrence':1,'letterIndex':1,'mark':'shuruq','sourcePages':[14],
+                'sourceURL':'https://example.org/scan.pdf#page=14'}]})
+        self.approval['contentBlocks'] = [{'number':1,'ids':[b['id'] for b in chapter['contentBlocks']]}]
+        self.repin()
+        with self.assertRaisesRegex(ValueError, 'source-note review inventory'):
+            validate_book(self.book, self.catalog, self.approval)
+        self.book['review']['acceptedSourceNoteIds'] = self.approval['sourceNoteIds'] = ['colophon-dot']
+        validate_book(self.book, self.catalog, self.approval)
+        self.approval['sourceNoteIds'] = []
+        with self.assertRaisesRegex(ValueError, 'source-note review inventory'):
+            validate_book(self.book, self.catalog, self.approval)
+
     def test_source_blocks_require_independent_order_inventory_and_page_review(self):
         chapter = self.book["chapters"][0]
         chapter["contentBlocks"] = [{"id": f"unit-{r['verse']}", "kind": "verse", "chapter": 1,

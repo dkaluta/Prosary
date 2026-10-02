@@ -34,7 +34,7 @@ public sealed record ScriptureSourceNote(
         {
             if (note is null || note.Id is null || !Regex.IsMatch(note.Id, "^[a-z0-9][a-z0-9-]*$", RegexOptions.CultureInvariant)
                 || !ids.Add(note.Id)
-                || !(note.Kind == "unreadablePoint" && note.Mark is ("vowel" or "dagesh")
+                || !(note.Kind == "unreadablePoint" && note.Mark is ("vowel" or "dagesh" or "shuruq")
                     || note.Kind == "restoredLetter" && note.Mark == "consonant")
                 || string.IsNullOrWhiteSpace(note.Anchor) || note.Occurrence <= 0 || note.LetterIndex <= 0
                 || note.SourcePages is not { Count: > 0 } || note.SourcePages.Any(page => page <= 0)
@@ -56,11 +56,12 @@ public sealed record ScriptureSourceNote(
             var letters = Enumerable.Range(0, note.Anchor.Length).Where(index => IsHebrewLetter(note.Anchor[index])).ToList();
             if (note.LetterIndex > letters.Count) return false;
             var position = found + letters[note.LetterIndex - 1];
-            if (!positions.Add((position, note.Mark))) return false;
+            if (!positions.Add((position, note.Mark == "shuruq" ? "dagesh" : note.Mark))) return false;
+            if (note.Mark == "shuruq" && verse.Text[position] != 'ו') return false;
             var vowels = new List<char>();
             for (var index = position + 1; index < verse.Text.Length && IsCombining(verse.Text[index]); index++)
             {
-                if (note.Mark == "dagesh" && verse.Text[index] == '\u05bc') return false;
+                if (note.Mark is ("dagesh" or "shuruq") && verse.Text[index] == '\u05bc') return false;
                 if (IsVowel(verse.Text[index])) vowels.Add(verse.Text[index]);
             }
             if (note.Mark == "vowel" && !vowels.SequenceEqual((note.RetainedVowels ?? []).Select(value => value[0]))) return false;
@@ -89,9 +90,9 @@ public sealed class ScriptureSourceNotesConverter : JsonConverter<List<Scripture
                 || fields.Any(field => !Fields.Contains(field) && field != "retainedVowels")) throw new JsonException("Invalid source-note fields.");
             if (retained && item.GetProperty("retainedVowels").ValueKind != JsonValueKind.Array)
                 throw new JsonException("Invalid retained vowels.");
-            if (retained && item.GetProperty("kind") is { ValueKind: JsonValueKind.String } kind
-                && kind.GetString() == "restoredLetter")
-                throw new JsonException("Restored letters cannot declare retained vowels.");
+            if (retained && item.GetProperty("mark") is { ValueKind: JsonValueKind.String } mark
+                && mark.GetString() != "vowel")
+                throw new JsonException("Only vowel omissions may declare retained vowels.");
             notes.Add(item.Deserialize<ScriptureSourceNote>(options) ?? throw new JsonException("Invalid source note."));
         }
         return notes;

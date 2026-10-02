@@ -281,9 +281,9 @@ private fun BibleInstalledReader(edition: BibleEdition, library: BibleLibrary, m
                                                     style = MaterialTheme.typography.labelMedium,
                                                     modifier = Modifier.testTag("biblePrintedLabel.${item.id}"))
                                             } }
-                                            ScriptureSourceNotes(item.sourceNotes)
                                         }
                                     }
+                                    ScriptureSourceNotes(item.sourceNotes)
                                 }
                             }
                         }

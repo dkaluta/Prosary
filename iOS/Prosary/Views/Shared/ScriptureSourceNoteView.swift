@@ -21,7 +21,7 @@ struct ScriptureSourceNoteView: View {
           if let letter = note.affectedLetter {
             Text(String(format: String(localized: "scripture.sourceNote.letter", defaultValue: "Letter %@ (position %lld)", bundle: UILanguage.bundle, locale: UILanguage.locale), locale: UILanguage.locale, "\u{2067}\(letter)\u{2069}", Int64(note.letterIndex)))
           }
-          Text(note.mark == .vowel
+          Text(note.mark == .vowel || note.mark == .shuruq
             ? String(localized: "scripture.sourceNote.unreadableVowel", defaultValue: "Unreadable vowel mark omitted.", bundle: UILanguage.bundle, locale: UILanguage.locale)
             : String(localized: "scripture.sourceNote.unreadableDagesh", defaultValue: "Unreadable dagesh omitted.", bundle: UILanguage.bundle, locale: UILanguage.locale))
         }

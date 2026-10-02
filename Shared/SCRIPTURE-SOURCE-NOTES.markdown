@@ -33,9 +33,13 @@ The example URL is illustrative, not a source citation. `anchor` is an exact sub
 of the displayed primary text, including its retained points. `occurrence` is the
 one-based, nonoverlapping occurrence of that substring. `letterIndex` counts Hebrew
 letters U+05D0–U+05EA within the anchor, starting at one; it never counts combining
-marks, UTF-16 units, punctuation or spaces. `mark` is `vowel` or `dagesh`. A vowel note
+marks, UTF-16 units, punctuation or spaces. `mark` is `vowel`, `dagesh` or `shuruq`. A vowel note
 normally requires all U+05B0–U+05BB and U+05C7 points absent on that letter; a dagesh note requires
-U+05BC absent. Other readable marks stay intact. Thus a provisional reading cannot
+U+05BC absent. A `shuruq` note likewise requires U+05BC absent, but may target only
+the Hebrew letter vav (U+05D5). Its reader wording identifies a vowel omission,
+not a dagesh omission. `retainedVowels` is forbidden for shuruq, even if null.
+Dagesh and shuruq describe the same encoded dot, so two such notes on the same
+letter are a duplicate, including with overlapping anchors. Other readable marks stay intact. Thus a provisional reading cannot
 quietly survive beside a note saying it is unknown. These are Hebrew-source notes;
 paired-script rows may not carry them until paired anchors have a defined contract.
 
@@ -57,8 +61,8 @@ the missing consonant, so that readable point stays in the text. All independent
 readable adjacent vowels and dageshes likewise remain. `retainedVowels` is forbidden
 for this kind, even if null; that field describes the separate point-omission case.
 The same word has a separate index-1 vowel-omission note for the unreadable kaf vowel.
-Only these three kind/mark pairs are valid: `unreadablePoint/vowel`,
-`unreadablePoint/dagesh`, and `restoredLetter/consonant`.
+Only these four kind/mark pairs are valid: `unreadablePoint/vowel`,
+`unreadablePoint/dagesh`, `unreadablePoint/shuruq`, and `restoredLetter/consonant`.
 
 IDs match `[a-z0-9][a-z0-9-]*` and are unique throughout the book. Pages are positive,
 unique, ascending PDF page numbers and, in source authoring, a subset of the unit's
@@ -68,9 +72,9 @@ validation rather than disappearing from the reader.
 
 ## Reader behavior
 
-Every affected verse has a visible localized “Source note” indicator. Expanding it
+Every affected verse or supported textual block has a visible localized “Source note” indicator. Expanding it
 shows the exact anchor, the affected letter and its position within that anchor,
-whether the unreadable mark is a vowel or dagesh, and the explicit statement that
+whether the unreadable mark is a vowel (including shuruq) or dagesh, and the explicit statement that
 the mark has been omitted. A restored-letter note instead explicitly says that the
 identified consonant was restored editorially and is unreadable in the source scan;
 it must never claim that the consonant was omitted or source-certified. Show the PDF
@@ -83,7 +87,7 @@ navigation or get included in the verse's copied text.
 
 ## Versioning and review
 
-Bible archives containing source notes use manifest and chapter `schemaVersion: 2`.
+Bible archives containing ordinary verse source notes use manifest and chapter `schemaVersion: 2`.
 Their catalog edition declares `archiveSchemaVersion: 2`; absent means version 1.
 The catalog root remains version 1. New readers accept archive versions 1 and 2,
 require the manifest and every chapter to equal the edition's archive version, and
@@ -91,6 +95,14 @@ reject notes inside a version-1 archive. Older readers reject a version-2 manife
 instead of silently dropping its notes. Unknown archive versions are rejected.
 Existing note-free archives remain byte-identical. Bundled daily readings remain
 version 1 because their renderer ships with that exact dataset.
+
+Archives with printed source blocks use version 3. Colophons may carry the same
+precisely anchored source notes; these remain separate from their non-scripture
+closing text and do not create verse choices. The generator preserves them and the
+book-wide ID, page, digest and accepted-note review checks include them. Headings
+remain note-free. The new optional colophon field and `shuruq` mark do not change
+archive version numbers: older strict readers reject the unknown shape or mark
+rather than discard the evidence; note-free archives remain byte-identical.
 
 The source-book schema remains version 1 with this optional verse field. Notes enter
 the full book content digest. A completed review separately lists its accepted note

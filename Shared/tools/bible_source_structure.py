@@ -104,7 +104,7 @@ def validate_structure(chapters, *, routes=ABSENT, authoring=False, page_count=N
             if kind == "witness":
                 required |= {"addresses", "printedLabel"}
                 optional.add("sourceNotes")
-            elif kind == "passage":
+            elif kind in {"passage", "colophon"}:
                 optional.add("sourceNotes")
             if authoring:
                 required |= {"sourcePages", "textSHA256"}

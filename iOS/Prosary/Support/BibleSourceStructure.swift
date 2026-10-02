@@ -90,8 +90,8 @@ nonisolated struct BibleContentBlock: Decodable, Sendable {
     switch kind {
     case .verse: required = ["id", "kind", "chapter", "verse"]; optional = ["printedLabel"]
     case .witness: required = ["id", "kind", "text", "printedLabel", "addresses"]; optional = ["sourceNotes"]
-    case .passage: required = ["id", "kind", "text"]; optional = ["sourceNotes"]
-    case .heading, .colophon: required = ["id", "kind", "text"]; optional = []
+    case .passage, .colophon: required = ["id", "kind", "text"]; optional = ["sourceNotes"]
+    case .heading: required = ["id", "kind", "text"]; optional = []
     }
     try BibleStructureKey.validate(decoder, required: required, optional: optional)
     id = try values.decode(String.self, forKey: .id)

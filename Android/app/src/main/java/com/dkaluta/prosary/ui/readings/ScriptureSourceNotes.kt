@@ -72,7 +72,7 @@ fun ScriptureSourceNotes(notes: List<ReadingSourceNote>?) {
                             } else {
                                 Text(stringResource(R.string.scripture_source_note_letter, "\u2067${note.letter}\u2069", note.letterIndex),
                                     style = MaterialTheme.typography.bodyMedium)
-                                Text(stringResource(if (note.mark == "vowel") R.string.scripture_source_note_vowel else R.string.scripture_source_note_dagesh),
+                                Text(stringResource(if (note.mark == "vowel" || note.mark == "shuruq") R.string.scripture_source_note_vowel else R.string.scripture_source_note_dagesh),
                                     style = MaterialTheme.typography.bodyMedium)
                             }
                             Text(stringResource(R.string.scripture_source_note_pages, note.sourcePages.joinToString(", ") { formatter.format(it) }),

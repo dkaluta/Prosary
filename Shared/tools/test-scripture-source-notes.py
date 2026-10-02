@@ -27,6 +27,31 @@ def fixture():
 
 
 class SourceNoteTests(unittest.TestCase):
+    def test_shuruq_requires_vav_and_omits_the_actual_dot(self):
+        row = fixture()
+        row['text'] = 'וּ ו'
+        note = row['sourceNotes'][0]
+        note.update(anchor='ו', occurrence=2, letterIndex=1, mark='shuruq')
+        validate_source_notes(row)
+        for changes in ({'occurrence':1}, {'mark':'shuruq','retainedVowels':['ְ']},
+                        {'mark':'shuruq','retainedVowels':None}, {'kind':'restoredLetter'}):
+            invalid = copy.deepcopy(row)
+            invalid['sourceNotes'][0].update(changes)
+            with self.subTest(changes=changes), self.assertRaises(ValueError):
+                validate_source_notes(invalid)
+        row['text'] = note['anchor'] = 'ב'
+        note['occurrence'] = 1
+        with self.assertRaisesRegex(ValueError, 'shuruq must identify vav'):
+            validate_source_notes(row)
+
+    def test_same_dot_cannot_have_separate_dagesh_and_shuruq_notes(self):
+        row = fixture()
+        row['text'] = 'ו'
+        row['sourceNotes'][0].update(anchor='ו', letterIndex=1, mark='shuruq')
+        row['sourceNotes'].append(row['sourceNotes'][0] | {'id':'duplicate-dot','mark':'dagesh'})
+        with self.assertRaisesRegex(ValueError, 'duplicate source-note position'):
+            validate_source_notes(row)
+
     def test_restored_letter_preserves_visible_vowels_and_dagesh(self):
         row = fixture()
         row['text'] = row['sourceNotes'][0]['anchor'] = 'כָּלְתָה'

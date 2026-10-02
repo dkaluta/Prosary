@@ -63,6 +63,10 @@ class BibleNavigationInstrumentedTest {
             compose.onNodeWithText("Second printed witness", substring = true).assertExists()
             compose.onNodeWithTag("bibleVerses").performScrollToNode(hasTestTag("bibleBlock.hymn"))
             compose.onNodeWithText("Unnumbered thanksgiving hymn").assertExists()
+            compose.onNodeWithTag("bibleVerses").performScrollToNode(hasTestTag("scriptureSourceNote.colophon-shuruq"))
+            compose.onNodeWithTag("scriptureSourceNote.colophon-shuruq").performClick()
+            compose.onNodeWithText(compose.activity.getString(R.string.scripture_source_note_vowel)).assertExists()
+            compose.onNodeWithText(compose.activity.getString(R.string.scripture_source_note_dagesh)).assertDoesNotExist()
         } finally { AppSettings.readingsEditionId = previous; directory.deleteRecursively() }
     }
 
@@ -190,7 +194,9 @@ class BibleNavigationInstrumentedTest {
                 BibleContentBlock("witness-one", "witness", printedLabel = "א", text = "Second printed witness", addresses = listOf(BibleAddress(1, 1))),
                 BibleContentBlock("primary-four", "verse", 1, 4),
                 BibleContentBlock("hymn", "passage", text = "Unnumbered thanksgiving hymn"),
-                BibleContentBlock("colophon", "colophon", text = "Source closing metadata"),
+                BibleContentBlock("colophon", "colophon", text = "ו", sourceNotes = listOf(ReadingSourceNote(
+                    "colophon-shuruq", "unreadablePoint", "ו", 1, 1, "shuruq", listOf(225),
+                    "https://example.org/scan.pdf#page=225"))),
             ) else null
             files[BibleStore.chapterPath(book.id, info.number)] = json.encodeToString(BibleChapter(version, "fixture", book.id, info.number, verses, blocks))
         } }

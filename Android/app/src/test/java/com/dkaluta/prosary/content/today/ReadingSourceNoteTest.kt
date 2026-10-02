@@ -15,6 +15,22 @@ class ReadingSourceNoteTest {
         try { block(); fail("Invalid source evidence accepted") } catch (_: IllegalArgumentException) { }
     }
 
+    @Test fun shuruqTargetsOnlyVavAndCannotConcealOrDuplicateItsDot() {
+        val value = note.copy(anchor = "ו", letterIndex = 1, occurrence = 2, mark = "shuruq")
+        value.validate("וּ ו")
+        assertEquals(value, Json.decodeFromString<ReadingSourceNote>(Json.encodeToString(value)))
+        rejected { value.copy(occurrence = 1).validate("וּ ו") }
+        rejected { value.copy(anchor = "ב", occurrence = 1).validate("ב") }
+        rejected { value.copy(kind = "restoredLetter").validate("וּ ו") }
+        val encoded = Json.encodeToString(value)
+        for (retained in listOf("null", "[]", "[\"ְ\"]")) rejected {
+            Json.decodeFromString<ReadingSourceNote>(encoded.dropLast(1) + ",\"retainedVowels\":$retained}")
+        }
+        val first = value.copy(occurrence = 1)
+        rejected { ReadingVerse(1, 1, "ו", sourceNotes = listOf(first,
+            first.copy(id = "duplicate-dot", mark = "dagesh"))).validateSourceNotes() }
+    }
+
     @Test fun hebrewLetterIndexIgnoresPointsPunctuationAndSupplementaryScalars() {
         val value = note.copy(anchor = "😀 — $text")
         value.validate("Prefix 😀 — $text suffix")

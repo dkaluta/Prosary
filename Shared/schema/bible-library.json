@@ -596,6 +596,13 @@
             },
             "text": {
               "$ref": "#/$defs/text"
+            },
+            "sourceNotes": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "reading-texts.json#/$defs/sourceNote"
+              }
             }
           }
         }

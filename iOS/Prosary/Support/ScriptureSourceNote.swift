@@ -2,7 +2,7 @@ import Foundation
 
 nonisolated struct ScriptureSourceNote: Decodable, Equatable, Identifiable, Sendable {
   enum Kind: String, Decodable, Sendable { case unreadablePoint, restoredLetter }
-  enum Mark: String, Decodable, Sendable { case vowel, dagesh, consonant }
+  enum Mark: String, Decodable, Sendable { case vowel, dagesh, shuruq, consonant }
   let id: String
   let kind: Kind
   let anchor: String
@@ -42,6 +42,7 @@ nonisolated struct ScriptureSourceNote: Decodable, Equatable, Identifiable, Send
     retainedVowels = values.contains(.retainedVowels) ? try values.decode([String].self, forKey: .retainedVowels) : nil
     switch (kind, mark) {
     case (.unreadablePoint, .vowel), (.unreadablePoint, .dagesh): break
+    case (.unreadablePoint, .shuruq) where !values.contains(.retainedVowels): break
     case (.restoredLetter, .consonant) where !values.contains(.retainedVowels): break
     default:
       throw DecodingError.dataCorrupted(.init(codingPath: decoder.codingPath, debugDescription: "Invalid source-note kind or mark"))
@@ -87,7 +88,7 @@ nonisolated struct ScriptureSourceNote: Decodable, Equatable, Identifiable, Send
     while offset + quote.count <= source.count {
       if source[offset..<(offset + quote.count)].elementsEqual(quote) {
         found += 1
-        if found == occurrence { return Position(scalarOffset: offset + letter, mark: mark) }
+        if found == occurrence { return Position(scalarOffset: offset + letter, mark: mark == .shuruq ? .dagesh : mark) }
         offset += quote.count
       } else { offset += 1 }
     }
@@ -103,8 +104,9 @@ nonisolated struct ScriptureSourceNote: Decodable, Equatable, Identifiable, Send
     if kind == .restoredLetter { return mark == .consonant && retainedVowels == nil }
     // Inspect the source, not only a shortened quote that might omit its trailing marks.
     let letters = Self.letterScalars(in: Array(text.unicodeScalars), at: position.scalarOffset)
-    if mark == .dagesh {
-      return retainedVowels == nil && !letters.contains { $0.value == 0x05BC }
+    if mark == .dagesh || mark == .shuruq {
+      return retainedVowels == nil && (mark != .shuruq || letters.first?.value == 0x05D5)
+        && !letters.contains { $0.value == 0x05BC }
     }
     func isVowel(_ scalar: Unicode.Scalar) -> Bool { (0x05B0...0x05BB).contains(scalar.value) || scalar.value == 0x05C7 }
     if let retainedVowels {

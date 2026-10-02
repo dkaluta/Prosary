@@ -200,6 +200,7 @@
           "enum": [
             "vowel",
             "dagesh",
+            "shuruq",
             "consonant"
           ]
         },
@@ -236,7 +237,7 @@
             "properties": {"mark": {"const": "consonant"}},
             "not": {"required": ["retainedVowels"]}
           },
-          "else": {"properties": {"mark": {"enum": ["vowel", "dagesh"]}}}
+          "else": {"properties": {"mark": {"enum": ["vowel", "dagesh", "shuruq"]}}}
         },
         {
           "if": {

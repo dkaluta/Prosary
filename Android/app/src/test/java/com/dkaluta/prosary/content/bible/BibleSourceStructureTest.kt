@@ -117,6 +117,25 @@ class BibleSourceStructureTest {
         assertNull(store.target(edition, "SIR", 1, 20))
     }
 
+    @Test fun colophonNoteSurvivesInstallationWithoutBecomingScriptureOrVerseChoice() {
+        val note = ReadingSourceNote("closing-dot", "unreadablePoint", "ו", 1, 1, "shuruq",
+            listOf(225), "https://example.org/source.pdf#page=225")
+        val closing = BibleContentBlock("closing", "colophon", text = "ו", sourceNotes = listOf(note))
+        fun source(block: BibleContentBlock = closing, primary: ReadingVerse = ReadingVerse(1, 1, "Primary")) =
+            listOf(chapter(1, listOf(primary), listOf(reference("primary", 1, 1), block)))
+        val (store, edition) = install(source())
+        val display = store.displayChapter(edition, "SIR", 1)!!
+        assertEquals(listOf(note), display.items.last().sourceNotes)
+        assertEquals("ו", display.items.last().block.text)
+        assertTrue(display.items.last().addresses.isEmpty())
+        assertEquals("colophon", display.items.last().block.kind)
+        assertNull(store.target(edition, "SIR", 1, 2))
+        rejected { install(source(closing.copy(sourceNotes = listOf(note.copy(anchor = "missing"))))) }
+        rejected { install(source(closing.copy(text = "וּ"))) }
+        rejected { install(source(primary = ReadingVerse(1, 1, "ו", sourceNotes = listOf(note)))) }
+        rejected { install(source(closing.copy(kind = "heading"))) }
+    }
+
     @Test fun missingDuplicatedDanglingAndWrongRoutesAreRejectedBeforeActivation() {
         val valid = interleaving()
         val badChapters = listOf(

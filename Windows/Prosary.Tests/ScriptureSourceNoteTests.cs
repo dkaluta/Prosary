@@ -13,6 +13,25 @@ public sealed class ScriptureSourceNoteTests
     private static ScriptureVerse Verse => new(1, 9, "בַּקּבָּה", SourceNotes: [ValidNote]);
 
     [Fact]
+    public void ShuruqTargetsVavAndCannotHideOrDuplicateTheDot()
+    {
+        var note = ValidNote with { Anchor = "ו", LetterIndex = 1, Occurrence = 2, Mark = "shuruq" };
+        var verse = new ScriptureVerse(1, 1, "וּ ו", SourceNotes: [note]);
+        Assert.True(ScriptureSourceNote.ValidForVerse(verse, false));
+        Assert.NotNull(Daily(verse));
+        Assert.False(ScriptureSourceNote.ValidForVerse(verse with { Text = "ו וּ" }, false));
+        Assert.False(ScriptureSourceNote.ValidForVerse(verse with { Text = "ב", SourceNotes = [note with { Anchor = "ב", Occurrence = 1 }] }, false));
+        var first = note with { Occurrence = 1 };
+        Assert.False(ScriptureSourceNote.ValidForVerse(new(1, 1, "ו", SourceNotes: [first, first with { Id = "duplicate-dot", Mark = "dagesh" }]), false));
+        foreach (var retained in new[] { "null", "[]", "[\"ְ\"]" })
+        {
+            var row = JsonSerializer.SerializeToNode(verse, Json)!;
+            row["sourceNotes"]![0]!["retainedVowels"] = JsonNode.Parse(retained);
+            Assert.Throws<JsonException>(() => JsonSerializer.Deserialize<ScriptureVerse>(row.ToJsonString(), Json));
+        }
+    }
+
+    [Fact]
     public void ExactAnchorCountsHebrewLettersAndRetainsOtherReadableMarks()
     {
         var verse = Verse with { Text = "בַּקּבָּה / בַּקּבָּה", SourceNotes = [ValidNote with { Occurrence = 2 }] };

@@ -23,6 +23,21 @@ final class ScriptureSourceNoteTests: XCTestCase {
     XCTAssertEqual(note.sourcePages, [16])
   }
 
+  func testShuruqTargetsVavAndCannotHideOrDoubleCountTheDot() throws {
+    let changes: [String: Any] = ["anchor":"ו", "letterIndex":1, "occurrence":2, "mark":"shuruq"]
+    let note = try decode(object(changes))
+    XCTAssertTrue(note.isValid(in: "וּ ו"))
+    XCTAssertFalse(note.isValid(in: "ו וּ"), "A short anchor cannot conceal the retained dot")
+    XCTAssertFalse(try decode(object(["anchor":"ב", "letterIndex":1, "mark":"shuruq"])).isValid(in: "ב"))
+    for retained: Any in [NSNull(), [String](), ["ְ"]] {
+      var fields = changes; fields["retainedVowels"] = retained
+      XCTAssertThrowsError(try decode(object(fields)))
+    }
+    XCTAssertThrowsError(try decode(object(["kind":"restoredLetter", "mark":"shuruq"])))
+    let dagesh = try decode(object(["anchor":"ו", "letterIndex":1, "occurrence":2, "mark":"dagesh"]))
+    XCTAssertEqual(note.position(in: "וּ ו"), dagesh.position(in: "וּ ו"))
+  }
+
   func testExactNonoverlappingAnchorOccurrencesAndScalarIndex() throws {
     let note = try decode(object(["occurrence":2]))
     XCTAssertTrue(note.isValid(in: "\(anchor) \(anchor)"))

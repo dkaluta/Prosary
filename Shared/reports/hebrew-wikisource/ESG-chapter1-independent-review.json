@@ -1,0 +1,610 @@
+{
+  "schemaVersion": 1,
+  "book": "ESG",
+  "chapter": 1,
+  "reviewer": "frenkel_source, independent of drafting agent lje_pd_boundaries",
+  "status": "All22 body rows independently compared; local point dispositions and root reconciliation outstanding",
+  "approved": false,
+  "canonicalChanged": true,
+  "source": {
+    "volume": "A2",
+    "sha256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+    "pageCount": 325,
+    "textPages": [
+      215,
+      216,
+      217,
+      218,
+      219,
+      220,
+      221,
+      222,
+      223,
+      224,
+      225
+    ]
+  },
+  "canonicalInputSHA256": "977aee7cccb1ba69a12d80d5a33df38433e49ad4ee310d791e106639d6e6b2ff",
+  "coverage": {
+    "physicalRows": 22,
+    "units": 17,
+    "sourcePages": [
+      215,
+      216,
+      217
+    ],
+    "pagePieces": [
+      {
+        "page": 215,
+        "rows": 10,
+        "start": "בַּשָּׁנָה",
+        "end": "כְּמוֹ",
+        "references": "1:1–9 partial"
+      },
+      {
+        "page": 216,
+        "rows": 8,
+        "start": "נָהָר",
+        "end": "[לְמָוֶת]׃",
+        "references": "1:9 continuation–14"
+      },
+      {
+        "page": 217,
+        "rows": 4,
+        "start": "וַיִּכְתֹּב",
+        "end": "[אֲשֶׁר הוּמָתוּ]׃",
+        "references": "1:15–17"
+      }
+    ]
+  },
+  "method": [
+    "Read every complete main-body row against current canonical chapter1, including points, full/defective consonants, maqaf, brackets and all17 unit starts. Excluded commentary.",
+    "Made padded native nearest-neighbour crops for each repeated Mordecai occurrence and abbreviation. Earlier misframed name9 crops were rejected; only independent-9-name-final.png is evidence for name9.",
+    "All words and unit boundaries corroborated; exact local points remain explicit below. No conventional spelling or other translation supplies points."
+  ],
+  "proposedCorrections": [
+    {
+      "reference": "1:8",
+      "before": "בְּירְאוֹ",
+      "after": "בְּיָרְאוֹ",
+      "evidence": "independent-8-fear.png",
+      "finding": "Yod qamats is detached below the yod, with a horizontal bar and central descending stem. Retain printed resh sheva.",
+      "integrated": true
+    },
+    {
+      "reference": "1:1",
+      "before": "מָרְדכַי",
+      "after": "מָרְדּכַי",
+      "evidence": "independent-1-mordekhai-full.png",
+      "finding": "A detached interior dot is clearly visible in dalet in this individual occurrence. This proposed dot correction does not decide the lower dalet or kaf vowel.",
+      "integrated": true
+    },
+    {
+      "reference": "1:11",
+      "before": "מָרְדכַי",
+      "after": "מָרְדּכַי",
+      "evidence": "independent-11-mordekhai-full.png",
+      "finding": "A detached interior dot is clearly visible in dalet in this individual occurrence. This proposed dot correction does not decide the lower dalet or kaf vowel.",
+      "integrated": true
+    },
+    {
+      "reference": "1:12",
+      "before": "מָרְדכַי",
+      "after": "מָרְדּכַי",
+      "evidence": "independent-12-mordekhai.png",
+      "finding": "A detached interior dot is clearly visible in dalet in this individual occurrence. This proposed dot correction does not decide the lower dalet or kaf vowel.",
+      "integrated": true
+    },
+    {
+      "reference": "1:15",
+      "before": "מָרְדכַי",
+      "after": "מָרְדּכַי",
+      "evidence": "independent-15-mordekhai.png",
+      "finding": "A detached interior dot is clearly visible in dalet in this individual occurrence. This proposed dot correction does not decide the lower dalet or kaf vowel.",
+      "integrated": true
+    },
+    {
+      "reference": "1:16",
+      "before": "מָרְדכַי",
+      "after": "מָרְדּכַי",
+      "evidence": "independent-16-mordekhai.png",
+      "finding": "A detached interior dot is clearly visible in dalet in this individual occurrence. This proposed dot correction does not decide the lower dalet or kaf vowel.",
+      "integrated": true
+    },
+    {
+      "reference": "1:17",
+      "before": "מָרְדכַי",
+      "after": "מָרְדּכַי",
+      "evidence": "independent-17-mordekhai.png",
+      "finding": "A detached interior dot is clearly visible in dalet in this individual occurrence. This proposed dot correction does not decide the lower dalet or kaf vowel.",
+      "integrated": true
+    }
+  ],
+  "localPointQueries": [
+    {
+      "reference": "1:1",
+      "anchor": "למְלֹךְ",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        215
+      ],
+      "evidence": "word-limlokh.png",
+      "disposition": "Propose exact unreadable-point note; omit only this mark.",
+      "detail": "Initial lamed lower point is fused with its terminal stroke; no secure vowel identity."
+    },
+    {
+      "reference": "1:13",
+      "anchor": "למְזִמּוֹתֵיהֶם",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        216
+      ],
+      "evidence": "word-plots.png",
+      "disposition": "Propose exact unreadable-point note; omit only this mark.",
+      "detail": "Initial lamed lower group is fused; preserve remaining points and deficient consonants."
+    },
+    {
+      "reference": "1:1",
+      "anchor": "מָרְדּכַי",
+      "letterIndex": 3,
+      "mark": "vowel",
+      "sourcePages": [
+        215
+      ],
+      "evidence": "independent-1-mordekhai-full.png",
+      "disposition": "Focused second judgment requested; exact occurrence, not inference from another name.",
+      "detail": "Dalet lower two-lobed group is joined to its stem; resembles sheva but requires focused corroboration before adding it."
+    },
+    {
+      "reference": "1:1",
+      "anchor": "מָרְדּכַי",
+      "letterIndex": 4,
+      "mark": "vowel",
+      "sourcePages": [
+        215
+      ],
+      "evidence": "independent-1-mordekhai-full.png",
+      "disposition": "Focused second judgment requested; exact occurrence, not inference from another name.",
+      "detail": "Kaf lower vowel merges with its broad terminal foot. Draft patah is not independently certified; focused review or exact omitted-vowel note required."
+    },
+    {
+      "reference": "1:11",
+      "anchor": "מָרְדּכַי",
+      "letterIndex": 3,
+      "mark": "vowel",
+      "sourcePages": [
+        216
+      ],
+      "evidence": "independent-11-mordekhai-full.png",
+      "disposition": "Focused second judgment requested; exact occurrence, not inference from another name.",
+      "detail": "Dalet lower two-lobed group is joined to its stem; resembles sheva but requires focused corroboration before adding it."
+    },
+    {
+      "reference": "1:11",
+      "anchor": "מָרְדּכַי",
+      "letterIndex": 4,
+      "mark": "vowel",
+      "sourcePages": [
+        216
+      ],
+      "evidence": "independent-11-mordekhai-full.png",
+      "disposition": "Focused second judgment requested; exact occurrence, not inference from another name.",
+      "detail": "Kaf lower vowel merges with its broad terminal foot. Draft patah is not independently certified; focused review or exact omitted-vowel note required."
+    },
+    {
+      "reference": "1:12",
+      "anchor": "מָרְדּכַי",
+      "letterIndex": 3,
+      "mark": "vowel",
+      "sourcePages": [
+        216
+      ],
+      "evidence": "independent-12-mordekhai.png",
+      "disposition": "Focused second judgment requested; exact occurrence, not inference from another name.",
+      "detail": "Dalet lower two-lobed group is joined to its stem; resembles sheva but requires focused corroboration before adding it."
+    },
+    {
+      "reference": "1:12",
+      "anchor": "מָרְדּכַי",
+      "letterIndex": 4,
+      "mark": "vowel",
+      "sourcePages": [
+        216
+      ],
+      "evidence": "independent-12-mordekhai.png",
+      "disposition": "Focused second judgment requested; exact occurrence, not inference from another name.",
+      "detail": "Kaf lower vowel merges with its broad terminal foot. Draft patah is not independently certified; focused review or exact omitted-vowel note required."
+    },
+    {
+      "reference": "1:15",
+      "anchor": "מָרְדּכַי",
+      "letterIndex": 3,
+      "mark": "vowel",
+      "sourcePages": [
+        217
+      ],
+      "evidence": "independent-15-mordekhai.png",
+      "disposition": "Focused second judgment requested; exact occurrence, not inference from another name.",
+      "detail": "Dalet lower two-lobed group is joined to its stem; resembles sheva but requires focused corroboration before adding it."
+    },
+    {
+      "reference": "1:15",
+      "anchor": "מָרְדּכַי",
+      "letterIndex": 4,
+      "mark": "vowel",
+      "sourcePages": [
+        217
+      ],
+      "evidence": "independent-15-mordekhai.png",
+      "disposition": "Focused second judgment requested; exact occurrence, not inference from another name.",
+      "detail": "Kaf lower vowel merges with its broad terminal foot. Draft patah is not independently certified; focused review or exact omitted-vowel note required."
+    },
+    {
+      "reference": "1:16",
+      "anchor": "מָרְדּכַי",
+      "letterIndex": 3,
+      "mark": "vowel",
+      "sourcePages": [
+        217
+      ],
+      "evidence": "independent-16-mordekhai.png",
+      "disposition": "Focused second judgment requested; exact occurrence, not inference from another name.",
+      "detail": "Dalet lower two-lobed group is joined to its stem; resembles sheva but requires focused corroboration before adding it."
+    },
+    {
+      "reference": "1:16",
+      "anchor": "מָרְדּכַי",
+      "letterIndex": 4,
+      "mark": "vowel",
+      "sourcePages": [
+        217
+      ],
+      "evidence": "independent-16-mordekhai.png",
+      "disposition": "Focused second judgment requested; exact occurrence, not inference from another name.",
+      "detail": "Kaf lower vowel merges with its broad terminal foot. Draft patah is not independently certified; focused review or exact omitted-vowel note required."
+    },
+    {
+      "reference": "1:17",
+      "anchor": "מָרְדּכַי",
+      "letterIndex": 3,
+      "mark": "vowel",
+      "sourcePages": [
+        217
+      ],
+      "evidence": "independent-17-mordekhai.png",
+      "disposition": "Focused second judgment requested; exact occurrence, not inference from another name.",
+      "detail": "Dalet lower two-lobed group is joined to its stem; resembles sheva but requires focused corroboration before adding it."
+    },
+    {
+      "reference": "1:17",
+      "anchor": "מָרְדּכַי",
+      "letterIndex": 4,
+      "mark": "vowel",
+      "sourcePages": [
+        217
+      ],
+      "evidence": "independent-17-mordekhai.png",
+      "disposition": "Focused second judgment requested; exact occurrence, not inference from another name.",
+      "detail": "Kaf lower vowel merges with its broad terminal foot. Draft patah is not independently certified; focused review or exact omitted-vowel note required."
+    },
+    {
+      "reference": "1:14",
+      "anchor": "ויוֹדוּ",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        216
+      ],
+      "evidence": "independent-14-vayodu.png",
+      "disposition": "Propose exact unreadable-point note; omit only this mark.",
+      "detail": "Initial vav lower bar is fused to the stem; draft omits vowel."
+    },
+    {
+      "reference": "1:14",
+      "anchor": "ויוֹדוּ",
+      "letterIndex": 2,
+      "mark": "dagesh",
+      "sourcePages": [
+        216
+      ],
+      "evidence": "independent-14-vayodu.png",
+      "disposition": "Propose exact unreadable-point note; omit only this mark.",
+      "detail": "Yod interior is a solid small glyph; no independent dot can be certified."
+    },
+    {
+      "reference": "1:14",
+      "anchor": "ויוּבְלוּ",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        216
+      ],
+      "evidence": "independent-14-vayuvlu.png",
+      "disposition": "Propose exact unreadable-point note; omit only this mark.",
+      "detail": "Initial vav lower bar is fused to the stem; draft omits vowel."
+    },
+    {
+      "reference": "1:14",
+      "anchor": "ויוּבְלוּ",
+      "letterIndex": 2,
+      "mark": "dagesh",
+      "sourcePages": [
+        216
+      ],
+      "evidence": "independent-14-vayuvlu.png",
+      "disposition": "Propose exact unreadable-point note; omit only this mark.",
+      "detail": "Yod interior is a solid small glyph; no independent dot can be certified."
+    }
+  ],
+  "confirmedRetentions": [
+    {
+      "reference": "1:3",
+      "text": "מִירוּשָׁלִַם",
+      "evidence": "word-birushalem.png",
+      "finding": "Under lamed a flat horizontal bar and a separate left dot are visible; no descending central qamats stem. Retain patah plus hiriq."
+    },
+    {
+      "references": [
+        "1:9",
+        "1:11"
+      ],
+      "text": "יְיָ",
+      "evidence": [
+        "independent-9-name-final.png",
+        "independent-11-name.png"
+      ],
+      "finding": "Right/first yod has vertical sheva group; left/second yod has qamats. Printed double-yod abbreviation retained."
+    },
+    {
+      "reference": "1:4",
+      "finding": "Repeated ובהלה appears twice in print and is retained."
+    },
+    {
+      "reference": "1:11",
+      "finding": "Printed בחזתו is deficient; retain source consonants."
+    },
+    {
+      "references": [
+        "1:14",
+        "1:17"
+      ],
+      "finding": "Brackets and supplied text are actually printed; retain."
+    }
+  ],
+  "inputUnits": [
+    {
+      "verse": 1,
+      "text": "בַּשָּׁנָה הַשֵּׁנִית למְלֹךְ הַמֶּלֶךְ הַגָּדוֹל אֲחַשְׁוֵרוֹשׁ בְּאֶחָד לְנִיסָן חָזָה חֲלוֹם מָרְדכַי בֶּן־יָאִיר בֶּן־שִׁמְעִי בֶּן־קִישׁ לְמַטֵּה בִנְיָמִן׃",
+      "sourcePages": [
+        215
+      ],
+      "textSHA256": "03b3cbb1c2d75e6e956931714f10151a0eeea3efac6d3d81cf0c0c00b3f5d190"
+    },
+    {
+      "verse": 2,
+      "text": "אִישׁ יְהוּדִי אֲשֶׁר גָּר בְּשׁוּשָׁן הַבִּירָה אִישׁ גָּדוֹל מְשָׁרֵת בַּחֲצַר הַמֶּלֶךְ׃",
+      "sourcePages": [
+        215
+      ],
+      "textSHA256": "2d33f7556a288465b280ac3fb7cc5841b05f7cfb231086c7361f0c6761e317c7"
+    },
+    {
+      "verse": 3,
+      "text": "וְהוּא הָיָה מִן־הַגּוֹלָה אֲשֶׁר הֶגְלָה נְבוּכַדְנֶאצַּר מֶלֶךְ בָּבֶל מִירוּשָׁלִַם עִם־יְכָנְיָה מֶלֶךְ יְהוּדָה׃",
+      "sourcePages": [
+        215
+      ],
+      "textSHA256": "c27e48306da78340c6b1cfebcba7b162e8d02192e628c2ef50c862533daabb55"
+    },
+    {
+      "verse": 4,
+      "text": "בַּחֲלוֹמוֹ וְהִנֵּה קוֹלוֹת וּבֶהָלָה רְעָמִים וְרַעַשׁ וּבֶהָלָה בָּאָרֶץ׃",
+      "sourcePages": [
+        215
+      ],
+      "textSHA256": "13aadfe5acc774a20365f2f535439a4a695fa9c85eff31def38a35ad04c47c49"
+    },
+    {
+      "verse": 5,
+      "text": "וְהִנֵּה שְׁנֵי תַנִּינִים גְּדוֹלִים יָצָאוּ וּשְׁנֵיהֶם עֲרוּכֵי מִלְחָמָה וַיִּגְדַּל קוֹלָם׃",
+      "sourcePages": [
+        215
+      ],
+      "textSHA256": "ba854af5eacd82668ec1011022601d16b8935ac2aa853bfed813ea72045a1e57"
+    },
+    {
+      "verse": 6,
+      "text": "וּלְקוֹלָם נָכוֹנוּ כָּל־הָעַמִּים לַקְּרָב לְמַעַן הִלָּחֵם בְּגוֹי צַדִּיק׃",
+      "sourcePages": [
+        215
+      ],
+      "textSHA256": "2c292eb80aedb0cf6eb1f367a18ec5019a74b4f94cd59ac4c03b6d4194aff70b"
+    },
+    {
+      "verse": 7,
+      "text": "וְהִנֵּה יוֹם חֹשֶׁךְ וַאֲפֵלָה מְצוּקָה וַאֲנָחָה צָרָה וּמְבוּכָה גְדוֹלָה עַל־הָאָרֶץ׃",
+      "sourcePages": [
+        215
+      ],
+      "textSHA256": "3aab6b34e84f8a4ead5b598a26ea17d4fe32e98dc603a2e6ccb7fdd8a4c00045"
+    },
+    {
+      "verse": 8,
+      "text": "וְהָעָם הַצַּדִּיק נִבְעַת כֻּלּוֹ בְּירְאוֹ מִפְּנֵי הָרָעָה וַיִּתְעַתְּדוּ לָמָוֶת׃",
+      "sourcePages": [
+        215
+      ],
+      "textSHA256": "bff976e2b6f51915d617933e916f457ad84ef84f165d0fe6e051f4506b007009"
+    },
+    {
+      "verse": 9,
+      "text": "וַיִּזְעֲקוּ אֶל־יְיָ וּבְזַעֲקָם וְהִנֵּה כְּמוֹ נָהָר גָּדוֹל וּמַיִם רַבִּים יוֹצְאִים מִמַּעְיָן קָטָן׃",
+      "sourcePages": [
+        215,
+        216
+      ],
+      "textSHA256": "7b1e0f42e00eb936b50e456f12131dc6abc2804e45030234ae2dd8bc87707419"
+    },
+    {
+      "verse": 10,
+      "text": "וְהַשֶּׁמֶשׁ זָרְחָה וַיְהִי אוֹר וְהַשְּׁפָלִים הִתְרוֹמָמוּ וַיִּבְלְעוּ אֶת־הַנִּכְבָּדִים׃",
+      "sourcePages": [
+        216
+      ],
+      "textSHA256": "2b4fb8d444dec03359c187c394fc3b54bf237a98b8daf492ebf3cf35858be2b4"
+    },
+    {
+      "verse": 11,
+      "text": "וַיִּיקַץ מָרְדכַי בַּחֲזֹתוֹ אֶת־הַחֲלוֹם הַזֶּה וְאֶת אֲשֶׁר־יָעַץ יְיָ לַעֲשׂוֹת וַיִּשְׁמֹר אֶת־הַדָּבָר בְּלִבּוֹ וַיְבַקֵּשׁ בְּכָל־כֹּחוֹ עַד־הַלָּיְלָה לָדַעַת אֶת־הַחֲלוֹם׃",
+      "sourcePages": [
+        216
+      ],
+      "textSHA256": "f2909c33a56a29928abde769cca18514f6162850fd18b8af2c285dd8ebc2b5c3"
+    },
+    {
+      "verse": 12,
+      "text": "וּמָרְדכַי יָשֵׁן בַּחֲצַר הַמֶּלֶךְ הוּא וּבִגְתָן וְתֶרֶשׁ שְׁנֵי סָרִיסֵי הַמֶּלֶךְ שֹׁמְרֵי הֶחָצֵר׃",
+      "sourcePages": [
+        216
+      ],
+      "textSHA256": "96b586c41f4a37729f0317fa34aa8a5f3a3ebf689b2ab436983502f2c2fba37e"
+    },
+    {
+      "verse": 13,
+      "text": "וַיִּשְׁמַע אֶת־מוֹעֲצוֹתֵיהֶם וַיָּבֶן למְזִמּוֹתֵיהֶם וַיֵּדַע כִּי מְבַקְּשִׁים הֵם לִשְׁלֹחַ יָד בַּמֶּלֶךְ אֲחַשְׁוֵרוֹשׁ וַיַּגֵּד לַמֶּלֶךְ עַל־אֵלֶּה׃",
+      "sourcePages": [
+        216
+      ],
+      "textSHA256": "1f2c49b6272afd98090e961068bff39ea1d821c6c48a6f804d49b841af784e28"
+    },
+    {
+      "verse": 14,
+      "text": "וַיַּחְקֹר הַמֶּלֶךְ אֶת־שְׁנֵי הַסָּרִיסִים ויוֹדוּ [עַל־פִּשְׁעָם] ויוּבְלוּ [לְמָוֶת]׃",
+      "sourcePages": [
+        216
+      ],
+      "textSHA256": "20f5a7fb074ece20ee2185293882c4dd3db6e3270de7d4479951492c897cd4f1"
+    },
+    {
+      "verse": 15,
+      "text": "וַיִּכְתֹּב הַמֶּלֶךְ אֶת־הַדְּבָרִים הָאֵלֶּה לְזִכָּרוֹן וְגַם־מָרְדכַי כָּתַב עַל־אוֹדוֹת הַדְּבָרִים הָאֵלֶּה׃",
+      "sourcePages": [
+        217
+      ],
+      "textSHA256": "b7a9fab6d6f9cd19a25d6f400d37f2e7a65dd146baa94e68f6906086cd05940d"
+    },
+    {
+      "verse": 16,
+      "text": "וַיִּפְקֹד הַמֶּלֶךְ אֶת־מָרְדכַי לְשָׁרֵת בֶּחָצֵר וַיִּתֶּן־לוֹ בֵּית בַּעֲבוּר אֵלֶּה׃",
+      "sourcePages": [
+        217
+      ],
+      "textSHA256": "84833699f09d53ede9aa744fecea1ec38f314b510b3cc04e3614c45722c5db55"
+    },
+    {
+      "verse": 17,
+      "text": "וְהָמָן בֶּן־הַמְּדָתָא הָאֲגָגִי נִכְבָּד בְּעֵינֵי הַמֶּלֶךְ וַיְבַקֵּשׁ לְהָרַע לְמָרְדכַי וּלְעַמּוֹ בִּגְלַל שְׁנֵי סָרִיסֵי הַמֶּלֶךְ [אֲשֶׁר הוּמָתוּ]׃",
+      "sourcePages": [
+        217
+      ],
+      "textSHA256": "2c834130bd4d7e1c780e6387e4e485b617a788b1baa63e2993317e890191150c"
+    }
+  ],
+  "images": [
+    {
+      "path": "/private/tmp/prosary-esg/215-lower.png",
+      "sha256": "a0accfed8360a3699d815a4533f67bceafec6df96169eb4a8550b4aa3dfadab7"
+    },
+    {
+      "path": "/private/tmp/prosary-esg/215-upper.png",
+      "sha256": "95def524f2fefa69aaddd751f2aac11b46ff7bf22ccc0e0d18fb21d68d8c8f54"
+    },
+    {
+      "path": "/private/tmp/prosary-esg/216-lower.png",
+      "sha256": "06a72e1d5df38d73b83da69159c1472aaa9704f3f80acaf94157a720f690ce6e"
+    },
+    {
+      "path": "/private/tmp/prosary-esg/216-upper.png",
+      "sha256": "079be02a6d3682ef581dba24a47ed3473afa88d09e161d11d88c8eaf23f4b33d"
+    },
+    {
+      "path": "/private/tmp/prosary-esg/217-opening.png",
+      "sha256": "4b871d4f9d039c3a83820a97e2b04c77aa7a85c175ed883d648f9ba76591fdb7"
+    },
+    {
+      "path": "/private/tmp/prosary-esg/independent-1-mordekhai-full.png",
+      "sha256": "1348d1c649b85db49ecde0ca30c02f573e33de25d29765c81f952cf764c3deaf"
+    },
+    {
+      "path": "/private/tmp/prosary-esg/independent-11-mordekhai-full.png",
+      "sha256": "b599c6179ff4d37cb7165170130ae9717690a7ae0bda0e1a46e22e568571bf50"
+    },
+    {
+      "path": "/private/tmp/prosary-esg/independent-11-name.png",
+      "sha256": "156402f6b401a977eaf7b2b598fe05097b9133c05ca92a82763bf8fab9384f76"
+    },
+    {
+      "path": "/private/tmp/prosary-esg/independent-12-mordekhai.png",
+      "sha256": "deb5e6aad5b04a520a96d8552a87fbc6512f9d7aedf8dbbad5633fe6ad5593db"
+    },
+    {
+      "path": "/private/tmp/prosary-esg/independent-14-vayodu.png",
+      "sha256": "1e967b2d6b10b50fbfd76afd1f497c9b98d6d7b5ad10eb490bb3d673d9351099"
+    },
+    {
+      "path": "/private/tmp/prosary-esg/independent-14-vayuvlu.png",
+      "sha256": "16075266acb82df0927af9490dda177bcadb325be3317063614698b35cbbca9c"
+    },
+    {
+      "path": "/private/tmp/prosary-esg/independent-15-mordekhai.png",
+      "sha256": "6828534abb1bb2578a01a74f2534d3b1f1299fac2d482f012126cb26106c64e7"
+    },
+    {
+      "path": "/private/tmp/prosary-esg/independent-16-mordekhai.png",
+      "sha256": "675996d27d122c7805d9bf491c4ec7d88b57ee355a82ceffe1e94eb00be2d48b"
+    },
+    {
+      "path": "/private/tmp/prosary-esg/independent-17-mordekhai.png",
+      "sha256": "119c0abe077e4e926280c3930438defa016c01d8dba02e13261f710f161fd43c"
+    },
+    {
+      "path": "/private/tmp/prosary-esg/independent-8-fear.png",
+      "sha256": "063e1b13c12aa59529bcf862fba776b2a902827e8c823b63f38dc28f50b0f13b"
+    },
+    {
+      "path": "/private/tmp/prosary-esg/independent-9-name-final.png",
+      "sha256": "05312782abdc3206e7ee59f1531c00356208677a52ee1e13f0d43afba6a334f6"
+    },
+    {
+      "path": "/private/tmp/prosary-esg/word-birushalem.png",
+      "sha256": "fdd10185d88d0fd482a74be485996f8b6145c171eabd442576c9fa1797026cc5"
+    },
+    {
+      "path": "/private/tmp/prosary-esg/word-limlokh.png",
+      "sha256": "5c9facf3f4910c505b1541c2c223165169e126b478f32f85ac35200d3411c060"
+    },
+    {
+      "path": "/private/tmp/prosary-esg/word-plots.png",
+      "sha256": "f6257a52f7868ac2289efb40f9f5d471c0662b914cecfff805504c8cc8da6f2b"
+    }
+  ],
+  "newReviewedPages": [],
+  "releaseApproved": false,
+  "integration": {
+    "status": "Clear corrections integrated after independent comparison and root focused concurrence; local mark queries remain unapproved.",
+    "date": "2026-10-02",
+    "newReviewedPages": [],
+    "rootFocusedEvidence": "Root separately viewed2:1,2:6,3:1,3:8 crops and corroborated exact proposed letter/point readings; authorized clear chapter1 corrections. This is scoped concurrence, not whole-book approval."
+  },
+  "canonicalAfterSHA256": "3107e4185829562c33a7339135ec8ea58d867341ad5021ed4c89d8d36e150d4d",
+  "validationAfterIntegration": {
+    "book": "ESG",
+    "status": "draft",
+    "chapters": 7,
+    "units": 101,
+    "sourcePages": 11,
+    "reviewedPages": 0
+  }
+}

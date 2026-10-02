@@ -17,7 +17,7 @@ import kotlinx.serialization.json.encodeToJsonElement
 import kotlinx.serialization.json.jsonObject
 
 private fun supportedSourceNoteKindAndMark(kind: String, mark: String): Boolean = when (kind) {
-    "unreadablePoint" -> mark == "vowel" || mark == "dagesh"
+    "unreadablePoint" -> mark == "vowel" || mark == "dagesh" || mark == "shuruq"
     "restoredLetter" -> mark == "consonant"
     else -> false
 }
@@ -55,6 +55,7 @@ data class ReadingSourceNote(val id: String, val kind: String, val anchor: Strin
         when (mark) {
             "vowel" -> require(marks.filter(::isVowel).map { it.toString() } == retainedVowels.orEmpty())
             "dagesh" -> require('\u05bc' !in marks)
+            "shuruq" -> require(text[anchorOffset + position] == 'ו' && '\u05bc' !in marks)
             // The restoration concerns the letter body. Its readable points stay intact.
             "consonant" -> Unit
             else -> throw IllegalArgumentException("Unknown source mark")
@@ -88,7 +89,7 @@ object ReadingSourceNoteSerializer : KSerializer<ReadingSourceNote> {
         }
         val fields = input.json.decodeFromJsonElement<SourceNoteFields>(value)
         require(supportedSourceNoteKindAndMark(fields.kind, fields.mark))
-        require(fields.kind != "restoredLetter" || "retainedVowels" !in value.jsonObject)
+        require(fields.mark == "vowel" || "retainedVowels" !in value.jsonObject)
         return with(fields) { ReadingSourceNote(id, kind, anchor, occurrence, letterIndex, mark, sourcePages, sourceURL, retainedVowels) }
     }
     override fun serialize(encoder: Encoder, value: ReadingSourceNote) {
@@ -105,6 +106,7 @@ internal fun ReadingVerse.validateSourceNotes(allowed: Boolean = true, paired: B
     val positions = mutableSetOf<Pair<Int, String>>()
     notes.forEach { note ->
         val position = note.validate(text)
-        require(ids.add(note.id) && positions.add(position to note.mark))
+        val positionMark = if (note.mark == "shuruq") "dagesh" else note.mark
+        require(ids.add(note.id) && positions.add(position to positionMark))
     }
 }
