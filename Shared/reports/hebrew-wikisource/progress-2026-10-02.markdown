@@ -22,24 +22,24 @@ The count treats the Esther additions and the three Daniel additions as separate
 
 | Work | Saved draft | Finished comparison | Remaining work |
 | --- | --- | --- | --- |
-| Wisdom | Chapters 1–16 of 19; printed vowel points retained where readable | Chapters 1–5 and 7–15 have completed separate author and independent comparisons. Chapter 6 is compared except for the faded opening word of 6:2. Chapter 16 has a full author comparison. | Independently review chapter 16, including its uncertain opening word in 23–24; transcribe and review chapters 17–19; resolve the faded consonants in 6:2. |
-| 1 Maccabees | A full text scaffold exists, with pointed print comparison through 14:6 | Chapters 1–13 and 14:1–6; 72 source pages reviewed | Complete the pointed transcription and comparison from 14:7 through chapter 16. The unreviewed scaffold is not finished text. |
-| 2 Maccabees | Chapters 1–12 of 15 | Chapters 1–10 reconciled; chapter 11 has a full author proof; chapter 12's separate author proof is in progress. | Independently review chapter 11; complete both reviews of chapter 12; transcribe and review chapters 13–15. |
+| Wisdom | Chapters 1–17 of 19; printed vowel points retained where readable | Chapters 1–5 and 7–15 have completed separate author and independent comparisons. Chapters 6 and 16 are compared except for one damaged word in each. Chapter 17 has a full author comparison with explicit point queries awaiting independent review. | Independently review chapter 17; transcribe and review chapters 18–19; resolve the damaged consonants in 6:2 and 16:23. |
+| 1 Maccabees | A full text scaffold exists, with pointed print comparison through 14:47 | Chapters 1–13 and 14:1–47; 75 source pages reviewed | Complete the pointed transcription and comparison from 14:48 through chapter 16. The unreviewed scaffold is not finished text. |
+| 2 Maccabees | Chapters 1–13 of 15 | Chapters 1–12 reconciled; chapter 13 has a complete separate author proof. | Independently review chapter 13; transcribe and review chapters 14–15. |
 
 Wisdom and 2 Maccabees still require substantial transcription. First Maccabees has a full scaffold, but its remaining letters, points, and boundaries still need the same detailed source comparison as the earlier chapters.
 
 ## Recent progress
 
-- Wisdom 13–15 completed independent review and reconciliation. Chapter 16 gained a full first draft and separate author comparison of all 28 source units, covering 29 printed verse labels.
-- First Maccabees advanced from source page B159 through B168, completing chapters 12–13 and the opening of chapter 14.
-- Second Maccabees 6–10 completed reconciliation. Chapter 11 has a full author proof, and chapter 12 now has a complete first draft.
+- Wisdom 13–15 completed independent review and reconciliation. Chapter 16 completed both full comparisons, with three visible corrections and eleven exact vowel notes integrated; its damaged consonant remains unresolved. Chapter 17 gained a complete first draft and separate author comparison.
+- First Maccabees advanced from source page B159 through B171, completing chapters 12–13 and chapter 14 through verse 47.
+- Second Maccabees 6–12 completed reconciliation. Chapter 13 now has a complete first draft and separate author proof.
 - Corrections preserve the printing's actual spelling, point placement, brackets, combined verse labels, and text crossing page boundaries.
 
-Unreadable isolated vowel marks receive exact source notes. The notes identify the affected letter; readable neighboring marks remain. The approved restoration of ל in Wisdom 1:16 remains explicitly disclosed. A user decision is pending on whether to restore the candidate האזינו in Wisdom 6:2 with an editorial note; that reconstruction has not been applied or approved.
+Unreadable isolated vowel marks receive exact source notes. The notes identify the affected letter; readable neighboring marks remain. The approved restoration of ל in Wisdom 1:16 remains explicitly disclosed. A user decision is pending on whether to restore the candidate האזינו in Wisdom 6:2 with an editorial note; that reconstruction has not been applied or approved. In Wisdom 16:23, a tiny surviving stroke could be a yod or a damaged vav. The candidate remains confined to the unapproved draft; no consonant has been restored there.
 
 ## Validation and release
 
-Checkpoint `79730fec60a6ab35dc40dffd4f0b9d05db6d56f7` passed both [CI](https://github.com/dkaluta/Prosary/actions/runs/36997153169) and [Terminal CI](https://github.com/dkaluta/Prosary/actions/runs/36997153195). Those results were checked live for this report. Wisdom 14–15's reconciliations and chapter 16's draft and author comparison, First Maccabees B164–168, and Second Maccabees 9–10's reconciliations, 11's author proof, and 12's first draft were saved after that checkpoint and are not covered by those particular CI results. A new checkpoint is being prepared for them.
+Pushed checkpoint `51e2a11513fb91253d98941a0ba800f6aba72883` passed both [CI](https://github.com/dkaluta/Prosary/actions/runs/36999957289) and [Terminal CI](https://github.com/dkaluta/Prosary/actions/runs/36999957238). Those results were checked live for this report. The checkpoint includes Wisdom 14–15's reconciliations and chapter 16's draft and author comparison, First Maccabees B164–168, and Second Maccabees 9–10's reconciliations, 11's author proof, and 12's first draft. The later advances listed above and this report update are being saved in a new source checkpoint; they are not covered by those earlier CI results.
 
 All 20 source-validation tests were rerun successfully against the current local work. The corpus validator confirms nine complete works, three drafts, and zero production imports, and the whitespace check passes. These checks cover source identities, verse hashes, inventories, exact note anchors, and completion requirements. Automated validation complements the full visual comparisons; it does not replace proofreading the print.
 
