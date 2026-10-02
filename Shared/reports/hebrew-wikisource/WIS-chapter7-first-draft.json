@@ -1,0 +1,670 @@
+{
+  "schemaVersion": 1,
+  "book": "WIS",
+  "chapter": 7,
+  "status": "First visual pointed draft; separate full author and independent comparison pending",
+  "source": {
+    "volume": "A2",
+    "sha256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+    "pages": [
+      157,
+      158,
+      159,
+      160
+    ]
+  },
+  "physicalRowsProvisional": 48,
+  "rowsByPageProvisional": {
+    "157": 7,
+    "158": 17,
+    "159": 16,
+    "160": 8
+  },
+  "method": "Root directly read six native-image body regions and twelve overlapping detailed halves, with focused lossless crops for difficult words. No OCR or alternate translation supplies text. This initial read is not a separate proof or source approval.",
+  "bodyCrops": [
+    {
+      "page": 157,
+      "label": "opening",
+      "nativeBounds": [
+        150,
+        1120,
+        2440,
+        1780
+      ],
+      "file": "/private/tmp/prosary-wis-review/WIS7-157-opening.png",
+      "sha256": "576da83acbaf499fa73e1c7679530ca38da40c20c1e28c06d289b86711f387b5"
+    },
+    {
+      "page": 158,
+      "label": "upper",
+      "nativeBounds": [
+        100,
+        350,
+        2380,
+        1170
+      ],
+      "file": "/private/tmp/prosary-wis-review/WIS7-158-upper.png",
+      "sha256": "09832a61451c36939583000fcc0bf3c2ce23e23ae88b9846d0c425ac1105f0e4"
+    },
+    {
+      "page": 158,
+      "label": "lower",
+      "nativeBounds": [
+        100,
+        1140,
+        2380,
+        1965
+      ],
+      "file": "/private/tmp/prosary-wis-review/WIS7-158-lower.png",
+      "sha256": "6121ca9ecb9ced081d180995ac959c66e016231ee4bed5a56ac52f5fa16bb57d"
+    },
+    {
+      "page": 159,
+      "label": "upper",
+      "nativeBounds": [
+        150,
+        350,
+        2450,
+        1050
+      ],
+      "file": "/private/tmp/prosary-wis-review/WIS7-159-upper.png",
+      "sha256": "d94ea1e6523737bb81979f6c47b1af77235f0180df0e3226b36e91cf08362f20"
+    },
+    {
+      "page": 159,
+      "label": "lower",
+      "nativeBounds": [
+        150,
+        1000,
+        2450,
+        1855
+      ],
+      "file": "/private/tmp/prosary-wis-review/WIS7-159-lower.png",
+      "sha256": "dd0ac2812529a1fdaf18e972697fad881e7493b8331f9c6c20a23eb75b29e8ea"
+    },
+    {
+      "page": 160,
+      "label": "ending",
+      "nativeBounds": [
+        115,
+        350,
+        2390,
+        1110
+      ],
+      "file": "/private/tmp/prosary-wis-review/WIS7-160-ending.png",
+      "sha256": "c1d49a93c23cbe96b7615a4cf8cf19c9d2cbcdb80719eb26faf54408671e2675"
+    }
+  ],
+  "detailCrops": [
+    {
+      "page": 157,
+      "label": "opening",
+      "side": "right",
+      "nativeBounds": [
+        1225,
+        1120,
+        2440,
+        1780
+      ],
+      "file": "/private/tmp/prosary-wis-review/WIS7-157-opening-detail-right.png",
+      "sha256": "978e8bb1406d7aa19165d6c3fd0c46e6f21f32213d77135a40c41e60c443ed38"
+    },
+    {
+      "page": 157,
+      "label": "opening",
+      "side": "left",
+      "nativeBounds": [
+        150,
+        1120,
+        1365,
+        1780
+      ],
+      "file": "/private/tmp/prosary-wis-review/WIS7-157-opening-detail-left.png",
+      "sha256": "84579be240ec5cf77415837791a5038565bfd211dd1f99020b09a04be2e5293f"
+    },
+    {
+      "page": 158,
+      "label": "upper",
+      "side": "right",
+      "nativeBounds": [
+        1170,
+        350,
+        2380,
+        1170
+      ],
+      "file": "/private/tmp/prosary-wis-review/WIS7-158-upper-detail-right.png",
+      "sha256": "75d8c95bc584618fbbfacb2568690b812d3826a240693187790ded4ff30792ef"
+    },
+    {
+      "page": 158,
+      "label": "upper",
+      "side": "left",
+      "nativeBounds": [
+        100,
+        350,
+        1310,
+        1170
+      ],
+      "file": "/private/tmp/prosary-wis-review/WIS7-158-upper-detail-left.png",
+      "sha256": "1962a58c14ac9ca3955a1b4682228add2cb1bd3760199f6320b99822fc4b0e71"
+    },
+    {
+      "page": 158,
+      "label": "lower",
+      "side": "right",
+      "nativeBounds": [
+        1170,
+        1140,
+        2380,
+        1965
+      ],
+      "file": "/private/tmp/prosary-wis-review/WIS7-158-lower-detail-right.png",
+      "sha256": "7b80c81e3476cb5f4cb5893143a3f088bef560b9d1f58c1fde076587922bc377"
+    },
+    {
+      "page": 158,
+      "label": "lower",
+      "side": "left",
+      "nativeBounds": [
+        100,
+        1140,
+        1310,
+        1965
+      ],
+      "file": "/private/tmp/prosary-wis-review/WIS7-158-lower-detail-left.png",
+      "sha256": "3e5d52fad0c4d807ba5e5a5f7d9723d8a9c561b7d46f76ccfc73c94c3b00c269"
+    },
+    {
+      "page": 159,
+      "label": "upper",
+      "side": "right",
+      "nativeBounds": [
+        1230,
+        350,
+        2450,
+        1050
+      ],
+      "file": "/private/tmp/prosary-wis-review/WIS7-159-upper-detail-right.png",
+      "sha256": "a5c9edef4c110ad87a0d703f9fc993cf969e8d903e5605305e5a6fd8cfc8e4be"
+    },
+    {
+      "page": 159,
+      "label": "upper",
+      "side": "left",
+      "nativeBounds": [
+        150,
+        350,
+        1370,
+        1050
+      ],
+      "file": "/private/tmp/prosary-wis-review/WIS7-159-upper-detail-left.png",
+      "sha256": "863b90c86d0a8af264fb23f2d6dda031d5d6cc41247465f6ab6eff86bf067b7f"
+    },
+    {
+      "page": 159,
+      "label": "lower",
+      "side": "right",
+      "nativeBounds": [
+        1230,
+        1000,
+        2450,
+        1855
+      ],
+      "file": "/private/tmp/prosary-wis-review/WIS7-159-lower-detail-right.png",
+      "sha256": "ad231a36cc3c2c4f297b6a61c5966f3848546a20deb4de25ef5fbe450f1c58ae"
+    },
+    {
+      "page": 159,
+      "label": "lower",
+      "side": "left",
+      "nativeBounds": [
+        150,
+        1000,
+        1370,
+        1855
+      ],
+      "file": "/private/tmp/prosary-wis-review/WIS7-159-lower-detail-left.png",
+      "sha256": "ee28d4344f525895c64736e5333e67718755f4cc3efbf0d51249d5d2a9ed0ef2"
+    },
+    {
+      "page": 160,
+      "label": "ending",
+      "side": "right",
+      "nativeBounds": [
+        1182,
+        350,
+        2390,
+        1110
+      ],
+      "file": "/private/tmp/prosary-wis-review/WIS7-160-ending-detail-right.png",
+      "sha256": "bcf1493a5332035d943a556c169e4f23589a68bdafed14bea2731dbdf6f0e0c3"
+    },
+    {
+      "page": 160,
+      "label": "ending",
+      "side": "left",
+      "nativeBounds": [
+        115,
+        350,
+        1322,
+        1110
+      ],
+      "file": "/private/tmp/prosary-wis-review/WIS7-160-ending-detail-left.png",
+      "sha256": "60aee2676037728b211130690bb85568640ca296c4e2846addf360489816132c"
+    }
+  ],
+  "focusedCrops": [
+    {
+      "page": 157,
+      "label": "v1",
+      "nativeBounds": [
+        150,
+        1100,
+        1450,
+        1250
+      ],
+      "scale": 2,
+      "file": "/private/tmp/prosary-wis-review/WIS7-root-query-v1.png",
+      "sha256": "b41b6eb52d87e86b5c12d13117919baef6fba7454706330712587b189021b99f"
+    },
+    {
+      "page": 157,
+      "label": "v2",
+      "nativeBounds": [
+        1330,
+        1290,
+        1840,
+        1400
+      ],
+      "scale": 2,
+      "file": "/private/tmp/prosary-wis-review/WIS7-root-query-v2.png",
+      "sha256": "91cfef841d73e4ec6d0c625a1833d8b1f9c51d97309fd9f805df9104edbe1d28"
+    },
+    {
+      "page": 157,
+      "label": "v3",
+      "nativeBounds": [
+        800,
+        1470,
+        1430,
+        1590
+      ],
+      "scale": 2,
+      "file": "/private/tmp/prosary-wis-review/WIS7-root-query-v3.png",
+      "sha256": "c3de87d65fe75e40f7670ec50811e25a09f7bc57e468821be3c8eac86ec3d05a"
+    },
+    {
+      "page": 158,
+      "label": "v9",
+      "nativeBounds": [
+        650,
+        870,
+        1580,
+        975
+      ],
+      "scale": 2,
+      "file": "/private/tmp/prosary-wis-review/WIS7-root-query-v9.png",
+      "sha256": "1bafd3cbc091d9360cd72fbcf1166a5a50592d041f11f8d3b4d12214a288a4d8"
+    },
+    {
+      "page": 158,
+      "label": "v14",
+      "nativeBounds": [
+        300,
+        1480,
+        1350,
+        1605
+      ],
+      "scale": 2,
+      "file": "/private/tmp/prosary-wis-review/WIS7-root-query-v14.png",
+      "sha256": "8176ad1882dc87d7972421acc526c2063fa267dbf0854332148a2906a62736a8"
+    },
+    {
+      "page": 159,
+      "label": "v21",
+      "nativeBounds": [
+        350,
+        935,
+        1320,
+        1040
+      ],
+      "scale": 2,
+      "file": "/private/tmp/prosary-wis-review/WIS7-root-query-v21.png",
+      "sha256": "9c3bda7bdc290b0abe98f242934f92db244b0c32809c5d3f8d8855f6093e247c"
+    },
+    {
+      "page": 160,
+      "label": "v28",
+      "nativeBounds": [
+        110,
+        765,
+        1320,
+        870
+      ],
+      "scale": 2,
+      "file": "/private/tmp/prosary-wis-review/WIS7-root-query-v28.png",
+      "sha256": "d17023725b750a116b5efec105097aedce16e9b8040b2cec013a35ea64f5d29c"
+    },
+    {
+      "page": 158,
+      "label": "karmen",
+      "nativeBounds": [
+        840,
+        864,
+        1030,
+        975
+      ],
+      "scale": 4,
+      "file": "/private/tmp/prosary-wis-review/WIS7-root-tight-karmen.png",
+      "sha256": "936c12b3736ef5bfeaf65c670608197483560e587bbad3ddb47c017a1ddeebd1"
+    },
+    {
+      "page": 160,
+      "label": "yishlan",
+      "nativeBounds": [
+        650,
+        765,
+        930,
+        860
+      ],
+      "scale": 4,
+      "file": "/private/tmp/prosary-wis-review/WIS7-root-tight-yishlan.png",
+      "sha256": "32f192854e97906521b34bcfd2fb2a34fbea7080368eeaa65a44f71d39fe0c9c"
+    },
+    {
+      "page": 159,
+      "label": "amanit",
+      "nativeBounds": [
+        760,
+        935,
+        1020,
+        1040
+      ],
+      "scale": 4,
+      "file": "/private/tmp/prosary-wis-review/WIS7-root-tight-amanit.png",
+      "sha256": "f153b1c91753ad205ff0980fe5968a16094dd7e572ef4a96ca7adcccca491513"
+    }
+  ],
+  "draft": {
+    "number": 7,
+    "verses": [
+      {
+        "verse": 1,
+        "text": "גַּם אָנֹכִי אֱנוֹשׁ בֶּן־תְּמוּתָה כְּכָל־הָאֲנָשִׁים מִצֶּאֱצָאֵי אָדָם הָרִאשׁוֹן יְצוּר הָאֲדָמָה וּבְרֶחֶם אִמִּי לְבָשָׂר עֻצַּבְתִּי׃",
+        "sourcePages": [
+          157
+        ],
+        "textSHA256": "fecbd3312d83ee2598bfcb319b854faf3c13f1fc8de88486c2d0dca23d6fd833"
+      },
+      {
+        "verse": 2,
+        "text": "בַּעֲשָׂרָה יְרָחִים בְּדָם הָקְפֵּאתִי מִזֶּרַע גֶּבֶר וּמֵחֶמְדַּת הַמִּשְׁכָּב גַּם יַחַד׃",
+        "sourcePages": [
+          157
+        ],
+        "textSHA256": "d914a737595f2886c40656b2475ee27b64b5d4437529fa0ed5d366bbde98c078"
+      },
+      {
+        "verse": 3,
+        "text": "גַּם אָנֹכִי אַחֲרֵי הוּלְדִי שָׁאַפְתִּי רוּחַ מְשֻׁתָּף [לַכֹּל] וְצָנַחְתִּי לָאָרֶץ קְרוּבַת הָרֶגֶשׁ וְאֶת־קוֹלִי נָשָׂאתִי בִּבְכִי לָרִאשׁוֹנָה כְּדֶרֶךְ כָּל־הַיִּלּוֹדִים]׃",
+        "sourcePages": [
+          157
+        ],
+        "textSHA256": "297efc297ca1685a5e224a37eac6a544d082c798dfaf4467ada3a55aae08a216"
+      },
+      {
+        "verse": 4,
+        "text": "בְּחִתּוּלִים גָּדַלְתִּי וּבִדְאָגוֹת׃",
+        "sourcePages": [
+          157
+        ],
+        "textSHA256": "bed3f0cba363df5ad55f42b7d7cc0d868d2d0ca60c0229bc1559a5d4f04c3c6f"
+      },
+      {
+        "verse": 5,
+        "text": "כִּי אֵין כָּל־מֶלֶךְ אֲשֶׁר רֵאשִׁית מוֹצָאוֹ אַחֶרֶת הָיְתָה׃",
+        "sourcePages": [
+          158
+        ],
+        "textSHA256": "a4efe2ddeae2e09c6a00c469eda6f8e48b3152db9354044526861df044580cbd"
+      },
+      {
+        "verse": 6,
+        "text": "לַכֹּל דֶּרֶךְ אַחַת אֶל־הַחַיִּים וְגַם צֵאתָם [מִן־הַחַיִּים] דּוֹמָה׃",
+        "sourcePages": [
+          158
+        ],
+        "textSHA256": "67889558b635f350bbf1f9bc095b166f1e9cdfa01be4273f4e35db7ddfc4adc0"
+      },
+      {
+        "verse": 7,
+        "text": "לָכֵן הִתְפַּלַּלְתִּי וְנִתְּנָה־לִי בִינָה קָרָאתִי וְרוּחַ חָכְמָה בָּאָה עָלָי׃",
+        "sourcePages": [
+          158
+        ],
+        "textSHA256": "1a04073e71dd89b3800175e86e675c198ef34302e9bfb9b0b5e742c425f9b549"
+      },
+      {
+        "verse": 8,
+        "text": "מִשֶּׁבֶט וְכִסֵּא יָקְרָה לִי וְעֹשֶׁר לְאָפֶס חָשַׁבְתִּי לְעֻמָּתָהּ׃",
+        "sourcePages": [
+          158
+        ],
+        "textSHA256": "9a5444ff78653fabb83a590156beef56bc31b11cd450de100c6af2b54d8444a4"
+      },
+      {
+        "verse": 9,
+        "text": "וְלֹא דִמִּיתִי אֵלֶיהָ אֶבֶן יְקָרָה אֲשֶׁר לֹא תְסֻלֶּה כִּי כָל־זָהָב גַּרְגַּר חוֹל לְנֶגְדָּהּ וְכֶסֶף כְּדֹמֶן יֵחָשֵׁב לְנִכְחָהּ׃",
+        "sourcePages": [
+          158
+        ],
+        "textSHA256": "9fb0175913ff9cda2265144bd759361f21d2355af983ca605f33595662441903"
+      },
+      {
+        "verse": 10,
+        "text": "מִבְּרִיאוּת וְיֹפִי אֲהַבְתִּיהָ וּלְנֵרִי אֶבְחָרֶהָ כִּי אוֹרָהּ לֹא יִכְבֶּה׃",
+        "sourcePages": [
+          158
+        ],
+        "textSHA256": "80a03a822719344127cc008a3aab085b3124e108fe8e0ccc2170bde5d44a9672"
+      },
+      {
+        "verse": 11,
+        "text": "אָכֵן כָּל־טוּב בָּא אֵלַי בִּכְנָפֶיהָ וְעֹשֶׁר לֹא יְסֻפַּר בְּיָדֶיהָ׃",
+        "sourcePages": [
+          158
+        ],
+        "textSHA256": "e931671a47317ef9859101935c0cab46809dc45a7cff09dcd4e0c465b577e9e8"
+      },
+      {
+        "verse": 12,
+        "text": "[בְּכָל־אֵלֶּה] שָׂמַחְתִּי כִּי הַחָכְמָה תַּנְחֵם בְּלִי דַעַת כִּי הִיא [גַּם] מְחוֹלַּלְתָּם׃",
+        "sourcePages": [
+          158
+        ],
+        "textSHA256": "743798290fa7c65fb35dc4f914b1bc938b70848f2e73734ce4fc993be5329835"
+      },
+      {
+        "verse": 13,
+        "text": "לְלֹא עָרְמָה לָמַדְתִּי אוֹתָהּ וּבְלִי קִנְאָה אֲלַמְּדֶנָּה אֶת־עָשְׁרָהּ לֹא אַעְלִים׃",
+        "sourcePages": [
+          158
+        ],
+        "textSHA256": "a288d142bda861c10539631281f5bc9b0ab6d305a2cc8dd823741f92d395b78c"
+      },
+      {
+        "verse": 14,
+        "text": "עַד־כִּי הוֹן עָתֵק הִיא לִבְנֵי אָדָם וְכָל־הַמִּתְעַנְּגִים עָלֶיהָ יְדִידוּת יְיָ יַשִּׂיגוּ כִּי בְשִׁי מוּסָר יֵרָצוּ לוֹ׃",
+        "sourcePages": [
+          158
+        ],
+        "textSHA256": "c7d491ab6aba8673c7813973faa5c961698b22544844aa1911af8cea65ddcb69"
+      },
+      {
+        "verse": 15,
+        "text": "וְלִי יִתֵּן יְיָ לְדַבֵּר כְּהָגוּת לִבִּי וּלְהָבִין כְּיָאוּת אֶת אֲשֶׁר חָנַנִי בוֹ כִּי הוּא גַם מַנְהִיג הַחָכְמָה וְגַם מַדְרִיךְ הַחֲכָמִים׃",
+        "sourcePages": [
+          158
+        ],
+        "textSHA256": "07ac4b458eca5cd7b744fbbf8dc09eed67fb988f96c5edf0d65f519ea58d1dd7"
+      },
+      {
+        "verse": 16,
+        "text": "אֲשֶׁר־בָּיָדוֹ גַם־אֲנַחְנוּ וְגַם דְּבָרֵינוּ וְכָל־תְּבוּנָה וְדַעַת כָּל־מְלָאכָה׃",
+        "sourcePages": [
+          158
+        ],
+        "textSHA256": "35d1f9fbdd1c50390e0b10736d769d445785a81b921be91b47d5caa5385fe09d"
+      },
+      {
+        "verse": 17,
+        "text": "כִּי הוּא נָתַן־לִי הַכָּרָה נְכוֹנָה שֶׁל־הַמְּצוּאִים לָדַעַת תְּכוּנַת תֵּבֵל וְכֹחַ הַיְסוֹדוֹת׃",
+        "sourcePages": [
+          159
+        ],
+        "textSHA256": "45baceed9533571a47154a8fee37cd41c19887eab6dde6594a5362239ed599fc"
+      },
+      {
+        "verse": 18,
+        "text": "רֵאשִׁית הָעִתִּים אַחֲרִיתָן וּמַחֲצִיתָן תְּנוּעוֹת [הַשֶּׁמֶשׁ] לַחֲלִיפוֹתֵיהֶן וּתְמוּרוֹת הַזְּמַנִּים׃",
+        "sourcePages": [
+          159
+        ],
+        "textSHA256": "ea37487a0669efeb019ae64756df88a9eb3f16a4930146d9093cd407591738ad"
+      },
+      {
+        "verse": 19,
+        "text": "מַחֲזוֹר הַשָּׁנִים וּמִשְׁטַר הַכּוֹכָבִים׃",
+        "sourcePages": [
+          159
+        ],
+        "textSHA256": "f80d4a12332464a309b4219daee0e7a486280998f352e18bc4e02a0a18844c87"
+      },
+      {
+        "verse": 20,
+        "text": "תְּכוּנוֹת נֶפֶשׁ חַיָּה וַחֲמַת חַיוֹת פֶּרֶא כֹּחַ הָרוּחוֹת וְשִׂיחוֹת אֲנָשִׁים הַצְּמָחִים לְמִינֵיהֶם וּסְגֻלּוֹת הַשָּׁרָשִׁים׃",
+        "sourcePages": [
+          159
+        ],
+        "textSHA256": "8c0adc32a7fb95e06401ab878faed660e39d8bd8c7d42ab243ce6f4b7092ad67"
+      },
+      {
+        "verse": 21,
+        "text": "הַנִּסְתָּרוֹת וְהַנִּגְלוֹת יָדָעְתִּי כִּי הַחָכְמָה אָמָּנִית הַכֹּל לִמְּדָתְנִי׃",
+        "sourcePages": [
+          159
+        ],
+        "textSHA256": "86ae149a5676ae5089c66b9ed3315ba9ec98d420aaac7e41b8e97636d44627be"
+      },
+      {
+        "verse": 22,
+        "text": "אֲשֶׁר־בָּהּ רוּחַ מַשְׂכִּיל קָדוֹשׁ יָחִיד בְּמִינוֹ מְרֻבֶּה חֲלָקִים עָדִין קַל הַתְּנוּעָה זַךְ טָהוֹר בָּהִיר שָׁלֵם דּוֹרֵשׁ טוֹב מַעֲמִיק לִרְאוֹת אַמִּיץ פּוֹעֵל חֶסֶד׃",
+        "sourcePages": [
+          159
+        ],
+        "textSHA256": "c1a21d56f0ffe931e0e294c4381951f2852b939873d2eaca316615c24b96104d"
+      },
+      {
+        "verse": 23,
+        "text": "אוֹהֵב אָדָם אֵיתָן תָּמִים חָפְשִׁי מִדְּאָגָה כֹּל יָכוֹל צוֹפֶה בַכֹּל חוֹדֵר לְכָל־הָרוּחוֹת הַמַּשְׂכִּילִים הַטְּהוֹרִים הָעֲדִינִים׃",
+        "sourcePages": [
+          159
+        ],
+        "textSHA256": "43f715e41db98c4b80555b2796a38627de4282dd98960f8087952f42b9e30a3a"
+      },
+      {
+        "verse": 24,
+        "text": "כִּי הַחָכְמָה מְמַהֶרֶת לְהִתְנוֹעֵעַ מִכָּל־תְּנוּעָה עוֹבֶרֶת וְחוֹדֶרֶת לַכֹּל בְּטָהֳרָתָהּ׃",
+        "sourcePages": [
+          159
+        ],
+        "textSHA256": "ccd3a59c19286be577f2351f2d0aad3aeb268010be8766bc28ed3d16d0eb77ef"
+      },
+      {
+        "verse": 25,
+        "text": "כִּי הִיא נְשִׁימָה מִגְּבוּרַת אֱלֹהִים שֶׁפַע זַךְ מִכְּבוֹדוֹ הַמּוֹשֵׁל בַּכֹּל וְלָכֵן כָּל־טֻמְאָה לֹא תִגַּע בָּהּ׃",
+        "sourcePages": [
+          159
+        ],
+        "textSHA256": "c2a4f109509672c3b5d84caf0500cf3891c5cdc185f4db8ac57ad09917fb2545"
+      },
+      {
+        "verse": 26,
+        "text": "כִּי הִיא נֹגַהּ אוֹר עוֹלָם וּרְאִי טָהוֹר לִפְעֻלַּת אֱלֹהִים וּדְמוּת טוּבוֹ׃",
+        "sourcePages": [
+          160
+        ],
+        "textSHA256": "473655c346380c62f438f0f14e4b34f3adb6c67823a8274999c5fd7183de0d20"
+      },
+      {
+        "verse": 27,
+        "text": "יְחִידָה הִיא וְתוּכַל הַכֹּל בְּעֵינָהּ תִּשָּׁאֵר וּתְחַדֵּשׁ הַכֹּל וּמִדּוֹר לְדוֹר תַּעֲבֹר וְתָבֹא בִּנְפָשׁוֹת קְדוֹשׁוֹת וְתַעֲשֵׂן לִידִידֵי אֱלֹהִים וְלִנְבִיאִים׃",
+        "sourcePages": [
+          160
+        ],
+        "textSHA256": "73a06c542754237bc5c45eaca558fb9236753ee6d6a2805b7b5831b7c35d09be"
+      },
+      {
+        "verse": 28,
+        "text": "כִּי אֱלֹהִים לֹא יֶאֱהַב זוּלָתִי אֲשֶׁר־יִשְׁכֹּן בְּמִשְׁכַּן הַחָכְמָה׃",
+        "sourcePages": [
+          160
+        ],
+        "textSHA256": "683f6f43a535218d74c50627eb5ccdb2e8c35126da4baea4dee4996fc150de55"
+      },
+      {
+        "verse": 29,
+        "text": "הֵן נֶהְדָּרָה הִיא מִן־הַשֶּׁמֶשׁ וְיִתְרוֹן לָהּ מִמַּעֲלַת הַכּוֹכָבִים וּבְעֶרְכָּהּ תַּעֲלֶה עַל [כָּל־]אוֹר׃",
+        "sourcePages": [
+          160
+        ],
+        "textSHA256": "df01adb1be141fe1e95f8ffacc69677be74675d922315b3d9897f34cb47e0b74"
+      },
+      {
+        "verse": 30,
+        "text": "כִּי אֶת־מְקוֹמוֹ לַיִל יִירַשׁ אוּלָם הָרִשְׁעָה לֹא־תָקוּם בִּפְנֵי הַחָכְמָה׃",
+        "sourcePages": [
+          160
+        ],
+        "textSHA256": "b7da30c2c25a67d3e60d2b7150c8f67d4206635e7f85b0b19574c68fa111bc87"
+      }
+    ]
+  },
+  "boundaryObservations": [
+    "All30 printed units are transcribed; chapter7 starts after6:25 on157 and ends before8:1 on160.",
+    "First draft preserves brackets3,6,12,18,29, including apparently unpaired closing bracket after3 final word; separate verification required.",
+    "7:9 tight crop reads כדמן with dalet, not resh. 7:21 mem interior dot and7:28 kaf interior dot are visible."
+  ],
+  "queries": [
+    {
+      "verse": 1,
+      "finding": "First tsade lower mark in מצאצאי and resh/het points require full separate proof."
+    },
+    {
+      "verse": 2,
+      "finding": "Printed הקפאתי has he qamats and qoph sheva; certify pe lower point without normalization."
+    },
+    {
+      "verse": 3,
+      "finding": "Confirm צנחתי fine points and literal unpaired closing bracket at end."
+    },
+    {
+      "verse": 9,
+      "finding": "Confirm full source pointing of כדמן, which contains literal dalet."
+    },
+    {
+      "verse": 14,
+      "finding": "Confirm המתענגים fine points and tav point in עתק."
+    },
+    {
+      "verse": 21,
+      "finding": "Verify mem dagesh/qamats of אמנית against native tight crop."
+    },
+    {
+      "verse": 28,
+      "finding": "Certify shin lower point in ישכן; kaf internal dot and holam are visible."
+    }
+  ],
+  "newReviewedPages": [],
+  "releaseApproved": false
+}

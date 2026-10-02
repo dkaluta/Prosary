@@ -1,0 +1,747 @@
+{
+  "book": "TOB",
+  "recension": "short",
+  "chapter": 10,
+  "status": "independent-full-word-point-comparison-complete-one-boundary-unresolved",
+  "releaseApproved": false,
+  "source": {
+    "volume": "B",
+    "sha256": "656891d377d2e3d4a9216723d94205488423907bf01df424b9f0b9de1560051e",
+    "pageCount": 530,
+    "sourceURL": "https://he.wikisource.org/wiki/קובץ:Apocrypha_Kahana_B.pdf",
+    "extraScan": {
+      "sha256": "b72eaf5d2d858fabb7c3438ac0436ccd64c394a7dd2fad609efabe628d5534c7",
+      "pageCount": 272,
+      "matchingMethod": "Primary B335 lower nine upper-recension rows matched to extra174 left; all B336 upper twelve rows matched to extra175 right by complete body, labels, headings and separator."
+    }
+  },
+  "coverage": {
+    "printedUnits": [
+      [
+        1,
+        1
+      ],
+      [
+        2,
+        2
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        5,
+        5
+      ],
+      [
+        6,
+        6
+      ],
+      [
+        7,
+        7
+      ],
+      [
+        8,
+        8
+      ],
+      [
+        9,
+        9
+      ],
+      [
+        10,
+        10
+      ],
+      [
+        11,
+        11
+      ],
+      [
+        12,
+        12
+      ],
+      [
+        13,
+        13
+      ],
+      [
+        14,
+        14
+      ]
+    ],
+    "printedCombinedLabels": [
+      [
+        3,
+        4
+      ]
+    ],
+    "physicalLinesCompared": 21,
+    "canonicalUnits": 12,
+    "candidateUnits": 13,
+    "provisionalEditorialRanges": [
+      [
+        3,
+        5
+      ]
+    ],
+    "newReviewedPages": [],
+    "pagePieces": [
+      {
+        "page": 335,
+        "extraPage": 174,
+        "extraSide": "left",
+        "physicalRowsWithinWholeUpperSection": [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "chapterRowsCompared": 9,
+        "start": "וְטוֹבִי",
+        "end": "לַעֲשׂוֹת שָׁם׃"
+      },
+      {
+        "page": 336,
+        "extraPage": 175,
+        "extraSide": "right",
+        "physicalRowsWithinWholeUpperSection": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "chapterRowsCompared": 12,
+        "start": "וַיֹּאמֶר טוֹבִיָּה",
+        "end": "אִשְׁתּוֹ׃"
+      }
+    ]
+  },
+  "boundaryEvidence": [
+    {
+      "label": 1,
+      "page": 335,
+      "chapterRow": 1,
+      "start": "וְטוֹבִי",
+      "evidence": "Chapter marker י and blank between chapters; preceding chapter9 closes in previous row."
+    },
+    {
+      "label": 2,
+      "page": 335,
+      "chapterRow": 2,
+      "start": "וַיֹּאמֶר",
+      "evidence": "After בָא׃ in same row."
+    },
+    {
+      "label": "3–4",
+      "page": 335,
+      "chapterRow": 3,
+      "start": "וַיִּתְעַצֵּב",
+      "evidence": "After הַכֶּסֶף׃ in row carrying combined margin ג–ד."
+    },
+    {
+      "label": 5,
+      "page": 335,
+      "status": "unresolved",
+      "evidence": "Margin ה is beside the row beginning הילד כי על־כן..., but that row continues the preceding row ending ותאמר לו אשתו אבד and also contains לבכותו׃ ותאמר אוי־לי־תחת בני. The margin does not distinguish whether label5 starts at the first ותאמר or the second. Preserve all words in temporary editorial 3–5, explicitly not a printed combined label. No other recension or familiar numbering imported."
+    },
+    {
+      "label": 6,
+      "page": 335,
+      "chapterRow": 5,
+      "start": "וַיֹּאמֶר לָהּ",
+      "evidence": "After עֵינַי׃ in same row."
+    },
+    {
+      "label": 7,
+      "page": 335,
+      "chapterRow": 6,
+      "start": "וַתֹּאמֶר לוֹ",
+      "evidence": "After לוֹ׃ in same row; continues to page end."
+    },
+    {
+      "label": 8,
+      "page": 336,
+      "chapterRow": 1,
+      "start": "וַיֹּאמֶר טוֹבִיָּה",
+      "evidence": "Previous page closes chapter10:7; margin ח at first row."
+    },
+    {
+      "label": 9,
+      "page": 336,
+      "chapterRow": 2,
+      "start": "וַיֹּאמֶר לוֹ",
+      "evidence": "After אוֹתִי׃ in same row."
+    },
+    {
+      "label": 10,
+      "page": 336,
+      "chapterRow": 4,
+      "start": "וַיָּקָם",
+      "evidence": "After אָבִי׃ in same row."
+    },
+    {
+      "label": 11,
+      "page": 336,
+      "chapterRow": 5,
+      "start": "וַיְשַׁלְּחֵם",
+      "evidence": "After וָכֶסֶף׃ in same row."
+    },
+    {
+      "label": 12,
+      "page": 336,
+      "chapterRow": 6,
+      "start": "וַיֹּאמֶר לְבִתּוֹ",
+      "evidence": "After אָמוּת׃ in same row."
+    },
+    {
+      "label": 13,
+      "page": 336,
+      "chapterRow": 8,
+      "start": "וְעֶדְנָה",
+      "evidence": "After לָהּ׃ in same row."
+    },
+    {
+      "label": 14,
+      "page": 336,
+      "chapterRow": 11,
+      "start": "אַחֲרֵי",
+      "evidence": "Previous row closes אוֹתָהּ׃; paragraph gap then margin יד; ends before recension separator."
+    }
+  ],
+  "corrections": [
+    {
+      "verse": 13,
+      "before": "וְתִזְכֶּה",
+      "after": "וְיִתֶּן־לִי",
+      "evidence": [
+        "TOB10-query-vethigdeli-primary.png",
+        "TOB10-query-vethigdeli-extra.png"
+      ],
+      "finding": "Paired native crops show vav, yod, tav, final nun, maqaf, lamed and yod. Initial sheva, yod hiriq, tav dagesh/segol and lamed hiriq are visible. Broad first-draft impression of a single verb was wrong; rejected intermediate guesses were never substituted for evidence."
+    }
+  ],
+  "acceptedSourceNotes": [],
+  "unresolvedFindings": [
+    {
+      "id": "tob-10-label5-start",
+      "status": "unresolved",
+      "sourcePage": 335,
+      "printedLabels": [
+        [
+          3,
+          4
+        ],
+        [
+          5,
+          5
+        ]
+      ],
+      "provisionalEditorialRange": [
+        3,
+        5
+      ],
+      "finding": "Margin ה is beside the row beginning הילד כי על־כן..., but that row continues the preceding row ending ותאמר לו אשתו אבד and also contains לבכותו׃ ותאמר אוי־לי־תחת בני. The margin does not distinguish whether label5 starts at the first ותאמר or the second. Preserve all words in temporary editorial 3–5, explicitly not a printed combined label. No other recension or familiar numbering imported.",
+      "evidence": [
+        "TOB10-B335-line03-left.png",
+        "TOB10-B335-line04-right.png",
+        "TOB10-B335-line04-left.png"
+      ]
+    }
+  ],
+  "candidateUnits": [
+    {
+      "verse": 1,
+      "text": "וְטוֹבִי אָבִיו הָיָה מְחַשֵּׁב כָּל־יוֹם וַיְהִי כִּי מָלְאוּ יְמֵי מַהֲלָכוֹ וְלֹא בָא׃",
+      "sourcePages": [
+        335
+      ],
+      "textSHA256": "d15af3cf5eab334ad33e69a11da92cbd3b2c42bb00345674be00da73388625e0"
+    },
+    {
+      "verse": 2,
+      "text": "וַיֹּאמֶר הֲלֹא בוֹשֲׁשׁוּ בַדֶּרֶךְ אוּלַי מֵת גַּבָּאֵל וְאֵין אִישׁ אֲשֶׁר יִתֶּן־לוֹ אֶת־הַכֶּסֶף׃",
+      "sourcePages": [
+        335
+      ],
+      "textSHA256": "da38c2dba6e19c81fe45a03d5449abad22ae9b6451da995fce91ff624c53e514"
+    },
+    {
+      "verse": 3,
+      "text": "וַיִּתְעַצֵּב מְאֹד׃ וַתֹּאמֶר לוֹ אִשְׁתּוֹ אָבַד הַיֶּלֶד כִּי עַל־כֵּן אֵחַר לָבֹא וַתָּחֵל לִבְכּוֹתוֹ׃",
+      "sourcePages": [
+        335
+      ],
+      "textSHA256": "f8e9e14d2efd55836742b231c11e2ddb3c344b0f7d662d36c11225d65df80c12",
+      "endVerse": 4
+    },
+    {
+      "verse": 5,
+      "text": "וַתֹּאמֶר אוֹי־לִי־תַחַת בְּנִי כִּי נְתַתִּיךָ לְלֶכֶת אוֹר עֵינַי׃",
+      "sourcePages": [
+        335
+      ],
+      "textSHA256": "cdc57f4e23658ec8c7f3d0d224b9490a2e99519d6ce9e65de6f9c1e3d58cd0ad"
+    },
+    {
+      "verse": 6,
+      "text": "וַיֹּאמֶר לָהּ טוֹבִי אַל־תּוֹסִיפִי דַבֵּר אַל־תִּדְאֲגִי שָׁלוֹם לוֹ׃",
+      "sourcePages": [
+        335
+      ],
+      "textSHA256": "07f24ca61e070bb2070e89a697324257e3665f4d059dd0d767786b4c8e1afad5"
+    },
+    {
+      "verse": 7,
+      "text": "וַתֹּאמֶר לוֹ הַחֲרֵשׁ אַל־תַּשְׁלֶה אוֹתִי אָבַד בְּנִי וַתֵּצֵא יוֹם יוֹם אֶל־הַדֶּרֶךְ אֲשֶׁר בָּהּ הָלַךְ יוֹמָם לֶחֶם לֹא אָכָלָה וּבַלֵּילוֹת לֹא חָדְלָה לִבְכּוֹת לְטוֹבִיָּה בְּנָהּ עַד־אֲשֶׁר מָלְאוּ אַרְבָּעָה עָשָׂר יְמֵי הַחֲתֻנָּה אֲשֶׁר הִשְׁבִּיעוֹ רְעוּאֵל לַעֲשׂוֹת שָׁם׃",
+      "sourcePages": [
+        335
+      ],
+      "textSHA256": "315ba17115d030c3db87de992090ec8a99864ffcb901ee7aa79698d2d0afe8bd"
+    },
+    {
+      "verse": 8,
+      "text": "וַיֹּאמֶר טוֹבִיָּה לִרְעוּאֵל שַׁלְּחֵנִי־נָא כִּי אָבִי וְאִמִּי לֹא יְקַוּוּ עוֹד לִרְאוֹת אוֹתִי׃",
+      "sourcePages": [
+        336
+      ],
+      "textSHA256": "8809055444d5eaf8452ac75a77a6b6375f2dcfb7eaffadf7e84923aa9691a63d"
+    },
+    {
+      "verse": 9,
+      "text": "וַיֹּאמֶר לוֹ חוֹתְנוֹ שְׁבָה עִמָּדִי וַאֲנִי אֶשְׁלַח אֶל־אָבִיךָ וְיַגִּידוּ לוֹ מַה־הָיִיתָ לָךְ וַיֹּאמֶר טוֹבִיָּה לֹא־כֵן כִּי אִם שַׁלְּחֵנִי־אֶל־אָבִי׃",
+      "sourcePages": [
+        336
+      ],
+      "textSHA256": "2471db889cf58a0d7b68cdbc05fe63c89e540480f37ce2155d5e8fcf817ec57f"
+    },
+    {
+      "verse": 10,
+      "text": "וַיָּקָם רְעוּאֵל וַיִּתֶּן־לוֹ אֶת שָׂרָה אִשְׁתּוֹ וְאֶת־חֲצִי רְכוּשׁוֹ נַפְשׁוֹת אָדָם וּמִקְנֶה וָכֶסֶף׃",
+      "sourcePages": [
+        336
+      ],
+      "textSHA256": "ca403882e3f45d4a2bfaea0232f5619edb9a58733502f9cf4b4d06ac3f6588e4"
+    },
+    {
+      "verse": 11,
+      "text": "וַיְשַׁלְּחֵם וַיְבָרֶךְ אוֹתָם לֵאמֹר אֱלֹהֵי הַשָּׁמַיִם יַצְלִיחַ אֶתְכֶם בָּנַי בְּטֶרֶם אָמוּת׃",
+      "sourcePages": [
+        336
+      ],
+      "textSHA256": "4c9c20c8561344bf4f22f00d05c2a72b73fda87ede26afdc51043caf7f0737f2"
+    },
+    {
+      "verse": 12,
+      "text": "וַיֹּאמֶר לְבִתּוֹ כַּבְּדִי־נָא אֶת־חָמִיךְ וְאֶת־חֲמוֹתֵךְ אֲבוֹתָיִךְ הֵם מֵעַתָּה אַשְׁמִיעֵנִי־נָא שְׁמוּעָה טוֹבָה עָלָיִךְ וַיִּשַּׁק־לָהּ׃",
+      "sourcePages": [
+        336
+      ],
+      "textSHA256": "59fd1b7a7316e2bdbdc376ba64937f17aa3d908d3d10ce820a5bc20269fc0a4d"
+    },
+    {
+      "verse": 13,
+      "text": "וְעֶדְנָה אָמְרָה לְטוֹבִיָּה אָחִי הָאָהוּב אֲדוֹנֵי הַשָּׁמַיִם יְשִׁיבְךָ הַבַּיְתָה וְיִתֶּן־לִי לִרְאוֹת בָּנָיךָ מִשָּׂרָה בִּתִּי לְמַעַן אֶשְׂמַח לִפְנֵי יְיָ וְהִנֵּה אֲנִי מַפְקֶדֶת בְּיָדְךָ אֶת־בִּתִּי לְפִקָּדוֹן אַל־תְּעַצֵּב אוֹתָהּ׃",
+      "sourcePages": [
+        336
+      ],
+      "textSHA256": "bf68a9b5cba695d4f9bf3ba9314d7a08b656cbc6c6a0572bfad8ff16dadd31d0"
+    },
+    {
+      "verse": 14,
+      "text": "אַחֲרֵי הַדְּבָרִים הָאֵלֶּה הָלַךְ טוֹבִיָּה וַיְבָרֶךְ אֶת־הָאֱלֹהִים עַל־כִּי הִצְלִיחַ דַרְכּוֹ וַיְבָרֶךְ גַּם־אֶת־רְעוּאֵל וְאֶת־עֶדְנָה אִשְׁתּוֹ׃",
+      "sourcePages": [
+        336
+      ],
+      "textSHA256": "06cfe4af712d7555ca8b2f206bd70aa79882b02e3a877eb555f217874c533f70"
+    }
+  ],
+  "canonicalChapter": {
+    "number": 10,
+    "lastVerse": 14,
+    "verses": [
+      {
+        "verse": 1,
+        "text": "וְטוֹבִי אָבִיו הָיָה מְחַשֵּׁב כָּל־יוֹם וַיְהִי כִּי מָלְאוּ יְמֵי מַהֲלָכוֹ וְלֹא בָא׃",
+        "sourcePages": [
+          335
+        ],
+        "textSHA256": "d15af3cf5eab334ad33e69a11da92cbd3b2c42bb00345674be00da73388625e0"
+      },
+      {
+        "verse": 2,
+        "text": "וַיֹּאמֶר הֲלֹא בוֹשֲׁשׁוּ בַדֶּרֶךְ אוּלַי מֵת גַּבָּאֵל וְאֵין אִישׁ אֲשֶׁר יִתֶּן־לוֹ אֶת־הַכֶּסֶף׃",
+        "sourcePages": [
+          335
+        ],
+        "textSHA256": "da38c2dba6e19c81fe45a03d5449abad22ae9b6451da995fce91ff624c53e514"
+      },
+      {
+        "verse": 3,
+        "text": "וַיִּתְעַצֵּב מְאֹד׃ וַתֹּאמֶר לוֹ אִשְׁתּוֹ אָבַד הַיֶּלֶד כִּי עַל־כֵּן אֵחַר לָבֹא וַתָּחֵל לִבְכּוֹתוֹ וַתֹּאמֶר׃ אוֹי־לִי־תַחַת בְּנִי כִּי נְתַתִּיךָ לְלֶכֶת אוֹר עֵינַי׃",
+        "sourcePages": [
+          335
+        ],
+        "textSHA256": "3ce378571604926f684d7a711e56f164688dc28504d6b6fcd4eeec63c12a348d",
+        "endVerse": 5
+      },
+      {
+        "verse": 6,
+        "text": "וַיֹּאמֶר לָהּ טוֹבִי אַל־תּוֹסִיפִי דַבֵּר אַל־תִּדְאֲגִי שָׁלוֹם לוֹ׃",
+        "sourcePages": [
+          335
+        ],
+        "textSHA256": "07f24ca61e070bb2070e89a697324257e3665f4d059dd0d767786b4c8e1afad5"
+      },
+      {
+        "verse": 7,
+        "text": "וַתֹּאמֶר לוֹ הַחֲרֵשׁ אַל־תַּשְׁלֶה אוֹתִי אָבַד בְּנִי וַתֵּצֵא יוֹם יוֹם אֶל־הַדֶּרֶךְ אֲשֶׁר בָּהּ הָלַךְ יוֹמָם לֶחֶם לֹא אָכָלָה וּבַלֵּילוֹת לֹא חָדְלָה לִבְכּוֹת לְטוֹבִיָּה בְּנָהּ עַד־אֲשֶׁר מָלְאוּ אַרְבָּעָה עָשָׂר יְמֵי הַחֲתֻנָּה אֲשֶׁר הִשְׁבִּיעוֹ רְעוּאֵל לַעֲשׂוֹת שָׁם׃",
+        "sourcePages": [
+          335
+        ],
+        "textSHA256": "315ba17115d030c3db87de992090ec8a99864ffcb901ee7aa79698d2d0afe8bd"
+      },
+      {
+        "verse": 8,
+        "text": "וַיֹּאמֶר טוֹבִיָּה לִרְעוּאֵל שַׁלְּחֵנִי־נָא כִּי אָבִי וְאִמִּי לֹא יְקַוּוּ עוֹד לִרְאוֹת אוֹתִי׃",
+        "sourcePages": [
+          336
+        ],
+        "textSHA256": "8809055444d5eaf8452ac75a77a6b6375f2dcfb7eaffadf7e84923aa9691a63d"
+      },
+      {
+        "verse": 9,
+        "text": "וַיֹּאמֶר לוֹ חוֹתְנוֹ שְׁבָה עִמָּדִי וַאֲנִי אֶשְׁלַח אֶל־אָבִיךָ וְיַגִּידוּ לוֹ מַה־הָיִיתָ לָךְ וַיֹּאמֶר טוֹבִיָּה לֹא־כֵן כִּי אִם שַׁלְּחֵנִי־אֶל־אָבִי׃",
+        "sourcePages": [
+          336
+        ],
+        "textSHA256": "2471db889cf58a0d7b68cdbc05fe63c89e540480f37ce2155d5e8fcf817ec57f"
+      },
+      {
+        "verse": 10,
+        "text": "וַיָּקָם רְעוּאֵל וַיִּתֶּן־לוֹ אֶת שָׂרָה אִשְׁתּוֹ וְאֶת־חֲצִי רְכוּשׁוֹ נַפְשׁוֹת אָדָם וּמִקְנֶה וָכֶסֶף׃",
+        "sourcePages": [
+          336
+        ],
+        "textSHA256": "ca403882e3f45d4a2bfaea0232f5619edb9a58733502f9cf4b4d06ac3f6588e4"
+      },
+      {
+        "verse": 11,
+        "text": "וַיְשַׁלְּחֵם וַיְבָרֶךְ אוֹתָם לֵאמֹר אֱלֹהֵי הַשָּׁמַיִם יַצְלִיחַ אֶתְכֶם בָּנַי בְּטֶרֶם אָמוּת׃",
+        "sourcePages": [
+          336
+        ],
+        "textSHA256": "4c9c20c8561344bf4f22f00d05c2a72b73fda87ede26afdc51043caf7f0737f2"
+      },
+      {
+        "verse": 12,
+        "text": "וַיֹּאמֶר לְבִתּוֹ כַּבְּדִי־נָא אֶת־חָמִיךְ וְאֶת־חֲמוֹתֵךְ אֲבוֹתָיִךְ הֵם מֵעַתָּה אַשְׁמִיעֵנִי־נָא שְׁמוּעָה טוֹבָה עָלָיִךְ וַיִּשַּׁק־לָהּ׃",
+        "sourcePages": [
+          336
+        ],
+        "textSHA256": "59fd1b7a7316e2bdbdc376ba64937f17aa3d908d3d10ce820a5bc20269fc0a4d"
+      },
+      {
+        "verse": 13,
+        "text": "וְעֶדְנָה אָמְרָה לְטוֹבִיָּה אָחִי הָאָהוּב אֲדוֹנֵי הַשָּׁמַיִם יְשִׁיבְךָ הַבַּיְתָה וְיִתֶּן־לִי לִרְאוֹת בָּנָיךָ מִשָּׂרָה בִּתִּי לְמַעַן אֶשְׂמַח לִפְנֵי יְיָ וְהִנֵּה אֲנִי מַפְקֶדֶת בְּיָדְךָ אֶת־בִּתִּי לְפִקָּדוֹן אַל־תְּעַצֵּב אוֹתָהּ׃",
+        "sourcePages": [
+          336
+        ],
+        "textSHA256": "bf68a9b5cba695d4f9bf3ba9314d7a08b656cbc6c6a0572bfad8ff16dadd31d0"
+      },
+      {
+        "verse": 14,
+        "text": "אַחֲרֵי הַדְּבָרִים הָאֵלֶּה הָלַךְ טוֹבִיָּה וַיְבָרֶךְ אֶת־הָאֱלֹהִים עַל־כִּי הִצְלִיחַ דַרְכּוֹ וַיְבָרֶךְ גַּם־אֶת־רְעוּאֵל וְאֶת־עֶדְנָה אִשְׁתּוֹ׃",
+        "sourcePages": [
+          336
+        ],
+        "textSHA256": "06cfe4af712d7555ca8b2f206bd70aa79882b02e3a877eb555f217874c533f70"
+      }
+    ]
+  },
+  "canonicalBeforeSHA256": "bdc11b95472405188b98305fe6811556695bdaa042fc8f54a9e67eae85ddabac",
+  "canonicalAfterSHA256": "fca5bb726379356d7f1b81f81342803376590d568d7a0facc06c8bf6256dcc64",
+  "preservationChecks": {
+    "chapters1Through9Unchanged": true,
+    "existingReviewedPagesUnchanged": true,
+    "existingSourceNoteIdsUnchanged": true,
+    "bookRemainsDraft": true,
+    "canonicalContinuousTextMatchesAllCandidateUnits": true
+  },
+  "validation": {
+    "book": "TOB",
+    "status": "draft",
+    "chapters": 10,
+    "units": 156,
+    "sourcePages": 25,
+    "reviewedPages": 12
+  },
+  "independentPrintedInventoryMatch": {
+    "path": "Shared/reports/hebrew-wikisource/TOB-print-inventory.json",
+    "sha256": "f460d75a7b00d56e175780b34a0724d2e082b2482406b9be7fcc1cafdd82c518",
+    "candidateUnitLabelsMatch": true,
+    "canonicalRangeException": "Temporary3–5 explicitly covers real printed3–4 plus5 pending exact inner boundary.",
+    "lastVerseMatches": true
+  },
+  "notes": [
+    "Only the upper short recension was used. Lower body text is excluded.",
+    "The query filenames containing vethigdeli retain superseded tentative identification for audit history; accepted reading is וְיִתֶּן־לִי from literal paired crops. No unverified tentative text was placed in canonical.",
+    "No new isolated-point notes were needed in this chapter. This does not resolve the exact-boundary issue or replace independent review.",
+    "No whole-page approval: B335 remains blocked by chapter10 label5, and B336 requires full independent chapter10 comparison.",
+    "Late boundary revisit corrects the position of sof pasuq after ותאמר in the temporary3–5 unit. See latePunctuationAdjudication and TOB-boundary-proposals-20261002.json. Earlier prose claiming a separator after לבכותו is superseded; existing combined range is unchanged."
+  ],
+  "evidence": [
+    {
+      "path": "/private/tmp/prosary-kahana-reference/TOB10-first-draft.txt",
+      "sha256": "1c5845f54ee21c9e3771ef07035d71815a79f9aa8d66212e5db32917861de5f5"
+    },
+    {
+      "path": "/private/tmp/prosary-kahana-reference/TOB10-own-compared-draft.txt",
+      "sha256": "388b3cf34c61cbfe8b52ea763c2a9b46cc7c502f3bda80d6d3b64b33b77e9d82"
+    },
+    {
+      "path": "/private/tmp/prosary-kahana-reference/TOB10-native-source-images.json",
+      "sha256": "6d6047a7947fdfdb62a1c47673dd39bd5d9b44a83e4d43313520eae8162b39f0"
+    },
+    {
+      "path": "/private/tmp/prosary-kahana-reference/TOB10-native-line-crops.json",
+      "sha256": "4c509a99bb501c5ccbad7e7e07fa04d1b34415e3720cba3be7dafffab04ad488"
+    },
+    {
+      "path": "/private/tmp/prosary-kahana-reference/TOB10-upper-crops.json",
+      "sha256": "98802dd9ae11e01697f16e8060fa7938af28a2824b83ce3eaba317aa4e787f92"
+    },
+    {
+      "path": "/private/tmp/prosary-kahana-reference/TOB10-query-crops.json",
+      "sha256": "a60016a01b1b9608a302296b90ce845b3a2c0de96fe8c53e4ae0d8107e5a0b6e"
+    },
+    {
+      "path": "/private/tmp/prosary-kahana-reference/TOB10-primary-query-crops.json",
+      "sha256": "08423b65044d408591a0baef971867e7ff17d0b67081406733d94e19cc4697e7"
+    },
+    {
+      "path": "/private/tmp/prosary-kahana-reference/TOB10-B335-upper-extra.png",
+      "sha256": "8b5ba3b2ccbdc43b087d4eba117069269a8dfcffd942dca078ff8d44eb503a49"
+    },
+    {
+      "path": "/private/tmp/prosary-kahana-reference/TOB10-B336-upper-extra.png",
+      "sha256": "4e71c40ce8cc6e4ca4913fe6d53622cfc4f1ebc6aa630fd74d7f6ccf36eaa6fd"
+    },
+    {
+      "path": "/private/tmp/prosary-kahana-reference/TOB10-query-mehashev.png",
+      "sha256": "113263a8e0c010753e7ce5022b48806f2e4cf8aa60915a6115a33cc6887571a3"
+    },
+    {
+      "path": "/private/tmp/prosary-kahana-reference/TOB10-query-mehashev-primary.png",
+      "sha256": "8d7dfa85efb949e44721a7c6cdc6765410ba28754772034d06b86c217b188d8c"
+    },
+    {
+      "path": "/private/tmp/prosary-kahana-reference/TOB10-query-boshshu.png",
+      "sha256": "b20d4f0b15c36df5b581c647041012f54ea266409190bfe517a6e22d95daaccb"
+    },
+    {
+      "path": "/private/tmp/prosary-kahana-reference/TOB10-query-gabael.png",
+      "sha256": "1c92c0f1b9b1b5634f5e43faabd51f6c0e2f101d2fde71fcff48bd9429ffeb1b"
+    },
+    {
+      "path": "/private/tmp/prosary-kahana-reference/TOB10-query-tashleh.png",
+      "sha256": "3d569badd135af1ea12c0d201e460d1ffee02c42a1ab53c44e9b002472fc3ae6"
+    },
+    {
+      "path": "/private/tmp/prosary-kahana-reference/TOB10-query-vethigdeli-primary.png",
+      "sha256": "2a429456ca18a95957fd08a4b58008a540a874820826eb86359c7bf1e2dc6f82"
+    },
+    {
+      "path": "/private/tmp/prosary-kahana-reference/TOB10-query-vethigdeli-extra.png",
+      "sha256": "4b264fb0100cf859659219664457e5594b39c9916c213bce5b6a2bc0ba299c14"
+    },
+    {
+      "path": "/private/tmp/prosary-kahana-reference/TOB10-B335-line03-left.png",
+      "sha256": "7f378cd5d35c68e1291403bdf025b4b0aa386e85dc5e5a6d4263c3e9d47611fb"
+    },
+    {
+      "path": "/private/tmp/prosary-kahana-reference/TOB10-B335-line04-right.png",
+      "sha256": "44025fcfd77ea0a2405f50314da5e2683c8acb694d995d17d2e5a7f757a5f9f5"
+    },
+    {
+      "path": "/private/tmp/prosary-kahana-reference/TOB10-B335-line04-left.png",
+      "sha256": "dda89ee2380f8303341d87fde9a2ba3bb0b77d45f8062c7fcf63416ffd017d03"
+    },
+    {
+      "path": "/private/tmp/prosary-kahana-reference/TOB10-independently-reviewed-draft.txt",
+      "sha256": "d84d2568cf15c5c6c086a7dc23a774925d0546c8af57e177161851b3859fdc87"
+    },
+    {
+      "path": "/private/tmp/prosary-kahana-reference/TOB10-independent-boshshu-primary.png",
+      "sha256": "0b8816e1fcc906aa229b129c67395149db55c14456759a72eb334d416c11a2b5"
+    }
+  ],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/TOB-short-chapter10-independent-review.json",
+    "sha256": "18d7939d4055707e68aa654a226202c8f48ae6681ffd8e8cf3fb7efa43afacfe",
+    "status": "full independent word and point comparison complete; one additional literal correction; exact label5 boundary unresolved",
+    "physicalLinesCompared": 21,
+    "additionalPointCorrections": 1
+  },
+  "independentCorrections": [
+    {
+      "verse": 2,
+      "before": "בוֹשְׁשׁוּ",
+      "after": "בוֹשֲׁשׁוּ",
+      "finding": "Both native scans show a left horizontal bar and right vertical sheva pair below first shin. Full independent reader identified it; author concurred after viewing both crops. Only this vowel changes.",
+      "evidence": [
+        "TOB10-query-boshshu.png",
+        "TOB10-independent-boshshu-primary.png"
+      ]
+    }
+  ],
+  "canonicalReviewDisposition": {
+    "newReviewedPages": [
+      336
+    ],
+    "retainedUnapprovedPages": {
+      "335": "Exact label5 start remains unresolved."
+    },
+    "bookStatus": "draft",
+    "releaseApproved": false
+  },
+  "validationAfterIndependentReview": {
+    "book": "TOB",
+    "status": "draft",
+    "chapters": 12,
+    "units": 191,
+    "sourcePages": 30,
+    "reviewedPages": 14
+  },
+  "latePunctuationAdjudication": {
+    "status": "Definite correction independently corroborated by root and applied",
+    "correction": {
+      "before": "לִבְכּוֹתוֹ׃ וַתֹּאמֶר",
+      "after": "לִבְכּוֹתוֹ וַתֹּאמֶר׃",
+      "scope": "Punctuation only in canonical temporary 10:3–5; no numbering change.",
+      "finding": "Both scans visibly place the separator after second ותאמר, not after לבכותו. Root independently corroborated.",
+      "evidence": [
+        "TOB-boundary-10-5-primary.png",
+        "TOB-boundary-10-5-extra.png"
+      ]
+    },
+    "priorCanonicalChapter": {
+      "number": 10,
+      "lastVerse": 14,
+      "verses": [
+        {
+          "verse": 1,
+          "text": "וְטוֹבִי אָבִיו הָיָה מְחַשֵּׁב כָּל־יוֹם וַיְהִי כִּי מָלְאוּ יְמֵי מַהֲלָכוֹ וְלֹא בָא׃",
+          "sourcePages": [
+            335
+          ],
+          "textSHA256": "d15af3cf5eab334ad33e69a11da92cbd3b2c42bb00345674be00da73388625e0"
+        },
+        {
+          "verse": 2,
+          "text": "וַיֹּאמֶר הֲלֹא בוֹשֲׁשׁוּ בַדֶּרֶךְ אוּלַי מֵת גַּבָּאֵל וְאֵין אִישׁ אֲשֶׁר יִתֶּן־לוֹ אֶת־הַכֶּסֶף׃",
+          "sourcePages": [
+            335
+          ],
+          "textSHA256": "da38c2dba6e19c81fe45a03d5449abad22ae9b6451da995fce91ff624c53e514"
+        },
+        {
+          "verse": 3,
+          "text": "וַיִּתְעַצֵּב מְאֹד׃ וַתֹּאמֶר לוֹ אִשְׁתּוֹ אָבַד הַיֶּלֶד כִּי עַל־כֵּן אֵחַר לָבֹא וַתָּחֵל לִבְכּוֹתוֹ׃ וַתֹּאמֶר אוֹי־לִי־תַחַת בְּנִי כִּי נְתַתִּיךָ לְלֶכֶת אוֹר עֵינַי׃",
+          "sourcePages": [
+            335
+          ],
+          "textSHA256": "a37813496762b603f7ab8a5083bffb7db7258b41d2c369deb0d1ea95bff0547f",
+          "endVerse": 5
+        },
+        {
+          "verse": 6,
+          "text": "וַיֹּאמֶר לָהּ טוֹבִי אַל־תּוֹסִיפִי דַבֵּר אַל־תִּדְאֲגִי שָׁלוֹם לוֹ׃",
+          "sourcePages": [
+            335
+          ],
+          "textSHA256": "07f24ca61e070bb2070e89a697324257e3665f4d059dd0d767786b4c8e1afad5"
+        },
+        {
+          "verse": 7,
+          "text": "וַתֹּאמֶר לוֹ הַחֲרֵשׁ אַל־תַּשְׁלֶה אוֹתִי אָבַד בְּנִי וַתֵּצֵא יוֹם יוֹם אֶל־הַדֶּרֶךְ אֲשֶׁר בָּהּ הָלַךְ יוֹמָם לֶחֶם לֹא אָכָלָה וּבַלֵּילוֹת לֹא חָדְלָה לִבְכּוֹת לְטוֹבִיָּה בְּנָהּ עַד־אֲשֶׁר מָלְאוּ אַרְבָּעָה עָשָׂר יְמֵי הַחֲתֻנָּה אֲשֶׁר הִשְׁבִּיעוֹ רְעוּאֵל לַעֲשׂוֹת שָׁם׃",
+          "sourcePages": [
+            335
+          ],
+          "textSHA256": "315ba17115d030c3db87de992090ec8a99864ffcb901ee7aa79698d2d0afe8bd"
+        },
+        {
+          "verse": 8,
+          "text": "וַיֹּאמֶר טוֹבִיָּה לִרְעוּאֵל שַׁלְּחֵנִי־נָא כִּי אָבִי וְאִמִּי לֹא יְקַוּוּ עוֹד לִרְאוֹת אוֹתִי׃",
+          "sourcePages": [
+            336
+          ],
+          "textSHA256": "8809055444d5eaf8452ac75a77a6b6375f2dcfb7eaffadf7e84923aa9691a63d"
+        },
+        {
+          "verse": 9,
+          "text": "וַיֹּאמֶר לוֹ חוֹתְנוֹ שְׁבָה עִמָּדִי וַאֲנִי אֶשְׁלַח אֶל־אָבִיךָ וְיַגִּידוּ לוֹ מַה־הָיִיתָ לָךְ וַיֹּאמֶר טוֹבִיָּה לֹא־כֵן כִּי אִם שַׁלְּחֵנִי־אֶל־אָבִי׃",
+          "sourcePages": [
+            336
+          ],
+          "textSHA256": "2471db889cf58a0d7b68cdbc05fe63c89e540480f37ce2155d5e8fcf817ec57f"
+        },
+        {
+          "verse": 10,
+          "text": "וַיָּקָם רְעוּאֵל וַיִּתֶּן־לוֹ אֶת שָׂרָה אִשְׁתּוֹ וְאֶת־חֲצִי רְכוּשׁוֹ נַפְשׁוֹת אָדָם וּמִקְנֶה וָכֶסֶף׃",
+          "sourcePages": [
+            336
+          ],
+          "textSHA256": "ca403882e3f45d4a2bfaea0232f5619edb9a58733502f9cf4b4d06ac3f6588e4"
+        },
+        {
+          "verse": 11,
+          "text": "וַיְשַׁלְּחֵם וַיְבָרֶךְ אוֹתָם לֵאמֹר אֱלֹהֵי הַשָּׁמַיִם יַצְלִיחַ אֶתְכֶם בָּנַי בְּטֶרֶם אָמוּת׃",
+          "sourcePages": [
+            336
+          ],
+          "textSHA256": "4c9c20c8561344bf4f22f00d05c2a72b73fda87ede26afdc51043caf7f0737f2"
+        },
+        {
+          "verse": 12,
+          "text": "וַיֹּאמֶר לְבִתּוֹ כַּבְּדִי־נָא אֶת־חָמִיךְ וְאֶת־חֲמוֹתֵךְ אֲבוֹתָיִךְ הֵם מֵעַתָּה אַשְׁמִיעֵנִי־נָא שְׁמוּעָה טוֹבָה עָלָיִךְ וַיִּשַּׁק־לָהּ׃",
+          "sourcePages": [
+            336
+          ],
+          "textSHA256": "59fd1b7a7316e2bdbdc376ba64937f17aa3d908d3d10ce820a5bc20269fc0a4d"
+        },
+        {
+          "verse": 13,
+          "text": "וְעֶדְנָה אָמְרָה לְטוֹבִיָּה אָחִי הָאָהוּב אֲדוֹנֵי הַשָּׁמַיִם יְשִׁיבְךָ הַבַּיְתָה וְיִתֶּן־לִי לִרְאוֹת בָּנָיךָ מִשָּׂרָה בִּתִּי לְמַעַן אֶשְׂמַח לִפְנֵי יְיָ וְהִנֵּה אֲנִי מַפְקֶדֶת בְּיָדְךָ אֶת־בִּתִּי לְפִקָּדוֹן אַל־תְּעַצֵּב אוֹתָהּ׃",
+          "sourcePages": [
+            336
+          ],
+          "textSHA256": "bf68a9b5cba695d4f9bf3ba9314d7a08b656cbc6c6a0572bfad8ff16dadd31d0"
+        },
+        {
+          "verse": 14,
+          "text": "אַחֲרֵי הַדְּבָרִים הָאֵלֶּה הָלַךְ טוֹבִיָּה וַיְבָרֶךְ אֶת־הָאֱלֹהִים עַל־כִּי הִצְלִיחַ דַרְכּוֹ וַיְבָרֶךְ גַּם־אֶת־רְעוּאֵל וְאֶת־עֶדְנָה אִשְׁתּוֹ׃",
+          "sourcePages": [
+            336
+          ],
+          "textSHA256": "06cfe4af712d7555ca8b2f206bd70aa79882b02e3a877eb555f217874c533f70"
+        }
+      ]
+    },
+    "priorCanonicalAfterSHA256": "f8ab77b80849ba667efc3dfe53d8610774ec98ef47dd6867b085f99379a850ba",
+    "originalCandidateUnitsAndBoundaryClaims": "Historical evidence retained; their separator position is superseded by this adjudication. Numbering remains unresolved."
+  }
+}

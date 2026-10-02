@@ -2,7 +2,7 @@
   "book": "TOB",
   "recension": "short",
   "status": "complete independent printed-label/page inventory; text transcription not approved",
-  "method": "Visually inspected every upper recension section on original PDF pages312–346, plus clearer crops for final labels2:14 and4:20 and combined8:14–15. Inventory predates the short-recension canonical text.",
+  "method": "Initial independent printed-label inventory covered B312–346. Final author reconciliation corrected continuation starts338,342,346 and recovered the final two upper rows on347; those page corrections are recorded separately. Text transcription is not approved.",
   "sourceScanSHA256": "656891d377d2e3d4a9216723d94205488423907bf01df424b9f0b9de1560051e",
   "textPages": [
     312,
@@ -39,7 +39,8 @@
     343,
     344,
     345,
-    346
+    346,
+    347
   ],
   "chapters": [
     {
@@ -1172,7 +1173,7 @@
     },
     {
       "page": 338,
-      "starts": "11:13",
+      "starts": "11:12",
       "ends": "11:19–20"
     },
     {
@@ -1192,7 +1193,7 @@
     },
     {
       "page": 342,
-      "starts": "13:6",
+      "starts": "13:5",
       "ends": "13:15"
     },
     {
@@ -1212,7 +1213,12 @@
     },
     {
       "page": 346,
-      "starts": "14:11",
+      "starts": "14:10",
+      "ends": "14:14–15"
+    },
+    {
+      "page": 347,
+      "starts": "14:14–15",
       "ends": "14:14–15"
     }
   ],
@@ -1223,8 +1229,20 @@
     "Chapter13 ends at label19, visibly printed onB343.",
     "Combined labels are preserved, including12:21–23 and14:14–15.",
     "A chapter numeral introduces the first unit without a separate alef label; no unnumbered scriptural introduction precedes1:1.",
-    "No omitted numbered units or printed lacunae found in the selected upper recension. This is a source-structure inventory, not a completed wording/niqqud review."
+    "Initial no-omission claim was superseded during full transcription:14:14–15 continues for two upper rows on347, omitted from the initial page inventory. The added source ending is transcribed and must receive independent review. Numbered-unit counts remain228."
   ],
   "sourceGaps": {},
-  "hasIntroduction": false
+  "hasIntroduction": false,
+  "inventoryReconciliation": {
+    "report": "TOB-final-source-inventory-reconciliation.json",
+    "originalInventorySHA256": "f460d75a7b00d56e175780b34a0724d2e082b2482406b9be7fcc1cafdd82c518",
+    "correctionsIndependentReviewPending": [
+      342,
+      346,
+      347
+    ],
+    "independentlyCorroboratedCorrection": [
+      338
+    ]
+  }
 }

@@ -1,0 +1,112 @@
+{
+  "book": "TOB",
+  "recension": "short",
+  "status": "source inventory corrected; new final page and continuation starts require independent corroboration except338",
+  "releaseApproved": false,
+  "originalInventorySHA256": "f460d75a7b00d56e175780b34a0724d2e082b2482406b9be7fcc1cafdd82c518",
+  "currentInventorySHA256": "0f3db7f099fae3c1c8b51dd00518e7d291ed3457d4407428afeeb7ef6e367f4b",
+  "newTextPage": 347,
+  "totalTextPages": 36,
+  "printedUnitsUnchanged": 228,
+  "chapterCountUnchanged": 14,
+  "changes": [
+    {
+      "page": 338,
+      "before": {
+        "page": 338,
+        "starts": "11:13",
+        "ends": "11:19–20"
+      },
+      "after": {
+        "page": 338,
+        "starts": "11:12",
+        "ends": "11:19–20"
+      },
+      "reason": "Upper first row continues prior unit before next numbered start; directly inspected in native source."
+    },
+    {
+      "page": 342,
+      "before": {
+        "page": 342,
+        "starts": "13:6",
+        "ends": "13:15"
+      },
+      "after": {
+        "page": 342,
+        "starts": "13:5",
+        "ends": "13:15"
+      },
+      "reason": "Upper first row continues prior unit before next numbered start; directly inspected in native source."
+    },
+    {
+      "page": 346,
+      "before": {
+        "page": 346,
+        "starts": "14:11",
+        "ends": "14:14–15"
+      },
+      "after": {
+        "page": 346,
+        "starts": "14:10",
+        "ends": "14:14–15"
+      },
+      "reason": "Upper first row continues prior unit before next numbered start; directly inspected in native source."
+    }
+  ],
+  "finalContinuation": {
+    "precedingPage": 346,
+    "precedingLastWords": "וּבְטֶרֶם יָמוּת",
+    "page": 347,
+    "upperRows": 2,
+    "start": "שָׁמַע כִּי אָבְדָה נִינְוֵה",
+    "end": "וַיִּשְׂמַח לִפְנֵי מוֹתוֹ עַל־נִינְוֵה׃",
+    "printedUnit": "14:14–15",
+    "lowerRecensionExcluded": true
+  },
+  "unresolvedNumbering": [
+    "Chapter4 temporary ranges4–5/6–7; last20 against commentary21.",
+    "Chapter7 exact starts12 and17.",
+    "Chapter10 exact start5."
+  ],
+  "auditNotes": [
+    "Compared inventory page starts/ends against saved chapter coverage1–13 to locate discrepancies, then corrected only exact visually verified continuations. Temporary grouped4:6–7 on321–322 remains an unresolved canonical boundary, so the inventory is not silently changed to that editorial range.",
+    "Whole chapter and page approval remains separate from a source-coverage count."
+  ],
+  "evidence": [
+    {
+      "path": "/private/tmp/prosary-kahana-reference/TOB14-final-source-page.json",
+      "sha256": "93e5544923ec201c547b8e22e2534dc9e08081e56f7a701df33cd39280a3317b"
+    },
+    {
+      "path": "/private/tmp/prosary-kahana-reference/TOB-B-347-native.png",
+      "sha256": "50ee2465d13b3154daa07cf43c2047232b31ba9500473a835cd5674ab5cbddcd"
+    },
+    {
+      "path": "/private/tmp/prosary-kahana-reference/TOB14-B347-upper-extra.png",
+      "sha256": "e11ed3c31864e7c5ce45e53171435675e5d782e4f8abdf7ccb69b930a50d4e9e"
+    },
+    {
+      "path": "/private/tmp/prosary-kahana-reference/TOB14-B346-upper-extra.png",
+      "sha256": "e23a2b4583faf46f3b4d4075b2620f625b512878a9c87861693c5a240d198ffc"
+    },
+    {
+      "path": "/private/tmp/prosary-kahana-reference/TOB13-B342-upper-extra.png",
+      "sha256": "11696312c5fccd28d1cf5003c1abce576ebd2de8b4f7947fc1badb2317cb77be"
+    },
+    {
+      "path": "/private/tmp/prosary-kahana-reference/TOB11-B338-upper-extra.png",
+      "sha256": "eab8876706f39ef2c09037498a2db7b4441caef9eef7e6ecff76540ae7345fe0"
+    }
+  ],
+  "finalDraftCounts": {
+    "chapters": 14,
+    "canonicalUnits": 223,
+    "printedUnits": 228,
+    "usedSourcePages": 36,
+    "reviewedPages": 16
+  },
+  "canonicalVsPrintedUnitDifference": {
+    "count": 5,
+    "reason": "Two provisional boundary merges in chapter4, two in chapter7, one in chapter10. These preserve all draft text and are not printed combined labels."
+  }
+}

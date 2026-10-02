@@ -1,0 +1,1307 @@
+{
+  "schemaVersion": 1,
+  "book": "TOB",
+  "recension": "short",
+  "chapter": 11,
+  "reviewer": "source_gate, independent of frenkel_source draft and author second pass",
+  "status": "full independent word, point and boundary comparison complete; corrected author draft corroborated",
+  "releaseApproved": false,
+  "canonicalChanged": false,
+  "newReviewedPages": [],
+  "method": [
+    "Read all23 physical upper-recension source rows in complete page context, then compared every word, readable point, bracket, maqaf and separator in46 native extra-scan half-line crops with the corrected author draft. Original B337, B338 and B339 page images establish the same upper body, chapter boundaries and printed labels; lower parallel recension was excluded.",
+    "Independently examined both original/extra query images for the author corrections at1,9,19–20. Additional paired native nearest-neighbor crops verified the small interior marks in15 וַתְּרַחֲמֵנִי and17 וַיּוֹדֶה.",
+    "Printed combined labels3–4,6–7,19–20 are retained as actual source ranges. No other-recension or familiar-numbering inference is used."
+  ],
+  "source": {
+    "volume": "B",
+    "sha256": "656891d377d2e3d4a9216723d94205488423907bf01df424b9f0b9de1560051e",
+    "pageCount": 530,
+    "sourceURL": "https://he.wikisource.org/wiki/קובץ:Apocrypha_Kahana_B.pdf",
+    "extraScan": {
+      "sha256": "b72eaf5d2d858fabb7c3438ac0436ccd64c394a7dd2fad609efabe628d5534c7",
+      "pageCount": 272
+    }
+  },
+  "coverage": {
+    "physicalRows": 23,
+    "halfLineCropsCompared": 46,
+    "rowsByPage": {
+      "337": 10,
+      "338": 11,
+      "339": 2
+    },
+    "printedUnits": 17,
+    "canonicalUnits": 17,
+    "lastVerse": 20,
+    "printedCombinedLabels": [
+      [
+        3,
+        4
+      ],
+      [
+        6,
+        7
+      ],
+      [
+        19,
+        20
+      ]
+    ],
+    "provisionalEditorialRanges": [],
+    "pagePieces": [
+      {
+        "page": 337,
+        "extraPage": 175,
+        "extraSide": "left",
+        "physicalRowsWithinWholeUpperSection": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "chapterRowsCompared": 10,
+        "start": "וַיֵּלֶךְ",
+        "end": "עַל־עֵינֵי"
+      },
+      {
+        "page": 338,
+        "extraPage": 176,
+        "extraSide": "right",
+        "physicalRowsWithinWholeUpperSection": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "chapterRowsCompared": 11,
+        "start": "אָבִיו",
+        "end": "אִתָּם"
+      },
+      {
+        "page": 339,
+        "extraPage": 176,
+        "extraSide": "left",
+        "physicalRowsWithinWholeUpperSection": [
+          1,
+          2
+        ],
+        "chapterRowsCompared": 2,
+        "start": "שָׁם",
+        "end": "שִׁבְעַת יָמִים׃"
+      }
+    ]
+  },
+  "boundaries": {
+    "independentlyCompared": true,
+    "findings": [
+      {
+        "label": 1,
+        "page": 337,
+        "row": 1,
+        "start": "וַיֵּלֶךְ",
+        "evidence": "Chapter יא begins here; marginב shares the row for the following unit."
+      },
+      {
+        "label": 2,
+        "page": 337,
+        "row": 1,
+        "start": "וַיֹּאמֶר",
+        "evidence": "After לְנִינְוֵה׃ in the same row."
+      },
+      {
+        "label": "3–4",
+        "page": 337,
+        "row": 2,
+        "start": "הֲלֹא",
+        "evidence": "Previous row closes אֶל־טוֹבִיָּה׃; actual combined ג–ד at this row."
+      },
+      {
+        "label": 5,
+        "page": 337,
+        "row": 3,
+        "start": "קַח־נָא",
+        "evidence": "After הַבָּיִת׃ in same row."
+      },
+      {
+        "label": "6–7",
+        "page": 337,
+        "row": 4,
+        "start": "וְחַנָּה",
+        "evidence": "After אַחֲרֵיהֶם׃; actual combined ו–ז."
+      },
+      {
+        "label": 8,
+        "page": 337,
+        "row": 5,
+        "start": "רְפָאֵל",
+        "evidence": "After עִמּוֹ׃ in same row."
+      },
+      {
+        "label": 9,
+        "page": 337,
+        "row": 6,
+        "start": "וְאַתָּה",
+        "evidence": "After אָבִיךָ׃ in same row."
+      },
+      {
+        "label": 10,
+        "page": 337,
+        "row": 8,
+        "start": "וַתָּרָץ",
+        "evidence": "After אוֹתְךָ׃ in same row."
+      },
+      {
+        "label": 11,
+        "page": 337,
+        "row": 9,
+        "start": "וְטוֹבִי",
+        "evidence": "After שְׁנֵיהֶם׃ in same row."
+      },
+      {
+        "label": 12,
+        "page": 337,
+        "row": 10,
+        "start": "וַיֶּחֱזַק",
+        "evidence": "After לִקְרָאתוֹ׃ in same row; continues on338."
+      },
+      {
+        "label": 13,
+        "page": 338,
+        "row": 1,
+        "start": "וַיְהִי",
+        "evidence": "After אָבִי׃ in same row."
+      },
+      {
+        "label": 14,
+        "page": 338,
+        "row": 2,
+        "start": "וַיַּרְא",
+        "evidence": "After עֵינָיו׃ in same row."
+      },
+      {
+        "label": 15,
+        "page": 338,
+        "row": 3,
+        "start": "בָּרוּךְ",
+        "evidence": "After וַיֹּאמַר׃ in same row."
+      },
+      {
+        "label": 16,
+        "page": 338,
+        "row": 5,
+        "start": "וַיָּבֹא",
+        "evidence": "After בְּנִי׃ in same row."
+      },
+      {
+        "label": 17,
+        "page": 338,
+        "row": 7,
+        "start": "וַיֵּצֵא",
+        "evidence": "After previous row closes בְּמָדָי׃ and a paragraph gap."
+      },
+      {
+        "label": 18,
+        "page": 338,
+        "row": 9,
+        "start": "וַיִּגַּשׁ",
+        "evidence": "After אֱלֹהִים׃ in same row."
+      },
+      {
+        "label": "19–20",
+        "page": 338,
+        "row": 11,
+        "start": "וַתְּהִי",
+        "evidence": "After וְאִמֵּךְ׃; actual combinedיט–כ, crossing to339first2rows; closes before chapter12."
+      }
+    ],
+    "unresolved": [],
+    "pageContinuations": "12 continues from B337 final upper row ending עַל־עֵינֵי to B338 opening אָבִיו;19–20 continues from B338 final upper row ending אִתָּם to B339 first2rows beginning שָׁם. All words are present and matched. Chapter12 heading follows the closing שִׁבְעַת יָמִים׃ on B339.",
+    "brackets": "18 prints the initial shuruq vav outside [בְרוּכִים]; the canonical וּ[בְרוּכִים] preserves the exact bracket boundary."
+  },
+  "newCorrections": [],
+  "corroboratedAuthorCorrections": [
+    {
+      "verse": 1,
+      "after": "הִקְרִיב",
+      "finding": "He hiriq, qof sheva, resh hiriq and the short written yod are distinct in the extra crop, and primary confirms the consonants; retained.",
+      "evidence": [
+        "TOB11-query-hikriv.png",
+        "TOB11-primary-hikriv.png"
+      ]
+    },
+    {
+      "verse": 9,
+      "after": "נִשָׁךְ",
+      "finding": "Extra crop has exactly one lower dot under nun; shin qamats and final kaf sheva retained. Primary points are more fused but support the same literal word. No sheva is supplied under nun.",
+      "evidence": [
+        "TOB11-query-nashakh.png",
+        "TOB11-primary-nashakh.png"
+      ]
+    },
+    {
+      "verse": 19,
+      "endVerse": 20,
+      "after": "וְנַסְכָּם",
+      "finding": "Both source images show the closed samekh between nun and kaf. Extra scan independently supports vav sheva, nun patah, samekh sheva and kaf dagesh/qamats. No consonant is editorially restored.",
+      "evidence": [
+        "TOB11-query-nakham.png",
+        "TOB11-primary-naskam.png"
+      ]
+    }
+  ],
+  "retainedFocusedReadings": [
+    {
+      "verse": 9,
+      "token": "תַּבְלוּלֵי",
+      "finding": "Tav detached dagesh/patah, bet sheva, written shuruq vav and second lamed tsere visible; retained.",
+      "evidence": [
+        "TOB11-query-tavlulei.png"
+      ]
+    },
+    {
+      "verse": 15,
+      "token": "וַתְּרַחֲמֵנִי",
+      "finding": "Tav detached interior dagesh is clear in extra scan; primary dot joins the roof but supports the same placement. Tav sheva, resh patah and het hataf-patah are distinctly visible; retained.",
+      "evidence": [
+        "TOB11-independent-v15-terahameni-extra.png",
+        "TOB11-independent-v15-terahameni-primary.png"
+      ]
+    },
+    {
+      "verse": 17,
+      "token": "וַיּוֹדֶה",
+      "finding": "The extra crop separates the small dagesh at the yod lower-left interior from its stem. Primary fuses it with the yod body; retain the extra-supported dagesh. Initial vav patah and written second vav holam are visible.",
+      "evidence": [
+        "TOB11-independent-v17-vayode-extra.png",
+        "TOB11-independent-v17-vayode-primary.png"
+      ]
+    },
+    {
+      "verse": 19,
+      "endVerse": 20,
+      "token": "וַיַּחֲגּוּ",
+      "finding": "Extra query confirms yod dagesh/patah, het hataf-patah and gimel dagesh; retained.",
+      "evidence": [
+        "TOB11-query-vayakhagu.png"
+      ]
+    }
+  ],
+  "newPointNoteProposals": [],
+  "comparedAuthorReport": {
+    "path": "Shared/reports/hebrew-wikisource/TOB-short-chapter11-review.json",
+    "sha256": "1d19ad3473f599b4cb8849fa826eadd311c321d2816fc33cf82710676ffca42e"
+  },
+  "comparedCanonicalSnapshot": {
+    "number": 11,
+    "lastVerse": 20,
+    "verses": [
+      {
+        "verse": 1,
+        "text": "וַיֵּלֶךְ עַד־אֲשֶׁר הִקְרִיב לְנִינְוֵה׃",
+        "sourcePages": [
+          337
+        ],
+        "textSHA256": "a178374bac297c4ab1065c60fd7a2d4b9f4ba01322a1db2398cf4fa9d77d2707"
+      },
+      {
+        "verse": 2,
+        "text": "וַיֹּאמֶר רְפָאֵל אֶל־טוֹבִיָּה׃",
+        "sourcePages": [
+          337
+        ],
+        "textSHA256": "b303cd90770a1454afc171f1952e261d68f93e6879a57aeea7309227439f43c5"
+      },
+      {
+        "verse": 3,
+        "text": "הֲלֹא נֵדַע אָחִי אֵיךְ עָזַבְנוּ אֶת־אָבִיךָ׃ נָרוּצָה־נָא לִפְנֵי אִשְׁתֶּךָ וְנָכִינָה אֶת־הַבָּיִת׃",
+        "sourcePages": [
+          337
+        ],
+        "textSHA256": "236ef540ad7d00161ab8f2d2d88c7e8488295cd93ccd73695ca5fda11541d27d",
+        "endVerse": 4
+      },
+      {
+        "verse": 5,
+        "text": "קַח־נָא בְּיָדְךָ אֶת־מְרֵרַת הַדָּג וַיֵּלְכוּ וְהַכֶּלֶב הָלַךְ אַחֲרֵיהֶם׃",
+        "sourcePages": [
+          337
+        ],
+        "textSHA256": "1681a9d0feef7fbbba1a244e4890a1d4f3d02147ec9c75a552fd76e39691d0eb"
+      },
+      {
+        "verse": 6,
+        "text": "וְחַנָּה יוֹשֶׁבֶת עַל־יַד הַדֶּרֶךְ מְצַפָּה לִבְנָהּ׃ וַתִּתְבּוֹנֵן אֵלָיו כְּבוֹאוֹ וַתֹּאמֶר לְאָבִיו רְאֵה בָא בִנְךָ וְהָאִישׁ אֲשֶׁר הָלַךְ עִמּוֹ׃",
+        "sourcePages": [
+          337
+        ],
+        "textSHA256": "f34536a994236f6e829ceadf13a6117648028fd2d1b355a66bef61a00178092f",
+        "endVerse": 7
+      },
+      {
+        "verse": 8,
+        "text": "רְפָאֵל אָמַר יָדַעְתִּי כִּי תִפָּקַחְנָה עֵינֵי אָבִיךָ׃",
+        "sourcePages": [
+          337
+        ],
+        "textSHA256": "2cb6f30e3a21093b1e6cbc532d0eb16d5482a16e85024ece25384acab6c5cf19"
+      },
+      {
+        "verse": 9,
+        "text": "וְאַתָּה מְרַח אֶת־הַמְּרֵרָה בְּעֵינָיו וְאִם נִשָׁךְ וְהִתְגָּרֵד וְהִשְׁלִיךְ אֶת תַּבְלוּלֵי הַלָּבָן וְרָאָה אוֹתְךָ׃",
+        "sourcePages": [
+          337
+        ],
+        "textSHA256": "180eda371c8d7d265062fd0b33cf30f13e56f19c579524877feb663c93a4f49c"
+      },
+      {
+        "verse": 10,
+        "text": "וַתָּרָץ חַנָּה לִקְרָאתָם וַתִּפֹּל עַל־צַוַּאר בְּנָהּ וַתֹּאמֶר לוֹ אָמוּתָה הַפַּעַם אַחֲרֵי רְאוֹתִי אוֹתְךָ בְּנִי וַיִּבְכּוּ שְׁנֵיהֶם׃",
+        "sourcePages": [
+          337
+        ],
+        "textSHA256": "54e95bf0e4b1ec7831353bb8aa1c0f83f98e56259fc671f0d3369e806ab4bf34"
+      },
+      {
+        "verse": 11,
+        "text": "וְטוֹבִי יָצָא אֶל־הַפֶּתַח וַיִּכָּשֵׁל וַיָּרָץ בְּנוֹ לִקְרָאתוֹ׃",
+        "sourcePages": [
+          337
+        ],
+        "textSHA256": "e2228c75d626ad24364903635d03d984afde208f9877c9ca9a207ae9a7a3a72c"
+      },
+      {
+        "verse": 12,
+        "text": "וַיֶּחֱזַק בְּאָבִיו וַיָּשֶׂם אֶת־הַמְּרֵרָה עַל־עֵינֵי אָבִיו וַיֹּאמֶר חֲזַק אָבִי׃",
+        "sourcePages": [
+          337,
+          338
+        ],
+        "textSHA256": "5b0fdd9c44ce595d835407996a00e6acc42ccac0168dd93e3ab08ab6c318627d"
+      },
+      {
+        "verse": 13,
+        "text": "וַיְהִי כַּאֲשֶׁר נְשָׁכוֹ עֵינָיו וַיְגָרֵד אוֹתָן וַיִּמָּחוּ תַּבְלוּלֵי הַלָּבָן מִזָּוִיּוֹת עֵינָיו׃",
+        "sourcePages": [
+          338
+        ],
+        "textSHA256": "e4502037e05187ecc8fef33f68ee19b88ef1461e5e8976f997c0be8fa9fb1b06"
+      },
+      {
+        "verse": 14,
+        "text": "וַיַּרְא אֶת־בְּנוֹ וַיִּפֹּל עַל־צַוָּארָיו וַיֵּבְךְ וַיֹּאמַר׃",
+        "sourcePages": [
+          338
+        ],
+        "textSHA256": "f6c033023f16be06a98ab3fd531c08717a36c234548a937d768ff20de62a762f"
+      },
+      {
+        "verse": 15,
+        "text": "בָּרוּךְ אַתָּה אֱלֹהִים וּבָרוּךְ שִׁמְךָ לְעוֹלָמִים וּבְרוּכִים כָּל־מַלְאָכֶיךָ הַקְּדוֹשִׁים כִּי יִסַּרְתַּנִי וַתְּרַחֲמֵנִי וְהִנֵּה אָנֹכִי רֹאֶה אֶת־טוֹבִיָּה בְּנִי׃",
+        "sourcePages": [
+          338
+        ],
+        "textSHA256": "487c483718848c3ff17057a31acb0210646d52695b86910d6f5076543e59df09"
+      },
+      {
+        "verse": 16,
+        "text": "וַיָּבֹא אֵלָיו בְּנוֹ שָׂמֵחַ וַיַּגֵּד לְאָבִיו אֶת־הַגְּדֹלוֹת אֲשֶׁר נַעֲשׂוּ לוֹ בְּמָדָי׃",
+        "sourcePages": [
+          338
+        ],
+        "textSHA256": "aa70561033e1ae7e366ffda4a92375961549fc9d411c27811e32764f605946ab"
+      },
+      {
+        "verse": 17,
+        "text": "וַיֵּצֵא טוֹבִי לִקְרַאת כַּלָּתוֹ לִפְנֵי שַׁעַר נִינְוֵה וְהוּא שָׂמֵחַ וּמְבָרֵךְ אֶת־הָאֱלֹהִים וַיִּתְמְהוּ הָרוֹאִים אוֹתוֹ הוֹלֵךְ וּמַבִּיט וַיּוֹדֶה טוֹבִי לִפְנֵיהֶם כִּי רִחַם אוֹתוֹ אֱלֹהִים׃",
+        "sourcePages": [
+          338
+        ],
+        "textSHA256": "ac92598b346b3f6484786ceeaba3eac78873ae827419003931c5d4fbeb19073c"
+      },
+      {
+        "verse": 18,
+        "text": "וַיִּגַּשׁ טוֹבִי אֶל־שָׂרָה כַּלָּתוֹ וַיְבָרְכָהּ וַיֹּאמֶר בּוֹאִי בְשָׁלוֹם בִּתִּי בָּרוּךְ אֱלֹהִים אֲשֶׁר נָחָה אוֹתָךְ אֵלֵינוּ וּ[בְרוּכִים] אָבִיךְ וְאִמֵּךְ׃",
+        "sourcePages": [
+          338
+        ],
+        "textSHA256": "d3a6b42b6c38a4ffe4debd132138d7c41d44965db4c64ba5c89c1485c416c073"
+      },
+      {
+        "verse": 19,
+        "text": "וַתְּהִי שִׂמְחָה לְכָל־אֶחָיו בְּנִינְוֵה׃ וַיִּהְיוּ אִתָּם שָׁם אֲחִיקָר וְנַסְכָּם בֶּן־אָחִיו וַיַּחֲגּוּ אֶת־חֲתֻנַּת טוֹבִיָּה בְּשִׂמְחָה שִׁבְעַת יָמִים׃",
+        "sourcePages": [
+          338,
+          339
+        ],
+        "textSHA256": "3d906cb8f3f91a7f7c24dbf1d7cdbacd213a93d9820a31e31b4c5f11dc736af6",
+        "endVerse": 20
+      }
+    ]
+  },
+  "sourceImages": [
+    {
+      "source": "Apocrypha_Kahana_B.pdf",
+      "page": 337,
+      "imageXref": 1990,
+      "png": "/private/tmp/prosary-kahana-reference/TOB-B-337-native.png",
+      "pixelDimensions": [
+        1650,
+        2550
+      ],
+      "sha256": "acc2589911010c56b25b0062e48b82a8d245c6d93156b3442f75ef1af2abdbd1"
+    },
+    {
+      "source": "Apocrypha_Kahana_B.pdf",
+      "page": 338,
+      "imageXref": 1996,
+      "png": "/private/tmp/prosary-kahana-reference/TOB-B-338-native.png",
+      "pixelDimensions": [
+        1650,
+        2550
+      ],
+      "sha256": "4a947f37ca45f76cc74488f3e66662b1ae8429cb87153099672cc057d428eb43"
+    },
+    {
+      "source": "Apocrypha_Kahana_B.pdf",
+      "page": 339,
+      "imageXref": 2002,
+      "png": "/private/tmp/prosary-kahana-reference/TOB-B-339-native.png",
+      "pixelDimensions": [
+        1650,
+        2550
+      ],
+      "sha256": "68f3861f750f6e7cfb0ec911bca157dce819b89e814d17f590f004b04f9e4eaf"
+    },
+    {
+      "source": "Apocrypha_Kahana_B_extra_scan.pdf",
+      "page": 175,
+      "imageXref": 695,
+      "png": "/private/tmp/prosary-kahana-reference/TOB-extra-175-native.png",
+      "pixelDimensions": [
+        2872,
+        2024
+      ],
+      "sha256": "5d8fb195c50d2ccb1b6825f482c9ade5c4a8840b7c3418130ad65f7431afb2a2"
+    },
+    {
+      "source": "Apocrypha_Kahana_B_extra_scan.pdf",
+      "page": 176,
+      "imageXref": 699,
+      "png": "/private/tmp/prosary-kahana-reference/TOB-extra-176-native.png",
+      "pixelDimensions": [
+        2872,
+        2024
+      ],
+      "sha256": "a4ac20cd560531d251e55663aedc3533965832f997b392ea6b68fbfc2e1078b1"
+    }
+  ],
+  "lineCrops": [
+    {
+      "page": 337,
+      "line": 1,
+      "side": "right",
+      "extraPage": 175,
+      "bounds": [
+        962,
+        176,
+        1470,
+        233
+      ],
+      "path": "TOB11-B337-line01-right.png",
+      "sha256": "d27992978b3187116784f3806034e045f9e755e4e81d2e69dcfeb40c5439f321"
+    },
+    {
+      "page": 337,
+      "line": 1,
+      "side": "left",
+      "extraPage": 175,
+      "bounds": [
+        505,
+        176,
+        1012,
+        233
+      ],
+      "path": "TOB11-B337-line01-left.png",
+      "sha256": "396d41fdd5297a3b11240938612d1c377388f0f5f47c5a5a70d0c59a82d1d267"
+    },
+    {
+      "page": 337,
+      "line": 2,
+      "side": "right",
+      "extraPage": 175,
+      "bounds": [
+        962,
+        225,
+        1470,
+        281
+      ],
+      "path": "TOB11-B337-line02-right.png",
+      "sha256": "2ef576c482059518798dd1e611661c3c9fe960912be612b84e4571ccb2b011e6"
+    },
+    {
+      "page": 337,
+      "line": 2,
+      "side": "left",
+      "extraPage": 175,
+      "bounds": [
+        505,
+        225,
+        1012,
+        281
+      ],
+      "path": "TOB11-B337-line02-left.png",
+      "sha256": "87f76a2a252a53f89e9ce3cbbfce639e5d60a5c935e055e0fd5fe057fa096c69"
+    },
+    {
+      "page": 337,
+      "line": 3,
+      "side": "right",
+      "extraPage": 175,
+      "bounds": [
+        962,
+        273,
+        1470,
+        328
+      ],
+      "path": "TOB11-B337-line03-right.png",
+      "sha256": "aa7c4f86ea27c5bec7c9b1ccb5beb19644b2a2bb95449b01272846789ba493a5"
+    },
+    {
+      "page": 337,
+      "line": 3,
+      "side": "left",
+      "extraPage": 175,
+      "bounds": [
+        505,
+        273,
+        1012,
+        328
+      ],
+      "path": "TOB11-B337-line03-left.png",
+      "sha256": "e1d7a89576a21a6a8d28ab131584def0ea273a0b9e858889b122ed740c227117"
+    },
+    {
+      "page": 337,
+      "line": 4,
+      "side": "right",
+      "extraPage": 175,
+      "bounds": [
+        962,
+        320,
+        1470,
+        376
+      ],
+      "path": "TOB11-B337-line04-right.png",
+      "sha256": "214c676197a621cbe7335391d10323e2a79db4c66d2c4afd4bb2399109d63d00"
+    },
+    {
+      "page": 337,
+      "line": 4,
+      "side": "left",
+      "extraPage": 175,
+      "bounds": [
+        505,
+        320,
+        1012,
+        376
+      ],
+      "path": "TOB11-B337-line04-left.png",
+      "sha256": "851cb5d1de1387f8cc5abec0c953d9ff38f5ad5331eecc8c60f183ebd0397e71"
+    },
+    {
+      "page": 337,
+      "line": 5,
+      "side": "right",
+      "extraPage": 175,
+      "bounds": [
+        962,
+        368,
+        1470,
+        423
+      ],
+      "path": "TOB11-B337-line05-right.png",
+      "sha256": "345ea250e2a8706ba657b5f752188055715f0ded2cf099c6baa85453eb21851c"
+    },
+    {
+      "page": 337,
+      "line": 5,
+      "side": "left",
+      "extraPage": 175,
+      "bounds": [
+        505,
+        368,
+        1012,
+        423
+      ],
+      "path": "TOB11-B337-line05-left.png",
+      "sha256": "3e63d4dfb6a6a770b27b163a24db7572f451b4c70135746a1c588467b20742f8"
+    },
+    {
+      "page": 337,
+      "line": 6,
+      "side": "right",
+      "extraPage": 175,
+      "bounds": [
+        962,
+        415,
+        1470,
+        471
+      ],
+      "path": "TOB11-B337-line06-right.png",
+      "sha256": "0bed773a374830a80055a16b2f8e5aa5a1ab2c23f83eb81e6472f3327b83576c"
+    },
+    {
+      "page": 337,
+      "line": 6,
+      "side": "left",
+      "extraPage": 175,
+      "bounds": [
+        505,
+        415,
+        1012,
+        471
+      ],
+      "path": "TOB11-B337-line06-left.png",
+      "sha256": "5b9804b4f810083263e7e7e60a1882f4fbb60498383841cd31bbbd07e6fdab99"
+    },
+    {
+      "page": 337,
+      "line": 7,
+      "side": "right",
+      "extraPage": 175,
+      "bounds": [
+        962,
+        463,
+        1470,
+        520
+      ],
+      "path": "TOB11-B337-line07-right.png",
+      "sha256": "21cf44c4c96a0835347f5900ad994688601222cfd520c5b998072192011532b9"
+    },
+    {
+      "page": 337,
+      "line": 7,
+      "side": "left",
+      "extraPage": 175,
+      "bounds": [
+        505,
+        463,
+        1012,
+        520
+      ],
+      "path": "TOB11-B337-line07-left.png",
+      "sha256": "1afafb3a0d438c6a25892ebd25953bab158d5b50c62e99ced0a1f8c9de6fe1be"
+    },
+    {
+      "page": 337,
+      "line": 8,
+      "side": "right",
+      "extraPage": 175,
+      "bounds": [
+        962,
+        512,
+        1470,
+        568
+      ],
+      "path": "TOB11-B337-line08-right.png",
+      "sha256": "7c39c0d65b45dcf4bc5926b19e2fef92c6f931597803465c7f2a82bc982114d4"
+    },
+    {
+      "page": 337,
+      "line": 8,
+      "side": "left",
+      "extraPage": 175,
+      "bounds": [
+        505,
+        512,
+        1012,
+        568
+      ],
+      "path": "TOB11-B337-line08-left.png",
+      "sha256": "303063fe6e8b97b31e60cebea6acfb6798eb676fb428c8ce093831e6c158f1ef"
+    },
+    {
+      "page": 337,
+      "line": 9,
+      "side": "right",
+      "extraPage": 175,
+      "bounds": [
+        962,
+        560,
+        1470,
+        615
+      ],
+      "path": "TOB11-B337-line09-right.png",
+      "sha256": "4ad2d27fd7a99ad46355cb0696f9b78e213b789080976e3153e2e4f175e4a1f6"
+    },
+    {
+      "page": 337,
+      "line": 9,
+      "side": "left",
+      "extraPage": 175,
+      "bounds": [
+        505,
+        560,
+        1012,
+        615
+      ],
+      "path": "TOB11-B337-line09-left.png",
+      "sha256": "84e01b7bdb74ba5610c7697e48266cb47fb75c1ba263fdc67382dc823ae8f33d"
+    },
+    {
+      "page": 337,
+      "line": 10,
+      "side": "right",
+      "extraPage": 175,
+      "bounds": [
+        962,
+        607,
+        1470,
+        663
+      ],
+      "path": "TOB11-B337-line10-right.png",
+      "sha256": "7b78c71faa3d3a0497bee05fd10466329d3f01192b3f70982de829596e9dbcea"
+    },
+    {
+      "page": 337,
+      "line": 10,
+      "side": "left",
+      "extraPage": 175,
+      "bounds": [
+        505,
+        607,
+        1012,
+        663
+      ],
+      "path": "TOB11-B337-line10-left.png",
+      "sha256": "afcc81ab3150352a1c6c6c294476735839ab8ba9b8043ea53b7da034e6b08bc2"
+    },
+    {
+      "page": 338,
+      "line": 1,
+      "side": "right",
+      "extraPage": 176,
+      "bounds": [
+        2177,
+        176,
+        2690,
+        232
+      ],
+      "path": "TOB11-B338-line01-right.png",
+      "sha256": "a64d1599f635c0e48a7b20bd38d34f9f939f1919e14ef531e9b81c23462abe51"
+    },
+    {
+      "page": 338,
+      "line": 1,
+      "side": "left",
+      "extraPage": 176,
+      "bounds": [
+        1715,
+        176,
+        2227,
+        232
+      ],
+      "path": "TOB11-B338-line01-left.png",
+      "sha256": "7c1590e8c759a1df35b1f2ef7f00322fc91fd0fe19918097d6045cad04a12c98"
+    },
+    {
+      "page": 338,
+      "line": 2,
+      "side": "right",
+      "extraPage": 176,
+      "bounds": [
+        2177,
+        224,
+        2690,
+        279
+      ],
+      "path": "TOB11-B338-line02-right.png",
+      "sha256": "f115d6659c37ee8c720ab151b4e5c1eee896768740e1d49d0293e53461180827"
+    },
+    {
+      "page": 338,
+      "line": 2,
+      "side": "left",
+      "extraPage": 176,
+      "bounds": [
+        1715,
+        224,
+        2227,
+        279
+      ],
+      "path": "TOB11-B338-line02-left.png",
+      "sha256": "ca999236a35371d420449f7c517687c1dbcb6f5ed47eadcf11918bd443e31fe3"
+    },
+    {
+      "page": 338,
+      "line": 3,
+      "side": "right",
+      "extraPage": 176,
+      "bounds": [
+        2177,
+        271,
+        2690,
+        327
+      ],
+      "path": "TOB11-B338-line03-right.png",
+      "sha256": "d7278b442ae6ec09433fd4594c0c06ca7beb438918c7dfb54cfbb4fd2497fd00"
+    },
+    {
+      "page": 338,
+      "line": 3,
+      "side": "left",
+      "extraPage": 176,
+      "bounds": [
+        1715,
+        271,
+        2227,
+        327
+      ],
+      "path": "TOB11-B338-line03-left.png",
+      "sha256": "006585e319cd72d849bc95c015bf3c2b35a7b7ea21f6a34efd56835dd1573b1d"
+    },
+    {
+      "page": 338,
+      "line": 4,
+      "side": "right",
+      "extraPage": 176,
+      "bounds": [
+        2177,
+        319,
+        2690,
+        375
+      ],
+      "path": "TOB11-B338-line04-right.png",
+      "sha256": "92eac3dfa8092958239e8e4bef3073d3e84a3798cf766c9560eb0fe722536eb6"
+    },
+    {
+      "page": 338,
+      "line": 4,
+      "side": "left",
+      "extraPage": 176,
+      "bounds": [
+        1715,
+        319,
+        2227,
+        375
+      ],
+      "path": "TOB11-B338-line04-left.png",
+      "sha256": "748ffa60c15bc0de49bca7f9b6e34db6fb389b10209d37212d9a19c517af4172"
+    },
+    {
+      "page": 338,
+      "line": 5,
+      "side": "right",
+      "extraPage": 176,
+      "bounds": [
+        2177,
+        367,
+        2690,
+        423
+      ],
+      "path": "TOB11-B338-line05-right.png",
+      "sha256": "c1f2ab8ccb3d4aeefb37088df37ed0b685da2f4c5f9bad317be61746e744c607"
+    },
+    {
+      "page": 338,
+      "line": 5,
+      "side": "left",
+      "extraPage": 176,
+      "bounds": [
+        1715,
+        367,
+        2227,
+        423
+      ],
+      "path": "TOB11-B338-line05-left.png",
+      "sha256": "0f8786ab6513f56cf295b83b0d956108a17e0381bbde67843281290379037152"
+    },
+    {
+      "page": 338,
+      "line": 6,
+      "side": "right",
+      "extraPage": 176,
+      "bounds": [
+        2177,
+        415,
+        2690,
+        469
+      ],
+      "path": "TOB11-B338-line06-right.png",
+      "sha256": "693f16f43f471a50d2a89b9da9604b0cb37229b59987dd56a4c3822fda371b1f"
+    },
+    {
+      "page": 338,
+      "line": 6,
+      "side": "left",
+      "extraPage": 176,
+      "bounds": [
+        1715,
+        415,
+        2227,
+        469
+      ],
+      "path": "TOB11-B338-line06-left.png",
+      "sha256": "000d290823dcc4d3fd08e55f84a4ba85c6fa26909b752605db25de4c7200487e"
+    },
+    {
+      "page": 338,
+      "line": 7,
+      "side": "right",
+      "extraPage": 176,
+      "bounds": [
+        2177,
+        461,
+        2690,
+        518
+      ],
+      "path": "TOB11-B338-line07-right.png",
+      "sha256": "3f60000d30363b291f320d567969737c67229e7ad0b43191b64aa2fbdd3ea6c5"
+    },
+    {
+      "page": 338,
+      "line": 7,
+      "side": "left",
+      "extraPage": 176,
+      "bounds": [
+        1715,
+        461,
+        2227,
+        518
+      ],
+      "path": "TOB11-B338-line07-left.png",
+      "sha256": "8c0ddc33ad4530995b11f3a7f988fe307c7f4fff8570f3b21b3d52104186c359"
+    },
+    {
+      "page": 338,
+      "line": 8,
+      "side": "right",
+      "extraPage": 176,
+      "bounds": [
+        2177,
+        510,
+        2690,
+        565
+      ],
+      "path": "TOB11-B338-line08-right.png",
+      "sha256": "d50482177e009a210c3dca49f94a33926881eead710ff14a977532f8c903c5d8"
+    },
+    {
+      "page": 338,
+      "line": 8,
+      "side": "left",
+      "extraPage": 176,
+      "bounds": [
+        1715,
+        510,
+        2227,
+        565
+      ],
+      "path": "TOB11-B338-line08-left.png",
+      "sha256": "b73b4b01b483330aa502f08cf28ec61a41d819ecd922f9e8424e6be3fb1cabc6"
+    },
+    {
+      "page": 338,
+      "line": 9,
+      "side": "right",
+      "extraPage": 176,
+      "bounds": [
+        2177,
+        557,
+        2690,
+        613
+      ],
+      "path": "TOB11-B338-line09-right.png",
+      "sha256": "09f0b14d7f3a094a0f2420999b59d8d320e3705f74e5e2ea8c39f97a9c50482a"
+    },
+    {
+      "page": 338,
+      "line": 9,
+      "side": "left",
+      "extraPage": 176,
+      "bounds": [
+        1715,
+        557,
+        2227,
+        613
+      ],
+      "path": "TOB11-B338-line09-left.png",
+      "sha256": "c412421543e6647ae15ff309c02b603de8002bafea06451e80ea792cef66071a"
+    },
+    {
+      "page": 338,
+      "line": 10,
+      "side": "right",
+      "extraPage": 176,
+      "bounds": [
+        2177,
+        605,
+        2690,
+        661
+      ],
+      "path": "TOB11-B338-line10-right.png",
+      "sha256": "d3297c192ea89ed194e9ab36518674fe2c65fb5424e2b01e3a4721e56ad5086e"
+    },
+    {
+      "page": 338,
+      "line": 10,
+      "side": "left",
+      "extraPage": 176,
+      "bounds": [
+        1715,
+        605,
+        2227,
+        661
+      ],
+      "path": "TOB11-B338-line10-left.png",
+      "sha256": "09d5a66534867de78637ccfb2d20d6968b38a530c15379b1748c11575b9720f2"
+    },
+    {
+      "page": 338,
+      "line": 11,
+      "side": "right",
+      "extraPage": 176,
+      "bounds": [
+        2177,
+        653,
+        2690,
+        704
+      ],
+      "path": "TOB11-B338-line11-right.png",
+      "sha256": "89f160d8982b1a2acf80ea84cbff48bba7ba3ae4561a437a8bbf6f432d47c895"
+    },
+    {
+      "page": 338,
+      "line": 11,
+      "side": "left",
+      "extraPage": 176,
+      "bounds": [
+        1715,
+        653,
+        2227,
+        704
+      ],
+      "path": "TOB11-B338-line11-left.png",
+      "sha256": "3361192e0e960a753445cb3e874d27118920da8be0c170aa39f9d321787524e5"
+    },
+    {
+      "page": 339,
+      "line": 1,
+      "side": "right",
+      "extraPage": 176,
+      "bounds": [
+        962,
+        176,
+        1475,
+        231
+      ],
+      "path": "TOB11-B339-line01-right.png",
+      "sha256": "3f26d7a82599ffb2a7c04bcf0a59fb345e019f6c1f8a5c977b6dd48c5a970ffe"
+    },
+    {
+      "page": 339,
+      "line": 1,
+      "side": "left",
+      "extraPage": 176,
+      "bounds": [
+        500,
+        176,
+        1012,
+        231
+      ],
+      "path": "TOB11-B339-line01-left.png",
+      "sha256": "69d1e30e18ebdb75397ed7a68debf29c48a5f64302a22e350ea4f15155bf4a15"
+    },
+    {
+      "page": 339,
+      "line": 2,
+      "side": "right",
+      "extraPage": 176,
+      "bounds": [
+        962,
+        223,
+        1475,
+        278
+      ],
+      "path": "TOB11-B339-line02-right.png",
+      "sha256": "dbe45648ce0610fc2a20a9885396724078142b7b39b034cecbb203be62759dfd"
+    },
+    {
+      "page": 339,
+      "line": 2,
+      "side": "left",
+      "extraPage": 176,
+      "bounds": [
+        500,
+        223,
+        1012,
+        278
+      ],
+      "path": "TOB11-B339-line02-left.png",
+      "sha256": "d4e74a005bb92cc2e8859430f5ce92605322fbd96fa44e1232a5e2dbf43d71b5"
+    }
+  ],
+  "queryCrops": [
+    {
+      "extraPage": 175,
+      "bounds": [
+        1000,
+        179,
+        1120,
+        235
+      ],
+      "path": "TOB11-query-hikriv.png",
+      "sha256": "b91ef71ece2f268da8a469d38a216577d823d7839b399d3abeb6a46b00f02e00"
+    },
+    {
+      "extraPage": 175,
+      "bounds": [
+        1110,
+        467,
+        1210,
+        520
+      ],
+      "path": "TOB11-query-nashakh.png",
+      "sha256": "a06558979aa88cd2737d81731850b8150c9f589e67a015289f7acb4391fd8b57"
+    },
+    {
+      "extraPage": 175,
+      "bounds": [
+        700,
+        467,
+        810,
+        519
+      ],
+      "path": "TOB11-query-tavlulei.png",
+      "sha256": "607c68b18b00b7ac3281194d92d06b8d15faed13cec6e9d96500ab3e53bbf754"
+    },
+    {
+      "extraPage": 176,
+      "bounds": [
+        1115,
+        179,
+        1245,
+        237
+      ],
+      "path": "TOB11-query-nakham.png",
+      "sha256": "b1c303dbb2fa79c90cd0acae39b43e418b6c029f055cb763b762ab86e7d951c9"
+    },
+    {
+      "extraPage": 176,
+      "bounds": [
+        885,
+        179,
+        975,
+        238
+      ],
+      "path": "TOB11-query-vayakhagu.png",
+      "sha256": "aa15c1712613478d90b5b04d8ce8bb33180f7b64477c358e60d1ed51626618d9"
+    },
+    {
+      "sourcePage": 337,
+      "bounds": [
+        847,
+        330,
+        980,
+        399
+      ],
+      "path": "TOB11-primary-hikriv.png",
+      "sha256": "4109a68fe8544856935667db7bc847804f9837e23221652a242c824228a900a1"
+    },
+    {
+      "sourcePage": 337,
+      "bounds": [
+        1018,
+        709,
+        1120,
+        780
+      ],
+      "path": "TOB11-primary-nashakh.png",
+      "sha256": "ceadda9a15f1eb29572031b97f00787539704ceae0c2919975c166ca2d5351f6"
+    },
+    {
+      "sourcePage": 339,
+      "bounds": [
+        984,
+        329,
+        1110,
+        391
+      ],
+      "path": "TOB11-primary-naskam.png",
+      "sha256": "33eb0479412b91c0c8fce6314c0bf15e89fde3e7e1dc547772ed6dab10e56f06"
+    },
+    {
+      "sourceImage": "/private/tmp/prosary-kahana-reference/TOB-extra-176-native.png",
+      "bounds": [
+        2100,
+        319,
+        2227,
+        375
+      ],
+      "scale": 6,
+      "resampling": "nearest-neighbor",
+      "path": "/private/tmp/prosary-kahana-reference/TOB11-independent-v15-terahameni-extra.png",
+      "sha256": "579e61651398a7637eaa6f08845673c4fcfda5e2717929600cb421dfc43c1f49"
+    },
+    {
+      "sourceImage": "/private/tmp/prosary-kahana-reference/TOB-extra-176-native.png",
+      "bounds": [
+        1850,
+        510,
+        1935,
+        565
+      ],
+      "scale": 6,
+      "resampling": "nearest-neighbor",
+      "path": "/private/tmp/prosary-kahana-reference/TOB11-independent-v17-vayode-extra.png",
+      "sha256": "6090a3813e7c27441db8a6300299a6a364aa4675aff6d5a712f2ac13dfedddad"
+    },
+    {
+      "sourceImage": "/private/tmp/prosary-kahana-reference/TOB-B-338-native.png",
+      "bounds": [
+        675,
+        530,
+        840,
+        605
+      ],
+      "scale": 6,
+      "resampling": "nearest-neighbor",
+      "path": "/private/tmp/prosary-kahana-reference/TOB11-independent-v15-terahameni-primary.png",
+      "sha256": "e6689044b54ad1b34ac3a2043ab802ee1eed9632c522aa863f29c67f7ef960ec"
+    },
+    {
+      "sourceImage": "/private/tmp/prosary-kahana-reference/TOB-B-338-native.png",
+      "bounds": [
+        300,
+        780,
+        440,
+        850
+      ],
+      "scale": 6,
+      "resampling": "nearest-neighbor",
+      "path": "/private/tmp/prosary-kahana-reference/TOB11-independent-v17-vayode-primary.png",
+      "sha256": "63b7a547a89372c3b57a614c48156531f13a457854c0db2d11927a5713650765"
+    }
+  ],
+  "validation": {
+    "sourceAndCropHashesVerified": true,
+    "canonicalTextHashesVerified": true,
+    "wordAndPointComparison": "complete; no further changes proposed",
+    "boundaryComparison": "all17 source unit starts and both cross-page continuations corroborated",
+    "approvalScope": "Independent chapter comparison only. No canonical edits, no new whole-page approvals and no release approval."
+  }
+}

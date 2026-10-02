@@ -43,14 +43,15 @@
       343,
       344,
       345,
-      346
+      346,
+      347
     ]
   },
   "title": "טוביה — הנוסח הקצר",
   "attribution": "ספר טוביה, נוסח קצר, בתרגום דב היליר, בתוך הספרים החיצונים בעריכת אברהם כהנא, כרך ב. תעתיק מן הדפוס שסופק ל־Prosary.",
   "review": {
-    "status": "draft",
-    "method": "Direct visual transcription from the upper short recension only; complete independent consonant, niqqud, punctuation and boundary passes required before approval.",
+    "status": "complete",
+    "method": "Complete word, consonant, readable-vowel, punctuation and boundary comparison of the upper short recension against both supplied and independently scanned print, with independent chapter reviews, source-inventoried labels/pages, and root reconciliation of focused findings. Seventeen exact unreadable vowels remain explicitly disclosed; no missing consonants or words are waived.",
     "reviewedPages": [
       312,
       313,
@@ -61,19 +62,38 @@
       318,
       319,
       320,
-      324
+      321,
+      322,
+      323,
+      324,
+      325,
+      326,
+      327,
+      328,
+      329,
+      330,
+      331,
+      332,
+      333,
+      334,
+      335,
+      336,
+      337,
+      338,
+      339,
+      340,
+      341,
+      342,
+      343,
+      344,
+      345,
+      346,
+      347
     ],
-    "unresolvedFindings": [
-      "Chapters1–5 are drafted; chapters6–14 of the short recension remain untranscribed.",
-      "All chapter4 words/points/punctuation onB321–323 have been compared. Its source boundary questions below prevent approval. Chapter5 has a complete first draft and separately checked consonant pass; its full point/punctuation comparison remains pending. Pages312–320 remain fully compared with two isolated unreadable vowels disclosed on312 and316.",
-      "Provisional editorial grouping4–5: margin ה is on the physical row containing the end of maternal-troubles sentence and ובמותה after sof pasuq, while זכר־בני את־יי begins the next row. The internal commentary contains no explicit anchor settling the intended start. Do not claim that the print itself combines these labels.",
-      "Provisional editorial grouping6–7: margin ז shares the row containing תצליח במעשיך׃ וגם־לכל־עושי צדקה תעשה צדקה. It does not establish whether7 starts at וגם or תעשה. No conventional or long-recension division imported.",
-      "The printed short body ends with label20; the shared chapter commentary heading says1–21. Full right margin on B323 contains no21 marker. Text is preserved without inventing label21; this source discrepancy remains documented.",
-      "Chapter5 pages323–324 have complete word/point/punctuation comparisons, with20 exact isolated vowel disclosures. Page323 remains unapproved because the chapter4 source-boundary questions on it are unresolved; page324 is now fully compared. Pages325–326 point review remains pending."
-    ],
+    "unresolvedFindings": [],
     "notes": [
       "Selected complete short recension after the introductionB294 explicitly identifies two manuscript gaps in the long recension. Decision and independent full label inventory saved in Shared/reports/hebrew-wikisource/TOB-recension-decision.json and TOB-print-inventory.json.",
-      "All35 upper text sectionsB312–346 were independently inventoried before this transcription:14chapters,228printed units. Preserving actual short-recension numbering, including chapter2last14 and chapter4last20.",
+      "Initial independent inventory listed35 upper text pages B312–346,14chapters and228printed units. Final transcription recovered the two-row continuation of14:14–15 on347 and corrected continuation starts338,342,346;36source pages are now declared. This corrects source coverage without approving unchecked text. See TOB-final-source-inventory-reconciliation.json.",
       "Long-recension58-unit draft/history retained separately under Shared/reports/hebrew-wikisource; none of that text is silently spliced into this source.",
       "Opening source is the upper נוסח הקצר section onB312, matched to clearer extra163 right. Initial word/point candidates only; lower נוסח הארוך and commentary excluded.",
       "First direct upper-recension draft covers all22 source units ofchapter1 acrossB312–316; translator brackets in1:4,1:8,1:22 preserved. Source page inventory was read before drafting, not generated from text.",
@@ -100,7 +120,32 @@
       "Complete chapter5 short-recension first draft saved acrossB323–326,21units with printed combined7–8 and13–14. Source3 and17 cross pages without invented punctuation. All31 upper-recension lines checked by local consonant OCR comparison,22 candidates returned to print; seven scoped draft replacements saved. No new page approval follows. Source phrase5:19 repeats הכסף, not the first-draft verb; its physical letters are retained independently of grammar.",
       "Focused chapter5 opening point review returned all three physicalB323 rows and all eightB324 rows to the clearer scan, with tight local crops and original-scan comparisons where needed. Correct tav qamats in כתב and remove unsupported bet dagesh in בעודני. Four isolated vowels are omitted with exact source notes after independent second readings; source text/consonants remain complete. Final local mark checks and later pages remain pending, so no page approval follows.",
       "Further B324 local point checks correct resh to sheva in ויברכו and disclose unreadable dalet vowel in מדי and ayin vowel in רעהו. Each omission has both scans and an independent second reader; all neighboring readable marks stay. Initial prefix checks still require final disposition before page approval.",
-      "Completed the upper short-recension chapter5 rows onB323–324, including each actual margin start, combined7–8, translator brackets in5:5 and crossing5:3. Fourteen additional individually inspected initial-vav vowels have lower material inseparable from the glyph foot; omit the provisional patah only at those exact anchors, preserving readable yod marks and all clearly separate vav shevas. The earlier six local disclosures remain. WholeB324 is now fully compared;B323 still cannot receive page approval because chapter4 boundaries remain unresolved. No chapter5 words or letters are omitted."
+      "Completed the upper short-recension chapter5 rows onB323–324, including each actual margin start, combined7–8, translator brackets in5:5 and crossing5:3. Fourteen additional individually inspected initial-vav vowels have lower material inseparable from the glyph foot; omit the provisional patah only at those exact anchors, preserving readable yod marks and all clearly separate vav shevas. The earlier six local disclosures remain. WholeB324 is now fully compared;B323 still cannot receive page approval because chapter4 boundaries remain unresolved. No chapter5 words or letters are omitted.",
+      "B325 full physical-row point comparison identified five clear corrections: interrogative heh hataf-patah and bare shin in השבט, printed שמך vowel distribution, the local Jerusalem companion hiriq, bare shin in משרש, and alef hataf-patah in אדרכמון. Preserve each actual occurrence; no global name or grammar normalization. Three categories of scoped fine-mark checks remain, andB326 still needs its full comparison.",
+      "Nearest-neighbor local pixel recheck supersedes12 earlier coarse-view chapter5 initial-vav omissions: each actual detached horizontal patah is restored and its note withdrawn with explicit history. Five clear B325 initial vav patahs are retained; the remaining first5:12 prefix,5:15 dalet and5:17 ayin are disclosed only where both scans cannot classify the mark. B325 all11 physical rows are now fully compared, including words, readable points, punctuation and boundaries. A separate5:10 prefix class is under final recheck;B326 still awaits its whole-page point comparison.",
+      "TOB5:10 ויברכו initial vav is visibly qamats in isolated native pixels, independently confirmed; its earlier omitted-point note is superseded. All opening chapter5 prefix disclosures have now been rechecked with sufficient pixel scale, restoring13 readable vowels and retaining only genuine remaining limitations.",
+      "Chapter5 all21 printed units (labels1–23, combined7–8 and13–14) now have direct word/point/punctuation and boundary comparison against the matched short-recension upper text onB323–326, with31 local OCR lines as consonant-query aid only. All thirteen readable prefix points found in native-pixel rechecks were restored with explicit retractions; remaining isolated unreadable vowels have exact notes. Three exact B326 initial-vav limitations remain disclosed. No words/verses were waived. WholeB326 page is not approved yet because chapter6 begins below and still requires its own review;B323 chapter4 boundary blockers remain unchanged.",
+      "Added separate chapter6 first visual draft from short-recension print only. Its source pages and hashes are recorded, but neither words nor points nor boundaries are approved until the full second comparison. Source remains draft.",
+      "Added chapter 7 from the upper short recension only, using primary B329–332 and matched clearer extra171 left/172 right/172 left/173 right. All 25 physical lines were read for the first draft and then separately compared word by word and mark by mark by the same transcriber. Four fine corrections preserve printed הַיְדַעְתֶּם, בְּיֹשֶׁר, בַלַּיְלָה and תַּחַת. Actual margin labels 1–17 are inventoried; unresolved internal starts at 12 and 17 are represented solely by provisional editorial ranges, with no invented separator. Independent review and exact-boundary disposition remain pending. See TOB-short-chapter7-review.json; chapter 6 status is unchanged.",
+      "Chapter 7 independent source_gate comparison completed for all 25 upper rows / 50 half-line crops, including every word, readable point and punctuation mark. All four local corrections were corroborated. An extra maqaf query at 7:12 was resolved by tight crops in both scans: preserve עַד־אֲשֶׁר, with no correction. Both source-boundary questions remain open, so no page or chapter approval. Evidence: TOB-short-chapter7-independent-review.json.",
+      "Added chapter 8 from upper short recension only on B332–334, matched to clearer extra173 right/left and174 right. Full initial visual draft and separate same-transcriber comparison cover all27 physical rows, including translator brackets in8:2 and crossing8:6/8:17. Four local point corrections retain the actual printed forms וַיֶּאְסֹר, אַוְקִין, אַמְרָיו and בַּלָּיְלָה; independent corroboration is pending. All17 printed unit starts have source punctuation/row evidence, including actual combined9–10,11–12,14–15,19–20. No chapter7 boundary question or chapter6 status changed. See TOB-short-chapter8-review.json.",
+      "Chapter 8 independent source_gate review completed for all27 upper rows/54half-line crops and all17 source-unit starts. All four point corrections corroborated; no further text change or unreadable-point note. Whole upperB333 is now fully compared and independently corroborated, so it is added to reviewedPages. B332 remains unapproved because chapter7 boundaries are unresolved; B334 still awaits complete chapter9 comparison. Book remains draft and source release gate unchanged. See TOB-short-chapter8-independent-review.json.",
+      "Added chapter9 upper short-recension text onB334–335, matched to clearer extra174 right/left. Every word, point and punctuation mark has the drafting-agent separate comparison; all five source starts are anchored by printed separators, including combined3–4. Correct local bet dagesh, initial alef hataf-patah, tav qamats, and the complete suffix in בְּחוֹתְמֵיהֶם. Two9:5 Gabael occurrences were inspected separately: first has gimel dagesh/patah; second has a clean undotted interior and an unreadable vowel. Parent independently corroborated the exact word and both-gimel distinction; only the second vowel is omitted with a note. Whole-chapter independent review pending, no new reviewedPages. See TOB-short-chapter9-review.json.",
+      "Added chapter10 from the upper short recension on B335–336, matched to extra174 left/175 right. All21 physical rows and42 half-line crops compared separately after drafting. Fine primary/extra crops correct a broad-image misread at10:13 to the literal וְיִתֶּן־לִי, with every visible point and maqaf. Locally printed Gabael gimel dagesh/patah and מחשב shin dagesh were inspected independently of earlier occurrences. The label5 boundary remains open and whole-chapter independent review pending. No new source notes or reviewedPages. See TOB-short-chapter10-review.json.",
+      "Chapter9 independent source_gate review completed for all6 upper rows/12half-line crops and all5 source-unit starts. Corrections and exact second-Gabael gimel-vowel note corroborated; no further changes. Chapter8 and9 now cover whole upperB334 with independent evidence, so334 is added to reviewedPages. B335 remains blocked by chapter10 boundary5. Book status and all12 release gate unchanged. See TOB-short-chapter9-independent-review.json.",
+      "Added chapter11 from the upper short recension with full separate own comparison, source crops and correction history. Printed source labels match the independent prior inventory. Earlier chapter findings and source notes are unchanged; new source pages remain unapproved. See TOB-short-chapter11-review.json.",
+      "Added chapter12 from the upper short recension with full separate own comparison, source crops and correction history. Printed source labels match the independent prior inventory. Earlier chapter findings and source notes are unchanged; new source pages remain unapproved. See TOB-short-chapter12-review.json.",
+      "Chapter10 independent full comparison found one additional literal point correction at10:2: first shin in בוֹשֲׁשׁוּ carries hataf-patah, corroborated in primary and extra scans. Original first draft and author comparison are preserved separately. All21 rows passed; whole upper336 is now reviewed. Exact label5 on335 remains unresolved. See TOB-short-chapter10-independent-review.json.",
+      "Added chapter13 from the upper short recension with full separate own comparison, source crops and correction history. Printed source labels match the independent prior inventory. Earlier chapter findings and source notes are unchanged; new source pages remain unapproved. See TOB-short-chapter13-review.json.",
+      "Chapter11 full independent review compared23 upper rows/46 halves and all17 exact unit starts, including three printed combined ranges and both page continuations. No additional corrections or notes. Whole upper337 and338 are now reviewed;339 awaits chapter12 independent review. See TOB-short-chapter11-independent-review.json. Book remains draft.",
+      "Added chapter14 from the upper short recension with full separate own comparison, source crops and correction history. Printed source labels match the independent prior inventory. Earlier chapter findings and source notes are unchanged; new source pages remain unapproved. See TOB-short-chapter14-review.json.",
+      "Chapter12 full independent comparison of29 upper rows and18 units found one literal correction at18: לָכֵן, with final nun and kaf tsere visible in extra scan and final nun corroborated by primary. Five author corrections independently corroborated. Whole upper339–340 are now reviewed;341 awaits chapter13 independent review. See TOB-short-chapter12-independent-review.json. Book remains draft.",
+      "Chapter13 full independent review compared26 upper rows/52 halves and all18 exact unit starts, including printed9–10 and both page continuations. Four author corrections corroborated; no additional corrections or notes. Whole upper341 and342 are now reviewed;343 awaits chapter14 independent review. B342 begins within13:5, independently confirming inventory correction. See TOB-short-chapter13-independent-review.json. Book remains draft.",
+      "Chapter14 full independent review compared30 upper rows/60 halves and all14 exact unit starts, including printed14–15 and recovered B347final2rows. Seven author corrections corroborated; no additional changes. Whole upper344–347 now reviewed;343 remains blocked by unresolved14:3 word. Independent reviewer confirmed346 begins14:10 and347 ends14:14–15. See TOB-short-chapter14-independent-review.json. Book remains draft.",
+      "Tobit14:3 resolved from user literal source reading קַח־נָא, independently rechecked by author, root and source_gate against both original/extra scans. A single broad het was previously missegmented as resh+bet; qoph has a detached patah and nun qamats is visible. This is a transcription correction, not editorial restoration, and requires no source note. With this final word resolved, all upperB343 is independently compared and added to reviewedPages. Earlier chapter boundaries/draft work keep the book and release unapproved.",
+      "Chapter 6 now has its complete separate author word/point/punctuation/boundary pass over 33 upper rows on B326–329, with newly restored verified native scans and 66 overlapping half-line crops. The exact 6:8 occurrence יפגעו has printed pe dagesh and qamats, an empty gimel interior and an unreadable gimel vowel: correct the first-draft points and disclose only the last uncertainty. Root independently corroborated that local distinction. Focused checks retain printed וַיְהִי, בַּלַּיְלָה, וִירַחֶמְכֶם, final maqaf in נִקְשְׁרָה־ and mappiq in בָהּ. Chapter 5 completion is reconciled against its existing finished report. No page is newly approved pending chapter 6 independent review; chapter 4/7/10 boundary blockers remain unchanged.",
+      "Boundary-only revisit of chapter10 found a definite punctuation transcription error missed by both earlier passes: primary B335 and matched extra174 left both print ותחל לבכותו ותאמר׃, with the separator after the second ותאמר and none after לבכותו. Root independently confirmed both scans. Corrected only that separator position; the temporary 3–5 range and unapproved boundary are unchanged while source-internal proposals await review. The old candidate units and review statements remain explicitly historical. See TOB-boundary-proposals-20261002.json.",
+      "Final local source reconciliation on2026-10-02: all14 chapters and228 source units on36 upper-recension text pages312–347 are complete. Chapter6 full independent33-row comparison corroborates every word/point and its exact6:8 note. Five temporary ranges are now separated using paired source evidence:4:5 ובמותה,4:7 וגם־לכל־עושי,7:12 ויאמר טוביה,7:17 חזקי,10:5 אוי־לי־תחת. The7:12 division is an explicitly reasoned editorial interpretation of the margin and change of speaker, not a printed separator; no punctuation was inserted. Upper4 ends at20;21 belongs to the lower parallel recension covered by shared commentary. Prior unresolved-status notes are historical and superseded. All17 exact point notes remain accepted; all chapter text concatenations are unchanged by final splitting. The other unfinished Hebrew books still keep production import and release closed."
     ],
     "acceptedSourceNoteIds": [
       "tob-1-1-gimel-vowel",
@@ -108,23 +153,18 @@
       "tob-5-1-second-vav-vowel",
       "tob-5-1-vav-vowel",
       "tob-5-10-ayin-vowel",
-      "tob-5-10-first-vav-vowel",
-      "tob-5-10-second-vav-vowel",
-      "tob-5-10-third-vav-vowel",
+      "tob-5-12-first-vav-vowel",
+      "tob-5-15-dalet-vowel",
+      "tob-5-17-ayin-vowel",
+      "tob-5-17-said-vav-vowel",
+      "tob-5-18-said-vav-vowel",
+      "tob-5-21-said-vav-vowel",
       "tob-5-3-dalet-vowel",
       "tob-5-3-initial-vav-vowel",
-      "tob-5-3-second-vav-vowel",
-      "tob-5-4-first-vav-vowel",
-      "tob-5-4-second-vav-vowel",
       "tob-5-5-dalet-vowel",
-      "tob-5-5-initial-vav-vowel",
-      "tob-5-6-initial-vav-vowel",
-      "tob-5-7-first-vav-vowel",
       "tob-5-7-het-vowel",
-      "tob-5-7-second-vav-vowel",
-      "tob-5-9-first-vav-vowel",
-      "tob-5-9-second-vav-vowel",
-      "tob-5-9-third-vav-vowel"
+      "tob-6-8-gimel-vowel",
+      "tob-9-5-second-gabael-gimel-vowel"
     ]
   },
   "chapters": [
@@ -615,22 +655,36 @@
         },
         {
           "verse": 4,
-          "text": "זְכָר־בְּנִי כִּי סַכָּנוֹת רַבּוֹת רָאֲתָה בִּגְלָלְךָ בִּהְיוֹתְךָ בַבָּטֶן׃ וּבְמוֹתָהּ וּקְבַרְתָּהּ אֶצְלִי בְּקֶבֶר אֶחָד׃ זְכָר־בְּנִי אֶת־יְיָ אֱלֹהֵינוּ כָּל־יָמֶיךָ וְאַל־תֹּאבֶה לַחֲטֹא וְלַעֲבֹר מִצְוֹתָיו עֲשֵׂה צְדָקָה כָּל־יְמֵי חַיֶּיךָ וְאַל־תֵּלֵךְ בְּדַרְכֵי עַוְלָה׃",
+          "text": "זְכָר־בְּנִי כִּי סַכָּנוֹת רַבּוֹת רָאֲתָה בִּגְלָלְךָ בִּהְיוֹתְךָ בַבָּטֶן׃",
           "sourcePages": [
             321
           ],
-          "textSHA256": "07f2056d146c42fc58a93a395ef25c38073fccf96e98b6fefa9b88f94bb5dd09",
-          "endVerse": 5
+          "textSHA256": "10385cf3543f50192a24e35b7503a2964e63a6a74512b7e351a5670cf7709cfd"
+        },
+        {
+          "verse": 5,
+          "text": "וּבְמוֹתָהּ וּקְבַרְתָּהּ אֶצְלִי בְּקֶבֶר אֶחָד׃ זְכָר־בְּנִי אֶת־יְיָ אֱלֹהֵינוּ כָּל־יָמֶיךָ וְאַל־תֹּאבֶה לַחֲטֹא וְלַעֲבֹר מִצְוֹתָיו עֲשֵׂה צְדָקָה כָּל־יְמֵי חַיֶּיךָ וְאַל־תֵּלֵךְ בְּדַרְכֵי עַוְלָה׃",
+          "sourcePages": [
+            321
+          ],
+          "textSHA256": "8e22d9f5596c99a1e113adfbd2de01e53080c293e8f6527e8f654497d26f9548"
         },
         {
           "verse": 6,
-          "text": "וְאִם־תִּפְעַל אֱמֶת תַּצְלִיחַ בְּמַעֲשֶׂיךָ׃ וְגַם־לְכָל־עוֹשֵׂי צְדָקָה תַּעֲשֵׂה צְדָקָה מֵאֲשֶׁר יֶשׁ־לָךְ וְאַל־תָּרַע עֵינְךָ בַּעֲשׂוֹתְךָ צְדָקָה וְאַל־תַּסְתֵּר פָּנֶיךָ מִכָּל־עָנִי וְלֹא יִסָּתְרוּ מִפָּנֶיךָ פְּנֵי־הָאֱלֹהִים׃",
+          "text": "וְאִם־תִּפְעַל אֱמֶת תַּצְלִיחַ בְּמַעֲשֶׂיךָ׃",
           "sourcePages": [
             321,
             322
           ],
-          "textSHA256": "c30b5f07764ceadca0c2773f591d511db675b7dc1e50c203d34a7c3b775c291b",
-          "endVerse": 7
+          "textSHA256": "2ab7c1f2559b674ce50d9f65a0878ed64335c82b99af12ea25fe2a4cd2112e3b"
+        },
+        {
+          "verse": 7,
+          "text": "וְגַם־לְכָל־עוֹשֵׂי צְדָקָה תַּעֲשֵׂה צְדָקָה מֵאֲשֶׁר יֶשׁ־לָךְ וְאַל־תָּרַע עֵינְךָ בַּעֲשׂוֹתְךָ צְדָקָה וְאַל־תַּסְתֵּר פָּנֶיךָ מִכָּל־עָנִי וְלֹא יִסָּתְרוּ מִפָּנֶיךָ פְּנֵי־הָאֱלֹהִים׃",
+          "sourcePages": [
+            322
+          ],
+          "textSHA256": "36cb730b7d05b101ded40e2827622762b9aac0fe8b48f16ab9aed34cb3f54063"
         },
         {
           "verse": 8,
@@ -737,7 +791,8 @@
           ],
           "textSHA256": "b5c2ac5c8991632fd9c3525367b54e635bdc48bbcb56b3173677e1d9fc5e611d"
         }
-      ]
+      ],
+      "lastVerse": 20
     },
     {
       "number": 5,
@@ -787,12 +842,12 @@
         },
         {
           "verse": 3,
-          "text": "ויִּתֶּן־לוֹ אֶת כְּתָב־הַיָּד ויֹּאמֶר לוֹ בַּקֵּשׁ־לְךָ אִישׁ אֲשֶׁר יֵלֵךְ עִמְּךָ וְאָנֹכִי אֶתֶּן־לוֹ אֶת־שְׂכָרוֹ בְעוֹדנִי חַי וְלֵךְ קַח אֶת־הַכֶּסֶף׃",
+          "text": "ויִּתֶּן־לוֹ אֶת כְּתָב־הַיָּד וַיֹּאמֶר לוֹ בַּקֵּשׁ־לְךָ אִישׁ אֲשֶׁר יֵלֵךְ עִמְּךָ וְאָנֹכִי אֶתֶּן־לוֹ אֶת־שְׂכָרוֹ בְעוֹדנִי חַי וְלֵךְ קַח אֶת־הַכֶּסֶף׃",
           "sourcePages": [
             323,
             324
           ],
-          "textSHA256": "6acaf56f7d2485d445c1f8cd529d3baa355654f3560b9a199e4a720e78f13e3f",
+          "textSHA256": "aeed23073459d7ad75ad3427d4b7a8d5554c3ac51090c6aac0dbb23134bde66c",
           "sourceNotes": [
             {
               "id": "tob-5-3-initial-vav-vowel",
@@ -817,62 +872,24 @@
                 324
               ],
               "sourceURL": "https://he.wikisource.org/wiki/קובץ:Apocrypha_Kahana_B.pdf#page=324"
-            },
-            {
-              "id": "tob-5-3-second-vav-vowel",
-              "kind": "unreadablePoint",
-              "anchor": "ויֹּאמֶר לוֹ",
-              "occurrence": 1,
-              "letterIndex": 1,
-              "mark": "vowel",
-              "sourcePages": [
-                323
-              ],
-              "sourceURL": "https://he.wikisource.org/wiki/קובץ:Apocrypha_Kahana_B.pdf#page=323"
             }
           ]
         },
         {
           "verse": 4,
-          "text": "ויֵּלֶךְ לְבַקֵּשׁ אָדָם ויִּמְצָא אֶת־רְפָאֵל אֲשֶׁר הָיָה מַלְאָךְ וְהוּא לֹא יָדָע׃",
+          "text": "וַיֵּלֶךְ לְבַקֵּשׁ אָדָם וַיִּמְצָא אֶת־רְפָאֵל אֲשֶׁר הָיָה מַלְאָךְ וְהוּא לֹא יָדָע׃",
           "sourcePages": [
             324
           ],
-          "textSHA256": "c19bc4022d88a75eb0b22b115cf9331b40462674e98cc3e61a76f0f25311a77d",
-          "sourceNotes": [
-            {
-              "id": "tob-5-4-first-vav-vowel",
-              "kind": "unreadablePoint",
-              "anchor": "ויֵּלֶךְ",
-              "occurrence": 1,
-              "letterIndex": 1,
-              "mark": "vowel",
-              "sourcePages": [
-                324
-              ],
-              "sourceURL": "https://he.wikisource.org/wiki/קובץ:Apocrypha_Kahana_B.pdf#page=324"
-            },
-            {
-              "id": "tob-5-4-second-vav-vowel",
-              "kind": "unreadablePoint",
-              "anchor": "ויִּמְצָא",
-              "occurrence": 1,
-              "letterIndex": 1,
-              "mark": "vowel",
-              "sourcePages": [
-                324
-              ],
-              "sourceURL": "https://he.wikisource.org/wiki/קובץ:Apocrypha_Kahana_B.pdf#page=324"
-            }
-          ]
+          "textSHA256": "17afe271e499c480f4c4e642ab5e00ddbf8b765dbbbf13981fd22f562d1b0812"
         },
         {
           "verse": 5,
-          "text": "ויֹּאמֶר לוֹ הָאוּכַל לָלֶכֶת עִמְּךָ לְרָגָא בְּמָדי אִם־יוֹדֵעַ אַתָּה אֶת־הַמְּקוֹמוֹת [הָאֵלֶּה]׃",
+          "text": "וַיֹּאמֶר לוֹ הָאוּכַל לָלֶכֶת עִמְּךָ לְרָגָא בְּמָדי אִם־יוֹדֵעַ אַתָּה אֶת־הַמְּקוֹמוֹת [הָאֵלֶּה]׃",
           "sourcePages": [
             324
           ],
-          "textSHA256": "82048b7b7d61619ccae901b00f44ae879fe1639fb76c8f39c63a20e5a1bc5fd2",
+          "textSHA256": "f0c5715236ac6f0db4069bf4ad2441791afba7ed3f4b222a9f59460b4ea278bc",
           "sourceNotes": [
             {
               "id": "tob-5-5-dalet-vowel",
@@ -885,51 +902,25 @@
                 324
               ],
               "sourceURL": "https://he.wikisource.org/wiki/קובץ:Apocrypha_Kahana_B.pdf#page=324"
-            },
-            {
-              "id": "tob-5-5-initial-vav-vowel",
-              "kind": "unreadablePoint",
-              "anchor": "ויֹּאמֶר לוֹ",
-              "occurrence": 1,
-              "letterIndex": 1,
-              "mark": "vowel",
-              "sourcePages": [
-                324
-              ],
-              "sourceURL": "https://he.wikisource.org/wiki/קובץ:Apocrypha_Kahana_B.pdf#page=324"
             }
           ]
         },
         {
           "verse": 6,
-          "text": "ויֹּאמֶר לוֹ הַמַּלְאָךְ הָלֹךְ אֵלֵךְ עִמָּךְ גַּם־אֶת־הַדֶּרֶךְ יָדַעְתִּי וְאָלִין אֵצֶל גַּבָּאֵל אָחִינוּ׃",
+          "text": "וַיֹּאמֶר לוֹ הַמַּלְאָךְ הָלֹךְ אֵלֵךְ עִמָּךְ גַּם־אֶת־הַדֶּרֶךְ יָדַעְתִּי וְאָלִין אֵצֶל גַּבָּאֵל אָחִינוּ׃",
           "sourcePages": [
             324
           ],
-          "textSHA256": "f7f2df00a62cf32eff261d3ebeaae4110b3be994a458affb98e12e5168174430",
-          "sourceNotes": [
-            {
-              "id": "tob-5-6-initial-vav-vowel",
-              "kind": "unreadablePoint",
-              "anchor": "ויֹּאמֶר לוֹ",
-              "occurrence": 1,
-              "letterIndex": 1,
-              "mark": "vowel",
-              "sourcePages": [
-                324
-              ],
-              "sourceURL": "https://he.wikisource.org/wiki/קובץ:Apocrypha_Kahana_B.pdf#page=324"
-            }
-          ]
+          "textSHA256": "0cc41f00b838891952a137972cbb2d3dc9e8158676e7549866369b573bcc0311"
         },
         {
           "verse": 7,
-          "text": "ויֹּאמֶר לוֹ טוֹבִיָּה חכֶּה־לִי וְאַגִּידָה לְאָבִי׃ ויֹּאמֶר אֵלָיו לֵךְ וְאַל־תְּאַחֵר׃",
+          "text": "וַיֹּאמֶר לוֹ טוֹבִיָּה חכֶּה־לִי וְאַגִּידָה לְאָבִי׃ וַיֹּאמֶר אֵלָיו לֵךְ וְאַל־תְּאַחֵר׃",
           "sourcePages": [
             324
           ],
           "endVerse": 8,
-          "textSHA256": "6485058816d63e2efac3c732d91da3f1331a96d0df70022f1cd4b56c517d44cb",
+          "textSHA256": "886bca9e6afe4eae6bb9431d74af30a101d4a7f4dc24e3d9afdd3dd03332250c",
           "sourceNotes": [
             {
               "id": "tob-5-7-het-vowel",
@@ -942,86 +933,24 @@
                 324
               ],
               "sourceURL": "https://he.wikisource.org/wiki/קובץ:Apocrypha_Kahana_B.pdf#page=324"
-            },
-            {
-              "id": "tob-5-7-first-vav-vowel",
-              "kind": "unreadablePoint",
-              "anchor": "ויֹּאמֶר לוֹ",
-              "occurrence": 1,
-              "letterIndex": 1,
-              "mark": "vowel",
-              "sourcePages": [
-                324
-              ],
-              "sourceURL": "https://he.wikisource.org/wiki/קובץ:Apocrypha_Kahana_B.pdf#page=324"
-            },
-            {
-              "id": "tob-5-7-second-vav-vowel",
-              "kind": "unreadablePoint",
-              "anchor": "ויֹּאמֶר אֵלָיו",
-              "occurrence": 1,
-              "letterIndex": 1,
-              "mark": "vowel",
-              "sourcePages": [
-                324
-              ],
-              "sourceURL": "https://he.wikisource.org/wiki/קובץ:Apocrypha_Kahana_B.pdf#page=324"
             }
           ]
         },
         {
           "verse": 9,
-          "text": "ויָּבֹא ויֹּאמֶר לְאָבִיו רְאֵה מָצָאתִי אִישׁ אֲשֶׁר יֵלֵךְ עִמָּדִי ויֹּאמֶר אָבִיו קְרָא־נָא לוֹ אֵלַי וְאֵדְעָה אֵי־מִזֶּה שֵׁבֶט הוּא וְאִם־נֶאֱמָן־הוּא לָלֶכֶת עִמָּךְ׃",
+          "text": "וַיָּבֹא וַיֹּאמֶר לְאָבִיו רְאֵה מָצָאתִי אִישׁ אֲשֶׁר יֵלֵךְ עִמָּדִי וַיֹּאמֶר אָבִיו קְרָא־נָא לוֹ אֵלַי וְאֵדְעָה אֵי־מִזֶּה שֵׁבֶט הוּא וְאִם־נֶאֱמָן־הוּא לָלֶכֶת עִמָּךְ׃",
           "sourcePages": [
             324
           ],
-          "textSHA256": "0f7315c4d398a64353d042df597f9fa9d9ab9015d50eadb1ba7601b89ff02c76",
-          "sourceNotes": [
-            {
-              "id": "tob-5-9-first-vav-vowel",
-              "kind": "unreadablePoint",
-              "anchor": "ויָּבֹא",
-              "occurrence": 1,
-              "letterIndex": 1,
-              "mark": "vowel",
-              "sourcePages": [
-                324
-              ],
-              "sourceURL": "https://he.wikisource.org/wiki/קובץ:Apocrypha_Kahana_B.pdf#page=324"
-            },
-            {
-              "id": "tob-5-9-second-vav-vowel",
-              "kind": "unreadablePoint",
-              "anchor": "ויֹּאמֶר לְאָבִיו",
-              "occurrence": 1,
-              "letterIndex": 1,
-              "mark": "vowel",
-              "sourcePages": [
-                324
-              ],
-              "sourceURL": "https://he.wikisource.org/wiki/קובץ:Apocrypha_Kahana_B.pdf#page=324"
-            },
-            {
-              "id": "tob-5-9-third-vav-vowel",
-              "kind": "unreadablePoint",
-              "anchor": "ויֹּאמֶר אָבִיו",
-              "occurrence": 1,
-              "letterIndex": 1,
-              "mark": "vowel",
-              "sourcePages": [
-                324
-              ],
-              "sourceURL": "https://he.wikisource.org/wiki/קובץ:Apocrypha_Kahana_B.pdf#page=324"
-            }
-          ]
+          "textSHA256": "f2b22b148d0311c62e6fd6dc69d61859c37390888f48210b7566fdc3aeb20f1b"
         },
         {
           "verse": 10,
-          "text": "ויִּקְרָא לוֹ ויָּבֹא ויְבָרְכוּ אִישׁ אֶת־רֵעהוּ׃",
+          "text": "וַיִּקְרָא לוֹ וַיָּבֹא וָיְבָרְכוּ אִישׁ אֶת־רֵעהוּ׃",
           "sourcePages": [
             324
           ],
-          "textSHA256": "171a03c1018c314e4568c3747de9466e5b10b983b7adf5ec0b251753033549c1",
+          "textSHA256": "0681ab35c9120498ed78a00e04f445a44e289caffc9ab10f4d4e11260499c6b4",
           "sourceNotes": [
             {
               "id": "tob-5-10-ayin-vowel",
@@ -1029,42 +958,6 @@
               "anchor": "רֵעהוּ",
               "occurrence": 1,
               "letterIndex": 2,
-              "mark": "vowel",
-              "sourcePages": [
-                324
-              ],
-              "sourceURL": "https://he.wikisource.org/wiki/קובץ:Apocrypha_Kahana_B.pdf#page=324"
-            },
-            {
-              "id": "tob-5-10-first-vav-vowel",
-              "kind": "unreadablePoint",
-              "anchor": "ויִּקְרָא",
-              "occurrence": 1,
-              "letterIndex": 1,
-              "mark": "vowel",
-              "sourcePages": [
-                324
-              ],
-              "sourceURL": "https://he.wikisource.org/wiki/קובץ:Apocrypha_Kahana_B.pdf#page=324"
-            },
-            {
-              "id": "tob-5-10-second-vav-vowel",
-              "kind": "unreadablePoint",
-              "anchor": "ויָּבֹא",
-              "occurrence": 1,
-              "letterIndex": 1,
-              "mark": "vowel",
-              "sourcePages": [
-                324
-              ],
-              "sourceURL": "https://he.wikisource.org/wiki/קובץ:Apocrypha_Kahana_B.pdf#page=324"
-            },
-            {
-              "id": "tob-5-10-third-vav-vowel",
-              "kind": "unreadablePoint",
-              "anchor": "ויְבָרְכוּ",
-              "occurrence": 1,
-              "letterIndex": 1,
               "mark": "vowel",
               "sourcePages": [
                 324
@@ -1083,28 +976,56 @@
         },
         {
           "verse": 12,
-          "text": "וַיֹּאמֶר לוֹ הַשֵּׁבֶט וּבֵית־אָב אַתָּה מְבַקֵּשׁ אִם־שָׂכִיר אֲשֶׁר יֵלֵךְ עִם־בִּנְךָ וַיֹּאמֶר לוֹ טוֹבִי אָחִי חָפַצְתִּי לָדַעַת מַה־מּוֹלַדְתְּךָ וּמַה־שִּׁמְךָ׃",
+          "text": "ויֹּאמֶר לוֹ הֲשֵׁבֶט וּבֵית־אָב אַתָּה מְבַקֵּשׁ אִם־שָׂכִיר אֲשֶׁר יֵלֵךְ עִם־בִּנְךָ וַיֹּאמֶר לוֹ טוֹבִי אָחִי חָפַצְתִּי לָדַעַת מַה־מּוֹלַדְתְּךָ וּמַה־שְׁמֶךָ׃",
           "sourcePages": [
             325
           ],
-          "textSHA256": "81ed4c5e839444ced45abbf9f37905a6a3c01e2bc7af13a7cf379d293ce1bc3e"
+          "textSHA256": "dd6f4cfc93129ffcfdc76a3dccd53887f8fddf2651d0fb6432bf660dfbdc9eda",
+          "sourceNotes": [
+            {
+              "id": "tob-5-12-first-vav-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "ויֹּאמֶר לוֹ הֲשֵׁבֶט",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "vowel",
+              "sourcePages": [
+                325
+              ],
+              "sourceURL": "https://he.wikisource.org/wiki/קובץ:Apocrypha_Kahana_B.pdf#page=325"
+            }
+          ]
         },
         {
           "verse": 13,
-          "text": "וַיֹּאמֶר אָנֹכִי עֲזַרְיָה בֶּן־חֲנַנְיָה הַגָּדוֹל מֵאַחֶיךָ׃ וַיֹּאמֶר לוֹ בּוֹא בְשָׁלוֹם אָחִי וְאַל־תִּקְצֹף עָלַי כִּי בִקַּשְׁתִּי לָדַעַת שִׁבְטְךָ וּמוֹלַדְתְּךָ וְהִנֵּה אַתָּה אָחִי מִמִּשְׁפָּחָה יָפָה וְטוֹבָה כִּי יָדַעְתִּי אֶת־חֲנַנְיָה וְאֶת־יְהוֹנָתָן בְּנֵי שִׁמְעוֹן הַגָּדוֹל כַּאֲשֶׁר עָלִינוּ יַחַד יְרוּשָׁלַם לְהִשְׁתַּחֲוֹת וְהֶעֱלֵינוּ אֶת־הַבְּכוֹרוֹת וְאֶת־מַעְשַׂר הַתְּבוּאָה וְלֹא תָעוּ בִּתְעוֹת אַחֵינוּ אָכֵן מִשֹּׁרֶשׁ טוֹב אַתָּה אָחִי׃",
+          "text": "וַיֹּאמֶר אָנֹכִי עֲזַרְיָה בֶּן־חֲנַנְיָה הַגָּדוֹל מֵאַחֶיךָ׃ וַיֹּאמֶר לוֹ בּוֹא בְשָׁלוֹם אָחִי וְאַל־תִּקְצֹף עָלַי כִּי בִקַּשְׁתִּי לָדַעַת שִׁבְטְךָ וּמוֹלַדְתְּךָ וְהִנֵּה אַתָּה אָחִי מִמִּשְׁפָּחָה יָפָה וְטוֹבָה כִּי יָדַעְתִּי אֶת־חֲנַנְיָה וְאֶת־יְהוֹנָתָן בְּנֵי שִׁמְעוֹן הַגָּדוֹל כַּאֲשֶׁר עָלִינוּ יַחַד יְרוּשָׁלִַם לְהִשְׁתַּחֲוֹת וְהֶעֱלֵינוּ אֶת־הַבְּכוֹרוֹת וְאֶת־מַעְשַׂר הַתְּבוּאָה וְלֹא תָעוּ בִּתְעוֹת אַחֵינוּ אָכֵן מִשֹׁרֶשׁ טוֹב אַתָּה אָחִי׃",
           "sourcePages": [
             325
           ],
           "endVerse": 14,
-          "textSHA256": "21b7453a76b83f7f1d330262d08bfa5006f355b45b2701c1ea65f3269b6e4878"
+          "textSHA256": "e9860d1cc6e9639a442908f57bb25f086c2fe37055c6c23cd6f54fa8ed10b79b"
         },
         {
           "verse": 15,
-          "text": "אַךְ אֱמָר־לִי מַה־הַשָּׂכָר אֲשֶׁר אֶתֶּן־לָךְ אַדַרְכְּמוֹן לַיּוֹם וְאֶת־צָרְכְּךָ כַּאֲשֶׁר לִבְנִי׃",
+          "text": "אַךְ אֱמָר־לִי מַה־הַשָּׂכָר אֲשֶׁר אֶתֶּן־לָךְ אֲדרְכְּמוֹן לַיּוֹם וְאֶת־צָרְכְּךָ כַּאֲשֶׁר לִבְנִי׃",
           "sourcePages": [
             325
           ],
-          "textSHA256": "e2f2bb8d8578841914e2284528da4fbadfefbc4268099466da56adb6c1ac969d"
+          "textSHA256": "c6e4245a9517d75fbc36c6f7df8d17f485f5b1defc645409ff141e66fe3ff474",
+          "sourceNotes": [
+            {
+              "id": "tob-5-15-dalet-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "אֲדרְכְּמוֹן",
+              "occurrence": 1,
+              "letterIndex": 2,
+              "mark": "vowel",
+              "sourcePages": [
+                325
+              ],
+              "sourceURL": "https://he.wikisource.org/wiki/קובץ:Apocrypha_Kahana_B.pdf#page=325"
+            }
+          ]
         },
         {
           "verse": 16,
@@ -1116,20 +1037,60 @@
         },
         {
           "verse": 17,
-          "text": "נֵאוֹתוּ אִישׁ לְרֵעֵהוּ וַיֹּאמֶר אֶל־טוֹבִיָּה הָכוֹן לַדֶּרֶךְ וְהַצְלִיחוּ וַיָּכֶן בְּנוֹ אֶת־אֲשֶׁר לַדֶּרֶךְ וַיֹּאמֶר לוֹ אָבִיו לֵךְ עִם־הָאִישׁ וֵאלֹהִים הַיּוֹשֵׁב בַּשָּׁמַיִם יַצְלִיחַ אֶת־דַּרְכְּכֶם וּמַלְאָכוֹ יֵלֵךְ עִמָּכֶם וַיֵּצְאוּ שְׁנֵיהֶם לָלֶכֶת לְדַרְכָּם וְכֶלֶב הַנַּעַר עִמָּם׃",
+          "text": "נֵאוֹתוּ אִישׁ לְרֵעהוּ וַיֹּאמֶר אֶל־טוֹבִיָּה הָכוֹן לַדֶּרֶךְ וְהַצְלִיחוּ וַיָּכֶן בְּנוֹ אֶת־אֲשֶׁר לַדֶּרֶךְ ויֹּאמֶר לוֹ אָבִיו לֵךְ עִם־הָאִישׁ וֵאלֹהִים הַיּוֹשֵׁב בַּשָּׁמַיִם יַצְלִיחַ אֶת־דַּרְכְּכֶם וּמַלְאָכוֹ יֵלֵךְ עִמָּכֶם וַיֵּצְאוּ שְׁנֵיהֶם לָלֶכֶת לְדַרְכָּם וְכֶלֶב הַנַּעַר עִמָּם׃",
           "sourcePages": [
             325,
             326
           ],
-          "textSHA256": "8a9ce2cb0e7d6c5b0e0868fca09d97a4c2fb6abed64b95e035e552d2fc7ce10b"
+          "textSHA256": "2bbf9922a09337ccc20ccb90bae035bf6a6bc85cbbeeb280277d0c19be6e37fb",
+          "sourceNotes": [
+            {
+              "id": "tob-5-17-ayin-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "לְרֵעהוּ",
+              "occurrence": 1,
+              "letterIndex": 3,
+              "mark": "vowel",
+              "sourcePages": [
+                325
+              ],
+              "sourceURL": "https://he.wikisource.org/wiki/קובץ:Apocrypha_Kahana_B.pdf#page=325"
+            },
+            {
+              "id": "tob-5-17-said-vav-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "ויֹּאמֶר לוֹ אָבִיו",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "vowel",
+              "sourcePages": [
+                326
+              ],
+              "sourceURL": "https://he.wikisource.org/wiki/קובץ:Apocrypha_Kahana_B.pdf#page=326"
+            }
+          ]
         },
         {
           "verse": 18,
-          "text": "וַתֵּבְךְ חַנָּה אִמּוֹ וַתֹּאמֶר לְטוֹבִי מַה־זֶּה שִׁלַּחְתָּ אֶת־בְּנֵנוּ הֲלֹא הוּא מִשְׁעֶנֶת יָדֵנוּ בַּאֲשֶׁר הוּא יוֹצֵא וּבָא לְפָנֵינוּ׃",
+          "text": "וַתֵּבְךְ חַנָּה אִמּוֹ ותֹּאמֶר לְטוֹבִי מַה־זֶּה שִׁלַּחְתָּ אֶת־בְּנֵנוּ הֲלֹא הוּא מִשְׁעֶנֶת יָדֵנוּ בַּאֲשֶׁר הוּא יוֹצֵא וּבָא לְפָנֵינוּ׃",
           "sourcePages": [
             326
           ],
-          "textSHA256": "7c76d55f3cf894a9c1d5aeed7bec798405ffa20a600538a50a579e31d648cfe6"
+          "textSHA256": "e729198dd8607c3effbeeb3e09980d1d4bc79477383d988c2c305ff240f2a99e",
+          "sourceNotes": [
+            {
+              "id": "tob-5-18-said-vav-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "ותֹּאמֶר לְטוֹבִי",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "vowel",
+              "sourcePages": [
+                326
+              ],
+              "sourceURL": "https://he.wikisource.org/wiki/קובץ:Apocrypha_Kahana_B.pdf#page=326"
+            }
+          ]
         },
         {
           "verse": 19,
@@ -1149,11 +1110,25 @@
         },
         {
           "verse": 21,
-          "text": "וַיֹּאמֶר לָהּ טוֹבִי אֵין דָּבָר אֲחוֹתִי בְּשָׁלוֹם יָבֹא וְעֵינַיִךְ תִּרְאֶינָה אוֹתוֹ׃",
+          "text": "ויֹּאמֶר לָהּ טוֹבִי אֵין דָּבָר אֲחוֹתִי בְּשָׁלוֹם יָבֹא וְעֵינַיִךְ תִּרְאֶינָה אוֹתוֹ׃",
           "sourcePages": [
             326
           ],
-          "textSHA256": "90646c3d9c4d10e14837dd223d1272ae37267099da36461064b715b4e3a4ac83"
+          "textSHA256": "686b11a4588b986adb6d62364c2d48540fe921d83732f1a44234f87c363901da",
+          "sourceNotes": [
+            {
+              "id": "tob-5-21-said-vav-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "ויֹּאמֶר לָהּ",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "vowel",
+              "sourcePages": [
+                326
+              ],
+              "sourceURL": "https://he.wikisource.org/wiki/קובץ:Apocrypha_Kahana_B.pdf#page=326"
+            }
+          ]
         },
         {
           "verse": 22,
@@ -1170,6 +1145,1218 @@
             326
           ],
           "textSHA256": "fced5ad38c022b5de02d3a3891413312e6f35ebc06d1f95fafeaf35f946dbf42"
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "lastVerse": 19,
+      "verses": [
+        {
+          "verse": 1,
+          "text": "וַיֵּלְכוּ לְדַרְכָּם וַיָּבֹאוּ לְעֵת עֶרֶב אֶל־נְהַר חִדֶּקֶל וַיָּלִינוּ שָׁם׃",
+          "sourcePages": [
+            326
+          ],
+          "textSHA256": "2ecf742a6bbaeb729e7e018060649beb9c919172dc43693b7a38bab174b48513"
+        },
+        {
+          "verse": 2,
+          "text": "וַיֵּרֶד הַנַּעַר לִרְחֹץ וַיֵּצֵא דָג מִן־הַנָּהָר וַיְבַקֵּשׁ לִבְלוֹעַ אֶת־הַנַּעַר׃",
+          "sourcePages": [
+            326
+          ],
+          "textSHA256": "a54844c4114ac712f15bfd95f95efe2fe50a8a4fac85eb9955dd0f6827c11787"
+        },
+        {
+          "verse": 3,
+          "text": "וַיֹּאמֶר לוֹ הַמַּלְאָךְ תְּפוֹשׂ אֶת־הַדָּג וַיַּחֲזֵק הַנַּעַר בַּדָּג וַיַּשְׁלֵךְ אוֹתוֹ עַל־הַיַּבָּשָׁה׃",
+          "sourcePages": [
+            326
+          ],
+          "textSHA256": "560e4d492091b3e645962cc47e544f2efdde5b7ef3a31fe1e6837775eb9d2023"
+        },
+        {
+          "verse": 4,
+          "text": "וַיֹּאמֶר לוֹ הַמַּלְאָךְ נַתַּח אֶת־הַדָּג וְלָקַחְתָּ אֶת־הַלֵּב וְאֶת־הַכָּבֵד וְאֶת־הַמְּרֵרָה וְשִׂים אוֹתָם לְמִשְׁמֶרֶת׃",
+          "sourcePages": [
+            326,
+            327
+          ],
+          "textSHA256": "eac8fbf8b760074665c607fa631a0c6b9e12bab8c86403b1bd9684d2a290b18e"
+        },
+        {
+          "verse": 5,
+          "text": "וַיַּעַשׂ הַנַּעַר כַּאֲשֶׁר אָמַר לוֹ הַמַּלְאָךְ וַיִּצְלוּ אֶת־הַדָּג וַיֹּאכְלֵהוּ׃",
+          "sourcePages": [
+            327
+          ],
+          "textSHA256": "52f5c033de0d5108dff5fc545ddace96cedc780dfb32d1574d33a4a92bc1800f"
+        },
+        {
+          "verse": 6,
+          "text": "וַיֵּלְכוּ שְׁנֵיהֶם בַּדֶּרֶךְ עַד־אֲשֶׁר קָרְבוּ אֶל־אַחְמְתָא׃",
+          "sourcePages": [
+            327
+          ],
+          "textSHA256": "ec1a029e50acacbad1effaf9bfd764767598e6676a016b7877e28daea2958528"
+        },
+        {
+          "verse": 7,
+          "text": "וַיֹּאמֶר הַנַּעַר אֶל־הַמַּלְאָךְ עֲזַרְיָה אָחִי מַה־[דְּבַר] הַכָּבֵד וְהַלֵּב וְהַמְּרֵרָה שֶׁל־הַדָּג׃",
+          "sourcePages": [
+            327
+          ],
+          "textSHA256": "1e0d318bdd07edb65f4db5287cc65ea3462b3d17bf9906e076371f8f1f1167a7"
+        },
+        {
+          "verse": 8,
+          "text": "וַיֹּאמֶר לוֹ הַלֵּב וְהַכָּבֵד כִּי יִפְגַּע שֵׁד אוֹ רוּחַ רַע בָּאָדָם יְקַטְּרוּם לִפְנֵי הָאִישׁ אוֹ הָאִשָּׁה וְלֹא־עוֹד יִפָּגעוּ׃",
+          "sourcePages": [
+            327
+          ],
+          "textSHA256": "4132c6e7bb4030b2cfd19ed7d7454bfe8e2cccfa9c12ab0e0d8f0c29fda1e87c",
+          "sourceNotes": [
+            {
+              "id": "tob-6-8-gimel-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "יִפָּגעוּ",
+              "occurrence": 1,
+              "letterIndex": 3,
+              "mark": "vowel",
+              "sourcePages": [
+                327
+              ],
+              "sourceURL": "https://he.wikisource.org/wiki/קובץ:Apocrypha_Kahana_B.pdf#page=327"
+            }
+          ]
+        },
+        {
+          "verse": 9,
+          "text": "וְהַמְּרֵרָה יִמְרְחוּ עַל־אִישׁ אֲשֶׁר־לוֹ תְּבַלּוּלִים בְּעֵינָיו וְנִרְפָּא׃",
+          "sourcePages": [
+            327
+          ],
+          "textSHA256": "6a4e4a98831b68f51071ed373209c25bd58edb58d5928d533e62c527ff3b66f3"
+        },
+        {
+          "verse": 10,
+          "text": "וַיְהִי כַּאֲשֶׁר קָרְבוּ לָבֹא אֶל־רָגָא׃ וַיֹּאמֶר הַמַּלְאָךְ אֶל־הַנַּעַר אָחִי הַיּוֹם נָלִין אֵצֶל רְעוּאֵל וְהוּא קְרוֹבְךָ וְלוֹ בַת יְחִידָה וּשְׁמָהּ שָׂרָה׃",
+          "sourcePages": [
+            327
+          ],
+          "textSHA256": "56634422949da49f35e86be932cd73fee84c3438d20b5decd0b450912e60589a",
+          "endVerse": 11
+        },
+        {
+          "verse": 12,
+          "text": "וַאֲנִי אֲדַבֵּר־בָּהּ כִּי תִנָּתֶן־לְךָ לְאִשָּׁה כִּי לְךָ מִשְׁפַּט יְרֻשָּׁתָהּ וְאַתָּה הַיָּחִיד מִמִּשְׁפַּחְתָּהּ וְהַנַּעֲרָה יָפָה וְטוֹבַת שֵׂכֶל׃",
+          "sourcePages": [
+            327,
+            328
+          ],
+          "textSHA256": "d2c1fa75c9d57293d76b7deb90aa52c12724165e3e1270e347af3a500418288d"
+        },
+        {
+          "verse": 13,
+          "text": "וְעַתָּה שְׁמַע־לִי וְאָנֹכִי אֲדַבֵּר אֶל־אָבִיהָ וְכִי נָשׁוּב מֵרָגָא נַעֲרֹךְ אֶת־הַחֲתֻנָּה כִּי יוֹדֵעַ אָנֹכִי בִרְעוּאֵל כִּי לְפִי תּוֹרַת מֹשֶׁה לֹא יִתֵּן אוֹתָהּ לְאִישׁ אַחֵר כִּי חֵטְא מָוֶת הוּא כִּי לְךָ מִשְׁפַּט הַיְּרוּשָׁה מִכָּל־בְּנֵי אָדָם׃",
+          "sourcePages": [
+            328
+          ],
+          "textSHA256": "f11cd6b81a030379b513d97aa6ae5db3c758e45975eb15a8e4202e31ead336db"
+        },
+        {
+          "verse": 14,
+          "text": "וַיֹּאמֶר הַנַּעַר אֶל־הַמַּלְאָךְ עֲזַרְיָה אָחִי שָׁמַעְתִּי כִּי נִתְּנָה הַנַּעֲרָה לְשִׁבְעָה וְכֻלָּם מֵתוּ בַּחֲדַר הַחֻפָּה׃",
+          "sourcePages": [
+            328
+          ],
+          "textSHA256": "0c21b5a518e696776bf3f853c98aaf568e07159e315f13871bb18166c6828d0a"
+        },
+        {
+          "verse": 15,
+          "text": "וַאֲנִי יָחִיד לְאָבִי וְיָרֵאתִי פֶּן־אָבֹא וְאָמוּת כָּרִאשׁוֹנִים כִּי שֵׁד אוֹהֵב אוֹתָהּ אֲשֶׁר לֹא יָרַע לָאִשָּׁה כִּי אִם־לְכָל־הַקָּרֵב אֵלֶיהָ וְעַתָּה יָרֵאתִי פֶּן־אָמוּת וְהוֹרַדְתִּי אֶת־חַיֵּי אָבִי וְאִמִּי בִּיגוֹנָם עֲלֵי אֶל־קִבְרָם וּבֵן אַחֵר אֵין לָהֶם אֲשֶׁר יִקְבֹּר אוֹתָם׃",
+          "sourcePages": [
+            328
+          ],
+          "textSHA256": "c06624ec0c74e6327afa534e4499165755923abb6f94d19848f7c5c0642ae9d8"
+        },
+        {
+          "verse": 16,
+          "text": "וַיֹּאמֶר לוֹ הַמַּלְאָךְ הֲלֹא תִזְכֹּר אֶת־הַדְּבָרִים אֲשֶׁר צִוְּךָ אָבִיךָ לָקַחַת אִשָּׁה מִמִּשְׁפַּחְתְּךָ וְעַתָּה שְׁמַע־לִי אָחִי כִּי לְךָ תִּהְיֶה לְאִשָּׁה אַל־תַּשֵּׂת אֶל־דְּאָגָה כִּי בַּלַּיְלָה הַזֶּה תִּנָּתֵן הִיא לְךָ לְאִשָּׁה׃",
+          "sourcePages": [
+            328,
+            329
+          ],
+          "textSHA256": "6c2f180ad8de35482d02521c10533395cefdd6036d9b640f973bf25fff4be78a"
+        },
+        {
+          "verse": 17,
+          "text": "וְכִי תָבֹא אֶל־חֲדַר הַחֻפָּה וְלָקַחְתָּ גַּחֶלֶת קְטֹרֶת וְשַׂמְתָּ עָלֶיהָ מִלֵּב הַדָּג וּמִכְּבֵדוֹ וְהַעֲלִיתָ אֶת־עֲשָׁנָם וְהֵרִיחַ בּוֹ הַשֵּׁד וּבָרַח וְלֹא יוֹסִיף עוֹד לָבֹא עַד־עוֹלָם׃",
+          "sourcePages": [
+            329
+          ],
+          "textSHA256": "4a24b0268fa701cb80b9714a465f96d3d65a8b175341500fa73d268c17e75638"
+        },
+        {
+          "verse": 18,
+          "text": "וְכִי תָבֹא אֵלֶיהָ הִתְעוֹרְרוּ שְׁנֵיכֶם וְקִרְאוּ אֶל־אֵל רַחוּם וְיַצִּיל אֶתְכֶם וִירַחֶמְכֶם אַל־תִּירָא כִּי־לְךָ הִיא יְעוּדָה מֵעוֹלָם וְאַתָּה תַּצִּיל אוֹתָהּ וְהִיא תֵלֵךְ עִמָּךְ וַאֲקַוֶּה כִּי יִהְיוּ לְךָ מִמֶּנָּה בָּנִים׃",
+          "sourcePages": [
+            329
+          ],
+          "textSHA256": "59da3c1b7083af14dddfff9dd705a6269793e32fcfd54f8e7940d3f187892800"
+        },
+        {
+          "verse": 19,
+          "text": "וְכַאֲשֶׁר שָׁמַע טוֹבִיָּה אֶת־הַדְּבָרִים הָאֵלֶּה וַיֶּאֱהָבֶהָ וְנַפְשׁוֹ נִקְשְׁרָה־בָהּ מְאֹד׃",
+          "sourcePages": [
+            329
+          ],
+          "textSHA256": "e8fd4988e5ea04edf5f781b9953631ea13ecbad2b8dfc8722e5630d5ea904702"
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "lastVerse": 17,
+      "verses": [
+        {
+          "verse": 1,
+          "text": "וַיָּבֹאוּ אֶל־אַחְמְתָא וַיַּגִּיעוּ אֶל־בֵּית־רְעוּאֵל וַתֵּצֵא שָׂרָה לִקְרָאתָם וַתִּשְׁאַל־לָהֶם לְשָׁלוֹם וְגַם־הֵם שָׁאֲלוּ לִשְׁלוֹמָהּ וַתְּבִיאֵם הַבַּיְתָה׃",
+          "sourcePages": [
+            329,
+            330
+          ],
+          "textSHA256": "64c8b4c38a9ccc6596355b07a9aecddb1377d099486fbe9f715ad989ad9239ff"
+        },
+        {
+          "verse": 2,
+          "text": "וַיֹּאמֶר רְעוּאֵל אֶל־עֶדְנָה אִשְׁתּוֹ מַה־דּוֹמֶה הַנַּעַר טוֹבִיָּה לְבֶן־דּוֹדִי׃",
+          "sourcePages": [
+            330
+          ],
+          "textSHA256": "672ed24a37cd7f25258f621b7a730965d2d7f7815f37d3f8a4463dd61b28dc65"
+        },
+        {
+          "verse": 3,
+          "text": "וַיִּשְׁאַל אוֹתָם רְעוּאֵל מֵאַיִן אַתֶּם אַחַי וַיֹּאמְרוּ לוֹ מִבְּנֵי נַפְתָּלִי אֲשֶׁר בַּגּוֹלָה בְּנִינְוֵה׃",
+          "sourcePages": [
+            330
+          ],
+          "textSHA256": "e7dc5ef21e624182ca7536f769269a9d0d5819f4a8311f71ef8bf876f11e3d89"
+        },
+        {
+          "verse": 4,
+          "text": "וַיֹּאמֶר לָהֶם הַיְדַעְתֶּם אֶת־טוֹבִי אָחִי וַיֹּאמְרוּ יְדַעְנוּ׃",
+          "sourcePages": [
+            330
+          ],
+          "textSHA256": "fc9990245c08d5ad8fb88db5b5649f9da0a00f1ad5ce2f614a183a7408855297"
+        },
+        {
+          "verse": 5,
+          "text": "וַיֹּאמֶר לָהֶם הֲשָׁלוֹם לוֹ וַיֹּאמְרוּ גַּם־חַי גַּם־שָׁלוֹם לוֹ וַיֹּאמֶר טוֹבִיָּה אָבִי הוּא׃",
+          "sourcePages": [
+            330
+          ],
+          "textSHA256": "58d7bd2609b3105675ad4092a2449bb49e62f4e9f9b91e89bde7e6926eaa6254"
+        },
+        {
+          "verse": 6,
+          "text": "וַיָּקָם רְעוּאֵל וַיִּשָּׁק־לוֹ וַיֵּבְךְ וַיְבָרְכֵהוּ וַיֹּאמֶר לוֹ בֶּן־אָב יָפֶה וְטוֹב אַתָּה וַיְהִי כְּשָׁמְעוֹ כִּי לְטוֹבִי אָבְדוּ עֵינָיו וַיִּתְעַצֵּב וַיֵּבְךְ׃",
+          "sourcePages": [
+            330
+          ],
+          "textSHA256": "602ad45d7f4c289bf5941aee0c37d21b6c645b4ae49417dae8c09fdcdc624e26"
+        },
+        {
+          "verse": 7,
+          "text": "וְגַם־עֶדְנָה אִשְׁתּוֹ וְשָׂרָה בִתּוֹ בָּכוּ וַיְקַבְּלוּ אוֹתָם בְּיֹשֶׁר לֵבָב׃",
+          "sourcePages": [
+            330
+          ],
+          "textSHA256": "0390dd541ea6ecc003c8ac0870d138b3fdb363edc3d15712e9d61e9b7cb4cc74"
+        },
+        {
+          "verse": 8,
+          "text": "וַיִּזְבְּחוּ אַיִל מִן־הַצֹּאן וַיָּכִינוּ אֲרוּחָה גְדוֹלָה׃",
+          "sourcePages": [
+            330
+          ],
+          "textSHA256": "0416ef460f7eb1bc482e3abbe6d0e34b406ffe3f4b76f82143aa28d535aa26fb"
+        },
+        {
+          "verse": 9,
+          "text": "וְטוֹבִיָּה אָמַר אֶל־רְפָאֵל עֲזַרְיָה אָחִי דַּבֵּר־נָא עַל־אֲשֶׁר אָמַרְתָּ בַּדֶּרֶךְ וְכַלֵּה הַדָּבָר׃",
+          "sourcePages": [
+            330
+          ],
+          "textSHA256": "15618cca396acaf215f63864b853ed064a9b3cf64a900be67756a6a3e8d0f824"
+        },
+        {
+          "verse": 10,
+          "text": "וַיַּגֵּד אֶת־הַדָּבָר אֶל־רְעוּאֵל וַיֹּאמֶר רְעוּאֵל אֶל־טוֹבִיָּה אֱכֹל וּשְׁתֵה וְיִיטַב לְבָךְ כִּי לְךָ יָאֶה לָקַחַת אֶת־יַלְדָּתִי אַךְ אַגִּידָה לְךָ אֶת־הָאֱמֶת׃",
+          "sourcePages": [
+            330,
+            331
+          ],
+          "textSHA256": "4607ef2b8d890f155942820371e21182a9b65f511b015c592cb47c22ef5a0604"
+        },
+        {
+          "verse": 11,
+          "text": "אֲנִי נָתַתִּי אֶת־יַלְדָּתִי לְשִׁבְעָה אֲנָשִׁים וְכַאֲשֶׁר בָּאוּ אֵלֶיהָ מֵתוּ בַלַּיְלָה הַהוּא אַךְ עַתָּה יִיטַב לְבָךְ",
+          "sourcePages": [
+            331
+          ],
+          "textSHA256": "cbd11cf535bb55248865b5ad9eb80e8466c1a687f202705f7685de4a92db6291"
+        },
+        {
+          "verse": 12,
+          "text": "וַיֹּאמֶר טוֹבִיָּה לֹא אֶטְעַם מְאוּמָה עַד־אֲשֶׁר תַּעֲמִידוּ וְתַעַמְדוּ אַתֶּם לְפָנָי וַיֹּאמֶר רְעוּאֵל קַח־נָא אוֹתָהּ מֵעַתָּה כַּמִּשְׁפָּט הֵן אַתָּה אָחִיהָ וְהִיא לָךְ וְאֵל רַחוּם יַצְלִיחַ אֶתְכֶם יַחְדָּו׃",
+          "sourcePages": [
+            331
+          ],
+          "textSHA256": "541fbceda4365fde647a1679ec886e9985ff638f7cbe9bfffc54cdf7c1c401f7"
+        },
+        {
+          "verse": 13,
+          "text": "וַיִּקְרָא לְשָׂרָה בִתּוֹ וַיִּקַּח אֶת־יָדָהּ וַיִּתֵּן אוֹתָהּ לְטוֹבִיָּה לְאִשָּׁה וַיֹּאמֶר הִנֵּה קַח אוֹתָהּ עַל־פִּי תוֹרַת מֹשֶׁה וְהוֹלַכְתָּ אוֹתָהּ אֶל־אָבִיךָ וַיְבָרֵךְ אוֹתָם׃",
+          "sourcePages": [
+            331
+          ],
+          "textSHA256": "5625d632d11d482093017b5bb4a5eb05f24dc4b948d41db87ff97cd03a4cfcf4"
+        },
+        {
+          "verse": 14,
+          "text": "וַיִּקְרָא רְעוּאֵל לְעֶדְנָה אִשְׁתּוֹ וַיִּקַּח סֵפֶר וַיִּכְתֹּב כְּתֻבָּה וַיַּחְתְּמוּ וַיָּחֵלּוּ לֶאֱכֹל׃",
+          "sourcePages": [
+            331
+          ],
+          "textSHA256": "6af1c4e17ab0f41f3610f5cc3bfe8c16eaca14c80ba0ea4988d2142d2a159170"
+        },
+        {
+          "verse": 15,
+          "text": "וַיִּקְרָא רְעוּאֵל לְעֶדְנָה אִשְׁתּוֹ וַיֹּאמֶר לָהּ אֲחוֹתִי הַכִּינִי־נָא אֶת־הַחֶדֶר הָאַחֵר וְהָבִיאִי אוֹתָהּ שָׁמָּה׃",
+          "sourcePages": [
+            331,
+            332
+          ],
+          "textSHA256": "64e5998ccbf4d43b60c04d9bfa6fb6cb7382aac4ec87c74705b3d8f84ad26170"
+        },
+        {
+          "verse": 16,
+          "text": "וַתַּעַשׂ כַּאֲשֶׁר אָמַר וַתָּבֵא אוֹתָהּ שָׁמָּה וַתֵּבְךְ וַתְּקַבֵּל אֶת־דִּמְעוֹת בִּתָּהּ וַתֹּאמֶר לָהּ׃",
+          "sourcePages": [
+            332
+          ],
+          "textSHA256": "fc881bf50057bce03734f855fc60cd3f641a91adadb6a26307cdcea53ec90cce"
+        },
+        {
+          "verse": 17,
+          "text": "חִזְקִי יַלְדָּתִי אֲדֹנֵי הַשָּׁמַיִם וְהָאָרֶץ יִתֶּן־לָךְ שִׂמְחָה תַּחַת יְגוֹנֵךְ זֶה חִזְקִי בִּתִּי׃",
+          "sourcePages": [
+            332
+          ],
+          "textSHA256": "2c1e8b24e59cda71b07227c83d2bd08fea2d470bd4a7c6f0b7e962d014e83cd7"
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "lastVerse": 21,
+      "verses": [
+        {
+          "verse": 1,
+          "text": "וַיְהִי כַּאֲשֶׁר כִּלּוּ לֶאֱכֹל וַיָּבִיאוּ אֶת־טוֹבִיָּה אֵלֶיהָ׃",
+          "sourcePages": [
+            332
+          ],
+          "textSHA256": "6e3effaf12c3424ca2f8000e6a3eb46b0f2a7ec1194ab0e10f3f788c36b1b5b5"
+        },
+        {
+          "verse": 2,
+          "text": "וַיֵּלֶךְ וַיִּזְכֹּר אֶת־דִּבְרֵי רְפָאֵל וַיִּקַּח אֶת־גַּחֶלֶת הַקְּטֹרֶת וַיָּשֶׂם [עָלֶיהָ] אֶת־לֵב הַדָּג וְאֶת־כְּבֵדוֹ וַיַּעַל עֲשָׁנָם׃",
+          "sourcePages": [
+            332
+          ],
+          "textSHA256": "9cc338432ec30ef52525e9756f9135e1fd80e20c3de027c5b45c240dfb85c855"
+        },
+        {
+          "verse": 3,
+          "text": "וַיְהִי כַּאֲשֶׁר הֵרִיחַ הַשֵּׁד אֶת־הָרֵיחַ וַיִּבְרַח אֶל־יַרְכְּתֵי מִצְרַיִם הָעֶלְיוֹנָה וַיֶּאְסֹר אוֹתוֹ הַמַּלְאָךְ׃",
+          "sourcePages": [
+            332
+          ],
+          "textSHA256": "48379e1cc35a2584b36916730a26d6b8422c571824f45c9b48d998cb1ff370c5"
+        },
+        {
+          "verse": 4,
+          "text": "וַיְהִי כַּאֲשֶׁר נִסְגְּרוּ שְׁנֵיהֶם וַיָּקָם טוֹבִיָּה מִן־הַמִּטָּה וַיֹּאמֶר קוּמִי אֲחוֹתִי וְנִתְפַּלֵּל כִּי יְרַחֵם עָלֵינוּ יְיָ׃",
+          "sourcePages": [
+            332
+          ],
+          "textSHA256": "cb757b7f01493eaf6132b9540ffa5c03d54c15ee0f77882d19a5c20de607d530"
+        },
+        {
+          "verse": 5,
+          "text": "וַיָּחֶל טוֹבִיָּה וַיֹּאמֶר בָּרוּךְ אַתָּה אֱלֹהֵי אֲבוֹתֵינוּ וּבָרוּךְ שִׁמְךָ הַקָּדוֹשׁ וְהַנִּכְבָּד לְעוֹלָמִים יְבָרְכוּךָ שָׁמַיִם וְכָל־בְּרוּאֶיךָ׃",
+          "sourcePages": [
+            332
+          ],
+          "textSHA256": "ed069b60e86a0549af837457cf621b6fbce60865545124f79f15e6d005879382"
+        },
+        {
+          "verse": 6,
+          "text": "אַתָּה עָשִׂיתָ אָדָם וַתִּתֶּן־לוֹ עֵזֶר אֶת־חַוָּה אִשְׁתּוֹ לְמִשְׁעֶנֶת מֵהֶם נוֹלַד זֶרַע בְּנֵי הָאָדָם אַתָּה אָמַרְתָּ לֹא טוֹב הֱיוֹת הָאָדָם לְבַדּוֹ נַעֲשֶׂה־לוֹ עֵזֶר כְּנֶגְדּוֹ׃",
+          "sourcePages": [
+            332,
+            333
+          ],
+          "textSHA256": "f8875b952ffe5dc75f600d9333ae2afc8d3927ddf1522ecbbcbb3a393279d2b4"
+        },
+        {
+          "verse": 7,
+          "text": "וְעַתָּה יְיָ לֹא לִזְנוּנִים אֲנִי לוֹקֵחַ אֶת־אֲחוֹתִי זֹאת כִּי אִם־בֶּאֱמֶת צַוֵּה־נָא כִּי אֶמְצָא רַחֲמִים וְכִי אַוְקִין עִמָּהּ יַחַד׃",
+          "sourcePages": [
+            333
+          ],
+          "textSHA256": "cabbc2eb434485905c4dccac1fdf6e1ab347c1a703c5fb3bd62680bce0576223"
+        },
+        {
+          "verse": 8,
+          "text": "וַתַּעַן אַמְרָיו אָמֵן׃",
+          "sourcePages": [
+            333
+          ],
+          "textSHA256": "7aa38f1336b585244173e9afe499e6e0bc2a8f74dc25dd08921555f35c2bf9c0"
+        },
+        {
+          "verse": 9,
+          "text": "וַיִּשְׁכְּבוּ שְׁנֵיהֶם בַּלָּיְלָה׃ וַיָּקָם רְעוּאֵל וַיֵּלֶךְ וַיִּכְרֶה קֶבֶר כִּי אָמַר פֶּן־יָמוּת גַּם־זֶה׃",
+          "sourcePages": [
+            333
+          ],
+          "textSHA256": "b448889c4fcf66ab0326953273dff9efba814c2191bd2e3fd8d0649f77660273",
+          "endVerse": 10
+        },
+        {
+          "verse": 11,
+          "text": "וַיָּבֹא רְעוּאֵל אֶל־בֵּיתוֹ׃ וַיֹּאמֶר לְעֶדְנָה אִשְׁתּוֹ שִׁלְחִי־נָא אַחַת הַנְּעָרוֹת לִרְאוֹת אִם־הוּא חַי וְאִם־לֹא יִקְבְּרוּ־נָא אוֹתוֹ וְאִישׁ לֹא יֵדַע׃",
+          "sourcePages": [
+            333
+          ],
+          "textSHA256": "1ae6c34c0d16e05605ac45f52a131facf0d9cfe1178498b40d5aa15eb217c2af",
+          "endVerse": 12
+        },
+        {
+          "verse": 13,
+          "text": "וַתָּבֹא הַנַּעֲרָה וַתִּפְתַּח אֶת־הַדֶּלֶת וְהִנֵּה שְׁנֵיהֶם יְשֵׁנִים׃",
+          "sourcePages": [
+            333
+          ],
+          "textSHA256": "c2d4e335c323d4107f2b0af2bf1b190d890c6d39c6727c5ed6cf8262e9370717"
+        },
+        {
+          "verse": 14,
+          "text": "וַתֵּצֵא וַתְּבַשֵּׂר אוֹתָם כִּי הוּא־חָי׃ וַיְבָרֵךְ רְעוּאֵל אֶת־הָאֱלֹהִים לֵאמֹר בָּרוּךְ אַתָּה אֱלֹהִים בְּכָל־הַבְּרָכָה הַטְּהוֹרָה וְהַקְּדוֹשָׁה וִיבָרְכוּךָ כָּל־קְדוֹשֶׁיךָ וְכָל־בְּרוּאֶיךָ וְכָל־מַלְאָכֶיךָ וְכָל־בְּחִירֶיךָ יְבָרְכוּךָ לְעוֹלָמִים׃",
+          "sourcePages": [
+            333
+          ],
+          "textSHA256": "f07845a31dbd4c0ad0a590e92f771cddf4bfbabe263732073d83baf99049c702",
+          "endVerse": 15
+        },
+        {
+          "verse": 16,
+          "text": "בָּרוּךְ אַתָּה כִּי שִׂמַּחְתָּנִי וְלֹא הָיָה לִי כַּאֲשֶׁר חָשַׁבְתִּי כִּי אִם־בְּרַחֲמֶיךָ הָרַבִּים עָשִׂיתָ עִמָּנוּ׃",
+          "sourcePages": [
+            333
+          ],
+          "textSHA256": "aacf655375924ce473a0fd9fb446f74a8e223187cba2f677d5dba47cc6c4e819"
+        },
+        {
+          "verse": 17,
+          "text": "בָּרוּךְ אַתָּה כִּי רִחַמְתָּ עַל־שְׁנֵי הַיְּחִידִים עֲשֵׂה אֲדֹנָי עִמָּהֶם חֶסֶד וּמַלֵּא אֶת־יְמֵי חַיֵּיהֶם בְּשָׁלוֹם בְּשִׂמְחָה וּבְרַחֲמִים׃",
+          "sourcePages": [
+            333,
+            334
+          ],
+          "textSHA256": "fc59e3b2fa486b7e7d839183c1f1d4d6f77e563586a9887a170b7bc303b1ba26"
+        },
+        {
+          "verse": 18,
+          "text": "וַיֹּאמֶר לְעַבְדֵי בֵיתוֹ לְמַלֵּא אֶת־הַקֶּבֶר עָפָר׃",
+          "sourcePages": [
+            334
+          ],
+          "textSHA256": "e9473a41ad5a32f4aec5fb3983e6ae9776e4e0321a7d342455739c4c5111d9d1"
+        },
+        {
+          "verse": 19,
+          "text": "וַיַּעַשׂ לָהֶם מִשְׁתֵּה־חֲתֻנָּה אַרְבָּעָה עָשָׂר יוֹם׃ וַיֹּאמֶר לוֹ רְעוּאֵל בְּטֶרֶם יִכְלוּ יְמֵי הַחֲתֻנָּה וַיִּשָּׁבַע לְבִלְתִּי צֵאת מֵעִמּוֹ עַד־מְלֹאת אַרְבָּעָה עָשָׂר יוֹם יְמֵי מוֹעֵד הַחֲתֻנָּה׃",
+          "sourcePages": [
+            334
+          ],
+          "textSHA256": "98adbbc2609230854c1534144cd826e1c39d8344c23426500b9b14ff74c7711a",
+          "endVerse": 20
+        },
+        {
+          "verse": 21,
+          "text": "אָז יִקַּח מַחֲצִית כָּל־רְכוּשׁוֹ וְיֵלֵךְ בְּשָׁלוֹם אֶל אָבִיו וְאֶת־הַנּוֹתָר כַּאֲשֶׁר אָמוּת אֲנִי וְאִשְׁתִּי׃",
+          "sourcePages": [
+            334
+          ],
+          "textSHA256": "6d6757f6b3f24f5868e7c3471db410d94e6d2aebacb4cf5c7bb67fd1fb14f711"
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "lastVerse": 6,
+      "verses": [
+        {
+          "verse": 1,
+          "text": "וַיִּקְרָא טוֹבִיָּה לִרְפָאֵל וַיֹּאמֶר לוֹ׃",
+          "sourcePages": [
+            334
+          ],
+          "textSHA256": "4485b188cce87262ec133baa9d89999885aedf4a4e13d03bfd307624ae043e32"
+        },
+        {
+          "verse": 2,
+          "text": "עֲזַרְיָה אָחִי קַח אִתְּךָ נַעַר אַחֵר וּשְׁנֵי גְמַלִּים וְלֵךְ אֶל־רָגָא בְּמָדַי אֶל־גַּבָּאֵל וְקַח־לִי אֶת־הַכֶּסֶף אוֹתוֹ הָבֵא לִי אֶל־הַחֲתֻנָּה׃",
+          "sourcePages": [
+            334
+          ],
+          "textSHA256": "ae1864258c53513e7368b2615fe2680dc4f6e83813c85b1fbb4df29132b09a2c"
+        },
+        {
+          "verse": 3,
+          "text": "כִּי הִשְׁבִּיעַנִי רְעוּאֵל לְבַל אֵצֵא׃ וְאָבִי סוֹפֵר אֶת־הַיָּמִים וְכִי אֲאַחֵר יִרְפֶּה וְהִתְעַצֵּב מְאֹד׃",
+          "sourcePages": [
+            334,
+            335
+          ],
+          "textSHA256": "12380b30046f0dd620b8400c2d9c2fb84a54fc19b7117581d7682bb0b3e3b7a4",
+          "endVerse": 4
+        },
+        {
+          "verse": 5,
+          "text": "וַיֵּלֶךְ רְפָאֵל וַיָּלֶן אֵצֶל גַּבָּאֵל וַיִּתֶּן־לוֹ אֶת כְּתָב־הַיָּד וַיּוֹצֵא גבָּאֵל אֶת־הַצְּרוֹרוֹת בְּחוֹתְמֵיהֶם וַיִּתְּנֵם לוֹ׃",
+          "sourcePages": [
+            335
+          ],
+          "textSHA256": "c04a357bed726032dc63de7b106dd60e096f355043e1617605f3c469573872c4",
+          "sourceNotes": [
+            {
+              "id": "tob-9-5-second-gabael-gimel-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "גבָּאֵל",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "vowel",
+              "sourcePages": [
+                335
+              ],
+              "sourceURL": "https://he.wikisource.org/wiki/קובץ:Apocrypha_Kahana_B.pdf#page=335"
+            }
+          ]
+        },
+        {
+          "verse": 6,
+          "text": "וַיָּקוּמוּ וַיֵּלְכוּ יַחְדָּו אֶל־הַחֲתֻנָּה וַיְבָרֵךְ טוֹבִיָּה אֶת־אִשְׁתּוֹ׃",
+          "sourcePages": [
+            335
+          ],
+          "textSHA256": "14a42fd692a2ce8e820d55ed7cb5a68b84af50e76a8a9f5ac5ac9514cc7c3c5e"
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "lastVerse": 14,
+      "verses": [
+        {
+          "verse": 1,
+          "text": "וְטוֹבִי אָבִיו הָיָה מְחַשֵּׁב כָּל־יוֹם וַיְהִי כִּי מָלְאוּ יְמֵי מַהֲלָכוֹ וְלֹא בָא׃",
+          "sourcePages": [
+            335
+          ],
+          "textSHA256": "d15af3cf5eab334ad33e69a11da92cbd3b2c42bb00345674be00da73388625e0"
+        },
+        {
+          "verse": 2,
+          "text": "וַיֹּאמֶר הֲלֹא בוֹשֲׁשׁוּ בַדֶּרֶךְ אוּלַי מֵת גַּבָּאֵל וְאֵין אִישׁ אֲשֶׁר יִתֶּן־לוֹ אֶת־הַכֶּסֶף׃",
+          "sourcePages": [
+            335
+          ],
+          "textSHA256": "da38c2dba6e19c81fe45a03d5449abad22ae9b6451da995fce91ff624c53e514"
+        },
+        {
+          "verse": 3,
+          "text": "וַיִּתְעַצֵּב מְאֹד׃ וַתֹּאמֶר לוֹ אִשְׁתּוֹ אָבַד הַיֶּלֶד כִּי עַל־כֵּן אֵחַר לָבֹא וַתָּחֵל לִבְכּוֹתוֹ וַתֹּאמֶר׃",
+          "sourcePages": [
+            335
+          ],
+          "textSHA256": "6faafe30758598791f4fad653f6800030cbc099d7c730d1ec6f700e402d130ed",
+          "endVerse": 4
+        },
+        {
+          "verse": 5,
+          "text": "אוֹי־לִי־תַחַת בְּנִי כִּי נְתַתִּיךָ לְלֶכֶת אוֹר עֵינַי׃",
+          "sourcePages": [
+            335
+          ],
+          "textSHA256": "a91e5ee184c66c8d8c9b2686dd6b7c33d7e8c42d6f19a729afbf3eb18ba86eb7"
+        },
+        {
+          "verse": 6,
+          "text": "וַיֹּאמֶר לָהּ טוֹבִי אַל־תּוֹסִיפִי דַבֵּר אַל־תִּדְאֲגִי שָׁלוֹם לוֹ׃",
+          "sourcePages": [
+            335
+          ],
+          "textSHA256": "07f24ca61e070bb2070e89a697324257e3665f4d059dd0d767786b4c8e1afad5"
+        },
+        {
+          "verse": 7,
+          "text": "וַתֹּאמֶר לוֹ הַחֲרֵשׁ אַל־תַּשְׁלֶה אוֹתִי אָבַד בְּנִי וַתֵּצֵא יוֹם יוֹם אֶל־הַדֶּרֶךְ אֲשֶׁר בָּהּ הָלַךְ יוֹמָם לֶחֶם לֹא אָכָלָה וּבַלֵּילוֹת לֹא חָדְלָה לִבְכּוֹת לְטוֹבִיָּה בְּנָהּ עַד־אֲשֶׁר מָלְאוּ אַרְבָּעָה עָשָׂר יְמֵי הַחֲתֻנָּה אֲשֶׁר הִשְׁבִּיעוֹ רְעוּאֵל לַעֲשׂוֹת שָׁם׃",
+          "sourcePages": [
+            335
+          ],
+          "textSHA256": "315ba17115d030c3db87de992090ec8a99864ffcb901ee7aa79698d2d0afe8bd"
+        },
+        {
+          "verse": 8,
+          "text": "וַיֹּאמֶר טוֹבִיָּה לִרְעוּאֵל שַׁלְּחֵנִי־נָא כִּי אָבִי וְאִמִּי לֹא יְקַוּוּ עוֹד לִרְאוֹת אוֹתִי׃",
+          "sourcePages": [
+            336
+          ],
+          "textSHA256": "8809055444d5eaf8452ac75a77a6b6375f2dcfb7eaffadf7e84923aa9691a63d"
+        },
+        {
+          "verse": 9,
+          "text": "וַיֹּאמֶר לוֹ חוֹתְנוֹ שְׁבָה עִמָּדִי וַאֲנִי אֶשְׁלַח אֶל־אָבִיךָ וְיַגִּידוּ לוֹ מַה־הָיִיתָ לָךְ וַיֹּאמֶר טוֹבִיָּה לֹא־כֵן כִּי אִם שַׁלְּחֵנִי־אֶל־אָבִי׃",
+          "sourcePages": [
+            336
+          ],
+          "textSHA256": "2471db889cf58a0d7b68cdbc05fe63c89e540480f37ce2155d5e8fcf817ec57f"
+        },
+        {
+          "verse": 10,
+          "text": "וַיָּקָם רְעוּאֵל וַיִּתֶּן־לוֹ אֶת שָׂרָה אִשְׁתּוֹ וְאֶת־חֲצִי רְכוּשׁוֹ נַפְשׁוֹת אָדָם וּמִקְנֶה וָכֶסֶף׃",
+          "sourcePages": [
+            336
+          ],
+          "textSHA256": "ca403882e3f45d4a2bfaea0232f5619edb9a58733502f9cf4b4d06ac3f6588e4"
+        },
+        {
+          "verse": 11,
+          "text": "וַיְשַׁלְּחֵם וַיְבָרֶךְ אוֹתָם לֵאמֹר אֱלֹהֵי הַשָּׁמַיִם יַצְלִיחַ אֶתְכֶם בָּנַי בְּטֶרֶם אָמוּת׃",
+          "sourcePages": [
+            336
+          ],
+          "textSHA256": "4c9c20c8561344bf4f22f00d05c2a72b73fda87ede26afdc51043caf7f0737f2"
+        },
+        {
+          "verse": 12,
+          "text": "וַיֹּאמֶר לְבִתּוֹ כַּבְּדִי־נָא אֶת־חָמִיךְ וְאֶת־חֲמוֹתֵךְ אֲבוֹתָיִךְ הֵם מֵעַתָּה אַשְׁמִיעֵנִי־נָא שְׁמוּעָה טוֹבָה עָלָיִךְ וַיִּשַּׁק־לָהּ׃",
+          "sourcePages": [
+            336
+          ],
+          "textSHA256": "59fd1b7a7316e2bdbdc376ba64937f17aa3d908d3d10ce820a5bc20269fc0a4d"
+        },
+        {
+          "verse": 13,
+          "text": "וְעֶדְנָה אָמְרָה לְטוֹבִיָּה אָחִי הָאָהוּב אֲדוֹנֵי הַשָּׁמַיִם יְשִׁיבְךָ הַבַּיְתָה וְיִתֶּן־לִי לִרְאוֹת בָּנָיךָ מִשָּׂרָה בִּתִּי לְמַעַן אֶשְׂמַח לִפְנֵי יְיָ וְהִנֵּה אֲנִי מַפְקֶדֶת בְּיָדְךָ אֶת־בִּתִּי לְפִקָּדוֹן אַל־תְּעַצֵּב אוֹתָהּ׃",
+          "sourcePages": [
+            336
+          ],
+          "textSHA256": "bf68a9b5cba695d4f9bf3ba9314d7a08b656cbc6c6a0572bfad8ff16dadd31d0"
+        },
+        {
+          "verse": 14,
+          "text": "אַחֲרֵי הַדְּבָרִים הָאֵלֶּה הָלַךְ טוֹבִיָּה וַיְבָרֶךְ אֶת־הָאֱלֹהִים עַל־כִּי הִצְלִיחַ דַרְכּוֹ וַיְבָרֶךְ גַּם־אֶת־רְעוּאֵל וְאֶת־עֶדְנָה אִשְׁתּוֹ׃",
+          "sourcePages": [
+            336
+          ],
+          "textSHA256": "06cfe4af712d7555ca8b2f206bd70aa79882b02e3a877eb555f217874c533f70"
+        }
+      ]
+    },
+    {
+      "number": 11,
+      "lastVerse": 20,
+      "verses": [
+        {
+          "verse": 1,
+          "text": "וַיֵּלֶךְ עַד־אֲשֶׁר הִקְרִיב לְנִינְוֵה׃",
+          "sourcePages": [
+            337
+          ],
+          "textSHA256": "a178374bac297c4ab1065c60fd7a2d4b9f4ba01322a1db2398cf4fa9d77d2707"
+        },
+        {
+          "verse": 2,
+          "text": "וַיֹּאמֶר רְפָאֵל אֶל־טוֹבִיָּה׃",
+          "sourcePages": [
+            337
+          ],
+          "textSHA256": "b303cd90770a1454afc171f1952e261d68f93e6879a57aeea7309227439f43c5"
+        },
+        {
+          "verse": 3,
+          "text": "הֲלֹא נֵדַע אָחִי אֵיךְ עָזַבְנוּ אֶת־אָבִיךָ׃ נָרוּצָה־נָא לִפְנֵי אִשְׁתֶּךָ וְנָכִינָה אֶת־הַבָּיִת׃",
+          "sourcePages": [
+            337
+          ],
+          "textSHA256": "236ef540ad7d00161ab8f2d2d88c7e8488295cd93ccd73695ca5fda11541d27d",
+          "endVerse": 4
+        },
+        {
+          "verse": 5,
+          "text": "קַח־נָא בְּיָדְךָ אֶת־מְרֵרַת הַדָּג וַיֵּלְכוּ וְהַכֶּלֶב הָלַךְ אַחֲרֵיהֶם׃",
+          "sourcePages": [
+            337
+          ],
+          "textSHA256": "1681a9d0feef7fbbba1a244e4890a1d4f3d02147ec9c75a552fd76e39691d0eb"
+        },
+        {
+          "verse": 6,
+          "text": "וְחַנָּה יוֹשֶׁבֶת עַל־יַד הַדֶּרֶךְ מְצַפָּה לִבְנָהּ׃ וַתִּתְבּוֹנֵן אֵלָיו כְּבוֹאוֹ וַתֹּאמֶר לְאָבִיו רְאֵה בָא בִנְךָ וְהָאִישׁ אֲשֶׁר הָלַךְ עִמּוֹ׃",
+          "sourcePages": [
+            337
+          ],
+          "textSHA256": "f34536a994236f6e829ceadf13a6117648028fd2d1b355a66bef61a00178092f",
+          "endVerse": 7
+        },
+        {
+          "verse": 8,
+          "text": "רְפָאֵל אָמַר יָדַעְתִּי כִּי תִפָּקַחְנָה עֵינֵי אָבִיךָ׃",
+          "sourcePages": [
+            337
+          ],
+          "textSHA256": "2cb6f30e3a21093b1e6cbc532d0eb16d5482a16e85024ece25384acab6c5cf19"
+        },
+        {
+          "verse": 9,
+          "text": "וְאַתָּה מְרַח אֶת־הַמְּרֵרָה בְּעֵינָיו וְאִם נִשָׁךְ וְהִתְגָּרֵד וְהִשְׁלִיךְ אֶת תַּבְלוּלֵי הַלָּבָן וְרָאָה אוֹתְךָ׃",
+          "sourcePages": [
+            337
+          ],
+          "textSHA256": "180eda371c8d7d265062fd0b33cf30f13e56f19c579524877feb663c93a4f49c"
+        },
+        {
+          "verse": 10,
+          "text": "וַתָּרָץ חַנָּה לִקְרָאתָם וַתִּפֹּל עַל־צַוַּאר בְּנָהּ וַתֹּאמֶר לוֹ אָמוּתָה הַפַּעַם אַחֲרֵי רְאוֹתִי אוֹתְךָ בְּנִי וַיִּבְכּוּ שְׁנֵיהֶם׃",
+          "sourcePages": [
+            337
+          ],
+          "textSHA256": "54e95bf0e4b1ec7831353bb8aa1c0f83f98e56259fc671f0d3369e806ab4bf34"
+        },
+        {
+          "verse": 11,
+          "text": "וְטוֹבִי יָצָא אֶל־הַפֶּתַח וַיִּכָּשֵׁל וַיָּרָץ בְּנוֹ לִקְרָאתוֹ׃",
+          "sourcePages": [
+            337
+          ],
+          "textSHA256": "e2228c75d626ad24364903635d03d984afde208f9877c9ca9a207ae9a7a3a72c"
+        },
+        {
+          "verse": 12,
+          "text": "וַיֶּחֱזַק בְּאָבִיו וַיָּשֶׂם אֶת־הַמְּרֵרָה עַל־עֵינֵי אָבִיו וַיֹּאמֶר חֲזַק אָבִי׃",
+          "sourcePages": [
+            337,
+            338
+          ],
+          "textSHA256": "5b0fdd9c44ce595d835407996a00e6acc42ccac0168dd93e3ab08ab6c318627d"
+        },
+        {
+          "verse": 13,
+          "text": "וַיְהִי כַּאֲשֶׁר נְשָׁכוֹ עֵינָיו וַיְגָרֵד אוֹתָן וַיִּמָּחוּ תַּבְלוּלֵי הַלָּבָן מִזָּוִיּוֹת עֵינָיו׃",
+          "sourcePages": [
+            338
+          ],
+          "textSHA256": "e4502037e05187ecc8fef33f68ee19b88ef1461e5e8976f997c0be8fa9fb1b06"
+        },
+        {
+          "verse": 14,
+          "text": "וַיַּרְא אֶת־בְּנוֹ וַיִּפֹּל עַל־צַוָּארָיו וַיֵּבְךְ וַיֹּאמַר׃",
+          "sourcePages": [
+            338
+          ],
+          "textSHA256": "f6c033023f16be06a98ab3fd531c08717a36c234548a937d768ff20de62a762f"
+        },
+        {
+          "verse": 15,
+          "text": "בָּרוּךְ אַתָּה אֱלֹהִים וּבָרוּךְ שִׁמְךָ לְעוֹלָמִים וּבְרוּכִים כָּל־מַלְאָכֶיךָ הַקְּדוֹשִׁים כִּי יִסַּרְתַּנִי וַתְּרַחֲמֵנִי וְהִנֵּה אָנֹכִי רֹאֶה אֶת־טוֹבִיָּה בְּנִי׃",
+          "sourcePages": [
+            338
+          ],
+          "textSHA256": "487c483718848c3ff17057a31acb0210646d52695b86910d6f5076543e59df09"
+        },
+        {
+          "verse": 16,
+          "text": "וַיָּבֹא אֵלָיו בְּנוֹ שָׂמֵחַ וַיַּגֵּד לְאָבִיו אֶת־הַגְּדֹלוֹת אֲשֶׁר נַעֲשׂוּ לוֹ בְּמָדָי׃",
+          "sourcePages": [
+            338
+          ],
+          "textSHA256": "aa70561033e1ae7e366ffda4a92375961549fc9d411c27811e32764f605946ab"
+        },
+        {
+          "verse": 17,
+          "text": "וַיֵּצֵא טוֹבִי לִקְרַאת כַּלָּתוֹ לִפְנֵי שַׁעַר נִינְוֵה וְהוּא שָׂמֵחַ וּמְבָרֵךְ אֶת־הָאֱלֹהִים וַיִּתְמְהוּ הָרוֹאִים אוֹתוֹ הוֹלֵךְ וּמַבִּיט וַיּוֹדֶה טוֹבִי לִפְנֵיהֶם כִּי רִחַם אוֹתוֹ אֱלֹהִים׃",
+          "sourcePages": [
+            338
+          ],
+          "textSHA256": "ac92598b346b3f6484786ceeaba3eac78873ae827419003931c5d4fbeb19073c"
+        },
+        {
+          "verse": 18,
+          "text": "וַיִּגַּשׁ טוֹבִי אֶל־שָׂרָה כַּלָּתוֹ וַיְבָרְכָהּ וַיֹּאמֶר בּוֹאִי בְשָׁלוֹם בִּתִּי בָּרוּךְ אֱלֹהִים אֲשֶׁר נָחָה אוֹתָךְ אֵלֵינוּ וּ[בְרוּכִים] אָבִיךְ וְאִמֵּךְ׃",
+          "sourcePages": [
+            338
+          ],
+          "textSHA256": "d3a6b42b6c38a4ffe4debd132138d7c41d44965db4c64ba5c89c1485c416c073"
+        },
+        {
+          "verse": 19,
+          "text": "וַתְּהִי שִׂמְחָה לְכָל־אֶחָיו בְּנִינְוֵה׃ וַיִּהְיוּ אִתָּם שָׁם אֲחִיקָר וְנַסְכָּם בֶּן־אָחִיו וַיַּחֲגּוּ אֶת־חֲתֻנַּת טוֹבִיָּה בְּשִׂמְחָה שִׁבְעַת יָמִים׃",
+          "sourcePages": [
+            338,
+            339
+          ],
+          "textSHA256": "3d906cb8f3f91a7f7c24dbf1d7cdbacd213a93d9820a31e31b4c5f11dc736af6",
+          "endVerse": 20
+        }
+      ]
+    },
+    {
+      "number": 12,
+      "lastVerse": 23,
+      "verses": [
+        {
+          "verse": 1,
+          "text": "וַיִּקְרָא טוֹבִי לְטוֹבִיָּה בְּנוֹ וַיֹּאמֶר לוֹ רְאֵה בְנִי [לָתֶת] שְׂכַר הָאִישׁ אֲשֶׁר הָלַךְ עִמְּךָ וְעָלֵינוּ לְהוֹסִיף עָלָיו עוֹד׃",
+          "sourcePages": [
+            339
+          ],
+          "textSHA256": "20cc0f2f504a49586ca115ef0f5d71ff6fa4d66418fb7b4a133f38c233e6c434"
+        },
+        {
+          "verse": 2,
+          "text": "וַיֹּאמֶר אֵלָיו אָבִי לֹא יֵכָבֶד־לִי אִם־אֶתֶּן־לוֹ אֶת־הַחֲצִי מֵאֲשֶׁר הֵבֵאתִי׃",
+          "sourcePages": [
+            339
+          ],
+          "textSHA256": "4fcb8bee89b4a4f7e1f66061ef897487d7763b8c77c97c47f30c8623921a95aa"
+        },
+        {
+          "verse": 3,
+          "text": "כִּי הֱשִׁיבַנִי אֵלֶיךָ בְּשָׁלוֹם וְאֶת־אִשְׁתִּי רִפָּא וְאֶת־כַּסְפִּי הֵבִיא וְגַם־אוֹתְךָ רִפָּא׃",
+          "sourcePages": [
+            339
+          ],
+          "textSHA256": "57a2f71b84a47e2bbda464cd722b5828a164dd2990fc97a9d0a34be8abaa7600"
+        },
+        {
+          "verse": 4,
+          "text": "וַיֹּאמֶר הַזָּקֵן [אָמְנָם כִי־]לוֹ יֵאָתֶה׃ וַיִּקְרְאוּ לַמַּלְאָךְ וַיֹּאמְרוּ לוֹ קַח־נָא אֶת־הַמַּחֲצָה מִכֹּל אֲשֶׁר הֵבֵאתֶם׃",
+          "sourcePages": [
+            339
+          ],
+          "textSHA256": "628ce86901c099fabcae8320e2bdd598154f5f185ce109d05828d754490150a0",
+          "endVerse": 5
+        },
+        {
+          "verse": 6,
+          "text": "וַיִּקְרָא הַמַּלְאָךְ לִשְׁנֵיהֶם בַּסֵּתֶר וַיֹּאמֶר לָהֶם בָּרְכוּ אֶת־הָאֱלֹהִים וְהוֹדוּ לוֹ הָבוּ־גֹדֶל לוֹ וְהוֹדוּ לְעֵינֵי כָּל־חַי עַל אֲשֶׁר עָשָׂה עִמָּכֶם טוֹב לְבָרֵךְ אֶת־הָאֱלֹהִים וּלְרוֹמֵם אֶת־שְׁמוֹ לְהַגִּיד בְּכָבוֹד מַעֲשֵׂי אֱלֹהִים וְאַל־תִּתְעַצְּלוּ לְהוֹדוֹת־לוֹ׃",
+          "sourcePages": [
+            339
+          ],
+          "textSHA256": "25571c9e3cf62eb140455338268416a947f71e4f0025c96889acba7002d0020b"
+        },
+        {
+          "verse": 7,
+          "text": "סוֹד מֶלֶךְ טוֹב לְהַסְתִּיר וּמִפְעֲלוֹת אֱלֹהִים כָּבוֹד לְגַלּוֹת עֲשׂוּ טוֹב וְרָעָה לֹא תִּמְצָא אֶתְכֶם׃",
+          "sourcePages": [
+            339,
+            340
+          ],
+          "textSHA256": "ea7046904f499290d3ef4013bf03f09f756ba860ccefa2afd6cd20ecf6314dfc"
+        },
+        {
+          "verse": 8,
+          "text": "טוֹבָה תְפִלָּה עִם־צוֹם וְחֶסֶד וּצְדָקָה טוֹב מְעַט בִּצְדָקָה מֵהַרְבֵּה עִם־עַוְלָה טוֹב לַעֲשׂוֹת חֶסֶד מֵאֱצֹר זָהָב׃",
+          "sourcePages": [
+            340
+          ],
+          "textSHA256": "d1c2d078434cc1dc0a7390b2e4e1d298e0475785766087a9b156286b31afe916"
+        },
+        {
+          "verse": 9,
+          "text": "צְדָקָה תַּצִּיל מִמָּוֶת וְהִיא מְטַהֶרֶת כָּל־חֵטְא עוֹשֵׂי חֶסֶד וּצְדָקָה יִשְׂבְּעוּ חַיִּים׃",
+          "sourcePages": [
+            340
+          ],
+          "textSHA256": "ddc67e9f16ab6bb37a01f6c59f83bdedd08f3eff0329f034c3920fab6b21340a"
+        },
+        {
+          "verse": 10,
+          "text": "וְהַחוֹטְאִים שׂוֹנְאֵי נַפְשָׁם־הֵמָּה׃ לֹא אַסְתִּיר מִכֶּם דָּבָר הֲלֹא אָמַרְתִּי סוֹד־מֶלֶךְ טוֹב לְהַסְתִּיר מַעֲשֵׂי אֱלֹהִים כָּבוֹד לְגַלּוֹת׃",
+          "sourcePages": [
+            340
+          ],
+          "textSHA256": "b5988bbcf3e1c2c8cbdf7e2cd23f25a969a4d533f5d28ab74c3453e94476be30",
+          "endVerse": 11
+        },
+        {
+          "verse": 12,
+          "text": "וְעַתָּה כַּאֲשֶׁר הִתְפַּלַּלְתָּ אַתָּה וְשָׂרָה כַּלָּתְךָ הֶעֱלֵיתִי זֵכֶר תְּפִלָּתְכֶם לִפְנֵי הַקָּדוֹשׁ וְאַף כַּאֲשֶׁר קָבַרְתָּ אֶת־הַמֵּתִים שָׁם הָיִיתִי עִמְּךָ׃",
+          "sourcePages": [
+            340
+          ],
+          "textSHA256": "a4e37496b7fbb12d6f999f4661b6c6c47baf404f4d804e2a1efa141aaa3c90f5"
+        },
+        {
+          "verse": 13,
+          "text": "וְכַאֲשֶׁר לֹא נֶעֱצַלְתָּ לָקוּם וְלַעֲזֹב אֶת־אֲרוּחָתְךָ וְלָלֶכֶת לְהַלְבִּישׁ אֶת־הַמֵּת לֹא נִסְתַּרְתָּ מִמֶּנִּי בַּעֲשׂוֹתְךָ כִּי עִמְּךָ הָיִיתִי׃",
+          "sourcePages": [
+            340
+          ],
+          "textSHA256": "c405b2a8a416cbfdf3ba6ecf3cb1117c80f5aeab280004ff31d6e8dadb19202b"
+        },
+        {
+          "verse": 14,
+          "text": "וְעַתָּה שְׁלָחַנִי אֱלֹהִים לְרַפֵּא אוֹתְךָ וְאֶת־שָׂרָה כַּלָּתֶךָ׃",
+          "sourcePages": [
+            340
+          ],
+          "textSHA256": "b0016d2a5cc23e046c8a669fa5f1c00c2ff7a3252611cc1ddff01cfcb247af69"
+        },
+        {
+          "verse": 15,
+          "text": "אֲנִי רְפָאֵל אֶחָד מִשִּׁבְעַת הַמַּלְאָכִים הַמַּעֲלִים אֶת־תְּפִלּוֹת הַקְּדוֹשִׁים וּבָאִים לִפְנֵי כְּבוֹד הַקָּדוֹשׁ׃",
+          "sourcePages": [
+            340
+          ],
+          "textSHA256": "95c8216e12d07c386e3e243fc162b0d54943542173159467b47751b238bdc458"
+        },
+        {
+          "verse": 16,
+          "text": "וַיִּבָּהֲלוּ שְׁנֵיהֶם וַיִּפְּלוּ עַל־פְּנֵיהֶם כִּי יָרֵאוּ׃ וַיֹּאמֶר לָהֶם אַל־תִּירָאוּ שָׁלוֹם יִהְיֶה לָכֶם וְאֶת־הָאֱלֹהִים בָּרְכוּ לְעוֹלָם׃",
+          "sourcePages": [
+            340,
+            341
+          ],
+          "textSHA256": "f24053d841e0c1cbe1d643e0d0bd7ca560d32863f6730b0b48ecd18906850061",
+          "endVerse": 17
+        },
+        {
+          "verse": 18,
+          "text": "כִּי לֹא מִטּוֹבָתִי כִּי אִם־בִּרְצוֹן אֱלֹהֵיכֶם בָּאתִי לָכֵן בָּרְכוּ אוֹתוֹ לְעוֹלָם׃",
+          "sourcePages": [
+            341
+          ],
+          "textSHA256": "33aa547ec7b271ae4b565da2820ca721c530df3679ffe6261cd8cc5299a83215"
+        },
+        {
+          "verse": 19,
+          "text": "כָּל־הַיָּמִים נִרְאֵיתִי לָכֶם וְלֹא אָכַלְתִּי וְלֹא שָׁתִיתִי כִּי אִם־חָזוֹן חֲזִיתֶם׃",
+          "sourcePages": [
+            341
+          ],
+          "textSHA256": "aec2b8b65ea7ab74a9a48dda0a3101e515018f5106b8b5c5f7083d1a9d010b18"
+        },
+        {
+          "verse": 20,
+          "text": "וְעַתָּה בָּרְכוּ אֱלֹהִים כִּי עוֹלֶה אֲנִי אֶל־אֲשֶׁר שְׁלָחַנִי וְכִתְבוּ בְסֵפֶר אֶת כָּל־אֲשֶׁר נַעֲשָׂה׃",
+          "sourcePages": [
+            341
+          ],
+          "textSHA256": "e6b928a613fb6e2566dc264dc62d88b6652d82d0952a976134cfb47fdd1bec2b"
+        },
+        {
+          "verse": 21,
+          "text": "וַיָּקוּמוּ וְלֹא רָאוּהוּ עוֹד׃ וַיּוֹדוּ אֶת־מַעֲשֵׂי אֱלֹהִים הַגְּדוֹלִים וְהַנִּפְלָאִים וְאֶת־אֲשֶׁר נִגְלָה לָהֶם מַלְאַךְ יְיָ׃",
+          "sourcePages": [
+            341
+          ],
+          "textSHA256": "a35dfa0b3029fc7f6e8467c7ae7ca94e2c3eddddbb1d857b765e0b1dbc63e203",
+          "endVerse": 23
+        }
+      ]
+    },
+    {
+      "number": 13,
+      "lastVerse": 19,
+      "verses": [
+        {
+          "verse": 1,
+          "text": "וַיִּכְתֹּב טוֹבִי שִׁיר־תְּפִלָּה לֵאמֹר׃",
+          "sourcePages": [
+            341
+          ],
+          "textSHA256": "a2a2603a42ac12adbb0ea1b7b12f3781ff869be362fdd1bf38b24a37368fa0ac"
+        },
+        {
+          "verse": 2,
+          "text": "בָּרוּךְ אֱלֹהִים חֵי־עוֹלָמִים וּ[בְרוּכָה] מַלְכוּתוֹ כִּי־הוּא מְיַסֵּר וּמְרַחֵם מוֹרִיד שְׁאוֹל וַיַּעַל וְאֵין נִמְלָט מִיָּדוֹ׃",
+          "sourcePages": [
+            341
+          ],
+          "textSHA256": "67ae02458ceadaea822df1d5418e0241258e107a930106f119f26edbae942238"
+        },
+        {
+          "verse": 3,
+          "text": "הוֹדוּ לוֹ בְּנֵי יִשְׂרָאֵל לְעֵינֵי הַגּוֹיִם כִּי־הוּא הֵפִיץ אוֹתָנוּ בְּתוֹכָם׃",
+          "sourcePages": [
+            341
+          ],
+          "textSHA256": "604643f56b2ca018694697c11bb5f679075dc90bc798fc2017359e15c5a9d2ab"
+        },
+        {
+          "verse": 4,
+          "text": "שָׁם תַּגִּידוּ גְדֻלָּתוֹ וְרוֹמְמוּ אוֹתוֹ לְעֵינֵי כָל־חַי כִּי־הוּא אֲדוֹנֵינוּ וֵאלֹהֵינוּ הוּא אָבִינוּ לְעוֹלָם וָעֶד׃",
+          "sourcePages": [
+            341
+          ],
+          "textSHA256": "d5908aff652a00d2719003d9b08b4cb12a143fdee286d596c3e19a672fd3c675"
+        },
+        {
+          "verse": 5,
+          "text": "וְהוּא יְיַסְּרֵנוּ בַּעֲוֹנוֹתֵינוּ וְיָשׁוּב וִירַחֲמֵנוּ וִיקַבְּצֵנוּ מִכָּל־הַגּוֹיִם אֲשֶׁר נְפוּצֹתֶם שָׁם׃",
+          "sourcePages": [
+            341,
+            342
+          ],
+          "textSHA256": "89249739affa9cb11ca47508f78949f3b170ea3e26bac9716568f2b3f234fbda"
+        },
+        {
+          "verse": 6,
+          "text": "אִם־תָּשׁוּבוּ בְּכָל־לְבַבְכֶם וּבְכָל־נַפְשְׁכֶם לַעֲשׂוֹת לְפָנָיו בֶּאֱמוּנָה וְשָׁב אֲלֵיכֶם וְלֹא יַסְתִּיר פָּנָיו מִכֶּם׃",
+          "sourcePages": [
+            342
+          ],
+          "textSHA256": "b753cdc5dd30a21eaaf074456aa2f6fab25c168aad9df2ea6a12271d26b964b8"
+        },
+        {
+          "verse": 7,
+          "text": "וּתְרְאוּ אֶת־אֲשֶׁר יַעֲשֶׂה עִמָּכֶם וְהוֹדוּ לוֹ בְּכָל־פִּיכֶם וּבָרְכוּ אֶת־אֱלֹהֵי הַצְּדָקָה וְרוֹמְמוּ אֶת־מֶלֶךְ הָעוֹלָמִים׃",
+          "sourcePages": [
+            342
+          ],
+          "textSHA256": "9c75c8db4f439b6e23796d9b7d2cbe8e1c35e94e8a510af8ec4b3fdb0a9ae393"
+        },
+        {
+          "verse": 8,
+          "text": "אֲנִי בְּאֶרֶץ שִׁבְיִי אוֹדֶה לוֹ גְבוּרָתוֹ וּגְדֻלָּתוֹ לְגוֹי חַטָּאִים שׁוּבוּ חַטָּאִים וַעֲשׂוּ צְדָקָה לְפָנָיו מִי יוֹדֵעַ אוּלַי יִרְצֶה בָּכֶם וְיַעַשׂ עִמָּכֶם חֶסֶד׃",
+          "sourcePages": [
+            342
+          ],
+          "textSHA256": "dcdd9e137cd5defc0c0397840948c32f84c1fcfcf54c0656806e35525d94d44f"
+        },
+        {
+          "verse": 9,
+          "text": "אֲרוֹמֵם אֶת־אֱלֹהַי וְנַפְשִׁי לְמֶלֶךְ הַשָּׁמַיִם תָּרֹן גְּדֻלָּתוֹ׃ יֹאמְרוּ כֻּלָּם וְיוֹדוּ לוֹ בִירוּשָׁלַם יְרוּשָׁלַם קִרְיָה קְדוֹשָׁה [הוּא] יְיַסְּרֵךְ עַל־מַעֲשֵׂי בָנַיִךְ וְיָשׁוּב וִירַחֵם עַל־בְּנֵי הַצַּדִּיקִים׃",
+          "sourcePages": [
+            342
+          ],
+          "textSHA256": "35a55a31f325bff253886a0bc0dbe9fd1188cb2fdec7bc98551a01fefb666527",
+          "endVerse": 10
+        },
+        {
+          "verse": 11,
+          "text": "הוֹדִי לַיְיָ כִּי טוֹב וּבָרְכִי מֶלֶךְ עוֹלָמִים לְמַעַן יָשׁוּב יִבְנֶה בָךְ מִשְׁכָּנוֹ בְּשִׂמְחָה׃",
+          "sourcePages": [
+            342
+          ],
+          "textSHA256": "e88f117f4bdcbd7bb3ef0798531e1e15c373a0418002382da719b8006100796d"
+        },
+        {
+          "verse": 12,
+          "text": "וִישַׂמַּח בָּךְ אֶת־הַשְּׁבוּיִם וְיֶאֱהַב בָּךְ אֶת־הָעֲשׁוּקִים לְכָל־דֹּרוֹת עוֹלָם׃",
+          "sourcePages": [
+            342
+          ],
+          "textSHA256": "7b049aafc3ada966a7788337c70380a8729344601f58e1e0740667812fff9cd7"
+        },
+        {
+          "verse": 13,
+          "text": "גּוֹיִם רַבִּים מֵרָחוֹק יָבֹאוּ לְשֵׁם יְיָ אֱלֹהִים וּבִידֵיהֶם מַתָּנוֹת יִשְׂאוּ מַתָּנוֹת לְמֶלֶךְ הַשָּׁמַיִם בְּדוֹר דּוֹרִים וְיִתְּנוּ לָךְ רִנָּה׃",
+          "sourcePages": [
+            342
+          ],
+          "textSHA256": "afb798fb5e771be5a0e4cbb2e0e78d2eb0ba4ba6be5b69ea159e685c66bb437e"
+        },
+        {
+          "verse": 14,
+          "text": "אֲרוּרִים כָּל־מְשַׂנְאַיִךְ בְּרוּכִים יִהְיוּ כָּל־אוֹהֲבַיִךְ לְעוֹלָם׃",
+          "sourcePages": [
+            342
+          ],
+          "textSHA256": "e48f36ff0f7dbe556f79302a5571d174fd36e625b25b1381350cfb3b21f6df09"
+        },
+        {
+          "verse": 15,
+          "text": "שִׂמְחִי וָרֹנִּי עַל־בְּנֵי הַצַּדִּיקִים כִּי יִקָּבֵצוּ וִיבָרְכוּ אֶת־אֲדוֹן הַצַּדִּיקִים אַשְׁרֵי אוֹהֲבַיִךְ [עוֹד] יִשְׂמְחוּ בִשְׁלוֹמֵךְ׃",
+          "sourcePages": [
+            342,
+            343
+          ],
+          "textSHA256": "3cddaa07eb24f7f8a4d3f40dae1cf07f80754a8db550eadc8f283b81128220ec"
+        },
+        {
+          "verse": 16,
+          "text": "אַשְׁרֵי הַנֶּעֱצָבִים עַל־כָּל־מַכּוֹתַיִךְ כִּי יִשְׂמְחוּ עָלָיִךְ בִּרְאוֹתָם אֶת־כָּל־כְּבוֹדֵךְ וְגִילוּ לְעוֹלָם בָּרְכִי נַפְשִׁי אֶת־הָאֱלֹהִים אֶת־הַמֶּלֶךְ הַגָּדוֹל׃",
+          "sourcePages": [
+            343
+          ],
+          "textSHA256": "4e275500f4c88be41aca2410d33ca98935c739e86d93096c5619c8ee71f091e4"
+        },
+        {
+          "verse": 17,
+          "text": "כִּי תִבָּנֶה יְרוּשָׁלַם סַפִּיר וּבָרֶקֶת וְחוֹמוֹתֵךְ אַבְנֵי־חֵפֶץ וּמִגְדְּלַיִךְ וּשְׁרוֹנוֹתֵיהֶם זָהָב טָהוֹר׃",
+          "sourcePages": [
+            343
+          ],
+          "textSHA256": "c0dacb235ecaaded6dc2fcd93067b87fa5d76a037cb07bf7c6312680fddf400d"
+        },
+        {
+          "verse": 18,
+          "text": "וּרְחוֹבוֹת יְרוּשָׁלַם רְצוּפוֹת שֹׁהַם וְאֶבֶן מֵאוֹפִיר׃",
+          "sourcePages": [
+            343
+          ],
+          "textSHA256": "56ad79b088c8510ec64f268a0b28c7c7e889bafc3d6f7b431514dcd5fe3ddedb"
+        },
+        {
+          "verse": 19,
+          "text": "וְכָל־חוּצוֹתֶיהָ יֹאמְרוּ הַלֲלוּיָהּ וִישַׁבְּחוּ לֵאמֹר בָּרוּךְ הָאֱלֹהִים הַמְרוֹמָם לְעוֹלָם וָעֶד׃",
+          "sourcePages": [
+            343
+          ],
+          "textSHA256": "663fa5b62efe816a74c7854011d8d68199c02c55f23ec8729ea7ac53ab960f27"
+        }
+      ]
+    },
+    {
+      "number": 14,
+      "lastVerse": 15,
+      "verses": [
+        {
+          "verse": 1,
+          "text": "וַיְכַל טוֹבִי לְהוֹדוֹת׃",
+          "sourcePages": [
+            343
+          ],
+          "textSHA256": "f1b64ed92d2833b52bf31465ba1304d4750dee09485afc47a7214ff099d56bdf"
+        },
+        {
+          "verse": 2,
+          "text": "וְהוּא הָיָה בֶּן־שְׁמוֹנֶה וַחֲמִשִּׁים שָׁנָה בַּאֲבֹד עֵינָיו וּמִקֵּץ שְׁמוֹנָה שָׁנִים נִפְקָחוּ וַיִּגְמַל חֲסָדִים וַיּוֹסֶף לְיִרְאָה אֶת־יְיָ אֱלֹהִים וּלְהוֹדוֹת לוֹ׃",
+          "sourcePages": [
+            343
+          ],
+          "textSHA256": "3cf2da4674913618bd3f02930c0ab9a464a2fe9987156a63c942860b9ed6dd4d"
+        },
+        {
+          "verse": 3,
+          "text": "וַיִּזְקַן מְאֹד וַיִּקְרָא לִבְנוֹ וְלִבְנֵי בְנוֹ וַיֹּאמֶר לוֹ בְּנִי קַח־נָא אֶת־בָּנֶיךָ הִנֵּה זָקַנְתִּי וְקָרוֹב אֲנִי לָצֵאת מִן־הַחַיִּים׃",
+          "sourcePages": [
+            343
+          ],
+          "textSHA256": "a9c75453a7d941ed34cda0be1e1894d8d5d8fc2e077586d6addb98533bb1544b"
+        },
+        {
+          "verse": 4,
+          "text": "לֶךְ־לְךָ בְנִי לְמָדַי כִּי בָטֻחַ אֲנִי בְּדִבְרֵי יוֹנָה הַנָּבִיא עַל־נִינְוֵה כִּי תֵהָפֵךְ וּבְמָדַי יִהְיֶה שָׁלוֹם יוֹתֵר עַד־עֵת וְכִי אַחֵינוּ בָּאָרֶץ יָפוּצוּ מֵעַל הָאָרֶץ הַטּוֹבָה וִירוּשָׁלַם תִּהְיֶה לִשְׁמָמָה וּבֵית־הָאֱלֹהִים בָּהּ יִשָּׂרֵף חֲרֵבָה תִהְיֶה עַד־עֵת׃",
+          "sourcePages": [
+            344
+          ],
+          "textSHA256": "cc6774740f39f17ea495165deca1cfdaac094b1b082d7e6614578f21b6139810"
+        },
+        {
+          "verse": 5,
+          "text": "וְשָׁב וְרִחַם אוֹתָם הָאֱלֹהִים וְהֵשִׁיב אוֹתָם אֶל־הָאָרֶץ וּבָנוּ אֶת־הַבַּיִת וְלֹא כָרִאשׁוֹן עַד־אֲשֶׁר תִּמָּלֵאנָה עִתּוֹת הָעוֹלָם וְאַחֲרֵי־כֵן יָשׁוּבוּ מִן־הַגָּלֻיוֹת וְיִבְנוּ אֶת־יְרוּשָׁלַם בְּכָבוֹד וּבֵית־אֱלֹהִים בְּתוֹכָהּ יִבָּנֶה לְכָל־דֹּרוֹת הָעוֹלָם יִבָּנֶה לְתִפְאֶרֶת כַּאֲשֶׁר דִּבְּרוּ עָלָיו הַנְּבִיאִים׃",
+          "sourcePages": [
+            344
+          ],
+          "textSHA256": "da7426bb7487ba8a44355e023ce8e1f1f782180061951df23ac1efdaeed3ce73"
+        },
+        {
+          "verse": 6,
+          "text": "וְכָל־הַגּוֹיִם יָשׁוּבוּ בֶּאֱמֶת לְיִרְאָה אֶת־יְיָ אֱלֹהִים וְקָבְרוּ אֶת־עֲצַבֵּיהֶם וּבֵרְכוּ כָל־הַגּוֹיִם אֶת־יְיָ׃",
+          "sourcePages": [
+            344,
+            345
+          ],
+          "textSHA256": "6d08aa0a549839a468d57c326cc299cb4db01d9455c05f9b4e7eb7cb597e7a03"
+        },
+        {
+          "verse": 7,
+          "text": "וְעַמּוֹ יוֹדֶה לֵאלֹהִים וְיְיָ יְרוֹמֵם אֶת־עַמּוֹ וְיִשְׂמְחוּ כָּל־אוֹהֲבֵי יְיָ אֱלֹהִים בֶּאֱמֶת וּבִצְדָקָה וְעָשׂוּ חֶסֶד עִם־אַחֵינוּ׃",
+          "sourcePages": [
+            345
+          ],
+          "textSHA256": "ed33cfaf8fe7f76986ead88aa4a8a27b8f1f0aad548719290151fabfdffb8640"
+        },
+        {
+          "verse": 8,
+          "text": "וְעַתָּה בְּנִי צֵא מִנִּינְוֵה כִּי נָפֹל תִּפֹּל כַּאֲשֶׁר דִּבֶּר יוֹנָה הַנָּבִיא׃",
+          "sourcePages": [
+            345
+          ],
+          "textSHA256": "89989060a98d673dcf73a2822e21b736130c54dfc4d024d684e154b2f7818f4e"
+        },
+        {
+          "verse": 9,
+          "text": "וְאַתָּה בְּנִי שְׁמֹר תּוֹרָה וּמִצְוֹת וֶהֱיֵה אִישׁ אוֹהֵב וְצַדִּיק לְמַעַן יִיטַב־לָךְ וּקְבֹר אוֹתִי יָפֶה וְאֶת־אִמֶּךָ עִמָּדִי וְאַל־תֵּשֵׁב עוֹד בְּנִינְוֵה׃",
+          "sourcePages": [
+            345
+          ],
+          "textSHA256": "73053c631c1fbfb9238de517bbd5bb361b3a50663cf51f22c0cf4f8650098664"
+        },
+        {
+          "verse": 10,
+          "text": "בְּנִי רְאֵה מֶה־עָשָׂה אָמָן לַאֲחִיקָר אֲשֶׁר גִּדֵּל אוֹתוֹ אֵיךְ הֱבִיאוֹ מָאוֹר אֶל־חֹשֶׁךְ וּמַה־גָּמַל עָלָיו וְאַחִיקָר נוֹשַׁע וְלוֹ הוּשַׁב גְּמוּל וְהוּא יָרַד אֶל־הַחֹשֶׁךְ מְנַשֶּׁה עָשָׂה חֶסֶד וְנוֹשַׁע מִמּוֹקְשֵׁי מָוֶת אֲשֶׁר יָקְשׁוּ לוֹ וְאָמָן נָפַל בְּמוֹקֵשׁ וַיֹּאבַד׃",
+          "sourcePages": [
+            345,
+            346
+          ],
+          "textSHA256": "c21cf24ca802a2a129fca554887808c2fe45df5bf52197eb843382a0cf43fa8a"
+        },
+        {
+          "verse": 11,
+          "text": "וְעַתָּה בָנַי רְאוּ מֶה־יַעֲשֶׂה הַחֶסֶד וְאֵיךְ תּוֹעִיל הַצְּדָקָה וּכְדַבְּרוֹ אֶת־הַדְּבָרִים הָאֵלֶּה יָצְאָה נַפְשׁוֹ עַל־הַמִּטָּה וְהוּא בֶּן־שְׁמוֹנֶה וַחֲמִשִּׁים וּמְאַת שָׁנָה וַיִּקְבֹּר אוֹתוֹ בְּכָבוֹד׃",
+          "sourcePages": [
+            346
+          ],
+          "textSHA256": "dace661ace5c1e38ba069486a2bcc2072500e5f3fa593323470df08a7ccc359f"
+        },
+        {
+          "verse": 12,
+          "text": "וַיְהִי כַּאֲשֶׁר מֵתָה חַנָּה וַיִּקְבֹּר אוֹתָה אֵצֶל אָבִיו וַיֵּלֶךְ טוֹבִיָּה הוּא וְאִשְׁתּוֹ וּבָנָיו לְאַחְמְתָא אֶל־רְעוּאֵל חוֹתְנוֹ׃",
+          "sourcePages": [
+            346
+          ],
+          "textSHA256": "3b321475c62e41422be774fac2520b3034d539e0071cee6e66adcd32253c7afc"
+        },
+        {
+          "verse": 13,
+          "text": "וַיִּזְקַן בְּכָבוֹד וַיִּקְבֹּר אֶת־חוֹתְנוֹ וְאֶת־חוֹתַנְתּוֹ בְּכָבוֹד וַיִּירַשׁ אֶת אֲשֶׁר לָהֶם וַאֲשֶׁר לְטוֹבִי אָבִיו׃",
+          "sourcePages": [
+            346
+          ],
+          "textSHA256": "734f085b04707fa31c7bb6cae6df1119e3e01ec66b1c48c319cd08d2bca60296"
+        },
+        {
+          "verse": 14,
+          "text": "וַיָּמָת בֶּן־מֵאָה וָשֶׁבַע שָׁנִים בְּאַחְמְתָא מָדַי׃ וּבְטֶרֶם יָמוּת שָׁמַע כִּי אָבְדָה נִינְוֵה אֲשֶׁר לָכְדוּ אוֹתָהּ נְבוּכַדְנֶאצַּר וַאֲחַשְׁוֵרוֹשׁ וַיִּשְׂמַח לִפְנֵי מוֹתוֹ עַל־נִינְוֵה׃",
+          "sourcePages": [
+            346,
+            347
+          ],
+          "textSHA256": "06f8ac8070a5201737c327b19ad83171c344637db43dc862db95d48748f65701",
+          "endVerse": 15
         }
       ]
     }
