@@ -1,0 +1,612 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://prosary.app/schema/bible-library.json",
+  "title": "Prosary downloadable Bible library",
+  "description": "The catalog alone is bundled. Hash-pinned ZIP downloads contain the manifest and exactly its chapter files. Source-native labels are not remapped at runtime. See Shared/BIBLE-VIEWER.markdown for atomic storage, validation and limits. Version3 source structure is defined in Shared/BIBLE-SOURCE-STRUCTURE.markdown; source evidence fields remain authoring-only.",
+  "oneOf": [
+    {
+      "$ref": "#/$defs/catalog"
+    },
+    {
+      "$ref": "#/$defs/manifest"
+    },
+    {
+      "$ref": "#/$defs/chapter"
+    }
+  ],
+  "$defs": {
+    "hash": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "bookId": {
+      "type": "string",
+      "pattern": "^[A-Z1-4]{3}$"
+    },
+    "text": {
+      "type": "string",
+      "minLength": 1
+    },
+    "https": {
+      "type": "string",
+      "format": "uri",
+      "pattern": "^https://"
+    },
+    "books": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "name",
+          "chapters"
+        ],
+        "properties": {
+          "id": {
+            "$ref": "#/$defs/bookId"
+          },
+          "name": {
+            "$ref": "#/$defs/text"
+          },
+          "transliteratedName": {
+            "$ref": "#/$defs/text"
+          },
+          "attribution": {
+            "$ref": "#/$defs/text"
+          },
+          "sourceURL": {
+            "$ref": "#/$defs/https"
+          },
+          "introduction": {
+            "$ref": "#/$defs/text"
+          },
+          "chapters": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "number",
+                "verseCount",
+                "isComplete"
+              ],
+              "properties": {
+                "number": {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                "verseCount": {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                "isComplete": {
+                  "type": "boolean"
+                }
+              }
+            }
+          },
+          "addressRoutes": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "$ref": "#/$defs/addressRoute"
+            }
+          }
+        },
+        "dependentRequired": {
+          "attribution": [
+            "sourceURL"
+          ],
+          "sourceURL": [
+            "attribution"
+          ]
+        }
+      }
+    },
+    "catalog": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schemaVersion",
+        "editions"
+      ],
+      "properties": {
+        "schemaVersion": {
+          "const": 1
+        },
+        "editions": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "languageCode",
+              "name",
+              "attribution",
+              "sourceURL",
+              "revision",
+              "downloadURL",
+              "archiveSHA256",
+              "archiveByteCount",
+              "unpackedByteCount",
+              "books"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^[a-z0-9-]+$"
+              },
+              "languageCode": {
+                "$ref": "#/$defs/text"
+              },
+              "name": {
+                "$ref": "#/$defs/text"
+              },
+              "attribution": {
+                "$ref": "#/$defs/text"
+              },
+              "sourceURL": {
+                "$ref": "#/$defs/https"
+              },
+              "textScript": {
+                "enum": [
+                  "Hebr",
+                  "Syrc"
+                ]
+              },
+              "transliteratedTextScript": {
+                "enum": [
+                  "Hebr",
+                  "Syrc"
+                ]
+              },
+              "revision": {
+                "$ref": "#/$defs/hash"
+              },
+              "archiveSHA256": {
+                "$ref": "#/$defs/hash"
+              },
+              "archiveByteCount": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 33554432
+              },
+              "unpackedByteCount": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 134217728
+              },
+              "downloadURL": {
+                "type": "string",
+                "pattern": "^https://raw\\.githubusercontent\\.com/dkaluta/Prosary/main/Shared/dist/bibles/[a-z0-9-]+-[0-9a-f]{64}\\.zip$"
+              },
+              "books": {
+                "$ref": "#/$defs/books"
+              },
+              "archiveSchemaVersion": {
+                "enum": [
+                  1,
+                  2,
+                  3
+                ],
+                "description": "Absent means 1. Manifest and every chapter must match. Version2 supports source notes; version3 additionally supports source blocks and explicit address routes."
+              }
+            },
+            "dependentRequired": {
+              "textScript": [
+                "transliteratedTextScript"
+              ],
+              "transliteratedTextScript": [
+                "textScript"
+              ]
+            },
+            "allOf": [
+              {
+                "if": {
+                  "not": {
+                    "required": [
+                      "archiveSchemaVersion"
+                    ],
+                    "properties": {
+                      "archiveSchemaVersion": {
+                        "const": 3
+                      }
+                    }
+                  }
+                },
+                "then": {
+                  "properties": {
+                    "books": {
+                      "items": {
+                        "not": {
+                          "required": [
+                            "addressRoutes"
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "if": {
+                  "required": ["archiveSchemaVersion"],
+                  "properties": {"archiveSchemaVersion": {"const": 3}}
+                },
+                "then": {
+                  "not": {
+                    "anyOf": [
+                      {"required": ["textScript"]},
+                      {"required": ["transliteratedTextScript"]}
+                    ]
+                  }
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    "manifest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schemaVersion",
+        "editionId",
+        "revision",
+        "books"
+      ],
+      "properties": {
+        "schemaVersion": {
+          "enum": [
+            1,
+            2,
+            3
+          ]
+        },
+        "editionId": {
+          "$ref": "#/$defs/text"
+        },
+        "revision": {
+          "$ref": "#/$defs/hash"
+        },
+        "books": {
+          "$ref": "#/$defs/books"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "schemaVersion": {
+                "enum": [
+                  1,
+                  2
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "books": {
+                "items": {
+                  "not": {
+                    "required": [
+                      "addressRoutes"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "chapter": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schemaVersion",
+        "editionId",
+        "book",
+        "chapter",
+        "verses"
+      ],
+      "properties": {
+        "schemaVersion": {
+          "enum": [
+            1,
+            2,
+            3
+          ]
+        },
+        "editionId": {
+          "$ref": "#/$defs/text"
+        },
+        "book": {
+          "$ref": "#/$defs/bookId"
+        },
+        "chapter": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "verses": {
+          "type": "array",
+          "minItems": 1,
+          "description": "Preserve source order. All positive labels and endVerse ranges must be globally nonoverlapping; ascending order is not required.",
+          "items": {
+            "$ref": "reading-texts.json#/$defs/verse"
+          }
+        },
+        "contentBlocks": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/sourceBlock"
+          },
+          "description": "Complete physical presentation order. Whole-book references, identities and routes are validated at installation."
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "schemaVersion": {
+                "const": 1
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "verses": {
+                "items": {
+                  "not": {
+                    "required": [
+                      "sourceNotes"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "schemaVersion": {
+                "enum": [
+                  1,
+                  2
+                ]
+              }
+            }
+          },
+          "then": {
+            "not": {
+              "required": [
+                "contentBlocks"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "addressRoute": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "chapter",
+        "verse",
+        "displayChapter",
+        "blockId"
+      ],
+      "properties": {
+        "chapter": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 1000
+        },
+        "verse": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 1000
+        },
+        "displayChapter": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 1000
+        },
+        "blockId": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9-]*$"
+        }
+      }
+    },
+    "witnessAddress": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "chapter",
+        "verse"
+      ],
+      "properties": {
+        "chapter": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 1000
+        },
+        "verse": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 1000
+        },
+        "endVerse": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 1000
+        },
+        "part": {
+          "$ref": "#/$defs/text"
+        }
+      }
+    },
+    "sourceBlock": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "kind",
+            "chapter",
+            "verse"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^[a-z0-9][a-z0-9-]*$"
+            },
+            "kind": {
+              "const": "verse"
+            },
+            "chapter": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 1000
+            },
+            "verse": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 1000
+            },
+            "printedLabel": {
+              "$ref": "#/$defs/text"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "kind",
+            "text",
+            "printedLabel",
+            "addresses"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^[a-z0-9][a-z0-9-]*$"
+            },
+            "kind": {
+              "const": "witness"
+            },
+            "text": {
+              "$ref": "#/$defs/text"
+            },
+            "printedLabel": {
+              "$ref": "#/$defs/text"
+            },
+            "addresses": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/witnessAddress"
+              }
+            },
+            "sourceNotes": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "reading-texts.json#/$defs/sourceNote"
+              }
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "kind",
+            "text"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^[a-z0-9][a-z0-9-]*$"
+            },
+            "kind": {
+              "const": "passage"
+            },
+            "text": {
+              "$ref": "#/$defs/text"
+            },
+            "sourceNotes": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "reading-texts.json#/$defs/sourceNote"
+              }
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "kind",
+            "text"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^[a-z0-9][a-z0-9-]*$"
+            },
+            "kind": {
+              "const": "heading"
+            },
+            "text": {
+              "$ref": "#/$defs/text"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "kind",
+            "text"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^[a-z0-9][a-z0-9-]*$"
+            },
+            "kind": {
+              "const": "colophon"
+            },
+            "text": {
+              "$ref": "#/$defs/text"
+            },
+            "sourceNotes": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "reading-texts.json#/$defs/sourceNote"
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

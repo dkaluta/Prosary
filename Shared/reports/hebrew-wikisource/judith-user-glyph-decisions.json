@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "book": "JDT",
+  "date": "2026-09-27",
+  "status": "specific source-glyph decisions only; not whole-book approval",
+  "rawUserFeedback": "חותינו with patah, holam, zere, nothing, nothing, shuruq; ינעו with patah, kuvuz, nothing, shuruq",
+  "interpretationInstruction": "Preserve exactly the user reading. Do not normalize grammar or add unspecified dagesh.",
+  "decisions": [
+    {
+      "reference": "JDT3:4",
+      "text": "חַוֹתֵינוּ",
+      "codePoints": [
+        "U+05D7",
+        "U+05B7",
+        "U+05D5",
+        "U+05B9",
+        "U+05EA",
+        "U+05B5",
+        "U+05D9",
+        "U+05E0",
+        "U+05D5",
+        "U+05BC"
+      ],
+      "crop": "/private/tmp/prosary-kahana-reference/extra-pages/JDT3-3-5.png",
+      "cropSHA256": "c2906c9e0b6641e4ffdc7a0dd6c91a2e7c571fd46dc0508a6f1e709113e93b58"
+    },
+    {
+      "reference": "JDT16:15",
+      "text": "יַנֻעוּ",
+      "codePoints": [
+        "U+05D9",
+        "U+05B7",
+        "U+05E0",
+        "U+05BB",
+        "U+05E2",
+        "U+05D5",
+        "U+05BC"
+      ],
+      "crop": "/private/tmp/prosary-kahana-reference/extra-pages/JDT16-15-16.png",
+      "cropSHA256": "d60391f45ac213d10ebb37644a61c502b39875de734a79294a31c626f9a2bc04"
+    }
+  ]
+}

@@ -1,0 +1,666 @@
+{
+  "book": "TOB",
+  "recension": "short",
+  "chapter": 8,
+  "status": "full-word-point-punctuation-and-boundary-comparison-independently-corroborated",
+  "releaseApproved": false,
+  "source": {
+    "volume": "B",
+    "sha256": "656891d377d2e3d4a9216723d94205488423907bf01df424b9f0b9de1560051e",
+    "pageCount": 530,
+    "sourceURL": "https://he.wikisource.org/wiki/קובץ:Apocrypha_Kahana_B.pdf",
+    "extraScan": {
+      "sha256": "b72eaf5d2d858fabb7c3438ac0436ccd64c394a7dd2fad609efabe628d5534c7",
+      "pageCount": 272,
+      "matchingMethod": "Upper/lower layout, running headings and exact body wording; B332–334 matched to extra173 right/173 left/174 right."
+    }
+  },
+  "coverage": {
+    "printedUnits": [
+      [
+        1,
+        1
+      ],
+      [
+        2,
+        2
+      ],
+      [
+        3,
+        3
+      ],
+      [
+        4,
+        4
+      ],
+      [
+        5,
+        5
+      ],
+      [
+        6,
+        6
+      ],
+      [
+        7,
+        7
+      ],
+      [
+        8,
+        8
+      ],
+      [
+        9,
+        10
+      ],
+      [
+        11,
+        12
+      ],
+      [
+        13,
+        13
+      ],
+      [
+        14,
+        15
+      ],
+      [
+        16,
+        16
+      ],
+      [
+        17,
+        17
+      ],
+      [
+        18,
+        18
+      ],
+      [
+        19,
+        20
+      ],
+      [
+        21,
+        21
+      ]
+    ],
+    "printedCombinedLabels": [
+      [
+        9,
+        10
+      ],
+      [
+        11,
+        12
+      ],
+      [
+        14,
+        15
+      ],
+      [
+        19,
+        20
+      ]
+    ],
+    "physicalLinesCompared": 27,
+    "canonicalUnits": 17,
+    "provisionalEditorialRanges": [],
+    "newReviewedPages": [],
+    "pagePieces": [
+      {
+        "page": 332,
+        "extraPage": 173,
+        "extraSide": "right",
+        "physicalRowsWithinWholeUpperSection": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "chapterRowsCompared": 8,
+        "start": "וַיְהִי כַּאֲשֶׁר",
+        "end": "נוֹלַד",
+        "scope": "Chapter8 begins after the four chapter7 rows; all eight remaining upper rows compared."
+      },
+      {
+        "page": 333,
+        "extraPage": 173,
+        "extraSide": "left",
+        "physicalRowsWithinWholeUpperSection": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13
+        ],
+        "chapterRowsCompared": 13,
+        "start": "זֶרַע",
+        "end": "עַל־שְׁנֵי",
+        "scope": "Entire upper short-recension section; lower long-recension body excluded."
+      },
+      {
+        "page": 334,
+        "extraPage": 174,
+        "extraSide": "right",
+        "physicalRowsWithinWholeUpperSection": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "chapterRowsCompared": 6,
+        "start": "הַיְּחִידִים",
+        "end": "וְאִשְׁתִּי׃",
+        "scope": "First six upper rows only; chapter9 starts in following row and is excluded."
+      }
+    ]
+  },
+  "boundaryEvidence": [
+    {
+      "label": 1,
+      "page": 332,
+      "chapterPhysicalRow": 1,
+      "start": "וַיְהִי",
+      "evidence": "Chapter marker ח begins this row, after the preceding chapter closes."
+    },
+    {
+      "label": 2,
+      "page": 332,
+      "chapterPhysicalRow": 1,
+      "start": "וַיֵּלֶךְ",
+      "evidence": "After אֵלֶיהָ׃ on the same row; margin label ב."
+    },
+    {
+      "label": 3,
+      "page": 332,
+      "chapterPhysicalRow": 3,
+      "start": "וַיְהִי",
+      "evidence": "After עֲשָׁנָם׃ on the same row."
+    },
+    {
+      "label": 4,
+      "page": 332,
+      "chapterPhysicalRow": 4,
+      "start": "וַיְהִי",
+      "evidence": "After הַמַּלְאָךְ׃ on the same row."
+    },
+    {
+      "label": 5,
+      "page": 332,
+      "chapterPhysicalRow": 6,
+      "start": "וַיָּחֶל",
+      "evidence": "After יְיָ׃ on the same row."
+    },
+    {
+      "label": 6,
+      "page": 332,
+      "chapterPhysicalRow": 8,
+      "start": "אַתָּה",
+      "evidence": "Own row following the preceding sof pasuq."
+    },
+    {
+      "label": 7,
+      "page": 333,
+      "chapterPhysicalRow": 2,
+      "start": "וְעַתָּה",
+      "evidence": "After כְּנֶגְדּוֹ׃ on the same row."
+    },
+    {
+      "label": 8,
+      "page": 333,
+      "chapterPhysicalRow": 3,
+      "start": "וַתַּעַן",
+      "evidence": "After יַחַד׃ on the same row; continues into row4."
+    },
+    {
+      "label": "9–10",
+      "page": 333,
+      "chapterPhysicalRow": 5,
+      "start": "וַיִּשְׁכְּבוּ",
+      "evidence": "Printed combined ט–י; after previous row closing אָמֵן׃."
+    },
+    {
+      "label": "11–12",
+      "page": 333,
+      "chapterPhysicalRow": 6,
+      "start": "וַיָּבֹא",
+      "evidence": "Printed combined יא–יב; after גַּם־זֶה׃ on the same row."
+    },
+    {
+      "label": 13,
+      "page": 333,
+      "chapterPhysicalRow": 8,
+      "start": "וַתָּבֹא",
+      "evidence": "After יֵדַע׃ on the same row."
+    },
+    {
+      "label": "14–15",
+      "page": 333,
+      "chapterPhysicalRow": 9,
+      "start": "וַתֵּצֵא",
+      "evidence": "Printed combined יד–טו; after יְשֵׁנִים׃ on the same row."
+    },
+    {
+      "label": 16,
+      "page": 333,
+      "chapterPhysicalRow": 12,
+      "start": "בָּרוּךְ",
+      "evidence": "After לְעוֹלָמִים׃ on the same row."
+    },
+    {
+      "label": 17,
+      "page": 333,
+      "chapterPhysicalRow": 13,
+      "start": "בָּרוּךְ",
+      "evidence": "After עִמָּנוּ׃ on the same row."
+    },
+    {
+      "label": 18,
+      "page": 334,
+      "chapterPhysicalRow": 2,
+      "start": "וַיֹּאמֶר",
+      "evidence": "After וּבְרַחֲמִים׃ on the same row."
+    },
+    {
+      "label": "19–20",
+      "page": 334,
+      "chapterPhysicalRow": 3,
+      "start": "וַיַּעַשׂ",
+      "evidence": "Printed combined יט–כ; after previous row closing עָפָר׃."
+    },
+    {
+      "label": 21,
+      "page": 334,
+      "chapterPhysicalRow": 5,
+      "start": "אָז",
+      "evidence": "After הַחֲתֻנָּה׃ on the same row."
+    }
+  ],
+  "corrections": [
+    {
+      "verse": 3,
+      "before": "וַיַּאֲסֹר",
+      "after": "וַיֶּאְסֹר",
+      "evidence": [
+        "TOB8-query-vayeesor.png",
+        "TOB8-primary-vayeesor.png"
+      ],
+      "finding": "Yod has three separate segol dots; alef has two vertical sheva dots without a companion vowel. Initial vav patah and samekh holam retained."
+    },
+    {
+      "verse": 7,
+      "before": "אוֹקִין",
+      "after": "אַוְקִין",
+      "evidence": [
+        "TOB8-query-oqin.png",
+        "TOB8-primary-oqin.png"
+      ],
+      "finding": "Alef has a detached patah bar and the following vav has a vertical sheva pair; there is no vav holam. Five consonants אוקין and qoph hiriq retained."
+    },
+    {
+      "verse": 8,
+      "before": "אַמְרֵיו",
+      "after": "אַמְרָיו",
+      "evidence": [
+        "TOB8-query-amarav.png",
+        "TOB8-primary-amarav.png"
+      ],
+      "finding": "Resh lower vowel is a distinct qamats with a descending stem. Alef patah and mem sheva retained."
+    },
+    {
+      "verse": 9,
+      "endVerse": 10,
+      "before": "בַּלַּיְלָה",
+      "after": "בַּלָּיְלָה",
+      "evidence": [
+        "TOB8-query-balayla.png",
+        "TOB8-primary-balayla.png"
+      ],
+      "finding": "The first lamed has a qamats with a clear descending stem. Bet dagesh and first lamed dagesh are visible and retained. This occurrence differs from chapter7:11 and is not normalized to it."
+    }
+  ],
+  "retainedAfterFocusedChecks": [
+    {
+      "text": "עֲשֵׂה",
+      "finding": "Ayin hataf-patah and sin tsere remain distinct."
+    },
+    {
+      "text": "בֵיתוֹ",
+      "finding": "The local bet in8:18 has a clean empty cavity; retain no dagesh."
+    },
+    {
+      "text": "וַתְּבַשֵּׂר",
+      "finding": "Sin dagesh is a detached interior dot and tsere has two separate lower points; retain both."
+    },
+    {
+      "text": "נַעֲשֶׂה־לוֹ",
+      "finding": "Ayin hataf-patah is distinct; nun prefix and maqaf are visible; no extra vav imported."
+    }
+  ],
+  "unresolvedFindings": [],
+  "sourceNoteProposals": [],
+  "canonicalChapter": {
+    "number": 8,
+    "lastVerse": 21,
+    "verses": [
+      {
+        "verse": 1,
+        "text": "וַיְהִי כַּאֲשֶׁר כִּלּוּ לֶאֱכֹל וַיָּבִיאוּ אֶת־טוֹבִיָּה אֵלֶיהָ׃",
+        "sourcePages": [
+          332
+        ],
+        "textSHA256": "6e3effaf12c3424ca2f8000e6a3eb46b0f2a7ec1194ab0e10f3f788c36b1b5b5"
+      },
+      {
+        "verse": 2,
+        "text": "וַיֵּלֶךְ וַיִּזְכֹּר אֶת־דִּבְרֵי רְפָאֵל וַיִּקַּח אֶת־גַּחֶלֶת הַקְּטֹרֶת וַיָּשֶׂם [עָלֶיהָ] אֶת־לֵב הַדָּג וְאֶת־כְּבֵדוֹ וַיַּעַל עֲשָׁנָם׃",
+        "sourcePages": [
+          332
+        ],
+        "textSHA256": "9cc338432ec30ef52525e9756f9135e1fd80e20c3de027c5b45c240dfb85c855"
+      },
+      {
+        "verse": 3,
+        "text": "וַיְהִי כַּאֲשֶׁר הֵרִיחַ הַשֵּׁד אֶת־הָרֵיחַ וַיִּבְרַח אֶל־יַרְכְּתֵי מִצְרַיִם הָעֶלְיוֹנָה וַיֶּאְסֹר אוֹתוֹ הַמַּלְאָךְ׃",
+        "sourcePages": [
+          332
+        ],
+        "textSHA256": "48379e1cc35a2584b36916730a26d6b8422c571824f45c9b48d998cb1ff370c5"
+      },
+      {
+        "verse": 4,
+        "text": "וַיְהִי כַּאֲשֶׁר נִסְגְּרוּ שְׁנֵיהֶם וַיָּקָם טוֹבִיָּה מִן־הַמִּטָּה וַיֹּאמֶר קוּמִי אֲחוֹתִי וְנִתְפַּלֵּל כִּי יְרַחֵם עָלֵינוּ יְיָ׃",
+        "sourcePages": [
+          332
+        ],
+        "textSHA256": "cb757b7f01493eaf6132b9540ffa5c03d54c15ee0f77882d19a5c20de607d530"
+      },
+      {
+        "verse": 5,
+        "text": "וַיָּחֶל טוֹבִיָּה וַיֹּאמֶר בָּרוּךְ אַתָּה אֱלֹהֵי אֲבוֹתֵינוּ וּבָרוּךְ שִׁמְךָ הַקָּדוֹשׁ וְהַנִּכְבָּד לְעוֹלָמִים יְבָרְכוּךָ שָׁמַיִם וְכָל־בְּרוּאֶיךָ׃",
+        "sourcePages": [
+          332
+        ],
+        "textSHA256": "ed069b60e86a0549af837457cf621b6fbce60865545124f79f15e6d005879382"
+      },
+      {
+        "verse": 6,
+        "text": "אַתָּה עָשִׂיתָ אָדָם וַתִּתֶּן־לוֹ עֵזֶר אֶת־חַוָּה אִשְׁתּוֹ לְמִשְׁעֶנֶת מֵהֶם נוֹלַד זֶרַע בְּנֵי הָאָדָם אַתָּה אָמַרְתָּ לֹא טוֹב הֱיוֹת הָאָדָם לְבַדּוֹ נַעֲשֶׂה־לוֹ עֵזֶר כְּנֶגְדּוֹ׃",
+        "sourcePages": [
+          332,
+          333
+        ],
+        "textSHA256": "f8875b952ffe5dc75f600d9333ae2afc8d3927ddf1522ecbbcbb3a393279d2b4"
+      },
+      {
+        "verse": 7,
+        "text": "וְעַתָּה יְיָ לֹא לִזְנוּנִים אֲנִי לוֹקֵחַ אֶת־אֲחוֹתִי זֹאת כִּי אִם־בֶּאֱמֶת צַוֵּה־נָא כִּי אֶמְצָא רַחֲמִים וְכִי אַוְקִין עִמָּהּ יַחַד׃",
+        "sourcePages": [
+          333
+        ],
+        "textSHA256": "cabbc2eb434485905c4dccac1fdf6e1ab347c1a703c5fb3bd62680bce0576223"
+      },
+      {
+        "verse": 8,
+        "text": "וַתַּעַן אַמְרָיו אָמֵן׃",
+        "sourcePages": [
+          333
+        ],
+        "textSHA256": "7aa38f1336b585244173e9afe499e6e0bc2a8f74dc25dd08921555f35c2bf9c0"
+      },
+      {
+        "verse": 9,
+        "text": "וַיִּשְׁכְּבוּ שְׁנֵיהֶם בַּלָּיְלָה׃ וַיָּקָם רְעוּאֵל וַיֵּלֶךְ וַיִּכְרֶה קֶבֶר כִּי אָמַר פֶּן־יָמוּת גַּם־זֶה׃",
+        "sourcePages": [
+          333
+        ],
+        "textSHA256": "b448889c4fcf66ab0326953273dff9efba814c2191bd2e3fd8d0649f77660273",
+        "endVerse": 10
+      },
+      {
+        "verse": 11,
+        "text": "וַיָּבֹא רְעוּאֵל אֶל־בֵּיתוֹ׃ וַיֹּאמֶר לְעֶדְנָה אִשְׁתּוֹ שִׁלְחִי־נָא אַחַת הַנְּעָרוֹת לִרְאוֹת אִם־הוּא חַי וְאִם־לֹא יִקְבְּרוּ־נָא אוֹתוֹ וְאִישׁ לֹא יֵדַע׃",
+        "sourcePages": [
+          333
+        ],
+        "textSHA256": "1ae6c34c0d16e05605ac45f52a131facf0d9cfe1178498b40d5aa15eb217c2af",
+        "endVerse": 12
+      },
+      {
+        "verse": 13,
+        "text": "וַתָּבֹא הַנַּעֲרָה וַתִּפְתַּח אֶת־הַדֶּלֶת וְהִנֵּה שְׁנֵיהֶם יְשֵׁנִים׃",
+        "sourcePages": [
+          333
+        ],
+        "textSHA256": "c2d4e335c323d4107f2b0af2bf1b190d890c6d39c6727c5ed6cf8262e9370717"
+      },
+      {
+        "verse": 14,
+        "text": "וַתֵּצֵא וַתְּבַשֵּׂר אוֹתָם כִּי הוּא־חָי׃ וַיְבָרֵךְ רְעוּאֵל אֶת־הָאֱלֹהִים לֵאמֹר בָּרוּךְ אַתָּה אֱלֹהִים בְּכָל־הַבְּרָכָה הַטְּהוֹרָה וְהַקְּדוֹשָׁה וִיבָרְכוּךָ כָּל־קְדוֹשֶׁיךָ וְכָל־בְּרוּאֶיךָ וְכָל־מַלְאָכֶיךָ וְכָל־בְּחִירֶיךָ יְבָרְכוּךָ לְעוֹלָמִים׃",
+        "sourcePages": [
+          333
+        ],
+        "textSHA256": "f07845a31dbd4c0ad0a590e92f771cddf4bfbabe263732073d83baf99049c702",
+        "endVerse": 15
+      },
+      {
+        "verse": 16,
+        "text": "בָּרוּךְ אַתָּה כִּי שִׂמַּחְתָּנִי וְלֹא הָיָה לִי כַּאֲשֶׁר חָשַׁבְתִּי כִּי אִם־בְּרַחֲמֶיךָ הָרַבִּים עָשִׂיתָ עִמָּנוּ׃",
+        "sourcePages": [
+          333
+        ],
+        "textSHA256": "aacf655375924ce473a0fd9fb446f74a8e223187cba2f677d5dba47cc6c4e819"
+      },
+      {
+        "verse": 17,
+        "text": "בָּרוּךְ אַתָּה כִּי רִחַמְתָּ עַל־שְׁנֵי הַיְּחִידִים עֲשֵׂה אֲדֹנָי עִמָּהֶם חֶסֶד וּמַלֵּא אֶת־יְמֵי חַיֵּיהֶם בְּשָׁלוֹם בְּשִׂמְחָה וּבְרַחֲמִים׃",
+        "sourcePages": [
+          333,
+          334
+        ],
+        "textSHA256": "fc59e3b2fa486b7e7d839183c1f1d4d6f77e563586a9887a170b7bc303b1ba26"
+      },
+      {
+        "verse": 18,
+        "text": "וַיֹּאמֶר לְעַבְדֵי בֵיתוֹ לְמַלֵּא אֶת־הַקֶּבֶר עָפָר׃",
+        "sourcePages": [
+          334
+        ],
+        "textSHA256": "e9473a41ad5a32f4aec5fb3983e6ae9776e4e0321a7d342455739c4c5111d9d1"
+      },
+      {
+        "verse": 19,
+        "text": "וַיַּעַשׂ לָהֶם מִשְׁתֵּה־חֲתֻנָּה אַרְבָּעָה עָשָׂר יוֹם׃ וַיֹּאמֶר לוֹ רְעוּאֵל בְּטֶרֶם יִכְלוּ יְמֵי הַחֲתֻנָּה וַיִּשָּׁבַע לְבִלְתִּי צֵאת מֵעִמּוֹ עַד־מְלֹאת אַרְבָּעָה עָשָׂר יוֹם יְמֵי מוֹעֵד הַחֲתֻנָּה׃",
+        "sourcePages": [
+          334
+        ],
+        "textSHA256": "98adbbc2609230854c1534144cd826e1c39d8344c23426500b9b14ff74c7711a",
+        "endVerse": 20
+      },
+      {
+        "verse": 21,
+        "text": "אָז יִקַּח מַחֲצִית כָּל־רְכוּשׁוֹ וְיֵלֵךְ בְּשָׁלוֹם אֶל אָבִיו וְאֶת־הַנּוֹתָר כַּאֲשֶׁר אָמוּת אֲנִי וְאִשְׁתִּי׃",
+        "sourcePages": [
+          334
+        ],
+        "textSHA256": "6d6757f6b3f24f5868e7c3471db410d94e6d2aebacb4cf5c7bb67fd1fb14f711"
+      }
+    ]
+  },
+  "canonicalBeforeSHA256": "82629be6ce03fda24e4054643386696fcfc2f480eee086794b57712b807cdeb0",
+  "canonicalAfterSHA256": "256990b441551ae6f5f9177948e8610df36ee74458fc1fa3c1e10feb6c993956",
+  "preservationChecks": {
+    "chapters1Through7Unchanged": true,
+    "existingReviewedPagesUnchanged": true,
+    "existingSourceNoteIdsUnchanged": true,
+    "bookRemainsDraft": true
+  },
+  "validation": {
+    "book": "TOB",
+    "status": "draft",
+    "chapters": 8,
+    "units": 139,
+    "sourcePages": 23,
+    "reviewedPages": 11
+  },
+  "notes": [
+    "Only upper short-recension words transcribed. No lower-recension wording, conventional label inventory or grammar-based correction imported.",
+    "B332 andB334 are mixed-chapter pages; this review does not approve any neighboring chapter portion. B333 also remains unapproved pending independent corroboration.",
+    "The source apostrophe-like marks on divine abbreviation are retained through pointed יְיָ as printed; no tetragrammaton was introduced.",
+    "Root independently inspected the four point-query crops and corroborated all four corrections. This limited check does not replace the pending independent27-row comparison.",
+    "The earlier independent-review-pending finding is superseded. Independent complete comparison agrees with all source wording, points, punctuation and exact starts. Owner records only wholeB333 as reviewed; no book approval follows."
+  ],
+  "evidence": [
+    {
+      "path": "/private/tmp/prosary-kahana-reference/TOB8-first-draft.txt",
+      "sha256": "9791e722e5136d560cf1b749f9e0f28b00deea42c18b781f267f90b2e6d2b14b"
+    },
+    {
+      "path": "/private/tmp/prosary-kahana-reference/TOB8-own-compared-draft.txt",
+      "sha256": "215df1adb7fcd017b01c5cd414d6bfced43336f07f613b740ab40de89edc673a"
+    },
+    {
+      "path": "/private/tmp/prosary-kahana-reference/TOB8-native-source-images.json",
+      "sha256": "dd1b48a6224761b97215c6c0a93accfd2029b5dd2895f8fae7cb3aa815348851"
+    },
+    {
+      "path": "/private/tmp/prosary-kahana-reference/TOB8-native-line-crops.json",
+      "sha256": "3c60d9318ceec3729897be7350586d33c4d61d32a65627f394f5bb64395cf5d7"
+    },
+    {
+      "path": "/private/tmp/prosary-kahana-reference/TOB8-upper-crops.json",
+      "sha256": "cc4bcc0c4cdfea4aff50938d63faa67c7bee8f180e73c9dbe2404548126c3d8f"
+    },
+    {
+      "path": "/private/tmp/prosary-kahana-reference/TOB8-query-crops.json",
+      "sha256": "6933e61aeae034722b74e7b289dd5be10a970202d19a2fa64d403a9c7bf3f85e"
+    },
+    {
+      "path": "/private/tmp/prosary-kahana-reference/TOB8-primary-query-crops.json",
+      "sha256": "cdb19c40279d19a847af731b6501632c8234db8590a56ad6b68d2ef981500907"
+    },
+    {
+      "path": "/private/tmp/prosary-kahana-reference/TOB8-B332-upper-extra.png",
+      "sha256": "158e806d5b2ef34ff484a178c9f1ee873428f2ba224576dbb0ce2bfe9fc5d95f"
+    },
+    {
+      "path": "/private/tmp/prosary-kahana-reference/TOB8-B333-upper-extra.png",
+      "sha256": "adfa42c177f0dbd621ed981be239162f6324292574eff749d6b61a709902c037"
+    },
+    {
+      "path": "/private/tmp/prosary-kahana-reference/TOB8-B334-upper-extra.png",
+      "sha256": "089da444d5d61e168c8c2f387b066de15096581986444d6c48ae0cee31295f21"
+    },
+    {
+      "path": "/private/tmp/prosary-kahana-reference/TOB8-query-vayeesor.png",
+      "sha256": "af9e3747438b14fe622feb087415874d9abbd58fec038191bfa53349fe1da697"
+    },
+    {
+      "path": "/private/tmp/prosary-kahana-reference/TOB8-primary-vayeesor.png",
+      "sha256": "2c6cf8fc6749a0da7721037b42841f4f52383622dcb2fa7d09f58ae7d5396f47"
+    },
+    {
+      "path": "/private/tmp/prosary-kahana-reference/TOB8-query-oqin.png",
+      "sha256": "d61926368601aeb4a326a4a92b7159a79828f9a39dfef0a5dc5c7440d43c333c"
+    },
+    {
+      "path": "/private/tmp/prosary-kahana-reference/TOB8-primary-oqin.png",
+      "sha256": "7139635d56d4efa1a8fda464c5dc5010ebc0a460cb2a39ea81851b41ea465e66"
+    },
+    {
+      "path": "/private/tmp/prosary-kahana-reference/TOB8-query-amarav.png",
+      "sha256": "b1e4d8c05dd50d103f04d6b8422755d5ef083dfdd9ba6e08b89e8093c06b6379"
+    },
+    {
+      "path": "/private/tmp/prosary-kahana-reference/TOB8-primary-amarav.png",
+      "sha256": "d54863202451a34a2e48b82accba53b0f20d43b64d74471a7e4b05edbf937298"
+    },
+    {
+      "path": "/private/tmp/prosary-kahana-reference/TOB8-query-balayla.png",
+      "sha256": "5268038cdb65aa5b36e6a47fdd463691a22ae68136ce134414341227a54d11bf"
+    },
+    {
+      "path": "/private/tmp/prosary-kahana-reference/TOB8-primary-balayla.png",
+      "sha256": "381dfbbedb4db1aa1537f0c537f5baca1a6242423b0e8d9e6a46395c85ebe902"
+    },
+    {
+      "path": "/private/tmp/prosary-kahana-reference/TOB8-query-aseh.png",
+      "sha256": "6d76db64695f21d2a3c332931d925f87ce174fec5bad750edd178448940acb54"
+    },
+    {
+      "path": "/private/tmp/prosary-kahana-reference/TOB8-query-beito.png",
+      "sha256": "7f19cb1f36344b84ac1680a57fd377c05182c8506ed9818c31a5a84d97269290"
+    },
+    {
+      "path": "/private/tmp/prosary-kahana-reference/TOB8-query-vatevaser.png",
+      "sha256": "2b58726092f450b338bcc413abf571b8e48c84d2190ff7082c1d10648d57bb47"
+    },
+    {
+      "path": "/private/tmp/prosary-kahana-reference/TOB8-query-naaseh.png",
+      "sha256": "2d251b2b34e3a3985445082cafe9fe5ef7f0f28700de05725dcffc1aa2d17e46"
+    }
+  ],
+  "focusedIndependentPointReview": {
+    "reviewer": "root",
+    "scope": "Four cropped words only, not a whole-chapter comparison",
+    "corroborated": [
+      "וַיֶּאְסֹר",
+      "אַוְקִין",
+      "אַמְרָיו",
+      "בַּלָּיְלָה"
+    ],
+    "wordPointChangesRequested": 0,
+    "wholeChapterApproved": false
+  },
+  "independentPrintedInventoryMatch": {
+    "path": "Shared/reports/hebrew-wikisource/TOB-print-inventory.json",
+    "sha256": "f460d75a7b00d56e175780b34a0724d2e082b2482406b9be7fcc1cafdd82c518",
+    "chapter": 8,
+    "unitsMatch": true,
+    "lastVerseMatches": true,
+    "meaning": "Structural correspondence with preexisting independent source inventory; not independent word/point approval."
+  },
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/TOB-short-chapter8-independent-review.json",
+    "sha256": "34d662f95635e073409cb2f0e8537c3ec4ac181aeccbd2868a13ae19751b5038",
+    "status": "independent-full-chapter-word-point-and-boundary-comparison-passed",
+    "physicalLinesCompared": 27,
+    "wordPointCorrections": 0,
+    "sourceNotesRequired": 0
+  },
+  "canonicalReviewDisposition": {
+    "newReviewedPages": [
+      333
+    ],
+    "retainedUnapprovedPages": {
+      "332": "Chapter7 boundary questions remain unresolved.",
+      "334": "Chapter9 upper rows still await complete comparison."
+    },
+    "bookStatus": "draft",
+    "releaseApproved": false
+  },
+  "validationAfterIndependentReview": {
+    "book": "TOB",
+    "status": "draft",
+    "chapters": 8,
+    "units": 139,
+    "sourcePages": 23,
+    "reviewedPages": 12
+  }
+}

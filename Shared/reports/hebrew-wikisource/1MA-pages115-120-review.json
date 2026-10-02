@@ -1,0 +1,742 @@
+{
+  "book": "1MA",
+  "primarySourcePDFSHA256": "656891d377d2e3d4a9216723d94205488423907bf01df424b9f0b9de1560051e",
+  "additionalSourcePDFSHA256": "b72eaf5d2d858fabb7c3438ac0436ccd64c394a7dd2fad609efabe628d5534c7",
+  "status": "Full second comparison complete for these pages; isolated unreadable marks explicitly disclosed by accepted source notes. Book remains draft.",
+  "method": "Complete second visual word/point/punctuation comparison of all57 chapter4 source units against matched clearer print. Page endings/continuations and combined labels retained. No grammatical or conventional point normalization. Local uncertain marks remain open.",
+  "pages": [
+    {
+      "primaryPDFPage": 115,
+      "additionalPDFPage": 59,
+      "side": "left",
+      "printedPage": "קיג",
+      "unitSegments": [
+        "4:1–5 complete",
+        "4:6 beginning through לא־היו"
+      ],
+      "finalReviewComplete": true,
+      "unresolved": [],
+      "otherScripture": "Chapter3 segment independently completed in1MA-pages111-115-review.json."
+    },
+    {
+      "primaryPDFPage": 116,
+      "additionalPDFPage": 60,
+      "side": "right",
+      "printedPage": "קיד",
+      "unitSegments": [
+        "4:6 continuation להם through חפצו",
+        "4:7–15 complete, including11–12",
+        "4:16 beginning through והחיל"
+      ],
+      "finalReviewComplete": true,
+      "unresolved": [],
+      "acceptedSourceNoteIds": [
+        "1ma-4-10-yod-dagesh"
+      ]
+    },
+    {
+      "primaryPDFPage": 117,
+      "additionalPDFPage": 60,
+      "side": "left",
+      "printedPage": "קטו",
+      "unitSegments": [
+        "4:16 continuation מרדף אחריהם",
+        "4:17–28 complete",
+        "4:29 beginning through ויחנו"
+      ],
+      "finalReviewComplete": true,
+      "unresolved": [],
+      "acceptedSourceNoteIds": [
+        "1ma-4-18-yod-dagesh"
+      ]
+    },
+    {
+      "primaryPDFPage": 118,
+      "additionalPDFPage": 61,
+      "side": "right",
+      "printedPage": "קטז",
+      "unitSegments": [
+        "4:29 continuation בבית־צור",
+        "4:30–40 complete, including37–38",
+        "4:41 beginning through יטהר"
+      ],
+      "finalReviewComplete": true,
+      "unresolved": []
+    },
+    {
+      "primaryPDFPage": 119,
+      "additionalPDFPage": 61,
+      "side": "left",
+      "printedPage": "קיז",
+      "unitSegments": [
+        "4:41 continuation את־המקדש",
+        "4:42–54 complete, including42–43",
+        "4:55 beginning through על־"
+      ],
+      "finalReviewComplete": true,
+      "unresolved": []
+    },
+    {
+      "primaryPDFPage": 120,
+      "additionalPDFPage": 62,
+      "side": "right",
+      "printedPage": "קיח",
+      "unitSegments": [
+        "4:55 continuation פניהם",
+        "4:56–60 complete"
+      ],
+      "finalReviewComplete": true,
+      "unresolved": [],
+      "acceptedSourceNoteIds": [
+        "1ma-5-4-bet-dagesh"
+      ]
+    }
+  ],
+  "corrections": [
+    {
+      "unit": "4:52",
+      "before": "בַּבֹּקֶר",
+      "after": "בַבֹּקֶר",
+      "evidence": "crop-61-0.067-0.354-0.129-0.384.png",
+      "basis": "First bet has clean white interior; second bet has a separate dot. Independent reviewer confirms first bet has no dagesh."
+    },
+    {
+      "unit": "4:18",
+      "before": "קוממיות",
+      "after": "קוֹמְמִיוֹת",
+      "evidence": "crop-60-0.184-0.14-0.248-0.165.png",
+      "basis": "Restores certain printed points: first/final vav holam, first mem sheva and second mem hiriq. Yod dagesh remains explicitly unresolved; this is not a completed word approval."
+    }
+  ],
+  "queries": [
+    {
+      "id": "1MA-4-10-hayom-yod",
+      "unit": "4:10",
+      "detail": "Draft הַיוֹם has no yod dagesh; tiny source glyph does not establish a separate additional point to this reader. Sent for independent local reading.",
+      "resolved": true,
+      "evidence": "crop-60-0.858-0.21-0.895-0.239.png",
+      "resolutionType": "acceptedSourceNote",
+      "acceptedSourceNoteId": "1ma-4-10-yod-dagesh",
+      "resolution": "The glyph is still unreadable. Its guessed mark is omitted and disclosed under the approved policy; see1MA-source-note-decisions.json."
+    },
+    {
+      "id": "1MA-4-18-qomemiyot-yod",
+      "unit": "4:18",
+      "detail": "Certain points restored as קוֹמְמִיוֹת. Final-vav holam independently confirmed. Possible yod dagesh is not cleanly detached from its letter in the crop, so remains unresolved.",
+      "resolved": true,
+      "evidence": "crop-60-0.184-0.14-0.248-0.165.png",
+      "resolutionType": "acceptedSourceNote",
+      "acceptedSourceNoteId": "1ma-4-18-yod-dagesh",
+      "resolution": "The glyph is still unreadable. Its guessed mark is omitted and disclosed under the approved policy; see1MA-source-note-decisions.json."
+    }
+  ],
+  "retainedChecks": [
+    "4:3 full-vav וְהַגִּבּוֹרִים independently confirmed.",
+    "4:7 source מְבֻצָּר and4:15 אֱדוֹם retained.",
+    "4:35 maqaf after אֲשֶׁר at physical line end retained.",
+    "4:39 source brackets around עַל־רָאשֵׁיהֶם retained.",
+    "4:52 בחמשה first bet has a distinct dot, unlike the independently checked preceding בבקר; each occurrence remains distinct.",
+    "4:58 source וַיָּקֵם without added yod retained.",
+    "All source wording, poetry, and sof pasuq retained; no body words were supplied by OCR."
+  ],
+  "cropDirectory": "/private/tmp/prosary-1ma-extra",
+  "cropEvidence": [
+    {
+      "filename": "crop-59-0.039-0.412-0.422-0.601.png",
+      "sha256": "8efacfbac105d14ba3b117a824b414bb10fbcf99eb261e46a31aba4e158e2a77"
+    },
+    {
+      "filename": "crop-60-0.538-0.079-0.895-0.219.png",
+      "sha256": "e26e30ddb7ad28dd73a1874beae4386f64e4db9088a0140ac333f2fe95d6b4ce"
+    },
+    {
+      "filename": "crop-60-0.538-0.211-0.895-0.354.png",
+      "sha256": "0f6d3b3e3cd99ad183c4923412d3ac35d1922b7d5ec10193d1ab37a34ccb6ea8"
+    },
+    {
+      "filename": "crop-60-0.051-0.09-0.441-0.239.png",
+      "sha256": "5848ea5b9b3743b251d9f5c2dfc86c17686a0b712bf3f9d1f75f73043172316d"
+    },
+    {
+      "filename": "crop-60-0.051-0.234-0.441-0.379.png",
+      "sha256": "292660d81677fe6b6f0cbf4f8951887e0541fd08e32804347fedbeb6acb0194d"
+    },
+    {
+      "filename": "crop-60-0.051-0.371-0.441-0.456.png",
+      "sha256": "eee10c97e4a73ff5561dc22456ff5fccd03839d25a074480d6bc13279d8c9917"
+    },
+    {
+      "filename": "crop-61-0.537-0.086-0.894-0.243.png",
+      "sha256": "61b4a83425cb42dbe24fb7653b54d9dc6d3319837932216bcebcc96bbc12572b"
+    },
+    {
+      "filename": "crop-61-0.537-0.24-0.894-0.397.png",
+      "sha256": "840d007f88691a90f684e469fd9d687793500871ac0183a8b28c2f9e03293376"
+    },
+    {
+      "filename": "crop-61-0.537-0.386-0.894-0.535.png",
+      "sha256": "4165d2e40bc0b4dced965ab40b7f5751ae2da1a62af24044e5f18cd1c3a29d96"
+    },
+    {
+      "filename": "crop-61-0.043-0.093-0.444-0.258.png",
+      "sha256": "9e6cc0e756f2fbf765a97148ae2fee0911be5657da2c33807c736e1307b243d3"
+    },
+    {
+      "filename": "crop-61-0.043-0.246-0.444-0.409.png",
+      "sha256": "f9eb38ddd5d1fd0804e8eb6c9ccc706e44f67e49ce88e9ebfaa77f2700fc26e0"
+    },
+    {
+      "filename": "crop-61-0.043-0.394-0.444-0.489.png",
+      "sha256": "e2430a61d026055f92e253f8a8e68e305ff561c388113c94cbcbc71a5c828547"
+    },
+    {
+      "filename": "crop-62-0.545-0.087-0.9-0.248.png",
+      "sha256": "b382e8c5f195fd2cfe8525fc6b72bbf8734d7fee2cf3d29dfff1858aba7bf8bd"
+    },
+    {
+      "filename": "crop-62-0.545-0.242-0.9-0.348.png",
+      "sha256": "76c9355a9328e7646b5a626c76c22a736889fcf4981ad542668906042e86e227"
+    },
+    {
+      "filename": "crop-60-0.858-0.21-0.895-0.239.png",
+      "sha256": "eed63310a02fbe263d07802d831d801ce3b434cd5b80293b9d6ca0f35a921333"
+    },
+    {
+      "filename": "crop-60-0.184-0.14-0.248-0.165.png",
+      "sha256": "4a85456c89567fd73c018da02e0c020d3439d6539dbb7fcc4238e91e7f437f46"
+    },
+    {
+      "filename": "crop-61-0.067-0.354-0.129-0.384.png",
+      "sha256": "24814cbcc0197ccd3dfe8a63e9fbb8da5aed6c5f9433131b8c341f25a95fcf9e"
+    },
+    {
+      "filename": "crop-61-0.341-0.381-0.421-0.413.png",
+      "sha256": "c8fe0f8ad5d290b338015dfd32ea6c630d6566ae7096675776e2a52aa747b8b9"
+    }
+  ],
+  "checkedUnits": [
+    {
+      "chapter": 4,
+      "verse": 1,
+      "text": "וַיִּקַּח גָּרְגִיאַס חֲמֵשֶׁת אֲלָפִים אִישׁ וְאֶלֶף פָּרָשִׁים בָּחוּר וַיִּסַּע הַמַּחֲנֶה לָיְלָה׃",
+      "sourcePages": [
+        115
+      ],
+      "textSHA256": "3c64295ae8629b9a9099959b17f8819a9a4aec85cfc308767b4017f201c25d0c"
+    },
+    {
+      "chapter": 4,
+      "verse": 2,
+      "text": "לִנְפֹּל עַל־מַחֲנֵה הַיְּהוּדִים וּלְהַכּוֹתָם פִּתְאֹם וּבְנֵי הַמְּצוּדָה הָיוּ לוֹ לְמוֹרֵי דָרֶךְ׃",
+      "sourcePages": [
+        115
+      ],
+      "textSHA256": "ad3f8a351812525f8b47ec3ddc6dea549cc02f59c5f2aeea0602d94be42e3c17"
+    },
+    {
+      "chapter": 4,
+      "verse": 3,
+      "text": "וַיִּשְׁמַע יְהוּדָה וַיִּסַּע הוּא וְהַגִּבּוֹרִים לְהַכּוֹת אֶת־חֵיל הַמֶּלֶךְ אֲשֶׁר בְּעַמָּאוּס׃",
+      "sourcePages": [
+        115
+      ],
+      "textSHA256": "c04c09a23aef29095820e87b614c715842b66ad2bc616fd95b5896184323445f"
+    },
+    {
+      "chapter": 4,
+      "verse": 4,
+      "text": "עַד הַחַיִל מְפֻזָּרִים הָיוּ מִחוּץ לַמַּחֲנֶה׃",
+      "sourcePages": [
+        115
+      ],
+      "textSHA256": "49fb177809f9703975c75feb9ab2a7bc21b91c96a7dcee4d12c4a1fb59cb3f9e"
+    },
+    {
+      "chapter": 4,
+      "verse": 5,
+      "text": "וַיָּבֹא גָּרְגִיאַס אֶל־מַחֲנֵה יְהוּדָה לָיְלָה וְלֹא מָצָא אִישׁ וַיְחַפֵּשׂ אוֹתָם בֶּהָרִים כִּי אָמַר נָסִים הֵם מִמֶּנּוּ׃",
+      "sourcePages": [
+        115
+      ],
+      "textSHA256": "1df2f19dbbedc58549e38f6658aed4b8582066c1d666473ed380b24323309f4f"
+    },
+    {
+      "chapter": 4,
+      "verse": 6,
+      "text": "וּכְאוֹר הַבֹּקֶר נִרְאָה יְהוּדָה בַּשְּׁפֵלָה בִּשְׁלֹשֶׁת אַלְפֵי אִישׁ אַךְ מָגִנִּים וַחֲרָבוֹת לֹא־הָיוּ לָהֶם כַּאֲשֶׁר חָפֵצוּ׃",
+      "sourcePages": [
+        115,
+        116
+      ],
+      "textSHA256": "27e437cc61ff8cc9a10728f1822f86ceb08a9766d714e5d43b7613a257b59285"
+    },
+    {
+      "chapter": 4,
+      "verse": 7,
+      "text": "וַיִּרְאוּ מַחֲנֵה גּוֹיִם חָזָק מְבֻצָּר וּפָרָשִׁים סוֹבְבִים אוֹתוֹ וְהֵם מְלֻמְּדֵי מִלְחָמָה׃",
+      "sourcePages": [
+        116
+      ],
+      "textSHA256": "54cce2450f945ddd42fddc37c5d2e113c0bc39c9ee4f65110c8e501a05170dbb"
+    },
+    {
+      "chapter": 4,
+      "verse": 8,
+      "text": "וַיֹּאמֶר יְהוּדָה לָאֲנָשִׁים אֲשֶׁר אִתּוֹ אַל־תִּירְאוּ מֵהֲמוֹנָם וּמֵעֶבְרָתָם אַל־תִּפְחָדוּ׃",
+      "sourcePages": [
+        116
+      ],
+      "textSHA256": "3f985290d1a42ee5c8f7fe60d77583fa884e356efb415784a2d6e2c584fea700"
+    },
+    {
+      "chapter": 4,
+      "verse": 9,
+      "text": "זִכְרוּ אֵיךְ נוֹשְׁעוּ אֲבוֹתֵינוּ בְּיַם־סוּף כַּאֲשֶׁר רָדַף אַחֲרֵיהֶם פַּרְעֹה בְחָיִל׃",
+      "sourcePages": [
+        116
+      ],
+      "textSHA256": "540de4cba918117d6afa68a50522fdda580c77b2c4c843196340b3268ebd5fcb"
+    },
+    {
+      "chapter": 4,
+      "verse": 10,
+      "text": "וְעַתָּה נִקְרָא לַשָּׁמַיִם אִם יֶחְפַּץ־בָּנוּ וְיִזְכֹּר בְּרִית אָבוֹת וְהִשְׁמִיד אֶת־הַמַּחֲנֶה הַזֶּה מִפָּנֵינוּ הַיוֹם׃",
+      "sourcePages": [
+        116
+      ],
+      "textSHA256": "0784db837055af833009fcd94665658c866e3d5567f7c489b363d222ababb3ed"
+    },
+    {
+      "chapter": 4,
+      "verse": 11,
+      "text": "וְיָדְעוּ כָל־הַגּוֹיִם כִּי יֵשׁ פּוֹדֶה וּמַצִּיל לְיִשְׂרָאֵל׃ וַיִּשְׂאוּ הַנָּכְרִים אֶת־עֵינֵיהֶם וַיִּרְאוּ אוֹתָם בָּאִים מִנֶּגֶד׃",
+      "sourcePages": [
+        116
+      ],
+      "textSHA256": "9072f1201c3e70c10dd4e62007cb0a1443f653edde013a3fb2ecb91dee56eb4f",
+      "endVerse": 12
+    },
+    {
+      "chapter": 4,
+      "verse": 13,
+      "text": "וַיֵּצְאוּ מִן־הַמַּחֲנֶה לַמִּלְחָמָה וַיִּתְקְעוּ אֲשֶׁר עִם־יְהוּדָה׃",
+      "sourcePages": [
+        116
+      ],
+      "textSHA256": "c53b90d97789ccc4ba90833d8a201bfe4179fa63ec32dc467fd933d7fbc25d6d"
+    },
+    {
+      "chapter": 4,
+      "verse": 14,
+      "text": "וַיִּתְגָּרוּ וַיִּגְּפוּ אֶת־הַגּוֹיִם וַיָּנוּסוּ אֶל־הַבִּקְעָה׃",
+      "sourcePages": [
+        116
+      ],
+      "textSHA256": "0c6179bbe9fab70688590c7fece517bbd428b555c12de648f7778d33c00e2b88"
+    },
+    {
+      "chapter": 4,
+      "verse": 15,
+      "text": "וְהַמְאַסֵּף כֻּלּוֹ נָפַל בֶּחָרֶב וַיִּרְדְּפוּ אַחֲרֵיהֶם עַד־גֶּזֶר וְעַד־שְׂדוֹת אֱדוֹם וְאַשְׁדּוֹד וְיַבְנֵה וַיִּפְּלוּ מֵהֶם כִּשְׁלֹשֶׁת אֲלָפִים אִישׁ׃",
+      "sourcePages": [
+        116
+      ],
+      "textSHA256": "883fb0700602c3b585e008ce0224469a13736626d93caeaf6977df274862b9fd"
+    },
+    {
+      "chapter": 4,
+      "verse": 16,
+      "text": "וַיָּשָׁב יְהוּדָה וְהַחַיִל מֵרְדֹף אַחֲרֵיהֶם׃",
+      "sourcePages": [
+        116,
+        117
+      ],
+      "textSHA256": "93a500104b5d8f3f547a0aec988710408a96cabe0b61e07529a4cc3d89a6a67f"
+    },
+    {
+      "chapter": 4,
+      "verse": 17,
+      "text": "וַיֹּאמֶר לָעָם אַל־תַּחְמְדוּ אֶת־הַשָּׁלָל כִּי מִלְחָמָה נֶגְדֵּנוּ׃",
+      "sourcePages": [
+        117
+      ],
+      "textSHA256": "a9d6beb82d8c3afa31539f1b859b83767bcd13fb51ea5e7c2d3784172b7c86e5"
+    },
+    {
+      "chapter": 4,
+      "verse": 18,
+      "text": "וְגָרְגִיאַס וְהַחַיִל בָּהָר קָרוֹב לָנוּ וְעַתָּה עִמְדוּ בִּפְנֵי אוֹיְבֵינוּ וְהִלָּחֲמוּ אוֹתָם וְאַחֲרֵי־כֵן תִּקְחוּ שָׁלָל קוֹמְמִיוֹת׃",
+      "sourcePages": [
+        117
+      ],
+      "textSHA256": "8d55c8f936c3944b8667a6e7619c669eadcef0c545ec802b0dbdc5881d27f3fa"
+    },
+    {
+      "chapter": 4,
+      "verse": 19,
+      "text": "עַד יְהוּדָה מְדַבֵּר אֵלֶּה וַיַּרְא חֵלֶק נִשְׁקָף מִן־הָהָר׃",
+      "sourcePages": [
+        117
+      ],
+      "textSHA256": "502b19753b8c91a045ee525231f305dc381bc898ed9739fef1060cfbabb0efc4"
+    },
+    {
+      "chapter": 4,
+      "verse": 20,
+      "text": "וַיַּרְא כִּי נִגְּפוּ וְשׂוֹרְפִים אֶת־הַמַּחֲנֶה כִּי הֶעָשָׁן הַנִּרְאֶה גִּלָּה אֶת אֲשֶׁר נִהְיָה׃",
+      "sourcePages": [
+        117
+      ],
+      "textSHA256": "33d8b290e89fc0fbbfdf8591e967a7c50cda6788685fa99aa94fd89b4d2a4bc8"
+    },
+    {
+      "chapter": 4,
+      "verse": 21,
+      "text": "וְכַאֲשֶׁר רָאוּ אֶת־אֵלֶּה וַיִּבָּהֲלוּ מְאֹד׃",
+      "sourcePages": [
+        117
+      ],
+      "textSHA256": "b4353dcf025da8e75b4cdb81948bc40ef5701714b86080ec6a2dc0770c825ae8"
+    },
+    {
+      "chapter": 4,
+      "verse": 22,
+      "text": "וְכַאֲשֶׁר רָאוּ אֶת־מַחֲנֵה יְהוּדָה בָּעֵמֶק נָכוֹן לַקְּרָב וַיִּבְרְחוּ כֻּלָּם אֶל־אֶרֶץ פְּלִשְׁתִּים׃",
+      "sourcePages": [
+        117
+      ],
+      "textSHA256": "5d6fdd2d0d43f112fb37ab3e78c3b0cdaae66bf1fc9690664c336c84ba1700c2"
+    },
+    {
+      "chapter": 4,
+      "verse": 23,
+      "text": "וִיהוּדָה שָׁב לָבֹז אֶת־הַמַּחֲנֶה וַיִּקַּח זָהָב רָב וְכֶסֶף וּתְכֵלֶת וְאַרְגַּמַן־יָם וּרְכוּשׁ גָּדוֹל׃",
+      "sourcePages": [
+        117
+      ],
+      "textSHA256": "2c41b76011b6cad043389ccea8e06ab0cf1a0c51024b423a4b0ae5d661e3944c"
+    },
+    {
+      "chapter": 4,
+      "verse": 24,
+      "text": "וּבְשׁוּבָם שָׁרוּ וְהִלְלוּ לַשָּׁמַיִם כִּי טוֹב כִּי לְעוֹלָם חַסְדּוֹ׃",
+      "sourcePages": [
+        117
+      ],
+      "textSHA256": "add8a965d727a8ae5b95805e8e470a8db9f487199b4e602306e93e44ec7f9a49"
+    },
+    {
+      "chapter": 4,
+      "verse": 25,
+      "text": "וַתְּהִי תְּשׁוּעָה גְדוֹלָה בְּיִשְׂרָאֵל בַּיּוֹם הַהוּא׃",
+      "sourcePages": [
+        117
+      ],
+      "textSHA256": "fec6c67b9f8187e588c8d495061805fe3588297b72cfa9314595ab4e0fa2b92a"
+    },
+    {
+      "chapter": 4,
+      "verse": 26,
+      "text": "וַאֲשֶׁר נִמְלְטוּ מִן־הַנָּכְרִים וַיָּבֹאוּ וַיַּגִּידוּ לְלוּסִיאַס אֶת כָּל־הַקֹּרוֹת׃",
+      "sourcePages": [
+        117
+      ],
+      "textSHA256": "b3428c6ef1c3397f42514646399623163da8393c075ee3ae0bcd2feec1c221f6"
+    },
+    {
+      "chapter": 4,
+      "verse": 27,
+      "text": "וּכְשָׁמְעוֹ נִבְהַל וַיִּחַר לוֹ כִּי לֹא־הָיָה כְחֶפְצוֹ לְיִשְׂרָאֵל וְלֹא נַעֲשָׂה אֲשֶׁר צִוָּה לוֹ הַמֶּלֶךְ׃",
+      "sourcePages": [
+        117
+      ],
+      "textSHA256": "fca7ccfc4aec04d1ba01f3d606e99acd572cc83b04330b1ad027699108decfe4"
+    },
+    {
+      "chapter": 4,
+      "verse": 28,
+      "text": "וּמִקֵּץ שָׁנָה אָסַף לִגְדוּדִים שִׁשִּׁים אֶלֶף אִישׁ בָּחוּר וַחֲמֵשֶׁת אֲלָפִים פָּרָשִׁים לְהִלָּחֵם אוֹתָם׃",
+      "sourcePages": [
+        117
+      ],
+      "textSHA256": "19f9ebf0029c0af937ecbd2b39c9720617ed7a1457161ecfe7d9b6da885d9cf5"
+    },
+    {
+      "chapter": 4,
+      "verse": 29,
+      "text": "וַיָּבֹאוּ לִיהוּדָה וַיַּחֲנוּ בְּבֵית־צוּר וַיִּפְגְּשֵׁם יְהוּדָה בַּעֲשֶׂרֶת אֲלָפִים אִישׁ׃",
+      "sourcePages": [
+        117,
+        118
+      ],
+      "textSHA256": "d7d17fe1c5342a3e54f2eaed915dc94b4fbd3d93070dadb628a52cfe22190a6a"
+    },
+    {
+      "chapter": 4,
+      "verse": 30,
+      "text": "וַיַּרְא אֶת־הַמַּחֲנֶה הַכָּבֵד וַיִּתְפַּלֵּל וַיֹּאמֶר בָּרוּךְ אַתָּה מוֹשִׁיעַ יִשְׂרָאֵל הַמַּשְׁבִּית עֶבְרַת הַגִּבּוֹר בְּיַד־דָּוִד עַבְדֶּךָ וְהַמּוֹסֵר מַחֲנֵה פְלִשְׁתִּים בִּידֵי יְהוֹנָתָן בֶּן־שָׁאוּל וְנוֹשֵׂא כֵלָיו׃",
+      "sourcePages": [
+        118
+      ],
+      "textSHA256": "20eedc67edd96a64cb7234899fa41c1fff0d96b06f701424fdc46e38c9b6c8bd"
+    },
+    {
+      "chapter": 4,
+      "verse": 31,
+      "text": "סְגֹר־נָא אֶת־הַמַּחֲנֶה הַזֶּה בְּיַד־עַמְּךָ יִשְׂרָאֵל וְיֵבוֹשׁוּ בְּחֵילָם וּבְסוּסֵיהֶם׃",
+      "sourcePages": [
+        118
+      ],
+      "textSHA256": "1469cdb4ca950f20a2732a663c3599cde6170fede2714ea530cbd4c999b7b9c4"
+    },
+    {
+      "chapter": 4,
+      "verse": 32,
+      "text": "תֵּן לָהֶם מֹרֶךְ וְשַׁבֵּר אֹמֶץ חֻזְקָם וְרָעֲדוּ בְשִׁבְרָם׃",
+      "sourcePages": [
+        118
+      ],
+      "textSHA256": "ea3fc110f63f444871171be2b70397e47497f81ec40e87de5179119672c97561"
+    },
+    {
+      "chapter": 4,
+      "verse": 33,
+      "text": "הַפִּילֵם בְּחֶרֶב אוֹהֲבֶיךָ וִיהַלְלוּךָ כָּל־יוֹדְעֵי שִׁמְךָ בְּתוֹדָה׃",
+      "sourcePages": [
+        118
+      ],
+      "textSHA256": "be296e53143445ae32d42e37cd4721a443130e91b3b2dd4d5b70813397fd94b3"
+    },
+    {
+      "chapter": 4,
+      "verse": 34,
+      "text": "וַיִּתְגָּרוּ וַיִּפְּלוּ מִמַּחֲנֵה לוּסִיאַס כַּחֲמֵשֶׁת אֲלָפִים אִישׁ וַיִּפְּלוּ לִפְנֵיהֶם׃",
+      "sourcePages": [
+        118
+      ],
+      "textSHA256": "822a28c60a98726631fc7b603b4b7285265f09bdef5a222f289d66f553d34f17"
+    },
+    {
+      "chapter": 4,
+      "verse": 35,
+      "text": "וְכִרְאוֹת לוּסִיאַס אֶת־הַמַּכָּה אֲשֶׁר הָיְתָה בִצְבָאוֹ וְאֶת־הָאֹמֶץ אֲשֶׁר־הָיָה לִיהוּדָה וְכִי־נְכוֹנִים הֵם אִם־לִחְיוֹת אִם־לָמוּת בִּגְבוּרָה וַיִּסַּע לְאַנְטִיוֹכִיָּה וַיֶּרֶב לֶאֱסֹף חֵיל־שְׂכִירִים לַעֲלוֹת עוֹד הַפַּעַם לִיהוּדָה׃",
+      "sourcePages": [
+        118
+      ],
+      "textSHA256": "a90e3f2af9f1184064c225be9433a4660ef8d98221ad203588eca3a2fdc09dd5"
+    },
+    {
+      "chapter": 4,
+      "verse": 36,
+      "text": "וִיהוּדָה אָמַר לְאֶחָיו הִנֵּה נִגְּפוּ אוֹיְבֵינוּ נַעֲלֶה לְטַהֵר אֶת־הַמִּקְדָּשׁ וּלְחַנְּכֵהוּ׃",
+      "sourcePages": [
+        118
+      ],
+      "textSHA256": "88c051f09243d9b235c175c851b30392ff6b02bab8d8933e42e83b09c782a777"
+    },
+    {
+      "chapter": 4,
+      "verse": 37,
+      "text": "וַיִּקָּהֵל כָּל־הַמַּחֲנֶה וַיַּעֲלוּ הַר־צִיּוֹן׃ וַיִּרְאוּ אֶת־הַמִּקְדָּשׁ שׁוֹמֵם וְהַמִּזְבֵּחַ מְחֻלָּל וְהַשְּׁעָרִים שְׂרוּפִים וּבַחֲצֵרוֹת גְּדֵלִים סְבָכִים כְּמוֹ בַיַּעַר אוֹ כְּמוֹ בְאַחַד הֶהָרִים וְהַלְּשָׁכוֹת שׁוֹמֵמוֹת׃",
+      "sourcePages": [
+        118
+      ],
+      "textSHA256": "c36701dcaefbbb72760a089b8bbb3e44aeabf93b246d9676dd398f4fc9989c64",
+      "endVerse": 38
+    },
+    {
+      "chapter": 4,
+      "verse": 39,
+      "text": "וַיִּקְרְעוּ אֶת־בִּגְדֵיהֶם וַיִּבְכּוּ בְּכִי גָּדוֹל וַיַּעֲלוּ אֵפֶר [עַל־רָאשֵׁיהֶם]׃",
+      "sourcePages": [
+        118
+      ],
+      "textSHA256": "8a14e4373e96eccd39eb6878f66d807628b9da433265d43e228051806e6cb517"
+    },
+    {
+      "chapter": 4,
+      "verse": 40,
+      "text": "וַיִּפְּלוּ עַל פְּנֵיהֶם אַרְצָה וַיִּתְקְעוּ בַּחֲצֹצְרוֹת הַתְּרוּעָה וַיִּצְעֲקוּ אֶל־הַשָּׁמַיִם׃",
+      "sourcePages": [
+        118
+      ],
+      "textSHA256": "070cbdec6b27de22a451ec031c2a5b28c6cc98f898399d1c90481d182b427a1e"
+    },
+    {
+      "chapter": 4,
+      "verse": 41,
+      "text": "אָז אָמַר יְהוּדָה לָאֲנָשִׁים לְהִלָּחֵם אֶת אֲשֶׁר־בַּמְּצוּדָה עַד־אֲשֶׁר יְטַהֵר אֶת־הַמִּקְדָּשׁ׃",
+      "sourcePages": [
+        118,
+        119
+      ],
+      "textSHA256": "0c78d792d6ce0cad3520842d1992f86bef0b58bbeb94563db38cb6aeb04065ed"
+    },
+    {
+      "chapter": 4,
+      "verse": 42,
+      "text": "וַיִּבְחַר כֹּהֲנִים תְּמִימִים חֲפֵצֵי תוֹרָה׃ וַיְטַהֲרוּ אֶת־הַמִּקְדָּשׁ וַיּוֹצִיאוּ אֶת־אַבְנֵי הַשִּׁקּוּץ לְמָקוֹם טָמֵא׃",
+      "sourcePages": [
+        119
+      ],
+      "textSHA256": "c105c10e2f788a6ff1910f8947bef66ef45d22303446029f2800c4420601d0a3",
+      "endVerse": 43
+    },
+    {
+      "chapter": 4,
+      "verse": 44,
+      "text": "וַיִּוָּעֲצוּ עַל־מִזְבַּח הָעוֹלָה הַמְּחֻלָּל מַה־לַעֲשׂוֹת לוֹ׃",
+      "sourcePages": [
+        119
+      ],
+      "textSHA256": "367692ac2f71fd31239485ee610774b30728511177b29576941d638df9fd0fda"
+    },
+    {
+      "chapter": 4,
+      "verse": 45,
+      "text": "וַתִּצְלַח עֲלֵיהֶם מַחֲשָׁבָה טוֹבָה לִנְתֹּץ אוֹתוֹ לְבִלְתִּי־הֱיוֹת לָהֶם לְמוֹקֵשׁ כִּי הַגּוֹיִם טִמְּאוּהוּ וַיִּתְּצוּ אֶת־הַמִּזְבֵּחַ׃",
+      "sourcePages": [
+        119
+      ],
+      "textSHA256": "f65343412e3444924f21724c66d2bca9de5b680f0832bf98aa974c68c19f96d9"
+    },
+    {
+      "chapter": 4,
+      "verse": 46,
+      "text": "וַיַּנִּיחוּ אֶת־הָאֲבָנִים עַל־הַר הַבַּיִת בְּמָקוֹם מְיֻחָד עַד־בּוֹא נָבִיא לְהוֹרוֹת עֲלֵיהֶן׃",
+      "sourcePages": [
+        119
+      ],
+      "textSHA256": "8ebc403655f24a73b433616f4e772a38ad6a9d0337caff61da5b51ff71d069a1"
+    },
+    {
+      "chapter": 4,
+      "verse": 47,
+      "text": "וַיִּקְחוּ אֲבָנִים שְׁלֵמוֹת עַל־פִּי הַתּוֹרָה וַיִּבְנוּ מִזְבֵּחַ חָדָשׁ כָּרִאשׁוֹן׃",
+      "sourcePages": [
+        119
+      ],
+      "textSHA256": "6a424ab3b94ddf5edb6b61f811220884e12377d858be96c7cb5563fa7b282f19"
+    },
+    {
+      "chapter": 4,
+      "verse": 48,
+      "text": "וַיִּבְנוּ אֶת־הַמִּקְדָּשׁ וְאֶת־פְּנִים הַבַּיִת וְאֶת־הַחֲצֵרוֹת קִדְּשׁוּ׃",
+      "sourcePages": [
+        119
+      ],
+      "textSHA256": "8c0849bb7cb140f7fa06357e76a5b05c9855c636463739665781eaf96f02bf59"
+    },
+    {
+      "chapter": 4,
+      "verse": 49,
+      "text": "וַיַּעֲשׂוּ כְלֵי־קֹדֶשׁ חֲדָשִׁים וַיָּבִיאוּ אֶת־הַמְּנוֹרָה וְאֶת־מִזְבַּח הַקְּטֹרֶת וְאֶת־הַשֻּׁלְחָן לַהֵיכָל׃",
+      "sourcePages": [
+        119
+      ],
+      "textSHA256": "96ca2bdffbf57fe091896f751e1e70278d6c8fbd985c18cb39e08efa31792fcf"
+    },
+    {
+      "chapter": 4,
+      "verse": 50,
+      "text": "וַיְקַטְּרוּ עַל־הַמִּזְבֵּחַ וַיַּעֲלוּ אֶת־הַנֵּרוֹת אֲשֶׁר בַּמְּנוֹרָה וַיָּאִירוּ בַּהֵיכָל׃",
+      "sourcePages": [
+        119
+      ],
+      "textSHA256": "8a99b7f0090c902e8103bc927674c62f56f155732162932459535012671a94ec"
+    },
+    {
+      "chapter": 4,
+      "verse": 51,
+      "text": "וַיָּשִׂימוּ עַל־הַשֻּׁלְחָן לֶחֶם וַיּוֹרִידוּ אֶת־הַפָּרֹכוֹת וַיְכַלּוּ אֶת־כָּל־הַמַּעֲשִׂים אֲשֶׁר עָשׂוּ׃",
+      "sourcePages": [
+        119
+      ],
+      "textSHA256": "7c73cd7ee67d48de907ff2a6bfe23d9cbbf24331d55fc69f7837a7e7dd3cdc5d"
+    },
+    {
+      "chapter": 4,
+      "verse": 52,
+      "text": "וַיַּשְׁכִּימוּ בַבֹּקֶר בַּחֲמִשָּׁה וְעֶשְׂרִים לַחֹדֶשׁ הַתְּשִׁיעִי הוּא חֹדֶשׁ כִּסְלֵו בִּשְׁמֹנֶה וְאַרְבָּעִים וּמֵאָה שָׁנָה׃",
+      "sourcePages": [
+        119
+      ],
+      "textSHA256": "ca4468fe12a556b5805f817a0ea5127903e21c1a5dd68ebb3a1713a48849e58d"
+    },
+    {
+      "chapter": 4,
+      "verse": 53,
+      "text": "וַיַּקְרִיבוּ קָרְבָּן עַל־פִּי הַתּוֹרָה עַל־מִזְבַּח הָעוֹלָה הֶחָדָשׁ אֲשֶׁר עָשׂוּ׃",
+      "sourcePages": [
+        119
+      ],
+      "textSHA256": "967a07f86a4979fa9067a77260275c5b391ca416f42b593a145294f8395d6d47"
+    },
+    {
+      "chapter": 4,
+      "verse": 54,
+      "text": "בְּעֵת וּבַיּוֹם אֲשֶׁר טִמְּאוּהוּ הַגּוֹיִם בְּעֶצֶם הַיּוֹם הַהוּא נֶחְנַךְ בְּשִׁירִים וּבִנְבָלִים וּבְכִנּוֹרוֹת וּבִמְצִלְתָּיִם׃",
+      "sourcePages": [
+        119
+      ],
+      "textSHA256": "810633a8b879a6abcbdb46aeed43432de8b9c6d144d44638cfdc380efa1866ff"
+    },
+    {
+      "chapter": 4,
+      "verse": 55,
+      "text": "וַיִּפְּלוּ כָל־הָעָם עַל־פְּנֵיהֶם וַיִּתְפַּלְלוּ וַיְבָרְכוּ לַשָּׁמַיִם אֲשֶׁר הִצְלִיחַ לָהֶם׃",
+      "sourcePages": [
+        119,
+        120
+      ],
+      "textSHA256": "f234b193b5dcd1241bc8b1227fb8c2e3e86261142485763b5b38f7c0c62308be"
+    },
+    {
+      "chapter": 4,
+      "verse": 56,
+      "text": "וַיַּעֲשׂוּ אֶת־חֲנֻכַּת הַמִּזְבֵּחַ יָמִים שְׁמוֹנֶה וַיַּקְרִיבוּ עֹלוֹת בְּשִׂמְחָה וַיַּקְרִיבוּ זֶבַח שְׁלָמִים וְתוֹדָה׃",
+      "sourcePages": [
+        120
+      ],
+      "textSHA256": "b8ebc0e8d6bbca22c7e0f476b5b8bac6cabed3b37c20ee3fba37d70a9ba832ba"
+    },
+    {
+      "chapter": 4,
+      "verse": 57,
+      "text": "וַיְפָאֲרוּ אֶת־פְּנֵי־הַהֵיכָל בְּעַטְרוֹת זָהָב וּבְמִשְׁבְּצוֹת וַיַּחְנְכוּ אֶת־הַשְּׁעָרִים וְהַלְּשָׁכוֹת וַיַּעֲשׂוּ לָהֶם דְּלָתוֹת וַתְּהִי שִׂמְחָה גְדוֹלָה בָּעָם מְאֹד וַתָּסַר חֶרְפַּת גּוֹיִם׃",
+      "sourcePages": [
+        120
+      ],
+      "textSHA256": "cdaebb7a10f49bb3df98a9830e8f24916814838ebd5f00aefde4392a41b52c3e"
+    },
+    {
+      "chapter": 4,
+      "verse": 58,
+      "text": "וַיָּקֵם יְהוּדָה וְאֶחָיו וְכָל־קְהַל יִשְׂרָאֵל לִהְיוֹת יְמֵי חֲנֻכַּת הַמִּזְבֵּחַ נַעֲשִׂים בְּמוֹעֲדָם שָׁנָה בְשָׁנָה יָמִים שְׁמוֹנֶה מִיּוֹם חֲמִשָּׁה וְעֶשְׂרִים לַחֹדֶשׁ כִּסְלֵו בְּשִׂמְחָה וָגִיל׃",
+      "sourcePages": [
+        120
+      ],
+      "textSHA256": "e05284b24f3d297a1cb84a08770a02b27c983a33b2e235b67c5d760dbce53919"
+    },
+    {
+      "chapter": 4,
+      "verse": 59,
+      "text": "וַיִּבְנוּ בָּעֵת הַהִיא אֶת־הַר־צִיּוֹן מִסָּבִיב חוֹמָה גְבוֹהָה וּמִגְדָּלִים חֲזָקִים בַּל־יָבֹאוּ הַגּוֹיִם וְיִרְמְסוּם כַּאֲשֶׁר עָשׂוּ בָרִאשׁוֹנָה׃",
+      "sourcePages": [
+        120
+      ],
+      "textSHA256": "f885ee56ea394c783e2e029d111b56f6f1c1511f4e7ff697cc247f84f0a0f17f"
+    },
+    {
+      "chapter": 4,
+      "verse": 60,
+      "text": "וַיָּשֶׂם שָׁם חַיִל לְשָׁמְרוֹ וַיְבַצֵּר לִשְׁמֹר אוֹתוֹ אֶת־בֵּית־צוּר לִהְיוֹת לָעָם מִבְצָר בִּפְנֵי אֱדוֹם׃",
+      "sourcePages": [
+        120
+      ],
+      "textSHA256": "d37c165fb0ce887a1430eaea883cb66858436674ac5a70c00dd8a5ce7ee6bbf7"
+    }
+  ],
+  "productionEligible": false,
+  "sourceNoteDecisionReport": "1MA-source-note-decisions.json"
+}

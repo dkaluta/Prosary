@@ -390,7 +390,7 @@
   <data name="AbtPeshittaSources.Text" xml:space="preserve"><value>Peshitta New Testament (BFBS, 1905): Digital Syriac Corpus; Syriac transcription by George A. Kiraz, TEI edition © James E. Walters, CC BY 4.0. Hebrew script conversion using Erez’s rules; verse selection and text formatting by Prosary.</value></data>
   <data name="AbtPeshittaSourceLink.Content" xml:space="preserve"><value>Digital Syriac Corpus</value></data>
   <data name="AbtPeshittaLicenseLink.Content" xml:space="preserve"><value>CC BY 4.0</value></data>
-  <data name="AbtPeshittaIsaiahSources.Text" xml:space="preserve"><value>Isaiah: user-supplied pointed Peshitta XML from Internet Archive. The underlying edition and redistribution terms remain unidentified. Hebrew script conversion using Erez’s rules; verse selection and text formatting by Prosary.</value></data>
+  <data name="AbtPeshittaIsaiahSources.Text" xml:space="preserve"><value>Old Testament: user-supplied pointed Peshitta XML from Internet Archive. The underlying edition and redistribution terms remain unidentified. Hebrew script conversion using Erez’s rules; verse selection and text formatting by Prosary.</value></data>
   <data name="AbtPeshittaIsaiahSourceLink.Content" xml:space="preserve"><value>Internet Archive</value></data>
   <data name="AbtBookNameSources.Text" xml:space="preserve"><value>Bible book names: AELF, Dar el-Machreq, Russian Synodal Bible (Azbyka), Philippine Bible Society and ParolaViva.</value></data>
   <data name="AbtPopeNetworkLink.Content" xml:space="preserve"><value>Pope’s Worldwide Prayer Network</value></data>
@@ -550,4 +550,34 @@
   <data name="AbtSyriacHebrewCalendar.Text" xml:space="preserve"><value>Hebrew Syriac calendar — Urtotho (2026), supplied to Prosary.</value></data>
   <data name="EdLitanyOfLoreto.Header" xml:space="preserve"><value>Pray the Litany of Loreto afterward</value></data>
   <data name="EdRosaryCollect.Header" xml:space="preserve"><value>Rosary collect</value></data>
+  <data name="readings_title" xml:space="preserve"><value>Readings</value></data>
+  <data name="bible_daily_readings" xml:space="preserve"><value>Daily Readings</value></data>
+  <data name="bible_title" xml:space="preserve"><value>Bible</value></data>
+  <data name="bible_book" xml:space="preserve"><value>Book</value></data>
+  <data name="bible_chapter" xml:space="preserve"><value>Chapter</value></data>
+  <data name="bible_verse" xml:space="preserve"><value>Verse</value></data>
+  <data name="bible_previous_chapter" xml:space="preserve"><value>Previous chapter</value></data>
+  <data name="bible_next_chapter" xml:space="preserve"><value>Next chapter</value></data>
+  <data name="bible_update" xml:space="preserve"><value>Update download</value></data>
+  <data name="bible_download" xml:space="preserve"><value>Download Bible</value></data>
+  <data name="bible_remove" xml:space="preserve"><value>Remove Download</value></data>
+  <data name="bible_cancel" xml:space="preserve"><value>Cancel download</value></data>
+  <data name="bible_retry" xml:space="preserve"><value>Retry</value></data>
+  <data name="bible_partial_chapter" xml:space="preserve"><value>Only part of this chapter is available.</value></data>
+  <data name="bible_download_notice" xml:space="preserve"><value>Download this edition to read its available books offline. Daily readings work without this download.</value></data>
+  <data name="bible_unavailable" xml:space="preserve"><value>No Bible download is available for the selected edition.</value></data>
+  <data name="bible_read_error" xml:space="preserve"><value>This chapter could not be opened. Retry or download the edition again.</value></data>
+  <data name="bible_download_error" xml:space="preserve"><value>The Bible could not be downloaded. Check your connection and retry.</value></data>
+  <data name="bible_remove_error" xml:space="preserve"><value>The download could not be removed. Please try again.</value></data>
+  <data name="bible_remove_confirmation" xml:space="preserve"><value>Remove the downloaded {0}? Daily readings remain available.</value></data>
+  <data name="bible_no_daily_readings" xml:space="preserve"><value>No daily readings are available for this date.</value></data>
+  <data name="scripture_note_title" xml:space="preserve"><value>Source note</value></data>
+  <data name="scripture_note_vowel" xml:space="preserve"><value>Unreadable vowel mark omitted.</value></data>
+  <data name="scripture_note_dagesh" xml:space="preserve"><value>Unreadable dagesh omitted.</value></data>
+  <data name="scripture_note_letter" xml:space="preserve"><value>Letter {0} (position {1})</value></data>
+  <data name="scripture_note_restored_letter" xml:space="preserve"><value>The letter {0} (position {1}) in “{2}” was restored editorially. It is unreadable in the source scan.</value></data>
+  <data name="scripture_note_pages" xml:space="preserve"><value>PDF pages: {0}</value></data>
+  <data name="scripture_note_scan" xml:space="preserve"><value>Source scan</value></data>
+  <data name="bible_printed_label" xml:space="preserve"><value>Printed label: {0}</value></data>
+  <data name="bible_occurrence" xml:space="preserve"><value>{0} — occurrence {1}</value></data>
 </root>

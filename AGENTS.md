@@ -42,6 +42,9 @@ UI on Mac solely for parity. This exception does not relax iOS/Android/Windows p
 - The root `LICENSE` covers every first-party part of Prosary: Apple, Android, Windows, web,
   shared data, documentation, tools, and assets. Link to that canonical file; do not add
   platform-specific license copies. Third-party material keeps its original license.
+  David Kaluta's original natural-language text and editorial contributions are dedicated
+  under CC0 1.0 as specified there; application code remains BSD-2-Clause. Preserve source
+  credits and distinguish his contributions from third-party text when copying or packaging.
 - Pushing `main` triggers the iOS Xcode Cloud pipeline. Android releases via
   `./gradlew publishReleaseBundle` (Play alpha); the Windows MSIX is built manually on a
   Windows machine. Don't push without being asked.

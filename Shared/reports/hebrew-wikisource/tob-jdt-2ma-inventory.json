@@ -1,0 +1,231 @@
+{
+  "scope": "Read-only Wikisource baseline inventory for supplied Kahana volume B; no production text imported or substituted. Structural completeness is not word-by-word proofread certification.",
+  "retrievedUTC": "2026-09-27T13:08:18.210156+00:00",
+  "scan": {
+    "sha256": "656891d377d2e3d4a9216723d94205488423907bf01df424b9f0b9de1560051e"
+  },
+  "books": {
+    "TOB": {
+      "selectedTranslator": "דב היליר",
+      "selectedRecension": "Long Greek recension, printed נוסח הארוך",
+      "selectedPages": [
+        312,
+        347
+      ],
+      "selectedChapterCount": 14,
+      "sameEditionDigitalText": "Not found: exact catalog target טוביה (כהנא) is missing and its prefix inventory is empty.",
+      "availableBaseline": {
+        "title": "ספר טובי",
+        "missing": false,
+        "revision": 1130690,
+        "timestamp": "2021-08-08T12:33:28Z",
+        "permanentURL": "https://he.wikisource.org/w/index.php?oldid=1130690",
+        "sha256": "30737f17eef2d213b880383ef78f7d7634c624a34312fd163c5fad268b16cc11",
+        "edition": "Adolf Neubauer, 1878; medieval Hebrew manuscript tradition based on Constantinople1516 with manuscript variants; not Hiller’s Greek translation.",
+        "chapterCount": 13,
+        "chapterURLs": [
+          "https://he.wikisource.org/wiki/%D7%A1%D7%A4%D7%A8%20%D7%98%D7%95%D7%91%D7%99#%D7%A4%D7%A8%D7%A7_%D7%90",
+          "https://he.wikisource.org/wiki/%D7%A1%D7%A4%D7%A8%20%D7%98%D7%95%D7%91%D7%99#%D7%A4%D7%A8%D7%A7_%D7%91",
+          "https://he.wikisource.org/wiki/%D7%A1%D7%A4%D7%A8%20%D7%98%D7%95%D7%91%D7%99#%D7%A4%D7%A8%D7%A7_%D7%92",
+          "https://he.wikisource.org/wiki/%D7%A1%D7%A4%D7%A8%20%D7%98%D7%95%D7%91%D7%99#%D7%A4%D7%A8%D7%A7_%D7%93",
+          "https://he.wikisource.org/wiki/%D7%A1%D7%A4%D7%A8%20%D7%98%D7%95%D7%91%D7%99#%D7%A4%D7%A8%D7%A7_%D7%94",
+          "https://he.wikisource.org/wiki/%D7%A1%D7%A4%D7%A8%20%D7%98%D7%95%D7%91%D7%99#%D7%A4%D7%A8%D7%A7_%D7%95",
+          "https://he.wikisource.org/wiki/%D7%A1%D7%A4%D7%A8%20%D7%98%D7%95%D7%91%D7%99#%D7%A4%D7%A8%D7%A7_%D7%96",
+          "https://he.wikisource.org/wiki/%D7%A1%D7%A4%D7%A8%20%D7%98%D7%95%D7%91%D7%99#%D7%A4%D7%A8%D7%A7_%D7%97",
+          "https://he.wikisource.org/wiki/%D7%A1%D7%A4%D7%A8%20%D7%98%D7%95%D7%91%D7%99#%D7%A4%D7%A8%D7%A7_%D7%98",
+          "https://he.wikisource.org/wiki/%D7%A1%D7%A4%D7%A8%20%D7%98%D7%95%D7%91%D7%99#%D7%A4%D7%A8%D7%A7_%D7%99",
+          "https://he.wikisource.org/wiki/%D7%A1%D7%A4%D7%A8%20%D7%98%D7%95%D7%91%D7%99#%D7%A4%D7%A8%D7%A7_%D7%99%D7%90",
+          "https://he.wikisource.org/wiki/%D7%A1%D7%A4%D7%A8%20%D7%98%D7%95%D7%91%D7%99#%D7%A4%D7%A8%D7%A7_%D7%99%D7%91",
+          "https://he.wikisource.org/wiki/%D7%A1%D7%A4%D7%A8%20%D7%98%D7%95%D7%91%D7%99#%D7%A4%D7%A8%D7%A7_%D7%99%D7%92"
+        ],
+        "verseLabels": false,
+        "completeness": "Thirteen actual sections א–יג followed by a final colophon. This is presented as the whole Neubauer text; it is not the selected14-chapter long recension. Do not invent chapter14 or align by chapter numbers alone.",
+        "vocalization": "Main narrative is unpointed; cannot supply selected print niqqud."
+      },
+      "otherCandidates": [
+        {
+          "title": "כתובים אחרונים/טוביה",
+          "status": "Missing; Frankel table-of-contents link is a redlink."
+        },
+        {
+          "title": "חיי טוביה",
+          "missing": false,
+          "revision": 768036,
+          "timestamp": "2017-05-18T20:26:39Z",
+          "permanentURL": "https://he.wikisource.org/w/index.php?oldid=768036",
+          "sha256": "ca07ae71eb0928be2dc164992ed6d9135edfc1ab59899236e17ff5745c063fb2",
+          "status": "Bibliographic title/contents only; 1839 Isaac Siebenberger free adaptation, no body transcription."
+        }
+      ],
+      "sample": {
+        "scanPage": 312,
+        "context": "Long recension1:1–3, lower half of page.",
+        "sharedRecognitionAnchors": [
+          "טובי",
+          "שלמנאסר מלך אשור",
+          "כל ימי חיי",
+          "לאחי"
+        ],
+        "differentWording": [
+          "Print begins ספר דברי טובי; Neubauer begins זה ספר טובי.",
+          "Print1:3 has בדרכי האמת ובצדקות and גמלתי; Neubauer has בדרך תמים, צדקות רבות וחסדים טובים, שעשיתי.",
+          "Genealogical names differ and must not be repaired from the alternate edition."
+        ],
+        "safeUse": "Passage/topic lookup and individually confirmed common words only. No sentence, verse numbering, recension, or vowel-point transfer."
+      }
+    },
+    "JDT": {
+      "selectedTranslator": "משה סימון",
+      "selectedPages": [
+        354,
+        376
+      ],
+      "selectedChapterCount": 16,
+      "sameEditionDigitalText": {
+        "title": "ספר יהודית (סימון)",
+        "missing": false,
+        "revision": 3084707,
+        "timestamp": "2026-09-25T06:42:25Z",
+        "permanentURL": "https://he.wikisource.org/w/index.php?oldid=3084707",
+        "sha256": "95fd97996a7ff1702794ef537bcbd6ab8d657e543a3bb54c5dc19015d6a7e701",
+        "status": "77-character landing-page wikitext links only to /מבוא. Complete prefix inventory has exactly landing page and introduction; no chapter text."
+      },
+      "availableBaseline": {
+        "title": "כתובים אחרונים/יהודית",
+        "missing": false,
+        "revision": 2719882,
+        "timestamp": "2023-04-03T08:36:11Z",
+        "permanentURL": "https://he.wikisource.org/w/index.php?oldid=2719882",
+        "sha256": "8fea9ec4638e0367362653b820c7251bdf6e4ec3725948e4be95f28c90f4f298",
+        "translator": "יצחק זקיל פרנקל",
+        "edition": "כתובים אחרונים; catalog identifies1830first edition and1863reissue. This body page does not pin a scan edition itself.",
+        "chapterCount": 16,
+        "chapterURLs": [],
+        "chapterNavigation": "All16chapter paragraphs א–טז are embedded on one page, without chapter headings or numbered verse elements; use page URL, not invented chapter subpages.",
+        "verseLabels": false,
+        "completeness": "All16chapter starts and concluding lifetime/death narrative are present; not independently certified verse-by-verse against Frankel print.",
+        "vocalization": "Mixed: chapter1 is pointed, chapter2 is predominantly unpointed; cannot supply Simon niqqud."
+      },
+      "sample": {
+        "scanPage": 354,
+        "context": "Simon1:1 and ensuing city fortification.",
+        "sharedRecognitionAnchors": [
+          "בשנת שתים עשרה",
+          "ארפכשד",
+          "באחמתא",
+          "שלש אמות",
+          "שבעים אמה"
+        ],
+        "differentWording": [
+          "Simon begins בשנת שתים־עשרה לנבוכדנאצר; Frankel begins ויהי בשנת שתים עשרה למלך נבוכדנצר.",
+          "Simon identifies king over Assyria in Nineveh; Frankel says אשר ישב בנינוה and adds לאלהים and הבירה היא אקבתנה.",
+          "Simon spells הולופרנים in chapter2; Frankel uses הלופרנש.",
+          "Simon’s printed chapter3 begins the coastlands’ fear passage; Frankel places that material at the end of chapter2."
+        ],
+        "safeUse": "Location of shared events/words only. Exact clauses, spelling, printed combined labels, chapter boundaries, and niqqud must come from Simon print."
+      }
+    },
+    "2MA": {
+      "selectedTranslator": "אברהם כהנא",
+      "selectedPages": [
+        178,
+        233
+      ],
+      "selectedChapterCount": 15,
+      "sameEditionDigitalText": "Not found. Catalog’s exact ספר המקבים ב target is missing; its full prefix inventory is empty.",
+      "missingTitles": [
+        {
+          "title": "ספר המקבים ב",
+          "missing": true
+        },
+        {
+          "title": "מקבים ב",
+          "missing": true
+        },
+        {
+          "title": "מכבים ב",
+          "missing": true
+        },
+        {
+          "title": "חשמונאים ב",
+          "missing": true
+        }
+      ],
+      "additionalMissingTitles": [
+        "ספר מקבים ב",
+        "ספר חשמונאים ב"
+      ],
+      "availableBaseline": null,
+      "chapterURLs": [],
+      "searchOutcome": "Title searches for מקבים and חשמונאים return1Maccabees, its chapters/catalogs, and unrelated material; no2Maccabees body found. The Frankel collection also links to missing חשמונאים ב.",
+      "safeUse": "No Wikisource wording baseline available for2MA. Preserve supplied scan as the source; a redlink/collection table is not a text."
+    }
+  },
+  "attributionEvidence": {
+    "collectionCatalog": {
+      "title": "הספרים החיצונים (כהנא)",
+      "missing": false,
+      "revision": 3084666,
+      "timestamp": "2026-09-24T21:16:42Z",
+      "permanentURL": "https://he.wikisource.org/w/index.php?oldid=3084666",
+      "sha256": "37ea60f22ccaba16897c2449bbcd9e71d21ab4f7ff23932e7eae3aa8bccdd62e"
+    },
+    "frankelCatalog": {
+      "title": "כתובים אחרונים",
+      "missing": false,
+      "revision": 2891666,
+      "timestamp": "2024-11-09T20:42:42Z",
+      "permanentURL": "https://he.wikisource.org/w/index.php?oldid=2891666",
+      "sha256": "88f118e3f0b428006164d6f4d8c9963bdfaa6d6353c73584878925916ca587db"
+    },
+    "tobitOverview": {
+      "title": "ספר טוביה",
+      "missing": false,
+      "revision": 2979301,
+      "timestamp": "2026-01-22T18:00:43Z",
+      "permanentURL": "https://he.wikisource.org/w/index.php?oldid=2979301",
+      "sha256": "16851ffa4119c98771c0b1a88338ca5e9f0c888895185e487b2e6b605d97531b"
+    },
+    "reuse": "Wikisource rendered page footer specifies CC BY-SA4.0; preserve exact revision/contributor provenance for copied transcriptions. Underlying historical print and selected-contributor rights are separate; this report makes no new rights determination."
+  },
+  "result": "None of TOB/JDT/2MA has a full same-translator Wikisource baseline in this inventory. NeubauerTOB and FrankelJDT are useful only as explicitly separate comparison witnesses;2MA has no located body text.",
+  "rawSnapshotPolicy": "Raw API responses and wikitext are retained in the local source-review workspace. Revision URLs and content hashes below provide durable provenance; raw copies are not production content.",
+  "missingPageEvidence": [
+    {
+      "apiURL": "https://he.wikisource.org/w/api.php?format=json&formatversion=2&action=query&prop=revisions&rvprop=ids%7Ctimestamp%7Ccontent&rvslots=main&titles=%D7%A1%D7%A4%D7%A8+%D7%94%D7%9E%D7%A7%D7%91%D7%99%D7%9D+%D7%91&redirects=1",
+      "responseSHA256": "e638ed4b43b98fef2cce6098a53ac78e90f80934b58d778da582d17078cbc3c9"
+    },
+    {
+      "apiURL": "https://he.wikisource.org/w/api.php?format=json&formatversion=2&action=query&prop=revisions&rvprop=ids%7Ctimestamp%7Ccontent&rvslots=main&titles=%D7%9E%D7%A7%D7%91%D7%99%D7%9D+%D7%91&redirects=1",
+      "responseSHA256": "c7af8be1d8e6cb90925f9199ae50de1fcd6ff434072ca5cd9700cc3a7e888314"
+    },
+    {
+      "apiURL": "https://he.wikisource.org/w/api.php?format=json&formatversion=2&action=query&prop=revisions&rvprop=ids%7Ctimestamp%7Ccontent&rvslots=main&titles=%D7%9E%D7%9B%D7%91%D7%99%D7%9D+%D7%91&redirects=1",
+      "responseSHA256": "7a7ac604a634a91ef0ccd2fb625cb82639642e2680235505cade213f18ed08fc"
+    },
+    {
+      "apiURL": "https://he.wikisource.org/w/api.php?format=json&formatversion=2&action=query&prop=revisions&rvprop=ids%7Ctimestamp%7Ccontent&rvslots=main&titles=%D7%97%D7%A9%D7%9E%D7%95%D7%A0%D7%90%D7%99%D7%9D+%D7%91&redirects=1",
+      "responseSHA256": "8b16cfca3311fa986db61e12e128c6d6f4cdeb3c54f89c71bb9b0d15193a887c"
+    },
+    {
+      "apiURL": "https://he.wikisource.org/w/api.php?format=json&formatversion=2&action=query&prop=revisions&rvprop=ids%7Ctimestamp%7Ccontent&rvslots=main&titles=%D7%98%D7%95%D7%91%D7%99%D7%94+%28%D7%9B%D7%94%D7%A0%D7%90%29%7C%D7%9B%D7%AA%D7%95%D7%91%D7%99%D7%9D+%D7%90%D7%97%D7%A8%D7%95%D7%A0%D7%99%D7%9D%2F%D7%98%D7%95%D7%91%D7%99%D7%94%7C%D7%A1%D7%A4%D7%A8+%D7%99%D7%94%D7%95%D7%93%D7%99%D7%AA+%28%D7%A1%D7%99%D7%9E%D7%95%D7%9F%29%2F%D7%9E%D7%91%D7%95%D7%90%7C%D7%A1%D7%A4%D7%A8+%D7%9E%D7%A7%D7%91%D7%99%D7%9D+%D7%91%7C%D7%A1%D7%A4%D7%A8+%D7%97%D7%A9%D7%9E%D7%95%D7%A0%D7%90%D7%99%D7%9D+%D7%91&redirects=1",
+      "responseSHA256": "f10d7f98c3a26222a271292ea478c8f8ea453436f0b795bb5279c2e5f264aeaf"
+    },
+    {
+      "apiURL": "https://he.wikisource.org/w/api.php?format=json&formatversion=2&action=query&list=allpages&apprefix=%D7%A1%D7%A4%D7%A8+%D7%99%D7%94%D7%95%D7%93%D7%99%D7%AA+%28%D7%A1%D7%99%D7%9E%D7%95%D7%9F%29&aplimit=500",
+      "responseSHA256": "34a9b02d99ee37fe5b370d481e516e46c97e9dbf441259ed0c585bec755d7804"
+    },
+    {
+      "apiURL": "https://he.wikisource.org/w/api.php?format=json&formatversion=2&action=query&list=allpages&apprefix=%D7%98%D7%95%D7%91%D7%99%D7%94+%28%D7%9B%D7%94%D7%A0%D7%90%29&aplimit=500",
+      "responseSHA256": "8c35d9caf8f06911945ff3337a6f10d07e276947ace63e2a24b5452a29d3c9cb"
+    },
+    {
+      "apiURL": "https://he.wikisource.org/w/api.php?format=json&formatversion=2&action=query&list=allpages&apprefix=%D7%A1%D7%A4%D7%A8+%D7%94%D7%9E%D7%A7%D7%91%D7%99%D7%9D+%D7%91&aplimit=500",
+      "responseSHA256": "8c35d9caf8f06911945ff3337a6f10d07e276947ace63e2a24b5452a29d3c9cb"
+    },
+    {
+      "apiURL": "https://he.wikisource.org/w/api.php?format=json&formatversion=2&action=query&list=allpages&apprefix=%D7%97%D7%A9%D7%9E%D7%95%D7%A0%D7%90%D7%99%D7%9D+%D7%91&aplimit=500",
+      "responseSHA256": "8c35d9caf8f06911945ff3337a6f10d07e276947ace63e2a24b5452a29d3c9cb"
+    }
+  ]
+}

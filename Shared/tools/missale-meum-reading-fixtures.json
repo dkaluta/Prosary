@@ -1,5 +1,5 @@
 {
-  "$comment": "Reference-only source fixtures from Missale Meum public v5 proper API (MIT), retrieved 2026-09-06. Source Scripture prose is omitted; starred references and short lesson/chant headings are preserved verbatim, and other starred rubric blocks are replaced by [rubric omitted]. Expectations retain complete source passages, excluding responsorial/canticle chants. Historic Vulgate 3/4 Kings and 2 Esdras aliases name modern 1/2 Kings and Nehemiah.",
+  "$comment": "Reference-only source fixtures from Missale Meum public v5 proper API (MIT), retrieved 2026-09-06. Source Scripture prose is omitted; starred references and short lesson/chant headings are preserved verbatim, and other starred rubric blocks are replaced by [rubric omitted]. Expectations retain complete source passages, excluding responsorial/canticle chants. Historic Vulgate 3/4 Kings and 2 Esdras aliases name modern 1/2 Kings and Nehemiah. Three known lesson-label defects are corrected against their exact Latin proper/body sources at the pinned Divinum Officium revision; see missale-source-citation-corrections.json. No general citation normalization is changed.",
   "days": [
     {
       "date": "2026-01-21",
@@ -184,7 +184,7 @@
         "Deuteronomy 11:22–25",
         "2 Maccabees 1:23–27",
         "Sirach 36:1–10",
-        "Daniel 3:49–51",
+        "Daniel 3:47–51",
         "1 Thessalonians 5:14–23",
         "Matthew 17:1–9"
       ]
@@ -832,7 +832,7 @@
         "Leviticus 23:39–43",
         "Micah 7:14, 16, 18–20",
         "Zechariah 8:14–19",
-        "Daniel 3:49–51",
+        "Daniel 3:47–51",
         "Hebrews 9:2–12",
         "Luke 13:6–17"
       ]
@@ -995,6 +995,52 @@
         "Luke 2:15–20",
         "Hebrews 1:1–12",
         "John 1:1–14"
+      ]
+    },
+    {
+      "date": "2026-08-15",
+      "sourceUrl": "https://www.missalemeum.com/en/api/v5/proper/2026-08-15",
+      "sourceCorrectionEvidence": "Shared/reports/hebrew-wikisource/missale-source-citation-corrections.json",
+      "payload": [
+        {
+          "sections": [
+            {
+              "id": "Lectio",
+              "label": "Epistle",
+              "body": [
+                [
+                  "*Judith 13:22-25; 13:15; 13:10*"
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "expected": [
+        "Judith 13:22–25; 15:10"
+      ]
+    },
+    {
+      "date": "2026-09-15",
+      "sourceUrl": "https://www.missalemeum.com/en/api/v5/proper/2026-09-15",
+      "sourceCorrectionEvidence": "Shared/reports/hebrew-wikisource/missale-source-citation-corrections.json",
+      "payload": [
+        {
+          "sections": [
+            {
+              "id": "Lectio",
+              "label": "Epistle",
+              "body": [
+                [
+                  "*Judith 13:22; 13:25*"
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "expected": [
+        "Judith 13:22–25"
       ]
     }
   ]

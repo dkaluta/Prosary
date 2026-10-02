@@ -165,7 +165,7 @@
                                      NavigateUri="https://syriaccorpus.org/" />
                     <HyperlinkButton x:Uid="AbtPeshittaLicenseLink" Content="CC BY 4.0"
                                      NavigateUri="https://creativecommons.org/licenses/by/4.0/" />
-                    <TextBlock x:Uid="AbtPeshittaIsaiahSources" Text="Isaiah: user-supplied pointed Peshitta XML from Internet Archive. The underlying edition and redistribution terms remain unidentified. Hebrew script conversion using Erez’s rules; verse selection and text formatting by Prosary."
+                    <TextBlock x:Uid="AbtPeshittaIsaiahSources" Text="Old Testament: user-supplied pointed Peshitta XML from Internet Archive. The underlying edition and redistribution terms remain unidentified. Hebrew script conversion using Erez’s rules; verse selection and text formatting by Prosary."
                                Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" />
                     <HyperlinkButton x:Uid="AbtPeshittaIsaiahSourceLink" Content="Internet Archive"
                                      NavigateUri="https://archive.org/details/peshitta-complete-bible-otnt" />

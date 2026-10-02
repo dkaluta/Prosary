@@ -1,5 +1,8 @@
 .DS_Store
 
+# Immutable Bible downloads are release assets, even with a global ZIP ignore rule.
+!/Shared/dist/bibles/*.zip
+
 # Generated from Shared/Branding by Shared/tools/sync-web-branding.mjs.
 Shared/website/public/apple-touch-icon.png
 Shared/website/public/favicon-32x32.png

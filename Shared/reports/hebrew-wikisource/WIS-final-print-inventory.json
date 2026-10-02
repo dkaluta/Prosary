@@ -1,0 +1,2655 @@
+{
+  "schemaVersion": 1,
+  "book": "WIS",
+  "date": "2026-10-02",
+  "reviewer": "source_gate",
+  "status": "Whole source inventory reconciled; candidate for root acceptance, canonical status remains draft",
+  "releaseApproved": false,
+  "method": "Reconcile separately recorded full visual chapter inventories, then compare canonical unit ranges against that independent record. Re-view source opening, ending and four finally reconciled page contexts. This report does not regenerate source labels from the canonical arrays.",
+  "source": {
+    "volume": "A2",
+    "sha256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+    "textPages": [
+      145,
+      146,
+      147,
+      148,
+      149,
+      150,
+      151,
+      152,
+      153,
+      154,
+      155,
+      156,
+      157,
+      158,
+      159,
+      160,
+      161,
+      162,
+      163,
+      164,
+      165,
+      166,
+      167,
+      168,
+      169,
+      170,
+      171,
+      172,
+      173,
+      174,
+      175,
+      176,
+      177,
+      178,
+      179,
+      180,
+      181,
+      182,
+      183,
+      184,
+      185,
+      186
+    ]
+  },
+  "counts": {
+    "chapters": 19,
+    "sourceUnits": 426,
+    "printedLabels": 437,
+    "combinedUnits": 11,
+    "physicalRows": 663,
+    "textPages": 42,
+    "sourceNotes": 212,
+    "restoredLetterNotes": 4
+  },
+  "rowsByPage": {
+    "145": 9,
+    "146": 17,
+    "147": 10,
+    "148": 13,
+    "149": 13,
+    "150": 14,
+    "151": 16,
+    "152": 16,
+    "153": 20,
+    "154": 19,
+    "155": 18,
+    "156": 18,
+    "157": 15,
+    "158": 17,
+    "159": 16,
+    "160": 17,
+    "161": 22,
+    "162": 16,
+    "163": 18,
+    "164": 13,
+    "165": 18,
+    "166": 16,
+    "167": 15,
+    "168": 12,
+    "169": 20,
+    "170": 17,
+    "171": 20,
+    "172": 17,
+    "173": 11,
+    "174": 21,
+    "175": 19,
+    "176": 16,
+    "177": 14,
+    "178": 15,
+    "179": 16,
+    "180": 21,
+    "181": 13,
+    "182": 15,
+    "183": 16,
+    "184": 15,
+    "185": 14,
+    "186": 5
+  },
+  "chapterEvidence": [
+    {
+      "chapter": 1,
+      "report": "Shared/reports/hebrew-wikisource/WIS-chapter1-independent-review.json",
+      "sha256": "d98a5bbdcd7999973583d29572cd5580ad6b3ed37ae63251cf175705ae505556",
+      "physicalRows": 26,
+      "rowsByPage": {
+        "145": 9,
+        "146": 17
+      },
+      "sourceUnits": 16,
+      "terminalPrintedLabel": 16,
+      "combinedRanges": [],
+      "sourceBoundaryEvidence": {
+        "starts": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16
+        ],
+        "sourcePages": [
+          {
+            "page": 145,
+            "physicalLines": 9,
+            "verses": "1–6 opening"
+          },
+          {
+            "page": 146,
+            "physicalLines": 17,
+            "verses": "6 continuation–16"
+          }
+        ],
+        "lastVerse": 16,
+        "nextChapterPage": 147
+      }
+    },
+    {
+      "chapter": 2,
+      "report": "Shared/reports/hebrew-wikisource/WIS-chapter2-independent-review.json",
+      "sha256": "e3537e0a2e1f5b5419d2b23b5ce8bf4a7b4a5d33701fd624d838580c17f1fdae",
+      "physicalRows": 36,
+      "rowsByPage": {
+        "147": 10,
+        "148": 13,
+        "149": 13
+      },
+      "sourceUnits": 24,
+      "terminalPrintedLabel": 24,
+      "combinedRanges": [],
+      "sourceBoundaryEvidence": "All24 source starts in ascending printed sequence are clear;1 begins after chapterheading, subsequent units follow their visible Hebrew margin labels and preceding separators. Verses4,8,9,10,12,16,22 contain the source line continuations retained within their units. No unreadable consonants or unresolved verse boundaries identified in chapter2."
+    },
+    {
+      "chapter": 3,
+      "report": "Shared/reports/hebrew-wikisource/WIS-chapter3-independent-review.json",
+      "sha256": "0899895196fc10a42995189e05af535b6a2770718bfd9d293ad83f33239af8d1",
+      "physicalRows": 25,
+      "rowsByPage": {
+        "150": 14,
+        "151": 11
+      },
+      "sourceUnits": 19,
+      "terminalPrintedLabel": 19,
+      "combinedRanges": [],
+      "sourceBoundaryEvidence": "All 19 starts are clear. The chapter 3 heading starts page 150; labels 2–11 follow in order. Page 151 begins with label 12 and continues through 19; the chapter 4 heading and its first text follow on the same page. Continuation rows at 5, 9, 11, 13, 14 and 18 remain within their units. No unresolved verse boundaries or missing words identified."
+    },
+    {
+      "chapter": 4,
+      "report": "Shared/reports/hebrew-wikisource/WIS-chapter4-independent-review.json",
+      "sha256": "1a6c96c9308106fb443a3e2e1e1d361bf80bbf30f29bfee76a2b4b3edb3dc35d",
+      "physicalRows": 32,
+      "rowsByPage": {
+        "151": 5,
+        "152": 16,
+        "153": 11
+      },
+      "sourceUnits": 20,
+      "terminalPrintedLabel": 20,
+      "combinedRanges": [],
+      "sourceBoundaryEvidence": "All20 starts and continuations independently compared. The chapter4 heading and units1–2 follow chapter3 on151;152 begins3 and ends14;153 begins15, ends20 and is followed by chapter5. Source13 deliberately includes both עד מהרה and כי נפשו clauses;14 begins והעמים. No unresolved boundary or missing source word identified."
+    },
+    {
+      "chapter": 5,
+      "report": "Shared/reports/hebrew-wikisource/WIS-chapter5-independent-review.json",
+      "sha256": "840ecca647d31fa78d45843ecae1e0da2d58e1691e6e9a62b34505e986b35a8e",
+      "physicalRows": 38,
+      "rowsByPage": {
+        "153": 9,
+        "154": 19,
+        "155": 10
+      },
+      "sourceUnits": 23,
+      "terminalPrintedLabel": 23,
+      "combinedRanges": [],
+      "sourceBoundaryEvidence": "All 23 unit starts and all page continuations compared. Chapter5 begins on153, continues154 with7 and155 with17, and ends23 before chapter6. Verse8 begins ואת־דרך and includes מה־הועיל. The final word of11 wraps to left whitespace on the same physical row as the centered start of12; it remains in11. No unresolved boundary or missing word remains in this chapter."
+    },
+    {
+      "chapter": 6,
+      "report": "Shared/reports/hebrew-wikisource/WIS-chapter6-independent-review.json",
+      "sha256": "e0d8924a1fd38302e13ac529a3946a227ff5ad117e8e4f8b844af3d9fcd6e6f3",
+      "physicalRows": 34,
+      "rowsByPage": {
+        "155": 8,
+        "156": 18,
+        "157": 8
+      },
+      "sourceUnits": 25,
+      "terminalPrintedLabel": 25,
+      "combinedRanges": [],
+      "sourceBoundaryEvidence": "All25 printed starts and source separators agree with the unit inventory. Wrapped units3,4,7,12,16,18,21,22 remain intact. Final25 ends before the chapter7 heading. No boundary ambiguity or missing verse was found."
+    },
+    {
+      "chapter": 7,
+      "report": "Shared/reports/hebrew-wikisource/WIS-chapter7-independent-review.json",
+      "sha256": "befc80c14a3ee4809831275a14de58d44e338a42bb2044b4a45331f594dfb621",
+      "physicalRows": 48,
+      "rowsByPage": {
+        "157": 7,
+        "158": 17,
+        "159": 16,
+        "160": 8
+      },
+      "sourceUnits": 30,
+      "terminalPrintedLabel": 30,
+      "combinedRanges": [],
+      "sourceBoundaryEvidence": "All thirty printed starts and separators agree with the unit inventory. No cross-page unit, missing word or ambiguous verse start was found. Final 7:30 ends before the chapter ח heading."
+    },
+    {
+      "chapter": 8,
+      "report": "Shared/reports/hebrew-wikisource/WIS-chapter8-independent-review.json",
+      "sha256": "3ebac5fd38fcffb19b37456b03124e3881825be00ae7a3f2211486c6ae86ee46",
+      "physicalRows": 35,
+      "rowsByPage": {
+        "160": 9,
+        "161": 22,
+        "162": 4
+      },
+      "sourceUnits": 20,
+      "terminalPrintedLabel": 21,
+      "combinedRanges": [
+        [
+          20,
+          21
+        ]
+      ],
+      "sourceBoundaryEvidence": "All 20 unit starts agree with the printed margins. Source explicitly combines20–21, whose internal separator after טהור is retained. Verse7 crosses160/161 without missing or duplicated words. Chapter ט starts after ואמר׃."
+    },
+    {
+      "chapter": 9,
+      "report": "Shared/reports/hebrew-wikisource/WIS-chapter9-independent-review.json",
+      "sha256": "33f6da0b03b9849537e854bb321b5e948a1f8dca64c5b68b3422923b65245638",
+      "physicalRows": 27,
+      "rowsByPage": {
+        "162": 12,
+        "163": 15
+      },
+      "sourceUnits": 19,
+      "terminalPrintedLabel": 19,
+      "combinedRanges": [],
+      "sourceBoundaryEvidence": "All19 starts match the printed margins and unit separators. Verse9 ends on162;10 begins163. The source explicitly labels the final line יט, and chapter י begins only after יושעו׃."
+    },
+    {
+      "chapter": 10,
+      "report": "Shared/reports/hebrew-wikisource/WIS-chapter10-independent-review.json",
+      "sha256": "5d97eb6d188de0097641e6356b8d1c35ebd5ec10d06dbe4bfc97ed9a87090407",
+      "physicalRows": 38,
+      "rowsByPage": {
+        "163": 3,
+        "164": 13,
+        "165": 18,
+        "166": 4
+      },
+      "sourceUnits": 21,
+      "terminalPrintedLabel": 21,
+      "combinedRanges": [],
+      "sourceBoundaryEvidence": "All21 starts match the source margins and unit separators. Chapter10 begins on163 after9:19;2 ends163,8 ends164,19 ends165;21 ends166 and chapter11 begins on the following physical row. No source unit crosses a page."
+    },
+    {
+      "chapter": 11,
+      "report": "Shared/reports/hebrew-wikisource/WIS-chapter11-independent-review.json",
+      "sha256": "df9c5d3888f83dd1cf1b02bbcb87983217522f9fce368d48bd8d0b45e655b047",
+      "physicalRows": 33,
+      "rowsByPage": {
+        "166": 12,
+        "167": 15,
+        "168": 6
+      },
+      "sourceUnits": 23,
+      "terminalPrintedLabel": 26,
+      "combinedRanges": [
+        [
+          3,
+          4
+        ],
+        [
+          8,
+          9
+        ],
+        [
+          11,
+          12
+        ]
+      ],
+      "sourceBoundaryEvidence": "Printed combined3–4,8–9,11–12 are preserved with their internal sof pasuq. Verse13 begins167;22 begins on the last167 row and ends168 at ארצה׃ before23. Chapter11 closes after26 חפץ בחיים׃ and chapter12 begins on the next physical row."
+    },
+    {
+      "chapter": 12,
+      "report": "Shared/reports/hebrew-wikisource/WIS-chapter12-independent-review.json",
+      "sha256": "3a79221ba01b194a74756c1d36f56c29ab3ab13e1d467762c0beed8ee2e2cd69",
+      "physicalRows": 41,
+      "rowsByPage": {
+        "168": 6,
+        "169": 20,
+        "170": 15
+      },
+      "sourceUnits": 25,
+      "terminalPrintedLabel": 27,
+      "combinedRanges": [
+        [
+          3,
+          4
+        ],
+        [
+          26,
+          27
+        ]
+      ],
+      "sourceBoundaryEvidence": "Source combined3–4 and26–27 are explicit and retain internal sof pasuq. Chapter12 starts168 after chapter11 closes בחיים׃. Verse6 continues from168 להשמיד to169 בידי אבותינו׃;7 starts למען. Verse19 starts the last169 row and continues170 from היות through מפשעיהם׃ before20 כי אם־. Chapter12 ends170 קצה׃, then chapter13 starts separately אכן הבל."
+    },
+    {
+      "chapter": 13,
+      "report": "Shared/reports/hebrew-wikisource/WIS-chapter13-independent-review.json",
+      "sha256": "0567cd3a42e9fd530c093695cf2e7146eb7ef74c083c5fccd5a9d27fd6d279e4",
+      "physicalRows": 30,
+      "rowsByPage": {
+        "170": 2,
+        "171": 20,
+        "172": 8
+      },
+      "sourceUnits": 19,
+      "terminalPrintedLabel": 19,
+      "combinedRanges": [],
+      "sourceBoundaryEvidence": "Chapter13 starts at170 אכן הבל after chapter12 closes קצה׃. Verse1 continues170 הנראות /171 בעין. Verse14 continues171 חיה נבזה /172 וימשחהו. Verse19 begins ולאין־כח after18 בל־יוכל׃. All19 labels and starts retained; chapter14 excluded."
+    },
+    {
+      "chapter": 14,
+      "report": "Shared/reports/hebrew-wikisource/WIS-chapter14-independent-review.json",
+      "sha256": "971505c0d4443c272f786e523752a7e1b80d2289f076dac89dd22d06761d09c3",
+      "physicalRows": 45,
+      "rowsByPage": {
+        "172": 9,
+        "173": 11,
+        "174": 21,
+        "175": 4
+      },
+      "sourceUnits": 29,
+      "terminalPrintedLabel": 31,
+      "combinedRanges": [
+        [
+          9,
+          10
+        ],
+        [
+          12,
+          13
+        ]
+      ],
+      "sourceBoundaryEvidence": [
+        "172 chapter14 begins ויש after chapter13 closes כפיו׃. Starts2 כי,3 אך,4 להראות,5 ואתה,6 גם and7 הן follow the printed separators. Verse7 ends the page after העץ.",
+        "173 opening אשר ממנו יקום צדק׃ continues7;8 וארור follows.9–10 and12–13 are explicitly combined source labels and retain internal separators. Starts11 ולכן,14 הלא,15 הנה and16 כעבור agree with print. Source16b begins גם המושלים within16, ending the page at להשתחוות.",
+        "174 opening לפסיליהם׃ completes16. Starts17 כי,18 חריצות,19 ואולי,20 ולבב,21 והיתה,22 ויקטן,23 הן,24 ועל,25 בכלם,26 שכחת,27 כי,28 או and29 כי follow source separators.29 ends ישבעו׃ at page bottom.",
+        "175 first four rows contain30 אמנם and31 ולא, ending הרשעים׃ before separate chapter15 ואתה. Chapter15 excluded."
+      ]
+    },
+    {
+      "chapter": 15,
+      "report": "Shared/reports/hebrew-wikisource/WIS-chapter15-independent-review.json",
+      "sha256": "f7d45b941fd98b669b0f6e7fa51b07032ab19b75d7ed7bf5ba1ed52dc9e0476b",
+      "physicalRows": 29,
+      "rowsByPage": {
+        "175": 15,
+        "176": 14
+      },
+      "sourceUnits": 19,
+      "terminalPrintedLabel": 19,
+      "combinedRanges": [],
+      "sourceBoundaryEvidence": [
+        "175 chapter15 begins ואתה after chapter14 closes הרשעים׃. Its fifteen rows contain distinct starts2 ואף,3 כי,4 כי,5 אשר,6 תקוה,7 כי,8 וגם,9 ולא,10 לבבו. Each agrees with the printed separator and marginal label. Chapter14 and commentary excluded.",
+        "175 bottom ends לב־ within10;176 opens אפר and continues10 through נבזים׃. 11 begins כי לא־ידע את־ and crosses the next physical row at יוצרו. 12 begins אמנם after חיים׃;13 איש after רע׃;14 וכלם after להשבר׃;15 כי after ירדו׃;16 הלא after ללכת׃;17 בהיותו after אליו׃;18 גם־ישתחוו after לעד׃;19 גם חסרות after לבערות׃.",
+        "176 row14 ends ומברכתו׃, completing19. The next row starts separate chapter16 לכן, which is excluded. No commentary enters this chapter."
+      ]
+    },
+    {
+      "chapter": 16,
+      "report": "Shared/reports/hebrew-wikisource/WIS-chapter16-independent-review.json",
+      "sha256": "fd4fd7571c77f8a0ddf3ac58a3a7851d7758f50848edae022428df1ce544c858",
+      "physicalRows": 40,
+      "rowsByPage": {
+        "176": 2,
+        "177": 14,
+        "178": 15,
+        "179": 9
+      },
+      "sourceUnits": 28,
+      "terminalPrintedLabel": 29,
+      "combinedRanges": [
+        [
+          23,
+          24
+        ]
+      ],
+      "sourceBoundaryEvidence": [
+        "176 chapter16 begins לכן after15:19 ends ומברכתו׃. The last2 physical rows belong to16:1–2;2 continues after את־ onto177 השלו.",
+        "177 has14 full body rows. Distinct starts3 למען after תאותם׃;4 הן after למנה׃;5 יען after צרימו׃;6 רק after תכלית׃;7 כי after תורתך׃;8 ובזאת after לכל׃;9 הלא after צרה׃;10 ולבניך after אלה׃;11 הן after ורפאום׃;12 כי after חסדך׃. Last row ends מזור within12.",
+        "178 has15 body rows. Opening רפאם completes12. Distinct starts13 כי after הכל׃;14 ואדם after ותעל׃;15 אמנם after נאספה׃;16 והזדים after אין׃;17 והנה after אש׃;18 יש after לצדיקים׃;19 ויש after ירדפם׃;20 ותחת after החנפה׃;21 כי after המטעמים׃;22 שלג after לוקמו׃.22 ends הגשם׃ at page bottom.",
+        "179 opens with printed combined23–24 and the provisional אילם word. Retain the two internal printed sentence separators after נשת and בך. Distinct starts25 לכן after בך׃;26 למען after שואל׃;27 כי after בך׃;28 להודיע after ונמס׃;29 כי after האור׃.29 ends בם׃ on physical row9. Next row begins separate17:1 הן, excluded."
+      ]
+    },
+    {
+      "chapter": 17,
+      "report": "Shared/reports/hebrew-wikisource/WIS-chapter17-independent-review.json",
+      "sha256": "b209b005540bb94917b653e05fa9e5dc87a761c1cbb37d85b3d74131fee7a9b0",
+      "physicalRows": 32,
+      "rowsByPage": {
+        "179": 7,
+        "180": 21,
+        "181": 4
+      },
+      "sourceUnits": 20,
+      "terminalPrintedLabel": 21,
+      "combinedRanges": [
+        [
+          7,
+          8
+        ]
+      ],
+      "sourceBoundaryEvidence": [
+        "179 chapter17 begins הן after16:29 ends בם׃. Seven source rows. Starts2 כי after נבערות׃;3 הם at the end of row3 after נצח׃;4 גם after החרדו׃;5 וכל־אש after אימה׃. Page179 ends כח, continuing5 להאיר on180.",
+        "180 contains21 body rows. Verse5 ends זה׃ in row1;6 starts אך at row2. The printed combined ז–ח starts תעלולי in row4 and preserves the internal separator before כי האנשים; the next source unit9 starts גם in row6 after נלעגה׃.10 starts ויגועו in row7 after חרדו׃;11 starts כי־הרשעה in row8;12 starts הלא at the end of row9;13 starts ואם within row10;14 starts וכל within row12;15 starts אלה within row13;16 starts אחרי־כן within row15;17 starts כעובד האדמה at the end of row16;18 starts כי within row18;19 starts או מרוצת within row20. Final row ends פורץ, continuing19 ממעמקים on181.",
+        "181 first four rows complete chapter17.19 ends והחרידום׃, followed by20 כי.20 ends מפריע׃, followed by21 ורק.21 ends מן־החשך׃ in row4; next explicit יח begins chapter18 and is excluded."
+      ]
+    },
+    {
+      "chapter": 18,
+      "report": "Shared/reports/hebrew-wikisource/WIS-chapter18-independent-review.json",
+      "sha256": "f67d00f11303f8bf4cc98b117812a4142cf402710bc6418fbd3249ed1fb810b3",
+      "physicalRows": 39,
+      "rowsByPage": {
+        "181": 9,
+        "182": 15,
+        "183": 15
+      },
+      "sourceUnits": 24,
+      "terminalPrintedLabel": 25,
+      "combinedRanges": [
+        [
+          7,
+          8
+        ]
+      ],
+      "sourceBoundaryEvidence": [
+        "Page181: explicit יח begins ולחסידיך after17:21 מן־החשך׃. Chapter18 spans nine body rows. 2 starts ויודו after אלה׃;3 ותחת after למו׃;4 הן after כבוד׃;5 הם after נצח׃;6 הלילה after עזים׃. Final row ends לאבותינו, continuing6 מראש on182.",
+        "Page182: fifteen body rows. 6 ends האמינו׃ in row2, followed by actual combined ז–ח starting אז. Preserve its internal separator after צרים and final separator after אליך. 9 starts כי החסידים in row3, ends לראשונה׃ in row6;10 ולעומתם follows. 11 בענש after נוגה׃ in row7;12 לכלם after סבלו׃ in row8;13 והאנשים after נשמד׃ in row10;14 כאשר after המה׃ in row12;15 והנה after דרכו׃ in row13;16 וכחרב after לכליה׃ in row14. Last row ends [חרדת], continuing16 מות on183.",
+        "Page183: fifteen body rows complete18, followed by explicit יט excluded from this review.16 ends הגיע׃ in row1;17 אז follows.18 זה follows עליהם׃ in row2;19 כי בחלומות follows מותם׃ in row3;20 אמנם begins row5 after צרתם׃.21 כי מהר follows רב׃ in row6;22 ויגבר follows עבדך׃ in row8;23 ויהי follows אבותינו׃ in row10;24 כי על follows החיים׃ in row12;25 מפני follows ראשו׃ in row14 and ends שפקה׃ in row15."
+      ]
+    },
+    {
+      "chapter": 19,
+      "report": "Shared/reports/hebrew-wikisource/WIS-chapter19-independent-review.json",
+      "sha256": "bea63b4add038d7f56d6be1a341ef31a7a84663465a9d1e0317311b57a3282c6",
+      "physicalRows": 35,
+      "rowsByPage": {
+        "183": 1,
+        "184": 15,
+        "185": 14,
+        "186": 5
+      },
+      "sourceUnits": 22,
+      "terminalPrintedLabel": 22,
+      "combinedRanges": [],
+      "sourceBoundaryEvidence": [
+        "Page183: chapter18 is excluded. Explicit יט opens ואת on the last main-text row, and19:1 continues onto184 after מראש.",
+        "Page184:15 main-text rows.1 ends לעשות׃ on row1 and2 begins כי הם.3 starts הם היו after אחריהם׃ on row2, ends רדפו׃ on row4;4 starts כי המשפט.5 begins ולמען after בצרותיהם׃ on row6;6 starts כי כל after משנה׃ on row7 and ends פגע׃ on row8.7 starts הן נראה on row9, ends דשא׃ on row11;8 follows בו עברו and ends ונפלאות׃ on row12.9 starts וישוממו on row12, ends גואלם׃ on row13;10 follows כי זכרו and ends לרב׃ on row15.11 starts אחרי־כן on row15, then crosses after חדשות.",
+        "Page185:14 rows.11 continues כעורר and ends מעדנים׃ on row1, where12 starts כי שלו.13 follows שאלתם׃ on row2 and ends עונותיהם׃ on row3.14 starts יען on row4 and ends חסד׃ on row6;15 follows מבלעדי, ends הגרים׃ on row7;16 follows והמה and ends נשתוו׃ on row8.17 starts וגם on row9 and ends ביתו׃ on row11;18 follows כי היסודות and ends המעשים׃ on row13;19 begins הן חיות and crosses after על־הארץ on row14.",
+        "Page186:5 rows.19 ends דרכו׃ on row1 and20 follows האש, ending לכבות׃ on the same row.21 begins ולהפך on row2, ends נמס׃ on row3, followed by22 כי בכל.22 ends בכל־עת ובכל־מקום׃ on row5. Commentary follows; there is no additional scripture or colophon here."
+      ]
+    }
+  ],
+  "scopeEdges": [
+    {
+      "page": 145,
+      "finding": "Book title followed directly by numbered1:1; no unnumbered scriptural introduction. Commentary is smaller type beneath body and excluded."
+    },
+    {
+      "page": 186,
+      "finding": "Five body rows finish19:19–22 with בכל־עת ובכל־מקום׃; smaller commentary and ornamental rule follow. No scripture or colophon omitted."
+    },
+    {
+      "page": 187,
+      "finding": "Separate ספר דברי איוב introduction begins; outside Wisdom source scope."
+    }
+  ],
+  "gapsAndReordering": "All437 printed labels1–terminal are represented in source order. Eleven paired labels stay combined; no printed label gaps, reordered units, additional witness blocks or routes found.",
+  "bracketsAndSourcePeculiarities": "Preserve all translator brackets, including recorded unmatched brackets5:11,7:3,14:4; do not repair typography or replace literal spellings with another edition. Prior detailed reports pin each occurrence.",
+  "restorationReconciliation": {
+    "path": "Shared/reports/hebrew-wikisource/WIS-final-authorized-restoration-reconciliation.json",
+    "sha256": "1f113fe339b2e1e43d12850d4117c8cf8d916fff5be0cc8df066162ff912df4c"
+  },
+  "finalPageContexts": [
+    {
+      "page": 145,
+      "path": "/private/tmp/prosary-wis-review/WIS-native-145.png",
+      "sha256": "3b7b39e6c7d2126e43766ba3c74d4f9bce09910b678a471dd8a94ad579951cc3"
+    },
+    {
+      "page": 155,
+      "path": "/private/tmp/prosary-wis-review/WIS-native-155.png",
+      "sha256": "b96ea0a805aae38b87eebd87baf6f4ae7f091d339cf73c1259c494d29e1e1c57"
+    },
+    {
+      "page": 156,
+      "path": "/private/tmp/prosary-wis-review/WIS-native-156.png",
+      "sha256": "569648a9a162f9e0ae982bae24521307282cf45547b8aff2f57c14c33fb7430f"
+    },
+    {
+      "page": 157,
+      "path": "/private/tmp/prosary-wis-review/WIS-native-157.png",
+      "sha256": "17bb96c6342dcbc16e7967217a1f058ca28f744ea7b66eb86c523982984dd9d4"
+    },
+    {
+      "page": 179,
+      "path": "/private/tmp/prosary-wis-review/WIS-native-179.png",
+      "sha256": "a8e1e164a0d3680660956d357d7b23014e59c49451b84fa8c4089c75718281f3"
+    },
+    {
+      "page": 186,
+      "path": "/private/tmp/prosary-wis-review/WIS-native-186.png",
+      "sha256": "b59b1a33e2fa6e385e72cdbd656248eacf95506ea073973b40b71ac554a51c46"
+    },
+    {
+      "page": 187,
+      "path": "/private/tmp/prosary-wis-review/WIS-native-187.png",
+      "sha256": "564cd2145346d20bfc7237cb29779a3f5e2f4b8a29832261f5040a42fc7bd5da"
+    }
+  ],
+  "candidateApproval": {
+    "contentSHA256": "600a31cb9a69c9f9d56ae2851613fdb1ba766df247e93e303f969b635a8d17d2",
+    "scanSHA256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+    "textPages": [
+      145,
+      146,
+      147,
+      148,
+      149,
+      150,
+      151,
+      152,
+      153,
+      154,
+      155,
+      156,
+      157,
+      158,
+      159,
+      160,
+      161,
+      162,
+      163,
+      164,
+      165,
+      166,
+      167,
+      168,
+      169,
+      170,
+      171,
+      172,
+      173,
+      174,
+      175,
+      176,
+      177,
+      178,
+      179,
+      180,
+      181,
+      182,
+      183,
+      184,
+      185,
+      186
+    ],
+    "method": "Independent full visual comparison of every printed source row, word, point, bracket, unit start and page join, recorded in nineteen pinned chapter reports and final restoration reconciliation. Explicitly authorized restorations are disclosed separately from visible print. Final inventory preserves all eleven printed combined ranges; no draft-derived labels or inferred missing verses.",
+    "hasIntroduction": false,
+    "chapters": [
+      {
+        "number": 1,
+        "units": [
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            5,
+            5
+          ],
+          [
+            6,
+            6
+          ],
+          [
+            7,
+            7
+          ],
+          [
+            8,
+            8
+          ],
+          [
+            9,
+            9
+          ],
+          [
+            10,
+            10
+          ],
+          [
+            11,
+            11
+          ],
+          [
+            12,
+            12
+          ],
+          [
+            13,
+            13
+          ],
+          [
+            14,
+            14
+          ],
+          [
+            15,
+            15
+          ],
+          [
+            16,
+            16
+          ]
+        ]
+      },
+      {
+        "number": 2,
+        "units": [
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            5,
+            5
+          ],
+          [
+            6,
+            6
+          ],
+          [
+            7,
+            7
+          ],
+          [
+            8,
+            8
+          ],
+          [
+            9,
+            9
+          ],
+          [
+            10,
+            10
+          ],
+          [
+            11,
+            11
+          ],
+          [
+            12,
+            12
+          ],
+          [
+            13,
+            13
+          ],
+          [
+            14,
+            14
+          ],
+          [
+            15,
+            15
+          ],
+          [
+            16,
+            16
+          ],
+          [
+            17,
+            17
+          ],
+          [
+            18,
+            18
+          ],
+          [
+            19,
+            19
+          ],
+          [
+            20,
+            20
+          ],
+          [
+            21,
+            21
+          ],
+          [
+            22,
+            22
+          ],
+          [
+            23,
+            23
+          ],
+          [
+            24,
+            24
+          ]
+        ]
+      },
+      {
+        "number": 3,
+        "units": [
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            5,
+            5
+          ],
+          [
+            6,
+            6
+          ],
+          [
+            7,
+            7
+          ],
+          [
+            8,
+            8
+          ],
+          [
+            9,
+            9
+          ],
+          [
+            10,
+            10
+          ],
+          [
+            11,
+            11
+          ],
+          [
+            12,
+            12
+          ],
+          [
+            13,
+            13
+          ],
+          [
+            14,
+            14
+          ],
+          [
+            15,
+            15
+          ],
+          [
+            16,
+            16
+          ],
+          [
+            17,
+            17
+          ],
+          [
+            18,
+            18
+          ],
+          [
+            19,
+            19
+          ]
+        ]
+      },
+      {
+        "number": 4,
+        "units": [
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            5,
+            5
+          ],
+          [
+            6,
+            6
+          ],
+          [
+            7,
+            7
+          ],
+          [
+            8,
+            8
+          ],
+          [
+            9,
+            9
+          ],
+          [
+            10,
+            10
+          ],
+          [
+            11,
+            11
+          ],
+          [
+            12,
+            12
+          ],
+          [
+            13,
+            13
+          ],
+          [
+            14,
+            14
+          ],
+          [
+            15,
+            15
+          ],
+          [
+            16,
+            16
+          ],
+          [
+            17,
+            17
+          ],
+          [
+            18,
+            18
+          ],
+          [
+            19,
+            19
+          ],
+          [
+            20,
+            20
+          ]
+        ]
+      },
+      {
+        "number": 5,
+        "units": [
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            5,
+            5
+          ],
+          [
+            6,
+            6
+          ],
+          [
+            7,
+            7
+          ],
+          [
+            8,
+            8
+          ],
+          [
+            9,
+            9
+          ],
+          [
+            10,
+            10
+          ],
+          [
+            11,
+            11
+          ],
+          [
+            12,
+            12
+          ],
+          [
+            13,
+            13
+          ],
+          [
+            14,
+            14
+          ],
+          [
+            15,
+            15
+          ],
+          [
+            16,
+            16
+          ],
+          [
+            17,
+            17
+          ],
+          [
+            18,
+            18
+          ],
+          [
+            19,
+            19
+          ],
+          [
+            20,
+            20
+          ],
+          [
+            21,
+            21
+          ],
+          [
+            22,
+            22
+          ],
+          [
+            23,
+            23
+          ]
+        ]
+      },
+      {
+        "number": 6,
+        "units": [
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            5,
+            5
+          ],
+          [
+            6,
+            6
+          ],
+          [
+            7,
+            7
+          ],
+          [
+            8,
+            8
+          ],
+          [
+            9,
+            9
+          ],
+          [
+            10,
+            10
+          ],
+          [
+            11,
+            11
+          ],
+          [
+            12,
+            12
+          ],
+          [
+            13,
+            13
+          ],
+          [
+            14,
+            14
+          ],
+          [
+            15,
+            15
+          ],
+          [
+            16,
+            16
+          ],
+          [
+            17,
+            17
+          ],
+          [
+            18,
+            18
+          ],
+          [
+            19,
+            19
+          ],
+          [
+            20,
+            20
+          ],
+          [
+            21,
+            21
+          ],
+          [
+            22,
+            22
+          ],
+          [
+            23,
+            23
+          ],
+          [
+            24,
+            24
+          ],
+          [
+            25,
+            25
+          ]
+        ]
+      },
+      {
+        "number": 7,
+        "units": [
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            5,
+            5
+          ],
+          [
+            6,
+            6
+          ],
+          [
+            7,
+            7
+          ],
+          [
+            8,
+            8
+          ],
+          [
+            9,
+            9
+          ],
+          [
+            10,
+            10
+          ],
+          [
+            11,
+            11
+          ],
+          [
+            12,
+            12
+          ],
+          [
+            13,
+            13
+          ],
+          [
+            14,
+            14
+          ],
+          [
+            15,
+            15
+          ],
+          [
+            16,
+            16
+          ],
+          [
+            17,
+            17
+          ],
+          [
+            18,
+            18
+          ],
+          [
+            19,
+            19
+          ],
+          [
+            20,
+            20
+          ],
+          [
+            21,
+            21
+          ],
+          [
+            22,
+            22
+          ],
+          [
+            23,
+            23
+          ],
+          [
+            24,
+            24
+          ],
+          [
+            25,
+            25
+          ],
+          [
+            26,
+            26
+          ],
+          [
+            27,
+            27
+          ],
+          [
+            28,
+            28
+          ],
+          [
+            29,
+            29
+          ],
+          [
+            30,
+            30
+          ]
+        ]
+      },
+      {
+        "number": 8,
+        "units": [
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            5,
+            5
+          ],
+          [
+            6,
+            6
+          ],
+          [
+            7,
+            7
+          ],
+          [
+            8,
+            8
+          ],
+          [
+            9,
+            9
+          ],
+          [
+            10,
+            10
+          ],
+          [
+            11,
+            11
+          ],
+          [
+            12,
+            12
+          ],
+          [
+            13,
+            13
+          ],
+          [
+            14,
+            14
+          ],
+          [
+            15,
+            15
+          ],
+          [
+            16,
+            16
+          ],
+          [
+            17,
+            17
+          ],
+          [
+            18,
+            18
+          ],
+          [
+            19,
+            19
+          ],
+          [
+            20,
+            21
+          ]
+        ]
+      },
+      {
+        "number": 9,
+        "units": [
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            5,
+            5
+          ],
+          [
+            6,
+            6
+          ],
+          [
+            7,
+            7
+          ],
+          [
+            8,
+            8
+          ],
+          [
+            9,
+            9
+          ],
+          [
+            10,
+            10
+          ],
+          [
+            11,
+            11
+          ],
+          [
+            12,
+            12
+          ],
+          [
+            13,
+            13
+          ],
+          [
+            14,
+            14
+          ],
+          [
+            15,
+            15
+          ],
+          [
+            16,
+            16
+          ],
+          [
+            17,
+            17
+          ],
+          [
+            18,
+            18
+          ],
+          [
+            19,
+            19
+          ]
+        ]
+      },
+      {
+        "number": 10,
+        "units": [
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            5,
+            5
+          ],
+          [
+            6,
+            6
+          ],
+          [
+            7,
+            7
+          ],
+          [
+            8,
+            8
+          ],
+          [
+            9,
+            9
+          ],
+          [
+            10,
+            10
+          ],
+          [
+            11,
+            11
+          ],
+          [
+            12,
+            12
+          ],
+          [
+            13,
+            13
+          ],
+          [
+            14,
+            14
+          ],
+          [
+            15,
+            15
+          ],
+          [
+            16,
+            16
+          ],
+          [
+            17,
+            17
+          ],
+          [
+            18,
+            18
+          ],
+          [
+            19,
+            19
+          ],
+          [
+            20,
+            20
+          ],
+          [
+            21,
+            21
+          ]
+        ]
+      },
+      {
+        "number": 11,
+        "units": [
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            5,
+            5
+          ],
+          [
+            6,
+            6
+          ],
+          [
+            7,
+            7
+          ],
+          [
+            8,
+            9
+          ],
+          [
+            10,
+            10
+          ],
+          [
+            11,
+            12
+          ],
+          [
+            13,
+            13
+          ],
+          [
+            14,
+            14
+          ],
+          [
+            15,
+            15
+          ],
+          [
+            16,
+            16
+          ],
+          [
+            17,
+            17
+          ],
+          [
+            18,
+            18
+          ],
+          [
+            19,
+            19
+          ],
+          [
+            20,
+            20
+          ],
+          [
+            21,
+            21
+          ],
+          [
+            22,
+            22
+          ],
+          [
+            23,
+            23
+          ],
+          [
+            24,
+            24
+          ],
+          [
+            25,
+            25
+          ],
+          [
+            26,
+            26
+          ]
+        ]
+      },
+      {
+        "number": 12,
+        "units": [
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            5,
+            5
+          ],
+          [
+            6,
+            6
+          ],
+          [
+            7,
+            7
+          ],
+          [
+            8,
+            8
+          ],
+          [
+            9,
+            9
+          ],
+          [
+            10,
+            10
+          ],
+          [
+            11,
+            11
+          ],
+          [
+            12,
+            12
+          ],
+          [
+            13,
+            13
+          ],
+          [
+            14,
+            14
+          ],
+          [
+            15,
+            15
+          ],
+          [
+            16,
+            16
+          ],
+          [
+            17,
+            17
+          ],
+          [
+            18,
+            18
+          ],
+          [
+            19,
+            19
+          ],
+          [
+            20,
+            20
+          ],
+          [
+            21,
+            21
+          ],
+          [
+            22,
+            22
+          ],
+          [
+            23,
+            23
+          ],
+          [
+            24,
+            24
+          ],
+          [
+            25,
+            25
+          ],
+          [
+            26,
+            27
+          ]
+        ]
+      },
+      {
+        "number": 13,
+        "units": [
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            5,
+            5
+          ],
+          [
+            6,
+            6
+          ],
+          [
+            7,
+            7
+          ],
+          [
+            8,
+            8
+          ],
+          [
+            9,
+            9
+          ],
+          [
+            10,
+            10
+          ],
+          [
+            11,
+            11
+          ],
+          [
+            12,
+            12
+          ],
+          [
+            13,
+            13
+          ],
+          [
+            14,
+            14
+          ],
+          [
+            15,
+            15
+          ],
+          [
+            16,
+            16
+          ],
+          [
+            17,
+            17
+          ],
+          [
+            18,
+            18
+          ],
+          [
+            19,
+            19
+          ]
+        ]
+      },
+      {
+        "number": 14,
+        "units": [
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            5,
+            5
+          ],
+          [
+            6,
+            6
+          ],
+          [
+            7,
+            7
+          ],
+          [
+            8,
+            8
+          ],
+          [
+            9,
+            10
+          ],
+          [
+            11,
+            11
+          ],
+          [
+            12,
+            13
+          ],
+          [
+            14,
+            14
+          ],
+          [
+            15,
+            15
+          ],
+          [
+            16,
+            16
+          ],
+          [
+            17,
+            17
+          ],
+          [
+            18,
+            18
+          ],
+          [
+            19,
+            19
+          ],
+          [
+            20,
+            20
+          ],
+          [
+            21,
+            21
+          ],
+          [
+            22,
+            22
+          ],
+          [
+            23,
+            23
+          ],
+          [
+            24,
+            24
+          ],
+          [
+            25,
+            25
+          ],
+          [
+            26,
+            26
+          ],
+          [
+            27,
+            27
+          ],
+          [
+            28,
+            28
+          ],
+          [
+            29,
+            29
+          ],
+          [
+            30,
+            30
+          ],
+          [
+            31,
+            31
+          ]
+        ]
+      },
+      {
+        "number": 15,
+        "units": [
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            5,
+            5
+          ],
+          [
+            6,
+            6
+          ],
+          [
+            7,
+            7
+          ],
+          [
+            8,
+            8
+          ],
+          [
+            9,
+            9
+          ],
+          [
+            10,
+            10
+          ],
+          [
+            11,
+            11
+          ],
+          [
+            12,
+            12
+          ],
+          [
+            13,
+            13
+          ],
+          [
+            14,
+            14
+          ],
+          [
+            15,
+            15
+          ],
+          [
+            16,
+            16
+          ],
+          [
+            17,
+            17
+          ],
+          [
+            18,
+            18
+          ],
+          [
+            19,
+            19
+          ]
+        ]
+      },
+      {
+        "number": 16,
+        "units": [
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            5,
+            5
+          ],
+          [
+            6,
+            6
+          ],
+          [
+            7,
+            7
+          ],
+          [
+            8,
+            8
+          ],
+          [
+            9,
+            9
+          ],
+          [
+            10,
+            10
+          ],
+          [
+            11,
+            11
+          ],
+          [
+            12,
+            12
+          ],
+          [
+            13,
+            13
+          ],
+          [
+            14,
+            14
+          ],
+          [
+            15,
+            15
+          ],
+          [
+            16,
+            16
+          ],
+          [
+            17,
+            17
+          ],
+          [
+            18,
+            18
+          ],
+          [
+            19,
+            19
+          ],
+          [
+            20,
+            20
+          ],
+          [
+            21,
+            21
+          ],
+          [
+            22,
+            22
+          ],
+          [
+            23,
+            24
+          ],
+          [
+            25,
+            25
+          ],
+          [
+            26,
+            26
+          ],
+          [
+            27,
+            27
+          ],
+          [
+            28,
+            28
+          ],
+          [
+            29,
+            29
+          ]
+        ]
+      },
+      {
+        "number": 17,
+        "units": [
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            5,
+            5
+          ],
+          [
+            6,
+            6
+          ],
+          [
+            7,
+            8
+          ],
+          [
+            9,
+            9
+          ],
+          [
+            10,
+            10
+          ],
+          [
+            11,
+            11
+          ],
+          [
+            12,
+            12
+          ],
+          [
+            13,
+            13
+          ],
+          [
+            14,
+            14
+          ],
+          [
+            15,
+            15
+          ],
+          [
+            16,
+            16
+          ],
+          [
+            17,
+            17
+          ],
+          [
+            18,
+            18
+          ],
+          [
+            19,
+            19
+          ],
+          [
+            20,
+            20
+          ],
+          [
+            21,
+            21
+          ]
+        ]
+      },
+      {
+        "number": 18,
+        "units": [
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            5,
+            5
+          ],
+          [
+            6,
+            6
+          ],
+          [
+            7,
+            8
+          ],
+          [
+            9,
+            9
+          ],
+          [
+            10,
+            10
+          ],
+          [
+            11,
+            11
+          ],
+          [
+            12,
+            12
+          ],
+          [
+            13,
+            13
+          ],
+          [
+            14,
+            14
+          ],
+          [
+            15,
+            15
+          ],
+          [
+            16,
+            16
+          ],
+          [
+            17,
+            17
+          ],
+          [
+            18,
+            18
+          ],
+          [
+            19,
+            19
+          ],
+          [
+            20,
+            20
+          ],
+          [
+            21,
+            21
+          ],
+          [
+            22,
+            22
+          ],
+          [
+            23,
+            23
+          ],
+          [
+            24,
+            24
+          ],
+          [
+            25,
+            25
+          ]
+        ]
+      },
+      {
+        "number": 19,
+        "units": [
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            5,
+            5
+          ],
+          [
+            6,
+            6
+          ],
+          [
+            7,
+            7
+          ],
+          [
+            8,
+            8
+          ],
+          [
+            9,
+            9
+          ],
+          [
+            10,
+            10
+          ],
+          [
+            11,
+            11
+          ],
+          [
+            12,
+            12
+          ],
+          [
+            13,
+            13
+          ],
+          [
+            14,
+            14
+          ],
+          [
+            15,
+            15
+          ],
+          [
+            16,
+            16
+          ],
+          [
+            17,
+            17
+          ],
+          [
+            18,
+            18
+          ],
+          [
+            19,
+            19
+          ],
+          [
+            20,
+            20
+          ],
+          [
+            21,
+            21
+          ],
+          [
+            22,
+            22
+          ]
+        ]
+      }
+    ],
+    "sourceNoteIds": [
+      "wis-1-11-titsru-tsade",
+      "wis-1-16-kaf-vowel",
+      "wis-1-16-lamed-restored",
+      "wis-1-2-kichashu-het",
+      "wis-1-2-nirah-alef",
+      "wis-1-3-mahshavot-het",
+      "wis-1-7-male-mem",
+      "wis-10-14-shin",
+      "wis-10-14-tet",
+      "wis-10-20-first-kaf",
+      "wis-10-20-vav",
+      "wis-10-21-vav",
+      "wis-10-5-kaf",
+      "wis-10-7-het",
+      "wis-10-8-ayin",
+      "wis-10-8-zayin",
+      "wis-11-18-het",
+      "wis-11-18-tsadi",
+      "wis-11-2-vav",
+      "wis-11-21-ayin",
+      "wis-11-6-kaf",
+      "wis-11-6-zayin",
+      "wis-11-8-bet",
+      "wis-11-8-het",
+      "wis-11-8-kaf",
+      "wis-12-10-pe",
+      "wis-12-15-kaf",
+      "wis-12-18-lamed",
+      "wis-12-2-bet",
+      "wis-12-24-resh",
+      "wis-12-26-tsadi",
+      "wis-12-5-he",
+      "wis-12-5-resh",
+      "wis-12-5-vav",
+      "wis-12-8-kaf",
+      "wis-12-8-lamed",
+      "wis-12-8-tsadi",
+      "wis-12-9-resh",
+      "wis-13-1-kaf-2-vowel",
+      "wis-13-1-pe-1-dagesh",
+      "wis-13-11-bet-1-vowel",
+      "wis-13-11-mem-2-vowel",
+      "wis-13-11-pe-3-vowel",
+      "wis-13-11-tsadi-4-vowel",
+      "wis-13-11-vav-1-vowel",
+      "wis-13-11-yod-2-vowel",
+      "wis-13-13-ayin-6-vowel",
+      "wis-13-13-tsadi-4-vowel",
+      "wis-14-1-ayin-5-vowel",
+      "wis-14-1-vav-1-vowel",
+      "wis-14-11-pe-1-dagesh",
+      "wis-14-11-qof-2-vowel",
+      "wis-14-18-nun-2-vowel",
+      "wis-14-25-kaf-2-vowel",
+      "wis-14-5-bet-1-vowel",
+      "wis-14-7-resh-3-vowel",
+      "wis-15-1-kaf-2-vowel",
+      "wis-15-18-mem-1-vowel",
+      "wis-15-19-het-2-vowel",
+      "wis-15-8-lamed-1-vowel",
+      "wis-15-8-shin-2-dagesh",
+      "wis-16-1-bet-1-vowel",
+      "wis-16-16-nun-1-vowel",
+      "wis-16-18-tet-3-vowel",
+      "wis-16-19-lamed-3-vowel",
+      "wis-16-19-pe-4-vowel",
+      "wis-16-19-qof-4-vowel",
+      "wis-16-20-kaf-3-vowel",
+      "wis-16-22-qof-3-vowel",
+      "wis-16-23-alef-1-vowel",
+      "wis-16-23-vav-restored",
+      "wis-16-29-mem-2-vowel",
+      "wis-16-6-lamed-1-vowel",
+      "wis-17-1-ayin-3-vowel",
+      "wis-17-11-gimel-3-vowel",
+      "wis-17-11-het-2-vowel",
+      "wis-17-11-zayin-3-vowel",
+      "wis-17-14-het-1-vowel",
+      "wis-17-17-nun-1-vowel",
+      "wis-17-17-pe-2-vowel",
+      "wis-17-18-pe-2-vowel",
+      "wis-17-21-ayin-2-vowel",
+      "wis-17-3-bet-1-vowel",
+      "wis-17-3-nun-1-vowel",
+      "wis-17-3-pe-2-vowel",
+      "wis-17-3-zayin-3-vowel",
+      "wis-17-5-mem-1-vowel",
+      "wis-17-7-dalet-2-vowel",
+      "wis-18-1-word1-dalet-6-vowel",
+      "wis-18-1-word1-het-3-vowel",
+      "wis-18-1-word1-lamed-2-vowel",
+      "wis-18-1-word1-samekh-4-vowel",
+      "wis-18-1-word1-vav-1-vowel",
+      "wis-18-1-word2-alef-3-vowel",
+      "wis-18-1-word2-shin-4-dagesh",
+      "wis-18-1-word2-vav-1-vowel",
+      "wis-18-14-word10-lamed-3-vowel",
+      "wis-18-18-word11-lamed-1-vowel",
+      "wis-18-23-word12-ayin-3-vowel",
+      "wis-18-23-word12-nun-2-vowel",
+      "wis-18-23-word12-vav-1-vowel",
+      "wis-18-24-word13-alef-3-vowel",
+      "wis-18-25-word14-ayin-2-vowel",
+      "wis-18-25-word14-zayin-1-vowel",
+      "wis-18-25-word15-bet-2-vowel",
+      "wis-18-25-word15-lamed-1-vowel",
+      "wis-18-25-word16-pe-2-vowel",
+      "wis-18-25-word16-sin-1-vowel",
+      "wis-18-3-word3-tav-2-vowel",
+      "wis-18-3-word3-tav-4-vowel",
+      "wis-18-3-word3-vav-1-vowel",
+      "wis-18-3-word4-he-1-vowel",
+      "wis-18-3-word4-kaf-2-vowel",
+      "wis-18-4-word5-bet-1-vowel",
+      "wis-18-4-word5-dalet-3-vowel",
+      "wis-18-4-word5-tsadi-2-vowel",
+      "wis-18-5-word6-resh-3-vowel",
+      "wis-18-5-word6-samekh-2-vowel",
+      "wis-18-5-word7-bet-3-vowel",
+      "wis-18-5-word8-kaf-1-vowel",
+      "wis-18-9-word9-het-3-vowel",
+      "wis-18-9-word9-vav-1-vowel",
+      "wis-19-1-word1-alef-2-vowel",
+      "wis-19-1-word1-vav-1-vowel",
+      "wis-19-10-word10-mem-2-vowel",
+      "wis-19-13-word11-ayin-1-vowel",
+      "wis-19-17-word12-he-1-vowel",
+      "wis-19-18-word13-lamed-2-vowel",
+      "wis-19-18-word13-lamed-4-vowel",
+      "wis-19-18-word13-tsadi-1-vowel",
+      "wis-19-18-word14-kaf-1-vowel",
+      "wis-19-22-word15-ayin-6-vowel",
+      "wis-19-22-word15-mem-1-vowel",
+      "wis-19-3-word2-gimel-1-vowel",
+      "wis-19-4-word3-alef-2-vowel",
+      "wis-19-4-word3-samekh-1-vowel",
+      "wis-19-5-word4-nun-3-vowel",
+      "wis-19-5-word4-shin-2-vowel",
+      "wis-19-6-word5-qof-3-vowel",
+      "wis-19-6-word6-shin-2-dagesh",
+      "wis-19-6-word6-shin-2-vowel",
+      "wis-19-7-word7-kaf-2-vowel",
+      "wis-19-9-word8-vav-1-vowel",
+      "wis-19-9-word9-vav-1-vowel",
+      "wis-2-23-lamed",
+      "wis-2-24-vav",
+      "wis-2-4-mechumato-het",
+      "wis-3-12-mem",
+      "wis-3-17-alef",
+      "wis-4-1-letter-1-vowel",
+      "wis-4-10-letter-3-vowel",
+      "wis-4-2-letter-6-vowel",
+      "wis-4-3-letter-3-vowel",
+      "wis-4-4-letter-3-vowel",
+      "wis-5-1-ayin",
+      "wis-5-11-bet",
+      "wis-5-11-gimel",
+      "wis-5-11-pe",
+      "wis-5-11-vav",
+      "wis-5-12-kaf",
+      "wis-5-14-dalet",
+      "wis-5-14-first-kaf",
+      "wis-5-14-pe-tiddefenu",
+      "wis-5-14-pe-yefazrehu",
+      "wis-5-14-zayin",
+      "wis-5-15-bet",
+      "wis-5-17-kaf",
+      "wis-5-2-mem",
+      "wis-5-21-mem",
+      "wis-5-21-resh",
+      "wis-5-22-lamed",
+      "wis-5-23-ayin",
+      "wis-5-23-middle-vav",
+      "wis-5-3-vav",
+      "wis-5-3-yod",
+      "wis-5-5-alef",
+      "wis-5-5-first-kaf",
+      "wis-5-8-gimel",
+      "wis-5-8-initial-vav",
+      "wis-6-1-tsadi",
+      "wis-6-1-vav",
+      "wis-6-10-dalet-biqdusha",
+      "wis-6-10-dalet-yikadeshu",
+      "wis-6-16-bet",
+      "wis-6-17-bet",
+      "wis-6-17-qoph",
+      "wis-6-18-bet",
+      "wis-6-18-resh",
+      "wis-6-2-alef-restored",
+      "wis-6-2-alef-vowel",
+      "wis-6-2-yod-restored",
+      "wis-6-2-zayin-vowel",
+      "wis-6-22-mem",
+      "wis-6-3-zayin",
+      "wis-6-4-resh",
+      "wis-6-6-samekh",
+      "wis-6-9-shin",
+      "wis-7-1-first-tsadi",
+      "wis-7-14-tav-atek",
+      "wis-7-15-first-nun",
+      "wis-7-15-kaf-kahagut",
+      "wis-7-15-kaf-kiyaut",
+      "wis-7-15-second-nun",
+      "wis-7-2-pe",
+      "wis-7-9-mem",
+      "wis-8-1-first-kaf",
+      "wis-8-20-gimel-dagesh",
+      "wis-8-3-first-yod-dagesh",
+      "wis-8-3-het",
+      "wis-8-6-tsadi",
+      "wis-9-12-qof",
+      "wis-9-9-tsadi"
+    ],
+    "contentBlocks": [],
+    "addressRoutes": [],
+    "sourceGaps": {}
+  },
+  "validation": {
+    "draft": {
+      "book": "WIS",
+      "status": "draft",
+      "chapters": 19,
+      "units": 426,
+      "sourcePages": 42,
+      "reviewedPages": 42
+    },
+    "completeCandidateOnly": {
+      "book": "WIS",
+      "status": "complete",
+      "chapters": 19,
+      "units": 426,
+      "sourcePages": 42,
+      "reviewedPages": 42
+    },
+    "canonicalStatus": "draft",
+    "globalInventoryChanged": false
+  }
+}

@@ -16,13 +16,17 @@
                 <StackPanel Spacing="12">
                     <TextBlock Text="{x:Bind PassageLabel}" FontWeight="SemiBold" />
                     <TextBlock Text="{x:Bind EditionName}" TextWrapping="Wrap" Style="{StaticResource MutedCaptionTextStyle}" />
+                    <TextBlock Text="{x:Bind SourceName, Mode=OneWay}" TextWrapping="Wrap" IsTextSelectionEnabled="True" FontWeight="SemiBold"
+                               Visibility="{x:Bind HasSourceName, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
+                    <TextBlock Text="{x:Bind PartialNotice}" TextWrapping="Wrap" Style="{StaticResource MutedCaptionTextStyle}"
+                               Visibility="{x:Bind IsPartial, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
                     <Button Content="{x:Bind ScriptToggleLabel, Mode=OneWay}" Command="{x:Bind ToggleScriptCommand}"
                             AutomationProperties.ItemStatus="{x:Bind CurrentScriptLabel, Mode=OneWay}"
                             AutomationProperties.AutomationId="readingScript"
                             Visibility="{x:Bind HasScriptToggle, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
                     <TextBlock Text="{x:Bind WholeVersesNotice}" TextWrapping="Wrap" Style="{StaticResource MutedCaptionTextStyle}"
                                Visibility="{x:Bind IncludesWholeVerses, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
-                    <TextBlock controls:ScripturePassageText.Chapters="{x:Bind Chapters, Mode=OneWay}" IsTextSelectionEnabled="True" TextWrapping="Wrap"
+                    <controls:ScripturePassageBody Chapters="{x:Bind Chapters, Mode=OneWay}"
                                FontFamily="{x:Bind BodyFontFamily, Mode=OneWay}" FontSize="{x:Bind BodyFontSize, Mode=OneWay}"
                                FlowDirection="{x:Bind IsRightToLeft, Mode=OneWay, Converter={StaticResource BoolToFlowDirection}}"
                                Visibility="{x:Bind HasPassage, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
@@ -34,9 +38,9 @@
                               AutomationProperties.AutomationId="readingAvailableEditions"
                               Visibility="{x:Bind HasAvailableEditions, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
                     <TextBlock Text="{x:Bind TextNotice}" TextWrapping="Wrap" Style="{StaticResource MutedCaptionTextStyle}" />
-                    <TextBlock Text="{x:Bind Attribution}" IsTextSelectionEnabled="True" TextWrapping="Wrap" Style="{StaticResource MutedCaptionTextStyle}" />
-                    <HyperlinkButton Content="{x:Bind SourceLabel}" NavigateUri="{x:Bind SourceUri}" Padding="0"
-                                     Visibility="{x:Bind HasSource, Converter={StaticResource BoolToVisibility}}" />
+                    <TextBlock Text="{x:Bind Attribution, Mode=OneWay}" IsTextSelectionEnabled="True" TextWrapping="Wrap" Style="{StaticResource MutedCaptionTextStyle}" />
+                    <HyperlinkButton Content="{x:Bind SourceLabel}" NavigateUri="{x:Bind SourceUri, Mode=OneWay}" Padding="0"
+                                     Visibility="{x:Bind HasSource, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
                 </StackPanel>
             </Expander>
         </DataTemplate>
@@ -71,6 +75,7 @@
                                     <ToggleSwitch x:Uid="SetShowTodayIntention" Header="Show the Pope's intention"
                                                   IsOn="{x:Bind Options.ShowTodayIntention, Mode=TwoWay}" />
                                     <ToggleSwitch x:Uid="SetShowTodayReadingsDesktop" Header="Show readings"
+                                                  Visibility="{x:Bind ShowsReadingOptions, Converter={StaticResource BoolToVisibility}}"
                                                   IsOn="{x:Bind Options.ShowTodayReadings, Mode=TwoWay}"
                                                   AutomationProperties.AutomationId="showTodayReadings" />
                                     <ToggleSwitch x:Uid="SetExpandReadingsByDefault" Header="Expand readings by default"
@@ -147,7 +152,7 @@
                  Pope's monthly prayer intention. Rows hide when the bundled datasets have no
                  entry (ferial days; dates past the generated years). -->
             <Border Style="{StaticResource SectionCardStyle}"
-                    Visibility="{x:Bind ViewModel.ShowsTodaySection, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
+                    Visibility="{x:Bind ShowsDailySection, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
                     FlowDirection="{x:Bind ViewModel.TodayIsRightToLeft, Mode=OneWay, Converter={StaticResource BoolToFlowDirection}}">
                 <StackPanel Spacing="10">
                     <Grid ColumnSpacing="8" Visibility="{x:Bind ViewModel.ShowsTodayDay, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
@@ -211,7 +216,9 @@
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
                     </Expander>
-                    <Grid ColumnSpacing="8" Visibility="{x:Bind ViewModel.ShowsTodayReadings, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
+                    <TextBlock Text="{x:Bind NoReadingsText}" TextWrapping="Wrap"
+                               Visibility="{x:Bind ShowsNoReadings, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
+                    <Grid ColumnSpacing="8" Visibility="{x:Bind ShowsDailyReadings, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="*" />

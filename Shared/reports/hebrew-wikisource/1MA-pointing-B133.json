@@ -1,0 +1,401 @@
+{
+  "book": "1MA",
+  "status": "B133 completely first/second-compared; only19 continuation reviewed onB134; book remains draft",
+  "primarySourcePDFSHA256": "656891d377d2e3d4a9216723d94205488423907bf01df424b9f0b9de1560051e",
+  "additionalSourcePDFSHA256": "b72eaf5d2d858fabb7c3438ac0436ccd64c394a7dd2fad609efabe628d5534c7",
+  "sourcePages": [
+    133,
+    134
+  ],
+  "additionalPages": [
+    {
+      "number": 68,
+      "side": "left",
+      "primary": 133
+    },
+    {
+      "number": 69,
+      "side": "right",
+      "primary": 134,
+      "scope": "7:19 endingonly"
+    }
+  ],
+  "method": "Every word, printed point, punctuation mark and unit boundary compared directly against clearer scan, with primary scan context and targeted original-pixel crops. Separate independent local glyph checks resolve the two different Jerusalem marks, literal עולה and absent kaf/dalet dageshes in כדבר. No OCR text or grammatical normalization substituted.",
+  "sourceSpellingChanges": [
+    {
+      "unit": "7:12",
+      "onlineConsonantsAndPunctuation": "ויאספו אל אלקימוס ובקחידס קהל סופרים לדרוש צדק:",
+      "sourceConsonantsAndPunctuation": "ויאספו אל־אלקימוס ובקחידס קהל־סופרים לדרש־צדק׃"
+    },
+    {
+      "unit": "7:13",
+      "onlineConsonantsAndPunctuation": "וראשונים החסידים היו בבני ישראל ויבקשו מהם שלום:",
+      "sourceConsonantsAndPunctuation": "וראשונים החסידים היו בבני ישראל ויבקשו מהם שלום׃"
+    },
+    {
+      "unit": "7:14",
+      "onlineConsonantsAndPunctuation": "כי אמרו איש כהן מזרע אהרון בא בחיל ולא יעשה לנו עוולה:",
+      "sourceConsonantsAndPunctuation": "כי־אמרו איש כהן מזרע אהרן בא בחיל ולא יעשה־לנו עולה׃"
+    },
+    {
+      "unit": "7:15",
+      "onlineConsonantsAndPunctuation": "וידבר אליהם דברי שלום וישבע להם לאמור לא נבקש לכם רעה ולאוהביכם:",
+      "sourceConsonantsAndPunctuation": "וידבר אליהם דברי שלום וישבע להם לאמר לא נבקש לכם רעה ולאוהביכם׃"
+    },
+    {
+      "unit": "7:16",
+      "onlineConsonantsAndPunctuation": "ויאמינו לו ויקח מהם שישים איש וימיתם ביום אחד כדבר אשר כתב:",
+      "sourceConsonantsAndPunctuation": "ויאמינו לו ויקח מהם ששים איש וימיתם ביום אחד כדבר אשר כתב׃"
+    },
+    {
+      "unit": "7:17",
+      "onlineConsonantsAndPunctuation": "בשר חסידך ודמם שפכו סביבות ירושלים ואין קובר:",
+      "sourceConsonantsAndPunctuation": "בשר חסידיך ודמם שפכו סביבות ירושלם ואין קובר׃"
+    },
+    {
+      "unit": "7:18",
+      "onlineConsonantsAndPunctuation": "ויפול פחדם ואימתם על כל העם כי אמרו אין בהם צדק ומשפט כי עברו את הברית ואת השבועה אשר נשבעו:",
+      "sourceConsonantsAndPunctuation": "ויפל פחדם ואימתם על־כל־העם כי־אמרו אין בהם צדק ומשפט כי־עברו את־הברית ואת־השבועה אשר נשבעו׃"
+    },
+    {
+      "unit": "7:19",
+      "onlineConsonantsAndPunctuation": "וילך בקחידס מירושלים ויחן בבית זית וישלח ויאסוף רבים מן האנשים הנמלטים אשר אתו ואחדים מן העם וישחטם אל הבאר הגדולה:",
+      "sourceConsonantsAndPunctuation": "וילך בקחידס מירושלם ויחן בבית־זית וישלח ויאסף רבים מן־האנשים הנמלטים אשר אתו ואחדים מן־העם וישחטם אל־הבאר הגדולה׃"
+    }
+  ],
+  "boundaries": [
+    "Previouscombined4–5 endsלכהן atB133 top;6startsויאשימו.",
+    "Margin12 and13 are separateactual labels, notcombined.",
+    "19endsB133מן־andcontinuesהעם וישחטם אל־הבאר הגדולה׃ atB134before20."
+  ],
+  "localFindings": [
+    {
+      "unit": "7:8,12,19",
+      "reading": "בַּקְחִידֶס / וּבַקְחִידֶס",
+      "decision": "Read source-name marks locally; no inferred transliteration."
+    },
+    {
+      "unit": "7:14",
+      "reading": "עַוְלָה",
+      "decision": "Four source consonants, ayin patah, vav sheva, lamed qamats. Corrected scratch missinghe. Nearest-neighbor enlargement preserves original geometry; apparent highdot belongs to ascender.",
+      "independentReading": "Androidagentconfirmsallthreevowelsandfourlettersfromlocalcrop."
+    },
+    {
+      "unit": "7:16",
+      "reading": "כַדָבָר",
+      "decision": "Kaf patah/daletqamats visible, no isolated interior dagesh in either; remove provisional conventional dageshes.",
+      "independentReading": "Androidagent confirms clean dalet interior and attached kaf edge rather than separatepoint."
+    },
+    {
+      "unit": "7:17",
+      "reading": "יְרוּשָׁלִָם",
+      "decision": "Lamedqamats stem plus separatehiriq visible in localcrop.",
+      "independentReading": "Androidagent confirms this occurrence independently."
+    },
+    {
+      "unit": "7:19",
+      "reading": "מִירוּשָׁלִַם",
+      "decision": "Lamedflatpatah plus separatehiriq visible; do notnormalize to17.",
+      "independentReading": "Androidagent confirms this distinct occurrence independently."
+    }
+  ],
+  "cropEvidence": [
+    {
+      "filename": "crop-68-0.062-0.089-0.431-0.274.png",
+      "sha256": "7347bf8f6840627e2c6f2690887ddb58e94c4d107e78ee435b52ee2f2674be04"
+    },
+    {
+      "filename": "crop-68-0.062-0.258-0.431-0.424.png",
+      "sha256": "08d98a177c8b1831f5334eeb17dea6a573425b2017e29f5365a427be7818949e"
+    },
+    {
+      "filename": "crop-68-0.062-0.414-0.431-0.57.png",
+      "sha256": "15721e06df7941aeb8405a167ae178636fdab1974e1904fec53b20df8c507bd1"
+    },
+    {
+      "filename": "crop-68-0.04-0.07-0.46-0.58.png",
+      "sha256": "e75928c9c9bd307e6fc89f8d06f230a0330449130fc733539936c0e12888e1d8"
+    },
+    {
+      "filename": "crop-68-0.423-0.07-0.458-0.58.png",
+      "sha256": "9d1a0f5904eb7a56cf5e9654eca80feb454ab9801cef36f2fc9be6da093c8f8d"
+    },
+    {
+      "filename": "crop-68-0.057-0.171-0.127-0.218.png",
+      "sha256": "a8fbe9081483d5b30f3a238cb23f924c22eacf371e9cdb79cda17d4d03bc7a3d"
+    },
+    {
+      "filename": "crop-68-0.228-0.463-0.301-0.504.png",
+      "sha256": "bb371f07941654c6eb36e45d3a36e5c9d5b153fd204082eb7305f0c2f009fcdc"
+    },
+    {
+      "filename": "crop-68-0.1-0.514-0.26-0.552.png",
+      "sha256": "1c534208688240614a0afda4dfe23e1450b454f8c2bb377a949361e9fac3ff0c"
+    },
+    {
+      "filename": "crop-68-0.18-0.401-0.256-0.44.png",
+      "sha256": "2d4b5c856ea403cad9fd30752613d4cddf81c3605b9b3dbfc0073d3bdb6eb2a6"
+    },
+    {
+      "filename": "crop-68-0.185-0.433-0.27-0.476.png",
+      "sha256": "fb99e105f1910a1ad6cbedcb8a667b925b557df86d9157964e4609f8788c8f76"
+    },
+    {
+      "filename": "crop-68-0.358-0.328-0.441-0.373.png",
+      "sha256": "a506e121a9a505cc660ac1d3e378d23e49fa882e82b730fbdc6bafccf5ef0d73"
+    },
+    {
+      "filename": "crop-68-0.228-0.38-0.328-0.42.png",
+      "sha256": "f40a0c74a4cd71019288a109930d5517db2b2c2ded09dfcd9576f8d6eceda8a5"
+    },
+    {
+      "filename": "crop-68-0.228-0.38-0.328-0.42-nearest.png",
+      "sha256": "cbc3b433d1170dfc53e5280ba806ff824b14996176b57b1b78e82ba3a820c464"
+    },
+    {
+      "filename": "crop-68-0.136-0.35-0.255-0.391.png",
+      "sha256": "5135d9d0b03ed52b05f7f25997c5609ead7c2234f28395aae705f7847e37ad2c"
+    },
+    {
+      "filename": "crop-69-0.54-0.087-0.931-0.161.png",
+      "sha256": "b8583e49a495f202274a5d5a9f0af1e31f03a169a617bc1e00df11ba285b91d5"
+    },
+    {
+      "filename": "B-133-body.png",
+      "sha256": "06e10a79647594c351b143097d23dd749e35b5484ce6f21b65c60a3342fcb820"
+    }
+  ],
+  "onlineScaffoldBefore": [
+    {
+      "verse": 12,
+      "text": "ויאספו אל אלקימוס ובקחידס קהל סופרים לדרוש צדק:",
+      "sourcePages": [],
+      "textSHA256": "63d2fa2d8d4a6c35eafae896eea904507c24d1f40c01e9fc77287cc7d49e1f9d"
+    },
+    {
+      "verse": 13,
+      "text": "וראשונים החסידים היו בבני ישראל ויבקשו מהם שלום:",
+      "sourcePages": [],
+      "textSHA256": "1000488b14781c595e20ed8bee06b6ea3d45bd422afc04e17dd6f99521eda925"
+    },
+    {
+      "verse": 14,
+      "text": "כי אמרו איש כהן מזרע אהרון בא בחיל ולא יעשה לנו עוולה:",
+      "sourcePages": [],
+      "textSHA256": "8c0e8285dedfa104360f63d67858a3d438d445679c3101a67a0a6b8b14f51e27"
+    },
+    {
+      "verse": 15,
+      "text": "וידבר אליהם דברי שלום וישבע להם לאמור לא נבקש לכם רעה ולאוהביכם:",
+      "sourcePages": [],
+      "textSHA256": "1d01badba93d47d11a8f1708c16b413f1d063f718e905da221bae21a738edead"
+    },
+    {
+      "verse": 16,
+      "text": "ויאמינו לו ויקח מהם שישים איש וימיתם ביום אחד כדבר אשר כתב:",
+      "sourcePages": [],
+      "textSHA256": "f26a718fb956b6dd115b0bc7b80600dd16ea40de6f55cb072f50d8c9a3b211de"
+    },
+    {
+      "verse": 17,
+      "text": "בשר חסידך ודמם שפכו סביבות ירושלים ואין קובר:",
+      "sourcePages": [],
+      "textSHA256": "f0bcae0d877a063e438a50ed7b0232a9459b34fa021bfeab333fd147a3a84507"
+    },
+    {
+      "verse": 18,
+      "text": "ויפול פחדם ואימתם על כל העם כי אמרו אין בהם צדק ומשפט כי עברו את הברית ואת השבועה אשר נשבעו:",
+      "sourcePages": [],
+      "textSHA256": "698c7a00e8a158e57a395cd2d491d223b8ee096cbcce6f53feae3f8319b85f8c"
+    },
+    {
+      "verse": 19,
+      "text": "וילך בקחידס מירושלים ויחן בבית זית וישלח ויאסוף רבים מן האנשים הנמלטים אשר אתו ואחדים מן העם וישחטם אל הבאר הגדולה:",
+      "sourcePages": [],
+      "textSHA256": "392be4b4a40b810966ac328dac4bd79f236253ef2969dd573a170bcd8d72b53b"
+    }
+  ],
+  "checkedUnits": [
+    {
+      "chapter": 7,
+      "verse": 6,
+      "text": "וַיַּאֲשִׁימוּ אֶת־הָעָם אֶל־הַמֶּלֶךְ לֵאמֹר אִבֵּד יְהוּדָה וְאֶחָיו אֶת כָּל־אֹהֲבֶיךָ וְגַם אוֹתָנוּ זֵרָה מֵאַרְצֵנוּ׃",
+      "sourcePages": [
+        133
+      ],
+      "textSHA256": "36266ca97f04a7f44cc01327699a8839504bb6009009d6f728f76db285a8db5a"
+    },
+    {
+      "chapter": 7,
+      "verse": 7,
+      "text": "וְעַתָּה שְׁלַח אִישׁ אֲשֶׁר־תַּאֲמִין לוֹ וְהָלַךְ וְרָאָה אֶת כָּל־הַחָרְמָה אֲשֶׁר־עָשָׂה לָנוּ וְלִמְדִינַת הַמֶּלֶךְ וְעָנַשׁ אוֹתָם וְאֵת־כָּל אֲשֶׁר־עָזְרוּ לָהֶם׃",
+      "sourcePages": [
+        133
+      ],
+      "textSHA256": "6a53234886644fcffbf92335dfd0774acbbcb22ae92da567176c06c04a063d0a"
+    },
+    {
+      "chapter": 7,
+      "verse": 8,
+      "text": "וַיִּבְחַר הַמֶּלֶךְ אֶת־בַּקְחִידֶס מֵאֹהֲבֵי הַמֶּלֶךְ הַמּוֹשֵׁל בְּעֵבֶר הַנָּהָר וְהַגָּדוֹל בַּמַּלְכוּת וְהַנֶּאֱמָן לַמֶּלֶךְ׃",
+      "sourcePages": [
+        133
+      ],
+      "textSHA256": "41f15a2b97e489bd992e174e60983c314cbdcdb7504154611ff17e7e3dbb225f"
+    },
+    {
+      "chapter": 7,
+      "verse": 9,
+      "text": "וַיִּשְׁלַח אוֹתוֹ וְאֶת אַלְקִימוֹס הָרָשָׁע וַיְקַיֵּם־לוֹ אֶת־הַכְּהֻנָּה וַיְצַוֵּהוּ לַעֲשׂוֹת נְקָמָה בִּבְנֵי יִשְׂרָאֵל׃",
+      "sourcePages": [
+        133
+      ],
+      "textSHA256": "1bfb74f55a50bd63e0a46282278049e198fe052524e8038613e97e855a7415ec"
+    },
+    {
+      "chapter": 7,
+      "verse": 10,
+      "text": "וַיִּסַּע וַיָּבֹא בְּחַיִל גָּדוֹל לְאֶרֶץ יְהוּדָה וַיִּשְׁלַח מַלְאָכִים אֶל־יְהוּדָה וְאֶל־אֶחָיו בְּדִבְרֵי שָׁלוֹם בְּמִרְמָה׃",
+      "sourcePages": [
+        133
+      ],
+      "textSHA256": "2d32e23f6201e73f582c56ae65263f9b9acbc2b70866638273176b6d2c865717"
+    },
+    {
+      "chapter": 7,
+      "verse": 11,
+      "text": "וְלֹא שָׁמְעוּ לְדִבְרֵיהֶם כִּי־רָאוּ אֲשֶׁר בָּאוּ בְּחַיִל גָּדוֹל׃",
+      "sourcePages": [
+        133
+      ],
+      "textSHA256": "c8002f3c37dee9180ddea19d57ab851576cbf684d79aab16c41c176ae156e2bf"
+    },
+    {
+      "chapter": 7,
+      "verse": 12,
+      "text": "וַיֵּאָסְפוּ אֶל־אַלְקִימוֹס וּבַקְחִידֶס קְהַל־סוֹפְרִים לִדְרֹשׁ־צֶדֶק׃",
+      "sourcePages": [
+        133
+      ],
+      "textSHA256": "55999afe75d45e059ec848df33d728cb78f1919747922e8eecbcd0c8b4442b2d"
+    },
+    {
+      "chapter": 7,
+      "verse": 13,
+      "text": "וְרִאשׁוֹנִים הַחֲסִידִים הָיוּ בִּבְנֵי יִשְׂרָאֵל וַיְבַקְשׁוּ מֵהֶם שָׁלוֹם׃",
+      "sourcePages": [
+        133
+      ],
+      "textSHA256": "87eb488bbd91f23417803c6b2586f0ebcf300c041847706333ac7c3bdf8b9a78"
+    },
+    {
+      "chapter": 7,
+      "verse": 14,
+      "text": "כִּי־אָמְרוּ אִישׁ כֹּהֵן מִזֶּרַע אַהֲרֹן בָּא בְּחַיִל וְלֹא יַעֲשֶׂה־לָנוּ עַוְלָה׃",
+      "sourcePages": [
+        133
+      ],
+      "textSHA256": "3938767a17af85de6dd8edfedf771fc8f68125b9f5ec81a356ce73cf76e1b726"
+    },
+    {
+      "chapter": 7,
+      "verse": 15,
+      "text": "וַיְדַבֵּר אֲלֵיהֶם דִּבְרֵי שָׁלוֹם וַיִּשָּׁבַע לָהֶם לֵאמֹר לֹא נְבַקֵּשׁ לָכֶם רָעָה וּלְאוֹהֲבֵיכֶם׃",
+      "sourcePages": [
+        133
+      ],
+      "textSHA256": "5f4dbfb8f1d90e0375d4a3ef3259c305064ebdfd001333a720211cef5b555e33"
+    },
+    {
+      "chapter": 7,
+      "verse": 16,
+      "text": "וַיַּאֲמִינוּ לוֹ וַיִּקַּח מֵהֶם שִׁשִּׁים אִישׁ וַיְמִיתֵם בְּיוֹם אֶחָד כַדָבָר אֲשֶׁר כָּתַב׃",
+      "sourcePages": [
+        133
+      ],
+      "textSHA256": "d915d1cead6c7c2386513b83d2afa7260896f3e50dec4775312bb7ef428dc059"
+    },
+    {
+      "chapter": 7,
+      "verse": 17,
+      "text": "בְּשַׂר חֲסִידֶיךָ וְדָמָם שָׁפְכוּ סְבִיבוֹת יְרוּשָׁלִָם וְאֵין קוֹבֵר׃",
+      "sourcePages": [
+        133
+      ],
+      "textSHA256": "26205079251ffc9dd5bf3134d406a3435fceffb895d1461114733a7a9ebe81c7"
+    },
+    {
+      "chapter": 7,
+      "verse": 18,
+      "text": "וַיִּפֹּל פַּחְדָם וְאֵימָתָם עַל־כָּל־הָעָם כִּי־אָמְרוּ אֵין בָּהֶם צֶדֶק וּמִשְׁפָּט כִּי־עָבְרוּ אֶת־הַבְּרִית וְאֶת־הַשְּׁבוּעָה אֲשֶׁר נִשְׁבָּעוּ׃",
+      "sourcePages": [
+        133
+      ],
+      "textSHA256": "3b8de63f0e6c20c93a797a601ebf4dde9b4c5a389189993b068153b68f9b56ba"
+    },
+    {
+      "chapter": 7,
+      "verse": 19,
+      "text": "וַיֵּלֶךְ בַּקְחִידֶס מִירוּשָׁלִַם וַיִּחַן בְּבֵית־זָיִת וַיִּשְׁלַח וַיֶּאֱסֹף רַבִּים מִן־הָאֲנָשִׁים הַנִּמְלָטִים אֲשֶׁר אִתּוֹ וַאֲחָדִים מִן־הָעָם וַיִּשְׁחָטֵם אֶל־הַבְּאֵר הַגְּדוֹלָה׃",
+      "sourcePages": [
+        133,
+        134
+      ],
+      "textSHA256": "eb42460ecf30c2caf407691fd4f189935cbdf1d93633208006598ce295e7f59e"
+    }
+  ],
+  "reviewedPagesAfter": [
+    97,
+    98,
+    99,
+    100,
+    101,
+    102,
+    103,
+    104,
+    105,
+    106,
+    107,
+    108,
+    109,
+    110,
+    111,
+    112,
+    113,
+    114,
+    115,
+    116,
+    117,
+    118,
+    119,
+    120,
+    121,
+    122,
+    123,
+    124,
+    125,
+    126,
+    127,
+    128,
+    129,
+    130,
+    131,
+    132,
+    133
+  ],
+  "acceptedSourceNoteIds": [
+    "1ma-4-10-yod-dagesh",
+    "1ma-4-18-yod-dagesh",
+    "1ma-5-26-qoph-dagesh",
+    "1ma-5-26-samekh-vowel",
+    "1ma-5-34-yod-dagesh",
+    "1ma-5-36-qoph-dagesh",
+    "1ma-5-4-bet-dagesh",
+    "1ma-6-10-yod-dagesh",
+    "1ma-6-11-bet-dagesh",
+    "1ma-6-26-yod-dagesh",
+    "1ma-6-38-kaf-vowel"
+  ],
+  "unresolvedFindingsWithinReviewedPage": [],
+  "productionEligible": false
+}

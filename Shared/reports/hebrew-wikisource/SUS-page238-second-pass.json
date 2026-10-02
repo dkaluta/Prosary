@@ -1,0 +1,306 @@
+{
+  "schemaVersion": 1,
+  "book": "SUS",
+  "sourcePage": 238,
+  "scanSHA256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+  "review": "Complete lower-text word, pointing and punctuation comparison for this physical page, retaining source order. Page-crossing22 continuation remains pending on239; whole book remains draft.",
+  "changes": [
+    {
+      "verse": 9,
+      "before": "וַנַּהַפְכוּ",
+      "after": "ונַּהַפְכוּ",
+      "basis": "Root and peer find initial vav vowel merged with its foot; omit only provisional patah.",
+      "crop": "root-sus-v9-opening-full.png",
+      "cropSHA256": "9c75e0d98a7b9b902cdbe0f69d5c50d4e1bf17e0a0af8515cf0e96b5c5e710f1"
+    },
+    {
+      "verse": 9,
+      "sourceNote": {
+        "id": "sus-1-9-letter-1-vowel",
+        "kind": "unreadablePoint",
+        "anchor": "ונַּהַפְכוּ",
+        "occurrence": 1,
+        "letterIndex": 1,
+        "mark": "vowel",
+        "sourcePages": [
+          238
+        ],
+        "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=238"
+      },
+      "crop": "root-sus-v9-opening-full.png",
+      "cropSHA256": "9c75e0d98a7b9b902cdbe0f69d5c50d4e1bf17e0a0af8515cf0e96b5c5e710f1",
+      "basis": "Root and independent focused reviewer both cannot distinguish the initial vav vowel."
+    },
+    {
+      "verse": 11,
+      "before": "בוֹשׁוּ",
+      "after": "בֹשׁוּ",
+      "basis": "Direct tight crop shows only bet, shin and final vav; source holam is on bet. Remove invented first vav.",
+      "crop": "root-sus-v11-boshu.png",
+      "cropSHA256": "85deab52f91de8267fa83ab42e64f9f8bff502c973cd5e87431bd8cbb79dc4da"
+    },
+    {
+      "verse": 14,
+      "before": "ויסבו",
+      "after": "ויָסֹבּוּ",
+      "basis": "Source and independent focused read establish yod qamats, samekh holam without an interior dagesh, bet dagesh and final shuruq. Initial vav vowel and yod dagesh remain unreadable and are disclosed.",
+      "crop": "root-sus-v14-full-context.png",
+      "cropSHA256": "8f68075d56f0a8fbbc2a60dfcd19c07053648aa4ade2e429eab13d7ca5aeb0a5"
+    },
+    {
+      "verse": 14,
+      "sourceNote": {
+        "id": "sus-1-14-letter-1-vowel",
+        "kind": "unreadablePoint",
+        "anchor": "ויָסֹבּוּ",
+        "occurrence": 1,
+        "letterIndex": 1,
+        "mark": "vowel",
+        "sourcePages": [
+          238
+        ],
+        "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=238"
+      },
+      "crop": "root-sus-v14-full-context.png",
+      "cropSHA256": "8f68075d56f0a8fbbc2a60dfcd19c07053648aa4ade2e429eab13d7ca5aeb0a5",
+      "basis": "Initial vav foot and point fused in root and independent read."
+    },
+    {
+      "verse": 14,
+      "sourceNote": {
+        "id": "sus-1-14-letter-2-dagesh",
+        "kind": "unreadablePoint",
+        "anchor": "ויָסֹבּוּ",
+        "occurrence": 1,
+        "letterIndex": 2,
+        "mark": "dagesh",
+        "sourcePages": [
+          238
+        ],
+        "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=238"
+      },
+      "crop": "root-sus-v14-full-context.png",
+      "cropSHA256": "8f68075d56f0a8fbbc2a60dfcd19c07053648aa4ade2e429eab13d7ca5aeb0a5",
+      "basis": "Yod qamats is readable; interior patch cannot be distinguished from the letter stroke by either reader."
+    },
+    {
+      "verse": 17,
+      "before": "[וְתַמְרוּקִים",
+      "after": "ותַמְרוּקִים",
+      "basis": "Root and independent bracket check find only an initial vav, no separate opening bracket. Its lower vowel remains merged to the foot in root fine review and is omitted with a note.",
+      "crop": "root-sus-v17-tamrukim.png",
+      "cropSHA256": "7b047dac9f6b8f7789977c772eec386c146fe4efa15b2984fb852dff402ac4b3"
+    },
+    {
+      "verse": 17,
+      "sourceNote": {
+        "id": "sus-1-17-letter-1-vowel",
+        "kind": "unreadablePoint",
+        "anchor": "ותַמְרוּקִים",
+        "occurrence": 1,
+        "letterIndex": 1,
+        "mark": "vowel",
+        "sourcePages": [
+          238
+        ],
+        "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=238"
+      },
+      "crop": "root-sus-v17-tamrukim.png",
+      "cropSHA256": "7b047dac9f6b8f7789977c772eec386c146fe4efa15b2984fb852dff402ac4b3",
+      "basis": "The initial vav lower point is fused; no grammatical restoration of sheva. Peer confirms consonant/bracket scope only."
+    },
+    {
+      "verse": 18,
+      "before": "בירכתים",
+      "after": "בּיַרְכתַיִם",
+      "basis": "Independent focused read agrees with yod patah, resh sheva, tav patah and final yod hiriq; initial bet dagesh clear. Bet and kaf lower vowels remain unreadable.",
+      "crop": "root-sus-v18-birkatayim.png",
+      "cropSHA256": "202c1f52b591f6daf4e9a13c85734b533e841179e7fd8c46892b64111f7fb1c7"
+    },
+    {
+      "verse": 18,
+      "sourceNote": {
+        "id": "sus-1-18-letter-1-vowel",
+        "kind": "unreadablePoint",
+        "anchor": "בּיַרְכתַיִם",
+        "occurrence": 1,
+        "letterIndex": 1,
+        "mark": "vowel",
+        "sourcePages": [
+          238
+        ],
+        "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=238"
+      },
+      "crop": "root-sus-v18-birkatayim.png",
+      "cropSHA256": "202c1f52b591f6daf4e9a13c85734b533e841179e7fd8c46892b64111f7fb1c7",
+      "basis": "Bet dagesh retained; fused lower vowel cannot be resolved by either reader."
+    },
+    {
+      "verse": 18,
+      "sourceNote": {
+        "id": "sus-1-18-letter-4-vowel",
+        "kind": "unreadablePoint",
+        "anchor": "בּיַרְכתַיִם",
+        "occurrence": 1,
+        "letterIndex": 4,
+        "mark": "vowel",
+        "sourcePages": [
+          238
+        ],
+        "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=238"
+      },
+      "crop": "root-sus-v18-birkatayim.png",
+      "cropSHA256": "202c1f52b591f6daf4e9a13c85734b533e841179e7fd8c46892b64111f7fb1c7",
+      "basis": "Kaf lower mark is merged into its lower stroke in both focused reads."
+    },
+    {
+      "verse": 18,
+      "before": "צֻוּוּ",
+      "after": "צוּוּ",
+      "basis": "Both final vav shuruq dots are clear; tsadi lower vowel remains fused in root and independent review. Remove provisional qibbuts only.",
+      "crop": "root-sus-v18-tsuvvu.png",
+      "cropSHA256": "7cff68c40fd49be786efb32bb5af488e4d93c93b60db05cce553780e6bae75ad"
+    },
+    {
+      "verse": 18,
+      "sourceNote": {
+        "id": "sus-1-18-tsadi-vowel",
+        "kind": "unreadablePoint",
+        "anchor": "צוּוּ",
+        "occurrence": 1,
+        "letterIndex": 1,
+        "mark": "vowel",
+        "sourcePages": [
+          238
+        ],
+        "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=238"
+      },
+      "crop": "root-sus-v18-tsuvvu.png",
+      "cropSHA256": "7cff68c40fd49be786efb32bb5af488e4d93c93b60db05cce553780e6bae75ad",
+      "basis": "Tsadi lower point cannot be certified; both readable shuruq points retained."
+    },
+    {
+      "verse": 22,
+      "before": "צַר־לִי",
+      "after": "צַר לִי",
+      "basis": "The source breaks after צר at physical line17 and begins לי on line18, with no printed maqaf; remove draft-added punctuation."
+    }
+  ],
+  "acceptedSourceNoteIds": [
+    "sus-1-9-letter-1-vowel",
+    "sus-1-14-letter-1-vowel",
+    "sus-1-14-letter-2-dagesh",
+    "sus-1-17-letter-1-vowel",
+    "sus-1-18-letter-1-vowel",
+    "sus-1-18-letter-4-vowel",
+    "sus-1-18-tsadi-vowel"
+  ],
+  "unitLedger": [
+    {
+      "verse": 9,
+      "endVerse": 9,
+      "textSHA256": "adad8f3f4cdcfaeda46b3190ad9b34d6c314eb942758c4b39e8a71a9e83bdded",
+      "sourcePages": [
+        238
+      ]
+    },
+    {
+      "verse": 10,
+      "endVerse": 10,
+      "textSHA256": "f76e52ebe48caf28b4a7a33062e9a814cab4823dee60c598207ef29b3246490d",
+      "sourcePages": [
+        238
+      ]
+    },
+    {
+      "verse": 11,
+      "endVerse": 11,
+      "textSHA256": "4ff679959cc5836114bdcaa5dbd503baff21d64fc2f9ddac7aec97d246ffb8e5",
+      "sourcePages": [
+        238
+      ]
+    },
+    {
+      "verse": 12,
+      "endVerse": 13,
+      "textSHA256": "50474547cda9a0a733db79c35c01197ce5a785d6decfb9f09bbc50498fc8c582",
+      "sourcePages": [
+        238
+      ]
+    },
+    {
+      "verse": 14,
+      "endVerse": 14,
+      "textSHA256": "487f09c670f0c853850f93652aca7446579668764b80fdf31f75f9dcafcc1455",
+      "sourcePages": [
+        238
+      ]
+    },
+    {
+      "verse": 15,
+      "endVerse": 15,
+      "textSHA256": "9d8c064ffd9f1a5b5b318974ead061e90be289d35d24804a587e3f6af037a55c",
+      "sourcePages": [
+        238
+      ]
+    },
+    {
+      "verse": 16,
+      "endVerse": 16,
+      "textSHA256": "52fa2473bf4f751aae4e09642a4bd3803d9066e56b601e5523b3addcdab15f7a",
+      "sourcePages": [
+        238
+      ]
+    },
+    {
+      "verse": 17,
+      "endVerse": 17,
+      "textSHA256": "f23357d4f464d3154c2140e8656ffaa28f345b76ae73d7796bb6061ceb281e6d",
+      "sourcePages": [
+        238
+      ]
+    },
+    {
+      "verse": 18,
+      "endVerse": 18,
+      "textSHA256": "98ac4e13233b4e6d4c7e86e4ca805f421c853ee870ee3462ab06dde7136898f9",
+      "sourcePages": [
+        238
+      ]
+    },
+    {
+      "verse": 19,
+      "endVerse": 19,
+      "textSHA256": "1da673d0bce33f860fde96b01554a71e0d2c972ad7dd679c6d38cba048818151",
+      "sourcePages": [
+        238
+      ]
+    },
+    {
+      "verse": 20,
+      "endVerse": 20,
+      "textSHA256": "b45e0bb70fe6a37f190f1463c2e792ce6cb8a57c11c384c5b47555eab9e01871",
+      "sourcePages": [
+        238
+      ]
+    },
+    {
+      "verse": 21,
+      "endVerse": 21,
+      "textSHA256": "76462a76d9e25c662c4dabf78df1b080df5be11e9ddc9e18f56698d4fc481e57",
+      "sourcePages": [
+        238
+      ]
+    },
+    {
+      "verse": 22,
+      "endVerse": 22,
+      "textSHA256": "748d21f5752d7c89ab974ab7abfdbdd6e3b24161b7771c68765e5bfc06dd97a2",
+      "sourcePages": [
+        238,
+        239
+      ]
+    }
+  ],
+  "releaseEligible": false
+}

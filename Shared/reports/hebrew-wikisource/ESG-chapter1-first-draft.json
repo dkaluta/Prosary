@@ -1,0 +1,327 @@
+{
+  "schemaVersion": 1,
+  "book": "ESG",
+  "status": "First pointed chapter draft; not independently reviewed",
+  "sourceInventory": "Shared/reports/hebrew-wikisource/ESG-print-inventory.json",
+  "transcribedScope": {
+    "chapter": 1,
+    "verses": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17
+    ],
+    "sourcePages": [
+      215,
+      216,
+      217
+    ],
+    "bodyLines": 22
+  },
+  "method": "Direct visual transcription from native decoded primary images and narrow source crops. Points are first readings; every unit still needs an independent second comparison. No OCR, web body text, or alternate translation was copied.",
+  "firstDraftQueries": [
+    {
+      "chapter": 1,
+      "verse": 1,
+      "word": "למְלֹךְ",
+      "page": 215,
+      "detail": "Initial lamed vowel fuses with the lower lamed stroke in the native crop; omitted in first draft pending independent review. Mem sheva and lamed holam are retained.",
+      "crop": "word-limlokh.png"
+    },
+    {
+      "chapter": 1,
+      "verses": [
+        1,
+        11,
+        12,
+        15,
+        16,
+        17
+      ],
+      "word": "מָרְדכַי",
+      "pages": [
+        215,
+        216,
+        217
+      ],
+      "detail": "Dalet vowel and possible dagesh in each separately printed Mordecai occurrence require independent source assessment. They are not supplied from conventional spelling in this first draft. Other retained points also require the ordinary full independent pass.",
+      "crop": "word-mordekhai.png"
+    },
+    {
+      "chapter": 1,
+      "verse": 3,
+      "word": "מִירוּשָׁלִַם",
+      "page": 215,
+      "detail": "Lower lamed group appears patah plus a separate left dot. Current first reading retains both; independently distinguish patah/qamats before approval.",
+      "crop": "word-birushalem.png"
+    },
+    {
+      "chapter": 1,
+      "verse": 8,
+      "word": "בְּירְאוֹ",
+      "page": 215,
+      "detail": "Bet sheva and resh sheva are visible. The yod’s lower group is fused; its vowel is omitted rather than inferred.",
+      "crop": "word-fear.png"
+    },
+    {
+      "chapter": 1,
+      "verses": [
+        9,
+        11
+      ],
+      "word": "יְיָ",
+      "pages": [
+        215,
+        216
+      ],
+      "detail": "Printed divine abbreviation has two yods. Independently verify exact placement of its two lower points, rather than applying a modern pronunciation convention.",
+      "crop": "word-yaya.png"
+    },
+    {
+      "chapter": 1,
+      "verse": 13,
+      "word": "למְזִמּוֹתֵיהֶם",
+      "page": 216,
+      "detail": "Initial lamed vowel is fused and omitted. Native crop confirms no vav between zayin and second mem; do not modernize the spelling.",
+      "crop": "word-plots.png"
+    },
+    {
+      "chapter": 1,
+      "verse": 14,
+      "words": [
+        "ויוֹדוּ",
+        "ויוּבְלוּ"
+      ],
+      "page": 216,
+      "detail": "Initial narrative-vav vowel and yod interior point are fused or not securely distinguishable in both words; omitted in the first draft. Each needs separate independent resolution/source-note disposition.",
+      "crops": [
+        "word-vayodu.png",
+        "word-vayovalu.png"
+      ]
+    }
+  ],
+  "images": [
+    {
+      "file": "215-lower-150.png",
+      "sha256": "30a561640f4cdb5a8e01831e32f9c180ab31a9af5c553a9cf85a6fd44c0da4bd"
+    },
+    {
+      "file": "215-lower.png",
+      "sha256": "a0accfed8360a3699d815a4533f67bceafec6df96169eb4a8550b4aa3dfadab7"
+    },
+    {
+      "file": "215-upper-0.png",
+      "sha256": "6c96f84c943ce0dff0f9e20d7a34e7c9fd494fd925a10440721dab4a3ad17977"
+    },
+    {
+      "file": "215-upper-280.png",
+      "sha256": "57e187f9d9f5139e4c3f81d15464b037f9bc83227c7c2a449f13689860662774"
+    },
+    {
+      "file": "215-upper.png",
+      "sha256": "95def524f2fefa69aaddd751f2aac11b46ff7bf22ccc0e0d18fb21d68d8c8f54"
+    },
+    {
+      "file": "216-lower-30.png",
+      "sha256": "3752398db7d32685be9049e0391df53362cdb7d96ab020708f6bed8060803183"
+    },
+    {
+      "file": "216-lower.png",
+      "sha256": "06a72e1d5df38d73b83da69159c1472aaa9704f3f80acaf94157a720f690ce6e"
+    },
+    {
+      "file": "216-upper-90.png",
+      "sha256": "e13f59e181963b7aa0924d1797567d65d3645110bce4fc539c659709aa3485b4"
+    },
+    {
+      "file": "216-upper.png",
+      "sha256": "079be02a6d3682ef581dba24a47ed3473afa88d09e161d11d88c8eaf23f4b33d"
+    },
+    {
+      "file": "217-opening-0.png",
+      "sha256": "4deb411eb6ae59f379ba73c5adcd6c182816d67d1c8ff228885af0a0bfe19626"
+    },
+    {
+      "file": "217-opening.png",
+      "sha256": "4b871d4f9d039c3a83820a97e2b04c77aa7a85c175ed883d648f9ba76591fdb7"
+    },
+    {
+      "file": "word-bakhazoto.png",
+      "sha256": "28d105dbfefeb5636cf2642586c0ee5ae82c9c4c6202c1cd5c7e783910db0704"
+    },
+    {
+      "file": "word-begin.png",
+      "sha256": "ecd9ccc434f6a08d0ef76369485a201cb9dd029e97e9a2e361cea62d2cc89f48"
+    },
+    {
+      "file": "word-bigno.png",
+      "sha256": "537a2bd4ac03034141ada02b952a9d709abb17743892fcfbe71c0405e8e8938e"
+    },
+    {
+      "file": "word-biro.png",
+      "sha256": "c2a2c6ec2572321b7789046d957e643b6b6b917e56fae4c6e2d64c6ccd23241f"
+    },
+    {
+      "file": "word-birushalem.png",
+      "sha256": "fdd10185d88d0fd482a74be485996f8b6145c171eabd442576c9fa1797026cc5"
+    },
+    {
+      "file": "word-earlier.png",
+      "sha256": "b5d8f9e5a5cb2dce8a7e5a5d8859be07c21f7ab09abe0461ea3ca2608b2cab88"
+    },
+    {
+      "file": "word-et.png",
+      "sha256": "5e3e8398af7948cb29c15951284dae4fd91ea2e249ab3f6b0c34ea2f5f6ed822"
+    },
+    {
+      "file": "word-fear.png",
+      "sha256": "fe704000ef5a8eb790337aa4363f18d23ff56b4277571236ea2c7287b5ee3e5a"
+    },
+    {
+      "file": "word-heard.png",
+      "sha256": "d51eafd2349c9c664f625f1077ae472feb01d16e848f4fabbd0a70c3cc68d5b8"
+    },
+    {
+      "file": "word-limlokh.png",
+      "sha256": "5c9facf3f4910c505b1541c2c223165169e126b478f32f85ac35200d3411c060"
+    },
+    {
+      "file": "word-mordekhai.png",
+      "sha256": "59a7cd2bbf705e50c6bd0a2aee2f9e7213d25d8ac6c99062ee698679d61a2945"
+    },
+    {
+      "file": "word-nevukhadnetsar.png",
+      "sha256": "092cc193741778c0afb2724a5fc8be8e6d62e1ae6e0ac4a72d9eac74879b2d17"
+    },
+    {
+      "file": "word-niv.png",
+      "sha256": "168936f1745728124a35b12cd0b040136e046197ef925e798854a7474090f1c5"
+    },
+    {
+      "file": "word-plots.png",
+      "sha256": "f6257a52f7868ac2289efb40f9f5d471c0662b914cecfff805504c8cc8da6f2b"
+    },
+    {
+      "file": "word-vayakots.png",
+      "sha256": "de5c6ff0811f3836bdc4cb9452abd760e847af15069bf9c872b29ff527d901e6"
+    },
+    {
+      "file": "word-vayevla.png",
+      "sha256": "81f152d455b705adcda4583c113e5c813dc2515a20317888e558c720a8b6e370"
+    },
+    {
+      "file": "word-vayik.png",
+      "sha256": "715ec5330c508a0b29f03badf1e8aa0d06b26a8d09d2e7437699afab51f2e571"
+    },
+    {
+      "file": "word-vayikten.png",
+      "sha256": "abe36b4a91bbfa0a2a9a860ce0b0471370e0d41cfeb73bdbd3fd8a9bfa3712ad"
+    },
+    {
+      "file": "word-vayitatu.png",
+      "sha256": "5437e3dfaec331bd604d8d68fcc313a70eeaa6c7b852d6b1d53bfe2387d97cc8"
+    },
+    {
+      "file": "word-vayodu.png",
+      "sha256": "d228fe8e93b86733166135690aef8c202175f4157272afab411fc3f76bdb9a2b"
+    },
+    {
+      "file": "word-vayovalu.png",
+      "sha256": "9cb1f33ca5ea14a34bb5b5b7123b414315601da56241de714eed78d92b741e8d"
+    },
+    {
+      "file": "word-veyizaku.png",
+      "sha256": "433768fd99027272399e8a9e73960d18c2c5a709a8af8ed80bd43991f4d870be"
+    },
+    {
+      "file": "word-yaya.png",
+      "sha256": "66ae0e7823f787e0dd143be1bab9f80ecb3868b1b780715e5e877a7ef4a51100"
+    }
+  ],
+  "unitTextHashes": [
+    {
+      "verse": 1,
+      "textSHA256": "03b3cbb1c2d75e6e956931714f10151a0eeea3efac6d3d81cf0c0c00b3f5d190"
+    },
+    {
+      "verse": 2,
+      "textSHA256": "2d33f7556a288465b280ac3fb7cc5841b05f7cfb231086c7361f0c6761e317c7"
+    },
+    {
+      "verse": 3,
+      "textSHA256": "c27e48306da78340c6b1cfebcba7b162e8d02192e628c2ef50c862533daabb55"
+    },
+    {
+      "verse": 4,
+      "textSHA256": "13aadfe5acc774a20365f2f535439a4a695fa9c85eff31def38a35ad04c47c49"
+    },
+    {
+      "verse": 5,
+      "textSHA256": "ba854af5eacd82668ec1011022601d16b8935ac2aa853bfed813ea72045a1e57"
+    },
+    {
+      "verse": 6,
+      "textSHA256": "2c292eb80aedb0cf6eb1f367a18ec5019a74b4f94cd59ac4c03b6d4194aff70b"
+    },
+    {
+      "verse": 7,
+      "textSHA256": "3aab6b34e84f8a4ead5b598a26ea17d4fe32e98dc603a2e6ccb7fdd8a4c00045"
+    },
+    {
+      "verse": 8,
+      "textSHA256": "bff976e2b6f51915d617933e916f457ad84ef84f165d0fe6e051f4506b007009"
+    },
+    {
+      "verse": 9,
+      "textSHA256": "7b1e0f42e00eb936b50e456f12131dc6abc2804e45030234ae2dd8bc87707419"
+    },
+    {
+      "verse": 10,
+      "textSHA256": "2b4fb8d444dec03359c187c394fc3b54bf237a98b8daf492ebf3cf35858be2b4"
+    },
+    {
+      "verse": 11,
+      "textSHA256": "f2909c33a56a29928abde769cca18514f6162850fd18b8af2c285dd8ebc2b5c3"
+    },
+    {
+      "verse": 12,
+      "textSHA256": "96b586c41f4a37729f0317fa34aa8a5f3a3ebf689b2ab436983502f2c2fba37e"
+    },
+    {
+      "verse": 13,
+      "textSHA256": "1f2c49b6272afd98090e961068bff39ea1d821c6c48a6f804d49b841af784e28"
+    },
+    {
+      "verse": 14,
+      "textSHA256": "20f5a7fb074ece20ee2185293882c4dd3db6e3270de7d4479951492c897cd4f1"
+    },
+    {
+      "verse": 15,
+      "textSHA256": "b7a9fab6d6f9cd19a25d6f400d37f2e7a65dd146baa94e68f6906086cd05940d"
+    },
+    {
+      "verse": 16,
+      "textSHA256": "84833699f09d53ede9aa744fecea1ec38f314b510b3cc04e3614c45722c5db55"
+    },
+    {
+      "verse": 17,
+      "textSHA256": "2c834130bd4d7e1c780e6387e4e485b617a788b1baa63e2993317e890191150c"
+    }
+  ],
+  "canonicalSHA256": "2ea0ede954a8b7e1a5d6bcd124d284e960acdf386a0029b136637d59da60165e",
+  "remaining": "84 other primary units plus final colophon; all first-chapter review; complete-book verification and separate root approval.",
+  "approved": false
+}

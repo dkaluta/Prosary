@@ -1,3 +1,4 @@
+using System.Text.Json;
 using Prosary.Models;
 using Prosary.Persistence;
 using Prosary.Services;
@@ -55,7 +56,8 @@ public class BundledReadingsTests
         {
             ["douay-rheims-1899"] = 102, ["synodal-1876"] = 102,
             ["masoretic-delitzsch"] = 103, ["ang-dating-biblia-1905"] = 103,
-            ["crampon-1923"] = 103, ["kulish-1905"] = 103
+            ["crampon-1923"] = 103, ["kulish-1905"] = 103,
+            ["jesuit-arabic-1897"] = 102
         };
         foreach (var (editionId, chapter) in psalmEditions)
         {
@@ -65,14 +67,114 @@ public class BundledReadingsTests
             Assert.All(psalm.Verses, verse => Assert.Equal(chapter, verse.Chapter));
             Assert.True(psalm.IncludesWholeVerses);
         }
-        foreach (var editionId in new[] { "martini", "jesuit-arabic-1897" })
-            Assert.Null(Store.LoadPassage("daily", cases[1].Citation, editionId));
+        Assert.Null(Store.LoadPassage("daily", cases[1].Citation, "martini"));
         var french = Store.LoadPassage("daily", cases[0].Citation, "crampon-1923");
         Assert.NotNull(french);
         Assert.Equal(new[] { "27:30" }.Concat(Enumerable.Range(1, 7).Select(v => $"28:{v}")),
             french.Verses.Select(v => $"{v.Chapter}:{v.Verse}"));
         Assert.All(french.Verses, verse => Assert.False(string.IsNullOrWhiteSpace(verse.Text)));
-        Assert.Null(Store.LoadPassage("daily", cases[0].Citation, "masoretic-delitzsch"));
+        var hebrew = Assert.IsType<ScripturePassage>(Store.LoadPassage("daily", cases[0].Citation, "masoretic-delitzsch"));
+        Assert.Equal(new[] { "27:30" }.Concat(Enumerable.Range(1, 7).Select(v => $"28:{v}")),
+            hebrew.Verses.Select(v => $"{v.Chapter}:{v.Verse}"));
+        Assert.Equal("SIR", hebrew.Source!.Book);
+        Assert.Equal("דברי שמעון בן־סירא", hebrew.Source.Name);
+        Assert.Contains("ההדיר ותרגם אברהם כהנא", hebrew.Source.Attribution);
+        Assert.False(hebrew.Source.IsComplete);
+    }
+
+    [Fact]
+    public void EveryBundledHebrewSourcePassageResolvesItsCreditAndOrderedDisplay()
+    {
+        using var document = JsonDocument.Parse(File.ReadAllText(
+            Path.Combine(AppContext.BaseDirectory, "Data", "readings-texts.json")));
+        var data = document.RootElement;
+        var sources = data.GetProperty("passageSources").EnumerateObject().ToList();
+        Assert.Equal(20, sources.Count);
+        var edition = Assert.IsType<ScriptureEdition>(Store.ResolveEdition("masoretic-delitzsch", "he"));
+        var wholeKeys = data.GetProperty("wholeVersePassages").EnumerateArray().Select(value => value.GetString()).ToHashSet();
+        foreach (var entry in sources)
+        {
+            var parts = entry.Name.Split('|', 2);
+            var source = entry.Value.GetProperty(edition.Id);
+            var expectedRows = data.GetProperty("passages").GetProperty(entry.Name).GetProperty(edition.Id).EnumerateArray().ToList();
+            var passage = Assert.IsType<ScripturePassage>(Store.LoadPassage(parts[0], parts[1], edition.Id));
+            Assert.Equal(source.GetProperty("book").GetString(), passage.Source!.Book);
+            Assert.Equal(expectedRows.Select(row => (row.GetProperty("chapter").GetInt32(), row.GetProperty("verse").GetInt32(),
+                    End: row.TryGetProperty("endVerse", out var end) ? (int?)end.GetInt32() : null, row.GetProperty("text").GetString())),
+                passage.Verses.Select(row => (row.Chapter, row.Verse, row.EndVerse, row.Text)));
+            var displays = passage.SourceDisplays(edition);
+            Assert.NotNull(displays);
+            var units = displays.SelectMany(display => display.Units).ToList();
+            var blocks = source.GetProperty("contentBlocks").EnumerateArray().ToList();
+            Assert.Equal(blocks.Select(block => block.GetProperty("id").GetString()), units.Select(unit => unit.Id));
+            Assert.Equal(passage.Verses, units.Where(unit => unit.Primary is not null).Select(unit => unit.Primary!));
+
+            var view = new ReadingPassageViewModel(Store, edition, parts[0],
+                new ReadingCitation("reading", "Reading", parts[1]), "he", entry.Name, edition.Id);
+            view.IsExpanded = true;
+            Assert.True(view.HasPassage);
+            Assert.True(view.HasSourceName);
+            Assert.Equal(source.GetProperty("name").GetString(), view.SourceName);
+            Assert.Equal(source.GetProperty("attribution").GetString(), view.Attribution);
+            Assert.Equal(new Uri(source.GetProperty("sourceURL").GetString()!), view.SourceUri);
+            Assert.Equal(!source.GetProperty("isComplete").GetBoolean(), view.IsPartial);
+            Assert.Equal(wholeKeys.Contains(entry.Name), view.IncludesWholeVerses);
+            var rendered = view.Chapters.SelectMany(chapter => chapter.Verses!).ToList();
+            Assert.Equal(units.Select(unit => (unit.Id, unit.Kind, unit.PrintedLabel)),
+                rendered.Select(row => (row.Id, row.Kind, row.PrintedLabel)));
+            Assert.Equal(units.Select(unit => unit.Primary?.Text ?? unit.Text), rendered.Select(row => row.Text));
+            var expectedNotes = expectedRows.SelectMany(NoteIds)
+                .Concat(blocks.Where(block => block.GetProperty("kind").GetString() != "verse").SelectMany(NoteIds)).Order();
+            Assert.Equal(expectedNotes, rendered.SelectMany(row => row.SourceNotes ?? []).Select(note => note.Id).Order());
+        }
+
+        static IEnumerable<string> NoteIds(JsonElement row) => row.TryGetProperty("sourceNotes", out var notes)
+            ? notes.EnumerateArray().Select(note => note.GetProperty("id").GetString()!).ToList() : [];
+    }
+
+    [Fact]
+    public void HebrewSirachDailyPassageKeepsItsActualSourceNoteAndPartialNotice()
+    {
+        const string citation = "Sirach 51:13–17";
+        var edition = Assert.IsType<ScriptureEdition>(Store.ResolveEdition("masoretic-delitzsch", "he"));
+        var passage = Assert.IsType<ScripturePassage>(Store.LoadPassage("daily", citation, edition.Id));
+        Assert.Equal(Enumerable.Range(9, 4), passage.Verses.Select(verse => verse.Verse));
+        Assert.All(passage.Verses, verse => Assert.Equal(51, verse.Chapter));
+        var note = Assert.Single(passage.Verses.SelectMany(verse => verse.SourceNotes ?? []));
+        Assert.Equal("sir-51-11-alef-vowel", note.Id);
+        Assert.Equal("וְאזְכֶּרְךָ", note.Anchor);
+        Assert.Equal(2, note.LetterIndex);
+        Assert.Equal("vowel", note.Mark);
+        Assert.Equal(new[] { 529 }, note.SourcePages);
+        var view = new ReadingPassageViewModel(Store, edition, "daily",
+            new ReadingCitation("reading", "Sirach", citation), "he", "date", "edition");
+        view.IsExpanded = true;
+        Assert.True(view.IsPartial);
+        Assert.Equal(note.Id, Assert.Single(view.Chapters.SelectMany(chapter => chapter.Verses!)
+            .SelectMany(row => row.SourceNotes ?? [])).Id);
+        Assert.DoesNotContain(note.Id, view.PassageText);
+    }
+
+    [Fact]
+    public void HebrewDanielAppointmentUsesTheCreditedAzariahSourceAndCombinedUnit()
+    {
+        const string citation = "Daniel 3:25, 34–45";
+        var edition = Assert.IsType<ScriptureEdition>(Store.ResolveEdition("masoretic-delitzsch", "he"));
+        var passage = Assert.IsType<ScripturePassage>(Store.LoadPassage("daily", citation, edition.Id));
+        Assert.Equal("S3Y", passage.Source!.Book);
+        Assert.Equal("תפלת עזריה ושירת שלשת הנערים בכבשן", passage.Source.Name);
+        Assert.Contains("תרגום דב היליר", passage.Source.Attribution);
+        Assert.Equal(new[] { 4 }.Concat(Enumerable.Range(13, 10)).Append(24), passage.Verses.Select(row => row.Verse));
+        Assert.All(passage.Verses, row => Assert.Equal(1, row.Chapter));
+        Assert.Equal(23, Assert.Single(passage.Verses.Where(row => row.Verse == 22)).EndVerse);
+        var view = new ReadingPassageViewModel(Store, edition, "daily",
+            new ReadingCitation("reading", "Daniel", citation), "he", "date", "edition");
+        view.IsExpanded = true;
+        Assert.Equal(passage.Source.Name, view.SourceName);
+        Assert.Equal(passage.Source.Attribution, view.Attribution);
+        Assert.True(view.IncludesWholeVerses);
+        Assert.False(view.IsPartial);
+        Assert.Equal(1, Assert.Single(view.Chapters).Number);
     }
 
     [Fact]
@@ -192,6 +294,47 @@ public class BundledReadingsTests
     }
 
     [Fact]
+    public void ExpandedPeshittaOldTestamentKeepsSourcePairAndExplicitGaps()
+    {
+        var edition = Store.ResolveEdition("peshitta-1905", "en");
+        Assert.NotNull(edition);
+        var genesis = Store.LoadPassage("daily", "Genesis 1:1–13", edition.Id);
+        Assert.NotNull(genesis);
+        Assert.Equal(Enumerable.Range(1, 13), genesis.Verses.Select(verse => verse.Verse));
+        Assert.StartsWith("ܒܪܺܝܫܺܝܬ݂ ܒܪܳܐ", genesis.Verses.First().TransliteratedText);
+        Assert.All(genesis.Verses, verse =>
+        {
+            Assert.Equal(1, verse.Chapter);
+            Assert.Equal(PrayerTypography.Script.Hebrew, PrayerTypography.ScriptOf(verse.DisplayedText(edition, "Hebr")));
+            Assert.Equal(PrayerTypography.Script.Syriac, PrayerTypography.ScriptOf(verse.DisplayedText(edition, "Syrc")));
+            Assert.Equal(verse.TransliteratedText, verse.DisplayedText(edition, "Syrc"));
+        });
+        var torah = Store.Passage("torah", "Genesis 47:28–50:26", edition.Id);
+        Assert.Equal(85, torah.Count);
+        Assert.Equal(47, torah.First().Chapter);
+        Assert.Equal(50, torah.Last().Chapter);
+        Assert.All(torah, verse => Assert.False(string.IsNullOrWhiteSpace(verse.TransliteratedText)));
+        Assert.Empty(Store.Passage("daily", "Psalm 23:1–3a; 23:3b–4; 23:5–5; 23:6–6", edition.Id));
+    }
+
+    [Fact]
+    public void ExpandedArabicKeepsPrintedPsalmNumberingAndCompleteGospelVerses()
+    {
+        const string editionId = "jesuit-arabic-1897";
+        var gospel = Store.Passage("daily", "Luke 12:8–12", editionId);
+        Assert.Equal(Enumerable.Range(8, 5), gospel.Select(verse => verse.Verse));
+        Assert.All(gospel, verse =>
+        {
+            Assert.Equal(12, verse.Chapter);
+            Assert.Equal(PrayerTypography.Script.Arabic, PrayerTypography.ScriptOf(verse.Text));
+        });
+        var psalm = Store.Passage("daily", "Psalm 23:1–3a; 23:3b–4; 23:5–5; 23:6–6", editionId);
+        Assert.Equal(Enumerable.Range(1, 6), psalm.Select(verse => verse.Verse));
+        Assert.All(psalm, verse => Assert.Equal(22, verse.Chapter));
+        Assert.Equal("مزمور لداود. الرب راعي فلا يعوزني شيء.", psalm.First().Text);
+    }
+
+    [Fact]
     public void BundledOldJesuitArabicOpensReviewedPassagesWithoutBorrowingMissingText()
     {
         var edition = Store.ResolveEdition("", "ar-LB");
@@ -211,7 +354,7 @@ public class BundledReadingsTests
         Assert.True(row.IsRightToLeft);
         Assert.Contains(verses.Last().Text, row.PassageText);
 
-        Assert.Empty(Store.Passage("daily", "Luke 6:27–38", edition.Id));
+        Assert.Empty(Store.Passage("daily", "Luke 13:1–9", edition.Id));
         Assert.Empty(Store.Passage("torah", "Genesis 47:28–50:26", edition.Id));
     }
 

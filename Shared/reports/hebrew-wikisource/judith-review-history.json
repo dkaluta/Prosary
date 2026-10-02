@@ -1,0 +1,2876 @@
+{
+  "book": "JDT",
+  "notice": "Chronological review history. Earlier tentative, unresolved, or false readings are explicitly superseded by later corrections and user decisions; this history is not an approval. Current text and the latest consolidated record take precedence.",
+  "reviewNotes": [
+    "Work in progress. Chapter 1 is a first visual transcription; full second comparison of vowel points is pending. No production import is permitted.",
+    "PDF B356 prints 2:12–13 and 2:16–17 as combined source units; they must retain endVerse labels.",
+    "1:6: final proper-name/clause letters and vowel points after עילם require another close review.",
+    "Chapter 2 is a first visual transcription, awaiting the full letter/vowel-mark comparison. Source chapter 2 ends at 27; source chapter 3 begins with the coastlands fear passage usually labeled 2:28.",
+    "Chapters 3 and 4 are first visual drafts; full letter and niqqud comparison is pending.",
+    "3:4 omitted pending close review of the word immediately after הנה. 3:10 omitted pending close review of the word preceding המישור. No substitute text supplied.",
+    "4:5 printed adverb before קצרו, 4:6 place names, and 4:13 ויצם require focused verification.",
+    "Chapter 5 is a first visual draft; second letter and niqqud comparison pending. Source 5:13–14 is a combined printed unit. Focused check pending on 5:22 העומר/העומד and לנפצות/לנפנות glyphs.",
+    "Chapter 6 is a first visual draft only; every letter and niqqud needs a second comparison. Units 6:4 (word following כי אם) and 6:15 (proper-name letters) remain omitted pending exact glyph resolution. Focused verification also needed for 6:7 מחרוף/מחדוף and 6:8 במעלות/במשלות; these draft readings are not approved. Source comparison crops: B-361-chapter6.png and B-362-chapter6.png.",
+    "Chapter 7 is a first visual draft only, pending a complete second letter/niqqud pass. Unit 7:18 remains omitted while proper names are resolved from print. Also recheck 7:3 location names, 7:4 הגחלות/הנחלות and 7:28 exact vowels/prefixes. Source crops B-362/363/364-chapter7.png. No alternate translation wording was copied into this draft.",
+    "Chapter 8 first visual draft, pending full second comparison of letters, punctuation and niqqud. Unit 8:1 genealogy omitted pending exact-name review. Verify 8:14 תבונו/תבונתו, 8:16 התחבלו/תחבלו form, 8:21 source boundary after מדמנו, 8:29 נודע pointing, and Divine Name abbreviation vowel treatment throughout (do not normalize from memory). Source crops B-364/365/366-chapter8.png.",
+    "Chapter 9 first visual draft only. Unit 9:7 omitted pending exact horse-word spelling. Independently recheck 9:3 מנכשם/מכבשם and 9:9 חפצתי/חטאתי, 9:14 source wording (do not replace unusual phrase by another version); all niqqud pending second comparison. Crops B-367-chapter9.png plus full B366/368 for boundary continuations.",
+    "Chapter 10 is a first visual draft only, full second letter/niqqud comparison pending. Printed 10:11–12 is a combined unit; preserve it. Focused recheck 10:7 שבו/שנו, 10:10 ויביטו, 10:13 מבשר and 10:15 opening word; no normalization from other translations. Crops B-368/369-chapter10.png.",
+    "Chapter 11 first visual draft, awaiting full second letter/niqqud comparison. Printed chapter ends at22 on B371; do not add an assumed verse23. Focused checks:11:7 חיו pointing,11:10 מקדם word,11:14 התרה and מעת, and11:20 קצה ending. Source crops B-369/370/371-chapter11.png.",
+    "Chapter 12 first visual draft, pending full second comparison. Source12:9–10 is one combined printed unit. Preserve source12:7 במחנה (commentary notes its difficulty rather than repairing it). Recheck 12:3 לתתלך form,12:16 desire verb pointing,12:18 חיתי, and12:19 הכינה/הביאה. Source crops B-371/372-chapter12.png.",
+    "Chapter 13 first visual draft only. Printed chapter ends20; this must not be numerically forced onto appointments13:22–25. Full second comparison pending; recheck13:1 משה opening,13:3 מחדרה,13:9 ותעל vsותגל,13:10 final gate spelling,13:16 לרשתו,13:20 לפקדך. Source crops B-372/373-chapter13.png.",
+    "Printed verse-ending punctuation on the visually transcribed pages is Hebrew sof pasuq U+05C3, preserved in verse text instead of ASCII colon. Metadata punctuation is unchanged. This does not change draft review status.",
+    "Chapter14 first visual draft; full second letters/niqqud comparison pending. Unit14:15 omitted pending the word after אל־חדר. Recheck14:2 ותתנו form,14:3 מצביהם,14:5 שלחו,14:7 ויקימו,14:17 וידל (not to be silently corrected by context). Source B373/374-chapter14 crops.",
+    "Chapter15 first visual draft; complete second letter/niqqud pass pending. Recheck15:4 place names,15:7 ויתנו/וישבו opening,15:10 ומהלל form,15:13 final בפיהם. Kraken B373 trial highlighted13:17 extra ת in prior draft; close source crop B-373-thirteen17 confirms ויחרד, corrected here. Divine Name abbreviation glyph/pointing still requires global source comparison.",
+    "Chapter16 first visual draft; full second letter/niqqud comparison pending. Source16:10–11 is one combined label. Units16:15–16 omitted pending exact words/points. Recheck16:1 במנים and Divine Name abbreviation,16:7 בר/במר,16:8 לפתותו,16:10 חתּם and ענוי/חלשי,16:14 ויעש,16:17 ברגון,16:23 ותזקן/ותוקן. Source B375/376-chapter16 crops. All16 chapter drafts now exist; this is not completed proofreading.",
+    "Second consonant pass begun using local Kraken only to flag differences, then the image to decide corrections. Recorded changes and source crops are in /private/tmp/prosary-jdt-review/corrections-1.json. 14:15 draft unit restored after resolving המטות. 1:15 וישמד consonants independently agreed; vowel points and all remaining review notes still require final resolution. Draft is not approved.",
+    "Chapter9 second consonant pass corrected source mismatches, with exact before/after and crop evidence in /private/tmp/prosary-jdt-review/corrections-2.json. 9:7 now drafted after resolving בזרוע רגלי in body plus printed footnote. 9:9 חפצתי was directly confirmed, not changed to an inferred synonym. Complete final point/punctuation review still pending.",
+    "Chapter6 second consonant pass corrections recorded in /private/tmp/prosary-jdt-review/corrections-3.json. Source15 proper names now drafted after letter review; name niqqud remains pending. 6:7 word before חרב still needs exact letters/points (tight crop B-361-jdt6-7word2.png). Suspected5–14 boundary shift was rejected: the printed sof-pasuq boundaries support the existing unit splits; no boundary change made.",
+    "Chapter1 second consonant pass corrections recorded in /private/tmp/prosary-jdt-review/corrections-4.json, including original defective spelling באך and רחבותיה. 1:8 בגויי was visually retained despite OCR alternative. Final complete point and punctuation comparison still pending.",
+    "Chapter2/3 first-page second consonant corrections recorded in /private/tmp/prosary-jdt-review/corrections-5.json. OCR alternatives להכין/להבין and תאחזו/תאחז were checked visually; original להכין and תאחזו retained. Final complete points and punctuation pass pending.",
+    "Chapters3–5 source corrections from B358–359 recorded in /private/tmp/prosary-jdt-review/corrections-6.json. The 4:5 phrase is אך־זה, confirmed by a tight original crop; no inferred synonym used. All final points and punctuation remain pending.",
+    "Chapters5–6 additional consonant corrections recorded in /private/tmp/prosary-jdt-review/corrections-7.json. 5:22 printed לנפות preserved without interpolating צ; 6:2 אמרים verified against body and printed explanatory footnote. 6:7 preceding word still unresolved. Full niqqud/punctuation comparison pending.",
+    "Chapters6–7 consonant corrections recorded in /private/tmp/prosary-jdt-review/corrections-8.json. Source6:7 מתניף letters independently agreed by root; its exact pointing remains for final pass. OCR alternatives 7:10 הריהם and7:14 וימסו rejected against source ההרים and ויספו. 7:3 ויטו/ונטו remains for tight glyph review, unchanged. All final points/punctuation pending.",
+    "Chapter8 and9:1 consonant corrections recorded in /private/tmp/prosary-jdt-review/corrections-9.json. 8:21 source חלולם confirmed by tight crop; 8:12 original ביום retained against OCR false alternative. Final full pointing and punctuation pass remains pending.",
+    "Chapters9–11 consonant corrections from B367–369 recorded in /private/tmp/prosary-jdt-review/corrections-10.json. 9:14 earlier mistaken את corrected to clearly printed אל. 10:21 original האפריון retained despite OCR extra ס. Complete final points and punctuation comparison remains pending.",
+    "Chapters11–13 consonant corrections from B370–372 recorded in /private/tmp/prosary-jdt-review/corrections-11.json. 11:12 final verb remains unresolved pending independent reading; current לאכול is known draft error, not approved. 13:1 בנשף/להפרד/העמדים/למשכנותם directly confirmed with tight source crop. All pointing/punctuation pending complete final pass.",
+    "Chapters11:12 and13–15 remaining second consonant corrections recorded in /private/tmp/prosary-jdt-review/corrections-12.json. 11:12 לבזבז resolved without adding an unsupported finalו. 14:13/18 העברים retained despite OCR ד alternatives. Full final niqqud/punctuation review remains pending.",
+    "Chapter16 remaining consonant corrections recorded in /private/tmp/prosary-jdt-review/corrections-13.json. OCR false readings16:10 שערו/קרם and16:23 ותוקן retained as source שריו/חתם and ותזקן. First OCR-assisted second consonant sweep has now visited all B354–376; this is not final approval, and ambiguities plus complete niqqud/punctuation pass remain. 16:15 compared against same-line נגד; ינעו/יגעו still unresolved, omitted.",
+    "A separately scanned copy of the same printed volume is substantially clearer: https://he.wikisource.org/wiki/קובץ:Apocrypha_Kahana_B_extra_scan.pdf, SHA256 b72eaf5d2d858fabb7c3438ac0436ccd64c394a7dd2fad609efabe628d5534c7, 272 two-page spreads. Its evidence and verified mappings are recorded in Shared/reports/hebrew-wikisource/judith-extra-scan-evidence.json. SourcePages continue to identify the original supplied volume. Five formerly omitted draft units restored using the alternate image in corrections-14.json (3:10,6:4,7:18,8:1,16:16). 3:4 and16:15 remain omitted pending exact glyph resolution. Full niqqud/punctuation and independent text comparison are not complete; no approval or production import.",
+    "Complete page comparisons against both scans are recorded in Shared/reports/hebrew-wikisource/judith-page-review.json: original B354,355,356,358 now have no remaining findings from this pass. ReviewedPages is page-specific; other pages are not implied complete. Corrections-15.json records source-point changes including Cilicia hiriq,3:11 גבי patach,4:6 the printed Beth-Eloah marks. B357 remains pending3:4; B376 remains pending16:15. Book remains draft and is not production-approved.",
+    "User resolved the two remaining word queries on2026-09-27:3:4 חַוֹתֵינוּ and16:15 יַנֻעוּ, without adding unspecified dagesh or normalizing grammar. Exact raw feedback and crop hashes are recorded in judith-user-glyph-decisions.json. Both units restored as drafts. Original pages357,360,361 now have complete page comparison records.4:6 final-heh pointing still merits independent comparison;359 is not marked reviewed. Clearer6:7 is תִּדְקֹר מָתְנֶיךָ, correcting earlier false consonant approval of מתניף; source letters and points, not a semantic emendation. No production approval.",
+    "Original B362 fully compared with alternate188 right; record added to judith-page-review.json. Printed double-yod Divine Name abbreviation preserved in6:18–19. Beth-Eloah ending points corrected individually where seen, not by global replacement. Clearer7:3 confirms ויטו; retained. Book remains draft.",
+    "Original B363 fully compared with alternate188 left; source page evidence added. Restored7:18 names and points checked again against the clear print, including כּוּז. Beth-Eloah ending and7:19 double-yod abbreviation corrected individually. Book remains draft.",
+    "The4:6 final-heh uncertainty is resolved: its detached lower horizontal bar is a printed furtive patach, independently identified by parent reviewer and confirmed in isolated JDT4-6-final-heh.png. Restored אֱלוֹהַּ; the earlier no-patach interpretation is superseded. Whole-page comparisons B359 andB364 are now complete and recorded. B364 includes another full genealogy/points comparison8:1. Book remains draft.",
+    "Original B365 fully compared with alternate189 left, including all points/punctuation and carried source units. Printed Divine Name abbreviation and8:11 Beth-Eloah points preserved as recorded in corrections-20.json; book remains draft.",
+    "Original B366–367 fully compared with alternate190 both sides, all words/points/punctuation/source boundaries. Literal printed Divine Name point placement retained:8:35 וַיָי and9:1 לַיָי differ from8:25 לַיְיָ. Parent independently confirmed8:35. Corrections-21.json records exact evidence. Book remains draft.",
+    "Original B368 fully compared with alternate191 right. Earlier6:18 prefixed abbreviation corrected to literal לַיָי after targeted enlarged crop, superseding corrections-17 normalized point placement. This printed pattern also occurs at9:1 and10:8;8:25 is genuinely לַיְיָ. No global normalization performed. Book remains draft.",
+    "Original B369 fully compared with alternate191 left, including consonants, printed points, sof pasuq and carried unit boundaries.10:19 corrected from enlarged source; book remains draft.",
+    "Original B371 fully compared with alternate192 left, all words/points/punctuation/source boundaries. B370 remains pending the isolated11:14 point query; no claim of completion there yet. Corrections-24.json records changes; book remains draft.",
+    "Original B370 and B372 fully compared with alternate192 right/193 right.11:14 הַתָּרָה independently confirmed by parent from isolated source glyphs, closing that point query.13:9 literal printed וַתָּגָל retained from enlarged source, no grammatical normalization. Book remains draft.",
+    "Original B373 fully compared with alternate193 left. Parent independently confirms14:7 וַיִּקֹּד (vav patah; yod hiriq/dagesh; qof holam/dagesh; no dalet vowel).13:17 retains literal prefixed לַיָי. Book remains draft.",
+    "Original B374 fully compared with alternate194 right.14:10 retains literal printed בַּיָי.15:4 place names directly checked in enlarged crop, retaining printed holam in חובה/חולה. Book remains draft.",
+    "Original B375 fully compared with alternate194 left. Enlarged15:10 supports וּמְהֻלָּל;16:1 retains printed בְתֹף without an invented bet dagesh, independently confirmed by parent, and literal לַיָי. Book remains draft.",
+    "Original B376 fully compared with alternate195 right.16:10 clearer print is שָׂעֲרוּ פָרַס, superseding old blurred שריו חתם: parent independently confirms first word/points and tentative second, final samekh then confirmed against printed כאפס on same page; no pe dagesh inserted.16:14 ends וַיַּעַשׂ without sof pasuq; next clause belongs solely to marginlabel15, duplicate removed. User-specified16:15 יַנֻעוּ retained exactly. All23pages now have whole-page comparisons, but book remains draft pending additional clearer-scan consonant cross-check and independent inventory approval.",
+    "Final clearer-scan OCR comparison found additional consonantal mistakes surviving the earlier visual pass; all changes recorded in corrections30 were individually checked against clearer print, including printed vowel marks on changed words. This supersedes earlier whole-page completion confidence for affected units; final comparison and independent review still in progress. No OCR-only changes or grammatical spelling normalization.",
+    "Final clearer-scan comparison31 corrects source spelling/words and changed-word niqqud in twelve places. Root independently confirms2:19 printed וּבְפָרָשָׁם and retaining2:10 וְתֹאחֲזוּ despite OCR dropping its vav. Source11:10 enlarged pixels clearly show עִמָּהֶם, superseding earlier misread עָמְדָם. Full adjudication ledger still being finalized; book remains draft."
+  ],
+  "actions": [
+    {
+      "pass": 1,
+      "reference": "JDT1:6",
+      "before": "וּנְבָאוֹ",
+      "after": "וַיָּבֹאוּ",
+      "evidence": "B-354-body.png",
+      "note": "Consonants rechecked visually; full final point/punctuation pass remains pending."
+    },
+    {
+      "pass": 1,
+      "reference": "JDT1:15",
+      "before": "וַיִּשְׁמֹר",
+      "after": "וַיַּשְׁמֵד",
+      "evidence": "B-355-jdt1-last-words.png",
+      "note": "Consonant correction independently agreed by root; final pointing check still pending."
+    },
+    {
+      "pass": 1,
+      "reference": "JDT14:7",
+      "before": "וּבְכָל־הַגּוֹיִם",
+      "after": "וּבְכָל־גּוֹי",
+      "evidence": "B-374-jdt14-7b.png",
+      "note": "Consonants rechecked visually; full final point/punctuation pass remains pending."
+    },
+    {
+      "pass": 1,
+      "reference": "JDT14:11",
+      "before": "וַיֵּרְדוּ",
+      "after": "גְּדוּדִים",
+      "evidence": "B-374-review14b.png",
+      "note": "Consonants rechecked visually; full final point/punctuation pass remains pending."
+    },
+    {
+      "pass": 1,
+      "reference": "JDT14:12",
+      "before": "וְגַם הָלְכוּ אֶל־הַשֹּׁטְרִים",
+      "after": "וְהֵם הָלְכוּ אֶל־הַשָּׂרִים",
+      "evidence": "B-374-review14b.png",
+      "note": "Consonants rechecked visually; full final point/punctuation pass remains pending."
+    },
+    {
+      "pass": 1,
+      "reference": "JDT14:16",
+      "before": "וַיִּזְעַק בְּקוֹל גָּדוֹל וּבְכִי וַאֲנָחָה",
+      "after": "וַיִּצְעַק בְּקוֹל גָּדוֹל וַיֵּבְךְ וַיֵּאָנַח",
+      "evidence": "B-374-review14b.png; B-374-jdt14-16b.png",
+      "note": "Consonants rechecked visually; full final point/punctuation pass remains pending."
+    },
+    {
+      "pass": 1,
+      "reference": "JDT14:17",
+      "before": "וַיֵּדֶל",
+      "after": "וַיְדַלֵּג",
+      "evidence": "B-374-jdt14-17.png",
+      "note": "Consonants rechecked visually; full final point/punctuation pass remains pending."
+    },
+    {
+      "pass": 1,
+      "reference": "JDT14:18",
+      "before": "חֶרְפָּה עָשְׂתָה אַחַת",
+      "after": "חֵרְפָה אִשָּׁה אַחַת",
+      "evidence": "B-374-review14c.png",
+      "note": "Consonants rechecked visually; full final point/punctuation pass remains pending."
+    },
+    {
+      "pass": 1,
+      "reference": "JDT14:19",
+      "before": "פְקוּדֵי",
+      "after": "פְּקִידֵי",
+      "evidence": "B-374-review14c.png",
+      "note": "Consonants rechecked visually; full final point/punctuation pass remains pending."
+    },
+    {
+      "pass": 1,
+      "reference": "JDT15:5",
+      "before": "וַיַּכּוּ",
+      "after": "וַיִּכְרְתוּ",
+      "evidence": "B-375-chapter15.png",
+      "note": "Consonants rechecked visually; full final point/punctuation pass remains pending."
+    },
+    {
+      "pass": 1,
+      "reference": "JDT15:7",
+      "before": "וַיִּתְּנוּ",
+      "after": "וַיִּפְנוּ",
+      "evidence": "B-375-chapter15.png",
+      "note": "Consonants rechecked visually; full final point/punctuation pass remains pending."
+    },
+    {
+      "pass": 1,
+      "reference": "JDT15:9",
+      "before": "עַמֵּנוּ",
+      "after": "זַרְעֵנוּ",
+      "evidence": "B-375-chapter15.png",
+      "note": "Consonants rechecked visually; full final point/punctuation pass remains pending."
+    },
+    {
+      "pass": 1,
+      "reference": "JDT15:11",
+      "before": "וַתַּעֲבֵר",
+      "after": "וַתִּצְבֹּר",
+      "evidence": "B-375-chapter15.png",
+      "note": "Consonants rechecked visually; full final point/punctuation pass remains pending."
+    },
+    {
+      "pass": 1,
+      "reference": "JDT15:13",
+      "before": "וְזֵרִים",
+      "after": "וּנְזָרִים",
+      "evidence": "B-375.png",
+      "note": "Consonants rechecked visually; full final point/punctuation pass remains pending."
+    },
+    {
+      "pass": 1,
+      "reference": "JDT16:1",
+      "before": "אֶת־הַתּוֹדָה",
+      "after": "אֶת־הַהוֹדָיָה",
+      "evidence": "B-375-chapter16.png",
+      "note": "Consonants rechecked visually; full final point/punctuation pass remains pending."
+    },
+    {
+      "pass": 1,
+      "reference": "JDT14:15",
+      "action": "Added previously withheld draft unit after resolving המטות against source crop B-374-review14b.png. Full final point comparison remains pending."
+    },
+    {
+      "pass": 2,
+      "reference": "JDT9:3",
+      "before": "מִנְכָּשָׁם",
+      "after": "מִכַּחֲשָׁם",
+      "evidence": "B-367-jdt9-3word2.png; printed footnote repeats מכחשם",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 2,
+      "reference": "JDT9:3",
+      "before": "וַתֵּת",
+      "after": "וַתַּךְ",
+      "evidence": "B-367-jdt9-3word.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 2,
+      "reference": "JDT9:4",
+      "before": "שְׁמַע אֵלַי",
+      "after": "שִׁמְעָה אֵלַי",
+      "evidence": "B-367-chapter9.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 2,
+      "reference": "JDT9:8",
+      "before": "לְהָרֹס",
+      "after": "לִגְדֹּעַ",
+      "evidence": "B-367-jdt9-9wrath.png; B-367-chapter9.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 2,
+      "reference": "JDT9:9",
+      "before": "מַחֲצְךָ",
+      "after": "חֲמָתְךָ",
+      "evidence": "B-367-jdt9-9wrath2.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 2,
+      "reference": "JDT9:13",
+      "before": "וּלְקֶצֶף",
+      "after": "וּלְפֶגַע",
+      "evidence": "B-367-jdt9-13word.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 2,
+      "reference": "JDT9:14",
+      "before": "אֲלֵיהֶם",
+      "after": "אֶת־כָּל־עָם",
+      "evidence": "B-367-jdt9-14word.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 2,
+      "reference": "JDT9:7",
+      "action": "Added previously withheld unit after resolving בזרוע רגלי against source body and repeated footnote. Final niqqud comparison pending."
+    },
+    {
+      "pass": 3,
+      "reference": "JDT6:2",
+      "before": "בְּעַם יִשְׂרָאֵל",
+      "after": "בְּזֶרַע יִשְׂרָאֵל",
+      "evidence": "B-361-chapter6.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 3,
+      "reference": "JDT6:2",
+      "before": "וְהַשְׁמִיד",
+      "after": "וִיאַבֵּד",
+      "evidence": "B-361-chapter6.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 3,
+      "reference": "JDT6:6",
+      "before": "מֵעֵדַת",
+      "after": "מִזֶּרַע",
+      "evidence": "B-361-jdt6-4-8.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 3,
+      "reference": "JDT6:8",
+      "before": "יִמְסְרוּ",
+      "after": "יַעֲמִידוּ",
+      "evidence": "B-361-jdt6-7word.png; B-361-chapter6.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 3,
+      "reference": "JDT6:10",
+      "before": "בִּלְבָבְךָ",
+      "after": "בְּלִבְּךָ",
+      "evidence": "B-361-chapter6.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 3,
+      "reference": "JDT6:12",
+      "before": "הַמַּעֲנוֹת",
+      "after": "הַמַּעְיָנוֹת",
+      "evidence": "B-362-chapter6.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 3,
+      "reference": "JDT6:14",
+      "before": "וַיִּמְסְרוּ",
+      "after": "וַיַּעֲמִידוּ",
+      "evidence": "B-362-chapter6.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 3,
+      "reference": "JDT6:16",
+      "before": "כָּל־הַבַּחוּר",
+      "after": "כָּל־בָּחוּר",
+      "evidence": "B-362-chapter6.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 3,
+      "reference": "JDT6:19",
+      "before": "אֶל־רִיבָם",
+      "after": "אֶל־זְדוֹנָם",
+      "evidence": "B-362-chapter6.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 3,
+      "reference": "JDT6:15",
+      "action": "Proper-name consonants reread from B362-chapter6 with raw OCR as discrepancy aid; unit now drafted. All name niqqud pending final comparison."
+    },
+    {
+      "pass": 4,
+      "reference": "JDT1:4",
+      "before": "מִסְחָרָיו",
+      "after": "מִסְפָּרָיו",
+      "evidence": "B-354-jdt1-4word.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 4,
+      "reference": "JDT1:7",
+      "before": "מַעֲרָב וְיֹשְׁבֵי",
+      "after": "מַעֲרָב יֹשְׁבֵי",
+      "evidence": "B-355-one7-9.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 4,
+      "reference": "JDT1:10",
+      "before": "עַד־בּוֹאֲךָ",
+      "after": "עַד־בֹּאֲךָ",
+      "evidence": "B-355-one10-11.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 4,
+      "reference": "JDT1:11",
+      "before": "אֶת־דִּבְרֵי",
+      "after": "אֶת־דְּבַר",
+      "evidence": "B-355-one10-11.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 4,
+      "reference": "JDT1:11",
+      "before": "לִקְרָאתוֹ",
+      "after": "לְעֶזְרָתוֹ",
+      "evidence": "B-355-one10-11.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 4,
+      "reference": "JDT1:11",
+      "before": "מִפָּנָיו",
+      "after": "מִמֶּנּוּ",
+      "evidence": "B-355-one10-11.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 4,
+      "reference": "JDT1:12",
+      "before": "עַד־בּוֹאֲךָ",
+      "after": "עַד־בֹּאֲךָ",
+      "evidence": "B-355-one12-14.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 4,
+      "reference": "JDT1:13",
+      "before": "וַיָּבֹא עִם־כָּל־חֵילוֹ",
+      "after": "וַיֵּצֵא עִם־כָּל־חֵילוֹ",
+      "evidence": "B-355-one12-14.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 4,
+      "reference": "JDT1:14",
+      "before": "רְחוֹבוֹתֶיהָ",
+      "after": "רְחֹבוֹתֶיהָ",
+      "evidence": "B-355-jdt1-14word-final.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 5,
+      "reference": "JDT2:1",
+      "before": "שְׁמוֹנֶה־עֶשְׂרֵה",
+      "after": "שְׁמֹנֶה־עֶשְׂרֵה",
+      "evidence": "B-356.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 5,
+      "reference": "JDT2:3",
+      "before": "לְאַבֵּד בְּרִמְשׂ",
+      "after": "לְאַבֵּד כָּל־נֶפֶשׁ",
+      "evidence": "B-356-jdt2-3.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 5,
+      "reference": "JDT2:10",
+      "before": "תָבוֹא",
+      "after": "תֵּצֵא",
+      "evidence": "B-356-jdt2-10-correct.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 5,
+      "reference": "JDT2:12",
+      "before": "תַּעֲשֶׂה תַּעֲשֶׂה",
+      "after": "וְעָשֹׂה תַּעֲשֶׂה",
+      "evidence": "B-356-jdt2-13.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 5,
+      "reference": "JDT2:27",
+      "before": "וַיַּכּוּ אֶת־עָרֵיהֶם",
+      "after": "וַיָּבֹז אֶת־עָרֵיהֶם",
+      "evidence": "B-357-jdt2-27verb.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 5,
+      "reference": "JDT2:27",
+      "before": "וְנִשְׁחַת",
+      "after": "וַיִּשְׁחַת",
+      "evidence": "B-357-jdt2-27.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 5,
+      "reference": "JDT3:1",
+      "before": "וְנָפַל פַּחְדּוֹ",
+      "after": "וַיִּפֹּל פַּחְדּוֹ",
+      "evidence": "B-357.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 6,
+      "reference": "JDT3:8",
+      "before": "וּמְחֹלוֹת",
+      "after": "וּמְחוֹלוֹת",
+      "evidence": "B-358.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 6,
+      "reference": "JDT3:9",
+      "before": "אֶת־נְבוּכַדְנֶאצַר",
+      "after": "אֶל־נְבוּכַדְנֶאצַר",
+      "evidence": "B-358.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 6,
+      "reference": "JDT3:9",
+      "before": "וְכָל־הָעָם",
+      "after": "וְכָל־עַם",
+      "evidence": "B-358.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 6,
+      "reference": "JDT3:11",
+      "before": "גֶּבַע",
+      "after": "גֶּבִי",
+      "evidence": "B-358-jdt3-11name.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 6,
+      "reference": "JDT4:2",
+      "before": "מִמֶּנּוּ",
+      "after": "מִפָּנָיו",
+      "evidence": "B-358.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 6,
+      "reference": "JDT4:3",
+      "before": "אַחֲרֵי חִלּוּלָם",
+      "after": "אַחַר חִלּוּלָם",
+      "evidence": "B-358.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 6,
+      "reference": "JDT4:4",
+      "before": "וְעֻנָה",
+      "after": "וְיַעְזֵר",
+      "evidence": "B-358-jdt4-4name-full.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 6,
+      "reference": "JDT4:5",
+      "before": "אָרְחָה",
+      "after": "אַךְ־זֶה",
+      "evidence": "B-358-jdt4-5word-full.png; B-358-jdt4-5word.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 6,
+      "reference": "JDT4:6",
+      "before": "אֲשֶׁר־בְּקָרוֹב לְדוֹתָן",
+      "after": "אֲשֶׁר־קָרוֹב לְדוֹתַיִן",
+      "evidence": "B-359.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 6,
+      "reference": "JDT4:12",
+      "before": "וַיִּצְעֲקוּ",
+      "after": "וַיִּזְעֲקוּ",
+      "evidence": "B-359-jdt4-12-15.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 6,
+      "reference": "JDT4:12",
+      "before": "וּמִקְדָּשָׁם",
+      "after": "וּמִקְדָּשֵׁיהֶם",
+      "evidence": "B-359-jdt4-12-15.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 6,
+      "reference": "JDT4:12",
+      "before": "וּלְחֶרְפַּת",
+      "after": "וּלְחֶרְפָּה",
+      "evidence": "B-359-jdt4-12-15.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 6,
+      "reference": "JDT4:14",
+      "before": "הַכֹּהֲנִים עוֹבְדֵי",
+      "after": "הַכֹּהֲנִים וְעוֹבְדֵי",
+      "evidence": "B-359-jdt4-12-15.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 6,
+      "reference": "JDT4:14",
+      "before": "וּנְדָבֹתָם",
+      "after": "וּנְדָבוֹתָם",
+      "evidence": "B-359.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 6,
+      "reference": "JDT4:15",
+      "before": "מִצְנְפוֹתֵיהֶם",
+      "after": "מִגְבְּעוֹתֵיהֶם",
+      "evidence": "B-359-jdt4-14-15.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 6,
+      "reference": "JDT5:1",
+      "before": "הִתְעוֹרְרוּ",
+      "after": "הִתְעַתְּדוּ",
+      "evidence": "B-359.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 6,
+      "reference": "JDT5:2",
+      "before": "וּלְפַחֲווֹת",
+      "after": "וּלְכָל־פַּחֲווֹת",
+      "evidence": "B-359.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 7,
+      "reference": "JDT5:4",
+      "before": "הֵקֵלּוּ",
+      "after": "הִטּוּ",
+      "evidence": "B-360-jdt5-4.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 7,
+      "reference": "JDT5:6",
+      "before": "יְלִידֵי",
+      "after": "יַלְדֵי",
+      "evidence": "B-360.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 7,
+      "reference": "JDT5:8",
+      "before": "וַיָּסוּרוּ",
+      "after": "וַיָּסֻרוּ",
+      "evidence": "B-360.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 7,
+      "reference": "JDT5:10",
+      "before": "וַיָּגוּרוּ",
+      "after": "וַיָּגֻרוּ",
+      "evidence": "B-360.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 7,
+      "reference": "JDT5:13",
+      "before": "וַיַּבֵּשׁ",
+      "after": "וַיּוֹבֵשׁ",
+      "evidence": "B-360.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 7,
+      "reference": "JDT5:15",
+      "before": "בְּחָזְקָם",
+      "after": "בְּתָקְפָּם",
+      "evidence": "B-360.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 7,
+      "reference": "JDT5:16",
+      "before": "וְהַפְּרִזִּי",
+      "after": "וְהַפְּרִיזִי",
+      "evidence": "B-360.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 7,
+      "reference": "JDT5:17",
+      "before": "כִּי אֱלֹהֵיהֶם",
+      "after": "כִּי אֱלֹהִים",
+      "evidence": "B-360.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 7,
+      "reference": "JDT5:18",
+      "before": "סָרוּ מֵהַדֶּרֶךְ",
+      "after": "סָרוּ מִן־הַדֶּרֶךְ",
+      "evidence": "B-360-jdt5-17-18.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 7,
+      "reference": "JDT5:20",
+      "before": "לָעָם",
+      "after": "בָּעָם",
+      "evidence": "B-360.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 7,
+      "reference": "JDT5:22",
+      "before": "כַּדְּבָרִים הָאֵלֶּה",
+      "after": "הַדְּבָרִים הָאֵלֶּה",
+      "evidence": "B-361-jdt5-22a.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 7,
+      "reference": "JDT5:22",
+      "before": "הָעוֹמֵר",
+      "after": "הָעוֹמֵד",
+      "evidence": "B-361.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 7,
+      "reference": "JDT5:22",
+      "before": "לְנַפְּצוֹת",
+      "after": "לְנַפּוֹת",
+      "evidence": "B-361-jdt5-22.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 7,
+      "reference": "JDT5:23",
+      "before": "כִּי הַזֶּה עַם",
+      "after": "כִּי הִנֵּה עַם",
+      "evidence": "B-361.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 7,
+      "reference": "JDT5:24",
+      "before": "וְהָיוּ",
+      "after": "וְיִהְיוּ",
+      "evidence": "B-361-jdt5-23-24.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 7,
+      "reference": "JDT5:24",
+      "before": "אֲדֹנֵינוּ",
+      "after": "אֲדוֹנֵנוּ",
+      "evidence": "B-361.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 7,
+      "reference": "JDT6:2",
+      "before": "אֶפְרַיִם",
+      "after": "אֱמֹרִים",
+      "evidence": "B-361.png body and explanatory footnote",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 7,
+      "reference": "JDT6:2",
+      "before": "כַּיּוֹם",
+      "after": "כְּהַיּוֹם",
+      "evidence": "B-361.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 7,
+      "reference": "JDT6:6",
+      "before": "עַד אִנָּקֵם",
+      "after": "עַד אֲשֶׁר אִנָּקֵם",
+      "evidence": "B-361.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 7,
+      "reference": "JDT6:7",
+      "before": "חַרְבִּי חֵילִי",
+      "after": "חֶרֶב חֵילִי",
+      "evidence": "B-361.png; preceding word still unresolved",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 8,
+      "reference": "JDT6:7",
+      "before": "מֵחֲרוֹף",
+      "after": "מִתְנִיף",
+      "evidence": "B-361-jdt6-7word2.png; root independently agrees consonants מתניף",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 8,
+      "reference": "JDT6:14",
+      "before": "שׁוּלֵי",
+      "after": "שִׁפּוּלֵי",
+      "evidence": "B-362.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 8,
+      "reference": "JDT6:14",
+      "before": "וַיְבִיאֻהוּ",
+      "after": "וַיְבִיאוּהוּ",
+      "evidence": "B-362.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 8,
+      "reference": "JDT6:19",
+      "before": "מַקְדִּישֶׁיךָ",
+      "after": "מִקְדָּשֶׁיךָ",
+      "evidence": "B-362-jdt6-19-full.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 8,
+      "reference": "JDT7:1",
+      "before": "לַעֲבֹר",
+      "after": "לַעֲבוֹר",
+      "evidence": "B-362.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 8,
+      "reference": "JDT7:3",
+      "before": "קִימֹן",
+      "after": "קִימוֹן",
+      "evidence": "B-362.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 8,
+      "reference": "JDT7:4",
+      "before": "הַגְּבֹהִים",
+      "after": "הַגְּבוֹהִים",
+      "evidence": "B-362.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 8,
+      "reference": "JDT7:4",
+      "before": "הַגְּחָלוֹת",
+      "after": "הַנְּחָלוֹת",
+      "evidence": "B-362.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 8,
+      "reference": "JDT7:9",
+      "before": "שְׁמַע אֲדֹנִי",
+      "after": "יִשְׁמַע אֲדוֹנִי",
+      "evidence": "B-363.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 8,
+      "reference": "JDT7:11",
+      "before": "אֲדֹנִי",
+      "after": "אֲדוֹנִי",
+      "evidence": "B-363.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 8,
+      "reference": "JDT7:11",
+      "before": "מַעֲרָכָה",
+      "after": "מַעֲרֶכֶת",
+      "evidence": "B-363.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 8,
+      "reference": "JDT7:12",
+      "before": "בְּמַחֲנֶךָ",
+      "after": "בְּמַחֲנֶיךָ",
+      "evidence": "B-363.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 8,
+      "reference": "JDT7:14",
+      "before": "בִּרְחֹבוֹת",
+      "after": "בִּרְחוֹבוֹת",
+      "evidence": "B-363.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 8,
+      "reference": "JDT7:15",
+      "before": "וַהֲשֵׁבֹתָ",
+      "after": "וַהֲשֵׁבוֹתָ",
+      "evidence": "B-363-jdt7-15-full.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 8,
+      "reference": "JDT7:19",
+      "before": "וַיִּזְעֲקוּ",
+      "after": "וַיִּצְעֲקוּ",
+      "evidence": "B-363.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 8,
+      "reference": "JDT7:20",
+      "before": "רַגְלִי וָרֶכֶב וּפָרָשִׁים",
+      "after": "הָרֶגֶל וְהָרֶכֶב וְהַפָּרָשִׁים",
+      "evidence": "B-363.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 8,
+      "reference": "JDT7:21",
+      "before": "הַבֹּרוֹת",
+      "after": "הַבּוֹרוֹת",
+      "evidence": "B-363.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 8,
+      "reference": "JDT7:22",
+      "before": "בִּרְחֹבוֹת",
+      "after": "בִּרְחוֹבוֹת",
+      "evidence": "B-363.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 8,
+      "reference": "JDT7:23",
+      "before": "וַיִּזְעֲקוּ",
+      "after": "וַיִּצְעֲקוּ",
+      "evidence": "B-363.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 8,
+      "reference": "JDT7:28",
+      "before": "הַפּוֹקֵד",
+      "after": "הַפֹּקֵד",
+      "evidence": "B-364.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 8,
+      "reference": "JDT7:28",
+      "before": "בַּיּוֹם הַזֶּה",
+      "after": "הַיּוֹם הַזֶּה",
+      "evidence": "B-364.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 8,
+      "reference": "JDT7:29",
+      "before": "זַעֲקַת",
+      "after": "אַנְקַת",
+      "evidence": "B-364.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 8,
+      "reference": "JDT7:29",
+      "before": "וַיִּזְעֲקוּ",
+      "after": "וַיִּצְעֲקוּ",
+      "evidence": "B-364.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 8,
+      "reference": "JDT7:32",
+      "before": "וַיָּפֶץ",
+      "after": "וַיְפַזֵּר",
+      "evidence": "B-364.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 8,
+      "reference": "JDT7:32",
+      "before": "וַיְשַׁלַּח נָשִׁים",
+      "after": "וַיְשַׁלַּח הַנָּשִׁים",
+      "evidence": "B-364.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 9,
+      "reference": "JDT8:3",
+      "before": "הַמְאַלְּמִים",
+      "after": "הַמְאַלֵּם",
+      "evidence": "B-364-jdt8-3word.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 9,
+      "reference": "JDT8:7",
+      "before": "וַתֵּשֶׁב עֲלֵיהֶם",
+      "after": "וַתֵּשֶׁב עִמָּהֶם",
+      "evidence": "B-365.png; footnote repeats exact עמהם",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 9,
+      "reference": "JDT8:11",
+      "before": "לִפְנֵי הָעָם הַיּוֹם",
+      "after": "לִפְנֵי הָעָם בַּיּוֹם",
+      "evidence": "B-365.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 9,
+      "reference": "JDT8:14",
+      "before": "וְתָבוֹנוֹ תָבִינוּ",
+      "after": "וּתְבוּנָתוֹ תַכִּירוּ",
+      "evidence": "B-365.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 9,
+      "reference": "JDT8:15",
+      "before": "לְעָזְרֵנוּ",
+      "after": "לַעֲזוֹר לָנוּ",
+      "evidence": "B-365.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 9,
+      "reference": "JDT8:18",
+      "before": "בְּדוֹרוֹתֵינוּ",
+      "after": "בְּדֹרוֹתֵינוּ",
+      "evidence": "B-365.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 9,
+      "reference": "JDT8:18",
+      "before": "מֵעַמֵּנוּ",
+      "after": "מִמֶּנּוּ",
+      "evidence": "B-365.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 9,
+      "reference": "JDT8:18",
+      "before": "אֲשֶׁר עָבְדוּ",
+      "after": "אֲשֶׁר יַעַבְדוּ",
+      "evidence": "B-365.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 9,
+      "reference": "JDT8:21",
+      "before": "חֲלָלִים",
+      "after": "חִלּוּלָם",
+      "evidence": "B-366-jdt8-21word-full.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 9,
+      "reference": "JDT8:22",
+      "before": "יָשֵׁב",
+      "after": "יָשִׁיב",
+      "evidence": "B-366.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 9,
+      "reference": "JDT8:28",
+      "before": "יְכַחֵשׁ",
+      "after": "יַכְחִישׁ",
+      "evidence": "B-366.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 9,
+      "reference": "JDT8:29",
+      "before": "נוֹדַע",
+      "after": "יָדַע",
+      "evidence": "B-366.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 9,
+      "reference": "JDT8:29",
+      "before": "לְבָבֵךְ",
+      "after": "לִבֵּךְ",
+      "evidence": "B-366.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 9,
+      "reference": "JDT8:31",
+      "before": "נִתְעַלֵּף",
+      "after": "נִתְעַטֵּף",
+      "evidence": "B-366.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 9,
+      "reference": "JDT8:34",
+      "before": "מֶה שֶׁבִּלְבָבִי",
+      "after": "מֶה עִם לְבָבִי",
+      "evidence": "B-366.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 9,
+      "reference": "JDT8:35",
+      "before": "לְמָגִנֵּךְ",
+      "after": "לְפָנַיִךְ",
+      "evidence": "B-366.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 9,
+      "reference": "JDT9:1",
+      "before": "קִרְבַת קְטֹרֶת",
+      "after": "קָרְבָה קְטֹרֶת",
+      "evidence": "B-366-jdt9-1.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 9,
+      "reference": "JDT9:1",
+      "before": "וַתִּזְעַק",
+      "after": "וַתִּצְעַק",
+      "evidence": "B-366.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 10,
+      "reference": "JDT9:5",
+      "before": "מֵאַחֲרֵיכֶן",
+      "after": "מֵאַחֲרֵי־כֵן",
+      "evidence": "B-367.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 10,
+      "reference": "JDT9:5",
+      "before": "זָמַמְתָּ",
+      "after": "זַמּוֹתָ",
+      "evidence": "B-367.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 10,
+      "reference": "JDT9:13",
+      "before": "אֲחֻזּוֹת",
+      "after": "אֲחֻזַּת",
+      "evidence": "B-367.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 10,
+      "reference": "JDT9:14",
+      "before": "אֶת־כָּל־עָם",
+      "after": "אֶל־כָּל־עָם",
+      "evidence": "B-367-jdt9-14-final.png; corrects earlier mistaken את reading",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 10,
+      "reference": "JDT10:1",
+      "before": "לִזְעֹק",
+      "after": "לִצְעֹק",
+      "evidence": "B-368.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 10,
+      "reference": "JDT10:7",
+      "before": "וְהִנֵּה שָׁבוּ לְבוּשֶׁיהָ וַתֹּסֶף",
+      "after": "וּפָנֶיהָ שָׁבוּ וּלְבוּשָׁהּ נֶהְפַּךְ",
+      "evidence": "B-368-jdt10-7.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 10,
+      "reference": "JDT10:11",
+      "before": "לָעֵמֶק",
+      "after": "לְעֻמָּתָן",
+      "evidence": "B-368-jdt10-11.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 10,
+      "reference": "JDT10:11",
+      "before": "וַיִּשְׁאָלֶיהָ",
+      "after": "וַיִּשְׁאָלוּהָ",
+      "evidence": "B-368.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 10,
+      "reference": "JDT10:11",
+      "before": "כִּי הֵם נְתוּנִים",
+      "after": "כִּי הִנָּם נְתוּנִים",
+      "evidence": "B-368.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 10,
+      "reference": "JDT10:15",
+      "before": "הֵיטַבְתְּ",
+      "after": "הִצַּלְתְּ",
+      "evidence": "B-368.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 10,
+      "reference": "JDT10:16",
+      "before": "בִלְבָבֵךְ",
+      "after": "בְּלִבֵּךְ",
+      "evidence": "B-369.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 10,
+      "reference": "JDT10:18",
+      "before": "אוֹדוֹתֶיהָ",
+      "after": "אֹדוֹתֶיהָ",
+      "evidence": "B-369.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 10,
+      "reference": "JDT10:19",
+      "before": "לְהַשְׁאִיר",
+      "after": "לְהַשְׁאָר",
+      "evidence": "B-369.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 10,
+      "reference": "JDT10:19",
+      "before": "יוּכְלוּ לְהַחְכִּים",
+      "after": "וְיֻכְלוּ לְהִתְחַכֵּם",
+      "evidence": "B-369.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 10,
+      "reference": "JDT10:22",
+      "before": "פֶּתַח־הַחֶדֶר",
+      "after": "פֶּתַח־חֶדֶר",
+      "evidence": "B-369.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 10,
+      "reference": "JDT11:1",
+      "before": "בִלְבָבֵךְ",
+      "after": "בְּלִבֵּךְ",
+      "evidence": "B-369.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 10,
+      "reference": "JDT11:2",
+      "before": "הַיּוֹשֵׁב",
+      "after": "הַיֹּשֵׁב",
+      "evidence": "B-369.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 10,
+      "reference": "JDT11:2",
+      "before": "הֲרִימוֹתִי",
+      "after": "הֲרִימֹתִי",
+      "evidence": "B-369.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 10,
+      "reference": "JDT11:6",
+      "before": "יַעֲשֶׂה עִמְּךָ",
+      "after": "עָשֹׂה יַעֲשֶׂה עִמְּךָ",
+      "evidence": "B-369.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 10,
+      "reference": "JDT11:6",
+      "before": "יִכָּזֵב",
+      "after": "יִבָּצֵר",
+      "evidence": "B-369.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 10,
+      "reference": "JDT11:7",
+      "before": "עַל־יָדְךָ וּגְבוּרָתְךָ",
+      "after": "עַל־יְדֵי גְבֻרָתְךָ",
+      "evidence": "B-369.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 11,
+      "reference": "JDT11:8",
+      "before": "לְבָבְךָ",
+      "after": "לִבְּךָ",
+      "evidence": "B-370.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 11,
+      "reference": "JDT11:10",
+      "before": "בִלְבָבְךָ",
+      "after": "בְּלִבְּךָ",
+      "evidence": "B-370.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 11,
+      "reference": "JDT11:10",
+      "before": "מִקֶּדֶם",
+      "after": "עָמְדָם",
+      "evidence": "B-370-jdt11-10word-full.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 11,
+      "reference": "JDT11:11",
+      "before": "וְרַע כִּי",
+      "after": "דַּע כִּי",
+      "evidence": "B-370.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 11,
+      "reference": "JDT11:11",
+      "before": "בְּכָל־זֹאת",
+      "after": "בְּכָל־עֵת",
+      "evidence": "B-370.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 11,
+      "reference": "JDT11:12",
+      "before": "וַיַּחְסְרוּ",
+      "after": "וְחָסְרוּ",
+      "evidence": "B-370.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 11,
+      "reference": "JDT11:13",
+      "before": "הַמְשָׁרְתִים",
+      "after": "הָעֹמְדִים",
+      "evidence": "B-370.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 11,
+      "reference": "JDT11:14",
+      "before": "הַיּוֹשְׁבִים",
+      "after": "הַיֹּשְׁבִים",
+      "evidence": "B-370.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 11,
+      "reference": "JDT11:14",
+      "before": "עָשׂוּ כֹה",
+      "after": "עָשׂוּ כָזֶה",
+      "evidence": "B-370.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 11,
+      "reference": "JDT11:14",
+      "before": "מֵעֵת הַזְּקֵנִים",
+      "after": "מֵעֲדַת הַזְּקֵנִים",
+      "evidence": "B-370.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 11,
+      "reference": "JDT11:16",
+      "before": "וּשְׁלָחַנִי",
+      "after": "וַיִּשְׁלָחֵנִי",
+      "evidence": "B-370.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 11,
+      "reference": "JDT11:17",
+      "before": "אֶל־הָאֱלֹהִים וְיַגֵּד",
+      "after": "אֶל־אֱלֹהִים וְיַגִּיד",
+      "evidence": "B-370.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 11,
+      "reference": "JDT12:3",
+      "before": "לְתִתֵּךְ לָךְ כָּהֶם",
+      "after": "לָתֶת־לָךְ כָּמֹהֶם",
+      "evidence": "B-371.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 11,
+      "reference": "JDT12:4",
+      "before": "אֲדֹנִי",
+      "after": "אֲדוֹנִי",
+      "evidence": "B-371.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 11,
+      "reference": "JDT12:9",
+      "before": "הָאָסֵף",
+      "after": "הָאֲסֵפָה",
+      "evidence": "B-371.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 11,
+      "reference": "JDT12:13",
+      "before": "לִמְצֹא",
+      "after": "לִמְצוֹא",
+      "evidence": "B-371.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 11,
+      "reference": "JDT12:15",
+      "before": "וַתִּפְרֹשׂ־לָהּ",
+      "after": "וַתְּרַפֵּד־לָהּ",
+      "evidence": "B-371.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 11,
+      "reference": "JDT12:16",
+      "before": "וַתֵּשֶׁב",
+      "after": "וַתִּשְׁכַּב",
+      "evidence": "B-372.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 11,
+      "reference": "JDT12:16",
+      "before": "לְפַתּוֹתָהּ",
+      "after": "לְפַתֹּתָהּ",
+      "evidence": "B-372.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 11,
+      "reference": "JDT12:18",
+      "before": "בַּיּוֹם",
+      "after": "כִּי הַיּוֹם",
+      "evidence": "B-372.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 11,
+      "reference": "JDT13:1",
+      "before": "מִשֶּׁהוּ",
+      "after": "בַּנֶּשֶׁף",
+      "evidence": "B-372-jdt13-1.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 11,
+      "reference": "JDT13:1",
+      "before": "לָרֶדֶת",
+      "after": "לְהִפָּרֵד",
+      "evidence": "B-372-jdt13-1.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 11,
+      "reference": "JDT13:1",
+      "before": "הַסֹּגְרִים",
+      "after": "הָעֹמְדִים",
+      "evidence": "B-372-jdt13-1.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 11,
+      "reference": "JDT13:1",
+      "before": "לְמִשְׁכְּבוֹתָם",
+      "after": "לְמִשְׁכְּנוֹתָם",
+      "evidence": "B-372-jdt13-1.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 11,
+      "reference": "JDT13:2",
+      "before": "נֹפֵל",
+      "after": "נוֹפֵל",
+      "evidence": "B-372.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 11,
+      "reference": "JDT13:3",
+      "before": "כְּבְכָל־יוֹם",
+      "after": "כְּמוֹ בְּכָל־יוֹם",
+      "evidence": "B-372.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 11,
+      "reference": "JDT13:3",
+      "before": "וַתֹּאמֶר לִבְגוֹי",
+      "after": "וַתַּגֵּד לִבְגוֹי",
+      "evidence": "B-372.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 11,
+      "reference": "JDT13:7",
+      "before": "וַתִּתְפֹּשׂ בְּצִיצִית",
+      "after": "וַתִּקְמֹץ בְּצִיצִית",
+      "evidence": "B-372.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 11,
+      "reference": "JDT13:8",
+      "before": "צַוָּארוֹ",
+      "after": "צַוָּארָיו",
+      "evidence": "B-372.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 11,
+      "reference": "JDT13:9",
+      "before": "וַתַּעַל",
+      "after": "וַתָּגֶל",
+      "evidence": "B-372.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 11,
+      "reference": "JDT13:10",
+      "before": "בְּדַרְכָּן בַּתְּפִלָּה",
+      "after": "בְּדַרְכָּן",
+      "evidence": "B-372.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 11,
+      "reference": "JDT13:10",
+      "before": "וַתְּסֻבֶּינָה",
+      "after": "וַתְּסֻבְּנָה",
+      "evidence": "B-372.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 11,
+      "reference": "JDT13:10",
+      "before": "וַתַּעֲלֶינָה הַר",
+      "after": "וַתַּעֲלֶינָה הָהָר",
+      "evidence": "B-372.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 11,
+      "reference": "JDT13:10",
+      "before": "עַד־שְׁעָרָיו",
+      "after": "עַד־הַשַּׁעַר",
+      "evidence": "B-372.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 11,
+      "reference": "JDT13:11",
+      "before": "נָא־שַׁעַר",
+      "after": "הַשַּׁעַר",
+      "evidence": "B-372.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 11,
+      "reference": "JDT13:11",
+      "before": "בַּיּוֹם הַזֶּה",
+      "after": "הַיּוֹם הַזֶּה",
+      "evidence": "B-372.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 12,
+      "reference": "JDT11:12",
+      "before": "לֶאֱכוֹל",
+      "after": "לְבַזְבֵּז",
+      "evidence": "B-370-jdt11-12word.png; root independent five-letter reading supports no final added ו",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 12,
+      "reference": "JDT13:12",
+      "before": "לָרֶדֶת אֶת־הַשַּׁעַר",
+      "after": "לָרֶדֶת אֶל־הַשַּׁעַר",
+      "evidence": "B-373.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 12,
+      "reference": "JDT13:16",
+      "before": "לִרְשָׁתוֹ",
+      "after": "לְרָעָתוֹ",
+      "evidence": "B-373.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 12,
+      "reference": "JDT14:1",
+      "before": "וּתְלֻהוּ",
+      "after": "וּתְלוּהוּ",
+      "evidence": "B-373.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 12,
+      "reference": "JDT14:3",
+      "before": "מַצָּבֵיהֶם",
+      "after": "מַחֲנֵיהֶם",
+      "evidence": "B-373.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 12,
+      "reference": "JDT14:3",
+      "before": "וְנוּסוּ",
+      "after": "וְיָנוּסוּ",
+      "evidence": "B-373.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 12,
+      "reference": "JDT14:5",
+      "before": "הַמַּכֶּה",
+      "after": "הַמְבַזֶּה",
+      "evidence": "B-373.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 12,
+      "reference": "JDT14:5",
+      "before": "שְׁלָחוֹ",
+      "after": "שָׁלַח",
+      "evidence": "B-373.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 12,
+      "reference": "JDT14:7",
+      "before": "יִרְגָּזוּ",
+      "after": "וְיִרְגָּזוּ",
+      "evidence": "B-374.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 12,
+      "reference": "JDT14:10",
+      "before": "וְנִלְוָה",
+      "after": "וַיִּלָּוֶה",
+      "evidence": "B-374.png; explanatory footnote repeats וילוה",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 12,
+      "reference": "JDT14:12",
+      "before": "פְּקוּדֵיהֶם",
+      "after": "פְּקִידֵיהֶם",
+      "evidence": "B-374.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 12,
+      "reference": "JDT14:13",
+      "before": "לְהַשְׁמִידֵם",
+      "after": "לְהַשְׁמִדֵם",
+      "evidence": "B-374.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 12,
+      "reference": "JDT15:4",
+      "before": "בֵּית הַמֹּתָנִים וּבֵכִי",
+      "after": "בֵּית חֲמוֹתַיִם וּבִיכִי",
+      "evidence": "B-374.png; footnote repeats חמותים וביכי",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 12,
+      "reference": "JDT15:5",
+      "before": "וַיִּכְרְתוּ אֹתָם",
+      "after": "וַיִּכְרְתוּ אוֹתָם",
+      "evidence": "B-375.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 12,
+      "reference": "JDT15:7",
+      "before": "מֵהַהֶרֶג",
+      "after": "מִן־הַהֶרֶג",
+      "evidence": "B-375.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 13,
+      "reference": "JDT16:1",
+      "before": "בִּמְנִים",
+      "after": "בְּמִינִים",
+      "evidence": "B-375.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 13,
+      "reference": "JDT16:3",
+      "before": "וְרָכַב",
+      "after": "וַיְכַם",
+      "evidence": "B-375-jdt16-3.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 13,
+      "reference": "JDT16:6",
+      "before": "בִּיפִי פָנֶיהָ",
+      "after": "בִּיפִי מַרְאֶהָ",
+      "evidence": "B-376.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 13,
+      "reference": "JDT16:7",
+      "before": "אֲמֵלֵי",
+      "after": "אֻמְלְלֵי",
+      "evidence": "B-376.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 13,
+      "reference": "JDT16:8",
+      "before": "לְפַתּוֹתוֹ",
+      "after": "לְפַתֹּתוֹ",
+      "evidence": "B-376.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 13,
+      "reference": "JDT16:9",
+      "before": "צַוָּארוֹ",
+      "after": "צַוָּארָיו",
+      "evidence": "B-376-jdt16-10.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 13,
+      "reference": "JDT16:10",
+      "before": "וְנִרְתֲעוּ",
+      "after": "וְיִרְגְּזוּ",
+      "evidence": "B-376.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 13,
+      "reference": "JDT16:10",
+      "before": "וַיִּרְתְּעוּ",
+      "after": "וַיְרַנְּנוּ",
+      "evidence": "B-376.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 13,
+      "reference": "JDT16:13",
+      "before": "כֹחֲךָ",
+      "after": "בְּעֹז",
+      "evidence": "B-376.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 13,
+      "reference": "JDT16:14",
+      "before": "כָל־מִפְעָלֶיךָ",
+      "after": "כָל־פָּעֳלֶךָ",
+      "evidence": "B-376.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 13,
+      "reference": "JDT16:17",
+      "before": "בְּרָגוֹן",
+      "after": "בְּיָגוֹן",
+      "evidence": "B-376.png and printed footnote ביגון",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 13,
+      "reference": "JDT16:22",
+      "before": "וַתֵּאָסֶף אֶל־עַמֶּיהָ",
+      "after": "וַיֵּאָסֶף אֶל־עַמָּיו",
+      "evidence": "B-376-jdt16-23.png; B-376.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 13,
+      "reference": "JDT16:24",
+      "before": "בְנֵי־יִשְׂרָאֵל",
+      "after": "בֵּית־יִשְׂרָאֵל",
+      "evidence": "B-376.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 13,
+      "reference": "JDT16:25",
+      "before": "מַחֲרִיד",
+      "after": "מַרְגִּיז",
+      "evidence": "B-376.png",
+      "reviewStatus": "draft; final niqqud pass pending"
+    },
+    {
+      "pass": 14,
+      "reference": "JDT3:10",
+      "before": null,
+      "after": "וַיָּבֹא לִפְנֵי יִזְרְעֶאל קָרוֹב לְדוֹתַיִן אֲשֶׁר לְעֻמַּת־הַמִּישׁוֹר הַגָּדוֹל אֲשֶׁר לִיהוּדָה׃",
+      "evidence": [
+        "/private/tmp/prosary-kahana-reference/extra-pages/JDT3-10.png"
+      ],
+      "reviewStatus": "draft restored from clearer independent scan; final complete comparison still pending"
+    },
+    {
+      "pass": 14,
+      "reference": "JDT6:4",
+      "before": null,
+      "after": "כִּי אִם נִרְמְס אֹתָם בָּהֶם וְהֶהָרִים יִרְווּ מִדָּמָם וְאַדְמָתָם תִּמָּלֵא מִגְוִיּוֹתֵיהֶם וְלֹא תִּתְיַצֵּב עָקֵב רַגְלָם בְּפָנֵינוּ כִּי אָבֹד־יֹאבֵדוּ אָמַר הַמֶּלֶךְ נְבוּכַדְנֶאצַר אָדוֹן כָּל־הָאָרֶץ כִּי הוּא אָמַר וְלֹא יָשׁוּב דְּבָרוֹ רֵיקָם׃",
+      "evidence": [
+        "/private/tmp/prosary-kahana-reference/extra-pages/JDT6-4-opening.png",
+        "/private/tmp/prosary-kahana-reference/extra-pages/JDT6-4-whole.png"
+      ],
+      "reviewStatus": "draft restored from clearer independent scan; final complete comparison still pending"
+    },
+    {
+      "pass": 14,
+      "reference": "JDT7:18",
+      "before": null,
+      "after": "וַיַּעֲלוּ בְנֵי עֵשָׂו וּבְנֵי עַמּוֹן וַיַּחֲנוּ בָהָר לְעֻמַּת דֹּתָן וַיִּשְׁלְחוּ מֵהֶם נֶגְבָּה וָקֵדְמָה לְעֻמַּת עַקְרַבָּה אֲשֶׁר אֵצֶל כּוּז אֲשֶׁר עַל־הַנַּחַל מִחְמוּר וּשְׁאָר מַחֲנֵה אַשּׁוּר חָנוּ בַּמִּישׁוֹר וַיְכַסּוּ אֶת־כָּל־פְּנֵי הָאָרֶץ וְאָהֳלֵיהֶם וּכְלֵיהֶם נְטוּשִׁים הָמוֹן גָּדוֹל וַיִּהְיוּ לָרֹב מְאֹד׃",
+      "evidence": [
+        "/private/tmp/prosary-kahana-reference/extra-pages/JDT7-18-full.png",
+        "/private/tmp/prosary-kahana-reference/extra-pages/JDT7-18-end.png"
+      ],
+      "reviewStatus": "draft restored from clearer independent scan; final complete comparison still pending"
+    },
+    {
+      "pass": 14,
+      "reference": "JDT8:1",
+      "before": null,
+      "after": "וַתִּשְׁמַע בַּיָּמִים הָהֵם יְהוּדִית בַּת־מְרָרִי בֶּן־עוּץ בֶּן־יוֹסֵף בֶּן־עֻזִּיאֵל בֶּן־חִלְקִיָּה בֶּן־חֲנַנְיָה בֶּן־גִּדְעוֹן בֶּן־רְפָאֵל בֶּן־אֲחִיטוּב בֶּן־אֵלִיָּהוּ בֶּן־חִלְקִיָּהוּ בֶּן־אֱלִיאָב בֶּן־נְתַנְאֵל בֶּן־שְׁלֻמִיאֵל בֶּן־צוּרִישַׁדָּי בֶּן־יִשְׂרָאֵל׃",
+      "evidence": [
+        "/private/tmp/prosary-kahana-reference/extra-pages/JDT8-1-full.png"
+      ],
+      "reviewStatus": "draft restored from clearer independent scan; final complete comparison still pending"
+    },
+    {
+      "pass": 14,
+      "reference": "JDT16:16",
+      "before": null,
+      "after": "כִּי קָטֹן כָּל־עוֹלָה לְרֵיחַ נִיחוֹחַ וּכְאַפֶס כָּל חֵלֶב לְאִשֶּׁה וִירֵא אֱלֹהִים גָּדוֹל עַד־עוֹלָם׃",
+      "evidence": [
+        "/private/tmp/prosary-kahana-reference/extra-pages/JDT16-15-16.png"
+      ],
+      "reviewStatus": "draft restored from clearer independent scan; final complete comparison still pending"
+    },
+    {
+      "pass": 14,
+      "reference": "JDT1:5",
+      "before": "בִּחְבֵל רְגָא",
+      "after": "בְּחֶבֶל רָגָא",
+      "evidence": [
+        "/private/tmp/prosary-kahana-reference/extra-pages/JDT1-5-place-points.png"
+      ],
+      "reviewStatus": "draft; source-point correction, not whole-book approval"
+    },
+    {
+      "pass": 14,
+      "reference": "JDT1:15",
+      "before": "רְגָא",
+      "after": "רָגָא",
+      "evidence": [
+        "/private/tmp/prosary-kahana-reference/extra-pages/JDT1-12-16.png"
+      ],
+      "reviewStatus": "draft; source-point correction, not whole-book approval"
+    },
+    {
+      "pass": 15,
+      "reference": "JDT1:7",
+      "before": "קִילִיקְיָה",
+      "after": "קִילִיקִיָה",
+      "evidence": "/private/tmp/prosary-kahana-reference/extra-pages/JDT1-7-cilicia-large.png",
+      "reviewStatus": "direct clearer-scan point comparison; book remains draft",
+      "evidenceSHA256": "ab78e3bdcf969b7ece38fde2dfd5031b150a15a719122eb863e5d84b01d54f24"
+    },
+    {
+      "pass": 15,
+      "reference": "JDT1:12",
+      "before": "קִילִיקְיָה",
+      "after": "קִילִיקִיָה",
+      "evidence": "/private/tmp/prosary-kahana-reference/extra-pages/JDT1-7-cilicia-large.png",
+      "reviewStatus": "direct clearer-scan point comparison; book remains draft",
+      "evidenceSHA256": "ab78e3bdcf969b7ece38fde2dfd5031b150a15a719122eb863e5d84b01d54f24"
+    },
+    {
+      "pass": 15,
+      "reference": "JDT2:21",
+      "before": "קִילִיקְיָה",
+      "after": "קִילִיקִיָה",
+      "evidence": "/private/tmp/prosary-kahana-reference/extra-pages/JDT2-20-27.png",
+      "reviewStatus": "direct clearer-scan point comparison; book remains draft",
+      "evidenceSHA256": "8dc3a236e4294a08abaa3494672a1ca154a37457a2271608177e611903942163"
+    },
+    {
+      "pass": 15,
+      "reference": "JDT2:25",
+      "before": "קִילִיקְיָה",
+      "after": "קִילִיקִיָה",
+      "evidence": "/private/tmp/prosary-kahana-reference/extra-pages/JDT2-20-27.png",
+      "reviewStatus": "direct clearer-scan point comparison; book remains draft",
+      "evidenceSHA256": "8dc3a236e4294a08abaa3494672a1ca154a37457a2271608177e611903942163"
+    },
+    {
+      "pass": 15,
+      "reference": "JDT2:10",
+      "before": "תֵּצֵא",
+      "after": "תֵצֵא",
+      "evidence": "/private/tmp/prosary-kahana-reference/extra-pages/JDT2-14-19.png",
+      "reviewStatus": "direct clearer-scan point comparison; book remains draft",
+      "evidenceSHA256": "9666c4a6f9fd33caaeaa951761cdb59eb0aafe4dc21d061bf6b4a11bf2905c4f"
+    },
+    {
+      "pass": 15,
+      "reference": "JDT3:11",
+      "before": "גֶּבִי",
+      "after": "גֶּבַי",
+      "evidence": "/private/tmp/prosary-kahana-reference/extra-pages/JDT3-11-gebai-final.png",
+      "reviewStatus": "direct clearer-scan point comparison; book remains draft",
+      "evidenceSHA256": "992cab12d2aebe06dbaee96fe585572294cc4e656a54ff69b1260e5cb7cffd09"
+    },
+    {
+      "pass": 15,
+      "reference": "JDT4:6",
+      "before": "בֵית־אָלוֹהַּ",
+      "after": "בֵית־אֱלוֹהּ",
+      "evidence": "/private/tmp/prosary-kahana-reference/extra-pages/JDT4-6-bethel-large.png",
+      "reviewStatus": "direct clearer-scan point comparison; book remains draft",
+      "evidenceSHA256": "3280106850f7b6b98fa2606432b1a94c2b9577de5ecae10fc85475949abdddc6"
+    },
+    {
+      "pass": 16,
+      "reference": "JDT3:4",
+      "before": null,
+      "after": "הִנֵּה חַוֹתֵינוּ וְכָל־מְקוֹמוֹתֵינוּ וְכָל־חֶלְקַת־חִטִּים וְהַצֹּאן וְהַבָּקָר וְכָל־גִּדְרוֹת אָהֳלֵינוּ הֵם לְפָנֶיךָ לַעֲשׂוֹת לָהֶם כַּאֲשֶׁר יִיטַב לָךְ׃",
+      "evidence": "/private/tmp/prosary-kahana-reference/extra-pages/JDT3-3-5.png",
+      "reviewStatus": "draft restored; specific ambiguous word resolved by explicit user reading",
+      "evidenceSHA256": "c2906c9e0b6641e4ffdc7a0dd6c91a2e7c571fd46dc0508a6f1e709113e93b58"
+    },
+    {
+      "pass": 16,
+      "reference": "JDT16:15",
+      "before": null,
+      "after": "וְאֵין אֲשֶׁר יַעֲמֹד נֶגֶד קוֹלֶךָ׃ כִּי הֶהָרִים מִיסוֹדָם עִם־מֵימֵיהֶם יַנֻעוּ וְהַסְּלָעִים יִמַּסּוּ כַדּוֹנַג מִפָּנֶיךָ וְאֶת־יְרֵאֶיךָ תָחֹן׃",
+      "evidence": "/private/tmp/prosary-kahana-reference/extra-pages/JDT16-15-16.png",
+      "reviewStatus": "draft restored; specific ambiguous word resolved by explicit user reading",
+      "evidenceSHA256": "d60391f45ac213d10ebb37644a61c502b39875de734a79294a31c626f9a2bc04"
+    },
+    {
+      "pass": 16,
+      "reference": "JDT6:1",
+      "before": "וְלִכְל־בְּנֵי",
+      "after": "וּלְכָל־בְּנֵי",
+      "evidence": "/private/tmp/prosary-kahana-reference/extra-pages/JDT5-20-6-2.png",
+      "reviewStatus": "direct source correction; book remains draft",
+      "evidenceSHA256": "2b4cd33ec3063efc1f51f2cc4b2fcc2f7b1c1951da5b3f9a478ca08ec4976c96"
+    },
+    {
+      "pass": 16,
+      "reference": "JDT6:4",
+      "before": "נִרְמְס",
+      "after": "נִרְמֹס",
+      "evidence": "/private/tmp/prosary-kahana-reference/extra-pages/JDT6-4-nirmos-large.png",
+      "reviewStatus": "direct source correction; book remains draft",
+      "evidenceSHA256": "ab50f34110ed2e9271789b2080861d628cb601a5aad3fb868362a03a23ecae75"
+    },
+    {
+      "pass": 16,
+      "reference": "JDT6:7",
+      "before": "תִּדָּקֵר מִתְנִיף",
+      "after": "תִּדְקֹר מָתְנֶיךָ",
+      "evidence": "/private/tmp/prosary-kahana-reference/extra-pages/JDT6-7-matnif-final.png",
+      "reviewStatus": "direct source correction; book remains draft",
+      "evidenceSHA256": "e9a423dd1d18408a0dfa5f2f5e255ee7d4a7bcecfad8335ef0658b137fd4745d"
+    },
+    {
+      "pass": 16,
+      "reference": "JDT6:11",
+      "before": "אֱלוֹהָ",
+      "after": "אֱלוֹהַּ",
+      "evidence": "/private/tmp/prosary-kahana-reference/extra-pages/JDT6-11-bethel-large.png",
+      "reviewStatus": "direct source correction; book remains draft",
+      "evidenceSHA256": "351c8e454f9bbe97535a5e84cbbc269e06e27735c5ccc433424605af71af4012"
+    },
+    {
+      "pass": 17,
+      "reference": "JDT6:12",
+      "before": "אֱלוֹהָ",
+      "after": "אֱלוֹהַּ",
+      "evidence": "/private/tmp/prosary-kahana-reference/extra-pages/JDT6-12-21.png",
+      "reviewStatus": "direct complete-page source comparison; book remains draft",
+      "evidenceSHA256": "ca8043d5199419759bb445d605b9d73f4811ee946aa05a064a8c61e7446faec4"
+    },
+    {
+      "pass": 17,
+      "reference": "JDT6:14",
+      "before": "אֱלוֹהָ",
+      "after": "אֱלוֹהַּ",
+      "evidence": "/private/tmp/prosary-kahana-reference/extra-pages/JDT6-12-21.png",
+      "reviewStatus": "direct complete-page source comparison; book remains draft",
+      "evidenceSHA256": "ca8043d5199419759bb445d605b9d73f4811ee946aa05a064a8c61e7446faec4"
+    },
+    {
+      "pass": 17,
+      "reference": "JDT7:1",
+      "before": "אֱלוֹהָ",
+      "after": "אֱלוֹהַּ",
+      "evidence": "/private/tmp/prosary-kahana-reference/extra-pages/JDT7-1-5.png",
+      "reviewStatus": "direct complete-page source comparison; book remains draft",
+      "evidenceSHA256": "917baa3a4c781afa3e3b85ff7a2c849f53d30ea882fea7697f1842cab7677199"
+    },
+    {
+      "pass": 17,
+      "reference": "JDT7:3",
+      "before": "אֱלוֹהָ",
+      "after": "אֱלוֹהַּ",
+      "evidence": "/private/tmp/prosary-kahana-reference/extra-pages/JDT7-1-5.png",
+      "reviewStatus": "direct complete-page source comparison; book remains draft",
+      "evidenceSHA256": "917baa3a4c781afa3e3b85ff7a2c849f53d30ea882fea7697f1842cab7677199"
+    },
+    {
+      "pass": 17,
+      "reference": "JDT6:18",
+      "before": "לַיָּ",
+      "after": "לַיְיָ",
+      "evidence": "/private/tmp/prosary-kahana-reference/extra-pages/JDT6-12-21.png",
+      "reviewStatus": "direct complete-page source comparison; book remains draft",
+      "evidenceSHA256": "ca8043d5199419759bb445d605b9d73f4811ee946aa05a064a8c61e7446faec4"
+    },
+    {
+      "pass": 17,
+      "reference": "JDT6:19",
+      "before": "יָי",
+      "after": "יְיָ",
+      "evidence": "/private/tmp/prosary-kahana-reference/extra-pages/JDT6-12-21.png",
+      "reviewStatus": "direct complete-page source comparison; book remains draft",
+      "evidenceSHA256": "ca8043d5199419759bb445d605b9d73f4811ee946aa05a064a8c61e7446faec4"
+    },
+    {
+      "pass": 18,
+      "reference": "JDT7:6",
+      "before": "אֱלוֹהָ",
+      "after": "אֱלוֹהַּ",
+      "evidence": "/private/tmp/prosary-kahana-reference/extra-pages/JDT7-5-14.png",
+      "reviewStatus": "direct complete-page source comparison; book remains draft",
+      "evidenceSHA256": "de32a6cba022f3f2341f1361272884c8fe10763138b1f391323771dc777cf381"
+    },
+    {
+      "pass": 18,
+      "reference": "JDT7:13",
+      "before": "אֱלוֹהָ",
+      "after": "אֱלוֹהַּ",
+      "evidence": "/private/tmp/prosary-kahana-reference/extra-pages/JDT7-5-14.png",
+      "reviewStatus": "direct complete-page source comparison; book remains draft",
+      "evidenceSHA256": "de32a6cba022f3f2341f1361272884c8fe10763138b1f391323771dc777cf381"
+    },
+    {
+      "pass": 18,
+      "reference": "JDT7:20",
+      "before": "אֱלוֹהָ",
+      "after": "אֱלוֹהַּ",
+      "evidence": "/private/tmp/prosary-kahana-reference/extra-pages/JDT7-14-23.png",
+      "reviewStatus": "direct complete-page source comparison; book remains draft",
+      "evidenceSHA256": "fba120536f5822eea5fa77d45bc5956fbbde2de4dd3e2b149a306a0a32a13972"
+    },
+    {
+      "pass": 18,
+      "reference": "JDT7:19",
+      "before": "יָי",
+      "after": "יְיָ",
+      "evidence": "/private/tmp/prosary-kahana-reference/extra-pages/JDT7-14-23.png",
+      "reviewStatus": "direct complete-page source comparison; book remains draft",
+      "evidenceSHA256": "fba120536f5822eea5fa77d45bc5956fbbde2de4dd3e2b149a306a0a32a13972"
+    },
+    {
+      "pass": 19,
+      "reference": "JDT4:6",
+      "before": "אֱלוֹהּ",
+      "after": "אֱלוֹהַּ",
+      "evidence": "/private/tmp/prosary-kahana-reference/extra-pages/JDT4-6-final-heh.png",
+      "reviewStatus": "direct complete-page source comparison; book remains draft",
+      "evidenceSHA256": "9491d1fed0387c8fc7367ebd34b52a1201d03d735c1df5c57cdd79b9174f2e67"
+    },
+    {
+      "pass": 19,
+      "reference": "JDT7:24",
+      "before": "יָי",
+      "after": "יְיָ",
+      "evidence": "/private/tmp/prosary-kahana-reference/extra-pages/JDT7-23-32.png",
+      "reviewStatus": "direct complete-page source comparison; book remains draft",
+      "evidenceSHA256": "0bec37ef45101e55b057f32da4d781d89c5eaeeb06e4382bb49b481554a430ac"
+    },
+    {
+      "pass": 19,
+      "reference": "JDT7:30",
+      "before": "יָי",
+      "after": "יְיָ",
+      "evidence": "/private/tmp/prosary-kahana-reference/extra-pages/JDT7-23-32.png",
+      "reviewStatus": "direct complete-page source comparison; book remains draft",
+      "evidenceSHA256": "0bec37ef45101e55b057f32da4d781d89c5eaeeb06e4382bb49b481554a430ac"
+    },
+    {
+      "pass": 19,
+      "reference": "JDT8:3",
+      "before": "אֱלוֹהָ",
+      "after": "אֱלוֹהַּ",
+      "evidence": "/private/tmp/prosary-kahana-reference/extra-pages/JDT8-1-6.png",
+      "reviewStatus": "direct complete-page source comparison; book remains draft",
+      "evidenceSHA256": "9f87ce43d668bc0ecce694513b35939791914e4e857b1bf0c552f2ec8e7550f1"
+    },
+    {
+      "pass": 20,
+      "reference": "JDT8:8",
+      "before": "יָי",
+      "after": "יְיָ",
+      "evidence": "/private/tmp/prosary-kahana-reference/extra-pages/JDT8-6-13.png",
+      "reviewStatus": "direct complete-page source comparison; book remains draft",
+      "evidenceSHA256": "b0dc5d79ee357619c1242bee8899a9711935c96afbd85e6a5d0528bf6f2867fd"
+    },
+    {
+      "pass": 20,
+      "reference": "JDT8:11",
+      "before": "יָי",
+      "after": "יְיָ",
+      "evidence": "/private/tmp/prosary-kahana-reference/extra-pages/JDT8-6-13.png",
+      "reviewStatus": "direct complete-page source comparison; book remains draft",
+      "evidenceSHA256": "b0dc5d79ee357619c1242bee8899a9711935c96afbd85e6a5d0528bf6f2867fd"
+    },
+    {
+      "pass": 20,
+      "reference": "JDT8:12",
+      "before": "יָי",
+      "after": "יְיָ",
+      "evidence": "/private/tmp/prosary-kahana-reference/extra-pages/JDT8-6-13.png",
+      "reviewStatus": "direct complete-page source comparison; book remains draft",
+      "evidenceSHA256": "b0dc5d79ee357619c1242bee8899a9711935c96afbd85e6a5d0528bf6f2867fd"
+    },
+    {
+      "pass": 20,
+      "reference": "JDT8:14",
+      "before": "יָי",
+      "after": "יְיָ",
+      "evidence": "/private/tmp/prosary-kahana-reference/extra-pages/JDT8-14-21.png",
+      "reviewStatus": "direct complete-page source comparison; book remains draft",
+      "evidenceSHA256": "14c90b9429de62f7d8a00c0e345219bf4046a995cab495fdce5a9ad4c915bd0f"
+    },
+    {
+      "pass": 20,
+      "reference": "JDT8:16",
+      "before": "יָי",
+      "after": "יְיָ",
+      "evidence": "/private/tmp/prosary-kahana-reference/extra-pages/JDT8-14-21.png",
+      "reviewStatus": "direct complete-page source comparison; book remains draft",
+      "evidenceSHA256": "14c90b9429de62f7d8a00c0e345219bf4046a995cab495fdce5a9ad4c915bd0f"
+    },
+    {
+      "pass": 20,
+      "reference": "JDT8:11",
+      "before": "אֱלוֹהָ",
+      "after": "אֱלוֹהַּ",
+      "evidence": "/private/tmp/prosary-kahana-reference/extra-pages/JDT8-6-13.png",
+      "reviewStatus": "direct complete-page source comparison; book remains draft",
+      "evidenceSHA256": "b0dc5d79ee357619c1242bee8899a9711935c96afbd85e6a5d0528bf6f2867fd"
+    },
+    {
+      "pass": 21,
+      "reference": "JDT8:23",
+      "before": "יָי",
+      "after": "יְיָ",
+      "evidence": "/private/tmp/prosary-kahana-reference/extra-pages/JDT8-21-31.png",
+      "reviewStatus": "direct complete-page source comparison; book remains draft",
+      "evidenceSHA256": "663b502101d401eb04618213e50784aaaf206f70ab34170a9c2ada267c051007"
+    },
+    {
+      "pass": 21,
+      "reference": "JDT8:27",
+      "before": "יָי",
+      "after": "יְיָ",
+      "evidence": "/private/tmp/prosary-kahana-reference/extra-pages/JDT8-21-31.png",
+      "reviewStatus": "direct complete-page source comparison; book remains draft",
+      "evidenceSHA256": "663b502101d401eb04618213e50784aaaf206f70ab34170a9c2ada267c051007"
+    },
+    {
+      "pass": 21,
+      "reference": "JDT8:31",
+      "before": "יָי",
+      "after": "יְיָ",
+      "evidence": "/private/tmp/prosary-kahana-reference/extra-pages/JDT8-31-9-1.png",
+      "reviewStatus": "direct complete-page source comparison; book remains draft",
+      "evidenceSHA256": "b8cae31e1866922b2600784a4685e81a7ee215d3d0f6bf9f3a41fcf88fdf56fa"
+    },
+    {
+      "pass": 21,
+      "reference": "JDT8:33",
+      "before": "יָי",
+      "after": "יְיָ",
+      "evidence": "/private/tmp/prosary-kahana-reference/extra-pages/JDT8-31-9-1.png",
+      "reviewStatus": "direct complete-page source comparison; book remains draft",
+      "evidenceSHA256": "b8cae31e1866922b2600784a4685e81a7ee215d3d0f6bf9f3a41fcf88fdf56fa"
+    },
+    {
+      "pass": 21,
+      "reference": "JDT8:25",
+      "before": "לַיָּ",
+      "after": "לַיְיָ",
+      "evidence": "/private/tmp/prosary-kahana-reference/extra-pages/JDT8-25-name.png",
+      "reviewStatus": "direct complete-page source comparison; book remains draft",
+      "evidenceSHA256": "7c29659f96951f1178f3c09c6807a94aeb7d2053aee1bab4a9eb5e4bbb0944c0"
+    },
+    {
+      "pass": 21,
+      "reference": "JDT8:34",
+      "before": "מֶה עִם",
+      "after": "מַה עִם",
+      "evidence": "/private/tmp/prosary-kahana-reference/extra-pages/JDT8-34-mah-large.png",
+      "reviewStatus": "direct complete-page source comparison; book remains draft",
+      "evidenceSHA256": "0488cc8840e92196f5df3b2d4142b8f5782a30af67bbfe95692460063e88bba6"
+    },
+    {
+      "pass": 21,
+      "reference": "JDT8:35",
+      "before": "וִיהִי אֱלֹהִים",
+      "after": "וַיָי אֱלֹהִים",
+      "evidence": "/private/tmp/prosary-kahana-reference/extra-pages/JDT8-35-name4.png",
+      "reviewStatus": "direct complete-page source comparison; book remains draft",
+      "evidenceSHA256": "e8dabbe8b780c1a455f1e5bcb5ef16da0ab425a115ad842430db62cad12fa96e"
+    },
+    {
+      "pass": 21,
+      "reference": "JDT9:1",
+      "before": "יָי",
+      "after": "יְיָ",
+      "evidence": "/private/tmp/prosary-kahana-reference/extra-pages/JDT8-31-9-1.png",
+      "reviewStatus": "direct complete-page source comparison; book remains draft",
+      "evidenceSHA256": "b8cae31e1866922b2600784a4685e81a7ee215d3d0f6bf9f3a41fcf88fdf56fa"
+    },
+    {
+      "pass": 21,
+      "reference": "JDT9:1",
+      "before": "לַיָּ",
+      "after": "לַיָי",
+      "evidence": "/private/tmp/prosary-kahana-reference/extra-pages/JDT9-1-name.png",
+      "reviewStatus": "direct complete-page source comparison; book remains draft",
+      "evidenceSHA256": "0b05ff331b6f656891a0cb5ae58c31e6a7b0522eba579c5307f0c85cbd0f5b5a"
+    },
+    {
+      "pass": 21,
+      "reference": "JDT9:2",
+      "before": "יָי",
+      "after": "יְיָ",
+      "evidence": "/private/tmp/prosary-kahana-reference/extra-pages/JDT8-31-9-1.png",
+      "reviewStatus": "direct complete-page source comparison; book remains draft",
+      "evidenceSHA256": "b8cae31e1866922b2600784a4685e81a7ee215d3d0f6bf9f3a41fcf88fdf56fa"
+    },
+    {
+      "pass": 21,
+      "reference": "JDT9:7",
+      "before": "יָי",
+      "after": "יְיָ",
+      "evidence": "/private/tmp/prosary-kahana-reference/extra-pages/JDT9-2-10.png",
+      "reviewStatus": "direct complete-page source comparison; book remains draft",
+      "evidenceSHA256": "d78922d0fd134f3873cf908f937640a88888858d5846b91faa2de9eddd22208e"
+    },
+    {
+      "pass": 22,
+      "reference": "JDT6:18",
+      "before": "לַיְיָ",
+      "after": "לַיָי",
+      "evidence": "/private/tmp/prosary-kahana-reference/extra-pages/JDT6-18-name.png",
+      "reviewStatus": "direct source comparison; literal printed point placement, not normalized; book remains draft",
+      "evidenceSHA256": "757da296074709f79ac56365214e74befa579e7b3a916313dff9b7194b32f379"
+    },
+    {
+      "pass": 22,
+      "reference": "JDT10:6",
+      "before": "אֱלוֹהָ",
+      "after": "אֱלוֹהַּ",
+      "evidence": "/private/tmp/prosary-kahana-reference/extra-pages/JDT9-14-10-7.png",
+      "reviewStatus": "direct source comparison; literal printed point placement, not normalized; book remains draft",
+      "evidenceSHA256": "783306560f71e6ae7e90418ef20f971d8cbb07bc9cbf8cc1ed5571eb23497cc3"
+    },
+    {
+      "pass": 22,
+      "reference": "JDT10:8",
+      "before": "לַיָּ",
+      "after": "לַיָי",
+      "evidence": "/private/tmp/prosary-kahana-reference/extra-pages/JDT10-8-name2.png",
+      "reviewStatus": "direct source comparison; literal printed point placement, not normalized; book remains draft",
+      "evidenceSHA256": "415e99af5fa41152c741ccc198fcaedf66fc01d9e2fa1cbd0a14e07c28b53024"
+    },
+    {
+      "pass": 23,
+      "reference": "JDT10:19",
+      "before": "לְהַשְׁאָר",
+      "after": "לְהִשָּׁאֵר",
+      "evidence": "/private/tmp/prosary-kahana-reference/extra-pages/JDT10-19-lehishaer2.png",
+      "reviewStatus": "direct complete-page source comparison; book remains draft",
+      "evidenceSHA256": "80364a46bb0d2128ef28a48c0d490106d4b0e9bc7375e932b89b7524808472b7"
+    },
+    {
+      "pass": 24,
+      "reference": "JDT11:9",
+      "before": "אֱלוֹהָ",
+      "after": "אֱלוֹהַּ",
+      "evidence": "/private/tmp/prosary-kahana-reference/extra-pages/JDT11-7-16-complete.png",
+      "reviewStatus": "direct source comparison; book remains draft",
+      "evidenceSHA256": "d3e5e76278945808a52269a26317a0f03e6bf754801b479b0a125572ba268876"
+    },
+    {
+      "pass": 24,
+      "reference": "JDT12:4",
+      "before": "יָי",
+      "after": "יְיָ",
+      "evidence": "/private/tmp/prosary-kahana-reference/extra-pages/JDT11-21-12-8.png",
+      "reviewStatus": "direct source comparison; book remains draft",
+      "evidenceSHA256": "225f02df7136563dbf5d6050490dc28e9666fa8522cb8ca62f10dfff79610f17"
+    },
+    {
+      "pass": 24,
+      "reference": "JDT12:7",
+      "before": "אֱלוֹהָ",
+      "after": "אֱלוֹהַּ",
+      "evidence": "/private/tmp/prosary-kahana-reference/extra-pages/JDT12-8-15.png",
+      "reviewStatus": "direct source comparison; book remains draft",
+      "evidenceSHA256": "beccb10bf81349501235d6faab709530e6c8fd8079cf3f129b37ed1feb66dde8"
+    },
+    {
+      "pass": 24,
+      "reference": "JDT12:8",
+      "before": "יָי",
+      "after": "יְיָ",
+      "evidence": "/private/tmp/prosary-kahana-reference/extra-pages/JDT12-8-15.png",
+      "reviewStatus": "direct source comparison; book remains draft",
+      "evidenceSHA256": "beccb10bf81349501235d6faab709530e6c8fd8079cf3f129b37ed1feb66dde8"
+    },
+    {
+      "pass": 25,
+      "reference": "JDT11:14",
+      "before": "הֶתֵּרָה",
+      "after": "הַתָּרָה",
+      "evidence": "/private/tmp/prosary-kahana-reference/extra-pages/JDT11-14-hetera2.png",
+      "reviewStatus": "direct complete-page source comparison; book remains draft",
+      "evidenceSHA256": "6de6d15a7b05ccc9001a0663a3f13aca2048c4aa2eae5577d52693bd844d76f1"
+    },
+    {
+      "pass": 25,
+      "reference": "JDT13:4",
+      "before": "יָי",
+      "after": "יְיָ",
+      "evidence": "/private/tmp/prosary-kahana-reference/extra-pages/JDT13-3-12.png",
+      "reviewStatus": "direct complete-page source comparison; book remains draft",
+      "evidenceSHA256": "bd3a621c87b46150ca113cd9b89dbc9d8110bc26594fa464772b8c612f9ec98d"
+    },
+    {
+      "pass": 25,
+      "reference": "JDT13:9",
+      "before": "וַתָּגֶל",
+      "after": "וַתָּגָל",
+      "evidence": "/private/tmp/prosary-kahana-reference/extra-pages/JDT13-9-vatagel3.png",
+      "reviewStatus": "direct complete-page source comparison; book remains draft",
+      "evidenceSHA256": "6ef836a4b7db49bc41b357a6ad94f9e0ba01aa7c694d2a5bf22762fc26b1d715"
+    },
+    {
+      "pass": 25,
+      "reference": "JDT13:10",
+      "before": "אֱלוֹהָ",
+      "after": "אֱלוֹהַּ",
+      "evidence": "/private/tmp/prosary-kahana-reference/extra-pages/JDT13-3-12.png",
+      "reviewStatus": "direct complete-page source comparison; book remains draft",
+      "evidenceSHA256": "bd3a621c87b46150ca113cd9b89dbc9d8110bc26594fa464772b8c612f9ec98d"
+    },
+    {
+      "pass": 25,
+      "reference": "JDT13:11",
+      "before": "יָי",
+      "after": "יְיָ",
+      "evidence": "/private/tmp/prosary-kahana-reference/extra-pages/JDT13-3-12.png",
+      "reviewStatus": "direct complete-page source comparison; book remains draft",
+      "evidenceSHA256": "bd3a621c87b46150ca113cd9b89dbc9d8110bc26594fa464772b8c612f9ec98d"
+    },
+    {
+      "pass": 26,
+      "reference": "JDT13:14",
+      "before": "יָי",
+      "after": "יְיָ",
+      "evidence": "/private/tmp/prosary-kahana-reference/extra-pages/JDT13-12-20.png",
+      "reviewStatus": "direct complete-page source comparison; book remains draft",
+      "evidenceSHA256": "f9c831b47a7481d8fa9b42795224f03881631203e648202ee5279273ed672e3c"
+    },
+    {
+      "pass": 26,
+      "reference": "JDT13:15",
+      "before": "יָי",
+      "after": "יְיָ",
+      "evidence": "/private/tmp/prosary-kahana-reference/extra-pages/JDT13-12-20.png",
+      "reviewStatus": "direct complete-page source comparison; book remains draft",
+      "evidenceSHA256": "f9c831b47a7481d8fa9b42795224f03881631203e648202ee5279273ed672e3c"
+    },
+    {
+      "pass": 26,
+      "reference": "JDT13:16",
+      "before": "יָי",
+      "after": "יְיָ",
+      "evidence": "/private/tmp/prosary-kahana-reference/extra-pages/JDT13-12-20.png",
+      "reviewStatus": "direct complete-page source comparison; book remains draft",
+      "evidenceSHA256": "f9c831b47a7481d8fa9b42795224f03881631203e648202ee5279273ed672e3c"
+    },
+    {
+      "pass": 26,
+      "reference": "JDT13:18",
+      "before": "יָי",
+      "after": "יְיָ",
+      "evidence": "/private/tmp/prosary-kahana-reference/extra-pages/JDT13-12-20.png",
+      "reviewStatus": "direct complete-page source comparison; book remains draft",
+      "evidenceSHA256": "f9c831b47a7481d8fa9b42795224f03881631203e648202ee5279273ed672e3c"
+    },
+    {
+      "pass": 26,
+      "reference": "JDT13:19",
+      "before": "יָי",
+      "after": "יְיָ",
+      "evidence": "/private/tmp/prosary-kahana-reference/extra-pages/JDT13-12-20.png",
+      "reviewStatus": "direct complete-page source comparison; book remains draft",
+      "evidenceSHA256": "f9c831b47a7481d8fa9b42795224f03881631203e648202ee5279273ed672e3c"
+    },
+    {
+      "pass": 26,
+      "reference": "JDT13:20",
+      "before": "יָי",
+      "after": "יְיָ",
+      "evidence": "/private/tmp/prosary-kahana-reference/extra-pages/JDT13-20-14-7.png",
+      "reviewStatus": "direct complete-page source comparison; book remains draft",
+      "evidenceSHA256": "fedddcee7bceaa8d214147a15b4a63f3d17e7d8fb8ecb04145c0f00ef92a9257"
+    },
+    {
+      "pass": 26,
+      "reference": "JDT13:17",
+      "before": "לַיָּ",
+      "after": "לַיָי",
+      "evidence": "/private/tmp/prosary-kahana-reference/extra-pages/JDT13-17-name.png",
+      "reviewStatus": "direct complete-page source comparison; book remains draft",
+      "evidenceSHA256": "58d97f76f996cac4c640461cc1708733741272f83493b625dc49b6d7ff724393"
+    },
+    {
+      "pass": 26,
+      "reference": "JDT14:7",
+      "before": "וַיֹּקֶד",
+      "after": "וַיִּקֹּד",
+      "evidence": "/private/tmp/prosary-kahana-reference/extra-pages/JDT14-7-vayikod3.png",
+      "reviewStatus": "direct complete-page source comparison; book remains draft",
+      "evidenceSHA256": "45de3d8020478cb8eb043b0f7ae4c5782f2cebada047eeb6dc04c91ed1a01090"
+    },
+    {
+      "pass": 27,
+      "reference": "JDT14:10",
+      "before": "בַּיָּ",
+      "after": "בַּיָי",
+      "evidence": "/private/tmp/prosary-kahana-reference/extra-pages/JDT14-10-name.png",
+      "reviewStatus": "direct complete-page source comparison; book remains draft",
+      "evidenceSHA256": "34707250cab5c0636f717fb621ee45027933bdf7c4f4e47d30df52886dba6c7f"
+    },
+    {
+      "pass": 27,
+      "reference": "JDT15:3",
+      "before": "אֱלוֹהָ",
+      "after": "אֱלוֹהַּ",
+      "evidence": "/private/tmp/prosary-kahana-reference/extra-pages/JDT14-16-15-5.png",
+      "reviewStatus": "direct complete-page source comparison; book remains draft",
+      "evidenceSHA256": "8d7fac6490fcfef894c68f40fe9949229fdd64d771163d5d3b1eb517793852c8"
+    },
+    {
+      "pass": 28,
+      "reference": "JDT15:6",
+      "before": "אֱלוֹהָ",
+      "after": "אֱלוֹהַּ",
+      "evidence": "/private/tmp/prosary-kahana-reference/extra-pages/JDT15-5-13.png",
+      "reviewStatus": "direct complete-page source comparison; book remains draft",
+      "evidenceSHA256": "92644dfe20e8814219a9336e053d937bc69902d4c380b87bedea085d88dce762"
+    },
+    {
+      "pass": 28,
+      "reference": "JDT15:8",
+      "before": "יָי",
+      "after": "יְיָ",
+      "evidence": "/private/tmp/prosary-kahana-reference/extra-pages/JDT15-5-13.png",
+      "reviewStatus": "direct complete-page source comparison; book remains draft",
+      "evidenceSHA256": "92644dfe20e8814219a9336e053d937bc69902d4c380b87bedea085d88dce762"
+    },
+    {
+      "pass": 28,
+      "reference": "JDT15:10",
+      "before": "יָי",
+      "after": "יְיָ",
+      "evidence": "/private/tmp/prosary-kahana-reference/extra-pages/JDT15-5-13.png",
+      "reviewStatus": "direct complete-page source comparison; book remains draft",
+      "evidenceSHA256": "92644dfe20e8814219a9336e053d937bc69902d4c380b87bedea085d88dce762"
+    },
+    {
+      "pass": 28,
+      "reference": "JDT15:10",
+      "before": "וּמְהַלֵּל",
+      "after": "וּמְהֻלָּל",
+      "evidence": "/private/tmp/prosary-kahana-reference/extra-pages/JDT15-10-mehullal2.png",
+      "reviewStatus": "direct complete-page source comparison; book remains draft",
+      "evidenceSHA256": "fd973180f724ba220122cf6397d8fd485b887de765e8fc62e52e3c7f1c171f8a"
+    },
+    {
+      "pass": 28,
+      "reference": "JDT16:1",
+      "before": "בְּתֹף",
+      "after": "בְתֹף",
+      "evidence": "/private/tmp/prosary-kahana-reference/extra-pages/JDT16-1-betof2.png",
+      "reviewStatus": "direct complete-page source comparison; book remains draft",
+      "evidenceSHA256": "88192370b861d82e6edd64be0167322a95fe1688d93600406164101a86a50035"
+    },
+    {
+      "pass": 28,
+      "reference": "JDT16:1",
+      "before": "לַיָּ",
+      "after": "לַיָי",
+      "evidence": "/private/tmp/prosary-kahana-reference/extra-pages/JDT16-1-name2.png",
+      "reviewStatus": "direct complete-page source comparison; book remains draft",
+      "evidenceSHA256": "e52b889c15dcb91fd490931aa6b4a807d8faf4bdb43f9eaf7b8f532f79fffaac"
+    },
+    {
+      "pass": 28,
+      "reference": "JDT16:2",
+      "before": "יָי",
+      "after": "יְיָ",
+      "evidence": "/private/tmp/prosary-kahana-reference/extra-pages/JDT15-13-16-6.png",
+      "reviewStatus": "direct complete-page source comparison; book remains draft",
+      "evidenceSHA256": "0eea0d266d3a5b5dee4da7b19d636abb4830bcf06690d9393415b9b74e439e10"
+    },
+    {
+      "pass": 29,
+      "reference": "JDT16:10",
+      "before": "שָׂרָיו חִתַּם",
+      "after": "שָׂעֲרוּ פָרַס",
+      "evidence": "/private/tmp/prosary-kahana-reference/extra-pages/JDT16-10-context.png",
+      "reviewStatus": "direct complete-page source comparison; book remains draft pending clearer-scan OCR cross-check",
+      "evidenceSHA256": "153385788132a728bb088a78bb559abb07678262badd94437eac2686a3e8f9ee"
+    },
+    {
+      "pass": 29,
+      "reference": "JDT16:13",
+      "before": "יָי",
+      "after": "יְיָ",
+      "evidence": "/private/tmp/prosary-kahana-reference/extra-pages/JDT16-6-16.png",
+      "reviewStatus": "direct complete-page source comparison; book remains draft pending clearer-scan OCR cross-check",
+      "evidenceSHA256": "874ce08a52327a3ab75b947993bfbd11ef944df5e2fa8437214e7fed38b66345"
+    },
+    {
+      "pass": 29,
+      "reference": "JDT16:17",
+      "before": "יָי",
+      "after": "יְיָ",
+      "evidence": "/private/tmp/prosary-kahana-reference/extra-pages/JDT16-6-16.png",
+      "reviewStatus": "direct complete-page source comparison; book remains draft pending clearer-scan OCR cross-check",
+      "evidenceSHA256": "874ce08a52327a3ab75b947993bfbd11ef944df5e2fa8437214e7fed38b66345"
+    },
+    {
+      "pass": 29,
+      "reference": "JDT16:14",
+      "before": " וְאֵין אֲשֶׁר יַעֲמֹד נֶגֶד קוֹלֶךָ׃",
+      "after": "",
+      "evidence": "/private/tmp/prosary-kahana-reference/extra-pages/JDT16-6-16.png",
+      "reviewStatus": "direct complete-page source comparison; book remains draft pending clearer-scan OCR cross-check",
+      "evidenceSHA256": "874ce08a52327a3ab75b947993bfbd11ef944df5e2fa8437214e7fed38b66345"
+    },
+    {
+      "pass": 29,
+      "reference": "JDT16:18",
+      "before": "לַיָּ",
+      "after": "לַיָי",
+      "evidence": "/private/tmp/prosary-kahana-reference/extra-pages/JDT16-18-name.png",
+      "reviewStatus": "direct complete-page source comparison; book remains draft pending clearer-scan OCR cross-check",
+      "evidenceSHA256": "bdb37668822a14ae4c98586c23914ae51b6a9cba7cf9f06422a7a999fdfef602"
+    },
+    {
+      "pass": 29,
+      "reference": "JDT16:19",
+      "before": "לַיָּ",
+      "after": "לַיָי",
+      "evidence": "/private/tmp/prosary-kahana-reference/extra-pages/JDT16-19-name3.png",
+      "reviewStatus": "direct complete-page source comparison; book remains draft pending clearer-scan OCR cross-check",
+      "evidenceSHA256": "de2913c23cc182ae5a40443c931a7c998b3c37461dc15eae6e98d0deb1958ac0"
+    },
+    {
+      "pass": 29,
+      "reference": "JDT16:21",
+      "before": "אֱלוֹהָ",
+      "after": "אֱלוֹהַּ",
+      "evidence": "/private/tmp/prosary-kahana-reference/extra-pages/JDT16-17-25.png",
+      "reviewStatus": "direct complete-page source comparison; book remains draft pending clearer-scan OCR cross-check",
+      "evidenceSHA256": "b12c758cbfd90bafd0cf338670796392ff4af930937ae69200bf21730fe733f2"
+    },
+    {
+      "pass": 29,
+      "reference": "JDT16:23",
+      "before": "אֱלוֹהָ",
+      "after": "אֱלוֹהַּ",
+      "evidence": "/private/tmp/prosary-kahana-reference/extra-pages/JDT16-17-25.png",
+      "reviewStatus": "direct complete-page source comparison; book remains draft pending clearer-scan OCR cross-check",
+      "evidenceSHA256": "b12c758cbfd90bafd0cf338670796392ff4af930937ae69200bf21730fe733f2"
+    },
+    {
+      "pass": 30,
+      "reference": "JDT1:4",
+      "before": "מִסְפָּרָיו וְלַעֲרֹךְ",
+      "after": "טַפְסָרָיו וְלַעֲרוֹךְ",
+      "evidence": "/private/tmp/prosary-jdt-review/JDT1-4-ocr-check.png",
+      "evidenceSHA256": "f3ff16b2c4cb532ac9db1a5d430068624c051905df2ab94a8abc2b3dce5b7e78",
+      "reviewStatus": "clearer-scan final consonant comparison; individually checked printed words and points; book remains draft"
+    },
+    {
+      "pass": 30,
+      "reference": "JDT1:7",
+      "before": "נְבוּכַדְנֶאצַר",
+      "after": "נְבוּכַדְנֶצַר",
+      "evidence": "/private/tmp/prosary-jdt-review/JDT1-7-clear-ocr.png",
+      "evidenceSHA256": "67d0e9a9b70ee8195e1e6b99703aa6ef1ea843d7fc921dff512f916ae533e772",
+      "reviewStatus": "clearer-scan final consonant comparison; individually checked printed words and points; book remains draft"
+    },
+    {
+      "pass": 30,
+      "reference": "JDT1:7",
+      "before": "יֹשְׁבֵי",
+      "after": "יוֹשְׁבֵי",
+      "evidence": "/private/tmp/prosary-jdt-review/JDT1-7-clear-ocr.png",
+      "evidenceSHA256": "67d0e9a9b70ee8195e1e6b99703aa6ef1ea843d7fc921dff512f916ae533e772",
+      "reviewStatus": "clearer-scan final consonant comparison; individually checked printed words and points; book remains draft"
+    },
+    {
+      "pass": 30,
+      "reference": "JDT3:4",
+      "before": "הֵם לְפָנֶיךָ",
+      "after": "הִנָּם לְפָנֶיךָ",
+      "evidence": "/private/tmp/prosary-jdt-review/JDT3-4-hem-clear-ocr.png",
+      "evidenceSHA256": "ce9ba89a74b440d0e4be9837f9ac2dfd6f684194371d57b14410b4bee00484cf",
+      "reviewStatus": "clearer-scan final consonant comparison; individually checked printed words and points; book remains draft"
+    },
+    {
+      "pass": 30,
+      "reference": "JDT3:10",
+      "before": "הַמִּישׁוֹר",
+      "after": "הַמִּשׁוֹר",
+      "evidence": "/private/tmp/prosary-jdt-review/JDT3-10-mishor-clear-ocr.png",
+      "evidenceSHA256": "f4547399863f884567a9c5785dc20ee3c6b6447121b3ad2aa0fe57aafee36704",
+      "reviewStatus": "clearer-scan final consonant comparison; individually checked printed words and points; book remains draft"
+    },
+    {
+      "pass": 30,
+      "reference": "JDT5:2",
+      "before": "וּלְכָל־פַּחֲווֹת",
+      "after": "וְכָל־פַּחֲווֹת",
+      "evidence": "/private/tmp/prosary-jdt-review/JDT5-2-full-ocr.png",
+      "evidenceSHA256": "7886207c1d7bf65eddf3c09a5310e24933a8e1dc9b1f52c42d48c7d31f244817",
+      "reviewStatus": "clearer-scan final consonant comparison; individually checked printed words and points; book remains draft"
+    },
+    {
+      "pass": 30,
+      "reference": "JDT5:4",
+      "before": "הִטּוּ",
+      "after": "הִפְנוּ",
+      "evidence": "/private/tmp/prosary-jdt-review/JDT5-4-clear-ocr.png",
+      "evidenceSHA256": "d7c78824af2c39b5de9d3e39073b88e3aed803cf906274159e5782ab5cb99fcd",
+      "reviewStatus": "clearer-scan final consonant comparison; individually checked printed words and points; book remains draft"
+    },
+    {
+      "pass": 30,
+      "reference": "JDT5:4",
+      "before": "מִכָּל־יוֹשְׁבֵי",
+      "after": "כְּכָל־יוֹשְׁבֵי",
+      "evidence": "/private/tmp/prosary-jdt-review/JDT5-4-clear-ocr.png",
+      "evidenceSHA256": "d7c78824af2c39b5de9d3e39073b88e3aed803cf906274159e5782ab5cb99fcd",
+      "reviewStatus": "clearer-scan final consonant comparison; individually checked printed words and points; book remains draft"
+    },
+    {
+      "pass": 30,
+      "reference": "JDT5:7",
+      "before": "וַיָּגוּרוּ",
+      "after": "וַיָּגֻרוּ",
+      "evidence": "/private/tmp/prosary-jdt-review/JDT5-7-clear-ocr.png",
+      "evidenceSHA256": "93b234ccc0bedf1d0b3c9cb95337feef4371258ddc424390fbae905e99613334",
+      "reviewStatus": "clearer-scan final consonant comparison; individually checked printed words and points; book remains draft"
+    },
+    {
+      "pass": 30,
+      "reference": "JDT5:8",
+      "before": "וַיָּנוּסוּ",
+      "after": "וַיָּנֻסוּ",
+      "evidence": "/private/tmp/prosary-jdt-review/JDT5-8-full-ocr.png",
+      "evidenceSHA256": "ab9c3cf5dce6a90378c559686b757b0bbfb7c1d391723de989edc8603adcd353",
+      "reviewStatus": "clearer-scan final consonant comparison; individually checked printed words and points; book remains draft"
+    },
+    {
+      "pass": 30,
+      "reference": "JDT5:21",
+      "before": "נַעַבְרָה־נָא אֲדֹנִי",
+      "after": "יַעֲבָר־נָא אֲדוֹנִי",
+      "evidence": "/private/tmp/prosary-jdt-review/JDT5-21-clear-ocr.png",
+      "evidenceSHA256": "ca81e97bcdfe5cc0266dab6604217751c600112f3a2e389ab8a7f04294ec9a43",
+      "reviewStatus": "clearer-scan final consonant comparison; individually checked printed words and points; book remains draft"
+    },
+    {
+      "pass": 30,
+      "reference": "JDT5:22",
+      "before": "לְנַפּוֹת",
+      "after": "לְהַכּוֹת",
+      "evidence": "/private/tmp/prosary-jdt-review/JDT5-22-lehakot-ocr.png",
+      "evidenceSHA256": "620a29542c552691782910ba7b8cf53b7b48c2b962fc9f9776563efb28bef312",
+      "reviewStatus": "clearer-scan final consonant comparison; individually checked printed words and points; book remains draft"
+    },
+    {
+      "pass": 30,
+      "reference": "JDT6:2",
+      "before": "אֱמֹרִים",
+      "after": "אֶפְרַיִם",
+      "evidence": "/private/tmp/prosary-jdt-review/JDT6-2-clear-ocr.png",
+      "evidenceSHA256": "6226278a43cf04ca07eea8a7e793b3c4ec15217f12a75f1c80aebe52e5fd58e5",
+      "reviewStatus": "clearer-scan final consonant comparison; individually checked printed words and points; book remains draft"
+    },
+    {
+      "pass": 30,
+      "reference": "JDT6:4",
+      "before": "אֹתָם",
+      "after": "אוֹתָם",
+      "evidence": "/private/tmp/prosary-jdt-review/JDT6-4-clear-ocr.png",
+      "evidenceSHA256": "db8c9ec99f8d7b881bb8feb6254f4c2fd8987d4ef7a1a446da62fb6fb44caecc",
+      "reviewStatus": "clearer-scan final consonant comparison; individually checked printed words and points; book remains draft"
+    },
+    {
+      "pass": 30,
+      "reference": "JDT6:4",
+      "before": "וְהֶהָרִים",
+      "after": "וְהָרֵיהֶם",
+      "evidence": "/private/tmp/prosary-jdt-review/JDT6-4-clear-ocr.png",
+      "evidenceSHA256": "db8c9ec99f8d7b881bb8feb6254f4c2fd8987d4ef7a1a446da62fb6fb44caecc",
+      "reviewStatus": "clearer-scan final consonant comparison; individually checked printed words and points; book remains draft"
+    },
+    {
+      "pass": 30,
+      "reference": "JDT6:4",
+      "before": "כִּי אָבֹד־יֹאבֵדוּ",
+      "after": "כִּי אִם־אָבֹד יֹאבֵדוּן",
+      "evidence": "/private/tmp/prosary-jdt-review/JDT6-4-clear-ocr.png",
+      "evidenceSHA256": "db8c9ec99f8d7b881bb8feb6254f4c2fd8987d4ef7a1a446da62fb6fb44caecc",
+      "reviewStatus": "clearer-scan final consonant comparison; individually checked printed words and points; book remains draft"
+    },
+    {
+      "pass": 31,
+      "reference": "JDT2:19",
+      "before": "וּבְפָרָשִׁים",
+      "after": "וּבְפָרָשָׁם",
+      "evidence": "/private/tmp/prosary-jdt-review/JDT2-19-clear-ocr.png",
+      "evidenceSHA256": "c445305d3da477bd8a886ee5e5b4e75e6da0340b696332cd10135b619f9c29fa",
+      "reviewStatus": "final clearer-scan comparison, individually inspected consonants and marks; draft remains unapproved"
+    },
+    {
+      "pass": 31,
+      "reference": "JDT7:10",
+      "before": "אֶל־רָאשֵׁי הֶהָרִים",
+      "after": "אֶל־רָאשֵׁי הָרֵיהֶם",
+      "evidence": "/private/tmp/prosary-jdt-review/JDT7-10-full-ocr.png",
+      "evidenceSHA256": "a211a9121985f2b2652821cad3f40e559fda09f6269ec613aae0f9db49a3588a",
+      "reviewStatus": "final clearer-scan comparison, individually inspected consonants and marks; draft remains unapproved"
+    },
+    {
+      "pass": 31,
+      "reference": "JDT8:11",
+      "before": "קֹדֶם",
+      "after": "בָהֶם",
+      "evidence": "/private/tmp/prosary-jdt-review/JDT8-11-bahen-final-ocr.png",
+      "evidenceSHA256": "36a96db2b70ce09f4d270da32a3affe2aece630d251422d8f330abc64d5f2df3",
+      "reviewStatus": "final clearer-scan comparison, individually inspected consonants and marks; draft remains unapproved"
+    },
+    {
+      "pass": 31,
+      "reference": "JDT8:15",
+      "before": "לַעֲזוֹר לָנוּ",
+      "after": "לַעֲזֹר־לָנוּ",
+      "evidence": "/private/tmp/prosary-jdt-review/JDT8-15-full-ocr.png",
+      "evidenceSHA256": "6ccbfd5af0757630615e021a3a6594ab28bfa3350f929905a73fdeab341f0435",
+      "reviewStatus": "final clearer-scan comparison, individually inspected consonants and marks; draft remains unapproved"
+    },
+    {
+      "pass": 31,
+      "reference": "JDT9:14",
+      "before": "וְשֻׁלְטָן",
+      "after": "וְשִׁלְטוֹן",
+      "evidence": "/private/tmp/prosary-jdt-review/JDT9-14-shilton-final-ocr.png",
+      "evidenceSHA256": "2752a89167369bc15325964c8be2e6aae626c450d29e7e865f6726c900b67633",
+      "reviewStatus": "final clearer-scan comparison, individually inspected consonants and marks; draft remains unapproved"
+    },
+    {
+      "pass": 31,
+      "reference": "JDT11:10",
+      "before": "עָמְדָם",
+      "after": "עִמָּהֶם",
+      "evidence": "/private/tmp/prosary-jdt-review/JDT11-10-amdam-large.png",
+      "evidenceSHA256": "c374cb5d8378f218a0ca8461b87a582b477a0b7f6d854172c82b0a1325e4301f",
+      "reviewStatus": "final clearer-scan comparison, individually inspected consonants and marks; draft remains unapproved"
+    },
+    {
+      "pass": 31,
+      "reference": "JDT12:16",
+      "before": "וַיִּשָּׂא",
+      "after": "וַיֵּצֵא",
+      "evidence": "/private/tmp/prosary-jdt-review/JDT12-16-full-ocr.png",
+      "evidenceSHA256": "32c4433027bb6b3861b56335407acad9448319fd1546d4078080c0ea0f868159",
+      "reviewStatus": "final clearer-scan comparison, individually inspected consonants and marks; draft remains unapproved"
+    },
+    {
+      "pass": 31,
+      "reference": "JDT13:7",
+      "before": "בְּצִיצִית",
+      "after": "מִצִּיצִית",
+      "evidence": "/private/tmp/prosary-jdt-review/JDT13-7-mitsitsit-tight.png",
+      "evidenceSHA256": "e57c4b6d32c62974caf08594dd42fc5f762a493f7c9242aba2cd81a89f9c4823",
+      "reviewStatus": "final clearer-scan comparison, individually inspected consonants and marks; draft remains unapproved"
+    },
+    {
+      "pass": 31,
+      "reference": "JDT13:10",
+      "before": "בְּדַרְכָּן",
+      "after": "כְּדַרְכָּן",
+      "evidence": "/private/tmp/prosary-jdt-review/JDT13-10-final-ocr.png",
+      "evidenceSHA256": "2df484355ca1ea1ecd17ed72d5eb225e899f6d7662076cfc5f3b3747dea50078",
+      "reviewStatus": "final clearer-scan comparison, individually inspected consonants and marks; draft remains unapproved"
+    },
+    {
+      "pass": 31,
+      "reference": "JDT15:7",
+      "before": "וְהֶעָרִים",
+      "after": "וְהַפְּרָזִי",
+      "evidence": "/private/tmp/prosary-jdt-review/JDT15-7-final-ocr.png",
+      "evidenceSHA256": "b25e8092bb364e803cff3d8ed43d672a4ccf647c9a4533d3f603e2f6d4792ea7",
+      "reviewStatus": "final clearer-scan comparison, individually inspected consonants and marks; draft remains unapproved"
+    },
+    {
+      "pass": 31,
+      "reference": "JDT16:3",
+      "before": "וַיְכַסּוּ",
+      "after": "וַיִּסְגְּרוּ",
+      "evidence": "/private/tmp/prosary-jdt-review/JDT16-3-final-ocr.png",
+      "evidenceSHA256": "eeda2ab8bff06c37a8f4006cd2ffa1635c275d349899eca090dc6e95cd95ef36",
+      "reviewStatus": "final clearer-scan comparison, individually inspected consonants and marks; draft remains unapproved"
+    },
+    {
+      "pass": 31,
+      "reference": "JDT16:14",
+      "before": "יַעַבְדוּךָ",
+      "after": "יַעַבְדֻךָ",
+      "evidence": "/private/tmp/prosary-jdt-review/JDT16-14-final-ocr.png",
+      "evidenceSHA256": "b06ab03a4dd2bb4e3c9b5cc9da47d62558881e0857783eb7d1310d603b24fdc8",
+      "reviewStatus": "final clearer-scan comparison, individually inspected consonants and marks; draft remains unapproved"
+    },
+    {
+      "pass": 32,
+      "reference": "JDT9:4",
+      "before": "בֵּין הָאֲהוּבִים",
+      "after": "בָנֶיךָ הָאֲהוּבִים",
+      "evidence": "/private/tmp/prosary-jdt-review/JDT9-4-banekha-final-ocr.png",
+      "evidenceSHA256": "289625ee4532bc492d901721432f294105d3ce27fec8601669c6db4e8e93cd27",
+      "reviewStatus": "independently confirmed by parent reviewer from the same source crop; canonical draft corrected"
+    },
+    {
+      "pass": 32,
+      "reference": "JDT10:22",
+      "before": "אֶל־פֶּתַח־חֶדֶר",
+      "after": "אֶל־הַפְּרוֹזְדוֹר",
+      "evidence": "/private/tmp/prosary-jdt-review/JDT10-22-prozdor-final-ocr.png",
+      "evidenceSHA256": "60b27cc6508c5ec21fdb73c3d83dda8020b2ff21103288b61afd29bd6204ff11",
+      "reviewStatus": "independently confirmed by parent reviewer from the same source crop; canonical draft corrected"
+    },
+    {
+      "pass": 33,
+      "reference": "JDT12:18",
+      "before": "חַיַּתִי כִּי",
+      "after": "חַיָּתִי בִי",
+      "evidence": [
+        {
+          "scratchPath": "/private/tmp/prosary-jdt-review/JDT12-18-life-word.png",
+          "sha256": "976bc60c0a86a3b13aee3cc9ee78ce35cf65abe7d8ecd7ea1398a439ec07ded0"
+        },
+        {
+          "scratchPath": "/private/tmp/prosary-jdt-review/JDT12-18-glyph-comparison.png",
+          "sha256": "56b080c5e472d689ea35e966d40db5cc1a0403adeb7a25edeeec23eb6852a984"
+        }
+      ],
+      "reviewStatus": "Specific word marks directly checked; parent and Windows independently confirm yod qamats. Same-scale source-font comparison resolves final initial as bet without dagesh, independently confirmed by Windows.",
+      "supersedes": "Earlier lower-resolution kaf reading and first impression of bet without same-font controls. The target lower-right baseline heel matches definite bet in לבך, while earlier same-line kaf in כי has no such heel. No semantic emendation."
+    }
+  ]
+}

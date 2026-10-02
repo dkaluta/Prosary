@@ -49,7 +49,7 @@ extension FocusedValues {
 /// A native collection of prayer configurations. Selecting a prayer inspects its identity;
 /// opening it creates or activates a separate session window, leaving the library in place.
 struct MacPrayerLibraryView: View {
-  private enum Sidebar: Hashable { case all, today, gallery, basicPrayers, community, tag(String) }
+  private enum Sidebar: Hashable { case all, today, bible, gallery, basicPrayers, community, tag(String) }
   private enum DisplayStyle: String { case icons, list }
 
   @State private var model: MacPrayerLibraryModel
@@ -97,6 +97,7 @@ struct MacPrayerLibraryView: View {
   private var detailTitle: String {
     if sidebar == .community { return label("macLibrary.community", "Community Devotions") }
     if sidebar == .today { return label("home.today.today", "Today") }
+    if sidebar == .bible { return bibleLabel("title", "Bible") }
     if sidebar == .gallery { return label("macLibrary.gallery", "Prayer Gallery") }
     if sidebar == .basicPrayers { return label("basicPrayers.title", "Basic Prayers") }
     if case .tag(let id) = sidebar, let tag = model.tags.first(where: { $0.id == id }) { return tag.title }
@@ -112,6 +113,9 @@ struct MacPrayerLibraryView: View {
         Label(label("home.today.today", "Today"), systemImage: "calendar")
           .tag(Sidebar.today)
           .accessibilityIdentifier("macLibrary.today")
+        Label(bibleLabel("title", "Bible"), systemImage: "book")
+          .tag(Sidebar.bible)
+          .accessibilityIdentifier("macLibrary.bible")
         Label(label("macLibrary.gallery", "Prayer Gallery"), systemImage: "square.grid.2x2")
           .tag(Sidebar.gallery)
           .accessibilityIdentifier("macLibrary.gallery")
@@ -162,6 +166,8 @@ struct MacPrayerLibraryView: View {
         } else if sidebar == .today {
           MacTodayView()
             .id(widgetTodayGeneration)
+        } else if sidebar == .bible {
+          NavigationStack { BibleView() }
         } else if sidebar == .gallery {
           MacPrayerGalleryView(items: model.galleryItems,
             includedDevotionIDs: Set(model.items.map(\.devotionID)),

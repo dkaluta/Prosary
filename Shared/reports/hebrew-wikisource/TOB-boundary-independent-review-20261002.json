@@ -1,0 +1,426 @@
+{
+  "schemaVersion": 1,
+  "book": "TOB",
+  "reviewer": "source_gate",
+  "recension": "upper short recension only",
+  "status": "independent boundary audit complete; five proposed divisions supported with explicit source-layout reasoning, including one unpunctuated editorial boundary",
+  "canonicalChanged": false,
+  "releaseApproved": false,
+  "newReviewedPages": [],
+  "comparedProposalReport": {
+    "path": "Shared/reports/hebrew-wikisource/TOB-boundary-proposals-20261002.json",
+    "sha256": "1981e5969df929ab9338c7b4d01a322fa788891db3c853df3b48da6f8eab38c7"
+  },
+  "method": [
+    "Directly inspected all five paired original/extra source crops and the 9:1/2 same-edition control. This is a boundary and punctuation audit, not a replacement for full word-and-point chapter proof.",
+    "Inspected original B321 and B323 whole-page images and extra spread168 for the shared chapter4 commentary heading and the separate upper/lower body endings. Lower-recension text was not used to supply any upper-recension words or boundaries.",
+    "Numbering conclusions are reasoned mappings from margin rows, actual separators and local syntax. No external Bible numbering was consulted. No invisible inline numeral or punctuation is claimed."
+  ],
+  "focusedCrops": [
+    {
+      "id": "4-5",
+      "kind": "primary",
+      "sourceNativeImage": "TOB-B-321-native.png",
+      "sourceNativeImageSHA256": "f7c892dbac5236503d6113d2345f4c768f70dce130ad493a60514d562a6f555f",
+      "sourcePDFPage": 321,
+      "bounds": [
+        190,
+        750,
+        1450,
+        1075
+      ],
+      "path": "/private/tmp/prosary-kahana-reference/TOB-boundary-4-5-primary.png",
+      "sha256": "fa5c37293490199f917be283ffd40c52b39fd2a016375fe34a4aa50d3a9b8aa5"
+    },
+    {
+      "id": "4-7",
+      "kind": "primary",
+      "sourceNativeImage": "TOB-B-322-native.png",
+      "sourceNativeImageSHA256": "ca3593d0fa1e77760679d8e1a9769faf4738b3a187f07e4b778210df5f7300fe",
+      "sourcePDFPage": 322,
+      "bounds": [
+        190,
+        325,
+        1450,
+        535
+      ],
+      "path": "/private/tmp/prosary-kahana-reference/TOB-boundary-4-7-primary.png",
+      "sha256": "bef66f10bd9a8f05c12b344fc90a662f74417c82fa845f23bde05e9f2e2f55d3"
+    },
+    {
+      "id": "7-12",
+      "kind": "primary",
+      "sourceNativeImage": "TOB-B-331-native.png",
+      "sourceNativeImageSHA256": "a7d8496d0a688e32544f22b81b2f9827482099168c800c1a0561049121b3c539",
+      "sourcePDFPage": 331,
+      "bounds": [
+        190,
+        305,
+        1450,
+        615
+      ],
+      "path": "/private/tmp/prosary-kahana-reference/TOB-boundary-7-12-primary.png",
+      "sha256": "5963eae4ad8bea65d9de701036738b1a796d87db9c97cbeedc9947bb71cbb897"
+    },
+    {
+      "id": "7-17",
+      "kind": "primary",
+      "sourceNativeImage": "TOB-B-332-native.png",
+      "sourceNativeImageSHA256": "2ad61184749a47c5a9cdce7affeb909b299ba75a6e4f1429af2a0217b03d3018",
+      "sourcePDFPage": 332,
+      "bounds": [
+        190,
+        315,
+        1450,
+        585
+      ],
+      "path": "/private/tmp/prosary-kahana-reference/TOB-boundary-7-17-primary.png",
+      "sha256": "cee8db5a3cc25a392e9fc44dd9e85770d4ac90150f3d283e372bd5c454324e88"
+    },
+    {
+      "id": "10-5",
+      "kind": "primary",
+      "sourceNativeImage": "TOB-B-335-native.png",
+      "sourceNativeImageSHA256": "11fcc6248213035535b158d60a928f719566eeba1501c9b2a78f5ea12ad94501",
+      "sourcePDFPage": 335,
+      "bounds": [
+        190,
+        495,
+        1530,
+        885
+      ],
+      "path": "/private/tmp/prosary-kahana-reference/TOB-boundary-10-5-primary.png",
+      "sha256": "539692cbc915061135097ee994e89d167c818ae7e371f782d8e68a1c4eaabac2"
+    },
+    {
+      "id": "4-5",
+      "kind": "extra",
+      "sourceNativeImage": "TOB-extra-167-native.png",
+      "sourceNativeImageSHA256": "57aab16d35569245cdfb6e994d89552589b6004bb0f0699356f94c3294ce6312",
+      "sourcePDFPage": 167,
+      "bounds": [
+        490,
+        530,
+        1465,
+        751
+      ],
+      "path": "/private/tmp/prosary-kahana-reference/TOB-boundary-4-5-extra.png",
+      "sha256": "926997d8d49713ab8078b0c84fbae518e2e7e60c6bbd8009f41d392c9d6537a0"
+    },
+    {
+      "id": "4-7",
+      "kind": "extra",
+      "sourceNativeImage": "TOB-extra-168-native.png",
+      "sourceNativeImageSHA256": "729748e2bedc40cf2adcd3277ed21ac46ed331c2a005495670089847c419488c",
+      "sourcePDFPage": 168,
+      "bounds": [
+        1680,
+        173,
+        2665,
+        329
+      ],
+      "path": "/private/tmp/prosary-kahana-reference/TOB-boundary-4-7-extra.png",
+      "sha256": "923c2d9041b9a6bee24abc8f0ae6c114bb54d7732ce90aed46ef0fcad2a45e1f"
+    },
+    {
+      "id": "7-12",
+      "kind": "extra",
+      "sourceNativeImage": "TOB-extra-172-native.png",
+      "sourceNativeImageSHA256": "e04fa76fe61ddf9d60499381ed519e2783a53119d45379ef1bb77eeec978697c",
+      "sourcePDFPage": 172,
+      "bounds": [
+        500,
+        173,
+        1475,
+        400
+      ],
+      "path": "/private/tmp/prosary-kahana-reference/TOB-boundary-7-12-extra.png",
+      "sha256": "9a0222b6df84aa1e087ff92fd58d66b41f0384a8c7aba2c507973a3069057526"
+    },
+    {
+      "id": "7-17",
+      "kind": "extra",
+      "sourceNativeImage": "TOB-extra-173-native.png",
+      "sourceNativeImageSHA256": "b982b58ddff8622fb8ee46cdf52111352a6f594b520aa7848e08aa6ca001874f",
+      "sourcePDFPage": 173,
+      "bounds": [
+        1700,
+        173,
+        2665,
+        357
+      ],
+      "path": "/private/tmp/prosary-kahana-reference/TOB-boundary-7-17-extra.png",
+      "sha256": "a3fe79725e4247e94751aa670845a1e63aed72c4ebbf0cba8d81f8f85edfe45b"
+    },
+    {
+      "id": "10-5",
+      "kind": "extra",
+      "sourceNativeImage": "TOB-extra-174-native.png",
+      "sourceNativeImageSHA256": "a089b934fad1818ec7c506d7971c76ab17e597d73ddb123ce742312da4b2cbf2",
+      "sourcePDFPage": 174,
+      "bounds": [
+        500,
+        365,
+        1475,
+        573
+      ],
+      "path": "/private/tmp/prosary-kahana-reference/TOB-boundary-10-5-extra.png",
+      "sha256": "f5237326d6f814e383965c1fe6f681ed845e88e5fc8085bfc7505fd762d9d1a1"
+    },
+    {
+      "id": "9-2-control",
+      "kind": "extra",
+      "sourceNativeImage": "TOB-extra-174-native.png",
+      "sourceNativeImageSHA256": "a089b934fad1818ec7c506d7971c76ab17e597d73ddb123ce742312da4b2cbf2",
+      "sourcePDFPage": 174,
+      "bounds": [
+        1700,
+        435,
+        2675,
+        598
+      ],
+      "path": "/private/tmp/prosary-kahana-reference/TOB-boundary-9-2-control-extra.png",
+      "sha256": "7f8fe01bd0d599db79ec02f148a6908526d7ceba7b1fb642e8feb38ed144c2ed"
+    }
+  ],
+  "decisions": [
+    {
+      "id": "tob-4-5",
+      "chapter": 4,
+      "sourcePage": 321,
+      "sourceMarginLabel": "ה",
+      "proposedNextStart": "וּבְמוֹתָהּ",
+      "decision": "support adoption",
+      "basis": "source-layout-and-punctuation-inference",
+      "independentObservation": "The ה label aligns with the row continuing ראתה בגללך בהיותך בבטן׃ and then ובמותה ... אחד׃. Both separators are visibly present. Starting with ובמותה follows the first separator on that labelled row; starting with the next-row זכר־בני would place the margin number a full row before its opening words. The former is the stronger source-layout reading. This may differ from another edition and must not be silently standardized.",
+      "printedInlineBoundaryAtProposedWord": false,
+      "continuousTextUnchangedVerified": true,
+      "evidence": [
+        "TOB-boundary-4-5-primary.png",
+        "TOB-boundary-4-5-extra.png"
+      ],
+      "proposedUnits": [
+        {
+          "verse": 4,
+          "text": "זְכָר־בְּנִי כִּי סַכָּנוֹת רַבּוֹת רָאֲתָה בִּגְלָלְךָ בִּהְיוֹתְךָ בַבָּטֶן׃",
+          "sourcePages": [
+            321
+          ],
+          "textSHA256": "10385cf3543f50192a24e35b7503a2964e63a6a74512b7e351a5670cf7709cfd"
+        },
+        {
+          "verse": 5,
+          "text": "וּבְמוֹתָהּ וּקְבַרְתָּהּ אֶצְלִי בְּקֶבֶר אֶחָד׃ זְכָר־בְּנִי אֶת־יְיָ אֱלֹהֵינוּ כָּל־יָמֶיךָ וְאַל־תֹּאבֶה לַחֲטֹא וְלַעֲבֹר מִצְוֹתָיו עֲשֵׂה צְדָקָה כָּל־יְמֵי חַיֶּיךָ וְאַל־תֵּלֵךְ בְּדַרְכֵי עַוְלָה׃",
+          "sourcePages": [
+            321
+          ],
+          "textSHA256": "8e22d9f5596c99a1e113adfbd2de01e53080c293e8f6527e8f654497d26f9548"
+        }
+      ]
+    },
+    {
+      "id": "tob-4-7",
+      "chapter": 4,
+      "sourcePage": 322,
+      "sourceMarginLabel": "ז",
+      "proposedNextStart": "וְגַם־לְכָל־עוֹשֵׂי",
+      "decision": "support adoption",
+      "basis": "source-layout-and-punctuation-inference",
+      "independentObservation": "The ז row begins with תצליח במעשיך׃, then וגם־לכל־עושי. This is the single separator on that labelled row. Splitting at תעשה would have neither a separator nor a separate source-layout cue. The proposed beginning is supported.",
+      "printedInlineBoundaryAtProposedWord": false,
+      "continuousTextUnchangedVerified": true,
+      "evidence": [
+        "TOB-boundary-4-7-primary.png",
+        "TOB-boundary-4-7-extra.png"
+      ],
+      "proposedUnits": [
+        {
+          "verse": 6,
+          "text": "וְאִם־תִּפְעַל אֱמֶת תַּצְלִיחַ בְּמַעֲשֶׂיךָ׃",
+          "sourcePages": [
+            321,
+            322
+          ],
+          "textSHA256": "2ab7c1f2559b674ce50d9f65a0878ed64335c82b99af12ea25fe2a4cd2112e3b"
+        },
+        {
+          "verse": 7,
+          "text": "וְגַם־לְכָל־עוֹשֵׂי צְדָקָה תַּעֲשֵׂה צְדָקָה מֵאֲשֶׁר יֶשׁ־לָךְ וְאַל־תָּרַע עֵינְךָ בַּעֲשׂוֹתְךָ צְדָקָה וְאַל־תַּסְתֵּר פָּנֶיךָ מִכָּל־עָנִי וְלֹא יִסָּתְרוּ מִפָּנֶיךָ פְּנֵי־הָאֱלֹהִים׃",
+          "sourcePages": [
+            322
+          ],
+          "textSHA256": "36cb730b7d05b101ded40e2827622762b9aac0fe8b48f16ab9aed34cb3f54063"
+        }
+      ]
+    },
+    {
+      "id": "tob-7-12",
+      "chapter": 7,
+      "sourcePage": 331,
+      "sourceMarginLabel": "יב",
+      "proposedNextStart": "וַיֹּאמֶר טוֹבִיָּה",
+      "decision": "support adoption",
+      "basis": "explicit-editorial-layout-and-syntax-inference",
+      "independentObservation": "No separator is printed after לבך in either scan. The יב row begins as a continuation of כאשר באו אליה and then completes the former speaker’s reassurance before ויאמר טוביה. ויאמר טוביה is the sole clear new speaker introduction on the numbered row. Starting at אליה would sever the preceding כאשר באו clause; starting at אך עתה would split the same speaker’s reassurance without another source cue. No equally supported source-internal alternative was found. Adopt the proposed boundary only with this inferential basis retained; do not invent a sof pasuq or claim an inline numeral at ויאמר.",
+      "printedInlineBoundaryAtProposedWord": false,
+      "continuousTextUnchangedVerified": true,
+      "evidence": [
+        "TOB-boundary-7-12-primary.png",
+        "TOB-boundary-7-12-extra.png"
+      ],
+      "proposedUnits": [
+        {
+          "verse": 11,
+          "text": "אֲנִי נָתַתִּי אֶת־יַלְדָּתִי לְשִׁבְעָה אֲנָשִׁים וְכַאֲשֶׁר בָּאוּ אֵלֶיהָ מֵתוּ בַלַּיְלָה הַהוּא אַךְ עַתָּה יִיטַב לְבָךְ",
+          "sourcePages": [
+            331
+          ],
+          "textSHA256": "cbd11cf535bb55248865b5ad9eb80e8466c1a687f202705f7685de4a92db6291"
+        },
+        {
+          "verse": 12,
+          "text": "וַיֹּאמֶר טוֹבִיָּה לֹא אֶטְעַם מְאוּמָה עַד־אֲשֶׁר תַּעֲמִידוּ וְתַעַמְדוּ אַתֶּם לְפָנָי וַיֹּאמֶר רְעוּאֵל קַח־נָא אוֹתָהּ מֵעַתָּה כַּמִּשְׁפָּט הֵן אַתָּה אָחִיהָ וְהִיא לָךְ וְאֵל רַחוּם יַצְלִיחַ אֶתְכֶם יַחְדָּו׃",
+          "sourcePages": [
+            331
+          ],
+          "textSHA256": "541fbceda4365fde647a1679ec886e9985ff638f7cbe9bfffc54cdf7c1c401f7"
+        }
+      ]
+    },
+    {
+      "id": "tob-7-17",
+      "chapter": 7,
+      "sourcePage": 332,
+      "sourceMarginLabel": "יז",
+      "proposedNextStart": "חִזְקִי יַלְדָּתִי",
+      "decision": "support adoption",
+      "basis": "source-layout-and-punctuation-inference",
+      "independentObservation": "The יז row continues את־דמעות בתה ותאמר לה׃, followed by חזקי ילדתי. The separator is after לה, not before ותאמר. Beginning the new unit at חזקי follows the sole separator on the numbered row. Source 9:1/2 independently demonstrates that this edition can retain a speech introduction in the previous verse and start the next with direct speech.",
+      "printedInlineBoundaryAtProposedWord": false,
+      "continuousTextUnchangedVerified": true,
+      "evidence": [
+        "TOB-boundary-7-17-primary.png",
+        "TOB-boundary-7-17-extra.png"
+      ],
+      "proposedUnits": [
+        {
+          "verse": 16,
+          "text": "וַתַּעַשׂ כַּאֲשֶׁר אָמַר וַתָּבֵא אוֹתָהּ שָׁמָּה וַתֵּבְךְ וַתְּקַבֵּל אֶת־דִּמְעוֹת בִּתָּהּ וַתֹּאמֶר לָהּ׃",
+          "sourcePages": [
+            332
+          ],
+          "textSHA256": "fc881bf50057bce03734f855fc60cd3f641a91adadb6a26307cdcea53ec90cce"
+        },
+        {
+          "verse": 17,
+          "text": "חִזְקִי יַלְדָּתִי אֲדֹנֵי הַשָּׁמַיִם וְהָאָרֶץ יִתֶּן־לָךְ שִׂמְחָה תַּחַת יְגוֹנֵךְ זֶה חִזְקִי בִּתִּי׃",
+          "sourcePages": [
+            332
+          ],
+          "textSHA256": "2c1e8b24e59cda71b07227c83d2bd08fea2d470bd4a7c6f0b7e962d014e83cd7"
+        }
+      ]
+    },
+    {
+      "id": "tob-10-5",
+      "chapter": 10,
+      "sourcePage": 335,
+      "sourceMarginLabel": "ה",
+      "proposedNextStart": "אוֹי־לִי־תַחַת",
+      "decision": "support adoption",
+      "basis": "source-layout-and-punctuation-inference",
+      "independentObservation": "Both scans unambiguously print לבכותו ותאמר׃ אוי־לי־תחת. The former draft moved the separator to after לבכותו and was wrong. The ה margin accompanies this row; the combined ג–ד margin is on the preceding row. Beginning5 at אוי־לי־תחת follows the sole separator in the ה row and the edition’s direct-speech boundary convention. Keep the actual combined3–4 label.",
+      "printedInlineBoundaryAtProposedWord": false,
+      "continuousTextUnchangedVerified": true,
+      "evidence": [
+        "TOB-boundary-10-5-primary.png",
+        "TOB-boundary-10-5-extra.png"
+      ],
+      "proposedUnits": [
+        {
+          "verse": 3,
+          "text": "וַיִּתְעַצֵּב מְאֹד׃ וַתֹּאמֶר לוֹ אִשְׁתּוֹ אָבַד הַיֶּלֶד כִּי עַל־כֵּן אֵחַר לָבֹא וַתָּחֵל לִבְכּוֹתוֹ וַתֹּאמֶר׃",
+          "sourcePages": [
+            335
+          ],
+          "textSHA256": "6faafe30758598791f4fad653f6800030cbc099d7c730d1ec6f700e402d130ed",
+          "endVerse": 4
+        },
+        {
+          "verse": 5,
+          "text": "אוֹי־לִי־תַחַת בְּנִי כִּי נְתַתִּיךָ לְלֶכֶת אוֹר עֵינַי׃",
+          "sourcePages": [
+            335
+          ],
+          "textSHA256": "a91e5ee184c66c8d8c9b2686dd6b7c33d7e8c42d6f19a729afbf3eb18ba86eb7"
+        }
+      ]
+    }
+  ],
+  "punctuationCorrection": {
+    "location": "10:3–5",
+    "decision": "corroborated literal correction",
+    "before": "לִבְכּוֹתוֹ׃ וַתֹּאמֶר",
+    "after": "לִבְכּוֹתוֹ וַתֹּאמֶר׃",
+    "evidence": [
+      "TOB-boundary-10-5-primary.png",
+      "TOB-boundary-10-5-extra.png"
+    ],
+    "history": "The independent chapter10 pass previously failed to notice this misplaced separator. That previous no-additional-punctuation-error conclusion is superseded by this direct paired-image reinspection."
+  },
+  "sourceInternalControl": {
+    "location": "9:1/2, upper B334 / extra174 right",
+    "observation": "The same source row carries the chapter ט and ב labels and reads ויקרא טוביה לרפאל ויאמר לו׃ עזריה אחי ... . The visible separator follows the speech introduction. The next unit starts direct address, confirming that this is an actual convention available in this edition, without proving the other cases by itself.",
+    "evidence": "TOB-boundary-9-2-control-extra.png"
+  },
+  "chapter4Ending": {
+    "decision": "support last printed upper label20; no missing upper21 inferred",
+    "observation": "Original B323 and extra168 left visibly show the upper final כ unit through והטוב בעיניו תעשה׃ followed by the chapter ה marker. The lower recension has separate כ and כא before its own ה marker. Original B321 commentary heading ד א–כא is shared by the two recensions and is consistent with the lower numbering. It does not establish an absent upper verse21. The upper continuous text is complete through its own ending; preserve its numbering rather than importing the lower extra label.",
+    "sourceImages": [
+      {
+        "source": "Apocrypha_Kahana_B.pdf",
+        "sourceSHA256": "656891d377d2e3d4a9216723d94205488423907bf01df424b9f0b9de1560051e",
+        "page": 321,
+        "imageXref": 1894,
+        "png": "/private/tmp/prosary-kahana-reference/TOB-B-321-native.png",
+        "pixelDimensions": [
+          1650,
+          2550
+        ],
+        "sha256": "f7c892dbac5236503d6113d2345f4c768f70dce130ad493a60514d562a6f555f"
+      },
+      {
+        "source": "Apocrypha_Kahana_B.pdf",
+        "sourceSHA256": "656891d377d2e3d4a9216723d94205488423907bf01df424b9f0b9de1560051e",
+        "page": 323,
+        "imageXref": 1906,
+        "png": "/private/tmp/prosary-kahana-reference/TOB-B-323-native.png",
+        "pixelDimensions": [
+          1650,
+          2550
+        ],
+        "sha256": "81efa9a4f089e4bb201b1bd7243d2cc6cb38b85076fdb0f0f157099403f6c930"
+      },
+      {
+        "source": "Apocrypha_Kahana_B_extra_scan.pdf",
+        "sourceSHA256": "b72eaf5d2d858fabb7c3438ac0436ccd64c394a7dd2fad609efabe628d5534c7",
+        "page": 168,
+        "imageXref": 667,
+        "png": "/private/tmp/prosary-kahana-reference/TOB-extra-168-native.png",
+        "pixelDimensions": [
+          2872,
+          2024
+        ],
+        "sha256": "729748e2bedc40cf2adcd3277ed21ac46ed331c2a005495670089847c419488c"
+      }
+    ]
+  },
+  "validation": {
+    "all11FocusedCropHashesVerified": true,
+    "fiveProposedSplitsPreserveExactContinuousText": true,
+    "proposedUnitTextHashesVerified": true,
+    "noCanonicalOrApprovalMutation": true,
+    "remainingBoundaryObjection": null,
+    "limitation": "7:12 is a reasoned editorial layout/syntax division without a printed separator. Its documentary basis must remain explicit; no new punctuation is supplied. This audit alone does not approve the full book."
+  }
+}

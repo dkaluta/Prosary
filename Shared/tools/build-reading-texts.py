@@ -66,9 +66,10 @@ class Unavailable(ValueError):
 class ResolvedPassage(list):
     """Native verse rows plus a build-time-only whole-verse envelope marker."""
 
-    def __init__(self, verses, *, includes_whole_verses: bool = False):
+    def __init__(self, verses, *, includes_whole_verses: bool = False, source: dict | None = None):
         super().__init__(verses)
         self.includes_whole_verses = includes_whole_verses
+        self.source = source
 
 
 class PinnedCorpus(dict):
@@ -211,7 +212,7 @@ def includes_whole_verses(citation: str) -> bool:
 
 
 def source_bytes(source: dict, fetch: bool = False) -> bytes:
-    local_review = source["format"] == "reviewed-verses"
+    local_review = source["format"] in {"reviewed-verses", "reviewed-arabic-extension"}
     label = source["path"] if local_review else source["cache"]
     path = ROOT / label if local_review else CACHE / label
     if local_review and not path.resolve().is_relative_to((ROOT / "Shared/content").resolve()):
@@ -275,14 +276,17 @@ def load_source(source: dict) -> dict[tuple[str, int], dict[int, str]]:
             raise ValueError("Invalid Delitzsch source chapter")
         for verse, text in apply_reviewed_corrections(source, parse_chapter(raw)).items():
             add(source["book"], source["chapter"], verse, text)
-    elif source["format"] in {"peshitta-tei", "peshitta-isaiah"}:
+    elif source["format"] in {"peshitta-tei", "peshitta-isaiah", "peshitta-supplied-ot"}:
         from peshitta_reading_source import load_verses
         for (chapter, verse), text in load_verses(source, raw).items():
             add(source["book"], chapter, verse, text)
-    elif source["format"] == "reviewed-verses":
+    elif source["format"] in {"reviewed-verses", "reviewed-arabic-extension"}:
         data = json.loads(raw)
-        if data["edition"]["id"] != source["editionId"]:
+        extension = source["format"] == "reviewed-arabic-extension"
+        if (data["editionId"] if extension else data["edition"]["id"]) != source["editionId"]:
             raise ValueError("Reviewed Scripture edition differs from its source lock")
+        if extension and data.get("sourcePDFSHA256") != "2bca3535b75532044bdc2889b497b16b59e0337ee775f42de8aedc4e2809c09d":
+            raise ValueError("Arabic extension differs from the reviewed 1897 printing")
         # Every transcribed verse must identify the scanned PDF page(s) actually
         # inspected. Neither OCR text nor a publisher label establishes review.
         for name, book in data["verses"].items():
@@ -301,7 +305,8 @@ def load_source(source: dict) -> dict[tuple[str, int], dict[int, str]]:
         units = []
         if not isinstance(data.get("reviewUnits"), list) or not data["reviewUnits"]:
             raise ValueError("Reviewed Scripture requires explicit reviewed passage units")
-        for citation in data["reviewUnits"]:
+        for review in data["reviewUnits"]:
+            citation = review["source"] if extension else review
             book, spans = parse_citation(citation)
             unit = []
             for sc, sv, ec, ev in spans:
@@ -397,6 +402,16 @@ def resolve(key: str, contexts: set[str], edition: dict, corpus: dict) -> Resolv
     from reading_source_numbering_reviews import has_numbering_review, reviewed_numbering
     scope, citation = key.split("|", 1)
     book, spans = parse_citation(citation, expand_subverses=True)
+    if scope == "daily" and edition["id"] == "masoretic-delitzsch":
+        from hebrew_daily_readings import default_resolver, Unavailable as HebrewUnavailable
+        supplement = default_resolver()
+        if supplement.handles(key, book):
+            try:
+                passage = supplement.resolve(key, contexts, preserve_divine_name_accents)
+            except HebrewUnavailable as error:
+                raise Unavailable(str(error)) from error
+            return ResolvedPassage(passage.verses, includes_whole_verses=passage.includes_whole_verses,
+                                   source=passage.source)
     if scope == "torah":
         source_systems = ["org"]
     elif book in NT and contexts == {"roman1962"}:
@@ -482,6 +497,19 @@ def resolve(key: str, contexts: set[str], edition: dict, corpus: dict) -> Resolv
         excluded = edition_mapper(edition["id"], corpus).excluded_chapters
         if any(reference[:2] in excluded for reference in candidates[0]):
             raise Unavailable("source chapter excluded by its edition review")
+        if edition["id"] == "peshitta-1905" and book not in NT:
+            # Legacy/exact-appointment paths already selected edition labels.
+            # Validate every source coordinate and close any reviewed compound
+            # unit before emission; a chapter's matching length is insufficient.
+            from reading_step_mapping import Unavailable as MappingUnavailable
+            try:
+                subject = edition_mapper(edition["id"], corpus)
+                standard, source_whole = subject.to_standard(candidates[0])
+                references, target_whole = subject.from_standard(standard)
+            except MappingUnavailable as error:
+                raise Unavailable(str(error)) from error
+            candidates = [references]
+            whole |= source_whole or target_whole
     if isinstance(corpus, ReviewedCorpus):
         if edition.get("coveragePolicy") != "reviewed-units" or corpus.edition_id != edition["id"]:
             raise ValueError("Reviewed Scripture corpus requires its matching edition and boundary policy")
@@ -499,11 +527,7 @@ def resolve(key: str, contexts: set[str], edition: dict, corpus: dict) -> Resolv
             if verse not in values or not values[verse].strip():
                 raise Unavailable("reviewed source verse unavailable")
         else:
-            if edition["id"] == "peshitta-1905" and mapped_book == "ISA":
-                from reading_edition_reviews_peshitta import REVIEWED_ISAIAH
-                complete = (isinstance(corpus, PinnedCorpus) and corpus.chapter_matches(mapped_book, chapter)
-                            and (chapter, verse) in REVIEWED_ISAIAH)
-            elif uses_step_inventory:
+            if uses_step_inventory:
                 complete = (edition_mapper(edition["id"], corpus).chapter_available(mapped_book, chapter)
                             and corpus.chapter_matches(mapped_book, chapter))
             elif target_system == "delitzsch-1901":
@@ -525,11 +549,34 @@ def resolve(key: str, contexts: set[str], edition: dict, corpus: dict) -> Resolv
                     or edition.get("transliteratedTextScript") != "Syrc"):
                 raise ValueError("Paired Bible scripts require their reviewed source projection")
             from peshitta_reading_source import paired_text
-            row["text"], row["transliteratedText"] = paired_text(text)
+            try:
+                row["text"], row["transliteratedText"] = paired_text(text)
+            except ValueError as error:
+                raise Unavailable(f"source script projection unavailable: {error}") from error
         result.append(row)
     if not result:
         raise Unavailable("empty passage")
     return ResolvedPassage(result, includes_whole_verses=whole)
+
+
+def assemble_reviewed_corpus(edition: dict, raw_corpora: dict, pins_by_source: dict) -> ReviewedCorpus:
+    """Join same-edition sparse reviews without widening or overwriting their units."""
+    corpus, units = {}, []
+    for reference in edition["sources"]:
+        if "testament" in reference:
+            raise ValueError("Reviewed sparse sources cannot use inferred testament boundaries")
+        source_corpus = raw_corpora[reference["id"]]
+        if not isinstance(source_corpus, ReviewedCorpus) or source_corpus.edition_id != edition["id"]:
+            raise ValueError("Reviewed source does not match the selected edition")
+        for chapter, verses in source_corpus.items():
+            target = corpus.setdefault(chapter, {})
+            if target.keys() & verses.keys():
+                raise ValueError("Reviewed source assembly repeats a verse")
+            target.update(verses)
+        units.extend(source_corpus.review_units)
+    result = ReviewedCorpus(corpus, edition["id"], units)
+    result.source_pins = {reference["id"]: pins_by_source[reference["id"]] for reference in edition["sources"]}
+    return result
 
 
 def load_pinned_corpora(fetch: bool = False) -> tuple[dict, dict]:
@@ -538,8 +585,11 @@ def load_pinned_corpora(fetch: bool = False) -> tuple[dict, dict]:
     sources = lock["sources"]
     pins_by_source = {source["id"]: source["sha256"] for source in sources}
     if fetch:
+        # Several book adapters read the same source file. Download it once to
+        # avoid concurrent writes to the same cache path on a clean checkout.
+        unique_sources = {source.get("cache", source.get("path")): source for source in sources}
         with ThreadPoolExecutor(max_workers=4) as pool:
-            list(pool.map(lambda source: source_bytes(source, True), sources))
+            list(pool.map(lambda source: source_bytes(source, True), unique_sources.values()))
     raw_corpora = {}
     for source in sources:
         raw_corpora[source["id"]] = load_source(source)
@@ -547,13 +597,7 @@ def load_pinned_corpora(fetch: bool = False) -> tuple[dict, dict]:
     for edition in lock["editions"]:
         corpus = {}
         if edition.get("coveragePolicy") == "reviewed-units":
-            if len(edition["sources"]) != 1 or "testament" in edition["sources"][0]:
-                raise ValueError("Reviewed sparse editions must use one unmixed source")
-            corpus = raw_corpora[edition["sources"][0]["id"]]
-            if not isinstance(corpus, ReviewedCorpus) or corpus.edition_id != edition["id"]:
-                raise ValueError("Reviewed source does not match the selected edition")
-            corpus.source_pins = {reference["id"]: pins_by_source[reference["id"]] for reference in edition["sources"]}
-            corpora[edition["id"]] = corpus
+            corpora[edition["id"]] = assemble_reviewed_corpus(edition, raw_corpora, pins_by_source)
             continue
         for reference in edition["sources"]:
             source_id = reference["id"]
@@ -596,6 +640,10 @@ def build(fetch: bool = False) -> dict[str, bytes]:
                            if any(value.includes_whole_verses for value in values.values())]
     payload = {"schemaVersion": 1, "editions": editions, "passages": passages,
                "wholeVersePassages": whole_verse_passages}
+    passage_sources = {key: {edition: value.source for edition, value in versions.items() if value.source is not None}
+                       for key, versions in passages.items() if any(value.source is not None for value in versions.values())}
+    if passage_sources:
+        payload["passageSources"] = passage_sources
     report = {"schemaVersion": 1, "uniqueAppointments": len(keys), "passagesWithAnyEdition": len(passages),
               "coverage": {edition["id"]: {"daily": sum(key.startswith("daily|") and edition["id"] in value for key, value in passages.items()),
                   "torah": sum(key.startswith("torah|") and edition["id"] in value for key, value in passages.items()),

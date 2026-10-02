@@ -133,6 +133,7 @@ Run with `dotnet test Prosary.sln` (Windows only, same constraint as building th
 
 ## License
 
-All original Prosary material is licensed under the repository-wide BSD 2-Clause License — see
-[LICENSE](../LICENSE). Third-party typefaces retain their original licenses — see
-`Prosary/Assets/Fonts/ATTRIBUTIONS.markdown`.
+Original Prosary material is covered by the repository-wide [LICENSE](../LICENSE):
+BSD 2-Clause, with a CC0 1.0 Universal dedication for all original natural-language text
+authored by David Kaluta. See the [dedication's scope](../Shared/content/TEXT-LICENSING.markdown).
+Third-party typefaces retain their original licenses — see `Prosary/Assets/Fonts/ATTRIBUTIONS.markdown`.

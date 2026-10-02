@@ -38,7 +38,32 @@
     <string name="readings_unavailable">Ce passage n’est pas disponible dans l’édition de la Bible choisie.</string>
     <string name="readings_whole_verses_notice">Les versets sont affichés en entier et peuvent dépasser les limites du passage cité pour la lecture.</string>
     <string name="readings_source">Source</string>
+    <string name="scripture_source_note">"Note sur la source"</string>
+    <string name="scripture_source_note_vowel">"Un signe vocalique illisible a été omis."</string>
+    <string name="scripture_source_note_dagesh">"Un daguech illisible a été omis."</string>
+    <string name="scripture_source_note_restored_letter">"La lettre %1$s (position %2$d) dans « %3$s » a été restituée par l’éditeur. Elle est illisible sur la numérisation de la source."</string>
+    <string name="scripture_source_note_letter">"Lettre %1$s (position %2$d)"</string>
+    <string name="scripture_source_note_pages">"Pages du PDF : %1$s"</string>
+    <string name="scripture_source_note_scan">"Source numérisée"</string>
     <string name="readings_choose_edition">Choisir une édition</string>
+    <string name="bible_daily_readings">"Lectures du jour"</string>
+    <string name="bible_title">"Bible"</string>
+    <string name="bible_catalog_error">"Impossible d’ouvrir le catalogue biblique."</string>
+    <string name="bible_download_error">"Le téléchargement n’a pas pu être terminé. Veuillez réessayer."</string>
+    <string name="bible_download_notice">"Téléchargez les livres et chapitres disponibles de cette édition pour les lire hors ligne. Certaines éditions ne contiennent que des passages vérifiés."</string>
+    <string name="bible_downloading">"Téléchargement…"</string>
+    <string name="bible_download">"Télécharger"</string>
+    <string name="bible_partial_chapter">"Seule une partie de ce chapitre est disponible."</string>
+    <string name="bible_choose_book">"Choisir un livre"</string>
+    <string name="bible_choose_chapter">"Choisir un chapitre"</string>
+    <string name="bible_choose_verse">"Choisir un verset"</string>
+    <string name="bible_previous_chapter">"Chapitre disponible précédent"</string>
+    <string name="bible_next_chapter">"Chapitre disponible suivant"</string>
+    <string name="bible_chapter_error">"Impossible d’ouvrir ce chapitre téléchargé. Supprimez le téléchargement, puis téléchargez-le à nouveau."</string>
+    <string name="bible_remove_notice">"Supprimer « %1$s » de cet appareil ? Vous pourrez le télécharger à nouveau. Les lectures du jour resteront disponibles."</string>
+    <string name="bible_remove_error">"Impossible de supprimer le téléchargement. Veuillez réessayer."</string>
+    <string name="bible_printed_label">"Repère imprimé : %1$s"</string>
+    <string name="bible_occurrence">"%1$s — occurrence %2$d"</string>
     <string name="tab_search">"Rechercher"</string>
 
     <!-- Home -->
@@ -434,7 +459,7 @@
     <string name="about_peshitta_sources">Nouveau Testament de la Peshitta (BFBS, 1905) : Digital Syriac Corpus ; transcription syriaque par George A. Kiraz, édition TEI © James E. Walters, CC BY 4.0. Conversion en caractères hébreux selon les règles d’Erez ; sélection des versets et mise en forme du texte par Prosary.</string>
     <string name="about_peshitta_source_link">Digital Syriac Corpus</string>
     <string name="about_peshitta_license_link">CC BY 4.0</string>
-    <string name="about_peshitta_isaiah_sources">Isaïe : XML vocalisé de la Peshitta provenant d’Internet Archive et fourni par un utilisateur. L’édition d’origine et les conditions de redistribution restent indéterminées. Conversion en caractères hébreux selon les règles d’Erez ; sélection des versets et mise en forme du texte par Prosary.</string>
+    <string name="about_peshitta_isaiah_sources">Ancien Testament : XML vocalisé de la Peshitta provenant d’Internet Archive et fourni par un utilisateur. L’édition d’origine et les conditions de redistribution restent indéterminées. Conversion en caractères hébreux selon les règles d’Erez ; sélection des versets et mise en forme du texte par Prosary.</string>
     <string name="about_peshitta_isaiah_source_link">Internet Archive</string>
     <string name="about_bible_book_sources">Noms des livres bibliques : AELF, Dar el-Machreq, Bible synodale russe (Azbyka), Société biblique philippine et ParolaViva.</string>
     <string name="about_prayer_network_link">Réseau mondial de prière du Pape</string>

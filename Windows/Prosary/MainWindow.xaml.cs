@@ -19,6 +19,7 @@ public sealed partial class MainWindow : Window
         DesktopWindowChrome.Populate(WindowMenus, this, RootFrame);
         AppNav.MenuItems.Add(Section("library", "desktop_library", "Library", "\uE8F1"));
         AppNav.MenuItems.Add(Section("today", "desktop_today", "Today", "\uE787"));
+        AppNav.MenuItems.Add(Section("readings", "readings_title", "Readings", "\uE8A9"));
         AppNav.MenuItems.Add(Section("gallery", "desktop_gallery", "Gallery", "\uE8B9"));
         AppNav.MenuItems.Add(Section("basic", "BasicPrayersTitle/Text", "Basic Prayers", "\uE8A5"));
         AppNav.MenuItems.Add(Section("search", "SearchTitle/Text", "Search", "\uE721"));
@@ -59,6 +60,7 @@ public sealed partial class MainWindow : Window
         {
             case "library": navigation.Navigate<DesktopLibraryPage>(); break;
             case "today": navigation.Navigate<DesktopTodayPage>(); break;
+            case "readings": navigation.Navigate<DesktopReadingsPage>(); break;
             case "gallery": navigation.Navigate<DesktopGalleryPage>(); break;
             case "basic": navigation.Navigate<BasicPrayersPage>(); break;
             case "search":

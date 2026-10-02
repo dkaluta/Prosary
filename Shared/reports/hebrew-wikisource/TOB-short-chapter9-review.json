@@ -1,0 +1,381 @@
+{
+  "book": "TOB",
+  "recension": "short",
+  "chapter": 9,
+  "status": "full-word-point-punctuation-and-boundary-comparison-independently-corroborated-with-one-source-point-note",
+  "releaseApproved": false,
+  "source": {
+    "volume": "B",
+    "sha256": "656891d377d2e3d4a9216723d94205488423907bf01df424b9f0b9de1560051e",
+    "pageCount": 530,
+    "sourceURL": "https://he.wikisource.org/wiki/קובץ:Apocrypha_Kahana_B.pdf",
+    "extraScan": {
+      "sha256": "b72eaf5d2d858fabb7c3438ac0436ccd64c394a7dd2fad609efabe628d5534c7",
+      "pageCount": 272,
+      "matchingMethod": "PrimaryB334last3upperrows andB335first3upperrows matched to extra174right/left by full body, running headings and recension separator."
+    }
+  },
+  "coverage": {
+    "printedUnits": [
+      [
+        1,
+        1
+      ],
+      [
+        2,
+        2
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        5,
+        5
+      ],
+      [
+        6,
+        6
+      ]
+    ],
+    "printedCombinedLabels": [
+      [
+        3,
+        4
+      ]
+    ],
+    "physicalLinesCompared": 6,
+    "canonicalUnits": 5,
+    "provisionalEditorialRanges": [],
+    "newReviewedPages": [],
+    "pagePieces": [
+      {
+        "page": 334,
+        "extraPage": 174,
+        "extraSide": "right",
+        "physicalRowsWithinWholeUpperSection": [
+          7,
+          8,
+          9
+        ],
+        "chapterRowsCompared": 3,
+        "start": "וַיִּקְרָא",
+        "end": "סוֹפֵר"
+      },
+      {
+        "page": 335,
+        "extraPage": 174,
+        "extraSide": "left",
+        "physicalRowsWithinWholeUpperSection": [
+          1,
+          2,
+          3
+        ],
+        "chapterRowsCompared": 3,
+        "start": "אֶת־הַיָּמִים",
+        "end": "אֶת־אִשְׁתּוֹ׃"
+      }
+    ]
+  },
+  "boundaryEvidence": [
+    {
+      "label": 1,
+      "page": 334,
+      "chapterRow": 1,
+      "start": "וַיִּקְרָא",
+      "evidence": "Chapter marker ט; preceding chapter has closed in previous row."
+    },
+    {
+      "label": 2,
+      "page": 334,
+      "chapterRow": 1,
+      "start": "עֲזַרְיָה",
+      "evidence": "After לוֹ׃ on the same row, marginב."
+    },
+    {
+      "label": "3–4",
+      "page": 334,
+      "chapterRow": 3,
+      "start": "כִּי",
+      "evidence": "After הַחֲתֻנָּה׃ on the same row; actual printed combinedג–ד."
+    },
+    {
+      "label": 5,
+      "page": 335,
+      "chapterRow": 1,
+      "start": "וַיֵּלֶךְ",
+      "evidence": "After מְאֹד׃ on the same row."
+    },
+    {
+      "label": 6,
+      "page": 335,
+      "chapterRow": 3,
+      "start": "וַיָּקוּמוּ",
+      "evidence": "After לוֹ׃ on the same row; closes before chapter10 begins in next row."
+    }
+  ],
+  "corrections": [
+    {
+      "verse": 2,
+      "before": "בְמָדַי",
+      "after": "בְּמָדַי",
+      "evidence": [
+        "TOB9-query-bmaday.png"
+      ],
+      "finding": "Bet interior has a detached dagesh; bet sheva, mem qamats and dalet patah retained."
+    },
+    {
+      "verse": 3,
+      "endVerse": 4,
+      "before": "אֵאַחֵר",
+      "after": "אֲאַחֵר",
+      "evidence": [
+        "TOB9-query-eaheer.png"
+      ],
+      "finding": "Initial alef has a separate patah bar plus two vertical sheva dots. Second alef patah and het tsere retained."
+    },
+    {
+      "verse": 5,
+      "before": "כְּתַב־הַיָּד",
+      "after": "כְּתָב־הַיָּד",
+      "evidence": [
+        "TOB9-query-ketav.png"
+      ],
+      "finding": "Tav has qamats with a clear descending stem. Kaf dagesh/sheva, maqaf and following word preserved."
+    },
+    {
+      "verse": 5,
+      "before": "בַּחוֹתָמוֹתָם",
+      "after": "בְּחוֹתְמֵיהֶם",
+      "evidence": [
+        "TOB9-query-hotmehem-expanded.png",
+        "TOB9-primary-hotmehem.png"
+      ],
+      "finding": "Actual consonants are בחותמיהם, including yod/he in the suffix. Bet dagesh/sheva, vav holam, tav sheva, mem tsere and he segol are printed. Parent independently corroborated the complete local word."
+    },
+    {
+      "verse": 5,
+      "occurrence": 2,
+      "before": "גַּבָּאֵל",
+      "after": "גבָּאֵל",
+      "evidence": [
+        "TOB9-query-gabael5a-gimel-body.png",
+        "TOB9-query-gabael5b-gimel-body.png",
+        "TOB9-query-gabael5b-gimel-vowel.png",
+        "TOB9-primary-gabael5b-band.png"
+      ],
+      "finding": "Unlike the first local gimel, the second has a clean empty interior, so remove the unsupported dagesh. Its isolated lower two-pronged bar cannot be classified confidently in the extra scan, while primary ink is fused. Omit only that gimel vowel with an exact source note; retain bet qamats/dagesh and alef tsere. Parent independently corroborated the omission/dagesh distinction."
+    }
+  ],
+  "acceptedSourceNotes": [
+    {
+      "id": "tob-9-5-second-gabael-gimel-vowel",
+      "kind": "unreadablePoint",
+      "anchor": "גבָּאֵל",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        335
+      ],
+      "sourceURL": "https://he.wikisource.org/wiki/קובץ:Apocrypha_Kahana_B.pdf#page=335"
+    }
+  ],
+  "focusedIndependentReview": {
+    "reviewer": "root",
+    "scope": [
+      "Complete local word בְּחוֹתְמֵיהֶם",
+      "First9:5 Gabael gimel dagesh and patah",
+      "Second9:5 Gabael clean undotted gimel interior and unreadable vowel"
+    ],
+    "wholeChapterApproved": false
+  },
+  "unresolvedFindings": [],
+  "canonicalChapter": {
+    "number": 9,
+    "lastVerse": 6,
+    "verses": [
+      {
+        "verse": 1,
+        "text": "וַיִּקְרָא טוֹבִיָּה לִרְפָאֵל וַיֹּאמֶר לוֹ׃",
+        "sourcePages": [
+          334
+        ],
+        "textSHA256": "4485b188cce87262ec133baa9d89999885aedf4a4e13d03bfd307624ae043e32"
+      },
+      {
+        "verse": 2,
+        "text": "עֲזַרְיָה אָחִי קַח אִתְּךָ נַעַר אַחֵר וּשְׁנֵי גְמַלִּים וְלֵךְ אֶל־רָגָא בְּמָדַי אֶל־גַּבָּאֵל וְקַח־לִי אֶת־הַכֶּסֶף אוֹתוֹ הָבֵא לִי אֶל־הַחֲתֻנָּה׃",
+        "sourcePages": [
+          334
+        ],
+        "textSHA256": "ae1864258c53513e7368b2615fe2680dc4f6e83813c85b1fbb4df29132b09a2c"
+      },
+      {
+        "verse": 3,
+        "text": "כִּי הִשְׁבִּיעַנִי רְעוּאֵל לְבַל אֵצֵא׃ וְאָבִי סוֹפֵר אֶת־הַיָּמִים וְכִי אֲאַחֵר יִרְפֶּה וְהִתְעַצֵּב מְאֹד׃",
+        "sourcePages": [
+          334,
+          335
+        ],
+        "textSHA256": "12380b30046f0dd620b8400c2d9c2fb84a54fc19b7117581d7682bb0b3e3b7a4",
+        "endVerse": 4
+      },
+      {
+        "verse": 5,
+        "text": "וַיֵּלֶךְ רְפָאֵל וַיָּלֶן אֵצֶל גַּבָּאֵל וַיִּתֶּן־לוֹ אֶת כְּתָב־הַיָּד וַיּוֹצֵא גבָּאֵל אֶת־הַצְּרוֹרוֹת בְּחוֹתְמֵיהֶם וַיִּתְּנֵם לוֹ׃",
+        "sourcePages": [
+          335
+        ],
+        "textSHA256": "c04a357bed726032dc63de7b106dd60e096f355043e1617605f3c469573872c4",
+        "sourceNotes": [
+          {
+            "id": "tob-9-5-second-gabael-gimel-vowel",
+            "kind": "unreadablePoint",
+            "anchor": "גבָּאֵל",
+            "occurrence": 1,
+            "letterIndex": 1,
+            "mark": "vowel",
+            "sourcePages": [
+              335
+            ],
+            "sourceURL": "https://he.wikisource.org/wiki/קובץ:Apocrypha_Kahana_B.pdf#page=335"
+          }
+        ]
+      },
+      {
+        "verse": 6,
+        "text": "וַיָּקוּמוּ וַיֵּלְכוּ יַחְדָּו אֶל־הַחֲתֻנָּה וַיְבָרֵךְ טוֹבִיָּה אֶת־אִשְׁתּוֹ׃",
+        "sourcePages": [
+          335
+        ],
+        "textSHA256": "14a42fd692a2ce8e820d55ed7cb5a68b84af50e76a8a9f5ac5ac9514cc7c3c5e"
+      }
+    ]
+  },
+  "canonicalBeforeSHA256": "256990b441551ae6f5f9177948e8610df36ee74458fc1fa3c1e10feb6c993956",
+  "canonicalAfterSHA256": "dd35acff5304ef182efb9b04289cd93baa04b605bc0235ad215c5c66e22abaad",
+  "preservationChecks": {
+    "chapters1Through8Unchanged": true,
+    "existingReviewedPagesUnchanged": true,
+    "existingSourceNoteIdsPreserved": true,
+    "bookRemainsDraft": true
+  },
+  "validation": {
+    "book": "TOB",
+    "status": "draft",
+    "chapters": 9,
+    "units": 144,
+    "sourcePages": 24,
+    "reviewedPages": 12
+  },
+  "independentPrintedInventoryMatch": {
+    "path": "Shared/reports/hebrew-wikisource/TOB-print-inventory.json",
+    "sha256": "f460d75a7b00d56e175780b34a0724d2e082b2482406b9be7fcc1cafdd82c518",
+    "unitsMatch": true,
+    "lastVerseMatches": true
+  },
+  "notes": [
+    "Only the upper short recension was transcribed. No lower text or expected-name pointing was used to fill the second Gabael vowel.",
+    "Primary and extra scans resolve the suffix letters in בחותמיהם; the first draft had misread yod/he as vav/tav. This is a recorded correction, not a missing-word waiver.",
+    "Tentative qamats reading of the second Gabael gimel was rejected after isolated pixels showed an ambiguous two-pronged bar. Root agrees that the vowel cannot be certified; exact readable neighboring points remain.",
+    "No whole-page approval: B334 now has complete own chapter8/9 coverage but chapter9 independent review remains pending; B335 chapter10 still awaits transcription.",
+    "Earlier independent-pending finding superseded by full source_gate pass. Only whole upperB334 approved, with chapter8 independent evidence. This is not chapter10 or book approval."
+  ],
+  "evidence": [
+    {
+      "path": "/private/tmp/prosary-kahana-reference/TOB9-first-draft.txt",
+      "sha256": "8f73c3849efe3a22fe84937ff0cd41ba7c7531f2dcfc8e109177850803df9626"
+    },
+    {
+      "path": "/private/tmp/prosary-kahana-reference/TOB9-own-compared-draft.txt",
+      "sha256": "fad57f942ef3bc45a19f816c140e61b90b9c04f983a7b0bee1c82647b7eb5cd8"
+    },
+    {
+      "path": "/private/tmp/prosary-kahana-reference/TOB9-native-source-images.json",
+      "sha256": "db1cd38455ea107d3250fd479791eb67c251394fc0bab9d52bb72ea80d6d8f5c"
+    },
+    {
+      "path": "/private/tmp/prosary-kahana-reference/TOB9-native-line-crops.json",
+      "sha256": "1960460db35ace7e590a150ff8ff44338d7d47c40e12da53f0e3e3bd1b0c12dd"
+    },
+    {
+      "path": "/private/tmp/prosary-kahana-reference/TOB9-upper-crops.json",
+      "sha256": "935d8f2c7bfdc85ba2d318a64b479efee41c9beac86978fad3abce0fcb3c2ad3"
+    },
+    {
+      "path": "/private/tmp/prosary-kahana-reference/TOB9-query-crops.json",
+      "sha256": "ac7abae75c1a63e68f4c52bf5a742bafaa14764853b9d711717cdf852f15a56f"
+    },
+    {
+      "path": "/private/tmp/prosary-kahana-reference/TOB9-B334-upper-extra.png",
+      "sha256": "fac560dacd847ec53892a8e6313d7e7fd96a8f717530b0c5aa50c3fbd269e7e3"
+    },
+    {
+      "path": "/private/tmp/prosary-kahana-reference/TOB9-B335-upper-extra.png",
+      "sha256": "560d6052528ee23daa68c63bbba4af632599c574b14b2ead41fd3913524113a9"
+    },
+    {
+      "path": "/private/tmp/prosary-kahana-reference/TOB9-query-bmaday.png",
+      "sha256": "388b819a48a3eb9f3272d0a5682746b91e8c7f69bbadaec6c5617422ee0fda28"
+    },
+    {
+      "path": "/private/tmp/prosary-kahana-reference/TOB9-query-eaheer.png",
+      "sha256": "c0c6e41aef41d3cfaaf32b3e1fde6d7c7c1b4e77a71533144e0b6490ae11d2f0"
+    },
+    {
+      "path": "/private/tmp/prosary-kahana-reference/TOB9-query-ketav.png",
+      "sha256": "1cf6026b6703fd503c79e164718f102d16997f5cf9ed14d3d7ed1f5f795cd6b8"
+    },
+    {
+      "path": "/private/tmp/prosary-kahana-reference/TOB9-query-hotmehem-expanded.png",
+      "sha256": "383dc869e6d438a656228f233351034e4a798bed1c672b15ec6d6f7bf145a05f"
+    },
+    {
+      "path": "/private/tmp/prosary-kahana-reference/TOB9-primary-hotmehem.png",
+      "sha256": "7b0c0a249c7d11f367ae6d03fbcda5d754337b2dfa449b6bf467edddc6665426"
+    },
+    {
+      "path": "/private/tmp/prosary-kahana-reference/TOB9-query-gabael5a-gimel-body.png",
+      "sha256": "97846e9610543a774324913269536c71be65d207d06d07fc93cb1ef30f414fc8"
+    },
+    {
+      "path": "/private/tmp/prosary-kahana-reference/TOB9-query-gabael5b-gimel-body.png",
+      "sha256": "5821ce175f7ad2a989d074cefcbfda6c4ac926c07ed80a753b9581d1e4b80282"
+    },
+    {
+      "path": "/private/tmp/prosary-kahana-reference/TOB9-query-gabael5b-gimel-vowel.png",
+      "sha256": "862ababe2286a06680781ac144e92075710b37e0faef8a0e8daea58ba14b737d"
+    },
+    {
+      "path": "/private/tmp/prosary-kahana-reference/TOB9-primary-gabael5b-band.png",
+      "sha256": "ee9b523600ca1c4db8bcc84a598e425aec9b5f8cffd8f92a0416e96f17226b48"
+    }
+  ],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/TOB-short-chapter9-independent-review.json",
+    "sha256": "b8654b0f4c0c2178ebac07e1c739f4e43bfdca46036558242212148978624bba",
+    "status": "independent-full-chapter-word-point-and-boundary-comparison-passed-with-one-exact-source-point-note",
+    "physicalLinesCompared": 6,
+    "wordPointCorrections": 0,
+    "acceptedSourceNotes": 1
+  },
+  "canonicalReviewDisposition": {
+    "newReviewedPages": [
+      334
+    ],
+    "retainedUnapprovedPages": {
+      "335": "Chapter10 label5 boundary remains unresolved."
+    },
+    "bookStatus": "draft",
+    "releaseApproved": false
+  },
+  "validationAfterIndependentReview": {
+    "book": "TOB",
+    "status": "draft",
+    "chapters": 10,
+    "units": 156,
+    "sourcePages": 25,
+    "reviewedPages": 13
+  }
+}

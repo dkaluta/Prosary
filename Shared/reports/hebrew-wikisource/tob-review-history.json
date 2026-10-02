@@ -1,0 +1,3302 @@
+{
+  "book": "TOB",
+  "recension": "short",
+  "sourceScanSHA256": "656891d377d2e3d4a9216723d94205488423907bf01df424b9f0b9de1560051e",
+  "clearerScanSHA256": "b72eaf5d2d858fabb7c3438ac0436ccd64c394a7dd2fad609efabe628d5534c7",
+  "transcriptionProgress": {
+    "draftSourceUnits": 68,
+    "approvedPages": 9,
+    "draftChapters": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "provisionalEditorialGroups": [
+      "4:4–5",
+      "4:6–7"
+    ]
+  },
+  "sourcePairs": [
+    {
+      "originalPage": 312,
+      "alternatePage": 163,
+      "side": "right"
+    },
+    {
+      "originalPage": 313,
+      "alternatePage": 163,
+      "side": "left"
+    },
+    {
+      "originalPage": 314,
+      "alternatePage": 164,
+      "side": "right"
+    },
+    {
+      "originalPage": 315,
+      "alternatePage": 164,
+      "side": "left"
+    },
+    {
+      "originalPage": 316,
+      "alternatePage": 165,
+      "side": "right"
+    },
+    {
+      "originalPage": 317,
+      "alternatePage": 165,
+      "side": "left"
+    },
+    {
+      "originalPage": 318,
+      "alternatePage": 166,
+      "side": "right"
+    },
+    {
+      "originalPage": 319,
+      "alternatePage": 166,
+      "side": "left"
+    },
+    {
+      "originalPage": 320,
+      "alternatePage": 167,
+      "side": "right"
+    },
+    {
+      "originalPage": 321,
+      "alternatePage": 167,
+      "side": "left"
+    },
+    {
+      "originalPage": 322,
+      "alternatePage": 168,
+      "side": "right"
+    },
+    {
+      "originalPage": 323,
+      "alternatePage": 168,
+      "side": "left"
+    }
+  ],
+  "method": "Direct upper-recension draft; first visual reading is not final verification. Long history archived separately.",
+  "decisions": [
+    {
+      "reference": "TOB1:3",
+      "old": "וּלְעַמִּי",
+      "new": "וּלְעַם",
+      "basis": "Returned to the actual upper-recension source image after OCR alignment flagged the discrepancy. Visible source consonants decide; full-point pass still pending."
+    },
+    {
+      "reference": "TOB1:4",
+      "old": "וְנִבְנָה",
+      "new": "וְיִבָּנֶה",
+      "basis": "Returned to the actual upper-recension source image after OCR alignment flagged the discrepancy. Visible source consonants decide; full-point pass still pending."
+    },
+    {
+      "reference": "TOB1:15",
+      "old": "סַנְחֵרִב",
+      "new": "סַנְחֵרִיב",
+      "basis": "Returned to the actual upper-recension source image after OCR alignment flagged the discrepancy. Visible source consonants decide; full-point pass still pending."
+    },
+    {
+      "reference": "TOB1:18",
+      "old": "סַנְחֵרִב",
+      "new": "סַנְחֵרִיב",
+      "basis": "Returned to the actual upper-recension source image after OCR alignment flagged the discrepancy. Visible source consonants decide; full-point pass still pending."
+    },
+    {
+      "reference": "TOB1:19",
+      "old": "נִירֵאתִי",
+      "new": "יָרֵאתִי",
+      "basis": "Returned to the actual upper-recension source image after OCR alignment flagged the discrepancy. Visible source consonants decide; full-point pass still pending."
+    },
+    {
+      "reference": "TOB1:21",
+      "old": "וַיַּכּוּהוּ",
+      "new": "וַיַּהַרְגוּ",
+      "basis": "Returned to the actual upper-recension source image after OCR alignment flagged the discrepancy. Visible source consonants decide; full-point pass still pending."
+    },
+    {
+      "reference": "TOB1:22",
+      "old": "וַיִּפְעַל־לִי",
+      "new": "וַיִּפְגַּע־לִי",
+      "basis": "Returned to the actual upper-recension source image after OCR alignment flagged the discrepancy. Visible source consonants decide; full-point pass still pending."
+    },
+    {
+      "reference": "TOB1:22",
+      "old": "וָאָבֹא לְנִינְוֵה",
+      "new": "וָאָבוֹא אֶל־נִינְוֵה",
+      "basis": "Returned to the actual upper-recension source image after OCR alignment flagged the discrepancy. Visible source consonants decide; full-point pass still pending."
+    },
+    {
+      "reference": "TOB1:22",
+      "old": "וּבַעַל־הַחוֹתָם",
+      "new": "וְעַל־הַחוֹתָמֶת",
+      "basis": "Returned to the actual upper-recension source image after OCR alignment flagged the discrepancy. Visible source consonants decide; full-point pass still pending."
+    },
+    {
+      "reference": "TOB1:2",
+      "old": "שַׁלְמְנַאֶסֶר",
+      "new": "שַׁלְמַנְאֶסֶר",
+      "basis": "Visible point placement in focused upper-recension scan crop; no grammatical or conventional-name restoration."
+    },
+    {
+      "reference": "TOB1:3",
+      "old": "וּלְעַם",
+      "new": "וְלָעָם",
+      "basis": "Visible point placement in focused upper-recension scan crop; no grammatical or conventional-name restoration."
+    },
+    {
+      "reference": "TOB1:22",
+      "old": "הַחוֹתָמֶת",
+      "new": "הַחוֹתֶמֶת",
+      "basis": "Visible point placement in focused upper-recension scan crop; no grammatical or conventional-name restoration."
+    },
+    {
+      "reference": "TOB1:1",
+      "decision": "Retain gimel in גבאל; OCR nun rejected.",
+      "independentReviewer": "root",
+      "basis": "Visible diagonal lower-left branch and separate right stem, unlike nun continuous bottom return. First-letter point still unresolved."
+    },
+    {
+      "reference": "TOB1:6",
+      "old": "לְחֹק־עוֹלָם",
+      "new": "לְחָק־עוֹלָם",
+      "basis": "Direct fine-mark/punctuation comparison against the identified upper short-recension occurrence. Historical printed vowel retained without grammatical normalization.",
+      "evidence": "TOB-short-1-6-statute.png"
+    },
+    {
+      "reference": "TOB1:11",
+      "old": "אֲכֹל",
+      "new": "אֲכָל",
+      "basis": "Direct fine-mark/punctuation comparison against the identified upper short-recension occurrence. Historical printed vowel retained without grammatical normalization.",
+      "evidence": "TOB-short-1-11-eat.png"
+    },
+    {
+      "reference": "TOB1:13",
+      "old": "שַׁלְמְנַאֶסֶר",
+      "new": "שַׁלְמַנְאֶסֶר",
+      "basis": "Direct fine-mark/punctuation comparison against the identified upper short-recension occurrence. Historical printed vowel retained without grammatical normalization.",
+      "evidence": "TOB-short-1-13-name.png"
+    },
+    {
+      "reference": "TOB1:15",
+      "old": "שַׁלְמְנַאֶסֶר",
+      "new": "שַׁלְמַנְאֶסֶר",
+      "basis": "Direct fine-mark/punctuation comparison against the identified upper short-recension occurrence. Historical printed vowel retained without grammatical normalization.",
+      "evidence": "TOB-short-1-15-name2.png"
+    },
+    {
+      "reference": "TOB1:16",
+      "old": "שַׁלְמְנַאֶסֶר",
+      "new": "שַׁלְמַנְאֶסֶר",
+      "basis": "Direct fine-mark/punctuation comparison against the identified upper short-recension occurrence. Historical printed vowel retained without grammatical normalization.",
+      "evidence": "TOB-short-1-16-name.png"
+    },
+    {
+      "reference": "TOB1:20",
+      "old": "נִשְׁאַר־לִי",
+      "new": "נִשְׁאַר לִי",
+      "basis": "Direct fine-mark/punctuation comparison against the identified upper short-recension occurrence. Historical printed vowel retained without grammatical normalization.",
+      "evidence": "TOB-short-B315-body.png"
+    },
+    {
+      "reference": "TOB1:21",
+      "old": "וְעַל כָּל־הַנְהָגַת",
+      "new": "וְעַל־כָּל־הַנְהָגַת",
+      "basis": "Direct fine-mark/punctuation comparison against the identified upper short-recension occurrence. Historical printed vowel retained without grammatical normalization.",
+      "evidence": "TOB-short-B315-body.png"
+    },
+    {
+      "reference": "TOB1:22",
+      "decision": "Retain וַאֲחִיקָר; tentative broad-image sheva impression rejected.",
+      "basis": "The focused prefix3 crop shows a detached flat patah below the vav. No change applied.",
+      "evidence": "TOB-short-1-22-prefix3.png"
+    },
+    {
+      "reference": "TOB1:1",
+      "old": "יְחַצְאֵל",
+      "new": "יַחְצְאֵל",
+      "basis": "Complete upper-recension page312 point comparison. Retain the actual printed marks, including source-specific pointing; initial gimel vowel alone omitted with an explicit source note.",
+      "evidence": "TOB-short-1-1-yachtsel2.png"
+    },
+    {
+      "reference": "TOB1:1",
+      "old": "גַּבְאֵל",
+      "new": "גּבָאֵל",
+      "basis": "Complete upper-recension page312 point comparison. Retain the actual printed marks, including source-specific pointing; initial gimel vowel alone omitted with an explicit source note.",
+      "evidence": "TOB-short-1-1-nabael.png"
+    },
+    {
+      "reference": "TOB1:2",
+      "old": "מִתִּשְׁבָּה",
+      "new": "מִתִּשְׁבֶּה",
+      "basis": "Complete upper-recension page312 point comparison. Retain the actual printed marks, including source-specific pointing; initial gimel vowel alone omitted with an explicit source note.",
+      "evidence": "TOB-short-1-2-tishbe.png"
+    },
+    {
+      "reference": "TOB1:2",
+      "old": "בְּגָלִיל",
+      "new": "בַּגָּלִיל",
+      "basis": "Complete upper-recension page312 point comparison. Retain the actual printed marks, including source-specific pointing; initial gimel vowel alone omitted with an explicit source note.",
+      "evidence": "TOB-short-1-2-galil.png"
+    },
+    {
+      "reference": "TOB1:3",
+      "old": "בְּדַרְכֵי",
+      "new": "בְדַרְכֵי",
+      "basis": "Complete upper-recension page312 point comparison. Retain the actual printed marks, including source-specific pointing; initial gimel vowel alone omitted with an explicit source note.",
+      "evidence": "TOB-short-1-3-ways.png"
+    },
+    {
+      "reference": "TOB1:3",
+      "old": "חַיַּי",
+      "new": "חַיָּי",
+      "basis": "Complete upper-recension page312 point comparison. Retain the actual printed marks, including source-specific pointing; initial gimel vowel alone omitted with an explicit source note.",
+      "evidence": "TOB-short-1-3-life.png"
+    },
+    {
+      "reference": "TOB2:4",
+      "old": "וַאֲנִי מִטֶּרֶם",
+      "new": "וְאָנֹכִי טֶרֶם",
+      "basis": "Direct comparison with the matched clearer scan after a separate consonant-only OCR alignment exposed a candidate difference. Neither OCR nor expected grammar supplies the replacement. Exact marks in this scoped word read from the crop; whole-page review remains unfinished.",
+      "evidence": "TOB-short-2-4-opening.png"
+    },
+    {
+      "reference": "TOB2:4",
+      "old": "עַד־בֹּא הַשֶּׁמֶשׁ",
+      "new": "עַד־בּוֹא הַשָּׁמֶשׁ",
+      "basis": "Direct comparison with the matched clearer scan after a separate consonant-only OCR alignment exposed a candidate difference. Neither OCR nor expected grammar supplies the replacement. Exact marks in this scoped word read from the crop; whole-page review remains unfinished.",
+      "evidence": "TOB-short-2-4-sunset2.png"
+    },
+    {
+      "reference": "TOB2:7",
+      "old": "וָאֶכְרֵהוּ",
+      "new": "וָאֶכְרֶה",
+      "basis": "Direct comparison with the matched clearer scan after a separate consonant-only OCR alignment exposed a candidate difference. Neither OCR nor expected grammar supplies the replacement. Exact marks in this scoped word read from the crop; whole-page review remains unfinished.",
+      "evidence": "TOB-short-2-7-burial.png"
+    },
+    {
+      "reference": "TOB2:7",
+      "old": "יָרֵא",
+      "new": "יִירָא",
+      "basis": "Direct comparison with the matched clearer scan after a separate consonant-only OCR alignment exposed a candidate difference. Neither OCR nor expected grammar supplies the replacement. Exact marks in this scoped word read from the crop; whole-page review remains unfinished.",
+      "evidence": "TOB-short-2-8-fear.png"
+    },
+    {
+      "reference": "TOB2:9",
+      "old": "יָשַׁבְתִּי",
+      "new": "יָשַׁנְתִּי",
+      "basis": "Direct comparison with the matched clearer scan after a separate consonant-only OCR alignment exposed a candidate difference. Neither OCR nor expected grammar supplies the replacement. Exact marks in this scoped word read from the crop; whole-page review remains unfinished.",
+      "evidence": "TOB-short-2-9-10-sleep.png"
+    },
+    {
+      "reference": "TOB2:10",
+      "old": "וַאֲנִי",
+      "new": "וְאָנֹכִי",
+      "basis": "Direct comparison with the matched clearer scan after a separate consonant-only OCR alignment exposed a candidate difference. Neither OCR nor expected grammar supplies the replacement. Exact marks in this scoped word read from the crop; whole-page review remains unfinished.",
+      "evidence": "TOB-short-2-10-opening.png"
+    },
+    {
+      "reference": "TOB2:10",
+      "old": "אֲחִיקָר",
+      "new": "וַאֲחִיקָר",
+      "basis": "Direct comparison with the matched clearer scan after a separate consonant-only OCR alignment exposed a candidate difference. Neither OCR nor expected grammar supplies the replacement. Exact marks in this scoped word read from the crop; whole-page review remains unfinished.",
+      "evidence": "TOB-short-2-10-ahikar.png"
+    },
+    {
+      "reference": "TOB2:12",
+      "old": "עָלֶיהָ",
+      "new": "עָלָיו",
+      "basis": "Direct comparison with the matched clearer scan after a separate consonant-only OCR alignment exposed a candidate difference. Neither OCR nor expected grammar supplies the replacement. Exact marks in this scoped word read from the crop; whole-page review remains unfinished.",
+      "evidence": "TOB-short-2-12-upon.png"
+    },
+    {
+      "reference": "TOB2:14",
+      "old": "נֻתַּן",
+      "new": "נִתַּן־לִי",
+      "basis": "Direct comparison with the matched clearer scan after a separate consonant-only OCR alignment exposed a candidate difference. Neither OCR nor expected grammar supplies the replacement. Exact marks in this scoped word read from the crop; whole-page review remains unfinished.",
+      "evidence": "TOB-short-2-14-gift.png"
+    },
+    {
+      "reference": "TOB2:14",
+      "old": "אֵפוֹא",
+      "new": "אֵיפוֹא",
+      "basis": "Direct comparison with the matched clearer scan after a separate consonant-only OCR alignment exposed a candidate difference. Neither OCR nor expected grammar supplies the replacement. Exact marks in this scoped word read from the crop; whole-page review remains unfinished.",
+      "evidence": "TOB-short-2-14-where2.png"
+    },
+    {
+      "reference": "TOB1:14",
+      "old": "גַּבְאֵל",
+      "new": "גַּבָאֵל",
+      "basis": "Local crop shows a detached gimel patah below the letter foot, separate gimel dagesh, clear bet qamats and alef tsere. This occurrence is read independently from1:1, whose initial point remains unreadable.",
+      "evidence": "TOB-short-1-14-gabael2.png"
+    },
+    {
+      "reference": "TOB1:22",
+      "old": "אֵסַר־חַדּוֹן",
+      "new": "אֶסַר־חַדּוֹן",
+      "basis": "Three visible alef segol points in the local316 occurrence. Earlier1:21 crop has only two tsere points and stays unchanged. No name-wide normalization.",
+      "evidence": "TOB-short-1-22-esar2.png"
+    },
+    {
+      "reference": "TOB2:9",
+      "old": "וָאִישַׁן",
+      "new": "וְיַען",
+      "basis": "Source has four consonants ויען. Both reviewers initially read shin, but same-scale definite shin and ayin from this page reveal target two-arm/diagonal-bottom ayin. Earlier shin reading and five-letter first draft are superseded. Vav sheva and yod patah are visible; ayin vowel remains unreadable and is omitted in draft pending source-note acceptance after full page review.",
+      "evidence": "TOB-short-2-9-shin-ayin-comparison.png",
+      "independentReader": "Root confirmed comparison and yod patah; explicitly retracted earlier shin concurrence."
+    },
+    {
+      "reference": "TOB1:14",
+      "decision": "Root independently confirmed גַּבָאֵל from the local crop, separately from1:1."
+    },
+    {
+      "reference": "TOB2:3",
+      "old": "מֻשְׁלָךְ",
+      "new": "משְׁלָךְ",
+      "basis": "Both source scans fuse the initial mem below-mark. Qibbuts and damaged qamats cannot be distinguished; omit only this vowel with an accepted source note after complete page comparison.",
+      "evidence": "TOB-short-2-3-mem-vowel.png",
+      "independentReader": "Windows reader independently reports thick connected below-mark, cannot distinguish qibbuts/qamats."
+    },
+    {
+      "reference": "TOB2:9",
+      "old": "וְיַען",
+      "new": "וְיַעַן",
+      "basis": "After same-scale ע/ש comparison resolved consonants, compare ayin below-mark to independently clear qoph patah in2:4. Both are the same shallow U-shaped horizontal bar, no downward central stem. Windows independently confirms this local same-font comparison. Earlier ayin-vowel uncertainty superseded.",
+      "evidence": "TOB-short-2-4-qamti.png"
+    },
+    {
+      "reference": "TOB2:10",
+      "old": "חַמָּה בְעֵינַי",
+      "new": "חַמָּה בְּעֵינַי",
+      "basis": "First occurrence has a distinct isolated bet dagesh, independently inspected from the second occurrence. Preserve printed mark.",
+      "evidence": "TOB-short-2-10-eyes-first.png"
+    },
+    {
+      "reference": "TOB3:5",
+      "old": "וְכַחַטֹּאות",
+      "new": "וּכְחַטֹּאת",
+      "basis": "Independent consonant-only alignment flagged candidate; actual word/letters then confirmed by direct print crop. First-draft reading superseded, no source substitution. Points still subject to complete independent page pass.",
+      "evidence": "TOB-short-3-5-sins.png"
+    },
+    {
+      "reference": "TOB3:7",
+      "old": "לִשְׁמֹעַ חֶרְפוֹת",
+      "new": "לִשְׁמוֹעַ גַּם־הִיא חֶרְפוֹת",
+      "basis": "Independent consonant-only alignment flagged candidate; actual word/letters then confirmed by direct print crop. First-draft reading superseded, no source substitution. Points still subject to complete independent page pass.",
+      "evidence": "TOB-short-3-7-hear.png"
+    },
+    {
+      "reference": "TOB3:8",
+      "old": "כְּמִשְׁפַּט הַנָּשִׁים",
+      "new": "כְּמִשְׁפַּט בַּנָּשִׁים",
+      "basis": "Independent consonant-only alignment flagged candidate; actual word/letters then confirmed by direct print crop. First-draft reading superseded, no source substitution. Points still subject to complete independent page pass.",
+      "evidence": "TOB-short-3-8-women.png"
+    },
+    {
+      "reference": "TOB3:12",
+      "old": "חֶרְפַּתִּי",
+      "new": "חֶרְפָּה",
+      "basis": "Independent consonant-only alignment flagged candidate; actual word/letters then confirmed by direct print crop. First-draft reading superseded, no source substitution. Points still subject to complete independent page pass.",
+      "evidence": "TOB-short-3-13-14-reading.png"
+    },
+    {
+      "reference": "TOB3:14",
+      "old": "יוֹדֵעַ",
+      "new": "יָדַעְתָּ",
+      "basis": "Independent consonant-only alignment flagged candidate; actual word/letters then confirmed by direct print crop. First-draft reading superseded, no source substitution. Points still subject to complete independent page pass.",
+      "evidence": "TOB-short-3-13-14-reading.png"
+    },
+    {
+      "reference": "TOB3:15",
+      "old": "עַצְמִי",
+      "new": "נַפְשִׁי",
+      "basis": "Independent consonant-only alignment flagged candidate; actual word/letters then confirmed by direct print crop. First-draft reading superseded, no source substitution. Points still subject to complete independent page pass.",
+      "evidence": "TOB-short-3-15-self.png"
+    },
+    {
+      "reference": "TOB3:15",
+      "old": "הוֹאֵל־נָא",
+      "new": "הוֹאִילָה־נָא",
+      "basis": "Independent consonant-only alignment flagged candidate; actual word/letters then confirmed by direct print crop. First-draft reading superseded, no source substitution. Points still subject to complete independent page pass.",
+      "evidence": "TOB-short-3-15-please.png"
+    },
+    {
+      "reference": "TOB3:16",
+      "old": "וְתֵת",
+      "new": "וְלָתֵת",
+      "basis": "Independent consonant-only alignment flagged candidate; actual word/letters then confirmed by direct print crop. First-draft reading superseded, no source substitution. Points still subject to complete independent page pass.",
+      "evidence": "TOB-short-3-17-give.png"
+    },
+    {
+      "reference": "TOB3:16",
+      "old": "קָם טוֹבִי",
+      "new": "פָּנָה טוֹבִי",
+      "basis": "Independent consonant-only alignment flagged candidate; actual word/letters then confirmed by direct print crop. First-draft reading superseded, no source substitution. Points still subject to complete independent page pass.",
+      "evidence": "TOB-short-3-17-return.png"
+    },
+    {
+      "reference": "TOB3:16",
+      "old": "וּבָא אֶל־בֵּיתוֹ",
+      "new": "וַיָּבֹא אֶל־בֵּיתוֹ",
+      "basis": "Independent consonant-only alignment flagged candidate; actual word/letters then confirmed by direct print crop. First-draft reading superseded, no source substitution. Points still subject to complete independent page pass.",
+      "evidence": "TOB-short-3-17-return.png"
+    },
+    {
+      "reference": "TOB2:14",
+      "old": "בַּעֲבוּרָהּ",
+      "new": "בַעֲבוּרָהּ",
+      "basis": "Clearer scan crop expanded to include initial bet; its bowl is empty. Remove unsupported dagesh, retaining printed patah and following marks. This is the short-recension occurrence, independently inspected.",
+      "evidence": "TOB-short-2-14-because-wide.png"
+    },
+    {
+      "reference": "TOB3:10",
+      "old": "בְּיָגוֹן",
+      "new": "בְיָגוֹן",
+      "basis": "Initial bet bowl is clearly empty; retain sheva and omit unsupported draft dagesh.",
+      "evidence": "TOB-short-3-10-sorrow.png"
+    },
+    {
+      "reference": "TOB3:15",
+      "old": "זֶּה־לִּי",
+      "new": "זֶּה־לִי",
+      "basis": "Local lamed has no detached interior dot; hiriq clear. Independent Windows reader confirms absence.",
+      "evidence": "TOB-short-3-15-this.png"
+    },
+    {
+      "reference": "TOB3:15",
+      "old": "פְנֵה",
+      "new": "פְּנֵה",
+      "basis": "Pe has detached interior dagesh and clear sheva. Independent Windows reader confirms both marks.",
+      "evidence": "TOB-short-3-15-turn.png"
+    },
+    {
+      "reference": "TOB3:6",
+      "retained": "מֵחַיַּי",
+      "basis": "Medial yod has distinct detached dagesh; Windows independently identifies isolated dark mark separated by white from head/right stem. Other visible local marks retained.",
+      "evidence": "TOB-short-3-6-my-life.png"
+    },
+    {
+      "reference": "TOB3:10",
+      "old": "תִּהְיֶה־לּוֹ",
+      "new": "תִּהְיֶה־לוֹ",
+      "basis": "Local lamed interior clean, unlike holam separately printed over neighboring vav; remove unsupported draft dagesh.",
+      "evidence": "TOB-short-3-10-to-him2.png"
+    },
+    {
+      "reference": "TOB3:16–17",
+      "retained": "וַיִּשָּׁלַח",
+      "basis": "Earlier word-scale view appeared fused at initial vav. Windows saw possible white separation; tighter native-source crop confirms the white gap between stem and flat patah bar. Original scan remains merged. Supersedes uncertainty about this mark, with no grammatical restoration.",
+      "evidence": "TOB-short-3-16-vav-tight.png"
+    },
+    {
+      "reference": "TOB1:14",
+      "old": "גַּבָאֵל",
+      "new": "גַּבָּאֵל",
+      "basis": "Later exact occurrence comparison found isolated interior bet point separated by white from roof, right stem and baseline. Apple independently confirms same glyph. Supersedes omission in earlier reviewed draft; no normalization of other occurrences.",
+      "evidence": "TOB-short-1-14-gabael2.png"
+    },
+    {
+      "reference": "TOB4 physical pages321–323",
+      "basis": "Independent OCR35manually bounded lines generated32candidate diff groups. Nineteen printed-source corrections recorded in TOB-short-chapter4-page-draft.json. Marginal starts and exact point/full-page comparison remain pending, so no new canonical units or reviewedPages claimed.",
+      "evidence": "TOB-short-chapter4-page-draft.json"
+    },
+    {
+      "reference": "TOB4",
+      "basis": "Every printed word preserved in18 provisional units. Root authorizes editorial draft grouping4–5 while the source-margin start is unresolved;6–7 has the same physical-row ambiguity. Internal commentary search finds no explicit anchor. Shared commentary heading1–21 conflicts with the short body final visible20; document rather than import another edition. Full point review pending and book stays draft.",
+      "evidence": "TOB-short-chapter4-page-draft.json"
+    },
+    {
+      "reference": "TOB1:1",
+      "old": "גּבָאֵל",
+      "new": "גּבָּאֵל",
+      "basis": "Exact occurrence recheck shows an isolated bet interior point, independently confirmed by Apple. Update exact source-note anchor without changing the accepted initial-gimel vowel limitation. No inference from other name occurrences.",
+      "evidence": "TOB-short-1-1-bet-recheck.png"
+    },
+    {
+      "reference": "TOB3:16–17 first בת occurrence",
+      "old": "בַּת־רְעוּאֵל",
+      "new": "בַת־רְעוּאֵל",
+      "basis": "Upper short-recension source: clearly empty bet interior in tight source crop. Preserve printed patah, remove unsupported draft dagesh.",
+      "evidence": "TOB-short-3-first-bat-recheck.png"
+    },
+    {
+      "reference": "TOB3:16–17 second בת occurrence",
+      "old": "בַּת־רְעוּאֵל",
+      "new": "בַת־רְעוּאֵל",
+      "basis": "This second occurrence independently has an empty bet interior; preserve its patah and remove unsupported dagesh.",
+      "evidence": "TOB-short-3-last-bat-recheck.png"
+    },
+    {
+      "reference": "TOB3:16–17 final word",
+      "old": "מֵעֲלִיַּתָהּ",
+      "new": "מֵעֲלִיַּתָה",
+      "basis": "Final heh interior is clear and empty in tighter source crop; no mappiq printed. Preserve visible ayin hataf-patah, lamed hiriq, yod qamats/dagesh and tav qamats.",
+      "evidence": "TOB-short-3-aliyah-recheck.png"
+    },
+    {
+      "reference": "TOB4:1",
+      "sourcePage": 321,
+      "old": "מָדַי",
+      "new": "מָדָי",
+      "basis": "The local dalet vowel has a detached horizontal bar with a clear descending stem; retain qamats in this occurrence.",
+      "crop": "/private/tmp/prosary-tob-review/TOB-short-4-madai-points.png",
+      "cropSHA256": "c27f79124d547026df6c536ffc33634168cfca6d4d6693e92890be038933b55d"
+    },
+    {
+      "reference": "TOB4:2",
+      "sourcePage": 321,
+      "old": "[דְּבָרַי]",
+      "new": "[דְבָרִי]",
+      "basis": "Source dalet interior is empty; resh has one detached hiriq dot rather than patah. Apple independently confirms resh hiriq. Literal printed bracketed singular form retained without grammatical normalization.",
+      "crop": "/private/tmp/prosary-tob-review/TOB-short-4-bracket-points.png",
+      "cropSHA256": "fd56c92c7c0cdfcc79c86b0530142e5813d38956b895faca2ef19897ebd3b125"
+    },
+    {
+      "reference": "TOB4:3",
+      "sourcePage": 321,
+      "old": "כַּבְּדָהּ",
+      "new": "כַּבְּדֶהָ",
+      "basis": "Dalet has three segol dots; final heh has qamats and no mappiq. Apple independently confirms both local marks. Kaf patah/dagesh and bet sheva/dagesh retained.",
+      "crop": "/private/tmp/prosary-tob-review/TOB-short-4-kabda-fine.png",
+      "cropSHA256": "b2199b5a31e810cdff582fb79c04193e5f6ff0447f3dc27e9ea53945ac537be0"
+    },
+    {
+      "reference": "TOB4:4",
+      "sourcePage": 321,
+      "old": "בִגְלָלְךָ",
+      "new": "בִּגְלָלְךָ",
+      "basis": "Tight crop shows a clearly separated initial bet interior dot; retain this locally printed dagesh.",
+      "crop": "/private/tmp/prosary-tob-review/TOB-short-4-because-fine.png",
+      "cropSHA256": "72322d39be0178bd0ee08c89fbd90b25c779e7f99aa84cbd9a5623ab53b6bb59"
+    },
+    {
+      "reference": "TOB4:4",
+      "sourcePage": 321,
+      "old": "בַּבָּטֶן",
+      "new": "בַבָּטֶן",
+      "basis": "First bet bowl is clearly empty; second bet has a separated dagesh. Retain first bet patah, second bet qamats/dagesh and tet segol.",
+      "crop": "/private/tmp/prosary-tob-review/TOB-short-4-battan-fine.png",
+      "cropSHA256": "b11115b420f3ec3bdef90e843b8cca7fc62f7cb8af8677e2047ca4e7f75b585f"
+    },
+    {
+      "reference": "TOB4:10",
+      "sourcePage": 322,
+      "old": "בַּחֹשֶׁךְ",
+      "new": "בַחֹשֶׁךְ",
+      "basis": "The enlarged local bet has an open white interior without a detached point. Apple independently confirms no bet dagesh in this occurrence; retain its patah and all other printed marks.",
+      "crop": "/private/tmp/prosary-tob-review/TOB-short-4-bahoshekh-fine.png",
+      "cropSHA256": "ebceb3d5e1e631373a1d6459ac8b02d180e37a9eb7a859f10b401cdb18aebbf3"
+    },
+    {
+      "reference": "TOB4:12",
+      "sourcePage": 322,
+      "old": "בְילְדֵיהֶם",
+      "new": "בְיַלְדֵיהֶם",
+      "basis": "The previously pending yod has a detached flat horizontal patah with no central stem. Initial bet has sheva and no interior dot; retain the exact local points without grammatical filling.",
+      "crop": "/private/tmp/prosary-tob-review/TOB-short-4-children-fine.png",
+      "cropSHA256": "e4646e562c09e53602a4e764d7b07eb884fef0dd56fecd712fa055d4b588d21a"
+    },
+    {
+      "reference": "TOB4:14",
+      "sourcePage": 322,
+      "old": "מִיַּד",
+      "new": "מִיָּד",
+      "basis": "The detached yod vowel has a substantial descending stem beneath the horizontal bar: qamats. Windows independently confirms this source mark. Its separate interior dagesh remains visible and is retained.",
+      "crop": "/private/tmp/prosary-tob-review/TOB-short-4-miyad-fine.png",
+      "cropSHA256": "d683ec9f1365a732604ad9124e8373c479f9e2523705865a11d53d58a75d2182"
+    },
+    {
+      "reference": "TOB4:20",
+      "sourcePage": 323,
+      "old": "גַּבָאֵל",
+      "new": "גַּבָּאֵל",
+      "basis": "The local bet interior has a distinct dark point surrounded by white. Retain this independently inspected printed dagesh, not a name-wide normalization.",
+      "crop": "/private/tmp/prosary-tob-review/TOB-short-4-20-names-fine.png",
+      "cropSHA256": "1b4bde8fee30f2547fb2f9e5e0c3fb9fab845892c25d7e7d3c1a78802f269edd"
+    },
+    {
+      "reference": "TOB4:20",
+      "sourcePage": 323,
+      "old": "גַבְרִי",
+      "new": "גַּבְרִי",
+      "basis": "The enlarged local gimel has a clearly isolated interior dot; restore dagesh. Its below-mark is a continuous horizontal patah, whose ends project slightly downward. Both readers initially considered tsere from the wider crop, then explicitly retracted that reading when the tight crop revealed the connecting bar. Windows independently confirms patah and gimel dagesh.",
+      "crop": "/private/tmp/prosary-tob-review/TOB-short-4-20-gabri-gimel.png",
+      "cropSHA256": "04913cfb00aafd8a5cb18448021c4f1b1d797ec502dd6129f8b97bca5be65ab5"
+    },
+    {
+      "reference": "TOB5:2",
+      "old": "וַאֲנִי",
+      "new": "וְאָנֹכִי",
+      "basis": "Printed kaf was omitted in the first draft. Tight crop shows the full five-letter word, vav sheva and alef qamats.",
+      "crop": "/private/tmp/prosary-tob-review/TOB-short-5-2-anokhi.png",
+      "cropSHA256": "76c0c81212c7981875c7cdc3994755a0694540310e8af5e2569400c4631941d1"
+    },
+    {
+      "reference": "TOB5:3",
+      "old": "וַאֲנִי",
+      "new": "וְאָנֹכִי",
+      "basis": "Separate occurrence: printed kaf omitted in draft. Tight crop confirms the actual full word and its own vav sheva/alef qamats.",
+      "crop": "/private/tmp/prosary-tob-review/TOB-short-5-3-anokhi.png",
+      "cropSHA256": "ec543402bdc01f3f0b69384d5a86057b156f70c2e99cc88b85b123f39b2727db"
+    },
+    {
+      "reference": "TOB5:7",
+      "old": "הַמְתֵּן־לִי",
+      "new": "חכֶּה־לִי",
+      "basis": "Source word is חכה, not the draft synonym. Three lower kaf dots establish segol, independently confirmed by Apple. Initial het mark is still merged/queried and deliberately left unpointed pending the full page review.",
+      "crop": "/private/tmp/prosary-tob-review/TOB-short-5-7-wait.png",
+      "cropSHA256": "da51e75d75e82e8e740b59fcde47b9be758da90f7e5a1acc5ad44e8b98f7e5e6"
+    },
+    {
+      "reference": "TOB5:9",
+      "old": "שִׁבְטָם",
+      "new": "שֵׁבֶט",
+      "basis": "Tight PDF crop shows exactly shin-bet-tet, with shin tsere and bet segol. The rounded final tet was wrongly split into an extra mem by the first visual draft. Prior crop named9-tribe only showed the neighboring אי־מזה and is not evidence for this decision.",
+      "crop": "/private/tmp/prosary-tob-review/TOB-short-5-9-tribe-actual.png",
+      "cropSHA256": "eb132ff743c9bbf82be86fb8190a6e6ad2c75f5aba9d1ff144d8943e9993393b"
+    },
+    {
+      "reference": "TOB5:17",
+      "old": "וַיַּצְלִיחוּ",
+      "new": "וְהַצְלִיחוּ",
+      "basis": "Source has full heh after initial vav, not yod. Detached vav sheva and heh patah visible; retain the actual source form.",
+      "crop": "/private/tmp/prosary-tob-review/TOB-short-5-17-success.png",
+      "cropSHA256": "db88992dcab7c1b73c9f6b8b063688c67b9cc87bd903982696494570347c7f29"
+    },
+    {
+      "reference": "TOB5:19",
+      "old": "הַכֶּסֶף אַל־תֶּכְסֶף בִּלְיוֹסֵף",
+      "new": "הַכֶּסֶף אֶל־הַכֶּסֶף בַל־יוּסַף",
+      "basis": "Source repeats noun הכסף, preceded by אֶל, not the drafted verb. Source has a visible maqaf in בל־יוסף. Full point adjudication of the latter phrase remains part of the page review; no grammar-based repair.",
+      "crop": "/private/tmp/prosary-tob-review/TOB-short-5-19-money.png",
+      "cropSHA256": "e00aa947675d956ecdc5e7839a3b9981034965bed2efca0a83dcc5f3715ddaee"
+    },
+    {
+      "reference": "TOB5:22",
+      "old": "וְשָׁב",
+      "new": "וְיָשׁוּב",
+      "basis": "Printed yod and medial vav are both explicit; first draft omitted them. Preserve full source word with locally visible yod qamats and final shuruq.",
+      "crop": "/private/tmp/prosary-tob-review/TOB-short-5-22-return.png",
+      "cropSHA256": "d9c040e4d92c64fe1e4bba8727d01dbcbe79af9f8c39eb8da92ed6d58f139d7f"
+    },
+    {
+      "reference": "TOB5:3",
+      "old": "כְּתַב־הַיָּד",
+      "new": "כְּתָב־הַיָּד",
+      "basis": "The tight local crop shows a continuous lower horizontal bar with a descending stem under tav: qamats, not first-draft patah. Kaf sheva and dagesh remain.",
+      "crop": "/private/tmp/prosary-tob-review/TOB-short-5-3-ketav.png",
+      "cropSHA256": "7ae0d0aebf77d9a871210cd1843ad9f862e509652d0c414d69f4324aecf8d176"
+    },
+    {
+      "reference": "TOB5:3",
+      "old": "בְּעוֹדֵנִי",
+      "new": "בְעוֹדנִי",
+      "basis": "Initial bet bowl is clean in the actual occurrence; remove unsupported dagesh, independently confirmed by Apple. Dalet vowel cannot be classified in either scan and is disclosed separately below rather than retaining draft tsere.",
+      "crop": "/private/tmp/prosary-tob-review/TOB-short-5-3-beodeni.png",
+      "cropSHA256": "42c8f49669ccf7a96c32cfa6d92d54593a27fbc590273172b836776ade4ee490"
+    },
+    {
+      "reference": "TOB5:10",
+      "old": "וַיְבָרֲכוּ",
+      "new": "וַיְבָרְכוּ",
+      "basis": "The resh lower marks are two vertical dots, with no detached side bar of hataf patah. Preserve the printed sheva, rather than the draft compound vowel.",
+      "crop": "/private/tmp/prosary-tob-review/TOB-short-5-10-bless.png",
+      "cropSHA256": "d08be279beba23a87bb57db1b2d3e71e37c4b4b293ee8f334497f48fef0748cd"
+    },
+    {
+      "reference": "TOB5:12",
+      "old": "הַשֵּׁבֶט",
+      "new": "הֲשֵׁבֶט",
+      "basis": "Heh has a horizontal component plus the vertical side pair: hataf-patah. Shin interior is clean, with two detached tsere dots below. Windows independently confirms both local observations; remove the unsupported shin dagesh.",
+      "crop": "/private/tmp/prosary-tob-review/TOB-short-5-12-tribe.png",
+      "cropSHA256": "30c7b9bd70f49a30eb0d40b672220ecb2020c13428b1fddbff1fd9273a651c4b"
+    },
+    {
+      "reference": "TOB5:12",
+      "old": "שִּׁמְךָ",
+      "new": "שְׁמֶךָ",
+      "basis": "The enlarged source shin has two vertical sheva dots and no separate interior dagesh. Mem has three lower dots in a triangle: segol. Preserve the local source form rather than the first-draft hiriq/sheva.",
+      "crop": "/private/tmp/prosary-tob-review/TOB-short-5-12-name.png",
+      "cropSHA256": "3bf919aaf16371296d5a4a190396a723b59f3dbf851c37f4568a055f1c54c3c7"
+    },
+    {
+      "reference": "TOB5:13",
+      "old": "יְרוּשָׁלַם",
+      "new": "יְרוּשָׁלִַם",
+      "basis": "This actual lamed has a flat patah bar and a separate companion hiriq. Windows independently confirms both. Preserve both marks on the same letter and the defective source spelling without inserting a consonant yod.",
+      "crop": "/private/tmp/prosary-tob-review/TOB-short-5-14-jerusalem.png",
+      "cropSHA256": "14900db1d15245b1d73553d67e2937a1d5386f80042de5f4b6b08c946a7c047c"
+    },
+    {
+      "reference": "TOB5:13",
+      "old": "מִשֹּׁרֶשׁ",
+      "new": "מִשֹׁרֶשׁ",
+      "basis": "The shin interior has clean white openings, with no detached dagesh; remove the provisional mark. Its separately visible holam and shin dot remain unchanged.",
+      "crop": "/private/tmp/prosary-tob-review/TOB-short-5-14-root.png",
+      "cropSHA256": "a562ad0d2adb55213692d478e7bae93328cc6405f80f4320a3544d2dc6dd90b3"
+    },
+    {
+      "reference": "TOB5:15",
+      "old": "אַדַרְכְּמוֹן",
+      "new": "אֲדַרְכְּמוֹן",
+      "basis": "The initial alef shows a flat lower bar plus a separate vertical side pair: hataf-patah, not first-draft plain patah. The following dalet remains a local point query pending original-scan comparison.",
+      "crop": "/private/tmp/prosary-tob-review/TOB-short-5-15-coin-full.png",
+      "cropSHA256": "dcfa5ad530befed1addbbda48b3d70f7ae4de6f413adad3412ee64fb43e3783c"
+    },
+    {
+      "reference": "TOB5:3",
+      "old": "ויֹּאמֶר לוֹ",
+      "new": "וַיֹּאמֶר לוֹ",
+      "basis": "Explicitly supersedes the earlier coarse-view fused-mark impression. Native nearest-neighbor enlargement exposes a white gap between this initial vav and its separate horizontal lower bar. The visible mark is retained as patah; no word or grammatical inference. Enlargement adds no source information, but prevents display downscaling from hiding the gap.",
+      "supersededSourceNoteId": "tob-5-3-second-vav-vowel",
+      "crop": "/private/tmp/prosary-tob-review/prefix-reread-2.png",
+      "cropSHA256": "42e406fb5edd2cd72a18ae6e0baf5f4d6d3542b6001a9611b6dc5d786a8192bf"
+    },
+    {
+      "reference": "TOB5:4",
+      "old": "ויֵּלֶךְ",
+      "new": "וַיֵּלֶךְ",
+      "basis": "Explicitly supersedes the earlier coarse-view fused-mark impression. Native nearest-neighbor enlargement exposes a white gap between this initial vav and its separate horizontal lower bar. The visible mark is retained as patah; no word or grammatical inference. Enlargement adds no source information, but prevents display downscaling from hiding the gap.",
+      "supersededSourceNoteId": "tob-5-4-first-vav-vowel",
+      "crop": "/private/tmp/prosary-tob-review/prefix-reread-3.png",
+      "cropSHA256": "4f3b72ae1e145a592cc8ba352f7cd1c0935a307ee77074102da79b255547fd52"
+    },
+    {
+      "reference": "TOB5:4",
+      "old": "ויִּמְצָא",
+      "new": "וַיִּמְצָא",
+      "basis": "Explicitly supersedes the earlier coarse-view fused-mark impression. Native nearest-neighbor enlargement exposes a white gap between this initial vav and its separate horizontal lower bar. The visible mark is retained as patah; no word or grammatical inference. Enlargement adds no source information, but prevents display downscaling from hiding the gap.",
+      "supersededSourceNoteId": "tob-5-4-second-vav-vowel",
+      "crop": "/private/tmp/prosary-tob-review/prefix-reread-4.png",
+      "cropSHA256": "1151e742aed366b25b92e6a32d0a4a5f51220d3e7ebe7cfb3fec49297653733f"
+    },
+    {
+      "reference": "TOB5:5",
+      "old": "ויֹּאמֶר לוֹ",
+      "new": "וַיֹּאמֶר לוֹ",
+      "basis": "Explicitly supersedes the earlier coarse-view fused-mark impression. Native nearest-neighbor enlargement exposes a white gap between this initial vav and its separate horizontal lower bar. The visible mark is retained as patah; no word or grammatical inference. Enlargement adds no source information, but prevents display downscaling from hiding the gap.",
+      "supersededSourceNoteId": "tob-5-5-initial-vav-vowel",
+      "crop": "/private/tmp/prosary-tob-review/prefix-reread-5.png",
+      "cropSHA256": "de28cf1b59401b99d73ff8cef7bad164d76b5812b2de288811cb99ea1d18a092"
+    },
+    {
+      "reference": "TOB5:6",
+      "old": "ויֹּאמֶר לוֹ",
+      "new": "וַיֹּאמֶר לוֹ",
+      "basis": "Explicitly supersedes the earlier coarse-view fused-mark impression. Native nearest-neighbor enlargement exposes a white gap between this initial vav and its separate horizontal lower bar. The visible mark is retained as patah; no word or grammatical inference. Enlargement adds no source information, but prevents display downscaling from hiding the gap.",
+      "supersededSourceNoteId": "tob-5-6-initial-vav-vowel",
+      "crop": "/private/tmp/prosary-tob-review/prefix-reread-6.png",
+      "cropSHA256": "a0439bac37d0333d1df09e5df135c318e2f527b5700259305cc0fbde91ee6551"
+    },
+    {
+      "reference": "TOB5:7",
+      "old": "ויֹּאמֶר לוֹ",
+      "new": "וַיֹּאמֶר לוֹ",
+      "basis": "Explicitly supersedes the earlier coarse-view fused-mark impression. Native nearest-neighbor enlargement exposes a white gap between this initial vav and its separate horizontal lower bar. The visible mark is retained as patah; no word or grammatical inference. Enlargement adds no source information, but prevents display downscaling from hiding the gap.",
+      "supersededSourceNoteId": "tob-5-7-first-vav-vowel",
+      "crop": "/private/tmp/prosary-tob-review/prefix-reread-7.png",
+      "cropSHA256": "97fb1e413dce824e7150bbc1c8219a1a4ba9b434a66767562a4e07b0934beb89"
+    },
+    {
+      "reference": "TOB5:7",
+      "old": "ויֹּאמֶר אֵלָיו",
+      "new": "וַיֹּאמֶר אֵלָיו",
+      "basis": "Explicitly supersedes the earlier coarse-view fused-mark impression. Native nearest-neighbor enlargement exposes a white gap between this initial vav and its separate horizontal lower bar. The visible mark is retained as patah; no word or grammatical inference. Enlargement adds no source information, but prevents display downscaling from hiding the gap.",
+      "supersededSourceNoteId": "tob-5-7-second-vav-vowel",
+      "crop": "/private/tmp/prosary-tob-review/prefix-reread-8.png",
+      "cropSHA256": "384a77ff12adb65958a33f8ebe3d0c1dff7d52b651acf99cd47e17b9aff67c84"
+    },
+    {
+      "reference": "TOB5:9",
+      "old": "ויָּבֹא",
+      "new": "וַיָּבֹא",
+      "basis": "Explicitly supersedes the earlier coarse-view fused-mark impression. Native nearest-neighbor enlargement exposes a white gap between this initial vav and its separate horizontal lower bar. The visible mark is retained as patah; no word or grammatical inference. Enlargement adds no source information, but prevents display downscaling from hiding the gap.",
+      "supersededSourceNoteId": "tob-5-9-first-vav-vowel",
+      "crop": "/private/tmp/prosary-tob-review/prefix-reread-9.png",
+      "cropSHA256": "3f227fe55535e34861d9820a68a1e5528596bae64fe60b7f8ff0b528c61e4827"
+    },
+    {
+      "reference": "TOB5:9",
+      "old": "ויֹּאמֶר לְאָבִיו",
+      "new": "וַיֹּאמֶר לְאָבִיו",
+      "basis": "Explicitly supersedes the earlier coarse-view fused-mark impression. Native nearest-neighbor enlargement exposes a white gap between this initial vav and its separate horizontal lower bar. The visible mark is retained as patah; no word or grammatical inference. Enlargement adds no source information, but prevents display downscaling from hiding the gap.",
+      "supersededSourceNoteId": "tob-5-9-second-vav-vowel",
+      "crop": "/private/tmp/prosary-tob-review/prefix-reread-10.png",
+      "cropSHA256": "5b8d64a92540a63d30c2941959d523db3f3e115ae5a5d6b62274571660e08fa9"
+    },
+    {
+      "reference": "TOB5:9",
+      "old": "ויֹּאמֶר אָבִיו",
+      "new": "וַיֹּאמֶר אָבִיו",
+      "basis": "Explicitly supersedes the earlier coarse-view fused-mark impression. Native nearest-neighbor enlargement exposes a white gap between this initial vav and its separate horizontal lower bar. The visible mark is retained as patah; no word or grammatical inference. Enlargement adds no source information, but prevents display downscaling from hiding the gap.",
+      "supersededSourceNoteId": "tob-5-9-third-vav-vowel",
+      "crop": "/private/tmp/prosary-tob-review/prefix-reread-11.png",
+      "cropSHA256": "0dec0baea349b1a9337c9379aab1dbdba5abba22ad46727af5e80a5c5b2f5f0d"
+    },
+    {
+      "reference": "TOB5:10",
+      "old": "ויִּקְרָא",
+      "new": "וַיִּקְרָא",
+      "basis": "Explicitly supersedes the earlier coarse-view fused-mark impression. Native nearest-neighbor enlargement exposes a white gap between this initial vav and its separate horizontal lower bar. The visible mark is retained as patah; no word or grammatical inference. Enlargement adds no source information, but prevents display downscaling from hiding the gap.",
+      "supersededSourceNoteId": "tob-5-10-first-vav-vowel",
+      "crop": "/private/tmp/prosary-tob-review/prefix-reread-12.png",
+      "cropSHA256": "e4d69f6419a4e4da1240af3346591b5c1b38715089431f7a24d9d92d8045c062"
+    },
+    {
+      "reference": "TOB5:10",
+      "old": "ויָּבֹא",
+      "new": "וַיָּבֹא",
+      "basis": "Explicitly supersedes the earlier coarse-view fused-mark impression. Native nearest-neighbor enlargement exposes a white gap between this initial vav and its separate horizontal lower bar. The visible mark is retained as patah; no word or grammatical inference. Enlargement adds no source information, but prevents display downscaling from hiding the gap.",
+      "supersededSourceNoteId": "tob-5-10-second-vav-vowel",
+      "crop": "/private/tmp/prosary-tob-review/prefix-reread-13.png",
+      "cropSHA256": "6617ee709de327c94814053fe550f4216a1f8e768653b564d95428c151af8a62"
+    },
+    {
+      "reference": "TOB5:10",
+      "old": "ויְבָרְכוּ",
+      "new": "וָיְבָרְכוּ",
+      "basis": "Nearest-neighbor pixels reveal a detached horizontal bar with a definite central downward stem: source qamats, not the first-draft expected patah. Windows independently confirms the exact geometry. Supersede the earlier coarse fused impression and withdraw its source note; retain literal printed vocalization without grammatical normalization.",
+      "supersededSourceNoteId": "tob-5-10-third-vav-vowel",
+      "crop": "/private/tmp/prosary-tob-review/prefix-reread-14.png",
+      "cropSHA256": "183e44bf2787785144072bf92b16a16ff30302debd3c69659d4847ba76039c04"
+    }
+  ],
+  "cropEvidence": [
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-1-opening.png",
+      "sha256": "bd09673a955701316e522fa9e26ed8700ed2e149308430434a7834354339403b"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-B313-body.png",
+      "sha256": "b493ff763ff9cd752d0baf0943a2fd2fbf2828ac433b1d8cab47e730fa3da41b"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-B314-body.png",
+      "sha256": "e4e0101978cf12383091a05cf56bcb5239bde790cc89fdd835362c8935f37743"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-B315-body.png",
+      "sha256": "0b5358cca0d51637fb9bd57e14e307ff78495a250decc6fadfea4eb236fb1872"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-B316-ch1-ending.png",
+      "sha256": "dec675e9948a79020bac8abb8ec598872b19da25b4d8e76e8f1614a3a7e62216"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-1-3-people.png",
+      "sha256": "cbe5592a424ddabba1e3a33a31581f35781658358add6a9598eaeb7184524012"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-1-19-21.png",
+      "sha256": "db35e4e4df715fa5e9df87881bfbb934188b3e5a64977b6e1ac0fdd504df80e0"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-1-22.png",
+      "sha256": "53b025979e8fc32f78bf4a876cf2dd1379bc73bdb0eef27e8ba99d456aa38b2a"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-1-1-nabael.png",
+      "sha256": "83c56aca955935163b4dd6c7af4cca30c6b9ad9c45c1b65fb6fbaaf402d074d9"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-1-2-shalmaneser2.png",
+      "sha256": "b9384a8cf40ad02bb610c70e8e8296bb445a257127c66ccb8ae25590bfd28f9b"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-1-3-people2.png",
+      "sha256": "09562462639b08ae85acd62b80a9416f2077a568c8375a0d0f3db5fef57dfb40"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-1-4-jerusalem3.png",
+      "sha256": "b9ed53d37db741474465efc07507b8fc13b28f66d9b4ad9b7449918492c3e8c9"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-1-17-naked2.png",
+      "sha256": "8daf4802ca3215dbc0fc5d2b751d884df46a285c374351545d5f8ead907fef8b"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-1-22-seal2.png",
+      "sha256": "d3cd4aca987af979b93ea06c70274eed401ef06085915ce1c7568c623a3a3352"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-1-15-name2.png",
+      "sha256": "e7b1e2855e2b68a1d6c2fba1e835825fa324cb3e842a736a81487e7094cc0e29"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-1-16-name.png",
+      "sha256": "dc83a5d32b6aa5fbc49ff00e44b80c7a0ac949d84af097ef557ae495d1cf0e79"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-1-6-statute.png",
+      "sha256": "11e63ea0f693dfe0add531a5cc8c03c1ca2ff865031ee05a3654e2404252a77f"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-1-14-gabael2.png",
+      "sha256": "a56b00b79f2b9651e87b5a38adf86ca19ee7db4c73ab266660e37f8aea700aab"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-1-18-searched2.png",
+      "sha256": "624bc1f1d28fc33674bc22cd3de587c4e1a39f5f7dc71baea1a31ec0d2b0c790"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-1-11-eat.png",
+      "sha256": "88c40f643be22c398b20e6cf31043997359aa6b778a152d67f7ac80319e6baa0"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-1-22-prefix3.png",
+      "sha256": "31e7395bb352aa2853c0c0bd047b74be7f0d811f75516a5599f09272eea86902"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-1-13-name.png",
+      "sha256": "e3a48de74670293254924bec8cad1ba1fa7a82617c26127464daa33b252d58b3"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-1-1-aduel.png",
+      "sha256": "96e1756b6777d05b16fab12d04cad27e3f58cbe1a8c7ec5588a5bd23ce386720"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-1-1-gabael-original.png",
+      "sha256": "a685225496536a2c7c38c5bea13b88f10383c16494eeb85a1149211fdd3b056c"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-1-1-hananel.png",
+      "sha256": "4a4c37e5bbc76fd1336b39b30d60cacffc3dd1ba33261edd2638bc1fb57d8ba8"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-1-1-words.png",
+      "sha256": "4bebe3996406978b94fa786e6bbc7b3ad3424b8e02322e9b77dbf32ed9aacf64"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-1-1-yachtsel2.png",
+      "sha256": "1f57cf1fe2f1fcde40b4072fe2adc68e4bc6d9170aa42075ab6d29b1a0e1e2b0"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-1-2-above.png",
+      "sha256": "b25b635052c3f8da90f1147fae0970cec782c08ede7fd9e0a1eb231223a2098f"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-1-2-galil.png",
+      "sha256": "4556b43ac7b421948647de9cc15285823f6d6b004de85950bf44a88f8182e2d6"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-1-2-tishbe.png",
+      "sha256": "63ef96994ac54d4d27c6226a26d022ba426c9e298cee6bf66e22828d2ad1fdf2"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-1-3-life.png",
+      "sha256": "7252c179298fd377e3747eb643efe5f844f13fe11e7853246d4c888a1ad9c80f"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-1-3-ways.png",
+      "sha256": "2f4690b3d6c9c6cd2a80b057f661cb1d86097ffc1303a18b8eccbc5abe2ad3b2"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-B312-row1-right.png",
+      "sha256": "78075028ce45df3bab07b54b7aa88b7ee080bad913e3ed462262e913fdfbb2a7"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-B312-row4-left.png",
+      "sha256": "19aaee92129ccccd253c4061ca6a45b9c061f910979e32c6a022ae293ac9b32e"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-B312-row4-right.png",
+      "sha256": "6638a413fad3488f0bf65f1615d20b75c67149c60257a1ba52d88f1bfb49dd58"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-B312-row5-left.png",
+      "sha256": "729a4b2d70bd857b0335844a0311e4033ad61e0040d587cbd5499001a9f3ee58"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-B312-row5-right.png",
+      "sha256": "e8b0dd83884932ff07ec937e40f2619174dc1b4c7a0d01d5366d41a1ad4c07cf"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-B316-ch2.png",
+      "sha256": "594adc38263d06a20ad2756daeb9970a5743bb34203f116428c92a8f8247a6c6"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-B317-ch2.png",
+      "sha256": "de321883ed4ea04b2cb9bf6210a717b2b21147e15b5d3721eaf6a899e8c384a9"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-B318-ch2-ending.png",
+      "sha256": "e7f8922fa47860021303b04cddc1e21d247727877b35424ae91bfe2c1c6d1a5b"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-2-10-cataracts.png",
+      "sha256": "a42b72c5d6268cec90ce6b3512da17d9f6d1769f24d310f5a023f72bc2a1b498"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-2-10-ahikar.png",
+      "sha256": "2cb0e01aff282fc89c398005642a3518c0eee8c44d4199f526c0187475798cb0"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-2-10-opening.png",
+      "sha256": "fa0c7727c6f55c4564ea1e662eb3ef5d754d7079ec7f8d5b047a8ac80faa6417"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-2-12-upon.png",
+      "sha256": "a39ebb91986a1937d020da8bede0a33794ce847a5d303ecef3ffe49dd6f2ae24"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-2-14-deeds.png",
+      "sha256": "617c1556d7b46b3e20371ea5090a7ba90b1e6f63633711ab67d438e4590286fd"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-2-14-gift.png",
+      "sha256": "25bd45d3750e3055463c3fa7b6b6df767df9e00843f4c451aba72acc01dfa527"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-2-14-where2.png",
+      "sha256": "63a67a50e1bbacc67c7e9a20758f00cc4382101ea830d9e5e7f92b68f9e22b0a"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-2-4-opening.png",
+      "sha256": "64202ca75c8dc540bf752ded55e23d8b9cf2675ac01448e5e41b190100bac306"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-2-4-sunset2.png",
+      "sha256": "c081b1b7d2546a54f10b78b232f812c2a3757758c6177e4d9f5e7ba6fff7e7e7"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-2-6-amos.png",
+      "sha256": "38ab58fa343e86b1ca1e453bc8fca1be91fedbe8ce13c3132edaeaac9e6dcc8c"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-2-7-burial.png",
+      "sha256": "e486891725173dc24a1406633e9d285823e1b097cec42cd747cfcaa81cd491b8"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-2-8-fear.png",
+      "sha256": "34206697fbc1eec57740ffe018e2eedc7cb453136429c07d2d67d66e3fbecba0"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-2-9-10-sleep.png",
+      "sha256": "a7b4ae41fe13c6e841c72c90f4e49d52ba97b230d76594342838f5e31c66bbcb"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-2-9-slept.png",
+      "sha256": "5e154e63ecf94af8834e0596db0ed2ce004981fe4f81fd4885c0a999660cc170"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-1-6-jerusalem.png",
+      "sha256": "8e15ba27eff60856a8344e16d7c6cc4320b4478b0cae6cd44c5d96003fb21f65"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-1-7-jerusalem-first.png",
+      "sha256": "75fa4213a304713838fdf433454e7a456fbc3971b42cedb5dc359cecf25c36e1"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-1-7-jerusalem-second.png",
+      "sha256": "0f25db5ca01dcfa3cdd59c8b20ad95206ace7b755b68fd033682b38e7ca6a26d"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-1-5-baal.png",
+      "sha256": "cf70f5036b9de9290106325c2e7ec3ff629d99f8cba13ceae933c3ae3e2af631"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-1-7-altar.png",
+      "sha256": "2a895f7767ffa7c8ccd8862436f5e0754b3692412964ad1cab3aec3c947dbd0c"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-1-21-esar3.png",
+      "sha256": "ded4468acc8cb9afebb542cf0b360f440b8cd7e084805e1bfb5a9655c4153eeb"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-1-22-esar2.png",
+      "sha256": "1d627d1f6620ab2fd05dc81040294a57e6b8799bf0ef958801cce0aa4a8acd20"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-1-22-offices3.png",
+      "sha256": "eaac8b6b8fd4319605c7cb090c301b19187019360ae4d757e545f6f0e389f092"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-1-21-killed.png",
+      "sha256": "ebbf45363f8d905e77421f47c6dcd3a01db15dadc30121eeda0310a3c05d157f"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-1-20-plundered.png",
+      "sha256": "954cdce05dced82bcab0dcd04a368059246741660489d177d5c7f4de5a47f721"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-1-19-and-told2.png",
+      "sha256": "ecb363f83071ca57b9a7a935882318d2114486b48d819039ef7ada641041c0be"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-2-9-shin-ayin-comparison.png",
+      "sha256": "90e1faf6c67ffb46e10ab73f6fbbc08865bdd8c74922cb00963b66c43fd7b6c7"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-2-9-slept-original.png",
+      "sha256": "1a9035626dde22122d62879aee89559433da6e0bf99dda83fba4139ea6ebba15"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-2-9-slept-extra-tight.png",
+      "sha256": "8a76f62d2c7e70d585c96555bec45ee2f389fdd3d589cc1a6920d9dadb4427f4"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-2-1-son.png",
+      "sha256": "ebed2a7741a745ad1e3979f265d4ca9c63a18952b7aecf8db23b807d1449c3c5"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-2-2-name.png",
+      "sha256": "bba66db968a3bfeddcaf52ce5a5bdb6929ac00b180087a4cf0a969a59f31c4d2"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-2-3-mem-vowel.png",
+      "sha256": "071fb212234346b91bd4cf8eb77cf358ab9cbf6498a78571effd9ea8aa9326cc"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-2-3-cast.png",
+      "sha256": "973a641c461598df8807462aac81f6078552e896298e8180ad0588200d582adc"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-2-3-cast-original.png",
+      "sha256": "636ff97b51c274cbfffd42c85baf17bbbf7b1dc60f3c51946f00dffdcd3c9abd"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-2-7-mocked.png",
+      "sha256": "31026b60ca2b95f1f21f72aabe02c142cfae3c6522c9fc03e4d6ed7fbdae5e28"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-2-4-qamti.png",
+      "sha256": "9d60e6a61fdfae7586923b53b8275148337ab23cedd9c4fc4bf9b6fc200bc6f9"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-2-10-birds-first.png",
+      "sha256": "9fd7b74716d63da2fbff4d99313d3365297b10e82ef209c093e7949149e5fef3"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-2-10-birds-second.png",
+      "sha256": "e0608fb6f25a10a37e07ab93a693b6c359ca0f0b0f14dfe4ee8a3d088c0f318f"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-2-9-beside.png",
+      "sha256": "4bab95702a5ff695f7d0d3d50f4f7e5b8d63391316bbc67e7d3b53e3633de590"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-2-10-eyes-first.png",
+      "sha256": "d210ae5f405669f34ede41456196bae654b8048d0d902305252ab872493b3305"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-2-10-eyes-second.png",
+      "sha256": "37201143137f8ec7cb3f76b37e48abcbc276f37206d7ef3a4e5cbb06f0f87e36"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-2-13-began.png",
+      "sha256": "ce5fa63383ec6073ec9a835633d826f023d3f1c09ea06f75333d14fd5ddefbb8"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-B318-ch3.png",
+      "sha256": "7ae7e0cb1dde338e73fd8cafce0f38aa99e47c9530e94f0e7c625259a902856e"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-B319-ch3.png",
+      "sha256": "b91e90715b3ca7432aa6edff910e5e6aa560a26bdac5b20135214e985f086351"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-B320-ch3.png",
+      "sha256": "3664c1aeff4ebec59bece429b5228b656cadfdd60255e4ad02185eba1b92b31e"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-B321-ch3-ending.png",
+      "sha256": "f61d2e4159f4ad6c0c9794f4fed58ee8c8bc8e078b404d30b436fa9dedf5bdfa"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-3-4-brackets.png",
+      "sha256": "14ac0b5746aa2d41d1b2b3f37f0504a16b370f151536dd116a0afd479c6a43d1"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-3-6-command2.png",
+      "sha256": "9aca91f3f07b620e8431619888ace92a723d8b03302df68cdeaf91de80f0faa0"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-3-9-gather2.png",
+      "sha256": "a3b2a20df36b0fb1d048656247fcd021ca5a71c36e0360276b5acebfce5b28dc"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-3-13-14-reading.png",
+      "sha256": "963f39c9816deb53c7d5e0a44f99cd28c8ab6269c8d747370827befdda6e62ff"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-3-15-please.png",
+      "sha256": "15e4486edd75b0f8110992f3a6e85892c8a6617c8a66c0f95a57eec34a135edb"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-3-15-self.png",
+      "sha256": "eb4ea438d1c8c475829814cb701a2d971fe5f24898c05475ee30701173f2a198"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-3-17-give.png",
+      "sha256": "ae293810b1095837d8af7ea3e9e8dd5f213db8c4fda99ac84bfbf48f7d6eeb8f"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-3-17-return.png",
+      "sha256": "09f7560e3d51fa4ce19ecc0dc6638501366482bbbccc1ffe2f10a7c4215dbfe7"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-3-5-sins.png",
+      "sha256": "0b9c201da1c715d12568a7bb66665ed95449320e897d17b2a228a1ab64039a56"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-3-7-hear.png",
+      "sha256": "76122d363af1579157d236a18d1e59c0ad7e12532711450b70b16b846f2cd956"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-3-8-women.png",
+      "sha256": "7d44ae8cb209293f1a258efe2f99463f30882bb6a201fd7eda70cd0a16ecdd70"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-2-14-because-wide.png",
+      "sha256": "b79cd258116e5bb18cb8f0f1910de2eee2c1fb4f4b978652c8d042da2005daa8"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-3-4-among.png",
+      "sha256": "fdd73af3069380b67f97241be1494cad3c8482e5ede0a6b5629615bf2d0b06f7"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-3-5-doing.png",
+      "sha256": "215b71a62165238b70f85e082befa565355f4a279146d3b73a29fc4deff25b60"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-3-6-reproaches.png",
+      "sha256": "4073fbec7f6273c88198c4b40ddefc597d9f7fb36e6e9f15ab4e06eac105c127"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-3-6-my-life.png",
+      "sha256": "8679fe71796b37bb2cc77747cf8d5721bd28754f3df558c81c91870d3e52894d"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-3-8-women-point2.png",
+      "sha256": "45d2ba985972985d23aca5281f6546a0f536de2e39bca338f2efac4a07c55370"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-3-10-sorrow.png",
+      "sha256": "c51c1e3efe4b751c032be3eeb63fe667ef372fcafd57bc9ed1df8dcaf0d984ce"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-3-15-this.png",
+      "sha256": "d6e91bfc3f994d71af7c601bd82991fc211d644048106c88c37ad7f826750db8"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-3-15-turn.png",
+      "sha256": "afeee036df754f22ce3e79c88ef6a7abba719d2d3e1045e87b6ee83646ac7158"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-3-11-bless.png",
+      "sha256": "9e6dcda222d5132a5e4e3af43c67fa35258542ab607dbb36cfc55e46c36c0201"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-3-15-land.png",
+      "sha256": "9f7feb38ef88e24742d8975a5b8762cda5f6eac64c198023f904228f37e55531"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-3-15-already.png",
+      "sha256": "9e202b67459ff28d9702840a299114c20fe58c5d17377137d9a36b446f8a7786"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-3-15-why.png",
+      "sha256": "e95332bd398e8a450d0c7aa8390cb3f02fe506e39b5fb29443e53fa2086adbaa"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-3-11-honored2.png",
+      "sha256": "9bd49298a1e3a23a2426a9447e65df10ffda07c2ee21ee0fb2efa982dfb9c768"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-3-10-to-him2.png",
+      "sha256": "fbd124d3126744225afbb8fea35992b4aef247911dfc3d623402349e1c2d2d90"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-3-16-sent.png",
+      "sha256": "54c214eff9d526ec973fd76bc3c30a9196e6332986596cd471830b87d1cc4e73"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-3-16-sent-original.png",
+      "sha256": "c8edc8d00a1e73ec5e7ede3e295e11a225db28458db100e7c04ea7fee24b70cf"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-3-16-vav-tight.png",
+      "sha256": "e15d44607be41821556c9b417e3c6d6bd3d695502c966293a2cf4fdca004dca1"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-3-10-daughter.png",
+      "sha256": "ffeeb6e6ef55bb728165c352bc004eb7561d5f9180e5cb5263a069bc6ff03529"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-5-margin.png",
+      "sha256": "7ec95fb068ebce3e0581f5f45eb690629759bfeb29d77c440c7d3021b6fecab2"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-7-margin.png",
+      "sha256": "f48a6002ab956872356e5acb107b0bedb4daec25dfba7b0f0c3452eb5f35b869"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-be.png",
+      "sha256": "6a31f5ef47eb632e9e593ad269bc91f1ebaa1ea43e18acb2107fca5549bdef16"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-children.png",
+      "sha256": "c88e56d1c52cae33ce7451f265d67eaac8827ccfab58a86c6948b0ed6b95b0cd"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-closing3.png",
+      "sha256": "6b63ebcd6f7a47539fe7731a77848c02eebd2bb9a33b3eb0884c2ae1a57f90f7"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-commentary.png",
+      "sha256": "ffd513032999302850190bbc5559f17ac21c3811544dff9a93f34b109b7909b5"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-destruction-full.png",
+      "sha256": "11142bc5575ae46ef4a4ef8cf263caf632f2af849f80846e630bff95fb5f7c6b"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-destruction.png",
+      "sha256": "d32059f26a92cdd1682c9476562e9a05535e872f337d764f20d640ed8225ec8d"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-do-alms.png",
+      "sha256": "100ef1d7e0a1d0d584c674905b8b9bd92365f889365148b90ff6d3fda7ce93fa"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-drink.png",
+      "sha256": "73c7253f8b7b8dbb8725c78c8460711341172ac0db78a87b769bc3af983c992e"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-end.png",
+      "sha256": "6364cc5b63af634ba7b7708a774e473ca0bef1eb6f0e98df0ba7b6e0917e792c"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-face.png",
+      "sha256": "dc2a4720e04453a8efcbcb7c044f9b683fbf8e2c128b41ad32eec6566e64fa77"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-fornication.png",
+      "sha256": "33da207ad9e4fad3aae609dd8852c30320fff85877693ce85903ef0c6fa0b0b2"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-gabael-wide.png",
+      "sha256": "dbb3c735b76b684a2a79f9ec14d2a9224e8768fcea21460ae1c8b2456aefee58"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-gabael.png",
+      "sha256": "daa04b99ac48df4a91d3ecd1ad3152da81a1084f20be3e23d801d898d1a3a742"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-garment-full.png",
+      "sha256": "88c6e2273ace6fc8fd141cd8caa9627af3eb701715799b26330eac1cded85c90"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-garments.png",
+      "sha256": "9a46f308b80d845d84e9f0d6612fbaea6417824ec54ebf492317d33b1caa01ed"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-hated.png",
+      "sha256": "69398f513b96bcc7de67820ee7967e804573c7d2d70b647830c5ad778123b548"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-inherit.png",
+      "sha256": "ad8634d2aca8cb57367168483a18afefc1a096e6d1edba8d64313f8c13aa9e1e"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-laziness-full.png",
+      "sha256": "25fb642b9bee9045f236453273eeb73f394ce18668194f4bf05ad9fa6bce2f34"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-laziness.png",
+      "sha256": "eaa41d63c12ee87747e793999cb22fdb91dc8f69d9c59640c082b6668ca5b210"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-notes.png",
+      "sha256": "1b9f01e1fa9eb2e6cf28e98aee48f9ffa7752c317c8aa3c8e5330ed8fc725bc7"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-remember-ancestors-full.png",
+      "sha256": "b8ca4e8283ad16fc27bb0897055705ddce8802b56a068e55a8df940cd79e6add"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-remember-ancestors.png",
+      "sha256": "b71cf5fa5a54696c78e670d83d44bf6cd17638f6a8e8f14674912a8a5d839169"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-remember-exact.png",
+      "sha256": "1c07cf4e4f3ea9079613d30644e7af45b74d578015856ee4fbf4715d26b992e6"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-remember-lord.png",
+      "sha256": "4894bd37dca4109bcbcc63496275aeda162b052db82ce6e14026d2a05dcf6bcb"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-remember.png",
+      "sha256": "c66b47337eb775df0d01879b0ff0ffbe55bf809e0c51012e2cbf987185e7e1b6"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-take-exact.png",
+      "sha256": "82bf4a9ef7344046b963541e9bc048378bbe2bab02224bfd84b5444fb8af1c50"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-take.png",
+      "sha256": "a9bf9e4dbd7e979f4b7424b333f592ccb64feb5ed5690c918328c29a48773247"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-tavuz-wide.png",
+      "sha256": "e222ea8089a729bb14df52a4536b4938d33b5fff921de0aa2725a696ebcde3ec"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-tavuz.png",
+      "sha256": "b2891f0ed56f365a107b9a843e52da7794ab9c87b6fdea3bd17a8167e72d296e"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-useful.png",
+      "sha256": "e66af39762c64335a9cf604eaa37895a024f9bc34f9c7e3fbcf76ad41987fe63"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-will.png",
+      "sha256": "92b6e7e038dc7e1ad604af2acd2c997dcccf0c712ac8bacb1ad9331f9cc25d00"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-womb-full.png",
+      "sha256": "b45c672c3536ae82280e18e4b36ba3a25831dd2414ad145d54792714d775403a"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-womb-right.png",
+      "sha256": "c771e7920ad7c60d86ce3dd59dd93e7ff4a8bf3bdd7947b865c8f08903cff43b"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-womb.png",
+      "sha256": "b7af317fba1cd5ba76e7657540a5ac15546228d3878151a1312faf8104794d3c"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-321-full-margin.png",
+      "sha256": "88d04084ba873fbe591f8e15a9d051e97114b6b21a1a3fbcf07ae646a3c7b32d"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-322-full-margin.png",
+      "sha256": "8af2a9c81b512e810e6916378709d63492cfe428ac34826dcb799d131fe0b943"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-323-commentary.png",
+      "sha256": "00e2c8684290610fbdb0b8e72edae86904df45037e9cc2f52994aa687f60bc13"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-323-full-margin.png",
+      "sha256": "0365cb22fb81c221527aeb3c307916123545287734429efaad93ada0e1001916"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-alms-letter.png",
+      "sha256": "ffe4094ce16a47f34aae821d99eab77be1ba47989a44829d52e3fb438ecc8a3e"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-alms-tav.png",
+      "sha256": "be9a71a85a627aac5dcd2dafad1711c804bb6e79135389b902c5b8540a1c5955"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-commentary-lower.png",
+      "sha256": "8038f7b7fbab5bea2ec87bb393db1c140c1b23d96def6bf758749f2b1a1284f0"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-laziness-context.png",
+      "sha256": "2d80828554dd42838056081c8d5d2b3beb3ffdae5804276f706f73c5b6b07269"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-remember-context.png",
+      "sha256": "ff94ee2fc15ce5c5bbbe14bff9ffce2f27189ce10324eba4350abb1871568866"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-1-1-bet-recheck.png",
+      "sha256": "20116d81a75073c26e1c078f36f867b3efb3aea16a4b1d8d59187686d86cf9cd"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-3-first-bat-recheck.png",
+      "sha256": "43a58ed6e02d893f429609be474224932cab5f3f714dd4490abfcb96283ea805"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-3-last-bat-recheck.png",
+      "sha256": "cb7a2c9d01d92eca7a3477e726a0d4d41391812bd49000d1d7ed907b8622579a"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-3-aliyah-recheck.png",
+      "sha256": "cfa19fbbbf7cc3eb994a3b02f7ea6c46ddf0388eacec07e6e49e440f88456d60"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-point-321-end3.png",
+      "sha256": "c885dd8c631a64d504d24a57df641f3504cf792f06ca491792c83671682f2fbb"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-3-final-line.png",
+      "sha256": "56f089415002a8b964c86e2265a1fe725bfb44179cf04754ec554139d57f2e34"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-321-row1-left.png",
+      "sha256": "995932bee4f2904c5308662f2dbd4f29f578d95f2cbbda7b27f8cb6c26f4a32a"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-321-row1-right.png",
+      "sha256": "218bdfa4315659756c7d8b30a7501c316aaaac3144023c4ae6ee10dabcff1345"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-321-row2-left.png",
+      "sha256": "e0aee7274ee21a54bec153838055ee73e53de14d4624d948c398702a05f55394"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-321-row2-right.png",
+      "sha256": "363866e2e6076139b3fe4734b0755d7ab0205428b99e132a6eb911dcb3ad0efd"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-321-row3-left.png",
+      "sha256": "8445d79329a4367eeea0df49d2a3d817e16d33f46d41f757bb19a610626f7527"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-321-row3-right.png",
+      "sha256": "b2a59b175509124785fd583f038cadbafa32dd655281581dcd83fb4aa9718765"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-321-row4-left.png",
+      "sha256": "d24435d7bfcd1b7e54c88dacbe5cb86b867b33bb00a8a57cf299e9745520eed3"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-321-row4-right.png",
+      "sha256": "d5cff70e24d473c27c0e99dca392882af7168a1bf1294020f12a9446da2bcdcf"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-321-row5-left.png",
+      "sha256": "ee12934a715528b5b5cb0ae5ec73d197e19b1ac344ba0ab82100d5a95b935afb"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-321-row5-right.png",
+      "sha256": "56e4c5cf523579d8680872bb03419363dce1e2f17547bc312b921fea51897c96"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-321-row6-left.png",
+      "sha256": "651c7240b347124404ae9b5fa4ce72314b5c9c0dafa847e528ffbdfd86a0c4ac"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-321-row6-right.png",
+      "sha256": "7b5539b077306b9670f5b8712c143bb12ed33a485a8dcd945b9ece505b2d3e6c"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-321-row7-left.png",
+      "sha256": "a03f29d99cdb9b9560af15e68b0e2537a77bbbec83c8c818e204cc8064d3cd7a"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-321-row7-right.png",
+      "sha256": "406cd886a2a512aa0a6a659bfa682d855bea8a83870dc3b4ed1d3bceac8d3c3c"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-321-row8-left.png",
+      "sha256": "236e40c806a40a198eeda298f7e719e32a81e9d05f5f1f7397d73e888928a01a"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-321-row8-right.png",
+      "sha256": "e00c9dd7bdbf697a61e686e9bb9cb50c1ede0c26fb396529f6b0844d6028e411"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-battan-fine.png",
+      "sha256": "b11115b420f3ec3bdef90e843b8cca7fc62f7cb8af8677e2047ca4e7f75b585f"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-because-fine.png",
+      "sha256": "72322d39be0178bd0ee08c89fbd90b25c779e7f99aa84cbd9a5623ab53b6bb59"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-bni2-points.png",
+      "sha256": "fe427340292c51850a0094d0e2d768c8a684c1671df37f82b8525871fe31ffae"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-bracket-points.png",
+      "sha256": "fd56c92c7c0cdfcc79c86b0530142e5813d38956b895faca2ef19897ebd3b125"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-bury-fine.png",
+      "sha256": "0948a66c8fd29ca172cc95d17fb0b0d4b78675b56f178d456970a3a2d79ae205"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-death-fine.png",
+      "sha256": "cd9c9eb30a539ec58e81f0c19d9dfc5e495aa79178c2ed82fd504c4c17e774c4"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-kabda-fine.png",
+      "sha256": "b2199b5a31e810cdff582fb79c04193e5f6ff0447f3dc27e9ea53945ac537be0"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-lah-fine.png",
+      "sha256": "757ba6ee02b4eed48699be2368de230fc0e40fcb38ebf8aa8d79d175341ab41c"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-madai-points.png",
+      "sha256": "c27f79124d547026df6c536ffc33634168cfca6d4d6693e92890be038933b55d"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-saknot-fine.png",
+      "sha256": "1f82eb96bc129697a793eea8cca9a5ad6d7cd025eda5a8222821e975eee351c4"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-vaaseh-fine.png",
+      "sha256": "036a3fc41ecdd71a3d96541d6e46bf198a6ab46f61f55bead4f2359ed52a79e5"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-322-row1-left.png",
+      "sha256": "ac914604ac3f1982dc0d473ceedb8f92e4805aba0021e1d20e0c2d0d6b0ac1db"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-322-row1-right.png",
+      "sha256": "a8eae2eb94ae73c7ef2a4f5f1ee4e0282d89c0232fe9b610c9748b48c89df246"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-322-row10-left.png",
+      "sha256": "f6f2e02b4e91455abfb906845e86838297dd17e205ffef9cff9d52620861df91"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-322-row10-right.png",
+      "sha256": "a94c2e43d0422b62ffc5fc2af77a46e80f0bb1267ce5b725f610aff92ea6c037"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-322-row11-left.png",
+      "sha256": "ce33c74bfcc4b0489232566c405e3f5a9198e5bc4d49658d93ada7b48a8da641"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-322-row11-right.png",
+      "sha256": "714d4d2f04a49e795c2049f15cded2e1d89fc86884cc00f708eb86e19d15e8fa"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-322-row12-left.png",
+      "sha256": "84a34e91381a6b1fb88702d440a96ae853826db163cc79bf711355b674670634"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-322-row12-right.png",
+      "sha256": "a9a5c35237334028cfd27fbebd23a6076217941308b0d001ac9937a75f1d7ada"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-322-row13-left.png",
+      "sha256": "abd40e367e877c7ee7a90ea3bfa40285b9acd2062f565222a2696aa6aa20fae0"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-322-row13-right.png",
+      "sha256": "aee63a14fd3962c9aecdc8033dac8ad5e0cbbe77884b5c4f6ca0caa4ddeb9f4b"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-322-row14-left.png",
+      "sha256": "deddf1736bb449af2503374b00008083765e32b2c6606bb9ed0e201ae30047f3"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-322-row14-right.png",
+      "sha256": "474c95bdba7d2a7acea4d7c5a76e29e7f11b1bd330776a279ed46e212e07f167"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-322-row15-left.png",
+      "sha256": "35ba0fca41ea465bc7bf6c72ddd57facdfcb79602981b221d64592c8c4f30119"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-322-row15-right.png",
+      "sha256": "849ba20c11af98afc70d7f4e286562661d12ca8b613bbab2c725fe1bb44211d5"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-322-row16-left.png",
+      "sha256": "7f30ebb55b894c669f68dcfdbaf56a7d5f51c72e140a43d5ed4bbe9cd3d8d264"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-322-row16-right.png",
+      "sha256": "dfbc05752d0b2d1f5adb4ab9148d5f4df1ee9d63da82571fb8f54eaa755f0c13"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-322-row17-left.png",
+      "sha256": "93d770366117d1c6495055d6f41a662b3261245e9aa4616c5159667457f78f2a"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-322-row17-right.png",
+      "sha256": "74aa781b09abe26e69456c457b8deee56d7a0fd43342cf1e721d382a9c03cf6a"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-322-row18-left.png",
+      "sha256": "f37d8978209494214c2722f513dbef13de6d96e2791b856d407c7cbf7ab572cf"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-322-row18-right.png",
+      "sha256": "65cdc8b5a9123728f7316645d038c2dab564f1ff27aad8452a20ae2b6035ca9e"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-322-row2-left.png",
+      "sha256": "e486d1afab98e1b0142b18198b8ad108a8a42aa88de15c4ab425c639d9ca4ec0"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-322-row2-right.png",
+      "sha256": "0d4a1eab5c92a1b23a479dcd7733588050af3d0180d591674aa5a3d01bdd91d3"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-322-row3-left.png",
+      "sha256": "cb74edeb8b7611878827577637f8a51b0e48b813b4044a242ff3e91670f00ac3"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-322-row3-right.png",
+      "sha256": "56bbfd9f5a37ee36afd088fd17a9d9062a1d8a00d67d7e443978d9f1178925ed"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-322-row4-left.png",
+      "sha256": "92554bc379a8abe5f6806884f0c23be0bbe9cb58a43389d4b1feee566f2bf5bd"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-322-row4-right.png",
+      "sha256": "54fa72af2d4917435af9565ab0b9a9785f8f85dd108c4004377e0a2bbb2e0c51"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-322-row5-left.png",
+      "sha256": "882485e8790f53fefd4f6ce97e05332bae219c2f408c1ed9e9d4aa141a207d04"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-322-row5-right.png",
+      "sha256": "ae3190e9633c5d6c86aab3b100dc160dd87152bdfd677aab21e4077a909c9ead"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-322-row6-left.png",
+      "sha256": "f0b808101de276d506e791eba27445a297c69cfadefa85d2d24af8d35b13f605"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-322-row6-right.png",
+      "sha256": "aa35f55e4bf0c579a48e4eb5c868447d00c88992c0832bf5fb3038fcca5b7a83"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-322-row7-left.png",
+      "sha256": "e55d0299d53e812df7a9d7d312f8e6a30d55d2f2fad5232b965f67eb75e794a3"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-322-row7-right.png",
+      "sha256": "332febd65a1e2405c8da74f30026aba53e73419e3ae38cca08cfd24b8e0068d6"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-322-row8-left.png",
+      "sha256": "497d67514a8bc82a26fd92eab7f40e994daade9194bfc34dc8dde1c5f7677351"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-322-row8-right.png",
+      "sha256": "502f2a58ea33149477b103044eb72452d71eef44f11f4d604436ea07758c72f5"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-322-row9-left.png",
+      "sha256": "c2c3c344c682ed91f8b24139767cad658cab1b80f519953e6cd685d89a61a7c7"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-322-row9-right.png",
+      "sha256": "e481fbe0bcac31d5beb648a8e6c3005964687355831c51d6a80e80396b968723"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-323-layout.png",
+      "sha256": "28bb96fbeaaad5a071fb7f29d833502fe1d61b0241504353030e5ae3a23dd67f"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-bahoshekh-fine.png",
+      "sha256": "ebceb3d5e1e631373a1d6459ac8b02d180e37a9eb7a859f10b401cdb18aebbf3"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-bmaasecha-fine.png",
+      "sha256": "5d4d46db3a11c6163bfdd99d5cf2e336ce0e2e2d5b40efa29dcc2a3128a3cabb"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-children-fine.png",
+      "sha256": "e4646e562c09e53602a4e764d7b07eb884fef0dd56fecd712fa055d4b588d21a"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-hameat-fine.png",
+      "sha256": "308eb903b40db26b5745efda9546271e6b983108b347b3410f10e7d92f36db39"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-miyad-fine.png",
+      "sha256": "d683ec9f1365a732604ad9124e8373c479f9e2523705865a11d53d58a75d2182"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-nokhriya-fine.png",
+      "sha256": "522a5687a179cd85df52a1af0ae77aa88ab548f374ad77594221ef1dd022a1ec"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-otah11-fine.png",
+      "sha256": "e058d5103c69718d846c84fad4dd8e8be5042b2f07f2b4956600eb0382476b56"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-otah14-fine.png",
+      "sha256": "4e18406503a65377d2a61ec70e4f97573204524ad107241c222cb734b6f0a416"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-20-gabael-gimel.png",
+      "sha256": "bffb349717f1008efd0b812d5aa033ae7e22c74808de0e30aafbdbe0d426e93b"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-20-gabri-gimel.png",
+      "sha256": "04913cfb00aafd8a5cb18448021c4f1b1d797ec502dd6129f8b97bca5be65ab5"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-20-names-fine.png",
+      "sha256": "1b4bde8fee30f2547fb2f9e5e0c3fb9fab845892c25d7e7d3c1a78802f269edd"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-323-row1-left.png",
+      "sha256": "505f8bb28176bd9759c00e2134c654331d5dc27d1e9e8baa2d21a1f04230876f"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-323-row1-right.png",
+      "sha256": "335c77724e4ecdd2e6b2825db476518e2dff5b45d5839bbb2854a0b072379c55"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-323-row2-left.png",
+      "sha256": "244e4ecc7ea369d539b564ea8182b19aa5bed56d53912a634c6ebda27292d51b"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-323-row2-right.png",
+      "sha256": "42ea84e0b511aa3893aa8bf9d89e7a3c8fbd7aafac6e44561b48431d909f8538"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-323-row3-left.png",
+      "sha256": "d9621406b8d8cf3a2108f02090225780694dd1f37112b140588141751bb426d5"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-323-row3-right.png",
+      "sha256": "2ecb60dce1414e0a9cd683b4f77f0d9160809f5e93d70c5c206f28b53d61b258"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-323-row4-left.png",
+      "sha256": "cac09772f5e242a3f095bbbaf1a527ae4097fcd8d546e0d6a4945eb41da7b253"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-323-row4-right.png",
+      "sha256": "ce64bab5b332c77f81fddd21f07a77842bd6a58f002f4dfbe553b97c11aeef22"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-323-row5-left.png",
+      "sha256": "349272d50061a271b1c9c8314c519eba994ed435d7b56bff46728a58acc650b4"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-323-row5-right.png",
+      "sha256": "82db27abf8e0fd3f419dc583eb2973b0da00fadf8e70be73bcecedeee62a9828"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-323-row6-left.png",
+      "sha256": "d5d9bda5cbbfb71f42e11dd2e28231efa47da554cea5574b31abfb4d653b4091"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-323-row6-right.png",
+      "sha256": "0d9a5a0c8458ee9bbfdae1164a3154897094977fd6b971d5d96950cf65ef980f"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-323-row7-left.png",
+      "sha256": "be91a8bc744c7ad2d4c9a74740799bfee48e4512ac8e332af32d2e3ff325bb46"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-323-row7-right.png",
+      "sha256": "5fb7715e07393b0189cb14b7f122092565f60b1b9fcdf72c1d74bbe7999be213"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-323-row8-left.png",
+      "sha256": "a6e1ed3f257c0c482b35c5bbe51f531d795bc54079d54b2011e63296491a8ab7"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-323-row8-right.png",
+      "sha256": "87c1674d15b4d62547a78a27d6ba3486e11bafc2d5c265e73c0116402ec7c2ae"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-323-row9-left.png",
+      "sha256": "f646714d0ff7f126b995938048f49d8caed500447888c5e3cf616024e17b273f"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-323-row9-right.png",
+      "sha256": "b98be898bc8d1adffdbd3a7420a620216df0c520bbdd355fe7a9bb8590510f7a"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-goy-actual.png",
+      "sha256": "03896a8f864a677ef8127c3a81dbb64ad5eb856e2eadb69118ceed5ac80bf58e"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-4-goy-fine.png",
+      "sha256": "00ae78757ac6087738271095ee87f8ffb700d2b9f55283b65bb301f918cabaac"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-323-body.png",
+      "sha256": "ce8069ef9ba8cca7a8efd4f495da408eb2d111ed2e800b9f37ac6f6a2a4ada0f"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-323-firstline.png",
+      "sha256": "d894d289ee38bd4dc684902900c7fdc2807fa22e0e500612d7333f9ecedb6dc4"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-324-body.png",
+      "sha256": "35b604c603054368a5ec7cab044da70da655910a30cd8cc1f99380749c0df968"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-325-body.png",
+      "sha256": "a1c431b8c74625500119a1ea40e7fbd361dc69fa8141206139d86bf91918822f"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-326-body.png",
+      "sha256": "e6270eb2633e55279c6b9b71456e07a80906b8cdc487809d1cee5903c732b098"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-opening-margin.png",
+      "sha256": "e1f3fc66c1e12d2613a3f70c53eb4376be43b5caf75face0eafaa4b1aecb5ae3"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-17-agreed.png",
+      "sha256": "7cf66413a0a2592aca4a69e1edc3d77bd3c872808d3bf7dc646da94bc38b1ed2"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-17-success.png",
+      "sha256": "db88992dcab7c1b73c9f6b8b063688c67b9cc87bd903982696494570347c7f29"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-19-increase.png",
+      "sha256": "80f88aa9714ae7fb52cfaa05e7883aad3932f73f54f793dabea5c4bf80d8f005"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-19-money.png",
+      "sha256": "e00aa947675d956ecdc5e7839a3b9981034965bed2efca0a83dcc5f3715ddaee"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-2-anokhi.png",
+      "sha256": "76c0c81212c7981875c7cdc3994755a0694540310e8af5e2569400c4631941d1"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-22-return.png",
+      "sha256": "d9c040e4d92c64fe1e4bba8727d01dbcbe79af9f8c39eb8da92ed6d58f139d7f"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-3-anokhi.png",
+      "sha256": "ec543402bdc01f3f0b69384d5a86057b156f70c2e99cc88b85b123f39b2727db"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-7-wait.png",
+      "sha256": "da51e75d75e82e8e740b59fcde47b9be758da90f7e5a1acc5ad44e8b98f7e5e6"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-9-tribe-actual.png",
+      "sha256": "eb132ff743c9bbf82be86fb8190a6e6ad2c75f5aba9d1ff144d8943e9993393b"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-9-tribe.png",
+      "sha256": "e677d3199acd53157be522ecbe4688e1a93f873df67d0fe5dbe0aa3295537aac"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-1-prefix-primary.png",
+      "sha256": "e5c277459f50aa0c25e64f2e938138dc2635454679991aebad2b5365a94165f1"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-1-vayaan.png",
+      "sha256": "7e214d228da7a030a2827d52f58a1e7f0902a512747825c3f2a4a6ab801bab4c"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-1-vayomer.png",
+      "sha256": "9f0ab16cafa215d4346bd32ea48093288c75cb953b1cc06240773796ea99c502"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-3-beodeni-primary.png",
+      "sha256": "2a013f18449daa01ce23dc4276a025586e53ef326a816b913d52851c6c01a9d1"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-3-beodeni.png",
+      "sha256": "42c8f49669ccf7a96c32cfa6d92d54593a27fbc590273172b836776ade4ee490"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-3-eten.png",
+      "sha256": "a02930947d077116290c14bf573e7fdf9a876e834dc97d020207143bacf9ffc9"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-3-ketav.png",
+      "sha256": "7ae0d0aebf77d9a871210cd1843ad9f862e509652d0c414d69f4324aecf8d176"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-3-prefix-primary.png",
+      "sha256": "0b577e8e2c1bc137292118c9b4d5e8ef8534bccc4c5b089e43f29fb44036d4c7"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-3-vayiten.png",
+      "sha256": "f76350b5d75e8d1ddd99301f43ca5becb054109f0f653bc2f98f912ff51dc6b0"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-3-vayomer.png",
+      "sha256": "648d0f320cd3ab463cbdd421f4409a0bf918e4bf280ae5dcb2d374972c8682d1"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-5-can.png",
+      "sha256": "a4daf2422543785e1e1c98e75b307376e956c5985242b34b59212c39b21fee8a"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-5-immekha.png",
+      "sha256": "3a5c2fc75947068d1d228ea4122380f79329027a022f678ce74d6fb02ea9d026"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-5-madai-full.png",
+      "sha256": "8bcbb367d730b0b145118539b6fd4f8947ae46871d5b7e7b40a28891d35a1c1c"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-5-madai.png",
+      "sha256": "149658dddfb4a0673918be0d863dd7aed904eab959731db12ce1dab147aedd8d"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-6-gabael.png",
+      "sha256": "303640d64eff6843858dddd5f48bad76599d5b88a12892debcbf4fde2a1f13f8"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-7-wait-primary-wide.png",
+      "sha256": "7de1505771d5fe1c0e77aaec3fb98191bfa06378b48e0d45004f0b4885346a32"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-7-wait-primary.png",
+      "sha256": "626ab33411a501988cfae6d35431af0c7ab1812a13b497f5d6f70b7f25245d62"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-p323-r1-left.png",
+      "sha256": "b4289e27e552c97e0f1e823d9cb9b7387a3ea5e2bdb2dc3e2379076b025523da"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-p323-r1-right.png",
+      "sha256": "85db737c9f921441063329a04c7cfebdd037830d64b8bd66ba50a9521f704e90"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-p323-r2-left.png",
+      "sha256": "78b56d471e5f66d10d0f796e339534f3bcd3ab94a5dbd879cf5199dda84b6273"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-p323-r2-right.png",
+      "sha256": "bd111146f11bcf39504567fb77eaaf95a45d0d4ded29fceb5863d560e82f721b"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-p323-r3-left.png",
+      "sha256": "a28fa7638b1ebaf8d8d979da3af39a8052a36d54a68aec86fe9e92c57eb48395"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-p323-r3-right.png",
+      "sha256": "ac5d2fad486341d5bc8a95b5722f3ac6e178094a8c1307e7ad68b2d7c87e0e48"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-p324-r1-left.png",
+      "sha256": "2c12f42acd35d34643ef1128d400b00cad51e7d7a95001379c3630a9c707d96d"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-p324-r1-right.png",
+      "sha256": "df82625e0a19b0e88ccf81498c2500c642f9aa645ed95820f237a2404983d6b3"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-p324-r2-left.png",
+      "sha256": "62973a0f7f02cde0af6f9e1d06f3851f8ee41127dccbc9c3d784b61d350dc585"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-p324-r2-right.png",
+      "sha256": "af6b6418b957ecae6961e09a0dca2efcf0587b6d3085f7a12089a1e81b995510"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-p324-r3-left.png",
+      "sha256": "62ab1194ec077e2f70ad50cca6120b0dc6683ea5e0d2f3a276101465f15ae0ef"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-p324-r3-right.png",
+      "sha256": "14613e4bd33daf653a18798442c7d7d8e7c34f815cc407bb922b0b0a4f56b9dd"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-p324-r4-left.png",
+      "sha256": "f7532b132fc65142dbc2fe67b2687766cf8602f69bf5b05141b41f4c1fd02e85"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-p324-r4-right.png",
+      "sha256": "8db717b9d0a1f22d29f14fb9f514a987297f1bf8e3419792c795dff52fec83d1"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-p324-r5-left.png",
+      "sha256": "67a6492a504c9dd1e4599fe7b90998a5142afc3983860dd12376ef60c23b98ee"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-p324-r5-right.png",
+      "sha256": "98a5ab28920bb8dd63b4d1257946958290378d3062077d56f8dcf5a99a0a02a2"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-p324-r6-left.png",
+      "sha256": "c46752ba94f3ae1eaffb20febd792362936699892cdff4116be4da80acc8301f"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-p324-r6-right.png",
+      "sha256": "c66aef54c7280399ab7a5122723663934533f23913411e4ab2270ab576cdf884"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-p324-r7-left.png",
+      "sha256": "17add0bf8bbeec39486a82860200cae058e82a6dca923c8736c8d80ac5493487"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-p324-r7-right.png",
+      "sha256": "bef47404053165f530a1dd6ed3dc6e29247c056660d03be526af8b11d441ba33"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-p324-r8-left.png",
+      "sha256": "f0384b49a7527e6f5e2412e1d37f0273132543de76031470938a3fda784b5681"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-p324-r8-right.png",
+      "sha256": "1ebe0c0f5b27d6cb1006fa67634351f2b55527e33fa112dde98db8571babd9c0"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-10-bless.png",
+      "sha256": "d08be279beba23a87bb57db1b2d3e71e37c4b4b293ee8f334497f48fef0748cd"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-10-neighbor-primary.png",
+      "sha256": "14ea08776c5e8e5e2216189b90afb35a3da6c74466d1e933f639ae86824cd834"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-10-neighbor.png",
+      "sha256": "f3440dba963f698379625b0b95ce0d809a17eddd71d40603dfee831f84bee5e8"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-5-madai-primary.png",
+      "sha256": "f9a8a828f16580e321cd4249425606934a38f835a7cbb0b52d069397821cc154"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-12-birth.png",
+      "sha256": "84ff2ce9a643ee1f70a9efe74ff43042957bd693bf2bb475453a6c6566ec42d5"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-12-name.png",
+      "sha256": "3bf919aaf16371296d5a4a190396a723b59f3dbf851c37f4568a055f1c54c3c7"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-12-tribe.png",
+      "sha256": "30c7b9bd70f49a30eb0d40b672220ecb2020c13428b1fddbff1fd9273a651c4b"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-13-azaria.png",
+      "sha256": "7c32773cffbd0c9cd9cfd6aaf9d7e179d5ae379b9fed48ef3b117ce2b59e7d32"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-13-come.png",
+      "sha256": "14bf304a45a66e584b4bf59f1e4476345d9ff7ddef1510f6d448d943991d3968"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-14-asked.png",
+      "sha256": "61d3d6e2c4d5780e2f1d43c16a69b43d21486dfab5f330305216f431153a2a95"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-14-jerusalem.png",
+      "sha256": "14900db1d15245b1d73553d67e2937a1d5386f80042de5f4b6b08c946a7c047c"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-14-root.png",
+      "sha256": "a562ad0d2adb55213692d478e7bae93328cc6405f80f4320a3544d2dc6dd90b3"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-15-coin-full.png",
+      "sha256": "dcfa5ad530befed1addbbda48b3d70f7ae4de6f413adad3412ee64fb43e3783c"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-15-coin.png",
+      "sha256": "be0d2bd9f44914b7fbf6605569449a21b6f3fcf0492f9ed88d39d3fd2ffb1599"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-17-neighbor-full.png",
+      "sha256": "c6b66a389599d59f7ef0a58d9b9d8bd19b1a3b4fb42e79e630de35c822aee94a"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-17-neighbor.png",
+      "sha256": "48edc9525041607e4673cd275df6b27a409da342a2d6396930e142df341a4744"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-p325-r1-left.png",
+      "sha256": "981c85e68da8ec5bdb86da4e8d4226336d2643267af02f64c0f180855c94c5ff"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-p325-r1-right.png",
+      "sha256": "9c914fecf8130179ad1574edf7f5e5f269d64310aa652e3de9ab87bb00792e23"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-p325-r10-left.png",
+      "sha256": "778c6defeb0f81fbcd1f329a988b035991c59e8ebbfe4028b272ba1fde9b493b"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-p325-r10-right.png",
+      "sha256": "1f1ae237ce3a447f50930757c8f56392b58e65b834e5cbbb97d43815b2cf6ec2"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-p325-r11-left.png",
+      "sha256": "3cf219a2c49af823d70e1388c43070682a2aaa60d55f80c05403dd503b7c67b8"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-p325-r11-right.png",
+      "sha256": "217293962dd41762cb2423e9b517490e0dc083582cef097bc01c8999ef13390b"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-p325-r2-left.png",
+      "sha256": "b716cc857fd5dc3f0981b08f7cf08dfe62f2f4522505eb07a3faade9432984d6"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-p325-r2-right.png",
+      "sha256": "5c1ce9da8e02d2eac277c04ae618196b41e70f0263ccee3f72c4b3522caf7c9c"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-p325-r3-left.png",
+      "sha256": "f4748ff7c7b457618f8befbe1bc1eafe7e56d98e41338b08e5f89a35c03013f7"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-p325-r3-right.png",
+      "sha256": "070a044a4e1b4f85cd74f3bc42a56e47fa76abcab3dccdf8bc175488b8d5eb45"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-p325-r4-left.png",
+      "sha256": "fa25e9ef06acea5c2f86c706533354031072044409a29a8dd37a18e8c437c91c"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-p325-r4-right.png",
+      "sha256": "bbe843b55cee50bccf36aa0523d5b12ceb24b25c9e4cda7bc547a1ee1afd351f"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-p325-r5-left.png",
+      "sha256": "0254ea9ca0046993a15bb8f2e29adfb65ed73d3034758f44f7ef244b243b8bbf"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-p325-r5-right.png",
+      "sha256": "f5a28d931b5c250a5365534716490cc99186f108ac6d300d31ba99ceb4098fe3"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-p325-r6-left.png",
+      "sha256": "41014f6b611ed3ba27191e761a7eae2900499edf95ee1155e79851405854ea35"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-p325-r6-right.png",
+      "sha256": "c9076b5b5edd938573d32e590f33138de2820c18c7c06352debe9e89420cac2c"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-p325-r7-left.png",
+      "sha256": "86468f611606c5c39615612ac69997dc1d80aba43dfe2a9886fdfe5b214e627c"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-p325-r7-right.png",
+      "sha256": "fad4db5ba8fdcdae9b9db41a487005143e8d0669ca899f02f15a2715e17d1852"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-p325-r8-left.png",
+      "sha256": "51e36535fcab6ced3ef9c305b9516679d3217a8c66615f8df7c9c149a8ceea59"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-p325-r8-right.png",
+      "sha256": "6dceb3916636321ad24cc50e630b1e3113473c563e6c7b9f5721112ec31372b0"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-p325-r9-left.png",
+      "sha256": "6bf15442a116c20b43c7bb38e50a52a3f7788eb58e000f90bd87bdcea6b63f90"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-p325-r9-right.png",
+      "sha256": "8e727f7dc8e548c8bb36be683707fb2640185783e4925a147663416e28c3c69a"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-15-coin-primary.png",
+      "sha256": "73ecc8c5604013610f3eaa1ddcdb789c94ab0b8c3426b9bbc18f872fba4aa93f"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-17-neighbor-primary.png",
+      "sha256": "ea75e0ccf772a4b43ed8e5d9ad73cddfca8b6e40e662f7ca70959d2f0b36f7df"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-p325-r1-right-vav.png",
+      "sha256": "a91a2d9ce7f167f52c5f256880142f86c7a15b92f9c6a9369eafc13f1a90b59d"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-p325-r11-left-vav.png",
+      "sha256": "739a59a1f1c9ff58137ad6ad3ae82574832500f0fd22b223a752d2d68aa5e429"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-p325-r2-right-vav.png",
+      "sha256": "29bd493d41eb0f42a9797dc1ce3a2c98b000629cc2e5753ba59a50ba24f48533"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-p325-r3-right-vav.png",
+      "sha256": "fe57e2e0b0549098bc7d9d400bffc25ae6d3363c49bfbbdefc881c1769a4f590"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-p325-r4-left-vav.png",
+      "sha256": "5f2bdc406f702649f8ac3c6d96897730682be6c9f846f0d376d8e554b421c038"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-p325-r4-right-vav.png",
+      "sha256": "01a78dd021ade2886fdf103dab0e299b14194348c71b84ab090e7a6fa70afb5a"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/prefix-reread-1.png",
+      "sha256": "68e4d7158d7b327146e3130a140da125e70eff311c819dfa6b6a66985e6dc162"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/prefix-reread-10.png",
+      "sha256": "5b8d64a92540a63d30c2941959d523db3f3e115ae5a5d6b62274571660e08fa9"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/prefix-reread-11.png",
+      "sha256": "0dec0baea349b1a9337c9379aab1dbdba5abba22ad46727af5e80a5c5b2f5f0d"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/prefix-reread-12.png",
+      "sha256": "e4d69f6419a4e4da1240af3346591b5c1b38715089431f7a24d9d92d8045c062"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/prefix-reread-13.png",
+      "sha256": "6617ee709de327c94814053fe550f4216a1f8e768653b564d95428c151af8a62"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/prefix-reread-14.png",
+      "sha256": "183e44bf2787785144072bf92b16a16ff30302debd3c69659d4847ba76039c04"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/prefix-reread-2.png",
+      "sha256": "42e406fb5edd2cd72a18ae6e0baf5f4d6d3542b6001a9611b6dc5d786a8192bf"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/prefix-reread-3.png",
+      "sha256": "4f3b72ae1e145a592cc8ba352f7cd1c0935a307ee77074102da79b255547fd52"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/prefix-reread-4.png",
+      "sha256": "1151e742aed366b25b92e6a32d0a4a5f51220d3e7ebe7cfb3fec49297653733f"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/prefix-reread-5.png",
+      "sha256": "de28cf1b59401b99d73ff8cef7bad164d76b5812b2de288811cb99ea1d18a092"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/prefix-reread-6.png",
+      "sha256": "a0439bac37d0333d1df09e5df135c318e2f527b5700259305cc0fbde91ee6551"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/prefix-reread-7.png",
+      "sha256": "97fb1e413dce824e7150bbc1c8219a1a4ba9b434a66767562a4e07b0934beb89"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/prefix-reread-8.png",
+      "sha256": "384a77ff12adb65958a33f8ebe3d0c1dff7d52b651acf99cd47e17b9aff67c84"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/prefix-reread-9.png",
+      "sha256": "3f227fe55535e34861d9820a68a1e5528596bae64fe60b7f8ff0b528c61e4827"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-17-left-nearest.png",
+      "sha256": "8b93d22dc54e67d7fba75a01228f88ac913474412d8ff5d4df10bc4bac87bc3d"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-17-prepare-nearest.png",
+      "sha256": "a34a6392e15d647af1d10681e3ee3dba09d114dc98e1b6eaf4c7b6c5493d66ca"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-17-said-nearest.png",
+      "sha256": "7687ad0633d1b5a12e705b0b19e12320a0deea9a4bf1d4c66c6c0a05838baf09"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-17-said-primary.png",
+      "sha256": "cec3d3d914a1955a3bd8506a3acfed9ff2e2ed2c978e9d95228d8187c2db09af"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-17-son-nearest.png",
+      "sha256": "8e47f07d7786951e9664433b6f78f69573b27640fe3b83f365da3d3c61082dc0"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-18-cry-nearest.png",
+      "sha256": "63e7af429d6efdfb0a5f2f0697ba5d17e20f5d7f966805fe52423631d8d4b7dd"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-18-said-nearest.png",
+      "sha256": "1aa230cdcdfb8c7e7cdb74261bbba9166df2170675a3c79968666bcb594b3b12"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-18-said-primary.png",
+      "sha256": "96a7f366c238b6fe5ca424ab2aab551693d057e6d01876c530a6519d63c593ef"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-21-said-nearest.png",
+      "sha256": "7e65ada265380ccc2caed076ee6bd234f45d87371522a6c1d2f96d20fabb0e8f"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-21-said-primary.png",
+      "sha256": "53eeb0f4ba52434688657224f0f656f3b15faef2bc2aa79f0f6988f311bbe44c"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-23-cease-full.png",
+      "sha256": "a62a0c5e9f101d5ae32545f14bb691d266d3a3553c8d88792175b37ee3812cd6"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-23-cease-nearest.png",
+      "sha256": "33609d69ebc6c632b9d4f45a80585c457dd6934317ff2fb26ab24a4f2cfa0b2d"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-p326-r1-left.png",
+      "sha256": "19587aef351d504009c50535e4fa65285d44324da2dfa477c23bcbba0884255b"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-p326-r1-right.png",
+      "sha256": "38668f5152c4b5a9bbc5f894cc1b52ea504f5ef43d529dffd095fb2f8b37a74f"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-p326-r2-left.png",
+      "sha256": "ccfe3db4ce336dec73ce5bc8d8dae1eb19e78302db9b105e3a5f03c7d1193504"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-p326-r2-right.png",
+      "sha256": "83a8989ddf181d0b2b2ae838e46d8350c49f6301c36729a667ed159162b872ab"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-p326-r3-left.png",
+      "sha256": "640c57590363d7d9ea37f509f03eb9c8222a11e9323247ae09c81ef976ccd9e2"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-p326-r3-right.png",
+      "sha256": "ef7452a2e6e5fd38837a1761b80dab861fd78b32b9f6277dafcc5af25f573fff"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-p326-r4-left.png",
+      "sha256": "336c41c63165cbba023e4c6b7e562444d654c8e4cac32d36997fa7b659e2e061"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-p326-r4-right.png",
+      "sha256": "2b15bd74336f1a4085ac44704df070188ed599b103baab3dfa207d66dc228172"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-p326-r5-left.png",
+      "sha256": "0a81112f983892e99c39fb3e531be28e68d305eca5ceaad22795c19a825c1014"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-p326-r5-right.png",
+      "sha256": "bc9a52c2606809d05a44ae19437c03fa0f869d1da780f7ff5a4e42fcc1042f83"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-p326-r6-left.png",
+      "sha256": "3102d48fd2c12a890e72ffabb619f85ca33b98918ce1f13907eb426c9a3b6bd0"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-p326-r6-right.png",
+      "sha256": "aaaabe22ba23fbfaa0007cea070d130d562c9b0a3a0cfa43b886c4d5eafc5f01"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-p326-r7-left.png",
+      "sha256": "49ef85bb1fc18cfd00c3d70249d3a8cbf0955b6b74326aad4dd8af5dd9acca23"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-p326-r7-right.png",
+      "sha256": "5842fe8e86d95d03331cd6e0f4ec764a2d498852bcd07ef80b15563c3c512fe8"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-p326-r8-left.png",
+      "sha256": "6c5ea9dc80a58c81a7e021db696b0fe04e754f63d605ebc5d43b157d50cf35c5"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-p326-r8-right.png",
+      "sha256": "daf770b3017fd8007f1dd39832e1a444089d8f45324a62b277ff03e8a3b4f745"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-p326-r9-left.png",
+      "sha256": "2db0fa58554fd84fe335e7640b1f622fb6753b42e3d555cccb9245f4de3845fd"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB-short-5-p326-r9-right.png",
+      "sha256": "5fb6336de8b6f4f1743fe9631b2b49db7eaa6675c3ebbd181d355ecd160723b1"
+    }
+  ],
+  "chapter1ConsonantComparison": {
+    "draftWordsBefore": 368,
+    "OCRWords": 369,
+    "initialDifferences": 23,
+    "appliedSourceReplacements": 9,
+    "lines": 37,
+    "rawPath": "/private/tmp/prosary-tob-review/ocr-short-ch1",
+    "diffPath": "/private/tmp/prosary-tob-review/short-chapter1-initial-diff.json",
+    "status": "Consonant differences returned to source; root independently confirms disputed gimel in1:1. Exact niqqud/punctuation and whole-page review remain pending."
+  },
+  "completedPageComparisons": [
+    {
+      "sourcePage": 312,
+      "alternatePage": 163,
+      "side": "right",
+      "scope": "Every word, consonant, printed mark, bracket, punctuation and source-unit boundary in the upper short-recension section. Page-crossing1:4 retains its continuation on313.",
+      "acceptedSourceNoteIds": [
+        "tob-1-1-gimel-vowel"
+      ]
+    },
+    {
+      "sourcePage": 313,
+      "alternatePage": 163,
+      "side": "left",
+      "scope": "Every word, consonant, printed mark, bracket, punctuation and boundary in the upper short-recension section, from crossing1:4 through crossing1:8. Individual Jerusalem forms and altar/statute marks rechecked in tighter crops.",
+      "acceptedSourceNoteIds": []
+    },
+    {
+      "sourcePage": 314,
+      "alternatePage": 164,
+      "side": "right",
+      "scope": "Every word, consonant, printed mark, punctuation and boundary of the upper short recension, crossing1:8 through crossing1:17. Proper names, אֲכָל and לָעֲרֻמִּים verified from local crops.",
+      "acceptedSourceNoteIds": []
+    },
+    {
+      "sourcePage": 315,
+      "alternatePage": 164,
+      "side": "left",
+      "scope": "Every word, consonant, printed mark, punctuation and boundary in the upper short recension, crossing1:17 through crossing1:22. Proper names, verb points, brackets and each maqaf compared.",
+      "acceptedSourceNoteIds": []
+    },
+    {
+      "sourcePage": 316,
+      "alternatePage": 165,
+      "side": "right",
+      "scope": "Every word, consonant, printed mark, punctuation and boundary in the upper short recension,1:22 ending and2:1 through crossing2:7–8. Exact abbreviation, first-draft omission fixes and isolated mem vowel independently checked.",
+      "acceptedSourceNoteIds": [
+        "tob-2-3-mem-vowel"
+      ]
+    },
+    {
+      "sourcePage": 317,
+      "alternatePage": 165,
+      "side": "left",
+      "scope": "Every word, consonant, printed mark, punctuation and boundary of the upper short recension, crossing2:7–8 through crossing2:14. Individual birds/eye occurrences, beside/began marks, and resolved וְיַעַן compared locally.",
+      "acceptedSourceNoteIds": []
+    },
+    {
+      "sourcePage": 318,
+      "alternatePage": 166,
+      "side": "right",
+      "scope": "Every word, consonant, printed mark, punctuation and boundary of the upper short recension, closing2:14 and chapter3:1 through opening3:6. Local bet occurrences examined separately; bracket in3:4 retained.",
+      "acceptedSourceNoteIds": []
+    },
+    {
+      "sourcePage": 319,
+      "alternatePage": 166,
+      "side": "left",
+      "scope": "Every word, consonant, printed mark, punctuation and boundary of the upper short recension, crossing3:6 through opening3:10. Exact pe/yod/bet marks verified in tight source crops; yod independently confirmed.",
+      "acceptedSourceNoteIds": []
+    },
+    {
+      "sourcePage": 320,
+      "alternatePage": 167,
+      "side": "right",
+      "scope": "Every word, consonant, printed mark, punctuation and boundary of the upper short recension, crossing3:10 through first word וישלח of3:16–17 after sof pasuq. Individual disputed marks compared in tighter source crops; initial-vav patah resolved.",
+      "acceptedSourceNoteIds": []
+    }
+  ],
+  "sourceNoteEvidence": [
+    {
+      "id": "tob-1-1-gimel-vowel",
+      "reference": "TOB1:1",
+      "policy": "User explicitly approved omission plus visible source note for isolated unreadable vowel marks; no permission to omit uncertain consonants or unreviewed text.",
+      "attemptedReadings": [
+        "Initial provisional patah rejected as unsupported.",
+        "Clearer scan lower mark fused to gimel foot; sheva/tsere considered but not distinguishable.",
+        "Original scan also fuses the lower mark and does not resolve it."
+      ],
+      "decision": "Omit only the initial gimel vowel; retain its clearly separate interior dagesh, bet qamats and alef tsere. Root independently confirmed gimel consonant.",
+      "cropNames": [
+        "TOB-short-1-1-nabael.png",
+        "TOB-short-1-1-gabael-original.png"
+      ]
+    },
+    {
+      "id": "tob-2-3-mem-vowel",
+      "reference": "TOB2:3",
+      "attemptedReadings": [
+        "First draft qibbuts not supportable after tight scan comparison.",
+        "Clearer scan looks qamats-like but the connected material can also be fused qibbuts.",
+        "Original scan merges the same mark into the mem.",
+        "Independent Windows reader cannot distinguish the candidates."
+      ],
+      "decision": "Omit only initial mem vowel, retain word/consonants and all other readable marks.",
+      "cropNames": [
+        "TOB-short-2-3-mem-vowel.png",
+        "TOB-short-2-3-cast.png",
+        "TOB-short-2-3-cast-original.png"
+      ]
+    }
+  ],
+  "ocrComparisons": [
+    {
+      "scope": "TOB short chapter2",
+      "draftWords": 214,
+      "ocrWords": 214,
+      "candidateDiffs": 15,
+      "lineCount": 21,
+      "output": "/private/tmp/prosary-tob-review/ocr-short-ch2",
+      "alignment": "/private/tmp/prosary-tob-review/short-chapter2-initial-diff.json",
+      "policy": "Consonant-only aid; every difference visually adjudicated or left unresolved. No point or page approval follows from equal OCR."
+    },
+    {
+      "scope": "TOB short chapter3",
+      "draftWords": 345,
+      "ocrWords": 346,
+      "candidateDiffs": 19,
+      "lineCount": 33,
+      "output": "/private/tmp/prosary-tob-review/ocr-short-ch3",
+      "alignment": "/private/tmp/prosary-tob-review/short-chapter3-initial-diff.json",
+      "policy": "Manually verified line boundaries; consonant-only draft cross-check. Every difference returned to source. Ten scoped replacements; no page/point approval."
+    },
+    {
+      "scope": "TOB short chapter5",
+      "draftWords": 334,
+      "ocrWords": 332,
+      "candidateDifferences": 22,
+      "lineCount": 31,
+      "output": "/private/tmp/prosary-tob-review/ocr-short-ch5",
+      "alignment": "/private/tmp/prosary-tob-review/short-chapter5-initial-diff.json",
+      "policy": "All22 candidates returned to source pixels; seven scoped replacements saved. Equal OCR never approves points or text. Original raw output preserved."
+    }
+  ],
+  "partialPageComparisons": [
+    {
+      "sourcePage": 321,
+      "alternatePage": 167,
+      "side": "left",
+      "scope": "Closing four upper-recension lines of3:16–17 only. Every word and printed mark compared; three unsupported draft marks removed. Chapter4 below remains in review, so no whole-page approval.",
+      "evidence": "TOB-short-point-321-end3.png"
+    },
+    {
+      "sourcePage": 321,
+      "scope": "All upper short-recension chapter4 words and printed points checked in eight physical lines, with row halves and tighter glyph crops. Combined with the previously saved closing chapter3 comparison, all words/marks on this page have now been compared. The unresolved4/5 and6/7 starts still prevent whole-page approval.",
+      "uncertainBoundaries": [
+        "4:4–5",
+        "4:6–7"
+      ],
+      "approvedPage": false
+    },
+    {
+      "sourcePage": 322,
+      "scope": "All eighteen physical lines in the upper short-recension chapter4 section compared word by word for consonants, printed points, brackets and punctuation. Tight local checks preserve the heh mappiq in both אותה occurrences, yod dagesh/qamats in נכריה, and patah in המעט. Three source-point corrections recorded. The unresolved6/7 printed margin start prevents page approval; this is not a combined printed label claim.",
+      "uncertainBoundaries": [
+        "4:6–7"
+      ],
+      "approvedPage": false
+    },
+    {
+      "sourcePage": 323,
+      "scope": "All nine physical short-recension lines concluding chapter4 compared word by word for consonants, printed points, brackets and punctuation. The comma after יש־בה is retained. Tight local checks preserve gimel dagesh in גוי and distinguish both names in4:20. The chapter5 beginning on this page is not yet transcribed, and the chapter4 source boundary discrepancies remain open; no whole-page approval claimed.",
+      "uncertainBoundaries": [
+        "chapter4 final source label20 versus commentary heading1–21"
+      ],
+      "approvedPage": false
+    },
+    {
+      "sourcePage": 324,
+      "alternatePage": 169,
+      "side": "right",
+      "scope": "All eight upper short-recension physical lines compared word by word and mark by mark against the matched clearer source and original scan, with local enlarged crops. Includes crossing5:3 and complete4–10, printed combined7–8, square brackets, maqafs and sof pasuq. Exact unreadable vowel classes are disclosed; no word or boundary waived.",
+      "approvedPage": true
+    },
+    {
+      "sourcePage": 325,
+      "alternatePage": 169,
+      "side": "left",
+      "scope": "All11 upper short-recension rows compared word by word and point by point, with exact enlarged local glyphs and original-scan comparison; literal labels11–17 and combined13–14 retained,17 continues326. Five visible prefix patahs retained. Three genuinely unreadable isolated vowels have exact disclosures; no words or boundaries waived.",
+      "approvedPage": true
+    },
+    {
+      "sourcePage": 326,
+      "alternatePage": 170,
+      "side": "right",
+      "scope": "All nine chapter5 physical lines, from crossing17 through23, directly compared against print for words, surviving points, punctuation and exact starts. The last row was re-cropped from the full image to include all below-points beyond the earlier OCR-region edge. B326 chapter6 opening four lines are outside this completed chapter5 comparison.",
+      "approvedPage": false,
+      "completedUnits": "TOB5:17–23",
+      "pendingUnits": "TOB6:1–4"
+    }
+  ],
+  "sourceNoteDecisions": [
+    {
+      "id": "tob-5-1-vav-vowel",
+      "reference": "TOB5:1",
+      "anchor": "ויַּעַן",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        323
+      ],
+      "basis": "The horizontal material below initial vav is continuously fused to its foot in both source scans. Neither reviewer can distinguish a vowel class from the glyph. Windows independently concurs; omit only the provisional patah, retaining yod patah/dagesh and all following marks.",
+      "evidence": [
+        {
+          "path": "/private/tmp/prosary-tob-review/TOB-short-5-1-vayaan.png",
+          "sha256": "7e214d228da7a030a2827d52f58a1e7f0902a512747825c3f2a4a6ab801bab4c"
+        },
+        {
+          "path": "/private/tmp/prosary-tob-review/TOB-short-5-1-prefix-primary.png",
+          "sha256": "e5c277459f50aa0c25e64f2e938138dc2635454679991aebad2b5365a94165f1"
+        }
+      ],
+      "policy": "User-approved isolated unreadable-point disclosure. This does not approve the book, unchecked pages, or unresolved chapter4 boundaries."
+    },
+    {
+      "id": "tob-5-3-initial-vav-vowel",
+      "reference": "TOB5:3",
+      "anchor": "ויִּתֶּן־לוֹ",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        323
+      ],
+      "basis": "The actual initial vav lower bar is fused in both scans. Windows independently cannot certify the draft patah. Preserve the source word and all other readable marks, omit only that vowel.",
+      "evidence": [
+        {
+          "path": "/private/tmp/prosary-tob-review/TOB-short-5-3-vayiten.png",
+          "sha256": "f76350b5d75e8d1ddd99301f43ca5becb054109f0f653bc2f98f912ff51dc6b0"
+        },
+        {
+          "path": "/private/tmp/prosary-tob-review/TOB-short-5-3-prefix-primary.png",
+          "sha256": "0b577e8e2c1bc137292118c9b4d5e8ef8534bccc4c5b089e43f29fb44036d4c7"
+        }
+      ],
+      "policy": "User-approved isolated unreadable-point disclosure. This does not approve the book, unchecked pages, or unresolved chapter4 boundaries."
+    },
+    {
+      "id": "tob-5-3-dalet-vowel",
+      "reference": "TOB5:3",
+      "anchor": "בְעוֹדנִי",
+      "letterIndex": 4,
+      "mark": "vowel",
+      "sourcePages": [
+        324
+      ],
+      "basis": "The dalet lower mark contains joined dark material, not a reliably separable tsere/segol shape; original scan merges it into the foot. Apple independently cannot classify it. Omit the first-draft tsere rather than infer from the familiar word.",
+      "evidence": [
+        {
+          "path": "/private/tmp/prosary-tob-review/TOB-short-5-3-beodeni.png",
+          "sha256": "42c8f49669ccf7a96c32cfa6d92d54593a27fbc590273172b836776ade4ee490"
+        },
+        {
+          "path": "/private/tmp/prosary-tob-review/TOB-short-5-3-beodeni-primary.png",
+          "sha256": "2a013f18449daa01ce23dc4276a025586e53ef326a816b913d52851c6c01a9d1"
+        }
+      ],
+      "policy": "User-approved isolated unreadable-point disclosure. This does not approve the book, unchecked pages, or unresolved chapter4 boundaries."
+    },
+    {
+      "id": "tob-5-7-het-vowel",
+      "reference": "TOB5:7",
+      "anchor": "חכֶּה־לִי",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        324
+      ],
+      "basis": "Het lower mark is joined to its foot in both scans. Apple independently cannot identify a vowel class. Kaf segol is clear as three dots and independently confirmed; preserve it and the kaf dagesh, omit only the initial het vowel.",
+      "evidence": [
+        {
+          "path": "/private/tmp/prosary-tob-review/TOB-short-5-7-wait.png",
+          "sha256": "da51e75d75e82e8e740b59fcde47b9be758da90f7e5a1acc5ad44e8b98f7e5e6"
+        },
+        {
+          "path": "/private/tmp/prosary-tob-review/TOB-short-5-7-wait-primary-wide.png",
+          "sha256": "7de1505771d5fe1c0e77aaec3fb98191bfa06378b48e0d45004f0b4885346a32"
+        }
+      ],
+      "policy": "User-approved isolated unreadable-point disclosure. This does not approve the book, unchecked pages, or unresolved chapter4 boundaries."
+    },
+    {
+      "id": "tob-5-5-dalet-vowel",
+      "reference": "TOB5:5",
+      "anchor": "בְּמָדי",
+      "letterIndex": 3,
+      "mark": "vowel",
+      "sourcePages": [
+        324
+      ],
+      "basis": "The dalet below-mark has joined upper material and a lower component, not a reliably classifiable flat patah, continuous qamats or separated multi-dot vowel. Original scan also fuses it. Windows independently cannot certify a class; preserve bet dagesh/sheva and mem qamats, omit only provisional dalet patah.",
+      "evidence": [
+        {
+          "path": "/private/tmp/prosary-tob-review/TOB-short-5-5-madai-full.png",
+          "sha256": "8bcbb367d730b0b145118539b6fd4f8947ae46871d5b7e7b40a28891d35a1c1c"
+        },
+        {
+          "path": "/private/tmp/prosary-tob-review/TOB-short-5-5-madai-primary.png",
+          "sha256": "f9a8a828f16580e321cd4249425606934a38f835a7cbb0b52d069397821cc154"
+        }
+      ],
+      "policy": "User-approved isolated unreadable-point disclosure; no word or boundary waived."
+    },
+    {
+      "id": "tob-5-10-ayin-vowel",
+      "reference": "TOB5:10",
+      "anchor": "רֵעהוּ",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "sourcePages": [
+        324
+      ],
+      "basis": "Ayin lower material is fused to its foot in both scans, with no securely countable vowel dots. Apple independently concurs. Resh tsere is distinctly separated and retained; omit only provisional ayin tsere.",
+      "evidence": [
+        {
+          "path": "/private/tmp/prosary-tob-review/TOB-short-5-10-neighbor.png",
+          "sha256": "f3440dba963f698379625b0b95ce0d809a17eddd71d40603dfee831f84bee5e8"
+        },
+        {
+          "path": "/private/tmp/prosary-tob-review/TOB-short-5-10-neighbor-primary.png",
+          "sha256": "14ea08776c5e8e5e2216189b90afb35a3da6c74466d1e933f639ae86824cd834"
+        }
+      ],
+      "policy": "User-approved isolated unreadable-point disclosure; no word or boundary waived."
+    },
+    {
+      "id": "tob-5-1-second-vav-vowel",
+      "reference": "TOB5:1",
+      "anchor": "ויֹּאמֶר לוֹ",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        323
+      ],
+      "basis": "This individually inspected initial-vav occurrence has lower horizontal material fused to its foot. Its class cannot be distinguished securely from the joined glyph in the clearer crop or original page. Omit the provisional patah; preserve the independently readable following yod points and all other marks. Other vav vowels in the same text, including clearly separated sheva, are not changed.",
+      "evidence": [
+        {
+          "path": "/private/tmp/prosary-tob-review/TOB-short-5-1-vayomer.png",
+          "sha256": "9f0ab16cafa215d4346bd32ea48093288c75cb953b1cc06240773796ea99c502"
+        },
+        {
+          "path": "/private/tmp/prosary-kahana-reference/pages/B-323.png",
+          "sha256": "eebd603ba333f85f5f15b3838aaacee18fef2b1c0520ca81e33fcc2650b93659"
+        }
+      ],
+      "policy": "User-approved exact unreadable-point disclosure. Each occurrence was inspected in its own row; no global grammatical normalization."
+    },
+    {
+      "id": "tob-5-3-second-vav-vowel",
+      "reference": "TOB5:3",
+      "anchor": "ויֹּאמֶר לוֹ",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        323
+      ],
+      "basis": "This individually inspected initial-vav occurrence has lower horizontal material fused to its foot. Its class cannot be distinguished securely from the joined glyph in the clearer crop or original page. Omit the provisional patah; preserve the independently readable following yod points and all other marks. Other vav vowels in the same text, including clearly separated sheva, are not changed.",
+      "evidence": [
+        {
+          "path": "/private/tmp/prosary-tob-review/TOB-short-5-3-vayomer.png",
+          "sha256": "648d0f320cd3ab463cbdd421f4409a0bf918e4bf280ae5dcb2d374972c8682d1"
+        },
+        {
+          "path": "/private/tmp/prosary-kahana-reference/pages/B-323.png",
+          "sha256": "eebd603ba333f85f5f15b3838aaacee18fef2b1c0520ca81e33fcc2650b93659"
+        }
+      ],
+      "policy": "User-approved exact unreadable-point disclosure. Each occurrence was inspected in its own row; no global grammatical normalization.",
+      "status": "superseded-readable-mark-restored",
+      "supersededByEvidence": "/private/tmp/prosary-tob-review/prefix-reread-2.png"
+    },
+    {
+      "id": "tob-5-4-first-vav-vowel",
+      "reference": "TOB5:4",
+      "anchor": "ויֵּלֶךְ",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        324
+      ],
+      "basis": "This individually inspected initial-vav occurrence has lower horizontal material fused to its foot. Its class cannot be distinguished securely from the joined glyph in the clearer crop or original page. Omit the provisional patah; preserve the independently readable following yod points and all other marks. Other vav vowels in the same text, including clearly separated sheva, are not changed.",
+      "evidence": [
+        {
+          "path": "/private/tmp/prosary-tob-review/TOB-short-5-p324-r1-left.png",
+          "sha256": "2c12f42acd35d34643ef1128d400b00cad51e7d7a95001379c3630a9c707d96d"
+        },
+        {
+          "path": "/private/tmp/prosary-kahana-reference/pages/B-324.png",
+          "sha256": "bc6421542e8cccef63f25ff71b01074662da0f4edd035ccc485ef52938c8db22"
+        }
+      ],
+      "policy": "User-approved exact unreadable-point disclosure. Each occurrence was inspected in its own row; no global grammatical normalization.",
+      "status": "superseded-readable-mark-restored",
+      "supersededByEvidence": "/private/tmp/prosary-tob-review/prefix-reread-3.png"
+    },
+    {
+      "id": "tob-5-4-second-vav-vowel",
+      "reference": "TOB5:4",
+      "anchor": "ויִּמְצָא",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        324
+      ],
+      "basis": "This individually inspected initial-vav occurrence has lower horizontal material fused to its foot. Its class cannot be distinguished securely from the joined glyph in the clearer crop or original page. Omit the provisional patah; preserve the independently readable following yod points and all other marks. Other vav vowels in the same text, including clearly separated sheva, are not changed.",
+      "evidence": [
+        {
+          "path": "/private/tmp/prosary-tob-review/TOB-short-5-p324-r1-left.png",
+          "sha256": "2c12f42acd35d34643ef1128d400b00cad51e7d7a95001379c3630a9c707d96d"
+        },
+        {
+          "path": "/private/tmp/prosary-kahana-reference/pages/B-324.png",
+          "sha256": "bc6421542e8cccef63f25ff71b01074662da0f4edd035ccc485ef52938c8db22"
+        }
+      ],
+      "policy": "User-approved exact unreadable-point disclosure. Each occurrence was inspected in its own row; no global grammatical normalization.",
+      "status": "superseded-readable-mark-restored",
+      "supersededByEvidence": "/private/tmp/prosary-tob-review/prefix-reread-4.png"
+    },
+    {
+      "id": "tob-5-5-initial-vav-vowel",
+      "reference": "TOB5:5",
+      "anchor": "ויֹּאמֶר לוֹ",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        324
+      ],
+      "basis": "This individually inspected initial-vav occurrence has lower horizontal material fused to its foot. Its class cannot be distinguished securely from the joined glyph in the clearer crop or original page. Omit the provisional patah; preserve the independently readable following yod points and all other marks. Other vav vowels in the same text, including clearly separated sheva, are not changed.",
+      "evidence": [
+        {
+          "path": "/private/tmp/prosary-tob-review/TOB-short-5-p324-r2-left.png",
+          "sha256": "62973a0f7f02cde0af6f9e1d06f3851f8ee41127dccbc9c3d784b61d350dc585"
+        },
+        {
+          "path": "/private/tmp/prosary-kahana-reference/pages/B-324.png",
+          "sha256": "bc6421542e8cccef63f25ff71b01074662da0f4edd035ccc485ef52938c8db22"
+        }
+      ],
+      "policy": "User-approved exact unreadable-point disclosure. Each occurrence was inspected in its own row; no global grammatical normalization.",
+      "status": "superseded-readable-mark-restored",
+      "supersededByEvidence": "/private/tmp/prosary-tob-review/prefix-reread-5.png"
+    },
+    {
+      "id": "tob-5-6-initial-vav-vowel",
+      "reference": "TOB5:6",
+      "anchor": "ויֹּאמֶר לוֹ",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        324
+      ],
+      "basis": "This individually inspected initial-vav occurrence has lower horizontal material fused to its foot. Its class cannot be distinguished securely from the joined glyph in the clearer crop or original page. Omit the provisional patah; preserve the independently readable following yod points and all other marks. Other vav vowels in the same text, including clearly separated sheva, are not changed.",
+      "evidence": [
+        {
+          "path": "/private/tmp/prosary-tob-review/TOB-short-5-p324-r3-left.png",
+          "sha256": "62ab1194ec077e2f70ad50cca6120b0dc6683ea5e0d2f3a276101465f15ae0ef"
+        },
+        {
+          "path": "/private/tmp/prosary-kahana-reference/pages/B-324.png",
+          "sha256": "bc6421542e8cccef63f25ff71b01074662da0f4edd035ccc485ef52938c8db22"
+        }
+      ],
+      "policy": "User-approved exact unreadable-point disclosure. Each occurrence was inspected in its own row; no global grammatical normalization.",
+      "status": "superseded-readable-mark-restored",
+      "supersededByEvidence": "/private/tmp/prosary-tob-review/prefix-reread-6.png"
+    },
+    {
+      "id": "tob-5-7-first-vav-vowel",
+      "reference": "TOB5:7",
+      "anchor": "ויֹּאמֶר לוֹ",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        324
+      ],
+      "basis": "This individually inspected initial-vav occurrence has lower horizontal material fused to its foot. Its class cannot be distinguished securely from the joined glyph in the clearer crop or original page. Omit the provisional patah; preserve the independently readable following yod points and all other marks. Other vav vowels in the same text, including clearly separated sheva, are not changed.",
+      "evidence": [
+        {
+          "path": "/private/tmp/prosary-tob-review/TOB-short-5-p324-r5-right.png",
+          "sha256": "98a5ab28920bb8dd63b4d1257946958290378d3062077d56f8dcf5a99a0a02a2"
+        },
+        {
+          "path": "/private/tmp/prosary-kahana-reference/pages/B-324.png",
+          "sha256": "bc6421542e8cccef63f25ff71b01074662da0f4edd035ccc485ef52938c8db22"
+        }
+      ],
+      "policy": "User-approved exact unreadable-point disclosure. Each occurrence was inspected in its own row; no global grammatical normalization.",
+      "status": "superseded-readable-mark-restored",
+      "supersededByEvidence": "/private/tmp/prosary-tob-review/prefix-reread-7.png"
+    },
+    {
+      "id": "tob-5-7-second-vav-vowel",
+      "reference": "TOB5:7",
+      "anchor": "ויֹּאמֶר אֵלָיו",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        324
+      ],
+      "basis": "This individually inspected initial-vav occurrence has lower horizontal material fused to its foot. Its class cannot be distinguished securely from the joined glyph in the clearer crop or original page. Omit the provisional patah; preserve the independently readable following yod points and all other marks. Other vav vowels in the same text, including clearly separated sheva, are not changed.",
+      "evidence": [
+        {
+          "path": "/private/tmp/prosary-tob-review/TOB-short-5-p324-r5-left.png",
+          "sha256": "67a6492a504c9dd1e4599fe7b90998a5142afc3983860dd12376ef60c23b98ee"
+        },
+        {
+          "path": "/private/tmp/prosary-kahana-reference/pages/B-324.png",
+          "sha256": "bc6421542e8cccef63f25ff71b01074662da0f4edd035ccc485ef52938c8db22"
+        }
+      ],
+      "policy": "User-approved exact unreadable-point disclosure. Each occurrence was inspected in its own row; no global grammatical normalization.",
+      "status": "superseded-readable-mark-restored",
+      "supersededByEvidence": "/private/tmp/prosary-tob-review/prefix-reread-8.png"
+    },
+    {
+      "id": "tob-5-9-first-vav-vowel",
+      "reference": "TOB5:9",
+      "anchor": "ויָּבֹא",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        324
+      ],
+      "basis": "This individually inspected initial-vav occurrence has lower horizontal material fused to its foot. Its class cannot be distinguished securely from the joined glyph in the clearer crop or original page. Omit the provisional patah; preserve the independently readable following yod points and all other marks. Other vav vowels in the same text, including clearly separated sheva, are not changed.",
+      "evidence": [
+        {
+          "path": "/private/tmp/prosary-tob-review/TOB-short-5-p324-r6-right.png",
+          "sha256": "c66aef54c7280399ab7a5122723663934533f23913411e4ab2270ab576cdf884"
+        },
+        {
+          "path": "/private/tmp/prosary-kahana-reference/pages/B-324.png",
+          "sha256": "bc6421542e8cccef63f25ff71b01074662da0f4edd035ccc485ef52938c8db22"
+        }
+      ],
+      "policy": "User-approved exact unreadable-point disclosure. Each occurrence was inspected in its own row; no global grammatical normalization.",
+      "status": "superseded-readable-mark-restored",
+      "supersededByEvidence": "/private/tmp/prosary-tob-review/prefix-reread-9.png"
+    },
+    {
+      "id": "tob-5-9-second-vav-vowel",
+      "reference": "TOB5:9",
+      "anchor": "ויֹּאמֶר לְאָבִיו",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        324
+      ],
+      "basis": "This individually inspected initial-vav occurrence has lower horizontal material fused to its foot. Its class cannot be distinguished securely from the joined glyph in the clearer crop or original page. Omit the provisional patah; preserve the independently readable following yod points and all other marks. Other vav vowels in the same text, including clearly separated sheva, are not changed.",
+      "evidence": [
+        {
+          "path": "/private/tmp/prosary-tob-review/TOB-short-5-p324-r6-right.png",
+          "sha256": "c66aef54c7280399ab7a5122723663934533f23913411e4ab2270ab576cdf884"
+        },
+        {
+          "path": "/private/tmp/prosary-kahana-reference/pages/B-324.png",
+          "sha256": "bc6421542e8cccef63f25ff71b01074662da0f4edd035ccc485ef52938c8db22"
+        }
+      ],
+      "policy": "User-approved exact unreadable-point disclosure. Each occurrence was inspected in its own row; no global grammatical normalization.",
+      "status": "superseded-readable-mark-restored",
+      "supersededByEvidence": "/private/tmp/prosary-tob-review/prefix-reread-10.png"
+    },
+    {
+      "id": "tob-5-9-third-vav-vowel",
+      "reference": "TOB5:9",
+      "anchor": "ויֹּאמֶר אָבִיו",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        324
+      ],
+      "basis": "This individually inspected initial-vav occurrence has lower horizontal material fused to its foot. Its class cannot be distinguished securely from the joined glyph in the clearer crop or original page. Omit the provisional patah; preserve the independently readable following yod points and all other marks. Other vav vowels in the same text, including clearly separated sheva, are not changed.",
+      "evidence": [
+        {
+          "path": "/private/tmp/prosary-tob-review/TOB-short-5-p324-r7-right.png",
+          "sha256": "bef47404053165f530a1dd6ed3dc6e29247c056660d03be526af8b11d441ba33"
+        },
+        {
+          "path": "/private/tmp/prosary-kahana-reference/pages/B-324.png",
+          "sha256": "bc6421542e8cccef63f25ff71b01074662da0f4edd035ccc485ef52938c8db22"
+        }
+      ],
+      "policy": "User-approved exact unreadable-point disclosure. Each occurrence was inspected in its own row; no global grammatical normalization.",
+      "status": "superseded-readable-mark-restored",
+      "supersededByEvidence": "/private/tmp/prosary-tob-review/prefix-reread-11.png"
+    },
+    {
+      "id": "tob-5-10-first-vav-vowel",
+      "reference": "TOB5:10",
+      "anchor": "ויִּקְרָא",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        324
+      ],
+      "basis": "This individually inspected initial-vav occurrence has lower horizontal material fused to its foot. Its class cannot be distinguished securely from the joined glyph in the clearer crop or original page. Omit the provisional patah; preserve the independently readable following yod points and all other marks. Other vav vowels in the same text, including clearly separated sheva, are not changed.",
+      "evidence": [
+        {
+          "path": "/private/tmp/prosary-tob-review/TOB-short-5-p324-r8-right.png",
+          "sha256": "1ebe0c0f5b27d6cb1006fa67634351f2b55527e33fa112dde98db8571babd9c0"
+        },
+        {
+          "path": "/private/tmp/prosary-kahana-reference/pages/B-324.png",
+          "sha256": "bc6421542e8cccef63f25ff71b01074662da0f4edd035ccc485ef52938c8db22"
+        }
+      ],
+      "policy": "User-approved exact unreadable-point disclosure. Each occurrence was inspected in its own row; no global grammatical normalization.",
+      "status": "superseded-readable-mark-restored",
+      "supersededByEvidence": "/private/tmp/prosary-tob-review/prefix-reread-12.png"
+    },
+    {
+      "id": "tob-5-10-second-vav-vowel",
+      "reference": "TOB5:10",
+      "anchor": "ויָּבֹא",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        324
+      ],
+      "basis": "This individually inspected initial-vav occurrence has lower horizontal material fused to its foot. Its class cannot be distinguished securely from the joined glyph in the clearer crop or original page. Omit the provisional patah; preserve the independently readable following yod points and all other marks. Other vav vowels in the same text, including clearly separated sheva, are not changed.",
+      "evidence": [
+        {
+          "path": "/private/tmp/prosary-tob-review/TOB-short-5-p324-r8-left.png",
+          "sha256": "f0384b49a7527e6f5e2412e1d37f0273132543de76031470938a3fda784b5681"
+        },
+        {
+          "path": "/private/tmp/prosary-kahana-reference/pages/B-324.png",
+          "sha256": "bc6421542e8cccef63f25ff71b01074662da0f4edd035ccc485ef52938c8db22"
+        }
+      ],
+      "policy": "User-approved exact unreadable-point disclosure. Each occurrence was inspected in its own row; no global grammatical normalization.",
+      "status": "superseded-readable-mark-restored",
+      "supersededByEvidence": "/private/tmp/prosary-tob-review/prefix-reread-13.png"
+    },
+    {
+      "id": "tob-5-10-third-vav-vowel",
+      "reference": "TOB5:10",
+      "anchor": "ויְבָרְכוּ",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        324
+      ],
+      "basis": "This individually inspected initial-vav occurrence has lower horizontal material fused to its foot. Its class cannot be distinguished securely from the joined glyph in the clearer crop or original page. Omit the provisional patah; preserve the independently readable following yod points and all other marks. Other vav vowels in the same text, including clearly separated sheva, are not changed.",
+      "evidence": [
+        {
+          "path": "/private/tmp/prosary-tob-review/TOB-short-5-10-bless.png",
+          "sha256": "d08be279beba23a87bb57db1b2d3e71e37c4b4b293ee8f334497f48fef0748cd"
+        },
+        {
+          "path": "/private/tmp/prosary-kahana-reference/pages/B-324.png",
+          "sha256": "bc6421542e8cccef63f25ff71b01074662da0f4edd035ccc485ef52938c8db22"
+        }
+      ],
+      "policy": "User-approved exact unreadable-point disclosure. Each occurrence was inspected in its own row; no global grammatical normalization.",
+      "status": "superseded-readable-source-qamats-restored",
+      "supersededByEvidence": "/private/tmp/prosary-tob-review/prefix-reread-14.png"
+    },
+    {
+      "id": "tob-5-12-first-vav-vowel",
+      "reference": "TOB5:12",
+      "anchor": "ויֹּאמֶר לוֹ הֲשֵׁבֶט",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        325
+      ],
+      "basis": "This actual first initial-vav mark remains joined to the stem, with an irregular lower projection. Unlike the five other inspected B325 prefixes with detached flat bars, this class cannot be certified. Omit its provisional patah only.",
+      "evidence": [
+        {
+          "path": "/private/tmp/prosary-tob-review/TOB-short-5-p325-r2-right-vav.png",
+          "sha256": "29bd493d41eb0f42a9797dc1ce3a2c98b000629cc2e5753ba59a50ba24f48533"
+        },
+        {
+          "path": "/private/tmp/prosary-kahana-reference/pages/B-325.png",
+          "sha256": "8209e785a915476ababe6b51be08cdd89eef3231d5c209480166880f963e6abb"
+        }
+      ],
+      "policy": "User-approved exact isolated unreadable-point disclosure, after both-source and local pixel checks. No word or boundary waived."
+    },
+    {
+      "id": "tob-5-15-dalet-vowel",
+      "reference": "TOB5:15",
+      "anchor": "אֲדרְכְּמוֹן",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "sourcePages": [
+        325
+      ],
+      "basis": "Dalet lower material joins its vertical foot in both scans. Windows independently cannot certify a separate vowel class. Preserve initial alef hataf-patah and the other clear neighboring points; omit only provisional dalet patah.",
+      "evidence": [
+        {
+          "path": "/private/tmp/prosary-tob-review/TOB-short-5-15-coin-full.png",
+          "sha256": "dcfa5ad530befed1addbbda48b3d70f7ae4de6f413adad3412ee64fb43e3783c"
+        },
+        {
+          "path": "/private/tmp/prosary-tob-review/TOB-short-5-15-coin-primary.png",
+          "sha256": "73ecc8c5604013610f3eaa1ddcdb789c94ab0b8c3426b9bbc18f872fba4aa93f"
+        },
+        {
+          "path": "/private/tmp/prosary-kahana-reference/pages/B-325.png",
+          "sha256": "8209e785a915476ababe6b51be08cdd89eef3231d5c209480166880f963e6abb"
+        }
+      ],
+      "policy": "User-approved exact isolated unreadable-point disclosure, after both-source and local pixel checks. No word or boundary waived."
+    },
+    {
+      "id": "tob-5-17-ayin-vowel",
+      "reference": "TOB5:17",
+      "anchor": "לְרֵעהוּ",
+      "letterIndex": 3,
+      "mark": "vowel",
+      "sourcePages": [
+        325
+      ],
+      "basis": "Ayin lower ink is joined to its returning foot in both scans, with no securely countable vowel dots. Apple independently confirms this limitation. Preserve resh tsere and all other readable marks; omit only provisional ayin tsere.",
+      "evidence": [
+        {
+          "path": "/private/tmp/prosary-tob-review/TOB-short-5-17-neighbor-full.png",
+          "sha256": "c6b66a389599d59f7ef0a58d9b9d8bd19b1a3b4fb42e79e630de35c822aee94a"
+        },
+        {
+          "path": "/private/tmp/prosary-tob-review/TOB-short-5-17-neighbor-primary.png",
+          "sha256": "ea75e0ccf772a4b43ed8e5d9ad73cddfca8b6e40e662f7ca70959d2f0b36f7df"
+        },
+        {
+          "path": "/private/tmp/prosary-kahana-reference/pages/B-325.png",
+          "sha256": "8209e785a915476ababe6b51be08cdd89eef3231d5c209480166880f963e6abb"
+        }
+      ],
+      "policy": "User-approved exact isolated unreadable-point disclosure, after both-source and local pixel checks. No word or boundary waived."
+    },
+    {
+      "id": "tob-5-17-said-vav-vowel",
+      "reference": "TOB5:17",
+      "anchor": "ויֹּאמֶר לוֹ אָבִיו",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        326
+      ],
+      "basis": "At this exact occurrence, native nearest-neighbor enlargement of the clearer scan and the original scan both show lower material joined to the initial vav foot. No separate vowel class can be certified; omit only provisional patah. Other B326 initial-vav occurrences have distinctly detached flat bars and retain their visible patah. Neighboring readable points remain unchanged.",
+      "evidence": [
+        {
+          "path": "/private/tmp/prosary-tob-review/TOB-short-5-17-said-nearest.png",
+          "sha256": "7687ad0633d1b5a12e705b0b19e12320a0deea9a4bf1d4c66c6c0a05838baf09"
+        },
+        {
+          "path": "/private/tmp/prosary-tob-review/TOB-short-5-17-said-primary.png",
+          "sha256": "cec3d3d914a1955a3bd8506a3acfed9ff2e2ed2c978e9d95228d8187c2db09af"
+        }
+      ],
+      "policy": "User-authorized isolated unreadable-point disclosure after full unit comparison and both scans; no word or boundary waived."
+    },
+    {
+      "id": "tob-5-18-said-vav-vowel",
+      "reference": "TOB5:18",
+      "anchor": "ותֹּאמֶר לְטוֹבִי",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        326
+      ],
+      "basis": "At this exact occurrence, native nearest-neighbor enlargement of the clearer scan and the original scan both show lower material joined to the initial vav foot. No separate vowel class can be certified; omit only provisional patah. Other B326 initial-vav occurrences have distinctly detached flat bars and retain their visible patah. Neighboring readable points remain unchanged.",
+      "evidence": [
+        {
+          "path": "/private/tmp/prosary-tob-review/TOB-short-5-18-said-nearest.png",
+          "sha256": "1aa230cdcdfb8c7e7cdb74261bbba9166df2170675a3c79968666bcb594b3b12"
+        },
+        {
+          "path": "/private/tmp/prosary-tob-review/TOB-short-5-18-said-primary.png",
+          "sha256": "96a7f366c238b6fe5ca424ab2aab551693d057e6d01876c530a6519d63c593ef"
+        }
+      ],
+      "policy": "User-authorized isolated unreadable-point disclosure after full unit comparison and both scans; no word or boundary waived."
+    },
+    {
+      "id": "tob-5-21-said-vav-vowel",
+      "reference": "TOB5:21",
+      "anchor": "ויֹּאמֶר לָהּ",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        326
+      ],
+      "basis": "At this exact occurrence, native nearest-neighbor enlargement of the clearer scan and the original scan both show lower material joined to the initial vav foot. No separate vowel class can be certified; omit only provisional patah. Other B326 initial-vav occurrences have distinctly detached flat bars and retain their visible patah. Neighboring readable points remain unchanged.",
+      "evidence": [
+        {
+          "path": "/private/tmp/prosary-tob-review/TOB-short-5-21-said-nearest.png",
+          "sha256": "7e65ada265380ccc2caed076ee6bd234f45d87371522a6c1d2f96d20fabb0e8f"
+        },
+        {
+          "path": "/private/tmp/prosary-tob-review/TOB-short-5-21-said-primary.png",
+          "sha256": "53eeb0f4ba52434688657224f0f656f3b15faef2bc2aa79f0f6988f311bbe44c"
+        }
+      ],
+      "policy": "User-authorized isolated unreadable-point disclosure after full unit comparison and both scans; no word or boundary waived."
+    }
+  ]
+}

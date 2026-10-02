@@ -38,8 +38,10 @@ Titus (135), Philemon (136), Hebrews (137), James (138), 1/2 Peter (139/140),
 edition and the same Digital Syriac Corpus CC BY 4.0 terms and contributor credits.
 
 `peshitta_reading_source.py` reuses the existing importer and Erez's supplied converter.
-Per verse, `text` is the Hebrew-script projection and `transliteratedText` is the unchanged
-pointed Syriac source. The metadata explicitly declares `textScript: "Hebr"` and
+Per verse, `text` is the Hebrew-script projection and `transliteratedText` is the
+pointed Syriac source wording. The OT reader excludes exact editorial captions recorded
+in its source-pinned review; the surrounding Scripture words are preserved. The metadata
+explicitly declares `textScript: "Hebr"` and
 `transliteratedTextScript: "Syrc"`; this follows the prayer-pack Aramaic convention even
 though the field called transliteration contains the source script. The reader starts with
 the existing `aramaicDefaultScript` preference and can switch both verse text and typeface.
@@ -53,19 +55,26 @@ Philippians 1 and 3 John also remain unavailable pending independent review of t
 exceptional local boundaries. No duplicate number is silently overwritten, no missing verse
 is inserted, and no source verse is renumbered to make a chapter appear complete.
 
-Only the nine Isaiah verses described below enter the reader. This does not broaden their
-approval to the complete supplied Old Testament, and the reader credit explicitly retains
-their unresolved edition and rights status separately from the New Testament attribution.
+On 2026-09-27 the user explicitly requested expansion of the supplied Old Testament in
+the reader. The separate `peshitta_supplied_ot.py` adapter imports named, hash-pinned OT
+books and records source defects and boundary exclusions. The
+[OT reader review](PESHITTA-OT-READER-REVIEW.markdown) records the complete comparison of
+25,095 imported OT entries with a published transcription, the semantic boundary review
+of all 3,827 OT coordinates used by the initial expansion, and printed-source checks of
+questionable wording. Availability is limited to explicitly reviewed verse units, with
+shifted clauses kept in indivisible groups; matching chapter totals cannot enable text.
+Unresolved source defects and unreviewed coordinates remain unavailable. The
+reader credit retains the unresolved OT edition and rights status separately from the NT.
 Appointments still need a valid, unambiguous numbering correspondence and every requested
-source verse; no partial passage is displayed. With the present appointments, this provides
-1,770 distinct daily passages and no Torah passages. The
-[coverage report](../reports/readings-text-coverage.json) records every unavailable passage.
+source verse; no partial passage is displayed. The expanded reader now includes OT daily
+and Torah passages; the exact generated totals and all exclusions are in the
+[coverage report](../reports/readings-text-coverage.json), which records every unavailable passage.
 
 ## Old Testament
 
 The seven Isaiah passages use nine pointed verses from the [user-supplied Internet Archive XML](https://archive.org/details/peshitta-complete-bible-otnt). On 2026-09-07 the user reported that Erez appeared to approve these verses and requested their integration. This reports the user's review context; it does not identify or independently verify the underlying edition or its redistribution terms, which remain unresolved. The BFBS 1905 attribution and CC BY 4.0 license of the separate New Testament edition above do **not** apply to this Isaiah source.
 
-The importer downloads and caches the supplied complete XML only when its SHA-256 is `4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88`. Every cache read is checked again. Extraction is restricted to Isaiah 7:14; 9:2; 11:2–5, 10; 22:22; and 28:16. These nine verses, with source notes, also form a scoped offline regression fixture. No other Old Testament material is imported from this file.
+The importer downloads and caches the supplied complete XML only when its SHA-256 is `4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88`. Every cache read is checked again. **Prayer-pack extraction** remains restricted to Isaiah 7:14; 9:2; 11:2–5, 10; 22:22; and 28:16. These nine verses, with source notes, also form a scoped offline regression fixture. Their words and the prayer importer are unchanged by the broader, separately reviewed reader import.
 
 The original Syriac wording, vowels, and punctuation are retained, with XML layout whitespace normalized; Erez's converter produces the paired Hebrew-script text. This source numbers the darkness/light verse **9:2**, replacing the earlier ETCBC edition's 9:1 citation. Its Isaiah 11:2 has `ܕܝܕܥܬܐ`, and Isaiah 28:16 omits the earlier text's `ܗܟܢܐ`. The importer retains these supplied readings rather than placing their vowels over the earlier consonants.
 

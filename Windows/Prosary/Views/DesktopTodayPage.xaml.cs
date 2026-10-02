@@ -6,6 +6,7 @@ using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
 using Prosary.Localization;
 using Prosary.Models;
+using Prosary.Navigation;
 using Prosary.Services;
 using Prosary.ViewModels;
 
@@ -18,15 +19,24 @@ public sealed partial class DesktopTodayPage : Page
     private readonly DispatcherQueueTimer _dateTimer;
     private bool _updatingTodayCalendar;
 
-    public HomeViewModel ViewModel { get; }
+    private readonly bool _readingsOnly;
+    public HomeViewModel ViewModel { get; private set; }
     public SettingsViewModel Options { get; }
     public DesktopReadingsViewModel Readings { get; } = new();
-    public string Title => Loc.Tr("desktop_today", "Today");
+    public string Title => _readingsOnly ? Loc.Tr("bible_daily_readings", "Daily Readings") : Loc.Tr("desktop_today", "Today");
+    public bool ShowsReadingOptions => !_readingsOnly;
+    public bool ShowsDailySection => _readingsOnly || ViewModel.ShowsTodaySection;
+    public bool ShowsDailyReadings => _readingsOnly ? ViewModel.TodayReadings.Count > 0 : ViewModel.ShowsTodayReadings;
+    public bool ShowsNoReadings => _readingsOnly && ViewModel.TodayReadings.Count == 0;
+    public string NoReadingsText => Loc.Tr("bible_no_daily_readings", "No daily readings are available for this date.");
     public string OptionsLabel => Loc.Tr("SetTitle/Text", "Settings");
 
-    public DesktopTodayPage()
+    public DesktopTodayPage() : this(null, false) { }
+
+    public DesktopTodayPage(HomeViewModel? today, bool readingsOnly)
     {
-        ViewModel = App.Services.GetRequiredService<HomeViewModel>();
+        _readingsOnly = readingsOnly;
+        ViewModel = today ?? App.Services.GetRequiredService<HomeViewModel>();
         Options = App.Services.GetRequiredService<SettingsViewModel>();
         InitializeComponent();
         NavigationCacheMode = NavigationCacheMode.Enabled;
@@ -35,6 +45,13 @@ public sealed partial class DesktopTodayPage : Page
         _dateTimer.Tick += (_, _) => RefreshForClock();
         Loaded += OnLoaded;
         Unloaded += OnUnloaded;
+    }
+
+    protected override void OnNavigatedTo(NavigationEventArgs e)
+    {
+        base.OnNavigatedTo(e);
+        ViewModel = Router.For(this).Today ?? ViewModel;
+        Bindings.Update();
     }
 
     private void OnLoaded(object sender, RoutedEventArgs e)
@@ -82,6 +99,7 @@ public sealed partial class DesktopTodayPage : Page
     {
         if (args.PropertyName is nameof(HomeViewModel.TodayReadings) or nameof(HomeViewModel.TodayTorahPortion))
             Readings.Refresh(ViewModel);
+        Bindings.Update();
     }
 
     private void OnReadingEditionChanged() => DispatcherQueue.TryEnqueue(() =>

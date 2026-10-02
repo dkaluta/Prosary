@@ -1,0 +1,139 @@
+{
+  "schemaVersion": 1,
+  "book": "WIS",
+  "chapter": 3,
+  "status": "local chapter reconciliation complete; whole book draft",
+  "units": 19,
+  "physicalRows": 25,
+  "rowsByPage": {
+    "150": 14,
+    "151": 11
+  },
+  "method": "Root separately compared every word, readable point, bracket, separator and verse start in all five source-body crops after the first draft, then reconciled independent findings against lossless tight crops. No extra change or missing unit was found in the full reread.",
+  "sourceCrops": [
+    {
+      "page": 150,
+      "source": "/private/tmp/prosary-wis-review/WIS-native-150.png",
+      "nativeBounds": [
+        225,
+        350,
+        2450,
+        860
+      ],
+      "file": "/private/tmp/prosary-wis-review/WIS3-150-upper.png",
+      "sha256": "6cdebc7cf6ab58696f1c7848c2f956984f6bcd833bfebe664723c7b84b0dbb58"
+    },
+    {
+      "page": 150,
+      "source": "/private/tmp/prosary-wis-review/WIS-native-150.png",
+      "nativeBounds": [
+        225,
+        835,
+        2450,
+        1315
+      ],
+      "file": "/private/tmp/prosary-wis-review/WIS3-150-middle.png",
+      "sha256": "5c3d1224b9c853e20715943fd1b923c0e0740d9cc1eb480322feb24aace0f8ad"
+    },
+    {
+      "page": 150,
+      "source": "/private/tmp/prosary-wis-review/WIS-native-150.png",
+      "nativeBounds": [
+        225,
+        1300,
+        2450,
+        1700
+      ],
+      "file": "/private/tmp/prosary-wis-review/WIS3-150-lower.png",
+      "sha256": "779339779538f149c8b54a9be2985f975ed990320bb0bc559a266e9b8631c3e9"
+    },
+    {
+      "page": 151,
+      "source": "/private/tmp/prosary-wis-review/WIS-native-151.png",
+      "nativeBounds": [
+        215,
+        330,
+        2420,
+        840
+      ],
+      "file": "/private/tmp/prosary-wis-review/WIS3-151-upper.png",
+      "sha256": "cf475c923c229f02a7b9203b0bb0309f39c1d2d7bcb1795a40c4cc18ba7b0f81"
+    },
+    {
+      "page": 151,
+      "source": "/private/tmp/prosary-wis-review/WIS-native-151.png",
+      "nativeBounds": [
+        215,
+        825,
+        2420,
+        1420
+      ],
+      "file": "/private/tmp/prosary-wis-review/WIS3-151-lower.png",
+      "sha256": "9edca2803bb07412df109bb411c1e252f6b6053eb5484b9974d1addf5d0e6fa7"
+    }
+  ],
+  "sourceReports": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/WIS-chapter3-independent-review.json",
+      "sha256": "0899895196fc10a42995189e05af535b6a2770718bfd9d293ad83f33239af8d1"
+    }
+  ],
+  "acceptedCorrections": [
+    "3:14 literal יִנָּתֶן־לוֹ: tav, nun dagesh/qamats, tav segol.",
+    "3:17 no detached pe dagesh; keep visible pe segol."
+  ],
+  "acceptedSourceNoteIds": [
+    "wis-3-12-mem",
+    "wis-3-17-alef"
+  ],
+  "newReviewedPages": [
+    150
+  ],
+  "withheldPage": {
+    "page": 151,
+    "reason": "Chapter4 opening is outside the reviewed chapter3 scope."
+  },
+  "beforeTextSHA256": {
+    "1": "f8fb510b47685480cbad9b1ff8a763dc63723d6a1a97482f74e22277646ff20b",
+    "2": "e00a3393f1f17790b06cbd46608363e6dbd8eba96148b391096f28fdd58977bd",
+    "3": "ae8628ac40a422a72cdf01688d8152a072290f3d8c3f93848bc8c90b3d4692ef",
+    "4": "1bfb3900a8b0562d36c8dc43991557e6fa1fa27329d6c2fa652428e561d685df",
+    "5": "e9f26c9fe8bad44c9f8a32b9744a2ce2d470494f9b9801834710e2b36ac9e244",
+    "6": "d28556fc059cbbb3308a5defb58b0c459f7a5364a6a097091602f2588be24e33",
+    "7": "ff0220435df9a8e6c2aab89c69c0efbdb0b309238a3ee118a63b662c96b07974",
+    "8": "3e9597ff1eb5139ed0cdaca51b124270927eaaa7503ad2c159169f6852ca2dfc",
+    "9": "a4f3abdcb3143b76b15d78a5b5fc151a7bdba5dc57be36602aeef0b28bd364cf",
+    "10": "8d72c10c0b3567136b1328d455fda30fa4d2b29bbebbd44173f1b2ec18e96cdf",
+    "11": "bd6fb2b0b58b359b842e1211afa7dc59e66037b9e0c873de91a30788e04654bf",
+    "12": "748d225034bc95d857a9d9b3ffde5b1de38c7cf62d57bbb8e0f20b6b5f3fb01c",
+    "13": "f9d75ee56300e0aed1b80bed41f651e12e5c53fd63b72678d1b73a648844107c",
+    "14": "13ec0648b2368c224075f77e04f235aaa44567b186355cbc2f6249cc919adc99",
+    "15": "0ab8caed2a241b330ae13e05cfedef319e285b164d2258383dabe3f36dca6a31",
+    "16": "321221fe41e5301253b2ad3c86ad31cf1364aeda0de105bfb1c1a7c1be97eeb5",
+    "17": "80f52b080414598546512b52be0ed0fb5283fb4150b86dc3a6a4ff7cff800c82",
+    "18": "ad642656487b554852ce57fc4060d72f2944c46e950aafcf7ada29d72d8b4579",
+    "19": "d547116e908a435b8e580bfd346fe949fc2642d59c409d00a820c289d70dce7e"
+  },
+  "afterTextSHA256": {
+    "1": "f8fb510b47685480cbad9b1ff8a763dc63723d6a1a97482f74e22277646ff20b",
+    "2": "e00a3393f1f17790b06cbd46608363e6dbd8eba96148b391096f28fdd58977bd",
+    "3": "ae8628ac40a422a72cdf01688d8152a072290f3d8c3f93848bc8c90b3d4692ef",
+    "4": "1bfb3900a8b0562d36c8dc43991557e6fa1fa27329d6c2fa652428e561d685df",
+    "5": "e9f26c9fe8bad44c9f8a32b9744a2ce2d470494f9b9801834710e2b36ac9e244",
+    "6": "d28556fc059cbbb3308a5defb58b0c459f7a5364a6a097091602f2588be24e33",
+    "7": "ff0220435df9a8e6c2aab89c69c0efbdb0b309238a3ee118a63b662c96b07974",
+    "8": "3e9597ff1eb5139ed0cdaca51b124270927eaaa7503ad2c159169f6852ca2dfc",
+    "9": "a4f3abdcb3143b76b15d78a5b5fc151a7bdba5dc57be36602aeef0b28bd364cf",
+    "10": "8d72c10c0b3567136b1328d455fda30fa4d2b29bbebbd44173f1b2ec18e96cdf",
+    "11": "bd6fb2b0b58b359b842e1211afa7dc59e66037b9e0c873de91a30788e04654bf",
+    "12": "3a253ec0da22686d522917e1c56d750f77343628769685ef579823550cce6745",
+    "13": "f9d75ee56300e0aed1b80bed41f651e12e5c53fd63b72678d1b73a648844107c",
+    "14": "a00e80b0e8687099197796c371e23e14ae20ce715a67efbabe79ce9126ab9812",
+    "15": "0ab8caed2a241b330ae13e05cfedef319e285b164d2258383dabe3f36dca6a31",
+    "16": "321221fe41e5301253b2ad3c86ad31cf1364aeda0de105bfb1c1a7c1be97eeb5",
+    "17": "ea49833d32bfe5a25f7f196756569b1cf32a823ecca262baff46f41f74c415db",
+    "18": "ad642656487b554852ce57fc4060d72f2944c46e950aafcf7ada29d72d8b4579",
+    "19": "d547116e908a435b8e580bfd346fe949fc2642d59c409d00a820c289d70dce7e"
+  },
+  "releaseApproved": false
+}

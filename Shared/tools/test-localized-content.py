@@ -24,8 +24,7 @@ for month, row in data["months"].items():
         for field in ("titleByLanguage", "textByLanguage"):
             text = row[field][language]
             assert text.strip() and "\ufffd" not in text, (month, language, field)
-        if language != "he":
-            assert row["sourceByLanguage"][language].startswith("https://")
+        assert row["sourceByLanguage"][language].startswith("https://")
     assert "Prosary" in row["translationCreditByLanguage"]["he"]
 assert "santé des personnes" in data["months"]["2027-02"]["textByLanguage"]["fr"]
 assert "osservatoreromano.va" in data["months"]["2027-02"]["sourceByLanguage"]["fr"]

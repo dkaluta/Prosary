@@ -29,7 +29,12 @@ REVIEW_FILES = (
     "reading-text-sources.json", "build-reading-texts.py", "build-edition-mappings.py",
     "reading_edition_mapping.py", "reading_edition_reviews_hebrew.py",
     "reading_edition_reviews_western.py", "reading_edition_reviews_arabic.py",
+    "arabic-reading-extensions.json",
     "reading_edition_reviews_peshitta.py", "peshitta_reading_source.py",
+    "peshitta_supplied_ot.py", "peshitta-supplied-ot-review.json",
+    "peshitta-supplied-ot-witnesses.json",
+    "peshitta-supplied-ot-full-collation.json",
+    "peshitta_ot_semantic_review.py", "peshitta-supplied-ot-semantic-review.json",
     "reading_edition_reviews_greek.py", "brenton_reading_source.py",
     "import-scripture.py", "aramaic_script_converter.py",
     "reading_step_mapping.py", "reading_psalm_mapping.py", "reading_boundary_groups.py",
@@ -195,6 +200,8 @@ class EditionMapper:
                 source_types=profile["source_types"], overrides=overrides,
                 subverse_labels=(), excluded_chapters=self.excluded_chapters,
                 local_rule_lines=profile.get("local_rule_lines"),
+                reviewed_source_references=profile.get("reviewed_source_references"),
+                review_required_books=profile.get("review_required_books", ()),
                 excluded_rule_lines=profile.get("excluded_rule_lines", ()))
 
     def validate_source(self, corpus: dict, source_pins: dict[str, str]) -> None:

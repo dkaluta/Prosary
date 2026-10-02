@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "reviewedDate": "2026-09-10",
+  "reviewedDate": "2026-09-27",
   "sources": [
     {
       "id": "engDRA",
@@ -4536,7 +4536,7 @@
       "url": "https://archive.org/details/AlKitabAlMoqadas",
       "format": "reviewed-verses",
       "editionId": "jesuit-arabic-1897",
-      "sha256": "9495719b3f1573e7a446dc22dbeb3014e913d69b5bfff71239dd9602c0efeda8",
+      "sha256": "dbb7c4736218f730506d5eedb05708983420712c02076e008b16839665d9f39c",
       "license": "Public domain Bible text; independently transcribed from the 1897 Jesuit Press printing, Beirut.",
       "rightsURL": "https://archive.org/details/AlKitabAlMoqadas",
       "review": "239 visually checked verses; page evidence and indivisible reviewUnits are pinned with the text. No OCR import or modern revision."
@@ -7702,14 +7702,499 @@
       "rightsURL": "https://creativecommons.org/licenses/by/4.0/"
     },
     {
-      "id": "peshitta-supplied-isaiah-nine",
+      "id": "peshitta-supplied-ot-gen",
       "cache": "arc-supplied-4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88.xml",
       "url": "https://dn760101.eu.archive.org/0/items/peshitta-complete-bible-otnt/Peshitta%20Complete%20Bible%20OTNT%20with%20vocalization%20-%20Zefania%20XML%20%28---Original---%20With%20most%20Apocrypha%29.xml.txt",
-      "format": "peshitta-isaiah",
+      "format": "peshitta-supplied-ot",
+      "book": "GEN",
+      "sha256": "4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88",
+      "license": "User-supplied pointed Syriac Old Testament; underlying edition and redistribution terms unresolved. User explicitly requested broad reader integration on 2026-09-27. BFBS1905/CCBY4.0 NT terms do not apply.",
+      "rightsURL": "https://archive.org/details/peshitta-complete-bible-otnt",
+      "bookName": "Genesis"
+    },
+    {
+      "id": "peshitta-supplied-ot-exo",
+      "cache": "arc-supplied-4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88.xml",
+      "url": "https://dn760101.eu.archive.org/0/items/peshitta-complete-bible-otnt/Peshitta%20Complete%20Bible%20OTNT%20with%20vocalization%20-%20Zefania%20XML%20%28---Original---%20With%20most%20Apocrypha%29.xml.txt",
+      "format": "peshitta-supplied-ot",
+      "book": "EXO",
+      "sha256": "4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88",
+      "license": "User-supplied pointed Syriac Old Testament; underlying edition and redistribution terms unresolved. User explicitly requested broad reader integration on 2026-09-27. BFBS1905/CCBY4.0 NT terms do not apply.",
+      "rightsURL": "https://archive.org/details/peshitta-complete-bible-otnt",
+      "bookName": "Exodus"
+    },
+    {
+      "id": "peshitta-supplied-ot-lev",
+      "cache": "arc-supplied-4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88.xml",
+      "url": "https://dn760101.eu.archive.org/0/items/peshitta-complete-bible-otnt/Peshitta%20Complete%20Bible%20OTNT%20with%20vocalization%20-%20Zefania%20XML%20%28---Original---%20With%20most%20Apocrypha%29.xml.txt",
+      "format": "peshitta-supplied-ot",
+      "book": "LEV",
+      "sha256": "4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88",
+      "license": "User-supplied pointed Syriac Old Testament; underlying edition and redistribution terms unresolved. User explicitly requested broad reader integration on 2026-09-27. BFBS1905/CCBY4.0 NT terms do not apply.",
+      "rightsURL": "https://archive.org/details/peshitta-complete-bible-otnt",
+      "bookName": "Leviticus"
+    },
+    {
+      "id": "peshitta-supplied-ot-num",
+      "cache": "arc-supplied-4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88.xml",
+      "url": "https://dn760101.eu.archive.org/0/items/peshitta-complete-bible-otnt/Peshitta%20Complete%20Bible%20OTNT%20with%20vocalization%20-%20Zefania%20XML%20%28---Original---%20With%20most%20Apocrypha%29.xml.txt",
+      "format": "peshitta-supplied-ot",
+      "book": "NUM",
+      "sha256": "4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88",
+      "license": "User-supplied pointed Syriac Old Testament; underlying edition and redistribution terms unresolved. User explicitly requested broad reader integration on 2026-09-27. BFBS1905/CCBY4.0 NT terms do not apply.",
+      "rightsURL": "https://archive.org/details/peshitta-complete-bible-otnt",
+      "bookName": "Numbers"
+    },
+    {
+      "id": "peshitta-supplied-ot-deu",
+      "cache": "arc-supplied-4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88.xml",
+      "url": "https://dn760101.eu.archive.org/0/items/peshitta-complete-bible-otnt/Peshitta%20Complete%20Bible%20OTNT%20with%20vocalization%20-%20Zefania%20XML%20%28---Original---%20With%20most%20Apocrypha%29.xml.txt",
+      "format": "peshitta-supplied-ot",
+      "book": "DEU",
+      "sha256": "4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88",
+      "license": "User-supplied pointed Syriac Old Testament; underlying edition and redistribution terms unresolved. User explicitly requested broad reader integration on 2026-09-27. BFBS1905/CCBY4.0 NT terms do not apply.",
+      "rightsURL": "https://archive.org/details/peshitta-complete-bible-otnt",
+      "bookName": "Deuteronomy"
+    },
+    {
+      "id": "peshitta-supplied-ot-jos",
+      "cache": "arc-supplied-4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88.xml",
+      "url": "https://dn760101.eu.archive.org/0/items/peshitta-complete-bible-otnt/Peshitta%20Complete%20Bible%20OTNT%20with%20vocalization%20-%20Zefania%20XML%20%28---Original---%20With%20most%20Apocrypha%29.xml.txt",
+      "format": "peshitta-supplied-ot",
+      "book": "JOS",
+      "sha256": "4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88",
+      "license": "User-supplied pointed Syriac Old Testament; underlying edition and redistribution terms unresolved. User explicitly requested broad reader integration on 2026-09-27. BFBS1905/CCBY4.0 NT terms do not apply.",
+      "rightsURL": "https://archive.org/details/peshitta-complete-bible-otnt",
+      "bookName": "Joshua"
+    },
+    {
+      "id": "peshitta-supplied-ot-jdg",
+      "cache": "arc-supplied-4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88.xml",
+      "url": "https://dn760101.eu.archive.org/0/items/peshitta-complete-bible-otnt/Peshitta%20Complete%20Bible%20OTNT%20with%20vocalization%20-%20Zefania%20XML%20%28---Original---%20With%20most%20Apocrypha%29.xml.txt",
+      "format": "peshitta-supplied-ot",
+      "book": "JDG",
+      "sha256": "4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88",
+      "license": "User-supplied pointed Syriac Old Testament; underlying edition and redistribution terms unresolved. User explicitly requested broad reader integration on 2026-09-27. BFBS1905/CCBY4.0 NT terms do not apply.",
+      "rightsURL": "https://archive.org/details/peshitta-complete-bible-otnt",
+      "bookName": "Judges"
+    },
+    {
+      "id": "peshitta-supplied-ot-rut",
+      "cache": "arc-supplied-4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88.xml",
+      "url": "https://dn760101.eu.archive.org/0/items/peshitta-complete-bible-otnt/Peshitta%20Complete%20Bible%20OTNT%20with%20vocalization%20-%20Zefania%20XML%20%28---Original---%20With%20most%20Apocrypha%29.xml.txt",
+      "format": "peshitta-supplied-ot",
+      "book": "RUT",
+      "sha256": "4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88",
+      "license": "User-supplied pointed Syriac Old Testament; underlying edition and redistribution terms unresolved. User explicitly requested broad reader integration on 2026-09-27. BFBS1905/CCBY4.0 NT terms do not apply.",
+      "rightsURL": "https://archive.org/details/peshitta-complete-bible-otnt",
+      "bookName": "Ruth"
+    },
+    {
+      "id": "peshitta-supplied-ot-1sa",
+      "cache": "arc-supplied-4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88.xml",
+      "url": "https://dn760101.eu.archive.org/0/items/peshitta-complete-bible-otnt/Peshitta%20Complete%20Bible%20OTNT%20with%20vocalization%20-%20Zefania%20XML%20%28---Original---%20With%20most%20Apocrypha%29.xml.txt",
+      "format": "peshitta-supplied-ot",
+      "book": "1SA",
+      "sha256": "4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88",
+      "license": "User-supplied pointed Syriac Old Testament; underlying edition and redistribution terms unresolved. User explicitly requested broad reader integration on 2026-09-27. BFBS1905/CCBY4.0 NT terms do not apply.",
+      "rightsURL": "https://archive.org/details/peshitta-complete-bible-otnt",
+      "bookName": "1 Samuel"
+    },
+    {
+      "id": "peshitta-supplied-ot-2sa",
+      "cache": "arc-supplied-4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88.xml",
+      "url": "https://dn760101.eu.archive.org/0/items/peshitta-complete-bible-otnt/Peshitta%20Complete%20Bible%20OTNT%20with%20vocalization%20-%20Zefania%20XML%20%28---Original---%20With%20most%20Apocrypha%29.xml.txt",
+      "format": "peshitta-supplied-ot",
+      "book": "2SA",
+      "sha256": "4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88",
+      "license": "User-supplied pointed Syriac Old Testament; underlying edition and redistribution terms unresolved. User explicitly requested broad reader integration on 2026-09-27. BFBS1905/CCBY4.0 NT terms do not apply.",
+      "rightsURL": "https://archive.org/details/peshitta-complete-bible-otnt",
+      "bookName": "2 Samuel"
+    },
+    {
+      "id": "peshitta-supplied-ot-1ki",
+      "cache": "arc-supplied-4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88.xml",
+      "url": "https://dn760101.eu.archive.org/0/items/peshitta-complete-bible-otnt/Peshitta%20Complete%20Bible%20OTNT%20with%20vocalization%20-%20Zefania%20XML%20%28---Original---%20With%20most%20Apocrypha%29.xml.txt",
+      "format": "peshitta-supplied-ot",
+      "book": "1KI",
+      "sha256": "4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88",
+      "license": "User-supplied pointed Syriac Old Testament; underlying edition and redistribution terms unresolved. User explicitly requested broad reader integration on 2026-09-27. BFBS1905/CCBY4.0 NT terms do not apply.",
+      "rightsURL": "https://archive.org/details/peshitta-complete-bible-otnt",
+      "bookName": "1 Kings"
+    },
+    {
+      "id": "peshitta-supplied-ot-2ki",
+      "cache": "arc-supplied-4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88.xml",
+      "url": "https://dn760101.eu.archive.org/0/items/peshitta-complete-bible-otnt/Peshitta%20Complete%20Bible%20OTNT%20with%20vocalization%20-%20Zefania%20XML%20%28---Original---%20With%20most%20Apocrypha%29.xml.txt",
+      "format": "peshitta-supplied-ot",
+      "book": "2KI",
+      "sha256": "4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88",
+      "license": "User-supplied pointed Syriac Old Testament; underlying edition and redistribution terms unresolved. User explicitly requested broad reader integration on 2026-09-27. BFBS1905/CCBY4.0 NT terms do not apply.",
+      "rightsURL": "https://archive.org/details/peshitta-complete-bible-otnt",
+      "bookName": "2 Kings"
+    },
+    {
+      "id": "peshitta-supplied-ot-1ch",
+      "cache": "arc-supplied-4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88.xml",
+      "url": "https://dn760101.eu.archive.org/0/items/peshitta-complete-bible-otnt/Peshitta%20Complete%20Bible%20OTNT%20with%20vocalization%20-%20Zefania%20XML%20%28---Original---%20With%20most%20Apocrypha%29.xml.txt",
+      "format": "peshitta-supplied-ot",
+      "book": "1CH",
+      "sha256": "4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88",
+      "license": "User-supplied pointed Syriac Old Testament; underlying edition and redistribution terms unresolved. User explicitly requested broad reader integration on 2026-09-27. BFBS1905/CCBY4.0 NT terms do not apply.",
+      "rightsURL": "https://archive.org/details/peshitta-complete-bible-otnt",
+      "bookName": "1 Chronicles"
+    },
+    {
+      "id": "peshitta-supplied-ot-2ch",
+      "cache": "arc-supplied-4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88.xml",
+      "url": "https://dn760101.eu.archive.org/0/items/peshitta-complete-bible-otnt/Peshitta%20Complete%20Bible%20OTNT%20with%20vocalization%20-%20Zefania%20XML%20%28---Original---%20With%20most%20Apocrypha%29.xml.txt",
+      "format": "peshitta-supplied-ot",
+      "book": "2CH",
+      "sha256": "4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88",
+      "license": "User-supplied pointed Syriac Old Testament; underlying edition and redistribution terms unresolved. User explicitly requested broad reader integration on 2026-09-27. BFBS1905/CCBY4.0 NT terms do not apply.",
+      "rightsURL": "https://archive.org/details/peshitta-complete-bible-otnt",
+      "bookName": "2 Chronicles"
+    },
+    {
+      "id": "peshitta-supplied-ot-ezr",
+      "cache": "arc-supplied-4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88.xml",
+      "url": "https://dn760101.eu.archive.org/0/items/peshitta-complete-bible-otnt/Peshitta%20Complete%20Bible%20OTNT%20with%20vocalization%20-%20Zefania%20XML%20%28---Original---%20With%20most%20Apocrypha%29.xml.txt",
+      "format": "peshitta-supplied-ot",
+      "book": "EZR",
+      "sha256": "4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88",
+      "license": "User-supplied pointed Syriac Old Testament; underlying edition and redistribution terms unresolved. User explicitly requested broad reader integration on 2026-09-27. BFBS1905/CCBY4.0 NT terms do not apply.",
+      "rightsURL": "https://archive.org/details/peshitta-complete-bible-otnt",
+      "bookName": "Ezra"
+    },
+    {
+      "id": "peshitta-supplied-ot-neh",
+      "cache": "arc-supplied-4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88.xml",
+      "url": "https://dn760101.eu.archive.org/0/items/peshitta-complete-bible-otnt/Peshitta%20Complete%20Bible%20OTNT%20with%20vocalization%20-%20Zefania%20XML%20%28---Original---%20With%20most%20Apocrypha%29.xml.txt",
+      "format": "peshitta-supplied-ot",
+      "book": "NEH",
+      "sha256": "4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88",
+      "license": "User-supplied pointed Syriac Old Testament; underlying edition and redistribution terms unresolved. User explicitly requested broad reader integration on 2026-09-27. BFBS1905/CCBY4.0 NT terms do not apply.",
+      "rightsURL": "https://archive.org/details/peshitta-complete-bible-otnt",
+      "bookName": "Nehemiah"
+    },
+    {
+      "id": "peshitta-supplied-ot-est",
+      "cache": "arc-supplied-4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88.xml",
+      "url": "https://dn760101.eu.archive.org/0/items/peshitta-complete-bible-otnt/Peshitta%20Complete%20Bible%20OTNT%20with%20vocalization%20-%20Zefania%20XML%20%28---Original---%20With%20most%20Apocrypha%29.xml.txt",
+      "format": "peshitta-supplied-ot",
+      "book": "EST",
+      "sha256": "4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88",
+      "license": "User-supplied pointed Syriac Old Testament; underlying edition and redistribution terms unresolved. User explicitly requested broad reader integration on 2026-09-27. BFBS1905/CCBY4.0 NT terms do not apply.",
+      "rightsURL": "https://archive.org/details/peshitta-complete-bible-otnt",
+      "bookName": "Esther"
+    },
+    {
+      "id": "peshitta-supplied-ot-job",
+      "cache": "arc-supplied-4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88.xml",
+      "url": "https://dn760101.eu.archive.org/0/items/peshitta-complete-bible-otnt/Peshitta%20Complete%20Bible%20OTNT%20with%20vocalization%20-%20Zefania%20XML%20%28---Original---%20With%20most%20Apocrypha%29.xml.txt",
+      "format": "peshitta-supplied-ot",
+      "book": "JOB",
+      "sha256": "4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88",
+      "license": "User-supplied pointed Syriac Old Testament; underlying edition and redistribution terms unresolved. User explicitly requested broad reader integration on 2026-09-27. BFBS1905/CCBY4.0 NT terms do not apply.",
+      "rightsURL": "https://archive.org/details/peshitta-complete-bible-otnt",
+      "bookName": "Job"
+    },
+    {
+      "id": "peshitta-supplied-ot-psa",
+      "cache": "arc-supplied-4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88.xml",
+      "url": "https://dn760101.eu.archive.org/0/items/peshitta-complete-bible-otnt/Peshitta%20Complete%20Bible%20OTNT%20with%20vocalization%20-%20Zefania%20XML%20%28---Original---%20With%20most%20Apocrypha%29.xml.txt",
+      "format": "peshitta-supplied-ot",
+      "book": "PSA",
+      "sha256": "4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88",
+      "license": "User-supplied pointed Syriac Old Testament; underlying edition and redistribution terms unresolved. User explicitly requested broad reader integration on 2026-09-27. BFBS1905/CCBY4.0 NT terms do not apply.",
+      "rightsURL": "https://archive.org/details/peshitta-complete-bible-otnt",
+      "bookName": "Psalms"
+    },
+    {
+      "id": "peshitta-supplied-ot-pro",
+      "cache": "arc-supplied-4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88.xml",
+      "url": "https://dn760101.eu.archive.org/0/items/peshitta-complete-bible-otnt/Peshitta%20Complete%20Bible%20OTNT%20with%20vocalization%20-%20Zefania%20XML%20%28---Original---%20With%20most%20Apocrypha%29.xml.txt",
+      "format": "peshitta-supplied-ot",
+      "book": "PRO",
+      "sha256": "4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88",
+      "license": "User-supplied pointed Syriac Old Testament; underlying edition and redistribution terms unresolved. User explicitly requested broad reader integration on 2026-09-27. BFBS1905/CCBY4.0 NT terms do not apply.",
+      "rightsURL": "https://archive.org/details/peshitta-complete-bible-otnt",
+      "bookName": "Proverbs"
+    },
+    {
+      "id": "peshitta-supplied-ot-ecc",
+      "cache": "arc-supplied-4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88.xml",
+      "url": "https://dn760101.eu.archive.org/0/items/peshitta-complete-bible-otnt/Peshitta%20Complete%20Bible%20OTNT%20with%20vocalization%20-%20Zefania%20XML%20%28---Original---%20With%20most%20Apocrypha%29.xml.txt",
+      "format": "peshitta-supplied-ot",
+      "book": "ECC",
+      "sha256": "4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88",
+      "license": "User-supplied pointed Syriac Old Testament; underlying edition and redistribution terms unresolved. User explicitly requested broad reader integration on 2026-09-27. BFBS1905/CCBY4.0 NT terms do not apply.",
+      "rightsURL": "https://archive.org/details/peshitta-complete-bible-otnt",
+      "bookName": "Ecclesiastes"
+    },
+    {
+      "id": "peshitta-supplied-ot-sng",
+      "cache": "arc-supplied-4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88.xml",
+      "url": "https://dn760101.eu.archive.org/0/items/peshitta-complete-bible-otnt/Peshitta%20Complete%20Bible%20OTNT%20with%20vocalization%20-%20Zefania%20XML%20%28---Original---%20With%20most%20Apocrypha%29.xml.txt",
+      "format": "peshitta-supplied-ot",
+      "book": "SNG",
+      "sha256": "4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88",
+      "license": "User-supplied pointed Syriac Old Testament; underlying edition and redistribution terms unresolved. User explicitly requested broad reader integration on 2026-09-27. BFBS1905/CCBY4.0 NT terms do not apply.",
+      "rightsURL": "https://archive.org/details/peshitta-complete-bible-otnt",
+      "bookName": "Song of Songs"
+    },
+    {
+      "id": "peshitta-supplied-ot-isa",
+      "cache": "arc-supplied-4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88.xml",
+      "url": "https://dn760101.eu.archive.org/0/items/peshitta-complete-bible-otnt/Peshitta%20Complete%20Bible%20OTNT%20with%20vocalization%20-%20Zefania%20XML%20%28---Original---%20With%20most%20Apocrypha%29.xml.txt",
+      "format": "peshitta-supplied-ot",
       "book": "ISA",
       "sha256": "4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88",
-      "license": "Edition and redistribution terms unresolved; limited to the nine previously user-approved Isaiah verses. BFBS 1905 and CC BY 4.0 NT terms do not apply.",
-      "rightsURL": "https://archive.org/details/peshitta-complete-bible-otnt"
+      "license": "User-supplied pointed Syriac Old Testament; underlying edition and redistribution terms unresolved. User explicitly requested broad reader integration on 2026-09-27. BFBS1905/CCBY4.0 NT terms do not apply.",
+      "rightsURL": "https://archive.org/details/peshitta-complete-bible-otnt",
+      "bookName": "Isaiah"
+    },
+    {
+      "id": "peshitta-supplied-ot-jer",
+      "cache": "arc-supplied-4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88.xml",
+      "url": "https://dn760101.eu.archive.org/0/items/peshitta-complete-bible-otnt/Peshitta%20Complete%20Bible%20OTNT%20with%20vocalization%20-%20Zefania%20XML%20%28---Original---%20With%20most%20Apocrypha%29.xml.txt",
+      "format": "peshitta-supplied-ot",
+      "book": "JER",
+      "sha256": "4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88",
+      "license": "User-supplied pointed Syriac Old Testament; underlying edition and redistribution terms unresolved. User explicitly requested broad reader integration on 2026-09-27. BFBS1905/CCBY4.0 NT terms do not apply.",
+      "rightsURL": "https://archive.org/details/peshitta-complete-bible-otnt",
+      "bookName": "Jeremiah"
+    },
+    {
+      "id": "peshitta-supplied-ot-lam",
+      "cache": "arc-supplied-4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88.xml",
+      "url": "https://dn760101.eu.archive.org/0/items/peshitta-complete-bible-otnt/Peshitta%20Complete%20Bible%20OTNT%20with%20vocalization%20-%20Zefania%20XML%20%28---Original---%20With%20most%20Apocrypha%29.xml.txt",
+      "format": "peshitta-supplied-ot",
+      "book": "LAM",
+      "sha256": "4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88",
+      "license": "User-supplied pointed Syriac Old Testament; underlying edition and redistribution terms unresolved. User explicitly requested broad reader integration on 2026-09-27. BFBS1905/CCBY4.0 NT terms do not apply.",
+      "rightsURL": "https://archive.org/details/peshitta-complete-bible-otnt",
+      "bookName": "Lamentations"
+    },
+    {
+      "id": "peshitta-supplied-ot-ezk",
+      "cache": "arc-supplied-4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88.xml",
+      "url": "https://dn760101.eu.archive.org/0/items/peshitta-complete-bible-otnt/Peshitta%20Complete%20Bible%20OTNT%20with%20vocalization%20-%20Zefania%20XML%20%28---Original---%20With%20most%20Apocrypha%29.xml.txt",
+      "format": "peshitta-supplied-ot",
+      "book": "EZK",
+      "sha256": "4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88",
+      "license": "User-supplied pointed Syriac Old Testament; underlying edition and redistribution terms unresolved. User explicitly requested broad reader integration on 2026-09-27. BFBS1905/CCBY4.0 NT terms do not apply.",
+      "rightsURL": "https://archive.org/details/peshitta-complete-bible-otnt",
+      "bookName": "Ezekiel"
+    },
+    {
+      "id": "peshitta-supplied-ot-dan",
+      "cache": "arc-supplied-4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88.xml",
+      "url": "https://dn760101.eu.archive.org/0/items/peshitta-complete-bible-otnt/Peshitta%20Complete%20Bible%20OTNT%20with%20vocalization%20-%20Zefania%20XML%20%28---Original---%20With%20most%20Apocrypha%29.xml.txt",
+      "format": "peshitta-supplied-ot",
+      "book": "DAN",
+      "sha256": "4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88",
+      "license": "User-supplied pointed Syriac Old Testament; underlying edition and redistribution terms unresolved. User explicitly requested broad reader integration on 2026-09-27. BFBS1905/CCBY4.0 NT terms do not apply.",
+      "rightsURL": "https://archive.org/details/peshitta-complete-bible-otnt",
+      "bookName": "Daniel"
+    },
+    {
+      "id": "peshitta-supplied-ot-hos",
+      "cache": "arc-supplied-4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88.xml",
+      "url": "https://dn760101.eu.archive.org/0/items/peshitta-complete-bible-otnt/Peshitta%20Complete%20Bible%20OTNT%20with%20vocalization%20-%20Zefania%20XML%20%28---Original---%20With%20most%20Apocrypha%29.xml.txt",
+      "format": "peshitta-supplied-ot",
+      "book": "HOS",
+      "sha256": "4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88",
+      "license": "User-supplied pointed Syriac Old Testament; underlying edition and redistribution terms unresolved. User explicitly requested broad reader integration on 2026-09-27. BFBS1905/CCBY4.0 NT terms do not apply.",
+      "rightsURL": "https://archive.org/details/peshitta-complete-bible-otnt",
+      "bookName": "Hosea"
+    },
+    {
+      "id": "peshitta-supplied-ot-jol",
+      "cache": "arc-supplied-4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88.xml",
+      "url": "https://dn760101.eu.archive.org/0/items/peshitta-complete-bible-otnt/Peshitta%20Complete%20Bible%20OTNT%20with%20vocalization%20-%20Zefania%20XML%20%28---Original---%20With%20most%20Apocrypha%29.xml.txt",
+      "format": "peshitta-supplied-ot",
+      "book": "JOL",
+      "sha256": "4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88",
+      "license": "User-supplied pointed Syriac Old Testament; underlying edition and redistribution terms unresolved. User explicitly requested broad reader integration on 2026-09-27. BFBS1905/CCBY4.0 NT terms do not apply.",
+      "rightsURL": "https://archive.org/details/peshitta-complete-bible-otnt",
+      "bookName": "Joel"
+    },
+    {
+      "id": "peshitta-supplied-ot-amo",
+      "cache": "arc-supplied-4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88.xml",
+      "url": "https://dn760101.eu.archive.org/0/items/peshitta-complete-bible-otnt/Peshitta%20Complete%20Bible%20OTNT%20with%20vocalization%20-%20Zefania%20XML%20%28---Original---%20With%20most%20Apocrypha%29.xml.txt",
+      "format": "peshitta-supplied-ot",
+      "book": "AMO",
+      "sha256": "4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88",
+      "license": "User-supplied pointed Syriac Old Testament; underlying edition and redistribution terms unresolved. User explicitly requested broad reader integration on 2026-09-27. BFBS1905/CCBY4.0 NT terms do not apply.",
+      "rightsURL": "https://archive.org/details/peshitta-complete-bible-otnt",
+      "bookName": "Amos"
+    },
+    {
+      "id": "peshitta-supplied-ot-oba",
+      "cache": "arc-supplied-4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88.xml",
+      "url": "https://dn760101.eu.archive.org/0/items/peshitta-complete-bible-otnt/Peshitta%20Complete%20Bible%20OTNT%20with%20vocalization%20-%20Zefania%20XML%20%28---Original---%20With%20most%20Apocrypha%29.xml.txt",
+      "format": "peshitta-supplied-ot",
+      "book": "OBA",
+      "sha256": "4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88",
+      "license": "User-supplied pointed Syriac Old Testament; underlying edition and redistribution terms unresolved. User explicitly requested broad reader integration on 2026-09-27. BFBS1905/CCBY4.0 NT terms do not apply.",
+      "rightsURL": "https://archive.org/details/peshitta-complete-bible-otnt",
+      "bookName": "Obadiah"
+    },
+    {
+      "id": "peshitta-supplied-ot-jon",
+      "cache": "arc-supplied-4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88.xml",
+      "url": "https://dn760101.eu.archive.org/0/items/peshitta-complete-bible-otnt/Peshitta%20Complete%20Bible%20OTNT%20with%20vocalization%20-%20Zefania%20XML%20%28---Original---%20With%20most%20Apocrypha%29.xml.txt",
+      "format": "peshitta-supplied-ot",
+      "book": "JON",
+      "sha256": "4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88",
+      "license": "User-supplied pointed Syriac Old Testament; underlying edition and redistribution terms unresolved. User explicitly requested broad reader integration on 2026-09-27. BFBS1905/CCBY4.0 NT terms do not apply.",
+      "rightsURL": "https://archive.org/details/peshitta-complete-bible-otnt",
+      "bookName": "Jonah"
+    },
+    {
+      "id": "peshitta-supplied-ot-mic",
+      "cache": "arc-supplied-4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88.xml",
+      "url": "https://dn760101.eu.archive.org/0/items/peshitta-complete-bible-otnt/Peshitta%20Complete%20Bible%20OTNT%20with%20vocalization%20-%20Zefania%20XML%20%28---Original---%20With%20most%20Apocrypha%29.xml.txt",
+      "format": "peshitta-supplied-ot",
+      "book": "MIC",
+      "sha256": "4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88",
+      "license": "User-supplied pointed Syriac Old Testament; underlying edition and redistribution terms unresolved. User explicitly requested broad reader integration on 2026-09-27. BFBS1905/CCBY4.0 NT terms do not apply.",
+      "rightsURL": "https://archive.org/details/peshitta-complete-bible-otnt",
+      "bookName": "Micah"
+    },
+    {
+      "id": "peshitta-supplied-ot-nam",
+      "cache": "arc-supplied-4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88.xml",
+      "url": "https://dn760101.eu.archive.org/0/items/peshitta-complete-bible-otnt/Peshitta%20Complete%20Bible%20OTNT%20with%20vocalization%20-%20Zefania%20XML%20%28---Original---%20With%20most%20Apocrypha%29.xml.txt",
+      "format": "peshitta-supplied-ot",
+      "book": "NAM",
+      "sha256": "4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88",
+      "license": "User-supplied pointed Syriac Old Testament; underlying edition and redistribution terms unresolved. User explicitly requested broad reader integration on 2026-09-27. BFBS1905/CCBY4.0 NT terms do not apply.",
+      "rightsURL": "https://archive.org/details/peshitta-complete-bible-otnt",
+      "bookName": "Nahum"
+    },
+    {
+      "id": "peshitta-supplied-ot-hab",
+      "cache": "arc-supplied-4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88.xml",
+      "url": "https://dn760101.eu.archive.org/0/items/peshitta-complete-bible-otnt/Peshitta%20Complete%20Bible%20OTNT%20with%20vocalization%20-%20Zefania%20XML%20%28---Original---%20With%20most%20Apocrypha%29.xml.txt",
+      "format": "peshitta-supplied-ot",
+      "book": "HAB",
+      "sha256": "4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88",
+      "license": "User-supplied pointed Syriac Old Testament; underlying edition and redistribution terms unresolved. User explicitly requested broad reader integration on 2026-09-27. BFBS1905/CCBY4.0 NT terms do not apply.",
+      "rightsURL": "https://archive.org/details/peshitta-complete-bible-otnt",
+      "bookName": "Habakkuk"
+    },
+    {
+      "id": "peshitta-supplied-ot-zep",
+      "cache": "arc-supplied-4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88.xml",
+      "url": "https://dn760101.eu.archive.org/0/items/peshitta-complete-bible-otnt/Peshitta%20Complete%20Bible%20OTNT%20with%20vocalization%20-%20Zefania%20XML%20%28---Original---%20With%20most%20Apocrypha%29.xml.txt",
+      "format": "peshitta-supplied-ot",
+      "book": "ZEP",
+      "sha256": "4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88",
+      "license": "User-supplied pointed Syriac Old Testament; underlying edition and redistribution terms unresolved. User explicitly requested broad reader integration on 2026-09-27. BFBS1905/CCBY4.0 NT terms do not apply.",
+      "rightsURL": "https://archive.org/details/peshitta-complete-bible-otnt",
+      "bookName": "Zephaniah"
+    },
+    {
+      "id": "peshitta-supplied-ot-hag",
+      "cache": "arc-supplied-4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88.xml",
+      "url": "https://dn760101.eu.archive.org/0/items/peshitta-complete-bible-otnt/Peshitta%20Complete%20Bible%20OTNT%20with%20vocalization%20-%20Zefania%20XML%20%28---Original---%20With%20most%20Apocrypha%29.xml.txt",
+      "format": "peshitta-supplied-ot",
+      "book": "HAG",
+      "sha256": "4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88",
+      "license": "User-supplied pointed Syriac Old Testament; underlying edition and redistribution terms unresolved. User explicitly requested broad reader integration on 2026-09-27. BFBS1905/CCBY4.0 NT terms do not apply.",
+      "rightsURL": "https://archive.org/details/peshitta-complete-bible-otnt",
+      "bookName": "Haggai"
+    },
+    {
+      "id": "peshitta-supplied-ot-zec",
+      "cache": "arc-supplied-4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88.xml",
+      "url": "https://dn760101.eu.archive.org/0/items/peshitta-complete-bible-otnt/Peshitta%20Complete%20Bible%20OTNT%20with%20vocalization%20-%20Zefania%20XML%20%28---Original---%20With%20most%20Apocrypha%29.xml.txt",
+      "format": "peshitta-supplied-ot",
+      "book": "ZEC",
+      "sha256": "4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88",
+      "license": "User-supplied pointed Syriac Old Testament; underlying edition and redistribution terms unresolved. User explicitly requested broad reader integration on 2026-09-27. BFBS1905/CCBY4.0 NT terms do not apply.",
+      "rightsURL": "https://archive.org/details/peshitta-complete-bible-otnt",
+      "bookName": "Zechariah"
+    },
+    {
+      "id": "peshitta-supplied-ot-mal",
+      "cache": "arc-supplied-4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88.xml",
+      "url": "https://dn760101.eu.archive.org/0/items/peshitta-complete-bible-otnt/Peshitta%20Complete%20Bible%20OTNT%20with%20vocalization%20-%20Zefania%20XML%20%28---Original---%20With%20most%20Apocrypha%29.xml.txt",
+      "format": "peshitta-supplied-ot",
+      "book": "MAL",
+      "sha256": "4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88",
+      "license": "User-supplied pointed Syriac Old Testament; underlying edition and redistribution terms unresolved. User explicitly requested broad reader integration on 2026-09-27. BFBS1905/CCBY4.0 NT terms do not apply.",
+      "rightsURL": "https://archive.org/details/peshitta-complete-bible-otnt",
+      "bookName": "Malachi"
+    },
+    {
+      "id": "peshitta-supplied-ot-wis",
+      "cache": "arc-supplied-4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88.xml",
+      "url": "https://dn760101.eu.archive.org/0/items/peshitta-complete-bible-otnt/Peshitta%20Complete%20Bible%20OTNT%20with%20vocalization%20-%20Zefania%20XML%20%28---Original---%20With%20most%20Apocrypha%29.xml.txt",
+      "format": "peshitta-supplied-ot",
+      "book": "WIS",
+      "sha256": "4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88",
+      "license": "User-supplied pointed Syriac Old Testament; underlying edition and redistribution terms unresolved. User explicitly requested broad reader integration on 2026-09-27. BFBS1905/CCBY4.0 NT terms do not apply.",
+      "rightsURL": "https://archive.org/details/peshitta-complete-bible-otnt",
+      "bookName": "Wisdom of Solomon"
+    },
+    {
+      "id": "peshitta-supplied-ot-sir",
+      "cache": "arc-supplied-4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88.xml",
+      "url": "https://dn760101.eu.archive.org/0/items/peshitta-complete-bible-otnt/Peshitta%20Complete%20Bible%20OTNT%20with%20vocalization%20-%20Zefania%20XML%20%28---Original---%20With%20most%20Apocrypha%29.xml.txt",
+      "format": "peshitta-supplied-ot",
+      "book": "SIR",
+      "sha256": "4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88",
+      "license": "User-supplied pointed Syriac Old Testament; underlying edition and redistribution terms unresolved. User explicitly requested broad reader integration on 2026-09-27. BFBS1905/CCBY4.0 NT terms do not apply.",
+      "rightsURL": "https://archive.org/details/peshitta-complete-bible-otnt",
+      "bookName": "Ecclesiaticus"
+    },
+    {
+      "id": "peshitta-supplied-ot-tob",
+      "cache": "arc-supplied-4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88.xml",
+      "url": "https://dn760101.eu.archive.org/0/items/peshitta-complete-bible-otnt/Peshitta%20Complete%20Bible%20OTNT%20with%20vocalization%20-%20Zefania%20XML%20%28---Original---%20With%20most%20Apocrypha%29.xml.txt",
+      "format": "peshitta-supplied-ot",
+      "book": "TOB",
+      "sha256": "4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88",
+      "license": "User-supplied pointed Syriac Old Testament; underlying edition and redistribution terms unresolved. User explicitly requested broad reader integration on 2026-09-27. BFBS1905/CCBY4.0 NT terms do not apply.",
+      "rightsURL": "https://archive.org/details/peshitta-complete-bible-otnt",
+      "bookName": "Tobit"
+    },
+    {
+      "id": "peshitta-supplied-ot-jdt",
+      "cache": "arc-supplied-4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88.xml",
+      "url": "https://dn760101.eu.archive.org/0/items/peshitta-complete-bible-otnt/Peshitta%20Complete%20Bible%20OTNT%20with%20vocalization%20-%20Zefania%20XML%20%28---Original---%20With%20most%20Apocrypha%29.xml.txt",
+      "format": "peshitta-supplied-ot",
+      "book": "JDT",
+      "sha256": "4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88",
+      "license": "User-supplied pointed Syriac Old Testament; underlying edition and redistribution terms unresolved. User explicitly requested broad reader integration on 2026-09-27. BFBS1905/CCBY4.0 NT terms do not apply.",
+      "rightsURL": "https://archive.org/details/peshitta-complete-bible-otnt",
+      "bookName": "Judith"
+    },
+    {
+      "id": "peshitta-supplied-ot-1ma",
+      "cache": "arc-supplied-4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88.xml",
+      "url": "https://dn760101.eu.archive.org/0/items/peshitta-complete-bible-otnt/Peshitta%20Complete%20Bible%20OTNT%20with%20vocalization%20-%20Zefania%20XML%20%28---Original---%20With%20most%20Apocrypha%29.xml.txt",
+      "format": "peshitta-supplied-ot",
+      "book": "1MA",
+      "sha256": "4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88",
+      "license": "User-supplied pointed Syriac Old Testament; underlying edition and redistribution terms unresolved. User explicitly requested broad reader integration on 2026-09-27. BFBS1905/CCBY4.0 NT terms do not apply.",
+      "rightsURL": "https://archive.org/details/peshitta-complete-bible-otnt",
+      "bookName": "1 Maccabees"
+    },
+    {
+      "id": "peshitta-supplied-ot-2ma",
+      "cache": "arc-supplied-4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88.xml",
+      "url": "https://dn760101.eu.archive.org/0/items/peshitta-complete-bible-otnt/Peshitta%20Complete%20Bible%20OTNT%20with%20vocalization%20-%20Zefania%20XML%20%28---Original---%20With%20most%20Apocrypha%29.xml.txt",
+      "format": "peshitta-supplied-ot",
+      "book": "2MA",
+      "sha256": "4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88",
+      "license": "User-supplied pointed Syriac Old Testament; underlying edition and redistribution terms unresolved. User explicitly requested broad reader integration on 2026-09-27. BFBS1905/CCBY4.0 NT terms do not apply.",
+      "rightsURL": "https://archive.org/details/peshitta-complete-bible-otnt",
+      "bookName": "2 Maccabees"
     },
     {
       "id": "grcbrent",
@@ -7720,6 +8205,28 @@
       "sha256": "dcd97e62bab7ff629dd6c5201d1b7ff6237254c665a79535f622e31e72fc4b50",
       "license": "Public domain",
       "rightsURL": "https://ebible.org/grcbrent/copyright.htm"
+    },
+    {
+      "id": "old-jesuit-arabic-1897-psalm-readings",
+      "path": "Shared/content/arabic-jesuit-1897-readings.json",
+      "url": "https://archive.org/details/AlKitabAlMoqadas",
+      "format": "reviewed-arabic-extension",
+      "editionId": "jesuit-arabic-1897",
+      "sha256": "f68ada5fa1de23b37df8dc04b36b29ef4d8ca480454030ec4eb9c164e5c78ec5",
+      "license": "Public-domain 1897 Jesuit biblical text; independently reviewed visual transcription.",
+      "rightsURL": "https://archive.org/details/AlKitabAlMoqadas",
+      "review": "222 visually transcribed verses, independently checked against the pinned printing; 213 explicit source/Standard boundary units. No OCR import or modern revision."
+    },
+    {
+      "id": "old-jesuit-arabic-1897-gospel-readings",
+      "path": "Shared/content/arabic-jesuit-1897-gospel-readings.json",
+      "url": "https://archive.org/details/AlKitabAlMoqadas",
+      "format": "reviewed-arabic-extension",
+      "editionId": "jesuit-arabic-1897",
+      "sha256": "27cfb56e8d5ba75995e6634db631dccc0a17a63a66173dcd26bf65eec252d608",
+      "license": "Public-domain 1897 Jesuit biblical text; independently reviewed visual transcription.",
+      "rightsURL": "https://archive.org/details/AlKitabAlMoqadas",
+      "review": "204 visually transcribed verses, independently checked against the pinned printing; 203 explicit source/Standard boundary units. No OCR import or modern revision."
     }
   ],
   "editions": [
@@ -10212,6 +10719,12 @@
       "sources": [
         {
           "id": "old-jesuit-arabic-1897"
+        },
+        {
+          "id": "old-jesuit-arabic-1897-psalm-readings"
+        },
+        {
+          "id": "old-jesuit-arabic-1897-gospel-readings"
         }
       ]
     },
@@ -10219,7 +10732,7 @@
       "id": "peshitta-1905",
       "languageCode": "arc",
       "name": "Peshitta — ܦܫܝܛܬܐ / פשיטתא",
-      "attribution": "New Testament: BFBS 1905, G. H. Gwilliam, J. Pinkerton and John Gwynn; Digital Syriac Corpus, Syriac transcription George A. Kiraz, TEI edition James E. Walters, CC BY 4.0. Hebrew-script projection: Erez’s supplied converter. Old Testament: only nine previously approved Isaiah verses from the supplied Internet Archive XML; edition and rights unresolved. Other OT readings and unreviewed source boundaries are unavailable.",
+      "attribution": "New Testament: BFBS 1905, G. H. Gwilliam, J. Pinkerton and John Gwynn; Digital Syriac Corpus, Syriac transcription George A. Kiraz, TEI edition James E. Walters, CC BY 4.0. Hebrew-script projection: Erez’s supplied converter. Old Testament: supplied pointed Syriac Internet Archive XML; underlying edition and redistribution terms unresolved. Damaged chapters and unresolved numbering or script boundaries are unavailable.",
       "sourceURL": "https://syriaccorpus.org/100",
       "textScript": "Hebr",
       "transliteratedTextScript": "Syrc",
@@ -10308,7 +10821,139 @@
           "id": "peshitta-1905-rev"
         },
         {
-          "id": "peshitta-supplied-isaiah-nine"
+          "id": "peshitta-supplied-ot-gen"
+        },
+        {
+          "id": "peshitta-supplied-ot-exo"
+        },
+        {
+          "id": "peshitta-supplied-ot-lev"
+        },
+        {
+          "id": "peshitta-supplied-ot-num"
+        },
+        {
+          "id": "peshitta-supplied-ot-deu"
+        },
+        {
+          "id": "peshitta-supplied-ot-jos"
+        },
+        {
+          "id": "peshitta-supplied-ot-jdg"
+        },
+        {
+          "id": "peshitta-supplied-ot-rut"
+        },
+        {
+          "id": "peshitta-supplied-ot-1sa"
+        },
+        {
+          "id": "peshitta-supplied-ot-2sa"
+        },
+        {
+          "id": "peshitta-supplied-ot-1ki"
+        },
+        {
+          "id": "peshitta-supplied-ot-2ki"
+        },
+        {
+          "id": "peshitta-supplied-ot-1ch"
+        },
+        {
+          "id": "peshitta-supplied-ot-2ch"
+        },
+        {
+          "id": "peshitta-supplied-ot-ezr"
+        },
+        {
+          "id": "peshitta-supplied-ot-neh"
+        },
+        {
+          "id": "peshitta-supplied-ot-est"
+        },
+        {
+          "id": "peshitta-supplied-ot-job"
+        },
+        {
+          "id": "peshitta-supplied-ot-psa"
+        },
+        {
+          "id": "peshitta-supplied-ot-pro"
+        },
+        {
+          "id": "peshitta-supplied-ot-ecc"
+        },
+        {
+          "id": "peshitta-supplied-ot-sng"
+        },
+        {
+          "id": "peshitta-supplied-ot-isa"
+        },
+        {
+          "id": "peshitta-supplied-ot-jer"
+        },
+        {
+          "id": "peshitta-supplied-ot-lam"
+        },
+        {
+          "id": "peshitta-supplied-ot-ezk"
+        },
+        {
+          "id": "peshitta-supplied-ot-dan"
+        },
+        {
+          "id": "peshitta-supplied-ot-hos"
+        },
+        {
+          "id": "peshitta-supplied-ot-jol"
+        },
+        {
+          "id": "peshitta-supplied-ot-amo"
+        },
+        {
+          "id": "peshitta-supplied-ot-oba"
+        },
+        {
+          "id": "peshitta-supplied-ot-jon"
+        },
+        {
+          "id": "peshitta-supplied-ot-mic"
+        },
+        {
+          "id": "peshitta-supplied-ot-nam"
+        },
+        {
+          "id": "peshitta-supplied-ot-hab"
+        },
+        {
+          "id": "peshitta-supplied-ot-zep"
+        },
+        {
+          "id": "peshitta-supplied-ot-hag"
+        },
+        {
+          "id": "peshitta-supplied-ot-zec"
+        },
+        {
+          "id": "peshitta-supplied-ot-mal"
+        },
+        {
+          "id": "peshitta-supplied-ot-wis"
+        },
+        {
+          "id": "peshitta-supplied-ot-sir"
+        },
+        {
+          "id": "peshitta-supplied-ot-tob"
+        },
+        {
+          "id": "peshitta-supplied-ot-jdt"
+        },
+        {
+          "id": "peshitta-supplied-ot-1ma"
+        },
+        {
+          "id": "peshitta-supplied-ot-2ma"
         }
       ]
     },

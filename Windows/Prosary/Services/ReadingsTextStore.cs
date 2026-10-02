@@ -1,4 +1,5 @@
 using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace Prosary.Services;
 
@@ -10,13 +11,38 @@ public sealed record ScriptureEdition(string Id, string LanguageCode, string Nam
         && (uri.Scheme == Uri.UriSchemeHttps || uri.Scheme == Uri.UriSchemeHttp) ? uri : null;
 }
 
-public sealed record ScriptureVerse(int Chapter, int Verse, string Text, string? TransliteratedText = null)
+[JsonConverter(typeof(ScriptureVerseConverter))]
+public sealed record ScriptureVerse(int Chapter, int Verse, string Text, string? TransliteratedText = null, int? EndVerse = null,
+    [property: JsonConverter(typeof(ScriptureSourceNotesConverter))]
+    [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)] List<ScriptureSourceNote>? SourceNotes = null)
 {
+    public string VerseLabel => EndVerse is { } end && end > Verse ? $"{Verse}–{end}" : Verse.ToString(System.Globalization.CultureInfo.InvariantCulture);
     public string DisplayedText(ScriptureEdition? edition, string script) =>
         edition?.HasAramaicScripts == true && script == edition.TransliteratedTextScript
             ? TransliteratedText ?? "" : Text;
 }
-public sealed record ScripturePassage(IReadOnlyList<ScriptureVerse> Verses, bool IncludesWholeVerses = false);
+public sealed record ScripturePassage(IReadOnlyList<ScriptureVerse> Verses, bool IncludesWholeVerses = false,
+    ScripturePassageSource? Source = null)
+{
+    public IReadOnlyList<BibleDisplayChapter>? SourceDisplays(ScriptureEdition edition)
+    {
+        if (Source?.ContentBlocks is not { } blocks || Verses.Count == 0) return null;
+        var chapters = Verses.GroupBy(row => row.Chapter).ToDictionary(group => group.Key,
+            group => new BibleChapterText(3, edition.Id, Source.Book, group.Key, group.ToList()));
+        var container = new BibleChapterText(3, edition.Id, Source.Book, Verses[0].Chapter, Verses.ToList()) { ContentBlocks = blocks };
+        var resolved = BibleSourceStructure.Resolve(container, chapters);
+        var runs = new List<(int Number, List<BibleDisplayUnit> Units)>();
+        foreach (var unit in resolved)
+        {
+            var number = unit.Primary?.Chapter ?? (runs.Count > 0 ? runs[^1].Number : Verses[0].Chapter);
+            if (runs.Count == 0 || runs[^1].Number != number) runs.Add((number, []));
+            runs[^1].Units.Add(unit);
+        }
+        return runs.Select(run => new BibleDisplayChapter(
+            new BibleChapterText(3, edition.Id, Source.Book, run.Number,
+                run.Units.Where(unit => unit.Primary is not null).Select(unit => unit.Primary!).ToList()), run.Units)).ToList();
+    }
+}
 
 /// <summary>Reads pre-resolved, credited passages. Runtime code never guesses Bible references.</summary>
 public sealed class ReadingsTextStore
@@ -27,7 +53,7 @@ public sealed class ReadingsTextStore
 
     private sealed record Corpus(int SchemaVersion, List<ScriptureEdition>? Editions,
         Dictionary<string, Dictionary<string, List<ScriptureVerse>>>? Passages,
-        HashSet<string>? WholeVersePassages);
+        HashSet<string>? WholeVersePassages, JsonElement PassageSources = default);
 
     private static readonly JsonSerializerOptions Options = new(JsonSerializerDefaults.Web);
     private readonly Lazy<Corpus> _corpus;
@@ -46,6 +72,7 @@ public sealed class ReadingsTextStore
                     edition is not null && !string.IsNullOrWhiteSpace(edition.Id) && !string.IsNullOrWhiteSpace(edition.LanguageCode)
                     && !string.IsNullOrWhiteSpace(edition.Name) && !string.IsNullOrWhiteSpace(edition.Attribution)
                     && edition.SourceUri is not null).DistinctBy(edition => edition.Id).ToList();
+                if (!ValidSourceTable(corpus, editions)) return Empty;
                 return corpus with { Editions = editions, Passages = corpus.Passages ?? [], WholeVersePassages = corpus.WholeVersePassages ?? [] };
             }
             catch (Exception error) when (error is IOException or UnauthorizedAccessException or JsonException or NotSupportedException)
@@ -78,11 +105,50 @@ public sealed class ReadingsTextStore
             || versions is null || !versions.TryGetValue(editionId, out var verses) || verses is null || verses.Count == 0)
             return null;
         // A damaged row must not display a silently shortened or partially missing passage.
-        var requiresBothScripts = Editions.First(edition => edition.Id == editionId).HasAramaicScripts;
-        return verses.All(verse => verse is not null && verse.Chapter > 0 && verse.Verse > 0 && !string.IsNullOrWhiteSpace(verse.Text)
-            && (!requiresBothScripts || !string.IsNullOrWhiteSpace(verse.TransliteratedText)))
-            ? new ScripturePassage(verses, _corpus.Value.WholeVersePassages?.Contains($"{scope}|{rawCitation}") == true)
-            : null;
+        var edition = Editions.First(edition => edition.Id == editionId);
+        var requiresBothScripts = edition.HasAramaicScripts;
+        var hasScriptMetadata = edition.TextScript is not null || edition.TransliteratedTextScript is not null;
+        var noteIds = new HashSet<string>(StringComparer.Ordinal);
+        if (!verses.All(verse => verse is not null && verse.Chapter > 0 && verse.Verse > 0 && (verse.EndVerse is null || verse.EndVerse >= verse.Verse) && !string.IsNullOrWhiteSpace(verse.Text)
+            && (!requiresBothScripts || !string.IsNullOrWhiteSpace(verse.TransliteratedText))
+            && ScriptureSourceNote.ValidForVerse(verse, hasScriptMetadata, noteIds))) return null;
+        ScripturePassageSource? source = null;
+        var key = $"{scope}|{rawCitation}";
+        if (_corpus.Value.PassageSources.ValueKind == JsonValueKind.Object
+            && _corpus.Value.PassageSources.TryGetProperty(key, out var sources)
+            && sources.TryGetProperty(editionId, out var rawSource))
+        {
+            try
+            {
+                source = ScripturePassageSource.Read(rawSource, Options);
+                if (!source.ValidFor(verses, edition, noteIds)) return null;
+            }
+            catch (Exception error) when (error is JsonException or InvalidDataException or NotSupportedException)
+            {
+                return null;
+            }
+        }
+        return new ScripturePassage(verses, _corpus.Value.WholeVersePassages?.Contains(key) == true, source);
+    }
+
+    private static bool ValidSourceTable(Corpus corpus, IReadOnlyList<ScriptureEdition> editions)
+    {
+        var table = corpus.PassageSources;
+        if (table.ValueKind == JsonValueKind.Undefined) return true;
+        if (table.ValueKind != JsonValueKind.Object) return false;
+        var entries = table.EnumerateObject().ToList();
+        if (entries.Count == 0 || entries.Select(entry => entry.Name).Distinct().Count() != entries.Count) return false;
+        foreach (var entry in entries)
+        {
+            if (!(entry.Name.StartsWith("daily|", StringComparison.Ordinal) || entry.Name.StartsWith("torah|", StringComparison.Ordinal))
+                || string.IsNullOrWhiteSpace(entry.Name[6..])
+                || entry.Value.ValueKind != JsonValueKind.Object
+                || corpus.Passages?.TryGetValue(entry.Name, out var versions) != true || versions is null) return false;
+            var sources = entry.Value.EnumerateObject().ToList();
+            if (sources.Count == 0 || sources.Select(source => source.Name).Distinct().Count() != sources.Count
+                || sources.Any(source => !versions.ContainsKey(source.Name) || !editions.Any(edition => edition.Id == source.Name))) return false;
+        }
+        return true;
     }
 
     public static string NormalizeLanguage(string value) => value.ToLowerInvariant().Split('-', '_')[0] switch

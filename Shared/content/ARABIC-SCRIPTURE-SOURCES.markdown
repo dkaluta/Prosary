@@ -47,15 +47,42 @@ Luke 1:32–33 and 22:43–44 divide their text differently in this printing.
 
 The O Antiphon additions were independently checked against PDF pages 293
 (Isaiah 7:14), 294 (9:2), 295 (11:2–5,10), 297 (22:22), 299 (28:16), and 432
-(Luke 1:46–55). The second reading caught and corrected `بفكر قلوبهم` in Luke
-1:51 and `لن يتزعزع` in Isaiah 28:16. All eight complete passage units are
+(Luke 1:46–55). The exhaustive 27 September reread supersedes the earlier
+misreading of Luke 1:51: the print has `بأفكار قلوبهم`. Isaiah 28:16 retains
+`لن يتزعزع`. All eight complete passage units are
 recorded in the source. The antiphon prayer bodies retain separate provenance
 and are not created from these readings.
+
+## Reader expansion, 27 September 2026
+
+The original 239-verse prayer transcription has ten scan-confirmed wording
+corrections from the exhaustive review below. Two reader-only files add
+426 verses from the same printing, for **665 verses** in the offline reading source:
+
+- `arabic-jesuit-1897-gospel-readings.json`: complete Luke 6, 10, 11 and 12
+  (204 verses), PDF pages 434–435 and 437–439.
+- `arabic-jesuit-1897-readings.json`: 22 complete printed Psalms (222 verses),
+  with each source chapter, printed verse label and PDF page retained.
+
+Both additions follow the same visual transcription and independent second-read
+policy. Their explicit source/Standard boundary pairs retain differences such as
+printed Psalm 22 = Standard Psalm 23 and Luke 6:17–18's shared clause group.
+A request for only part of a grouped unit remains unavailable; it is never
+silently widened. The source-review documents beside each extension describe
+all nonidentity boundaries. This remains a partial Arabic Bible, with no text
+substituted from modern Jesuit, Van Dyck or machine-generated wording.
+
+`../tools/arabic-reading-extensions.json` contains only references, PDF pages,
+word counts, per-verse hashes and file pins. It lets the reference mapper work
+without reading Scripture words; the passage builder separately checks those
+words against the pins. The original prayer importer still uses only the
+original canonical file and does not incorporate these reader extensions.
 
 ## Updating the content
 
 1. Verify any new passage against the printed source; record its PDF pages and
-   complete passage unit in `arabic-jesuit-1897.json`.
+   complete passage unit in `arabic-jesuit-1897.json`, or a reader extension with
+   explicit source/Standard boundary pairs and its independent source review.
 2. Keep the explicit replacement inventory in
    `../tools/arabic-scripture-passages.json` consistent with the cited fields.
 3. Run `uv run --script Shared/tools/import-arabic-scripture.py` from the repository
@@ -65,8 +92,11 @@ and are not created from these readings.
    `test-asset-deduplication.py` and `audit-prayer-coverage.py`.
 5. After reviewed source changes, update its checksum in
    `Shared/tools/reading-text-sources.json`, then regenerate and sync offline
-   readings with `build-reading-texts.py --sync` and run the reading tests.
+   the text-free extension review when applicable; rebuild `build-edition-mappings.py`,
+   then `build-reading-texts.py --sync`, and run the reading tests.
 
 About credits identify the old 1897 Jesuit edition in all eight interface
 languages. The separate Dar el-Machreq credit for localized Bible **book names**
 remains: changing the verse edition does not change that metadata source.
+
+The [complete 27 September audit](ARABIC-FULL-AUDIT.markdown) records all 665 verses and supersedes earlier wording-review claims.

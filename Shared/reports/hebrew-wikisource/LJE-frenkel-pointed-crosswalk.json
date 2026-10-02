@@ -1,0 +1,2296 @@
+{
+  "schemaVersion": 1,
+  "book": "LJE",
+  "date": "2026-10-02",
+  "status": "complete pointed-source and Brenton-boundary review with one disclosed unreadable dagesh",
+  "wordingPolicy": "Frenkel 1863 print controls every Hebrew word, spelling, point and punctuation mark. Unicode NFC only; page joins insert one space except after maqaf. Brenton controls the 73 verse divisions. No Hartom text or divisions used.",
+  "scanSHA256": "e67bcdad0d6d8e528f79bf8e5ed403c13c1cd220a19cc75038728a0572136345",
+  "pageReviewInputs": [
+    {
+      "file": "reviewed-pages113-114.json",
+      "sha256": "36240cda412b7655c65148add4c3a4827135d5b1e139edc29ca3bb6c771bebb0"
+    },
+    {
+      "file": "reviewed-pages115-116.json",
+      "sha256": "4fd7882cf4f49619efc5ac372afc9910093d9f49ab84e36f111c4bb16877b925"
+    }
+  ],
+  "pageReviewReports": [
+    "LJE-frenkel-pages113-114-review.json",
+    "LJE-frenkel-pages115-116-review.json"
+  ],
+  "boundarySource": "LJE-brenton-boundary-source.json",
+  "sourceSectionCount": 79,
+  "targetVerseCount": 73,
+  "sourceSections": [
+    {
+      "sourceOrdinal": 1,
+      "sourceLabel": "א",
+      "text": "וְזֹאת מִשְׁנֵה הַסֵּפֶר אֲשֶׁר שָׁלַח יִרְמְיָהוּ לַגּוֹלִים אֲשֶׁר הֶגְלָם נְבוּכַדְנֶצַר מֶלֶךְ בָּבֶל וַיַּגֵּד לָהֶם אֶת־אֲשֶׁר צִוָּהוּ יְיָ׃",
+      "pageSpans": [
+        {
+          "sourcePage": 113,
+          "start": 0,
+          "end": 147
+        }
+      ],
+      "textSHA256": "5c677f8000ac974e877fe9bb396200510bcac35d86d701b2fa1b499b3b94d50b"
+    },
+    {
+      "sourceOrdinal": 2,
+      "sourceLabel": "ב",
+      "text": "עַל־חַטֹּאתֵיכֶם לַיְיָ תִּגְלוּ בָּבֶלָה עַל־יְדֵי נְבוּכַדְנֶצַר מֶלֶךְ בָּבֶל׃",
+      "pageSpans": [
+        {
+          "sourcePage": 113,
+          "start": 0,
+          "end": 81
+        }
+      ],
+      "textSHA256": "467b031ae4120d64d29362d188e74baebeaf1f0fd1bc10052cc005a7af62a54b"
+    },
+    {
+      "sourceOrdinal": 3,
+      "sourceLabel": "ג",
+      "text": "וִישַׁבְתֶּם שָׁמָּה יָמִים רַבִּים עַד דּוֹר הָעֲשִׂירִי וְאַחֲרֵי־כֵן אוֹצִיאֲכֶם מִשָּׁם בְּשָׁלוֹם׃",
+      "pageSpans": [
+        {
+          "sourcePage": 113,
+          "start": 0,
+          "end": 103
+        }
+      ],
+      "textSHA256": "6c64b1005bb4c86bc203153fa6b4c7937e8ef64958cb598791e346d09b01c9af"
+    },
+    {
+      "sourceOrdinal": 4,
+      "sourceLabel": "ד",
+      "text": "וְהָיָה בְּשִׁבְתְּכֶם בְּבָבֶל וּרְאִיתֶם אֶת־יֹשְׁבֶיהָ נֹשְׂאִים פְּסִילֵי זָהָב וָכֶסֶף עַל־כִּתְפָם אֲשֶׁר הַגּוֹיִם יְרֵאִים אֹתָם׃",
+      "pageSpans": [
+        {
+          "sourcePage": 113,
+          "start": 0,
+          "end": 137
+        }
+      ],
+      "textSHA256": "d1dd097165c61db3539bd4f519fc88ab92be8b93c59261b36d18595d685333ff"
+    },
+    {
+      "sourceOrdinal": 5,
+      "sourceLabel": "ה",
+      "text": "הִשָּׁמְרוּ לָכֶם מֵעֲשֹׂת כְּמַעֲשֵׂיהֶם וּמִיְרוֹא אֶת־אֱלֹהֵיהֶם׃",
+      "pageSpans": [
+        {
+          "sourcePage": 113,
+          "start": 0,
+          "end": 68
+        }
+      ],
+      "textSHA256": "99b48442dbe5d2e65b559c8e579db1216aba5bcfc9df0a82500148c721f83281"
+    },
+    {
+      "sourceOrdinal": 6,
+      "sourceLabel": "ו",
+      "text": "וְכִי תִרְאוּ אֶת־הָעָם הֹלְכִים לִפְנֵיהֶם וְאַחֲרֵיהֶם וּמִשְׁתַּחֲוִים לָהֶם אִמְרוּ בִלְבַבְכֶם אֶת־יְיָ אֱלֹהִים נַעֲבֹד׃",
+      "pageSpans": [
+        {
+          "sourcePage": 113,
+          "start": 0,
+          "end": 126
+        }
+      ],
+      "textSHA256": "1e866105d9bc22aa2e64adba53985987d7dca50aeeadb019e01f171aa0325fa7"
+    },
+    {
+      "sourceOrdinal": 7,
+      "sourceLabel": "ז",
+      "text": "כִּי אֶת־מַלְאָכִי אֶשְׁלַח אִתְּכֶם וְדָרַשְׁתִּי אֶת־נַפְשֹׁתֵיכֶם׃",
+      "pageSpans": [
+        {
+          "sourcePage": 113,
+          "start": 0,
+          "end": 69
+        }
+      ],
+      "textSHA256": "d3e0dadfb3da3f1ccaad7505a83e50ac1e2b3e7b85eab9e5c10a00e9c4ff33c7"
+    },
+    {
+      "sourceOrdinal": 8,
+      "sourceLabel": "ח",
+      "text": "הִנֵּה לְשׁוֹן אֱלֹהֵיהֶם מַעֲשֵׂה יְדֵי־חָרָשׁ הוּא פְּסָלָם וַיְחַפֵּאם זָהָב וָכֶסֶף אַךְ לֹא יֶהְגּוּ בִּגְרוֹנָם׃",
+      "pageSpans": [
+        {
+          "sourcePage": 113,
+          "start": 0,
+          "end": 118
+        }
+      ],
+      "textSHA256": "a0ca8d523aeb7c0262a7e045a51c01ffcac9ded00f8dd4dda67766de21e6fdec"
+    },
+    {
+      "sourceOrdinal": 9,
+      "sourceLabel": "ט",
+      "text": "כִּבְתוּלָה תַּעֲדֶה כֵלֶיהָ כֵּן יַעֲדֵם עֲדִי זָהָב וְיָשִׂם עֲטָרָה עַל רֹאשָׁם׃",
+      "pageSpans": [
+        {
+          "sourcePage": 113,
+          "start": 0,
+          "end": 83
+        }
+      ],
+      "textSHA256": "0e94c19499021ed6f7e4776c44acd6c7c7ab668b37cd92400841be139d2b4d45"
+    },
+    {
+      "sourceOrdinal": 10,
+      "sourceLabel": "י",
+      "text": "יֵשׁ אֲשֶׁר כֹּהֲנֵיהֶם גֹּנְבִים אֶת־הַכֶּסֶף וְאֶת־הַזָּהָב מֵעֲלֵיהֶם וּמִתְעַנְּגִים־בּוֹ עִם נָשִׁים זֹנוֹת בְּבֵית־הַקְּדֵשָׁה׃",
+      "pageSpans": [
+        {
+          "sourcePage": 113,
+          "start": 0,
+          "end": 133
+        }
+      ],
+      "textSHA256": "49f956844d1e129db6c4535fe795400a733bbb8a5a42f1b7b81db2382cb32e0f"
+    },
+    {
+      "sourceOrdinal": 11,
+      "sourceLabel": "יא",
+      "text": "גַּם יַלְבִּישׁוּ אֱלִילֵיהֶם זָהָב וָכֶסֶף וָעֵץ כָּאֲנָשִׁים וְאֵין לְאֵל יָדָם לְהִשָּׁמֵר מִתֹּלֵעָה וּמֵעָשׁ׃",
+      "pageSpans": [
+        {
+          "sourcePage": 113,
+          "start": 0,
+          "end": 114
+        }
+      ],
+      "textSHA256": "9fb92607e45b9c821a0e3f0b7f5a266ee9f90f877feea157179df1a61db629bf"
+    },
+    {
+      "sourceOrdinal": 12,
+      "sourceLabel": "יב",
+      "text": "וְכִי יַלְבִּישׁוּם שָׁנִי יִקְחוּ יָעֶה לְהָסִיר הָאָבָק מֵעַל־פְּנֵיהֶם׃",
+      "pageSpans": [
+        {
+          "sourcePage": 113,
+          "start": 0,
+          "end": 74
+        }
+      ],
+      "textSHA256": "b558dbfc583ba5c8dddae6a36832e7d7421facf9c24a8a4b5547a085593ecede"
+    },
+    {
+      "sourceOrdinal": 13,
+      "sourceLabel": "יג",
+      "text": "וְיֵשׁ אֲשֶׁר שֵׁבֶט בְּיָדוֹ כְּשׁוֹפֵט אַךְ לֹא יְיַסֵּר אִישׁ אֲשֶׁר יִמְעַל־בּוֹ מָעַל׃",
+      "pageSpans": [
+        {
+          "sourcePage": 113,
+          "start": 0,
+          "end": 91
+        }
+      ],
+      "textSHA256": "ee965c4e32058cd821733848fc77a58f1f0dea39b1be60f55b0c4975fe4e73f5"
+    },
+    {
+      "sourceOrdinal": 14,
+      "sourceLabel": "יד",
+      "text": "גַּם־חֶרֶב גַּם־גַּרְזֶן בִּימִינוֹ וִיכֹלֶת אֵין לְהִתְיַצֵּב בַּמִּלְחָמָה אוֹ מִפְּנֵי הַשּׁוֹדֵד׃",
+      "pageSpans": [
+        {
+          "sourcePage": 113,
+          "start": 0,
+          "end": 101
+        }
+      ],
+      "textSHA256": "f60e4995788eba358e0cee24eee587888d8502bed3c3ec73d746fd76268e2bed"
+    },
+    {
+      "sourceOrdinal": 15,
+      "sourceLabel": "טו",
+      "text": "בְּזֹאת תֵּדְעוּן כִּי לֹא אֱלֹהִים הֵמָּה לָכֵן אַל־תִּירְאוּ מִפְּנֵיהֶם׃",
+      "pageSpans": [
+        {
+          "sourcePage": 113,
+          "start": 0,
+          "end": 75
+        }
+      ],
+      "textSHA256": "697b04ee493ded04815f8c99f4230cec10b45f6163134c8ca0126f439e0769e5"
+    },
+    {
+      "sourceOrdinal": 16,
+      "sourceLabel": "טז",
+      "text": "כִּכְלִי יוֹצֵר אֲשֶׁר יַעֲבֹד־בּוֹ הָאָדָם וְנִשְׁבַּר וְלֹא יוֹעִיל כֵּן אֱלִילֵיהֶם׃",
+      "pageSpans": [
+        {
+          "sourcePage": 113,
+          "start": 0,
+          "end": 74
+        },
+        {
+          "sourcePage": 114,
+          "start": 75,
+          "end": 87
+        }
+      ],
+      "textSHA256": "9ebc04a4174c8e579c5bb834fe220659804ec50cd56a2a2472548cc7905aa97b"
+    },
+    {
+      "sourceOrdinal": 17,
+      "sourceLabel": "יז",
+      "text": "כִּי־יֵשְׁבוּ בְּבֵית מִשְׁמַרְתָּם עֵינֵיהֶם מְלֵאוֹת אָבָק וְעָפָר מֵרַגְלֵי עֹבְדֵיהֶם׃",
+      "pageSpans": [
+        {
+          "sourcePage": 114,
+          "start": 0,
+          "end": 90
+        }
+      ],
+      "textSHA256": "aaab311e4bbbc529dda299144b94ba65cb54deb15df9f8e643fe3050509cefe9"
+    },
+    {
+      "sourceOrdinal": 18,
+      "sourceLabel": "יח",
+      "text": "הַכֹּהֲנִים סֹגְרִים אֶת־הַפֶּסֶל בְּהֵיכָלוֹ בְּמִסְגַּר דְּלָתַיִם וּבְרִיחַ לְבַל־יִגָּנֵב׃",
+      "pageSpans": [
+        {
+          "sourcePage": 114,
+          "start": 0,
+          "end": 94
+        }
+      ],
+      "textSHA256": "d941817e9ff03192fb26b518b60698b86b6af58894bb78bbd5ac519813a314ef"
+    },
+    {
+      "sourceOrdinal": 19,
+      "sourceLabel": "יט",
+      "text": "כְּאִישׁ אָסוּר בְּבֵית הַסֹּהַר אֲשֶׁר שָׁלַח יָדוֹ בַּמֶּלֶךְ וְנִשְׁפַּט עָלָיו מִשְׁפַּט מָוֶת׃",
+      "pageSpans": [
+        {
+          "sourcePage": 114,
+          "start": 0,
+          "end": 99
+        }
+      ],
+      "textSHA256": "21938c2041d42412d3b3fc27f8df7992bc860b8e3b41e3eb7613c2ef07b302ea"
+    },
+    {
+      "sourceOrdinal": 20,
+      "sourceLabel": "כ",
+      "text": "נֵרוֹת רַבּוֹת יַדְלִיקוּ לִפְנֵיהֶם וְרַבּוֹת מֵאֲשֶׁר יַדְלִיקוּ לְנַפְשָׁם וּבְכָל־זֹאת לֹא יִרְאוּ כִּי כְקוֹרֵי הַבַּיִת הֵמָּה׃",
+      "pageSpans": [
+        {
+          "sourcePage": 114,
+          "start": 0,
+          "end": 133
+        }
+      ],
+      "textSHA256": "f6b42148402ecbccf62801869d1760386582b872771ede9d19b688a909147341"
+    },
+    {
+      "sourceOrdinal": 21,
+      "sourceLabel": "כא",
+      "text": "הַתּוֹלָעִים זֹחֲלֵי־עָפָר יֹאכְלוּ אוֹתָם וְאֶת־לְבוּשָׁם וְהֵם לֹא־יֵדְעוּ וְלֹא־יָבִינוּ־בוֹ׃",
+      "pageSpans": [
+        {
+          "sourcePage": 114,
+          "start": 0,
+          "end": 96
+        }
+      ],
+      "textSHA256": "61aa6c1ce83eca48401cb8291d6cd8df1143a36eefb3a9c9d90878432df9860c"
+    },
+    {
+      "sourceOrdinal": 22,
+      "sourceLabel": "כב",
+      "text": "חָשַׁךְ מִשְׁחוֹר תֹּאָרָם מֵעֲשַׁן הַבָּיִת׃",
+      "pageSpans": [
+        {
+          "sourcePage": 114,
+          "start": 0,
+          "end": 45
+        }
+      ],
+      "textSHA256": "8e4eaf826905029fed3c3ef0c76510588118c5fb7a7e1a85403fbb8904bdea9a"
+    },
+    {
+      "sourceOrdinal": 23,
+      "sourceLabel": "כג",
+      "text": "הַיַּנְשׁוּף וְהָעֲטַלֵּף וְכָל־עוֹף־כָּנָף יִרְבְּצוּ עַל־רֹאשָׁם וְגַם הָאִיִּים יַחֲנוּ שָׁם׃",
+      "pageSpans": [
+        {
+          "sourcePage": 114,
+          "start": 0,
+          "end": 96
+        }
+      ],
+      "textSHA256": "2bae8245e2b97558031179368a9d75d5e4f0402ef5bb9efeda94e7282090b7c1"
+    },
+    {
+      "sourceOrdinal": 24,
+      "sourceLabel": "כד",
+      "text": "דְּעוּ אֵיפוֹא כִּי לֹא אֱלֹהִים הֵמָּה לָכֵן אַל־תִּירְאוּ מִפְּנֵיהֶם׃",
+      "pageSpans": [
+        {
+          "sourcePage": 114,
+          "start": 0,
+          "end": 72
+        }
+      ],
+      "textSHA256": "0397d2519c77491209ab69d7a2fc28975edca9aca5616bea073a6e82422ecdcb"
+    },
+    {
+      "sourceOrdinal": 25,
+      "sourceLabel": "כה",
+      "text": "הַזָּהָב אֲשֶׁר עֲלֵיהֶם לְיַפּוֹתָם לֹא־זֹהַר לוֹ וְלֹא־הָדָר בִּלְתִּי הֻסַּר הַחֶלְאָה מֵעָלָיו וְכִי הֻצָּקוּ בַּכּוּר לֹא הֵבִינוּ־בוֹ׃",
+      "pageSpans": [
+        {
+          "sourcePage": 114,
+          "start": 0,
+          "end": 140
+        }
+      ],
+      "textSHA256": "145971ed9175901f1f89b00ac1293a3a56ea926661fa1860dd2eeff7328a25c6"
+    },
+    {
+      "sourceOrdinal": 26,
+      "sourceLabel": "כו",
+      "text": "כֶּסֶף רַב נִתַּן בִּמְחִירָם וְאֵין רוּחַ־חַיִּים בְּקִרְבָּם׃",
+      "pageSpans": [
+        {
+          "sourcePage": 114,
+          "start": 0,
+          "end": 63
+        }
+      ],
+      "textSHA256": "bd8b5445215270f1e8bd599ce81b6a527f5aa55aafe7b171145bd6240c3a9e62"
+    },
+    {
+      "sourceOrdinal": 27,
+      "sourceLabel": "כז",
+      "text": "בְּכָתֵף יִנָּשֵׂאוּ כִּי אֵין רַגְלַיִם לָמוֹ לְגַלֹּת הַבְלֵיהֶם לְעֵינֵי הַשֶּׁמֶשׁ וּלְכַסּוֹת פְּנֵי־עֹבְדֵיהֶם בֹּשֶׁת׃",
+      "pageSpans": [
+        {
+          "sourcePage": 114,
+          "start": 0,
+          "end": 125
+        }
+      ],
+      "textSHA256": "d683c41c283f6a8006a0cd1491383306c21c5997b7076acc1cb5004be998dad5"
+    },
+    {
+      "sourceOrdinal": 28,
+      "sourceLabel": "כח",
+      "text": "אִם יִפְּלוּ לֹא־יָקוּמוּ וְאִם־יַעֲמֹדוּ לֹא־יִנוֹעוּ׃",
+      "pageSpans": [
+        {
+          "sourcePage": 114,
+          "start": 0,
+          "end": 55
+        }
+      ],
+      "textSHA256": "172302a20c3d7101732f75fb6617e83f0618d217fee7c568c86c43100f0ce932"
+    },
+    {
+      "sourceOrdinal": 29,
+      "sourceLabel": "כט",
+      "text": "אִם יִשָּׁעֲנוּ בְּקִיר יַעֲמֹדוּ כְּפוּפִים וְלֹא־יִשְׂאוּ אֶת־רֹאשָׁם וְזֶבַח וּמִנְחָה יִנָּתֵן לִפְנֵיהֶם כְּלִפְנֵי מֵתִים׃",
+      "pageSpans": [
+        {
+          "sourcePage": 114,
+          "start": 0,
+          "end": 128
+        }
+      ],
+      "textSHA256": "f602e10c4385b5ea1b852898c29e7b3b1b0bc8c1a62258bf592c25ec47b6358b"
+    },
+    {
+      "sourceOrdinal": 30,
+      "sourceLabel": "ל",
+      "text": "הַכֹּהֲנִים חֹטְאִים בְּזִבְחֵיהֶם וּמֹכְרִים מֵהֶם וּנְשֵׁיהֶם מֹלְחוֹת אֹתָם בַּמֶּלַח אַךְ דַּל וְחוֹלֶה לֹא יְחֹנְנוּ מֵהֶם׃",
+      "pageSpans": [
+        {
+          "sourcePage": 114,
+          "start": 0,
+          "end": 128
+        }
+      ],
+      "textSHA256": "6ffbad15f2d48356fd0d2579419acbeba7ef37f3a1aa4f942520febaacda546e"
+    },
+    {
+      "sourceOrdinal": 31,
+      "sourceLabel": "לא",
+      "text": "גַּם נָשִׁים טְמֵאוֹת וְזָבוֹת תִּגַּעְנָה בְּקָדְשֵׁיהֶם׃",
+      "pageSpans": [
+        {
+          "sourcePage": 114,
+          "start": 0,
+          "end": 58
+        }
+      ],
+      "textSHA256": "f83f277b1500ebc3c8e5b1db550073eed771ff71e656846f19ec0155ed09aade"
+    },
+    {
+      "sourceOrdinal": 32,
+      "sourceLabel": "לב",
+      "text": "הֲלֹא תִּרְאוּ כִּי לֹא אֱלֹהִים הֵמָּה וְלָמָּה תִּירְאוּן מִפְּנֵיהֶם׃",
+      "pageSpans": [
+        {
+          "sourcePage": 114,
+          "start": 0,
+          "end": 72
+        }
+      ],
+      "textSHA256": "3c5c5184e861e5457feb399a447364a65f3005ee048e47e30e1bf7f5f8f83b31"
+    },
+    {
+      "sourceOrdinal": 33,
+      "sourceLabel": "לג",
+      "text": "הַעֲצַבֵּי כֶסֶף וְזָהָב וָעֵץ בְּשֵׁם אֱלֹהִים יִקָּרֵאוּ אִם נָשִׁים תַּנַחְנָה כָל־מַאֲכָל לִפְנֵיהֶם׃",
+      "pageSpans": [
+        {
+          "sourcePage": 114,
+          "start": 0,
+          "end": 105
+        }
+      ],
+      "sourceNotes": [
+        {
+          "id": "frenkel-lje-f33-nun-dagesh",
+          "kind": "unreadablePoint",
+          "anchor": "תַּנַחְנָה",
+          "occurrence": 1,
+          "letterIndex": 2,
+          "mark": "dagesh",
+          "sourcePages": [
+            114
+          ],
+          "sourceURL": "https://commons.wikimedia.org/wiki/File:Ketuvim_Aharonim_Fraenkel_(Warsaw_1863).djvu?page=114"
+        }
+      ],
+      "textSHA256": "17534d220f90181893a892e74ef149ff9d8857981d7fe58f048d09b9d524b24c"
+    },
+    {
+      "sourceOrdinal": 34,
+      "sourceLabel": "לד",
+      "text": "אוֹ אִם כֹּהֲנֵיהֶם יוֹשְׁבִים מְגֻלְחֵי־רֹאשׁ וְזָקָן וּבִגְדֵיהֶם פְּרוּמִים בְּתוֹךְ הֵיכְלֵיהֶם וְיִצְעֲקוּ וְיֵילִילוּ לִפְנֵיהֶם כְּעַל זִבְחֵי מֵתִים׃",
+      "pageSpans": [
+        {
+          "sourcePage": 114,
+          "start": 0,
+          "end": 157
+        }
+      ],
+      "textSHA256": "1ab4cfce7f867420f6180888d10a3bddf7944e182f749f155af4cb3eee0ca08b"
+    },
+    {
+      "sourceOrdinal": 35,
+      "sourceLabel": "לה",
+      "text": "הִנֵּה גַם אֶת הַמַּחֲלָצוֹת גֹּנְבִים מֵעֲלֵיהֶם וְיַלְבִּישׁוּ־בָם אֶת־נְשֵׁיהֶם וְאֶת־טַפָּם׃",
+      "pageSpans": [
+        {
+          "sourcePage": 114,
+          "start": 0,
+          "end": 96
+        }
+      ],
+      "textSHA256": "f4f4f9e8bfe491f94ad2e2306c84c1d72fdee4a03d7e8c1f007a15dadb1d3b80"
+    },
+    {
+      "sourceOrdinal": 36,
+      "sourceLabel": "לו",
+      "text": "וְכִי־יַעֲשֶׂה לָהֶם אִישׁ טוֹב אוֹ־רַע יִבָּצֵר מֵהֶם כֹּחַ לְשַׁלֶּם־לוֹ גְּמוּלוֹ אַף כִּי־הָקִים מֶלֶךְ אוֹ הֲסִירוֹ׃",
+      "pageSpans": [
+        {
+          "sourcePage": 114,
+          "start": 0,
+          "end": 121
+        }
+      ],
+      "textSHA256": "4e2be5abcd9b6a8e993d98eaa97b9e3b6db38643e819467cef1756686ead6286"
+    },
+    {
+      "sourceOrdinal": 37,
+      "sourceLabel": "לז",
+      "text": "לֹא יִתְּנוּ־הוֹן וָעֹשֶׁר וְלֹא כֶסֶף וְזָהָב וְכִי־יִדֹּר אִישׁ לָהֶם נֶדֶר וְיַחֵל דְּבָרוֹ לֹא יִדְרְשׁוּ אֹתוֹ מִיָּדוֹ׃",
+      "pageSpans": [
+        {
+          "sourcePage": 114,
+          "start": 0,
+          "end": 125
+        }
+      ],
+      "textSHA256": "c56fe22928725602b281d6bb2fcf463d9af71af329f14b02cf8274e8a50fd495"
+    },
+    {
+      "sourceOrdinal": 38,
+      "sourceLabel": "לח",
+      "text": "לֹא יְחַלְּצוּ נֶפֶשׁ מִמָּוֶת וְלֹא יַצִּילוּ עָנִי מִיַּד־עֹשְׁקוֹ׃",
+      "pageSpans": [
+        {
+          "sourcePage": 114,
+          "start": 0,
+          "end": 69
+        }
+      ],
+      "textSHA256": "e1ec52fc7583282f4c812f172ec5a66496866ebf941c81e9ffd4e2970caa8906"
+    },
+    {
+      "sourceOrdinal": 39,
+      "sourceLabel": "לט",
+      "text": "לֹא יָאִירוּ עֵינֵי עִוֵּר וְלֹא יִפְדוּ אִישׁ מִצָּרָתוֹ׃",
+      "pageSpans": [
+        {
+          "sourcePage": 114,
+          "start": 0,
+          "end": 26
+        },
+        {
+          "sourcePage": 115,
+          "start": 27,
+          "end": 58
+        }
+      ],
+      "textSHA256": "3364778474c4e5e0c718930a621313fd2707652ed42f4902c9c172b37da056cd"
+    },
+    {
+      "sourceOrdinal": 40,
+      "sourceLabel": "מ",
+      "text": "אַלְמָנוֹת לֹא יְרַחֵמוּ וְיָתוֹם לֹא יַעֲזוֹרוּ׃",
+      "pageSpans": [
+        {
+          "sourcePage": 115,
+          "start": 0,
+          "end": 49
+        }
+      ],
+      "textSHA256": "64bfd1db6c9862231bbf5f7dcf646231e893c96fa554151d19031c17ae770965"
+    },
+    {
+      "sourceOrdinal": 41,
+      "sourceLabel": "מא",
+      "text": "כִּי בוּל־עֵץ הֵמָּה נֶחְפֶּה בְּכֶסֶף וּבְזָהָב וְנִמְשְׁלוּ עִם־אֲבָנִים הַחֲצוּבִים מִן־הָהָר לָכֵן יִכָּלְמוּ כָּל־אֲשֶׁר יִסְגְּדוּ לָהֶם׃",
+      "pageSpans": [
+        {
+          "sourcePage": 115,
+          "start": 0,
+          "end": 143
+        }
+      ],
+      "textSHA256": "983f621bf238c1d52450ba423d9d88b71687b003b7258c5ccc2d81a8c94ff926"
+    },
+    {
+      "sourceOrdinal": 42,
+      "sourceLabel": "מב",
+      "text": "אֵיכָכָה יְכֻנּוּ בְּשֵׁם אֱלֹהִים אִם גַּם־הַכַּשְׂדִּים מִתְעַלְּלִים־בָּם׃",
+      "pageSpans": [
+        {
+          "sourcePage": 115,
+          "start": 0,
+          "end": 77
+        }
+      ],
+      "textSHA256": "8ae40d25bff2987d484a062e44a02e58e85405be0726740629d4feddd5720601"
+    },
+    {
+      "sourceOrdinal": 43,
+      "sourceLabel": "מג",
+      "text": "כִּי אִם־יִפְגְּשׁוּ בְאִלֵּם יַחֲזִיקוּ־בוֹ וְיוֹלִיכוּ אוֹתוֹ אֶל־הַבַּעַל וְיֹאמְרוּ־לוֹ׃",
+      "pageSpans": [
+        {
+          "sourcePage": 115,
+          "start": 0,
+          "end": 92
+        }
+      ],
+      "textSHA256": "09f85a374a3b8f97d15dea65ca70536dcb6e9c528e4b97efb5436c4d7010bbf6"
+    },
+    {
+      "sourceOrdinal": 44,
+      "sourceLabel": "מד",
+      "text": "קְרָא־נָא אֶל־הַבַּעַל כִּי יַעֲנֶךָ׃",
+      "pageSpans": [
+        {
+          "sourcePage": 115,
+          "start": 0,
+          "end": 37
+        }
+      ],
+      "textSHA256": "e56887e4b93a36a1d198adb5295371c663346f6a8c8af78060a8cd036bd0db78"
+    },
+    {
+      "sourceOrdinal": 45,
+      "sourceLabel": "מה",
+      "text": "וְגַם כִּי־יוֹדְעִים כִּי אֵין רוּחַ־חַיִּים בְּקִרְבָּם לֹא־יֶחְדְּלוּ מִלֶּכֶת אַחֲרֵיהֶם׃",
+      "pageSpans": [
+        {
+          "sourcePage": 115,
+          "start": 0,
+          "end": 92
+        }
+      ],
+      "textSHA256": "26cef972b71fd127da7f04eb7dee3cdb2568ba4fc4009cf7d4cee159692f43eb"
+    },
+    {
+      "sourceOrdinal": 46,
+      "sourceLabel": "מו",
+      "text": "גַּם נָשִׁים יֹשְׁבוֹת בְּפֶתַח עֵינַיִם חֲגוּרוֹת חֶבֶל וּמְקַטְּרוֹת לִפְנֵיהֶם׃",
+      "pageSpans": [
+        {
+          "sourcePage": 115,
+          "start": 0,
+          "end": 82
+        }
+      ],
+      "textSHA256": "94da3eea8047069a5eb094c58efa43fb247943d1a3100dd6984db883d5835431"
+    },
+    {
+      "sourceOrdinal": 47,
+      "sourceLabel": "מז",
+      "text": "וְכִי יַעֲבֹר אִישׁ וְנַפְשׁוֹ חָשְׁקָה בְּאַחַת מֵהֶן וְיִתֵּן בָּהּ אֶת־שְׁכָבְתוֹ׃",
+      "pageSpans": [
+        {
+          "sourcePage": 115,
+          "start": 0,
+          "end": 85
+        }
+      ],
+      "textSHA256": "c2e02afa678da1ab997a018c870b6876822bf98d43a9f7675322c8fdb41e30da"
+    },
+    {
+      "sourceOrdinal": 48,
+      "sourceLabel": "מח",
+      "text": "הִיא מִתְפָּאֶרֶת עַל־רְעוּתָהּ בְּאָמְרָהּ הִנֵּה אַתְּ לֹא־יָקַרְתְּ בְּעֵינֵי הָאִישׁ הַהוּא לִפְתּוֹחַ חֲגוֹרָתֵךְ׃",
+      "pageSpans": [
+        {
+          "sourcePage": 115,
+          "start": 0,
+          "end": 119
+        }
+      ],
+      "textSHA256": "8c210681af5f0f13c22ffbfb660e66dc571c62a168f2da07a8399a0aeda7e043"
+    },
+    {
+      "sourceOrdinal": 49,
+      "sourceLabel": "מט",
+      "text": "כָּל אֲשֶׁר נַעֲשֶׂה בִּשְׁמָם תּוֹךְ וּמִרְמָה הוּא וְאֵיךְ יְכֻבְּדוּ אוֹ לֵאלֹהִים יֵחָשֵׁבוּ׃",
+      "pageSpans": [
+        {
+          "sourcePage": 115,
+          "start": 0,
+          "end": 97
+        }
+      ],
+      "textSHA256": "0899e376441d67b7577e9b3fe672d99229667c4c1e2ca9802da6dba0669ec5f2"
+    },
+    {
+      "sourceOrdinal": 50,
+      "sourceLabel": "נ",
+      "text": "הֲלֹא מַעֲשֵׂה יְדֵי־חָרָשׁ וְצוֹרֵף הֵם וְכָל־אֲשֶׁר יִרְצֶה הֶחָרָשׁ אוֹ הַצּוֹרֵף יִפְעַל וְאֶפֶס זוּלָתוֹ׃",
+      "pageSpans": [
+        {
+          "sourcePage": 115,
+          "start": 0,
+          "end": 110
+        }
+      ],
+      "textSHA256": "f26e4d6e29ac99d1307b50fa6db5c3b3904546ce0dd293181d26c45d835dcd11"
+    },
+    {
+      "sourceOrdinal": 51,
+      "sourceLabel": "נא",
+      "text": "הֵן עוֹשֵׂיהֶם לֹא יַאֲרִיכוּ יָמִים אַף כִּי־הָאֱלִילִים מַעֲשֵׂי יְדֵיהֶם׃",
+      "pageSpans": [
+        {
+          "sourcePage": 115,
+          "start": 0,
+          "end": 76
+        }
+      ],
+      "textSHA256": "da06abb789b7394527309221d3aac605ca99b571db8adf0339624f521fd139dc"
+    },
+    {
+      "sourceOrdinal": 52,
+      "sourceLabel": "נב",
+      "text": "אַךְ פֶּשַׁע עַל־חֵטְא יוֹסִיפוּ בְּתִתָּם מוֹקֵשׁ לְדוֹר אַחֲרוֹן לְהַזְנוֹתוֹ אַחֲרֵי הַבְלֵי־שָׁוְא וּמַדּוּחִים׃",
+      "pageSpans": [
+        {
+          "sourcePage": 115,
+          "start": 0,
+          "end": 116
+        }
+      ],
+      "textSHA256": "66f4d37784fea790c0f4e70d1208bde2c5ca8b4a9e0f3bea88daebac3debd552"
+    },
+    {
+      "sourceOrdinal": 53,
+      "sourceLabel": "נג",
+      "text": "כִּי־תִקְרֶה מִלְחָמָה אוֹ אָסוֹן כֹּהֲנֵיהֶם יִתְגוֹדְדוּ וְיַעֲרִימוּ סוֹד לַחְפֹּר מָקוֹם לְהֵחָבֵא־שָׁם הֵם וּפְסִילֵיהֶם׃",
+      "pageSpans": [
+        {
+          "sourcePage": 115,
+          "start": 0,
+          "end": 126
+        }
+      ],
+      "textSHA256": "f6fa38735cd44c638607a3a16189ac670365b6f8f40d2a58b9620d6e77e22877"
+    },
+    {
+      "sourceOrdinal": 54,
+      "sourceLabel": "נד",
+      "text": "הֲטֶרֶם תִּרְאוּן כִּי לֹא אֱלֹהִים הֵמָּה אִם קָצְרָה יָדָם לְהִנָּצֵל מֵחֶרֶב וּמֵרָעָה׃",
+      "pageSpans": [
+        {
+          "sourcePage": 115,
+          "start": 0,
+          "end": 90
+        }
+      ],
+      "textSHA256": "b1a65a2272ad2819e02d07febdb8c6399fdcdc9c36586ec8806c980a95542747"
+    },
+    {
+      "sourceOrdinal": 55,
+      "sourceLabel": "נה",
+      "text": "הֲיִרְאֶה אִישׁ פְּסִילֵי־עֵץ מְצֻפִּים זָהָב וָכֶסֶף וְלֹא־יָבִין כִּי מַעֲשֵׂי־תַּעֲתוּעִים הֵם׃",
+      "pageSpans": [
+        {
+          "sourcePage": 115,
+          "start": 0,
+          "end": 98
+        }
+      ],
+      "textSHA256": "413a02974aa4efe56c3c738cc2278b380c849a3e3f56bc0ceb8c6a5ef7742106"
+    },
+    {
+      "sourceOrdinal": 56,
+      "sourceLabel": "נו",
+      "text": "לָכֵן עוֹד הַיוֹם יָבֹא וְכָל־לְאֻמִּים וּמַלְכֵי־אָרֶץ יִרְאוּן כִּי שֶׁקֶר נִסְכָּם וּמַעֲשֵׂי יְדֵי־אָדָם הֵם וְרוּחַ־אֱלֹהִים אֵין בָּם׃",
+      "pageSpans": [
+        {
+          "sourcePage": 115,
+          "start": 0,
+          "end": 140
+        }
+      ],
+      "textSHA256": "c58eb5c1090219661084f60c086bdd449a8277a8b9dcde962d3b5981f54241ba"
+    },
+    {
+      "sourceOrdinal": 57,
+      "sourceLabel": "נז",
+      "text": "וּבַמָּה יוּדַע עוֹד כִּי לֹא אֱלֹהִים הֵמָּה׃",
+      "pageSpans": [
+        {
+          "sourcePage": 115,
+          "start": 0,
+          "end": 46
+        }
+      ],
+      "textSHA256": "e40c9e4acd38d25d0fadfb0fcba30f92c8f3c3d4814bfe81009fc79c3bd03ff8"
+    },
+    {
+      "sourceOrdinal": 58,
+      "sourceLabel": "נח",
+      "text": "לֹא יַמְלִיכוּ מֶלֶךְ עַל הָאָרֶץ וְלֹא יִתְּנוּ מָטָר עַל־הָאֲדָמָה׃",
+      "pageSpans": [
+        {
+          "sourcePage": 115,
+          "start": 0,
+          "end": 69
+        }
+      ],
+      "textSHA256": "e9c912b8d793e9de55d74c1e8a64da2cdbdfd872d840c808d860b506515d0f1d"
+    },
+    {
+      "sourceOrdinal": 59,
+      "sourceLabel": "נט",
+      "text": "לֹא־יִשְׁפְּטוּ אֶת־רִיבֵי הָעָם וְלֹא יַעֲצְרוּ כָל־אָוֶן כִּי אֻמְלָלִים הֵם מֵהָעוֹרֵב אֲשֶׁר יָעוּף תַּחַת רְקִיעַ הַשָּׁמָיִם׃",
+      "pageSpans": [
+        {
+          "sourcePage": 115,
+          "start": 0,
+          "end": 131
+        }
+      ],
+      "textSHA256": "268e6d81ba434af0bca209cfdc3fb4fe33a64ff3d8d8200cacae764b79658e6f"
+    },
+    {
+      "sourceOrdinal": 60,
+      "sourceLabel": "ס",
+      "text": "כִּי־תֵצֵא אֵשׁ וּמָצְאָה אֶת־בֵּית פְּסִילֵי זָהָב וְכֶסֶף וָעֵץ הַכֹּהֲנִים נִמְהָרִים וְנֶחְפָּזִים לְהִמָּלֵט עַל־נַפְשָׁם וְהָאֵשׁ אֹכֶלֶת אֶת־הַפְּסִילִים כִּשְׁאָר קוֹרֵי הַבָּיִת׃",
+      "pageSpans": [
+        {
+          "sourcePage": 115,
+          "start": 0,
+          "end": 148
+        },
+        {
+          "sourcePage": 116,
+          "start": 148,
+          "end": 187
+        }
+      ],
+      "textSHA256": "3095c89b5b9833ca937bc4ff3c0833dfe6cc2d21f5fda5b95086c1e7ee1fe13a"
+    },
+    {
+      "sourceOrdinal": 61,
+      "sourceLabel": "סא",
+      "text": "לֹא יִתְיַצְּבוּ לִפְנֵי מְלָכִים וְחֵילֵי מִלְחָמָה וְאֵיךְ תַּאֲמִינוּ כִּי אֱלֹהִים הֵמָּה׃",
+      "pageSpans": [
+        {
+          "sourcePage": 116,
+          "start": 0,
+          "end": 94
+        }
+      ],
+      "textSHA256": "0616d0399e2cae82a5f157f4ecfb381da681111348adff579790a6d879197bb3"
+    },
+    {
+      "sourceOrdinal": 62,
+      "sourceLabel": "סב",
+      "text": "אִם אֱלֹהֵי מַסֵּכָה אֵלֶּה לֹא־יֻכְלוּ לְהִמָּלֵט מִיַּד־הַשּׁוֹדֵד יַעַן כִּי חָזָק הוּא מֵהֶם וְיָבֹז אוֹתָם וְיַפְשִׁיט אֶת־בִּגְדֵיהֶם׃",
+      "pageSpans": [
+        {
+          "sourcePage": 116,
+          "start": 0,
+          "end": 140
+        }
+      ],
+      "textSHA256": "d2912c33a257facf0a92b93039ca67316e36b8339103ffebee5aa22a90681dc9"
+    },
+    {
+      "sourceOrdinal": 63,
+      "sourceLabel": "סג",
+      "text": "וְיִקַּח אֶת־הַזָּהָב וְאֶת־הַכֶּסֶף וְאֶת־הַמַּחֲלָצוֹת וְנִמְלַט־בָּם וּמֵהֶם יִבָּצֵר כֹּחַ לְהִמָּלֵט עַל נַפְשָׁם׃",
+      "pageSpans": [
+        {
+          "sourcePage": 116,
+          "start": 0,
+          "end": 119
+        }
+      ],
+      "textSHA256": "15fc2a6725469f875ca777dc949803c508e48ca280e6f8f6f4dd82d0d7bb9ad8"
+    },
+    {
+      "sourceOrdinal": 64,
+      "sourceLabel": "סד",
+      "text": "הֲלֹא טוֹב מֵהֶם הֱיוֹת מֶלֶךְ הַמַּרְאֶה אֶת־גְּבוּרָתוֹ אוֹ כְּלִי־בַּיִת אֲשֶׁר יְשָׁרֵת־בּוֹ הָאָדָם אוֹ דֶּלֶת אֲשֶׁר תִּשְׁמֹר אֶת־כְּלֵי־הַבָּיִת׃",
+      "pageSpans": [
+        {
+          "sourcePage": 116,
+          "start": 0,
+          "end": 153
+        }
+      ],
+      "textSHA256": "bc5e1c8b467a9c90f85a0fa5bd19ed0543f49d5056272127eeee95f3d3be685d"
+    },
+    {
+      "sourceOrdinal": 65,
+      "sourceLabel": "סה",
+      "text": "אוֹ עַמּוּד עֵץ בְּהֵיכַל מֶלֶךְ מִהְיוֹת פֶּסֶל חָדֵל וְחָלָשׁ׃",
+      "pageSpans": [
+        {
+          "sourcePage": 116,
+          "start": 0,
+          "end": 64
+        }
+      ],
+      "textSHA256": "bbd15a6fc29a7e5c3a5e4d512ba00cb48d1f29b7e5015c5c0192cda9d6d75a22"
+    },
+    {
+      "sourceOrdinal": 66,
+      "sourceLabel": "סו",
+      "text": "הַשֶּׁמֶשׁ וְהַיָּרֵחַ וְכָל־צְבָא־הַשָּׁמָיִם הַמְּאִירִים שֹׁמְעִים לְקוֹל יְיָ וְעֹשִׂים רְצוֹנוֹ׃",
+      "pageSpans": [
+        {
+          "sourcePage": 116,
+          "start": 0,
+          "end": 101
+        }
+      ],
+      "textSHA256": "1f719962cd6ef9f0bef7c122a9928fcbed6c258a57030379e8e2d36c8ee6879a"
+    },
+    {
+      "sourceOrdinal": 67,
+      "sourceLabel": "סז",
+      "text": "יָאִירוּ בְרָקִים תֵּבֵל לְעֵינֵי יֹשְׁבֶיהָ וְהָרוּחַ נֹשֵׁב עַל פְּנֵי כָּל־הָאָרֶץ׃",
+      "pageSpans": [
+        {
+          "sourcePage": 116,
+          "start": 0,
+          "end": 86
+        }
+      ],
+      "textSHA256": "ae51bd10280bd838edd56aa49e4d16eb93e0cf4d0b5ec06bb587d5d45d8ac9c5"
+    },
+    {
+      "sourceOrdinal": 68,
+      "sourceLabel": "סח",
+      "text": "הֶעָבִים יַעַבְרוּ תַּחַת הָרָקִיעַ וְשֹׁמְעִים לְקוֹל יְיָ׃",
+      "pageSpans": [
+        {
+          "sourcePage": 116,
+          "start": 0,
+          "end": 60
+        }
+      ],
+      "textSHA256": "f138f944d6ab147d35e9949956c13c6aeb51556717a12067d8c0c19708df93c2"
+    },
+    {
+      "sourceOrdinal": 69,
+      "sourceLabel": "סט",
+      "text": "וְאֵשׁ־אֱלֹהִים יֹרֶדֶת מִשְּׁחָקִים וְתֹאכַל הָרִים וִיעָרִים׃",
+      "pageSpans": [
+        {
+          "sourcePage": 116,
+          "start": 0,
+          "end": 63
+        }
+      ],
+      "textSHA256": "e1d69eb0afd6ef94da6864a157f1742721c994984870e1bc93de01e1b3d84531"
+    },
+    {
+      "sourceOrdinal": 70,
+      "sourceLabel": "ע",
+      "text": "וְהָאֱלִילִים לֹא־יִדְמוּ לָמוֹ לֹא בְּכֹחַ וְלֹא־בְמַרְאֶה לָכֵן לֵאלֹהִים בַּל־תַּחֲשְׁבוּם כִּי לֹא יֵיטִיבוּ וְלֹא יָרֵעוּ׃",
+      "pageSpans": [
+        {
+          "sourcePage": 116,
+          "start": 0,
+          "end": 127
+        }
+      ],
+      "textSHA256": "2e7e2263c0f61df0d06aa1c387f4014f31d08483c785e756a4c059285edfb14b"
+    },
+    {
+      "sourceOrdinal": 71,
+      "sourceLabel": "עא",
+      "text": "וְעַתָּה כִּי־יְדַעְתֶּם כִּי אֱלִילֵי תֹהוּ הֵמָּה אַל־תָּגוּרוּ מִפְּנֵיהֶם׃",
+      "pageSpans": [
+        {
+          "sourcePage": 116,
+          "start": 0,
+          "end": 78
+        }
+      ],
+      "textSHA256": "5da3ef08aba06c71e3bdd7b2f2f6db1b98bdb1bcfc32aad9e4946858a24e6570"
+    },
+    {
+      "sourceOrdinal": 72,
+      "sourceLabel": "עב",
+      "text": "לֹא יִתְּנוּ בְּרָכָה אוֹ־קְלָלָה לִמְלָכִים וְלֹא יִתְּנוּ אוֹתוֹת בַּשָּׁמַיִם לְגוֹיֵי הָאָרֶץ׃",
+      "pageSpans": [
+        {
+          "sourcePage": 116,
+          "start": 0,
+          "end": 98
+        }
+      ],
+      "textSHA256": "a61ef36a02d7519af588445cd5104978d9e0fc21870d45f1a6ca4267a3b669a4"
+    },
+    {
+      "sourceOrdinal": 73,
+      "sourceLabel": "עג",
+      "text": "לֹא־יִזְרְחוּ כַשֶּׁמֶשׁ וְלֹא־יָאִירוּ כַיָּרֵחַ׃",
+      "pageSpans": [
+        {
+          "sourcePage": 116,
+          "start": 0,
+          "end": 50
+        }
+      ],
+      "textSHA256": "22fb66f22e088c1cef0cdd9f1d9a65801ea9209abb90b909ad1ecb12caab4b4b"
+    },
+    {
+      "sourceOrdinal": 74,
+      "sourceLabel": "עד",
+      "text": "וְאֶבְחַר מֵהֶם הַבְּהֵמוֹת חֲסַרוֹת תְּבוּנָה כִּי בַּמְּעָרוֹת תְּבַקֵּשְׁנָה מַחֲסֶה מִזֶּרֶם וּמִמָּטָר׃",
+      "pageSpans": [
+        {
+          "sourcePage": 116,
+          "start": 0,
+          "end": 108
+        }
+      ],
+      "textSHA256": "ae418564c2fdcde46ab62ac91dc17a2cd026e53d27a9f2c829df5fe2e202879c"
+    },
+    {
+      "sourceOrdinal": 75,
+      "sourceLabel": "עה",
+      "text": "וְעַתָּה גָּלוּי וְיָדוּעַ לַכֹּל כִּי הֶבֶל הֵמָּה גַּם־יַחַד לָכֵן אַל־תִּירָאוּן מִפְּנֵיהֶם׃",
+      "pageSpans": [
+        {
+          "sourcePage": 116,
+          "start": 0,
+          "end": 96
+        }
+      ],
+      "textSHA256": "cc8bc4bc9f82131d89a1dcae5375b8e4d5e99e1e5a09ad2d7e88d2a92e7fb24c"
+    },
+    {
+      "sourceOrdinal": 76,
+      "sourceLabel": "עו",
+      "text": "כְּמוֹ צַלְמֵי בַּלָּהוֹת לֹא יְגֹנְנוּ עַל שְׂדֵה קִשּׁוּאִים כֵּן אֱלִילֵי כֶּסֶף וְזָהָב לֹא יְגֹנֵנוּ׃",
+      "pageSpans": [
+        {
+          "sourcePage": 116,
+          "start": 0,
+          "end": 106
+        }
+      ],
+      "textSHA256": "ab6073731386a9ca7e500dbb4a209b21ec1909b3e25bd7eb9424c2e83e03067d"
+    },
+    {
+      "sourceOrdinal": 77,
+      "sourceLabel": "עז",
+      "text": "כִּמְסוּכַת גַּן אֲשֶׁר צִפֳּרִים בָּהּ יְקַנֵּנוּ וּכְנֶפֶשׁ מֵת טָמוּן בְּקִבְרוֹ כֵּן גִּלּוּלֵיהֶם זָהָב וָכֶסֶף וָעֵץ׃",
+      "pageSpans": [
+        {
+          "sourcePage": 116,
+          "start": 0,
+          "end": 123
+        }
+      ],
+      "textSHA256": "f7eedfdde73681790c1222a1b4a41cf0ef33cfa73f6fc8f24b8010930f9e9cf7"
+    },
+    {
+      "sourceOrdinal": 78,
+      "sourceLabel": "עח",
+      "text": "וְאַף גַּם־בָּזֹאת תַּכִּירוּ כִּי שֶׁקֶר תַּרְמִיתָם כִּי מְעִילֵי הַכַּרְמִיל אֲשֶׁר עֲלֵיהֶם יִבְלוּ וְהַתּוֹלַעַת תֹּאכְלֵם וְאֶת הָאֱלִילִים עִמָּהֶם עַד־יִתְעַלְּלוּ כָּל־רֹאֵי־בָם׃",
+      "pageSpans": [
+        {
+          "sourcePage": 116,
+          "start": 0,
+          "end": 187
+        }
+      ],
+      "textSHA256": "5f46626e1dac89fe9ce99925efb313ffb452a8f00fb4625fc0229f0a9cc91cda"
+    },
+    {
+      "sourceOrdinal": 79,
+      "sourceLabel": "עט",
+      "text": "לָכֵן־אַשְׁרֵי הָאִישׁ הַהֹלֵךְ תָּמִים וְלֹא יִזְנֶה אַחֲרֵי הָאֱלִילִים כִּי לֹא־יִכָּלֵם לְעוֹלָם וָעֶד׃",
+      "pageSpans": [
+        {
+          "sourcePage": 116,
+          "start": 0,
+          "end": 107
+        }
+      ],
+      "textSHA256": "4b04697ee096a77f408cbb0807be74889dc722f7f67f5d0fbf114c2adff2b1be"
+    }
+  ],
+  "verses": [
+    {
+      "verse": 1,
+      "sourceSpans": [
+        {
+          "sourceOrdinal": 1,
+          "start": 0,
+          "end": 147
+        }
+      ],
+      "hebrew": "וְזֹאת מִשְׁנֵה הַסֵּפֶר אֲשֶׁר שָׁלַח יִרְמְיָהוּ לַגּוֹלִים אֲשֶׁר הֶגְלָם נְבוּכַדְנֶצַר מֶלֶךְ בָּבֶל וַיַּגֵּד לָהֶם אֶת־אֲשֶׁר צִוָּהוּ יְיָ׃",
+      "english": "A copy of an epistle, which Jeremy sent unto them which were to be led captives into Babylon by the king of the Babylonians, to certify them, as it was commanded him of God.",
+      "sourcePages": [
+        113
+      ]
+    },
+    {
+      "verse": 2,
+      "sourceSpans": [
+        {
+          "sourceOrdinal": 2,
+          "start": 0,
+          "end": 81
+        }
+      ],
+      "hebrew": "עַל־חַטֹּאתֵיכֶם לַיְיָ תִּגְלוּ בָּבֶלָה עַל־יְדֵי נְבוּכַדְנֶצַר מֶלֶךְ בָּבֶל׃",
+      "english": "Because of the sins which ye have committed before God, ye shall be led away captives into Babylon by Nabuchodonosor king of the Babylonians.",
+      "sourcePages": [
+        113
+      ]
+    },
+    {
+      "verse": 3,
+      "sourceSpans": [
+        {
+          "sourceOrdinal": 3,
+          "start": 0,
+          "end": 103
+        }
+      ],
+      "hebrew": "וִישַׁבְתֶּם שָׁמָּה יָמִים רַבִּים עַד דּוֹר הָעֲשִׂירִי וְאַחֲרֵי־כֵן אוֹצִיאֲכֶם מִשָּׁם בְּשָׁלוֹם׃",
+      "english": "So when ye be come unto Babylon, ye shall remain there many years, and for a long season, namely, seven generations: and after that I will bring you away peaceably from thence.",
+      "sourcePages": [
+        113
+      ]
+    },
+    {
+      "verse": 4,
+      "sourceSpans": [
+        {
+          "sourceOrdinal": 4,
+          "start": 0,
+          "end": 137
+        }
+      ],
+      "hebrew": "וְהָיָה בְּשִׁבְתְּכֶם בְּבָבֶל וּרְאִיתֶם אֶת־יֹשְׁבֶיהָ נֹשְׂאִים פְּסִילֵי זָהָב וָכֶסֶף עַל־כִּתְפָם אֲשֶׁר הַגּוֹיִם יְרֵאִים אֹתָם׃",
+      "english": "Now shall ye see in Babylon gods of silver, and of gold, and of wood, borne upon shoulders, which cause the nations to fear.",
+      "sourcePages": [
+        113
+      ]
+    },
+    {
+      "verse": 5,
+      "sourceSpans": [
+        {
+          "sourceOrdinal": 5,
+          "start": 0,
+          "end": 68
+        },
+        {
+          "sourceOrdinal": 6,
+          "start": 0,
+          "end": 80
+        }
+      ],
+      "hebrew": "הִשָּׁמְרוּ לָכֶם מֵעֲשֹׂת כְּמַעֲשֵׂיהֶם וּמִיְרוֹא אֶת־אֱלֹהֵיהֶם׃ וְכִי תִרְאוּ אֶת־הָעָם הֹלְכִים לִפְנֵיהֶם וְאַחֲרֵיהֶם וּמִשְׁתַּחֲוִים לָהֶם",
+      "english": "Beware therefore that ye in no wise be like to strangers, neither be ye afraid of them, when ye see the multitude before them and behind them, worshipping them.",
+      "sourcePages": [
+        113
+      ]
+    },
+    {
+      "verse": 6,
+      "sourceSpans": [
+        {
+          "sourceOrdinal": 6,
+          "start": 80,
+          "end": 126
+        }
+      ],
+      "hebrew": "אִמְרוּ בִלְבַבְכֶם אֶת־יְיָ אֱלֹהִים נַעֲבֹד׃",
+      "english": "But say ye in your hearts, O Lord, we must worship thee.",
+      "sourcePages": [
+        113
+      ]
+    },
+    {
+      "verse": 7,
+      "sourceSpans": [
+        {
+          "sourceOrdinal": 7,
+          "start": 0,
+          "end": 69
+        }
+      ],
+      "hebrew": "כִּי אֶת־מַלְאָכִי אֶשְׁלַח אִתְּכֶם וְדָרַשְׁתִּי אֶת־נַפְשֹׁתֵיכֶם׃",
+      "english": "For mine angel is with you, and I myself caring for your souls.",
+      "sourcePages": [
+        113
+      ]
+    },
+    {
+      "verse": 8,
+      "sourceSpans": [
+        {
+          "sourceOrdinal": 8,
+          "start": 0,
+          "end": 118
+        }
+      ],
+      "hebrew": "הִנֵּה לְשׁוֹן אֱלֹהֵיהֶם מַעֲשֵׂה יְדֵי־חָרָשׁ הוּא פְּסָלָם וַיְחַפֵּאם זָהָב וָכֶסֶף אַךְ לֹא יֶהְגּוּ בִּגְרוֹנָם׃",
+      "english": "As for their tongue, it is polished by the workman, and they themselves are gilded and laid over with gold; yet are they but false, and cannot speak.",
+      "sourcePages": [
+        113
+      ]
+    },
+    {
+      "verse": 9,
+      "sourceSpans": [
+        {
+          "sourceOrdinal": 9,
+          "start": 0,
+          "end": 83
+        }
+      ],
+      "hebrew": "כִּבְתוּלָה תַּעֲדֶה כֵלֶיהָ כֵּן יַעֲדֵם עֲדִי זָהָב וְיָשִׂם עֲטָרָה עַל רֹאשָׁם׃",
+      "english": "And taking gold, as it were for a virgin that loveth to go gay, they make crowns for the heads of their gods.",
+      "sourcePages": [
+        113
+      ]
+    },
+    {
+      "verse": 10,
+      "sourceSpans": [
+        {
+          "sourceOrdinal": 10,
+          "start": 0,
+          "end": 94
+        }
+      ],
+      "hebrew": "יֵשׁ אֲשֶׁר כֹּהֲנֵיהֶם גֹּנְבִים אֶת־הַכֶּסֶף וְאֶת־הַזָּהָב מֵעֲלֵיהֶם וּמִתְעַנְּגִים־בּוֹ",
+      "english": "Sometimes also the priests convey from their gods gold and silver, and bestow it upon themselves.",
+      "sourcePages": [
+        113
+      ]
+    },
+    {
+      "verse": 11,
+      "sourceSpans": [
+        {
+          "sourceOrdinal": 10,
+          "start": 94,
+          "end": 133
+        },
+        {
+          "sourceOrdinal": 11,
+          "start": 0,
+          "end": 63
+        }
+      ],
+      "hebrew": "עִם נָשִׁים זֹנוֹת בְּבֵית־הַקְּדֵשָׁה׃ גַּם יַלְבִּישׁוּ אֱלִילֵיהֶם זָהָב וָכֶסֶף וָעֵץ כָּאֲנָשִׁים",
+      "english": "Yea, they will give thereof to the common harlots, and deck them as men with garments, [being] gods of silver, and gods of gold, and wood.",
+      "sourcePages": [
+        113
+      ]
+    },
+    {
+      "verse": 12,
+      "sourceSpans": [
+        {
+          "sourceOrdinal": 11,
+          "start": 63,
+          "end": 114
+        },
+        {
+          "sourceOrdinal": 12,
+          "start": 0,
+          "end": 27
+        }
+      ],
+      "hebrew": "וְאֵין לְאֵל יָדָם לְהִשָּׁמֵר מִתֹּלֵעָה וּמֵעָשׁ׃ וְכִי יַלְבִּישׁוּם שָׁנִי",
+      "english": "Yet cannot these gods save themselves from rust and moths, though they be covered with purple raiment.",
+      "sourcePages": [
+        113
+      ]
+    },
+    {
+      "verse": 13,
+      "sourceSpans": [
+        {
+          "sourceOrdinal": 12,
+          "start": 27,
+          "end": 74
+        }
+      ],
+      "hebrew": "יִקְחוּ יָעֶה לְהָסִיר הָאָבָק מֵעַל־פְּנֵיהֶם׃",
+      "english": "They wipe their faces because of the dust of the temple, when there is much upon them.",
+      "sourcePages": [
+        113
+      ]
+    },
+    {
+      "verse": 14,
+      "sourceSpans": [
+        {
+          "sourceOrdinal": 13,
+          "start": 0,
+          "end": 91
+        }
+      ],
+      "hebrew": "וְיֵשׁ אֲשֶׁר שֵׁבֶט בְּיָדוֹ כְּשׁוֹפֵט אַךְ לֹא יְיַסֵּר אִישׁ אֲשֶׁר יִמְעַל־בּוֹ מָעַל׃",
+      "english": "And he that cannot put to death one that offendeth him holdeth a sceptre, as though he were a judge of the country.",
+      "sourcePages": [
+        113
+      ]
+    },
+    {
+      "verse": 15,
+      "sourceSpans": [
+        {
+          "sourceOrdinal": 14,
+          "start": 0,
+          "end": 101
+        }
+      ],
+      "hebrew": "גַּם־חֶרֶב גַּם־גַּרְזֶן בִּימִינוֹ וִיכֹלֶת אֵין לְהִתְיַצֵּב בַּמִּלְחָמָה אוֹ מִפְּנֵי הַשּׁוֹדֵד׃",
+      "english": "He hath also in his right hand a dagger and an axe: but cannot deliver himself from war and thieves.",
+      "sourcePages": [
+        113
+      ]
+    },
+    {
+      "verse": 16,
+      "sourceSpans": [
+        {
+          "sourceOrdinal": 15,
+          "start": 0,
+          "end": 75
+        }
+      ],
+      "hebrew": "בְּזֹאת תֵּדְעוּן כִּי לֹא אֱלֹהִים הֵמָּה לָכֵן אַל־תִּירְאוּ מִפְּנֵיהֶם׃",
+      "english": "Whereby they are known not to be gods: therefore fear them not.",
+      "sourcePages": [
+        113
+      ]
+    },
+    {
+      "verse": 17,
+      "sourceSpans": [
+        {
+          "sourceOrdinal": 16,
+          "start": 0,
+          "end": 87
+        },
+        {
+          "sourceOrdinal": 17,
+          "start": 0,
+          "end": 90
+        }
+      ],
+      "hebrew": "כִּכְלִי יוֹצֵר אֲשֶׁר יַעֲבֹד־בּוֹ הָאָדָם וְנִשְׁבַּר וְלֹא יוֹעִיל כֵּן אֱלִילֵיהֶם׃ כִּי־יֵשְׁבוּ בְּבֵית מִשְׁמַרְתָּם עֵינֵיהֶם מְלֵאוֹת אָבָק וְעָפָר מֵרַגְלֵי עֹבְדֵיהֶם׃",
+      "english": "For like as a vessel that a man useth is nothing worth when it is broken; even so it is with their gods: when they be set up in the temple, their eyes be full of dust through the feet of them that come in.",
+      "sourcePages": [
+        113,
+        114
+      ]
+    },
+    {
+      "verse": 18,
+      "sourceSpans": [
+        {
+          "sourceOrdinal": 18,
+          "start": 0,
+          "end": 94
+        },
+        {
+          "sourceOrdinal": 19,
+          "start": 0,
+          "end": 99
+        }
+      ],
+      "hebrew": "הַכֹּהֲנִים סֹגְרִים אֶת־הַפֶּסֶל בְּהֵיכָלוֹ בְּמִסְגַּר דְּלָתַיִם וּבְרִיחַ לְבַל־יִגָּנֵב׃ כְּאִישׁ אָסוּר בְּבֵית הַסֹּהַר אֲשֶׁר שָׁלַח יָדוֹ בַּמֶּלֶךְ וְנִשְׁפַּט עָלָיו מִשְׁפַּט מָוֶת׃",
+      "english": "And as the doors are made sure on every side upon him that offendeth the king, as being committed to suffer death; even so the priests make fast their temples with doors, with locks, and bars, lest their gods be spoiled with robbers.",
+      "sourcePages": [
+        114
+      ]
+    },
+    {
+      "verse": 19,
+      "sourceSpans": [
+        {
+          "sourceOrdinal": 20,
+          "start": 0,
+          "end": 103
+        }
+      ],
+      "hebrew": "נֵרוֹת רַבּוֹת יַדְלִיקוּ לִפְנֵיהֶם וְרַבּוֹת מֵאֲשֶׁר יַדְלִיקוּ לְנַפְשָׁם וּבְכָל־זֹאת לֹא יִרְאוּ",
+      "english": "They light them candles, yea, more than for themselves, whereof they cannot see one.",
+      "sourcePages": [
+        114
+      ]
+    },
+    {
+      "verse": 20,
+      "sourceSpans": [
+        {
+          "sourceOrdinal": 20,
+          "start": 103,
+          "end": 133
+        },
+        {
+          "sourceOrdinal": 21,
+          "start": 0,
+          "end": 96
+        }
+      ],
+      "hebrew": "כִּי כְקוֹרֵי הַבַּיִת הֵמָּה׃ הַתּוֹלָעִים זֹחֲלֵי־עָפָר יֹאכְלוּ אוֹתָם וְאֶת־לְבוּשָׁם וְהֵם לֹא־יֵדְעוּ וְלֹא־יָבִינוּ־בוֹ׃",
+      "english": "They are as one of the beams of the temple, yet they say their hearts are gnawed upon by things creeping out of the earth; and when they eat them and their clothes, they feel it not.",
+      "sourcePages": [
+        114
+      ]
+    },
+    {
+      "verse": 21,
+      "sourceSpans": [
+        {
+          "sourceOrdinal": 22,
+          "start": 0,
+          "end": 45
+        }
+      ],
+      "hebrew": "חָשַׁךְ מִשְׁחוֹר תֹּאָרָם מֵעֲשַׁן הַבָּיִת׃",
+      "english": "Their faces are blacked through the smoke that cometh out of the temple.",
+      "sourcePages": [
+        114
+      ]
+    },
+    {
+      "verse": 22,
+      "sourceSpans": [
+        {
+          "sourceOrdinal": 23,
+          "start": 0,
+          "end": 96
+        }
+      ],
+      "hebrew": "הַיַּנְשׁוּף וְהָעֲטַלֵּף וְכָל־עוֹף־כָּנָף יִרְבְּצוּ עַל־רֹאשָׁם וְגַם הָאִיִּים יַחֲנוּ שָׁם׃",
+      "english": "Upon their bodies and heads sit bats, swallows, and birds, and the cats also.",
+      "sourcePages": [
+        114
+      ]
+    },
+    {
+      "verse": 23,
+      "sourceSpans": [
+        {
+          "sourceOrdinal": 24,
+          "start": 0,
+          "end": 72
+        }
+      ],
+      "hebrew": "דְּעוּ אֵיפוֹא כִּי לֹא אֱלֹהִים הֵמָּה לָכֵן אַל־תִּירְאוּ מִפְּנֵיהֶם׃",
+      "english": "By this ye may know that they are no gods: therefore fear them not.",
+      "sourcePages": [
+        114
+      ]
+    },
+    {
+      "verse": 24,
+      "sourceSpans": [
+        {
+          "sourceOrdinal": 25,
+          "start": 0,
+          "end": 140
+        }
+      ],
+      "hebrew": "הַזָּהָב אֲשֶׁר עֲלֵיהֶם לְיַפּוֹתָם לֹא־זֹהַר לוֹ וְלֹא־הָדָר בִּלְתִּי הֻסַּר הַחֶלְאָה מֵעָלָיו וְכִי הֻצָּקוּ בַּכּוּר לֹא הֵבִינוּ־בוֹ׃",
+      "english": "Notwithstanding the gold that is about them to make them beautiful, except they wipe off the rust, they will not shine: for neither when they were molten did they feel it.",
+      "sourcePages": [
+        114
+      ]
+    },
+    {
+      "verse": 25,
+      "sourceSpans": [
+        {
+          "sourceOrdinal": 26,
+          "start": 0,
+          "end": 63
+        }
+      ],
+      "hebrew": "כֶּסֶף רַב נִתַּן בִּמְחִירָם וְאֵין רוּחַ־חַיִּים בְּקִרְבָּם׃",
+      "english": "The things wherein there is no breath are bought for a most high price.",
+      "sourcePages": [
+        114
+      ]
+    },
+    {
+      "verse": 26,
+      "sourceSpans": [
+        {
+          "sourceOrdinal": 27,
+          "start": 0,
+          "end": 87
+        }
+      ],
+      "hebrew": "בְּכָתֵף יִנָּשֵׂאוּ כִּי אֵין רַגְלַיִם לָמוֹ לְגַלֹּת הַבְלֵיהֶם לְעֵינֵי הַשֶּׁמֶשׁ",
+      "english": "They are borne upon shoulders, having no feet, whereby they declare unto men that they be nothing worth.",
+      "sourcePages": [
+        114
+      ]
+    },
+    {
+      "verse": 27,
+      "sourceSpans": [
+        {
+          "sourceOrdinal": 27,
+          "start": 87,
+          "end": 125
+        },
+        {
+          "sourceOrdinal": 28,
+          "start": 0,
+          "end": 55
+        },
+        {
+          "sourceOrdinal": 29,
+          "start": 0,
+          "end": 128
+        }
+      ],
+      "hebrew": "וּלְכַסּוֹת פְּנֵי־עֹבְדֵיהֶם בֹּשֶׁת׃ אִם יִפְּלוּ לֹא־יָקוּמוּ וְאִם־יַעֲמֹדוּ לֹא־יִנוֹעוּ׃ אִם יִשָּׁעֲנוּ בְּקִיר יַעֲמֹדוּ כְּפוּפִים וְלֹא־יִשְׂאוּ אֶת־רֹאשָׁם וְזֶבַח וּמִנְחָה יִנָּתֵן לִפְנֵיהֶם כְּלִפְנֵי מֵתִים׃",
+      "english": "They also that serve them are ashamed: for if they fall to the ground at any time, they cannot rise up again of themselves: neither, if one set them upright, can they move of themselves: neither, if they be bowed down, can they make themselves straight: but they set gifts before them, as unto dead men.",
+      "sourcePages": [
+        114
+      ]
+    },
+    {
+      "verse": 28,
+      "sourceSpans": [
+        {
+          "sourceOrdinal": 30,
+          "start": 0,
+          "end": 128
+        }
+      ],
+      "hebrew": "הַכֹּהֲנִים חֹטְאִים בְּזִבְחֵיהֶם וּמֹכְרִים מֵהֶם וּנְשֵׁיהֶם מֹלְחוֹת אֹתָם בַּמֶּלַח אַךְ דַּל וְחוֹלֶה לֹא יְחֹנְנוּ מֵהֶם׃",
+      "english": "As for the things that are sacrificed unto them, their priests sell and abuse; in like manner their wives lay up part thereof in salt; but unto the poor and impotent they give nothing of it.",
+      "sourcePages": [
+        114
+      ]
+    },
+    {
+      "verse": 29,
+      "sourceSpans": [
+        {
+          "sourceOrdinal": 31,
+          "start": 0,
+          "end": 58
+        },
+        {
+          "sourceOrdinal": 32,
+          "start": 0,
+          "end": 72
+        }
+      ],
+      "hebrew": "גַּם נָשִׁים טְמֵאוֹת וְזָבוֹת תִּגַּעְנָה בְּקָדְשֵׁיהֶם׃ הֲלֹא תִּרְאוּ כִּי לֹא אֱלֹהִים הֵמָּה וְלָמָּה תִּירְאוּן מִפְּנֵיהֶם׃",
+      "english": "Menstruous women and women in childbed eat their sacrifices: by these things ye may know that they are no gods: fear them not.",
+      "sourcePages": [
+        114
+      ]
+    },
+    {
+      "verse": 30,
+      "sourceSpans": [
+        {
+          "sourceOrdinal": 33,
+          "start": 0,
+          "end": 105
+        }
+      ],
+      "hebrew": "הַעֲצַבֵּי כֶסֶף וְזָהָב וָעֵץ בְּשֵׁם אֱלֹהִים יִקָּרֵאוּ אִם נָשִׁים תַּנַחְנָה כָל־מַאֲכָל לִפְנֵיהֶם׃",
+      "english": "For how can they be called gods? because women set meat before the gods of silver, gold, and wood.",
+      "sourcePages": [
+        114
+      ]
+    },
+    {
+      "verse": 31,
+      "sourceSpans": [
+        {
+          "sourceOrdinal": 34,
+          "start": 0,
+          "end": 100
+        }
+      ],
+      "hebrew": "אוֹ אִם כֹּהֲנֵיהֶם יוֹשְׁבִים מְגֻלְחֵי־רֹאשׁ וְזָקָן וּבִגְדֵיהֶם פְּרוּמִים בְּתוֹךְ הֵיכְלֵיהֶם",
+      "english": "And the priests sit in their temples, having their clothes rent, and their heads and beards shaven, and nothing upon their heads.",
+      "sourcePages": [
+        114
+      ]
+    },
+    {
+      "verse": 32,
+      "sourceSpans": [
+        {
+          "sourceOrdinal": 34,
+          "start": 100,
+          "end": 157
+        }
+      ],
+      "hebrew": "וְיִצְעֲקוּ וְיֵילִילוּ לִפְנֵיהֶם כְּעַל זִבְחֵי מֵתִים׃",
+      "english": "They roar and cry before their gods, as men do at the feast when one is dead.",
+      "sourcePages": [
+        114
+      ]
+    },
+    {
+      "verse": 33,
+      "sourceSpans": [
+        {
+          "sourceOrdinal": 35,
+          "start": 0,
+          "end": 96
+        }
+      ],
+      "hebrew": "הִנֵּה גַם אֶת הַמַּחֲלָצוֹת גֹּנְבִים מֵעֲלֵיהֶם וְיַלְבִּישׁוּ־בָם אֶת־נְשֵׁיהֶם וְאֶת־טַפָּם׃",
+      "english": "The priests also take off their garments, and clothe their wives and children.",
+      "sourcePages": [
+        114
+      ]
+    },
+    {
+      "verse": 34,
+      "sourceSpans": [
+        {
+          "sourceOrdinal": 36,
+          "start": 0,
+          "end": 121
+        }
+      ],
+      "hebrew": "וְכִי־יַעֲשֶׂה לָהֶם אִישׁ טוֹב אוֹ־רַע יִבָּצֵר מֵהֶם כֹּחַ לְשַׁלֶּם־לוֹ גְּמוּלוֹ אַף כִּי־הָקִים מֶלֶךְ אוֹ הֲסִירוֹ׃",
+      "english": "Whether it be evil that one doeth unto them, or good, they are not able to recompense it: they can neither set up a king, nor put him down.",
+      "sourcePages": [
+        114
+      ]
+    },
+    {
+      "verse": 35,
+      "sourceSpans": [
+        {
+          "sourceOrdinal": 37,
+          "start": 0,
+          "end": 125
+        }
+      ],
+      "hebrew": "לֹא יִתְּנוּ־הוֹן וָעֹשֶׁר וְלֹא כֶסֶף וְזָהָב וְכִי־יִדֹּר אִישׁ לָהֶם נֶדֶר וְיַחֵל דְּבָרוֹ לֹא יִדְרְשׁוּ אֹתוֹ מִיָּדוֹ׃",
+      "english": "In like manner, they can neither give riches nor money: though a man make a vow unto them, and keep it not, they will not require it.",
+      "sourcePages": [
+        114
+      ]
+    },
+    {
+      "verse": 36,
+      "sourceSpans": [
+        {
+          "sourceOrdinal": 38,
+          "start": 0,
+          "end": 69
+        }
+      ],
+      "hebrew": "לֹא יְחַלְּצוּ נֶפֶשׁ מִמָּוֶת וְלֹא יַצִּילוּ עָנִי מִיַּד־עֹשְׁקוֹ׃",
+      "english": "They can save no man from death, neither deliver the weak from the mighty.",
+      "sourcePages": [
+        114
+      ]
+    },
+    {
+      "verse": 37,
+      "sourceSpans": [
+        {
+          "sourceOrdinal": 39,
+          "start": 0,
+          "end": 58
+        }
+      ],
+      "hebrew": "לֹא יָאִירוּ עֵינֵי עִוֵּר וְלֹא יִפְדוּ אִישׁ מִצָּרָתוֹ׃",
+      "english": "They cannot restore a blind man to his sight, nor help any man in his distress.",
+      "sourcePages": [
+        114,
+        115
+      ]
+    },
+    {
+      "verse": 38,
+      "sourceSpans": [
+        {
+          "sourceOrdinal": 40,
+          "start": 0,
+          "end": 49
+        }
+      ],
+      "hebrew": "אַלְמָנוֹת לֹא יְרַחֵמוּ וְיָתוֹם לֹא יַעֲזוֹרוּ׃",
+      "english": "They can shew no mercy to the widow, nor do good to the fatherless.",
+      "sourcePages": [
+        115
+      ]
+    },
+    {
+      "verse": 39,
+      "sourceSpans": [
+        {
+          "sourceOrdinal": 41,
+          "start": 0,
+          "end": 143
+        }
+      ],
+      "hebrew": "כִּי בוּל־עֵץ הֵמָּה נֶחְפֶּה בְּכֶסֶף וּבְזָהָב וְנִמְשְׁלוּ עִם־אֲבָנִים הַחֲצוּבִים מִן־הָהָר לָכֵן יִכָּלְמוּ כָּל־אֲשֶׁר יִסְגְּדוּ לָהֶם׃",
+      "english": "Their gods of wood, and which are overlaid with gold and silver, are like the stones that be hewn out of the mountain: they that worship them shall be confounded.",
+      "sourcePages": [
+        115
+      ]
+    },
+    {
+      "verse": 40,
+      "sourceSpans": [
+        {
+          "sourceOrdinal": 42,
+          "start": 0,
+          "end": 77
+        }
+      ],
+      "hebrew": "אֵיכָכָה יְכֻנּוּ בְּשֵׁם אֱלֹהִים אִם גַּם־הַכַּשְׂדִּים מִתְעַלְּלִים־בָּם׃",
+      "english": "How should a man then think and say that they are gods, when even the Chaldeans themselves dishonour them?",
+      "sourcePages": [
+        115
+      ]
+    },
+    {
+      "verse": 41,
+      "sourceSpans": [
+        {
+          "sourceOrdinal": 43,
+          "start": 0,
+          "end": 92
+        },
+        {
+          "sourceOrdinal": 44,
+          "start": 0,
+          "end": 37
+        }
+      ],
+      "hebrew": "כִּי אִם־יִפְגְּשׁוּ בְאִלֵּם יַחֲזִיקוּ־בוֹ וְיוֹלִיכוּ אוֹתוֹ אֶל־הַבַּעַל וְיֹאמְרוּ־לוֹ׃ קְרָא־נָא אֶל־הַבַּעַל כִּי יַעֲנֶךָ׃",
+      "english": "Who if they shall see one dumb that cannot speak, they bring him, and intreat Bel that he may speak, as though he were able to understand.",
+      "sourcePages": [
+        115
+      ]
+    },
+    {
+      "verse": 42,
+      "sourceSpans": [
+        {
+          "sourceOrdinal": 45,
+          "start": 0,
+          "end": 92
+        }
+      ],
+      "hebrew": "וְגַם כִּי־יוֹדְעִים כִּי אֵין רוּחַ־חַיִּים בְּקִרְבָּם לֹא־יֶחְדְּלוּ מִלֶּכֶת אַחֲרֵיהֶם׃",
+      "english": "Yet they cannot understand this themselves, and leave them: for they have no knowledge.",
+      "sourcePages": [
+        115
+      ]
+    },
+    {
+      "verse": 43,
+      "sourceSpans": [
+        {
+          "sourceOrdinal": 46,
+          "start": 0,
+          "end": 82
+        },
+        {
+          "sourceOrdinal": 47,
+          "start": 0,
+          "end": 85
+        },
+        {
+          "sourceOrdinal": 48,
+          "start": 0,
+          "end": 119
+        }
+      ],
+      "hebrew": "גַּם נָשִׁים יֹשְׁבוֹת בְּפֶתַח עֵינַיִם חֲגוּרוֹת חֶבֶל וּמְקַטְּרוֹת לִפְנֵיהֶם׃ וְכִי יַעֲבֹר אִישׁ וְנַפְשׁוֹ חָשְׁקָה בְּאַחַת מֵהֶן וְיִתֵּן בָּהּ אֶת־שְׁכָבְתוֹ׃ הִיא מִתְפָּאֶרֶת עַל־רְעוּתָהּ בְּאָמְרָהּ הִנֵּה אַתְּ לֹא־יָקַרְתְּ בְּעֵינֵי הָאִישׁ הַהוּא לִפְתּוֹחַ חֲגוֹרָתֵךְ׃",
+      "english": "The women also with cords about them, sitting in the ways, burn bran for perfume: but if any of them, drawn by some that passeth by, lie with him, she reproacheth her fellow, that she was not thought as worthy as herself, nor her cord broken.",
+      "sourcePages": [
+        115
+      ]
+    },
+    {
+      "verse": 44,
+      "sourceSpans": [
+        {
+          "sourceOrdinal": 49,
+          "start": 0,
+          "end": 97
+        }
+      ],
+      "hebrew": "כָּל אֲשֶׁר נַעֲשֶׂה בִּשְׁמָם תּוֹךְ וּמִרְמָה הוּא וְאֵיךְ יְכֻבְּדוּ אוֹ לֵאלֹהִים יֵחָשֵׁבוּ׃",
+      "english": "Whatsoever is done among them is false: how may it then be thought or said that they are gods?",
+      "sourcePages": [
+        115
+      ]
+    },
+    {
+      "verse": 45,
+      "sourceSpans": [
+        {
+          "sourceOrdinal": 50,
+          "start": 0,
+          "end": 110
+        }
+      ],
+      "hebrew": "הֲלֹא מַעֲשֵׂה יְדֵי־חָרָשׁ וְצוֹרֵף הֵם וְכָל־אֲשֶׁר יִרְצֶה הֶחָרָשׁ אוֹ הַצּוֹרֵף יִפְעַל וְאֶפֶס זוּלָתוֹ׃",
+      "english": "They are made of carpenters and goldsmiths: they can be nothing else than the workmen will have them to be.",
+      "sourcePages": [
+        115
+      ]
+    },
+    {
+      "verse": 46,
+      "sourceSpans": [
+        {
+          "sourceOrdinal": 51,
+          "start": 0,
+          "end": 76
+        }
+      ],
+      "hebrew": "הֵן עוֹשֵׂיהֶם לֹא יַאֲרִיכוּ יָמִים אַף כִּי־הָאֱלִילִים מַעֲשֵׂי יְדֵיהֶם׃",
+      "english": "And they themselves that made them can never continue long; how should then the things that are made of them be gods?",
+      "sourcePages": [
+        115
+      ]
+    },
+    {
+      "verse": 47,
+      "sourceSpans": [
+        {
+          "sourceOrdinal": 52,
+          "start": 0,
+          "end": 116
+        }
+      ],
+      "hebrew": "אַךְ פֶּשַׁע עַל־חֵטְא יוֹסִיפוּ בְּתִתָּם מוֹקֵשׁ לְדוֹר אַחֲרוֹן לְהַזְנוֹתוֹ אַחֲרֵי הַבְלֵי־שָׁוְא וּמַדּוּחִים׃",
+      "english": "For they left lies and reproaches to them that come after.",
+      "sourcePages": [
+        115
+      ]
+    },
+    {
+      "verse": 48,
+      "sourceSpans": [
+        {
+          "sourceOrdinal": 53,
+          "start": 0,
+          "end": 126
+        }
+      ],
+      "hebrew": "כִּי־תִקְרֶה מִלְחָמָה אוֹ אָסוֹן כֹּהֲנֵיהֶם יִתְגוֹדְדוּ וְיַעֲרִימוּ סוֹד לַחְפֹּר מָקוֹם לְהֵחָבֵא־שָׁם הֵם וּפְסִילֵיהֶם׃",
+      "english": "For when there cometh any war or plague upon them, the priests consult with themselves, where they may be hidden with them.",
+      "sourcePages": [
+        115
+      ]
+    },
+    {
+      "verse": 49,
+      "sourceSpans": [
+        {
+          "sourceOrdinal": 54,
+          "start": 0,
+          "end": 90
+        }
+      ],
+      "hebrew": "הֲטֶרֶם תִּרְאוּן כִּי לֹא אֱלֹהִים הֵמָּה אִם קָצְרָה יָדָם לְהִנָּצֵל מֵחֶרֶב וּמֵרָעָה׃",
+      "english": "How then cannot men perceive that they be no gods, which can neither save themselves from war, nor from plague?",
+      "sourcePages": [
+        115
+      ]
+    },
+    {
+      "verse": 50,
+      "sourceSpans": [
+        {
+          "sourceOrdinal": 55,
+          "start": 0,
+          "end": 98
+        }
+      ],
+      "hebrew": "הֲיִרְאֶה אִישׁ פְּסִילֵי־עֵץ מְצֻפִּים זָהָב וָכֶסֶף וְלֹא־יָבִין כִּי מַעֲשֵׂי־תַּעֲתוּעִים הֵם׃",
+      "english": "For seeing they be but of wood, and overlaid with silver and gold, it shall be known hereafter that they are false:",
+      "sourcePages": [
+        115
+      ]
+    },
+    {
+      "verse": 51,
+      "sourceSpans": [
+        {
+          "sourceOrdinal": 56,
+          "start": 0,
+          "end": 140
+        }
+      ],
+      "hebrew": "לָכֵן עוֹד הַיוֹם יָבֹא וְכָל־לְאֻמִּים וּמַלְכֵי־אָרֶץ יִרְאוּן כִּי שֶׁקֶר נִסְכָּם וּמַעֲשֵׂי יְדֵי־אָדָם הֵם וְרוּחַ־אֱלֹהִים אֵין בָּם׃",
+      "english": "and it shall manifestly appear to all nations and kings that they are no gods, but the works of men's hands, and that there is no work of God in them.",
+      "sourcePages": [
+        115
+      ]
+    },
+    {
+      "verse": 52,
+      "sourceSpans": [
+        {
+          "sourceOrdinal": 57,
+          "start": 0,
+          "end": 46
+        }
+      ],
+      "hebrew": "וּבַמָּה יוּדַע עוֹד כִּי לֹא אֱלֹהִים הֵמָּה׃",
+      "english": "Who then may not know that they are no gods?",
+      "sourcePages": [
+        115
+      ]
+    },
+    {
+      "verse": 53,
+      "sourceSpans": [
+        {
+          "sourceOrdinal": 58,
+          "start": 0,
+          "end": 69
+        }
+      ],
+      "hebrew": "לֹא יַמְלִיכוּ מֶלֶךְ עַל הָאָרֶץ וְלֹא יִתְּנוּ מָטָר עַל־הָאֲדָמָה׃",
+      "english": "For neither can they set up a king in the land, nor give rain unto men.",
+      "sourcePages": [
+        115
+      ]
+    },
+    {
+      "verse": 54,
+      "sourceSpans": [
+        {
+          "sourceOrdinal": 59,
+          "start": 0,
+          "end": 131
+        }
+      ],
+      "hebrew": "לֹא־יִשְׁפְּטוּ אֶת־רִיבֵי הָעָם וְלֹא יַעֲצְרוּ כָל־אָוֶן כִּי אֻמְלָלִים הֵם מֵהָעוֹרֵב אֲשֶׁר יָעוּף תַּחַת רְקִיעַ הַשָּׁמָיִם׃",
+      "english": "Neither can they judge their own cause, nor redress a wrong, being unable: for they are as crows between heaven and earth.",
+      "sourcePages": [
+        115
+      ]
+    },
+    {
+      "verse": 55,
+      "sourceSpans": [
+        {
+          "sourceOrdinal": 60,
+          "start": 0,
+          "end": 187
+        }
+      ],
+      "hebrew": "כִּי־תֵצֵא אֵשׁ וּמָצְאָה אֶת־בֵּית פְּסִילֵי זָהָב וְכֶסֶף וָעֵץ הַכֹּהֲנִים נִמְהָרִים וְנֶחְפָּזִים לְהִמָּלֵט עַל־נַפְשָׁם וְהָאֵשׁ אֹכֶלֶת אֶת־הַפְּסִילִים כִּשְׁאָר קוֹרֵי הַבָּיִת׃",
+      "english": "Whereupon when fire falleth upon the house of gods of wood, or laid over with gold or silver, their priests will flee away, and escape: but they themselves shall be burned asunder like beams.",
+      "sourcePages": [
+        115,
+        116
+      ]
+    },
+    {
+      "verse": 56,
+      "sourceSpans": [
+        {
+          "sourceOrdinal": 61,
+          "start": 0,
+          "end": 94
+        }
+      ],
+      "hebrew": "לֹא יִתְיַצְּבוּ לִפְנֵי מְלָכִים וְחֵילֵי מִלְחָמָה וְאֵיךְ תַּאֲמִינוּ כִּי אֱלֹהִים הֵמָּה׃",
+      "english": "Moreover they cannot withstand any king or enemies: how can it then be thought or said that they be gods?",
+      "sourcePages": [
+        116
+      ]
+    },
+    {
+      "verse": 57,
+      "sourceSpans": [
+        {
+          "sourceOrdinal": 62,
+          "start": 0,
+          "end": 69
+        }
+      ],
+      "hebrew": "אִם אֱלֹהֵי מַסֵּכָה אֵלֶּה לֹא־יֻכְלוּ לְהִמָּלֵט מִיַּד־הַשּׁוֹדֵד",
+      "english": "Neither are those gods of wood, and laid over with silver or gold, able to escape either from thieves or robbers.",
+      "sourcePages": [
+        116
+      ]
+    },
+    {
+      "verse": 58,
+      "sourceSpans": [
+        {
+          "sourceOrdinal": 62,
+          "start": 69,
+          "end": 140
+        },
+        {
+          "sourceOrdinal": 63,
+          "start": 0,
+          "end": 119
+        }
+      ],
+      "hebrew": "יַעַן כִּי חָזָק הוּא מֵהֶם וְיָבֹז אוֹתָם וְיַפְשִׁיט אֶת־בִּגְדֵיהֶם׃ וְיִקַּח אֶת־הַזָּהָב וְאֶת־הַכֶּסֶף וְאֶת־הַמַּחֲלָצוֹת וְנִמְלַט־בָּם וּמֵהֶם יִבָּצֵר כֹּחַ לְהִמָּלֵט עַל נַפְשָׁם׃",
+      "english": "Whose gold, and silver, and garments wherewith they are clothed, they that are strong do take, and go away withal: neither are they able to help themselves.",
+      "sourcePages": [
+        116
+      ]
+    },
+    {
+      "verse": 59,
+      "sourceSpans": [
+        {
+          "sourceOrdinal": 64,
+          "start": 0,
+          "end": 153
+        },
+        {
+          "sourceOrdinal": 65,
+          "start": 0,
+          "end": 64
+        }
+      ],
+      "hebrew": "הֲלֹא טוֹב מֵהֶם הֱיוֹת מֶלֶךְ הַמַּרְאֶה אֶת־גְּבוּרָתוֹ אוֹ כְּלִי־בַּיִת אֲשֶׁר יְשָׁרֵת־בּוֹ הָאָדָם אוֹ דֶּלֶת אֲשֶׁר תִּשְׁמֹר אֶת־כְּלֵי־הַבָּיִת׃ אוֹ עַמּוּד עֵץ בְּהֵיכַל מֶלֶךְ מִהְיוֹת פֶּסֶל חָדֵל וְחָלָשׁ׃",
+      "english": "Therefore it is better to be a king that sheweth his power, or else a profitable vessel in an house, which the owner shall have use of, than such false gods; or to be a door in an house, to keep such things safe as be therein, than such false gods; or a pillar of wood in a palace, than such false gods.",
+      "sourcePages": [
+        116
+      ]
+    },
+    {
+      "verse": 60,
+      "sourceSpans": [
+        {
+          "sourceOrdinal": 66,
+          "start": 0,
+          "end": 101
+        }
+      ],
+      "hebrew": "הַשֶּׁמֶשׁ וְהַיָּרֵחַ וְכָל־צְבָא־הַשָּׁמָיִם הַמְּאִירִים שֹׁמְעִים לְקוֹל יְיָ וְעֹשִׂים רְצוֹנוֹ׃",
+      "english": "For sun, moon, and stars, being bright, and sent to do their offices, are obedient.",
+      "sourcePages": [
+        116
+      ]
+    },
+    {
+      "verse": 61,
+      "sourceSpans": [
+        {
+          "sourceOrdinal": 67,
+          "start": 0,
+          "end": 86
+        }
+      ],
+      "hebrew": "יָאִירוּ בְרָקִים תֵּבֵל לְעֵינֵי יֹשְׁבֶיהָ וְהָרוּחַ נֹשֵׁב עַל פְּנֵי כָּל־הָאָרֶץ׃",
+      "english": "In like manner the lightning when it breaketh forth is easy to be seen: and after the same manner the wind bloweth in every country.",
+      "sourcePages": [
+        116
+      ]
+    },
+    {
+      "verse": 62,
+      "sourceSpans": [
+        {
+          "sourceOrdinal": 68,
+          "start": 0,
+          "end": 60
+        }
+      ],
+      "hebrew": "הֶעָבִים יַעַבְרוּ תַּחַת הָרָקִיעַ וְשֹׁמְעִים לְקוֹל יְיָ׃",
+      "english": "And when God commandeth the clouds to go over the whole world, they do as they are bidden.",
+      "sourcePages": [
+        116
+      ]
+    },
+    {
+      "verse": 63,
+      "sourceSpans": [
+        {
+          "sourceOrdinal": 69,
+          "start": 0,
+          "end": 63
+        },
+        {
+          "sourceOrdinal": 70,
+          "start": 0,
+          "end": 60
+        }
+      ],
+      "hebrew": "וְאֵשׁ־אֱלֹהִים יֹרֶדֶת מִשְּׁחָקִים וְתֹאכַל הָרִים וִיעָרִים׃ וְהָאֱלִילִים לֹא־יִדְמוּ לָמוֹ לֹא בְּכֹחַ וְלֹא־בְמַרְאֶה",
+      "english": "And the fire sent from above to consume hills and woods doeth as it is commanded: but these are like unto them neither in shew nor power.",
+      "sourcePages": [
+        116
+      ]
+    },
+    {
+      "verse": 64,
+      "sourceSpans": [
+        {
+          "sourceOrdinal": 70,
+          "start": 60,
+          "end": 127
+        }
+      ],
+      "hebrew": "לָכֵן לֵאלֹהִים בַּל־תַּחֲשְׁבוּם כִּי לֹא יֵיטִיבוּ וְלֹא יָרֵעוּ׃",
+      "english": "Wherefore it is neither to be supposed nor said that they are gods, seeing they are able neither to judge causes, nor to do good unto men.",
+      "sourcePages": [
+        116
+      ]
+    },
+    {
+      "verse": 65,
+      "sourceSpans": [
+        {
+          "sourceOrdinal": 71,
+          "start": 0,
+          "end": 78
+        }
+      ],
+      "hebrew": "וְעַתָּה כִּי־יְדַעְתֶּם כִּי אֱלִילֵי תֹהוּ הֵמָּה אַל־תָּגוּרוּ מִפְּנֵיהֶם׃",
+      "english": "Knowing therefore that they are no gods, fear them not.",
+      "sourcePages": [
+        116
+      ]
+    },
+    {
+      "verse": 66,
+      "sourceSpans": [
+        {
+          "sourceOrdinal": 72,
+          "start": 0,
+          "end": 45
+        }
+      ],
+      "hebrew": "לֹא יִתְּנוּ בְּרָכָה אוֹ־קְלָלָה לִמְלָכִים",
+      "english": "For they can neither curse nor bless kings:",
+      "sourcePages": [
+        116
+      ]
+    },
+    {
+      "verse": 67,
+      "sourceSpans": [
+        {
+          "sourceOrdinal": 72,
+          "start": 45,
+          "end": 98
+        },
+        {
+          "sourceOrdinal": 73,
+          "start": 0,
+          "end": 50
+        }
+      ],
+      "hebrew": "וְלֹא יִתְּנוּ אוֹתוֹת בַּשָּׁמַיִם לְגוֹיֵי הָאָרֶץ׃ לֹא־יִזְרְחוּ כַשֶּׁמֶשׁ וְלֹא־יָאִירוּ כַיָּרֵחַ׃",
+      "english": "neither can they shew signs in the heavens among the heathen, nor shine as the sun, nor give light as the moon.",
+      "sourcePages": [
+        116
+      ]
+    },
+    {
+      "verse": 68,
+      "sourceSpans": [
+        {
+          "sourceOrdinal": 74,
+          "start": 0,
+          "end": 108
+        }
+      ],
+      "hebrew": "וְאֶבְחַר מֵהֶם הַבְּהֵמוֹת חֲסַרוֹת תְּבוּנָה כִּי בַּמְּעָרוֹת תְּבַקֵּשְׁנָה מַחֲסֶה מִזֶּרֶם וּמִמָּטָר׃",
+      "english": "The beasts are better than they: for they can get under a covert, and help themselves.",
+      "sourcePages": [
+        116
+      ]
+    },
+    {
+      "verse": 69,
+      "sourceSpans": [
+        {
+          "sourceOrdinal": 75,
+          "start": 0,
+          "end": 96
+        }
+      ],
+      "hebrew": "וְעַתָּה גָּלוּי וְיָדוּעַ לַכֹּל כִּי הֶבֶל הֵמָּה גַּם־יַחַד לָכֵן אַל־תִּירָאוּן מִפְּנֵיהֶם׃",
+      "english": "It is then by no means manifest unto us that they are gods: therefore fear them not.",
+      "sourcePages": [
+        116
+      ]
+    },
+    {
+      "verse": 70,
+      "sourceSpans": [
+        {
+          "sourceOrdinal": 76,
+          "start": 0,
+          "end": 106
+        }
+      ],
+      "hebrew": "כְּמוֹ צַלְמֵי בַּלָּהוֹת לֹא יְגֹנְנוּ עַל שְׂדֵה קִשּׁוּאִים כֵּן אֱלִילֵי כֶּסֶף וְזָהָב לֹא יְגֹנֵנוּ׃",
+      "english": "For as a scarecrow in a garden of cucumbers keepeth nothing: so are their gods of wood, and laid over with silver and gold.",
+      "sourcePages": [
+        116
+      ]
+    },
+    {
+      "verse": 71,
+      "sourceSpans": [
+        {
+          "sourceOrdinal": 77,
+          "start": 0,
+          "end": 123
+        }
+      ],
+      "hebrew": "כִּמְסוּכַת גַּן אֲשֶׁר צִפֳּרִים בָּהּ יְקַנֵּנוּ וּכְנֶפֶשׁ מֵת טָמוּן בְּקִבְרוֹ כֵּן גִּלּוּלֵיהֶם זָהָב וָכֶסֶף וָעֵץ׃",
+      "english": "And likewise their gods of wood, and laid over with silver and gold, are like to a white thorn in an orchard, that every bird sitteth upon; as also to a dead body, that is cast into the dark.",
+      "sourcePages": [
+        116
+      ]
+    },
+    {
+      "verse": 72,
+      "sourceSpans": [
+        {
+          "sourceOrdinal": 78,
+          "start": 0,
+          "end": 187
+        }
+      ],
+      "hebrew": "וְאַף גַּם־בָּזֹאת תַּכִּירוּ כִּי שֶׁקֶר תַּרְמִיתָם כִּי מְעִילֵי הַכַּרְמִיל אֲשֶׁר עֲלֵיהֶם יִבְלוּ וְהַתּוֹלַעַת תֹּאכְלֵם וְאֶת הָאֱלִילִים עִמָּהֶם עַד־יִתְעַלְּלוּ כָּל־רֹאֵי־בָם׃",
+      "english": "And ye shall know them to be no gods by the bright purple that rotteth upon them: and they themselves afterward shall be eaten, and shall be a reproach in the country.",
+      "sourcePages": [
+        116
+      ]
+    },
+    {
+      "verse": 73,
+      "sourceSpans": [
+        {
+          "sourceOrdinal": 79,
+          "start": 0,
+          "end": 107
+        }
+      ],
+      "hebrew": "לָכֵן־אַשְׁרֵי הָאִישׁ הַהֹלֵךְ תָּמִים וְלֹא יִזְנֶה אַחֲרֵי הָאֱלִילִים כִּי לֹא־יִכָּלֵם לְעוֹלָם וָעֶד׃",
+      "english": "Better therefore is the just man that hath no idols: for he shall be far from reproach.",
+      "sourcePages": [
+        116
+      ]
+    }
+  ],
+  "validation": {
+    "sourceCharactersCoveredExactlyOnceInOrder": true,
+    "splitSourceOrdinals": [
+      6,
+      10,
+      11,
+      12,
+      20,
+      27,
+      34,
+      62,
+      70,
+      72
+    ],
+    "sourceNoteCount": 1
+  },
+  "targetBoundaryReview": {
+    "date": "2026-10-02",
+    "scope": "Every assembled pointed Hebrew target verse, 1–73, compared semantically with the pinned Brenton English unit. The independent boundary reader also checked all 73 provisional correspondences and the printed Greek-English divisions.",
+    "observations": [
+      "Verse 1 is the epistolary opening; verse 2 begins the sins/captivity sentence. No numbering offset or separate unnumbered introduction is introduced.",
+      "Ten source sections split at word boundaries: 6, 10, 11, 12, 20, 27, 34, 62, 70, 72. Each original character span is retained exactly once.",
+      "Verse 18 retains Frenkel's own order of the locked temple and condemned prisoner clauses within the same Brenton verse.",
+      "Verse 43 contains all three consecutive Frenkel sections 46–48, including the cords, intercourse, and reproach clauses.",
+      "Verse 58 begins with Frenkel's stronger robber clause, aligned with Brenton's takers of gold, silver and garments; verse 57 stops at inability to escape the robber.",
+      "Verse 64 starts the conclusion that these are not gods; verse 67 begins the signs in heaven, after the blessing/curse of kings in 66.",
+      "Verses 70–73 retain the scarecrow, hedge/corpse, rotting purple, and just man as four separate final units.",
+      "Frenkel's own lexical and syntactic choices remain, including tenth generation rather than Brenton's seventh. This is a boundary alignment, not a new Hebrew translation.",
+      "The only disclosed mark is the first-nun dagesh in Frenkel section 33 / target verse 30. The readable patah stays in the text."
+    ],
+    "unresolvedBoundaries": [],
+    "missingOrDuplicatedSourceWords": 0
+  }
+}

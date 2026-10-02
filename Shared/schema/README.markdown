@@ -18,6 +18,7 @@ documented separately; they do not require a matching phone or Windows interface
 | `seven-sorrows.json` | The 7 Sorrows of Mary (order/imageKey/title/isScripture), the 7-per-decade override, and image-sourcing/language-coverage status. |
 | `today-data.json` | The calendar registry plus per-calendar feast and lectionary-citation shapes, localization maps, source boundaries, and no-cross-rite-fallback rule. |
 | `reading-texts.json` | Offline Bible edition metadata and pre-resolved daily/Torah verse arrays, shared by every native reader. Exact licensed lectionary text is separate. |
+| `bible-library.json` | Optional Bible-download catalog, archive manifest, chapter contents, actual coverage and per-book translator credits. |
 | `widgets.json` | Today and Saved Prayer widgets on iOS, Android, and Mac; settings, snapshot boundaries, progress validity, configuration, and destination links. |
 | `screens.json` | Every screen/page, its parameters, and how navigation reaches it on each platform, including the dedicated Mac and Windows library/prayer windows. |
 

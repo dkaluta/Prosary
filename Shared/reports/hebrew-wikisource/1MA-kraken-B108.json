@@ -1,0 +1,1153 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Independent consonantal omission check against a provisional visual draft, not an accuracy certificate. No vocabulary or expected words were supplied to recognition.",
+  "relationship": "scan-transcription",
+  "referenceStatus": "unreviewed",
+  "productionEligible": false,
+  "referenceSHA256": "7b3a5ac55fe0fbca7d8545eb252bfc351c5b6cbfab5b77ff320c055b75b41060",
+  "observedSHA256": "5cb49276acb3f18dd7bee54920f4c3ae321ec893f6f49c552851564d1b9aa003",
+  "normalization": "Combining marks and punctuation removed for comparison only; spelling preserved.",
+  "referenceWords": 170,
+  "observedWords": 169,
+  "wordOperations": {
+    "equal": 156,
+    "replace": 13,
+    "delete": 1,
+    "insert": 0
+  },
+  "matchingReferenceFraction": 0.9176470588235294,
+  "tokenDifferenceRate": 0.08235294117647059,
+  "alignment": [
+    {
+      "kind": "equal",
+      "referenceStart": 0,
+      "referenceEnd": 11,
+      "observedStart": 0,
+      "observedEnd": 11,
+      "reference": [
+        "ויבאו",
+        "אנשי",
+        "המלך",
+        "המאלצים",
+        "על",
+        "המעל",
+        "למודיעים",
+        "העיר",
+        "לזבח",
+        "ורבים",
+        "מישראל"
+      ],
+      "observed": [
+        "ויבאו",
+        "אנשי",
+        "המלך",
+        "המאלצים",
+        "על",
+        "המעל",
+        "למודיעים",
+        "העיר",
+        "לזבח",
+        "ורבים",
+        "מישראל"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 11,
+      "referenceEnd": 12,
+      "observedStart": 11,
+      "observedEnd": 12,
+      "reference": [
+        "באו"
+      ],
+      "observed": [
+        "כאו"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 12,
+      "referenceEnd": 25,
+      "observedStart": 12,
+      "observedEnd": 25,
+      "reference": [
+        "אליהם",
+        "ומתתיהו",
+        "ובניו",
+        "נאספו",
+        "ויענו",
+        "אנשי",
+        "המלך",
+        "וידברו",
+        "אל",
+        "מתתיהו",
+        "לאמר",
+        "ראש",
+        "ונכבד"
+      ],
+      "observed": [
+        "אליהם",
+        "ומתתיהו",
+        "ובניו",
+        "נאספו",
+        "ויענו",
+        "אנשי",
+        "המלך",
+        "וידברו",
+        "אל",
+        "מתתיהו",
+        "לאמר",
+        "ראש",
+        "ונכבד"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 25,
+      "referenceEnd": 26,
+      "observedStart": 25,
+      "observedEnd": 26,
+      "reference": [
+        "וגדול"
+      ],
+      "observed": [
+        "ונדול"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 26,
+      "referenceEnd": 49,
+      "observedStart": 26,
+      "observedEnd": 49,
+      "reference": [
+        "אתה",
+        "בעיר",
+        "הזאת",
+        "ונתמך",
+        "בבנים",
+        "ובאחים",
+        "עתה",
+        "קרב",
+        "ראשון",
+        "ועשה",
+        "מצות",
+        "המלך",
+        "כאשר",
+        "עשו",
+        "כל",
+        "העמים",
+        "ואנשי",
+        "יהודה",
+        "והנשארים",
+        "בירושלם",
+        "והיית",
+        "אתה",
+        "ובניך"
+      ],
+      "observed": [
+        "אתה",
+        "בעיר",
+        "הזאת",
+        "ונתמך",
+        "בבנים",
+        "ובאחים",
+        "עתה",
+        "קרב",
+        "ראשון",
+        "ועשה",
+        "מצות",
+        "המלך",
+        "כאשר",
+        "עשו",
+        "כל",
+        "העמים",
+        "ואנשי",
+        "יהודה",
+        "והנשארים",
+        "בירושלם",
+        "והיית",
+        "אתה",
+        "ובניך"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 49,
+      "referenceEnd": 50,
+      "observedStart": 49,
+      "observedEnd": 50,
+      "reference": [
+        "מאוהבי"
+      ],
+      "observed": [
+        "מאוהכי"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 50,
+      "referenceEnd": 52,
+      "observedStart": 50,
+      "observedEnd": 52,
+      "reference": [
+        "המלך",
+        "ואתה"
+      ],
+      "observed": [
+        "המלך",
+        "ואתה"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 52,
+      "referenceEnd": 53,
+      "observedStart": 52,
+      "observedEnd": 53,
+      "reference": [
+        "ובניך"
+      ],
+      "observed": [
+        "וכניך"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 53,
+      "referenceEnd": 82,
+      "observedStart": 53,
+      "observedEnd": 82,
+      "reference": [
+        "תכבדו",
+        "בכסף",
+        "ובזהב",
+        "ובמתנות",
+        "רבות",
+        "ויען",
+        "מתתיהו",
+        "ויאמר",
+        "בקול",
+        "גדול",
+        "אם",
+        "כל",
+        "העמים",
+        "אשר",
+        "בבית",
+        "מלכות",
+        "המלך",
+        "שומעים",
+        "לו",
+        "יסורו",
+        "כל",
+        "איש",
+        "מעבודת",
+        "אבותיו",
+        "ויבחרו",
+        "במצותיו",
+        "ואני",
+        "ובני",
+        "ואחי"
+      ],
+      "observed": [
+        "תכבדו",
+        "בכסף",
+        "ובזהב",
+        "ובמתנות",
+        "רבות",
+        "ויען",
+        "מתתיהו",
+        "ויאמר",
+        "בקול",
+        "גדול",
+        "אם",
+        "כל",
+        "העמים",
+        "אשר",
+        "בבית",
+        "מלכות",
+        "המלך",
+        "שומעים",
+        "לו",
+        "יסורו",
+        "כל",
+        "איש",
+        "מעבודת",
+        "אבותיו",
+        "ויבחרו",
+        "במצותיו",
+        "ואני",
+        "ובני",
+        "ואחי"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 82,
+      "referenceEnd": 83,
+      "observedStart": 82,
+      "observedEnd": 83,
+      "reference": [
+        "נלך"
+      ],
+      "observed": [
+        "גלך"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 83,
+      "referenceEnd": 102,
+      "observedStart": 83,
+      "observedEnd": 102,
+      "reference": [
+        "בברית",
+        "אבותינו",
+        "חלילה",
+        "לנו",
+        "לעזב",
+        "תורה",
+        "ומצות",
+        "לדברי",
+        "המלך",
+        "לא",
+        "נשמע",
+        "לסור",
+        "מעבודתנו",
+        "ימין",
+        "או",
+        "שמאל",
+        "וככלותו",
+        "לדבר",
+        "את"
+      ],
+      "observed": [
+        "בברית",
+        "אבותינו",
+        "חלילה",
+        "לנו",
+        "לעזב",
+        "תורה",
+        "ומצות",
+        "לדברי",
+        "המלך",
+        "לא",
+        "נשמע",
+        "לסור",
+        "מעבודתנו",
+        "ימין",
+        "או",
+        "שמאל",
+        "וככלותו",
+        "לדבר",
+        "את"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 102,
+      "referenceEnd": 103,
+      "observedStart": 102,
+      "observedEnd": 103,
+      "reference": [
+        "הדברים"
+      ],
+      "observed": [
+        "הךברים"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 103,
+      "referenceEnd": 137,
+      "observedStart": 103,
+      "observedEnd": 137,
+      "reference": [
+        "האלה",
+        "קרב",
+        "איש",
+        "יהודי",
+        "לעיני",
+        "כלם",
+        "לזבח",
+        "על",
+        "הבמה",
+        "במודיעים",
+        "כמצות",
+        "המלך",
+        "וירא",
+        "מתתיהו",
+        "ויקנא",
+        "וישתונן",
+        "כליותיו",
+        "וישלח",
+        "חרונו",
+        "כמשפט",
+        "וירץ",
+        "ויזבחהו",
+        "על",
+        "הבמה",
+        "ואת",
+        "איש",
+        "המלך",
+        "המאלץ",
+        "לזבח",
+        "המית",
+        "בעת",
+        "ההיא",
+        "ואת",
+        "הבמה"
+      ],
+      "observed": [
+        "האלה",
+        "קרב",
+        "איש",
+        "יהודי",
+        "לעיני",
+        "כלם",
+        "לזבח",
+        "על",
+        "הבמה",
+        "במודיעים",
+        "כמצות",
+        "המלך",
+        "וירא",
+        "מתתיהו",
+        "ויקנא",
+        "וישתונן",
+        "כליותיו",
+        "וישלח",
+        "חרונו",
+        "כמשפט",
+        "וירץ",
+        "ויזבחהו",
+        "על",
+        "הבמה",
+        "ואת",
+        "איש",
+        "המלך",
+        "המאלץ",
+        "לזבח",
+        "המית",
+        "בעת",
+        "ההיא",
+        "ואת",
+        "הבמה"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 137,
+      "referenceEnd": 138,
+      "observedStart": 137,
+      "observedEnd": 138,
+      "reference": [
+        "הרס"
+      ],
+      "observed": [
+        "הרם"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 138,
+      "referenceEnd": 142,
+      "observedStart": 138,
+      "observedEnd": 142,
+      "reference": [
+        "ויקנא",
+        "לתורה",
+        "כאשר",
+        "עשה"
+      ],
+      "observed": [
+        "ויקנא",
+        "לתורה",
+        "כאשר",
+        "עשה"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 142,
+      "referenceEnd": 143,
+      "observedStart": 142,
+      "observedEnd": 143,
+      "reference": [
+        "פינחס"
+      ],
+      "observed": [
+        "פינחם"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 143,
+      "referenceEnd": 144,
+      "observedStart": 143,
+      "observedEnd": 144,
+      "reference": [
+        "לזמרי"
+      ],
+      "observed": [
+        "לזמרי"
+      ]
+    },
+    {
+      "kind": "delete",
+      "referenceStart": 144,
+      "referenceEnd": 145,
+      "observedStart": 144,
+      "observedEnd": 144,
+      "reference": [
+        "בן"
+      ],
+      "observed": []
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 145,
+      "referenceEnd": 146,
+      "observedStart": 144,
+      "observedEnd": 145,
+      "reference": [
+        "סלוא"
+      ],
+      "observed": [
+        "בןסלוא"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 146,
+      "referenceEnd": 148,
+      "observedStart": 145,
+      "observedEnd": 147,
+      "reference": [
+        "ויקרא",
+        "מתתיהו"
+      ],
+      "observed": [
+        "ויקרא",
+        "מתתיהו"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 148,
+      "referenceEnd": 149,
+      "observedStart": 147,
+      "observedEnd": 148,
+      "reference": [
+        "בעיר"
+      ],
+      "observed": [
+        "כעיר"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 149,
+      "referenceEnd": 156,
+      "observedStart": 148,
+      "observedEnd": 155,
+      "reference": [
+        "בקול",
+        "גדול",
+        "לאמר",
+        "כל",
+        "המקנא",
+        "לתורה",
+        "העומד"
+      ],
+      "observed": [
+        "בקול",
+        "גדול",
+        "לאמר",
+        "כל",
+        "המקנא",
+        "לתורה",
+        "העומד"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 156,
+      "referenceEnd": 157,
+      "observedStart": 155,
+      "observedEnd": 156,
+      "reference": [
+        "בברית"
+      ],
+      "observed": [
+        "כברית"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 157,
+      "referenceEnd": 159,
+      "observedStart": 156,
+      "observedEnd": 158,
+      "reference": [
+        "ילך",
+        "אחרי"
+      ],
+      "observed": [
+        "ילך",
+        "אחרי"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 159,
+      "referenceEnd": 160,
+      "observedStart": 158,
+      "observedEnd": 159,
+      "reference": [
+        "וינס"
+      ],
+      "observed": [
+        "וינם"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 160,
+      "referenceEnd": 164,
+      "observedStart": 159,
+      "observedEnd": 163,
+      "reference": [
+        "הוא",
+        "ובניו",
+        "אל",
+        "ההרים"
+      ],
+      "observed": [
+        "הוא",
+        "ובניו",
+        "אל",
+        "ההרים"
+      ]
+    },
+    {
+      "kind": "replace",
+      "referenceStart": 164,
+      "referenceEnd": 165,
+      "observedStart": 163,
+      "observedEnd": 164,
+      "reference": [
+        "ויעזבו"
+      ],
+      "observed": [
+        "ויעןבו"
+      ]
+    },
+    {
+      "kind": "equal",
+      "referenceStart": 165,
+      "referenceEnd": 170,
+      "observedStart": 164,
+      "observedEnd": 169,
+      "reference": [
+        "כל",
+        "אשר",
+        "היה",
+        "להם",
+        "בעיר"
+      ],
+      "observed": [
+        "כל",
+        "אשר",
+        "היה",
+        "להם",
+        "בעיר"
+      ]
+    }
+  ],
+  "notes": [
+    "An alignment is a review aid, not a verified verse crosswalk.",
+    "Niqqud and punctuation still require separate image comparison.",
+    "Text differences are not an OCR accuracy measurement without a scan-checked matching reference."
+  ],
+  "book": "1MA",
+  "source": "Kahana volumeB, PDF108",
+  "sourcePDFSHA256": "656891d377d2e3d4a9216723d94205488423907bf01df424b9f0b9de1560051e",
+  "reference": "ויבאו אנשי המלך המאלצים על־המעל למודיעים העיר לזבח׃ ורבים מישראל באו אליהם ומתתיהו ובניו נאספו׃ ויענו אנשי המלך וידברו אל־מתתיהו לאמר ראש ונכבד וגדול אתה בעיר הזאת ונתמך בבנים ובאחים׃ עתה קרב ראשון ועשה מצות המלך כאשר עשו כל־העמים ואנשי יהודה והנשארים בירושלם והיית אתה ובניך מאוהבי המלך ואתה ובניך תכבדו בכסף ובזהב ובמתנות רבות׃ ויען מתתיהו ויאמר בקול גדול אם־כל־העמים אשר בבית־מלכות המלך שומעים לו יסורו כל־איש מעבודת אבותיו ויבחרו במצותיו׃ ואני ובני ואחי נלך בברית אבותינו׃ חלילה־לנו לעזב תורה ומצות׃ לדברי המלך לא־נשמע לסור מעבודתנו ימין או שמאל׃ וככלותו לדבר את־הדברים האלה קרב איש יהודי לעיני כלם לזבח על־הבמה במודיעים כמצות המלך׃ וירא מתתיהו ויקנא וישתונן כליותיו וישלח חרונו כמשפט וירץ ויזבחהו על־הבמה׃ ואת איש־המלך המאלץ לזבח המית בעת ההיא ואת הבמה הרס׃ ויקנא לתורה כאשר עשה פינחס לזמרי בן־סלוא׃ ויקרא מתתיהו בעיר בקול גדול לאמר כל־המקנא לתורה העומד בברית ילך אחרי׃ וינס הוא ובניו אל־ההרים ויעזבו כל אשר־היה להם בעיר׃",
+  "rawOCR": "ויבאו אנשי המלך המאלצים על-המעל למודיעים העיר\nלזבח: ורבים מישראַל כאו אליהם ומתתיהו ובניו נאספו: ויענו\nאנשי המלך וידברו אל-מתתיהו לאמר ראש ונכבד ונדול אתה\nבעיר הזאת ונתמך בבנים ובאחים: עתה קרב ראשון ועשה מצות\nהמלך כאשר עשו כל-העמים ואנשי יהודה והנשארים בירושלם\nוהיית אתה ובניך מאוהכי המלך ואתה וכניך תכבדו בכסף ובזהב\nובמתנות רבות: ויען מתתיהו ויאמר בקול גדול אם-כל-העמים אשר\nבבית-מלכות המלך שומעים לו יסורו כל-איש מעבודת אבותיו\nויבחרו במצותיו: ואָני ובני ואחי גלך בּברית אָבותינו: חלילה-לנו\nלעזב תורה ומצות: לדברי המלך לא-נשמע לסור מעבודתנו ימין\nאו שמאל: וככלותו לדבר את-הךברים האלה קרב איש יהודי לעיני\nכלם לזבח על-הבמה במודיעים כמצות המלך: וירא מתתיהו ויקנא\nוישתונן כליותיו וישלח חרונו כמשפט וירץ ויזבחהו על-הבמה:\nואת איש-המלך המאלץ לזבח המית בעת ההיא ואת הבמה הרם:\nויקנא לתורה כאשר עשה פינחם לזמרי בןסלוא: ויקרא מתתיהו\nכעיר בקול גדול לאמר כל-המקנא לתורה העומד כברית ילך\nאחרי: וינם הוא ובניו אל-ההרים ויעןבו כל אשר-היה להם בּעיר:\n",
+  "recognition": {
+    "sourceImage": "/private/tmp/prosary-kahana-reference/pages/B-108-body.png",
+    "sourceImageSHA256": "81c2889a552dc4a9b4d49f15c6b6b55d53093d5d792dd36847e244f620f3234e",
+    "sourceImageSize": [
+      1980,
+      1286
+    ],
+    "model": "/private/tmp/prosary-kraken-ocr/small.safetensors",
+    "modelSHA256": "3108259779f5abfed3908a1c9eafba64d17e4a2a169368c539ecfeff04c018f3",
+    "command": [
+      "/private/tmp/prosary-kraken-ocr/bin/kraken",
+      "-i",
+      "/private/tmp/prosary-1ma-kraken-108/result/line-001.png",
+      "/private/tmp/prosary-1ma-kraken-108/result/line-001.txt",
+      "-i",
+      "/private/tmp/prosary-1ma-kraken-108/result/line-002.png",
+      "/private/tmp/prosary-1ma-kraken-108/result/line-002.txt",
+      "-i",
+      "/private/tmp/prosary-1ma-kraken-108/result/line-003.png",
+      "/private/tmp/prosary-1ma-kraken-108/result/line-003.txt",
+      "-i",
+      "/private/tmp/prosary-1ma-kraken-108/result/line-004.png",
+      "/private/tmp/prosary-1ma-kraken-108/result/line-004.txt",
+      "-i",
+      "/private/tmp/prosary-1ma-kraken-108/result/line-005.png",
+      "/private/tmp/prosary-1ma-kraken-108/result/line-005.txt",
+      "-i",
+      "/private/tmp/prosary-1ma-kraken-108/result/line-006.png",
+      "/private/tmp/prosary-1ma-kraken-108/result/line-006.txt",
+      "-i",
+      "/private/tmp/prosary-1ma-kraken-108/result/line-007.png",
+      "/private/tmp/prosary-1ma-kraken-108/result/line-007.txt",
+      "-i",
+      "/private/tmp/prosary-1ma-kraken-108/result/line-008.png",
+      "/private/tmp/prosary-1ma-kraken-108/result/line-008.txt",
+      "-i",
+      "/private/tmp/prosary-1ma-kraken-108/result/line-009.png",
+      "/private/tmp/prosary-1ma-kraken-108/result/line-009.txt",
+      "-i",
+      "/private/tmp/prosary-1ma-kraken-108/result/line-010.png",
+      "/private/tmp/prosary-1ma-kraken-108/result/line-010.txt",
+      "-i",
+      "/private/tmp/prosary-1ma-kraken-108/result/line-011.png",
+      "/private/tmp/prosary-1ma-kraken-108/result/line-011.txt",
+      "-i",
+      "/private/tmp/prosary-1ma-kraken-108/result/line-012.png",
+      "/private/tmp/prosary-1ma-kraken-108/result/line-012.txt",
+      "-i",
+      "/private/tmp/prosary-1ma-kraken-108/result/line-013.png",
+      "/private/tmp/prosary-1ma-kraken-108/result/line-013.txt",
+      "-i",
+      "/private/tmp/prosary-1ma-kraken-108/result/line-014.png",
+      "/private/tmp/prosary-1ma-kraken-108/result/line-014.txt",
+      "-i",
+      "/private/tmp/prosary-1ma-kraken-108/result/line-015.png",
+      "/private/tmp/prosary-1ma-kraken-108/result/line-015.txt",
+      "-i",
+      "/private/tmp/prosary-1ma-kraken-108/result/line-016.png",
+      "/private/tmp/prosary-1ma-kraken-108/result/line-016.txt",
+      "-i",
+      "/private/tmp/prosary-1ma-kraken-108/result/line-017.png",
+      "/private/tmp/prosary-1ma-kraken-108/result/line-017.txt",
+      "ocr",
+      "-s",
+      "-n",
+      "--base-dir",
+      "R",
+      "-m",
+      "/private/tmp/prosary-kraken-ocr/small.safetensors"
+    ],
+    "elapsedSeconds": 7.58,
+    "exitCode": 0,
+    "lines": [
+      {
+        "index": 1,
+        "unit": "2:15–28, B108 line1",
+        "rect": [
+          250,
+          20,
+          1620,
+          92
+        ],
+        "image": "/private/tmp/prosary-1ma-kraken-108/result/line-001.png",
+        "imageSHA256": "cd68bc0f71663445ade24813a90844554b86ce2c7be89ca6951852cd01ccbe3d",
+        "textFile": "/private/tmp/prosary-1ma-kraken-108/result/line-001.txt",
+        "text": "ויבאו אנשי המלך המאלצים על-המעל למודיעים העיר"
+      },
+      {
+        "index": 2,
+        "unit": "2:15–28, B108 line2",
+        "rect": [
+          250,
+          96,
+          1605,
+          166
+        ],
+        "image": "/private/tmp/prosary-1ma-kraken-108/result/line-002.png",
+        "imageSHA256": "6a4a4af16add05b665db633998ea3481ed6aaf8a99aa68f0be055e233ee6dc56",
+        "textFile": "/private/tmp/prosary-1ma-kraken-108/result/line-002.txt",
+        "text": "לזבח: ורבים מישראַל כאו אליהם ומתתיהו ובניו נאספו: ויענו"
+      },
+      {
+        "index": 3,
+        "unit": "2:15–28, B108 line3",
+        "rect": [
+          250,
+          169,
+          1620,
+          242
+        ],
+        "image": "/private/tmp/prosary-1ma-kraken-108/result/line-003.png",
+        "imageSHA256": "10c109d2a5afc0cf7ca1c83be804caaffc0fbd71ebbf0803e3d4051e328ddda7",
+        "textFile": "/private/tmp/prosary-1ma-kraken-108/result/line-003.txt",
+        "text": "אנשי המלך וידברו אל-מתתיהו לאמר ראש ונכבד ונדול אתה"
+      },
+      {
+        "index": 4,
+        "unit": "2:15–28, B108 line4",
+        "rect": [
+          250,
+          251,
+          1620,
+          316
+        ],
+        "image": "/private/tmp/prosary-1ma-kraken-108/result/line-004.png",
+        "imageSHA256": "ab21e0033cf68d544e97a94a7e3fedb848837bfcab6f0cd11ef51770d80e9a80",
+        "textFile": "/private/tmp/prosary-1ma-kraken-108/result/line-004.txt",
+        "text": "בעיר הזאת ונתמך בבנים ובאחים: עתה קרב ראשון ועשה מצות"
+      },
+      {
+        "index": 5,
+        "unit": "2:15–28, B108 line5",
+        "rect": [
+          250,
+          318,
+          1620,
+          392
+        ],
+        "image": "/private/tmp/prosary-1ma-kraken-108/result/line-005.png",
+        "imageSHA256": "a67bc5a03f95930054b204022dc0b81706249c26840e63a61bfd34bfa73c58f0",
+        "textFile": "/private/tmp/prosary-1ma-kraken-108/result/line-005.txt",
+        "text": "המלך כאשר עשו כל-העמים ואנשי יהודה והנשארים בירושלם"
+      },
+      {
+        "index": 6,
+        "unit": "2:15–28, B108 line6",
+        "rect": [
+          250,
+          396,
+          1620,
+          468
+        ],
+        "image": "/private/tmp/prosary-1ma-kraken-108/result/line-006.png",
+        "imageSHA256": "7da264fefb75cafde3ec691bb944f2ab94da1c329e742ede65a78a4225bf37f5",
+        "textFile": "/private/tmp/prosary-1ma-kraken-108/result/line-006.txt",
+        "text": "והיית אתה ובניך מאוהכי המלך ואתה וכניך תכבדו בכסף ובזהב"
+      },
+      {
+        "index": 7,
+        "unit": "2:15–28, B108 line7",
+        "rect": [
+          250,
+          468,
+          1620,
+          539
+        ],
+        "image": "/private/tmp/prosary-1ma-kraken-108/result/line-007.png",
+        "imageSHA256": "96e5d759dcba5363e0cdae1d490aa4c4c43384a3aeb579dd946b076fc8c98029",
+        "textFile": "/private/tmp/prosary-1ma-kraken-108/result/line-007.txt",
+        "text": "ובמתנות רבות: ויען מתתיהו ויאמר בקול גדול אם-כל-העמים אשר"
+      },
+      {
+        "index": 8,
+        "unit": "2:15–28, B108 line8",
+        "rect": [
+          250,
+          544,
+          1620,
+          614
+        ],
+        "image": "/private/tmp/prosary-1ma-kraken-108/result/line-008.png",
+        "imageSHA256": "e15b96238736a856a26036a59ba809d1e55352e0b82770b4275707cb1f35f3a3",
+        "textFile": "/private/tmp/prosary-1ma-kraken-108/result/line-008.txt",
+        "text": "בבית-מלכות המלך שומעים לו יסורו כל-איש מעבודת אבותיו"
+      },
+      {
+        "index": 9,
+        "unit": "2:15–28, B108 line9",
+        "rect": [
+          250,
+          618,
+          1605,
+          690
+        ],
+        "image": "/private/tmp/prosary-1ma-kraken-108/result/line-009.png",
+        "imageSHA256": "d2fad09ac273cddb7ffc7286f9491d9603514376cfc5da4357d6ec267b4c60d5",
+        "textFile": "/private/tmp/prosary-1ma-kraken-108/result/line-009.txt",
+        "text": "ויבחרו במצותיו: ואָני ובני ואחי גלך בּברית אָבותינו: חלילה-לנו"
+      },
+      {
+        "index": 10,
+        "unit": "2:15–28, B108 line10",
+        "rect": [
+          250,
+          694,
+          1620,
+          764
+        ],
+        "image": "/private/tmp/prosary-1ma-kraken-108/result/line-010.png",
+        "imageSHA256": "52fe2f00a0d511bbb86408cc78d525643dae98a0244559e42ce2bbbdbc665fef",
+        "textFile": "/private/tmp/prosary-1ma-kraken-108/result/line-010.txt",
+        "text": "לעזב תורה ומצות: לדברי המלך לא-נשמע לסור מעבודתנו ימין"
+      },
+      {
+        "index": 11,
+        "unit": "2:15–28, B108 line11",
+        "rect": [
+          250,
+          767,
+          1620,
+          840
+        ],
+        "image": "/private/tmp/prosary-1ma-kraken-108/result/line-011.png",
+        "imageSHA256": "d0702f7e9ff270594018eec53c1fd2b37c5f9d00798b0f94e21e0ba850b45045",
+        "textFile": "/private/tmp/prosary-1ma-kraken-108/result/line-011.txt",
+        "text": "או שמאל: וככלותו לדבר את-הךברים האלה קרב איש יהודי לעיני"
+      },
+      {
+        "index": 12,
+        "unit": "2:15–28, B108 line12",
+        "rect": [
+          250,
+          841,
+          1620,
+          916
+        ],
+        "image": "/private/tmp/prosary-1ma-kraken-108/result/line-012.png",
+        "imageSHA256": "a892e327c8dadc74abcfed8e972e3fc52301f52bca6eb91a5287abb8b71d0fb9",
+        "textFile": "/private/tmp/prosary-1ma-kraken-108/result/line-012.txt",
+        "text": "כלם לזבח על-הבמה במודיעים כמצות המלך: וירא מתתיהו ויקנא"
+      },
+      {
+        "index": 13,
+        "unit": "2:15–28, B108 line13",
+        "rect": [
+          250,
+          917,
+          1620,
+          989
+        ],
+        "image": "/private/tmp/prosary-1ma-kraken-108/result/line-013.png",
+        "imageSHA256": "613f35d1c523bc88f3d2b8d6775e49df5d81dc3c8f6de005607436266cfa2d29",
+        "textFile": "/private/tmp/prosary-1ma-kraken-108/result/line-013.txt",
+        "text": "וישתונן כליותיו וישלח חרונו כמשפט וירץ ויזבחהו על-הבמה:"
+      },
+      {
+        "index": 14,
+        "unit": "2:15–28, B108 line14",
+        "rect": [
+          250,
+          993,
+          1620,
+          1064
+        ],
+        "image": "/private/tmp/prosary-1ma-kraken-108/result/line-014.png",
+        "imageSHA256": "e01e7974513ed3e80e39cc397cf89154c51b01c10338af17dd68f4234b9c6fdc",
+        "textFile": "/private/tmp/prosary-1ma-kraken-108/result/line-014.txt",
+        "text": "ואת איש-המלך המאלץ לזבח המית בעת ההיא ואת הבמה הרם:"
+      },
+      {
+        "index": 15,
+        "unit": "2:15–28, B108 line15",
+        "rect": [
+          250,
+          1066,
+          1620,
+          1137
+        ],
+        "image": "/private/tmp/prosary-1ma-kraken-108/result/line-015.png",
+        "imageSHA256": "b0493920f5f84f92aecb72018bde0eacb550097bfd4ff0ea7303fd03c0a57336",
+        "textFile": "/private/tmp/prosary-1ma-kraken-108/result/line-015.txt",
+        "text": "ויקנא לתורה כאשר עשה פינחם לזמרי בןסלוא: ויקרא מתתיהו"
+      },
+      {
+        "index": 16,
+        "unit": "2:15–28, B108 line16",
+        "rect": [
+          250,
+          1139,
+          1620,
+          1211
+        ],
+        "image": "/private/tmp/prosary-1ma-kraken-108/result/line-016.png",
+        "imageSHA256": "47b8b9d57ed90febb67a5091d02622a39f7e8efc3583389db58ef0899d6949fa",
+        "textFile": "/private/tmp/prosary-1ma-kraken-108/result/line-016.txt",
+        "text": "כעיר בקול גדול לאמר כל-המקנא לתורה העומד כברית ילך"
+      },
+      {
+        "index": 17,
+        "unit": "2:15–28, B108 line17",
+        "rect": [
+          250,
+          1214,
+          1620,
+          1286
+        ],
+        "image": "/private/tmp/prosary-1ma-kraken-108/result/line-017.png",
+        "imageSHA256": "b0de9e3908c6d2b2a370b497e6d327d50092cd4258d17bfa19aaad6c6244d60e",
+        "textFile": "/private/tmp/prosary-1ma-kraken-108/result/line-017.txt",
+        "text": "אחרי: וינם הוא ובניו אל-ההרים ויעןבו כל אשר-היה להם בּעיר:"
+      }
+    ],
+    "notice": "Uncorrected local OCR draft. Manual line bounds supplied; vowels and lexical fidelity require independent comparison to the print."
+  },
+  "lineBounds": [
+    {
+      "rect": [
+        250,
+        20,
+        1620,
+        92
+      ],
+      "unit": "2:15–28, B108 line1"
+    },
+    {
+      "rect": [
+        250,
+        96,
+        1605,
+        166
+      ],
+      "unit": "2:15–28, B108 line2"
+    },
+    {
+      "rect": [
+        250,
+        169,
+        1620,
+        242
+      ],
+      "unit": "2:15–28, B108 line3"
+    },
+    {
+      "rect": [
+        250,
+        251,
+        1620,
+        316
+      ],
+      "unit": "2:15–28, B108 line4"
+    },
+    {
+      "rect": [
+        250,
+        318,
+        1620,
+        392
+      ],
+      "unit": "2:15–28, B108 line5"
+    },
+    {
+      "rect": [
+        250,
+        396,
+        1620,
+        468
+      ],
+      "unit": "2:15–28, B108 line6"
+    },
+    {
+      "rect": [
+        250,
+        468,
+        1620,
+        539
+      ],
+      "unit": "2:15–28, B108 line7"
+    },
+    {
+      "rect": [
+        250,
+        544,
+        1620,
+        614
+      ],
+      "unit": "2:15–28, B108 line8"
+    },
+    {
+      "rect": [
+        250,
+        618,
+        1605,
+        690
+      ],
+      "unit": "2:15–28, B108 line9"
+    },
+    {
+      "rect": [
+        250,
+        694,
+        1620,
+        764
+      ],
+      "unit": "2:15–28, B108 line10"
+    },
+    {
+      "rect": [
+        250,
+        767,
+        1620,
+        840
+      ],
+      "unit": "2:15–28, B108 line11"
+    },
+    {
+      "rect": [
+        250,
+        841,
+        1620,
+        916
+      ],
+      "unit": "2:15–28, B108 line12"
+    },
+    {
+      "rect": [
+        250,
+        917,
+        1620,
+        989
+      ],
+      "unit": "2:15–28, B108 line13"
+    },
+    {
+      "rect": [
+        250,
+        993,
+        1620,
+        1064
+      ],
+      "unit": "2:15–28, B108 line14"
+    },
+    {
+      "rect": [
+        250,
+        1066,
+        1620,
+        1137
+      ],
+      "unit": "2:15–28, B108 line15"
+    },
+    {
+      "rect": [
+        250,
+        1139,
+        1620,
+        1211
+      ],
+      "unit": "2:15–28, B108 line16"
+    },
+    {
+      "rect": [
+        250,
+        1214,
+        1620,
+        1286
+      ],
+      "unit": "2:15–28, B108 line17"
+    }
+  ],
+  "scope": "2:15–28; seventeen complete printed rows; margin labels and commentary excluded after visual bounds inspection.",
+  "limitations": [
+    "Printed niqqud is not evaluated or generated.",
+    "Reference remains a provisional draft and every OCR disagreement is checked against the print; no automatic substitution.",
+    "Line candidates were proposed from horizontal ink bands, then all seventeen full-width rectangles were visually checked. Two long marginal-label rows were narrowed individually without cropping body words."
+  ]
+}

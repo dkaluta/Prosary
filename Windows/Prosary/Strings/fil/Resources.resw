@@ -390,7 +390,7 @@
   <data name="AbtPeshittaSources.Text" xml:space="preserve"><value>Bagong Tipan ng Peshitta (BFBS, 1905): Digital Syriac Corpus; pagkopya ng tekstong Syriac ni George A. Kiraz, edisyong TEI © James E. Walters, CC BY 4.0. Paglilipat sa sulat Hebreo ayon sa mga tuntunin ni Erez; pagpili ng mga talata at pag-aayos ng teksto ng Prosary.</value></data>
   <data name="AbtPeshittaSourceLink.Content" xml:space="preserve"><value>Digital Syriac Corpus</value></data>
   <data name="AbtPeshittaLicenseLink.Content" xml:space="preserve"><value>CC BY 4.0</value></data>
-  <data name="AbtPeshittaIsaiahSources.Text" xml:space="preserve"><value>Isaias: XML ng Peshitta na may mga tandang patinig mula sa Internet Archive, na ibinigay ng isang gumagamit. Hindi pa natutukoy ang pinagmulang edisyon at mga tuntunin sa muling pamamahagi. Paglilipat sa sulat Hebreo ayon sa mga tuntunin ni Erez; pagpili ng mga talata at pag-aayos ng teksto ng Prosary.</value></data>
+  <data name="AbtPeshittaIsaiahSources.Text" xml:space="preserve"><value>Lumang Tipan: XML ng Peshitta na may mga tandang patinig mula sa Internet Archive, na ibinigay ng isang gumagamit. Hindi pa natutukoy ang pinagmulang edisyon at mga tuntunin sa muling pamamahagi. Paglilipat sa sulat Hebreo ayon sa mga tuntunin ni Erez; pagpili ng mga talata at pag-aayos ng teksto ng Prosary.</value></data>
   <data name="AbtPeshittaIsaiahSourceLink.Content" xml:space="preserve"><value>Internet Archive</value></data>
   <data name="AbtBookNameSources.Text" xml:space="preserve"><value>Mga pangalan ng aklat ng Bibliya: AELF, Dar el-Machreq, Bibliyang Sinodal sa Ruso (Azbyka), Philippine Bible Society at ParolaViva.</value></data>
   <data name="AbtPopeNetworkLink.Content" xml:space="preserve"><value>Pandaigdigang Samahan ng Panalangin ng Papa</value></data>
@@ -550,4 +550,34 @@
   <data name="AbtSyriacHebrewCalendar.Text" xml:space="preserve"><value>Kalendaryong Siryako sa Hebreo — Urtotho (2026), ibinigay sa Prosary.</value></data>
   <data name="EdLitanyOfLoreto.Header" xml:space="preserve"><value>Litanya sa Mahal na Birheng Maria pagkatapos ng Rosaryo</value></data>
   <data name="EdRosaryCollect.Header" xml:space="preserve"><value>Pangwakas na panalangin ng Rosaryo</value></data>
+  <data name="readings_title" xml:space="preserve"><value>Mga pagbasa</value></data>
+  <data name="bible_daily_readings" xml:space="preserve"><value>Mga Pagbasa sa Araw</value></data>
+  <data name="bible_title" xml:space="preserve"><value>Bibliya</value></data>
+  <data name="bible_book" xml:space="preserve"><value>Aklat</value></data>
+  <data name="bible_chapter" xml:space="preserve"><value>Kabanata</value></data>
+  <data name="bible_verse" xml:space="preserve"><value>Talata</value></data>
+  <data name="bible_previous_chapter" xml:space="preserve"><value>Nakaraang kabanata</value></data>
+  <data name="bible_next_chapter" xml:space="preserve"><value>Susunod na kabanata</value></data>
+  <data name="bible_update" xml:space="preserve"><value>I-update ang na-download</value></data>
+  <data name="bible_download" xml:space="preserve"><value>I-download ang Bibliya</value></data>
+  <data name="bible_remove" xml:space="preserve"><value>Alisin ang Download</value></data>
+  <data name="bible_cancel" xml:space="preserve"><value>Kanselahin ang download</value></data>
+  <data name="bible_retry" xml:space="preserve"><value>Subukan muli</value></data>
+  <data name="bible_partial_chapter" xml:space="preserve"><value>Bahagi lamang ng kabanatang ito ang available.</value></data>
+  <data name="bible_download_notice" xml:space="preserve"><value>I-download ang edisyong ito upang mabasa ang mga available nitong aklat nang offline. Magagamit ang mga pagbasa sa araw kahit wala ang download na ito.</value></data>
+  <data name="bible_unavailable" xml:space="preserve"><value>Walang available na download ng Bibliya para sa napiling edisyon.</value></data>
+  <data name="bible_read_error" xml:space="preserve"><value>Hindi mabuksan ang kabanatang ito. Subukang muli o i-download muli ang edisyon.</value></data>
+  <data name="bible_download_error" xml:space="preserve"><value>Hindi ma-download ang Bibliya. Suriin ang koneksyon at subukang muli.</value></data>
+  <data name="bible_remove_error" xml:space="preserve"><value>Hindi maalis ang download. Pakisubukang muli.</value></data>
+  <data name="bible_remove_confirmation" xml:space="preserve"><value>Alisin ang na-download na {0}? Mananatiling available ang mga pagbasa sa araw.</value></data>
+  <data name="bible_no_daily_readings" xml:space="preserve"><value>Walang available na mga pagbasa sa araw para sa petsang ito.</value></data>
+  <data name="scripture_note_title" xml:space="preserve"><value>Tala sa pinagmulan</value></data>
+  <data name="scripture_note_vowel" xml:space="preserve"><value>Inalis ang hindi mabasang tanda ng patinig.</value></data>
+  <data name="scripture_note_dagesh" xml:space="preserve"><value>Inalis ang hindi mabasang dagesh.</value></data>
+  <data name="scripture_note_letter" xml:space="preserve"><value>Titik {0} (posisyon {1})</value></data>
+  <data name="scripture_note_restored_letter" xml:space="preserve"><value>Ang titik na {0} (posisyon {1}) sa “{2}” ay ibinalik ng editor. Hindi ito mabasa sa scan ng pinagkunan.</value></data>
+  <data name="scripture_note_pages" xml:space="preserve"><value>Mga pahina ng PDF: {0}</value></data>
+  <data name="scripture_note_scan" xml:space="preserve"><value>Scan ng pinagmulan</value></data>
+  <data name="bible_printed_label" xml:space="preserve"><value>Nakalimbag na tanda: {0}</value></data>
+  <data name="bible_occurrence" xml:space="preserve"><value>{0} — paglitaw {1}</value></data>
 </root>

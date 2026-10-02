@@ -1,0 +1,87 @@
+{
+  "schemaVersion": 1,
+  "book": "WIS",
+  "chapter": 3,
+  "status": "first pointed draft; no page approval",
+  "method": "Direct visual transcription from the native A2 body images, enlarged in five overlapping crops. Separate author comparison and independent review are pending.",
+  "sourcePages": [
+    150,
+    151
+  ],
+  "units": 19,
+  "openQueries": [
+    {
+      "verse": 14,
+      "token": "יִנְחַן־לוֹ",
+      "finding": "Recheck exact middle consonant and vowels of the verb in the source; first broad crop may have misread tav as het. Do not repair by expected grammar."
+    },
+    {
+      "verse": 17,
+      "token": "לְאַפֶּס",
+      "finding": "Recheck literal alef vowel and pe interior from a tight native crop."
+    }
+  ],
+  "sourceCrops": [
+    {
+      "page": 150,
+      "source": "/private/tmp/prosary-wis-review/WIS-native-150.png",
+      "nativeBounds": [
+        225,
+        350,
+        2450,
+        860
+      ],
+      "file": "/private/tmp/prosary-wis-review/WIS3-150-upper.png",
+      "sha256": "6cdebc7cf6ab58696f1c7848c2f956984f6bcd833bfebe664723c7b84b0dbb58"
+    },
+    {
+      "page": 150,
+      "source": "/private/tmp/prosary-wis-review/WIS-native-150.png",
+      "nativeBounds": [
+        225,
+        835,
+        2450,
+        1315
+      ],
+      "file": "/private/tmp/prosary-wis-review/WIS3-150-middle.png",
+      "sha256": "5c3d1224b9c853e20715943fd1b923c0e0740d9cc1eb480322feb24aace0f8ad"
+    },
+    {
+      "page": 150,
+      "source": "/private/tmp/prosary-wis-review/WIS-native-150.png",
+      "nativeBounds": [
+        225,
+        1300,
+        2450,
+        1700
+      ],
+      "file": "/private/tmp/prosary-wis-review/WIS3-150-lower.png",
+      "sha256": "779339779538f149c8b54a9be2985f975ed990320bb0bc559a266e9b8631c3e9"
+    },
+    {
+      "page": 151,
+      "source": "/private/tmp/prosary-wis-review/WIS-native-151.png",
+      "nativeBounds": [
+        215,
+        330,
+        2420,
+        840
+      ],
+      "file": "/private/tmp/prosary-wis-review/WIS3-151-upper.png",
+      "sha256": "cf475c923c229f02a7b9203b0bb0309f39c1d2d7bcb1795a40c4cc18ba7b0f81"
+    },
+    {
+      "page": 151,
+      "source": "/private/tmp/prosary-wis-review/WIS-native-151.png",
+      "nativeBounds": [
+        215,
+        825,
+        2420,
+        1420
+      ],
+      "file": "/private/tmp/prosary-wis-review/WIS3-151-lower.png",
+      "sha256": "9edca2803bb07412df109bb411c1e252f6b6053eb5484b9974d1addf5d0e6fa7"
+    }
+  ],
+  "draftTextSHA256": "664085160bd71f9fb786386ba3324e3622ef6481f7014c52f748705d8469f9f4"
+}

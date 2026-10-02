@@ -1,0 +1,159 @@
+{
+  "schemaVersion": 1,
+  "book": "WIS",
+  "chapter": 2,
+  "status": "author separate complete comparison done; independent comparison and point queries remain",
+  "method": "Reread all36 physical source body lines across native A2 pages147–149 against the saved24-unit first draft, retaining the separate poetic half-lines in reading order. Rechecked source brackets and six detailed point/spelling crops. This is the author second pass, not independent review or page approval.",
+  "sourcePages": [
+    147,
+    148,
+    149
+  ],
+  "physicalLinesByPage": {
+    "147": 10,
+    "148": 13,
+    "149": 13
+  },
+  "clearCorrections": [
+    {
+      "verse": 8,
+      "finding": "Printed closing square bracket precedes sof pasuq, not follows it."
+    },
+    {
+      "verse": 23,
+      "finding": "Printed חיי alone is bracketed; lamed prefix is outside the opening bracket. Restore these source brackets."
+    }
+  ],
+  "confirmedQueries": [
+    {
+      "verse": 5,
+      "token": "חָתוּם",
+      "finding": "Written shuruq vav is present; retain full spelling."
+    },
+    {
+      "verse": 18,
+      "token": "בֶּן־",
+      "finding": "Bet interior dot and lower segol visible; retain draft."
+    }
+  ],
+  "unresolvedFindings": [
+    {
+      "verse": 3,
+      "token": "תִּפֹּר",
+      "finding": "Pe lower mark appears qamats rather than draft holam; lower points at final resh require tighter independent reading. Preserve as unresolved, not grammatical normalization.",
+      "crop": "WIS2-query-v3-end.png"
+    },
+    {
+      "verse": 23,
+      "token": "לְ[חַיֵּי]",
+      "finding": "Brackets enclose only חיי and are restored. Vowel under lamed before opening bracket needs independent classification; draft sheva not yet certified.",
+      "crop": "WIS2-query-v23-middle.png"
+    },
+    {
+      "verse": 24,
+      "token": "וְיֵדָעוּהוּ",
+      "finding": "Yod tsere and dalet qamats visible. Initial vav lower mark is fused into the stem and needs independent reading; do not certify draft sheva by morphology.",
+      "crop": "WIS2-query-v24-yeda.png"
+    }
+  ],
+  "sourceCrops": [
+    {
+      "page": 147,
+      "source": "/private/tmp/prosary-wis-review/WIS-native-147.png",
+      "nativeBounds": [
+        440,
+        750,
+        1030,
+        875
+      ],
+      "resampling": "nearest-neighbor",
+      "scale": 3,
+      "file": "/private/tmp/prosary-wis-review/WIS2-query-v3-end.png",
+      "sha256": "9fcbc47a789597220b9a44af92ce419a9d051b22938bb0f2e9bd1e516031ce8c"
+    },
+    {
+      "page": 147,
+      "source": "/private/tmp/prosary-wis-review/WIS-native-147.png",
+      "nativeBounds": [
+        1040,
+        1170,
+        1590,
+        1300
+      ],
+      "resampling": "nearest-neighbor",
+      "scale": 3,
+      "file": "/private/tmp/prosary-wis-review/WIS2-query-v5-end.png",
+      "sha256": "6f8922df5a3e1287392f9fc75c77a9653e3111a835a2a382255ac37756aecd1d"
+    },
+    {
+      "page": 148,
+      "source": "/private/tmp/prosary-wis-review/WIS-native-148.png",
+      "nativeBounds": [
+        865,
+        740,
+        1670,
+        870
+      ],
+      "resampling": "nearest-neighbor",
+      "scale": 3,
+      "file": "/private/tmp/prosary-wis-review/WIS2-query-v8-bracket.png",
+      "sha256": "beb77e930e111a20b3e2ad8ef2d93f454cf9a44f2fd1b80cebf298229bde6df2"
+    },
+    {
+      "page": 149,
+      "source": "/private/tmp/prosary-wis-review/WIS-native-149.png",
+      "nativeBounds": [
+        1680,
+        785,
+        2190,
+        900
+      ],
+      "resampling": "nearest-neighbor",
+      "scale": 3,
+      "file": "/private/tmp/prosary-wis-review/WIS2-query-v18-begin.png",
+      "sha256": "abee6886a7513539527dd3f08f5993d0dd801e85f20797d7b0d475b3c016239e"
+    },
+    {
+      "page": 149,
+      "source": "/private/tmp/prosary-wis-review/WIS-native-149.png",
+      "nativeBounds": [
+        1050,
+        1350,
+        1830,
+        1460
+      ],
+      "resampling": "nearest-neighbor",
+      "scale": 3,
+      "file": "/private/tmp/prosary-wis-review/WIS2-query-v23-middle.png",
+      "sha256": "8488c6afabe2f7821d1ce3bdda3ff237f8ab0b261c4f28fe302cdd78a70b4139"
+    },
+    {
+      "page": 149,
+      "source": "/private/tmp/prosary-wis-review/WIS-native-149.png",
+      "nativeBounds": [
+        515,
+        1440,
+        1110,
+        1560
+      ],
+      "resampling": "nearest-neighbor",
+      "scale": 3,
+      "file": "/private/tmp/prosary-wis-review/WIS2-query-v24-end.png",
+      "sha256": "8137cb97c61e5711165f6908f10ee7b8bc599b7d5505d67a1b431273e6136d92"
+    },
+    {
+      "page": 149,
+      "source": "/private/tmp/prosary-wis-review/WIS-native-149.png",
+      "nativeBounds": [
+        1010,
+        1440,
+        1440,
+        1560
+      ],
+      "resampling": "nearest-neighbor",
+      "scale": 3,
+      "file": "/private/tmp/prosary-wis-review/WIS2-query-v24-yeda.png",
+      "sha256": "5ac7ea2f8f2415f29e3e67f934e34660071c07e9ab88100368b004d9399be5f7"
+    }
+  ]
+}

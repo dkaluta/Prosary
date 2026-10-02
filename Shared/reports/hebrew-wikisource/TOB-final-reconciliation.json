@@ -1,0 +1,298 @@
+{
+  "schemaVersion": 1,
+  "book": "TOB",
+  "recension": "upper short recension only",
+  "status": "complete local source review",
+  "releaseApproved": false,
+  "releaseLimitation": "All12 Hebrew works must complete before production import; WIS,1MA,2MA remain unfinished.",
+  "sourcePages": [
+    312,
+    313,
+    314,
+    315,
+    316,
+    317,
+    318,
+    319,
+    320,
+    321,
+    322,
+    323,
+    324,
+    325,
+    326,
+    327,
+    328,
+    329,
+    330,
+    331,
+    332,
+    333,
+    334,
+    335,
+    336,
+    337,
+    338,
+    339,
+    340,
+    341,
+    342,
+    343,
+    344,
+    345,
+    346,
+    347
+  ],
+  "chapters": 14,
+  "units": 228,
+  "acceptedSourceNoteIds": [
+    "tob-1-1-gimel-vowel",
+    "tob-2-3-mem-vowel",
+    "tob-5-1-second-vav-vowel",
+    "tob-5-1-vav-vowel",
+    "tob-5-10-ayin-vowel",
+    "tob-5-12-first-vav-vowel",
+    "tob-5-15-dalet-vowel",
+    "tob-5-17-ayin-vowel",
+    "tob-5-17-said-vav-vowel",
+    "tob-5-18-said-vav-vowel",
+    "tob-5-21-said-vav-vowel",
+    "tob-5-3-dalet-vowel",
+    "tob-5-3-initial-vav-vowel",
+    "tob-5-5-dalet-vowel",
+    "tob-5-7-het-vowel",
+    "tob-6-8-gimel-vowel",
+    "tob-9-5-second-gabael-gimel-vowel"
+  ],
+  "newReviewedPages": [
+    321,
+    322,
+    323,
+    326,
+    327,
+    328,
+    329,
+    330,
+    331,
+    332,
+    335
+  ],
+  "closedHistoricalFindings": [
+    "All 14 short-recension chapters have full drafts. Chapter 6 now has its complete separate author comparison, but still requires whole-chapter independent review. Unresolved source boundaries in chapters 4, 7 and 10 keep the book unapproved.",
+    "All chapter 4 words, points and punctuation on B321–323 have been compared; its source boundary questions below prevent approval. Chapter 5 has complete word, point, punctuation and boundary comparison, with 13 exact isolated-point notes. Its saved review units and canonical units match exactly. Pages 312–320 remain fully compared with two isolated unreadable vowels disclosed on 312 and 316.",
+    "Provisional editorial grouping4–5: margin ה is on the physical row containing the end of maternal-troubles sentence and ובמותה after sof pasuq, while זכר־בני את־יי begins the next row. The internal commentary contains no explicit anchor settling the intended start. Do not claim that the print itself combines these labels.",
+    "Provisional editorial grouping6–7: margin ז shares the row containing תצליח במעשיך׃ וגם־לכל־עושי צדקה תעשה צדקה. It does not establish whether7 starts at וגם or תעשה. No conventional or long-recension division imported.",
+    "The printed short body ends with label20; the shared chapter commentary heading says1–21. Full right margin on B323 contains no21 marker. Text is preserved without inventing label21; this source discrepancy remains documented.",
+    "Chapter 6 has a full author comparison of all 33 upper short-recension rows / 66 overlapping half-line crops on B326–329, including every word, readable point, punctuation mark and all 18 printed unit starts (labels 1–19, actual combined 10–11). One exact gimel-vowel omission at 6:8 is disclosed, with local independent corroboration. Whole-chapter independent comparison remains pending; no new page approval.",
+    "Chapter 7 now has both the full separate drafting-agent comparison and an independent reader comparison of all 25 upper short-recension physical lines on B329–332. Exact starts of labels 12 and 17 remain unresolved; temporary editorial ranges 11–12 and 16–17 preserve all words and are not printed combined labels. No chapter 7 or whole-page approval follows.",
+    "Chapter 10 has complete author and independent word/point/punctuation comparison of all 21 upper rows on B335–336. The exact start of label5 is unresolved; actual printed 3–4 plus5 is represented by temporary editorial3–5 preserving all words. This is not a printed combined label. B335 remains unapproved for this boundary; whole upper B336 is independently reviewed."
+  ],
+  "finalBoundaryDecisions": [
+    {
+      "id": "tob-4-5",
+      "chapter": 4,
+      "nextStart": "וּבְמוֹתָהּ",
+      "interpretation": "The ה margin label is beside the row continuing the preceding sentence through בַבָּטֶן׃ and then printing וּבְמוֹתָהּ ... אֶחָד׃. The next זְכָר־בְּנִי clause occupies the following unnumbered row. Proposed split follows the first separator in the labelled row.",
+      "limits": "Alternative next-row זְכָר־בְּנִי would require the marginal numeral to precede its first source word by a full physical row. The print does not give an inline numeral proving which separator it chooses.",
+      "evidence": [
+        "TOB-boundary-4-5-primary.png",
+        "TOB-boundary-4-5-extra.png"
+      ]
+    },
+    {
+      "id": "tob-4-7",
+      "chapter": 4,
+      "nextStart": "וְגַם־לְכָל־עוֹשֵׂי",
+      "interpretation": "The ז row starts with preceding continuation תַּצְלִיחַ בְּמַעֲשֶׂיךָ׃, then וְגַם־לְכָל־עוֹשֵׂי צְדָקָה תַּעֲשֵׂה.... There is only one printed separator in this labelled row; proposed split follows it.",
+      "limits": "Alternative תַּעֲשֵׂה is within the same clause with no separator or distinct inline boundary.",
+      "evidence": [
+        "TOB-boundary-4-7-primary.png",
+        "TOB-boundary-4-7-extra.png"
+      ]
+    },
+    {
+      "id": "tob-7-12",
+      "chapter": 7,
+      "nextStart": "וַיֹּאמֶר טוֹבִיָּה",
+      "interpretation": "The יב margin is on the row continuing earlier speech through אַךְ עַתָּה יִיטַב לְבָךְ, followed by the new speaker introduction וַיֹּאמֶר טוֹבִיָּה. There is no separator after לְבָךְ; proposed split follows the sole clear change of speaker on this numbered row.",
+      "limits": "This is the weakest proposal because no physical punctuation marks the boundary. Semantic speaker attribution and the margin support it, but no conventional Greek/Bible numbering is used or claimed.",
+      "evidence": [
+        "TOB-boundary-7-12-primary.png",
+        "TOB-boundary-7-12-extra.png"
+      ]
+    },
+    {
+      "id": "tob-7-17",
+      "chapter": 7,
+      "nextStart": "חִזְקִי יַלְדָּתִי",
+      "interpretation": "The יז row continues אֶת־דִּמְעוֹת בִּתָּהּ וַתֹּאמֶר לָהּ׃ before חִזְקִי יַלְדָּתִי. The sole separator in the labelled row is after לָהּ; propose keeping the speech introduction in16 and beginning17 with direct speech.",
+      "limits": "Alternative וַתֹּאמֶר begins before the only separator. Source-internal 9:1/2 explicitly leaves וַיֹּאמֶר לוֹ׃ in1 and starts2 with direct address, showing that the proposed division is a real convention in this edition.",
+      "evidence": [
+        "TOB-boundary-7-17-primary.png",
+        "TOB-boundary-7-17-extra.png"
+      ]
+    },
+    {
+      "id": "tob-10-5",
+      "chapter": 10,
+      "nextStart": "אוֹי־לִי־תַחַת",
+      "interpretation": "The actual combined ג–ד row has וַיִּתְעַצֵּב מְאֹד׃ then the first וַתֹּאמֶר לוֹ אִשְׁתּוֹ אָבַד. The ה row continues הַיֶּלֶד ... וַתָּחֵל לִבְכּוֹתוֹ וַתֹּאמֶר׃ and begins the direct lament אוֹי־לִי־תַחַת. After correcting the misplaced draft punctuation, the only separator on the ה row supports beginning5 with the lament.",
+      "limits": "The first ותאמר lies on the preceding ג–ד row; the second is before the only separator on ה row. The9:1/2 direct-speech convention supports the proposed start but is not an inline number at the word.",
+      "evidence": [
+        "TOB-boundary-10-5-primary.png",
+        "TOB-boundary-10-5-extra.png"
+      ]
+    }
+  ],
+  "rootDirectComparison": "Root independently viewed all five paired primary/extra boundary crops, the9:1/2 control, and fullB323/extra168. Corroborated all five reasoned divisions. Upper chapter4 ends atכ, lower parallel hasכא, and next chapterה follows; no short-recension verse21 is invented.",
+  "textPreservation": {
+    "allChapterConcatenationsUnchangedBySplitting": true,
+    "noAddedPunctuation": true,
+    "all228UnitsMatchIndependentPriorInventory": true,
+    "all36PagesUsedAndReviewed": true,
+    "noWaivedWordsConsonantsOrVerses": true
+  },
+  "sourceInventoryCorrections": "B338starts11:12,342starts13:5,346starts14:10,and347completes14:14–15; independently corroborated in corresponding chapter reports.",
+  "evidence": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/TOB-recension-decision.json",
+      "sha256": "da75ad3c44aced94261d025ad2c9d74e610d28da112b664844265a905c7a1658"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/TOB-print-inventory.json",
+      "sha256": "0f3db7f099fae3c1c8b51dd00518e7d291ed3457d4407428afeeb7ef6e367f4b"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/TOB-final-source-inventory-reconciliation.json",
+      "sha256": "5eb9cfe943906f690fed0a2a70d0157b191b2b38f4caca862bda963850729092"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/TOB-short-chapter4-page-draft.json",
+      "sha256": "8412fbe23456288e43589aebfc259216236505aede54c4ef8a812cc809ed9fc7"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/TOB-short-chapter5-review.json",
+      "sha256": "c86c81d5068853a33ea05a04654ebf406c077f8a9a9e76eb40ab498d67e5f98c"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/TOB-boundary-proposals-20261002.json",
+      "sha256": "1981e5969df929ab9338c7b4d01a322fa788891db3c853df3b48da6f8eab38c7"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/TOB-boundary-independent-review-20261002.json",
+      "sha256": "fce4e00bad2b4fd3841f85469529ff9e75af8be213a77f6eb62b963a830d61e4"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/TOB-short-chapter6-independent-review.json",
+      "sha256": "42b45fa66e6916c13fcdb18ab1a70ef23c3c44c000a53532bab15114dd8e2502"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/TOB-short-chapter7-independent-review.json",
+      "sha256": "2230f1f3d175f9b47acfa41ae60e0f994cad0395e631294286e52f0278c4c544"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/TOB-short-chapter8-independent-review.json",
+      "sha256": "34d662f95635e073409cb2f0e8537c3ec4ac181aeccbd2868a13ae19751b5038"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/TOB-short-chapter9-independent-review.json",
+      "sha256": "b8654b0f4c0c2178ebac07e1c739f4e43bfdca46036558242212148978624bba"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/TOB-short-chapter10-independent-review.json",
+      "sha256": "18d7939d4055707e68aa654a226202c8f48ae6681ffd8e8cf3fb7efa43afacfe"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/TOB-short-chapter11-independent-review.json",
+      "sha256": "54a851f393fcafd5b06aaf23ad1ad582fccd08de773ed92ca16f09ce88d8b15a"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/TOB-short-chapter12-independent-review.json",
+      "sha256": "bcf8d5383bba82f8102709927db93022fdcf7fdba514829310b1fffb73329529"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/TOB-short-chapter13-independent-review.json",
+      "sha256": "f15917c7013eb3529af0c96bd39368b2dfb52f3dce3f502cb56a02c33370cd5c"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/TOB-short-chapter14-independent-review.json",
+      "sha256": "4c5f6a02f78e56c1d5f9acccdf877b9ebaf8c4444c631927f8ff37d7c43c3048"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/tob-review-history.json",
+      "sha256": "de9d9b2a8e91e70ff6b89d27efae3c38e5c70fbb5d4920c77331b641ffef8e62"
+    }
+  ],
+  "contentSHA256": "e309bc3f06ad184197fb84d180a178f215355a13082208e621fd1add6f986f5d",
+  "validation": {
+    "book": "TOB",
+    "status": "complete",
+    "chapters": 14,
+    "units": 228,
+    "sourcePages": 36,
+    "reviewedPages": 36
+  },
+  "oldTemporaryRanges": [
+    {
+      "chapter": 4,
+      "unit": {
+        "verse": 4,
+        "text": "זְכָר־בְּנִי כִּי סַכָּנוֹת רַבּוֹת רָאֲתָה בִּגְלָלְךָ בִּהְיוֹתְךָ בַבָּטֶן׃ וּבְמוֹתָהּ וּקְבַרְתָּהּ אֶצְלִי בְּקֶבֶר אֶחָד׃ זְכָר־בְּנִי אֶת־יְיָ אֱלֹהֵינוּ כָּל־יָמֶיךָ וְאַל־תֹּאבֶה לַחֲטֹא וְלַעֲבֹר מִצְוֹתָיו עֲשֵׂה צְדָקָה כָּל־יְמֵי חַיֶּיךָ וְאַל־תֵּלֵךְ בְּדַרְכֵי עַוְלָה׃",
+        "sourcePages": [
+          321
+        ],
+        "textSHA256": "07f2056d146c42fc58a93a395ef25c38073fccf96e98b6fefa9b88f94bb5dd09",
+        "endVerse": 5
+      }
+    },
+    {
+      "chapter": 4,
+      "unit": {
+        "verse": 6,
+        "text": "וְאִם־תִּפְעַל אֱמֶת תַּצְלִיחַ בְּמַעֲשֶׂיךָ׃ וְגַם־לְכָל־עוֹשֵׂי צְדָקָה תַּעֲשֵׂה צְדָקָה מֵאֲשֶׁר יֶשׁ־לָךְ וְאַל־תָּרַע עֵינְךָ בַּעֲשׂוֹתְךָ צְדָקָה וְאַל־תַּסְתֵּר פָּנֶיךָ מִכָּל־עָנִי וְלֹא יִסָּתְרוּ מִפָּנֶיךָ פְּנֵי־הָאֱלֹהִים׃",
+        "sourcePages": [
+          321,
+          322
+        ],
+        "textSHA256": "c30b5f07764ceadca0c2773f591d511db675b7dc1e50c203d34a7c3b775c291b",
+        "endVerse": 7
+      }
+    },
+    {
+      "chapter": 7,
+      "unit": {
+        "verse": 11,
+        "text": "אֲנִי נָתַתִּי אֶת־יַלְדָּתִי לְשִׁבְעָה אֲנָשִׁים וְכַאֲשֶׁר בָּאוּ אֵלֶיהָ מֵתוּ בַלַּיְלָה הַהוּא אַךְ עַתָּה יִיטַב לְבָךְ וַיֹּאמֶר טוֹבִיָּה לֹא אֶטְעַם מְאוּמָה עַד־אֲשֶׁר תַּעֲמִידוּ וְתַעַמְדוּ אַתֶּם לְפָנָי וַיֹּאמֶר רְעוּאֵל קַח־נָא אוֹתָהּ מֵעַתָּה כַּמִּשְׁפָּט הֵן אַתָּה אָחִיהָ וְהִיא לָךְ וְאֵל רַחוּם יַצְלִיחַ אֶתְכֶם יַחְדָּו׃",
+        "sourcePages": [
+          331
+        ],
+        "textSHA256": "c9261361dde7c5735022d3b8ef5164a1eb19ecb0b6b6269ea4555c4cb6fbffbf",
+        "endVerse": 12
+      }
+    },
+    {
+      "chapter": 7,
+      "unit": {
+        "verse": 16,
+        "text": "וַתַּעַשׂ כַּאֲשֶׁר אָמַר וַתָּבֵא אוֹתָהּ שָׁמָּה וַתֵּבְךְ וַתְּקַבֵּל אֶת־דִּמְעוֹת בִּתָּהּ וַתֹּאמֶר לָהּ׃ חִזְקִי יַלְדָּתִי אֲדֹנֵי הַשָּׁמַיִם וְהָאָרֶץ יִתֶּן־לָךְ שִׂמְחָה תַּחַת יְגוֹנֵךְ זֶה חִזְקִי בִּתִּי׃",
+        "sourcePages": [
+          332
+        ],
+        "textSHA256": "0f3e9dff328c9f7e7b505869c4a7bca2bc006213d4111b8ac6ffd35d8e037a38",
+        "endVerse": 17
+      }
+    },
+    {
+      "chapter": 10,
+      "unit": {
+        "verse": 3,
+        "text": "וַיִּתְעַצֵּב מְאֹד׃ וַתֹּאמֶר לוֹ אִשְׁתּוֹ אָבַד הַיֶּלֶד כִּי עַל־כֵּן אֵחַר לָבֹא וַתָּחֵל לִבְכּוֹתוֹ וַתֹּאמֶר׃ אוֹי־לִי־תַחַת בְּנִי כִּי נְתַתִּיךָ לְלֶכֶת אוֹר עֵינַי׃",
+        "sourcePages": [
+          335
+        ],
+        "textSHA256": "3ce378571604926f684d7a711e56f164688dc28504d6b6fcd4eeec63c12a348d",
+        "endVerse": 5
+      }
+    }
+  ]
+}

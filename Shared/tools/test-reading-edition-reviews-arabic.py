@@ -35,20 +35,41 @@ class ArabicReviewedMapperTests(unittest.TestCase):
         cls.metadata = arabic.reference_metadata()
         cls.lock = json.loads((TOOLS / "reading-text-sources.json").read_text())
         cls.source = next(row for row in cls.lock["sources"] if row["id"] == arabic.SOURCE_ID)
-        cls.corpus = builder.load_source(cls.source)
+        cls.edition = next(row for row in cls.lock["editions"] if row["id"] == arabic.EDITION_ID)
+        ids = {row["id"] for row in cls.edition["sources"]}
+        sources = [row for row in cls.lock["sources"] if row["id"] in ids]
+        cls.raw_corpora = {row["id"]: builder.load_source(row) for row in sources}
+        cls.pins = {row["id"]: row["sha256"] for row in sources}
+        cls.corpus = builder.assemble_reviewed_corpus(cls.edition, cls.raw_corpora, cls.pins)
+
+    def test_sparse_assembly_rejects_overlap_wrong_editions_and_inferred_testaments(self):
+        repeated = copy.deepcopy(self.edition)
+        repeated["sources"].append(repeated["sources"][0])
+        with self.assertRaisesRegex(ValueError, "repeats a verse"):
+            builder.assemble_reviewed_corpus(repeated, self.raw_corpora, self.pins)
+        filtered = copy.deepcopy(self.edition)
+        filtered["sources"][0]["testament"] = "nt"
+        with self.assertRaisesRegex(ValueError, "inferred testament"):
+            builder.assemble_reviewed_corpus(filtered, self.raw_corpora, self.pins)
+        changed = copy.deepcopy(self.raw_corpora)
+        changed[arabic.SOURCE_ID].edition_id = "another-edition"
+        with self.assertRaisesRegex(ValueError, "selected edition"):
+            builder.assemble_reviewed_corpus(self.edition, changed, self.pins)
 
     def test_numeric_metadata_retains_exact_reviewed_inventory_and_no_words(self):
         metadata = self.metadata
-        self.assertEqual((metadata["verseCount"], metadata["unitCount"]), (239, 72))
-        self.assertEqual(len(metadata["verses"]), 239)
-        self.assertEqual(len(metadata["units"]), 72)
+        self.assertEqual(metadata["verseCount"], 665)
+        self.assertEqual(len(metadata["verses"]), 665)
+        self.assertEqual(metadata["unitCount"], len(arabic.REVIEWED_UNITS))
+        self.assertEqual(len(metadata["units"]), len(arabic.REVIEWED_UNITS))
         self.assertTrue(json.dumps(metadata, ensure_ascii=False).isascii())
         for row in metadata["verses"]:
             self.assertEqual(set(row), {"reference", "wordCount", "textSHA256", "pdfPages"})
             self.assertGreater(row["wordCount"], 0)
             self.assertTrue(row["pdfPages"])
         profile = arabic.PROFILES[arabic.EDITION_ID]
-        pins = {self.source["id"]: self.source["sha256"]}
+        pins = self.corpus.source_pins
+        self.assertEqual(len(pins), 3)
         digest = hashlib.sha256(json.dumps(pins, sort_keys=True, separators=(",", ":")).encode()).hexdigest()
         self.assertEqual(profile["source_pin_digest"], digest)
         self.assertEqual(metadata["sourcePins"], pins)
@@ -56,10 +77,10 @@ class ArabicReviewedMapperTests(unittest.TestCase):
         self.assertEqual(profile["local_rule_lines"], set())
         self.assertEqual(profile["overrides"], {})
         mapper = arabic.ReviewedArabicMapper.from_metadata(metadata)
-        self.assertEqual(len(mapper.verse_inventory), 29)
+        self.assertEqual(len(mapper.verse_inventory), 55)
         self.assertNotIn(1, mapper.verse_inventory["LUK", 22], "Sparse absence is not a Last or empty-verse predicate")
 
-    def test_all_72_complete_units_round_trip_without_any_text_access(self):
+    def test_all_complete_units_round_trip_without_any_text_access(self):
         # Standalone registry lookup must work when the canonical transcription
         # is unavailable. Its existing metadata is sufficient for unit mapping.
         with patch.object(Path, "read_bytes", side_effect=AssertionError("No Bible text access")), \
@@ -72,8 +93,18 @@ class ArabicReviewedMapperTests(unittest.TestCase):
 
     def test_real_source_matches_every_reviewed_unit_without_word_changes(self):
         mapper = arabic.ReviewedArabicMapper(self.corpus, self.metadata["sourcePins"])
-        for unit in arabic.REVIEWED_UNITS:
-            self.assertEqual(mapper.from_standard(unit), (list(unit), False))
+        for source, standard in arabic.UNIT_MAPPINGS:
+            self.assertEqual(mapper.from_standard(standard), (list(source), False))
+
+    def test_expanded_units_keep_old_jesuit_numbering_and_clause_boundaries(self):
+        mapper = arabic.ReviewedArabicMapper(self.corpus)
+        self.assertEqual(mapper.from_standard(refs("PSA", 23, 1, 6)), (refs("PSA", 22, 1, 6), False))
+        self.assertEqual(mapper.to_standard(refs("PSA", 147, 12, 20)), (refs("PSA", 147, 12, 20), False))
+        self.assertEqual(mapper.from_standard(refs("LUK", 6, 17, 18)), (refs("LUK", 6, 17, 18), False))
+        for verse in (17, 18):
+            with self.assertRaises(Unavailable):
+                mapper.from_standard(refs("LUK", 6, verse, verse))
+        self.assertEqual(mapper.from_standard(refs("LUK", 12, 8, 12)), (refs("LUK", 12, 8, 12), False))
 
     def test_whole_concatenations_and_explicit_gaps_are_preserved(self):
         mapper = arabic.ReviewedArabicMapper.from_metadata(self.metadata)
@@ -163,10 +194,12 @@ class ArabicReviewedMapperTests(unittest.TestCase):
         payload = json.loads((TOOLS.parent / "data/readings-texts.json").read_text())
         existing = {key: editions[arabic.EDITION_ID] for key, editions in payload["passages"].items()
                     if arabic.EDITION_ID in editions}
-        self.assertEqual(set(existing), EXISTING_DAILY | {"daily|Luke 1:46–55"})
+        self.assertTrue((EXISTING_DAILY | {"daily|Luke 1:46–55"}) <= set(existing))
+        self.assertIn("daily|Luke 12:8–12", existing)
         self.assertEqual([row["verse"] for row in existing["daily|Luke 1:46–55"]], list(range(46, 56)))
         mapper = arabic.ReviewedArabicMapper(self.corpus)
-        for key, rows in existing.items():
+        for key in EXISTING_DAILY | {"daily|Luke 1:46–55"}:
+            rows = existing[key]
             book, _ = builder.parse_citation(key.split("|", 1)[1])
             requested = [(book, row["chapter"], row["verse"]) for row in rows]
             mapped, whole = mapper.from_standard(requested)

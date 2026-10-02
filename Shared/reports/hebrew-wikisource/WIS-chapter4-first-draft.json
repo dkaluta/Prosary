@@ -1,0 +1,149 @@
+{
+  "schemaVersion": 1,
+  "book": "WIS",
+  "chapter": 4,
+  "status": "first pointed draft; no page approval",
+  "method": "First visual transcription from five native body crops on A2 pages151–153, plus four focused queries. Not a completed word/point comparison or independent review.",
+  "sourcePages": [
+    151,
+    152,
+    153
+  ],
+  "units": 20,
+  "sourceCrops": [
+    {
+      "page": 151,
+      "source": "/private/tmp/prosary-wis-review/WIS-native-151.png",
+      "nativeBounds": [
+        210,
+        1390,
+        2420,
+        1930
+      ],
+      "file": "/private/tmp/prosary-wis-review/WIS4-151-opening.png",
+      "sha256": "d1293d465554b7dcff62da8cdd739b8e18f5d777593ab3e27a169f0096f9f833"
+    },
+    {
+      "page": 152,
+      "source": "/private/tmp/prosary-wis-review/WIS-native-152.png",
+      "nativeBounds": [
+        130,
+        350,
+        2370,
+        960
+      ],
+      "file": "/private/tmp/prosary-wis-review/WIS4-152-upper.png",
+      "sha256": "fd3b237231ba7e435fc20b8a0bef5b2c0e199bc2441260cb72599eac0717a3c5"
+    },
+    {
+      "page": 152,
+      "source": "/private/tmp/prosary-wis-review/WIS-native-152.png",
+      "nativeBounds": [
+        130,
+        945,
+        2370,
+        1960
+      ],
+      "file": "/private/tmp/prosary-wis-review/WIS4-152-lower.png",
+      "sha256": "069acacef013d77795bf99868748dd60f5a195ca0df30112f01f622fb194c6df"
+    },
+    {
+      "page": 153,
+      "source": "/private/tmp/prosary-wis-review/WIS-native-153.png",
+      "nativeBounds": [
+        210,
+        290,
+        2410,
+        820
+      ],
+      "file": "/private/tmp/prosary-wis-review/WIS4-153-upper.png",
+      "sha256": "59f5aede5a5268de3dda5ac32b056e5260309045629cbc8bf954babd186680f2"
+    },
+    {
+      "page": 153,
+      "source": "/private/tmp/prosary-wis-review/WIS-native-153.png",
+      "nativeBounds": [
+        210,
+        795,
+        2410,
+        1335
+      ],
+      "file": "/private/tmp/prosary-wis-review/WIS4-153-lower.png",
+      "sha256": "8f8ef8f5e2f0140b1b305a89cc337b7e0937bedf985e5f09cbc5dd0bccf737d9"
+    }
+  ],
+  "queryCrops": [
+    {
+      "page": 151,
+      "nativeBounds": [
+        1660,
+        1390,
+        2290,
+        1610
+      ],
+      "scale": 2,
+      "file": "/private/tmp/prosary-wis-review/WIS4-query-v1.png",
+      "sha256": "0eabff2970c928b9c1bb04d1afbd326de1b030ca67be3a59e4565e7c819e3979"
+    },
+    {
+      "page": 152,
+      "nativeBounds": [
+        1670,
+        625,
+        2370,
+        815
+      ],
+      "scale": 2,
+      "file": "/private/tmp/prosary-wis-review/WIS4-query-v4.png",
+      "sha256": "02c6958f1f7f2968b1f52fcce4eeafc46f33796b5f7692704ab39e63b1094011"
+    },
+    {
+      "page": 152,
+      "nativeBounds": [
+        190,
+        1300,
+        570,
+        1430
+      ],
+      "scale": 2,
+      "file": "/private/tmp/prosary-wis-review/WIS4-query-v10.png",
+      "sha256": "b0d98f9640c78bdaff2c3eddac0c8c533f7e40f748353e916aae8ac92aaf3811"
+    },
+    {
+      "page": 153,
+      "nativeBounds": [
+        2000,
+        1220,
+        2360,
+        1335
+      ],
+      "scale": 2,
+      "file": "/private/tmp/prosary-wis-review/WIS4-query-v20.png",
+      "sha256": "4f6997eafcd4d156f4a2a9f5242be3d550a96e329ea8dfe1e7d95d96293890ec"
+    }
+  ],
+  "openQueries": [
+    {
+      "verse": 1,
+      "token": "זִכְרָהּ",
+      "finding": "Recheck initial zayin point; fused lower mark in first crop."
+    },
+    {
+      "verse": 4,
+      "token": "יְסֹעָרוּ",
+      "finding": "Focused crop supports yod sheva and samekh holam; ayin lower vowel remains a separate query. Do not replace with conventional grammar."
+    },
+    {
+      "verse": 10,
+      "token": "הָעֳבַר",
+      "finding": "Recheck exact fused ayin vowel form and he point against native pixels."
+    },
+    {
+      "verse": 20,
+      "token": "וּבְ[יוֹם]",
+      "finding": "Printed brackets contain יום only. Bet lower point before bracket not clear; recheck in complete comparison."
+    }
+  ],
+  "draftTextSHA256": "a7bafe9eac7b83982ae07fb99a13df5660fff6ba8a10e4c91c9b027a7224abb5",
+  "releaseApproved": false
+}

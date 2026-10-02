@@ -1,163 +1,203 @@
 {
-  "$comment": "Source-authored Hebrew Bible book names for offline citation localization. Evangelizo.org — Daily Gospel (© Evangelizo.org), edition HE; Judith/Tobit: St James Vicariate. Source URLs identify where each title was relayed; no Scripture text is included. Preserve full title wording with Hebrew joining hyphens normalized to maqaf; fetch-readings.py compacts short epistle titles deterministically. Additional Old Testament book labels needed by the Eastern and Vetus Ordo lectionaries relay the Mechon Mamre Hebrew Bible index; no Scripture text is included.",
+  "$comment": "Hebrew Bible book metadata for offline citation localization. Short forms are the user-supplied 2 October 2026 list, attributed by the user to Pope Benedict XVI and adapted by the user; Hebrew geresh/gershayim encode abbreviation punctuation. Existing full titles retain their original wording and source: Evangelizo.org — Daily Gospel (© Evangelizo.org), edition HE; Judith/Tobit: St James Vicariate; additional Old Testament titles: Mechon Mamre. New full titles needed to complete the catalog are explicitly credited to the user. No Scripture text is included.",
   "books": {
+    "1 Chronicles": {
+      "full": "דברי הימים א׳",
+      "sourceCredit": "Hebrew book name supplied by the user, 2 October 2026.",
+      "short": "דה״א"
+    },
     "1 Corinthians": {
-      "short": "הראשונה אל הקורינתים",
+      "short": "קור״א",
       "full": "אגרת שאול הראשונה אל הקורינתים",
       "source": "https://publication.evangelizo.ws/HE/days/2026-08-15"
     },
     "1 John": {
-      "short": "הראשונה של יוחנן",
+      "short": "יוח״א",
       "full": "אגרת יוחנן הראשונה",
       "source": "https://publication.evangelizo.ws/HE/days/2026-11-01"
     },
     "1 Kings": {
-      "short": "מלכים א",
+      "short": "מל״א",
       "full": "מלכים א",
       "source": "https://publication.evangelizo.ws/HE/days/2026-08-09"
     },
+    "1 Maccabees": {
+      "full": "מקבים א׳",
+      "sourceCredit": "Hebrew book name supplied by the user, 2 October 2026.",
+      "short": "מק״א"
+    },
     "1 Peter": {
-      "short": "הראשונה לכיפא",
+      "short": "כיפ״א",
       "full": "אגרת כיפא הראשונה",
       "source": "https://publication.evangelizo.ws/HE/days/2026-05-25"
     },
+    "1 Samuel": {
+      "full": "שמואל א׳",
+      "sourceCredit": "Hebrew book name supplied by the user, 2 October 2026.",
+      "short": "שמ״א"
+    },
     "1 Thessalonians": {
-      "short": "הראשונה אל התסלוניקים",
+      "short": "תס״א",
       "full": "אגרת שאול הראשונה אל התסלונוקים",
       "source": "https://publication.evangelizo.ws/HE/days/2026-10-18"
     },
     "1 Timothy": {
-      "short": "הראשונה אל טימותיאוס",
+      "short": "טימ״א",
       "full": "אגרת שאול הראשונה אל טימותיאוס",
       "source": "https://publication.evangelizo.ws/HE/days/2025-09-16"
     },
+    "2 Chronicles": {
+      "full": "דברי הימים ב׳",
+      "sourceCredit": "Hebrew book name supplied by the user, 2 October 2026.",
+      "short": "דה״ב"
+    },
     "2 Corinthians": {
-      "short": "השניה אל הקורינתים",
+      "short": "קור״ב",
       "full": "אגרת שאול השניה אל הקורינתים",
       "source": "https://publication.evangelizo.ws/HE/days/2025-06-09"
     },
     "2 John": {
-      "short": "השנייה של יוחנן",
+      "short": "יוח״ב",
       "full": "אגרת יוחנן השניה",
       "source": "https://publication.evangelizo.ws/HE/days/2026-11-13"
     },
     "2 Kings": {
-      "short": "מלכים ב",
+      "short": "מל״ב",
       "full": "מלכים ב",
       "source": "https://www.mechon-mamre.org/i/t/tmp3.htm"
     },
     "2 Maccabees": {
-      "short": "המכבים ב",
+      "short": "מק״ב",
       "full": "המכבים ב",
       "source": "https://publication.evangelizo.ws/HE/days/2025-11-18"
     },
     "2 Peter": {
-      "short": "השניה לכיפא",
+      "short": "כיפ״ב",
       "full": "אגרת כיפא השניה",
       "source": "https://publication.evangelizo.ws/HE/days/2026-06-01"
     },
+    "2 Samuel": {
+      "full": "שמואל ב׳",
+      "sourceCredit": "Hebrew book name supplied by the user, 2 October 2026.",
+      "short": "שמ״ב"
+    },
     "2 Thessalonians": {
-      "short": "השנייה אל התסלוניקים",
+      "short": "תס״ב",
       "full": "אגרת שאול השניה אל התסלוניקים",
       "source": "https://publication.evangelizo.ws/HE/days/2026-08-25"
     },
     "2 Timothy": {
-      "short": "השניה אל טימותיאוס",
+      "short": "טימ״ב",
       "full": "אגרת שאול השניה אל טימותיאוס",
       "source": "https://publication.evangelizo.ws/HE/days/2026-06-29"
     },
     "3 John": {
-      "short": "השלישית של יוחנן",
+      "short": "יוח״ג",
       "full": "אגרת יוחנן השלישית",
       "source": "https://publication.evangelizo.ws/HE/days/2026-11-14"
     },
     "Acts": {
-      "short": "מעשי השליחים",
+      "short": "מע״ש",
       "full": "מעשי השליחים",
       "source": "https://publication.evangelizo.ws/HE/days/2026-06-29"
     },
     "Amos": {
-      "short": "עמוס",
+      "short": "עמ׳",
       "full": "עמוס",
       "source": "https://publication.evangelizo.ws/HE/days/2026-06-30"
     },
+    "Baruch": {
+      "full": "ברוך",
+      "sourceCredit": "Hebrew book name supplied by the user, 2 October 2026.",
+      "short": "ברו׳"
+    },
     "Colossians": {
-      "short": "אל הקולוסים",
+      "short": "קול׳",
       "full": "אגרת שאול אל הקולוסים",
       "source": "https://publication.evangelizo.ws/HE/days/2025-09-04"
     },
     "Daniel": {
-      "short": "דניאל",
+      "short": "דנ׳",
       "full": "דניאל",
       "source": "https://publication.evangelizo.ws/HE/days/2026-08-06"
     },
     "Deuteronomy": {
-      "short": "דברים",
+      "short": "דב׳",
       "full": "דברים",
       "source": "https://publication.evangelizo.ws/HE/days/2026-08-07"
     },
     "Ecclesiastes": {
-      "short": "קהלת",
+      "short": "קה׳",
       "full": "קהלת",
       "source": "https://publication.evangelizo.ws/HE/days/2026-09-24"
     },
     "Ephesians": {
-      "short": "אל האפסים",
+      "short": "אפס׳",
       "full": "אגרת שאול אל האפסים",
       "source": "https://publication.evangelizo.ws/HE/days/2026-09-21"
     },
     "Esther": {
-      "short": "אסתר",
+      "short": "אס׳",
       "full": "אסתר",
       "source": "https://www.mechon-mamre.org/i/t/tmp3.htm"
     },
     "Exodus": {
-      "short": "שמות",
+      "short": "שמ׳",
       "full": "שמות",
       "source": "https://publication.evangelizo.ws/HE/days/2026-10-02"
     },
     "Ezekiel": {
-      "short": "יחזקאל",
+      "short": "יח׳",
       "full": "יחזקאל",
       "source": "https://publication.evangelizo.ws/HE/days/2026-08-11"
     },
+    "Ezra": {
+      "full": "עזרא",
+      "sourceCredit": "Hebrew book name supplied by the user, 2 October 2026.",
+      "short": "עז׳"
+    },
     "Galatians": {
-      "short": "אל הגלטים",
+      "short": "גלט׳",
       "full": "אגרת שאול אל הגלטים",
       "source": "https://publication.evangelizo.ws/HE/days/2026-10-05"
     },
     "Genesis": {
-      "short": "בראשית",
+      "short": "בר׳",
       "full": "בראשית",
       "source": "https://publication.evangelizo.ws/HE/days/2025-02-11"
     },
     "Habakkuk": {
-      "short": "חבקוק",
+      "short": "חב׳",
       "full": "חבקוק",
       "source": "https://publication.evangelizo.ws/HE/days/2026-08-08"
     },
+    "Haggai": {
+      "full": "חגי",
+      "sourceCredit": "Hebrew book name supplied by the user, 2 October 2026.",
+      "short": "חגי"
+    },
     "Hebrews": {
-      "short": "אל העברים",
+      "short": "עבר׳",
       "full": "האגרת אל העברים",
       "source": "https://publication.evangelizo.ws/HE/days/2025-09-15"
     },
     "Hosea": {
-      "short": "הושע",
+      "short": "הו׳",
       "full": "הושע",
       "source": "https://www.mechon-mamre.org/i/t/tmp3.htm"
     },
     "Isaiah": {
-      "short": "ישעיה",
+      "short": "יש׳",
       "full": "ישעיה",
       "source": "https://publication.evangelizo.ws/HE/days/2026-07-12"
     },
     "James": {
-      "short": "אגרת יעקב",
+      "short": "יעק׳",
       "full": "אגרת יעקב",
       "source": "https://publication.evangelizo.ws/HE/days/2026-02-16"
     },
     "Jeremiah": {
-      "short": "ירמיה",
+      "short": "יר׳",
       "full": "ירמיה",
       "source": "https://publication.evangelizo.ws/HE/days/2026-07-31"
     },
@@ -172,7 +212,7 @@
       "source": "https://www.mechon-mamre.org/i/t/tmp3.htm"
     },
     "John": {
-      "short": "יוחנן",
+      "short": "יוח׳",
       "full": "הבשורה  על־פי יוחנן",
       "source": "https://publication.evangelizo.ws/HE/days/2025-09-15"
     },
@@ -182,37 +222,47 @@
       "source": "https://www.mechon-mamre.org/i/t/tmp3.htm"
     },
     "Joshua": {
-      "short": "יהושוע",
+      "short": "יהו׳",
       "full": "יהושוע",
       "source": "https://www.mechon-mamre.org/i/t/tmp3.htm"
     },
     "Jude": {
-      "short": "יהודה",
+      "short": "יהד׳",
       "full": "יהודה",
       "source": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf#page=34"
     },
+    "Judges": {
+      "full": "שופטים",
+      "sourceCredit": "Hebrew book name supplied by the user, 2 October 2026.",
+      "short": "שופ׳"
+    },
     "Judith": {
-      "short": "יהודית",
+      "short": "יוד׳",
       "full": "יהודית",
       "source": "https://www.catholic.co.il/?cat=faith&id=5644&m=BibleandInterpretation&view=article"
     },
+    "Lamentations": {
+      "full": "איכה",
+      "sourceCredit": "Hebrew book name supplied by the user, 2 October 2026.",
+      "short": "איכה"
+    },
     "Leviticus": {
-      "short": "ויקרא",
+      "short": "וי׳",
       "full": "ויקרא",
       "source": "https://publication.evangelizo.ws/HE/days/2025-08-01"
     },
     "Luke": {
-      "short": "לוקס",
+      "short": "לוק׳",
       "full": "הבשורה על־פי לוקס",
       "source": "https://publication.evangelizo.ws/HE/days/2025-09-16"
     },
     "Malachi": {
-      "short": "מלאכי",
+      "short": "מל׳",
       "full": "מלאכי",
       "source": "https://www.mechon-mamre.org/i/t/tmp3.htm"
     },
     "Mark": {
-      "short": "מרקוס",
+      "short": "מרק׳",
       "full": "הבשורה על־פי מרקוס",
       "source": "https://publication.evangelizo.ws/HE/days/2026-06-01"
     },
@@ -222,52 +272,57 @@
       "source": "https://publication.evangelizo.ws/HE/days/2026-07-12"
     },
     "Micah": {
-      "short": "מיכה",
+      "short": "מי׳",
       "full": "מיכה",
       "source": "https://publication.evangelizo.ws/HE/days/2026-09-08"
     },
     "Nahum": {
-      "short": "נחום",
+      "short": "נח׳",
       "full": "נחום",
       "source": "https://publication.evangelizo.ws/HE/days/2026-08-07"
     },
     "Nehemiah": {
-      "short": "נחמיה",
+      "short": "נחמ׳",
       "full": "נחמיה",
       "source": "https://www.mechon-mamre.org/i/t/tmp3.htm"
     },
     "Numbers": {
-      "short": "במדבר",
+      "short": "במ׳",
       "full": "במדבר",
       "source": "https://publication.evangelizo.ws/HE/days/2026-09-14"
     },
+    "Obadiah": {
+      "full": "עובדיה",
+      "sourceCredit": "Hebrew book name supplied by the user, 2 October 2026.",
+      "short": "עוב׳"
+    },
     "Philemon": {
-      "short": "אל פילימון",
+      "short": "פימ׳",
       "full": "אגרת שאול אל פילימון",
       "source": "https://publication.evangelizo.ws/HE/days/2026-11-12"
     },
     "Philippians": {
-      "short": "אל הפיליפים",
+      "short": "פיל׳",
       "full": "אגרת שאול אל הפיליפים",
       "source": "https://publication.evangelizo.ws/HE/days/2026-09-20"
     },
     "Proverbs": {
-      "short": "משלי",
+      "short": "מש׳",
       "full": "משלי",
       "source": "https://publication.evangelizo.ws/HE/days/2026-09-22"
     },
     "Psalm": {
-      "short": "תהלים",
+      "short": "תה׳",
       "full": "תהלים",
       "source": "https://publication.evangelizo.ws/HE/days/2026-07-12"
     },
     "Revelation": {
-      "short": "ההתגלות",
+      "short": "התג׳",
       "full": "ההתגלות",
       "source": "https://publication.evangelizo.ws/HE/days/2026-08-15"
     },
     "Romans": {
-      "short": "אל הרומים",
+      "short": "רומ׳",
       "full": "אגרת שאול אל הרומים",
       "source": "https://publication.evangelizo.ws/HE/days/2026-07-12"
     },
@@ -277,39 +332,45 @@
       "source": "https://www.mechon-mamre.org/i/t/tmp3.htm"
     },
     "Sirach": {
-      "short": "שיראך",
+      "short": "סיר׳",
       "full": "שיראך",
       "source": "https://publication.evangelizo.ws/HE/days/2026-09-13"
     },
     "Song of Songs": {
-      "short": "שיר השירים",
+      "short": "שה״ש",
       "full": "שיר השירים",
       "source": "https://www.mechon-mamre.org/i/t/tmp3.htm"
     },
     "Titus": {
-      "short": "אל טיטוס",
+      "short": "טיט׳",
       "full": "אגרת שאול אל טיטוס",
       "source": "https://publication.evangelizo.ws/HE/days/2026-11-10"
     },
     "Tobit": {
-      "short": "טוביה",
+      "short": "טוב׳",
       "full": "טוביה",
       "source": "https://www.catholic.co.il/?cat=faith&id=5644&m=BibleandInterpretation&view=article"
     },
     "Wisdom": {
-      "short": "החכמה",
+      "short": "חכמ׳",
       "full": "החכמה",
       "source": "https://publication.evangelizo.ws/HE/days/2026-11-02"
     },
     "Zechariah": {
-      "short": "זכריה",
+      "short": "זכ׳",
       "full": "זכריה",
       "source": "https://www.mechon-mamre.org/i/t/tmp3.htm"
     },
     "Zephaniah": {
-      "short": "צפניה",
+      "short": "צפ׳",
       "full": "צפניה",
       "source": "https://publication.evangelizo.ws/HE/days/2025-05-31"
     }
+  },
+  "abbreviationCredit": {
+    "providedBy": "User",
+    "date": "2026-10-02",
+    "basis": "Adapted by the user from a list attributed by the user to Pope Benedict XVI. The edition was not supplied or independently verified.",
+    "normalization": "ASCII apostrophe and quotation marks encoded as Hebrew geresh (U+05F3) and gershayim (U+05F4). The second Maccabees entry is identified by the supplied מק״ב abbreviation."
   }
 }

@@ -1,0 +1,398 @@
+{
+  "book": "TOB",
+  "recension": "long",
+  "status": "draft",
+  "sourceScanSHA256": "656891d377d2e3d4a9216723d94205488423907bf01df424b9f0b9de1560051e",
+  "clearerScanSHA256": "b72eaf5d2d858fabb7c3438ac0436ccd64c394a7dd2fad609efabe628d5534c7",
+  "decisions": [
+    {
+      "unit": "1:1",
+      "before": "חָנְנַאֵל",
+      "after": "חֲנַנְאֵל",
+      "crop": "/private/tmp/prosary-tob-review/TOB1-1-hananel.png",
+      "cropSHA256": "c2c5719270100ca896f60d068a8c98818a2eebefae554b15f74c7e76142b0c52",
+      "decision": "Tight full-word source shows het hataf-patah, first nun patah, second nun sheva; supersedes initial loose-crop draft."
+    },
+    {
+      "unit": "1:4",
+      "before": "ויִבָּנֶה־בָּהּ",
+      "after": "וַיִּבָּנֶה־בָּהּ",
+      "crop": "/private/tmp/prosary-tob-review/TOB1-4-initial-vav.png",
+      "cropSHA256": "34dcc6ff34958eb8c7d6f5c0dcc4800849a19a6b3163c3c213f0f3cfe58cf765",
+      "decision": "Tight source separates initial vav patah from its baseline foot; yod dagesh and final heh mappiq are visible in wider source. Parent independently supports vav patah and mappiq."
+    },
+    {
+      "unit": "1:3",
+      "crop": "/private/tmp/prosary-tob-review/TOB1-3-paths.png",
+      "cropSHA256": "76bf33d8eab1ec9b82ca72b5dbef7ec995e8c3e7d40bfe48095416fb4f7afa99",
+      "decision": "Bet interior dagesh directly visible; initial draft בְדַרְכֵי corrected to בְּדַרְכֵי."
+    },
+    {
+      "unit": "1:3 label",
+      "crop": "/private/tmp/prosary-tob-review/TOB1-3-commentary.png",
+      "cropSHA256": "e8b2fdeb58c075b6ca52185754f40d08e1f0e0c079ee7d22a12271f3a0dbe2fd",
+      "decision": "The printed commentary ג explicitly links to the first-person account beginning with this paragraph; establishes label3 in conjunction with the damaged margin fragment. Parent independently approved this source-evidence method; not a direct clean margin reading."
+    },
+    {
+      "unit": "2:10",
+      "before": "וּבְכָל־אֲשֶׁר",
+      "after": "וּכְכָל־אֲשֶׁר",
+      "crop": "/private/tmp/prosary-tob-review/TOB2-10-bekhol.png",
+      "cropSHA256": "4775311814dc902a7c6de4529c5bb8d165efb4e723c12cef8c6a5e2cd9e2f86f",
+      "decision": "Both prefix letters are kaf, no bet heel; independently confirmed by parent."
+    },
+    {
+      "unit": "2:11",
+      "before": "וַיּוֹסִפוּ",
+      "after": "וַיּוֹסִיפוּ",
+      "crop": "/private/tmp/prosary-tob-review/TOB2-12-added.png",
+      "cropSHA256": "ec556250acc64c2c869c76a4aa78055ddf4af7568984e423d3bc79934cd6f7e7",
+      "decision": "Printed yod after samekh retained; OCR consonant comparison located the omitted draft yod. Fine prefix pointing remains in the full-page review queue."
+    },
+    {
+      "unit": "2:14",
+      "before": "בָּעֶבְרָה",
+      "after": "בַעֲבוּרָהּ",
+      "crop": "/private/tmp/prosary-tob-review/TOB2-14-baavurah.png",
+      "cropSHA256": "cb965efb06bfbbd0690b762fc62269fb78239009b0333560939b91dd9e549a8b",
+      "decision": "Initial bet has patah and a clean empty bowl; ayin hataf-patah, shuruq, resh qamats and final heh mappiq visible. Parent independently confirms initial bet has no dagesh; preserve this local printed form."
+    },
+    {
+      "unit": "2:15",
+      "before": "אֵפוֹא",
+      "after": "אֵיפוֹא",
+      "crop": "/private/tmp/prosary-tob-review/TOB2-15-eifo.png",
+      "cropSHA256": "8bcf152bc74f94d4b38e11d01e2b85981be0c81d99e221c526d5628e1aa73263",
+      "decision": "Tight source explicitly has yod after alef; preserve printed spelling rather than familiar shorter form."
+    },
+    {
+      "unit": "3:17",
+      "before": "תבללי",
+      "after": "תבלל",
+      "crop": "/private/tmp/prosary-tob-review/TOB3-17-cataracts-full.png",
+      "cropSHA256": "1194db1cbc7adbb8c3ae1f547b44ad3b02d1326ca1b2120dc33966784e22e46b",
+      "decision": "No suffix yod is printed after the final lamed. Source word is followed by space and הלבן. Consonant correction only; full niqqud verification still pending."
+    }
+  ],
+  "sourcePairs": [
+    {
+      "originalPage": 312,
+      "alternatePage": 163,
+      "side": "right"
+    },
+    {
+      "originalPage": 313,
+      "alternatePage": 163,
+      "side": "left"
+    },
+    {
+      "originalPage": 314,
+      "alternatePage": 164,
+      "side": "right"
+    },
+    {
+      "originalPage": 315,
+      "alternatePage": 164,
+      "side": "left"
+    },
+    {
+      "originalPage": 316,
+      "alternatePage": 165,
+      "side": "right"
+    },
+    {
+      "originalPage": 317,
+      "alternatePage": 165,
+      "side": "left"
+    },
+    {
+      "originalPage": 318,
+      "alternatePage": 166,
+      "side": "right"
+    },
+    {
+      "originalPage": 319,
+      "alternatePage": 166,
+      "side": "left"
+    },
+    {
+      "originalPage": 320,
+      "alternatePage": 167,
+      "side": "right"
+    },
+    {
+      "originalPage": 321,
+      "alternatePage": 167,
+      "side": "left"
+    },
+    {
+      "originalPage": 322,
+      "alternatePage": 168,
+      "side": "right"
+    },
+    {
+      "originalPage": 323,
+      "alternatePage": 168,
+      "side": "left"
+    }
+  ],
+  "sourcePairMethod": "Each pair was visually matched using text, headers, recension divider, physical line endings, and commentary layout. No global offset assumed.",
+  "clearerSourceURL": "https://he.wikisource.org/wiki/קובץ:Apocrypha_Kahana_B_extra_scan.pdf",
+  "clearerDownloadURL": "https://upload.wikimedia.org/wikisource/he/a/a8/Apocrypha_Kahana_B_extra_scan.pdf",
+  "transcriptionProgress": {
+    "draftChapters": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "draftSourceUnits": 58,
+    "approvedPages": 0,
+    "method": "First visual draft retaining source niqqud candidates; complete independent point/punctuation/boundary pass still required. Consonant OCR is only a comparison aid."
+  },
+  "cropEvidence": [
+    {
+      "path": "/private/tmp/prosary-tob-review/B314-long.png",
+      "sha256": "566ef4f9f573507860c833dc4ba0c32877ff0d8de18b17c25533dd3470706fdc"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/B315-long.png",
+      "sha256": "2e8718c0d99a877ae8678025b11b99b2539ca4ec5b83a4125fbf3d564ad1765b"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/B316-long.png",
+      "sha256": "539847151c898afe3187ecabe838bd97bb8ba2aac3184446766932c99b20919b"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/B317-long.png",
+      "sha256": "045699b6064e8a178fced8c6290bac88cfc47bd09f8da6380420f36488f60a9c"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/B318-ch3-long.png",
+      "sha256": "682815d88ef3c3414df0e67335d90741be9bb63a8652afce89b2e7df2094b1e7"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/B318-long-opening.png",
+      "sha256": "928a140d44462410a508a0a28fafed00cef4dd304ec1659586ed26c65ca87e49"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/B319-long.png",
+      "sha256": "a193e81557b9e14e845903e939a9d55eb0f6ebf100dda981d570c62704ff3aba"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/B320-long.png",
+      "sha256": "50730e23577a8c46a3ffb03ed90ce119065a606c9c1a5fe2529fb317f14bbfaa"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/B321-ch3-long.png",
+      "sha256": "a582526b6072a22bb4e8eec98c1dfbc65a764fa847c8f928a10d520e9a6ce792"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB1-1-hananel.png",
+      "sha256": "c2c5719270100ca896f60d068a8c98818a2eebefae554b15f74c7e76142b0c52"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB1-10-exile.png",
+      "sha256": "9695503beeeb99b25980e37b7a179332e87696f08f05c45dde9d5e42cac188a7"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB1-10-exiled.png",
+      "sha256": "d28571f907dda304601dac062bbf594d59bae126e308ac4531905b15f20f1f96"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB1-17-clothes.png",
+      "sha256": "367d9271ca7537fe5bdab2025b695b4dbea68ea661529ff4e594ec37406c8f16"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB1-17-naked.png",
+      "sha256": "bef34c8993ff9ccfacd8ed0a4b1fa1915c60836797dbaf869f52ad56a502f904"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB1-2-ending.png",
+      "sha256": "0115ae5ec0b1bce9f9fd042405a3ba7806edb4fb84b2269fcd5dd92c15135438"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB1-2-full.png",
+      "sha256": "021984d530bf1c2d2bafd25f3c9b77d2c40b7ec75fcc122609dc670f3ff00e01"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB1-2-kedesh.png",
+      "sha256": "c68a5c02f8844a1adad1c49d550860dd50cd962282560f30c0ef6a3c56c48166"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB1-2-mimaal.png",
+      "sha256": "7e68f89563546a603ae7eecb7f63e027c892d75c3cb2c629506994c3698a0a4a"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB1-2-opening.png",
+      "sha256": "d1301b0adafbf287dcaae5b625fceae562232f75b5a0a1644187caabd4fc7a82"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB1-2-original-mimaal.png",
+      "sha256": "b95144cd3b89473d6c1b6c6aba96a0cdc998d2ec4420aebd1c57bfe04ff81224"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB1-22-final.png",
+      "sha256": "c4f5fbdd3e166a87b9b3c0389b8e419711f6a924e11f553794241bff47401028"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB1-22-service.png",
+      "sha256": "c96f3458e19a516b5c30fa7a70f427d8da67c1a994027205476ced043bcb4d8f"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB1-3-captive.png",
+      "sha256": "5f26e0e6dea0eb8aa18197a89d202cf123483dd3f55a45312c55e713c4c91694"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB1-3-commentary.png",
+      "sha256": "e8b2fdeb58c075b6ca52185754f40d08e1f0e0c079ee7d22a12271f3a0dbe2fd"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB1-3-margin.png",
+      "sha256": "70d096a9a51f08f666797f90ff21800464b0ecd9e123a3300b1e520c3426523e"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB1-3-paths.png",
+      "sha256": "76bf33d8eab1ec9b82ca72b5dbef7ec995e8c3e7d40bfe48095416fb4f7afa99"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB1-3-ways.png",
+      "sha256": "2abf8d162b4e1aeca0ee292745cf3b79e3ef3af1c7e06eaa35bcc50524e0cbe5"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB1-3.png",
+      "sha256": "5e5f28fae007123c8ae226113b1e61c0d2da68eee91df2eedd19cd9dac902a41"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB1-4-5-line.png",
+      "sha256": "60d3e622c141ed32c949b39c4b468a9d86870a767dbd79ef5f671867fe6c5b1d"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB1-4-build-tight.png",
+      "sha256": "d7a1e78dbf0e354e39fbb6d8fe17267f9bfef523249af3b99520db41d8984b84"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB1-4-build.png",
+      "sha256": "1972fcca9c0fb73fcc63634e6184181934d65536369ea32f0d56bb44ec320f59"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB1-4-ending.png",
+      "sha256": "933046bc0201c7260fa174c9c6abec17fba47dc4804883c18d0af81211e347d3"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB1-4-initial-vav.png",
+      "sha256": "34dcc6ff34958eb8c7d6f5c0dcc4800849a19a6b3163c3c213f0f3cfe58cf765"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB1-4-jerusalem.png",
+      "sha256": "4d9c9127030e71bbfcc911d97da88680838ea3c4b5b1bf6fe14a2608d36da5e4"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB1-4-opening.png",
+      "sha256": "de5077c49697e58716943d624725d7e7883cb68e72f9ee5f59a1ab036dfc8e08"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB1-6-statute.png",
+      "sha256": "acd3e4c20021f7b423415b21d3e7818fa8150125beb4f9f9da690e7030785070"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB1-6.png",
+      "sha256": "8ec0ea5ecf14e503ae77bf59bc45fba5407baa4a8dd85b82f5b12a974edf1d5d"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB1-7-aal-complete.png",
+      "sha256": "a4d4b42d1da4eb14dc4f76cf3483c43130165b6bca60b84ca6bf619bac01154e"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB1-7-aal.png",
+      "sha256": "05a0def422e58b5ed7eebe34ffc606b6ca910250dd974e2e2b89b6c47cd52a90"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB1-7.png",
+      "sha256": "4b54ea0f1b4d9387a1324acdc017db0474cef28273c3499f4eb722c6193dcea9"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB1-8.png",
+      "sha256": "760f41d4a44c5ae1f8a4596e2b3417e7bd4b2c4848c1be468111a59ae5ef1336"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB2-10-bekhol.png",
+      "sha256": "4775311814dc902a7c6de4529c5bb8d165efb4e723c12cef8c6a5e2cd9e2f86f"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB2-12-added.png",
+      "sha256": "ec556250acc64c2c869c76a4aa78055ddf4af7568984e423d3bc79934cd6f7e7"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB2-14-baavurah.png",
+      "sha256": "cb965efb06bfbbd0690b762fc62269fb78239009b0333560939b91dd9e549a8b"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB2-14-wrath.png",
+      "sha256": "c31623f98a94a58d4649245f5598ec894fb41c73e32586c885fd2f754600e955"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB2-15-eifo.png",
+      "sha256": "8bcf152bc74f94d4b38e11d01e2b85981be0c81d99e221c526d5628e1aa73263"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB3-10-prayer-object.png",
+      "sha256": "565e2d98d42684cafd013c9f61057cfa2485f94ed3f44b81cb52379fd6c55e29"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB3-15-reproaches.png",
+      "sha256": "63059f60835284f0f2871597a4ddba87611cd4e1737d7b0dff7aee020e99c990"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB3-17-cataracts.png",
+      "sha256": "44425ece0b3e27354076568ac7e682de6925f11f98e40b88773fe0d9337bc782"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/B321-ch4-long.png",
+      "sha256": "b62d21e396b317c7c8b7673d2ff431b8a4978fb803d895bdc160d541520d3b0d"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/B322-long-margin.png",
+      "sha256": "31499c27faed4e7e97bf2505088d5dab8e8ba2586d86208daf7bd9ff7f91a37f"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/B323-long-margin.png",
+      "sha256": "2f8df13aa76f24e42af5b90378be17c4fedbcaefabd5a5abead421bc2e7097a9"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB4-20-gabael.png",
+      "sha256": "2db533e78fc929d50c1c7c49afd8ba12b19544df0d9d2d01b2b979f845bcd5c3"
+    },
+    {
+      "path": "/private/tmp/prosary-tob-review/TOB4-3-4.png",
+      "sha256": "88aee00aec69d47d169a1cbf13d568812b7197f3a1f6414c7a8beedb40723317"
+    }
+  ],
+  "chapter4SourceGap": {
+    "pages": [
+      321,
+      322,
+      323
+    ],
+    "labels": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      20,
+      21
+    ],
+    "notes": "Original and clearer scan compared: same separate lower recension and exact line endings. Short-recension material remains excluded. No completion certification."
+  },
+  "additionalIndependentFeedback": [
+    {
+      "unit": "TOB3:17",
+      "reviewer": "root",
+      "reading": "תְּבַלֻּל",
+      "notes": "Root independently confirms no suffix yod before הלבן and qibbuts under first lamed. This is a scoped word confirmation, not full-page approval."
+    }
+  ]
+}

@@ -1,0 +1,431 @@
+{
+  "schemaVersion": 1,
+  "book": "BAR",
+  "chapter": 2,
+  "status": "Second full chapter comparison complete; final mark resolved by scoped user reading",
+  "productionEligible": false,
+  "reviewedPages": [],
+  "scanSHA256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+  "method": "Read each word, vowel mark, bracket and separator against enlarged original scan crops. Separate margin inventory already audited by another reader. Ambiguous mark remains open, not inferred from grammar.",
+  "findings": [
+    {
+      "unit": "2:19",
+      "before": "אֲבוֹתֵינוּ",
+      "after": "אֲבֹתֵינוּ",
+      "basis": "Source PDF31 has no vav between bet and tav; direct tight-crop confirmation."
+    },
+    {
+      "unit": "2:31",
+      "before": "אֱלֹהֵיהֶם וְנָתַתִּי",
+      "after": "אֱלֹהֵיהֶם׃ וְנָתַתִּי",
+      "basis": "The source prints an internal sof pasuq after אלהיהם inside the same numbered unit; restore it."
+    },
+    {
+      "unit": "2:2",
+      "before": "רוּשָׁלַם",
+      "after": "רוּשָׁלִָם",
+      "basis": "Direct comparison of this occurrence, not application of a general spelling rule."
+    },
+    {
+      "unit": "2:23",
+      "before": "רוּשָׁלַם",
+      "after": "רוּשָׁלִָם",
+      "basis": "Direct comparison of this occurrence at the bottom of PDF31."
+    }
+  ],
+  "resolvedChecks": [
+    "Full source spelling הממלכות and שופטינו confirmed in tight crops.",
+    "Verse23 continues across PDF31–32.",
+    "Verse30 has no printed final sof pasuq;31 has two sof pasuq clauses.",
+    "Verse32 includes ושבו…מעלליהם;33 starts כי יזכרו.",
+    "Printed bracket phrases in18 and26 retained without grammatical repairs."
+  ],
+  "queries": [
+    {
+      "unit": "2:5",
+      "text": "ויהיו",
+      "current": "וַיִּהְיוּ",
+      "detail": "Initial vav vowel is fused with its foot in the scan. Root and independent reader cannot distinguish a patah from the letter foot confidently; yod hiriq and heh sheva are visible. Do not certify the initial vowel from expected conjugation.",
+      "evidence": "root-bar2-v5-vihyu.png",
+      "resolved": true,
+      "resolution": "User confirmed the printed initial-vav patah. See BAR-user-final-point-decisions.json."
+    }
+  ],
+  "unitLedger": [
+    {
+      "verse": 1,
+      "endVerse": 1,
+      "text": "וַיָּקֶם יְיָ אֶת־דְּבָרוֹ אֲשֶׁר דִּבֶּר עָלֵינוּ וְעַל־שׁוֹפְטֵינוּ אֲשֶׁר שָׁפְטוּ אֶת־יִשְׂרָאֵל וְעַל־מְלָכֵינוּ וְעַל־שָׂרֵינוּ וְעַל־אִישׁ יִשְׂרָאֵל וִיהוּדָה׃",
+      "textSHA256": "47441d314e354f30f95e80c77edb67b87f3d19c83db887d13beae35b2c1e769b",
+      "sourcePages": [
+        31
+      ],
+      "status": "second image comparison complete"
+    },
+    {
+      "verse": 2,
+      "endVerse": 2,
+      "text": "לְהָבִיא עָלֵינוּ רָעָה גְדוֹלָה אֲשֶׁר־לֹא נַעֲשְׂתָה תַּחַת כָּל־הַשָּׁמַיִם כַּאֲשֶׁר עָשָׂה בִירוּשָׁלִָם כַּכָּתוּב בְּתוֹרַת מֹשֶׁה׃",
+      "textSHA256": "c3d55b3bb19de08043c72be62ea0eddf9183827a35da51fac46902ae07c9a712",
+      "sourcePages": [
+        31
+      ],
+      "status": "second image comparison complete"
+    },
+    {
+      "verse": 3,
+      "endVerse": 3,
+      "text": "לְאָכְלֵנוּ אִישׁ בְּשַׂר בְּנוֹ וְאִישׁ בְּשַׂר בִּתּוֹ׃",
+      "textSHA256": "92fb3486ffa34924a28bd893ed9ccf3a6d461c88cc8fd50e683f001f523fbb82",
+      "sourcePages": [
+        31
+      ],
+      "status": "second image comparison complete"
+    },
+    {
+      "verse": 4,
+      "endVerse": 4,
+      "text": "וַיִּתֵּן אוֹתָנוּ לְזַעֲוָה לְכָל־הַמַּמְלָכוֹת אֲשֶׁר סְבִיבוֹתֵינוּ לְחֶרְפָּה וּלְשַׁמָּה בְּכָל הַגּוֹיִם מִסָּבִיב אֲשֶׁר הֱדִיחָם יְיָ שָׁמָּה׃",
+      "textSHA256": "dae4fa5c87398f562c28e099864518729036d809dc6181403f5f9a6f2b456947",
+      "sourcePages": [
+        31
+      ],
+      "status": "second image comparison complete"
+    },
+    {
+      "verse": 5,
+      "endVerse": 5,
+      "text": "וַיִּהְיוּ לְמַטָּה וְלֹא לְמָעְלָה כִּי חָטָאנוּ לַיְיָ אֱלֹהֵינוּ לְבִלְתִּי שְׁמֹעַ בְּקוֹלוֹ׃",
+      "textSHA256": "21cf4c6df8129797c2834e985332689318ef07accdeadfd1921184c458fee011",
+      "sourcePages": [
+        31
+      ],
+      "status": "second image comparison complete"
+    },
+    {
+      "verse": 6,
+      "endVerse": 6,
+      "text": "לַיְיָ אֱלֹהֵינוּ הַצְּדָקָה וְלָנוּ וְלַאֲבוֹתֵינוּ בֹּשֶׁת הַפָּנִים כַּיּוֹם הַזֶּה׃",
+      "textSHA256": "a5ff1c8e95b4c4405bcb3df1753e32074205427983af16a2f8b6d9f13d22de1a",
+      "sourcePages": [
+        31
+      ],
+      "status": "second image comparison complete"
+    },
+    {
+      "verse": 7,
+      "endVerse": 7,
+      "text": "אֲשֶׁר דִּבֶּר יְיָ עָלֵינוּ כָּל־הָרָעוֹת הָאֵלֶּה אֲשֶׁר בָּאוּ עָלֵינוּ׃",
+      "textSHA256": "25a661059eb4ee7c9b4b1fbaa1003190c46af0dfffa5a0805caf962892334bbf",
+      "sourcePages": [
+        31
+      ],
+      "status": "second image comparison complete"
+    },
+    {
+      "verse": 8,
+      "endVerse": 9,
+      "text": "וְלֹא חִלִּינוּ אֶת־פְּנֵי יְיָ לָשׁוּב אִישׁ מִמּוֹעֲצוֹת לִבּוֹ הָרָע׃ וַיִּשְׁקֹד יְיָ עַל־הָרָעוֹת וַיָּבֵא יְיָ עָלֵינוּ כִּי צַדִּיק הוּא יְיָ עַל־כָּל־דְּבָרָיו אֲשֶׁר צִוָּה אֹתָנוּ׃",
+      "textSHA256": "51c90e8823994307d921b01a03ee28ca661417b303ec41290ffb75d345186931",
+      "sourcePages": [
+        31
+      ],
+      "status": "second image comparison complete"
+    },
+    {
+      "verse": 10,
+      "endVerse": 10,
+      "text": "וְלֹא שָׁמַעְנוּ בְּקוֹלוֹ לָלֶכֶת בְּתוֹרַת יְיָ אֲשֶׁר נָתַן לְפָנֵינוּ׃",
+      "textSHA256": "69fcf44afea189619214099d8c983e1cdb3e32511015462402f3c392813b745b",
+      "sourcePages": [
+        31
+      ],
+      "status": "second image comparison complete"
+    },
+    {
+      "verse": 11,
+      "endVerse": 11,
+      "text": "וְעַתָּה יְיָ אֱלֹהֵי יִשְׂרָאֵל אֲשֶׁר הוֹצֵאתָ אֶת־עַמְּךָ מֵאֶרֶץ מִצְרַיִם בְּיָד חֲזָקָה וּבְאוֹתוֹת וּבְמוֹפְתִים וּבְכֹחַ גָּדוֹל וּבִזְרוֹעַ נְטוּיָה וַתַּעַשׂ־לְךָ שֵׁם כַּיּוֹם הַזֶּה׃",
+      "textSHA256": "7168c194837ba39ef0602e521475d36da96b0e1c09538fde716d2e511b537568",
+      "sourcePages": [
+        31
+      ],
+      "status": "second image comparison complete"
+    },
+    {
+      "verse": 12,
+      "endVerse": 12,
+      "text": "חָטָאנוּ וְהֶעֱוִינוּ וְהִרְשַׁעְנוּ יְיָ אֱלֹהֵינוּ בְּכָל־צִדְקֹתֶיךָ׃",
+      "textSHA256": "e12d26835af3c509cad0bae88a9a99c2561383e900e543241d3697bd5d55fd7a",
+      "sourcePages": [
+        31
+      ],
+      "status": "second image comparison complete"
+    },
+    {
+      "verse": 13,
+      "endVerse": 13,
+      "text": "יָשָׁב־נָא אַפְּךָ מִמֶּנּוּ כִּי נִשְׁאַרְנוּ מְעַט בַּגּוֹיִם אֲשֶׁר הֲפִיצֹתָנוּ שָׁמָּה׃",
+      "textSHA256": "cf43d36111109c07abd7ec2d392b1717d7ca691ed95f1f34e01d32da25cd8a83",
+      "sourcePages": [
+        31
+      ],
+      "status": "second image comparison complete"
+    },
+    {
+      "verse": 14,
+      "endVerse": 14,
+      "text": "שְׁמַע יְיָ אֶל־תְּפִלָּתֵנוּ וְאֶל־תְּחִנָּתֵנוּ וּפַלְּטֵנוּ לְמַעֲנֶךָ וְתֶן־לָנוּ חֵן לִפְנֵי שׁוֹבֵינוּ׃",
+      "textSHA256": "29e36b18660fb1c5b435cd92e487a3528cee4bf25673f4636c0bdc20b86147a6",
+      "sourcePages": [
+        31
+      ],
+      "status": "second image comparison complete"
+    },
+    {
+      "verse": 15,
+      "endVerse": 15,
+      "text": "לְמַעַן דַּעַת כָּל־הָאָרֶץ כִּי אַתָּה יְיָ אֱלֹהֵינוּ כִּי שִׁמְךָ נִקְרָא עַל־יִשְׂרָאֵל וְעַל־זַרְעוֹ׃",
+      "textSHA256": "1821433ea961f8b8b30f821e452a29eba83e8e9a4cc4007522e5c05d5da89b13",
+      "sourcePages": [
+        31
+      ],
+      "status": "second image comparison complete"
+    },
+    {
+      "verse": 16,
+      "endVerse": 16,
+      "text": "יְיָ הַשְׁקִיפָה מִמְּעוֹן קָדְשְׁךָ וְשִׂים לִבְּךָ אֵלֵינוּ הַטֵּה יְיָ אָזְנְךָ וּשְׁמָע פְּקַח עֵינֶיךָ וּרְאֵה׃",
+      "textSHA256": "0b238a3ca20f6b985cd44a19b4eb3d41f89720f63f6c56b5b21abbe41112b1de",
+      "sourcePages": [
+        31
+      ],
+      "status": "second image comparison complete"
+    },
+    {
+      "verse": 17,
+      "endVerse": 17,
+      "text": "כִּי לֹא הַמֵּתִים בִּשְׁאוֹל אֲשֶׁר לֻקְחָה רוּחָם מִקִּרְבָּם יִתְּנוּ כָבוֹד וָצֶדֶק לַיְיָ׃",
+      "textSHA256": "30b412ec222108f7e7564c9c2573429addec61899aab3b8e1bdf252f56844d12",
+      "sourcePages": [
+        31
+      ],
+      "status": "second image comparison complete"
+    },
+    {
+      "verse": 18,
+      "endVerse": 18,
+      "text": "כִּי הַנֶּפֶשׁ הַמְּצֵרָה עַל־גָּדְלָהּ [וַאֲשֶׁר עֲבָרָהּ] הַהוֹלֵךְ שָׁחוֹחַ וְכוֹשֵׁל וְעֵינַיִם כָּלוֹת וְנֶפֶשׁ נַעֲנָה הֵמָּה יִתְּנוּ לְךָ יְיָ כָּבוֹד וָצֶדֶק׃",
+      "textSHA256": "34fbb36d6d988ad1a5805669ca18165cba66324e5e723e5abf398e8be5972408",
+      "sourcePages": [
+        31
+      ],
+      "status": "second image comparison complete"
+    },
+    {
+      "verse": 19,
+      "endVerse": 19,
+      "text": "כִּי לֹא עַל־צִדְקוֹת אֲבֹתֵינוּ וּמַלְכֵּינוּ אֲנַחְנוּ מַפִּילִים תְּחִנָּתֵנוּ לְפָנֶיךָ יְיָ אֱלֹהֵינוּ׃",
+      "textSHA256": "e685d1e35a5ecd3620292d4529b2801aebde257a0c52fdff966b90b1631bbf20",
+      "sourcePages": [
+        31
+      ],
+      "status": "second image comparison complete"
+    },
+    {
+      "verse": 20,
+      "endVerse": 20,
+      "text": "כִּי שִׁלַּחְתָּ אַפְּךָ וַחֲמָתְךָ בָּנוּ כַּאֲשֶׁר דִּבַּרְתָּ בְּיַד עֲבָדֶיךָ הַנְּבִיאִים לֵאמֹר׃",
+      "textSHA256": "e46becfd3bafaf1f4bc189ceefe29c71fa6a3269d9afd08914abc9412711c983",
+      "sourcePages": [
+        31
+      ],
+      "status": "second image comparison complete"
+    },
+    {
+      "verse": 21,
+      "endVerse": 21,
+      "text": "כֹּה אָמַר יְיָ הַטּוּ שִׁכְמְכֶם וְעִבְדוּ אֶת־מֶלֶךְ בָּבֶל וּשְׁבוּ עַל־הָאֲדָמָה אֲשֶׁר נָתַתִּי לַאֲבוֹתֵיכֶם׃",
+      "textSHA256": "05c5af5003b689f7c96ee56c2c8785a4f617f1dfa99ef17d1e1e0b5d8cb94493",
+      "sourcePages": [
+        31
+      ],
+      "status": "second image comparison complete"
+    },
+    {
+      "verse": 22,
+      "endVerse": 22,
+      "text": "וְאִם־לֹא תִשְׁמְעוּ בְּקוֹל יְיָ לַעֲבֹד אֶת־מֶלֶךְ בָּבֶל׃",
+      "textSHA256": "24de440a4a5a23c0a477e575cd5a87128a745a6f5c15e12eb0f8a82fe7d426b7",
+      "sourcePages": [
+        31
+      ],
+      "status": "second image comparison complete"
+    },
+    {
+      "verse": 23,
+      "endVerse": 23,
+      "text": "וְהִשְׁבַּתִּי מֵעָרֵי יְהוּדָה וּמֵחוּצוֹת יְרוּשָׁלִָם קוֹל שָׂשׂוֹן וְקוֹל שִׂמְחָה קוֹל חָתָן וְקוֹל כַּלָּה וְהָיְתָה כָל־הָאָרֶץ לְשַׁמָּה מֵאֵין יוֹשֵׁב׃",
+      "textSHA256": "98aefc276f7a267a48bffae66d0ea59924129a38cf8de064fb874ec8c297d670",
+      "sourcePages": [
+        31,
+        32
+      ],
+      "status": "second image comparison complete"
+    },
+    {
+      "verse": 24,
+      "endVerse": 24,
+      "text": "וְלֹא שָׁמַעְנוּ בְּקוֹלְךָ לַעֲבֹד אֶת־מֶלֶךְ בָּבֶל וַתָּקֶם אֶת־דְּבָרֶיךָ אֲשֶׁר דִּבַּרְתָּ בְּיַד עֲבָדֶיךָ הַנְּבִיאִים לְהוֹצִיא אֶת־עַצְמוֹת מְלָכֵינוּ וְאֶת־עַצְמוֹת אֲבוֹתֵינוּ מִמְּקוֹמָן׃",
+      "textSHA256": "6d021cd49650de1071d50415cfd1f8338202f90602da5a97b3e4069386c1bac9",
+      "sourcePages": [
+        32
+      ],
+      "status": "second image comparison complete"
+    },
+    {
+      "verse": 25,
+      "endVerse": 25,
+      "text": "וְהִנֵּה הֵן מֻשְׁלָכוֹת לְחֹרֶב הַיּוֹם וּלְקֶרַח הַלַּיְלָה וַיָּמוּתוּ בְּתַחֲלוּאִים רָעִים בָּרָעָב וּבַחֶרֶב וּבַדָּבֶר׃",
+      "textSHA256": "901ac03e7aab274b2f5fa41f013a2a7279ae5787dad2f70b9a6e6fc298f4cce3",
+      "sourcePages": [
+        32
+      ],
+      "status": "second image comparison complete"
+    },
+    {
+      "verse": 26,
+      "endVerse": 26,
+      "text": "וַתִּתֵּן אֶת־הַבַּיִת אֲשֶׁר נִקְרָא שִׁמְךָ עָלָיו כַּיּוֹם הַזֶּה בִּגְלַל רָעַת בֵּית יִשְׂרָאֵל וּבֵית יְהוּדָה [וּלְשַׁמָּה]׃",
+      "textSHA256": "3d691b9c64f444d7830f98c5d9784cbe304936cb36fae7d032d5094c27a39135",
+      "sourcePages": [
+        32
+      ],
+      "status": "second image comparison complete"
+    },
+    {
+      "verse": 27,
+      "endVerse": 27,
+      "text": "וַעֲשִׂיתָ לָּנוּ אֱלֹהֵינוּ כְּכָל־חַסְדְּךָ וּכְכָל־רַחֲמֶיךָ הַגְּדוֹלִים׃",
+      "textSHA256": "082c036948c5c43278ff5a7bd9831192066a3293ce538b2c2ad0006924be12d6",
+      "sourcePages": [
+        32
+      ],
+      "status": "second image comparison complete"
+    },
+    {
+      "verse": 28,
+      "endVerse": 28,
+      "text": "כַּאֲשֶׁר דִּבַּרְתָּ בְּיַד מֹשֶׁה עַבְדְּךָ בְּיוֹם צַוֹּתְךָ אוֹתוֹ לִכְתֹּב אֶת־תּוֹרָתְךָ לִפְנֵי בְנֵי יִשְׂרָאֵל לֵאמֹר׃",
+      "textSHA256": "603cf99a64abd674116a8acfccca205a426dc1cb3d67e31089ba472a1cd177f6",
+      "sourcePages": [
+        32
+      ],
+      "status": "second image comparison complete"
+    },
+    {
+      "verse": 29,
+      "endVerse": 29,
+      "text": "אִם־לֹא תִשְׁמְעוּ בְקוֹלִי וְהָיָה הֶהָמוֹן הַגָּדוֹל הָרַב הַזֶּה לִמְעַט בַּגּוֹיִם אֲשֶׁר אֲפִיצֵם שָׁמָּה׃",
+      "textSHA256": "85dcfc08a66d1ed72fca4deffb48999dd0b5354e766f5fddc43face8c1c66db4",
+      "sourcePages": [
+        32
+      ],
+      "status": "second image comparison complete"
+    },
+    {
+      "verse": 30,
+      "endVerse": 30,
+      "text": "כִּי יָדַעְתִּי כִּי־לֹא יִשְׁמְעוּ אֵלַי כִּי עַם־קְשֵׁה־עֹרֶף הוּא וְהֵשִׁיבוּ אֶל־לִבָּם בְּאֶרֶץ שִׁבְיָם",
+      "textSHA256": "c36b2c8c8cb1ce9fd6f594c69bae153bdb176d2a0be099645fdd3cc71141f6b2",
+      "sourcePages": [
+        32
+      ],
+      "status": "second image comparison complete"
+    },
+    {
+      "verse": 31,
+      "endVerse": 31,
+      "text": "וְיָדְעוּ כִּי אֲנִי יְיָ אֱלֹהֵיהֶם׃ וְנָתַתִּי לָהֶם לֵב וְאָזְנַיִם קַשּׁוּבוֹת׃",
+      "textSHA256": "a5ff5ebd1872f7cac058dc5d61ce28845165f0687f276a65f4186cc54112e9cf",
+      "sourcePages": [
+        32
+      ],
+      "status": "second image comparison complete"
+    },
+    {
+      "verse": 32,
+      "endVerse": 32,
+      "text": "וְהוֹדוּ לִי בְּאֶרֶץ שִׁבְיָם וְזָכְרוּ אֶת־שְׁמִי וְשָׁבוּ מִקְּשִׁי עָרְפָּם וּמֵרֹעַ מַעַלְלֵיהֶם׃",
+      "textSHA256": "78b9e28419f268ec7335be962d44d94d16403db8f33a8869c634b6bdf1cd9b67",
+      "sourcePages": [
+        32
+      ],
+      "status": "second image comparison complete"
+    },
+    {
+      "verse": 33,
+      "endVerse": 33,
+      "text": "כִּי יִזְכְּרוּ אֶת־דֶּרֶךְ אֲבוֹתֵיהֶם אֲשֶׁר חָטְאוּ לִפְנֵי יְיָ׃",
+      "textSHA256": "39485da0286921d365ef3caee406e85370bb4aeaac23fe869d6b566bce5cabff",
+      "sourcePages": [
+        32
+      ],
+      "status": "second image comparison complete"
+    },
+    {
+      "verse": 34,
+      "endVerse": 34,
+      "text": "וַהֲשִׁיבוֹתִים אֶל־הָאָרֶץ אֲשֶׁר נִשְׁבַּעְתִּי לַאֲבוֹתָם לְאַבְרָהָם לְיִצְחָק וּלְיַעֲקֹב וִירֵשׁוּהָ וְהִרְבֵּיתִים וְלֹא יִמְעָטוּ׃",
+      "textSHA256": "0f521f3c04c86c244bb558cb48ed84d04792cf3bb6242c7ed10c44198d661b07",
+      "sourcePages": [
+        32
+      ],
+      "status": "second image comparison complete"
+    },
+    {
+      "verse": 35,
+      "endVerse": 35,
+      "text": "וַהֲקִימוֹתִי לָהֶם בְּרִית עוֹלָם לִהְיוֹת לָהֶם לֵאלֹהִים וְהֵמָּה יִהְיוּ לִי לְעָם וְלֹא אֶתֹּשׁ עוֹד אֶת־עַמִּי יִשְׂרָאֵל מֵעַל הָאֲדָמָה אֲשֶׁר נָתַתִּי לָהֶם׃",
+      "textSHA256": "3a3b65b023f3be44798f9924cd00e65e8f7c4772a2cfa438b511b360f21984ac",
+      "sourcePages": [
+        32
+      ],
+      "status": "second image comparison complete"
+    }
+  ],
+  "cropEvidence": [
+    {
+      "file": "/private/tmp/prosary-kahana-reference/pages/root-bar2-review-1-9.png",
+      "sha256": "1a0d94220f82afad100e7a778d614c817c7cd7d76ea1c44e682f582fd7c48c00"
+    },
+    {
+      "file": "/private/tmp/prosary-kahana-reference/pages/root-bar2-review-8-17.png",
+      "sha256": "7d0da2831c3dfe2cd55699ed9badda4f3786345640b8e082e25c4b8949fb105e"
+    },
+    {
+      "file": "/private/tmp/prosary-kahana-reference/pages/root-bar2-review-14-23.png",
+      "sha256": "52a8401170cfef280e9fb7940ee2843c4512b768d94b832b42778a5b9e4b1826"
+    },
+    {
+      "file": "/private/tmp/prosary-kahana-reference/pages/root-bar2-review-23-35.png",
+      "sha256": "eaaeddb963cb7f9e5cf0b90d7e40038547a3094f9dcfc85fad372a795a6c3767"
+    },
+    {
+      "file": "/private/tmp/prosary-kahana-reference/pages/root-bar2-v5-vihyu.png",
+      "sha256": "680eefd9f5f6b551da6c01c303b16ccaad608bcf3364b095abc1bd9c6ed447bb"
+    },
+    {
+      "file": "/private/tmp/prosary-kahana-reference/pages/root-bar2-v4-mamlakhot.png",
+      "sha256": "c47b234379d0ebcc9db1e9610231cc21ce44f0384dcf920d259600cb2ba005ba"
+    },
+    {
+      "file": "/private/tmp/prosary-kahana-reference/pages/root-bar2-v1-shoftenu.png",
+      "sha256": "847cb5bc0e753828bb545bd8107eade0d17ecb6cfe1ea36e39ab3e14abe7f240"
+    },
+    {
+      "file": "/private/tmp/prosary-kahana-reference/pages/root-bar2-v19-avotenu.png",
+      "sha256": "63fcc998eb1317eb417adc7de4237f2c9b0cacb587c954b13779bd50fe948909"
+    }
+  ]
+}

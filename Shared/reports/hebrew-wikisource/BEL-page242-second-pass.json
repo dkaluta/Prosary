@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "book": "BEL",
+  "sourcePage": 242,
+  "scanSHA256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+  "status": "Complete physical-page second comparison; whole book remains draft",
+  "changes": [
+    {
+      "before": "אֲבֹתָיו",
+      "after": "אֲבוֹתָיו",
+      "basis": "The separate full vav is distinct in the enlarged source, confirmed by an independent reader. Retracts the first word-comparison defective-spelling correction; original first transcription was correct."
+    },
+    {
+      "before": "ויֵאָסֶף",
+      "after": "ויֵאָסף",
+      "basis": "Only separately inspected unreadable marks are omitted. Clear companion points remain. Samekh vowel and tiny speck, and name gimel vowel, received independent source-image comparison."
+    },
+    {
+      "before": "אַשְׁטוֹאַגֵס",
+      "after": "אַשְׁטוֹאַגס",
+      "basis": "Only separately inspected unreadable marks are omitted. Clear companion points remain. Samekh vowel and tiny speck, and name gimel vowel, received independent source-image comparison."
+    },
+    {
+      "before": "ויִירַשׁ",
+      "after": "ויִירַשׁ",
+      "basis": "Only separately inspected unreadable marks are omitted. Clear companion points remain. Samekh vowel and tiny speck, and name gimel vowel, received independent source-image comparison."
+    }
+  ],
+  "sourceEvidence": [
+    {
+      "crop": "242-vayeasef.png",
+      "cropSHA256": "00e9b7e885251182d6aa80d21dbb6d1c4273abd81699fcd7df479674ae8620c2"
+    },
+    {
+      "crop": "242-name.png",
+      "cropSHA256": "154daeb01b7a002d8f4bb48653b57c595b83d59c77c413c5fbc8ada2226c3c82"
+    },
+    {
+      "crop": "242-vayirash-full.png",
+      "cropSHA256": "6d0e3fd7a6130e5a3a996ddc59ee3a6f48dbf7c63cfcf1c20353ebe93ce97644"
+    }
+  ],
+  "acceptedSourceNoteIds": [
+    "bel-1-1-242-name-letter6-vowel",
+    "bel-1-1-242-vayeasef-letter1-vowel",
+    "bel-1-1-242-vayeasef-letter2-dagesh",
+    "bel-1-1-242-vayeasef-letter4-dagesh",
+    "bel-1-1-242-vayeasef-letter4-vowel",
+    "bel-1-1-242-vayirash-full-letter1-vowel",
+    "bel-1-1-242-vayirash-full-letter2-dagesh"
+  ],
+  "unitLedger": [
+    {
+      "verse": 1,
+      "endVerse": 2,
+      "textSHA256": "45e1b4540736c8a546978318453d4d308b6eafd2d7d1dae054881623b09ebeb6",
+      "sourcePages": [
+        242,
+        243
+      ]
+    }
+  ],
+  "explicitRetraction": {
+    "report": "BEL-first-word-comparison.json",
+    "entry": "242 line1 אבותיו",
+    "resolution": "Keep the source full vav. The larger source crop establishes it; prior defective-spelling correction is superseded."
+  },
+  "remainingBlocker": "Full second review of243–247, exact within-line verse boundaries and final book approval."
+}

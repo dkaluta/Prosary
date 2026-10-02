@@ -1,0 +1,653 @@
+{
+  "schemaVersion": 1,
+  "book": "SUS",
+  "purpose": "Independent printed margin/range/page-boundary inventory of the lower Theodotion recension only. No SUS.json, OCR or comparison-edition numbering used.",
+  "reviewStatus": "Every lower-recension margin and page crossing inspected. A literal-looking repeated כ–כא (20–21) range at the position after39/before42 remains an apparent source misnumbering requiring disposition. No silent correction to40–41. This is not a wording, pointing or production approval.",
+  "productionEligible": false,
+  "scan": {
+    "volume": "A2",
+    "sha256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+    "textPages": [
+      237,
+      238,
+      239,
+      240,
+      241,
+      242
+    ],
+    "inspectedPages": [
+      237,
+      238,
+      239,
+      240,
+      241,
+      242,
+      243
+    ]
+  },
+  "recension": {
+    "sourceLabel": "נוסח תיאודוטיון",
+    "position": "Lower parallel text below the horizontal separator",
+    "excluded": "The upper נוסח השבעים is a distinct recension and is excluded.",
+    "beginning": "PDF237 lower heading שושנה / נוסח תיאודוטיון, then labelא begins the scripture immediately.",
+    "ending": "PDF242 lower Susanna ends at labelסד (64), before the new בל והתנין / נוסח תיאודוטיון heading. PDF243 has Bel scripture only; its mixed running header is not evidence of additional Susanna text."
+  },
+  "method": "Read actual lower-body margins at enlarged resolution, separating combined labels from adjacent single labels. Read minimal neighboring text to establish the physical continuation when a label shares a row with the preceding unit ending. Headers, titles and commentary are not counted as units.",
+  "hasIntroduction": false,
+  "hasUnnumberedScripturalOpening": false,
+  "chapters": [
+    {
+      "number": 1,
+      "lastPrintedLabel": 64,
+      "units": [
+        {
+          "first": 1,
+          "last": 1,
+          "sourcePages": [
+            237
+          ]
+        },
+        {
+          "first": 2,
+          "last": 2,
+          "sourcePages": [
+            237
+          ]
+        },
+        {
+          "first": 3,
+          "last": 3,
+          "sourcePages": [
+            237
+          ]
+        },
+        {
+          "first": 4,
+          "last": 4,
+          "sourcePages": [
+            237
+          ]
+        },
+        {
+          "first": 5,
+          "last": 5,
+          "sourcePages": [
+            237
+          ]
+        },
+        {
+          "first": 6,
+          "last": 6,
+          "sourcePages": [
+            237
+          ]
+        },
+        {
+          "first": 7,
+          "last": 7,
+          "sourcePages": [
+            237
+          ]
+        },
+        {
+          "first": 8,
+          "last": 8,
+          "sourcePages": [
+            237
+          ]
+        },
+        {
+          "first": 9,
+          "last": 9,
+          "sourcePages": [
+            238
+          ]
+        },
+        {
+          "first": 10,
+          "last": 10,
+          "sourcePages": [
+            238
+          ]
+        },
+        {
+          "first": 11,
+          "last": 11,
+          "sourcePages": [
+            238
+          ]
+        },
+        {
+          "first": 12,
+          "last": 13,
+          "sourcePages": [
+            238
+          ]
+        },
+        {
+          "first": 14,
+          "last": 14,
+          "sourcePages": [
+            238
+          ]
+        },
+        {
+          "first": 15,
+          "last": 15,
+          "sourcePages": [
+            238
+          ]
+        },
+        {
+          "first": 16,
+          "last": 16,
+          "sourcePages": [
+            238
+          ]
+        },
+        {
+          "first": 17,
+          "last": 17,
+          "sourcePages": [
+            238
+          ]
+        },
+        {
+          "first": 18,
+          "last": 18,
+          "sourcePages": [
+            238
+          ]
+        },
+        {
+          "first": 19,
+          "last": 19,
+          "sourcePages": [
+            238
+          ]
+        },
+        {
+          "first": 20,
+          "last": 20,
+          "sourcePages": [
+            238
+          ]
+        },
+        {
+          "first": 21,
+          "last": 21,
+          "sourcePages": [
+            238
+          ]
+        },
+        {
+          "first": 22,
+          "last": 22,
+          "sourcePages": [
+            238,
+            239
+          ]
+        },
+        {
+          "first": 23,
+          "last": 23,
+          "sourcePages": [
+            239
+          ]
+        },
+        {
+          "first": 24,
+          "last": 24,
+          "sourcePages": [
+            239
+          ]
+        },
+        {
+          "first": 25,
+          "last": 25,
+          "sourcePages": [
+            239
+          ]
+        },
+        {
+          "first": 26,
+          "last": 26,
+          "sourcePages": [
+            239
+          ]
+        },
+        {
+          "first": 27,
+          "last": 27,
+          "sourcePages": [
+            239
+          ]
+        },
+        {
+          "first": 28,
+          "last": 28,
+          "sourcePages": [
+            239
+          ]
+        },
+        {
+          "first": 29,
+          "last": 29,
+          "sourcePages": [
+            239
+          ]
+        },
+        {
+          "first": 30,
+          "last": 30,
+          "sourcePages": [
+            239
+          ]
+        },
+        {
+          "first": 31,
+          "last": 31,
+          "sourcePages": [
+            239
+          ]
+        },
+        {
+          "first": 32,
+          "last": 32,
+          "sourcePages": [
+            239
+          ]
+        },
+        {
+          "first": 33,
+          "last": 34,
+          "sourcePages": [
+            239
+          ]
+        },
+        {
+          "first": 35,
+          "last": 35,
+          "sourcePages": [
+            239,
+            240
+          ]
+        },
+        {
+          "first": 36,
+          "last": 36,
+          "sourcePages": [
+            240
+          ]
+        },
+        {
+          "first": 37,
+          "last": 37,
+          "sourcePages": [
+            240
+          ]
+        },
+        {
+          "first": 38,
+          "last": 38,
+          "sourcePages": [
+            240
+          ]
+        },
+        {
+          "first": 39,
+          "last": 39,
+          "sourcePages": [
+            240
+          ]
+        },
+        {
+          "first": 20,
+          "last": 21,
+          "sourcePages": [
+            240
+          ],
+          "printedLabel": "כ–כא",
+          "expectedPositionalRange": [
+            40,
+            41
+          ],
+          "labelStatus": "Apparent printed duplicate/misnumbering; positional40–41 is not certified as the literal label."
+        },
+        {
+          "first": 42,
+          "last": 42,
+          "sourcePages": [
+            240
+          ]
+        },
+        {
+          "first": 43,
+          "last": 43,
+          "sourcePages": [
+            240
+          ]
+        },
+        {
+          "first": 44,
+          "last": 45,
+          "sourcePages": [
+            240
+          ]
+        },
+        {
+          "first": 46,
+          "last": 46,
+          "sourcePages": [
+            240
+          ]
+        },
+        {
+          "first": 47,
+          "last": 47,
+          "sourcePages": [
+            240
+          ]
+        },
+        {
+          "first": 48,
+          "last": 48,
+          "sourcePages": [
+            240
+          ]
+        },
+        {
+          "first": 49,
+          "last": 50,
+          "sourcePages": [
+            240,
+            241
+          ]
+        },
+        {
+          "first": 51,
+          "last": 51,
+          "sourcePages": [
+            241
+          ]
+        },
+        {
+          "first": 52,
+          "last": 52,
+          "sourcePages": [
+            241
+          ]
+        },
+        {
+          "first": 53,
+          "last": 53,
+          "sourcePages": [
+            241
+          ]
+        },
+        {
+          "first": 54,
+          "last": 54,
+          "sourcePages": [
+            241
+          ]
+        },
+        {
+          "first": 55,
+          "last": 55,
+          "sourcePages": [
+            241
+          ]
+        },
+        {
+          "first": 56,
+          "last": 56,
+          "sourcePages": [
+            241
+          ]
+        },
+        {
+          "first": 57,
+          "last": 57,
+          "sourcePages": [
+            241,
+            242
+          ]
+        },
+        {
+          "first": 58,
+          "last": 58,
+          "sourcePages": [
+            242
+          ]
+        },
+        {
+          "first": 59,
+          "last": 59,
+          "sourcePages": [
+            242
+          ]
+        },
+        {
+          "first": 60,
+          "last": 60,
+          "sourcePages": [
+            242
+          ]
+        },
+        {
+          "first": 61,
+          "last": 61,
+          "sourcePages": [
+            242
+          ]
+        },
+        {
+          "first": 62,
+          "last": 62,
+          "sourcePages": [
+            242
+          ]
+        },
+        {
+          "first": 63,
+          "last": 63,
+          "sourcePages": [
+            242
+          ]
+        },
+        {
+          "first": 64,
+          "last": 64,
+          "sourcePages": [
+            242
+          ]
+        }
+      ]
+    }
+  ],
+  "combinedLabels": [
+    {
+      "first": 12,
+      "last": 13,
+      "printedLabel": "יב–יג"
+    },
+    {
+      "first": 33,
+      "last": 34,
+      "printedLabel": "לג–לד"
+    },
+    {
+      "first": 20,
+      "last": 21,
+      "printedLabel": "כ–כא",
+      "expectedPositionalRange": [
+        40,
+        41
+      ]
+    },
+    {
+      "first": 44,
+      "last": 45,
+      "printedLabel": "מד–מה"
+    },
+    {
+      "first": 49,
+      "last": 50,
+      "printedLabel": "מט–נ"
+    }
+  ],
+  "pageCrossings": [
+    {
+      "first": 22,
+      "last": 22,
+      "sourcePages": [
+        238,
+        239
+      ],
+      "evidence": "PDF238 ends ואם־לא inside22; PDF239 starts אעשה לא אמלט מידכם, before23 starts later on that first row."
+    },
+    {
+      "first": 35,
+      "last": 35,
+      "sourcePages": [
+        239,
+        240
+      ],
+      "evidence": "PDF239 ends with ותבך after the34 ending. The first body words of PDF240 ותבט השמימה כי לבה בטח continue35;36 begins later on that row."
+    },
+    {
+      "first": 49,
+      "last": 50,
+      "sourcePages": [
+        240,
+        241
+      ],
+      "evidence": "Combined49–50 starts on PDF240. Its last row ends ...בתוכנו והגידה; PDF241 begins לנו כי לך נתן אלהים את־הזקנה before51 starts later on the first row."
+    },
+    {
+      "first": 57,
+      "last": 57,
+      "sourcePages": [
+        241,
+        242
+      ],
+      "evidence": "PDF241 ends אף בת־יהודה inside57; PDF242 begins [ואת] לא סבלה את־פתאתכם before58 starts later on that first row."
+    }
+  ],
+  "counts": {
+    "chapters": 1,
+    "numberedUnits": 59,
+    "combinedUnits": 5,
+    "pageCrossings": 4,
+    "unnumberedIntroductions": 0,
+    "distinctNumericLabelsRead": 62,
+    "lastPrintedLabel": 64
+  },
+  "ambiguities": [
+    {
+      "unit": "1:40–41",
+      "sourcePage": 240,
+      "scope": "Both questioned glyphs appear to be open kaf, whereas adjacent definite mem labels42–48 have a complete lower-left closing stroke and two upper peaks.",
+      "provisionalReading": "Literal כ–כא (20–21), apparently repeated/mistyped at the source position after39/before42. Do not silently replace with40–41.",
+      "evidence": "/private/tmp/prosary-sus-inventory/A2-240-0.803-0.59-0.89-0.63.png",
+      "cropSHA256": "6dbf70e0025130fd7439588de88fe494896f89a6801bddde107a87afe6caf6b5",
+      "status": "Apparent source label anomaly; independent final disposition pending.",
+      "comparisonEvidence": "/private/tmp/prosary-sus-inventory/A2-240-0.803-0.59-0.89-0.838.png",
+      "comparisonSHA256": "70bc37b87ff252603d61a9cf5046902feff6a920d7c0eef5e330d58952a1c139"
+    }
+  ],
+  "evidence": [
+    {
+      "sourcePage": 237,
+      "cropPath": "/private/tmp/prosary-sus-inventory/A2-237-0.09-0.4-0.87-0.707.png",
+      "cropSHA256": "2638eb0e21946d76aa36b1788942e771b8210fe27f1804bc389e411fb828db46",
+      "normalizedBounds": [
+        0.09,
+        0.4,
+        0.87,
+        0.707
+      ],
+      "renderScale": 7
+    },
+    {
+      "sourcePage": 238,
+      "cropPath": "/private/tmp/prosary-sus-inventory/A2-238-0.08-0.366-0.88-0.86.png",
+      "cropSHA256": "5b8bc7a93c9dffa524f94f4f6bb92677bd48748a2346f40bea854f96f83cd55b",
+      "normalizedBounds": [
+        0.08,
+        0.366,
+        0.88,
+        0.86
+      ],
+      "renderScale": 7
+    },
+    {
+      "sourcePage": 239,
+      "cropPath": "/private/tmp/prosary-sus-inventory/A2-239-0.08-0.35-0.88-0.725.png",
+      "cropSHA256": "a9bed6e4a4758fcda1bf8934d599bfcfe8dc4afa6c5cbd7dfd558011fcc2441a",
+      "normalizedBounds": [
+        0.08,
+        0.35,
+        0.88,
+        0.725
+      ],
+      "renderScale": 7
+    },
+    {
+      "sourcePage": 240,
+      "cropPath": "/private/tmp/prosary-sus-inventory/A2-240-0.08-0.443-0.88-0.923.png",
+      "cropSHA256": "c403360828cd790c9f5df902cfa906363cf5818ae0a9c908e837fdf4756a8976",
+      "normalizedBounds": [
+        0.08,
+        0.443,
+        0.88,
+        0.923
+      ],
+      "renderScale": 7
+    },
+    {
+      "sourcePage": 241,
+      "cropPath": "/private/tmp/prosary-sus-inventory/A2-241-0.08-0.45-0.88-0.76.png",
+      "cropSHA256": "eeca8ca52a83f86d30272052e8c6ddd5dc5f29093b3016eda7b6e173d9358522",
+      "normalizedBounds": [
+        0.08,
+        0.45,
+        0.88,
+        0.76
+      ],
+      "renderScale": 7
+    },
+    {
+      "sourcePage": 242,
+      "cropPath": "/private/tmp/prosary-sus-inventory/A2-242-0.07-0.46-0.89-0.718.png",
+      "cropSHA256": "4c6850a9dcfcd27d95ce8feb8ab13c84d5150798c53433bd9c59fc70c232e43a",
+      "normalizedBounds": [
+        0.07,
+        0.46,
+        0.89,
+        0.718
+      ],
+      "renderScale": 7
+    },
+    {
+      "sourcePage": 243,
+      "purpose": "Confirms excluded Bel-only body after Susanna ending",
+      "cropPath": "/private/tmp/prosary-sus-inventory/A2-243-0-0-1-1.png",
+      "cropSHA256": "0402922bda2abdd35ee85be63670b89cd939f08729fcbedec052558fd1368dfd",
+      "normalizedBounds": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "renderScale": 2
+    }
+  ],
+  "limitations": [
+    "Short unpointed anchors identify physical boundaries only; they are not approved body text.",
+    "The source ends at64. No labels65/66 are introduced from another edition, and no external-numbering crosswalk is claimed.",
+    "This report does not approve text, pointing, or production eligibility.",
+    "The units array preserves the apparent literal20–21 repeated range in its actual print position. The accompanying expectedPositionalRange40–41 is an editorial interpretation only; this report is not a production-safe label inventory until that source anomaly is resolved explicitly."
+  ]
+}

@@ -38,7 +38,32 @@
     <string name="readings_unavailable">Этот отрывок недоступен в выбранном издании Библии.</string>
     <string name="readings_whole_verses_notice">Стихи показаны целиком и могут выходить за границы указанного отрывка чтения.</string>
     <string name="readings_source">Источник</string>
+    <string name="scripture_source_note">"Примечание к источнику"</string>
+    <string name="scripture_source_note_vowel">"Неразборчивый знак огласовки опущен."</string>
+    <string name="scripture_source_note_dagesh">"Неразборчивый дагеш опущен."</string>
+    <string name="scripture_source_note_restored_letter">"Буква %1$s (позиция %2$d) в «%3$s» восстановлена редактором. На скане источника она неразборчива."</string>
+    <string name="scripture_source_note_letter">"Буква %1$s (позиция %2$d)"</string>
+    <string name="scripture_source_note_pages">"Страницы PDF: %1$s"</string>
+    <string name="scripture_source_note_scan">"Скан источника"</string>
     <string name="readings_choose_edition">Выбрать издание</string>
+    <string name="bible_daily_readings">"Чтения дня"</string>
+    <string name="bible_title">"Библия"</string>
+    <string name="bible_catalog_error">"Не удалось открыть каталог Библии."</string>
+    <string name="bible_download_error">"Не удалось завершить загрузку. Попробуйте ещё раз."</string>
+    <string name="bible_download_notice">"Загрузите доступные книги и главы этого издания для чтения без интернета. Некоторые издания содержат только проверенные отрывки."</string>
+    <string name="bible_downloading">"Загрузка…"</string>
+    <string name="bible_download">"Загрузить"</string>
+    <string name="bible_partial_chapter">"Доступна только часть этой главы."</string>
+    <string name="bible_choose_book">"Выбрать книгу"</string>
+    <string name="bible_choose_chapter">"Выбрать главу"</string>
+    <string name="bible_choose_verse">"Выбрать стих"</string>
+    <string name="bible_previous_chapter">"Предыдущая доступная глава"</string>
+    <string name="bible_next_chapter">"Следующая доступная глава"</string>
+    <string name="bible_chapter_error">"Не удалось открыть загруженную главу. Удалите загрузку и загрузите издание снова."</string>
+    <string name="bible_remove_notice">"Удалить «%1$s» с этого устройства? Издание можно загрузить снова. Чтения дня останутся доступны."</string>
+    <string name="bible_remove_error">"Не удалось удалить загрузку. Попробуйте ещё раз."</string>
+    <string name="bible_printed_label">"Обозначение в печатном издании: %1$s"</string>
+    <string name="bible_occurrence">"%1$s — вхождение %2$d"</string>
     <string name="tab_search">"Поиск"</string>
 
     <!-- Home -->
@@ -434,7 +459,7 @@
     <string name="about_peshitta_sources">Новый Завет Пешитты (BFBS, 1905): Digital Syriac Corpus; сирийский текст оцифрован George A. Kiraz, издание TEI © James E. Walters, CC BY 4.0. Передача еврейским письмом по правилам Эреза; выбор стихов и форматирование текста — Prosary.</string>
     <string name="about_peshitta_source_link">Digital Syriac Corpus</string>
     <string name="about_peshitta_license_link">CC BY 4.0</string>
-    <string name="about_peshitta_isaiah_sources">Исаия: предоставленный пользователем XML Пешитты с огласовками из Internet Archive. Исходное издание и условия распространения пока не установлены. Передача еврейским письмом по правилам Эреза; выбор стихов и форматирование текста — Prosary.</string>
+    <string name="about_peshitta_isaiah_sources">Ветхий Завет: предоставленный пользователем XML Пешитты с огласовками из Internet Archive. Исходное издание и условия распространения пока не установлены. Передача еврейским письмом по правилам Эреза; выбор стихов и форматирование текста — Prosary.</string>
     <string name="about_peshitta_isaiah_source_link">Internet Archive</string>
     <string name="about_bible_book_sources">Названия библейских книг: AELF, Dar el-Machreq, русский Синодальный перевод (Азбука веры), Филиппинское библейское общество и ParolaViva.</string>
     <string name="about_prayer_network_link">Всемирная молитвенная сеть Папы</string>

@@ -38,7 +38,32 @@
     <string name="readings_unavailable">This passage is not available in the selected Bible edition.</string>
     <string name="readings_whole_verses_notice">Full verses are shown and may extend beyond the reading’s cited limits.</string>
     <string name="readings_source">Source</string>
+    <string name="scripture_source_note">"Source note"</string>
+    <string name="scripture_source_note_vowel">"Unreadable vowel mark omitted."</string>
+    <string name="scripture_source_note_dagesh">"Unreadable dagesh omitted."</string>
+    <string name="scripture_source_note_restored_letter">"The letter %1$s (position %2$d) in “%3$s” was restored editorially. It is unreadable in the source scan."</string>
+    <string name="scripture_source_note_letter">"Letter %1$s (position %2$d)"</string>
+    <string name="scripture_source_note_pages">"PDF pages: %1$s"</string>
+    <string name="scripture_source_note_scan">"Source scan"</string>
     <string name="readings_choose_edition">Choose an edition</string>
+    <string name="bible_daily_readings">"Daily Readings"</string>
+    <string name="bible_title">"Bible"</string>
+    <string name="bible_catalog_error">"The Bible catalog could not be opened."</string>
+    <string name="bible_download_error">"The download could not be completed. Please try again."</string>
+    <string name="bible_download_notice">"Download this edition’s available books and chapters to read offline. Some editions contain only reviewed portions."</string>
+    <string name="bible_downloading">"Downloading…"</string>
+    <string name="bible_download">"Download"</string>
+    <string name="bible_partial_chapter">"Only part of this chapter is available."</string>
+    <string name="bible_choose_book">"Choose a book"</string>
+    <string name="bible_choose_chapter">"Choose a chapter"</string>
+    <string name="bible_choose_verse">"Choose a verse"</string>
+    <string name="bible_previous_chapter">"Previous available chapter"</string>
+    <string name="bible_next_chapter">"Next available chapter"</string>
+    <string name="bible_chapter_error">"This downloaded chapter could not be opened. Remove the download and try downloading it again."</string>
+    <string name="bible_remove_notice">"Remove “%1$s” from this device? You can download it again. Daily Readings will remain available."</string>
+    <string name="bible_remove_error">"The download could not be removed. Please try again."</string>
+    <string name="bible_printed_label">"Printed label: %1$s"</string>
+    <string name="bible_occurrence">"%1$s — occurrence %2$d"</string>
     <string name="tab_search">Search</string>
 
     <!-- Home -->
@@ -434,7 +459,7 @@
     <string name="about_peshitta_sources">Peshitta New Testament (BFBS, 1905): Digital Syriac Corpus; Syriac transcription by George A. Kiraz, TEI edition © James E. Walters, CC BY 4.0. Hebrew script conversion using Erez’s rules; verse selection and text formatting by Prosary.</string>
     <string name="about_peshitta_source_link">Digital Syriac Corpus</string>
     <string name="about_peshitta_license_link">CC BY 4.0</string>
-    <string name="about_peshitta_isaiah_sources">Isaiah: user-supplied pointed Peshitta XML from Internet Archive. The underlying edition and redistribution terms remain unidentified. Hebrew script conversion using Erez’s rules; verse selection and text formatting by Prosary.</string>
+    <string name="about_peshitta_isaiah_sources">Old Testament: user-supplied pointed Peshitta XML from Internet Archive. The underlying edition and redistribution terms remain unidentified. Hebrew script conversion using Erez’s rules; verse selection and text formatting by Prosary.</string>
     <string name="about_peshitta_isaiah_source_link">Internet Archive</string>
     <string name="about_bible_book_sources">Bible book names: AELF, Dar el-Machreq, Russian Synodal Bible (Azbyka), Philippine Bible Society and ParolaViva.</string>
     <string name="about_prayer_network_link">Pope’s Worldwide Prayer Network</string>

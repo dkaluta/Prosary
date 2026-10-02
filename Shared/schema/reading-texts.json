@@ -4,60 +4,284 @@
   "title": "Prosary offline Bible passages",
   "description": "Canonical build-time-resolved Bible passages. readings-texts.json includes passages; readings-editions.json omits them for lightweight metadata loading. Exact licensed Mass text is not represented by this format.",
   "type": "object",
-  "required": ["schemaVersion", "editions"],
+  "required": [
+    "schemaVersion",
+    "editions"
+  ],
   "additionalProperties": false,
   "properties": {
-    "schemaVersion": {"const": 1},
+    "schemaVersion": {
+      "const": 1
+    },
     "editions": {
       "type": "array",
-      "items": {"$ref": "#/$defs/edition"}
+      "items": {
+        "$ref": "#/$defs/edition"
+      }
     },
     "wholeVersePassages": {
       "description": "Exact passage keys whose partial-verse appointments or reviewed numbering correspondences require enclosing whole verses. Missing means empty. Clients retain the original citation and show a localized full-verse notice for these keys. If any edition requires a wider whole-verse envelope, the key is listed for all editions. Only keys present in passages are listed.",
       "type": "array",
       "uniqueItems": true,
-      "items": {"type": "string", "pattern": "^(daily|torah)\\|.+$"}
+      "items": {
+        "type": "string",
+        "pattern": "^(daily|torah)\\|.+$"
+      }
+    },
+    "passageSources": {
+      "description": "Optional exact-key, edition-specific source descriptors for reviewed supplements. A descriptor must refer to an existing passage and is required for its different source-book title, translator credit and source structure. Missing means the ordinary edition source. Invalid descriptors make that passage unavailable rather than hiding its evidence.",
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": {"pattern": "^(daily|torah)\\|.+$"},
+      "additionalProperties": {
+        "type": "object",
+        "minProperties": 1,
+        "additionalProperties": {"$ref": "#/$defs/passageSource"}
+      }
     },
     "passages": {
       "type": "object",
-      "propertyNames": {"pattern": "^(daily|torah)\\|.+$"},
+      "propertyNames": {
+        "pattern": "^(daily|torah)\\|.+$"
+      },
       "additionalProperties": {
         "type": "object",
         "minProperties": 1,
         "additionalProperties": {
           "type": "array",
           "minItems": 1,
-          "items": {"$ref": "#/$defs/verse"}
+          "items": {
+            "$ref": "#/$defs/verse"
+          }
         }
       }
     }
   },
   "$defs": {
-    "edition": {
+    "passageSource": {
       "type": "object",
-      "required": ["id", "languageCode", "name", "attribution", "sourceURL"],
       "additionalProperties": false,
+      "required": ["book", "name", "attribution", "sourceURL", "isComplete"],
       "properties": {
-        "id": {"type": "string", "minLength": 1},
-        "languageCode": {"type": "string", "minLength": 2, "description": "Controls chapter heading language and numerals independently of interface language. Hebrew uses gematria; Arabic Eastern Arabic digits; Aramaic follows the actual selected paired script; Greek el uses Κεφάλαιο with decimal numbers. Chapter numbers are never italicized."},
+        "book": {"type": "string", "pattern": "^[A-Z0-9]{3}$"},
         "name": {"type": "string", "minLength": 1},
         "attribution": {"type": "string", "minLength": 1},
         "sourceURL": {"type": "string", "format": "uri", "pattern": "^https://"},
-        "textScript": {"type": "string", "enum": ["Hebr", "Syrc"], "description": "Script of each verse's primary text; paired editions declare both script fields."},
-        "transliteratedTextScript": {"type": "string", "enum": ["Hebr", "Syrc"], "description": "Script of each verse's paired transliteratedText. For Peshitta this is the unchanged Syriac source, matching the existing Aramaic prayer contract."}
+        "isComplete": {"type": "boolean", "description": "False preserves a source partial-chapter notice; it does not conceal or fill printed gaps."},
+        "contentBlocks": {
+          "type": "array", "minItems": 1,
+          "items": {"$ref": "bible-library.json#/$defs/sourceBlock"},
+          "description": "Display in this exact reviewed appointment order; do not sort or regroup chapter references. Every primary passage row appears exactly once. Witness/passage text is a whole source block, not an invented verse. Reject duplicate/dangling primary references, duplicate block/note IDs, and invalid source notes. A source descriptor does not enable paired-script blocks."
+        }
+      }
+    },
+    "edition": {
+      "type": "object",
+      "required": [
+        "id",
+        "languageCode",
+        "name",
+        "attribution",
+        "sourceURL"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "languageCode": {
+          "type": "string",
+          "minLength": 2,
+          "description": "Controls chapter heading language and numerals independently of interface language. Hebrew uses gematria; Arabic Eastern Arabic digits; Aramaic follows the actual selected paired script; Greek el uses Κεφάλαιο with decimal numbers. Chapter numbers are never italicized."
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "attribution": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sourceURL": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https://"
+        },
+        "textScript": {
+          "type": "string",
+          "enum": [
+            "Hebr",
+            "Syrc"
+          ],
+          "description": "Script of each verse's primary text; paired editions declare both script fields."
+        },
+        "transliteratedTextScript": {
+          "type": "string",
+          "enum": [
+            "Hebr",
+            "Syrc"
+          ],
+          "description": "Script of each verse's paired transliteratedText. For Peshitta this is the unchanged Syriac source, matching the existing Aramaic prayer contract."
+        }
       },
-      "dependentRequired": {"textScript": ["transliteratedTextScript"], "transliteratedTextScript": ["textScript"]}
+      "dependentRequired": {
+        "textScript": [
+          "transliteratedTextScript"
+        ],
+        "transliteratedTextScript": [
+          "textScript"
+        ]
+      }
     },
     "verse": {
       "type": "object",
-      "required": ["chapter", "verse", "text"],
+      "required": [
+        "chapter",
+        "verse",
+        "text"
+      ],
       "additionalProperties": false,
       "properties": {
-        "chapter": {"type": "integer", "minimum": 1},
-        "verse": {"type": "integer", "minimum": 1},
-        "text": {"type": "string", "minLength": 1},
-        "transliteratedText": {"type": "string", "minLength": 1, "description": "Paired script of the same complete verse, never another translation. Required in every verse of an edition declaring paired scripts; readers reject an incomplete pair."}
-      }
+        "chapter": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "verse": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "endVerse": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Optional inclusive last label of an indivisible printed verse unit. Must be greater than or equal to verse and below the next unit's start. Display a range and let jumps within it resolve to this single unit; never split or duplicate its text."
+        },
+        "text": {
+          "type": "string",
+          "minLength": 1
+        },
+        "transliteratedText": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Paired script of the same complete verse, never another translation. Required in every verse of an edition declaring paired scripts; readers reject an incomplete pair."
+        },
+        "sourceNotes": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/sourceNote"
+          }
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "required": [
+              "sourceNotes"
+            ]
+          },
+          "then": {
+            "not": {
+              "required": [
+                "transliteratedText"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "sourceNote": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "kind",
+        "anchor",
+        "occurrence",
+        "letterIndex",
+        "mark",
+        "sourcePages",
+        "sourceURL"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9-]*$"
+        },
+        "kind": {
+          "enum": ["unreadablePoint", "restoredLetter"]
+        },
+        "anchor": {
+          "type": "string",
+          "minLength": 1
+        },
+        "occurrence": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "letterIndex": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "One-based Hebrew letter index within the exact anchor; count U+05D0–U+05EA, not code units or combining marks."
+        },
+        "mark": {
+          "enum": [
+            "vowel",
+            "dagesh",
+            "shuruq",
+            "consonant"
+          ]
+        },
+        "sourcePages": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "sourceURL": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https://"
+        },
+        "retainedVowels": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 1,
+          "items": {
+            "type": "string",
+            "pattern": "^[\\u05b0-\\u05bb\\u05c7]$"
+          },
+          "description": "Preserve one independently readable companion vowel while omitting the unreadable point; actual vowel code points must exactly match this list."
+        }
+      },
+      "description": "A precisely anchored Hebrew source limitation: an omitted unreadable point or a visibly disclosed editorial consonant restoration. Restored letters remain in the text with all independently readable points. Validate occurrence, kind/mark pairing, source pages, HTTPS without credentials, and book-wide unique IDs. See SCRIPTURE-SOURCE-NOTES.markdown.",
+      "allOf": [
+        {
+          "if": {"properties": {"kind": {"const": "restoredLetter"}}},
+          "then": {
+            "properties": {"mark": {"const": "consonant"}},
+            "not": {"required": ["retainedVowels"]}
+          },
+          "else": {"properties": {"mark": {"enum": ["vowel", "dagesh", "shuruq"]}}}
+        },
+        {
+          "if": {
+            "required": [
+              "retainedVowels"
+            ]
+          },
+          "then": {
+            "properties": {
+              "mark": {
+                "const": "vowel"
+              }
+            }
+          }
+        }
+      ]
     }
   }
 }

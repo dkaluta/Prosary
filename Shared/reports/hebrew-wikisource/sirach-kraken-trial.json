@@ -1,0 +1,326 @@
+{
+  "scope": "Single B449 body crop; source reference is13 provisional manually transcribed units. Consonants only, including printed verse labels; chapter title excluded. Manual line rectangles exclude no body words; marginal chapter letter in first line retained in image and counted as extra if recognized. Not a proofread corpus or niqqud accuracy claim. No auto-correction applied.",
+  "model": "https://zenodo.org/records/21788405",
+  "sha256": "3108259779f5abfed3908a1c9eafba64d17e4a2a169368c539ecfeff04c018f3",
+  "modelMD5": "07279cd68cd4402807542799f12d0f4a",
+  "software": {
+    "kraken": "7.1.1",
+    "python": "3.13.13",
+    "scipy": "1.16.3",
+    "compatibilityNote": "Kraken declared scipy~=1.15.3. Official1.15.3 macOS wheel failed dlopen malformed __thread_bss. Scratch-only override1.16.3 loaded and ran; unsupported dependency combination explicitly recorded."
+  },
+  "sourceCropSHA256": "032627b36ed9951a6788e7b29f8215e148c551e239f886c6eedeeb81292b4cbd",
+  "settings": {
+    "automatic": "segment -bl -d horizontal-rl (67 fragmented regions); first pass default LR also tested",
+    "manual": "13 full-width line crops; ocr -s -n --base-dir R; no lexicon",
+    "vowels": "Model output generally omits niqqud; not evaluated as a pointed transcription."
+  },
+  "manualLineResult": {
+    "referenceConsonants": 400,
+    "observedConsonants": 402,
+    "editDistance": 13,
+    "CER": 0.0325
+  },
+  "units": [
+    {
+      "reference": "1:1",
+      "sourceDraft": "כָּל־חָכְמָה מֵיְיָ וְעִמּוֹ הִיא לְעוֹלָם:",
+      "recognition": "י א כל-חכמה מיי ועמו היא לעולם: ",
+      "consonantEdits": 1,
+      "referenceConsonants": 22
+    },
+    {
+      "reference": "1:2",
+      "sourceDraft": "חוֹל יַמִּים וְנִטְפֵי גֶשֶׁם וִימֵי עוֹלָם מִי־יִסְפֹּר:",
+      "recognition": "ב חול ימים ונטפי גשםוימי עולם מי-יספר:",
+      "consonantEdits": 0,
+      "referenceConsonants": 30
+    },
+    {
+      "reference": "1:3",
+      "sourceDraft": "גֹּבַהּ הַשָּׁמַיִם וְרֹחַב הָאָרֶץ וּתְהוֹם וְחָכְמָה מִי־יַחֲקֹר:",
+      "recognition": "ג נבה השמים ורחב הארץ ותהום וחכמה מי-יחקר: ",
+      "consonantEdits": 1,
+      "referenceConsonants": 33
+    },
+    {
+      "reference": "1:4",
+      "sourceDraft": "לִפְנֵי־כֹל נִבְרְאָה חָכְמָה וְדַעַת תְּבוּנָה מֵעוֹלָם:",
+      "recognition": "דלפני-כל נבראה חכמה ודעת תבונה מעולם:",
+      "consonantEdits": 0,
+      "referenceConsonants": 30
+    },
+    {
+      "reference": "1:5",
+      "sourceDraft": "[וּמְקוֹר חָכְמָה דְּבַר אֱלֹהֵי מָרוֹם וּמוֹצָאֶיהָ חֻקֵּי עוֹלָם]:",
+      "recognition": "הומקור חכמה דבר אלהי מרוםומוצאיה חקי עולם]:",
+      "consonantEdits": 0,
+      "referenceConsonants": 35
+    },
+    {
+      "reference": "1:6",
+      "sourceDraft": "שֹׁרֶשׁ חָכְמָה לְמִי נִגְלָה וְסִתְרֵי עָרְמָתָהּ מִי־יוֹדֵעַ:",
+      "recognition": "ושרש חכמה למי נגלה וסתרי ערמתה מי-יודע: ",
+      "consonantEdits": 0,
+      "referenceConsonants": 31
+    },
+    {
+      "reference": "1:7",
+      "sourceDraft": "[וְדַעַת חָכְמָה לְמִי נִגְלְתָה וְרֹב־נִסְיוֹנָהּ מִי־הֵבִין]:",
+      "recognition": "זודעת חבמה למי נגלתה ורכ-נסיונה מי-הבין]: ",
+      "consonantEdits": 2,
+      "referenceConsonants": 32
+    },
+    {
+      "reference": "1:8",
+      "sourceDraft": "אֶחָד הוּא חָכָם נוֹרָא מְאֹד יוֹשֵׁב עַל־כִּסְּאוֹ יְיָ:",
+      "recognition": "ח אחד הוא חכם נורא מאדיושב על-כסאו יי:",
+      "consonantEdits": 0,
+      "referenceConsonants": 29
+    },
+    {
+      "reference": "1:9",
+      "sourceDraft": "הוּא יְצָרָה וּבְרָא וַיִּסְפְּרֶהָ וַיִּשְׁפְּכֶהָ עַל־כָּל־מַעֲשָׂיו:",
+      "recognition": "ט הוא יצרה וירא ויספרה וישפכנה על-כל-מעשיו: ",
+      "consonantEdits": 2,
+      "referenceConsonants": 33
+    },
+    {
+      "reference": "1:10",
+      "sourceDraft": "אֶל־כָּל־בָּשָׂר כְּמַתְּנָתוֹ וַיִּתְּנֶהָ לְאוֹהֲבָיו:",
+      "recognition": "' אל-כל-בשר כמתנתו וירבנה לאוהביו: ",
+      "consonantEdits": 3,
+      "referenceConsonants": 26
+    },
+    {
+      "reference": "1:11",
+      "sourceDraft": "יִרְאַת יְיָ כָּבוֹד וָהוֹד וְגִיל וַעֲטֶרֶת שָׂשׂוֹן:",
+      "recognition": "יאיראַת יי פבוד והודוניל ועטרת ששון:",
+      "consonantEdits": 2,
+      "referenceConsonants": 29
+    },
+    {
+      "reference": "1:12",
+      "sourceDraft": "יִרְאַת־יְיָ מְשַׂמַּחַת לֵב וְנוֹתֶנֶת שָׂשׂוֹן וְשִׂמְחָה וְאֹרֶךְ־יָמִים:",
+      "recognition": "יב יראת-יי משמחת לב ונותנת ששון ושמחה וארךימים:",
+      "consonantEdits": 0,
+      "referenceConsonants": 38
+    },
+    {
+      "reference": "1:13",
+      "sourceDraft": "לִירֵא־יְיָ יִיטַב בְּאַחֲרִיתוֹ וּבְיוֹם מוֹתוֹ יְבֹרָךְ:",
+      "recognition": "יג לירא-יי יימב בּאחריתו וביום מותו קברך:",
+      "consonantEdits": 2,
+      "referenceConsonants": 32
+    }
+  ],
+  "comparisons": [
+    {
+      "engine": "Kraken/manual",
+      "sameFullWidthManualLines": true,
+      "referenceConsonants": 400,
+      "observedConsonants": 402,
+      "edits": 13,
+      "CER": 0.0325
+    },
+    {
+      "engine": "Tesseract/manual",
+      "sameFullWidthManualLines": true,
+      "referenceConsonants": 400,
+      "observedConsonants": 397,
+      "edits": 68,
+      "CER": 0.17
+    },
+    {
+      "engine": "Tesseract+dictionary/manual",
+      "sameFullWidthManualLines": true,
+      "referenceConsonants": 400,
+      "observedConsonants": 398,
+      "edits": 64,
+      "CER": 0.16
+    }
+  ],
+  "previousPageComparisons": {
+    "scope": "One printed source crop only. Reference uses13 provisional manually transcribed units checked for this consonant comparison; vowels are deliberately excluded. Chapter title excluded; printed verse labels included. Not a corpus accuracy claim. Niqqud/punctuation not assessed. Original scan unchanged.",
+    "results": [
+      {
+        "name": "original",
+        "referenceConsonantsIncludingVerseLabels": 400,
+        "observedConsonantsIncludingVerseLabels": 389,
+        "editDistance": 64,
+        "consonantCharacterErrorRate": 0.16
+      },
+      {
+        "name": "lexicon",
+        "referenceConsonantsIncludingVerseLabels": 400,
+        "observedConsonantsIncludingVerseLabels": 389,
+        "editDistance": 62,
+        "consonantCharacterErrorRate": 0.155
+      },
+      {
+        "name": "area<=20",
+        "referenceConsonantsIncludingVerseLabels": 400,
+        "observedConsonantsIncludingVerseLabels": 394,
+        "editDistance": 72,
+        "consonantCharacterErrorRate": 0.18
+      },
+      {
+        "name": "area<=35",
+        "referenceConsonantsIncludingVerseLabels": 400,
+        "observedConsonantsIncludingVerseLabels": 396,
+        "editDistance": 70,
+        "consonantCharacterErrorRate": 0.175
+      },
+      {
+        "name": "area<=55",
+        "referenceConsonantsIncludingVerseLabels": 400,
+        "observedConsonantsIncludingVerseLabels": 394,
+        "editDistance": 92,
+        "consonantCharacterErrorRate": 0.23
+      }
+    ]
+  },
+  "modelPublication": {
+    "date": "2026-08-04",
+    "author": "Benjamin Kiessling",
+    "version": "v1",
+    "license": "Apache-2.0",
+    "requirements": "kraken>=7.1.0",
+    "url": "https://zenodo.org/records/21788405",
+    "downloadURL": "https://zenodo.org/records/21788405/files/small.safetensors?download=1",
+    "publishedMD5": "07279cd68cd4402807542799f12d0f4a"
+  },
+  "lineRectangles": [
+    {
+      "unit": "1:1",
+      "rect": [
+        0,
+        90,
+        1284,
+        155
+      ],
+      "file": "/private/tmp/prosary-kraken-ocr/line-01.png"
+    },
+    {
+      "unit": "1:2",
+      "rect": [
+        0,
+        155,
+        1284,
+        214
+      ],
+      "file": "/private/tmp/prosary-kraken-ocr/line-02.png"
+    },
+    {
+      "unit": "1:3",
+      "rect": [
+        0,
+        214,
+        1284,
+        275
+      ],
+      "file": "/private/tmp/prosary-kraken-ocr/line-03.png"
+    },
+    {
+      "unit": "1:4",
+      "rect": [
+        0,
+        275,
+        1284,
+        336
+      ],
+      "file": "/private/tmp/prosary-kraken-ocr/line-04.png"
+    },
+    {
+      "unit": "1:5",
+      "rect": [
+        0,
+        336,
+        1284,
+        397
+      ],
+      "file": "/private/tmp/prosary-kraken-ocr/line-05.png"
+    },
+    {
+      "unit": "1:6",
+      "rect": [
+        0,
+        397,
+        1284,
+        458
+      ],
+      "file": "/private/tmp/prosary-kraken-ocr/line-06.png"
+    },
+    {
+      "unit": "1:7",
+      "rect": [
+        0,
+        458,
+        1284,
+        519
+      ],
+      "file": "/private/tmp/prosary-kraken-ocr/line-07.png"
+    },
+    {
+      "unit": "1:8",
+      "rect": [
+        0,
+        519,
+        1284,
+        580
+      ],
+      "file": "/private/tmp/prosary-kraken-ocr/line-08.png"
+    },
+    {
+      "unit": "1:9",
+      "rect": [
+        0,
+        580,
+        1284,
+        641
+      ],
+      "file": "/private/tmp/prosary-kraken-ocr/line-09.png"
+    },
+    {
+      "unit": "1:10",
+      "rect": [
+        0,
+        641,
+        1284,
+        702
+      ],
+      "file": "/private/tmp/prosary-kraken-ocr/line-10.png"
+    },
+    {
+      "unit": "1:11",
+      "rect": [
+        0,
+        702,
+        1284,
+        763
+      ],
+      "file": "/private/tmp/prosary-kraken-ocr/line-11.png"
+    },
+    {
+      "unit": "1:12",
+      "rect": [
+        0,
+        763,
+        1284,
+        824
+      ],
+      "file": "/private/tmp/prosary-kraken-ocr/line-12.png"
+    },
+    {
+      "unit": "1:13",
+      "rect": [
+        0,
+        824,
+        1284,
+        884
+      ],
+      "file": "/private/tmp/prosary-kraken-ocr/line-13.png"
+    }
+  ],
+  "sourceDraftSHA256": "ffd7d1553ac6e8739a4592ff5c1369ee43a151df92acdb0b3aa5f92a60fa0dfe"
+}

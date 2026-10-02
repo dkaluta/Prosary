@@ -1,0 +1,290 @@
+{
+  "book": "1MA",
+  "status": "B138 completely first/second-compared; book remains draft",
+  "primarySourcePDFSHA256": "656891d377d2e3d4a9216723d94205488423907bf01df424b9f0b9de1560051e",
+  "additionalSourcePDFSHA256": "b72eaf5d2d858fabb7c3438ac0436ccd64c394a7dd2fad609efabe628d5534c7",
+  "sourcePages": [
+    138
+  ],
+  "additionalPages": [
+    {
+      "number": 71,
+      "side": "right",
+      "primary": 138
+    }
+  ],
+  "method": "Every word, printed point, punctuation mark and unit boundary compared directly against clearer scan and primary scan context. Targeted original-pixel crops retain actual defective spelling and readable points. No OCR text or expected grammatical forms substituted.",
+  "sourceSpellingChanges": [
+    {
+      "unit": "8:10",
+      "onlineConsonantsAndPunctuation": "וייוודע הדבר להם וישלחו עליהם שר צבא אחד וילחמו בהם ויפלו מהם חללים רבים וישבו את נשיהם ואת טפם ויבוזו אותם ויכבשו את ארצם ויהרסו את מבצריהם ויעבידום עד היום הזה",
+      "sourceConsonantsAndPunctuation": "ויודע הדבר להם וישלחו עליהם שר־צבא אחד וילחמו בהם ויפלו מהם חללים רבים וישבו את־נשיהם ואת־טפם ויבזו אותם ויכבשו את־ארצם ויהרסו את־מבצריהם ויעבידום עד־היום הזה׃"
+    },
+    {
+      "unit": "8:11",
+      "onlineConsonantsAndPunctuation": "ואת שאר המלכויות ואת האיים אשר התקוממו להם החריבו וישימום לעבדים",
+      "sourceConsonantsAndPunctuation": "ואת־שאר המלכיות ואת־האיים אשר־התקוממו להם החריבו וישימום לעבדים׃"
+    },
+    {
+      "unit": "8:12",
+      "onlineConsonantsAndPunctuation": "ועם אוהביהם והנשענים אליהם שמרו אהבה ויכבשו את המלכויות הקרובות והרחוקות וכל אשר שמעו את שמעם יראו מפניהם",
+      "sourceConsonantsAndPunctuation": "ועם־אוהביהם והנשענים אליהם שמרו אהבה ויכבשו את־המלכיות הקרובות והרחוקות וכל אשר־שמעו את־שמעם יראו מפניהם׃"
+    },
+    {
+      "unit": "8:13",
+      "onlineConsonantsAndPunctuation": "ואשר יחפצו לעזור להם ולהמליך ימליכו ואשר יחפצו יורידו ויגבהו מאוד",
+      "sourceConsonantsAndPunctuation": "ואשר יחפצו לעזור להם ולהמליך ימליכו ואשר יחפצו יורידו ויגבהו מאד׃"
+    },
+    {
+      "unit": "8:14",
+      "onlineConsonantsAndPunctuation": "וכי בכל אלה איש מהם לא שם עליו כתר ולא לבש ארגמן להתגדל בו",
+      "sourceConsonantsAndPunctuation": "וכי בכל־אלה איש מהם לא־שם עליו כתר ולא לבש ארגמן להתגדל בו׃"
+    },
+    {
+      "unit": "8:15",
+      "onlineConsonantsAndPunctuation": "ומועצה עשו להם ויום יום נועצים שלוש מאות ועשרים יועצים תמיד עם העם למען ייטיבו לנהגם",
+      "sourceConsonantsAndPunctuation": "ומועצה עשו להם ויום יום נועצים שלש מאות ועשרים יועצים תמיד עם־העם למען ייטיבו לנהגם׃"
+    },
+    {
+      "unit": "8:16",
+      "onlineConsonantsAndPunctuation": "ומאמינים לאדם אחד להיות ראש שנה שנה ולמשול בכל ארצם והכול נשמעים לאחד ואין שנאה וקנאה בהם",
+      "sourceConsonantsAndPunctuation": "ומאמינים לאדם אחד להיות ראש שנה שנה ולמשל בכל־ארצם והכל נשמעים לאחד ואין שנאה וקנאה בהם׃"
+    }
+  ],
+  "boundaries": [
+    "10startsB138firstbodyline;all10–16 printed labels separate.",
+    "16endsבהם׃onB138beforecommentary; no units cross page."
+  ],
+  "localFindings": [
+    {
+      "unit": "8:11–12",
+      "reading": "הַמַּלְכֻיוֹת",
+      "decision": "Source defectiveמלכיות retains printed kafqibbuts without addedvav."
+    },
+    {
+      "unit": "8:13",
+      "reading": "לַעֲזוֹר",
+      "decision": "Fullsourcevav confirmed with its topdot; corrected unsaved scratch omission."
+    },
+    {
+      "unit": "8:15",
+      "reading": "וּמוֹעֵצָה",
+      "decision": "Two separate horizontal ayin dots establish tsere in localcrop."
+    },
+    {
+      "unit": "8:11",
+      "reading": "הָאִיִּים",
+      "decision": "Separate firstyod interior dot visible in local crop, without adding other inferred marks."
+    }
+  ],
+  "cropEvidence": [
+    {
+      "filename": "extra-71.png",
+      "sha256": "a35c7f70a333c130ea35d93f197062df17b07879665893c80d5bfa2d6765ba87"
+    },
+    {
+      "filename": "crop-71-0.539-0.086-0.926-0.254.png",
+      "sha256": "119faefb848885607436cca1bc5c0bf4a281bf0315109e73d92722c068ef53b1"
+    },
+    {
+      "filename": "crop-71-0.539-0.248-0.926-0.407.png",
+      "sha256": "fbc862cda6775e6f01c391bf6d5bb64434a76859370136e673d0060514abd11d"
+    },
+    {
+      "filename": "crop-71-0.74-0.175-0.847-0.214.png",
+      "sha256": "8028252858fcf14149f759729fdebd22d0d3413bd04d40e312481b7df561a5f5"
+    },
+    {
+      "filename": "crop-71-0.573-0.116-0.608-0.151.png",
+      "sha256": "432c5dc926e77eb3616e7f17cc02b32f4fda2047e7e38be69dab12d18a2468d1"
+    },
+    {
+      "filename": "crop-71-0.558-0.145-0.633-0.176.png",
+      "sha256": "d9e08d88f53de0d05b0cd4dd77b91941a8b5c783006a3f07f5f46664967ad34d"
+    },
+    {
+      "filename": "crop-71-0.709-0.172-0.764-0.21.png",
+      "sha256": "4bcb6d3fb7118c60ecb30337a6e6f45bd551e60c605622d4546ba2fdd65f494c"
+    },
+    {
+      "filename": "crop-71-0.698-0.244-0.765-0.281.png",
+      "sha256": "a08c1e83b364a121f1b559a79e58c9ebdef54517ebfa2807c8712315f7d22283"
+    },
+    {
+      "filename": "crop-71-0.643-0.3-0.743-0.334.png",
+      "sha256": "4228b5dc66f60160260ba685d7f6ec12e90d98926e1272bf51c7b55055e4f065"
+    },
+    {
+      "filename": "B-138-body.png",
+      "sha256": "9a0a0749a2897ba29f5a2177625ef4092bcb163ecada77948f147ef491b27e08"
+    }
+  ],
+  "onlineScaffoldBefore": [
+    {
+      "verse": 10,
+      "text": "וייוודע הדבר להם וישלחו עליהם שר צבא אחד וילחמו בהם ויפלו מהם חללים רבים וישבו את נשיהם ואת טפם ויבוזו אותם ויכבשו את ארצם ויהרסו את מבצריהם ויעבידום עד היום הזה",
+      "sourcePages": [],
+      "textSHA256": "ff1946fbaa07e66ee23d8fad1a565f17ddd73ad8e1839dfb68ecabc3cba48ca5"
+    },
+    {
+      "verse": 11,
+      "text": "ואת שאר המלכויות ואת האיים אשר התקוממו להם החריבו וישימום לעבדים",
+      "sourcePages": [],
+      "textSHA256": "1d99757fb3c8ac0f5971d2c0ee6a00c945b2f465d301f4ef0e963873a2ec496e"
+    },
+    {
+      "verse": 12,
+      "text": "ועם אוהביהם והנשענים אליהם שמרו אהבה ויכבשו את המלכויות הקרובות והרחוקות וכל אשר שמעו את שמעם יראו מפניהם",
+      "sourcePages": [],
+      "textSHA256": "2affd4d433a35fb4409da44e7d2ef401918fd067951a40e4a1aff90c53441bd0"
+    },
+    {
+      "verse": 13,
+      "text": "ואשר יחפצו לעזור להם ולהמליך ימליכו ואשר יחפצו יורידו ויגבהו מאוד",
+      "sourcePages": [],
+      "textSHA256": "3f4678d20a3a982cf2e7fb1fc79f62fd3a29c3da54a7676f6da7c33748cf1b89"
+    },
+    {
+      "verse": 14,
+      "text": "וכי בכל אלה איש מהם לא שם עליו כתר ולא לבש ארגמן להתגדל בו",
+      "sourcePages": [],
+      "textSHA256": "9574c74611f569a3e8cd79bca8807e6f76d1eaa92885ce7fbfa4bf44e60189cd"
+    },
+    {
+      "verse": 15,
+      "text": "ומועצה עשו להם ויום יום נועצים שלוש מאות ועשרים יועצים תמיד עם העם למען ייטיבו לנהגם",
+      "sourcePages": [],
+      "textSHA256": "8eecff8e92f112ae65c673a1f524c8e8471d309e6c168b812bc885f40f2aeae4"
+    },
+    {
+      "verse": 16,
+      "text": "ומאמינים לאדם אחד להיות ראש שנה שנה ולמשול בכל ארצם והכול נשמעים לאחד ואין שנאה וקנאה בהם",
+      "sourcePages": [],
+      "textSHA256": "cd2fde8a1ce9a3527e6de1274b92e806385bb1f1224a2fc3ecdc0c79af1380c9"
+    }
+  ],
+  "checkedUnits": [
+    {
+      "chapter": 8,
+      "verse": 10,
+      "text": "וַיִּוָּדַע הַדָּבָר לָהֶם וַיִּשְׁלְחוּ עֲלֵיהֶם שַׂר־צָבָא אֶחָד וַיִּלָּחֲמוּ בָהֶם וַיִּפְּלוּ מֵהֶם חֲלָלִים רַבִּים וַיִּשְׁבּוּ אֶת־נְשֵׁיהֶם וְאֶת־טַפָּם וַיָּבֹזּוּ אוֹתָם וַיִּכְבְּשׁוּ אֶת־אַרְצָם וַיַּהַרְסוּ אֶת־מִבְצְרֵיהֶם וַיַּעֲבִידוּם עַד־הַיוֹם הַזֶּה׃",
+      "sourcePages": [
+        138
+      ],
+      "textSHA256": "a7386024aa181b471e18eff2331c2479e2cb8eb90dc7977f00f8746fd29ba456"
+    },
+    {
+      "chapter": 8,
+      "verse": 11,
+      "text": "וְאֶת־שְׁאָר הַמַּלְכֻיוֹת וְאֶת־הָאִיִּים אֲשֶׁר־הִתְקוֹמְמוּ לָהֶם הֶחֱרִיבוּ וַיְשִׂימוּם לַעֲבָדִים׃",
+      "sourcePages": [
+        138
+      ],
+      "textSHA256": "3edf62ca4377c785bd6d9c176129abe6c2a7e7ad83bb8e23f6a859336772d837"
+    },
+    {
+      "chapter": 8,
+      "verse": 12,
+      "text": "וְעִם־אוֹהֲבֵיהֶם וְהַנִּשְׁעָנִים אֲלֵיהֶם שָׁמְרוּ אַהֲבָה וַיִּכְבְּשׁוּ אֶת־הַמַּלְכֻיוֹת הַקְּרוֹבוֹת וְהָרְחוֹקוֹת וְכֹל אֲשֶׁר־שָׁמְעוּ אֶת־שִׁמְעָם יָרְאוּ מִפְּנֵיהֶם׃",
+      "sourcePages": [
+        138
+      ],
+      "textSHA256": "b41395d7222a5987dc90dda3760242c7f4df91309491cf5bb6e20982189d2885"
+    },
+    {
+      "chapter": 8,
+      "verse": 13,
+      "text": "וַאֲשֶׁר יַחְפְּצוּ לַעֲזוֹר לָהֶם וּלְהַמְלִיךְ יַמְלִיכוּ וַאֲשֶׁר יַחְפְּצוּ יוֹרִידוּ וַיִּגְבְּהוּ מְאֹד׃",
+      "sourcePages": [
+        138
+      ],
+      "textSHA256": "529e0c2ad52324d0d554fb5a82faa94221d12d5e52b30c1103f8faf114a41930"
+    },
+    {
+      "chapter": 8,
+      "verse": 14,
+      "text": "וְכִי בְּכָל־אֵלֶּה אִישׁ מֵהֶם לֹא־שָׂם עָלָיו כֶּתֶר וְלֹא לָבַשׁ אַרְגָּמָן לְהִתְגַּדֵּל בּוֹ׃",
+      "sourcePages": [
+        138
+      ],
+      "textSHA256": "53a93cdc219f0ab893282afa411febafb1c1aaa1eb05d3b4d1275d7ecc6a5459"
+    },
+    {
+      "chapter": 8,
+      "verse": 15,
+      "text": "וּמוֹעֵצָה עָשׂוּ לָהֶם וְיוֹם יוֹם נוֹעֲצִים שְׁלֹשׁ מֵאוֹת וְעֶשְׂרִים יוֹעֲצִים תָּמִיד עִם־הָעָם לְמַעַן יֵיטִיבוּ לְנַהֲגָם׃",
+      "sourcePages": [
+        138
+      ],
+      "textSHA256": "86fbda78a4de7bcaead8b0111e11d671ef8e0ea08471648482c4adf7c4ce72a4"
+    },
+    {
+      "chapter": 8,
+      "verse": 16,
+      "text": "וּמַאֲמִינִים לְאָדָם אֶחָד לִהְיוֹת רֹאשׁ שָׁנָה שָׁנָה וְלִמְשֹׁל בְּכָל־אַרְצָם וְהַכֹּל נִשְׁמָעִים לְאֶחָד וְאֵין שִׂנְאָה וְקִנְאָה בָּהֶם׃",
+      "sourcePages": [
+        138
+      ],
+      "textSHA256": "e50c70178c60827a30dbb224c4282d40d69b1b4e9315fc2e7a1d51b059b40db1"
+    }
+  ],
+  "reviewedPagesAfter": [
+    97,
+    98,
+    99,
+    100,
+    101,
+    102,
+    103,
+    104,
+    105,
+    106,
+    107,
+    108,
+    109,
+    110,
+    111,
+    112,
+    113,
+    114,
+    115,
+    116,
+    117,
+    118,
+    119,
+    120,
+    121,
+    122,
+    123,
+    124,
+    125,
+    126,
+    127,
+    128,
+    129,
+    130,
+    131,
+    132,
+    133,
+    134,
+    135,
+    136,
+    137,
+    138
+  ],
+  "acceptedSourceNoteIds": [
+    "1ma-4-10-yod-dagesh",
+    "1ma-4-18-yod-dagesh",
+    "1ma-5-26-qoph-dagesh",
+    "1ma-5-26-samekh-vowel",
+    "1ma-5-34-yod-dagesh",
+    "1ma-5-36-qoph-dagesh",
+    "1ma-5-4-bet-dagesh",
+    "1ma-6-10-yod-dagesh",
+    "1ma-6-11-bet-dagesh",
+    "1ma-6-26-yod-dagesh",
+    "1ma-6-38-kaf-vowel"
+  ],
+  "unresolvedFindingsWithinReviewedPage": [],
+  "productionEligible": false
+}

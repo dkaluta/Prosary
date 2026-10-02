@@ -1,0 +1,1396 @@
+{
+  "status": "Mapping work inventory only; no source boundaries approved or production text enabled",
+  "scope": "Current six daily-reading calendar datasets, deduplicated by raw citation; Torah appointments excluded.",
+  "distinctDailyCitations": 2319,
+  "directSupplementCitationCount": 26,
+  "directSupplementOccurrences": 77,
+  "byBook": [
+    {
+      "book": "2MA",
+      "uniqueCitations": 2,
+      "scheduledOccurrences": 2,
+      "citationChapters": [
+        1,
+        12
+      ],
+      "sourceStatus": "draft",
+      "sourceContentSHA256": "4a1a45ad694266db938fa8ad0ccff83d8d448c93168ec36cce72a79f8eff1ee5"
+    },
+    {
+      "book": "JDT",
+      "uniqueCitations": 2,
+      "scheduledOccurrences": 2,
+      "citationChapters": [
+        13
+      ],
+      "sourceStatus": "complete",
+      "sourceContentSHA256": "b34d1bae000438799900061c71add7d673dad77e19d2e271946537a00c4736b1"
+    },
+    {
+      "book": "SIR",
+      "uniqueCitations": 12,
+      "scheduledOccurrences": 55,
+      "citationChapters": [
+        24,
+        27,
+        28,
+        31,
+        36,
+        39,
+        44,
+        45,
+        51
+      ],
+      "sourceStatus": "complete",
+      "sourceContentSHA256": "363ab4b410ed35f108e598844d43add1f30473951180bc4f70432c9ffd4fc4ce"
+    },
+    {
+      "book": "TOB",
+      "uniqueCitations": 1,
+      "scheduledOccurrences": 1,
+      "citationChapters": [
+        12
+      ],
+      "sourceStatus": "complete",
+      "sourceContentSHA256": "e309bc3f06ad184197fb84d180a178f215355a13082208e621fd1add6f986f5d"
+    },
+    {
+      "book": "WIS",
+      "uniqueCitations": 9,
+      "scheduledOccurrences": 17,
+      "citationChapters": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        10
+      ],
+      "sourceStatus": "draft",
+      "sourceContentSHA256": "240bee7328787d3f4f92a16459d7b0e30b54713e6670d61e7df21c6029004fe2"
+    }
+  ],
+  "appointments": [
+    {
+      "key": "daily|2 Maccabees 12:43–46",
+      "citationBook": "2MA",
+      "spans": [
+        [
+          12,
+          43,
+          12,
+          46
+        ]
+      ],
+      "contexts": [
+        "roman1962"
+      ],
+      "scheduledOccurrences": 1,
+      "dates": [
+        {
+          "calendar": "roman1962",
+          "date": "2026-11-02"
+        }
+      ],
+      "appointmentReviewExists": false,
+      "reviewedEditionIds": [],
+      "sourceNumberingReviewExists": false,
+      "hebrewSourceMappingApproved": false,
+      "note": "Citation inventory only. A similar source label or chapter count does not establish a Hebrew boundary mapping."
+    },
+    {
+      "key": "daily|2 Maccabees 1:23–27",
+      "citationBook": "2MA",
+      "spans": [
+        [
+          1,
+          23,
+          1,
+          27
+        ]
+      ],
+      "contexts": [
+        "roman1962"
+      ],
+      "scheduledOccurrences": 1,
+      "dates": [
+        {
+          "calendar": "roman1962",
+          "date": "2026-02-28"
+        }
+      ],
+      "appointmentReviewExists": false,
+      "reviewedEditionIds": [],
+      "sourceNumberingReviewExists": false,
+      "hebrewSourceMappingApproved": false,
+      "note": "Citation inventory only. A similar source label or chapter count does not establish a Hebrew boundary mapping."
+    },
+    {
+      "key": "daily|Judith 13:22; 13:25",
+      "citationBook": "JDT",
+      "spans": [
+        [
+          13,
+          22,
+          13,
+          22
+        ],
+        [
+          13,
+          25,
+          13,
+          25
+        ]
+      ],
+      "contexts": [
+        "roman1962"
+      ],
+      "scheduledOccurrences": 1,
+      "dates": [
+        {
+          "calendar": "roman1962",
+          "date": "2026-09-15"
+        }
+      ],
+      "appointmentReviewExists": false,
+      "reviewedEditionIds": [],
+      "sourceNumberingReviewExists": false,
+      "hebrewSourceMappingApproved": false,
+      "note": "Citation inventory only. A similar source label or chapter count does not establish a Hebrew boundary mapping."
+    },
+    {
+      "key": "daily|Judith 13:22–25; 13:15; 13:10",
+      "citationBook": "JDT",
+      "spans": [
+        [
+          13,
+          22,
+          13,
+          25
+        ],
+        [
+          13,
+          15,
+          13,
+          15
+        ],
+        [
+          13,
+          10,
+          13,
+          10
+        ]
+      ],
+      "contexts": [
+        "roman1962"
+      ],
+      "scheduledOccurrences": 1,
+      "dates": [
+        {
+          "calendar": "roman1962",
+          "date": "2026-08-15"
+        }
+      ],
+      "appointmentReviewExists": false,
+      "reviewedEditionIds": [],
+      "sourceNumberingReviewExists": false,
+      "hebrewSourceMappingApproved": false,
+      "note": "Citation inventory only. A similar source label or chapter count does not establish a Hebrew boundary mapping."
+    },
+    {
+      "key": "daily|Sirach 24:14–16",
+      "citationBook": "SIR",
+      "spans": [
+        [
+          24,
+          14,
+          24,
+          16
+        ]
+      ],
+      "contexts": [
+        "roman1962"
+      ],
+      "scheduledOccurrences": 13,
+      "dates": [
+        {
+          "calendar": "roman1962",
+          "date": "2026-02-14"
+        },
+        {
+          "calendar": "roman1962",
+          "date": "2026-04-18"
+        },
+        {
+          "calendar": "roman1962",
+          "date": "2026-05-16"
+        },
+        {
+          "calendar": "roman1962",
+          "date": "2026-06-20"
+        },
+        {
+          "calendar": "roman1962",
+          "date": "2026-06-27"
+        },
+        {
+          "calendar": "roman1962",
+          "date": "2026-07-04"
+        },
+        {
+          "calendar": "roman1962",
+          "date": "2026-07-11"
+        },
+        {
+          "calendar": "roman1962",
+          "date": "2026-08-01"
+        },
+        {
+          "calendar": "roman1962",
+          "date": "2026-08-05"
+        },
+        {
+          "calendar": "roman1962",
+          "date": "2026-10-31"
+        },
+        {
+          "calendar": "roman1962",
+          "date": "2026-11-07"
+        },
+        {
+          "calendar": "roman1962",
+          "date": "2026-11-21"
+        },
+        {
+          "calendar": "roman1962",
+          "date": "2026-11-28"
+        }
+      ],
+      "appointmentReviewExists": false,
+      "reviewedEditionIds": [],
+      "sourceNumberingReviewExists": false,
+      "hebrewSourceMappingApproved": false,
+      "note": "Citation inventory only. A similar source label or chapter count does not establish a Hebrew boundary mapping."
+    },
+    {
+      "key": "daily|Sirach 24:23–31",
+      "citationBook": "SIR",
+      "spans": [
+        [
+          24,
+          23,
+          24,
+          31
+        ]
+      ],
+      "contexts": [
+        "roman1962"
+      ],
+      "scheduledOccurrences": 3,
+      "dates": [
+        {
+          "calendar": "roman1962",
+          "date": "2026-08-14"
+        },
+        {
+          "calendar": "roman1962",
+          "date": "2026-08-22"
+        },
+        {
+          "calendar": "roman1962",
+          "date": "2026-09-12"
+        }
+      ],
+      "appointmentReviewExists": false,
+      "reviewedEditionIds": [],
+      "sourceNumberingReviewExists": false,
+      "hebrewSourceMappingApproved": false,
+      "note": "Citation inventory only. A similar source label or chapter count does not establish a Hebrew boundary mapping."
+    },
+    {
+      "key": "daily|Sirach 27:30; 28:1–7",
+      "citationBook": "SIR",
+      "spans": [
+        [
+          27,
+          30,
+          27,
+          30
+        ],
+        [
+          28,
+          1,
+          28,
+          7
+        ]
+      ],
+      "contexts": [
+        "roman"
+      ],
+      "scheduledOccurrences": 1,
+      "dates": [
+        {
+          "calendar": "roman",
+          "date": "2026-09-13"
+        }
+      ],
+      "appointmentReviewExists": false,
+      "reviewedEditionIds": [],
+      "sourceNumberingReviewExists": true,
+      "hebrewSourceMappingApproved": false,
+      "note": "Citation inventory only. A similar source label or chapter count does not establish a Hebrew boundary mapping."
+    },
+    {
+      "key": "daily|Sirach 31:8–11",
+      "citationBook": "SIR",
+      "spans": [
+        [
+          31,
+          8,
+          31,
+          11
+        ]
+      ],
+      "contexts": [
+        "roman1962"
+      ],
+      "scheduledOccurrences": 13,
+      "dates": [
+        {
+          "calendar": "roman1962",
+          "date": "2026-01-23"
+        },
+        {
+          "calendar": "roman1962",
+          "date": "2026-05-15"
+        },
+        {
+          "calendar": "roman1962",
+          "date": "2026-05-20"
+        },
+        {
+          "calendar": "roman1962",
+          "date": "2026-07-15"
+        },
+        {
+          "calendar": "roman1962",
+          "date": "2026-08-07"
+        },
+        {
+          "calendar": "roman1962",
+          "date": "2026-08-08"
+        },
+        {
+          "calendar": "roman1962",
+          "date": "2026-08-17"
+        },
+        {
+          "calendar": "roman1962",
+          "date": "2026-08-19"
+        },
+        {
+          "calendar": "roman1962",
+          "date": "2026-08-31"
+        },
+        {
+          "calendar": "roman1962",
+          "date": "2026-09-02"
+        },
+        {
+          "calendar": "roman1962",
+          "date": "2026-10-06"
+        },
+        {
+          "calendar": "roman1962",
+          "date": "2026-10-13"
+        },
+        {
+          "calendar": "roman1962",
+          "date": "2026-11-10"
+        }
+      ],
+      "appointmentReviewExists": false,
+      "reviewedEditionIds": [],
+      "sourceNumberingReviewExists": false,
+      "hebrewSourceMappingApproved": false,
+      "note": "Citation inventory only. A similar source label or chapter count does not establish a Hebrew boundary mapping."
+    },
+    {
+      "key": "daily|Sirach 36:1–10",
+      "citationBook": "SIR",
+      "spans": [
+        [
+          36,
+          1,
+          36,
+          10
+        ]
+      ],
+      "contexts": [
+        "roman1962"
+      ],
+      "scheduledOccurrences": 1,
+      "dates": [
+        {
+          "calendar": "roman1962",
+          "date": "2026-02-28"
+        }
+      ],
+      "appointmentReviewExists": false,
+      "reviewedEditionIds": [],
+      "sourceNumberingReviewExists": false,
+      "hebrewSourceMappingApproved": false,
+      "note": "Citation inventory only. A similar source label or chapter count does not establish a Hebrew boundary mapping."
+    },
+    {
+      "key": "daily|Sirach 39:6–14",
+      "citationBook": "SIR",
+      "spans": [
+        [
+          39,
+          6,
+          39,
+          14
+        ]
+      ],
+      "contexts": [
+        "roman1962"
+      ],
+      "scheduledOccurrences": 2,
+      "dates": [
+        {
+          "calendar": "roman1962",
+          "date": "2026-05-09"
+        },
+        {
+          "calendar": "roman1962",
+          "date": "2026-08-20"
+        }
+      ],
+      "appointmentReviewExists": false,
+      "reviewedEditionIds": [],
+      "sourceNumberingReviewExists": false,
+      "hebrewSourceMappingApproved": false,
+      "note": "Citation inventory only. A similar source label or chapter count does not establish a Hebrew boundary mapping."
+    },
+    {
+      "key": "daily|Sirach 44:10–15",
+      "citationBook": "SIR",
+      "spans": [
+        [
+          44,
+          10,
+          44,
+          15
+        ]
+      ],
+      "contexts": [
+        "roman1962"
+      ],
+      "scheduledOccurrences": 1,
+      "dates": [
+        {
+          "calendar": "roman1962",
+          "date": "2026-06-26"
+        }
+      ],
+      "appointmentReviewExists": false,
+      "reviewedEditionIds": [],
+      "sourceNumberingReviewExists": false,
+      "hebrewSourceMappingApproved": false,
+      "note": "Citation inventory only. A similar source label or chapter count does not establish a Hebrew boundary mapping."
+    },
+    {
+      "key": "daily|Sirach 44:16–27; 45:3–20",
+      "citationBook": "SIR",
+      "spans": [
+        [
+          44,
+          16,
+          44,
+          27
+        ],
+        [
+          45,
+          3,
+          45,
+          20
+        ]
+      ],
+      "contexts": [
+        "roman1962"
+      ],
+      "scheduledOccurrences": 9,
+      "dates": [
+        {
+          "calendar": "roman1962",
+          "date": "2026-02-04"
+        },
+        {
+          "calendar": "roman1962",
+          "date": "2026-02-06"
+        },
+        {
+          "calendar": "roman1962",
+          "date": "2026-06-06"
+        },
+        {
+          "calendar": "roman1962",
+          "date": "2026-06-17"
+        },
+        {
+          "calendar": "roman1962",
+          "date": "2026-09-05"
+        },
+        {
+          "calendar": "roman1962",
+          "date": "2026-09-22"
+        },
+        {
+          "calendar": "roman1962",
+          "date": "2026-11-04"
+        },
+        {
+          "calendar": "roman1962",
+          "date": "2026-11-11"
+        },
+        {
+          "calendar": "roman1962",
+          "date": "2026-11-17"
+        }
+      ],
+      "appointmentReviewExists": false,
+      "reviewedEditionIds": [],
+      "sourceNumberingReviewExists": false,
+      "hebrewSourceMappingApproved": false,
+      "note": "Citation inventory only. A similar source label or chapter count does not establish a Hebrew boundary mapping."
+    },
+    {
+      "key": "daily|Sirach 44:1–15",
+      "citationBook": "SIR",
+      "spans": [
+        [
+          44,
+          1,
+          44,
+          15
+        ]
+      ],
+      "contexts": [
+        "roman1962"
+      ],
+      "scheduledOccurrences": 2,
+      "dates": [
+        {
+          "calendar": "roman1962",
+          "date": "2026-02-12"
+        },
+        {
+          "calendar": "roman1962",
+          "date": "2026-06-05"
+        }
+      ],
+      "appointmentReviewExists": false,
+      "reviewedEditionIds": [],
+      "sourceNumberingReviewExists": false,
+      "hebrewSourceMappingApproved": false,
+      "note": "Citation inventory only. A similar source label or chapter count does not establish a Hebrew boundary mapping."
+    },
+    {
+      "key": "daily|Sirach 45:1–6",
+      "citationBook": "SIR",
+      "spans": [
+        [
+          45,
+          1,
+          45,
+          6
+        ]
+      ],
+      "contexts": [
+        "roman1962"
+      ],
+      "scheduledOccurrences": 6,
+      "dates": [
+        {
+          "calendar": "roman1962",
+          "date": "2026-01-17"
+        },
+        {
+          "calendar": "roman1962",
+          "date": "2026-02-07"
+        },
+        {
+          "calendar": "roman1962",
+          "date": "2026-03-19"
+        },
+        {
+          "calendar": "roman1962",
+          "date": "2026-06-25"
+        },
+        {
+          "calendar": "roman1962",
+          "date": "2026-10-10"
+        },
+        {
+          "calendar": "roman1962",
+          "date": "2026-11-26"
+        }
+      ],
+      "appointmentReviewExists": false,
+      "reviewedEditionIds": [],
+      "sourceNumberingReviewExists": false,
+      "hebrewSourceMappingApproved": false,
+      "note": "Citation inventory only. A similar source label or chapter count does not establish a Hebrew boundary mapping."
+    },
+    {
+      "key": "daily|Sirach 51:13–17",
+      "citationBook": "SIR",
+      "spans": [
+        [
+          51,
+          13,
+          51,
+          17
+        ]
+      ],
+      "contexts": [
+        "roman1962"
+      ],
+      "scheduledOccurrences": 1,
+      "dates": [
+        {
+          "calendar": "roman1962",
+          "date": "2026-12-02"
+        }
+      ],
+      "appointmentReviewExists": false,
+      "reviewedEditionIds": [],
+      "sourceNumberingReviewExists": false,
+      "hebrewSourceMappingApproved": false,
+      "note": "Citation inventory only. A similar source label or chapter count does not establish a Hebrew boundary mapping."
+    },
+    {
+      "key": "daily|Sirach 51:1–8; 51:12",
+      "citationBook": "SIR",
+      "spans": [
+        [
+          51,
+          1,
+          51,
+          8
+        ],
+        [
+          51,
+          12,
+          51,
+          12
+        ]
+      ],
+      "contexts": [
+        "roman1962"
+      ],
+      "scheduledOccurrences": 3,
+      "dates": [
+        {
+          "calendar": "roman1962",
+          "date": "2026-01-21"
+        },
+        {
+          "calendar": "roman1962",
+          "date": "2026-01-30"
+        },
+        {
+          "calendar": "roman1962",
+          "date": "2026-11-25"
+        }
+      ],
+      "appointmentReviewExists": false,
+      "reviewedEditionIds": [],
+      "sourceNumberingReviewExists": false,
+      "hebrewSourceMappingApproved": false,
+      "note": "Citation inventory only. A similar source label or chapter count does not establish a Hebrew boundary mapping."
+    },
+    {
+      "key": "daily|Tobit 12:7–15",
+      "citationBook": "TOB",
+      "spans": [
+        [
+          12,
+          7,
+          12,
+          15
+        ]
+      ],
+      "contexts": [
+        "roman1962"
+      ],
+      "scheduledOccurrences": 1,
+      "dates": [
+        {
+          "calendar": "roman1962",
+          "date": "2026-10-24"
+        }
+      ],
+      "appointmentReviewExists": false,
+      "reviewedEditionIds": [],
+      "sourceNumberingReviewExists": false,
+      "hebrewSourceMappingApproved": false,
+      "note": "Citation inventory only. A similar source label or chapter count does not establish a Hebrew boundary mapping."
+    },
+    {
+      "key": "daily|Wisdom 10:10–14",
+      "citationBook": "WIS",
+      "spans": [
+        [
+          10,
+          10,
+          10,
+          14
+        ]
+      ],
+      "contexts": [
+        "roman1962"
+      ],
+      "scheduledOccurrences": 4,
+      "dates": [
+        {
+          "calendar": "roman1962",
+          "date": "2026-04-13"
+        },
+        {
+          "calendar": "roman1962",
+          "date": "2026-08-25"
+        },
+        {
+          "calendar": "roman1962",
+          "date": "2026-08-27"
+        },
+        {
+          "calendar": "roman1962",
+          "date": "2026-09-28"
+        }
+      ],
+      "appointmentReviewExists": false,
+      "reviewedEditionIds": [],
+      "sourceNumberingReviewExists": false,
+      "hebrewSourceMappingApproved": false,
+      "note": "Citation inventory only. A similar source label or chapter count does not establish a Hebrew boundary mapping."
+    },
+    {
+      "key": "daily|Wisdom 10:17–20",
+      "citationBook": "WIS",
+      "spans": [
+        [
+          10,
+          17,
+          10,
+          20
+        ]
+      ],
+      "contexts": [
+        "roman1962"
+      ],
+      "scheduledOccurrences": 1,
+      "dates": [
+        {
+          "calendar": "roman1962",
+          "date": "2026-07-28"
+        }
+      ],
+      "appointmentReviewExists": false,
+      "reviewedEditionIds": [],
+      "sourceNumberingReviewExists": false,
+      "hebrewSourceMappingApproved": false,
+      "note": "Citation inventory only. A similar source label or chapter count does not establish a Hebrew boundary mapping."
+    },
+    {
+      "key": "daily|Wisdom 3:1–8",
+      "citationBook": "WIS",
+      "spans": [
+        [
+          3,
+          1,
+          3,
+          8
+        ]
+      ],
+      "contexts": [
+        "roman1962"
+      ],
+      "scheduledOccurrences": 2,
+      "dates": [
+        {
+          "calendar": "roman1962",
+          "date": "2026-01-22"
+        },
+        {
+          "calendar": "roman1962",
+          "date": "2026-09-16"
+        }
+      ],
+      "appointmentReviewExists": false,
+      "reviewedEditionIds": [],
+      "sourceNumberingReviewExists": false,
+      "hebrewSourceMappingApproved": false,
+      "note": "Citation inventory only. A similar source label or chapter count does not establish a Hebrew boundary mapping."
+    },
+    {
+      "key": "daily|Wisdom 3:1–9",
+      "citationBook": "WIS",
+      "spans": [
+        [
+          3,
+          1,
+          3,
+          9
+        ]
+      ],
+      "contexts": [
+        "roman"
+      ],
+      "scheduledOccurrences": 1,
+      "dates": [
+        {
+          "calendar": "roman",
+          "date": "2026-11-02"
+        }
+      ],
+      "appointmentReviewExists": false,
+      "reviewedEditionIds": [],
+      "sourceNumberingReviewExists": false,
+      "hebrewSourceMappingApproved": false,
+      "note": "Citation inventory only. A similar source label or chapter count does not establish a Hebrew boundary mapping."
+    },
+    {
+      "key": "daily|Wisdom 4:7–15",
+      "citationBook": "WIS",
+      "spans": [
+        [
+          4,
+          7,
+          4,
+          15
+        ]
+      ],
+      "contexts": [
+        "ugcc-gregorian"
+      ],
+      "scheduledOccurrences": 1,
+      "dates": [
+        {
+          "calendar": "ugcc-gregorian",
+          "date": "2026-02-23"
+        }
+      ],
+      "appointmentReviewExists": false,
+      "reviewedEditionIds": [],
+      "sourceNumberingReviewExists": false,
+      "hebrewSourceMappingApproved": false,
+      "note": "Citation inventory only. A similar source label or chapter count does not establish a Hebrew boundary mapping."
+    },
+    {
+      "key": "daily|Wisdom 5:1–1; 5:3–6; 5:8–8; 5:15–16",
+      "citationBook": "WIS",
+      "spans": [
+        [
+          5,
+          1,
+          5,
+          1
+        ],
+        [
+          5,
+          3,
+          5,
+          6
+        ],
+        [
+          5,
+          8,
+          5,
+          8
+        ],
+        [
+          5,
+          15,
+          5,
+          16
+        ]
+      ],
+      "contexts": [
+        "maronite"
+      ],
+      "scheduledOccurrences": 1,
+      "dates": [
+        {
+          "calendar": "maronite",
+          "date": "2026-02-01"
+        }
+      ],
+      "appointmentReviewExists": false,
+      "reviewedEditionIds": [],
+      "sourceNumberingReviewExists": false,
+      "hebrewSourceMappingApproved": false,
+      "note": "Citation inventory only. A similar source label or chapter count does not establish a Hebrew boundary mapping."
+    },
+    {
+      "key": "daily|Wisdom 5:1–5",
+      "citationBook": "WIS",
+      "spans": [
+        [
+          5,
+          1,
+          5,
+          5
+        ]
+      ],
+      "contexts": [
+        "roman1962"
+      ],
+      "scheduledOccurrences": 5,
+      "dates": [
+        {
+          "calendar": "roman1962",
+          "date": "2026-04-24"
+        },
+        {
+          "calendar": "roman1962",
+          "date": "2026-05-07"
+        },
+        {
+          "calendar": "roman1962",
+          "date": "2026-05-11"
+        },
+        {
+          "calendar": "roman1962",
+          "date": "2026-05-12"
+        },
+        {
+          "calendar": "roman1962",
+          "date": "2026-05-18"
+        }
+      ],
+      "appointmentReviewExists": false,
+      "reviewedEditionIds": [],
+      "sourceNumberingReviewExists": false,
+      "hebrewSourceMappingApproved": false,
+      "note": "Citation inventory only. A similar source label or chapter count does not establish a Hebrew boundary mapping."
+    },
+    {
+      "key": "daily|Wisdom 6:12–16",
+      "citationBook": "WIS",
+      "spans": [
+        [
+          6,
+          12,
+          6,
+          16
+        ]
+      ],
+      "contexts": [
+        "roman"
+      ],
+      "scheduledOccurrences": 1,
+      "dates": [
+        {
+          "calendar": "roman",
+          "date": "2026-11-08"
+        }
+      ],
+      "appointmentReviewExists": false,
+      "reviewedEditionIds": [],
+      "sourceNumberingReviewExists": false,
+      "hebrewSourceMappingApproved": false,
+      "note": "Citation inventory only. A similar source label or chapter count does not establish a Hebrew boundary mapping."
+    },
+    {
+      "key": "daily|Wisdom 7:7–14",
+      "citationBook": "WIS",
+      "spans": [
+        [
+          7,
+          7,
+          7,
+          14
+        ]
+      ],
+      "contexts": [
+        "maronite"
+      ],
+      "scheduledOccurrences": 1,
+      "dates": [
+        {
+          "calendar": "maronite",
+          "date": "2026-06-14"
+        }
+      ],
+      "appointmentReviewExists": false,
+      "reviewedEditionIds": [],
+      "sourceNumberingReviewExists": false,
+      "hebrewSourceMappingApproved": false,
+      "note": "Citation inventory only. A similar source label or chapter count does not establish a Hebrew boundary mapping."
+    }
+  ],
+  "danielAndEstherCandidates": [
+    {
+      "key": "daily|Daniel 13:1–9, 15–17, 19–30, 33–62",
+      "citationBook": "DAN",
+      "spans": [
+        [
+          13,
+          1,
+          13,
+          9
+        ],
+        [
+          13,
+          15,
+          13,
+          17
+        ],
+        [
+          13,
+          19,
+          13,
+          30
+        ],
+        [
+          13,
+          33,
+          13,
+          62
+        ]
+      ],
+      "contexts": [
+        "roman1962"
+      ],
+      "scheduledOccurrences": 1,
+      "dates": [
+        {
+          "calendar": "roman1962",
+          "date": "2026-03-14"
+        }
+      ],
+      "appointmentReviewExists": false,
+      "reviewedEditionIds": [],
+      "sourceNumberingReviewExists": false,
+      "hebrewSourceMappingApproved": false,
+      "note": "Citation inventory only. A similar source label or chapter count does not establish a Hebrew boundary mapping."
+    },
+    {
+      "key": "daily|Daniel 14:27–42",
+      "citationBook": "DAN",
+      "spans": [
+        [
+          14,
+          27,
+          14,
+          42
+        ]
+      ],
+      "contexts": [
+        "roman1962"
+      ],
+      "scheduledOccurrences": 1,
+      "dates": [
+        {
+          "calendar": "roman1962",
+          "date": "2026-03-24"
+        }
+      ],
+      "appointmentReviewExists": false,
+      "reviewedEditionIds": [],
+      "sourceNumberingReviewExists": false,
+      "hebrewSourceMappingApproved": false,
+      "note": "Citation inventory only. A similar source label or chapter count does not establish a Hebrew boundary mapping."
+    },
+    {
+      "key": "daily|Daniel 3:1–23",
+      "citationBook": "DAN",
+      "spans": [
+        [
+          3,
+          1,
+          3,
+          23
+        ]
+      ],
+      "contexts": [
+        "ugcc-gregorian"
+      ],
+      "scheduledOccurrences": 1,
+      "dates": [
+        {
+          "calendar": "ugcc-gregorian",
+          "date": "2026-04-04"
+        }
+      ],
+      "appointmentReviewExists": false,
+      "reviewedEditionIds": [],
+      "sourceNumberingReviewExists": false,
+      "hebrewSourceMappingApproved": false,
+      "note": "Citation inventory only. A similar source label or chapter count does not establish a Hebrew boundary mapping."
+    },
+    {
+      "key": "daily|Daniel 3:25, 34–45",
+      "citationBook": "DAN",
+      "spans": [
+        [
+          3,
+          25,
+          3,
+          25
+        ],
+        [
+          3,
+          34,
+          3,
+          45
+        ]
+      ],
+      "contexts": [
+        "roman1962"
+      ],
+      "scheduledOccurrences": 1,
+      "dates": [
+        {
+          "calendar": "roman1962",
+          "date": "2026-03-26"
+        }
+      ],
+      "appointmentReviewExists": false,
+      "reviewedEditionIds": [],
+      "sourceNumberingReviewExists": false,
+      "hebrewSourceMappingApproved": false,
+      "note": "Citation inventory only. A similar source label or chapter count does not establish a Hebrew boundary mapping."
+    },
+    {
+      "key": "daily|Daniel 3:47–51",
+      "citationBook": "DAN",
+      "spans": [
+        [
+          3,
+          47,
+          3,
+          51
+        ]
+      ],
+      "contexts": [
+        "roman1962"
+      ],
+      "scheduledOccurrences": 1,
+      "dates": [
+        {
+          "calendar": "roman1962",
+          "date": "2026-05-30"
+        }
+      ],
+      "appointmentReviewExists": false,
+      "reviewedEditionIds": [],
+      "sourceNumberingReviewExists": false,
+      "hebrewSourceMappingApproved": false,
+      "note": "Citation inventory only. A similar source label or chapter count does not establish a Hebrew boundary mapping."
+    },
+    {
+      "key": "daily|Daniel 3:49–51",
+      "citationBook": "DAN",
+      "spans": [
+        [
+          3,
+          49,
+          3,
+          51
+        ]
+      ],
+      "contexts": [
+        "roman1962"
+      ],
+      "scheduledOccurrences": 3,
+      "dates": [
+        {
+          "calendar": "roman1962",
+          "date": "2026-02-28"
+        },
+        {
+          "calendar": "roman1962",
+          "date": "2026-09-26"
+        },
+        {
+          "calendar": "roman1962",
+          "date": "2026-12-19"
+        }
+      ],
+      "appointmentReviewExists": false,
+      "reviewedEditionIds": [],
+      "sourceNumberingReviewExists": false,
+      "hebrewSourceMappingApproved": false,
+      "note": "Citation inventory only. A similar source label or chapter count does not establish a Hebrew boundary mapping."
+    },
+    {
+      "key": "daily|Daniel 7:9–10; 7:13–14",
+      "citationBook": "DAN",
+      "spans": [
+        [
+          7,
+          9,
+          7,
+          10
+        ],
+        [
+          7,
+          13,
+          7,
+          14
+        ]
+      ],
+      "contexts": [
+        "roman"
+      ],
+      "scheduledOccurrences": 2,
+      "dates": [
+        {
+          "calendar": "roman",
+          "date": "2026-08-06"
+        },
+        {
+          "calendar": "roman",
+          "date": "2026-09-29"
+        }
+      ],
+      "appointmentReviewExists": false,
+      "reviewedEditionIds": [],
+      "sourceNumberingReviewExists": false,
+      "hebrewSourceMappingApproved": false,
+      "note": "Citation inventory only. A similar source label or chapter count does not establish a Hebrew boundary mapping."
+    },
+    {
+      "key": "daily|Daniel 7:9–14",
+      "citationBook": "DAN",
+      "spans": [
+        [
+          7,
+          9,
+          7,
+          14
+        ]
+      ],
+      "contexts": [
+        "maronite"
+      ],
+      "scheduledOccurrences": 1,
+      "dates": [
+        {
+          "calendar": "maronite",
+          "date": "2026-10-04"
+        }
+      ],
+      "appointmentReviewExists": false,
+      "reviewedEditionIds": [],
+      "sourceNumberingReviewExists": false,
+      "hebrewSourceMappingApproved": false,
+      "note": "Citation inventory only. A similar source label or chapter count does not establish a Hebrew boundary mapping."
+    },
+    {
+      "key": "daily|Daniel 9:15–19",
+      "citationBook": "DAN",
+      "spans": [
+        [
+          9,
+          15,
+          9,
+          19
+        ]
+      ],
+      "contexts": [
+        "roman1962"
+      ],
+      "scheduledOccurrences": 1,
+      "dates": [
+        {
+          "calendar": "roman1962",
+          "date": "2026-03-02"
+        }
+      ],
+      "appointmentReviewExists": false,
+      "reviewedEditionIds": [],
+      "sourceNumberingReviewExists": false,
+      "hebrewSourceMappingApproved": false,
+      "note": "Citation inventory only. A similar source label or chapter count does not establish a Hebrew boundary mapping."
+    },
+    {
+      "key": "daily|Esther 13:8–11; 15–17",
+      "citationBook": "EST",
+      "spans": [
+        [
+          13,
+          8,
+          13,
+          11
+        ],
+        [
+          13,
+          15,
+          13,
+          17
+        ]
+      ],
+      "contexts": [
+        "roman1962"
+      ],
+      "scheduledOccurrences": 1,
+      "dates": [
+        {
+          "calendar": "roman1962",
+          "date": "2026-03-04"
+        }
+      ],
+      "appointmentReviewExists": false,
+      "reviewedEditionIds": [],
+      "sourceNumberingReviewExists": false,
+      "hebrewSourceMappingApproved": false,
+      "note": "Citation inventory only. A similar source label or chapter count does not establish a Hebrew boundary mapping."
+    }
+  ],
+  "unparsedDailyCitations": [
+    {
+      "key": "daily|Jeremiah 11:18–23; 12:15,9–11,14,15",
+      "reason": "duplicate or overlapping appointment"
+    },
+    {
+      "key": "daily|Matthew 25:1–13o",
+      "reason": "alternative or malformed citation"
+    }
+  ],
+  "sourceDatasets": [
+    {
+      "path": "Shared/data/readings-roman.json",
+      "sha256": "249d7d1ff1da5d1f9ac169a5f36d073fe03f040356277b6d6538602aeaf8d92f"
+    },
+    {
+      "path": "Shared/data/readings-roman1962.json",
+      "sha256": "cc60cf0902e69ab7b76b86cafa4aabc586f81a10efd2a531c4f22d83b1ee7b67"
+    },
+    {
+      "path": "Shared/data/readings-ugcc.json",
+      "sha256": "25e3587094fe3e9f717e845f2ae029a87f6d892b077e74d0381da8da2c3a730a"
+    },
+    {
+      "path": "Shared/data/readings-ugcc-gregorian.json",
+      "sha256": "efc52c0ccd8b4d1d746946165327cfe7a8dda4a976187c8c07d7bce7778cfac7"
+    },
+    {
+      "path": "Shared/data/readings-syriac.json",
+      "sha256": "f2789002fb2f60fea5edf5c5d8ae9c970c37fd522eedfdd42442f7c46c306b0c"
+    },
+    {
+      "path": "Shared/data/readings-maronite.json",
+      "sha256": "f393152203bceac17a76239391e1f356c44e5a0e496d0253efdb56002c194a2b"
+    }
+  ],
+  "limits": [
+    "All Daniel/Esther citations are listed separately for triage; this does not assert that every such citation belongs to an addition.",
+    "No calendar numbering tradition is inferred from a book title.",
+    "No future calendar date beyond the current datasets is covered."
+  ]
+}

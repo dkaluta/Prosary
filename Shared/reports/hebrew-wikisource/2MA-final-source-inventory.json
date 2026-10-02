@@ -1,0 +1,2765 @@
+{
+  "schemaVersion": 1,
+  "book": "2MA",
+  "status": "Final source inventory reconciled; completed-book approval candidate ready for root review",
+  "canonicalStatus": "draft",
+  "releaseApproved": false,
+  "sourceInventory": "Shared/reports/hebrew-wikisource/2MA-print-inventory.json",
+  "sourceInventorySHA256": "7b71b93de1976cacc422b0688e68d83fa6f43b56d96be17f11c9bae6200bf5c4",
+  "sourceInventoryWasMadeBeforeCanonicalDraft": true,
+  "countSummary": {
+    "chapters": 15,
+    "primaryUnits": 542,
+    "representedIntegerLabels": 556,
+    "combinedUnits": 14,
+    "textPages": 56,
+    "separateColophons": 1
+  },
+  "method": "This final pass reconciles the independent pre-transcription printed inventory with all15 stable full independent chapter reviews and their final row snapshots. It is not a claim of an additional fresh blind visual comparison of all56 pages. Source180 lacuna and14:4 restoration pixels were re-inspected at this stage.",
+  "chapters": [
+    {
+      "chapter": 1,
+      "units": 34,
+      "representedLabels": 36,
+      "lastPrintedLabel": 36,
+      "chapterScopedPhysicalRows": 57,
+      "sourcePages": [
+        178,
+        179,
+        180,
+        181,
+        182,
+        183
+      ],
+      "independentReport": "Shared/reports/hebrew-wikisource/2MA-chapter1-independent-review.json",
+      "independentReportSHA256": "d981db33d5fb96d975bed32e9478f877719dd6a93f8a6bd656daa62147eef9c5",
+      "finalReconciliationReport": "Shared/reports/hebrew-wikisource/2MA-chapter1-final-reconciliation.json",
+      "finalReconciliationReportSHA256": "2049a31cdadfd6f2db89fd6fee1482141e1fe1ca9e8b46dbb2d2cf7ee1aa0859",
+      "allVerseTextsReassembledFromReviewedSourceRows": true,
+      "allUnitPagesMatchPreTranscriptionSourceInventory": true
+    },
+    {
+      "chapter": 2,
+      "units": 31,
+      "representedLabels": 32,
+      "lastPrintedLabel": 32,
+      "chapterScopedPhysicalRows": 52,
+      "sourcePages": [
+        183,
+        184,
+        185,
+        186,
+        187
+      ],
+      "independentReport": "Shared/reports/hebrew-wikisource/2MA-chapter2-independent-review.json",
+      "independentReportSHA256": "62fc4c6020f6810ac37c1b988d2ad0ef52f873f18cc21fa3b5f0b70716b9c45f",
+      "finalReconciliationReport": "Shared/reports/hebrew-wikisource/2MA-chapter2-final-reconciliation.json",
+      "finalReconciliationReportSHA256": "91239d7594d5010a5b68614d1ed42fbdc137a387bc20b3944ea2afa95937fa9f",
+      "allVerseTextsReassembledFromReviewedSourceRows": true,
+      "allUnitPagesMatchPreTranscriptionSourceInventory": true
+    },
+    {
+      "chapter": 3,
+      "units": 38,
+      "representedLabels": 40,
+      "lastPrintedLabel": 40,
+      "chapterScopedPhysicalRows": 67,
+      "sourcePages": [
+        187,
+        188,
+        189,
+        190
+      ],
+      "independentReport": "Shared/reports/hebrew-wikisource/2MA-chapter3-independent-review.json",
+      "independentReportSHA256": "701ba4247ae8f7922941d0403fe75d8b5746c44022753f640c88ba04b7a3e645",
+      "finalReconciliationReport": "Shared/reports/hebrew-wikisource/2MA-chapter3-final-reconciliation.json",
+      "finalReconciliationReportSHA256": "b208ba7bdf925bf4465ef7ac6009a663bed475679b5e17b06c8b9f351bc3a6b2",
+      "allVerseTextsReassembledFromReviewedSourceRows": true,
+      "allUnitPagesMatchPreTranscriptionSourceInventory": true
+    },
+    {
+      "chapter": 4,
+      "units": 49,
+      "representedLabels": 50,
+      "lastPrintedLabel": 50,
+      "chapterScopedPhysicalRows": 91,
+      "sourcePages": [
+        190,
+        191,
+        192,
+        193,
+        194,
+        195
+      ],
+      "independentReport": "Shared/reports/hebrew-wikisource/2MA-chapter4-independent-review.json",
+      "independentReportSHA256": "666aa62f95cfa47dec6db4461e3977730231cfda078ef620fe1e38722e7ad632",
+      "finalReconciliationReport": "Shared/reports/hebrew-wikisource/2MA-chapter4-final-reconciliation.json",
+      "finalReconciliationReportSHA256": "a330ebff34903c815a6cd3b7772dcadc3d7a8c773531455dfcba3dcb2f723ff6",
+      "allVerseTextsReassembledFromReviewedSourceRows": true,
+      "allUnitPagesMatchPreTranscriptionSourceInventory": true
+    },
+    {
+      "chapter": 5,
+      "units": 27,
+      "representedLabels": 27,
+      "lastPrintedLabel": 27,
+      "chapterScopedPhysicalRows": 52,
+      "sourcePages": [
+        195,
+        196,
+        197,
+        198
+      ],
+      "independentReport": "Shared/reports/hebrew-wikisource/2MA-chapter5-independent-review.json",
+      "independentReportSHA256": "f41442c5942f155f65017744b39067253c4016202b4590f6dcb811f7c1e3b32f",
+      "finalReconciliationReport": "Shared/reports/hebrew-wikisource/2MA-chapter5-final-reconciliation.json",
+      "finalReconciliationReportSHA256": "fdd01b4ae371eaedab36e48a0578e38d4e996043cc17b6f3684c5b6c5d405a63",
+      "allVerseTextsReassembledFromReviewedSourceRows": true,
+      "allUnitPagesMatchPreTranscriptionSourceInventory": true
+    },
+    {
+      "chapter": 6,
+      "units": 31,
+      "representedLabels": 31,
+      "lastPrintedLabel": 31,
+      "chapterScopedPhysicalRows": 57,
+      "sourcePages": [
+        198,
+        199,
+        200
+      ],
+      "independentReport": "Shared/reports/hebrew-wikisource/2MA-chapter6-independent-review.json",
+      "independentReportSHA256": "4ffea4dd6363282e32350cb4d39c0a280a7ebf3e459a9040f3af105efaa1dba3",
+      "finalReconciliationReport": "Shared/reports/hebrew-wikisource/2MA-chapter6-final-reconciliation.json",
+      "finalReconciliationReportSHA256": "751637f6612a96b67afe61a9c6d426ee5887c59334117eb056b08d5a7766fcd3",
+      "allVerseTextsReassembledFromReviewedSourceRows": true,
+      "allUnitPagesMatchPreTranscriptionSourceInventory": true
+    },
+    {
+      "chapter": 7,
+      "units": 39,
+      "representedLabels": 42,
+      "lastPrintedLabel": 42,
+      "chapterScopedPhysicalRows": 70,
+      "sourcePages": [
+        200,
+        201,
+        202,
+        203,
+        204
+      ],
+      "independentReport": "Shared/reports/hebrew-wikisource/2MA-chapter7-independent-review.json",
+      "independentReportSHA256": "c035125841fbb5786c6f5b945378d0dfc75e3c377fcbfce2a6035a1e64332733",
+      "finalReconciliationReport": "Shared/reports/hebrew-wikisource/2MA-chapter7-final-reconciliation.json",
+      "finalReconciliationReportSHA256": "5560c55a4065638e2976c27464e925e139ea67fc9d0cbebbae1e313ecd26bfc4",
+      "allVerseTextsReassembledFromReviewedSourceRows": true,
+      "allUnitPagesMatchPreTranscriptionSourceInventory": true
+    },
+    {
+      "chapter": 8,
+      "units": 35,
+      "representedLabels": 36,
+      "lastPrintedLabel": 36,
+      "chapterScopedPhysicalRows": 69,
+      "sourcePages": [
+        204,
+        205,
+        206,
+        207,
+        208
+      ],
+      "independentReport": "Shared/reports/hebrew-wikisource/2MA-chapter8-independent-review.json",
+      "independentReportSHA256": "aaced2218490a0916e30426e0231bbe107a6186ab4b8d2dec45794476f1cdb41",
+      "finalReconciliationReport": "Shared/reports/hebrew-wikisource/2MA-chapter8-final-reconciliation.json",
+      "finalReconciliationReportSHA256": "0e473a3f1b91d2270f722ff23ef669434c131ddfe99ae8269617bf811b559f92",
+      "allVerseTextsReassembledFromReviewedSourceRows": true,
+      "allUnitPagesMatchPreTranscriptionSourceInventory": true
+    },
+    {
+      "chapter": 9,
+      "units": 29,
+      "representedLabels": 29,
+      "lastPrintedLabel": 29,
+      "chapterScopedPhysicalRows": 59,
+      "sourcePages": [
+        209,
+        210,
+        211,
+        212
+      ],
+      "independentReport": "Shared/reports/hebrew-wikisource/2MA-chapter9-independent-review.json",
+      "independentReportSHA256": "643bd3f7575806b4956bc52556aebc332bb06a50c786e402078fd1d3d15682c5",
+      "finalReconciliationReport": "Shared/reports/hebrew-wikisource/2MA-chapter9-final-reconciliation.json",
+      "finalReconciliationReportSHA256": "8d6a68eab874248d7fc51874969be451d4a164fcafdd1a6a0fccc9d1dbb1f0ae",
+      "allVerseTextsReassembledFromReviewedSourceRows": true,
+      "allUnitPagesMatchPreTranscriptionSourceInventory": true
+    },
+    {
+      "chapter": 10,
+      "units": 38,
+      "representedLabels": 38,
+      "lastPrintedLabel": 38,
+      "chapterScopedPhysicalRows": 69,
+      "sourcePages": [
+        212,
+        213,
+        214,
+        215,
+        216
+      ],
+      "independentReport": "Shared/reports/hebrew-wikisource/2MA-chapter10-independent-review.json",
+      "independentReportSHA256": "bf8ba4952a6b2559cf53402f7ca3ec70309f53ef0e4f1bb9ef2f41c8e771db05",
+      "finalReconciliationReport": "Shared/reports/hebrew-wikisource/2MA-chapter10-final-reconciliation.json",
+      "finalReconciliationReportSHA256": "4ab3dd573cc2d45fa7f79f7172fa86ece06e7887a8b3dc4984b38d5b6916339e",
+      "allVerseTextsReassembledFromReviewedSourceRows": true,
+      "allUnitPagesMatchPreTranscriptionSourceInventory": true
+    },
+    {
+      "chapter": 11,
+      "units": 37,
+      "representedLabels": 38,
+      "lastPrintedLabel": 38,
+      "chapterScopedPhysicalRows": 61,
+      "sourcePages": [
+        217,
+        218,
+        219
+      ],
+      "independentReport": "Shared/reports/hebrew-wikisource/2MA-chapter11-independent-review.json",
+      "independentReportSHA256": "17b5913d08251deb0e6de92713455b82ecf85b78058f1bf6c6d474cd86c44308",
+      "finalReconciliationReport": "Shared/reports/hebrew-wikisource/2MA-chapter11-final-reconciliation.json",
+      "finalReconciliationReportSHA256": "962950472c9e3d670675e155fe6bd8e236438330c83e6e721e8fb0f0d2fc8ce2",
+      "allVerseTextsReassembledFromReviewedSourceRows": true,
+      "allUnitPagesMatchPreTranscriptionSourceInventory": true
+    },
+    {
+      "chapter": 12,
+      "units": 44,
+      "representedLabels": 45,
+      "lastPrintedLabel": 45,
+      "chapterScopedPhysicalRows": 87,
+      "sourcePages": [
+        220,
+        221,
+        222,
+        223,
+        224
+      ],
+      "independentReport": "Shared/reports/hebrew-wikisource/2MA-chapter12-independent-review.json",
+      "independentReportSHA256": "3deb1c21cb829fe1e51f205f0c81dbcec8f91e1a2d37c1e81dba246668bc997c",
+      "finalReconciliationReport": "Shared/reports/hebrew-wikisource/2MA-chapter12-final-reconciliation.json",
+      "finalReconciliationReportSHA256": "3a6a5ce050bbe966d2834aa51567c94cdfa08b22742e7dacb277aee900fcab64",
+      "allVerseTextsReassembledFromReviewedSourceRows": true,
+      "allUnitPagesMatchPreTranscriptionSourceInventory": true
+    },
+    {
+      "chapter": 13,
+      "units": 26,
+      "representedLabels": 27,
+      "lastPrintedLabel": 27,
+      "chapterScopedPhysicalRows": 46,
+      "sourcePages": [
+        224,
+        225,
+        226,
+        227
+      ],
+      "independentReport": "Shared/reports/hebrew-wikisource/2MA-chapter13-independent-review.json",
+      "independentReportSHA256": "6c696b77884e02864d4a86b2ba6588a279e71175a07357e1415bd9f3cc11109b",
+      "finalReconciliationReport": "Shared/reports/hebrew-wikisource/2MA-chapter13-final-reconciliation.json",
+      "finalReconciliationReportSHA256": "2f0e2e41345ae9dab8c5d169b485c6f138a6045a6494370e7d4bff1b24af0dda",
+      "allVerseTextsReassembledFromReviewedSourceRows": true,
+      "allUnitPagesMatchPreTranscriptionSourceInventory": true
+    },
+    {
+      "chapter": 14,
+      "units": 46,
+      "representedLabels": 46,
+      "lastPrintedLabel": 46,
+      "chapterScopedPhysicalRows": 82,
+      "sourcePages": [
+        227,
+        228,
+        229,
+        230
+      ],
+      "independentReport": "Shared/reports/hebrew-wikisource/2MA-chapter14-independent-review.json",
+      "independentReportSHA256": "05e8655693ea62558dc6137365c850d95fc2a3e3e82c5fa5c597c55a4519d536",
+      "finalReconciliationReport": "Shared/reports/hebrew-wikisource/2MA-chapter14-final-reconciliation.json",
+      "finalReconciliationReportSHA256": "fff4e01369ef79967bab5fa0c72539db4424d96eb4d2f93a8b0e99bb46b67624",
+      "allVerseTextsReassembledFromReviewedSourceRows": true,
+      "allUnitPagesMatchPreTranscriptionSourceInventory": true
+    },
+    {
+      "chapter": 15,
+      "units": 38,
+      "representedLabels": 39,
+      "lastPrintedLabel": 39,
+      "chapterScopedPhysicalRows": 70,
+      "sourcePages": [
+        230,
+        231,
+        232,
+        233
+      ],
+      "independentReport": "Shared/reports/hebrew-wikisource/2MA-chapter15-independent-review.json",
+      "independentReportSHA256": "23f1b3d8c814639ea8c0562ebfeb025df4dbe51313c2c03a2ba3c1ba42747343",
+      "finalReconciliationReport": "Shared/reports/hebrew-wikisource/2MA-chapter15-final-reconciliation.json",
+      "finalReconciliationReportSHA256": "e2ccf9e593987033f614c3d40d79d0febab049d2c3c05e8c13cb5e74f8213b3e",
+      "allVerseTextsReassembledFromReviewedSourceRows": true,
+      "allUnitPagesMatchPreTranscriptionSourceInventory": true
+    }
+  ],
+  "all56OriginalImageHashesVerified": true,
+  "chapterScopedRowRecords": 989,
+  "rowCountCaveat": "Includes the separate colophon; a row spanning a chapter boundary can be present in both chapter reviews.",
+  "unitPageMismatchCount": 0,
+  "labelRangeMismatchCount": 0,
+  "missingBodyPages": [],
+  "extraBodyPages": [],
+  "terminalLabels": [
+    36,
+    32,
+    40,
+    50,
+    27,
+    31,
+    42,
+    36,
+    29,
+    38,
+    38,
+    45,
+    27,
+    46,
+    39
+  ],
+  "sourceGaps": {
+    "1": {
+      "omittedLabels": [],
+      "reason": "Printed 1:9 on source page180 contains a bracketed three-dash lacuna after כסלו. The source gap is retained literally; no verse labels are omitted and no text was supplied to fill it."
+    }
+  },
+  "sourcePeculiarityCorrections": [
+    {
+      "reference": "15:39",
+      "earlierLocator": "First inventory called terminal punctuation exclamation punctuation.",
+      "finalSourceFinding": "The author and independent final pass both identify a single full-height vertical bar, retained as ׀. The separate colophon ends with sof pasuq; no verse40 created.",
+      "evidence": "Shared/reports/hebrew-wikisource/2MA-chapter15-independent-review.json"
+    }
+  ],
+  "colophon": {
+    "id": "2ma-15-closing-formula",
+    "kind": "colophon",
+    "text": "וּבָזֶה תָּם׃",
+    "sourcePages": [
+      233
+    ],
+    "textSHA256": "be223e2bf0ffe6ccbfdbc6037bba3f5930a74a45a778682f716fb160a2acbc9d"
+  },
+  "restorationReport": "Shared/reports/hebrew-wikisource/2MA-14-4-restoration-reconciliation.json",
+  "proposedCompleteContentSHA256": "b026d27eea5c6bcaf7f774a03d1a18eddaccc85f1859591e95880cbb0bd43953",
+  "proposedApprovalInventory": {
+    "scanSHA256": "656891d377d2e3d4a9216723d94205488423907bf01df424b9f0b9de1560051e",
+    "contentSHA256": "b026d27eea5c6bcaf7f774a03d1a18eddaccc85f1859591e95880cbb0bd43953",
+    "textPages": [
+      178,
+      179,
+      180,
+      181,
+      182,
+      183,
+      184,
+      185,
+      186,
+      187,
+      188,
+      189,
+      190,
+      191,
+      192,
+      193,
+      194,
+      195,
+      196,
+      197,
+      198,
+      199,
+      200,
+      201,
+      202,
+      203,
+      204,
+      205,
+      206,
+      207,
+      208,
+      209,
+      210,
+      211,
+      212,
+      213,
+      214,
+      215,
+      216,
+      217,
+      218,
+      219,
+      220,
+      221,
+      222,
+      223,
+      224,
+      225,
+      226,
+      227,
+      228,
+      229,
+      230,
+      231,
+      232,
+      233
+    ],
+    "chapters": [
+      {
+        "number": 1,
+        "units": [
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            5,
+            6
+          ],
+          [
+            7,
+            7
+          ],
+          [
+            8,
+            8
+          ],
+          [
+            9,
+            9
+          ],
+          [
+            10,
+            10
+          ],
+          [
+            11,
+            11
+          ],
+          [
+            12,
+            12
+          ],
+          [
+            13,
+            13
+          ],
+          [
+            14,
+            14
+          ],
+          [
+            15,
+            15
+          ],
+          [
+            16,
+            16
+          ],
+          [
+            17,
+            17
+          ],
+          [
+            18,
+            18
+          ],
+          [
+            19,
+            19
+          ],
+          [
+            20,
+            20
+          ],
+          [
+            21,
+            21
+          ],
+          [
+            22,
+            22
+          ],
+          [
+            23,
+            23
+          ],
+          [
+            24,
+            24
+          ],
+          [
+            25,
+            25
+          ],
+          [
+            26,
+            26
+          ],
+          [
+            27,
+            27
+          ],
+          [
+            28,
+            28
+          ],
+          [
+            29,
+            29
+          ],
+          [
+            30,
+            31
+          ],
+          [
+            32,
+            32
+          ],
+          [
+            33,
+            33
+          ],
+          [
+            34,
+            34
+          ],
+          [
+            35,
+            35
+          ],
+          [
+            36,
+            36
+          ]
+        ]
+      },
+      {
+        "number": 2,
+        "units": [
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            5,
+            5
+          ],
+          [
+            6,
+            6
+          ],
+          [
+            7,
+            7
+          ],
+          [
+            8,
+            8
+          ],
+          [
+            9,
+            9
+          ],
+          [
+            10,
+            10
+          ],
+          [
+            11,
+            12
+          ],
+          [
+            13,
+            13
+          ],
+          [
+            14,
+            14
+          ],
+          [
+            15,
+            15
+          ],
+          [
+            16,
+            16
+          ],
+          [
+            17,
+            17
+          ],
+          [
+            18,
+            18
+          ],
+          [
+            19,
+            19
+          ],
+          [
+            20,
+            20
+          ],
+          [
+            21,
+            21
+          ],
+          [
+            22,
+            22
+          ],
+          [
+            23,
+            23
+          ],
+          [
+            24,
+            24
+          ],
+          [
+            25,
+            25
+          ],
+          [
+            26,
+            26
+          ],
+          [
+            27,
+            27
+          ],
+          [
+            28,
+            28
+          ],
+          [
+            29,
+            29
+          ],
+          [
+            30,
+            30
+          ],
+          [
+            31,
+            31
+          ],
+          [
+            32,
+            32
+          ]
+        ]
+      },
+      {
+        "number": 3,
+        "units": [
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            5,
+            5
+          ],
+          [
+            6,
+            6
+          ],
+          [
+            7,
+            7
+          ],
+          [
+            8,
+            8
+          ],
+          [
+            9,
+            9
+          ],
+          [
+            10,
+            10
+          ],
+          [
+            11,
+            11
+          ],
+          [
+            12,
+            12
+          ],
+          [
+            13,
+            13
+          ],
+          [
+            14,
+            14
+          ],
+          [
+            15,
+            15
+          ],
+          [
+            16,
+            16
+          ],
+          [
+            17,
+            17
+          ],
+          [
+            18,
+            18
+          ],
+          [
+            19,
+            19
+          ],
+          [
+            20,
+            21
+          ],
+          [
+            22,
+            22
+          ],
+          [
+            23,
+            24
+          ],
+          [
+            25,
+            25
+          ],
+          [
+            26,
+            26
+          ],
+          [
+            27,
+            27
+          ],
+          [
+            28,
+            28
+          ],
+          [
+            29,
+            29
+          ],
+          [
+            30,
+            30
+          ],
+          [
+            31,
+            31
+          ],
+          [
+            32,
+            32
+          ],
+          [
+            33,
+            33
+          ],
+          [
+            34,
+            34
+          ],
+          [
+            35,
+            35
+          ],
+          [
+            36,
+            36
+          ],
+          [
+            37,
+            37
+          ],
+          [
+            38,
+            38
+          ],
+          [
+            39,
+            39
+          ],
+          [
+            40,
+            40
+          ]
+        ]
+      },
+      {
+        "number": 4,
+        "units": [
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            5,
+            5
+          ],
+          [
+            6,
+            6
+          ],
+          [
+            7,
+            7
+          ],
+          [
+            8,
+            8
+          ],
+          [
+            9,
+            9
+          ],
+          [
+            10,
+            10
+          ],
+          [
+            11,
+            11
+          ],
+          [
+            12,
+            12
+          ],
+          [
+            13,
+            13
+          ],
+          [
+            14,
+            14
+          ],
+          [
+            15,
+            15
+          ],
+          [
+            16,
+            16
+          ],
+          [
+            17,
+            17
+          ],
+          [
+            18,
+            19
+          ],
+          [
+            20,
+            20
+          ],
+          [
+            21,
+            21
+          ],
+          [
+            22,
+            22
+          ],
+          [
+            23,
+            23
+          ],
+          [
+            24,
+            24
+          ],
+          [
+            25,
+            25
+          ],
+          [
+            26,
+            26
+          ],
+          [
+            27,
+            27
+          ],
+          [
+            28,
+            28
+          ],
+          [
+            29,
+            29
+          ],
+          [
+            30,
+            30
+          ],
+          [
+            31,
+            31
+          ],
+          [
+            32,
+            32
+          ],
+          [
+            33,
+            33
+          ],
+          [
+            34,
+            34
+          ],
+          [
+            35,
+            35
+          ],
+          [
+            36,
+            36
+          ],
+          [
+            37,
+            37
+          ],
+          [
+            38,
+            38
+          ],
+          [
+            39,
+            39
+          ],
+          [
+            40,
+            40
+          ],
+          [
+            41,
+            41
+          ],
+          [
+            42,
+            42
+          ],
+          [
+            43,
+            43
+          ],
+          [
+            44,
+            44
+          ],
+          [
+            45,
+            45
+          ],
+          [
+            46,
+            46
+          ],
+          [
+            47,
+            47
+          ],
+          [
+            48,
+            48
+          ],
+          [
+            49,
+            49
+          ],
+          [
+            50,
+            50
+          ]
+        ]
+      },
+      {
+        "number": 5,
+        "units": [
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            5,
+            5
+          ],
+          [
+            6,
+            6
+          ],
+          [
+            7,
+            7
+          ],
+          [
+            8,
+            8
+          ],
+          [
+            9,
+            9
+          ],
+          [
+            10,
+            10
+          ],
+          [
+            11,
+            11
+          ],
+          [
+            12,
+            12
+          ],
+          [
+            13,
+            13
+          ],
+          [
+            14,
+            14
+          ],
+          [
+            15,
+            15
+          ],
+          [
+            16,
+            16
+          ],
+          [
+            17,
+            17
+          ],
+          [
+            18,
+            18
+          ],
+          [
+            19,
+            19
+          ],
+          [
+            20,
+            20
+          ],
+          [
+            21,
+            21
+          ],
+          [
+            22,
+            22
+          ],
+          [
+            23,
+            23
+          ],
+          [
+            24,
+            24
+          ],
+          [
+            25,
+            25
+          ],
+          [
+            26,
+            26
+          ],
+          [
+            27,
+            27
+          ]
+        ]
+      },
+      {
+        "number": 6,
+        "units": [
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            5,
+            5
+          ],
+          [
+            6,
+            6
+          ],
+          [
+            7,
+            7
+          ],
+          [
+            8,
+            8
+          ],
+          [
+            9,
+            9
+          ],
+          [
+            10,
+            10
+          ],
+          [
+            11,
+            11
+          ],
+          [
+            12,
+            12
+          ],
+          [
+            13,
+            13
+          ],
+          [
+            14,
+            14
+          ],
+          [
+            15,
+            15
+          ],
+          [
+            16,
+            16
+          ],
+          [
+            17,
+            17
+          ],
+          [
+            18,
+            18
+          ],
+          [
+            19,
+            19
+          ],
+          [
+            20,
+            20
+          ],
+          [
+            21,
+            21
+          ],
+          [
+            22,
+            22
+          ],
+          [
+            23,
+            23
+          ],
+          [
+            24,
+            24
+          ],
+          [
+            25,
+            25
+          ],
+          [
+            26,
+            26
+          ],
+          [
+            27,
+            27
+          ],
+          [
+            28,
+            28
+          ],
+          [
+            29,
+            29
+          ],
+          [
+            30,
+            30
+          ],
+          [
+            31,
+            31
+          ]
+        ]
+      },
+      {
+        "number": 7,
+        "units": [
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            5,
+            5
+          ],
+          [
+            6,
+            6
+          ],
+          [
+            7,
+            7
+          ],
+          [
+            8,
+            8
+          ],
+          [
+            9,
+            9
+          ],
+          [
+            10,
+            10
+          ],
+          [
+            11,
+            11
+          ],
+          [
+            12,
+            12
+          ],
+          [
+            13,
+            14
+          ],
+          [
+            15,
+            16
+          ],
+          [
+            17,
+            17
+          ],
+          [
+            18,
+            18
+          ],
+          [
+            19,
+            19
+          ],
+          [
+            20,
+            20
+          ],
+          [
+            21,
+            21
+          ],
+          [
+            22,
+            22
+          ],
+          [
+            23,
+            23
+          ],
+          [
+            24,
+            24
+          ],
+          [
+            25,
+            25
+          ],
+          [
+            26,
+            26
+          ],
+          [
+            27,
+            27
+          ],
+          [
+            28,
+            28
+          ],
+          [
+            29,
+            29
+          ],
+          [
+            30,
+            30
+          ],
+          [
+            31,
+            31
+          ],
+          [
+            32,
+            33
+          ],
+          [
+            34,
+            34
+          ],
+          [
+            35,
+            35
+          ],
+          [
+            36,
+            36
+          ],
+          [
+            37,
+            37
+          ],
+          [
+            38,
+            38
+          ],
+          [
+            39,
+            39
+          ],
+          [
+            40,
+            40
+          ],
+          [
+            41,
+            41
+          ],
+          [
+            42,
+            42
+          ]
+        ]
+      },
+      {
+        "number": 8,
+        "units": [
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            5,
+            5
+          ],
+          [
+            6,
+            6
+          ],
+          [
+            7,
+            7
+          ],
+          [
+            8,
+            8
+          ],
+          [
+            9,
+            9
+          ],
+          [
+            10,
+            10
+          ],
+          [
+            11,
+            11
+          ],
+          [
+            12,
+            12
+          ],
+          [
+            13,
+            13
+          ],
+          [
+            14,
+            14
+          ],
+          [
+            15,
+            15
+          ],
+          [
+            16,
+            16
+          ],
+          [
+            17,
+            17
+          ],
+          [
+            18,
+            18
+          ],
+          [
+            19,
+            19
+          ],
+          [
+            20,
+            20
+          ],
+          [
+            21,
+            21
+          ],
+          [
+            22,
+            22
+          ],
+          [
+            23,
+            23
+          ],
+          [
+            24,
+            24
+          ],
+          [
+            25,
+            25
+          ],
+          [
+            26,
+            27
+          ],
+          [
+            28,
+            28
+          ],
+          [
+            29,
+            29
+          ],
+          [
+            30,
+            30
+          ],
+          [
+            31,
+            31
+          ],
+          [
+            32,
+            32
+          ],
+          [
+            33,
+            33
+          ],
+          [
+            34,
+            34
+          ],
+          [
+            35,
+            35
+          ],
+          [
+            36,
+            36
+          ]
+        ]
+      },
+      {
+        "number": 9,
+        "units": [
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            5,
+            5
+          ],
+          [
+            6,
+            6
+          ],
+          [
+            7,
+            7
+          ],
+          [
+            8,
+            8
+          ],
+          [
+            9,
+            9
+          ],
+          [
+            10,
+            10
+          ],
+          [
+            11,
+            11
+          ],
+          [
+            12,
+            12
+          ],
+          [
+            13,
+            13
+          ],
+          [
+            14,
+            14
+          ],
+          [
+            15,
+            15
+          ],
+          [
+            16,
+            16
+          ],
+          [
+            17,
+            17
+          ],
+          [
+            18,
+            18
+          ],
+          [
+            19,
+            19
+          ],
+          [
+            20,
+            20
+          ],
+          [
+            21,
+            21
+          ],
+          [
+            22,
+            22
+          ],
+          [
+            23,
+            23
+          ],
+          [
+            24,
+            24
+          ],
+          [
+            25,
+            25
+          ],
+          [
+            26,
+            26
+          ],
+          [
+            27,
+            27
+          ],
+          [
+            28,
+            28
+          ],
+          [
+            29,
+            29
+          ]
+        ]
+      },
+      {
+        "number": 10,
+        "units": [
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            5,
+            5
+          ],
+          [
+            6,
+            6
+          ],
+          [
+            7,
+            7
+          ],
+          [
+            8,
+            8
+          ],
+          [
+            9,
+            9
+          ],
+          [
+            10,
+            10
+          ],
+          [
+            11,
+            11
+          ],
+          [
+            12,
+            12
+          ],
+          [
+            13,
+            13
+          ],
+          [
+            14,
+            14
+          ],
+          [
+            15,
+            15
+          ],
+          [
+            16,
+            16
+          ],
+          [
+            17,
+            17
+          ],
+          [
+            18,
+            18
+          ],
+          [
+            19,
+            19
+          ],
+          [
+            20,
+            20
+          ],
+          [
+            21,
+            21
+          ],
+          [
+            22,
+            22
+          ],
+          [
+            23,
+            23
+          ],
+          [
+            24,
+            24
+          ],
+          [
+            25,
+            25
+          ],
+          [
+            26,
+            26
+          ],
+          [
+            27,
+            27
+          ],
+          [
+            28,
+            28
+          ],
+          [
+            29,
+            29
+          ],
+          [
+            30,
+            30
+          ],
+          [
+            31,
+            31
+          ],
+          [
+            32,
+            32
+          ],
+          [
+            33,
+            33
+          ],
+          [
+            34,
+            34
+          ],
+          [
+            35,
+            35
+          ],
+          [
+            36,
+            36
+          ],
+          [
+            37,
+            37
+          ],
+          [
+            38,
+            38
+          ]
+        ]
+      },
+      {
+        "number": 11,
+        "units": [
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            5,
+            5
+          ],
+          [
+            6,
+            6
+          ],
+          [
+            7,
+            7
+          ],
+          [
+            8,
+            8
+          ],
+          [
+            9,
+            9
+          ],
+          [
+            10,
+            10
+          ],
+          [
+            11,
+            11
+          ],
+          [
+            12,
+            12
+          ],
+          [
+            13,
+            13
+          ],
+          [
+            14,
+            14
+          ],
+          [
+            15,
+            15
+          ],
+          [
+            16,
+            16
+          ],
+          [
+            17,
+            17
+          ],
+          [
+            18,
+            18
+          ],
+          [
+            19,
+            19
+          ],
+          [
+            20,
+            20
+          ],
+          [
+            21,
+            21
+          ],
+          [
+            22,
+            22
+          ],
+          [
+            23,
+            23
+          ],
+          [
+            24,
+            24
+          ],
+          [
+            25,
+            25
+          ],
+          [
+            26,
+            26
+          ],
+          [
+            27,
+            27
+          ],
+          [
+            28,
+            29
+          ],
+          [
+            30,
+            30
+          ],
+          [
+            31,
+            31
+          ],
+          [
+            32,
+            32
+          ],
+          [
+            33,
+            33
+          ],
+          [
+            34,
+            34
+          ],
+          [
+            35,
+            35
+          ],
+          [
+            36,
+            36
+          ],
+          [
+            37,
+            37
+          ],
+          [
+            38,
+            38
+          ]
+        ]
+      },
+      {
+        "number": 12,
+        "units": [
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            5,
+            5
+          ],
+          [
+            6,
+            6
+          ],
+          [
+            7,
+            7
+          ],
+          [
+            8,
+            8
+          ],
+          [
+            9,
+            9
+          ],
+          [
+            10,
+            10
+          ],
+          [
+            11,
+            11
+          ],
+          [
+            12,
+            12
+          ],
+          [
+            13,
+            13
+          ],
+          [
+            14,
+            14
+          ],
+          [
+            15,
+            15
+          ],
+          [
+            16,
+            16
+          ],
+          [
+            17,
+            17
+          ],
+          [
+            18,
+            18
+          ],
+          [
+            19,
+            19
+          ],
+          [
+            20,
+            20
+          ],
+          [
+            21,
+            21
+          ],
+          [
+            22,
+            22
+          ],
+          [
+            23,
+            23
+          ],
+          [
+            24,
+            24
+          ],
+          [
+            25,
+            25
+          ],
+          [
+            26,
+            26
+          ],
+          [
+            27,
+            27
+          ],
+          [
+            28,
+            28
+          ],
+          [
+            29,
+            29
+          ],
+          [
+            30,
+            30
+          ],
+          [
+            31,
+            31
+          ],
+          [
+            32,
+            32
+          ],
+          [
+            33,
+            33
+          ],
+          [
+            34,
+            35
+          ],
+          [
+            36,
+            36
+          ],
+          [
+            37,
+            37
+          ],
+          [
+            38,
+            38
+          ],
+          [
+            39,
+            39
+          ],
+          [
+            40,
+            40
+          ],
+          [
+            41,
+            41
+          ],
+          [
+            42,
+            42
+          ],
+          [
+            43,
+            43
+          ],
+          [
+            44,
+            44
+          ],
+          [
+            45,
+            45
+          ]
+        ]
+      },
+      {
+        "number": 13,
+        "units": [
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            5,
+            5
+          ],
+          [
+            6,
+            6
+          ],
+          [
+            7,
+            7
+          ],
+          [
+            8,
+            8
+          ],
+          [
+            9,
+            9
+          ],
+          [
+            10,
+            10
+          ],
+          [
+            11,
+            11
+          ],
+          [
+            12,
+            12
+          ],
+          [
+            13,
+            13
+          ],
+          [
+            14,
+            14
+          ],
+          [
+            15,
+            15
+          ],
+          [
+            16,
+            16
+          ],
+          [
+            17,
+            18
+          ],
+          [
+            19,
+            19
+          ],
+          [
+            20,
+            20
+          ],
+          [
+            21,
+            21
+          ],
+          [
+            22,
+            22
+          ],
+          [
+            23,
+            23
+          ],
+          [
+            24,
+            24
+          ],
+          [
+            25,
+            25
+          ],
+          [
+            26,
+            26
+          ],
+          [
+            27,
+            27
+          ]
+        ]
+      },
+      {
+        "number": 14,
+        "units": [
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            5,
+            5
+          ],
+          [
+            6,
+            6
+          ],
+          [
+            7,
+            7
+          ],
+          [
+            8,
+            8
+          ],
+          [
+            9,
+            9
+          ],
+          [
+            10,
+            10
+          ],
+          [
+            11,
+            11
+          ],
+          [
+            12,
+            12
+          ],
+          [
+            13,
+            13
+          ],
+          [
+            14,
+            14
+          ],
+          [
+            15,
+            15
+          ],
+          [
+            16,
+            16
+          ],
+          [
+            17,
+            17
+          ],
+          [
+            18,
+            18
+          ],
+          [
+            19,
+            19
+          ],
+          [
+            20,
+            20
+          ],
+          [
+            21,
+            21
+          ],
+          [
+            22,
+            22
+          ],
+          [
+            23,
+            23
+          ],
+          [
+            24,
+            24
+          ],
+          [
+            25,
+            25
+          ],
+          [
+            26,
+            26
+          ],
+          [
+            27,
+            27
+          ],
+          [
+            28,
+            28
+          ],
+          [
+            29,
+            29
+          ],
+          [
+            30,
+            30
+          ],
+          [
+            31,
+            31
+          ],
+          [
+            32,
+            32
+          ],
+          [
+            33,
+            33
+          ],
+          [
+            34,
+            34
+          ],
+          [
+            35,
+            35
+          ],
+          [
+            36,
+            36
+          ],
+          [
+            37,
+            37
+          ],
+          [
+            38,
+            38
+          ],
+          [
+            39,
+            39
+          ],
+          [
+            40,
+            40
+          ],
+          [
+            41,
+            41
+          ],
+          [
+            42,
+            42
+          ],
+          [
+            43,
+            43
+          ],
+          [
+            44,
+            44
+          ],
+          [
+            45,
+            45
+          ],
+          [
+            46,
+            46
+          ]
+        ]
+      },
+      {
+        "number": 15,
+        "units": [
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            5,
+            5
+          ],
+          [
+            6,
+            6
+          ],
+          [
+            7,
+            7
+          ],
+          [
+            8,
+            8
+          ],
+          [
+            9,
+            9
+          ],
+          [
+            10,
+            10
+          ],
+          [
+            11,
+            11
+          ],
+          [
+            12,
+            12
+          ],
+          [
+            13,
+            13
+          ],
+          [
+            14,
+            14
+          ],
+          [
+            15,
+            15
+          ],
+          [
+            16,
+            16
+          ],
+          [
+            17,
+            17
+          ],
+          [
+            18,
+            18
+          ],
+          [
+            19,
+            19
+          ],
+          [
+            20,
+            20
+          ],
+          [
+            21,
+            21
+          ],
+          [
+            22,
+            22
+          ],
+          [
+            23,
+            23
+          ],
+          [
+            24,
+            24
+          ],
+          [
+            25,
+            26
+          ],
+          [
+            27,
+            27
+          ],
+          [
+            28,
+            28
+          ],
+          [
+            29,
+            29
+          ],
+          [
+            30,
+            30
+          ],
+          [
+            31,
+            31
+          ],
+          [
+            32,
+            32
+          ],
+          [
+            33,
+            33
+          ],
+          [
+            34,
+            34
+          ],
+          [
+            35,
+            35
+          ],
+          [
+            36,
+            36
+          ],
+          [
+            37,
+            37
+          ],
+          [
+            38,
+            38
+          ],
+          [
+            39,
+            39
+          ]
+        ]
+      }
+    ],
+    "contentBlocks": [
+      {
+        "number": 15,
+        "ids": [
+          "2ma-15-1",
+          "2ma-15-2",
+          "2ma-15-3",
+          "2ma-15-4",
+          "2ma-15-5",
+          "2ma-15-6",
+          "2ma-15-7",
+          "2ma-15-8",
+          "2ma-15-9",
+          "2ma-15-10",
+          "2ma-15-11",
+          "2ma-15-12",
+          "2ma-15-13",
+          "2ma-15-14",
+          "2ma-15-15",
+          "2ma-15-16",
+          "2ma-15-17",
+          "2ma-15-18",
+          "2ma-15-19",
+          "2ma-15-20",
+          "2ma-15-21",
+          "2ma-15-22",
+          "2ma-15-23",
+          "2ma-15-24",
+          "2ma-15-25",
+          "2ma-15-27",
+          "2ma-15-28",
+          "2ma-15-29",
+          "2ma-15-30",
+          "2ma-15-31",
+          "2ma-15-32",
+          "2ma-15-33",
+          "2ma-15-34",
+          "2ma-15-35",
+          "2ma-15-36",
+          "2ma-15-37",
+          "2ma-15-38",
+          "2ma-15-39",
+          "2ma-15-closing-formula"
+        ]
+      }
+    ],
+    "addressRoutes": [],
+    "sourceNoteIds": [
+      "2ma-1-10-he-1-vowel",
+      "2ma-1-16-vav-1-vowel-second-word",
+      "2ma-11-25-samekh-2-vowel",
+      "2ma-11-4-bet-3-vowel",
+      "2ma-12-45-shin-3-dagesh",
+      "2ma-14-4-het-3-restored-letter",
+      "2ma-15-10-dalet-5-vowel",
+      "2ma-15-34-het-2-vowel",
+      "2ma-2-28-yod-2-dagesh",
+      "2ma-3-26-dalet-3-vowel",
+      "2ma-5-16-tav-2-vowel",
+      "2ma-5-22-lamed-3-vowel",
+      "2ma-6-11-he-2-vowel",
+      "2ma-6-13-shin-2-dagesh",
+      "2ma-7-40-bet-1-vowel",
+      "2ma-8-4-yod-2-dagesh",
+      "2ma-9-29-lamed-3-vowel",
+      "2ma-9-29-pe-1-dagesh"
+    ],
+    "hasIntroduction": false,
+    "sourceGaps": {
+      "1": {
+        "omittedLabels": [],
+        "reason": "Printed 1:9 on source page180 contains a bracketed three-dash lacuna after כסלו. The source gap is retained literally; no verse labels are omitted and no text was supplied to fill it."
+      }
+    },
+    "method": "Reconciled against the full printed-source inventory made before canonical transcription: all56 pages,15 chapters,542 primary units and556 labels, including14 combined labels and a separate closing colophon. Each chapter also has a separate complete author pass and a full independent word/point/label comparison. Every final unit was reassembled from the reviewed physical-row evidence and every unit-to-page assignment matched the pre-transcription inventory. The sole consonant restoration at14:4 has explicit user approval and a precise source note;17 isolated unreadable-point notes are independently scoped. All readable points and the original1:9 lacuna remain literal."
+  },
+  "validation": {
+    "draftCanonical": {
+      "book": "2MA",
+      "status": "draft",
+      "chapters": 15,
+      "units": 542,
+      "sourcePages": 56,
+      "reviewedPages": 56
+    },
+    "completeCandidateInMemoryOnly": {
+      "book": "2MA",
+      "status": "complete",
+      "chapters": 15,
+      "units": 542,
+      "sourcePages": 56,
+      "reviewedPages": 56
+    },
+    "allTextHashesAndNoteAnchorsValidated": true,
+    "globalApprovalInventoryUnchanged": true
+  },
+  "unresolvedFindings": []
+}

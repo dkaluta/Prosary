@@ -169,7 +169,7 @@ struct AboutView: View {
             .foregroundStyle(.secondary)
           Link("about.peshittaSourceLink", destination: URL(string: "https://syriaccorpus.org/")!)
           Link("about.peshittaLicenseLink", destination: URL(string: "https://creativecommons.org/licenses/by/4.0/")!)
-          Text("about.peshittaIsaiahSources")
+          Text(String(localized: "about.peshittaIsaiahSources", defaultValue: "Old Testament: user-supplied pointed Peshitta XML from Internet Archive. The underlying edition and redistribution terms remain unidentified. Hebrew script conversion using Erez’s rules; verse selection and text formatting by Prosary.", bundle: UILanguage.bundle, locale: UILanguage.locale))
             .font(.footnote)
             .foregroundStyle(.secondary)
           Link("about.peshittaIsaiahSourceLink", destination: URL(string: "https://archive.org/details/peshitta-complete-bible-otnt")!)

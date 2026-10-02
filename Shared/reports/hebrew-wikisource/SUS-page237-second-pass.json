@@ -1,0 +1,142 @@
+{
+  "schemaVersion": 1,
+  "book": "SUS",
+  "sourcePage": 237,
+  "scanSHA256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+  "review": "Complete second visual comparison of lower Theodotion units1–8, including every word/point/punctuation and starts. Independent margin inventory and focused peer mark readings supplement that comparison. Three accepted source notes disclose unreadable points; page comparison is complete, book remains draft.",
+  "changes": [
+    {
+      "verse": 2,
+      "before": "יְפָה",
+      "after": "יָפָה",
+      "basis": "Tight crop clearly shows qamats below yod; the draft sheva was wrong.",
+      "crop": "root-sus-p237-v2-detail.png",
+      "cropSHA256": "5495d95359eb2a69bb730c382f1aa209923d879e5c6dff94d94be0204f066fba"
+    },
+    {
+      "verse": 4,
+      "before": "מִכֻּלָּם",
+      "after": "מִכּלָּם",
+      "sourceNote": {
+        "id": "sus-1-4-letter-2-vowel",
+        "kind": "unreadablePoint",
+        "anchor": "מִכּלָּם",
+        "occurrence": 1,
+        "letterIndex": 2,
+        "mark": "vowel",
+        "sourcePages": [
+          237
+        ],
+        "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=237"
+      },
+      "crop": "root-sus-p237-v4-mikullam-actual.png",
+      "basis": "Root and independent reviewer cannot separate the queried point from the dense glyph. Only the provisional point is omitted; readable points remain. No conventional vocalization is substituted.",
+      "cropSHA256": "e182cdb02bb33f32efe0da8e8a184ad51c754037522623748e392738af448bbf"
+    },
+    {
+      "verse": 5,
+      "before": "כְּמַנְהִיגֵי",
+      "after": "כּמַנְהִיגֵי",
+      "sourceNote": {
+        "id": "sus-1-5-letter-1-vowel",
+        "kind": "unreadablePoint",
+        "anchor": "כּמַנְהִיגֵי",
+        "occurrence": 1,
+        "letterIndex": 1,
+        "mark": "vowel",
+        "sourcePages": [
+          237
+        ],
+        "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=237"
+      },
+      "crop": "root-sus-p237-v5-prefix-bottom.png",
+      "basis": "Root and independent reviewer cannot separate the queried point from the dense glyph. Only the provisional point is omitted; readable points remain. No conventional vocalization is substituted.",
+      "cropSHA256": "0f0c47faebff40f64b0810a60882edfed0da8a5efaa5e5780f80821521e473b0"
+    },
+    {
+      "verse": 6,
+      "before": "וַיִּתְחַזְּקוּ",
+      "after": "וַיִתְחַזְּקוּ",
+      "sourceNote": {
+        "id": "sus-1-6-letter-2-dagesh",
+        "kind": "unreadablePoint",
+        "anchor": "וַיִתְחַזְּקוּ",
+        "occurrence": 1,
+        "letterIndex": 2,
+        "mark": "dagesh",
+        "sourcePages": [
+          237
+        ],
+        "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=237"
+      },
+      "crop": "root-sus-p237-v6-opening-actual.png",
+      "basis": "Root and independent reviewer cannot separate the queried point from the dense glyph. Only the provisional point is omitted; readable points remain. No conventional vocalization is substituted.",
+      "cropSHA256": "f6674f865387199bd9d524d8beb6e9b6081e228647e9a73084ae1e2ab7087247"
+    }
+  ],
+  "peerReadings": {
+    "reviewer": "android_readings",
+    "v5": "Clear initial kaf dagesh; below-baseline shape fused, vowel not distinguishable.",
+    "v6": "Yod dense patch cannot be distinguished from its own stroke; no confident dagesh presence or absence.",
+    "v4": "Clear kaf dagesh; descending diagonal blob makes qibbuts plausible but not certifiable."
+  },
+  "units": [
+    {
+      "verse": 1,
+      "textSHA256": "f1d6aec31f22b05ca6c73fa035e1ef7a9e1f7c4ad4c942953c5d8b5dd1cb6885",
+      "sourcePages": [
+        237
+      ]
+    },
+    {
+      "verse": 2,
+      "textSHA256": "d47e232da15d001f0e189d23dc2d49c30439fc6cae507554cc40253aa3f2f832",
+      "sourcePages": [
+        237
+      ]
+    },
+    {
+      "verse": 3,
+      "textSHA256": "54d01b479af0750141427aba583af3c2a6f24af6ba28176b1fbb806a8ba05400",
+      "sourcePages": [
+        237
+      ]
+    },
+    {
+      "verse": 4,
+      "textSHA256": "264f95a4302667b545113513c30511ea93270727230560aae6395d838437b119",
+      "sourcePages": [
+        237
+      ]
+    },
+    {
+      "verse": 5,
+      "textSHA256": "d0c2f53e967a694f3551208c67ce53c94b417dd3d5eadc9f090cb4d3823b46b7",
+      "sourcePages": [
+        237
+      ]
+    },
+    {
+      "verse": 6,
+      "textSHA256": "466349850e0fc987032bec7b923f2503053c37db27183d806ba06bac141ec7b7",
+      "sourcePages": [
+        237
+      ]
+    },
+    {
+      "verse": 7,
+      "textSHA256": "06a0a8971faef2ce1538cc83451e4cf05815251016e040c4b78b768d135a646a",
+      "sourcePages": [
+        237
+      ]
+    },
+    {
+      "verse": 8,
+      "textSHA256": "32c361217dc7820176f43f5e39c7205188ff7a9a5fcce9e5da1133a41f7bf6ca",
+      "sourcePages": [
+        237
+      ]
+    }
+  ],
+  "releaseEligible": false
+}

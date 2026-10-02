@@ -3,6 +3,8 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
 using Prosary.Services;
+using Prosary.ViewModels;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Prosary.Navigation;
 
@@ -69,6 +71,7 @@ public sealed class WindowNavigation(Func<Frame?> frame)
     public Window? OwnerWindow => Context is { IsClosed: false } context ? context.Window : null;
     public Guid? SessionID => Context is { IsClosed: false } context ? context.SessionID : null;
     public Guid? SavedPrayerID => OwnerWindow is PrayerWindow window ? window.SavedPrayerID : null;
+    public HomeViewModel? Today => Context is { IsClosed: false } context ? context.Today : null;
     public bool CanGoBack => Context is { IsClosed: false } context
         && (context.Frame.CanGoBack || context.IsPrayerWindow);
 
@@ -118,6 +121,8 @@ public sealed class WindowNavigation(Func<Frame?> frame)
 
 internal sealed class WindowNavigationContext : IDisposable
 {
+    private readonly Lazy<HomeViewModel> _today = new(() => App.Services.GetRequiredService<HomeViewModel>());
+    public HomeViewModel Today => _today.Value;
     public Guid SessionID { get; } = Guid.NewGuid();
     public Frame Frame { get; }
     public Window Window { get; }

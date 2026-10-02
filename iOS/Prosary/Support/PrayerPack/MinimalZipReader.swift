@@ -69,6 +69,10 @@ struct MinimalZipReader: Sendable {
     Array(entries.keys)
   }
 
+  nonisolated var expandedByteCount: Int {
+    entries.values.reduce(0) { $0 + $1.uncompressedSize }
+  }
+
   /// Stable identity for an entry's bytes, obtained without opening or inflating it.
   nonisolated func entryFingerprint(_ name: String) -> String? {
     guard let entry = entries[name] else { return nil }

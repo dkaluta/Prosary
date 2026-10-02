@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "book": "2MA",
+  "status": "Source transcription complete and accepted",
+  "contentSHA256": "b026d27eea5c6bcaf7f774a03d1a18eddaccc85f1859591e95880cbb0bd43953",
+  "sourceInventory": "Shared/reports/hebrew-wikisource/2MA-final-source-inventory.json",
+  "sourceInventorySHA256": "655890d09fd9f5d1ecbd9cb816b4aea4ee5fafc067476355a11f81c15beabcb0",
+  "evidenceHashesVerified": 31,
+  "validation": {
+    "book": "2MA",
+    "status": "complete",
+    "chapters": 15,
+    "units": 542,
+    "sourcePages": 56,
+    "reviewedPages": 56
+  },
+  "acceptedSourceNoteIds": [
+    "2ma-1-10-he-1-vowel",
+    "2ma-1-16-vav-1-vowel-second-word",
+    "2ma-11-25-samekh-2-vowel",
+    "2ma-11-4-bet-3-vowel",
+    "2ma-12-45-shin-3-dagesh",
+    "2ma-14-4-het-3-restored-letter",
+    "2ma-15-10-dalet-5-vowel",
+    "2ma-15-34-het-2-vowel",
+    "2ma-2-28-yod-2-dagesh",
+    "2ma-3-26-dalet-3-vowel",
+    "2ma-5-16-tav-2-vowel",
+    "2ma-5-22-lamed-3-vowel",
+    "2ma-6-11-he-2-vowel",
+    "2ma-6-13-shin-2-dagesh",
+    "2ma-7-40-bet-1-vowel",
+    "2ma-8-4-yod-2-dagesh",
+    "2ma-9-29-lamed-3-vowel",
+    "2ma-9-29-pe-1-dagesh"
+  ],
+  "sourceGaps": {
+    "1": {
+      "omittedLabels": [],
+      "reason": "Printed 1:9 on source page180 contains a bracketed three-dash lacuna after כסלו. The source gap is retained literally; no verse labels are omitted and no text was supplied to fill it."
+    }
+  },
+  "remainingSourceFindings": [],
+  "releaseApproved": false,
+  "rootScope": "Final inventory and recorded full chapter reviews reconciled; disputed restoration pixels independently corroborated. Contextual reconstructions are explicitly user-authorized and never represented as newly legible print."
+}

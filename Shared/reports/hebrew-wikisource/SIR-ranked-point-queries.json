@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Ranked consequential subset, updated after source comparison through482. Resolved items retained as history; page reports retain remaining small-mark queries. No approval.",
+  "queries": [
+    {
+      "reference": "8:3",
+      "candidate": "עֵצִ[ים] restored; verify bracket includes yod+mem and tsadi hiriq",
+      "crop": "/private/tmp/prosary-sirach-extra/query-8-3.png",
+      "cropSHA256": "d92729fbe3de2c6ff6a55efd584286d0a31980c75cc0691462f20382b87ca7a4",
+      "contextCrop": "/private/tmp/prosary-sirach-extra/B-462-upper.png",
+      "status": "resolved-independent-second-eye",
+      "resolution": "עֵצִ[ים] confirmed; earlier wide-crop substitution withdrawn."
+    },
+    {
+      "reference": "7:21",
+      "candidate": "כְּנַפְשׁוֹ[ךָ] likely; current final kaf sheva awaits independent check",
+      "crop": "/private/tmp/prosary-sirach-extra/query-7-21.png",
+      "cropSHA256": "5f4630895695a32734288e444a81fa815c0c3f05ef675474c1e9631ef4ee70fb",
+      "contextCrop": "/private/tmp/prosary-sirach-extra/B-461-upper.png",
+      "status": "resolved-independent-second-eye",
+      "resolution": "כְּנַפְשׁוֹ[ךָ] confirmed; qamats applied."
+    },
+    {
+      "reference": "3:16",
+      "candidate": "Printed מוד, current מוֹד; exact vowel(s) on unusual source form",
+      "crop": "/private/tmp/prosary-sirach-extra/query-3-16.png",
+      "cropSHA256": "ddabad15605e3af4dec79bd0fe175b264b66af406102fd0eccf6bef559d26367",
+      "contextCrop": "/private/tmp/prosary-sirach-extra/B-452-lower.png",
+      "status": "consonants-confirmed-pointing-open",
+      "independentObservation": "Literal מוד confirmed; additional low mark(s) under mem require close comparison before closing מוֹד."
+    },
+    {
+      "reference": "7:3",
+      "candidate": "עַל־אָח; confirm alef qamets, preserve unusual word break",
+      "crop": "/private/tmp/prosary-sirach-extra/query-7-3.png",
+      "cropSHA256": "45ec2db166cb151b75454a26a5a206bcf439b31791dfbbb97856d877672fd7f4",
+      "contextCrop": "/private/tmp/prosary-sirach-extra/B-459-lower.png",
+      "status": "resolved-independent-second-eye",
+      "resolution": "עַל־אָח confirmed; visible qamats stem under alef."
+    },
+    {
+      "reference": "11:17",
+      "candidate": "Tiny restoration current מַ[תַּן] is unresolved; do not replace from apparatus מזון.",
+      "crop": "/private/tmp/prosary-sirach-extra/query-11-17.png",
+      "cropSHA256": "4e8c81c1b99dc32ad9c556da973384305787e41c3e7b3e275498f4d08850bb5f",
+      "contextCrop": "/private/tmp/prosary-sirach-extra/B-467-upper.png",
+      "status": "open"
+    },
+    {
+      "reference": "15:18",
+      "candidate": "Only local page474 query: gimel sheva visible, dagesh cannot be separated from lower stroke.",
+      "crop": "/private/tmp/prosary-sirach-extra/query-15-18.png",
+      "cropSHA256": "24a482b8bbf41c1623705490d35cfe128c3cbd84edfc28f923c0420b2e84a9ca",
+      "contextCrop": "/private/tmp/prosary-sirach-extra/B-474-upper.png",
+      "status": "accepted-source-note",
+      "resolution": "Provisional gimel dagesh omitted; readable sheva retained; source note sir-15-18-gimel-dagesh. Page474 locally reviewed."
+    },
+    {
+      "reference": "16:18",
+      "candidate": "Initial ayin compound vowel in adjacent עמודים; בְפָקְדוֹ is independently resolved.",
+      "crop": "/private/tmp/prosary-sirach-extra/query-16-18.png",
+      "cropSHA256": "bef755b538d36de24374dd7e71b475299d29b59f0909d121b10799b15869ce2c",
+      "contextCrop": "/private/tmp/prosary-sirach-extra/B-475-upper.png",
+      "status": "open"
+    }
+  ]
+}

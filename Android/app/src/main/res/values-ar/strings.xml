@@ -38,7 +38,32 @@
     <string name="readings_unavailable">هذا النص غير متوفر في طبعة الكتاب المقدس المحددة.</string>
     <string name="readings_whole_verses_notice">تُعرض الآيات كاملةً، وقد تتجاوز حدود المقطع المحدد للقراءة.</string>
     <string name="readings_source">المصدر</string>
+    <string name="scripture_source_note">"ملاحظة عن المصدر"</string>
+    <string name="scripture_source_note_vowel">"حُذفت علامة حركة غير مقروءة."</string>
+    <string name="scripture_source_note_dagesh">"حُذفت علامة داجش غير مقروءة."</string>
+    <string name="scripture_source_note_restored_letter">"أُعيد إثبات الحرف %1$s (في الموضع %2$d) في «%3$s» باجتهاد تحريري. الحرف غير مقروء في صورة المصدر."</string>
+    <string name="scripture_source_note_letter">"الحرف %1$s (الموضع %2$d)"</string>
+    <string name="scripture_source_note_pages">"صفحات PDF: %1$s"</string>
+    <string name="scripture_source_note_scan">"صورة المصدر الممسوحة"</string>
     <string name="readings_choose_edition">اختيار طبعة</string>
+    <string name="bible_daily_readings">"قراءات اليوم"</string>
+    <string name="bible_title">"الكتاب المقدس"</string>
+    <string name="bible_catalog_error">"تعذر فتح فهرس طبعات الكتاب المقدس."</string>
+    <string name="bible_download_error">"تعذر إكمال التنزيل. يرجى المحاولة مرة أخرى."</string>
+    <string name="bible_download_notice">"نزّل الأسفار والإصحاحات المتاحة في هذه الطبعة للقراءة دون اتصال بالإنترنت. تحتوي بعض الطبعات على مقاطع تمت مراجعتها فقط."</string>
+    <string name="bible_downloading">"جارٍ التنزيل…"</string>
+    <string name="bible_download">"تنزيل"</string>
+    <string name="bible_partial_chapter">"يتوفر جزء فقط من هذا الإصحاح."</string>
+    <string name="bible_choose_book">"اختر سفرًا"</string>
+    <string name="bible_choose_chapter">"اختر إصحاحًا"</string>
+    <string name="bible_choose_verse">"اختر آية"</string>
+    <string name="bible_previous_chapter">"الإصحاح السابق المتاح"</string>
+    <string name="bible_next_chapter">"الإصحاح التالي المتاح"</string>
+    <string name="bible_chapter_error">"تعذر فتح هذا الإصحاح المُنزّل. احذف التنزيل ثم نزّله مرة أخرى."</string>
+    <string name="bible_remove_notice">"هل تريد إزالة «%1$s» من هذا الجهاز؟ يمكنك تنزيله مرة أخرى. ستبقى قراءات اليوم متاحة."</string>
+    <string name="bible_remove_error">"تعذرت إزالة التنزيل. يرجى المحاولة مرة أخرى."</string>
+    <string name="bible_printed_label">"الترقيم المطبوع: %1$s"</string>
+    <string name="bible_occurrence">"%1$s — الورود %2$d"</string>
     <string name="tab_search">"بحث"</string>
 
     <!-- Home -->
@@ -434,7 +459,7 @@
     <string name="about_peshitta_sources">العهد الجديد بالبشيطتا (BFBS، 1905): Digital Syriac Corpus؛ تفريغ النص السرياني بواسطة George A. Kiraz، طبعة TEI © James E. Walters، بترخيص CC BY 4.0. التحويل إلى الحروف العبرية وفق قواعد إيريز؛ اختيار الآيات وتنسيق النص بواسطة Prosary.</string>
     <string name="about_peshitta_source_link">Digital Syriac Corpus</string>
     <string name="about_peshitta_license_link">CC BY 4.0</string>
-    <string name="about_peshitta_isaiah_sources">إشعياء: ملف XML مشكول للبشيطتا من Internet Archive، قدّمه أحد المستخدمين. لم تُحدَّد بعد الطبعة الأصلية وشروط إعادة التوزيع. التحويل إلى الحروف العبرية وفق قواعد إيريز؛ اختيار الآيات وتنسيق النص بواسطة Prosary.</string>
+    <string name="about_peshitta_isaiah_sources">العهد القديم: ملف XML مشكول للبشيطتا من Internet Archive، قدّمه أحد المستخدمين. لم تُحدَّد بعد الطبعة الأصلية وشروط إعادة التوزيع. التحويل إلى الحروف العبرية وفق قواعد إيريز؛ اختيار الآيات وتنسيق النص بواسطة Prosary.</string>
     <string name="about_peshitta_isaiah_source_link">Internet Archive</string>
     <string name="about_bible_book_sources">أسماء أسفار الكتاب المقدس: AELF، دار المشرق، الترجمة السينودسية الروسية (Azbyka)، جمعية الكتاب المقدس الفلبينية وParolaViva.</string>
     <string name="about_prayer_network_link">شبكة صلاة البابا العالمية</string>

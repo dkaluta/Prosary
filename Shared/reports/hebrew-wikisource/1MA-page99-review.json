@@ -1,0 +1,75 @@
+{
+  "book": "1MA",
+  "primarySourcePDFSHA256": "656891d377d2e3d4a9216723d94205488423907bf01df424b9f0b9de1560051e",
+  "additionalSourcePDFSHA256": "b72eaf5d2d858fabb7c3438ac0436ccd64c394a7dd2fad609efabe628d5534c7",
+  "status": "one page checked; book remains draft",
+  "method": "Complete second direct comparison of every scripture word and its visible vowel points/punctuation against the first draft. Additional scan51 left matches the same printed pageצז and typesetting of primaryB99. Commentary excluded.",
+  "pages": [
+    {
+      "primaryPDFPage": 99,
+      "additionalPDFPage": 51,
+      "side": "left",
+      "printedPage": "צז",
+      "unitSegments": [
+        {
+          "chapter": 1,
+          "verse": 10,
+          "part": "opening through ושבע; continues onB100 with למלכות היונים"
+        }
+      ],
+      "unresolved": []
+    }
+  ],
+  "corrections": [
+    {
+      "unit": "1:10",
+      "before": "אֶפִיפָנֶס",
+      "after": "אֶפִּיפָנֶס",
+      "basis": "A distinct isolated dark point is printed inside the first pe immediately after alef. Both readers independently see the dagesh in the tight crop. No phonetic normalization."
+    }
+  ],
+  "retainedChecks": [
+    "Both occurrences of אַנְטִיוֹכוֹס retain their printed points.",
+    "תַּעֲרוּבוֹת retains the source full spelling and visible marks.",
+    "וָשֶׁבַע retains qamats under vav.",
+    "No sof pasuq is inserted at the physical page end within1:10."
+  ],
+  "textUnits": [
+    {
+      "verse": 10,
+      "text": "וַיֵּצֵא מֵהֶם שֹׁרֶשׁ רֶשַׁע אַנְטִיוֹכוֹס אֶפִּיפָנֶס בֶּן־אַנְטִיוֹכוֹס הַמֶּלֶךְ אֲשֶׁר הָיָה בֶּן־תַּעֲרוּבוֹת בְּרוֹמִי וַיִּמְלֹךְ בִּשְׁנַת מֵאָה וּשְׁלֹשִׁים וָשֶׁבַע לְמַלְכוּת הַיְּוָנִים׃",
+      "sourcePages": [
+        99,
+        100
+      ],
+      "textSHA256": "c5af9427777db27b6f3b4566c05d83e079f4e56a1ef8cafd9dc5134749e00abf"
+    }
+  ],
+  "cropDirectory": "/private/tmp/prosary-1ma-extra",
+  "cropEvidence": [
+    {
+      "additionalPDFPage": 51,
+      "bounds": [
+        0.05,
+        0.095,
+        0.416,
+        0.15
+      ],
+      "scale": 8,
+      "filename": "crop-51-0.05-0.095-0.416-0.15.png",
+      "sha256": "0324f0b2edf4e4f3a8d896fa91e53a2086857cd439f8b6ba8f1dc14e19860b1d"
+    },
+    {
+      "additionalPDFPage": 51,
+      "bounds": [
+        0.15,
+        0.095,
+        0.2,
+        0.124
+      ],
+      "scale": 8,
+      "filename": "crop-51-0.15-0.095-0.2-0.124.png",
+      "sha256": "41c810e35898f8c682baf90037590a590a052771b3516fb35b9a55a0c11157e9"
+    }
+  ]
+}

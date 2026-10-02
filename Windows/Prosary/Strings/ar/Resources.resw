@@ -390,7 +390,7 @@
   <data name="AbtPeshittaSources.Text" xml:space="preserve"><value>العهد الجديد بالبشيطتا (BFBS، 1905): Digital Syriac Corpus؛ تفريغ النص السرياني بواسطة George A. Kiraz، طبعة TEI © James E. Walters، بترخيص CC BY 4.0. التحويل إلى الحروف العبرية وفق قواعد إيريز؛ اختيار الآيات وتنسيق النص بواسطة Prosary.</value></data>
   <data name="AbtPeshittaSourceLink.Content" xml:space="preserve"><value>Digital Syriac Corpus</value></data>
   <data name="AbtPeshittaLicenseLink.Content" xml:space="preserve"><value>CC BY 4.0</value></data>
-  <data name="AbtPeshittaIsaiahSources.Text" xml:space="preserve"><value>إشعياء: ملف XML مشكول للبشيطتا من Internet Archive، قدّمه أحد المستخدمين. لم تُحدَّد بعد الطبعة الأصلية وشروط إعادة التوزيع. التحويل إلى الحروف العبرية وفق قواعد إيريز؛ اختيار الآيات وتنسيق النص بواسطة Prosary.</value></data>
+  <data name="AbtPeshittaIsaiahSources.Text" xml:space="preserve"><value>العهد القديم: ملف XML مشكول للبشيطتا من Internet Archive، قدّمه أحد المستخدمين. لم تُحدَّد بعد الطبعة الأصلية وشروط إعادة التوزيع. التحويل إلى الحروف العبرية وفق قواعد إيريز؛ اختيار الآيات وتنسيق النص بواسطة Prosary.</value></data>
   <data name="AbtPeshittaIsaiahSourceLink.Content" xml:space="preserve"><value>Internet Archive</value></data>
   <data name="AbtBookNameSources.Text" xml:space="preserve"><value>أسماء أسفار الكتاب المقدس: AELF، دار المشرق، الترجمة السينودسية الروسية (Azbyka)، جمعية الكتاب المقدس الفلبينية وParolaViva.</value></data>
   <data name="AbtPopeNetworkLink.Content" xml:space="preserve"><value>شبكة صلاة البابا العالمية</value></data>
@@ -550,4 +550,34 @@
   <data name="AbtSyriacHebrewCalendar.Text" xml:space="preserve"><value>التقويم السرياني بالعبرية — Urtotho (2026)، مُقدَّم إلى Prosary.</value></data>
   <data name="EdLitanyOfLoreto.Header" xml:space="preserve"><value>صلاة طلبات العذراء بعد المسبحة</value></data>
   <data name="EdRosaryCollect.Header" xml:space="preserve"><value>صلاة ختام المسبحة</value></data>
+  <data name="readings_title" xml:space="preserve"><value>القراءات</value></data>
+  <data name="bible_daily_readings" xml:space="preserve"><value>القراءات اليومية</value></data>
+  <data name="bible_title" xml:space="preserve"><value>الكتاب المقدس</value></data>
+  <data name="bible_book" xml:space="preserve"><value>السفر</value></data>
+  <data name="bible_chapter" xml:space="preserve"><value>الفصل</value></data>
+  <data name="bible_verse" xml:space="preserve"><value>الآية</value></data>
+  <data name="bible_previous_chapter" xml:space="preserve"><value>الفصل السابق</value></data>
+  <data name="bible_next_chapter" xml:space="preserve"><value>الفصل التالي</value></data>
+  <data name="bible_update" xml:space="preserve"><value>تحديث التنزيل</value></data>
+  <data name="bible_download" xml:space="preserve"><value>تنزيل الكتاب المقدس</value></data>
+  <data name="bible_remove" xml:space="preserve"><value>إزالة التنزيل</value></data>
+  <data name="bible_cancel" xml:space="preserve"><value>إلغاء التنزيل</value></data>
+  <data name="bible_retry" xml:space="preserve"><value>إعادة المحاولة</value></data>
+  <data name="bible_partial_chapter" xml:space="preserve"><value>يتوفر جزء فقط من هذا الفصل.</value></data>
+  <data name="bible_download_notice" xml:space="preserve"><value>نزّل هذه الطبعة لقراءة أسفارها المتاحة دون اتصال. تعمل القراءات اليومية دون هذا التنزيل.</value></data>
+  <data name="bible_unavailable" xml:space="preserve"><value>لا يتوفر تنزيل للكتاب المقدس بالطبعة المحددة.</value></data>
+  <data name="bible_read_error" xml:space="preserve"><value>تعذر فتح هذا الفصل. أعد المحاولة أو نزّل الطبعة مرة أخرى.</value></data>
+  <data name="bible_download_error" xml:space="preserve"><value>تعذر تنزيل الكتاب المقدس. تحقق من الاتصال وأعد المحاولة.</value></data>
+  <data name="bible_remove_error" xml:space="preserve"><value>تعذرت إزالة التنزيل. يرجى المحاولة مرة أخرى.</value></data>
+  <data name="bible_remove_confirmation" xml:space="preserve"><value>هل تريد إزالة تنزيل {0}؟ ستظل القراءات اليومية متاحة.</value></data>
+  <data name="bible_no_daily_readings" xml:space="preserve"><value>لا تتوفر قراءات يومية لهذا التاريخ.</value></data>
+  <data name="scripture_note_title" xml:space="preserve"><value>ملاحظة عن المصدر</value></data>
+  <data name="scripture_note_vowel" xml:space="preserve"><value>حُذفت علامة حركة غير مقروءة.</value></data>
+  <data name="scripture_note_dagesh" xml:space="preserve"><value>حُذفت علامة داجش غير مقروءة.</value></data>
+  <data name="scripture_note_letter" xml:space="preserve"><value>الحرف {0} (الموضع {1})</value></data>
+  <data name="scripture_note_restored_letter" xml:space="preserve"><value>أُعيد إثبات الحرف {0} (في الموضع {1}) في «{2}» باجتهاد تحريري. الحرف غير مقروء في صورة المصدر.</value></data>
+  <data name="scripture_note_pages" xml:space="preserve"><value>صفحات PDF: {0}</value></data>
+  <data name="scripture_note_scan" xml:space="preserve"><value>صورة المصدر الممسوحة</value></data>
+  <data name="bible_printed_label" xml:space="preserve"><value>الترقيم المطبوع: {0}</value></data>
+  <data name="bible_occurrence" xml:space="preserve"><value>{0} — الورود {1}</value></data>
 </root>

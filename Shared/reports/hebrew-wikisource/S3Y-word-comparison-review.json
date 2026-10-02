@@ -1,0 +1,593 @@
+{
+  "schemaVersion": 1,
+  "book": "S3Y",
+  "status": "word-comparison-in-progress",
+  "productionEligible": false,
+  "scanSHA256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+  "method": "Compare independent local OCR consonant candidates with the manually transcribed first draft, then return every candidate to the actual printed line. Never import an OCR result without image evidence.",
+  "engine": {
+    "name": "Kraken",
+    "version": "7.1.1",
+    "modelSHA256": "3108259779f5abfed3908a1c9eafba64d17e4a2a169368c539ecfeff04c018f3",
+    "lines": 85,
+    "trainingPerformed": false
+  },
+  "sourceImageChecks": [
+    "All85 source-line contact images visually inspected.",
+    "Original detail for1 noun המקמים confirms absence of medial yod.",
+    "Original detail for8 confirms ובגדנו, not first-draft והגדלנו.",
+    "Each affected repeated-response line has the defective consonants and printed qibbuts; none is inferred solely from another line."
+  ],
+  "changes": [
+    {
+      "verse": 1,
+      "before": "הַמְּקִימִים",
+      "after": "הַמְּקִמִים",
+      "sourcePages": [
+        233
+      ]
+    },
+    {
+      "verse": 8,
+      "before": "וְהִגְדַּלְנוּ",
+      "after": "וּבָגַדְנוּ",
+      "sourcePages": [
+        233
+      ]
+    },
+    {
+      "verse": 19,
+      "before": "יֵבֹשׁוּ",
+      "after": "יֵבוֹשׁוּ",
+      "sourcePages": [
+        234
+      ]
+    },
+    {
+      "verse": 22,
+      "before": "הַגּוֹמְלִים",
+      "after": "הַגֹּמְלִים",
+      "sourcePages": [
+        234
+      ]
+    },
+    {
+      "verse": 22,
+      "before": "וְיֵבֹשׁוּ",
+      "after": "וְיֵבוֹשׁוּ",
+      "sourcePages": [
+        234
+      ]
+    },
+    {
+      "verse": 25,
+      "before": "וּזְמוֹרוֹת",
+      "after": "וּזְמֹרוֹת",
+      "sourcePages": [
+        234
+      ]
+    },
+    {
+      "verse": 29,
+      "before": "נוֹשֶׁבֶת",
+      "after": "נֹשֶׁבֶת",
+      "sourcePages": [
+        234,
+        235
+      ]
+    },
+    {
+      "verse": 34,
+      "before": "תְּהוֹמוֹת",
+      "after": "תְּהֹמוֹת",
+      "sourcePages": [
+        235
+      ]
+    },
+    {
+      "verse": 36,
+      "before": "הַלְלוּהוּ",
+      "after": "הַלְלֻהוּ",
+      "sourcePages": [
+        235
+      ]
+    },
+    {
+      "verse": 36,
+      "before": "וְרוֹמְמוּהוּ",
+      "after": "וְרוֹמְמֻהוּ",
+      "sourcePages": [
+        235
+      ]
+    },
+    {
+      "verse": 37,
+      "before": "הַלְלוּהוּ",
+      "after": "הַלְלֻהוּ",
+      "sourcePages": [
+        235
+      ]
+    },
+    {
+      "verse": 37,
+      "before": "וְרוֹמְמוּהוּ",
+      "after": "וְרוֹמְמֻהוּ",
+      "sourcePages": [
+        235
+      ]
+    },
+    {
+      "verse": 38,
+      "before": "הַלְלוּהוּ",
+      "after": "הַלְלֻהוּ",
+      "sourcePages": [
+        235
+      ]
+    },
+    {
+      "verse": 38,
+      "before": "וְרוֹמְמוּהוּ",
+      "after": "וְרוֹמְמֻהוּ",
+      "sourcePages": [
+        235
+      ]
+    },
+    {
+      "verse": 39,
+      "before": "הַלְלוּהוּ",
+      "after": "הַלְלֻהוּ",
+      "sourcePages": [
+        235
+      ]
+    },
+    {
+      "verse": 39,
+      "before": "וְרוֹמְמוּהוּ",
+      "after": "וְרוֹמְמֻהוּ",
+      "sourcePages": [
+        235
+      ]
+    },
+    {
+      "verse": 40,
+      "before": "הַלְלוּהוּ",
+      "after": "הַלְלֻהוּ",
+      "sourcePages": [
+        235
+      ]
+    },
+    {
+      "verse": 40,
+      "before": "וְשַׁבְּחוּהוּ",
+      "after": "וְשַׁבְּחֻהוּ",
+      "sourcePages": [
+        235
+      ]
+    },
+    {
+      "verse": 41,
+      "before": "הַלְלוּהוּ",
+      "after": "הַלְלֻהוּ",
+      "sourcePages": [
+        235
+      ]
+    },
+    {
+      "verse": 41,
+      "before": "וְשַׁבְּחוּהוּ",
+      "after": "וְשַׁבְּחֻהוּ",
+      "sourcePages": [
+        235
+      ]
+    },
+    {
+      "verse": 42,
+      "before": "הַלְלוּהוּ",
+      "after": "הַלְלֻהוּ",
+      "sourcePages": [
+        235
+      ]
+    },
+    {
+      "verse": 42,
+      "before": "וְרוֹמְמוּהוּ",
+      "after": "וְרוֹמְמֻהוּ",
+      "sourcePages": [
+        235
+      ]
+    },
+    {
+      "verse": 43,
+      "before": "הַלְלוּהוּ",
+      "after": "הַלְלֻהוּ",
+      "sourcePages": [
+        235
+      ]
+    },
+    {
+      "verse": 43,
+      "before": "וְרוֹמְמוּהוּ",
+      "after": "וְרוֹמְמֻהוּ",
+      "sourcePages": [
+        235
+      ]
+    },
+    {
+      "verse": 44,
+      "before": "הַלְלוּהוּ",
+      "after": "הַלְלֻהוּ",
+      "sourcePages": [
+        235
+      ]
+    },
+    {
+      "verse": 44,
+      "before": "וְרוֹמְמוּהוּ",
+      "after": "וְרוֹמְמֻהוּ",
+      "sourcePages": [
+        235
+      ]
+    },
+    {
+      "verse": 45,
+      "before": "הַלְלוּהוּ",
+      "after": "הַלְלֻהוּ",
+      "sourcePages": [
+        235
+      ]
+    },
+    {
+      "verse": 45,
+      "before": "וְרוֹמְמוּהוּ",
+      "after": "וְרוֹמְמֻהוּ",
+      "sourcePages": [
+        235
+      ]
+    },
+    {
+      "verse": 46,
+      "before": "הַלְלוּהוּ",
+      "after": "הַלְלֻהוּ",
+      "sourcePages": [
+        235
+      ]
+    },
+    {
+      "verse": 46,
+      "before": "וְרוֹמְמוּהוּ",
+      "after": "וְרוֹמְמֻהוּ",
+      "sourcePages": [
+        235
+      ]
+    },
+    {
+      "verse": 47,
+      "before": "הַלְלוּהוּ",
+      "after": "הַלְלֻהוּ",
+      "sourcePages": [
+        235
+      ]
+    },
+    {
+      "verse": 47,
+      "before": "וְרוֹמְמוּהוּ",
+      "after": "וְרוֹמְמֻהוּ",
+      "sourcePages": [
+        235
+      ]
+    },
+    {
+      "verse": 48,
+      "before": "הַלְלוּהוּ",
+      "after": "הַלְלֻהוּ",
+      "sourcePages": [
+        236
+      ]
+    },
+    {
+      "verse": 48,
+      "before": "וְרוֹמְמוּהוּ",
+      "after": "וְרוֹמְמֻהוּ",
+      "sourcePages": [
+        236
+      ]
+    },
+    {
+      "verse": 49,
+      "before": "הַלְלוּהוּ",
+      "after": "הַלְלֻהוּ",
+      "sourcePages": [
+        236
+      ]
+    },
+    {
+      "verse": 49,
+      "before": "וְרוֹמְמוּהוּ",
+      "after": "וְרוֹמְמֻהוּ",
+      "sourcePages": [
+        236
+      ]
+    },
+    {
+      "verse": 50,
+      "before": "הַלְלוּהוּ",
+      "after": "הַלְלֻהוּ",
+      "sourcePages": [
+        236
+      ]
+    },
+    {
+      "verse": 50,
+      "before": "וְרוֹמְמוּהוּ",
+      "after": "וְרוֹמְמֻהוּ",
+      "sourcePages": [
+        236
+      ]
+    },
+    {
+      "verse": 51,
+      "before": "הַלְלוּהוּ",
+      "after": "הַלְלֻהוּ",
+      "sourcePages": [
+        236
+      ]
+    },
+    {
+      "verse": 51,
+      "before": "וְרוֹמְמוּהוּ",
+      "after": "וְרוֹמְמֻהוּ",
+      "sourcePages": [
+        236
+      ]
+    },
+    {
+      "verse": 52,
+      "before": "הַלְלוּהוּ",
+      "after": "הַלְלֻהוּ",
+      "sourcePages": [
+        236
+      ]
+    },
+    {
+      "verse": 52,
+      "before": "וְרוֹמְמוּהוּ",
+      "after": "וְרוֹמְמֻהוּ",
+      "sourcePages": [
+        236
+      ]
+    },
+    {
+      "verse": 54,
+      "before": "הַלְלוּהוּ",
+      "after": "הַלְלֻהוּ",
+      "sourcePages": [
+        236
+      ]
+    },
+    {
+      "verse": 54,
+      "before": "וְרוֹמְמוּהוּ",
+      "after": "וְרוֹמְמֻהוּ",
+      "sourcePages": [
+        236
+      ]
+    },
+    {
+      "verse": 55,
+      "before": "הַלְלוּהוּ",
+      "after": "הַלְלֻהוּ",
+      "sourcePages": [
+        236
+      ]
+    },
+    {
+      "verse": 55,
+      "before": "וְרוֹמְמוּהוּ",
+      "after": "וְרוֹמְמֻהוּ",
+      "sourcePages": [
+        236
+      ]
+    },
+    {
+      "verse": 56,
+      "before": "הַלְלוּהוּ",
+      "after": "הַלְלֻהוּ",
+      "sourcePages": [
+        236
+      ]
+    },
+    {
+      "verse": 56,
+      "before": "וְרוֹמְמוּהוּ",
+      "after": "וְרוֹמְמֻהוּ",
+      "sourcePages": [
+        236
+      ]
+    },
+    {
+      "verse": 57,
+      "before": "הַלְלוּהוּ",
+      "after": "הַלְלֻהוּ",
+      "sourcePages": [
+        236
+      ]
+    },
+    {
+      "verse": 57,
+      "before": "וְרוֹמְמוּהוּ",
+      "after": "וְרוֹמְמֻהוּ",
+      "sourcePages": [
+        236
+      ]
+    },
+    {
+      "verse": 58,
+      "before": "הַלְלוּהוּ",
+      "after": "הַלְלֻהוּ",
+      "sourcePages": [
+        236
+      ]
+    },
+    {
+      "verse": 58,
+      "before": "וְרוֹמְמוּהוּ",
+      "after": "וְרוֹמְמֻהוּ",
+      "sourcePages": [
+        236
+      ]
+    },
+    {
+      "verse": 59,
+      "before": "הַלְלוּהוּ",
+      "after": "הַלְלֻהוּ",
+      "sourcePages": [
+        236
+      ]
+    },
+    {
+      "verse": 59,
+      "before": "וְרוֹמְמוּהוּ",
+      "after": "וְרוֹמְמֻהוּ",
+      "sourcePages": [
+        236
+      ]
+    },
+    {
+      "verse": 60,
+      "before": "הַלְלוּהוּ",
+      "after": "הַלְלֻהוּ",
+      "sourcePages": [
+        236
+      ]
+    },
+    {
+      "verse": 60,
+      "before": "וְרוֹמְמוּהוּ",
+      "after": "וְרוֹמְמֻהוּ",
+      "sourcePages": [
+        236
+      ]
+    },
+    {
+      "verse": 61,
+      "before": "הַלְלוּהוּ",
+      "after": "הַלְלֻהוּ",
+      "sourcePages": [
+        236
+      ]
+    },
+    {
+      "verse": 61,
+      "before": "וְרוֹמְמוּהוּ",
+      "after": "וְרוֹמְמֻהוּ",
+      "sourcePages": [
+        236
+      ]
+    },
+    {
+      "verse": 62,
+      "before": "הַלְלוּהוּ",
+      "after": "הַלְלֻהוּ",
+      "sourcePages": [
+        236
+      ]
+    },
+    {
+      "verse": 62,
+      "before": "וְרוֹמְמוּהוּ",
+      "after": "וְרוֹמְמֻהוּ",
+      "sourcePages": [
+        236
+      ]
+    },
+    {
+      "verse": 63,
+      "before": "הַלְלוּהוּ",
+      "after": "הַלְלֻהוּ",
+      "sourcePages": [
+        236
+      ]
+    },
+    {
+      "verse": 63,
+      "before": "וְרוֹמְמוּהוּ",
+      "after": "וְרוֹמְמֻהוּ",
+      "sourcePages": [
+        236
+      ]
+    },
+    {
+      "verse": 64,
+      "before": "הַלְלוּהוּ",
+      "after": "הַלְלֻהוּ",
+      "sourcePages": [
+        236
+      ]
+    },
+    {
+      "verse": 64,
+      "before": "וְרוֹמְמוּהוּ",
+      "after": "וְרוֹמְמֻהוּ",
+      "sourcePages": [
+        236
+      ]
+    },
+    {
+      "verse": 65,
+      "before": "הַלְלוּהוּ",
+      "after": "הַלְלֻהוּ",
+      "sourcePages": [
+        236
+      ]
+    },
+    {
+      "verse": 65,
+      "before": "וְרוֹמְמוּהוּ",
+      "after": "וְרוֹמְמֻהוּ",
+      "sourcePages": [
+        236
+      ]
+    },
+    {
+      "verse": 66,
+      "before": "הַלְלוּהוּ",
+      "after": "הַלְלֻהוּ",
+      "sourcePages": [
+        236
+      ]
+    },
+    {
+      "verse": 66,
+      "before": "וְרוֹמְמוּהוּ",
+      "after": "וְרוֹמְמֻהוּ",
+      "sourcePages": [
+        236
+      ]
+    },
+    {
+      "verse": 67,
+      "before": "הַלְלוּהוּ",
+      "after": "הַלְלֻהוּ",
+      "sourcePages": [
+        236
+      ]
+    },
+    {
+      "verse": 67,
+      "before": "וְרוֹמְמוּהוּ",
+      "after": "וְרוֹמְמֻהוּ",
+      "sourcePages": [
+        236
+      ]
+    },
+    {
+      "verse": 70,
+      "before": "הַלְלוּהוּ",
+      "after": "הַלְלֻהוּ",
+      "sourcePages": [
+        236
+      ]
+    }
+  ],
+  "remaining": "Finish candidate disposition and full second point/punctuation comparison; no page approval from OCR agreement."
+}

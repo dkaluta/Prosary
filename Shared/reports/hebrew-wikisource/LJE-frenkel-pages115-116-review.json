@@ -1,0 +1,277 @@
+{
+  "schemaVersion": 1,
+  "book": "LJE",
+  "source": "Isaac Seckel Frenkel, Ketuvim Aharonim, Warsaw1863",
+  "sourceURL": "https://commons.wikimedia.org/wiki/File:Ketuvim_Aharonim_Fraenkel_(Warsaw_1863).djvu",
+  "scanSHA256": "e67bcdad0d6d8e528f79bf8e5ed403c13c1cd220a19cc75038728a0572136345",
+  "reviewer": "Independent source reviewer; did not author the pages115–116 first draft.",
+  "status": "Complete independent comparison of the two physical pages, with six correction entries. Not whole-book release approval.",
+  "method": "Read the entire pointed scripture body in original-resolution native PNG quarters, compare every word and vowel mark against the other reviewer's first draft, and inspect focused crops of original pixels for all draft queries and additional suspect marks. Nearest-neighbor enlargement does not invent detail. No OCR, Hartom text, spelling modernization, or grammatical normalization supplied corrections.",
+  "coverage": [
+    {
+      "scanPage": 115,
+      "sourceOrdinals": [
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60
+      ],
+      "pieceCount": 22,
+      "tokenCountIncludingMaqafSeparatedWords": 267,
+      "nativeImageSHA256": "bb297e2684827a2ebf5af87694eebd51932719c859289b8e38ea8c168ebb5463",
+      "bodyComparisonComplete": true,
+      "unresolvedWordCount": 0,
+      "unresolvedPointCount": 0
+    },
+    {
+      "scanPage": 116,
+      "sourceOrdinals": [
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79
+      ],
+      "pieceCount": 20,
+      "tokenCountIncludingMaqafSeparatedWords": 251,
+      "nativeImageSHA256": "3616766690d727db949eb7c0936ceaa27cc59b5afb3f3c95e3626da7c4ee3312",
+      "bodyComparisonComplete": true,
+      "unresolvedWordCount": 0,
+      "unresolvedPointCount": 0
+    }
+  ],
+  "inputDraftSHA256": "85cf809f48a827ade9087f97d754eb801c465e13f167d8908b020ed7fa7b7c77",
+  "reviewedDraftSHA256": "4fd7882cf4f49619efc5ac372afc9910093d9f49ab84e36f111c4bb16877b925",
+  "changes": [
+    {
+      "sourceOrdinal": 43,
+      "scanPage": 115,
+      "before": "בְּאִלֵּם",
+      "after": "בְאִלֵּם",
+      "reason": "The bet interior is clean and contains no dagesh in the print. The separate lamed dagesh remains visible and is retained.",
+      "evidence": "review-43-beillem-tight.png",
+      "nativeCrop": [
+        710,
+        450,
+        910,
+        535
+      ],
+      "evidenceSHA256": "7d418957c6b4cf864a3118274f071854d4890871d9837b4be72d0064b7d43ac4"
+    },
+    {
+      "sourceOrdinal": 50,
+      "scanPage": 115,
+      "before": "הַצוֹרֵף",
+      "after": "הַצּוֹרֵף",
+      "reason": "The tsadi has a distinct isolated interior dot. Restore the printed dagesh.",
+      "evidence": "review-50-hatsoref-full.png",
+      "nativeCrop": [
+        800,
+        1020,
+        1085,
+        1135
+      ],
+      "evidenceSHA256": "7d8998fc39ec94c2c112430e281331c0f5686b9a3f0d82a32a391b4a619ea07a"
+    },
+    {
+      "sourceOrdinal": 63,
+      "scanPage": 116,
+      "before": "אֶת הַזָּהָב",
+      "after": "אֶת־הַזָּהָב",
+      "reason": "A printed maqaf follows את before הזהב.",
+      "evidence": "review-63-maqaf-full.png",
+      "nativeCrop": [
+        570,
+        370,
+        900,
+        455
+      ],
+      "evidenceSHA256": "75191fee134e1de6eddcedf7914f04cfc1881c8611c993bf3e681cfb3ee145b5"
+    },
+    {
+      "sourceOrdinal": 76,
+      "scanPage": 116,
+      "before": "יְגוֹנְנוּ",
+      "after": "יְגֹנְנוּ",
+      "reason": "The first verb has five consonants יגננו, with two nuns and no medial vav. The gimel holam and first-nun sheva are visible.",
+      "evidence": "review-76-firstverb.png",
+      "nativeCrop": [
+        520,
+        1515,
+        755,
+        1620
+      ],
+      "evidenceSHA256": "6819d2a36487fa3f1ecd06675b857afc4c1c551c8091ef4e771b9acb4494f666"
+    },
+    {
+      "sourceOrdinal": 76,
+      "scanPage": 116,
+      "before": "יָגֵנוּ",
+      "after": "יְגֹנֵנוּ",
+      "reason": "The second verb also has five consonants יגננו. Initial yod sheva, gimel holam, first-nun tsere, and final shuruq are visible. The earlier tight crop clipped the holam above the glyph; the expanded original-pixel crop resolves it. This is not an uncertainty or an inferred vowel.",
+      "evidence": "review-76-secondverb-expanded.png",
+      "nativeCrop": [
+        800,
+        1545,
+        1090,
+        1705
+      ],
+      "evidenceSHA256": "58f8d3c197e33deb40f3357fdf36104cd9a8e6e18aabb45c4fb3957b211dedd4"
+    },
+    {
+      "sourceOrdinal": 78,
+      "scanPage": 116,
+      "before": "יִתְעַלְלוּ",
+      "after": "יִתְעַלְּלוּ",
+      "reason": "The first lamed has a distinct isolated interior dot; retain its visible sheva and add the printed dagesh.",
+      "evidence": "review-78-lamed.png",
+      "nativeCrop": [
+        295,
+        1790,
+        460,
+        1870
+      ],
+      "evidenceSHA256": "8c8446b3aaacd5d100eefc9856d78b0ce42d9adb7cd40d222632706d9c733077"
+    }
+  ],
+  "resolvedQueries": [
+    {
+      "scanPage": 115,
+      "sourceOrdinal": 41,
+      "word": "יִכָּלְמוּ",
+      "finding": "Distinct kaf dagesh and qamats; retain draft reading.",
+      "evidence": "query-41-yikalmu.png",
+      "evidenceSHA256": "e2da4cfdc2353e5bdb0cd7ff64aec03aae026e87d37d9b5d347ecb4b0c2470cb"
+    },
+    {
+      "scanPage": 115,
+      "sourceOrdinal": 42,
+      "word": "יְכֻנּוּ",
+      "finding": "Yod sheva, three diagonal qibbuts dots under kaf, and a separate nun interior dagesh are visible.",
+      "evidence": "query-42-yekhunu.png",
+      "evidenceSHA256": "d65cbb27fb47b8855da9bb18f1e96a49e34f4189bb8382f8ca5e20308c7d7fcf"
+    },
+    {
+      "scanPage": 115,
+      "sourceOrdinal": 49,
+      "word": "יְכֻבְּדוּ",
+      "finding": "Kaf qibbuts has three diagonal dots; bet has a clear interior dagesh and two vertical sheva dots.",
+      "evidence": "review-query-49-yekhbudu.png",
+      "evidenceSHA256": "273436deb51b91aeac85335b772ae465c901f0d85dfb062927938193fab5c2de"
+    },
+    {
+      "scanPage": 115,
+      "sourceOrdinal": 59,
+      "word": "אֻמְלָלִים",
+      "finding": "The full crop shows all three diagonal qibbuts dots under alef, distinct from the adjacent mem sheva.",
+      "evidence": "review-query-59-umlalim.png",
+      "evidenceSHA256": "7d1a87a898dc371e8bb912017fa7ce5588a7867b3b3c5ed67cf6d5b4f782529d"
+    },
+    {
+      "scanPage": 116,
+      "sourceOrdinal": 66,
+      "word": "יְיָ",
+      "finding": "First yod has two vertical sheva dots; second yod has qamats. Checked this occurrence directly.",
+      "evidence": "review-query-66-yy-full.png",
+      "evidenceSHA256": "d5423dc397c525f2fc82290e3aeca3824670bc30a72555a25408a4ad40db07c6"
+    },
+    {
+      "scanPage": 116,
+      "sourceOrdinal": 68,
+      "word": "יְיָ",
+      "finding": "Independently inspected second occurrence: first yod sheva and second yod qamats.",
+      "evidence": "review-query-68-yy-full.png",
+      "evidenceSHA256": "12d62932e1a7f14235d49ee7873f9b9d7bbf9a3f6dedcdba9eaba4d2f656f356"
+    },
+    {
+      "scanPage": 116,
+      "sourceOrdinal": 74,
+      "word": "וְאֶבְחַר",
+      "finding": "Alef has three-dot segol; vav sheva, bet sheva and het patah are visible. Retain the printed consonants ואבחר.",
+      "evidence": "review-query-74-veevhar.png",
+      "evidenceSHA256": "fa779e58929d2bf049133860d4bfb652677e1a4be26a0fcbc321f1e5ee1e7e53"
+    },
+    {
+      "scanPage": 116,
+      "sourceOrdinal": 76,
+      "word": "יְגֹנְנוּ / יְגֹנֵנוּ",
+      "finding": "Both native expanded crops resolve the two-nun defective spellings and their differing first-nun vowels. See correction entries.",
+      "evidence": "review-76-secondverb-expanded.png",
+      "evidenceSHA256": "58f8d3c197e33deb40f3357fdf36104cd9a8e6e18aabb45c4fb3957b211dedd4"
+    }
+  ],
+  "additionalNativeChecks": [
+    {
+      "sourceOrdinal": 39,
+      "finding": "Tsadi dagesh in מִצָּרָתוֹ is a distinct visible interior dot; retain.",
+      "evidence": "review-39-tsadi.png"
+    },
+    {
+      "sourceOrdinal": 54,
+      "finding": "Printed he hataf-patah in הֲטֶרֶם is visible; retain.",
+      "evidence": "review-54-haterem-full.png"
+    },
+    {
+      "sourceOrdinal": 55,
+      "finding": "Printed he hataf-patah and yod hiriq in הֲיִרְאֶה are visible; retain.",
+      "evidence": "review-query-55-hayireh.png"
+    },
+    {
+      "sourceOrdinal": 60,
+      "finding": "Initial kaf dagesh and hiriq in כִּשְׁאָר are clear; retain.",
+      "evidence": "review-60-kishar.png"
+    },
+    {
+      "sourceOrdinal": 64,
+      "finding": "He hataf-segol in הֱיוֹת is visible; retain.",
+      "evidence": "review-64-heyot.png"
+    },
+    {
+      "sourceOrdinal": 77,
+      "finding": "Pe dagesh and hataf-qamats in צִפֳּרִים are distinct in the full native crop; retain.",
+      "evidence": "review-77-tsipporim-expanded.png"
+    }
+  ],
+  "sourceNotes": [],
+  "acceptedUncertainMarkCount": 0,
+  "unresolvedFindings": [],
+  "catchwordsExcluded": [
+    "הפסילים after page115 main text",
+    "שפוטי below the end of LJE on page116"
+  ],
+  "remainingWork": "Map and verify the complete Frenkel body against Brenton73 target boundaries without changing Hebrew wording; merge the independently reviewed first half; run authoring and source-label checks; whole-book approval is separate.",
+  "releaseEligible": false
+}

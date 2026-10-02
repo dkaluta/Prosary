@@ -1,15 +1,29 @@
 {
   "$comment": "Canonical screen/navigation map. Built from iOS's Support/AppRoute.swift + ContentView.swift, Android's ui/ProsaryApp.kt NavHost, and Windows's Navigation/Router.cs usage across Views/*.xaml.cs. Parameter names/types here are the logical contract every platform's own route/query-param/navigation-parameter mechanism should carry, not literal syntax. Keep in sync whenever a screen or its parameters change on any platform — see README.markdown in this directory.",
   "rootScreen": "home",
-  "platformRootScreens": { "macOS": "macLibrary", "windows": "windowsLibrary" },
+  "platformRootScreens": {
+    "macOS": "macLibrary",
+    "windows": "windowsLibrary"
+  },
   "appleAppIntents": {
     "openPrayer": {
-      "platforms": ["iOS", "macOS"],
+      "platforms": [
+        "iOS",
+        "macOS"
+      ],
       "implementation": "OpenPrayerIntent",
-      "parameters": { "prayer": { "type": "SavedPrayerEntity", "description": "A saved Prayer UUID and display name, across Rosary, Jesus Prayer and all generic devotion kinds." } },
+      "parameters": {
+        "prayer": {
+          "type": "SavedPrayerEntity",
+          "description": "A saved Prayer UUID and display name, across Rosary, Jesus Prayer and all generic devotion kinds."
+        }
+      },
       "navigation": "Opens the app, resolves the exact saved UUID from PresetStore again, then publishes AppRoute.prayer(id:) through NavigationCoordinator. Uses that saved copy's settings and the existing continuation/start-over policy. A deleted row throws SavedPrayerUnavailableError; never open a sibling/default instead.",
       "discovery": "ProsaryShortcuts offers Open Prayer in Shortcuts, Siri and Spotlight alongside the existing Rosary and Today's Mysteries shortcuts.",
-      "sources": ["AppIntents/OpenPrayerIntent.swift", "AppIntents/ProsaryShortcuts.swift"]
+      "sources": [
+        "AppIntents/OpenPrayerIntent.swift",
+        "AppIntents/ProsaryShortcuts.swift"
+      ]
     }
   },
   "screens": {
@@ -19,25 +33,42 @@
       "parameters": {},
       "navigation": "Show Library activates or recreates the singleton window. Open, double-click or Enter opens or activates the exact saved UUID's separate prayer window. No redundant Open in New Window action.",
       "persistence": "windows-library.json",
-      "sources": { "windows": "MainWindow.xaml(.cs) + Views/DesktopLibraryPage.xaml(.cs) + ViewModels/DesktopLibraryViewModel.cs + Persistence/DesktopPresetStore.cs" }
+      "sources": {
+        "windows": "MainWindow.xaml(.cs) + Views/DesktopLibraryPage.xaml(.cs) + ViewModels/DesktopLibraryViewModel.cs + Persistence/DesktopPresetStore.cs"
+      }
     },
     "windowsGallery": {
       "platform": "windows",
       "purpose": "Built-in and installed devotion templates with packed artwork, search and Add to Library. Adding creates a new named saved copy; browsing/importing does not edit templates or create saved membership.",
       "parameters": {},
-      "sources": { "windows": "Views/DesktopGalleryPage.xaml(.cs) + Models/DesktopPrayerLibrary.cs" }
+      "sources": {
+        "windows": "Views/DesktopGalleryPage.xaml(.cs) + Models/DesktopPrayerLibrary.cs"
+      }
     },
     "windowsToday": {
       "platform": "windows",
       "purpose": "The Library's dedicated Today destination. Native Acrylic date controls above the chosen rite's feast, full reading citations, intention and optional Torah portion; no shorthand toggle. Calendar/Pascha/visibility settings are shared with Settings. A date following today advances at local midnight, while a browsed date stays selected. Hebrew and Arabic content is RTL. Full daily and enabled Torah passages start collapsed on entry and date/calendar changes unless expandReadingsByDefault is enabled, with selectable numbered Bible text in the metadata-selected edition, attribution/source links and explicit unavailable states. Individual collapses survive ordinary refreshes and edition changes. The small edition manifest loads separately; the passage corpus loads on expansion. See readings for exact-key lookup and edition-selection rules.",
       "parameters": {},
-      "sources": { "windows": "Views/DesktopTodayPage.xaml(.cs) + ViewModels/HomeViewModel.cs + ViewModels/DesktopReadingsViewModel.cs + Services/ReadingsTextStore.cs" }
+      "sources": {
+        "windows": "Views/DesktopTodayPage.xaml(.cs) + ViewModels/HomeViewModel.cs + ViewModels/DesktopReadingsViewModel.cs + Services/ReadingsTextStore.cs"
+      }
     },
     "windowsPrayerWindow": {
       "platform": "windows",
       "purpose": "One dedicated native prayer window with window-scoped navigation, menus, controls and settings. Saved UUIDs and basic prayer IDs reuse existing windows; unsaved launches have independent session identities. Root Back/Finish closes this window, preserving the library and siblings. Saved generic series/checkpoints use the copy's UUID. Closing releases playback and timers; deletion closes the matching saved window.",
-      "parameters": { "pageType": { "type": "Type", "description": "A supported prayer flow/setup page." }, "parameter": { "type": "object?", "description": "The existing flow parameter, including saved Prayer UUID when applicable; see windows-library.json#windows." } },
-      "sources": { "windows": "PrayerWindow.xaml(.cs) + Services/DesktopWindowManager.cs + Services/DesktopWindowChrome.cs + Navigation/Router.cs" }
+      "parameters": {
+        "pageType": {
+          "type": "Type",
+          "description": "A supported prayer flow/setup page."
+        },
+        "parameter": {
+          "type": "object?",
+          "description": "The existing flow parameter, including saved Prayer UUID when applicable; see windows-library.json#windows."
+        }
+      },
+      "sources": {
+        "windows": "PrayerWindow.xaml(.cs) + Services/DesktopWindowManager.cs + Services/DesktopWindowChrome.cs + Navigation/Router.cs"
+      }
     },
     "macLibrary": {
       "platform": "macOS",
@@ -54,7 +85,9 @@
       "platform": "macOS",
       "purpose": "The Library's Today sidebar view. Its native glass date controls, with older-system fallbacks, select the local civil day for the current rite's feast, full reading citations, intention and optional Torah portion. Reading and Torah citations always show full book names and verse references without a shorthand toggle. Widget Today activation resets to the actual current day and waits for an attached library sheet to close before navigating. Daily and enabled Torah passages start collapsed on entry and date/calendar changes unless expandReadingsByDefault is enabled, with selectable numbered Bible text, an edition picker, source attribution/link and unavailable states. Individual collapses survive ordinary refreshes and edition changes. Uses the same separate metadata, lazy corpus and exact-appointment lookup contract as readings; choosing an edition does not change the appointed citations.",
       "parameters": {},
-      "sources": { "macOS": "Views/Home/MacTodayView.swift + Support/MacTodayDateSelection.swift + Views/Shared/ScripturePassageView.swift + Support/ReadingTextStore.swift" }
+      "sources": {
+        "macOS": "Views/Home/MacTodayView.swift + Support/MacTodayDateSelection.swift + Views/Shared/ScripturePassageView.swift + Support/ReadingTextStore.swift"
+      }
     },
     "macPrayerWindow": {
       "platform": "macOS",
@@ -205,7 +238,10 @@
     },
     "settings": {
       "keyboardNavigation": {
-        "preferences": ["keyboardArrowNavigationEnabled", "keyboardSpaceAdvanceEnabled"],
+        "preferences": [
+          "keyboardArrowNavigationEnabled",
+          "keyboardSpaceAdvanceEnabled"
+        ],
         "default": true,
         "visibility": "Always on Mac and Windows; while a hardware keyboard is connected on iPhone, iPad, visionOS and Android. Refresh on keyboard connection changes.",
         "behavior": "Independent switches for Left/Right previous/next (following interface direction) and Space advance/count/Finish. Only the active window's prayer reader acts; native control interaction, text editing/selection, dialogs, modified keys and repeated key presses take priority. Up/Down and Page Up/Page Down retain scrolling."
@@ -265,14 +301,38 @@
       }
     },
     "readings": {
-      "platforms": ["iOS", "android"],
+      "platforms": [
+        "iOS",
+        "android",
+        "windows"
+      ],
       "purpose": "The phone/tablet Readings tab replaces Categories. Its date controls use native Apple glass with older-system fallbacks or a translucent Android Material surface above full localized appointed citations from the selected Today calendar and Pascha setting, with the optional Eretz Israel Torah portion and an explicit missing-date state. Following today advances with the local day; a deliberately browsed date remains selected. Browsing does not alter prayer sessions or the Today widget. The date is shared with Pray in the same window. Daily and enabled Torah passages start collapsed on entry and date/calendar changes unless expandReadingsByDefault is enabled, showing localized chapter headings followed by selectable verse-numbered Bible text in a metadata-selected edition, or a localized unavailable message. Individual collapses survive ordinary refreshes and edition changes. Hebrew/Arabic interface and passage text use their own RTL layout; Scripture marks and source typography are retained. Above the readings, a collapsed About the saints disclosure appears only for Syriac when biographies exist in the exact interface language. It respects showTodayFeast, resets with date/calendar/language, and includes source credit. Chapter words and nonitalic numbers follow the selected Bible language, including Hebrew gematria, Eastern Arabic digits, and selected Aramaic script; verse numbers remain unchanged.",
       "parameters": {},
-      "settings": ["feastCalendarId", "easternPaschaStyle", "showTodayTorahPortion", "readingsEditionId", "expandReadingsByDefault"],
+      "settings": [
+        "feastCalendarId",
+        "easternPaschaStyle",
+        "showTodayTorahPortion",
+        "readingsEditionId",
+        "expandReadingsByDefault"
+      ],
       "textLookup": "readings-editions.json supplies picker metadata without loading readings-texts.json. Only passage expansion loads the corpus. Resolve daily|<raw ReadingCitation.full> or torah|<raw ReadingCitation.full> plus the exact edition ID; never parse localized captions or guess numbering. Keep the citation visible and show the edition's name, attribution and source link with available text. Exact keys in the optional wholeVersePassages array show a localized note that full verses are displayed for partial-verse appointments; omitted metadata means no such note. Bible passages are not a claim of exact local Mass wording; missing text never substitutes another edition/language or calendar.",
       "sources": {
         "iOS": "Views/Readings/ReadingsView.swift + Views/Shared/ScripturePassageView.swift + Support/ReadingTextStore.swift",
         "android": "ui/readings/ReadingsScreen.kt + content/today/ReadingTextStore.kt + content/today/TodayInfoStore.kt"
+      },
+      "modes": [
+        "dailyReadings",
+        "bible"
+      ],
+      "bibleLibrary": {
+        "schema": "bible-library.json",
+        "catalog": "bible-catalog.json",
+        "editionPreference": "readingsEditionId",
+        "position": "Window-local book, chapter and verse; independent of selected prayer date.",
+        "navigation": "Source-native book/chapter lists, verse jump, previous/next available chapter, paired script selection and selectable text.",
+        "downloads": "Explicit optional per-edition download with progress, cancellation/retry and removal. Verify size, SHA-256, manifest and all chapter contents before atomic installation. Daily passages do not depend on downloaded Bibles.",
+        "coverage": "Display only declared books/chapters and visibly mark partial chapters. Never silently replace an unavailable edition, chapter, verse or language.",
+        "credits": "Selected edition credit and source link, plus optional per-book translator attribution and source link."
       }
     },
     "categories": {

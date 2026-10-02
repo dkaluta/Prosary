@@ -1,0 +1,1252 @@
+{
+  "schemaVersion": 1,
+  "book": "SUS",
+  "title": "שושנה",
+  "translator": "דב היליר",
+  "collectionEditor": "אברהם כהנא",
+  "attribution": "שושנה, נוסח תאודוטיון, תרגום דב היליר, בתוך הספרים החיצונים בעריכת אברהם כהנא. תעתיק מן הדפוס שסופק.",
+  "sourceURL": "https://he.wikisource.org/wiki/הספרים_החיצונים_(כהנא)",
+  "scan": {
+    "volume": "A2",
+    "sha256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+    "pageCount": 325,
+    "textPages": [
+      237,
+      238,
+      239,
+      240,
+      241,
+      242
+    ]
+  },
+  "review": {
+    "status": "complete",
+    "method": "Full direct word, point and punctuation comparison of all59 lower-Theodotion units on A2 pages237–242, with independent actual-margin inventory. Unreadable isolated points are explicitly omitted and disclosed;25 accepted source-note IDs are separately inventoried. The apparent כ–כא misprint at positional40–41 is preserved through a visible version3 source-label annotation, under separately recorded independent structural disposition.",
+    "reviewedPages": [
+      237,
+      238,
+      239,
+      240,
+      241,
+      242
+    ],
+    "notes": [
+      "Full first draft through source label64,59 units across237–242. No page approved. Independent source-margin inventory is SUS-print-inventory.json; combined12–13,33–34,44–45,49–50 retained. At expected40–41 the margin appears to printכ–כא (20–21), independently reviewed; preserve that literal-looking label separately and leave its editorial address provisional until the source-label contract supports it.",
+      "Open first-pass checks include9 initial word and marks;12–13 בבואה/בבואה spelling;17 opening bracket and matching close;18 ביתכם and צוו spelling/points;22 אסבה and אם־כה;23 divine-name prefix;27 source punctuation;31 ענגה points. These examples are not an exhaustive substitute for reviewing every unit.",
+      "No verse text has been filled from the parallel old Greek recension or another Hebrew translation. Source headings identify the chosen recension explicitly.",
+      "77 manually bounded lower-text lines were compared with unchanged local Kraken OCR;25 image-backed corrections from the first draft are recorded in SUS-word-comparison-review.json. Source words with unsettled points are temporarily unpointed in this draft, not invented or release-ready. No page has yet completed full second word/point review. Several old first-pass queries above are superseded by the new report.",
+      "Independent focused bracket comparison:5 has [לעין] without extra vav (OCR confused the bracket);32 has a distinct actual vav inside [ואת־ראשה]. Corrected the latter consonant. Its vav point remains open, temporarily left unpointed in the draft.",
+      "Second full visual comparison completed for A2 page237, source units1–8. Corrected2 יפה yod to printed qamats. Three isolated unreadable points on4 מכלם,5 כמנהיגי,6 ויתחזקו are omitted and explicitly disclosed under the approved source-note policy. Independent focused reading agrees they remain unclear. Other five pages and source-label disposition remain open.",
+      "A2 page238 full lower-Theodotion body second comparison completed, source9 through first part22. Defective11 בשו, explicit14 source vowels,17 false bracket,18 source pointing and22 absent maqaf corrected. Seven isolated unreadable marks are explicitly omitted/disclosed. Page239 continuation of22 remains to be checked; no whole-book completion or label disposition is claimed.",
+      "A2 page239 full lower-Theodotion body second word/point/punctuation comparison completed, finishing22 and continuing through the opening of35. Readable points restored in22/23 and33; six isolated unreadable marks in22/23/27 disclosed. Native-detail recheck retracts earlier32 extra-vav concurrence: actual source [את־ראשה], only bracket then alef. Three remaining pages and unusual source label40–41 are still open.",
+      "A2 page240 full lower-Theodotion body second word/point/punctuation comparison completed, finishing35 through most of49–50. Bet sheva and nun dagesh restored at38; six unreadable points across38/40/47/48 explicitly disclosed after independent focused reading. Literal margin כ–כא at editorial40–41 remains preserved, with display/address disposition open; no silent relabelling. Pages241–242 and structural disposition remain open.",
+      "Full second visual word/point/punctuation comparison now covers all six lower-Theodotion pages237–242 and all59 source units. Page241 required no further transcription change; page242 has three explicitly omitted unreadable points in62 וימלט. Both reviewers distinguish yod hiriq but cannot separate its dagesh, mem dagesh or vav lower vowel from heavy ink. Initial vav patah in60 ותרע and63 ויהללו is retained based on visible flat horizontal lower bars, independently recognized as patah-shaped. Whole book remains draft solely pending source-label presentation/address disposition for printed כ–כא at editorial40–41, with final independent inventory/approval not yet pinned.",
+      "Migrated literal source margin כ–כא to the version3 presentation reference for positional40–41. Numeric address is retained for navigation; the reader must visibly annotate the printed label. No text/point changes. Whole-book approval awaits final contract/reader verification and explicit inventory disposition.",
+      "Complete review closure: all six pages and59 units reconciled with the independent margin inventory;25 disclosed point notes match the physical-page reviews. SUS-label-disposition.json records why positional40–41 remains the navigation address while כ–כא remains visibly preserved. Earlier notes describe historical draft queries, now superseded by the completed page comparisons and this explicit disposition. No unseen vowel is restored; the all-twelve-book production gate remains closed."
+    ],
+    "acceptedSourceNoteIds": [
+      "sus-1-14-letter-1-vowel",
+      "sus-1-14-letter-2-dagesh",
+      "sus-1-17-letter-1-vowel",
+      "sus-1-18-letter-1-vowel",
+      "sus-1-18-letter-4-vowel",
+      "sus-1-18-tsadi-vowel",
+      "sus-1-22-letter-1-vowel",
+      "sus-1-22-letter-3-vowel",
+      "sus-1-23-letter-1-vowel",
+      "sus-1-23-letter-3-vowel",
+      "sus-1-27-letter-1-vowel",
+      "sus-1-27-letter-2-dagesh",
+      "sus-1-38-letter-2-vowel",
+      "sus-1-38-letter-3-vowel",
+      "sus-1-4-letter-2-vowel",
+      "sus-1-40-letter-1-vowel",
+      "sus-1-47-letter-1-vowel",
+      "sus-1-47-letter-2-dagesh",
+      "sus-1-48-letter-2-vowel",
+      "sus-1-5-letter-1-vowel",
+      "sus-1-6-letter-2-dagesh",
+      "sus-1-62-letter-1-vowel",
+      "sus-1-62-letter-2-dagesh",
+      "sus-1-62-letter-3-dagesh",
+      "sus-1-9-letter-1-vowel"
+    ],
+    "unresolvedFindings": []
+  },
+  "chapters": [
+    {
+      "number": 1,
+      "lastVerse": 64,
+      "verses": [
+        {
+          "verse": 1,
+          "text": "וַיְהִי אִישׁ יוֹשֵׁב בְּבָבֶל וּשְׁמוֹ יְהוֹיָקִים׃",
+          "sourcePages": [
+            237
+          ],
+          "textSHA256": "f1d6aec31f22b05ca6c73fa035e1ef7a9e1f7c4ad4c942953c5d8b5dd1cb6885"
+        },
+        {
+          "verse": 2,
+          "text": "וַיִּקַּח אִשָּׁה וּשְׁמָהּ שׁוֹשַׁנָּה בַּת־חִלְקִיָּה יָפָה מְאֹד וְיִרְאַת יְיָ׃",
+          "sourcePages": [
+            237
+          ],
+          "textSHA256": "d47e232da15d001f0e189d23dc2d49c30439fc6cae507554cc40253aa3f2f832"
+        },
+        {
+          "verse": 3,
+          "text": "וַאֲבוֹתֶיהָ צַדִּיקִים וַיּוֹרוּ אֶת־בִּתָּם בְּתוֹרַת מֹשֶׁה׃",
+          "sourcePages": [
+            237
+          ],
+          "textSHA256": "54d01b479af0750141427aba583af3c2a6f24af6ba28176b1fbb806a8ba05400"
+        },
+        {
+          "verse": 4,
+          "text": "וַיְהִי יְהוֹיָקִים עָשִׁיר מְאֹד וַיְהִי לוֹ פַרְדֵּס קָרוֹב אֶל־בֵּיתוֹ וַיִּקָּהֲלוּ אֶצְלוֹ הַיְּהוּדִים כִּי הוּא הָיָה נִכְבָּד מִכּלָּם׃",
+          "sourcePages": [
+            237
+          ],
+          "textSHA256": "264f95a4302667b545113513c30511ea93270727230560aae6395d838437b119",
+          "sourceNotes": [
+            {
+              "id": "sus-1-4-letter-2-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "מִכּלָּם",
+              "occurrence": 1,
+              "letterIndex": 2,
+              "mark": "vowel",
+              "sourcePages": [
+                237
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=237"
+            }
+          ]
+        },
+        {
+          "verse": 5,
+          "text": "בַּשָּׁנָה הַהִיא הֻפְקְדוּ לְשׁוֹפְטִים שְׁנַיִם מִזִּקְנֵי הָעָם אֲשֶׁר עֲלֵיהֶם דִּבֶּר יְיָ לֵאמֹר מִבָּבֶל תֵּצֵא הָרִשְׁעָה מִזִּקְנֵי הַדַּיָּנִים אֲשֶׁר נִרְאוּ [לְעֵין] כּמַנְהִיגֵי הָעָם׃",
+          "sourcePages": [
+            237
+          ],
+          "textSHA256": "d0c2f53e967a694f3551208c67ce53c94b417dd3d5eadc9f090cb4d3823b46b7",
+          "sourceNotes": [
+            {
+              "id": "sus-1-5-letter-1-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "כּמַנְהִיגֵי",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "vowel",
+              "sourcePages": [
+                237
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=237"
+            }
+          ]
+        },
+        {
+          "verse": 6,
+          "text": "וַיִתְחַזְּקוּ בְּבֵית יְהוֹיָקִים וַיָּבֹאוּ אֲלֵיהֶם כָּל־בַּעַל דְּבָרִים׃",
+          "sourcePages": [
+            237
+          ],
+          "textSHA256": "466349850e0fc987032bec7b923f2503053c37db27183d806ba06bac141ec7b7",
+          "sourceNotes": [
+            {
+              "id": "sus-1-6-letter-2-dagesh",
+              "kind": "unreadablePoint",
+              "anchor": "וַיִתְחַזְּקוּ",
+              "occurrence": 1,
+              "letterIndex": 2,
+              "mark": "dagesh",
+              "sourcePages": [
+                237
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=237"
+            }
+          ]
+        },
+        {
+          "verse": 7,
+          "text": "וַיְהִי כַּאֲשֶׁר נָפוֹצוּ הָעָם וַתָּבֹא שׁוֹשַׁנָּה אֶל־פַּרְדֵּס בַּעְלָהּ׃",
+          "sourcePages": [
+            237
+          ],
+          "textSHA256": "06a0a8971faef2ce1538cc83451e4cf05815251016e040c4b78b768d135a646a"
+        },
+        {
+          "verse": 8,
+          "text": "וַיִּרְאוּ אוֹתָהּ שְׁנֵי הַזְּקֵנִים יוֹם יוֹם בָּאָה וּמִתְהַלֶּכֶת וַיַּחְמְדוּ אוֹתָהּ׃",
+          "sourcePages": [
+            237
+          ],
+          "textSHA256": "32c361217dc7820176f43f5e39c7205188ff7a9a5fcce9e5da1133a41f7bf6ca"
+        },
+        {
+          "verse": 9,
+          "text": "ונַּהַפְכוּ אֶת־דַּעְתָּם וַיַּשְׁפִּילוּ אֶת־עֵינֵיהֶם לְבִלְתִּי הַבִּיט הַשָּׁמַיְמָה וּלְבִלְתִּי זְכֹר מִשְׁפְּטֵי־צֶדֶק׃",
+          "sourcePages": [
+            238
+          ],
+          "textSHA256": "adad8f3f4cdcfaeda46b3190ad9b34d6c314eb942758c4b39e8a71a9e83bdded",
+          "sourceNotes": [
+            {
+              "id": "sus-1-9-letter-1-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "ונַּהַפְכוּ",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "vowel",
+              "sourcePages": [
+                238
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=238"
+            }
+          ]
+        },
+        {
+          "verse": 10,
+          "text": "וַיִּתְעַצְּבוּ שְׁנֵיהֶם בַּעֲבוּרָהּ וְלֹא הִגִּידוּ אִישׁ לְרֵעֵהוּ אֶת־מַכְאוֹבָם׃",
+          "sourcePages": [
+            238
+          ],
+          "textSHA256": "f76e52ebe48caf28b4a7a33062e9a814cab4823dee60c598207ef29b3246490d"
+        },
+        {
+          "verse": 11,
+          "text": "כִּי בֹשׁוּ לְהַגִּיד אֶת־תְּשׁוּקָתָם אֲשֶׁר חָשְׁקוּ לָבֹא אֵלֶיהָ׃",
+          "sourcePages": [
+            238
+          ],
+          "textSHA256": "4ff679959cc5836114bdcaa5dbd503baff21d64fc2f9ddac7aec97d246ffb8e5"
+        },
+        {
+          "verse": 12,
+          "endVerse": 13,
+          "text": "וַיִּשְׁקְדוּ בְקִנְאָה יוֹם יוֹם לִרְאוֹתָהּ׃ וַיֹּאמְרוּ אִישׁ לְרֵעֵהוּ נֵלְכָה־נָּא הַבַּיְתָה כִּי הִגִּיעָה שְׁעַת הָאֲכִילָה וַיֵּצְאוּ וַיִּפָּרְדוּ אִישׁ מֵרֵעֵהוּ׃",
+          "sourcePages": [
+            238
+          ],
+          "textSHA256": "50474547cda9a0a733db79c35c01197ce5a785d6decfb9f09bbc50498fc8c582"
+        },
+        {
+          "verse": 14,
+          "text": "ויָסֹבּוּ וַיָּשׁוּבוּ אֶל־הַמָּקוֹם הַהוּא וַיִּשְׁאֲלוּ אִישׁ לְרֵעֵהוּ מַה הַדָּבָר וַיּוֹדוּ עַל־תְּשׁוּקָתָם אָז שָׂמוּ מוֹעֵד יַחַד אֲשֶׁר יוּכְלוּ לִמְצֹא אוֹתָהּ לְבַדָּהּ׃",
+          "sourcePages": [
+            238
+          ],
+          "textSHA256": "487f09c670f0c853850f93652aca7446579668764b80fdf31f75f9dcafcc1455",
+          "sourceNotes": [
+            {
+              "id": "sus-1-14-letter-1-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "ויָסֹבּוּ",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "vowel",
+              "sourcePages": [
+                238
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=238"
+            },
+            {
+              "id": "sus-1-14-letter-2-dagesh",
+              "kind": "unreadablePoint",
+              "anchor": "ויָסֹבּוּ",
+              "occurrence": 1,
+              "letterIndex": 2,
+              "mark": "dagesh",
+              "sourcePages": [
+                238
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=238"
+            }
+          ]
+        },
+        {
+          "verse": 15,
+          "text": "וַיְהִי כַּאֲשֶׁר שָׁמְרוּ הַמּוֹעֵד וַתָּבֹא כִתְמוֹל שִׁלְשֹׁם הִיא וּשְׁתֵּי נַעֲרוֹתֶיהָ לְבַדָּן וַתְּבַקֵּשׁ לִרְחֹץ בַּפַּרְדֵּס כְּחֹם הַיּוֹם׃",
+          "sourcePages": [
+            238
+          ],
+          "textSHA256": "9d8c064ffd9f1a5b5b318974ead061e90be289d35d24804a587e3f6af037a55c"
+        },
+        {
+          "verse": 16,
+          "text": "וְלֹא הָיָה שָׁם אָדָם מִלְּבַד שְׁנֵי הַזְּקֵנִים הַנֶּחְבָּאִים וְהַשּׁוֹמְרִים אוֹתָהּ׃",
+          "sourcePages": [
+            238
+          ],
+          "textSHA256": "52fa2473bf4f751aae4e09642a4bd3803d9066e56b601e5523b3addcdab15f7a"
+        },
+        {
+          "verse": 17,
+          "text": "וַתֹּאמֶר לְנַעֲרוֹתֶיהָ הָבִיאֶינָה־נָּא לִי שֶׁמֶן ותַמְרוּקִים וּסְגֹרְנָה אֶת־דַּלְתוֹת הַפַּרְדֵּס לְמַעַן אֶרְחַץ׃",
+          "sourcePages": [
+            238
+          ],
+          "textSHA256": "f23357d4f464d3154c2140e8656ffaa28f345b76ae73d7796bb6061ceb281e6d",
+          "sourceNotes": [
+            {
+              "id": "sus-1-17-letter-1-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "ותַמְרוּקִים",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "vowel",
+              "sourcePages": [
+                238
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=238"
+            }
+          ]
+        },
+        {
+          "verse": 18,
+          "text": "וַתַּעֲשֶׂינָה כַּאֲשֶׁר אָמְרָה וַתִּסְגֹּרְנָה אֶת־דַּלְתוֹת הַפַּרְדֵּס וַתֵּצֶאנָה בִדְלָתוֹת בּיַרְכתַיִם לְהָבִיא אֶת־אֲשֶׁר צוּוּ וְלֹא רָאוּ אֶת־הַזְּקֵנִים כִּי נֶחְבָּאוּ׃",
+          "sourcePages": [
+            238
+          ],
+          "textSHA256": "98ac4e13233b4e6d4c7e86e4ca805f421c853ee870ee3462ab06dde7136898f9",
+          "sourceNotes": [
+            {
+              "id": "sus-1-18-letter-1-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "בּיַרְכתַיִם",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "vowel",
+              "sourcePages": [
+                238
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=238"
+            },
+            {
+              "id": "sus-1-18-letter-4-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "בּיַרְכתַיִם",
+              "occurrence": 1,
+              "letterIndex": 4,
+              "mark": "vowel",
+              "sourcePages": [
+                238
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=238"
+            },
+            {
+              "id": "sus-1-18-tsadi-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "צוּוּ",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "vowel",
+              "sourcePages": [
+                238
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=238"
+            }
+          ]
+        },
+        {
+          "verse": 19,
+          "text": "וַיְהִי כַּאֲשֶׁר יָצְאוּ הַנְּעָרוֹת וַיָּקוּמוּ שְׁנֵי הַזְּקֵנִים וַיָּרוּצוּ אֵלֶיהָ׃",
+          "sourcePages": [
+            238
+          ],
+          "textSHA256": "1da673d0bce33f860fde96b01554a71e0d2c972ad7dd679c6d38cba048818151"
+        },
+        {
+          "verse": 20,
+          "text": "וַיֹּאמְרוּ רְאִי־נָא דַּלְתוֹת הַפַּרְדֵּס סֻגְרוּ וְאֵין אִישׁ רוֹאֶה אוֹתָנוּ וְעַתָּה הִשָּׁמְעִי לָנוּ וְנָבֹא אֵלָיִךְ׃",
+          "sourcePages": [
+            238
+          ],
+          "textSHA256": "b45e0bb70fe6a37f190f1463c2e792ce6cb8a57c11c384c5b47555eab9e01871"
+        },
+        {
+          "verse": 21,
+          "text": "וְאִם־לֹא נָעִידָה בָךְ כִּי בָא אֵלַיִךְ נַעַר וְעַל־כֵּן שָׁלַחְתְּ אֶת־נַעֲרוֹתָיִךְ׃",
+          "sourcePages": [
+            238
+          ],
+          "textSHA256": "76462a76d9e25c662c4dabf78df1b080df5be11e9ddc9e18f56698d4fc481e57"
+        },
+        {
+          "verse": 22,
+          "text": "וַתֵּאָנַח שׁוֹשַׁנָּה וַתֹּאמֶר צַר לִי אִם־כֹּה וְאִם־כֹּה כִּי אִם־אֶעֱשֶׂה זֹאת בַּת־מָוֶת אָנֹכִי וְאִם־לֹא אעֱשׂנָּה לֹא אִמָּלֵט מִיְּדֵיכֶם׃",
+          "sourcePages": [
+            238,
+            239
+          ],
+          "textSHA256": "ce0f82cf80c3818f702f584aeb736132d4060777ea47e53040fdeef2d80b8d3b",
+          "sourceNotes": [
+            {
+              "id": "sus-1-22-letter-1-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "אעֱשׂנָּה",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "vowel",
+              "sourcePages": [
+                239
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=239"
+            },
+            {
+              "id": "sus-1-22-letter-3-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "אעֱשׂנָּה",
+              "occurrence": 1,
+              "letterIndex": 3,
+              "mark": "vowel",
+              "sourcePages": [
+                239
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=239"
+            }
+          ]
+        },
+        {
+          "verse": 23,
+          "text": "וְעַתָּה טוֹב לִי כִּי לֹא אעֱשׂנָּה וְאֶפֹּל בִּידֵיכֶם מֵאֲשֶׁר אֶחֱטָא לַיְיָ׃",
+          "sourcePages": [
+            239
+          ],
+          "textSHA256": "0e636a508e7d650e516806f565ac52e3f275d76fd7d85baafc450d94214803e3",
+          "sourceNotes": [
+            {
+              "id": "sus-1-23-letter-1-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "אעֱשׂנָּה",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "vowel",
+              "sourcePages": [
+                239
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=239"
+            },
+            {
+              "id": "sus-1-23-letter-3-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "אעֱשׂנָּה",
+              "occurrence": 1,
+              "letterIndex": 3,
+              "mark": "vowel",
+              "sourcePages": [
+                239
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=239"
+            }
+          ]
+        },
+        {
+          "verse": 24,
+          "text": "וַתִּזְעַק שׁוֹשַׁנָּה קוֹל גָּדוֹל וְגַם־שְׁנֵי הַזְּקֵנִים צָעֲקוּ כְנֶגְדָּהּ׃",
+          "sourcePages": [
+            239
+          ],
+          "textSHA256": "cbf08f6d7778bcf22187dc3fd12ea42447f9fac80e3f7499dd3eaf0655f5f36d"
+        },
+        {
+          "verse": 25,
+          "text": "וַיָּרָץ אֶחָד מֵהֶם וַיִּפְתַּח אֶת־דַּלְתוֹת הַפַּרְדֵּס׃",
+          "sourcePages": [
+            239
+          ],
+          "textSHA256": "56305ef8aa99577ec59b40419139fbedb7facebda66a364b09c29e5f2823f23c"
+        },
+        {
+          "verse": 26,
+          "text": "וַיְהִי כַּאֲשֶׁר נִשְׁמַע בַּבַּיִת קוֹל הַצְּעָקָה מִן־הַפַּרְדֵּס וַיָּבֹאוּ לִרְאוֹת מַה־הָיָה לָהּ׃",
+          "sourcePages": [
+            239
+          ],
+          "textSHA256": "11b87d08f6ce443444547dc6b02432827ba74f0bdcf8be850ff4c3b461203f2b"
+        },
+        {
+          "verse": 27,
+          "text": "וְכַאֲשֶׁר דִּבְּרוּ הַזְּקֵנִים אֶת־דִּבְרֵיהֶם ויִתְבּוֹשָׁשׁוּ הָעֲבָדִים מְאֹד כִּי עוֹד לֹא הֻגַּד כַּדָּבָר הַזֶּה עַל־שׁוֹשַׁנָּה׃",
+          "sourcePages": [
+            239
+          ],
+          "textSHA256": "10ec4e1548223636c3adfd894d4a0ad16f94504664574750f5abffdcfdcb48af",
+          "sourceNotes": [
+            {
+              "id": "sus-1-27-letter-1-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "ויִתְבּוֹשָׁשׁוּ",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "vowel",
+              "sourcePages": [
+                239
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=239"
+            },
+            {
+              "id": "sus-1-27-letter-2-dagesh",
+              "kind": "unreadablePoint",
+              "anchor": "ויִתְבּוֹשָׁשׁוּ",
+              "occurrence": 1,
+              "letterIndex": 2,
+              "mark": "dagesh",
+              "sourcePages": [
+                239
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=239"
+            }
+          ]
+        },
+        {
+          "verse": 28,
+          "text": "וַיְהִי מִמָּחֳרָת כַּאֲשֶׁר נִקְהֲלוּ הָעָם אֶל־יְהוֹיָקִים בַּעְלָהּ וַיָּבֹאוּ שְׁנֵי הַזְּקֵנִים וְהֵמָּה מְלֵאִים מַחְשָׁבוֹת רֶשַׁע עַל־שׁוֹשַׁנָּה לַהֲמִיתָהּ׃",
+          "sourcePages": [
+            239
+          ],
+          "textSHA256": "5f329c3d15f430f0e5a2322592d48b6abe2f2e5a91e0117b75fd116066569346"
+        },
+        {
+          "verse": 29,
+          "text": "וַיֹּאמְרוּ לִפְנֵי הָעָם שִׁלְחוּ־נָא לִקְרֹא לְשׁוֹשַׁנָּה בַת־חִלְקִיָּה הִיא אֵשֶׁת יְהוֹיָקִים וַיִּשְׁלְחוּ׃",
+          "sourcePages": [
+            239
+          ],
+          "textSHA256": "5e6de57b59db7fc0276cab2aca268cc3155cec92e40ba8f3d6a829e9737ca117"
+        },
+        {
+          "verse": 30,
+          "text": "וַתָּבֹא הִיא וְאָבִיהָ וְאִמָּהּ וִילָדֶיהָ וְכָל־קְרוֹבֶיהָ׃",
+          "sourcePages": [
+            239
+          ],
+          "textSHA256": "00a666c462ae2e601f233521ba0532bc7ba9280f90939b4ebde25749e3436d25"
+        },
+        {
+          "verse": 31,
+          "text": "וְשׁוֹשַׁנָּה הָיְתָה עֲנֻגָּה מְאֹד וִיפַת־מַרְאֶה׃",
+          "sourcePages": [
+            239
+          ],
+          "textSHA256": "8b44f9acc12164d639101cb41d339b88e1149ff3752d609ba1e264fa26c8f9cf"
+        },
+        {
+          "verse": 32,
+          "text": "וַיְצַוּוּ הָרְשָׁעִים לְגַלּוֹת [אֶת־רֹאשָׁהּ] כִּי מְכֻסֶּה הָיָה לְמַעַן יִשְׂבְּעוּ מִיָּפְיָהּ׃",
+          "sourcePages": [
+            239
+          ],
+          "textSHA256": "9ee81a6f5768394bab31f7b6bead2478670158f2b1800ea78f750701ceb70049"
+        },
+        {
+          "verse": 33,
+          "endVerse": 34,
+          "text": "וַיִּבְכּוּ כָל־אֲשֶׁר סְבִיבָהּ וְכָל־אֲשֶׁר רָאוּ אוֹתָהּ׃ וַיָּקוּמוּ שְׁנֵי הַזְּקֵנִים בְּתוֹךְ־הָעָם וַיָּשִׂימוּ אֶת־יְדֵיהֶם עַל־רֹאשָׁהּ׃",
+          "sourcePages": [
+            239
+          ],
+          "textSHA256": "2353321c7589cbf3c2e6d4a1dbf0c7e0f74671f120c71e005384bad668be6d45"
+        },
+        {
+          "verse": 35,
+          "text": "וַתֵּבְךְ וַתַּבֵּט הַשָּׁמַיְמָה כִּי לִבָּהּ בָּטַח בַּיְיָ׃",
+          "sourcePages": [
+            239,
+            240
+          ],
+          "textSHA256": "4b269c32a919976723d986a993eb910b7c07c4ba0373d29d04c47dc0b6687e5f"
+        },
+        {
+          "verse": 36,
+          "text": "וַיֹּאמְרוּ הַזְּקֵנִים כַּאֲשֶׁר הִתְהַלַּכְנוּ לְבַדֵּנוּ בַּפַּרְדֵּס וַתָּבֹא הָאִשָּׁה הַזֹּאת עִם־שְׁתֵּי נַעֲרוֹתֶיהָ וַתִּסְגֹּר אֶת־דַּלְתוֹת הַפַּרְדֵּס וַתִּשְׁלַח אֶת־הַנְּעָרוֹת׃",
+          "sourcePages": [
+            240
+          ],
+          "textSHA256": "a8818fa1d268a89a0f0c1e04202aeeeb37ea08728b6adcd1219e5433b28fe20f"
+        },
+        {
+          "verse": 37,
+          "text": "וַיָּבֹא אֵלֶיהָ נַעַר אֲשֶׁר נֶחְבָּא שָׁם וַיִּשְׁכַּב עִמָּהּ׃",
+          "sourcePages": [
+            240
+          ],
+          "textSHA256": "32d91ec617beabd4aca4c73a4ea9ee97c8791d78dfe1c3b3784c8009fb4c4a86"
+        },
+        {
+          "verse": 38,
+          "text": "וַאֲנַחְנוּ בְּפנּת הַפַּרְדֵּס רָאִינוּ אֶת־הַנְּבָלָה וַנָּרָץ אֲלֵיהֶם׃",
+          "sourcePages": [
+            240
+          ],
+          "textSHA256": "0b0f2c152def9a4177fd3ca8d8ae835b8f7f2fcce024edfec61b5d76ef3e96c9",
+          "sourceNotes": [
+            {
+              "id": "sus-1-38-letter-2-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "בְּפנּת",
+              "occurrence": 1,
+              "letterIndex": 2,
+              "mark": "vowel",
+              "sourcePages": [
+                240
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=240"
+            },
+            {
+              "id": "sus-1-38-letter-3-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "בְּפנּת",
+              "occurrence": 1,
+              "letterIndex": 3,
+              "mark": "vowel",
+              "sourcePages": [
+                240
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=240"
+            }
+          ]
+        },
+        {
+          "verse": 39,
+          "text": "וְכַאֲשֶׁר רָאִינוּ אוֹתָם יַחַד לֹא יָכֹלְנוּ לִתְפֹּשׂ אוֹתוֹ כִּי גָבַר עָלֵינוּ׃",
+          "sourcePages": [
+            240
+          ],
+          "textSHA256": "a51f50ff1e7b1866e337b4f49c4c213fba594ca2b1bccb53257af7da144a71d3"
+        },
+        {
+          "verse": 40,
+          "endVerse": 41,
+          "text": "אַךְ אֶת־זֹאת אָחַזְנוּ ונִּשְׁאַל אוֹתָהּ מִי הָיָה הַנַּעַר׃ וַתְּמָאֵן לְהַגִּיד לָנוּ וְעַל־זֹאת אֲנַחְנוּ עֵדִים וַתַּאֲמֵן לָהֶם הָעֵדָה בַּאֲשֶׁר הֵם זִקְנֵי הָעָם וְשׁוֹפְטָיו וַיִּשְׁפְּטוּ אוֹתָהּ לָמוּת׃",
+          "sourcePages": [
+            240
+          ],
+          "textSHA256": "cb48051a67d44b73060c042e0938cd0c79a4427b2c52a05c5bdc42fd163b697c",
+          "sourceNotes": [
+            {
+              "id": "sus-1-40-letter-1-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "ונִּשְׁאַל",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "vowel",
+              "sourcePages": [
+                240
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=240"
+            }
+          ]
+        },
+        {
+          "verse": 42,
+          "text": "וַתִּזְעַק שׁוֹשַׁנָּה קוֹל גָּדוֹל",
+          "sourcePages": [
+            240
+          ],
+          "textSHA256": "6e9ad192054cc1382f485a9cafab00933ce7120f72ca20075a138ba0fcacb76a"
+        },
+        {
+          "verse": 43,
+          "text": "לֵאמֹר אֱלֹהֵי עוֹלָם יוֹדֵעַ הַנִּסְתָּרוֹת יוֹדֵעַ כֹּל בְּטֶרֶם נִהְיָה׃ אַתָּה יוֹדֵעַ כִּי שֶׁקֶר יַעֲנוּ בִי וְהִנֵּה אָנֹכִי מֵתָה וְלֹא עָשִׂיתִי מְאוּמָה מֵאֲשֶׁר הֵם טָפְלוּ אֵלֶּה עָלָי׃",
+          "sourcePages": [
+            240
+          ],
+          "textSHA256": "736e50c8dc68f83096d8e5fbceded0be28bebad88a590115990122b070fee474"
+        },
+        {
+          "verse": 44,
+          "endVerse": 45,
+          "text": "וַיִּשְׁמַע יְיָ אֶת־קוֹלָהּ׃ הִיא מוּצֵאת לָמוּת וַיְיָ אֱלֹהִים נָתַן רוּחַ קָדְשׁוֹ עַל־נַעַר קָטֹן דָּנִיאֵל שְׁמוֹ׃",
+          "sourcePages": [
+            240
+          ],
+          "textSHA256": "8780d2098b2529bb141e9d25499327ae7a5d215076e8c277948528a23d339339"
+        },
+        {
+          "verse": 46,
+          "text": "וַיִּקְרָא קוֹל גָּדוֹל נָקִי אָנֹכִי מִדְּמֵי הָאִשָּׁה הַזֹּאת׃",
+          "sourcePages": [
+            240
+          ],
+          "textSHA256": "dd834ab37e49ec657e764b8c545c07380b28503fbb9c794b02a152aee66f628f"
+        },
+        {
+          "verse": 47,
+          "text": "ויִפֶן אֵלָיו כָּל־הָעָם וַיֹּאמְרוּ מַה־הַדָּבָר הַזֶּה אֲשֶׁר דִּבַּרְתָּ׃",
+          "sourcePages": [
+            240
+          ],
+          "textSHA256": "48644c9eb34ced31218e7301dc2636de41253515a7bfb4d67d55e5462966ab40",
+          "sourceNotes": [
+            {
+              "id": "sus-1-47-letter-1-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "ויִפֶן",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "vowel",
+              "sourcePages": [
+                240
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=240"
+            },
+            {
+              "id": "sus-1-47-letter-2-dagesh",
+              "kind": "unreadablePoint",
+              "anchor": "ויִפֶן",
+              "occurrence": 1,
+              "letterIndex": 2,
+              "mark": "dagesh",
+              "sourcePages": [
+                240
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=240"
+            }
+          ]
+        },
+        {
+          "verse": 48,
+          "text": "וַיַּעֲמֹד בְּתוֹכָם וַיֹּאמֶר הַאמְנָם פְּתָאִים אַתֶּם בְּנֵי־יִשְׂרָאֵל הֵן לֹא חֲקַרְתֶּם וְלֹא יְדַעְתֶּם אֶת־הַנְּכוֹנָה וַתַּרְשִׁיעוּ בַת־יִשְׂרָאֵל׃",
+          "sourcePages": [
+            240
+          ],
+          "textSHA256": "cd84b61f5e255dd4f5301df0fb6b6af5320cc4078e3d39ed93c9362ade514df7",
+          "sourceNotes": [
+            {
+              "id": "sus-1-48-letter-2-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "הַאמְנָם",
+              "occurrence": 1,
+              "letterIndex": 2,
+              "mark": "vowel",
+              "sourcePages": [
+                240
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=240"
+            }
+          ]
+        },
+        {
+          "verse": 49,
+          "endVerse": 50,
+          "text": "וְעַתָּה שׁוּבוּ אֶל־בֵּית־הַדִּין כִּי שֶׁקֶר עָנוּ בָהּ אֵלֶּה׃ וַיְמַהֲרוּ כָל־הָעָם לָשׁוּב וַיֹּאמְרוּ אֵלָיו הַזְּקֵנִים בּוֹא וּשְׁבָה־נָּא בְּתוֹכֵנוּ וְהַגִּידָה לָּנוּ כִּי לְךָ נָתַן אֱלֹהִים אֶת־הַזִּקְנָה׃",
+          "sourcePages": [
+            240,
+            241
+          ],
+          "textSHA256": "0f6af81bff5dc104ce8657e9ce66f0347a574bec54fb1228d377c06cfa1e7dfb"
+        },
+        {
+          "verse": 51,
+          "text": "וַיֹּאמֶר אֲלֵיהֶם דָּנִיאֵל הַבְדִּילוּ אוֹתָם הַרְחֵק הָאֶחָד מֵרֵעֵהוּ וַאֲנִי אֶחְקֹר אוֹתָם׃",
+          "sourcePages": [
+            241
+          ],
+          "textSHA256": "1a06947c70bbaba790a45d9dd0870ab618f2786e3a7d487152fdcd53ce6dd398"
+        },
+        {
+          "verse": 52,
+          "text": "וְכַאֲשֶׁר הִפָּרְדוּ הָאֶחָד מֵרֵעֵהוּ וַיִּקְרָא אֶת־הָאֶחָד וַיֹּאמֶר לוֹ אַתָּה אֲשֶׁר בִּלִּיתָ יָמֶיךָ בְרָעוֹת עַתָּה הִגִּיעוּךָ הַחֲטָאִים אֲשֶׁר חָטָאתָ מִנִּי אָז׃",
+          "sourcePages": [
+            241
+          ],
+          "textSHA256": "67c062f3d504fc66517027fd477690135e256672d45e9fb766043500be1a53ee"
+        },
+        {
+          "verse": 53,
+          "text": "שָׁפַטְתָּ מִשְׁפְּטֵי שֶׁקֶר לְהַרְשִׁיעַ אֶת־הַצַּדִּיקִים וּלְהַצְדִּיק אֶת־הָרְשָׁעִים וַיְיָ אָמַר וְנָקִי וְצַדִּיק אַל תַּהֲרֹג׃",
+          "sourcePages": [
+            241
+          ],
+          "textSHA256": "079a7a9a6e5ceb569249bb4e5a92af02bd91a3b4555cab5f32b99e9f40c4502f"
+        },
+        {
+          "verse": 54,
+          "text": "וְעַתָּה אִם־רָאִיתָ אֶת־זֹאת אֱמֹר תַּחַת אֵי־זֶה עֵץ רָאִיתָ אוֹתָם יַחַד וַיֹּאמֶר תַּחַת מַסְטִיכִי׃",
+          "sourcePages": [
+            241
+          ],
+          "textSHA256": "50d03d3c763b66daa9f59727822bcd24d7444582924e862069a3d12a0d009584"
+        },
+        {
+          "verse": 55,
+          "text": "וַיֹּאמֶר דָּנִיאֵל הֵיטֵב שִׁקַּרְתָּ בְּנַפְשֶׁךָ וּכְבָר לָקַח מַלְאַךְ אֱלֹהִים דָּבָר מֵאֵת אֱלֹהִים לִקְרֹעַ אוֹתְךָ לִשְׁנַיִם׃",
+          "sourcePages": [
+            241
+          ],
+          "textSHA256": "842949519e6b09719460c1e6c09fe9935c28600c7b54fb8d1552afb3340991f7"
+        },
+        {
+          "verse": 56,
+          "text": "וַיַּצֶּב אוֹתוֹ לְבָד וַיְצַו לְהָבִיא אֶת־הַשֵּׁנִי וַיֹּאמֶר לוֹ זֶרַע כְּנַעַן וְלֹא זֶרַע יְהוּדָה הַיֹּפִי הֱדִיחֲךָ וְהַתַּאֲוָה הִתְעֲתָה אֶת־לִבְּךָ׃",
+          "sourcePages": [
+            241
+          ],
+          "textSHA256": "55fe598f1ab0b8fcfe5a973a17e9780d9dec8a0e74e25ddac1ac3009d063e044"
+        },
+        {
+          "verse": 57,
+          "text": "כָּכָה עָשִׂיתָ לִבְנוֹת־יִשְׂרָאֵל וְהֵן מִיִּרְאָתָן נִכְבְּשׁוּ לִפְנֵיכֶם אַךְ בַּת־יְהוּדָה [אַחַת] לֹא סָבְלָה אֶת־חַטַּאתְכֶם׃",
+          "sourcePages": [
+            241,
+            242
+          ],
+          "textSHA256": "4ec6adbb9bc1754c553d3d5c43f51be066135c96c80cfeddb1cb5eb81fd08f31"
+        },
+        {
+          "verse": 58,
+          "text": "וְעַתָּה אֱמָר־לִי תַּחַת אֵי־זֶה עֵץ תְּפַשְׂתָּ אוֹתָם יַחַד וַיֹּאמֶר תַּחַת אַלּוֹן׃",
+          "sourcePages": [
+            242
+          ],
+          "textSHA256": "540f9c8569eb6263221467ab5059eef4dd14f3c18330fa1a2991036a3adefcf8"
+        },
+        {
+          "verse": 59,
+          "text": "וַיֹּאמֶר לוֹ דָּנִיאֵל הֵיטֵב שִׁקַּרְתָּ גַּם־אַתָּה בְּרֹאשְׁךָ וְהִנֵּה מַלְאַךְ יְיָ עוֹמֵד וְחַרְבּוֹ בְיָדוֹ לִגְזֹר אוֹתְךָ לִשְׁנַיִם לְהַשְׁמִידְכֶם׃",
+          "sourcePages": [
+            242
+          ],
+          "textSHA256": "4f2265cf6d833b66cf2569042c0d5574e7db95a0d8ad519b5d158dbcce0ddea5"
+        },
+        {
+          "verse": 60,
+          "text": "וַתָּרַע כָּל־הָעֵדָה קוֹל גָּדוֹל וַיְבָרְכוּ אֶת־הָאֱלֹהִים הַמּוֹשִׁיעַ לַמְיַחֲלִים לוֹ׃",
+          "sourcePages": [
+            242
+          ],
+          "textSHA256": "ce6fad381fb7a08341d1953a15f5b480effe2cacef31f11d19bcce060fd06ba9"
+        },
+        {
+          "verse": 61,
+          "text": "וַיָּקוּמוּ עַל־שְׁנֵי הַזְּקֵנִים כִּי דָנִיאֵל הוֹכִיחַ עַל־פִּיהֶם הֵמָּה כִּי עֵדֵי־שֶׁקֶר הֵם וַיַּעֲשׂוּ לָהֶם כַּאֲשֶׁר זָמְמוּ לַעֲשׂוֹת לְרֵעֵיהֶם׃ וַיַּעֲשׂוּ כְתוֹרַת מֹשֶׁה וַיָּמִיתוּ אוֹתָם",
+          "sourcePages": [
+            242
+          ],
+          "textSHA256": "c3f8fdeace06d6db5a2714a9d5af9fc10952a2d68392e1faea64d1412d2c5ac5"
+        },
+        {
+          "verse": 62,
+          "text": "ויִמָלֵט דָּם נָקִי בַּיּוֹם הַהוּא׃",
+          "sourcePages": [
+            242
+          ],
+          "textSHA256": "70f2fd5420ff7a27710a3582c99f54b87ee069638ec552b265607565d2beddfc",
+          "sourceNotes": [
+            {
+              "id": "sus-1-62-letter-1-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "ויִמָלֵט",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "vowel",
+              "sourcePages": [
+                242
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=242"
+            },
+            {
+              "id": "sus-1-62-letter-2-dagesh",
+              "kind": "unreadablePoint",
+              "anchor": "ויִמָלֵט",
+              "occurrence": 1,
+              "letterIndex": 2,
+              "mark": "dagesh",
+              "sourcePages": [
+                242
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=242"
+            },
+            {
+              "id": "sus-1-62-letter-3-dagesh",
+              "kind": "unreadablePoint",
+              "anchor": "ויִמָלֵט",
+              "occurrence": 1,
+              "letterIndex": 3,
+              "mark": "dagesh",
+              "sourcePages": [
+                242
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=242"
+            }
+          ]
+        },
+        {
+          "verse": 63,
+          "text": "וַיְהַלְלוּ חִלְקִיָּהוּ וְאִשְׁתּוֹ אֶת־הָאֱלֹהִים עַל־בִּתָּם הֵמָּה וּבַעְלָהּ יְהוֹיָקִים וְכָל־קְרוֹבֶיהָ עַל־אֲשֶׁר לֹא נִמְצָא בָהּ דְבַר עֶרְוָה׃",
+          "sourcePages": [
+            242
+          ],
+          "textSHA256": "1429c9adddbefce968db932cc2e53848d9b63eaab4476fc7ee6b0e49b2dd32a1"
+        },
+        {
+          "verse": 64,
+          "text": "וְדָנִיאֵל גָּדוֹל בְּעֵינֵי הָעָם מִן־הַיּוֹם הַהוּא וָהָלְאָה׃",
+          "sourcePages": [
+            242
+          ],
+          "textSHA256": "2933285e50a6a331c15d7f8d36d6ce31ed5160094b9082f57411823f304cc6c8"
+        }
+      ],
+      "contentBlocks": [
+        {
+          "id": "sus-1-1",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 1
+        },
+        {
+          "id": "sus-1-2",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 2
+        },
+        {
+          "id": "sus-1-3",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 3
+        },
+        {
+          "id": "sus-1-4",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 4
+        },
+        {
+          "id": "sus-1-5",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 5
+        },
+        {
+          "id": "sus-1-6",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 6
+        },
+        {
+          "id": "sus-1-7",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 7
+        },
+        {
+          "id": "sus-1-8",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 8
+        },
+        {
+          "id": "sus-1-9",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 9
+        },
+        {
+          "id": "sus-1-10",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 10
+        },
+        {
+          "id": "sus-1-11",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 11
+        },
+        {
+          "id": "sus-1-12",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 12
+        },
+        {
+          "id": "sus-1-14",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 14
+        },
+        {
+          "id": "sus-1-15",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 15
+        },
+        {
+          "id": "sus-1-16",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 16
+        },
+        {
+          "id": "sus-1-17",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 17
+        },
+        {
+          "id": "sus-1-18",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 18
+        },
+        {
+          "id": "sus-1-19",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 19
+        },
+        {
+          "id": "sus-1-20",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 20
+        },
+        {
+          "id": "sus-1-21",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 21
+        },
+        {
+          "id": "sus-1-22",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 22
+        },
+        {
+          "id": "sus-1-23",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 23
+        },
+        {
+          "id": "sus-1-24",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 24
+        },
+        {
+          "id": "sus-1-25",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 25
+        },
+        {
+          "id": "sus-1-26",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 26
+        },
+        {
+          "id": "sus-1-27",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 27
+        },
+        {
+          "id": "sus-1-28",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 28
+        },
+        {
+          "id": "sus-1-29",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 29
+        },
+        {
+          "id": "sus-1-30",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 30
+        },
+        {
+          "id": "sus-1-31",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 31
+        },
+        {
+          "id": "sus-1-32",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 32
+        },
+        {
+          "id": "sus-1-33",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 33
+        },
+        {
+          "id": "sus-1-35",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 35
+        },
+        {
+          "id": "sus-1-36",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 36
+        },
+        {
+          "id": "sus-1-37",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 37
+        },
+        {
+          "id": "sus-1-38",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 38
+        },
+        {
+          "id": "sus-1-39",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 39
+        },
+        {
+          "id": "sus-1-40",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 40,
+          "printedLabel": "כ–כא"
+        },
+        {
+          "id": "sus-1-42",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 42
+        },
+        {
+          "id": "sus-1-43",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 43
+        },
+        {
+          "id": "sus-1-44",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 44
+        },
+        {
+          "id": "sus-1-46",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 46
+        },
+        {
+          "id": "sus-1-47",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 47
+        },
+        {
+          "id": "sus-1-48",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 48
+        },
+        {
+          "id": "sus-1-49",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 49
+        },
+        {
+          "id": "sus-1-51",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 51
+        },
+        {
+          "id": "sus-1-52",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 52
+        },
+        {
+          "id": "sus-1-53",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 53
+        },
+        {
+          "id": "sus-1-54",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 54
+        },
+        {
+          "id": "sus-1-55",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 55
+        },
+        {
+          "id": "sus-1-56",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 56
+        },
+        {
+          "id": "sus-1-57",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 57
+        },
+        {
+          "id": "sus-1-58",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 58
+        },
+        {
+          "id": "sus-1-59",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 59
+        },
+        {
+          "id": "sus-1-60",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 60
+        },
+        {
+          "id": "sus-1-61",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 61
+        },
+        {
+          "id": "sus-1-62",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 62
+        },
+        {
+          "id": "sus-1-63",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 63
+        },
+        {
+          "id": "sus-1-64",
+          "kind": "verse",
+          "chapter": 1,
+          "verse": 64
+        }
+      ]
+    }
+  ]
+}

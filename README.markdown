@@ -59,7 +59,8 @@ CI runs the format suite, the Android and Windows test suites, and all three web
 
 ## License
 
-All original Prosary material across the native apps, web projects, shared data, documentation,
-tools, and assets is licensed under the BSD 2-Clause License — see
-[`./LICENSE`](./LICENSE). Third-party material (including fonts, artwork, and scripture editions)
-retains its original license and is attributed in each app's About screen.
+Original Prosary material is covered by the repository-wide [LICENSE](./LICENSE):
+BSD 2-Clause, with a CC0 1.0 Universal dedication for all original natural-language text
+authored by David Kaluta. See the [dedication's scope](Shared/content/TEXT-LICENSING.markdown).
+Third-party material (including fonts, artwork, and scripture editions) retains its original
+license and is attributed in each app's About screen.

@@ -1,0 +1,1807 @@
+{
+  "schemaVersion": 1,
+  "book": "WIS",
+  "status": "boundary-evidence-for-parent-review",
+  "reviewedAt": "2026-10-02",
+  "reviewer": "source_gate independent daily-boundary pass",
+  "scope": {
+    "appointmentCount": 9,
+    "scheduledOccurrences": 17,
+    "scopePath": "Shared/reports/hebrew-wikisource/hebrew-daily-integration-scope.json",
+    "scopeSHA256": "e8e917ce77f965f85e06c67fee9f1a4f152e7ebfd828503e2fa6504e69e3790e"
+  },
+  "canonical": {
+    "path": "Shared/content/hebrew-deuterocanon/WIS.json",
+    "contentSHA256": "600a31cb9a69c9f9d56ae2851613fdb1ba766df247e93e303f969b635a8d17d2",
+    "sourceNotesPreserved": true,
+    "textChanged": false
+  },
+  "policy": [
+    "A securely attested complete source-edition variant at a reviewed endpoint is not missing content. A lost, unreviewed or incomplete source unit remains unavailable; differing liturgical or comparison-edition wording is recorded explicitly.",
+    "Whole source units, printed brackets and accepted source notes remain intact; no inferred cuts or copied clauses from another passage.",
+    "The parent chooses runtime availability and any whole-verse notice; no global manifest was changed.",
+    "Modern calendar text was inspected but is not reproduced wholesale here; hashes and semantic comparisons record the evidence."
+  ],
+  "sources": {
+    "dra3": {
+      "url": "https://ebible.org/engDRA/WIS03.htm",
+      "accessed": "2026-10-02",
+      "inspection": "Complete chapter read through the web reader; exact verse9 endpoint and following10 label inspected.",
+      "role": "secure-shorter-source-edition-endpoint",
+      "shortEndpointQuotation": "for grace and peace is to his elect.",
+      "description": "Public-domain 1899 Douay-Rheims Wisdom3.",
+      "finding": "Verse9 also ends with the elect after grace and peace, without a separate care clause; verse10 begins the wicked. Mercy/peace is a further wording difference, not an endpoint gap."
+    },
+    "dra5": {
+      "url": "https://ebible.org/engDRA/WIS05.htm",
+      "description": "Public-domain Douay-Rheims Wisdom 5.",
+      "accessed": "2026-10-02",
+      "role": "verse-content-and-boundaries",
+      "calendarNumberingInferred": false
+    },
+    "dra10": {
+      "url": "https://www.drbo.org/chapter/25010.htm",
+      "description": "Douay-Rheims Wisdom 10, read in full; the eBible chapter 10 URL was unavailable.",
+      "accessed": "2026-10-02",
+      "role": "verse-content-and-boundaries",
+      "calendarNumberingInferred": false
+    },
+    "brenton3": {
+      "url": "https://ebible.org/eng-Brenton/WIS03.htm",
+      "description": "Public-domain 1851 Brenton Wisdom 3, full requested passage compared semantically.",
+      "accessed": "2026-10-02",
+      "role": "verse-content-and-boundaries",
+      "calendarNumberingInferred": false
+    },
+    "brenton4": {
+      "url": "https://ebible.org/eng-Brenton/WIS04.htm",
+      "description": "Public-domain 1851 Brenton Wisdom 4, full requested passage compared semantically.",
+      "accessed": "2026-10-02",
+      "role": "verse-content-and-boundaries",
+      "calendarNumberingInferred": false
+    },
+    "brenton5": {
+      "url": "https://ebible.org/eng-Brenton/WIS05.htm",
+      "description": "Public-domain 1851 Brenton Wisdom 5, full requested passage compared semantically.",
+      "accessed": "2026-10-02",
+      "role": "verse-content-and-boundaries",
+      "calendarNumberingInferred": false
+    },
+    "brenton6": {
+      "url": "https://ebible.org/eng-Brenton/WIS06.htm",
+      "description": "Public-domain 1851 Brenton Wisdom 6, full requested passage compared semantically.",
+      "accessed": "2026-10-02",
+      "role": "verse-content-and-boundaries",
+      "calendarNumberingInferred": false
+    },
+    "brenton7": {
+      "url": "https://ebible.org/eng-Brenton/WIS07.htm",
+      "description": "Public-domain 1851 Brenton Wisdom 7, full requested passage compared semantically.",
+      "accessed": "2026-10-02",
+      "role": "verse-content-and-boundaries",
+      "calendarNumberingInferred": false
+    },
+    "rights": {
+      "urls": [
+        "https://ebible.org/engDRA/copyright.htm",
+        "https://ebible.org/eng-Brenton/copyright.htm"
+      ],
+      "finding": "Both identify these comparison editions as public domain. This does not license modern calendar wording."
+    },
+    "proper0825": {
+      "repository": "https://github.com/DivinumOfficium/divinum-officium",
+      "revision": "342fd241d2e619cb6a4d270e2cf072dff263c7d9",
+      "path": "web/www/missa/English/Sancti/08-25.txt",
+      "sha256": "a7777ee8eafea2cdde148f8824ad465f332cd01e9ce40e1867efa85b58066796",
+      "role": "literal-proper"
+    },
+    "proper0827": {
+      "repository": "https://github.com/DivinumOfficium/divinum-officium",
+      "revision": "342fd241d2e619cb6a4d270e2cf072dff263c7d9",
+      "path": "web/www/missa/English/Sancti/08-27.txt",
+      "sha256": "122c26f86f1cd1e667a1ceaec27f6d69b6d0ffb3b69842582eaeae01559366aa",
+      "role": "literal-proper"
+    },
+    "proper0728": {
+      "repository": "https://github.com/DivinumOfficium/divinum-officium",
+      "revision": "342fd241d2e619cb6a4d270e2cf072dff263c7d9",
+      "path": "web/www/missa/English/Sancti/07-28.txt",
+      "sha256": "80490484b7b390a2d81c3004d033d10dcdab63a84aa718c7f635739992caff5a",
+      "role": "literal-proper"
+    },
+    "proper0512": {
+      "repository": "https://github.com/DivinumOfficium/divinum-officium",
+      "revision": "342fd241d2e619cb6a4d270e2cf072dff263c7d9",
+      "path": "web/www/missa/English/Sancti/05-12.txt",
+      "sha256": "5975bf019919dcc3af2fe03ede3d6980dac198ca421a6c2b4e8991dc958dc7ea",
+      "role": "literal-proper"
+    },
+    "proper0615": {
+      "repository": "https://github.com/DivinumOfficium/divinum-officium",
+      "revision": "342fd241d2e619cb6a4d270e2cf072dff263c7d9",
+      "path": "web/www/missa/English/Sancti/06-15.txt",
+      "sha256": "043bcb69e4a832cb2e573f398431b335962769597e18af9f7869b3e5dcb0f46e",
+      "role": "literal-proper"
+    },
+    "rule0122": {
+      "repository": "https://github.com/DivinumOfficium/divinum-officium",
+      "revision": "342fd241d2e619cb6a4d270e2cf072dff263c7d9",
+      "path": "web/www/missa/Latin/Sancti/01-22.txt",
+      "sha256": "61aea5cdeb65b4ea7190a3c9b3f5b15324315f9d3cd75a8c83f575911db9f01e",
+      "role": "common-reference-only"
+    },
+    "rule0916": {
+      "repository": "https://github.com/DivinumOfficium/divinum-officium",
+      "revision": "342fd241d2e619cb6a4d270e2cf072dff263c7d9",
+      "path": "web/www/missa/Latin/Sancti/09-16.txt",
+      "sha256": "df4e5924301dae05a6dba5b139591388d33ff584b75325a2e363c144f2c2fcc3",
+      "role": "common-reference-only"
+    },
+    "am1102": {
+      "url": "https://publication.evangelizo.ws/AM/days/2026-11-02",
+      "accessed": "2026-10-02",
+      "responseSHA256": "1b967fa2f466dcaf1676c352686072f593db4682f21c149121aa3f168573a54b",
+      "wisdomReadingCode": "Sg 3,1-9",
+      "wisdomTextSHA256": "02b5c077e0acee70bfa5899eee26bd9b6fe053b8033150438f1bb9fb5bd516dc",
+      "calendarHasReadingWords": true,
+      "role": "actual-calendar-reading",
+      "limitation": null
+    },
+    "am1108": {
+      "url": "https://publication.evangelizo.ws/AM/days/2026-11-08",
+      "accessed": "2026-10-02",
+      "responseSHA256": "ec2194851a40bc90dd441bc2c717ca45d613c5ceeccf1dc6fb8a29ba684ce670",
+      "wisdomReadingCode": "Sg 6,12-16",
+      "wisdomTextSHA256": "aed56808a4cba2a5c115ce7c2c2e037a102087f270964824ac5954b9e0e2b541",
+      "calendarHasReadingWords": true,
+      "role": "actual-calendar-reading",
+      "limitation": null
+    },
+    "mae0201": {
+      "url": "https://publication.evangelizo.ws/MAE/days/2026-02-01",
+      "accessed": "2026-10-02",
+      "responseSHA256": "adae49b5d1a33b095d25fe779469f9e20517c695c6b20a38922295fff39ca5e5",
+      "wisdomReadingCode": "Sg 5,1-1#Sg 5,3-6#Sg 5,8-8#Sg 5,15-16",
+      "wisdomTextSHA256": "b850d884f673ccff76b5d47615d64eaf57c8618fa31ec5d805085c4b703eb6d4",
+      "calendarHasReadingWords": false,
+      "role": "citation-markers-only",
+      "limitation": "Only empty verse markers returned; this does not establish a numbering tradition or semantic endpoints."
+    },
+    "mae0614": {
+      "url": "https://publication.evangelizo.ws/MAE/days/2026-06-14",
+      "accessed": "2026-10-02",
+      "responseSHA256": "01f5ddfa5af18bef3a7d5436c9c11c189d5a3b945e3a79e96bde830579665e33",
+      "wisdomReadingCode": "Sg 7,7-14",
+      "wisdomTextSHA256": "cd6409f4ca09010996cd049270769b3f44a85df09ec32d1f8d2015ac9e0ec942",
+      "calendarHasReadingWords": false,
+      "role": "citation-markers-only",
+      "limitation": "Only empty verse markers returned; this does not establish a numbering tradition or semantic endpoints."
+    },
+    "scopeUgcc": {
+      "path": "Shared/reports/hebrew-wikisource/hebrew-daily-integration-scope.json",
+      "sha256": "e8e917ce77f965f85e06c67fee9f1a4f152e7ebfd828503e2fa6504e69e3790e",
+      "role": "current-dataset-citation-only",
+      "limitation": "Earlier limitation superseded by the retrieved public calendar and complete Royal Doors Monday-evening proper recorded as royalDoorsCalendar/royalDoorsActual."
+    },
+    "maf0201": {
+      "url": "https://publication.evangelizo.ws/MAF/days/2026-02-01",
+      "accessed": "2026-10-02",
+      "responseSHA256": "85a5b17639ae0ea42db4da0b5ab3e1ad33a8c213869588aaabb30fe7ef4b2503",
+      "wisdomReadingCode": "Sg 5,1-1#Sg 5,3-6#Sg 5,8-8#Sg 5,15-16",
+      "wisdomTextSHA256": "7f3c5b5bf71092ddcba6c3da63b74bedeb36e06f1dff614db264ebfdc76c0908",
+      "calendarHasReadingWords": true,
+      "role": "actual-same-date-maronite-calendar-reading",
+      "language": "French",
+      "finding": "All appointed Wisdom units have actual wording, not empty markers. Citation matches the English MAE appointment exactly; all requested clauses were compared to the Hebrew candidate."
+    },
+    "maf0614": {
+      "url": "https://publication.evangelizo.ws/MAF/days/2026-06-14",
+      "accessed": "2026-10-02",
+      "responseSHA256": "fb9f5d186599e06cbc1baf97c34c47b2ae6c0a24d36f6cd4297765e0efb08681",
+      "wisdomReadingCode": "Sg 7,7-14",
+      "wisdomTextSHA256": "6f04357f8fc3907e4bec386aa89df4e67d20e78e683328828b238d35d7b8776a",
+      "calendarHasReadingWords": true,
+      "role": "actual-same-date-maronite-calendar-reading",
+      "language": "French",
+      "finding": "All appointed Wisdom units have actual wording, not empty markers. Citation matches the English MAE appointment exactly; all requested clauses were compared to the Hebrew candidate."
+    },
+    "maa0201": {
+      "url": "https://publication.evangelizo.ws/MAA/days/2026-02-01",
+      "accessed": "2026-10-02",
+      "responseSHA256": "15e99125ca667d6fd663c7659dddd6ca7732b10801c4e676521578bf49e8eb8b",
+      "wisdomReadingCode": "Sg 5,1-1#Sg 5,3-6#Sg 5,8-8#Sg 5,15-16",
+      "wisdomTextSHA256": "20218f1f7d5597ae24415f22d51500d69964fe031d45d718ace3538c29a89660",
+      "calendarHasReadingWords": true,
+      "role": "actual-same-date-maronite-calendar-reading",
+      "language": "Arabic",
+      "finding": "All appointed Wisdom units have actual wording, not empty markers. Citation matches the English MAE appointment exactly; all requested clauses were compared to the Hebrew candidate."
+    },
+    "maa0614": {
+      "url": "https://publication.evangelizo.ws/MAA/days/2026-06-14",
+      "accessed": "2026-10-02",
+      "responseSHA256": "73f101ce085cacb18595770bff9e0f20312fbbe563ba01c6ad317fff91b34acc",
+      "wisdomReadingCode": "Sg 7,7-14",
+      "wisdomTextSHA256": "1f43db0dbb6a09c1dea33a23c884518c6adf613f77110c4f9e0f8dacb30d9cf4",
+      "calendarHasReadingWords": true,
+      "role": "actual-same-date-maronite-calendar-reading",
+      "language": "Arabic",
+      "finding": "All appointed Wisdom units have actual wording, not empty markers. Citation matches the English MAE appointment exactly; all requested clauses were compared to the Hebrew candidate."
+    },
+    "royalDoorsActual": {
+      "url": "https://liturgy.royaldoors.net/events/the-first-and-second-finding-of-the-precious-head-of-the-holy-glorious-prophet-forerunner-and-baptizer-john-2/",
+      "accessed": "2026-10-02",
+      "responseSHA256": "16113bc2664d4345cda8100253b4ea8219694aff49ebe2e6e1bff1282880400f",
+      "role": "actual-calendar-proper",
+      "eventDate": "2026-02-24",
+      "serviceDate": "2026-02-23",
+      "section": "VESPERS ON MONDAY EVENING; Vespers Reading V; Wisdom4:7–15",
+      "dateEvidence": "The public February24 feast page explicitly places this Vespers service on Monday evening. The public calendar event dated February23 lists the same Genesis, Proverbs, Isaiah, Malachi and Wisdom readings in the same order.",
+      "comparison": "All clauses from righteous early death/rest through divine grace, mercy and watchfulness have Hebrew counterparts in4:7–15. The source-specific redistribution of middle clauses across13–15 remains as already recorded."
+    },
+    "royalDoorsCalendar": {
+      "url": "https://calendar.google.com/calendar/ical/ugccliturgy%40gmail.com/public/basic.ics",
+      "accessed": "2026-10-02",
+      "responseSHA256": "9bac728738525a95db287120f96fd35dba5ea038ab4c69e62e817108ad6d1ca9",
+      "selectedEventSHA256": "8f0ab6564ee88f7b29dcfab42cf90b9b774cc4ecae86e2e6441ec3501359a345",
+      "eventDate": "2026-02-23",
+      "eventUID": "CSVConvert3a9fb78184e4ab059f90f207df92e0cf",
+      "role": "service-date-and-citation-corroboration"
+    },
+    "rahlfs3": {
+      "url": "https://www.lire.la-bible.net/bible/LXX/WIS.3",
+      "accessed": "2026-10-02",
+      "inspection": "Complete chapter read through the web reader; exact verse9 endpoint and following10 label inspected.",
+      "role": "secure-shorter-source-edition-endpoint",
+      "shortEndpointQuotation": "ὅτι χάρις καὶ ἔλεος τοῖς ἐκλεκτοῖς αὐτοῦ.",
+      "retrievalLimitation": "Direct raw HTML retrieval returned HTTP403. The successful web-reader chapter view was inspected, but no raw-response hash is claimed.",
+      "description": "Rahlfs Greek text published by Alliance biblique française under Deutsche Bibelgesellschaft credit. Used as a textual witness, not a text imported into the app.",
+      "finding": "Verse9 concludes with grace and mercy for the chosen; verse10 immediately begins the punishment of the wicked. No separate concluding care clause appears in this Greek edition."
+    }
+  },
+  "appointments": [
+    {
+      "key": "daily|Wisdom 10:10–14",
+      "contexts": [
+        "roman1962"
+      ],
+      "scheduledOccurrences": 4,
+      "dates": [
+        {
+          "calendar": "roman1962",
+          "date": "2026-04-13"
+        },
+        {
+          "calendar": "roman1962",
+          "date": "2026-08-25"
+        },
+        {
+          "calendar": "roman1962",
+          "date": "2026-08-27"
+        },
+        {
+          "calendar": "roman1962",
+          "date": "2026-09-28"
+        }
+      ],
+      "sourceBook": "WIS",
+      "sourceContentSHA256": "600a31cb9a69c9f9d56ae2851613fdb1ba766df247e93e303f969b635a8d17d2",
+      "selections": [
+        {
+          "chapter": 10,
+          "verse": 10
+        },
+        {
+          "chapter": 10,
+          "verse": 11
+        },
+        {
+          "chapter": 10,
+          "verse": 12
+        },
+        {
+          "chapter": 10,
+          "verse": 13
+        },
+        {
+          "chapter": 10,
+          "verse": 14
+        }
+      ],
+      "selectedUnits": [
+        {
+          "chapter": 10,
+          "verse": 10,
+          "endVerse": 10,
+          "textSHA256": "da39d6cf1a579061d7b75360be38b06bda8d0ecb007ccf56cfcbc381d2a4ff93",
+          "sourcePages": [
+            165
+          ],
+          "sourceNoteIds": []
+        },
+        {
+          "chapter": 10,
+          "verse": 11,
+          "endVerse": 11,
+          "textSHA256": "e944317a39558840532d5062991808de19585abd43ccd82c498239321de5265e",
+          "sourcePages": [
+            165
+          ],
+          "sourceNoteIds": []
+        },
+        {
+          "chapter": 10,
+          "verse": 12,
+          "endVerse": 12,
+          "textSHA256": "a4eac10318bb4d683880a4cfa5a60ecfa9ebc5a4deea2708773c3a8023c86f88",
+          "sourcePages": [
+            165
+          ],
+          "sourceNoteIds": []
+        },
+        {
+          "chapter": 10,
+          "verse": 13,
+          "endVerse": 13,
+          "textSHA256": "5314b0c8e1e3c40a99f622067751d75bb701a33d02be61249cba4a4760810ad7",
+          "sourcePages": [
+            165
+          ],
+          "sourceNoteIds": []
+        },
+        {
+          "chapter": 10,
+          "verse": 14,
+          "endVerse": 14,
+          "textSHA256": "247f20547d81826d1af605cd1c1088e610312ef590f58ddf584920fd4f511485",
+          "sourcePages": [
+            165
+          ],
+          "sourceNoteIds": [
+            "wis-10-14-tet",
+            "wis-10-14-shin"
+          ]
+        }
+      ],
+      "openingText": "הִיא הוֹלִיכָה בְּדֶרֶךְ יָשָׁר אֶת־הַצַּדִּיק בְּבָרְחוֹ מִפְּנֵי חֲמַת אָחִיו וַתַּרְאֵהוּ מַמְלֶכֶת יְיָ וַתִּתֶּן־לוֹ דַּעַת קֹדֶשׁ וַתּוֹשַׁע לוֹ בְּתַלְאוֹתָיו וַתֶּרֶב אֶת־פְּרִי עֲמָלוֹ׃",
+      "closingText": "וַתֵּרֶד עִמּוֹ אֶל־הַבּוֹר וּבְמַאֲסָר לֹא תִטּשׁהוּ עַד־תָּבִיא לוֹ שֵׁבֶט מַלְכוּת וּמִמְשָׁל בְּלוֹחֲצָיו וַתְּגַל שֶׁקֶר מַלְשִׁינָיו וַתִּתֶּן־לוֹ שֵׁם עוֹלָם׃",
+      "includesWholeVerses": true,
+      "comparisonEvidence": [
+        "dra10",
+        "proper0825",
+        "proper0827"
+      ],
+      "boundaryCorrespondence": [
+        {
+          "requestedComparisonUnits": "10",
+          "hebrewSourceUnits": "10",
+          "finding": "Straight paths, flight from brother, divine kingdom/knowledge and fruitful labour. The whole Hebrew verse retains flight from the brother, omitted in the inspected liturgical incipit."
+        },
+        {
+          "requestedComparisonUnits": "11",
+          "hebrewSourceUnits": "11",
+          "finding": "Protection from greedy deceivers and enrichment."
+        },
+        {
+          "requestedComparisonUnits": "12",
+          "hebrewSourceUnits": "12",
+          "finding": "Enemies, ambush and struggle; knowledge that piety prevails."
+        },
+        {
+          "requestedComparisonUnits": "13–14",
+          "hebrewSourceUnits": "13–14",
+          "finding": "The sold righteous man is protected from sin; descent to the pit is DRA13 but opens Hebrew14; imprisonment, kingship, vindication and lasting fame conclude Hebrew14."
+        }
+      ],
+      "extraClauses": [
+        {
+          "sourceUnit": "10:10",
+          "anchor": "בְּבָרְחוֹ מִפְּנֵי חֲמַת אָחִיו",
+          "comparison": "Not extra to the DRA full verse; additional to the inspected08-25/08-27 liturgical incipit, which omits flight from the brother. Whole Hebrew unit is deliberately retained."
+        }
+      ],
+      "missingDistinctClauses": [],
+      "translationOrLiturgicalWordingDifferences": [
+        "The source proper substitutes the Lord for personified Wisdom in its incipit and conclusion. Hebrew retains the source Bible’s feminine Wisdom wording; no unsourced liturgical Hebrew adaptation is introduced."
+      ],
+      "sourceVerificationLimits": [
+        "08-25 and08-27 literal propers verified; other scheduled occurrences share the exact recorded citation but their full resolved common chains were not independently executed."
+      ],
+      "allComparedRequestedClausesHaveCounterparts": true,
+      "candidateDisposition": "whole-source-unit-candidate",
+      "runtimeApproval": false,
+      "excludedSourceBlocks": [],
+      "method": "Direct clause/end-point comparison with the named edition/calendar witnesses; whole printed Hebrew source units only. Numeric labels are locators, not evidence of equivalence.",
+      "literalScheduledProperBodiesInspected": [
+        "2026-08-25",
+        "2026-08-27"
+      ],
+      "scheduledProperBodiesNotResolved": [
+        "2026-04-13",
+        "2026-09-28"
+      ]
+    },
+    {
+      "key": "daily|Wisdom 10:17–20",
+      "contexts": [
+        "roman1962"
+      ],
+      "scheduledOccurrences": 1,
+      "dates": [
+        {
+          "calendar": "roman1962",
+          "date": "2026-07-28"
+        }
+      ],
+      "sourceBook": "WIS",
+      "sourceContentSHA256": "600a31cb9a69c9f9d56ae2851613fdb1ba766df247e93e303f969b635a8d17d2",
+      "selections": [
+        {
+          "chapter": 10,
+          "verse": 17
+        },
+        {
+          "chapter": 10,
+          "verse": 18
+        },
+        {
+          "chapter": 10,
+          "verse": 19
+        },
+        {
+          "chapter": 10,
+          "verse": 20
+        }
+      ],
+      "selectedUnits": [
+        {
+          "chapter": 10,
+          "verse": 17,
+          "endVerse": 17,
+          "textSHA256": "293e5fdbb0265db008b03dc551329ffd60fd99aaaf0fa7f06b171b4013391609",
+          "sourcePages": [
+            165
+          ],
+          "sourceNoteIds": []
+        },
+        {
+          "chapter": 10,
+          "verse": 18,
+          "endVerse": 18,
+          "textSHA256": "9ad8bf123acb8424c62aeb5d672c0ab355d212d895fabd99ee953d5868bd03bc",
+          "sourcePages": [
+            165
+          ],
+          "sourceNoteIds": []
+        },
+        {
+          "chapter": 10,
+          "verse": 19,
+          "endVerse": 19,
+          "textSHA256": "d3ba1dfc6781ec1aee7963eee4a22beb8fbb22d755261d5af04dea39b936689c",
+          "sourcePages": [
+            165
+          ],
+          "sourceNoteIds": []
+        },
+        {
+          "chapter": 10,
+          "verse": 20,
+          "endVerse": 20,
+          "textSHA256": "28c03ccac3336de0509b20cca7da965b495938457f110fad2ff72753b52876b2",
+          "sourcePages": [
+            166
+          ],
+          "sourceNoteIds": [
+            "wis-10-20-vav",
+            "wis-10-20-first-kaf"
+          ]
+        }
+      ],
+      "openingText": "[הִיא] נָתְנָה לַקְּדוֹשִׁים שְׂכַר עֲמָלָם וַתַּנְחֵם דֶּרֶךְ פְּלָאִים וַתְּהִי לָמוֹ לְמַחְסֶה יוֹמָם וּלְאוֹר כּוֹכָבִים לָיְלָה׃",
+      "closingText": "עַל־כֵּן פָּשְׁטוּ הַצַּדִּיקִים הַנֶּשֶׁק מֵעַל־הָרְשָׁעִים וַיְּזַמְּרוּ לְשִׁמְךָ הַקָּדוֹשׁ יְיָ ויְהַלָלוּ יַחְדָּו אֶת־יָדְךָ הַסּוֹככָה׃",
+      "includesWholeVerses": true,
+      "comparisonEvidence": [
+        "dra10",
+        "proper0728"
+      ],
+      "boundaryCorrespondence": [
+        {
+          "requestedComparisonUnits": "17",
+          "hebrewSourceUnits": "17",
+          "finding": "Reward, wonderful road, daytime shelter and nighttime stars."
+        },
+        {
+          "requestedComparisonUnits": "18",
+          "hebrewSourceUnits": "18",
+          "finding": "Crossing the Red Sea and deep waters."
+        },
+        {
+          "requestedComparisonUnits": "19–20",
+          "hebrewSourceUnits": "19–20",
+          "finding": "Drowning enemies and rescue from the depths precede despoiling the wicked. The spoil clause ends DRA19 but opens Hebrew20; praise of the holy name and protecting hand closes20."
+        }
+      ],
+      "extraClauses": [],
+      "missingDistinctClauses": [],
+      "translationOrLiturgicalWordingDifferences": [
+        "The proper names God at its incipit and adds a closing address to the Lord our God; Hebrew retains the whole scriptural source units and their Wisdom subject."
+      ],
+      "sourceVerificationLimits": [],
+      "allComparedRequestedClausesHaveCounterparts": true,
+      "candidateDisposition": "whole-source-unit-candidate",
+      "runtimeApproval": false,
+      "excludedSourceBlocks": [],
+      "method": "Direct clause/end-point comparison with the named edition/calendar witnesses; whole printed Hebrew source units only. Numeric labels are locators, not evidence of equivalence.",
+      "literalScheduledProperBodiesInspected": [
+        "2026-07-28"
+      ],
+      "scheduledProperBodiesNotResolved": []
+    },
+    {
+      "key": "daily|Wisdom 3:1–8",
+      "contexts": [
+        "roman1962"
+      ],
+      "scheduledOccurrences": 2,
+      "dates": [
+        {
+          "calendar": "roman1962",
+          "date": "2026-01-22"
+        },
+        {
+          "calendar": "roman1962",
+          "date": "2026-09-16"
+        }
+      ],
+      "sourceBook": "WIS",
+      "sourceContentSHA256": "600a31cb9a69c9f9d56ae2851613fdb1ba766df247e93e303f969b635a8d17d2",
+      "selections": [
+        {
+          "chapter": 3,
+          "verse": 1
+        },
+        {
+          "chapter": 3,
+          "verse": 2
+        },
+        {
+          "chapter": 3,
+          "verse": 3
+        },
+        {
+          "chapter": 3,
+          "verse": 4
+        },
+        {
+          "chapter": 3,
+          "verse": 5
+        },
+        {
+          "chapter": 3,
+          "verse": 6
+        },
+        {
+          "chapter": 3,
+          "verse": 7
+        },
+        {
+          "chapter": 3,
+          "verse": 8
+        }
+      ],
+      "selectedUnits": [
+        {
+          "chapter": 3,
+          "verse": 1,
+          "endVerse": 1,
+          "textSHA256": "f8fb510b47685480cbad9b1ff8a763dc63723d6a1a97482f74e22277646ff20b",
+          "sourcePages": [
+            150
+          ],
+          "sourceNoteIds": []
+        },
+        {
+          "chapter": 3,
+          "verse": 2,
+          "endVerse": 2,
+          "textSHA256": "e00a3393f1f17790b06cbd46608363e6dbd8eba96148b391096f28fdd58977bd",
+          "sourcePages": [
+            150
+          ],
+          "sourceNoteIds": []
+        },
+        {
+          "chapter": 3,
+          "verse": 3,
+          "endVerse": 3,
+          "textSHA256": "ae8628ac40a422a72cdf01688d8152a072290f3d8c3f93848bc8c90b3d4692ef",
+          "sourcePages": [
+            150
+          ],
+          "sourceNoteIds": []
+        },
+        {
+          "chapter": 3,
+          "verse": 4,
+          "endVerse": 4,
+          "textSHA256": "1bfb3900a8b0562d36c8dc43991557e6fa1fa27329d6c2fa652428e561d685df",
+          "sourcePages": [
+            150
+          ],
+          "sourceNoteIds": []
+        },
+        {
+          "chapter": 3,
+          "verse": 5,
+          "endVerse": 5,
+          "textSHA256": "e9f26c9fe8bad44c9f8a32b9744a2ce2d470494f9b9801834710e2b36ac9e244",
+          "sourcePages": [
+            150
+          ],
+          "sourceNoteIds": []
+        },
+        {
+          "chapter": 3,
+          "verse": 6,
+          "endVerse": 6,
+          "textSHA256": "d28556fc059cbbb3308a5defb58b0c459f7a5364a6a097091602f2588be24e33",
+          "sourcePages": [
+            150
+          ],
+          "sourceNoteIds": []
+        },
+        {
+          "chapter": 3,
+          "verse": 7,
+          "endVerse": 7,
+          "textSHA256": "ff0220435df9a8e6c2aab89c69c0efbdb0b309238a3ee118a63b662c96b07974",
+          "sourcePages": [
+            150
+          ],
+          "sourceNoteIds": []
+        },
+        {
+          "chapter": 3,
+          "verse": 8,
+          "endVerse": 8,
+          "textSHA256": "3e9597ff1eb5139ed0cdaca51b124270927eaaa7503ad2c159169f6852ca2dfc",
+          "sourcePages": [
+            150
+          ],
+          "sourceNoteIds": []
+        }
+      ],
+      "openingText": "וְנִשְׁמוֹת הַצַּדִּיקִים בְּיַד אֱלֹהִים וְצָרָה בַּל־תִּגַּע בָּהֶן׃",
+      "closingText": "יִשְׁפְּטוּ גוֹיִם וְיִמְשְׁלוּ בְּעַמִּים וַעֲלֵיהֶם יִמְלֹךְ יְיָ לְעוֹלָם וָעֶד׃",
+      "includesWholeVerses": true,
+      "comparisonEvidence": [
+        "dra3",
+        "proper0615",
+        "rule0122",
+        "rule0916"
+      ],
+      "boundaryCorrespondence": [
+        {
+          "requestedComparisonUnits": "1–5",
+          "hebrewSourceUnits": "1–5",
+          "finding": "Souls in God’s hand, apparent death yet peace, immortality, brief chastisement and divine testing."
+        },
+        {
+          "requestedComparisonUnits": "6–7",
+          "hebrewSourceUnits": "6–7",
+          "finding": "Gold and burnt offering then visitation and sparks. DRA6 includes the visitation phrase which starts Hebrew7."
+        },
+        {
+          "requestedComparisonUnits": "8",
+          "hebrewSourceUnits": "8",
+          "finding": "Judgment of nations, rule over peoples and the Lord’s everlasting reign."
+        }
+      ],
+      "extraClauses": [],
+      "missingDistinctClauses": [],
+      "translationOrLiturgicalWordingDifferences": [],
+      "sourceVerificationLimits": [
+        "Jan22/Sep16 rules reference C3, but at the pinned dependency active C3 is absent and exists in obsolete/missa; no automatic obsolete fallback was asserted. Full DRA range and separate06-15 proper with the same citation were compared; no claim of an executed calendar loader."
+      ],
+      "allComparedRequestedClausesHaveCounterparts": true,
+      "candidateDisposition": "whole-source-unit-candidate",
+      "runtimeApproval": false,
+      "excludedSourceBlocks": [],
+      "method": "Direct clause/end-point comparison with the named edition/calendar witnesses; whole printed Hebrew source units only. Numeric labels are locators, not evidence of equivalence.",
+      "literalScheduledProperBodiesInspected": [],
+      "scheduledProperBodiesNotResolved": [
+        "2026-01-22",
+        "2026-09-16"
+      ]
+    },
+    {
+      "key": "daily|Wisdom 3:1–9",
+      "contexts": [
+        "roman"
+      ],
+      "scheduledOccurrences": 1,
+      "dates": [
+        {
+          "calendar": "roman",
+          "date": "2026-11-02"
+        }
+      ],
+      "sourceBook": "WIS",
+      "sourceContentSHA256": "600a31cb9a69c9f9d56ae2851613fdb1ba766df247e93e303f969b635a8d17d2",
+      "selections": [
+        {
+          "chapter": 3,
+          "verse": 1
+        },
+        {
+          "chapter": 3,
+          "verse": 2
+        },
+        {
+          "chapter": 3,
+          "verse": 3
+        },
+        {
+          "chapter": 3,
+          "verse": 4
+        },
+        {
+          "chapter": 3,
+          "verse": 5
+        },
+        {
+          "chapter": 3,
+          "verse": 6
+        },
+        {
+          "chapter": 3,
+          "verse": 7
+        },
+        {
+          "chapter": 3,
+          "verse": 8
+        },
+        {
+          "chapter": 3,
+          "verse": 9
+        }
+      ],
+      "selectedUnits": [
+        {
+          "chapter": 3,
+          "verse": 1,
+          "endVerse": 1,
+          "textSHA256": "f8fb510b47685480cbad9b1ff8a763dc63723d6a1a97482f74e22277646ff20b",
+          "sourcePages": [
+            150
+          ],
+          "sourceNoteIds": []
+        },
+        {
+          "chapter": 3,
+          "verse": 2,
+          "endVerse": 2,
+          "textSHA256": "e00a3393f1f17790b06cbd46608363e6dbd8eba96148b391096f28fdd58977bd",
+          "sourcePages": [
+            150
+          ],
+          "sourceNoteIds": []
+        },
+        {
+          "chapter": 3,
+          "verse": 3,
+          "endVerse": 3,
+          "textSHA256": "ae8628ac40a422a72cdf01688d8152a072290f3d8c3f93848bc8c90b3d4692ef",
+          "sourcePages": [
+            150
+          ],
+          "sourceNoteIds": []
+        },
+        {
+          "chapter": 3,
+          "verse": 4,
+          "endVerse": 4,
+          "textSHA256": "1bfb3900a8b0562d36c8dc43991557e6fa1fa27329d6c2fa652428e561d685df",
+          "sourcePages": [
+            150
+          ],
+          "sourceNoteIds": []
+        },
+        {
+          "chapter": 3,
+          "verse": 5,
+          "endVerse": 5,
+          "textSHA256": "e9f26c9fe8bad44c9f8a32b9744a2ce2d470494f9b9801834710e2b36ac9e244",
+          "sourcePages": [
+            150
+          ],
+          "sourceNoteIds": []
+        },
+        {
+          "chapter": 3,
+          "verse": 6,
+          "endVerse": 6,
+          "textSHA256": "d28556fc059cbbb3308a5defb58b0c459f7a5364a6a097091602f2588be24e33",
+          "sourcePages": [
+            150
+          ],
+          "sourceNoteIds": []
+        },
+        {
+          "chapter": 3,
+          "verse": 7,
+          "endVerse": 7,
+          "textSHA256": "ff0220435df9a8e6c2aab89c69c0efbdb0b309238a3ee118a63b662c96b07974",
+          "sourcePages": [
+            150
+          ],
+          "sourceNoteIds": []
+        },
+        {
+          "chapter": 3,
+          "verse": 8,
+          "endVerse": 8,
+          "textSHA256": "3e9597ff1eb5139ed0cdaca51b124270927eaaa7503ad2c159169f6852ca2dfc",
+          "sourcePages": [
+            150
+          ],
+          "sourceNoteIds": []
+        },
+        {
+          "chapter": 3,
+          "verse": 9,
+          "endVerse": 9,
+          "textSHA256": "a4f3abdcb3143b76b15d78a5b5fc151a7bdba5dc57be36602aeef0b28bd364cf",
+          "sourcePages": [
+            150
+          ],
+          "sourceNoteIds": []
+        }
+      ],
+      "openingText": "וְנִשְׁמוֹת הַצַּדִּיקִים בְּיַד אֱלֹהִים וְצָרָה בַּל־תִּגַּע בָּהֶן׃",
+      "closingText": "הַבּוֹטְחִים בּוֹ יָבִינוּ אֱמֶת וְהַנֶּאֱמָנִים יִדְבְּקוּ בוֹ בְּאַהֲבָה׃ כִּי חֶסֶד וְרַחֲמִים לִבְחִירָיו׃",
+      "includesWholeVerses": true,
+      "comparisonEvidence": [
+        "brenton3",
+        "am1102",
+        "rahlfs3",
+        "dra3"
+      ],
+      "boundaryCorrespondence": [
+        {
+          "requestedComparisonUnits": "1–8",
+          "hebrewSourceUnits": "1–8",
+          "finding": "All eight requested themes are present through everlasting reign."
+        },
+        {
+          "requestedComparisonUnits": "9",
+          "hebrewSourceUnits": "9",
+          "finding": "The complete printed Hebrew verse9 contains trust/truth, fidelity/love, and grace/mercy for the chosen. Its secure ending matches the shorter Rahlfs Greek verse9. The longer AM/Brenton ending is a textual-edition difference, not an absent Hebrew source unit or failed endpoint mapping."
+        }
+      ],
+      "extraClauses": [],
+      "missingDistinctClauses": [],
+      "translationOrLiturgicalWordingDifferences": [
+        "The actual AM calendar text and Brenton include a further concluding care-for-the-elect clause. The selected Hebrew source and Rahlfs Greek end instead after grace and mercy for the chosen; DRA likewise has no separate care clause. Preserve the complete selected Hebrew edition without adding the longer reading or borrowing4:15."
+      ],
+      "sourceVerificationLimits": [],
+      "allComparedRequestedClausesHaveCounterparts": false,
+      "candidateDisposition": "whole-source-unit-candidate",
+      "runtimeApproval": false,
+      "excludedSourceBlocks": [],
+      "method": "Direct full-source-unit comparison; printed Hebrew3:9 endpoint rechecked against the following source10 label and independently corroborated by Rahlfs Greek and DRA. The longer AM/Brenton ending is documented as an edition variant; no new Hebrew text, word cuts or numbers inferred.",
+      "sourceEditionPassageComplete": true,
+      "calendarWordingIdentical": false,
+      "completenessBasis": "Complete reviewed source-edition passage at securely corresponding endpoints, not a promise of clause-for-clause identity to every other edition or to the licensed liturgical wording.",
+      "reassessment": {
+        "reviewedAt": "2026-10-02",
+        "previousReportSHA256": "dc6d9c1167f21f40ee0b7450ed4a0d74adaeda0b8a5d0a1ea12431464f323da4",
+        "priorDispositionSuperseded": {
+          "candidateDisposition": "blocked-missing-distinct-clause",
+          "missingDistinctClauses": [
+            {
+              "requestedUnit": "3:9",
+              "clause": "A distinct concluding assertion of divine care or visitation for the elect.",
+              "sourceEvidence": "AMactualreading and Brenton both include this after grace/mercy.",
+              "hebrewClosingAnchor": "כִּי חֶסֶד וְרַחֲמִים לִבְחִירָיו׃",
+              "disposition": "No separate Hebrew counterpart in this source verse; do not borrow4:15 or invent a translation. Keep daily availability pending."
+            }
+          ],
+          "allComparedRequestedClausesHaveCounterparts": false,
+          "method": "Direct clause/end-point comparison with the named edition/calendar witnesses; whole printed Hebrew source units only. Numeric labels are locators, not evidence of equivalence."
+        },
+        "reason": "The earlier exclusion was over-strict: it treated a longer comparison-edition clause as mandatory despite the complete shorter Hebrew source ending and its independently attested Greek parallel.",
+        "sourcePage": 150,
+        "sourceClosingAnchor": "כִּי חֶסֶד וְרַחֲמִים לִבְחִירָיו׃",
+        "followingUnit": "Printed margin י begins the wicked in verse10; no gap or continuation remains between9 and10.",
+        "localSourceEvidence": [
+          {
+            "path": "/private/tmp/prosary-wis-review/WIS3-150-middle.png",
+            "sha256": "5c3d1224b9c853e20715943fd1b923c0e0740d9cc1eb480322feb24aace0f8ad"
+          },
+          {
+            "path": "/private/tmp/prosary-wis-review/WIS3-150-lower.png",
+            "sha256": "779339779538f149c8b54a9be2985f975ed990320bb0bc559a266e9b8631c3e9"
+          }
+        ],
+        "fullChapterReview": {
+          "path": "Shared/reports/hebrew-wikisource/WIS-chapter3-independent-review.json",
+          "sha256": "0899895196fc10a42995189e05af535b6a2770718bfd9d293ad83f33239af8d1"
+        }
+      }
+    },
+    {
+      "key": "daily|Wisdom 4:7–15",
+      "contexts": [
+        "ugcc-gregorian"
+      ],
+      "scheduledOccurrences": 1,
+      "dates": [
+        {
+          "calendar": "ugcc-gregorian",
+          "date": "2026-02-23"
+        }
+      ],
+      "sourceBook": "WIS",
+      "sourceContentSHA256": "600a31cb9a69c9f9d56ae2851613fdb1ba766df247e93e303f969b635a8d17d2",
+      "selections": [
+        {
+          "chapter": 4,
+          "verse": 7
+        },
+        {
+          "chapter": 4,
+          "verse": 8
+        },
+        {
+          "chapter": 4,
+          "verse": 9
+        },
+        {
+          "chapter": 4,
+          "verse": 10
+        },
+        {
+          "chapter": 4,
+          "verse": 11
+        },
+        {
+          "chapter": 4,
+          "verse": 12
+        },
+        {
+          "chapter": 4,
+          "verse": 13
+        },
+        {
+          "chapter": 4,
+          "verse": 14
+        },
+        {
+          "chapter": 4,
+          "verse": 15
+        }
+      ],
+      "selectedUnits": [
+        {
+          "chapter": 4,
+          "verse": 7,
+          "endVerse": 7,
+          "textSHA256": "b375c210aef01f8589d8b2807cf9fa4107c515e9b8d4530082f3314bc012673a",
+          "sourcePages": [
+            152
+          ],
+          "sourceNoteIds": []
+        },
+        {
+          "chapter": 4,
+          "verse": 8,
+          "endVerse": 8,
+          "textSHA256": "a2e349666f39b0473106137f58e7660687cac004dce137cc6788c6f3bbb8c045",
+          "sourcePages": [
+            152
+          ],
+          "sourceNoteIds": []
+        },
+        {
+          "chapter": 4,
+          "verse": 9,
+          "endVerse": 9,
+          "textSHA256": "3b99dfc1afc28c6d15a59f45a5b3fab7c588cb2acab7c230ff25225b94fdecb6",
+          "sourcePages": [
+            152
+          ],
+          "sourceNoteIds": []
+        },
+        {
+          "chapter": 4,
+          "verse": 10,
+          "endVerse": 10,
+          "textSHA256": "5efbdff7dc7e789a1058b3ffb19486e76f7a8602cdbfd83bca1df148621082b4",
+          "sourcePages": [
+            152
+          ],
+          "sourceNoteIds": [
+            "wis-4-10-letter-3-vowel"
+          ]
+        },
+        {
+          "chapter": 4,
+          "verse": 11,
+          "endVerse": 11,
+          "textSHA256": "6d5f4efc358f528bf1266d241ced7f5f1c5ad3fda6783f72fddb504578f9c3ee",
+          "sourcePages": [
+            152
+          ],
+          "sourceNoteIds": []
+        },
+        {
+          "chapter": 4,
+          "verse": 12,
+          "endVerse": 12,
+          "textSHA256": "8cf38f5094943ad9beb1a2a27fa9f9a15247c0d79bb01169edfb4821f833777e",
+          "sourcePages": [
+            152
+          ],
+          "sourceNoteIds": []
+        },
+        {
+          "chapter": 4,
+          "verse": 13,
+          "endVerse": 13,
+          "textSHA256": "855204e363f55a4a107224005c8e24fd32d107b6adf5bad0ea652872dad6bd3b",
+          "sourcePages": [
+            152
+          ],
+          "sourceNoteIds": []
+        },
+        {
+          "chapter": 4,
+          "verse": 14,
+          "endVerse": 14,
+          "textSHA256": "334b33be112756e83440b3d9d33bc088c647257c4a42387c59cdb01fe31f6a3b",
+          "sourcePages": [
+            152
+          ],
+          "sourceNoteIds": []
+        },
+        {
+          "chapter": 4,
+          "verse": 15,
+          "endVerse": 15,
+          "textSHA256": "d9580e8b9bc89dc7dffa175ab1f3153227cf3814172d6a0a68aa7c776d61eb04",
+          "sourcePages": [
+            153
+          ],
+          "sourceNoteIds": []
+        }
+      ],
+      "openingText": "וְצַדִּיק כִּי יָמוּת בְּלֹא עֵת בְּשָׁלוֹם יָנוּחַ׃",
+      "closingText": "כִּי חֶסֶד וְרַחֲמִים לִבְחִירָיו וְעֵינָיו עַל־חֲסִידָיו׃",
+      "includesWholeVerses": true,
+      "comparisonEvidence": [
+        "brenton4",
+        "scopeUgcc",
+        "royalDoorsCalendar",
+        "royalDoorsActual"
+      ],
+      "boundaryCorrespondence": [
+        {
+          "requestedComparisonUnits": "7–12",
+          "hebrewSourceUnits": "7–12",
+          "finding": "Early death at peace; true old age as wisdom and blameless life; pleasing God, removal from sinners, and protection from corrupting evil."
+        },
+        {
+          "requestedComparisonUnits": "13–14a",
+          "hebrewSourceUnits": "13",
+          "finding": "A short life made complete and the soul pleasing God and quickly removed appear together in Hebrew13."
+        },
+        {
+          "requestedComparisonUnits": "14b–15a",
+          "hebrewSourceUnits": "14",
+          "finding": "The people see without understanding or laying this to heart."
+        },
+        {
+          "requestedComparisonUnits": "15b",
+          "hebrewSourceUnits": "15",
+          "finding": "Grace, mercy and watchfulness for the chosen conclude the range."
+        }
+      ],
+      "extraClauses": [],
+      "missingDistinctClauses": [],
+      "translationOrLiturgicalWordingDifferences": [],
+      "sourceVerificationLimits": [],
+      "allComparedRequestedClausesHaveCounterparts": true,
+      "candidateDisposition": "whole-source-unit-candidate",
+      "runtimeApproval": false,
+      "excludedSourceBlocks": [],
+      "method": "Direct comparison with the complete Royal Doors Monday-evening proper, corroborated by its publicICS service date and Brenton; preserve whole Hebrew source units and their internal boundaries.",
+      "actualCalendarEndpointReview": "Verified every clause of Royal Doors’ complete Monday-evening Wisdom4:7–15 against Hebrew4:7–15; all requested clauses are represented. The event’s feast date is24February, service evening23February, independently tied to the publicICS."
+    },
+    {
+      "key": "daily|Wisdom 5:1–1; 5:3–6; 5:8–8; 5:15–16",
+      "contexts": [
+        "maronite"
+      ],
+      "scheduledOccurrences": 1,
+      "dates": [
+        {
+          "calendar": "maronite",
+          "date": "2026-02-01"
+        }
+      ],
+      "sourceBook": "WIS",
+      "sourceContentSHA256": "600a31cb9a69c9f9d56ae2851613fdb1ba766df247e93e303f969b635a8d17d2",
+      "selections": [
+        {
+          "chapter": 5,
+          "verse": 1
+        },
+        {
+          "chapter": 5,
+          "verse": 3
+        },
+        {
+          "chapter": 5,
+          "verse": 4
+        },
+        {
+          "chapter": 5,
+          "verse": 5
+        },
+        {
+          "chapter": 5,
+          "verse": 6
+        },
+        {
+          "chapter": 5,
+          "verse": 8
+        },
+        {
+          "chapter": 5,
+          "verse": 15
+        },
+        {
+          "chapter": 5,
+          "verse": 16
+        }
+      ],
+      "selectedUnits": [
+        {
+          "chapter": 5,
+          "verse": 1,
+          "endVerse": 1,
+          "textSHA256": "bfe66d13305257197840b3da88a7fbd1322f586e2e25d593ab316785b39943cb",
+          "sourcePages": [
+            153
+          ],
+          "sourceNoteIds": [
+            "wis-5-1-ayin"
+          ]
+        },
+        {
+          "chapter": 5,
+          "verse": 3,
+          "endVerse": 3,
+          "textSHA256": "fdaba6cc749d7cfd9601f3e1cae116fb48fd6bc82aa71c5a65d834dd18546b96",
+          "sourcePages": [
+            153
+          ],
+          "sourceNoteIds": [
+            "wis-5-3-vav",
+            "wis-5-3-yod"
+          ]
+        },
+        {
+          "chapter": 5,
+          "verse": 4,
+          "endVerse": 4,
+          "textSHA256": "8d4cfe2ddba97cf24af67d74e4944b9ab4b4ab236b8cb74f0e90e1eea0a410a2",
+          "sourcePages": [
+            153
+          ],
+          "sourceNoteIds": []
+        },
+        {
+          "chapter": 5,
+          "verse": 5,
+          "endVerse": 5,
+          "textSHA256": "151a49387dd7b30e0889dd3ff8554cae4b7a2a9cb42bef9be9a980449cfc5138",
+          "sourcePages": [
+            153
+          ],
+          "sourceNoteIds": [
+            "wis-5-5-alef",
+            "wis-5-5-first-kaf"
+          ]
+        },
+        {
+          "chapter": 5,
+          "verse": 6,
+          "endVerse": 6,
+          "textSHA256": "38b69997019cbf020dc384147ef5c34da223a5116ad4bf852a89fb2ab4f9ab75",
+          "sourcePages": [
+            153
+          ],
+          "sourceNoteIds": []
+        },
+        {
+          "chapter": 5,
+          "verse": 8,
+          "endVerse": 8,
+          "textSHA256": "3d917ba2bd9cc623347c46ccd8ca95830c63524478c78c7baf6e0d8327191206",
+          "sourcePages": [
+            154
+          ],
+          "sourceNoteIds": [
+            "wis-5-8-initial-vav",
+            "wis-5-8-gimel"
+          ]
+        },
+        {
+          "chapter": 5,
+          "verse": 15,
+          "endVerse": 15,
+          "textSHA256": "bc0e88cbd5313d7a00cec547082737d99dd7f51a2e82f365b02d168bb9bd7f3c",
+          "sourcePages": [
+            154
+          ],
+          "sourceNoteIds": [
+            "wis-5-15-bet"
+          ]
+        },
+        {
+          "chapter": 5,
+          "verse": 16,
+          "endVerse": 16,
+          "textSHA256": "bd998476744b7c5bfb86d51b20fbbf6ff1bae54ee69d9e9cf6f801aaa5ead6da",
+          "sourcePages": [
+            154
+          ],
+          "sourceNoteIds": []
+        }
+      ],
+      "openingText": "אָז יַעמֹד הַצַּדִּיק הָכֵן וְקוֹמְמִיוּת בִּפְנֵי צוֹרְרָיו וּבוֹזֵי מַעֲשָׂיו׃",
+      "closingText": "לָכֵן מַמְלֶכֶת־הוֹד וַעֲטֶרֶת תִּפְאֶרֶת יִנְחֲלוּ מִיַּד יְיָ כִּי בִימִינוֹ יָסֵךְ עֲלֵיהֶם וּבִזְרוֹעוֹ יָגֵן בַּעֲדָם׃",
+      "includesWholeVerses": true,
+      "comparisonEvidence": [
+        "brenton5",
+        "mae0201",
+        "maf0201",
+        "maa0201"
+      ],
+      "boundaryCorrespondence": [
+        {
+          "requestedComparisonUnits": "1",
+          "hebrewSourceUnits": "1",
+          "finding": "The righteous stand confidently before oppressors."
+        },
+        {
+          "requestedComparisonUnits": "3–6",
+          "hebrewSourceUnits": "3–6",
+          "finding": "Repentance for mockery, supposed madness/dishonour, children of God, and departure from truth."
+        },
+        {
+          "requestedComparisonUnits": "8",
+          "hebrewSourceUnits": "8",
+          "finding": "Pride and riches are futile. Whole Hebrew8 additionally begins with the Lord’s-way clause ending Brenton7."
+        },
+        {
+          "requestedComparisonUnits": "15–16",
+          "hebrewSourceUnits": "15–16",
+          "finding": "The actual French and Arabic Maronite15–16 readings concern eternal life, reward/care, kingdom/crown and protection by God’s hand/arm; Hebrew15–16 contains each clause. This correspondence is now established from calendar wording, not empty English markers."
+        }
+      ],
+      "extraClauses": [
+        {
+          "sourceUnit": "5:8",
+          "anchor": "וְאֶת־דֶּרֶךְ יְיָ לֹא יָדָעְנוּ׃",
+          "comparison": "This completes Brenton5:7; the requested pride/riches sentence of Brenton5:8 follows in the same printed Hebrew unit. Preserve the whole unit and disclose expansion."
+        },
+        {
+          "sourceUnit": "5:6",
+          "anchor": "וְהַשֶּׁמֶשׁ לֹא זָרְחָה עָלֵינוּ׃",
+          "comparison": "Present in the actual French Maronite reading, absent in the actual Arabic version. Retained in the common whole-source-unit envelope; not an extra clause against French."
+        }
+      ],
+      "missingDistinctClauses": [],
+      "translationOrLiturgicalWordingDifferences": [
+        "The mockery clause is inside Hebrew5:3 and French/Arabic5:4; contiguous selection3–6 preserves it. Arabic5:6 omits the separate sun-rising clause retained by French5:6 and Hebrew5:6. The whole-unit candidate covers both calendar witnesses rather than silently cutting the Hebrew sentence."
+      ],
+      "sourceVerificationLimits": [
+        "English MAE still contains empty markers, but French MAF and Arabic MAA supply actual same-date readings with the identical complete citation. No generic numbering tradition is assigned to other appointments."
+      ],
+      "allComparedRequestedClausesHaveCounterparts": true,
+      "candidateDisposition": "whole-source-unit-candidate",
+      "runtimeApproval": false,
+      "excludedSourceBlocks": [],
+      "method": "Direct clause/end-point comparison with actual same-date French and Arabic Maronite wording, corroborated by public-domain Brenton; whole printed Hebrew units retained. Numeric labels alone were not used as equivalence evidence.",
+      "actualCalendarEndpointReview": "Every selected source clause was compared against the actual French and Arabic Maronite payloads. Both start/end on the reviewed Wisdom themes, and all requested content is represented by the selected whole Hebrew units."
+    },
+    {
+      "key": "daily|Wisdom 5:1–5",
+      "contexts": [
+        "roman1962"
+      ],
+      "scheduledOccurrences": 5,
+      "dates": [
+        {
+          "calendar": "roman1962",
+          "date": "2026-04-24"
+        },
+        {
+          "calendar": "roman1962",
+          "date": "2026-05-07"
+        },
+        {
+          "calendar": "roman1962",
+          "date": "2026-05-11"
+        },
+        {
+          "calendar": "roman1962",
+          "date": "2026-05-12"
+        },
+        {
+          "calendar": "roman1962",
+          "date": "2026-05-18"
+        }
+      ],
+      "sourceBook": "WIS",
+      "sourceContentSHA256": "600a31cb9a69c9f9d56ae2851613fdb1ba766df247e93e303f969b635a8d17d2",
+      "selections": [
+        {
+          "chapter": 5,
+          "verse": 1
+        },
+        {
+          "chapter": 5,
+          "verse": 2
+        },
+        {
+          "chapter": 5,
+          "verse": 3
+        },
+        {
+          "chapter": 5,
+          "verse": 4
+        },
+        {
+          "chapter": 5,
+          "verse": 5
+        }
+      ],
+      "selectedUnits": [
+        {
+          "chapter": 5,
+          "verse": 1,
+          "endVerse": 1,
+          "textSHA256": "bfe66d13305257197840b3da88a7fbd1322f586e2e25d593ab316785b39943cb",
+          "sourcePages": [
+            153
+          ],
+          "sourceNoteIds": [
+            "wis-5-1-ayin"
+          ]
+        },
+        {
+          "chapter": 5,
+          "verse": 2,
+          "endVerse": 2,
+          "textSHA256": "d7e0b40a23ba971cf3752aa269de6fc794d7ccb324b9b98088d0ef7ad93a5b43",
+          "sourcePages": [
+            153
+          ],
+          "sourceNoteIds": [
+            "wis-5-2-mem"
+          ]
+        },
+        {
+          "chapter": 5,
+          "verse": 3,
+          "endVerse": 3,
+          "textSHA256": "fdaba6cc749d7cfd9601f3e1cae116fb48fd6bc82aa71c5a65d834dd18546b96",
+          "sourcePages": [
+            153
+          ],
+          "sourceNoteIds": [
+            "wis-5-3-vav",
+            "wis-5-3-yod"
+          ]
+        },
+        {
+          "chapter": 5,
+          "verse": 4,
+          "endVerse": 4,
+          "textSHA256": "8d4cfe2ddba97cf24af67d74e4944b9ab4b4ab236b8cb74f0e90e1eea0a410a2",
+          "sourcePages": [
+            153
+          ],
+          "sourceNoteIds": []
+        },
+        {
+          "chapter": 5,
+          "verse": 5,
+          "endVerse": 5,
+          "textSHA256": "151a49387dd7b30e0889dd3ff8554cae4b7a2a9cb42bef9be9a980449cfc5138",
+          "sourcePages": [
+            153
+          ],
+          "sourceNoteIds": [
+            "wis-5-5-alef",
+            "wis-5-5-first-kaf"
+          ]
+        }
+      ],
+      "openingText": "אָז יַעמֹד הַצַּדִּיק הָכֵן וְקוֹמְמִיוּת בִּפְנֵי צוֹרְרָיו וּבוֹזֵי מַעֲשָׂיו׃",
+      "closingText": "איככָה נֶחֱשַׁב בֵּין בְּנֵי אֱלֹהִים וּבֵין קְדוֹשִׁים חֶלְקוֹ׃",
+      "includesWholeVerses": true,
+      "comparisonEvidence": [
+        "dra5",
+        "proper0512"
+      ],
+      "boundaryCorrespondence": [
+        {
+          "requestedComparisonUnits": "1–2",
+          "hebrewSourceUnits": "1–2",
+          "finding": "The righteous stand confidently; oppressors fear and marvel at unexpected salvation."
+        },
+        {
+          "requestedComparisonUnits": "3–5",
+          "hebrewSourceUnits": "3–5",
+          "finding": "Repentance for mockery, life called madness and death dishonour, then inclusion among God’s children and saints."
+        }
+      ],
+      "extraClauses": [],
+      "missingDistinctClauses": [],
+      "translationOrLiturgicalWordingDifferences": [],
+      "sourceVerificationLimits": [
+        "The full May 12 proper was inspected. April 24, May 7, May 11 and May 18 have the same recorded citation, but their date-specific resolved incipits were not executed or certified."
+      ],
+      "allComparedRequestedClausesHaveCounterparts": true,
+      "candidateDisposition": "whole-source-unit-candidate",
+      "runtimeApproval": false,
+      "excludedSourceBlocks": [],
+      "method": "Direct clause/end-point comparison with the named edition/calendar witnesses; whole printed Hebrew source units only. Numeric labels are locators, not evidence of equivalence.",
+      "literalScheduledProperBodiesInspected": [
+        "2026-05-12"
+      ],
+      "scheduledProperBodiesNotResolved": [
+        "2026-04-24",
+        "2026-05-07",
+        "2026-05-11",
+        "2026-05-18"
+      ]
+    },
+    {
+      "key": "daily|Wisdom 6:12–16",
+      "contexts": [
+        "roman"
+      ],
+      "scheduledOccurrences": 1,
+      "dates": [
+        {
+          "calendar": "roman",
+          "date": "2026-11-08"
+        }
+      ],
+      "sourceBook": "WIS",
+      "sourceContentSHA256": "600a31cb9a69c9f9d56ae2851613fdb1ba766df247e93e303f969b635a8d17d2",
+      "selections": [
+        {
+          "chapter": 6,
+          "verse": 12
+        },
+        {
+          "chapter": 6,
+          "verse": 13
+        },
+        {
+          "chapter": 6,
+          "verse": 14
+        },
+        {
+          "chapter": 6,
+          "verse": 15
+        },
+        {
+          "chapter": 6,
+          "verse": 16
+        }
+      ],
+      "selectedUnits": [
+        {
+          "chapter": 6,
+          "verse": 12,
+          "endVerse": 12,
+          "textSHA256": "64b28e85eac664a9180813c52aa18d5e593f8e032de281537b2cbc6322ed0d82",
+          "sourcePages": [
+            156
+          ],
+          "sourceNoteIds": []
+        },
+        {
+          "chapter": 6,
+          "verse": 13,
+          "endVerse": 13,
+          "textSHA256": "527684d72743d745e60079e09a002ffac42699cf506e1127b6d4ce260079f32b",
+          "sourcePages": [
+            156
+          ],
+          "sourceNoteIds": []
+        },
+        {
+          "chapter": 6,
+          "verse": 14,
+          "endVerse": 14,
+          "textSHA256": "e21ce4a84f05b6b95217d4047b2628119497d84cb20f7fe12b4ab6e17bb1809a",
+          "sourcePages": [
+            156
+          ],
+          "sourceNoteIds": []
+        },
+        {
+          "chapter": 6,
+          "verse": 15,
+          "endVerse": 15,
+          "textSHA256": "3e2c43db7d81bff53d2b42858eb7e05079435fa7715176937657162d9f5d8e0e",
+          "sourcePages": [
+            156
+          ],
+          "sourceNoteIds": []
+        },
+        {
+          "chapter": 6,
+          "verse": 16,
+          "endVerse": 16,
+          "textSHA256": "36bb4f0dd881ce2b915f56b6a8bef46346c7573d1d26bff91b374802204a8900",
+          "sourcePages": [
+            156
+          ],
+          "sourceNoteIds": [
+            "wis-6-16-bet"
+          ]
+        }
+      ],
+      "openingText": "בָּרָה הִיא הַחָכְמָה וְלֹא תִבֹּל תִּוָּדַע עַל־נְקַלָּה לְאוֹהֲבֶיהָ [וְתִמָּצֵא לִמְבַקְשֶׁיהָ]׃",
+      "closingText": "כִּי הִיא תְסוֹבֵב וּתְחַפֵּשׂ אֶת־אֲשֶׁר יָקְרוּ לָהּ וּבִנְתִיבוֹת בְּרָצוֹן תוֹפִיעַ לָמוֹ וּבכָל־זְמָמָם תִּתְמְכֵם׃",
+      "includesWholeVerses": true,
+      "comparisonEvidence": [
+        "brenton6",
+        "am1108"
+      ],
+      "boundaryCorrespondence": [
+        {
+          "requestedComparisonUnits": "12",
+          "hebrewSourceUnits": "12",
+          "finding": "Radiant unfading wisdom perceived by lovers and found by seekers; printed Hebrew brackets retained."
+        },
+        {
+          "requestedComparisonUnits": "13",
+          "hebrewSourceUnits": "13",
+          "finding": "Wisdom precedes those seeking her and makes herself known."
+        },
+        {
+          "requestedComparisonUnits": "14",
+          "hebrewSourceUnits": "14",
+          "finding": "Early seekers find her at their gates without exhaustion."
+        },
+        {
+          "requestedComparisonUnits": "15",
+          "hebrewSourceUnits": "15",
+          "finding": "Meditation gives understanding and watchfulness freedom from anxiety."
+        },
+        {
+          "requestedComparisonUnits": "16",
+          "hebrewSourceUnits": "16",
+          "finding": "Wisdom seeks the worthy, appears graciously on paths and supports their purposes."
+        }
+      ],
+      "extraClauses": [],
+      "missingDistinctClauses": [],
+      "translationOrLiturgicalWordingDifferences": [],
+      "sourceVerificationLimits": [],
+      "allComparedRequestedClausesHaveCounterparts": true,
+      "candidateDisposition": "whole-source-unit-candidate",
+      "runtimeApproval": false,
+      "excludedSourceBlocks": [],
+      "method": "Direct clause/end-point comparison with the named edition/calendar witnesses; whole printed Hebrew source units only. Numeric labels are locators, not evidence of equivalence."
+    },
+    {
+      "key": "daily|Wisdom 7:7–14",
+      "contexts": [
+        "maronite"
+      ],
+      "scheduledOccurrences": 1,
+      "dates": [
+        {
+          "calendar": "maronite",
+          "date": "2026-06-14"
+        }
+      ],
+      "sourceBook": "WIS",
+      "sourceContentSHA256": "600a31cb9a69c9f9d56ae2851613fdb1ba766df247e93e303f969b635a8d17d2",
+      "selections": [
+        {
+          "chapter": 7,
+          "verse": 7
+        },
+        {
+          "chapter": 7,
+          "verse": 8
+        },
+        {
+          "chapter": 7,
+          "verse": 9
+        },
+        {
+          "chapter": 7,
+          "verse": 10
+        },
+        {
+          "chapter": 7,
+          "verse": 11
+        },
+        {
+          "chapter": 7,
+          "verse": 12
+        },
+        {
+          "chapter": 7,
+          "verse": 13
+        },
+        {
+          "chapter": 7,
+          "verse": 14
+        }
+      ],
+      "selectedUnits": [
+        {
+          "chapter": 7,
+          "verse": 7,
+          "endVerse": 7,
+          "textSHA256": "1a04073e71dd89b3800175e86e675c198ef34302e9bfb9b0b5e742c425f9b549",
+          "sourcePages": [
+            158
+          ],
+          "sourceNoteIds": []
+        },
+        {
+          "chapter": 7,
+          "verse": 8,
+          "endVerse": 8,
+          "textSHA256": "9a5444ff78653fabb83a590156beef56bc31b11cd450de100c6af2b54d8444a4",
+          "sourcePages": [
+            158
+          ],
+          "sourceNoteIds": []
+        },
+        {
+          "chapter": 7,
+          "verse": 9,
+          "endVerse": 9,
+          "textSHA256": "d25e3536bd10ce02f736fa00e5f6106abe3e64092ff22302f85107018b2c54fe",
+          "sourcePages": [
+            158
+          ],
+          "sourceNoteIds": [
+            "wis-7-9-mem"
+          ]
+        },
+        {
+          "chapter": 7,
+          "verse": 10,
+          "endVerse": 10,
+          "textSHA256": "80a03a822719344127cc008a3aab085b3124e108fe8e0ccc2170bde5d44a9672",
+          "sourcePages": [
+            158
+          ],
+          "sourceNoteIds": []
+        },
+        {
+          "chapter": 7,
+          "verse": 11,
+          "endVerse": 11,
+          "textSHA256": "e931671a47317ef9859101935c0cab46809dc45a7cff09dcd4e0c465b577e9e8",
+          "sourcePages": [
+            158
+          ],
+          "sourceNoteIds": []
+        },
+        {
+          "chapter": 7,
+          "verse": 12,
+          "endVerse": 12,
+          "textSHA256": "743798290fa7c65fb35dc4f914b1bc938b70848f2e73734ce4fc993be5329835",
+          "sourcePages": [
+            158
+          ],
+          "sourceNoteIds": []
+        },
+        {
+          "chapter": 7,
+          "verse": 13,
+          "endVerse": 13,
+          "textSHA256": "a288d142bda861c10539631281f5bc9b0ab6d305a2cc8dd823741f92d395b78c",
+          "sourcePages": [
+            158
+          ],
+          "sourceNoteIds": []
+        },
+        {
+          "chapter": 7,
+          "verse": 14,
+          "endVerse": 14,
+          "textSHA256": "c46565f8c5a1c3cd4ae9a639913d51dd0b2e41efef444e31a4470d478ecc0ca8",
+          "sourcePages": [
+            158
+          ],
+          "sourceNoteIds": [
+            "wis-7-14-tav-atek"
+          ]
+        }
+      ],
+      "openingText": "לָכֵן הִתְפַּלַּלְתִּי וְנִתְּנָה־לִי בִינָה קָרָאתִי וְרוּחַ חָכְמָה בָּאָה עָלָי׃",
+      "closingText": "עַד־כִּי הוֹן עָתק הִיא לִבְנֵי אָדָם וְכָל־הַמִּתְעַנְּגִים עָלֶיהָ יְדִידוּת יְיָ יַשִּׂיגוּ כִּי בְשִׁי מוּסָר יֵרָצוּ לוֹ׃",
+      "includesWholeVerses": true,
+      "comparisonEvidence": [
+        "brenton7",
+        "mae0614",
+        "maf0614",
+        "maa0614"
+      ],
+      "boundaryCorrespondence": [
+        {
+          "requestedComparisonUnits": "7",
+          "hebrewSourceUnits": "7",
+          "finding": "Prayer brings understanding and the spirit of wisdom."
+        },
+        {
+          "requestedComparisonUnits": "8–10",
+          "hebrewSourceUnits": "8–10",
+          "finding": "Wisdom preferred to sceptres/thrones, riches, precious stones, gold/silver, health, beauty and light."
+        },
+        {
+          "requestedComparisonUnits": "11–12",
+          "hebrewSourceUnits": "11–12",
+          "finding": "All good and riches arrive with wisdom; rejoicing and recognition of wisdom as their source."
+        },
+        {
+          "requestedComparisonUnits": "13–14",
+          "hebrewSourceUnits": "13–14",
+          "finding": "Honest learning and ungrudging sharing; treasure, friendship with God and gifts of discipline."
+        }
+      ],
+      "extraClauses": [],
+      "missingDistinctClauses": [],
+      "translationOrLiturgicalWordingDifferences": [
+        "The Arabic payload adds a liturgical speaker introduction before7:7. Hebrew and French begin with the prayer itself; no new Hebrew introduction is authored."
+      ],
+      "sourceVerificationLimits": [
+        "English MAE still contains empty markers, but French MAF and Arabic MAA supply actual same-date readings with the identical complete citation. No generic numbering tradition is assigned to other appointments."
+      ],
+      "allComparedRequestedClausesHaveCounterparts": true,
+      "candidateDisposition": "whole-source-unit-candidate",
+      "runtimeApproval": false,
+      "excludedSourceBlocks": [],
+      "method": "Direct clause/end-point comparison with actual same-date French and Arabic Maronite wording, corroborated by public-domain Brenton; whole printed Hebrew units retained. Numeric labels alone were not used as equivalence evidence.",
+      "actualCalendarEndpointReview": "Every selected source clause was compared against the actual French and Arabic Maronite payloads. Both start/end on the reviewed Wisdom themes, and all requested content is represented by the selected whole Hebrew units."
+    }
+  ],
+  "counts": {
+    "wholeUnitCandidates": 9,
+    "blockedMissingDistinctClause": 0,
+    "calendarWordsUnavailableForExactContext": 0
+  },
+  "followUpResolution": {
+    "reviewedAt": "2026-10-02",
+    "previousReportSHA256": "eb3eacde730e563fef37867d07f63a73fe7a69f3dd2dece9f5eccff7100fdfb7",
+    "resolvedContextGaps": [
+      "ugcc-gregorian Wisdom4:7–15",
+      "maronite Wisdom5 selected units",
+      "maronite Wisdom7:7–14"
+    ],
+    "hebrewTextOrSelectionsChanged": false,
+    "previouslyUnchangedBlocker": "Roman Wisdom3:1–9 lacks a distinct care-for-elect clause; remains pending.",
+    "laterDisposition": "The prior Wisdom3:1–9 blocker is superseded by the secure shorter-ending review; see that appointment reassessment. All9 complete source-edition candidates now await parent runtime approval."
+  }
+}

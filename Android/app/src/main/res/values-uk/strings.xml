@@ -38,7 +38,32 @@
     <string name="readings_unavailable">Цей уривок недоступний у вибраному виданні Біблії.</string>
     <string name="readings_whole_verses_notice">Вірші показано повністю, і вони можуть виходити за межі зазначеного уривка читання.</string>
     <string name="readings_source">Джерело</string>
+    <string name="scripture_source_note">"Примітка до джерела"</string>
+    <string name="scripture_source_note_vowel">"Нерозбірливий знак оголосовки пропущено."</string>
+    <string name="scripture_source_note_dagesh">"Нерозбірливий дагеш пропущено."</string>
+    <string name="scripture_source_note_restored_letter">"Літеру %1$s (позиція %2$d) у «%3$s» відновлено редактором. На скані джерела вона нерозбірлива."</string>
+    <string name="scripture_source_note_letter">"Літера %1$s (позиція %2$d)"</string>
+    <string name="scripture_source_note_pages">"Сторінки PDF: %1$s"</string>
+    <string name="scripture_source_note_scan">"Скан джерела"</string>
     <string name="readings_choose_edition">Вибрати видання</string>
+    <string name="bible_daily_readings">"Читання дня"</string>
+    <string name="bible_title">"Біблія"</string>
+    <string name="bible_catalog_error">"Не вдалося відкрити каталог Біблії."</string>
+    <string name="bible_download_error">"Не вдалося завершити завантаження. Спробуйте ще раз."</string>
+    <string name="bible_download_notice">"Завантажте доступні книги та розділи цього видання для читання без інтернету. Деякі видання містять лише перевірені уривки."</string>
+    <string name="bible_downloading">"Завантаження…"</string>
+    <string name="bible_download">"Завантажити"</string>
+    <string name="bible_partial_chapter">"Доступна лише частина цього розділу."</string>
+    <string name="bible_choose_book">"Вибрати книгу"</string>
+    <string name="bible_choose_chapter">"Вибрати розділ"</string>
+    <string name="bible_choose_verse">"Вибрати вірш"</string>
+    <string name="bible_previous_chapter">"Попередній доступний розділ"</string>
+    <string name="bible_next_chapter">"Наступний доступний розділ"</string>
+    <string name="bible_chapter_error">"Не вдалося відкрити завантажений розділ. Видаліть завантаження та завантажте видання знову."</string>
+    <string name="bible_remove_notice">"Видалити «%1$s» із цього пристрою? Видання можна завантажити знову. Читання дня залишаться доступними."</string>
+    <string name="bible_remove_error">"Не вдалося видалити завантаження. Спробуйте ще раз."</string>
+    <string name="bible_printed_label">"Позначення в друкованому виданні: %1$s"</string>
+    <string name="bible_occurrence">"%1$s — входження %2$d"</string>
     <string name="tab_search">"Пошук"</string>
 
     <!-- Home -->
@@ -434,7 +459,7 @@
     <string name="about_peshitta_sources">"Новий Завіт Пешітти (BFBS, 1905): Digital Syriac Corpus; сирійська транскрипція — George A. Kiraz, TEI-видання © James E. Walters, CC BY 4.0. Перетворення на єврейське письмо за правилами Ереза; добір віршів і форматування тексту — Prosary."</string>
     <string name="about_peshitta_source_link">"Digital Syriac Corpus"</string>
     <string name="about_peshitta_license_link">"CC BY 4.0"</string>
-    <string name="about_peshitta_isaiah_sources">"Ісая: наданий користувачем XML-текст Пешітти з оголосовками з Internet Archive. Походження видання та умови його розповсюдження залишаються невстановленими. Перетворення на єврейське письмо за правилами Ереза; добір віршів і форматування тексту — Prosary."</string>
+    <string name="about_peshitta_isaiah_sources">"Старий Завіт: наданий користувачем XML-текст Пешітти з оголосовками з Internet Archive. Походження видання та умови його розповсюдження залишаються невстановленими. Перетворення на єврейське письмо за правилами Ереза; добір віршів і форматування тексту — Prosary."</string>
     <string name="about_peshitta_isaiah_source_link">"Internet Archive"</string>
     <string name="about_bible_book_sources">"Назви біблійних книг: AELF, Dar el-Machreq, російський Синодальний переклад (Азбука), Біблійне товариство Філіппін та ParolaViva."</string>
     <string name="about_prayer_network_link">"Всесвітня мережа молитви Папи"</string>

@@ -17,6 +17,7 @@ import re
 import shutil
 import subprocess
 from pathlib import Path
+from urllib.parse import urlsplit
 
 from pypdf import PdfReader
 
@@ -34,6 +35,50 @@ MONTHS = {
     "it": "GENNAIO FEBBRAIO MARZO APRILE MAGGIO GIUGNO LUGLIO AGOSTO SETTEMBRE OTTOBRE NOVEMBRE DICEMBRE".split(),
     "tl": "ENERO FEBRERO MARSO ABRIL MAYO HUNYO HULYO AGOSTO SEPTIEMBRE OCTUBRE NOVIEMBRE DISYEMBRE".split(),
 }
+HEBREW_CREDIT = "Prosary — Hebrew translation of the published intention"
+
+
+def merge_hebrew(payload, snapshots):
+    """Import authored Hebrew with the English publication it translates, not a Hebrew edition."""
+    if set(snapshots) != {"2026", "2027"}:
+        raise ValueError("Hebrew intentions must include snapshots for 2026 and 2027")
+    reviewed = {}
+    for year, snapshot in snapshots.items():
+        expected = {f"{year}-{month:02d}" for month in range(1, 13)}
+        if set(snapshot["months"]) != expected:
+            raise ValueError(f"{year}/he: expected exactly twelve months")
+        source = snapshot.get("source")
+        try:
+            url = urlsplit(source) if isinstance(source, str) else None
+            valid_source = (url is not None and url.scheme == "https" and url.hostname
+                            and not url.username and not url.password
+                            and not any(char.isspace() for char in source))
+        except ValueError:
+            valid_source = False
+        if not valid_source:
+            raise ValueError(f"{year}/he: missing or invalid published English source")
+        if snapshot.get("credit") != HEBREW_CREDIT:
+            raise ValueError(f"{year}/he: missing Prosary editorial translation credit")
+        for month, values in snapshot["months"].items():
+            if month not in payload["months"]:
+                raise ValueError(f"{month}/he: missing destination month")
+            for field in ("title", "text"):
+                value = values.get(field)
+                if not isinstance(value, str) or not value.strip() or "\ufffd" in value:
+                    raise ValueError(f"{month}/he: incomplete {field}")
+            reviewed[month] = (values, source, snapshot["credit"])
+    # Validate both complete years before changing any destination fields.
+    for month, (values, source, credit) in reviewed.items():
+        row = payload["months"][month]
+        for field in ("title", "text"):
+            row.setdefault(field + "ByLanguage", {})["he"] = values[field]
+        row.setdefault("sourceByLanguage", {})["he"] = source
+        row.setdefault("translationCreditByLanguage", {})["he"] = credit
+
+
+def sync_assets():
+    for target in ("iOS/Prosary/Data", "Android/app/src/main/assets/data", "Windows/Prosary/Data"):
+        shutil.copy2(DATA, ROOT / target / DATA.name)
 
 
 def extract_intentions(path, language):
@@ -112,9 +157,8 @@ def main():
         row.setdefault("sourceByLanguage", {})["ru"] = russian["source"]
         row.setdefault("translationCreditByLanguage", {})["ru"] = russian["credit"]
     published = json.loads(Path(__file__).with_name("pope-intentions-2027-published.json").read_text())
-    hebrew = json.loads(Path(__file__).with_name("pope-intentions-2027-he.json").read_text())
     expected = {f"2027-{month:02d}" for month in range(1, 13)}
-    if set(published["months"]) != expected or set(hebrew["months"]) != expected:
+    if set(published["months"]) != expected:
         raise ValueError("2027 must contain exactly twelve months")
     for month, translations in published["months"].items():
         row = payload["months"].setdefault(month, {})
@@ -130,18 +174,16 @@ def main():
             corrected_month, language = correction.split(".")
             if corrected_month == month:
                 row["sourceByLanguage"][language] = detail["source"]
-        for field in ("title", "text"):
-            row.setdefault(field + "ByLanguage", {})["he"] = hebrew["months"][month][field]
-    for row in payload["months"].values():
-        row.setdefault("translationCreditByLanguage", {})["he"] = "Prosary — Hebrew translation of the published intention"
+    hebrew = {year: json.loads(Path(__file__).with_name(f"pope-intentions-{year}-he.json").read_text())
+              for year in ("2026", "2027")}
+    merge_hebrew(payload, hebrew)
     ukrainian = json.loads(Path(__file__).with_name("pope-intentions-uk.json").read_text())
     merge_ukrainian(payload, ukrainian)
     payload["$comment"] = "2026–2027 intentions published by the Pope's Worldwide Prayer Network. Language source URLs identify published editions or the original translated source; translationCreditByLanguage distinguishes editorial translations. Hebrew and Ukrainian are Prosary translations, not official Vatican editions. Missing languages fall back to the published English. Months outside this table hide the row."
     payload["generated"] = "2026-09-07"
     DATA.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n")
     if args.sync:
-        for target in ("iOS/Prosary/Data", "Android/app/src/main/assets/data", "Windows/Prosary/Data"):
-            shutil.copy2(DATA, ROOT / target / DATA.name)
+        sync_assets()
     print("Imported 2026–2027 published intentions and credited Hebrew and Ukrainian translations.")
 
 

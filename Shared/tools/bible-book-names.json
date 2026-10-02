@@ -1,0 +1,1152 @@
+{
+  "schemaVersion": 1,
+  "note": "Source-authored book-name metadata. Other languages use the existing credited reading-book catalogs. Hebrew-script Syriac titles use the existing reversible display projection. Names identify source books, not a replacement Scripture translation.",
+  "sources": {
+    "grcbrent": {
+      "url": "https://ebible.org/grcbrent/index.htm",
+      "sha256": "1801909beaa73c0b01aca2c231e6d1438d8f3163e7dd276d2966378df5c7f879"
+    },
+    "engDRA": {
+      "url": "https://ebible.org/engDRA/index.htm",
+      "sha256": "417fdb05bc9bc82a3c831dd36d855c26d1f6c94fc61105fc7d1efc0ad6193e47"
+    },
+    "peshitta": [
+      {
+        "book": "GEN",
+        "url": "https://www.peshitta.eu/ot/genesis.html",
+        "sha256": "03f7d7d65d9339122565fe4fc26be576b0cf672b455f596cea209f8ec0d68a13"
+      },
+      {
+        "book": "EXO",
+        "url": "https://www.peshitta.eu/ot/exodus.html",
+        "sha256": "8ea350e744a83128aa8f827838d074a9716bfde279a97c3bb73c0586a21eb880"
+      },
+      {
+        "book": "LEV",
+        "url": "https://www.peshitta.eu/ot/leviticus.html",
+        "sha256": "0f5e76c4357d81b1d57d120dafc84037d120d6e26fa44e82ba8722345315cde6"
+      },
+      {
+        "book": "NUM",
+        "url": "https://www.peshitta.eu/ot/numbers.html",
+        "sha256": "74747ac07bbad881c15f00af8f86962a7ff03c7599d0bcc0a9c3fe817f13e44d"
+      },
+      {
+        "book": "DEU",
+        "url": "https://www.peshitta.eu/ot/deuteronomy.html",
+        "sha256": "94db05df545bbb8d8086f200d5201c54a50f557138629adde36225bdb5ab9f36"
+      },
+      {
+        "book": "JOS",
+        "url": "https://www.peshitta.eu/ot/joshua.html",
+        "sha256": "6a18f6ca96294e430d14555d2d2cfcb3efd3f0d06b84c0a23d9d6e74891035f3"
+      },
+      {
+        "book": "JDG",
+        "url": "https://www.peshitta.eu/ot/judges.html",
+        "sha256": "25a76f4c8b2ce259a6aa8ab1bae984cb3b916bc4fc3006189ce7fdac9a4efed2"
+      },
+      {
+        "book": "RUT",
+        "url": "https://www.peshitta.eu/ot/ruth.html",
+        "sha256": "93d377440e4e8394d35b6b7af8ef95d5e1732daf51145eeacc23c151cf70888b"
+      },
+      {
+        "book": "1SA",
+        "url": "https://www.peshitta.eu/ot/1samuel.html",
+        "sha256": "94bff91b55787eaac6456dca938c0e2f96ce21556c1bdeef661a6335f0773940"
+      },
+      {
+        "book": "2SA",
+        "url": "https://www.peshitta.eu/ot/2samuel.html",
+        "sha256": "d7a014198eebeb338ec9cda0c13e899b8d63ee07be1f15f1b1e2b62ffc8bc862"
+      },
+      {
+        "book": "1KI",
+        "url": "https://www.peshitta.eu/ot/1kings.html",
+        "sha256": "5c4440fe7bf5b44d50823a43db2c34ed8ab637d26e70ba15dc8d6e4159a846d7"
+      },
+      {
+        "book": "2KI",
+        "url": "https://www.peshitta.eu/ot/2kings.html",
+        "sha256": "556b9770360c06b876786d5699f0d0d0b3b78158ff228b74f94c6206ed1b7d30"
+      },
+      {
+        "book": "1CH",
+        "url": "https://www.peshitta.eu/ot/1chronicles.html",
+        "sha256": "7b858ec03556500ef354cfcc2bbf53e961d7d29287ba83461bb2f2ead19ca29a"
+      },
+      {
+        "book": "2CH",
+        "url": "https://www.peshitta.eu/ot/2chronicles.html",
+        "sha256": "51a0adeb0726dd1ac9f0067305846252d51211b535e835d18149deac4467643b"
+      },
+      {
+        "book": "EZR",
+        "url": "https://www.peshitta.eu/ot/ezra.html",
+        "sha256": "261b97e9eeceab394af9cf5ae0e418678a01c7437244ba22f36261c0c10a6552"
+      },
+      {
+        "book": "NEH",
+        "url": "https://www.peshitta.eu/ot/nehemiah.html",
+        "sha256": "9d6927fd4ac794e51d18d75c84f1bc538df7d7b86a3b2e6232032e4c46f6ba2b"
+      },
+      {
+        "book": "EST",
+        "url": "https://www.peshitta.eu/ot/esther.html",
+        "sha256": "a3dbf5b5f11759d7ddf58f78a13a238a3e4343f058de92ee4a16f501b41ec22f"
+      },
+      {
+        "book": "JOB",
+        "url": "https://www.peshitta.eu/ot/job.html",
+        "sha256": "1c111d41b6d5210d2d23c4419d0b54cfde05a59ba122af194a305a92358ab1a2"
+      },
+      {
+        "book": "PSA",
+        "url": "https://www.peshitta.eu/ot/psalms.html",
+        "sha256": "f98413689079560a88ea300ec4a9fca22cc7b2b6cd8b905bf9491c318cb2013f"
+      },
+      {
+        "book": "PRO",
+        "url": "https://www.peshitta.eu/ot/proverbs.html",
+        "sha256": "a8e5d0a6232e625edbbd1fc11028109183cd1ec6c0c99ce5bb889b9f3e532311"
+      },
+      {
+        "book": "ECC",
+        "url": "https://www.peshitta.eu/ot/ecclesiastes.html",
+        "sha256": "c2529d43db51d976ece6550432e8ddd7c136c2a8852ae5b364e878ec28bb13ac"
+      },
+      {
+        "book": "SNG",
+        "url": "https://www.peshitta.eu/ot/songs.html",
+        "sha256": "4ac38eb4b182504108ebedca25a0e447b4869e050f705234cce9d92fe660a897"
+      },
+      {
+        "book": "ISA",
+        "url": "https://www.peshitta.eu/ot/isaiah.html",
+        "sha256": "2e68e5a035bdbb5c58c9646a36d0d7e61ad01657ff083d3b8114cf215fea7593"
+      },
+      {
+        "book": "JER",
+        "url": "https://www.peshitta.eu/ot/jeremiah.html",
+        "sha256": "4261a5e13e85b2c4c19c53da3e564ffbfff42b2a1607e6f70b4b770e4fa3061b"
+      },
+      {
+        "book": "LAM",
+        "url": "https://www.peshitta.eu/ot/lamentations.html",
+        "sha256": "db661585f01b9c3b529011335c1b72bfb643781af242c739d8f83d26cee791c6"
+      },
+      {
+        "book": "EZK",
+        "url": "https://www.peshitta.eu/ot/ezekiel.html",
+        "sha256": "178bf53bb6f2c727525012c231b6f2f7eb74ac8ecf330ea286965ecaee21c543"
+      },
+      {
+        "book": "DAN",
+        "url": "https://www.peshitta.eu/ot/daniel.html",
+        "sha256": "dcc141c4e5d47ad87db855644fdadb2b05752136dd25b59d8f986ad4c62ad3e4"
+      },
+      {
+        "book": "HOS",
+        "url": "https://www.peshitta.eu/ot/hosea.html",
+        "sha256": "59768789562271816fab9923ec72e072002d1fee5f8594bff745ec2ac3920b29"
+      },
+      {
+        "book": "JOL",
+        "url": "https://www.peshitta.eu/ot/joel.html",
+        "sha256": "79bf8dfac6f2eb8571b4de4cdbd91cc1b0de0fc3b58ac4ea6d276482060f2141"
+      },
+      {
+        "book": "AMO",
+        "url": "https://www.peshitta.eu/ot/amos.html",
+        "sha256": "78c2aeb8b20234fda87f94df96ebd8a31264df7c23bb2130b3cda1b2d2efbf74"
+      },
+      {
+        "book": "OBA",
+        "url": "https://www.peshitta.eu/ot/obadiah.html",
+        "sha256": "1018a666b523f09f06476ec8e7a0364aceb08e9427ba6bbf34dda0acf1f8b1b9"
+      },
+      {
+        "book": "JON",
+        "url": "https://www.peshitta.eu/ot/jonah.html",
+        "sha256": "32d028f129de633deefa3e7e7b59d760b33b352d79731508274725dcf6577dd3"
+      },
+      {
+        "book": "MIC",
+        "url": "https://www.peshitta.eu/ot/micah.html",
+        "sha256": "28f2df7a6f31817b56ad71ac52a91ff5450ebf7279449700b1ac2f75284bbb75"
+      },
+      {
+        "book": "NAM",
+        "url": "https://www.peshitta.eu/ot/nahum.html",
+        "sha256": "6a0d9556e422bd34249dd29c0b0f7927e715a614e261a909d70f73408a3f0313"
+      },
+      {
+        "book": "HAB",
+        "url": "https://www.peshitta.eu/ot/habakkuk.html",
+        "sha256": "7d3dac29543abdf8ce9950d38abd20deded632198833b86e10d65090d1a7be51"
+      },
+      {
+        "book": "ZEP",
+        "url": "https://www.peshitta.eu/ot/zephaniah.html",
+        "sha256": "fa62d0480d235391da3e61eedd0006e4ad3f1d3136c6c8c5d8d908a452bab5f6"
+      },
+      {
+        "book": "HAG",
+        "url": "https://www.peshitta.eu/ot/haggai.html",
+        "sha256": "f502442919b8465244f4f92671873c79ebc37e185fd7e6c3650ad6ef633e891d"
+      },
+      {
+        "book": "ZEC",
+        "url": "https://www.peshitta.eu/ot/zechariah.html",
+        "sha256": "9240c516f08023d6fe9668569fe36e91ffed32860c086541e0ef78ec3163bea2"
+      },
+      {
+        "book": "MAL",
+        "url": "https://www.peshitta.eu/ot/malachi.html",
+        "sha256": "16fe9dbaa4bd122c05213561bc69ff7e407802213e2187f200efefed948a56cd"
+      },
+      {
+        "book": "TOB",
+        "url": "https://www.peshitta.eu/ot/tobit.html",
+        "sha256": "ca9cad576889db7c77d9cf61cebd1141a97c79c173bbb385cc8970c50c123a09"
+      },
+      {
+        "book": "JDT",
+        "url": "https://www.peshitta.eu/ot/judith.html",
+        "sha256": "5c36b566465f51dba89fc8ed0083f42e113b9310386d998cbb1cadd9cd072e6b"
+      },
+      {
+        "book": "1MA",
+        "url": "https://www.peshitta.eu/ot/1maccabees.html",
+        "sha256": "4397013ff96f6a642fda66f7f1233c20358c122409a1b8eddf84ef8963ea958d"
+      },
+      {
+        "book": "2MA",
+        "url": "https://www.peshitta.eu/ot/2maccabees.html",
+        "sha256": "a4c65e6bf8caa0d1583806250a943799d3636ca743ad5c11a819dc11b039d830"
+      },
+      {
+        "book": "MAT",
+        "url": "https://raw.githubusercontent.com/srophe/syriac-corpus/833adc148cc356a6c70c16f81b22df9188df717a/data/tei/100.xml",
+        "sha256": "1233556a4bc22bf03185dbf6d1b1f44327498729a9a99da3cb638d17f75cc0db"
+      },
+      {
+        "book": "MRK",
+        "url": "https://raw.githubusercontent.com/srophe/syriac-corpus/833adc148cc356a6c70c16f81b22df9188df717a/data/tei/119.xml",
+        "sha256": "55a2320f0eccf31571cf07f34bcb684ef012b785239258047b65d37108d1a86b"
+      },
+      {
+        "book": "LUK",
+        "url": "https://raw.githubusercontent.com/srophe/syriac-corpus/833adc148cc356a6c70c16f81b22df9188df717a/data/tei/120.xml",
+        "sha256": "1ad850fc12c6ac6b8b82c998c59095bb26798774297059ad0454ecfe916d62d1"
+      },
+      {
+        "book": "JHN",
+        "url": "https://raw.githubusercontent.com/srophe/syriac-corpus/833adc148cc356a6c70c16f81b22df9188df717a/data/tei/121.xml",
+        "sha256": "ce63ffa8da5ddf083056cce28046079eb6a0738445dcd255acc5de6eb1dd0454"
+      },
+      {
+        "book": "ACT",
+        "url": "https://raw.githubusercontent.com/srophe/syriac-corpus/833adc148cc356a6c70c16f81b22df9188df717a/data/tei/122.xml",
+        "sha256": "e1fb5de5668c4b5cc8027958dcab742d681e99715df6e447a86ec245df66e000"
+      },
+      {
+        "book": "ROM",
+        "url": "https://raw.githubusercontent.com/srophe/syriac-corpus/833adc148cc356a6c70c16f81b22df9188df717a/data/tei/123.xml",
+        "sha256": "996ca9e1e7834ba69105ac4d438d167bb8b9b8b258425a5550f8e580b729ffbe"
+      },
+      {
+        "book": "1CO",
+        "url": "https://raw.githubusercontent.com/srophe/syriac-corpus/833adc148cc356a6c70c16f81b22df9188df717a/data/tei/124.xml",
+        "sha256": "7a57b13932e986e5a14647f4b9d3604d9af582947ef6935b9b5bd8430361de78"
+      },
+      {
+        "book": "2CO",
+        "url": "https://raw.githubusercontent.com/srophe/syriac-corpus/833adc148cc356a6c70c16f81b22df9188df717a/data/tei/126.xml",
+        "sha256": "e8973c0b8046a17529e32215551d2d306f30ff1ef2be12466e732260f4babc37"
+      },
+      {
+        "book": "GAL",
+        "url": "https://raw.githubusercontent.com/srophe/syriac-corpus/833adc148cc356a6c70c16f81b22df9188df717a/data/tei/127.xml",
+        "sha256": "e9a2dfeb7d4d233339c27aaf7f5c3696411467fd87acf137a69a71d4e1e2adf0"
+      },
+      {
+        "book": "EPH",
+        "url": "https://raw.githubusercontent.com/srophe/syriac-corpus/833adc148cc356a6c70c16f81b22df9188df717a/data/tei/128.xml",
+        "sha256": "b35f634b98b2c4e82b90787517ffa2a8d1c8a3309ea731e72b0f86b23ed82181"
+      },
+      {
+        "book": "PHP",
+        "url": "https://raw.githubusercontent.com/srophe/syriac-corpus/833adc148cc356a6c70c16f81b22df9188df717a/data/tei/129.xml",
+        "sha256": "50a00df7b43e04677b07a52f0b8bd9ea2f2d932adbe3185d540e0fb0f516c4dc"
+      },
+      {
+        "book": "COL",
+        "url": "https://raw.githubusercontent.com/srophe/syriac-corpus/833adc148cc356a6c70c16f81b22df9188df717a/data/tei/130.xml",
+        "sha256": "812569148ca53d0df958185052be38ac5f9d18fda45cb4d1f3306417a0839451"
+      },
+      {
+        "book": "1TH",
+        "url": "https://raw.githubusercontent.com/srophe/syriac-corpus/833adc148cc356a6c70c16f81b22df9188df717a/data/tei/131.xml",
+        "sha256": "b318eee1f335761624a18b66d4e90329247accf0afca93b3ae7f005434326051"
+      },
+      {
+        "book": "2TH",
+        "url": "https://raw.githubusercontent.com/srophe/syriac-corpus/833adc148cc356a6c70c16f81b22df9188df717a/data/tei/132.xml",
+        "sha256": "266249b3fc214fb44715a73897d30f68030561ac399bb35c55e84bbb9a6b0160"
+      },
+      {
+        "book": "1TI",
+        "url": "https://raw.githubusercontent.com/srophe/syriac-corpus/833adc148cc356a6c70c16f81b22df9188df717a/data/tei/133.xml",
+        "sha256": "9da57586c828cf7139fe79d1814716894ce58558ac7d396477cac327d05b1cb1"
+      },
+      {
+        "book": "2TI",
+        "url": "https://raw.githubusercontent.com/srophe/syriac-corpus/833adc148cc356a6c70c16f81b22df9188df717a/data/tei/134.xml",
+        "sha256": "a2eee9f32250f18ef847714fcf674c879fed6c0d1d77e984bde3f91b274d9361"
+      },
+      {
+        "book": "TIT",
+        "url": "https://raw.githubusercontent.com/srophe/syriac-corpus/833adc148cc356a6c70c16f81b22df9188df717a/data/tei/135.xml",
+        "sha256": "9990bb2d1b674f0c6d5ba0d03440dd67b142d6f71124b7062d71d1239c569abc"
+      },
+      {
+        "book": "PHM",
+        "url": "https://raw.githubusercontent.com/srophe/syriac-corpus/833adc148cc356a6c70c16f81b22df9188df717a/data/tei/136.xml",
+        "sha256": "8e6f47a61f7e7d6911ff3b580a1dcc9c03f3f9c402757585246e1cdac96d7bda"
+      },
+      {
+        "book": "HEB",
+        "url": "https://raw.githubusercontent.com/srophe/syriac-corpus/833adc148cc356a6c70c16f81b22df9188df717a/data/tei/137.xml",
+        "sha256": "daadc16494b2f7c21d78962c92964272db1751478dbbc9592631347e70708c3a"
+      },
+      {
+        "book": "JAS",
+        "url": "https://raw.githubusercontent.com/srophe/syriac-corpus/833adc148cc356a6c70c16f81b22df9188df717a/data/tei/138.xml",
+        "sha256": "279c6e153ad0bd960b18e61b378ef295e4e592b52ba142b1200223dd4c65d322"
+      },
+      {
+        "book": "1PE",
+        "url": "https://raw.githubusercontent.com/srophe/syriac-corpus/833adc148cc356a6c70c16f81b22df9188df717a/data/tei/139.xml",
+        "sha256": "1519695e729192741a38eff9cd07b4888de7a700b0327fa3309f102a61271930"
+      },
+      {
+        "book": "2PE",
+        "url": "https://raw.githubusercontent.com/srophe/syriac-corpus/833adc148cc356a6c70c16f81b22df9188df717a/data/tei/140.xml",
+        "sha256": "989874e0e67601ab36a9013120e3eb7f483fc37f273ddfdbd0c70db42c569847"
+      },
+      {
+        "book": "1JN",
+        "url": "https://raw.githubusercontent.com/srophe/syriac-corpus/833adc148cc356a6c70c16f81b22df9188df717a/data/tei/141.xml",
+        "sha256": "de3ea1579fa75398c4cf3a1520a89e5c788f4719a865ea443a6dc503b8c68228"
+      },
+      {
+        "book": "2JN",
+        "url": "https://raw.githubusercontent.com/srophe/syriac-corpus/833adc148cc356a6c70c16f81b22df9188df717a/data/tei/142.xml",
+        "sha256": "052feecfb76460d4e301c70b4a3a14510cd41b57e768d7e3249c93f16f9e1ad7"
+      },
+      {
+        "book": "3JN",
+        "url": "https://raw.githubusercontent.com/srophe/syriac-corpus/833adc148cc356a6c70c16f81b22df9188df717a/data/tei/143.xml",
+        "sha256": "dc8a80ff3c8d900ceb3a17f43d24889fcf506d65e4d96642a7a343f05e0396ad"
+      },
+      {
+        "book": "JUD",
+        "url": "https://raw.githubusercontent.com/srophe/syriac-corpus/833adc148cc356a6c70c16f81b22df9188df717a/data/tei/144.xml",
+        "sha256": "eaaa989aebde04ed17ae9a545118a9b4b0384508234c4b9a80f1cd43274ab1d0"
+      },
+      {
+        "book": "REV",
+        "url": "https://raw.githubusercontent.com/srophe/syriac-corpus/833adc148cc356a6c70c16f81b22df9188df717a/data/tei/145.xml",
+        "sha256": "3f253a09cf77ef1c0f0160e21167e1279a675bb54eb3725289dea8aa4649f7d1"
+      }
+    ],
+    "hbo": {
+      "url": "https://ebible.org/hbo/index.htm",
+      "sha256": "fa600867e54bb882f86fa1fc7a9a423f5d8c4c2909d2ebcaf8846beebccb4e3e"
+    }
+  },
+  "editions": {
+    "brenton-lxx": {
+      "GEN": {
+        "name": "ΓΕΝΕΣΙΣ"
+      },
+      "EXO": {
+        "name": "ΕΞΟΔΟΣ"
+      },
+      "LEV": {
+        "name": "ΛΕΥΙΤΙΚΟΝ"
+      },
+      "NUM": {
+        "name": "ΑΡΙΘΜΟΙ"
+      },
+      "DEU": {
+        "name": "ΔΕΥΤΕΡΟΝΟΜΙΟΝ"
+      },
+      "JOS": {
+        "name": "ΙΗΣΟΥΣ"
+      },
+      "JDG": {
+        "name": "ΚΡΙΤΑΙ"
+      },
+      "RUT": {
+        "name": "ΡΟΥΘ"
+      },
+      "1SA": {
+        "name": "ΒΑΣΙΛΕΙΩΝ Α"
+      },
+      "2SA": {
+        "name": "ΒΑΣΙΛΕΙΩΝ Β"
+      },
+      "1KI": {
+        "name": "ΒΑΣΙΛΕΙΩΝ Γ"
+      },
+      "2KI": {
+        "name": "ΒΑΣΙΛΕΙΩΝ Δ"
+      },
+      "1CH": {
+        "name": "ΠΑΡΑΛΕΙΠΟΜΕΝΩΝ Α"
+      },
+      "2CH": {
+        "name": "ΠΑΡΑΛΕΙΠΟΜΕΝΩΝ Β"
+      },
+      "EZR": {
+        "name": "ΕΣΔΡΑΣ"
+      },
+      "JOB": {
+        "name": "ΙΩΒ"
+      },
+      "PSA": {
+        "name": "ΨΑΛΜΟΙ"
+      },
+      "PRO": {
+        "name": "ΠΑΡΟΙΜΙΑΙ"
+      },
+      "ECC": {
+        "name": "ΕΚΚΛΗΣΙΑΣΤΗΣ"
+      },
+      "SNG": {
+        "name": "ΑΣΜΑ"
+      },
+      "ISA": {
+        "name": "ΗΣΑΙΑΣ"
+      },
+      "JER": {
+        "name": "ΙΕΡΕΜΙΑΣ"
+      },
+      "LAM": {
+        "name": "ΘΡΗΝΟΙ"
+      },
+      "EZK": {
+        "name": "ΙΕΖΕΚΙΗΛ"
+      },
+      "HOS": {
+        "name": "ΩΣΗΕ. Αʹ"
+      },
+      "JOL": {
+        "name": "ΙΩΗΛ. Δʹ"
+      },
+      "AMO": {
+        "name": "ΑΜΩΣ. Βʹ"
+      },
+      "OBA": {
+        "name": "ΟΒΔΕΙΟΥ. Εʹ"
+      },
+      "JON": {
+        "name": "ΙΩΝΑΣ. ϛʹ"
+      },
+      "MIC": {
+        "name": "ΜΙΧΑΙΑΣ. Γʹ"
+      },
+      "NAM": {
+        "name": "ΝΑΟΥΜ. Ζʹ"
+      },
+      "HAB": {
+        "name": "ΑΜΒΑΚΟΥΜ. Ηʹ"
+      },
+      "ZEP": {
+        "name": "ΣΟΦΟΝΙΑΣ. Θʹ"
+      },
+      "HAG": {
+        "name": "ΑΓΓΑΙΟΣ. Ιʹ"
+      },
+      "ZEC": {
+        "name": "ΖΑΧΑΡΙΑΣ. ΙΑʹ"
+      },
+      "MAL": {
+        "name": "ΜΑΛΑΧΙΑΣ. ΙΒʹ"
+      },
+      "TOB": {
+        "name": "ΤΩΒΙΤ"
+      },
+      "JDT": {
+        "name": "ΙΟΥΔΙΘ"
+      },
+      "ESG": {
+        "name": "ΕΣΘΗΡ"
+      },
+      "DAG": {
+        "name": "ΔΑΝΙΗΛ (Ελληνικά)"
+      },
+      "WIS": {
+        "name": "ΣΟΦΙΑ"
+      },
+      "SIR": {
+        "name": "ΣΕΙΡΑΧ"
+      },
+      "BAR": {
+        "name": "ΒΑΡΟΥΧ"
+      },
+      "LJE": {
+        "name": "ΕΠΙΣΤΟΛΗ ΙΕΡΕΜΙΟΥ"
+      },
+      "SUS": {
+        "name": "ΣΩΣΑΝΝΑ"
+      },
+      "BEL": {
+        "name": "ΒΗΛ"
+      },
+      "1MA": {
+        "name": "ΜΑΚΚΑΒΑΙΩΝ Αʹ"
+      },
+      "2MA": {
+        "name": "ΜΑΚΚΑΒΑΙΩΝ Βʹ"
+      },
+      "1ES": {
+        "name": "ΕΣΔΡΑΣ. Αʹ"
+      },
+      "MAN": {
+        "name": "ΠΡΟΣΕΥΧΗ"
+      },
+      "3MA": {
+        "name": "ΜΑΚΚΑΒΑΙΩΝ Γʹ"
+      },
+      "4MA": {
+        "name": "ΜΑΚΚΑΒΑΙΩΝ Δʹ"
+      }
+    },
+    "douay-rheims-1899": {
+      "GEN": {
+        "name": "Genesis"
+      },
+      "EXO": {
+        "name": "Exodus"
+      },
+      "LEV": {
+        "name": "Leviticus"
+      },
+      "NUM": {
+        "name": "Numbers"
+      },
+      "DEU": {
+        "name": "Deuteronomy"
+      },
+      "JOS": {
+        "name": "Joshua"
+      },
+      "JDG": {
+        "name": "Judges"
+      },
+      "RUT": {
+        "name": "Ruth"
+      },
+      "1SA": {
+        "name": "1 Samuel"
+      },
+      "2SA": {
+        "name": "2 Samuel"
+      },
+      "1KI": {
+        "name": "1 Kings"
+      },
+      "2KI": {
+        "name": "2 Kings"
+      },
+      "1CH": {
+        "name": "1 Chronicles"
+      },
+      "2CH": {
+        "name": "2 Chronicles"
+      },
+      "EZR": {
+        "name": "Ezra"
+      },
+      "NEH": {
+        "name": "Nehemiah"
+      },
+      "EST": {
+        "name": "Esther"
+      },
+      "JOB": {
+        "name": "Job"
+      },
+      "PSA": {
+        "name": "Psalms"
+      },
+      "PRO": {
+        "name": "Proverbs"
+      },
+      "ECC": {
+        "name": "Ecclesiastes"
+      },
+      "SNG": {
+        "name": "Song of Solomon"
+      },
+      "ISA": {
+        "name": "Isaiah"
+      },
+      "JER": {
+        "name": "Jeremiah"
+      },
+      "LAM": {
+        "name": "Lamentations"
+      },
+      "EZK": {
+        "name": "Ezekiel"
+      },
+      "DAN": {
+        "name": "Daniel"
+      },
+      "HOS": {
+        "name": "Hosea"
+      },
+      "JOL": {
+        "name": "Joel"
+      },
+      "AMO": {
+        "name": "Amos"
+      },
+      "OBA": {
+        "name": "Obadiah"
+      },
+      "JON": {
+        "name": "Jonah"
+      },
+      "MIC": {
+        "name": "Micah"
+      },
+      "NAM": {
+        "name": "Nahum"
+      },
+      "HAB": {
+        "name": "Habakkuk"
+      },
+      "ZEP": {
+        "name": "Zephaniah"
+      },
+      "HAG": {
+        "name": "Haggai"
+      },
+      "ZEC": {
+        "name": "Zechariah"
+      },
+      "MAL": {
+        "name": "Malachi"
+      },
+      "TOB": {
+        "name": "Tobit"
+      },
+      "JDT": {
+        "name": "Judith"
+      },
+      "WIS": {
+        "name": "Wisdom of Solomon"
+      },
+      "SIR": {
+        "name": "Sirach"
+      },
+      "BAR": {
+        "name": "Baruch"
+      },
+      "1MA": {
+        "name": "1 Maccabees"
+      },
+      "2MA": {
+        "name": "2 Maccabees"
+      },
+      "MAT": {
+        "name": "Matthew"
+      },
+      "MRK": {
+        "name": "Mark"
+      },
+      "LUK": {
+        "name": "Luke"
+      },
+      "JHN": {
+        "name": "John"
+      },
+      "ACT": {
+        "name": "Acts"
+      },
+      "ROM": {
+        "name": "Romans"
+      },
+      "1CO": {
+        "name": "1 Corinthians"
+      },
+      "2CO": {
+        "name": "2 Corinthians"
+      },
+      "GAL": {
+        "name": "Galatians"
+      },
+      "EPH": {
+        "name": "Ephesians"
+      },
+      "PHP": {
+        "name": "Philippians"
+      },
+      "COL": {
+        "name": "Colossians"
+      },
+      "1TH": {
+        "name": "1 Thessalonians"
+      },
+      "2TH": {
+        "name": "2 Thessalonians"
+      },
+      "1TI": {
+        "name": "1 Timothy"
+      },
+      "2TI": {
+        "name": "2 Timothy"
+      },
+      "TIT": {
+        "name": "Titus"
+      },
+      "PHM": {
+        "name": "Philemon"
+      },
+      "HEB": {
+        "name": "Hebrews"
+      },
+      "JAS": {
+        "name": "James"
+      },
+      "1PE": {
+        "name": "1 Peter"
+      },
+      "2PE": {
+        "name": "2 Peter"
+      },
+      "1JN": {
+        "name": "1 John"
+      },
+      "2JN": {
+        "name": "2 John"
+      },
+      "3JN": {
+        "name": "3 John"
+      },
+      "JUD": {
+        "name": "Jude"
+      },
+      "REV": {
+        "name": "Revelation"
+      }
+    },
+    "peshitta-1905": {
+      "GEN": {
+        "name": "בריתא",
+        "transliteratedName": "ܒܪܝܬܐ"
+      },
+      "EXO": {
+        "name": "מפקנא",
+        "transliteratedName": "ܡܦܩܢܐ"
+      },
+      "LEV": {
+        "name": "כהנא",
+        "transliteratedName": "ܟܗܢ̈ܐ"
+      },
+      "NUM": {
+        "name": "מנינא",
+        "transliteratedName": "ܡܢܝܢܐ"
+      },
+      "DEU": {
+        "name": "תנין נמוסא",
+        "transliteratedName": "ܬܢܝܢ ܢܡܘܣܐ"
+      },
+      "JOS": {
+        "name": "ישוע בר נון",
+        "transliteratedName": "ܝܫܘܥ ܒܪ ܢܘܢ"
+      },
+      "JDG": {
+        "name": "דינא",
+        "transliteratedName": "ܕܝܢ̈ܐ"
+      },
+      "RUT": {
+        "name": "רעות",
+        "transliteratedName": "ܪܥܘܬ"
+      },
+      "1SA": {
+        "name": "א שמואיל",
+        "transliteratedName": "ܐ ܫܡܘܐܝܠ"
+      },
+      "2SA": {
+        "name": "ב שמואיל",
+        "transliteratedName": "ܒ ܫܡܘܐܝܠ"
+      },
+      "1KI": {
+        "name": "א מלכא",
+        "transliteratedName": "ܐ ܡܠ̈ܟܐ"
+      },
+      "2KI": {
+        "name": "ב מלכא",
+        "transliteratedName": "ܒ ܡܠ̈ܟܐ"
+      },
+      "1CH": {
+        "name": "א דובר יומתא",
+        "transliteratedName": "ܐ ܕܘܒܪ ܝܘܡ̈ܬܐ"
+      },
+      "2CH": {
+        "name": "ב דובר יומתא",
+        "transliteratedName": "ܒ ܕܘܒܪ ܝܘܡ̈ܬܐ"
+      },
+      "EZR": {
+        "name": "עזרא",
+        "transliteratedName": "ܥܙܪܐ"
+      },
+      "NEH": {
+        "name": "נחמיא",
+        "transliteratedName": "ܢܚܡܝܐ"
+      },
+      "EST": {
+        "name": "אסתיר",
+        "transliteratedName": "ܐܣܬܝܪ"
+      },
+      "JOB": {
+        "name": "איוב",
+        "transliteratedName": "ܐܝܘܒ"
+      },
+      "PSA": {
+        "name": "מזמורא",
+        "transliteratedName": "ܡܙܡܘܪ̈ܐ"
+      },
+      "PRO": {
+        "name": "מתלא",
+        "transliteratedName": "ܡܬ̈ܠܐ"
+      },
+      "ECC": {
+        "name": "קוהלת",
+        "transliteratedName": "ܩܘܗܠܬ"
+      },
+      "SNG": {
+        "name": "תשבחת תשבחתא",
+        "transliteratedName": "ܬܫܒܚܬ ܬܫܒܚ̈ܬܐ"
+      },
+      "ISA": {
+        "name": "אשעיא",
+        "transliteratedName": "ܐܫܥܝܐ"
+      },
+      "JER": {
+        "name": "ארמיא",
+        "transliteratedName": "ܐܪܡܝܐ"
+      },
+      "LAM": {
+        "name": "אוליתא",
+        "transliteratedName": "ܐܘܠܝ̈ܬܐ"
+      },
+      "EZK": {
+        "name": "חזקיאיל",
+        "transliteratedName": "ܚܙܩܝܐܝܠ"
+      },
+      "DAN": {
+        "name": "דניאיל",
+        "transliteratedName": "ܕܢܝܐܝܠ"
+      },
+      "HOS": {
+        "name": "הושע",
+        "transliteratedName": "ܗܘܫܥ"
+      },
+      "JOL": {
+        "name": "יואיל",
+        "transliteratedName": "ܝܘܐܝܠ"
+      },
+      "AMO": {
+        "name": "עמוס",
+        "transliteratedName": "ܥܡܘܣ"
+      },
+      "OBA": {
+        "name": "עובדיא",
+        "transliteratedName": "ܥܘܒܕܝܐ"
+      },
+      "JON": {
+        "name": "יונן",
+        "transliteratedName": "ܝܘܢܢ"
+      },
+      "MIC": {
+        "name": "מיכא",
+        "transliteratedName": "ܡܝܟ̣ܐ"
+      },
+      "NAM": {
+        "name": "נחום",
+        "transliteratedName": "ܢܚܘܡ"
+      },
+      "HAB": {
+        "name": "חבקוק",
+        "transliteratedName": "ܚܒܩܘܩ"
+      },
+      "ZEP": {
+        "name": "צפניא",
+        "transliteratedName": "ܨܦܢܝܐ"
+      },
+      "HAG": {
+        "name": "חגי",
+        "transliteratedName": "ܚܓܝ"
+      },
+      "ZEC": {
+        "name": "זכריא",
+        "transliteratedName": "ܙܟ̣ܪܝܐ"
+      },
+      "MAL": {
+        "name": "מלאכי",
+        "transliteratedName": "ܡܠܐܟ̣ܝ"
+      },
+      "TOB": {
+        "name": "טוביט",
+        "transliteratedName": "ܛܘܒܝܛ"
+      },
+      "JDT": {
+        "name": "יהודית",
+        "transliteratedName": "ܝܗ̱ܘܕܝܬ"
+      },
+      "1MA": {
+        "name": "א מקביא",
+        "transliteratedName": "ܐ ܡܩܒܝ̈ܐ"
+      },
+      "2MA": {
+        "name": "ב מקביא",
+        "transliteratedName": "ܒ ܡܩܒܝ̈ܐ"
+      },
+      "MAT": {
+        "name": "אונגליון דמתי",
+        "transliteratedName": "ܐܘܢܓܠܝܘܢ ܕܡܬܝ"
+      },
+      "MRK": {
+        "name": "אונגליון קדישא כרוזותא דמרקוס",
+        "transliteratedName": "ܐܘܢܓܠܝܘܢ ܩܕܝܫܐ ܟܪܘܙܘܬܐ ܕܡܪܩܘܣ"
+      },
+      "LUK": {
+        "name": "אונגליון קדישא כרוזותא דלוקא",
+        "transliteratedName": "ܐܘܢܓܠܝܘܢ ܩܕܝܫܐ ܟܪܘܙܘܬܐ ܕܠܘܩܐ"
+      },
+      "JHN": {
+        "name": "אונגליון קדישא כרוזותא דיוחנן",
+        "transliteratedName": "ܐܘܢܓܠܝܘܢ ܩܕܝܫܐ ܟܪܘܙܘܬܐ ܕܝܘܚܢܢ"
+      },
+      "ACT": {
+        "name": "פרכסס דתרעסר שליחא טובנא",
+        "transliteratedName": "ܦܪܟܣܣ ܕܬܪܥܣܪ ܫܠܝ̈ܚܐ ܛܘܒ̈ܢܐ"
+      },
+      "ROM": {
+        "name": "אגרתא דפולוס דלות רהומיא",
+        "transliteratedName": "ܐܓܪܬܐ ܕܦܘܠܘܣ ܕܠܘܬ ܪ̈ܗܘܡܝܐ"
+      },
+      "1CO": {
+        "name": "אגרתא דפולוס דלות קורינתיא קדמיתא",
+        "transliteratedName": "ܐܓܪܬܐ ܕܦܘܠܘܣ ܕܠܘܬ ܩܘܪ̈ܝܢܬܝܐ ܩܕܡܝܬܐ"
+      },
+      "2CO": {
+        "name": "אגרתא דפולוס דלות קורינתיא דתרתין",
+        "transliteratedName": "ܐܓܪܬܐ ܕܦܘܠܘܣ ܕܠܘܬ ܩܘܪ̈ܝܢܬܝܐ ܕܬܪܬܝܢ"
+      },
+      "GAL": {
+        "name": "אגרתא דפולוס דלות גלטיא",
+        "transliteratedName": "ܐܓܪܬܐ ܕܦܘܠܘܣ ܕܠܘܬ ܓܠܛܝ̈ܐ"
+      },
+      "EPH": {
+        "name": "אגרתא דפולוס דלות אפסיא",
+        "transliteratedName": "ܐܓܪܬܐ ܕܦܘܠܘܣ ܕܠܘܬ ܐܦܣܝ̈ܐ"
+      },
+      "PHP": {
+        "name": "אגרתא דפולוס דלות פיליפסיא",
+        "transliteratedName": "ܐܓܪܬܐ ܕܦܘܠܘܣ ܕܠܘܬ ܦܝܠܝܦܣܝ̈ܐ"
+      },
+      "COL": {
+        "name": "אגרתא דפולוס דלות קולסיא",
+        "transliteratedName": "ܐܓܪܬܐ ܕܦܘܠܘܣ ܕܠܘܬ ܩܘܠ̈ܣܝܐ"
+      },
+      "1TH": {
+        "name": "אגרתא דפולוס דלות תסלוניקיא קדמיתא",
+        "transliteratedName": "ܐܓܪܬܐ ܕܦܘܠܘܣ ܕܠܘܬ ܬܣܠ̈ܘܢܝܩܝܐ ܩܕܡܝܬܐ"
+      },
+      "2TH": {
+        "name": "אגרתא דפולוס דלות תסלוניקיא דתרתין",
+        "transliteratedName": "ܐܓܪܬܐ ܕܦܘܠܘܣ ܕܠܘܬ ܬܣܠ̈ܘܢܝܩܝܐ ܕܬܪܬܝܢ"
+      },
+      "1TI": {
+        "name": "אגרתא דפולוס דלות טימתאוס קדמיתא",
+        "transliteratedName": "ܐܓܪܬܐ ܕܦܘܠܘܣ ܕܠܘܬ ܛܝܡܬܐܘܣ ܩܕܡܝܬܐ"
+      },
+      "2TI": {
+        "name": "אגרתא דפולוס דלות טימתאוס דתרתין",
+        "transliteratedName": "ܐܓܪܬܐ ܕܦܘܠܘܣ ܕܠܘܬ ܛܝܡܬܐܘܣ ܕܬܪܬܝܢ"
+      },
+      "TIT": {
+        "name": "אגרתא דפולוס דלות טיטוס",
+        "transliteratedName": "ܐܓܪܬܐ ܕܦܘܠܘܣ ܕܠܘܬ ܛܝܛܘܣ"
+      },
+      "PHM": {
+        "name": "אגרתא דפולוס דלות פילימון",
+        "transliteratedName": "ܐܓܪܬܐ ܕܦܘܠܘܣ ܕܠܘܬ ܦܝܠܝܡܘܢ"
+      },
+      "HEB": {
+        "name": "אגרתא דלות עבריא",
+        "transliteratedName": "ܐܓܪܬܐ ܕܠܘܬ ܥܒܪ̈ܝܐ"
+      },
+      "JAS": {
+        "name": "אגרתא דיעקוב שליחא",
+        "transliteratedName": "ܐܓܪܬܐ ܕܝܥܩܘܒ ܫܠܝܚܐ"
+      },
+      "1PE": {
+        "name": "אגרתא דפטרוס שליחא",
+        "transliteratedName": "ܐܓܪܬܐ ܕܦܛܪܘܣ ܫܠܝܚܐ"
+      },
+      "2PE": {
+        "name": "אגרתא דתרתין דפטרוס שליחא",
+        "transliteratedName": "ܐܓܪܬܐ ܕܬܪ̈ܬܝܢ ܕܦܛܪܘܣ ܫܠܝܚܐ"
+      },
+      "1JN": {
+        "name": "אגרתא דיוחנן שליחא",
+        "transliteratedName": "ܐܓܪܬܐ ܕܝܘܚܢܢ ܫܠܝܚܐ"
+      },
+      "2JN": {
+        "name": "אגרתא דתרתין דיוחנן שליחא",
+        "transliteratedName": "ܐܓܪܬܐ ܕܬܪ̈ܬܝܢ ܕܝܘܚܢܢ ܫܠܝܚܐ"
+      },
+      "3JN": {
+        "name": "אגרתא דתלת דיוחנן שליחא",
+        "transliteratedName": "ܐܓܪܬܐ ܕܬܠܬ ܕܝܘܚܢܢ ܫܠܝܚܐ"
+      },
+      "JUD": {
+        "name": "אגרתא דיהודא שליחא",
+        "transliteratedName": "ܐܓܪܬܐ ܕܝܗܘܕܐ ܫܠܝܚܐ"
+      },
+      "REV": {
+        "name": "גלינא דיוחנן",
+        "transliteratedName": "ܓܠܝܢܐ ܕܝܘܚܢܢ"
+      }
+    },
+    "masoretic-delitzsch": {
+      "GEN": {
+        "name": "בְּרֵאשִׁית"
+      },
+      "EXO": {
+        "name": "שְׁמוֹת"
+      },
+      "LEV": {
+        "name": "וַיִּקְרָא"
+      },
+      "NUM": {
+        "name": "בְּמִדְבַּר"
+      },
+      "DEU": {
+        "name": "דְּבָרִים"
+      },
+      "JOS": {
+        "name": "יְהוֹשֻׁעַ"
+      },
+      "JDG": {
+        "name": "שׁוֹפְטִים"
+      },
+      "RUT": {
+        "name": "רוּת"
+      },
+      "1SA": {
+        "name": "שְׁמוּאֵל א"
+      },
+      "2SA": {
+        "name": "שְׁמוּאֵל ב"
+      },
+      "1KI": {
+        "name": "מְלָכִים א"
+      },
+      "2KI": {
+        "name": "מְלָכִים ב"
+      },
+      "1CH": {
+        "name": "דִּבְרֵי הַיָּמִים א"
+      },
+      "2CH": {
+        "name": "דִּבְרֵי הַיָּמִים ב"
+      },
+      "EZR": {
+        "name": "עֶזְרָא"
+      },
+      "NEH": {
+        "name": "נְחֶמְיָה"
+      },
+      "EST": {
+        "name": "אֶסְתֵּר"
+      },
+      "JOB": {
+        "name": "אִיּוֹב"
+      },
+      "PSA": {
+        "name": "תְּהִלִּים"
+      },
+      "PRO": {
+        "name": "מִשְׁלֵי"
+      },
+      "ECC": {
+        "name": "קֹהֶלֶת"
+      },
+      "SNG": {
+        "name": "שִׁיר הַשִּׁירִים"
+      },
+      "ISA": {
+        "name": "יְשַׁעְיָהוּ"
+      },
+      "JER": {
+        "name": "יִרְמְיָהוּ"
+      },
+      "LAM": {
+        "name": "אֵיכָה"
+      },
+      "EZK": {
+        "name": "יְחֶזְקֵאל"
+      },
+      "DAN": {
+        "name": "דָּנִיֵּאל"
+      },
+      "HOS": {
+        "name": "הוֹשֵׁעַ"
+      },
+      "JOL": {
+        "name": "יוֹאֵל"
+      },
+      "AMO": {
+        "name": "עָמוֹס"
+      },
+      "OBA": {
+        "name": "עֹבַדְיָה"
+      },
+      "JON": {
+        "name": "יוֹנָה"
+      },
+      "MIC": {
+        "name": "מִיכָה"
+      },
+      "NAM": {
+        "name": "נַחוּם"
+      },
+      "HAB": {
+        "name": "חֲבַקּוּק"
+      },
+      "ZEP": {
+        "name": "צְפַנְיָה"
+      },
+      "HAG": {
+        "name": "חַגַּי"
+      },
+      "ZEC": {
+        "name": "זְכַרְיָה"
+      },
+      "MAL": {
+        "name": "מַלְאָכִי"
+      }
+    }
+  }
+}

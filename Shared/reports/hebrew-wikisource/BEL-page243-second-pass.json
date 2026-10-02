@@ -1,0 +1,301 @@
+{
+  "schemaVersion": 1,
+  "book": "BEL",
+  "sourcePage": 243,
+  "scanSHA256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+  "status": "Complete physical-page second comparison; whole book remains draft",
+  "method": "Separate comparison of all ten main-text lines and focused original-PDF crops; upper Septuagint body, commentary and running heads excluded. Independent readers corroborated lamed patah, unclassifiable kaf/vav marks, three Daniel occurrences, all eight initial-yod queries and the mem query.",
+  "changes": [
+    {
+      "verse": 1,
+      "before": "מַמְלְכֻתוֹ",
+      "after": "מַמְלַכתוֹ",
+      "basis": "The printed lamed has a detached horizontal patah, independently confirmed. Kaf lower ink is joined and its vowel cannot be classified; omit only that mark with a source note."
+    },
+    {
+      "verse": 3,
+      "before": "וְנִכְבָּד",
+      "after": "ונִכְבָּד",
+      "basis": "Initial vav lower ink is fused; no secure vowel class. Retain all visible following marks."
+    },
+    {
+      "verse": 5,
+      "before": "וְדָנִיֵּאל",
+      "after": "וְדָנִיֵאל",
+      "basis": "This yod has fused interior ink; unlike the separate points in the page's other Daniel occurrences, its dagesh cannot be certified."
+    },
+    {
+      "verse": 8,
+      "before": "ויֹאמֶר",
+      "after": "ויֹאמר",
+      "basis": "Mem lower vowel has merged into a flat irregular bar. Separate inspection by a second reader cannot establish segol; retain the clear yod holam."
+    }
+  ],
+  "sourceEvidence": [
+    {
+      "crop": "243-mamlkhetu.png",
+      "cropSHA256": "6e06feb5cc59f08b959a5949adf6f05aed47a512c14467dc1758bc141c963f7e"
+    },
+    {
+      "crop": "243-venikhbad.png",
+      "cropSHA256": "fb16701d0754440c0113607f45ed347d39c955642877e8f0031aaab4b137a65b"
+    },
+    {
+      "crop": "243-vayehi-first.png",
+      "cropSHA256": "1cbd6aa645d3a49f4ad4d9a99eb1f117a2b07dca96a963d9c17894c9b1d6c8ce"
+    },
+    {
+      "crop": "243-vayehi-second.png",
+      "cropSHA256": "e388e8dcadf1e092c37de655a9f71518763e70fc8bfa5401e3656db610884d74"
+    },
+    {
+      "crop": "243-vayotziu.png",
+      "cropSHA256": "fb108591a8b4d151f55ae9c603d70825518632ab2099b68a2c91c06d78c02b4b"
+    },
+    {
+      "crop": "243-daniel5.png",
+      "cropSHA256": "6e0021072c353ecc3002c38ccfc54b6c3f6ea704d733a8019a3f94e818f95c35"
+    },
+    {
+      "crop": "243-vayavo.png",
+      "cropSHA256": "6d6980e0fa3b9d8e618ea47d96319521a37c33788c82b5981ba17947ca1483c7"
+    },
+    {
+      "crop": "243-vayomer5-fixed.png",
+      "cropSHA256": "d897b0cd25a26c2134b9b4470b4554b3fdc74127bd2fcaba44cb6acb00658a59"
+    },
+    {
+      "crop": "243-vayomer6.png",
+      "cropSHA256": "096ea510c50c691aef99d85edf5a7ebd146d8fdd0b2ca83dae4fc4e6ff93d793"
+    },
+    {
+      "crop": "243-vayomer7.png",
+      "cropSHA256": "93c3ea77b8bf0e5aacc14f453b8f0a817788343e761e52a57f9c9e8cf2870764"
+    },
+    {
+      "crop": "243-vayitzhak.png",
+      "cropSHA256": "e6016998a7f70cce3a55f9079d946c9c2ed5360f3a130e1ad16f597284fa734a"
+    },
+    {
+      "crop": "243-vayomer8.png",
+      "cropSHA256": "0464730b8cb5ea25246e40e07ab7866bdc9ef7b3af5866258751d4f0da351ed8"
+    },
+    {
+      "crop": "243-vayiktzof.png",
+      "cropSHA256": "d98fe576795df47fb3d97933ba06bf5718761485c5815da0e3686048f01c212e"
+    }
+  ],
+  "physicalLines": [
+    {
+      "page": 243,
+      "line": 1,
+      "image": "p243-line01.png",
+      "fullPageBoundsAt4x": [
+        220,
+        884,
+        1482,
+        951
+      ],
+      "imageSHA256": "a6ce0abdc57f142d245ba3a7aa93cb6dca7a4e65b95ab689e1abde81826c972d"
+    },
+    {
+      "page": 243,
+      "line": 2,
+      "image": "p243-line02.png",
+      "fullPageBoundsAt4x": [
+        220,
+        950,
+        1482,
+        1019
+      ],
+      "imageSHA256": "26c3bab144bba0c8c7a5b2cec994e9ef608965a39d0faa0a08090b098f9a50e8"
+    },
+    {
+      "page": 243,
+      "line": 3,
+      "image": "p243-line03.png",
+      "fullPageBoundsAt4x": [
+        220,
+        1025,
+        1482,
+        1086
+      ],
+      "imageSHA256": "407b95cdf4b654c8c83709ed0db32a80da3e12718de75e978ebc486b37fbbb73"
+    },
+    {
+      "page": 243,
+      "line": 4,
+      "image": "p243-line04.png",
+      "fullPageBoundsAt4x": [
+        220,
+        1087,
+        1482,
+        1156
+      ],
+      "imageSHA256": "38c8b0d9af009dae176eab076c876aa6fa36117efedaeaeb8d5388a179fe146b"
+    },
+    {
+      "page": 243,
+      "line": 5,
+      "image": "p243-line05.png",
+      "fullPageBoundsAt4x": [
+        220,
+        1156,
+        1482,
+        1221
+      ],
+      "imageSHA256": "87c1d2373e601c871c7cf48626a4c1a944d8c9519685d3eb84472e57695096e0"
+    },
+    {
+      "page": 243,
+      "line": 6,
+      "image": "p243-line06.png",
+      "fullPageBoundsAt4x": [
+        220,
+        1224,
+        1482,
+        1289
+      ],
+      "imageSHA256": "8a5cf321e99e3d9cf742fcac315aa1eb9a7368a0468f595930093ae4be3254b4"
+    },
+    {
+      "page": 243,
+      "line": 7,
+      "image": "p243-line07.png",
+      "fullPageBoundsAt4x": [
+        220,
+        1290,
+        1482,
+        1359
+      ],
+      "imageSHA256": "b7a7ce3490d64cf353327c029002eaf707311e436c208d0678299f1b4294d557"
+    },
+    {
+      "page": 243,
+      "line": 8,
+      "image": "p243-line08.png",
+      "fullPageBoundsAt4x": [
+        220,
+        1360,
+        1482,
+        1424
+      ],
+      "imageSHA256": "1c95f88675d482970dbdf885c076f629bf67f8f3306f1a19d8ab0af582d7508a"
+    },
+    {
+      "page": 243,
+      "line": 9,
+      "image": "p243-line09.png",
+      "fullPageBoundsAt4x": [
+        220,
+        1426,
+        1482,
+        1490
+      ],
+      "imageSHA256": "4c4402d027d7952cb5dd0fd25c053696cf9eb963ee2ca89f714ffcdf672794ce"
+    },
+    {
+      "page": 243,
+      "line": 10,
+      "image": "p243-line10.png",
+      "fullPageBoundsAt4x": [
+        220,
+        1493,
+        1482,
+        1557
+      ],
+      "imageSHA256": "c773b32c767b307b793903f7f6b83de2fe36fe4dadcf316b3796f7d952498cc4"
+    }
+  ],
+  "acceptedSourceNoteIds": [
+    "bel-1-1-243-mamlkhetu-letter4-vowel",
+    "bel-1-3-243-vayehi-first-letter1-vowel",
+    "bel-1-3-243-vayehi-second-letter1-vowel",
+    "bel-1-3-243-vayotziu-letter1-vowel",
+    "bel-1-3-243-vayotziu-letter2-dagesh",
+    "bel-1-3-243-venikhbad-letter1-vowel",
+    "bel-1-5-243-daniel5-letter4-dagesh",
+    "bel-1-5-243-vayavo-letter1-vowel",
+    "bel-1-5-243-vayavo-letter2-dagesh",
+    "bel-1-5-243-vayomer5-fixed-letter1-vowel",
+    "bel-1-5-243-vayomer5-fixed-letter2-dagesh",
+    "bel-1-6-243-vayomer6-letter1-vowel",
+    "bel-1-6-243-vayomer6-letter2-dagesh",
+    "bel-1-7-243-vayomer7-letter1-vowel",
+    "bel-1-7-243-vayomer7-letter2-dagesh",
+    "bel-1-8-243-vayitzhak-letter1-vowel",
+    "bel-1-8-243-vayitzhak-letter2-dagesh",
+    "bel-1-8-243-vayomer8-letter1-vowel",
+    "bel-1-8-243-vayomer8-letter2-dagesh",
+    "bel-1-8-243-vayomer8-letter4-vowel",
+    "bel-1-9-243-vayiktzof-letter1-vowel",
+    "bel-1-9-243-vayiktzof-letter2-dagesh"
+  ],
+  "retainedReadings": [
+    "Distinct yod dageshes in Daniel of3 and8 remain; only the crowded occurrence in5 is noted.",
+    "Every separately visible neighboring vowel remains, including narrative holam/hiriq/qamats; uncertain points were not generalized to other occurrences.",
+    "Verse3 retains printed למאכלו brackets; combined3–4 remains one source unit."
+  ],
+  "unitLedger": [
+    {
+      "verse": 1,
+      "endVerse": 2,
+      "textSHA256": "a1259ff3c2a0c1c3df6980fcaf18c1f468b6e0cf6aeef09a2896c6ad68fafbad",
+      "sourcePages": [
+        242,
+        243
+      ]
+    },
+    {
+      "verse": 3,
+      "endVerse": 4,
+      "textSHA256": "f3f5045a2e34c09c59ca7685cac156e33c73fae19c62d54d9d05d2329c8fa6c0",
+      "sourcePages": [
+        243
+      ]
+    },
+    {
+      "verse": 5,
+      "endVerse": 5,
+      "textSHA256": "c908635913901f17213a75746a876806cec806808fa48f5007a6f2887d266423",
+      "sourcePages": [
+        243
+      ]
+    },
+    {
+      "verse": 6,
+      "endVerse": 6,
+      "textSHA256": "f0e26a72fa216dc60c5727d1ca37804cab5366437dbe92cb1b73ea0a4d2f4ae6",
+      "sourcePages": [
+        243
+      ]
+    },
+    {
+      "verse": 7,
+      "endVerse": 7,
+      "textSHA256": "4d7d8ed87d5a4ca23c7316b056d3865d5d390a2448efc84fef25893cc097db07",
+      "sourcePages": [
+        243
+      ]
+    },
+    {
+      "verse": 8,
+      "endVerse": 8,
+      "textSHA256": "88d80f77d685aebd97c849d3a2a72d974d0db3b011f188f9fefb7e53556ff75a",
+      "sourcePages": [
+        243
+      ]
+    },
+    {
+      "verse": 9,
+      "endVerse": 9,
+      "textSHA256": "4d5ef041403d075eda814ad296594de09576079d60e9e847f1b6a9d105b46633",
+      "sourcePages": [
+        243,
+        244
+      ]
+    }
+  ],
+  "crossPageLedgerNote": "Unit1–2 hash includes the newly checked243 continuation and supersedes its whole-unit hash in the242 chronological report;242 wording and notes are unchanged. Unit9 continuation on244 remains draft.",
+  "remainingBlocker": "Full second review of244–247, exact remaining within-line boundaries and final book approval."
+}

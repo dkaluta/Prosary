@@ -1,0 +1,722 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-02",
+  "reviewer": "root",
+  "book": "SIR",
+  "sourceContentSHA256": "363ab4b410ed35f108e598844d43add1f30473951180bc4f70432c9ffd4fc4ce",
+  "scope": "Twelve exact current appointments; compare approved Hebrew primary text with pinned DRA passage bodies, existing Roman numbering evidence and actual traditional proper witnesses. This is a reading-boundary review, not a new source transcription.",
+  "method": "Read all corresponding Hebrew units and their neighboring unit boundaries; retain combined source units, literal gaps and the distinction between the source text and liturgical adaptations. Available mappings are explicit whole-source-unit lists, never numeric equality.",
+  "limits": [
+    "The Missale public API returned403; public GitHub source witnesses were inspected instead.",
+    "Obsolete-directory common files corroborate the cited liturgical wording; this report does not claim a current runtime inheritance path or every scheduled occurrence body was retrieved.",
+    "Unavailability is a reviewed conservative disposition for this appointment and does not remove the complete chosen source book from the Bible viewer."
+  ],
+  "comparisonSourcePins": {
+    "engDRA": "96282bfa7c89a74680cea66fe873aafa5e7cd446407f0ff2531a723e19eee2c2"
+  },
+  "properWitnesses": [
+    {
+      "url": "https://github.com/DivinumOfficium/divinum-officium/blob/342fd241d2e619cb6a4d270e2cf072dff263c7d9/web/www/missa/English/Tempora/C10c.txt",
+      "sha256": "5991c33adc7fca6f3733be51f195e416ecbd2d467f39cd2ed78af9db4aeac22c"
+    },
+    {
+      "url": "https://github.com/DivinumOfficium/divinum-officium/blob/342fd241d2e619cb6a4d270e2cf072dff263c7d9/web/www/missa/English/Tempora/C10t.txt",
+      "sha256": "68ee7720b724d949224f99d86085244478e12a34c8e20a47bc3ef457298d0ac4"
+    },
+    {
+      "url": "https://github.com/DivinumOfficium/divinum-officium/blob/342fd241d2e619cb6a4d270e2cf072dff263c7d9/web/www/missa/Latin/Tempora/Quad1-6.txt",
+      "sha256": "59b4a8f329ff79c085f8ad7ca2b343b9a2b07ffc90a51dcd1eb6feb2d07672cc"
+    },
+    {
+      "url": "https://github.com/DivinumOfficium/divinum-officium/blob/342fd241d2e619cb6a4d270e2cf072dff263c7d9/web/www/missa/English/Tempora/Quad1-6.txt",
+      "sha256": "6eb69e3bfad256cc0c8afc860f68e1fe38d333a0ed2ec24cce8b18ba3fe772f7"
+    },
+    {
+      "url": "https://github.com/DivinumOfficium/divinum-officium/blob/342fd241d2e619cb6a4d270e2cf072dff263c7d9/obsolete/missa/English/Commune/C4ap.txt",
+      "sha256": "45d00dcc93d9b5c92e5a4ef334d1c911e5fd6d7ba65d70a58c9db572d1f86b61"
+    },
+    {
+      "url": "https://github.com/DivinumOfficium/divinum-officium/blob/342fd241d2e619cb6a4d270e2cf072dff263c7d9/obsolete/missa/English/Commune/C5ap.txt",
+      "sha256": "82db642ba65c25474c544e3d28d0be472721b61602b3dbd9697f17dca0f06cec"
+    },
+    {
+      "url": "https://github.com/DivinumOfficium/divinum-officium/blob/342fd241d2e619cb6a4d270e2cf072dff263c7d9/obsolete/missa/English/Commune/C4.txt",
+      "sha256": "ad75f211fb956f8a3b6d3ad5fb2f3b4937e2551972380c9a03c1b203ef892e03"
+    },
+    {
+      "url": "https://github.com/DivinumOfficium/divinum-officium/blob/342fd241d2e619cb6a4d270e2cf072dff263c7d9/obsolete/missa/English/Commune/C4c.txt",
+      "sha256": "9e61d39d74ead48600fddd9f1325a0df32dd44cc872090c4612cbc45c28619ed"
+    },
+    {
+      "url": "https://github.com/DivinumOfficium/divinum-officium/blob/342fd241d2e619cb6a4d270e2cf072dff263c7d9/obsolete/missa/English/Commune/C5.txt",
+      "sha256": "cc872c22fb0385ba211d53ae868da6d24e3fe074c64189ddca07c2419b26143a"
+    },
+    {
+      "url": "https://github.com/DivinumOfficium/divinum-officium/blob/342fd241d2e619cb6a4d270e2cf072dff263c7d9/obsolete/missa/English/Commune/C6a.txt",
+      "sha256": "1859e29d213d65fb8a6a023fbadc3bdf20b1383858410313f266c06eac599121"
+    },
+    {
+      "url": "https://github.com/DivinumOfficium/divinum-officium/blob/342fd241d2e619cb6a4d270e2cf072dff263c7d9/web/www/missa/English/Sancti/08-09t.txt",
+      "sha256": "48c687aecd3a156c838a060f453f1d1393ce75f2720ef62943c16fb220623d6e"
+    }
+  ],
+  "existingRomanNumberingReview": {
+    "path": "Shared/tools/reading-source-numbering-reviews.json",
+    "sha256": "64c1687b672802d7aa56719d8c55733ff46943111e0c9bcb42be277bd3345d1b"
+  },
+  "appointments": [
+    {
+      "key": "daily|Sirach 24:14–16",
+      "contexts": [
+        "roman1962"
+      ],
+      "status": "unavailable",
+      "correspondingSourceUnitStarts": [
+        [
+          24,
+          9
+        ],
+        [
+          24,
+          10
+        ],
+        [
+          24,
+          11
+        ],
+        [
+          24,
+          12
+        ]
+      ],
+      "boundaryFinding": "Vulgate 24:16 and the inspected C10c/C10t proper end with a dwelling in the full assembly of saints. Hebrew 24:12 ends with the inheritance of the Lord and has no counterpart for that distinct final clause. The preceding creation/Zion/Jerusalem/root clauses correspond to Hebrew 24:9–12.",
+      "sourceUnitHashes": [
+        "1c878bdd7eeb75b39539136582ee0142283d8fcca936506b9d9693d7910e3f70",
+        "19ec5d4199f1c2c8828f0e6b5dc23b4ce8079d1b2e1755a2ea19da4c761b8aba",
+        "e11564069bd8fb7af1fc6b1d42126e4b24aa4d0459fab348eafde83224806720",
+        "5687905dafa3d4bdf30e92342e79c4e4e4f1f5a2ea3a286fc8e032db066e1847"
+      ],
+      "independentReview": "Corroborated by independent Hebrew/DRA body comparison; no mapping change."
+    },
+    {
+      "key": "daily|Sirach 24:23–31",
+      "contexts": [
+        "roman1962"
+      ],
+      "status": "unavailable",
+      "correspondingSourceUnitStarts": [
+        [
+          24,
+          17
+        ],
+        [
+          24,
+          19
+        ],
+        [
+          24,
+          20
+        ],
+        [
+          24,
+          21
+        ],
+        [
+          24,
+          22
+        ]
+      ],
+      "boundaryFinding": "The vine/fruit passage corresponds to Hebrew 24:17,19–22, but Vulgate 24:24–25 (mother of fair love and the grace/hope declarations), 24:28 (memory through generations) and 24:31 (life everlasting for interpreters) are absent. Printed Hebrew label18 is omitted in the approved source inventory. Do not relabel Hebrew24:23–31, which is different river/Torah material.",
+      "sourceUnitHashes": [
+        "4fdcc19cd39d5c3953f1939043573e2e9a33564d0f7f4ecf53d172b95fc14d6b",
+        "1752f39dd01facaa12ff5e07a42c334341d8611d689c593254a66327526ce4ed",
+        "0f7717c3847e4be60d5f813221de86acffa6a420c5e7926688e172b7dca7dcfa",
+        "63cf75fc76d9f83653e85c2f9e35dc0cf76a6f2f4ca8df7cdd05d28992f16d49",
+        "93939f865c26f82d28ed06c7e257ebddc895914940df237c7356c9d927ff81e5"
+      ],
+      "independentReview": "Corroborated by independent Hebrew/DRA body comparison; no mapping change."
+    },
+    {
+      "key": "daily|Sirach 27:30; 28:1–7",
+      "contexts": [
+        "roman"
+      ],
+      "status": "complete",
+      "correspondingSourceUnitStarts": [
+        [
+          27,
+          30
+        ],
+        [
+          28,
+          1
+        ],
+        [
+          28,
+          2
+        ],
+        [
+          28,
+          3
+        ],
+        [
+          28,
+          4
+        ],
+        [
+          28,
+          5
+        ],
+        [
+          28,
+          6
+        ],
+        [
+          28,
+          7
+        ]
+      ],
+      "boundaryFinding": "The existing exact Roman appointment review establishes the NABRE envelope for 2026-09-13. Compared every clause with the pinned DRA counterpart: anger/fury27:33 corresponds to Hebrew27:30; revenge, forgiveness, anger and prayer28:1–5 correspond to Hebrew28:1–5; DRA28:6–7 cohere in Hebrew28:6, and DRA28:8–9 in Hebrew28:7. The Hebrew ending is covenant and forgiveness, before the separate avoid-quarrels unit28:8. All selected Hebrew units are present; the later printed28:12 lacuna is outside this excerpt.",
+      "sourceUnitHashes": [
+        "d1ce67452fbc6f420651bfed64feca3290762bce8f03ea132f7317740d5a7769",
+        "4730ffa2eb1605edea156d74a9e538a2db3a2da47e64a7f1f50e5e85788f7174",
+        "06f4b4d7ddea78f259d8ee960f326876da4b64dd42c83c732c18256a27d1b699",
+        "5b4e5ae7256a79788ce2ae904a68b689f17f481cf447d235e4ce2edda471c02a",
+        "8ccca06466043d88ca4675e0c927897cd159d439d4d6f7ccf4e8a16c01955081",
+        "850ccea375a32d0c4a57ef3d15f4d0ad58340ab45a568650dd78872ef6b3fe65",
+        "879de63c75b6cde0fca91eda734af90c7c0250b10cf5b43896da3ed7e377287c",
+        "927148d671504d6589b0f14c85773744792876b855d8a5fb9030d04600cfdc0b"
+      ],
+      "independentReview": "Corroborated by independent Hebrew/DRA body comparison; no mapping change."
+    },
+    {
+      "key": "daily|Sirach 31:8–11",
+      "contexts": [
+        "roman1962"
+      ],
+      "status": "unavailable",
+      "correspondingSourceUnitStarts": [
+        [
+          31,
+          8
+        ],
+        [
+          31,
+          9
+        ],
+        [
+          31,
+          10
+        ],
+        [
+          31,
+          11
+        ]
+      ],
+      "boundaryFinding": "The rich/righteous-person paragraph corresponds at Hebrew31:8–11, but printed31:10 contains an explicit two-dash lacuna and multiple preserved witnesses. The appointed trial/glory wording cannot be fully certified from that damaged unit; no alternate line is selected to conceal the gap.",
+      "sourceUnitHashes": [
+        "38ceffd29248c9ebbdea0a2728cd45d9886f932c5f18f62cfa52f72ab1cd2a68",
+        "bf10bfbbc66be63503929f1e3c20de422bcc89ba8135369e42ab7a4bbe3ba436",
+        "5314e3d58b5967b2746d4df0c412b6b62d3b7d52059f1bb1c017711bf14ab74c",
+        "04e6a57429ae86f8e1509e515b25edd42d6b3521a33d544a7857eb2517efea93"
+      ],
+      "independentReview": "Corroborated by independent Hebrew/DRA body comparison; no mapping change."
+    },
+    {
+      "key": "daily|Sirach 36:1–10",
+      "contexts": [
+        "roman1962"
+      ],
+      "status": "unavailable",
+      "correspondingSourceUnitStarts": [
+        [
+          36,
+          1
+        ],
+        [
+          36,
+          3
+        ],
+        [
+          36,
+          4
+        ],
+        [
+          36,
+          5
+        ],
+        [
+          36,
+          6
+        ],
+        [
+          36,
+          8
+        ],
+        [
+          36,
+          10
+        ]
+      ],
+      "boundaryFinding": "Latin Quad1-6 retains the full opening mercy/light/fear petitions in36:1–2, though its English body starts at the raise-your-hand clause. Hebrew36:1 compresses the saving/fear petitions, omits source label2, and has no light-of-mercies clause. Hebrew36:10 ends with who can ask what you do rather than the appointed final wonderful-works clause. Combined6–7 and8–9 remain intact; no numeric identity fallback. The different final wording alone would not block a secure recension correspondence; the separate opening light-of-mercies and wonders petitions have no full source counterpart. The Latin witness is section LectioL4.",
+      "sourceUnitHashes": [
+        "632e1695687cc054227592fc27907b39be3cc6d381b9de37fb8020226f0f1a3d",
+        "7890dd1800af43dea4442af05b1fa40f10ad8f88dba32c84762a27611a2793f7",
+        "10dbc24a97aee7b3e191770f96fcc974ed9f3bee2b9e113320db876f508418c8",
+        "2bd54a5fcc7ff8728531f256cee68245583d1c4173e1dd8397341afb3f382ecf",
+        "64fc3b267a3f438bcccbbfcbd7528d699318a5edc58b56a9d2f50c2630ec5923",
+        "fca3dda6a24cec045b9fc908085b9811767b2c3710a8c923a100a20fc705fd8a",
+        "4b2cabe0eb00651b7c7c624204308f29f023996853256aa0f5e6d69b82d99082"
+      ],
+      "independentReview": "Corroborated by independent Hebrew/DRA body comparison; no mapping change."
+    },
+    {
+      "key": "daily|Sirach 39:6–14",
+      "contexts": [
+        "roman1962"
+      ],
+      "status": "complete",
+      "correspondingSourceUnitStarts": [
+        [
+          39,
+          5
+        ],
+        [
+          39,
+          6
+        ],
+        [
+          39,
+          7
+        ],
+        [
+          39,
+          8
+        ],
+        [
+          39,
+          9
+        ],
+        [
+          39,
+          10
+        ]
+      ],
+      "boundaryFinding": "Compared the complete pinned DRA envelope and the same-citation C4ap/C5ap proper. DRA39:6–7 are Hebrew39:5 (seeking the Maker and prayer for sins);8–9 are Hebrew39:6 (understanding/wisdom/thanks);10 is Hebrew39:7;11 is Hebrew39:8;12–13 are Hebrew39:9 (lasting praise and name);14 is Hebrew39:10 (nations and assembly). Hebrew39:11 starts a new longevity comparison and is excluded. All six primary units are whole, in print order.",
+      "sourceUnitHashes": [
+        "79594d143347aec613ba0a6b892a0ee6f9c7dfb849679fa16ade8c50d5ac7af5",
+        "eec595929bf3ecc2054cb2ff8fda51313135e18944354e43bbeb63f1fce59b11",
+        "746c31dbee4fe33e7cbc743dea2535a89532277879e7d291d2f5fa44c9e032ed",
+        "b6cfabc1d35d0ca82711e6e4661ba18939b35402742e3f8e9085d2c58f5a81cc",
+        "e94671a811df36650995b6fa7516ef05ae5a222b9303798fd56700a8191d3041",
+        "17dff397d54706cc3cd4bc23b6091250e9e615a5936c3606fb321c8572604615"
+      ],
+      "independentReview": "Corroborated by independent Hebrew/DRA body comparison; no mapping change."
+    },
+    {
+      "key": "daily|Sirach 44:10–15",
+      "contexts": [
+        "roman1962"
+      ],
+      "status": "unavailable",
+      "correspondingSourceUnitStarts": [
+        [
+          44,
+          10
+        ],
+        [
+          44,
+          11
+        ],
+        [
+          44,
+          13
+        ],
+        [
+          44,
+          14
+        ],
+        [
+          44,
+          15
+        ]
+      ],
+      "boundaryFinding": "The approved Hebrew source omits44:12. The appointed posterity/seed-standing-in-covenants unit in Vulgate44:12 has no complete counterpart between Hebrew44:11 and44:13. Bracketed supplied source words in14 are retained; they do not repair omitted12.",
+      "sourceUnitHashes": [
+        "b90f4754266639d0093ea2716004bfb8f011f251134fbdafb332cf541fced138",
+        "5daf8156c462db9cea19a4bc296c3063256ab15670d21634a586173c8116f5aa",
+        "7646ec0f4946bcc1159f521fa503183235d04d35bd2f4d8d342a81b0cb4a33a1",
+        "12ed3296776287f068b2a3e3b41c94b542e3b1b41989f62b2cc558736c3845bc",
+        "2b3ed8e55b9b2a3a078bad8c3a7b8aa08e19b0a469e1f0325795c34f5aa55f4f"
+      ],
+      "independentReview": "Corroborated by independent Hebrew/DRA body comparison; no mapping change."
+    },
+    {
+      "key": "daily|Sirach 44:16–27; 45:3–20",
+      "contexts": [
+        "roman1962"
+      ],
+      "status": "unavailable",
+      "correspondingSourceUnitStarts": [
+        [
+          44,
+          16
+        ],
+        [
+          44,
+          17
+        ],
+        [
+          44,
+          18
+        ],
+        [
+          44,
+          19
+        ],
+        [
+          44,
+          20
+        ],
+        [
+          44,
+          21
+        ],
+        [
+          44,
+          22
+        ],
+        [
+          44,
+          23
+        ],
+        [
+          45,
+          1
+        ],
+        [
+          45,
+          3
+        ],
+        [
+          45,
+          4
+        ],
+        [
+          45,
+          5
+        ],
+        [
+          45,
+          6
+        ],
+        [
+          45,
+          8
+        ],
+        [
+          45,
+          9
+        ],
+        [
+          45,
+          10
+        ],
+        [
+          45,
+          11
+        ],
+        [
+          45,
+          12
+        ],
+        [
+          45,
+          13
+        ],
+        [
+          45,
+          14
+        ],
+        [
+          45,
+          15
+        ],
+        [
+          45,
+          16
+        ]
+      ],
+      "boundaryFinding": "The printed citation is a broad envelope around a composite priestly proper. Its full Vulgate44:22–23 includes the dust/stars promise absent from Hebrew44:21; this is a distinct added proposition, not merely a differently worded parallel clause. The actual C4 proper does not itself recite that dust/stars promise, so this is a limitation of representing the full cited Bible envelope, not a claim that the proper includes it. Vulgate44:27 crosses into Hebrew45:1. The Moses/Aaron paragraph corresponds generally to Hebrew45:3–16, not3–20. Retain unavailability for this full exact citation; do not fabricate a continuous Hebrew translation of the composite priestly incipit or silently omit the cited source gap.",
+      "sourceUnitHashes": [
+        "0fc46b0f331a6e5b2798a6a87eaee1880c3c1b702e4aa7cd70f9be52b2de4867",
+        "98608db06ca7ff6339f88d442a299097a2fcfe3a42d27db28460d8f56a80a309",
+        "3f278c2fa856e00b32650c2397c0977346e1c3b150f7041baf9e3bd97304fa30",
+        "cc77413cb22724da3da2d3bf3280ba8eec46b1cd78ba69dc6b66e825d4dcb34c",
+        "c016bf2db260ddb9ce15a3f3cf1e8df1e6868513790b55c4120ddef0ef34819a",
+        "15379cd8700fc1a4219ac23934a7ba056c0e124bfecec6cb0e620142f434fdde",
+        "b6dc74bf0a7c720c56e7ed0e8a38ce0e1a8626c7036278fd4d96597d40cb3eb4",
+        "2ce06096b0e932f6bb9b2fbd1cc399c1db996d5d0f4f0943027306038be7c86a",
+        "f8e131428bf33f9464d3279e003bfe6d801ac4649754a884855c2eb7406b9858",
+        "729a09dbecb40c25b942e7cf542859299bee46f39d5e2598628b6755ebbaf1d9",
+        "0f3597ad5a568673ac41c1e8e27bdde46fad1b72343b93d0ee3880f29b9d0785",
+        "c6ed9ddde3f1939b6def193923ac1365268384868b496fa3a0f2e745fb55e1bc",
+        "67900cec2f6f03eae39322b52c54c27bb1086e788b58e74cda4dde2d55fa4a4d",
+        "e3e344d5c4ac96bacf01391cb9a454c4a376062d99b4152a44abf5084f2e12be",
+        "e5808ab15f4463e059500dd890c1a6ed85b0f3d82229e2ed2a88614434616249",
+        "50819c2045a16f93756c09454d493398c57e547fd016ef0156c1c3feeb9b6032",
+        "2ac06de69ddd99b7f610cba1b6985e11b96b7ec39d1f11615f200ce9cedbb2be",
+        "3e8799a74c2fbdc50bd841defb5dd4998213cc5abae6ea7280b5d49ec1241a88",
+        "fa9f7add390d8b35e20f47a910f6eaa2aa528d111b9228c9a44ff83ce1c682b8",
+        "935195d4fe0153b9b950aa600bd161e48baa1f3af81a3f6689a727604e3ffa68",
+        "a3b3284a8928003b83ae29e292d0fccdbc267f01d2826bb4a9745057df637b50",
+        "bfa3c3704a61ce7864e65ac4a602213fc7be464af6187033c99d5d3fc7fd17e2"
+      ],
+      "independentReview": "Corroborated by independent Hebrew/DRA body comparison; no mapping change."
+    },
+    {
+      "key": "daily|Sirach 44:1–15",
+      "contexts": [
+        "roman1962"
+      ],
+      "status": "unavailable",
+      "correspondingSourceUnitStarts": [
+        [
+          44,
+          1
+        ],
+        [
+          44,
+          2
+        ],
+        [
+          44,
+          3
+        ],
+        [
+          44,
+          4
+        ],
+        [
+          44,
+          5
+        ],
+        [
+          44,
+          6
+        ],
+        [
+          44,
+          7
+        ],
+        [
+          44,
+          8
+        ],
+        [
+          44,
+          9
+        ],
+        [
+          44,
+          10
+        ],
+        [
+          44,
+          11
+        ],
+        [
+          44,
+          13
+        ],
+        [
+          44,
+          14
+        ],
+        [
+          44,
+          15
+        ]
+      ],
+      "boundaryFinding": "The opening praise-of-ancestors sequence corresponds to Hebrew44:1–15 but the approved source omits44:12. The Vulgate covenant/posterity unit is not present; the excerpt cannot be marked complete by skipping that source gap.",
+      "sourceUnitHashes": [
+        "6c57f2b70577a67a4472c46303671e1edd5cb9d36e64e198de1f47bdc2d41c56",
+        "18d75a5342bd4230137683e90f82698d57a95dd4857897b03e55a59b99eef766",
+        "cbaf358918439a0cace0278ec7b54918dd736c55dd82733b4ab0ea9f6d028b52",
+        "4f3dc7e42487aa2a230ea7f20743dc710dde47e191b9bc1dcc35942aa622da19",
+        "1df5d35e368233374e2a9c8d0df2104be397ab8244abc8865adba9d839923825",
+        "bc2b4325e9db6fef3bb49fb6dfbf77922b2f8f96f6afff838bcd4c302e4728ec",
+        "3a0769c95589febbe5b1c6d25ea1620cc5752fd26677872afd9841b620688199",
+        "e541ed17ff54fd8b71d8597a8d5d4a290b8c3e18438d0d2bde6499e4d6880c81",
+        "a4efd9b3bd300260c43af01072a71476cac9a7176d2323fa8e7b52abd10aa625",
+        "b90f4754266639d0093ea2716004bfb8f011f251134fbdafb332cf541fced138",
+        "5daf8156c462db9cea19a4bc296c3063256ab15670d21634a586173c8116f5aa",
+        "7646ec0f4946bcc1159f521fa503183235d04d35bd2f4d8d342a81b0cb4a33a1",
+        "12ed3296776287f068b2a3e3b41c94b542e3b1b41989f62b2cc558736c3845bc",
+        "2b3ed8e55b9b2a3a078bad8c3a7b8aa08e19b0a469e1f0325795c34f5aa55f4f"
+      ],
+      "independentReview": "Corroborated by independent Hebrew/DRA body comparison; no mapping change."
+    },
+    {
+      "key": "daily|Sirach 45:1–6",
+      "contexts": [
+        "roman1962"
+      ],
+      "status": "complete",
+      "correspondingSourceUnitStarts": [
+        [
+          45,
+          1
+        ],
+        [
+          45,
+          2
+        ],
+        [
+          45,
+          3
+        ],
+        [
+          45,
+          4
+        ],
+        [
+          45,
+          5
+        ]
+      ],
+      "boundaryFinding": "DRA45:1 corresponds to the Moses paragraph within Hebrew45:1; DRA45:2 spans Hebrew45:2 and the signs opening of45:3; DRA45:3 maps to the rest of45:3; DRA45:4 maps to45:4; DRA45:5–6 map to45:5. The strengthened-in-heights and signs phrases are recension readings at secure matching positions, not missing units. Complete Hebrew45:1 additionally includes the favor-in-eyes-of-all-flesh material corresponding to DRA44:27: disclose a whole-unit envelope. Preserve all printed brackets and the chapter partial flag. C4c corroborates the appointed paragraph but omits the final Jacob/Israel clause, already retained by whole45:5.",
+      "sourceUnitHashes": [
+        "f8e131428bf33f9464d3279e003bfe6d801ac4649754a884855c2eb7406b9858",
+        "82a37bf3daa4ad06796f9ce65ea3bc2558dd8fab67beb3c49333211d8103cdd5",
+        "729a09dbecb40c25b942e7cf542859299bee46f39d5e2598628b6755ebbaf1d9",
+        "0f3597ad5a568673ac41c1e8e27bdde46fad1b72343b93d0ee3880f29b9d0785",
+        "c6ed9ddde3f1939b6def193923ac1365268384868b496fa3a0f2e745fb55e1bc"
+      ],
+      "resolutionHistory": [
+        {
+          "status": "unavailable",
+          "boundaryFinding": "The corresponding Hebrew Moses paragraph is45:1–5, ending with the law taught to Jacob/Israel; Hebrew45:6 begins Aaron and must not be selected by number equality. The inspected Vulgate/proper clause magnified him in the fear of his enemies has a different Hebrew reading strengthened him in the heights, and its prodigies-ceasing language differs from the Hebrew signs phrase. This review records an unresolved semantic correspondence rather than certifying an exact whole-content envelope.",
+          "supersededBy": "Independent full paragraph comparison distinguishes secure source boundaries from legitimate recension readings."
+        }
+      ],
+      "includesWholeVerses": true,
+      "independentReview": "Complete corresponding paragraph; printed source differences retained. Root accepted the boundary/recension distinction on2026-10-02."
+    },
+    {
+      "key": "daily|Sirach 51:13–17",
+      "contexts": [
+        "roman1962"
+      ],
+      "status": "complete",
+      "correspondingSourceUnitStarts": [
+        [
+          51,
+          9
+        ],
+        [
+          51,
+          10
+        ],
+        [
+          51,
+          11
+        ],
+        [
+          51,
+          12
+        ]
+      ],
+      "boundaryFinding": "DRA51:13 corresponds to Hebrew51:9; DRA51:14 to51:10; DRA51:15 to51:11; DRA51:16–17 to51:12. Raise-voice versus exalted-dwelling and you-are-my-father versus father-of-my-lord are recension readings inside the same complete ordered prayer, not absent units. The closing rescue/thanks/blessing is explicit; stop at51:12 before the separately printed unnumbered thanksgiving psalm and wisdom poem. Preserve partial-chapter metadata without inventing words.",
+      "sourceUnitHashes": [
+        "872c16f2045fc568d8380063a6c2cd5d43def32fcd556e0c3c0bea9e4ae0d26c",
+        "de2364c2bba6521a1bdbdba5bcbeb678df7eb3ca360d86b0b1acbfc9a460451d",
+        "d3041ddf0861876df71d29cb95db66791170a516e69fb3bb8a7f93672c03f721",
+        "ebfed892e5fd37d8090561260034f02e37bcc82902ce2467ac4ac9e8eb3c2f9c"
+      ],
+      "resolutionHistory": [
+        {
+          "status": "unavailable",
+          "boundaryFinding": "The corresponding thanksgiving lies at Hebrew51:9–12, before the separate Hebrew thanksgiving psalm and wisdom-poem13. Vulgate/proper13 speaks of an exalted dwelling and prayer for death to pass, whereas Hebrew9 raises a voice from earth and cries from Sheol; Vulgate14 addresses the Father of my Lord, Hebrew10 says Lord, you are my father. These are distinct recension readings, not an identity mapping that can be source-certified here. No unrelated Hebrew51:13–17 wisdom poem is emitted.",
+          "supersededBy": "Independent full paragraph comparison distinguishes secure source boundaries from legitimate recension readings."
+        }
+      ],
+      "includesWholeVerses": false,
+      "independentReview": "Complete corresponding paragraph; printed source differences retained. Root accepted the boundary/recension distinction on2026-10-02."
+    },
+    {
+      "key": "daily|Sirach 51:1–8; 51:12",
+      "contexts": [
+        "roman1962"
+      ],
+      "status": "unavailable",
+      "correspondingSourceUnitStarts": [
+        [
+          51,
+          1
+        ],
+        [
+          51,
+          2
+        ],
+        [
+          51,
+          3
+        ],
+        [
+          51,
+          4
+        ],
+        [
+          51,
+          5
+        ],
+        [
+          51,
+          6
+        ],
+        [
+          51,
+          8
+        ]
+      ],
+      "boundaryFinding": "The rescue prayer corresponds broadly to Hebrew51:1–6 and8, but Hebrew51:2 retains an explicit lacuna, and the appointed unburnt-in-fire/unjust-king/praise-to-death clauses are absent or materially different (Hebrew6 describes reaching death/Sheol). The safe result is unavailable for this exact appointment, not silently skipping source gaps. The post12 unnumbered thanksgiving psalm is not part of this citation.",
+      "sourceUnitHashes": [
+        "35261e9d8d1910fe69262c5aeec7e33130cba9f9ecbcd1ab2a919d9255c0dd83",
+        "aa7101ecf150c2fff37255de964444dd2fbd357fdfb6e5faf3fe22334e252640",
+        "37604bbc98b1791a92c55b7ffd14c286170adb85aa1ca62fe3534f402702e4dd",
+        "11083d6e48f505657ff48429d3680bf97e2a6915ba8020ba282e2bcfe99a92b3",
+        "358750e700fb80932b96a6b98b73cce1da328319f6d666c57bc1e01ba8ba329d",
+        "8f34120f1764fce3a3452d51a007b899f8984f04b7bde161883da9bd87403070",
+        "b7008fc0d8cc96dae0d5c1daff54f4688150e49d105c61024779507ed06499b2"
+      ],
+      "independentReview": "Corroborated by independent Hebrew/DRA body comparison; no mapping change."
+    }
+  ],
+  "independentReview": {
+    "reviewer": "frenkel_source",
+    "date": "2026-10-02",
+    "priorReportSHA256": "04e08d023cbe8d73544d45a7d912155cce76ed9fa1cb51ce4a5173a2e7efc861",
+    "scope": "All12 dispositions compared with canonical Hebrew unit bodies and pinned DRA; the11 proper-file hashes and canonical source/unit hashes independently verified. Focused proper sections C4c, C6a, C4, C4ap Lectio1, C10c, C10t and Quad1-6 LectioL4 read directly.",
+    "policy": "Secure correspondence with a legitimate recension reading is not a missing-coverage failure. Explicit source lacunae and wholly absent appointed propositions remain blocked; no source wording is changed.",
+    "changedMappings": [
+      "daily|Sirach 45:1–6",
+      "daily|Sirach 51:13–17"
+    ],
+    "unchangedBlocked": [
+      "daily|Sirach 24:14–16",
+      "daily|Sirach 24:23–31",
+      "daily|Sirach 31:8–11",
+      "daily|Sirach 36:1–10",
+      "daily|Sirach 44:10–15",
+      "daily|Sirach 44:16–27; 45:3–20",
+      "daily|Sirach 44:1–15",
+      "daily|Sirach 51:1–8; 51:12"
+    ]
+  },
+  "counts": {
+    "appointments": 12,
+    "completeEndpointProposals": 4,
+    "unavailable": 8
+  }
+}

@@ -1,0 +1,148 @@
+{
+  "schemaVersion": 1,
+  "scope": "Colophon sourceNotes and explicit unreadable shuruq",
+  "status": "Implemented; local unit checks pass; unavailable runtime checks disclosed",
+  "canonicalValidation": {
+    "book": "ESG",
+    "status": "draft",
+    "chapters": 7,
+    "units": 101,
+    "sourcePages": 11,
+    "reviewedPages": 0
+  },
+  "sourceNotes": {
+    "body": 45,
+    "colophon": 6,
+    "total": 51
+  },
+  "contract": {
+    "colophon": "Optional nonempty sourceNotes; same anchor/page/hash/book-ID/accepted-ID checks as all other textual blocks. Reader shows notes after non-scripture closing text, outside verse picker/copy.",
+    "shuruq": "unreadablePoint/shuruq allowed only on vav U+05D5 with U+05BC absent; retainedVowels forbidden. Dagesh/shuruq notes at the same physical letter are duplicate.",
+    "localization": "Shuruq uses existing localized unreadable-vowel message; dagesh remains separate.",
+    "localesVerified": [
+      "en",
+      "he",
+      "ar",
+      "ru",
+      "tl",
+      "fr",
+      "it",
+      "uk"
+    ],
+    "archiveVersion": "Structured archives remain3; ordinary note archives2. Older strict readers reject unknown colophon field/shuruq mark; no silent note loss. Existing published note-free archives unchanged."
+  },
+  "tests": {
+    "shared": {
+      "passed": 50,
+      "suites": [
+        "test-scripture-source-notes.py (13)",
+        "test-bible-source-structure.py (12)",
+        "test-hebrew-deuterocanon.py (20)",
+        "test-bible-library.py (5)"
+      ]
+    },
+    "apple": {
+      "passed": 24,
+      "destination": "macOS",
+      "resultBundle": "/private/tmp/prosary-colophon-apple-retry.xcresult",
+      "log": "/private/tmp/prosary-colophon-apple-retry.log",
+      "note": "Initial sandbox run blocked Icon Composer export; authorized native-service retry passed. No Xcode MCP available."
+    },
+    "android": {
+      "fullUnitSuite": {
+        "tests": 464,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "log": "/private/tmp/prosary-colophon-android-all-tests.log",
+      "uiTestCompile": "passed",
+      "uiTestRun": "not run: saved Pixel_10_Pro AVD configuration missing; emulator exited unsupported arm fallback; no active device",
+      "uiCompileLog": "/private/tmp/prosary-colophon-android-ui-compile.log",
+      "emulatorLog": "/private/tmp/prosary-colophon-emulator.log"
+    },
+    "windows": {
+      "status": "Tests added following existing patterns; execution requires Windows and remains unverified on this host"
+    }
+  },
+  "newReviewedPages": [],
+  "releaseApproved": false,
+  "sourceApproval": {
+    "status": "complete",
+    "reviewedPages": [
+      215,
+      216,
+      217,
+      218,
+      219,
+      220,
+      221,
+      222,
+      223,
+      224,
+      225
+    ],
+    "acceptedSourceNoteIds": [
+      "esg-1-1-1-vowel",
+      "esg-1-1-2-vowel",
+      "esg-1-11-1-vowel",
+      "esg-1-12-1-vowel",
+      "esg-1-13-1-vowel",
+      "esg-1-14-1-vowel",
+      "esg-1-14-2-vowel",
+      "esg-1-15-1-vowel",
+      "esg-1-16-1-vowel",
+      "esg-1-17-1-vowel",
+      "esg-2-3-1-vowel",
+      "esg-2-3-2-vowel",
+      "esg-2-3-3-vowel",
+      "esg-2-3-4-vowel",
+      "esg-2-3-5-vowel",
+      "esg-2-3-6-vowel",
+      "esg-3-1-1-vowel",
+      "esg-3-10-1-vowel",
+      "esg-3-10-2-vowel",
+      "esg-3-10-3-dagesh",
+      "esg-4-17-1-vowel",
+      "esg-4-17-2-vowel",
+      "esg-5-3-1-vowel",
+      "esg-5-3-2-vowel",
+      "esg-5-3-3-vowel",
+      "esg-5-3-4-vowel",
+      "esg-5-3-5-vowel",
+      "esg-5-4-1-vowel",
+      "esg-5-7-1-vowel",
+      "esg-5-7-2-vowel",
+      "esg-5-7-3-dagesh",
+      "esg-6-11-1-vowel",
+      "esg-6-13-1-vowel",
+      "esg-6-14-1-vowel",
+      "esg-6-15-1-vowel",
+      "esg-6-15-2-vowel",
+      "esg-6-15-3-dagesh",
+      "esg-6-23-1-vowel",
+      "esg-6-5-1-vowel",
+      "esg-7-1-1-vowel",
+      "esg-7-2-1-vowel",
+      "esg-7-3-1-vowel",
+      "esg-7-6-1-dagesh",
+      "esg-7-6-2-vowel",
+      "esg-7-9-1-vowel",
+      "esg-colophon-1-vowel",
+      "esg-colophon-2-dagesh",
+      "esg-colophon-3-vowel",
+      "esg-colophon-4-shuruq",
+      "esg-colophon-5-vowel",
+      "esg-colophon-6-dagesh"
+    ],
+    "decision": "Root approved source completion after reviewing full reconciliation and shared/native contract. Runtime limitations remain separately recorded; all12 release gate unchanged.",
+    "validation": {
+      "book": "ESG",
+      "status": "complete",
+      "chapters": 7,
+      "units": 101,
+      "sourcePages": 11,
+      "reviewedPages": 11
+    }
+  }
+}

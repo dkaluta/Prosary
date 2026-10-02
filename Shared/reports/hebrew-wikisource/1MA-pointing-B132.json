@@ -1,0 +1,176 @@
+{
+  "book": "1MA",
+  "status": "Full first and second visual comparison7:1–5 completed; B132 reviewed",
+  "primarySourcePDFSHA256": "656891d377d2e3d4a9216723d94205488423907bf01df424b9f0b9de1560051e",
+  "additionalSourcePDFSHA256": "b72eaf5d2d858fabb7c3438ac0436ccd64c394a7dd2fad609efabe628d5534c7",
+  "sourcePages": [
+    132,
+    133
+  ],
+  "additionalPages": [
+    {
+      "number": 68,
+      "side": "right",
+      "primary": 132
+    },
+    {
+      "number": 68,
+      "side": "left",
+      "primary": 133,
+      "scope": "7:4–5 finalword only"
+    }
+  ],
+  "method": "Direct visual transcription followed by complete second word/point/punctuation and unit/page-boundary comparison. Both proper-name crops independently read for actual letter points, not normalized Greek forms. The second Demetrios occurrence on the page was compared locally too.",
+  "sourceSpellingChanges": [
+    {
+      "unit": "7:1",
+      "onlineConsonantsAndPunctuation": "בשנת אחת וחמישים ומאה יצא דמיטריוס בן סלבקוס מרומי ויעל עם מתי מספר לעיר על הים וימלוך שם:",
+      "sourceConsonantsAndPunctuation": "בשנת אחת וחמשים ומאה יצא דמטריוס בן־סלבקוס מרומי ויעל עם־מתי־מספר לעיר על־הים וימלך־שם׃"
+    },
+    {
+      "unit": "7:2",
+      "onlineConsonantsAndPunctuation": "ויהי כאשר בא אל בית מלכות אבותיו ויאחזו בני החיל את אנטיוכוס ואת לוסיאס להביאם אליו:",
+      "sourceConsonantsAndPunctuation": "ויהי כאשר בא אל־בית־ממלכות אבותיו ויאחזו בני־החיל את־אנטיוכוס ואת־לוסיאס להביאם אליו׃"
+    },
+    {
+      "unit": "7:3",
+      "onlineConsonantsAndPunctuation": "וייוודע לו הדבר ויאמר אל תראוני את פניהם:",
+      "sourceConsonantsAndPunctuation": "ויודע לו הדבר ויאמר אל־תראוני את־פניהם׃"
+    },
+    {
+      "unit": "7:4",
+      "onlineConsonantsAndPunctuation": "וימיתום החיל וישב דמיטריוס על כיסא מלכותו:",
+      "sourceConsonantsAndPunctuation": "וימיתום החיל וישב דמטריוס על־כסא מלכותו׃ ויבאו אליו כל־האנשים הפושעים והרשעים מישראל ואלקימוס היה מנהיגם מחפצו לכהן׃"
+    }
+  ],
+  "sourceUnitChanges": [
+    {
+      "verse": 4,
+      "endVerse": 5,
+      "printedLabel": "ד–ה",
+      "reason": "Actual combined margin label in tight crop."
+    }
+  ],
+  "boundaries": [
+    "Chapter7 follows fully checked6:63 onB132.",
+    "4–5 endsB132 with מחפצו and continues לכַהן atB133 top before6."
+  ],
+  "cropEvidence": [
+    {
+      "filename": "crop-68-0.535-0.164-0.899-0.33.png",
+      "sha256": "d77cea382176d0a268c0ce7340712d3092295791d21c4ab7960bc439581a6a57"
+    },
+    {
+      "filename": "crop-68-0.067-0.087-0.43-0.116.png",
+      "sha256": "6842e59b070706c09702bc8674355c6a624c01af59a9795c5752a7420ab7adb8"
+    },
+    {
+      "filename": "crop-68-0.639-0.165-0.712-0.204.png",
+      "sha256": "049e15a09d35623116716d12d3201301952b73731d2fe1ebfff170bb6cce719d"
+    },
+    {
+      "filename": "crop-68-0.573-0.165-0.641-0.204.png",
+      "sha256": "edf9d3804b982ffe619084f6cb1c2bf76dceab21c8a7cac13b476b2034054a9e"
+    },
+    {
+      "filename": "crop-68-0.885-0.272-0.93-0.31.png",
+      "sha256": "225f240e0e9210fc18ccec18a63dc37e64800f7450484cf1b7dedda333bd7530"
+    }
+  ],
+  "onlineScaffoldBefore": [
+    {
+      "verse": 1,
+      "text": "בשנת אחת וחמישים ומאה יצא דמיטריוס בן סלבקוס מרומי ויעל עם מתי מספר לעיר על הים וימלוך שם:",
+      "sourcePages": [],
+      "textSHA256": "3f3702a3e15b91bb6ce57305e75d9927bd50aff25c9f8f6760cab0f2883e0c6a"
+    },
+    {
+      "verse": 2,
+      "text": "ויהי כאשר בא אל בית מלכות אבותיו ויאחזו בני החיל את אנטיוכוס ואת לוסיאס להביאם אליו:",
+      "sourcePages": [],
+      "textSHA256": "f4fda2d833f7dd9e6a2f542c1afc611c3cb0bc3c82e49903a335e786d81709fc"
+    },
+    {
+      "verse": 3,
+      "text": "וייוודע לו הדבר ויאמר אל תראוני את פניהם:",
+      "sourcePages": [],
+      "textSHA256": "41aa41fc57f62f6f9cc7a1f50820bb242d398944fe6de23cc7cdb7877d223c56"
+    },
+    {
+      "verse": 4,
+      "text": "וימיתום החיל וישב דמיטריוס על כיסא מלכותו:",
+      "sourcePages": [],
+      "textSHA256": "1173d168b971d3e44aedf45b05fbb40aa715d273841847059a99df9c46aef0fb"
+    },
+    {
+      "verse": 5,
+      "text": "ויבואו אליו כל האנשים הפושעים והרשעים מישראל ואלקימוס היה מנהיגם מחפצו לכהן:",
+      "sourcePages": [],
+      "textSHA256": "701c0b5713c879a05d01bcb28ce1e29f7baa6c4679d3d153b76cf1ab97df54f9"
+    }
+  ],
+  "productionEligible": false,
+  "independentNameChecks": [
+    {
+      "unit": "7:1",
+      "word": "דְמִטְרִיוֹס",
+      "detail": "Dalet sheva with no isolated interior dagesh; mem hiriq, tet sheva, resh hiriq and vav holam supported by crop."
+    },
+    {
+      "unit": "7:1",
+      "word": "סְלֶבְקוֹס",
+      "detail": "Samekh sheva, three-dot lamed segol, bet sheva and vav holam supported by crop."
+    }
+  ],
+  "secondComparison": {
+    "completedPages": [
+      132
+    ],
+    "notCompletedPages": [
+      133
+    ],
+    "scopeNote": "B132 chapter6 ending was previously checked. B133 only7:4–5 finalword לכַהן checked, not later scripture.",
+    "unresolved": [],
+    "acceptedSourceNoteIds": []
+  },
+  "reviewedUnitSnapshots": [
+    {
+      "chapter": 7,
+      "verse": 1,
+      "text": "בִּשְׁנַת אַחַת וַחֲמִשִּׁים וּמֵאָה יָצָא דְמִטְרִיוֹס בֶּן־סְלֶבְקוֹס מֵרוֹמִי וַיַּעַל עִם־מְתֵי־מִסְפָּר לְעִיר עַל־הַיָּם וַיִּמְלֹךְ־שָׁם׃",
+      "sourcePages": [
+        132
+      ],
+      "textSHA256": "ccd5b13d0c23a132ac43ff6f9c1493757b468dadfba87e04517dd6f37456f44b"
+    },
+    {
+      "chapter": 7,
+      "verse": 2,
+      "text": "וַיְהִי כַּאֲשֶׁר בָּא אֶל־בֵּית־מַמְלְכוּת אֲבוֹתָיו וַיֹּאחֲזוּ בְנֵי־הַחַיִל אֶת־אַנְטִיוֹכוֹס וְאֶת־לוּסִיאַס לַהֲבִיאָם אֵלָיו׃",
+      "sourcePages": [
+        132
+      ],
+      "textSHA256": "6b22561097f4ce0643a8ba1a34cc2a8ecaab7fd4845c2da6fc27660d30eb6306"
+    },
+    {
+      "chapter": 7,
+      "verse": 3,
+      "text": "וַיִּוָּדַע לוֹ הַדָּבָר וַיֹּאמֶר אַל־תַּרְאוּנִי אֶת־פְּנֵיהֶם׃",
+      "sourcePages": [
+        132
+      ],
+      "textSHA256": "2204cdcdc2f210c59565532d768179fcbe23aa02d8c5fb06c7c15d93f3b1294c"
+    },
+    {
+      "chapter": 7,
+      "verse": 4,
+      "text": "וַיְמִיתוּם הַחַיִל וַיֵּשֶׁב דְמִטְרִיוֹס עַל־כִּסֵּא מַלְכוּתוֹ׃ וַיָּבֹאוּ אֵלָיו כָּל־הָאֲנָשִׁים הַפּוֹשְׁעִים וְהָרְשָׁעִים מִיִּשְׂרָאֵל וְאַלְקִימוֹס הָיָה מַנְהִיגָם מֵחֶפְצוֹ לְכַהֵן׃",
+      "sourcePages": [
+        132,
+        133
+      ],
+      "textSHA256": "7b8a3f7cb7a93af01fa452dd36d49d11be1752f92e5b1b2ff1dbaa9415f5f334",
+      "endVerse": 5
+    }
+  ]
+}

@@ -389,7 +389,7 @@
   <data name="AbtPeshittaSources.Text" xml:space="preserve"><value>Новий Завіт Пешітти (BFBS, 1905): Digital Syriac Corpus; сирійська транскрипція — George A. Kiraz, TEI-видання © James E. Walters, CC BY 4.0. Перетворення на єврейське письмо за правилами Ереза; добір віршів і форматування тексту — Prosary.</value></data>
   <data name="AbtPeshittaSourceLink.Content" xml:space="preserve"><value>Digital Syriac Corpus</value></data>
   <data name="AbtPeshittaLicenseLink.Content" xml:space="preserve"><value>CC BY 4.0</value></data>
-  <data name="AbtPeshittaIsaiahSources.Text" xml:space="preserve"><value>Ісая: наданий користувачем XML-текст Пешітти з оголосовками з Internet Archive. Походження видання та умови його розповсюдження залишаються невстановленими. Перетворення на єврейське письмо за правилами Ереза; добір віршів і форматування тексту — Prosary.</value></data>
+  <data name="AbtPeshittaIsaiahSources.Text" xml:space="preserve"><value>Старий Завіт: наданий користувачем XML-текст Пешітти з оголосовками з Internet Archive. Походження видання та умови його розповсюдження залишаються невстановленими. Перетворення на єврейське письмо за правилами Ереза; добір віршів і форматування тексту — Prosary.</value></data>
   <data name="AbtPeshittaIsaiahSourceLink.Content" xml:space="preserve"><value>Internet Archive</value></data>
   <data name="AbtBookNameSources.Text" xml:space="preserve"><value>Назви біблійних книг: AELF, Dar el-Machreq, російський Синодальний переклад (Азбука), Біблійне товариство Філіппін та ParolaViva.</value></data>
   <data name="AbtPopeNetworkLink.Content" xml:space="preserve"><value>Всесвітня мережа молитви Папи</value></data>
@@ -549,4 +549,34 @@
   <data name="AbtSyriacHebrewCalendar.Text" xml:space="preserve"><value>Сирійський календар івритом — Urtotho (2026), наданий Prosary.</value></data>
   <data name="EdLitanyOfLoreto.Header" xml:space="preserve"><value>Лоретанська літанія після Розарію</value></data>
   <data name="EdRosaryCollect.Header" xml:space="preserve"><value>Заключна молитва Розарію</value></data>
+  <data name="readings_title" xml:space="preserve"><value>Читання</value></data>
+  <data name="bible_daily_readings" xml:space="preserve"><value>Щоденні читання</value></data>
+  <data name="bible_title" xml:space="preserve"><value>Біблія</value></data>
+  <data name="bible_book" xml:space="preserve"><value>Книга</value></data>
+  <data name="bible_chapter" xml:space="preserve"><value>Розділ</value></data>
+  <data name="bible_verse" xml:space="preserve"><value>Вірш</value></data>
+  <data name="bible_previous_chapter" xml:space="preserve"><value>Попередній розділ</value></data>
+  <data name="bible_next_chapter" xml:space="preserve"><value>Наступний розділ</value></data>
+  <data name="bible_update" xml:space="preserve"><value>Оновити завантаження</value></data>
+  <data name="bible_download" xml:space="preserve"><value>Завантажити Біблію</value></data>
+  <data name="bible_remove" xml:space="preserve"><value>Видалити завантаження</value></data>
+  <data name="bible_cancel" xml:space="preserve"><value>Скасувати завантаження</value></data>
+  <data name="bible_retry" xml:space="preserve"><value>Спробувати знову</value></data>
+  <data name="bible_partial_chapter" xml:space="preserve"><value>Доступна лише частина цього розділу.</value></data>
+  <data name="bible_download_notice" xml:space="preserve"><value>Завантажте це видання, щоб читати доступні книги без інтернету. Щоденні читання доступні без цього завантаження.</value></data>
+  <data name="bible_unavailable" xml:space="preserve"><value>Для вибраного видання завантаження Біблії недоступне.</value></data>
+  <data name="bible_read_error" xml:space="preserve"><value>Не вдалося відкрити цей розділ. Спробуйте знову або завантажте видання повторно.</value></data>
+  <data name="bible_download_error" xml:space="preserve"><value>Не вдалося завантажити Біблію. Перевірте з’єднання та спробуйте знову.</value></data>
+  <data name="bible_remove_error" xml:space="preserve"><value>Не вдалося видалити завантаження. Спробуйте знову.</value></data>
+  <data name="bible_remove_confirmation" xml:space="preserve"><value>Видалити завантажене видання «{0}»? Щоденні читання залишаться доступними.</value></data>
+  <data name="bible_no_daily_readings" xml:space="preserve"><value>На цю дату щоденні читання недоступні.</value></data>
+  <data name="scripture_note_title" xml:space="preserve"><value>Примітка до джерела</value></data>
+  <data name="scripture_note_vowel" xml:space="preserve"><value>Нерозбірливий знак оголосовки пропущено.</value></data>
+  <data name="scripture_note_dagesh" xml:space="preserve"><value>Нерозбірливий дагеш пропущено.</value></data>
+  <data name="scripture_note_letter" xml:space="preserve"><value>Літера {0} (позиція {1})</value></data>
+  <data name="scripture_note_restored_letter" xml:space="preserve"><value>Літеру {0} (позиція {1}) у «{2}» відновлено редактором. На скані джерела вона нерозбірлива.</value></data>
+  <data name="scripture_note_pages" xml:space="preserve"><value>Сторінки PDF: {0}</value></data>
+  <data name="scripture_note_scan" xml:space="preserve"><value>Скан джерела</value></data>
+  <data name="bible_printed_label" xml:space="preserve"><value>Позначення в друкованому виданні: {0}</value></data>
+  <data name="bible_occurrence" xml:space="preserve"><value>{0} — входження {1}</value></data>
 </root>

@@ -1590,20 +1590,26 @@ copies, same convention as the bundles; per-platform `TodayInfoStore` providers)
   Russian translation for 2026 (credited to t.me/ihsovs), plus Prosary's
   Hebrew and Ukrainian translations. `sourceByLanguage` records sources and
   `translationCreditByLanguage` distinguishes authored translations. These two versions are not
-  official Vatican editions. `Shared/tools/import-pope-intentions.py --source-dir <pdf-cache>
+  official Vatican editions. Both Hebrew annual snapshots preserve the authored wording and
+  link each month to its published English original; the link does not represent a published
+  Hebrew edition. `Shared/tools/import-pope-intentions.py --source-dir <pdf-cache>
   --sync` imports the 2026 PDFs and reviewed 2027 snapshots. Arabic and Italian source PDFs
   with broken character maps have visually reviewed transcriptions; corrections from other
   official publications are recorded in the source snapshot. Missing languages use English,
   and months outside the table hide the row.
 - **Reading tables, selected through `readingsFile`** — each date contains ordered citation
   objects (`type`, `short`, `full`, and optional `shortByLanguage`/`fullByLanguage`). These tables
-  contain appointments only; optional Bible text lives in the separate reading-text dataset
+  use the user's 73 Hebrew book abbreviations for compact captions, encoded with Hebrew
+  geresh/gershayim and combined with the existing gematria chapter numbers. The catalog and
+  provenance are in `tools/hebrew-reading-books.json`; `fetch-readings.py --localize-only
+  --sync` refreshes these captions in both calendar readings and Torah portions while
+  preserving sourced full titles and appointed references.
+  The tables contain appointments only; optional Bible text lives in the separate reading-text dataset
   described below. `readings-roman.json` is the Novus Ordo table from
   Evangelizo HE and is shared by `lpj` and `roman`; its Hebrew full book names are relayed in
-  the per-language maps. Hebrew short epistle names are deterministic compact forms of those
-  sourced titles (`הראשונה אל הקורינתים`, `השנייה של כיפא`, `אל הרומים`): the
-  generator removes redundant “epistle”/author wording, standardizes the compact ordinal phrase,
-  and does not translate or alter the complete citation's wording. Hebrew word joins and
+  the per-language maps. Compact epistle names use forms such as `קור״א`, `כיפ״ב`, and
+  `רומ׳`; regeneration refreshes these even when retaining a source-specific full title.
+  It does not alter the complete citation's wording. Hebrew word joins and
   numeric prefixes use maqaf (`־`), while verse ranges keep en dashes (`–`).
   `readings-roman1962.json` is the Vetus
   Ordo table from Missale Meum's
@@ -1632,6 +1638,33 @@ See [calendar research and coverage](calendar-research.markdown) for source rule
 
 ### Offline Bible passages
 
+Readings provides Daily Readings and Bible modes. The latter browses the selected edition's
+available books and chapters, with verse navigation, paired scripts, source credit, and
+explicit partial-chapter notices. Both modes share `readingsEditionId`; Bible position is
+window-local and independent of the prayer date. Only `bible-catalog.json` is bundled.
+Each Bible is an optional, individually removable offline download, validated and installed
+atomically in a separate private library. The full contract, generation and source limits
+are in [BIBLE-VIEWER.markdown](BIBLE-VIEWER.markdown); `schema/bible-library.json` defines
+the metadata and chapter shapes. Daily reading text remains bundled and independent of
+Bible downloads. Terminal has no readings or download features.
+
+Isolated unreadable Hebrew points may be omitted only with an explicit source note.
+An explicitly approved consonant restoration has a distinct `restoredLetter` note;
+readers identify it as editorial and retain independently readable vowel points.
+The shared verse or supported source block carries an exact word/letter anchor and scan-page link; all native
+readers show the note separately from scripture. Bible archives with notes use
+version 2 so older readers reject them. The contract and strict review rules are in
+[SCRIPTURE-SOURCE-NOTES.markdown](SCRIPTURE-SOURCE-NOTES.markdown).
+
+Bible archive version 3 preserves exceptional printed source order through chapter
+`contentBlocks` and explicit book `addressRoutes`, without duplicating primary text.
+The complete-book installation validator accounts for every primary presentation;
+the reader displays distinct witnesses, unnumbered scripture and source labels.
+Colophon blocks also retain exact source notes without becoming selectable scripture
+or verse choices. An unreadable shuruq has its own validated vav-only mark category
+and uses the localized vowel-omission wording.
+See [BIBLE-SOURCE-STRUCTURE.markdown](BIBLE-SOURCE-STRUCTURE.markdown).
+
 Phone Readings and Mac/Windows Today retain the calendar's complete localized citation above
 each collapsible Bible passage. Daily and enabled Torah passages start collapsed unless
 `expandReadingsByDefault` is enabled when entering the view or changing the date/calendar.
@@ -1650,9 +1683,14 @@ Delitzsch 12th edition (1901). Source vowels and cantillation are preserved; onl
 points on the four letters of יהוה are removed. Delitzsch's source chapter files, reviewed
 numbering differences and print-verified transcription corrections are pinned at build time.
 The selectable Peshitta edition (`peshitta-1905`, `arc`) pairs source Syriac with the existing
-Hebrew-square projection. It covers the pinned BFBS 1905 NT and only the nine previously
-approved supplied Isaiah verses; malformed/unreviewed chapters and other OT remain unavailable.
-The credit distinguishes the NT's CC BY 4.0 edition from Isaiah's unresolved source rights.
+Hebrew-square projection. It covers the pinned BFBS 1905 NT and explicitly reviewed
+verse units from the supplied pointed OT. An equal chapter verse count does not establish
+matching boundaries. Reviewed compounds remain indivisible; exact, source-pinned editorial
+captions are excluded from Scripture without changing the surrounding words. Damaged chapters,
+Psalms, deuterocanonical numbering and unresolved source boundaries remain unavailable.
+The credit distinguishes the NT's CC BY 4.0 edition from the OT's unresolved edition and rights.
+The reader expansion leaves the nine Isaiah verses used in prayer packs unchanged; see
+`content/PESHITTA-OT-READER-REVIEW.markdown` for exclusions and the limits of the review.
 
 `readings-editions.json` is the small metadata companion: `schemaVersion: 1` and `editions`
 with stable `id`, `languageCode`, `name`, `attribution` and `sourceURL` fields. The picker reads
@@ -1662,19 +1700,33 @@ is expanded. The shared generator pre-resolves appointments under `daily|<raw ci
 uses the original `ReadingCitation.full`, never its translated display value, and never
 parses references or guesses verse-number conversions at runtime. The files are copied into
 each native app's data resources, following the existing physical-copy rule.
+Reviewed Hebrew additions use the optional `passageSources[key][editionId]` descriptor
+for the actual source book's title, translator credit, HTTPS source link, completeness
+notice and ordered `contentBlocks`. The selected edition remains unchanged. A Daniel
+citation can therefore display the credited Susanna source without misattributing it to
+the Masoretic text. Readers validate every primary reference exactly once, preserve
+chapter revisits and printed witness labels, and reject malformed source metadata rather
+than suppressing its evidence. Source notes remain attached to their exact words.
+`Shared/tools/hebrew-daily-reading-reviews.json` pins each appointment's calendar scope,
+whole source units, source digest and endpoint evidence. It runs before the generic
+edition mapper; unknown boundaries and reviewed source gaps have no number-equality
+fallback. Complete source-book transcription and daily appointment coverage are separate
+checks. The reviewed printed edition may retain documented textual variants; its wording
+is never rewritten to match the calendar's translation.
 Paired editions declare optional `textScript` and `transliteratedTextScript` together, and
 every verse adds nonempty `transliteratedText`. Peshitta retains the established Aramaic
-convention: `text` is `Hebr`, `transliteratedText` is the untouched `Syrc` original. Native
+convention: `text` is `Hebr`, `transliteratedText` is the source `Syrc` wording after the
+documented exclusion of embedded OT editorial captions. Native
 readers initialize from `aramaicDefaultScript` and switch all verse text, typography and RTL
 direction together. An incomplete pair makes the complete passage unavailable; no runtime
 conversion or script fallback is permitted.
 
 For appointments with an explicitly reviewed source numbering, the shared edition mapper
-uses STEP Standard as a reference hub for all nine pinned Bible editions. Each edition has
+uses STEP Standard as a reference hub for all ten pinned Bible editions. Each edition has
 its own reviewed rules, numeric inventory and completeness exclusions. The standalone mapper
 reads no Scripture wording; the passage builder verifies the imported text's digest before
 using its references. Psalm headings and split/merged verse boundaries remain whole units,
-and the sparse Arabic edition retains only its existing 64 reviewed units. Numeric mapping
+and the sparse Arabic edition accepts only its explicitly reviewed source/Standard units. Numeric mapping
 metadata lives under `Shared/tools/versification/editions`; it is not bundled into native apps.
 See `Shared/DAILY-READINGS.markdown` for source reviews, limitations and regeneration order.
 All 103 currently bundled Psalm citations have exact Roman source-numbering reviews. Their
@@ -1797,8 +1849,12 @@ Arabic Scripture uses the public-domain old Jesuit translation, transcribed and 
 checked against its 1897 Beirut printing. `content/arabic-jesuit-1897.json` records the 239
 reviewed verses and their printed source pages; `tools/import-arabic-scripture.py` replaces
 76 canonical Scripture fields and generates all three native Rosary fallback tables.
-Fixed prayers and authored meditations keep their own sources. Offline readings accept only
-complete reviewed passage units from this partial corpus. See
+Fixed prayers and authored meditations keep their own sources. Reader-only extensions in
+`content/arabic-jesuit-1897-readings.json` and `content/arabic-jesuit-1897-gospel-readings.json`
+add 22 printed Psalms and complete Luke 6, 10, 11 and 12, bringing the reading corpus to
+665 verses. Their independent page and boundary reviews are pinned in the text-free
+`tools/arabic-reading-extensions.json`. Offline readings accept only complete reviewed
+source/Standard units, preserving Psalm offsets and indivisible clause groups. See
 `content/ARABIC-SCRIPTURE-SOURCES.markdown` for provenance, transcription conventions,
 edition boundaries, and regeneration. Dar el-Machreq remains credited separately for book-name
 metadata; it is no longer the source credited for the Arabic Scripture passages.

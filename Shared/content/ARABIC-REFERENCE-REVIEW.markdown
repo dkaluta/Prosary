@@ -12,7 +12,7 @@ other Arabic verses or permit slicing the reviewed passages.
   SHA-256 `2bca3535b75532044bdc2889b497b16b59e0337ee775f42de8aedc4e2809c09d`.
   Page references below are one-based PDF pages; printed pages are four lower.
 - Reviewed transcription: `arabic-jesuit-1897.json`, SHA-256
-  `9495719b3f1573e7a446dc22dbeb3014e913d69b5bfff71239dd9602c0efeda8`.
+  `dbb7c4736218f730506d5eedb05708983420712c02076e008b16839665d9f39c`.
 - The mapper's hub is **STEP English Standard (KJV)**, as recorded in the
   [pinned STEP documentation](../tools/versification/step/README.markdown),
   not Hebrew/Masoretic numbering, NABRE, or SIL Original. The actual KJV passage

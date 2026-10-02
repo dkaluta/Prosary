@@ -1,0 +1,200 @@
+{
+  "schemaVersion": 1,
+  "book": "2MA",
+  "reference": "14:4",
+  "status": "Concrete editorial proposal; explicit user decision pending",
+  "approved": false,
+  "canonicalChanged": false,
+  "sourceRestrictionRespected": true,
+  "scope": "Restore one damaged consonant only. Preserve every independently readable printed point and all other verse text.",
+  "primarySource": {
+    "edition": "Abraham Kahana, ספר המקבים ב, in הספרים החיצונים volumeB",
+    "translator": "אברהם כהנא",
+    "originalPDFSHA256": "656891d377d2e3d4a9216723d94205488423907bf01df424b9f0b9de1560051e",
+    "originalPDFPage": 227,
+    "printedPage": 225,
+    "companionPDFPage": 115,
+    "companionSide": "left",
+    "companionPDFSHA256": "b72eaf5d2d858fabb7c3438ac0436ccd64c394a7dd2fad609efabe628d5534c7",
+    "scanURL": "https://he.wikisource.org/wiki/קובץ:Apocrypha_Kahana_B.pdf#page=227"
+  },
+  "visibleEvidence": {
+    "wordFrameDescription": "From right to left: readable vav, fragmented but identifiable alef, an effectively blank third consonant frame, and readable final tav. The niqqud survives better than the damaged third consonant.",
+    "letters": [
+      {
+        "letterIndex": 1,
+        "letter": "ו",
+        "status": "readable",
+        "readableVowel": "ְ",
+        "evidence": "Two vertically separated points under vav are clear in companion; original has matching joined vertical group."
+      },
+      {
+        "letterIndex": 2,
+        "letter": "א",
+        "status": "partially damaged but identifiable",
+        "readableVowel": "ֶ",
+        "evidence": "Surviving diagonal/body fragments support alef. Three detached lower points form a segol triangle in both native crops; do not replace with expected patah."
+      },
+      {
+        "letterIndex": 3,
+        "letter": "ח",
+        "status": "editorial reconstruction proposed; consonant not readable",
+        "readableVowel": "ָ",
+        "evidence": "The consonant frame is lost; a distinct horizontal bar and central descending stem survive underneath, supporting qamats. Retain this visible point on the proposed restored het."
+      },
+      {
+        "letterIndex": 4,
+        "letter": "ת",
+        "status": "readable",
+        "readableVowel": null,
+        "evidence": "Roof, two descending sides and left foot identify final tav; no vowel is supplied."
+      }
+    ],
+    "imageProcessing": "Native embedded images cropped and enlarged by nearest neighbor only; no sharpening, thresholding, reconstruction or inpainting.",
+    "cropEvidence": [
+      {
+        "path": "/private/tmp/prosary-2ma/proposal14-year-native-extra.png",
+        "source": "/private/tmp/prosary-2ma/ch14-extra115-native.png",
+        "box": [
+          1205,
+          663,
+          1275,
+          701
+        ],
+        "scale": 8,
+        "method": "nearest neighbor; no thresholding, sharpening or inpainting",
+        "sha256": "b22d639c8e15bca9eb5adbcf7b1a305639274b540208ac142ee1855f884ab649"
+      },
+      {
+        "path": "/private/tmp/prosary-2ma/proposal14-year-native-primary.png",
+        "source": "/private/tmp/prosary-2ma/page227.png",
+        "box": [
+          1100,
+          970,
+          1193,
+          1015
+        ],
+        "scale": 8,
+        "method": "nearest neighbor; no thresholding, sharpening or inpainting",
+        "sha256": "753519a7149b117237b33645c937e87d398d913ecbc9ec7058bf9336c048d4bc"
+      },
+      {
+        "path": "/private/tmp/prosary-2ma/proposal14-year-wide-extra.png",
+        "source": "/private/tmp/prosary-2ma/ch14-extra115-native.png",
+        "box": [
+          1040,
+          650,
+          1410,
+          716
+        ],
+        "scale": 8,
+        "method": "nearest neighbor; no thresholding, sharpening or inpainting",
+        "sha256": "c6bc958387bebc0e205a6afcc098a899d2b47084f3d74e29a556b1da165a9919"
+      },
+      {
+        "path": "/private/tmp/prosary-2ma/proposal14-year-wide-primary.png",
+        "source": "/private/tmp/prosary-2ma/page227.png",
+        "box": [
+          900,
+          934,
+          1390,
+          1045
+        ],
+        "scale": 8,
+        "method": "nearest neighbor; no thresholding, sharpening or inpainting",
+        "sha256": "72193a085b28e8e2881f9cc3abab0519a20cfa61ef63968327cbe6afa6835a31"
+      }
+    ]
+  },
+  "comparativeSource": {
+    "purpose": "Corroborate the date and semantic reconstruction; does not establish Kahana-specific spelling or vowel points.",
+    "editionTitle": "The Septuagint version of the Old Testament and Apocrypha, Greek and English",
+    "translator": "Sir Lancelot Charles Lee Brenton",
+    "publisher": "London: Samuel Bagster",
+    "cataloguedYear": 1900,
+    "catalogURL": "https://archive.org/details/septuagintversio1900bren",
+    "printedPage": 209,
+    "archiveLeafIndex": 1361,
+    "imageURL": "https://iiif.archive.org/iiif/septuagintversio1900bren$1361/full/2400,/0/default.jpg",
+    "localImage": "/private/tmp/prosary-2ma/brenton-2ma14-p209.jpg",
+    "imageSHA256": "a245a3621b9f8b361fa8854035f9ffa8d5987e0e9a6c9308b2cbce26afe30790",
+    "focusedImage": "/private/tmp/prosary-2ma/brenton-2ma14-p209-verse4.png",
+    "focusedImageSHA256": "347587ee9c434841b958ada4a55b5856b6c05431da2e706474d39f9bf0b3da17",
+    "greekDatePhrase": "πρώτῳ καὶ πεντηκοστῷ καὶ ἑκατοστῷ ἔτει",
+    "englishDatePhrase": "in the hundred and one and fiftieth year",
+    "dateValue": 151,
+    "verification": "Greek and English columns and the printed 14:4 context were visually compared on the original bilingual page, not derived solely from OCR. Both date phrases agree on 151.",
+    "englishDigitalCorroborationURL": "https://ebible.org/eng-Brenton/2MA14.htm",
+    "englishRightsURL": "https://ebible.org/eng-Brenton/copyright.htm",
+    "englishRightsStatement": "Published in 1851 and now in the Public Domain. This scanned printing is catalogued 1900; it is not claimed to be the 1851 printing.",
+    "numberingEffect": "No verse boundary or number changes proposed; source unit remains 14:4."
+  },
+  "editorialInference": {
+    "proposedWord": "וְאֶחָת",
+    "consonants": "ואחת",
+    "restoredConsonant": "ח",
+    "restoredLetterIndex": 3,
+    "reason": "Visible ו/א/ת and the surviving qamats occupy the expected four-letter frame after מאה וחמשים. The Greek and Brenton date151 supports the numeral one, hence reconstruction of the missing het in ואחת. The missing letter itself remains inferred.",
+    "notAsserted": [
+      "That the lost het is visible.",
+      "That another Hebrew witness verifies Kahana’s entire word.",
+      "That the unusual printed segol/qamats should be normalized to standard vocalization.",
+      "That the earlier provisional token וָז׳ was valid source text."
+    ],
+    "remainingUncertainty": "Exact consonant identity in the missing frame requires an editorial decision; no new unrestricted same-edition copy has resolved it directly."
+  },
+  "proposedChange": {
+    "currentProvisionalWord": "וָז׳",
+    "replacementWord": "וְאֶחָת",
+    "beforeVerseSHA256": "1bd917354a0352eea105b1711f218962db6345d9e8d37280f6788a75beda3c1f",
+    "afterVerseSHA256": "94994629a0b80ecc90f7ae727c99a27f35b7c57d9117cf9ad7dca88d2530c723",
+    "beforeText": "וַיָּבֹא אֶל־דֶּמֶטְרִיוֹס הַמֶּלֶךְ בִּשְׁנַת מֵאָה וַחֲמִשִּׁים וָז׳ וַיָּבֵא לוֹ עֲטֶרֶת זָהָב וְתֹמֶר וּמִלְּבַד אֵלֶּה עַנְפֵי זַיִת מִן־הַמִּקְדָּשׁ וּבַיּוֹם הַהוּא הָיָה שָׁקֵט׃",
+    "afterText": "וַיָּבֹא אֶל־דֶּמֶטְרִיוֹס הַמֶּלֶךְ בִּשְׁנַת מֵאָה וַחֲמִשִּׁים וְאֶחָת וַיָּבֵא לוֹ עֲטֶרֶת זָהָב וְתֹמֶר וּמִלְּבַד אֵלֶּה עַנְפֵי זַיִת מִן־הַמִּקְדָּשׁ וּבַיּוֹם הַהוּא הָיָה שָׁקֵט׃",
+    "sourceNotes": [
+      {
+        "id": "2ma-14-4-het-3-restored-letter",
+        "kind": "restoredLetter",
+        "anchor": "וְאֶחָת",
+        "occurrence": 1,
+        "letterIndex": 3,
+        "mark": "consonant",
+        "sourcePages": [
+          227
+        ],
+        "sourceURL": "https://he.wikisource.org/wiki/קובץ:Apocrypha_Kahana_B.pdf#page=227"
+      }
+    ],
+    "readerNoteEnglish": "The letter ח at position 3 in וְאֶחָת is an editorial restoration; it is unreadable in the source scan.",
+    "proposedReviewExplanation": "The lost ח is restored from surviving ו/א/ת, the qamats below its frame, and the public-domain Greek/Brenton date 151. Visible vav sheva, alef segol and het-frame qamats are retained literally.",
+    "contractCompatibility": "Existing restoredLetter/consonant note at exact index 3. No retainedVowels field; independently readable qamats remains attached to the restored consonant. No native UI/schema changes required."
+  },
+  "independentCorroboration": {
+    "reviewer": "/root",
+    "scope": "Viewed both new native crops independently; corroborated vav sheva, three separate segol dots, qamats below missing third consonant and final tav. Directed pinning proposal as וְאֶחָת with ח index3, without changing canonical.",
+    "approvalConsequence": "This concurrence verifies the proposed evidence scope, not user approval of the restoration."
+  },
+  "approvalNeeded": {
+    "explicitDecisionRequired": true,
+    "reason": "Prior general permission covers isolated unreadable vowel marks; the WIS 1:16 lamed restoration was specific and does not authorize this new consonant restoration.",
+    "questionDraft": "May we restore the missing ח in 2 Maccabees 14:4 as וְאֶחָת, retaining the visible printed vowel points and explicitly labeling ח as an editorial reconstruction? The surviving letters and Greek/Brenton year 151 support it; the letter itself is lost in both available scans."
+  },
+  "priorEvidence": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/2MA-chapter14-first-author-proof.json",
+      "sha256": "476f5e205c40604a9ef1d611c7abeb9353e324d6bc570e772d0c8bf011cdff40"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/2MA-chapter14-independent-review.json",
+      "sha256": "05e8655693ea62558dc6137365c850d95fc2a3e3e82c5fa5c597c55a4519d536"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/2MA-chapter14-final-reconciliation.json",
+      "sha256": "fff4e01369ef79967bab5fa0c72539db4424d96eb4d2f93a8b0e99bb46b67624"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/2MA-14-4-clearer-copy-research.json",
+      "sha256": "12f7c84d99cb853cbf0a4654ca31832e657a8b5d10276227c9459fc15e8f7d8f"
+    }
+  ],
+  "accessLimitations": "Earlier PSIK preview navigation was rejected by automatic approval review. It was not retried or worked around. No protected copy or modern copyrighted translation supplies this proposal."
+}

@@ -1,0 +1,90 @@
+{
+  "purpose": "Reference-only bounded OCR experiments. Never replace pointed source from these outputs.",
+  "engine": "7.0.0",
+  "model": {
+    "language": "heb",
+    "family": "best_int",
+    "sourceURL": "https://cdn.jsdelivr.net/npm/@tesseract.js-data/heb/4.0.0_best_int/heb.traineddata.gz",
+    "cachedModelSHA256": "a95d74d445e9bbb772a3572b4f01741309b3ab2c015773ef6fe7f25829c2dd0b"
+  },
+  "parameters": {
+    "oem": 1,
+    "tessedit_pageseg_mode": 6,
+    "preserve_interword_spaces": 1
+  },
+  "lexicon": {
+    "source": "chapter1 of David Kahana, Fraenkel and Ben Zeev; distinct editions retained as candidate vocabulary only",
+    "entryCount": 856,
+    "sha256": "ac0f80e0273beb8d42a3eb2a8ac3dab88c65593cdf9eb085d40d55101695bfa8",
+    "mechanism": "writeText then reinitialize with user_words_file"
+  },
+  "componentFilter": {
+    "source": "/private/tmp/prosary-sirach-review/B-449-body.png",
+    "sourceSHA256": "032627b36ed9951a6788e7b29f8215e148c551e239f886c6eedeeb81292b4cbd",
+    "componentCount": 554,
+    "variants": [
+      {
+        "maximumRemovedComponentArea": 20,
+        "removedComponents": 55,
+        "removedPixels": 820,
+        "file": "/private/tmp/prosary-hebrew-ocr/B-449-components-20.png"
+      },
+      {
+        "maximumRemovedComponentArea": 35,
+        "removedComponents": 82,
+        "removedPixels": 1605,
+        "file": "/private/tmp/prosary-hebrew-ocr/B-449-components-35.png"
+      },
+      {
+        "maximumRemovedComponentArea": 55,
+        "removedComponents": 132,
+        "removedPixels": 3815,
+        "file": "/private/tmp/prosary-hebrew-ocr/B-449-components-55.png"
+      }
+    ]
+  },
+  "comparison": {
+    "scope": "One printed source crop only. Reference uses13 provisional manually transcribed units checked for this consonant comparison; vowels are deliberately excluded. Chapter title excluded; printed verse labels included. Not a corpus accuracy claim. Niqqud/punctuation not assessed. Original scan unchanged.",
+    "results": [
+      {
+        "name": "original",
+        "referenceConsonantsIncludingVerseLabels": 400,
+        "observedConsonantsIncludingVerseLabels": 389,
+        "editDistance": 64,
+        "consonantCharacterErrorRate": 0.16
+      },
+      {
+        "name": "lexicon",
+        "referenceConsonantsIncludingVerseLabels": 400,
+        "observedConsonantsIncludingVerseLabels": 389,
+        "editDistance": 62,
+        "consonantCharacterErrorRate": 0.155
+      },
+      {
+        "name": "area<=20",
+        "referenceConsonantsIncludingVerseLabels": 400,
+        "observedConsonantsIncludingVerseLabels": 394,
+        "editDistance": 72,
+        "consonantCharacterErrorRate": 0.18
+      },
+      {
+        "name": "area<=35",
+        "referenceConsonantsIncludingVerseLabels": 400,
+        "observedConsonantsIncludingVerseLabels": 396,
+        "editDistance": 70,
+        "consonantCharacterErrorRate": 0.175
+      },
+      {
+        "name": "area<=55",
+        "referenceConsonantsIncludingVerseLabels": 400,
+        "observedConsonantsIncludingVerseLabels": 394,
+        "editDistance": 92,
+        "consonantCharacterErrorRate": 0.23
+      }
+    ]
+  },
+  "qualityDecision": "Do not batch-filter scans; preprocessing worsens consonant errors. Baseline lexicon improvement is too small for automatic correction. All source words, points and labels still require visual review.",
+  "rawConfidence": 36,
+  "lexiconConfidence": 37,
+  "fullFloatModelAttempt": "Official tesseract-ocr/tessdata_best/main/heb.traineddata downloaded; WASM failed missing DotProductSSE in both normal/scalar attempts. No system package installation or page upload."
+}

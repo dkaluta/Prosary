@@ -1,0 +1,192 @@
+{
+  "book": "1MA",
+  "date": "2026-09-27",
+  "status": "Accepted disclosures for isolated unreadable marks on fully compared source pages; no whole-book approval",
+  "policy": "User approved explicit source notes for isolated unreadable vowels/dageshes; parent authorized applying this after clearer-scan/crop attempts. A note does not excuse unreviewed text, uncertain words or missing units.",
+  "primaryScanSHA256": "656891d377d2e3d4a9216723d94205488423907bf01df424b9f0b9de1560051e",
+  "additionalScanSHA256": "b72eaf5d2d858fabb7c3438ac0436ccd64c394a7dd2fad609efabe628d5534c7",
+  "fullComparisonReports": [
+    "1MA-pages115-120-review.json",
+    "1MA-pages120-123-review.json",
+    "1MA-pages124-126-review.json"
+  ],
+  "decisions": [
+    {
+      "unit": "4:10",
+      "sourceQueryId": "1MA-4-10-hayom-yod",
+      "note": {
+        "id": "1ma-4-10-yod-dagesh",
+        "kind": "unreadablePoint",
+        "anchor": "הַיוֹם",
+        "occurrence": 1,
+        "letterIndex": 2,
+        "mark": "dagesh",
+        "sourcePages": [
+          116
+        ],
+        "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf#page=116"
+      },
+      "before": "וְעַתָּה נִקְרָא לַשָּׁמַיִם אִם יֶחְפַּץ־בָּנוּ וְיִזְכֹּר בְּרִית אָבוֹת וְהִשְׁמִיד אֶת־הַמַּחֲנֶה הַזֶּה מִפָּנֵינוּ הַיוֹם׃",
+      "after": "וְעַתָּה נִקְרָא לַשָּׁמַיִם אִם יֶחְפַּץ־בָּנוּ וְיִזְכֹּר בְּרִית אָבוֹת וְהִשְׁמִיד אֶת־הַמַּחֲנֶה הַזֶּה מִפָּנֵינוּ הַיוֹם׃",
+      "detail": "The heavy yod stroke cannot be separated from any additional interior point; root independent reading also left this unresolved.",
+      "crop": {
+        "path": "/private/tmp/prosary-1ma-extra/crop-60-0.858-0.21-0.895-0.239.png",
+        "sha256": "eed63310a02fbe263d07802d831d801ce3b434cd5b80293b9d6ca0f35a921333"
+      },
+      "disposition": "acceptedSourceNote; source mark remains unreadable, not resolved as present/absent"
+    },
+    {
+      "unit": "4:18",
+      "sourceQueryId": "1MA-4-18-qomemiyot-yod",
+      "note": {
+        "id": "1ma-4-18-yod-dagesh",
+        "kind": "unreadablePoint",
+        "anchor": "קוֹמְמִיוֹת",
+        "occurrence": 1,
+        "letterIndex": 5,
+        "mark": "dagesh",
+        "sourcePages": [
+          117
+        ],
+        "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf#page=117"
+      },
+      "before": "וְגָרְגִיאַס וְהַחַיִל בָּהָר קָרוֹב לָנוּ וְעַתָּה עִמְדוּ בִּפְנֵי אוֹיְבֵינוּ וְהִלָּחֲמוּ אוֹתָם וְאַחֲרֵי־כֵן תִּקְחוּ שָׁלָל קוֹמְמִיוֹת׃",
+      "after": "וְגָרְגִיאַס וְהַחַיִל בָּהָר קָרוֹב לָנוּ וְעַתָּה עִמְדוּ בִּפְנֵי אוֹיְבֵינוּ וְהִלָּחֲמוּ אוֹתָם וְאַחֲרֵי־כֵן תִּקְחוּ שָׁלָל קוֹמְמִיוֹת׃",
+      "detail": "The yod point is not cleanly detached; independent reader confirmed final-vav holam but not yod dagesh. All certain points retained.",
+      "crop": {
+        "path": "/private/tmp/prosary-1ma-extra/crop-60-0.184-0.14-0.248-0.165.png",
+        "sha256": "4a85456c89567fd73c018da02e0c020d3439d6539dbb7fcc4238e91e7f437f46"
+      },
+      "disposition": "acceptedSourceNote; source mark remains unreadable, not resolved as present/absent"
+    },
+    {
+      "unit": "5:4",
+      "sourceQueryId": "1MA-5-4-beon-bet",
+      "note": {
+        "id": "1ma-5-4-bet-dagesh",
+        "kind": "unreadablePoint",
+        "anchor": "בְעוֹן",
+        "occurrence": 1,
+        "letterIndex": 1,
+        "mark": "dagesh",
+        "sourcePages": [
+          120
+        ],
+        "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf#page=120"
+      },
+      "before": "וַיִּזְכֹּר אֶת־רָעוֹת בְּנֵי־בְעוֹן אֲשֶׁר הָיוּ לָעָם לְפַח וּלְמוֹקֵשׁ בְּאָרְבָּם לָהֶם עַל־הַדְּרָכִים׃",
+      "after": "וַיִּזְכֹּר אֶת־רָעוֹת בְּנֵי־בְעוֹן אֲשֶׁר הָיוּ לָעָם לְפַח וּלְמוֹקֵשׁ בְּאָרְבָּם לָהֶם עַל־הַדְּרָכִים׃",
+      "detail": "The suspected bet point cannot be detached confidently from the inner stroke; two readers did not assert presence or absence.",
+      "crop": {
+        "path": "/private/tmp/prosary-1ma-extra/crop-62-0.705-0.447-0.773-0.48.png",
+        "sha256": "db5d27d8ed589b8f18342d1a009c2dbf8115aba72d13c3176886e60722fae2c8"
+      },
+      "disposition": "acceptedSourceNote; source mark remains unreadable, not resolved as present/absent"
+    },
+    {
+      "unit": "5:26",
+      "sourceQueryId": "1MA-5-26-kasphan-samekh",
+      "note": {
+        "id": "1ma-5-26-samekh-vowel",
+        "kind": "unreadablePoint",
+        "anchor": "כִספָן",
+        "occurrence": 1,
+        "letterIndex": 2,
+        "mark": "vowel",
+        "sourcePages": [
+          123
+        ],
+        "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf#page=123"
+      },
+      "before": "וְכִי רַבִּים מֵהֶם סְגוּרִים אֶל־בָּצְרָה וּבֶצֶר בָּאֲלִים כִספָן מַקֵּדָה וְקַרְנַיִם כָּל־הֶעָרִים הָאֵלֶּה בְּצוּרוֹת וּגְדוֹלוֹת׃",
+      "after": "וְכִי רַבִּים מֵהֶם סְגוּרִים אֶל־בָּצְרָה וּבֶצֶר בָּאֲלִים כִספָן מַקֵּדָה וְקַרְנַיִם כָּל־הֶעָרִים הָאֵלֶּה בְּצוּרוֹת וּגְדוֹלוֹת׃",
+      "detail": "The samekh vowel is fused with the baseline. Kaf hiriq and pe qamats are readable; neither reader could certify sheva or another vowel.",
+      "crop": {
+        "path": "/private/tmp/prosary-1ma-extra/crop-63-0.052-0.098-0.103-0.126.png",
+        "sha256": "f18d93e505acf2a42e4df4de068cb2fa31b82de4512b638355b0917811438a98"
+      },
+      "disposition": "acceptedSourceNote; source mark remains unreadable, not resolved as present/absent"
+    },
+    {
+      "unit": "5:26",
+      "sourceQueryId": "1MA-5-26-makeda-qoph",
+      "note": {
+        "id": "1ma-5-26-qoph-dagesh",
+        "kind": "unreadablePoint",
+        "anchor": "מַקֵדָה",
+        "occurrence": 1,
+        "letterIndex": 2,
+        "mark": "dagesh",
+        "sourcePages": [
+          123
+        ],
+        "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf#page=123"
+      },
+      "before": "וְכִי רַבִּים מֵהֶם סְגוּרִים אֶל־בָּצְרָה וּבֶצֶר בָּאֲלִים כִספָן מַקֵּדָה וְקַרְנַיִם כָּל־הֶעָרִים הָאֵלֶּה בְּצוּרוֹת וּגְדוֹלוֹת׃",
+      "after": "וְכִי רַבִּים מֵהֶם סְגוּרִים אֶל־בָּצְרָה וּבֶצֶר בָּאֲלִים כִספָן מַקֵדָה וְקַרְנַיִם כָּל־הֶעָרִים הָאֵלֶּה בְּצוּרוֹת וּגְדוֹלוֹת׃",
+      "detail": "The separate reinspection of this occurrence does not distinguish a qoph dagesh from the inner stroke; do not extrapolate from another Makeda occurrence.",
+      "crop": {
+        "path": "/private/tmp/prosary-1ma-extra/crop-63-0.343-0.122-0.415-0.158.png",
+        "sha256": "22d1f7d93f5a758f9bc3c95d4a545162c5445e161d136158abfa0099c329b3b2"
+      },
+      "disposition": "acceptedSourceNote; source mark remains unreadable, not resolved as present/absent"
+    },
+    {
+      "unit": "5:34",
+      "sourceQueryId": "1MA-5-34-bayom-yod",
+      "note": {
+        "id": "1ma-5-34-yod-dagesh",
+        "kind": "unreadablePoint",
+        "anchor": "בַּיוֹם",
+        "occurrence": 1,
+        "letterIndex": 2,
+        "mark": "dagesh",
+        "sourcePages": [
+          124
+        ],
+        "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf#page=124"
+      },
+      "before": "וַיֵּדַע מַחֲנֵה טִימוֹתְאוֹס כִּי הוּא מַקָּבִי וַיָּנֻסוּ מִפָּנָיו וַיַּכֵּם מַכָּה רַבָּה וַיִּפְּלוּ מֵהֶם בַּיוֹם הַהוּא כִּשְׁמוֹנַת אַלְפֵי אִישׁ׃",
+      "after": "וַיֵּדַע מַחֲנֵה טִימוֹתְאוֹס כִּי הוּא מַקָּבִי וַיָּנֻסוּ מִפָּנָיו וַיַּכֵּם מַכָּה רַבָּה וַיִּפְּלוּ מֵהֶם בַּיוֹם הַהוּא כִּשְׁמוֹנַת אַלְפֵי אִישׁ׃",
+      "detail": "The yod projection is attached to its bend. Both readers leave the dagesh unclear; bet dagesh and patah are clear and retained.",
+      "crop": {
+        "path": "/private/tmp/prosary-1ma-extra/crop-64-0.79-0.11-0.855-0.148.png",
+        "sha256": "cb4c64e71c9017b0be0d21142a64b8ae8421c80ee78efcd524227c42d2a69b8c"
+      },
+      "disposition": "acceptedSourceNote; source mark remains unreadable, not resolved as present/absent"
+    },
+    {
+      "unit": "5:36",
+      "sourceQueryId": "1MA-5-36-makeda-qoph",
+      "note": {
+        "id": "1ma-5-36-qoph-dagesh",
+        "kind": "unreadablePoint",
+        "anchor": "מַקֵדָה",
+        "occurrence": 1,
+        "letterIndex": 2,
+        "mark": "dagesh",
+        "sourcePages": [
+          124
+        ],
+        "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf#page=124"
+      },
+      "before": "וּמִשָּׁם נָסַע וַיִּקַּח אֶת כִסְפָן מַקֵּדָה וּבֶצֶר וּשְׁאָר־עָרֵי הַגִּלְעָד׃ אַחַר הַדְּבָרִים הָאֵלֶּה אָסַף טִימוֹתְאוֹס מַחֲנֶה אַחֵר וַיַּחַן לִפְנֵי רָפוֹן מֵעֵבֶר לַנָּחַל׃",
+      "after": "וּמִשָּׁם נָסַע וַיִּקַּח אֶת כִסְפָן מַקֵדָה וּבֶצֶר וּשְׁאָר־עָרֵי הַגִּלְעָד׃ אַחַר הַדְּבָרִים הָאֵלֶּה אָסַף טִימוֹתְאוֹס מַחֲנֶה אַחֵר וַיַּחַן לִפְנֵי רָפוֹן מֵעֵבֶר לַנָּחַל׃",
+      "detail": "Qoph interior material cannot be separated from its inner/right stroke; independent reader also leaves the dagesh unclear.",
+      "crop": {
+        "path": "/private/tmp/prosary-1ma-extra/crop-64-0.704-0.162-0.775-0.2.png",
+        "sha256": "72666544264147cb974920524ee48bf03bfada9f63e0c9ed33e7b11c721041bc"
+      },
+      "disposition": "acceptedSourceNote; source mark remains unreadable, not resolved as present/absent"
+    }
+  ],
+  "completedPages": [
+    116,
+    117,
+    120,
+    123,
+    124
+  ],
+  "unresolvedWordFindings": [],
+  "scope": "These notes close only previously documented isolated point queries; earlier Jerusalem cases and unreviewed chapter6+ remain outside this update."
+}
