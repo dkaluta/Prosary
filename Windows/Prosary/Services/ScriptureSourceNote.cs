@@ -33,7 +33,9 @@ public sealed record ScriptureSourceNote(
         foreach (var note in verse.SourceNotes)
         {
             if (note is null || note.Id is null || !Regex.IsMatch(note.Id, "^[a-z0-9][a-z0-9-]*$", RegexOptions.CultureInvariant)
-                || !ids.Add(note.Id) || note.Kind != "unreadablePoint" || note.Mark is not ("vowel" or "dagesh")
+                || !ids.Add(note.Id)
+                || !(note.Kind == "unreadablePoint" && note.Mark is ("vowel" or "dagesh")
+                    || note.Kind == "restoredLetter" && note.Mark == "consonant")
                 || string.IsNullOrWhiteSpace(note.Anchor) || note.Occurrence <= 0 || note.LetterIndex <= 0
                 || note.SourcePages is not { Count: > 0 } || note.SourcePages.Any(page => page <= 0)
                 || note.SourcePages.Zip(note.SourcePages.Skip(1)).Any(pair => pair.First >= pair.Second)
@@ -87,6 +89,9 @@ public sealed class ScriptureSourceNotesConverter : JsonConverter<List<Scripture
                 || fields.Any(field => !Fields.Contains(field) && field != "retainedVowels")) throw new JsonException("Invalid source-note fields.");
             if (retained && item.GetProperty("retainedVowels").ValueKind != JsonValueKind.Array)
                 throw new JsonException("Invalid retained vowels.");
+            if (retained && item.GetProperty("kind") is { ValueKind: JsonValueKind.String } kind
+                && kind.GetString() == "restoredLetter")
+                throw new JsonException("Restored letters cannot declare retained vowels.");
             notes.Add(item.Deserialize<ScriptureSourceNote>(options) ?? throw new JsonException("Invalid source note."));
         }
         return notes;

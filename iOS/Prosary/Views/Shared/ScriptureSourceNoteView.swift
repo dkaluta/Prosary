@@ -14,12 +14,17 @@ struct ScriptureSourceNoteView: View {
           .frame(maxWidth: .infinity, alignment: .leading)
           .environment(\.layoutDirection, .rightToLeft)
           .accessibilityIdentifier("scripture.sourceNote.anchor.\(note.id)")
-        if let letter = note.affectedLetter {
-          Text(String(format: String(localized: "scripture.sourceNote.letter", defaultValue: "Letter %@ (position %lld)", bundle: UILanguage.bundle, locale: UILanguage.locale), locale: UILanguage.locale, "\u{2067}\(letter)\u{2069}", Int64(note.letterIndex)))
+        if note.kind == .restoredLetter, let letter = note.affectedLetter {
+          Text(String(format: String(localized: "scripture.sourceNote.restoredLetter", defaultValue: "The letter %@ (position %lld) in “%@” was restored editorially. It is unreadable in the source scan.", bundle: UILanguage.bundle, locale: UILanguage.locale), locale: UILanguage.locale,
+                      "\u{2067}\(letter)\u{2069}", Int64(note.letterIndex), "\u{2067}\(note.anchor)\u{2069}"))
+        } else {
+          if let letter = note.affectedLetter {
+            Text(String(format: String(localized: "scripture.sourceNote.letter", defaultValue: "Letter %@ (position %lld)", bundle: UILanguage.bundle, locale: UILanguage.locale), locale: UILanguage.locale, "\u{2067}\(letter)\u{2069}", Int64(note.letterIndex)))
+          }
+          Text(note.mark == .vowel
+            ? String(localized: "scripture.sourceNote.unreadableVowel", defaultValue: "Unreadable vowel mark omitted.", bundle: UILanguage.bundle, locale: UILanguage.locale)
+            : String(localized: "scripture.sourceNote.unreadableDagesh", defaultValue: "Unreadable dagesh omitted.", bundle: UILanguage.bundle, locale: UILanguage.locale))
         }
-        Text(note.mark == .vowel
-          ? String(localized: "scripture.sourceNote.unreadableVowel", defaultValue: "Unreadable vowel mark omitted.", bundle: UILanguage.bundle, locale: UILanguage.locale)
-          : String(localized: "scripture.sourceNote.unreadableDagesh", defaultValue: "Unreadable dagesh omitted.", bundle: UILanguage.bundle, locale: UILanguage.locale))
         Text(String(format: String(localized: "scripture.sourceNote.pages", defaultValue: "PDF pages: %@", bundle: UILanguage.bundle, locale: UILanguage.locale), locale: UILanguage.locale,
                     note.sourcePages.map { $0.formatted(.number.locale(UILanguage.locale)) }.joined(separator: ", ")))
         if let source = note.sourceLink {

@@ -1649,6 +1649,8 @@ the metadata and chapter shapes. Daily reading text remains bundled and independ
 Bible downloads. Terminal has no readings or download features.
 
 Isolated unreadable Hebrew points may be omitted only with an explicit source note.
+An explicitly approved consonant restoration has a distinct `restoredLetter` note;
+readers identify it as editorial and retain independently readable vowel points.
 The shared verse carries an exact word/letter anchor and scan-page link; all native
 readers show the note separately from scripture. Bible archives with notes use
 version 2 so older readers reject them. The contract and strict review rules are in

@@ -63,6 +63,39 @@ class ReadingSourceNoteTest {
         }
     }
 
+    @Test fun restoredLetterPreservesItsReadablePointsAndTheDisplayedScripture() {
+        // The second fixture verifies readable dagesh preservation on the restored letter itself.
+        for (word in listOf("כָּלְתָה", "כָּלְּתָה")) {
+            val value = note.copy(id = "wis-1-16-restored-lamed", kind = "restoredLetter",
+                mark = "consonant", anchor = word, letterIndex = 2)
+            assertEquals("ל", value.letter)
+            value.validate(word)
+            val original = verse(value, word)
+            original.validateSourceNotes()
+            val decoded = Json.decodeFromString<ReadingVerse>(Json.encodeToString(original))
+            decoded.validateSourceNotes()
+            assertEquals(original, decoded)
+            assertEquals(word, decoded.displayedText(null, "Hebr"))
+        }
+    }
+
+    @Test fun restorationRequiresItsOwnKindMarkPairAndRejectsRetainedVowels() {
+        val value = note.copy(kind = "restoredLetter", mark = "consonant", anchor = "כָּלְתָה")
+        for ((kind, mark) in listOf("restoredLetter" to "vowel", "restoredLetter" to "dagesh",
+            "unreadablePoint" to "consonant", "unknown" to "consonant", "restoredLetter" to "unknown")) {
+            val invalid = value.copy(kind = kind, mark = mark)
+            rejected { invalid.validate(value.anchor) }
+            rejected { Json.decodeFromString<ReadingSourceNote>(Json.encodeToString(invalid)) }
+        }
+        for (retained in listOf(emptyList(), listOf("ְ"))) {
+            rejected { value.copy(retainedVowels = retained).validate(value.anchor) }
+        }
+        val encoded = Json.encodeToString(value)
+        for (retained in listOf("null", "[]", "[\"ְ\"]")) {
+            rejected { Json.decodeFromString<ReadingSourceNote>(encoded.dropLast(1) + ",\"retainedVowels\":$retained}") }
+        }
+    }
+
     @Test fun unknownKindsFieldsAndMalformedAnchorsFailClosed() {
         for (invalid in listOf(note.copy(id = "Invalid ID"), note.copy(kind = "guess"),
             note.copy(mark = "accent"), note.copy(anchor = "missing"), note.copy(anchor = ""),
@@ -102,5 +135,9 @@ class ReadingSourceNoteTest {
         assertEquals(text, valid.text)
         assertNull(store(verse(note.copy(kind = "unknown"))).passage(citation, "he"))
         assertNull(store(verse(note.copy(anchor = "missing"))).passage(citation, "he"))
+        val restored = note.copy(id = "wis-1-16-restored-lamed", kind = "restoredLetter",
+            mark = "consonant", anchor = "כָּלְתָה")
+        val restoredVerse = verse(restored, restored.anchor)
+        assertEquals(restoredVerse, store(restoredVerse).passage(citation, "he")!!.verses.single())
     }
 }

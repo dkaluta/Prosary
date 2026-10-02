@@ -34,11 +34,18 @@ public sealed class ScriptureSourceNotesControl : UserControl
             detail.Children.Add(new TextBlock { Text = note.Anchor, FlowDirection = FlowDirection.RightToLeft,
                 TextWrapping = TextWrapping.Wrap, FontFamily = new FontFamily(PrayerTypography.ResolveBodyFontFamily("he", true, PrayerTypography.Script.Hebrew)),
                 FontSize = PrayerTypography.ResolveBodyFontSize("he", true, PrayerTypography.Script.Hebrew) });
-            detail.Children.Add(new TextBlock { Text = string.Format(Loc.Tr("scripture_note_letter", "Letter {0} (position {1})"),
-                "\u2067" + note.Letter() + "\u2069", note.LetterIndex), TextWrapping = TextWrapping.Wrap });
-            detail.Children.Add(new TextBlock { Text = note.Mark == "vowel"
-                ? Loc.Tr("scripture_note_vowel", "Unreadable vowel mark omitted.")
-                : Loc.Tr("scripture_note_dagesh", "Unreadable dagesh omitted."), TextWrapping = TextWrapping.Wrap });
+            if (note.Kind == "restoredLetter")
+                detail.Children.Add(new TextBlock { Text = string.Format(Loc.Tr("scripture_note_restored_letter",
+                    "The letter {0} (position {1}) in “{2}” was restored editorially. It is unreadable in the source scan."),
+                    "\u2067" + note.Letter() + "\u2069", note.LetterIndex, "\u2067" + note.Anchor + "\u2069"), TextWrapping = TextWrapping.Wrap });
+            else
+            {
+                detail.Children.Add(new TextBlock { Text = string.Format(Loc.Tr("scripture_note_letter", "Letter {0} (position {1})"),
+                    "\u2067" + note.Letter() + "\u2069", note.LetterIndex), TextWrapping = TextWrapping.Wrap });
+                detail.Children.Add(new TextBlock { Text = note.Mark == "vowel"
+                    ? Loc.Tr("scripture_note_vowel", "Unreadable vowel mark omitted.")
+                    : Loc.Tr("scripture_note_dagesh", "Unreadable dagesh omitted."), TextWrapping = TextWrapping.Wrap });
+            }
             detail.Children.Add(new TextBlock { Text = string.Format(Loc.Tr("scripture_note_pages", "PDF pages: {0}"),
                 string.Join(", ", note.SourcePages)), TextWrapping = TextWrapping.Wrap });
             detail.Children.Add(new HyperlinkButton { Content = Loc.Tr("scripture_note_scan", "Source scan"),

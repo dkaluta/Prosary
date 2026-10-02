@@ -16,6 +16,12 @@ import kotlinx.serialization.json.decodeFromJsonElement
 import kotlinx.serialization.json.encodeToJsonElement
 import kotlinx.serialization.json.jsonObject
 
+private fun supportedSourceNoteKindAndMark(kind: String, mark: String): Boolean = when (kind) {
+    "unreadablePoint" -> mark == "vowel" || mark == "dagesh"
+    "restoredLetter" -> mark == "consonant"
+    else -> false
+}
+
 /** Editorial evidence belongs beside Scripture, never in its selectable text. */
 @Serializable(with = ReadingSourceNoteSerializer::class)
 data class ReadingSourceNote(val id: String, val kind: String, val anchor: String,
@@ -25,7 +31,7 @@ data class ReadingSourceNote(val id: String, val kind: String, val anchor: Strin
         .getOrNull(letterIndex - 1)?.toString().orEmpty()
 
     fun validate(text: String): Int {
-        require(Regex("[a-z0-9][a-z0-9-]*").matches(id) && kind == "unreadablePoint")
+        require(Regex("[a-z0-9][a-z0-9-]*").matches(id) && supportedSourceNoteKindAndMark(kind, mark))
         require(anchor.isNotBlank() && occurrence > 0 && letterIndex > 0)
         var from = 0
         var anchorOffset = -1
@@ -49,6 +55,8 @@ data class ReadingSourceNote(val id: String, val kind: String, val anchor: Strin
         when (mark) {
             "vowel" -> require(marks.filter(::isVowel).map { it.toString() } == retainedVowels.orEmpty())
             "dagesh" -> require('\u05bc' !in marks)
+            // The restoration concerns the letter body. Its readable points stay intact.
+            "consonant" -> Unit
             else -> throw IllegalArgumentException("Unknown source mark")
         }
         require(sourcePages.isNotEmpty() && sourcePages.all { it > 0 } && sourcePages == sourcePages.distinct().sorted())
@@ -79,6 +87,8 @@ object ReadingSourceNoteSerializer : KSerializer<ReadingSourceNote> {
             require(retained is JsonArray && retained.size == 1)
         }
         val fields = input.json.decodeFromJsonElement<SourceNoteFields>(value)
+        require(supportedSourceNoteKindAndMark(fields.kind, fields.mark))
+        require(fields.kind != "restoredLetter" || "retainedVowels" !in value.jsonObject)
         return with(fields) { ReadingSourceNote(id, kind, anchor, occurrence, letterIndex, mark, sourcePages, sourceURL, retainedVowels) }
     }
     override fun serialize(encoder: Encoder, value: ReadingSourceNote) {

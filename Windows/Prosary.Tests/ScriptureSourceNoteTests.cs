@@ -37,6 +37,51 @@ public sealed class ScriptureSourceNoteTests
     }
 
     [Theory]
+    [InlineData("כָּלְתָה", 2, "ל")]
+    [InlineData("כָּלְתָה", 1, "כ")]
+    public void RestoredLetterKeepsReadableVowelAndDageshInPrimaryText(string text, int letterIndex, string letter)
+    {
+        var note = ValidNote with { Id = "wis-1-16-restored-letter", Kind = "restoredLetter", Mark = "consonant",
+            Anchor = text, LetterIndex = letterIndex };
+        var verse = new ScriptureVerse(1, 16, text, SourceNotes: [note]);
+        Assert.True(ScriptureSourceNote.ValidForVerse(verse, false));
+        var passage = Assert.IsType<ScripturePassage>(Daily(verse));
+        var restored = Assert.Single(passage.Verses[0].SourceNotes!);
+        Assert.Equal(text, passage.Verses[0].Text);
+        Assert.Equal(letter, restored.Letter());
+        Assert.Equal("restoredLetter", restored.Kind);
+        Assert.Equal(note.SourceURL, restored.SourceURL);
+    }
+
+    [Theory]
+    [InlineData("unreadablePoint", "consonant")]
+    [InlineData("restoredLetter", "vowel")]
+    [InlineData("restoredLetter", "dagesh")]
+    [InlineData("restoredLetter", "letter")]
+    [InlineData("unknown", "consonant")]
+    public void SourceNoteKindsAcceptOnlyTheirOwnMarkCategories(string kind, string mark)
+    {
+        var note = ValidNote with { Kind = kind, Mark = mark };
+        var verse = Verse with { SourceNotes = [note] };
+        Assert.False(ScriptureSourceNote.ValidForVerse(verse, false));
+        Assert.Null(Daily(verse));
+    }
+
+    [Theory]
+    [InlineData("null")]
+    [InlineData("[]")]
+    [InlineData("[\"ְ\"]")]
+    public void RestoredLetterRejectsAnyRetainedVowelsFieldIncludingNull(string retainedJson)
+    {
+        var note = ValidNote with { Kind = "restoredLetter", Mark = "consonant", Anchor = "כָּלְתָה", LetterIndex = 2 };
+        var verse = new ScriptureVerse(1, 16, note.Anchor, SourceNotes: [note]);
+        var row = JsonSerializer.SerializeToNode(verse, Json)!;
+        row["sourceNotes"]![0]!["retainedVowels"] = JsonNode.Parse(retainedJson);
+        Assert.Throws<JsonException>(() => JsonSerializer.Deserialize<ScriptureVerse>(row.ToJsonString(), Json));
+        Assert.False(ScriptureSourceNote.ValidForVerse(verse with { SourceNotes = [note with { RetainedVowels = ["ְ"] }] }, false));
+    }
+
+    [Theory]
     [InlineData("empty")]
     [InlineData("multiple")]
     [InlineData("duplicate")]

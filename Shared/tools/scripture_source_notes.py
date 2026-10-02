@@ -2,7 +2,7 @@
 # /// script
 # requires-python = ">=3.11"
 # ///
-"""Validate disclosed unreadable Hebrew points without supplying a guessed reading."""
+"""Validate precisely anchored Hebrew point omissions and disclosed letter restorations."""
 from __future__ import annotations
 
 import re
@@ -35,8 +35,10 @@ def validate_source_notes(row: dict, *, label="Scripture", source_pages: set[int
         require(isinstance(note_id, str) and re.fullmatch(r"[a-z0-9][a-z0-9-]*", note_id),
                 f"{label}: invalid source-note ID")
         require(note_id not in ids, f"{label}: duplicate source-note ID")
-        require(note["kind"] == "unreadablePoint" and isinstance(note["mark"], str) and
-                note["mark"] in {"vowel", "dagesh"},
+        require(isinstance(note["kind"], str) and isinstance(note["mark"], str) and
+                (note["kind"], note["mark"]) in {
+                    ("unreadablePoint", "vowel"), ("unreadablePoint", "dagesh"),
+                    ("restoredLetter", "consonant")},
                 f"{label}: unknown source-note kind or mark")
         retained = note.get("retainedVowels", [])
         if "retainedVowels" in note:
@@ -66,7 +68,7 @@ def validate_source_notes(row: dict, *, label="Scripture", source_pages: set[int
         if note["mark"] == "vowel":
             require([char for char in actual if char in VOWELS] == retained,
                     f"{label}: unreadable mark is still present or retained vowel does not match")
-        else:
+        elif note["mark"] == "dagesh":
             require("\u05bc" not in actual, f"{label}: unreadable mark is still present")
         pages = note["sourcePages"]
         require(isinstance(pages, list) and bool(pages) and

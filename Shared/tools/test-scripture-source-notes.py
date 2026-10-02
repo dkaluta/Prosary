@@ -27,6 +27,52 @@ def fixture():
 
 
 class SourceNoteTests(unittest.TestCase):
+    def test_restored_letter_preserves_visible_vowels_and_dagesh(self):
+        row = fixture()
+        row['text'] = row['sourceNotes'][0]['anchor'] = 'כָּלְתָה'
+        row['sourceNotes'][0].update(kind='restoredLetter', mark='consonant')
+        self.assertEqual(validate_source_notes(row), ['lje-1-9-qoph-vowel'])
+        self.assertEqual(row['text'], 'כָּלְתָה')
+        # The note targets a consonant; it must not erase readable adjacent marks.
+        row['sourceNotes'][0]['letterIndex'] = 1
+        validate_source_notes(row)
+        for kind, mark in [('restoredLetter', 'vowel'), ('restoredLetter', 'dagesh'),
+                           ('unreadablePoint', 'consonant')]:
+            changed = copy.deepcopy(row)
+            changed['sourceNotes'][0].update(kind=kind, mark=mark)
+            with self.subTest(kind=kind, mark=mark), self.assertRaisesRegex(ValueError, 'unknown'):
+                validate_source_notes(changed)
+        for retained in [None, [], ['ְ']]:
+            changed = copy.deepcopy(row)
+            changed['sourceNotes'][0]['retainedVowels'] = retained
+            with self.subTest(retained=retained), self.assertRaisesRegex(ValueError, 'retained vowel'):
+                validate_source_notes(changed)
+
+    def test_restoration_uses_exact_occurrence_and_cannot_hide_a_second_note(self):
+        row = fixture()
+        row['text'] = 'כָּלְתָה כָּלְתָה'
+        note = row['sourceNotes'][0]
+        note.update(kind='restoredLetter', mark='consonant', anchor='כָּלְתָה', occurrence=2)
+        validate_source_notes(row)
+        row['sourceNotes'].append(note | {'id':'same-letter', 'anchor':'לְ', 'letterIndex':1})
+        with self.assertRaisesRegex(ValueError, 'duplicate source-note position'):
+            validate_source_notes(row)
+        row['sourceNotes'].pop()
+        note['occurrence'] = 3
+        with self.assertRaisesRegex(ValueError, 'dangling'):
+            validate_source_notes(row)
+
+    def test_restoration_survives_archive_generation(self):
+        row = fixture()
+        row['text'] = row['sourceNotes'][0]['anchor'] = 'כָּלְתָה'
+        row['sourceNotes'][0].update(kind='restoredLetter', mark='consonant')
+        edition = {'id':'fixture', 'languageCode':'he', 'name':'Fixture',
+                   'attribution':'Synthetic fixture', 'sourceURL':'https://example.org/'}
+        _, raw, entry = library.make_archive(edition, [('WIS', 1, [row], True)], {'WIS':{'name':'Fixture'}})
+        self.assertEqual(entry['archiveSchemaVersion'], 2)
+        with zipfile.ZipFile(io.BytesIO(raw)) as archive:
+            self.assertEqual(json.loads(archive.read('chapters/WIS/1.json'))['verses'][0], row)
+
     def test_unicode_letter_position_retains_readable_dagesh_and_other_vowels(self):
         row = fixture()
         self.assertEqual(validate_source_notes(row, source_pages={16}), ["lje-1-9-qoph-vowel"])

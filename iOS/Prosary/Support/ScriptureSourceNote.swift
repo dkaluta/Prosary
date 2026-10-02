@@ -1,8 +1,8 @@
 import Foundation
 
 nonisolated struct ScriptureSourceNote: Decodable, Equatable, Identifiable, Sendable {
-  enum Kind: String, Decodable, Sendable { case unreadablePoint }
-  enum Mark: String, Decodable, Sendable { case vowel, dagesh }
+  enum Kind: String, Decodable, Sendable { case unreadablePoint, restoredLetter }
+  enum Mark: String, Decodable, Sendable { case vowel, dagesh, consonant }
   let id: String
   let kind: Kind
   let anchor: String
@@ -40,6 +40,12 @@ nonisolated struct ScriptureSourceNote: Decodable, Equatable, Identifiable, Send
     sourcePages = try values.decode([Int].self, forKey: .sourcePages)
     sourceURL = try values.decode(String.self, forKey: .sourceURL)
     retainedVowels = values.contains(.retainedVowels) ? try values.decode([String].self, forKey: .retainedVowels) : nil
+    switch (kind, mark) {
+    case (.unreadablePoint, .vowel), (.unreadablePoint, .dagesh): break
+    case (.restoredLetter, .consonant) where !values.contains(.retainedVowels): break
+    default:
+      throw DecodingError.dataCorrupted(.init(codingPath: decoder.codingPath, debugDescription: "Invalid source-note kind or mark"))
+    }
   }
 
   var sourceLink: URL? {
@@ -93,6 +99,8 @@ nonisolated struct ScriptureSourceNote: Decodable, Equatable, Identifiable, Send
           !anchor.isEmpty, occurrence > 0, sourceLink != nil,
           !sourcePages.isEmpty, sourcePages.allSatisfy({ $0 > 0 }),
           sourcePages == Array(Set(sourcePages)).sorted(), let position = position(in: text) else { return false }
+    // A restored consonant may retain every readable printed point on that letter.
+    if kind == .restoredLetter { return mark == .consonant && retainedVowels == nil }
     // Inspect the source, not only a shortened quote that might omit its trailing marks.
     let letters = Self.letterScalars(in: Array(text.unicodeScalars), at: position.scalarOffset)
     if mark == .dagesh {

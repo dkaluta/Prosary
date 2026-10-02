@@ -65,10 +65,16 @@ fun ScriptureSourceNotes(notes: List<ReadingSourceNote>?) {
                             CompositionLocalProvider(LocalLayoutDirection provides LayoutDirection.Rtl) {
                                 Text(note.anchor, modifier = Modifier.fillMaxWidth(), style = MaterialTheme.typography.bodyLarge)
                             }
-                            Text(stringResource(R.string.scripture_source_note_letter, "\u2067${note.letter}\u2069", note.letterIndex),
-                                style = MaterialTheme.typography.bodyMedium)
-                            Text(stringResource(if (note.mark == "vowel") R.string.scripture_source_note_vowel else R.string.scripture_source_note_dagesh),
-                                style = MaterialTheme.typography.bodyMedium)
+                            if (note.kind == "restoredLetter") {
+                                Text(stringResource(R.string.scripture_source_note_restored_letter,
+                                    "\u2067${note.letter}\u2069", note.letterIndex, "\u2067${note.anchor}\u2069"),
+                                    style = MaterialTheme.typography.bodyMedium)
+                            } else {
+                                Text(stringResource(R.string.scripture_source_note_letter, "\u2067${note.letter}\u2069", note.letterIndex),
+                                    style = MaterialTheme.typography.bodyMedium)
+                                Text(stringResource(if (note.mark == "vowel") R.string.scripture_source_note_vowel else R.string.scripture_source_note_dagesh),
+                                    style = MaterialTheme.typography.bodyMedium)
+                            }
                             Text(stringResource(R.string.scripture_source_note_pages, note.sourcePages.joinToString(", ") { formatter.format(it) }),
                                 style = MaterialTheme.typography.bodySmall)
                             TextButton(onClick = { uriHandler.openUri(note.sourceURL) }) {

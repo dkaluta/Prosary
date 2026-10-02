@@ -105,6 +105,19 @@ class BibleStoreTest {
         val (edition, zip) = archive(initial, files)
         rejected { store().install(edition, zip) }
     }
+
+    @Test fun restoredLetterAndItsReadableVowelSurviveArchiveInstallation() {
+        val note = ReadingSourceNote("wis-1-16-restored-lamed", "restoredLetter", "כָּלְתָה",
+            1, 2, "consonant", listOf(2), "https://example.org/source.pdf#page=2")
+        val initial = base().copy(archiveSchemaVersion = 2)
+        val original = ReadingVerse(1, 1, note.anchor, sourceNotes = listOf(note))
+        val chapter = BibleChapter(2, initial.id, "GEN", 1, listOf(original, ReadingVerse(1, 4, "Four")))
+        val files = entries(initial).apply { put("chapters/GEN/1.json", json.encodeToString(chapter).toByteArray()) }
+        val (edition, zip) = archive(initial, files)
+        val store = store()
+        store.install(edition, zip)
+        assertEquals(original, store.chapter(edition, "GEN", 1)!!.verses.first())
+    }
     @Test fun rejectsWrongHashAndByteCount() {
         val (edition, zip) = archive(base())
         rejected { store().install(edition.copy(archiveSHA256 = "0".repeat(64)), zip) }

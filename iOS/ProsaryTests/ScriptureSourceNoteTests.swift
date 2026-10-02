@@ -103,4 +103,36 @@ final class ScriptureSourceNoteTests: XCTestCase {
     XCTAssertFalse(try decode(object(["anchor":text,"letterIndex":5,"mark":"dagesh","retainedVowels":["ִ"]])).isValid(in:text))
     XCTAssertThrowsError(try decode(object(["retainedVowels":NSNull()])))
   }
+
+  func testRestoredLetterPreservesReadablePointsAndExactSourceAnchor() throws {
+    let text = "כָּלְתָה"
+    let value = object(["kind":"restoredLetter", "mark":"consonant", "anchor":text, "letterIndex":2])
+    let note = try decode(value)
+    XCTAssertTrue(note.isValid(in:text))
+    XCTAssertEqual(note.affectedLetter, "לְ")
+    XCTAssertEqual(note.sourceLink?.fragment, "page=16")
+    XCTAssertFalse(note.isValid(in:"כָּלָתָה"), "Restoration does not relax exact pointed anchors")
+
+    let pointedLetter = "לְּ"
+    let pointed = try decode(object(["kind":"restoredLetter", "mark":"consonant", "anchor":pointedLetter, "letterIndex":1]))
+    XCTAssertTrue(pointed.isValid(in:pointedLetter), "A consonant restoration preserves both readable vowel and dagesh")
+    XCTAssertEqual(pointed.affectedLetter, pointedLetter)
+    for changes: [String: Any] in [["letterIndex":5], ["sourcePages":[]], ["sourceURL":"http://example.org"], ["id":"Bad ID"]] {
+      XCTAssertFalse(try decode(value.merging(changes) { _, new in new }).isValid(in:text))
+    }
+  }
+
+  func testRestorationRejectsOmissionMarksAndRetainedVowelsField() throws {
+    for changes: [String: Any] in [
+      ["kind":"restoredLetter", "mark":"vowel"],
+      ["kind":"restoredLetter", "mark":"dagesh"],
+      ["kind":"unreadablePoint", "mark":"consonant"]
+    ] {
+      XCTAssertThrowsError(try decode(object(changes)), "\(changes)")
+    }
+    for retained: Any in [[], ["ְ"], NSNull()] {
+      XCTAssertThrowsError(try decode(object(["kind":"restoredLetter", "mark":"consonant", "retainedVowels":retained])),
+                           "The retainedVowels field is forbidden on a consonant restoration, even when empty or null")
+    }
+  }
 }

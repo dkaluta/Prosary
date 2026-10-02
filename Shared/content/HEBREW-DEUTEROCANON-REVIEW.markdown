@@ -64,6 +64,13 @@ separate review/approval inventory. They do not excuse uncertain consonants, mis
 words or verses, unfinished comparison, or unreviewed numbering. A completed review
 with such notes means the source limitation is explicitly disclosed, not resolved.
 
+The separately authorized Wisdom 1:16 restoration supplies only the damaged lamed
+in `כּלְתָה`, retaining its visible sheva and the surrounding readable printed points.
+The unreadable kaf vowel has a separate omission note. The restored lamed has a
+distinct `restoredLetter/consonant` note identifying the letter as editorially restored,
+not visible in the scan. This explicit decision does not authorize unrecorded restorations
+elsewhere. Its source-frame and comparative evidence remain in the chapter review report.
+
 Wikisource comparisons retain the source page revision, translator and relationship to
 the printed edition. `Shared/tools/hebrew_ocr_baseline.py` aligns explicitly selected
 excerpts and records equal, replaced, omitted and inserted words without changing either

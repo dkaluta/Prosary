@@ -1,0 +1,167 @@
+{
+  "schemaVersion": 1,
+  "book": "WIS",
+  "chapter": 2,
+  "status": "first pointed draft; no page approval",
+  "source": {
+    "volume": "A2",
+    "scanSHA256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+    "pages": [
+      147,
+      148,
+      149
+    ]
+  },
+  "units": 24,
+  "method": "Direct reading of the three native page body images and enlarged crops; independent complete word/point comparison still required. Text is not borrowed from another translation.",
+  "openQueries": [
+    {
+      "verse": 8,
+      "finding": "Recheck exact position of sof pasuq relative to closing source bracket."
+    }
+  ],
+  "boundaries": [
+    {
+      "page": 147,
+      "verses": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "page": 148,
+      "verses": [
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13
+      ]
+    },
+    {
+      "page": 149,
+      "verses": [
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24
+      ]
+    }
+  ],
+  "draftTextSHA256": "2bf6664787a38664c623ff810b2f94a0ecd247d5ed0c2e11647bc25217aa34a0",
+  "crops": [
+    {
+      "file": "chapter2-crops.json",
+      "sha256": "5a46e30afed8e758590c9b71209276606d97d01632e012ec9f3c92b3616c4248",
+      "metadata": [
+        {
+          "page": 147,
+          "bounds": [
+            150,
+            335,
+            2425,
+            735
+          ],
+          "file": "WIS2-147-top.png",
+          "sha256": "1f0162fc92a3e81e44fcd5e4c0a6e8eb304c9791605e8d6d739aaa8ab64e08b1"
+        },
+        {
+          "page": 147,
+          "bounds": [
+            150,
+            720,
+            2425,
+            1290
+          ],
+          "file": "WIS2-147-bottom.png",
+          "sha256": "5a371e4c75d131a123bf6c536ea45b19cd8cc4562100d20b7e746c3b48f07194"
+        }
+      ]
+    },
+    {
+      "file": "chapter2-next-crops.json",
+      "sha256": "9c6ff4919f4d08d05780fddca61c7fd19bc0268216ce09fbbadc3d7cfabb394d",
+      "metadata": [
+        {
+          "page": 148,
+          "bounds": [
+            330,
+            345,
+            2460,
+            810
+          ],
+          "file": "WIS2-148-upper.png",
+          "sha256": "00ae37464a8062eea632b4bc862ff4f3eebab1f3955e87f6271aace2cb86dc0d"
+        },
+        {
+          "page": 148,
+          "bounds": [
+            330,
+            795,
+            2460,
+            1225
+          ],
+          "file": "WIS2-148-middle.png",
+          "sha256": "35475d89be3d8f3df949f87e3f230bc1c13d85e9857336c847594fe77c491e0b"
+        },
+        {
+          "page": 148,
+          "bounds": [
+            330,
+            1210,
+            2460,
+            1605
+          ],
+          "file": "WIS2-148-lower.png",
+          "sha256": "524b787a9c465ccb501a3b6a07ad1dd85b250f1a08253727304b4ef6f3f3d169"
+        },
+        {
+          "page": 149,
+          "bounds": [
+            295,
+            330,
+            2440,
+            785
+          ],
+          "file": "WIS2-149-upper.png",
+          "sha256": "cf5b5b9aa937d542ff6a34671eb87db41549c8a64db0532ed28cffb0ab065b3e"
+        },
+        {
+          "page": 149,
+          "bounds": [
+            295,
+            770,
+            2440,
+            1195
+          ],
+          "file": "WIS2-149-middle.png",
+          "sha256": "fcbc0e13065d81611adefe873b009609ceded1dde303780cbf90fa02e53f1b98"
+        },
+        {
+          "page": 149,
+          "bounds": [
+            295,
+            1180,
+            2440,
+            1575
+          ],
+          "file": "WIS2-149-lower.png",
+          "sha256": "a5865ddf5cb6ee57123322cc230d74aaa86df953ed66a1bfd2518aae9f64e3f4"
+        }
+      ]
+    }
+  ]
+}

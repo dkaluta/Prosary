@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "book": "WIS",
+  "scope": [
+    1,
+    2
+  ],
+  "status": "local chapter/page reconciliation complete; whole book draft",
+  "pages": [
+    145,
+    146,
+    147,
+    148,
+    149
+  ],
+  "restoration": {
+    "verse": "1:16",
+    "formerDraft": "כִּי חָדָה",
+    "acceptedText": "כּלְתָה",
+    "literalFrame": "כ + one missing consonant bearing visible sheva + תה",
+    "restoredLetter": "ל",
+    "letterIndex": 2,
+    "authorization": "User explicitly chose Restore ל with an explicit note on2026-10-02.",
+    "readableMarks": [
+      "kaf dagesh",
+      "sheva below missing consonant",
+      "tav qamats"
+    ],
+    "separatelyOmittedMark": "kaf vowel; joined lower ink does not certify a vowel class",
+    "reason": "The restored word fits the source consonant frame and the Greek/Brenton sense of pining away or being consumed, before the separate covenant clause. Context supports an editorial reconstruction; it does not recover the missing ink.",
+    "comparisons": [
+      {
+        "url": "https://tips.translation.bible/tip_verse/wis-116/",
+        "role": "Greek ἐτάκησαν and translation commentary; semantic corroboration only."
+      },
+      {
+        "url": "https://ebible.org/eng-Brenton/WIS01.htm",
+        "role": "Public-domain English semantic comparison; not replacement Hebrew wording."
+      }
+    ],
+    "sourceNotes": [
+      "wis-1-16-lamed-restored",
+      "wis-1-16-kaf-vowel"
+    ]
+  },
+  "pointNoteIds": [
+    "wis-1-11-titsru-tsade",
+    "wis-1-16-kaf-vowel",
+    "wis-1-16-lamed-restored",
+    "wis-1-2-kichashu-het",
+    "wis-1-2-nirah-alef",
+    "wis-1-3-mahshavot-het",
+    "wis-1-7-male-mem",
+    "wis-2-23-lamed",
+    "wis-2-24-vav",
+    "wis-2-4-mechumato-het"
+  ],
+  "chapter2": "All five independently identified point corrections and three precise point-only notes accepted after root viewed each native crop. Literal unusual תִּפָּרֵ retained without morphological normalization. Source brackets2:8 and2:23 retained.",
+  "sourceReports": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/WIS-chapter1-independent-review.json",
+      "sha256": "d98a5bbdcd7999973583d29572cd5580ad6b3ed37ae63251cf175705ae505556"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/WIS-chapter2-independent-review.json",
+      "sha256": "e3537e0a2e1f5b5419d2b23b5ce8bf4a7b4a5d33701fd624d838580c17f1fdae"
+    }
+  ]
+}

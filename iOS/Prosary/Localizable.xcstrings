@@ -160,6 +160,59 @@
         }
       }
     },
+    "scripture.sourceNote.restoredLetter" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The letter %1$@ (position %2$lld) in “%3$@” was restored editorially. It is unreadable in the source scan."
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "האות %1$@ (במיקום %2$lld) במילה “%3$@” שוחזרה בידי העורך. היא אינה קריאה בסריקת המקור."
+          }
+        },
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "أُعيد إثبات الحرف %1$@ (في الموضع %2$lld) في «%3$@» باجتهاد تحريري. الحرف غير مقروء في صورة المصدر."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Буква %1$@ (позиция %2$lld) в «%3$@» восстановлена редактором. На скане источника она неразборчива."
+          }
+        },
+        "fil" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ang titik na %1$@ (posisyon %2$lld) sa “%3$@” ay ibinalik ng editor. Hindi ito mabasa sa scan ng pinagkunan."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La lettre %1$@ (position %2$lld) dans « %3$@ » a été restituée par l’éditeur. Elle est illisible sur la numérisation de la source."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La lettera %1$@ (posizione %2$lld) in «%3$@» è stata ricostruita dal curatore. Non è leggibile nella scansione della fonte."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Літеру %1$@ (позиція %2$lld) у «%3$@» відновлено редактором. На скані джерела вона нерозбірлива."
+          }
+        }
+      }
+    },
     "scripture.sourceNote.unreadableVowel" : {
       "extractionState" : "manual",
       "localizations" : {

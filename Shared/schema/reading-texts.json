@@ -181,7 +181,7 @@
           "pattern": "^[a-z0-9][a-z0-9-]*$"
         },
         "kind": {
-          "const": "unreadablePoint"
+          "enum": ["unreadablePoint", "restoredLetter"]
         },
         "anchor": {
           "type": "string",
@@ -199,7 +199,8 @@
         "mark": {
           "enum": [
             "vowel",
-            "dagesh"
+            "dagesh",
+            "consonant"
           ]
         },
         "sourcePages": {
@@ -227,8 +228,16 @@
           "description": "Preserve one independently readable companion vowel while omitting the unreadable point; actual vowel code points must exactly match this list."
         }
       },
-      "description": "An unreadable Hebrew point omitted from the primary text and visibly disclosed. Validate the anchored occurrence, absence of the target mark, source pages, HTTPS without credentials, and book-wide unique IDs. See SCRIPTURE-SOURCE-NOTES.markdown.",
+      "description": "A precisely anchored Hebrew source limitation: an omitted unreadable point or a visibly disclosed editorial consonant restoration. Restored letters remain in the text with all independently readable points. Validate occurrence, kind/mark pairing, source pages, HTTPS without credentials, and book-wide unique IDs. See SCRIPTURE-SOURCE-NOTES.markdown.",
       "allOf": [
+        {
+          "if": {"properties": {"kind": {"const": "restoredLetter"}}},
+          "then": {
+            "properties": {"mark": {"const": "consonant"}},
+            "not": {"required": ["retainedVowels"]}
+          },
+          "else": {"properties": {"mark": {"enum": ["vowel", "dagesh"]}}}
+        },
         {
           "if": {
             "required": [
