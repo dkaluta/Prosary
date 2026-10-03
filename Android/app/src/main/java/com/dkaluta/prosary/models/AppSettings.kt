@@ -30,6 +30,10 @@ object AppSettings {
     private const val KEY_SHOW_TODAY_FEAST = "showTodayFeast"
     private const val KEY_SHOW_TODAY_INTENTION = "showTodayIntention"
     private const val KEY_SHOW_TODAY_READINGS = "showTodayReadings"
+    private const val KEY_READINGS_REMINDER = "readingsReminderEnabled"
+    private const val KEY_READINGS_REMINDER_TIME = "readingsReminderMinutes"
+    private const val KEY_SAINT_REMINDER = "saintReminderEnabled"
+    private const val KEY_SAINT_REMINDER_TIME = "saintReminderMinutes"
     private const val KEY_EXPAND_READINGS = "expandReadingsByDefault"
     private const val KEY_SHOW_TODAY_TORAH = "showTodayTorahPortion"
     private const val KEY_PRAYER_NAME_LANGUAGE = "showPrayerNameInPrayerLanguage"
@@ -148,6 +152,22 @@ object AppSettings {
         }
 
     private var showTodayReadingsState by mutableStateOf(true)
+    private var readingsReminderState by mutableStateOf(false)
+    var readingsReminderEnabled: Boolean
+        get() = readingsReminderState
+        set(value) { readingsReminderState = value; prefs?.edit()?.putBoolean(KEY_READINGS_REMINDER, value)?.apply() }
+    private var readingsReminderTimeState by mutableStateOf(540)
+    var readingsReminderMinutes: Int
+        get() = readingsReminderTimeState
+        set(value) { readingsReminderTimeState = value.coerceIn(0, 1439); prefs?.edit()?.putInt(KEY_READINGS_REMINDER_TIME, readingsReminderTimeState)?.apply() }
+    private var saintReminderState by mutableStateOf(false)
+    var saintReminderEnabled: Boolean
+        get() = saintReminderState
+        set(value) { saintReminderState = value; prefs?.edit()?.putBoolean(KEY_SAINT_REMINDER, value)?.apply() }
+    private var saintReminderTimeState by mutableStateOf(540)
+    var saintReminderMinutes: Int
+        get() = saintReminderTimeState
+        set(value) { saintReminderTimeState = value.coerceIn(0, 1439); prefs?.edit()?.putInt(KEY_SAINT_REMINDER_TIME, saintReminderTimeState)?.apply() }
     var showTodayReadings: Boolean
         get() = showTodayReadingsState
         set(value) {
@@ -247,6 +267,10 @@ object AppSettings {
         showTodayIntention = resolved.getBoolean(KEY_SHOW_TODAY_INTENTION, true)
         showTodayTorahPortion = resolved.getBoolean(KEY_SHOW_TODAY_TORAH, false)
         showTodayReadings = resolved.getBoolean(KEY_SHOW_TODAY_READINGS, true)
+        readingsReminderState = resolved.getBoolean(KEY_READINGS_REMINDER, false)
+        readingsReminderTimeState = resolved.getInt(KEY_READINGS_REMINDER_TIME, 540).coerceIn(0, 1439)
+        saintReminderState = resolved.getBoolean(KEY_SAINT_REMINDER, false)
+        saintReminderTimeState = resolved.getInt(KEY_SAINT_REMINDER_TIME, 540).coerceIn(0, 1439)
         expandReadingsByDefault = resolved.getBoolean(KEY_EXPAND_READINGS, false)
         showPrayerNameInPrayerLanguage = resolved.getBoolean(KEY_PRAYER_NAME_LANGUAGE, false)
         easternPaschaStyle = resolved.getString(KEY_EASTERN_PASCHA_STYLE, "julian") ?: "julian"

@@ -5,10 +5,13 @@ enum ProsaryWidgetLink: Equatable {
   case today
   case rosary
   case library
+  case calendar
+  case readings
   case prayer(UUID)
 
   init?(url: URL) {
-    guard let parts = URLComponents(url: url, resolvingAgainstBaseURL: false),
+    guard !url.absoluteString.contains("%"), !url.absoluteString.contains("\\"),
+          let parts = URLComponents(url: url, resolvingAgainstBaseURL: false),
           parts.scheme?.lowercased() == "prosary",
           parts.user == nil, parts.password == nil, parts.port == nil,
           parts.query == nil, parts.fragment == nil else { return nil }
@@ -16,6 +19,8 @@ enum ProsaryWidgetLink: Equatable {
     case "today" where parts.path.isEmpty || parts.path == "/": self = .today
     case "rosary" where parts.path.isEmpty || parts.path == "/": self = .rosary
     case "library" where parts.path.isEmpty || parts.path == "/": self = .library
+    case "calendar" where parts.path.isEmpty || parts.path == "/": self = .calendar
+    case "readings" where parts.path.isEmpty || parts.path == "/": self = .readings
     case "prayer":
       let path = parts.path
       guard path.hasPrefix("/"), let id = UUID(uuidString: String(path.dropFirst())) else { return nil }

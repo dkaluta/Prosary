@@ -92,6 +92,7 @@ import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
 import java.util.Locale
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import com.dkaluta.prosary.services.LocalAppServices
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
@@ -136,6 +137,7 @@ private data class DevotionCard(
 @Composable
 fun HomeScreen(
     onOpenPrayer: (String) -> Unit,
+    onOpenReminders: (String) -> Unit,
     onOpenRosaryPicker: () -> Unit,
     /** Opens the preset editor for a new preset of this kind — the + menu's "Add …" items. */
     onAddPreset: (PrayerKind) -> Unit,
@@ -149,6 +151,7 @@ fun HomeScreen(
     browsingDate: TodayBrowsingDate = rememberTodayBrowsingDate(),
 ) {
     val services = LocalAppServices.current
+    val reminderScope = androidx.compose.runtime.rememberCoroutineScope()
     val isDarkTheme = isSystemInDarkTheme()
 
     // A null selection follows the current day, including midnight and returning to the app.
@@ -641,6 +644,31 @@ fun HomeScreen(
                         modifier = Modifier.testTag(card.testTag),
                     )
                     DropdownMenu(expanded = cardMenu, onDismissRequest = { cardMenu = false }) {
+                        if (card.basicPrayerId == null) {
+                            DropdownMenuItem(
+                                text = { Text(stringResource(R.string.reminders_title)) },
+                                onClick = {
+                                    cardMenu = false
+                                    reminderScope.launch {
+                                        val existing = when (card.devotionId) {
+                                            "rosary" -> defaultRosary
+                                            "jesusPrayer" -> defaultJesusPrayer
+                                            else -> defaultCustomDevotions[card.devotionId]
+                                        }
+                                        val prayer = existing ?: Prayer(name = card.title, isDefault = true,
+                                            kind = when (card.devotionId) {
+                                                "rosary" -> PrayerKind.Rosary
+                                                "jesusPrayer" -> PrayerKind.JesusPrayer
+                                                else -> PrayerKind.Custom
+                                            }, customDevotionId = card.devotionId.takeUnless { it in setOf("rosary", "jesusPrayer") })
+                                        runCatching { if (existing == null) services.presetStore.save(prayer) }
+                                            .onSuccess { onOpenReminders(prayer.id) }
+                                            .onFailure { android.widget.Toast.makeText(context, it.localizedMessage, android.widget.Toast.LENGTH_LONG).show() }
+                                    }
+                                },
+                                modifier = Modifier.testTag("reminders.${card.devotionId}"),
+                            )
+                        }
                         DropdownMenuItem(
                             text = { Text(stringResource(R.string.home_move_to_top)) },
                             onClick = {

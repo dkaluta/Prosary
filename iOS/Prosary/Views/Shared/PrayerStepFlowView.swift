@@ -47,6 +47,10 @@ struct PrayerStepFlowView: View {
   /// True while that recording is actually playing: the timer auto-advance stands down, since
   /// the audio's chapters are driving the steps and two advance drivers would fight.
   var audioIsPlaying: Bool = false
+  /// Music can play alongside timed prayer advancement; only narration supplies step hints.
+  var audioDrivesSteps: Bool = true
+  /// Recorded narration takes priority; music alone can still offer system speech while paused.
+  var speechAvailable: Bool = true
   /// Session-specific controls share the title's adaptive placement with auto-advance.
   /// Compact iOS windows place them below the navigation title; wider windows use the toolbar.
   var flowActions: AnyView? = nil
@@ -58,6 +62,9 @@ struct PrayerStepFlowView: View {
   @Environment(\.horizontalSizeClass) private var horizontalSizeClass
   @Environment(\.verticalSizeClass) private var verticalSizeClass
   @Environment(\.prayerWindowIsModal) private var windowIsModal
+  @Environment(\.scenePhase) private var scenePhase
+  @State private var speech = PrayerSpeechController()
+  @State private var showsSpeechUnavailable = false
   #if os(macOS)
   @Environment(\.macPrayerPresentation) private var presentation
   #endif
@@ -251,6 +258,18 @@ struct PrayerStepFlowView: View {
     .onAppear { applyDefaultScript() }
     .onChange(of: languageCode) { _, _ in applyDefaultScript() }
     .onChange(of: step == nil) { _, _ in applyDefaultScript() }
+    .onChange(of: currentIndex) { _, _ in speech.stop() }
+    .onChange(of: step?.body) { _, _ in speech.stop() }
+    .onChange(of: languageCode) { _, _ in speech.stop() }
+    .onChange(of: audioIsPlaying) { _, playing in if playing { speech.stop(deactivateSession: false) } }
+    .onChange(of: windowIsModal) { _, modal in if modal { speech.stop() } }
+    .onChange(of: scenePhase) { _, phase in if phase != .active { speech.stop() } }
+    .onDisappear { speech.stop() }
+    .alert(String(localized: "speech.unavailable.title", defaultValue: "Voice Unavailable", bundle: UILanguage.bundle, locale: UILanguage.locale), isPresented: $showsSpeechUnavailable) {
+      Button(String(localized: "common.ok", defaultValue: "OK", bundle: UILanguage.bundle, locale: UILanguage.locale), role: .cancel) {}
+    } message: {
+      Text(String(localized: "speech.unavailable.message", defaultValue: "Install a system voice for this prayer’s language to read it aloud.", bundle: UILanguage.bundle, locale: UILanguage.locale))
+    }
     #if os(iOS)
     .navigationBarTitleDisplayMode(.inline)
     #endif
@@ -272,6 +291,7 @@ struct PrayerStepFlowView: View {
       } else {
         ToolbarItemGroup(placement: .primaryAction) {
           flowActions
+          speechButton
           autoAdvanceMenu
         }
       }
@@ -286,8 +306,8 @@ struct PrayerStepFlowView: View {
       hapticsOnAdvance && step != nil
     }
     #endif
-    .task(id: "\(autoAdvanceSeconds)-\(currentIndex)-\(step != nil)-\(audioIsPlaying)-\(windowIsModal)") {
-      guard autoAdvanceSeconds > 0, step != nil, !isLastStep, !audioIsPlaying, !windowIsModal else { return }
+    .task(id: "\(autoAdvanceSeconds)-\(currentIndex)-\(step != nil)-\(audioIsPlaying && audioDrivesSteps)-\(speech.isSpeaking)-\(windowIsModal)") {
+      guard autoAdvanceSeconds > 0, step != nil, !isLastStep, !(audioIsPlaying && audioDrivesSteps), !speech.isSpeaking, !windowIsModal else { return }
       try? await Task.sleep(for: .seconds(autoAdvanceSeconds))
       guard !Task.isCancelled else { return }
       onNext()
@@ -323,6 +343,7 @@ struct PrayerStepFlowView: View {
     ProsaryGlassControlGroup {
       HStack(spacing: 12) {
         flowActions
+        speechButton
         autoAdvanceMenu
       }
       .prosaryNavigationButtonStyle()
@@ -355,6 +376,26 @@ struct PrayerStepFlowView: View {
     .accessibilityLabel(String(localized: "prayerFlow.autoAdvance", defaultValue: "Auto-Advance", bundle: UILanguage.bundle, locale: UILanguage.locale))
     .help(String(localized: "prayerFlow.autoAdvance", defaultValue: "Auto-Advance", bundle: UILanguage.bundle, locale: UILanguage.locale))
     .accessibilityIdentifier("autoAdvanceMenu")
+  }
+
+  @ViewBuilder
+  private var speechButton: some View {
+    if speechAvailable {
+      Button {
+        if speech.isSpeaking { speech.stop() }
+        else if let step {
+          let text = [step.acclamation, step.body].compactMap { $0 }.joined(separator: "\n\n")
+          if !speech.speak(text, languageCode: languageCode) { showsSpeechUnavailable = true }
+        }
+      } label: {
+        Label(speech.isSpeaking
+          ? String(localized: "speech.stop", defaultValue: "Stop Reading", bundle: UILanguage.bundle, locale: UILanguage.locale)
+          : String(localized: "speech.read", defaultValue: "Read Aloud", bundle: UILanguage.bundle, locale: UILanguage.locale),
+          systemImage: speech.isSpeaking ? "stop.circle.fill" : "speaker.wave.2")
+      }
+      .disabled(step == nil || audioIsPlaying || windowIsModal)
+      .accessibilityIdentifier("prayerReadAloudButton")
+    }
   }
 
   @ViewBuilder

@@ -54,6 +54,10 @@ public static class AppSettings
     private static bool? _showTodayFeast;
     private static bool? _showTodayIntention;
     private static bool? _showTodayReadings;
+    private static bool? _readingsReminderEnabled;
+    private static bool? _saintReminderEnabled;
+    private static int? _readingsReminderMinutes;
+    private static int? _saintReminderMinutes;
     private static bool? _expandReadingsByDefault;
     private static bool? _showTodayTorahPortion;
     private static bool? _showPrayerNameInPrayerLanguage;
@@ -373,6 +377,15 @@ public static class AppSettings
 
     public static bool ShowTodayReadings => _showTodayReadings ??=
         ReadLocalSetting(KeyShowTodayReadings) as bool? ?? true;
+
+    public static bool ReadingsReminderEnabled => _readingsReminderEnabled ??= ReadLocalSetting("readingsReminderEnabled") as bool? ?? false;
+    public static bool SaintReminderEnabled => _saintReminderEnabled ??= ReadLocalSetting("saintReminderEnabled") as bool? ?? false;
+    public static int ReadingsReminderMinutes => _readingsReminderMinutes ??= Math.Clamp(ReadLocalSetting("readingsReminderMinutes") as int? ?? 540, 0, 1439);
+    public static int SaintReminderMinutes => _saintReminderMinutes ??= Math.Clamp(ReadLocalSetting("saintReminderMinutes") as int? ?? 540, 0, 1439);
+    public static void SetReadingsReminderEnabled(bool value) { _readingsReminderEnabled = value; WriteLocalSetting("readingsReminderEnabled", value); }
+    public static void SetSaintReminderEnabled(bool value) { _saintReminderEnabled = value; WriteLocalSetting("saintReminderEnabled", value); }
+    public static void SetReadingsReminderMinutes(int value) { _readingsReminderMinutes = Math.Clamp(value, 0, 1439); WriteLocalSetting("readingsReminderMinutes", _readingsReminderMinutes.Value); }
+    public static void SetSaintReminderMinutes(int value) { _saintReminderMinutes = Math.Clamp(value, 0, 1439); WriteLocalSetting("saintReminderMinutes", _saintReminderMinutes.Value); }
 
     public static void SetShowTodayReadings(bool value)
     {

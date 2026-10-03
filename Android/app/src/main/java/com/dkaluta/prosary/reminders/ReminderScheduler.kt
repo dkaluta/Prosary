@@ -21,9 +21,10 @@ import java.util.Calendar
 
 /**
  * Schedules/cancels daily repeating local notifications for a [Prayer]'s saved reminders, via
- * [AlarmManager]. Inexact `setRepeating` (not `setExactAndAllowWhileIdle`) is used deliberately —
+ * [AlarmManager]. Inexact one-shot alarms are used deliberately —
  * a prayer reminder doesn't need to-the-second precision, and exact alarms require either a
- * hard-to-qualify special app category or a user trip to Settings on API 31+.
+ * hard-to-qualify special app category or a user trip to Settings on API 31+. The receiver
+ * computes the next local day after delivery, preserving wall-clock time across DST.
  */
 object ReminderScheduler {
     const val NotificationChannelId = "prayer_reminders"
@@ -34,11 +35,15 @@ object ReminderScheduler {
     // receiver can then run without loading any packs. An alarm armed before this extra existed
     // falls back to the generic body until its next re-arm (boot or edit).
     const val ExtraBody = "body"
+    const val ExtraHour = "reminderHour"
+    const val ExtraMinute = "reminderMinute"
+    const val ExtraUrl = "url"
+    private const val ExtraRequestCode = "requestCode"
 
     fun createNotificationChannel(context: Context) {
         val manager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         // Idempotent: creating a channel that already exists with the same id is a no-op.
-        val channel = NotificationChannel(NotificationChannelId, "Prayer Reminders", NotificationManager.IMPORTANCE_DEFAULT)
+        val channel = NotificationChannel(NotificationChannelId, context.getString(R.string.settings_reminders_header), NotificationManager.IMPORTANCE_DEFAULT)
         manager.createNotificationChannel(channel)
     }
 
@@ -57,7 +62,9 @@ object ReminderScheduler {
             if (!reminder.isEnabled) continue
             val triggerAt = nextTriggerTimeMillis(reminder.hour, reminder.minute)
             val pendingIntent = pendingIntentFor(context, prayer, reminder.id)
-            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, triggerAt, AlarmManager.INTERVAL_DAY, pendingIntent)
+            // Re-arm after delivery using the next local civil day. A fixed 24-hour interval
+            // shifts an hour at daylight-saving transitions.
+            alarmManager.set(AlarmManager.RTC_WAKEUP, triggerAt, pendingIntent)
         }
     }
 
@@ -92,6 +99,7 @@ object ReminderScheduler {
         for (prayer in prayers) {
             if (prayer.reminders.any { it.isEnabled }) schedule(context, prayer)
         }
+        TodayReminderScheduler.refresh(context)
     }
 
     // MARK: Multi-day series
@@ -176,19 +184,24 @@ object ReminderScheduler {
     /** Notification body text per devotion — mirrors iOS's `ReminderScheduler.notificationBody(for:)`:
      * a generic devotion's body comes from its bundle manifest's `reminderBody` (e.g. the
      * Angelus's bell text), not any hardcoded per-kind table. */
-    fun notificationBody(prayer: Prayer): String = when (prayer.kind) {
-        PrayerKind.Rosary -> "Time to pray the Rosary."
-        PrayerKind.JesusPrayer -> "Time for the Jesus Prayer."
+    fun notificationBody(prayer: Prayer, context: Context? = null): String = when (prayer.kind) {
+        PrayerKind.Rosary -> context?.getString(R.string.home_tap_to_pray) ?: "Time to pray the Rosary."
+        PrayerKind.JesusPrayer -> context?.getString(R.string.home_tap_to_pray) ?: "Time for the Jesus Prayer."
         PrayerKind.Custom -> prayer.customDevotionId
             ?.let { PrayerPackStore.info(it)?.localizedReminderBody }
-            ?: "Time to pray."
+            ?: context?.getString(R.string.home_tap_to_pray) ?: "Time to pray."
     }
 
     private fun pendingIntentFor(context: Context, prayer: Prayer, reminderId: String): PendingIntent {
         val intent = Intent(context, ReminderBroadcastReceiver::class.java).apply {
             putExtra(ExtraPrayerId, prayer.id)
             putExtra(ExtraPrayerName, prayer.name)
-            putExtra(ExtraBody, notificationBody(prayer))
+            putExtra(ExtraBody, notificationBody(prayer, context))
+            val reminder = prayer.reminders.first { it.id == reminderId }
+            putExtra(ExtraHour, reminder.hour)
+            putExtra(ExtraMinute, reminder.minute)
+            putExtra(ExtraUrl, "prosary://widget/prayer/${prayer.id}")
+            putExtra(ExtraRequestCode, (prayer.id + reminderId).hashCode())
         }
         val requestCode = (prayer.id + reminderId).hashCode()
         return PendingIntent.getBroadcast(
@@ -197,16 +210,27 @@ object ReminderScheduler {
         )
     }
 
-    private fun nextTriggerTimeMillis(hour: Int, minute: Int): Long {
+    fun nextTriggerTimeMillis(hour: Int, minute: Int, now: Long = System.currentTimeMillis()): Long {
         val cal = Calendar.getInstance().apply {
+            timeInMillis = now
             set(Calendar.HOUR_OF_DAY, hour)
             set(Calendar.MINUTE, minute)
             set(Calendar.SECOND, 0)
             set(Calendar.MILLISECOND, 0)
         }
-        if (cal.timeInMillis <= System.currentTimeMillis()) {
+        if (cal.timeInMillis <= now) {
             cal.add(Calendar.DAY_OF_YEAR, 1)
         }
         return cal.timeInMillis
+    }
+
+    fun rearm(context: Context, intent: Intent) {
+        if (!intent.hasExtra(ExtraHour)) return
+        if (!intent.hasExtra(ExtraRequestCode)) return
+        val pending = PendingIntent.getBroadcast(context, intent.getIntExtra(ExtraRequestCode, 0), intent,
+            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
+        (context.getSystemService(Context.ALARM_SERVICE) as AlarmManager).set(
+            AlarmManager.RTC_WAKEUP,
+            nextTriggerTimeMillis(intent.getIntExtra(ExtraHour, 9), intent.getIntExtra(ExtraMinute, 0)), pending)
     }
 }

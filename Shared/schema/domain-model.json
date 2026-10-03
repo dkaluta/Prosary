@@ -7,17 +7,17 @@
         "title": { "type": "string", "description": "Original provider title; Syriac retains exact English SYE spelling plus distinct reviewed Arabic supplements." },
         "rank": { "type": "string" },
         "titleByLanguage": { "type": "map<string, string>?", "description": "Assembled localized display title. Syriac generation requires every component in all eight interface languages; copying English under another locale is not coverage." },
-        "observances": { "type": "FeastObservance[]?", "description": "Optional identity-preserving components, currently supplied by the Syriac calendar. Older datasets without these remain valid." }
+        "observances": { "type": "FeastObservance[]?", "description": "Optional identity-preserving components and sourced saint/feast descriptions in the selected calendar. Older datasets without these remain valid." }
       }
     },
     "FeastObservance": {
-      "description": "Reviewed identity and language-specific display metadata for a single observance. The supplied 2026 Hebrew Urtotho calendar applies only to Syriac; descriptions join exact source UID, date and identity, never date alone or array position.",
+      "description": "Reviewed identity and language-specific display metadata for a single observance. The supplied 2026 Hebrew Urtotho calendar applies only to Syriac; short reviewed Evangelizo excerpts also enrich supported Roman calendars. Descriptions join exact source UID, calendar, date and identity, never date alone or array position.",
       "fields": {
         "title": { "type": "string", "description": "Original English display spelling where SYE supplies it." },
         "identity": { "type": "string", "description": "Reviewed canonical identity, distinct from display spelling." },
         "sourceTitleByLanguage": { "type": "map<string, string>?", "description": "Generator provenance: exact published Arabic captions take precedence over editorial Arabic supplements during re-localization. Native clients may ignore this field." },
         "titleByLanguage": { "type": "map<string, string>?" },
-        "descriptionByLanguage": { "type": "map<string, string>?", "description": "Sourced biography. Render only the normalized exact interface locale (iw->he, fil->tl); never fall back to another language. Initially only supplied Hebrew descriptions are available." },
+        "descriptionByLanguage": { "type": "map<string, string>?", "description": "Optional sourced saint/feast prose. Render only the normalized exact interface locale (iw->he, fil->tl); never fall back to another language. Coverage is explicit per observance and language, not promised for every calendar/date." },
         "descriptionSourceByLanguage": { "type": "map<string, string>?", "description": "Matching source URL, exposed only when a safe HTTPS URL and a corresponding description exist." },
         "descriptionCreditByLanguage": { "type": "map<string, string>?", "description": "Attribution accompanying the description, including the supplied Hebrew reference and its underlying Evangelizo source." }
       }
@@ -702,7 +702,7 @@
       "runtimeRequirement": "The engine side of this type needs LiturgicalCalendarProviding to answer week-of-season, psalterWeek, rank and readingYear for a date — none of which it does today. psalterWeek is arithmetic on the week of the season, rank is a lookup in the feasts.json the Pray tab already ships, and readingYear alternates with the liturgical year; only week-of-season is genuinely new computation. See ARCHITECTURE.markdown's \"Hours\"."
     },
     "DevotionAudioTrack": {
-      "description": "One narrated recording a bundle declares in its audio.json (a separate optional bundle file, staged by both packers like options.json) — loaders parse the metadata eagerly and serve the bytes on demand; each platform's player extracts them to a cache file and plays them on the prayer flow's transport bar (see ARCHITECTURE.markdown's \"Audio\"). Files are Ogg Opus (RFC 7845, .opus) under the bundle's audio/ directory.",
+      "description": "One narration or music recording a bundle declares in its audio.json (a separate optional bundle file, staged by both packers like options.json) — loaders parse the metadata eagerly and serve the bytes on demand; each platform's player extracts them to a cache file and plays them on the prayer flow's transport bar (see ARCHITECTURE.markdown's \"Audio\"). Files are Ogg Opus (RFC 7845, .opus) under the bundle's audio/ directory.",
       "fields": {
         "id": {
           "type": "string",
@@ -730,6 +730,10 @@
         "chapters": {
           "type": "DevotionAudioChapter[]",
           "description": "Non-empty; first chapter starts at 0, starts strictly increasing. Kept as JSON metadata rather than embedded Ogg chapter comments because none of the three platforms' media stacks surface those."
+        },
+        "role": {
+          "type": "string?",
+          "description": "narration (default when absent) or music. Matching narration is preferred; music is playable when no narration matches and its chapters never advance or seek the prayer steps. Musical rosary bundles use role music and their sung prayer language."
         }
       }
     },
@@ -917,6 +921,22 @@
           "type": "boolean",
           "default": true,
           "description": "Show readings in Pray and native desktop Today. The dedicated phone Readings tab remains available independently."
+        },
+        "readingsReminderEnabled": {
+          "type": "boolean", "default": false,
+          "description": "Optional daily notification containing the selected calendar's readings. Dates without citations do not send a notification. Independent of Today row visibility."
+        },
+        "readingsReminderMinutes": {
+          "type": "int", "default": 540,
+          "description": "Reading notification time, minutes after local midnight (0-1439), following the device's current time zone and system 12/24-hour clock preference."
+        },
+        "saintReminderEnabled": {
+          "type": "boolean", "default": false,
+          "description": "Optional selected-calendar saint/feast notification. Includes exact-language sourced descriptions and credits when present; otherwise gives the actual feast title and rank. Dates without a feast do not send a notification. Independent of showTodayFeast."
+        },
+        "saintReminderMinutes": {
+          "type": "int", "default": 540,
+          "description": "Saint/feast notification time, minutes after local midnight (0-1439), following the device's current time zone and preferred clock."
         },
         "expandReadingsByDefault": {
           "type": "boolean",

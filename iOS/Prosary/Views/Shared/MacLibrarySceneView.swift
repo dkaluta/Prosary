@@ -3,6 +3,7 @@ import SwiftUI
 
 struct MacLibrarySceneView: View {
   @Environment(\.openWindow) private var openWindow
+  @State private var reminderActivation = ReminderActivation.shared
   private static let libraryDefaults = ProsaryRuntimeEnvironment.defaults
   @State private var model = MacPrayerLibraryModel(defaults: Self.libraryDefaults,
     installedDevotionIDs: { ProsaryRuntimeEnvironment.isTesting ? [] : PrayerPackStore.installedBundleIds() })
@@ -11,22 +12,21 @@ struct MacLibrarySceneView: View {
     MacPrayerLibraryView(model: model)
       .defaultAppStorage(Self.libraryDefaults)
       .modifier(MacSceneBridge())
+      .onChange(of: reminderActivation.pendingURL) { _, _ in
+        guard let url = reminderActivation.pendingURL, let link = ProsaryWidgetLink(url: url) else { return }
+        reminderActivation.pendingURL = nil
+        openWindow(id: "main")
+        open(link)
+      }
+      .task {
+        if let url = reminderActivation.pendingURL, let link = ProsaryWidgetLink(url: url) {
+          reminderActivation.pendingURL = nil
+          open(link)
+        }
+      }
       .onOpenURL { url in
         if let link = ProsaryWidgetLink(url: url) {
-          switch link {
-          case .today:
-            NotificationCenter.default.post(name: .widgetNavigateLibrary, object: "today")
-          case .library:
-            NotificationCenter.default.post(name: .widgetNavigateLibrary, object: "library")
-          case .prayer(let id):
-            openWindow(id: "prayer", value: PrayerWindowRequest(route: .prayer(id: id)))
-          case .rosary:
-            Task {
-              let saved = try? await AppServices.shared.presetStore.defaultPreset(kind: .rosary)
-              let prayer = ProsaryWidgetLink.rosaryPrayer(from: saved)
-              openWindow(id: "prayer", value: PrayerWindowRequest(route: .rosaryQuickPray(prayer: prayer)))
-            }
-          }
+          open(link)
           return
         }
         guard url.isFileURL, url.pathExtension.lowercased() == "prosaryprayer" else { return }
@@ -36,6 +36,28 @@ struct MacLibrarySceneView: View {
           }
         }
       }
+  }
+
+  private func open(_ link: ProsaryWidgetLink) {
+    switch link {
+    case .today, .library, .calendar, .readings:
+      let destination: String
+      switch link {
+      case .today: destination = "today"
+      case .library: destination = "library"
+      case .calendar: destination = "calendar"
+      default: destination = "readings"
+      }
+      NotificationCenter.default.post(name: .widgetNavigateLibrary, object: destination)
+    case .prayer(let id):
+      openWindow(id: "prayer", value: PrayerWindowRequest(route: .prayer(id: id)))
+    case .rosary:
+      Task {
+        let saved = try? await AppServices.shared.presetStore.defaultPreset(kind: .rosary)
+        let prayer = ProsaryWidgetLink.rosaryPrayer(from: saved)
+        openWindow(id: "prayer", value: PrayerWindowRequest(route: .rosaryQuickPray(prayer: prayer)))
+      }
+    }
   }
 }
 #endif

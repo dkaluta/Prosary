@@ -48,6 +48,8 @@ import com.dkaluta.prosary.ui.shared.BasicPrayerFlowScreen
 import com.dkaluta.prosary.ui.shared.BasicPrayersScreen
 import com.dkaluta.prosary.ui.shared.LaunchTarget
 import com.dkaluta.prosary.models.PrayerKind
+import com.dkaluta.prosary.models.BasicPrayerCatalog
+import com.dkaluta.prosary.ui.shared.DevotionDirectory
 import com.dkaluta.prosary.models.jesusPrayerTargetFromRouteValue
 import com.dkaluta.prosary.models.toRouteValue
 import com.dkaluta.prosary.ui.about.AboutScreen
@@ -149,8 +151,11 @@ internal fun NavHostController.navigateSingleTop(route: String) {
 @Composable
 fun ProsaryApp(widgetLaunchRequest: WidgetLaunchRequest? = null, onWidgetLaunchConsumed: () -> Unit = {}) {
     val navController = rememberNavController()
+    val context = androidx.compose.ui.platform.LocalContext.current
     val services = LocalAppServices.current
     var todayWidgetRequest by rememberSaveable { mutableLongStateOf(0L) }
+    var calendarWidgetRequest by rememberSaveable { mutableLongStateOf(0L) }
+    var readingsWidgetRequest by rememberSaveable { mutableLongStateOf(0L) }
     LaunchedEffect(widgetLaunchRequest) {
         val request = widgetLaunchRequest ?: return@LaunchedEffect
         // The adaptive shell subcomposes its NavHost. On a cold start the outer effect can
@@ -162,9 +167,33 @@ fun ProsaryApp(widgetLaunchRequest: WidgetLaunchRequest? = null, onWidgetLaunchC
                 Routes.Home
             }
             WidgetDestination.Rosary -> Routes.WidgetRosary
+            WidgetDestination.Calendar -> {
+                calendarWidgetRequest = request.sequence
+                readingsWidgetRequest = 0L
+                Routes.Readings
+            }
+            WidgetDestination.Readings -> {
+                readingsWidgetRequest = request.sequence
+                calendarWidgetRequest = 0L
+                Routes.Readings
+            }
             is WidgetDestination.SavedPrayer -> if (services.presetStore.get(destination.id) != null) {
                 Routes.prayer(destination.id)
             } else Routes.Home
+            is WidgetDestination.CatalogPrayer -> {
+                val kind = destination.identity.substringBefore(':')
+                val id = destination.identity.substringAfter(':', "")
+                if (kind == "basic") {
+                    BasicPrayerCatalog.prayer(id)?.let { Routes.basicPrayer(it.id) } ?: Routes.Home
+                } else {
+                    when (val target = DevotionDirectory.all(context).firstOrNull { it.id == id }?.target) {
+                        LaunchTarget.Rosary -> Routes.WidgetRosary
+                        LaunchTarget.JesusPrayer -> Routes.JesusPrayerSetup
+                        is LaunchTarget.Custom -> Routes.custom(target.bundleId)
+                        null -> Routes.Home
+                    }
+                }
+            }
         }
         withContext(Dispatchers.Main.immediate) {
             navController.navigate(route) {
@@ -218,7 +247,7 @@ fun ProsaryApp(widgetLaunchRequest: WidgetLaunchRequest? = null, onWidgetLaunchC
                 }
             }
         },
-    ) { modifier -> AppNavHost(navController, modifier, todayWidgetRequest) }
+    ) { modifier -> AppNavHost(navController, modifier, todayWidgetRequest, calendarWidgetRequest, readingsWidgetRequest) }
 }
 
 /** The navigation host has one composition identity at every width. Only the surrounding
@@ -274,14 +303,16 @@ private fun NavHostController.launch(target: LaunchTarget) {
 }
 
 @Composable
-private fun AppNavHost(navController: NavHostController, modifier: Modifier = Modifier, todayWidgetRequest: Long = 0) {
+private fun AppNavHost(navController: NavHostController, modifier: Modifier = Modifier, todayWidgetRequest: Long = 0,
+    calendarWidgetRequest: Long = 0, readingsWidgetRequest: Long = 0) {
     val browsingDate = rememberTodayBrowsingDate()
     NavHost(navController = navController, startDestination = Routes.Home, modifier = modifier) {
         composable(Routes.Browse) {
             com.dkaluta.prosary.ui.favorites.RepositoryBrowserScreen(onBack = {}, showsBackButton = false)
         }
         composable(Routes.Readings) {
-            ReadingsScreen(onOpenSettings = { navController.navigateSingleTop(Routes.Settings) }, browsingDate = browsingDate)
+            ReadingsScreen(onOpenSettings = { navController.navigateSingleTop(Routes.Settings) }, browsingDate = browsingDate,
+                calendarRequest = calendarWidgetRequest, readingsRequest = readingsWidgetRequest)
         }
         composable(Routes.Search) {
             SearchScreen(onLaunch = { target -> navController.launch(target) })
@@ -291,6 +322,7 @@ private fun AppNavHost(navController: NavHostController, modifier: Modifier = Mo
                 browsingDate = browsingDate,
                 todayWidgetRequest = todayWidgetRequest,
                 onOpenPrayer = { id -> navController.navigateSingleTop(Routes.prayer(id)) },
+                onOpenReminders = { id -> navController.navigateSingleTop(Routes.remindersOnlyEditor(id)) },
                 onOpenRosaryPicker = { navController.navigateSingleTop(Routes.RosaryPicker) },
                 onAddPreset = { kind -> navController.navigateSingleTop(Routes.favoriteEditor(null, kind)) },
                 onOpenAbout = { navController.navigateSingleTop(Routes.About) },

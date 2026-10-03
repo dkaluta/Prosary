@@ -77,6 +77,7 @@ from collections import defaultdict
 from pathlib import Path
 
 import requests
+from saint_descriptions import add_sourced_descriptions
 
 TOOLS = Path(__file__).resolve().parent
 SHARED = TOOLS.parent
@@ -614,6 +615,11 @@ def localize_existing_datasets(only: set[str] | None = None) -> None:
     for name in dict.fromkeys(names):
         if only is not None and name not in only:
             continue
+        # These dated editions own their original bilingual/source titles and
+        # reviewed aliases. Regenerate with their importer instead of relabeling
+        # them through another calendar's general title catalog.
+        if name in {"feasts-stjames", "feasts-franciscan-conventual-italy", "feasts-augustinian-discalced"}:
+            continue
         path = DATA / f"{name}.json"
         payload = json.loads(path.read_text(encoding="utf-8"))
         if name == "feasts-syriac":
@@ -622,6 +628,9 @@ def localize_existing_datasets(only: set[str] | None = None) -> None:
         else:
             updated, missing = localize_feast_days(payload["days"], catalog)
             sourced_updates = add_sourced_feast_titles(payload["days"], display_catalogs)
+            description_calendars = {"feasts": "lpj", "feasts-roman": "roman", "feasts-roman1962": "roman1962"}
+            if name in description_calendars:
+                add_sourced_descriptions(payload["days"], description_calendars[name])
         credit = (
             " Hebrew feast and saint names use the credited source catalogs in "
             "Shared/tools/hebrew-feast-titles.json and hebrew-saint-titles.json; "
@@ -678,17 +687,34 @@ def julian_easter(year: int) -> dt.date:
     d = (19 * c + 15) % 30
     e = (2 * a + 4 * b - d + 34) % 7
     month, day = (d + e + 114) // 31, (d + e + 114) % 31 + 1
-    return dt.date(year, month, day) + dt.timedelta(days=year // 100 - year // 400 - 2)
+    return julian_to_civil(year, month, day)
 
 
-def ugcc_days(year: int, pascha_style: str = "julian") -> dict:
-    """UGCC new-style fixed dates; Julian Pascha by default, Gregorian by explicit choice.
+def julian_to_civil(year: int, month: int, day: int) -> dt.date:
+    """Convert a Julian date to Gregorian civil time, including Julian leap days.
+
+    Integer Julian-day arithmetic avoids both a permanent thirteen-day offset and
+    constructing a Gregorian February 29 in a Julian-only leap year such as 2100.
+    """
+    lengths = [31, 29 if year % 4 == 0 else 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+    if year < 1 or not 1 <= month <= 12 or not 1 <= day <= lengths[month - 1]:
+        raise ValueError("Invalid Julian calendar date")
+    a = (14 - month) // 12
+    y, m = year + 4800 - a, month + 12 * a - 3
+    julian_day = day + (153 * m + 2) // 5 + 365 * y + y // 4 - 32083
+    return dt.date.fromordinal(julian_day - 1721425)
+
+
+def ugcc_days(year: int, pascha_style: str = "julian", fixed_style: str = "gregorian") -> dict:
+    """Byzantine fixed dates and separately computed Pascha in civil Gregorian time.
 
     Layered lowest to highest: numbered Sundays after Pentecost (counted from the previous
     year's Pentecost before this year's) → fixed Feasts → the pre-Nativity/Theophany special
     Sundays → fixed Great Feasts → the movable Paschal cycle, which joins rather than
     replaces a fixed Great Feast it lands on (the Annunciation in Holy Week).
     """
+    if pascha_style not in {"julian", "gregorian"} or fixed_style not in {"julian", "gregorian"}:
+        raise ValueError("Unknown Byzantine calendar style")
     computus = gregorian_easter if pascha_style == "gregorian" else julian_easter
     pascha = computus(year)
     pentecost_previous = computus(year - 1) + dt.timedelta(days=49)
@@ -696,7 +722,17 @@ def ugcc_days(year: int, pascha_style: str = "julian") -> dict:
     days: dict[str, dict] = {}
 
     def put(date: dt.date, title: str, rank: str) -> None:
-        days[date.isoformat()] = {"title": title, "rank": rank}
+        if date.year == year:
+            days[date.isoformat()] = {"title": title, "rank": rank}
+
+    def fixed_date(source_year: int, month: int, day: int) -> dt.date:
+        return julian_to_civil(source_year, month, day) if fixed_style == "julian" else dt.date(source_year, month, day)
+
+    # Previous-year Nativity crosses into January for old-style communities.
+    source_years = (year - 1, year) if fixed_style == "julian" else (year,)
+    fixed = [(fixed_date(source_year, int(month_day[:2]), int(month_day[3:])), title, code)
+             for source_year in source_years
+             for month_day, (title, code) in UGCC_MENOLOGION.items()]
 
     # Numbered Sundays after Pentecost — the base layer every other layer may cover.
     day = dt.date(year, 1, 1)
@@ -710,9 +746,8 @@ def ugcc_days(year: int, pascha_style: str = "julian") -> dict:
 
     # Fixed Feasts, then the special Sundays around Nativity and Theophany, then fixed Great
     # Feasts — a Great Feast outranks a special Sunday, which outranks a plain fixed feast.
-    for month_day, (title, code) in UGCC_MENOLOGION.items():
-        if code == "F":
-            date = dt.date.fromisoformat(f"{year}-{month_day}")
+    for date, title, code in fixed:
+        if code == "F" and date.year == year:
             if days.get(date.isoformat(), {}).get("rank") != "Sunday":
                 put(date, title, UGCC_RANKS[code])
     specials = [
@@ -724,16 +759,17 @@ def ugcc_days(year: int, pascha_style: str = "julian") -> dict:
         ((1, 1), (1, 5), "Sunday before Theophany"),
         ((1, 7), (1, 13), "Sunday after Theophany"),
     ]
-    for (m1, d1), (m2, d2), title in specials:
-        day = dt.date(year, m1, d1)
-        last = dt.date(year, m2, d2)
-        while day <= last:
-            if day.weekday() == 6:
-                put(day, title, "Sunday")
-            day += dt.timedelta(days=1)
-    for month_day, (title, code) in UGCC_MENOLOGION.items():
+    for source_year in source_years:
+        for (m1, d1), (m2, d2), title in specials:
+            day = fixed_date(source_year, m1, d1)
+            last = fixed_date(source_year, m2, d2)
+            while day <= last:
+                if day.weekday() == 6:
+                    put(day, title, "Sunday")
+                day += dt.timedelta(days=1)
+    for date, title, code in fixed:
         if code == "G":
-            put(dt.date.fromisoformat(f"{year}-{month_day}"), title, UGCC_RANKS[code])
+            put(date, title, UGCC_RANKS[code])
 
     # The movable Paschal cycle wins the day — but a fixed Great Feast it lands on is joined
     # into the title, never displaced (Byzantine practice celebrates them together).
@@ -741,15 +777,15 @@ def ugcc_days(year: int, pascha_style: str = "julian") -> dict:
         date = pascha + dt.timedelta(days=offset)
         rank = UGCC_RANKS.get(code, code)
         existing = days.get(date.isoformat())
-        if existing and existing["rank"] == "Great Feast" and code not in ("G",):
+        if existing and existing["rank"] == "Great Feast":
             put(date, f"{existing['title']}; {title}", "Great Feast")
         else:
             put(date, title, rank)
 
     # Saints do not erase the Sunday cycle. Join their fixed commemoration after the
     # movable/special Sunday has been resolved (Zacchaeus + Gregory on 25 Jan 2026).
-    for month_day, (title, code) in UGCC_MENOLOGION.items():
-        key = f"{year}-{month_day}"
+    for date, title, code in fixed:
+        key = date.isoformat()
         existing = days.get(key)
         if code == "F" and existing and existing["rank"] == "Sunday":
             existing["title"] += f"; {title}"
@@ -760,10 +796,11 @@ def ugcc_days(year: int, pascha_style: str = "julian") -> dict:
         (7, 13, 19, "Sunday of the Fathers of the Six Ecumenical Councils"),
         (10, 11, 17, "Sunday of the Fathers of the Seventh Ecumenical Council"),
     ]:
-        for day_number in range(first, last + 1):
-            date = dt.date(year, month, day_number)
-            if date.weekday() == 6:
-                days[date.isoformat()]["title"] += f"; {title}"
+        for source_year in source_years:
+            for day_number in range(first, last + 1):
+                date = fixed_date(source_year, month, day_number)
+                if date.year == year and date.weekday() == 6:
+                    days[date.isoformat()]["title"] += f"; {title}"
 
     return dict(sorted(days.items()))
 
@@ -833,6 +870,10 @@ def roman1962_days(year: int) -> dict:
 
 
 def write_dataset(path: Path, comment: str, years: list[int], days: dict) -> None:
+    description_calendars = {"feasts": "lpj", "feasts-roman": "roman", "feasts-roman1962": "roman1962"}
+    if path.stem in description_calendars:
+        if add_sourced_descriptions(days, description_calendars[path.stem]):
+            comment += " Optional exact-language saint/feast excerpts: Shared/tools/saint-descriptions-reviewed.json; reviewed source UUID/date/identity joins only."
     payload = {
         "$comment": comment,
         "generated": dt.date.today().isoformat(),
@@ -850,13 +891,24 @@ def main() -> int:
     parser.add_argument("--cache", type=Path, default=None, help="payload cache directory")
     parser.add_argument("--localize-only", action="store_true", help="apply sourced names offline without changing calendar coverage")
     parser.add_argument("--self-test", action="store_true", help="check exact-title localization without fetching data")
-    parser.add_argument("--ugcc-only", action="store_true", help="regenerate both Byzantine Pascha styles offline")
+    parser.add_argument("--ugcc-only", action="store_true", help="regenerate Byzantine new-style and old-style feast tables offline")
     parser.add_argument("--syriac-only", action="store_true", help="refresh English/Arabic Syriac liturgy and saints only")
     parser.add_argument("--until", type=dt.date.fromisoformat, help="last Syriac date to fetch (otherwise follow the source horizon)")
     args = parser.parse_args()
     if args.self_test:
         assert julian_easter(2026) == dt.date(2026, 4, 12)
         assert julian_easter(2027) == dt.date(2027, 5, 2)
+        assert julian_to_civil(2025, 12, 25) == dt.date(2026, 1, 7)
+        assert julian_to_civil(2100, 2, 29) == dt.date(2100, 3, 14)
+        assert julian_to_civil(2100, 3, 1) == dt.date(2100, 3, 15)
+        old_style = ugcc_days(2026, fixed_style="julian")
+        assert old_style["2026-01-07"]["title"] == "The Nativity of Our Lord"
+        assert old_style["2026-01-19"]["title"] == "The Holy Theophany of Our Lord"
+        assert old_style["2026-04-12"]["title"] == "The Resurrection of Our Lord — Holy Pascha"
+        assert "Nativity" not in old_style.get("2026-12-25", {}).get("title", "")
+        assert all(date.startswith("2026-") for date in old_style)
+        assert ugcc_days(1991, fixed_style="julian")["1991-04-07"]["title"] == "The Annunciation of the Most Holy Theotokos; The Resurrection of Our Lord — Holy Pascha"
+        assert ugcc_days(2035, "gregorian")["2035-03-25"]["title"] == "The Annunciation of the Most Holy Theotokos; The Resurrection of Our Lord — Holy Pascha"
         assert ugcc_days(2026)["2026-09-06"]["title"] == "14th Sunday after Pentecost"
         assert ugcc_days(2026, "gregorian")["2026-09-06"]["title"] == "15th Sunday after Pentecost"
         assert ugcc_days(2026)["2026-05-31"]["title"] == "The Descent of the Holy Spirit — Pentecost"
@@ -1020,6 +1072,17 @@ def write_ugcc_datasets(years: list[int]) -> None:
             days.update(ugcc_days(year, style))
         write_dataset(DATA / f"feasts-ugcc{suffix}.json",
                       f"Byzantine Ukrainian Greek Catholic calendar: new-style fixed feasts with {style.title()} Pascha. Fixed menologion and movable cycle curated in Shared/tools/fetch-feasts.py. Default Julian Pascha follows the UGCC in Ukraine; Gregorian Pascha is an explicit alternate usage. The corresponding reading table must use the same Pascha style. Research and source links in Shared/calendar-research.markdown.", years, days)
+    old_style = {}
+    for year in years:
+        old_style.update(ugcc_days(year, fixed_style="julian"))
+    write_dataset(DATA / "feasts-ugcc-julian.json",
+                  "Byzantine old-style Julian feast calendar. Curated fixed menologion and seasonal Sunday ranges use Julian dates converted to civil Gregorian dates; Pascha and its movable cycle are calculated independently. Nativity on Julian December 25 falls on civil January 7 in 2026–2027. This separate feast calendar does not change Ukraine's new-style UGCC calendar or provide an unverified shifted lectionary. Sources and coverage in Shared/calendar-research.markdown.", years, old_style)
+    readings = DATA / "readings-ugcc-julian.json"
+    if not readings.exists():
+        readings.write_text(json.dumps({
+            "$comment": "No verified old-style Byzantine lectionary has been imported. Reading rows remain absent; new-style UGCC or fully Gregorian appointments are not shifted or borrowed.",
+            "generated": dt.date.today().isoformat(), "days": {}
+        }, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
 if __name__ == "__main__":

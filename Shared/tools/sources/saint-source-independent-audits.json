@@ -1,0 +1,291 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-10-03T06:49:06.058643+00:00",
+  "purpose": "Independent source-only mechanical audit of exact saved catalogue snapshots; no native import or publication approval.",
+  "reviewer": "Codex subagent saint_site_sources",
+  "mechanicalEditorialBoundary": {
+    "certified": [
+      "original cached response digests match audited records",
+      "primary article prose preserves every non-whitespace character in source order",
+      "source metadata and captured/missing body status stay distinct",
+      "published collection completion flags and scope are reported literally"
+    ],
+    "notCertified": [
+      "historical accuracy of every source statement",
+      "all articles being saint biographies",
+      "identity/calendar/rank or precedence joins",
+      "translation authorship inferred from flags",
+      "rights for native redistribution",
+      "a source collection covering every Catholic saint or a whole liturgical year"
+    ]
+  },
+  "audits": [
+    {
+      "provider": "catholic.co.il / Saint James Vicariate",
+      "languages": [
+        "en",
+        "fr",
+        "it",
+        "ru"
+      ],
+      "provenance": "Independent cached-response audit performed by this reviewer after final crawl and cached regeneration.",
+      "snapshots": [
+        {
+          "cataloguePath": "Shared/tools/sources/catholic-saints-en.json",
+          "catalogueSHA256": "c68e5f8fbee8ae1eba89fd1bb62156fd8de88b8949ae7e0b957e719da39bfa45",
+          "language": "en",
+          "collectionComplete": true,
+          "acceptedRecords": 273,
+          "quarantinedRecords": 1,
+          "allOriginalResponsesAudited": 274,
+          "indexPages": 15,
+          "publishedArticleIDs": 274,
+          "finalRegenerationNetworkDownloads": 0
+        },
+        {
+          "cataloguePath": "Shared/tools/sources/catholic-saints-fr.json",
+          "catalogueSHA256": "bdf2ac81810bfae30eab691066132bf63ba284e186264d91a67f3af9a0199e5c",
+          "language": "fr",
+          "collectionComplete": true,
+          "acceptedRecords": 134,
+          "quarantinedRecords": 6,
+          "allOriginalResponsesAudited": 140,
+          "indexPages": 8,
+          "publishedArticleIDs": 137,
+          "finalRegenerationNetworkDownloads": 0
+        },
+        {
+          "cataloguePath": "Shared/tools/sources/catholic-saints-it.json",
+          "catalogueSHA256": "d19c670ad25089ed8584360f2314a670ff4c292dbbf493e680063b0dc68706a1",
+          "language": "it",
+          "collectionComplete": true,
+          "acceptedRecords": 131,
+          "quarantinedRecords": 6,
+          "allOriginalResponsesAudited": 137,
+          "indexPages": 8,
+          "publishedArticleIDs": 134,
+          "finalRegenerationNetworkDownloads": 0
+        },
+        {
+          "cataloguePath": "Shared/tools/sources/catholic-saints-ru.json",
+          "catalogueSHA256": "1c02b1a6c886b065dd8fbf96ff74fec7b54dbac350616678d9b7a7d7a7037167",
+          "language": "ru",
+          "collectionComplete": true,
+          "acceptedRecords": 134,
+          "quarantinedRecords": 6,
+          "allOriginalResponsesAudited": 140,
+          "indexPages": 8,
+          "publishedArticleIDs": 137,
+          "finalRegenerationNetworkDownloads": 0
+        }
+      ],
+      "method": [
+        "Read the exact cached original response bytes for every accepted and quarantined record.",
+        "Verify each raw HTML SHA256 against the saved sourceHTMLSHA256.",
+        "Parse independently with lxml.html, locate the primary col-md-7 wrapper, and exclude script/style/noscript/form/iframe/object/nav/footer while preserving node tails.",
+        "Compare source wrapper text_content against the output title, introduction and all paragraphs after removing whitespace only; inspect extra wrapper/H1 conditions.",
+        "Read actual language-fallback and credit examples; separately run all 20 multilingual regressions."
+      ],
+      "counts": {
+        "recordsAudited": 691,
+        "rawHTMLDigestsVerified": 691,
+        "proseOrderAndCharacterStreamsMatched": 691,
+        "rawHTMLDigestDifferences": 0,
+        "proseDifferences": 0,
+        "missingCachedBodies": 0,
+        "extraPrimaryWrappers": 0,
+        "extraPrimaryH1Headings": 0
+      },
+      "mechanicalAuditPassed": true,
+      "representativeReview": [
+        {
+          "sourceURL": "https://www.catholic.co.il/?cat=faith&m=Feasts&view=article&id=3759&lang=fr",
+          "finding": "French heading with Italian body is quarantined. Its published French flag leads to English-bodied article 2481; both original bodies and the flag cycle are retained."
+        },
+        {
+          "sourceURL": "https://www.catholic.co.il/?cat=faith&m=Feasts&view=article&id=2481&lang=en",
+          "finding": "Daniel contribution attribution and complete biography survive final extraction; literal contributor evidence is not translator assignment."
+        },
+        {
+          "sourceURL": "https://www.catholic.co.il/?cat=faith&m=Feasts&view=article&id=3889&lang=ru",
+          "finding": "Source year literal 19897 remains uncorrected and explicitly flagged by the collector and aggregate editorial review."
+        }
+      ]
+    },
+    {
+      "provider": "Evangelizo.org — Daily Gospel",
+      "language": "ar",
+      "cataloguePath": "Shared/tools/sources/evangelizo-saints-ar.json",
+      "catalogueSHA256": "81b2cf211fbeb0edd9b53c9b71df985a3f0d9a9bd380a8a01a6feb0cc0723308",
+      "collectionComplete": true,
+      "provenance": "Independent cached-response and original biography-HTML audit performed by this reviewer.",
+      "method": [
+        "Verify each complete original cached API response SHA256 against the saved record.",
+        "Compare UUID, source name, full original bio HTML, bio_source and short description directly against response data.",
+        "Independently parse stored bio HTML with lxml.html, exclude inert code while preserving tails, and compare every non-whitespace source character with all output paragraphs in order.",
+        "Validate each literal subject month/day and compare the union of published collection UUIDs with all captured subject UUIDs.",
+        "Read actual Arabic prose for Aloysius Gonzaga, Francis of Assisi and John Fisher; run all 12 aggregate review regressions."
+      ],
+      "counts": {
+        "dateCollections": 366,
+        "sourceSubjectsAudited": 221,
+        "rawResponseDigestsVerified": 221,
+        "originalBiographyBodiesAvailable": 219,
+        "sourceBodiesMissing": 2,
+        "proseDifferences": 0,
+        "sourceMetadataDifferences": 0,
+        "rawResponseDigestDifferences": 0,
+        "invalidSourceMonthDays": 0,
+        "publishedUUIDsNotCaptured": 0,
+        "capturedUUIDsNotPublished": 0
+      },
+      "mechanicalAuditPassed": true,
+      "representativeReview": [
+        {
+          "sourceSubjectID": "006312a1-9f6c-46af-bbad-394664a3a656",
+          "finding": "John Fisher source paragraph contains the August death-month error; original wording is preserved and root aggregate editorial review holds it with Holy See corroboration. Mechanical integrity does not certify its historical wording."
+        },
+        {
+          "sourceSubjectID": "4dea44a0-dd1c-42c7-9817-476cd39e2ce8",
+          "finding": "Guardian Angels has no biography; language:null and missing-biography remain explicit."
+        },
+        {
+          "sourceSubjectID": "6b428175-054e-4dc2-8ec4-f03d2815be8f",
+          "finding": "Mar Charbel has no biography; language:null and missing-biography remain explicit."
+        }
+      ]
+    },
+    {
+      "provider": "Our Parish Priest",
+      "language": "tl",
+      "cataloguePath": "Shared/tools/sources/tagalog-saints.json",
+      "catalogueSHA256": "a21c82306aa0265e093df5317c96d5a3045e3cbc76b60d7ef5a8961df6093f3d",
+      "collectionComplete": false,
+      "provenance": "Partial source collection and full available-body review performed by this reviewer.",
+      "counts": {
+        "publishedCategoryPosts": 402,
+        "publishedAPIPages": 5,
+        "actualPublishedMetadataRecordsPreserved": 100,
+        "metadataOnlyRecords": 98,
+        "completeOriginalArticleResponsesReviewed": 2,
+        "selectedBiographyCandidates": 1,
+        "quarantinedBiographies": 1
+      },
+      "blocker": "HTTP 403 browser challenge; no bypass or further collection requests.",
+      "method": [
+        "Preserve the earlier actual public metadata API JSON and headers, with their exact digest and the 402-post header total.",
+        "Keep both cached original article response HTML documents plus full primary source HTML/prose, publication metadata and exact response/prose digests.",
+        "Read every available biography block, printed feast label, source credit and excluded reflection/scripture section.",
+        "Keep metadata-only rows out of biography selections; run all 20 Tagalog regressions, including offline re-extraction, provenance integrity, challenge rejection and published robots rules/delay."
+      ],
+      "availableRecordReviewPassed": true,
+      "wholeCollectionReviewPassed": false,
+      "representativeReview": {
+        "reviewedAt": "2026-10-03",
+        "availableArticleBodiesReviewed": 2,
+        "sourceIndexMetadataRecordsPreserved": 100,
+        "publishedCategoryTotal": 402,
+        "collectionComplete": false,
+        "selectedSourceCandidates": 1,
+        "quarantinedBiographies": 1,
+        "scope": "Review of all available original article bodies and metadata integrity; not certification of every historical assertion or all 402 published posts.",
+        "uncapturedRepresentative": {
+          "sourceURL": "https://www.ourparishpriest.com/2026/09/saints-of-september-san-lorenzo-ruiz-at-mga-kasama-mga-martir/",
+          "status": "Actual published metadata retained. No cached full response body is available, so song separation is regression-tested and not claimed manually verified in this source catalogue."
+        }
+      },
+      "editorialBound": "Thérèse is only a source candidate; Padre Pio remains quarantined for the 1968/1969 source contradiction. Other historical assertions and reuse rights are not certified."
+    },
+    {
+      "provider": "rkc.org.ua",
+      "language": "uk",
+      "cataloguePath": "Shared/tools/sources/rkc-saints-uk.json",
+      "catalogueSHA256": "903261fc616fc781eefe1154df0540a83dc07d98efb4ca4d085484d115dabffd",
+      "collectionComplete": true,
+      "provenance": "Coordinated audit report from Codex subagent hebrew_saints_review; this reviewer separately verified the exact final catalogue snapshot SHA256.",
+      "reportedMethod": [
+        "Decode verified Base64 GET cache and verify original HTML digest.",
+        "Independently clone .mec-single-event-description with lxml; drop script/style/form/iframe/noscript preserving tails and separate block/br boundaries.",
+        "Compare text_content with all output paragraphs after whitespace normalization and verify joined text SHA256."
+      ],
+      "reportedCounts": {
+        "fullPrimaryArticleBodiesMatched": 15,
+        "proseDifferences": 0,
+        "cacheResponsesOnRepeat": 20,
+        "networkDownloadsOnRepeat": 0,
+        "archivePages": 3,
+        "pageArticleCounts": [
+          12,
+          3,
+          0
+        ]
+      },
+      "reportedCoverage": "Published rolling event window October 3–17, 2026; explicit empty termination at source cursor November 12, 2026; whole liturgical year not claimed.",
+      "reportedReviewBounds": "Index, JSON-LD and visible event dates agree. No duplicate ID/title groups or implausible-year ranges reported. Inline underlying credits/links remain separate. Historical assertions and native identity/date joins are not certified."
+    },
+    {
+      "provider": "CREDO",
+      "language": "uk",
+      "cataloguePath": "Shared/tools/sources/credo-saints-uk.json",
+      "catalogueSHA256": "557537d45567164970b6c41b81773a9ce5e78e11e9f9a5456883fcd88d855624",
+      "publishedIndexCollectionComplete": true,
+      "fullBiographyCollectionComplete": false,
+      "provenance": "Coordinated independent audit report from Codex subagent hebrew_saints_review; this reviewer separately verified the exact final catalogue snapshot SHA256 and stored counts.",
+      "reportedMethod": [
+        "Decode all eighteen category responses from verified Base64 cache and verify original HTML SHA256.",
+        "Independently compare direct category-card h3/p text_content against every retained title/excerpt after whitespace normalization; verify text digests and reconcile all source cards.",
+        "For three representative full pages, independently clone .single-content with lxml and drop script/style/noscript/form/iframe and .author-wrap while retaining rights separately; preserve block/br boundaries and node tails.",
+        "Compare all full-page visible source text against saved paragraphs; verify complete HTML/text digests and index title/excerpt prefixes."
+      ],
+      "reportedCounts": {
+        "indexPages": 18,
+        "rawCards": 515,
+        "distinctPublishedURLs": 515,
+        "allPublisherTruncatedExcerptsMatched": 515,
+        "sourceCandidates": 356,
+        "saintBiographyCandidates": 258,
+        "feastCandidates": 98,
+        "otherArticleExclusionsRetained": 159,
+        "languageQuarantined": 0,
+        "exactCaseFoldedTitleDuplicateGroupsRetained": 16,
+        "sourceIDAliases": 0,
+        "excerptDifferences": 0,
+        "fullPageSamplesMatched": 3,
+        "fullPageProseDifferences": 0,
+        "cacheHitsOnFinalRepeat": 23,
+        "networkDownloadsOnFinalRepeat": 0
+      },
+      "representativeFullPageReviews": [
+        {
+          "sourceURL": "https://credo.pro/2026/09/69985",
+          "finding": "Thérèse source gives mission patronage in 1944 and Doctor in 1999; both original paragraphs remain with factual-review warnings and primary Vatican dates/URLs. No silent source correction.",
+          "primaryCorroboration": [
+            {
+              "sourceURL": "https://www.vatican.va/news_services/liturgy/documents/ns_lit_doc_19101997_stherese_en.html",
+              "verifiedDate": "1927-12-14",
+              "event": "universal mission patronage"
+            },
+            {
+              "sourceURL": "https://www.vatican.va/content/john-paul-ii/en/apost_letters/1997/documents/hf_jp-ii_apl_19101997_divini-amoris.html",
+              "verifiedDate": "1997-10-19",
+              "event": "Doctor of the Church"
+            }
+          ]
+        },
+        {
+          "sourceURL": "https://credo.pro/2026/08/68337",
+          "finding": "John the Baptist martyrdom article includes explicit Latin/Byzantine labels; source labels remain evidence, without a native rite/date join."
+        },
+        {
+          "sourceURL": "https://credo.pro/2026/10/70067",
+          "finding": "Guardian Angels full-page title/prose and index excerpt prefix matched original source."
+        }
+      ],
+      "reportedCoverage": "Complete published category index, explicitly consisting of publisher-truncated excerpts; only three whole-page representative audits, not 515 complete biographies.",
+      "reportedReviewBounds": "Other historical assertions and identity/calendar joins remain unapproved. Publisher requires written editorial permission and forbids full republication; any permitted excerpt after approval is limited to ten percent. No permission or native import is claimed."
+    }
+  ],
+  "notAuditedHere": [
+    "Original Hebrew catalogue: root has separate prior/aggregate review evidence."
+  ]
+}

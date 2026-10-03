@@ -7,6 +7,8 @@ struct ProsaryWidgetBundle: WidgetBundle {
   var body: some Widget {
     ProsaryTodayWidget()
     ProsarySavedPrayerWidget()
+    ProsaryLiturgicalCalendarWidget()
+    ProsarySaintFeastWidget()
   }
 }
 
@@ -321,4 +323,137 @@ private struct SavedPrayerWidgetView: View {
 
 private extension String {
   var nilIfEmpty: String? { isEmpty ? nil : self }
+}
+
+struct CalendarDayEntry: Identifiable {
+  var date: Date
+  var title: String?
+  var id: Date { date }
+}
+
+struct CalendarWidgetEntry: TimelineEntry {
+  var date: Date
+  var settings: WidgetTodaySettings
+  var days: [CalendarDayEntry]
+}
+
+struct CalendarWidgetProvider: TimelineProvider {
+  func placeholder(in context: Context) -> CalendarWidgetEntry { entry(date: .now) }
+  func getSnapshot(in context: Context, completion: @escaping (CalendarWidgetEntry) -> Void) {
+    completion(entry(date: .now))
+  }
+  func getTimeline(in context: Context, completion: @escaping (Timeline<CalendarWidgetEntry>) -> Void) {
+    let dates = WidgetDates.upcoming(from: .now)
+    completion(Timeline(entries: dates.map { entry(date: $0) }, policy: .after(dates[1])))
+  }
+  private func entry(date: Date) -> CalendarWidgetEntry {
+    var settings = ProsaryWidgetSnapshot.load().today
+    // A dedicated calendar remains useful when the optional Home feast row is disabled.
+    settings.showFeast = true
+    let reader = WidgetTodayReader(settings: settings)
+    let calendar = Calendar(identifier: .gregorian)
+    let days = (0..<7).compactMap { offset -> CalendarDayEntry? in
+      guard let day = calendar.date(byAdding: .day, value: offset, to: date) else { return nil }
+      return .init(date: day, title: reader.content(on: day).feast)
+    }
+    return .init(date: date, settings: settings, days: days)
+  }
+}
+
+struct ProsaryLiturgicalCalendarWidget: Widget {
+  var body: some WidgetConfiguration {
+    StaticConfiguration(kind: ProsaryWidgetSnapshot.calendarKind, provider: CalendarWidgetProvider()) { entry in
+      CalendarWidgetView(entry: entry).containerBackground(.background, for: .widget)
+    }
+    .configurationDisplayName(Text("widget.calendar.name", tableName: "WidgetStrings"))
+    .description(Text("widget.calendar.description", tableName: "WidgetStrings"))
+    .supportedFamilies([.systemSmall, .systemMedium, .systemLarge])
+  }
+}
+
+private struct CalendarWidgetView: View {
+  let entry: CalendarWidgetEntry
+  @Environment(\.widgetFamily) private var family
+  private var language: String { entry.settings.normalizedLanguageCode }
+  private func text(_ key: String) -> String { WidgetText.string(key, language: language) }
+  private var count: Int { family == .systemSmall ? 2 : family == .systemMedium ? 3 : 7 }
+
+  var body: some View {
+    VStack(alignment: .leading, spacing: family == .systemLarge ? 10 : 6) {
+      Label(text("widget.calendar.name"), systemImage: "calendar")
+        .font(.caption.weight(.semibold)).widgetAccentable()
+      ForEach(Array(entry.days.prefix(count))) { day in
+        HStack(alignment: .top, spacing: 8) {
+          VStack(spacing: 1) {
+            Text(day.date, format: .dateTime.weekday(.abbreviated)).font(.caption2)
+            Text(day.date, format: .dateTime.day()).font(.title3.weight(.semibold))
+          }
+          .frame(width: 34)
+          .foregroundStyle(Calendar.current.isDate(day.date, inSameDayAs: entry.date) ? Color.accentColor : .secondary)
+          Text(day.title ?? text("widget.calendar.unavailable"))
+            .font(.caption).lineLimit(family == .systemLarge ? 2 : 1)
+            .frame(maxWidth: .infinity, alignment: .leading)
+        }
+      }
+      Spacer(minLength: 0)
+    }
+    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+    .environment(\.layoutDirection, entry.settings.isRightToLeft ? .rightToLeft : .leftToRight)
+    .environment(\.locale, Locale(identifier: language))
+    .widgetURL(URL(string: "prosary://calendar"))
+  }
+}
+
+struct SaintWidgetProvider: TimelineProvider {
+  func placeholder(in context: Context) -> TodayWidgetEntry { entry(date: .now) }
+  func getSnapshot(in context: Context, completion: @escaping (TodayWidgetEntry) -> Void) {
+    completion(entry(date: .now))
+  }
+  func getTimeline(in context: Context, completion: @escaping (Timeline<TodayWidgetEntry>) -> Void) {
+    let dates = WidgetDates.upcoming(from: .now)
+    completion(Timeline(entries: dates.map { entry(date: $0) }, policy: .after(dates[1])))
+  }
+  private func entry(date: Date) -> TodayWidgetEntry {
+    var settings = ProsaryWidgetSnapshot.load().today
+    settings.showFeast = true
+    return .init(date: date, settings: settings, content: WidgetTodayReader(settings: settings).content(on: date))
+  }
+}
+
+struct ProsarySaintFeastWidget: Widget {
+  var body: some WidgetConfiguration {
+    StaticConfiguration(kind: ProsaryWidgetSnapshot.saintKind, provider: SaintWidgetProvider()) { entry in
+      SaintWidgetView(entry: entry).containerBackground(.background, for: .widget)
+    }
+    .configurationDisplayName(Text("widget.saint.name", tableName: "WidgetStrings"))
+    .description(Text("widget.saint.description", tableName: "WidgetStrings"))
+    .supportedFamilies([.systemSmall, .systemMedium, .systemLarge])
+  }
+}
+
+private struct SaintWidgetView: View {
+  let entry: TodayWidgetEntry
+  @Environment(\.widgetFamily) private var family
+  private var language: String { entry.settings.normalizedLanguageCode }
+  private func text(_ key: String) -> String { WidgetText.string(key, language: language) }
+
+  var body: some View {
+    VStack(alignment: .leading, spacing: 7) {
+      Label(text("widget.saint.name"), systemImage: "sparkles")
+        .font(.caption.weight(.semibold)).widgetAccentable()
+      Text(entry.content.feast ?? text("widget.calendar.unavailable"))
+        .font(.headline).lineLimit(family == .systemSmall ? 3 : 2)
+      Text(entry.content.saintDescription ?? text("widget.saint.unavailable"))
+        .font(.caption).foregroundStyle(.secondary)
+        .lineLimit(family == .systemLarge ? 14 : family == .systemMedium ? 4 : 3)
+      Spacer(minLength: 0)
+      if let credit = entry.content.saintCredit, family != .systemSmall {
+        Text(credit).font(.caption2).foregroundStyle(.secondary).lineLimit(1)
+      }
+    }
+    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+    .environment(\.layoutDirection, entry.settings.isRightToLeft ? .rightToLeft : .leftToRight)
+    .environment(\.locale, Locale(identifier: language))
+    .widgetURL(URL(string: "prosary://readings"))
+  }
 }

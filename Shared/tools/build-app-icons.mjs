@@ -157,6 +157,7 @@ for (const color of palette.colors) {
   }
   if (color.id === palette.default) {
     output.set("Shared/Branding/prosary-app-icon.png", await sharp(icon).removeAlpha().png().toBuffer());
+    output.set("Shared/Branding/prosary-mark.png", await sharp(icon).resize(96).removeAlpha().png().toBuffer());
     output.set("Shared/Branding/apple-touch-icon.png", await sharp(icon).resize(180).removeAlpha().png().toBuffer());
     output.set("Shared/Branding/favicon-32x32.png", await sharp(icon).resize(32).removeAlpha().png().toBuffer());
     output.set("Shared/Branding/favicon.ico", await ico(icon));

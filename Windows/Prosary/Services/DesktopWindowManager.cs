@@ -28,6 +28,13 @@ public static class DesktopWindowManager
         _library.Activate();
     }
 
+    /// <summary>Reminder taps open the actual local day even after calendar browsing.</summary>
+    public static void ShowTodayReadings(bool readingsOnly)
+    {
+        if (_library is not { } library) return;
+        library.ShowTodayReadings(readingsOnly);
+    }
+
     public static async Task OpenPrayerAsync(Guid prayerID)
     {
         var prayer = await App.Services.GetRequiredService<IPresetStore>().GetAsync(prayerID);

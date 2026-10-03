@@ -1,0 +1,679 @@
+{
+  "$comment": "Other-language editorial display labels and explicitly reviewed aliases for the supplied St James calendar. English and Hebrew come from the PDF snapshot. Aliases reuse names only, never dates, ranks or readings.",
+  "aliases": {
+    "St. Faustina Kowalska, virgin": "Saint Faustina Kowalska",
+    "St. Faustina Kowalska, Virgin": "Saint Faustina Kowalska",
+    "St. Longinus, Solidier, Martyr": "Saint Longinus",
+    "St. Longinus, Soldier, Martyr": "Saint Longinus",
+    "St. Simon and St. Jude, Apostles": "Saints Simon and Jude, Apostles",
+    "The Commemoration of All the Faithful Departed": "The Commemoration of All the Faithful Departed (All Souls' Day)",
+    "Dedication of the Lateran Basilica in Rome": "The Dedication of the Lateran Basilica",
+    "St. Philip, Apostle": "Saint Philip",
+    "Dedication of the Basilicas of Sts. Peter and Paul, Apostles": "The Dedication of the Basilicas of Saints Peter and Paul, Apostles",
+    "St. Catherine of Alexandria, Martyr": "Saint Catherine of Alexandria, Virgin and Martyr",
+    "St. John of Damascus": "Saint John Damascene, Priest and Doctor of the Church",
+    "Holy Family of Jesus, Mary and Joseph (Year B)": "Holy Family of Jesus, Mary and Joseph",
+    "Holy Innocents, Martyrs": "The Holy Innocents, Martyrs",
+    "St. Basil the Great and St. Gregory Nazianzen, Bishops and Doctors of the Church": "Saints Basil the Great and Gregory Nazianzen, Bishops and Doctors of the Church",
+    "Epiphany of the Lord (Year B)": "Epiphany of the Lord",
+    "Baptism of the Lord (Year B)": "Baptism of the Lord",
+    "Conversion of St. Paul, Apostle": "Conversion of Saint Paul",
+    "St. Timothy and St. Titus, Bishops": "Saints Timothy and Titus, Bishops",
+    "Chair of St. Peter, Apostle": "Chair of Saint Peter",
+    "St. Polycarp, Bishop and Martyr": "Saint Polycarp",
+    "Ascension of the Lord (Year B)": "Ascension of the Lord",
+    "St. Matthias, Apostle": "Saint Matthias",
+    "St. Rita of Cascia": "Saint Rita of Cascia, Religious",
+    "St. Justin, Martyr": "Saint Justin",
+    "St. Charles Lwanga and Companions, Marytrs": "Saint Charles Lwanga and Companions, Martyrs",
+    "Most Sacred Heart of Jesus (Year A)": "Most Sacred Heart of Jesus",
+    "St. Barnabas, Apostle": "Saint Barnabas",
+    "St. Peter and St. Paul, Apostles (Mass in the evening)": "Saints Peter and Paul, Apostles",
+    "St. Thomas, Apostle": "Saint Thomas",
+    "Dedication of the Basilica of the Holy Sepulcher": "Dedication of the Basilica of the Holy Sepulchre",
+    "St. Elijah, Prophet": "Saint Elijah",
+    "St. Joachim and St. Anne, Parents of the Blessed Virgin Mary": "Saints Joachim and Anne, Parents of the Blessed Virgin Mary",
+    "St. Teresa Benedicta of the Cross (Edith Stein), Virgin and Martyr": "Saint Teresa Benedicta of the Cross, Virgin and Martyr",
+    "St. Maximilian Kolbe, Priest and Martyr": "Saint Maximilian Mary Kolbe, Priest and Martyr",
+    "St. Bernard of Clairvaux, Abbot and Doctor of the Church": "Saint Bernard of Clairvaux",
+    "St. Rosa of Lima": "Saint Rose of Lima, virgin",
+    "St. Mary of Jesus Crucified (Mariam Baouardy)": "Saint Mary of Jesus Crucified Baouardy, Virgin",
+    "St. Cornelius, Pope, and St. Cyprian, Bishop, Martyrs": "Saints Cornelius, Pope, and Cyprian, Bishop, Martyrs",
+    "St. Andrew Kim Tae-gŏn, Priest, and St. Paul Chŏng Ha-sang, and Companions, Martyrs": "Saint Andrew Kim Tae-gŏn, Priest, and Paul Chŏng Ha-sang, and Companions, Martyrs",
+    "Sts. Michael, Gabriel, and Raphael, archangels": "Saints Michael, Gabriel and Raphael, Archangels"
+  },
+  "titles": {
+    "St. Abraham": {
+      "ar": "القديس إبراهيم",
+      "ru": "Святой Авраам",
+      "tl": "San Abraham",
+      "fr": "Saint Abraham",
+      "it": "Sant’Abramo",
+      "uk": "Святий Авраам"
+    },
+    "Good Thief": {
+      "ar": "اللص التائب",
+      "ru": "Благоразумный разбойник",
+      "tl": "Mabuting Magnanakaw",
+      "fr": "Le bon larron",
+      "it": "Il buon ladrone",
+      "uk": "Розсудливий розбійник"
+    },
+    "St. Cornelius, the Centurion": {
+      "ar": "القديس كورنيليوس قائد المئة",
+      "ru": "Святой Корнилий сотник",
+      "tl": "San Cornelio, senturyon",
+      "fr": "Saint Corneille, centurion",
+      "it": "San Cornelio, centurione",
+      "uk": "Святий Корнилій сотник"
+    },
+    "St. Hilarion of Gaza, Abbot": {
+      "ar": "القديس هيلاريون الغزي، رئيس الدير",
+      "ru": "Святой Иларион Газский, игумен",
+      "tl": "San Hilarion ng Gaza, abad",
+      "fr": "Saint Hilarion de Gaza, abbé",
+      "it": "Sant’Ilarione di Gaza, abate",
+      "uk": "Святий Іларіон Газький, ігумен"
+    },
+    "St. Nikolas Tavelitch, Martyr": {
+      "ar": "القديس نيقولا تافيليتش، الشهيد",
+      "ru": "Святой Николай Тавелич, мученик",
+      "tl": "San Nicolas Tavelic, martir",
+      "fr": "Saint Nicolas Tavelic, martyr",
+      "it": "San Nicola Tavelić, martire",
+      "uk": "Святий Миколай Тавелич, мученик"
+    },
+    "St. Marie-Alphonsine Ghattas": {
+      "ar": "القديسة ماري ألفونسين غطاس",
+      "ru": "Святая Мария Альфонсина Гаттас",
+      "tl": "Santa Maria Alfonsina Ghattas",
+      "fr": "Sainte Marie-Alphonsine Ghattas",
+      "it": "Santa Maria Alfonsina Ghattas",
+      "uk": "Свята Марія Альфонсина Гаттас"
+    },
+    "St. Andrew Dung-Lac, Priest, and Companions, Martyrs": {
+      "ar": "القديس أندراوس دونغ لاك ورفاقه، الشهداء",
+      "ru": "Святой Андрей Зунг Лак и его товарищи, мученики",
+      "tl": "San Andres Dung-Lac at mga kasama, mga martir",
+      "fr": "Saint André Dung-Lac et ses compagnons, martyrs",
+      "it": "Sant’Andrea Dũng-Lạc e compagni, martiri",
+      "uk": "Святий Андрій Зунг Лак і його сподвижники, мученики"
+    },
+    "St. Sabbas the Sanctified, Abbot": {
+      "ar": "القديس سابا المتقدس، رئيس الدير",
+      "ru": "Святой Савва Освященный, игумен",
+      "tl": "San Sabas na Pinabanal, abad",
+      "fr": "Saint Sabas le Sanctifié, abbé",
+      "it": "San Saba il Santificato, abate",
+      "uk": "Святий Сава Освячений, ігумен"
+    },
+    "Nativity of the Lord (Vigil Mass)": {
+      "ar": "ميلاد الرب (قداس العشية)",
+      "ru": "Рождество Господне (месса навечерия)",
+      "tl": "Pagsilang ng Panginoon (Misa sa bisperas)",
+      "fr": "Nativité du Seigneur (messe de la veille)",
+      "it": "Natale del Signore (Messa della vigilia)",
+      "uk": "Різдво Господнє (Меса навечір’я)"
+    },
+    "Blessed Virgin Mary, the Mother of God and the Circumcision of the Lord": {
+      "ar": "مريم العذراء والدة الإله وختان الرب",
+      "ru": "Пресвятая Дева Мария, Матерь Божия; Обрезание Господне",
+      "tl": "Mahal na Birheng Maria, Ina ng Diyos; Pagtutuli ng Panginoon",
+      "fr": "Sainte Marie, Mère de Dieu ; Circoncision du Seigneur",
+      "it": "Maria Santissima, Madre di Dio; Circoncisione del Signore",
+      "uk": "Пресвята Діва Марія, Богородиця; Обрізання Господнє"
+    },
+    "St. Simeon and St. Anna, Prophets": {
+      "ar": "القديسان سمعان وحنة، النبيان",
+      "ru": "Святые пророки Симеон и Анна",
+      "tl": "San Simeon at Santa Ana, mga propeta",
+      "fr": "Saints Siméon et Anne, prophètes",
+      "it": "Santi Simeone e Anna, profeti",
+      "uk": "Святі пророки Симеон і Анна"
+    },
+    "St. Josephine Bakhita, Virgin": {
+      "ar": "القديسة جوزفين بخيتة، العذراء",
+      "ru": "Святая Жозефина Бахита, дева",
+      "tl": "Santa Josefina Bakhita, birhen",
+      "fr": "Sainte Joséphine Bakhita, vierge",
+      "it": "Santa Giuseppina Bakhita, vergine",
+      "uk": "Свята Жозефіна Бахіта, діва"
+    },
+    "St. Porphyrius, Bishop": {
+      "ar": "القديس برفيريوس، الأسقف",
+      "ru": "Святой Порфирий, епископ",
+      "tl": "San Porfirio, obispo",
+      "fr": "Saint Porphyre, évêque",
+      "it": "San Porfirio, vescovo",
+      "uk": "Святий Порфирій, єпископ"
+    },
+    "St. Casimir": {
+      "ar": "القديس كازيمير",
+      "ru": "Святой Казимир",
+      "tl": "San Casimiro",
+      "fr": "Saint Casimir",
+      "it": "San Casimiro",
+      "uk": "Святий Казимир"
+    },
+    "St. Sophronius, Bishop of Jerusalem": {
+      "ar": "القديس صفرونيوس، أسقف أورشليم",
+      "ru": "Святой Софроний, епископ Иерусалимский",
+      "tl": "San Sofronio, obispo ng Jerusalem",
+      "fr": "Saint Sophrone, évêque de Jérusalem",
+      "it": "San Sofronio, vescovo di Gerusalemme",
+      "uk": "Святий Софроній, єпископ Єрусалимський"
+    },
+    "St. Patrick, bishop": {
+      "ar": "القديس باتريك، الأسقف",
+      "ru": "Святой Патрик, епископ",
+      "tl": "San Patricio, obispo",
+      "fr": "Saint Patrick, évêque",
+      "it": "San Patrizio, vescovo",
+      "uk": "Святий Патрик, єпископ"
+    },
+    "St. Cyril of Jerusalem, Bishop and Doctor of the Church": {
+      "ar": "القديس كيرلس الأورشليمي، الأسقف ومعلم الكنيسة",
+      "ru": "Святой Кирилл Иерусалимский, епископ и учитель Церкви",
+      "tl": "San Cirilo ng Jerusalem, obispo at pantas ng Simbahan",
+      "fr": "Saint Cyrille de Jérusalem, évêque et docteur de l’Église",
+      "it": "San Cirillo di Gerusalemme, vescovo e dottore della Chiesa",
+      "uk": "Святий Кирило Єрусалимський, єпископ і вчитель Церкви"
+    },
+    "Holy Thursday Chrism Mass": {
+      "ar": "الخميس المقدس (قداس الميرون)",
+      "ru": "Великий четверг (месса освящения мира)",
+      "tl": "Huwebes Santo (Misa ng Krisma)",
+      "fr": "Jeudi saint (messe chrismale)",
+      "it": "Giovedì Santo (Messa crismale)",
+      "uk": "Великий четвер (Меса освячення мира)"
+    },
+    "Good Friday of the Lord’s Passion": {
+      "ar": "الجمعة العظيمة لآلام الرب",
+      "ru": "Великая пятница Страстей Господних",
+      "tl": "Biyernes Santo ng Pagpapakasakit ng Panginoon",
+      "fr": "Vendredi saint de la Passion du Seigneur",
+      "it": "Venerdì Santo della Passione del Signore",
+      "uk": "Велика п’ятниця Страстей Господніх"
+    },
+    "Holy Saturday Easter Vigil in the Holy Night of Easter": {
+      "ar": "السبت المقدس (السهرانية الفصحية)",
+      "ru": "Великая суббота (Пасхальное бдение)",
+      "tl": "Sabado Santo (Bihilya ng Pasko ng Pagkabuhay)",
+      "fr": "Samedi saint (Vigile pascale)",
+      "it": "Sabato Santo (Veglia pasquale)",
+      "uk": "Велика субота (Пасхальне чування)"
+    },
+    "Easter Sunday of the Lord’s Resurrection Mass during the Day": {
+      "ar": "أحد القيامة (قداس النهار)",
+      "ru": "Пасхальное воскресенье (дневная месса)",
+      "tl": "Linggo ng Muling Pagkabuhay (Misa sa araw)",
+      "fr": "Dimanche de Pâques (messe du jour)",
+      "it": "Domenica di Pasqua (Messa del giorno)",
+      "uk": "Неділя Воскресіння Господнього (Меса вдень)"
+    },
+    "St. James, Apostle, Bishop of Jerusalem, Main Patron of the Vicariate": {
+      "ar": "القديس يعقوب، الرسول وأسقف أورشليم وشفيع النيابة",
+      "ru": "Святой Иаков, апостол, епископ Иерусалимский, покровитель викариата",
+      "tl": "San Santiago, apostol at obispo ng Jerusalem, patron ng Bikaryato",
+      "fr": "Saint Jacques, apôtre, évêque de Jérusalem, patron du Vicariat",
+      "it": "San Giacomo, apostolo e vescovo di Gerusalemme, patrono del Vicariato",
+      "uk": "Святий Яків, апостол, єпископ Єрусалимський, покровитель вікаріату"
+    },
+    "St. Helena": {
+      "ar": "القديسة هيلانة",
+      "ru": "Святая Елена",
+      "tl": "Santa Elena",
+      "fr": "Sainte Hélène",
+      "it": "Sant’Elena",
+      "uk": "Свята Олена"
+    },
+    "Most Holy Trinity (Year B)": {
+      "ar": "الثالوث الأقدس (السنة B)",
+      "ru": "Пресвятая Троица (год B)",
+      "tl": "Santísima Trinidad (Taon B)",
+      "fr": "Sainte Trinité (année B)",
+      "it": "Santissima Trinità (anno B)",
+      "uk": "Пресвята Трійця (рік B)"
+    },
+    "Most Holy Body and Blood of Christ (Year B)": {
+      "ar": "جسد المسيح ودمه الأقدسين (السنة B)",
+      "ru": "Пресвятые Тело и Кровь Христа (год B)",
+      "tl": "Kabanal-banalang Katawan at Dugo ni Kristo (Taon B)",
+      "fr": "Saint-Sacrement du Corps et du Sang du Christ (année B)",
+      "it": "Santissimo Corpo e Sangue di Cristo (anno B)",
+      "uk": "Пресвяті Тіло і Кров Христа (рік B)"
+    },
+    "St. Jeremiah, Prophet": {
+      "ar": "القديس إرميا، النبي",
+      "ru": "Святой пророк Иеремия",
+      "tl": "San Jeremias, propeta",
+      "fr": "Saint Jérémie, prophète",
+      "it": "San Geremia, profeta",
+      "uk": "Святий пророк Єремія"
+    },
+    "St. Martha, St. Mary and St. Lazarus": {
+      "ar": "القديسون مرتا ومريم ولعازر",
+      "ru": "Святые Марфа, Мария и Лазарь",
+      "tl": "Santa Marta, Santa Maria at San Lazaro",
+      "fr": "Saints Marthe, Marie et Lazare",
+      "it": "Santi Marta, Maria e Lazzaro",
+      "uk": "Святі Марта, Марія і Лазар"
+    },
+    "St. Maccabees, Martyrs": {
+      "ar": "القديسون المكابيون، الشهداء",
+      "ru": "Святые мученики Маккавеи",
+      "tl": "Mga Banal na Macabeo, mga martir",
+      "fr": "Saints Maccabées, martyrs",
+      "it": "Santi Maccabei, martiri",
+      "uk": "Святі мученики Маккавеї"
+    },
+    "St. Joseph of Arimathea and St. Nicodemus": {
+      "ar": "القديسان يوسف الرامي ونيقوديموس",
+      "ru": "Святые Иосиф Аримафейский и Никодим",
+      "tl": "San Jose ng Arimatea at San Nicodemo",
+      "fr": "Saints Joseph d’Arimathie et Nicodème",
+      "it": "Santi Giuseppe d’Arimatea e Nicodemo",
+      "uk": "Святі Йосип Ариматейський і Никодим"
+    },
+    "St. Moses, Prophet": {
+      "ar": "القديس موسى، النبي",
+      "ru": "Святой пророк Моисей",
+      "tl": "San Moises, propeta",
+      "fr": "Saint Moïse, prophète",
+      "it": "San Mosè, profeta",
+      "uk": "Святий пророк Мойсей"
+    },
+    "St. Albert, Bishop of Jerusalem": {
+      "ar": "القديس ألبرت، أسقف أورشليم",
+      "ru": "Святой Альберт, епископ Иерусалимский",
+      "tl": "San Alberto, obispo ng Jerusalem",
+      "fr": "Saint Albert, évêque de Jérusalem",
+      "it": "Sant’Alberto, vescovo di Gerusalemme",
+      "uk": "Святий Альберт, єпископ Єрусалимський"
+    },
+    "St. Pio of Pietrelcina, Priest": {
+      "ar": "القديس بيو من بيترلتشينا، الكاهن",
+      "ru": "Святой Пио из Пьетрельчины, священник",
+      "tl": "San Pio ng Pietrelcina, pari",
+      "fr": "Saint Pio de Pietrelcina, prêtre",
+      "it": "San Pio da Pietrelcina, sacerdote",
+      "uk": "Святий Піо з П’єтрельчини, священник"
+    },
+    "First Sunday of Advent (Year B) Adam and Eve": {
+      "ar": "الأحد 1 من المجيء الكبير (السنة B) — آدم وحواء",
+      "ru": "1-е воскресенье Великого Адвента (год B) — Адам и Ева",
+      "tl": "Ika-1 Linggo ng Dakilang Adbiyento (Taon B) — Adan at Eba",
+      "fr": "1e dimanche du grand Avent (année B) — Adam et Ève",
+      "it": "1ª domenica del grande Avvento (anno B) — Adamo ed Eva",
+      "uk": "1-та неділя Великого Адвенту (рік B) — Адам і Єва"
+    },
+    "Second Sunday of Advent (Year B) Noah": {
+      "ar": "الأحد 2 من المجيء الكبير (السنة B) — نوح",
+      "ru": "2-е воскресенье Великого Адвента (год B) — Ной",
+      "tl": "Ika-2 Linggo ng Dakilang Adbiyento (Taon B) — Noe",
+      "fr": "2e dimanche du grand Avent (année B) — Noé",
+      "it": "2ª domenica del grande Avvento (anno B) — Noè",
+      "uk": "2-та неділя Великого Адвенту (рік B) — Ной"
+    },
+    "Third Sunday of Advent (Year B) Abraham": {
+      "ar": "الأحد 3 من المجيء الكبير (السنة B) — إبراهيم",
+      "ru": "3-е воскресенье Великого Адвента (год B) — Авраам",
+      "tl": "Ika-3 Linggo ng Dakilang Adbiyento (Taon B) — Abraham",
+      "fr": "3e dimanche du grand Avent (année B) — Abraham",
+      "it": "3ª domenica del grande Avvento (anno B) — Abramo",
+      "uk": "3-та неділя Великого Адвенту (рік B) — Авраам"
+    },
+    "Fourth Sunday of Advent (Year B) Patriarchs": {
+      "ar": "الأحد 4 من المجيء الكبير (السنة B) — الآباء",
+      "ru": "4-е воскресенье Великого Адвента (год B) — Патриархи",
+      "tl": "Ika-4 Linggo ng Dakilang Adbiyento (Taon B) — Mga patriyarka",
+      "fr": "4e dimanche du grand Avent (année B) — Les patriarches",
+      "it": "4ª domenica del grande Avvento (anno B) — I patriarchi",
+      "uk": "4-та неділя Великого Адвенту (рік B) — Патріархи"
+    },
+    "Sixth Sunday of Advent (Year B) Joseph": {
+      "ar": "الأحد 6 من المجيء الكبير (السنة B) — يوسف",
+      "ru": "6-е воскресенье Великого Адвента (год B) — Иосиф",
+      "tl": "Ika-6 Linggo ng Dakilang Adbiyento (Taon B) — Jose",
+      "fr": "6e dimanche du grand Avent (année B) — Joseph",
+      "it": "6ª domenica del grande Avvento (anno B) — Giuseppe",
+      "uk": "6-та неділя Великого Адвенту (рік B) — Йосип"
+    },
+    "Seventh Sunday of Advent (Year B) Moses": {
+      "ar": "الأحد 7 من المجيء الكبير (السنة B) — موسى",
+      "ru": "7-е воскресенье Великого Адвента (год B) — Моисей",
+      "tl": "Ika-7 Linggo ng Dakilang Adbiyento (Taon B) — Moises",
+      "fr": "7e dimanche du grand Avent (année B) — Moïse",
+      "it": "7ª domenica del grande Avvento (anno B) — Mosè",
+      "uk": "7-та неділя Великого Адвенту (рік B) — Мойсей"
+    },
+    "Eighth Sunday of Advent (Year B) King David The Solemnity of Our Lord Jesus Christ, King of the Universe": {
+      "ar": "الأحد 8 من المجيء الكبير (السنة B) — داود الملك؛ المسيح ملك الكون",
+      "ru": "8-е воскресенье Великого Адвента (год B) — Царь Давид; Христос Царь Вселенной",
+      "tl": "Ika-8 Linggo ng Dakilang Adbiyento (Taon B) — Haring David; Kristong Hari ng sanlibutan",
+      "fr": "8e dimanche du grand Avent (année B) — Le roi David ; le Christ Roi de l’univers",
+      "it": "8ª domenica del grande Avvento (anno B) — Re Davide; Cristo Re dell’universo",
+      "uk": "8-та неділя Великого Адвенту (рік B) — Цар Давид; Христос Цар Всесвіту"
+    },
+    "Ninth Sunday of Advent (1st of Year B)": {
+      "ar": "الأحد 9 من المجيء الكبير (السنة B) [1]",
+      "ru": "9-е воскресенье Великого Адвента (год B) [1]",
+      "tl": "Ika-9 Linggo ng Dakilang Adbiyento (Taon B) [1]",
+      "fr": "9e dimanche du grand Avent (année B) [1]",
+      "it": "9ª domenica del grande Avvento (anno B) [1]",
+      "uk": "9-та неділя Великого Адвенту (рік B) [1]"
+    },
+    "Tenth Sunday of Advent (2nd of Year B)": {
+      "ar": "الأحد 10 من المجيء الكبير (السنة B) [2]",
+      "ru": "10-е воскресенье Великого Адвента (год B) [2]",
+      "tl": "Ika-10 Linggo ng Dakilang Adbiyento (Taon B) [2]",
+      "fr": "10e dimanche du grand Avent (année B) [2]",
+      "it": "10ª domenica del grande Avvento (anno B) [2]",
+      "uk": "10-та неділя Великого Адвенту (рік B) [2]"
+    },
+    "Eleventh Sunday of Advent (Gaudete) (3rd of Year B)": {
+      "ar": "الأحد 11 من المجيء الكبير (السنة B) (Gaudete) [3]",
+      "ru": "11-е воскресенье Великого Адвента (год B) (Gaudete) [3]",
+      "tl": "Ika-11 Linggo ng Dakilang Adbiyento (Taon B) (Gaudete) [3]",
+      "fr": "11e dimanche du grand Avent (année B) (Gaudete) [3]",
+      "it": "11ª domenica del grande Avvento (anno B) (Gaudete) [3]",
+      "uk": "11-та неділя Великого Адвенту (рік B) (Gaudete) [3]"
+    },
+    "Twelfth Sunday of Advent (4th of Year B)": {
+      "ar": "الأحد 12 من المجيء الكبير (السنة B) [4]",
+      "ru": "12-е воскресенье Великого Адвента (год B) [4]",
+      "tl": "Ika-12 Linggo ng Dakilang Adbiyento (Taon B) [4]",
+      "fr": "12e dimanche du grand Avent (année B) [4]",
+      "it": "12ª domenica del grande Avvento (anno B) [4]",
+      "uk": "12-та неділя Великого Адвенту (рік B) [4]"
+    },
+    "Second Sunday in Ordinary Time (Year B)": {
+      "ar": "الأحد 2 من الزمن العادي (السنة B)",
+      "ru": "2-е воскресенье рядового времени (год B)",
+      "tl": "Ika-2 Linggo sa Karaniwang Panahon (Taon B)",
+      "fr": "2e dimanche du temps ordinaire (année B)",
+      "it": "2ª domenica del Tempo Ordinario (anno B)",
+      "uk": "2-та неділя звичайного часу (рік B)"
+    },
+    "Third Sunday in Ordinary Time (Year B)": {
+      "ar": "الأحد 3 من الزمن العادي (السنة B)",
+      "ru": "3-е воскресенье рядового времени (год B)",
+      "tl": "Ika-3 Linggo sa Karaniwang Panahon (Taon B)",
+      "fr": "3e dimanche du temps ordinaire (année B)",
+      "it": "3ª domenica del Tempo Ordinario (anno B)",
+      "uk": "3-та неділя звичайного часу (рік B)"
+    },
+    "Fourth Sunday in Ordinary Time (Year B)": {
+      "ar": "الأحد 4 من الزمن العادي (السنة B)",
+      "ru": "4-е воскресенье рядового времени (год B)",
+      "tl": "Ika-4 Linggo sa Karaniwang Panahon (Taon B)",
+      "fr": "4e dimanche du temps ordinaire (année B)",
+      "it": "4ª domenica del Tempo Ordinario (anno B)",
+      "uk": "4-та неділя звичайного часу (рік B)"
+    },
+    "Fifth Sunday in Ordinary Time (Year B)": {
+      "ar": "الأحد 5 من الزمن العادي (السنة B)",
+      "ru": "5-е воскресенье рядового времени (год B)",
+      "tl": "Ika-5 Linggo sa Karaniwang Panahon (Taon B)",
+      "fr": "5e dimanche du temps ordinaire (année B)",
+      "it": "5ª domenica del Tempo Ordinario (anno B)",
+      "uk": "5-та неділя звичайного часу (рік B)"
+    },
+    "First Sunday of Lent (Year B)": {
+      "ar": "الأحد 1 من الصوم (السنة B)",
+      "ru": "1-е воскресенье Великого поста (год B)",
+      "tl": "Ika-1 Linggo ng Kuwaresma (Taon B)",
+      "fr": "1e dimanche de Carême (année B)",
+      "it": "1ª domenica di Quaresima (anno B)",
+      "uk": "1-та неділя Великого посту (рік B)"
+    },
+    "Second Sunday of Lent (Year B)": {
+      "ar": "الأحد 2 من الصوم (السنة B)",
+      "ru": "2-е воскресенье Великого поста (год B)",
+      "tl": "Ika-2 Linggo ng Kuwaresma (Taon B)",
+      "fr": "2e dimanche de Carême (année B)",
+      "it": "2ª domenica di Quaresima (anno B)",
+      "uk": "2-та неділя Великого посту (рік B)"
+    },
+    "Third Sunday of Lent (Year B)": {
+      "ar": "الأحد 3 من الصوم (السنة B)",
+      "ru": "3-е воскресенье Великого поста (год B)",
+      "tl": "Ika-3 Linggo ng Kuwaresma (Taon B)",
+      "fr": "3e dimanche de Carême (année B)",
+      "it": "3ª domenica di Quaresima (anno B)",
+      "uk": "3-та неділя Великого посту (рік B)"
+    },
+    "Fourth Sunday of Lent (Laetare) (Year B)": {
+      "ar": "الأحد 4 من الصوم (السنة B) (Laetare)",
+      "ru": "4-е воскресенье Великого поста (год B) (Laetare)",
+      "tl": "Ika-4 Linggo ng Kuwaresma (Taon B) (Laetare)",
+      "fr": "4e dimanche de Carême (année B) (Laetare)",
+      "it": "4ª domenica di Quaresima (anno B) (Laetare)",
+      "uk": "4-та неділя Великого посту (рік B) (Laetare)"
+    },
+    "Fifth Sunday of Lent (Year B)": {
+      "ar": "الأحد 5 من الصوم (السنة B)",
+      "ru": "5-е воскресенье Великого поста (год B)",
+      "tl": "Ika-5 Linggo ng Kuwaresma (Taon B)",
+      "fr": "5e dimanche de Carême (année B)",
+      "it": "5ª domenica di Quaresima (anno B)",
+      "uk": "5-та неділя Великого посту (рік B)"
+    },
+    "Palm Sunday of the Lord’s Passion (Year B)": {
+      "ar": "أحد الشعانين (السنة B)",
+      "ru": "Вербное воскресенье (год B)",
+      "tl": "Linggo ng Palaspas (Taon B)",
+      "fr": "Dimanche des Rameaux (année B)",
+      "it": "Domenica delle Palme (anno B)",
+      "uk": "Вербна неділя (рік B)"
+    },
+    "Second Sunday of Easter (Divine Mercy) (Year B)": {
+      "ar": "الأحد 2 من الفصح (السنة B) — الرحمة الإلهية",
+      "ru": "2-е воскресенье Пасхи (год B) — Божественное Милосердие",
+      "tl": "Ika-2 Linggo ng Pasko ng Pagkabuhay (Taon B) — Banal na Awa",
+      "fr": "2e dimanche de Pâques (année B) — Divine Miséricorde",
+      "it": "2ª domenica di Pasqua (anno B) — Divina Misericordia",
+      "uk": "2-та неділя Пасхи (рік B) — Боже Милосердя"
+    },
+    "Third Sunday of Easter (Year B)": {
+      "ar": "الأحد 3 من الفصح (السنة B)",
+      "ru": "3-е воскресенье Пасхи (год B)",
+      "tl": "Ika-3 Linggo ng Pasko ng Pagkabuhay (Taon B)",
+      "fr": "3e dimanche de Pâques (année B)",
+      "it": "3ª domenica di Pasqua (anno B)",
+      "uk": "3-та неділя Пасхи (рік B)"
+    },
+    "Fourth Sunday of Easter (Year B)": {
+      "ar": "الأحد 4 من الفصح (السنة B)",
+      "ru": "4-е воскресенье Пасхи (год B)",
+      "tl": "Ika-4 Linggo ng Pasko ng Pagkabuhay (Taon B)",
+      "fr": "4e dimanche de Pâques (année B)",
+      "it": "4ª domenica di Pasqua (anno B)",
+      "uk": "4-та неділя Пасхи (рік B)"
+    },
+    "Fifth Sunday of Easter (Year B)": {
+      "ar": "الأحد 5 من الفصح (السنة B)",
+      "ru": "5-е воскресенье Пасхи (год B)",
+      "tl": "Ika-5 Linggo ng Pasko ng Pagkabuhay (Taon B)",
+      "fr": "5e dimanche de Pâques (année B)",
+      "it": "5ª domenica di Pasqua (anno B)",
+      "uk": "5-та неділя Пасхи (рік B)"
+    },
+    "Sixth Sunday of Easter (Year B)": {
+      "ar": "الأحد 6 من الفصح (السنة B)",
+      "ru": "6-е воскресенье Пасхи (год B)",
+      "tl": "Ika-6 Linggo ng Pasko ng Pagkabuhay (Taon B)",
+      "fr": "6e dimanche de Pâques (année B)",
+      "it": "6ª domenica di Pasqua (anno B)",
+      "uk": "6-та неділя Пасхи (рік B)"
+    },
+    "Pentecost Sunday (Year B)": {
+      "ar": "أحد العنصرة (السنة B)",
+      "ru": "Воскресенье Пятидесятницы (год B)",
+      "tl": "Linggo ng Pentekostes (Taon B)",
+      "fr": "Dimanche de la Pentecôte (année B)",
+      "it": "Domenica di Pentecoste (anno B)",
+      "uk": "Неділя П’ятдесятниці (рік B)"
+    },
+    "Tenth Sunday in Ordinary Time (Year B)": {
+      "ar": "الأحد 10 من الزمن العادي (السنة B)",
+      "ru": "10-е воскресенье рядового времени (год B)",
+      "tl": "Ika-10 Linggo sa Karaniwang Panahon (Taon B)",
+      "fr": "10e dimanche du temps ordinaire (année B)",
+      "it": "10ª domenica del Tempo Ordinario (anno B)",
+      "uk": "10-та неділя звичайного часу (рік B)"
+    },
+    "Eleventh Sunday in Ordinary Time (Year B)": {
+      "ar": "الأحد 11 من الزمن العادي (السنة B)",
+      "ru": "11-е воскресенье рядового времени (год B)",
+      "tl": "Ika-11 Linggo sa Karaniwang Panahon (Taon B)",
+      "fr": "11e dimanche du temps ordinaire (année B)",
+      "it": "11ª domenica del Tempo Ordinario (anno B)",
+      "uk": "11-та неділя звичайного часу (рік B)"
+    },
+    "Twelfth Sunday in Ordinary Time (Year B)": {
+      "ar": "الأحد 12 من الزمن العادي (السنة B)",
+      "ru": "12-е воскресенье рядового времени (год B)",
+      "tl": "Ika-12 Linggo sa Karaniwang Panahon (Taon B)",
+      "fr": "12e dimanche du temps ordinaire (année B)",
+      "it": "12ª domenica del Tempo Ordinario (anno B)",
+      "uk": "12-та неділя звичайного часу (рік B)"
+    },
+    "Thirteenth Sunday in Ordinary Time (Year B)": {
+      "ar": "الأحد 13 من الزمن العادي (السنة B)",
+      "ru": "13-е воскресенье рядового времени (год B)",
+      "tl": "Ika-13 Linggo sa Karaniwang Panahon (Taon B)",
+      "fr": "13e dimanche du temps ordinaire (année B)",
+      "it": "13ª domenica del Tempo Ordinario (anno B)",
+      "uk": "13-та неділя звичайного часу (рік B)"
+    },
+    "Fourteenth Sunday in Ordinary Time (Year B)": {
+      "ar": "الأحد 14 من الزمن العادي (السنة B)",
+      "ru": "14-е воскресенье рядового времени (год B)",
+      "tl": "Ika-14 Linggo sa Karaniwang Panahon (Taon B)",
+      "fr": "14e dimanche du temps ordinaire (année B)",
+      "it": "14ª domenica del Tempo Ordinario (anno B)",
+      "uk": "14-та неділя звичайного часу (рік B)"
+    },
+    "Fifteenth Sunday in Ordinary Time (Year B)": {
+      "ar": "الأحد 15 من الزمن العادي (السنة B)",
+      "ru": "15-е воскресенье рядового времени (год B)",
+      "tl": "Ika-15 Linggo sa Karaniwang Panahon (Taon B)",
+      "fr": "15e dimanche du temps ordinaire (année B)",
+      "it": "15ª domenica del Tempo Ordinario (anno B)",
+      "uk": "15-та неділя звичайного часу (рік B)"
+    },
+    "Sixteenth Sunday in Ordinary Time (Year B)": {
+      "ar": "الأحد 16 من الزمن العادي (السنة B)",
+      "ru": "16-е воскресенье рядового времени (год B)",
+      "tl": "Ika-16 Linggo sa Karaniwang Panahon (Taon B)",
+      "fr": "16e dimanche du temps ordinaire (année B)",
+      "it": "16ª domenica del Tempo Ordinario (anno B)",
+      "uk": "16-та неділя звичайного часу (рік B)"
+    },
+    "Seventeenth Sunday in Ordinary Time (Year B)": {
+      "ar": "الأحد 17 من الزمن العادي (السنة B)",
+      "ru": "17-е воскресенье рядового времени (год B)",
+      "tl": "Ika-17 Linggo sa Karaniwang Panahon (Taon B)",
+      "fr": "17e dimanche du temps ordinaire (année B)",
+      "it": "17ª domenica del Tempo Ordinario (anno B)",
+      "uk": "17-та неділя звичайного часу (рік B)"
+    },
+    "Eighteenth Sunday in Ordinary Time (Year B)": {
+      "ar": "الأحد 18 من الزمن العادي (السنة B)",
+      "ru": "18-е воскресенье рядового времени (год B)",
+      "tl": "Ika-18 Linggo sa Karaniwang Panahon (Taon B)",
+      "fr": "18e dimanche du temps ordinaire (année B)",
+      "it": "18ª domenica del Tempo Ordinario (anno B)",
+      "uk": "18-та неділя звичайного часу (рік B)"
+    },
+    "Nineteenth Sunday in Ordinary Time (Year B)": {
+      "ar": "الأحد 19 من الزمن العادي (السنة B)",
+      "ru": "19-е воскресенье рядового времени (год B)",
+      "tl": "Ika-19 Linggo sa Karaniwang Panahon (Taon B)",
+      "fr": "19e dimanche du temps ordinaire (année B)",
+      "it": "19ª domenica del Tempo Ordinario (anno B)",
+      "uk": "19-та неділя звичайного часу (рік B)"
+    },
+    "Twenty-first Sunday in Ordinary Time (Year B)": {
+      "ar": "الأحد 21 من الزمن العادي (السنة B)",
+      "ru": "21-е воскресенье рядового времени (год B)",
+      "tl": "Ika-21 Linggo sa Karaniwang Panahon (Taon B)",
+      "fr": "21e dimanche du temps ordinaire (année B)",
+      "it": "21ª domenica del Tempo Ordinario (anno B)",
+      "uk": "21-та неділя звичайного часу (рік B)"
+    },
+    "Twenty-second Sunday in Ordinary Time (Year B)": {
+      "ar": "الأحد 22 من الزمن العادي (السنة B)",
+      "ru": "22-е воскресенье рядового времени (год B)",
+      "tl": "Ika-22 Linggo sa Karaniwang Panahon (Taon B)",
+      "fr": "22e dimanche du temps ordinaire (année B)",
+      "it": "22ª domenica del Tempo Ordinario (anno B)",
+      "uk": "22-та неділя звичайного часу (рік B)"
+    },
+    "Twenty-third Sunday in Ordinary Time (Year B)": {
+      "ar": "الأحد 23 من الزمن العادي (السنة B)",
+      "ru": "23-е воскресенье рядового времени (год B)",
+      "tl": "Ika-23 Linggo sa Karaniwang Panahon (Taon B)",
+      "fr": "23e dimanche du temps ordinaire (année B)",
+      "it": "23ª domenica del Tempo Ordinario (anno B)",
+      "uk": "23-та неділя звичайного часу (рік B)"
+    },
+    "Twenty-fourth Sunday in Ordinary Time (Year B)": {
+      "ar": "الأحد 24 من الزمن العادي (السنة B)",
+      "ru": "24-е воскресенье рядового времени (год B)",
+      "tl": "Ika-24 Linggo sa Karaniwang Panahon (Taon B)",
+      "fr": "24e dimanche du temps ordinaire (année B)",
+      "it": "24ª domenica del Tempo Ordinario (anno B)",
+      "uk": "24-та неділя звичайного часу (рік B)"
+    },
+    "Twenty-fifth Sunday in Ordinary Time (Year B)": {
+      "ar": "الأحد 25 من الزمن العادي (السنة B)",
+      "ru": "25-е воскресенье рядового времени (год B)",
+      "tl": "Ika-25 Linggo sa Karaniwang Panahon (Taon B)",
+      "fr": "25e dimanche du temps ordinaire (année B)",
+      "it": "25ª domenica del Tempo Ordinario (anno B)",
+      "uk": "25-та неділя звичайного часу (рік B)"
+    },
+    "Twenty-sixth Sunday in Ordinary Time (Year B)": {
+      "ar": "الأحد 26 من الزمن العادي (السنة B)",
+      "ru": "26-е воскресенье рядового времени (год B)",
+      "tl": "Ika-26 Linggo sa Karaniwang Panahon (Taon B)",
+      "fr": "26e dimanche du temps ordinaire (année B)",
+      "it": "26ª domenica del Tempo Ordinario (anno B)",
+      "uk": "26-та неділя звичайного часу (рік B)"
+    },
+    "Twenty-seventh Sunday in Ordinary Time (Year B)": {
+      "ar": "الأحد 27 من الزمن العادي (السنة B)",
+      "ru": "27-е воскресенье рядового времени (год B)",
+      "tl": "Ika-27 Linggo sa Karaniwang Panahon (Taon B)",
+      "fr": "27e dimanche du temps ordinaire (année B)",
+      "it": "27ª domenica del Tempo Ordinario (anno B)",
+      "uk": "27-та неділя звичайного часу (рік B)"
+    },
+    "Twenty-eighth Sunday in Ordinary Time (Year B)": {
+      "ar": "الأحد 28 من الزمن العادي (السنة B)",
+      "ru": "28-е воскресенье рядового времени (год B)",
+      "tl": "Ika-28 Linggo sa Karaniwang Panahon (Taon B)",
+      "fr": "28e dimanche du temps ordinaire (année B)",
+      "it": "28ª domenica del Tempo Ordinario (anno B)",
+      "uk": "28-та неділя звичайного часу (рік B)"
+    },
+    "Twenty-ninth Sunday in Ordinary Time (Year B)": {
+      "ar": "الأحد 29 من الزمن العادي (السنة B)",
+      "ru": "29-е воскресенье рядового времени (год B)",
+      "tl": "Ika-29 Linggo sa Karaniwang Panahon (Taon B)",
+      "fr": "29e dimanche du temps ordinaire (année B)",
+      "it": "29ª domenica del Tempo Ordinario (anno B)",
+      "uk": "29-та неділя звичайного часу (рік B)"
+    },
+    "First Sunday of Advent (Year C)": {
+      "ar": "الأحد 1 من المجيء الكبير (السنة C)",
+      "ru": "1-е воскресенье Великого Адвента (год C)",
+      "tl": "Ika-1 Linggo ng Dakilang Adbiyento (Taon C)",
+      "fr": "1e dimanche du grand Avent (année C)",
+      "it": "1ª domenica del grande Avvento (anno C)",
+      "uk": "1-та неділя Великого Адвенту (рік C)"
+    }
+  }
+}

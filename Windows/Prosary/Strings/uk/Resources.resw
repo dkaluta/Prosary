@@ -211,7 +211,7 @@
   <data name="AbtScriptureHeader.Text" xml:space="preserve"><value>Джерела Святого Письма</value></data>
   <data name="AbtScriptureBody.Text" xml:space="preserve"><value>Цитати зі Святого Письма взято з Біблії Дуе—Реймса (англійська), Климентинської Вульгати (латина), перекладу Нового Завіту івритом Франца Деліча (джерело: kirjasilta.net/ha-berit; delitz.fr/12, 1901), а старозавітні уривки івритом відповідають масоретському тексту. Також використано старий арабський єзуїтський переклад Біблії (1897), російський Синодальний переклад (1876) та Ang Dating Biblia (тагалог, 1905).</value></data>
   <data name="AbtCalendarDataHeader.Text" xml:space="preserve"><value>Дані календарів</value></data>
-  <data name="AbtCalendarDataBody.Text" xml:space="preserve"><value>Дані календарів і читань: Загальний римський календар — проєкт LitCal (litcal.johnromanodorazio.com); календар і лекціонарій 1962 року — Missale Meum (missalemeum.com); сирійський католицький календар, засвідчені назви Загального римського календаря івритом та посилання римського й сирійського лекціонаріїв надано Evangelizo.org — Щоденне Євангеліє, © Evangelizo.org; Українська Греко-Католицька Церква та її Патріарша літургійна комісія (ugcc.ua) надають український календар і читання з юліанською пасхалією; Royal Doors (royaldoors.net) надає читання з григоріанською пасхалією. Назви біблійних книг івритом: Evangelizo HE та Вікаріат святого Якова (catholic.co.il). Додаткові назви свят та імена святих івритом: Вікаріат святого Якова, Християнський медіацентр (cmc-terrasanta.org) та Vatican News (vaticannews.va).</value></data>
+  <data name="AbtCalendarDataBody.Text" xml:space="preserve"><value>Дані календарів і читань: Загальний римський календар — проєкт LitCal (litcal.johnromanodorazio.com); календар і лекціонарій 1962 року — Missale Meum (missalemeum.com); сирійський католицький календар, засвідчені назви Загального римського календаря івритом та посилання римського й сирійського лекціонаріїв надано Evangelizo.org — Щоденне Євангеліє, © Evangelizo.org; Українська Греко-Католицька Церква та її Патріарша літургійна комісія (ugcc.ua) надають український календар і читання з юліанською пасхалією; Royal Doors (royaldoors.net) надає читання з григоріанською пасхалією. Назви біблійних книг івритом: Evangelizo HE та Вікаріат святого Якова (catholic.co.il). Додаткові назви свят та імена святих івритом: Вікаріат святого Якова, Християнський медіацентр (cmc-terrasanta.org) та Vatican News (vaticannews.va). Календар святого Якова 2026–2027: Вікаріат святого Якова (catholic.co.il). Ordo францисканців-конвентуалів 2025–2026: провінція святого Антонія Падуанського, Італія (francescaninorditalia.net). Загальний Ordo босих августинців 2026: Орден босих августинців (oadnet.org).</value></data>
   <data name="RosaryPreviousMystery.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Попередня таємниця</value></data>
   <data name="RosaryPreviousMystery.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Попередня таємниця</value></data>
   <data name="RosaryNextMystery.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Наступна таємниця</value></data>
@@ -579,4 +579,27 @@
   <data name="scripture_note_scan" xml:space="preserve"><value>Скан джерела</value></data>
   <data name="bible_printed_label" xml:space="preserve"><value>Позначення в друкованому виданні: {0}</value></data>
   <data name="bible_occurrence" xml:space="preserve"><value>{0} — входження {1}</value></data>
+  <data name="speech_read" xml:space="preserve">
+    <value>Читати вголос</value>
+  </data>
+  <data name="speech_stop" xml:space="preserve">
+    <value>Зупинити читання</value>
+  </data>
+  <data name="speech_unavailable_title" xml:space="preserve">
+    <value>Голос недоступний</value>
+  </data>
+  <data name="speech_unavailable_message" xml:space="preserve">
+    <value>Установіть системний голос для мови цієї молитви, щоб читати її вголос.</value>
+  </data>
+  <data name="SetRemindersHeader.Text" xml:space="preserve"><value>Сповіщення</value></data>
+  <data name="SetReadingsReminder.Header" xml:space="preserve"><value>Нагадування про читання</value></data>
+  <data name="SetSaintReminder.Header" xml:space="preserve"><value>Сповіщення про святих і свята</value></data>
+  <data name="SetReadingsReminderTime.Header" xml:space="preserve"><value>Час сповіщення</value></data>
+  <data name="SetSaintReminderTime.Header" xml:space="preserve"><value>Час сповіщення</value></data>
+  <data name="SetRemindersFooter.Text" xml:space="preserve"><value>Використовує вибраний календар і місцевий час. Сповіщення про святих містять опис із зазначеного джерела, якщо він є мовою застосунку; інакше показують свято та його ранг.</value></data>
+  <data name="SetRemindersWindow.Text" xml:space="preserve"><value>Регулярно відкривайте Prosary, щоб оновлювати майбутні сповіщення.</value></data>
+  <data name="calendar_title" xml:space="preserve"><value>Літургійний календар</value></data>
+  <data name="calendar_previous_month" xml:space="preserve"><value>Попередній місяць</value></data>
+  <data name="calendar_next_month" xml:space="preserve"><value>Наступний місяць</value></data>
+  <data name="calendar_no_observances" xml:space="preserve"><value>Для цього місяця немає опублікованих святкувань.</value></data>
 </root>

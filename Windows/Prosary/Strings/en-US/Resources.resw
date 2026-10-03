@@ -211,7 +211,7 @@
   <data name="AbtScriptureHeader.Text" xml:space="preserve"><value>Scripture Sources</value></data>
   <data name="AbtScriptureBody.Text" xml:space="preserve"><value>Scripture quotations use the Douay-Rheims Bible (English), the Clementine Vulgate (Latin), Franz Delitzsch's Hebrew New Testament translation (sourced from kirjasilta.net/ha-berit; delitz.fr/12, 1901) with Hebrew Old Testament passages following the Masoretic text, the Old Jesuit Arabic Bible (1897), the Russian Synodal Bible (1876), and Ang Dating Biblia (Tagalog, 1905).</value></data>
   <data name="AbtCalendarDataHeader.Text" xml:space="preserve"><value>Calendar Data</value></data>
-  <data name="AbtCalendarDataBody.Text" xml:space="preserve"><value>Calendar and readings data: the General Roman Calendar via the LitCal project (litcal.johnromanodorazio.com); the 1962 calendar and lectionary via Missale Meum (missalemeum.com); the Syriac Catholic calendar, sourced Hebrew General Roman titles, and Roman/Syriac lectionary citations courtesy of Evangelizo.org — Daily Gospel, © Evangelizo.org; the Ukrainian Greek Catholic Church and its Patriarchal Liturgical Commission (ugcc.ua) provide the Ukraine calendar and readings with Julian Pascha; Royal Doors (royaldoors.net) provides the Gregorian Pascha readings. Hebrew Bible book names: Evangelizo HE and the St James Vicariate (catholic.co.il). Additional Hebrew feast and saint names: the St James Vicariate, the Christian Media Center (cmc-terrasanta.org), and Vatican News (vaticannews.va).</value></data>
+  <data name="AbtCalendarDataBody.Text" xml:space="preserve"><value>Calendar and readings data: the General Roman Calendar via the LitCal project (litcal.johnromanodorazio.com); the 1962 calendar and lectionary via Missale Meum (missalemeum.com); the Syriac Catholic calendar, sourced Hebrew General Roman titles, and Roman/Syriac lectionary citations courtesy of Evangelizo.org — Daily Gospel, © Evangelizo.org; the Ukrainian Greek Catholic Church and its Patriarchal Liturgical Commission (ugcc.ua) provide the Ukraine calendar and readings with Julian Pascha; Royal Doors (royaldoors.net) provides the Gregorian Pascha readings. Hebrew Bible book names: Evangelizo HE and the St James Vicariate (catholic.co.il). Additional Hebrew feast and saint names: the St James Vicariate, the Christian Media Center (cmc-terrasanta.org), and Vatican News (vaticannews.va). Saint James 2026–2027 calendar: Saint James Vicariate (catholic.co.il). Conventual Franciscan 2025–2026 Ordo: Province of Saint Anthony of Padua, Italy (francescaninorditalia.net). Discalced Augustinian 2026 general Ordo: Order of Discalced Augustinians (oadnet.org).</value></data>
   <data name="RosaryPreviousMystery.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Previous Mystery</value></data>
   <data name="RosaryPreviousMystery.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Previous Mystery</value></data>
   <data name="RosaryNextMystery.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Next Mystery</value></data>
@@ -580,4 +580,27 @@
   <data name="scripture_note_scan" xml:space="preserve"><value>Source scan</value></data>
   <data name="bible_printed_label" xml:space="preserve"><value>Printed label: {0}</value></data>
   <data name="bible_occurrence" xml:space="preserve"><value>{0} — occurrence {1}</value></data>
+  <data name="speech_read" xml:space="preserve">
+    <value>Read Aloud</value>
+  </data>
+  <data name="speech_stop" xml:space="preserve">
+    <value>Stop Reading</value>
+  </data>
+  <data name="speech_unavailable_title" xml:space="preserve">
+    <value>Voice Unavailable</value>
+  </data>
+  <data name="speech_unavailable_message" xml:space="preserve">
+    <value>Install a system voice for this prayer’s language to read it aloud.</value>
+  </data>
+  <data name="SetRemindersHeader.Text" xml:space="preserve"><value>Notifications</value></data>
+  <data name="SetReadingsReminder.Header" xml:space="preserve"><value>Reading reminders</value></data>
+  <data name="SetSaintReminder.Header" xml:space="preserve"><value>Saint and feast notifications</value></data>
+  <data name="SetReadingsReminderTime.Header" xml:space="preserve"><value>Notification time</value></data>
+  <data name="SetSaintReminderTime.Header" xml:space="preserve"><value>Notification time</value></data>
+  <data name="SetRemindersFooter.Text" xml:space="preserve"><value>Uses your selected calendar and local time. Saint notifications include a sourced description when available in the app language; otherwise they show the feast and its rank.</value></data>
+  <data name="SetRemindersWindow.Text" xml:space="preserve"><value>Open Prosary regularly to refresh upcoming notifications.</value></data>
+  <data name="calendar_title" xml:space="preserve"><value>Liturgical Calendar</value></data>
+  <data name="calendar_previous_month" xml:space="preserve"><value>Previous Month</value></data>
+  <data name="calendar_next_month" xml:space="preserve"><value>Next Month</value></data>
+  <data name="calendar_no_observances" xml:space="preserve"><value>No published observances are available for this month.</value></data>
 </root>

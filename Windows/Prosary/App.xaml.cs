@@ -46,12 +46,31 @@ public partial class App : Application
         TodayInfoStore.SelectedCalendarId = AppSettings.FeastCalendarId;
 
         DesktopWindowManager.ShowLibrary();
+        MainWindow.Activated += (_, activation) => {
+            if (activation.WindowActivationState == WindowActivationState.Deactivated) return;
+            TimeZoneInfo.ClearCachedData();
+            _ = RescheduleRemindersAsync();
+        };
 
         // Top up the reminder rolling window on every launch — the Windows equivalent of
         // Android's boot-time reschedule, since scheduled toasts (unlike AlarmManager alarms)
         // already survive reboot on their own and just need periodic re-arming so the window
         // never runs dry if the app isn't opened for weeks.
         _ = RescheduleRemindersAsync();
+        if (Microsoft.Windows.AppLifecycle.AppInstance.GetCurrent().GetActivatedEventArgs().Data
+            is Windows.ApplicationModel.Activation.IProtocolActivatedEventArgs protocol)
+            _ = HandleProtocolAsync(protocol.Uri.OriginalString);
+    }
+
+    private static async Task HandleProtocolAsync(string value)
+    {
+        if (NotificationDestination.Parse(value) is not { } destination) return;
+        if (destination.PrayerId is { } id) await DesktopWindowManager.OpenPrayerAsync(id);
+        else if (destination.Section is { } section)
+        {
+            DesktopWindowManager.ShowLibrary(section);
+            DesktopWindowManager.ShowTodayReadings(section == "readings");
+        }
     }
 
     private static IServiceProvider ConfigureServices()

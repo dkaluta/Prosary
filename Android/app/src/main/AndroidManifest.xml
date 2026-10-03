@@ -7,6 +7,12 @@
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.TTS_SERVICE" />
+        </intent>
+    </queries>
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -147,6 +153,22 @@
             <meta-data android:name="android.appwidget.provider" android:resource="@xml/saved_prayer_widget_info" />
         </receiver>
 
+        <receiver android:name=".widgets.PrayerShortcutWidgetProvider" android:exported="false"
+            android:label="@string/widget_shortcut_name">
+            <intent-filter><action android:name="android.appwidget.action.APPWIDGET_UPDATE" /></intent-filter>
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/prayer_shortcut_widget_info" />
+        </receiver>
+        <receiver android:name=".widgets.LiturgicalCalendarWidgetProvider" android:exported="false"
+            android:label="@string/widget_calendar_name">
+            <intent-filter><action android:name="android.appwidget.action.APPWIDGET_UPDATE" /></intent-filter>
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/calendar_widget_info" />
+        </receiver>
+        <receiver android:name=".widgets.SaintFeastWidgetProvider" android:exported="false"
+            android:label="@string/widget_saint_name">
+            <intent-filter><action android:name="android.appwidget.action.APPWIDGET_UPDATE" /></intent-filter>
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/saint_widget_info" />
+        </receiver>
+
         <receiver
             android:name=".reminders.ReminderBroadcastReceiver"
             android:exported="false" />
@@ -156,8 +178,12 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
+                <action android:name="android.intent.action.TIME_SET" />
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
             </intent-filter>
         </receiver>
+        <receiver android:name=".reminders.TodayReminderReceiver" android:exported="false" />
     </application>
 
 </manifest>

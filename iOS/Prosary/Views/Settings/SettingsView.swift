@@ -94,6 +94,8 @@ struct SettingsView: View {
       Button("common.ok") { removalError = nil }
     } message: { Text(removalError ?? "") }
     .task { await refreshDownloads() }
+    .onChange(of: feastCalendarId) { _, _ in Task { await TodayReminderScheduler.refresh() } }
+    .onChange(of: easternPaschaStyle) { _, _ in Task { await TodayReminderScheduler.refresh() } }
     .onAppear {
       installedCount = PrayerPackStore.installedBundleIds().count
       audioCacheBytes = SettingsMaintenance.audioCacheSize()
@@ -117,7 +119,7 @@ struct SettingsView: View {
       MacPrayerEditorForm { languageSettings }
         .tabItem { Label(String(localized: "settings.prayerLanguageHeader", defaultValue: "Language", bundle: UILanguage.bundle, locale: UILanguage.locale), systemImage: "character.bubble") }
         .tag(SettingsPane.language)
-      MacPrayerEditorForm { prayingSettings }
+      MacPrayerEditorForm { prayingSettings; TodayReminderSettings() }
         .tabItem { Label(String(localized: "settings.prayingHeader", defaultValue: "Praying", bundle: UILanguage.bundle, locale: UILanguage.locale), systemImage: "hands.and.sparkles") }
         .tag(SettingsPane.praying)
       MacPrayerEditorForm { appearanceSettings; typographySettings }
@@ -141,6 +143,7 @@ struct SettingsView: View {
       prayingSettings
       typographySettings
       todaySettings
+      TodayReminderSettings()
       downloadsSettings
       linksSettings
     }

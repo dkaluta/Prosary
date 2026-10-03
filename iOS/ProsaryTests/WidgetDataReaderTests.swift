@@ -168,4 +168,16 @@ final class WidgetDataReaderTests: XCTestCase {
     XCTAssertEqual(ProsaryWidgetSnapshot.localDateKey(instant, timeZone: try XCTUnwrap(TimeZone(identifier: "America/New_York"))),
                    "2026-09-10")
   }
+
+  func testSaintWidgetDescriptionsStayInTheSelectedRiteAndLanguage() throws {
+    let registry = #"{"default":"roman","calendars":[{"id":"roman","file":"feasts"},{"id":"syriac","file":"feasts"}]}"#
+    let feasts = #"{"days":{"2026-09-10":{"title":"Fixture feast","observances":[{"descriptionByLanguage":{"en":"Source biography"},"descriptionCreditByLanguage":{"en":"Fixture source"}}]}}}"#
+    try withBundle(["calendars": registry, "feasts": feasts]) { bundle in
+      let syriac = WidgetTodayReader(settings: .init(calendarID: "syriac", languageCode: "en"), bundle: bundle).content(on: day)
+      XCTAssertEqual(syriac.saintDescription, "Source biography")
+      XCTAssertEqual(syriac.saintCredit, "Fixture source")
+      XCTAssertEqual(WidgetTodayReader(settings: .init(calendarID: "roman", languageCode: "en"), bundle: bundle).content(on: day).saintDescription, "Source biography")
+      XCTAssertNil(WidgetTodayReader(settings: .init(calendarID: "syriac", languageCode: "he"), bundle: bundle).content(on: day).saintDescription)
+    }
+  }
 }

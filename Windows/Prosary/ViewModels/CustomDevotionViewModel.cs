@@ -45,6 +45,10 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
     private IReadOnlyList<RosaryStep> _steps = [];
     private int _index;
     private string? _languageCode;
+    public string SpeechLanguageCode => _languageCode ?? string.Empty;
+    public string SpeechBody => _index >= 0 && _index < _steps.Count
+        ? string.Join("\n\n", new[] { _steps[_index].Acclamation, _steps[_index].Body }.Where(text => !string.IsNullOrEmpty(text))) : string.Empty;
+    public bool HasRecordedNarration => HasAudio && _audio?.Track?.IsNarration == true;
     private string _bundleId = string.Empty;
     private bool _hasClosingCross;
     private string? _variantId;
@@ -793,8 +797,9 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
     {
         var defaultVariantId = DefaultVariantId;
         var effectiveVariant = _variantId ?? defaultVariantId;
-        var match = PrayerPackStore.AudioTracks(_bundleId)
-            .FirstOrDefault(t => t.Language == _languageCode && (t.VariantId ?? defaultVariantId) == effectiveVariant);
+        var matches = PrayerPackStore.AudioTracks(_bundleId)
+            .Where(t => t.Language == _languageCode && (t.VariantId ?? defaultVariantId) == effectiveVariant).ToList();
+        var match = matches.FirstOrDefault(t => t.IsNarration) ?? matches.FirstOrDefault(t => t.IsMusic);
         if (match is null)
         {
             StopAudio();
@@ -827,7 +832,7 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
     /// audio where it is.</summary>
     private void AlignAudioToCurrentStep()
     {
-        if (_audio is not { IsLoaded: true } audio || audio.Track?.Chapters is not { } chapters)
+        if (_audio is not { IsLoaded: true } audio || audio.Track?.IsNarration != true || audio.Track?.Chapters is not { } chapters)
         {
             return;
         }
@@ -863,7 +868,7 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
             if (audio.CurrentChapterIndex is { } chapterIndex)
             {
                 AudioChapterTitle = chapterIndex < _audioChapterTitles.Count ? _audioChapterTitles[chapterIndex] : string.Empty;
-                if (audio.Track?.Chapters?[chapterIndex].StepIndex is { } hint
+                if (audio.Track?.IsNarration == true && audio.Track?.Chapters?[chapterIndex].StepIndex is { } hint
                     && hint >= 0 && hint < _steps.Count && hint != _index)
                 {
                     _index = hint;

@@ -526,8 +526,7 @@ public partial class HomeViewModel : ObservableObject
             IsSaintDescriptionsExpanded = false;
             OnPropertyChanged(nameof(SaintDescriptionsTitle));
         }
-        SaintDescriptions = TodayInfoStore.ResolvedCalendarId == "syriac"
-            ? TodayFeast?.LocalizedDescriptions(TodayLanguage) ?? [] : [];
+        SaintDescriptions = TodayFeast?.LocalizedDescriptions(TodayLanguage) ?? [];
         MonthIntention = AppSettings.ShowTodayIntention ? TodayInfoStore.Intention(today) : null;
         TodayDay = TodayInfoStore.LiturgicalDay(today);
         TodayReadings = AppSettings.ShowTodayReadings ? TodayInfoStore.Readings(today) : [];
@@ -559,14 +558,25 @@ public partial class HomeViewModel : ObservableObject
     /// <summary>A card's "Reminders…" — the saved configuration behind the card is what they
     /// belong to, so a devotion pinned but never configured has none to edit.</summary>
     [RelayCommand]
-    private void OpenReminders(DevotionCardModel card)
+    private async Task OpenReminders(DevotionCardModel card)
     {
+        if (!card.CanHaveReminders) return;
         var prayer = SavedPrayerForCard(card);
-
-        if (prayer is not null)
+        if (prayer is null)
         {
-            Navigation.Navigate<RemindersOnlyEditorPage>(prayer.Id);
+            var id = DevotionIdOf(card);
+            prayer = new Prayer {
+                Name = card.Title, IsDefault = true,
+                Kind = id switch { "rosary" => PrayerKind.Rosary, "jesusPrayer" => PrayerKind.JesusPrayer, _ => PrayerKind.Custom },
+                CustomDevotionId = id is "rosary" or "jesusPrayer" ? null : id,
+            };
+            try { await _presets.SaveAsync(prayer); }
+            catch (Exception error) {
+                if (ShowRemovalError is not null) await ShowRemovalError(error.Message);
+                return;
+            }
         }
+        Navigation.Navigate<RemindersOnlyEditorPage>(prayer.Id);
     }
 
     private Prayer? SavedPrayerForCard(DevotionCardModel card) => DevotionIdOf(card) switch

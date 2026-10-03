@@ -1,36 +1,106 @@
 {
   "$comment": "Widget surface and handoff contract for the user-requested iOS, Android, and macOS implementations. This descriptive schema follows the other Shared/schema files; it is not a JSON Schema validator or a new cross-platform Prayer storage format.",
-  "platforms": ["iOS", "Android", "macOS"],
+  "platforms": [
+    "iOS",
+    "Android",
+    "macOS"
+  ],
   "windows": "Native Windows widgets are outside this feature's requested scope; existing Prayer and Today data contracts remain unchanged.",
   "documentation": "../WIDGETS.markdown",
   "availability": {
-    "iOS": { "minimumVersion": "17.0", "families": ["systemSmall", "systemMedium", "systemLarge", "accessoryRectangular"] },
-    "macOS": { "minimumVersion": "14.0", "families": ["systemSmall", "systemMedium", "systemLarge"] },
+    "iOS": {
+      "minimumVersion": "17.0",
+      "families": [
+        "systemSmall",
+        "systemMedium",
+        "systemLarge",
+        "accessoryRectangular"
+      ]
+    },
+    "macOS": {
+      "minimumVersion": "14.0",
+      "families": [
+        "systemSmall",
+        "systemMedium",
+        "systemLarge"
+      ]
+    },
     "Android": {
       "technology": "AppWidgetProvider and RemoteViews",
       "defaultCells": "3x2",
       "todayMinimumDp": "180x150",
       "savedPrayerMinimumDp": "180x150",
-      "resize": "Launcher-supported horizontal and vertical resizing"
+      "resize": "Launcher-supported horizontal and vertical resizing",
+      "prayerShortcutDefaultCells": "1x1",
+      "prayerShortcutMinimumDp": "48x48",
+      "calendarDefaultCells": "3x3",
+      "saintDefaultCells": "3x3"
     }
   },
   "surfaces": {
     "today": {
       "displayName": "Today",
       "date": "Current local civil date, independent of any Today date selected in the app.",
-      "content": ["feast", "appointed reading citations", "enabled intention", "enabled Torah portion"],
-      "actions": ["Open Today", "Open today's Rosary"],
+      "content": [
+        "feast",
+        "appointed reading citations",
+        "enabled intention",
+        "enabled Torah portion"
+      ],
+      "actions": [
+        "Open Today",
+        "Open today's Rosary"
+      ],
       "appleCompactAction": "systemSmall and accessoryRectangular open Today; the Rosary shortcut appears in medium and large layouts.",
       "configuration": "Uses the app's calendar, Pascha style, interface language, and optional-row settings."
     },
     "savedPrayer": {
       "displayName": "Saved Prayer",
       "selection": "One existing Prayer.id per widget instance, selected through native widget configuration.",
-      "supportedKinds": ["rosary", "jesusPrayer", "custom"],
-      "content": ["Saved prayer name", "Validated unfinished position when available"],
+      "supportedKinds": [
+        "rosary",
+        "jesusPrayer",
+        "custom"
+      ],
+      "content": [
+        "Saved prayer name",
+        "Validated unfinished position when available"
+      ],
       "action": "Open the selected saved UUID through normal prayer navigation and existing continuation behavior.",
       "missingSelection": "Prompt to choose a saved prayer. Do not silently substitute another saved configuration.",
       "identity": "A rename keeps the UUID. A duplicate has a new UUID. Launch re-reads the current saved record."
+    },
+    "prayerShortcut": {
+      "platforms": [
+        "Android"
+      ],
+      "displayName": "Prayer Shortcut",
+      "selection": "One saved Prayer.id, installed devotion:<id>, or basic:<id>, using the native configuration Activity. Large Saved Prayer widgets remain UUID-only.",
+      "content": [
+        "Saved prayer name",
+        "Cross icon"
+      ],
+      "action": "Open the selected saved prayer through normal continuation behavior, or an installed/basic template through its regular prayer route.",
+      "missingSelection": "Choose a prayer; missing/deleted content reopens configuration and never substitutes another identity.",
+      "catalogLinks": "prosary://widget/template/devotion/<id> or prosary://widget/template/basic/<id>; reject encoded paths, unknown kinds and dot segments; the app validates current installed content."
+    },
+    "liturgicalCalendar": {
+      "displayName": "Liturgical Calendar",
+      "content": "Current and upcoming local civil dates from the selected offline feast calendar; missing dates remain explicitly unavailable.",
+      "action": "Open calendar mode at the current local date.",
+      "independentOf": "showTodayFeast"
+    },
+    "saintFeast": {
+      "displayName": "Saint or Feast",
+      "content": [
+        "Daily feast title",
+        "Same-language sourced description when available",
+        "Available source credit where space allows"
+      ],
+      "descriptionBoundary": "Matches the selected calendar's same-language credited observance descriptions; never translate, invent or borrow descriptions from another calendar.",
+      "missingDescription": "Explicit localized unavailable message.",
+      "action": "Open current-day readings and full source links.",
+      "independentOf": "showTodayFeast"
     }
   },
   "todaySettings": {
@@ -39,24 +109,57 @@
       "default": "Registry default",
       "behavior": "Select matching feast and lectionary datasets; never borrow readings from another rite."
     },
-    "easternPaschaStyle": { "default": "julian", "values": ["julian", "gregorian"] },
-    "showTodayFeast": { "default": true },
-    "showTodayIntention": { "default": true },
-    "showTodayTorahPortion": { "default": false },
+    "easternPaschaStyle": {
+      "default": "julian",
+      "values": [
+        "julian",
+        "gregorian"
+      ]
+    },
+    "showTodayFeast": {
+      "default": true
+    },
+    "showTodayIntention": {
+      "default": true
+    },
+    "showTodayTorahPortion": {
+      "default": false
+    },
     "language": {
       "source": "Effective App Language selected through interfaceLanguageCode or the system preference",
-      "independentOf": ["defaultLanguageCode", "Prayer.languageCode"],
+      "independentOf": [
+        "defaultLanguageCode",
+        "Prayer.languageCode"
+      ],
       "legacyTodayLanguageCode": "Ignored, matching current Today behavior.",
-      "supportedCodes": ["en", "he", "ar", "ru", "tl", "fr", "it", "uk"],
-      "aliases": { "fil": "tl", "iw": "he" },
-      "rightToLeftCodes": ["ar", "he"],
+      "supportedCodes": [
+        "en",
+        "he",
+        "ar",
+        "ru",
+        "tl",
+        "fr",
+        "it",
+        "uk"
+      ],
+      "aliases": {
+        "fil": "tl",
+        "iw": "he"
+      },
+      "rightToLeftCodes": [
+        "ar",
+        "he"
+      ],
       "sourceFallback": "Use the dataset's original source value when the selected-language value is absent."
     },
     "headings": "Where displayed, hide the supplementary heading on Sunday. Use season/week only for modern Roman lpj/roman; other rites use the civil date."
   },
   "progress": {
     "source": "Existing PrayerRunProgress, prayer engine, JesusPrayerTarget, and MultiDayRun; no widget-owned prayer progress.",
-    "stepIndex": { "type": "integer", "meaning": "Zero-based current step or repetition" },
+    "stepIndex": {
+      "type": "integer",
+      "meaning": "Zero-based current step or repetition"
+    },
     "displayPosition": "stepIndex + 1",
     "boundedTotal": "Actual rebuilt engine step count, or the saved Jesus Prayer count target.",
     "unboundedTotal": null,
@@ -92,19 +195,46 @@
     "storage": "JSON-encoded Codable Data in App Group UserDefaults",
     "appGroupIdentifier": "group.com.dkaluta.prosary",
     "storageKey": "prosaryWidgetSnapshot.v1",
-    "widgetKinds": { "today": "ProsaryTodayWidget", "savedPrayer": "ProsarySavedPrayerWidget" },
+    "widgetKinds": {
+      "today": "ProsaryTodayWidget",
+      "savedPrayer": "ProsarySavedPrayerWidget",
+      "calendar": "ProsaryLiturgicalCalendarWidget",
+      "saintFeast": "ProsarySaintFeastWidget"
+    },
     "fields": {
       "today": "WidgetTodaySettings",
       "prayers": "WidgetSavedPrayer[]",
       "updatedAt": "Foundation Date, using the native Codable date strategy"
     },
     "WidgetTodaySettings": {
-      "calendarID": { "type": "string", "default": "lpj", "source": "feastCalendarId" },
-      "easternPaschaStyle": { "type": "string", "default": "julian" },
-      "languageCode": { "type": "string", "source": "Current interface language" },
-      "showFeast": { "type": "boolean", "default": true, "source": "showTodayFeast" },
-      "showIntention": { "type": "boolean", "default": true, "source": "showTodayIntention" },
-      "showTorah": { "type": "boolean", "default": false, "source": "showTodayTorahPortion" }
+      "calendarID": {
+        "type": "string",
+        "default": "lpj",
+        "source": "feastCalendarId"
+      },
+      "easternPaschaStyle": {
+        "type": "string",
+        "default": "julian"
+      },
+      "languageCode": {
+        "type": "string",
+        "source": "Current interface language"
+      },
+      "showFeast": {
+        "type": "boolean",
+        "default": true,
+        "source": "showTodayFeast"
+      },
+      "showIntention": {
+        "type": "boolean",
+        "default": true,
+        "source": "showTodayIntention"
+      },
+      "showTorah": {
+        "type": "boolean",
+        "default": false,
+        "source": "showTodayTorahPortion"
+      }
     },
     "WidgetSavedPrayer": {
       "id": "UUID",
@@ -124,7 +254,13 @@
     "configuration": "Initial configuration Activity selects any saved prayer; existing widgets support reconfiguration."
   },
   "refresh": {
-    "changes": ["Relevant app settings", "Saved prayer library", "Prayer progress", "Local civil date", "Time zone"],
+    "changes": [
+      "Relevant app settings",
+      "Saved prayer library",
+      "Prayer progress",
+      "Local civil date",
+      "Time zone"
+    ],
     "midnight": "Calculate next calendar-day start in the local time zone; do not add a fixed 24-hour duration.",
     "schedule": "The operating system controls actual rendering time. Launch always resolves current app data.",
     "apple": "Publish the current day plus seven future local-day entries; request reload after next local midnight.",
@@ -137,5 +273,10 @@
     "authoredContentChanges": false,
     "artworkDuplication": false,
     "attribution": "Preserve the app's existing Calendar Data credits for every displayed source."
+  },
+  "appleShortcuts": {
+    "savedPrayer": "OpenPrayerIntent retains saved UUID selection across all saved kinds.",
+    "catalogPrayer": "OpenCatalogPrayerIntent uses searchable stable devotion:<installed pack ID> and basic:<BasicPrayerCatalog ID> identities; normal template/basic route, no saved copy creation.",
+    "missingPack": "Return a localized unavailable error rather than open another template."
   }
 }

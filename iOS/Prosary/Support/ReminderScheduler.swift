@@ -43,7 +43,7 @@ struct ReminderScheduler {
         content.title = prayer.name
         content.body = notificationBody(for: prayer)
         content.sound = .default
-        content.userInfo = ["prayerId": prayer.id.uuidString]
+        content.userInfo = ["prayerId": prayer.id.uuidString, "url": "prosary://prayer/\(prayer.id.uuidString)"]
 
         var comps = DateComponents()
         comps.hour = reminder.hour

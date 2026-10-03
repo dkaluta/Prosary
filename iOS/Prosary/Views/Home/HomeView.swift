@@ -29,6 +29,8 @@ struct HomeView: View {
 
   @State private var prayers: [Prayer] = []
   @State private var deletingPrayer: Prayer?
+  @State private var reminderSaveError: String?
+  @State private var isOpeningReminders = false
   @State private var todayMysteryGroup: MysteryGroup? = nil
   @State private var todayFeast: FeastDay? = nil
   @State private var monthIntention: PopeIntention? = nil
@@ -304,6 +306,9 @@ struct HomeView: View {
     #endif
     .task { await load() }
     .modifier(PrayerRemovalDialogs(prayer: $deletingPrayer, onDeleted: { await load() }))
+    .alert("favoriteEditor.saveFailed", isPresented: Binding(get: { reminderSaveError != nil }, set: { if !$0 { reminderSaveError = nil } })) {
+      Button("common.ok") { reminderSaveError = nil }
+    } message: { Text(reminderSaveError ?? "") }
     .onAppear { Task { await load() } }
     .onReceive(NotificationCenter.default.publisher(for: .prayerLibraryDidChange)) { _ in
       Task { await load() }
@@ -667,10 +672,12 @@ struct HomeView: View {
 
   @ViewBuilder
   private func rowMenu(for row: DevotionRow) -> some View {
-    if let prayer = savedPrayer(for: row) {
-      Button { remindersPrayer = prayer } label: {
+    if BasicPrayerFavorites.prayerID(homeRowID: row.id) == nil {
+      Button { openReminders(for: row) } label: {
         Label(String(localized: "favorites.reminders", defaultValue: "Reminders…", bundle: UILanguage.bundle, locale: UILanguage.locale), systemImage: "bell")
       }
+    }
+    if let prayer = savedPrayer(for: row) {
       Button(role: .destructive) { deletingPrayer = prayer } label: {
         Label(String(localized: "removal.deleteAction", defaultValue: "Delete Saved Prayer…", bundle: UILanguage.bundle, locale: UILanguage.locale), systemImage: "trash")
       }
@@ -702,6 +709,23 @@ struct HomeView: View {
       } else {
         Label(String(localized: "home.unpin", defaultValue: "Remove from Pray", bundle: UILanguage.bundle, locale: UILanguage.locale), systemImage: "star.slash")
       }
+    }
+  }
+
+  private func openReminders(for row: DevotionRow) {
+    guard !isOpeningReminders else { return }
+    isOpeningReminders = true
+    Task {
+      defer { isOpeningReminders = false }
+      if let existing = savedPrayer(for: row) { remindersPrayer = existing; return }
+      let kind: PrayerKind = row.id == "rosary" ? .rosary : row.id == "jesusPrayer" ? .jesusPrayer : .custom
+      let prayer = Prayer(name: row.title, kind: kind, isDefault: true,
+                          customDevotionId: kind == .custom ? row.id : nil)
+      do {
+        try await services.presetStore.save(prayer)
+        await load()
+        remindersPrayer = prayer
+      } catch { reminderSaveError = error.localizedDescription }
     }
   }
 

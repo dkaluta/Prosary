@@ -211,7 +211,7 @@
   <data name="AbtScriptureHeader.Text" xml:space="preserve"><value>مصادر الكتاب المقدس</value></data>
   <data name="AbtScriptureBody.Text" xml:space="preserve"><value>تستخدم الاقتباسات الكتابية ترجمة دواي–ريمس (الإنجليزية)، والفولغاتا الكليمنتية (اللاتينية)، وترجمة فرانتس دليتش للعهد الجديد بالعبرية (من kirjasilta.net/ha-berit; delitz.fr/12, 1901)، مع نصوص العهد القديم العبرية وفق النص الماسوري، والترجمة اليسوعية القديمة للكتاب المقدس (1897)، والترجمة السينودسية الروسية (1876)، وAng Dating Biblia (التاغالوغ، 1905).</value></data>
   <data name="AbtCalendarDataHeader.Text" xml:space="preserve"><value>بيانات التقويم</value></data>
-  <data name="AbtCalendarDataBody.Text" xml:space="preserve"><value>بيانات التقويم والقراءات: التقويم الروماني العام من مشروع LitCal‏ (litcal.johnromanodorazio.com)؛ تقويم 1962 وكتاب قراءاته من Missale Meum‏ (missalemeum.com)؛ التقويم السرياني الكاثوليكي، والعناوين العبرية الموثقة للتقويم الروماني العام، ومراجع القراءات الرومانية والسريانية، بإذن من Evangelizo.org — إنجيل اليوم، © Evangelizo.org؛ التقويم الأوكراني الكاثوليكي وقراءاته بحسب الفصح اليولياني من الكنيسة الأوكرانية الكاثوليكية ولجنتها الطقسية البطريركية (ugcc.ua)؛ قراءات الفصح الغريغوري من Royal Doors‏ (royaldoors.net). أسماء أسفار الكتاب المقدس بالعبرية: Evangelizo HE ونيابة القديس يعقوب (catholic.co.il). أسماء إضافية للأعياد والقديسين بالعبرية: نيابة القديس يعقوب، والمركز المسيحي للإعلام (cmc-terrasanta.org)، وأخبار الفاتيكان (vaticannews.va).</value></data>
+  <data name="AbtCalendarDataBody.Text" xml:space="preserve"><value>بيانات التقويم والقراءات: التقويم الروماني العام من مشروع LitCal‏ (litcal.johnromanodorazio.com)؛ تقويم 1962 وكتاب قراءاته من Missale Meum‏ (missalemeum.com)؛ التقويم السرياني الكاثوليكي، والعناوين العبرية الموثقة للتقويم الروماني العام، ومراجع القراءات الرومانية والسريانية، بإذن من Evangelizo.org — إنجيل اليوم، © Evangelizo.org؛ التقويم الأوكراني الكاثوليكي وقراءاته بحسب الفصح اليولياني من الكنيسة الأوكرانية الكاثوليكية ولجنتها الطقسية البطريركية (ugcc.ua)؛ قراءات الفصح الغريغوري من Royal Doors‏ (royaldoors.net). أسماء أسفار الكتاب المقدس بالعبرية: Evangelizo HE ونيابة القديس يعقوب (catholic.co.il). أسماء إضافية للأعياد والقديسين بالعبرية: نيابة القديس يعقوب، والمركز المسيحي للإعلام (cmc-terrasanta.org)، وأخبار الفاتيكان (vaticannews.va). تقويم القديس يعقوب 2026–2027: نيابة القديس يعقوب (catholic.co.il). التقويم الفرنسيسكاني الديري 2025–2026: إقليم القديس أنطونيوس البادواني، إيطاليا (francescaninorditalia.net). التقويم العام 2026 للأوغسطينيين حفاة القدمين: رهبنة الأوغسطينيين حفاة القدمين (oadnet.org).</value></data>
   <data name="RosaryPreviousMystery.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>السرّ السابق</value></data>
   <data name="RosaryPreviousMystery.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>السرّ السابق</value></data>
   <data name="RosaryNextMystery.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>السرّ التالي</value></data>
@@ -580,4 +580,27 @@
   <data name="scripture_note_scan" xml:space="preserve"><value>صورة المصدر الممسوحة</value></data>
   <data name="bible_printed_label" xml:space="preserve"><value>الترقيم المطبوع: {0}</value></data>
   <data name="bible_occurrence" xml:space="preserve"><value>{0} — الورود {1}</value></data>
+  <data name="speech_read" xml:space="preserve">
+    <value>القراءة بصوت عالٍ</value>
+  </data>
+  <data name="speech_stop" xml:space="preserve">
+    <value>إيقاف القراءة</value>
+  </data>
+  <data name="speech_unavailable_title" xml:space="preserve">
+    <value>الصوت غير متاح</value>
+  </data>
+  <data name="speech_unavailable_message" xml:space="preserve">
+    <value>ثبّت صوتًا للنظام بلغة هذه الصلاة لقراءتها بصوت عالٍ.</value>
+  </data>
+  <data name="SetRemindersHeader.Text" xml:space="preserve"><value>الإشعارات</value></data>
+  <data name="SetReadingsReminder.Header" xml:space="preserve"><value>تذكيرات القراءات</value></data>
+  <data name="SetSaintReminder.Header" xml:space="preserve"><value>إشعارات القديسين والأعياد</value></data>
+  <data name="SetReadingsReminderTime.Header" xml:space="preserve"><value>وقت الإشعار</value></data>
+  <data name="SetSaintReminderTime.Header" xml:space="preserve"><value>وقت الإشعار</value></data>
+  <data name="SetRemindersFooter.Text" xml:space="preserve"><value>يستخدم التقويم المحدد والتوقيت المحلي. تتضمن إشعارات القديسين وصفًا موثقًا عند توفره بلغة التطبيق؛ وإلا تعرض العيد ودرجته.</value></data>
+  <data name="SetRemindersWindow.Text" xml:space="preserve"><value>افتح Prosary بانتظام لتحديث الإشعارات القادمة.</value></data>
+  <data name="calendar_title" xml:space="preserve"><value>التقويم الليتورجي</value></data>
+  <data name="calendar_previous_month" xml:space="preserve"><value>الشهر السابق</value></data>
+  <data name="calendar_next_month" xml:space="preserve"><value>الشهر التالي</value></data>
+  <data name="calendar_no_observances" xml:space="preserve"><value>لا توجد احتفالات منشورة لهذا الشهر.</value></data>
 </root>

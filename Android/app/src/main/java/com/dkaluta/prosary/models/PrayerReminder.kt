@@ -1,6 +1,7 @@
 package com.dkaluta.prosary.models
 
-import java.text.SimpleDateFormat
+import android.content.Context
+import java.text.DateFormat
 import java.util.Calendar
 import java.util.Locale
 import java.util.UUID
@@ -20,6 +21,13 @@ data class PrayerReminder(
                 set(Calendar.HOUR_OF_DAY, hour)
                 set(Calendar.MINUTE, minute)
             }
-            return SimpleDateFormat("h:mm a", Locale.getDefault()).format(cal.time)
+            return DateFormat.getTimeInstance(DateFormat.SHORT, Locale.getDefault()).format(cal.time)
         }
+
+    /** Android's explicit system 12/24-hour preference takes precedence over locale defaults. */
+    fun formattedTime(context: Context): String = android.text.format.DateFormat.getTimeFormat(context)
+        .format(Calendar.getInstance().apply {
+            set(Calendar.HOUR_OF_DAY, hour)
+            set(Calendar.MINUTE, minute)
+        }.time)
 }

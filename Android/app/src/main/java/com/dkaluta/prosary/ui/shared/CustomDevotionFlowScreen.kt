@@ -142,6 +142,7 @@ fun CustomDevotionFlowScreen(
      * narrates the step at [index] — when one does; steps between chapter hints leave the
      * audio where it is. */
     fun alignAudioToStep(index: Int) {
+        if (audio.track?.isNarration != true) return
         val chapters = audio.track?.chapters ?: return
         val target = chapters.indexOfFirst { it.stepIndex == index }
         if (target >= 0 && audio.currentChapterIndex != target) audio.seekToChapter(target)
@@ -155,13 +156,14 @@ fun CustomDevotionFlowScreen(
         val defaultVariantId = definition?.effectiveVariantId(null, languageCode)
             ?: definition?.variants?.firstOrNull()?.id
         val effectiveVariant = variantId ?: defaultVariantId
-        val match = PrayerPackStore.audioTracks(devotionId).firstOrNull {
+        val matches = PrayerPackStore.audioTracks(devotionId).filter {
             it.language == languageCode && (it.variantId ?: defaultVariantId) == effectiveVariant
         }
+        val match = matches.firstOrNull { it.isNarration } ?: matches.firstOrNull { it.isMusic }
         if (match != null) {
             if (audio.track?.id != match.id || !audio.isLoaded) {
                 audio.load(context, devotionId, match)
-                if (audio.didRestorePosition && allowStoredPosition) {
+                if (audio.track?.isNarration == true && audio.didRestorePosition && allowStoredPosition) {
                     // Resumed mid-recording: pull the page to the restored chapter instead of
                     // yanking the recording back to the step-0 chapter.
                     val hint = audio.currentChapterIndex
@@ -384,6 +386,7 @@ fun CustomDevotionFlowScreen(
         session.observedAudioChapter = chapterIdentity
         if (!runReady || pendingResume != null) return@LaunchedEffect
         val chapterIndex = audio.currentChapterIndex ?: return@LaunchedEffect
+        if (audio.track?.isNarration != true) return@LaunchedEffect
         val hint = audio.track?.chapters?.getOrNull(chapterIndex)?.stepIndex ?: return@LaunchedEffect
         if (hint in steps.indices && currentIndex != hint) currentIndex = hint
     }
@@ -554,6 +557,8 @@ fun CustomDevotionFlowScreen(
             null
         },
         audioIsPlaying = audio.isPlaying,
+        audioDrivesSteps = audio.track?.isNarration == true,
+        speechAvailable = !(audio.isLoaded && audio.track?.isNarration == true),
         wideAccessoryWidth = if (showsBeadTrack) beadWideWidth(beadLayout) else 0.dp,
         accessory = if (showsBeadTrack) {
             { isWide, hasRoomForSingleMinorColumn ->

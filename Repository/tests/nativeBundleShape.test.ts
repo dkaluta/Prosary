@@ -99,7 +99,18 @@ test("variants with paired reading aids, Hebrew provenance, overlays and audio a
   }
 });
 
+test("narration and musical prayer tracks retain their roles during publication", async () => {
+  for (const role of ["narration", "music"]) {
+    const bytes = fixture({ "audio.json": { tracks: [{ id: "song", language: "en", file: "audio/song.opus", role,
+      chapters: [{ start: 0, title: "Opening" }] }] } });
+    const result = await validateAndRestamp(bytes, "pilgrim");
+    assert.deepEqual(await ZipReader.open(result.bytes).contents("audio.json"),
+      await ZipReader.open(bytes).contents("audio.json"));
+  }
+});
+
 const invalidFiles: [string, string, unknown][] = [
+  ["unknown audio role", "audio.json", { tracks: [{ id: "song", language: "en", file: "audio/song.opus", role: "mysteryRole", chapters: [{ start: 0, title: "Opening" }] }] }],
   ["null manifest", "manifest.json", null],
   ["array manifest", "manifest.json", []],
   ["wrong manifest scalar", "manifest.json", { ...manifest, hasCatalog: "false" }],

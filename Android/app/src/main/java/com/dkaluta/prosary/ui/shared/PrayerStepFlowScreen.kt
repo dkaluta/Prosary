@@ -33,6 +33,13 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Timer
+import androidx.compose.material.icons.filled.VolumeUp
+import androidx.compose.material.icons.filled.Stop
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.TextButton
+import androidx.compose.ui.platform.LocalContext
+import androidx.lifecycle.LifecycleEventObserver
+import com.dkaluta.prosary.content.audio.PrayerSpeechController
 import androidx.compose.material.icons.filled.Translate
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -142,6 +149,8 @@ fun PrayerStepFlowScreen(
     /** True while that recording is actually playing: the timer auto-advance stands down, since
      * the audio's chapters are driving the steps and two advance drivers would fight. */
     audioIsPlaying: Boolean = false,
+    audioDrivesSteps: Boolean = true,
+    speechAvailable: Boolean = true,
     sessionPaused: Boolean = false,
     wideAccessoryWidth: Dp = 0.dp,
     prayerBundleId: String = "rosary",
@@ -152,6 +161,31 @@ fun PrayerStepFlowScreen(
     val interfaceDirection = LocalLayoutDirection.current
     val lifecycleOwner = LocalLifecycleOwner.current
     val activity = LocalActivity.current
+    val speechContext = LocalContext.current
+    val speech = remember(speechContext) { PrayerSpeechController(speechContext) }
+    var showsSpeechUnavailable by remember { mutableStateOf(false) }
+    DisposableEffect(speech, lifecycleOwner) {
+        val observer = LifecycleEventObserver { _, event ->
+            if (event == Lifecycle.Event.ON_STOP) speech.stop()
+        }
+        lifecycleOwner.lifecycle.addObserver(observer)
+        onDispose {
+            lifecycleOwner.lifecycle.removeObserver(observer)
+            speech.dispose()
+        }
+    }
+    LaunchedEffect(currentIndex, step?.body, languageCode) { speech.stop() }
+    LaunchedEffect(audioIsPlaying, sessionPaused) {
+        if (audioIsPlaying || sessionPaused) speech.stop()
+    }
+    if (showsSpeechUnavailable) {
+        AlertDialog(onDismissRequest = { showsSpeechUnavailable = false },
+            title = { Text(stringResource(R.string.speech_unavailable_title)) },
+            text = { Text(stringResource(R.string.speech_unavailable_message)) },
+            confirmButton = { TextButton(onClick = { showsSpeechUnavailable = false }) {
+                Text(stringResource(android.R.string.ok))
+            } })
+    }
     DisposableEffect(chrome, lifecycleOwner) {
         onDispose { chrome.captureReadingAnchor() }
     }
@@ -220,8 +254,8 @@ fun PrayerStepFlowScreen(
     // Back/Next resets the countdown, and turning the setting off cancels it. Never fires on
     // the last step: auto-"Finish" would dismiss the whole flow mid-prayer. Suspended outright
     // while a recording plays (audioIsPlaying is a key, so pausing re-arms it).
-    LaunchedEffect(lifecycleOwner, autoAdvanceSeconds, currentIndex, step != null, audioIsPlaying, sessionPaused) {
-        if (autoAdvanceSeconds <= 0 || step == null || isLastStep || audioIsPlaying || sessionPaused) {
+    LaunchedEffect(lifecycleOwner, autoAdvanceSeconds, currentIndex, step != null, audioIsPlaying && audioDrivesSteps, speech.isSpeaking, sessionPaused) {
+        if (autoAdvanceSeconds <= 0 || step == null || isLastStep || (audioIsPlaying && audioDrivesSteps) || speech.isSpeaking || sessionPaused) {
             chrome.cancelCountdown()
             return@LaunchedEffect
         }
@@ -274,6 +308,16 @@ fun PrayerStepFlowScreen(
 
         val flowActions: @Composable () -> Unit = {
             topBarActions()
+            if (speechAvailable) {
+                IconButton(enabled = step != null && !audioIsPlaying && !sessionPaused, onClick = {
+                    if (speech.isSpeaking) speech.stop()
+                    else if (step != null && !speech.speak(listOfNotNull(step.acclamation, step.body)
+                            .joinToString("\n\n"), languageCode)) showsSpeechUnavailable = true
+                }) {
+                    Icon(if (speech.isSpeaking) Icons.Filled.Stop else Icons.Filled.VolumeUp,
+                        contentDescription = stringResource(if (speech.isSpeaking) R.string.speech_stop else R.string.speech_read))
+                }
+            }
             IconButton(onClick = { autoAdvanceMenuExpanded = true }) {
                 Icon(
                     Icons.Filled.Timer,

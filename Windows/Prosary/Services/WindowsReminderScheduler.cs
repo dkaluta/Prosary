@@ -38,10 +38,10 @@ public sealed class WindowsReminderScheduler : IReminderScheduler
 
         foreach (var reminder in prayer.Reminders.Where(r => r.IsEnabled))
         {
-            foreach (var deliveryTime in NextOccurrences(reminder.Hour, reminder.Minute, RollingWindowDays))
+            foreach (var deliveryTime in LocalReminderTime.NextOccurrences(reminder.Hour, reminder.Minute, RollingWindowDays))
             {
                 var toast = BuildToast(prayer.Name, body, deliveryTime, group: prayer.Id.ToString(),
-                    tag: $"{reminder.Id}-{deliveryTime:yyyyMMdd}");
+                    tag: $"{reminder.Id}-{deliveryTime:yyyyMMdd}", launch: $"prosary://prayer/{prayer.Id:D}");
                 notifier.AddToSchedule(toast);
             }
         }
@@ -72,6 +72,7 @@ public sealed class WindowsReminderScheduler : IReminderScheduler
                 Schedule(prayer);
             }
         }
+        TodayReminderScheduler.Refresh();
     }
 
     /// <summary>A series in progress earns one toast per remaining day — the spec's "a
@@ -133,8 +134,8 @@ public sealed class WindowsReminderScheduler : IReminderScheduler
                 continue;
             }
 
-            var midnight = start.Date.AddDays(day);
-            var fire = new DateTimeOffset(midnight.AddHours(hour).AddMinutes(minute), start.Offset);
+            var startDate = DateOnly.FromDateTime(TimeZoneInfo.ConvertTime(start, TimeZoneInfo.Local).DateTime);
+            var fire = LocalReminderTime.OnDate(startDate.AddDays(day), hour, minute);
             if (fire > today)
             {
                 pending.Add((day, fire));
@@ -164,31 +165,16 @@ public sealed class WindowsReminderScheduler : IReminderScheduler
             System.Text.Encoding.UTF8.GetBytes(devotionId)))[..10]
         : $"series-{devotionId}";
 
-    private static IEnumerable<DateTimeOffset> NextOccurrences(int hour, int minute, int days)
-    {
-        var now = DateTimeOffset.Now;
-        var first = new DateTimeOffset(now.Year, now.Month, now.Day, hour, minute, 0, now.Offset);
-        if (first <= now)
-        {
-            first = first.AddDays(1);
-        }
-
-        for (var i = 0; i < days; i++)
-        {
-            yield return first.AddDays(i);
-        }
-    }
-
     // NOTE: Group/Tag lengths here (a GUID each, ~36 chars) are unverified against this API's
     // actual current length limits from this (non-Windows) environment — older Windows toast
     // APIs historically capped Tag/Group at 16 characters each, though that's believed relaxed in
     // later Windows 10+ releases. If AddToSchedule throws on a real Windows build, this is the
     // first place to look (e.g. hash/truncate the ids instead of using full GUID strings).
-    private static ScheduledToastNotification BuildToast(string title, string body, DateTimeOffset deliveryTime, string group, string tag)
+    private static ScheduledToastNotification BuildToast(string title, string body, DateTimeOffset deliveryTime, string group, string tag, string? launch = null)
     {
         var xml = new XmlDocument();
         xml.LoadXml($"""
-            <toast>
+            <toast { (launch is null ? "" : $"activationType=\"protocol\" launch=\"{System.Security.SecurityElement.Escape(launch)}\"") }>
               <visual>
                 <binding template="ToastGeneric">
                   <text>{System.Security.SecurityElement.Escape(title)}</text>

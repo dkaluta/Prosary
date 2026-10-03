@@ -18,9 +18,15 @@ class WidgetModelsTest {
     @Test fun linksAcceptOnlyKnownDestinationsAndSafeSavedIdentities() {
         assertEquals(WidgetDestination.Today, WidgetDestination.parse("prosary://widget/today"))
         assertEquals(WidgetDestination.Rosary, WidgetDestination.parse("prosary://widget/rosary"))
+        assertEquals(WidgetDestination.Calendar, WidgetDestination.parse("prosary://widget/calendar"))
+        assertEquals(WidgetDestination.Readings, WidgetDestination.parse("prosary://widget/readings"))
         assertEquals(WidgetDestination.SavedPrayer("abc-123"), WidgetDestination.parse("prosary://widget/prayer/abc-123"))
+        assertEquals(WidgetDestination.CatalogPrayer("devotion:rosary"), WidgetDestination.parse("prosary://widget/template/devotion/rosary"))
+        assertEquals(WidgetDestination.CatalogPrayer("basic:ourFather"), WidgetDestination.parse("prosary://widget/template/basic/ourFather"))
         listOf(null, "https://widget/today", "prosary://other/today", "prosary://widget/prayer/", "prosary://widget/prayer/../today",
-            "prosary://widget/prayer/abc%2Fdef", "prosary://widget/today?prayer=other", "prosary://widget/today#other").forEach {
+            "prosary://widget/prayer/abc%2Fdef", "prosary://widget/today?prayer=other", "prosary://widget/today#other",
+            "prosary://widget/%63alendar", "prosary://widget/template/other/rosary", "prosary://widget/template/basic/..",
+            "prosary://widget/template/basic/a%2Fb", "prosary://widget/template/devotion/").forEach {
             assertNull(it, WidgetDestination.parse(it))
         }
     }

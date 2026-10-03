@@ -18,6 +18,21 @@
       }
     },
     {
+      "id": "stjames",
+      "file": "feasts-stjames",
+      "readingsFile": "readings-stjames",
+      "name": "Roman — St James Vicariate (2026–2027)",
+      "nameByLanguage": {
+        "he": "רומי — נציגות יעקב הצדיק (2026–2027)",
+        "ar": "روماني — نيابة القديس يعقوب (2026–2027)",
+        "ru": "Римский — Викариат святого Иакова (2026–2027)",
+        "tl": "Romano — Bikaryato ni San Santiago (2026–2027)",
+        "fr": "Romain — Vicariat Saint-Jacques (2026–2027)",
+        "it": "Romano — Vicariato di San Giacomo (2026–2027)",
+        "uk": "Римський — Вікаріат святого Якова (2026–2027)"
+      }
+    },
+    {
       "id": "roman",
       "file": "feasts-roman",
       "readingsFile": "readings-roman",
@@ -48,6 +63,36 @@
       }
     },
     {
+      "id": "franciscan-conventual-italy",
+      "file": "feasts-franciscan-conventual-italy",
+      "readingsFile": "readings-franciscan-conventual-italy",
+      "name": "Franciscan Conventual — St Anthony Province, Italy (2025–2026)",
+      "nameByLanguage": {
+        "he": "פרנציסקני קונבנטואלי — מחוז אנטוניוס הקדוש, איטליה (2025–2026)",
+        "ar": "فرنسيسكاني ديري — إقليم القديس أنطونيوس، إيطاليا (2025–2026)",
+        "ru": "Францисканцы-конвентуалы — провинция святого Антония, Италия (2025–2026)",
+        "tl": "Pransiskano Konbentuwal — Lalawigan ni San Antonio, Italya (2025–2026)",
+        "fr": "Franciscain conventuel — Province Saint-Antoine, Italie (2025–2026)",
+        "it": "Francescano conventuale — Provincia Sant’Antonio, Italia (2025–2026)",
+        "uk": "Францисканці-конвентуали — провінція святого Антонія, Італія (2025–2026)"
+      }
+    },
+    {
+      "id": "augustinian-discalced",
+      "file": "feasts-augustinian-discalced",
+      "readingsFile": "readings-augustinian-discalced",
+      "name": "Discalced Augustinian — General Ordo (2026)",
+      "nameByLanguage": {
+        "he": "אוגוסטיני יחף — לוח המסדר הכללי (2026)",
+        "ar": "أوغسطيني حافي القدمين — التقويم العام للرهبنة (2026)",
+        "ru": "Босые августинцы — общий календарь ордена (2026)",
+        "tl": "Agustinong Diskalso — Pangkalahatang Ordo (2026)",
+        "fr": "Augustin déchaussé — Ordo général (2026)",
+        "it": "Agostiniano scalzo — Ordo generale (2026)",
+        "uk": "Босі августинці — загальний календар ордену (2026)"
+      }
+    },
+    {
       "id": "ugcc",
       "file": "feasts-ugcc",
       "readingsFile": "readings-ugcc",
@@ -73,6 +118,22 @@
       },
       "defaultPaschaStyle": "julian",
       "liturgicalYearStart": "09-01"
+    },
+    {
+      "id": "ugcc-julian",
+      "file": "feasts-ugcc-julian",
+      "readingsFile": "readings-ugcc-julian",
+      "name": "Byzantine — Old-style Julian (feasts)",
+      "nameByLanguage": {
+        "he": "ביזנטי — הלוח היוליאני הישן (חגים)",
+        "ar": "بيزنطي — التقويم اليولياني القديم (الأعياد)",
+        "ru": "Византийский — старый юлианский календарь (праздники)",
+        "tl": "Bizantino — Lumang kalendaryong Juliano (mga kapistahan)",
+        "fr": "Byzantin — Ancien calendrier julien (fêtes)",
+        "it": "Bizantino — Calendario giuliano antico (feste)",
+        "uk": "Візантійський — старий юліанський календар (свята)"
+      },
+      "liturgicalYearStart": "09-14"
     },
     {
       "id": "syriac",

@@ -30,6 +30,8 @@ public partial class RosaryViewModel : ObservableObject, IPrayerStepFlowViewMode
     private IReadOnlyList<RosaryStep> _steps = [];
     private int _index;
     private string _languageCode = LanguageCatalog.DefaultCode;
+    public string SpeechLanguageCode => _languageCode;
+    public string SpeechBody => _index >= 0 && _index < _steps.Count ? _steps[_index].Body : string.Empty;
     private string _chosenLanguage = LanguageCatalog.DefaultSentinel;
     private Prayer? _activePrayer;
     private Prayer? _initialPrayer;

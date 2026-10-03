@@ -1,10 +1,15 @@
 # Prosary widgets
 
-Prosary offers **Today** and **Saved Prayer** widgets on iPhone/iPad, Android, and Mac.
+Prosary offers **Today**, **Saved Prayer**, **Liturgical Calendar**, and **Saint or Feast**
+widgets on iPhone/iPad, Android, and Mac. Android also has a compact **Prayer Shortcut**.
 Today brings the selected calendar's feast and reading citations to the home screen or
 desktop, with a shortcut to today's Rosary. Saved Prayer opens a specific saved configuration
 and shows its valid unfinished position. A widget opens the normal prayer flow; it does not
 advance prayers or mark a day complete in the background.
+
+Android's 1x1 Prayer Shortcut also opens any installed devotion or basic prayer directly;
+its picker includes both templates and saved configurations. Removing an imported pack
+returns its shortcut to selection rather than silently opening another prayer.
 
 This feature's platform scope is iOS, Android, and macOS. Native Windows widgets are outside
 this implementation. The saved `Prayer`, authored packs, calendar datasets, and existing
@@ -15,6 +20,27 @@ Apple supports small, medium, and large widgets on iOS 17+/macOS 14+, plus recta
 Lock Screen widgets on iOS. The Today Rosary shortcut appears in the medium and large
 Apple layouts; the small and Lock Screen layouts open Today. Android uses resizable native
 home-screen widgets with a 3-by-2-cell default. Launcher grids can round their dimensions.
+Prayer Shortcut requests one cell by one cell and lets each instance select a saved prayer.
+The calendar and saint widgets request three cells by three cells on Android.
+
+## Calendar and saints
+
+Liturgical Calendar shows the current day and upcoming dates in the selected calendar.
+Apple displays two days in a small widget, three in medium, and seven in large; Android
+shows today plus three upcoming days, or six upcoming days when enlarged. A missing date
+is marked unavailable. Tapping opens the app's calendar mode at the current local date.
+
+Saint or Feast shows the selected calendar's daily title and an available sourced description.
+Descriptions come from the selected calendar's credited observances, in the selected interface language;
+they are never translated, borrowed from another rite, or replaced with invented biographies.
+When none is available, the widget says so. The available credit appears where space allows;
+tapping opens today's readings and full description/source links. These dedicated widgets
+show the feast independently of the optional Home feast row.
+
+Android widgets use the system wallpaper palette on Android 12 and later, with blue light
+and dark fallbacks on older versions. Compact Today now retains a reading citation, while
+the full widget and all saved widgets retain a 48dp action target. The entire 1x1 shortcut
+is tappable and opens the normal saved prayer flow with existing continuation behavior.
 
 ## Today
 
@@ -132,6 +158,16 @@ prayers. Save a prayer configuration in the app before selecting it in a Saved P
 - On Android, add Today or Saved Prayer from the launcher's Widgets picker. Saved Prayer
   opens its configuration screen to select a prayer; multiple instances can select
   different saved prayers.
+  Prayer Shortcut includes saved prayers, installed devotion templates and basic prayers in a one-cell widget. Liturgical Calendar
+  and Saint or Feast follow the app's selected calendar without additional configuration.
+
+## Shortcuts
+
+Apple's **Open a Prayer Template** action exposes every installed devotion and each entry
+in Basic Prayers, including imported packs. Its searchable choices use stable catalog IDs
+and source-resolved titles. Removing a pack invalidates its selection. **Open Prayer** keeps
+the saved UUID picker, current options, and continuation state for every saved prayer kind.
+Both actions use the normal app navigation; selecting a template does not create a saved copy.
 
 ## Apple signing
 
@@ -159,6 +195,15 @@ recreation, real `AppWidgetHost` selection/progress/deleted-prayer handling, and
 RemoteViews combinations across English, Hebrew, Arabic and Filipino, compact/expanded
 sizes and light/dark appearance. These do not establish OEM launcher scheduling or behavior
 on physical devices. The remaining live checks are recorded below:
+
+On 2026-10-02, 478 Android unit tests and three focused widget instrumentation tests passed
+on an isolated Pixel 8 API 36 / Android 16 emulator. Native RemoteViews were applied, measured,
+laid out and drawn for 96 Calendar, Saint and Prayer Shortcut previews: all eight interface
+languages, light/dark appearance, compact/expanded Calendar and Saint sizes, and 80dp square
+basic-prayer and devotion shortcuts. Assertions covered visible text bounds, complete action
+labels, click targets, RTL and the separate expanded saint credit caption. These previews are
+renderer evidence; launcher registration, OEM resizing and physical-device behavior remain
+the live checks below.
 
 | Surface | Required checks | Live evidence |
 | --- | --- | --- |

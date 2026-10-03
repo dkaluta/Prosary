@@ -1,0 +1,163 @@
+{
+  "schemaVersion": 1,
+  "investigatedAt": "2026-10-03",
+  "scope": "Read-only primary Catholic source investigation for a separate old-style Julian Byzantine feast calendar in civil years 2026 and 2027; no source lectionary imported.",
+  "completed": true,
+  "noVerifiedCompleteLectionary": true,
+  "verifiedCompleteCatholicOldStyle2026Or2027AnnualLectionaryFound": false,
+  "nativeReadingsRecommendation": "Keep the separate old-style calendar's readings empty until its own dated Catholic appointments are verified. Do not shift the new-style UGCC or fully Gregorian Royal Doors readings by thirteen days.",
+  "sources": [
+    {
+      "sourceURL": "https://ugcc.ua/data/pro-kalendarnu-reformu-ugkts-podrobytsi-vid-glavy-tserkvy-blazhennishogo-svyatoslava-2069/",
+      "publisher": "Ukrainian Greek Catholic Church; explanation by its Father and Head",
+      "publishedAt": "2023-02-07",
+      "verification": "Live published primary HTML read on 2026-10-03",
+      "confirms": [
+        "The fixed feast cycle and Paschal cycle are separate.",
+        "Ukraine's reform moved all fixed feasts to the new style, retaining the existing Paschalion.",
+        "Historical old-style Nativity was celebrated on civil 7 January; the explanation contrasts it with 25 December.",
+        "Theophany, Nicholas, Protection and Exaltation must move with the same fixed calendar; Christmas alone cannot be changed."
+      ],
+      "bounds": [
+        "Historical reform explanation, not an annual 2026/2027 appointment table.",
+        "The local permission discussed for Ukraine was time-limited to 2025; this does not establish the current discipline of every diaspora parish."
+      ],
+      "rights": "Page requests a source link when spreading its information; original third-party wording not relicensed."
+    },
+    {
+      "sourceURL": "https://ugcc.ua/data/superechlyva-data-velykodnya-yak-obrahuvaty-ta-chomu-vona-dosi-ne-edyna-dlya-vsih-hrystyyan-4729/",
+      "publisher": "Ukrainian Greek Catholic Church",
+      "publishedAt": "2024-04-17",
+      "underlyingCredit": "Liudmyla Panasiuk, UP. Zhyttia; interview with Fr Roman Fihas, director of the Ukrainian Catholic University Institute of Ecumenical Studies",
+      "verification": "Live official-site HTML read on 2026-10-03",
+      "confirms": [
+        "The 2023 fixed-feast reform moved dates thirteen days earlier while leaving the Eastern Paschal calculation.",
+        "The article explicitly gives Eastern Pascha as civil 12 April 2026."
+      ],
+      "bounds": [
+        "Hosted primary church explanation with an underlying publication credit.",
+        "A computed Pascha date does not establish a complete daily lectionary."
+      ]
+    },
+    {
+      "sourceURL": "https://img1.wsimg.com/blobby/go/63538bbc-8d1a-4372-a75b-f0d6fbbcfee5/downloads/674c8c31-0245-4506-aece-84379c7ba564/March%201%2C%202026%20Bulletin.pdf?ver=1772377522127",
+      "publisher": "Protection of the Blessed Virgin Mary Ukrainian Catholic Church; printed Lenten Regulations 2026 of the Ukrainian Catholic Diocese of Stamford",
+      "publishedAt": "2026-03-01",
+      "verification": "HTTP 200 application/pdf; pypdf extraction and rendered visual review of page 4 of 5",
+      "originalPDFSHA256": "09463f8a62d665fbdb13a323373bec4ec606a2c0ef678098bc0268dedfdfca44",
+      "confirms": [
+        {
+          "observance": "First Day of the Great Fast",
+          "julianCalendarCivilDate": "2026-02-23"
+        },
+        {
+          "observance": "Great and Holy Friday",
+          "julianCalendarCivilDate": "2026-04-10"
+        },
+        {
+          "observance": "Great and Holy Saturday",
+          "julianCalendarCivilDate": "2026-04-11"
+        }
+      ],
+      "bounds": [
+        "The actual published bulletin verifies these three old-style dates, not all fixed feasts or a whole-year reading table.",
+        "The bulletin's own Sunday readings follow its parish practice; they were not transplanted into the old-style dataset."
+      ]
+    },
+    {
+      "sourceURL": "https://www.saintelias.com/calendar",
+      "publisher": "St Elias Ukrainian Catholic parish, Brampton",
+      "verification": "Live published primary HTML read on 2026-10-03",
+      "confirms": [
+        "The page says the parish and eparchy now celebrate on the Gregorian new liturgical calendar."
+      ],
+      "decision": "Excluded as an old-style annual calendar; historical reputation or old downloads do not override current explicit calendar discipline."
+    },
+    {
+      "sourceURL": "https://eeparchy.com/calendar",
+      "publisher": "Ukrainian Catholic Eparchy of Edmonton",
+      "verification": "Live current primary HTML month view read on 2026-10-03",
+      "confirms": [
+        "Current October view places Protection on civil 1 October, so it is not an old-style fixed-date source."
+      ],
+      "decision": "Excluded as an old-style annual calendar."
+    }
+  ],
+  "indexedButNotLiveVerified": [
+    {
+      "sourceURL": "https://eeparchy.com/wp-content/uploads/2026/03/2026-Camrose.pdf",
+      "indexedTitle": "2026 Camrose District Parishes Schedule",
+      "indexedEvidence": "Search excerpt explicitly labels Nativity of Christ Christmas JULIAN Calendar.",
+      "liveResponseStatus": 404,
+      "liveResponseType": "HTML fallback after current site migration",
+      "decision": "No downloaded PDF or actual printed Jan7 row verified. Indexed evidence retained as a lead, not certified primary date evidence."
+    },
+    {
+      "sourceURL": "https://eeparchy.com/wp-content/uploads/2022/05/Redwater-District-Schedule-April-September-2022.pdf",
+      "indexedEvidence": "Indexed Catholic parish schedule has a comparative Easter table showing Julian 12April2026 and2May2027.",
+      "decision": "Search-only comparison lead; the live current 2027 annual appointment table was not obtained."
+    }
+  ],
+  "unsupportedAlternatives": [
+    {
+      "provider": "Ukrainian Orthodox Church of the USA",
+      "reason": "Published old-style annual calendars are Orthodox sources; their saints, rules and dated readings were not approved as Catholic appointments."
+    },
+    {
+      "provider": "Evangelizo BYE/BYA",
+      "evidenceFile": "evangelizo-language-availability.json",
+      "reason": "Actual published registry and edition metadata identify Byzantine/Melkite calendars but provide no old-style fixed-calendar field; a Julian edition was not inferred from the name."
+    }
+  ],
+  "generatorReview": {
+    "file": "Shared/tools/fetch-feasts.py",
+    "sourceSHA256": "830ab67d2f9bb8284631d53128a913b69dfccf777ccae28a8eab52397f7e783c",
+    "method": "Read-only function inspection plus offline independent civil-date comparisons. Every curated fixed month/day landing in 2026 or2027 was independently compared with Gregorian chronology plus the applicable thirteen-day offset. The generator uses Julian-day arithmetic, not that permanent offset.",
+    "countsByCivilYear": {
+      "2026": 90,
+      "2027": 97
+    },
+    "totalDistinctCivilDates": 187,
+    "checksPassed": [
+      "Previous source year's Julian25December maps to civil7January in both2026 and2027.",
+      "All expected curated fixed dates are present within the correct civil year.",
+      "Theophany maps to civil19January in both years.",
+      "Julian Pascha is12April2026 and2May2027.",
+      "2026 old-style Annunciation joins Great and Holy Tuesday on7April.",
+      "Special Sundays are recomputed from converted fixed ranges, not copied by thirteen-day shifting of a Sunday table.",
+      "1991 old-style7April and2035 fully Gregorian25March now preserve Annunciation together with Pascha after root's collision fix."
+    ],
+    "januarySpecialSundays": {
+      "2026": {
+        "beforeNativity": "2026-01-04",
+        "afterNativity": "2026-01-11",
+        "beforeTheophany": "2026-01-18"
+      },
+      "2027": {
+        "beforeNativity": "2027-01-03",
+        "afterNativity": "2027-01-10",
+        "beforeTheophany": "2027-01-17",
+        "afterTheophany": "2027-01-24"
+      }
+    },
+    "ordinaryFixedCommemorationCollisionBounds": [
+      {
+        "date": "2026-05-06",
+        "fixedCandidate": "Holy Great-Martyr George",
+        "publishedOutputTitle": "Mid-Pentecost"
+      },
+      {
+        "date": "2026-05-21",
+        "fixedCandidate": "Holy Apostle and Evangelist John the Theologian",
+        "publishedOutputTitle": "The Ascension of Our Lord"
+      }
+    ],
+    "collisionDecision": "Ordinary fixed-feast candidates do not supersede the movable feast. No transfer or co-celebration rubric is inferred without a verified old-style typikon.",
+    "feastDatasetSHA256": "87bcebe1f20afa57c8bdbf500f0c471771b450a2fe60fbf8a0b55088a255972b",
+    "emptyReadingDatasetSHA256": "be4224c21aa53b9d20f6b3564c0f217a50643e00a9be87cabadc14cf4802e658",
+    "bounds": [
+      "This verifies conversion, year boundaries and specified collision behavior for a curated feast-only table.",
+      "It does not certify every parish's liturgical discipline, daily saints, fasting rules, feast transfers, readings or full annual typikon."
+    ]
+  }
+}

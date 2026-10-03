@@ -40,7 +40,6 @@ struct FeastDay: Decodable, Equatable {
   /// Descriptions are optional sourced prose, never translated or borrowed from another
   /// language or rite at runtime. The assembled feast title remains independent of them.
   func saintDescriptions(calendarID: String, language: String) -> [FeastSaintDescription] {
-    guard calendarID == "syriac" else { return [] }
     return (observances ?? []).compactMap { $0.saintDescription(language: language) }
   }
 
@@ -123,13 +122,15 @@ struct ReadingCitation: Decodable, Equatable {
   let full: String
   let shortByLanguage: [String: String]?
   let fullByLanguage: [String: String]?
+  let sourceText: String?
+  let sourceGroup: String?
 
   /// Compatibility for the first readings dataset, which stored one Hebrew full citation in
   /// a dedicated field before citations became language-keyed alongside feast titles.
   private let legacyHebrew: String?
 
   private enum CodingKeys: String, CodingKey {
-    case type, short, full, shortByLanguage, fullByLanguage, hebrew
+    case type, short, full, shortByLanguage, fullByLanguage, hebrew, sourceText, sourceGroup
   }
 
   init(from decoder: Decoder) throws {
@@ -140,6 +141,8 @@ struct ReadingCitation: Decodable, Equatable {
     shortByLanguage = try container.decodeIfPresent([String: String].self, forKey: .shortByLanguage)
     fullByLanguage = try container.decodeIfPresent([String: String].self, forKey: .fullByLanguage)
     legacyHebrew = try container.decodeIfPresent(String.self, forKey: .hebrew)
+    sourceText = try container.decodeIfPresent(String.self, forKey: .sourceText)
+    sourceGroup = try container.decodeIfPresent(String.self, forKey: .sourceGroup)
   }
 
   func localizedShort(_ language: String) -> String {

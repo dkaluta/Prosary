@@ -5,6 +5,8 @@ existing Prosary cross silhouette from the original Icon Composer document;
 `android-cross-template.png` retains its existing adaptive-icon placement. The change is
 color only. Blue is the default for Mary; white has a gold cross. Light/dark accent pairs
 keep controls readable. Every Apple color choice preserves the original dark icon.
+The small web mark regenerates from that same default blue icon; web tokens use the matching
+Marian blue light/dark accents across the marketing site, repository and composer.
 
 Install the existing website dependencies, then regenerate:
 

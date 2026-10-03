@@ -237,6 +237,16 @@
       }
     },
     "settings": {
+      "notifications": {
+        "preferences": [
+          "readingsReminderEnabled",
+          "readingsReminderMinutes",
+          "saintReminderEnabled",
+          "saintReminderMinutes"
+        ],
+        "defaultEnabled": false,
+        "behavior": "Independent reading and saint/feast reminders at device-local clock times, formatted with the preferred system 12/24-hour clock. Uses the selected calendar and exact app-language descriptions plus attribution when supplied; otherwise a saint/feast notification names the feast and rank. Missing dates do not notify. Opening Prosary refreshes the rolling Apple/Windows notification window. Notification taps open Readings, Today, or the exact saved prayer."
+      },
       "keyboardNavigation": {
         "preferences": [
           "keyboardArrowNavigationEnabled",
@@ -306,7 +316,7 @@
         "android",
         "windows"
       ],
-      "purpose": "The phone/tablet Readings tab replaces Categories. Its date controls use native Apple glass with older-system fallbacks or a translucent Android Material surface above full localized appointed citations from the selected Today calendar and Pascha setting, with the optional Eretz Israel Torah portion and an explicit missing-date state. Following today advances with the local day; a deliberately browsed date remains selected. Browsing does not alter prayer sessions or the Today widget. The date is shared with Pray in the same window. Daily and enabled Torah passages start collapsed on entry and date/calendar changes unless expandReadingsByDefault is enabled, showing localized chapter headings followed by selectable verse-numbered Bible text in a metadata-selected edition, or a localized unavailable message. Individual collapses survive ordinary refreshes and edition changes. Hebrew/Arabic interface and passage text use their own RTL layout; Scripture marks and source typography are retained. Above the readings, a collapsed About the saints disclosure appears only for Syriac when biographies exist in the exact interface language. It respects showTodayFeast, resets with date/calendar/language, and includes source credit. Chapter words and nonitalic numbers follow the selected Bible language, including Hebrew gematria, Eastern Arabic digits, and selected Aramaic script; verse numbers remain unchanged.",
+      "purpose": "The phone/tablet Readings tab replaces Categories. Its date controls use native Apple glass with older-system fallbacks or a translucent Android Material surface above full localized appointed citations from the selected Today calendar and Pascha setting, with the optional Eretz Israel Torah portion and an explicit missing-date state. Following today advances with the local day; a deliberately browsed date remains selected. Browsing does not alter prayer sessions or the Today widget. The date is shared with Pray in the same window. Daily and enabled Torah passages start collapsed on entry and date/calendar changes unless expandReadingsByDefault is enabled, showing localized chapter headings followed by selectable verse-numbered Bible text in a metadata-selected edition, or a localized unavailable message. Individual collapses survive ordinary refreshes and edition changes. Hebrew/Arabic interface and passage text use their own RTL layout; Scripture marks and source typography are retained. Above the readings, a collapsed About the saints disclosure appears for the selected calendar when biographies exist in the exact interface language. It respects showTodayFeast, resets with date/calendar/language, and includes source credit. Chapter words and nonitalic numbers follow the selected Bible language, including Hebrew gematria, Eastern Arabic digits, and selected Aramaic script; verse numbers remain unchanged.",
       "parameters": {},
       "settings": [
         "feastCalendarId",
@@ -318,10 +328,12 @@
       "textLookup": "readings-editions.json supplies picker metadata without loading readings-texts.json. Only passage expansion loads the corpus. Resolve daily|<raw ReadingCitation.full> or torah|<raw ReadingCitation.full> plus the exact edition ID; never parse localized captions or guess numbering. Keep the citation visible and show the edition's name, attribution and source link with available text. Exact keys in the optional wholeVersePassages array show a localized note that full verses are displayed for partial-verse appointments; omitted metadata means no such note. Bible passages are not a claim of exact local Mass wording; missing text never substitutes another edition/language or calendar.",
       "sources": {
         "iOS": "Views/Readings/ReadingsView.swift + Views/Shared/ScripturePassageView.swift + Support/ReadingTextStore.swift",
-        "android": "ui/readings/ReadingsScreen.kt + content/today/ReadingTextStore.kt + content/today/TodayInfoStore.kt"
+        "android": "ui/readings/ReadingsScreen.kt + content/today/ReadingTextStore.kt + content/today/TodayInfoStore.kt",
+        "windows": "Views/DesktopReadingsPage.xaml(.cs) + Views/DesktopTodayPage.xaml(.cs) + Controls/ScripturePassageControl.xaml(.cs)"
       },
       "modes": [
         "dailyReadings",
+        "liturgicalCalendar",
         "bible"
       ],
       "bibleLibrary": {
@@ -333,6 +345,14 @@
         "downloads": "Explicit optional per-edition download with progress, cancellation/retry and removal. Verify size, SHA-256, manifest and all chapter contents before atomic installation. Daily passages do not depend on downloaded Bibles.",
         "coverage": "Display only declared books/chapters and visibly mark partial chapters. Never silently replace an unavailable edition, chapter, verse or language.",
         "credits": "Selected edition credit and source link, plus optional per-book translator attribution and source link."
+      },
+      "liturgicalCalendar": {
+        "behavior": "Browse a month of published observances from the selected calendar and Pascha usage. Previous/next month and Today use local civil dates. Selecting an observance opens that date in Daily Readings; source coverage gaps remain empty. Calendar widget activation follows today and opens this mode. Mac exposes the same month list in a native Today sheet.",
+        "sources": {
+          "iOS": "Views/Readings/LiturgicalCalendarView.swift + Views/Readings/BibleView.swift + Views/Home/MacTodayView.swift",
+          "android": "ui/readings/LiturgicalCalendarContent.kt + ui/readings/ReadingsScreen.kt",
+          "windows": "Views/LiturgicalCalendarControl.xaml(.cs) + ViewModels/LiturgicalCalendarViewModel.cs + Views/DesktopReadingsPage.xaml(.cs)"
+        }
       }
     },
     "categories": {

@@ -23,7 +23,8 @@ public sealed record PrayerReminder
         IsEnabled = isEnabled;
     }
 
-    public string DisplayTime => AsDate.ToString("t");
+    public string DisplayTime => new Windows.Globalization.DateTimeFormatting.DateTimeFormatter("shorttime").Format(new DateTimeOffset(AsDate));
+    public string ClockIdentifier => new Windows.Globalization.DateTimeFormatting.DateTimeFormatter("shorttime").Clock;
 
     /// <summary>A <see cref="DateTime"/> whose time-of-day matches this reminder.</summary>
     public DateTime AsDate => DateTime.Today.AddHours(Hour).AddMinutes(Minute);

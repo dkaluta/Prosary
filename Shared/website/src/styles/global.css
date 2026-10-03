@@ -23,7 +23,7 @@ body {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   grid-template-rows: auto 1fr auto;
-  background: radial-gradient(circle at 8% 0%, color-mix(in srgb, var(--prosary-lime-top) 18%, transparent), transparent 28rem), var(--prosary-background);
+  background: radial-gradient(circle at 8% 0%, color-mix(in srgb, var(--prosary-brand-tint) 18%, transparent), transparent 28rem), var(--prosary-background);
   color: var(--prosary-text);
   font-family:
     ui-rounded, -apple-system, BlinkMacSystemFont, "SF Pro Rounded", "Segoe UI", sans-serif;
@@ -149,7 +149,7 @@ code {
   flex: 0 0 auto;
   place-items: center;
   border: var(--prosary-border-width) solid var(--prosary-border-strong);
-  background: var(--prosary-lime-top);
+  background: var(--prosary-brand-tint);
   box-shadow: var(--prosary-shadow-card);
 }
 
@@ -335,7 +335,7 @@ code {
 }
 
 .status-building {
-  background: var(--prosary-lime-bottom);
+  background: var(--prosary-icon-background);
 }
 
 .page-sections {
@@ -467,7 +467,7 @@ code {
   grid-template-columns: minmax(0, 1.15fr) minmax(260px, 0.85fr);
   align-items: center;
   gap: clamp(32px, 7vw, 72px);
-  background: radial-gradient(circle at 92% 10%, color-mix(in srgb, var(--prosary-lime-top) 22%, transparent), transparent 18rem), var(--prosary-surface);
+  background: radial-gradient(circle at 92% 10%, color-mix(in srgb, var(--prosary-brand-tint) 22%, transparent), transparent 18rem), var(--prosary-surface);
 }
 
 .native-copy > p:last-child {
@@ -506,7 +506,7 @@ code {
   align-items: center;
   justify-content: space-between;
   gap: 30px;
-  background: radial-gradient(circle at 100% 0%, color-mix(in srgb, var(--prosary-lime-top) 30%, transparent), transparent 18rem), var(--prosary-surface);
+  background: radial-gradient(circle at 100% 0%, color-mix(in srgb, var(--prosary-brand-tint) 30%, transparent), transparent 18rem), var(--prosary-surface);
 }
 
 .closing-callout > div {
@@ -645,9 +645,9 @@ code {
 
 .privacy-promise {
   padding: 16px 18px;
-  border-inline-start: 4px solid var(--prosary-lime-bottom);
+  border-inline-start: 4px solid var(--prosary-icon-background);
   border-radius: 4px var(--prosary-radius-control) var(--prosary-radius-control) 4px;
-  background: color-mix(in srgb, var(--prosary-lime-top) 16%, var(--prosary-surface));
+  background: color-mix(in srgb, var(--prosary-brand-tint) 16%, var(--prosary-surface));
 }
 
 .section-domain {

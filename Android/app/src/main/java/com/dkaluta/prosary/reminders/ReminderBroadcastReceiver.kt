@@ -18,15 +18,17 @@ class ReminderBroadcastReceiver : BroadcastReceiver() {
         // Defensive: the channel is also created at app startup, but a device that rebooted
         // straight into this receiver (before MainActivity ever ran) needs it created here too.
         ReminderScheduler.createNotificationChannel(context)
+        ReminderScheduler.rearm(context, intent)
 
         val prayerId = intent.getStringExtra(ReminderScheduler.ExtraPrayerId) ?: return
         val prayerName = intent.getStringExtra(ReminderScheduler.ExtraPrayerName) ?: return
-        val body = intent.getStringExtra(ReminderScheduler.ExtraBody) ?: "Time to pray."
+        val body = intent.getStringExtra(ReminderScheduler.ExtraBody) ?: context.getString(R.string.home_tap_to_pray)
 
         if (!ReminderScheduler.hasNotificationPermission(context)) return
 
         val openIntent = Intent(context, MainActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
+            intent.getStringExtra(ReminderScheduler.ExtraUrl)?.let { data = android.net.Uri.parse(it) }
         }
         val contentIntent = PendingIntent.getActivity(
             context, prayerId.hashCode(), openIntent,
@@ -37,6 +39,7 @@ class ReminderBroadcastReceiver : BroadcastReceiver() {
             .setSmallIcon(R.drawable.ic_launcher_foreground)
             .setContentTitle(HebrewDisplayText.unpoint(prayerName))
             .setContentText(body)
+            .setStyle(NotificationCompat.BigTextStyle().bigText(body))
             .setAutoCancel(true)
             .setContentIntent(contentIntent)
             .build()

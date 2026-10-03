@@ -1328,8 +1328,11 @@ public sealed record DevotionAudioTrack(
     // the track by its language.
     string? Name = null,
     Dictionary<string, string>? NameByLanguage = null,
-    List<DevotionAudioTrack.Chapter>? Chapters = null)
+    List<DevotionAudioTrack.Chapter>? Chapters = null,
+    string? Role = null)
 {
+    public bool IsNarration => Role is null or "narration";
+    public bool IsMusic => Role == "music";
     /// <summary>One seek point. <see cref="Start"/> is seconds from the track's beginning (the
     /// first chapter starts at 0, starts strictly increase); <see cref="Title"/> XOR
     /// <see cref="TitleKey"/> per the step-entry convention (<see cref="TitleKey"/> resolves

@@ -16,10 +16,10 @@ and does not claim feature parity with the three production native ports.
 
 ## Brand system and web family
 
-The native apps and the three web surfaces share one visual identity: burgundy `#7A1F3D` as the
-primary light-mode action color, headline burgundy `#4A0E23`, their accessible pale-rose dark-mode
-counterparts, system typography, generous rounded surfaces, and the white rosary cross on a lime
-gradient. `Shared/Branding/` owns the canonical web-ready app icon and its size-specific variants.
+The native apps and the three web surfaces share the Marian blue identity: `#1768AC` as the
+primary light-mode action color, headline blue `#123F65`, accessible pale-blue dark-mode
+counterparts, system typography, generous rounded surfaces, and the white rosary cross on blue.
+`Shared/Branding/` owns the canonical web-ready app icon and its size-specific variants.
 The landing site (`Shared/website`), prayer repository (`Repository`), and browser authoring app
 (`Compose`) run `Shared/tools/sync-web-branding.mjs` before development and production builds, so
 their deployment-local artwork and token copies stay generated rather than becoming three more
@@ -788,8 +788,10 @@ platforms' OS-level scheduling APIs differ enough that each implements "daily re
 
 - **iOS**: `UNCalendarNotificationTrigger` with `repeats: true` on the time components alone — a
   true native daily-recurring trigger, the simplest of the three.
-- **Android**: `AlarmManager` (exact alarms), with a `BootReceiver` that re-arms all reminders
-  after a device reboot (`AlarmManager` alarms don't survive reboot on their own).
+- **Android**: inexact `AlarmManager` one-shot alarms, re-armed for the next local civil day
+  after delivery. This preserves the chosen clock time through daylight-saving changes without
+  exact-alarm permission. `BootReceiver` restores reminders after reboot, clock/time-zone
+  changes and app updates (`AlarmManager` alarms don't survive reboot on their own).
 - **Windows**: `Windows.UI.Notifications.ScheduledToastNotification` has **no native recurring
   flag at all** — implemented as a rolling window of ~30 pre-scheduled daily instances per
   reminder, topped up on every app launch (scheduled toasts *do* survive reboot on their own, so
@@ -801,6 +803,25 @@ All three schedule/cancel through an equivalent `ReminderScheduler` abstraction 
 `Services/IReminderScheduler.cs` + `WindowsReminderScheduler.cs`) with the same shape:
 `requestPermission()`, `schedule(prayer)` (replaces all of that favorite's pending reminders with
 its current enabled ones), `removeAll(prayer)`, `rescheduleAll(prayers)` (called at app launch).
+
+Every pinned devotion exposes **Reminders** in its Pray menu, including generic devotions and
+the Jesus Prayer before their first saved configuration. Opening the action creates that
+devotion's default saved configuration when necessary; the editor itself still edits an existing
+row. Clock labels and pickers follow the device's preferred 12/24-hour format, independently of
+the interface-language override. Stored hour/minute values always mean local wall-clock time.
+
+Settings has independent, default-off `readingsReminderEnabled` and `saintReminderEnabled`
+preferences, with `readingsReminderMinutes` and `saintReminderMinutes` (0–1439; default 540).
+Reading notifications contain that date's citations from the chosen calendar. Saint/feast
+notifications include available exact-interface-language descriptions and their credits;
+otherwise they identify the actual feast and rank. Empty dates send nothing, and Today display
+switches do not control notification choices. No descriptions are invented or borrowed from
+another rite/language. Taps open Readings, Today, or the exact saved prayer through a validated
+destination URL. Android resolves the content at delivery and re-arms the next day. Apple
+prepares a rolling 14-day window, refreshed at launch/foreground/time-zone change; Windows
+prepares 30 days and refreshes on launch/settings changes. Settings explains that opening
+Prosary refreshes upcoming date-specific notifications. Each Windows delivery resolves its
+date's own local offset instead of carrying today's offset into the future.
 
 ## Assets
 
@@ -1243,7 +1264,7 @@ of its own — its entire step sequence and per-step text are data-driven from i
   ordinary, and a closing Marian antiphon the engine already builds.
 - **Audio** — a bundle may ship narrated recordings of its devotion. An optional
   **`audio.json`** (declared separately from the structure, the same way catalog.json/options.json
-  are) lists tracks: `{"tracks": [{id, language, file, variantId?, name?, nameByLanguage?,
+  are) lists tracks: `{"tracks": [{id, language, file, role?, variantId?, name?, nameByLanguage?,
   chapters: [{start, title | titleKey, stepIndex?}]}]}` — `id` unique within the bundle (what a
   persisted playback position keys against); `language` one of the manifest's languages (a
   recording is in one language); `file` a bundle-relative path that must live under `audio/` and
@@ -1273,8 +1294,9 @@ of its own — its entire step sequence and per-step text are data-driven from i
   prayer flow's footer (chapter skip / play-pause / seekable timeline / current chapter title),
   shown when the session's devotion+language(+variant) has a matching track — the track's
   language must equal the session's resolved code and its variantId (nil = the bundle's
-  single/default form) must match the session's; the first declared match wins (audio.json
-  order is the author's preference order). Track bytes are extracted once to a per-platform
+  single/default form) must match the session's. `role` is `narration` (the default when absent)
+  or `music`; the first matching narration wins, then the first matching music track if there
+  is no narration. Existing packs retain their narration behavior. Track bytes are extracted once to a per-platform
   cache (iOS `Caches/PrayerAudio/<bundleId>/`, Android `cacheDir/PrayerAudio/`, Windows
   `LocalCacheFolder\PrayerAudio\`) and handed to the OS player. Cache filenames include the
   ZIP entry's CRC and uncompressed size from the already-loaded central-directory index, so
@@ -1308,6 +1330,29 @@ of its own — its entire step sequence and per-step text are data-driven from i
   committed test bundle (`Shared/tools/fixtures/kyrieaudiodemo.prosaryprayer`): the Kyrie
   narrated by macOS TTS in Latin/English with measured chapter boundaries — strictly test
   material, never shippable content.
+  **System speech fallback** is available through Read Aloud/Stop Reading on Rosary, basic
+  prayer, Jesus Prayer and generic devotion flows on Apple, Android and Windows. It reads the
+  current step's original sourced body and any acclamation, removing response-weight `**`
+  markers, with an installed system voice whose base language matches the resolved prayer
+  language (`iw`/`he` and `fil`/`tl` aliases are equivalent). It never substitutes a voice in
+  another language: Latin and Aramaic commonly have no installed matching voice, and the
+  control explains that a suitable voice is required. Android uses offline installed voices
+  only and splits long text within the native speech input limit without splitting surrogate
+  pairs. Read Aloud is hidden while a playable recorded narration exists; extraction/codec
+  failure returns it to the fallback path. Speech stops on step/language changes, leaving the
+  flow, backgrounding and session prompts, and auto-advance pauses until speech ends.
+  **Music groundwork:** an authored musical Rosary can declare `role: "music"` alongside its
+  actual sung prayer language and normal variant. Its Opus file and chapters use the same
+  bounded extraction, cache, transport and position persistence; players use music media
+  categories. Chapters must omit `stepIndex`: music does not drive the prayer text, and manual
+  prayer navigation does not seek it. Music playback also leaves timer-based prayer advancement
+  available; speech and recorded narration suspend that timer. Authors should use an appropriate music bitrate and
+  channel layout rather than the mono speech encoding guidance above, provide localized track
+  and chapter labels, and retain source/license credits in the bundle. No music is bundled by
+  default. Narration/music mixing, instrumental tracks independent of prayer language, and a
+  separate track selector remain future work. Compose's editor remains narration-only and
+  rejects music metadata it cannot preserve; manually authored music packs can be validated,
+  packaged and published through the ordinary bundle tools and repository.
 - **User-installed bundles**: anyone can author a `.prosaryprayer` and import it through Browse
   on iPhone/iPad, the Mac library, Settings on Android/Windows, or Apple File menu commands
   where available. Apple declares the exported `app.prosary.prayer` type (a ZIP-conforming
@@ -1432,10 +1477,14 @@ of its own — its entire step sequence and per-step text are data-driven from i
 
 ## Offline "Today" data (`Shared/data/`)
 
-Native Today and Saved Prayer widgets on iOS, Android, and Mac reuse these offline tables
+Native Today, Saved Prayer, Calendar and Saint/Feast widgets on iOS, Android, and Mac reuse these offline tables
 and existing prayer continuation rules. The Apple extension reads a small App Group snapshot
 for settings and saved-prayer summaries; Android reads its existing local stores. Widget taps
-open the current local day or the normal saved-prayer flow. See [WIDGETS.markdown](WIDGETS.markdown)
+open the current local day, month calendar, or normal prayer flow. Android's compact 1×1
+shortcut can select a saved copy, installed devotion or basic prayer. Apple Shortcuts exposes
+every installed/basic template as well as saved configurations. The Readings workspace now
+has Daily Readings, Liturgical Calendar and Bible modes; selecting a month-list observance
+opens its daily readings. Mac uses a native calendar sheet in Today. See [WIDGETS.markdown](WIDGETS.markdown)
 and [schema/widgets.json](schema/widgets.json) for configuration, refresh, signing, and testing.
 
 The portable [Expo Today handoff](expo-today/README.markdown) exposes the same data and
@@ -1450,7 +1499,8 @@ copies, same convention as the bundles; per-platform `TodayInfoStore` providers)
 - **Feast tables, one per liturgical calendar** (2026-08: switchable, Erez's request) — each a
   per-day sanctoral table (`days: {"YYYY-MM-DD": {title, rank, titleByLanguage?}}`) for the generated years,
   movable feasts baked in per year at generation time; no computus or precedence logic ships in
-  the app, and ferial days have no entry. `calendars.json` is the registry: id, feast-table
+  the app. General tables omit bare ferial days; published annual order editions retain their
+  printed daily headings. `calendars.json` is the registry: id, feast-table
   basename (`file`), reading-table basename (`readingsFile`), and the Settings picker label
   (`name`/`nameByLanguage`, resolved by UI language);
   its `default` names the calendar used when the app-wide `feastCalendarId` setting (stored
@@ -1460,6 +1510,20 @@ copies, same convention as the bundles; per-platform `TodayInfoStore` providers)
     Holy Land — Oct 25, patronal solemnity; the Dedication of the Basilica of the Holy
     Sepulchre — Jul 15; Saint Mary of Jesus Crucified Baouardy — Aug 26). The default; keeps
     the pre-switchable filename.
+  - `stjames` — **`feasts-stjames.json`** and **`readings-stjames.json`**: the supplied
+    Saint James Vicariate bilingual 2026–2027 edition, including October Great Advent.
+    Its source English/Hebrew titles, year labels, optional memorials and Mass groups stay
+    independent of the general Roman calendar. Regenerate with
+    `uv run --script Shared/tools/import-stjames-calendar.py --sync`; the checked-in snapshot
+    preserves only liturgical rows, source PDF pages and hash. Source coverage is finite.
+  - `franciscan-conventual-italy` and `augustinian-discalced` — the dated annual ordos of
+    Italy's Conventual St Anthony province (Advent 2025–Advent 2026) and the Discalced
+    Augustinian general order (2026). `Shared/tools/import-order-calendars.py` owns their
+    snapshots, explicit citations, original source headings and reviewed display captions.
+    Regenerate and copy them with `uv run --script Shared/tools/import-order-calendars.py --sync`.
+    Unknown Hebrew titles and unresolved printed references stay explicitly uncovered.
+    These scopes are part of the picker labels; they are not universal order calendars.
+    See [calendar-research.markdown](calendar-research.markdown) for source gaps and counts.
   - `roman` — **`feasts-roman.json`**: the General Roman Calendar, no overlay (litcal,
     Apache-2.0). Its sourced Hebrew day names are inline as `titleByLanguage.he`, courtesy of
     Evangelizo.org — Daily Gospel (© Evangelizo.org), publication edition HE. The old
@@ -1479,6 +1543,17 @@ copies, same convention as the bundles; per-platform `TodayInfoStore` providers)
     and Sundays around Nativity, Theophany and the Cross are computed separately for each
     style. Both retain September 1 as the liturgical year's beginning. These choices are
     calendar usages, not a blanket substitution of one Eastern church's lectionary for another.
+  - `ugcc-julian` — **`feasts-ugcc-julian.json`**: a separate old-style Julian feast
+    calendar, keeping the existing `ugcc` choices. Fixed menologion dates and seasonal
+    Sunday ranges use Julian-to-Gregorian civil conversion, including previous-year
+    Nativity in January; the Paschal cycle is calculated independently. For 2026–2027,
+    Christmas appears January 7, Theophany January 19 and the liturgical year begins
+    September 14. This is the curated feast/Sunday scope, not a complete published
+    old-style typikon. The localized picker labels say “feasts”; its separate
+    **`readings-ugcc-julian.json`** is empty pending verified old-style appointments.
+    Neither existing Byzantine reading table is shifted or borrowed. Regeneration uses
+    `fetch-feasts.py --ugcc-only --years 2026 2027 --sync`, with all three native copies
+    and every registry-appointed table also packaged in the Apple widget extension.
   - `syriac` — **`feasts-syriac.json`**: "West Aramaic — Syriac Catholic" (the Mission's
     own chosen name for its tradition),
     liturgical day titles and all listed saints
@@ -1511,9 +1586,35 @@ copies, same convention as the bundles; per-platform `TodayInfoStore` providers)
     source/credit fields. Neither RRULE nor the supplied dates changes any appointed calendar.
     A collapsed “About the saints” disclosure sits above readings in Pray/Today and Readings,
     obeys `showTodayFeast`, and resets on date/calendar/interface-language changes. It appears
-    only for the Syriac calendar when a biography exists in the exact interface language;
-    descriptions never fall back to another language. Initially the supplied biographies are
+    for the selected calendar when a biography exists in the exact interface language;
+    descriptions never fall back to another language. The supplied Urtotho biographies are
     Hebrew only. All three About screens credit Urtotho and Evangelizo.
+    `Shared/tools/saint_descriptions.py` additionally attaches a small reviewed set of short
+    Evangelizo saint/feast excerpts to LPJ, Roman, 1962, St James, and the imported religious-order
+    calendars. The catalogue `saint-descriptions-reviewed.json` records explicit dates, exact
+    accepted source titles/identities, per-language provider UUIDs, source title/date/edition,
+    original HTML digest, source URL and underlying credit. Legacy days gain one observance
+    only when their entire original title has been reviewed; compound titles are never guessed.
+    Importers call `add_sourced_descriptions(days, calendarID)` before writing; existing datasets
+    can be refreshed and synchronized with `uv run --script Shared/tools/saint_descriptions.py
+    --enrich-existing --sync`. Excerpts are at most 25 words, retain original source-language
+    prose and attribution, and are limited to the catalogue's reviewed identities and dates.
+    Hebrew, Russian, Filipino and Ukrainian source prose is absent from this new catalogue;
+    no invented translation or English fallback is supplied. Native saint disclosures, optional
+    notifications and saint widgets use the same exact-language description maps.
+    A separate Hebrew source catalogue is collected from the Saint James Vicariate's
+    Catholic.co.il Feasts section by `uv run --script
+    Shared/tools/scrape-catholic-hebrew-saints.py`. It follows published category pagination
+    and article links, checks the actual body for Hebrew, and follows the published Hebrew
+    flag only when that body fails the language check. The UTF-8 source wording, paragraph
+    order, literal date labels and credit candidates are retained with source URLs and HTML/text
+    SHA-256 digests in `Shared/tools/sources/catholic-hebrew-saints.json`. Successful responses
+    are cached outside the repository for one day; requests are serial and at least two seconds
+    apart, obey robots rules and stop within explicit page/article/request/byte budgets.
+    A partial run is marked incomplete and returns a failing exit status. The catalogue has
+    no calendar identity/date joins and is not copied to native assets. Its genre, identity,
+    dates, attribution and full-prose reuse require review before app enrichment; a source
+    book's translator credit is not automatically a credit for the web article.
   - `maronite` — **`feasts-maronite.json`** and **`readings-maronite.json`**: Evangelizo's
     separate MAE edition. `Shared/tools/fetch-maronite.py` downloads each day once and emits
     both tables. Ordinary ferial captions are omitted from the feast table; Sundays, named
@@ -1598,7 +1699,10 @@ copies, same convention as the bundles; per-platform `TodayInfoStore` providers)
   official publications are recorded in the source snapshot. Missing languages use English,
   and months outside the table hide the row.
 - **Reading tables, selected through `readingsFile`** — each date contains ordered citation
-  objects (`type`, `short`, `full`, and optional `shortByLanguage`/`fullByLanguage`). These tables
+  objects (`type`, `short`, `full`, and optional `shortByLanguage`/`fullByLanguage`). Imported
+  appointments may retain the exact printed citation in `sourceText` and the printed Mass or
+  alternative label in `sourceGroup`; native reading views show headings when the group changes.
+  These tables
   use the user's 73 Hebrew book abbreviations for compact captions, encoded with Hebrew
   geresh/gershayim and combined with the existing gematria chapter numbers. The catalog and
   provenance are in `tools/hebrew-reading-books.json`; `fetch-readings.py --localize-only

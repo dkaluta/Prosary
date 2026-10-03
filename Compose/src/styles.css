@@ -103,7 +103,7 @@ header.top {
 .brand-mark {
   width: 36px;
   height: 36px;
-  border: var(--prosary-border-width) solid color-mix(in srgb, var(--prosary-lime-bottom) 64%, var(--border));
+  border: var(--prosary-border-width) solid color-mix(in srgb, var(--prosary-icon-background) 64%, var(--border));
   border-radius: var(--prosary-radius-icon);
 }
 

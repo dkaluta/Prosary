@@ -32,7 +32,6 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.lifecycleScope
 import com.dkaluta.prosary.R
 import com.dkaluta.prosary.models.AppSettings
-import com.dkaluta.prosary.models.Prayer
 import com.dkaluta.prosary.services.AppServices
 import com.dkaluta.prosary.ui.theme.ProsaryTheme
 import kotlinx.coroutines.Dispatchers
@@ -45,20 +44,28 @@ class SavedPrayerWidgetConfigurationActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setResult(RESULT_CANCELED)
         val widgetId = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID)
-        if (widgetId == AppWidgetManager.INVALID_APPWIDGET_ID ||
-            AppWidgetManager.getInstance(this).getAppWidgetInfo(widgetId)?.provider != ComponentName(this, SavedPrayerWidgetProvider::class.java)) {
+        val provider = AppWidgetManager.getInstance(this).getAppWidgetInfo(widgetId)?.provider
+        if (widgetId == AppWidgetManager.INVALID_APPWIDGET_ID || provider !in listOf(
+                ComponentName(this, SavedPrayerWidgetProvider::class.java),
+                ComponentName(this, PrayerShortcutWidgetProvider::class.java))) {
             finish()
             return
         }
         AppSettings.init(this)
         com.dkaluta.prosary.InterfaceLanguageController.synchronize(this)
         enableEdgeToEdge()
+        val isShortcut = provider == ComponentName(this, PrayerShortcutWidgetProvider::class.java)
         setContent {
-            var prayers by remember { mutableStateOf<List<Prayer>?>(null) }
+            var prayers by remember { mutableStateOf<List<WidgetPrayerChoice>?>(null) }
             var failed by remember { mutableStateOf(false) }
             var selecting by remember { mutableStateOf(false) }
             LaunchedEffect(Unit) {
-                runCatching { withContext(Dispatchers.IO) { AppServices.create(applicationContext).presetStore.all() } }
+                runCatching { withContext(Dispatchers.IO) {
+                    val services = AppServices.create(applicationContext)
+                    services.presetStore.all().map {
+                        WidgetPrayerChoice(it.id, it.name, it.languageDisplayName(this@SavedPrayerWidgetConfigurationActivity))
+                    } + if (isShortcut) CatalogWidgetPrayers.all(this@SavedPrayerWidgetConfigurationActivity) else emptyList()
+                } }
                     .onSuccess { prayers = it }
                     .onFailure { failed = true }
             }
@@ -66,21 +73,21 @@ class SavedPrayerWidgetConfigurationActivity : AppCompatActivity() {
                 Scaffold { insets ->
                     Column(Modifier.fillMaxSize().padding(insets).padding(20.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
                         Text(stringResource(R.string.widget_choose_prayer), style = MaterialTheme.typography.headlineSmall)
-                        Text(stringResource(R.string.widget_saved_description), style = MaterialTheme.typography.bodyMedium)
+                        Text(stringResource(if (isShortcut) R.string.widget_shortcut_description else R.string.widget_saved_description), style = MaterialTheme.typography.bodyMedium)
                         when {
                             failed -> Text(stringResource(R.string.widget_load_failed))
                             prayers == null || selecting -> CircularProgressIndicator()
                             prayers!!.isEmpty() -> Text(stringResource(R.string.widget_saved_empty))
                             else -> LazyColumn(Modifier.weight(1f)) {
-                                items(prayers!!, key = { it.id }) { prayer ->
-                                    ListItem(headlineContent = { Text(prayer.name) },
-                                        supportingContent = { Text(prayer.languageDisplayName(this@SavedPrayerWidgetConfigurationActivity)) },
+                                items(prayers!!, key = { it.identity }) { prayer ->
+                                    ListItem(headlineContent = { Text(prayer.title) },
+                                        supportingContent = prayer.subtitle?.let { subtitle -> { Text(subtitle) } },
                                         modifier = Modifier.fillMaxWidth().clickable(enabled = !selecting) {
                                             selecting = true
                                             lifecycleScope.launch {
                                                 runCatching {
                                                     withContext(Dispatchers.IO) {
-                                                        SavedPrayerWidgetStore.select(applicationContext, widgetId, prayer.id)
+                                                        SavedPrayerWidgetStore.select(applicationContext, widgetId, prayer.identity)
                                                         WidgetUpdates.updateAll(applicationContext)
                                                     }
                                                 }.onSuccess {

@@ -14,6 +14,7 @@ import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import android.util.SizeF
+import android.util.TypedValue
 import android.view.View
 import android.widget.RemoteViews
 import com.dkaluta.prosary.MainActivity
@@ -37,7 +38,10 @@ import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 
 class TodayWidgetProvider : ProsaryWidgetProvider()
-class SavedPrayerWidgetProvider : ProsaryWidgetProvider() {
+class LiturgicalCalendarWidgetProvider : ProsaryWidgetProvider()
+class SaintFeastWidgetProvider : ProsaryWidgetProvider()
+class PrayerShortcutWidgetProvider : SavedPrayerWidgetProvider()
+open class SavedPrayerWidgetProvider : ProsaryWidgetProvider() {
     override fun onDeleted(context: Context, appWidgetIds: IntArray) {
         appWidgetIds.forEach { SavedPrayerWidgetStore.remove(context, it) }
     }
@@ -104,14 +108,21 @@ object WidgetUpdates {
         AppWidgetManager.getInstance(context).getAppWidgetIds(ComponentName(context, provider))
 
     private fun hasWidgets(context: Context): Boolean =
-        ids(context, TodayWidgetProvider::class.java).isNotEmpty() || ids(context, SavedPrayerWidgetProvider::class.java).isNotEmpty()
+        providers.any { ids(context, it).isNotEmpty() }
+
+    private val providers = listOf(TodayWidgetProvider::class.java, SavedPrayerWidgetProvider::class.java,
+        PrayerShortcutWidgetProvider::class.java, LiturgicalCalendarWidgetProvider::class.java, SaintFeastWidgetProvider::class.java)
 
     internal suspend fun updateAll(context: Context) = lock.withLock {
         val manager = AppWidgetManager.getInstance(context)
         val todayIds = ids(context, TodayWidgetProvider::class.java)
         val savedIds = ids(context, SavedPrayerWidgetProvider::class.java)
-        scheduleMidnight(context, todayIds.isNotEmpty() || savedIds.isNotEmpty())
-        if (todayIds.isEmpty() && savedIds.isEmpty()) return@withLock
+        val shortcutIds = ids(context, PrayerShortcutWidgetProvider::class.java)
+        val calendarIds = ids(context, LiturgicalCalendarWidgetProvider::class.java)
+        val saintIds = ids(context, SaintFeastWidgetProvider::class.java)
+        val hasWidgets = listOf(todayIds, savedIds, shortcutIds, calendarIds, saintIds).any { it.isNotEmpty() }
+        scheduleMidnight(context, hasWidgets)
+        if (!hasWidgets) return@withLock
         val appContext = com.dkaluta.prosary.InterfaceLanguageController.localizedContext(context)
         AppSettings.init(appContext)
         val language = TodayTranslationLanguage.resolve(appContext.resources.configuration.locales[0].toLanguageTag())
@@ -126,10 +137,25 @@ object WidgetUpdates {
                 else if (manager.getAppWidgetOptions(id).getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_HEIGHT) >= 250) expanded else small
             manager.updateAppWidget(id, views)
         }
-        if (savedIds.isNotEmpty()) {
+        for (id in calendarIds) manager.updateAppWidget(id, calendarViews(localized, today,
+            manager.getAppWidgetOptions(id).getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_HEIGHT) >= 250))
+        for (id in saintIds) manager.updateAppWidget(id, saintViews(localized, today,
+            manager.getAppWidgetOptions(id).getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_HEIGHT) >= 250))
+        if (savedIds.isNotEmpty() || shortcutIds.isNotEmpty()) {
             val services = AppServices.create(context)
-            for (id in savedIds) {
-                val prayer = SavedPrayerWidgetStore.selectedId(context, id)?.let { services.presetStore.get(it) }
+            val templates = if (shortcutIds.isNotEmpty()) CatalogWidgetPrayers.all(appContext).associateBy { it.identity } else emptyMap()
+            for (id in savedIds + shortcutIds) {
+                val selectedId = SavedPrayerWidgetStore.selectedId(context, id)
+                val prayer = selectedId?.takeUnless { ':' in it }?.let { services.presetStore.get(it) }
+                if (id in shortcutIds) {
+                    val template = templates[selectedId]
+                    val title = prayer?.name ?: template?.title ?: localized.getString(R.string.widget_choose_prayer)
+                    val views = shortcutViews(localized, title,
+                        prayer?.let { launchIntent(context, "prayer/${it.id}") }
+                            ?: template?.templatePath?.let { launchIntent(context, it) } ?: configurationIntent(context, id))
+                    manager.updateAppWidget(id, views)
+                    continue
+                }
                 val views = baseViews(localized)
                 views.setTextViewText(R.id.widget_header, localized.getString(R.string.widget_saved_name))
                 views.setViewVisibility(R.id.widget_details, View.VISIBLE)
@@ -163,11 +189,22 @@ object WidgetUpdates {
         setInt(R.id.widget_root, "setLayoutDirection", if (rtl) View.LAYOUT_DIRECTION_RTL else View.LAYOUT_DIRECTION_LTR)
     }
 
+    internal fun shortcutViews(context: Context, title: String, open: PendingIntent): RemoteViews =
+        RemoteViews(context.packageName, R.layout.prayer_shortcut_widget).apply {
+            setTextViewText(R.id.widget_title, title)
+            setContentDescription(R.id.widget_root, title)
+            setOnClickPendingIntent(R.id.widget_root, open)
+            setInt(R.id.widget_root, "setLayoutDirection",
+                if (TodayTranslationLanguage.isRightToLeft(context.resources.configuration.locales[0].toLanguageTag()))
+                    View.LAYOUT_DIRECTION_RTL else View.LAYOUT_DIRECTION_LTR)
+        }
+
     internal fun todayViews(context: Context, today: LocalDate, content: TodayWidgetContent, expanded: Boolean): RemoteViews = baseViews(context).apply {
         val date = today.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM).withLocale(context.resources.configuration.locales[0]))
         setTextViewText(R.id.widget_header, date)
         setTextViewText(R.id.widget_title, content.feast ?: content.day ?: context.getString(R.string.widget_today_name))
-        setInt(R.id.widget_title, "setMaxLines", if (expanded) 3 else if (context.resources.configuration.fontScale > 1.3f) 1 else 2)
+        setInt(R.id.widget_title, "setMaxLines", if (expanded) 3 else 1)
+        setTextViewTextSize(R.id.widget_title, TypedValue.COMPLEX_UNIT_SP, if (expanded) 19f else 17f)
         val details = buildList {
             content.readings?.let { add(it) }
             if (expanded) {
@@ -175,15 +212,58 @@ object WidgetUpdates {
                 content.torah?.let { add(context.getString(R.string.home_today_torah) + ": " + it) }
             }
         }.joinToString("\n")
-        setViewVisibility(R.id.widget_details, if (expanded && details.isNotBlank()) View.VISIBLE else View.GONE)
+        setViewVisibility(R.id.widget_details, if (details.isNotBlank()) View.VISIBLE else View.GONE)
         setTextViewText(R.id.widget_details, details)
-        setInt(R.id.widget_details, "setMaxLines", 6)
+        setInt(R.id.widget_details, "setMaxLines", if (expanded) 6 else 1)
         val mysteries = context.getString(MockLiturgicalCalendar().mysteryGroup(Date()).displayNameRes)
         setTextViewText(R.id.widget_action, context.getString(R.string.widget_pray_rosary))
         setContentDescription(R.id.widget_action, context.getString(R.string.widget_pray_rosary) + ". " + mysteries)
         setContentDescription(R.id.widget_root, context.getString(R.string.widget_today_name) + ". " + date)
         setOnClickPendingIntent(R.id.widget_root, launchIntent(context, "today"))
         setOnClickPendingIntent(R.id.widget_action, launchIntent(context, "rosary"))
+    }
+
+    internal fun calendarViews(context: Context, today: LocalDate, expanded: Boolean): RemoteViews = baseViews(context).apply {
+        val locale = context.resources.configuration.locales[0]
+        val language = TodayTranslationLanguage.resolve(locale.toLanguageTag())
+        val dateFormat = DateTimeFormatter.ofPattern("EEE d MMM", locale)
+        val todayFeast = TodayInfoStore.feast(com.dkaluta.prosary.content.today.TodayDateSelection.lookupDate(today))
+        setTextViewText(R.id.widget_header, context.getString(R.string.widget_calendar_name))
+        setTextViewText(R.id.widget_title, todayFeast?.localizedTitle(language) ?: today.format(dateFormat))
+        setInt(R.id.widget_title, "setMaxLines", if (expanded) 2 else 1)
+        setTextViewTextSize(R.id.widget_title, TypedValue.COMPLEX_UNIT_SP, if (expanded) 19f else 17f)
+        val upcoming = (1..if (expanded) 6 else 3).map { offset ->
+            val date = today.plusDays(offset.toLong())
+            val feast = TodayInfoStore.feast(com.dkaluta.prosary.content.today.TodayDateSelection.lookupDate(date))
+            date.format(dateFormat) + " · " + (feast?.localizedTitle(language) ?: context.getString(R.string.widget_day_unavailable))
+        }
+        setTextViewText(R.id.widget_details, upcoming.joinToString("\n"))
+        // Three full preview lines fit the expanded card even with Arabic font metrics.
+        setInt(R.id.widget_details, "setMaxLines", if (expanded) 3 else 1)
+        setViewVisibility(R.id.widget_details, View.VISIBLE)
+        setTextViewText(R.id.widget_action, context.getString(R.string.widget_calendar_open))
+        val open = launchIntent(context, "calendar")
+        setOnClickPendingIntent(R.id.widget_root, open)
+        setOnClickPendingIntent(R.id.widget_action, open)
+    }
+
+    internal fun saintViews(context: Context, today: LocalDate, expanded: Boolean = false): RemoteViews = baseViews(context).apply {
+        val language = TodayTranslationLanguage.resolve(context.resources.configuration.locales[0].toLanguageTag())
+        val feast = TodayInfoStore.feast(com.dkaluta.prosary.content.today.TodayDateSelection.lookupDate(today))
+        val description = feast?.saintDescriptions(TodayInfoStore.selectedCalendarId, language)?.firstOrNull()
+        setTextViewText(R.id.widget_header, context.getString(R.string.widget_saint_name))
+        setTextViewText(R.id.widget_title, description?.title ?: feast?.localizedTitle(language) ?: context.getString(R.string.widget_day_unavailable))
+        setInt(R.id.widget_title, "setMaxLines", if (expanded) 2 else 1)
+        setTextViewTextSize(R.id.widget_title, TypedValue.COMPLEX_UNIT_SP, if (expanded) 19f else 17f)
+        setTextViewText(R.id.widget_details, description?.text ?: context.getString(R.string.widget_saint_no_description))
+        setInt(R.id.widget_details, "setMaxLines", if (expanded) 3 else 1)
+        setTextViewText(R.id.widget_credit, description?.credit ?: "")
+        setViewVisibility(R.id.widget_credit, if (expanded && !description?.credit.isNullOrBlank()) View.VISIBLE else View.GONE)
+        setViewVisibility(R.id.widget_details, View.VISIBLE)
+        setTextViewText(R.id.widget_action, context.getString(R.string.widget_today_open))
+        val open = launchIntent(context, "readings")
+        setOnClickPendingIntent(R.id.widget_root, open)
+        setOnClickPendingIntent(R.id.widget_action, open)
     }
 
     internal fun launchIntent(context: Context, path: String): PendingIntent = PendingIntent.getActivity(context, 0,

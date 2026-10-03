@@ -7,15 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		082C37787DF57C7F30DF77B8 /* readings-franciscan-conventual-italy.json in Resources */ = {isa = PBXBuildFile; fileRef = 5D8D53F8020B7A988422FB65 /* readings-franciscan-conventual-italy.json */; };
+		0D121F6BB4F3AB35BE805AC6 /* feasts-ugcc-julian.json in Resources */ = {isa = PBXBuildFile; fileRef = 34530352DAE5B12FDF3884DD /* feasts-ugcc-julian.json */; };
 		0D9F2B41D12134FEBDF62F11 /* readings-roman.json in Resources */ = {isa = PBXBuildFile; fileRef = 0A26A3EA20BE1F9EA6986D5B /* readings-roman.json */; };
 		0F83C5D3DA05BFA9BD5F4DAE /* feasts-roman.json in Resources */ = {isa = PBXBuildFile; fileRef = 703B3F30BAACD00344C4B23F /* feasts-roman.json */; };
 		1B6E792DD7FB5834E0CCD7A5 /* calendars.json in Resources */ = {isa = PBXBuildFile; fileRef = 010D0751222A00A5F9964C0B /* calendars.json */; };
+		2F81B5EAC4F043ADCFB28627 /* feasts-augustinian-discalced.json in Resources */ = {isa = PBXBuildFile; fileRef = A36682070E457BA8094ED0DE /* feasts-augustinian-discalced.json */; };
 		384ED49A559E77469EE415F7 /* readings-syriac.json in Resources */ = {isa = PBXBuildFile; fileRef = 6115905798FCA9DA26F28FA9 /* readings-syriac.json */; };
+		470178CA4019AEC96DF58945 /* readings-augustinian-discalced.json in Resources */ = {isa = PBXBuildFile; fileRef = 25BB86A639616E07DDB32237 /* readings-augustinian-discalced.json */; };
 		49CD674931433123AEF019A8 /* readings-ugcc.json in Resources */ = {isa = PBXBuildFile; fileRef = 3ED9C73B237A9642895F3223 /* readings-ugcc.json */; };
 		4CAFFCFC45573107FBA56B55 /* torah-portions.json in Resources */ = {isa = PBXBuildFile; fileRef = 6B0E6E44EEA3B5B72384F549 /* torah-portions.json */; };
 		4F69FCC4ACBE069C01089930 /* feasts-ugcc.json in Resources */ = {isa = PBXBuildFile; fileRef = FDED50D2F65CC4A8D7DF38DC /* feasts-ugcc.json */; };
 		68C3CB170811BA296FAC4B8B /* readings-ugcc-gregorian.json in Resources */ = {isa = PBXBuildFile; fileRef = 57238898AFEDF96645B293A0 /* readings-ugcc-gregorian.json */; };
 		6C57F46DD704D7ED616B710F /* readings-maronite.json in Resources */ = {isa = PBXBuildFile; fileRef = 07B8812704BD8D0AED34D361 /* readings-maronite.json */; };
+		6D7AF54267285FCC0541F55C /* feasts-stjames.json in Resources */ = {isa = PBXBuildFile; fileRef = F12E8E0DADB195512F971373 /* feasts-stjames.json */; };
+		800D4C4C28E8A3BC6AFD4B1F /* feasts-franciscan-conventual-italy.json in Resources */ = {isa = PBXBuildFile; fileRef = C7553EAF59D2326FBEA43EA8 /* feasts-franciscan-conventual-italy.json */; };
 		8191C30876328335AAEE852C /* feasts-ugcc-gregorian.json in Resources */ = {isa = PBXBuildFile; fileRef = A4CE14F5775500D8819CCD18 /* feasts-ugcc-gregorian.json */; };
 		8E4E4C4BBE97594480B4697D /* ProsaryWidgetsExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 1179FF2AAA317E52E8C7E63C /* ProsaryWidgetsExtension.appex */; platformFilters = (ios, macos, ); settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		B854FA81D7FB0D666E9F9104 /* feasts-roman1962.json in Resources */ = {isa = PBXBuildFile; fileRef = 4F29ADE8AFE167D41DB86D2A /* feasts-roman1962.json */; };
@@ -23,7 +29,9 @@
 		C7B2510D2C805044BB812392 /* feasts-syriac.json in Resources */ = {isa = PBXBuildFile; fileRef = 00CDC06524E0D28D29DB058A /* feasts-syriac.json */; };
 		D1D655459478334F627E3ABC /* pope-intentions.json in Resources */ = {isa = PBXBuildFile; fileRef = 6207A1E32F2B7A7D6B5957EC /* pope-intentions.json */; };
 		DA041069F64953BC89271955 /* feasts.json in Resources */ = {isa = PBXBuildFile; fileRef = DAE6F03F3B39EE05B5555186 /* feasts.json */; };
+		DE25349662C8C66544E5F57C /* readings-ugcc-julian.json in Resources */ = {isa = PBXBuildFile; fileRef = 8334C413BF9245F503E6E80D /* readings-ugcc-julian.json */; };
 		F62CDF673A13FCC45C247BBE /* readings-roman1962.json in Resources */ = {isa = PBXBuildFile; fileRef = B97FDE0AF1569A4B1F794ECE /* readings-roman1962.json */; };
+		FCF8B4DC1419BFAEE27A5A09 /* readings-stjames.json in Resources */ = {isa = PBXBuildFile; fileRef = BAEEC56C7F349CD47B041CB7 /* readings-stjames.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,46 +78,64 @@
 		07B8812704BD8D0AED34D361 /* readings-maronite.json */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.json; path = "readings-maronite.json"; sourceTree = "<group>"; };
 		0A26A3EA20BE1F9EA6986D5B /* readings-roman.json */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.json; path = "readings-roman.json"; sourceTree = "<group>"; };
 		1179FF2AAA317E52E8C7E63C /* ProsaryWidgetsExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ProsaryWidgetsExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		25BB86A639616E07DDB32237 /* readings-augustinian-discalced.json */ = {isa = PBXFileReference; includeInIndex = 1; path = "readings-augustinian-discalced.json"; sourceTree = "<group>"; };
+		34530352DAE5B12FDF3884DD /* feasts-ugcc-julian.json */ = {isa = PBXFileReference; includeInIndex = 1; path = "feasts-ugcc-julian.json"; sourceTree = "<group>"; };
 		3ED9C73B237A9642895F3223 /* readings-ugcc.json */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.json; path = "readings-ugcc.json"; sourceTree = "<group>"; };
 		4285F7DC300F4F6B0000CE89 /* Prosary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Prosary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4285F7EB300F4F6C0000CE89 /* ProsaryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ProsaryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4285F7F5300F4F6C0000CE89 /* ProsaryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ProsaryUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F29ADE8AFE167D41DB86D2A /* feasts-roman1962.json */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.json; path = "feasts-roman1962.json"; sourceTree = "<group>"; };
 		57238898AFEDF96645B293A0 /* readings-ugcc-gregorian.json */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.json; path = "readings-ugcc-gregorian.json"; sourceTree = "<group>"; };
+		5D8D53F8020B7A988422FB65 /* readings-franciscan-conventual-italy.json */ = {isa = PBXFileReference; includeInIndex = 1; path = "readings-franciscan-conventual-italy.json"; sourceTree = "<group>"; };
 		6115905798FCA9DA26F28FA9 /* readings-syriac.json */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.json; path = "readings-syriac.json"; sourceTree = "<group>"; };
 		6207A1E32F2B7A7D6B5957EC /* pope-intentions.json */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.json; path = "pope-intentions.json"; sourceTree = "<group>"; };
 		6B0E6E44EEA3B5B72384F549 /* torah-portions.json */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.json; path = "torah-portions.json"; sourceTree = "<group>"; };
 		703B3F30BAACD00344C4B23F /* feasts-roman.json */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.json; path = "feasts-roman.json"; sourceTree = "<group>"; };
+		8334C413BF9245F503E6E80D /* readings-ugcc-julian.json */ = {isa = PBXFileReference; includeInIndex = 1; path = "readings-ugcc-julian.json"; sourceTree = "<group>"; };
+		A36682070E457BA8094ED0DE /* feasts-augustinian-discalced.json */ = {isa = PBXFileReference; includeInIndex = 1; path = "feasts-augustinian-discalced.json"; sourceTree = "<group>"; };
 		A4CE14F5775500D8819CCD18 /* feasts-ugcc-gregorian.json */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.json; path = "feasts-ugcc-gregorian.json"; sourceTree = "<group>"; };
 		B97FDE0AF1569A4B1F794ECE /* readings-roman1962.json */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.json; path = "readings-roman1962.json"; sourceTree = "<group>"; };
+		BAEEC56C7F349CD47B041CB7 /* readings-stjames.json */ = {isa = PBXFileReference; includeInIndex = 1; path = "readings-stjames.json"; sourceTree = "<group>"; };
+		C7553EAF59D2326FBEA43EA8 /* feasts-franciscan-conventual-italy.json */ = {isa = PBXFileReference; includeInIndex = 1; path = "feasts-franciscan-conventual-italy.json"; sourceTree = "<group>"; };
 		DAE6F03F3B39EE05B5555186 /* feasts.json */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.json; path = feasts.json; sourceTree = "<group>"; };
 		E7F3A680873715A9BF0D90BE /* feasts-maronite.json */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.json; path = "feasts-maronite.json"; sourceTree = "<group>"; };
+		F12E8E0DADB195512F971373 /* feasts-stjames.json */ = {isa = PBXFileReference; includeInIndex = 1; path = "feasts-stjames.json"; sourceTree = "<group>"; };
 		FDED50D2F65CC4A8D7DF38DC /* feasts-ugcc.json */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.json; path = "feasts-ugcc.json"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		4285F7DE300F4F6B0000CE89 /* Prosary */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = Prosary;
 			sourceTree = "<group>";
 		};
 		4285F7EE300F4F6C0000CE89 /* ProsaryTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = ProsaryTests;
 			sourceTree = "<group>";
 		};
 		4285F7F8300F4F6C0000CE89 /* ProsaryUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = ProsaryUITests;
 			sourceTree = "<group>";
 		};
 		5595CD66025E50F84BD9D0F4 /* WidgetShared */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = WidgetShared;
 			sourceTree = "<group>";
 		};
 		8574742FB58742E87C0910E3 /* ProsaryWidgets */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = ProsaryWidgets;
 			sourceTree = "<group>";
 		};
@@ -206,6 +232,14 @@
 				57238898AFEDF96645B293A0 /* readings-ugcc-gregorian.json */,
 				3ED9C73B237A9642895F3223 /* readings-ugcc.json */,
 				6B0E6E44EEA3B5B72384F549 /* torah-portions.json */,
+				A36682070E457BA8094ED0DE /* feasts-augustinian-discalced.json */,
+				C7553EAF59D2326FBEA43EA8 /* feasts-franciscan-conventual-italy.json */,
+				F12E8E0DADB195512F971373 /* feasts-stjames.json */,
+				34530352DAE5B12FDF3884DD /* feasts-ugcc-julian.json */,
+				25BB86A639616E07DDB32237 /* readings-augustinian-discalced.json */,
+				5D8D53F8020B7A988422FB65 /* readings-franciscan-conventual-italy.json */,
+				BAEEC56C7F349CD47B041CB7 /* readings-stjames.json */,
+				8334C413BF9245F503E6E80D /* readings-ugcc-julian.json */,
 			);
 			name = "Widget Today Data";
 			path = Prosary/Data;
@@ -376,6 +410,14 @@
 				68C3CB170811BA296FAC4B8B /* readings-ugcc-gregorian.json in Resources */,
 				49CD674931433123AEF019A8 /* readings-ugcc.json in Resources */,
 				4CAFFCFC45573107FBA56B55 /* torah-portions.json in Resources */,
+				2F81B5EAC4F043ADCFB28627 /* feasts-augustinian-discalced.json in Resources */,
+				800D4C4C28E8A3BC6AFD4B1F /* feasts-franciscan-conventual-italy.json in Resources */,
+				6D7AF54267285FCC0541F55C /* feasts-stjames.json in Resources */,
+				0D121F6BB4F3AB35BE805AC6 /* feasts-ugcc-julian.json in Resources */,
+				470178CA4019AEC96DF58945 /* readings-augustinian-discalced.json in Resources */,
+				082C37787DF57C7F30DF77B8 /* readings-franciscan-conventual-italy.json in Resources */,
+				FCF8B4DC1419BFAEE27A5A09 /* readings-stjames.json in Resources */,
+				DE25349662C8C66544E5F57C /* readings-ugcc-julian.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

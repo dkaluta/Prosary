@@ -4,9 +4,11 @@ import UniformTypeIdentifiers
 
 struct ContentView: View {
   @State private var selectedTab: AppSection = .pray
+  @State private var reminderActivation = ReminderActivation.shared
   @State private var prayPath: [AppRoute]
   @State private var browsePath: [AppRoute] = []
   @State private var readingsPath: [AppRoute] = []
+  @State private var readingsMode = "daily"
   // Civil-date browsing belongs to this window and is shared by Pray and Readings.
   @State private var dateSelection = MacTodayDateSelection()
   @State private var searchPath: [AppRoute] = []
@@ -38,6 +40,8 @@ struct ContentView: View {
       .environment(\.windowNavigation, navigationActions)
       .focusedSceneValue(\.windowNavigation, hasAttachedSheet ? nil : navigationActions)
       .onChange(of: coordinator.pendingRoute) { _, _ in consumePendingRoute() }
+      .onChange(of: reminderActivation.pendingURL) { _, _ in consumeReminderActivation() }
+      .task { consumeReminderActivation() }
       .fileImporter(isPresented: $showsBundleImporter, allowedContentTypes: [.prosaryPrayer, .zip]) { result in
         switch result {
         case .success(let url): importBundle(url)
@@ -86,7 +90,10 @@ struct ContentView: View {
           .frame(width: 0, height: 0)
       }
       .onChange(of: hasAttachedSheet) { _, presented in
-        if !presented { consumePendingRoute() }
+        if !presented {
+          consumePendingRoute()
+          consumeReminderActivation()
+        }
       }
       .task {
         let windowOpener = openWindow
@@ -163,7 +170,7 @@ struct ContentView: View {
         MacTodayView()
           .appRouteDestinations(path: $readingsPath)
         #else
-        ReadingsView(dateSelection: $dateSelection)
+        ReadingsView(dateSelection: $dateSelection, mode: $readingsMode)
           .appRouteDestinations(path: $readingsPath)
         #endif
       }
@@ -201,10 +208,23 @@ struct ContentView: View {
   private func activateWindow() {
     coordinator.activateWindow(windowID)
     consumePendingRoute()
+    consumeReminderActivation()
+  }
+
+  private func consumeReminderActivation() {
+    guard scenePhase == .active, !hasAttachedSheet,
+          let url = reminderActivation.pendingURL, let link = ProsaryWidgetLink(url: url) else { return }
+    reminderActivation.pendingURL = nil
+    openWidgetLink(link)
   }
 
   private func openWidgetLink(_ link: ProsaryWidgetLink) {
     switch link {
+    case .calendar, .readings:
+      dateSelection = MacTodayDateSelection()
+      readingsMode = link == .calendar ? "calendar" : "daily"
+      selectedTab = .readings
+      readingsPath = []
     case .today, .library:
       if case .today = link { dateSelection.select(Date()) }
       routeLandingGeneration += 1

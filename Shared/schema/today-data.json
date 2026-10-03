@@ -43,15 +43,19 @@
         },
         "liturgicalYearStart": {
           "type": "MM-DD?",
-          "description": "Calendar metadata; UGCC uses September 1."
+          "description": "Civil Gregorian calendar metadata for the generated years. New-style UGCC uses September 1; old-style Julian September 1 falls on September 14 in 2026–2027."
         }
       }
     },
     "idsInPickerOrder": [
       "lpj",
+      "stjames",
       "roman",
       "roman1962",
+      "franciscan-conventual-italy",
+      "augustinian-discalced",
       "ugcc",
+      "ugcc-julian",
       "syriac",
       "maronite"
     ],
@@ -59,6 +63,7 @@
   },
   "feastDataset": {
     "files": "Feast files named by CalendarDefinition.file and each paschaVariants entry",
+    "importedMetadata": "Optional importedSourceMetadata fields identify dated annual editions, exact coverage and reproducible source snapshots. Missing dates never borrow another calendar.",
     "fields": {
       "generated": {
         "type": "YYYY-MM-DD"
@@ -72,13 +77,29 @@
     },
     "FeastDay": {
       "fields": {
+        "sourceUrl": {
+          "type": "URL?",
+          "description": "Primary document from which this dated observance was imported."
+        },
+        "sourcePage": {
+          "type": "int?",
+          "description": "One-based source PDF page."
+        },
+        "sourceOnlyLanguages": {
+          "type": "string[]?",
+          "description": "Explicitly uncovered title languages that use the English heading. Imported order calendars require six non-Hebrew editorial captions; Hebrew stays absent until an exact credited church-source identity is available. The printed heading remains in sourceTitleByLanguage."
+        },
+        "readingSourceReview": {
+          "type": "string?",
+          "description": "Reason an ambiguous printed appointment is quarantined instead of corrected by inference or borrowed from another calendar."
+        },
         "title": {
           "type": "string",
           "description": "Semicolon-separated observances for the date. Syriac rows keep Evangelizo SYE saint names and spelling, supplemented with observances from SYA; a ferial main title never hides its saints. A matching English saint name takes precedence over the main liturgy's alternate spelling."
         },
         "observances": {
           "type": "FeastObservance[]? (see domain-model.json)",
-          "description": "Optional ordered Syriac components: title/identity plus titleByLanguage, sourceTitleByLanguage and optional descriptionByLanguage/descriptionSourceByLanguage/descriptionCreditByLanguage maps. Native feast headings consume assembled day titles; saint disclosures consume exact-interface-language component biographies with no foreign fallback. The supplied Hebrew 2026 Urtotho reference joins exact source UID/date/identity, applies only to Syriac, and never changes calendar dates or ranks."
+          "description": "Optional ordered calendar components: title/identity plus titleByLanguage, sourceTitleByLanguage and optional descriptionByLanguage/descriptionSourceByLanguage/descriptionCreditByLanguage maps. Native feast headings consume assembled day titles; saint disclosures consume exact-interface-language component biographies with no foreign fallback. The supplied Hebrew 2026 Urtotho reference joins exact source UID/date/identity, applies only to Syriac, and never changes calendar dates or ranks."
         },
         "rank": {
           "type": "string",
@@ -93,13 +114,18 @@
     }
   },
   "readingsDataset": {
+    "importedMetadata": "Optional importedSourceMetadata fields use the same source edition and coverage as the selected feast calendar.",
     "files": [
       "readings-roman.json",
       "readings-roman1962.json",
       "readings-ugcc.json",
       "readings-syriac.json",
       "readings-ugcc-gregorian.json",
-      "readings-maronite.json"
+      "readings-ugcc-julian.json",
+      "readings-maronite.json",
+      "readings-stjames.json",
+      "readings-franciscan-conventual-italy.json",
+      "readings-augustinian-discalced.json"
     ],
     "fields": {
       "generated": {
@@ -111,6 +137,13 @@
     },
     "ReadingDay": {
       "fields": {
+        "sourceUrl": {
+          "type": "URL?"
+        },
+        "sourcePage": {
+          "type": "int?",
+          "description": "One-based source PDF page for the appointed passages."
+        },
         "readings": {
           "type": "ReadingCitation[]",
           "description": "Ordered appointed citations only; no Scripture text."
@@ -134,7 +167,7 @@
         },
         "full": {
           "type": "string",
-          "description": "Complete book/chapter/verse citation shown after expansion."
+          "description": "Complete book/chapter/verse citation shown after expansion. A source that appoints whole Psalms may omit verse bounds, including a chapter span; generators preserve that printed choice."
         },
         "shortByLanguage": {
           "type": "map<string, string>",
@@ -143,6 +176,14 @@
         "fullByLanguage": {
           "type": "map<string, string>",
           "default": {}
+        },
+        "sourceText": {
+          "type": "string?",
+          "description": "Exact printed citation span when an imported source uses distinct abbreviations or punctuation; provenance only."
+        },
+        "sourceGroup": {
+          "type": "string?",
+          "description": "Source wording for the Mass, additional reading or alternative choice this citation belongs to. Readers show a heading when this value changes; missing values preserve the ordinary flat list."
         },
         "hebrew": {
           "type": "string?",
@@ -157,7 +198,11 @@
       "readings-ugcc": "UGCC Patriarchal Liturgical Commission official 2026 calendar; Ukraine new-style fixed feasts and Julian Pascha",
       "readings-syriac": "Evangelizo publication edition SYE (Syriac Catholic)",
       "readings-ugcc-gregorian": "Royal Doors public UGCC fully Gregorian calendar",
-      "readings-maronite": "Evangelizo publication edition MAE (Maronite)"
+      "readings-ugcc-julian": "Empty pending a separately verified old-style Byzantine lectionary; existing new-style appointments are never shifted or borrowed.",
+      "readings-maronite": "Evangelizo publication edition MAE (Maronite)",
+      "readings-stjames": "Saint James Vicariate supplied bilingual 2026–2027 calendar; its Great Advent and Vicariate-wide Mass appointments, including printed additional/alternative groups",
+      "readings-franciscan-conventual-italy": "Province of Saint Anthony of Padua, OFM Conventual, Italy: annual Advent2025–Advent2026 Ordo. Only explicit printed citations; undeclared Seraphic Missal and ferial references stay absent.",
+      "readings-augustinian-discalced": "Order of Discalced Augustinians general 2026 Ordo. First printed general/day Mass; national variants excluded."
     }
   },
   "languagePreference": {
@@ -173,6 +218,17 @@
       "uk"
     ],
     "description": "Today follows App Language, independently of global and per-prayer language choices. There is no separate Today language picker. Previously persisted todayLanguageCode is ignored. iw and fil normalize to he and tl; Arabic and Hebrew apply RTL to the complete Today stack, including expanded citations."
+  },
+  "importedSourceMetadata": {
+    "sourceUrl": "Primary PDF URL",
+    "sourcePageUrl": "Official publisher landing page URL?",
+    "sourceSha256": "SHA-256 of the imported source PDF",
+    "sourceSnapshot": "Canonical source snapshot repository path?",
+    "sourceLanguage": "Published source language code?",
+    "importer": "Self-contained uv importer repository path?",
+    "coverageStart": "First covered ISO date",
+    "coverageEnd": "Last covered ISO date",
+    "description": "Optional fields on imported feast and reading dataset roots. Coverage is edition-specific; the importer verifies dates, weekdays and complete source row counts. Personal anniversaries and necrologies are excluded. Dates, rank precedence and appointments remain those of the published annual Ordo. Editorial interface captions retain complete raw source titles on observances."
   },
   "intentionDataset": {
     "file": "pope-intentions.json",

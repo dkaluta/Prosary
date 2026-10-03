@@ -6,6 +6,7 @@
 """Check offline Today contracts against source fixtures and every native asset copy."""
 import datetime as dt
 import json
+import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -18,9 +19,9 @@ def read(name):
     return json.loads((DATA / f'{name}.json').read_text())
 
 
-def translations(value, description):
-    assert LANGUAGES <= value.keys(), f'{description}: missing {LANGUAGES - value.keys()}'
-    assert all(isinstance(value[code], str) and value[code].strip() for code in LANGUAGES), description
+def translations(value, description, languages=LANGUAGES):
+    assert languages <= value.keys(), f'{description}: missing {languages - value.keys()}'
+    assert all(isinstance(value[code], str) and value[code].strip() for code in languages), description
 
 
 def full(name, date):
@@ -29,7 +30,7 @@ def full(name, date):
 
 def main():
     registry = read('calendars')
-    assert [c['id'] for c in registry['calendars']] == ['lpj', 'roman', 'roman1962', 'ugcc', 'syriac', 'maronite']
+    assert [c['id'] for c in registry['calendars']] == ['lpj', 'stjames', 'roman', 'roman1962', 'franciscan-conventual-italy', 'augustinian-discalced', 'ugcc', 'ugcc-julian', 'syriac', 'maronite']
     feast_files, reading_files = set(), set()
     for calendar in registry['calendars']:
         translations(calendar['nameByLanguage'], calendar['id'])
@@ -42,8 +43,17 @@ def main():
         assert dataset['days'], name
         for date, day in dataset['days'].items():
             dt.date.fromisoformat(date)
-            translations(day['titleByLanguage'], f'{name}/{date}/{day["title"]}')
-            if 'Pentecost' in day['title']:
+            # An order's new proper may have no published Hebrew identity. The
+            # printed original remains visible until a credited title is found;
+            # this exemption cannot hide missing UI or other editorial labels.
+            source_only = set(day.get('sourceOnlyLanguages', []))
+            if source_only:
+                assert source_only <= {'he'} and name in {'feasts-franciscan-conventual-italy', 'feasts-augustinian-discalced'}
+                assert dataset['sourceSha256'] and day['sourceUrl'] and day['sourcePage']
+                assert not source_only & day['titleByLanguage'].keys(), (name, date)
+            languages = LANGUAGES - source_only
+            translations(day['titleByLanguage'], f'{name}/{date}/{day["title"]}', languages)
+            if 'Pentecost' in day['title'] and 'he' in day['titleByLanguage']:
                 assert 'שבועות' in day['titleByLanguage']['he'], (name, date, day['titleByLanguage']['he'])
             feast_count += 1
     for name in sorted(reading_files):
@@ -52,7 +62,8 @@ def main():
             assert day['readings'], (name, date)
             for item in day['readings']:
                 assert item['type'] in {'reading', 'psalm', 'gospel'}, (name, date)
-                assert ':' in item['full'] and '\n' not in item['full'], (name, date, item['full'])
+                whole_psalm = item['type'] == 'psalm' and bool(re.fullmatch(r'Psalm \d+(?:–\d+)?', item['full']))
+                assert (':' in item['full'] or whole_psalm) and '\n' not in item['full'], (name, date, item['full'])
                 for field in ['shortByLanguage', 'fullByLanguage']:
                     translations(item[field], f'{name}/{date}/{field}')
                 citation_count += 1
@@ -64,12 +75,22 @@ def main():
     assert read('feasts-ugcc-gregorian')['days']['2026-09-06']['title'] == '15th Sunday after Pentecost'
     assert read('feasts-ugcc')['days']['2026-01-25']['title'] == 'Sunday of Zacchaeus; Saint Gregory the Theologian'
     assert read('feasts-ugcc-gregorian')['days']['2026-01-18']['title'] == 'Sunday of Zacchaeus'
+    old_style = read('feasts-ugcc-julian')['days']
+    for year in ['2026', '2027']:
+        assert old_style[f'{year}-01-07']['title'] == 'The Nativity of Our Lord'
+        assert old_style[f'{year}-01-19']['title'] == 'The Holy Theophany of Our Lord'
+        assert old_style[f'{year}-09-27']['title'] == 'The Exaltation of the Precious and Life-Giving Cross'
+        assert 'Nativity' not in old_style.get(f'{year}-12-25', {}).get('title', '')
+    assert old_style['2026-04-12']['title'] == read('feasts-ugcc')['days']['2026-04-12']['title']
+    assert old_style['2027-05-02']['title'] == read('feasts-ugcc')['days']['2027-05-02']['title']
+    assert read('readings-ugcc-julian')['days'] == {}  # No shifted or borrowed lectionary.
     for name in ['feasts-ugcc', 'feasts-ugcc-gregorian']:
         for date in ['2026-11-08', '2026-12-06', '2027-01-17', '2027-07-11', '2027-08-29']:
             assert 'Sunday' in read(name)['days'][date]['title'], (name, date)
     assert full('readings-roman1962', '2026-09-06') == ['Galatians 5:25–26; 6:1–10', 'Luke 7:11–16']
     vetus = read('readings-roman1962')['days']
     assert sum(date.startswith('2026-') for date in vetus) == 365
+    assert sum(date.startswith('2027-') for date in vetus) == 365
     assert all(any(r['type'] == 'gospel' for r in day['readings']) for day in vetus.values())
     for date, count in [('2026-04-03', 3), ('2026-04-04', 6), ('2026-05-30', 7),
                         ('2026-11-02', 6), ('2026-12-25', 6)]:

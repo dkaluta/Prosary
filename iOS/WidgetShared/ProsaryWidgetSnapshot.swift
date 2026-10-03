@@ -6,6 +6,8 @@ nonisolated struct ProsaryWidgetSnapshot: Codable, Equatable, Sendable {
   static let storageKey = "prosaryWidgetSnapshot.v1"
   static let todayKind = "ProsaryTodayWidget"
   static let prayerKind = "ProsarySavedPrayerWidget"
+  static let calendarKind = "ProsaryLiturgicalCalendarWidget"
+  static let saintKind = "ProsarySaintFeastWidget"
 
   var today: WidgetTodaySettings = .init()
   var prayers: [WidgetSavedPrayer] = []

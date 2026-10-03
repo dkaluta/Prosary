@@ -23,9 +23,14 @@ final class WidgetIntegrationTests: XCTestCase {
     XCTAssertEqual(ProsaryWidgetLink(url: URL(string: "prosary://today")!), .today)
     XCTAssertEqual(ProsaryWidgetLink(url: URL(string: "prosary://library")!), .library)
     XCTAssertEqual(ProsaryWidgetLink(url: URL(string: "prosary://rosary/")!), .rosary)
+    XCTAssertEqual(ProsaryWidgetLink(url: URL(string: "prosary://calendar")!), .calendar)
+    XCTAssertEqual(ProsaryWidgetLink(url: URL(string: "prosary://readings/")!), .readings)
     XCTAssertEqual(ProsaryWidgetLink(url: URL(string: "prosary://prayer/\(id)")!), .prayer(id))
     for invalid in ["https://today", "prosary://delete", "prosary://prayer/nope",
                     "prosary://prayer/\(id)/extra", "prosary://today/extra",
+                    "prosary://calendar/extra", "prosary://calendar?date=2020-01-01",
+                    "prosary://readings#untrusted", "prosary://user@readings",
+                    "prosary://%74oday", "prosary://prayer/%30\(id)",
                     "prosary://today?date=2020-01-01", "prosary://user@today", "prosary://today:12"] {
       XCTAssertNil(ProsaryWidgetLink(url: URL(string: invalid)!), invalid)
     }

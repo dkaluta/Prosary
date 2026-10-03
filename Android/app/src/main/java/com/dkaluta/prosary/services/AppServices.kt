@@ -80,6 +80,9 @@ data class AppServices(
                 runCatching { context.assets.open("data/$name.json") }
                     .getOrElse { if (it is IOException) null else throw it }
             }
+            runBlocking {
+                com.dkaluta.prosary.reminders.ReminderScheduler.rescheduleAll(context, presetStore.all())
+            }
             return AppServices(
                 presetStore = presetStore,
                 engine = PrayerEngine(),

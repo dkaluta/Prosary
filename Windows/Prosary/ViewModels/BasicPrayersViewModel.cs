@@ -94,6 +94,10 @@ public partial class BasicPrayerViewModel : ObservableObject, IPrayerStepFlowVie
     public WindowNavigation Navigation { get; set; } = WindowNavigation.Detached;
 
     private string? _prayerId;
+    public string SpeechLanguageCode => _prayerId is { } id && BasicPrayerCatalog.Prayer(id) is { } prayer
+        ? BasicPrayerCatalog.EffectiveLanguage(prayer, CurrentLanguageRaw).Code : string.Empty;
+    public string SpeechBody => _prayerId is { } id && BasicPrayerCatalog.Prayer(id) is { } prayer
+        ? BasicPrayerCatalog.Step(prayer, SpeechLanguageCode).Body : string.Empty;
 
     public IReadOnlyList<LanguageOption> HebrewRites => _prayerId is { } id && BasicPrayerCatalog.Prayer(id) is { } prayer
         ? PrayerPackStore.AuthoredHebrewRites(prayer.BundleId, prayer.BodyKey) : [];
