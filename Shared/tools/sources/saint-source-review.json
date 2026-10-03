@@ -1,0 +1,2962 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-10-03T07:38:16.309006+00:00",
+  "allSourceCrawlsComplete": false,
+  "integrityReviewPassed": false,
+  "availableRecordIntegrityPassed": true,
+  "scope": "Collection completeness, literal prose digests, source metadata and representative editorial findings",
+  "nativeImport": false,
+  "calendarDatesChanged": false,
+  "reuseApproval": false,
+  "languages": [
+    {
+      "language": "he",
+      "catalogue": "catholic-hebrew-saints.json",
+      "sourceSnapshotSHA256": "0cc9cb723a1ac6b18d802637abafa5edca5f9ee448c732c408680ed59d2d216b",
+      "crawlComplete": true,
+      "integrityReviewPassed": true,
+      "coverage": {
+        "publishedArticleIDs": 276,
+        "missingArticleIDs": [],
+        "indexPages": 15,
+        "naturalPaginationEnd": true,
+        "identityEvidence": "record indexEntry URLs reconciled against declared discovery count; raw index audit recorded separately"
+      },
+      "availableRecordIntegrityPassed": true,
+      "counts": {
+        "records": 273,
+        "quarantinedAttempts": 6,
+        "excluded": 0,
+        "recordsWithPreservedProse": 276,
+        "proseDigestsVerified": 276,
+        "partialOrMetadataOnlyEvidence": 3,
+        "independentRawHTMLProseAudits": 0,
+        "recordsWithLiteralCreditCandidates": 30
+      },
+      "contentShapes": {
+        "body": 265,
+        "introduction-only": 7,
+        "short-body": 1,
+        "mixed-source-prose": 3,
+        "bounded-foreign-preview": 3
+      },
+      "genreCandidates": {
+        "feast-description-candidate": 198,
+        "combined-saints-or-feast-candidate": 7,
+        "saint-biography-candidate": 62,
+        "biblical-figure-candidate": 5,
+        "prayer-or-devotional-text": 1,
+        "quarantined": 6
+      },
+      "sourceIssueCounts": {
+        "article-body-is-not-demonstrably-hebrew": 6
+      },
+      "sourceWarnings": [
+        {
+          "record": "19264",
+          "sourceURL": "https://www.catholic.co.il/?cat=faith&m=Feasts&view=article&id=19264&lang=he",
+          "issues": [
+            "article-body-is-not-demonstrably-hebrew"
+          ]
+        },
+        {
+          "record": "19263",
+          "sourceURL": "https://www.catholic.co.il/?cat=faith&m=Feasts&view=article&id=19263&lang=he",
+          "issues": [
+            "article-body-is-not-demonstrably-hebrew"
+          ]
+        },
+        {
+          "record": "17282",
+          "sourceURL": "https://www.catholic.co.il/?cat=faith&m=Feasts&view=article&id=17282&lang=he",
+          "issues": [
+            "article-body-is-not-demonstrably-hebrew"
+          ]
+        },
+        {
+          "record": "17281",
+          "sourceURL": "https://www.catholic.co.il/?cat=faith&m=Feasts&view=article&id=17281&lang=he",
+          "issues": [
+            "article-body-is-not-demonstrably-hebrew"
+          ]
+        },
+        {
+          "record": "4707",
+          "sourceURL": "https://www.catholic.co.il/?cat=faith&m=Feasts&view=article&id=4707&lang=he",
+          "issues": [
+            "article-body-is-not-demonstrably-hebrew"
+          ]
+        },
+        {
+          "record": "2555",
+          "sourceURL": "https://www.catholic.co.il/?cat=faith&m=Feasts&view=article&id=2555&lang=he",
+          "issues": [
+            "article-body-is-not-demonstrably-hebrew"
+          ]
+        }
+      ],
+      "confirmedEditorialFindings": [],
+      "representativeEditorialReviews": [
+        {
+          "language": "he",
+          "catalogue": "catholic-hebrew-saints.json",
+          "record": "3888",
+          "sourceURL": "https://www.catholic.co.il/?cat=faith&m=Feasts&view=article&id=3888&lang=he",
+          "sourceTextSHA256": "8c5a1228024cb038b164657d1192379a04544a4a690e81ed90a69d6608516671",
+          "reviewedAt": "2026-10-03",
+          "checks": [
+            "actual prose language",
+            "named subject and genre",
+            "printed feast label distinguished from narrative/publication dates",
+            "literal source credits"
+          ],
+          "findings": [
+            "Actual Hebrew biography describes Thérèse of Lisieux and her Carmelite life; the source title labels 1 October.",
+            "The 2004 Yotam Reuveni credit refers to a Hebrew edition of her autobiography, not authorship of this web article.",
+            "Source birth year 1873, death year 1897 and Doctor of the Church recognition in 1997 agree with the checked Holy See letter."
+          ],
+          "corroboratingSourceURLs": [
+            "https://www.vatican.va/content/john-paul-ii/en/apost_letters/1997/documents/hf_jp-ii_apl_19101997_divini-amoris.html"
+          ],
+          "calendarIdentityMapping": "unassigned",
+          "allHistoricalAssertionsCertified": false,
+          "reuseApproved": false,
+          "sourceRecordSHA256": "25d6f4e584b85d3861dcbf4bc6fc60184b603a2fae302ffa1e77316b86a0df5c"
+        }
+      ],
+      "sourceManualReviewSummary": null,
+      "representativeFullPageChecks": [],
+      "partialEvidence": [
+        {
+          "record": "19263",
+          "reason": "Foreign flag attempt preserves only a bounded preview; full digest cannot be recomputed."
+        },
+        {
+          "record": "17281",
+          "reason": "Foreign flag attempt preserves only a bounded preview; full digest cannot be recomputed."
+        },
+        {
+          "record": "2555",
+          "reason": "Foreign flag attempt preserves only a bounded preview; full digest cannot be recomputed."
+        }
+      ],
+      "integrityErrors": [],
+      "availableRecordIntegrityErrors": [],
+      "historicalReview": "Representative source findings only; every assertion is not certified.",
+      "calendarIdentityMapping": "unassigned",
+      "nativeImport": false,
+      "reuseApproval": false
+    },
+    {
+      "language": "en",
+      "catalogue": "catholic-saints-en.json",
+      "sourceSnapshotSHA256": "c68e5f8fbee8ae1eba89fd1bb62156fd8de88b8949ae7e0b957e719da39bfa45",
+      "crawlComplete": true,
+      "integrityReviewPassed": true,
+      "coverage": {
+        "publishedArticleIDs": 274,
+        "missingArticleIDs": [],
+        "indexPages": 15,
+        "naturalPaginationEnd": true,
+        "identityEvidence": "stored published index IDs"
+      },
+      "availableRecordIntegrityPassed": true,
+      "counts": {
+        "records": 273,
+        "quarantinedAttempts": 1,
+        "excluded": 0,
+        "recordsWithPreservedProse": 274,
+        "proseDigestsVerified": 274,
+        "partialOrMetadataOnlyEvidence": 0,
+        "independentRawHTMLProseAudits": 0,
+        "recordsWithLiteralCreditCandidates": 25
+      },
+      "contentShapes": {
+        "body": 272,
+        "short-body": 1,
+        "introduction-only": 1
+      },
+      "genreCandidates": {
+        "feast-description-candidate": 203,
+        "combined-saints-or-feast-candidate": 8,
+        "saint-biography-candidate": 59,
+        "biblical-figure-candidate": 3,
+        "prayer-or-devotional-text": 1
+      },
+      "sourceIssueCounts": {
+        "future-year-like-number-needs-context": 1,
+        "implausible-year-literal-or-identifier-needs-context": 1,
+        "source-language-mismatch-or-uncertain": 1
+      },
+      "sourceWarnings": [
+        {
+          "record": "2489",
+          "sourceURL": "https://www.catholic.co.il/?cat=faith&m=Feasts&view=article&id=2489&lang=en",
+          "issues": [
+            "future-year-like-number-needs-context"
+          ]
+        },
+        {
+          "record": "19263",
+          "sourceURL": "https://www.catholic.co.il/?cat=faith&m=Feasts&view=article&id=19263&lang=en",
+          "issues": [
+            "implausible-year-literal-or-identifier-needs-context"
+          ]
+        },
+        {
+          "record": "19070",
+          "sourceURL": "https://www.catholic.co.il/?cat=faith&m=Feasts&view=article&id=19070&lang=en",
+          "issues": [
+            "source-language-mismatch-or-uncertain"
+          ]
+        }
+      ],
+      "confirmedEditorialFindings": [],
+      "representativeEditorialReviews": [
+        {
+          "language": "en",
+          "catalogue": "catholic-saints-en.json",
+          "record": "2494",
+          "sourceURL": "https://www.catholic.co.il/?cat=faith&m=Feasts&view=article&id=2494&lang=en",
+          "sourceTextSHA256": "c18b4f0cc51f5e9a476949de2b6e350deb9c3dc87175961a881a3242b0f7cb0c",
+          "reviewedAt": "2026-10-03",
+          "checks": [
+            "actual prose language",
+            "named subject and genre",
+            "printed feast label distinguished from narrative/publication dates",
+            "literal source credits"
+          ],
+          "findings": [
+            "Actual English introduction and biography describe Thérèse of Lisieux; source title labels 1 October.",
+            "Source birth year 1873, death year 1897 and Doctor of the Church recognition in 1997 agree with the checked Holy See letter.",
+            "No individual web-article author is stated; retain the Vicariate publisher credit and distinguish the quotation from original narration."
+          ],
+          "corroboratingSourceURLs": [
+            "https://www.vatican.va/content/john-paul-ii/en/apost_letters/1997/documents/hf_jp-ii_apl_19101997_divini-amoris.html"
+          ],
+          "calendarIdentityMapping": "unassigned",
+          "allHistoricalAssertionsCertified": false,
+          "reuseApproved": false,
+          "sourceRecordSHA256": "9a48959854f472aa490af08cb3f8284b8db0df6eac4580336bf0ded5120fe096"
+        }
+      ],
+      "sourceManualReviewSummary": null,
+      "representativeFullPageChecks": [],
+      "partialEvidence": [],
+      "integrityErrors": [],
+      "availableRecordIntegrityErrors": [],
+      "historicalReview": "Representative source findings only; every assertion is not certified.",
+      "calendarIdentityMapping": "unassigned",
+      "nativeImport": false,
+      "reuseApproval": false
+    },
+    {
+      "language": "fr",
+      "catalogue": "catholic-saints-fr.json",
+      "sourceSnapshotSHA256": "bdf2ac81810bfae30eab691066132bf63ba284e186264d91a67f3af9a0199e5c",
+      "crawlComplete": true,
+      "integrityReviewPassed": true,
+      "coverage": {
+        "publishedArticleIDs": 137,
+        "missingArticleIDs": [],
+        "indexPages": 8,
+        "naturalPaginationEnd": true,
+        "identityEvidence": "stored published index IDs"
+      },
+      "availableRecordIntegrityPassed": true,
+      "counts": {
+        "records": 134,
+        "quarantinedAttempts": 6,
+        "excluded": 0,
+        "recordsWithPreservedProse": 140,
+        "proseDigestsVerified": 140,
+        "partialOrMetadataOnlyEvidence": 0,
+        "independentRawHTMLProseAudits": 0,
+        "recordsWithLiteralCreditCandidates": 21
+      },
+      "contentShapes": {
+        "body": 140
+      },
+      "genreCandidates": {
+        "feast-description-candidate": 56,
+        "saint-biography-candidate": 72,
+        "biblical-figure-candidate": 3,
+        "combined-saints-or-feast-candidate": 8,
+        "prayer-or-devotional-text": 1
+      },
+      "sourceIssueCounts": {
+        "future-year-like-number-needs-context": 2,
+        "index-article-title-mismatch": 2,
+        "introduction-language-differs-or-is-uncertain": 3,
+        "source-language-mismatch-or-uncertain": 6
+      },
+      "sourceWarnings": [
+        {
+          "record": "3826",
+          "sourceURL": "https://www.catholic.co.il/?cat=faith&m=Feasts&view=article&id=3826&lang=fr",
+          "issues": [
+            "future-year-like-number-needs-context"
+          ]
+        },
+        {
+          "record": "6919",
+          "sourceURL": "https://www.catholic.co.il/?cat=faith&m=Feasts&view=article&id=6919&lang=fr",
+          "issues": [
+            "future-year-like-number-needs-context"
+          ]
+        },
+        {
+          "record": "2481",
+          "sourceURL": "https://www.catholic.co.il/?cat=faith&m=Feasts&view=article&id=2481&lang=fr",
+          "issues": [
+            "index-article-title-mismatch",
+            "introduction-language-differs-or-is-uncertain",
+            "source-language-mismatch-or-uncertain"
+          ]
+        },
+        {
+          "record": "3759",
+          "sourceURL": "https://www.catholic.co.il/?cat=faith&m=Feasts&view=article&id=3759&lang=fr",
+          "issues": [
+            "source-language-mismatch-or-uncertain"
+          ]
+        },
+        {
+          "record": "17672",
+          "sourceURL": "https://www.catholic.co.il/?cat=faith&m=Feasts&view=article&id=17672&lang=fr",
+          "issues": [
+            "index-article-title-mismatch",
+            "source-language-mismatch-or-uncertain"
+          ]
+        },
+        {
+          "record": "17674",
+          "sourceURL": "https://www.catholic.co.il/?cat=faith&m=Feasts&view=article&id=17674&lang=fr",
+          "issues": [
+            "source-language-mismatch-or-uncertain"
+          ]
+        },
+        {
+          "record": "17737",
+          "sourceURL": "https://www.catholic.co.il/?cat=faith&m=Feasts&view=article&id=17737&lang=fr",
+          "issues": [
+            "introduction-language-differs-or-is-uncertain",
+            "source-language-mismatch-or-uncertain"
+          ]
+        },
+        {
+          "record": "17739",
+          "sourceURL": "https://www.catholic.co.il/?cat=faith&m=Feasts&view=article&id=17739&lang=fr",
+          "issues": [
+            "introduction-language-differs-or-is-uncertain",
+            "source-language-mismatch-or-uncertain"
+          ]
+        }
+      ],
+      "confirmedEditorialFindings": [],
+      "representativeEditorialReviews": [
+        {
+          "language": "fr",
+          "catalogue": "catholic-saints-fr.json",
+          "record": "3887",
+          "sourceURL": "https://www.catholic.co.il/?cat=faith&m=Feasts&view=article&id=3887&lang=fr",
+          "sourceTextSHA256": "97874b78d10750f1ab154fb8512ee0566e1ed7d87049e844fbf9694afabb593e",
+          "reviewedAt": "2026-10-03",
+          "checks": [
+            "actual prose language",
+            "named subject and genre",
+            "printed feast label distinguished from narrative/publication dates",
+            "literal source credits"
+          ],
+          "findings": [
+            "Actual French introduction and biography describe Thérèse of Lisieux; source title labels 1 October.",
+            "Source death year 1897 and Doctor of the Church recognition in 1997 agree with the checked Holy See letter.",
+            "The autobiography quotation cites Manuscript B, 4; retain this source reference separately from publisher attribution."
+          ],
+          "corroboratingSourceURLs": [
+            "https://www.vatican.va/content/john-paul-ii/en/apost_letters/1997/documents/hf_jp-ii_apl_19101997_divini-amoris.html"
+          ],
+          "calendarIdentityMapping": "unassigned",
+          "allHistoricalAssertionsCertified": false,
+          "reuseApproved": false,
+          "sourceRecordSHA256": "cbd398a1b3d7df9e1946f505d0b5dcb0bc2071657ecaf432ce6045b5f084cad3"
+        }
+      ],
+      "sourceManualReviewSummary": null,
+      "representativeFullPageChecks": [],
+      "partialEvidence": [],
+      "integrityErrors": [],
+      "availableRecordIntegrityErrors": [],
+      "historicalReview": "Representative source findings only; every assertion is not certified.",
+      "calendarIdentityMapping": "unassigned",
+      "nativeImport": false,
+      "reuseApproval": false
+    },
+    {
+      "language": "it",
+      "catalogue": "catholic-saints-it.json",
+      "sourceSnapshotSHA256": "d19c670ad25089ed8584360f2314a670ff4c292dbbf493e680063b0dc68706a1",
+      "crawlComplete": true,
+      "integrityReviewPassed": true,
+      "coverage": {
+        "publishedArticleIDs": 134,
+        "missingArticleIDs": [],
+        "indexPages": 8,
+        "naturalPaginationEnd": true,
+        "identityEvidence": "stored published index IDs"
+      },
+      "availableRecordIntegrityPassed": true,
+      "counts": {
+        "records": 131,
+        "quarantinedAttempts": 6,
+        "excluded": 0,
+        "recordsWithPreservedProse": 137,
+        "proseDigestsVerified": 137,
+        "partialOrMetadataOnlyEvidence": 0,
+        "independentRawHTMLProseAudits": 0,
+        "recordsWithLiteralCreditCandidates": 15
+      },
+      "contentShapes": {
+        "body": 135,
+        "short-body": 2
+      },
+      "genreCandidates": {
+        "feast-description-candidate": 67,
+        "saint-biography-candidate": 57,
+        "combined-saints-or-feast-candidate": 10,
+        "biblical-figure-candidate": 2,
+        "prayer-or-devotional-text": 1
+      },
+      "sourceIssueCounts": {
+        "index-article-title-mismatch": 2,
+        "introduction-language-differs-or-is-uncertain": 3,
+        "source-language-mismatch-or-uncertain": 6
+      },
+      "sourceWarnings": [
+        {
+          "record": "2555",
+          "sourceURL": "https://www.catholic.co.il/?cat=faith&m=Feasts&view=article&id=2555&lang=it",
+          "issues": [
+            "index-article-title-mismatch",
+            "introduction-language-differs-or-is-uncertain",
+            "source-language-mismatch-or-uncertain"
+          ]
+        },
+        {
+          "record": "11525",
+          "sourceURL": "https://www.catholic.co.il/?cat=faith&m=Feasts&view=article&id=11525&lang=it",
+          "issues": [
+            "source-language-mismatch-or-uncertain"
+          ]
+        },
+        {
+          "record": "14394",
+          "sourceURL": "https://www.catholic.co.il/?cat=faith&m=Feasts&view=article&id=14394&lang=it",
+          "issues": [
+            "introduction-language-differs-or-is-uncertain",
+            "source-language-mismatch-or-uncertain"
+          ]
+        },
+        {
+          "record": "14395",
+          "sourceURL": "https://www.catholic.co.il/?cat=faith&m=Feasts&view=article&id=14395&lang=it",
+          "issues": [
+            "introduction-language-differs-or-is-uncertain",
+            "source-language-mismatch-or-uncertain"
+          ]
+        },
+        {
+          "record": "17281",
+          "sourceURL": "https://www.catholic.co.il/?cat=faith&m=Feasts&view=article&id=17281&lang=it",
+          "issues": [
+            "index-article-title-mismatch",
+            "source-language-mismatch-or-uncertain"
+          ]
+        },
+        {
+          "record": "17284",
+          "sourceURL": "https://www.catholic.co.il/?cat=faith&m=Feasts&view=article&id=17284&lang=it",
+          "issues": [
+            "source-language-mismatch-or-uncertain"
+          ]
+        }
+      ],
+      "confirmedEditorialFindings": [],
+      "representativeEditorialReviews": [
+        {
+          "language": "it",
+          "catalogue": "catholic-saints-it.json",
+          "record": "11782",
+          "sourceURL": "https://www.catholic.co.il/?cat=faith&m=Feasts&view=article&id=11782&lang=it",
+          "sourceTextSHA256": "f9b3a6cb671127d8044fa02c751fc1bbe9c7abf1c9f61af2a50545b909811db6",
+          "reviewedAt": "2026-10-03",
+          "checks": [
+            "actual prose language",
+            "named subject and genre",
+            "printed source feast label",
+            "source attribution versus reference"
+          ],
+          "findings": [
+            "Actual Italian introduction and body describe Thérèse of Lisieux; source title labels 1 October.",
+            "Birth year 1873, death year 1897 and Doctor of the Church declaration in 1997 agree with the checked Holy See letter.",
+            "No individual author is stated; preserve Vicariate publisher credit and distinguish the autobiography quotation from original narration."
+          ],
+          "corroboratingSourceURLs": [
+            "https://www.vatican.va/content/john-paul-ii/en/apost_letters/1997/documents/hf_jp-ii_apl_19101997_divini-amoris.html"
+          ],
+          "disposition": "source-candidate",
+          "calendarIdentityMapping": "unassigned",
+          "allHistoricalAssertionsCertified": false,
+          "reuseApproved": false,
+          "sourceRecordSHA256": "5a52abc7aa9e981d1ebc99e32a24e06bb0179d50b11129abbf76d80562b2d26d"
+        }
+      ],
+      "sourceManualReviewSummary": null,
+      "representativeFullPageChecks": [],
+      "partialEvidence": [],
+      "integrityErrors": [],
+      "availableRecordIntegrityErrors": [],
+      "historicalReview": "Representative source findings only; every assertion is not certified.",
+      "calendarIdentityMapping": "unassigned",
+      "nativeImport": false,
+      "reuseApproval": false
+    },
+    {
+      "language": "ru",
+      "catalogue": "catholic-saints-ru.json",
+      "sourceSnapshotSHA256": "1c02b1a6c886b065dd8fbf96ff74fec7b54dbac350616678d9b7a7d7a7037167",
+      "crawlComplete": true,
+      "integrityReviewPassed": true,
+      "coverage": {
+        "publishedArticleIDs": 137,
+        "missingArticleIDs": [],
+        "indexPages": 8,
+        "naturalPaginationEnd": true,
+        "identityEvidence": "stored published index IDs"
+      },
+      "availableRecordIntegrityPassed": true,
+      "counts": {
+        "records": 134,
+        "quarantinedAttempts": 6,
+        "excluded": 0,
+        "recordsWithPreservedProse": 140,
+        "proseDigestsVerified": 140,
+        "partialOrMetadataOnlyEvidence": 0,
+        "independentRawHTMLProseAudits": 0,
+        "recordsWithLiteralCreditCandidates": 22
+      },
+      "contentShapes": {
+        "body": 140
+      },
+      "genreCandidates": {
+        "feast-description-candidate": 114,
+        "saint-biography-candidate": 16,
+        "combined-saints-or-feast-candidate": 7,
+        "biblical-figure-candidate": 2,
+        "prayer-or-devotional-text": 1
+      },
+      "sourceIssueCounts": {
+        "future-year-like-number-needs-context": 1,
+        "confirmed-source-death-year-discrepancy": 1,
+        "implausible-year-literal-or-identifier-needs-context": 2,
+        "source-language-mismatch-or-uncertain": 6,
+        "introduction-language-differs-or-is-uncertain": 3
+      },
+      "sourceWarnings": [
+        {
+          "record": "3828",
+          "sourceURL": "https://www.catholic.co.il/?cat=faith&m=Feasts&view=article&id=3828&lang=ru",
+          "issues": [
+            "future-year-like-number-needs-context"
+          ]
+        },
+        {
+          "record": "3889",
+          "sourceURL": "https://www.catholic.co.il/?cat=faith&m=Feasts&view=article&id=3889&lang=ru",
+          "issues": [
+            "confirmed-source-death-year-discrepancy",
+            "implausible-year-literal-or-identifier-needs-context"
+          ]
+        },
+        {
+          "record": "3889",
+          "sourceURL": "https://www.catholic.co.il/?cat=faith&m=Feasts&view=article&id=3889&lang=ru",
+          "issues": [
+            "long-year-like-literal-needs-context"
+          ],
+          "sourceNumbers": [
+            "19897"
+          ]
+        },
+        {
+          "record": "19272",
+          "sourceURL": "https://www.catholic.co.il/?cat=faith&m=Feasts&view=article&id=19272&lang=ru",
+          "issues": [
+            "implausible-year-literal-or-identifier-needs-context"
+          ]
+        },
+        {
+          "record": "16038",
+          "sourceURL": "https://www.catholic.co.il/?cat=faith&m=Feasts&view=article&id=16038&lang=ru",
+          "issues": [
+            "source-language-mismatch-or-uncertain"
+          ]
+        },
+        {
+          "record": "16040",
+          "sourceURL": "https://www.catholic.co.il/?cat=faith&m=Feasts&view=article&id=16040&lang=ru",
+          "issues": [
+            "source-language-mismatch-or-uncertain"
+          ]
+        },
+        {
+          "record": "16568",
+          "sourceURL": "https://www.catholic.co.il/?cat=faith&m=Feasts&view=article&id=16568&lang=ru",
+          "issues": [
+            "introduction-language-differs-or-is-uncertain",
+            "source-language-mismatch-or-uncertain"
+          ]
+        },
+        {
+          "record": "16572",
+          "sourceURL": "https://www.catholic.co.il/?cat=faith&m=Feasts&view=article&id=16572&lang=ru",
+          "issues": [
+            "source-language-mismatch-or-uncertain"
+          ]
+        },
+        {
+          "record": "17737",
+          "sourceURL": "https://www.catholic.co.il/?cat=faith&m=Feasts&view=article&id=17737&lang=ru",
+          "issues": [
+            "introduction-language-differs-or-is-uncertain",
+            "source-language-mismatch-or-uncertain"
+          ]
+        },
+        {
+          "record": "17740",
+          "sourceURL": "https://www.catholic.co.il/?cat=faith&m=Feasts&view=article&id=17740&lang=ru",
+          "issues": [
+            "introduction-language-differs-or-is-uncertain",
+            "source-language-mismatch-or-uncertain"
+          ]
+        }
+      ],
+      "confirmedEditorialFindings": [
+        {
+          "record": "3889",
+          "sourceURL": "https://www.catholic.co.il/?cat=faith&m=Feasts&view=article&id=3889&lang=ru",
+          "sourceLiteral": "19897",
+          "finding": "Thérèse's death year is malformed. The Holy See gives 30 September 1897.",
+          "corroboratingSourceURL": "https://www.vatican.va/content/john-paul-ii/en/apost_letters/1997/documents/hf_jp-ii_apl_19101997_divini-amoris.html",
+          "decision": "Hold affected source passage; retain original text."
+        },
+        {
+          "record": "3889",
+          "sourceURL": "https://www.catholic.co.il/?cat=faith&m=Feasts&view=article&id=3889&lang=ru",
+          "sourceLiteral": "Папа Иоанн Павел Ш",
+          "finding": "The pontiff suffix is printed as Cyrillic Ш. The checked Doctor of the Church letter is by John Paul II.",
+          "corroboratingSourceURL": "https://www.vatican.va/content/john-paul-ii/en/apost_letters/1997/documents/hf_jp-ii_apl_19101997_divini-amoris.html",
+          "decision": "Hold malformed source suffix; retain original text."
+        }
+      ],
+      "representativeEditorialReviews": [
+        {
+          "language": "ru",
+          "catalogue": "catholic-saints-ru.json",
+          "record": "3889",
+          "sourceURL": "https://www.catholic.co.il/?cat=faith&m=Feasts&view=article&id=3889&lang=ru",
+          "sourceTextSHA256": "d71708f46c7de618aad4280880dda47562cf33fca4f751233dec2a407ab7c1fd",
+          "reviewedAt": "2026-10-03",
+          "checks": [
+            "actual prose language",
+            "named subject and genre",
+            "printed source feast label",
+            "source attribution versus reference"
+          ],
+          "findings": [
+            "Actual Russian introduction and body describe Thérèse of Lisieux; source title labels 1 October.",
+            "Hold the source death-year passage: it prints 19897 where the Holy See letter gives death on 30 September 1897.",
+            "The declaration passage prints the pontiff suffix as Cyrillic Ш; the checked apostolic letter is by John Paul II. Preserve and flag this literal text instead of silently rewriting it.",
+            "The introduction mentions an autobiography but does not identify an article author or translator. A credit-or-reference regex hit here must not become an inferred contributor."
+          ],
+          "corroboratingSourceURLs": [
+            "https://www.vatican.va/content/john-paul-ii/en/apost_letters/1997/documents/hf_jp-ii_apl_19101997_divini-amoris.html"
+          ],
+          "disposition": "hold-affected-passages",
+          "calendarIdentityMapping": "unassigned",
+          "allHistoricalAssertionsCertified": false,
+          "reuseApproved": false,
+          "sourceRecordSHA256": "71cdb12defce7bb6f9b23b29ddc65b18a312be2577bae3cbbf063971435afb06"
+        }
+      ],
+      "sourceManualReviewSummary": null,
+      "representativeFullPageChecks": [],
+      "partialEvidence": [],
+      "integrityErrors": [],
+      "availableRecordIntegrityErrors": [],
+      "historicalReview": "Representative source findings only; every assertion is not certified.",
+      "calendarIdentityMapping": "unassigned",
+      "nativeImport": false,
+      "reuseApproval": false
+    },
+    {
+      "language": "ar",
+      "catalogue": "evangelizo-saints-ar.json",
+      "sourceSnapshotSHA256": "81b2cf211fbeb0edd9b53c9b71df985a3f0d9a9bd380a8a01a6feb0cc0723308",
+      "crawlComplete": true,
+      "integrityReviewPassed": true,
+      "coverage": {
+        "coveredMonthDays": 366,
+        "publishedSubjectIDs": 221,
+        "collectionPages": 366
+      },
+      "availableRecordIntegrityPassed": true,
+      "counts": {
+        "records": 221,
+        "quarantinedAttempts": 0,
+        "excluded": 0,
+        "recordsWithPreservedProse": 219,
+        "proseDigestsVerified": 221,
+        "partialOrMetadataOnlyEvidence": 0,
+        "independentRawHTMLProseAudits": 221,
+        "recordsWithLiteralCreditCandidates": 0
+      },
+      "contentShapes": {
+        "body": 219,
+        "missing-biography": 2
+      },
+      "genreCandidates": {
+        "provider-saint-calendar-subject": 221
+      },
+      "sourceIssueCounts": {
+        "missing-biography": 2
+      },
+      "sourceWarnings": [
+        {
+          "record": "4dea44a0-dd1c-42c7-9817-476cd39e2ce8",
+          "sourceURL": "https://publication.evangelizo.ws/AR/saints/4dea44a0-dd1c-42c7-9817-476cd39e2ce8",
+          "issues": [
+            "missing-biography"
+          ]
+        },
+        {
+          "record": "6b428175-054e-4dc2-8ec4-f03d2815be8f",
+          "sourceURL": "https://publication.evangelizo.ws/AR/saints/6b428175-054e-4dc2-8ec4-f03d2815be8f",
+          "issues": [
+            "missing-biography"
+          ]
+        }
+      ],
+      "confirmedEditorialFindings": [
+        {
+          "record": "006312a1-9f6c-46af-bbad-394664a3a656",
+          "sourceURL": "https://publication.evangelizo.ws/AR/saints/006312a1-9f6c-46af-bbad-394664a3a656",
+          "sourceLiteral": "22 آب عام 1535",
+          "finding": "John Fisher's execution is given as 22 August 1535. Vatican News gives 22 June 1535.",
+          "corroboratingSourceURL": "https://www.vaticannews.va/it/santo-del-giorno/06/22/santi-giovanni-fisher--vescovo-di-rochester--e-tommaso-more--mar.html",
+          "verifiedAt": "2026-10-03",
+          "decision": "Hold affected source passage; retain original Arabic text without a silent correction."
+        }
+      ],
+      "representativeEditorialReviews": [
+        {
+          "language": "ar",
+          "catalogue": "evangelizo-saints-ar.json",
+          "record": "3f98fbda-e9c2-4c66-90ea-08e122aa9ea7",
+          "sourceURL": "https://publication.evangelizo.ws/AR/saints/3f98fbda-e9c2-4c66-90ea-08e122aa9ea7",
+          "sourceTextSHA256": "5fe002d84b78538ea8c85440550a0d5e6207a765038b966d7c409d8ed7add3ad",
+          "reviewedAt": "2026-10-03",
+          "checks": [
+            "actual prose language",
+            "named subject and genre",
+            "printed feast label distinguished from narrative/publication dates",
+            "literal source credits"
+          ],
+          "findings": [
+            "Actual Arabic biography describes Thérèse of the Child Jesus, born in Alençon and living in the Carmel of Lisieux.",
+            "Source calendar label is 1 October; biography explicitly gives death on 30 September 1897. These are different kinds of dates.",
+            "Birth year 1873 and death date agree with the checked Holy See letter. No underlying individual biography credit is provided; retain Evangelizo copyright."
+          ],
+          "corroboratingSourceURLs": [
+            "https://www.vatican.va/content/john-paul-ii/en/apost_letters/1997/documents/hf_jp-ii_apl_19101997_divini-amoris.html"
+          ],
+          "calendarIdentityMapping": "unassigned",
+          "allHistoricalAssertionsCertified": false,
+          "reuseApproved": false,
+          "sourceRecordSHA256": "02b09e521d653281aa4cee752859631329f9e517b78fd68942ed9b60b4eb8fc5"
+        }
+      ],
+      "sourceManualReviewSummary": null,
+      "representativeFullPageChecks": [],
+      "partialEvidence": [],
+      "integrityErrors": [],
+      "availableRecordIntegrityErrors": [],
+      "historicalReview": "Representative source findings only; every assertion is not certified.",
+      "calendarIdentityMapping": "unassigned",
+      "nativeImport": false,
+      "reuseApproval": false
+    },
+    {
+      "language": "tl",
+      "catalogue": "tagalog-saints.json",
+      "sourceSnapshotSHA256": "a21c82306aa0265e093df5317c96d5a3045e3cbc76b60d7ef5a8961df6093f3d",
+      "crawlComplete": false,
+      "integrityReviewPassed": false,
+      "coverage": {
+        "publishedPosts": 402,
+        "collectionPages": 0,
+        "capturedArticleBodies": 2,
+        "metadataOnlyRecords": 98,
+        "selectedBiographyCandidates": 1,
+        "annualDuplicateGroups": 0
+      },
+      "availableRecordIntegrityPassed": true,
+      "counts": {
+        "records": 100,
+        "quarantinedAttempts": 0,
+        "excluded": 0,
+        "recordsWithPreservedProse": 2,
+        "proseDigestsVerified": 2,
+        "partialOrMetadataOnlyEvidence": 98,
+        "independentRawHTMLProseAudits": 2,
+        "recordsWithLiteralCreditCandidates": 1
+      },
+      "contentShapes": {
+        "index-metadata-only": 98,
+        "body": 2
+      },
+      "genreCandidates": {
+        "source-index-metadata-only": 98,
+        "Tagalog-biography-review-candidate": 1,
+        "quarantined-source": 1
+      },
+      "sourceIssueCounts": {
+        "source-body-not-captured": 98,
+        "source-factual-error-confirmed-by-Holy-See": 1
+      },
+      "sourceWarnings": [
+        {
+          "record": "our-parish-priest:677",
+          "sourceURL": "https://www.ourparishpriest.com/2026/02/saints-of-february-february-11-our-lady-of-lourdes/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:680",
+          "sourceURL": "https://www.ourparishpriest.com/2026/02/saints-of-february-santa-escolastica/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:689",
+          "sourceURL": "https://www.ourparishpriest.com/2026/02/saints-of-february-mga-martir-ng-japan/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:695",
+          "sourceURL": "https://www.ourparishpriest.com/2026/01/saints-of-january-san-juan-bosco/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:700",
+          "sourceURL": "https://www.ourparishpriest.com/2026/01/saints-of-january-santo-tomas-aquino/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:705",
+          "sourceURL": "https://www.ourparishpriest.com/2026/01/saints-of-january-san-francisco-ng-sales/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:706",
+          "sourceURL": "https://www.ourparishpriest.com/2026/01/sino-si-san-francisco-de-sales-mga-materyal-resources/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:730",
+          "sourceURL": "https://www.ourparishpriest.com/2025/01/saints-of-january-san-andres-bessette/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:764",
+          "sourceURL": "https://www.ourparishpriest.com/2025/09/sino-si-st-therese-of-the-child-jesus-mga-materyal-resources/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:799",
+          "sourceURL": "https://www.ourparishpriest.com/2026/09/mga-banal-na-anghel-na-tagatanod-guardian-angels/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:827",
+          "sourceURL": "https://www.ourparishpriest.com/2025/08/sino-si-maria-ang-mahal-na-birhen-mga-materyal-resources/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:841",
+          "sourceURL": "https://www.ourparishpriest.com/2026/07/saints-of-july-san-sharbel-mahleef-pari/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:845",
+          "sourceURL": "https://www.ourparishpriest.com/2025/07/saints-of-july-santa-maria-magdalena/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:850",
+          "sourceURL": "https://www.ourparishpriest.com/2026/07/saints-of-july-mahal-na-birheng-maria-del-carmen/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:856",
+          "sourceURL": "https://www.ourparishpriest.com/2026/07/ang-birheng-del-carmen-ng-pulong-buhangin-santa-maria-bulacan/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:857",
+          "sourceURL": "https://www.ourparishpriest.com/2026/07/saints-of-july-san-benito-abad/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:866",
+          "sourceURL": "https://www.ourparishpriest.com/2025/07/saints-of-july-kapistahan-ni-apostol-santo-tomas/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:873",
+          "sourceURL": "https://www.ourparishpriest.com/2026/06/saints-of-june-san-josemaria-escriva-pari/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:885",
+          "sourceURL": "https://www.ourparishpriest.com/2026/06/saints-of-june-san-antonio-de-padua/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:899",
+          "sourceURL": "https://www.ourparishpriest.com/2026/05/ang-pitong-mga-kaloob-ng-espiritu-santo-ano-ba-talaga-ito/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:907",
+          "sourceURL": "https://www.ourparishpriest.com/2025/11/saints-of-december-brother-charles-de-foucauld/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:908",
+          "sourceURL": "https://www.ourparishpriest.com/2025/05/bakit-may-kalapati-sa-paanan-ng-birhen-ng-fatima/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:911",
+          "sourceURL": "https://www.ourparishpriest.com/2026/05/flores-de-mayo-dalit-kay-maria/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:975",
+          "sourceURL": "https://www.ourparishpriest.com/2026/01/santo-nino-de-palaboy-o-santo-ninong-gala/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:976",
+          "sourceURL": "https://www.ourparishpriest.com/2026/01/santo-nino-de-la-suerte/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:988",
+          "sourceURL": "https://www.ourparishpriest.com/2025/12/saints-of-december-ninos-inocentes/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:1008",
+          "sourceURL": "https://www.ourparishpriest.com/2024/12/saints-of-december-san-juan-dela-cruz/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:1009",
+          "sourceURL": "https://www.ourparishpriest.com/2024/12/saints-of-december-santa-lucia/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:1011",
+          "sourceURL": "https://www.ourparishpriest.com/2025/12/saints-of-december-maria-birhen-ng-guadalupe/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:1014",
+          "sourceURL": "https://www.ourparishpriest.com/2025/12/saints-of-december-san-juan-diego/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:1015",
+          "sourceURL": "https://www.ourparishpriest.com/2025/12/saints-of-december-maria-immaculada-concepcion/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:1054",
+          "sourceURL": "https://www.ourparishpriest.com/2024/10/saint-of-october-papa-santo-juan-pablo-ii-pope-john-paul-ii/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:1061",
+          "sourceURL": "https://www.ourparishpriest.com/2024/10/saints-of-october-santa-teresa-ng-avila/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:1065",
+          "sourceURL": "https://www.ourparishpriest.com/2024/10/saints-of-october-mahal-na-birhen-ng-santo-rosario/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:1130",
+          "sourceURL": "https://www.ourparishpriest.com/2026/05/prayer-to-our-lady-of-fatima-may-13-feast/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:1159",
+          "sourceURL": "https://www.ourparishpriest.com/2025/11/sino-si-ka-luring-laureana-franco-mga-materyal-o-resources/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:1163",
+          "sourceURL": "https://www.ourparishpriest.com/2025/03/makapangyarihang-nobena-ng-banal-na-balabal-ni-san-jose-the-holy-cloak-of-st-joseph/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:1215",
+          "sourceURL": "https://www.ourparishpriest.com/2025/09/modernong-binatilyo-malapit-nang-maging-santo/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:1301",
+          "sourceURL": "https://www.ourparishpriest.com/2026/03/fasting-o-pag-aayuno-ayon-kay-san-francisco-de-sales/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:1425",
+          "sourceURL": "https://www.ourparishpriest.com/2026/06/ang-ating-ina-ng-laging-saklolo-our-mother-of-perpetual-help-paliwanag/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:1818",
+          "sourceURL": "https://www.ourparishpriest.com/2026/03/nobena-kay-san-jose-march-10-18/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:2126",
+          "sourceURL": "https://www.ourparishpriest.com/2025/12/saints-of-december-san-francisco-javier/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:5000",
+          "sourceURL": "https://www.ourparishpriest.com/2026/03/sino-si-san-jose-mga-materyal-resources-2-2/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:5150",
+          "sourceURL": "https://www.ourparishpriest.com/2025/03/saints-of-march-san-patricio/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:5157",
+          "sourceURL": "https://www.ourparishpriest.com/2026/03/saints-of-march-san-jose-kabiyak-ng-mahal-na-birheng-maria/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:5171",
+          "sourceURL": "https://www.ourparishpriest.com/2025/10/san-pedro-calungsod/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:5457",
+          "sourceURL": "https://www.ourparishpriest.com/2025/03/debosyon-kay-san-jose-munting-kasaysayan/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:5741",
+          "sourceURL": "https://www.ourparishpriest.com/2026/05/all-about-our-lady-of-fatima/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:5910",
+          "sourceURL": "https://www.ourparishpriest.com/2026/08/saints-of-august-santa-teresa-benedicta-dela-cruz-dalaga-at-martir/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:5956",
+          "sourceURL": "https://www.ourparishpriest.com/2026/08/santa-clara-dalaga/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:5960",
+          "sourceURL": "https://www.ourparishpriest.com/2026/08/san-maximiliano-maria-kolbe-pari-at-martir/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:5962",
+          "sourceURL": "https://www.ourparishpriest.com/2026/08/dakilang-kapistahan-ng-pag-aakyat-sa-langit-ng-mahal-na-birheng-maria/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:6150",
+          "sourceURL": "https://www.ourparishpriest.com/2026/08/pagka-reyna-ng-mahal-na-birheng-maria/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:6161",
+          "sourceURL": "https://www.ourparishpriest.com/2025/08/santa-monica/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:6164",
+          "sourceURL": "https://www.ourparishpriest.com/2025/08/san-agustin-obispo-at-pantas-ng-simbahan/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:6227",
+          "sourceURL": "https://www.ourparishpriest.com/2026/09/saints-of-september-mother-teresa-ng-calcutta-dalaga/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:6229",
+          "sourceURL": "https://www.ourparishpriest.com/2026/09/saints-of-september-pagsilang-ng-mahal-na-birheng-maria/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:6233",
+          "sourceURL": "https://www.ourparishpriest.com/2026/09/saints-of-september-pagtatampok-sa-krus-na-banal/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:6235",
+          "sourceURL": "https://www.ourparishpriest.com/2026/09/saints-of-september-mahal-na-birhen-na-nagdadalamhati/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:6245",
+          "sourceURL": "https://www.ourparishpriest.com/2024/09/saints-of-september-san-andres-kim-taegon-san-pablo-chong-hasang-at-mga-kasamang-martir-ng-korea/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:6247",
+          "sourceURL": "https://www.ourparishpriest.com/2024/09/saints-of-september-apostol-san-mateo-manunulat-ng-mabuting-balita/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:6249",
+          "sourceURL": "https://www.ourparishpriest.com/2026/09/saints-of-september-san-pio-ng-pietrelcina-padre-pio-pari/",
+          "issues": [
+            "source-factual-error-confirmed-by-Holy-See"
+          ]
+        },
+        {
+          "record": "our-parish-priest:6253",
+          "sourceURL": "https://www.ourparishpriest.com/2024/09/saints-of-september-san-vicente-de-paul-pari/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:6255",
+          "sourceURL": "https://www.ourparishpriest.com/2026/09/saints-of-september-san-lorenzo-ruiz-at-mga-kasama-mga-martir/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:6257",
+          "sourceURL": "https://www.ourparishpriest.com/2026/09/saints-of-september-arkanghel-san-miguel-san-gabriel-at-san-rafael/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:6334",
+          "sourceURL": "https://www.ourparishpriest.com/2026/09/saints-of-september-san-rafael-arkanghel-patron-ng-pagpapagaling/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:6383",
+          "sourceURL": "https://www.ourparishpriest.com/2024/10/apostol-san-simon-at-san-judas/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:6385",
+          "sourceURL": "https://www.ourparishpriest.com/2025/10/lahat-ng-mga-banal/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:6388",
+          "sourceURL": "https://www.ourparishpriest.com/2025/10/lahat-ng-mga-pumanaw-na-kristiyano/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:6470",
+          "sourceURL": "https://www.ourparishpriest.com/2025/11/saints-of-november-san-martin-de-porres-namanata-sa-diyos/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:6472",
+          "sourceURL": "https://www.ourparishpriest.com/2025/11/saints-of-november-san-carlos-borromeo-obispo/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:6479",
+          "sourceURL": "https://www.ourparishpriest.com/2025/11/saints-of-november-san-martin-ng-tours-obispo/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:6501",
+          "sourceURL": "https://www.ourparishpriest.com/2025/11/saints-of-november-san-andres-dung-lac-at-mga-kasama-mga-martir-ng-vietnam/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:6505",
+          "sourceURL": "https://www.ourparishpriest.com/2025/11/saints-of-november-apostol-san-andres/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:6566",
+          "sourceURL": "https://www.ourparishpriest.com/2025/11/saints-of-december/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:6584",
+          "sourceURL": "https://www.ourparishpriest.com/2026/01/saints-of-january-tagalog/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:6697",
+          "sourceURL": "https://www.ourparishpriest.com/2026/01/ang-santo-nino-hubad-kilalanin/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:6712",
+          "sourceURL": "https://www.ourparishpriest.com/2026/02/saints-of-february-tagalog/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:6714",
+          "sourceURL": "https://www.ourparishpriest.com/2026/03/saints-of-march-tagalog/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:7128",
+          "sourceURL": "https://www.ourparishpriest.com/2026/04/saints-of-april-tagalog/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:7181",
+          "sourceURL": "https://www.ourparishpriest.com/2026/04/saints-of-may-san-jose-manggagawa/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:7195",
+          "sourceURL": "https://www.ourparishpriest.com/2026/05/saints-of-may-mahal-na-birhen-ng-fatima/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:7271",
+          "sourceURL": "https://www.ourparishpriest.com/2026/06/saints-of-june/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:7293",
+          "sourceURL": "https://www.ourparishpriest.com/2026/05/saints-of-may/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:7406",
+          "sourceURL": "https://www.ourparishpriest.com/2026/07/saints-of-july/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:7448",
+          "sourceURL": "https://www.ourparishpriest.com/2026/08/saints-of-august/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:7500",
+          "sourceURL": "https://www.ourparishpriest.com/2026/09/saints-of-september-tagalog/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:7502",
+          "sourceURL": "https://www.ourparishpriest.com/2026/09/saints-of-october-tagalog/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:7504",
+          "sourceURL": "https://www.ourparishpriest.com/2025/11/saints-of-november-tagalog/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:7801",
+          "sourceURL": "https://www.ourparishpriest.com/2024/11/tanong-at-sagot-tungkol-kay-laureana-ka-luring-franco/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:8006",
+          "sourceURL": "https://www.ourparishpriest.com/2025/01/saints-of-february-kabanal-banalang-ngalan-ni-hesus-enero-3/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:8010",
+          "sourceURL": "https://www.ourparishpriest.com/2026/01/senor-hesus-nazareno-enero-9/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:8035",
+          "sourceURL": "https://www.ourparishpriest.com/2026/05/ang-panginoong-hesukristo-ang-walang-hanggan-at-kataas-taasang-pari-huwebes-matapos-ang-pentekostes/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:8139",
+          "sourceURL": "https://www.ourparishpriest.com/2025/09/saints-of-september-kabanal-banalang-pangalan-ni-maria/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:8142",
+          "sourceURL": "https://www.ourparishpriest.com/2024/09/saints-of-september-santa-hildegard-ng-bingen/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:8689",
+          "sourceURL": "https://www.ourparishpriest.com/2025/12/kaibigan-sa-langit-ka-luring-laureana-franco/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:8878",
+          "sourceURL": "https://www.ourparishpriest.com/2026/02/candelaria-paghahain-sa-batang-hesus-sa-templo-ng-herusalem/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:9177",
+          "sourceURL": "https://www.ourparishpriest.com/2026/07/st-sharbel-website-in-tagalog-link/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        },
+        {
+          "record": "our-parish-priest:9240",
+          "sourceURL": "https://www.ourparishpriest.com/2026/04/paggunita-kay-maria-ina-ng-simbahan-lunes-pagkatapos-ng-pentekostes/",
+          "issues": [
+            "source-body-not-captured"
+          ]
+        }
+      ],
+      "confirmedEditorialFindings": [
+        {
+          "record": "our-parish-priest:6249",
+          "sourceURL": "https://www.ourparishpriest.com/2026/09/saints-of-september-san-pio-ng-pietrelcina-padre-pio-pari/",
+          "type": "source-death-year-error",
+          "sourceYears": [
+            "1968",
+            "1969"
+          ],
+          "sourceLines": [
+            "Isang maliit na kapilya ang dinadayo ng mga tao sa may Libis, Quezon City, kung saan naroon ang mga relic ng isa sa pinakasikat na mga santo sa ating panahon. Isa rin siyang modernong santo na maituturing, dahil may mga tao pang buhay ngayon na nakita siya nang personal o sa telebisyon, o sa mga pahayagan noong buhay pa siya. Namatay noon lamang 1968 si Padre Pio kaya maraming rekord ng kanyang buhay ang madaling makita sa mga aklat, film at maging sa tulong ng internet.",
+            "Namatay si Padre Pio noong 1969 at napakarami ang nakipaglibing sa kanya. Mahal na mahal at bukambibig siya sa buong Italy at sa buong mundo. Naging ganap na santo siya noong 2002 sa isang Misang ginanap sa Roma para sa napakaraming taong dumalo mula sa buong daigdig."
+          ],
+          "corroboration": {
+            "provider": "Holy See",
+            "sourceURL": "https://www.vatican.va/news_services/liturgy/saints/ns_lit_doc_20020616_padre-pio_en.html",
+            "verifiedAt": "2026-10-03",
+            "deathDate": "1968-09-23",
+            "feastMonthDay": "09-23",
+            "method": "live official canonization biography checked"
+          },
+          "decision": "Quarantine this source biography. Preserve its original wording; do not silently replace 1969."
+        }
+      ],
+      "representativeEditorialReviews": [],
+      "sourceManualReviewSummary": {
+        "reviewedAt": "2026-10-03",
+        "availableArticleBodiesReviewed": 2,
+        "sourceIndexMetadataRecordsPreserved": 100,
+        "publishedCategoryTotal": 402,
+        "collectionComplete": false,
+        "selectedSourceCandidates": 1,
+        "quarantinedBiographies": 1,
+        "scope": "Review of all available original article bodies and metadata integrity; not certification of every historical assertion or all 402 published posts.",
+        "uncapturedRepresentative": {
+          "sourceURL": "https://www.ourparishpriest.com/2026/09/saints-of-september-san-lorenzo-ruiz-at-mga-kasama-mga-martir/",
+          "status": "Actual published metadata retained. No cached full response body is available, so song separation is regression-tested and not claimed manually verified in this source catalogue."
+        }
+      },
+      "representativeFullPageChecks": [],
+      "partialEvidence": [
+        {
+          "record": "our-parish-priest:677",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:680",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:689",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:695",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:700",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:705",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:706",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:730",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:764",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:799",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:827",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:841",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:845",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:850",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:856",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:857",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:866",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:873",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:885",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:899",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:907",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:908",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:911",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:975",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:976",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:988",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:1008",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:1009",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:1011",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:1014",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:1015",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:1054",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:1061",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:1065",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:1130",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:1159",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:1163",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:1215",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:1301",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:1425",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:1818",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:2126",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:5000",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:5150",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:5157",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:5171",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:5457",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:5741",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:5910",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:5956",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:5960",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:5962",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:6150",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:6161",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:6164",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:6227",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:6229",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:6233",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:6235",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:6245",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:6247",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:6253",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:6255",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:6257",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:6334",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:6383",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:6385",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:6388",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:6470",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:6472",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:6479",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:6501",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:6505",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:6566",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:6584",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:6697",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:6712",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:6714",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:7128",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:7181",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:7195",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:7271",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:7293",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:7406",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:7448",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:7500",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:7502",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:7504",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:7801",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:8006",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:8010",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:8035",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:8139",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:8142",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:8689",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:8878",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:9177",
+          "reason": "Index metadata only; this article body has not been captured."
+        },
+        {
+          "record": "our-parish-priest:9240",
+          "reason": "Index metadata only; this article body has not been captured."
+        }
+      ],
+      "integrityErrors": [
+        "source-crawl-incomplete",
+        "source-crawl-has-errors",
+        "published-api-total-mismatch"
+      ],
+      "availableRecordIntegrityErrors": [],
+      "historicalReview": "Representative source findings only; every assertion is not certified.",
+      "calendarIdentityMapping": "unassigned",
+      "nativeImport": false,
+      "reuseApproval": false
+    },
+    {
+      "language": "uk",
+      "catalogue": "rkc-saints-uk.json",
+      "sourceSnapshotSHA256": "903261fc616fc781eefe1154df0540a83dc07d98efb4ca4d085484d115dabffd",
+      "crawlComplete": true,
+      "integrityReviewPassed": true,
+      "coverage": {
+        "indexPages": 3,
+        "descriptionCoverage": "full-published-event-descriptions",
+        "wholeLiturgicalYearClaimed": false,
+        "fullPageAudits": 0
+      },
+      "availableRecordIntegrityPassed": true,
+      "counts": {
+        "records": 15,
+        "quarantinedAttempts": 0,
+        "excluded": 0,
+        "recordsWithPreservedProse": 15,
+        "proseDigestsVerified": 15,
+        "partialOrMetadataOnlyEvidence": 0,
+        "independentRawHTMLProseAudits": 0,
+        "recordsWithLiteralCreditCandidates": 0
+      },
+      "contentShapes": {
+        "full-published-event-description": 15
+      },
+      "genreCandidates": {
+        "saint-biography-candidate": 14,
+        "feast-description-candidate": 1
+      },
+      "sourceIssueCounts": {},
+      "sourceWarnings": [],
+      "confirmedEditorialFindings": [],
+      "representativeEditorialReviews": [
+        {
+          "language": "uk",
+          "catalogue": "rkc-saints-uk.json",
+          "record": "15592",
+          "sourceURL": "https://rkc.org.ua/events/blazhennyj-karlo-akutis/",
+          "sourceTextSHA256": "829fc020ab303ed4a6ff417831ba6037bd7d8fe63eca30fed56b1ec91212957b",
+          "reviewedAt": "2026-10-03",
+          "checks": [
+            "actual prose language",
+            "named subject and genre",
+            "printed feast label distinguished from narrative/publication dates",
+            "literal source credits"
+          ],
+          "findings": [
+            "Actual Ukrainian article title and biography now call Carlo Acutis a saint, despite the older blessed wording in the URL slug.",
+            "The body explicitly records canonization on 7 September 2025, corroborated by the Holy See Press Office account of that celebration.",
+            "Source prose gives remembrance on 12 October and the published event metadata gives 2026-10-12. This does not override a selected Prosary calendar."
+          ],
+          "corroboratingSourceURLs": [
+            "https://press.vatican.va/content/salastampa/en/bollettino/pubblico/2025/09/07/250907a.html"
+          ],
+          "calendarIdentityMapping": "unassigned",
+          "allHistoricalAssertionsCertified": false,
+          "reuseApproved": false,
+          "sourceRecordSHA256": "67819a0166b96c6b7f6f87e8548bcd50f769762f8fb8211e87882e041ea1bb65"
+        }
+      ],
+      "sourceManualReviewSummary": null,
+      "representativeFullPageChecks": [],
+      "partialEvidence": [],
+      "integrityErrors": [],
+      "availableRecordIntegrityErrors": [],
+      "historicalReview": "Representative source findings only; every assertion is not certified.",
+      "calendarIdentityMapping": "unassigned",
+      "nativeImport": false,
+      "reuseApproval": false
+    }
+  ],
+  "supplementalCatalogues": [
+    {
+      "language": "uk",
+      "catalogue": "credo-saints-uk.json",
+      "sourceSnapshotSHA256": "557537d45567164970b6c41b81773a9ce5e78e11e9f9a5456883fcd88d855624",
+      "crawlComplete": true,
+      "integrityReviewPassed": true,
+      "coverage": {
+        "indexPages": 18,
+        "descriptionCoverage": "category-excerpts-with-representative-full-page-audits",
+        "wholeLiturgicalYearClaimed": false,
+        "fullPageAudits": 3
+      },
+      "availableRecordIntegrityPassed": true,
+      "counts": {
+        "records": 356,
+        "quarantinedAttempts": 0,
+        "excluded": 159,
+        "recordsWithPreservedProse": 515,
+        "proseDigestsVerified": 515,
+        "partialOrMetadataOnlyEvidence": 0,
+        "independentRawHTMLProseAudits": 0,
+        "recordsWithLiteralCreditCandidates": 23
+      },
+      "contentShapes": {
+        "published-category-excerpt": 515
+      },
+      "genreCandidates": {
+        "feast-description-candidate": 98,
+        "saint-biography-candidate": 258,
+        "other-article-review-required": 159
+      },
+      "sourceIssueCounts": {},
+      "sourceWarnings": [],
+      "confirmedEditorialFindings": [
+        {
+          "sourceURL": "https://credo.pro/2026/09/69985",
+          "sourceWording": "Ця молода монахиня ніколи не їздила світом і не була відома поза межам свого монастиря; однак вона стала покровителькою місій. У своєму щоденнику записала, що прагнула би втілити в собі всі покликання, також і місіонерське. Бог через Церкву сповнив також і це її бажання (1944).",
+          "issue": "mission-patronage-year-conflicts-with-primary-source",
+          "primarySourceDate": "1927-12-14",
+          "primarySourceURL": "https://www.vatican.va/news_services/liturgy/documents/ns_lit_doc_19101997_stherese_en.html",
+          "reviewStatus": "source-words-retained-do-not-republish-without-editorial-review"
+        },
+        {
+          "sourceURL": "https://credo.pro/2026/09/69985",
+          "sourceWording": "Ця молода монахиня ніколи не вивчала якихось особливих глибин богослов’я та філософії, а виклала на письмі єдино лише свій духовний досвід, і цього вистачило, аби її проголошено Вчителем Церкви (1999).",
+          "issue": "doctor-of-church-year-conflicts-with-primary-source",
+          "primarySourceDate": "1997-10-19",
+          "primarySourceURL": "https://www.vatican.va/content/john-paul-ii/en/apost_letters/1997/documents/hf_jp-ii_apl_19101997_divini-amoris.html",
+          "reviewStatus": "source-words-retained-do-not-republish-without-editorial-review"
+        }
+      ],
+      "representativeEditorialReviews": [],
+      "sourceManualReviewSummary": null,
+      "representativeFullPageChecks": [
+        {
+          "sourceURL": "https://credo.pro/2026/09/69985",
+          "title": "Свята Тереза від Дитяти Ісуса, діва і Вчитель Церкви",
+          "proseDigestVerified": true,
+          "sourceTextSHA256": "0b4a23bd85f3c7990a2022ba8760c189c8450c341407c65a5bbe4e032a102f26",
+          "feedBodyMatchesFullPage": null,
+          "categoryExcerptMatchesSourcePrefix": true,
+          "sourceFactReview": [
+            {
+              "sourceWording": "Ця молода монахиня ніколи не їздила світом і не була відома поза межам свого монастиря; однак вона стала покровителькою місій. У своєму щоденнику записала, що прагнула би втілити в собі всі покликання, також і місіонерське. Бог через Церкву сповнив також і це її бажання (1944).",
+              "issue": "mission-patronage-year-conflicts-with-primary-source",
+              "primarySourceDate": "1927-12-14",
+              "primarySourceURL": "https://www.vatican.va/news_services/liturgy/documents/ns_lit_doc_19101997_stherese_en.html",
+              "reviewStatus": "source-words-retained-do-not-republish-without-editorial-review"
+            },
+            {
+              "sourceWording": "Ця молода монахиня ніколи не вивчала якихось особливих глибин богослов’я та філософії, а виклала на письмі єдино лише свій духовний досвід, і цього вистачило, аби її проголошено Вчителем Церкви (1999).",
+              "issue": "doctor-of-church-year-conflicts-with-primary-source",
+              "primarySourceDate": "1997-10-19",
+              "primarySourceURL": "https://www.vatican.va/content/john-paul-ii/en/apost_letters/1997/documents/hf_jp-ii_apl_19101997_divini-amoris.html",
+              "reviewStatus": "source-words-retained-do-not-republish-without-editorial-review"
+            }
+          ]
+        },
+        {
+          "sourceURL": "https://credo.pro/2026/08/68337",
+          "title": "Мучеництво св. Йоана Хрестителя",
+          "proseDigestVerified": true,
+          "sourceTextSHA256": "35f8182bdd77fa760c02e33b267c15142225f687c6ba152dcf2956a117642acd",
+          "feedBodyMatchesFullPage": null,
+          "categoryExcerptMatchesSourcePrefix": true,
+          "sourceFactReview": []
+        },
+        {
+          "sourceURL": "https://credo.pro/2026/10/70067",
+          "title": "Святих Ангелів-Хранителів",
+          "proseDigestVerified": true,
+          "sourceTextSHA256": "34d17801817a0ba5cd51f70b6723a06e72be1969faae122a577d6191d8550430",
+          "feedBodyMatchesFullPage": null,
+          "categoryExcerptMatchesSourcePrefix": true,
+          "sourceFactReview": []
+        }
+      ],
+      "partialEvidence": [],
+      "integrityErrors": [],
+      "availableRecordIntegrityErrors": [],
+      "historicalReview": "Representative source findings only; every assertion is not certified.",
+      "calendarIdentityMapping": "unassigned",
+      "nativeImport": false,
+      "reuseApproval": false
+    },
+    {
+      "language": "tl",
+      "catalogue": "opp-blogger-saints-tl.json",
+      "sourceSnapshotSHA256": "474edb0384a44a677667f83cb558cb363d6dba19ede95d4ca9dcb14e05724f2e",
+      "crawlComplete": true,
+      "integrityReviewPassed": true,
+      "coverage": {
+        "publishedFeedPosts": 1982,
+        "feedPages": 80,
+        "saintLabelEntries": 158,
+        "capturedArticleBodies": 158,
+        "metadataOnlyRecords": 0,
+        "selectedBiographyCandidates": 96,
+        "selectedBiographyExcerpts": 6,
+        "historicalArchive": true,
+        "wholeLiturgicalYearClaimed": false,
+        "annualDuplicateGroups": 3
+      },
+      "availableRecordIntegrityPassed": true,
+      "counts": {
+        "records": 158,
+        "quarantinedAttempts": 0,
+        "excluded": 0,
+        "recordsWithPreservedProse": 157,
+        "proseDigestsVerified": 158,
+        "partialOrMetadataOnlyEvidence": 0,
+        "independentRawHTMLProseAudits": 158,
+        "recordsWithLiteralCreditCandidates": 74
+      },
+      "contentShapes": {
+        "body": 158
+      },
+      "genreCandidates": {
+        "Tagalog-biography-excerpt-review-candidate": 6,
+        "Tagalog-biography-review-candidate": 96,
+        "quarantined-source": 56
+      },
+      "sourceIssueCounts": {
+        "no-explicit-biography-section": 54,
+        "source-factual-error-confirmed-by-official-Capuchin-history": 1,
+        "source-factual-error-confirmed-by-Holy-See": 1
+      },
+      "sourceWarnings": [
+        {
+          "record": "opp-blogger:3790739799511895009",
+          "sourceURL": "https://ourparishpriest.blogspot.com/2020/02/kay-san-blas-para-sa-karamdaman-ng.html",
+          "issues": [
+            "no-explicit-biography-section"
+          ]
+        },
+        {
+          "record": "opp-blogger:1706063213120603664",
+          "sourceURL": "https://ourparishpriest.blogspot.com/2022/01/mga-materyal-resources-tungkol-kay-san.html",
+          "issues": [
+            "no-explicit-biography-section"
+          ]
+        },
+        {
+          "record": "opp-blogger:1683282588470068034",
+          "sourceURL": "https://ourparishpriest.blogspot.com/2022/11/unesco-ipagdiriwang-ang-150th-kaarawan.html",
+          "issues": [
+            "no-explicit-biography-section"
+          ]
+        },
+        {
+          "record": "opp-blogger:6290669288797852511",
+          "sourceURL": "https://ourparishpriest.blogspot.com/2022/12/st-francis-de-sales-400th-death.html",
+          "issues": [
+            "no-explicit-biography-section"
+          ]
+        },
+        {
+          "record": "opp-blogger:263906476543284242",
+          "sourceURL": "https://ourparishpriest.blogspot.com/2022/10/mga-materyal-resources-on-st-therese-of.html",
+          "issues": [
+            "no-explicit-biography-section"
+          ]
+        },
+        {
+          "record": "opp-blogger:8993221329986947161",
+          "sourceURL": "https://ourparishpriest.blogspot.com/2016/09/san-lorenzo-ruiz-tunay-na-pilipino.html",
+          "issues": [
+            "no-explicit-biography-section"
+          ]
+        },
+        {
+          "record": "opp-blogger:5538193347137277050",
+          "sourceURL": "https://ourparishpriest.blogspot.com/2022/07/saints-of-july-san-lorenzo-ng-brindisi.html",
+          "issues": [
+            "source-factual-error-confirmed-by-official-Capuchin-history"
+          ]
+        },
+        {
+          "record": "opp-blogger:6506812795381110072",
+          "sourceURL": "https://ourparishpriest.blogspot.com/2022/04/anong-silbi-sa-atin-ng-magiging-bagong.html",
+          "issues": [
+            "no-explicit-biography-section"
+          ]
+        },
+        {
+          "record": "opp-blogger:786500403634338157",
+          "sourceURL": "https://ourparishpriest.blogspot.com/2011/11/charles-de-foucauld-1858-1916-feast-day.html",
+          "issues": [
+            "no-explicit-biography-section"
+          ]
+        },
+        {
+          "record": "opp-blogger:6554783622921424868",
+          "sourceURL": "https://ourparishpriest.blogspot.com/2020/05/charles-de-foucauld-brother-for.html",
+          "issues": [
+            "no-explicit-biography-section"
+          ]
+        },
+        {
+          "record": "opp-blogger:1925783324288841472",
+          "sourceURL": "https://ourparishpriest.blogspot.com/2019/10/ka-luring-on-her-8th-death-anniversary.html",
+          "issues": [
+            "no-explicit-biography-section"
+          ]
+        },
+        {
+          "record": "opp-blogger:5412615755116390218",
+          "sourceURL": "https://ourparishpriest.blogspot.com/2019/06/laureana-franco-aka-ka-luring.html",
+          "issues": [
+            "no-explicit-biography-section"
+          ]
+        },
+        {
+          "record": "opp-blogger:1155420138506889685",
+          "sourceURL": "https://ourparishpriest.blogspot.com/2016/09/santa-teresa-ng-calcutta.html",
+          "issues": [
+            "no-explicit-biography-section"
+          ]
+        },
+        {
+          "record": "opp-blogger:8595036668085467320",
+          "sourceURL": "https://ourparishpriest.blogspot.com/2021/03/mga-materyal-o-resources-tungkol-kay-ka.html",
+          "issues": [
+            "no-explicit-biography-section"
+          ]
+        },
+        {
+          "record": "opp-blogger:8437210751817732537",
+          "sourceURL": "https://ourparishpriest.blogspot.com/2020/10/kapistahan-ng-lahat-ng-mga-banal-2020.html",
+          "issues": [
+            "no-explicit-biography-section"
+          ]
+        },
+        {
+          "record": "opp-blogger:5482580748481285965",
+          "sourceURL": "https://ourparishpriest.blogspot.com/2020/10/all-saints-day-2020-31st-sunday-a.html",
+          "issues": [
+            "no-explicit-biography-section"
+          ]
+        },
+        {
+          "record": "opp-blogger:7838400643326588589",
+          "sourceURL": "https://ourparishpriest.blogspot.com/2018/09/modernong-binatilyo-alagad-ng-diyos.html",
+          "issues": [
+            "no-explicit-biography-section"
+          ]
+        },
+        {
+          "record": "opp-blogger:9157865505842696644",
+          "sourceURL": "https://ourparishpriest.blogspot.com/2018/09/si-st-therese-at-ang-kanyang-kapatid-na.html",
+          "issues": [
+            "no-explicit-biography-section"
+          ]
+        },
+        {
+          "record": "opp-blogger:6111214988969255177",
+          "sourceURL": "https://ourparishpriest.blogspot.com/2020/09/san-pio-ng-pietrelcina-padre-pio.html",
+          "issues": [
+            "source-factual-error-confirmed-by-Holy-See"
+          ]
+        },
+        {
+          "record": "opp-blogger:2681188512377748045",
+          "sourceURL": "https://ourparishpriest.blogspot.com/2020/04/mga-santo-ng-wuhan-kilalanin.html",
+          "issues": [
+            "no-explicit-biography-section"
+          ]
+        },
+        {
+          "record": "opp-blogger:4452607781770680503",
+          "sourceURL": "https://ourparishpriest.blogspot.com/2019/08/santong-american-citizen-weeehhh-meron.html",
+          "issues": [
+            "no-explicit-biography-section"
+          ]
+        },
+        {
+          "record": "opp-blogger:7542188263604487445",
+          "sourceURL": "https://ourparishpriest.blogspot.com/2019/06/pinoy-na-batang-kalye-sa-langit-darwin.html",
+          "issues": [
+            "no-explicit-biography-section"
+          ]
+        },
+        {
+          "record": "opp-blogger:7293156420293328964",
+          "sourceURL": "https://ourparishpriest.blogspot.com/2018/08/isang-pananampalatayang-hindi-matitibag.html",
+          "issues": [
+            "no-explicit-biography-section"
+          ]
+        },
+        {
+          "record": "opp-blogger:7864576036909742315",
+          "sourceURL": "https://ourparishpriest.blogspot.com/2018/10/first-pope-to-visit-philippines-now.html",
+          "issues": [
+            "no-explicit-biography-section"
+          ]
+        },
+        {
+          "record": "opp-blogger:8464840426157934928",
+          "sourceURL": "https://ourparishpriest.blogspot.com/2018/10/bro-marcel-van-various-pictures.html",
+          "issues": [
+            "no-explicit-biography-section"
+          ]
+        },
+        {
+          "record": "opp-blogger:1536485007435367016",
+          "sourceURL": "https://ourparishpriest.blogspot.com/2018/10/bro-marcel-van-children.html",
+          "issues": [
+            "no-explicit-biography-section"
+          ]
+        },
+        {
+          "record": "opp-blogger:8964654825170606116",
+          "sourceURL": "https://ourparishpriest.blogspot.com/2018/10/bro-marcel-van-on-france.html",
+          "issues": [
+            "no-explicit-biography-section"
+          ]
+        },
+        {
+          "record": "opp-blogger:968494601183414030",
+          "sourceURL": "https://ourparishpriest.blogspot.com/2018/09/bro-marcel-van-spiritual-poverty-3.html",
+          "issues": [
+            "no-explicit-biography-section"
+          ]
+        },
+        {
+          "record": "opp-blogger:3695095381773705519",
+          "sourceURL": "https://ourparishpriest.blogspot.com/2018/09/bro-marcel-van-spiritual-poverty-2.html",
+          "issues": [
+            "no-explicit-biography-section"
+          ]
+        },
+        {
+          "record": "opp-blogger:3362574300092246986",
+          "sourceURL": "https://ourparishpriest.blogspot.com/2018/09/killed-for-hating-hitler.html",
+          "issues": [
+            "no-explicit-biography-section"
+          ]
+        },
+        {
+          "record": "opp-blogger:3204624331605039213",
+          "sourceURL": "https://ourparishpriest.blogspot.com/2018/09/bro-marcel-van-spiritual-poverty-1.html",
+          "issues": [
+            "no-explicit-biography-section"
+          ]
+        },
+        {
+          "record": "opp-blogger:2813338115987354878",
+          "sourceURL": "https://ourparishpriest.blogspot.com/2018/09/bro-marcel-van-suffering-3.html",
+          "issues": [
+            "no-explicit-biography-section"
+          ]
+        },
+        {
+          "record": "opp-blogger:6227545770336584272",
+          "sourceURL": "https://ourparishpriest.blogspot.com/2018/08/bro-marcel-van-suffering-2.html",
+          "issues": [
+            "no-explicit-biography-section"
+          ]
+        },
+        {
+          "record": "opp-blogger:5360191744868024915",
+          "sourceURL": "https://ourparishpriest.blogspot.com/2018/08/bro-marcel-van-suffering-1.html",
+          "issues": [
+            "no-explicit-biography-section"
+          ]
+        },
+        {
+          "record": "opp-blogger:584211434572588860",
+          "sourceURL": "https://ourparishpriest.blogspot.com/2018/08/bro-marcel-van-joy-2.html",
+          "issues": [
+            "no-explicit-biography-section"
+          ]
+        },
+        {
+          "record": "opp-blogger:7910446256730064935",
+          "sourceURL": "https://ourparishpriest.blogspot.com/2018/08/bro-marcel-van-joy-1.html",
+          "issues": [
+            "no-explicit-biography-section"
+          ]
+        },
+        {
+          "record": "opp-blogger:5727515680427155722",
+          "sourceURL": "https://ourparishpriest.blogspot.com/2018/07/bro-marcel-van-priests-2.html",
+          "issues": [
+            "no-explicit-biography-section"
+          ]
+        },
+        {
+          "record": "opp-blogger:3898490126072999816",
+          "sourceURL": "https://ourparishpriest.blogspot.com/2018/07/bro-marcel-van-priests-1.html",
+          "issues": [
+            "no-explicit-biography-section"
+          ]
+        },
+        {
+          "record": "opp-blogger:1843658769444603825",
+          "sourceURL": "https://ourparishpriest.blogspot.com/2018/07/bro-marcel-van-spousal-love-2.html",
+          "issues": [
+            "no-explicit-biography-section"
+          ]
+        },
+        {
+          "record": "opp-blogger:6164360728033691134",
+          "sourceURL": "https://ourparishpriest.blogspot.com/2018/07/bro-marcel-van-spousal-love-1.html",
+          "issues": [
+            "no-explicit-biography-section"
+          ]
+        },
+        {
+          "record": "opp-blogger:9084537169386500226",
+          "sourceURL": "https://ourparishpriest.blogspot.com/2018/07/bro-marcel-van-simplicity-3.html",
+          "issues": [
+            "no-explicit-biography-section"
+          ]
+        },
+        {
+          "record": "opp-blogger:4398850947283370526",
+          "sourceURL": "https://ourparishpriest.blogspot.com/2018/06/bro-marcel-van-simplicity-2.html",
+          "issues": [
+            "no-explicit-biography-section"
+          ]
+        },
+        {
+          "record": "opp-blogger:4067596317962274532",
+          "sourceURL": "https://ourparishpriest.blogspot.com/2018/06/bro-marcel-van-simplicity-1.html",
+          "issues": [
+            "no-explicit-biography-section"
+          ]
+        },
+        {
+          "record": "opp-blogger:7335756209179037482",
+          "sourceURL": "https://ourparishpriest.blogspot.com/2018/06/bagong-lodi-bro-marcel-van.html",
+          "issues": [
+            "no-explicit-biography-section"
+          ]
+        },
+        {
+          "record": "opp-blogger:3888423852496366918",
+          "sourceURL": "https://ourparishpriest.blogspot.com/2018/02/tribute-to-st-therese-of-lisieux-and.html",
+          "issues": [
+            "no-explicit-biography-section"
+          ]
+        },
+        {
+          "record": "opp-blogger:7737278556872760285",
+          "sourceURL": "https://ourparishpriest.blogspot.com/2010/10/to-cemetery-with-love-much-of-attention.html",
+          "issues": [
+            "no-explicit-biography-section"
+          ]
+        },
+        {
+          "record": "opp-blogger:4408012943235653846",
+          "sourceURL": "https://ourparishpriest.blogspot.com/2016/11/saint-jose-luis-sanchez-del-rio-san.html",
+          "issues": [
+            "no-explicit-biography-section"
+          ]
+        },
+        {
+          "record": "opp-blogger:8212101893038025103",
+          "sourceURL": "https://ourparishpriest.blogspot.com/2015/10/all-saints-day.html",
+          "issues": [
+            "no-explicit-biography-section"
+          ]
+        },
+        {
+          "record": "opp-blogger:6860474280800289468",
+          "sourceURL": "https://ourparishpriest.blogspot.com/2015/10/araw-ng-mga-banal-at-araw-ng-mga-yumao.html",
+          "issues": [
+            "no-explicit-biography-section"
+          ]
+        },
+        {
+          "record": "opp-blogger:951401650481997368",
+          "sourceURL": "https://ourparishpriest.blogspot.com/2014/11/meet-saints-san-damaso.html",
+          "issues": [
+            "no-explicit-biography-section"
+          ]
+        },
+        {
+          "record": "opp-blogger:1831514880121255556",
+          "sourceURL": "https://ourparishpriest.blogspot.com/2014/05/dakilang-kapistahan-nina-apostol-pedro.html",
+          "issues": [
+            "no-explicit-biography-section"
+          ]
+        },
+        {
+          "record": "opp-blogger:8838860521012586930",
+          "sourceURL": "https://ourparishpriest.blogspot.com/2014/05/solemnity-of-saints-peter-and-paul-june.html",
+          "issues": [
+            "no-explicit-biography-section"
+          ]
+        },
+        {
+          "record": "opp-blogger:2477240987323026582",
+          "sourceURL": "https://ourparishpriest.blogspot.com/2012/10/san-pedro-calungsod-huwaran-ng-mga.html",
+          "issues": [
+            "no-explicit-biography-section"
+          ]
+        },
+        {
+          "record": "opp-blogger:4352445357302863725",
+          "sourceURL": "https://ourparishpriest.blogspot.com/2009/12/convicted-murderer-candidate-for.html",
+          "issues": [
+            "no-explicit-biography-section"
+          ]
+        },
+        {
+          "record": "opp-blogger:3081503367447962681",
+          "sourceURL": "https://ourparishpriest.blogspot.com/2009/10/when-memory-turns-to-festivity-31st.html",
+          "issues": [
+            "no-explicit-biography-section"
+          ]
+        },
+        {
+          "record": "opp-blogger:2463976418964339728",
+          "sourceURL": "https://ourparishpriest.blogspot.com/2009/08/simple-lesson-from-st.html",
+          "issues": [
+            "no-explicit-biography-section"
+          ]
+        }
+      ],
+      "confirmedEditorialFindings": [
+        {
+          "record": "opp-blogger:5538193347137277050",
+          "sourceURL": "https://ourparishpriest.blogspot.com/2022/07/saints-of-july-san-lorenzo-ng-brindisi.html",
+          "type": "source-franciscan-branches-chronology-error",
+          "sourceLines": [
+            "Buhay pa si San Francisco ay nagkaroon na ng mga pagkakahati-hati sa kanyang mga tagasunod na nagbunga ng pagkakatatag ng tatlong sangay ng mga unang Francisans. Nariyan ang mga Friars Minor, Franciscan Conventuals at mga Franciscan Capuchins. Bawat isa sa mga ito ay nagsasabing sila ang nagpapatuloy ng orihinal na pananaw ni San Francisco para sa kanyang itinatag na religious order. Ngayon ay kapansin-pansin ang pagkakaiba nila ng kasuotan (kulay at istilo) sa isa’t-isa. Subalit nagkakaisa sila ng espirituwalidad na isinasabuhay, ang kapayakan at kabanalan ni San Francisco."
+          ],
+          "sourceClaim": "The three named Franciscan branches, including Capuchins, arose during Saint Francis's lifetime.",
+          "corroboration": [
+            {
+              "provider": "Order of Friars Minor Capuchin",
+              "sourceURL": "https://www.ofmcap.org/en/the-history-of-the-capuchins/",
+              "verifiedAt": "2026-10-03",
+              "publishedEvidence": "Capuchin origins around 1525 and papal approval in 1528",
+              "method": "live official institutional history checked by independent source reviewer"
+            },
+            {
+              "provider": "Order of Friars Minor Capuchin",
+              "sourceURL": "https://www.ofmcap.org/en/x-giornata-della-famiglia-cappuccina-2026/",
+              "verifiedAt": "2026-10-03",
+              "publishedEvidence": "2026 commemorates the 800th anniversary of Saint Francis's death",
+              "method": "live official anniversary article checked by independent source reviewer"
+            }
+          ],
+          "decision": "Quarantine the biography pending editorial correction by its publisher; preserve its original paragraph and book credit."
+        },
+        {
+          "record": "opp-blogger:6111214988969255177",
+          "sourceURL": "https://ourparishpriest.blogspot.com/2020/09/san-pio-ng-pietrelcina-padre-pio.html",
+          "type": "source-death-year-error",
+          "sourceYears": [
+            "1968",
+            "1969"
+          ],
+          "sourceLines": [
+            "Isang maliit na kapilya ang dinadayo ng mga tao sa may Libis, Quezon City, kung saan naroon ang mga relic ng isa sa pinakasikat na mga santo sa ating panahon. Isa rin siyang modernong santo na maituturing, dahil may mga tao pang buhay ngayon na nakita siya nang personal o sa telebisyon, o sa mga pahayagan noong buhay pa siya. Namatay noon lamang 1968 si Padre Pio kaya maraming rekord ng kanyang buhay ang madaling makita sa mga aklat, film at maging sa tulong ng internet.",
+            "Namatay si Padre Pio noong 1969 at napakarami ang nakipaglibing sa kanya. Mahal na mahal at bukambibig siya sa buong Italy at sa buong mundo. Naging ganap na santo siya noong 2002 sa isang Misang ginanap sa Roma para sa napakaraming taong dumalo mula sa buong daigdig."
+          ],
+          "corroboration": {
+            "provider": "Holy See",
+            "sourceURL": "https://www.vatican.va/news_services/liturgy/saints/ns_lit_doc_20020616_padre-pio_en.html",
+            "verifiedAt": "2026-10-03",
+            "deathDate": "1968-09-23",
+            "feastMonthDay": "09-23",
+            "method": "live official canonization biography checked"
+          },
+          "decision": "Quarantine this source biography. Preserve its original wording; do not silently replace 1969."
+        }
+      ],
+      "representativeEditorialReviews": [],
+      "sourceManualReviewSummary": null,
+      "representativeFullPageChecks": [
+        {
+          "sourceURL": "https://ourparishpriest.blogspot.com/2014/11/meet-saints-san-juan-bosco_21.html",
+          "title": null,
+          "proseDigestVerified": true,
+          "sourceTextSHA256": "05f7afd0cde7c397c1c4b0671efb3965fe26222e9ca1eb59860a27dc1af3d4bc",
+          "feedBodyMatchesFullPage": true,
+          "categoryExcerptMatchesSourcePrefix": null,
+          "sourceFactReview": []
+        },
+        {
+          "sourceURL": "https://ourparishpriest.blogspot.com/2014/11/meet-saints-santo-tomas-aquino.html",
+          "title": null,
+          "proseDigestVerified": true,
+          "sourceTextSHA256": "d426ef33abcb5fb0b4076e21f723e16e0eea1a6f6037c315c6cc882b6e595f06",
+          "feedBodyMatchesFullPage": true,
+          "categoryExcerptMatchesSourcePrefix": null,
+          "sourceFactReview": []
+        },
+        {
+          "sourceURL": "https://ourparishpriest.blogspot.com/2014/11/meet-saints-santa-angela-merici.html",
+          "title": null,
+          "proseDigestVerified": true,
+          "sourceTextSHA256": "af157f9481dc1328b9f5c2211683b3e89af3c2dc5a82e8d0b58b06c6ca477ebb",
+          "feedBodyMatchesFullPage": true,
+          "categoryExcerptMatchesSourcePrefix": null,
+          "sourceFactReview": []
+        }
+      ],
+      "partialEvidence": [],
+      "integrityErrors": [],
+      "availableRecordIntegrityErrors": [],
+      "historicalReview": "Representative source findings only; every assertion is not certified.",
+      "calendarIdentityMapping": "unassigned",
+      "nativeImport": false,
+      "reuseApproval": false
+    },
+    {
+      "language": "tl",
+      "catalogue": "tvmaria-saints-tl.json",
+      "sourceSnapshotSHA256": "c8be2cae6c37444ac1ff5d67a0a87a0951d4991a8c6f6e8f6a2f615d1ca39b35",
+      "crawlComplete": true,
+      "integrityReviewPassed": true,
+      "coverage": {
+        "publishedPosts": 205,
+        "publishedMonthlyArchives": 11,
+        "archivePages": 72,
+        "capturedArticleBodies": 205,
+        "metadataOnlyRecords": 0,
+        "selectedBiographyCandidates": 147,
+        "wholeLiturgicalYearClaimed": false
+      },
+      "availableRecordIntegrityPassed": true,
+      "counts": {
+        "records": 147,
+        "quarantinedAttempts": 1,
+        "excluded": 57,
+        "recordsWithPreservedProse": 205,
+        "proseDigestsVerified": 205,
+        "partialOrMetadataOnlyEvidence": 0,
+        "independentRawHTMLProseAudits": 205,
+        "recordsWithLiteralCreditCandidates": 172
+      },
+      "contentShapes": {
+        "captured-source-entry": 205
+      },
+      "genreCandidates": {
+        "Tagalog-saint-or-feast-biography-review-candidate": 147,
+        "untitled-source-post": 1,
+        "English-source-post": 6,
+        "reading-reflection-or-other-source-post": 51
+      },
+      "sourceIssueCounts": {
+        "source-title-empty": 1
+      },
+      "sourceWarnings": [
+        {
+          "record": "tvmaria:931",
+          "sourceURL": "https://tvmaria.wordpress.com/2011/05/03/ang-birhen-ng-antipolo/",
+          "issues": [
+            "long-year-like-literal-needs-context"
+          ],
+          "sourceNumbers": [
+            "19926"
+          ]
+        },
+        {
+          "record": "tvmaria:1330",
+          "sourceURL": "https://tvmaria.wordpress.com/2011/04/24/1330/",
+          "issues": [
+            "source-title-empty"
+          ]
+        }
+      ],
+      "confirmedEditorialFindings": [
+        {
+          "record": "tvmaria:1662",
+          "sourceURL": "https://tvmaria.wordpress.com/2011/12/12/1662/",
+          "sourceLiteral": "Araw ng Kapistahan: Disyembre 8",
+          "finding": "Guadalupe feast label conflicts with Vatican News, which explicitly gives 12 December.",
+          "corroboratingSourceURL": "https://www.vaticannews.va/en/church/news/2018-12/our-lady-of-guadaloupe-feast-day-mexico-americas.html",
+          "decision": "Hold printed feast label; preserve original source and leave calendar mapping unassigned."
+        },
+        {
+          "record": "tvmaria:1652",
+          "sourceURL": "https://tvmaria.wordpress.com/2011/10/01/santa-teresita-ng-nino-jesus/",
+          "sourceLiteral": "Sampu ng ngaing bunga ng kanilang pagmamahalan.",
+          "finding": "The source says ten children; Benedict XVI states that Louis and Zélie Martin had nine.",
+          "corroboratingSourceURL": "https://www.vatican.va/content/benedict-xvi/en/audiences/2011/documents/hf_ben-xvi_aud_20110406.html",
+          "decision": "Hold affected biographical statement; preserve original Tagalog prose without a silent correction."
+        }
+      ],
+      "representativeEditorialReviews": [
+        {
+          "language": "tl",
+          "catalogue": "tvmaria-saints-tl.json",
+          "record": "tvmaria:1662",
+          "sourceURL": "https://tvmaria.wordpress.com/2011/12/12/1662/",
+          "sourceTextSHA256": "74832d7cbfc54b8076fc629a08cdb551bab95afe09a206276bffb7299be6cc65",
+          "sourceRecordSHA256": "58a0e1d528ecc884d6dcd4410ebda7be226b2dbafbeb55308b256dfa77a0579c",
+          "reviewedAt": "2026-10-03",
+          "checks": [
+            "actual source language and subject",
+            "biography, reflection and credit boundaries",
+            "printed dates distinguished from posting dates",
+            "primary corroboration of selected historical statements"
+          ],
+          "findings": [
+            "Actual Tagalog Guadalupe apparition account; ARAL reflection is separate from the account.",
+            "Literal book credit is J. C. Abriol, Talambuhay ng mga Santo, volume 2, third edition, Paulines Publishing House, 2010. No underlying-book reuse approval is inferred.",
+            "Printed feast label is 8 December; the publication date of 12 December is transport evidence and does not silently repair that label."
+          ],
+          "confirmedEditorialFindings": [
+            {
+              "sourceLiteral": "Araw ng Kapistahan: Disyembre 8",
+              "finding": "Guadalupe feast label conflicts with Vatican News, which explicitly gives 12 December.",
+              "corroboratingSourceURL": "https://www.vaticannews.va/en/church/news/2018-12/our-lady-of-guadaloupe-feast-day-mexico-americas.html",
+              "decision": "Hold printed feast label; preserve original source and leave calendar mapping unassigned."
+            }
+          ],
+          "corroboratingSourceURLs": [
+            "https://www.vaticannews.va/en/church/news/2018-12/our-lady-of-guadaloupe-feast-day-mexico-americas.html"
+          ],
+          "calendarIdentityMapping": "unassigned",
+          "allHistoricalAssertionsCertified": false,
+          "reuseApproved": false
+        },
+        {
+          "language": "tl",
+          "catalogue": "tvmaria-saints-tl.json",
+          "record": "tvmaria:1652",
+          "sourceURL": "https://tvmaria.wordpress.com/2011/10/01/santa-teresita-ng-nino-jesus/",
+          "sourceTextSHA256": "bd8ed9fc4b9bdcf3aa6b07ccd74642f44d0fb49f12ae50523a30f330bab1a9b7",
+          "sourceRecordSHA256": "4fcdb0aba0f3bd556e9bd7bd197fd7b90d087748763870259ef56797037ab966",
+          "reviewedAt": "2026-10-03",
+          "checks": [
+            "actual source language and subject",
+            "biography, reflection and credit boundaries",
+            "printed dates distinguished from posting dates",
+            "primary corroboration of selected historical statements"
+          ],
+          "findings": [
+            "Actual Tagalog biography of Thérèse of Lisieux; ARAL and Abriol/Paulines book credit remain separate.",
+            "Printed 1 October feast, 2 January 1873 birth and 30 September 1897 death are distinguished from the posting date; birth/death agree with the checked Holy See sources.",
+            "The family paragraph says Sampu (ten). Benedict XVI gives nine children of Louis and Zélie Martin."
+          ],
+          "confirmedEditorialFindings": [
+            {
+              "sourceLiteral": "Sampu ng ngaing bunga ng kanilang pagmamahalan.",
+              "finding": "The source says ten children; Benedict XVI states that Louis and Zélie Martin had nine.",
+              "corroboratingSourceURL": "https://www.vatican.va/content/benedict-xvi/en/audiences/2011/documents/hf_ben-xvi_aud_20110406.html",
+              "decision": "Hold affected biographical statement; preserve original Tagalog prose without a silent correction."
+            }
+          ],
+          "corroboratingSourceURLs": [
+            "https://www.vatican.va/content/john-paul-ii/en/apost_letters/1997/documents/hf_jp-ii_apl_19101997_divini-amoris.html",
+            "https://www.vatican.va/content/benedict-xvi/en/audiences/2011/documents/hf_ben-xvi_aud_20110406.html"
+          ],
+          "calendarIdentityMapping": "unassigned",
+          "allHistoricalAssertionsCertified": false,
+          "reuseApproved": false
+        }
+      ],
+      "sourceManualReviewSummary": null,
+      "representativeFullPageChecks": [],
+      "partialEvidence": [],
+      "integrityErrors": [],
+      "availableRecordIntegrityErrors": [],
+      "historicalReview": "Representative source findings only; every assertion is not certified.",
+      "calendarIdentityMapping": "unassigned",
+      "nativeImport": false,
+      "reuseApproval": false
+    }
+  ],
+  "independentAuditProvenance": {
+    "available": true,
+    "file": "saint-source-independent-audits.json",
+    "fileSHA256": "fc2d4d57bbecc909955a05c3e57a7885d68ed973ce5a04ff5fcfbbfb3b3ecf97",
+    "additionalAuditFiles": [
+      {
+        "file": "saint-source-retry-independent-audits.json",
+        "fileSHA256": "5a7e0b88de7b4515331c8e45a0d892aa080ecdaea1f5773a01ca146930bdc66e"
+      }
+    ],
+    "sourceSnapshots": [
+      {
+        "catalogue": "catholic-saints-en.json",
+        "snapshotMatches": true
+      },
+      {
+        "catalogue": "catholic-saints-fr.json",
+        "snapshotMatches": true
+      },
+      {
+        "catalogue": "catholic-saints-it.json",
+        "snapshotMatches": true
+      },
+      {
+        "catalogue": "catholic-saints-ru.json",
+        "snapshotMatches": true
+      },
+      {
+        "catalogue": "evangelizo-saints-ar.json",
+        "snapshotMatches": true
+      },
+      {
+        "catalogue": "tagalog-saints.json",
+        "snapshotMatches": true
+      },
+      {
+        "catalogue": "rkc-saints-uk.json",
+        "snapshotMatches": true
+      },
+      {
+        "catalogue": "credo-saints-uk.json",
+        "snapshotMatches": true
+      },
+      {
+        "catalogue": "opp-blogger-saints-tl.json",
+        "snapshotMatches": true
+      },
+      {
+        "catalogue": "tvmaria-saints-tl.json",
+        "snapshotMatches": true
+      }
+    ],
+    "errors": []
+  },
+  "evangelizoAvailability": {
+    "file": "evangelizo-language-availability.json",
+    "sourceSnapshotSHA256": "832a67917ab5702c58e77d2e056e76ebe0d32ed3177aec702bf9a03b69d4d3ef",
+    "integrityReviewPassed": true,
+    "errors": [],
+    "publishedLanguageCodes": [
+      "AR",
+      "DE",
+      "EL",
+      "EN",
+      "ES",
+      "FR",
+      "GD",
+      "HE",
+      "HY",
+      "IT",
+      "KO",
+      "MG",
+      "NL",
+      "PL",
+      "PT",
+      "RU",
+      "SW",
+      "TR",
+      "ZH"
+    ],
+    "publishedLanguageCount": 19,
+    "publishedEditionCount": 34,
+    "requestedLanguageAvailability": [
+      {
+        "requestedLanguage": "tl",
+        "matchingPublishedEditions": [],
+        "status": "not-listed-in-current-published-registry",
+        "guessedEditionRequestsMade": false
+      },
+      {
+        "requestedLanguage": "uk",
+        "matchingPublishedEditions": [],
+        "status": "not-listed-in-current-published-registry",
+        "guessedEditionRequestsMade": false
+      }
+    ],
+    "russian": {
+      "probes": [
+        {
+          "sourceURL": "https://publication.evangelizo.ws/RU/saints?day=1&month=10&page_size=150",
+          "month": 10,
+          "day": 1,
+          "returnedCount": 0,
+          "reportedTotal": 0,
+          "entries": [],
+          "reportedNextURI": null
+        },
+        {
+          "sourceURL": "https://publication.evangelizo.ws/RU/saints?day=4&month=10&page_size=150",
+          "month": 10,
+          "day": 4,
+          "returnedCount": 0,
+          "reportedTotal": 0,
+          "entries": [],
+          "reportedNextURI": null
+        }
+      ],
+      "usableRussianBiographySampleCount": 0,
+      "interpretation": "Declared edition features and actual endpoint responses are independent evidence. Two dates do not certify annual coverage."
+    },
+    "registrySourceURL": "https://publication.evangelizo.ws/languages",
+    "scope": "Published Evangelizo language/edition registry, plus two known-date Russian saint probes and at most one linked biography per date; not an annual collection.",
+    "calendarIdentityMapping": "unassigned",
+    "nativeImport": false
+  }
+}

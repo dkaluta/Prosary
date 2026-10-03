@@ -255,6 +255,7 @@ fun SettingsScreen(onBack: () -> Unit, onOpenAppearance: () -> Unit) {
             }
 
             SectionHeader(stringResource(R.string.settings_praying))
+            TodayReminderSettings()
 
             // The same app-wide setting the flow toolbars offer — surfaced here so it's
             // discoverable outside a session.

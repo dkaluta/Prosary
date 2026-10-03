@@ -47,6 +47,19 @@ public sealed partial class MainWindow : Window
         AppNav.SelectedItem = item;
     }
 
+    public void ShowTodayReadings(bool readingsOnly)
+    {
+        var navigation = Router.For(RootFrame);
+        navigation.Today?.SelectTodayCommand.Execute(null);
+        if (readingsOnly)
+        {
+            navigation.Navigate<DesktopReadingsPage>("daily");
+            if (RootFrame.Content is DesktopReadingsPage readings) readings.ShowDailyReadings();
+        }
+        else navigation.Navigate<DesktopTodayPage>();
+        RootFrame.BackStack.Clear();
+    }
+
     private void OnNavSelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
     {
         if (args.SelectedItem is not NavigationViewItem item) return;

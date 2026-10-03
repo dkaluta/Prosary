@@ -63,7 +63,11 @@ struct DailyReadingsView: View {
               .foregroundStyle(.secondary)
               .accessibilityIdentifier("readings.empty")
           }
-          ForEach(Array(readings.enumerated()), id: \.offset) { _, reading in
+          ForEach(Array(readings.enumerated()), id: \.offset) { index, reading in
+            if let group = reading.sourceGroup, !group.isEmpty,
+               index == 0 || readings[index - 1].sourceGroup != group {
+              Text(group).font(.subheadline.weight(.semibold)).accessibilityAddTraits(.isHeader)
+            }
             ScripturePassageView(reading: reading, interfaceLanguage: language)
               .id(passageContext)
           }

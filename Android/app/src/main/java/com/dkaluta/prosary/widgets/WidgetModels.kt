@@ -14,18 +14,28 @@ import java.time.ZoneId
 sealed interface WidgetDestination {
     data object Today : WidgetDestination
     data object Rosary : WidgetDestination
+    data object Calendar : WidgetDestination
+    data object Readings : WidgetDestination
     data class SavedPrayer(val id: String) : WidgetDestination
+    data class CatalogPrayer(val identity: String) : WidgetDestination
 
     companion object {
         fun parse(value: String?): WidgetDestination? = runCatching {
             val uri = URI(value ?: return null)
-            if (uri.scheme != "prosary" || uri.rawAuthority != "widget" || uri.query != null || uri.fragment != null) return null
+            if (uri.scheme != "prosary" || uri.rawAuthority != "widget" || uri.query != null || uri.fragment != null || uri.rawPath != uri.path) return null
             when (uri.path) {
                 "/today" -> Today
                 "/rosary" -> Rosary
-                else -> uri.path.removePrefix("/prayer/").takeIf {
-                    uri.path.startsWith("/prayer/") && it.matches(Regex("[A-Za-z0-9_-]{1,128}"))
-                }?.let(::SavedPrayer)
+                "/calendar" -> Calendar
+                "/readings" -> Readings
+                else -> {
+                    val template = Regex("/template/(devotion|basic)/([A-Za-z0-9._-]{1,128})").matchEntire(uri.path)
+                    if (template != null && template.groupValues[2] !in setOf(".", "..")) {
+                        CatalogPrayer("${template.groupValues[1]}:${template.groupValues[2]}")
+                    } else uri.path.removePrefix("/prayer/").takeIf {
+                        uri.path.startsWith("/prayer/") && it.matches(Regex("[A-Za-z0-9_-]{1,128}"))
+                    }?.let(::SavedPrayer)
+                }
             }
         }.getOrNull()
     }

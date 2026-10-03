@@ -56,8 +56,9 @@ final class TodayInfoStoreTests: XCTestCase {
   func testSundaySuppressesOnlyTheSupplementalDayHeadingInEveryCalendar() {
     for calendarId in TodayInfoStore.calendars.map(\.id) {
       select(calendarId)
-      XCTAssertNil(TodayInfoStore.displayDayInfo(on: date("2026-09-06")), calendarId)
-      XCTAssertNotNil(TodayInfoStore.feast(on: date("2026-09-06")), calendarId)
+      // This Sunday is covered by all published editions, including St James.
+      XCTAssertNil(TodayInfoStore.displayDayInfo(on: date("2026-10-04")), calendarId)
+      XCTAssertNotNil(TodayInfoStore.feast(on: date("2026-10-04")), calendarId)
     }
   }
 
@@ -186,7 +187,7 @@ final class TodayInfoStoreTests: XCTestCase {
   func testCalendarRegistryListsTheShippedCalendarsInPickerOrder() {
     XCTAssertEqual(
       TodayInfoStore.calendars.map(\.id),
-      ["lpj", "roman", "roman1962", "ugcc", "syriac", "maronite"])
+      ["lpj", "stjames", "roman", "roman1962", "franciscan-conventual-italy", "augustinian-discalced", "ugcc", "ugcc-julian", "syriac", "maronite"])
     XCTAssertEqual(TodayInfoStore.selectedCalendarId, "lpj")
   }
 
@@ -374,7 +375,26 @@ final class TodayInfoStoreTests: XCTestCase {
     for language in ["en", "ar", "ru", "tl", "fr", "it", "uk"] {
       XCTAssertTrue(feast.saintDescriptions(calendarID: "syriac", language: language).isEmpty)
     }
-    XCTAssertTrue(feast.saintDescriptions(calendarID: "roman", language: "he").isEmpty)
+    select("roman")
+    let romanFeast = try XCTUnwrap(TodayInfoStore.feast(on: date("2026-10-01")))
+    XCTAssertTrue(romanFeast.saintDescriptions(calendarID: "roman", language: "he").isEmpty,
+      "Selecting Roman must never borrow the Syriac dataset's Hebrew biography")
+  }
+
+  func testRomanSaintExcerptsRetainSourceAndExactLanguageWithoutChangingSundayPrecedence() throws {
+    for calendarID in ["lpj", "roman", "roman1962"] {
+      select(calendarID)
+      let feast = try XCTUnwrap(TodayInfoStore.feast(on: date("2027-10-04")))
+      let english = try XCTUnwrap(feast.saintDescriptions(calendarID: calendarID, language: "en").first)
+      XCTAssertTrue(english.text.contains("Franciscans"))
+      XCTAssertEqual(english.sourceURL?.host, "publication.evangelizo.ws")
+      XCTAssertTrue(english.credit?.contains("Evangelizo") == true)
+      for language in ["he", "ru", "tl", "uk"] {
+        XCTAssertTrue(feast.saintDescriptions(calendarID: calendarID, language: language).isEmpty)
+      }
+      let sunday = try XCTUnwrap(TodayInfoStore.feast(on: date("2026-10-04")))
+      XCTAssertTrue(sunday.saintDescriptions(calendarID: calendarID, language: "en").isEmpty)
+    }
   }
 
   /// October 25, 2026 wears four different faces: the LPJ's patronal solemnity, a plain
@@ -437,6 +457,22 @@ final class TodayInfoStoreTests: XCTestCase {
     XCTAssertEqual(TodayInfoStore.readings(on: date("2026-09-06")), roman)
   }
 
+  func testOldStyleJulianCalendarKeepsChristmasAndPaschaOnTheirOwnDates() {
+    select("ugcc-julian")
+    UserDefaults.standard.set("gregorian", forKey: TodayInfoStore.paschaStyleDefaultsKey)
+    XCTAssertEqual(TodayInfoStore.selectedCalendarId, "ugcc-julian")
+    for year in ["2026", "2027"] {
+      XCTAssertEqual(TodayInfoStore.feast(on: date("\(year)-01-07"))?.title, "The Nativity of Our Lord")
+      XCTAssertEqual(TodayInfoStore.feast(on: date("\(year)-01-19"))?.title, "The Holy Theophany of Our Lord")
+      XCTAssertNotEqual(TodayInfoStore.feast(on: date("\(year)-12-25"))?.title, "The Nativity of Our Lord")
+    }
+    XCTAssertEqual(TodayInfoStore.feast(on: date("2026-04-12"))?.title, "The Resurrection of Our Lord — Holy Pascha")
+    XCTAssertEqual(TodayInfoStore.feast(on: date("2027-05-02"))?.title, "The Resurrection of Our Lord — Holy Pascha")
+    XCTAssertTrue(TodayInfoStore.readings(on: date("2026-01-07")).isEmpty)
+    select("ugcc")
+    XCTAssertEqual(TodayInfoStore.feast(on: date("2026-12-25"))?.title, "The Nativity of Our Lord")
+  }
+
   func testUnknownCalendarIdFallsBackToTheDefault() {
     select("narnia")
     XCTAssertEqual(TodayInfoStore.selectedCalendarId, "lpj")
@@ -480,6 +516,13 @@ final class TodayInfoStoreTests: XCTestCase {
     XCTAssertTrue(day.hebrew.contains("בזמן הרגיל"))
     XCTAssertTrue(day.hebrew.contains("השבוע ה־"))
     XCTAssertFalse(day.hebrew.contains("ה-"))
+  }
+
+  func testImportedCitationKeepsSourceMassAndPrintedReference() throws {
+    let citation = try JSONDecoder().decode(ReadingCitation.self, from: Data(#"{"type":"reading","short":"1 Cor. 3","full":"1 Corinthians 3:9–11,16–17","sourceText":"1Cor3:9-11.16-17","sourceGroup":"Vigil Mass"}"#.utf8))
+    XCTAssertEqual(citation.sourceText, "1Cor3:9-11.16-17")
+    XCTAssertEqual(citation.sourceGroup, "Vigil Mass")
+    XCTAssertEqual(citation.localizedFull("he"), "1 Corinthians 3:9–11,16–17")
   }
 
   func testHebrewEpistleShorthandPreservesFullSourceCitation() throws {

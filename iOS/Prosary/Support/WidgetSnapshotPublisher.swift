@@ -48,6 +48,8 @@ final class WidgetSnapshotPublisher {
     guard snapshot.save() else { return }
     if snapshot.today != previous.today {
       WidgetCenter.shared.reloadTimelines(ofKind: ProsaryWidgetSnapshot.todayKind)
+      WidgetCenter.shared.reloadTimelines(ofKind: ProsaryWidgetSnapshot.calendarKind)
+      WidgetCenter.shared.reloadTimelines(ofKind: ProsaryWidgetSnapshot.saintKind)
     }
     if snapshot.prayers != previous.prayers || snapshot.today.languageCode != previous.today.languageCode {
       WidgetCenter.shared.reloadTimelines(ofKind: ProsaryWidgetSnapshot.prayerKind)

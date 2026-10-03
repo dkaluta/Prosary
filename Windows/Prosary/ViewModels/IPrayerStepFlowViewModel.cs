@@ -19,6 +19,9 @@ public interface IPrayerStepFlowViewModel : System.ComponentModel.INotifyPropert
     string? Subtitle { get; }
     bool HasSubtitle { get; }
     string Body { get; }
+    /// <summary>Original sourced text and its resolved language, regardless of transliteration.</summary>
+    string SpeechBody { get; }
+    string SpeechLanguageCode { get; }
 
     /// <summary>A pack-cache <c>file:</c> URI (or the loose <c>ms-appx:</c> placeholder), ready
     /// to bind directly to an <see cref="Microsoft.UI.Xaml.Controls.Image.Source"/>.</summary>
@@ -58,4 +61,5 @@ public interface IPrayerStepFlowViewModel : System.ComponentModel.INotifyPropert
 public interface IAudioAwareStepFlowViewModel
 {
     bool IsAudioPlaying { get; }
+    bool HasRecordedNarration { get; }
 }

@@ -27,7 +27,8 @@ public sealed class AutoAdvanceTimer : IDisposable
         {
             // A playing recording drives the steps through its chapters — the timer stands
             // down rather than fight it (pausing re-arms via the next ProgressText render).
-            if (_viewModel is IAudioAwareStepFlowViewModel { IsAudioPlaying: true })
+            if (_viewModel is IAudioAwareStepFlowViewModel { IsAudioPlaying: true, HasRecordedNarration: true }
+                || Services.PrayerSpeechService.IsSpeakingFor(_viewModel))
             {
                 return;
             }
@@ -38,6 +39,7 @@ public sealed class AutoAdvanceTimer : IDisposable
             }
         };
         _viewModel.PropertyChanged += OnViewModelPropertyChanged;
+        Services.PrayerSpeechService.SpeakingChanged += OnSpeechChanged;
         Restart();
     }
 
@@ -46,7 +48,8 @@ public sealed class AutoAdvanceTimer : IDisposable
     {
         _timer.Stop();
         var seconds = AppSettings.AutoAdvanceSeconds;
-        if (seconds <= 0 || _viewModel.IsLastStep)
+        if (seconds <= 0 || _viewModel.IsLastStep || Services.PrayerSpeechService.IsSpeakingFor(_viewModel)
+            || _viewModel is IAudioAwareStepFlowViewModel { IsAudioPlaying: true, HasRecordedNarration: true })
         {
             return;
         }
@@ -57,7 +60,7 @@ public sealed class AutoAdvanceTimer : IDisposable
 
     private void OnViewModelPropertyChanged(object? sender, PropertyChangedEventArgs e)
     {
-        if (e.PropertyName == nameof(IPrayerStepFlowViewModel.ProgressText))
+        if (e.PropertyName is nameof(IPrayerStepFlowViewModel.ProgressText) or nameof(IAudioAwareStepFlowViewModel.IsAudioPlaying))
         {
             Restart();
         }
@@ -66,7 +69,13 @@ public sealed class AutoAdvanceTimer : IDisposable
     public void Dispose()
     {
         _viewModel.PropertyChanged -= OnViewModelPropertyChanged;
+        Services.PrayerSpeechService.SpeakingChanged -= OnSpeechChanged;
         _timer.Stop();
+    }
+
+    private void OnSpeechChanged(IPrayerStepFlowViewModel owner)
+    {
+        if (ReferenceEquals(owner, _viewModel)) Restart();
     }
 }
 

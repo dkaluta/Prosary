@@ -5,13 +5,13 @@ import org.junit.Assert.*
 import org.junit.Test
 
 class FeastObservanceTest {
-    @Test fun oldFeastFilesRemainReadableAndDescriptionsAreSyriacOnly() {
+    @Test fun oldFeastFilesRemainReadableAndDescriptionsFollowTheSelectedDataset() {
         val old = Json.decodeFromString<FeastDay>("""{"title":"Feast","rank":"Feast"}""")
         assertTrue(old.saintDescriptions("syriac", "en").isEmpty())
         val feast = FeastDay("Feast", "Feast", observances = listOf(FeastObservance("Saint", "identity",
             descriptionByLanguage = mapOf("en" to "English biography"))))
         assertEquals("English biography", feast.saintDescriptions("syriac", "en").single().text)
-        assertTrue(feast.saintDescriptions("roman", "en").isEmpty())
+        assertEquals("English biography", feast.saintDescriptions("roman", "en").single().text)
     }
 
     @Test fun descriptionsNeverBorrowAnotherLanguageAndNormalizePlatformAliases() {

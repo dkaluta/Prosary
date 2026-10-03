@@ -259,6 +259,20 @@ public partial class SettingsViewModel : ObservableObject
 
     partial void OnShowTodayReadingsChanged(bool value) => AppSettings.SetShowTodayReadings(value);
 
+    public string ReminderClockIdentifier => new Windows.Globalization.DateTimeFormatting.DateTimeFormatter("shorttime").Clock;
+    [ObservableProperty]
+    private bool _readingsReminderEnabled = AppSettings.ReadingsReminderEnabled;
+    partial void OnReadingsReminderEnabledChanged(bool value) { AppSettings.SetReadingsReminderEnabled(value); TodayReminderScheduler.Refresh(); }
+    [ObservableProperty]
+    private bool _saintReminderEnabled = AppSettings.SaintReminderEnabled;
+    partial void OnSaintReminderEnabledChanged(bool value) { AppSettings.SetSaintReminderEnabled(value); TodayReminderScheduler.Refresh(); }
+    [ObservableProperty]
+    private TimeSpan _readingsReminderTime = TimeSpan.FromMinutes(AppSettings.ReadingsReminderMinutes);
+    partial void OnReadingsReminderTimeChanged(TimeSpan value) { AppSettings.SetReadingsReminderMinutes(value.Hours * 60 + value.Minutes); TodayReminderScheduler.Refresh(); }
+    [ObservableProperty]
+    private TimeSpan _saintReminderTime = TimeSpan.FromMinutes(AppSettings.SaintReminderMinutes);
+    partial void OnSaintReminderTimeChanged(TimeSpan value) { AppSettings.SetSaintReminderMinutes(value.Hours * 60 + value.Minutes); TodayReminderScheduler.Refresh(); }
+
     [ObservableProperty]
     private bool _expandReadingsByDefault = AppSettings.ExpandReadingsByDefault;
 
@@ -289,6 +303,7 @@ public partial class SettingsViewModel : ObservableObject
         {
             AppSettings.SetFeastCalendarId(value.Id);
             TodayInfoStore.SelectedCalendarId = value.Id;
+            TodayReminderScheduler.Refresh();
         }
     }
 
@@ -307,7 +322,7 @@ public partial class SettingsViewModel : ObservableObject
 
     partial void OnSelectedEasternPaschaChanged(EasternPaschaOption? value)
     {
-        if (value is not null) AppSettings.SetEasternPaschaStyle(value.Value);
+        if (value is not null) { AppSettings.SetEasternPaschaStyle(value.Value); TodayReminderScheduler.Refresh(); }
     }
 
     [ObservableProperty]

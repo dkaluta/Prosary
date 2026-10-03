@@ -1,5 +1,6 @@
 import SwiftUI
 import SwiftData
+import UserNotifications
 
 @main
 struct ProsaryApp: App {
@@ -14,6 +15,7 @@ struct ProsaryApp: App {
     FontRegistration.registerBundledFontsIfNeeded()
     defaults.register(defaults: [UILanguage.defaultsKey: "", LanguageCatalog.defaultsKey: ""])
     if !ProsaryRuntimeEnvironment.isTesting { CloudSyncedList.startSyncing() }
+    if !ProsaryRuntimeEnvironment.isTesting { UNUserNotificationCenter.current().delegate = ReminderActivation.shared }
   }
 
   var body: some Scene {
@@ -21,6 +23,7 @@ struct ProsaryApp: App {
     Window(String(localized: "macLibrary.title", defaultValue: "Library", bundle: UILanguage.bundle, locale: UILanguage.locale), id: "main") {
       MacLibrarySceneView()
         .modifier(WidgetSnapshotLifecycle())
+        .modifier(ReminderLifecycle())
         .frame(minWidth: 700, minHeight: 480)
         .modifier(PrayerStoreStartupGuard())
         .handlesExternalEvents(preferring: ["*"], allowing: ["*"])
@@ -74,6 +77,7 @@ struct ProsaryApp: App {
     WindowGroup {
       ContentView()
         .modifier(WidgetSnapshotLifecycle())
+        .modifier(ReminderLifecycle())
         .modifier(PrayerStoreStartupGuard())
         #if os(visionOS)
         .frame(minWidth: 560, minHeight: 560)

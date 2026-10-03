@@ -63,7 +63,7 @@ public sealed class AudioPlaybackService : IDisposable
 
         var player = new MediaPlayer
         {
-            AudioCategory = MediaPlayerAudioCategory.Speech,
+            AudioCategory = track.IsMusic ? MediaPlayerAudioCategory.Media : MediaPlayerAudioCategory.Speech,
             Source = MediaSource.CreateFromUri(new Uri(file)),
         };
         player.MediaOpened += (_, _) => OnUi(() =>

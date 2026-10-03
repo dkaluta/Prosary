@@ -159,7 +159,7 @@ final class AudioPlaybackController: NSObject, AVAudioPlayerDelegate {
     } else {
       #if canImport(UIKit) && !os(watchOS)
       // Prayer audio should sound with the ringer switch silenced, like any audiobook.
-      try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .spokenAudio)
+      try? AVAudioSession.sharedInstance().setCategory(.playback, mode: track?.isMusic == true ? .default : .spokenAudio)
       try? AVAudioSession.sharedInstance().setActive(true)
       #endif
       // Finished-and-restarted: tapping play at the end starts over instead of doing nothing.
@@ -242,10 +242,15 @@ final class AudioPlaybackController: NSObject, AVAudioPlayerDelegate {
 
   nonisolated func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
     Task { @MainActor in
+      if !flag { stop(); return }
       isPlaying = false
       currentTime = duration
       stopTicker()
       savePosition() // at duration this clears the key — a finished listen restarts fresh
     }
+  }
+
+  nonisolated func audioPlayerDecodeErrorDidOccur(_ player: AVAudioPlayer, error: Error?) {
+    Task { @MainActor in stop() }
   }
 }

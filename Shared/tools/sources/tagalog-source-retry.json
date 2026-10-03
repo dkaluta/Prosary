@@ -1,0 +1,92 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-10-03T06:59:10.180228+00:00",
+  "language": "tl",
+  "provider": "Our Parish Priest",
+  "retry": {
+    "sourceURL": "https://www.ourparishpriest.com/robots.txt",
+    "transport": "Existing transparent scraper: ordinary bounded curl GET, identifying Prosary user agent, no cookies or redirects",
+    "userAgent": "ProsaryTagalogSaintsReview/1.0 (+https://prosary.app)",
+    "responseStatus": 403,
+    "responseBytes": 5768,
+    "responseSHA256": "69eacef2f355c22ff53745adb39ff0076d2093a767a72e38070ca83c7c5569df",
+    "responseTitle": "Checking your browser before accessing. Just a moment...",
+    "browserChallengeDetected": true,
+    "attemptedRequests": 1,
+    "categoryRequestsMade": 0,
+    "apiRequestsMade": 0,
+    "completed": false,
+    "decision": "Stopped when current robots access failed. No challenge bypass or reuse of earlier robots permission."
+  },
+  "existingCataloguePreserved": {
+    "path": "Shared/tools/sources/tagalog-saints.json",
+    "SHA256": "a21c82306aa0265e093df5317c96d5a3045e3cbc76b60d7ef5a8961df6093f3d",
+    "changed": false
+  },
+  "alternativeInvestigation": {
+    "provider": "Our Parish Priest historical Blogger archive",
+    "sourceURL": "https://ourparishpriest.blogspot.com/",
+    "relationshipEvidence": "Archive home page explicitly announces migration to https://www.ourparishpriest.com/ in August 2024.",
+    "realTagalogBiographyVerified": "https://ourparishpriest.blogspot.com/2014/11/meet-saints-santa-lucia.html",
+    "literalBookCredit": "(from: Isang Sulyap sa mga Santo, by Fr. RMarcos)",
+    "archiveRobotsURL": "https://ourparishpriest.blogspot.com/robots.txt",
+    "archiveRobotsStatus": 200,
+    "archiveLabelSearchAllowed": false,
+    "archiveSearchRequestsMade": 0,
+    "publishedAlternativeFeed": "https://ourparishpriest.blogspot.com/feeds/posts/default",
+    "feedPaginationHostRobotsURL": "https://www.blogger.com/robots.txt",
+    "feedPaginationHostRobotsStatus": 200,
+    "publishedFeedTotalOnFirstPage": 1982,
+    "publishedFeedPageSize": 25,
+    "publishedSaintLabelCount": 158,
+    "separateCataloguePath": "Shared/tools/sources/opp-blogger-saints-tl.json",
+    "separateCatalogueResult": {
+      "completed": true,
+      "generatedAt": "2026-10-03T07:21:43.415243+00:00",
+      "sourceSnapshotSHA256": "474edb0384a44a677667f83cb558cb363d6dba19ede95d4ca9dcb14e05724f2e",
+      "publishedFeedPagesRead": 80,
+      "uniquePublishedFeedEntriesRead": 1982,
+      "saintLabelEntriesPreserved": 158,
+      "completeSourceMarkedTagalogBiographyCandidates": 96,
+      "explicitlyTruncatedTagalogBiographyIntroductions": 6,
+      "otherOrQuarantinedRecords": 56,
+      "duplicateLiteralIdentityCandidateGroups": 3,
+      "recordsWithLiteralCreditEvidence": 74,
+      "independentRawResponseAudit": {
+        "feedPagesAudited": 80,
+        "allFeedEntryIdentitiesReconciled": 1982,
+        "saintRecordOriginalHTMLAndVisibleProseStreamsAudited": 158,
+        "visibleProseDifferences": 0,
+        "sourceTitleDifferences": 0,
+        "originalResponseAndRecordDigestsVerified": true,
+        "method": "Direct cached Atom XML and visible author text via lxml, independently of the collector parser; preserve tails and true block/br boundaries, remove scripts/styles/media, normalize formatting whitespace."
+      },
+      "fullPublishedArticleSamplesMatchFeed": 3,
+      "offlineTestsPassed": 17,
+      "finalRebuildCacheHits": 86,
+      "finalRebuildNewDownloads": 0,
+      "historicalReviewHolds": [
+        "Padre Pio's 1969 death-year statement conflicts with the Holy See's 1968 biography date; original source paragraph is preserved.",
+        "Lorenzo of Brindisi's biography places Capuchin origins during Francis's lifetime, conflicting with the order's official 1525/1528 history; original source paragraph and book credit are preserved."
+      ],
+      "scopeLimitations": [
+        "Complete only for the historical archive's explicit SAINT label, not the newer site's current collection or a full liturgical year.",
+        "Candidate counts are source records, not independently certified unique Catholic saints or calendar appointments.",
+        "Book and author credits are source evidence. Editorial and underlying-rights review remains required before native redistribution."
+      ]
+    },
+    "otherSources": [
+      {
+        "sourceURL": "https://tvmaria.ph/",
+        "finding": "Catholic broadcaster's live home page contains video programmes; no public text biography collection was verified."
+      },
+      {
+        "sourceURL": "https://store.paulines.ph/product-tag/talambuhay/",
+        "finding": "Publisher product listing for TALAMBUHAY NG MGA SANTO AT MGA KAPISTAHAN NI MARIA; a book listing does not provide a verified public full-text biography collection."
+      }
+    ]
+  },
+  "nativeImportAllowed": false,
+  "calendarAppointmentsChanged": false,
+  "reviewStatus": "source-collection-only; editorial and underlying rights review required"
+}

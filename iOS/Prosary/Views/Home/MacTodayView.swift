@@ -5,6 +5,7 @@ import SwiftUI
 
 /// A reference desk inside the Mac library. Browsing dates never changes a prayer session.
 struct MacTodayView: View {
+  var opensCalendar = false
   @Environment(\.scenePhase) private var scenePhase
   @Environment(\.openWindow) private var openWindow
   @AppStorage(TodayInfoStore.calendarDefaultsKey) private var feastCalendarId = ""
@@ -17,6 +18,7 @@ struct MacTodayView: View {
   @State private var dateSelection = MacTodayDateSelection()
   @State private var showsDatePicker = false
   @State private var showsOptions = false
+  @State private var showsCalendar = false
   @State private var feast: FeastDay?
   @State private var intention: PopeIntention?
   @State private var dayInfo: LiturgicalDayInfo?
@@ -54,6 +56,23 @@ struct MacTodayView: View {
     .background(Color(nsColor: .textBackgroundColor))
     .accessibilityIdentifier("macToday.content")
     .toolbar { dateToolbar }
+    .toolbar {
+      ToolbarItem {
+        Button { showsCalendar = true } label: {
+          Label(label("calendar.title", "Liturgical Calendar"), systemImage: "calendar")
+        }
+      }
+    }
+    .sheet(isPresented: $showsCalendar) {
+      VStack(spacing: 0) {
+        LiturgicalCalendarView(dateSelection: $dateSelection, onSelectDate: { showsCalendar = false })
+        HStack {
+          Spacer()
+          Button(label("common.done", "Done")) { showsCalendar = false }.keyboardShortcut(.defaultAction)
+        }.padding()
+      }.frame(minWidth: 480, minHeight: 520)
+    }
+    .onAppear { if opensCalendar { showsCalendar = true } }
     .environment(\.layoutDirection, UILanguage.isRightToLeft(language) ? .rightToLeft : .leftToRight)
     .environment(\.locale, Locale(identifier: language == "tl" ? "fil" : language))
     .accessibilityIdentifier("macToday")
@@ -236,7 +255,11 @@ struct MacTodayView: View {
   private var readingsSection: some View {
     VStack(alignment: .leading, spacing: 8) {
       Text(readingsTitle).font(.headline).accessibilityAddTraits(.isHeader)
-      ForEach(Array(readings.enumerated()), id: \.offset) { _, reading in
+      ForEach(Array(readings.enumerated()), id: \.offset) { index, reading in
+        if let group = reading.sourceGroup, !group.isEmpty,
+           index == 0 || readings[index - 1].sourceGroup != group {
+          Text(group).font(.subheadline.weight(.semibold)).accessibilityAddTraits(.isHeader)
+        }
         ScripturePassageView(reading: reading, interfaceLanguage: language)
           .id(passageContext)
       }

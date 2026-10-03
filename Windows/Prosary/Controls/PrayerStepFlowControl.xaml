@@ -30,6 +30,7 @@
         <Rectangle Grid.Row="0" Height="6" Fill="{x:Bind ViewModel.SeasonColor, Mode=OneWay, Converter={StaticResource ColorToBrush}}" />
 
         <StackPanel Grid.Row="1" Spacing="8" Padding="20,12,20,0">
+            <controls:PrayerSpeechControl ViewModel="{x:Bind ViewModel, Mode=OneWay}" />
             <ProgressBar Minimum="0" Maximum="1"
                          Value="{x:Bind ViewModel.Progress, Mode=OneWay, Converter={StaticResource NullableDoubleToValue}}"
                          Visibility="{x:Bind ViewModel.Progress, Mode=OneWay, Converter={StaticResource NullToVisibility}}" />

@@ -1,6 +1,6 @@
 import SwiftUI
 
-/// An optional reference shelf for the selected Syriac day. Its parent identity follows
+/// An optional reference shelf for the selected calendar day. Its parent identity follows
 /// the date and interface language so opening one day never opens the next day's prose.
 struct SaintDescriptionsView: View {
   let feast: FeastDay

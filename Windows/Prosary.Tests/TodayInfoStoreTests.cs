@@ -16,10 +16,42 @@ public class TodayInfoStoreTests
     // The store is process-global static state; every case starts from the unset selection —
     // the LPJ default — and the store reloads live on selection change, so no teardown is
     // needed (xunit builds a fresh instance of this class per test, running this before each).
+    [Fact]
+    public void ImportedCitationKeepsSourceMassAndPrintedReference()
+    {
+        var citation = System.Text.Json.JsonSerializer.Deserialize<ReadingCitation>(
+            """{"type":"reading","short":"1 Cor. 3","full":"1 Corinthians 3:9–11,16–17","sourceText":"1Cor3:9-11.16-17","sourceGroup":"Vigil Mass"}""",
+            new System.Text.Json.JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+        Assert.NotNull(citation);
+        Assert.Equal("1Cor3:9-11.16-17", citation.SourceText);
+        Assert.Equal("Vigil Mass", citation.SourceGroup);
+        Assert.Equal("1 Corinthians 3:9–11,16–17", citation.LocalizedFull("he"));
+    }
+
     public TodayInfoStoreTests()
     {
         TodayInfoStore.SelectedCalendarId = null;
         AppSettings.SetEasternPaschaStyle("julian");
+    }
+
+    [Fact]
+    public void RomanSaintExcerptsRetainSourceAndExactLanguageWithoutChangingSundayPrecedence()
+    {
+        foreach (var calendar in new[] { "lpj", "roman", "roman1962" })
+        {
+            TodayInfoStore.SelectedCalendarId = calendar;
+            var feast = TodayInfoStore.Feast(new DateOnly(2027, 10, 4));
+            Assert.NotNull(feast);
+            var english = Assert.Single(feast.LocalizedDescriptions("en"));
+            Assert.Contains("Franciscans", english.Text);
+            Assert.Equal("publication.evangelizo.ws", english.SourceUri?.Host);
+            Assert.Contains("Evangelizo", english.Credit ?? "");
+            foreach (var language in new[] { "he", "ru", "tl", "uk" })
+                Assert.Empty(feast.LocalizedDescriptions(language));
+            var sunday = TodayInfoStore.Feast(new DateOnly(2026, 10, 4));
+            Assert.NotNull(sunday);
+            Assert.Empty(sunday.LocalizedDescriptions("en"));
+        }
     }
 
     [Fact]
@@ -69,7 +101,7 @@ public class TodayInfoStoreTests
     public void CalendarRegistryListsTheShippedCalendarsInPickerOrder()
     {
         Assert.Equal(
-            new[] { "lpj", "roman", "roman1962", "ugcc", "syriac", "maronite" },
+            new[] { "lpj", "stjames", "roman", "roman1962", "franciscan-conventual-italy", "augustinian-discalced", "ugcc", "ugcc-julian", "syriac", "maronite" },
             TodayInfoStore.Calendars.Select(c => c.Id));
         Assert.Equal("lpj", TodayInfoStore.ResolvedCalendarId);
         Assert.All(TodayInfoStore.Calendars, calendar => Assert.False(string.IsNullOrWhiteSpace(calendar.ReadingsFile)));
@@ -91,6 +123,29 @@ public class TodayInfoStoreTests
         Assert.Equal("יום א ה־22 של הזמן הרגיל", sunday?.LocalizedTitle("he"));
         Assert.Equal("Sunday", sunday?.Rank);
         Assert.NotNull(TodayInfoStore.Feast(new DateOnly(2026, 9, 3)));
+    }
+
+    [Fact]
+    public void OldStyleJulianCalendarKeepsChristmasAndPaschaOnTheirOwnDates()
+    {
+        TodayInfoStore.SelectedCalendarId = "ugcc-julian";
+        AppSettings.SetEasternPaschaStyle("gregorian");
+        try
+        {
+            Assert.Equal("ugcc-julian", TodayInfoStore.ResolvedCalendarId);
+            foreach (var year in new[] { 2026, 2027 })
+            {
+                Assert.Equal("The Nativity of Our Lord", TodayInfoStore.Feast(new DateOnly(year, 1, 7))?.Title);
+                Assert.Equal("The Holy Theophany of Our Lord", TodayInfoStore.Feast(new DateOnly(year, 1, 19))?.Title);
+                Assert.NotEqual("The Nativity of Our Lord", TodayInfoStore.Feast(new DateOnly(year, 12, 25))?.Title);
+            }
+            Assert.Equal("The Resurrection of Our Lord — Holy Pascha", TodayInfoStore.Feast(new DateOnly(2026, 4, 12))?.Title);
+            Assert.Equal("The Resurrection of Our Lord — Holy Pascha", TodayInfoStore.Feast(new DateOnly(2027, 5, 2))?.Title);
+            Assert.Empty(TodayInfoStore.Readings(new DateOnly(2026, 1, 7)));
+            TodayInfoStore.SelectedCalendarId = "ugcc";
+            Assert.Equal("The Nativity of Our Lord", TodayInfoStore.Feast(new DateOnly(2026, 12, 25))?.Title);
+        }
+        finally { AppSettings.SetEasternPaschaStyle("julian"); }
     }
 
     [Fact]

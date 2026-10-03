@@ -20,8 +20,11 @@ internal static class PrayerKeyboardShortcuts
     public static void Attach(Window owner, FrameworkElement root, Frame frame)
     {
         var isActive = false;
-        void Activated(object sender, WindowActivatedEventArgs args) =>
+        void Activated(object sender, WindowActivatedEventArgs args)
+        {
             isActive = args.WindowActivationState != WindowActivationState.Deactivated;
+            if (!isActive && DesktopWindowChrome.CurrentFlow(frame) is { } flow) PrayerSpeechService.StopFor(flow);
+        }
 
         void KeyDown(object sender, KeyRoutedEventArgs args)
         {

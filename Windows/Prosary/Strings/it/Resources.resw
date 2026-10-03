@@ -211,7 +211,7 @@
   <data name="AbtScriptureHeader.Text" xml:space="preserve"><value>Fonti bibliche</value></data>
   <data name="AbtScriptureBody.Text" xml:space="preserve"><value>Le citazioni bibliche provengono dalla Bibbia Douay-Rheims (inglese), dalla Vulgata Clementina (latino), dalla traduzione ebraica del Nuovo Testamento di Franz Delitzsch (kirjasilta.net/ha-berit; delitz.fr/12, 1901), con i brani ebraici dell’Antico Testamento tratti dal testo masoretico, dall’antica Bibbia araba dei gesuiti (1897), dalla Bibbia sinodale russa (1876) e da Ang Dating Biblia (tagalog, 1905).</value></data>
   <data name="AbtCalendarDataHeader.Text" xml:space="preserve"><value>Dati del calendario</value></data>
-  <data name="AbtCalendarDataBody.Text" xml:space="preserve"><value>Dati del calendario e delle letture: Calendario romano generale tramite il progetto LitCal (litcal.johnromanodorazio.com); calendario e lezionario del 1962 tramite Missale Meum (missalemeum.com); calendario cattolico siriaco, titoli ebraici documentati del Calendario romano generale e riferimenti dei lezionari romano e siriaco per gentile concessione di Evangelizo.org — Vangelo del Giorno, © Evangelizo.org; calendario e letture greco-cattolici ucraini con Pasqua giuliana forniti dalla Chiesa greco-cattolica ucraina e dalla sua Commissione liturgica patriarcale (ugcc.ua); letture con Pasqua gregoriana fornite da Royal Doors (royaldoors.net). Nomi ebraici dei libri biblici: Evangelizo HE e Vicariato di San Giacomo (catholic.co.il). Altri nomi ebraici di feste e santi: Vicariato di San Giacomo, Christian Media Center (cmc-terrasanta.org) e Vatican News (vaticannews.va).</value></data>
+  <data name="AbtCalendarDataBody.Text" xml:space="preserve"><value>Dati del calendario e delle letture: Calendario romano generale tramite il progetto LitCal (litcal.johnromanodorazio.com); calendario e lezionario del 1962 tramite Missale Meum (missalemeum.com); calendario cattolico siriaco, titoli ebraici documentati del Calendario romano generale e riferimenti dei lezionari romano e siriaco per gentile concessione di Evangelizo.org — Vangelo del Giorno, © Evangelizo.org; calendario e letture greco-cattolici ucraini con Pasqua giuliana forniti dalla Chiesa greco-cattolica ucraina e dalla sua Commissione liturgica patriarcale (ugcc.ua); letture con Pasqua gregoriana fornite da Royal Doors (royaldoors.net). Nomi ebraici dei libri biblici: Evangelizo HE e Vicariato di San Giacomo (catholic.co.il). Altri nomi ebraici di feste e santi: Vicariato di San Giacomo, Christian Media Center (cmc-terrasanta.org) e Vatican News (vaticannews.va). Calendario di San Giacomo 2026–2027: Vicariato di San Giacomo (catholic.co.il). Ordo francescano conventuale 2025–2026: Provincia Sant’Antonio di Padova, Italia (francescaninorditalia.net). Ordo generale degli Agostiniani Scalzi 2026: Ordine degli Agostiniani Scalzi (oadnet.org).</value></data>
   <data name="RosaryPreviousMystery.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Mistero precedente</value></data>
   <data name="RosaryPreviousMystery.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Mistero precedente</value></data>
   <data name="RosaryNextMystery.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Mistero successivo</value></data>
@@ -580,4 +580,27 @@
   <data name="scripture_note_scan" xml:space="preserve"><value>Scansione della fonte</value></data>
   <data name="bible_printed_label" xml:space="preserve"><value>Indicazione stampata: {0}</value></data>
   <data name="bible_occurrence" xml:space="preserve"><value>{0} — occorrenza {1}</value></data>
+  <data name="speech_read" xml:space="preserve">
+    <value>Leggi ad alta voce</value>
+  </data>
+  <data name="speech_stop" xml:space="preserve">
+    <value>Interrompi la lettura</value>
+  </data>
+  <data name="speech_unavailable_title" xml:space="preserve">
+    <value>Voce non disponibile</value>
+  </data>
+  <data name="speech_unavailable_message" xml:space="preserve">
+    <value>Installa una voce di sistema nella lingua di questa preghiera per leggerla ad alta voce.</value>
+  </data>
+  <data name="SetRemindersHeader.Text" xml:space="preserve"><value>Notifiche</value></data>
+  <data name="SetReadingsReminder.Header" xml:space="preserve"><value>Promemoria delle letture</value></data>
+  <data name="SetSaintReminder.Header" xml:space="preserve"><value>Notifiche dei santi e delle feste</value></data>
+  <data name="SetReadingsReminderTime.Header" xml:space="preserve"><value>Ora della notifica</value></data>
+  <data name="SetSaintReminderTime.Header" xml:space="preserve"><value>Ora della notifica</value></data>
+  <data name="SetRemindersFooter.Text" xml:space="preserve"><value>Usa il calendario scelto e l’ora locale. Le notifiche dei santi includono una descrizione con fonte quando disponibile nella lingua dell’app; altrimenti mostrano la festa e il suo grado.</value></data>
+  <data name="SetRemindersWindow.Text" xml:space="preserve"><value>Apri regolarmente Prosary per aggiornare le prossime notifiche.</value></data>
+  <data name="calendar_title" xml:space="preserve"><value>Calendario liturgico</value></data>
+  <data name="calendar_previous_month" xml:space="preserve"><value>Mese precedente</value></data>
+  <data name="calendar_next_month" xml:space="preserve"><value>Mese successivo</value></data>
+  <data name="calendar_no_observances" xml:space="preserve"><value>Non sono disponibili celebrazioni pubblicate per questo mese.</value></data>
 </root>

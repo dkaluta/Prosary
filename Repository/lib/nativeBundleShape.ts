@@ -122,4 +122,4 @@ export const checkNativeOptions: Check = object({ options: array(object({
 export const checkNativeAudio: Check = object({ tracks: array(object({
   id: string, language: string, file: string,
   chapters: array(object({ start: number }, { title: string, titleKey: string, stepIndex: integer })),
-}, { variantId: string, name: string, ...translatedName })) });
+}, { variantId: string, name: string, role: choice("narration", "music"), ...translatedName })) });

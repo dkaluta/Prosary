@@ -3,10 +3,8 @@ package com.dkaluta.prosary.reminders
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import androidx.room.Room
-import com.dkaluta.prosary.persistence.ALL_MIGRATIONS
-import com.dkaluta.prosary.persistence.AppDatabase
-import com.dkaluta.prosary.persistence.RoomPresetStore
+import com.dkaluta.prosary.models.AppSettings
+import com.dkaluta.prosary.services.AppServices
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -17,16 +15,16 @@ import kotlinx.coroutines.launch
  * there's no live AppServices/Activity at boot time. */
 class BootReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
-        if (intent.action != Intent.ACTION_BOOT_COMPLETED) return
+        if (intent.action !in setOf(Intent.ACTION_BOOT_COMPLETED, Intent.ACTION_TIMEZONE_CHANGED,
+                Intent.ACTION_TIME_CHANGED, Intent.ACTION_MY_PACKAGE_REPLACED)) return
+        if (intent.action == Intent.ACTION_TIMEZONE_CHANGED) java.util.TimeZone.setDefault(null)
 
         val pendingResult = goAsync()
         CoroutineScope(Dispatchers.IO).launch {
             try {
-                val db = Room.databaseBuilder(context.applicationContext, AppDatabase::class.java, "prosary.db")
-                    .addMigrations(*ALL_MIGRATIONS)
-                    .build()
-                val store = RoomPresetStore(db.presetDao())
-                ReminderScheduler.rescheduleAll(context, store.all())
+                AppSettings.init(context)
+                val services = AppServices.create(context)
+                ReminderScheduler.rescheduleAll(context, services.presetStore.all())
             } finally {
                 pendingResult.finish()
             }

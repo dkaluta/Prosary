@@ -19,7 +19,7 @@ final class FeastSaintDescriptionTests: XCTestCase {
     return try JSONDecoder().decode(FeastDay.self, from: data)
   }
 
-  func testDescriptionsRequireTheSelectedLanguageAndSyriacCalendar() throws {
+  func testDescriptionsRequireTheSelectedLanguageInEverySelectedCalendar() throws {
     let feast = try fixture()
     let rows = feast.saintDescriptions(calendarID: "syriac", language: "iw-IL")
     XCTAssertEqual(rows.count, 1)
@@ -33,7 +33,8 @@ final class FeastSaintDescriptionTests: XCTestCase {
                     "Missing or blank \(language) prose must never fall back to another language")
     }
     for calendar in ["lpj", "roman", "roman1962", "ugcc", "maronite", ""] {
-      XCTAssertTrue(feast.saintDescriptions(calendarID: calendar, language: "he").isEmpty)
+      XCTAssertEqual(feast.saintDescriptions(calendarID: calendar, language: "he").first?.text,
+        "פסקה לדוגמה.\n\nפסקה נוספת.", "Calendar-scoped source data must remain visible")
     }
   }
 

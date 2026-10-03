@@ -610,7 +610,7 @@ def localize_hebrew_readings(
     missing: set[str] = set()
     for row in days.values():
         for item in row.get("readings", []):
-            match = re.fullmatch(r"(.+?) (\d+:.*)", item.get("full", ""))
+            match = re.fullmatch(r"(.+?) (\d+(?::.*|[–-]\d+)?)", item.get("full", ""))
             if not match:
                 continue
             book, reference = match.groups()
@@ -619,9 +619,12 @@ def localize_hebrew_readings(
                 missing.add(book)
                 continue
             chapter = reference.split(":", 1)[0]
+            short_chapter = re.sub(r"\d+", lambda m: hebrew_numeral(int(m[0])), chapter) if ":" not in reference else chapter
             for key, value in (
-                    ("shortByLanguage", hebrew_short_citation(f"{names['short']} {chapter}")),
-                    ("fullByLanguage", f"{names['full']} {hebrew_reference(reference)}")):
+                    ("shortByLanguage", hebrew_short_citation(f"{names['short']} {short_chapter}")),
+                    ("fullByLanguage", f"{names['full']} " + (
+                        re.sub(r"\d+", lambda m: hebrew_numeral(int(m[0])), reference)
+                        if ":" not in reference else hebrew_reference(reference)))):
                 localized = item.setdefault(key, {})
                 # The compact form is an app display convention. Refresh it even
                 # when preserving the source's existing full Hebrew title.
@@ -635,7 +638,7 @@ def localize_reading_names(days: dict[str, dict], books: dict[str, dict]) -> set
     missing: set[str] = set()
     for row in days.values():
         for item in row.get("readings", []):
-            match = re.fullmatch(r"(.+?) (\d+:.*)", item.get("full", ""))
+            match = re.fullmatch(r"(.+?) (\d+(?::.*|[–-]\d+)?)", item.get("full", ""))
             if not match:
                 continue
             book, reference = match.groups()

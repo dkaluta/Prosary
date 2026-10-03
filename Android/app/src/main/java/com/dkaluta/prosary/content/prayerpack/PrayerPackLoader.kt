@@ -218,7 +218,11 @@ data class DevotionAudioTrack(
     val name: String? = null,
     val nameByLanguage: Map<String, String>? = null,
     val chapters: List<Chapter>,
+    /** Older packs omit role and remain narration. Music never drives prayer steps. */
+    val role: String? = null,
 ) {
+    val isNarration: Boolean get() = role == null || role == "narration"
+    val isMusic: Boolean get() = role == "music"
     /** One seek point. [start] is seconds from the track's beginning (the first chapter starts
      * at 0, starts strictly increase); [title] XOR [titleKey] per the step-entry convention
      * ([titleKey] resolves through the track language's ordinary content chain); [stepIndex] is

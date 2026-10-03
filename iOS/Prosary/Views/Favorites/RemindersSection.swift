@@ -61,7 +61,7 @@ struct RemindersSection: View {
   private func presetLabel(hour: Int) -> String {
     let components = DateComponents(hour: hour, minute: 0)
     guard let date = Calendar.current.date(from: components) else { return "\(hour):00" }
-    return date.formatted(.dateTime.hour().minute().locale(UILanguage.locale))
+    return date.formatted(date: .omitted, time: .shortened)
   }
 
   /// Toggles presence of a `PrayerReminder` at exactly `hour:00` for the preset rows.
@@ -96,6 +96,7 @@ struct RemindersSection: View {
   private func reminderRow(for reminderId: UUID) -> some View {
     HStack {
       DatePicker("favoriteEditor.reminderTime", selection: dateBinding(for: reminderId), displayedComponents: .hourAndMinute)
+        .environment(\.locale, .autoupdatingCurrent)
         #if os(macOS)
         .datePickerStyle(.stepperField)
         .fixedSize()

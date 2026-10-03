@@ -28,7 +28,7 @@ data class FeastDay(
 
     /** Descriptions are optional source material for this calendar, never a language fallback. */
     fun saintDescriptions(calendarId: String, language: String): List<SaintDescription> =
-        if (calendarId == "syriac") observances.mapNotNull { it.description(language) } else emptyList()
+        observances.mapNotNull { it.description(language) }
 
     /** Follow the Today toggle rather than the app UI language. Roman rank terms follow the
      * Saint James Vicariate's 2025–2026 calendar, pp. 4, 6–7:
@@ -110,6 +110,8 @@ data class ReadingCitation(
     val hebrew: String? = null,
     val shortByLanguage: Map<String, String>? = null,
     val fullByLanguage: Map<String, String>? = null,
+    val sourceText: String? = null,
+    val sourceGroup: String? = null,
 ) {
     fun localizedShort(language: String): String = shortByLanguage.localized(language) ?: short
 

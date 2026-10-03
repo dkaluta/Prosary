@@ -61,6 +61,7 @@ import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.text.font.FontStyle
@@ -96,8 +97,19 @@ import kotlinx.coroutines.withContext
 /** A reference reader sharing Pray's date without changing prayer sessions or widget dates. */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ReadingsScreen(onOpenSettings: () -> Unit, browsingDate: TodayBrowsingDate = rememberTodayBrowsingDate()) {
+fun ReadingsScreen(onOpenSettings: () -> Unit, browsingDate: TodayBrowsingDate = rememberTodayBrowsingDate(),
+    calendarRequest: Long = 0, readingsRequest: Long = 0) {
     var mode by rememberSaveable { mutableStateOf("daily") }
+    var handledCalendarRequest by rememberSaveable { mutableStateOf(0L) }
+    var handledReadingsRequest by rememberSaveable { mutableStateOf(0L) }
+    LaunchedEffect(calendarRequest, readingsRequest) {
+        if (calendarRequest != handledCalendarRequest || readingsRequest != handledReadingsRequest) {
+            browsingDate.selectedEpochDay = null
+            mode = if (calendarRequest != 0L) "calendar" else "daily"
+            handledCalendarRequest = calendarRequest
+            handledReadingsRequest = readingsRequest
+        }
+    }
     val holder = rememberSaveableStateHolder()
     Scaffold(topBar = {
         TopAppBar(title = { Text(stringResource(R.string.tab_readings)) }, actions = {
@@ -108,15 +120,20 @@ fun ReadingsScreen(onOpenSettings: () -> Unit, browsingDate: TodayBrowsingDate =
     }) { padding ->
         Column(Modifier.padding(padding).fillMaxSize()) {
             SingleChoiceSegmentedButtonRow(Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 8.dp)) {
-                listOf("daily" to R.string.bible_daily_readings, "bible" to R.string.bible_title).forEachIndexed { index, (id, title) ->
+                listOf("daily" to R.string.bible_daily_readings, "calendar" to R.string.calendar_title,
+                    "bible" to R.string.bible_title).forEachIndexed { index, (id, title) ->
                     SegmentedButton(selected = mode == id, onClick = { mode = id },
-                        shape = SegmentedButtonDefaults.itemShape(index, 2), modifier = Modifier.testTag("readingsMode.$id")) {
+                        shape = SegmentedButtonDefaults.itemShape(index, 3), modifier = Modifier.testTag("readingsMode.$id")) {
                         Text(stringResource(title))
                     }
                 }
             }
             holder.SaveableStateProvider(mode) {
-                if (mode == "bible") BibleScreen() else DailyReadingsContent(browsingDate)
+                when (mode) {
+                    "bible" -> BibleScreen()
+                    "calendar" -> LiturgicalCalendarContent(browsingDate) { mode = "daily" }
+                    else -> DailyReadingsContent(browsingDate)
+                }
             }
         }
     }
@@ -271,6 +288,13 @@ private fun DailyReadingsContent(browsingDate: TodayBrowsingDate) {
                         modifier = Modifier.testTag("readingsEmpty"))
                 }
                 for ((index, citation) in readings.withIndex()) {
+                    val group = citation.sourceGroup
+                    if (!group.isNullOrBlank() && (index == 0 || readings[index - 1].sourceGroup != group)) {
+                        item(key = "group.$selectedDate.$calendarId.$index") {
+                            Text(group, style = MaterialTheme.typography.titleSmall,
+                                modifier = Modifier.semantics { heading() })
+                        }
+                    }
                     val passageKey = "daily.$index.${citation.full}"
                     item(key = "daily.$selectedDate.$calendarId.$index.${citation.full}") {
                         ReadingCard(citation, language, edition, editionId, store, false,

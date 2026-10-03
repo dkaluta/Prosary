@@ -57,17 +57,20 @@ func bibleLabel(_ key: String, _ fallback: String) -> String {
 #if !os(macOS)
 struct ReadingsView: View {
   @Binding var dateSelection: MacTodayDateSelection
-  @State private var bible = false
+  @Binding var mode: String
 
   var body: some View {
     Group {
-      if bible { BibleView() }
-      else { DailyReadingsView(dateSelection: $dateSelection) }
+      if mode == "bible" { BibleView() }
+      else if mode == "calendar" {
+        LiturgicalCalendarView(dateSelection: $dateSelection, onSelectDate: { mode = "daily" })
+      } else { DailyReadingsView(dateSelection: $dateSelection) }
     }
     .safeAreaInset(edge: .top, spacing: 0) {
-      Picker(String(localized: "tabs.readings", defaultValue: "Readings", bundle: UILanguage.bundle, locale: UILanguage.locale), selection: $bible) {
-        Text(bibleLabel("daily", "Daily Readings")).tag(false)
-        Text(bibleLabel("title", "Bible")).tag(true)
+      Picker(String(localized: "tabs.readings", defaultValue: "Readings", bundle: UILanguage.bundle, locale: UILanguage.locale), selection: $mode) {
+        Text(bibleLabel("daily", "Daily Readings")).tag("daily")
+        Text(String(localized: "calendar.title", defaultValue: "Liturgical Calendar", bundle: UILanguage.bundle, locale: UILanguage.locale)).tag("calendar")
+        Text(bibleLabel("title", "Bible")).tag("bible")
       }
       .pickerStyle(.segmented)
       .padding(.horizontal, 20).padding(.vertical, 8)

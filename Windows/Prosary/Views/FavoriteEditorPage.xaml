@@ -30,6 +30,7 @@
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
                 <TimePicker Grid.Column="0" HorizontalAlignment="Left" Time="{Binding AsTimeSpan}"
+                            ClockIdentifier="{Binding ClockIdentifier}"
                             TimeChanged="OnReminderTimeChanged" />
                 <Button Grid.Column="1" Background="Transparent" Padding="6"
                         Command="{Binding ElementName=Root, Path=ViewModel.RemindersEditor.RemoveReminderCommand}" CommandParameter="{Binding}">

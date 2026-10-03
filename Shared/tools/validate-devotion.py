@@ -405,7 +405,10 @@ def validate_audio(src: Path, languages: list, variant_ids: set) -> None:
         variant_id = track.get("variantId")
         if variant_id is not None and variant_id not in variant_ids:
             err(f"{where}: variantId {variant_id!r} is not a declared variant")
-        extra = set(track) - {"id", "language", "file", "variantId", "name", "nameByLanguage", "chapters"}
+        role = track.get("role", "narration")
+        if role not in {"narration", "music"}:
+            err(f"{where}: role must be narration or music")
+        extra = set(track) - {"id", "language", "file", "variantId", "name", "nameByLanguage", "chapters", "role"}
         if extra:
             err(f"{where}: unknown fields {sorted(extra)}")
 
@@ -440,6 +443,8 @@ def validate_audio(src: Path, languages: list, variant_ids: set) -> None:
                                            or isinstance(chapter["stepIndex"], bool)
                                            or chapter["stepIndex"] < 0):
                 err(f"{cwhere}: stepIndex must be an integer >= 0")
+            if role == "music" and "stepIndex" in chapter:
+                err(f"{cwhere}: music chapters must not contain stepIndex; music never advances prayer text")
             extra = set(chapter) - {"start", "title", "titleKey", "stepIndex"}
             if extra:
                 err(f"{cwhere}: unknown fields {sorted(extra)}")

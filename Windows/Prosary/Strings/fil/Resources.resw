@@ -211,7 +211,7 @@
   <data name="AbtScriptureHeader.Text" xml:space="preserve"><value>Mga Sanggunian ng Banal na Kasulatan</value></data>
   <data name="AbtScriptureBody.Text" xml:space="preserve"><value>Ang mga sipi ng Banal na Kasulatan ay mula sa Bibliyang Douay-Rheims (Ingles), Clementine Vulgate (Latin), salin ni Franz Delitzsch ng Bagong Tipan sa Hebreo (mula sa kirjasilta.net/ha-berit; delitz.fr/12, 1901) at mga talata sa Lumang Tipan sa Hebreo na sumusunod sa tekstong Masoretiko, lumang Bibliyang Arabe ng mga Heswita (1897), Bibliyang Sinodal sa Ruso (1876), at Ang Dating Biblia (Tagalog, 1905).</value></data>
   <data name="AbtCalendarDataHeader.Text" xml:space="preserve"><value>Datos ng Kalendaryo</value></data>
-  <data name="AbtCalendarDataBody.Text" xml:space="preserve"><value>Datos ng kalendaryo at mga pagbasa: ang Pangkalahatang Kalendaryong Romano mula sa proyektong LitCal (litcal.johnromanodorazio.com); ang kalendaryo at leksiyonaryo ng 1962 mula sa Missale Meum (missalemeum.com); ang kalendaryong Katolikong Siriako, mga pamagat sa Hebreo ng Pangkalahatang Kalendaryong Romano, at mga sanggunian ng leksiyonaryong Romano/Siriako sa kagandahang-loob ng Evangelizo.org — Daily Gospel, © Evangelizo.org; ang kalendaryo at mga pagbasa ng Simbahang Katolikong Griyego ng Ukraine na may Paskong Julian ay mula sa Simbahan at sa Komisyong Liturhiko ng Patriyarka (ugcc.ua); ang mga pagbasa na may Paskong Gregorian ay mula sa Royal Doors (royaldoors.net). Mga pangalan ng aklat ng Bibliya sa Hebreo: Evangelizo HE at ang Bikaryato ni Santiago (catholic.co.il). Karagdagang pangalan ng mga kapistahan at santo sa Hebreo: ang Bikaryato ni Santiago, Christian Media Center (cmc-terrasanta.org), at Vatican News (vaticannews.va).</value></data>
+  <data name="AbtCalendarDataBody.Text" xml:space="preserve"><value>Datos ng kalendaryo at mga pagbasa: ang Pangkalahatang Kalendaryong Romano mula sa proyektong LitCal (litcal.johnromanodorazio.com); ang kalendaryo at leksiyonaryo ng 1962 mula sa Missale Meum (missalemeum.com); ang kalendaryong Katolikong Siriako, mga pamagat sa Hebreo ng Pangkalahatang Kalendaryong Romano, at mga sanggunian ng leksiyonaryong Romano/Siriako sa kagandahang-loob ng Evangelizo.org — Daily Gospel, © Evangelizo.org; ang kalendaryo at mga pagbasa ng Simbahang Katolikong Griyego ng Ukraine na may Paskong Julian ay mula sa Simbahan at sa Komisyong Liturhiko ng Patriyarka (ugcc.ua); ang mga pagbasa na may Paskong Gregorian ay mula sa Royal Doors (royaldoors.net). Mga pangalan ng aklat ng Bibliya sa Hebreo: Evangelizo HE at ang Bikaryato ni Santiago (catholic.co.il). Karagdagang pangalan ng mga kapistahan at santo sa Hebreo: ang Bikaryato ni Santiago, Christian Media Center (cmc-terrasanta.org), at Vatican News (vaticannews.va). Kalendaryo ni San Santiago 2026–2027: Bikaryato ni San Santiago (catholic.co.il). Ordo ng mga Pransiskano Konbentuwal 2025–2026: Lalawigan ni San Antonio ng Padua, Italya (francescaninorditalia.net). Pangkalahatang Ordo ng mga Agustinong Diskalso 2026: Orden ng mga Agustinong Diskalso (oadnet.org).</value></data>
   <data name="RosaryPreviousMystery.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Nakaraang misteryo</value></data>
   <data name="RosaryPreviousMystery.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Nakaraang misteryo</value></data>
   <data name="RosaryNextMystery.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Susunod na misteryo</value></data>
@@ -580,4 +580,27 @@
   <data name="scripture_note_scan" xml:space="preserve"><value>Scan ng pinagmulan</value></data>
   <data name="bible_printed_label" xml:space="preserve"><value>Nakalimbag na tanda: {0}</value></data>
   <data name="bible_occurrence" xml:space="preserve"><value>{0} — paglitaw {1}</value></data>
+  <data name="speech_read" xml:space="preserve">
+    <value>Basahin nang Malakas</value>
+  </data>
+  <data name="speech_stop" xml:space="preserve">
+    <value>Ihinto ang Pagbasa</value>
+  </data>
+  <data name="speech_unavailable_title" xml:space="preserve">
+    <value>Walang Magagamit na Boses</value>
+  </data>
+  <data name="speech_unavailable_message" xml:space="preserve">
+    <value>Mag-install ng boses ng system para sa wika ng panalanging ito upang mabasa ito nang malakas.</value>
+  </data>
+  <data name="SetRemindersHeader.Text" xml:space="preserve"><value>Mga abiso</value></data>
+  <data name="SetReadingsReminder.Header" xml:space="preserve"><value>Mga paalala sa mga pagbasa</value></data>
+  <data name="SetSaintReminder.Header" xml:space="preserve"><value>Mga abiso tungkol sa mga santo at kapistahan</value></data>
+  <data name="SetReadingsReminderTime.Header" xml:space="preserve"><value>Oras ng abiso</value></data>
+  <data name="SetSaintReminderTime.Header" xml:space="preserve"><value>Oras ng abiso</value></data>
+  <data name="SetRemindersFooter.Text" xml:space="preserve"><value>Ginagamit ang napiling kalendaryo at lokal na oras. Kasama sa mga abiso ang paglalarawan mula sa isang sanggunian kung mayroon sa wika ng app; kung wala, ipinapakita ang kapistahan at antas nito.</value></data>
+  <data name="SetRemindersWindow.Text" xml:space="preserve"><value>Regular na buksan ang Prosary upang i-update ang mga susunod na abiso.</value></data>
+  <data name="calendar_title" xml:space="preserve"><value>Kalendaryong liturhiko</value></data>
+  <data name="calendar_previous_month" xml:space="preserve"><value>Nakaraang buwan</value></data>
+  <data name="calendar_next_month" xml:space="preserve"><value>Susunod na buwan</value></data>
+  <data name="calendar_no_observances" xml:space="preserve"><value>Walang nailathalang pagdiriwang para sa buwang ito.</value></data>
 </root>

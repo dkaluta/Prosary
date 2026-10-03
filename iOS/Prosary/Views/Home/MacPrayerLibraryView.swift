@@ -50,6 +50,7 @@ extension FocusedValues {
 /// opening it creates or activates a separate session window, leaving the library in place.
 struct MacPrayerLibraryView: View {
   private enum Sidebar: Hashable { case all, today, bible, gallery, basicPrayers, community, tag(String) }
+  @State private var showsLiturgicalCalendar = false
   private enum DisplayStyle: String { case icons, list }
 
   @State private var model: MacPrayerLibraryModel
@@ -164,7 +165,7 @@ struct MacPrayerLibraryView: View {
         if sidebar == .community {
           NavigationStack { RepositoryBrowserView(presentedAsSheet: false) }
         } else if sidebar == .today {
-          MacTodayView()
+          MacTodayView(opensCalendar: showsLiturgicalCalendar)
             .id(widgetTodayGeneration)
         } else if sidebar == .bible {
           NavigationStack { BibleView() }
@@ -278,7 +279,7 @@ struct MacPrayerLibraryView: View {
     }
     .onReceive(NotificationCenter.default.publisher(for: .widgetNavigateLibrary)) { notification in
       guard let destination = notification.object as? String,
-            ["today", "library"].contains(destination) else { return }
+            ["today", "library", "calendar", "readings"].contains(destination) else { return }
       pendingWidgetDestination = destination
       consumeWidgetDestination()
     }
@@ -478,9 +479,10 @@ struct MacPrayerLibraryView: View {
   private func consumeWidgetDestination() {
     guard !isModal, let destination = pendingWidgetDestination else { return }
     pendingWidgetDestination = nil
-    if destination == "today" {
+    if ["today", "calendar", "readings"].contains(destination) {
       // Recreate the date browser deterministically, even when Today is already selected.
       widgetTodayGeneration += 1
+      showsLiturgicalCalendar = destination == "calendar"
       sidebar = .today
     } else {
       sidebar = .all

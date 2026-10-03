@@ -258,6 +258,10 @@ struct DevotionAudioTrack: Decodable {
   let name: String?
   let nameByLanguage: [String: String]?
   let chapters: [Chapter]
+  /// Absent in older packs means narration. Music has transport chapters without step syncing.
+  var role: String? = nil
+  var isNarration: Bool { role == nil || role == "narration" }
+  var isMusic: Bool { role == "music" }
 
   var localizedName: String? {
     let uiLanguage = UILanguage.current

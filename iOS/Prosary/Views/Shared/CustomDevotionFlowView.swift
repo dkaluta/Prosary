@@ -120,6 +120,8 @@ struct CustomDevotionFlowView: View {
                          chapterTitles: resolvedChapterTitles)
       ) : nil,
       audioIsPlaying: audio.isPlaying,
+      audioDrivesSteps: audio.track?.isNarration == true,
+      speechAvailable: !(audio.isLoaded && audio.track?.isNarration == true),
       flowActions: AnyView(flowActions), contentBundleID: devotionId
     )
     // The recording's chapters drive the text while it plays: entering a chapter that carries
@@ -135,7 +137,7 @@ struct CustomDevotionFlowView: View {
       }
       // The chapters are re-read (not trusted from the event) and bounds-checked: a language
       // switch can swap the track between the change being observed and delivered.
-      guard let chapterIndex, let chapters = audio.track?.chapters,
+      guard audio.track?.isNarration == true, let chapterIndex, let chapters = audio.track?.chapters,
             chapters.indices.contains(chapterIndex),
             let hint = chapters[chapterIndex].stepIndex,
             steps.indices.contains(hint), currentIndex != hint else { return }
@@ -398,16 +400,17 @@ struct CustomDevotionFlowView: View {
     let defaultVariantId =
       definition?.effectiveVariantId(nil, languageCode: languageCode) ?? definition?.variants?.first?.id
     let effectiveVariant = variantId ?? defaultVariantId
-    let match = PrayerPackStore.audioTracks(for: devotionId).first {
+    let matches = PrayerPackStore.audioTracks(for: devotionId).filter {
       $0.language == languageCode && ($0.variantId ?? defaultVariantId) == effectiveVariant
     }
+    let match = matches.first { $0.isNarration } ?? matches.first { $0.isMusic }
     if let match {
       if audio.track?.id != match.id || !audio.isLoaded {
         audio.load(bundleId: devotionId, track: match, positionNamespace: audioPositionNamespace)
         if audio.didRestorePosition && allowStoredPosition {
           // Resumed mid-recording: pull the page to the restored chapter instead of
           // yanking the recording back to the step-0 chapter.
-          if let chapterIndex = audio.currentChapterIndex,
+          if audio.track?.isNarration == true, let chapterIndex = audio.currentChapterIndex,
              let hint = audio.track?.chapters[chapterIndex].stepIndex,
              steps.indices.contains(hint) {
             currentIndex = hint
@@ -441,7 +444,7 @@ struct CustomDevotionFlowView: View {
   /// After a manual Back/Next, bring the recording to the chapter that narrates the new step —
   /// when one does; steps between chapter hints leave the audio where it is.
   private func alignAudioToCurrentStep() {
-    guard audio.isLoaded, let chapters = audio.track?.chapters,
+    guard audio.isLoaded, audio.track?.isNarration == true, let chapters = audio.track?.chapters,
           let target = chapters.firstIndex(where: { $0.stepIndex == currentIndex }),
           audio.currentChapterIndex != target else { return }
     audio.seekToChapter(target)

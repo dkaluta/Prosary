@@ -1,6 +1,7 @@
 package com.dkaluta.prosary.content.today
 
 import com.dkaluta.prosary.models.AppSettings
+import kotlinx.serialization.json.Json
 import java.io.File
 import java.io.ByteArrayInputStream
 import java.text.SimpleDateFormat
@@ -21,6 +22,14 @@ import org.junit.Test
 class TodayInfoStoreTest {
     /** The store resolves the selection live on every lookup, so pinning the setting back to
      * "follow the registry default" is the whole reset. */
+    @Test
+    fun importedCitationKeepsSourceMassAndPrintedReference() {
+        val citation = Json.decodeFromString<ReadingCitation>("""{"type":"reading","short":"1 Cor. 3","full":"1 Corinthians 3:9–11,16–17","sourceText":"1Cor3:9-11.16-17","sourceGroup":"Vigil Mass"}""")
+        assertEquals("1Cor3:9-11.16-17", citation.sourceText)
+        assertEquals("Vigil Mass", citation.sourceGroup)
+        assertEquals("1 Corinthians 3:9–11,16–17", citation.localizedFull("he"))
+    }
+
     @Before
     fun resetCalendarSelection() {
         AppSettings.feastCalendarId = ""
@@ -34,6 +43,23 @@ class TodayInfoStoreTest {
 
     private fun date(string: String): Date =
         SimpleDateFormat("yyyy-MM-dd", Locale.US).parse(string)!!
+
+    @Test
+    fun romanSaintExcerptsRetainSourceAndExactLanguageWithoutChangingSundayPrecedence() {
+        for (calendar in listOf("lpj", "roman", "roman1962")) {
+            AppSettings.feastCalendarId = calendar
+            val feast = TodayInfoStore.feast(date("2027-10-04"))!!
+            val english = feast.saintDescriptions(calendar, "en").first()
+            assertTrue(english.text.contains("Franciscans"))
+            assertTrue(english.sourceURL?.startsWith("https://publication.evangelizo.ws/") == true)
+            assertTrue(english.credit?.contains("Evangelizo") == true)
+            for (language in listOf("he", "ru", "tl", "uk")) {
+                assertTrue(feast.saintDescriptions(calendar, language).isEmpty())
+            }
+            val sunday = TodayInfoStore.feast(date("2026-10-04"))!!
+            assertTrue(sunday.saintDescriptions(calendar, "en").isEmpty())
+        }
+    }
 
     @Test
     fun todayTranslationFollowsTheInterfaceAndNormalizesAliases() {
@@ -150,7 +176,7 @@ class TodayInfoStoreTest {
     @Test
     fun calendarRegistryListsTheShippedCalendarsInPickerOrder() {
         assertEquals(
-            listOf("lpj", "roman", "roman1962", "ugcc", "syriac", "maronite"),
+            listOf("lpj", "stjames", "roman", "roman1962", "franciscan-conventual-italy", "augustinian-discalced", "ugcc", "ugcc-julian", "syriac", "maronite"),
             TodayInfoStore.calendars.map { it.id },
         )
         assertEquals("lpj", TodayInfoStore.selectedCalendarId)
@@ -638,6 +664,23 @@ class TodayInfoStoreTest {
         AppSettings.easternPaschaStyle = "gregorian"
         assertNull(TodayInfoStore.feast(target))
         assertTrue(TodayInfoStore.readings(target).isEmpty())
+    }
+
+    @Test
+    fun oldStyleJulianCalendarKeepsChristmasAndPaschaOnTheirOwnDates() {
+        AppSettings.feastCalendarId = "ugcc-julian"
+        AppSettings.easternPaschaStyle = "gregorian"
+        assertEquals("ugcc-julian", TodayInfoStore.selectedCalendarId)
+        for (year in listOf("2026", "2027")) {
+            assertEquals("The Nativity of Our Lord", TodayInfoStore.feast(date("$year-01-07"))?.title)
+            assertEquals("The Holy Theophany of Our Lord", TodayInfoStore.feast(date("$year-01-19"))?.title)
+            assertFalse(TodayInfoStore.feast(date("$year-12-25"))?.title == "The Nativity of Our Lord")
+        }
+        assertEquals("The Resurrection of Our Lord — Holy Pascha", TodayInfoStore.feast(date("2026-04-12"))?.title)
+        assertEquals("The Resurrection of Our Lord — Holy Pascha", TodayInfoStore.feast(date("2027-05-02"))?.title)
+        assertTrue(TodayInfoStore.readings(date("2026-01-07")).isEmpty())
+        AppSettings.feastCalendarId = "ugcc"
+        assertEquals("The Nativity of Our Lord", TodayInfoStore.feast(date("2026-12-25"))?.title)
     }
 
     @Test

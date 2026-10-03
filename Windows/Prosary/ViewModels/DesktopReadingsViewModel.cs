@@ -23,6 +23,8 @@ public partial class ReadingPassageViewModel : ObservableObject
     public string ContextKey { get; }
     public string ConfigurationKey { get; }
     public string Citation { get; }
+    public string? SourceGroup { get; }
+    public bool HasSourceGroup => !string.IsNullOrWhiteSpace(SourceGroup);
     public string PassageLabel => Loc.Tr("readings_bible_passage", "Bible Passage");
     public string EditionName => _edition?.Name ?? Loc.Tr("readings_edition_unavailable", "No edition is available for this language.");
     public string UnavailableText => Loc.Tr("readings_text_unavailable", "This passage is not available in the selected Bible edition.");
@@ -86,13 +88,14 @@ public partial class ReadingPassageViewModel : ObservableObject
     private ReadingEditionChoice? _selectedAvailableEdition;
 
     public ReadingPassageViewModel(ReadingsTextStore store, ScriptureEdition? edition, string scope,
-        ReadingCitation citation, string interfaceLanguage, string contextKey, string configurationKey)
+        ReadingCitation citation, string interfaceLanguage, string contextKey, string configurationKey, bool showsSourceGroup = true)
     {
         _store = store;
         _edition = edition;
         _scope = scope;
         _rawCitation = citation.Full;
         Citation = citation.LocalizedFull(interfaceLanguage);
+        SourceGroup = showsSourceGroup ? citation.SourceGroup : null;
         ContextKey = contextKey;
         ConfigurationKey = configurationKey;
     }
@@ -249,7 +252,8 @@ public partial class DesktopReadingsViewModel : ObservableObject
             var configurationKey = $"{contextKey}|{AppSettings.ReadingsEditionId}|{edition?.Id}";
             var old = previous.FirstOrDefault(row => row.ContextKey == contextKey);
             if (old?.ConfigurationKey == configurationKey) return old;
-            return new ReadingPassageViewModel(_store, edition, scope, citation, today.TodayLanguage, contextKey, configurationKey)
+            return new ReadingPassageViewModel(_store, edition, scope, citation, today.TodayLanguage, contextKey, configurationKey,
+                index == 0 || citations[index - 1].SourceGroup != citation.SourceGroup)
             { IsExpanded = old?.IsExpanded ?? AppSettings.ExpandReadingsByDefault };
         }).ToList();
         return previous.SequenceEqual(rows) ? previous : new ObservableCollection<ReadingPassageViewModel>(rows);

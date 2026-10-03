@@ -37,6 +37,8 @@ public partial class JesusPrayerViewModel : ObservableObject, IPrayerStepFlowVie
 
     private JesusPrayerTarget _effectiveTarget = new JesusPrayerTarget.Count(33);
     private string? _languageCode;
+    public string SpeechLanguageCode => _languageCode ?? string.Empty;
+    public string SpeechBody => _hasLoaded ? PrayerTranslations.Get(_languageCode, PrayerKey.OratioIesu) : string.Empty;
     private string _chosenLanguage = LanguageCatalog.DefaultSentinel;
     private bool _hasLoaded;
     private PrayerRunState? _pendingContinuation;

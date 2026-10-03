@@ -27,12 +27,11 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import com.dkaluta.prosary.R
 import com.dkaluta.prosary.models.PrayerReminder
-import java.text.SimpleDateFormat
 import java.util.Calendar
-import java.util.Locale
 
 /** The reminders Form section, shared by FavoriteEditorScreen (Rosary/Jesus Prayer's full
  * editor) and RemindersOnlyEditorScreen (the lightweight screen for the generic bundle
@@ -102,13 +101,8 @@ fun RemindersSection(
 }
 
 /** "6:00 AM" / "12:00 PM"-style label for a preset hour, in the user's locale. */
-private fun presetLabel(hour: Int): String {
-    val cal = Calendar.getInstance().apply {
-        set(Calendar.HOUR_OF_DAY, hour)
-        set(Calendar.MINUTE, 0)
-    }
-    return SimpleDateFormat("h:mm a", Locale.getDefault()).format(cal.time)
-}
+@Composable
+private fun presetLabel(hour: Int): String = PrayerReminder(hour = hour).formattedTime(LocalContext.current)
 
 private fun List<PrayerReminder>.withUpdatedReminder(id: String, hour: Int, minute: Int): List<PrayerReminder> =
     map { if (it.id == id) it.copy(hour = hour, minute = minute) else it }
@@ -136,11 +130,12 @@ private fun PresetTimeToggleRow(hour: Int, label: String, reminders: List<Prayer
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun ReminderRow(reminder: PrayerReminder, onTimeChange: (Int, Int) -> Unit, onDelete: () -> Unit) {
+    val context = LocalContext.current
     var showPicker by rememberSaveable(reminder.id) { mutableStateOf(false) }
 
     Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.fillMaxWidth()) {
         TextButton(onClick = { showPicker = true }, modifier = Modifier.weight(1f)) {
-            Text(reminder.displayTime)
+            Text(reminder.formattedTime(context))
         }
         IconButton(onClick = onDelete) {
             Icon(Icons.Filled.Delete, contentDescription = stringResource(R.string.reminders_delete_desc), tint = MaterialTheme.colorScheme.error)
@@ -148,7 +143,8 @@ private fun ReminderRow(reminder: PrayerReminder, onTimeChange: (Int, Int) -> Un
     }
 
     if (showPicker) {
-        val state = rememberTimePickerState(initialHour = reminder.hour, initialMinute = reminder.minute, is24Hour = false)
+        val state = rememberTimePickerState(initialHour = reminder.hour, initialMinute = reminder.minute,
+            is24Hour = android.text.format.DateFormat.is24HourFormat(context))
         AlertDialog(
             onDismissRequest = { showPicker = false },
             confirmButton = {

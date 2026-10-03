@@ -1,0 +1,311 @@
+{
+  "audits": [
+    {
+      "cataloguePath": "Shared/tools/sources/opp-blogger-saints-tl.json",
+      "catalogueSHA256": "474edb0384a44a677667f83cb558cb363d6dba19ede95d4ca9dcb14e05724f2e",
+      "counts": {
+        "feedPages": 80,
+        "allFeedEntries": 1982,
+        "SAINTRecords": 158,
+        "completeBiographyCandidates": 96,
+        "explicitContinuationExcerpts": 6,
+        "otherOrHeld": 56,
+        "fullPageSamples": 3
+      },
+      "differences": [],
+      "classifications": {
+        "Tagalog-biography-excerpt-review-candidate": 6,
+        "Tagalog-biography-review-candidate": 96,
+        "quarantined-source": 56
+      },
+      "completed": true,
+      "errors": [],
+      "provider": "Our Parish Priest historical Blogger archive",
+      "language": "tl",
+      "method": [
+        "Decode and hash-verify every original Base64 Atom response using stdlib ElementTree; no collector/extractor imports.",
+        "Independently reconcile all feed entry IDs/categories/titles/URLs/authors/published/updated fields and every actual next link with the published total and SAINT counter.",
+        "Compare each original Atom content[type=html] string with retained sourceHTML; repair malformed HTML with lxml, then walk text independently with stdlib HTMLParser, excluding inert markup and retaining real block/br boundaries.",
+        "Compare ordered visible-character streams after whitespace normalization, then separately verify stored source/paragraph/biography digests.",
+        "Independently read the three cached full-page primary post bodies and compare their text streams with the corresponding Atom records."
+      ],
+      "responseCache": "/private/tmp/prosary-opp-blogger-saints-cache",
+      "allRecordOriginalHTMLStreamsAudited": 158,
+      "allFeedResponsesAudited": 80,
+      "completionBounds": "Complete explicitly SAINT-labelled subset of the historical homepage-published feed; not later new-domain publications, not all Catholic saints, and not a whole liturgical year.",
+      "sourceEditionBounds": "96 complete source-marked biography candidates, 6 publisher-explicit continuation excerpts and 56 other/held entries remain distinct. All editions and three duplicate candidate groups are retained.",
+      "collectorAuthorReportedOfflineTests": 17,
+      "manualReviews": [
+        {
+          "recordId": "opp-blogger:116125634930155925",
+          "sourceURL": "https://ourparishpriest.blogspot.com/2018/02/parangal-kay-santa-teresita-ng-sanggol.html",
+          "sourceTextSHA256": "d9e267e01e3599749e9f5fa0797cd96ff5c96ed98e9114f3d877eb97a5276e9c",
+          "biographyTextSHA256": "4f448e6b37a8eec9424cdea9a88ae17db24021beb1c7dfa042c5f625cedf6bc3",
+          "reviewedAt": "2026-10-03",
+          "sourceFeastLabels": [
+            {
+              "literal": "OKTUBRE 1",
+              "sourceLine": "KAPISTAHAN: OKTUBRE 1",
+              "month": 10,
+              "day": 1,
+              "mappingStatus": "source-label-only; calendar identity/precedence not assigned"
+            }
+          ],
+          "literalCredits": [],
+          "findings": [
+            "Actual Tagalog narrative identifies Thérèse of Lisieux rather than Teresa of Ávila. Printed 1 October feast is distinguished from the February posting URL and narrative 30 September death.",
+            "The A. KUWENTO NG BUHAY section contains 16 paragraphs; B. HAMON SA BUHAY reflection and the Deuteronomy ending are separate. LiteralCredits is empty in this exact archive edition; no credit from a newer edition is transplanted.",
+            "Selected birth/death/Doctor dates agree with the checked Holy See biography/letter; this does not certify every claim in the article."
+          ],
+          "corroboratingSourceURLs": [
+            "https://www.vatican.va/content/benedict-xvi/en/audiences/2011/documents/hf_ben-xvi_aud_20110406.html",
+            "https://www.vatican.va/content/francesco/en/cotidie/2013/documents/papa-francesco-cotidie_20131001_humility-gospel.html",
+            "https://www.vatican.va/content/john-paul-ii/en/apost_letters/1997/documents/hf_jp-ii_apl_19101997_divini-amoris.html"
+          ],
+          "decision": "Representative source-language/genre/section check; ordinary editorial review remains required.",
+          "calendarIdentityMapping": "unassigned",
+          "allHistoricalAssertionsCertified": false,
+          "reuseApproved": false
+        },
+        {
+          "recordId": "opp-blogger:6111214988969255177",
+          "sourceURL": "https://ourparishpriest.blogspot.com/2020/09/san-pio-ng-pietrelcina-padre-pio.html",
+          "sourceTextSHA256": "5b5c98ea7cb1210a57b2248c2179e033829995fff570ab19c4c9d73985c2b9a4",
+          "biographyTextSHA256": "b04202451f63a9076d4ab7ffa13797887ce200d0e436c0c236ec29b34d53d701",
+          "reviewedAt": "2026-10-03",
+          "sourceFeastLabels": [
+            {
+              "literal": "Setyembre 23",
+              "sourceLine": "Pista: Setyembre 23",
+              "month": 9,
+              "day": 23,
+              "mappingStatus": "source-label-only; calendar identity/precedence not assigned"
+            }
+          ],
+          "literalCredits": [],
+          "findings": [
+            "Actual Tagalog Padre Pio biography is preserved through its final paragraph, including source physical line wraps. Reflection and the Colossians ending are separate; this edition has no literal book credit.",
+            "The source first says he died in 1968 and later says 1969. The Holy See canonization biography gives 23 September 1968 and a 23 September feast."
+          ],
+          "corroboratingSourceURLs": [
+            "https://www.vatican.va/news_services/liturgy/saints/ns_lit_doc_20020616_padre-pio_en.html"
+          ],
+          "decision": "Confirmed source contradiction remains unchanged and the record is quarantined; do not import the biography pending editorial resolution.",
+          "calendarIdentityMapping": "unassigned",
+          "allHistoricalAssertionsCertified": false,
+          "reuseApproved": false
+        },
+        {
+          "recordId": "opp-blogger:5538193347137277050",
+          "sourceURL": "https://ourparishpriest.blogspot.com/2022/07/saints-of-july-san-lorenzo-ng-brindisi.html",
+          "sourceTextSHA256": "aea53f6c08687555d7af3f220de312b9106f78967276d32139a0b8ce2b9def3f",
+          "biographyTextSHA256": "157e229844b92df24b6b8dd8090da376c03df449ac8078edf7db4985c67beebf",
+          "reviewedAt": "2026-10-03",
+          "sourceFeastLabels": [
+            {
+              "literal": "HULYO 21",
+              "sourceLine": "HULYO 21",
+              "month": 7,
+              "day": 21,
+              "mappingStatus": "source-label-only; calendar identity/precedence not assigned"
+            }
+          ],
+          "literalCredits": [
+            "(MULA SA AKLAT NA \"ISANG SULYAP SA MGA SANTO, BY FR. RMARCOS)"
+          ],
+          "findings": [
+            "Actual Tagalog narrative identifies Lawrence of Brindisi; printed July 21 feast is distinct from narrative July 22 birth/death. A biography, B reflection and scriptural ending are separate.",
+            "The source claims the three named Franciscan branches, including Capuchins, formed during Francis’s lifetime. Official Capuchin history dates origins around 1525 and approval 1528; its anniversary article dates Francis’s death to 1226.",
+            "The exact Isang Sulyap sa mga Santo / Fr. RMARCOS book credit is retained, including the source’s unbalanced quotation punctuation."
+          ],
+          "corroboratingSourceURLs": [
+            "https://www.ofmcap.org/en/the-history-of-the-capuchins/",
+            "https://www.ofmcap.org/en/x-giornata-della-famiglia-cappuccina-2026/"
+          ],
+          "decision": "Confirmed chronology error remains unchanged and the record is quarantined; no automatic prose correction or underlying-book reuse approval.",
+          "calendarIdentityMapping": "unassigned",
+          "allHistoricalAssertionsCertified": false,
+          "reuseApproved": false
+        },
+        {
+          "recordId": "opp-blogger:8993221329986947161",
+          "sourceURL": "https://ourparishpriest.blogspot.com/2016/09/san-lorenzo-ruiz-tunay-na-pilipino.html",
+          "sourceTextSHA256": "e77bad6dcd6bef19bc5aa68ff9c13372c038f1206d9d350a6e40bb47629b53c0",
+          "biographyTextSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "reviewedAt": "2026-10-03",
+          "sourceFeastLabels": [],
+          "literalCredits": [],
+          "findings": [
+            "Lorenzo Ruiz’s SAINT-labelled entry is a short migration stub with a printed September 28 line and an actual link to the newer site. It supplies no A biography and remains quarantined.",
+            "No song-versus-biography certification is possible from this stub; publisher category and complete Atom capture are not evidence of a whole biography."
+          ],
+          "corroboratingSourceURLs": [],
+          "decision": "Representative source-language/genre/section check; ordinary editorial review remains required.",
+          "calendarIdentityMapping": "unassigned",
+          "allHistoricalAssertionsCertified": false,
+          "reuseApproved": false
+        }
+      ]
+    },
+    {
+      "cataloguePath": "Shared/tools/sources/tvmaria-saints-tl.json",
+      "catalogueSHA256": "c8be2cae6c37444ac1ff5d67a0a87a0951d4991a8c6f6e8f6a2f615d1ca39b35",
+      "counts": {
+        "publishedMonths": 11,
+        "indexPages": 72,
+        "allPosts": 205,
+        "biographyCandidates": 147,
+        "excludedPosts": 57,
+        "heldPosts": 1
+      },
+      "differences": [],
+      "classifications": {
+        "Tagalog-saint-or-feast-biography-review-candidate": 147,
+        "English-source-post": 6,
+        "reading-reflection-or-other-source-post": 51,
+        "untitled-source-post": 1
+      },
+      "completed": true,
+      "errors": [],
+      "unfinishedURLs": [],
+      "provider": "TV Maria on WordPress",
+      "language": "tl",
+      "method": [
+        "Independently derive every month seed from the cached homepage archive widget, and reconcile all captured index post headings and actual pagination anchors with the catalogue’s published-link set.",
+        "Read and hash-verify all 205 original cached post responses; independently select their single primary post/entry and compare original serialized entry HTML and digests.",
+        "Bound primary prose before actual WordPress sharing/postmetadata/category footer UI, then use stdlib HTMLParser to compare ordered visible-character streams after whitespace normalization; retain inline punctuation and block/br boundaries, omit script/style/inert content.",
+        "Verify stored source/paragraph/biography digests and exact published titles; no collector imports or fresh source downloads.",
+        "Independently check bibliographic author/Paulines/Retrieved paragraphs are separated as literal credits rather than biography, including pages without a Source heading."
+      ],
+      "responseCache": "/private/tmp/prosary-tvmaria-saints-cache",
+      "allRecordOriginalHTMLStreamsAudited": 205,
+      "allIndexResponsesAudited": 72,
+      "homepageSeedResponsesAudited": 1,
+      "completionBounds": "Complete posts from the 11 monthly archives published on the saved homepage, with every actual pagination link exhausted; not universal saint/calendar coverage.",
+      "creditSeparation": {
+        "bibliographicParagraphsIndependentlyChecked": 188,
+        "postsWithLiteralCredits": 172,
+        "differences": []
+      },
+      "issuesResolvedDuringReview": [
+        {
+          "type": "unheaded-bibliographic-credit-separation",
+          "priorSnapshotSHA256": "12f970df170c988b23d8340f5b8ef4ed26b975877f69d1f783a6b757837f1904",
+          "finding": "Some source pages omit a Source heading; book and explicit website references were retained in original prose but left inside biography and absent from literalCredits.",
+          "resolution": "Collector writer added conservative bibliographic recognition and regressions, then regenerated entirely from cache. Original source prose and 147/57/1 dispositions are unchanged."
+        }
+      ],
+      "collectorAuthorReportedOfflineTests": 20,
+      "manualReviews": [
+        {
+          "recordId": "tvmaria:1652",
+          "sourceURL": "https://tvmaria.wordpress.com/2011/10/01/santa-teresita-ng-nino-jesus/",
+          "sourceTextSHA256": "bd8ed9fc4b9bdcf3aa6b07ccd74642f44d0fb49f12ae50523a30f330bab1a9b7",
+          "biographyTextSHA256": "8166c4b9b26527d10a6661dcfdd82d864d96c9339ce099e2aa8163de79392838",
+          "reviewedAt": "2026-10-03",
+          "sourceFeastLabels": [
+            "Araw ng Kapistahan: Oktubre 1"
+          ],
+          "literalCredits": [
+            {
+              "literal": "Abriol, J. C. (2010). Talambuhay ng mga Santo, volume 2 (3rd ed.). Pasay: Paulines Publishing House",
+              "location": "source-credit-section",
+              "kind": "underlying-book-or-source-reference",
+              "reviewRequired": true
+            }
+          ],
+          "findings": [
+            "Actual Tagalog Thérèse of Lisieux narrative, with distinct printed birth/death/October 1 feast labels. ARAL reflection and literal Abriol/Paulines book credit are separate.",
+            "The family paragraph says ten children. The checked Benedict XVI audience explicitly gives nine. This source statement remains unchanged and is held in the separate editorial review."
+          ],
+          "corroboratingSourceURLs": [
+            "https://www.vatican.va/content/benedict-xvi/en/audiences/2011/documents/hf_ben-xvi_aud_20110406.html",
+            "https://www.vatican.va/content/francesco/en/cotidie/2013/documents/papa-francesco-cotidie_20131001_humility-gospel.html"
+          ],
+          "decision": "Hold the affected family-number statement; source biography remains a review candidate and native import is disallowed.",
+          "calendarIdentityMapping": "unassigned",
+          "allHistoricalAssertionsCertified": false,
+          "reuseApproved": false
+        },
+        {
+          "recordId": "tvmaria:1662",
+          "sourceURL": "https://tvmaria.wordpress.com/2011/12/12/1662/",
+          "sourceTextSHA256": "74832d7cbfc54b8076fc629a08cdb551bab95afe09a206276bffb7299be6cc65",
+          "biographyTextSHA256": "ffd3c2bf4a20806a7abeb078fe310eb265e82a7b144361489d20f4c7d703d0a0",
+          "reviewedAt": "2026-10-03",
+          "sourceFeastLabels": [
+            "Araw ng Kapistahan: Disyembre 8"
+          ],
+          "literalCredits": [
+            {
+              "literal": "Abriol, J. C. (2010). Talambuhay ng mga Santo, volume 2 (3rd ed.). Pasay: Paulines Publishing House.",
+              "location": "source-credit-section",
+              "kind": "underlying-book-or-source-reference",
+              "reviewRequired": true
+            }
+          ],
+          "findings": [
+            "Actual Tagalog Guadalupe apparition account. ARAL reflection and the Abriol/Paulines source credit are separate; no media was fetched.",
+            "Printed source feast line says December8; the checked Holy See Guadalupe feast liturgy explicitly gives December12. Posting on December12 is only transport evidence and cannot silently repair the source label."
+          ],
+          "corroboratingSourceURLs": [
+            "https://www.vatican.va/content/francesco/en/homilies/2018/documents/papa-francesco_20181212_omelia-guadalupe.html"
+          ],
+          "decision": "Hold the printed feast label; retain original line and unassigned calendar mapping.",
+          "calendarIdentityMapping": "unassigned",
+          "allHistoricalAssertionsCertified": false,
+          "reuseApproved": false
+        },
+        {
+          "recordId": "tvmaria:1058",
+          "sourceURL": "https://tvmaria.wordpress.com/2011/06/24/san-juan-bautista/",
+          "sourceTextSHA256": "4ae88b7f919e06838a194fe78c46fad89ca09a1452a7ce95fc634bcf501b1441",
+          "biographyTextSHA256": "3d888a051c5e7257db88ee8dc5133afcda165836c76de8df066a04c3bf153938",
+          "reviewedAt": "2026-10-03",
+          "sourceFeastLabels": [
+            "Araw ng Kapistahan: 24 Hunyo"
+          ],
+          "literalCredits": [
+            {
+              "literal": "Abriol, J. C. (2010). Talambuhay ng mga Santo, volume 2 (3rd ed.). Pasay: Paulines Publishing House.",
+              "location": "source-credit-section",
+              "kind": "underlying-book-or-source-reference",
+              "reviewRequired": true
+            }
+          ],
+          "findings": [
+            "Actual Tagalog John the Baptist narrative. Printed June24 feast and narrative August29 martyrdom memorial remain distinct; no feast is inferred from the posting URL.",
+            "The unheaded Abriol, Talambuhay ng mga Santo, Paulines Publishing House reference is now separated as a literal credit. It appears nowhere in the biography array. No reflection is invented where the source has none."
+          ],
+          "corroboratingSourceURLs": [],
+          "decision": "Representative source-language/genre/section check; ordinary editorial review remains required.",
+          "calendarIdentityMapping": "unassigned",
+          "allHistoricalAssertionsCertified": false,
+          "reuseApproved": false
+        }
+      ]
+    }
+  ],
+  "schemaVersion": 1,
+  "generatedAt": "2026-10-03T07:33:15.595675+00:00",
+  "reviewer": "Codex subagent saint_site_sources; independent of both retry collectors",
+  "purpose": "Read-only independent integrity and representative editorial review of exact final source-only retry catalogues",
+  "networkDownloadsForMechanicalAudit": 0,
+  "auditImplementationSHA256": "0435aedc88e32f567d3395f4a3412844d0dc635ef7a975d5f61919a6b3d2a975",
+  "mechanicalEditorialBoundary": {
+    "checked": [
+      "Every saved original source response used for record bodies has a matching cache digest.",
+      "Every retained article visible-text stream agrees after whitespace normalization with an independent stdlib HTMLParser walk.",
+      "Saved HTML, paragraph and biography digests agree with their literal contents.",
+      "Published feed/index links, source IDs and totals reconcile with captured and explicitly excluded records."
+    ],
+    "notCertified": [
+      "Historical correctness of every statement",
+      "Universal Catholic saint or liturgical-year coverage",
+      "Canonical identity/calendar/rank or precedence mapping",
+      "Translation or authorship inferred from language metadata",
+      "Permission to redistribute website text or underlying quoted books",
+      "Future availability of external temporary response caches"
+    ]
+  }
+}

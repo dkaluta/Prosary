@@ -126,6 +126,19 @@
                      calendar); the picker hides entirely if the registry ever ships a single
                      calendar. -->
                 <TextBlock x:Uid="SetTodayHeader" Text="Today" Style="{StaticResource BaseTextBlockStyle}" Margin="0,8,0,0" />
+                <TextBlock x:Uid="SetRemindersHeader" Text="Notifications" Style="{StaticResource BaseTextBlockStyle}" />
+                <ToggleSwitch x:Uid="SetReadingsReminder" Header="Reading reminders" IsOn="{x:Bind ViewModel.ReadingsReminderEnabled, Mode=TwoWay}" />
+                <TimePicker x:Uid="SetReadingsReminderTime" Header="Notification time" Time="{x:Bind ViewModel.ReadingsReminderTime, Mode=TwoWay}"
+                            ClockIdentifier="{x:Bind ViewModel.ReminderClockIdentifier}"
+                            Visibility="{x:Bind ViewModel.ReadingsReminderEnabled, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
+                <ToggleSwitch x:Uid="SetSaintReminder" Header="Saint and feast notifications" IsOn="{x:Bind ViewModel.SaintReminderEnabled, Mode=TwoWay}" />
+                <TimePicker x:Uid="SetSaintReminderTime" Header="Notification time" Time="{x:Bind ViewModel.SaintReminderTime, Mode=TwoWay}"
+                            ClockIdentifier="{x:Bind ViewModel.ReminderClockIdentifier}"
+                            Visibility="{x:Bind ViewModel.SaintReminderEnabled, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
+                <TextBlock x:Uid="SetRemindersFooter" Text="Uses your selected calendar and local time. Saint notifications include a sourced description when available in the app language; otherwise they show the feast and its rank."
+                           TextWrapping="Wrap" Style="{StaticResource MutedCaptionTextStyle}" />
+                <TextBlock x:Uid="SetRemindersWindow" Text="Open Prosary regularly to refresh upcoming notifications."
+                           TextWrapping="Wrap" Style="{StaticResource MutedCaptionTextStyle}" />
 
                 <ToggleSwitch x:Uid="SetShowTodayFeast" Header="Show the day's feast"
                               IsOn="{x:Bind ViewModel.ShowTodayFeast, Mode=TwoWay}" />

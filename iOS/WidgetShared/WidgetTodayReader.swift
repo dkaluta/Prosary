@@ -9,6 +9,8 @@ nonisolated struct WidgetTodayContent: Equatable, Sendable {
   var torah: String?
   var fullReadings: [String] = []
   var intentionText: String?
+  var saintDescription: String?
+  var saintCredit: String?
 }
 
 nonisolated struct WidgetTodayReader {
@@ -29,6 +31,7 @@ nonisolated struct WidgetTodayReader {
     var titleByLanguage: [String: String]?
     var text: String?
     var textByLanguage: [String: String]?
+    var observances: [Observance]?
     func localizedText(_ language: String) -> String? {
       textByLanguage?[language].flatMap { $0.isEmpty ? nil : $0 } ?? text
     }
@@ -38,6 +41,15 @@ nonisolated struct WidgetTodayReader {
       return String(value.unicodeScalars.filter { !(0x0591...0x05BD).contains($0.value)
         && $0.value != 0x05BF && !(0x05C1...0x05C2).contains($0.value)
         && !(0x05C4...0x05C5).contains($0.value) && $0.value != 0x05C7 })
+    }
+  }
+  private struct Observance: Decodable {
+    var descriptionByLanguage: [String: String]?
+    var descriptionCreditByLanguage: [String: String]?
+    func description(_ language: String) -> String? {
+      guard let body = descriptionByLanguage?[language]?.trimmingCharacters(in: .whitespacesAndNewlines),
+            !body.isEmpty else { return nil }
+      return body
     }
   }
   private struct Citation: Decodable {
@@ -63,6 +75,7 @@ nonisolated struct WidgetTodayReader {
   private var intentions: [String: Titled] = [:]
   private var torah: [String: Titled] = [:]
   private let language: String
+  private var calendarID = ""
 
   init(settings: WidgetTodaySettings, bundle: Bundle = .main) {
     language = settings.normalizedLanguageCode
@@ -77,6 +90,7 @@ nonisolated struct WidgetTodayReader {
       let calendar = registry.calendars.first { $0.id == requested }
         ?? registry.calendars.first { $0.id == registry.default }
       if let calendar {
+        calendarID = calendar.id
         let style = calendar.paschaVariants?[settings.easternPaschaStyle] != nil
           ? settings.easternPaschaStyle : calendar.defaultPaschaStyle ?? "julian"
         let variant = calendar.paschaVariants?[style]
@@ -98,11 +112,15 @@ nonisolated struct WidgetTodayReader {
 
   func content(on date: Date) -> WidgetTodayContent {
     let day = ProsaryWidgetSnapshot.localDateKey(date)
+    // Use only the selected calendar's same-language, credited source material.
+    let observance = feasts[day]?.observances?.first(where: { $0.description(language) != nil })
     return WidgetTodayContent(feast: feasts[day]?.localized(language),
                               readings: readings[day]?.readings.map { $0.localized(language) } ?? [],
                               intention: intentions[String(day.prefix(7))]?.localized(language),
                               torah: torah[day]?.localized(language),
                               fullReadings: readings[day]?.readings.map { $0.localizedFull(language) } ?? [],
-                              intentionText: intentions[String(day.prefix(7))]?.localizedText(language))
+                              intentionText: intentions[String(day.prefix(7))]?.localizedText(language),
+                              saintDescription: observance?.description(language),
+                              saintCredit: observance?.descriptionCreditByLanguage?[language])
   }
 }

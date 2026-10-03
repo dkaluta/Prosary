@@ -3,6 +3,18 @@ import XCTest
 
 @MainActor
 final class OpenPrayerIntentTests: XCTestCase {
+  func testCatalogShortcutsIncludeEveryInstalledDevotionAndBasicPrayer() {
+    let entities = CatalogPrayerEntity.available()
+    XCTAssertTrue(Set(entities.map(\.id)).isSuperset(of: DevotionDirectory.all().map { "devotion:\($0.id)" }))
+    for basic in BasicPrayerCatalog.all {
+      XCTAssertTrue(entities.contains { $0.id == "basic:\(basic.id)" })
+      XCTAssertEqual(CatalogPrayerEntity.route(for: "basic:\(basic.id)"), .basicPrayer(id: basic.id))
+    }
+    XCTAssertNil(CatalogPrayerEntity.route(for: "basic:removed"))
+    XCTAssertNil(CatalogPrayerEntity.route(for: "devotion:removed"))
+    XCTAssertNil(CatalogPrayerEntity.route(for: "rosary"))
+  }
+
   func testEntitiesIncludeEverySavedKindAndResolveStableIdentifiers() {
     let prayers = [Prayer(name: "Rosary", kind: .rosary),
                    Prayer(name: "Jesus Prayer", kind: .jesusPrayer),

@@ -105,6 +105,7 @@
         <Rectangle Grid.Row="1" Height="6" Fill="{x:Bind ViewModel.SeasonColor, Mode=OneWay, Converter={StaticResource ColorToBrush}}" />
 
         <StackPanel Grid.Row="2" Spacing="8">
+            <controls:PrayerSpeechControl ViewModel="{x:Bind ViewModel, Mode=OneWay}" />
             <ProgressBar Minimum="0" Maximum="1" Value="{x:Bind ViewModel.Progress, Mode=OneWay, Converter={StaticResource NullableDoubleToValue}}" />
             <TextBlock FontFamily="{x:Bind ViewModel.ProgressFontFamily, Mode=OneWay}" Text="{x:Bind ViewModel.ProgressText, Mode=OneWay}" HorizontalAlignment="Center" Style="{StaticResource MutedCaptionTextStyle}" />
 

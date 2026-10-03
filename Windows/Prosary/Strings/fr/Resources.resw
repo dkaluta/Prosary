@@ -211,7 +211,7 @@
   <data name="AbtScriptureHeader.Text" xml:space="preserve"><value>Sources bibliques</value></data>
   <data name="AbtScriptureBody.Text" xml:space="preserve"><value>Les citations bibliques proviennent de la Bible Douay-Rheims (anglais), de la Vulgate clémentine (latin), de la traduction hébraïque du Nouveau Testament de Franz Delitzsch (kirjasilta.net/ha-berit; delitz.fr/12, 1901), les passages hébreux de l’Ancien Testament suivant le texte massorétique, de l’ancienne Bible arabe des jésuites (1897), de la Bible synodale russe (1876) et d’Ang Dating Biblia (tagalog, 1905).</value></data>
   <data name="AbtCalendarDataHeader.Text" xml:space="preserve"><value>Données du calendrier</value></data>
-  <data name="AbtCalendarDataBody.Text" xml:space="preserve"><value>Données du calendrier et des lectures : calendrier romain général via le projet LitCal (litcal.johnromanodorazio.com) ; calendrier et lectionnaire de 1962 via Missale Meum (missalemeum.com) ; calendrier catholique syriaque, titres hébreux sourcés du calendrier romain général et références des lectionnaires romain et syriaque fournis par Evangelizo.org — L’Évangile au Quotidien, © Evangelizo.org ; calendrier et lectures gréco-catholiques ukrainiens avec Pâques juliennes fournis par l’Église gréco-catholique ukrainienne et sa Commission liturgique patriarcale (ugcc.ua) ; lectures avec Pâques grégoriennes fournies par Royal Doors (royaldoors.net). Noms hébreux des livres bibliques : Evangelizo HE et Vicariat Saint-Jacques (catholic.co.il). Autres noms hébreux de fêtes et de saints : Vicariat Saint-Jacques, Christian Media Center (cmc-terrasanta.org) et Vatican News (vaticannews.va).</value></data>
+  <data name="AbtCalendarDataBody.Text" xml:space="preserve"><value>Données du calendrier et des lectures : calendrier romain général via le projet LitCal (litcal.johnromanodorazio.com) ; calendrier et lectionnaire de 1962 via Missale Meum (missalemeum.com) ; calendrier catholique syriaque, titres hébreux sourcés du calendrier romain général et références des lectionnaires romain et syriaque fournis par Evangelizo.org — L’Évangile au Quotidien, © Evangelizo.org ; calendrier et lectures gréco-catholiques ukrainiens avec Pâques juliennes fournis par l’Église gréco-catholique ukrainienne et sa Commission liturgique patriarcale (ugcc.ua) ; lectures avec Pâques grégoriennes fournies par Royal Doors (royaldoors.net). Noms hébreux des livres bibliques : Evangelizo HE et Vicariat Saint-Jacques (catholic.co.il). Autres noms hébreux de fêtes et de saints : Vicariat Saint-Jacques, Christian Media Center (cmc-terrasanta.org) et Vatican News (vaticannews.va). Calendrier Saint-Jacques 2026–2027 : Vicariat Saint-Jacques (catholic.co.il). Ordo franciscain conventuel 2025–2026 : Province Saint-Antoine de Padoue, Italie (francescaninorditalia.net). Ordo général des Augustins déchaussés 2026 : Ordre des Augustins déchaussés (oadnet.org).</value></data>
   <data name="RosaryPreviousMystery.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Mystère précédent</value></data>
   <data name="RosaryPreviousMystery.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Mystère précédent</value></data>
   <data name="RosaryNextMystery.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Mystère suivant</value></data>
@@ -580,4 +580,27 @@
   <data name="scripture_note_scan" xml:space="preserve"><value>Source numérisée</value></data>
   <data name="bible_printed_label" xml:space="preserve"><value>Repère imprimé : {0}</value></data>
   <data name="bible_occurrence" xml:space="preserve"><value>{0} — occurrence {1}</value></data>
+  <data name="speech_read" xml:space="preserve">
+    <value>Lire à voix haute</value>
+  </data>
+  <data name="speech_stop" xml:space="preserve">
+    <value>Arrêter la lecture</value>
+  </data>
+  <data name="speech_unavailable_title" xml:space="preserve">
+    <value>Voix indisponible</value>
+  </data>
+  <data name="speech_unavailable_message" xml:space="preserve">
+    <value>Installez une voix système dans la langue de cette prière pour la lire à voix haute.</value>
+  </data>
+  <data name="SetRemindersHeader.Text" xml:space="preserve"><value>Notifications</value></data>
+  <data name="SetReadingsReminder.Header" xml:space="preserve"><value>Rappels des lectures</value></data>
+  <data name="SetSaintReminder.Header" xml:space="preserve"><value>Notifications des saints et des fêtes</value></data>
+  <data name="SetReadingsReminderTime.Header" xml:space="preserve"><value>Heure de notification</value></data>
+  <data name="SetSaintReminderTime.Header" xml:space="preserve"><value>Heure de notification</value></data>
+  <data name="SetRemindersFooter.Text" xml:space="preserve"><value>Utilise le calendrier choisi et l’heure locale. Les notifications des saints comprennent une description sourcée lorsqu’elle existe dans la langue de l’application ; sinon, elles indiquent la fête et son rang.</value></data>
+  <data name="SetRemindersWindow.Text" xml:space="preserve"><value>Ouvrez régulièrement Prosary pour actualiser les prochaines notifications.</value></data>
+  <data name="calendar_title" xml:space="preserve"><value>Calendrier liturgique</value></data>
+  <data name="calendar_previous_month" xml:space="preserve"><value>Mois précédent</value></data>
+  <data name="calendar_next_month" xml:space="preserve"><value>Mois suivant</value></data>
+  <data name="calendar_no_observances" xml:space="preserve"><value>Aucune célébration publiée n’est disponible pour ce mois.</value></data>
 </root>

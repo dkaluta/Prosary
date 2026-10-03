@@ -31,7 +31,7 @@ class PrayerReminderTest {
             set(Calendar.HOUR_OF_DAY, 14)
             set(Calendar.MINUTE, 30)
         }
-        val expected = java.text.SimpleDateFormat("h:mm a", java.util.Locale.getDefault()).format(cal.time)
+        val expected = java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT, java.util.Locale.getDefault()).format(cal.time)
         assertEquals(expected, r.displayTime)
     }
 

@@ -61,7 +61,7 @@ class AudioPlaybackController {
             prepared.setAudioAttributes(
                 AudioAttributes.Builder()
                     .setUsage(AudioAttributes.USAGE_MEDIA)
-                    .setContentType(AudioAttributes.CONTENT_TYPE_SPEECH)
+                    .setContentType(if (track.isMusic) AudioAttributes.CONTENT_TYPE_MUSIC else AudioAttributes.CONTENT_TYPE_SPEECH)
                     .build(),
             )
             prepared.setDataSource(file.absolutePath)
@@ -74,6 +74,10 @@ class AudioPlaybackController {
             isPlaying = false
             currentTime = duration
             savePosition() // at duration this clears the key — a finished listen restarts fresh
+        }
+        prepared.setOnErrorListener { _, _, _ ->
+            stop() // Hide the failed recording and expose the system-speech fallback.
+            true
         }
         // seekTo is asynchronous — this corrects the optimistic time in [seek] to wherever the
         // player actually landed (callbacks arrive on the creating thread's Looper: main).

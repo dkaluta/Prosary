@@ -211,7 +211,7 @@
   <data name="AbtScriptureHeader.Text" xml:space="preserve"><value>Источники Писания</value></data>
   <data name="AbtScriptureBody.Text" xml:space="preserve"><value>Библейские цитаты взяты из Библии Дуэ — Реймса (английский), Климентинской Вульгаты (латынь), перевода Нового Завета на иврит Франца Делича (источник: kirjasilta.net/ha-berit; delitz.fr/12, 1901), а ветхозаветные отрывки на иврите следуют масоретскому тексту; также используются старый арабский иезуитский перевод Библии (1897), русский Синодальный перевод (1876) и Ang Dating Biblia (тагалог, 1905).</value></data>
   <data name="AbtCalendarDataHeader.Text" xml:space="preserve"><value>Данные календарей</value></data>
-  <data name="AbtCalendarDataBody.Text" xml:space="preserve"><value>Данные календарей и чтений: Общий римский календарь — проект LitCal (litcal.johnromanodorazio.com); календарь и лекционарий 1962 года — Missale Meum (missalemeum.com); сирийско-католический календарь, названия Общего римского календаря на иврите и ссылки на римские и сирийские чтения предоставлены Evangelizo.org — Евангелие дня, © Evangelizo.org; украинский греко-католический календарь и чтения с юлианской Пасхой предоставлены Украинской греко-католической церковью и её Патриаршей литургической комиссией (ugcc.ua); чтения с григорианской Пасхой предоставлены Royal Doors (royaldoors.net). Названия библейских книг на иврите: Evangelizo HE и Викариат святого Иакова (catholic.co.il). Дополнительные названия праздников и имена святых на иврите: Викариат святого Иакова, Христианский медиацентр (cmc-terrasanta.org) и Vatican News (vaticannews.va).</value></data>
+  <data name="AbtCalendarDataBody.Text" xml:space="preserve"><value>Данные календарей и чтений: Общий римский календарь — проект LitCal (litcal.johnromanodorazio.com); календарь и лекционарий 1962 года — Missale Meum (missalemeum.com); сирийско-католический календарь, названия Общего римского календаря на иврите и ссылки на римские и сирийские чтения предоставлены Evangelizo.org — Евангелие дня, © Evangelizo.org; украинский греко-католический календарь и чтения с юлианской Пасхой предоставлены Украинской греко-католической церковью и её Патриаршей литургической комиссией (ugcc.ua); чтения с григорианской Пасхой предоставлены Royal Doors (royaldoors.net). Названия библейских книг на иврите: Evangelizo HE и Викариат святого Иакова (catholic.co.il). Дополнительные названия праздников и имена святых на иврите: Викариат святого Иакова, Христианский медиацентр (cmc-terrasanta.org) и Vatican News (vaticannews.va). Календарь святого Иакова 2026–2027: Викариат святого Иакова (catholic.co.il). Ordo францисканцев-конвентуалов 2025–2026: провинция святого Антония Падуанского, Италия (francescaninorditalia.net). Общий Ordo босых августинцев 2026: Орден босых августинцев (oadnet.org).</value></data>
   <data name="RosaryPreviousMystery.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Предыдущая тайна</value></data>
   <data name="RosaryPreviousMystery.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Предыдущая тайна</value></data>
   <data name="RosaryNextMystery.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Следующая тайна</value></data>
@@ -580,4 +580,27 @@
   <data name="scripture_note_scan" xml:space="preserve"><value>Скан источника</value></data>
   <data name="bible_printed_label" xml:space="preserve"><value>Обозначение в печатном издании: {0}</value></data>
   <data name="bible_occurrence" xml:space="preserve"><value>{0} — вхождение {1}</value></data>
+  <data name="speech_read" xml:space="preserve">
+    <value>Читать вслух</value>
+  </data>
+  <data name="speech_stop" xml:space="preserve">
+    <value>Остановить чтение</value>
+  </data>
+  <data name="speech_unavailable_title" xml:space="preserve">
+    <value>Голос недоступен</value>
+  </data>
+  <data name="speech_unavailable_message" xml:space="preserve">
+    <value>Установите системный голос для языка этой молитвы, чтобы читать её вслух.</value>
+  </data>
+  <data name="SetRemindersHeader.Text" xml:space="preserve"><value>Уведомления</value></data>
+  <data name="SetReadingsReminder.Header" xml:space="preserve"><value>Напоминания о чтениях</value></data>
+  <data name="SetSaintReminder.Header" xml:space="preserve"><value>Уведомления о святых и праздниках</value></data>
+  <data name="SetReadingsReminderTime.Header" xml:space="preserve"><value>Время уведомления</value></data>
+  <data name="SetSaintReminderTime.Header" xml:space="preserve"><value>Время уведомления</value></data>
+  <data name="SetRemindersFooter.Text" xml:space="preserve"><value>Используются выбранный календарь и местное время. Уведомления о святых содержат описание из указанного источника, если оно есть на языке приложения; иначе показывают праздник и его ранг.</value></data>
+  <data name="SetRemindersWindow.Text" xml:space="preserve"><value>Регулярно открывайте Prosary, чтобы обновлять предстоящие уведомления.</value></data>
+  <data name="calendar_title" xml:space="preserve"><value>Литургический календарь</value></data>
+  <data name="calendar_previous_month" xml:space="preserve"><value>Предыдущий месяц</value></data>
+  <data name="calendar_next_month" xml:space="preserve"><value>Следующий месяц</value></data>
+  <data name="calendar_no_observances" xml:space="preserve"><value>Для этого месяца нет опубликованных празднований.</value></data>
 </root>

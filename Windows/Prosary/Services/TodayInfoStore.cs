@@ -97,7 +97,9 @@ public sealed record ReadingCitation(
     string Full,
     string? Hebrew = null,
     Dictionary<string, string>? ShortByLanguage = null,
-    Dictionary<string, string>? FullByLanguage = null)
+    Dictionary<string, string>? FullByLanguage = null,
+    string? SourceText = null,
+    string? SourceGroup = null)
 {
     public string LocalizedShort(string language) =>
         Localized(ShortByLanguage, language) ?? (IsHebrew(language) ? Hebrew : null) ?? Short;

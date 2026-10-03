@@ -211,7 +211,7 @@
   <data name="AbtScriptureHeader.Text" xml:space="preserve"><value>מקורות כתבי הקודש</value></data>
   <data name="AbtScriptureBody.Text" xml:space="preserve"><value>ציטוטי המקרא לקוחים מביבליית דואיי־רימס (אנגלית), הוולגאטה הקלמנטית (לטינית), תרגום דליטש לברית החדשה (מתוך kirjasilta.net/ha-berit; delitz.fr/12, 1901) עם קטעי התנ״ך על פי נוסח המסורה, תרגום הישועים הישן לביבליה לערבית (1897), הביבליה הסינודלית ברוסית (1876) ו־Ang Dating Biblia (טאגאלוג, 1905).</value></data>
   <data name="AbtCalendarDataHeader.Text" xml:space="preserve"><value>נתוני לוחות</value></data>
-  <data name="AbtCalendarDataBody.Text" xml:space="preserve"><value>נתוני לוחות ומקראות: הלוח הרומי הכללי מפרויקט LitCal‏ (litcal.johnromanodorazio.com); לוח 1962 ומקראותיו מ־Missale Meum‏ (missalemeum.com); הלוח הסורי־קתולי, שמות עבריים ללוח הרומי הכללי ומראי המקום הרומיים והסוריים באדיבות Evangelizo.org — הבשורה של היום, ‎© Evangelizo.org; הלוח האוקראיני־קתולי ומקראותיו עם פסחא יוליאני: הכנסייה האוקראינית־קתולית והוועדה הליטורגית הפטריארכלית שלה (ugcc.ua); מקראות הפסחא הגרגוריאני: Royal Doors‏ (royaldoors.net). שמות ספרי המקרא בעברית: Evangelizo HE ונציגות יעקב הצדיק (catholic.co.il). שמות נוספים של חגים וקדושים בעברית: נציגות יעקב הצדיק, המרכז הנוצרי לתקשורת (cmc-terrasanta.org) וחדשות הוותיקן (vaticannews.va).</value></data>
+  <data name="AbtCalendarDataBody.Text" xml:space="preserve"><value>נתוני לוחות ומקראות: הלוח הרומי הכללי מפרויקט LitCal‏ (litcal.johnromanodorazio.com); לוח 1962 ומקראותיו מ־Missale Meum‏ (missalemeum.com); הלוח הסורי־קתולי, שמות עבריים ללוח הרומי הכללי ומראי המקום הרומיים והסוריים באדיבות Evangelizo.org — הבשורה של היום, ‎© Evangelizo.org; הלוח האוקראיני־קתולי ומקראותיו עם פסחא יוליאני: הכנסייה האוקראינית־קתולית והוועדה הליטורגית הפטריארכלית שלה (ugcc.ua); מקראות הפסחא הגרגוריאני: Royal Doors‏ (royaldoors.net). שמות ספרי המקרא בעברית: Evangelizo HE ונציגות יעקב הצדיק (catholic.co.il). שמות נוספים של חגים וקדושים בעברית: נציגות יעקב הצדיק, המרכז הנוצרי לתקשורת (cmc-terrasanta.org) וחדשות הוותיקן (vaticannews.va). לוח 2026–2027 של יעקב הצדיק: נציגות יעקב הצדיק (catholic.co.il). לוח 2025–2026 של הפרנציסקנים הקונבנטואלים: מחוז אנטוניוס הקדוש מפדובה, איטליה (francescaninorditalia.net). לוח המסדר הכללי 2026 של האוגוסטינים היחפים: מסדר האוגוסטינים היחפים (oadnet.org).</value></data>
   <data name="RosaryPreviousMystery.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>הרז הקודם</value></data>
   <data name="RosaryPreviousMystery.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>הרז הקודם</value></data>
   <data name="RosaryNextMystery.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>הרז הבא</value></data>
@@ -578,4 +578,27 @@
   <data name="scripture_note_scan" xml:space="preserve"><value>סריקת המקור</value></data>
   <data name="bible_printed_label" xml:space="preserve"><value>הסימון בדפוס: {0}</value></data>
   <data name="bible_occurrence" xml:space="preserve"><value>{0} — מופע {1}</value></data>
+  <data name="speech_read" xml:space="preserve">
+    <value>הקראה</value>
+  </data>
+  <data name="speech_stop" xml:space="preserve">
+    <value>הפסק הקראה</value>
+  </data>
+  <data name="speech_unavailable_title" xml:space="preserve">
+    <value>קול לא זמין</value>
+  </data>
+  <data name="speech_unavailable_message" xml:space="preserve">
+    <value>יש להתקין קול מערכת בשפת התפילה כדי להקריא אותה.</value>
+  </data>
+  <data name="SetRemindersHeader.Text" xml:space="preserve"><value>התראות</value></data>
+  <data name="SetReadingsReminder.Header" xml:space="preserve"><value>תזכורות לקריאות</value></data>
+  <data name="SetSaintReminder.Header" xml:space="preserve"><value>התראות על קדושים וחגים</value></data>
+  <data name="SetReadingsReminderTime.Header" xml:space="preserve"><value>שעת ההתראה</value></data>
+  <data name="SetSaintReminderTime.Header" xml:space="preserve"><value>שעת ההתראה</value></data>
+  <data name="SetRemindersFooter.Text" xml:space="preserve"><value>לפי לוח השנה שנבחר והשעה המקומית. התראות על קדושים כוללות תיאור ממקור מוסמך כשיש תיאור בשפת היישומון; אחרת יוצגו החג ודרגתו.</value></data>
+  <data name="SetRemindersWindow.Text" xml:space="preserve"><value>יש לפתוח את Prosary מדי פעם כדי לעדכן את ההתראות הבאות.</value></data>
+  <data name="calendar_title" xml:space="preserve"><value>לוח שנה ליטורגי</value></data>
+  <data name="calendar_previous_month" xml:space="preserve"><value>החודש הקודם</value></data>
+  <data name="calendar_next_month" xml:space="preserve"><value>החודש הבא</value></data>
+  <data name="calendar_no_observances" xml:space="preserve"><value>אין מועדים שפורסמו עבור חודש זה.</value></data>
 </root>
