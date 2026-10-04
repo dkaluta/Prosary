@@ -3,6 +3,7 @@
 # requires-python = ">=3.11"
 # ///
 """Network-free Peshitta script-pair, provenance and coverage regressions."""
+import hashlib
 import importlib.util
 import json
 from pathlib import Path
@@ -10,6 +11,7 @@ import unittest
 from unittest.mock import patch
 from types import SimpleNamespace
 import xml.etree.ElementTree as ET
+import zipfile
 
 from aramaic_script_converter import to_hebrew
 from peshitta_reading_source import load_verses, paired_text, scripture_importer
@@ -395,13 +397,37 @@ class ShippedPeshittaTests(unittest.TestCase):
         self.assertEqual([(row['chapter'],row['verse']) for row in rows],
                          [(42,n) for n in [1,2,3,5,6,12,13,14,15,16]])
         self.assertEqual(self.payload['passageBooks'][key]['peshitta-1905'], 'JOB')
-        source=next(row for row in self.lock['sources'] if row['id']=='peshitta-eu-2020-job-42')
-        direct=builder.load_source(source)['JOB',42]
-        self.assertEqual([row['transliteratedText'] for row in rows], [direct[row['verse']] for row in rows])
+        # The format job is offline: verify the shipped passage against the committed
+        # immutable Bible, while the separate Bible job reproduces it from source HTML.
+        catalog = json.loads((builder.DATA / 'bible-catalog.json').read_text())
+        download = next(row for row in catalog['editions'] if row['id']=='peshitta-1905')
+        self.assertIn('Old Testament - publication of the Syriac Orthodox Patriarchate 2020',
+                      download['attribution'])
+        path = builder.ROOT / 'Shared/dist/bibles' / download['downloadURL'].rsplit('/', 1)[1]
+        raw = path.read_bytes()
+        self.assertEqual(len(raw), download['archiveByteCount'])
+        self.assertEqual(hashlib.sha256(raw).hexdigest(), download['archiveSHA256'])
+        with zipfile.ZipFile(path) as archive:
+            manifest = json.loads(archive.read('manifest.json'))
+            self.assertEqual(manifest['editionId'], download['id'])
+            self.assertEqual(manifest['revision'], download['revision'])
+            chapter = json.loads(archive.read('chapters/JOB/42.json'))
+        self.assertEqual((chapter['book'], chapter['chapter']), ('JOB', 42))
+        units = {row['verse']:row for row in chapter['verses']}
+        self.assertIn(17, units, 'The source ending remains outside the appointed passage')
+        self.assertEqual(rows, [units[number] for number in [1,2,3,5,6,12,13,14,15,16]])
         edition=next(row for row in self.lock['editions'] if row['id']=='peshitta-1905')
-        _,corpora=builder.load_pinned_corpora()
+        # An out-of-scope calendar must fail before any corpus is loaded or mapped.
         with self.assertRaisesRegex(builder.Unavailable, 'calendar context'):
-            builder.resolve(key, {'roman','syriac'},edition,corpora[edition['id']])
+            builder.resolve(key, {'roman','syriac'},edition,{})
+
+    def test_cached_october_third_job_matches_primary_html(self):
+        source=next(row for row in self.lock['sources'] if row['id']=='peshitta-eu-2020-job-42')
+        if not (builder.CACHE / source['cache']).is_file():
+            self.skipTest('Primary Job HTML is not cached; committed archive regression still runs')
+        direct=builder.load_source(source)['JOB',42]
+        rows=self.payload['passages']['daily|Job 42:1–3; 42:5–6; 42:12–16']['peshitta-1905']
+        self.assertEqual([row['transliteratedText'] for row in rows], [direct[row['verse']] for row in rows])
 
 
 if __name__ == "__main__":

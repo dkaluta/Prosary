@@ -79,7 +79,13 @@ public class SaintDescriptionTests
             TodayInfoStore.SelectedCalendarId = "roman";
             today.RefreshToday();
             Assert.False(today.IsSaintDescriptionsExpanded);
-            Assert.Empty(today.SaintDescriptions);
+            // This fixed date has sourced French Guardian Angels prose. A calendar
+            // change resets disclosure state without suppressing available text.
+            var french = Assert.Single(today.SaintDescriptions);
+            Assert.Equal("The Holy Guardian Angels", french.Identity);
+            Assert.Equal("Saints anges gardiens", french.Title);
+            Assert.True(french.HasSource);
+            Assert.True(french.HasCredit);
             today.IsSaintDescriptionsExpanded = true;
             AppSettings.SetShowTodayFeast(false);
             today.RefreshToday();

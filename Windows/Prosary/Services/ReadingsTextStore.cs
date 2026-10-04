@@ -1,5 +1,6 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using System.Runtime.InteropServices;
 
 namespace Prosary.Services;
 
@@ -50,7 +51,7 @@ public sealed class ReadingsTextStore
     public static ReadingsTextStore Default { get; } = new(() =>
         File.ReadAllText(Path.Combine(AppContext.BaseDirectory, "Data", "readings-texts.json")),
         () => File.ReadAllText(Path.Combine(AppContext.BaseDirectory, "Data", "readings-editions.json")),
-        BibleLibraryStore.Default);
+        bibleStoreFactory: () => BibleLibraryStore.Default);
 
     private sealed record Corpus(int SchemaVersion, List<ScriptureEdition>? Editions,
         Dictionary<string, Dictionary<string, List<ScriptureVerse>>>? Passages,
@@ -60,12 +61,15 @@ public sealed class ReadingsTextStore
     private static readonly JsonSerializerOptions Options = new(JsonSerializerDefaults.Web);
     private readonly Lazy<Corpus> _corpus;
     private readonly Lazy<IReadOnlyList<ScriptureEdition>> _editions;
-    private readonly BibleLibraryStore? _bibleStore;
+    private readonly Func<BibleLibraryStore?> _bibleStoreFactory;
     private static Corpus Empty => new(1, [], [], []);
 
-    public ReadingsTextStore(Func<string> readJson, Func<string>? readEditionsJson = null, BibleLibraryStore? bibleStore = null)
+    public ReadingsTextStore(Func<string> readJson, Func<string>? readEditionsJson = null,
+        BibleLibraryStore? bibleStore = null, Func<BibleLibraryStore?>? bibleStoreFactory = null)
     {
-        _bibleStore = bibleStore;
+        // Bundled metadata and passages work without package identity. Resolve the
+        // optional installed library only when expanding a reviewed passage.
+        _bibleStoreFactory = bibleStoreFactory ?? (() => bibleStore);
         Corpus Read(Func<string> read)
         {
             try
@@ -138,15 +142,18 @@ public sealed class ReadingsTextStore
     public async Task<ScripturePassage?> LoadPassageAsync(string scope, string rawCitation, string editionId)
     {
         var passage = LoadPassage(scope, rawCitation, editionId);
-        if (passage is null || _bibleStore is null
+        if (passage is null
             || _corpus.Value.PassageBooks?.TryGetValue($"{scope}|{rawCitation}", out var books) != true
             || !books.TryGetValue(editionId, out var book)) return passage;
         try
         {
-            var rows = await _bibleStore.LoadReviewedPassageAsync(editionId, book, passage.Verses);
+            var bibleStore = _bibleStoreFactory();
+            if (bibleStore is null) return passage;
+            var rows = await bibleStore.LoadReviewedPassageAsync(editionId, book, passage.Verses);
             return passage with { Verses = rows };
         }
-        catch (Exception error) when (error is IOException or UnauthorizedAccessException or JsonException or InvalidDataException)
+        catch (Exception error) when (error is IOException or UnauthorizedAccessException or JsonException
+            or InvalidDataException or InvalidOperationException or COMException)
         {
             return passage;
         }

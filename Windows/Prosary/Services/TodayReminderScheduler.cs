@@ -1,5 +1,6 @@
 using Prosary.Localization;
 using Prosary.Models;
+using System.Runtime.InteropServices;
 using Windows.Data.Xml.Dom;
 using Windows.UI.Notifications;
 
@@ -7,13 +8,25 @@ namespace Prosary.Services;
 
 public static class TodayReminderScheduler
 {
-    public static void Refresh()
+    public static void Refresh() => Refresh(ToastNotificationManager.CreateToastNotifier);
+
+    internal static void Refresh(Func<ToastNotifier> createNotifier)
     {
-        var notifier = ToastNotificationManager.CreateToastNotifier();
-        foreach (var old in notifier.GetScheduledToastNotifications().Where(item => item.Group == "prosary-today").ToList())
-            notifier.RemoveFromSchedule(old);
-        if (AppSettings.ReadingsReminderEnabled) Schedule("readings", AppSettings.ReadingsReminderMinutes);
-        if (AppSettings.SaintReminderEnabled) Schedule("saints", AppSettings.SaintReminderMinutes);
+        try
+        {
+            var notifier = createNotifier();
+            // Disabled reminders must still remove previously scheduled deliveries.
+            foreach (var old in notifier.GetScheduledToastNotifications().Where(item => item.Group == "prosary-today").ToList())
+                notifier.RemoveFromSchedule(old);
+            if (AppSettings.ReadingsReminderEnabled) Schedule(notifier, "readings", AppSettings.ReadingsReminderMinutes);
+            if (AppSettings.SaintReminderEnabled) Schedule(notifier, "saints", AppSettings.SaintReminderMinutes);
+        }
+        catch (Exception error) when (error is COMException or InvalidOperationException)
+        {
+            // An unpackaged host or unavailable Windows notification service must
+            // not prevent settings from opening. Preserve preferences for retry.
+            System.Diagnostics.Debug.WriteLine($"[Today reminders] Notifications unavailable: {error}");
+        }
     }
 
     public static string SaintBody(FeastDay feast, string calendarId, string language)
@@ -24,9 +37,8 @@ public static class TodayReminderScheduler
                 new[] { item.Title, item.Text, item.Credit }.Where(text => !string.IsNullOrWhiteSpace(text)))));
     }
 
-    private static void Schedule(string kind, int minutes)
+    private static void Schedule(ToastNotifier notifier, string kind, int minutes)
     {
-        var notifier = ToastNotificationManager.CreateToastNotifier();
         var language = UiLanguageCatalog.Current;
         foreach (var time in LocalReminderTime.NextOccurrences(minutes / 60, minutes % 60, 30))
         {
