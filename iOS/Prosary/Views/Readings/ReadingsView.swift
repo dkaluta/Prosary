@@ -10,6 +10,7 @@ struct DailyReadingsView: View {
   @AppStorage("showTodayTorahPortion") private var showsTorah = false
   @AppStorage("expandReadingsByDefault") private var expandReadingsByDefault = false
   @Binding var dateSelection: MacTodayDateSelection
+  @Binding var mode: String
   @State private var showsDatePicker = false
   @State private var showsOptions = false
   @State private var readings: [ReadingCitation] = []
@@ -41,6 +42,7 @@ struct DailyReadingsView: View {
   var body: some View {
     ScrollView {
       VStack(alignment: .leading, spacing: 24) {
+        ReadingModeSelector(mode: $mode)
         if usesDateToolbar {
           Text(calendarName)
             .font(.caption)

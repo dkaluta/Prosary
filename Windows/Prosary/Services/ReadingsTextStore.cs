@@ -49,19 +49,23 @@ public sealed class ReadingsTextStore
 {
     public static ReadingsTextStore Default { get; } = new(() =>
         File.ReadAllText(Path.Combine(AppContext.BaseDirectory, "Data", "readings-texts.json")),
-        () => File.ReadAllText(Path.Combine(AppContext.BaseDirectory, "Data", "readings-editions.json")));
+        () => File.ReadAllText(Path.Combine(AppContext.BaseDirectory, "Data", "readings-editions.json")),
+        BibleLibraryStore.Default);
 
     private sealed record Corpus(int SchemaVersion, List<ScriptureEdition>? Editions,
         Dictionary<string, Dictionary<string, List<ScriptureVerse>>>? Passages,
-        HashSet<string>? WholeVersePassages, JsonElement PassageSources = default);
+        HashSet<string>? WholeVersePassages, JsonElement PassageSources = default,
+        Dictionary<string, Dictionary<string, string>>? PassageBooks = null);
 
     private static readonly JsonSerializerOptions Options = new(JsonSerializerDefaults.Web);
     private readonly Lazy<Corpus> _corpus;
     private readonly Lazy<IReadOnlyList<ScriptureEdition>> _editions;
+    private readonly BibleLibraryStore? _bibleStore;
     private static Corpus Empty => new(1, [], [], []);
 
-    public ReadingsTextStore(Func<string> readJson, Func<string>? readEditionsJson = null)
+    public ReadingsTextStore(Func<string> readJson, Func<string>? readEditionsJson = null, BibleLibraryStore? bibleStore = null)
     {
+        _bibleStore = bibleStore;
         Corpus Read(Func<string> read)
         {
             try
@@ -72,7 +76,7 @@ public sealed class ReadingsTextStore
                     edition is not null && !string.IsNullOrWhiteSpace(edition.Id) && !string.IsNullOrWhiteSpace(edition.LanguageCode)
                     && !string.IsNullOrWhiteSpace(edition.Name) && !string.IsNullOrWhiteSpace(edition.Attribution)
                     && edition.SourceUri is not null).DistinctBy(edition => edition.Id).ToList();
-                if (!ValidSourceTable(corpus, editions)) return Empty;
+                if (!ValidSourceTable(corpus, editions) || !ValidBookTable(corpus)) return Empty;
                 return corpus with { Editions = editions, Passages = corpus.Passages ?? [], WholeVersePassages = corpus.WholeVersePassages ?? [] };
             }
             catch (Exception error) when (error is IOException or UnauthorizedAccessException or JsonException or NotSupportedException)
@@ -129,6 +133,37 @@ public sealed class ReadingsTextStore
             }
         }
         return new ScripturePassage(verses, _corpus.Value.WholeVersePassages?.Contains(key) == true, source);
+    }
+
+    public async Task<ScripturePassage?> LoadPassageAsync(string scope, string rawCitation, string editionId)
+    {
+        var passage = LoadPassage(scope, rawCitation, editionId);
+        if (passage is null || _bibleStore is null
+            || _corpus.Value.PassageBooks?.TryGetValue($"{scope}|{rawCitation}", out var books) != true
+            || !books.TryGetValue(editionId, out var book)) return passage;
+        try
+        {
+            var rows = await _bibleStore.LoadReviewedPassageAsync(editionId, book, passage.Verses);
+            return passage with { Verses = rows };
+        }
+        catch (Exception error) when (error is IOException or UnauthorizedAccessException or JsonException or InvalidDataException)
+        {
+            return passage;
+        }
+    }
+
+    private static bool ValidBookTable(Corpus corpus)
+    {
+        if (corpus.PassageBooks is null) return true;
+        return corpus.PassageBooks.All(entry => entry.Value is { Count: > 0 }
+            && entry.Value.All(book => corpus.Passages?.TryGetValue(entry.Key, out var versions) == true
+                && versions.ContainsKey(book.Key) && !string.IsNullOrWhiteSpace(book.Value)
+                && System.Text.RegularExpressions.Regex.IsMatch(book.Value, "^[A-Z0-9]{3}$")
+                && (corpus.PassageSources.ValueKind != JsonValueKind.Object
+                    || !corpus.PassageSources.TryGetProperty(entry.Key, out var sources)
+                    || !sources.TryGetProperty(book.Key, out var source)
+                    || source.ValueKind == JsonValueKind.Object && source.TryGetProperty("book", out var actual)
+                        && actual.ValueKind == JsonValueKind.String && actual.GetString() == book.Value)));
     }
 
     private static bool ValidSourceTable(Corpus corpus, IReadOnlyList<ScriptureEdition> editions)

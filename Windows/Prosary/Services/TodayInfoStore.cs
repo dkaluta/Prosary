@@ -279,6 +279,14 @@ public static class TodayInfoStore
         return _feastsByDay.GetValueOrDefault(date.ToString("yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture));
     }
 
+    public static IReadOnlyList<(DateOnly Date, FeastDay Feast)> FeastsAndSolemnities()
+    {
+        EnsureFeastsLoaded();
+        return _feastsByDay.Where(entry => entry.Value.Rank is "Solemnity" or "Feast" or "Great Feast" or "1st Class" or "2nd Class")
+            .Select(entry => (Date: DateOnly.ParseExact(entry.Key, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture), Feast: entry.Value))
+            .OrderBy(entry => entry.Date).ToList();
+    }
+
     public static PopeIntention? Intention(DateOnly date)
     {
         EnsureIntentionsLoaded();

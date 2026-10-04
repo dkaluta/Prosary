@@ -49,8 +49,6 @@ import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.semantics.semantics
-import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.LayoutDirection
@@ -172,6 +170,7 @@ internal fun BibleScreen(
 @Composable
 private fun BibleInstalledReader(edition: BibleEdition, library: BibleLibrary, modifier: Modifier = Modifier) {
     val context = LocalContext.current
+    val interfaceDirection = LocalLayoutDirection.current
     var selectedBook by rememberSaveable { mutableStateOf<String?>(null) }
     var selectedChapter by rememberSaveable { mutableStateOf<Int?>(null) }
     var scriptOverride by rememberSaveable { mutableStateOf<String?>(null) }
@@ -201,7 +200,7 @@ private fun BibleInstalledReader(edition: BibleEdition, library: BibleLibrary, m
         FlowRow(Modifier.fillMaxWidth().padding(horizontal = 8.dp), horizontalArrangement = Arrangement.spacedBy(4.dp)) {
             TextButton(onClick = { picker = "book" }, modifier = Modifier.testTag("bibleBook")) { Text(book.displayedName(script)) }
             TextButton(onClick = { picker = "chapter" }, modifier = Modifier.testTag("bibleChapter")) {
-                Text(ReadingChapterHeading.label(context, info.number, edition.languageCode, script))
+                Text(info.canonicalReference ?: ReadingChapterHeading.label(context, info.number, edition.languageCode, script))
             }
             TextButton(onClick = { picker = "verse" }, enabled = chapter != null, modifier = Modifier.testTag("bibleVerse")) {
                 Text(stringResource(R.string.bible_choose_verse))
@@ -212,12 +211,8 @@ private fun BibleInstalledReader(edition: BibleEdition, library: BibleLibrary, m
                 Icon(Icons.AutoMirrored.Filled.KeyboardArrowLeft, stringResource(R.string.bible_previous_chapter))
             }
             if (readingEdition.hasAramaicScripts) {
-                val usesSyriac = script == "Syrc"
-                val currentScript = stringResource(if (usesSyriac) R.string.settings_script_syriac else R.string.settings_script_hebrew)
-                TextButton(onClick = { scriptOverride = if (usesSyriac) "Hebr" else "Syrc" },
-                    modifier = Modifier.weight(1f).testTag("bibleScript").semantics { stateDescription = currentScript }) {
-                    Text(stringResource(if (usesSyriac) R.string.settings_script_hebrew else R.string.settings_script_syriac))
-                }
+                AramaicScriptPicker(script, onSelect = { scriptOverride = it },
+                    modifier = Modifier.weight(1f).testTag("bibleScript"))
             } else Box(Modifier.weight(1f))
             IconButton(onClick = { next?.let(::navigate) }, enabled = next != null, modifier = Modifier.testTag("bibleNextChapter")) {
                 Icon(Icons.AutoMirrored.Filled.KeyboardArrowRight, stringResource(R.string.bible_next_chapter))
@@ -248,9 +243,9 @@ private fun BibleInstalledReader(edition: BibleEdition, library: BibleLibrary, m
                                         Text(introduction, style = PrayerTypography.styleForText(introduction, isScripture = true),
                                             modifier = Modifier.fillMaxWidth().testTag("bibleIntroduction"))
                                     }
-                                    DisableSelection { Text(ReadingChapterHeading.label(context, info.number, edition.languageCode, script),
+                                    DisableSelection { Text(info.canonicalReference ?: ReadingChapterHeading.label(context, info.number, edition.languageCode, script),
                                         style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold,
-                                        fontStyle = FontStyle.Normal, modifier = Modifier.fillMaxWidth()) }
+                                        fontStyle = FontStyle.Normal, modifier = Modifier.fillMaxWidth().testTag("bibleChapterHeading")) }
                                 }
                             }
                         }
@@ -269,18 +264,21 @@ private fun BibleInstalledReader(edition: BibleEdition, library: BibleLibrary, m
                                                 color = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.fillMaxWidth())
                                         }
                                         else -> {
-                                            val label = verse?.let { unit ->
+                                            val sourceLabel = verse?.let { unit ->
                                                 if (unit.chapter == info.number) unit.verseLabel
                                                 else BibleNavigation.sourceLabel(unit, info.number) { ReadingChapterHeading.number(it, edition.languageCode, script) }
                                             } ?: item.block.printedLabel
-                                            val display = if (label == null) text else "\u2068$label\u2069  $text"
+                                            val usesPrintedLabels = verse != null && info.canonicalReference != null
+                                            val display = if (sourceLabel == null || usesPrintedLabels) text else "\u2068$sourceLabel\u2069  $text"
                                             Text(display, style = PrayerTypography.styleForText(text, isScripture = true),
                                                 modifier = Modifier.fillMaxWidth().then(if (verse != null) Modifier.testTag("bibleVerse.${verse.verse}") else Modifier))
-                                            if (verse != null) item.block.printedLabel?.let { printed -> DisableSelection {
-                                                Text(stringResource(R.string.bible_printed_label, "\u2068$printed\u2069"),
-                                                    style = MaterialTheme.typography.labelMedium,
-                                                    modifier = Modifier.testTag("biblePrintedLabel.${item.id}"))
-                                            } }
+                                            if (verse != null) (item.block.printedLabel ?: sourceLabel.takeIf { usesPrintedLabels })?.let { printed ->
+                                                DisableSelection { CompositionLocalProvider(LocalLayoutDirection provides interfaceDirection) {
+                                                    Text(stringResource(R.string.bible_printed_label, "\u2068$printed\u2069"),
+                                                        style = MaterialTheme.typography.labelMedium,
+                                                        modifier = Modifier.testTag("biblePrintedLabel.${item.id}"))
+                                                } }
+                                            }
                                         }
                                     }
                                     ScriptureSourceNotes(item.sourceNotes)
@@ -302,7 +300,7 @@ private fun BibleInstalledReader(edition: BibleEdition, library: BibleLibrary, m
         "book" -> BibleChoiceDialog(stringResource(R.string.bible_choose_book), edition.books.map { it.id to it.displayedName(script) },
             onDismiss = { picker = null }, onSelect = { id -> navigate(BibleNavigation.resolve(edition, id, null)) })
         "chapter" -> BibleChoiceDialog(stringResource(R.string.bible_choose_chapter), book.chapters.map {
-            it.number.toString() to ReadingChapterHeading.label(context, it.number, edition.languageCode, script)
+            it.number.toString() to (it.canonicalReference ?: ReadingChapterHeading.label(context, it.number, edition.languageCode, script))
         }, onDismiss = { picker = null }, onSelect = { number -> navigate(BibleNavigation.Position(book.id, number.toInt())) })
         "verse" -> BibleChoiceDialog(stringResource(R.string.bible_choose_verse), bibleVerseChoices(chapter, edition, script),
             onDismiss = { picker = null }, onSelect = { choice ->
@@ -320,16 +318,23 @@ private fun BibleInstalledReader(edition: BibleEdition, library: BibleLibrary, m
 @Composable
 private fun bibleVerseChoices(chapter: BibleDisplayChapter?, edition: BibleEdition, script: String): List<Pair<String, String>> {
     if (chapter == null) return emptyList()
+    val usesPrintedLabels = edition.books.first { it.id == chapter.chapter.book }.chapters
+        .first { it.number == chapter.chapter.chapter }.canonicalReference != null
+    @Composable fun numericLabel(value: String): String = if (usesPrintedLabels)
+        stringResource(R.string.bible_printed_label, "\u2068$value\u2069") else value
     if (chapter.chapter.contentBlocks == null) return chapter.items.flatMap { item ->
         val verse = requireNotNull(item.primary)
-        (verse.verse..verse.lastVerse).map { it.toString() to ReadingChapterHeading.number(it, edition.languageCode, script) }
+        (verse.verse..verse.lastVerse).map { it.toString() to numericLabel(
+            if (usesPrintedLabels) verse.verseLabel else ReadingChapterHeading.number(it, edition.languageCode, script)) }
     }
     return chapter.items.mapIndexedNotNull { index, item ->
         val primary = item.primary
         when (item.block.kind) {
             "verse" -> {
                 val unit = requireNotNull(primary)
-                item.id to BibleNavigation.sourceLabel(unit, chapter.chapter.chapter) { ReadingChapterHeading.number(it, edition.languageCode, script) }
+                val sourceLabel = if (usesPrintedLabels && unit.chapter == chapter.chapter.chapter) unit.verseLabel
+                    else BibleNavigation.sourceLabel(unit, chapter.chapter.chapter) { ReadingChapterHeading.number(it, edition.languageCode, script) }
+                item.id to numericLabel(if (usesPrintedLabels) item.block.printedLabel ?: sourceLabel else sourceLabel)
             }
             "witness" -> {
                 val literal = "\u2068${item.block.printedLabel}\u2069"

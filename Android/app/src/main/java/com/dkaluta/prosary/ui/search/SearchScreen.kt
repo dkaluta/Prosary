@@ -9,14 +9,10 @@ import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material3.Button
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.Icon
@@ -28,12 +24,10 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
@@ -47,26 +41,17 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import com.dkaluta.prosary.R
-import com.dkaluta.prosary.content.prayerpack.PrayerPackStore
-import com.dkaluta.prosary.content.repository.RepositoryBundle
-import com.dkaluta.prosary.content.repository.RepositoryClient
 import com.dkaluta.prosary.typography.HebrewDisplayText
 import com.dkaluta.prosary.ui.shared.DevotionDirectory
 import com.dkaluta.prosary.ui.shared.LaunchTarget
-import kotlinx.coroutines.launch
 
-/** One search across everything prayable: devotions on this device (opened in place) and the
- * prayers.prosary.app catalog (installed in place). The repository half loads once and
- * degrades silently offline, leaving local search fully working. Mirrors iOS's SearchTabView. */
+/** Search prayers already available on this device. Browse owns the installable catalogue. */
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class)
 @Composable
 fun SearchScreen(onLaunch: (LaunchTarget) -> Unit) {
-    val scope = rememberCoroutineScope()
     val context = LocalContext.current
     var query by rememberSaveable { mutableStateOf("") }
     var selectedCategory by rememberSaveable { mutableStateOf<String?>(null) }
-    var repoBundles by remember { mutableStateOf<List<RepositoryBundle>>(emptyList()) }
-    var busyIds by remember { mutableStateOf(setOf<String>()) }
     var generation by remember { mutableIntStateOf(0) }
     val lifecycleOwner = LocalLifecycleOwner.current
     DisposableEffect(lifecycleOwner) {
@@ -77,25 +62,15 @@ fun SearchScreen(onLaunch: (LaunchTarget) -> Unit) {
         onDispose { lifecycleOwner.lifecycle.removeObserver(observer) }
     }
 
-    LaunchedEffect(Unit) {
-        repoBundles = runCatching { RepositoryClient.fetchCatalog() }.getOrDefault(emptyList())
-    }
-
     @Suppress("UNUSED_EXPRESSION") generation
     val localListings = DevotionDirectory.all(context)
-    val categories = SearchFilter.categories(localListings.map { it.tags } + repoBundles.map { it.tags })
+    val categories = SearchFilter.categories(localListings.map { it.tags })
         .sortedBy { CategoryLabels.label(it, context) }
     val categoryLabel: (String) -> String = { CategoryLabels.label(it, context) }
     val localMatches = localListings.filter { listing ->
         SearchFilter.matches(query, selectedCategory, listing.tags,
             listOfNotNull(listing.title, listing.interfaceTitle), categoryLabel)
     }
-    val installed = PrayerPackStore.customDevotionIds().toSet()
-    val communityMatches = repoBundles.filter { bundle ->
-        bundle.id !in installed && SearchFilter.matches(query, selectedCategory, bundle.tags,
-            listOf(bundle.name, bundle.author, bundle.description), categoryLabel)
-    }
-
     // Tints the pinned bar once content scrolls beneath it — without this the bar is
     // invisible and scrolled content clips at a dead band around the floating title.
     val topBarScroll = TopAppBarDefaults.pinnedScrollBehavior()
@@ -170,43 +145,6 @@ fun SearchScreen(onLaunch: (LaunchTarget) -> Unit) {
             if (localMatches.isEmpty()) {
                 item(key = "localEmpty") {
                     Text(stringResource(R.string.search_no_device_match), color = MaterialTheme.colorScheme.onSurfaceVariant)
-                }
-            }
-            if (communityMatches.isNotEmpty()) {
-                item(key = "communityHeader") {
-                    Text(stringResource(R.string.search_from_community), style = MaterialTheme.typography.titleSmall, color = MaterialTheme.colorScheme.primary)
-                }
-                for (bundle in communityMatches) {
-                    item(key = "community.${bundle.id}") {
-                        Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.fillMaxWidth()) {
-                            Column(Modifier.weight(1f)) {
-                                Text(
-                                    HebrewDisplayText.unpoint(bundle.name),
-                                    style = MaterialTheme.typography.bodyLarge,
-                                )
-                                Text(
-                                    "${bundle.author} · ${bundle.tags.joinToString(" · ") { CategoryLabels.label(it, context) }}",
-                                    style = MaterialTheme.typography.bodySmall,
-                                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                                )
-                            }
-                            Spacer(Modifier.width(8.dp))
-                            if (bundle.id in busyIds) {
-                                CircularProgressIndicator(Modifier.width(24.dp))
-                            } else {
-                                Button(onClick = {
-                                    busyIds = busyIds + bundle.id
-                                    scope.launch {
-                                        runCatching {
-                                            PrayerPackStore.installPack(RepositoryClient.downloadBundle(bundle))
-                                        }
-                                        busyIds = busyIds - bundle.id
-                                        generation++
-                                    }
-                                }) { Text(stringResource(R.string.common_install)) }
-                            }
-                        }
-                    }
                 }
             }
         }

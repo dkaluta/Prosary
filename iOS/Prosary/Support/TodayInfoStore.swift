@@ -296,6 +296,21 @@ enum TodayInfoStore {
     return feastsByDay[key(for: date, format: "yyyy-MM-dd")]
   }
 
+  /// Published dates retain their calendar's own rank; no precedence is inferred at runtime.
+  static func feastsAndSolemnities() -> [(date: Date, feast: FeastDay)] {
+    ensureFeastsLoaded()
+    let ranks: Set<String> = ["Solemnity", "Feast", "Great Feast", "1st Class", "2nd Class"]
+    let calendar = Calendar(identifier: .gregorian)
+    return feastsByDay.sorted { $0.key < $1.key }.compactMap { key, feast in
+      guard ranks.contains(feast.rank) else { return nil }
+      let components = key.split(separator: "-").compactMap { Int($0) }
+      guard components.count == 3,
+            let date = calendar.date(from: DateComponents(year: components[0], month: components[1],
+                                                          day: components[2], hour: 12)) else { return nil }
+      return (date, feast)
+    }
+  }
+
   static func intention(for date: Date = Date()) -> PopeIntention? {
     ensureIntentionsLoaded()
     return intentionsByMonth[key(for: date, format: "yyyy-MM")]

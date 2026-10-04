@@ -33,12 +33,12 @@ import com.dkaluta.prosary.content.today.SaintDescription
 
 /** The caller supplies only descriptions in the interface language for the Syriac calendar. */
 @Composable
-fun SaintDescriptionsCard(descriptions: List<SaintDescription>, dateKey: String, language: String) {
+fun SaintDescriptionsCard(descriptions: List<SaintDescription>, dateKey: String, language: String, inCard: Boolean = true) {
     if (descriptions.isEmpty()) return
     var expanded by rememberSaveable(dateKey, language) { mutableStateOf(false) }
     val uriHandler = LocalUriHandler.current
     val expansionLabel = stringResource(if (expanded) R.string.readings_hide_text else R.string.readings_show_text)
-    Card(Modifier.fillMaxWidth().testTag("saintDescriptions")) {
+    val content: @Composable () -> Unit = {
         Column(Modifier.padding(12.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
             TextButton(onClick = { expanded = !expanded }, modifier = Modifier.fillMaxWidth()
                 .testTag("saintDescriptionsToggle").semantics { stateDescription = expansionLabel }) {
@@ -67,4 +67,6 @@ fun SaintDescriptionsCard(descriptions: List<SaintDescription>, dateKey: String,
             }
         }
     }
+    if (inCard) Card(Modifier.fillMaxWidth().testTag("saintDescriptions")) { content() }
+    else Column(Modifier.fillMaxWidth().testTag("saintDescriptions")) { content() }
 }

@@ -22,14 +22,17 @@ import kotlinx.serialization.json.decodeFromJsonElement
 import kotlinx.serialization.json.jsonObject
 
 @Serializable
-data class BibleChapterInfo(val number: Int, val verseCount: Int, val isComplete: Boolean)
+@OptIn(ExperimentalSerializationApi::class)
+data class BibleChapterInfo(val number: Int, val verseCount: Int, val isComplete: Boolean,
+    @EncodeDefault(EncodeDefault.Mode.NEVER) val canonicalReference: String? = null)
 
 @Serializable
 @OptIn(ExperimentalSerializationApi::class)
 data class BibleBook(val id: String, val name: String, val chapters: List<BibleChapterInfo>,
     val transliteratedName: String? = null, val attribution: String? = null, val sourceURL: String? = null,
     val introduction: String? = null,
-    @EncodeDefault(EncodeDefault.Mode.NEVER) val addressRoutes: List<BibleAddressRoute>? = null) {
+    @EncodeDefault(EncodeDefault.Mode.NEVER) val addressRoutes: List<BibleAddressRoute>? = null,
+    @EncodeDefault(EncodeDefault.Mode.NEVER) val canonicalReference: String? = null) {
     fun displayedName(script: String): String = if (script == "Syrc") transliteratedName ?: name else name
 }
 
@@ -102,6 +105,19 @@ class BibleStore(private val directory: File) {
     fun displayChapter(edition: BibleEdition, book: String, number: Int): BibleDisplayChapter? = synchronized(lock) {
         val selected = chapter(edition, book, number) ?: return@synchronized null
         runCatching { BibleSourceStructure.resolve(selected) { chapter(edition, book, it) } }.getOrNull()
+    }
+
+    /** Read only reviewed whole units; another revision cannot change an appointment's source. */
+    fun reviewedPassage(editionId: String, book: String, expected: List<ReadingVerse>): List<ReadingVerse>? = synchronized(lock) {
+        if (expected.isEmpty()) return@synchronized null
+        val edition = installedEdition(editionId) ?: return@synchronized null
+        val chapters = expected.map { it.chapter }.distinct().associateWith {
+            chapter(edition, book, it) ?: return@synchronized null
+        }
+        expected.map { reviewed ->
+            chapters.getValue(reviewed.chapter).verses.firstOrNull { it.verse == reviewed.verse }
+                ?.takeIf { it == reviewed } ?: return@synchronized null
+        }
     }
 
     fun target(edition: BibleEdition, book: String, chapter: Int, verse: Int): BibleTarget? = synchronized(lock) {
@@ -246,6 +262,10 @@ class BibleStore(private val directory: File) {
         val books = value["books"] as? JsonArray ?: throw IllegalArgumentException("Missing books")
         books.forEach { element ->
             val book = element.jsonObject
+            if ("canonicalReference" in book) strictString(book, "canonicalReference")
+            (book["chapters"] as? JsonArray)?.forEach { chapter ->
+                if ("canonicalReference" in chapter.jsonObject) strictString(chapter.jsonObject, "canonicalReference")
+            }
             if ("addressRoutes" in book) {
                 val routes = book["addressRoutes"] as? JsonArray ?: throw IllegalArgumentException("Invalid routes")
                 require(routes.isNotEmpty())
@@ -286,6 +306,7 @@ class BibleStore(private val directory: File) {
             for (book in edition.books) {
                 require(BOOK_ID.matches(book.id) && book.name.isNotBlank() && book.chapters.isNotEmpty())
                 require(book.introduction == null || book.introduction.isNotBlank())
+                require(book.canonicalReference == null || book.canonicalReference.isNotBlank())
                 book.addressRoutes?.let { routes ->
                     require(edition.archiveSchemaVersion == 3 && !edition.readingEdition().hasAramaicScripts && routes.isNotEmpty())
                     require(routes.map { it.chapter to it.verse }.distinct().size == routes.size)
@@ -298,6 +319,7 @@ class BibleStore(private val directory: File) {
                 var previous = 0
                 for (chapter in book.chapters) {
                     require(chapter.number > previous && chapter.number <= 1000 && chapter.verseCount in 1..1000)
+                    require(chapter.canonicalReference == null || chapter.canonicalReference.isNotBlank())
                     previous = chapter.number
                 }
             }

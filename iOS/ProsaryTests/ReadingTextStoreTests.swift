@@ -286,7 +286,9 @@ final class ReadingTextStoreTests: XCTestCase {
     let url = try XCTUnwrap(Bundle.main.url(forResource: "readings-texts", withExtension: "json"))
     let dataset = try JSONDecoder().decode(ReadingTextDataset.self, from: Data(contentsOf: url))
     let sources = try XCTUnwrap(dataset.passageSources)
-    XCTAssertEqual(sources.values.reduce(0) { $0 + $1.count }, 20)
+    XCTAssertEqual(sources.values.reduce(0) { $0 + $1.count }, 19)
+    // Wisdom 7 is reviewed for Maronite use, but also occurs in an unreviewed Roman 1962 context.
+    XCTAssertNil(dataset.passage(citation: "Wisdom 7:7–14", isTorah: false, editionID: "masoretic-delitzsch"))
     for (key, editions) in sources {
       let parts = key.split(separator: "|", maxSplits: 1).map(String.init)
       for (edition, source) in editions {
@@ -424,8 +426,9 @@ final class ReadingTextStoreTests: XCTestCase {
       XCTAssertEqual(verse.displayedText(script: "Syrc", edition: passage.edition), source)
       XCTAssertEqual(verse.displayedText(script: "Hebr", edition: passage.edition), verse.text)
     }
-    XCTAssertTrue(passage.verses.first?.transliteratedText?.hasPrefix("ܒܪܺܝܫܺܝܬ݂ ܒܪܳܐ") == true,
+    XCTAssertTrue(passage.verses.first?.transliteratedText?.hasPrefix("ܒܪܺܝܫܺܝܬ ܒܪܳܐ") == true,
                   "The source's consonants and vowel marks must survive native decoding")
+    XCTAssertTrue(passage.edition.attribution.contains("Old Testament - publication of the Syriac Orthodox Patriarchate 2020"))
     let unavailable = await store.passage(citation: "Psalm 23:1–3a; 23:3b–4; 23:5–5; 23:6–6",
                                           isTorah: false, editionID: "peshitta-1905")
     XCTAssertNil(unavailable, "Peshitta Psalm numbering remains unreviewed; no edition is substituted")

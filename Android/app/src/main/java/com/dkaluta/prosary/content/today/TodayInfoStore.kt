@@ -261,6 +261,16 @@ object TodayInfoStore {
         return feastsByDay[key(date, "yyyy-MM-dd")]
     }
 
+    /** Calendar dates and ranks remain canonical; only the presentation is localized. */
+    fun feastsAndSolemnities(): List<Pair<java.time.LocalDate, FeastDay>> {
+        ensureFeastsLoaded()
+        val ranks = setOf("Solemnity", "Feast", "Great Feast", "1st Class", "2nd Class")
+        return feastsByDay.mapNotNull { (date, feast) ->
+            if (feast.rank !in ranks) null
+            else runCatching { java.time.LocalDate.parse(date) to feast }.getOrNull()
+        }.sortedBy { it.first }
+    }
+
     fun intention(date: Date = Date()): PopeIntention? = intentionsByMonth[key(date, "yyyy-MM")]
 
     fun readings(date: Date = Date()): List<ReadingCitation> {

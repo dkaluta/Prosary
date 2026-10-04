@@ -8,7 +8,7 @@ using Prosary.ViewModels;
 
 namespace Prosary.Views;
 
-/// <summary>One search across local devotions and the repository — see
+/// <summary>Search across prayers available on this device — see
 /// <see cref="SearchViewModel"/>. No parameter.</summary>
 public sealed partial class SearchPage : Page
 {

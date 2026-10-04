@@ -65,7 +65,7 @@ class BibleLibraryTests(unittest.TestCase):
 
     def test_every_archive_and_verse_matches_pinned_sources(self):
         from peshitta_reading_source import paired_text
-        from peshitta_ot_semantic_review import reviewed_mapping
+        from peshitta_eu_source import reviewed_mapping
         from peshitta_supplied_ot import BOOKS
         allowed, _ = reviewed_mapping()
         for edition_id, edition in self.editions.items():
@@ -100,7 +100,10 @@ class BibleLibraryTests(unittest.TestCase):
                         self.assertTrue(book["name"].strip())
                         source_book = supplement.get(book["id"])
                         if source_book:
-                            self.assertEqual(book["name"], source_book["title"])
+                            placement = library.HEBREW_CATHOLIC_REFERENCES.get(book["id"])
+                            self.assertEqual(book["name"],
+                                f"{placement[0]} — {source_book['title']}" if placement else source_book["title"])
+                            self.assertEqual(book.get("canonicalReference"), placement[0] if placement else None)
                             for field in ("attribution", "sourceURL", "addressRoutes"):
                                 self.assertEqual(book.get(field), source_book.get(field))
                             opening = source_book.get("introduction")
@@ -111,8 +114,12 @@ class BibleLibraryTests(unittest.TestCase):
                         numbers = [row["number"] for row in book["chapters"]]
                         self.assertEqual(numbers, sorted(set(numbers)))
                         for chapter in book["chapters"]:
+                            if source_book:
+                                self.assertEqual(chapter.get("canonicalReference"),
+                                    placement[1][chapter["number"]] if placement else None)
                             key = book["id"], chapter["number"]
-                            self.assertNotIn(key, mapper.excluded_chapters)
+                            if edition_id != 'peshitta-1905' or key[0] not in BOOKS:
+                                self.assertNotIn(key, mapper.excluded_chapters)
                             chapter_path = f"chapters/{key[0]}/{key[1]}.json"
                             expected_paths.add(chapter_path)
                             chapter_bytes = archive.read(chapter_path)
@@ -148,8 +155,6 @@ class BibleLibraryTests(unittest.TestCase):
                                 original = corpus[key][row["verse"]]
                                 self.assertTrue(original.strip())
                                 if edition_id == "peshitta-1905":
-                                    if key[0] in BOOKS:
-                                        self.assertIn(ref, allowed)
                                     primary, secondary = paired_text(original)
                                     self.assertEqual(row["text"], primary)
                                     self.assertEqual(row["transliteratedText"], secondary)
@@ -164,8 +169,8 @@ class BibleLibraryTests(unittest.TestCase):
                 # An archive cannot quietly lose a permitted verse while still validating
                 # each retained row. Check the independently assembled allowed inventory.
                 expected_refs = {(book, chapter, verse) for (book, chapter), values in corpus.items()
-                    if (book, chapter) not in mapper.excluded_chapters for verse in values
-                    if edition_id != "peshitta-1905" or book not in BOOKS or (book, chapter, verse) in allowed}
+                    if (edition_id == 'peshitta-1905' and book in BOOKS or (book, chapter) not in mapper.excluded_chapters)
+                    for verse in values}
                 expected_refs.update((book["book"], chapter["number"], row["verse"])
                     for book in supplement.values() for chapter in book["chapters"] for row in chapter["verses"])
                 self.assertEqual(seen, expected_refs)
@@ -177,7 +182,7 @@ class BibleLibraryTests(unittest.TestCase):
         peshitta = self.editions["peshitta-1905"]
         exodus = next(book for book in peshitta["books"] if book["id"] == "EXO")
         for number in (12, 15):
-            self.assertFalse(next(chapter for chapter in exodus["chapters"] if chapter["number"] == number)["isComplete"])
+            self.assertTrue(next(chapter for chapter in exodus["chapters"] if chapter["number"] == number)["isComplete"])
 
     def test_full_native_books_are_available_beyond_daily_appointments(self):
         # This catches accidentally building the new viewer from daily snippets.
@@ -235,17 +240,81 @@ class HebrewSupplementBuildTests(unittest.TestCase):
         metadata = json.loads(catalog_bytes)["editions"][0]
         self.assertEqual(metadata["archiveSchemaVersion"], 3)
         book = next(book for book in metadata["books"] if book["id"] == "ESG")
-        self.assertEqual(book, {"id": "ESG", "name": source["title"],
+        self.assertEqual(book, {"id": "ESG", "name": f"אסתר — {source['title']}",
+            "canonicalReference": "אסתר",
             "attribution": source["attribution"], "sourceURL": source["sourceURL"],
             "introduction": source["introduction"], "addressRoutes": source["addressRoutes"],
-            "chapters": [{"number": 1, "verseCount": 2, "isComplete": False},
-                         {"number": 2, "verseCount": 1, "isComplete": True}]})
+            "chapters": [{"number": 1, "verseCount": 2, "isComplete": False,
+                          "canonicalReference": "אסתר A"},
+                         {"number": 2, "verseCount": 1, "isComplete": True,
+                          "canonicalReference": "אסתר B"}]})
         self.assertEqual(len(archives), 1)
         with zipfile.ZipFile(io.BytesIO(next(iter(archives.values())))) as archive:
             for chapter in source["chapters"]:
                 payload = json.loads(archive.read(f"chapters/ESG/{chapter['number']}.json"))
                 assert_supplement_chapter(self, payload, chapter, builder.preserve_divine_name_accents)
             self.assertEqual(json.loads(archive.read("manifest.json"))["schemaVersion"], 3)
+
+    def test_catholic_denotations_preserve_source_ids_numbers_and_text(self):
+        builder = library.reading_builder()
+        edition = {"id": "masoretic-delitzsch", "languageCode": "he", "name": "Fixture",
+                   "attribution": "Synthetic test", "sourceURL": "https://example.org/base"}
+        expected = {
+            "LJE": ("ברוך ו׳", {1: "ברוך ו׳"}),
+            "S3Y": ("דניאל ג׳", {1: "דניאל ג׳"}),
+            "SUS": ("דניאל י״ג", {1: "דניאל י״ג"}),
+            "BEL": ("דניאל י״ד", {1: "דניאל י״ד"}),
+            "ESG": ("אסתר", {1: "אסתר A", 2: "אסתר B", 3: "אסתר C",
+                              4: "אסתר C", 5: "אסתר D", 6: "אסתר E", 7: "אסתר F"}),
+        }
+        supplement = [{"book": code, "title": f"Source title {code}",
+                       "attribution": "Fixture translator", "sourceURL": "https://example.org/source",
+                       "chapters": [{"number": number, "isComplete": False,
+                                     "verses": [{"verse": 73, "text": f"Synthetic {code} {number}"}]}
+                                    for number in chapter_references]}
+                      for code, (_, chapter_references) in expected.items()]
+        with mock.patch.object(library, "reading_builder", return_value=builder), \
+             mock.patch.object(builder, "load_pinned_corpora", return_value=(
+                 {"editions": [edition]}, {edition["id"]: {("GEN", 1): {1: "Synthetic base"}}})), \
+             mock.patch.object(builder, "edition_mapper", return_value=SimpleNamespace(excluded_chapters=set())), \
+             mock.patch.object(library, "load_hebrew_supplement", return_value=(supplement, [])):
+            catalog_bytes, archives, _ = library.build()
+        metadata = json.loads(catalog_bytes)["editions"][0]
+        books = {book["id"]: book for book in metadata["books"]}
+        self.assertNotIn("canonicalReference", books["GEN"])
+        self.assertNotIn("canonicalReference", books["GEN"]["chapters"][0])
+        with zipfile.ZipFile(io.BytesIO(next(iter(archives.values())))) as archive:
+            self.assertEqual(json.loads(archive.read("manifest.json"))["books"], metadata["books"])
+            for source in supplement:
+                book = books[source["book"]]
+                reference, chapter_references = expected[source["book"]]
+                self.assertEqual(book["name"], f"{reference} — {source['title']}")
+                self.assertEqual(book["canonicalReference"], reference)
+                self.assertEqual(book["attribution"], source["attribution"])
+                self.assertEqual(book["sourceURL"], source["sourceURL"])
+                self.assertEqual([row["number"] for row in book["chapters"]], list(chapter_references))
+                for chapter, chapter_metadata in zip(source["chapters"], book["chapters"], strict=True):
+                    self.assertEqual(chapter_metadata["canonicalReference"], chapter_references[chapter["number"]])
+                    payload = json.loads(archive.read(f"chapters/{source['book']}/{chapter['number']}.json"))
+                    self.assertEqual(payload["book"], source["book"])
+                    self.assertEqual(payload["chapter"], chapter["number"])
+                    assert_supplement_chapter(self, payload, chapter, builder.preserve_divine_name_accents)
+                    self.assertEqual(payload["verses"][0]["verse"], 73)
+
+    def test_catholic_denotations_reject_unknown_source_chapters(self):
+        builder = library.reading_builder()
+        edition = {"id": "masoretic-delitzsch", "languageCode": "he", "name": "Fixture",
+                   "attribution": "Synthetic test", "sourceURL": "https://example.org/base"}
+        source = {"book": "SUS", "title": "Source title", "attribution": "Fixture translator",
+                  "sourceURL": "https://example.org/source",
+                  "chapters": [{"number": 2, "verses": [{"verse": 1, "text": "Synthetic"}]}]}
+        with mock.patch.object(library, "reading_builder", return_value=builder), \
+             mock.patch.object(builder, "load_pinned_corpora", return_value=(
+                 {"editions": [edition]}, {edition["id"]: {("GEN", 1): {1: "Synthetic base"}}})), \
+             mock.patch.object(builder, "edition_mapper", return_value=SimpleNamespace(excluded_chapters=set())), \
+             mock.patch.object(library, "load_hebrew_supplement", return_value=([source], [])):
+            with self.assertRaisesRegex(ValueError, "Unknown Catholic placement: SUS 2"):
+                library.build()
 
 
 if __name__ == "__main__":

@@ -4,6 +4,7 @@ import java.io.InputStream
 import java.net.URI
 import com.dkaluta.prosary.content.bible.BibleContentBlock
 import com.dkaluta.prosary.content.bible.BibleDisplayItem
+import com.dkaluta.prosary.content.bible.BibleStore
 import com.dkaluta.prosary.content.bible.strictFields
 import com.dkaluta.prosary.content.bible.strictString
 import com.dkaluta.prosary.models.LanguageCatalog
@@ -130,11 +131,12 @@ private data class ReadingTextFile(
     val passages: Map<String, Map<String, List<ReadingVerse>>> = emptyMap(),
     val wholeVersePassages: Set<String> = emptySet(),
     val passageSources: PassageSources = PassageSources(),
+    val passageBooks: Map<String, Map<String, String>> = emptyMap(),
 )
 
 /** Exact, edition-specific appointments authored by the shared generator. Runtime code never
  * parses a display citation or guesses a verse-number conversion. Open on an IO dispatcher. */
-class ReadingTextStore(private val openData: (String) -> InputStream?) {
+class ReadingTextStore(private val bibleStore: BibleStore? = null, private val openData: (String) -> InputStream?) {
     private val json = Json { ignoreUnknownKeys = true }
     @OptIn(ExperimentalSerializationApi::class)
     private fun load(name: String): ReadingTextFile? =
@@ -144,6 +146,11 @@ class ReadingTextStore(private val openData: (String) -> InputStream?) {
                 json.decodeFromStream<ReadingTextFile>(stream)
                     .takeIf { file -> file.schemaVersion == 1 && file.passageSources.entries.all { (key, sources) ->
                         sources.keys.all { it in file.passages[key].orEmpty() }
+                    } && file.passageBooks.all { (key, books) ->
+                        books.isNotEmpty() && books.all { (id, book) ->
+                            id in file.passages[key].orEmpty() && Regex("[A-Z0-9]{3}").matches(book)
+                                && (file.passageSources.entries[key]?.get(id)?.book?.let { it == book } ?: true)
+                        }
                     } }
             }
         }.getOrNull()
@@ -181,7 +188,10 @@ class ReadingTextStore(private val openData: (String) -> InputStream?) {
             verses.forEach { it.validateSourceNotes(paired = paired, ids = noteIds) }
             source?.validate(verses, paired, noteIds)
         }.isFailure) return null
-        return ReadingPassage(verses, includesWholeVerses = key in file.wholeVersePassages, source = source)
+        val installed = file.passageBooks[key]?.get(editionId)?.let { book ->
+            bibleStore?.reviewedPassage(editionId, book, verses)
+        }
+        return ReadingPassage(installed ?: verses, includesWholeVerses = key in file.wholeVersePassages, source = source)
     }
 
     companion object {

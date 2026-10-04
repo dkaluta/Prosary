@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Dispatching;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using Prosary.Localization;
 using Prosary.Models;
@@ -25,11 +26,23 @@ public sealed partial class DesktopTodayPage : Page
     public DesktopReadingsViewModel Readings { get; } = new();
     public string Title => _readingsOnly ? Loc.Tr("bible_daily_readings", "Daily Readings") : Loc.Tr("desktop_today", "Today");
     public bool ShowsReadingOptions => !_readingsOnly;
-    public bool ShowsDailySection => _readingsOnly || ViewModel.ShowsTodaySection;
+    public bool ShowsDailySection => _readingsOnly || ViewModel.ShowsTodayDay
+        || ShowsDailyReadings || ViewModel.ShowsTodayTorahPortion;
     public bool ShowsDailyReadings => _readingsOnly ? ViewModel.TodayReadings.Count > 0 : ViewModel.ShowsTodayReadings;
     public bool ShowsNoReadings => _readingsOnly && ViewModel.TodayReadings.Count == 0;
     public string NoReadingsText => Loc.Tr("bible_no_daily_readings", "No daily readings are available for this date.");
     public string OptionsLabel => Loc.Tr("SetTitle/Text", "Settings");
+    public Brush TodayCardBackground
+    {
+        get
+        {
+            var color = AppSettings.TodayCardColor;
+            if (color == "default") return (Brush)Application.Current.Resources["CardBackgroundFillColorDefaultBrush"];
+            var accent = AppColorPalette.Resolve(color).Accent(ActualTheme == ElementTheme.Dark);
+            accent.A = 28;
+            return new SolidColorBrush(accent);
+        }
+    }
 
     public DesktopTodayPage() : this(null, false) { }
 
@@ -45,6 +58,7 @@ public sealed partial class DesktopTodayPage : Page
         _dateTimer.Tick += (_, _) => RefreshForClock();
         Loaded += OnLoaded;
         Unloaded += OnUnloaded;
+        ActualThemeChanged += (_, _) => Bindings.Update();
     }
 
     protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -59,6 +73,7 @@ public sealed partial class DesktopTodayPage : Page
         ViewModel.PropertyChanged += OnTodayChanged;
         AppSettings.ReadingsEditionChanged += OnReadingEditionChanged;
         AppSettings.TypographyChanged += OnReadingTypographyChanged;
+        AppSettings.TodayCardColorChanged += OnTodayCardColorChanged;
         SynchronizeOptions();
         RefreshForClock();
         Readings.Open(ViewModel);
@@ -81,6 +96,7 @@ public sealed partial class DesktopTodayPage : Page
         Options.ShowTodayReadings = AppSettings.ShowTodayReadings;
         Options.ExpandReadingsByDefault = AppSettings.ExpandReadingsByDefault;
         Options.ShowTodayTorahPortion = AppSettings.ShowTodayTorahPortion;
+        Options.SynchronizeTodayCardColor();
         Options.SelectedFeastCalendar = Options.FeastCalendarOptions.FirstOrDefault(c => c.Id == TodayInfoStore.ResolvedCalendarId);
         Options.SelectedEasternPascha = Options.CurrentEasternPascha;
         Options.PropertyChanged += OnOptionsChanged;
@@ -92,6 +108,7 @@ public sealed partial class DesktopTodayPage : Page
         ViewModel.PropertyChanged -= OnTodayChanged;
         AppSettings.ReadingsEditionChanged -= OnReadingEditionChanged;
         AppSettings.TypographyChanged -= OnReadingTypographyChanged;
+        AppSettings.TodayCardColorChanged -= OnTodayCardColorChanged;
         Options.PropertyChanged -= OnOptionsChanged;
     }
 
@@ -110,6 +127,11 @@ public sealed partial class DesktopTodayPage : Page
     private void OnReadingTypographyChanged() => DispatcherQueue.TryEnqueue(() =>
     {
         if (IsLoaded) Readings.RefreshTypography();
+    });
+
+    private void OnTodayCardColorChanged() => DispatcherQueue.TryEnqueue(() =>
+    {
+        if (IsLoaded) Bindings.Update();
     });
 
     private void OnOptionsChanged(object? sender, PropertyChangedEventArgs e)

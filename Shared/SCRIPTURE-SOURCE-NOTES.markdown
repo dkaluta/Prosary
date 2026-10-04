@@ -79,13 +79,18 @@ validation rather than disappearing from the reader.
 
 ## Reader behavior
 
-Every affected verse or supported textual block has a visible localized “Source note” indicator. Expanding it
+Every affected verse or supported textual block has one visible localized “Source note”
+indicator, collapsed by default, even when it carries several findings. Expanding it
 shows the exact anchor, the affected letter and its position within that anchor,
 whether the unreadable mark is a vowel (including shuruq) or dagesh, and the explicit statement that
 the mark has been omitted. A restored-letter note instead explicitly says that the
 identified consonant was restored editorially and is unreadable in the source scan;
 it must never claim that the consonant was omitted or source-certified. Show the PDF
-page number(s) and a link to the source scan.
+page number(s) and a link to the source scan. Findings that share an exact anchor and
+occurrence show that Hebrew quotation once; findings that share the source URL and
+PDF pages show those source details once. Keep every distinct affected-letter and
+omission/restoration explanation. Grouping changes presentation only, never the
+canonical note inventory or its validation.
 The note is editorial, visually distinct from selectable scripture. It follows the
 interface language; the quoted Hebrew follows Hebrew direction. Provide all eight
 interface languages. The same verse representation is shared by Daily Readings and

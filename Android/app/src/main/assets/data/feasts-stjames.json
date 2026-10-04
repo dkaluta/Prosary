@@ -1,6 +1,6 @@
 {
- "$comment": "Saint James Vicariate for Hebrew Speaking Catholics in Israel, supplied bilingual 2026–2027 liturgical calendar. English and Hebrew observances, Great Advent, dates, source year labels and Mass appointments retain this calendar's choices. Other languages use credited Prosary editorial display metadata, not official liturgical translations. Source snapshot and reference punctuation review: Shared/tools/sources/stjames-calendar-2026-2027.json; regenerate with Shared/tools/import-stjames-calendar.py. Missing dates never borrow General Roman appointments.",
- "generated": "2026-10-02",
+ "$comment": "Saint James Vicariate for Hebrew Speaking Catholics in Israel, supplied bilingual 2026–2027 liturgical calendar. English and Hebrew observances, Great Advent, dates, source year labels and Mass appointments retain this calendar's choices. Explicit Hebrew display terminology is normalized in stjames-titles-localized.json; differing printed titles remain in sourceTitleByLanguage. Other languages use credited Prosary editorial display metadata, not official liturgical translations. Source snapshot and reference punctuation review: Shared/tools/sources/stjames-calendar-2026-2027.json; regenerate with Shared/tools/import-stjames-calendar.py. Missing dates never borrow General Roman appointments.",
+ "generated": "2026-10-03",
  "years": [
   2026,
   2027
@@ -2682,7 +2682,7 @@
    "title": "Palm Sunday of the Lord’s Passion (Year B)",
    "rank": "Sunday",
    "titleByLanguage": {
-    "he": "יום א' של הלולבים (שנה ב')",
+    "he": "יום ראשון של הלולבים (שנה ב')",
     "ar": "أحد الشعانين (السنة B)",
     "ru": "Вербное воскресенье (год B)",
     "tl": "Linggo ng Palaspas (Taon B)",
@@ -2696,13 +2696,16 @@
      "identity": "palm sunday of the lord’s passion (year b)",
      "rank": "Sunday",
      "titleByLanguage": {
-      "he": "יום א' של הלולבים (שנה ב')",
+      "he": "יום ראשון של הלולבים (שנה ב')",
       "ar": "أحد الشعانين (السنة B)",
       "ru": "Вербное воскресенье (год B)",
       "tl": "Linggo ng Palaspas (Taon B)",
       "fr": "Dimanche des Rameaux (année B)",
       "it": "Domenica delle Palme (anno B)",
       "uk": "Вербна неділя (рік B)"
+     },
+     "sourceTitleByLanguage": {
+      "he": "יום א' של הלולבים (שנה ב')"
      }
     }
    ],

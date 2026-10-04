@@ -72,6 +72,7 @@
                         <TextBlock Text="{x:Bind DisplayText}" TextWrapping="Wrap" IsTextSelectionEnabled="True"
                                    Visibility="{x:Bind IsScripture, Converter={StaticResource BoolToVisibility}}" />
                         <TextBlock Text="{x:Bind PrintedLabelAnnotation}" TextWrapping="Wrap" Style="{StaticResource MutedCaptionTextStyle}"
+                                   FontFamily="XamlAutoFontFamily" FlowDirection="{x:Bind PrintedLabelIsRightToLeft, Converter={StaticResource BoolToFlowDirection}}"
                                    Visibility="{x:Bind HasPrintedLabel, Converter={StaticResource BoolToVisibility}}" />
                         <TextBlock Text="{x:Bind Text}" TextWrapping="Wrap" FontWeight="SemiBold" Margin="0,12,0,4"
                                    Visibility="{x:Bind IsHeading, Converter={StaticResource BoolToVisibility}}" />

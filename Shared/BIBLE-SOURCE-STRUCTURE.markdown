@@ -53,6 +53,15 @@ limitations in the closing metadata and never turn that metadata into scripture.
 
 ## Cross-chapter routing and installation
 
+Catholic placement denotations in book/chapter `canonicalReference` metadata do not
+change any source address or route. For example, Kahana Letter of Jeremiah retains
+work ID `LJE` and source chapter 1 while its picker and heading display Baruch 6.
+Its verse labels remain explicitly printed source labels; they cannot be presented
+as Baruch 6 citations without a separately reviewed verse crosswalk. The same rule
+applies to Daniel and Esther additions. Esther's source chapter 7 retains its
+existing unnumbered translation colophon under the Esther F placement. See
+[BIBLE-VIEWER.markdown](BIBLE-VIEWER.markdown) for placements and primary sources.
+
 Book metadata may contain a nonempty `addressRoutes` array of
 `{chapter, verse, displayChapter, blockId}`. Each route identifies the exact starting
 address of a primary unit displayed by a `verse` block in a different chapter.

@@ -154,6 +154,35 @@ final class TodayInfoStoreTests: XCTestCase {
     XCTAssertEqual(feast?.rank, "Solemnity")
   }
 
+  func testFeastListSpansPublishedMonthsInOrderAndUsesTheSelectedCalendar() throws {
+    select("lpj")
+    let rows = TodayInfoStore.feastsAndSolemnities()
+    let days = rows.map { Calendar(identifier: .gregorian).startOfDay(for: $0.date) }
+    XCTAssertEqual(days, days.sorted())
+    XCTAssertTrue(days.contains(date("2026-12-25")))
+    let patron = try XCTUnwrap(rows.first {
+      Calendar(identifier: .gregorian).isDate($0.date, inSameDayAs: date("2026-10-25"))
+    })
+    XCTAssertEqual(patron.feast.title, "Our Lady, Queen of Palestine and of the Holy Land")
+    select("roman")
+    XCTAssertFalse(TodayInfoStore.feastsAndSolemnities().contains {
+      Calendar(identifier: .gregorian).isDate($0.date, inSameDayAs: date("2026-10-25"))
+    }, "The General Roman calendar has an ordinary Sunday on the Holy Land patronal feast")
+  }
+
+  func testFeastListDistinguishesFeastsFromMemorialsAndRetainsEasternAndOldRomanRanks() {
+    select("lpj")
+    let days = TodayInfoStore.feastsAndSolemnities().map {
+      Calendar(identifier: .gregorian).startOfDay(for: $0.date)
+    }
+    XCTAssertFalse(days.contains(date("2026-10-02")), "Guardian Angels is a memorial")
+    XCTAssertFalse(days.contains(date("2026-10-04")), "An ordinary Sunday is outside the feast list")
+    select("roman1962")
+    XCTAssertTrue(TodayInfoStore.feastsAndSolemnities().contains { $0.feast.title == "Christ the King" })
+    select("ugcc")
+    XCTAssertTrue(TodayInfoStore.feastsAndSolemnities().contains { $0.feast.rank == "Great Feast" })
+  }
+
   func testMovableFeastIsBakedInPerYear() {
     // Easter falls on April 5 in 2026 and March 28 in 2027 — both must resolve.
     XCTAssertEqual(TodayInfoStore.feast(on: date("2026-04-05"))?.rank, "Solemnity")

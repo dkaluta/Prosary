@@ -45,6 +45,27 @@ class TodayInfoStoreTest {
         SimpleDateFormat("yyyy-MM-dd", Locale.US).parse(string)!!
 
     @Test
+    fun feastListIsChronologicalAndUsesTheSelectedCalendarsRanks() {
+        TodayInfoStore.resetForTesting()
+        val files = mapOf(
+            "calendars" to """{"default":"roman","calendars":[{"id":"roman","file":"roman","name":"Roman"},{"id":"eastern","file":"eastern","name":"Eastern"}]}""",
+            "roman" to """{"days":{
+                "2026-12-25":{"title":"Christmas","rank":"Solemnity"},
+                "2026-09-14":{"title":"Cross","rank":"Feast"},
+                "2026-09-15":{"title":"Memorial","rank":"Memorial"},
+                "2026-09-13":{"title":"Sunday","rank":"Sunday"}
+            }}""",
+            "eastern" to """{"days":{"2026-09-27":{"title":"Cross","rank":"Great Feast"}}}""",
+        )
+        TodayInfoStore.initialize { name -> files[name]?.byteInputStream() }
+        assertEquals(listOf("2026-09-14", "2026-12-25"),
+            TodayInfoStore.feastsAndSolemnities().map { it.first.toString() })
+        AppSettings.feastCalendarId = "eastern"
+        assertEquals(listOf("2026-09-27"), TodayInfoStore.feastsAndSolemnities().map { it.first.toString() })
+        assertEquals("Great Feast", TodayInfoStore.feastsAndSolemnities().single().second.rank)
+    }
+
+    @Test
     fun romanSaintExcerptsRetainSourceAndExactLanguageWithoutChangingSundayPrecedence() {
         for (calendar in listOf("lpj", "roman", "roman1962")) {
             AppSettings.feastCalendarId = calendar

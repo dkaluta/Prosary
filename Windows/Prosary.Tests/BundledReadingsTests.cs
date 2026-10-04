@@ -89,7 +89,9 @@ public class BundledReadingsTests
             Path.Combine(AppContext.BaseDirectory, "Data", "readings-texts.json")));
         var data = document.RootElement;
         var sources = data.GetProperty("passageSources").EnumerateObject().ToList();
-        Assert.Equal(20, sources.Count);
+        Assert.Equal(19, sources.Count);
+        // Wisdom 7 is reviewed for Maronite use, but also occurs in an unreviewed Roman 1962 context.
+        Assert.Null(Store.LoadPassage("daily", "Wisdom 7:7–14", "masoretic-delitzsch"));
         var edition = Assert.IsType<ScriptureEdition>(Store.ResolveEdition("masoretic-delitzsch", "he"));
         var wholeKeys = data.GetProperty("wholeVersePassages").EnumerateArray().Select(value => value.GetString()).ToHashSet();
         foreach (var entry in sources)
@@ -301,7 +303,8 @@ public class BundledReadingsTests
         var genesis = Store.LoadPassage("daily", "Genesis 1:1–13", edition.Id);
         Assert.NotNull(genesis);
         Assert.Equal(Enumerable.Range(1, 13), genesis.Verses.Select(verse => verse.Verse));
-        Assert.StartsWith("ܒܪܺܝܫܺܝܬ݂ ܒܪܳܐ", genesis.Verses.First().TransliteratedText);
+        Assert.StartsWith("ܒܪܺܝܫܺܝܬ ܒܪܳܐ", genesis.Verses.First().TransliteratedText);
+        Assert.Contains("Old Testament - publication of the Syriac Orthodox Patriarchate 2020", edition.Attribution);
         Assert.All(genesis.Verses, verse =>
         {
             Assert.Equal(1, verse.Chapter);

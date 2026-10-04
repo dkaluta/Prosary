@@ -276,6 +276,10 @@ def load_source(source: dict) -> dict[tuple[str, int], dict[int, str]]:
             raise ValueError("Invalid Delitzsch source chapter")
         for verse, text in apply_reviewed_corrections(source, parse_chapter(raw)).items():
             add(source["book"], source["chapter"], verse, text)
+    elif source["format"] == "peshitta-eu-2020":
+        from peshitta_eu_source import load_verses
+        for (chapter, verse), text in load_verses(source, raw).items():
+            add(source["book"], chapter, verse, text)
     elif source["format"] in {"peshitta-tei", "peshitta-isaiah", "peshitta-supplied-ot"}:
         from peshitta_reading_source import load_verses
         for (chapter, verse), text in load_verses(source, raw).items():
@@ -640,6 +644,14 @@ def build(fetch: bool = False) -> dict[str, bytes]:
                            if any(value.includes_whole_verses for value in values.values())]
     payload = {"schemaVersion": 1, "editions": editions, "passages": passages,
                "wholeVersePassages": whole_verse_passages}
+    # Native readers use these reviewed source books and the already resolved
+    # verse units to read an installed Bible. They never parse a citation at runtime.
+    payload["passageBooks"] = {
+        key: {edition: value.source["book"] if value.source is not None
+              else parse_citation(key.split("|", 1)[1], expand_subverses=True)[0]
+              for edition, value in versions.items()}
+        for key, versions in passages.items()
+    }
     passage_sources = {key: {edition: value.source for edition, value in versions.items() if value.source is not None}
                        for key, versions in passages.items() if any(value.source is not None for value in versions.values())}
     if passage_sources:

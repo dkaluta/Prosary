@@ -18,7 +18,9 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
+import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -28,8 +30,10 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.dkaluta.prosary.typography.HebrewDisplayText
+import com.dkaluta.prosary.R
 
 /** Tappable devotion card on the Pray tab. Accent strip color is passed in by the
  * caller so the Rosary card can use the dynamic mystery-group color of the day. */
@@ -93,11 +97,11 @@ fun PrayerCard(
                 }
             }
 
-            Icon(
-                Icons.AutoMirrored.Filled.KeyboardArrowRight,
-                contentDescription = null,
-                tint = MaterialTheme.colorScheme.outline,
-            )
+            if (onLongClick != null) IconButton(onClick = onLongClick) {
+                Icon(Icons.Filled.MoreVert, contentDescription = stringResource(R.string.prayer_card_actions),
+                    tint = MaterialTheme.colorScheme.outline)
+            } else Icon(Icons.AutoMirrored.Filled.KeyboardArrowRight, contentDescription = null,
+                tint = MaterialTheme.colorScheme.outline)
         }
     }
 }

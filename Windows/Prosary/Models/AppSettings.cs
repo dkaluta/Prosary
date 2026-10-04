@@ -26,6 +26,7 @@ public static class AppSettings
     private const string KeyShowTodayFeast = "showTodayFeast";
     private const string KeyShowTodayIntention = "showTodayIntention";
     private const string KeyShowTodayReadings = "showTodayReadings";
+    private const string KeyTodayCardColor = "todayCardColor";
     private const string KeyExpandReadingsByDefault = "expandReadingsByDefault";
     private const string KeyShowTodayTorahPortion = "showTodayTorahPortion";
     private const string KeyShowPrayerNameInPrayerLanguage = "showPrayerNameInPrayerLanguage";
@@ -54,6 +55,7 @@ public static class AppSettings
     private static bool? _showTodayFeast;
     private static bool? _showTodayIntention;
     private static bool? _showTodayReadings;
+    private static string? _todayCardColor;
     private static bool? _readingsReminderEnabled;
     private static bool? _saintReminderEnabled;
     private static int? _readingsReminderMinutes;
@@ -86,6 +88,23 @@ public static class AppSettings
         _appColor = selected;
         WriteLocalSetting(KeyAppColor, selected);
         AppColorChanged?.Invoke();
+    }
+
+    public static string TodayCardColor => _todayCardColor ??=
+        NormalizeTodayCardColor(ReadLocalSetting(KeyTodayCardColor) as string);
+
+    public static event Action? TodayCardColorChanged;
+
+    private static string NormalizeTodayCardColor(string? value) =>
+        value is "blue" or "green" or "gold" or "rose" ? value : "default";
+
+    public static void SetTodayCardColor(string value)
+    {
+        var selected = NormalizeTodayCardColor(value);
+        if (TodayCardColor == selected) return;
+        _todayCardColor = selected;
+        WriteLocalSetting(KeyTodayCardColor, selected);
+        TodayCardColorChanged?.Invoke();
     }
 
     /// <summary>The saved interface choice; empty follows Windows. Applied together with

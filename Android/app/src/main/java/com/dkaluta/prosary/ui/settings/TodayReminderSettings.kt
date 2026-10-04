@@ -1,6 +1,8 @@
 package com.dkaluta.prosary.ui.settings
 
 import android.Manifest
+import android.content.Intent
+import android.provider.Settings
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Column
@@ -55,6 +57,12 @@ fun TodayReminderSettings() {
     }
     Text(stringResource(R.string.settings_reminders_footer), style = MaterialTheme.typography.bodySmall,
         color = MaterialTheme.colorScheme.onSurfaceVariant)
+    Text(stringResource(R.string.settings_prayer_reminders_hint), style = MaterialTheme.typography.bodySmall,
+        color = MaterialTheme.colorScheme.onSurfaceVariant)
+    TextButton(onClick = {
+        context.startActivity(Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS)
+            .putExtra(Settings.EXTRA_APP_PACKAGE, context.packageName))
+    }) { Text(stringResource(R.string.settings_reminders_system)) }
     if (permissionDenied) Text(stringResource(R.string.settings_reminders_permission_body), style = MaterialTheme.typography.bodySmall)
     editing?.let { kind ->
         val minutes = if (kind == "readings") AppSettings.readingsReminderMinutes else AppSettings.saintReminderMinutes

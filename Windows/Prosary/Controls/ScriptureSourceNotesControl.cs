@@ -27,32 +27,45 @@ public sealed class ScriptureSourceNotesControl : UserControl
     {
         var notes = SourceNotes as IReadOnlyList<ScriptureSourceNote>;
         Visibility = notes is { Count: > 0 } ? Visibility.Visible : Visibility.Collapsed;
-        var list = new StackPanel { Spacing = 6, Margin = new Thickness(0, 8, 0, 0) };
-        foreach (var note in notes ?? [])
+        if (notes is not { Count: > 0 }) { Content = null; return; }
+        var detail = new StackPanel { Spacing = 12 };
+        foreach (var sourceNotes in notes.GroupBy(note => (note.SourceURL, Pages: string.Join(",", note.SourcePages))))
         {
-            var detail = new StackPanel { Spacing = 8 };
-            detail.Children.Add(new TextBlock { Text = note.Anchor, FlowDirection = FlowDirection.RightToLeft,
-                TextWrapping = TextWrapping.Wrap, FontFamily = new FontFamily(PrayerTypography.ResolveBodyFontFamily("he", true, PrayerTypography.Script.Hebrew)),
-                FontSize = PrayerTypography.ResolveBodyFontSize("he", true, PrayerTypography.Script.Hebrew) });
-            if (note.Kind == "restoredLetter")
-                detail.Children.Add(new TextBlock { Text = string.Format(Loc.Tr("scripture_note_restored_letter",
-                    "The letter {0} (position {1}) in “{2}” was restored editorially. It is unreadable in the source scan."),
-                    "\u2067" + note.Letter() + "\u2069", note.LetterIndex, "\u2067" + note.Anchor + "\u2069"), TextWrapping = TextWrapping.Wrap });
-            else
+            var sourceDetail = new StackPanel { Spacing = 8 };
+            foreach (var anchorNotes in sourceNotes.GroupBy(note => (note.Anchor, note.Occurrence)))
             {
-                detail.Children.Add(new TextBlock { Text = string.Format(Loc.Tr("scripture_note_letter", "Letter {0} (position {1})"),
-                    "\u2067" + note.Letter() + "\u2069", note.LetterIndex), TextWrapping = TextWrapping.Wrap });
-                detail.Children.Add(new TextBlock { Text = note.Mark is "vowel" or "shuruq"
-                    ? Loc.Tr("scripture_note_vowel", "Unreadable vowel mark omitted.")
-                    : Loc.Tr("scripture_note_dagesh", "Unreadable dagesh omitted."), TextWrapping = TextWrapping.Wrap });
+                var anchorDetail = new StackPanel { Spacing = 8 };
+                anchorDetail.Children.Add(new TextBlock { Text = anchorNotes.Key.Anchor, FlowDirection = FlowDirection.RightToLeft,
+                    TextWrapping = TextWrapping.Wrap, FontFamily = new FontFamily(PrayerTypography.ResolveBodyFontFamily("he", true, PrayerTypography.Script.Hebrew)),
+                    FontSize = PrayerTypography.ResolveBodyFontSize("he", true, PrayerTypography.Script.Hebrew) });
+                foreach (var note in anchorNotes)
+                {
+                    var noteDetail = new StackPanel { Spacing = 4 };
+                    if (note.Kind == "restoredLetter")
+                        noteDetail.Children.Add(new TextBlock { Text = string.Format(Loc.Tr("scripture_note_restored_letter",
+                            "The letter {0} (position {1}) in “{2}” was restored editorially. It is unreadable in the source scan."),
+                            "\u2067" + note.Letter() + "\u2069", note.LetterIndex, "\u2067" + note.Anchor + "\u2069"), TextWrapping = TextWrapping.Wrap });
+                    else
+                    {
+                        noteDetail.Children.Add(new TextBlock { Text = string.Format(Loc.Tr("scripture_note_letter", "Letter {0} (position {1})"),
+                            "\u2067" + note.Letter() + "\u2069", note.LetterIndex), TextWrapping = TextWrapping.Wrap });
+                        noteDetail.Children.Add(new TextBlock { Text = note.Mark is "vowel" or "shuruq"
+                            ? Loc.Tr("scripture_note_vowel", "Unreadable vowel mark omitted.")
+                            : Loc.Tr("scripture_note_dagesh", "Unreadable dagesh omitted."), TextWrapping = TextWrapping.Wrap });
+                    }
+                    anchorDetail.Children.Add(noteDetail);
+                }
+                sourceDetail.Children.Add(anchorDetail);
             }
-            detail.Children.Add(new TextBlock { Text = string.Format(Loc.Tr("scripture_note_pages", "PDF pages: {0}"),
-                string.Join(", ", note.SourcePages)), TextWrapping = TextWrapping.Wrap });
-            detail.Children.Add(new HyperlinkButton { Content = Loc.Tr("scripture_note_scan", "Source scan"),
-                NavigateUri = new Uri(note.SourceURL), Padding = new Thickness(0) });
-            list.Children.Add(new Expander { Header = Loc.Tr("scripture_note_title", "Source note"),
-                Content = detail, HorizontalAlignment = HorizontalAlignment.Stretch, HorizontalContentAlignment = HorizontalAlignment.Stretch });
+            var source = sourceNotes.First();
+            sourceDetail.Children.Add(new TextBlock { Text = string.Format(Loc.Tr("scripture_note_pages", "PDF pages: {0}"),
+                string.Join(", ", source.SourcePages)), TextWrapping = TextWrapping.Wrap });
+            sourceDetail.Children.Add(new HyperlinkButton { Content = Loc.Tr("scripture_note_scan", "Source scan"),
+                NavigateUri = new Uri(source.SourceURL), Padding = new Thickness(0) });
+            detail.Children.Add(sourceDetail);
         }
-        Content = list;
+        Content = new Expander { Header = Loc.Tr("scripture_note_title", "Source note"), Content = detail,
+            Margin = new Thickness(0, 8, 0, 0), HorizontalAlignment = HorizontalAlignment.Stretch,
+            HorizontalContentAlignment = HorizontalAlignment.Stretch };
     }
 }

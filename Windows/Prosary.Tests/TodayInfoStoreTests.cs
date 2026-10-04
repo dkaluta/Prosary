@@ -63,6 +63,22 @@ public class TodayInfoStoreTests
     }
 
     [Fact]
+    public void FeastListIsChronologicalAndFollowsTheSelectedCalendar()
+    {
+        TodayInfoStore.SelectedCalendarId = "lpj";
+        var local = TodayInfoStore.FeastsAndSolemnities();
+        Assert.NotEmpty(local);
+        Assert.Equal(local.Select(entry => entry.Date).OrderBy(date => date), local.Select(entry => entry.Date));
+        Assert.All(local, entry => Assert.Contains(entry.Feast.Rank,
+            new[] { "Solemnity", "Feast", "Great Feast", "1st Class", "2nd Class" }));
+        Assert.Contains(local, entry => entry.Date == new DateOnly(2026, 10, 25)
+            && entry.Feast.Title.Contains("Palestine"));
+        TodayInfoStore.SelectedCalendarId = "roman";
+        Assert.DoesNotContain(TodayInfoStore.FeastsAndSolemnities(), entry =>
+            entry.Date == new DateOnly(2026, 10, 25) && entry.Feast.Title.Contains("Palestine"));
+    }
+
+    [Fact]
     public void MovableFeastIsBakedInPerYear()
     {
         // Easter falls on April 5 in 2026; Good Friday 2027 is March 26 — both must resolve.

@@ -5,6 +5,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.ui.test.junit4.StateRestorationTester
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.compose.ui.test.assertTextContains
+import androidx.compose.ui.test.assertTextEquals
 import androidx.compose.ui.test.hasTestTag
 import androidx.compose.ui.test.junit4.v2.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithTag
@@ -42,6 +43,37 @@ import org.junit.Test
 class BibleNavigationInstrumentedTest {
     @get:Rule val compose = createAndroidComposeRule<AdaptiveLayoutTestActivity>()
     private val json = Json { encodeDefaults = true }
+
+    @Test fun canonicalReferenceHeadingsIdentifyPrintedVerseLabelsWithoutRenumbering() {
+        val directory = File(compose.activity.cacheDir, "bible-reference-test-${UUID.randomUUID()}").apply { mkdirs() }
+        val previous = AppSettings.readingsEditionId
+        val (edition, archive) = fixture(directory, withRichSource = true, withCanonicalReference = true)
+        val library = BibleLibrary(BibleStore(File(directory, "installed")), File(directory, "download"))
+        library.store.install(edition, archive)
+        val catalog = json.encodeToString(BibleCatalog(1, listOf(edition)))
+        val printedLabel = compose.activity.getString(R.string.bible_printed_label, "\u2068כ–כא\u2069")
+        try {
+            AppSettings.readingsEditionId = edition.id
+            compose.setContent { MaterialTheme { BibleScreen(library) { catalog.byteInputStream() } } }
+            waitFor("bibleVerse.1")
+            compose.onNodeWithTag("bibleChapter").assertTextContains("ברוך ו׳")
+            compose.onNodeWithTag("bibleChapterHeading").assertTextContains("ברוך ו׳")
+            compose.onNodeWithTag("bibleVerse.1").assertTextEquals("Source verse one")
+            compose.onNodeWithTag("biblePrintedLabel.primary-one").assertTextContains(printedLabel, substring = true)
+            compose.onNodeWithTag("bibleChapter").performClick()
+            compose.onNodeWithTag("bibleChoice.1").assertTextContains("ברוך ו׳")
+            compose.onNodeWithTag("bibleChoice.1").performClick()
+            compose.onNodeWithTag("bibleVerse").performClick()
+            compose.onNodeWithTag("bibleChoice.primary-one").assertTextContains(printedLabel, substring = true)
+            compose.onNodeWithTag("bibleChoice.primary-four").performClick()
+            compose.onNodeWithTag("bibleVerse.4").assertTextEquals("Source verse four")
+            compose.onNodeWithTag("biblePrintedLabel.primary-four").assertTextContains("4–5", substring = true)
+            assertEquals(listOf(1, 4), library.store.chapter(edition, "GEN", 1)!!.verses.map { it.verse })
+            compose.onNodeWithTag("bibleNextChapter").performClick()
+            waitFor("bibleVerse.1")
+            compose.onNodeWithTag("bibleChapter").assertTextContains("Chapter 3")
+        } finally { AppSettings.readingsEditionId = previous; directory.deleteRecursively() }
+    }
 
     @Test fun printedWitnessesStayVisibleAndVerseChoicesUseStablePhysicalIdentities() {
         val directory = File(compose.activity.cacheDir, "bible-rich-test-${UUID.randomUUID()}").apply { mkdirs() }
@@ -174,9 +206,11 @@ class BibleNavigationInstrumentedTest {
     private fun waitFor(tag: String) {
         compose.waitUntil(10_000) { compose.onAllNodes(hasTestTag(tag)).fetchSemanticsNodes().isNotEmpty() }
     }
-    private fun fixture(directory: File, withSourceNote: Boolean = false, withRichSource: Boolean = false): Pair<BibleEdition, File> {
-        val books = listOf(BibleBook("GEN", "Genesis", listOf(BibleChapterInfo(1, 2, false), BibleChapterInfo(3, 1, true)),
-            introduction = "Unnumbered opening"),
+    private fun fixture(directory: File, withSourceNote: Boolean = false, withRichSource: Boolean = false,
+        withCanonicalReference: Boolean = false): Pair<BibleEdition, File> {
+        val books = listOf(BibleBook("GEN", "Genesis", listOf(BibleChapterInfo(1, 2, false,
+            canonicalReference = if (withCanonicalReference) "ברוך ו׳" else null), BibleChapterInfo(3, 1, true)),
+            introduction = "Unnumbered opening", canonicalReference = if (withCanonicalReference) "ברוך ו׳" else null),
             BibleBook("EXO", "Exodus", listOf(BibleChapterInfo(2, 1, false))))
         val revision = "a".repeat(64)
         val version = if (withRichSource) 3 else if (withSourceNote) 2 else 1

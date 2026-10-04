@@ -4,6 +4,11 @@ func bibleLabel(_ key: String, _ fallback: String) -> String {
   UILanguage.text("bible." + key, language: UILanguage.current, fallback: fallback)
 }
 
+func bibleChapterLabel(_ number: Int, book: BibleBook, edition: ReadingTextEdition, script: String) -> String {
+  book.chapters.first { $0.number == number }?.canonicalReference
+    ?? ScriptureChapterHeading(chapter: number, edition: edition, script: script).text
+}
+
 @MainActor @Observable final class BibleLibraryModel {
   static let shared = BibleLibraryModel()
   var editions: [BibleEdition] = []
@@ -58,30 +63,69 @@ func bibleLabel(_ key: String, _ fallback: String) -> String {
 struct ReadingsView: View {
   @Binding var dateSelection: MacTodayDateSelection
   @Binding var mode: String
+  @State private var showsFeasts = false
+  @State private var showsMonthCalendar = false
 
   var body: some View {
     Group {
-      if mode == "bible" { BibleView() }
-      else if mode == "calendar" {
-        LiturgicalCalendarView(dateSelection: $dateSelection, onSelectDate: { mode = "daily" })
-      } else { DailyReadingsView(dateSelection: $dateSelection) }
+      if mode == "bible" { BibleView(mode: $mode) }
+      else { DailyReadingsView(dateSelection: $dateSelection, mode: $mode) }
     }
-    .safeAreaInset(edge: .top, spacing: 0) {
-      Picker(String(localized: "tabs.readings", defaultValue: "Readings", bundle: UILanguage.bundle, locale: UILanguage.locale), selection: $mode) {
-        Text(bibleLabel("daily", "Daily Readings")).tag("daily")
-        Text(String(localized: "calendar.title", defaultValue: "Liturgical Calendar", bundle: UILanguage.bundle, locale: UILanguage.locale)).tag("calendar")
-        Text(bibleLabel("title", "Bible")).tag("bible")
+    .toolbar {
+      ToolbarItem(placement: .topBarTrailing) {
+        Button { showsFeasts = true } label: {
+          Label(String(localized: "calendar.feastsAndSolemnities", defaultValue: "Feasts and Solemnities", bundle: UILanguage.bundle, locale: UILanguage.locale), systemImage: "calendar")
+        }
+        .labelStyle(.iconOnly)
+        .accessibilityIdentifier("calendar.list")
       }
-      .pickerStyle(.segmented)
-      .padding(.horizontal, 20).padding(.vertical, 8)
-      .background(.bar, ignoresSafeAreaEdges: [])
-      .accessibilityIdentifier("readings.mode")
     }
+    .sheet(isPresented: $showsFeasts) {
+      NavigationStack {
+        FeastsAndSolemnitiesView(dateSelection: $dateSelection) {
+          mode = "daily"
+          showsFeasts = false
+        }
+        .toolbar {
+          ToolbarItem(placement: .confirmationAction) {
+            Button(String(localized: "common.done", defaultValue: "Done", bundle: UILanguage.bundle, locale: UILanguage.locale)) { showsFeasts = false }
+          }
+        }
+      }
+    }
+    .sheet(isPresented: $showsMonthCalendar) {
+      NavigationStack {
+        LiturgicalCalendarView(dateSelection: $dateSelection) { showsMonthCalendar = false }
+        .toolbar {
+          ToolbarItem(placement: .confirmationAction) {
+            Button(String(localized: "common.done", defaultValue: "Done", bundle: UILanguage.bundle, locale: UILanguage.locale)) { showsMonthCalendar = false }
+          }
+        }
+      }
+    }
+    .onAppear { if mode == "calendar" { mode = "daily"; showsMonthCalendar = true } }
+    .onChange(of: mode) { _, value in
+      if value == "calendar" { mode = "daily"; showsMonthCalendar = true }
+    }
+  }
+}
+
+/// An ordinary content control scrolls with the reader and cannot cover its large title.
+struct ReadingModeSelector: View {
+  @Binding var mode: String
+  var body: some View {
+    Picker(String(localized: "tabs.readings", defaultValue: "Readings", bundle: UILanguage.bundle, locale: UILanguage.locale), selection: $mode) {
+      Text(bibleLabel("daily", "Daily Readings")).tag("daily")
+      Text(bibleLabel("title", "Bible")).tag("bible")
+    }
+    .pickerStyle(.segmented)
+    .accessibilityIdentifier("readings.mode")
   }
 }
 #endif
 
 struct BibleView: View {
+  var mode: Binding<String>? = nil
   @AppStorage(ReadingEditionSelection.defaultsKey) private var preference = ""
   @AppStorage(PrayerTranslations.aramaicDefaultScriptKey) private var defaultScript = "Hebr"
   @State private var model = BibleLibraryModel.shared
@@ -95,6 +139,13 @@ struct BibleView: View {
 
   var body: some View {
     List {
+      #if !os(macOS)
+      if let mode {
+        ReadingModeSelector(mode: mode)
+          .listRowBackground(Color.clear)
+          .listRowInsets(EdgeInsets(top: 4, leading: 0, bottom: 4, trailing: 0))
+      }
+      #endif
       Section {
         ReadingEditionPicker()
       }
@@ -174,7 +225,7 @@ private struct BibleChaptersView: View {
         BibleChapterView(edition: edition, book: book, initialChapter: chapter.number)
       } label: {
         VStack(alignment: .leading, spacing: 4) {
-          Text(ScriptureChapterHeading(chapter: chapter.number, edition: edition.readingEdition, script: script).text)
+          Text(bibleChapterLabel(chapter.number, book: book, edition: edition.readingEdition, script: script))
           if !chapter.isComplete { Text(bibleLabel("partial", "Only part of this chapter is available")).font(.caption).foregroundStyle(.secondary) }
         }
         .environment(\.layoutDirection, edition.readingEdition.isBibleRightToLeft ? .rightToLeft : .leftToRight)
@@ -220,7 +271,8 @@ struct BibleChapterView: View {
             if let introduction = activeBook.introduction(for: number) {
               ScriptureIntroduction(text: introduction, edition: edition.readingEdition)
             }
-            BibleSourceBlockList(edition: edition.readingEdition, display: chapter, script: script.wrappedValue)
+            BibleSourceBlockList(edition: edition.readingEdition, display: chapter, script: script.wrappedValue,
+              canonicalReference: activeBook.chapters.first { $0.number == number }?.canonicalReference)
           } else if unavailable {
             Text(bibleLabel("chapterUnavailable", "This chapter is not available offline. Return to Bible to download the edition."))
               .foregroundStyle(.secondary).accessibilityIdentifier("bible.unavailable")
@@ -240,12 +292,12 @@ struct BibleChapterView: View {
           .disabled(position.moving(by: -1, in: edition) == nil).accessibilityIdentifier("bible.previousChapter")
         Menu {
           ForEach(activeBook.chapters, id: \.number) { item in
-            Button(ScriptureChapterHeading(chapter: item.number, edition: edition.readingEdition, script: script.wrappedValue).text) {
+            Button(bibleChapterLabel(item.number, book: activeBook, edition: edition.readingEdition, script: script.wrappedValue)) {
               chapterNumber = item.number
             }
           }
         } label: {
-          Text(ScriptureChapterHeading(chapter: number, edition: edition.readingEdition, script: script.wrappedValue).text)
+          Text(bibleChapterLabel(number, book: activeBook, edition: edition.readingEdition, script: script.wrappedValue))
         }
         .accessibilityIdentifier("bible.chapterMenu")
         Button { move(1) } label: { Label(bibleLabel("next", "Next Chapter"), systemImage: "chevron.forward") }
@@ -253,7 +305,8 @@ struct BibleChapterView: View {
         if let chapter {
           Menu {
             ForEach(chapter.choices) { block in
-              Button(bibleVerseChoiceLabel(block, display: chapter, edition: edition.readingEdition, script: script.wrappedValue)) {
+              Button(bibleVerseChoiceLabel(block, display: chapter, edition: edition.readingEdition, script: script.wrappedValue,
+                usesPrintedLabels: activeBook.chapters.first { $0.number == number }?.canonicalReference != nil)) {
                 if let unit = block.unit {
                   Task { await jump(chapter: unit.chapter, verse: unit.verse) }
                 } else {
@@ -372,9 +425,7 @@ struct ScriptureVerseList: View {
         .id(verse.verse)
         .accessibilityIdentifier("bible.verse.\(verse.verse)")
         .textSelection(.enabled)
-        ForEach(verse.sourceNotes ?? []) { note in
-          ScriptureSourceNoteView(note: note)
-        }
+        ScriptureSourceNotesView(notes: verse.sourceNotes ?? [])
       }
     }
     .environment(\.layoutDirection, edition.isBibleRightToLeft ? .rightToLeft : .leftToRight)

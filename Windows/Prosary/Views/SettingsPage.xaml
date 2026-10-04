@@ -142,6 +142,10 @@
 
                 <ToggleSwitch x:Uid="SetShowTodayFeast" Header="Show the day's feast"
                               IsOn="{x:Bind ViewModel.ShowTodayFeast, Mode=TwoWay}" />
+                <ComboBox Header="{x:Bind ViewModel.TodayCardColorLabel}" HorizontalAlignment="Stretch"
+                          ItemsSource="{x:Bind ViewModel.TodayCardColors}" DisplayMemberPath="Label"
+                          SelectedItem="{x:Bind ViewModel.SelectedTodayCardColor, Mode=TwoWay}"
+                          AutomationProperties.AutomationId="todayCardColor" />
                 <ToggleSwitch x:Uid="SetShowTodayIntention" Header="Show the Pope's intention"
                               IsOn="{x:Bind ViewModel.ShowTodayIntention, Mode=TwoWay}" />
                 <ToggleSwitch x:Uid="SetShowTodayReadingsDesktop" Header="Show readings"

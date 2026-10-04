@@ -16,6 +16,12 @@ heading at each chapter transition. The word and number style follow the selecte
 independently of the interface: Hebrew gematria, Arabic digits, or the Aramaic reader's
 selected Hebrew/Syriac script. The number is upright. Each passage also shows verse-only numbers,
 the chosen edition and source credit. The optional weekly Torah portion uses the same reader.
+Passages use the installed app Bible's reviewed source units when available. The
+canonical `passageBooks` table supplies the actual source book; the already resolved
+rows supply whole unit boundaries and exact source content. A download must agree
+with those reviewed rows, including both scripts and source notes. Otherwise the
+same reviewed bundled passage remains available; no runtime citation parser or
+automatic edition switch is involved.
 When a passage is unavailable in the selected edition, its Bible-edition menu lists editions
 with complete text for that passage. Choosing one explicitly updates `readingsEditionId`;
 there is no automatic language or edition substitution, and the chosen source credit remains visible.
@@ -44,7 +50,7 @@ of Scripture. The generated corpus is separate from existing `.prosaryprayer` pa
 | Italian | Antonio Martini, 1769–1781 | [Parola Viva](https://parolaviva.art/opendata): public-domain Bible text; structured data by Giovanni Novelli under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). This source import covers the Pentateuch and New Testament, not its copyrighted meditations. |
 | Ukrainian | Kulish, Nechui-Levytsky and Puluj, 1905 | [eBible `ukr1871`](https://ebible.org/ukr1871/copyright.htm), public-domain text. Uses the same pinned VPL payload as the existing Scripture importer. |
 | Arabic | Old Jesuit translation, Beirut printing, 1897 | [Reviewed canonical transcription](content/arabic-jesuit-1897.json), [Psalm extension](content/arabic-jesuit-1897-readings.json), and [Gospel extension](content/arabic-jesuit-1897-gospel-readings.json), relayed from the [historical scan](https://archive.org/details/AlKitabAlMoqadas). Only visually checked passages are included, with their printed verse boundaries and PDF page evidence. This is a limited public-domain selection, not a complete Arabic Bible or the modern Dar el-Machreq revision. |
-| Aramaic (selectable) | Peshitta, BFBS 1905 New Testament; supplied Old Testament | [Source review](content/PESHITTA-SOURCES.markdown). Pointed Digital Syriac Corpus NT, CC BY 4.0, paired with Erez's established Hebrew-script projection. The supplied OT's edition/rights remain unresolved and are credited separately. Its reader profile excludes damaged chapters and unreviewed alternative boundaries; see the [OT review](content/PESHITTA-OT-READER-REVIEW.markdown). |
+| Aramaic (selectable) | Peshitta, BFBS 1905 New Testament; Syriac Orthodox Patriarchate 2020 Old Testament | [peshitta.eu](https://peshitta.eu/about.html), credited as **Old Testament - publication of the Syriac Orthodox Patriarchate 2020**. Actual pointed website chapters are hash-pinned separately from the prior XML; its unchanged NT is Digital Syriac Corpus, CC BY 4.0. Both use Erez's established Hebrew-script projection. Native OT browsing and daily verse correspondences have separate gates; see the [2020 source review](content/PESHITTA-EU-2020-REVIEW.markdown). |
 | Greek (selectable) | Brenton Septuagint, Old Testament only | [eBible `grcbrent`](https://ebible.org/Scriptures/details.php?id=grcbrent), public-domain Greek text. The exact VPL payload and its own Greek verse mapping are pinned. No Greek New Testament or replacement edition is supplied. |
 
 The Greek option (`brenton-lxx`, language `el`) uses the same Brenton source already used

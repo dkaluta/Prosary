@@ -16,8 +16,10 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.background
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -28,7 +30,6 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.CalendarMonth
 import androidx.compose.material.icons.filled.Circle
 import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.material.icons.filled.VolunteerActivism
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.DatePicker
@@ -58,6 +59,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.lerp
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.StrokeCap
+import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.platform.LocalLayoutDirection
@@ -205,9 +210,7 @@ fun HomeScreen(
     val dateLabel = remember(selectedDate, appLanguage) {
         selectedDate.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG).withLocale(Locale.forLanguageTag(appLanguage)))
     }
-    var showsFullCitations by remember { mutableStateOf(false) }
     val todayReadingsTitle = todayContext.getString(R.string.home_today_readings)
-    val citationButtonText = todayContext.getString(if (showsFullCitations) R.string.home_today_compact_citations else R.string.home_today_full_citations)
     var todayMysteryGroup by remember { mutableStateOf<MysteryGroup?>(null) }
     var defaultRosary by remember { mutableStateOf<Prayer?>(null) }
     var defaultJesusPrayer by remember { mutableStateOf<Prayer?>(null) }
@@ -509,10 +512,7 @@ fun HomeScreen(
                     }
                 }
             }
-            // "Today" — the day's feast per the Holy Land (Latin Patriarchate of Jerusalem)
-            // calendar and the Pope's monthly prayer intention. Rows hide when the bundled
-            // datasets have no entry (ferial days; dates past the generated years).
-            if (liturgicalDayInfo != null || todayFeast != null || monthIntention != null || todayReadings.isNotEmpty() || torahPortion != null)
+            if (liturgicalDayInfo != null || todayReadings.isNotEmpty() || torahPortion != null)
             item(key = "today", span = { GridItemSpan(maxLineSpan) }) {
                 CompositionLocalProvider(
                     LocalLayoutDirection provides if (TodayTranslationLanguage.isRightToLeft(todayLanguage)) LayoutDirection.Rtl else LayoutDirection.Ltr,
@@ -522,7 +522,7 @@ fun HomeScreen(
                         modifier = Modifier
                             .fillMaxWidth()
                             .clip(RoundedCornerShape(14.dp))
-                            .background(MaterialTheme.colorScheme.surfaceContainerHigh)
+                            .background(todayCardBackground())
                             .padding(14.dp),
                     ) {
                         if (liturgicalDayInfo != null) Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.testTag("todayLiturgicalDay")) {
@@ -535,76 +535,17 @@ fun HomeScreen(
                             )
 
                         }
-                        if (todayFeast != null) {
-                            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                                Icon(
-                                    Icons.Filled.CalendarMonth, contentDescription = null,
-                                    tint = MaterialTheme.colorScheme.primary,
-                                )
-                                Column(verticalArrangement = Arrangement.spacedBy(2.dp), modifier = Modifier.weight(1f)) {
-                                    Text(
-                                        todayFeast.localizedTitle(todayLanguage),
-                                        style = MaterialTheme.typography.titleSmall,
-                                        // Each calendar's top rank gets the bold: "Solemnity"
-                                        // (Roman), "1st Class" (1962), "Great Feast" (Byzantine).
-                                        fontWeight = if (todayFeast.rank in setOf("Solemnity", "1st Class", "Great Feast")) FontWeight.Bold else FontWeight.SemiBold,
-                                    )
-                                    Text(
-                                        todayFeast.localizedRank(todayLanguage, todayContext),
-                                        style = MaterialTheme.typography.bodySmall,
-                                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                                    )
-                                }
-                            }
-                        }
-                        if (monthIntention != null) {
-                            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                                Icon(
-                                    Icons.Filled.VolunteerActivism, contentDescription = null,
-                                    tint = MaterialTheme.colorScheme.primary,
-                                )
-                                Column(verticalArrangement = Arrangement.spacedBy(2.dp), modifier = Modifier.weight(1f)) {
-                                    Text(
-                                        todayContext.getString(R.string.home_pope_intention, monthIntention.localizedTitle(todayLanguage)),
-                                        style = MaterialTheme.typography.titleSmall,
-                                        fontWeight = FontWeight.SemiBold,
-                                    )
-                                    Text(
-                                        monthIntention.localizedText(todayLanguage),
-                                        style = MaterialTheme.typography.bodySmall,
-                                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                                    )
-                                }
-                            }
-                        }
-                        todayFeast?.let {
-                            SaintDescriptionsCard(it.saintDescriptions(TodayInfoStore.selectedCalendarId, todayLanguage),
-                                selectedDate.toString(), todayLanguage)
-                        }
                         if (todayReadings.isNotEmpty()) {
                             Row(horizontalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.testTag("todayReadings")) {
                                 Icon(Icons.AutoMirrored.Filled.MenuBook, contentDescription = null, tint = MaterialTheme.colorScheme.primary)
                                 Column(verticalArrangement = Arrangement.spacedBy(2.dp), modifier = Modifier.weight(1f)) {
                                     Text(todayReadingsTitle, style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.SemiBold)
-                                    if (showsFullCitations) {
-                                        todayReadings.forEach { citation ->
-                                            Text(
-                                                citation.localizedFull(todayLanguage),
-                                                style = MaterialTheme.typography.bodySmall,
-                                                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                                            )
-                                        }
-                                    } else {
+                                    todayReadings.forEach { citation ->
                                         Text(
-                                            todayReadings.joinToString(", ") {
-                                                it.localizedShort(todayLanguage)
-                                            },
+                                            citation.localizedFull(todayLanguage),
                                             style = MaterialTheme.typography.bodySmall,
                                             color = MaterialTheme.colorScheme.onSurfaceVariant,
                                         )
-                                    }
-                                    TextButton(onClick = { showsFullCitations = !showsFullCitations }) {
-                                        Text(citationButtonText)
                                     }
                                 }
                             }
@@ -624,6 +565,43 @@ fun HomeScreen(
                                     }
                                 }
                             }
+                        }
+                    }
+                }
+            }
+
+            if (todayFeast != null) item(key = "todaySaints", span = { GridItemSpan(maxLineSpan) }) {
+                CompositionLocalProvider(LocalLayoutDirection provides
+                    if (TodayTranslationLanguage.isRightToLeft(todayLanguage)) LayoutDirection.Rtl else LayoutDirection.Ltr) {
+                    Column(Modifier.fillMaxWidth().clip(RoundedCornerShape(14.dp))
+                        .background(MaterialTheme.colorScheme.surfaceContainerHigh).padding(14.dp)
+                        .testTag("todaySaints"), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                        Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                            Icon(Icons.Filled.CalendarMonth, contentDescription = null, tint = MaterialTheme.colorScheme.primary)
+                            Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(2.dp)) {
+                                Text(todayFeast.localizedTitle(todayLanguage), style = MaterialTheme.typography.titleSmall,
+                                    fontWeight = if (todayFeast.rank in setOf("Solemnity", "1st Class", "Great Feast")) FontWeight.Bold else FontWeight.SemiBold)
+                                Text(todayFeast.localizedRank(todayLanguage, todayContext), style = MaterialTheme.typography.bodySmall,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant)
+                            }
+                        }
+                        SaintDescriptionsCard(todayFeast.saintDescriptions(TodayInfoStore.selectedCalendarId, todayLanguage),
+                            selectedDate.toString(), todayLanguage, inCard = false)
+                    }
+                }
+            }
+            if (monthIntention != null) item(key = "popeIntention", span = { GridItemSpan(maxLineSpan) }) {
+                CompositionLocalProvider(LocalLayoutDirection provides
+                    if (TodayTranslationLanguage.isRightToLeft(todayLanguage)) LayoutDirection.Rtl else LayoutDirection.Ltr) {
+                    Row(Modifier.fillMaxWidth().clip(RoundedCornerShape(14.dp))
+                        .background(MaterialTheme.colorScheme.surfaceContainerHigh).padding(14.dp)
+                        .testTag("popeIntention"), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                        PapalKeysIcon()
+                        Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(4.dp)) {
+                            Text(todayContext.getString(R.string.home_pope_intention, monthIntention.localizedTitle(todayLanguage)),
+                                style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.SemiBold)
+                            Text(monthIntention.localizedText(todayLanguage), style = MaterialTheme.typography.bodySmall,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant)
                         }
                     }
                 }
@@ -745,5 +723,36 @@ fun HomeScreen(
     }
     removalRequest?.let { request ->
         PrayerRemovalDialog(request, onDismiss = { removalRequest = null }, onRemoved = { refreshGeneration++; pinGeneration++ })
+    }
+}
+
+@Composable
+private fun todayCardBackground(): Color {
+    val surface = MaterialTheme.colorScheme.surfaceContainerHigh
+    val tint = when (AppSettings.todayCardColor) {
+        "blue" -> Color(0xFF4285D4)
+        "green" -> Color(0xFF388C64)
+        "gold" -> Color(0xFFD5A72D)
+        "rose" -> Color(0xFFC96682)
+        else -> return surface
+    }
+    return lerp(surface, tint, if (isSystemInDarkTheme()) 0.22f else 0.14f)
+}
+
+/** The crossed keys identify the papal intention without tying it to one pontificate. */
+@Composable
+private fun PapalKeysIcon() {
+    val tint = MaterialTheme.colorScheme.primary
+    Canvas(Modifier.size(24.dp)) {
+        val unit = size.width / 24f
+        val stroke = 1.8f * unit
+        fun point(x: Float, y: Float) = Offset(x * unit, y * unit)
+        for (mirrored in listOf(false, true)) {
+            fun x(value: Float) = if (mirrored) 24f - value else value
+            drawCircle(tint, 3f * unit, point(x(6f), 5f), style = Stroke(stroke))
+            drawLine(tint, point(x(8f), 7f), point(x(19f), 21f), stroke, StrokeCap.Round)
+            drawLine(tint, point(x(15.5f), 18f), point(x(18f), 16f), stroke, StrokeCap.Round)
+            drawLine(tint, point(x(19f), 21f), point(x(21.5f), 19f), stroke, StrokeCap.Round)
+        }
     }
 }

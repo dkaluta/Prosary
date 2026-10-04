@@ -27,6 +27,16 @@ spec.loader.exec_module(builder)
 
 
 class SourceTests(unittest.TestCase):
+    def test_website_parser_preserves_pointed_words_and_rejects_wrong_references_or_omissions(self):
+        from peshitta_eu_source import parse_chapter
+        def page(text='ܐܰܒܳܐ', reference='job.42.1', label='1'):
+            return f'<span class="verse" id="v1" data-ref="{reference}">{label} {text}</span>'.encode()
+        self.assertEqual(parse_chapter(page(), 'job', 42), {1:'ܐܰܒܳܐ'})
+        for raw in [page(reference='job.41.1'), page(label='2'), page(text='(ܠܝܬ)'),
+                    page(text='<b>ܐܰܒܳܐ</b>'), page()+page()]:
+            with self.subTest(raw=raw), self.assertRaises(ValueError):
+                parse_chapter(raw, 'job', 42)
+
     def test_existing_reviewed_fixture_preserves_both_scripts(self):
         raw = (TOOLS / "fixtures/peshitta-luke-1.xml").read_bytes()
         values = load_verses({"format": "peshitta-tei", "bookName": "Luke"}, raw)
@@ -77,11 +87,12 @@ class SourceTests(unittest.TestCase):
 
     def test_ot_boundary_review_does_not_infer_genesis_six_from_counts(self):
         from reading_edition_reviews_peshitta import PROFILES
-        blocked = PROFILES['peshitta-1905']['blocked_chapters']
+        profile = PROFILES['peshitta-1905']
+        references = profile['reviewed_source_references']
         for key in [('GEN',2),('GEN',5),('GEN',6),('EXO',32),('PSA',114),('SIR',3)]:
-            self.assertIn(key, blocked)
-        self.assertNotIn(('GEN',1), blocked)
-        self.assertNotIn(('NUM',6), blocked)
+            self.assertFalse(any(ref[:2] == key for ref in references))
+        self.assertIn(('GEN',1,1), references)
+        self.assertIn(('NUM',6,24), references)
 
     def test_reference_witnesses_record_disagreements_without_importing_their_words(self):
         witnesses = json.loads((TOOLS / 'peshitta-supplied-ot-witnesses.json').read_text())
@@ -295,7 +306,7 @@ class ShippedPeshittaTests(unittest.TestCase):
         edition = next(row for row in self.payload["editions"] if row["id"] == "peshitta-1905")
         self.assertEqual(edition["languageCode"], "arc")
         self.assertEqual((edition["textScript"], edition["transliteratedTextScript"]), ("Hebr", "Syrc"))
-        for credit in ("1905", "Kiraz", "Walters", "CC BY 4.0", "unresolved"):
+        for credit in ("1905", "Kiraz", "Walters", "CC BY 4.0", "Syriac Orthodox Patriarchate 2020"):
             self.assertIn(credit, edition["attribution"])
 
     def test_every_shipped_pair_is_exactly_the_established_projection(self):
@@ -355,14 +366,19 @@ class ShippedPeshittaTests(unittest.TestCase):
 
     def test_source_manifest_keeps_the_nt_and_pins_reviewed_ot_books(self):
         sources = [row for row in self.lock["sources"] if row["id"].startswith("peshitta-")]
-        self.assertEqual(len(sources), 72)
+        previous = [row for row in sources if not row['id'].startswith('peshitta-eu-2020-')]
+        self.assertEqual(len(previous), 72, "Original prayer/NT source evidence remains unchanged")
         self.assertEqual({row["book"] for row in sources}, builder.NT | BOOKS.keys())
         isaiah = next(row for row in sources if row["book"] == "ISA")
         self.assertEqual(isaiah["sha256"], scripture_importer().SUPPLIED_PESHITTA_SHA256)
+        current = next(row for row in self.lock['editions'] if row['id'] == 'peshitta-1905')['sources']
+        self.assertEqual(len([row for row in current if row.get('testament') != 'ot']), 27)
+        self.assertTrue(all(row['id'].startswith('peshitta-eu-2020-') for row in current if row.get('testament')=='ot'))
 
     def test_all_shipped_ot_passages_close_reviewed_units_and_avoid_withheld_rows(self):
         subject = mapper('peshitta-1905')
-        allowed, _ = reviewed_mapping()
+        from peshitta_eu_source import reviewed_mapping as website_mapping
+        allowed, _ = website_mapping()
         for key, translations in self.payload['passages'].items():
             book, _ = builder.parse_citation(key.split('|',1)[1], expand_subverses=True)
             if book not in BOOKS or 'peshitta-1905' not in translations:
@@ -372,6 +388,20 @@ class ShippedPeshittaTests(unittest.TestCase):
             standard, _ = subject.to_standard(refs)
             returned, _ = subject.from_standard(standard)
             self.assertEqual(set(returned), set(refs), key)
+
+    def test_october_third_job_uses_requested_publication_and_exact_disjoint_units(self):
+        key = 'daily|Job 42:1–3; 42:5–6; 42:12–16'
+        rows = self.payload['passages'][key]['peshitta-1905']
+        self.assertEqual([(row['chapter'],row['verse']) for row in rows],
+                         [(42,n) for n in [1,2,3,5,6,12,13,14,15,16]])
+        self.assertEqual(self.payload['passageBooks'][key]['peshitta-1905'], 'JOB')
+        source=next(row for row in self.lock['sources'] if row['id']=='peshitta-eu-2020-job-42')
+        direct=builder.load_source(source)['JOB',42]
+        self.assertEqual([row['transliteratedText'] for row in rows], [direct[row['verse']] for row in rows])
+        edition=next(row for row in self.lock['editions'] if row['id']=='peshitta-1905')
+        _,corpora=builder.load_pinned_corpora()
+        with self.assertRaisesRegex(builder.Unavailable, 'calendar context'):
+            builder.resolve(key, {'roman','syriac'},edition,corpora[edition['id']])
 
 
 if __name__ == "__main__":

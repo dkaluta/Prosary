@@ -183,6 +183,7 @@ nonisolated struct ReadingTextDataset: Decodable, Sendable {
   let passages: [String: [String: [ReadingTextVerse]]]
   var wholeVersePassages: [String]? = nil
   var passageSources: [String: [String: ReadingPassageSource]]? = nil
+  var passageBooks: [String: [String: String]]? = nil
 
   func availableEditions(citation: String, isTorah: Bool) -> [ReadingTextEdition] {
     editions.filter { passage(citation: citation, isTorah: isTorah, editionID: $0.id) != nil }
@@ -210,7 +211,7 @@ nonisolated struct ReadingTextDataset: Decodable, Sendable {
 }
 
 extension ReadingTextDataset {
-  private enum CodingKeys: String, CodingKey { case schemaVersion, editions, passages, wholeVersePassages, passageSources }
+  private enum CodingKeys: String, CodingKey { case schemaVersion, editions, passages, wholeVersePassages, passageSources, passageBooks }
 
   init(from decoder: Decoder) throws {
     let values = try decoder.container(keyedBy: CodingKeys.self)
@@ -219,6 +220,15 @@ extension ReadingTextDataset {
     passages = try values.decode([String: [String: [ReadingTextVerse]]].self, forKey: .passages)
     wholeVersePassages = try values.decodeIfPresent([String].self, forKey: .wholeVersePassages)
     passageSources = values.contains(.passageSources) ? try values.decode([String: [String: ReadingPassageSource]].self, forKey: .passageSources) : nil
+    passageBooks = values.contains(.passageBooks) ? try values.decode([String: [String: String]].self, forKey: .passageBooks) : nil
+    if let passageBooks {
+      guard passageBooks.allSatisfy({ key, books in
+        passages[key] != nil && !books.isEmpty && books.allSatisfy { edition, book in
+          passages[key]?[edition] != nil && book.range(of: "^[A-Z0-9]{3}$", options: .regularExpression) != nil
+            && (passageSources?[key]?[edition].map { $0.book == book } ?? true)
+        }
+      }) else { throw BibleStoreError.invalidArchive }
+    }
     if let passageSources {
       guard !passageSources.isEmpty, passageSources.allSatisfy({ key, sources in
         key.range(of: "^(daily|torah)\\|.+$", options: .regularExpression) != nil
@@ -237,16 +247,26 @@ actor ReadingTextStore {
   private var hasLoaded = false
   private let resourceURL: URL?
   private let editionsURL: URL?
+  private let bibleStore: BibleStore?
 
   init(resourceURL: URL? = Bundle.main.url(forResource: "readings-texts", withExtension: "json"),
-       editionsURL: URL? = Bundle.main.url(forResource: "readings-editions", withExtension: "json")) {
+       editionsURL: URL? = Bundle.main.url(forResource: "readings-editions", withExtension: "json"),
+       bibleStore: BibleStore? = .shared) {
     self.resourceURL = resourceURL
     self.editionsURL = editionsURL
+    self.bibleStore = bibleStore
   }
 
-  func passage(citation: String, isTorah: Bool, editionID: String) -> ReadingTextPassage? {
+  func passage(citation: String, isTorah: Bool, editionID: String) async -> ReadingTextPassage? {
     loadPassages()
-    return dataset?.passage(citation: citation, isTorah: isTorah, editionID: editionID)
+    guard var passage = dataset?.passage(citation: citation, isTorah: isTorah, editionID: editionID) else { return nil }
+    let key = "\(isTorah ? "torah" : "daily")|\(citation)"
+    if let book = dataset?.passageBooks?[key]?[editionID], let bibleStore,
+       let verses = try? await bibleStore.reviewedPassage(editionID: editionID, book: book, expected: passage.verses) {
+      passage = ReadingTextPassage(edition: passage.edition, verses: verses,
+        includesWholeVerses: passage.includesWholeVerses, source: passage.source)
+    }
+    return passage
   }
 
   func availableEditions(citation: String, isTorah: Bool) -> [ReadingTextEdition] {

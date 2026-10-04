@@ -46,6 +46,7 @@ fun ScriptureSourceNotes(notes: List<ReadingSourceNote>?) {
     val direction = if (configuration.layoutDirection == View.LAYOUT_DIRECTION_RTL) LayoutDirection.Rtl else LayoutDirection.Ltr
     val formatter = remember(configuration.locales[0]) { NumberFormat.getIntegerInstance(configuration.locales[0]) }
     val uriHandler = LocalUriHandler.current
+    val sourceGroups = remember(notes) { notes.groupBy { it.sourceURL to it.sourcePages }.values }
     DisableSelection {
         CompositionLocalProvider(LocalLayoutDirection provides direction) {
             Column(Modifier.fillMaxWidth()) {
@@ -61,23 +62,31 @@ fun ScriptureSourceNotes(notes: List<ReadingSourceNote>?) {
                 if (expanded) Surface(color = MaterialTheme.colorScheme.surfaceContainer,
                     shape = MaterialTheme.shapes.medium, modifier = Modifier.fillMaxWidth()) {
                     Column(Modifier.padding(12.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
-                        for (note in notes) Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
-                            CompositionLocalProvider(LocalLayoutDirection provides LayoutDirection.Rtl) {
-                                Text(note.anchor, modifier = Modifier.fillMaxWidth(), style = MaterialTheme.typography.bodyLarge)
+                        for (sourceNotes in sourceGroups) Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                            for (anchorNotes in sourceNotes.groupBy { it.anchor to it.occurrence }.values) {
+                                Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                                    CompositionLocalProvider(LocalLayoutDirection provides LayoutDirection.Rtl) {
+                                        Text(anchorNotes.first().anchor, modifier = Modifier.fillMaxWidth(), style = MaterialTheme.typography.bodyLarge)
+                                    }
+                                    for (note in anchorNotes) Column(verticalArrangement = Arrangement.spacedBy(4.dp),
+                                        modifier = Modifier.testTag("scriptureSourceNoteDetail.${note.id}")) {
+                                        if (note.kind == "restoredLetter") {
+                                            Text(stringResource(R.string.scripture_source_note_restored_letter,
+                                                "\u2067${note.letter}\u2069", note.letterIndex, "\u2067${note.anchor}\u2069"),
+                                                style = MaterialTheme.typography.bodyMedium)
+                                        } else {
+                                            Text(stringResource(R.string.scripture_source_note_letter, "\u2067${note.letter}\u2069", note.letterIndex),
+                                                style = MaterialTheme.typography.bodyMedium)
+                                            Text(stringResource(if (note.mark == "vowel" || note.mark == "shuruq") R.string.scripture_source_note_vowel else R.string.scripture_source_note_dagesh),
+                                                style = MaterialTheme.typography.bodyMedium)
+                                        }
+                                    }
+                                }
                             }
-                            if (note.kind == "restoredLetter") {
-                                Text(stringResource(R.string.scripture_source_note_restored_letter,
-                                    "\u2067${note.letter}\u2069", note.letterIndex, "\u2067${note.anchor}\u2069"),
-                                    style = MaterialTheme.typography.bodyMedium)
-                            } else {
-                                Text(stringResource(R.string.scripture_source_note_letter, "\u2067${note.letter}\u2069", note.letterIndex),
-                                    style = MaterialTheme.typography.bodyMedium)
-                                Text(stringResource(if (note.mark == "vowel" || note.mark == "shuruq") R.string.scripture_source_note_vowel else R.string.scripture_source_note_dagesh),
-                                    style = MaterialTheme.typography.bodyMedium)
-                            }
-                            Text(stringResource(R.string.scripture_source_note_pages, note.sourcePages.joinToString(", ") { formatter.format(it) }),
+                            val source = sourceNotes.first()
+                            Text(stringResource(R.string.scripture_source_note_pages, source.sourcePages.joinToString(", ") { formatter.format(it) }),
                                 style = MaterialTheme.typography.bodySmall)
-                            TextButton(onClick = { uriHandler.openUri(note.sourceURL) }) {
+                            TextButton(onClick = { uriHandler.openUri(source.sourceURL) }) {
                                 Text(stringResource(R.string.scripture_source_note_scan))
                             }
                         }
