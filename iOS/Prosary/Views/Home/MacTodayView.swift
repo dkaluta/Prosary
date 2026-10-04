@@ -14,11 +14,13 @@ struct MacTodayView: View {
   @AppStorage("showTodayIntention") private var showsIntention = true
   @AppStorage("showTodayTorahPortion") private var showsTorah = false
   @AppStorage("expandReadingsByDefault") private var expandReadingsByDefault = false
+  @AppStorage(TodayCardColor.defaultsKey) private var todayCardColor = TodayCardColor.default.rawValue
 
   @State private var dateSelection = MacTodayDateSelection()
   @State private var showsDatePicker = false
   @State private var showsOptions = false
   @State private var showsCalendar = false
+  @State private var showsFeasts = false
   @State private var feast: FeastDay?
   @State private var intention: PopeIntention?
   @State private var dayInfo: LiturgicalDayInfo?
@@ -58,8 +60,8 @@ struct MacTodayView: View {
     .toolbar { dateToolbar }
     .toolbar {
       ToolbarItem {
-        Button { showsCalendar = true } label: {
-          Label(label("calendar.title", "Liturgical Calendar"), systemImage: "calendar")
+        Button { showsFeasts = true } label: {
+          Label(label("calendar.feastsAndSolemnities", "Feasts and Solemnities"), systemImage: "calendar")
         }
       }
     }
@@ -71,6 +73,21 @@ struct MacTodayView: View {
           Button(label("common.done", "Done")) { showsCalendar = false }.keyboardShortcut(.defaultAction)
         }.padding()
       }.frame(minWidth: 480, minHeight: 520)
+    }
+    .sheet(isPresented: $showsFeasts) {
+      VStack(spacing: 0) {
+        Text(label("calendar.feastsAndSolemnities", "Feasts and Solemnities"))
+          .font(.headline)
+          .frame(maxWidth: .infinity, alignment: .leading)
+          .padding()
+        FeastsAndSolemnitiesView(dateSelection: $dateSelection, onSelectDate: { showsFeasts = false })
+        Divider()
+        HStack {
+          Spacer()
+          Button(label("common.done", "Done")) { showsFeasts = false }.keyboardShortcut(.defaultAction)
+        }.padding()
+      }
+      .frame(minWidth: 480, minHeight: 520)
     }
     .onAppear { if opensCalendar { showsCalendar = true } }
     .environment(\.layoutDirection, UILanguage.isRightToLeft(language) ? .rightToLeft : .leftToRight)
@@ -101,6 +118,10 @@ struct MacTodayView: View {
         if let dayInfo {
           Text(HebrewDisplayText.unpointed(dayInfo.localized(language)))
             .font(.subheadline).foregroundStyle(.secondary)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(14)
+            .background((TodayCardColor(rawValue: todayCardColor) ?? .default).tint, in: RoundedRectangle(cornerRadius: 14))
+            .prosaryContentCardBackground()
             .accessibilityIdentifier("macToday.dayHeading")
         }
         if let feast {
@@ -109,21 +130,28 @@ struct MacTodayView: View {
               .font(.title2.weight(["Solemnity", "1st Class", "Great Feast"].contains(feast.rank) ? .bold : .semibold))
               .accessibilityAddTraits(.isHeader)
             Text(feast.localizedRank(language)).foregroundStyle(.secondary)
+            SaintDescriptionsView(feast: feast, calendarID: TodayInfoStore.selectedCalendarId, language: language)
+              .id("\(passageContext)|\(language)")
           }
+          .frame(maxWidth: .infinity, alignment: .leading)
+          .padding(14)
+          .prosaryContentCardBackground()
           .accessibilityIdentifier("macToday.feast")
         }
         if let intention {
-          VStack(alignment: .leading, spacing: 8) {
-            Text(String(format: label("home.today.popesIntention", "The Pope’s intention: %@"),
-                        locale: Locale(identifier: language), intention.localizedTitle(language)))
-              .font(.headline).accessibilityAddTraits(.isHeader)
-            Text(intention.localizedText(language)).lineSpacing(3)
+          HStack(alignment: .top, spacing: 12) {
+            PapalKeysSymbol().foregroundStyle(Color.appAccent)
+            VStack(alignment: .leading, spacing: 8) {
+              Text(String(format: label("home.today.popesIntention", "The Pope’s intention: %@"),
+                          locale: Locale(identifier: language), intention.localizedTitle(language)))
+                .font(.headline).accessibilityAddTraits(.isHeader)
+              Text(intention.localizedText(language)).lineSpacing(3)
+            }
           }
+          .frame(maxWidth: .infinity, alignment: .leading)
+          .padding(14)
+          .prosaryContentCardBackground()
           .accessibilityIdentifier("macToday.intention")
-        }
-        if let feast {
-          SaintDescriptionsView(feast: feast, calendarID: TodayInfoStore.selectedCalendarId, language: language)
-            .id("\(passageContext)|\(language)")
         }
         if !readings.isEmpty || torah != nil { ReadingEditionPicker() }
         if !readings.isEmpty { readingsSection }
@@ -235,6 +263,7 @@ struct MacTodayView: View {
         }
       }
       Section {
+        TodayCardColorPicker()
         Toggle(label("settings.showTodayFeast", "Show the day's feast"), isOn: $showsFeast)
           .accessibilityIdentifier("macToday.showFeast")
         Toggle(label("settings.showTodayIntention", "Show the Pope's intention"), isOn: $showsIntention)

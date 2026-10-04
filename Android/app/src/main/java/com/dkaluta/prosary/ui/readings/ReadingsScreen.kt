@@ -1,5 +1,6 @@
 package com.dkaluta.prosary.ui.readings
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -20,6 +21,8 @@ import androidx.compose.foundation.text.selection.DisableSelection
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowLeft
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.CalendarMonth
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.Card
 import androidx.compose.material3.CircularProgressIndicator
@@ -63,7 +66,6 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
-import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -73,6 +75,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import com.dkaluta.prosary.R
+import com.dkaluta.prosary.content.bible.BibleLibrary
 import com.dkaluta.prosary.content.today.ReadingCitation
 import com.dkaluta.prosary.content.today.ReadingEdition
 import com.dkaluta.prosary.content.today.ReadingPassage
@@ -105,25 +108,39 @@ fun ReadingsScreen(onOpenSettings: () -> Unit, browsingDate: TodayBrowsingDate =
     LaunchedEffect(calendarRequest, readingsRequest) {
         if (calendarRequest != handledCalendarRequest || readingsRequest != handledReadingsRequest) {
             browsingDate.selectedEpochDay = null
-            mode = if (calendarRequest != 0L) "calendar" else "daily"
+            mode = if (calendarRequest != handledCalendarRequest) "calendar" else "daily"
             handledCalendarRequest = calendarRequest
             handledReadingsRequest = readingsRequest
         }
     }
+    val showsCalendarList = mode == "calendar" || mode == "feasts"
+    BackHandler(enabled = showsCalendarList) { mode = "daily" }
     val holder = rememberSaveableStateHolder()
     Scaffold(topBar = {
-        TopAppBar(title = { Text(stringResource(R.string.tab_readings)) }, actions = {
+        TopAppBar(title = { Text(stringResource(when (mode) {
+            "feasts" -> R.string.calendar_feasts_solemnities
+            "calendar" -> R.string.calendar_title
+            else -> R.string.tab_readings
+        })) },
+            navigationIcon = {
+                if (showsCalendarList) IconButton(onClick = { mode = "daily" }) {
+                    Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(R.string.bible_daily_readings))
+                }
+            }, actions = {
+            if (mode != "feasts") IconButton(onClick = { mode = "feasts" }, modifier = Modifier.testTag("readingsMode.feasts")) {
+                Icon(Icons.Filled.CalendarMonth, contentDescription = stringResource(R.string.calendar_feasts_solemnities))
+            }
             IconButton(onClick = onOpenSettings) {
                 Icon(Icons.Filled.Settings, contentDescription = stringResource(R.string.common_settings))
             }
         })
     }) { padding ->
         Column(Modifier.padding(padding).fillMaxSize()) {
-            SingleChoiceSegmentedButtonRow(Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 8.dp)) {
-                listOf("daily" to R.string.bible_daily_readings, "calendar" to R.string.calendar_title,
+            if (!showsCalendarList) SingleChoiceSegmentedButtonRow(Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 8.dp)) {
+                listOf("daily" to R.string.bible_daily_readings,
                     "bible" to R.string.bible_title).forEachIndexed { index, (id, title) ->
                     SegmentedButton(selected = mode == id, onClick = { mode = id },
-                        shape = SegmentedButtonDefaults.itemShape(index, 3), modifier = Modifier.testTag("readingsMode.$id")) {
+                        shape = SegmentedButtonDefaults.itemShape(index, 2), modifier = Modifier.testTag("readingsMode.$id")) {
                         Text(stringResource(title))
                     }
                 }
@@ -132,6 +149,7 @@ fun ReadingsScreen(onOpenSettings: () -> Unit, browsingDate: TodayBrowsingDate =
                 when (mode) {
                     "bible" -> BibleScreen()
                     "calendar" -> LiturgicalCalendarContent(browsingDate) { mode = "daily" }
+                    "feasts" -> FeastsAndSolemnitiesContent(browsingDate) { mode = "daily" }
                     else -> DailyReadingsContent(browsingDate)
                 }
             }
@@ -185,7 +203,9 @@ private fun DailyReadingsContent(browsingDate: TodayBrowsingDate) {
         if (AppSettings.showTodayTorahPortion) TodayInfoStore.torahPortion(lookupDate) else null
     }
     val store = remember(context.applicationContext) {
-        ReadingTextStore { name -> context.applicationContext.assets.open("data/$name.json") }
+        ReadingTextStore(bibleStore = BibleLibrary.get(context.applicationContext).store) { name ->
+            context.applicationContext.assets.open("data/$name.json")
+        }
     }
     val editions by produceState<List<ReadingEdition>>(emptyList(), store) {
         value = withContext(Dispatchers.IO) { store.editions }
@@ -393,13 +413,8 @@ internal fun ReadingCard(citation: ReadingCitation, language: String, edition: R
                     }
                 } else {
                     if (edition?.hasAramaicScripts == true) {
-                        val usesSyriac = readingScript == "Syrc"
-                        val currentScript = stringResource(if (usesSyriac) R.string.settings_script_syriac else R.string.settings_script_hebrew)
-                        TextButton(onClick = { scriptOverride = if (usesSyriac) "Hebr" else "Syrc" },
-                            modifier = Modifier.testTag("readingScript.${if (isTorah) "torah" else "daily"}.${citation.full}")
-                                .semantics { stateDescription = currentScript }) {
-                            Text(stringResource(if (usesSyriac) R.string.settings_script_hebrew else R.string.settings_script_syriac))
-                        }
+                        AramaicScriptPicker(readingScript, onSelect = { scriptOverride = it },
+                            modifier = Modifier.testTag("readingScript.${if (isTorah) "torah" else "daily"}.${citation.full}"))
                     }
                     if (passage.includesWholeVerses) {
                         Text(stringResource(R.string.readings_whole_verses_notice),

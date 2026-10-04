@@ -1,6 +1,7 @@
 using Prosary.Services;
 using Prosary.Models;
 using Prosary.ViewModels;
+using System.Runtime.InteropServices;
 using Xunit;
 
 namespace Prosary.Tests;
@@ -23,6 +24,37 @@ public class ReadingsTextStoreTests
           "daily|Damaged":{"fixture-en":[{"chapter":1,"verse":1,"text":"Valid part"},{"chapter":1,"verse":2,"text":""}]}
         }}
         """;
+
+    [Fact]
+    public void BundledDefaultsDoNotRequireAnInstalledBibleOrPackageIdentity()
+    {
+        var store = ReadingsTextStore.Default;
+        Assert.NotNull(store.ResolveEdition("peshitta-1905", "en"));
+        Assert.NotNull(store.LoadPassage("daily", "Job 42:1–3; 42:5–6; 42:12–16", "peshitta-1905"));
+    }
+
+    [Theory]
+    [InlineData(false)]
+    [InlineData(true)]
+    public async Task InstalledBibleIsDeferredAndUnavailablePackageContextKeepsBundledPassage(bool comFailure)
+    {
+        var factoryCalls = 0;
+        var fixture = Fixture.Replace("\"passages\":",
+            "\"passageBooks\":{\"daily|John 3:16\":{\"fixture-en\":\"JHN\"}},\"passages\":");
+        var store = new ReadingsTextStore(() => fixture, bibleStoreFactory: () =>
+        {
+            factoryCalls++;
+            if (comFailure) throw new COMException("Notification/package registration unavailable.");
+            throw new InvalidOperationException("No package identity.");
+        });
+        Assert.Equal("fixture-en", store.ResolveEdition("", "en")?.Id);
+        var bundled = store.LoadPassage("daily", "John 3:16", "fixture-en");
+        Assert.NotNull(bundled);
+        Assert.Equal(0, factoryCalls);
+        var expanded = await store.LoadPassageAsync("daily", "John 3:16", "fixture-en");
+        Assert.Equal(bundled, expanded);
+        Assert.Equal(1, factoryCalls);
+    }
 
     [Fact]
     public void MetadataSelectionDoesNotReadThePassageCorpus()

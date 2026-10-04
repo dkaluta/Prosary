@@ -36,6 +36,19 @@ MAX_ARCHIVE = 32 * 1024 * 1024
 MAX_UNPACKED = 128 * 1024 * 1024
 MAX_CHAPTER = 2 * 1024 * 1024
 
+# Catholic placement of Kahana's independently numbered additions. These strings
+# identify whole works/sections, not an equivalence between individual verse labels.
+# Source numbering differs, notably LJE 1:1-73 versus Baruch 6:1-72. See the source
+# comparison and primary USCCB references in BIBLE-VIEWER.markdown.
+HEBREW_CATHOLIC_REFERENCES = {
+    "LJE": ("ברוך ו׳", {1: "ברוך ו׳"}),
+    "S3Y": ("דניאל ג׳", {1: "דניאל ג׳"}),
+    "SUS": ("דניאל י״ג", {1: "דניאל י״ג"}),
+    "BEL": ("דניאל י״ד", {1: "דניאל י״ד"}),
+    "ESG": ("אסתר", {1: "אסתר A", 2: "אסתר B", 3: "אסתר C",
+                      4: "אסתר C", 5: "אסתר D", 6: "אסתר E", 7: "אסתר F"}),
+}
+
 
 def encode(value):
     return (json.dumps(value, ensure_ascii=False, separators=(",", ":")) + "\n").encode()
@@ -76,12 +89,15 @@ def chapter_rows(builder, edition, corpus):
     profile = profile_for(edition["id"])
     allowed = profile.get("reviewed_source_references", frozenset())
     gated_books = profile.get("review_required_books", frozenset())
+    website_ot = edition["id"] == "peshitta-1905" and any(
+        source["id"].startswith("peshitta-eu-2020-") for source in edition["sources"])
     for (book, chapter), original in sorted(corpus.items()):
-        if (book, chapter) in mapper.excluded_chapters:
+        source_native = website_ot and book not in builder.NT
+        if not source_native and (book, chapter) in mapper.excluded_chapters:
             continue
-        sparse = edition.get("coveragePolicy") == "reviewed-units" or book in gated_books
+        sparse = not source_native and (edition.get("coveragePolicy") == "reviewed-units" or book in gated_books)
         values = {verse: text for verse, text in original.items()
-                  if book not in gated_books or (book, chapter, verse) in allowed}
+                  if source_native or book not in gated_books or (book, chapter, verse) in allowed}
         if not values:
             continue
         rows = []
@@ -101,13 +117,23 @@ def chapter_rows(builder, edition, corpus):
         yield book, chapter, rows, complete
 
 
-def make_archive(edition, chapters, names, presentations=None):
+def make_archive(edition, chapters, names, presentations=None, canonical_references=None):
     files = {}
     books = defaultdict(list)
     chapters = list(chapters)
     presentations = presentations or {}
+    canonical_references = canonical_references or {}
     if set(presentations) - {(book, chapter) for book, chapter, _, _ in chapters}:
         raise ValueError("Source presentation has no primary chapter")
+    if set(canonical_references) - {(book, chapter) for book, chapter, _, _ in chapters}:
+        raise ValueError("Catholic placement has no source chapter")
+    for book, name in names.items():
+        if "canonicalReference" in name and not (
+                isinstance(name["canonicalReference"], str) and name["canonicalReference"].strip()):
+            raise ValueError(f"{book}: empty Catholic placement")
+    for (book, chapter), reference in canonical_references.items():
+        if not isinstance(reference, str) or not reference.strip() or "canonicalReference" not in names[book]:
+            raise ValueError(f"{book} {chapter}: invalid Catholic placement")
     structured = bool(presentations) or any("addressRoutes" in name for name in names.values())
     version = 3 if structured else (2 if any("sourceNotes" in row for _, _, rows, _ in chapters for row in rows) else 1)
     note_ids = defaultdict(set)
@@ -129,7 +155,10 @@ def make_archive(edition, chapters, names, presentations=None):
         if len(data) > MAX_CHAPTER:
             raise ValueError("Bible chapter exceeds the native resource limit")
         files[f"chapters/{book}/{chapter}.json"] = data
-        books[book].append({"number": chapter, "verseCount": len(verses), "isComplete": complete})
+        chapter_metadata = {"number": chapter, "verseCount": len(verses), "isComplete": complete}
+        if (book, chapter) in canonical_references:
+            chapter_metadata["canonicalReference"] = canonical_references[book, chapter]
+        books[book].append(chapter_metadata)
     for book, payloads in chapter_payloads.items():
         validate_structure(payloads, routes=names[book].get("addressRoutes", ABSENT),
                            archive_version=version,
@@ -182,18 +211,28 @@ def build(*, require_hebrew_supplement=False, fetch=False):
         chapters = list(chapter_rows(builder, edition, corpora[edition["id"]]))
         names = book_names(edition, {row[0] for row in chapters})
         presentations = {}
+        canonical_references = {}
         if edition["id"] == "masoretic-delitzsch":
             for book in supplement:
                 if book["book"] in names:
                     raise ValueError("A Hebrew supplement cannot replace an existing Bible book")
                 metadata = {"name": book["title"], "attribution": book["attribution"],
                             "sourceURL": book["sourceURL"]}
+                placement = HEBREW_CATHOLIC_REFERENCES.get(book["book"])
+                if placement:
+                    reference, chapter_references = placement
+                    metadata["name"] = f"{reference} — {book['title']}"
+                    metadata["canonicalReference"] = reference
                 if "introduction" in book:
                     metadata["introduction"] = builder.preserve_divine_name_accents(book["introduction"])
                 if "addressRoutes" in book:
                     metadata["addressRoutes"] = book["addressRoutes"]
                 names[book["book"]] = metadata
                 for chapter in book["chapters"]:
+                    if placement:
+                        if chapter["number"] not in chapter_references:
+                            raise ValueError(f"Unknown Catholic placement: {book['book']} {chapter['number']}")
+                        canonical_references[book["book"], chapter["number"]] = chapter_references[chapter["number"]]
                     verses = [{"chapter": chapter["number"], "verse": row["verse"],
                                **({"endVerse": row["endVerse"]} if "endVerse" in row else {}),
                                "text": builder.preserve_divine_name_accents(row["text"]),
@@ -206,7 +245,7 @@ def build(*, require_hebrew_supplement=False, fetch=False):
                             if "text" in block:
                                 block["text"] = builder.preserve_divine_name_accents(block["text"])
                         presentations[book["book"], chapter["number"]] = blocks
-        filename, raw, entry = make_archive(edition, chapters, names, presentations)
+        filename, raw, entry = make_archive(edition, chapters, names, presentations, canonical_references)
         archives[filename] = raw
         editions.append(entry)
         coverage[edition["id"]] = {"books": len(entry["books"]), "chapters": len(chapters),

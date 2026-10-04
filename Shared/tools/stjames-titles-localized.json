@@ -1,5 +1,5 @@
 {
-  "$comment": "Other-language editorial display labels and explicitly reviewed aliases for the supplied St James calendar. English and Hebrew come from the PDF snapshot. Aliases reuse names only, never dates, ranks or readings.",
+  "$comment": "Editorial display labels and explicitly reviewed aliases for the supplied St James calendar. English and Hebrew come from the PDF snapshot, with explicitly supplied Hebrew display terminology overriding selected captions while preserving the printed Hebrew in sourceTitleByLanguage. Palm Sunday uses the user's 2026-10-03 wording יום ראשון של הלולבים. Aliases reuse names only, never dates, ranks or readings.",
   "aliases": {
     "St. Faustina Kowalska, virgin": "Saint Faustina Kowalska",
     "St. Faustina Kowalska, Virgin": "Saint Faustina Kowalska",
@@ -460,6 +460,7 @@
       "uk": "5-та неділя Великого посту (рік B)"
     },
     "Palm Sunday of the Lord’s Passion (Year B)": {
+      "he": "יום ראשון של הלולבים (שנה ב')",
       "ar": "أحد الشعانين (السنة B)",
       "ru": "Вербное воскресенье (год B)",
       "tl": "Linggo ng Palaspas (Taon B)",

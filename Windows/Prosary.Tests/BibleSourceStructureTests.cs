@@ -278,5 +278,22 @@ public sealed class BibleSourceStructureTests : IDisposable
         Assert.Equal(expected, rows[0].VerseLabel); Assert.Contains(expected, rows[0].DisplayText);
         Assert.Equal("1", rows[1].VerseLabel);
     }
+    [Fact]
+    public void CanonicalChapterRowsIdentifySourceLabelsAndKeepDistinctLiteralAnnotations()
+    {
+        var chapter = new BibleChapterText(3, "source", "SUS", 1, [new(1, 40, "Source", EndVerse: 41)]);
+        var display = new BibleDisplayChapter(chapter, [new("sus-range", "verse", chapter.Verses[0], PrintedLabel: "כ–כא")]);
+        var row = Assert.Single(BibleVerseRow.FromDisplay(display, null, "Hebr", usesPrintedLabels: true));
+        Assert.Contains("Printed label:", row.VerseLabel);
+        Assert.Contains("כ–כא", row.VerseLabel);
+        Assert.Equal("Source", row.DisplayText);
+        Assert.True(row.HasPrintedLabel);
+        Assert.Contains("כ–כא", row.PrintedLabelAnnotation);
+        Assert.Contains("40–41", (row with { PrintedLabel = null }).PrintedLabelAnnotation);
+        Assert.Equal((row with { PrintedLabel = "40–41" }).VerseLabel,
+            (row with { PrintedLabel = "40–41" }).PrintedLabelAnnotation);
+        Assert.True(row.ContainsVerse(40));
+        Assert.True(row.ContainsVerse(41));
+    }
     public void Dispose() { if (Directory.Exists(_directory)) Directory.Delete(_directory, true); }
 }

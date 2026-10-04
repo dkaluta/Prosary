@@ -35,6 +35,7 @@ REVIEW_FILES = (
     "peshitta-supplied-ot-witnesses.json",
     "peshitta-supplied-ot-full-collation.json",
     "peshitta_ot_semantic_review.py", "peshitta-supplied-ot-semantic-review.json",
+    "peshitta_eu_source.py", "peshitta-eu-2020-review.json",
     "reading_edition_reviews_greek.py", "brenton_reading_source.py",
     "import-scripture.py", "aramaic_script_converter.py",
     "reading_step_mapping.py", "reading_psalm_mapping.py", "reading_boundary_groups.py",

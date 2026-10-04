@@ -417,6 +417,21 @@ fun SettingsScreen(onBack: () -> Unit, onOpenAppearance: () -> Unit) {
             // registry default.
             SectionHeader(stringResource(R.string.settings_today_header))
 
+            OptionPickerField(
+                label = stringResource(R.string.settings_today_card_color),
+                options = AppSettings.todayCardColors,
+                selected = AppSettings.todayCardColor,
+                optionLabel = { context.getString(when (it) {
+                    "blue" -> R.string.app_color_blue
+                    "green" -> R.string.app_color_green
+                    "gold" -> R.string.app_color_gold
+                    "rose" -> R.string.app_color_rose
+                    else -> R.string.settings_today_card_color_default
+                }) },
+                onSelect = { AppSettings.todayCardColor = it },
+                modifier = Modifier.testTag("todayCardColor"),
+            )
+
             Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
                 Text(stringResource(R.string.settings_show_today_readings), Modifier.weight(1f))
                 Switch(checked = AppSettings.showTodayReadings,

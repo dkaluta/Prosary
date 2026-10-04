@@ -34,6 +34,9 @@ final class AppShellUITests: XCTestCase {
 
     app.tabBars.buttons["Search"].tap()
     XCTAssertTrue(app.navigationBars["Search"].waitForExistence(timeout: 5))
+    XCTAssertTrue(app.buttons["search.local.rosary"].waitForExistence(timeout: 5))
+    XCTAssertFalse(app.staticTexts["From the Community"].exists, "Browse owns installable prayers")
+    XCTAssertFalse(app.buttons["Install"].exists)
 
     // Browse reaches the network; assert the screen, never the catalogue's contents.
     app.tabBars.buttons["Browse"].tap()
@@ -191,6 +194,35 @@ final class AppShellUITests: XCTestCase {
     screenshot.name = "greek-bible-selected-from-menu"
     screenshot.lifetime = .keepAlways
     add(screenshot)
+    app.terminate()
+  }
+
+  /// Seed the verified Peshitta archive in this disposable simulator before running.
+  @MainActor
+  func testDownloadedPeshittaJobDailyReadingUsesTheBibleLibrary() throws {
+    let app = XCUIApplication()
+    app.launchArguments = ["-useInMemoryStore", "-AppleLanguages", "(en)", "-interfaceLanguageCode", "en",
+                           "-feastCalendarId", "lpj", "-showTodayFeast", "YES", "-expandReadingsByDefault", "YES",
+                           "-readingsEditionId", "peshitta-1905", "-aramaicDefaultScript", "Hebr"]
+    app.launch()
+    openReadingsTab(in: app, title: "Readings")
+    app.segmentedControls["readings.mode"].buttons["Bible"].tap()
+    XCTAssertTrue(app.buttons["bible.remove"].waitForExistence(timeout: 10),
+                  "The final verified Peshitta archive is installed in this disposable simulator")
+    app.segmentedControls["readings.mode"].buttons["Daily Readings"].tap()
+    try moveReadingsDate(in: app, to: "2026-10-03")
+    XCTAssertTrue(app.staticTexts["וַענָא אִיוּב וְאמַר למָריָא."].waitForExistence(timeout: 15),
+                  "The first appointed verse uses the source's Hebrew-script projection")
+    let picker = app.segmentedControls.containing(.button, identifier: "Syriac Script").firstMatch
+    let scroll = app.scrollViews.firstMatch
+    for _ in 0..<3 where !picker.isHittable {
+      scroll.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.7))
+        .press(forDuration: 0.05, thenDragTo: scroll.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)))
+    }
+    picker.buttons["Syriac Script"].tap()
+    XCTAssertTrue(app.staticTexts["ܘܰܥ̣ܢܳܐ ܐܺܝܽܘܒ ܘܶܐܡܰܪ ܠܡܳܪܝܳܐ."].waitForExistence(timeout: 5))
+    let capture = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
+    capture.name = "peshitta-daily-job-october-3-syriac"; capture.lifetime = .keepAlways; add(capture)
     app.terminate()
   }
 

@@ -4,22 +4,53 @@
     "FeastDay": {
       "description": "One calendar's observances for a civil date. Calendar identity, date and rank never change with interface language.",
       "fields": {
-        "title": { "type": "string", "description": "Original provider title; Syriac retains exact English SYE spelling plus distinct reviewed Arabic supplements." },
-        "rank": { "type": "string" },
-        "titleByLanguage": { "type": "map<string, string>?", "description": "Assembled localized display title. Syriac generation requires every component in all eight interface languages; copying English under another locale is not coverage." },
-        "observances": { "type": "FeastObservance[]?", "description": "Optional identity-preserving components and sourced saint/feast descriptions in the selected calendar. Older datasets without these remain valid." }
+        "title": {
+          "type": "string",
+          "description": "Original provider title; Syriac retains exact English SYE spelling plus distinct reviewed Arabic supplements."
+        },
+        "rank": {
+          "type": "string"
+        },
+        "titleByLanguage": {
+          "type": "map<string, string>?",
+          "description": "Assembled localized display title. Syriac generation requires every component in all eight interface languages; copying English under another locale is not coverage."
+        },
+        "observances": {
+          "type": "FeastObservance[]?",
+          "description": "Optional identity-preserving components and sourced saint/feast descriptions in the selected calendar. Older datasets without these remain valid."
+        }
       }
     },
     "FeastObservance": {
       "description": "Reviewed identity and language-specific display metadata for a single observance. The supplied 2026 Hebrew Urtotho calendar applies only to Syriac; short reviewed Evangelizo excerpts also enrich supported Roman calendars. Descriptions join exact source UID, calendar, date and identity, never date alone or array position.",
       "fields": {
-        "title": { "type": "string", "description": "Original English display spelling where SYE supplies it." },
-        "identity": { "type": "string", "description": "Reviewed canonical identity, distinct from display spelling." },
-        "sourceTitleByLanguage": { "type": "map<string, string>?", "description": "Generator provenance: exact published Arabic captions take precedence over editorial Arabic supplements during re-localization. Native clients may ignore this field." },
-        "titleByLanguage": { "type": "map<string, string>?" },
-        "descriptionByLanguage": { "type": "map<string, string>?", "description": "Optional sourced saint/feast prose. Render only the normalized exact interface locale (iw->he, fil->tl); never fall back to another language. Coverage is explicit per observance and language, not promised for every calendar/date." },
-        "descriptionSourceByLanguage": { "type": "map<string, string>?", "description": "Matching source URL, exposed only when a safe HTTPS URL and a corresponding description exist." },
-        "descriptionCreditByLanguage": { "type": "map<string, string>?", "description": "Attribution accompanying the description, including the supplied Hebrew reference and its underlying Evangelizo source." }
+        "title": {
+          "type": "string",
+          "description": "Original English display spelling where SYE supplies it."
+        },
+        "identity": {
+          "type": "string",
+          "description": "Reviewed canonical identity, distinct from display spelling."
+        },
+        "sourceTitleByLanguage": {
+          "type": "map<string, string>?",
+          "description": "Generator provenance: exact printed captions retained when display terminology is normalized. Published Arabic captions take precedence over editorial Arabic supplements during re-localization. Native clients may ignore this field."
+        },
+        "titleByLanguage": {
+          "type": "map<string, string>?"
+        },
+        "descriptionByLanguage": {
+          "type": "map<string, string>?",
+          "description": "Optional sourced saint/feast prose. Render only the normalized exact interface locale (iw->he, fil->tl); never fall back to another language. Coverage is explicit per observance and language, not promised for every calendar/date."
+        },
+        "descriptionSourceByLanguage": {
+          "type": "map<string, string>?",
+          "description": "Matching source URL, exposed only when a safe HTTPS URL and a corresponding description exist."
+        },
+        "descriptionCreditByLanguage": {
+          "type": "map<string, string>?",
+          "description": "Attribution accompanying the description, including the supplied Hebrew reference and its underlying Evangelizo source."
+        }
       }
     },
     "PrayerPackGalleryImage": {
@@ -42,20 +73,41 @@
       }
     },
     "SavedPrayerEntity": {
-      "platforms": ["iOS", "macOS"],
+      "platforms": [
+        "iOS",
+        "macOS"
+      ],
       "description": "Apple App Intents entity for OpenPrayerIntent. Suggested entities include every saved prayer kind, sorted by display name; identifier resolution reads the current authoritative preset store. This is a reference to an existing saved copy, not a new persisted Prayer shape.",
       "fields": {
-        "id": { "type": "uuid", "description": "The exact saved Prayer.ID. Renaming preserves this identity; deleting the saved row makes the shortcut unavailable." },
-        "name": { "type": "string", "description": "The saved Prayer's current name, used by Shortcuts and Siri for display." }
+        "id": {
+          "type": "uuid",
+          "description": "The exact saved Prayer.ID. Renaming preserves this identity; deleting the saved row makes the shortcut unavailable."
+        },
+        "name": {
+          "type": "string",
+          "description": "The saved Prayer's current name, used by Shortcuts and Siri for display."
+        }
       }
     },
     "PrayerPackContent": {
       "description": "One content/<language>.json file inside a prayer pack. Unmarked Hebrew content is generic, including repository packs. Per-key provenance separates shared Hebrew from tradition-specific wording without changing saved prayer language codes.",
       "fields": {
-        "prayers": { "type": "map<string, string>", "description": "Prayer keys and display text." },
-        "mysteries": { "type": "map<string, MysteryTextOverride>?", "description": "Partial mystery fields; Hebrew Scripture and shared metadata remain generic." },
-        "transliterations": { "type": "map<string, string>?", "description": "Reading aids attached to this file's own prayer keys; use the same winning tradition and source as the body." },
-        "$prayerTraditionByKey": { "type": "map<string, string>?", "description": "Only in content/he.json: map explicitly Vicariate prayer keys to vicariate. Keys must exist in prayers. Unmarked keys remain generic Hebrew. Load marked text and its reading aid into the internal he-x-vicariate content bucket. This internal probe is never a saved preference or a language-picker choice." }
+        "prayers": {
+          "type": "map<string, string>",
+          "description": "Prayer keys and display text."
+        },
+        "mysteries": {
+          "type": "map<string, MysteryTextOverride>?",
+          "description": "Partial mystery fields; Hebrew Scripture and shared metadata remain generic."
+        },
+        "transliterations": {
+          "type": "map<string, string>?",
+          "description": "Reading aids attached to this file's own prayer keys; use the same winning tradition and source as the body."
+        },
+        "$prayerTraditionByKey": {
+          "type": "map<string, string>?",
+          "description": "Only in content/he.json: map explicitly Vicariate prayer keys to vicariate. Keys must exist in prayers. Unmarked keys remain generic Hebrew. Load marked text and its reading aid into the internal he-x-vicariate content bucket. This internal probe is never a saved preference or a language-picker choice."
+        }
       }
     },
     "Prayer": {
@@ -791,7 +843,15 @@
         "appColor": {
           "type": "string",
           "default": "blue",
-          "values": ["blue", "green", "red", "purple", "rose", "white", "gold"],
+          "values": [
+            "blue",
+            "green",
+            "red",
+            "purple",
+            "rose",
+            "white",
+            "gold"
+          ],
           "description": "App icon and manual accent palette. Blue honors Mary and is also the fallback for unknown values. Canonical colors live in Shared/Branding/app-colors.json. White has a gold cross and readable gold controls. Every Apple color choice preserves the original dark icon; its light appearance uses the selected palette. Apple uses Icon Composer alternate icons on supported devices and the Mac Dock; Windows changes window icons while package/Start branding remains blue. Android launcher icons follow this choice independently of Material You. Semantic calendar/rank colors remain independent."
         },
         "useSystemColors": {
@@ -812,7 +872,17 @@
         "interfaceLanguageCode": {
           "type": "string",
           "default": "",
-          "values": ["", "en", "he", "ar", "ru", "tl", "fr", "it", "uk"],
+          "values": [
+            "",
+            "en",
+            "he",
+            "ar",
+            "ru",
+            "tl",
+            "fr",
+            "it",
+            "uk"
+          ],
           "description": "App Language (Hebrew: שפת היישומון). Empty follows the system app-language preference; explicit values select one of the eight translated interfaces. Normalize iw to he and fil to tl in shared preferences, using the platform resource alias where necessary. Hebrew and Arabic set interface RTL. This language also supplies the Bible reader's automatic edition and the global Prayer Language when defaultLanguageCode is empty. Existing global and per-prayer language choices, Hebrew traditions, fallback order and Bible edition IDs are preserved. Windows applies the interface choice at the next launch with a localized restart notice."
         },
         "defaultLanguageCode": {
@@ -923,19 +993,23 @@
           "description": "Show readings in Pray and native desktop Today. The dedicated phone Readings tab remains available independently."
         },
         "readingsReminderEnabled": {
-          "type": "boolean", "default": false,
+          "type": "boolean",
+          "default": false,
           "description": "Optional daily notification containing the selected calendar's readings. Dates without citations do not send a notification. Independent of Today row visibility."
         },
         "readingsReminderMinutes": {
-          "type": "int", "default": 540,
+          "type": "int",
+          "default": 540,
           "description": "Reading notification time, minutes after local midnight (0-1439), following the device's current time zone and system 12/24-hour clock preference."
         },
         "saintReminderEnabled": {
-          "type": "boolean", "default": false,
+          "type": "boolean",
+          "default": false,
           "description": "Optional selected-calendar saint/feast notification. Includes exact-language sourced descriptions and credits when present; otherwise gives the actual feast title and rank. Dates without a feast do not send a notification. Independent of showTodayFeast."
         },
         "saintReminderMinutes": {
-          "type": "int", "default": 540,
+          "type": "int",
+          "default": 540,
           "description": "Saint/feast notification time, minutes after local midnight (0-1439), following the device's current time zone and preferred clock."
         },
         "expandReadingsByDefault": {
@@ -956,6 +1030,18 @@
             "gregorian"
           ],
           "description": "UGCC only: selects matching feast and reading tables for Julian or Gregorian Pascha; unknown values normalize to julian. Fixed feasts retain the new style in both choices."
+        },
+        "todayCardColor": {
+          "type": "string",
+          "default": "default",
+          "values": [
+            "default",
+            "blue",
+            "green",
+            "gold",
+            "rose"
+          ],
+          "description": "Independent Today content-card tint on Apple, Android and Windows. Unknown values resolve to default. Saints and the Pope’s intention have separate cards with ordinary content backgrounds. Does not change appColor, the selected calendar or liturgical colors."
         }
       },
       "rendering": "Body, acclamation and currently visible reading-aid text choose typography by dominant actual letters, ignoring combining marks, punctuation and numbers. Syriac custom bodies therefore obey syriacTypeface. Hebrew-square Aramaic keeps Hebrew choices; Greek is independent of the Latin-script preference. Setting changes invalidate open prayer renderings immediately, including other Mac scenes.",

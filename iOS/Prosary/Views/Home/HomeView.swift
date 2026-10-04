@@ -39,7 +39,6 @@ struct HomeView: View {
   @State private var todayTorahPortion: TorahPortion?
   private var selectedDate: Date { dateSelection.localDate() }
   @State private var showsTodayDatePicker = false
-  @State private var showsFullCitations = false
 
   private var todayLanguageCode: String { UILanguage.current }
 
@@ -48,18 +47,6 @@ struct HomeView: View {
       return UILanguage.text("home.today.readings", language: todayLanguageCode, fallback: "Today’s readings")
     }
     return UILanguage.text("home.today.selectedReadings", language: todayLanguageCode, fallback: "Readings")
-  }
-
-  private var todayFullCitationsLabel: String {
-    UILanguage.text("home.today.fullCitations", language: todayLanguageCode, fallback: "View full citations")
-  }
-
-  private var todayCompactCitationsLabel: String {
-    UILanguage.text("home.today.compactCitations", language: todayLanguageCode, fallback: "Show shorthand")
-  }
-
-  private var todayCitationToggleLabel: String {
-    showsFullCitations ? todayCompactCitationsLabel : todayFullCitationsLabel
   }
 
   private func todayPopeIntentionHeading(_ intention: PopeIntention) -> String {
@@ -73,6 +60,7 @@ struct HomeView: View {
   @AppStorage("showTodayIntention") private var showsTodayIntention = true
   @AppStorage("showTodayReadings") private var showsTodayReadings = true
   @AppStorage("showTodayTorahPortion") private var showsTodayTorahPortion = false
+  @AppStorage(TodayCardColor.defaultsKey) private var todayCardColor = TodayCardColor.default.rawValue
   private var showsPrayerNameInPrayerLanguage: Bool { prayerLanguage.showsPrayerNameInPrayerLanguage }
   @AppStorage(TodayInfoStore.calendarDefaultsKey) private var feastCalendarId = ""
   @AppStorage(TodayInfoStore.paschaStyleDefaultsKey) private var easternPaschaStyle = "julian"
@@ -313,9 +301,9 @@ struct HomeView: View {
     .onReceive(NotificationCenter.default.publisher(for: .prayerLibraryDidChange)) { _ in
       Task { await load() }
     }
-    .onChange(of: selectedDate) { _, _ in showsFullCitations = false; loadToday() }
-    .onChange(of: feastCalendarId) { _, _ in showsFullCitations = false; loadToday() }
-    .onChange(of: easternPaschaStyle) { _, _ in showsFullCitations = false; loadToday() }
+    .onChange(of: selectedDate) { _, _ in loadToday() }
+    .onChange(of: feastCalendarId) { _, _ in loadToday() }
+    .onChange(of: easternPaschaStyle) { _, _ in loadToday() }
     .onChange(of: showsTodayFeast) { _, _ in loadToday() }
     .onChange(of: showsTodayIntention) { _, _ in loadToday() }
     .onChange(of: showsTodayReadings) { _, _ in loadToday() }
@@ -519,14 +507,29 @@ struct HomeView: View {
   }
 
 
-  /// "Today" — the day's feast per the Holy Land (Latin Patriarchate of Jerusalem) calendar and
-  /// the Pope's monthly prayer intention. Rows hide when the bundled datasets have no entry
-  /// (ferial days; dates past the generated years).
+  /// The day's readings, saints, and monthly intention are independent reference cards.
   @ViewBuilder
   private var todaySection: some View {
     if liturgicalDayInfo != nil || todayFeast != nil || monthIntention != nil || !todayReadings.isEmpty || todayTorahPortion != nil {
       // `leading` is semantic: the layout direction below places it on the right in Hebrew.
-      VStack(alignment: .leading, spacing: 10) {
+      VStack(alignment: .leading, spacing: 16) {
+        if liturgicalDayInfo != nil || !todayReadings.isEmpty || todayTorahPortion != nil {
+          todayReadingsCard
+        }
+        if let feast = todayFeast { todaySaintCard(feast) }
+        if let intention = monthIntention { todayIntentionCard(intention) }
+      }
+      .environment(\.layoutDirection, UILanguage.isRightToLeft(todayLanguageCode) ? .rightToLeft : .leftToRight)
+      .accessibilityElement(children: .contain)
+      .accessibilityIdentifier("todaySection")
+      #if os(macOS)
+      .textSelection(.enabled)
+      #endif
+    }
+  }
+
+  private var todayReadingsCard: some View {
+      VStack(alignment: .leading, spacing: 12) {
         if let info = liturgicalDayInfo {
           HStack(alignment: .firstTextBaseline, spacing: 8) {
             Image(systemName: "sun.max").foregroundStyle(Color.appAccent)
@@ -536,75 +539,17 @@ struct HomeView: View {
           }
           .accessibilityIdentifier("todayDayHeading")
         }
-        if let feast = todayFeast {
-          HStack(alignment: .firstTextBaseline, spacing: 8) {
-            Image(systemName: "calendar").foregroundStyle(Color.appAccent)
-            VStack(alignment: .leading, spacing: 2) {
-              Text(feast.localizedTitle(todayLanguageCode))
-                // Each calendar's own top rank: Roman "Solemnity", 1962 "1st Class",
-                // Byzantine "Great Feast".
-                .font(.subheadline.weight(
-                  ["Solemnity", "1st Class", "Great Feast"].contains(feast.rank) ? .bold : .semibold))
-              Text(feast.localizedRank(todayLanguageCode))
-                .font(.caption).foregroundStyle(.secondary)
-            }
-          }
-        }
-        if let intention = monthIntention {
-          HStack(alignment: .firstTextBaseline, spacing: 8) {
-            Image(systemName: "hands.sparkles").foregroundStyle(Color.appAccent)
-            VStack(alignment: .leading, spacing: 2) {
-              Text(todayPopeIntentionHeading(intention))
-                .font(.subheadline.weight(.semibold))
-              Text(intention.localizedText(todayLanguageCode))
-                .font(.caption).foregroundStyle(.secondary)
-            }
-          }
-        }
-        if let feast = todayFeast {
-          SaintDescriptionsView(feast: feast, calendarID: TodayInfoStore.selectedCalendarId,
-                                language: todayLanguageCode)
-            .id("\(dateSelection.day)|\(feastCalendarId)|\(todayLanguageCode)")
-        }
         if !todayReadings.isEmpty {
           HStack(alignment: .firstTextBaseline, spacing: 8) {
             Image(systemName: "book.closed").foregroundStyle(Color.appAccent)
             VStack(alignment: .leading, spacing: 3) {
               Text(todayReadingsHeading)
                 .font(.subheadline.weight(.semibold))
-              #if os(macOS)
-              DisclosureGroup(isExpanded: $showsFullCitations) {
-                ForEach(Array(todayReadings.enumerated()), id: \.offset) { _, citation in
-                  Text(citation.localizedFull(todayLanguageCode))
-                    .font(.caption).foregroundStyle(.secondary)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                }
-              } label: {
-                Text(todayCitationToggleLabel)
-              }
-              .font(.caption)
-              if !showsFullCitations {
-                Text(todayReadings.map { $0.localizedShort(todayLanguageCode) }.joined(separator: ", "))
+              ForEach(Array(todayReadings.enumerated()), id: \.offset) { _, citation in
+                Text(citation.localizedFull(todayLanguageCode))
                   .font(.caption).foregroundStyle(.secondary)
                   .frame(maxWidth: .infinity, alignment: .leading)
               }
-              #else
-              if showsFullCitations {
-                ForEach(Array(todayReadings.enumerated()), id: \.offset) { _, citation in
-                  Text(citation.localizedFull(todayLanguageCode))
-                    .font(.caption).foregroundStyle(.secondary)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                }
-              } else {
-                Text(todayReadings.map { $0.localizedShort(todayLanguageCode) }.joined(separator: ", "))
-                  .font(.caption).foregroundStyle(.secondary)
-                  .frame(maxWidth: .infinity, alignment: .leading)
-              }
-              Button(todayCitationToggleLabel) {
-                showsFullCitations.toggle()
-              }
-              .font(.caption)
-              #endif
             }
           }
         }
@@ -627,16 +572,45 @@ struct HomeView: View {
           .accessibilityIdentifier("todayTorahPortion")
         }
       }
-      .environment(\.layoutDirection, UILanguage.isRightToLeft(todayLanguageCode) ? .rightToLeft : .leftToRight)
       .frame(maxWidth: .infinity, alignment: .leading)
       .padding(14)
-      .background(.quaternary.opacity(0.5), in: RoundedRectangle(cornerRadius: 14))
-      .accessibilityElement(children: .contain)
-      .accessibilityIdentifier("todaySection")
-      #if os(macOS)
-      .textSelection(.enabled)
-      #endif
+      .background((TodayCardColor(rawValue: todayCardColor) ?? .default).tint, in: RoundedRectangle(cornerRadius: 14))
+      .prosaryContentCardBackground()
+      .accessibilityIdentifier("today.readingsCard")
+  }
+
+  private func todaySaintCard(_ feast: FeastDay) -> some View {
+    VStack(alignment: .leading, spacing: 12) {
+      HStack(alignment: .firstTextBaseline, spacing: 8) {
+        Image(systemName: "calendar").foregroundStyle(Color.appAccent)
+        VStack(alignment: .leading, spacing: 3) {
+          Text(feast.localizedTitle(todayLanguageCode))
+            .font(.subheadline.weight(["Solemnity", "1st Class", "Great Feast"].contains(feast.rank) ? .bold : .semibold))
+          Text(feast.localizedRank(todayLanguageCode)).font(.caption).foregroundStyle(.secondary)
+        }
+      }
+      SaintDescriptionsView(feast: feast, calendarID: TodayInfoStore.selectedCalendarId,
+                            language: todayLanguageCode)
+        .id("\(dateSelection.day)|\(feastCalendarId)|\(todayLanguageCode)")
     }
+    .frame(maxWidth: .infinity, alignment: .leading)
+    .padding(14)
+    .prosaryContentCardBackground()
+    .accessibilityIdentifier("today.saintCard")
+  }
+
+  private func todayIntentionCard(_ intention: PopeIntention) -> some View {
+    HStack(alignment: .top, spacing: 10) {
+      PapalKeysSymbol().foregroundStyle(Color.appAccent)
+      VStack(alignment: .leading, spacing: 6) {
+        Text(todayPopeIntentionHeading(intention)).font(.subheadline.weight(.semibold))
+        Text(intention.localizedText(todayLanguageCode)).font(.caption).foregroundStyle(.secondary)
+      }
+    }
+    .frame(maxWidth: .infinity, alignment: .leading)
+    .padding(14)
+    .prosaryContentCardBackground()
+    .accessibilityIdentifier("today.intentionCard")
   }
 
   /// Only reachable by deleting every favorite — the store seeds one on first run — so it

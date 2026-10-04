@@ -20,9 +20,15 @@ final class BibleUITests: XCTestCase {
     previous.tap()
     let date = app.buttons["readings.chooseDate"].label
     let scope = app.segmentedControls["readings.mode"]
+    XCTAssertGreaterThanOrEqual(scope.frame.minY,
+      app.navigationBars["Readings"].staticTexts["Readings"].frame.maxY,
+      "The Daily/Bible selector must remain below the large navigation title")
     scope.buttons["Bible"].tap()
     XCTAssertTrue(app.buttons["bible.book.GEN"].waitForExistence(timeout: 10))
     XCTAssertTrue(app.navigationBars["Bible"].staticTexts["Bible"].waitForExistence(timeout: 5))
+    XCTAssertGreaterThanOrEqual(scope.frame.minY,
+      app.navigationBars["Bible"].staticTexts["Bible"].frame.maxY,
+      "The selector must not obscure the Bible title")
     XCTAssertFalse(app.buttons["readings.chooseDate"].exists)
     let capture = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
     capture.name = "bible-edition-and-books"; capture.lifetime = .keepAlways; add(capture)
@@ -31,6 +37,23 @@ final class BibleUITests: XCTestCase {
     XCTAssertEqual(app.buttons["readings.chooseDate"].label, date)
     let dailyCapture = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
     dailyCapture.name = "daily-readings-restored-title"; dailyCapture.lifetime = .keepAlways; add(dailyCapture)
+  }
+
+  @MainActor func testFeastListOpensTheSelectedDaysReadings() throws {
+    let app = launch()
+    app.buttons["calendar.list"].tap()
+    XCTAssertTrue(app.navigationBars["Feasts and Solemnities"].waitForExistence(timeout: 5))
+    let feast = app.buttons.containing(.staticText, identifier: "Solemnity").firstMatch
+    XCTAssertTrue(feast.waitForExistence(timeout: 5))
+    if !feast.isHittable { app.swipeUp() }
+    XCTAssertTrue(feast.isHittable)
+    let selectedTitle = feast.staticTexts.element(boundBy: 1).label
+    feast.tap()
+    XCTAssertTrue(app.navigationBars["Readings"].waitForExistence(timeout: 5))
+    XCTAssertTrue(app.staticTexts[selectedTitle].waitForExistence(timeout: 5))
+    XCTAssertFalse(app.navigationBars["Feasts and Solemnities"].exists)
+    let capture = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
+    capture.name = "feast-selected-daily-readings"; capture.lifetime = .keepAlways; add(capture)
   }
 
   /// Before running locally, copy the verified catalog's Douay archive into the disposable

@@ -39,6 +39,15 @@
         "additionalProperties": {"$ref": "#/$defs/passageSource"}
       }
     },
+    "passageBooks": {
+      "description": "Optional exact passage key and edition to reviewed source book ID. Read the already resolved whole verse units from an installed Bible only when they match the reviewed bundled rows, including script pairs and source notes. Never parse citations or substitute another edition. Missing or older Bible downloads retain the reviewed bundled passage. Each entry refers to an existing passage; source redirects use their actual source book ID.",
+      "type": "object",
+      "propertyNames": {"pattern": "^(daily|torah)\\|.+$"},
+      "additionalProperties": {
+        "type": "object", "minProperties": 1,
+        "additionalProperties": {"type": "string", "pattern": "^[A-Z0-9]{3}$"}
+      }
+    },
     "passages": {
       "type": "object",
       "propertyNames": {

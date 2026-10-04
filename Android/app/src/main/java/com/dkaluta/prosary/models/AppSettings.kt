@@ -30,6 +30,7 @@ object AppSettings {
     private const val KEY_SHOW_TODAY_FEAST = "showTodayFeast"
     private const val KEY_SHOW_TODAY_INTENTION = "showTodayIntention"
     private const val KEY_SHOW_TODAY_READINGS = "showTodayReadings"
+    private const val KEY_TODAY_CARD_COLOR = "todayCardColor"
     private const val KEY_READINGS_REMINDER = "readingsReminderEnabled"
     private const val KEY_READINGS_REMINDER_TIME = "readingsReminderMinutes"
     private const val KEY_SAINT_REMINDER = "saintReminderEnabled"
@@ -52,6 +53,14 @@ object AppSettings {
 
     private var appColorState by mutableStateOf(AppColor.Blue.id)
     val appColor: String get() = appColorState
+    val todayCardColors = listOf("default", "blue", "green", "gold", "rose")
+    private var todayCardColorState by mutableStateOf("default")
+    var todayCardColor: String
+        get() = todayCardColorState
+        set(value) {
+            todayCardColorState = value.takeIf { it in todayCardColors } ?: "default"
+            prefs?.edit()?.putString(KEY_TODAY_CARD_COLOR, todayCardColorState)?.apply()
+        }
     private var useSystemColorsState by mutableStateOf(true)
     var useSystemColors: Boolean
         get() = useSystemColorsState
@@ -267,6 +276,7 @@ object AppSettings {
         showTodayIntention = resolved.getBoolean(KEY_SHOW_TODAY_INTENTION, true)
         showTodayTorahPortion = resolved.getBoolean(KEY_SHOW_TODAY_TORAH, false)
         showTodayReadings = resolved.getBoolean(KEY_SHOW_TODAY_READINGS, true)
+        todayCardColor = resolved.getString(KEY_TODAY_CARD_COLOR, "default").orEmpty()
         readingsReminderState = resolved.getBoolean(KEY_READINGS_REMINDER, false)
         readingsReminderTimeState = resolved.getInt(KEY_READINGS_REMINDER_TIME, 540).coerceIn(0, 1439)
         saintReminderState = resolved.getBoolean(KEY_SAINT_REMINDER, false)

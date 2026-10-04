@@ -4413,6 +4413,82 @@
           ]
         ]
       }
+    },
+    "daily|Job 42:1–3; 42:5–6; 42:12–16": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceSystem": "reviewed",
+      "includesWholeVerses": false,
+      "reviewedOn": "2026-10-03",
+      "reviewedEditionIds": [
+        "peshitta-1905"
+      ],
+      "sourcePins": {
+        "peshitta-eu-2020-job-42": "b4516b54ac43c3456c9a94fd4d7305b54e09833d3c65aaa22925199bfc7498d9"
+      },
+      "editionReferences": {
+        "peshitta-1905": [
+          [
+            "JOB",
+            42,
+            1
+          ],
+          [
+            "JOB",
+            42,
+            2
+          ],
+          [
+            "JOB",
+            42,
+            3
+          ],
+          [
+            "JOB",
+            42,
+            5
+          ],
+          [
+            "JOB",
+            42,
+            6
+          ],
+          [
+            "JOB",
+            42,
+            12
+          ],
+          [
+            "JOB",
+            42,
+            13
+          ],
+          [
+            "JOB",
+            42,
+            14
+          ],
+          [
+            "JOB",
+            42,
+            15
+          ],
+          [
+            "JOB",
+            42,
+            16
+          ]
+        ]
+      },
+      "evidence": {
+        "appointmentURL": "https://publication.evangelizo.ws/HE/days/2026-10-03",
+        "appointmentPayloadSHA256": "038aac91a7a348aa3abdfb9759db8edd1803e4627c1c4093dec8e1d9393b95b9",
+        "sourceReadingCode": "Jb 42,1-3#Jb 42,5-6#Jb 42,12-16",
+        "calendarBoundaryReview": "The HE publication payload explicitly supplies verse markers1,2,3,5,6,12,13,14,15,16; the last ends with four generations. It omits verse17 death. USCCB has a different ending through17; that separate appointment is not borrowed into this exact citation.",
+        "sourceURL": "https://peshitta.eu/ot/job/42.html",
+        "sourceBoundaryReview": "Independently read the primary Peshitta text: source1-3 answer,capacity,knowledge;5-6 hearing,seeing,repentance;12-16 blessing,children,names,inheritance,140years/fourgenerations. These complete source units cover every exact appointed endpoint. Source17 death is unappointed. Review is bounded to Roman contexts; generic SIL split rules for Job42 are not substituted for this inspected envelope."
+      }
     }
   }
 }

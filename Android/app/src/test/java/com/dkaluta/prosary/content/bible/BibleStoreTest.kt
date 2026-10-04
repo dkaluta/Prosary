@@ -64,6 +64,20 @@ class BibleStoreTest {
         assertFalse(edition.books.first().chapters.first().isComplete)
     }
 
+    @Test fun dailyPassageUsesOnlyExactReviewedUnitsFromTheInstalledBible() {
+        val (edition, zip) = archive(base(paired = true))
+        val store = store()
+        store.install(edition, zip)
+        val expected = listOf(ReadingVerse(1, 4, "Printed 4", "ܟܬܒܐ 4"),
+            ReadingVerse(3, 1, "Printed 1", "ܟܬܒܐ 1"), ReadingVerse(1, 1, "Printed 1", "ܟܬܒܐ 1"))
+        assertEquals(expected, store.reviewedPassage(edition.id, "GEN", expected))
+        assertNull(store.reviewedPassage(edition.id, "GEN", expected.map { it.copy(transliteratedText = "Different source") }))
+        assertNull(store.reviewedPassage(edition.id, "GEN", listOf(ReadingVerse(1, 2, "Invented gap", "ܟܬܒܐ"))))
+        assertNull(store.reviewedPassage("another-edition", "GEN", expected))
+        store.remove(edition.id)
+        assertNull(store.reviewedPassage(edition.id, "GEN", expected))
+    }
+
     @Test fun versionTwoSourceNotesSurviveInstallationAndRequireMatchingArchiveVersions() {
         val note = ReadingSourceNote("source-word", "unreadablePoint", "בַּקּבָּה", 1, 2,
             "vowel", listOf(16), "https://example.org/source.pdf#page=16")
@@ -341,5 +355,30 @@ class BibleStoreTest {
         assertEquals(initial.books.first().introduction, store.installedEdition(edition.id)!!.books.first().introduction)
         assertEquals(listOf(1, 4), store.chapter(edition, "GEN", 1)!!.verses.map { it.verse })
         rejected { BibleStore.validateEdition(initial.copy(books = listOf(books.first().copy(introduction = " ")))) }
+    }
+
+    @Test fun canonicalReferencesSurviveInstallationWithoutChangingSourceCoordinates() {
+        val initial = base().copy(books = books.map { book -> book.copy(canonicalReference = "ברוך ו׳",
+            chapters = book.chapters.map { it.copy(canonicalReference = "ברוך ו׳") }) })
+        val (edition, zip) = archive(initial)
+        val store = store()
+        store.install(edition, zip)
+        val restored = store.installedEdition(edition.id)!!.books.first()
+        assertEquals("ברוך ו׳", restored.canonicalReference)
+        assertEquals("ברוך ו׳", restored.chapters.first().canonicalReference)
+        assertEquals("GEN", restored.id)
+        assertEquals(1, restored.chapters.first().number)
+        assertEquals(listOf(1, 4), store.chapter(edition, "GEN", 1)!!.verses.map { it.verse })
+        assertFalse(json.encodeToString(BibleCatalog(1, listOf(base()))).contains("canonicalReference"))
+    }
+
+    @Test fun canonicalReferencesRejectNullBlankAndNonstringValuesInBookAndChapterMetadata() {
+        val catalog = json.encodeToString(BibleCatalog(1, listOf(base())))
+        for (target in listOf("\"name\":\"Genesis\"", "\"number\":1")) {
+            for (value in listOf("null", "\"\"", "\" \"", "12", "true", "[]", "{}")) {
+                val invalid = catalog.replaceFirst(target, "$target,\"canonicalReference\":$value")
+                rejected { store().catalog(invalid.byteInputStream()) }
+            }
+        }
     }
 }

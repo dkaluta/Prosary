@@ -4,6 +4,73 @@ import XCTest
 @testable import Prosary
 
 final class BibleStoreTests: XCTestCase {
+  func testDailyPassageReadsInstalledBibleAndRetainsReviewedTextAfterRemoval() async throws {
+    let (edition, data) = try fixture()
+    let folder = FileManager.default.temporaryDirectory.appending(path: UUID().uuidString)
+    try FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true)
+    defer { try? FileManager.default.removeItem(at: folder) }
+    let books = try JSONSerialization.jsonObject(with: JSONEncoder().encode(edition.books))
+    let metadata: [String:Any] = ["id":edition.id,"languageCode":"arc","name":edition.name,
+      "attribution":edition.attribution,"sourceURL":edition.sourceURL,"textScript":"Hebr","transliteratedTextScript":"Syrc"]
+    var catalog = metadata
+    catalog.merge(["revision":edition.revision,"downloadURL":edition.downloadURL,"archiveSHA256":edition.archiveSHA256,
+      "archiveByteCount":edition.archiveByteCount,"unpackedByteCount":edition.unpackedByteCount,"books":books]) { _,new in new }
+    let catalogURL = folder.appending(path: "catalog.json")
+    try JSONSerialization.data(withJSONObject: ["schemaVersion":1,"editions":[catalog]]).write(to: catalogURL)
+    let bible = BibleStore(catalogURL: catalogURL, directory: folder.appending(path: "Bibles"))
+    try await bible.install(data, edition: edition)
+    let corpus: [String:Any] = ["schemaVersion":1,"editions":[metadata],
+      "passages":["daily|Exact source caption":[edition.id:[["chapter":1,"verse":3,"text":"גד","transliteratedText":"ܓܕ"]]]],
+      "passageBooks":["daily|Exact source caption":[edition.id:"GEN"]]]
+    let corpusURL = folder.appending(path: "readings.json")
+    try JSONSerialization.data(withJSONObject: corpus).write(to: corpusURL)
+    let readings = ReadingTextStore(resourceURL: corpusURL, editionsURL: corpusURL, bibleStore: bible)
+    let passage = await readings.passage(citation: "Exact source caption", isTorah: false, editionID: edition.id)
+    XCTAssertEqual(passage?.verses.map(\.verse), [3], "Runtime never needs to parse this synthetic caption")
+    let source = try await bible.reviewedPassage(editionID: edition.id, book: "GEN", expected: passage!.verses)
+    XCTAssertEqual(source, passage?.verses)
+    let changed = [ReadingTextVerse(chapter:1,verse:3,text:"Changed source",transliteratedText:"ܓܕ")]
+    do { _ = try await bible.reviewedPassage(editionID: edition.id, book:"GEN",expected:changed); XCTFail("Different revision accepted") }
+    catch { }
+    try await bible.remove(edition)
+    let afterRemoval = await readings.passage(citation: "Exact source caption", isTorah:false, editionID:edition.id)
+    XCTAssertEqual(afterRemoval, passage, "Removing an optional download preserves the reviewed daily text")
+  }
+
+  @MainActor
+  func testCanonicalDenotationSurvivesInstallationWithoutChangingSourceAddresses() async throws {
+    let (edition, data) = try fixture(defect: "canonical")
+    let book = try XCTUnwrap(edition.books.first)
+    XCTAssertEqual(book.canonicalReference, "ברוך ו׳")
+    XCTAssertEqual(bibleChapterLabel(1, book: book, edition: edition.readingEdition, script: "Hebr"), "ברוך ו׳")
+    let folder = FileManager.default.temporaryDirectory.appending(path: UUID().uuidString)
+    defer { try? FileManager.default.removeItem(at: folder) }
+    let store = BibleStore(catalogURL: nil, directory: folder)
+    try await store.install(data, edition: edition)
+    let display = try await store.displayChapter(edition: edition, book: "GEN", number: 1)
+    XCTAssertEqual(display.chapter.chapter, 1)
+    XCTAssertEqual(display.chapter.verses.map(\.verse), [1, 3])
+    XCTAssertEqual(bibleVerseChoiceLabel(display.choices[0], display: display, edition: edition.readingEdition,
+      script: "Hebr", usesPrintedLabels: true), biblePrintedLabel("1"))
+    let target = try await store.verseTarget(edition: edition, book: "GEN", chapter: 1, verse: 3)
+    XCTAssertEqual(target?.displayChapter, 1)
+    let reloaded = BibleStore(catalogURL: nil, directory: folder)
+    let installed = await reloaded.isInstalled(edition)
+    XCTAssertTrue(installed)
+  }
+
+  func testCanonicalReferencesRejectNullWrongTypesAndBlankValues() throws {
+    let chapter: [String: Any] = ["number":1, "verseCount":1, "isComplete":true]
+    let book: [String: Any] = ["id":"LJE", "name":"Source", "chapters":[chapter]]
+    for bad: Any in [NSNull(), 6, [], "", " \n "] {
+      var badBook = book; badBook["canonicalReference"] = bad
+      XCTAssertThrowsError(try JSONDecoder().decode(BibleBook.self, from: JSONSerialization.data(withJSONObject: badBook)))
+      var badChapter = chapter; badChapter["canonicalReference"] = bad
+      XCTAssertThrowsError(try JSONDecoder().decode(BibleChapterInfo.self, from: JSONSerialization.data(withJSONObject: badChapter)))
+    }
+    XCTAssertNil(try JSONDecoder().decode(BibleBook.self, from: JSONSerialization.data(withJSONObject: book)).canonicalReference)
+  }
+
   func testCatalogMatchesReadingEditionsAndRealArchivesValidate() async throws {
     let editions = try await BibleStore.shared.editions()
     let readings = await ReadingTextStore.shared.editions()
@@ -180,6 +247,10 @@ final class BibleStoreTests: XCTestCase {
     let book = sourceOrder ? "SIR" : "GEN", chapterNumber = sourceOrder ? 3 : 1
     var books: [[String: Any]] = [["id":book, "name":"Fixture", "transliteratedName":"ܒܪܝܬܐ",
       "chapters":[["number":chapterNumber,"verseCount":sourceOrder ? 5 : 2,"isComplete":false]]]]
+    if defect == "canonical" {
+      books[0]["canonicalReference"] = "ברוך ו׳"
+      books[0]["chapters"] = [["number":chapterNumber,"verseCount":2,"isComplete":false,"canonicalReference":"ברוך ו׳"]]
+    }
     if ["introduction", "wrongIntroduction", "emptyIntroduction"].contains(defect) {
       books[0]["introduction"] = defect == "emptyIntroduction" ? " \n " : "פְּתִיחָה בְּלִי מִסְפָּר"
     }

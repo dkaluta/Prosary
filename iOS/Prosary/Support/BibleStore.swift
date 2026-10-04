@@ -5,6 +5,21 @@ nonisolated struct BibleChapterInfo: Codable, Equatable, Hashable, Sendable {
   let number: Int
   let verseCount: Int
   let isComplete: Bool
+  var canonicalReference: String? = nil
+}
+
+extension BibleChapterInfo {
+  private enum CodingKeys: String, CodingKey { case number, verseCount, isComplete, canonicalReference }
+  init(from decoder: Decoder) throws {
+    let values = try decoder.container(keyedBy: CodingKeys.self)
+    number = try values.decode(Int.self, forKey: .number)
+    verseCount = try values.decode(Int.self, forKey: .verseCount)
+    isComplete = try values.decode(Bool.self, forKey: .isComplete)
+    canonicalReference = values.contains(.canonicalReference) ? try values.decode(String.self, forKey: .canonicalReference) : nil
+    if let canonicalReference, canonicalReference.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+      throw DecodingError.dataCorruptedError(forKey: .canonicalReference, in: values, debugDescription: "Empty canonical reference")
+    }
+  }
 }
 
 nonisolated struct BibleBook: Codable, Equatable, Identifiable, Sendable {
@@ -16,6 +31,7 @@ nonisolated struct BibleBook: Codable, Equatable, Identifiable, Sendable {
   var introduction: String? = nil
   let chapters: [BibleChapterInfo]
   var addressRoutes: [BibleAddressRoute]? = nil
+  var canonicalReference: String? = nil
 
   func displayedName(script: String) -> String {
     script == "Syrc" ? transliteratedName ?? name : name
@@ -27,7 +43,7 @@ nonisolated struct BibleBook: Codable, Equatable, Identifiable, Sendable {
 }
 
 extension BibleBook {
-  private enum CodingKeys: String, CodingKey { case id, name, transliteratedName, attribution, sourceURL, introduction, chapters, addressRoutes }
+  private enum CodingKeys: String, CodingKey { case id, name, transliteratedName, attribution, sourceURL, introduction, chapters, addressRoutes, canonicalReference }
   init(from decoder: Decoder) throws {
     let values = try decoder.container(keyedBy: CodingKeys.self)
     id = try values.decode(String.self, forKey: .id)
@@ -38,6 +54,10 @@ extension BibleBook {
     introduction = try values.decodeIfPresent(String.self, forKey: .introduction)
     chapters = try values.decode([BibleChapterInfo].self, forKey: .chapters)
     addressRoutes = values.contains(.addressRoutes) ? try values.decode([BibleAddressRoute].self, forKey: .addressRoutes) : nil
+    canonicalReference = values.contains(.canonicalReference) ? try values.decode(String.self, forKey: .canonicalReference) : nil
+    if let canonicalReference, canonicalReference.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+      throw DecodingError.dataCorruptedError(forKey: .canonicalReference, in: values, debugDescription: "Empty canonical reference")
+    }
   }
 }
 
@@ -253,6 +273,23 @@ actor BibleStore {
     let reader = try archive(edition)
     let chapter = try Self.decodeChapter(reader, edition: edition, book: book, info: info)
     return chapter
+  }
+
+  /// Only canonical, already reviewed units may be read from an installed Bible.
+  /// An older or different revision cannot widen a daily appointment or alter its credit.
+  func reviewedPassage(editionID: String, book: String, expected: [ReadingTextVerse]) throws -> [ReadingTextVerse] {
+    guard !expected.isEmpty, let edition = try editions().first(where: { $0.id == editionID }) else {
+      throw BibleStoreError.invalidArchive
+    }
+    var chapters: [Int: BibleChapter] = [:]
+    for number in Set(expected.map(\.chapter)) {
+      chapters[number] = try chapter(edition: edition, book: book, number: number)
+    }
+    return try expected.map { reviewed in
+      guard let unit = chapters[reviewed.chapter]?.verses.first(where: { $0.verse == reviewed.verse }),
+            unit == reviewed else { throw BibleStoreError.invalidArchive }
+      return unit
+    }
   }
 
   nonisolated static func validatedArchive(_ data: Data, edition: BibleEdition) throws -> MinimalZipReader {

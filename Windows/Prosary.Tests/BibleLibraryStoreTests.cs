@@ -2,6 +2,7 @@ using System.IO.Compression;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
+using System.Text.Json.Nodes;
 using Prosary.Services;
 using Prosary.ViewModels;
 using Xunit;
@@ -17,10 +18,16 @@ public sealed class BibleLibraryStoreTests : IDisposable
         new("EXO", "Exodus", [new(2, 1, true)])];
 
     private static Fixture Make(string id = "test-bible", string revision = "a", string? mutation = null, bool paired = false, string? introduction = null,
-        int archiveVersion = 1, int? manifestVersion = null, int? chapterVersion = null, bool sourceNotes = false)
+        int archiveVersion = 1, int? manifestVersion = null, int? chapterVersion = null, bool sourceNotes = false,
+        string? canonicalReference = null)
     {
         var books = Books;
         books[0] = books[0] with { Introduction = introduction };
+        if (canonicalReference is not null)
+        {
+            books[0] = books[0] with { CanonicalReference = canonicalReference };
+            books[0].Chapters[0] = books[0].Chapters[0] with { CanonicalReference = canonicalReference };
+        }
         if (mutation == "sourceOrder") books[0].Chapters[0] = new(1, 5, false);
         var manifest = new BibleManifest(manifestVersion ?? archiveVersion, id, new string(revision[0], 64), books);
         var entries = new List<(string Name, byte[] Bytes)>();
@@ -75,6 +82,58 @@ public sealed class BibleLibraryStoreTests : IDisposable
         JsonSerializer.Serialize(new { schemaVersion = 1, editions = fixtures.Select(fixture => fixture.Edition) }, Json));
     private static Task Install(BibleLibraryStore store, Fixture fixture, CancellationToken cancellation = default) =>
         store.InstallAsync(fixture.Edition.Id, new MemoryStream(fixture.Bytes, false), cancellationToken: cancellation);
+
+    [Fact]
+    public async Task DailyPassageUsesExactInstalledUnitsAndKeepsBundledTextAfterRemoval()
+    {
+        var fixture = Make(paired: true);
+        var bible = Store(fixture);
+        await Install(bible, fixture);
+        var rows = new List<ScriptureVerse> { new(1,4,"Source 4","Paired 4"), new(3,1,"Source 1","Paired 1"), new(1,2,"Source 2","Paired 2") };
+        Assert.Equal(rows, await bible.LoadReviewedPassageAsync(fixture.Edition.Id,"GEN",rows));
+        await Assert.ThrowsAsync<InvalidDataException>(() => bible.LoadReviewedPassageAsync(fixture.Edition.Id,"GEN",
+            [new(1,4,"Another revision","Paired 4")]));
+        var key = "daily|Exact source caption";
+        var raw = JsonSerializer.Serialize(new { schemaVersion=1, editions=new[] { fixture.Edition.Scripture },
+            passages=new Dictionary<string,Dictionary<string,List<ScriptureVerse>>> { [key]=new() { [fixture.Edition.Id]=rows } },
+            passageBooks=new Dictionary<string,Dictionary<string,string>> { [key]=new() { [fixture.Edition.Id]="GEN" } } },Json);
+        var readings = new ReadingsTextStore(() => raw,bibleStore:bible);
+        var passage = await readings.LoadPassageAsync("daily","Exact source caption",fixture.Edition.Id);
+        Assert.Equal(rows,passage!.Verses);
+        await bible.RemoveAsync(fixture.Edition.Id);
+        Assert.Equal(rows,(await readings.LoadPassageAsync("daily","Exact source caption",fixture.Edition.Id))!.Verses);
+    }
+
+    [Fact]
+    public async Task CanonicalReferencesPersistWithoutChangingSourceCoordinates()
+    {
+        var fixture = Make(canonicalReference: "ברוך ו׳");
+        var store = Store(fixture);
+        await Install(store, fixture);
+        var installed = await store.InstalledAsync(fixture.Edition.Id);
+        var book = installed!.Books[0];
+        Assert.Equal("ברוך ו׳", book.CanonicalReference);
+        Assert.Equal("ברוך ו׳", book.Chapters[0].CanonicalReference);
+        Assert.Equal("GEN", book.Id);
+        Assert.Equal(1, book.Chapters[0].Number);
+        Assert.Equal(new[] { 2, 4 }, (await store.LoadChapterAsync(fixture.Edition.Id, book.Id, 1)).Verses.Select(verse => verse.Verse));
+        Assert.DoesNotContain("canonicalReference", JsonSerializer.Serialize(Make().Edition, Json));
+    }
+
+    [Theory]
+    [InlineData("null")][InlineData("\"\"")][InlineData("\" \"")][InlineData("12")]
+    [InlineData("true")][InlineData("[]")][InlineData("{}")]
+    public void CanonicalReferencesRejectNullBlankAndWrongTypes(string value)
+    {
+        foreach (var chapterMetadata in new[] { false, true })
+        {
+            var catalog = JsonSerializer.SerializeToNode(new { schemaVersion = 1, editions = new[] { Make().Edition } }, Json)!;
+            var book = catalog["editions"]![0]!["books"]![0]!;
+            var target = chapterMetadata ? book["chapters"]![0]! : book;
+            target["canonicalReference"] = JsonNode.Parse(value);
+            Assert.Empty(BibleLibraryStore.ParseCatalog(catalog.ToJsonString()));
+        }
+    }
 
     [Fact]
     public void BundledCatalogKeepsEveryEditionAndSourceBookInventory()

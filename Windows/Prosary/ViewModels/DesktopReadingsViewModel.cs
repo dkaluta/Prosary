@@ -100,11 +100,11 @@ public partial class ReadingPassageViewModel : ObservableObject
         ConfigurationKey = configurationKey;
     }
 
-    partial void OnIsExpandedChanged(bool value)
+    async partial void OnIsExpandedChanged(bool value)
     {
         if (!value || _didLoad) return;
         _didLoad = true;
-        var passage = _edition is null ? null : _store.LoadPassage(_scope, _rawCitation, _edition.Id);
+        var passage = _edition is null ? null : await _store.LoadPassageAsync(_scope, _rawCitation, _edition.Id);
         _passage = passage;
         _verses = passage?.Verses ?? [];
         HasPassage = _verses.Count > 0;

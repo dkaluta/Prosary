@@ -50,6 +50,10 @@
           "name": {
             "$ref": "#/$defs/text"
           },
+          "canonicalReference": {
+            "$ref": "#/$defs/text",
+            "description": "Optional Catholic placement in the edition's language, such as Baruch 6 or Daniel 13. This identifies the work; it does not remap source chapter or verse addresses. The name retains the source work title after this denotation."
+          },
           "transliteratedName": {
             "$ref": "#/$defs/text"
           },
@@ -77,6 +81,10 @@
                 "number": {
                   "type": "integer",
                   "minimum": 1
+                },
+                "canonicalReference": {
+                  "$ref": "#/$defs/text",
+                  "description": "Optional Catholic placement of this source chapter/section, used for the picker and heading instead of presenting its source number as a Catholic chapter number. Verse labels remain explicitly printed source labels."
                 },
                 "verseCount": {
                   "type": "integer",

@@ -171,6 +171,7 @@ struct SettingsView: View {
   private var appearanceSettings: some View {
     #if os(macOS)
     Section {
+      TodayCardColorPicker()
       Picker(String(localized: "settings.appColor", defaultValue: "App Color", bundle: UILanguage.bundle, locale: UILanguage.locale),
              selection: Binding(get: { AppColor.resolved(appColor) }, set: { appColor = $0.rawValue })) {
         ForEach(AppColor.allCases) { color in
@@ -354,6 +355,7 @@ struct SettingsView: View {
     // calendars.json registry, so adding a calendar is a data drop, never a new case here;
     // the picker hides entirely if the registry ever ships a single calendar.
     Section {
+      TodayCardColorPicker()
       Toggle(String(localized: "settings.showTodayFeast", defaultValue: "Show the day's feast", bundle: UILanguage.bundle, locale: UILanguage.locale),
              isOn: $showsTodayFeast)
       Toggle(String(localized: "settings.showTodayIntention",

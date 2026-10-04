@@ -253,12 +253,15 @@ def generate(source: dict) -> tuple[dict, dict]:
             english_key = title_key(english)
             lookup = title_key(labels["aliases"].get(english, english))
             translations = dict(localized.get(lookup, {})) | labels["titles"].get(english, {})
-            translations["he"] = hebrew
+            translations["he"] = labels["titles"].get(english, {}).get("he", hebrew)
             absent = {"ar", "ru", "tl", "fr", "it", "uk"} - translations.keys()
             if absent:
                 missing[english] = sorted(absent)
-            components.append({"title": english, "identity": english_key, "rank": rank,
-                               "titleByLanguage": translations})
+            component = {"title": english, "identity": english_key, "rank": rank,
+                         "titleByLanguage": translations}
+            if translations["he"] != hebrew:
+                component["sourceTitleByLanguage"] = {"he": hebrew}
+            components.append(component)
         if components:
             feasts[date] = {"title": "; ".join(c["title"] for c in components), "rank": components[0]["rank"],
                             "titleByLanguage": {lang: "; ".join(c["titleByLanguage"].get(lang, c["title"]) for c in components)
@@ -320,6 +323,7 @@ def main():
     for name, days in (("feasts-stjames", feasts), ("readings-stjames", readings)):
         payload = {"$comment": "Saint James Vicariate for Hebrew Speaking Catholics in Israel, supplied bilingual 2026–2027 liturgical calendar. "
                    "English and Hebrew observances, Great Advent, dates, source year labels and Mass appointments retain this calendar's choices. "
+                   "Explicit Hebrew display terminology is normalized in stjames-titles-localized.json; differing printed titles remain in sourceTitleByLanguage. "
                    "Other languages use credited Prosary editorial display metadata, not official liturgical translations. "
                    "Source snapshot and reference punctuation review: Shared/tools/sources/stjames-calendar-2026-2027.json; "
                    "regenerate with Shared/tools/import-stjames-calendar.py. Missing dates never borrow General Roman appointments.",

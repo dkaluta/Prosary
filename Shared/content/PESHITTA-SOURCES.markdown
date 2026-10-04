@@ -28,6 +28,19 @@ The small Luke 1:26–28 regression fixture retains the source's attribution and
 
 ## Selectable reading edition
 
+On 2026-10-03 the user requested [peshitta.eu](https://peshitta.eu/about.html) as
+the reader's OT source, with the publication credit **Old Testament - publication
+of the Syriac Orthodox Patriarchate 2020**. The reader now imports the site's actual
+pointed, numbered OT verse bodies. They replace the supplied XML only in the Bible
+and daily reader; the prayer-pack sources and BFBS 1905 NT are unchanged. Source
+hashes, excluded chapter bodies, conservative boundary transfer and the independently
+inspected Job 42 appointment are documented in
+[PESHITTA-EU-2020-REVIEW.markdown](PESHITTA-EU-2020-REVIEW.markdown).
+The supplied-XML review below remains historical provenance for those prayer verses
+and the independently reviewed calendar correspondences; it does not identify the
+XML as the 2020 edition. The new site's declared edition and old XML's unresolved
+publication identity remain distinct.
+
 The Readings/Today Bible picker also offers `peshitta-1905` (`arc`). The reader's
 [source lock](../tools/reading-text-sources.json) pins the bytes of all 27 New Testament
 books at the same corpus revision. Its additional records are Romans (123), 1 Corinthians

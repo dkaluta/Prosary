@@ -1,5 +1,72 @@
 import SwiftUI
 
+/// All published feasts in chronological order; choosing one opens its appointed readings.
+struct FeastsAndSolemnitiesView: View {
+  @Binding var dateSelection: MacTodayDateSelection
+  var onSelectDate: () -> Void = {}
+  @AppStorage(TodayInfoStore.calendarDefaultsKey) private var calendarID = ""
+  @AppStorage(TodayInfoStore.paschaStyleDefaultsKey) private var paschaStyle = "julian"
+
+  private var rows: [(date: Date, feast: FeastDay)] {
+    _ = calendarID; _ = paschaStyle
+    return TodayInfoStore.feastsAndSolemnities()
+  }
+  private func formatted(_ date: Date, template: String) -> String {
+    let formatter = DateFormatter()
+    formatter.locale = UILanguage.locale
+    formatter.calendar = Calendar(identifier: .gregorian)
+    formatter.setLocalizedDateFormatFromTemplate(template)
+    return formatter.string(from: date)
+  }
+
+  var body: some View {
+    ScrollViewReader { proxy in
+      List {
+        Section {
+          Text(TodayInfoStore.calendars.first { $0.id == TodayInfoStore.selectedCalendarId }?.displayName ?? "")
+            .font(.caption).foregroundStyle(.secondary)
+          if rows.isEmpty {
+            Text(String(localized: "calendar.noFeasts", defaultValue: "No published feasts or solemnities are available in this calendar.", bundle: UILanguage.bundle, locale: UILanguage.locale))
+              .foregroundStyle(.secondary)
+          }
+        }
+        ForEach(rows, id: \.date) { row in
+          Button {
+            dateSelection.select(row.date)
+            onSelectDate()
+          } label: {
+            HStack(alignment: .top, spacing: 12) {
+              VStack(alignment: .leading, spacing: 4) {
+                Text(formatted(row.date, template: "yMMMMdEEEE"))
+                  .font(.caption).foregroundStyle(.secondary)
+                Text(row.feast.localizedTitle(UILanguage.current))
+                  .foregroundStyle(.primary)
+                Text(row.feast.localizedRank(UILanguage.current))
+                  .font(.caption).foregroundStyle(.secondary)
+              }
+              Spacer(minLength: 0)
+              Image(systemName: "chevron.forward").font(.caption).foregroundStyle(.tertiary)
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .contentShape(Rectangle())
+          }
+          .buttonStyle(.plain)
+          .id(row.date)
+        }
+      }
+      .onAppear {
+        let selected = dateSelection.localDate()
+        if let row = rows.first(where: { $0.date >= selected }) ?? rows.last {
+          proxy.scrollTo(row.date, anchor: .top)
+        }
+      }
+    }
+    .navigationTitle(String(localized: "calendar.feastsAndSolemnities", defaultValue: "Feasts and Solemnities", bundle: UILanguage.bundle, locale: UILanguage.locale))
+    .environment(\.layoutDirection, UILanguage.isRightToLeft(UILanguage.current) ? .rightToLeft : .leftToRight)
+    .accessibilityIdentifier("feastsAndSolemnities.screen")
+  }
+}
+
 /// A month of this calendar's published observances. A date tap opens its readings.
 struct LiturgicalCalendarView: View {
   @Binding var dateSelection: MacTodayDateSelection

@@ -7,7 +7,13 @@ using System.Text.RegularExpressions;
 
 namespace Prosary.Services;
 
-public sealed record BibleChapter(int Number, int VerseCount, bool IsComplete);
+public sealed record BibleChapter(int Number, int VerseCount, bool IsComplete)
+{
+    private string? _canonicalReference;
+    [JsonIgnore] public bool HasCanonicalReference { get; private set; }
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public string? CanonicalReference { get => _canonicalReference; init { _canonicalReference = value; HasCanonicalReference = true; } }
+}
 public sealed record BibleBook(string Id, string Name, List<BibleChapter> Chapters,
     string? TransliteratedName = null, string? Attribution = null, string? SourceURL = null, string? Introduction = null)
 {
@@ -15,6 +21,10 @@ public sealed record BibleBook(string Id, string Name, List<BibleChapter> Chapte
     [JsonIgnore] public bool HasAddressRoutes { get; private set; }
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public List<BibleAddressRoute>? AddressRoutes { get => _addressRoutes; init { _addressRoutes = value; HasAddressRoutes = true; } }
+    private string? _canonicalReference;
+    [JsonIgnore] public bool HasCanonicalReference { get; private set; }
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public string? CanonicalReference { get => _canonicalReference; init { _canonicalReference = value; HasCanonicalReference = true; } }
     public string? IntroductionForChapter(int number) => Chapters.FirstOrDefault()?.Number == number ? Introduction : null;
 }
 public sealed record BibleEdition(string Id, string LanguageCode, string Name, string Attribution, string SourceURL,
@@ -99,7 +109,9 @@ public sealed class BibleLibraryStore
         && books.All(book => book is not null && Regex.IsMatch(book.Id ?? "", "^[A-Z0-9]{1,12}$", RegexOptions.CultureInvariant)
             && !string.IsNullOrWhiteSpace(book.Name) && book.Chapters is { Count: > 0 and <= 2000 }
             && (book.Introduction is null || !string.IsNullOrWhiteSpace(book.Introduction))
-            && book.Chapters.All(chapter => chapter is not null && chapter.Number is > 0 and <= 2000 && chapter.VerseCount is > 0 and <= 2000)
+            && (!book.HasCanonicalReference || !string.IsNullOrWhiteSpace(book.CanonicalReference))
+            && book.Chapters.All(chapter => chapter is not null && chapter.Number is > 0 and <= 2000 && chapter.VerseCount is > 0 and <= 2000
+                && (!chapter.HasCanonicalReference || !string.IsNullOrWhiteSpace(chapter.CanonicalReference)))
             && book.Chapters.Select(chapter => chapter.Number).SequenceEqual(book.Chapters.Select(chapter => chapter.Number).Distinct().Order())
             && (book.SourceURL is null || Uri.TryCreate(book.SourceURL, UriKind.Absolute, out var source)
                 && source.Scheme is "https" or "http"))
@@ -291,6 +303,28 @@ public sealed class BibleLibraryStore
     }
     public Task<BibleChapterText> LoadChapterAsync(string id, string book, int chapter, CancellationToken cancellationToken = default) =>
         ReadInstalledAsync(id, book, (archive, edition, metadata) => ReadChapter(archive, edition, metadata, chapter), cancellationToken);
+
+    /// <summary>Read whole units pinned by the daily corpus; an older revision cannot change their wording.</summary>
+    public Task<IReadOnlyList<ScriptureVerse>> LoadReviewedPassageAsync(string id, string book,
+        IReadOnlyList<ScriptureVerse> expected, CancellationToken cancellationToken = default) =>
+        ReadInstalledAsync<IReadOnlyList<ScriptureVerse>>(id, book, (archive, edition, metadata) =>
+        {
+            if (expected.Count == 0) throw new InvalidDataException("Empty reviewed Bible passage.");
+            var chapters = expected.Select(verse => verse.Chapter).Distinct().ToDictionary(number => number,
+                number => ReadChapter(archive, edition, metadata, number));
+            return expected.Select(reviewed =>
+            {
+                var unit = chapters[reviewed.Chapter].Verses.FirstOrDefault(verse => verse.Verse == reviewed.Verse);
+                // Source note lists have reference equality in records. Compare their serialized
+                // representation as well, so identical independently loaded units remain valid.
+                if (unit is null || unit.Chapter != reviewed.Chapter || unit.Verse != reviewed.Verse
+                    || unit.EndVerse != reviewed.EndVerse || unit.Text != reviewed.Text
+                    || unit.TransliteratedText != reviewed.TransliteratedText
+                    || JsonSerializer.Serialize(unit.SourceNotes) != JsonSerializer.Serialize(reviewed.SourceNotes))
+                    throw new InvalidDataException("Installed Bible differs from the reviewed daily source.");
+                return unit;
+            }).ToList();
+        }, cancellationToken);
 
     /// <summary>Only the display chapter and its direct primary references are opened; blocks never recurse.</summary>
     public Task<BibleDisplayChapter> LoadDisplayChapterAsync(string id, string book, int chapter, CancellationToken cancellationToken = default) =>

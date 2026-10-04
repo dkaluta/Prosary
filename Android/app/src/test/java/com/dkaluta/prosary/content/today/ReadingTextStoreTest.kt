@@ -306,7 +306,8 @@ class ReadingTextStoreTest {
         val genesis = requireNotNull(store.passage(ReadingCitation("reading", "Gn", "Genesis 1:1–13"), edition.id))
         assertEquals((1..13).toList(), genesis.verses.map { it.verse })
         assertTrue(genesis.verses.all { it.chapter == 1 })
-        assertTrue(genesis.verses.first().transliteratedText.orEmpty().startsWith("ܒܪܺܝܫܺܝܬ݂ ܒܪܳܐ"))
+        assertTrue(genesis.verses.first().transliteratedText.orEmpty().startsWith("ܒܪܺܝܫܺܝܬ ܒܪܳܐ"))
+        assertTrue(edition.attribution.contains("Old Testament - publication of the Syriac Orthodox Patriarchate 2020"))
         assertTrue(genesis.verses.all { verse -> verse.displayedText(edition, "Hebr").any { it in '\u05D0'..'\u05EA' } })
         assertTrue(genesis.verses.all { verse -> verse.displayedText(edition, "Syrc") == verse.transliteratedText })
         val torah = requireNotNull(store.passage(ReadingCitation("torah", "Gn", "Genesis 47:28–50:26"), edition.id, isTorah = true))
@@ -372,7 +373,9 @@ class ReadingTextStoreTest {
         val raw = Json.parseToJsonElement(File("src/main/assets/data/readings-texts.json").readText()).jsonObject
         val sources = requireNotNull(raw["passageSources"]).jsonObject
         val store = bundledStore()
-        assertEquals(20, sources.values.sumOf { it.jsonObject.size })
+        assertEquals(19, sources.values.sumOf { it.jsonObject.size })
+        // Wisdom 7 is reviewed for Maronite use, but also occurs in an unreviewed Roman 1962 context.
+        assertNull(store.passage(ReadingCitation("reading", "Wisdom", "Wisdom 7:7–14"), "masoretic-delitzsch"))
         for ((key, editions) in sources) {
             val (namespace, citation) = key.split('|', limit = 2)
             for ((edition, sourceJson) in editions.jsonObject) {

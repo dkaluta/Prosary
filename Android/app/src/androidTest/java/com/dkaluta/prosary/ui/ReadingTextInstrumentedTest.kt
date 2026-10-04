@@ -6,6 +6,8 @@ import android.content.res.Configuration
 import androidx.compose.ui.test.junit4.v2.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.onNodeWithTag
+import androidx.compose.ui.test.onAllNodesWithText
+import androidx.compose.ui.test.assertCountEquals
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performSemanticsAction
 import androidx.compose.ui.semantics.SemanticsActions
@@ -14,9 +16,11 @@ import com.dkaluta.prosary.R
 import com.dkaluta.prosary.content.today.ReadingCitation
 import com.dkaluta.prosary.content.today.ReadingEdition
 import com.dkaluta.prosary.content.today.ReadingTextStore
+import com.dkaluta.prosary.content.today.ReadingSourceNote
 import com.dkaluta.prosary.models.AppSettings
 import com.dkaluta.prosary.ui.readings.ReadingCard
 import com.dkaluta.prosary.ui.readings.ReadingChapterHeading
+import com.dkaluta.prosary.ui.readings.ScriptureSourceNotes
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Rule
@@ -89,6 +93,34 @@ class ReadingTextInstrumentedTest {
         compose.onNodeWithTag("scriptureSourceNote.daily-note").performClick()
         compose.onNodeWithText(explanation).assertDoesNotExist()
         compose.onNodeWithText("\u20669\u2069  $text").assertExists()
+    }
+
+    @Test fun severalSourceFindingsShareOneDisclosureWithoutLosingDistinctDetails() {
+        val anchor = "כלתה"
+        val source = "https://example.org/scan.pdf#page=16"
+        val first = ReadingSourceNote("first-vowel", "unreadablePoint", anchor, 1, 1, "vowel", listOf(16), source)
+        val notes = listOf(first,
+            first.copy(id = "restored-letter", kind = "restoredLetter", letterIndex = 2, mark = "consonant"),
+            first.copy(id = "second-occurrence", occurrence = 2),
+            first.copy(id = "different-pages", sourcePages = listOf(17)),
+            first.copy(id = "different-source", sourceURL = "https://example.org/other-scan.pdf#page=16"))
+        compose.setContent { MaterialTheme { ScriptureSourceNotes(notes) } }
+        val title = compose.activity.getString(R.string.scripture_source_note)
+        val scan = compose.activity.getString(R.string.scripture_source_note_scan)
+        compose.onAllNodesWithText(title).assertCountEquals(1)
+        compose.onNodeWithText(scan).assertDoesNotExist()
+        compose.onNodeWithTag("scriptureSourceNote.first-vowel").performClick()
+        notes.forEach { compose.onNodeWithTag("scriptureSourceNoteDetail.${it.id}").assertExists() }
+        // Only the two findings on the exact same word occurrence share a quotation.
+        compose.onAllNodesWithText(anchor).assertCountEquals(4)
+        // Source details are shared only when both the URL and all PDF pages match.
+        compose.onAllNodesWithText(scan).assertCountEquals(3)
+        compose.onAllNodesWithText(compose.activity.getString(R.string.scripture_source_note_pages, "16")).assertCountEquals(2)
+        compose.onNodeWithText(compose.activity.getString(R.string.scripture_source_note_pages, "17")).assertExists()
+        compose.onNodeWithText(compose.activity.getString(R.string.scripture_source_note_restored_letter,
+            "\u2067ל\u2069", 2, "\u2067$anchor\u2069")).assertExists()
+        compose.onNodeWithTag("scriptureSourceNote.first-vowel").performClick()
+        notes.forEach { compose.onNodeWithTag("scriptureSourceNoteDetail.${it.id}").assertDoesNotExist() }
     }
 
     @Test fun chapterWordsAndNumeralsFollowTheBibleInsteadOfTheInterface() {
@@ -199,7 +231,7 @@ class ReadingTextInstrumentedTest {
             waitFor("בדיקה")
             compose.runOnIdle { AppSettings.setAramaicDefaultScript("Syrc") }
             waitFor("ܐܒܓ")
-            compose.onNodeWithTag("readingScript.daily.Fixture 1:1").performClick()
+            compose.onNodeWithTag("aramaicScript.Hebr").performClick()
             waitFor("בדיקה")
             compose.onNodeWithText("ܐܒܓ", substring = true).assertDoesNotExist()
             compose.runOnIdle { assertEquals("Syrc", AppSettings.aramaicDefaultScript) }

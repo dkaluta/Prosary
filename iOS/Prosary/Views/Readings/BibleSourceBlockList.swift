@@ -7,11 +7,17 @@ func biblePrimaryLabel(_ unit: ReadingTextVerse, displayChapter: Int, edition: R
   return number(unit.chapter) + ":" + verses
 }
 
-func bibleVerseChoiceLabel(_ block: BibleDisplayBlock, display: BibleDisplayChapter, edition: ReadingTextEdition, script: String) -> String {
+func biblePrintedLabel(_ label: String) -> String {
+  String(format: bibleLabel("printedLabel", "Printed label: %1$@"), locale: UILanguage.locale, "\u{2068}" + label + "\u{2069}")
+}
+
+func bibleVerseChoiceLabel(_ block: BibleDisplayBlock, display: BibleDisplayChapter, edition: ReadingTextEdition, script: String, usesPrintedLabels: Bool = false) -> String {
   let label = block.printedLabel ?? block.unit?.verseLabel ?? ""
+  let displayedLabel = usesPrintedLabels ? biblePrintedLabel(label) : label
   if let occurrence = display.occurrence(of: block) {
-    return String(format: bibleLabel("occurrence", "%1$@ — occurrence %2$d"), locale: UILanguage.locale, label, occurrence)
+    return String(format: bibleLabel("occurrence", "%1$@ — occurrence %2$d"), locale: UILanguage.locale, displayedLabel, occurrence)
   }
+  if usesPrintedLabels { return displayedLabel }
   // Primary navigation always keeps the numeric address, even when print differs.
   return block.unit.map { biblePrimaryLabel($0, displayChapter: display.chapter.chapter, edition: edition, script: script) } ?? label
 }
@@ -22,21 +28,30 @@ struct BibleSourceBlockList: View {
   let edition: ReadingTextEdition
   let display: BibleDisplayChapter
   let script: String
+  var canonicalReference: String? = nil
   @ObservedObject private var typography = PrayerTypographyMonitor.shared
 
   var body: some View {
     LazyVStack(alignment: .leading, spacing: 16) {
       let heading = ScriptureChapterHeading(chapter: display.chapter.chapter, edition: edition, script: script)
-      (Text(verbatim: heading.label).bold() + Text(verbatim: " \(heading.number)"))
-        .font(sourceFont(heading.text))
+      Group {
+        if let canonicalReference { Text(verbatim: canonicalReference).bold() }
+        else { Text(verbatim: heading.label).bold() + Text(verbatim: " \(heading.number)") }
+      }
+        .font(sourceFont(canonicalReference ?? heading.text))
         .accessibilityAddTraits(.isHeader)
         .accessibilityIdentifier("readings.chapter.\(display.chapter.chapter)")
       ForEach(display.blocks) { block in
         VStack(alignment: .leading, spacing: 8) {
           if block.isScripture {
             let text = block.unit?.displayedText(script: script, edition: edition) ?? block.text
+            if canonicalReference != nil, let label = block.printedLabel ?? block.unit?.verseLabel {
+              Text(biblePrintedLabel(label)).font(.caption).foregroundStyle(.secondary).textSelection(.disabled)
+                .environment(\.layoutDirection, UILanguage.isRightToLeft(UILanguage.current) ? .rightToLeft : .leftToRight)
+                .accessibilityIdentifier("bible.printedLabel.\(block.id)")
+            }
             HStack(alignment: .firstTextBaseline, spacing: 8) {
-              if let label = block.unit.map({ biblePrimaryLabel($0, displayChapter: display.chapter.chapter, edition: edition, script: script) }) ?? block.printedLabel {
+              if canonicalReference == nil, let label = block.unit.map({ biblePrimaryLabel($0, displayChapter: display.chapter.chapter, edition: edition, script: script) }) ?? block.printedLabel {
                 Text(verbatim: label).font(.caption).foregroundStyle(.secondary).fixedSize()
               }
               Text(verbatim: text).font(sourceFont(text)).lineSpacing(5)
@@ -44,9 +59,8 @@ struct BibleSourceBlockList: View {
             }
             .textSelection(.enabled)
             .accessibilityIdentifier(block.unit.map { "bible.verse.\($0.verse)" } ?? "bible.scripture.\(block.id)")
-            if block.kind == .verse, let printedLabel = block.printedLabel {
-              Text(String(format: bibleLabel("printedLabel", "Printed label: %1$@"), locale: UILanguage.locale,
-                "\u{2068}" + printedLabel + "\u{2069}"))
+            if canonicalReference == nil, block.kind == .verse, let printedLabel = block.printedLabel {
+              Text(biblePrintedLabel(printedLabel))
                 .font(.caption).foregroundStyle(.secondary).textSelection(.disabled)
                 .environment(\.layoutDirection, UILanguage.isRightToLeft(UILanguage.current) ? .rightToLeft : .leftToRight)
                 .accessibilityIdentifier("bible.printedLabel.\(block.id)")
@@ -58,7 +72,7 @@ struct BibleSourceBlockList: View {
             Text(verbatim: block.text).font(.caption).foregroundStyle(.secondary)
               .textSelection(.disabled)
           }
-          ForEach(block.sourceNotes) { note in ScriptureSourceNoteView(note: note) }
+          ScriptureSourceNotesView(notes: block.sourceNotes)
         }
         .id(block.id)
         .accessibilityIdentifier("bible.block.\(block.id)")

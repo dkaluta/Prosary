@@ -19,6 +19,7 @@ public sealed record AppLanguageOption(string Tag, string Label);
 public sealed record AramaicSignOfCrossOption(string Value, string Label);
 public sealed record TypefaceOption(string Value, string Label);
 public sealed record EasternPaschaOption(string Value, string Label);
+public sealed record TodayCardColorOption(string Id, string Label);
 
 /// <summary>
 /// App-wide preferences (v0.7: populated beyond the single language picker — auto-advance,
@@ -64,6 +65,7 @@ public partial class SettingsViewModel : ObservableObject
             ?? LanguageOptions[0];
         RefreshRites();
         SelectedEasternPascha = CurrentEasternPascha;
+        SynchronizeTodayCardColor();
     }
 
     private void RefreshRites()
@@ -258,6 +260,23 @@ public partial class SettingsViewModel : ObservableObject
     private bool _showTodayReadings = AppSettings.ShowTodayReadings;
 
     partial void OnShowTodayReadingsChanged(bool value) => AppSettings.SetShowTodayReadings(value);
+
+    public string TodayCardColorLabel => Loc.Tr("settings_today_card_color", "Today Card Color");
+    public IReadOnlyList<TodayCardColorOption> TodayCardColors { get; } =
+        new[] { new TodayCardColorOption("default", Loc.Tr("settings_today_card_default", "Default")) }
+            .Concat(AppColorPalette.All.Where(color => color.Id is "blue" or "green" or "gold" or "rose")
+                .Select(color => new TodayCardColorOption(color.Id, color.Label))).ToArray();
+
+    [ObservableProperty]
+    private TodayCardColorOption? _selectedTodayCardColor;
+
+    public void SynchronizeTodayCardColor() => SelectedTodayCardColor =
+        TodayCardColors.First(color => color.Id == AppSettings.TodayCardColor);
+
+    partial void OnSelectedTodayCardColorChanged(TodayCardColorOption? value)
+    {
+        if (value is not null) AppSettings.SetTodayCardColor(value.Id);
+    }
 
     public string ReminderClockIdentifier => new Windows.Globalization.DateTimeFormatting.DateTimeFormatter("shorttime").Clock;
     [ObservableProperty]

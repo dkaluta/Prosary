@@ -79,6 +79,14 @@ def audit() -> dict:
     routes = collections.Counter()
     verse_count = 0
     source_unique = collections.defaultdict(set)
+    from hebrew_deuterocanon import load_books
+    supplements, _ = load_books()
+    supplement_rows = {(source["book"], chapter["number"], row["verse"]):
+        {"chapter":chapter["number"], "verse":row["verse"],
+         "text":builder.preserve_divine_name_accents(row["text"]),
+         **{field:row[field] for field in ("endVerse", "sourceNotes") if field in row}}
+        for source in supplements for chapter in source["chapters"] for row in chapter["verses"]}
+    expected_books = {}
     for eid, corpus in corpora.items():
         builder.edition_mapper(eid, corpus).validate_source(corpus, corpus.source_pins)
     for key, calendar_contexts in appointments.items():
@@ -125,6 +133,9 @@ def audit() -> dict:
             edition = editions[eid]
             corpus = corpora[eid]
             mapper = builder.edition_mapper(eid, corpus)
+            descriptor = data.get("passageSources", {}).get(key, {}).get(eid)
+            source_book = descriptor["book"] if descriptor is not None else book
+            expected_books.setdefault(key, {})[eid] = source_book
             seen = set()
             check(isinstance(rows, list) and bool(rows), f"empty passage {key}/{eid}")
             summary[eid][scope] += 1
@@ -146,9 +157,15 @@ def audit() -> dict:
                     and row["verse"] > 0,
                     f"invalid label {key}/{eid}",
                 )
-                ref = (book, row["chapter"], row["verse"])
+                ref = (source_book, row["chapter"], row["verse"])
                 check(ref not in seen, f"duplicate source row {key}/{eid}/{ref}")
                 seen.add(ref)
+                if descriptor is not None and eid == "masoretic-delitzsch":
+                    check(row == supplement_rows.get(ref), f"reviewed supplement source unit changed {key}/{eid}/{ref}")
+                    source_unique[eid].add(ref)
+                    verse_count += 1
+                    summary[eid]["verseEntries"] += 1
+                    continue
                 check(
                     ref[:2] not in mapper.excluded_chapters,
                     f"blocked source chapter emitted {key}/{eid}/{ref}",
@@ -181,6 +198,7 @@ def audit() -> dict:
                 source_unique[eid].add(ref)
                 verse_count += 1
                 summary[eid]["verseEntries"] += 1
+    check(data.get("passageBooks") == expected_books, "reviewed native Bible source book map differs or has orphaned entries")
     for eid, counts in summary.items():
         for scope in ("daily", "torah"):
             check(

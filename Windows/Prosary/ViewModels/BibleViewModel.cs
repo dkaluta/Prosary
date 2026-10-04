@@ -10,22 +10,27 @@ namespace Prosary.ViewModels;
 public sealed record BibleBookChoice(BibleBook Book, string Label);
 public sealed record BibleChapterChoice(BibleChapter Chapter, string Label);
 public sealed record BibleVerseRow(int Verse, string Text, int? EndVerse = null, IReadOnlyList<ScriptureSourceNote>? SourceNotes = null,
-    int Chapter = 0, string Id = "", string Kind = "verse", string? PrintedLabel = null, string? PickerLabel = null, bool ShowChapter = false, string? SourceChapterLabel = null, string? SourceVerseLabel = null)
+    int Chapter = 0, string Id = "", string Kind = "verse", string? PrintedLabel = null, string? PickerLabel = null, bool ShowChapter = false, string? SourceChapterLabel = null, string? SourceVerseLabel = null,
+    bool UsesPrintedLabels = false)
 {
     private string NumericLabel => EndVerse is { } end && end > Verse ? $"{Verse}–{end}" : Verse.ToString(System.Globalization.CultureInfo.InvariantCulture);
-    public string VerseLabel => PickerLabel ?? (ShowChapter ? $"{SourceChapterLabel ?? Chapter.ToString(System.Globalization.CultureInfo.InvariantCulture)}:{SourceVerseLabel ?? NumericLabel}" : NumericLabel);
-    public string DisplayText => Kind == "verse" ? $"\u2066{VerseLabel}\u2069  {Text}"
+    private string AddressLabel => ShowChapter ? $"{SourceChapterLabel ?? Chapter.ToString(System.Globalization.CultureInfo.InvariantCulture)}:{SourceVerseLabel ?? NumericLabel}" : NumericLabel;
+    public string VerseLabel => PickerLabel ?? (UsesPrintedLabels
+        ? PrintedLabelAnnotation : AddressLabel);
+    public string DisplayText => Kind == "verse" ? UsesPrintedLabels ? Text : $"\u2066{VerseLabel}\u2069  {Text}"
         : Kind == "witness" ? $"\u2068{PrintedLabel}\u2069  {Text}" : Text;
     public bool IsScripture => Kind is "verse" or "witness" or "passage";
     public bool IsHeading => Kind == "heading";
     public bool IsColophon => Kind == "colophon";
     public bool IsVerseChoice => Kind is "verse" or "witness";
-    public bool HasPrintedLabel => Kind == "verse" && PrintedLabel is not null;
+    public bool HasPrintedLabel => Kind == "verse" && (UsesPrintedLabels || PrintedLabel is not null);
     public string PrintedLabelAnnotation => HasPrintedLabel
-        ? string.Format(Loc.Tr("bible_printed_label", "Printed label: {0}"), $"\u2068{PrintedLabel}\u2069") : "";
+        ? string.Format(Loc.Tr("bible_printed_label", "Printed label: {0}"), $"\u2068{PrintedLabel ?? AddressLabel}\u2069") : "";
+    public bool PrintedLabelIsRightToLeft => ReadingsTextStore.NormalizeLanguage(UiLanguageCatalog.Current) is "he" or "ar";
     public bool ContainsVerse(int number) => Kind == "verse" && number >= Verse && number <= (EndVerse ?? Verse);
 
-    public static IReadOnlyList<BibleVerseRow> FromDisplay(BibleDisplayChapter display, ScriptureEdition? edition, string script)
+    public static IReadOnlyList<BibleVerseRow> FromDisplay(BibleDisplayChapter display, ScriptureEdition? edition, string script,
+        bool usesPrintedLabels = false)
     {
         static IEnumerable<BibleAddress> Addresses(BibleDisplayUnit unit) => unit.Primary is { } primary
             ? [new(primary.Chapter, primary.Verse, primary.EndVerse)] : unit.Addresses ?? [];
@@ -40,7 +45,8 @@ public sealed record BibleVerseRow(int Verse, string Text, int? EndVerse = null,
                     primary.Chapter, unit.Id, unit.Kind, unit.PrintedLabel, ShowChapter: primary.Chapter != display.Chapter.Chapter,
                     SourceChapterLabel: ReadingChapterHeading.Number(primary.Chapter, edition?.LanguageCode ?? "en", script),
                     SourceVerseLabel: ReadingChapterHeading.Number(primary.Verse, edition?.LanguageCode ?? "en", script)
-                        + (primary.EndVerse is { } end && end > primary.Verse ? "–" + ReadingChapterHeading.Number(end, edition?.LanguageCode ?? "en", script) : "")));
+                        + (primary.EndVerse is { } end && end > primary.Verse ? "–" + ReadingChapterHeading.Number(end, edition?.LanguageCode ?? "en", script) : ""),
+                    UsesPrintedLabels: usesPrintedLabels));
             else
             {
                 string? label = unit.PrintedLabel;
@@ -130,8 +136,9 @@ public partial class BibleViewModel : ObservableObject
     public bool IsRightToLeft => PrayerTypography.IsRightToLeft(TextScript);
     public string BodyFontFamily => PrayerTypography.ResolveBodyFontFamily(EffectiveEdition?.LanguageCode, true, TextScript);
     public double BodyFontSize => PrayerTypography.ResolveBodyFontSize(EffectiveEdition?.LanguageCode, true, TextScript);
-    public string ChapterHeading => SelectedChapter is { } chapter ? ReadingChapterHeading.Label(EffectiveEdition?.LanguageCode ?? "en", EffectiveScript) + " \u2068"
-        + ReadingChapterHeading.Number(chapter.Chapter.Number, EffectiveEdition?.LanguageCode ?? "en", EffectiveScript) + "\u2069" : "";
+    public string ChapterHeading => SelectedChapter is { } chapter ? chapter.Chapter.CanonicalReference
+        ?? ReadingChapterHeading.Label(EffectiveEdition?.LanguageCode ?? "en", EffectiveScript) + " \u2068"
+            + ReadingChapterHeading.Number(chapter.Chapter.Number, EffectiveEdition?.LanguageCode ?? "en", EffectiveScript) + "\u2069" : "";
 
     [ObservableProperty] private ReadingEditionChoice? _selectedEdition;
     [ObservableProperty] private ObservableCollection<BibleBookChoice> _books = [];
@@ -241,7 +248,7 @@ public partial class BibleViewModel : ObservableObject
         {
             var previous = SelectedChapter?.Chapter.Number;
             Chapters = new((SelectedBook?.Book.Chapters ?? []).Select(chapter => new BibleChapterChoice(chapter,
-                ReadingChapterHeading.Number(chapter.Number, EffectiveEdition?.LanguageCode ?? "en", EffectiveScript))));
+                chapter.CanonicalReference ?? ReadingChapterHeading.Number(chapter.Number, EffectiveEdition?.LanguageCode ?? "en", EffectiveScript))));
             SelectedChapter = Chapters.FirstOrDefault(chapter => chapter.Chapter.Number == previous) ?? Chapters.FirstOrDefault();
         }
         finally { _synchronizing = synchronizing; }
@@ -283,7 +290,8 @@ public partial class BibleViewModel : ObservableObject
     }
     private void RefreshText()
     {
-        Verses = new(_sourceChapter is null ? [] : BibleVerseRow.FromDisplay(_sourceChapter, EffectiveEdition?.Scripture, EffectiveScript));
+        Verses = new(_sourceChapter is null ? [] : BibleVerseRow.FromDisplay(_sourceChapter, EffectiveEdition?.Scripture, EffectiveScript,
+            SelectedChapter?.Chapter.CanonicalReference is not null));
         VerseChoices = new(Verses.Where(row => row.IsVerseChoice));
         SelectedVerse = VerseChoices.FirstOrDefault(row => row.Id == _selectedBlockId) ?? VerseChoices.FirstOrDefault();
         NotifyDisplay();

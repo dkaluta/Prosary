@@ -22,12 +22,12 @@ The selected item determines toolbar and context-menu actions. F2 renames; Delet
 the same confirmation as the menu. Search and selection stay local to their library page.
 Failed persistence operations display an error and do not publish a successful library change.
 
-Search is a separate destination for local and community prayers. Its category picker derives
-choices from the available manifests, with All Categories and Other for untagged prayers.
-Selecting a category and entering text applies both filters to both result lists; leaving
-the query empty browses that category. Unknown downloaded tags remain discoverable. Local
-search works when the community catalog is offline. Opening a local result uses the normal
-independent prayer-window route; installing a community result refreshes discovery and the
+Search is a separate destination for built-in and installed prayers; Community owns discovery
+and installation. Its category picker derives choices from local manifests, with All Categories
+and Other for untagged prayers. Selecting a category and entering text applies both filters;
+leaving the query empty browses that category. Unknown downloaded tags remain discoverable.
+Search works offline without requesting the community catalog. Opening a result uses the normal
+independent prayer-window route. Installing in Community refreshes local discovery and the
 Gallery without creating a saved library copy. View → Search (Ctrl+F) opens the library's
 Search destination and focuses its query field.
 
@@ -99,6 +99,11 @@ the feast, full reading citations, Pope's intention, and optional Torah portion.
 the same calendar, Pascha, and visibility preferences as Settings. It follows the next local
 day when displaying today, while a deliberately browsed date remains selected. Complete book
 names and chapter/verse citations are displayed directly, without a shorthand toggle.
+Readings occupy their own tinted card, with an independent Today Card Color setting.
+The feast/saints and sourced biographies have a separate card; the Pope's monthly intention
+has its own card marked by crossed keys. Readings also exposes the selected calendar's
+complete chronological Feasts and Solemnities list. Clicking an entry sets the shared date
+and opens Daily Readings.
 
 Each daily or Torah citation can expand independently to selectable Bible text with chapter
 and verse numbers. The displayed edition name, attribution and source link distinguish this
@@ -137,7 +142,7 @@ Before shipping, run the Windows test project and a native Windows build, then e
   the library after closing it.
 - Every menu and keyboard shortcut in its own window, file-picker cancellation, and owner
   closure during an asynchronous operation.
-- Search category/query combinations, remote-catalog failure, installation refresh, and Ctrl+F.
+- Search category/query combinations, offline availability, installed-prayer refresh, and Ctrl+F.
 - Today date/edition/settings changes, lazy passage expansion and unavailable cases,
   Arabic/Hebrew layout, all eight locales, high DPI, resizing,
   keyboard focus, and Narrator.

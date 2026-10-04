@@ -112,6 +112,12 @@ independent of these display labels. Shared `tl` and `he` normalize platform `fi
 
 ## Hebrew saint and feast descriptions
 
+Palm Sunday's Hebrew display name is **יום ראשון של הלולבים** (literally, “lulav Sunday”),
+as supplied by the user on 3 October 2026. Shared title catalogs apply this wording to the
+same named observance across calendars. Saint James retains its printed year suffix and
+stores the original Hebrew caption in `sourceTitleByLanguage`; source snapshots and
+liturgical prose remain literal.
+
 The Saint James Vicariate's [Hebrew Feasts index](https://www.catholic.co.il/?cat=faith&m=Feasts&view=category&id=35&lang=he)
 contains saint biographies, biblical figures, feast explanations and prayers. They are source
 articles, not a calendar with precedence rules. `tools/scrape-catholic-hebrew-saints.py` follows

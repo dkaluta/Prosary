@@ -2,9 +2,7 @@
 //  SearchTabView.swift
 //  Prosary
 //
-//  One search across everything prayable: devotions on this device (opened in place) and the
-//  prayers.prosary.app catalog (installed in place) — the repository half loads once per
-//  appearance and degrades silently offline, leaving local search fully working.
+//  Search the prayers on this device. The Browse tab owns discovery and installation.
 //
 
 import SwiftUI
@@ -19,9 +17,6 @@ struct SearchTabView: View {
   @Binding var path: [AppRoute]
 
   @State private var query = ""
-  @State private var repoBundles: [RepositoryBundle] = []
-  @State private var busyBundleIds: Set<String> = []
-  @State private var installError: String?
   @State private var packGeneration = 0
   @State private var selectedListing: String?
   @State private var selectedCategory: String?
@@ -31,7 +26,7 @@ struct SearchTabView: View {
 
   private var categories: [String] {
     _ = packGeneration
-    return PrayerSearchCategory.available(in: DevotionDirectory.all().map(\.tags) + repoBundles.map(\.tags))
+    return PrayerSearchCategory.available(in: DevotionDirectory.all().map(\.tags))
       .sorted { UILanguage.tag($0).localizedStandardCompare(UILanguage.tag($1)) == .orderedAscending }
   }
 
@@ -53,18 +48,6 @@ struct SearchTabView: View {
       $0.title.localizedCaseInsensitiveContains(query)
         || ($0.translatedTitle?.localizedCaseInsensitiveContains(query) ?? false)
         || $0.tags.contains { $0.localizedCaseInsensitiveContains(query) || UILanguage.tag($0).localizedCaseInsensitiveContains(query) }
-    }
-  }
-
-  private var communityMatches: [RepositoryBundle] {
-    _ = packGeneration
-    let installed = Set(PrayerPackStore.customDevotionIds())
-    return repoBundles.filter { bundle in
-      guard !installed.contains(bundle.id) else { return false }
-      guard PrayerSearchCategory.matches(bundle.tags, selected: selectedCategory) else { return false }
-      guard !query.isEmpty else { return true }
-      return "\(bundle.name) \(bundle.author) \(bundle.description) \(bundle.tags.joined(separator: " ")) \(bundle.tags.map { UILanguage.tag($0) }.joined(separator: " "))"
-        .localizedCaseInsensitiveContains(query)
     }
   }
 
@@ -136,35 +119,9 @@ struct SearchTabView: View {
             .foregroundStyle(.secondary)
         }
       }
-
-      if !communityMatches.isEmpty {
-        Section(String(localized: "search.community", defaultValue: "From the Community", bundle: UILanguage.bundle, locale: UILanguage.locale)) {
-          ForEach(communityMatches) { bundle in
-            HStack {
-              VStack(alignment: .leading, spacing: 2) {
-                Text(HebrewDisplayText.unpointed(bundle.name))
-                Text(verbatim: HebrewDisplayText.unpointed(
-                  "\(bundle.author) · \(bundle.tags.map { UILanguage.tag($0) }.joined(separator: " · "))"))
-                  .font(.caption)
-                  .foregroundStyle(.secondary)
-              }
-              Spacer()
-              if busyBundleIds.contains(bundle.id) {
-                ProgressView()
-              } else {
-                Button(String(localized: "repository.install", defaultValue: "Install", bundle: UILanguage.bundle, locale: UILanguage.locale)) {
-                  install(bundle)
-                }
-                .buttonStyle(.borderedProminent)
-                .tint(.appAccent)
-              }
-            }
-          }
-        }
-      }
     }
     .navigationTitle(String(localized: "search.title", defaultValue: "Search", bundle: UILanguage.bundle, locale: UILanguage.locale))
-    .searchable(text: $query, prompt: String(localized: "search.prompt", defaultValue: "Devotions, categories, authors", bundle: UILanguage.bundle, locale: UILanguage.locale))
+    .searchable(text: $query, prompt: String(localized: "search.localPrompt", defaultValue: "Prayers and categories on this device", bundle: UILanguage.bundle, locale: UILanguage.locale))
     .modifier(PrayerDownloadRemovalDialogs(bundleID: $removingDownload, onRemoved: { await refreshDownloads() }))
     .task { await refreshDownloads() }
     .onAppear { packGeneration += 1 }
@@ -179,18 +136,6 @@ struct SearchTabView: View {
       guard let listing = localMatches.first(where: { $0.id == selectedListing }) else { return false }
       path.push(listing.route)
       return true
-    }
-    .task {
-      repoBundles = (try? await RepositoryClient.fetchCatalog()) ?? []
-    }
-    .alert(
-      String(localized: "repository.installFailed", defaultValue: "Could Not Install Devotion", bundle: UILanguage.bundle, locale: UILanguage.locale),
-      isPresented: .init(get: { installError != nil }, set: { if !$0 { installError = nil } })
-    ) {
-      Button(String(localized: "common.ok", defaultValue: "OK", bundle: UILanguage.bundle, locale: UILanguage.locale), role: .cancel) {}
-        .keyboardShortcut(.defaultAction)
-    } message: {
-      Text(installError ?? "")
     }
   }
 
@@ -218,17 +163,4 @@ struct SearchTabView: View {
     packGeneration += 1
   }
 
-  private func install(_ bundle: RepositoryBundle) {
-    busyBundleIds.insert(bundle.id)
-    Task {
-      defer { busyBundleIds.remove(bundle.id) }
-      do {
-        let data = try await RepositoryClient.downloadBundle(bundle)
-        try PrayerPackStore.installPack(from: data)
-        packGeneration += 1
-      } catch {
-        installError = error.localizedDescription
-      }
-    }
-  }
 }

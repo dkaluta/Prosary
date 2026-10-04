@@ -21,7 +21,7 @@
   },
   "review": {
     "status": "complete",
-    "method": "Every word, readable point, punctuation and source boundary in all61 lower Theodotion body lines independently compared across A2 pages242–247. Final independent 37-unit inventory and74 opening/closing anchors reconciled with the print, including all five page joins and combined labels. Exact source notes disclose225 locally unreadable points; no words, consonants or boundaries remain unresolved.",
+    "method": "Every word, readable point, punctuation and source boundary in all61 lower Theodotion body lines independently compared across A2 pages242–247. Final independent 37-unit inventory and74 opening/closing anchors reconciled with the print, including all five page joins and combined labels. Exact source notes disclose224 locally unreadable points; no words, consonants or boundaries remain unresolved.",
     "reviewedPages": [
       242,
       243,
@@ -44,14 +44,14 @@
       "Partial246 query resolution, without page approval: printed ויתן in27 has tav sheva, unlike the clear tav tsere in30; printed ויבל in33 has yod qamats and no bet dagesh. Two readers confirm these local source shapes. Its fused bet vowel is omitted with a precise source note. Other246 fine points and all247 fine points remain pending.",
       "Full 246 and 247 second comparisons now integrated, preserving all consonants, punctuation and word order. Exact notes disclose only locally unreadable points; visible neighbouring points remain. Source-page26 and35 joins and combined31–32 are preserved. Root accepted the independent evidence, including the additional shin-dagesh note in27 and resolved gimel tsere in36. Final independent whole-book label/body inventory remains open.",
       "Final independent inventory cross-review restores the visible opening bracket before ונושאים in14. The lower source body prints no closing bracket before אתם׃; retain that literal unmatched opening rather than invent a closing bracket. Source spelling is אתם, not normalized אותם. No words or verse divisions change.",
-      "Whole-book approval uses BEL-print-inventory-second-review.json, independently constructed from the actual lower-recension margins and body. All74 locator anchors were reread in tight native crops after imprecise initial locators were caught; the correction history remains explicit. All42 source labels are represented once in37 printed units. The following page248 begins Ezra, confirming the endpoint. No upper-recension material, commentary, artificial closing bracket, or reconstructed unreadable point was imported."
+      "Whole-book approval uses BEL-print-inventory-second-review.json, independently constructed from the actual lower-recension margins and body. All74 locator anchors were reread in tight native crops after imprecise initial locators were caught; the correction history remains explicit. All42 source labels are represented once in37 printed units. The following page248 begins Ezra, confirming the endpoint. No upper-recension material, commentary, artificial closing bracket, or reconstructed unreadable point was imported.",
+      "3 October 2026 targeted reinspection resolves the samekh dagesh in the opening ויֵאָסּף from a detached interior dot on native A2 page 242, independently confirmed by two reviewers. Retire only bel-1-1-242-vayeasef-letter4-dagesh and update the surviving exact word anchors. The samekh vowel and prefix notes remain. Evidence: Shared/reports/hebrew-wikisource/BEL-note-reinspection-20261003.json."
     ],
     "unresolvedFindings": [],
     "acceptedSourceNoteIds": [
       "bel-1-1-242-name-letter6-vowel",
       "bel-1-1-242-vayeasef-letter1-vowel",
       "bel-1-1-242-vayeasef-letter2-dagesh",
-      "bel-1-1-242-vayeasef-letter4-dagesh",
       "bel-1-1-242-vayeasef-letter4-vowel",
       "bel-1-1-242-vayirash-full-letter1-vowel",
       "bel-1-1-242-vayirash-full-letter2-dagesh",
@@ -283,18 +283,18 @@
       "verses": [
         {
           "verse": 1,
-          "text": "ויֵאָסף הַמֶּלֶךְ אַשְׁטוֹאַגס אֶל־אֲבוֹתָיו׃ ויִירַשׁ כּוֹרֶשׁ הַפָּרְסִי אֶת־מַמְלַכתוֹ׃",
+          "text": "ויֵאָסּף הַמֶּלֶךְ אַשְׁטוֹאַגס אֶל־אֲבוֹתָיו׃ ויִירַשׁ כּוֹרֶשׁ הַפָּרְסִי אֶת־מַמְלַכתוֹ׃",
           "sourcePages": [
             242,
             243
           ],
-          "textSHA256": "a1259ff3c2a0c1c3df6980fcaf18c1f468b6e0cf6aeef09a2896c6ad68fafbad",
+          "textSHA256": "dc774c36926e11a9bd6c8dae07d4462ab6c701aba7aac6bdf76370bfd32dba9c",
           "endVerse": 2,
           "sourceNotes": [
             {
               "id": "bel-1-1-242-vayeasef-letter1-vowel",
               "kind": "unreadablePoint",
-              "anchor": "ויֵאָסף",
+              "anchor": "ויֵאָסּף",
               "occurrence": 1,
               "letterIndex": 1,
               "mark": "vowel",
@@ -306,7 +306,7 @@
             {
               "id": "bel-1-1-242-vayeasef-letter2-dagesh",
               "kind": "unreadablePoint",
-              "anchor": "ויֵאָסף",
+              "anchor": "ויֵאָסּף",
               "occurrence": 1,
               "letterIndex": 2,
               "mark": "dagesh",
@@ -318,22 +318,10 @@
             {
               "id": "bel-1-1-242-vayeasef-letter4-vowel",
               "kind": "unreadablePoint",
-              "anchor": "ויֵאָסף",
+              "anchor": "ויֵאָסּף",
               "occurrence": 1,
               "letterIndex": 4,
               "mark": "vowel",
-              "sourcePages": [
-                242
-              ],
-              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=242"
-            },
-            {
-              "id": "bel-1-1-242-vayeasef-letter4-dagesh",
-              "kind": "unreadablePoint",
-              "anchor": "ויֵאָסף",
-              "occurrence": 1,
-              "letterIndex": 4,
-              "mark": "dagesh",
               "sourcePages": [
                 242
               ],
