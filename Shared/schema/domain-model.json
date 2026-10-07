@@ -1047,7 +1047,7 @@
         "showTodayReadings": {
           "type": "boolean",
           "default": true,
-          "description": "Show readings in Pray and native desktop Today. The dedicated phone Readings tab remains available independently."
+          "description": "Retained stored compatibility key. Phone Pray no longer presents Today or its readings toggle. Windows dedicated Today may still use this visibility preference; Home cards and dedicated Readings are independent."
         },
         "readingsReminderEnabled": {
           "type": "boolean",
@@ -1113,6 +1113,30 @@
             "month"
           ],
           "description": "Persistent optional month view in liturgical calendar navigation, retaining selected calendar/date and source-bound observances."
+        },
+        "prayerTextSizePercent": {
+          "type": "int",
+          "default": 100,
+          "range": [
+            80,
+            200
+          ],
+          "choices": [
+            80,
+            90,
+            100,
+            110,
+            125,
+            150,
+            175,
+            200
+          ],
+          "description": "Device-local regular-prayer body and acclamation scale layered on the operating-system text scale. Scripture, headings, interface controls and Bible text retain their existing sizing. Mac Presenter uses its separate explicit point-size control."
+        },
+        "reverseReadingsOrder": {
+          "type": "boolean",
+          "default": false,
+          "description": "Reverse only daily appointment presentation, so Gospel appears first, across Home/Readings/native Today, reading widgets and notifications. Never modify canonical source order, Bible chapter order, Torah passages, citation identity, source groups or verse mappings."
         }
       },
       "rendering": "Body, acclamation and currently visible reading-aid text choose typography by dominant actual letters, ignoring combining marks, punctuation and numbers. Syriac custom bodies therefore obey syriacTypeface. Hebrew-square Aramaic keeps Hebrew choices; Greek is independent of the Latin-script preference. Setting changes invalidate open prayer renderings immediately, including other Mac scenes.",

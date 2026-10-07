@@ -58,7 +58,8 @@ data class TodayWidgetContent(
             return TodayWidgetContent(
                 feast = if (AppSettings.showTodayFeast) TodayInfoStore.feast(instant)?.localizedTitle(language) else null,
                 day = if (TodayInfoStore.shouldShowLiturgicalDay(instant)) TodayInfoStore.liturgicalDayInfo(instant).localized(language) else null,
-                readings = TodayInfoStore.readings(instant).takeIf { it.isNotEmpty() }?.joinToString(" · ") { it.localizedShort(language) },
+                readings = com.dkaluta.prosary.content.today.ReadingCitation.displayOrder(TodayInfoStore.readings(instant), AppSettings.reverseReadingsOrder)
+                    .takeIf { it.isNotEmpty() }?.joinToString("\n") { it.localizedFull(language) },
                 intention = if (AppSettings.showTodayIntention) TodayInfoStore.intention(instant)?.localizedTitle(language) else null,
                 torah = if (AppSettings.showTodayTorahPortion) TodayInfoStore.torahPortion(instant)?.localizedTitle(language) else null,
             )

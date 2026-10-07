@@ -321,6 +321,16 @@ fun SettingsScreen(onBack: () -> Unit, onOpenAppearance: () -> Unit) {
             SectionHeader(stringResource(R.string.settings_typography_header))
 
             OptionPickerField(
+                label = stringResource(R.string.settings_prayer_text_size),
+                options = com.dkaluta.prosary.typography.PrayerTypography.textSizeChoices(AppSettings.prayerTextSizePercent),
+                selected = AppSettings.prayerTextSizePercent,
+                optionLabel = { if (it == 100) context.getString(R.string.settings_prayer_text_size_default)
+                    else java.text.NumberFormat.getPercentInstance(context.resources.configuration.locales[0]).format(it / 100.0) },
+                onSelect = { AppSettings.prayerTextSizePercent = it },
+                modifier = Modifier.testTag("prayerTextSizePercent"),
+            )
+
+            OptionPickerField(
                 label = stringResource(R.string.settings_aramaic_default_script),
                 options = listOf("Hebr", "Syrc"),
                 selected = AppSettings.aramaicDefaultScript,
@@ -417,34 +427,7 @@ fun SettingsScreen(onBack: () -> Unit, onOpenAppearance: () -> Unit) {
             // registry default.
             SectionHeader(stringResource(R.string.settings_today_header))
 
-            OptionPickerField(
-                label = stringResource(R.string.settings_today_card_color),
-                options = AppSettings.todayCardColors,
-                selected = AppSettings.todayCardColor,
-                optionLabel = { context.getString(when (it) {
-                    "blue" -> R.string.app_color_blue
-                    "green" -> R.string.app_color_green
-                    "gold" -> R.string.app_color_gold
-                    "rose" -> R.string.app_color_rose
-                    else -> R.string.settings_today_card_color_default
-                }) },
-                onSelect = { AppSettings.todayCardColor = it },
-                modifier = Modifier.testTag("todayCardColor"),
-            )
-
-            Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
-                Text(stringResource(R.string.settings_show_today_readings), Modifier.weight(1f))
-                LabeledSwitch(label = stringResource(R.string.settings_show_today_readings), checked = AppSettings.showTodayReadings,
-                    onCheckedChange = { AppSettings.showTodayReadings = it },
-                    modifier = Modifier.testTag("showTodayReadings"))
-            }
-            Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
-                Text(stringResource(R.string.settings_expand_readings), Modifier.weight(1f))
-                LabeledSwitch(label = stringResource(R.string.settings_expand_readings), checked = AppSettings.expandReadingsByDefault,
-                    onCheckedChange = { AppSettings.expandReadingsByDefault = it },
-                    modifier = Modifier.testTag("expandReadingsByDefault"))
-            }
-
+            ReadingPresentationSettings()
 
             Row(modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
                 Column(Modifier.weight(1f)) {

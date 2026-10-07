@@ -22,7 +22,7 @@ import com.dkaluta.prosary.ui.shared.LabeledSwitch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TodayReminderSettings() {
+fun TodayReminderSettings(readingsOnly: Boolean = false) {
     val context = LocalContext.current
     var pendingKind by remember { mutableStateOf<String?>(null) }
     var permissionDenied by remember { mutableStateOf(false) }
@@ -37,7 +37,7 @@ fun TodayReminderSettings() {
     }
     LaunchedEffect(AppSettings.feastCalendarId, AppSettings.easternPaschaStyle) { TodayReminderScheduler.refresh(context) }
     Text(stringResource(R.string.settings_reminders_header), style = MaterialTheme.typography.titleSmall)
-    for (kind in listOf("readings", "saints")) {
+    for (kind in if (readingsOnly) listOf("readings") else listOf("readings", "saints")) {
         val enabled = if (kind == "readings") AppSettings.readingsReminderEnabled else AppSettings.saintReminderEnabled
         val minutes = if (kind == "readings") AppSettings.readingsReminderMinutes else AppSettings.saintReminderMinutes
         Column {
@@ -57,9 +57,9 @@ fun TodayReminderSettings() {
             }
         }
     }
-    Text(stringResource(R.string.settings_reminders_footer), style = MaterialTheme.typography.bodySmall,
+    Text(stringResource(if (readingsOnly) R.string.settings_readings_reminder_footer else R.string.settings_reminders_footer), style = MaterialTheme.typography.bodySmall,
         color = MaterialTheme.colorScheme.onSurfaceVariant)
-    Text(stringResource(R.string.settings_prayer_reminders_hint), style = MaterialTheme.typography.bodySmall,
+    if (!readingsOnly) Text(stringResource(R.string.settings_prayer_reminders_hint), style = MaterialTheme.typography.bodySmall,
         color = MaterialTheme.colorScheme.onSurfaceVariant)
     TextButton(onClick = {
         context.startActivity(ReminderScheduler.notificationSettingsIntent(context))

@@ -91,6 +91,8 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
 
     [ObservableProperty]
     private string _acclamationFontFamily = "Georgia";
+    [ObservableProperty]
+    private double _acclamationFontSize = 18;
 
     [ObservableProperty]
     private string _mysteryImageKey = "cross_placeholder";
@@ -714,6 +716,7 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
         IsRightToLeft = PrayerTypography.IsRightToLeft(bodyScript);
         BodyFontFamily = PrayerTypography.ResolveBodyFontFamily(_languageCode, step.IsScripture, bodyScript);
         AcclamationFontFamily = PrayerTypography.ResolveBodyFontFamily(_languageCode, isScripture: false, PrayerTypography.ScriptOf(Acclamation));
+        AcclamationFontSize = PrayerTypography.ResolveBodyFontSize(_languageCode, isScripture: false, PrayerTypography.ScriptOf(Acclamation));
         BodyFontSize = PrayerTypography.ResolveBodyFontSize(_languageCode, step.IsScripture, bodyScript);
 
         RebuildBeads();

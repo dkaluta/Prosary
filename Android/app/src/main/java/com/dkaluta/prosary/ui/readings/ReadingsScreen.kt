@@ -100,9 +100,11 @@ import kotlinx.coroutines.withContext
 /** A reference reader sharing Pray's date without changing prayer sessions or widget dates. */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ReadingsScreen(onOpenSettings: () -> Unit, browsingDate: TodayBrowsingDate = rememberTodayBrowsingDate(),
+fun ReadingsScreen(browsingDate: TodayBrowsingDate = rememberTodayBrowsingDate(),
     calendarRequest: Long = 0, readingsRequest: Long = 0, homeRequest: Long = 0, homeMode: HomeReadingsMode = HomeReadingsMode.Daily) {
     var mode by rememberSaveable { mutableStateOf("daily") }
+    var showsReadingSettings by rememberSaveable { mutableStateOf(false) }
+    if (showsReadingSettings) ReadingSettingsSheet { showsReadingSettings = false }
     var handledOpenRequest by rememberSaveable { mutableStateOf(0L) }
     LaunchedEffect(calendarRequest, readingsRequest, homeRequest, homeMode) {
         val request = ReadingsOpenRequest.latest(calendarRequest, readingsRequest, homeRequest, homeMode)
@@ -128,8 +130,8 @@ fun ReadingsScreen(onOpenSettings: () -> Unit, browsingDate: TodayBrowsingDate =
             if (mode != "feasts") IconButton(onClick = { mode = "feasts" }, modifier = Modifier.testTag("readingsMode.feasts")) {
                 Icon(Icons.Filled.CalendarMonth, contentDescription = stringResource(R.string.calendar_feasts_solemnities))
             }
-            IconButton(onClick = onOpenSettings) {
-                Icon(Icons.Filled.Settings, contentDescription = stringResource(R.string.common_settings))
+                IconButton(onClick = { showsReadingSettings = true }, modifier = Modifier.testTag("readingsSettingsButton")) {
+                    Icon(Icons.Filled.Settings, contentDescription = stringResource(R.string.reading_settings))
             }
         })
     }) { padding ->
@@ -193,6 +195,7 @@ private fun DailyReadingsContent(browsingDate: TodayBrowsingDate) {
     val readings = remember(lookupDate, calendarId, AppSettings.easternPaschaStyle, generation) {
         TodayInfoStore.readings(lookupDate)
     }
+    val displayedReadings = ReadingCitation.indexedDisplayOrder(readings, AppSettings.reverseReadingsOrder)
     val saints = remember(lookupDate, calendarId, language, AppSettings.showTodayFeast, generation) {
         if (AppSettings.showTodayFeast) TodayInfoStore.feast(lookupDate)?.saintDescriptions(calendarId, language).orEmpty()
         else emptyList()
@@ -305,9 +308,10 @@ private fun DailyReadingsContent(browsingDate: TodayBrowsingDate) {
                     Text(stringResource(R.string.readings_empty), color = MaterialTheme.colorScheme.onSurfaceVariant,
                         modifier = Modifier.testTag("readingsEmpty"))
                 }
-                for ((index, citation) in readings.withIndex()) {
+                for ((displayIndex, indexedCitation) in displayedReadings.withIndex()) {
+                    val (index, citation) = indexedCitation
                     val group = citation.sourceGroup
-                    if (!group.isNullOrBlank() && (index == 0 || readings[index - 1].sourceGroup != group)) {
+                    if (!group.isNullOrBlank() && (displayIndex == 0 || displayedReadings[displayIndex - 1].value.sourceGroup != group)) {
                         item(key = "group.$selectedDate.$calendarId.$index") {
                             Text(group, style = MaterialTheme.typography.titleSmall,
                                 modifier = Modifier.semantics { heading() })

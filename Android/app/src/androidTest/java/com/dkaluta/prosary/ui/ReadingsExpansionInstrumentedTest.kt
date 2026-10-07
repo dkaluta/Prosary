@@ -80,11 +80,11 @@ class ReadingsExpansionInstrumentedTest {
                 toggle("daily")
                 toggle("torah")
                 compose.onNodeWithText(context.getString(R.string.tab_pray)).performClick()
-                compose.onNodeWithTag("todayReadings").assertExists()
+                compose.onNodeWithTag("todayReadings").assertDoesNotExist()
                 scenario.onActivity { AppSettings.showTodayReadings = false }
                 compose.onNodeWithTag("todayReadings").assertDoesNotExist()
                 scenario.onActivity { AppSettings.showTodayReadings = true }
-                compose.onNodeWithTag("todayReadings").assertExists()
+                compose.onNodeWithTag("todayReadings").assertDoesNotExist()
                 compose.onNodeWithText(context.getString(R.string.tab_readings)).performClick()
                 assertExpansion("daily", true)
                 assertExpansion("torah", true)

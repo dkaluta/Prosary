@@ -18,13 +18,16 @@ public partial class ReadingPassageViewModel : ObservableObject
     private readonly string _scope;
     private readonly string _rawCitation;
     private readonly string? _readingDatasetId;
+    private readonly string? _sourceGroupCaption;
     private bool _didLoad;
     private IReadOnlyList<ScriptureVerse> _verses = [];
     private ScripturePassage? _passage;
     public string ContextKey { get; }
     public string ConfigurationKey { get; }
     public string Citation { get; }
-    public string? SourceGroup { get; }
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(HasSourceGroup))]
+    private string? _sourceGroup;
     public bool HasSourceGroup => !string.IsNullOrWhiteSpace(SourceGroup);
     public string PassageLabel => Loc.Tr("readings_bible_passage", "Bible Passage");
     public string EditionName => _edition?.Name ?? Loc.Tr("readings_edition_unavailable", "No edition is available for this language.");
@@ -96,11 +99,14 @@ public partial class ReadingPassageViewModel : ObservableObject
         _scope = scope;
         _rawCitation = citation.Full;
         _readingDatasetId = citation.ReadingDatasetId;
+        _sourceGroupCaption = citation.SourceGroup;
         Citation = citation.LocalizedFull(interfaceLanguage);
         SourceGroup = showsSourceGroup ? citation.SourceGroup : null;
         ContextKey = contextKey;
         ConfigurationKey = configurationKey;
     }
+
+    public void ShowSourceGroupHeading(bool showsHeading) => SourceGroup = showsHeading ? _sourceGroupCaption : null;
 
     async partial void OnIsExpandedChanged(bool value)
     {
@@ -252,14 +258,24 @@ public partial class DesktopReadingsViewModel : ObservableObject
     private ObservableCollection<ReadingPassageViewModel> Rows(ObservableCollection<ReadingPassageViewModel> previous,
         IReadOnlyList<ReadingCitation> citations, string scope, HomeViewModel today, ScriptureEdition? edition)
     {
-        var rows = citations.Select((citation, index) =>
+        var reverse = scope == "daily" && AppSettings.ReverseReadingsOrder;
+        var displayed = ReadingCitation.DisplayOrder(citations, reverse);
+        var rows = displayed.Select((citation, displayIndex) =>
         {
+            // Identity follows the source appointment, so a display-order change retains
+            // that reading's manual expansion and selected edition.
+            var index = reverse ? citations.Count - 1 - displayIndex : displayIndex;
             var contextKey = $"{today.SelectedDate:yyyy-MM-dd}|{TodayInfoStore.ResolvedCalendarId}|{AppSettings.EasternPaschaStyle}|{scope}|{citation.ReadingDatasetId}|{index}|{citation.Full}|{today.TodayLanguage}";
             var configurationKey = $"{contextKey}|{AppSettings.ReadingsEditionId}|{edition?.Id}";
             var old = previous.FirstOrDefault(row => row.ContextKey == contextKey);
-            if (old?.ConfigurationKey == configurationKey) return old;
+            var showsGroup = displayIndex == 0 || displayed[displayIndex - 1].SourceGroup != citation.SourceGroup;
+            if (old?.ConfigurationKey == configurationKey)
+            {
+                old.ShowSourceGroupHeading(showsGroup);
+                return old;
+            }
             return new ReadingPassageViewModel(_store, edition, scope, citation, today.TodayLanguage, contextKey, configurationKey,
-                index == 0 || citations[index - 1].SourceGroup != citation.SourceGroup)
+                showsGroup)
             { IsExpanded = old?.IsExpanded ?? AppSettings.ExpandReadingsByDefault };
         }).ToList();
         return previous.SequenceEqual(rows) ? previous : new ObservableCollection<ReadingPassageViewModel>(rows);

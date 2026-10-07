@@ -52,7 +52,7 @@
         "Open today's Rosary"
       ],
       "appleCompactAction": "systemSmall and accessoryRectangular open Today; the Rosary shortcut appears in medium and large layouts.",
-      "configuration": "Uses the app's calendar, Pascha style, interface language, and optional-row settings."
+      "configuration": "Uses the app's calendar, Pascha style, interface language, and optional-row settings. Daily citations use full localized text and follow Show Gospel First when enabled."
     },
     "savedPrayer": {
       "displayName": "Saved Prayer",
@@ -234,6 +234,12 @@
         "type": "boolean",
         "default": false,
         "source": "showTodayTorahPortion"
+      },
+      "reverseReadingsOrder": {
+        "type": "boolean?",
+        "default": null,
+        "source": "reverseReadingsOrder",
+        "description": "Absent or null in older snapshots means false. Reverses the citation presentation only; source appointments retain their canonical order."
       }
     },
     "WidgetSavedPrayer": {

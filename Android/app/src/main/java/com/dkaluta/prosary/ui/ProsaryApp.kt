@@ -329,7 +329,7 @@ private fun AppNavHost(navController: NavHostController, modifier: Modifier = Mo
                 })
         }
         composable(Routes.Readings) {
-            ReadingsScreen(onOpenSettings = { navController.navigateSingleTop(Routes.Settings) }, browsingDate = browsingDate,
+            ReadingsScreen(browsingDate = browsingDate,
                 calendarRequest = calendarWidgetRequest, readingsRequest = readingsWidgetRequest,
                 homeRequest = homeReadingsRequest, homeMode = homeReadingsMode)
         }
@@ -339,7 +339,6 @@ private fun AppNavHost(navController: NavHostController, modifier: Modifier = Mo
         }
         composable(Routes.Pray) {
             HomeScreen(
-                browsingDate = browsingDate,
                 onOpenPrayer = { id -> navController.navigateSingleTop(Routes.prayer(id)) },
                 onOpenReminders = { id -> navController.navigateSingleTop(Routes.remindersOnlyEditor(id)) },
                 onOpenRosaryPicker = { navController.navigateSingleTop(Routes.RosaryPicker) },

@@ -14,6 +14,19 @@ import XCTest
 
 @MainActor
 final class TodayInfoStoreTests: XCTestCase {
+  func testDisplayOrderPreservesCanonicalRowsTheirSourceGroupsAndExpansionIdentity() throws {
+    let readings = try JSONDecoder().decode([ReadingCitation].self, from: Data(#"[{"type":"reading","short":"First","full":"First complete citation","sourceGroup":"Vigil Mass"},{"type":"gospel","short":"Gospel","full":"Complete Gospel citation","sourceGroup":"Vigil Mass"},{"type":"reading","short":"Next","full":"Next complete citation","sourceGroup":"Mass of the Day"}]"#.utf8))
+    let reversed = ReadingCitation.displayOrder(readings, reverse: true)
+    XCTAssertEqual(reversed, Array(readings.reversed()))
+    XCTAssertEqual(readings.map(\.full), ["First complete citation", "Complete Gospel citation", "Next complete citation"])
+    let forward = ReadingDisplayOrder.indexed(readings, reverse: false)
+    let backward = ReadingDisplayOrder.indexed(readings, reverse: true)
+    XCTAssertEqual(backward.map(\.id), [2, 1, 0])
+    for row in backward {
+      XCTAssertEqual(row.value, forward[row.id].value)
+      XCTAssertEqual(row.value.sourceGroup, readings[row.id].sourceGroup)
+    }
+  }
   func testPopePublicationRequiresThePrayerIdentityAndExplicitOptIn() {
     let intention = PopeIntention(title: "Published title", text: "Published English body",
       titleByLanguage: ["he": "כותרת"], textByLanguage: ["he": "גוף"],

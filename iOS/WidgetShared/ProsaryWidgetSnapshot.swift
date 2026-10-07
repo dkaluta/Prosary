@@ -43,6 +43,7 @@ nonisolated struct WidgetTodaySettings: Codable, Equatable, Sendable {
   var showFeast = true
   var showIntention = true
   var showTorah = false
+  var reverseReadingsOrder: Bool? = nil
 
   var normalizedLanguageCode: String {
     let base = languageCode.lowercased().replacingOccurrences(of: "_", with: "-").split(separator: "-").first.map(String.init) ?? "en"
@@ -51,6 +52,22 @@ nonisolated struct WidgetTodaySettings: Codable, Equatable, Sendable {
   }
 
   var isRightToLeft: Bool { ["he", "ar"].contains(normalizedLanguageCode) }
+}
+
+/// Reorder display rows without changing appointments, verse text or source metadata.
+nonisolated enum ReadingDisplayOrder {
+  nonisolated struct Row<Element>: Identifiable {
+    let id: Int
+    let value: Element
+  }
+  static let defaultsKey = "reverseReadingsOrder"
+  static func apply<T>(_ readings: [T], reverse: Bool) -> [T] {
+    reverse ? Array(readings.reversed()) : readings
+  }
+  static func indexed<T>(_ readings: [T], reverse: Bool) -> [Row<T>] {
+    let rows = readings.enumerated().map { Row(id: $0.offset, value: $0.element) }
+    return apply(rows, reverse: reverse)
+  }
 }
 
 nonisolated struct WidgetSavedPrayer: Codable, Equatable, Identifiable, Sendable {

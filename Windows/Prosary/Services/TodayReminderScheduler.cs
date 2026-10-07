@@ -37,6 +37,9 @@ public static class TodayReminderScheduler
                 new[] { item.Title, item.Text, item.Credit }.Where(text => !string.IsNullOrWhiteSpace(text)))));
     }
 
+    public static string ReadingsBody(IReadOnlyList<ReadingCitation> readings, string language, bool reverseOrder = false) =>
+        string.Join("; ", ReadingCitation.DisplayOrder(readings, reverseOrder).Select(reading => reading.LocalizedFull(language)));
+
     private static void Schedule(ToastNotifier notifier, string kind, int minutes)
     {
         var language = UiLanguageCatalog.Current;
@@ -48,7 +51,7 @@ public static class TodayReminderScheduler
                 var readings = TodayInfoStore.Readings(date);
                 if (readings.Count == 0) continue;
                 title = Loc.Tr("home_today_readings", "Today's readings");
-                body = string.Join("; ", readings.Select(reading => reading.LocalizedFull(language)));
+                body = ReadingsBody(readings, language, AppSettings.ReverseReadingsOrder);
             } else {
                 if (TodayInfoStore.Feast(date) is not { } feast) continue;
                 title = feast.LocalizedTitle(language);

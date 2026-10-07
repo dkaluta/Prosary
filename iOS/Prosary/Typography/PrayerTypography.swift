@@ -34,6 +34,15 @@ enum HebrewDisplayText {
 }
 
 enum PrayerTypography {
+  static let prayerTextSizeKey = "prayerTextSizePercent"
+  static let prayerTextSizeChoices = [80, 90, 100, 110, 125, 150, 175, 200]
+  static func textSizeChoices(including current: Int) -> [Int] {
+    Array(Set(prayerTextSizeChoices + [normalizedTextSizePercent(current)])).sorted()
+  }
+  static func normalizedTextSizePercent(_ value: Int) -> Int { min(200, max(80, value)) }
+  static func bodySizeMultiplier(percent: Int, isScripture: Bool) -> CGFloat {
+    isScripture ? 1 : CGFloat(normalizedTextSizePercent(percent)) / 100
+  }
   static let syriacTypefaceKey = "syriacTypeface"
   static let hebrewPrayerTypefaceKey = "hebrewPrayerTypeface"
   static let hebrewScriptureTypefaceKey = "hebrewScriptureTypeface"
@@ -46,6 +55,7 @@ enum PrayerTypography {
     var hebrewScripture = TypefaceValue.default
     var latinPrayer = TypefaceValue.default
     var cyrillicPrayer = TypefaceValue.default
+    var prayerTextSizePercent = 100
 
     static var current: Self {
       let defaults = UserDefaults.standard
@@ -54,7 +64,8 @@ enum PrayerTypography {
         hebrewPrayer: defaults.string(forKey: hebrewPrayerTypefaceKey) ?? TypefaceValue.default,
         hebrewScripture: defaults.string(forKey: hebrewScriptureTypefaceKey) ?? TypefaceValue.default,
         latinPrayer: defaults.string(forKey: latinPrayerTypefaceKey) ?? TypefaceValue.default,
-        cyrillicPrayer: defaults.string(forKey: cyrillicPrayerTypefaceKey) ?? TypefaceValue.default)
+        cyrillicPrayer: defaults.string(forKey: cyrillicPrayerTypefaceKey) ?? TypefaceValue.default,
+        prayerTextSizePercent: normalizedTextSizePercent(defaults.object(forKey: prayerTextSizeKey) as? Int ?? 100))
     }
   }
 
@@ -75,8 +86,10 @@ enum PrayerTypography {
   // typeface in the same visual proportion to `.body` on both platforms.
   #if os(macOS)
   fileprivate static let scale: CGFloat = 0.76
+  fileprivate static let systemBodyPointSize: CGFloat = 13
   #else
   fileprivate static let scale: CGFloat = 1.0
+  fileprivate static let systemBodyPointSize: CGFloat = 17
   #endif
 
   /// The writing system a run of text is actually in.
@@ -159,7 +172,7 @@ enum PrayerTypography {
     case .arabic:
       return isScripture
         ? .custom(FontRegistration.PostScriptName.scheherazadeNew, size: 16 * scale, relativeTo: .body)
-        : .custom(FontRegistration.PostScriptName.amiri, size: 18 * scale, relativeTo: .body)
+        : .custom(FontRegistration.PostScriptName.amiri, size: (pointSize ?? 18) * scale, relativeTo: .body)
 
     case .syriac:
       // Custom Aramaic bodies and Syriac transliterations share the chosen Syriac face.
@@ -196,15 +209,29 @@ private struct PrayerFontModifier: ViewModifier {
   let text: String?
   let typefaces: PrayerTypography.Typefaces
   @ScaledMetric(relativeTo: .body) private var hebrewSystemSize = 21 * PrayerTypography.scale
+  @ScaledMetric(relativeTo: .body) private var systemBodySize = PrayerTypography.systemBodyPointSize
 
   func body(content: Content) -> some View {
     let script = PrayerTypography.resolvedScript(text: text, languageCode: languageCode)
+    let multiplier = PrayerTypography.bodySizeMultiplier(percent: typefaces.prayerTextSizePercent, isScripture: isScripture)
     if script == .hebrew, !isScripture,
        typefaces.hebrewPrayer == PrayerTypography.TypefaceValue.sansSerif {
-      content.font(.system(size: hebrewSystemSize, weight: .regular, design: .default))
+      content.font(.system(size: hebrewSystemSize * multiplier, weight: .regular, design: .default))
+    } else if !isScripture, script == .latin || script == .cyrillic || script == .greek {
+      let choice = script == .cyrillic ? typefaces.cyrillicPrayer
+        : script == .latin ? typefaces.latinPrayer : PrayerTypography.TypefaceValue.default
+      content.font(.system(size: systemBodySize * multiplier, weight: .regular,
+        design: choice == PrayerTypography.TypefaceValue.sansSerif ? .default : .serif))
     } else {
+      let bodyPointSize: CGFloat? = switch script {
+      case .hebrew: 21
+      case .arabic: 18
+      case .syriac: 19
+      default: nil
+      }
+      let pointSize = isScripture ? nil : bodyPointSize.map { $0 * multiplier }
       content.font(PrayerTypography.font(languageCode: languageCode, isScripture: isScripture,
-                                         text: text, typefaces: typefaces))
+                                         text: text, typefaces: typefaces, pointSize: pointSize))
     }
   }
 }
@@ -245,7 +272,7 @@ final class PrayerTypographyMonitor: ObservableObject {
           Text(language.nativeName).font(.headline)
 
           Text(PrayerTranslations.get(languageCode: language.code, key: .aveMaria))
-            .font(PrayerTypography.font(languageCode: language.code, isScripture: false))
+            .prayerFont(languageCode: language.code, isScripture: false)
             .environment(\.layoutDirection, language.isRightToLeft ? .rightToLeft : .leftToRight)
 
           Text(MysteryTranslations.get(languageCode: language.code, imageKey: "joyful_01_annunciation").description)

@@ -31,7 +31,7 @@ public sealed partial class DesktopTodayPage : Page
     public bool ShowsDailyReadings => _readingsOnly ? TodayInfoStore.Readings(ViewModel.SelectedDate).Count > 0 : ViewModel.ShowsTodayReadings;
     public bool ShowsNoReadings => _readingsOnly && TodayInfoStore.Readings(ViewModel.SelectedDate).Count == 0;
     public string NoReadingsText => Loc.Tr("bible_no_daily_readings", "No daily readings are available for this date.");
-    public string OptionsLabel => Loc.Tr("SetTitle/Text", "Settings");
+    public string OptionsLabel => Loc.Tr("reading_settings", "Readings Settings");
     public Brush TodayCardBackground
     {
         get
@@ -72,6 +72,7 @@ public sealed partial class DesktopTodayPage : Page
     {
         ViewModel.PropertyChanged += OnTodayChanged;
         AppSettings.ReadingsEditionChanged += OnReadingEditionChanged;
+        AppSettings.ReadingsOrderChanged += OnReadingEditionChanged;
         AppSettings.TypographyChanged += OnReadingTypographyChanged;
         AppSettings.TodayCardColorChanged += OnTodayCardColorChanged;
         SynchronizeOptions();
@@ -96,6 +97,7 @@ public sealed partial class DesktopTodayPage : Page
         Options.ShowTodayReadings = AppSettings.ShowTodayReadings;
         Options.ExpandReadingsByDefault = AppSettings.ExpandReadingsByDefault;
         Options.ShowTodayTorahPortion = AppSettings.ShowTodayTorahPortion;
+        Options.SynchronizeReadingPreferences();
         Options.SynchronizeTodayCardColor();
         Options.SelectedFeastCalendar = Options.FeastCalendarOptions.FirstOrDefault(c => c.Id == TodayInfoStore.ResolvedCalendarId);
         Options.SelectedEasternPascha = Options.CurrentEasternPascha;
@@ -107,6 +109,7 @@ public sealed partial class DesktopTodayPage : Page
         _dateTimer.Stop();
         ViewModel.PropertyChanged -= OnTodayChanged;
         AppSettings.ReadingsEditionChanged -= OnReadingEditionChanged;
+        AppSettings.ReadingsOrderChanged -= OnReadingEditionChanged;
         AppSettings.TypographyChanged -= OnReadingTypographyChanged;
         AppSettings.TodayCardColorChanged -= OnTodayCardColorChanged;
         Options.PropertyChanged -= OnOptionsChanged;

@@ -10,9 +10,9 @@
     <Page.Resources>
         <DataTemplate x:Key="ReadingPassageTemplate" x:DataType="vm:ReadingPassageViewModel">
             <StackPanel Spacing="8">
-                <TextBlock Text="{x:Bind SourceGroup}" TextWrapping="Wrap" FontWeight="SemiBold"
+                <TextBlock Text="{x:Bind SourceGroup, Mode=OneWay}" TextWrapping="Wrap" FontWeight="SemiBold"
                            AutomationProperties.HeadingLevel="Level3"
-                           Visibility="{x:Bind HasSourceGroup, Converter={StaticResource BoolToVisibility}}" />
+                           Visibility="{x:Bind HasSourceGroup, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
                 <Expander IsExpanded="{x:Bind IsExpanded, Mode=TwoWay}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch">
                     <Expander.Header>
                         <TextBlock Text="{x:Bind Citation}" IsTextSelectionEnabled="True" TextWrapping="Wrap" />
@@ -71,6 +71,17 @@
                             <ScrollViewer MaxHeight="560" HorizontalScrollBarVisibility="Disabled">
                                 <StackPanel Spacing="12" Width="300"
                                             FlowDirection="{x:Bind ViewModel.TodayIsRightToLeft, Mode=OneWay, Converter={StaticResource BoolToFlowDirection}}">
+                                    <TextBlock Text="{x:Bind OptionsLabel}" FontWeight="SemiBold" TextWrapping="Wrap" />
+                                    <ToggleSwitch Header="{x:Bind Options.ReverseReadingsOrderLabel}"
+                                                  IsOn="{x:Bind Options.ReverseReadingsOrder, Mode=TwoWay}" />
+                                    <ToggleSwitch x:Uid="SetReadingsReminder" Header="Reading reminders"
+                                                  IsOn="{x:Bind Options.ReadingsReminderEnabled, Mode=TwoWay}" />
+                                    <TimePicker x:Uid="SetReadingsReminderTime" Header="Notification time"
+                                                Time="{x:Bind Options.ReadingsReminderTime, Mode=TwoWay}"
+                                                ClockIdentifier="{x:Bind Options.ReminderClockIdentifier}"
+                                                Visibility="{x:Bind Options.ReadingsReminderEnabled, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
+                                    <TextBlock Text="{x:Bind Options.ReadingsReminderFooter}" TextWrapping="Wrap"
+                                               Style="{StaticResource MutedCaptionTextStyle}" />
                                     <ComboBox Header="{x:Bind Readings.EditionLabel}" HorizontalAlignment="Stretch"
                                               ItemsSource="{x:Bind Readings.Editions}" DisplayMemberPath="Label"
                                               SelectedItem="{x:Bind Readings.SelectedEdition, Mode=TwoWay}"

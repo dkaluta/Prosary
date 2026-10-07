@@ -4,6 +4,21 @@ import XCTest
 
 @MainActor
 final class WidgetDataReaderTests: XCTestCase {
+  func testFullReadingCitationsCanReverseWithoutChangingTheDataset() throws {
+    try withBundle([
+      "calendars": registry,
+      "readings-roman": #"{"days":{"2026-09-10":{"readings":[{"short":"1 Cor. 2","full":"1 Corinthians 2:1–5"},{"short":"Lk. 4","full":"Luke 4:16–30"}]}}}"#,
+    ]) { bundle in
+      let ordinary = WidgetTodayReader(settings: WidgetTodaySettings(calendarID: "roman", languageCode: "en"), bundle: bundle).content(on: day)
+      let reversed = WidgetTodayReader(settings: WidgetTodaySettings(calendarID: "roman", languageCode: "en", reverseReadingsOrder: true), bundle: bundle).content(on: day)
+      XCTAssertEqual(ordinary.readings, ["1 Corinthians 2:1–5", "Luke 4:16–30"])
+      XCTAssertEqual(reversed.readings, Array(ordinary.readings.reversed()))
+      XCTAssertEqual(reversed.fullReadings, reversed.readings)
+    }
+    let legacy = try JSONDecoder().decode(WidgetTodaySettings.self,
+      from: Data(#"{"calendarID":"roman","easternPaschaStyle":"julian","languageCode":"en","showFeast":true,"showIntention":true,"showTorah":false}"#.utf8))
+    XCTAssertNil(legacy.reverseReadingsOrder)
+  }
   private let registry = #"""
     {"default":"lpj","calendars":[
       {"id":"lpj","file":"feasts","readingsFile":"readings-roman"},

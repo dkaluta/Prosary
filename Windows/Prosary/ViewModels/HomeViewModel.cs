@@ -233,7 +233,7 @@ public partial class HomeViewModel : ObservableObject
     public string TodayReadingsTitle => Loc.Tr("HomeTodayReadings/Text", "Today’s readings", TodayLanguage);
 
     public string ReadingsText => string.Join(Environment.NewLine,
-        TodayReadings.Select(r => r.LocalizedFull(TodayLanguage)));
+        ReadingCitation.DisplayOrder(TodayReadings, AppSettings.ReverseReadingsOrder).Select(r => r.LocalizedFull(TodayLanguage)));
 
     public HomeViewModel(IPresetStore presets, LiturgicalCalendarService calendar,
         PrayerRemovalService? removal = null, Func<string, string?>? seriesSubtitle = null)

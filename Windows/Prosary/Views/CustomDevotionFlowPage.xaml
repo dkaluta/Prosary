@@ -181,7 +181,7 @@
                         <TextBlock controls:BoldMarkdownText.Text="{x:Bind ViewModel.Acclamation, Mode=OneWay}"
                                    Visibility="{x:Bind ViewModel.HasAcclamation, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
                FontFamily="{x:Bind ViewModel.AcclamationFontFamily, Mode=OneWay}"
-                                   FontSize="{x:Bind ViewModel.BodyFontSize, Mode=OneWay}"
+                                   FontSize="{x:Bind ViewModel.AcclamationFontSize, Mode=OneWay}"
                                    TextWrapping="Wrap" Margin="0,0,0,12" />
                         <!-- v0.7 reading aid: swap the body for its transliteration. -->
                         <Button Background="Transparent" Padding="6" HorizontalAlignment="Right"
@@ -264,7 +264,7 @@
                         <TextBlock controls:BoldMarkdownText.Text="{x:Bind ViewModel.Acclamation, Mode=OneWay}"
                                    Visibility="{x:Bind ViewModel.HasAcclamation, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
                FontFamily="{x:Bind ViewModel.AcclamationFontFamily, Mode=OneWay}"
-                                   FontSize="{x:Bind ViewModel.BodyFontSize, Mode=OneWay}"
+                                   FontSize="{x:Bind ViewModel.AcclamationFontSize, Mode=OneWay}"
                                    TextWrapping="Wrap" Margin="0,0,0,12" />
                         <!-- v0.7 reading aid: swap the body for its transliteration. -->
                         <Button Background="Transparent" Padding="6" HorizontalAlignment="Right"

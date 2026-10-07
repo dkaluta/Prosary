@@ -75,10 +75,12 @@ nonisolated struct WidgetTodayReader {
   private var intentions: [String: Titled] = [:]
   private var torah: [String: Titled] = [:]
   private let language: String
+  private let reverseReadingsOrder: Bool
   private var calendarID = ""
 
   init(settings: WidgetTodaySettings, bundle: Bundle = .main) {
     language = settings.normalizedLanguageCode
+    reverseReadingsOrder = settings.reverseReadingsOrder ?? false
     func decode<T: Decodable>(_ type: T.Type, name: String) -> T? {
       guard let url = bundle.url(forResource: name, withExtension: "json")
         ?? bundle.url(forResource: name, withExtension: "json", subdirectory: "Data"),
@@ -112,13 +114,14 @@ nonisolated struct WidgetTodayReader {
 
   func content(on date: Date) -> WidgetTodayContent {
     let day = ProsaryWidgetSnapshot.localDateKey(date)
+    let displayedReadings = ReadingDisplayOrder.apply(readings[day]?.readings ?? [], reverse: reverseReadingsOrder)
     // Use only the selected calendar's same-language, credited source material.
     let observance = feasts[day]?.observances?.first(where: { $0.description(language) != nil })
     return WidgetTodayContent(feast: feasts[day]?.localized(language),
-                              readings: readings[day]?.readings.map { $0.localized(language) } ?? [],
+                              readings: displayedReadings.map { $0.localizedFull(language) },
                               intention: intentions[String(day.prefix(7))]?.localized(language),
                               torah: torah[day]?.localized(language),
-                              fullReadings: readings[day]?.readings.map { $0.localizedFull(language) } ?? [],
+                              fullReadings: displayedReadings.map { $0.localizedFull(language) },
                               intentionText: intentions[String(day.prefix(7))]?.localizedText(language),
                               saintDescription: observance?.description(language),
                               saintCredit: observance?.descriptionCreditByLanguage?[language])

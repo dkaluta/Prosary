@@ -83,7 +83,7 @@ class RealReadingCorpusInstrumentedTest {
             val showsReadingsScreen = mutableStateOf(false)
             compose.setContent {
                 MaterialTheme {
-                    if (showsReadingsScreen.value) ReadingsScreen(onOpenSettings = {})
+                    if (showsReadingsScreen.value) ReadingsScreen()
                     else Column(Modifier.verticalScroll(rememberScrollState())) {
                         ReadingCard(torah, "en", hebrew, hebrew.id, store, true,
                             expanded = true, onToggleExpanded = {})

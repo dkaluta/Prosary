@@ -20,11 +20,27 @@ final class AppShellUITests: XCTestCase {
   }
 
   @MainActor
+  private func openPrayTab(in app: XCUIApplication, title: String = "Pray") {
+    #if !os(macOS)
+    let tab = app.tabBars.buttons[title]
+    if tab.waitForExistence(timeout: 5) {
+      tab.tap()
+    } else {
+      let button = app.buttons[title].firstMatch
+      if button.exists { button.tap() }
+      else { app.cells[title].firstMatch.tap() }
+    }
+    XCTAssertTrue(app.buttons["rosaryCard"].waitForExistence(timeout: 10), "Pray contains the prayer library")
+    #endif
+  }
+
+  @MainActor
   func testEveryTabOpensItsScreen() throws {
     let app = XCUIApplication()
     app.launchArguments = ["-useInMemoryStore", "-AppleLanguages", "(en)", "-interfaceLanguageCode", ""]
     app.launch()
 
+    openPrayTab(in: app)
     XCTAssertTrue(app.buttons["rosaryCard"].waitForExistence(timeout: 10), "Pray lists the seeded favorite")
 
     // Full reading citations have their own tab; category browsing remains in Search.
@@ -56,10 +72,12 @@ final class AppShellUITests: XCTestCase {
     XCTAssertTrue(app.tabBars.buttons["Молитва"].waitForExistence(timeout: 10))
     XCTAssertTrue(app.tabBars.buttons["Читання"].exists)
     XCTAssertTrue(app.tabBars.buttons["Пошук"].exists)
-    XCTAssertEqual(app.buttons["todayYesterdayButton"].label, "Попередній день")
-    XCTAssertEqual(app.buttons["todayTomorrowButton"].label, "Наступний день")
+    XCTAssertTrue(app.descendants(matching: .any).matching(identifier: "homeWidgets.date").firstMatch.exists)
+    app.tabBars.buttons["Молитва"].tap()
+    XCTAssertFalse(app.buttons["todayYesterdayButton"].exists)
+    XCTAssertFalse(app.buttons["todayTomorrowButton"].exists)
     let home = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
-    home.name = "ukrainian-pray-and-today"
+    home.name = "ukrainian-pray-without-today"
     home.lifetime = .keepAlways
     add(home)
     app.buttons["settingsButton"].tap()
@@ -92,6 +110,7 @@ final class AppShellUITests: XCTestCase {
                            "-defaultLanguageCode", "arc", "-basicPrayersLanguageCode", "he",
                            "-useJaffaHailMaryWording", "YES", "-autoAdvanceSeconds", "0"]
     app.launch()
+    openPrayTab(in: app)
     XCTAssertTrue(app.buttons["settingsButton"].waitForExistence(timeout: 10))
     app.buttons["settingsButton"].tap()
     XCTAssertTrue(app.navigationBars["Settings"].waitForExistence(timeout: 5))
@@ -113,24 +132,31 @@ final class AppShellUITests: XCTestCase {
 
   #if os(iOS)
   @MainActor
-  func testPrayAndReadingsShareTheirBrowsedDateInBothDirections() throws {
+  func testPrayHasNoTodayViewAndReadingsRetainsItsBrowsedDate() throws {
     let app = XCUIApplication()
-    app.launchArguments = ["-useInMemoryStore", "-AppleLanguages", "(en)", "-interfaceLanguageCode", "en"]
+    app.launchArguments = ["-useInMemoryStore", "-AppleLanguages", "(en)", "-interfaceLanguageCode", "en",
+                           "-readingsReminderEnabled", "NO"]
     app.launch()
-    let prayDate = app.buttons["todayDateButton"]
-    XCTAssertTrue(prayDate.waitForExistence(timeout: 10))
-    for _ in 0..<4 where !prayDate.isHittable { app.swipeUp() }
-    let initialDate = prayDate.label
-    app.buttons["todayTomorrowButton"].tap()
-    let browsedDate = prayDate.label
+    openPrayTab(in: app)
+    XCTAssertTrue(app.buttons["rosaryCard"].waitForExistence(timeout: 10))
+    XCTAssertFalse(app.buttons["todayDateButton"].exists)
+    XCTAssertFalse(app.otherElements["todaySection"].exists)
+    openReadingsTab(in: app, title: "Readings")
+    let initialDate = app.buttons["readings.chooseDate"].label
+    app.buttons["readings.previousDay"].tap()
+    let browsedDate = app.buttons["readings.chooseDate"].label
     XCTAssertNotEqual(browsedDate, initialDate)
+    openPrayTab(in: app)
+    XCTAssertTrue(app.buttons["rosaryCard"].waitForExistence(timeout: 5))
+    XCTAssertFalse(app.buttons["todayDateButton"].exists)
+    XCTAssertFalse(app.otherElements["todaySection"].exists)
     openReadingsTab(in: app, title: "Readings")
     XCTAssertEqual(app.buttons["readings.chooseDate"].label, browsedDate)
-    app.buttons["readings.previousDay"].tap()
-    XCTAssertEqual(app.buttons["readings.chooseDate"].label, initialDate)
-    app.tabBars.buttons["Pray"].tap()
-    XCTAssertTrue(prayDate.waitForExistence(timeout: 5))
-    XCTAssertEqual(prayDate.label, initialDate)
+    app.buttons["readings.options"].tap()
+    XCTAssertTrue(app.switches["readingsReminderEnabled"].waitForExistence(timeout: 5))
+    XCTAssertEqual(app.switches["readingsReminderEnabled"].value as? String, "0", "Opening Readings Settings does not enable a reminder")
+    XCTAssertFalse(app.switches["saintReminderEnabled"].exists)
+    XCTAssertTrue(app.switches["reverseReadingsOrderToggle"].exists)
     app.terminate()
   }
 
@@ -328,6 +354,7 @@ final class AppShellUITests: XCTestCase {
                                "-basicPrayersLanguageCode", "", "-aramaicDefaultScript", "Hebr",
                                "-showPrayerNameInPrayerLanguage", enabled ? "YES" : "NO"]
         app.launch()
+        openPrayTab(in: app)
         XCTAssertTrue(app.buttons["basicPrayersRow"].waitForExistence(timeout: 10))
         app.buttons["basicPrayersRow"].tap()
         let prayer = app.buttons["basicPrayer-ourFather"]
@@ -353,18 +380,11 @@ final class AppShellUITests: XCTestCase {
     let app = XCUIApplication()
     app.launchArguments = ["-useInMemoryStore", "-AppleLanguages", "(en)", "-interfaceLanguageCode", "en"]
     app.launch()
-    let rows = [("todayYesterdayButton", "todayDateButton", "todayTomorrowButton", "todayDatePicker", "todayDateDoneButton"),
-                ("readings.previousDay", "readings.chooseDate", "readings.nextDay", "readings.datePicker", "readings.dateDone")]
-    for (index, row) in rows.enumerated() {
-      if index == 1 {
-        let readingsTab = app.buttons["Readings"].firstMatch
-        if readingsTab.exists {
-          readingsTab.tap()
-        } else {
-          // Wide iPad windows expose the adaptive tab sidebar as list cells.
-          app.cells["Readings"].firstMatch.tap()
-        }
-      }
+    let readingsTab = app.buttons["Readings"].firstMatch
+    if readingsTab.exists { readingsTab.tap() }
+    else { app.cells["Readings"].firstMatch.tap() }
+    let rows = [("readings.previousDay", "readings.chooseDate", "readings.nextDay", "readings.datePicker", "readings.dateDone")]
+    for row in rows {
       let previous = app.buttons[row.0]
       let date = app.buttons[row.1]
       let next = app.buttons[row.2]
@@ -380,18 +400,11 @@ final class AppShellUITests: XCTestCase {
       XCTAssertGreaterThanOrEqual(previous.frame.width, 60)
       XCTAssertGreaterThanOrEqual(next.frame.width, 60)
       #else
-      if index == 0 {
-        XCTAssertGreaterThanOrEqual(date.frame.height, 44, "Detached date controls retain touch targets")
-        XCTAssertGreaterThanOrEqual(previous.frame.width, 44)
-        XCTAssertGreaterThanOrEqual(next.frame.width, 44)
-      }
       // Native toolbar accessibility frames describe the system's visible platter, which
       // can be smaller than its touch target. Check reachability and bounds below instead.
       #endif
       #if os(iOS)
-      if index == 1 {
-        checkReadingsToolbar(in: app, rightToLeft: false, screenshotName: "readings-toolbar-en")
-      }
+      checkReadingsToolbar(in: app, rightToLeft: false, screenshotName: "readings-toolbar-en")
       #endif
       let originalDate = date.label
       date.tap()
@@ -426,7 +439,6 @@ final class AppShellUITests: XCTestCase {
     let app = XCUIApplication()
     app.launchArguments = ["-useInMemoryStore", "-AppleLanguages", "(en)", "-interfaceLanguageCode", "en"]
     app.launch()
-    XCTAssertTrue(app.buttons["rosaryCard"].waitForExistence(timeout: 10))
     openReadingsTab(in: app, title: "Readings")
     checkReadingsToolbar(in: app, rightToLeft: false, screenshotName: "readings-toolbar-en")
     checkReadingsDatePopover(in: app, screenshotName: "readings-calendar-en")
@@ -446,7 +458,6 @@ final class AppShellUITests: XCTestCase {
       app.launchArguments = ["-useInMemoryStore", "-AppleLanguages", "(\(language))",
                              "-interfaceLanguageCode", language]
       app.launch()
-      XCTAssertTrue(app.buttons["rosaryCard"].waitForExistence(timeout: 10))
       openReadingsTab(in: app, title: title)
       checkReadingsToolbar(in: app, rightToLeft: true, screenshotName: "readings-toolbar-\(language)")
       checkReadingsDatePopover(in: app, screenshotName: "readings-calendar-\(language)")
@@ -559,11 +570,14 @@ final class AppShellUITests: XCTestCase {
   @MainActor
   func testTodayDateNavigationAndNativePicker() throws {
     let app = XCUIApplication()
-    app.launchArguments = ["-AppleLanguages", "(en)", "-showTodayTorahPortion", "YES"]
+    app.launchArguments = ["-useInMemoryStore", "-AppleLanguages", "(en)", "-interfaceLanguageCode", "en", "-showTodayTorahPortion", "YES"]
     app.launch()
-    let yesterday = app.buttons["todayYesterdayButton"]
-    let tomorrow = app.buttons["todayTomorrowButton"]
-    let dateButton = app.buttons["todayDateButton"]
+    let readingsTab = app.buttons["Readings"].firstMatch
+    if readingsTab.exists { readingsTab.tap() }
+    else { app.cells["Readings"].firstMatch.tap() }
+    let yesterday = app.buttons["readings.previousDay"]
+    let tomorrow = app.buttons["readings.nextDay"]
+    let dateButton = app.buttons["readings.chooseDate"]
     XCTAssertTrue(yesterday.waitForExistence(timeout: 10))
     let originalDate = dateButton.label
     yesterday.tap()
@@ -573,23 +587,23 @@ final class AppShellUITests: XCTestCase {
     tomorrow.tap()
     XCTAssertNotEqual(dateButton.label, originalDate)
     dateButton.tap()
-    let today = app.buttons["todayResetButton"]
+    let today = app.buttons["readings.reset"]
     XCTAssertTrue(today.waitForExistence(timeout: 5))
     XCTAssertTrue(today.isEnabled)
     today.tap()
     XCTAssertEqual(dateButton.label, originalDate)
     XCTAssertFalse(today.exists, "The reset belongs inside the date popover")
     let controls = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
-    controls.name = "today-liquid-glass-controls"
+    controls.name = "readings-date-controls"
     controls.lifetime = .keepAlways
     add(controls)
     dateButton.tap()
-    let picker = app.datePickers["todayDatePicker"]
+    let picker = app.datePickers["readings.datePicker"]
     XCTAssertTrue(picker.waitForExistence(timeout: 5), "The popover contains a system DatePicker")
     XCTAssertFalse(today.isEnabled)
     XCTAssertTrue(app.collectionViews.firstMatch.waitForExistence(timeout: 5), "The native calendar opens")
     let attachment = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
-    attachment.name = "today-native-date-picker"
+    attachment.name = "readings-native-date-picker"
     attachment.lifetime = .keepAlways
     add(attachment)
   }
@@ -600,6 +614,7 @@ final class AppShellUITests: XCTestCase {
     app.launchArguments = ["-resetStore", "-AppleLanguages", "(en)", "-AppleInterfaceStyle", "Dark",
                            "-defaultLanguageCode", "he"]
     app.launch()
+    openPrayTab(in: app)
     XCTAssertTrue(app.buttons["rosaryCard"].waitForExistence(timeout: 10))
     app.buttons["rosaryCard"].tap()
     let preset = app.buttons["prayDefaultPreset"].firstMatch
@@ -621,15 +636,21 @@ final class AppShellUITests: XCTestCase {
 
   @MainActor
   func testRTLPrayerControlsAndTodayFollowInterfaceLanguage() throws {
-    for (language, heading) in [("he", "המקרא היומי"), ("ar", "قراءات اليوم")] {
+    for (language, prayTitle, readingsTitle, heading) in [("he", "תפילה", "מקראות", "המקראות"), ("ar", "صلّ", "القراءات", "القراءات")] {
       let app = XCUIApplication()
       app.launchArguments = ["-resetStore", "-AppleLanguages", "(\(language))", "-interfaceLanguageCode", "",
                              "-defaultLanguageCode", "en", "-todayLanguageCode", "it",
                              "-autoAdvanceSeconds", "0"]
       app.launch()
-      XCTAssertTrue(app.buttons["rosaryCard"].waitForExistence(timeout: 10))
+      let readingsTab = app.buttons[readingsTitle].firstMatch
+      if readingsTab.exists { readingsTab.tap() }
+      else { app.cells[readingsTitle].firstMatch.tap() }
+      XCTAssertTrue(app.buttons["readings.chooseDate"].waitForExistence(timeout: 10))
       XCTAssertFalse(app.buttons["todayLanguagePicker"].exists)
-      XCTAssertTrue(app.staticTexts[heading].exists, "Today follows the interface despite an old Italian override")
+      XCTAssertTrue(app.staticTexts[heading].exists, "Readings follows the interface despite an old Italian override")
+      XCTAssertLessThan(app.buttons["readings.nextDay"].frame.midX, app.buttons["readings.previousDay"].frame.midX)
+      openPrayTab(in: app, title: prayTitle)
+      XCTAssertFalse(app.buttons["todayDateButton"].exists)
       app.buttons["rosaryCard"].tap()
       let preset = app.buttons["prayDefaultPreset"].firstMatch
       XCTAssertTrue(preset.waitForExistence(timeout: 10))
@@ -677,6 +698,7 @@ final class AppShellUITests: XCTestCase {
     app.launchArguments = ["-useInMemoryStore", "-AppleLanguages", "(en)", "-interfaceLanguageCode", "en",
                            "-defaultLanguageCode", "he", "-autoAdvanceSeconds", "0"]
     app.launch()
+    openPrayTab(in: app)
     XCTAssertTrue(app.buttons["addFavoriteButton"].waitForExistence(timeout: 10))
     app.buttons["addFavoriteButton"].tap()
     app.buttons["Pray Any Rosary…"].tap()
@@ -734,6 +756,7 @@ final class AppShellUITests: XCTestCase {
     app.launchArguments = ["-resetStore", "-AppleLanguages", "(en)", "-defaultLanguageCode", "en",
                            "-showPrayerNameInPrayerLanguage", "YES"]
     app.launch()
+    openPrayTab(in: app)
     let basic = app.buttons["basicPrayersRow"]
     XCTAssertTrue(basic.waitForExistence(timeout: 10))
     for _ in 0..<4 where !basic.isHittable { app.swipeUp() }
@@ -772,6 +795,7 @@ final class AppShellUITests: XCTestCase {
     let app = XCUIApplication()
     app.launchArguments = ["-resetStore", "-AppleLanguages", "(en)", "-defaultLanguageCode", "arc"]
     app.launch()
+    openPrayTab(in: app)
     XCTAssertTrue(app.buttons["rosaryCard"].waitForExistence(timeout: 10))
     app.buttons["rosaryCard"].tap()
     let preset = app.buttons["prayDefaultPreset"].firstMatch
@@ -794,6 +818,7 @@ final class AppShellUITests: XCTestCase {
     app.launchArguments = ["-resetStore", "-AppleLanguages", "(en)", "-defaultLanguageCode", "en",
                            "-aramaicDefaultScript", "Hebr"]
     app.launch()
+    openPrayTab(in: app)
     let basic = app.buttons["basicPrayersRow"]
     XCTAssertTrue(basic.waitForExistence(timeout: 10))
     for _ in 0..<4 where !basic.isHittable { app.swipeUp() }
@@ -1063,6 +1088,7 @@ final class AppShellUITests: XCTestCase {
     let app = XCUIApplication()
     app.launchArguments = ["-useInMemoryStore", "-AppleLanguages", "(he)", "-interfaceLanguageCode", "he", "-AppleLocale", "he_IL"]
     app.launch()
+    openPrayTab(in: app)
     XCTAssertTrue(app.buttons["settingsButton"].waitForExistence(timeout: 10))
     app.buttons["settingsButton"].tap()
     let link = app.buttons["appearanceSettingsLink"]
@@ -1136,6 +1162,7 @@ final class AppShellUITests: XCTestCase {
     app.launchArguments = ["-useInMemoryStore", "-AppleLanguages", "(en)",
                            "-defaultLanguageCode", ""]
     app.launch()
+    openPrayTab(in: app)
 
     func chooseAppLanguage(_ name: String) {
       let picker = app.buttons["appLanguagePicker"]
@@ -1153,11 +1180,14 @@ final class AppShellUITests: XCTestCase {
                   "The open settings sheet updates without being replaced")
     XCTAssertTrue(app.staticTexts["שפת היישומון"].exists)
     app.buttons["סיום"].tap()
+    openReadingsTab(in: app, title: "מקראות")
     let rtlNavigation = NSPredicate { _, _ in
-      app.buttons["todayTomorrowButton"].frame.midX < app.buttons["todayYesterdayButton"].frame.midX
+      app.buttons["readings.nextDay"].frame.midX < app.buttons["readings.previousDay"].frame.midX
     }
     XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(predicate: rtlNavigation, object: nil)],
                                 timeout: 5), .completed)
+    openPrayTab(in: app, title: "תפילה")
+    XCTAssertFalse(app.buttons["todayDateButton"].exists)
 
     let basic = app.buttons["basicPrayersRow"]
     for _ in 0..<4 where !basic.isHittable { app.swipeUp() }
@@ -1197,6 +1227,7 @@ final class AppShellUITests: XCTestCase {
     let app = XCUIApplication()
     app.launchArguments = ["-useInMemoryStore", "-AppleLanguages", "(en)", "-interfaceLanguageCode", ""]
     app.launch()
+    openPrayTab(in: app)
 
     XCTAssertTrue(app.buttons["settingsButton"].waitForExistence(timeout: 10))
     app.buttons["settingsButton"].tap()
@@ -1213,6 +1244,7 @@ final class AppShellUITests: XCTestCase {
     let app = XCUIApplication()
     app.launchArguments = ["-useInMemoryStore", "-AppleLanguages", "(en)"]
     app.launch()
+    openPrayTab(in: app)
 
     XCTAssertTrue(app.buttons["rosaryCard"].waitForExistence(timeout: 10))
     XCTAssertTrue(app.buttons["editOrderButton"].waitForExistence(timeout: 10))
@@ -1228,6 +1260,7 @@ final class AppShellUITests: XCTestCase {
     let app = XCUIApplication()
     app.launchArguments = ["-useInMemoryStore", "-AppleLanguages", "(en)"]
     app.launch()
+    openPrayTab(in: app)
 
     XCTAssertTrue(app.buttons["settingsButton"].waitForExistence(timeout: 10))
     app.buttons["settingsButton"].tap()

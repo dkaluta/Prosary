@@ -144,3 +144,29 @@ fixture database was private and in memory; no production data was opened.
 Windows execution is now verified: all 914 tests passed on the Windows CI runner,
 including the Rosary session-choice, data, typography and reminder regressions.
 This does not certify physical Narrator traversal or every Windows layout.
+
+## Prayer-size and Readings follow-up
+
+The native apps now offer Prayer Text Size at 80–200%, with 100% retaining the
+system default. It scales ordinary prayer bodies, reading aids and acclamations
+alongside system scaling. Scripture, headings and interface controls keep their
+existing sizes. Mac Presenter retains its independent point-size control.
+
+Readings Settings exposes the same disabled-by-default daily reading reminder and
+local time as general Reminders. Daily summaries use full localized citations, and
+Show Gospel First changes presentation while retaining each appointment's identity.
+Pray no longer duplicates the Today/date controls.
+
+- Android: all 516 unit tests pass; debug and instrumentation APKs compile, and the
+  signed 0.20.0 (50) bundle builds successfully.
+- Mac: all 632 unit tests pass. The final typography picker additions pass nine
+  focused tests, and the final settings footer compiles.
+- iPhone 17 simulator: 61 focused typography, daily-data and widget tests pass,
+  including actual prayer-size and Dynamic Type layout measurements. A rendered
+  screen test verifies the prayer-only Pray tab, retained Readings date, disabled
+  contextual reading reminder and Gospel-first option.
+- Windows: regression coverage includes prayer-size isolation, shared reminder
+  preferences and retained reading expansion. Execution is checked by Windows CI
+  before merging this follow-up.
+
+The physical-device and screen-reader limits recorded above still apply.

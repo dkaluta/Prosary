@@ -1,5 +1,7 @@
 package com.dkaluta.prosary.widgets
 
+import androidx.compose.ui.test.assertTextContains
+
 import android.content.Intent
 import android.net.Uri
 import androidx.compose.ui.test.hasTestTag
@@ -61,13 +63,15 @@ class WidgetNavigationInstrumentedTest {
             compose.waitUntil(15_000) { compose.onAllNodes(hasTestTag("homeDashboard")).fetchSemanticsNodes().isNotEmpty() }
             compose.onNodeWithTag("prayerProgress").assertDoesNotExist()
             val dates = DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG).withLocale(app.resources.configuration.locales[0])
-            compose.onNodeWithTag("tab.pray").performClick()
-            compose.onNodeWithTag("todayYesterday").performClick()
-            compose.onNodeWithText(LocalDate.now().minusDays(1).format(dates)).assertExists()
+            compose.onNodeWithTag("tab.readings").performClick()
+            compose.onNodeWithTag("readingsPrevious").performClick()
+            compose.onNodeWithTag("readingsChooseDate").assertTextContains(LocalDate.now().minusDays(1).format(dates))
             WidgetUpdates.launchIntent(app, "today").send()
             compose.waitUntil(15_000) { compose.onAllNodes(hasTestTag("homeDashboard")).fetchSemanticsNodes().isNotEmpty() }
-            compose.onNodeWithTag("tab.pray").performClick()
-            compose.waitUntil(15_000) { compose.onAllNodes(hasText(LocalDate.now().format(dates))).fetchSemanticsNodes().isNotEmpty() }
+            compose.onNodeWithTag("homeDate").assertTextContains(LocalDate.now().format(
+                DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL).withLocale(app.resources.configuration.locales[0])))
+            compose.onNodeWithTag("tab.readings").performClick()
+            compose.onNodeWithTag("readingsChooseDate").assertTextContains(LocalDate.now().format(dates))
             runBlocking { services.presetStore.delete(prayer) }
             WidgetUpdates.launchIntent(app, "prayer/${prayer.id}").send()
             compose.waitForIdle()

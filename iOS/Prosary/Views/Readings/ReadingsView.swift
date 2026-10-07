@@ -9,6 +9,7 @@ struct DailyReadingsView: View {
   @AppStorage("showTodayFeast") private var showsFeast = true
   @AppStorage("showTodayTorahPortion") private var showsTorah = false
   @AppStorage("expandReadingsByDefault") private var expandReadingsByDefault = false
+  @AppStorage(ReadingDisplayOrder.defaultsKey) private var reverseReadingsOrder = false
   @Binding var dateSelection: MacTodayDateSelection
   @Binding var mode: String
   @State private var showsDatePicker = false
@@ -18,6 +19,7 @@ struct DailyReadingsView: View {
   @State private var torah: TorahPortion?
 
   private var language: String { UILanguage.current }
+  private var displayedReadings: [ReadingDisplayOrder.Row<ReadingCitation>] { ReadingDisplayOrder.indexed(readings, reverse: reverseReadingsOrder) }
   private var usesDateToolbar: Bool {
     #if os(iOS)
     // iPad's adaptive tabs share this toolbar row and would overflow the date controls.
@@ -65,9 +67,10 @@ struct DailyReadingsView: View {
               .foregroundStyle(.secondary)
               .accessibilityIdentifier("readings.empty")
           }
-          ForEach(Array(readings.enumerated()), id: \.offset) { index, reading in
+          ForEach(Array(displayedReadings.enumerated()), id: \.element.id) { index, row in
+            let reading = row.value
             if let group = reading.sourceGroup, !group.isEmpty,
-               index == 0 || readings[index - 1].sourceGroup != group {
+               index == 0 || displayedReadings[index - 1].value.sourceGroup != group {
               Text(group).font(.subheadline.weight(.semibold)).accessibilityAddTraits(.isHeader)
             }
             ScripturePassageView(reading: reading, interfaceLanguage: language)
@@ -243,8 +246,11 @@ struct DailyReadingsView: View {
         Toggle(String(localized: "settings.showTodayTorahPortion", defaultValue: "Show the weekly Torah portion", bundle: UILanguage.bundle, locale: UILanguage.locale), isOn: $showsTorah)
         Toggle(String(localized: "settings.expandReadingsByDefault", defaultValue: "Expand readings by default", bundle: UILanguage.bundle, locale: UILanguage.locale), isOn: $expandReadingsByDefault)
           .accessibilityIdentifier("expandReadingsByDefaultToggle")
+        Toggle(String(localized: "settings.reverseReadingsOrder", defaultValue: "Show Gospel First", bundle: UILanguage.bundle, locale: UILanguage.locale), isOn: $reverseReadingsOrder)
+          .accessibilityIdentifier("reverseReadingsOrderToggle")
+        ReadingsReminderSettings()
       }
-      .navigationTitle(String(localized: "tabs.readings", defaultValue: "Readings", bundle: UILanguage.bundle, locale: UILanguage.locale))
+      .navigationTitle(String(localized: "readings.settings", defaultValue: "Readings Settings", bundle: UILanguage.bundle, locale: UILanguage.locale))
       .toolbar {
         ToolbarItem(placement: .confirmationAction) {
           Button(String(localized: "common.done", defaultValue: "Done", bundle: UILanguage.bundle, locale: UILanguage.locale)) { showsOptions = false }

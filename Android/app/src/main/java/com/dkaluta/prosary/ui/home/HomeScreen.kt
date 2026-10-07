@@ -3,18 +3,12 @@ package com.dkaluta.prosary.ui.home
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.width
@@ -22,17 +16,12 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
-import androidx.compose.material.icons.automirrored.filled.KeyboardArrowLeft
 import androidx.compose.material.icons.automirrored.filled.MenuBook
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.CalendarMonth
 import androidx.compose.material.icons.filled.Circle
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
-import androidx.compose.material3.DatePicker
-import androidx.compose.material3.DatePickerDialog
-import androidx.compose.material3.rememberDatePickerState
 import androidx.compose.material3.Icon
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
@@ -40,12 +29,10 @@ import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.Lifecycle
@@ -57,27 +44,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.lerp
-import com.dkaluta.prosary.ui.shared.PapalKeysIcon
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.testTag
-import androidx.compose.ui.platform.LocalLayoutDirection
-import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.res.stringResource
 import com.dkaluta.prosary.R
 import com.dkaluta.prosary.content.prayerpack.CustomDevotionInfo
 import com.dkaluta.prosary.content.prayerpack.PrayerPackStore
-import com.dkaluta.prosary.content.today.TodayInfoStore
-import com.dkaluta.prosary.ui.shared.SaintDescriptionsCard
-import com.dkaluta.prosary.content.today.TodayTranslationLanguage
-import com.dkaluta.prosary.ui.shared.TodayBrowsingDate
-import com.dkaluta.prosary.ui.shared.rememberTodayBrowsingDate
-import com.dkaluta.prosary.content.today.TodayDateSelection
 import com.dkaluta.prosary.models.AppSettings
 import com.dkaluta.prosary.models.BasicPrayerCatalog
 import com.dkaluta.prosary.models.FavoriteDevotions
@@ -88,11 +62,6 @@ import com.dkaluta.prosary.models.MysteryGroup
 import com.dkaluta.prosary.models.Prayer
 import com.dkaluta.prosary.models.PrayerKind
 import com.dkaluta.prosary.models.PrayerCardTitle
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
-import java.time.format.FormatStyle
-import java.util.Locale
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import com.dkaluta.prosary.services.LocalAppServices
 import androidx.compose.foundation.lazy.grid.GridCells
@@ -148,65 +117,15 @@ fun HomeScreen(
     onOpenCustomDevotion: (String) -> Unit,
     onOpenBasicPrayers: () -> Unit,
     onOpenBasicPrayer: (String) -> Unit,
-    todayWidgetRequest: Long = 0,
-    browsingDate: TodayBrowsingDate = rememberTodayBrowsingDate(),
 ) {
     val services = LocalAppServices.current
     val reminderScope = androidx.compose.runtime.rememberCoroutineScope()
     val isDarkTheme = isSystemInDarkTheme()
 
-    // A null selection follows the current day, including midnight and returning to the app.
-    // An explicit date stays where the reader put it until Today is tapped.
-    var currentDate by remember { mutableStateOf(LocalDate.now()) }
-    val selectedDate = browsingDate.selectedDate(currentDate)
-    // Rebuild the instant in the current zone on resume; an explicitly selected civil date
-    // must stay that date even after the device changes time zone.
-    val lookupDate = TodayDateSelection.lookupDate(selectedDate)
-    var showsDatePicker by remember { mutableStateOf(false) }
     val gridState = rememberLazyGridState()
-    var handledTodayWidgetRequest by rememberSaveable { mutableStateOf(0L) }
-    LaunchedEffect(todayWidgetRequest) {
-        if (todayWidgetRequest != 0L && todayWidgetRequest != handledTodayWidgetRequest) {
-            handledTodayWidgetRequest = todayWidgetRequest
-            browsingDate.selectedEpochDay = null
-            currentDate = LocalDate.now()
-            showsDatePicker = false
-            gridState.scrollToItem(0)
-        }
-    }
-    LaunchedEffect(Unit) {
-        while (true) {
-            currentDate = LocalDate.now()
-            delay(30_000)
-        }
-    }
-
-    // Keyed on the Settings choices so returning from Settings re-resolves under the new
-    // calendar (or drops a row its toggle switched off).
-    val todayFeast = remember(lookupDate, AppSettings.feastCalendarId, AppSettings.easternPaschaStyle, AppSettings.showTodayFeast) {
-        if (AppSettings.showTodayFeast) TodayInfoStore.feast(lookupDate) else null
-    }
-    val monthIntention = remember(lookupDate, AppSettings.showTodayIntention) {
-        if (AppSettings.showTodayIntention) TodayInfoStore.intention(lookupDate) else null
-    }
-    val liturgicalDayInfo = remember(lookupDate, AppSettings.feastCalendarId) {
-        if (TodayInfoStore.shouldShowLiturgicalDay(lookupDate)) TodayInfoStore.liturgicalDayInfo(lookupDate) else null
-    }
-    val todayReadings = remember(lookupDate, AppSettings.feastCalendarId, AppSettings.easternPaschaStyle, AppSettings.showTodayReadings) {
-        if (AppSettings.showTodayReadings) TodayInfoStore.readings(lookupDate) else emptyList()
-    }
-    val torahPortion = remember(lookupDate, AppSettings.showTodayTorahPortion) {
-        if (AppSettings.showTodayTorahPortion) TodayInfoStore.torahPortion(lookupDate) else null
-    }
     val defaultLanguageCode = AppSettings.defaultLanguageCode
     val context = LocalContext.current
-    val appLanguage = LocalConfiguration.current.locales[0].toLanguageTag()
-    val todayLanguage = TodayTranslationLanguage.resolve(appLanguage)
-    val todayContext = remember(context, todayLanguage) { TodayTranslationLanguage.localizedContext(context, todayLanguage) }
-    val dateLabel = remember(selectedDate, appLanguage) {
-        selectedDate.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG).withLocale(Locale.forLanguageTag(appLanguage)))
-    }
-    val todayReadingsTitle = todayContext.getString(R.string.home_today_readings)
+    val interfaceLanguage = AppSettings.effectiveInterfaceLanguageCode
     var todayMysteryGroup by remember { mutableStateOf<MysteryGroup?>(null) }
     var defaultRosary by remember { mutableStateOf<Prayer?>(null) }
     var defaultJesusPrayer by remember { mutableStateOf<Prayer?>(null) }
@@ -223,7 +142,6 @@ fun HomeScreen(
     DisposableEffect(lifecycleOwner) {
         val observer = LifecycleEventObserver { _, event ->
             if (event == Lifecycle.Event.ON_RESUME) {
-                currentDate = LocalDate.now()
                 refreshGeneration++
             }
         }
@@ -294,7 +212,7 @@ fun HomeScreen(
 
         for (bundleId in PrayerPackStore.customDevotionIds()) {
             val info = PrayerPackStore.info(bundleId) ?: continue
-            val cardTitle = info.cardTitle(LanguageCatalog.resolve(defaultCustomDevotions[bundleId]?.languageCode).code, appLanguage)
+            val cardTitle = info.cardTitle(LanguageCatalog.resolve(defaultCustomDevotions[bundleId]?.languageCode).code, interfaceLanguage)
             add(
                 DevotionCard(
                     id = "custom.$bundleId",
@@ -344,7 +262,7 @@ fun HomeScreen(
         if (defaultJesusPrayer != null) add("jesusPrayer")
     }
     val pinnedBasicCards = BasicPrayerCatalog.all.filter { it.id in AppSettings.pinnedBasicPrayerIds }.map { prayer ->
-        val cardTitle = BasicPrayerCatalog.cardTitle(prayer, AppSettings.basicPrayersLanguageCode, todayLanguage)
+        val cardTitle = BasicPrayerCatalog.cardTitle(prayer, AppSettings.basicPrayersLanguageCode, interfaceLanguage)
         DevotionCard(
             id = "basic:${prayer.id}", devotionId = "basic:${prayer.id}",
             icon = Icons.AutoMirrored.Filled.MenuBook,
@@ -381,38 +299,6 @@ fun HomeScreen(
 
     val topBarScroll = TopAppBarDefaults.pinnedScrollBehavior()
 
-    if (showsDatePicker) {
-        val datePickerState = rememberDatePickerState(
-            initialSelectedDateMillis = TodayDateSelection.pickerMillis(selectedDate),
-            yearRange = TodayDateSelection.earliest.year..TodayDateSelection.latest.year,
-        )
-        DatePickerDialog(
-            onDismissRequest = { showsDatePicker = false },
-            confirmButton = {
-                TextButton(
-                    enabled = datePickerState.selectedDateMillis != null,
-                    onClick = {
-                        datePickerState.selectedDateMillis?.let {
-                            browsingDate.selectedEpochDay = TodayDateSelection.fromPickerMillis(it).toEpochDay()
-                        }
-                        showsDatePicker = false
-                    },
-                ) { Text(stringResource(R.string.common_ok)) }
-            },
-            dismissButton = { TextButton(onClick = { showsDatePicker = false }) { Text(stringResource(R.string.common_cancel)) } },
-        ) {
-            DatePicker(
-                state = datePickerState,
-                modifier = Modifier.testTag("todayDatePicker"),
-                title = {
-                    TextButton(
-                        onClick = { currentDate = LocalDate.now(); browsingDate.selectedEpochDay = null; showsDatePicker = false },
-                        modifier = Modifier.padding(horizontal = 12.dp).testTag("todayReset"),
-                    ) { Text(stringResource(R.string.home_today_reset)) }
-                },
-            )
-        }
-    }
 
     Scaffold(
 
@@ -486,123 +372,6 @@ fun HomeScreen(
                 .fillMaxSize()
                 .testTag("prayCards"),
         ) {
-            item(key = "todayNavigation", span = { GridItemSpan(maxLineSpan) }) {
-                Row(Modifier.fillMaxWidth().height(IntrinsicSize.Min), verticalAlignment = Alignment.CenterVertically) {
-                    IconButton(
-                        onClick = { browsingDate.selectedEpochDay = selectedDate.minusDays(1).toEpochDay() },
-                        enabled = selectedDate > TodayDateSelection.earliest,
-                        modifier = Modifier.heightIn(min = 48.dp).fillMaxHeight().testTag("todayYesterday"),
-                    ) {
-                        Icon(Icons.AutoMirrored.Filled.KeyboardArrowLeft, contentDescription = stringResource(R.string.home_today_yesterday))
-                    }
-                    TextButton(onClick = { showsDatePicker = true },
-                        modifier = Modifier.weight(1f).heightIn(min = 48.dp).fillMaxHeight().testTag("todayChooseDate")) {
-                        Text(dateLabel, textAlign = TextAlign.Center)
-                    }
-                    IconButton(
-                        onClick = { browsingDate.selectedEpochDay = selectedDate.plusDays(1).toEpochDay() },
-                        enabled = selectedDate < TodayDateSelection.latest,
-                        modifier = Modifier.heightIn(min = 48.dp).fillMaxHeight().testTag("todayTomorrow"),
-                    ) {
-                        Icon(Icons.AutoMirrored.Filled.KeyboardArrowRight, contentDescription = stringResource(R.string.home_today_tomorrow))
-                    }
-                }
-            }
-            if (liturgicalDayInfo != null || todayReadings.isNotEmpty() || torahPortion != null)
-            item(key = "today", span = { GridItemSpan(maxLineSpan) }) {
-                CompositionLocalProvider(
-                    LocalLayoutDirection provides if (TodayTranslationLanguage.isRightToLeft(todayLanguage)) LayoutDirection.Rtl else LayoutDirection.Ltr,
-                ) {
-                    Column(
-                        verticalArrangement = Arrangement.spacedBy(10.dp),
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .clip(RoundedCornerShape(14.dp))
-                            .background(todayCardBackground())
-                            .padding(14.dp),
-                    ) {
-                        if (liturgicalDayInfo != null) Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.testTag("todayLiturgicalDay")) {
-                            Icon(Icons.Filled.CalendarMonth, contentDescription = null, tint = MaterialTheme.colorScheme.primary)
-                            Text(
-                                liturgicalDayInfo.localized(todayLanguage),
-                                style = MaterialTheme.typography.titleSmall,
-                                fontWeight = FontWeight.SemiBold,
-                                modifier = Modifier.weight(1f),
-                            )
-
-                        }
-                        if (todayReadings.isNotEmpty()) {
-                            Row(horizontalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.testTag("todayReadings")) {
-                                Icon(Icons.AutoMirrored.Filled.MenuBook, contentDescription = null, tint = MaterialTheme.colorScheme.primary)
-                                Column(verticalArrangement = Arrangement.spacedBy(2.dp), modifier = Modifier.weight(1f)) {
-                                    Text(todayReadingsTitle, style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.SemiBold)
-                                    todayReadings.forEach { citation ->
-                                        Text(
-                                            citation.localizedFull(todayLanguage),
-                                            style = MaterialTheme.typography.bodySmall,
-                                            color = MaterialTheme.colorScheme.onSurfaceVariant,
-                                        )
-                                    }
-                                }
-                            }
-                        }
-                        if (torahPortion != null) {
-                            Row(horizontalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.testTag("todayTorahPortion")) {
-                                Icon(Icons.AutoMirrored.Filled.MenuBook, contentDescription = null, tint = MaterialTheme.colorScheme.primary)
-                                Column(verticalArrangement = Arrangement.spacedBy(2.dp), modifier = Modifier.weight(1f)) {
-                                    Text(
-                                        todayContext.getString(if (torahPortion.isHoliday) R.string.home_today_torah_festival else R.string.home_today_torah),
-                                        style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.SemiBold,
-                                    )
-                                    Text(torahPortion.localizedTitle(todayLanguage), style = MaterialTheme.typography.bodyMedium)
-                                    torahPortion.readings.forEach { citation ->
-                                        Text(citation.localizedFull(todayLanguage), style = MaterialTheme.typography.bodySmall,
-                                            color = MaterialTheme.colorScheme.onSurfaceVariant)
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-
-            if (todayFeast != null) item(key = "todaySaints", span = { GridItemSpan(maxLineSpan) }) {
-                CompositionLocalProvider(LocalLayoutDirection provides
-                    if (TodayTranslationLanguage.isRightToLeft(todayLanguage)) LayoutDirection.Rtl else LayoutDirection.Ltr) {
-                    Column(Modifier.fillMaxWidth().clip(RoundedCornerShape(14.dp))
-                        .background(MaterialTheme.colorScheme.surfaceContainerHigh).padding(14.dp)
-                        .testTag("todaySaints"), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                        Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                            Icon(Icons.Filled.CalendarMonth, contentDescription = null, tint = MaterialTheme.colorScheme.primary)
-                            Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(2.dp)) {
-                                Text(todayFeast.localizedTitle(todayLanguage), style = MaterialTheme.typography.titleSmall,
-                                    fontWeight = if (todayFeast.rank in setOf("Solemnity", "1st Class", "Great Feast")) FontWeight.Bold else FontWeight.SemiBold)
-                                Text(todayFeast.localizedRank(todayLanguage, todayContext), style = MaterialTheme.typography.bodySmall,
-                                    color = MaterialTheme.colorScheme.onSurfaceVariant)
-                            }
-                        }
-                        SaintDescriptionsCard(todayFeast.saintDescriptions(TodayInfoStore.selectedCalendarId, todayLanguage),
-                            selectedDate.toString(), todayLanguage, inCard = false)
-                    }
-                }
-            }
-            if (monthIntention != null) item(key = "popeIntention", span = { GridItemSpan(maxLineSpan) }) {
-                CompositionLocalProvider(LocalLayoutDirection provides
-                    if (TodayTranslationLanguage.isRightToLeft(todayLanguage)) LayoutDirection.Rtl else LayoutDirection.Ltr) {
-                    Row(Modifier.fillMaxWidth().clip(RoundedCornerShape(14.dp))
-                        .background(MaterialTheme.colorScheme.surfaceContainerHigh).padding(14.dp)
-                        .testTag("popeIntention"), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                        PapalKeysIcon()
-                        Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(4.dp)) {
-                            Text(todayContext.getString(R.string.home_pope_intention, monthIntention.localizedTitle(todayLanguage)),
-                                style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.SemiBold)
-                            Text(monthIntention.localizedText(todayLanguage), style = MaterialTheme.typography.bodySmall,
-                                color = MaterialTheme.colorScheme.onSurfaceVariant)
-                        }
-                    }
-                }
-            }
-
             items(orderedCards, key = { it.id }) { card ->
                 var cardMenu by remember { mutableStateOf(false) }
                 Box {
@@ -707,17 +476,4 @@ fun HomeScreen(
     removalRequest?.let { request ->
         PrayerRemovalDialog(request, onDismiss = { removalRequest = null }, onRemoved = { refreshGeneration++; pinGeneration++ })
     }
-}
-
-@Composable
-private fun todayCardBackground(): Color {
-    val surface = MaterialTheme.colorScheme.surfaceContainerHigh
-    val tint = when (AppSettings.todayCardColor) {
-        "blue" -> Color(0xFF4285D4)
-        "green" -> Color(0xFF388C64)
-        "gold" -> Color(0xFFD5A72D)
-        "rose" -> Color(0xFFC96682)
-        else -> return surface
-    }
-    return lerp(surface, tint, if (isSystemInDarkTheme()) 0.22f else 0.14f)
 }

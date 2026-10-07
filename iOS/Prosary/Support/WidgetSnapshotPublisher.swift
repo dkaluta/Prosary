@@ -64,7 +64,8 @@ final class WidgetSnapshotPublisher {
       languageCode: language ?? UILanguage.current,
       showFeast: defaults.object(forKey: "showTodayFeast") as? Bool ?? true,
       showIntention: defaults.object(forKey: "showTodayIntention") as? Bool ?? true,
-      showTorah: defaults.object(forKey: "showTodayTorahPortion") as? Bool ?? false)
+      showTorah: defaults.object(forKey: "showTodayTorahPortion") as? Bool ?? false,
+      reverseReadingsOrder: defaults.bool(forKey: ReadingDisplayOrder.defaultsKey))
     let progressStore = PrayerRunProgressStore(defaults: defaults)
     let rows = prayers.sorted { left, right in
       if left.isDefault != right.isDefault { return left.isDefault }
