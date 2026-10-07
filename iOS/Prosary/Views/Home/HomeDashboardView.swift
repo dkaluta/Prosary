@@ -12,6 +12,7 @@ struct HomeDashboardView: View {
   @AppStorage(HomePhotoStore.key) private var photoPath = ""
   @AppStorage(TodayInfoStore.calendarDefaultsKey) private var calendarID = ""
   @AppStorage(TodayInfoStore.paschaStyleDefaultsKey) private var paschaStyle = "julian"
+  @AppStorage(ReadingDisplayOrder.defaultsKey) private var reverseReadingsOrder = false
   @AppStorage(TodayReminderScheduler.readingsEnabledKey) private var readingsReminderEnabled = false
   @AppStorage(TodayReminderScheduler.readingsTimeKey) private var readingsReminderMinutes = 540
   @AppStorage(TodayReminderScheduler.saintsEnabledKey) private var saintReminderEnabled = false
@@ -29,7 +30,9 @@ struct HomeDashboardView: View {
   private var widgets: [HomeWidget] { HomeWidgetOrder.decode(storedOrder) }
   private var selectedDate: Date { dateSelection.localDate() }
   private var feast: FeastDay? { TodayInfoStore.feast(on: selectedDate) }
-  private var readings: [ReadingCitation] { TodayInfoStore.readings(on: selectedDate) }
+  private var readings: [ReadingDisplayOrder.Row<ReadingCitation>] {
+    ReadingDisplayOrder.indexed(TodayInfoStore.readings(on: selectedDate), reverse: reverseReadingsOrder)
+  }
   private var intention: PopeIntention? { TodayInfoStore.intention(for: selectedDate) }
   private var dateBinding: Binding<Date> {
     Binding(get: { selectedDate }, set: { dateSelection.select($0) })
@@ -121,8 +124,13 @@ struct HomeDashboardView: View {
     switch widget {
     case .readings:
       if readings.isEmpty { Text(label("noReadings")).foregroundStyle(.secondary) }
-      ForEach(Array(readings.enumerated()), id: \.offset) { _, reading in
-        Text(verbatim: reading.localizedShort(language)).textSelection(.enabled)
+      ForEach(readings) { row in
+        let reading = row.value
+        Text(verbatim: reading.localizedFull(language))
+          .frame(maxWidth: .infinity, alignment: .leading)
+          .fixedSize(horizontal: false, vertical: true)
+          .textSelection(.enabled)
+          .accessibilityIdentifier("homeWidgets.reading.\(reading.type)")
       }
       Button(HomeWidget.readings.title) { openReadings("daily") }.buttonStyle(.bordered)
     case .popeIntention:

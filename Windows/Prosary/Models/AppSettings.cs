@@ -84,6 +84,8 @@ public static class AppSettings
     private static string? _latinPrayerTypeface;
     private static string? _cyrillicPrayerTypeface;
     private static string? _hebrewScriptureTypeface;
+    private static int? _prayerTextSizePercent;
+    private static bool? _reverseReadingsOrder;
     private static HashSet<string>? _favoriteBasicPrayerIds;
     private static bool? _favoriteBasicPrayersFirst;
     private static IReadOnlyList<string>? _languageFallbackOrder;
@@ -245,6 +247,27 @@ public static class AppSettings
         (LanguageCatalog.BaseLanguage(DefaultLanguageCode) ?? DefaultLanguageCode) == "arc";
 
     public static event Action? TypographyChanged;
+    public static event Action? ReadingsOrderChanged;
+
+    public static int PrayerTextSizePercent => _prayerTextSizePercent ??=
+        Math.Clamp(ReadLocalSetting("prayerTextSizePercent") as int? ?? 100, 80, 200);
+
+    public static void SetPrayerTextSizePercent(int value)
+    {
+        _prayerTextSizePercent = Math.Clamp(value, 80, 200);
+        WriteLocalSetting("prayerTextSizePercent", _prayerTextSizePercent.Value);
+        TypographyChanged?.Invoke();
+    }
+
+    public static bool ReverseReadingsOrder => _reverseReadingsOrder ??=
+        ReadLocalSetting("reverseReadingsOrder") as bool? ?? false;
+
+    public static void SetReverseReadingsOrder(bool value)
+    {
+        _reverseReadingsOrder = value;
+        WriteLocalSetting("reverseReadingsOrder", value);
+        ReadingsOrderChanged?.Invoke();
+    }
 
     public static string AramaicDefaultScript => _aramaicDefaultScript ??=
         ReadLocalSetting(KeyAramaicDefaultScript) as string == "Syrc" ? "Syrc" : "Hebr";

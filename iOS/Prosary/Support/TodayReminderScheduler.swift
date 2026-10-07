@@ -40,7 +40,8 @@ enum TodayReminderScheduler {
       guard currentGeneration == generation, remaining > 0 else { return }
       guard let date = calendar.date(byAdding: .day, value: offset, to: now) else { continue }
       if readings {
-        let citations = TodayInfoStore.readings(on: date)
+        let citations = ReadingCitation.displayOrder(TodayInfoStore.readings(on: date),
+          reverse: defaults.bool(forKey: ReadingDisplayOrder.defaultsKey))
         if !citations.isEmpty {
           if await add(kind: "readings", title: String(localized: "home.today.readings", defaultValue: "Today's readings", bundle: UILanguage.bundle, locale: UILanguage.locale),
                     body: citations.map { $0.localizedFull(language) }.joined(separator: "; "),
@@ -107,7 +108,8 @@ struct ReminderLifecycle: ViewModifier {
         let defaults = UserDefaults.standard
         let signature = [TodayInfoStore.selectedCalendarId, defaults.string(forKey: TodayInfoStore.paschaStyleDefaultsKey) ?? "julian", UILanguage.current,
           String(defaults.bool(forKey: TodayReminderScheduler.readingsEnabledKey)), String(TodayReminderScheduler.minutes(for: TodayReminderScheduler.readingsTimeKey)),
-          String(defaults.bool(forKey: TodayReminderScheduler.saintsEnabledKey)), String(TodayReminderScheduler.minutes(for: TodayReminderScheduler.saintsTimeKey))]
+          String(defaults.bool(forKey: TodayReminderScheduler.saintsEnabledKey)), String(TodayReminderScheduler.minutes(for: TodayReminderScheduler.saintsTimeKey)),
+          String(defaults.bool(forKey: ReadingDisplayOrder.defaultsKey))]
         if signature != preferencesSignature {
           preferencesSignature = signature
           Task { await TodayReminderScheduler.refresh() }

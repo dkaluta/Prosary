@@ -8,7 +8,62 @@ import UIKit
 
 @MainActor
 final class PrayerTypographyTests: XCTestCase {
+  func testStoredCustomPrayerSizeHasAVisiblePickerChoice() {
+    XCTAssertEqual(PrayerTypography.textSizeChoices(including: 133), [80, 90, 100, 110, 125, 133, 150, 175, 200])
+    XCTAssertEqual(PrayerTypography.textSizeChoices(including: -1), PrayerTypography.prayerTextSizeChoices)
+    XCTAssertEqual(PrayerTypography.textSizeChoices(including: 999), PrayerTypography.prayerTextSizeChoices)
+  }
+  func testPrayerTextSizeDefaultsAndBoundsExcludeScripture() {
+    XCTAssertEqual(PrayerTypography.Typefaces().prayerTextSizePercent, 100)
+    XCTAssertEqual(PrayerTypography.normalizedTextSizePercent(-1), 80)
+    XCTAssertEqual(PrayerTypography.normalizedTextSizePercent(999), 200)
+    XCTAssertEqual(PrayerTypography.bodySizeMultiplier(percent: 150, isScripture: false), 1.5)
+    XCTAssertEqual(PrayerTypography.bodySizeMultiplier(percent: 200, isScripture: true), 1)
+    var small = PrayerTypography.Typefaces(), large = PrayerTypography.Typefaces()
+    small.prayerTextSizePercent = 80
+    large.prayerTextSizePercent = 200
+    XCTAssertEqual(PrayerTypography.font(languageCode: "he", isScripture: true, typefaces: small),
+      PrayerTypography.font(languageCode: "he", isScripture: true, typefaces: large))
+    XCTAssertEqual(PrayerTypography.aramaicHeadingFont(text: "שלם", languageCode: "arc", typefaces: small, pointSize: 22),
+      PrayerTypography.aramaicHeadingFont(text: "שלם", languageCode: "arc", typefaces: large, pointSize: 22))
+  }
+
+  func testOpenPrayerReceivesTextSizeChangesAfterSettingsUpdate() async {
+    let defaults = UserDefaults.standard
+    let key = PrayerTypography.prayerTextSizeKey
+    let original = defaults.object(forKey: key)
+    let monitor = PrayerTypographyMonitor.shared
+    let target = monitor.typefaces.prayerTextSizePercent == 150 ? 125 : 150
+    let updated = expectation(description: "live prayer receives its body text size")
+    let subscription = monitor.$typefaces.dropFirst().sink { value in
+      if value.prayerTextSizePercent == target { updated.fulfill() }
+    }
+    defer {
+      subscription.cancel()
+      if let original { defaults.set(original, forKey: key) }
+      else { defaults.removeObject(forKey: key) }
+    }
+    defaults.set(target, forKey: key)
+    NotificationCenter.default.post(name: UserDefaults.didChangeNotification, object: defaults)
+    await fulfillment(of: [updated], timeout: 2)
+  }
+
   #if canImport(UIKit)
+  func testPrayerTextSizeChangesBodyLayoutWhileScriptureAndDynamicTypeRemainIndependent() {
+    let body = PrayerTranslations.get(languageCode: "en", key: .paterNoster)
+    func height(percent: Int, scripture: Bool, dynamic: DynamicTypeSize = .large) -> CGFloat {
+      var fonts = PrayerTypography.Typefaces()
+      fonts.prayerTextSizePercent = percent
+      let host = UIHostingController(rootView: Text(body)
+        .prayerFont(languageCode: "en", isScripture: scripture, text: body, typefaces: fonts)
+        .dynamicTypeSize(dynamic))
+      return host.sizeThatFits(in: CGSize(width: 280, height: 10_000)).height
+    }
+    XCTAssertGreaterThan(height(percent: 200, scripture: false), height(percent: 100, scripture: false))
+    XCTAssertEqual(height(percent: 200, scripture: true), height(percent: 100, scripture: true), accuracy: 0.1)
+    XCTAssertGreaterThan(height(percent: 150, scripture: false, dynamic: .accessibility3),
+      height(percent: 150, scripture: false))
+  }
   func testHebrewSystemSansRetainsDynamicTypeAtAccessibilitySizes() {
     var fonts = PrayerTypography.Typefaces()
     fonts.hebrewPrayer = PrayerTypography.TypefaceValue.sansSerif

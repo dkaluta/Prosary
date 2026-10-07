@@ -17,6 +17,8 @@ import com.dkaluta.prosary.models.AppSettings
  * design rather than a bundled font, since it's not ours to redistribute.
  */
 object PrayerTypography {
+    fun textSizeChoices(current: Int): List<Int> =
+        (listOf(80, 90, 100, 110, 125, 150, 175, 200) + current.coerceIn(80, 200)).distinct().sorted()
     private val cardo = FontFamily(Font(R.font.cardo_regular))
     private val frankRuhlLibre = FontFamily(Font(R.font.frank_ruhl_libre_regular))
     private val shofar = FontFamily(Font(R.font.shofar_regular))
@@ -166,6 +168,11 @@ object PrayerTypography {
             },
                 fontSize = 17.sp, lineHeight = 24.sp,
             )
+        }
+    }.let { base ->
+        if (isScripture) base else {
+            val scale = AppSettings.prayerTextSizePercent / 100f
+            base.copy(fontSize = base.fontSize * scale, lineHeight = base.lineHeight * scale)
         }
     }
 }

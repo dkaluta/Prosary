@@ -59,7 +59,7 @@ class ReadingMemoryInstrumentedTest {
             // This optional diagnostic's fixed Gospel is appointed on the review date;
             // ordinary corpus tests remain independent of the current calendar date.
             assumeTrue(TodayInfoStore.readings().any { it.full == luke.full })
-            compose.setContent { MaterialTheme { ReadingsScreen(onOpenSettings = {}) } }
+            compose.setContent { MaterialTheme { ReadingsScreen() } }
             compose.waitUntil(15_000) {
                 compose.onAllNodes(hasText(english.name, substring = true)).fetchSemanticsNodes().isNotEmpty()
             }

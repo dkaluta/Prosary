@@ -41,6 +41,8 @@ object AppSettings {
     private const val KEY_EASTERN_PASCHA_STYLE = "easternPaschaStyle"
     private const val KEY_TODAY_LANGUAGE = "todayLanguageCode"
     private const val KEY_READINGS_EDITION = "readingsEditionId"
+    private const val KEY_REVERSE_READINGS_ORDER = "reverseReadingsOrder"
+    private const val KEY_PRAYER_TEXT_SIZE_PERCENT = "prayerTextSizePercent"
     private const val KEY_SYRIAC_TYPEFACE = "syriacTypeface"
     private const val KEY_ARAMAIC_DEFAULT_SCRIPT = "aramaicDefaultScript"
     private const val KEY_HEBREW_PRAYER_TYPEFACE = "hebrewPrayerTypeface"
@@ -55,6 +57,20 @@ object AppSettings {
     val appColor: String get() = appColorState
     val todayCardColors = listOf("default", "blue", "green", "gold", "rose")
     private var todayCardColorState by mutableStateOf("default")
+    private var prayerTextSizePercentState by mutableStateOf(100)
+    var prayerTextSizePercent: Int
+        get() = prayerTextSizePercentState
+        set(value) {
+            prayerTextSizePercentState = value.coerceIn(80, 200)
+            prefs?.edit()?.putInt(KEY_PRAYER_TEXT_SIZE_PERCENT, prayerTextSizePercentState)?.apply()
+        }
+    private var reverseReadingsOrderState by mutableStateOf(false)
+    var reverseReadingsOrder: Boolean
+        get() = reverseReadingsOrderState
+        set(value) {
+            reverseReadingsOrderState = value
+            prefs?.edit()?.putBoolean(KEY_REVERSE_READINGS_ORDER, value)?.apply()
+        }
     var todayCardColor: String
         get() = todayCardColorState
         set(value) {
@@ -313,6 +329,8 @@ object AppSettings {
         easternPaschaStyle = resolved.getString(KEY_EASTERN_PASCHA_STYLE, "julian") ?: "julian"
         todayLanguageState = resolved.getString(KEY_TODAY_LANGUAGE, "").orEmpty()
         readingsEditionState = resolved.getString(KEY_READINGS_EDITION, "").orEmpty()
+        prayerTextSizePercentState = resolved.getInt(KEY_PRAYER_TEXT_SIZE_PERCENT, 100).coerceIn(80, 200)
+        reverseReadingsOrderState = resolved.getBoolean(KEY_REVERSE_READINGS_ORDER, false)
         syriacTypefaceState = resolved.getString(KEY_SYRIAC_TYPEFACE, TYPEFACE_DEFAULT) ?: TYPEFACE_DEFAULT
         aramaicDefaultScriptState = if (resolved.getString(KEY_ARAMAIC_DEFAULT_SCRIPT, "Hebr") == "Syrc") "Syrc" else "Hebr"
         hebrewPrayerTypefaceState = resolved.getString(KEY_HEBREW_PRAYER_TYPEFACE, TYPEFACE_DEFAULT) ?: TYPEFACE_DEFAULT

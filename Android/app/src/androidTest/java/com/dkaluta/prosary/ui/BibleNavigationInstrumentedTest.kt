@@ -181,7 +181,7 @@ class BibleNavigationInstrumentedTest {
         val date = TodayBrowsingDate(LocalDate.of(2026, 10, 1).toEpochDay())
         try {
             AppSettings.readingsEditionId = "douay-rheims-1899"
-            compose.setContent { MaterialTheme { ReadingsScreen(onOpenSettings = {}, browsingDate = date) } }
+            compose.setContent { MaterialTheme { ReadingsScreen(browsingDate = date) } }
             compose.onNodeWithTag("readingsMode.bible").performClick()
             waitFor("bibleScreen")
             waitFor("bibleDownload")

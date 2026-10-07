@@ -3,6 +3,7 @@ package com.dkaluta.prosary.typography
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.LayoutDirection
+import androidx.compose.ui.unit.sp
 import com.dkaluta.prosary.models.AppSettings
 import com.dkaluta.prosary.ui.shared.PrayerNavigation
 import java.io.File
@@ -11,6 +12,11 @@ import org.junit.Assert.*
 import org.junit.Test
 
 class PrayerTypographyTest {
+    @Test fun storedCustomPrayerSizeHasAVisiblePickerChoice() {
+        assertEquals(listOf(80, 90, 100, 110, 125, 133, 150, 175, 200), PrayerTypography.textSizeChoices(133))
+        assertEquals(listOf(80, 90, 100, 110, 125, 150, 175, 200), PrayerTypography.textSizeChoices(-1))
+        assertEquals(listOf(80, 90, 100, 110, 125, 150, 175, 200), PrayerTypography.textSizeChoices(999))
+    }
     @Test fun ukrainianUsesTheCyrillicTypefaceBeforeTextIsAvailable() {
         AppSettings.setLatinPrayerTypeface(AppSettings.TYPEFACE_SANS_SERIF)
         AppSettings.setCyrillicPrayerTypeface(AppSettings.TYPEFACE_DEFAULT)
@@ -20,11 +26,31 @@ class PrayerTypographyTest {
     }
 
     @After fun reset() {
+        AppSettings.prayerTextSizePercent = 100
         AppSettings.setSyriacTypeface(AppSettings.TYPEFACE_DEFAULT)
         AppSettings.setHebrewPrayerTypeface(AppSettings.TYPEFACE_DEFAULT)
         AppSettings.setHebrewScriptureTypeface(AppSettings.TYPEFACE_DEFAULT)
         AppSettings.setLatinPrayerTypeface(AppSettings.TYPEFACE_DEFAULT)
         AppSettings.setCyrillicPrayerTypeface(AppSettings.TYPEFACE_DEFAULT)
+    }
+
+    @Test fun textSizeUpdatesPrayerBodyAndLineHeightLiveWithoutChangingScriptureOrHeadings() {
+        AppSettings.prayerTextSizePercent = 100
+        val base = PrayerTypography.styleForText("ܐܒܘܢ ܕܒܫܡܝܐ", false)
+        val live = derivedStateOf { PrayerTypography.styleForText("ܐܒܘܢ ܕܒܫܡܝܐ", false) }
+        val scripture = PrayerTypography.styleForText("ܐܒܘܢ ܕܒܫܡܝܐ", true)
+        val headingBase = androidx.compose.ui.text.TextStyle(fontSize = 22.sp)
+        val heading = PrayerTypography.headingStyleForText("ܐܒܘܢ", headingBase)
+        AppSettings.prayerTextSizePercent = 150
+        assertEquals(base.fontSize.value * 1.5f, live.value.fontSize.value, 0.001f)
+        assertEquals(base.lineHeight.value * 1.5f, live.value.lineHeight.value, 0.001f)
+        assertEquals(base.fontFamily, live.value.fontFamily)
+        assertEquals(scripture, PrayerTypography.styleForText("ܐܒܘܢ ܕܒܫܡܝܐ", true))
+        assertEquals(heading, PrayerTypography.headingStyleForText("ܐܒܘܢ", headingBase))
+        AppSettings.prayerTextSizePercent = 5
+        assertEquals(80, AppSettings.prayerTextSizePercent)
+        AppSettings.prayerTextSizePercent = 500
+        assertEquals(200, AppSettings.prayerTextSizePercent)
     }
 
     @Test fun scriptUsesLettersAndDistinguishesCyrillic() {

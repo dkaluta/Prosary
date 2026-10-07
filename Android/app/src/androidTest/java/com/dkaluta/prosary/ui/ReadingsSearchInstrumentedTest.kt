@@ -29,8 +29,9 @@ class ReadingsSearchInstrumentedTest {
         ActivityScenario.launch(MainActivity::class.java).use { scenario ->
             compose.waitUntil(15_000) { compose.onAllNodes(hasTestTag("homeDashboard")).fetchSemanticsNodes().isNotEmpty() }
             compose.onNodeWithTag("tab.pray").performClick()
-            compose.waitUntil(15_000) { compose.onAllNodes(hasTestTag("todayChooseDate")).fetchSemanticsNodes().isNotEmpty() }
-            assertDateControlHeights("todayYesterday", "todayChooseDate", "todayTomorrow")
+            compose.onNodeWithTag("prayCards").assertExists()
+            compose.onNodeWithTag("todayChooseDate").assertDoesNotExist()
+            compose.onNodeWithTag("todayReadings").assertDoesNotExist()
             compose.onNodeWithText(context.getString(R.string.tab_readings)).performClick()
             compose.onNodeWithTag("readingsPrevious").performClick()
             val date = LocalDate.now().minusDays(1).format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG)
@@ -38,8 +39,12 @@ class ReadingsSearchInstrumentedTest {
             compose.onNodeWithTag("readingsChooseDate").assertTextContains(date)
             assertDateControlHeights("readingsPrevious", "readingsChooseDate", "readingsNext")
             compose.onNodeWithText(context.getString(R.string.tab_pray)).performClick()
-            compose.onNodeWithTag("todayChooseDate").assertTextContains(date)
-            compose.onNodeWithTag("todayYesterday").performClick()
+            compose.onNodeWithTag("todayChooseDate").assertDoesNotExist()
+            compose.onNodeWithTag("tab.home").performClick()
+            compose.onNodeWithTag("homeDate").assertTextContains(LocalDate.now().minusDays(1)
+                .format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL).withLocale(context.resources.configuration.locales[0])))
+            compose.onNodeWithTag("tab.readings").performClick()
+            compose.onNodeWithTag("readingsPrevious").performClick()
             val earlierDate = LocalDate.now().minusDays(2).format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG)
                 .withLocale(context.resources.configuration.locales[0]))
             compose.onNodeWithText(context.getString(R.string.tab_readings)).performClick()
@@ -59,9 +64,12 @@ class ReadingsSearchInstrumentedTest {
             val today = LocalDate.now().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG)
                 .withLocale(context.resources.configuration.locales[0]))
             compose.onNodeWithTag("readingsChooseDate").assertTextContains(today)
-            // Resetting either surface makes both follow today again.
-            compose.onNodeWithText(context.getString(R.string.tab_pray)).performClick()
-            compose.onNodeWithTag("todayChooseDate").assertTextContains(today)
+            // Home and Readings keep their shared date; Pray has no date content.
+            compose.onNodeWithTag("tab.home").performClick()
+            compose.onNodeWithTag("homeDate").assertTextContains(LocalDate.now()
+                .format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL).withLocale(context.resources.configuration.locales[0])))
+            compose.onNodeWithTag("tab.pray").performClick()
+            compose.onNodeWithTag("todayChooseDate").assertDoesNotExist()
         }
     }
 

@@ -20,6 +20,7 @@ public sealed record AramaicSignOfCrossOption(string Value, string Label);
 public sealed record TypefaceOption(string Value, string Label);
 public sealed record EasternPaschaOption(string Value, string Label);
 public sealed record TodayCardColorOption(string Id, string Label);
+public sealed record PrayerTextSizeOption(int Percent, string Label);
 
 /// <summary>
 /// App-wide preferences (v0.7: populated beyond the single language picker — auto-advance,
@@ -123,6 +124,39 @@ public partial class SettingsViewModel : ObservableObject
 
     public bool ShowsAramaicSignOfCrossPicker =>
         (LanguageCatalog.BaseLanguage(SelectedLanguage.Code) ?? SelectedLanguage.Code) == "arc";
+
+    public string PrayerTextSizeLabel => Loc.Tr("settings_prayer_text_size", "Prayer Text Size");
+    public string ReverseReadingsOrderLabel => Loc.Tr("settings_reverse_readings_order", "Show Gospel First");
+    public string ReadingsReminderFooter => Loc.Tr("settings_readings_reminder_footer", "Uses your selected calendar and local notification time. Tap a reminder to open Readings.");
+    private static readonly int[] PrayerTextSizeChoices = [80, 90, 100, 110, 125, 150, 175, 200];
+    private static PrayerTextSizeOption PrayerSizeOption(int percent) => new(percent,
+        percent == 100 ? Loc.Tr("settings_prayer_text_size_default", "System Default (100%)")
+            : (percent / 100d).ToString("P0", System.Globalization.CultureInfo.GetCultureInfo(UiLanguageCatalog.ResourceTag(UiLanguageCatalog.Current))));
+    public IReadOnlyList<PrayerTextSizeOption> PrayerTextSizeOptions { get; } =
+        PrayerTextSizeChoices.Append(AppSettings.PrayerTextSizePercent).Distinct().Order().Select(PrayerSizeOption).ToArray();
+    [ObservableProperty]
+    private PrayerTextSizeOption _selectedPrayerTextSize = PrayerSizeOption(AppSettings.PrayerTextSizePercent);
+    partial void OnSelectedPrayerTextSizeChanged(PrayerTextSizeOption value) => AppSettings.SetPrayerTextSizePercent(value.Percent);
+
+    [ObservableProperty]
+    private bool _reverseReadingsOrder = AppSettings.ReverseReadingsOrder;
+    partial void OnReverseReadingsOrderChanged(bool value)
+    {
+        AppSettings.SetReverseReadingsOrder(value);
+        TodayReminderScheduler.Refresh();
+    }
+
+    public void SynchronizeReadingPreferences()
+    {
+        // Refresh a cached flyout from the shared preferences without writing or scheduling
+        // notifications merely because someone opened the settings.
+        _reverseReadingsOrder = AppSettings.ReverseReadingsOrder;
+        _readingsReminderEnabled = AppSettings.ReadingsReminderEnabled;
+        _readingsReminderTime = TimeSpan.FromMinutes(AppSettings.ReadingsReminderMinutes);
+        OnPropertyChanged(nameof(ReverseReadingsOrder));
+        OnPropertyChanged(nameof(ReadingsReminderEnabled));
+        OnPropertyChanged(nameof(ReadingsReminderTime));
+    }
 
     private static TypefaceOption Option(string value, string key, string fallback) =>
         new(value, Loc.Tr(key, fallback));

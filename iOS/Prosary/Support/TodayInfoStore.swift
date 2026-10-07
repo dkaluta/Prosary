@@ -148,6 +148,9 @@ struct PopeIntention: Decodable, Equatable {
 }
 
 struct ReadingCitation: Decodable, Equatable {
+  static func displayOrder(_ readings: [ReadingCitation], reverse: Bool) -> [ReadingCitation] {
+    ReadingDisplayOrder.apply(readings, reverse: reverse)
+  }
   let type: String
   let short: String
   let full: String

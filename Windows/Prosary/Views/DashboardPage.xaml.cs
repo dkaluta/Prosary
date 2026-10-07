@@ -46,6 +46,7 @@ public sealed partial class DashboardPage : Page
     private async void OnLoaded(object sender, RoutedEventArgs e)
     {
         AppSettings.HomeWidgetsChanged += OnLayoutChanged;
+        AppSettings.ReadingsOrderChanged += OnReadingsOrderChanged;
         DesktopLibraryChanges.Changed += OnLibraryChanged;
         if (ViewModel.Today is { } today) today.PropertyChanged += OnTodayChanged;
         ViewModel.ReloadLayout();
@@ -58,6 +59,7 @@ public sealed partial class DashboardPage : Page
     {
         _clock.Stop();
         AppSettings.HomeWidgetsChanged -= OnLayoutChanged;
+        AppSettings.ReadingsOrderChanged -= OnReadingsOrderChanged;
         DesktopLibraryChanges.Changed -= OnLibraryChanged;
         if (ViewModel.Today is { } today) today.PropertyChanged -= OnTodayChanged;
     }
@@ -72,6 +74,11 @@ public sealed partial class DashboardPage : Page
     private void OnLibraryChanged() => DispatcherQueue.TryEnqueue(async () =>
     {
         if (IsLoaded) await RefreshRemindersAsync();
+    });
+
+    private void OnReadingsOrderChanged() => DispatcherQueue.TryEnqueue(() =>
+    {
+        if (IsLoaded) ViewModel.RefreshToday();
     });
 
     private void OnTodayChanged(object? sender, PropertyChangedEventArgs e)

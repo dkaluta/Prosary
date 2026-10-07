@@ -172,7 +172,7 @@ struct ContentView: View {
       }
     case .pray:
       NavigationStack(path: $prayPath) {
-        HomeView(path: $prayPath, dateSelection: $dateSelection)
+        HomeView(path: $prayPath)
           .appRouteDestinations(path: $prayPath)
       }
       // A replaced stack needs a new identity so AppKit's Back control and the path agree.

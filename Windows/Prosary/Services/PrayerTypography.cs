@@ -139,8 +139,9 @@ public static class PrayerTypography
     // noticeably smaller than this app's own button/caption text — the opposite problem. Android's
     // own PrayerTypography.kt uses these exact numbers with no correction at all and never needed
     // one, which is the closer precedent for a platform with no special desktop-only type ramp.
-    public static double ResolveBodyFontSize(string? languageCode, bool isScripture, Script? script = null) =>
-        (script ?? LanguageScript(languageCode)) switch
+    public static double ResolveBodyFontSize(string? languageCode, bool isScripture, Script? script = null)
+    {
+        var size = (script ?? LanguageScript(languageCode)) switch
         {
             Script.Syriac => 19,
             Script.Hebrew => isScripture ? 16 : 21,
@@ -148,4 +149,6 @@ public static class PrayerTypography
             Script.Latin or Script.Greek or Script.Cyrillic => isScripture ? 19 : 17,
             _ => 17,
         };
+        return isScripture ? size : size * AppSettings.PrayerTextSizePercent / 100d;
+    }
 }

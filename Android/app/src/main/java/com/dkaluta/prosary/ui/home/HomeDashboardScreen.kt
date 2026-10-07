@@ -151,8 +151,8 @@ fun HomeDashboardScreen(
         TodayInfoStore.feast(lookupDate)
     }
     val intention = remember(date, generation) { TodayInfoStore.intention(lookupDate) }
-    val readings = remember(date, generation, AppSettings.feastCalendarId, AppSettings.easternPaschaStyle) {
-        TodayInfoStore.readings(lookupDate)
+    val readings = remember(date, generation, AppSettings.feastCalendarId, AppSettings.easternPaschaStyle, AppSettings.reverseReadingsOrder) {
+        com.dkaluta.prosary.content.today.ReadingCitation.displayOrder(TodayInfoStore.readings(lookupDate), AppSettings.reverseReadingsOrder)
     }
     val calendarName = TodayInfoStore.calendars.firstOrNull { it.id == TodayInfoStore.selectedCalendarId }?.displayName.orEmpty()
     val prayers by produceState<List<Prayer>>(initialValue = emptyList(), generation, services) {
@@ -216,8 +216,10 @@ fun HomeDashboardScreen(
                 items(AppSettings.homeWidgetOrder, key = { it.id }) { widget ->
                     when (widget) {
                         HomeWidget.Readings -> DashboardCard(widget, { onOpenReadings(HomeReadingsMode.Daily) }) {
-                            Text(readings.takeIf { it.isNotEmpty() }?.joinToString(" · ") { it.localizedShort(language) }
-                                ?: stringResource(R.string.home_widgets_no_readings))
+                            if (readings.isEmpty()) Text(stringResource(R.string.home_widgets_no_readings))
+                            else readings.forEachIndexed { index, citation ->
+                                Text(citation.localizedFull(language), modifier = Modifier.fillMaxWidth().testTag("homeReading.$index"))
+                            }
                         }
                         HomeWidget.PopeIntention -> DashboardCard(widget) {
                             if (intention == null) Text(stringResource(R.string.home_widgets_no_intention))

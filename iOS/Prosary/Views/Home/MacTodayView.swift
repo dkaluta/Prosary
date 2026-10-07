@@ -14,6 +14,7 @@ struct MacTodayView: View {
   @AppStorage("showTodayIntention") private var showsIntention = true
   @AppStorage("showTodayTorahPortion") private var showsTorah = false
   @AppStorage("expandReadingsByDefault") private var expandReadingsByDefault = false
+  @AppStorage(ReadingDisplayOrder.defaultsKey) private var reverseReadingsOrder = false
   @AppStorage(TodayCardColor.defaultsKey) private var todayCardColor = TodayCardColor.default.rawValue
 
   @State private var dateSelection = MacTodayDateSelection()
@@ -28,6 +29,7 @@ struct MacTodayView: View {
   @State private var torah: TorahPortion?
 
   private var language: String { UILanguage.current }
+  private var displayedReadings: [ReadingDisplayOrder.Row<ReadingCitation>] { ReadingDisplayOrder.indexed(readings, reverse: reverseReadingsOrder) }
   private var selectedDate: Date { dateSelection.localDate() }
   private var passageContext: String { "\(dateSelection.day)|\(feastCalendarId)|\(easternPaschaStyle)" }
   private var isToday: Bool { dateSelection.isToday() }
@@ -304,20 +306,24 @@ struct MacTodayView: View {
           .accessibilityIdentifier("macToday.showTorah")
         Toggle(label("settings.expandReadingsByDefault", "Expand readings by default"), isOn: $expandReadingsByDefault)
           .accessibilityIdentifier("expandReadingsByDefaultToggle")
+        Toggle(label("settings.reverseReadingsOrder", "Show Gospel First"), isOn: $reverseReadingsOrder)
+          .accessibilityIdentifier("reverseReadingsOrderToggle")
         if showsTorah {
           Text(label("settings.torahPortionFooter", "The upcoming Sabbath’s Torah reading, following the Eretz Israel schedule."))
             .font(.caption).foregroundStyle(.secondary)
         }
       }
+      ReadingsReminderSettings()
     }
     .frame(width: 400, height: 380)
   }
 
   private var readingsSection: some View {
     VStack(alignment: .leading, spacing: 14) {
-      ForEach(Array(readings.enumerated()), id: \.offset) { index, reading in
+      ForEach(Array(displayedReadings.enumerated()), id: \.element.id) { index, row in
+        let reading = row.value
         if let group = reading.sourceGroup, !group.isEmpty,
-           index == 0 || readings[index - 1].sourceGroup != group {
+           index == 0 || displayedReadings[index - 1].value.sourceGroup != group {
           Text(group).font(.subheadline.weight(.semibold)).accessibilityAddTraits(.isHeader)
         }
         ScripturePassageView(reading: reading, interfaceLanguage: language)

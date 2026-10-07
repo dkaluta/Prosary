@@ -85,6 +85,30 @@ class WidgetModelsTest {
         }
     }
 
+    @Test fun todayWidgetUsesCompleteCitationLabelsAndTheSharedGospelFirstPreference() {
+        val originalCalendar = AppSettings.feastCalendarId
+        val originalOrder = AppSettings.reverseReadingsOrder
+        val originalLanguage = AppSettings.todayLanguageCode
+        try {
+            TodayInfoStore.resetForTesting()
+            TodayInfoStore.initialize { name -> File("src/main/assets/data/$name.json").takeIf(File::exists)?.inputStream() }
+            AppSettings.feastCalendarId = "roman"
+            AppSettings.setTodayLanguageCode("en")
+            AppSettings.reverseReadingsOrder = false
+            val date = LocalDate.of(2026, 9, 8)
+            val source = TodayInfoStore.readings(com.dkaluta.prosary.content.today.TodayDateSelection.lookupDate(date))
+            assertTrue(source.size > 1)
+            assertEquals(source.joinToString("\n") { it.localizedFull("en") }, TodayWidgetContent.load(date, "en").readings)
+            AppSettings.reverseReadingsOrder = true
+            assertEquals(source.reversed().joinToString("\n") { it.localizedFull("en") }, TodayWidgetContent.load(date, "en").readings)
+            assertEquals(source, TodayInfoStore.readings(com.dkaluta.prosary.content.today.TodayDateSelection.lookupDate(date)))
+        } finally {
+            AppSettings.feastCalendarId = originalCalendar
+            AppSettings.reverseReadingsOrder = originalOrder
+            AppSettings.setTodayLanguageCode(originalLanguage)
+        }
+    }
+
     @Test fun rosaryMysteriesAndSeasonsChangeAtLocalMidnight() {
         val original = TimeZone.getDefault()
         try {

@@ -135,6 +135,16 @@ data class ReadingCitation(
     /** Captured from the loaded registry table; never supplied by localized display text. */
     @kotlinx.serialization.Transient val readingDatasetId: String? = null,
 ) {
+    companion object {
+        /** A presentation preference; canonical appointments and their source identity stay intact. */
+        fun displayOrder(citations: List<ReadingCitation>, reverse: Boolean): List<ReadingCitation> =
+            indexedDisplayOrder(citations, reverse).map { it.value }
+
+        /** Keep source indices stable when an expanded reading changes its display position. */
+        fun indexedDisplayOrder(citations: List<ReadingCitation>, reverse: Boolean): List<IndexedValue<ReadingCitation>> =
+            citations.withIndex().toList().let { if (reverse) it.reversed() else it }
+    }
+
     fun localizedShort(language: String): String = shortByLanguage.localized(language) ?: short
 
     fun localizedFull(language: String): String {

@@ -134,11 +134,13 @@ class TodayInfoStoreTest {
             AppSettings.setTodayLanguageCode("it")
             AppSettings.setDefaultLanguageCode("he")
             assertEquals("fr", TodayTranslationLanguage.resolve("fr"))
-            // Pin the real Home rendering path, not just a detached language helper.
-            val home = File("src/main/java/com/dkaluta/prosary/ui/home/HomeScreen.kt").readText()
-            assertTrue(home.contains("TodayTranslationLanguage.resolve(appLanguage)"))
-            assertFalse(home.contains("AppSettings.todayLanguageCode"))
-            assertFalse(home.contains("todayLanguagePicker"))
+            // The independent daily reference views follow the interface language.
+            for (path in listOf("ui/home/HomeDashboardScreen.kt", "ui/readings/ReadingsScreen.kt")) {
+                val view = File("src/main/java/com/dkaluta/prosary/$path").readText()
+                assertTrue(view.contains("TodayTranslationLanguage.resolve("))
+                assertFalse(view.contains("AppSettings.todayLanguageCode"))
+                assertFalse(view.contains("todayLanguagePicker"))
+            }
         } finally {
             AppSettings.setDefaultLanguageCode(originalPrayerLanguage)
             AppSettings.setTodayLanguageCode(originalTodayLanguage)

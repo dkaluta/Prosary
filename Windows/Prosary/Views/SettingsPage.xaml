@@ -84,6 +84,9 @@
                         Command="{x:Bind ViewModel.ResetHomeOrderCommand}" />
 
                 <TextBlock x:Uid="SetTypographyHeader" Text="Typography" Style="{StaticResource BaseTextBlockStyle}" Margin="0,8,0,0" />
+                <ComboBox Header="{x:Bind ViewModel.PrayerTextSizeLabel}" HorizontalAlignment="Stretch"
+                          ItemsSource="{x:Bind ViewModel.PrayerTextSizeOptions}" DisplayMemberPath="Label"
+                          SelectedItem="{x:Bind ViewModel.SelectedPrayerTextSize, Mode=TwoWay}" />
                 <ComboBox x:Uid="SetAramaicDefaultScript" Header="Default Aramaic script" HorizontalAlignment="Stretch"
                           ItemsSource="{x:Bind ViewModel.AramaicScriptOptions}" DisplayMemberPath="Label"
                           SelectedItem="{x:Bind ViewModel.SelectedAramaicScript, Mode=TwoWay}" />
@@ -126,6 +129,8 @@
                      calendar); the picker hides entirely if the registry ever ships a single
                      calendar. -->
                 <TextBlock x:Uid="SetTodayHeader" Text="Today" Style="{StaticResource BaseTextBlockStyle}" Margin="0,8,0,0" />
+                <ToggleSwitch Header="{x:Bind ViewModel.ReverseReadingsOrderLabel}"
+                              IsOn="{x:Bind ViewModel.ReverseReadingsOrder, Mode=TwoWay}" />
                 <TextBlock x:Uid="SetRemindersHeader" Text="Notifications" Style="{StaticResource BaseTextBlockStyle}" />
                 <ToggleSwitch x:Uid="SetReadingsReminder" Header="Reading reminders" IsOn="{x:Bind ViewModel.ReadingsReminderEnabled, Mode=TwoWay}" />
                 <TimePicker x:Uid="SetReadingsReminderTime" Header="Notification time" Time="{x:Bind ViewModel.ReadingsReminderTime, Mode=TwoWay}"

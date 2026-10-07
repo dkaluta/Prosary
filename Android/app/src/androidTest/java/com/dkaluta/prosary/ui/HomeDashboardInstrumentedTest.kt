@@ -17,6 +17,9 @@ import com.dkaluta.prosary.MainActivity
 import com.dkaluta.prosary.R
 import com.dkaluta.prosary.models.AppSettings
 import com.dkaluta.prosary.models.HomeWidget
+import com.dkaluta.prosary.content.today.TodayInfoStore
+import com.dkaluta.prosary.content.today.ReadingCitation
+import com.dkaluta.prosary.content.today.TodayTranslationLanguage
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
@@ -26,6 +29,25 @@ import org.junit.Test
 
 class HomeDashboardInstrumentedTest {
     @get:Rule val compose = createEmptyComposeRule()
+
+    @Test fun homeReadingCardKeepsFullCitationsAndPrayHasNoTodayContent() = withFreshHome {
+        ActivityScenario.launch(MainActivity::class.java).use {
+            awaitHome()
+            val citations = ReadingCitation.displayOrder(TodayInfoStore.readings(), AppSettings.reverseReadingsOrder)
+            val language = TodayTranslationLanguage.resolve(app.resources.configuration.locales[0].toLanguageTag())
+            citations.forEachIndexed { index, citation ->
+                compose.onNodeWithTag("homeReading.$index").performScrollTo()
+                    .assertTextContains(citation.localizedFull(language))
+            }
+            compose.onNodeWithTag("tab.pray").performClick()
+            compose.onNodeWithTag("prayCards").assertExists()
+            for (tag in listOf("todayChooseDate", "todayYesterday", "todayTomorrow", "todayReadings", "todaySaints", "popeIntention")) {
+                compose.onNodeWithTag(tag).assertDoesNotExist()
+            }
+            compose.onNodeWithTag("tab.home").performClick()
+            compose.onNodeWithTag("homeDate").assertExists()
+        }
+    }
 
     @Test fun customizingCardsSurvivesRecreationAndRemovingEveryCardKeepsHomeEmpty() = withFreshHome {
         ActivityScenario.launch(MainActivity::class.java).use { scenario ->

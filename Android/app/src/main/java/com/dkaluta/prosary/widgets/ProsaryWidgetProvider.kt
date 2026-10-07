@@ -214,7 +214,8 @@ object WidgetUpdates {
         }.joinToString("\n")
         setViewVisibility(R.id.widget_details, if (details.isNotBlank()) View.VISIBLE else View.GONE)
         setTextViewText(R.id.widget_details, details)
-        setInt(R.id.widget_details, "setMaxLines", if (expanded) 6 else 1)
+        // Full citations wrap; compact Today widgets must not force the readings into one line.
+        setInt(R.id.widget_details, "setMaxLines", if (expanded) 10 else 5)
         val mysteries = context.getString(MockLiturgicalCalendar().mysteryGroup(Date()).displayNameRes)
         setTextViewText(R.id.widget_action, context.getString(R.string.widget_pray_rosary))
         setContentDescription(R.id.widget_action, context.getString(R.string.widget_pray_rosary) + ". " + mysteries)

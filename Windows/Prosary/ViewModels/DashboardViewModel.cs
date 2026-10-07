@@ -142,7 +142,7 @@ public partial class DashboardViewModel(IPresetStore presets) : ObservableObject
             switch (card.Id)
             {
                 case "readings":
-                    var citations = TodayInfoStore.Readings(date);
+                    var citations = ReadingCitation.DisplayOrder(TodayInfoStore.Readings(date), AppSettings.ReverseReadingsOrder);
                     card.Body = citations.Count == 0 ? Label("no_readings", "No readings are available for this date.")
                         : string.Join(Environment.NewLine, citations.Select(citation => citation.LocalizedFull(language)));
                     break;

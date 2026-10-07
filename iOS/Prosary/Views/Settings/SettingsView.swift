@@ -13,6 +13,8 @@ import AppKit
 #endif
 
 struct SettingsView: View {
+  @AppStorage(PrayerTypography.prayerTextSizeKey) private var prayerTextSizePercent = 100
+  @AppStorage("reverseReadingsOrder") private var reverseReadingsOrder = false
   @Environment(\.appServices) private var services
   @Bindable private var interfaceLanguage = InterfaceLanguageStore.shared
   @AppStorage(AppColor.defaultsKey) private var appColor = AppColor.blue.rawValue
@@ -49,7 +51,6 @@ struct SettingsView: View {
   @AppStorage(TodayInfoStore.paschaStyleDefaultsKey) private var easternPaschaStyle = "julian"
   @AppStorage("showTodayFeast") private var showsTodayFeast = true
   @AppStorage("showTodayIntention") private var showsTodayIntention = true
-  @AppStorage("showTodayReadings") private var showsTodayReadings = true
   @AppStorage("expandReadingsByDefault") private var expandReadingsByDefault = false
   @AppStorage("showTodayTorahPortion") private var showsTodayTorahPortion = false
   @AppStorage(PrayerNamePresentation.defaultsKey) private var showsPrayerNameInPrayerLanguage = false
@@ -308,6 +309,22 @@ struct SettingsView: View {
 
   private var typographySettings: some View {
     Section(String(localized: "settings.typographyHeader", defaultValue: "Typography", bundle: UILanguage.bundle, locale: UILanguage.locale)) {
+      Picker(String(localized: "settings.prayerTextSize", defaultValue: "Prayer Text Size", bundle: UILanguage.bundle, locale: UILanguage.locale),
+        selection: Binding(get: { PrayerTypography.normalizedTextSizePercent(prayerTextSizePercent) }, set: { prayerTextSizePercent = $0 })) {
+        ForEach(PrayerTypography.textSizeChoices(including: prayerTextSizePercent), id: \.self) { percent in
+          if percent == 100 {
+            Text(String(localized: "settings.prayerTextSize.default", defaultValue: "System Default (100%)", bundle: UILanguage.bundle, locale: UILanguage.locale)).tag(percent)
+          } else {
+            Text(verbatim: (Double(percent) / 100).formatted(.percent.precision(.fractionLength(0)).locale(UILanguage.locale))).tag(percent)
+          }
+        }
+      }
+      .accessibilityIdentifier("prayerTextSizePicker")
+      #if os(macOS)
+      Text(String(localized: "settings.prayerTextSize.macFooter", defaultValue: "Applies to the regular prayer reader. Presenter Mode has its own text-size controls.", bundle: UILanguage.bundle, locale: UILanguage.locale))
+        .font(.caption)
+        .foregroundStyle(.secondary)
+      #endif
       Picker(String(localized: "settings.aramaicDefaultScript", defaultValue: "Default Aramaic script", bundle: UILanguage.bundle, locale: UILanguage.locale),
              selection: $aramaicDefaultScript) {
         Text(String(localized: "settings.script.hebrew", defaultValue: "Hebrew Script", bundle: UILanguage.bundle, locale: UILanguage.locale)).tag("Hebr")
@@ -351,8 +368,8 @@ struct SettingsView: View {
   }
 
   private var todaySettings: some View {
-    // The Home "Today" section (Erez's requests): which of its rows show at all, and which
-    // calendar's feasts the feast row prays. The calendar choices come from the bundled
+    // Independent reference views and widgets share the calendar and display preferences.
+    // The calendar choices come from the bundled
     // calendars.json registry, so adding a calendar is a data drop, never a new case here;
     // the picker hides entirely if the registry ever ships a single calendar.
     Section {
@@ -364,12 +381,12 @@ struct SettingsView: View {
              isOn: $showsTodayIntention)
       Toggle(String(localized: "settings.showPopeIntentionInPrayers", defaultValue: "Show the monthly intention during prayers for the Pope", bundle: UILanguage.bundle, locale: UILanguage.locale),
              isOn: $showPopeIntentionInPrayers)
-      Toggle(String(localized: "settings.showTodayReadings", defaultValue: "Show readings in Pray", bundle: UILanguage.bundle, locale: UILanguage.locale),
-             isOn: $showsTodayReadings)
-        .accessibilityIdentifier("showTodayReadingsToggle")
       Toggle(String(localized: "settings.expandReadingsByDefault", defaultValue: "Expand readings by default", bundle: UILanguage.bundle, locale: UILanguage.locale),
              isOn: $expandReadingsByDefault)
         .accessibilityIdentifier("expandReadingsByDefaultToggle")
+      Toggle(String(localized: "settings.reverseReadingsOrder", defaultValue: "Show Gospel First", bundle: UILanguage.bundle, locale: UILanguage.locale),
+        isOn: $reverseReadingsOrder)
+        .accessibilityIdentifier("reverseReadingsOrderToggle")
       Toggle(String(localized: "settings.showTodayTorahPortion", defaultValue: "Show the weekly Torah portion", bundle: UILanguage.bundle, locale: UILanguage.locale),
              isOn: $showsTodayTorahPortion)
         .accessibilityIdentifier("showTodayTorahPortionToggle")

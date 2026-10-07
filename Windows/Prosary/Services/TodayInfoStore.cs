@@ -124,6 +124,10 @@ public sealed record ReadingCitation(
     string? SourceText = null,
     string? SourceGroup = null)
 {
+    /// <summary>Reverse the presented appointments without changing source data or citation identities.</summary>
+    public static IReadOnlyList<ReadingCitation> DisplayOrder(IReadOnlyList<ReadingCitation> citations, bool reverse) =>
+        reverse ? citations.Reverse().ToArray() : citations;
+
     /// <summary>Freeze the actual selected reading table for later passage expansion; the
     /// calendar may change in another window before this citation is opened.</summary>
     [JsonIgnore]

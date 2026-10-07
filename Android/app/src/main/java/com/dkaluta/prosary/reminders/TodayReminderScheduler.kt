@@ -50,7 +50,7 @@ class TodayReminderReceiver : BroadcastReceiver() {
                 val localized = com.dkaluta.prosary.content.today.TodayTranslationLanguage.localizedContext(context, language)
                 val content = when (intent.action) {
                     "readings" -> if (AppSettings.readingsReminderEnabled) {
-                        val citations = TodayInfoStore.readings(Date())
+                        val citations = com.dkaluta.prosary.content.today.ReadingCitation.displayOrder(TodayInfoStore.readings(Date()), AppSettings.reverseReadingsOrder)
                         if (citations.isEmpty()) null else Triple(localized.getString(R.string.home_today_readings),
                             citations.joinToString("; ") { it.localizedFull(language) }, "prosary://widget/readings")
                     } else null
