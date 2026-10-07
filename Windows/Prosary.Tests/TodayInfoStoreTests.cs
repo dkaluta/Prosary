@@ -183,7 +183,9 @@ public class TodayInfoStoreTests
             new[] { "lpj", "stjames", "roman", "roman1962", "franciscan-conventual-italy", "augustinian-discalced", "ugcc", "ugcc-julian", "syriac", "mission-provisional", "maronite" },
             TodayInfoStore.Calendars.Select(c => c.Id));
         Assert.Equal("lpj", TodayInfoStore.ResolvedCalendarId);
-        Assert.All(TodayInfoStore.Calendars, calendar => Assert.False(string.IsNullOrWhiteSpace(calendar.ReadingsFile)));
+        Assert.All(TodayInfoStore.Calendars.Where(calendar => calendar.Id != "mission-provisional"),
+            calendar => Assert.False(string.IsNullOrWhiteSpace(calendar.ReadingsFile)));
+        Assert.Null(TodayInfoStore.Calendars.Single(calendar => calendar.Id == "mission-provisional").ReadingsFile);
     }
 
     /// <summary>The Evangelizo Hebrew lectionary titles now overlay the complete General Roman

@@ -135,3 +135,8 @@ choices before validating their checkpoint. The final Mac suite includes that wi
 regression. The later Mac Entire Set UI retry could not start app interaction because
 the test host timed out enabling automation; it does not supersede the earlier
 passing top-selector smoke or claim that additional interaction was verified.
+
+The Android existing-row migration smoke also passed on the emulator: old prayer
+identity/name survived migrations 11→12→13, the new Boolean/Int defaults were correct,
+and runtime JSON serialization retained the chosen count/traditional options. The
+fixture database was private and in memory; no production data was opened.

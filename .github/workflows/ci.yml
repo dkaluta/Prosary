@@ -35,6 +35,10 @@ jobs:
         with:
           path: Shared/tools/.scripture-cache
           key: scripture-psalm-sources-${{ hashFiles('Shared/tools/reading-text-sources.json') }}
+          restore-keys: |
+            scripture-sources-${{ hashFiles('Shared/tools/reading-text-sources.json') }}
+      - name: Pinned source fetch retries preserve integrity failures
+        run: uv run --script Shared/tools/test-psalm-source-cache.py
       - name: Prepare pinned witnesses for Psalm regression audits
         run: uv run --script Shared/tools/prepare-psalm-source-cache.py --fetch
       - name: Offline readings preserve sources, verse mappings and native copies

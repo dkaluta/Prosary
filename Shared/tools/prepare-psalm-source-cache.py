@@ -11,8 +11,26 @@ import argparse
 import importlib.util
 import json
 from pathlib import Path
+import sys
+import time
+from urllib.error import HTTPError, URLError
 
 TOOLS = Path(__file__).resolve().parent
+MAX_FETCH_ATTEMPTS = 3
+
+
+def source_bytes_with_retry(builder, source, *, fetch=False):
+    """Retry bounded transport failures; leave source verification and cache bytes alone."""
+    for attempt in range(1, MAX_FETCH_ATTEMPTS + 1):
+        try:
+            return builder.source_bytes(source, fetch=fetch)
+        except (URLError, TimeoutError) as error:
+            if (not fetch or attempt == MAX_FETCH_ATTEMPTS
+                    or isinstance(error, HTTPError) and not (error.code == 429 or 500 <= error.code < 600)):
+                raise
+            print(f"{source['id']}: {type(error).__name__}; retrying source fetch "
+                  f"({attempt + 1}/{MAX_FETCH_ATTEMPTS}).", file=sys.stderr, flush=True)
+            time.sleep(attempt)  # Short 1s/2s backoff; the builder retains its request timeout.
 
 
 def main():
@@ -34,7 +52,7 @@ def main():
     builder = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(builder)
     for identifier in sorted(required):
-        builder.source_bytes(sources[identifier], fetch=args.fetch)
+        source_bytes_with_retry(builder, sources[identifier], fetch=args.fetch)
     print(f"Verified {len(required)} pinned Psalm regression source payloads.")
 
 
