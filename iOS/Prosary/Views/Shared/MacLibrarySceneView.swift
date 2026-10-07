@@ -4,6 +4,7 @@ import SwiftUI
 struct MacLibrarySceneView: View {
   @Environment(\.openWindow) private var openWindow
   @State private var reminderActivation = ReminderActivation.shared
+  @State private var scriptingNavigation = MacScriptingNavigation.shared
   private static let libraryDefaults = ProsaryRuntimeEnvironment.defaults
   @State private var model = MacPrayerLibraryModel(defaults: Self.libraryDefaults,
     installedDevotionIDs: { ProsaryRuntimeEnvironment.isTesting ? [] : PrayerPackStore.installedBundleIds() })
@@ -12,6 +13,8 @@ struct MacLibrarySceneView: View {
     MacPrayerLibraryView(model: model)
       .defaultAppStorage(Self.libraryDefaults)
       .modifier(MacSceneBridge())
+      .onChange(of: scriptingNavigation.pendingLibraryDestination) { _, _ in consumeScriptingDestination() }
+      .task { consumeScriptingDestination() }
       .onChange(of: reminderActivation.pendingURL) { _, _ in
         guard let url = reminderActivation.pendingURL, let link = ProsaryWidgetLink(url: url) else { return }
         reminderActivation.pendingURL = nil
@@ -58,6 +61,12 @@ struct MacLibrarySceneView: View {
         openWindow(id: "prayer", value: PrayerWindowRequest(route: .rosaryQuickPray(prayer: prayer)))
       }
     }
+  }
+
+  private func consumeScriptingDestination() {
+    guard let destination = scriptingNavigation.pendingLibraryDestination else { return }
+    scriptingNavigation.pendingLibraryDestination = nil
+    NotificationCenter.default.post(name: .widgetNavigateLibrary, object: destination)
   }
 }
 #endif

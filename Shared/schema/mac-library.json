@@ -1,6 +1,30 @@
 {
   "$comment": "Mac-only library organization, saved-copy behavior, and window identity. This is a platform-specific contract; it does not extend the cross-platform Prayer shape or require matching phone/Windows workflows.",
   "platform": "macOS",
+  "scripting": {
+    "dictionary": "iOS/Prosary/Prosary.sdef",
+    "implementation": "iOS/Prosary/Support/MacScripting.swift",
+    "scope": "Incoming native Cocoa AppleScript commands on Mac. No Accessibility UI scripting and no cross-platform Prayer shape changes.",
+    "commands": {
+      "list prayers": {
+        "result": "prayer information[]",
+        "fields": {"id": "stable UUID text", "name": "exact saved name", "prayer kind": "rosary | jesusPrayer | custom", "language code": "raw saved preference", "devotion id": "custom bundle ID or empty text", "is default": "boolean"},
+        "behavior": "Read the authoritative saved-copy store, order by localized name then UUID, and exclude unsaved Gallery templates. Never materialize or edit a preset."
+      },
+      "open prayer": {
+        "parameter": "text UUID or exact unique saved name",
+        "result": "opened saved UUID text",
+        "resolution": "UUID first. Otherwise case-sensitive name equality; leading/trailing spaces are significant, while whitespace-only text is invalid. Duplicate names require UUID.",
+        "route": ".prayer(id:) with the standard PrayerWindowRequest identity; preserve normal continuation and chooser behavior."
+      },
+      "open library": {"parameter": "none", "result": "none", "destination": "library"},
+      "open readings": {"parameter": "none", "result": "none", "destination": "readings", "date": "retain the library's browsed civil day"}
+    },
+    "navigation": "Queue Library/Readings until the scene exists; existing widget destination handling defers navigation while an editor or another modal view is open. Repeated saved UUID opening activates its existing prayer window.",
+    "errors": {"invalidReference": -1700, "prayerNotFound": -1728, "ambiguousName": -10000},
+    "mutation": "No scripting preset, reminder or bookmark mutations; no advance, finish, restart, create or delete commands. Opening retains ordinary app behavior.",
+    "verification": "Unit resolution/descriptor/routing tests plus native built-app dictionary and Apple event acceptance checks; neither alone certifies distribution."
+  },
   "sources": [
     "iOS/Prosary/Support/MacPrayerLibraryModel.swift",
     "iOS/Prosary/Support/PrayerWindowRequest.swift",
