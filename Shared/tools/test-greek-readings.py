@@ -4,17 +4,23 @@
 # ///
 """Greek-source labels, mapping, missing-layout and native-asset regressions."""
 import hashlib
+import copy
 import importlib.util
 import json
 from pathlib import Path
+import shutil
+import tempfile
 import unittest
+from unittest.mock import patch
 from reading_appointment_keys import split_passage_key
 
 from brenton_reading_source import SOURCE_SHA256, load_verses, parse_source
 from reading_edition_mapping import mapper
 from reading_edition_reviews_greek import sil_english_ot_to_standard
 from reading_step_mapping import Unavailable
-from greek_daily_psalms import default_resolver as daily_psalm_resolver
+from greek_daily_psalms import (Resolver as GreekPsalmResolver, default_resolver as daily_psalm_resolver,
+                               load_reviews, load_whole_reviews)
+from reading_calendar_numbering import profile_for, chapter_system, standard_units
 
 TOOLS = Path(__file__).resolve().parent
 spec = importlib.util.spec_from_file_location("greek_reading_builder", TOOLS / "build-reading-texts.py")
@@ -118,17 +124,76 @@ class GreekBundledTests(unittest.TestCase):
         source = next(s for s in lock["sources"] if s["id"] == "grcbrent")
         if not (builder.CACHE / source["cache"]).exists():
             self.skipTest("Pinned Greek source cache unavailable; metadata tests remain offline")
+        self.assert_pinned_source_passages(source)
+
+    def assert_pinned_source_passages(self, source):
         raw = builder.source_bytes(source)
         self.assertEqual(hashlib.sha256(raw).hexdigest(), SOURCE_SHA256)
         corpus = load_verses(raw)
         self.assertEqual((len(corpus), sum(map(len, corpus.values()))), (908, 22377))
+        # Reviewed Psalm supplements use the same pinned VPL bytes, but intentionally do
+        # not add the lettered/gapped chapters to the ordinary complete-chapter corpus.
+        psalms = GreekPsalmResolver(raw, load_reviews(), whole_reviews=load_whole_reviews())
+        contexts = builder.appointments()
         for key, editions in self.data["passages"].items():
             book = citation_book(key)
-            for verse in editions.get("brenton-lxx", []):
-                if daily_psalm_resolver().handles(key):
-                    self.assertEqual(verse["text"], daily_psalm_resolver().rows[verse["chapter"], str(verse["verse"])], key)
+            selected = editions.get("brenton-lxx", [])
+            descriptor = self.data.get("passageSources", {}).get(key, {}).get("brenton-lxx")
+            if descriptor is not None:
+                self.assertEqual(book, "PSA", key)
+                if psalms.handles(key):
+                    expected = psalms.resolve(key, contexts[key])
                 else:
-                    self.assertEqual(verse["text"], corpus[book, verse["chapter"]][verse["verse"]], key)
+                    _, citation, dataset = split_passage_key(key)
+                    self.assertIsNotNone(dataset, key)
+                    profile = profile_for(dataset, contexts[key])
+                    _, spans = builder.parse_citation(citation, expand_subverses=True,
+                        psalm_chapter_system=chapter_system(profile))
+                    references, whole = standard_units(citation, spans, profile)
+                    expected = psalms.resolve_standard(references,
+                        includes_whole_verses=whole or builder.includes_whole_verses(citation))
+                # Compare the complete selected bodies and printed witnesses, rather than
+                # merely accepting any row that happens to exist in an excluded chapter.
+                self.assertEqual(json.dumps(selected, ensure_ascii=False, sort_keys=True),
+                    json.dumps(expected.verses, ensure_ascii=False, sort_keys=True), key)
+                self.assertEqual(json.dumps(descriptor, ensure_ascii=False, sort_keys=True),
+                    json.dumps(expected.source, ensure_ascii=False, sort_keys=True), key)
+                # This list is the union of wider-unit notices across all editions.
+                if expected.includes_whole_verses:
+                    self.assertIn(key, self.data["wholeVersePassages"], key)
+                continue
+            for verse in selected:
+                self.assertEqual(verse["text"], corpus[book, verse["chapter"]][verse["verse"]], key)
+
+    def test_verification_needs_only_a_fresh_pinned_greek_cache(self):
+        lock = json.loads(builder.LOCK.read_text())
+        source = next(s for s in lock["sources"] if s["id"] == "grcbrent")
+        cached = builder.CACHE / source["cache"]
+        if not cached.exists():
+            self.skipTest("Pinned Greek source cache unavailable")
+        with tempfile.TemporaryDirectory() as directory:
+            cache = Path(directory)
+            shutil.copyfile(cached, cache / source["cache"])
+            with patch.object(builder, "CACHE", cache), patch.object(builder.urllib.request, "urlopen",
+                side_effect=AssertionError("Source verification must not fetch unrelated payloads")):
+                self.assert_pinned_source_passages(source)
+            self.assertEqual({path.name for path in cache.iterdir()}, {source["cache"]})
+
+    def test_supplement_verification_rejects_changed_words_and_dropped_printed_witnesses(self):
+        source = next(s for s in json.loads(builder.LOCK.read_text())["sources"] if s["id"] == "grcbrent")
+        if not (builder.CACHE / source["cache"]).exists():
+            self.skipTest("Pinned Greek source cache unavailable")
+        key = "daily|augustinian-discalced|Psalm 115"
+        for change in ("text", "witness"):
+            altered = copy.deepcopy(self.data)
+            if change == "text":
+                altered["passages"][key]["brenton-lxx"][0]["text"] += " Unreviewed change"
+            else:
+                blocks = altered["passageSources"][key]["brenton-lxx"]["contentBlocks"]
+                altered["passageSources"][key]["brenton-lxx"]["contentBlocks"] = [
+                    block for block in blocks if block["kind"] != "witness"]
+            with self.subTest(change=change), patch.object(self, "data", altered), self.assertRaises(AssertionError):
+                self.assert_pinned_source_passages(source)
 
     def test_all_roman_psalm_appointments_have_a_source_faithful_greek_passage(self):
         appointments = [key for key, contexts in builder.appointments().items()

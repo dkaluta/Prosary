@@ -166,9 +166,9 @@ public sealed partial class DashboardPage : Page
             var content = new StackPanel { Spacing = 12, MinWidth = 320, FlowDirection = ContentDirection };
             _customizationError = new TextBlock { TextWrapping = TextWrapping.Wrap, Visibility = Visibility.Collapsed };
             content.Children.Add(_customizationError);
-            content.Children.Add(new TextBlock { Text = ViewModel.SelectedLabel, FontWeight = Windows.UI.Text.FontWeights.SemiBold });
+            content.Children.Add(new TextBlock { Text = ViewModel.SelectedLabel, FontWeight = Microsoft.UI.Text.FontWeights.SemiBold });
             content.Children.Add(selected);
-            content.Children.Add(new TextBlock { Text = ViewModel.AvailableLabel, FontWeight = Windows.UI.Text.FontWeights.SemiBold });
+            content.Children.Add(new TextBlock { Text = ViewModel.AvailableLabel, FontWeight = Microsoft.UI.Text.FontWeights.SemiBold });
             content.Children.Add(new ItemsControl { ItemsSource = ViewModel.AvailableCards, ItemTemplate = (DataTemplate)Resources["AvailableWidgetTemplate"] });
             await new ContentDialog
             {
