@@ -1617,7 +1617,7 @@ copies, same convention as the bundles; per-platform `TodayInfoStore` providers)
     descriptor terminology remain preferred, including `תאמא השליח` and `שבועות`. Source
     descriptions remain verbatim apart from moving their trailing attribution into separate
     source/credit fields. Neither RRULE nor the supplied dates changes any appointed calendar.
-    A collapsed “About the saints” disclosure sits above readings in Pray/Today and Readings,
+    A collapsed “About the saints” disclosure sits above readings in native Today and Readings,
     obeys `showTodayFeast`, and resets on date/calendar/interface-language changes. It appears
     for the selected calendar when a biography exists in the exact interface language;
     descriptions never fall back to another language. The supplied Urtotho biographies are
@@ -1679,10 +1679,10 @@ copies, same convention as the bundles; per-platform `TodayInfoStore` providers)
   their tables and the other rites retain their own observances.
   `TodayInfoStore` reloads both the feast and reading tables when the selected calendar changes.
   The calendar choice affects the Today feast and its lectionary citations together. A local
-  selected date drives every Today row and is shared between Pray and Readings within the
+  selected date drives every Today row and is shared between Home and Readings within the
   same window. Explicit browsing retains that civil date; Today resumes local-day following.
-  The `showTodayReadings` preference (default `true`) controls readings in Pray/native
-  desktop Today. The reader starts collapsed unless `expandReadingsByDefault` (default
+  The `showTodayReadings` preference (default `true`) remains for native Windows Today;
+  dedicated Readings remains available independently. The reader starts collapsed unless `expandReadingsByDefault` (default
   `false`) is enabled. Chapter transitions use the selected Bible edition's language, independent
   of interface and prayer language. Chapter numbers are regular, never italic: Hebrew uses
   traditional gematria (including ט״ו/ט״ז), Arabic uses Eastern Arabic digits, and Aramaic
