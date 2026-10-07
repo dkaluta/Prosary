@@ -140,3 +140,7 @@ The Android existing-row migration smoke also passed on the emulator: old prayer
 identity/name survived migrations 11→12→13, the new Boolean/Int defaults were correct,
 and runtime JSON serialization retained the chosen count/traditional options. The
 fixture database was private and in memory; no production data was opened.
+
+Windows execution is now verified: all 914 tests passed on the Windows CI runner,
+including the Rosary session-choice, data, typography and reminder regressions.
+This does not certify physical Narrator traversal or every Windows layout.
