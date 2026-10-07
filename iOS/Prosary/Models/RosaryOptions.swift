@@ -17,7 +17,36 @@ struct RosaryOptions: Hashable, Codable {
   /// 1-based index into `MysteryCatalog.forGroup(specificMysteryGroup)`. Used only when
   /// `mysterySelectionMode` is `.singleMystery`.
   var specificMysteryOrder: Int = 1
-  /// Omit the fifth decade of each full set; explicit single-mystery choices remain intact.
+  /// Sequential decades, beginning at specificMysteryOrder and ending within the same set.
+  var specificMysteryCount: Int = 1
+  /// Today's mysteries follow the older fifteen-mystery weekday schedule.
+  var useTraditionalMysteries: Bool = false
+
+  var selectedMysteryStart: Int { min(max(specificMysteryOrder, 1), 5) }
+  var selectedMysteryCount: Int { min(max(specificMysteryCount, 1), 6 - selectedMysteryStart) }
+  var selectedMysteryIndices: [Int] {
+    Array((selectedMysteryStart - 1)..<(selectedMysteryStart - 1 + selectedMysteryCount))
+  }
+  /// Reconstruct a local session choice without changing the saved configuration.
+  func navigationOptions(group: String?, order: Int?) -> RosaryOptions? {
+    guard let group else { return order == nil ? self : nil }
+    guard let selectedGroup = MysteryGroup(rawValue: group) else { return nil }
+    var result = self
+    result.specificMysteryGroup = selectedGroup
+    if order == nil {
+      result.mysterySelectionMode = .specific
+      return result
+    }
+    if mysterySelectionMode == .chooseOnLaunch || mysterySelectionMode == .singleMystery {
+      guard let order, (1...5).contains(order) else { return nil }
+      result.mysterySelectionMode = .singleMystery
+      result.specificMysteryOrder = order
+    } else {
+      return nil
+    }
+    return result
+  }
+  /// Retired saved-data field. The engine always includes all five decades.
   var skipFifthDecade: Bool = false
 
   var includeApostlesCreed: Bool = true
@@ -69,13 +98,13 @@ struct RosaryOptions: Hashable, Codable {
 
   /// Generic saved Rosaries can carry the former bundle option keys instead of this model.
   static func normalizedCustomOptions(_ options: [String: String], bundleId: String) -> [String: String] {
-    guard bundleId == "rosary", legacyClosingOptionKeys.contains(where: { options[$0] != nil }) else {
-      return options
-    }
+    guard bundleId == "rosary" else { return options }
     var result = options
-    let baseline = options["closingIntentions"] == "true"
+    result.removeValue(forKey: "skipFifthDecade")
+    guard legacyClosingOptionKeys.contains(where: { result[$0] != nil }) else { return result }
+    let baseline = result["closingIntentions"] == "true"
     let enabled = legacyClosingOptionKeys.contains { key in
-      options[key].flatMap(Bool.init) ?? baseline
+      result[key].flatMap(Bool.init) ?? baseline
     }
     for key in legacyClosingOptionKeys { result.removeValue(forKey: key) }
     result["closingIntentions"] = enabled ? "true" : "false"
@@ -108,6 +137,8 @@ struct RosaryOptions: Hashable, Codable {
     case mysterySelectionMode
     case specificMysteryGroup
     case specificMysteryOrder
+    case specificMysteryCount
+    case useTraditionalMysteries
     case skipFifthDecade
     case includeApostlesCreed
     case includeOpeningPrayers
@@ -137,13 +168,21 @@ struct RosaryOptions: Hashable, Codable {
       let title = chosen.map { HebrewDisplayText.unpointed(MysteryTranslations.get(
         languageCode: UILanguage.current,
         imageKey: $0.imageKey).title) } ?? specificMysteryGroup.displayName
+      if selectedMysteryCount > 1 {
+        return String(localized: "rosaryOptions.summary.selectedMysteries", defaultValue: "\(selectedMysteryCount) mysteries from \(title)", bundle: UILanguage.bundle, locale: UILanguage.locale)
+      }
       return String(localized: "rosaryOptions.summary.singleMystery", defaultValue: "Only \(title)", bundle: UILanguage.bundle, locale: UILanguage.locale)
     case .fifteenMystery:
       return String(localized: "rosaryOptions.summary.fifteenMystery", defaultValue: "The 15 Mysteries", bundle: UILanguage.bundle, locale: UILanguage.locale)
     case .twentyMystery:
       return String(localized: "rosaryOptions.summary.twentyMystery", defaultValue: "The 20 Mysteries", bundle: UILanguage.bundle, locale: UILanguage.locale)
     case .todaysMysteries:
+      if useTraditionalMysteries {
+        return String(localized: "rosaryOptions.summary.traditionalToday", defaultValue: "Today's Mysteries (Traditional 15)", bundle: UILanguage.bundle, locale: UILanguage.locale)
+      }
       return String(localized: "mysterySelectionMode.todaysMysteries", defaultValue: "Today's Mysteries", bundle: UILanguage.bundle, locale: UILanguage.locale)
+    case .chooseOnLaunch:
+      return mysterySelectionMode.displayName
     }
   }
 }
@@ -156,6 +195,8 @@ extension RosaryOptions {
     mysterySelectionMode = try values.decodeIfPresent(MysterySelectionMode.self, forKey: .mysterySelectionMode) ?? mysterySelectionMode
     specificMysteryGroup = try values.decodeIfPresent(MysteryGroup.self, forKey: .specificMysteryGroup) ?? specificMysteryGroup
     specificMysteryOrder = try values.decodeIfPresent(Int.self, forKey: .specificMysteryOrder) ?? specificMysteryOrder
+    specificMysteryCount = try values.decodeIfPresent(Int.self, forKey: .specificMysteryCount) ?? specificMysteryCount
+    useTraditionalMysteries = try values.decodeIfPresent(Bool.self, forKey: .useTraditionalMysteries) ?? useTraditionalMysteries
     skipFifthDecade = try values.decodeIfPresent(Bool.self, forKey: .skipFifthDecade) ?? skipFifthDecade
     includeApostlesCreed = try values.decodeIfPresent(Bool.self, forKey: .includeApostlesCreed) ?? includeApostlesCreed
     includeOpeningPrayers = try values.decodeIfPresent(Bool.self, forKey: .includeOpeningPrayers) ?? includeOpeningPrayers

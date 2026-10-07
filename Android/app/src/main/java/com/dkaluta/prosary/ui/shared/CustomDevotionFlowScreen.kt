@@ -35,6 +35,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import com.dkaluta.prosary.R
+import com.dkaluta.prosary.MainActivity
 import com.dkaluta.prosary.content.prayerpack.PrayerPackStore
 import com.dkaluta.prosary.models.FavoriteDevotions
 import com.dkaluta.prosary.models.CustomDevotionLanguageSwitch
@@ -462,6 +463,7 @@ fun CustomDevotionFlowScreen(
                     }) { Text(stringResource(R.string.multi_day_pray_today, next + 1)) }
                     TextButton(onClick = {
                         MultiDayRuns.startFresh(context, devotionId)
+                        (activity as? MainActivity)?.requestSeriesReminderPermission(devotionId)
                         ReminderScheduler.refreshSeries(context, devotionId)
                         switchDay(0)
                         missedDayChoice = null
@@ -518,6 +520,7 @@ fun CustomDevotionFlowScreen(
                     // tomorrow's day.
                     if ((definition?.dayProgression ?: "series") == "series") {
                         MultiDayRuns.recordPrayed(context, devotionId, dayIndex)
+                        (activity as? MainActivity)?.requestSeriesReminderPermission(devotionId)
                         // The remaining days keep their prompts; the finished ones lose theirs.
                         ReminderScheduler.refreshSeries(context, devotionId)
 

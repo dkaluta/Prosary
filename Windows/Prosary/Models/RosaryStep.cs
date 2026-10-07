@@ -54,4 +54,6 @@ public sealed record RosaryStep(
     /// <see cref="Mystery"/>.<c>ImageKey</c> because that key is the mystery's identity and
     /// translation-lookup key.</summary>
     public string? ImageVariantKey { get; init; }
+    /// <summary>Stable source identity for optional published prayer context.</summary>
+    public string? PrayerKey { get; init; }
 }

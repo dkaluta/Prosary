@@ -187,13 +187,15 @@
                         <Button Background="Transparent" Padding="6" HorizontalAlignment="Right"
                                 Visibility="{x:Bind ViewModel.HasTransliteration, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
                                 Command="{x:Bind ViewModel.ToggleTransliterationCommand}"
-                                x:Uid="FlowTransliterationButton" ToolTipService.ToolTip="Show transliteration">
+                                AutomationProperties.Name="{x:Bind ViewModel.TransliterationActionLabel, Mode=OneWay}"
+                                ToolTipService.ToolTip="{x:Bind ViewModel.TransliterationActionLabel, Mode=OneWay}">
                             <FontIcon Glyph="&#xE8C1;" FontSize="14" />
                         </Button>
                         <TextBlock x:Name="NarrowBody" controls:BoldMarkdownText.Text="{x:Bind ViewModel.Body, Mode=OneWay}"
                                    FontFamily="{x:Bind ViewModel.BodyFontFamily, Mode=OneWay}"
                                    FontSize="{x:Bind ViewModel.BodyFontSize, Mode=OneWay}"
                                    TextWrapping="Wrap" TextAlignment="Center" IsTextSelectionEnabled="True" />
+                        <controls:PopeIntentionPrayerCard Publication="{x:Bind ViewModel.PublishedPopeIntention, Mode=OneWay}" />
                     </StackPanel>
                 </ScrollViewer>
             </Grid>
@@ -268,13 +270,15 @@
                         <Button Background="Transparent" Padding="6" HorizontalAlignment="Right"
                                 Visibility="{x:Bind ViewModel.HasTransliteration, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
                                 Command="{x:Bind ViewModel.ToggleTransliterationCommand}"
-                                x:Uid="FlowTransliterationButton" ToolTipService.ToolTip="Show transliteration">
+                                AutomationProperties.Name="{x:Bind ViewModel.TransliterationActionLabel, Mode=OneWay}"
+                                ToolTipService.ToolTip="{x:Bind ViewModel.TransliterationActionLabel, Mode=OneWay}">
                             <FontIcon Glyph="&#xE8C1;" FontSize="14" />
                         </Button>
                         <TextBlock x:Name="WideBody" controls:BoldMarkdownText.Text="{x:Bind ViewModel.Body, Mode=OneWay}"
                                    FontFamily="{x:Bind ViewModel.BodyFontFamily, Mode=OneWay}"
                                    FontSize="{x:Bind ViewModel.BodyFontSize, Mode=OneWay}"
                                    TextWrapping="Wrap" TextAlignment="Center" IsTextSelectionEnabled="True" />
+                        <controls:PopeIntentionPrayerCard Publication="{x:Bind ViewModel.PublishedPopeIntention, Mode=OneWay}" />
                     </StackPanel>
                 </ScrollViewer>
             </Grid>

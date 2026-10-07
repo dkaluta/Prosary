@@ -20,6 +20,7 @@ documented separately; they do not require a matching phone or Windows interface
 | `reading-texts.json` | Offline Bible edition metadata and pre-resolved daily/Torah verse arrays, shared by every native reader. Exact licensed lectionary text is separate. |
 | `bible-library.json` | Optional Bible-download catalog, archive manifest, chapter contents, actual coverage and per-book translator credits. |
 | `widgets.json` | Today and Saved Prayer widgets on iOS, Android, and Mac; settings, snapshot boundaries, progress validity, configuration, and destination links. |
+| `home-widgets.json` | Customizable in-app Home cards on iOS, Android and Windows; ordering, private photos, shared civil dates and native destinations. |
 | `screens.json` | Every screen/page, its parameters, and how navigation reaches it on each platform, including the dedicated Mac and Windows library/prayer windows. |
 
 ## Why this exists alongside prose docs

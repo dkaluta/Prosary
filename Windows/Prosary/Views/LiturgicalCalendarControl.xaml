@@ -3,11 +3,19 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:vm="using:Prosary.ViewModels">
     <Grid RowSpacing="12" Padding="24">
-        <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="*"/></Grid.RowDefinitions>
-        <Button HorizontalAlignment="Left" Content="{x:Bind ViewModel.TodayLabel}" Click="OnToday" />
-        <TextBlock Grid.Row="1" Text="{x:Bind ViewModel.CalendarName, Mode=OneWay}" TextWrapping="Wrap" />
-        <Grid Grid.Row="2">
-            <TextBlock Text="{x:Bind ViewModel.EmptyLabel}" Visibility="{x:Bind ViewModel.IsEmpty, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" TextWrapping="Wrap" />
+        <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="*"/></Grid.RowDefinitions>
+        <ToggleSwitch Header="{x:Bind ViewModel.ViewLabel}" OffContent="{x:Bind ViewModel.ListLabel}" OnContent="{x:Bind ViewModel.MonthLabel}"
+            IsOn="{x:Bind ViewModel.IsMonthView, Mode=TwoWay}" AutomationProperties.Name="{x:Bind ViewModel.ViewLabel}" />
+        <StackPanel Grid.Row="1" Spacing="8">
+            <Button HorizontalAlignment="Left" Content="{x:Bind ViewModel.TodayLabel}" Click="OnToday" />
+            <TextBlock Text="{x:Bind ViewModel.CalendarName, Mode=OneWay}" TextWrapping="Wrap" />
+        </StackPanel>
+        <CalendarView x:Name="MonthPicker" Grid.Row="2" MaxHeight="320" SelectionMode="Single"
+            SelectedDatesChanged="OnSelectedDatesChanged" HorizontalAlignment="Stretch"
+            Visibility="{x:Bind ViewModel.IsMonthView, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
+            AutomationProperties.Name="{x:Bind ViewModel.MonthLabel}" />
+        <Grid Grid.Row="3">
+            <TextBlock Text="{x:Bind ViewModel.EmptyLabel, Mode=OneWay}" Visibility="{x:Bind ViewModel.IsEmpty, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" TextWrapping="Wrap" />
             <ListView x:Name="FeastList" ItemsSource="{x:Bind ViewModel.Rows, Mode=OneWay}" IsItemClickEnabled="True" ItemClick="OnItemClick" SelectionMode="None">
                 <ListView.ItemTemplate><DataTemplate x:DataType="vm:LiturgicalCalendarRow">
                     <StackPanel Spacing="4" Padding="8,12">

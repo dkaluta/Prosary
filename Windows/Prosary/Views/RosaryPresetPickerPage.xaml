@@ -94,6 +94,9 @@
                                     </DataTemplate>
                                 </ComboBox.ItemTemplate>
                             </ComboBox>
+                            <CheckBox x:Uid="QuickTraditionalMysteries" Content="Use Traditional 15 Mysteries"
+                                      IsChecked="{x:Bind ViewModel.UseTraditionalMysteries, Mode=TwoWay}"
+                                      Visibility="{x:Bind ViewModel.ShowsTraditionalPicker, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
                             <ComboBox x:Uid="PickerSpecificSet" HorizontalAlignment="Stretch" Header="Specific set" ItemsSource="{x:Bind ViewModel.Groups}"
                                       SelectedItem="{x:Bind ViewModel.SelectedGroup, Mode=TwoWay}"
                                       Visibility="{x:Bind ViewModel.ShowsGroupPicker, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
@@ -106,6 +109,10 @@
                             <ComboBox x:Uid="PickerWhichMystery" HorizontalAlignment="Stretch" Header="Which mystery" ItemsSource="{x:Bind ViewModel.Ordinals}"
                                       SelectedItem="{x:Bind ViewModel.SelectedOrdinal, Mode=TwoWay}"
                                       Visibility="{x:Bind ViewModel.ShowsOrdinalPicker, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
+                            <ComboBox x:Uid="QuickMysteryCount" Header="Number of Mysteries" HorizontalAlignment="Stretch"
+                                      ItemsSource="{x:Bind ViewModel.MysteryCountOptions, Mode=OneWay}"
+                                      SelectedItem="{x:Bind ViewModel.SpecificMysteryCount, Mode=TwoWay}"
+                                      Visibility="{x:Bind ViewModel.ShowsMysteryCount, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
                             <!-- The whole of RosaryOptions, as the Mac's quick setup offers — this
                                  is where "Save as Preset" creates one from, so an option missing
                                  here could never be chosen at creation time. -->

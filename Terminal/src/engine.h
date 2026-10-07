@@ -37,7 +37,7 @@ typedef struct {
     int variant; /* -1 means language-specific default; otherwise zero based. */
     int day;     /* Zero based for daily devotions; -1 selects today when applicable. */
     int year, month, day_of_month; /* All zero means local today. */
-    int skip_fifth_decade; /* Omit mystery five from a Rosary set; default false. */
+    int skip_fifth_decade; /* Retired; retained for saved-state compatibility and ignored. */
     int include_litany_of_loreto; /* Rosary continuation, default false. */
     int omit_rosary_collect; /* Default false; ignored when the Litany is included. */
 } ProsarySelection;

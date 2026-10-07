@@ -21,12 +21,14 @@ REVIEW_PATH = TOOLS / "peshitta-eu-2020-review.json"
 
 
 class VerseParser(HTMLParser):
-    def __init__(self, slug, chapter):
+    def __init__(self, slug, chapter, *, allow_partial=False):
         super().__init__(convert_charrefs=True)
         self.slug, self.chapter = slug, chapter
         self.current = None
         self.words = []
         self.values = {}
+        self.allow_partial = allow_partial
+        self.defects = {}
 
     def handle_starttag(self, tag, attrs):
         fields = dict(attrs)
@@ -57,23 +59,53 @@ class VerseParser(HTMLParser):
         if match is None:
             raise ValueError("Peshitta printed verse label differs from its reference")
         text = match[1].strip()
+        defect = None
         if not re.search(r"[\u0710-\u072f]", text):
-            raise ValueError("Peshitta source verse has no Syriac wording")
-        if not re.search(r"[\u0730-\u073d]", text):
-            raise ValueError("Peshitta source verse has no vocalized Scripture wording")
+            defect = "Peshitta source verse has no Syriac wording"
+        elif not re.search(r"[\u0730-\u073d]", text):
+            defect = "Peshitta source verse has no vocalized Scripture wording"
+        if defect:
+            if not self.allow_partial:
+                raise ValueError(defect)
+            self.defects[self.current] = defect
         self.values[self.current] = text
         self.current = None
 
 
-def parse_chapter(raw: bytes, slug: str, chapter: int) -> dict[int, str]:
-    parser = VerseParser(slug, chapter)
+def parsed_chapter(raw: bytes, slug: str, chapter: int, *, allow_partial=False):
+    parser = VerseParser(slug, chapter, allow_partial=allow_partial)
     parser.feed(raw.decode("utf-8-sig"))
     parser.close()
     if parser.current is not None or not parser.values:
         raise ValueError("Peshitta source has an unfinished or empty verse body")
     if list(parser.values) != list(range(1, max(parser.values) + 1)):
         raise ValueError("Peshitta source has missing or unordered verse labels")
-    return parser.values
+    return parser.values, parser.defects
+
+
+def parse_chapter(raw: bytes, slug: str, chapter: int) -> dict[int, str]:
+    return parsed_chapter(raw, slug, chapter)[0]
+
+
+def partial_chapter(raw: bytes, slug: str, chapter: int):
+    """Retain exact numbered valid verses, recording every omitted body independently."""
+    from peshitta_reading_source import paired_text
+    values, defects = parsed_chapter(raw, slug, chapter, allow_partial=True)
+    omitted = {}
+    safe = {}
+    for verse, text in values.items():
+        reason = defects.get(verse)
+        if reason is None:
+            try:
+                paired_text(text)
+            except ValueError as error:
+                reason = str(error)
+        if reason:
+            omitted[str(verse)] = {"sourceVerseSHA256": hashlib.sha256(text.encode()).hexdigest(),
+                                   "reason": reason}
+        else:
+            safe[verse] = text
+    return safe, omitted
 
 
 @lru_cache(maxsize=1)
@@ -88,6 +120,16 @@ def load_verses(source, raw):
     if hashlib.sha256(raw).hexdigest() != source["sha256"]:
         raise ValueError("Peshitta website chapter differs from its pinned source")
     excluded = review()["excludedChapters"].get(f"{source['book']}:{source['chapter']}")
+    partial = review().get("partialChapters", {}).get(f"{source['book']}:{source['chapter']}")
+    if partial is not None:
+        if partial.get("sourceSHA256") != source["sha256"]:
+            raise ValueError("Peshitta partial chapter source differs from its pinned review")
+        values, observed = partial_chapter(raw, source["slug"], source["chapter"])
+        if observed != partial["omittedVerses"]:
+            raise ValueError("Peshitta partial chapter defects differ from their pinned review")
+        if len(values) != partial.get("retainedVerses"):
+            raise ValueError("Peshitta partial chapter retained inventory differs from its pinned review")
+        return {(source["chapter"], verse): text for verse, text in values.items()}
     if excluded is not None:
         return {}
     values = parse_chapter(raw, source["slug"], source["chapter"])

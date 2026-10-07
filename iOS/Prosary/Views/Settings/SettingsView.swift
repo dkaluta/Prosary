@@ -21,6 +21,7 @@ struct SettingsView: View {
   @AppStorage(AramaicSignOfCrossForm.defaultsKey) private var aramaicSignOfCrossForm = AramaicSignOfCrossForm.formA
   @AppStorage("autoAdvanceSeconds") private var autoAdvanceSeconds = 0
   @AppStorage("hapticsOnAdvance") private var hapticsOnAdvance = false
+  @AppStorage("showPopeIntentionInPrayers") private var showPopeIntentionInPrayers = false
   @AppStorage(PrayerKeyboardNavigation.arrowsKey) private var keyboardArrowNavigationEnabled = true
   @AppStorage(PrayerKeyboardNavigation.spaceKey) private var keyboardSpaceAdvanceEnabled = true
   @ObservedObject private var keyboardAvailability = PrayerKeyboardAvailability.shared
@@ -361,6 +362,8 @@ struct SettingsView: View {
       Toggle(String(localized: "settings.showTodayIntention",
                     defaultValue: "Show the Pope's intention", bundle: UILanguage.bundle, locale: UILanguage.locale),
              isOn: $showsTodayIntention)
+      Toggle(String(localized: "settings.showPopeIntentionInPrayers", defaultValue: "Show the monthly intention during prayers for the Pope", bundle: UILanguage.bundle, locale: UILanguage.locale),
+             isOn: $showPopeIntentionInPrayers)
       Toggle(String(localized: "settings.showTodayReadings", defaultValue: "Show readings in Pray", bundle: UILanguage.bundle, locale: UILanguage.locale),
              isOn: $showsTodayReadings)
         .accessibilityIdentifier("showTodayReadingsToggle")

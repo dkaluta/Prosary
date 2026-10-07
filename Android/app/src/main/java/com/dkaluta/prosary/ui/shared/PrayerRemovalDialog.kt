@@ -65,6 +65,11 @@ fun PrayerRemovalDialog(request: PrayerRemovalRequest, onDismiss: () -> Unit, on
     var busy by remember(request) { mutableStateOf(false) }
     var removesDownload by remember(request) { mutableStateOf(false) }
     var errorRes by remember(request) { mutableStateOf<Int?>(null) }
+    var removalCompleted by remember(request) { mutableStateOf(false) }
+    fun dismissResult() {
+        if (removalCompleted) onRemoved()
+        onDismiss()
+    }
     val name = when (request) {
         is PrayerRemovalRequest.Saved -> request.prayer.name
         is PrayerRemovalRequest.Download -> PrayerPackStore.info(request.id)?.localizedDisplayName ?: request.id
@@ -83,7 +88,7 @@ fun PrayerRemovalDialog(request: PrayerRemovalRequest, onDismiss: () -> Unit, on
         ready = true
     }
     AlertDialog(
-        onDismissRequest = { if (!busy) onDismiss() },
+        onDismissRequest = { if (!busy) dismissResult() },
         title = { Text(stringResource(if (errorRes != null) R.string.prayer_removal_error_title else when (request) {
             is PrayerRemovalRequest.Saved -> R.string.prayer_delete_title
             is PrayerRemovalRequest.Download -> R.string.download_remove_title
@@ -96,7 +101,7 @@ fun PrayerRemovalDialog(request: PrayerRemovalRequest, onDismiss: () -> Unit, on
         },
         confirmButton = {
             TextButton(enabled = ready && !busy, onClick = {
-                if (errorRes != null) onDismiss() else {
+                if (errorRes != null) dismissResult() else {
                     busy = true
                     scope.launch {
                         runCatching {
@@ -112,7 +117,9 @@ fun PrayerRemovalDialog(request: PrayerRemovalRequest, onDismiss: () -> Unit, on
                                 failure?.downloadInUse == true -> R.string.download_in_use
                                 else -> R.string.prayer_removal_error
                             }
-                            if (failure?.savedPrayerDeleted == true || failure?.downloadRemoved == true) onRemoved()
+                            // Keep a committed-deletion cleanup error visible until it is
+                            // acknowledged, then close any editor for the now-deleted copy.
+                            removalCompleted = failure?.savedPrayerDeleted == true || failure?.downloadRemoved == true
                         }
                         busy = false
                     }

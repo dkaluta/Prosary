@@ -6,17 +6,28 @@ struct PrayerRemovalDialogs: ViewModifier {
   var onDeleted: () async -> Void = {}
   @Environment(\.appServices) private var services
   @State private var failure: String?
+  @State private var isDeleting = false
+  @State private var deletionCommitted = false
 
   func body(content: Content) -> some View {
     content
+      .disabled(isDeleting)
+      .interactiveDismissDisabled(isDeleting)
       .alert(String(localized: "removal.deleteTitle", defaultValue: "Delete Saved Prayer?", bundle: UILanguage.bundle, locale: UILanguage.locale),
              isPresented: Binding(get: { prayer != nil }, set: { if !$0 { prayer = nil } }),
              presenting: prayer) { selected in
         Button("favorites.delete", role: .destructive) {
+          isDeleting = true
           Task {
-            do { try await PrayerRemovalService(store: services.presetStore).delete(selected) }
-            catch { failure = error.localizedDescription }
-            await onDeleted()
+            defer { isDeleting = false }
+            do {
+              try await PrayerRemovalService(store: services.presetStore).delete(selected)
+              await onDeleted()
+            }
+            catch {
+              deletionCommitted = (error as? PrayerRemovalService.RemovalError) == .cleanupFailed
+              failure = error.localizedDescription
+            }
           }
         }
         Button("favoriteEditor.cancel", role: .cancel) { prayer = nil }
@@ -26,7 +37,13 @@ struct PrayerRemovalDialogs: ViewModifier {
       }
       .alert(String(localized: "removal.failedTitle", defaultValue: "Could Not Remove Prayer", bundle: UILanguage.bundle, locale: UILanguage.locale),
              isPresented: Binding(get: { failure != nil }, set: { if !$0 { failure = nil } })) {
-        Button("common.ok") { failure = nil }
+        Button("common.ok") {
+          failure = nil
+          if deletionCommitted {
+            deletionCommitted = false
+            Task { await onDeleted() }
+          }
+        }
       } message: { Text(failure ?? "") }
   }
 }

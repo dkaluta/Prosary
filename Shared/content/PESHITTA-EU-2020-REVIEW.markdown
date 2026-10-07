@@ -15,11 +15,21 @@ contiguous printed labels, nonempty vocalized Scripture, and paired-script proje
 Exact source-body copies published under different chapter labels remain withheld.
 
 `Shared/tools/peshitta-eu-2020-review.json` records each exclusion and the actual
-generated scope. As of this review, 1,012 OT chapters containing 25,404 source
-verses pass these guards. Forty-eight source chapters are withheld because of
-omission markers or unvocalized entries, invalid numbering, copied bodies, or
-letters whose Hebrew projection is ambiguous. No omitted word is filled, no
-chapter is relabeled, and no point is borrowed from the former XML.
+generated scope. The 2026-10-07 recovery retains 1,053 OT chapters containing
+26,729 unchanged source verses: 1,012 complete chapters and 41 explicitly partial
+chapters. The partial chapters recover 1,325 valid verses previously withheld with
+their chapter; 111 individually defective verse bodies remain absent. Their original
+source numbers stay intact, and every omission has its source-body hash and reason.
+The source chapter hash and retained verse count are checked too. A chapter remains
+partial even when its only omitted verse is at the end. No omitted word is filled,
+no chapter is relabeled, and no point is borrowed from the former XML.
+
+Seven chapters remain entirely unavailable: 1 Samuel 26–27 and 2 Kings 16–17 have
+unresolved copied bodies; 2 Chronicles 12 and 28 and Sirach 1 have invalid numbering.
+The strict complete-chapter parser still
+rejects defective material. A separately reviewed partial import permits only unchanged,
+vocalized verses that support the existing paired-script projection. It cannot relax
+book/chapter labels, duplicate or missing verse numbers, or unsupported markup.
 
 The native Bible may browse a valid source-native chapter without asserting a daily
 calendar correspondence. Daily passages have a separate conservative graph:
@@ -28,8 +38,12 @@ same segmented Syriac consonants at their exact reviewed coordinates after the
 old review's documented caption exclusions. Vocalization always comes exclusively
 from the new website response. Every compound unit remains whole, and a differing
 or missing member withholds the group. The manifest retains the former mismatches.
-The current graph admits 3,804 OT units, including the independently read Job 42
-appointment below. Matching verse counts alone never establishes a mapping.
+The original graph still admits the same 3,804 OT units, including the independently
+read Job 42 appointment below. Separate reviewed Psalm boundaries and bounded daily
+Psalm excerpts retain their existing evidence. Recovering a browseable verse adds
+no calendar correspondence: a regression checks that all 1,325 recovered units
+remain unavailable through the general daily mapper. Matching verse counts alone
+never establishes a mapping.
 
 For 2026-10-03, the Roman/Latin Patriarchate appointment `Job 42:1–3; 42:5–6;
 42:12–16` uses [Job 42](https://peshitta.eu/ot/job/42.html) units 1,2,3,5,6,12,13,14,15,16.
@@ -40,9 +54,11 @@ app's native daily readers use that exact reviewed sequence and both source scri
 
 The same date's appointed Psalm 119 uses the website's source Psalm 118 numbering.
 [Source Psalm 118:91](https://peshitta.eu/ot/psalms/118.html) is explicitly marked
-`(ܠܝܬ)` (absent). The adapter rejects that marker as Scripture, so the complete
-appointed Psalm remains unavailable instead of being silently shortened or filled
-from a different edition. Other unknown Psalm mappings remain unavailable.
+`(ܠܝܬ)` (absent). The partial Bible chapter omits that marker and retains the other
+175 valid source verses. An appointment requesting verse 91 still remains unavailable
+instead of being silently shortened or filled from a different edition. The independently
+reviewed bounded daily excerpts avoid verse 91 and retain their own exact-source tests.
+Other unknown Psalm mappings remain unavailable.
 
 The website identifies its publication and carries a copyright footer but states
 no redistribution license. That absence is recorded here and in the source lock;

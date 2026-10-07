@@ -17,7 +17,7 @@ typedef struct {
     const char *language;
     char *error;
     size_t error_size;
-    int failed, season, step_fallback, step_mixed, skip_fifth_decade, include_litany_of_loreto, omit_rosary_collect;
+    int failed, season, step_fallback, step_mixed, include_litany_of_loreto, omit_rosary_collect;
 } Builder;
 static const char *language_codes[] = {"en", "he", "ar", "ru", "tl", "fr", "it", "uk", "la", "es", "el", "arc", "he-x-gamliel"};
 static const char *language_names[] = {"English", "עברית", "العربية", "Русский", "Filipino", "Français", "Italiano", "Українська", "Latina", "Español", "Ελληνικά", "ܐܪܡܐܝܬ / ארמית", "עברית — גמליאל"};
@@ -377,7 +377,6 @@ static void rosary(Builder *b, const Json *form, int group) {
             if (!equal(json_text(item, "group"), groups[group])) continue;
             number = json_int(json_get(item, "order"), 0); decade_index = number - 1;
             if (number < 1 || number > 5) { build_error(b, "Invalid mystery order", NULL); return; }
-            if (number == 5 && b->skip_fifth_decade) continue;
         }
         b->step_fallback = b->step_mixed = 0;
         key = item ? json_text(item, "imageKey") : json_text(decades, "fixedImageKey");
@@ -452,7 +451,6 @@ ProsarySession *engine_build(const ProsaryEngine *e, const char *id, const Prosa
     b.pack = pack_by_id(e, id);
     if (!b.pack) { errorf(error, error_size, "Unknown devotion: %s", id ? id : ""); return NULL; }
     if (!selection) selection = &defaults;
-    b.skip_fifth_decade = equal(id, "rosary") && selection->skip_fifth_decade;
     b.include_litany_of_loreto = selection->include_litany_of_loreto;
     b.omit_rosary_collect = selection->omit_rosary_collect;
     b.language = normalized(selection->language);

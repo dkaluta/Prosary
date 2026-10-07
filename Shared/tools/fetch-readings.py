@@ -660,8 +660,9 @@ def citation_dataset_paths() -> list[Path]:
     registry = json.loads((DATA / "calendars.json").read_text(encoding="utf-8"))
     names = set()
     for calendar in registry["calendars"]:
-        names.add(calendar["readingsFile"])
-        names.update(variant["readingsFile"] for variant in calendar.get("paschaVariants", {}).values())
+        for choice in [calendar, *calendar.get("paschaVariants", {}).values()]:
+            if choice.get("readingsFile"):
+                names.add(choice["readingsFile"])
     paths = [DATA / f"{name}.json" for name in sorted(names)]
     torah = DATA / "torah-portions.json"
     if torah.exists():

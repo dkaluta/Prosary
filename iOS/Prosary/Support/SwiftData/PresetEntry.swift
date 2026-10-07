@@ -43,6 +43,8 @@ final class PresetEntry {
   // 1-based index into MysteryCatalog.forGroup(specificMysteryGroup); used only when
   // mysterySelectionMode is .singleMystery. Default 1 handles existing rows.
   var specificMysteryOrder: Int = 1
+  var specificMysteryCount: Int = 1
+  var useTraditionalMysteries: Bool = false
   // A raw Bool with an inline default preserves existing SwiftData rows.
   var skipFifthDecade: Bool = false
   var includeApostlesCreed: Bool = true
@@ -92,6 +94,8 @@ final class PresetEntry {
     mysterySelectionMode = prayer.rosary.mysterySelectionMode
     specificMysteryGroup = prayer.rosary.specificMysteryGroup
     specificMysteryOrder = prayer.rosary.specificMysteryOrder
+    specificMysteryCount = prayer.rosary.specificMysteryCount
+    useTraditionalMysteries = prayer.rosary.useTraditionalMysteries
     skipFifthDecade = prayer.rosary.skipFifthDecade
     includeApostlesCreed = prayer.rosary.includeApostlesCreed
     includeOpeningPrayers = prayer.rosary.includeOpeningPrayers
@@ -134,6 +138,8 @@ final class PresetEntry {
     mysterySelectionMode = prayer.rosary.mysterySelectionMode
     specificMysteryGroup = prayer.rosary.specificMysteryGroup
     specificMysteryOrder = prayer.rosary.specificMysteryOrder
+    specificMysteryCount = prayer.rosary.specificMysteryCount
+    useTraditionalMysteries = prayer.rosary.useTraditionalMysteries
     skipFifthDecade = prayer.rosary.skipFifthDecade
     includeApostlesCreed = prayer.rosary.includeApostlesCreed
     includeOpeningPrayers = prayer.rosary.includeOpeningPrayers
@@ -191,6 +197,8 @@ final class PresetEntry {
         mysterySelectionMode: mysterySelectionMode,
         specificMysteryGroup: specificMysteryGroup,
         specificMysteryOrder: specificMysteryOrder,
+        specificMysteryCount: specificMysteryCount,
+        useTraditionalMysteries: useTraditionalMysteries,
         skipFifthDecade: skipFifthDecade,
         includeApostlesCreed: includeApostlesCreed,
         includeOpeningPrayers: includeOpeningPrayers,

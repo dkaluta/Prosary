@@ -5,6 +5,7 @@ using Prosary.Persistence;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
 using Prosary.ViewModels;
+using Prosary.Localization;
 
 namespace Prosary.Views;
 
@@ -13,6 +14,7 @@ namespace Prosary.Views;
 public sealed partial class SearchPage : Page
 {
     public SearchViewModel ViewModel { get; }
+    public string CommunityLabel => Loc.Tr("home_widgets_community", "Community Prayers");
     private bool _focusRequested;
 
     public SearchPage()
@@ -36,6 +38,8 @@ public sealed partial class SearchPage : Page
         QueryBox.Focus(FocusState.Programmatic);
         QueryBox.SelectAll();
     }
+
+    private void OnOpenCommunity(object sender, RoutedEventArgs e) => Router.For(this).Navigate<RepositoryBrowserPage>();
 
     private void OnLibraryChanged() => DispatcherQueue.TryEnqueue(() =>
     {

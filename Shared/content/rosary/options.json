@@ -1,21 +1,6 @@
 {
   "options": [
     {
-      "key": "skipFifthDecade",
-      "kind": "toggle",
-      "name": "Skip the fifth decade",
-      "default": false,
-      "nameByLanguage": {
-        "he": "דילוג על העשור החמישי",
-        "ar": "تخطّي العقد الخامس",
-        "ru": "Пропустить пятую декаду",
-        "tl": "Laktawan ang ikalimang dekada",
-        "fr": "Passer la cinquième dizaine",
-        "it": "Salta la quinta decina",
-        "uk": "Пропустити п’яту декаду"
-      }
-    },
-    {
       "key": "invitatory",
       "kind": "toggle",
       "name": "Opening versicle (O God, come to my assistance)",
@@ -100,7 +85,7 @@
         "fr": "Prières initiales (Notre Père, trois Je vous salue Marie, Gloire au Père)",
         "it": "Preghiere iniziali (Padre nostro, tre Ave Maria, Gloria al Padre)",
         "uk": "Початкові молитви (Отче наш, тричі Радуйся, Маріє, Слава Отцю)",
-        "he": "תפילות פתיחה (אבינו שבשמים, שלוש תפילות שמחי מרים וכבוד לאב)"
+        "he": "תפילות פתיחה (אבינו שבשמים, שלוש תפילות שלום לך ושבח לאב)"
       }
     },
     {
@@ -110,7 +95,7 @@
       "default": false,
       "nameByLanguage": {
         "en": "Fatima Prayer after the opening Glory Be",
-        "he": "תפילת פאטימה אחרי תפילת “כבוד לאב” הפותחת",
+        "he": "תפילת פאטימה אחרי תפילת “שבח לאב” הפותחת",
         "ar": "صلاة فاطمة بعد صلاة «المجد للآب» الافتتاحية",
         "ru": "Фатимская молитва после начальной молитвы «Слава Отцу»",
         "tl": "Panalangin ng Fatima pagkatapos ng pambungad na Luwalhati sa Ama",
@@ -393,7 +378,7 @@
       "name": "Pray the Litany of Loreto afterward",
       "default": false,
       "nameByLanguage": {
-        "he": "אמירת התחנון למרים לאחר המחרוזת",
+        "he": "אמירת התחנון למרים לאחר מחרוזת הורדים",
         "ar": "صلاة طلبات العذراء بعد المسبحة",
         "ru": "Лоретанская литания после Розария",
         "tl": "Litanya sa Mahal na Birheng Maria pagkatapos ng Rosaryo",
@@ -408,7 +393,7 @@
       "name": "Rosary collect",
       "default": true,
       "nameByLanguage": {
-        "he": "מעתר המחרוזת",
+        "he": "מעתר מחרוזת הורדים",
         "ar": "صلاة ختام المسبحة",
         "ru": "Заключительная молитва Розария",
         "tl": "Pangwakas na panalangin ng Rosaryo",

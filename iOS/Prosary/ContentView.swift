@@ -3,13 +3,13 @@ import SwiftUI
 import UniformTypeIdentifiers
 
 struct ContentView: View {
-  @State private var selectedTab: AppSection = .pray
+  @State private var selectedTab: AppSection
   @State private var reminderActivation = ReminderActivation.shared
   @State private var prayPath: [AppRoute]
-  @State private var browsePath: [AppRoute] = []
+  @State private var homePath: [AppRoute] = []
   @State private var readingsPath: [AppRoute] = []
   @State private var readingsMode = "daily"
-  // Civil-date browsing belongs to this window and is shared by Pray and Readings.
+  // Civil-date browsing belongs to this window and is shared by Home, Pray and Readings.
   @State private var dateSelection = MacTodayDateSelection()
   @State private var searchPath: [AppRoute] = []
   @State private var routeLandingGeneration = 0
@@ -28,6 +28,11 @@ struct ContentView: View {
   #endif
 
   init(initialRoute: AppRoute? = nil, startsWithSidebarHidden: Bool = false) {
+    #if os(macOS)
+    _selectedTab = State(initialValue: .pray)
+    #else
+    _selectedTab = State(initialValue: initialRoute == nil ? .home : .pray)
+    #endif
     _prayPath = State(initialValue: initialRoute.map { [$0] } ?? [])
     _sidebarVisibility = State(initialValue: startsWithSidebarHidden ? .detailOnly : .all)
   }
@@ -152,6 +157,19 @@ struct ContentView: View {
   @ViewBuilder
   private func sectionView(_ section: AppSection) -> some View {
     switch section {
+    case .home:
+      NavigationStack(path: $homePath) {
+        #if os(macOS)
+        MacTodayView().appRouteDestinations(path: $homePath)
+        #else
+        HomeDashboardView(dateSelection: $dateSelection) { mode in
+          readingsMode = mode
+          readingsPath = []
+          selectedTab = .readings
+        }
+        .appRouteDestinations(path: $homePath)
+        #endif
+      }
     case .pray:
       NavigationStack(path: $prayPath) {
         HomeView(path: $prayPath, dateSelection: $dateSelection)
@@ -159,11 +177,6 @@ struct ContentView: View {
       }
       // A replaced stack needs a new identity so AppKit's Back control and the path agree.
       .id(routeLandingGeneration)
-    case .browse:
-      NavigationStack(path: $browsePath) {
-        RepositoryBrowserView(presentedAsSheet: false)
-          .appRouteDestinations(path: $browsePath)
-      }
     case .readings:
       NavigationStack(path: $readingsPath) {
         #if os(macOS)
@@ -184,8 +197,8 @@ struct ContentView: View {
 
   private var activePath: Binding<[AppRoute]> {
     switch selectedTab {
+    case .home: $homePath
     case .pray: $prayPath
-    case .browse: $browsePath
     case .readings: $readingsPath
     case .search: $searchPath
     }
@@ -225,13 +238,15 @@ struct ContentView: View {
       readingsMode = link == .calendar ? "calendar" : "daily"
       selectedTab = .readings
       readingsPath = []
-    case .today, .library:
-      if case .today = link { dateSelection.select(Date()) }
+    case .today:
+      dateSelection.select(Date())
+      selectedTab = .home
+      homePath = []
+    case .library:
       routeLandingGeneration += 1
       pendingLandingRoute = nil
       selectedTab = .pray
       prayPath = []
-      // A fresh HomeView starts at the actual local day, even after date browsing.
     case .prayer(let id): land(.prayer(id: id))
     case .rosary:
       Task {

@@ -21,6 +21,8 @@ import re
 from peshitta_reading_source import paired_text
 from reading_appointment_reviews import reviewed_appointment, reviewed_references
 from reading_source_numbering_reviews import reviewed_numbering
+from reading_appointment_keys import split_passage_key, registry_datasets, passage_key
+from reading_calendar_numbering import profile_for, chapter_system, standard_units
 
 ROOT = Path(__file__).resolve().parents[2]
 
@@ -74,13 +76,49 @@ def audit() -> dict:
         report["passagesWithAnyEdition"] == len(passages), "any-edition count mismatch"
     )
     check(set(unavailable) <= set(appointments), "unappointed unavailable key")
+    registered = registry_datasets(builder.DATA)
+    check(set(report.get("readingDatasets", {})) == set(registered),
+          "coverage omitted or invented a registered reading table")
+    for identifier, registration in registered.items():
+        path = builder.DATA / (registration["file"] + ".json")
+        table = json.loads(path.read_text()) if path.exists() else {}
+        rows = [reading for day in table.get("days", {}).values() for reading in day.get("readings", [])]
+        keys = {passage_key(row["full"], identifier) for row in rows}
+        actual = report.get("readingDatasets", {}).get(identifier, {})
+        expected = {"file": registration["file"], "calendarIds": sorted(registration["calendarIds"]),
+                    "hasTable": path.exists(), "appointmentRows": len(rows), "uniqueAppointments": len(keys),
+                    "uniquePsalmAppointments": sum(split_passage_key(key)[1].startswith("Psalm ") for key in keys),
+                    "sourceURL": table.get("sourceUrl"), "sourceSHA256": table.get("sourceSha256")}
+        check(all(actual.get(field) == value for field, value in expected.items()),
+              f"registered table provenance or appointment inventory differs: {identifier}")
+        for eid in editions:
+            missing_keys = [key for key in keys if eid not in passages.get(key, {})]
+            counts = actual.get("coverage", {}).get(eid, {})
+            check(counts.get("available") == len(keys) - len(missing_keys)
+                  and counts.get("unavailable") == len(missing_keys)
+                  and counts.get("reasons") == dict(collections.Counter(
+                      unavailable.get(key, {}).get(eid, "no available source") for key in missing_keys)),
+                  f"registered table per-edition coverage differs: {identifier}/{eid}")
     summary = {eid: collections.Counter() for eid in editions}
     contexts = {}
     routes = collections.Counter()
     verse_count = 0
     source_unique = collections.defaultdict(set)
+    from reading_supplement_audit import audit_psalm_supplements
+    try:
+        routes.update(audit_psalm_supplements(data, appointments, builder))
+    except ValueError as error:
+        check(False, str(error))
+    from arabic_daily_psalms import default_resolver as arabic_source_resolver
+    arabic = arabic_source_resolver()
     from hebrew_deuterocanon import load_books
     supplements, _ = load_books()
+    from greek_daily_psalms import default_resolver as greek_source_resolver
+    greek = greek_source_resolver()
+    from martini_daily_psalms import default_resolver as martini_source_resolver
+    martini = martini_source_resolver()
+    from peshitta_daily_psalms import default_resolver as peshitta_source_resolver
+    bounded_peshitta = peshitta_source_resolver()
     supplement_rows = {(source["book"], chapter["number"], row["verse"]):
         {"chapter":chapter["number"], "verse":row["verse"],
          "text":builder.preserve_divine_name_accents(row["text"]),
@@ -97,7 +135,7 @@ def audit() -> dict:
             set(available) | set(missing) == set(editions),
             f"edition availability complement mismatch {key}",
         )
-        scope, citation = key.split("|", 1)
+        scope, citation, dataset = split_passage_key(key)
         book_name = citation.split(":", 1)[0].rsplit(" ", 1)[0]
         book = builder.BOOKS.get(book_name)
         if available:
@@ -108,6 +146,8 @@ def audit() -> dict:
                 routes["exactEditionReview"] += 1
             elif numbering := reviewed_numbering(key, calendar_contexts):
                 routes[numbering["sourceSystem"]] += 1
+            elif dataset is not None and book == "PSA":
+                routes["registeredCalendarPsalmProfile"] += 1
             else:
                 routes["legacyAgreement"] += 1
         for context in calendar_contexts:
@@ -141,7 +181,71 @@ def audit() -> dict:
             summary[eid][scope] += 1
             summary[eid]["passages"] += 1
             review = reviewed_appointment(key, calendar_contexts)
-            if review:
+            greek_review = greek.reviews.get(key) if eid == "brenton-lxx" and descriptor is not None else None
+            martini_review = martini.reviews.get(key) if eid == "martini" and descriptor is not None else None
+            martini_scoped = eid == "martini" and descriptor is not None and dataset is not None and book == "PSA"
+            peshitta_review = bounded_peshitta.reviews.get(key) if eid == "peshitta-1905" else None
+            if martini_scoped:
+                calendar_profile = profile_for(dataset, calendar_contexts)
+                _, spans = builder.parse_citation(citation, expand_subverses=True,
+                    psalm_chapter_system=chapter_system(calendar_profile))
+                requested, source_whole = standard_units(citation, spans, calendar_profile)
+                wanted = set(requested)
+                expected_native, covered = set(), set()
+                for chapter, group in martini.whole_standard_groups.items():
+                    if group <= wanted:
+                        expected_native.update(martini.whole_chapters[chapter])
+                        covered.update(group)
+                remaining = wanted - covered
+                for coordinate, targets in martini.boundaries.items():
+                    if targets & remaining:
+                        expected_native.add(coordinate)
+                        covered.update(targets)
+                check(wanted <= covered, f"Italian scoped Psalm exceeds inspected source boundaries {key}")
+                check([(row["chapter"], row["verse"]) for row in rows] == sorted(expected_native),
+                      f"Italian scoped Psalm native source sequence changed {key}")
+                check(descriptor.get("book") == "PSA" and descriptor.get("isComplete") is True
+                      and descriptor.get("sourceURL") == "https://parolaviva.art/opendata"
+                      and "Giovanni Novelli / Parola Viva" in descriptor.get("attribution", ""),
+                      f"Italian scoped Psalm source credit changed {key}")
+                if source_whole or covered - wanted:
+                    check(key in whole, f"Italian scoped Psalm wider units lack a notice {key}")
+            if martini_review:
+                check(bool(calendar_contexts) and calendar_contexts <= set(martini_review["contexts"]),
+                      f"Italian supplement escaped its calendar review {key}")
+                check([(row["chapter"], row["verse"]) for row in rows]
+                      == [tuple(ref) for ref in martini_review["sourceReferences"]],
+                      f"Italian supplement source sequence changed {key}")
+                check(descriptor.get("book") == "PSA" and descriptor.get("isComplete") is True
+                      and descriptor.get("sourceURL") == "https://parolaviva.art/opendata"
+                      and "Giovanni Novelli / Parola Viva" in descriptor.get("attribution", ""),
+                      f"Italian supplement source credit changed {key}")
+                if martini_review["includesWholeVerses"]:
+                    check(key in whole, f"missing Italian whole-unit notice {key}")
+            if greek_review:
+                chapter = greek_review["sourceChapter"]
+                labels = greek_review["sourceLabels"]
+                check(bool(calendar_contexts) and calendar_contexts <= set(greek_review["contexts"]),
+                      f"Greek supplement escaped its calendar review {key}")
+                check([(row["chapter"], str(row["verse"])) for row in rows]
+                      == [(chapter, label) for label in labels if label.isdigit()],
+                      f"Greek supplement source sequence changed {key}")
+                expected_blocks = []
+                for label in labels:
+                    block_id = f"grcbrent-psa-{chapter}-{label}"
+                    expected_blocks.append({"id": block_id, "kind": "witness", "text": greek.rows[chapter, label],
+                        "printedLabel": label, "addresses": [{"chapter": chapter, "verse": int(label[:-1]), "part": "a"}]}
+                        if label.endswith("a") else {"id": block_id, "kind": "verse", "chapter": chapter, "verse": int(label)})
+                check(descriptor.get("book") == "PSA" and descriptor.get("contentBlocks") == expected_blocks
+                      and descriptor.get("isComplete") == greek_review["isComplete"]
+                      and descriptor.get("sourceURL") == f"https://ebible.org/grcbrent/PSA{chapter:03d}.htm",
+                      f"Greek supplement printed source blocks changed {key}")
+                if greek_review["includesWholeVerses"]:
+                    check(key in whole, f"missing Greek whole-verse notice {key}")
+            elif (review and not martini_review and not peshitta_review
+                  and not (eid == "jesuit-arabic-1897" and descriptor is not None)
+                  and not (eid == "peshitta-1905" and not reviewed_references(review, eid)
+                           and reviewed_numbering(key, calendar_contexts) is not None)):
                 if review["includesWholeVerses"]:
                     check(key in whole, f"missing reviewed whole-verse notice {key}")
                 check(
@@ -160,8 +264,51 @@ def audit() -> dict:
                 ref = (source_book, row["chapter"], row["verse"])
                 check(ref not in seen, f"duplicate source row {key}/{eid}/{ref}")
                 seen.add(ref)
+                if descriptor is not None and eid == "jesuit-arabic-1897":
+                    check(row == {"chapter": ref[1], "verse": ref[2], "text": arabic.rows.get((ref[1], ref[2]))},
+                          f"Arabic Psalm printed source row changed {key}/{ref}")
+                    source_unique[eid].add(ref)
+                    verse_count += 1
+                    summary[eid]["verseEntries"] += 1
+                    continue
                 if descriptor is not None and eid == "masoretic-delitzsch":
                     check(row == supplement_rows.get(ref), f"reviewed supplement source unit changed {key}/{eid}/{ref}")
+                    source_unique[eid].add(ref)
+                    verse_count += 1
+                    summary[eid]["verseEntries"] += 1
+                    continue
+                if descriptor is not None and eid == "brenton-lxx":
+                    check(row == {"chapter": ref[1], "verse": ref[2], "text": greek.rows.get((ref[1], str(ref[2])))},
+                          f"reviewed Greek supplement source unit changed {key}/{ref}")
+                    source_unique[eid].add(ref)
+                    verse_count += 1
+                    summary[eid]["verseEntries"] += 1
+                    continue
+                if martini_review:
+                    check(row == {"chapter": ref[1], "verse": ref[2],
+                                  "text": martini.rows.get((ref[1], ref[2]))},
+                          f"reviewed Italian supplement source unit changed {key}/{ref}")
+                    source_unique[eid].add(ref)
+                    verse_count += 1
+                    summary[eid]["verseEntries"] += 1
+                    continue
+                if martini_scoped:
+                    check(row == {"chapter": ref[1], "verse": ref[2],
+                                  "text": martini.rows.get((ref[1], ref[2]))},
+                          f"Italian scoped Psalm literal source wording changed {key}/{ref}")
+                    source_unique[eid].add(ref)
+                    verse_count += 1
+                    summary[eid]["verseEntries"] += 1
+                    continue
+                if peshitta_review:
+                    primary, syriac = paired_text(bounded_peshitta.rows.get(ref[2], ""))
+                    check(ref[1] == 118 and row == {"chapter": 118, "verse": ref[2],
+                        "text": primary, "transliteratedText": syriac},
+                        f"Peshitta bounded Psalm literal source scripts changed {key}/{ref}")
+                    check([row["verse"] for row in rows] == peshitta_review["sourceVerses"],
+                          f"Peshitta bounded Psalm source sequence changed {key}")
+                    check(not peshitta_review["includesWholeVerses"] or key in whole,
+                          f"Peshitta bounded Psalm wider units lack a notice {key}")
                     source_unique[eid].add(ref)
                     verse_count += 1
                     summary[eid]["verseEntries"] += 1

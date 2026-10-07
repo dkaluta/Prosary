@@ -21,8 +21,8 @@
           "description": "Basename of this calendar's feast JSON."
         },
         "readingsFile": {
-          "type": "string",
-          "description": "Basename of this calendar's citation JSON. LPJ and General Roman intentionally share readings-roman."
+          "type": "string?",
+          "description": "Basename of this calendar's citation JSON. LPJ and General Roman intentionally share readings-roman. Provisional calendars without supplied readings omit this field and never borrow another calendar’s readings."
         },
         "name": {
           "type": "string",
@@ -57,7 +57,8 @@
       "ugcc",
       "ugcc-julian",
       "syriac",
-      "maronite"
+      "maronite",
+      "mission-provisional"
     ],
     "legacyMigration": "Persisted roman-he maps to roman; roman-he is not a selectable calendar and has no dataset."
   },
@@ -203,6 +204,11 @@
       "readings-stjames": "Saint James Vicariate supplied bilingual 2026–2027 calendar; its Great Advent and Vicariate-wide Mass appointments, including printed additional/alternative groups",
       "readings-franciscan-conventual-italy": "Province of Saint Anthony of Padua, OFM Conventual, Italy: annual Advent2025–Advent2026 Ordo. Only explicit printed citations; undeclared Seraphic Missal and ferial references stay absent.",
       "readings-augustinian-discalced": "Order of Discalced Augustinians general 2026 Ordo. First printed general/day Mass; national variants excluded."
+    },
+    "runtimeContext": {
+      "field": "readingDatasetId",
+      "type": "optional string",
+      "description": "Derived from the actual loaded readingsFile basename after calendar and Pascha resolution, and frozen into each returned citation at the provider request boundary. This field is transient, not read from authored/localized citation JSON. A later settings change cannot reinterpret an already pending passage request. LPJ and Roman capture roman; fully Gregorian UGCC captures ugcc-gregorian."
     }
   },
   "languagePreference": {
@@ -274,5 +280,23 @@
     "controls": "Previous day arrow, centered formatted-date button, next day arrow. Date button opens a native calendar with a Today action inside its popup.",
     "supplementalDayRow": "Hidden on every Sunday. On weekdays, lpj/roman use the modern Roman seasonal day; roman1962 and all Eastern calendars show the localized civil day and month, never Ordinary Time.",
     "bounds": "Respect each native picker’s supported civil-date range; Android uses 1900–2100. Missing date or month data hides only its corresponding row."
+  },
+  "missionProvisionalDataset": {
+    "file": "feasts-mission-provisional.json",
+    "calendarId": "mission-provisional",
+    "provisional": true,
+    "scope": "Mission of St. Gamaliel",
+    "coverage": [
+      "2026-01-01",
+      "2026-12-31"
+    ],
+    "source": "Supplied Urtotho calendar, © Evangelizo",
+    "eventCount": 475,
+    "dateCount": 365,
+    "readingsFile": null,
+    "categories": "Only explicit source CATEGORIES; initial ICS has none.",
+    "sourceRecurrence": "Retained for provenance; yearly RRULE is never expanded for movable feasts.",
+    "sections": "CalendarTextSection[] with exact source sections; reflectionByLanguage exact-language only.",
+    "spelling": "Reviewed display correction map retains exact sourceTitleByLanguage/sourceDescriptionByLanguage and UID."
   }
 }

@@ -34,6 +34,7 @@ public sealed class PrayerEngine
         // The Rosary builds from the rosary bundle's devotion.json like every other devotion —
         // RosaryOptions stays the persisted shape (no data migration; the bespoke editor keeps
         // writing it) and is mapped onto the bundle's option values here.
+        PrayerKind.Rosary when prayer.Rosary.MysterySelectionMode == MysterySelectionMode.ChooseOnLaunch => [],
         PrayerKind.Rosary => BuildCustomDevotionSteps(
             "rosary", prayer.ResolvedLanguageCode, variantId: null,
             optionOverrides: RosaryOptionValues(prayer.Rosary), rosaryOptions: prayer.Rosary),
@@ -55,11 +56,12 @@ public sealed class PrayerEngine
     public IReadOnlyList<MysteryGroup> ResolveMysteryGroups(Prayer prayer) => ResolveMysteryGroups(prayer.Rosary);
 
     public IReadOnlyList<MysteryGroup> ResolveMysteryGroups(RosaryOptions rosary) =>
-        ResolveMysteryGroups(rosary, _calendar.GetMysteryGroupForToday());
+        ResolveMysteryGroups(rosary, _calendar.GetMysteryGroupForToday(rosary.UseTraditionalMysteries));
 
     private static IReadOnlyList<MysteryGroup> ResolveMysteryGroups(RosaryOptions rosary, MysteryGroup todaysGroup) =>
         rosary.MysterySelectionMode switch
         {
+            MysterySelectionMode.ChooseOnLaunch => [],
             MysterySelectionMode.Specific or MysterySelectionMode.SingleMystery => [rosary.SpecificMysteryGroup],
             MysterySelectionMode.FifteenMystery => [MysteryGroup.Joyful, MysteryGroup.Sorrowful, MysteryGroup.Glorious],
             MysterySelectionMode.TwentyMystery =>
@@ -85,7 +87,6 @@ public sealed class PrayerEngine
         ["openingPrayers"] = rosary.IncludeOpeningPrayers ? "true" : "false",
         ["openingFatimaPrayer"] = rosary.IncludeOpeningFatimaPrayer ? "true" : "false",
         ["presenterMode"] = rosary.PresenterMode ? "true" : "false",
-        ["skipFifthDecade"] = rosary.SkipFifthDecade ? "true" : "false",
         ["fatimaPrayer"] = rosary.IncludeFatimaPrayer ? "true" : "false",
         ["eternalRest"] = CamelCase(rosary.EternalRestForDeceased.ToString()),
         ["antiphon"] = CamelCase(rosary.MarianAntiphon.ToString()),
@@ -194,7 +195,7 @@ public sealed class PrayerEngine
         BuildCustomDevotionSteps(
             bundleId, languageCode,
             _calendar.IsEasterSeasonForToday(), _calendar.GetSeasonalMarianAntiphonForToday(), variantId,
-            optionOverrides, rosaryOptions, _calendar.GetMysteryGroupForToday(), dayIndex,
+            optionOverrides, rosaryOptions, _calendar.GetMysteryGroupForToday(rosaryOptions?.UseTraditionalMysteries ?? false), dayIndex,
             _calendar.IsLentForToday());
 
     /// <summary>The only builder for every <see cref="PrayerKind.Custom"/> devotion — reads
@@ -365,14 +366,14 @@ public sealed class PrayerEngine
         if (entry.Repeat is not { } count || count <= 1)
         {
             return [new RosaryStep(title, subtitle, body, Acclamation: acclamation, IsScripture: isScripture,
-                TransliteratedBody: transliteratedBody, ImageOverrideKey: entry.ImageKey)];
+                TransliteratedBody: transliteratedBody, ImageOverrideKey: entry.ImageKey) { PrayerKey = entry.BodyKey }];
         }
 
         return Enumerable.Range(1, count)
             .Select(h => new RosaryStep(
                 $"{title} {Counter(h, count, languageCode)}", subtitle, body,
                 Acclamation: acclamation, IsScripture: isScripture,
-                TransliteratedBody: transliteratedBody, ImageOverrideKey: entry.ImageKey))
+                TransliteratedBody: transliteratedBody, ImageOverrideKey: entry.ImageKey) { PrayerKey = entry.BodyKey })
             .ToList();
     }
 
@@ -505,11 +506,8 @@ public sealed class PrayerEngine
             var groupTitle = Resolve(groupKey);
             var mysteries = MysteryCatalog.ForGroup(group);
             IEnumerable<int> indices = rosary.MysterySelectionMode == MysterySelectionMode.SingleMystery
-                ? [rosary.SpecificMysteryOrder - 1]
+                ? rosary.SelectedMysteryIndices
                 : Enumerable.Range(0, mysteries.Count);
-            if (rosary.MysterySelectionMode != MysterySelectionMode.SingleMystery
-                && (rosary.SkipFifthDecade || optionValues?.GetValueOrDefault("skipFifthDecade") == "true"))
-                indices = indices.Where(index => mysteries[index].Order != 5);
 
             foreach (var d in indices)
             {

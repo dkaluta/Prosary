@@ -31,6 +31,7 @@ struct PrayerEngine {
   func buildSteps(for prayer: Prayer) -> [RosaryStep] {
     switch prayer.kind {
     case .rosary:
+      guard prayer.rosary.mysterySelectionMode != .chooseOnLaunch else { return [] }
       // The Rosary builds from the rosary bundle's devotion.json like every other devotion —
       // RosaryOptions stays the persisted shape (no data migration; the bespoke editor keeps
       // writing it) and is mapped onto the bundle's option values here.
@@ -60,6 +61,7 @@ struct PrayerEngine {
 
   func resolveMysteryGroups(rosary: RosaryOptions) -> [MysteryGroup] {
     switch rosary.mysterySelectionMode {
+    case .chooseOnLaunch: return []
     case .specific, .singleMystery:
       return [rosary.specificMysteryGroup]
     case .fifteenMystery:
@@ -67,7 +69,7 @@ struct PrayerEngine {
     case .twentyMystery:
       return [.joyful, .luminous, .sorrowful, .glorious]
     case .todaysMysteries:
-      return [calendar.mysteryGroupToday()]
+      return [calendar.mysteryGroupToday(useTraditionalMysteries: rosary.useTraditionalMysteries)]
     }
   }
 
@@ -87,7 +89,6 @@ struct PrayerEngine {
       "openingPrayers": rosary.includeOpeningPrayers ? "true" : "false",
       "openingFatimaPrayer": rosary.includeOpeningFatimaPrayer ? "true" : "false",
       "presenterMode": rosary.presenterMode ? "true" : "false",
-      "skipFifthDecade": rosary.skipFifthDecade ? "true" : "false",
       "fatimaPrayer": rosary.includeFatimaPrayer ? "true" : "false",
       "eternalRest": rosary.eternalRestForDeceased.rawValue,
       "antiphon": rosary.marianAntiphon.rawValue,
@@ -323,14 +324,14 @@ struct PrayerEngine {
         RosaryStep(
           title: title, subtitle: subtitle, body: body, acclamation: acclamation,
           isScripture: isScripture, transliteratedBody: transliteratedBody,
-          imageOverrideKey: entry.imageKey)
+          imageOverrideKey: entry.imageKey, prayerKey: entry.bodyKey)
       ]
     }
     return (1...count).map { h in
       RosaryStep(
         title: "\(title) \(counter(h, of: count, languageCode: languageCode))", subtitle: subtitle, body: body, acclamation: acclamation,
         isScripture: isScripture, transliteratedBody: transliteratedBody,
-        imageOverrideKey: entry.imageKey)
+        imageOverrideKey: entry.imageKey, prayerKey: entry.bodyKey)
     }
   }
 
@@ -477,11 +478,8 @@ struct PrayerEngine {
       let groupTitle = resolve(groupKey)
       let mysteries = MysteryCatalog.forGroup(group)
       let indices = rosary.mysterySelectionMode == .singleMystery
-        ? [rosary.specificMysteryOrder - 1]
-        : mysteries.indices.filter { index in
-          !(bundleId == "rosary" && (rosary.skipFifthDecade || optionValues["skipFifthDecade"] == "true")
-            && mysteries[index].order == 5)
-        }
+        ? rosary.selectedMysteryIndices
+        : Array(mysteries.indices)
 
       for d in indices {
         let mystery = mysteries[d]

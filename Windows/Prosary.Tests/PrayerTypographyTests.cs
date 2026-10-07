@@ -6,6 +6,16 @@ namespace Prosary.Tests;
 
 public class PrayerTypographyTests
 {
+    [Theory]
+    [InlineData("ru")]
+    [InlineData("uk")]
+    public void CyrillicScriptureKeepsTheCrossPlatformReadingSize(string language)
+    {
+        Assert.Equal(19, PrayerTypography.ResolveBodyFontSize(language, isScripture: true));
+        Assert.Equal(17, PrayerTypography.ResolveBodyFontSize(language, isScripture: false));
+        Assert.Equal(19, PrayerTypography.ResolveBodyFontSize("en", isScripture: true, PrayerTypography.Script.Cyrillic));
+    }
+
     [Fact]
     public void UkrainianUsesTheCyrillicTypefaceBeforeTextIsAvailable()
     {

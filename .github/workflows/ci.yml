@@ -19,7 +19,7 @@ jobs:
   format:
     name: Bundle format (validator rules + every shipped bundle)
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v7
       - uses: astral-sh/setup-uv@v6
@@ -29,6 +29,18 @@ jobs:
         run: uv run --script Shared/tools/reflow-prayers.py --check
       - name: Portable packs stay canonical without duplicate native artwork
         run: uv run --script Shared/tools/test-asset-deduplication.py
+      - name: Supplied prayer corrections retain their exact source text
+        run: uv run --script Shared/tools/test-contributor-prayer-corrections.py
+      - uses: actions/cache@v4
+        with:
+          path: Shared/tools/.scripture-cache
+          key: scripture-psalm-sources-${{ hashFiles('Shared/tools/reading-text-sources.json') }}
+          restore-keys: |
+            scripture-sources-${{ hashFiles('Shared/tools/reading-text-sources.json') }}
+      - name: Pinned source fetch retries preserve integrity failures
+        run: uv run --script Shared/tools/test-psalm-source-cache.py
+      - name: Prepare pinned witnesses for Psalm regression audits
+        run: uv run --script Shared/tools/prepare-psalm-source-cache.py --fetch
       - name: Offline readings preserve sources, verse mappings and native copies
         run: |
           uv run --script Shared/tools/test-reading-versification.py
@@ -37,6 +49,17 @@ jobs:
           uv run --script Shared/tools/test-reading-step-mapping.py
           uv run --script Shared/tools/test-reading-nabre-mapping.py
           uv run --script Shared/tools/test-reading-psalm-mapping.py
+          uv run --script Shared/tools/test-reading-calendar-coverage.py
+          uv run --script Shared/tools/test-reading-supplement-audit.py
+          uv run --script Shared/tools/test-douay-rheims-source-corrections.py
+          uv run --script Shared/tools/test-douay-rheims-psalm-boundaries.py
+          uv run --script Shared/tools/test-martini-daily-psalms.py
+          uv run --script Shared/tools/test-arabic-daily-psalms.py
+          uv run --script Shared/tools/test-peshitta-psalm-review.py
+          uv run --script Shared/tools/test-peshitta-daily-psalms.py
+          uv run --script Shared/tools/test-greek-daily-psalms.py
+          uv run --script Shared/tools/test-greek-whole-psalms.py
+          uv run --script Shared/tools/test-brenton-psalm-boundaries.py
           uv run --script Shared/tools/test-reading-standard-bridge.py
           uv run --script Shared/tools/test-nabre-versification.py
           uv run --script Shared/tools/test-nabre-versification-fetch.py
@@ -51,6 +74,7 @@ jobs:
           uv run --script Shared/tools/test-scripture-source-notes.py
           uv run --script Shared/tools/test-bible-source-structure.py
           uv run --script Shared/tools/test-peshitta-readings.py
+          uv run --script Shared/tools/test-peshitta-partial-chapters.py
           uv run --script Shared/tools/test-greek-readings.py
           uv run --script Shared/tools/test-hebrew-ocr-baseline.py
           uv run --script Shared/tools/test-1maccabees-ocr-baseline.py
@@ -82,6 +106,8 @@ jobs:
           uv run --script Shared/tools/fetch-feasts.py --localize-only --sync
           uv run --script Shared/tools/test-syriac-observances.py
           uv run --script Shared/tools/test-syriac-hebrew-calendar.py
+          uv run --script Shared/tools/test-mission-calendar.py
+          uv run --script Shared/tools/test-imported-calendars.py
           uv run --script Shared/tools/fetch-readings.py --self-test
           uv run --script Shared/tools/fetch-readings.py --localize-only --sync
           uv run --script Shared/tools/import-ugcc-calendar.py --self-test

@@ -140,6 +140,9 @@ struct AboutView: View {
           Text("about.ukrainianPrayerSources")
             .font(.footnote)
             .foregroundStyle(.secondary)
+          Text("about.missionPrayerCorrections")
+            .font(.footnote)
+            .foregroundStyle(.secondary)
           Link(String(localized: "about.ukrainianPrayerbookLink", defaultValue: "Ukrainian prayerbook", bundle: UILanguage.bundle, locale: UILanguage.locale),
                destination: URL(string: "https://rkc.org.ua/duhovnist/molytovnyk/")!)
           Link(String(localized: "about.ukrainianRosarySourceLink", defaultValue: "MIR Medjugorje — Ukrainian Rosary prayer", bundle: UILanguage.bundle, locale: UILanguage.locale),

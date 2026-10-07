@@ -52,6 +52,8 @@ data class PresetEntity(
     // 1-based index into MysteryCatalog.forGroup(specificMysteryGroup); used only when
     // mysterySelectionMode is SingleMystery. Defaults to 1 for existing rows.
     val specificMysteryOrder: Int = 1,
+    val specificMysteryCount: Int = 1,
+    val useTraditionalMysteries: Boolean = false,
     val skipFifthDecade: Boolean = false,
     val includeApostlesCreed: Boolean = true,
     val includeOpeningPrayers: Boolean = true,
@@ -116,6 +118,8 @@ data class PresetEntity(
                 specificMysteryGroup = runCatching { MysteryGroup.valueOf(specificMysteryGroup) }
                     .getOrDefault(MysteryGroup.Joyful),
                 specificMysteryOrder = specificMysteryOrder,
+                specificMysteryCount = specificMysteryCount,
+                useTraditionalMysteries = useTraditionalMysteries,
                 skipFifthDecade = skipFifthDecade,
                 includeApostlesCreed = includeApostlesCreed,
                 includeOpeningPrayers = includeOpeningPrayers,
@@ -162,6 +166,8 @@ data class PresetEntity(
                 mysterySelectionMode = prayer.rosary.mysterySelectionMode.name,
                 specificMysteryGroup = prayer.rosary.specificMysteryGroup.name,
                 specificMysteryOrder = prayer.rosary.specificMysteryOrder,
+                specificMysteryCount = prayer.rosary.specificMysteryCount,
+                useTraditionalMysteries = prayer.rosary.useTraditionalMysteries,
                 skipFifthDecade = prayer.rosary.skipFifthDecade,
                 includeApostlesCreed = prayer.rosary.includeApostlesCreed,
                 includeOpeningPrayers = prayer.rosary.includeOpeningPrayers,

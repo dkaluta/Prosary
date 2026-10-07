@@ -88,13 +88,13 @@ internal static class DesktopWindowChrome
         menu.Items.Add(file);
 
         var view = new MenuBarItem { Title = Loc.Tr("desktop_menu_view", "View") };
+        view.Items.Add(Item("home_widgets_title", "Home", () => DesktopWindowManager.ShowLibrary("home")));
         view.Items.Add(Item("desktop_show_library", "Show Library", () => DesktopWindowManager.ShowLibrary(), VirtualKey.L));
         view.Items.Add(Item("desktop_today", "Today", () => DesktopWindowManager.ShowLibrary("today")));
         view.Items.Add(Item("readings_title", "Readings", () => DesktopWindowManager.ShowLibrary("readings")));
         view.Items.Add(Item("desktop_gallery", "Gallery", () => DesktopWindowManager.ShowLibrary("gallery")));
         view.Items.Add(Item("BasicPrayersTitle/Text", "Basic Prayers", () => DesktopWindowManager.ShowLibrary("basic")));
         view.Items.Add(Item("SearchTitle/Text", "Search", () => DesktopWindowManager.ShowLibrary("search"), VirtualKey.F));
-        view.Items.Add(Item("desktop_community", "Community", () => DesktopWindowManager.ShowLibrary("community")));
         view.Items.Add(new MenuFlyoutSeparator());
         view.Items.Add(Item("desktop_full_screen", "Full Screen", () =>
         {

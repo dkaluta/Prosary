@@ -82,8 +82,9 @@ input does not distinguish held-key repeats from separate presses.
 
 Prayer language and interface language are independent. Settings also select the
 Rosary mystery group, a devotion's form, and its day where applicable.
-The Rosary's “Skip the fifth decade” option omits that complete decade while retaining
-the closing prayers. It defaults off and is also available as `--skip-fifth-decade`.
+The Rosary always includes all five decades. The former saved fifth-decade skip setting
+is ignored. Press `]` to jump to the next mystery, including from the fifth decade to
+the closing prayers; `[` returns to the preceding mystery.
 Changing prayer configuration starts that sequence at its first step. Current progress and
 the effective group/form/day and liturgical date are saved atomically after changes,
 and restored on the next launch. State lives at `$XDG_STATE_HOME/prosary/state`, or

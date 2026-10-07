@@ -257,6 +257,10 @@ public partial class SettingsViewModel : ObservableObject
     partial void OnShowTodayIntentionChanged(bool value) => AppSettings.SetShowTodayIntention(value);
 
     [ObservableProperty]
+    private bool _showPopeIntentionInPrayers = AppSettings.ShowPopeIntentionInPrayers;
+    partial void OnShowPopeIntentionInPrayersChanged(bool value) => AppSettings.SetShowPopeIntentionInPrayers(value);
+
+    [ObservableProperty]
     private bool _showTodayReadings = AppSettings.ShowTodayReadings;
 
     partial void OnShowTodayReadingsChanged(bool value) => AppSettings.SetShowTodayReadings(value);

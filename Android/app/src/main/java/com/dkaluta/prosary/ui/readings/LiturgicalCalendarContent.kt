@@ -17,11 +17,17 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
+import androidx.compose.material3.DatePicker
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.rememberDatePickerState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.dkaluta.prosary.R
@@ -34,6 +40,7 @@ import java.time.LocalDate
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LiturgicalCalendarContent(browsingDate: TodayBrowsingDate, onSelectDate: () -> Unit) {
     val context = LocalContext.current
@@ -41,6 +48,28 @@ fun LiturgicalCalendarContent(browsingDate: TodayBrowsingDate, onSelectDate: () 
     val language = TodayTranslationLanguage.resolve(locale.toLanguageTag())
     val date = browsingDate.selectedDate(LocalDate.now())
     val start = date.withDayOfMonth(1)
+    val picker = rememberDatePickerState(
+        initialSelectedDateMillis = TodayDateSelection.pickerMillis(date),
+        yearRange = TodayDateSelection.earliest.year..TodayDateSelection.latest.year,
+    )
+    LaunchedEffect(date) {
+        val millis = TodayDateSelection.pickerMillis(date)
+        if (picker.selectedDateMillis != millis) {
+            picker.selectedDateMillis = millis
+            picker.displayedMonthMillis = millis
+        }
+    }
+    LaunchedEffect(picker) {
+        snapshotFlow { picker.selectedDateMillis }.collect { millis ->
+            if (millis != null) {
+                val selected = TodayDateSelection.fromPickerMillis(millis)
+                if (selected != browsingDate.selectedDate(LocalDate.now())) {
+                    browsingDate.selectedEpochDay = selected.toEpochDay()
+                    onSelectDate()
+                }
+            }
+        }
+    }
     val rows = remember(start, TodayInfoStore.selectedCalendarId, AppSettings.easternPaschaStyle) {
         (1..start.lengthOfMonth()).mapNotNull { number ->
             val day = start.withDayOfMonth(number)
@@ -66,6 +95,8 @@ fun LiturgicalCalendarContent(browsingDate: TodayBrowsingDate, onSelectDate: () 
             }
             Text(TodayInfoStore.calendars.firstOrNull { it.id == TodayInfoStore.selectedCalendarId }?.displayName ?: "",
                 Modifier.padding(horizontal = 24.dp, vertical = 8.dp), style = MaterialTheme.typography.labelMedium)
+            DatePicker(state = picker, title = null, headline = null, showModeToggle = true,
+                modifier = Modifier.fillMaxWidth().testTag("calendar.monthPicker"))
         }
         if (rows.isEmpty()) item {
             Text(stringResource(R.string.calendar_no_observances), Modifier.padding(24.dp))

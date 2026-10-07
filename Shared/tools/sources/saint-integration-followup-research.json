@@ -1,0 +1,807 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-03",
+  "timezone": "Asia/Jerusalem",
+  "scope": "Research only: small existing source-language passages and inspected exact native calendar leads; no native import, release, contact or broad recrawl.",
+  "sourceSnapshots": [
+    {
+      "path": "Shared/tools/sources/catholic-hebrew-saints.json",
+      "sha256": "0cc9cb723a1ac6b18d802637abafa5edca5f9ee448c732c408680ed59d2d216b"
+    },
+    {
+      "path": "Shared/tools/sources/catholic-saints-ru.json",
+      "sha256": "1c02b1a6c886b065dd8fbf96ff74fec7b54dbac350616678d9b7a7d7a7037167"
+    },
+    {
+      "path": "Shared/tools/sources/rkc-saints-uk.json",
+      "sha256": "903261fc616fc781eefe1154df0540a83dc07d98efb4ca4d085484d115dabffd"
+    },
+    {
+      "path": "Shared/tools/sources/opp-blogger-saints-tl.json",
+      "sha256": "474edb0384a44a677667f83cb558cb363d6dba19ede95d4ca9dcb14e05724f2e"
+    },
+    {
+      "path": "Shared/tools/sources/saint-source-editorial-review.json",
+      "sha256": "0c6f098005b0a199b1fcf8d8014f056483dc3793887fcd0e86c725a28af16398"
+    },
+    {
+      "path": "Shared/tools/sources/saint-source-review.json",
+      "sha256": "6e596e0c3618d538c8d99255276e4cc5ed3e5b5b531cee6d52205622ec4a9e39"
+    }
+  ],
+  "publisherPolicyEvidence": [
+    {
+      "publisher": "Saint James Vicariate",
+      "sourceURL": "https://www.catholic.co.il/",
+      "checkedUsing": "web tool, homepage; article wording and hashes are from the existing verified source catalogues",
+      "literalCopyright": "© 2020 Saint James Vicariate for Hebrew Speaking Catholics in Israel",
+      "reuseStatus": "No explicit content-reuse grant was located in this bounded check; article credit and proposed exact excerpt need review. Release approval from Fr. Piotr is not automatically a grant from every underlying author or publisher.",
+      "limits": "Article URLs were unavailable to the web parser; no access bypass attempted. Do not infer blanket prohibition or blanket permission from the copyright notice alone."
+    },
+    {
+      "publisher": "Roman Catholic Church in Ukraine",
+      "sourceURL": "https://rkc.org.ua/events/svyatyj-franczysk-assizkyj-obovyazkovyj-spomyn/",
+      "alsoCheckedURL": "https://rkc.org.ua/events/svyata-faustyna-kovalska-dovilnyj-spomyn/",
+      "literalReuseNotice": "Повне або часткове використання матеріалів, розміщених на сайті, дозволяється за умови посилання на https://rkc.org.ua/",
+      "meaning": "The publisher permits complete or partial use of site material on condition of a link to rkc.org.ua.",
+      "reuseStatus": "Published conditional permission found; preserve the required homepage link and exact article source. This research does not certify unrelated third-party material or every passage.",
+      "dateEvidenceBounds": "The web parser displayed 2025 event metadata; the hash-pinned source catalogue captured 2026. Neither sets a Prosary appointment; use the inspected native calendar dates."
+    },
+    {
+      "publisher": "Our Parish Priest",
+      "sourceURL": "https://ourparishpriest.blogspot.com/",
+      "reuseStatus": "The actual homepage confirms this is the historical ministry archive and migration to the current website. No explicit redistribution license was located in this bounded check; published Atom content provides evidence, not a license."
+    },
+    {
+      "publisher": "TV Maria / Paulines",
+      "sourceURL": "https://tvmaria.wordpress.com/2011/06/26/ang-birhen-ng-laging-saklolo/",
+      "underlyingPublisherURL": "https://store.paulines.ph/product-tag/talambuhay/",
+      "reuseStatus": "Source articles carry modern Abriol / Paulines book credits. The official Paulines catalogue still identifies the title as its published book; no open license located. Prefer a separately reviewed short passage or first-party factual summary with no copying of the book wording; do not import the full biography merely because it is in a blog."
+    },
+    {
+      "publisher": "CREDO",
+      "sourceURL": "https://credo.pro/rules",
+      "alsoCheckedURL": "https://credo.pro/navigator/catholic-saints",
+      "reuseStatus": "Written editorial consent is required for full or partial reuse; full reprints are prohibited. After written permission, excerpts are capped at 10% and additional conditions apply. KAI-attributed material has separate restrictions. No permission was obtained and no contact was made.",
+      "recommendation": "Use RKC first for Ukrainian app prose. Keep CREDO records as research evidence or links until its stated conditions are satisfied."
+    }
+  ],
+  "candidateBatch": [
+    {
+      "candidateId": "he:3888",
+      "language": "he",
+      "cataloguePath": "Shared/tools/sources/catholic-hebrew-saints.json",
+      "sourceRecordField": "articleId",
+      "sourceRecordId": "3888",
+      "sourceURL": "https://www.catholic.co.il/?cat=faith&m=Feasts&view=article&id=3888&lang=he",
+      "sourceTitle": "חג תרז מליזייה הקדושה – ה-1 באוקטובר",
+      "sourceTextSHA256": "8c5a1228024cb038b164657d1192379a04544a4a690e81ed90a69d6608516671",
+      "sourceRecordSHA256": "25d6f4e584b85d3861dcbf4bc6fc60184b603a2fae302ffa1e77316b86a0df5c",
+      "reviewedIdentityLead": "Saint Thérèse of Lisieux",
+      "sourceDateEvidence": "ה-1 באוקטובר",
+      "excerptCandidate": {
+        "textKind": "verbatim source-language excerpt candidate; not imported",
+        "sourceSection": "paragraphs",
+        "zeroBasedParagraphIndex": 0,
+        "unicodeCharacterStart": 0,
+        "unicodeCharacterLength": 68,
+        "wordCount": 11,
+        "textSHA256": "26ebb6f0719a3d62ab814b430ba1c0e52335ef88342ce8727a4326af40e82da5",
+        "textStoredHere": false,
+        "reason": "Store a recoverable short passage pointer, rather than duplicating source prose or approving distribution."
+      },
+      "primaryCorroboratingURLs": [
+        "https://www.vatican.va/content/john-paul-ii/en/apost_letters/1997/documents/hf_jp-ii_apl_19101997_divini-amoris.html"
+      ],
+      "calendarBindingCandidates": [
+        {
+          "calendarId": "lpj",
+          "date": "2026-10-01",
+          "dayTitle": "Saint Thérèse of the Child Jesus, Virgin and Doctor of the Church",
+          "exactObservanceTitle": "Saint Thérèse of the Child Jesus, Virgin and Doctor of the Church",
+          "exactObservanceIdentity": "Saint Thérèse of the Child Jesus, Virgin and Doctor of the Church",
+          "rank": "Memorial",
+          "datasetPath": "Shared/data/feasts.json",
+          "datasetSHA256": "82ab3ba7928d27d7931d09b27775a626b2db4aacd9e8b661779f77f9e3058a45",
+          "reviewStatus": "inspected exact subject/title/date; proposed binding only; no import"
+        },
+        {
+          "calendarId": "lpj",
+          "date": "2027-10-01",
+          "dayTitle": "Saint Thérèse of the Child Jesus, Virgin and Doctor of the Church",
+          "exactObservanceTitle": "Saint Thérèse of the Child Jesus, Virgin and Doctor of the Church",
+          "exactObservanceIdentity": "Saint Thérèse of the Child Jesus, Virgin and Doctor of the Church",
+          "rank": "Memorial",
+          "datasetPath": "Shared/data/feasts.json",
+          "datasetSHA256": "82ab3ba7928d27d7931d09b27775a626b2db4aacd9e8b661779f77f9e3058a45",
+          "reviewStatus": "inspected exact subject/title/date; proposed binding only; no import"
+        },
+        {
+          "calendarId": "roman",
+          "date": "2026-10-01",
+          "dayTitle": "Saint Thérèse of the Child Jesus, Virgin and Doctor of the Church",
+          "exactObservanceTitle": "Saint Thérèse of the Child Jesus, Virgin and Doctor of the Church",
+          "exactObservanceIdentity": "Saint Thérèse of the Child Jesus, Virgin and Doctor of the Church",
+          "rank": "Memorial",
+          "datasetPath": "Shared/data/feasts-roman.json",
+          "datasetSHA256": "6f39dc5e9e0d063fccb3f346c4788ff8119b50e6c9a7cca39de4a41dcc206b6b",
+          "reviewStatus": "inspected exact subject/title/date; proposed binding only; no import"
+        },
+        {
+          "calendarId": "roman",
+          "date": "2027-10-01",
+          "dayTitle": "Saint Thérèse of the Child Jesus, Virgin and Doctor of the Church",
+          "exactObservanceTitle": "Saint Thérèse of the Child Jesus, Virgin and Doctor of the Church",
+          "exactObservanceIdentity": "Saint Thérèse of the Child Jesus, Virgin and Doctor of the Church",
+          "rank": "Memorial",
+          "datasetPath": "Shared/data/feasts-roman.json",
+          "datasetSHA256": "6f39dc5e9e0d063fccb3f346c4788ff8119b50e6c9a7cca39de4a41dcc206b6b",
+          "reviewStatus": "inspected exact subject/title/date; proposed binding only; no import"
+        },
+        {
+          "calendarId": "stjames",
+          "date": "2027-10-01",
+          "dayTitle": "St. Thérèse of the Child Jesus, Virgin and Doctor of the Church",
+          "exactObservanceTitle": "St. Thérèse of the Child Jesus, Virgin and Doctor of the Church",
+          "exactObservanceIdentity": "saint thérèse of the child jesus, virgin and doctor of the church",
+          "rank": "Memorial",
+          "datasetPath": "Shared/data/feasts-stjames.json",
+          "datasetSHA256": "924eb10671410fc0b5f95cc02ecc7512ce96d63bea8ff2d86f9679b4c7a68deb",
+          "reviewStatus": "inspected exact subject/title/date; proposed binding only; no import"
+        },
+        {
+          "calendarId": "franciscan-conventual-italy",
+          "date": "2026-10-01",
+          "dayTitle": "Saint Thérèse of the Child Jesus, Virgin and Doctor of the Church",
+          "exactObservanceTitle": "Saint Thérèse of the Child Jesus, Virgin and Doctor of the Church",
+          "exactObservanceIdentity": "saint thérèse of the child jesus, virgin and doctor of the church",
+          "rank": "Memorial",
+          "datasetPath": "Shared/data/feasts-franciscan-conventual-italy.json",
+          "datasetSHA256": "33790ee21144ecb4311870dfce893937485595bc7ce931edbbbfbdc19d8d8ce0",
+          "reviewStatus": "inspected exact subject/title/date; proposed binding only; no import"
+        },
+        {
+          "calendarId": "augustinian-discalced",
+          "date": "2026-10-01",
+          "dayTitle": "Saint Thérèse of the Child Jesus, Virgin and Doctor of the Church",
+          "exactObservanceTitle": "Saint Thérèse of the Child Jesus, Virgin and Doctor of the Church",
+          "exactObservanceIdentity": "saint thérèse of the child jesus, virgin and doctor of the church",
+          "rank": "Memorial",
+          "datasetPath": "Shared/data/feasts-augustinian-discalced.json",
+          "datasetSHA256": "b60b719fe0f09a13190ec917ddc7e861c8c9f8f9e5fc36a4f803f92595aa6d62",
+          "reviewStatus": "inspected exact subject/title/date; proposed binding only; no import"
+        }
+      ],
+      "rejectedSameDateBindings": [],
+      "nativeImportAllowed": false,
+      "sourceReuseCertified": false,
+      "wholeBiographyReviewed": false,
+      "proposedPublisherCredit": "Saint James Vicariate for Hebrew Speaking Catholics in Israel — Catholic.co.il",
+      "attributionNotes": "Preserve source publisher; Vincent introductions credit Sister Gabriela/Gabriele, but that does not prove who translated each language. The Thérèse autobiography book-translator credit is a cited edition, not the web-article author.",
+      "remainingBlockers": [
+        "Provider-aware reviewed-catalogue contract and source IDs",
+        "Review attribution and distribution basis for this exact passage",
+        "Final source-language editorial acceptance and regression tests"
+      ]
+    },
+    {
+      "candidateId": "he:7038",
+      "language": "he",
+      "cataloguePath": "Shared/tools/sources/catholic-hebrew-saints.json",
+      "sourceRecordField": "articleId",
+      "sourceRecordId": "7038",
+      "sourceURL": "https://www.catholic.co.il/?cat=faith&m=Feasts&view=article&id=7038&lang=he",
+      "sourceTitle": "חג הקדוש ווינסנט דה פול – ה-27 בספטמבר",
+      "sourceTextSHA256": "ed8186f2dceb2ec3781ce9937d2f485709f67affa7c350c7d3fa9a0c80f56163",
+      "sourceRecordSHA256": "73123fc51d3b8a3bb1eb23d45ccf38d670fca0a2b2a41aee68a28377121f5bce",
+      "reviewedIdentityLead": "Saint Vincent de Paul",
+      "sourceDateEvidence": "ה-27 בספטמבר",
+      "excerptCandidate": {
+        "textKind": "verbatim source-language excerpt candidate; not imported",
+        "sourceSection": "paragraphs",
+        "zeroBasedParagraphIndex": 0,
+        "unicodeCharacterStart": 0,
+        "unicodeCharacterLength": 105,
+        "wordCount": 19,
+        "textSHA256": "9045865f5d84ca6ab29f17ea63b10e358c15fe9350ae575f226dfa139d82fcb1",
+        "textStoredHere": false,
+        "reason": "Store a recoverable short passage pointer, rather than duplicating source prose or approving distribution."
+      },
+      "primaryCorroboratingURLs": [
+        "https://www.vaticanstate.va/en/component/content/article/27-september-saint-vincent-de-paul.html?Itemid=216&catid=51"
+      ],
+      "calendarBindingCandidates": [
+        {
+          "calendarId": "lpj",
+          "date": "2027-09-27",
+          "dayTitle": "Saint Vincent de Paul, Priest",
+          "exactObservanceTitle": "Saint Vincent de Paul, Priest",
+          "exactObservanceIdentity": null,
+          "rank": "Memorial",
+          "datasetPath": "Shared/data/feasts.json",
+          "datasetSHA256": "82ab3ba7928d27d7931d09b27775a626b2db4aacd9e8b661779f77f9e3058a45",
+          "reviewStatus": "inspected exact subject/title/date; proposed binding only; no import"
+        },
+        {
+          "calendarId": "roman",
+          "date": "2027-09-27",
+          "dayTitle": "Saint Vincent de Paul, Priest",
+          "exactObservanceTitle": "Saint Vincent de Paul, Priest",
+          "exactObservanceIdentity": null,
+          "rank": "Memorial",
+          "datasetPath": "Shared/data/feasts-roman.json",
+          "datasetSHA256": "6f39dc5e9e0d063fccb3f346c4788ff8119b50e6c9a7cca39de4a41dcc206b6b",
+          "reviewStatus": "inspected exact subject/title/date; proposed binding only; no import"
+        },
+        {
+          "calendarId": "stjames",
+          "date": "2027-09-27",
+          "dayTitle": "St. Vincent de Paul, Priest",
+          "exactObservanceTitle": "St. Vincent de Paul, Priest",
+          "exactObservanceIdentity": "saint vincent de paul, priest",
+          "rank": "Optional Memorial",
+          "datasetPath": "Shared/data/feasts-stjames.json",
+          "datasetSHA256": "924eb10671410fc0b5f95cc02ecc7512ce96d63bea8ff2d86f9679b4c7a68deb",
+          "reviewStatus": "inspected exact subject/title/date; proposed binding only; no import"
+        }
+      ],
+      "rejectedSameDateBindings": [
+        {
+          "calendarId": "lpj",
+          "date": "2026-09-27",
+          "dayTitle": "26th Sunday of Ordinary Time",
+          "reason": "no reviewed matching observance; do not manufacture or replace the appointed day"
+        },
+        {
+          "calendarId": "roman",
+          "date": "2026-09-27",
+          "dayTitle": "26th Sunday of Ordinary Time",
+          "reason": "no reviewed matching observance; do not manufacture or replace the appointed day"
+        },
+        {
+          "calendarId": "franciscan-conventual-italy",
+          "date": "2026-09-27",
+          "dayTitle": "26th Sunday of Ordinary Time",
+          "reason": "no reviewed matching observance; do not manufacture or replace the appointed day"
+        },
+        {
+          "calendarId": "augustinian-discalced",
+          "date": "2026-09-27",
+          "dayTitle": "26th Sunday of Ordinary Time",
+          "reason": "no reviewed matching observance; do not manufacture or replace the appointed day"
+        }
+      ],
+      "nativeImportAllowed": false,
+      "sourceReuseCertified": false,
+      "wholeBiographyReviewed": false,
+      "proposedPublisherCredit": "Saint James Vicariate for Hebrew Speaking Catholics in Israel — Catholic.co.il",
+      "attributionNotes": "Preserve source publisher; Vincent introductions credit Sister Gabriela/Gabriele, but that does not prove who translated each language. The Thérèse autobiography book-translator credit is a cited edition, not the web-article author.",
+      "remainingBlockers": [
+        "Provider-aware reviewed-catalogue contract and source IDs",
+        "Review attribution and distribution basis for this exact passage",
+        "Final source-language editorial acceptance and regression tests"
+      ]
+    },
+    {
+      "candidateId": "ru:7039",
+      "language": "ru",
+      "cataloguePath": "Shared/tools/sources/catholic-saints-ru.json",
+      "sourceRecordField": "articleId",
+      "sourceRecordId": "7039",
+      "sourceURL": "https://www.catholic.co.il/?cat=faith&m=Feasts&view=article&id=7039&lang=ru",
+      "sourceTitle": "День памяти св.Винсента де Поля – 27 сентября",
+      "sourceTextSHA256": "b9e9698ff28c48fdd71c0ab53a61bf10054ec8b762ce5c0db8657b975964d0d1",
+      "sourceRecordSHA256": "e9d2e7f764f484e33bce7f1f79201e30fe1fe07ccc0ef4e204cdc9199c1ba85c",
+      "reviewedIdentityLead": "Saint Vincent de Paul",
+      "sourceDateEvidence": "День памяти св.Винсента де Поля – 27 сентября",
+      "excerptCandidate": {
+        "textKind": "verbatim source-language excerpt candidate; not imported",
+        "sourceSection": "paragraphs",
+        "zeroBasedParagraphIndex": 0,
+        "unicodeCharacterStart": 0,
+        "unicodeCharacterLength": 127,
+        "wordCount": 18,
+        "textSHA256": "e4107f50cd219a7ccada995bd3012bf0c6385e741d4d1fc007c0a0c8641509ac",
+        "textStoredHere": false,
+        "reason": "Store a recoverable short passage pointer, rather than duplicating source prose or approving distribution."
+      },
+      "primaryCorroboratingURLs": [
+        "https://www.vaticanstate.va/en/component/content/article/27-september-saint-vincent-de-paul.html?Itemid=216&catid=51"
+      ],
+      "calendarBindingCandidates": [
+        {
+          "calendarId": "lpj",
+          "date": "2027-09-27",
+          "dayTitle": "Saint Vincent de Paul, Priest",
+          "exactObservanceTitle": "Saint Vincent de Paul, Priest",
+          "exactObservanceIdentity": null,
+          "rank": "Memorial",
+          "datasetPath": "Shared/data/feasts.json",
+          "datasetSHA256": "82ab3ba7928d27d7931d09b27775a626b2db4aacd9e8b661779f77f9e3058a45",
+          "reviewStatus": "inspected exact subject/title/date; proposed binding only; no import"
+        },
+        {
+          "calendarId": "roman",
+          "date": "2027-09-27",
+          "dayTitle": "Saint Vincent de Paul, Priest",
+          "exactObservanceTitle": "Saint Vincent de Paul, Priest",
+          "exactObservanceIdentity": null,
+          "rank": "Memorial",
+          "datasetPath": "Shared/data/feasts-roman.json",
+          "datasetSHA256": "6f39dc5e9e0d063fccb3f346c4788ff8119b50e6c9a7cca39de4a41dcc206b6b",
+          "reviewStatus": "inspected exact subject/title/date; proposed binding only; no import"
+        },
+        {
+          "calendarId": "stjames",
+          "date": "2027-09-27",
+          "dayTitle": "St. Vincent de Paul, Priest",
+          "exactObservanceTitle": "St. Vincent de Paul, Priest",
+          "exactObservanceIdentity": "saint vincent de paul, priest",
+          "rank": "Optional Memorial",
+          "datasetPath": "Shared/data/feasts-stjames.json",
+          "datasetSHA256": "924eb10671410fc0b5f95cc02ecc7512ce96d63bea8ff2d86f9679b4c7a68deb",
+          "reviewStatus": "inspected exact subject/title/date; proposed binding only; no import"
+        }
+      ],
+      "rejectedSameDateBindings": [
+        {
+          "calendarId": "lpj",
+          "date": "2026-09-27",
+          "dayTitle": "26th Sunday of Ordinary Time",
+          "reason": "no reviewed matching observance; do not manufacture or replace the appointed day"
+        },
+        {
+          "calendarId": "roman",
+          "date": "2026-09-27",
+          "dayTitle": "26th Sunday of Ordinary Time",
+          "reason": "no reviewed matching observance; do not manufacture or replace the appointed day"
+        },
+        {
+          "calendarId": "franciscan-conventual-italy",
+          "date": "2026-09-27",
+          "dayTitle": "26th Sunday of Ordinary Time",
+          "reason": "no reviewed matching observance; do not manufacture or replace the appointed day"
+        },
+        {
+          "calendarId": "augustinian-discalced",
+          "date": "2026-09-27",
+          "dayTitle": "26th Sunday of Ordinary Time",
+          "reason": "no reviewed matching observance; do not manufacture or replace the appointed day"
+        }
+      ],
+      "nativeImportAllowed": false,
+      "sourceReuseCertified": false,
+      "wholeBiographyReviewed": false,
+      "proposedPublisherCredit": "Saint James Vicariate for Hebrew Speaking Catholics in Israel — Catholic.co.il",
+      "attributionNotes": "Preserve source publisher; Vincent introductions credit Sister Gabriela/Gabriele, but that does not prove who translated each language. The Thérèse autobiography book-translator credit is a cited edition, not the web-article author.",
+      "remainingBlockers": [
+        "Provider-aware reviewed-catalogue contract and source IDs",
+        "Review attribution and distribution basis for this exact passage",
+        "Final source-language editorial acceptance and regression tests"
+      ]
+    },
+    {
+      "candidateId": "uk:15545",
+      "language": "uk",
+      "cataloguePath": "Shared/tools/sources/rkc-saints-uk.json",
+      "sourceRecordField": "sourceID",
+      "sourceRecordId": "15545",
+      "sourceURL": "https://rkc.org.ua/events/svyatyj-franczysk-assizkyj-obovyazkovyj-spomyn/",
+      "sourceTitle": "Святий Франциск Ассізький (обов’язковий спомин)",
+      "sourceTextSHA256": "5a1c960ba0961be905573296befa5d14f005e91773990557beb119c3b5931253",
+      "sourceRecordSHA256": "6d3b440b4e3562564603280b3bcf584a794e9534e4b1e5c2797d98b50ec9ab13",
+      "reviewedIdentityLead": "Saint Francis of Assisi",
+      "sourceDateEvidence": [
+        {
+          "name": "Святий Франциск Ассізький (обов’язковий спомин)",
+          "startDate": "2026-10-04",
+          "endDate": "2026-10-04",
+          "eventStatus": "https://schema.org/EventScheduled"
+        }
+      ],
+      "excerptCandidate": {
+        "textKind": "verbatim source-language excerpt candidate; not imported",
+        "sourceSection": "paragraphs",
+        "zeroBasedParagraphIndex": 0,
+        "unicodeCharacterStart": 0,
+        "unicodeCharacterLength": 72,
+        "wordCount": 9,
+        "textSHA256": "f111a7fd55a47684602ac75240adf297564b3fb5f37431aa3e845437079172b8",
+        "textStoredHere": false,
+        "reason": "Store a recoverable short passage pointer, rather than duplicating source prose or approving distribution."
+      },
+      "primaryCorroboratingURLs": [
+        "https://www.vatican.va/content/benedict-xvi/en/audiences/2010/documents/hf_ben-xvi_aud_20100127.html"
+      ],
+      "calendarBindingCandidates": [
+        {
+          "calendarId": "lpj",
+          "date": "2027-10-04",
+          "dayTitle": "Saint Francis of Assisi",
+          "exactObservanceTitle": "Saint Francis of Assisi",
+          "exactObservanceIdentity": "Saint Francis of Assisi",
+          "rank": "Memorial",
+          "datasetPath": "Shared/data/feasts.json",
+          "datasetSHA256": "82ab3ba7928d27d7931d09b27775a626b2db4aacd9e8b661779f77f9e3058a45",
+          "reviewStatus": "inspected exact subject/title/date; proposed binding only; no import"
+        },
+        {
+          "calendarId": "roman",
+          "date": "2027-10-04",
+          "dayTitle": "Saint Francis of Assisi",
+          "exactObservanceTitle": "Saint Francis of Assisi",
+          "exactObservanceIdentity": "Saint Francis of Assisi",
+          "rank": "Memorial",
+          "datasetPath": "Shared/data/feasts-roman.json",
+          "datasetSHA256": "6f39dc5e9e0d063fccb3f346c4788ff8119b50e6c9a7cca39de4a41dcc206b6b",
+          "reviewStatus": "inspected exact subject/title/date; proposed binding only; no import"
+        },
+        {
+          "calendarId": "stjames",
+          "date": "2027-10-04",
+          "dayTitle": "St. Francis of Assisi",
+          "exactObservanceTitle": "St. Francis of Assisi",
+          "exactObservanceIdentity": "saint francis of assisi",
+          "rank": "Memorial",
+          "datasetPath": "Shared/data/feasts-stjames.json",
+          "datasetSHA256": "924eb10671410fc0b5f95cc02ecc7512ce96d63bea8ff2d86f9679b4c7a68deb",
+          "reviewStatus": "inspected exact subject/title/date; proposed binding only; no import"
+        },
+        {
+          "calendarId": "franciscan-conventual-italy",
+          "date": "2026-10-04",
+          "dayTitle": "Saint Francis of Assisi",
+          "exactObservanceTitle": "Saint Francis of Assisi",
+          "exactObservanceIdentity": "saint francis of assisi",
+          "rank": "Solemnity",
+          "datasetPath": "Shared/data/feasts-franciscan-conventual-italy.json",
+          "datasetSHA256": "33790ee21144ecb4311870dfce893937485595bc7ce931edbbbfbdc19d8d8ce0",
+          "reviewStatus": "inspected exact subject/title/date; proposed binding only; no import"
+        }
+      ],
+      "rejectedSameDateBindings": [
+        {
+          "calendarId": "lpj",
+          "date": "2026-10-04",
+          "dayTitle": "27th Sunday of Ordinary Time",
+          "reason": "no reviewed matching observance; do not manufacture or replace the appointed day"
+        },
+        {
+          "calendarId": "roman",
+          "date": "2026-10-04",
+          "dayTitle": "27th Sunday of Ordinary Time",
+          "reason": "no reviewed matching observance; do not manufacture or replace the appointed day"
+        },
+        {
+          "calendarId": "stjames",
+          "date": "2026-10-04",
+          "dayTitle": "First Sunday of Advent (Year B) Adam and Eve",
+          "reason": "no reviewed matching observance; do not manufacture or replace the appointed day"
+        },
+        {
+          "calendarId": "augustinian-discalced",
+          "date": "2026-10-04",
+          "dayTitle": "27th Sunday of Ordinary Time",
+          "reason": "no reviewed matching observance; do not manufacture or replace the appointed day"
+        }
+      ],
+      "nativeImportAllowed": false,
+      "sourceReuseCertified": false,
+      "wholeBiographyReviewed": false,
+      "proposedPublisherCredit": "Римсько-Католицька Церква в Україні — https://rkc.org.ua/",
+      "remainingBlockers": [
+        "Provider-aware reviewed-catalogue contract and source IDs",
+        "Carry active source URL plus RKC homepage attribution required by its published notice",
+        "Final source-language editorial acceptance and regression tests"
+      ]
+    },
+    {
+      "candidateId": "uk:15548",
+      "language": "uk",
+      "cataloguePath": "Shared/tools/sources/rkc-saints-uk.json",
+      "sourceRecordField": "sourceID",
+      "sourceRecordId": "15548",
+      "sourceURL": "https://rkc.org.ua/events/svyata-faustyna-kovalska-dovilnyj-spomyn/",
+      "sourceTitle": "Свята Фаустина Ковальська",
+      "sourceTextSHA256": "194c9b21bad3a5f975020771606923f83ba2e1ab007c7e5c850f2533b0e91f7d",
+      "sourceRecordSHA256": "70ae7c79df0e3885cc0c4bb0f6e8322c832634590fce3da21f093c32cee9a7a0",
+      "reviewedIdentityLead": "Saint Faustina Kowalska",
+      "sourceDateEvidence": [
+        {
+          "name": "Свята Фаустина Ковальська",
+          "startDate": "2026-10-05",
+          "endDate": "2026-10-05",
+          "eventStatus": "https://schema.org/EventScheduled"
+        }
+      ],
+      "excerptCandidate": {
+        "textKind": "verbatim source-language excerpt candidate; not imported",
+        "sourceSection": "paragraphs",
+        "zeroBasedParagraphIndex": 0,
+        "unicodeCharacterStart": 0,
+        "unicodeCharacterLength": 98,
+        "wordCount": 12,
+        "textSHA256": "d6e853ef672112b1cab81b060d3efa018e4948da88b73d853de2072ae3e9864c",
+        "textStoredHere": false,
+        "reason": "Store a recoverable short passage pointer, rather than duplicating source prose or approving distribution."
+      },
+      "primaryCorroboratingURLs": [
+        "https://www.vatican.va/news_services/liturgy/documents/ns_lit_doc_20000430_faustina_en.html"
+      ],
+      "calendarBindingCandidates": [
+        {
+          "calendarId": "lpj",
+          "date": "2026-10-05",
+          "dayTitle": "Saint Faustina Kowalska",
+          "exactObservanceTitle": "Saint Faustina Kowalska",
+          "exactObservanceIdentity": "Saint Faustina Kowalska",
+          "rank": "Optional Memorial",
+          "datasetPath": "Shared/data/feasts.json",
+          "datasetSHA256": "82ab3ba7928d27d7931d09b27775a626b2db4aacd9e8b661779f77f9e3058a45",
+          "reviewStatus": "inspected exact subject/title/date; proposed binding only; no import"
+        },
+        {
+          "calendarId": "lpj",
+          "date": "2027-10-05",
+          "dayTitle": "Saint Faustina Kowalska",
+          "exactObservanceTitle": "Saint Faustina Kowalska",
+          "exactObservanceIdentity": "Saint Faustina Kowalska",
+          "rank": "Optional Memorial",
+          "datasetPath": "Shared/data/feasts.json",
+          "datasetSHA256": "82ab3ba7928d27d7931d09b27775a626b2db4aacd9e8b661779f77f9e3058a45",
+          "reviewStatus": "inspected exact subject/title/date; proposed binding only; no import"
+        },
+        {
+          "calendarId": "roman",
+          "date": "2026-10-05",
+          "dayTitle": "Saint Faustina Kowalska",
+          "exactObservanceTitle": "Saint Faustina Kowalska",
+          "exactObservanceIdentity": "Saint Faustina Kowalska",
+          "rank": "Optional Memorial",
+          "datasetPath": "Shared/data/feasts-roman.json",
+          "datasetSHA256": "6f39dc5e9e0d063fccb3f346c4788ff8119b50e6c9a7cca39de4a41dcc206b6b",
+          "reviewStatus": "inspected exact subject/title/date; proposed binding only; no import"
+        },
+        {
+          "calendarId": "roman",
+          "date": "2027-10-05",
+          "dayTitle": "Saint Faustina Kowalska",
+          "exactObservanceTitle": "Saint Faustina Kowalska",
+          "exactObservanceIdentity": "Saint Faustina Kowalska",
+          "rank": "Optional Memorial",
+          "datasetPath": "Shared/data/feasts-roman.json",
+          "datasetSHA256": "6f39dc5e9e0d063fccb3f346c4788ff8119b50e6c9a7cca39de4a41dcc206b6b",
+          "reviewStatus": "inspected exact subject/title/date; proposed binding only; no import"
+        },
+        {
+          "calendarId": "stjames",
+          "date": "2026-10-05",
+          "dayTitle": "St. Faustina Kowalska, virgin",
+          "exactObservanceTitle": "St. Faustina Kowalska, virgin",
+          "exactObservanceIdentity": "saint faustina kowalska, virgin",
+          "rank": "Optional Memorial",
+          "datasetPath": "Shared/data/feasts-stjames.json",
+          "datasetSHA256": "924eb10671410fc0b5f95cc02ecc7512ce96d63bea8ff2d86f9679b4c7a68deb",
+          "reviewStatus": "inspected exact subject/title/date; proposed binding only; no import"
+        },
+        {
+          "calendarId": "stjames",
+          "date": "2027-10-05",
+          "dayTitle": "St. Faustina Kowalska, Virgin",
+          "exactObservanceTitle": "St. Faustina Kowalska, Virgin",
+          "exactObservanceIdentity": "saint faustina kowalska, virgin",
+          "rank": "Optional Memorial",
+          "datasetPath": "Shared/data/feasts-stjames.json",
+          "datasetSHA256": "924eb10671410fc0b5f95cc02ecc7512ce96d63bea8ff2d86f9679b4c7a68deb",
+          "reviewStatus": "inspected exact subject/title/date; proposed binding only; no import"
+        }
+      ],
+      "rejectedSameDateBindings": [
+        {
+          "calendarId": "franciscan-conventual-italy",
+          "date": "2026-10-05",
+          "dayTitle": "Monday",
+          "reason": "no reviewed matching observance; do not manufacture or replace the appointed day"
+        },
+        {
+          "calendarId": "augustinian-discalced",
+          "date": "2026-10-05",
+          "dayTitle": "Monday · Ordinary Time · Week 27",
+          "reason": "no reviewed matching observance; do not manufacture or replace the appointed day"
+        }
+      ],
+      "nativeImportAllowed": false,
+      "sourceReuseCertified": false,
+      "wholeBiographyReviewed": false,
+      "proposedPublisherCredit": "Римсько-Католицька Церква в Україні — https://rkc.org.ua/",
+      "remainingBlockers": [
+        "Provider-aware reviewed-catalogue contract and source IDs",
+        "Carry active source URL plus RKC homepage attribution required by its published notice",
+        "Final source-language editorial acceptance and regression tests"
+      ]
+    },
+    {
+      "candidateId": "tl:opp-blogger:2335920359659595041",
+      "language": "tl",
+      "cataloguePath": "Shared/tools/sources/opp-blogger-saints-tl.json",
+      "sourceRecordField": "recordId",
+      "sourceRecordId": "opp-blogger:2335920359659595041",
+      "sourceURL": "https://ourparishpriest.blogspot.com/2021/10/santa-teresa-ng-avila.html",
+      "sourceTitle": "SAINTS OF OCTOBER: SANTA TERESA NG AVILA",
+      "sourceTextSHA256": "19c8b9a743dde7ffefaf19eca9f76bdc16ad833f3e7273f7eff722b16837c180",
+      "sourceRecordSHA256": "7874d4dcc55db8176906f3a8d5dd581f7c004e34680339ff60ae503a665df544",
+      "reviewedIdentityLead": "Saint Teresa of Ávila / Teresa of Jesus",
+      "sourceDateEvidence": [
+        {
+          "literal": "OKTUBRE 15",
+          "sourceLine": "OKTUBRE 15",
+          "month": 10,
+          "day": 15,
+          "mappingStatus": "source-label-only; calendar identity/precedence not assigned"
+        }
+      ],
+      "excerptCandidate": {
+        "textKind": "verbatim source-language excerpt candidate; not imported",
+        "sourceSection": "sections.biography",
+        "zeroBasedParagraphIndex": 2,
+        "unicodeCharacterStart": 0,
+        "unicodeCharacterLength": 75,
+        "wordCount": 13,
+        "textSHA256": "915521e2c3704d2efdf56270a3f1254416ccec7e5b0a0088564cdc3e00a61c01",
+        "textStoredHere": false,
+        "reason": "Store a recoverable short passage pointer, rather than duplicating source prose or approving distribution."
+      },
+      "primaryCorroboratingURLs": [
+        "https://www.vatican.va/content/benedict-xvi/en/audiences/2011/documents/hf_ben-xvi_aud_20110202.html"
+      ],
+      "calendarBindingCandidates": [
+        {
+          "calendarId": "lpj",
+          "date": "2026-10-15",
+          "dayTitle": "Saint Teresa of Jesus, Virgin and Doctor of the Church",
+          "exactObservanceTitle": "Saint Teresa of Jesus, Virgin and Doctor of the Church",
+          "exactObservanceIdentity": null,
+          "rank": "Memorial",
+          "datasetPath": "Shared/data/feasts.json",
+          "datasetSHA256": "82ab3ba7928d27d7931d09b27775a626b2db4aacd9e8b661779f77f9e3058a45",
+          "reviewStatus": "inspected exact subject/title/date; proposed binding only; no import"
+        },
+        {
+          "calendarId": "lpj",
+          "date": "2027-10-15",
+          "dayTitle": "Saint Teresa of Jesus, Virgin and Doctor of the Church",
+          "exactObservanceTitle": "Saint Teresa of Jesus, Virgin and Doctor of the Church",
+          "exactObservanceIdentity": null,
+          "rank": "Memorial",
+          "datasetPath": "Shared/data/feasts.json",
+          "datasetSHA256": "82ab3ba7928d27d7931d09b27775a626b2db4aacd9e8b661779f77f9e3058a45",
+          "reviewStatus": "inspected exact subject/title/date; proposed binding only; no import"
+        },
+        {
+          "calendarId": "roman",
+          "date": "2026-10-15",
+          "dayTitle": "Saint Teresa of Jesus, Virgin and Doctor of the Church",
+          "exactObservanceTitle": "Saint Teresa of Jesus, Virgin and Doctor of the Church",
+          "exactObservanceIdentity": null,
+          "rank": "Memorial",
+          "datasetPath": "Shared/data/feasts-roman.json",
+          "datasetSHA256": "6f39dc5e9e0d063fccb3f346c4788ff8119b50e6c9a7cca39de4a41dcc206b6b",
+          "reviewStatus": "inspected exact subject/title/date; proposed binding only; no import"
+        },
+        {
+          "calendarId": "roman",
+          "date": "2027-10-15",
+          "dayTitle": "Saint Teresa of Jesus, Virgin and Doctor of the Church",
+          "exactObservanceTitle": "Saint Teresa of Jesus, Virgin and Doctor of the Church",
+          "exactObservanceIdentity": null,
+          "rank": "Memorial",
+          "datasetPath": "Shared/data/feasts-roman.json",
+          "datasetSHA256": "6f39dc5e9e0d063fccb3f346c4788ff8119b50e6c9a7cca39de4a41dcc206b6b",
+          "reviewStatus": "inspected exact subject/title/date; proposed binding only; no import"
+        },
+        {
+          "calendarId": "stjames",
+          "date": "2026-10-15",
+          "dayTitle": "St. Teresa of Jesus, virgin and doctor of the Church",
+          "exactObservanceTitle": "St. Teresa of Jesus, virgin and doctor of the Church",
+          "exactObservanceIdentity": "saint teresa of jesus, virgin and doctor of the church",
+          "rank": "Memorial",
+          "datasetPath": "Shared/data/feasts-stjames.json",
+          "datasetSHA256": "924eb10671410fc0b5f95cc02ecc7512ce96d63bea8ff2d86f9679b4c7a68deb",
+          "reviewStatus": "inspected exact subject/title/date; proposed binding only; no import"
+        },
+        {
+          "calendarId": "stjames",
+          "date": "2027-10-15",
+          "dayTitle": "St. Teresa of Jesus, Virgin and Doctor of the Church",
+          "exactObservanceTitle": "St. Teresa of Jesus, Virgin and Doctor of the Church",
+          "exactObservanceIdentity": "saint teresa of jesus, virgin and doctor of the church",
+          "rank": "Memorial",
+          "datasetPath": "Shared/data/feasts-stjames.json",
+          "datasetSHA256": "924eb10671410fc0b5f95cc02ecc7512ce96d63bea8ff2d86f9679b4c7a68deb",
+          "reviewStatus": "inspected exact subject/title/date; proposed binding only; no import"
+        },
+        {
+          "calendarId": "franciscan-conventual-italy",
+          "date": "2026-10-15",
+          "dayTitle": "Saint Teresa of Jesus, Virgin and Doctor of the Church",
+          "exactObservanceTitle": "Saint Teresa of Jesus, Virgin and Doctor of the Church",
+          "exactObservanceIdentity": "saint teresa of jesus, virgin and doctor of the church",
+          "rank": "Memorial",
+          "datasetPath": "Shared/data/feasts-franciscan-conventual-italy.json",
+          "datasetSHA256": "33790ee21144ecb4311870dfce893937485595bc7ce931edbbbfbdc19d8d8ce0",
+          "reviewStatus": "inspected exact subject/title/date; proposed binding only; no import"
+        },
+        {
+          "calendarId": "augustinian-discalced",
+          "date": "2026-10-15",
+          "dayTitle": "Saint Teresa of Jesus, Virgin and Doctor of the Church",
+          "exactObservanceTitle": "Saint Teresa of Jesus, Virgin and Doctor of the Church",
+          "exactObservanceIdentity": "saint teresa of jesus, virgin and doctor of the church",
+          "rank": "Memorial",
+          "datasetPath": "Shared/data/feasts-augustinian-discalced.json",
+          "datasetSHA256": "b60b719fe0f09a13190ec917ddc7e861c8c9f8f9e5fc36a4f803f92595aa6d62",
+          "reviewStatus": "inspected exact subject/title/date; proposed binding only; no import"
+        }
+      ],
+      "rejectedSameDateBindings": [],
+      "nativeImportAllowed": false,
+      "sourceReuseCertified": false,
+      "wholeBiographyReviewed": false,
+      "sourceAtomAuthor": "Unknown",
+      "proposedPublisherCredit": "Our Parish Priest — source article URL; retain literal author/underlying-book credit where stated",
+      "attributionNotes": "The feed author is provenance. No individual or book author is fabricated where this article has no literal book credit. Biography is separate from reflection and Scripture ending.",
+      "remainingBlockers": [
+        "Provider-aware reviewed-catalogue contract and source IDs",
+        "Review original author and exact passage distribution basis; published feed access is not a content license",
+        "Final source-language editorial acceptance and regression tests"
+      ]
+    }
+  ],
+  "implementationFindings": [
+    {
+      "path": "Shared/tools/saint_descriptions.py",
+      "finding": "validate_catalogue currently accepts only HTTPS publication.evangelizo.ws and UUID sourceSubjectID. All six Catholic.co.il/RKC/Blogger candidates are rejected by this provider-specific contract.",
+      "nextStep": "Version the reviewed catalogue or add provider-aware validation for sourceRecordId/source URL/exact source-language passage digest and provenance. Preserve the existing Evangelizo validation rules and curated join guardrails."
+    },
+    {
+      "finding": "Native descriptionByLanguage/descriptionSourceByLanguage/descriptionCreditByLanguage already provide the required output; the source-catalogue provenance extension can remain importer-only.",
+      "nextStep": "Enrich canonical Shared data with exact-language prose only, then synchronize all three native asset copies. Existing saint disclosure, optional reminder and widget readers share the same maps."
+    },
+    {
+      "finding": "A date alone is insufficient: Vincent is displaced by Sunday in modern calendars on 2026-09-27; Francis is displaced by Sunday/Great Advent on 2026-10-04 except the Franciscan source. The 1962 calendar commemorates Thérèse on October 3 and Vincent on July 19, not the modern labels.",
+      "nextStep": "Store explicit calendar/date/exact-observance-title/identity bindings shown per candidate; do not borrow source event ranks or add absent commemorations. Keep 1962 outside this small batch until separately reviewed."
+    },
+    {
+      "finding": "The current 25-word source-excerpt maximum is a repository editorial guardrail; it is not a general license grant or a universal copyright exception.",
+      "nextStep": "Record per-provider distribution basis and attribution. First-party factual summaries are a distinct textKind with their own author/license provenance, never passed off as original provider prose; do not invent or machine-translate liturgical Hebrew."
+    },
+    {
+      "finding": "Authoring independent factual summaries is possible for languages with selected confirmed facts, but the source summary and prose languages must remain explicit.",
+      "nextStep": "A later first-party prose path should retain supporting primary sources and an editorial author, with human source-language review. Hebrew remains relayed source wording unless an explicitly authored, qualified editorial text is supplied."
+    }
+  ],
+  "suggestedRegressionCases": [
+    "Non-Evangelizo provider IDs validate without weakening Evangelizo UUID provenance",
+    "Stale source/excerpt SHA is rejected before mutation",
+    "Vincent 2026-09-27 Sunday remains unchanged, 2027 exact observance receives only reviewed he/ru",
+    "Francis 2026-10-04 general calendar remains Sunday; Franciscan solemnity can receive reviewed uk",
+    "Faustina does not attach to Franciscan Feria or the Augustinian compound identity in 2026",
+    "Source-language missing prose remains absent; fil/iw aliases normalize only at native locale boundaries",
+    "Credits and source URLs persist across enrichment, widget and notification consumers",
+    "Independent Urtotho Hebrew descriptions are preserved; repeated enrichment is idempotent"
+  ],
+  "remainingCoverageBounds": {
+    "he": "273 Hebrew source articles are evidence, not 273 assigned saint descriptions; selected two passages still require final catalogue integration and distribution/credit review.",
+    "ru": "Catholic.co.il actual Russian biographies offer candidates despite empty Evangelizo saint-date probes; avoid the known Thérèse death-year typo passage.",
+    "tl": "Historical Blogger and TV Maria entries are finite source candidates; migration stubs, duplicate versions, reflections and songs are not biographies. The Teresa-of-Ávila passage proposed here avoids the known Padre Pio and Lawrence-of-Brindisi conflicts.",
+    "uk": "15 RKC full biographies are an immediately practical finite batch under a published link condition, not an annual complete catalogue. CREDO adds discovery but predominantly category excerpts and separate written-permission restrictions."
+  },
+  "nativeImportPerformed": false,
+  "calendarAppointmentsChanged": false,
+  "publicationPerformed": false,
+  "contactsMade": false,
+  "sourceReuseCertified": false,
+  "datasetSnapshotCommit": "213e4c97935972a5431679699041417a0db4b373",
+  "datasetSnapshotNote": "Dataset digests pin the researched merge baseline before the subsequent user-supplied Palm Sunday display-title correction; source catalogue records and passage pointers are unchanged."
+}

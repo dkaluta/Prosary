@@ -28,6 +28,7 @@ class BasicPrayerPinsInstrumentedTest {
             AppSettings.setBasicPrayerPinned(id, false)
         }
         try {
+            compose.onNodeWithTag("tab.pray").performClick()
             compose.onNodeWithTag("prayCards").performScrollToNode(hasTestTag("basicPrayersRow"))
             compose.onNodeWithTag("basicPrayersRow").performClick()
             compose.onNodeWithTag("basicPrayersList").performScrollToNode(hasTestTag("basicPrayerPin:$id"))

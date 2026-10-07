@@ -12,6 +12,7 @@ struct RosaryFlowView: View {
   @Environment(\.dismiss) private var dismiss
   @Environment(\.finishPrayerSession) private var finishPrayerSession
   @Environment(\.prayerWindowTitle) private var prayerWindowTitle
+  @Environment(\.prayerWindowIsModal) private var parentWindowIsModal
   @ObservedObject private var prayerLanguage = PrayerLanguageMonitor.shared
 
   @State private var steps: [RosaryStep] = []
@@ -23,6 +24,19 @@ struct RosaryFlowView: View {
   @State private var hasLoaded = false
   @State private var sessionLoader = PrayerSessionLoader()
   @State private var didFinish = false
+  @State private var showsMysteryPicker = false
+  @State private var pickerGroup: MysteryGroup?
+  @State private var navigationGroup: String?
+  @State private var navigationOrder: Int?
+  private var requiresMysteryChoice: Bool { prayer.rosary.mysterySelectionMode == .chooseOnLaunch && navigationGroup == nil }
+  private var mysteryPickerActionTitle: String {
+    let title = String(localized: "flow.chooseMystery", defaultValue: "Choose Mystery", bundle: UILanguage.bundle, locale: UILanguage.locale)
+    #if os(macOS)
+    return title + "…"
+    #else
+    return title
+    #endif
+  }
 
   @Environment(\.prayerProgressNamespace) private var progressNamespace
   private var progressStore: PrayerRunProgressStore { PrayerRunProgressStore(namespace: progressNamespace) }
@@ -97,7 +111,47 @@ struct RosaryFlowView: View {
       Text(String(localized: "prayerFlow.continue.message",
                   defaultValue: "You have an unfinished prayer. Continue where you left off or begin again?", bundle: UILanguage.bundle, locale: UILanguage.locale))
     }
+    .environment(\.prayerWindowIsModal, parentWindowIsModal || showsMysteryPicker || pendingContinuation != nil)
     .task { await sessionLoader.perform { await load() } }
+    .sheet(isPresented: $showsMysteryPicker) {
+      NavigationStack {
+        List {
+          Picker(String(localized: "flow.mysterySet", defaultValue: "Mystery Set", bundle: UILanguage.bundle, locale: UILanguage.locale), selection: $pickerGroup) {
+            Text(verbatim: "—").tag(Optional<MysteryGroup>.none)
+            ForEach(MysteryGroup.allCases) { group in Text(group.displayName).tag(Optional(group)) }
+          }
+          .accessibilityIdentifier("mysterySetSelector")
+          if let group = pickerGroup {
+            Button(String(localized: "flow.entireSet", defaultValue: "Entire Set", bundle: UILanguage.bundle, locale: UILanguage.locale)) {
+              chooseEntireSet(group)
+            }
+            .accessibilityIdentifier("chooseMystery.entireSet")
+            ForEach(MysteryCatalog.forGroup(group)) { mystery in
+              Button(HebrewDisplayText.unpointed(MysteryTranslations.get(
+                languageCode: UILanguage.current, imageKey: mystery.imageKey).title)) { chooseMystery(mystery) }
+                .accessibilityIdentifier("chooseMystery.\(group.rawValue).\(mystery.order)")
+            }
+          }
+        }
+        .accessibilityIdentifier("mysteryPickerList")
+        .navigationTitle(String(localized: "flow.chooseMystery", defaultValue: "Choose Mystery", bundle: UILanguage.bundle, locale: UILanguage.locale))
+        .toolbar {
+          ToolbarItem(placement: .cancellationAction) {
+            Button(String(localized: "common.cancel", defaultValue: "Cancel", bundle: UILanguage.bundle, locale: UILanguage.locale)) {
+              showsMysteryPicker = false
+              if requiresMysteryChoice { finishSession() }
+            }
+            #if os(macOS)
+            .keyboardShortcut(.cancelAction)
+            #endif
+          }
+        }
+      }
+      #if os(macOS)
+      .frame(minWidth: 480, minHeight: 560)
+      #endif
+      .interactiveDismissDisabled(requiresMysteryChoice)
+    }
     .onChange(of: prayerLanguage.code) { _, _ in
       guard hasLoaded, !didFinish, sessionPrayer.languageCode.isEmpty else { return }
       isRightToLeft = LanguageCatalog.resolve(sessionPrayer.languageCode).isRightToLeft
@@ -112,6 +166,13 @@ struct RosaryFlowView: View {
 
   @ViewBuilder
   private var flowActions: some View {
+    Button { pickerGroup = nil; showsMysteryPicker = true } label: {
+      Label(mysteryPickerActionTitle, systemImage: "list.bullet")
+    }
+    #if !os(macOS)
+    .labelStyle(.iconOnly)
+    #endif
+    .accessibilityIdentifier("chooseMysteryButton")
     Button { jump(to: previousMysteryIndex) } label: {
       Label {
         Text(String(localized: "rosaryFlow.previousMystery", defaultValue: "Previous Mystery", bundle: UILanguage.bundle, locale: UILanguage.locale))
@@ -176,17 +237,24 @@ struct RosaryFlowView: View {
     continuation = PrayerCopyProgressIdentity.continuation(continuation, savedLanguageCode: prayer.languageCode)
     #endif
     if let progress = continuation,
-       progress.canResume(
-        stepCount: steps.count,
-        sameLocalDayOnly: true,
-        expectedConfigurationSignature: PrayerRunSignature.rosary(sessionPrayer.rosary)) {
-      sessionPrayer.languageCode = progress.languageCode
-      isRightToLeft = LanguageCatalog.resolve(progress.languageCode).isRightToLeft
-      steps = services.engine.buildSteps(for: sessionPrayer)
-      pendingContinuation = progress
-    } else {
-      progressStore.clear(runKey: runKey)
+       let options = prayer.rosary.navigationOptions(group: progress.rosaryNavigationGroup, order: progress.rosaryNavigationOrder) {
+      var candidate = prayer
+      candidate.rosary = options
+      candidate.languageCode = progress.languageCode
+      let candidateSteps = services.engine.buildSteps(for: candidate)
+      if progress.canResume(stepCount: candidateSteps.count, sameLocalDayOnly: true,
+          expectedConfigurationSignature: PrayerRunSignature.rosary(prayer.rosary,
+            navigationGroup: progress.rosaryNavigationGroup, navigationOrder: progress.rosaryNavigationOrder)) {
+        sessionPrayer = candidate
+        navigationGroup = progress.rosaryNavigationGroup
+        navigationOrder = progress.rosaryNavigationOrder
+        isRightToLeft = LanguageCatalog.resolve(progress.languageCode).isRightToLeft
+        steps = candidateSteps
+        pendingContinuation = progress
+      }
     }
+    if pendingContinuation == nil { progressStore.clear(runKey: runKey) }
+    if requiresMysteryChoice { pickerGroup = nil; showsMysteryPicker = true }
   }
 
   private func next() {
@@ -216,7 +284,13 @@ struct RosaryFlowView: View {
   }
 
   private func jump(to index: Int?) {
-    guard let index, steps.indices.contains(index) else { return }
+    guard let index else { return }
+    if index == steps.count, !steps.isEmpty {
+      complete()
+      finishSession()
+      return
+    }
+    guard steps.indices.contains(index) else { return }
     currentIndex = index
     persistProgress()
   }
@@ -250,6 +324,11 @@ struct RosaryFlowView: View {
   private func restart() {
     pendingContinuation = nil
     currentIndex = 0
+    navigationGroup = nil
+    navigationOrder = nil
+    sessionPrayer.rosary = prayer.rosary
+    steps = services.engine.buildSteps(for: sessionPrayer)
+    if requiresMysteryChoice { pickerGroup = nil; showsMysteryPicker = true }
     progressStore.clear(runKey: PrayerRunKey.rosary(prayer))
   }
 
@@ -258,7 +337,41 @@ struct RosaryFlowView: View {
       runKey: PrayerRunKey.rosary(prayer),
       stepIndex: currentIndex,
       languageCode: sessionPrayer.languageCode,
-      configurationSignature: PrayerRunSignature.rosary(sessionPrayer.rosary))
+      configurationSignature: PrayerRunSignature.rosary(prayer.rosary, navigationGroup: navigationGroup, navigationOrder: navigationOrder),
+      rosaryNavigationGroup: navigationGroup, rosaryNavigationOrder: navigationOrder)
+  }
+
+  private func chooseMystery(_ mystery: Mystery) {
+    let beginAtOpening = requiresMysteryChoice
+    if prayer.rosary.mysterySelectionMode != .chooseOnLaunch,
+       let target = RosaryMysteryNavigation.announcementIndices(in: steps).first(where: { steps[$0].mystery == mystery }) {
+      showsMysteryPicker = false
+      jump(to: target)
+      return
+    }
+    let group = mystery.group.rawValue
+    let order = prayer.rosary.mysterySelectionMode == .singleMystery || prayer.rosary.mysterySelectionMode == .chooseOnLaunch
+      ? mystery.order : nil
+    guard let options = prayer.rosary.navigationOptions(group: group, order: order) else { return }
+    sessionPrayer.rosary = options
+    navigationGroup = group
+    navigationOrder = order
+    steps = services.engine.buildSteps(for: sessionPrayer)
+    currentIndex = beginAtOpening ? 0 : RosaryMysteryNavigation.announcementIndices(in: steps).first { steps[$0].mystery == mystery } ?? 0
+    showsMysteryPicker = false
+    persistProgress()
+  }
+
+  private func chooseEntireSet(_ group: MysteryGroup) {
+    let beginAtOpening = requiresMysteryChoice
+    guard let options = prayer.rosary.navigationOptions(group: group.rawValue, order: nil) else { return }
+    sessionPrayer.rosary = options
+    navigationGroup = group.rawValue
+    navigationOrder = nil
+    steps = services.engine.buildSteps(for: sessionPrayer)
+    currentIndex = beginAtOpening ? 0 : RosaryMysteryNavigation.announcementIndices(in: steps).first { steps[$0].mystery?.group == group } ?? 0
+    showsMysteryPicker = false
+    persistProgress()
   }
 }
 

@@ -52,6 +52,10 @@ public sealed class PresetEntry
     /// <summary>1-based index into MysteryCatalog.ForGroup(SpecificMysteryGroup); used only when
     /// MysterySelectionMode is SingleMystery. Defaults to 1 for existing rows.</summary>
     public int SpecificMysteryOrder { get; set; } = 1;
+    [NotNull]
+    public int SpecificMysteryCount { get; set; } = 1;
+    [NotNull]
+    public bool UseTraditionalMysteries { get; set; }
 
     [NotNull]
     public bool SkipFifthDecade { get; set; }
@@ -113,6 +117,8 @@ public sealed class PresetEntry
             MysterySelectionMode = MysterySelectionMode,
             SpecificMysteryGroup = SpecificMysteryGroup,
             SpecificMysteryOrder = SpecificMysteryOrder,
+            SpecificMysteryCount = SpecificMysteryCount,
+            UseTraditionalMysteries = UseTraditionalMysteries,
             IncludeApostlesCreed = IncludeApostlesCreed,
             IncludeOpeningPrayers = IncludeOpeningPrayers,
             IncludeOpeningFatimaPrayer = IncludeOpeningFatimaPrayer,
@@ -155,6 +161,8 @@ public sealed class PresetEntry
         MysterySelectionMode = prayer.Rosary.MysterySelectionMode,
         SpecificMysteryGroup = prayer.Rosary.SpecificMysteryGroup,
         SpecificMysteryOrder = prayer.Rosary.SpecificMysteryOrder,
+        SpecificMysteryCount = prayer.Rosary.SpecificMysteryCount,
+        UseTraditionalMysteries = prayer.Rosary.UseTraditionalMysteries,
         IncludeApostlesCreed = prayer.Rosary.IncludeApostlesCreed,
         IncludeOpeningPrayers = prayer.Rosary.IncludeOpeningPrayers,
         IncludeOpeningFatimaPrayer = prayer.Rosary.IncludeOpeningFatimaPrayer,

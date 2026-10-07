@@ -20,6 +20,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -40,7 +41,8 @@ import androidx.compose.material3.TextButton
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.LifecycleEventObserver
 import com.dkaluta.prosary.content.audio.PrayerSpeechController
-import androidx.compose.material.icons.filled.Translate
+import androidx.compose.material.icons.filled.Book
+import androidx.compose.material.icons.outlined.Book
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
@@ -92,6 +94,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.font.FontWeight
@@ -603,13 +607,16 @@ private fun AdaptivePrayerContent(
                                 modifier = Modifier.fillMaxWidth().testTag("prayerParagraph:$index"),
                             )
                         }
+                        item(key = "publishedPopeIntention") {
+                            PopeIntentionPrayerContent(step, languageCode)
+                        }
                         item(key = "counter") {
                             if (centralActionLabel != null && onCentralAction != null) {
                                 DisableSelection {
                                     Button(
                                         onClick = onCentralAction,
                                         shape = CircleShape,
-                                        modifier = Modifier.padding(top = 12.dp).size(104.dp),
+                                        modifier = Modifier.padding(top = 12.dp).defaultMinSize(minWidth = 104.dp, minHeight = 104.dp),
                                     ) {
                                         Text(
                                             centralActionLabel,
@@ -811,10 +818,20 @@ private fun PrayerTextHeader(
         if (step.transliteratedBody != null) {
             DisableSelection {
                 Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.End) {
-                    IconButton(onClick = onToggleTransliteration) {
+                    val actionLabel = stringResource(if (showsTransliteration) R.string.flow_show_original_text else R.string.flow_show_transliteration)
+                    val selectedScript = PrayerTypography.scriptOf(visibleBody)
+                    val scriptLabel = when (selectedScript) {
+                        PrayerTypography.Script.Hebrew -> stringResource(R.string.settings_script_hebrew)
+                        PrayerTypography.Script.Syriac -> stringResource(R.string.settings_script_syriac)
+                        else -> null
+                    }
+                    IconButton(onClick = onToggleTransliteration,
+                        modifier = Modifier.testTag("transliterationToggle").semantics {
+                            scriptLabel?.let { stateDescription = it }
+                        }) {
                         Icon(
-                            Icons.Filled.Translate,
-                            contentDescription = stringResource(R.string.flow_show_transliteration),
+                            if (showsTransliteration) Icons.Filled.Book else Icons.Outlined.Book,
+                            contentDescription = actionLabel,
                             tint = if (showsTransliteration) MaterialTheme.colorScheme.primary else LocalContentColor.current,
                         )
                     }

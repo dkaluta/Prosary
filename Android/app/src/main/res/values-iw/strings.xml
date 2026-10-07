@@ -151,10 +151,10 @@
     <string name="settings_remove_all_confirm">"הסרה"</string>
 
     <!-- Prayer kinds -->
-    <string name="kind_rosary">מחרוזת</string>
+    <string name="kind_rosary">מחרוזת הורדים</string>
     <string name="kind_jesus_prayer">תפילת ישוע</string>
     <string name="kind_devotion">מסלול תפילה</string>
-    <string name="kind_default_name_rosary">המחרוזת שלי</string>
+    <string name="kind_default_name_rosary">מחרוזת הורדים שלי</string>
 
     <!-- Mystery groups and selection modes -->
     <string name="mystery_group_joyful">השמחה</string>
@@ -165,7 +165,7 @@
     <string name="mode_specific">תמיד אוסף ספציפי</string>
     <string name="mode_fifteen">15 הרזים (השמחה, המוכאבות, הכבוד)</string>
     <string name="mode_twenty">20 הרזים (כל ארבעת האוספים)</string>
-    <string name="mode_single">רז אחד בלבד</string>
+    <string name="mode_single">רזים נבחרים</string>
     <string name="summary_always">תמיד %1$s</string>
     <string name="summary_only">רק %1$s</string>
     <string name="summary_fifteen">15 הרזים</string>
@@ -194,16 +194,16 @@
     <string name="language_default_dash">ברירת מחדל — %1$s</string>
 
     <!-- Rosary preset picker -->
-    <string name="rosary_title">המחרוזת הקדושה</string>
+    <string name="rosary_title">מחרוזת הורדים הקדושה</string>
     <string name="rosary_manage">ניהול</string>
     <string name="rosary_default_preset">ברירת המחדל</string>
     <string name="rosary_custom">מותאם אישית</string>
-    <string name="rosary_pray_any">תפילת מחרוזת חופשית</string>
-    <string name="rosary_options">אפשרויות המחרוזת</string>
+    <string name="rosary_pray_any">תפילת מחרוזת הורדים חופשית</string>
+    <string name="rosary_options">אפשרויות מחרוזת הורדים</string>
     <string name="rosary_save_as_preset">שמירה כתבנית</string>
     <string name="rosary_presets">תבניות</string>
     <string name="rosary_preset_name">שם התבנית</string>
-    <string name="rosary_praying">תפילת המחרוזת</string>
+    <string name="rosary_praying">תפילת מחרוזת הורדים</string>
 
     <!-- Rosary options editor -->
     <string name="ro_which_mysteries">אילו רזים?</string>
@@ -213,20 +213,20 @@
     <string name="ro_which_mystery">איזה רז</string>
     <string name="ro_opening_section">תפילות הפתיחה והרזים</string>
     <string name="ro_apostles_creed">אני מאמין</string>
-    <string name="ro_opening_prayers">“אבינו שבשמים” ו־3 “שמחי מרים” בפתיחה</string>
-    <string name="ro_opening_fatima">תפילת פאטימה אחרי תפילת “כבוד לאב” הפותחת</string>
+    <string name="ro_opening_prayers">“אבינו שבשמים” ו־3 “שלום לך” בפתיחה</string>
+    <string name="ro_opening_fatima">תפילת פאטימה אחרי תפילת “שבח לאב” הפותחת</string>
     <string name="ro_fatima">“הו ישוע שלי” בסוף כל רז</string>
     <string name="ro_faithful_departed">למען הנפטרים</string>
     <string name="ro_display_section">תצוגה</string>
     <string name="ro_mystery_artwork">איורי הרזים</string>
     <string name="ro_presenter_mode">מצב מנחה</string>
-    <string name="ro_presenter_hint">איחוד עשר ה“שמחי מרים” וה“כבוד לאב” של כל רז למסך אחד — שימושי למי שמוביל תפילה בציבור בעל־פה.</string>
+    <string name="ro_presenter_hint">איחוד עשר ה“שלום לך” וה“שבח לאב” של כל רז למסך אחד — שימושי למי שמוביל תפילה בציבור בעל־פה.</string>
     <string name="ro_closing_section">תפילות סיום</string>
     <string name="ro_marian_antiphon">אנטיפונה למרים</string>
     <string name="ro_closing_intentions">כוונות הסיום</string>
     <string name="ro_st_michael">תפילת המלאך מיכאל</string>
     <string name="ro_litany_of_loreto">"אמירת התחנון למרים לאחר המחרוזת"</string>
-    <string name="ro_rosary_collect">"מעתר המחרוזת"</string>
+    <string name="ro_rosary_collect">"מעתר מחרוזת הורדים"</string>
     <string name="ro_final_sign">סימן הצלב בסוף</string>
 
     <!-- Favorites -->
@@ -304,7 +304,7 @@
     <string name="bead_opening_prayers">תפילות פתיחה</string>
     <string name="bead_closing_prayers">תפילות סיום</string>
     <string name="bead_decade_of">רז %1$d מתוך %2$d</string>
-    <string name="bead_hail_mary_of">שמחי מרים %1$d מתוך %2$d</string>
+    <string name="bead_hail_mary_of">שלום לך %1$d מתוך %2$d</string>
     <string name="bead_antiphon_letter">מ</string>
     <string name="bead_progress">התקדמות המחרוזת. %1$s</string>
 
@@ -329,7 +329,7 @@
 
     <!-- About -->
     <string name="about_title">אודות Prosary</string>
-    <string name="about_tagline">עזר לתפילת המחרוזת ולתפילות קתוליות נוספות.</string>
+    <string name="about_tagline">עזר לתפילת מחרוזת הורדים ולתפילות קתוליות נוספות.</string>
     <string name="about_typefaces">גופנים</string>
     <string name="about_typeface_frank_ruhl">" — רישיון SIL Open Font 1.1 — תפילות בעברית."</string>
     <string name="about_typeface_shofar">" — GPL v2 עם חריגת הטמעת גופנים — פסוקי מקרא בעברית (פרויקט קולמוס, יורם גנת)."</string>
@@ -426,8 +426,8 @@
     <string name="home_today_readings">המקרא היומי</string>
     <string name="home_today_full_citations">הצג מראי מקום מלאים</string>
     <string name="home_today_compact_citations">הצג קיצור</string>
-    <string name="home_pray_any_rosary">התפלל מחרוזת כלשהי…</string>
-    <string name="home_add_rosary">הוסף מחרוזת…</string>
+    <string name="home_pray_any_rosary">התפלל מחרוזת הורדים כלשהי…</string>
+    <string name="home_add_rosary">הוסף מחרוזת הורדים…</string>
     <string name="home_add_jesus_prayer">הוסף את תפילת ישוע…</string>
     <string name="favorites_edit">ערוך…</string>
     <string name="favorites_reminders">תזכורות…</string>
@@ -477,8 +477,8 @@
     <string name="settings_typeface_roboto">Roboto</string>
     <string name="settings_typeface_roboto_noto">Roboto / Noto</string>
     <string name="prayer_tradition">"נוסח התפילה"</string>
-    <string name="prayer_tradition_vicariate">"נוסח הנציגות"</string>
-    <string name="prayer_tradition_mission">"נוסח השליחות"</string>
+    <string name="prayer_tradition_vicariate">נוסח לטיני</string>
+    <string name="prayer_tradition_mission">נוסח סורי</string>
     <string name="basic_prayers_pin">"הצמד ל״תפילה״"</string>
     <string name="basic_prayers_unpin">"הסר הצמדה מ״תפילה״"</string>
     <string name="ro_closing_pope_intention">"תפילות סיום למען האפיפיור"</string>
@@ -506,7 +506,7 @@
     <string name="settings_pascha_gregorian">פסחא לפי הלוח הגרגוריאני</string>
     <string name="about_ukrainian_sources">"תפילות באוקראינית: הכנסייה הקתולית הרומית באוקראינה, סידור התפילות Щоденно з Богом. השימוש נעשה עם ציון המקור בהתאם למדיניות השימוש החוזר של המוציא לאור. כתבי הקודש: תרגום קוליש, נצ׳וי־לויצקי ופוליוי (1905), נחלת הכלל; eBible.org ukr1871. הכתיב ההיסטורי של כתבי הקודש נשמר. תפילת הסיום של מחרוזת התפילה באוקראינית: מרכז המידע האוקראיני MIR מדג׳וגוריה (medjugorje.com.ua), מובאת בציון המקור בהתאם להרשאת הפרסום של האתר."</string>
     <string name="about_ukrainian_prayerbook_link">"סידור תפילות באוקראינית"</string>
-    <string name="about_ukrainian_rosary_source_link">MIR מדג׳וגוריה — תפילת המחרוזת באוקראינית</string>
+    <string name="about_ukrainian_rosary_source_link">MIR מדג׳וגוריה — תפילת מחרוזת הורדים באוקראינית</string>
     <string name="about_ukrainian_bible_link">"כתבי הקודש באוקראינית (1905)"</string>
     <!-- Window and menu commands -->
     <string name="commands_open_in_new_window">פתח בחלון חדש</string>
@@ -516,7 +516,7 @@
     <string name="commands_new_window">חלון חדש</string>
     <string name="favorite_editor_save_failed">לא ניתן לשמור במועדפים</string>
     <string name="flow_show_original_text">הצג את הטקסט המקורי</string>
-    <string name="home_pray_any_rosary_action">תפילת מחרוזת חופשית…</string>
+    <string name="home_pray_any_rosary_action">תפילת מחרוזת הורדים חופשית…</string>
     <string name="rosary_save_as_preset_action">שמירה כתבנית…</string>
     <string name="reminder_time">שעת התזכורת</string>
     <string name="reminders_remove">הסר תזכורת</string>
@@ -541,7 +541,7 @@
     <string name="widget_today_preview">תפילת הכנסייה היום</string>
     <string name="widget_saved_name">תפילה שמורה</string>
     <string name="widget_saved_description">בחרו תפילה שמורה וחזרו לתפילה שטרם הושלמה.</string>
-    <string name="widget_pray_rosary">התפללו את המחרוזת של היום</string>
+    <string name="widget_pray_rosary">התפללו את מחרוזת הורדים של היום</string>
     <string name="widget_choose_prayer">בחירת תפילה</string>
     <string name="widget_saved_missing">בחרו תפילה שמורה עבור הווידג׳ט הזה.</string>
     <string name="widget_saved_empty">שמרו תפילה ב־Prosary ואז הוסיפו את הווידג׳ט.</string>
@@ -585,4 +585,54 @@
     <string name="prayer_card_actions">פעולות תפילה</string>
     <string name="settings_prayer_reminders_hint">לתזכורות עבור תפילות אחרות, פתחו את תפריט כרטיס התפילה בלשונית תפילה ובחרו תזכורות.</string>
     <string name="settings_reminders_system">הגדרות התראות</string>
+
+    <!-- Personal Home dashboard -->
+    <string name="home_widgets_title">בית</string>
+    <string name="home_widgets_customize">התאמת דף הבית</string>
+    <string name="home_widgets_add">הוספת וידג׳ט</string>
+    <string name="home_widgets_remove">הסרת וידג׳ט</string>
+    <string name="home_widgets_move_up">הזזה למעלה</string>
+    <string name="home_widgets_move_down">הזזה למטה</string>
+    <string name="home_widgets_readings">מקראות היום</string>
+    <string name="home_widgets_pope_intention">כוונת האפיפיור</string>
+    <string name="home_widgets_calendar">לוח שנה</string>
+    <string name="home_widgets_photo">תמונה</string>
+    <string name="home_widgets_reminders">תזכורות</string>
+    <string name="home_widgets_scripture">כתבי הקודש</string>
+    <string name="home_widgets_reflection">נקודה להרהור</string>
+    <string name="home_widgets_feast">החג של היום</string>
+    <string name="home_widgets_empty">אפשר להוסיף וידג׳טים ולהתאים את דף הבית.</string>
+    <string name="home_widgets_choose_photo">בחירת תמונה</string>
+    <string name="home_widgets_remove_photo">הסרת תמונה</string>
+    <string name="home_widgets_photo_error">לא ניתן לטעון את התמונה</string>
+    <string name="home_widgets_no_reminders">אין עדיין תזכורות.</string>
+    <string name="home_widgets_manage_reminders">ניהול תזכורות</string>
+    <string name="home_widgets_reflection_pending">אין הרהור לתאריך זה בשפה זו.</string>
+    <string name="home_widgets_no_feast">אין מידע על חג בתאריך זה.</string>
+    <string name="home_widgets_no_readings">אין מקראות לתאריך זה.</string>
+    <string name="home_widgets_no_intention">אין כוונה לחודש זה.</string>
+    <string name="home_widgets_feast_details">על החג של היום</string>
+    <string name="home_widgets_no_feast_description">אין הסבר בשפה זו.</string>
+    <string name="home_widgets_community">תפילות מהקהילה</string>
+    <string name="home_widgets_available">וידג׳טים זמינים</string>
+    <string name="home_widgets_selected">הווידג׳טים שלך</string>
+    <string name="home_widgets_photo_description">התמונה שבחרת</string>
+    <string name="about_mission_prayer_corrections">תיקוני תפילות בסורית ובאוקראינית נמסרו בידי תורם לפרוסרי (אוקטובר 2026).</string>
+    <string name="ro_traditional_mysteries">15 הרזים המסורתיים</string>
+    <string name="ro_mystery_count">מספר הרזים</string>
+    <string name="summary_traditional_today">רזי היום (15 המסורתיים)</string>
+    <string name="flow_choose_prayer">בחירת תפילה</string>
+    <string name="flow_mysteries">רזים</string>
+    <string name="calendar_view">תצוגת הלוח</string>
+    <string name="calendar_list_view">רשימה</string>
+    <string name="calendar_month_view">חודש</string>
+    <string name="settings_show_pope_intention_in_prayers">הצגת הכוונה החודשית בתפילות למען האפיפיור</string>
+    <string name="prayer_pope_intention_source">רשת התפילה העולמית של האפיפיור</string>
+    <string name="reminders_save_without_notifications">שמירה ללא התראות</string>
+    <string name="summary_selected_mysteries">%1$d רזים החל מ־%2$s</string>
+    <string name="reminders_permission_body">אפשר לשמור את זמני התזכורות, אך התראות יוצגו רק לאחר הפעלתן בהגדרות Android.</string>
+    <string name="flow_choose_mystery">בחירת רז</string>
+    <string name="mode_choose_on_launch">בחירה בתחילת התפילה</string>
+    <string name="flow_mystery_set">קבוצת הרזים</string>
+    <string name="flow_entire_set">כל הקבוצה</string>
 </resources>

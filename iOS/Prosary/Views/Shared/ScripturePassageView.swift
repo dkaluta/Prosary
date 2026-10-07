@@ -1,36 +1,51 @@
 import SwiftUI
 
 struct ReadingEditionPicker: View {
+  var compact = false
+  var showsNotice = true
   @AppStorage(ReadingEditionSelection.defaultsKey) private var preference = ""
   @State private var editions: [ReadingTextEdition] = []
   @State private var hasLoadedEditions = false
 
   var body: some View {
     VStack(alignment: .leading, spacing: 6) {
-      Picker(String(localized: "readings.edition", defaultValue: "Bible edition", bundle: UILanguage.bundle, locale: UILanguage.locale), selection: $preference) {
-        Text(String(localized: "readings.followInterface", defaultValue: "Follow Interface Language", bundle: UILanguage.bundle, locale: UILanguage.locale)).tag("")
-        ForEach(editions, id: \.id) { edition in
-          Text(edition.name).tag(edition.id)
-        }
-        if !preference.isEmpty, !editions.contains(where: { $0.id == preference }) {
-          Text(String(localized: "readings.unavailableEdition", defaultValue: "Unavailable edition", bundle: UILanguage.bundle, locale: UILanguage.locale)).tag(preference)
-        }
+      if compact {
+        picker.labelsHidden()
+      } else {
+        picker
       }
-      .pickerStyle(.menu)
-      .accessibilityIdentifier("readings.editionPicker")
-      if let selected = ReadingEditionSelection.selected(preference, interfaceLanguage: UILanguage.current, editions: editions) {
+      if let selected = ReadingEditionSelection.selected(preference, interfaceLanguage: UILanguage.current, editions: editions),
+         !compact || preference.isEmpty {
         Text(selected.name).font(.caption).foregroundStyle(.secondary)
       } else if hasLoadedEditions && preference.isEmpty {
         Text(String(localized: "readings.noEdition", defaultValue: "No Bible edition is available for this language.", bundle: UILanguage.bundle, locale: UILanguage.locale))
           .font(.caption).foregroundStyle(.secondary)
       }
-      Text(String(localized: "readings.bibleNote", defaultValue: "Bible passages; wording may differ from the liturgical reading.", bundle: UILanguage.bundle, locale: UILanguage.locale))
-        .font(.caption).foregroundStyle(.secondary)
+      if showsNotice {
+        Text(String(localized: "readings.bibleNote", defaultValue: "Bible passages; wording may differ from the liturgical reading.", bundle: UILanguage.bundle, locale: UILanguage.locale))
+          .font(.caption).foregroundStyle(.secondary)
+      }
     }
     .task {
       editions = await ReadingTextStore.shared.editions()
       hasLoadedEditions = true
     }
+  }
+
+  private var picker: some View {
+    Picker(String(localized: "readings.edition", defaultValue: "Bible edition", bundle: UILanguage.bundle, locale: UILanguage.locale), selection: $preference) {
+      Text(String(localized: "readings.followInterface", defaultValue: "Follow Interface Language", bundle: UILanguage.bundle, locale: UILanguage.locale)).tag("")
+      ForEach(editions, id: \.id) { edition in
+        Text(edition.name).tag(edition.id)
+      }
+      if !preference.isEmpty, !editions.contains(where: { $0.id == preference }) {
+        Text(String(localized: "readings.unavailableEdition", defaultValue: "Unavailable edition", bundle: UILanguage.bundle, locale: UILanguage.locale)).tag(preference)
+      }
+    }
+    .pickerStyle(.menu)
+    .help(ReadingEditionSelection.selected(preference, interfaceLanguage: UILanguage.current, editions: editions)?.name
+      ?? String(localized: "readings.edition", defaultValue: "Bible edition", bundle: UILanguage.bundle, locale: UILanguage.locale))
+    .accessibilityIdentifier("readings.editionPicker")
   }
 }
 
@@ -57,7 +72,7 @@ struct ScripturePassageView: View {
     DisclosureGroup(isExpanded: $expanded) {
       if expanded {
         ScripturePassageBody(
-          citation: reading.full, isTorah: isTorah,
+          citation: reading.full, isTorah: isTorah, datasetID: reading.readingDatasetID,
           preference: $preference, interfaceLanguage: interfaceLanguage, script: script)
           .padding(.top, 8)
       }
@@ -72,6 +87,7 @@ struct ScripturePassageView: View {
       hasInitializedExpansion = true
     }
     .onChange(of: reading.full) { _, _ in expanded = expandReadingsByDefault; scriptOverride = nil }
+    .onChange(of: reading.readingDatasetID) { _, _ in expanded = expandReadingsByDefault; scriptOverride = nil }
     .onChange(of: expandReadingsByDefault) { _, value in expanded = value }
     .onChange(of: isTorah) { _, _ in scriptOverride = nil }
     .onChange(of: preference) { _, _ in scriptOverride = nil }
@@ -81,6 +97,7 @@ struct ScripturePassageView: View {
 private struct ScripturePassageBody: View {
   let citation: String
   let isTorah: Bool
+  let datasetID: String?
   @Binding var preference: String
   let interfaceLanguage: String
   @Binding var script: String
@@ -88,7 +105,7 @@ private struct ScripturePassageBody: View {
   @State private var availableEditions: [ReadingTextEdition] = []
   @State private var loading = true
 
-  private var requestID: String { "\(isTorah)|\(citation)|\(preference)|\(interfaceLanguage)" }
+  private var requestID: String { "\(isTorah)|\(datasetID ?? "")|\(citation)|\(preference)|\(interfaceLanguage)" }
 
   var body: some View {
     VStack(alignment: .leading, spacing: 12) {
@@ -163,10 +180,10 @@ private struct ScripturePassageBody: View {
       let selected = ReadingEditionSelection.selected(preference, interfaceLanguage: interfaceLanguage, editions: editions)
       let result: ReadingTextPassage?
       if let selected {
-        result = await ReadingTextStore.shared.passage(citation: citation, isTorah: isTorah, editionID: selected.id)
+        result = await ReadingTextStore.shared.passage(citation: citation, isTorah: isTorah, editionID: selected.id, datasetID: datasetID)
       } else { result = nil }
       let alternatives = result == nil
-        ? await ReadingTextStore.shared.availableEditions(citation: citation, isTorah: isTorah) : []
+        ? await ReadingTextStore.shared.availableEditions(citation: citation, isTorah: isTorah, datasetID: datasetID) : []
       guard !Task.isCancelled else { return }
       passage = result
       availableEditions = alternatives

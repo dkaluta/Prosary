@@ -110,62 +110,94 @@ struct MacTodayView: View {
 
   private var readingContent: some View {
     ScrollView {
-      VStack(alignment: .leading, spacing: 24) {
-        Text(selectedCalendarName)
-          .font(.caption)
-          .foregroundStyle(.secondary)
-          .accessibilityIdentifier("macToday.calendarName")
-        if let dayInfo {
-          Text(HebrewDisplayText.unpointed(dayInfo.localized(language)))
-            .font(.subheadline).foregroundStyle(.secondary)
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(14)
-            .background((TodayCardColor(rawValue: todayCardColor) ?? .default).tint, in: RoundedRectangle(cornerRadius: 14))
-            .prosaryContentCardBackground()
-            .accessibilityIdentifier("macToday.dayHeading")
-        }
-        if let feast {
-          VStack(alignment: .leading, spacing: 6) {
-            Text(feast.localizedTitle(language))
-              .font(.title2.weight(["Solemnity", "1st Class", "Great Feast"].contains(feast.rank) ? .bold : .semibold))
-              .accessibilityAddTraits(.isHeader)
-            Text(feast.localizedRank(language)).foregroundStyle(.secondary)
-            SaintDescriptionsView(feast: feast, calendarID: TodayInfoStore.selectedCalendarId, language: language)
-              .id("\(passageContext)|\(language)")
-          }
-          .frame(maxWidth: .infinity, alignment: .leading)
-          .padding(14)
-          .prosaryContentCardBackground()
-          .accessibilityIdentifier("macToday.feast")
+      VStack(alignment: .leading, spacing: 18) {
+        daySummary
+        if !readings.isEmpty || torah != nil {
+          Divider()
+          readingHeading
+          if !readings.isEmpty { readingsSection }
+          if let torah { torahSection(torah) }
         }
         if let intention {
-          HStack(alignment: .top, spacing: 12) {
-            PapalKeysSymbol().foregroundStyle(Color.appAccent)
-            VStack(alignment: .leading, spacing: 8) {
-              Text(String(format: label("home.today.popesIntention", "The Pope’s intention: %@"),
-                          locale: Locale(identifier: language), intention.localizedTitle(language)))
+          Divider()
+          VStack(alignment: .leading, spacing: 8) {
+            HStack(spacing: 8) {
+              Text(label("homeWidgets.popeIntention", "Pope’s Intention"))
                 .font(.headline).accessibilityAddTraits(.isHeader)
-              Text(intention.localizedText(language)).lineSpacing(3)
+              PapalKeysSymbol(size: 18).foregroundStyle(Color.appAccent)
             }
+            Text(verbatim: intention.localizedTitle(language)).font(.subheadline.weight(.medium))
+            Text(verbatim: intention.localizedText(language)).lineSpacing(3)
+              .fixedSize(horizontal: false, vertical: true)
           }
           .frame(maxWidth: .infinity, alignment: .leading)
-          .padding(14)
-          .prosaryContentCardBackground()
           .accessibilityIdentifier("macToday.intention")
         }
-        if !readings.isEmpty || torah != nil { ReadingEditionPicker() }
-        if !readings.isEmpty { readingsSection }
-        if let torah { torahSection(torah) }
+        Divider()
         Button(label("about.section.calendar", "Calendar Data")) {
           openWindow(id: "about")
         }
         .buttonStyle(.link)
+        .font(.caption)
         .accessibilityIdentifier("macToday.calendarData")
       }
       .textSelection(.enabled)
-      .frame(maxWidth: 720, alignment: .leading)
+      .frame(maxWidth: 600, alignment: .leading)
       .frame(maxWidth: .infinity, alignment: .center)
       .padding(24)
+    }
+  }
+
+  private var daySummary: some View {
+    VStack(alignment: .leading, spacing: 12) {
+      VStack(alignment: .leading, spacing: 4) {
+        Text(selectedCalendarName)
+          .font(.caption).foregroundStyle(.secondary)
+          .accessibilityIdentifier("macToday.calendarName")
+        if let dayInfo {
+          Text(HebrewDisplayText.unpointed(dayInfo.localized(language)))
+            .font(.subheadline).foregroundStyle(.secondary)
+            .padding(.vertical, 3)
+            .background((TodayCardColor(rawValue: todayCardColor) ?? .default).tint,
+                        in: RoundedRectangle(cornerRadius: 4))
+            .accessibilityIdentifier("macToday.dayHeading")
+        }
+      }
+      if let feast {
+        VStack(alignment: .leading, spacing: 6) {
+          Text(verbatim: feast.localizedTitle(language))
+            .font(.title.weight(["Solemnity", "1st Class", "Great Feast"].contains(feast.rank) ? .bold : .semibold))
+            .fixedSize(horizontal: false, vertical: true)
+            .accessibilityAddTraits(.isHeader)
+          Text(verbatim: feast.localizedRank(language))
+            .font(.subheadline).foregroundStyle(.secondary)
+          SaintDescriptionsView(feast: feast, calendarID: TodayInfoStore.selectedCalendarId, language: language)
+            .padding(.top, 4)
+            .id("\(passageContext)|\(language)")
+        }
+        .accessibilityIdentifier("macToday.feast")
+      }
+    }
+    .frame(maxWidth: .infinity, alignment: .leading)
+  }
+
+  private var readingHeading: some View {
+    VStack(alignment: .leading, spacing: 8) {
+      ViewThatFits(in: .horizontal) {
+        HStack(alignment: .top, spacing: 16) {
+          Text(readingsTitle).font(.headline).accessibilityAddTraits(.isHeader)
+            .fixedSize(horizontal: true, vertical: false)
+          Spacer(minLength: 12)
+          ReadingEditionPicker(compact: true, showsNotice: false).frame(width: 280)
+        }
+        VStack(alignment: .leading, spacing: 8) {
+          Text(readingsTitle).font(.headline).accessibilityAddTraits(.isHeader)
+          ReadingEditionPicker(compact: true, showsNotice: false)
+            .frame(maxWidth: 300, alignment: .leading)
+        }
+      }
+      Text(label("readings.bibleNote", "Bible passages; wording may differ from the liturgical reading."))
+        .font(.caption).foregroundStyle(.secondary)
     }
   }
 
@@ -282,8 +314,7 @@ struct MacTodayView: View {
   }
 
   private var readingsSection: some View {
-    VStack(alignment: .leading, spacing: 8) {
-      Text(readingsTitle).font(.headline).accessibilityAddTraits(.isHeader)
+    VStack(alignment: .leading, spacing: 14) {
       ForEach(Array(readings.enumerated()), id: \.offset) { index, reading in
         if let group = reading.sourceGroup, !group.isEmpty,
            index == 0 || readings[index - 1].sourceGroup != group {

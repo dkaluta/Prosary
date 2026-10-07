@@ -156,6 +156,65 @@ public class ReadingsTextStoreTests
     }
 
     [Fact]
+    public void ImportedCalendarUsesItsScopedPassageWithoutBorrowingTheRomanAppointment()
+    {
+        var fixture = Fixture.Replace("\"daily|John 3:16\":",
+            "\"daily|stjames|John 3:16\":{\"fixture-en\":[{\"chapter\":3,\"verse\":16,\"text\":\"Scoped source text.\"}]},\"daily|John 3:16\":");
+        var store = new ReadingsTextStore(() => fixture);
+        Assert.Equal("Scoped source text.", Assert.Single(store.Passage("daily", "John 3:16", "fixture-en", "stjames")).Text);
+        Assert.Equal("Exact fixture text.", Assert.Single(store.Passage("daily", "John 3:16", "fixture-en", "roman")).Text);
+        Assert.Empty(store.Passage("daily", "John 3:16", "fixture-en", "franciscan"));
+        Assert.Empty(store.AvailableEditions("daily", "John 3:16", "franciscan"));
+        Assert.Empty(store.Passage("daily", "John 3:16", "fixture-en", "stjames|roman"));
+        Assert.Equal("טקסט לבדיקה", Assert.Single(store.Passage("torah", "Genesis 1:1", "fixture-he", "stjames")).Text);
+    }
+
+    [Theory]
+    [InlineData("lpj")]
+    [InlineData("roman")]
+    [InlineData("roman1962")]
+    [InlineData("ugcc")]
+    [InlineData("ugcc-gregorian")]
+    [InlineData("syriac")]
+    [InlineData("maronite")]
+    public void EstablishedDatasetsRetainTheirExistingExactKeys(string dataset)
+    {
+        var store = new ReadingsTextStore(() => Fixture);
+        Assert.Equal("Exact fixture text.", Assert.Single(store.Passage("daily", "John 3:16", "fixture-en", dataset)).Text);
+    }
+
+    [Theory]
+    [InlineData("daily", "")]
+    [InlineData("torah", "")]
+    [InlineData("daily", "stjames|Psalm 8:7")]
+    [InlineData("torah", "stjames|Psalm 8:7")]
+    public void CitationCannotSupplyOrEraseItsOwnNamespace(string scope, string citation)
+    {
+        Assert.Null(ReadingsTextStore.PassageKey(scope, citation, "stjames"));
+    }
+
+    [Fact]
+    public void DeferredExpansionRetainsTheCitationsCapturedDatasetAfterCalendarChanges()
+    {
+        var previous = TodayInfoStore.SelectedCalendarId;
+        try
+        {
+            var fixture = Fixture.Replace("\"daily|John 3:16\":",
+                "\"daily|stjames|John 3:16\":{\"fixture-en\":[{\"chapter\":3,\"verse\":16,\"text\":\"Scoped source text.\"}]},\"daily|John 3:16\":");
+            var store = new ReadingsTextStore(() => fixture);
+            var citation = new ReadingCitation("gospel", "Jn 3:16", "John 3:16") { ReadingDatasetId = "stjames" };
+            var row = new ReadingPassageViewModel(store, store.ResolveEdition("fixture-en", "en"), "daily",
+                citation, "en", "context", "configuration");
+            TodayInfoStore.SelectedCalendarId = "roman";
+            row.IsExpanded = true;
+            Assert.True(row.HasPassage);
+            Assert.Contains("Scoped source text.", row.PassageText);
+            Assert.DoesNotContain("Exact fixture text.", row.PassageText);
+        }
+        finally { TodayInfoStore.SelectedCalendarId = previous; }
+    }
+
+    [Fact]
     public void AvailableEditionsRequireACompletePassageInTheExactScope()
     {
         var store = new ReadingsTextStore(() => Fixture);

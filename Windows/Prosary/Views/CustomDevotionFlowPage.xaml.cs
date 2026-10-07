@@ -35,6 +35,7 @@ public sealed partial class CustomDevotionFlowPage : Page
         Loaded += (_, _) =>
         {
             AppSettings.TypographyChanged += OnTypographyChanged;
+            AppSettings.PopeIntentionPreferenceChanged += OnTypographyChanged;
             AppSettings.PrayerWordingChanged += OnPrayerWordingChanged;
             OnPrayerWordingChanged();
             OnTypographyChanged();
@@ -45,6 +46,7 @@ public sealed partial class CustomDevotionFlowPage : Page
             _autoAdvance = null;
             ViewModel.StopAudio();
             AppSettings.TypographyChanged -= OnTypographyChanged;
+            AppSettings.PopeIntentionPreferenceChanged -= OnTypographyChanged;
             AppSettings.PrayerWordingChanged -= OnPrayerWordingChanged;
         };
         ActualThemeChanged += OnActualThemeChanged;

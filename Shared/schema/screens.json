@@ -29,9 +29,9 @@
   "screens": {
     "windowsLibrary": {
       "platform": "windows",
-      "purpose": "The shared Windows library window, with Library, Today, Gallery, Basic Prayers, Search and Community destinations plus Settings/About. Searchable saved prayers use native list/grid selection and Open, Settings, Duplicate, Rename and confirmed Delete actions. Existing SQLite prayers remain intact. Each window contains File/View/Prayer/Help menus and familiar keyboard shortcuts.",
+      "purpose": "The shared Windows library window, with Home, Library, Today, Gallery, Basic Prayers and Search destinations plus Settings/About. Searchable saved prayers use native list/grid selection and Open, Settings, Duplicate, Rename and confirmed Delete actions. Existing SQLite prayers remain intact. Each window contains File/View/Prayer/Help menus and familiar keyboard shortcuts.",
       "parameters": {},
-      "navigation": "Show Library activates or recreates the singleton window. Open, double-click or Enter opens or activates the exact saved UUID's separate prayer window. No redundant Open in New Window action.",
+      "navigation": "Initial launch opens Home. Show Library activates or recreates the singleton window at Library. Open, double-click or Enter opens or activates the exact saved UUID in its separate prayer window.",
       "persistence": "windows-library.json",
       "sources": {
         "windows": "MainWindow.xaml(.cs) + Views/DesktopLibraryPage.xaml(.cs) + ViewModels/DesktopLibraryViewModel.cs + Persistence/DesktopPresetStore.cs"
@@ -101,16 +101,6 @@
       "scene": "prayer (WindowGroup<PrayerWindowRequest>)",
       "sources": {
         "macOS": "ProsaryApp.swift + Views/Shared/MacPrayerWindowView.swift + Views/Shared/MacPrayerPresenterView.swift + Support/PrayerWindowRequest.swift + Support/MacPrayerWindowGeometry.swift + Support/MacPrayerPlaybackSettings.swift + Support/MacPrayerPresentation.swift"
-      }
-    },
-    "home": {
-      "windowsStatus": "Legacy compatibility page; the desktop root is windowsLibrary and Today is windowsToday.",
-      "purpose": "The Pray tab: a Today section with previous/next arrows around a date button opening a native calendar and an in-popup Today action. All rows follow the selected date; the supplemental day heading hides on Sundays, uses the liturgical season for modern Roman calendars, and uses the civil day/month for other rites, in the native app/interface language (English, Hebrew, Arabic, Russian, Filipino/Tagalog, French, Italian, Ukrainian), ignoring the old todayLanguageCode override; optional independently-switchable rows show the chosen calendar's feast and the Pope's monthly intention. The independently toggleable readings row (showTodayReadings, default true) loads that same selected calendar's lectionary table; the selected date is shared with the Readings tab in the same window. All platforms always show complete localized citations without a shortened-citation switch. Today readings occupy a card tinted by todayCardColor; the feast/saint and sourced biographies occupy a separate card, and the Pope’s monthly intention has its own card marked with crossed keys. A missing date never falls back across rites. Arabic and Hebrew modes make the whole Today text stack RTL. All eight languages use localized captions and sourced citations; newly imported feast names retain their source label until a reviewed translation is available. An optional Eretz Israel Torah row shows the coming Saturday, including festival replacements. Below it is one card per pinned devotion in the user's HomeOrder. The base directory is Rosary, every discovered generic bundle in pack-load order, then Jesus Prayer; saved configurations imply a pin on migration, while FavoriteDevotions lets a user pin/unpin without deleting any saved Prayer. The Rosary card opens its presets surface; generic and Jesus Prayer cards launch the saved default or an unsaved flow/setup when none exists. A fixed Basic Prayers row sits below the cards. Toolbar actions add Rosary/Jesus configurations, restore unpinned devotions, edit order, and open Settings/About where the platform exposes them in-app. Pinned basic prayers join this same HomeOrder under basic:<prayerId>, retaining historical favoriteBasicPrayerIds. They open the corresponding one-step prayer directly in basicPrayersLanguageCode and support the same reorder/unpin actions. Saved generic/Jesus Prayer cards also expose a separate Delete Saved Prayer action with confirmation. Rosary copies are deleted from their presets surface. Deletion cancels that copy's reminders, preserves siblings and built-ins, and removes an installed download only after its final saved copy is gone. Failed operations report errors.",
-      "parameters": {},
-      "sources": {
-        "iOS": "Views/Home/HomeView.swift",
-        "android": "ui/home/HomeScreen.kt",
-        "windows": "Views/HomePage.xaml(.cs) + ViewModels/HomeViewModel.cs"
       }
     },
     "favoriteEditor": {
@@ -294,7 +284,7 @@
     "repositoryBrowser": {
       "purpose": "The in-app browser for prayers.prosary.app: fetches the versioned /index.json catalog, filters by search text and tag, and installs through the same installPack pipeline as manual file import. Installed repository bundles gain the manifest-derived 'Repository' tag, appear in Search and its category filters, and can be pinned to Pray. Downloads go through the catalog's same-origin /api/download/<id> path so server-side counting works. Downloads enter discovery/Gallery immediately without creating a saved copy or automatically pinning the devotion. Users then choose whether to add it to their library.",
       "parameters": {},
-      "navigation": "The Browse tab is the primary surface on phone/tablet; Search also queries and installs from the same catalog. Mac and Windows libraries provide a Community destination. Manual bundle import lives in Browse/File commands on Apple, File commands and Settings on Windows, and Settings on Android. Apple also handles Finder/Files opening of app.prosary.prayer (.prosaryprayer) and Mac library file drops. Installed-download management is platform-appropriate Settings UI.",
+      "navigation": "Community prayers are reached from Search on iOS, Android and Windows. Mac retains its native Community destination. Existing manual import, file commands, downloaded pack management and installation pipeline remain.",
       "sources": {
         "iOS": "Views/Favorites/RepositoryBrowserView.swift + Support/RepositoryClient.swift",
         "android": "ui/favorites/RepositoryBrowserScreen.kt + content/repository/RepositoryClient.kt (the app's only INTERNET-permission feature)",
@@ -302,7 +292,7 @@
       }
     },
     "tabShell": {
-      "purpose": "The phone/tablet shell: four sections — Pray, Browse (the prayers.prosary.app catalog), Readings (date-based appointed citations and optional Bible text), and Search (built-in and installed prayers with category browsing and combined category/text filters). Phones use a bottom bar; larger layouts use a sidebar or rail (iOS 18 sidebarAdaptable, Android NavigationRail at >=840dp, native tablet sidebars). Active prayer flows hide the bottom bar on iPhone and Android phones. Each Apple section owns a NavigationStack; Windows uses windowsLibrary and windowsPrayerWindow; Mac uses macLibrary and dedicated macPrayerWindow scenes, while retaining ContentView only for compatibility with older non-library routes.",
+      "purpose": "Four phone/tablet sections: Home (customizable dashboard and initial landing), Pray (saved/pinned devotion collection), Readings (daily, calendar and Bible modes), and Search (local categories plus a community catalog entry). Browse is removed. Native bottom bars, tablet sidebars and rails, independent Apple navigation stacks, and stable Android session ownership remain. Windows opens Home within its native library shell; Mac retains its native library workflow.",
       "parameters": {},
       "sources": {
         "iOS": "ContentView.swift (TabView + adaptiveTabViewStyle), ProsaryApp.swift, Support/PrayersCommands.swift",
@@ -366,7 +356,7 @@
       }
     },
     "search": {
-      "purpose": "Search and category browsing cover only built-in and installed prayers. Categories derive from their manifest tags, with All Categories and Other for untagged prayers; arbitrary downloaded tags retain localized-or-raw captions. Category and text query constrain the same local results. A blank query browses a category. Results open existing prayer routes and refresh after downloads are installed or removed. Search works offline without fetching the community catalog. Browse (Community on Windows) is the dedicated discovery and installation destination. On phones Search is a tab; Windows exposes its library sidebar and View > Search / Ctrl+F; Mac retains its native library workflow.",
+      "purpose": "Search local built-in and installed prayers with combined category and text filters, available offline. A visible Community Prayers action opens the existing online catalog for discovery and installation without a separate Browse tab or Windows Community sidebar destination. Results refresh after install/removal. Mac keeps its native library search/community workflow.",
       "parameters": {},
       "sources": {
         "iOS": "Views/Search/SearchTabView.swift",
@@ -384,6 +374,42 @@
         "android": "ui/shared/BasicPrayersScreen.kt (Routes.BasicPrayers / Routes.BasicPrayerFlow)",
         "windows": "Views/BasicPrayersPage.xaml(.cs) + Views/BasicPrayerFlowPage.xaml(.cs)"
       }
+    },
+    "pray": {
+      "windowsStatus": "Legacy prayer collection; native Windows uses Library and Gallery.",
+      "purpose": "The Pray tab: a Today section with previous/next arrows around a date button opening a native calendar and an in-popup Today action. All rows follow the selected date; the supplemental day heading hides on Sundays, uses the liturgical season for modern Roman calendars, and uses the civil day/month for other rites, in the native app/interface language (English, Hebrew, Arabic, Russian, Filipino/Tagalog, French, Italian, Ukrainian), ignoring the old todayLanguageCode override; optional independently-switchable rows show the chosen calendar's feast and the Pope's monthly intention. The independently toggleable readings row (showTodayReadings, default true) loads that same selected calendar's lectionary table; the selected date is shared with the Readings tab in the same window. All platforms always show complete localized citations without a shortened-citation switch. Today readings occupy a card tinted by todayCardColor; the feast/saint and sourced biographies occupy a separate card, and the Pope’s monthly intention has its own card marked with crossed keys. A missing date never falls back across rites. Arabic and Hebrew modes make the whole Today text stack RTL. All eight languages use localized captions and sourced citations; newly imported feast names retain their source label until a reviewed translation is available. An optional Eretz Israel Torah row shows the coming Saturday, including festival replacements. Below it is one card per pinned devotion in the user's HomeOrder. The base directory is Rosary, every discovered generic bundle in pack-load order, then Jesus Prayer; saved configurations imply a pin on migration, while FavoriteDevotions lets a user pin/unpin without deleting any saved Prayer. The Rosary card opens its presets surface; generic and Jesus Prayer cards launch the saved default or an unsaved flow/setup when none exists. A fixed Basic Prayers row sits below the cards. Toolbar actions add Rosary/Jesus configurations, restore unpinned devotions, edit order, and open Settings/About where the platform exposes them in-app. Pinned basic prayers join this same HomeOrder under basic:<prayerId>, retaining historical favoriteBasicPrayerIds. They open the corresponding one-step prayer directly in basicPrayersLanguageCode and support the same reorder/unpin actions. Pray context menus expose Remove from Pray. Saved-copy deletion belongs in Prayer Settings, saved-prayer management and Rosary presets, with confirmation. Deletion cancels that copy's reminders, preserves siblings and built-ins, and removes an installed download only after its final saved copy is gone. Failed operations report errors.",
+      "parameters": {},
+      "sources": {
+        "iOS": "Views/Home/HomeView.swift",
+        "android": "ui/home/HomeScreen.kt",
+        "windows": "Views/HomePage.xaml(.cs) + ViewModels/HomeViewModel.cs"
+      }
+    },
+    "home": {
+      "platforms": [
+        "iOS",
+        "android",
+        "windows"
+      ],
+      "purpose": "Customizable Home dashboard and initial landing. Choose, remove and reorder independent cards for readings, Pope intention, calendar, private gallery photo, existing reminders, Holy Scripture, forthcoming Mission reflection and sourced feast explanations. The date is shared with Pray and Readings in the same window, follows the local day until browsing, and never changes prayer sessions. Hebrew and Arabic use RTL. Reflection remains a localized awaiting-text state until supplied. No missing prayer or feast explanation is invented.",
+      "parameters": {},
+      "settings": [
+        "homeWidgetOrder",
+        "homePhotoPath"
+      ],
+      "contract": "home-widgets.json",
+      "sources": {
+        "iOS": "Views/Home/HomeDashboardView.swift + Support/HomeWidgetOrder.swift + Support/HomePhotoStore.swift",
+        "android": "ui/home/HomeDashboardScreen.kt + models/HomeWidgetPreferences.kt",
+        "windows": "Views/DashboardPage.xaml(.cs) + ViewModels/DashboardViewModel.cs + Models/HomeWidgets.cs"
+      }
     }
+  },
+  "october2026Additions": {
+    "calendarView": "calendarViewMode list/month persisted across native apps; native month grid selects dates and retains source-bounded observances/readings.",
+    "reflections": "Home reflection card uses exact-language selected-calendar/date reflection sections, with provisional/source credit. Missing reflection shows localized unavailable state.",
+    "prayerNavigation": "Choose on Launch keeps a saved Rosary mystery selection blank, asking for one of20 mysteries grouped in foursets when starting. Its stored count chooses1..5 consecutive mysteries without wrap, preserving configured opening prayers. Chosen group/order is device-local for Continue; Restart asks again. Choose Mystery can reopen the session chooser without altering saved options. Chooser puts Mystery Set at top and lists only selected set’s5mysteries below; initial mandatory selection stays empty. Entire Set above individualmysteries chooses allfive fromfirst, preservingopening andsavedoptions.",
+    "rosaryOptions": "Traditional15 Today and 1..5 sequential selected mysteries with no wrap; raw SingleMystery identity retained.",
+    "publishedIntention": "showPopeIntentionInPrayers false by default, independent of Today visibility; stable intentioPontificis entry key only."
   }
 }

@@ -24,7 +24,7 @@ class ReadingsExpansionInstrumentedTest {
     @Test fun passagesFollowExpansionPreferenceWhileChoicesSurviveRefresh() {
         val context = InstrumentationRegistry.getInstrumentation().targetContext
         ActivityScenario.launch(MainActivity::class.java).use { scenario ->
-            compose.waitUntil(15_000) { compose.onAllNodes(hasTestTag("todayChooseDate")).fetchSemanticsNodes().isNotEmpty() }
+            compose.waitUntil(15_000) { compose.onAllNodes(hasTestTag("homeDashboard")).fetchSemanticsNodes().isNotEmpty() }
             val originalCalendar = AppSettings.feastCalendarId
             val originalEdition = AppSettings.readingsEditionId
             val originalTorah = AppSettings.showTodayTorahPortion

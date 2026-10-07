@@ -20,6 +20,7 @@ public sealed partial class RemindersOnlyEditorPage : Page
         ViewModel.Navigation = Router.For(this);
         InitializeComponent();
         ViewModel.ShowSaveError = message => PrayerRemovalDialogs.ShowSaveErrorAsync(XamlRoot, message);
+        ViewModel.ConfirmDelete = plan => PrayerRemovalDialogs.ConfirmDeleteAsync(XamlRoot, plan);
     }
 
     protected override async void OnNavigatedTo(NavigationEventArgs e)

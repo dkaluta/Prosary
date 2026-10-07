@@ -5,6 +5,7 @@
 # ///
 """Offline source-boundary and exact-day biography checks for the supplied Hebrew ICS."""
 from copy import deepcopy
+import hashlib
 import json
 from unittest.mock import patch
 import syriac_hebrew_calendar as calendar
@@ -73,9 +74,18 @@ with patch.object(calendar, "reviewed_events", return_value=[{
     calendar.apply_hebrew_reference(case, {}, {"Fixture": "Existing sourced title"})
     assert case["2026-01-01"]["observances"][0]["titleByLanguage"]["he"] == "Existing sourced title"
     assert "descriptionByLanguage" not in case["2026-01-01"]["observances"][0]
-# Canonical import stays exclusively in Syriac; every generated body matches its exact source.
+# The reviewed companion stays in Syriac. The separately supplied Mission calendar keeps
+# its own provisional scope and source pin rather than sharing this biography projection.
 for path in (calendar.TOOLS.parent / "data").glob("feasts*.json"):
     dataset = json.loads(path.read_text())
+    if path.name == "feasts-mission-provisional.json":
+        assert dataset["calendarId"] == "mission-provisional"
+        assert dataset["provisional"] is True and dataset["scope"] == "Mission"
+        assert dataset["source"] == "mission-provisional-2026-he.ics"
+        supplied = calendar.TOOLS / "sources" / dataset["source"]
+        assert dataset["sourceSha256"] == hashlib.sha256(supplied.read_bytes()).hexdigest()
+        assert all(date.startswith("2026-") for date in dataset["days"])
+        continue
     if path.name != "feasts-syriac.json":
         assert "Urtotho" not in json.dumps(dataset), path.name
         continue

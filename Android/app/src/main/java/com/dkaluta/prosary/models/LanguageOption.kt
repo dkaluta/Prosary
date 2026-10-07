@@ -151,9 +151,9 @@ object LanguageCatalog {
     /** Separate traditions retain the source-specific codes used by existing saved prayers. */
     val ritesByLanguage: Map<String, List<LanguageOption>> = mapOf(
         "he" to listOf(
-            LanguageOption(code = "he", nativeName = "נוסח הנציגות", isRightToLeft = true),
+            LanguageOption(code = "he", nativeName = "נוסח לטיני", isRightToLeft = true),
             // The Mission of St. Gamaliel's wording, sent by Erez 2026-08-05.
-            LanguageOption(code = "he-x-gamliel", nativeName = "נוסח השליחות", isRightToLeft = true),
+            LanguageOption(code = "he-x-gamliel", nativeName = "נוסח סורי", isRightToLeft = true),
         ),
     )
 

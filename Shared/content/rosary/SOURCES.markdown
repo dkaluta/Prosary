@@ -1,5 +1,13 @@
 # Vicariate Hail Mary wording
 
+The contributor supplied five prayer corrections on 6 October 2026: Syriac Fatima and
+Sub tuum praesidium; Ukrainian Our Father, Fatima and Hail Mary. Their exact supplied
+wording is pinned in `Shared/tools/fixtures/contributor-prayer-corrections.json` and
+credited separately in each native About screen. No published-source claim is made for
+these corrections. The new Fatima body stays in Syriac letters; no Hebrew-letter
+version is inferred. For Sub tuum, the existing separately credited Hebrew-letter
+body is retained while the supplied Syriac recension replaces its alternate body.
+
 The Hebrew fixed Hail Mary retains the St. James Vicariate prayer book's
 **מְלֵאַת הַחֶסֶד** and its original reading aid. The alternative wording option was removed
 at the user's request on 26 September 2026; old saved preferences no longer substitute any

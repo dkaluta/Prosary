@@ -58,7 +58,7 @@ class WesternEditionReviewsTests(unittest.TestCase):
 
     def test_exact_assembled_source_pins_and_inventories(self):
         expected = {"synodal-1876": (1, 1189, 31169),
-                    "crampon-1923": (1, 1334, 35610), "martini": (447, 447, 13785)}
+                    "crampon-1923": (1, 1334, 35610), "martini": (597, 597, 16264)}
         for edition_id, (source_count, chapters, verses) in expected.items():
             record, corpus = self.records[edition_id], self.corpora[edition_id]
             with self.subTest(edition=edition_id):
@@ -72,7 +72,9 @@ class WesternEditionReviewsTests(unittest.TestCase):
                     EditionMapper(edition_id, changed)
 
     def test_reviewed_inventory_exceptions_do_not_relax_other_chapters(self):
-        counts = {"synodal-1876": 3, "crampon-1923": 118, "martini": 10}
+        # The 150 original Martini Psalm chapter arrays are imported intact;
+        # their daily edges remain gated by the separate 474 inspected units.
+        counts = {"synodal-1876": 3, "crampon-1923": 118, "martini": 160}
         for edition_id, mapper in self.mappers.items():
             with self.subTest(edition=edition_id):
                 profile = PROFILES[edition_id]
@@ -103,7 +105,7 @@ class WesternEditionReviewsTests(unittest.TestCase):
 
     def test_all_supported_source_verses_round_trip_as_whole_units(self):
         expected = {"synodal-1876": (31164, 5), "crampon-1923": (33869, 1741),
-                    "martini": (13708, 77)}
+                    "martini": (14182, 2082)}
         for edition_id, corpus in self.corpora.items():
             mapper = self.mappers[edition_id]
             supported = unavailable = 0
@@ -209,7 +211,8 @@ class WesternEditionReviewsTests(unittest.TestCase):
                                  (("DEU", 23, 1), ("DEU", 22, 30)),
                                  (("DEU", 29, 1), ("DEU", 29, 2))]:
             self.assertEqual(mapper.to_standard([source]), ([standard], False))
-        for standard in [("PSA", 1, 1), ("SIR", 1, 1), ("1TH", 4, 18), ("JHN", 11, 57)]:
+        self.assertEqual(mapper.from_standard([("PSA", 1, 1)])[0], [("PSA", 1, 1)])
+        for standard in [("PSA", 2, 7), ("SIR", 1, 1), ("1TH", 4, 18), ("JHN", 11, 57)]:
             with self.subTest(ref=standard), self.assertRaises(Unavailable):
                 mapper.from_standard([standard])
 

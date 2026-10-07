@@ -1,0 +1,87 @@
+{
+  "schemaVersion": 1,
+  "reviewedOn": "2026-10-06",
+  "sourceId": "engDRA",
+  "sourceSHA256": "96282bfa7c89a74680cea66fe873aafa5e7cd446407f0ff2531a723e19eee2c2",
+  "method": "Bounded corrections of two omitted Scripture clauses and one mistranscribed word in the pinned eBible transcription. Both independently published Challoner/Douay–Rheims witnesses give each identical complete verse. The original archive stays unchanged; only the named source coordinates are corrected during canonical import. No other wording, source label or edition is substituted.",
+  "corrections": [
+    {
+      "reference": [
+        "PSA",
+        127,
+        3
+      ],
+      "originalText": "Thy wife as a fruitful vine, on the sides of thy house.",
+      "originalTextSHA256": "bd7fb704ba69fd2fc7424c439c9c1b7036959239bf6eb0b84d7036f78080680d",
+      "correctedText": "Thy wife as a fruitful vine, on the sides of thy house. Thy children as olive plants, round about thy table.",
+      "correctedTextSHA256": "475642fd219913ff5a8182ab2f3ae9eca6aeb44efeaf1bbb5ad97474cc9fc1c6",
+      "witnesses": [
+        {
+          "url": "https://www.drbo.org/chapter/21127.htm",
+          "cache": "douay-source-witnesses/drbo-psalm-127.html",
+          "payloadSHA256": "bc11407a22b3df1c02845e1f84676035ba4388a3a4952c28846ee77cbc403646",
+          "excerpt": "Thy wife as a fruitful vine, on the sides of thy house. Thy children as olive plants, round about thy table."
+        },
+        {
+          "url": "https://www.gutenberg.org/ebooks/8300.txt.utf-8",
+          "cache": "douay-source-witnesses/gutenberg-8300.txt",
+          "payloadSHA256": "65ffc9eff384c1c8ffe1cbd2bf58964b228f8057c516ac7594196068f6a65c4b",
+          "excerpt": "Thy wife as a fruitful vine, on the sides of thy house. Thy children as olive plants, round about thy table.",
+          "edition": "The Challoner Revision,1749-1752. Project Gutenberg8300; public domain in the USA."
+        }
+      ]
+    },
+    {
+      "reference": [
+        "PSA",
+        141,
+        4
+      ],
+      "originalText": "When my spirit failed me, then thou newest my paths.",
+      "originalTextSHA256": "b31b9857d680aa67eb06f514eb8a48cfd3c1f45384e278907777d6e49ab9e80c",
+      "correctedText": "When my spirit failed me, then thou knewest my paths. In this way wherein I walked, they have hidden a snare for me.",
+      "correctedTextSHA256": "2dbeefe1aeb8920d43ffcdf5dcc39b393bac0c5e9b44e342aab5b2c7f0a75210",
+      "witnesses": [
+        {
+          "url": "https://www.drbo.org/chapter/21141.htm",
+          "cache": "douay-source-witnesses/drbo-psalm-141.html",
+          "payloadSHA256": "93e05af52cca6c67d40383f2b55584476decf7702e178aaa0f9ca02236399f35",
+          "excerpt": "When my spirit failed me, then thou knewest my paths. In this way wherein I walked, they have hidden a snare for me."
+        },
+        {
+          "url": "https://www.gutenberg.org/ebooks/8300.txt.utf-8",
+          "cache": "douay-source-witnesses/gutenberg-8300.txt",
+          "payloadSHA256": "65ffc9eff384c1c8ffe1cbd2bf58964b228f8057c516ac7594196068f6a65c4b",
+          "excerpt": "When my spirit failed me, then thou knewest my paths. In this way wherein I walked, they have hidden a snare for me.",
+          "edition": "The Challoner Revision,1749-1752. Project Gutenberg8300; public domain in the USA."
+        }
+      ]
+    },
+    {
+      "reference": [
+        "PSA",
+        111,
+        7
+      ],
+      "originalText": "The just shall be in everlasting remembrance: he shall not hear the evil hearing. His heart is ready to hope in the Lord:",
+      "originalTextSHA256": "a08781f768f82de4a7d84de8e7b2c09403b337e2476de408fc56c11e707a3834",
+      "correctedText": "The just shall be in everlasting remembrance: he shall not fear the evil hearing. His heart is ready to hope in the Lord:",
+      "correctedTextSHA256": "8ace180686bec265026d8e871a1563ae7be57b56c9452c894f47295d906a0210",
+      "witnesses": [
+        {
+          "url": "https://www.drbo.org/chapter/21111.htm",
+          "cache": "douay-source-witnesses/drbo-psalm-111.html",
+          "payloadSHA256": "a535019e9f1260e8cfa367beda5d6a276bcb6d74a9bd6a7fcc40aacc41842b4d",
+          "excerpt": "The just shall be in everlasting remembrance: he shall not fear the evil hearing. His heart is ready to hope in the Lord:"
+        },
+        {
+          "url": "https://www.gutenberg.org/ebooks/8300.txt.utf-8",
+          "cache": "douay-source-witnesses/gutenberg-8300.txt",
+          "payloadSHA256": "65ffc9eff384c1c8ffe1cbd2bf58964b228f8057c516ac7594196068f6a65c4b",
+          "excerpt": "The just shall be in everlasting remembrance: he shall not fear the evil hearing. His heart is ready to hope in the Lord:",
+          "edition": "The Challoner Revision,1749-1752. Project Gutenberg8300; public domain in the USA."
+        }
+      ]
+    }
+  ]
+}

@@ -88,6 +88,8 @@ class PrayerTypographyTest {
         val source = File("src/main/java/com/dkaluta/prosary/ui/rosaryflow/RosaryFlowScreen.kt").readText()
         assertTrue(source.contains("InterfaceNavigation {"))
         assertTrue(source.contains("onClick = { previousMystery?.let { currentIndex = it } }"))
-        assertTrue(source.contains("onClick = { nextMystery?.let { currentIndex = it } }"))
+        // Completion is handled before the sentinel could become an array index.
+        assertTrue(source.contains("nextMystery?.let { target ->"))
+        assertTrue(source.contains("if (target == steps.size)"))
     }
 }

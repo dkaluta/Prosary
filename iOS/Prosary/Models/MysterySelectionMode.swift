@@ -19,12 +19,14 @@ enum MysterySelectionMode: String, Codable, CaseIterable, Identifiable {
   /// All 20 mysteries in one session, in the chronological order of Christ's life: Joyful, Luminous, Sorrowful, Glorious.
   case twentyMystery
 
-  /// Pray exactly one specific mystery (one decade) — see `RosaryOptions.specificMysteryOrder`.
+  /// Pray one to five consecutive mysteries — see specificMysteryOrder/specificMysteryCount.
   /// Added last, not grouped with `.specific` above: Windows persists this enum by raw integer
   /// ordinal (not name), so inserting a case earlier would silently reassign the stored values of
   /// every case after it for existing saved favorites. Keep new cases appended here even though
   /// iOS/Android's own storage (string-keyed) wouldn't require it.
   case singleMystery
+  /// Leave the mystery unset until the session's launch chooser supplies it.
+  case chooseOnLaunch
 
   var id: String { rawValue }
 
@@ -34,7 +36,8 @@ enum MysterySelectionMode: String, Codable, CaseIterable, Identifiable {
     case .specific:        return String(localized: "mysterySelectionMode.specific", defaultValue: "Always a Specific Set", bundle: UILanguage.bundle, locale: UILanguage.locale)
     case .fifteenMystery:  return String(localized: "mysterySelectionMode.fifteenMystery", defaultValue: "The 15 Mysteries (Joyful, Sorrowful, Glorious)", bundle: UILanguage.bundle, locale: UILanguage.locale)
     case .twentyMystery:   return String(localized: "mysterySelectionMode.twentyMystery", defaultValue: "The 20 Mysteries (All Four Sets)", bundle: UILanguage.bundle, locale: UILanguage.locale)
-    case .singleMystery:   return String(localized: "mysterySelectionMode.singleMystery", defaultValue: "One Mystery Only", bundle: UILanguage.bundle, locale: UILanguage.locale)
+    case .singleMystery:   return String(localized: "mysterySelectionMode.singleMystery", defaultValue: "Selected Mysteries", bundle: UILanguage.bundle, locale: UILanguage.locale)
+    case .chooseOnLaunch: return String(localized: "mysterySelectionMode.chooseOnLaunch", defaultValue: "Choose on Launch", bundle: UILanguage.bundle, locale: UILanguage.locale)
     }
   }
 }

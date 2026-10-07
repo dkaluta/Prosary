@@ -845,9 +845,9 @@ final class CustomDevotionEngineTests: XCTestCase {
     XCTAssertEqual(hebrew.first?.title, "סימן הצלב")
     XCTAssertEqual(hebrew[1].title, "אני מאמין")
     XCTAssertTrue(variant.contains { $0.title.hasPrefix("שלום לך מרים") })
-    XCTAssertTrue(hebrew.contains { $0.title.hasPrefix("שמחי מרים") })
+    XCTAssertTrue(hebrew.contains { $0.title.hasPrefix("שלום לך") })
     XCTAssertTrue(variant.contains { $0.title == "השבח לאב" })
-    XCTAssertTrue(hebrew.contains { $0.title == "כבוד לאב" })
+    XCTAssertTrue(hebrew.contains { $0.title == "שבח לאב" })
 
     // Not sent by the Mission: the Fatima prayer uses the explicitly preferred Vicariate.
     let fatima = { (list: [RosaryStep]) in list.first { $0.title.contains("הו ישוע") }?.body }
@@ -880,7 +880,7 @@ final class CustomDevotionEngineTests: XCTestCase {
     // A rite resolves as its language for display, keeps its own code, and reads right-to-left.
     let resolved = LanguageCatalog.resolve("he-x-gamliel")
     XCTAssertEqual(resolved.code, "he-x-gamliel")
-    XCTAssertEqual(resolved.nativeName, "עברית — נוסח השליחות")
+    XCTAssertEqual(resolved.nativeName, "עברית — נוסח סורי")
     XCTAssertTrue(resolved.isRightToLeft)
   }
 

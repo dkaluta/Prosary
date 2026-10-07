@@ -56,14 +56,17 @@ class WidgetNavigationInstrumentedTest {
             }
             compose.waitForIdle()
             compose.onNodeWithTag("prayerProgress").assertExists()
-            // Warm Today activation replaces the flow and lands above the Today content.
+            // Warm Today activation replaces the flow and opens the current Home dashboard.
             WidgetUpdates.launchIntent(app, "today").send()
-            compose.waitUntil(15_000) { compose.onAllNodes(hasText(app.getString(R.string.tab_pray))).fetchSemanticsNodes().isNotEmpty() }
+            compose.waitUntil(15_000) { compose.onAllNodes(hasTestTag("homeDashboard")).fetchSemanticsNodes().isNotEmpty() }
             compose.onNodeWithTag("prayerProgress").assertDoesNotExist()
             val dates = DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG).withLocale(app.resources.configuration.locales[0])
+            compose.onNodeWithTag("tab.pray").performClick()
             compose.onNodeWithTag("todayYesterday").performClick()
             compose.onNodeWithText(LocalDate.now().minusDays(1).format(dates)).assertExists()
             WidgetUpdates.launchIntent(app, "today").send()
+            compose.waitUntil(15_000) { compose.onAllNodes(hasTestTag("homeDashboard")).fetchSemanticsNodes().isNotEmpty() }
+            compose.onNodeWithTag("tab.pray").performClick()
             compose.waitUntil(15_000) { compose.onAllNodes(hasText(LocalDate.now().format(dates))).fetchSemanticsNodes().isNotEmpty() }
             runBlocking { services.presetStore.delete(prayer) }
             WidgetUpdates.launchIntent(app, "prayer/${prayer.id}").send()

@@ -153,6 +153,8 @@
                                Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" />
                     <TextBlock x:Uid="AbtUkrainianPrayerSources" Text="Ukrainian prayers: Roman Catholic Church in Ukraine, Щоденно з Богом prayerbook. Used with attribution under the publisher’s reuse policy. Scripture: Kulish, Nechui-Levytsky and Puluj Bible (1905), public domain; eBible.org ukr1871. Historical Scripture spelling is retained. Ukrainian Rosary closing prayer: Ukrainian Information Center MIR Medjugorje (medjugorje.com.ua), reproduced with attribution under the site’s publication permission."
                                Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" />
+                    <TextBlock x:Uid="AbtMissionPrayerCorrections" Text="Syriac and Ukrainian prayer corrections supplied by a Prosary contributor (October 2026)."
+                               FontSize="13" Foreground="{ThemeResource TextFillColorSecondaryBrush}" TextWrapping="Wrap" />
                     <HyperlinkButton x:Uid="AbtUkrainianPrayerbookLink" Content="Ukrainian prayerbook"
                                      NavigateUri="https://rkc.org.ua/duhovnist/molytovnyk/" />
                     <HyperlinkButton x:Uid="AbtUkrainianRosarySourceLink" Content="MIR Medjugorje — Ukrainian Rosary prayer"

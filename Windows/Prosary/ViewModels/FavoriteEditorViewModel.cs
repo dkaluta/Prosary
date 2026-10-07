@@ -87,6 +87,15 @@ public partial class FavoriteEditorViewModel : ObservableObject
     /// group's first mystery whenever <see cref="SpecificMysteryGroup"/> changes.</summary>
     [ObservableProperty]
     private Mystery? _selectedMystery;
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(MysterySelectionSummary))]
+    private int _specificMysteryCount = 1;
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(MysterySelectionSummary))]
+    private bool _useTraditionalMysteries;
+    public IReadOnlyList<int> MysteryCountOptions => Enumerable.Range(1,
+        MysterySelectionMode == MysterySelectionMode.ChooseOnLaunch ? 5 : 6 - (SelectedMystery?.Order ?? 1)).ToArray();
+    public bool IsTodaysMysteries => MysterySelectionMode == MysterySelectionMode.TodaysMysteries;
 
     [ObservableProperty]
     private bool _includeApostlesCreed = true;
@@ -166,20 +175,20 @@ public partial class FavoriteEditorViewModel : ObservableObject
     public bool IsJesusPrayer => Kind == PrayerKind.JesusPrayer;
     public bool IsSpecificMysteryGroup => MysterySelectionMode is MysterySelectionMode.Specific or MysterySelectionMode.SingleMystery;
     public bool IsSingleMystery => MysterySelectionMode == MysterySelectionMode.SingleMystery;
+    public bool ShowsMysteryCount => MysterySelectionMode is MysterySelectionMode.SingleMystery or MysterySelectionMode.ChooseOnLaunch;
 
     /// <summary>Preview text for the "Rosary Options" row that opens the submenu — mirrors
     /// <see cref="RosaryOptions.MysterySelectionSummary"/>, computed from this ViewModel's own
     /// flat properties rather than a <see cref="RosaryOptions"/> instance (this ViewModel doesn't
     /// hold one directly; see <see cref="BuildPrayer"/>).</summary>
-    public string MysterySelectionSummary => MysterySelectionMode switch
+    public string MysterySelectionSummary => new RosaryOptions
     {
-        MysterySelectionMode.Specific => string.Format(Loc.Tr("summary_always", "Always {0}"), SpecificMysteryGroup.UiName()),
-        MysterySelectionMode.SingleMystery => string.Format(Loc.Tr("summary_only", "Only {0}"), SelectedMystery is { } m ? MysteryTranslations.GetDisplay(System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName, m.ImageKey).Title : SpecificMysteryGroup.UiName()),
-        MysterySelectionMode.FifteenMystery => Loc.Tr("summary_fifteen", "The 15 Mysteries"),
-        MysterySelectionMode.TwentyMystery => Loc.Tr("summary_twenty", "The 20 Mysteries"),
-        MysterySelectionMode.TodaysMysteries => Loc.Tr("mode_todays_mysteries", "Today's Mysteries"),
-        _ => throw new ArgumentOutOfRangeException(nameof(MysterySelectionMode)),
-    };
+        MysterySelectionMode = MysterySelectionMode,
+        SpecificMysteryGroup = SpecificMysteryGroup,
+        SpecificMysteryOrder = SelectedMystery?.Order ?? 1,
+        SpecificMysteryCount = SpecificMysteryCount,
+        UseTraditionalMysteries = UseTraditionalMysteries,
+    }.MysterySelectionSummary;
 
     /// <summary>The 5 mysteries of <see cref="SpecificMysteryGroup"/>, for the "Which mystery"
     /// ComboBox shown only when <see cref="IsSingleMystery"/>.</summary>
@@ -263,6 +272,9 @@ public partial class FavoriteEditorViewModel : ObservableObject
         SpecificMysteryGroup = prayer.Rosary.SpecificMysteryGroup;
         SelectedMystery = MysteryCatalog.ForGroup(prayer.Rosary.SpecificMysteryGroup)
             .FirstOrDefault(m => m.Order == prayer.Rosary.SpecificMysteryOrder);
+        SpecificMysteryCount = prayer.Rosary.MysterySelectionMode == MysterySelectionMode.ChooseOnLaunch
+            ? Math.Clamp(prayer.Rosary.SpecificMysteryCount, 1, 5) : prayer.Rosary.SelectedMysteryCount;
+        UseTraditionalMysteries = prayer.Rosary.UseTraditionalMysteries;
         IncludeApostlesCreed = prayer.Rosary.IncludeApostlesCreed;
         IncludeOpeningPrayers = prayer.Rosary.IncludeOpeningPrayers;
         IncludeOpeningFatimaPrayer = prayer.Rosary.IncludeOpeningFatimaPrayer;
@@ -294,6 +306,8 @@ public partial class FavoriteEditorViewModel : ObservableObject
             MysterySelectionMode = MysterySelectionMode,
             SpecificMysteryGroup = SpecificMysteryGroup,
             SpecificMysteryOrder = SelectedMystery?.Order ?? 1,
+            SpecificMysteryCount = SpecificMysteryCount,
+            UseTraditionalMysteries = UseTraditionalMysteries,
             IncludeApostlesCreed = IncludeApostlesCreed,
             IncludeOpeningPrayers = IncludeOpeningPrayers,
             IncludeOpeningFatimaPrayer = IncludeOpeningFatimaPrayer,
@@ -327,8 +341,12 @@ public partial class FavoriteEditorViewModel : ObservableObject
 
     partial void OnMysterySelectionModeChanged(MysterySelectionMode value)
     {
+        OnPropertyChanged(nameof(IsTodaysMysteries));
         OnPropertyChanged(nameof(IsSpecificMysteryGroup));
         OnPropertyChanged(nameof(IsSingleMystery));
+        OnPropertyChanged(nameof(ShowsMysteryCount));
+        OnPropertyChanged(nameof(MysteryCountOptions));
+        SpecificMysteryCount = Math.Clamp(SpecificMysteryCount, 1, MysteryCountOptions.Count);
         OnPropertyChanged(nameof(MysterySelectionSummary));
     }
 
@@ -342,7 +360,13 @@ public partial class FavoriteEditorViewModel : ObservableObject
         SelectedMystery = MysteryOptions.FirstOrDefault();
     }
 
-    partial void OnSelectedMysteryChanged(Mystery? value) => OnPropertyChanged(nameof(MysterySelectionSummary));
+    partial void OnSelectedMysteryChanged(Mystery? value)
+    {
+        SpecificMysteryCount = Math.Clamp(SpecificMysteryCount, 1,
+            MysterySelectionMode == MysterySelectionMode.ChooseOnLaunch ? 5 : 6 - (value?.Order ?? 1));
+        OnPropertyChanged(nameof(MysteryCountOptions));
+        OnPropertyChanged(nameof(MysterySelectionSummary));
+    }
 
     // The language and rite rows are two views of one stored code, so each has to hear about
     // the other's edit.

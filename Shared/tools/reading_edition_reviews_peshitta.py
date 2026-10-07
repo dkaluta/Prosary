@@ -16,6 +16,7 @@ existing NT profile is unchanged.
 """
 from peshitta_supplied_ot import BOOKS
 from peshitta_eu_source import reviewed_mapping, review as website_review
+from peshitta_psalm_review import reviewed_mapping as reviewed_psalms
 
 REVIEWED_ISAIAH = frozenset({(7, 14), (9, 2), (11, 2), (11, 3), (11, 4),
                            (11, 5), (11, 10), (22, 22), (28, 16)})
@@ -25,6 +26,9 @@ REVIEWED_ISAIAH = frozenset({(7, 14), (9, 2), (11, 2), (11, 3), (11, 4),
 # unreviewed here. Keep the local textual evidence independent of that unknown
 # predicate; do not enable Exodus 37 or relax any other edition's rule.
 _REVIEWED_OT_REFERENCES, _REVIEWED_OT_OVERRIDES = reviewed_mapping()
+_REVIEWED_PSALM_REFERENCES, _REVIEWED_PSALM_OVERRIDES = reviewed_psalms()
+_REVIEWED_OT_REFERENCES |= _REVIEWED_PSALM_REFERENCES
+_REVIEWED_OT_OVERRIDES.update(_REVIEWED_PSALM_OVERRIDES)
 _WEBSITE = website_review()
 
 PROFILES = {
@@ -39,7 +43,11 @@ PROFILES = {
         "excluded_rule_lines": {4361, 4362, 4363},
         "blocked_chapters": {("LUK", 10), ("LUK", 11), ("PHP", 1), ("3JN", 1),
                              ("REV", 12), ("REV", 13)},
-        "reviewed_inventory_exceptions": {reference[:2] for reference in _REVIEWED_OT_REFERENCES},
+        # The frozen, contiguous website Psalm inventories have their own source-native
+        # counts. Empty overrides and the coordinate gate still withhold every unreviewed
+        # unit; bypassing a different edition's chapter total cannot enable a passage.
+        "reviewed_inventory_exceptions": {reference[:2] for reference in _REVIEWED_OT_REFERENCES}
+            | {reference[:2] for reference in _REVIEWED_PSALM_OVERRIDES},
         "reviewed_sparse_chapters": {},
         "notes": "Pinned BFBS1905 NT TEI and peshitta.eu Patriarchate2020 OT HTML. "
                  "Luke11 duplicate42 excluded during import; Luke10 incomplete final verse. "
@@ -48,7 +56,9 @@ PROFILES = {
                  "independently inspected Job42 endpoints, and complete compound units; "
                  "unresolved source queries remain withheld. Exact source-pinned editorial captions "
                  "are excluded without changing the surrounding Scripture. "
-                 "Unreviewed Psalm and deuterocanonical numbering remains withheld. Original nine Isaiah prayer "
+                 "Psalm appointments additionally use independently collated, source-pinned Syriac body boundaries "
+                 "and indivisible shifted-clause envelopes; source Psalms89/118 and every unreviewed unit remain withheld. "
+                 "Unreviewed deuterocanonical numbering remains withheld. Original nine Isaiah prayer "
                  "verses and NT source files are unchanged. No inferred subverse cuts, word corrections "
                  "or fallback edition; website2020 publication identified, redistribution license unstated.",
     },

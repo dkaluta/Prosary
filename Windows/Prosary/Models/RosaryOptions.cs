@@ -17,8 +17,17 @@ public sealed record RosaryOptions
     /// <summary>1-based index into <c>MysteryCatalog.ForGroup(SpecificMysteryGroup)</c>. Used
     /// only when <see cref="MysterySelectionMode"/> is <see cref="Models.MysterySelectionMode.SingleMystery"/>.</summary>
     public int SpecificMysteryOrder { get; init; } = 1;
+    public int SpecificMysteryCount { get; init; } = 1;
+    public bool UseTraditionalMysteries { get; init; } = false;
+    public int SelectedMysteryStart => Math.Clamp(SpecificMysteryOrder, 1, 5);
+    public int SelectedMysteryCount => Math.Clamp(SpecificMysteryCount, 1, 6 - SelectedMysteryStart);
+    public IEnumerable<int> SelectedMysteryIndices => Enumerable.Range(SelectedMysteryStart - 1, SelectedMysteryCount);
 
-    /// <summary>Omit the fifth mystery of each full set; an explicitly chosen single mystery stays available.</summary>
+    /// <summary>A null ordinal selects the whole set; session navigation never changes this saved record.</summary>
+    public RosaryOptions NavigationOptions(MysteryGroup group, int? order) =>
+        RosarySessionNavigation.Options(this, group, order);
+
+    /// <summary>Retired saved-data field. The engine always includes all five decades.</summary>
     public bool SkipFifthDecade { get; init; } = false;
 
     public bool IncludeApostlesCreed { get; init; } = true;
@@ -76,10 +85,15 @@ public sealed record RosaryOptions
     public string MysterySelectionSummary => MysterySelectionMode switch
     {
         MysterySelectionMode.Specific => string.Format(Loc.Tr("summary_always", "Always {0}"), SpecificMysteryGroup.UiName()),
-        MysterySelectionMode.SingleMystery => string.Format(Loc.Tr("summary_only", "Only {0}"), SingleMysteryTitle()),
+        MysterySelectionMode.SingleMystery => SelectedMysteryCount > 1
+            ? string.Format(Loc.Tr("summary_selected_mysteries", "{0} mysteries from {1}"), SelectedMysteryCount, SingleMysteryTitle())
+            : string.Format(Loc.Tr("summary_only", "Only {0}"), SingleMysteryTitle()),
         MysterySelectionMode.FifteenMystery => Loc.Tr("summary_fifteen", "The 15 Mysteries"),
         MysterySelectionMode.TwentyMystery => Loc.Tr("summary_twenty", "The 20 Mysteries"),
-        MysterySelectionMode.TodaysMysteries => Loc.Tr("mode_todays_mysteries", "Today's Mysteries"),
+        MysterySelectionMode.TodaysMysteries => UseTraditionalMysteries
+            ? Loc.Tr("summary_traditional_today", "Today's Mysteries (Traditional 15)")
+            : Loc.Tr("mode_todays_mysteries", "Today's Mysteries"),
+        MysterySelectionMode.ChooseOnLaunch => Loc.Tr("mode_choose_on_launch", "Choose on Launch"),
         _ => throw new ArgumentOutOfRangeException(nameof(MysterySelectionMode))
     };
 
@@ -101,7 +115,9 @@ internal static class RosaryCustomOptions
         string? bundleId, IReadOnlyDictionary<string, string>? options)
     {
         var result = options is null ? new Dictionary<string, string>() : new Dictionary<string, string>(options);
-        if (bundleId != "rosary" || !LegacyClosingKeys.Any(result.ContainsKey)) return result;
+        if (bundleId != "rosary") return result;
+        result.Remove("skipFifthDecade");
+        if (!LegacyClosingKeys.Any(result.ContainsKey)) return result;
 
         var baseline = Boolean(result, "closingIntentions", false);
         var enabled = LegacyClosingKeys.Any(key => Boolean(result, key, baseline));
@@ -121,8 +137,9 @@ internal static class RosaryCustomOptions
     internal static IReadOnlyList<CustomDevotionOption> EditorOptions(
         string bundleId, IReadOnlyList<CustomDevotionOption> options)
     {
-        if (bundleId != "rosary" || !options.Any(option => LegacyClosingKeys.Contains(option.Key)))
-            return options;
+        if (bundleId != "rosary") return options;
+        options = options.Where(option => option.Key != "skipFifthDecade").ToArray();
+        if (!options.Any(option => LegacyClosingKeys.Contains(option.Key))) return options;
 
         var hasCombined = options.Any(option => option.Key == "closingIntentions");
         var result = new List<CustomDevotionOption>();

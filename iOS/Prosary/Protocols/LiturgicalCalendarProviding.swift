@@ -24,7 +24,17 @@ protocol LiturgicalCalendarProviding {
 }
 
 extension LiturgicalCalendarProviding {
-  func mysteryGroupToday() -> MysteryGroup { mysteryGroup(for: Date()) }
+  func mysteryGroup(for date: Date, useTraditionalMysteries: Bool) -> MysteryGroup {
+    guard useTraditionalMysteries else { return mysteryGroup(for: date) }
+    switch Calendar.current.component(.weekday, from: date) {
+    case 5: return .joyful // Thursday before the Luminous Mysteries were introduced.
+    case 7: return .glorious // Saturday in the fifteen-mystery schedule.
+    default: return mysteryGroup(for: date) // Sunday retains its seasonal assignment.
+    }
+  }
+  func mysteryGroupToday(useTraditionalMysteries: Bool = false) -> MysteryGroup {
+    mysteryGroup(for: Date(), useTraditionalMysteries: useTraditionalMysteries)
+  }
   func seasonColorToday() -> Color { seasonColor(for: Date()) }
   func seasonalMarianAntiphonToday() -> MarianAntiphonOption { seasonalMarianAntiphon(for: Date()) }
   func isEasterSeasonToday() -> Bool { isEasterSeason(for: Date()) }

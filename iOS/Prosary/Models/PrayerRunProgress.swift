@@ -19,17 +19,23 @@ struct PrayerRunProgress: Codable, Equatable {
   /// ISO local date without a timezone. A Rosary expires when the user's local calendar turns
   /// over, irrespective of what date that instant represents in another timezone.
   let savedLocalDate: String
+  let rosaryNavigationGroup: String?
+  let rosaryNavigationOrder: Int?
 
   init(
     configurationSignature: String? = nil,
     stepIndex: Int,
     languageCode: String,
-    savedLocalDate: String
+    savedLocalDate: String,
+    rosaryNavigationGroup: String? = nil,
+    rosaryNavigationOrder: Int? = nil
   ) {
     self.configurationSignature = configurationSignature
     self.stepIndex = stepIndex
     self.languageCode = languageCode
     self.savedLocalDate = savedLocalDate
+    self.rosaryNavigationGroup = rosaryNavigationGroup
+    self.rosaryNavigationOrder = rosaryNavigationOrder
   }
 
   func canResume(
@@ -89,6 +95,8 @@ struct PrayerRunProgressStore {
     stepIndex: Int,
     languageCode: String,
     configurationSignature: String? = nil,
+    rosaryNavigationGroup: String? = nil,
+    rosaryNavigationOrder: Int? = nil,
     today: Date = Date(),
     calendar: Calendar = .current
   ) {
@@ -101,7 +109,8 @@ struct PrayerRunProgressStore {
       configurationSignature: configurationSignature,
       stepIndex: stepIndex,
       languageCode: languageCode,
-      savedLocalDate: PrayerRunProgress.localDateString(for: today, calendar: calendar))
+      savedLocalDate: PrayerRunProgress.localDateString(for: today, calendar: calendar),
+      rosaryNavigationGroup: rosaryNavigationGroup, rosaryNavigationOrder: rosaryNavigationOrder)
     runs[storageKey(runKey)] = progress
     // Retain a shared continuation for an explicitly closed window, whose scene namespace
     // won't return when the person later chooses File → New Window.
@@ -160,7 +169,7 @@ enum PrayerRunKey {
 /// resolved form is included because some languages own a structurally different default form;
 /// everything here can change the generated sequence or its visual identity.
 enum PrayerRunSignature {
-  static func rosary(_ options: RosaryOptions) -> String {
+  static func rosary(_ options: RosaryOptions, navigationGroup: String? = nil, navigationOrder: Int? = nil) -> String {
     var fields = [
       "rosary",
       options.mysterySelectionMode.rawValue,
@@ -186,11 +195,19 @@ enum PrayerRunSignature {
     if options.includeOpeningPrayers && options.includeOpeningFatimaPrayer {
       fields.append("opening-fatima-v2")
     }
-    if options.skipFifthDecade && options.mysterySelectionMode != .singleMystery {
-      fields.append("skip-fifth-decade")
-    }
     // The collect is now a separate step, so pre-change bookmarks must not resume mid-closing.
     fields.append("rosary-closing-v3:\(flag(options.includeLitanyOfLoreto)),\(flag(options.effectiveRosaryCollect))")
+    if options.mysterySelectionMode == .singleMystery && options.selectedMysteryCount > 1 {
+      fields.append("mystery-count:\(options.selectedMysteryCount)")
+    }
+    if options.mysterySelectionMode == .todaysMysteries && options.useTraditionalMysteries {
+      fields.append("traditional-mysteries")
+    }
+    if options.mysterySelectionMode == .chooseOnLaunch {
+      fields.append("launch-count:\(min(max(options.specificMysteryCount, 1), 5))")
+    }
+    if let navigationGroup { fields.append("navigation-group:\(navigationGroup)") }
+    if let navigationOrder { fields.append("navigation-order:\(navigationOrder)") }
     return fields.joined(separator: "|")
   }
 
@@ -246,9 +263,14 @@ enum RosaryMysteryNavigation {
   }
 
   static func nextIndex(in steps: [RosaryStep], from currentIndex: Int) -> Int? {
+    guard steps.indices.contains(currentIndex) else { return nil }
     let starts = announcementIndices(in: steps)
-    if let currentDecade = steps.indices.contains(currentIndex) ? steps[currentIndex].decadeIndex : nil {
-      return starts.first { steps[$0].decadeIndex == currentDecade + 1 }
+    if let currentDecade = steps[currentIndex].decadeIndex {
+      if let next = starts.first(where: { steps[$0].decadeIndex == currentDecade + 1 }) {
+        return next
+      }
+      // A one-past-end target finishes the session when no closing prayers were selected.
+      return steps.indices.first { $0 > currentIndex && steps[$0].decadeIndex == nil } ?? steps.count
     }
     return starts.first { $0 > currentIndex }
   }

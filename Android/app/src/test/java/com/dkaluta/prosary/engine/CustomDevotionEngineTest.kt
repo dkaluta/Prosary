@@ -901,9 +901,9 @@ class CustomDevotionEngineTest {
         assertEquals("סימן הצלב", hebrew.first().title)
         assertEquals("אני מאמין", hebrew[1].title)
         assertTrue(variant.any { it.title.startsWith("שלום לך מרים") })
-        assertTrue(hebrew.any { it.title.startsWith("שמחי מרים") })
+        assertTrue(hebrew.any { it.title.startsWith("שלום לך") })
         assertTrue(variant.any { it.title == "השבח לאב" })
-        assertTrue(hebrew.any { it.title == "כבוד לאב" })
+        assertTrue(hebrew.any { it.title == "שבח לאב" })
 
         // The Mission has no Fatima wording. The default precedence places English before
         // the Vicariate, so this specific prayer follows that order rather than jumping to it.

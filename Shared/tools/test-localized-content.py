@@ -98,9 +98,10 @@ for language in ("fr", "it"):
     assert all(stations["prayers"].get(key, "").strip() for key in sourced), language
     assert all(stations["$sources"].get(key, "").startswith("https://") for key in sourced), language
 
-# The published medieval Syriac prayer must retain its paired square-script projection.
+# The Hebrew-letter medieval prayer remains separately sourced after the contributor's
+# corrected Syriac recension; the latter must not silently invent a new Hebrew projection.
 arc = json.loads((ROOT / "Shared/content/rosary/content/arc.json").read_text())
-assert arc["prayers"]["subTuumPraesidium"] == scripture.to_hebrew(arc["transliterations"]["subTuumPraesidium"])
+assert arc["prayers"]["subTuumPraesidium"] == "תחת כנפא דמרחמנותכי.\nמסתתרינן ילדת אלהא.\nותכשפתא מקרבינן לכי\nלא תהמין מן בעותא דעבדיכי\nאלא מן כל אולצנין פצי לן\nדאנתי הי לחודיכי\nדכית ומברכתא܀"
 assert "Smelova" in arc["$comment"]
 assert arc["prayers"]["repetitionCounterConnector"] == "מֶן"
 assert arc["transliterations"]["repetitionCounterConnector"] == "ܡܶܢ"

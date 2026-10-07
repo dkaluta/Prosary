@@ -48,6 +48,8 @@ public partial class RosaryPresetPickerViewModel : ObservableObject
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(ShowsGroupPicker))]
     [NotifyPropertyChangedFor(nameof(ShowsOrdinalPicker))]
+    [NotifyPropertyChangedFor(nameof(ShowsTraditionalPicker))]
+    [NotifyPropertyChangedFor(nameof(ShowsMysteryCount))]
     private MysterySelectionMode _selectedMode = MysterySelectionMode.TodaysMysteries;
 
     [ObservableProperty]
@@ -55,6 +57,19 @@ public partial class RosaryPresetPickerViewModel : ObservableObject
 
     [ObservableProperty]
     private int _selectedOrdinal = 1;
+    [ObservableProperty]
+    private int _specificMysteryCount = 1;
+    [ObservableProperty]
+    private bool _useTraditionalMysteries;
+    public IReadOnlyList<int> MysteryCountOptions => Enumerable.Range(1,
+        SelectedMode == MysterySelectionMode.ChooseOnLaunch ? 5 : 6 - Math.Clamp(SelectedOrdinal, 1, 5)).ToArray();
+    public bool ShowsTraditionalPicker => SelectedMode == MysterySelectionMode.TodaysMysteries;
+    partial void OnSelectedOrdinalChanged(int value)
+    {
+        SpecificMysteryCount = Math.Clamp(SpecificMysteryCount, 1,
+            SelectedMode == MysterySelectionMode.ChooseOnLaunch ? 5 : 6 - Math.Clamp(value, 1, 5));
+        OnPropertyChanged(nameof(MysteryCountOptions));
+    }
 
     // The rest of RosaryOptions, editable here rather than inherited silently: the Mac's quick
     // setup offers the whole set, and this is where a preset gets created from ("Save as
@@ -101,6 +116,12 @@ public partial class RosaryPresetPickerViewModel : ObservableObject
         SelectedMode is MysterySelectionMode.Specific or MysterySelectionMode.SingleMystery;
 
     public bool ShowsOrdinalPicker => SelectedMode is MysterySelectionMode.SingleMystery;
+    public bool ShowsMysteryCount => SelectedMode is MysterySelectionMode.SingleMystery or MysterySelectionMode.ChooseOnLaunch;
+    partial void OnSelectedModeChanged(MysterySelectionMode value)
+    {
+        OnPropertyChanged(nameof(MysteryCountOptions));
+        SpecificMysteryCount = Math.Clamp(SpecificMysteryCount, 1, MysteryCountOptions.Count);
+    }
 
     public RosaryPresetPickerViewModel(IPresetStore presets, PrayerRemovalService? removal = null)
     {
@@ -127,6 +148,9 @@ public partial class RosaryPresetPickerViewModel : ObservableObject
             SelectedMode = preset.Rosary.MysterySelectionMode;
             SelectedGroup = preset.Rosary.SpecificMysteryGroup;
             SelectedOrdinal = preset.Rosary.SpecificMysteryOrder;
+            SpecificMysteryCount = preset.Rosary.MysterySelectionMode == MysterySelectionMode.ChooseOnLaunch
+                ? Math.Clamp(preset.Rosary.SpecificMysteryCount, 1, 5) : preset.Rosary.SelectedMysteryCount;
+            UseTraditionalMysteries = preset.Rosary.UseTraditionalMysteries;
             IncludeApostlesCreed = preset.Rosary.IncludeApostlesCreed;
             IncludeOpeningPrayers = preset.Rosary.IncludeOpeningPrayers;
             IncludeOpeningFatimaPrayer = preset.Rosary.IncludeOpeningFatimaPrayer;
@@ -154,6 +178,8 @@ public partial class RosaryPresetPickerViewModel : ObservableObject
                 MysterySelectionMode = SelectedMode,
                 SpecificMysteryGroup = SelectedGroup,
                 SpecificMysteryOrder = SelectedOrdinal,
+                SpecificMysteryCount = SpecificMysteryCount,
+                UseTraditionalMysteries = UseTraditionalMysteries,
                 IncludeApostlesCreed = IncludeApostlesCreed,
                 IncludeOpeningPrayers = IncludeOpeningPrayers,
                 IncludeOpeningFatimaPrayer = IncludeOpeningFatimaPrayer,

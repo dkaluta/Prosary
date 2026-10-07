@@ -1,0 +1,709 @@
+{
+  "schemaVersion": 1,
+  "reviewedOn": "2026-10-06",
+  "sourceId": "engDRA",
+  "sourceSHA256": "96282bfa7c89a74680cea66fe873aafa5e7cd446407f0ff2531a723e19eee2c2",
+  "method": "Read complete appointed source clauses independently of integer labels. The pinned eBible DRA rows are corroborated by the published DRBO Challoner/Douay–Rheims text. The relationships below retain full source rows when a requested Standard verse ends or begins inside that printed row, and require the whole-unit notice when the envelope includes an adjacent Standard unit. Published orthographic variants are retained in their separate witnesses; no wording is replaced by this numeric boundary review.",
+  "boundaries": [
+    {
+      "source": [
+        "PSA",
+        5,
+        5
+      ],
+      "sourceText": "In the morning I will stand before thee, and will see: because thou art not a God that willest iniquity.",
+      "sourceTextSHA256": "a267c100f7c031150971f9f3a53c81563547cae6b923b2df4107762ed7fa5bb6",
+      "standard": [
+        [
+          "PSA",
+          5,
+          3
+        ],
+        [
+          "PSA",
+          5,
+          4
+        ]
+      ],
+      "boundaryReview": "Morning watch closes5:3 before God-not-loving-wickedness5:4.",
+      "publishedWitnessURL": "https://www.drbo.org/chapter/21005.htm",
+      "publishedWitnessSHA256": "bbf2f32cc602c7192b799eee6185f2a2e668ad9a4c79b4ca681c3605a19c48f2",
+      "publishedWitnessExcerpt": "In the morning I will stand before thee, and will see: because thou art not a God that willest iniquity."
+    },
+    {
+      "source": [
+        "PSA",
+        5,
+        6
+      ],
+      "sourceText": "Neither shall the wicked dwell near thee: nor shall the unjust abide before thy eyes.",
+      "sourceTextSHA256": "b89b63b709e76408554c1ff5629f0e7057586918640b1ab99dba7f7d7f858f6b",
+      "standard": [
+        [
+          "PSA",
+          5,
+          4
+        ],
+        [
+          "PSA",
+          5,
+          5
+        ]
+      ],
+      "boundaryReview": "Evil-not-dwelling closes5:4 before the unjust-not-standing5:5.",
+      "publishedWitnessURL": "https://www.drbo.org/chapter/21005.htm",
+      "publishedWitnessSHA256": "bbf2f32cc602c7192b799eee6185f2a2e668ad9a4c79b4ca681c3605a19c48f2",
+      "publishedWitnessExcerpt": "Neither shall the wicked dwell near thee: nor shall the unjust abide before thy eyes."
+    },
+    {
+      "source": [
+        "PSA",
+        5,
+        7
+      ],
+      "sourceText": "Thou hatest all the workers of iniquity: Thou wilt destroy all that speak a lie. The bloody and the deceitful man the Lord will abhor.",
+      "sourceTextSHA256": "da56db3c53dee96612552d8b50252d9a8f203ab7b8b1c857236dd4c0ae9773a2",
+      "standard": [
+        [
+          "PSA",
+          5,
+          5
+        ],
+        [
+          "PSA",
+          5,
+          6
+        ]
+      ],
+      "boundaryReview": "Hating-iniquity closes5:5 before destroying-liars/bloody-deceitful5:6.",
+      "publishedWitnessURL": "https://www.drbo.org/chapter/21005.htm",
+      "publishedWitnessSHA256": "bbf2f32cc602c7192b799eee6185f2a2e668ad9a4c79b4ca681c3605a19c48f2",
+      "publishedWitnessExcerpt": "Thou hatest all the workers of iniquity: Thou wilt destroy all that speak a lie. The bloody and the deceitful man the Lord will abhor."
+    },
+    {
+      "source": [
+        "PSA",
+        8,
+        8
+      ],
+      "sourceText": "Thou hast subjected all things under his feet, all sheep and oxen: moreover the beasts also of the fields.",
+      "sourceTextSHA256": "b992e7b03e52c5bd500a3feefa45a602110c8f8d62eb22583e3b8aff0b8030d6",
+      "standard": [
+        [
+          "PSA",
+          8,
+          6
+        ],
+        [
+          "PSA",
+          8,
+          7
+        ]
+      ],
+      "boundaryReview": "Under-feet closes Standard8:6 before sheep/oxen8:7.",
+      "publishedWitnessURL": "https://www.drbo.org/chapter/21008.htm",
+      "publishedWitnessSHA256": "91589dc1bf41d91af7be5de7b340e4c9f501e8d946c1cde07033633b02ff8ef0",
+      "publishedWitnessExcerpt": "Thou hast subjected all things under his feet, all sheep and oxen: moreover the beasts also of the fields."
+    },
+    {
+      "source": [
+        "PSA",
+        14,
+        3
+      ],
+      "sourceText": "He that speaketh truth in his heart, who hath not used deceit in his tongue: Nor hath done evil to his neighbour: nor taken up a reproach against his neighbours.",
+      "sourceTextSHA256": "87eb72be282f8c6ff1b51ac3065d0324299d4846d46497aff2e54bfd13e269a6",
+      "standard": [
+        [
+          "PSA",
+          15,
+          2
+        ],
+        [
+          "PSA",
+          15,
+          3
+        ]
+      ],
+      "boundaryReview": "Truth spoken in the heart closes15:2 before tongue/neighbour15:3.",
+      "publishedWitnessURL": "https://www.drbo.org/chapter/21014.htm",
+      "publishedWitnessSHA256": "ecf0b7affcba52199233bd2f41ecd38f2990e2a1a93b22c153ffcd8463ed5cf1",
+      "publishedWitnessExcerpt": "He that speaketh truth in his heart, who hath not used deceit in his tongue: Nor hath done evil to his neighbour: nor taken up a reproach against his neighbours."
+    },
+    {
+      "source": [
+        "PSA",
+        16,
+        4
+      ],
+      "sourceText": "That my mouth may not speak the works of men: for the sake of the words of thy lips, I have kept hard ways.",
+      "sourceTextSHA256": "f409de51a5f67128ef3edad445582a119e8d07b05b5df73e5d2aa13dcf5ad3ae",
+      "standard": [
+        [
+          "PSA",
+          17,
+          3
+        ],
+        [
+          "PSA",
+          17,
+          4
+        ]
+      ],
+      "boundaryReview": "The mouth-not-transgressing conclusion closes17:3 before the works/paths17:4.",
+      "publishedWitnessURL": "https://www.drbo.org/chapter/21016.htm",
+      "publishedWitnessSHA256": "996435883f2eda1418fc8c2f578d5d48c8bc502279430af6598fab6463cab473",
+      "publishedWitnessExcerpt": "That my mouth may not speak the works of men: for the sake of the words of thy lips, I have kept hard ways."
+    },
+    {
+      "source": [
+        "PSA",
+        16,
+        8
+      ],
+      "sourceText": "From them that resist thy right hand keep me, as the apple of thy eye. Protect me under the shadow of thy wings.",
+      "sourceTextSHA256": "a8fc98cc2fae6b88eb70e59c1e18d22bb426b2913444f20646de90a2a49316f9",
+      "standard": [
+        [
+          "PSA",
+          17,
+          7
+        ],
+        [
+          "PSA",
+          17,
+          8
+        ]
+      ],
+      "boundaryReview": "Right-hand protection closes17:7 before apple-of-eye/wings17:8.",
+      "publishedWitnessURL": "https://www.drbo.org/chapter/21016.htm",
+      "publishedWitnessSHA256": "996435883f2eda1418fc8c2f578d5d48c8bc502279430af6598fab6463cab473",
+      "publishedWitnessExcerpt": "From them that resist thy right hand keep me, as the apple of thy eye. Protect me under the shadow of thy wings."
+    },
+    {
+      "source": [
+        "PSA",
+        18,
+        6
+      ],
+      "sourceText": "He hath set his tabernacle in the sun: and he, as a bridegroom coming out of his bride chamber, Hath rejoiced as a giant to run the way:",
+      "sourceTextSHA256": "1d6939bb31e7acea2d523e08482d885cea299d549ed967a6ec1bda89b8cf1157",
+      "standard": [
+        [
+          "PSA",
+          19,
+          4
+        ],
+        [
+          "PSA",
+          19,
+          5
+        ]
+      ],
+      "boundaryReview": "Sun-tabernacle closes19:4 before bridegroom/race19:5.",
+      "publishedWitnessURL": "https://www.drbo.org/chapter/21018.htm",
+      "publishedWitnessSHA256": "f1a25b791ac4802ad9cb1bcfe0322ec0f4c9c876966502234755c60be419417e",
+      "publishedWitnessExcerpt": "He hath set his tabernacle in the sun: and he, as a bridegroom coming out of his bride chamber, Hath rejoiced as a giant to run the way:"
+    },
+    {
+      "source": [
+        "PSA",
+        21,
+        31
+      ],
+      "sourceText": "And to him my soul shall live: and my seed shall serve him.",
+      "sourceTextSHA256": "d2f4eafffcefe0a9967ad6496b8c562d2a2bc6d298c38c54b398bc89c88a787c",
+      "standard": [
+        [
+          "PSA",
+          22,
+          29
+        ],
+        [
+          "PSA",
+          22,
+          30
+        ]
+      ],
+      "boundaryReview": "The soul/life conclusion belongs to22:29 before seed/serving22:30.",
+      "publishedWitnessURL": "https://www.drbo.org/chapter/21021.htm",
+      "publishedWitnessSHA256": "7e9f340dd10dc99a4ebcd7bec64d3db37336935df87ebbe57bb7975fd4107454",
+      "publishedWitnessExcerpt": "And to him my soul shall live: and my seed shall serve him."
+    },
+    {
+      "source": [
+        "PSA",
+        21,
+        32
+      ],
+      "sourceText": "There shall be declared to the Lord a generation to come: and the heavens shall shew forth his justice to a people that shall be born, which the Lord hath made.",
+      "sourceTextSHA256": "30736606dd721dd3cb335e3b573368d84b51207d676a783cebc29fd660e1277e",
+      "standard": [
+        [
+          "PSA",
+          22,
+          30
+        ],
+        [
+          "PSA",
+          22,
+          31
+        ]
+      ],
+      "boundaryReview": "The generation clause closes22:30 before declaring righteousness22:31.",
+      "publishedWitnessURL": "https://www.drbo.org/chapter/21021.htm",
+      "publishedWitnessSHA256": "7e9f340dd10dc99a4ebcd7bec64d3db37336935df87ebbe57bb7975fd4107454",
+      "publishedWitnessExcerpt": "There shall be declared to the Lord a generation to come: and the heavens shall shew forth his justice to a people that shall be born, which the Lord hath made."
+    },
+    {
+      "source": [
+        "PSA",
+        24,
+        3
+      ],
+      "sourceText": "Neither let my enemies laugh at me: for none of them that wait on thee shall be confounded.",
+      "sourceTextSHA256": "e49c5dc687446554a47779af55dd9c92dfc9072b2acf9372540863fcebe40bd2",
+      "standard": [
+        [
+          "PSA",
+          25,
+          2
+        ],
+        [
+          "PSA",
+          25,
+          3
+        ]
+      ],
+      "boundaryReview": "Enemies-not-triumphing closes25:2 before waiting/unashamed25:3.",
+      "publishedWitnessURL": "https://www.drbo.org/chapter/21024.htm",
+      "publishedWitnessSHA256": "43ef5965e97d674646e47b6009651a874fccec25f4e903f23a33092c9a704437",
+      "publishedWitnessExcerpt": "Neither let my enemies laugh at me: for none of them that wait on thee shall be confounded."
+    },
+    {
+      "source": [
+        "PSA",
+        24,
+        4
+      ],
+      "sourceText": "Let all them be confounded that act unjust things without cause. Shew, O Lord, thy ways to me, and teach me thy paths.",
+      "sourceTextSHA256": "6d2fb98b041da5164bce1936ee3f8aef3b47bc2a7f7678dcd8177f864c658ccc",
+      "standard": [
+        [
+          "PSA",
+          25,
+          3
+        ],
+        [
+          "PSA",
+          25,
+          4
+        ]
+      ],
+      "boundaryReview": "Unjust-without-cause closes25:3 before teach/show-paths25:4.",
+      "publishedWitnessURL": "https://www.drbo.org/chapter/21024.htm",
+      "publishedWitnessSHA256": "43ef5965e97d674646e47b6009651a874fccec25f4e903f23a33092c9a704437",
+      "publishedWitnessExcerpt": "Let all them be confounded that act unjust things without cause. Shew, O Lord, thy ways to me, and teach me thy paths."
+    },
+    {
+      "source": [
+        "PSA",
+        26,
+        6
+      ],
+      "sourceText": "He hath exalted me upon a rock: and now he hath lifted up my head above my enemies. I have gone round, and have offered up in his tabernacle a sacrifice of jubilation: I will sing, and recite a psalm to the Lord.",
+      "sourceTextSHA256": "4f72d39926835e2c70279af45ee229f5128b5ebd360e3378884a0b30443f6b1a",
+      "standard": [
+        [
+          "PSA",
+          27,
+          5
+        ],
+        [
+          "PSA",
+          27,
+          6
+        ]
+      ],
+      "boundaryReview": "The high-rock clause closes27:5 before the raised-head/sacrifice27:6.",
+      "publishedWitnessURL": "https://www.drbo.org/chapter/21026.htm",
+      "publishedWitnessSHA256": "b231e52a5c21eedd2939c8e04c8fde9d91e42c122cdc4afaff8edb20e31f98c1",
+      "publishedWitnessExcerpt": "He hath exalted me upon a rock: and now he hath lifted up my head above my enemies. I have gone round, and have offered up in his tabernacle a sacrifice of jubilation: I will sing, and recite a psalm to the Lord."
+    },
+    {
+      "source": [
+        "PSA",
+        62,
+        3
+      ],
+      "sourceText": "In a desert land, and where there is no way, and no water: so in the sanctuary have I come before thee, to see thy power and thy glory.",
+      "sourceTextSHA256": "f86738429a9a10528b9f1d831fdaa01f2315a9dfebcceb5a3e226e576f404ff3",
+      "standard": [
+        [
+          "PSA",
+          63,
+          1
+        ],
+        [
+          "PSA",
+          63,
+          2
+        ]
+      ],
+      "boundaryReview": "Dry/waterless land closes63:1 before sanctuary63:2.",
+      "publishedWitnessURL": "https://www.drbo.org/chapter/21062.htm",
+      "publishedWitnessSHA256": "611a20dde4763b1fc464fe45b05f9964be1e6c5767e7acb22c5228930a9ff0da",
+      "publishedWitnessExcerpt": "In a desert land, and where there is no way, and no water: so in the sanctuary have I come before thee, to see thy power and thy glory."
+    },
+    {
+      "source": [
+        "PSA",
+        83,
+        13
+      ],
+      "sourceText": "He will not deprive of good things them that walk in innocence: O Lord of hosts, blessed is the man that trusteth in thee.",
+      "sourceTextSHA256": "897dd97be533d2592846ba80d1ad9adbb5f6162d5f7b68f0d868e0c43b0dd026",
+      "standard": [
+        [
+          "PSA",
+          84,
+          11
+        ],
+        [
+          "PSA",
+          84,
+          12
+        ]
+      ],
+      "boundaryReview": "No-good-withheld closes84:11 before blessed-trust84:12.",
+      "publishedWitnessURL": "https://www.drbo.org/chapter/21083.htm",
+      "publishedWitnessSHA256": "8ac07faa420929d73c51ea352702d4d5b7a0216f601ade7e9d27f2294cf6c4c2",
+      "publishedWitnessExcerpt": "He will not deprive of good things them that walk in innocence: O Lord of hosts, blessed is the man that trusteth in thee."
+    },
+    {
+      "source": [
+        "PSA",
+        89,
+        6
+      ],
+      "sourceText": "In the morning man shall grow up like grass; in the morning he shall flourish and pass away: in the evening he shall fall, grow dry, and wither.",
+      "sourceTextSHA256": "6c909030777c41a71b12ee3ddae35ffb012e249e2c270dbc78bf888eb0b443a4",
+      "standard": [
+        [
+          "PSA",
+          90,
+          5
+        ],
+        [
+          "PSA",
+          90,
+          6
+        ]
+      ],
+      "boundaryReview": "Morning grass closes90:5 before flourishing/evening90:6.",
+      "publishedWitnessURL": "https://www.drbo.org/chapter/21089.htm",
+      "publishedWitnessSHA256": "87321a4ce7deea644692f2d2e0b87ffbd00a1fbb8aea8c7ff72c353c05b18904",
+      "publishedWitnessExcerpt": "In the morning man shall grow up like grass; in the morning he shall flourish and pass away: in the evening he shall fall, grow dry, and wither."
+    },
+    {
+      "source": [
+        "PSA",
+        89,
+        12
+      ],
+      "sourceText": "Can number thy wrath? So make thy right hand known: and men learned in heart, in wisdom.",
+      "sourceTextSHA256": "3536e11d8421b9cc76aef3caaac7dd409e9ef239e6e325fe63e790b579d9b995",
+      "standard": [
+        [
+          "PSA",
+          90,
+          11
+        ],
+        [
+          "PSA",
+          90,
+          12
+        ]
+      ],
+      "boundaryReview": "Numbering wrath/fear concludes90:11 before wisdom90:12.",
+      "publishedWitnessURL": "https://www.drbo.org/chapter/21089.htm",
+      "publishedWitnessSHA256": "87321a4ce7deea644692f2d2e0b87ffbd00a1fbb8aea8c7ff72c353c05b18904",
+      "publishedWitnessExcerpt": "Can number thy wrath? So make thy right hand known: and men learned in heart, in wisdom."
+    },
+    {
+      "source": [
+        "PSA",
+        90,
+        5
+      ],
+      "sourceText": "His truth shall compass thee with a shield: thou shalt not be afraid of the terror of the night.",
+      "sourceTextSHA256": "62c2364eaa54353c6e62d3fb7a3e2e06c4ccd94ec59cdc7a301cdf2faa086c2c",
+      "standard": [
+        [
+          "PSA",
+          91,
+          4
+        ],
+        [
+          "PSA",
+          91,
+          5
+        ]
+      ],
+      "boundaryReview": "Truth/shield closes91:4 before night-fear91:5.",
+      "publishedWitnessURL": "https://www.drbo.org/chapter/21090.htm",
+      "publishedWitnessSHA256": "6b03f96080bac86ba6308ce60c8178a537ca0298160f8145a86fcba70a52fc84",
+      "publishedWitnessExcerpt": "His truth shall compass thee with a shield: thou shalt not be afraid of the terror of the night."
+    },
+    {
+      "source": [
+        "PSA",
+        90,
+        6
+      ],
+      "sourceText": "Of the arrow that flieth in the day, of the business that walketh about in the dark: of invasion, or of the noonday devil.",
+      "sourceTextSHA256": "1c61b862af094433472ac1a015844eb1fe01c523f5e7f65ed1002351fc60149d",
+      "standard": [
+        [
+          "PSA",
+          91,
+          5
+        ],
+        [
+          "PSA",
+          91,
+          6
+        ]
+      ],
+      "boundaryReview": "Daytime arrow closes91:5 before darkness/noon91:6.",
+      "publishedWitnessURL": "https://www.drbo.org/chapter/21090.htm",
+      "publishedWitnessSHA256": "6b03f96080bac86ba6308ce60c8178a537ca0298160f8145a86fcba70a52fc84",
+      "publishedWitnessExcerpt": "Of the arrow that flieth in the day, of the business that walketh about in the dark: of invasion, or of the noonday devil."
+    },
+    {
+      "source": [
+        "PSA",
+        94,
+        8
+      ],
+      "sourceText": "Today if you shall hear his voice, harden not your hearts:",
+      "sourceTextSHA256": "98e984e16b6d111dbe5b448c235ed24b234670fe87d8f92be245f84a1901a7b8",
+      "standard": [
+        [
+          "PSA",
+          95,
+          7
+        ],
+        [
+          "PSA",
+          95,
+          8
+        ]
+      ],
+      "boundaryReview": "Today/hear closes95:7 before hardening95:8.",
+      "publishedWitnessURL": "https://www.drbo.org/chapter/21094.htm",
+      "publishedWitnessSHA256": "263483378c1f94a29f3526f9170f09b996c144fa3c6e723ed6861d9b6c798cb4",
+      "publishedWitnessExcerpt": "Today if you shall hear his voice, harden not your hearts:"
+    },
+    {
+      "source": [
+        "PSA",
+        94,
+        9
+      ],
+      "sourceText": "As in the provocation, according to the day of temptation in the wilderness: where your fathers tempted me, they proved me, and saw my works.",
+      "sourceTextSHA256": "6d8cfc2e2d4bb3a5a5dd95c73a99099c82b523ca07cd3d53e54dc4b62e2470e5",
+      "standard": [
+        [
+          "PSA",
+          95,
+          8
+        ],
+        [
+          "PSA",
+          95,
+          9
+        ]
+      ],
+      "boundaryReview": "Provocation/testing location closes95:8 before fathers/test/works95:9.",
+      "publishedWitnessURL": "https://www.drbo.org/chapter/21094.htm",
+      "publishedWitnessSHA256": "263483378c1f94a29f3526f9170f09b996c144fa3c6e723ed6861d9b6c798cb4",
+      "publishedWitnessExcerpt": "As in the provocation, according to the day of temptation in the wilderness: where your fathers tempted me, they proved me, and saw my works."
+    },
+    {
+      "source": [
+        "PSA",
+        99,
+        2
+      ],
+      "sourceText": "Sing joyfully to God, all the earth: serve ye the Lord with gladness. Come in before his presence with exceeding great joy.",
+      "sourceTextSHA256": "45b9417eada03e60983fb7a97a0e65c161ab37db1885052054a71f6a2f3a43ba",
+      "standard": [
+        [
+          "PSA",
+          100,
+          1
+        ],
+        [
+          "PSA",
+          100,
+          2
+        ]
+      ],
+      "boundaryReview": "Earth-song100:1 and service/coming100:2 are one source row.",
+      "publishedWitnessURL": "https://www.drbo.org/chapter/21099.htm",
+      "publishedWitnessSHA256": "8bd09dcd177a2560ed60ee55f1e19ae53a1e0c235b5d4407bcb7d3896db49fd8",
+      "publishedWitnessExcerpt": "Sing joyfully to God, all the earth: serve ye the Lord with gladness. Come in before his presence with exceeding great joy."
+    },
+    {
+      "source": [
+        "PSA",
+        106,
+        2
+      ],
+      "sourceText": "Let them say so that have been redeemed by the Lord, whom he hath redeemed from the hand of the enemy: and gathered out of the countries.",
+      "sourceTextSHA256": "48eede564d55a000d828775aedccdd18e1a0b42578d829a97abb824efe722bbd",
+      "standard": [
+        [
+          "PSA",
+          107,
+          2
+        ],
+        [
+          "PSA",
+          107,
+          3
+        ]
+      ],
+      "boundaryReview": "Redemption107:2 and gathered-countries107:3 begin in one source row; directions107:3 continue in source3.",
+      "publishedWitnessURL": "https://www.drbo.org/chapter/21106.htm",
+      "publishedWitnessSHA256": "4188d979fa64a1aa6720452e413685031b2a03e2ad9580b318edb785067c4108",
+      "publishedWitnessExcerpt": "Let them say so that have been redeemed by the Lord, whom he hath redeemed from the hand of the enemy: and gathered out of the countries."
+    },
+    {
+      "source": [
+        "PSA",
+        110,
+        7
+      ],
+      "sourceText": "That he may give them the inheritance of the Gentiles: the works of his hands are truth and judgment.",
+      "sourceTextSHA256": "a711ef4c5da154095b31acb695448180a54d5f36c033ae859c21c3d39cd06eb7",
+      "standard": [
+        [
+          "PSA",
+          111,
+          6
+        ],
+        [
+          "PSA",
+          111,
+          7
+        ]
+      ],
+      "boundaryReview": "Inheritance closes111:6 before works/truth111:7.",
+      "publishedWitnessURL": "https://www.drbo.org/chapter/21110.htm",
+      "publishedWitnessSHA256": "95e114ccc02178c5031c3a9d8fe4024e736e7ec0ec6fc2faf009d3f2f5cef3e4",
+      "publishedWitnessExcerpt": "That he may give them the inheritance of the Gentiles: the works of his hands are truth and judgment."
+    },
+    {
+      "source": [
+        "PSA",
+        110,
+        8
+      ],
+      "sourceText": "All his commandments are faithful: confirmed for ever and ever, made in truth and equity.",
+      "sourceTextSHA256": "cab08a22d18c6b81fff228cbc8fbc23d1d34e54749996152e392d3181403cbcf",
+      "standard": [
+        [
+          "PSA",
+          111,
+          7
+        ],
+        [
+          "PSA",
+          111,
+          8
+        ]
+      ],
+      "boundaryReview": "Faithful commands close111:7 before confirmed/true/equitable111:8.",
+      "publishedWitnessURL": "https://www.drbo.org/chapter/21110.htm",
+      "publishedWitnessSHA256": "95e114ccc02178c5031c3a9d8fe4024e736e7ec0ec6fc2faf009d3f2f5cef3e4",
+      "publishedWitnessExcerpt": "All his commandments are faithful: confirmed for ever and ever, made in truth and equity."
+    },
+    {
+      "source": [
+        "PSA",
+        111,
+        7
+      ],
+      "sourceText": "The just shall be in everlasting remembrance: he shall not fear the evil hearing. His heart is ready to hope in the Lord:",
+      "sourceTextSHA256": "8ace180686bec265026d8e871a1563ae7be57b56c9452c894f47295d906a0210",
+      "standard": [
+        [
+          "PSA",
+          112,
+          6
+        ],
+        [
+          "PSA",
+          112,
+          7
+        ]
+      ],
+      "boundaryReview": "Everlasting remembrance closes112:6 before evil-news/heart112:7.",
+      "publishedWitnessURL": "https://www.drbo.org/chapter/21111.htm",
+      "publishedWitnessSHA256": "a535019e9f1260e8cfa367beda5d6a276bcb6d74a9bd6a7fcc40aacc41842b4d",
+      "publishedWitnessExcerpt": "The just shall be in everlasting remembrance: he shall not fear the evil hearing. His heart is ready to hope in the Lord:"
+    },
+    {
+      "source": [
+        "PSA",
+        117,
+        16
+      ],
+      "sourceText": "The right hand of the Lord hath wrought strength: the right hand of the Lord hath exulted me: the right hand of the Lord hath wrought strength.",
+      "sourceTextSHA256": "307dfe512c9db32cf3b344e7e83e129999d801284364d3c36de7de351a2e4293",
+      "standard": [
+        [
+          "PSA",
+          118,
+          15
+        ],
+        [
+          "PSA",
+          118,
+          16
+        ]
+      ],
+      "boundaryReview": "The mighty right-hand clause closes118:15 before exalted/repeated-right-hand118:16.",
+      "publishedWitnessURL": "https://www.drbo.org/chapter/21117.htm",
+      "publishedWitnessSHA256": "d902fa705ae420bf48bf017986f0ade01b5a9eda51d84cb085495cada397d05c",
+      "publishedWitnessExcerpt": "The right hand of the Lord hath wrought strength: the right hand of the Lord hath exulted me: the right hand of the Lord hath wrought strength."
+    },
+    {
+      "source": [
+        "PSA",
+        145,
+        7
+      ],
+      "sourceText": "Who keepeth truth for ever: who executeth judgment for them that suffer wrong: who giveth food to the hungry. The Lord looseth them that are fettered:",
+      "sourceTextSHA256": "6296f5a0ed631d5a4748ab805287aa24a77c2a91b46623740c907997e53fb77b",
+      "standard": [
+        [
+          "PSA",
+          146,
+          6
+        ],
+        [
+          "PSA",
+          146,
+          7
+        ]
+      ],
+      "boundaryReview": "Keeping-truth closes146:6 before justice/food/prisoner-release146:7.",
+      "publishedWitnessURL": "https://www.drbo.org/chapter/21145.htm",
+      "publishedWitnessSHA256": "d47c67ef68508b03752d4d7eded8d38cad5eea64bde811f16b2d832676d13db0",
+      "publishedWitnessExcerpt": "Who keepeth truth for ever: who executeth judgment for them that suffer wrong: who giveth food to the hungry. The Lord looseth them that are fettered:"
+    }
+  ]
+}

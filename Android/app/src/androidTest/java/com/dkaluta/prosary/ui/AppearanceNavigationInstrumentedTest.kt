@@ -33,7 +33,7 @@ class AppearanceNavigationInstrumentedTest {
     @Test fun choosingColorsStaysOnAppearanceAndBackRestoresSettings() {
         val context = InstrumentationRegistry.getInstrumentation().targetContext
         ActivityScenario.launch(MainActivity::class.java).use { scenario ->
-            compose.waitUntil(15_000) { compose.onAllNodes(hasTestTag("todayChooseDate")).fetchSemanticsNodes().isNotEmpty() }
+            compose.waitUntil(15_000) { compose.onAllNodes(hasTestTag("homeDashboard")).fetchSemanticsNodes().isNotEmpty() }
             val originalColor = AppSettings.appColor
             val originalSystemColors = AppSettings.useSystemColors
             try {

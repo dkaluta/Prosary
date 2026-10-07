@@ -7,6 +7,86 @@ final class MacPrayerWindowUITests: XCTestCase {
   override func setUpWithError() throws { continueAfterFailure = false }
 
   @MainActor
+  func testChooseOnLaunchAsksBeforePrayingAndStartsWithOpeningPrayers() throws {
+    let app = launchApp(galleryDevotionIDs: [], extraArguments: ["-autoAdvanceSeconds", "0"])
+    let library = libraryWindow(in: app)
+    let browse = library.buttons["Browse Prayer Gallery"]
+    XCTAssertTrue(browse.waitForExistence(timeout: 5))
+    browse.click()
+    let galleryItem = element("macGallery.item.rosary", in: library)
+    let collection = element("macGallery.collection", in: library)
+    for _ in 0..<8 where !galleryItem.exists { collection.scroll(byDeltaX: 0, deltaY: -250) }
+    XCTAssertTrue(galleryItem.waitForExistence(timeout: 5))
+    galleryItem.click()
+    let add = library.buttons["macGallery.add.rosary"]
+    XCTAssertTrue(add.waitForExistence(timeout: 5))
+    add.click()
+    let show = library.buttons["macGallery.show.rosary"]
+    XCTAssertTrue(show.waitForExistence(timeout: 5))
+    show.click()
+    let rosary = element("macLibrary.item.devotion:rosary", in: library)
+    XCTAssertTrue(rosary.waitForExistence(timeout: 10))
+    app.activate()
+    app.typeKey("i", modifierFlags: .command)
+    let editor = library.sheets.firstMatch
+    XCTAssertTrue(editor.waitForExistence(timeout: 5))
+    let selection = editor.popUpButtons["rosaryMysteryMode"]
+    XCTAssertTrue(selection.waitForExistence(timeout: 5))
+    selection.click()
+    let chooseOnLaunch = app.menuItems["Choose on Launch"]
+    XCTAssertTrue(chooseOnLaunch.waitForExistence(timeout: 5))
+    chooseOnLaunch.click()
+    editor.buttons["favoriteEditorSaveButton"].click()
+    XCTAssertTrue(editor.waitForNonExistence(timeout: 5))
+    app.typeKey(.downArrow, modifierFlags: .command)
+    let picker = app.sheets.firstMatch
+    XCTAssertTrue(picker.waitForExistence(timeout: 10), "A blank saved choice must ask before praying")
+    let mysteryList = element("mysteryPickerList", in: picker)
+    XCTAssertTrue(mysteryList.waitForExistence(timeout: 5))
+    let setPicker = picker.popUpButtons["mysterySetSelector"]
+    XCTAssertTrue(setPicker.waitForExistence(timeout: 5))
+    XCTAssertFalse(picker.buttons["chooseMystery.joyful.1"].exists, "No set is selected before the person chooses")
+    for (group, title) in [("joyful", "Joyful"), ("sorrowful", "Sorrowful"), ("glorious", "Glorious"), ("luminous", "Luminous")] {
+      setPicker.click()
+      app.menuItems[title].click()
+      XCTAssertTrue(picker.buttons["chooseMystery.entireSet"].exists)
+      for order in 1...5 {
+        XCTAssertTrue(picker.buttons["chooseMystery.\(group).\(order)"].waitForExistence(timeout: 5))
+      }
+    }
+    setPicker.click()
+    app.menuItems["Joyful"].click()
+    let selected = picker.buttons["chooseMystery.entireSet"]
+    XCTAssertTrue(selected.waitForExistence(timeout: 5))
+    selected.click()
+    XCTAssertTrue(picker.waitForNonExistence(timeout: 5))
+    let prayer = app.windows.containing(.button, identifier: "chooseMysteryButton").firstMatch
+    let body = prayer.staticTexts["prayerBodyText"]
+    XCTAssertTrue(body.waitForExistence(timeout: 5))
+    let progress = prayer.staticTexts["prayerProgressText"]
+    XCTAssertTrue(progress.waitForExistence(timeout: 5))
+    let progressText = (progress.value as? String) ?? progress.label
+    XCTAssertTrue(progressText.range(of: "^1[^0-9]", options: .regularExpression) != nil,
+                  "Launch selection starts at the configured opening step; progress label: \(progress.label); value: \(String(describing: progress.value)); body label: \(body.label); value: \(String(describing: body.value))")
+    prayer.buttons["chooseMysteryButton"].click()
+    XCTAssertTrue(app.sheets.firstMatch.waitForExistence(timeout: 5), "The selected mysteries can be changed during a session")
+    let reopened = app.sheets.firstMatch
+    reopened.popUpButtons["mysterySetSelector"].click()
+    app.menuItems["Joyful"].click()
+    reopened.buttons["chooseMystery.joyful.1"].click()
+    XCTAssertTrue(reopened.waitForNonExistence(timeout: 5))
+    let changedProgress = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+      ((progress.value as? String) ?? progress.label) != progressText
+    }, object: nil)
+    XCTAssertEqual(XCTWaiter.wait(for: [changedProgress], timeout: 5), .completed,
+                   "Selecting one mystery after Entire Set uses the saved individual count")
+    prayer.buttons["chooseMysteryButton"].click()
+    XCTAssertTrue(app.sheets.firstMatch.waitForExistence(timeout: 5))
+    app.sheets.firstMatch.buttons["Cancel"].click()
+    XCTAssertTrue(body.waitForExistence(timeout: 5))
+  }
+
+  @MainActor
   func testGalleryImageFileResetAndOnlineSearchStayInTheGallery() throws {
     let app = launchApp(galleryDevotionIDs: [])
     let library = libraryWindow(in: app)
@@ -548,7 +628,7 @@ final class MacPrayerWindowUITests: XCTestCase {
   }
 
   @MainActor
-  private func launchApp(galleryDevotionIDs: [String] = ["angelus"], displayStyle: String = "list") -> XCUIApplication {
+  private func launchApp(galleryDevotionIDs: [String] = ["angelus"], displayStyle: String = "list", extraArguments: [String] = []) -> XCUIApplication {
     let app = XCUIApplication()
     app.launchArguments = [
       "-useInMemoryStore",
@@ -557,6 +637,7 @@ final class MacPrayerWindowUITests: XCTestCase {
       "-macLibraryDisplayStyle", displayStyle,
       "-NSQuitAlwaysKeepsWindows", "NO",
     ]
+    app.launchArguments += extraArguments
     app.launch()
     // macOS may restore the app with no windows after an earlier test closed its library.
     app.typeKey("n", modifierFlags: .command)

@@ -8,6 +8,7 @@ import importlib.util
 import json
 from pathlib import Path
 import unittest
+from reading_appointment_keys import split_passage_key
 from unittest.mock import patch
 from types import SimpleNamespace
 import xml.etree.ElementTree as ET
@@ -26,6 +27,11 @@ TOOLS = Path(__file__).resolve().parent
 spec = importlib.util.spec_from_file_location("peshitta_reader_builder", TOOLS / "build-reading-texts.py")
 builder = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(builder)
+
+
+def citation_book(key):
+    citation = split_passage_key(key)[1]
+    return builder.BOOKS.get(citation.split(":", 1)[0].rsplit(" ", 1)[0])
 
 
 class SourceTests(unittest.TestCase):
@@ -318,7 +324,7 @@ class ShippedPeshittaTests(unittest.TestCase):
             if not verses:
                 continue
             passages += 1
-            book, _ = builder.parse_citation(key.split("|", 1)[1], expand_subverses=True)
+            book = citation_book(key)
             self.assertIn(book, builder.NT | BOOKS.keys())
             for verse in verses:
                 self.assertEqual(verse["text"], to_hebrew(verse["transliteratedText"]))
@@ -336,9 +342,15 @@ class ShippedPeshittaTests(unittest.TestCase):
         for source in sources:
             for (book, chapter), verses in builder.load_source(source).items():
                 source_verses.update({(book, chapter, number): text for number, text in verses.items()})
+        from peshitta_daily_psalms import default_resolver as bounded_resolver
+        bounded = bounded_resolver()
         for key, translations in self.payload["passages"].items():
-            book, _ = builder.parse_citation(key.split("|", 1)[1], expand_subverses=True)
+            book = citation_book(key)
             for verse in translations.get("peshitta-1905", []):
+                if bounded.handles(key):
+                    self.assertEqual((book, verse["chapter"]), ("PSA", 118))
+                    self.assertEqual(verse["transliteratedText"], bounded.rows[verse["verse"]])
+                    continue
                 self.assertEqual(verse["transliteratedText"],
                                  source_verses[book, verse["chapter"], verse["verse"]])
 
@@ -380,16 +392,42 @@ class ShippedPeshittaTests(unittest.TestCase):
     def test_all_shipped_ot_passages_close_reviewed_units_and_avoid_withheld_rows(self):
         subject = mapper('peshitta-1905')
         from peshitta_eu_source import reviewed_mapping as website_mapping
+        from peshitta_psalm_review import reviewed_mapping as psalm_mapping
+        from peshitta_daily_psalms import load_reviews as daily_psalm_reviews
         allowed, _ = website_mapping()
+        psalms, _ = psalm_mapping()
+        allowed |= psalms
+        daily = daily_psalm_reviews()
         for key, translations in self.payload['passages'].items():
-            book, _ = builder.parse_citation(key.split('|',1)[1], expand_subverses=True)
+            book = citation_book(key)
             if book not in BOOKS or 'peshitta-1905' not in translations:
                 continue
             refs = [(book,row['chapter'],row['verse']) for row in translations['peshitta-1905']]
+            if key in daily:
+                expected = daily[key]
+                self.assertEqual(refs, [('PSA',118,verse) for verse in expected['sourceVerses']], key)
+                self.assertEqual([hashlib.sha256(row['transliteratedText'].encode()).hexdigest()
+                                  for row in translations['peshitta-1905']], expected['sourceVerseSHA256'], key)
+                continue
             self.assertTrue(set(refs) <= allowed, key)
             standard, _ = subject.to_standard(refs)
             returned, _ = subject.from_standard(standard)
             self.assertEqual(set(returned), set(refs), key)
+
+    def test_roman_psalm_139_uses_its_own_reviewed_source_boundaries(self):
+        key = "daily|Psalm 139:1–3; 139:13–14ab; 139:23–24"
+        verses = self.payload["passages"][key]["peshitta-1905"]
+        refs = [("PSA", row["chapter"], row["verse"]) for row in verses]
+        subject = mapper("peshitta-1905")
+        standard, _ = subject.to_standard(refs)
+        wanted = {("PSA", 139, verse) for verse in (1, 2, 3, 13, 14, 23, 24)}
+        self.assertTrue(wanted <= set(standard))
+        closed, _ = subject.from_standard(sorted(wanted))
+        self.assertEqual(refs, closed)
+        self.assertIn(key, self.payload["wholeVersePassages"])
+        # The genuinely omitted printed row119:91 is still unavailable.
+        missing = "daily|Psalm 119:66–66; 119:71–71; 119:75–75; 119:91–91; 119:125–125; 119:130–130"
+        self.assertNotIn("peshitta-1905", self.payload["passages"].get(missing, {}))
 
     def test_october_third_job_uses_requested_publication_and_exact_disjoint_units(self):
         key = 'daily|Job 42:1–3; 42:5–6; 42:12–16'

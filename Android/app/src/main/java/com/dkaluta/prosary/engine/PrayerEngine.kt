@@ -44,6 +44,7 @@ class PrayerEngine(
     private val calendar: LiturgicalCalendarProviding = MockLiturgicalCalendar(),
 ) {
     fun buildSteps(prayer: Prayer): List<RosaryStep> {
+        if (prayer.kind == PrayerKind.Rosary && prayer.rosary.mysterySelectionMode == MysterySelectionMode.ChooseOnLaunch) return emptyList()
         val steps = when (prayer.kind) {
             // The Rosary builds from the rosary bundle's devotion.json like every other devotion —
             // RosaryOptions stays the persisted shape (no data migration; the bespoke editor keeps
@@ -88,11 +89,12 @@ class PrayerEngine(
     fun resolveMysteryGroups(prayer: Prayer): List<MysteryGroup> = resolveMysteryGroups(prayer.rosary)
 
     fun resolveMysteryGroups(rosary: RosaryOptions): List<MysteryGroup> = when (rosary.mysterySelectionMode) {
+        MysterySelectionMode.ChooseOnLaunch -> emptyList()
         MysterySelectionMode.Specific, MysterySelectionMode.SingleMystery -> listOf(rosary.specificMysteryGroup)
         MysterySelectionMode.FifteenMystery -> listOf(MysteryGroup.Joyful, MysteryGroup.Sorrowful, MysteryGroup.Glorious)
         MysterySelectionMode.TwentyMystery ->
             listOf(MysteryGroup.Joyful, MysteryGroup.Luminous, MysteryGroup.Sorrowful, MysteryGroup.Glorious)
-        MysterySelectionMode.TodaysMysteries -> listOf(calendar.mysteryGroupToday())
+        MysterySelectionMode.TodaysMysteries -> listOf(calendar.mysteryGroupToday(rosary.useTraditionalMysteries))
     }
 
     /** Maps the persisted [RosaryOptions] onto the rosary bundle's options.json values — the
@@ -113,7 +115,6 @@ class PrayerEngine(
         "openingPrayers" to rosary.includeOpeningPrayers.toString(),
         "openingFatimaPrayer" to rosary.includeOpeningFatimaPrayer.toString(),
         "presenterMode" to rosary.presenterMode.toString(),
-        "skipFifthDecade" to rosary.skipFifthDecade.toString(),
         "fatimaPrayer" to rosary.includeFatimaPrayer.toString(),
         "eternalRest" to rosary.eternalRestForDeceased.name.replaceFirstChar { it.lowercaseChar() },
         "antiphon" to rosary.marianAntiphon.name.replaceFirstChar { it.lowercaseChar() },
@@ -368,7 +369,7 @@ class PrayerEngine(
                 RosaryStep(
                     title = singleTitle, subtitle = subtitle, body = body, acclamation = acclamation,
                     isScripture = isScripture, transliteratedBody = transliteratedBody,
-                    imageOverrideKey = entry.imageKey,
+                    imageOverrideKey = entry.imageKey, prayerKey = entry.bodyKey,
                 ),
             )
         }
@@ -376,7 +377,7 @@ class PrayerEngine(
             RosaryStep(
                 title = "$title ${counter(h, count, languageCode)}", subtitle = subtitle, body = body, acclamation = acclamation,
                 isScripture = isScripture, transliteratedBody = transliteratedBody,
-                imageOverrideKey = entry.imageKey,
+                imageOverrideKey = entry.imageKey, prayerKey = entry.bodyKey,
             )
         }
     }
@@ -518,9 +519,9 @@ class PrayerEngine(
             val groupTitle = resolve(groupKey)
             val mysteries = MysteryCatalog.forGroup(group)
             val indices = if (rosary.mysterySelectionMode == MysterySelectionMode.SingleMystery) {
-                listOf(rosary.specificMysteryOrder - 1)
+                rosary.selectedMysteryIndices.toList()
             } else {
-                mysteries.indices.filterNot { it == 4 && optionValues["skipFifthDecade"] == "true" }
+                mysteries.indices.toList()
             }
 
             for (d in indices) {

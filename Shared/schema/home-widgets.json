@@ -1,0 +1,34 @@
+{
+  "$comment": "In-app Home dashboard cards. These are separate from operating-system widgets and from homeCardOrder, which still orders pinned prayers on Pray.",
+  "platforms": ["iOS", "android", "windows"],
+  "macOS": "Retains its native library and Today workflow; shared content and reading fixes still apply.",
+  "settings": {
+    "homeWidgetOrder": {
+      "type": "string",
+      "encoding": "Newline-separated widget IDs in display order.",
+      "unsetDefault": ["readings", "popeIntention", "calendar", "reminders", "scripture", "feast"],
+      "explicitEmpty": "No cards. Keep Add Widget available; do not silently restore defaults.",
+      "normalization": "Preserve known IDs' first occurrence, ignore unknown IDs and duplicates. Add appends; removal deletes only that card's selection."
+    },
+    "homePhotoPath": {
+      "type": "string",
+      "default": "",
+      "scope": "Device-local private photo copy; never a shared gallery permission or cloud-synced external path.",
+      "replacement": "Validate and install the new private image before retiring the previous private copy. A failed import preserves the existing photo.",
+      "removal": "Remove only the app-owned copy when removing the photo or photo card. Keep the source gallery photo intact."
+    }
+  },
+  "cards": {
+    "readings": "Localized appointed-citation shortcut into daily readings for the window's shared civil date and selected calendar.",
+    "popeIntention": "Title and prose from the canonical Pope intention table for the selected month.",
+    "calendar": "Selected date and observances with native calendar access. Selecting a date updates shared Home/Pray/Readings date state.",
+    "photo": "A chosen gallery image, stored in app-private storage, with choose/replace/remove controls and recoverable errors.",
+    "reminders": "Actual enabled saved-prayer and daily reading/saint reminders, formatted as local wall-clock times. Manage opens existing native reminder settings/editors.",
+    "scripture": "Open the existing Bible reader and selected edition.",
+    "reflection": "Awaiting the supplied Mission reflection text. No invented prose or personal reflection editor.",
+    "feast": "Localized feast/rank plus exact-language sourced descriptions and credit where available. Missing description/date has a localized explicit state."
+  },
+  "navigation": "Phone/tablet tabs are Home, Pray, Readings and Search. Windows opens Home in its library window. Community prayers are reached from Search, replacing the separate Browse/Community navigation destination.",
+  "date": "Reuse the existing window-local civil selection and calendar/Pascha settings; follow the local day until browsing. Home shortcuts preserve the selected day. Operating-system Today/calendar widgets retain their documented current-day activation behavior.",
+  "localization": "All new labels and empty/error states ship in en, he, ar, ru, tl/fil, fr, it and uk; Hebrew and Arabic use genuine RTL."
+}

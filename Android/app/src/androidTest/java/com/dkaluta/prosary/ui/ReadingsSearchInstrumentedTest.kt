@@ -27,6 +27,8 @@ class ReadingsSearchInstrumentedTest {
     @Test fun readingsDateAndSearchCategorySurviveTabsAndActivityRecreation() {
         val context = InstrumentationRegistry.getInstrumentation().targetContext
         ActivityScenario.launch(MainActivity::class.java).use { scenario ->
+            compose.waitUntil(15_000) { compose.onAllNodes(hasTestTag("homeDashboard")).fetchSemanticsNodes().isNotEmpty() }
+            compose.onNodeWithTag("tab.pray").performClick()
             compose.waitUntil(15_000) { compose.onAllNodes(hasTestTag("todayChooseDate")).fetchSemanticsNodes().isNotEmpty() }
             assertDateControlHeights("todayYesterday", "todayChooseDate", "todayTomorrow")
             compose.onNodeWithText(context.getString(R.string.tab_readings)).performClick()

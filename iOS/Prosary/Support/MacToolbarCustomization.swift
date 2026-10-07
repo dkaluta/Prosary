@@ -5,6 +5,10 @@ import SwiftUI
 /// SwiftUI owns the toolbar and its stable `.toolbar(id:)` identity. AppKit supplies
 /// the native display-mode menu, customization palette, and configuration persistence.
 struct MacToolbarCustomization: ViewModifier {
+  private static let supportedToolbarIdentifiers: Set<NSToolbar.Identifier> = [
+    "Prosary.Library.Toolbar", "Prosary.Prayer.Toolbar"
+  ]
+
   func body(content: Content) -> some View {
     content.background {
       MacToolbarConfigurationReader().frame(width: 0, height: 0)
@@ -13,6 +17,10 @@ struct MacToolbarCustomization: ViewModifier {
 
   /// Never assign displayMode here: reopening or redrawing must preserve the user's choice.
   @MainActor static func configure(_ toolbar: NSToolbar) {
+    // This reader remains attached while NavigationStack replaces a window's toolbar.
+    // Only our explicitly customizable Library/Prayer identities support these AppKit
+    // setters; SwiftUI owns the customization policy of its navigation toolbars.
+    guard supportedToolbarIdentifiers.contains(toolbar.identifier) else { return }
     if !toolbar.allowsUserCustomization { toolbar.allowsUserCustomization = true }
     if !toolbar.autosavesConfiguration { toolbar.autosavesConfiguration = true }
     if #available(macOS 15.0, *) {

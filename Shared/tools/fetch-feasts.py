@@ -618,7 +618,8 @@ def localize_existing_datasets(only: set[str] | None = None) -> None:
         # These dated editions own their original bilingual/source titles and
         # reviewed aliases. Regenerate with their importer instead of relabeling
         # them through another calendar's general title catalog.
-        if name in {"feasts-stjames", "feasts-franciscan-conventual-italy", "feasts-augustinian-discalced"}:
+        if name in {"feasts-stjames", "feasts-franciscan-conventual-italy", "feasts-augustinian-discalced",
+                    "feasts-mission-provisional"}:
             continue
         path = DATA / f"{name}.json"
         payload = json.loads(path.read_text(encoding="utf-8"))

@@ -5,7 +5,7 @@ import androidx.room.RoomDatabase
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 
-@Database(entities = [PresetEntity::class], version = 12, exportSchema = false)
+@Database(entities = [PresetEntity::class], version = 13, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun presetDao(): PresetDao
 }
@@ -105,7 +105,14 @@ val MIGRATION_11_12 = object : Migration(11, 12) {
  * [com.dkaluta.prosary.reminders.BootReceiver]) — a secondary open that registers only a
  * subset crashes the moment it meets a database version whose step it lacks (an app update
  * followed by a reboot before the first launch reaches BootReceiver first). */
+val MIGRATION_12_13 = object : Migration(12, 13) {
+    override fun migrate(db: SupportSQLiteDatabase) {
+        db.execSQL("ALTER TABLE presets ADD COLUMN specificMysteryCount INTEGER NOT NULL DEFAULT 1")
+        db.execSQL("ALTER TABLE presets ADD COLUMN useTraditionalMysteries INTEGER NOT NULL DEFAULT 0")
+    }
+}
+
 val ALL_MIGRATIONS = arrayOf(
     MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4, MIGRATION_4_5,
-    MIGRATION_5_6, MIGRATION_6_7, MIGRATION_7_8, MIGRATION_8_9, MIGRATION_9_10, MIGRATION_10_11, MIGRATION_11_12,
+    MIGRATION_5_6, MIGRATION_6_7, MIGRATION_7_8, MIGRATION_8_9, MIGRATION_9_10, MIGRATION_10_11, MIGRATION_11_12, MIGRATION_12_13,
 )

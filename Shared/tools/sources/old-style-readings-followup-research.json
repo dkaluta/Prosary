@@ -1,0 +1,119 @@
+{
+  "schemaVersion": 1,
+  "investigatedAt": "2026-10-03",
+  "auditTimeZone": "Asia/Jerusalem",
+  "completed": true,
+  "scope": "Bounded primary Catholic source follow-up for old-style Julian Byzantine reading appointments in civil 2026 and 2027. No native data, lectionary, or calendar import was changed.",
+  "priorEvidenceFile": "old-style-julian-research.json",
+  "verifiedCompleteCatholicOldStyle2026Or2027AnnualLectionaryFound": false,
+  "verifiedDatedOldStyleReadingCitationsFound": 0,
+  "recommendation": "Keep ugcc-julian feast-only. Current Catholic parish evidence now independently verifies the old fixed calendar and Eastern Pascha, but none of the inspected sources supplies its daily Scripture appointments. Do not offset new-style readings or silently import an Orthodox table.",
+  "sources": [
+    {
+      "publisher": "Our Lady of Fatima Russian Byzantine Catholic Church, a parish of the Archdiocese of San Francisco",
+      "sourceURL": "https://byzantinecatholicsf.org/",
+      "linkedCalendarURL": "https://calendar.google.com/calendar/embed?ctz=America%2FLos_Angeles&mode=AGENDA&src=olfatimasf%40gmail.com",
+      "publicFeedURL": "https://calendar.google.com/calendar/ical/olfatimasf%40gmail.com/public/basic.ics",
+      "verification": "Actual primary parish HTML and one successful read of its public Google calendar feed. No historical parish reputation or search excerpt used to establish current dates.",
+      "feedSHA256": "dd9d4b6626a5d85c0cafba6d6c13dcf2571eef6052666c45e7ecfe1301fddc2d",
+      "feedBytes": 613834,
+      "feedTimeZone": "America/Los_Angeles",
+      "explicitDTSTARTEventCounts": { "2026": 145, "2027": 0 },
+      "latestExplicit2026AllDayEventDate": "2026-10-25",
+      "nonempty2026Descriptions": 0,
+      "observanceLabelKind": "The observance values below are short editorial labels for the inspected ICS SUMMARY strings, not verbatim event titles.",
+      "observedAllDayEvents": [
+        { "date": "2026-01-07", "observance": "Nativity of the Lord", "createdAt": "2026-01-03T15:26:32Z" },
+        { "date": "2026-01-19", "observance": "Theophany", "createdAt": "2026-01-03T15:35:35Z" },
+        { "date": "2026-02-15", "observance": "Meeting of the Lord in the Temple", "createdAt": "2026-01-29T22:33:37Z" },
+        { "date": "2026-04-12", "observance": "Pascha", "createdAt": "2026-04-03T02:03:12Z" },
+        { "date": "2026-05-21", "observance": "Ascension", "createdAt": "2026-05-01T22:49:40Z", "modifiedAt": "2026-05-19T05:09:41Z" },
+        { "date": "2026-05-31", "observance": "Pentecost", "createdAt": "2026-05-01T22:50:54Z" },
+        { "date": "2026-08-19", "observance": "Transfiguration", "createdAt": "2026-08-01T15:54:13Z" },
+        { "date": "2026-08-28", "observance": "Dormition", "createdAt": "2026-08-01T16:01:15Z", "modifiedAt": "2026-08-01T16:02:36Z" },
+        { "date": "2026-09-21", "observance": "Nativity of the Theotokos", "createdAt": "2026-09-01T20:23:13Z" },
+        { "date": "2026-09-27", "observance": "Exaltation of the Cross", "createdAt": "2026-09-01T20:28:06Z" },
+        { "date": "2026-10-14", "observance": "Protection of the Theotokos", "createdAt": "2026-09-29T21:59:11Z" }
+      ],
+      "bounds": [
+        "Nativity and Theophany independently establish old-style fixed feasts; Pascha is separately observed on 12 April 2026.",
+        "Event counts are explicit DTSTART records, including services, recurring masters and overrides; they are not counts of unique feast days or an expanded annual calendar.",
+        "The feed has no explicit 2027 records. Recurring service times do not establish 2027 feast or reading appointments.",
+        "The 2026 events contain no DESCRIPTION text or Scripture citations. A Passion Gospels service title does not identify its reading boundaries.",
+        "Russian Catholic parish practice does not by itself establish every UGCC parish's saints, precedence or transfer rubrics.",
+        "The parish's January and other dated records are useful primary date evidence, not a complete annual lectionary or an automatic native import."
+      ],
+      "rights": "Parish HTML footer: copyright 2016 Our Lady of Fatima, all rights reserved. No bulk reuse license or public reading API documented on the inspected page. Preserve the source link and request a reusable dated appointment table before importing publisher text."
+    },
+    {
+      "publisher": "Sts. Volodymyr and Olha Ukrainian Catholic Church, Chicago",
+      "historyURL": "https://stsvo.org/about/our-history/",
+      "archiveURL": "https://stsvo.org/media/church-visnyk/",
+      "sourceURL": "https://stsvo.org/wp-content/uploads/2025/12/Visnyk_DECEMBER_2025_web.pdf",
+      "publishedAt": "2025-12-22T22:00:11+00:00",
+      "verification": "Actual latest linked December 2025 PDF; text extraction and visual review of printed page 15 of 24.",
+      "originalPDFSHA256": "7dd850c1c7a9c37a9ad8d318f8e922a7a6b7357eea5a45d9ee572f6874bd2cbc",
+      "observedCivilDates": [
+        { "date": "2025-12-25", "observance": "Nativity of the Lord", "printedWeekday": "Thursday" },
+        { "date": "2026-01-04", "observance": "Sunday before Theophany" },
+        { "date": "2026-01-06", "observance": "Theophany", "printedWeekday": "Tuesday" }
+      ],
+      "decision": "Excluded. The historical founding mandate to preserve the Julian calendar does not override the actual current printed new-style fixed-feast schedule.",
+      "bounds": "The inspected latest archive issue is December 2025, not a 2026/2027 annual reading table.",
+      "rights": "Parish site states all rights reserved; no reusable calendar license observed."
+    },
+    {
+      "publisher": "Holy Trinity-St Nicholas Russian Greek-Catholic Church, St Kilda East, Australia",
+      "sourceURL": "https://www.stnich.org/",
+      "datedServicesURL": "https://www.stnich.org/services",
+      "verification": "Live primary parish HTML explicitly identifies communion with Rome and use of the old Julian calendar; its services page contains actual Autumn/Winter 2026 dates.",
+      "externalCalendarPublisher": "Holy Trinity Orthodox Church; the parish's today's-calendar link points to holytrinityorthodox.com",
+      "decision": "Useful current Catholic old-calendar parish lead. The externally linked Orthodox calendar was not certified or imported as the app's Catholic old-style appointments.",
+      "bounds": "No parish-authored 2026/2027 annual reading table or date-specific Scripture appointments were found on the inspected public pages.",
+      "rights": "Parish footer gives copyright 2014-2023; no reuse grant observed."
+    },
+    {
+      "publisher": "Eastern Christian Publications",
+      "sourceURL": "https://ecpubs.com/ecbs-examples/",
+      "verification": "Live primary publisher HTML distinguishes its printed Gregorian and Revised Julian bulletin editions.",
+      "observedCalendarDefinitions": {
+        "ByzantineCatholicPrintedEdition": "New fixed dates and Western Pascha",
+        "EasternOrthodoxPrintedEdition": "New fixed dates and Eastern Pascha",
+        "ElectronicEditionClaim": "Gregorian and Julian dates for Pascha/Easter"
+      },
+      "decision": "Concrete publisher lead for asking about an old-fixed-calendar Catholic appointment table; the advertised Julian Pascha option does not promise old-style Christmas or Theophany.",
+      "bounds": "No inspected public edition establishes both old fixed feasts and Eastern Pascha, or a downloadable Catholic old-style 2026/2027 daily citation table.",
+      "rights": "Copyright 2024 EC Publications, all rights reserved. Subscription availability is not permission to bundle its content."
+    },
+    {
+      "publisher": "Metropolitan Cantor Institute, Byzantine Catholic Archeparchy of Pittsburgh",
+      "sourceURL": "https://www.metropolitancantorinstitute.org/liturgy/Typikon.html",
+      "verification": "Live primary Catholic teaching page describes the annual Typikon and identifies the calendar used by Father David Petras's edition.",
+      "decision": "The available Catholic annual Typikon uses the Gregorian calendar and Western Paschalion, so it is not an old-style annual reading source. The page's separate old-style annual publisher is explicitly Russian Orthodox.",
+      "bounds": "Catholic historical Mikita/Dolnitskij commentaries and Ruthenian books may inform a future audited resolver, but do not establish dated 2026/2027 appointments."
+    },
+    {
+      "publisher": "Apostolic Exarchate of the Greek Catholic Church in the Czech Republic",
+      "sourceURL": "https://www.exarchat.cz/cirkevni-kalendar/",
+      "verification": "Live official calendar page advertises its 2026 daily-reading diary explicitly as Gregorian style. The linked actual 116-page PDF's text places Theophany on 6 January, including its Ukrainian calendar row.",
+      "decision": "Excluded as an old-style source. A Ukrainian-language row is not evidence of Julian fixed feasts.",
+      "bounds": "No PDF appointment rows were imported; a full visual table audit was unnecessary after the explicit calendar-style exclusion.",
+      "rights": "Copyright notice belongs to the Apostolic Exarchate; no bulk reuse license observed."
+    }
+  ],
+  "otherCurrentCandidatesExcluded": [
+    { "sourceURL": "https://stjoschurch.com/liturgics/", "publisher": "St Josaphat Ukrainian Catholic Church, Warren, Michigan", "observed": "Actual dated 2026 index has 4 January Sunday before Theophany and 11 January Sunday after Theophany; new-style fixed dates." },
+    { "sourceURL": "https://cantorscorner.skeparchy.org/cantors-corner/cantors-corner-2026-archived-monthly-liturgical-text-music-and-audio-from-redemptorist-translation/", "publisher": "Ukrainian Catholic Eparchy of Saskatoon", "observed": "Actual 2026 index places Theophany on 6 January and Pascha on 5 April; wrong fixed calendar and Paschalion." },
+    { "sourceURL": "https://www.catholica.ro/calendar-greco-catolic-2026/", "publisher": "Catholica.ro Catholic calendar publisher", "observed": "Actual 2026 January page puts Theophany on 6 January; Eastern Pascha does not establish old fixed feasts." }
+  ],
+  "importFeasibility": {
+    "readyNow": "Selected public-feed Catholic feast dates are independently verifiable and can support regression evidence. There are zero verified old-style dated reading citations to import from this follow-up.",
+    "nextConcreteSourceRequirement": "Obtain a publicly licensed or otherwise authorized Catholic annual ordo or dated parish reading table that explicitly uses old fixed dates and Eastern Pascha. Verify actual Jan7 Nativity and Jan19 Theophany alongside ordinary Sundays, major feast collisions and Scripture boundaries before mapping it to ugcc-julian.",
+    "boundedSearchLimits": [
+      "Public primary parish, eparchy and publisher pages only; no private accounts, paywalled subscription acquisition, publisher correspondence or mass crawling.",
+      "Only one published public calendar feed and one specific parish PDF downloaded for actual source validation.",
+      "Absence of a complete table in this search is not a claim that no Catholic publisher or parish has one.",
+      "No invented translations, date-shifted new-style appointments, Orthodox import, daily saints claim or complete 2027 coverage."
+    ]
+  }
+}

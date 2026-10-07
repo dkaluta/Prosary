@@ -32,6 +32,7 @@ public partial class RosaryViewModel : ObservableObject, IPrayerStepFlowViewMode
     private string _languageCode = LanguageCatalog.DefaultCode;
     public string SpeechLanguageCode => _languageCode;
     public string SpeechBody => _index >= 0 && _index < _steps.Count ? _steps[_index].Body : string.Empty;
+    public IReadOnlyList<RosaryStep> NavigationSteps => _steps;
     private string _chosenLanguage = LanguageCatalog.DefaultSentinel;
     private Prayer? _activePrayer;
     private Prayer? _initialPrayer;
@@ -39,6 +40,14 @@ public partial class RosaryViewModel : ObservableObject, IPrayerStepFlowViewMode
     private string _runKey = string.Empty;
     private string _runSignature = string.Empty;
     private bool _isSavedPrayer;
+    private MysteryGroup? _navigationGroup;
+    private int? _navigationOrder;
+
+    [ObservableProperty]
+    private bool _requiresMysteryChoice;
+    [ObservableProperty]
+    private PopeIntentionPrayerPublication? _publishedPopeIntention;
+    public bool HasSteps => _steps.Count > 0;
 
     // Precomputed once per session load (not per step) — how many decades this session has,
     // whether it ends with a Sign of the Cross, and where the antiphon (if any) sits, so
@@ -107,7 +116,12 @@ public partial class RosaryViewModel : ObservableObject, IPrayerStepFlowViewMode
     private bool _hasTransliteration;
 
     [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(TransliterationActionLabel))]
     private bool _showsTransliteration;
+
+    public string TransliterationActionLabel => ShowsTransliteration
+        ? Loc.Tr("flow_show_original_text", "Show Original Text")
+        : Loc.Tr("flow_show_transliteration", "Show Transliteration");
 
     [RelayCommand]
     private void ToggleTransliteration()
@@ -223,6 +237,16 @@ public partial class RosaryViewModel : ObservableObject, IPrayerStepFlowViewMode
     private void ResetContinuationState()
     {
         _pendingContinuation = null;
+        _navigationGroup = null;
+        _navigationOrder = null;
+        _activePrayer = null;
+        _initialPrayer = null;
+        _steps = [];
+        _index = 0;
+        RequiresMysteryChoice = false;
+        PublishedPopeIntention = null;
+        OnPropertyChanged(nameof(HasSteps));
+        NextCommand.NotifyCanExecuteChanged();
         OnPropertyChanged(nameof(HasSavedContinuation));
     }
 
@@ -233,20 +257,32 @@ public partial class RosaryViewModel : ObservableObject, IPrayerStepFlowViewMode
             _initialPrayer = prayer;
             _isSavedPrayer = isSavedPrayer;
             _runKey = runKey;
-            _runSignature = PrayerRunSignatures.Rosary(prayer.Rosary);
+            _runSignature = RosarySessionNavigation.Signature(prayer.Rosary);
             Languages = LanguageCatalog.AvailableOptions(PrayerPackStore.Info("rosary")?.Languages ?? []);
             OnPropertyChanged(nameof(ShowsLanguageMenu));
 
-            ConfigureSession(prayer, 0);
-
             var saved = _runStore.Get(_runKey);
-            _pendingContinuation = saved?.CanResume(
-                _runSignature,
-                _steps.Count,
-                sameLocalDayOnly: true,
-                DateOnly.FromDateTime(DateTime.Now)) == true
-                ? saved
-                : null;
+            if (saved is not null && RosarySessionNavigation.TryRestore(prayer.Rosary, saved,
+                out var options, out var group, out var order))
+            {
+                // Reconstruct a session-only range before checking position bounds. A raw
+                // override never bypasses the original saved preset's signature gate.
+                var signature = RosarySessionNavigation.Signature(prayer.Rosary, group, order);
+                ConfigureSession(prayer with { Rosary = options }, 0);
+                if (saved.CanResume(signature, _steps.Count, sameLocalDayOnly: true, DateOnly.FromDateTime(DateTime.Now)))
+                {
+                    _navigationGroup = group;
+                    _navigationOrder = order;
+                    _runSignature = signature;
+                    _pendingContinuation = saved;
+                }
+            }
+            if (_pendingContinuation is null)
+            {
+                _navigationGroup = null;
+                _navigationOrder = null;
+                ConfigureSession(prayer, 0);
+            }
             if (saved is not null && _pendingContinuation is null)
             {
                 _runStore.Remove(_runKey);
@@ -268,6 +304,9 @@ public partial class RosaryViewModel : ObservableObject, IPrayerStepFlowViewMode
         _languageCode = prayer.ResolvedLanguageCode;
         IsRightToLeft = LanguageCatalog.Resolve(_languageCode).IsRightToLeft;
         _steps = _engine.BuildSteps(prayer);
+        RequiresMysteryChoice = prayer.Rosary.MysterySelectionMode == MysterySelectionMode.ChooseOnLaunch;
+        OnPropertyChanged(nameof(HasSteps));
+        NextCommand.NotifyCanExecuteChanged();
         _index = Math.Clamp(position, 0, Math.Max(_steps.Count - 1, 0));
 
         _totalDecades = _steps.Any(s => s.DecadeIndex.HasValue)
@@ -301,7 +340,40 @@ public partial class RosaryViewModel : ObservableObject, IPrayerStepFlowViewMode
         _pendingContinuation = null;
         OnPropertyChanged(nameof(HasSavedContinuation));
         if (!string.IsNullOrEmpty(_runKey)) _runStore.Remove(_runKey);
-        if (_initialPrayer is { } prayer) ConfigureSession(prayer, 0);
+        _navigationGroup = null;
+        _navigationOrder = null;
+        if (_initialPrayer is { } prayer)
+        {
+            _runSignature = RosarySessionNavigation.Signature(prayer.Rosary);
+            ConfigureSession(prayer, 0);
+        }
+    }
+
+    /// <summary>Choose a named mystery without modifying the saved mode, set or range.</summary>
+    public void ChooseMystery(MysteryGroup group, int? order)
+    {
+        if (_initialPrayer is null || !Enum.IsDefined(group) || order is < 1 or > 5) return;
+        var existing = order is null ? -1 : Enumerable.Range(0, _steps.Count).FirstOrDefault(index =>
+            _steps[index].Mystery?.Group == group && _steps[index].Mystery?.Order == order, -1);
+        if (existing >= 0)
+        {
+            _index = existing;
+        }
+        else
+        {
+            var firstChoice = RequiresMysteryChoice;
+            _navigationGroup = group;
+            _navigationOrder = order;
+            _runSignature = RosarySessionNavigation.Signature(_initialPrayer.Rosary, group, order);
+            var prayer = _initialPrayer with { LanguageCode = _chosenLanguage,
+                Rosary = _initialPrayer.Rosary.NavigationOptions(group, order) };
+            ConfigureSession(prayer, 0);
+            if (!firstChoice)
+                _index = Enumerable.Range(0, _steps.Count).FirstOrDefault(index =>
+                    _steps[index].Mystery?.Group == group && _steps[index].Mystery?.Order == (order ?? 1), 0);
+        }
+        RenderCurrentStep();
+        SaveProgress();
     }
 
     /// <summary>Changes only the prayer text while preserving the exact current bead/mystery.
@@ -313,10 +385,14 @@ public partial class RosaryViewModel : ObservableObject, IPrayerStepFlowViewMode
         var position = _index;
         var changed = _activePrayer with { LanguageCode = raw };
         ConfigureSession(changed, position);
+        if (_initialPrayer is not null) _initialPrayer = _initialPrayer with { LanguageCode = raw };
         SaveProgress();
         if (_isSavedPrayer)
         {
-            await _presets.UpdateIfPresentAsync(changed);
+            // The active session may have a temporary mystery override. Re-read the saved
+            // copy so a language change cannot persist that override or overwrite newer edits.
+            if (await _presets.GetAsync(changed.Id) is { } saved)
+                await _presets.UpdateIfPresentAsync(saved with { LanguageCode = raw });
         }
     }
 
@@ -351,6 +427,17 @@ public partial class RosaryViewModel : ObservableObject, IPrayerStepFlowViewMode
     {
         if (_steps.Count == 0)
         {
+            Header = RequiresMysteryChoice ? Loc.Tr("mode_choose_on_launch", "Choose on Launch") : "";
+            Body = RequiresMysteryChoice ? Loc.Tr("flow_choose_mystery", "Choose Mystery") : "";
+            Subtitle = null;
+            Progress = null;
+            ProgressText = "";
+            CanGoBack = CanGoToPreviousMystery = CanGoToNextMystery = false;
+            IsLastStep = false;
+            HasTransliteration = false;
+            PublishedPopeIntention = null;
+            MysteryImageKey = "cross_placeholder";
+            RebuildBeads();
             return;
         }
 
@@ -366,6 +453,9 @@ public partial class RosaryViewModel : ObservableObject, IPrayerStepFlowViewMode
         Body = ShowsTransliteration && step.TransliteratedBody is { } transliterated
             ? transliterated
             : step.Body;
+        PublishedPopeIntention = PopeIntentionPrayerContext.Resolve(step,
+            TodayInfoStore.Intention(DateOnly.FromDateTime(DateTime.Now)), _languageCode,
+            AppSettings.ShowPopeIntentionInPrayers);
         var usesSyriacScript = PrayerTypography.ScriptOf(Body) == PrayerTypography.Script.Syriac;
         Subtitle = step.Subtitle is { } subtitle ? PrayerTranslations.FlowTitle(subtitle, _languageCode, usesSyriacScript) : null;
         Header = PrayerTranslations.FlowTitle(step.Title, _languageCode, usesSyriacScript);
@@ -405,9 +495,10 @@ public partial class RosaryViewModel : ObservableObject, IPrayerStepFlowViewMode
 
     IRelayCommand IPrayerStepFlowViewModel.NextCommand => NextCommand;
 
-    [RelayCommand]
+    [RelayCommand(CanExecute = nameof(HasSteps))]
     private void Next()
     {
+        if (_steps.Count == 0) return;
         if (IsLastStep)
         {
             ClearProgress();
@@ -443,9 +534,24 @@ public partial class RosaryViewModel : ObservableObject, IPrayerStepFlowViewMode
     }
 
     [RelayCommand]
+    private void JumpToPrayer(int index)
+    {
+        if (index < 0 || index >= _steps.Count) return;
+        _index = index;
+        RenderCurrentStep();
+        SaveProgress();
+    }
+
+    [RelayCommand]
     private void GoToNextMystery()
     {
         if (MysteryStepNavigation.Next(_steps, _index) is not { } target) return;
+        if (target == _steps.Count)
+        {
+            ClearProgress();
+            Navigation.GoBack();
+            return;
+        }
         _index = target;
         RenderCurrentStep();
         SaveProgress();
@@ -464,7 +570,8 @@ public partial class RosaryViewModel : ObservableObject, IPrayerStepFlowViewMode
             _runSignature,
             _index,
             _chosenLanguage,
-            PrayerRunState.LocalDateString(DateOnly.FromDateTime(DateTime.Now))));
+            PrayerRunState.LocalDateString(DateOnly.FromDateTime(DateTime.Now)),
+            _navigationGroup?.ToString().ToLowerInvariant(), _navigationOrder));
     }
 
     private void ClearProgress()

@@ -94,6 +94,29 @@ final class WidgetIntegrationTests: XCTestCase {
     XCTAssertEqual(store.progress(for: PrayerRunKey.rosary(prayer))?.stepIndex, 3)
   }
 
+  func testChosenMysteryAndEntireSetProgressProjectTheActiveSession() throws {
+    let now = Date()
+    let prayer = Prayer(name: "Choose when praying", languageCode: "en",
+      rosary: RosaryOptions(mysterySelectionMode: .chooseOnLaunch, specificMysteryCount: 2))
+    let store = PrayerRunProgressStore(defaults: defaults)
+    let engine = PrayerEngine(calendar: MockLiturgicalCalendar())
+    let orders: [Int?] = [nil, 4]
+    for order in orders {
+      store.save(runKey: PrayerRunKey.rosary(prayer), stepIndex: 8, languageCode: "en",
+        configurationSignature: PrayerRunSignature.rosary(prayer.rosary, navigationGroup: "glorious", navigationOrder: order),
+        rosaryNavigationGroup: "glorious", rosaryNavigationOrder: order, today: now)
+      let selected = try XCTUnwrap(prayer.rosary.navigationOptions(group: "glorious", order: order))
+      var session = prayer
+      session.rosary = selected
+      let row = WidgetPrayerProjection.make(prayer, progressStore: store, engine: engine, now: now)
+      XCTAssertEqual(row.stepIndex, 8)
+      XCTAssertEqual(row.stepCount, engine.buildSteps(for: session).count)
+      XCTAssertEqual(store.progress(for: PrayerRunKey.rosary(prayer))?.rosaryNavigationOrder, order)
+    }
+    XCTAssertEqual(prayer.rosary.mysterySelectionMode, .chooseOnLaunch)
+    XCTAssertEqual(prayer.rosary.specificMysteryCount, 2)
+  }
+
   func testJesusPrayerProgressSurvivesMidnightAndRejectsFinishedCounts() {
     let now = Date()
     var prayer = Prayer(name: "Jesus Prayer", kind: .jesusPrayer)

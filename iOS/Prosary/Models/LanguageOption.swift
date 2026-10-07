@@ -68,7 +68,7 @@ enum LanguageCatalog {
     LanguageOption(code: "en", nativeName: "English", isRightToLeft: false),
     LanguageOption(code: "ar", nativeName: "العربية", isRightToLeft: true),
     LanguageOption(code: "he", nativeName: "עברית", isRightToLeft: true),
-    LanguageOption(code: "he-x-gamliel", nativeName: "עברית — נוסח השליחות", isRightToLeft: true),
+    LanguageOption(code: "he-x-gamliel", nativeName: "עברית — נוסח סורי", isRightToLeft: true),
     // Aramaic in Hebrew script — the Aramaic-rite Hebrew Catholic communities' liturgical
     // language (requested by the Mission of St. Gamaliel for v0.7).
     LanguageOption(code: "arc", nativeName: "ܐܪܡܐܝܬ / ארמית", isRightToLeft: true),
@@ -217,9 +217,9 @@ enum LanguageCatalog {
   /// The first entry of each list is the language's own (base) use; the rest overlay it.
   static let rites: [String: [LanguageOption]] = [
     "he": [
-      LanguageOption(code: "he", nativeName: "נוסח הנציגות", isRightToLeft: true),
+      LanguageOption(code: "he", nativeName: "נוסח לטיני", isRightToLeft: true),
       // The Mission of St. Gamaliel's wording, sent by Erez 2026-08-05.
-      LanguageOption(code: "he-x-gamliel", nativeName: "נוסח השליחות", isRightToLeft: true),
+      LanguageOption(code: "he-x-gamliel", nativeName: "נוסח סורי", isRightToLeft: true),
     ],
   ]
 

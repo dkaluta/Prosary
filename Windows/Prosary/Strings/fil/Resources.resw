@@ -25,7 +25,7 @@
   <data name="mode_specific" xml:space="preserve"><value>Laging Isang Tiyak na Pangkat</value></data>
   <data name="mode_fifteen" xml:space="preserve"><value>Ang 15 Misteryo (Tuwa, Hapis, Luwalhati)</value></data>
   <data name="mode_twenty" xml:space="preserve"><value>Ang 20 Misteryo (Lahat ng Apat na Pangkat)</value></data>
-  <data name="mode_single" xml:space="preserve"><value>Isang Misteryo Lamang</value></data>
+  <data name="mode_single" xml:space="preserve"><value>Mga Napiling Misteryo</value></data>
   <data name="summary_always" xml:space="preserve"><value>Laging {0}</value></data>
   <data name="summary_only" xml:space="preserve"><value>{0} lamang</value></data>
   <data name="summary_fifteen" xml:space="preserve"><value>Ang 15 Misteryo</value></data>
@@ -607,4 +607,54 @@
   <data name="settings_today_card_default" xml:space="preserve"><value>Default</value></data>
   <data name="calendar_feasts_solemnities" xml:space="preserve"><value>Mga Kapistahan at Dakilang Kapistahan</value></data>
   <data name="calendar_no_feasts" xml:space="preserve"><value>Walang nailathalang kapistahan o dakilang kapistahan para sa kalendaryong ito.</value></data>
+  <data name="home_widgets_title" xml:space="preserve"><value>Home</value></data>
+  <data name="home_widgets_customize" xml:space="preserve"><value>Ayusin ang Home</value></data>
+  <data name="home_widgets_add" xml:space="preserve"><value>Magdagdag ng widget</value></data>
+  <data name="home_widgets_remove" xml:space="preserve"><value>Alisin ang widget</value></data>
+  <data name="home_widgets_move_up" xml:space="preserve"><value>Ilipat pataas</value></data>
+  <data name="home_widgets_move_down" xml:space="preserve"><value>Ilipat pababa</value></data>
+  <data name="home_widgets_readings" xml:space="preserve"><value>Mga pagbasa ngayon</value></data>
+  <data name="home_widgets_pope_intention" xml:space="preserve"><value>Intensiyon ng Santo Papa</value></data>
+  <data name="home_widgets_calendar" xml:space="preserve"><value>Kalendaryo</value></data>
+  <data name="home_widgets_photo" xml:space="preserve"><value>Larawan</value></data>
+  <data name="home_widgets_reminders" xml:space="preserve"><value>Mga paalala</value></data>
+  <data name="home_widgets_scripture" xml:space="preserve"><value>Banal na Kasulatan</value></data>
+  <data name="home_widgets_reflection" xml:space="preserve"><value>Pagninilay</value></data>
+  <data name="home_widgets_feast" xml:space="preserve"><value>Kapistahan ngayon</value></data>
+  <data name="home_widgets_empty" xml:space="preserve"><value>Magdagdag ng mga widget sa iyong Home.</value></data>
+  <data name="home_widgets_choose_photo" xml:space="preserve"><value>Pumili ng larawan</value></data>
+  <data name="home_widgets_remove_photo" xml:space="preserve"><value>Alisin ang larawan</value></data>
+  <data name="home_widgets_photo_error" xml:space="preserve"><value>Hindi ma-load ang larawan</value></data>
+  <data name="home_widgets_no_reminders" xml:space="preserve"><value>Wala pang mga paalala.</value></data>
+  <data name="home_widgets_manage_reminders" xml:space="preserve"><value>Ayusin ang mga paalala</value></data>
+  <data name="home_widgets_reflection_pending" xml:space="preserve"><value>Walang pagninilay para sa petsang ito sa wikang ito.</value></data>
+  <data name="home_widgets_no_feast" xml:space="preserve"><value>Walang impormasyon tungkol sa kapistahan sa petsang ito.</value></data>
+  <data name="home_widgets_no_readings" xml:space="preserve"><value>Walang mga pagbasa para sa petsang ito.</value></data>
+  <data name="home_widgets_no_intention" xml:space="preserve"><value>Walang intensiyon para sa buwang ito.</value></data>
+  <data name="home_widgets_feast_details" xml:space="preserve"><value>Tungkol sa kapistahan ngayon</value></data>
+  <data name="home_widgets_no_feast_description" xml:space="preserve"><value>Walang paliwanag sa wikang ito.</value></data>
+  <data name="home_widgets_community" xml:space="preserve"><value>Mga panalangin ng komunidad</value></data>
+  <data name="home_widgets_available" xml:space="preserve"><value>Mga available na widget</value></data>
+  <data name="home_widgets_selected" xml:space="preserve"><value>Mga widget mo</value></data>
+  <data name="home_widgets_photo_description" xml:space="preserve"><value>Napili mong larawan</value></data>
+  <data name="AbtMissionPrayerCorrections.Text" xml:space="preserve"><value>Mga pagwawasto ng panalanging Syriac at Ukrainian mula sa isang kontribyutor ng Prosary (Oktubre 2026).</value></data>
+  <data name="EdTraditionalMysteries.Content" xml:space="preserve"><value>Gamitin ang Tradisyonal na 15 Misteryo</value></data>
+  <data name="QuickTraditionalMysteries.Content" xml:space="preserve"><value>Gamitin ang Tradisyonal na 15 Misteryo</value></data>
+  <data name="EdMysteryCount.Header" xml:space="preserve"><value>Bilang ng mga Misteryo</value></data>
+  <data name="QuickMysteryCount.Header" xml:space="preserve"><value>Bilang ng mga Misteryo</value></data>
+  <data name="summary_traditional_today" xml:space="preserve"><value>Mga Misteryo Ngayon (Tradisyonal na 15)</value></data>
+  <data name="flow_choose_prayer" xml:space="preserve"><value>Pumili ng Panalangin</value></data>
+  <data name="flow_mysteries" xml:space="preserve"><value>Mga Misteryo</value></data>
+  <data name="calendar_view" xml:space="preserve"><value>Tanaw ng Kalendaryo</value></data>
+  <data name="calendar_list_view" xml:space="preserve"><value>Listahan</value></data>
+  <data name="calendar_month_view" xml:space="preserve"><value>Buwan</value></data>
+  <data name="SetShowPopeIntentionInPrayers.Header" xml:space="preserve"><value>Ipakita ang intensyon ng buwan sa mga panalangin para sa Santo Papa</value></data>
+  <data name="prayer_pope_intention_source" xml:space="preserve"><value>Pandaigdigang Network ng Panalangin ng Santo Papa</value></data>
+  <data name="reminders_save_without_notifications" xml:space="preserve"><value>I-save nang Walang mga Abiso</value></data>
+  <data name="summary_selected_mysteries" xml:space="preserve"><value>{0} misteryo mula sa {1}</value></data>
+  <data name="flow_show_transliteration" xml:space="preserve"><value>Ipakita ang transliterasyon</value></data>
+  <data name="flow_choose_mystery" xml:space="preserve"><value>Pumili ng Misteryo</value></data>
+  <data name="mode_choose_on_launch" xml:space="preserve"><value>Pumili sa Pagsisimula</value></data>
+  <data name="flow_mystery_set" xml:space="preserve"><value>Hanay ng mga Misteryo</value></data>
+  <data name="flow_entire_set" xml:space="preserve"><value>Buong Hanay</value></data>
 </root>

@@ -1,8 +1,37 @@
 # Prosary on Windows
 
-Windows uses a shared prayer library and separate native prayer windows. The library has
-Library, Today, Gallery, Basic Prayers, Search, and Community destinations, with Settings and About
-in the sidebar footer. Existing saved prayers remain in the same SQLite store.
+Windows uses a shared prayer library and separate native prayer windows. The library window
+starts on Home, with Library, Today, Readings, Gallery, Basic Prayers and Search destinations,
+and Settings and About in the sidebar footer. Search has a visible Community Prayers action
+for discovery and installation. Existing saved prayers remain in the same SQLite store.
+
+## Home
+
+Home is a customizable arrangement of readings, Pope's intention, calendar, photo, reminders,
+Holy Scripture, reflection and feast cards. Customize Home adds and removes cards immediately;
+its native list supports drag reordering and accessible Move Up and Move Down buttons. Card
+order persists in the shared `homeWidgetOrder` newline-separated identifier list. Missing
+storage uses readings, Pope's intention, calendar, reminders, Scripture and feast; an explicitly
+empty list stays empty. Adding a card appends it without restoring removed cards. Unknown and
+duplicate identifiers are discarded.
+
+Readings and Pope's intention use the offline providers for the library window's selected
+date. Calendar opens Feasts and Solemnities; Holy Scripture opens Bible mode. Feast details
+show only sourced explanations in the exact interface language, with credit and source links,
+or an explicit unavailable message. The reflection card stays empty until the mission text
+is supplied. Home card visibility is independent of the existing Today visibility settings.
+
+Reminder rows use enabled saved-prayer and Today reminders. A saved-prayer row opens its exact
+reminder editor; Today reminder rows open Settings. Manage Reminders offers all saved prayers,
+including prayers with no reminder yet, and Settings for Today reminders.
+
+Choose Photo uses a native picture picker and validates a private copy before selecting it
+for Home. The copy stays in the app's `HomePhotos` folder. `homePhotoPath` persists that private
+copy; replacing or removing it, or removing the Photo card, deletes the previous private file.
+Picker cancellation preserves the photo, and
+asynchronous continuations stop if the originating window or page closes. Photos remain on
+the local device. A cleanup failure inside Customize Home appears in that dialog and keeps the
+card selected; other Home errors wait until any active Home dialog closes.
 
 ## Library and gallery
 
@@ -22,8 +51,8 @@ The selected item determines toolbar and context-menu actions. F2 renames; Delet
 the same confirmation as the menu. Search and selection stay local to their library page.
 Failed persistence operations display an error and do not publish a successful library change.
 
-Search is a separate destination for built-in and installed prayers; Community owns discovery
-and installation. Its category picker derives choices from local manifests, with All Categories
+Search is a separate destination for built-in and installed prayers, with Community Prayers
+opening the catalog browser for discovery and installation. Its category picker derives choices from local manifests, with All Categories
 and Other for untagged prayers. Selecting a category and entering text applies both filters;
 leaving the query empty browses that category. Unknown downloaded tags remain discoverable.
 Search works offline without requesting the community catalog. Opening a result uses the normal
@@ -51,7 +80,7 @@ modified and repeated key presses do not advance the prayer.
 | Menu | Commands |
 | --- | --- |
 | File | Import Prayer Packs… (Ctrl+O), Close Window (Ctrl+W) |
-| View | Show Library (Ctrl+L), Today, Gallery, Basic Prayers, Search (Ctrl+F), Community, Full Screen (F11) |
+| View | Home, Show Library (Ctrl+L), Today, Readings, Gallery, Basic Prayers, Search (Ctrl+F), Full Screen (F11) |
 | Prayer | Previous Step (Ctrl+Left), Next Step (Ctrl+Right), Prayer Settings… |
 | Help | Settings, About |
 
@@ -112,8 +141,12 @@ visible when text is unavailable. Arabic and Hebrew text uses RTL and the existi
 fonts; source marks are retained.
 
 The edition picker reads the small `readings-editions.json` metadata file. The verse corpus
-in `readings-texts.json` is loaded only when a passage opens. Lookup uses `daily|` or `torah|`
-plus the original unlocalized `ReadingCitation.Full` and the selected edition ID; native code
+in `readings-texts.json` is loaded only when a passage opens. Existing datasets use `daily|`
+or `torah|` plus the original unlocalized `ReadingCitation.Full` and the selected edition ID.
+New reading datasets use `daily|<dataset ID>|<raw citation>` without falling back to the Roman
+key. Each citation captures the actual reading filename suffix when its table is loaded,
+including LPJ's Roman table and the selected UGCC Pascha table, and retains that identity
+through deferred expansion and alternative-edition selection. Native code
 does not parse references or infer verse-number conversions. `readingsEditionId` is shared
 with the other native clients. Empty follows the interface language when a matching edition
 exists, including Hebrew and Filipino aliases; an explicit choice uses only that ID. Missing
@@ -143,6 +176,9 @@ Before shipping, run the Windows test project and a native Windows build, then e
 - Every menu and keyboard shortcut in its own window, file-picker cancellation, and owner
   closure during an asynchronous operation.
 - Search category/query combinations, offline availability, installed-prayer refresh, and Ctrl+F.
+- Home add/remove/reorder persistence, an intentionally empty Home, every card destination,
+  private-photo cancellation/replacement/removal and owner closure, exact reminder editing,
+  unavailable feast descriptions, and the empty reflection card.
 - Today date/edition/settings changes, lazy passage expansion and unavailable cases,
   Arabic/Hebrew layout, all eight locales, high DPI, resizing,
   keyboard focus, and Narrator.

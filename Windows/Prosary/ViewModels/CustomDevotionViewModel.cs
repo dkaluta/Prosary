@@ -79,6 +79,9 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
     [ObservableProperty]
     private string _body = string.Empty;
 
+    [ObservableProperty]
+    private PopeIntentionPrayerPublication? _publishedPopeIntention;
+
     // The versicle/response prayer shown above a scripture body in the regular typeface.
     [ObservableProperty]
     private string _acclamation = string.Empty;
@@ -207,7 +210,12 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
     private bool _hasTransliteration;
 
     [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(TransliterationActionLabel))]
     private bool _showsTransliteration;
+
+    public string TransliterationActionLabel => ShowsTransliteration
+        ? Loc.Tr("flow_show_original_text", "Show Original Text")
+        : Loc.Tr("flow_show_transliteration", "Show Transliteration");
 
     [RelayCommand]
     private void ToggleTransliteration()
@@ -666,6 +674,7 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
     {
         if (_steps.Count == 0)
         {
+            PublishedPopeIntention = null;
             return;
         }
 
@@ -681,6 +690,9 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
         Body = ShowsTransliteration && step.TransliteratedBody is { } transliterated
             ? transliterated
             : step.Body;
+        PublishedPopeIntention = PopeIntentionPrayerContext.Resolve(step,
+            TodayInfoStore.Intention(DateOnly.FromDateTime(DateTime.Now)), _languageCode ?? string.Empty,
+            AppSettings.ShowPopeIntentionInPrayers);
         var usesSyriacScript = PrayerTypography.ScriptOf(Body) == PrayerTypography.Script.Syriac;
         Subtitle = step.Subtitle is { } subtitle ? PrayerTranslations.FlowTitle(subtitle, _languageCode, usesSyriacScript, _bundleId) : null;
         Header = PrayerTranslations.FlowTitle(step.Title, _languageCode, usesSyriacScript, _bundleId);

@@ -37,6 +37,11 @@ def main():
     content = {p.parent.parent.name: read(p) for p in CONTENT.glob("*/content/uk.json")}
     assert len(content) == 10
     for record in fixture["prayers"]:
+        # Supplied October corrections replace these published recensions. Their exact
+        # wording and contributor attribution are pinned by the separate correction fixture.
+        if record["bundle"] == "rosary" and record["key"] in {"paterNoster", "aveMaria"}:
+            assert content["rosary"]["$previousSources"][record["key"]] == record["source"]
+            continue
         actual = content[record["bundle"]]["prayers"][record["key"]]
         assert words(actual) == words(record["excerpt"]), record["key"]
         assert record["source"].startswith("https://rkc.org.ua/") or (
@@ -116,7 +121,7 @@ def main():
         if missing:
             assert set(content[bundle]["$coverage"]["fallbackPrayerKeys"]) == missing
     assert len(unique_gaps) == 4
-    print("PASS: 19 source excerpts, 12 Bible examples, 63 Scripture passages, all Ukrainian headings, and exactly 4 documented fallback bodies")
+    print("PASS: 17 published source excerpts, two contributor replacements, 12 Bible examples, 63 Scripture passages, all Ukrainian headings, and exactly 4 documented fallback bodies")
 
 
 if __name__ == "__main__":

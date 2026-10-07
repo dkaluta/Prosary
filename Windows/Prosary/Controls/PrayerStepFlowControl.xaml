@@ -60,7 +60,7 @@
                 <Button Content="{x:Bind CentralActionLabel, Mode=OneWay}"
                         Visibility="{x:Bind VisibleWhenSet(CentralActionLabel), Mode=OneWay}"
                         Command="{x:Bind ViewModel.NextCommand, Mode=OneWay}"
-                        Width="104" Height="104" CornerRadius="52" Margin="0,12,0,0"
+                        MinWidth="104" MinHeight="104" Padding="20,12" CornerRadius="52" Margin="0,12,0,0"
                         HorizontalAlignment="Center" FontSize="18" FontWeight="SemiBold"
                         Style="{StaticResource AccentButtonStyle}" />
             </StackPanel>

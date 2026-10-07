@@ -148,6 +148,8 @@
                           AutomationProperties.AutomationId="todayCardColor" />
                 <ToggleSwitch x:Uid="SetShowTodayIntention" Header="Show the Pope's intention"
                               IsOn="{x:Bind ViewModel.ShowTodayIntention, Mode=TwoWay}" />
+                <ToggleSwitch x:Uid="SetShowPopeIntentionInPrayers" Header="Show the monthly intention during prayers for the Pope"
+                              IsOn="{x:Bind ViewModel.ShowPopeIntentionInPrayers, Mode=TwoWay}" />
                 <ToggleSwitch x:Uid="SetShowTodayReadingsDesktop" Header="Show readings"
                               IsOn="{x:Bind ViewModel.ShowTodayReadings, Mode=TwoWay}"
                               AutomationProperties.AutomationId="showTodayReadings" />

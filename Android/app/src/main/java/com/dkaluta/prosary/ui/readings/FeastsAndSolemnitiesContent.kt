@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
@@ -12,6 +13,10 @@ import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.SingleChoiceSegmentedButtonRow
+import androidx.compose.material3.SegmentedButton
+import androidx.compose.material3.SegmentedButtonDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
@@ -29,8 +34,28 @@ import com.dkaluta.prosary.ui.shared.TodayBrowsingDate
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun FeastsAndSolemnitiesContent(browsingDate: TodayBrowsingDate, onSelectDate: () -> Unit) {
+    Column {
+        SingleChoiceSegmentedButtonRow(Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 8.dp).testTag("calendar.viewMode")) {
+            listOf("list" to R.string.calendar_list_view, "month" to R.string.calendar_month_view).forEachIndexed { index, (id, label) ->
+                SegmentedButton(selected = AppSettings.calendarViewMode == id,
+                    onClick = { AppSettings.calendarViewMode = id },
+                    shape = SegmentedButtonDefaults.itemShape(index, 2)) {
+                    Text(stringResource(label))
+                }
+            }
+        }
+        Box(Modifier.weight(1f)) {
+            if (AppSettings.calendarViewMode == "month") LiturgicalCalendarContent(browsingDate, onSelectDate)
+            else FeastList(browsingDate, onSelectDate)
+        }
+    }
+}
+
+@Composable
+private fun FeastList(browsingDate: TodayBrowsingDate, onSelectDate: () -> Unit) {
     val context = LocalContext.current
     val locale = LocalConfiguration.current.locales[0]
     val language = TodayTranslationLanguage.resolve(locale.toLanguageTag())

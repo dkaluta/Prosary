@@ -16,6 +16,7 @@ struct MacPrayerWindowView: View {
   @State private var removalRequest: MacPrayerRemovalRequest?
   @State private var isRemoving = false
   @State private var removedDuringAction = false
+  @State private var removalPendingAfterEditing = false
   @State private var revision = 0
   @State private var legacyPath: [AppRoute] = []
   @State private var hasAttachedSheet = false
@@ -79,7 +80,11 @@ struct MacPrayerWindowView: View {
   }
 
   private var presentedWindow: some View {
-    configuredWindow.sheet(item: $editorPrayer, onDismiss: { Task { await reloadAfterEditing() } }) { prayer in
+    configuredWindow.sheet(item: $editorPrayer, onDismiss: {
+      configurationReloadPending = false
+      if removalPendingAfterEditing { closeRemovedPrayer() }
+      else { Task { await reloadAfterEditing() } }
+    }) { prayer in
       editorContent(for: prayer)
     }
     .alert(String(localized: "macLibrary.failed", defaultValue: "Could Not Complete Action", bundle: UILanguage.bundle, locale: UILanguage.locale), isPresented: .init(
@@ -112,7 +117,7 @@ struct MacPrayerWindowView: View {
     .modifier(MacSceneBridge())
     .onReceive(NotificationCenter.default.publisher(for: .prayerConfigurationDidChange)) { notification in
       guard let id = notification.object as? UUID, id == prayer?.id else { return }
-      if hasAttachedSheet { configurationReloadPending = true }
+      if hasAttachedSheet || editorPrayer != nil { configurationReloadPending = true }
       else { Task { await reloadAfterEditing() } }
     }
     .onReceive(NotificationCenter.default.publisher(for: .prayerConfigurationDidDelete)) { notification in
@@ -124,13 +129,19 @@ struct MacPrayerWindowView: View {
         removedDuringAction = true
         return
       }
+      if hasAttachedSheet || editorPrayer != nil {
+        // The editor may still need to display a failed download-cleanup alert. Closing its
+        // parent here would dismiss that alert before the person could read it.
+        removalPendingAfterEditing = true
+        return
+      }
       closeRemovedPrayer()
     }
     .onReceive(NotificationCenter.default.publisher(for: .prayerLibraryDidChange)) { _ in
       Task { await validateAvailability() }
     }
     .onChange(of: hasAttachedSheet) { _, presented in
-      if !presented, configurationReloadPending {
+      if !presented, editorPrayer == nil, configurationReloadPending {
         configurationReloadPending = false
         Task { await reloadAfterEditing() }
       }
@@ -327,6 +338,10 @@ struct MacPrayerWindowView: View {
 
   private func validateAvailability() async {
     guard !loading, !isRemoving, error == nil else { return }
+    guard !hasAttachedSheet, editorPrayer == nil else {
+      configurationReloadPending = true
+      return
+    }
     if prayer != nil { await reloadAfterEditing() }
     if case .custom(let id, _, _) = request.route, PrayerPackStore.info(for: id) == nil {
       closeRemovedPrayer()

@@ -165,7 +165,7 @@ final class RosaryEngineTests: XCTestCase {
     let hebrew = makeEngine().buildSteps(for: prayer(language: "he"))
       .filter { $0.imageOverrideKey?.hasPrefix("virtue_") == true }
     XCTAssertEqual(hebrew.map(\.title), [
-      "שמחי מרים (1 מתוך 3)", "שמחי מרים (2 מתוך 3)", "שמחי מרים (3 מתוך 3)",
+      "שלום לך (1 מתוך 3)", "שלום לך (2 מתוך 3)", "שלום לך (3 מתוך 3)",
     ])
     XCTAssertTrue(hebrew.allSatisfy { $0.subtitle == $0.subtitle.map(HebrewDisplayText.unpointed) })
     XCTAssertTrue(hebrew.first?.body.contains("שִׂמְחִי מִרְיָם") == true,

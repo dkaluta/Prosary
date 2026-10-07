@@ -15,25 +15,83 @@ public class RosaryEngineTests : IClassFixture<PrayerPackLoaderFixture>
     public RosaryEngineTests(PrayerPackLoaderFixture _)
     {
     }
+    [Fact]
+    public void PopePrayerIdentityComesFromTheBundleAndLeavesSourcedBodyIntact()
+    {
+        var options = new RosaryOptions { IncludeClosingIntentions = true };
+        var steps = _engine.BuildSteps(SpecificRosary(options, languageCode: "en"));
+        var pope = Assert.Single(steps.Where(step => step.PrayerKey == "intentioPontificis"));
+        Assert.Equal(PrayerPackStore.ResolveBodyText("rosary", "en", "intentioPontificis"), pope.Body);
+        var bishop = Assert.Single(steps.Where(step => step.PrayerKey == "intentioOrdinarii"));
+        var intention = new PopeIntention("Title", "Published body", null, null);
+        Assert.Null(PopeIntentionPrayerContext.Resolve(bishop, intention, "en", true));
+        var signature = Prosary.Persistence.PrayerRunSignatures.Rosary(options);
+        Assert.Equal("Published body", PopeIntentionPrayerContext.Resolve(pope, intention, "en", true)?.Text);
+        Assert.Equal(signature, Prosary.Persistence.PrayerRunSignatures.Rosary(options));
+    }
+    [Fact]
+    public void SelectedMysteriesStaySequentialAndNeverWrap()
+    {
+        for (var start = 1; start <= 5; start++)
+        for (var count = 1; count <= 5; count++)
+        foreach (var presenter in new[] { false, true })
+        {
+            var options = new RosaryOptions { MysterySelectionMode = MysterySelectionMode.SingleMystery,
+                SpecificMysteryGroup = MysteryGroup.Sorrowful, SpecificMysteryOrder = start,
+                SpecificMysteryCount = count, PresenterMode = presenter };
+            var steps = _engine.BuildSteps(SpecificRosary(options));
+            var announcements = steps.Where(step => step.Mystery is not null).Select(step => step.Mystery!).Distinct().ToList();
+            Assert.Equal(Enumerable.Range(start, Math.Min(count, 6 - start)), announcements.Select(m => m.Order));
+            Assert.All(announcements, mystery => Assert.Equal(MysteryGroup.Sorrowful, mystery.Group));
+            Assert.Equal(Enumerable.Range(0, announcements.Count), steps.Where(step => step.DecadeIndex is not null)
+                .Select(step => step.DecadeIndex!.Value).Distinct());
+        }
+        var malformed = new RosaryOptions { MysterySelectionMode = MysterySelectionMode.SingleMystery,
+            SpecificMysteryOrder = 999, SpecificMysteryCount = -2 };
+        Assert.Equal(new[] { 4 }, malformed.SelectedMysteryIndices);
+        Assert.NotEmpty(_engine.BuildSteps(SpecificRosary(malformed)));
+    }
 
     [Theory]
-    [InlineData(MysterySelectionMode.Specific, 4)]
-    [InlineData(MysterySelectionMode.FifteenMystery, 12)]
-    [InlineData(MysterySelectionMode.TwentyMystery, 16)]
-    public void SkippingTheFifthDecadeKeepsClosingPrayersAndDenseProgress(MysterySelectionMode mode, int count)
+    [InlineData(MysterySelectionMode.FifteenMystery, 3)]
+    [InlineData(MysterySelectionMode.TwentyMystery, 4)]
+    public void PrayerPickerIncludesFiveAnnouncementsPerConfiguredGroup(MysterySelectionMode mode, int count)
+    {
+        var steps = _engine.BuildSteps(SpecificRosary(new RosaryOptions { MysterySelectionMode = mode }));
+        var groups = steps.Where(step => step.Mystery is not null).Select(step => step.Mystery!).Distinct()
+            .GroupBy(mystery => mystery.Group).ToList();
+        Assert.Equal(count, groups.Count);
+        Assert.All(groups, group => Assert.Equal(5, group.Count()));
+        Assert.Equal(mode == MysterySelectionMode.TwentyMystery, groups.Any(group => group.Key == MysteryGroup.Luminous));
+    }
+
+    [Theory]
+    [InlineData(MysterySelectionMode.Specific, 5, false)]
+    [InlineData(MysterySelectionMode.Specific, 5, true)]
+    [InlineData(MysterySelectionMode.FifteenMystery, 15, false)]
+    [InlineData(MysterySelectionMode.FifteenMystery, 15, true)]
+    [InlineData(MysterySelectionMode.TwentyMystery, 20, false)]
+    [InlineData(MysterySelectionMode.TwentyMystery, 20, true)]
+    [InlineData(MysterySelectionMode.SingleMystery, 1, false)]
+    [InlineData(MysterySelectionMode.SingleMystery, 1, true)]
+    public void RetiredSkipPreferenceKeepsEveryDecadeAndCanJumpToClosing(MysterySelectionMode mode, int count, bool presenter)
     {
         var options = new RosaryOptions { MysterySelectionMode = mode, SkipFifthDecade = true,
+            PresenterMode = presenter, SpecificMysteryOrder = 5,
             IncludeStMichaelPrayer = true, IncludeClosingIntentions = true, IncludeFinalSignOfCross = true };
         var full = _engine.BuildSteps(SpecificRosary(options with { SkipFifthDecade = false }));
-        var shortened = _engine.BuildSteps(SpecificRosary(options));
-        Assert.Equal(Enumerable.Range(0, count), shortened.Where(step => step.DecadeIndex is not null)
+        var steps = _engine.BuildSteps(SpecificRosary(options));
+        Assert.Equal(Enumerable.Range(0, count), steps.Where(step => step.DecadeIndex is not null)
             .Select(step => step.DecadeIndex!.Value).Distinct());
-        Assert.DoesNotContain(shortened, step => step.Mystery?.Order == 5);
-        Assert.Equal(full.Where(step => step.DecadeIndex is null).Select(step => step.Body),
-            shortened.Where(step => step.DecadeIndex is null).Select(step => step.Body));
-        Assert.NotEqual(Prosary.Persistence.PrayerRunSignatures.Rosary(options with { SkipFifthDecade = false }),
+        Assert.Contains(steps, step => step.Mystery?.Order == 5);
+        Assert.Equal(full.Select(step => step.Body), steps.Select(step => step.Body));
+        Assert.Equal(Prosary.Persistence.PrayerRunSignatures.Rosary(options with { SkipFifthDecade = false }),
             Prosary.Persistence.PrayerRunSignatures.Rosary(options));
-        Assert.Equal("true", PrayerEngine.RosaryOptionValues(options)["skipFifthDecade"]);
+        Assert.DoesNotContain("skipFifthDecade", PrayerEngine.RosaryOptionValues(options).Keys);
+        var closing = steps.ToList().FindLastIndex(step => step.DecadeIndex is not null) + 1;
+        foreach (var index in Enumerable.Range(0, steps.Count).Where(index => steps[index].DecadeIndex == count - 1))
+            Assert.Equal(closing, MysteryStepNavigation.Next(steps, index));
+        Assert.Null(MysteryStepNavigation.Next(steps, closing));
     }
 
     [Fact]
@@ -679,7 +737,7 @@ public class RosaryEngineTests : IClassFixture<PrayerPackLoaderFixture>
         var opening = hebrew.Where(step => step.ImageOverrideKey?.StartsWith("virtue_") == true)
             .ToList();
         Assert.Equal(
-            ["שמחי מרים (1 מתוך 3)", "שמחי מרים (2 מתוך 3)", "שמחי מרים (3 מתוך 3)"],
+            ["שלום לך (1 מתוך 3)", "שלום לך (2 מתוך 3)", "שלום לך (3 מתוך 3)"],
             opening.Select(step => step.Title));
         Assert.All(opening, step => Assert.Contains('\u05B0', step.Body));
         var aramaic = _engine.BuildSteps(SpecificRosary(languageCode: "arc"))

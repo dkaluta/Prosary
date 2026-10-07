@@ -30,6 +30,8 @@ from reading_source_numbering_reviews import (
 from reading_step_mapping import Unavailable
 from peshitta_supplied_ot import BOOKS as PESHITTA_OT_BOOKS
 from reading_versification import chapter_verse_count
+from reading_appointment_keys import split_passage_key
+from reading_calendar_numbering import profile_for, chapter_system, standard_units
 from hebrew_daily_readings import default_resolver, Unavailable as HebrewUnavailable
 
 TOOLS = Path(__file__).resolve().parent
@@ -71,7 +73,7 @@ def audit_hebrew_supplements(artifact: dict, contexts: dict) -> Counter:
     descriptors = {}
     counts = Counter()
     for key, calendars in contexts.items():
-        scope, citation = key.split("|", 1)
+        scope, citation, dataset = split_passage_key(key)
         if scope != "daily":
             continue
         try:
@@ -92,7 +94,10 @@ def audit_hebrew_supplements(artifact: dict, contexts: dict) -> Counter:
                 f"Hebrew source envelope lacks a notice: {key}")
         descriptors[key] = {"masoretic-delitzsch": expected.source}
         counts["reviewedHebrewAppointments"] += 1
-    require(same_json(artifact.get("passageSources", {}), descriptors),
+    actual = {key: {"masoretic-delitzsch": sources["masoretic-delitzsch"]}
+              for key, sources in artifact.get("passageSources", {}).items()
+              if "masoretic-delitzsch" in sources}
+    require(same_json(actual, descriptors),
             "Hebrew source credits or presentation changed, disappeared or became orphaned")
     return counts
 
@@ -104,6 +109,8 @@ def audit(texts: Path) -> dict:
     contexts = builder.appointments()
     notices = set(artifact["wholeVersePassages"])
     counts = audit_hebrew_supplements(artifact, contexts)
+    from reading_supplement_audit import audit_psalm_supplements
+    counts.update(audit_psalm_supplements(artifact, contexts, builder))
     per_edition = {}
 
     # The sparse Arabic corpus is composed of indivisible reviewed units; its
@@ -145,20 +152,36 @@ def audit(texts: Path) -> dict:
 
     for key, by_edition in artifact["passages"].items():
         require(key in contexts, f"Reading has no current appointment: {key}")
-        citation = key.split("|", 1)[1]
-        book, spans = builder.parse_citation(citation, expand_subverses=True)
+        scope, citation, dataset = split_passage_key(key)
+        calendar_profile = profile_for(dataset, contexts[key])
+        book, spans = builder.parse_citation(citation, expand_subverses=True,
+                                             psalm_chapter_system=chapter_system(calendar_profile))
         require(not builder.includes_whole_verses(citation) or key in notices,
                 f"Partial-verse appointment lacks a notice: {key}")
         exact = reviewed_appointment(key, contexts[key])
         source = reviewed_numbering(key, contexts[key]) if exact is None else None
         required, source_whole = (reviewed_standard_units(book, spans, source["sourceSystem"])
                                   if source else (None, False))
+        if dataset is not None and book == "PSA":
+            units, source_whole = standard_units(citation, spans, calendar_profile)
+            required = set(units)
+            counts["registeredCalendarPsalmKeys"] += 1
         require(not source_whole or key in notices, f"Source envelope lacks a notice: {key}")
         projections = {}
         for edition_id, rows in by_edition.items():
             require(edition_id in converters, f"Unknown emitted edition: {edition_id}")
             refs = [(book, row["chapter"], row["verse"]) for row in rows]
             require(refs and len(refs) == len(set(refs)), f"Empty or duplicate passage: {key} {edition_id}")
+            if edition_id == "peshitta-1905":
+                from peshitta_daily_psalms import default_resolver as bounded_peshitta
+                bounded = bounded_peshitta()
+                if bounded.handles(key):
+                    expected = bounded.resolve(key, contexts[key])
+                    require(same_json(rows, expected.verses), f"Peshitta bounded source rows changed: {key}")
+                    require(not expected.includes_whole_verses or key in notices,
+                            f"Peshitta bounded envelope lacks a notice: {key}")
+                    counts["boundedPeshittaPsalmKeys"] += 1
+                    continue
             if edition_id in artifact.get("passageSources", {}).get(key, {}):
                 # Exact source text/metadata and scoped whole-unit evidence were checked above.
                 # The base Tanakh/Delitzsch graph cannot relabel a separately sourced addition.
@@ -171,8 +194,18 @@ def audit(texts: Path) -> dict:
             projections[edition_id] = set(standard)
             counts["emittedPassageProjections"] += 1
             if exact is not None:
-                require(refs == reviewed_references(exact, edition_id),
-                        f"Exact appointment review was bypassed: {key} {edition_id}")
+                expected_exact = reviewed_references(exact, edition_id)
+                if edition_id == "peshitta-1905" and not expected_exact:
+                    numbering = reviewed_numbering(key, contexts[key])
+                    require(numbering is not None and numbering["sourceSystem"] == "hebrew-psalms",
+                            f"Peshitta exact boundary lacks an independent source review: {key}")
+                    wanted, source_wider = reviewed_standard_units(book, spans, numbering["sourceSystem"])
+                    require(wanted <= set(standard), f"Peshitta reviewed Psalm clauses missing: {key}")
+                    require(not source_wider and not set(standard) - wanted or key in notices,
+                            f"Peshitta independent wider Psalm envelope lacks a notice: {key}")
+                else:
+                    require(refs == expected_exact,
+                            f"Exact appointment review was bypassed: {key} {edition_id}")
                 require(not exact["includesWholeVerses"] or key in notices,
                         f"Exact appointment lost its whole-verse notice: {key}")
                 counts["exactReviewPassages"] += 1
@@ -184,7 +217,7 @@ def audit(texts: Path) -> dict:
                 counts["reviewedSourceCoverageChecks"] += 1
         if len(projections) > 1:
             counts["multiEditionKeys"] += 1
-            if exact is None and source is None:
+            if exact is None and source is None and required is None:
                 # Generic SIL agreement must not hide differing complete units
                 # in actual editions, as it once did at 2 Corinthians 13:13.
                 # The source-pinned Peshitta OT review can require a wider

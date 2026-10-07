@@ -139,9 +139,8 @@ int main(int argc, char **argv) {
         s = build(e, "rosary", &selection); beads = 0;
         for (j = 0; j < s->count; ++j) {
             if (s->steps[j].bead_index) ++beads;
-            assert(s->steps[j].decade_index != 4);
         }
-        assert(beads == 40);
+        assert(beads == 50); /* Retired saved flags cannot remove the fifth decade. */
         assert(s->steps[s->count - 1].decade_index == -1);
         assert(strstr(s->steps[s->count - 1].body, "Father"));
         engine_session_free(s);

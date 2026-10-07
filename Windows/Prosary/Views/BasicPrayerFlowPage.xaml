@@ -30,7 +30,8 @@
             <Button Grid.Column="2" Background="Transparent" Padding="8"
                     Visibility="{x:Bind ViewModel.HasTransliteration, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
                     Command="{x:Bind ViewModel.ToggleTransliterationCommand}"
-                    x:Uid="FlowTransliterationButton" ToolTipService.ToolTip="Show transliteration">
+                    AutomationProperties.Name="{x:Bind ViewModel.TransliterationActionLabel, Mode=OneWay}"
+                                ToolTipService.ToolTip="{x:Bind ViewModel.TransliterationActionLabel, Mode=OneWay}">
                 <FontIcon Glyph="&#xE8C1;" FontSize="14" />
             </Button>
             <Button x:Name="LanguageMenuButton" Grid.Column="3" Background="Transparent" Padding="8">

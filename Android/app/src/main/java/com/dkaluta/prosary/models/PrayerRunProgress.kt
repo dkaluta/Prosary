@@ -20,6 +20,8 @@ data class PrayerRunProgress(
      * old serialized checkpoints decodable, but they are rejected whenever a current signature
      * is supplied rather than risking a resume into a differently configured prayer. */
     val configurationSignature: String? = null,
+    val rosaryNavigationGroup: String? = null,
+    val rosaryNavigationOrder: Int? = null,
 ) {
     fun canResume(
         stepCount: Int,
@@ -36,7 +38,7 @@ data class PrayerRunProgress(
  * resolved form is included because some languages own a structurally different default form;
  * these values describe configuration that can change the generated sequence or visual identity. */
 object PrayerRunSignatures {
-    fun rosary(options: RosaryOptions): String = listOf(
+    fun rosary(options: RosaryOptions, navigationGroup: String? = null, navigationOrder: Int? = null): String = listOf(
         "rosary-closing-v3",
         options.includeLitanyOfLoreto.flag,
         options.effectiveRosaryCollect.flag,
@@ -55,8 +57,16 @@ object PrayerRunSignatures {
         options.aramaicSignOfCrossForm,
         options.presenterMode.flag,
         options.mysteryImageStyle.stableValue,
-    ).joinToString("|") + closingIntentionsSuffix(options) + openingFatimaSuffix(options) +
-        if (options.skipFifthDecade && options.mysterySelectionMode != MysterySelectionMode.SingleMystery) "|skip-fifth" else ""
+    ).joinToString("|") + closingIntentionsSuffix(options) + openingFatimaSuffix(options) + mysterySelectionSuffix(options) +
+        (if (options.mysterySelectionMode == MysterySelectionMode.ChooseOnLaunch) "|launch-count:${options.specificMysteryCount.coerceIn(1, 5)}" else "") +
+        (navigationGroup?.let { "|navigation-group:$it" } ?: "") + (navigationOrder?.let { "|navigation-order:$it" } ?: "")
+
+    private fun mysterySelectionSuffix(options: RosaryOptions): String =
+        if (options.mysterySelectionMode == MysterySelectionMode.SingleMystery && options.selectedMysteryCount > 1) {
+            "|mystery-count:${options.selectedMysteryCount}"
+        } else if (options.mysterySelectionMode == MysterySelectionMode.TodaysMysteries && options.useTraditionalMysteries) {
+            "|traditional-mysteries"
+        } else ""
 
     private fun closingIntentionsSuffix(options: RosaryOptions): String {
         // New intention introductions shift existing closing sequences. No-closing runs keep
@@ -156,6 +166,8 @@ object PrayerRunProgressStore {
         languageCode: String,
         configurationSignature: String? = null,
         today: LocalDate = LocalDate.now(),
+        rosaryNavigationGroup: String? = null,
+        rosaryNavigationOrder: Int? = null,
     ) {
         if (stepIndex <= 0) {
             clear(context, runKey)
@@ -168,6 +180,8 @@ object PrayerRunProgressStore {
                 languageCode = languageCode,
                 savedLocalDate = today.toString(),
                 configurationSignature = configurationSignature,
+                rosaryNavigationGroup = rosaryNavigationGroup,
+                rosaryNavigationOrder = rosaryNavigationOrder,
             )),
         )
     }

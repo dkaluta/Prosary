@@ -102,6 +102,12 @@ presence on a phone is not, by itself, a reason to include it on Mac.
   display mode. Reopening or redrawing a window must
   preserve those choices. Keep menu and keyboard routes available when a toolbar item is hidden,
   and do not replace SwiftUI's toolbar delegate or draw a separate imitation toolbar.
+  Configure customization and persistence only for those two explicit toolbar identities.
+  NavigationStack can replace the window toolbar when opening Bible or other destinations;
+  the inherited Library reader must leave the replacement's SwiftUI customization policy alone.
+  Bible chapter navigation uses individually identified toolbar items. Keep Go to Verse
+  present and disabled while loading so an asynchronous chapter change does not rebuild a
+  native group with a different number of controls.
   Show prayer-library commands only in All Prayers and tag views. Today/Readings, Gallery,
   Basic Prayers and Community Devotions keep their own controls instead of displaying disabled
   library actions. Hide entire toolbar items so they leave no empty glass groups; returning
@@ -157,6 +163,11 @@ presence on a phone is not, by itself, a reason to include it on Mac.
   circular toolbar icon buttons with accessible labels and tooltips; the selected date uses a
   compact capsule. The system supplies toolbar materials and scroll-edge treatment. The selected
   calendar is plain metadata in the reading content, and readings use an opaque text background.
+  Today uses one centered, readable column with a compact calendar/day/feast summary and
+  simple section dividers. Put the edition menu beside the readings heading when it fits,
+  and stack it underneath in narrower windows. Show the resolved edition caption only for
+  Follow Interface Language in this compact control. Readings precede the quieter monthly
+  intention; source descriptions retain their credits and omit a duplicate single-saint title.
   The Today options popover owns its calendar, Byzantine Pascha choice and row toggles;
   Julian/Gregorian Pascha switches both Byzantine datasets. Missing data hides only that row.
   Interface language controls the complete view, including Hebrew/Arabic RTL; prayer-language

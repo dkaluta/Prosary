@@ -22,6 +22,7 @@ import re
 import shutil
 import urllib.request
 import zipfile
+from reading_appointment_keys import split_passage_key
 
 ROOT = Path(__file__).resolve().parents[2]
 TOOLS = ROOT / "Shared/tools"
@@ -152,12 +153,25 @@ def preserve_divine_name_accents(text: str) -> str:
     return re.sub(pattern, lambda match: re.sub(r"[\u05b0-\u05bc\u05c7]", "", match.group()), text)
 
 
-def parse_citation(citation: str, *, expand_subverses: bool = False) -> tuple[str, list[tuple[int, int, int, int]]]:
+def parse_citation(citation: str, *, expand_subverses: bool = False,
+                   psalm_chapter_system: str | None = None) -> tuple[str, list[tuple[int, int, int, int]]]:
     """Keep ordered omissions; optionally include the whole verses around a/b cuts.
 
     This never guesses the words belonging to a subverse. Reviewed source units
     remain strict. Only the passage builder opts in and records the expansion.
     """
+    from reading_calendar_numbering import WHOLE_PSALM
+    if whole := WHOLE_PSALM.fullmatch(citation):
+        from reading_versification import chapter_verse_count
+        if psalm_chapter_system is None:
+            raise Unavailable("whole-Psalm chapter numbering has not been reviewed for this calendar")
+        first, last = int(whole[1]), int(whole[2] or whole[1])
+        if not 1 <= first <= last <= 150:
+            raise Unavailable("invalid whole-Psalm chapter range")
+        maximum = chapter_verse_count("PSA", last, psalm_chapter_system)
+        if maximum is None:
+            raise Unavailable("whole-Psalm source chapter is unavailable")
+        return "PSA", [(first, 1, last, maximum)]
     match = re.fullmatch(r"(.+?)\s+(\d+:.*)", citation)
     if not match or match[1] not in BOOKS:
         raise Unavailable("unsupported citation or book")
@@ -329,19 +343,13 @@ def load_source(source: dict) -> dict[tuple[str, int], dict[int, str]]:
         return ReviewedCorpus(dict(chapters), source["editionId"], units)
     else:
         raise ValueError("Unknown source format")
-    return dict(chapters)
+    from douay_rheims_source_corrections import apply_source_corrections
+    return apply_source_corrections(source, dict(chapters))
 
 
 def appointments() -> dict[str, set[str]]:
-    result = defaultdict(set)
-    for name in ("roman", "roman1962", "ugcc", "ugcc-gregorian", "syriac", "maronite"):
-        for day in json.loads((DATA / f"readings-{name}.json").read_text())["days"].values():
-            for reading in day.get("readings", []):
-                result["daily|" + reading["full"]].add(name)
-    for day in json.loads((DATA / "torah-portions.json").read_text())["days"].values():
-        for reading in day.get("readings", []):
-            result["torah|" + reading["full"]].add("torah")
-    return result
+    from reading_appointment_keys import appointments as registry_appointments
+    return registry_appointments(DATA)
 
 
 def resolve_nabre_references(book: str, spans: list[tuple], edition: dict,
@@ -404,8 +412,89 @@ def resolve(key: str, contexts: set[str], edition: dict, corpus: dict) -> Resolv
     from reading_versification import map_reference, chapter_verse_count, chapter_matches
     from reading_appointment_reviews import has_appointment_review, reviewed_appointment, reviewed_references
     from reading_source_numbering_reviews import has_numbering_review, reviewed_numbering
-    scope, citation = key.split("|", 1)
-    book, spans = parse_citation(citation, expand_subverses=True)
+    from reading_appointment_keys import split_passage_key
+    scope, citation, dataset = split_passage_key(key)
+    if scope == "daily" and dataset is None:
+        from reading_appointment_keys import LEGACY_DATASETS
+        if not contexts <= LEGACY_DATASETS:
+            raise Unavailable("additional registered reading table requires its own passage namespace")
+    from reading_calendar_numbering import profile_for, chapter_system, standard_units, Unavailable as CalendarUnavailable
+    try:
+        calendar_profile = profile_for(dataset, contexts)
+    except CalendarUnavailable as error:
+        raise Unavailable(str(error)) from error
+    if calendar_profile is not None and citation in calendar_profile.get("unavailableAppointments", {}):
+        raise Unavailable("printed Psalm span conflicts with the paired Hebrew chapter; source correction remains unresolved")
+    book, spans = parse_citation(citation, expand_subverses=True,
+                                 psalm_chapter_system=chapter_system(calendar_profile))
+    if dataset is not None and book == "PSA" and edition["id"] == "brenton-lxx":
+        from greek_daily_psalms import default_resolver, Unavailable as GreekUnavailable
+        try:
+            standard, source_whole = standard_units(citation, spans, calendar_profile)
+            passage = default_resolver().resolve_standard(standard,
+                includes_whole_verses=source_whole or includes_whole_verses(citation))
+        except CalendarUnavailable as error:
+            raise Unavailable(str(error)) from error
+        except GreekUnavailable:
+            pass  # Other reviewed source chapters keep the existing numeric route.
+        else:
+            return ResolvedPassage(passage.verses, includes_whole_verses=passage.includes_whole_verses,
+                                   source=passage.source)
+    if scope == "daily" and edition["id"] == "jesuit-arabic-1897" and book == "PSA":
+        from arabic_daily_psalms import default_resolver, Unavailable as ArabicUnavailable
+        supplement = default_resolver()
+        try:
+            if dataset is not None:
+                standard, source_whole = standard_units(citation, spans, calendar_profile)
+                passage = supplement.resolve_standard(standard,
+                    includes_whole_verses=source_whole or includes_whole_verses(citation))
+            elif supplement.handles(key):
+                passage = supplement.resolve(key, contexts)
+            else:
+                raise ArabicUnavailable("Arabic Psalm outside its inspected source-unit review")
+        except (CalendarUnavailable, ArabicUnavailable) as error:
+            raise Unavailable(str(error)) from error
+        return ResolvedPassage(passage.verses, includes_whole_verses=passage.includes_whole_verses,
+                               source=passage.source)
+    if dataset is not None and book == "PSA" and edition["id"] == "martini":
+        from martini_daily_psalms import default_resolver, Unavailable as MartiniUnavailable
+        try:
+            standard, source_whole = standard_units(citation, spans, calendar_profile)
+            passage = default_resolver().resolve_standard(standard,
+                includes_whole_verses=source_whole or includes_whole_verses(citation))
+        except (CalendarUnavailable, MartiniUnavailable) as error:
+            raise Unavailable(str(error)) from error
+        return ResolvedPassage(passage.verses, includes_whole_verses=passage.includes_whole_verses,
+                               source=passage.source)
+    if scope == "daily" and edition["id"] == "martini":
+        from martini_daily_psalms import default_resolver, Unavailable as MartiniUnavailable
+        supplement = default_resolver()
+        if supplement.handles(key):
+            try:
+                passage = supplement.resolve(key, contexts)
+            except MartiniUnavailable as error:
+                raise Unavailable(str(error)) from error
+            return ResolvedPassage(passage.verses, includes_whole_verses=passage.includes_whole_verses,
+                                   source=passage.source)
+    if scope == "daily" and edition["id"] == "peshitta-1905":
+        from peshitta_daily_psalms import default_resolver, Unavailable as PeshittaUnavailable
+        supplement = default_resolver()
+        if supplement.handles(key):
+            try:
+                passage = supplement.resolve(key, contexts)
+            except PeshittaUnavailable as error:
+                raise Unavailable(str(error)) from error
+            return ResolvedPassage(passage.verses, includes_whole_verses=passage.includes_whole_verses)
+    if scope == "daily" and edition["id"] == "brenton-lxx":
+        from greek_daily_psalms import default_resolver, Unavailable as GreekUnavailable
+        supplement = default_resolver()
+        if supplement.handles(key):
+            try:
+                passage = supplement.resolve(key, contexts)
+            except GreekUnavailable as error:
+                raise Unavailable(str(error)) from error
+            return ResolvedPassage(passage.verses, includes_whole_verses=passage.includes_whole_verses,
+                                   source=passage.source)
     if scope == "daily" and edition["id"] == "masoretic-delitzsch":
         from hebrew_daily_readings import default_resolver, Unavailable as HebrewUnavailable
         supplement = default_resolver()
@@ -439,7 +528,15 @@ def resolve(key: str, contexts: set[str], edition: dict, corpus: dict) -> Resolv
     if review is not None:
         references = reviewed_references(review, edition["id"])
         if not references:
-            raise Unavailable("edition outside reviewed appointment boundaries")
+            # An older exact review covers only its six original editions.
+            # Peshitta now has its own pinned unit facts; use the separately
+            # reviewed Roman numbering, never another edition's boundary rows.
+            if (edition["id"] == "peshitta-1905" and book == "PSA" and numbering_review is not None
+                    and numbering_review["sourceSystem"] == "hebrew-psalms"):
+                references, mapped_whole = resolve_hebrew_psalm_references(book, spans, edition, corpus)
+                whole |= mapped_whole
+            else:
+                raise Unavailable("edition outside reviewed appointment boundaries")
         if any(reference[0] != book for reference in references):
             raise ValueError("Reviewed appointment changes its Bible book")
         candidates.append(references)
@@ -447,6 +544,17 @@ def resolve(key: str, contexts: set[str], edition: dict, corpus: dict) -> Resolv
         whole |= review["includesWholeVerses"]
         # These are already the pinned edition's labels, including its reviewed
         # chapter inventory. Do not convert Delitzsch labels a second time.
+        uses_step_inventory = True
+    elif dataset is not None and book == "PSA":
+        from reading_step_mapping import Unavailable as MappingUnavailable
+        try:
+            standard, source_whole = standard_units(citation, spans, calendar_profile)
+            references, mapped_whole = edition_mapper(edition["id"], corpus).from_standard(standard)
+        except (CalendarUnavailable, MappingUnavailable) as error:
+            raise Unavailable(str(error)) from error
+        candidates.append(references)
+        source_systems = []
+        whole |= source_whole or mapped_whole
         uses_step_inventory = True
     elif numbering_review is not None:
         resolver = (resolve_hebrew_psalm_references if numbering_review["sourceSystem"] == "hebrew-psalms"
@@ -635,6 +743,44 @@ def build(fetch: bool = False) -> dict[str, bytes]:
             except Unavailable as error:
                 failures[edition["id"]][str(error)] += 1
                 missing[key][edition["id"]] = str(error)
+        # Newly registered calendars must also agree after the actual edition
+        # graphs are applied. A shared generic tradition number is insufficient
+        # when source editions split the closing clauses differently.
+        _, citation, dataset = split_passage_key(key)
+        book = BOOKS.get(citation.split(":", 1)[0].rsplit(" ", 1)[0])
+        if dataset is not None and book != "PSA":
+            from reading_step_mapping import Unavailable as MappingUnavailable
+            projections = {}
+            for identifier, passage in list(by_edition.items()):
+                try:
+                    refs = [(book, row["chapter"], row["verse"]) for row in passage]
+                    units, _ = edition_mapper(identifier, corpora[identifier]).to_standard(refs)
+                    projections[identifier] = set(units)
+                except MappingUnavailable:
+                    reason = "registered calendar source units exceed the edition's reviewed boundaries"
+                    del by_edition[identifier]
+                    failures[identifier][reason] += 1
+                    missing[key][identifier] = reason
+            # Peshitta may retain an explicitly reviewed indivisible wider OT
+            # unit. Other editions first establish the common requested body.
+            from peshitta_supplied_ot import BOOKS as PeshittaBooks
+            ordinary = [units for identifier, units in projections.items()
+                        if identifier != "peshitta-1905" or book not in PeshittaBooks]
+            agree = all(units == ordinary[0] for units in ordinary[1:])
+            if agree and ordinary and book in PeshittaBooks and "peshitta-1905" in projections:
+                converter = edition_mapper("peshitta-1905", corpora["peshitta-1905"])
+                try:
+                    closed, _ = converter.from_standard(sorted(ordinary[0]))
+                    expected, _ = converter.to_standard(closed)
+                    agree = projections["peshitta-1905"] == set(expected)
+                except MappingUnavailable:
+                    agree = False
+            if not agree:
+                reason = "registered calendar verse boundaries remain unreviewed across editions"
+                for identifier in list(by_edition):
+                    failures[identifier][reason] += 1
+                    missing[key][identifier] = reason
+                by_edition.clear()
         if by_edition:
             passages[key] = by_edition
     # The schema's key-level notice is deliberately conservative: if any selected
@@ -648,7 +794,8 @@ def build(fetch: bool = False) -> dict[str, bytes]:
     # verse units to read an installed Bible. They never parse a citation at runtime.
     payload["passageBooks"] = {
         key: {edition: value.source["book"] if value.source is not None
-              else parse_citation(key.split("|", 1)[1], expand_subverses=True)[0]
+              else ("PSA" if split_passage_key(key)[1].startswith("Psalm ")
+                    else parse_citation(split_passage_key(key)[1], expand_subverses=True)[0])
               for edition, value in versions.items()}
         for key, versions in passages.items()
     }
@@ -660,6 +807,27 @@ def build(fetch: bool = False) -> dict[str, bytes]:
               "coverage": {edition["id"]: {"daily": sum(key.startswith("daily|") and edition["id"] in value for key, value in passages.items()),
                   "torah": sum(key.startswith("torah|") and edition["id"] in value for key, value in passages.items()),
                   "unavailableReasons": dict(failures[edition["id"]])} for edition in editions}, "unavailable": dict(missing)}
+    # Every registered table, including an intentionally empty old-style table,
+    # appears in authoring coverage. New calendars cannot vanish from the audit.
+    from reading_appointment_keys import registry_datasets, passage_key
+    report["readingDatasets"] = {}
+    for identifier, registered in registry_datasets(DATA).items():
+        path = DATA / (registered["file"] + ".json")
+        table = json.loads(path.read_text()) if path.exists() else {}
+        rows = [reading for day in table.get("days", {}).values() for reading in day.get("readings", [])]
+        appointed = sorted({passage_key(reading["full"], identifier) for reading in rows})
+        report["readingDatasets"][identifier] = {
+            "file": registered["file"], "calendarIds": sorted(registered["calendarIds"]),
+            "hasTable": path.exists(), "appointmentRows": len(rows), "uniqueAppointments": len(appointed),
+            "uniquePsalmAppointments": sum(split_passage_key(key)[1].startswith("Psalm ") for key in appointed),
+            "sourceURL": table.get("sourceUrl"), "sourceSHA256": table.get("sourceSha256"),
+            "coverage": {edition["id"]: {
+                "available": sum(edition["id"] in passages.get(key, {}) for key in appointed),
+                "unavailable": sum(edition["id"] not in passages.get(key, {}) for key in appointed),
+                "reasons": dict(Counter(missing.get(key, {}).get(edition["id"], "no available source")
+                                        for key in appointed if edition["id"] not in passages.get(key, {}))),
+            } for edition in editions},
+        }
     encode = lambda value: (json.dumps(value, ensure_ascii=False, separators=(",", ":")) + "\n").encode()
     return {"readings-editions.json": encode({"schemaVersion": 1, "editions": editions}),
             "readings-texts.json": encode(payload), "readings-text-coverage.json": encode(report)}

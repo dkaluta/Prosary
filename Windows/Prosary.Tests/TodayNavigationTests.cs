@@ -253,6 +253,40 @@ public class TodayNavigationTests
         }
     }
 
+    [Fact]
+    public void DedicatedDailyReaderKeepsItsPassagesWhenTheTodayCardIsHidden()
+    {
+        var previousReadings = AppSettings.ShowTodayReadings;
+        var previousCalendar = TodayInfoStore.SelectedCalendarId;
+        try
+        {
+            TodayInfoStore.SelectedCalendarId = "roman";
+            AppSettings.SetShowTodayReadings(false);
+            var today = new HomeViewModel(new EmptyPresetStore(), new LiturgicalCalendarService());
+            today.SelectedTodayDate = new DateTimeOffset(2026, 9, 10, 0, 0, 0, TimeSpan.Zero);
+            Assert.Empty(today.TodayReadings);
+            var reader = new DesktopReadingsViewModel(new ReadingsTextStore(() => "{\"schemaVersion\":1,\"editions\":[],\"passages\":{}}"));
+            reader.Open(today, showsAllDailyReadings: true);
+            Assert.Equal(TodayInfoStore.Readings(today.SelectedDate).Select(citation => citation.LocalizedFull(today.TodayLanguage)),
+                reader.Daily.Select(row => row.Citation));
+            Assert.NotEmpty(reader.Daily);
+
+            today.TomorrowCommand.Execute(null);
+            reader.Refresh(today);
+            Assert.Equal(TodayInfoStore.Readings(today.SelectedDate).Select(citation => citation.LocalizedFull(today.TodayLanguage)),
+                reader.Daily.Select(row => row.Citation));
+            Assert.All(reader.Daily, row => Assert.StartsWith("2026-09-11|", row.ContextKey));
+
+            reader.Open(today);
+            Assert.Empty(reader.Daily);
+        }
+        finally
+        {
+            AppSettings.SetShowTodayReadings(previousReadings);
+            TodayInfoStore.SelectedCalendarId = previousCalendar;
+        }
+    }
+
     private sealed class EmptyPresetStore : IPresetStore
     {
         public Task<List<Prayer>> GetAllAsync() => Task.FromResult(new List<Prayer>());

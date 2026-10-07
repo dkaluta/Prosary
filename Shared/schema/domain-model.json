@@ -50,6 +50,30 @@
         "descriptionCreditByLanguage": {
           "type": "map<string, string>?",
           "description": "Attribution accompanying the description, including the supplied Hebrew reference and its underlying Evangelizo source."
+        },
+        "sourceUID": {
+          "type": "string?",
+          "description": "Exact supplied event UID."
+        },
+        "sourceDescriptionByLanguage": {
+          "type": "map<string,string>?",
+          "description": "Original source prose before user-authorized spelling corrections."
+        },
+        "sourceRecurrence": {
+          "type": "string?",
+          "description": "Original RRULE retained only for provenance, never used to extrapolate movable liturgical dates."
+        },
+        "categories": {
+          "type": "[string]?",
+          "description": "Exact source categories; absent categories remain empty."
+        },
+        "sections": {
+          "type": "[CalendarTextSection]?",
+          "description": "Source-bound sections of a provisional reflection/feast description."
+        },
+        "reflectionByLanguage": {
+          "type": "map<string,string>?",
+          "description": "Exact-language reflection for the selected date and calendar, no cross-language fallback."
         }
       }
     },
@@ -193,12 +217,13 @@
         "specificMysteryOrder": {
           "type": "int",
           "default": 1,
-          "description": "1-based index into MysteryCatalog.forGroup(specificMysteryGroup) (always 5 mysteries per group). Used only when mysterySelectionMode == singleMystery."
+          "description": "1-based starting mystery, used with specificMysteryCount in persisted singleMystery mode."
         },
         "skipFifthDecade": {
           "type": "boolean",
           "default": false,
-          "description": "Omit the fifth mystery and its complete decade from each selected five-decade set, preserving all opening/closing prayers and continuations. Full Rosaries become 16 or 12 decades. Explicit singleMystery selections are unchanged and hide this option. Existing saved prayers default to false; progress identity includes the option."
+          "deprecated": true,
+          "description": "Retired saved-data compatibility field; never shown or applied, including older generic Rosary option definitions. Every selected set builds all five decades. Its former shortened-run signature no longer matches, so old shortened progress cannot resume at an unrelated step. The next-mystery control skips the final decade to the first closing step, or invokes the ordinary finish/progress-clear path when no closing steps exist; the completion sentinel is handled before any array indexing."
         },
         "aramaicSignOfCrossForm": {
           "type": "string",
@@ -286,6 +311,18 @@
           "type": "MysteryImageStyle",
           "default": "classic",
           "description": "Which artwork set illustrates the mysteries during the session. Maps onto the rosary bundle's imageStyle choice option; the engine resolves it by setting RosaryStep.imageVariantKey = \"eastern_\" + the mystery's imageKey on every step that carries a Mystery, so Mystery.imageKey itself (identity + translation lookup) is never touched."
+        },
+        "useTraditionalMysteries": {
+          "type": "boolean",
+          "default": false,
+          "description": "Only Today mode: Joyful Mon/Thu, Sorrowful Tue/Fri, Glorious Wed/Sat; Sundays retain seasonal assignment. Luminous excluded."
+        },
+        "specificMysteryCount": {
+          "type": "int",
+          "default": 1,
+          "min": 1,
+          "max": 5,
+          "description": "SingleMystery persisted mode displays Selected Mysteries. Start at specificMysteryOrder, take consecutive mysteries within the selected group, clamp at fifth, never wrap. Also used for chooseOnLaunch; the launch chooser supplies its starting mystery."
         }
       }
     },
@@ -322,7 +359,11 @@
         },
         {
           "value": "singleMystery",
-          "description": "Always pray exactly one specific mystery (one decade), chosen via specificMysteryGroup + specificMysteryOrder. Appended last on every platform: Windows persists this enum as a raw integer ordinal, so new cases must never be inserted mid-list."
+          "description": "Select one to five consecutive mysteries, starting at specificMysteryOrder within specificMysteryGroup, clamped at the fifth without wrap. Raw case and permanent Windows ordinal stay unchanged; legacy saved choices default to one."
+        },
+        {
+          "value": "chooseOnLaunch",
+          "description": "Blank saved mystery choice, appended after all older enum cases. Engines return no steps until the launch chooser supplies group/order; uses specificMysteryCount consecutive mysteries. Chosen group/order remains session-local and never overwrites saved RosaryOptions."
         }
       ]
     },
@@ -443,6 +484,18 @@
           "type": "string",
           "format": "YYYY-MM-DD",
           "description": "Local civil date without a timezone, used to enforce same-day-only Rosary continuation."
+        },
+        "rosaryNavigationGroup": {
+          "type": "string?",
+          "description": "Device-local selected MysteryGroup raw value for Choose on Launch or a current-session override. Null in old checkpoints. Only accepted with a valid group/order and unchanged saved configuration signature."
+        },
+        "rosaryNavigationOrder": {
+          "type": "int?",
+          "range": [
+            1,
+            5
+          ],
+          "description": "Device-local starting ordinal1..5 for a selected consecutive range. With a valid rosaryNavigationGroup, null represents the explicit Entire Set choice (allfive), including Choose on Launch. Nullgroup with non-nullorder remains invalid. Restart clears both."
         }
       }
     },
@@ -566,6 +619,10 @@
         "imageVariantKey": {
           "type": "string?",
           "description": "Alternate-artwork override, set by the engine on steps that carry a Mystery when the favorite's mysteryImageStyle asks for a non-default set (e.g. \"eastern_joyful_01_annunciation\"). Display resolution prefers it over everything: imageVariantKey ?? mystery.imageKey ?? imageOverrideKey ?? cross_placeholder. A separate field (not a rewritten Mystery.imageKey) because the mystery's own key is its identity and its translation-lookup key."
+        },
+        "prayerKey": {
+          "type": "string?",
+          "description": "Stable authored entry.bodyKey identity for optional context, such as intentioPontificis; never infer from translated prayer bodies/headings."
         }
       }
     },
@@ -1042,6 +1099,20 @@
             "rose"
           ],
           "description": "Independent Today content-card tint on Apple, Android and Windows. Unknown values resolve to default. Saints and the Pope’s intention have separate cards with ordinary content backgrounds. Does not change appColor, the selected calendar or liturgical colors."
+        },
+        "showPopeIntentionInPrayers": {
+          "type": "boolean",
+          "default": false,
+          "description": "Append current-month published Pope intention only on intentioPontificis steps of any devotion, independent of Today visibility; preserve publisher and editorial translation credits."
+        },
+        "calendarViewMode": {
+          "type": "string",
+          "default": "list",
+          "values": [
+            "list",
+            "month"
+          ],
+          "description": "Persistent optional month view in liturgical calendar navigation, retaining selected calendar/date and source-bound observances."
         }
       },
       "rendering": "Body, acclamation and currently visible reading-aid text choose typography by dominant actual letters, ignoring combining marks, punctuation and numbers. Syriac custom bodies therefore obey syriacTypeface. Hebrew-square Aramaic keeps Hebrew choices; Greek is independent of the Latin-script preference. Setting changes invalidate open prayer renderings immediately, including other Mac scenes.",
@@ -1050,6 +1121,20 @@
         "hebrewPrayerTypeface": "גופן העברית",
         "hebrewScriptureTypeface": "גופן כתבי הקודש בעברית"
       }
+    },
+    "CalendarTextSection": {
+      "fields": {
+        "id": {
+          "type": "string"
+        },
+        "titleByLanguage": {
+          "type": "map<string,string>"
+        },
+        "textByLanguage": {
+          "type": "map<string,string>"
+        }
+      },
+      "description": "A source-bounded section; reflection title spelling is editorial while original text remains in sourceDescriptionByLanguage."
     }
   },
   "languages": {

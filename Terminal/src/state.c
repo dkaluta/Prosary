@@ -138,6 +138,12 @@ int app_state_load(AppState *state, const char *path)
         next.step = 0;
         next.completed = 0;
     }
+    /* Retiring the skipped fifth decade changes numeric positions in old Rosaries. */
+    if (next.skip_fifth_decade && !strcmp(next.devotion_id, "rosary")) {
+        next.step = 0;
+        next.completed = 0;
+    }
+    next.skip_fifth_decade = 0;
     *state = next;
     return 1;
 invalid:

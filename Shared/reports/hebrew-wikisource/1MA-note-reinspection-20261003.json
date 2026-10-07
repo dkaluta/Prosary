@@ -1,0 +1,254 @@
+{
+  "schemaVersion": 1,
+  "book": "1MA",
+  "date": "2026-10-03",
+  "status": "Focused two-scan reinspection complete; no safely resolvable notes",
+  "notesInspected": 11,
+  "resolved": 0,
+  "retained": 11,
+  "method": "Visual comparison of existing original-pixel crops from both scans. No enhanced or generated pixels; no OCR or expected Hebrew spelling used as evidence.",
+  "sourceScans": [
+    {
+      "path": "/private/tmp/prosary-kahana-reference/Apocrypha_Kahana_B.pdf",
+      "sha256": "656891d377d2e3d4a9216723d94205488423907bf01df424b9f0b9de1560051e"
+    },
+    {
+      "path": "/private/tmp/prosary-kahana-reference/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sha256": "b72eaf5d2d858fabb7c3438ac0436ccd64c394a7dd2fad609efabe628d5534c7"
+    }
+  ],
+  "canonicalChanged": false,
+  "noteDispositions": [
+    {
+      "noteId": "1ma-15-14-bet-dagesh",
+      "chapter": 15,
+      "verse": 14,
+      "anchor": "וַיָּסֹבוּ",
+      "sourcePages": [
+        173
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "Both primary and additional scan crops were visually inspected. The targeted interior or lower mark remains fused to the letter stroke or incompletely represented; neither its exact presence nor clean absence is established. No grammatical inference is used.",
+      "evidence": [
+        {
+          "path": "/private/tmp/prosary-kahana-reference/1MA-B173-query-14-vayasobu-primary.png",
+          "sha256": "437f5a62bad6cd24a5ca67219f364f569c1e2a9c5cc136a0667c1413384d62c5"
+        },
+        {
+          "path": "/private/tmp/prosary-kahana-reference/1MA-B173-query-14-vayasobu-extra.png",
+          "sha256": "9285d1b4c749245e9214cd72e21273a206d971a37ac21c279bfca8c5850d51a8"
+        }
+      ]
+    },
+    {
+      "noteId": "1ma-14-32-mem-vowel",
+      "chapter": 14,
+      "verse": 32,
+      "anchor": "וַיַּחֲמשׁ",
+      "sourcePages": [
+        170
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "Both primary and additional scan crops were visually inspected. The targeted interior or lower mark remains fused to the letter stroke or incompletely represented; neither its exact presence nor clean absence is established. No grammatical inference is used.",
+      "evidence": [
+        {
+          "path": "/private/tmp/prosary-kahana-reference/1MA-B170-query-32-vaychammesh-primary.png",
+          "sha256": "b11cfb1292fbc5fab3f6a80837d48f4e58e57714a2f6af945ac42f04029fce14"
+        },
+        {
+          "path": "/private/tmp/prosary-kahana-reference/1MA-B170-query-32-vaychammesh-extra.png",
+          "sha256": "26eae776b7c3cae0f81148c1838742e835e84c14087440b759cc6a883fde621d"
+        }
+      ]
+    },
+    {
+      "noteId": "1ma-12-25-het-vowel",
+      "chapter": 12,
+      "verse": 25,
+      "anchor": "חמָת",
+      "sourcePages": [
+        160
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "Both primary and additional scan crops were visually inspected. The targeted interior or lower mark remains fused to the letter stroke or incompletely represented; neither its exact presence nor clean absence is established. No grammatical inference is used.",
+      "evidence": [
+        {
+          "path": "/private/tmp/prosary-kahana-reference/1MA-B160-query-25-hamat-primary.png",
+          "sha256": "e97e6a776c731be017affe29d3a8ec2d7714444881cb0e11675ae566ac145788"
+        },
+        {
+          "path": "/private/tmp/prosary-kahana-reference/1MA-B160-query-25-hamat-extra.png",
+          "sha256": "e4c6677cc4608a69751ce4b31a239ba1de55a54d28808924e09241852ae793e1"
+        }
+      ]
+    },
+    {
+      "noteId": "1ma-14-43-shin-dagesh",
+      "chapter": 14,
+      "verse": 43,
+      "anchor": "הַשְׁטָרוֹת",
+      "sourcePages": [
+        171
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "Both primary and additional scan crops were visually inspected. The targeted interior or lower mark remains fused to the letter stroke or incompletely represented; neither its exact presence nor clean absence is established. No grammatical inference is used.",
+      "evidence": [
+        {
+          "path": "/private/tmp/prosary-kahana-reference/1MA-B171-query-43-shtarot-primary.png",
+          "sha256": "d3a3fadb73fce8cbbb0249d41f04b743955b0bfa8d33499501a857266aba565d"
+        },
+        {
+          "path": "/private/tmp/prosary-kahana-reference/1MA-B171-query-43-shtarot-extra.png",
+          "sha256": "4bf0f3521bdc632f44db3bccd5b9466b8471f2e8abc8d200c091f617a5a38474"
+        }
+      ]
+    },
+    {
+      "noteId": "1ma-15-40-qof-vowel",
+      "chapter": 15,
+      "verse": 40,
+      "anchor": "קנְדֶּבִּיוֹס",
+      "sourcePages": [
+        175
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "Both primary and additional scan crops were visually inspected. The targeted interior or lower mark remains fused to the letter stroke or incompletely represented; neither its exact presence nor clean absence is established. No grammatical inference is used.",
+      "evidence": [
+        {
+          "path": "/private/tmp/prosary-kahana-reference/1MA-B175-query-40-kendebios-primary.png",
+          "sha256": "5ad9a9e8d51b2280900346e2dae0d7db4bedfbf0696bdf4d8c50cc3844d29b8d"
+        },
+        {
+          "path": "/private/tmp/prosary-kahana-reference/1MA-B175-query-40-kendebios-extra.png",
+          "sha256": "966b55695394f0edd071f2921db693ca23e6b37f4445a2c64f7141686e0e7d61"
+        }
+      ]
+    },
+    {
+      "noteId": "1ma-16-4-qof-vowel",
+      "chapter": 16,
+      "verse": 4,
+      "anchor": "קנְדֶּבִּיוֹס",
+      "sourcePages": [
+        176
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "Both primary and additional scan crops were visually inspected. The targeted interior or lower mark remains fused to the letter stroke or incompletely represented; neither its exact presence nor clean absence is established. No grammatical inference is used.",
+      "evidence": [
+        {
+          "path": "/private/tmp/prosary-kahana-reference/1MA-B176-query-4-kendebios-primary.png",
+          "sha256": "f96f461a960af0f0e0e94a84575efd38b972f61f87d14c293819222fceb4182b"
+        },
+        {
+          "path": "/private/tmp/prosary-kahana-reference/1MA-B176-query-4-kendebios-extra.png",
+          "sha256": "440fa989fa191e4df7cb71985f2a5193994af60aa66814b86e3ae0d3cd3ee655"
+        }
+      ]
+    },
+    {
+      "noteId": "1ma-13-41-42-shin-dagesh",
+      "chapter": 13,
+      "verse": 41,
+      "anchor": "וּבַשְׁטָרוֹת",
+      "sourcePages": [
+        166
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "Both primary and additional scan crops were visually inspected. The targeted interior or lower mark remains fused to the letter stroke or incompletely represented; neither its exact presence nor clean absence is established. No grammatical inference is used.",
+      "evidence": [
+        {
+          "path": "/private/tmp/prosary-kahana-reference/1MA-B166-query-42-deeds-primary.png",
+          "sha256": "961e9be5697fd9d9681d81a4017b8e002c4ef368096e03f0f821fead4657bb19"
+        },
+        {
+          "path": "/private/tmp/prosary-kahana-reference/1MA-B166-query-42-deeds-extra.png",
+          "sha256": "8110d125c78bdd178c4012d6affcb38174a57df75707f766e0140e818672a3ae"
+        }
+      ]
+    },
+    {
+      "noteId": "1ma-13-51-yod-dagesh",
+      "chapter": 13,
+      "verse": 51,
+      "anchor": "מִיִשְׂרָאֵל",
+      "sourcePages": [
+        167
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "Both primary and additional scan crops were visually inspected. The targeted interior or lower mark remains fused to the letter stroke or incompletely represented; neither its exact presence nor clean absence is established. No grammatical inference is used.",
+      "evidence": [
+        {
+          "path": "/private/tmp/prosary-kahana-reference/1MA-B167-query-51-miyisrael-primary.png",
+          "sha256": "d4693effded9b785e7b9f0c02bfba88a4424a14f9c4bf39c9fec3e0cceb5de98"
+        },
+        {
+          "path": "/private/tmp/prosary-kahana-reference/1MA-B167-query-51-miyisrael-extra.png",
+          "sha256": "6f933049bf2ff65399c07708342ecf9f9af34ef3733dbab8e6a5e4b5158feabd"
+        }
+      ]
+    },
+    {
+      "noteId": "1ma-10-57-pe-dagesh",
+      "chapter": 10,
+      "verse": 57,
+      "anchor": "וּקְלֵיאָפַטְרָה",
+      "sourcePages": [
+        150
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "Both primary and additional scan crops were visually inspected. The targeted interior or lower mark remains fused to the letter stroke or incompletely represented; neither its exact presence nor clean absence is established. No grammatical inference is used.",
+      "evidence": [
+        {
+          "path": "/private/tmp/prosary-kahana-reference/1MA-B150-query-57-pe-primary.png",
+          "sha256": "0aa1d37ea16262f603f5bd10aa7a05a9b023f992d7a90783a4473d2a5905d268"
+        },
+        {
+          "path": "/private/tmp/prosary-kahana-reference/1MA-B150-query-57-pe-extra.png",
+          "sha256": "f86425c7250e76bb46b8f4cdf006ea9c355714729e246255f4cabdce754f19f7"
+        }
+      ]
+    },
+    {
+      "noteId": "1ma-16-8-qof-vowel",
+      "chapter": 16,
+      "verse": 8,
+      "anchor": "קנְדֶּבִּיוֹס",
+      "sourcePages": [
+        176
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "Both primary and additional scan crops were visually inspected. The targeted interior or lower mark remains fused to the letter stroke or incompletely represented; neither its exact presence nor clean absence is established. No grammatical inference is used.",
+      "evidence": [
+        {
+          "path": "/private/tmp/prosary-kahana-reference/1MA-B176-query-8-kendebios-primary.png",
+          "sha256": "15dca2d46cf695001d447061af1082745c2dd93e6c9cd5114983e6ce26b11f45"
+        },
+        {
+          "path": "/private/tmp/prosary-kahana-reference/1MA-B176-query-8-kendebios-extra.png",
+          "sha256": "91205604a49dd73b0927063461724e866d374a1ecbc67298f010d041a86c1372"
+        }
+      ]
+    },
+    {
+      "noteId": "1ma-16-1-qof-vowel",
+      "chapter": 16,
+      "verse": 1,
+      "anchor": "קנְדֶּבִּיוֹס",
+      "sourcePages": [
+        175
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "Both primary and additional scan crops were visually inspected. The targeted interior or lower mark remains fused to the letter stroke or incompletely represented; neither its exact presence nor clean absence is established. No grammatical inference is used.",
+      "evidence": [
+        {
+          "path": "/private/tmp/prosary-kahana-reference/1MA-B175-query-16-1-kendebios-primary.png",
+          "sha256": "e9cdb63c71854ac3a5994860ea34b090ed02277bad7b4659febc5f5176c49337"
+        },
+        {
+          "path": "/private/tmp/prosary-kahana-reference/1MA-B175-query-16-1-kendebios-extra.png",
+          "sha256": "82103285df87a48cfa548ee5876450e6aa3f8027ae8d6ba336c0b57a252164d9"
+        }
+      ]
+    }
+  ]
+}

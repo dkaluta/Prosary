@@ -651,11 +651,6 @@ struct HomeView: View {
         Label(String(localized: "favorites.reminders", defaultValue: "Reminders…", bundle: UILanguage.bundle, locale: UILanguage.locale), systemImage: "bell")
       }
     }
-    if let prayer = savedPrayer(for: row) {
-      Button(role: .destructive) { deletingPrayer = prayer } label: {
-        Label(String(localized: "removal.deleteAction", defaultValue: "Delete Saved Prayer…", bundle: UILanguage.bundle, locale: UILanguage.locale), systemImage: "trash")
-      }
-    }
     Button {
       HomeOrder.moveToTop(row.id, allIdsInDisplayOrder: pinnedDevotions.map(\.id))
       orderGeneration += 1

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "reviewedOn": "2026-10-03",
+  "reviewedOn": "2026-10-07",
   "attribution": "Old Testament - publication of the Syriac Orthodox Patriarchate 2020",
   "sourceURL": "https://peshitta.eu/about.html",
   "rights": "Website credits the 2020 publication and has a copyright footer; no redistribution license is stated. User requested reader use on 2026-10-03. BFBS1905 NT licensing does not cover this OT.",
@@ -24,7 +24,7 @@
     "2CH:24": "Peshitta source verse has no vocalized Scripture wording",
     "2CH:25": "Peshitta source verse has no vocalized Scripture wording",
     "2CH:26": "Peshitta source verse has no vocalized Scripture wording",
-    "2CH:28": "Peshitta source verse has no vocalized Scripture wording",
+    "2CH:28": "Peshitta source has missing or unordered verse labels",
     "2CH:29": "Peshitta source verse has no vocalized Scripture wording",
     "2CH:33": "Peshitta source verse has no vocalized Scripture wording",
     "ISA:38": "Peshitta source verse has no vocalized Scripture wording",
@@ -33,7 +33,7 @@
     "JOB:41": "Peshitta source verse has no vocalized Scripture wording",
     "PSA:89": "Peshitta source verse has no vocalized Scripture wording",
     "PSA:118": "Peshitta source verse has no vocalized Scripture wording",
-    "SIR:1": "Peshitta source verse has no vocalized Scripture wording",
+    "SIR:1": "Peshitta source has missing or unordered verse labels",
     "SIR:2": "Peshitta source verse has no vocalized Scripture wording",
     "SIR:3": "Peshitta source verse has no vocalized Scripture wording",
     "SIR:6": "Peshitta source verse has no vocalized Scripture wording",
@@ -19779,8 +19779,716 @@
     }
   ],
   "editorialExclusions": [],
-  "sourceChapterCount": 1012,
-  "sourceVerseCount": 25404,
+  "sourceChapterCount": 1053,
+  "sourceVerseCount": 26729,
   "sourcePinDigest": "e5e9853899d734faaa6ff2582508ca605224fa8414d6e5284fcad78c822b5c07",
-  "corpusSHA256": "70b332a0da8f2002cda699d49fdfb59d8896f712353af78df82c05ab2a62a387"
+  "corpusSHA256": "ae5b334d22ebdb3818cf46cb7c0a2f0b40304836acfc6a84c453d19fd91bd8b7",
+  "partialChapters": {
+    "1CH:2": {
+      "sourceSHA256": "204055255aac6ecba60e322911fd660af046bb8523a0f1a839c9519c0477fc9d",
+      "retainedVerses": 52,
+      "omittedVerses": {
+        "23": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        },
+        "53": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        }
+      }
+    },
+    "1CH:4": {
+      "sourceSHA256": "5b1661cd87d8c74be8ffdfb906f4a3853da0e63b02a897dda2dfc26090bda1ae",
+      "retainedVerses": 29,
+      "omittedVerses": {
+        "7": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        },
+        "8": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        },
+        "13": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        },
+        "14": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        },
+        "16": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        },
+        "17": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        },
+        "18": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        },
+        "22": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        },
+        "23": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        },
+        "24": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        },
+        "34": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        },
+        "35": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        },
+        "36": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        },
+        "37": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        }
+      }
+    },
+    "1CH:5": {
+      "sourceSHA256": "a57edd03e9d39d925766c6ed8bfc0d48ed05f5f47032301fab11c38c35057824",
+      "retainedVerses": 24,
+      "omittedVerses": {
+        "13": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        },
+        "15": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        }
+      }
+    },
+    "1CH:6": {
+      "sourceSHA256": "2b1d61329073d39e758a81489ca90cf23557b6afd399730b4f255c10a26acebf",
+      "retainedVerses": 80,
+      "omittedVerses": {
+        "46": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        }
+      }
+    },
+    "1CH:8": {
+      "sourceSHA256": "8e5604e0978279bc88d234cbeebfbad6b8e9395799bd49385f632196c1924975",
+      "retainedVerses": 29,
+      "omittedVerses": {
+        "8": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        },
+        "9": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        },
+        "17": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        },
+        "18": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        },
+        "19": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        },
+        "20": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        },
+        "21": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        },
+        "22": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        },
+        "23": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        },
+        "26": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        },
+        "27": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        }
+      }
+    },
+    "1CH:12": {
+      "sourceSHA256": "f5eb4a08d4f390dbe1086a36f79bffecff05b592d58facb8709ea05eae5ef7b2",
+      "retainedVerses": 39,
+      "omittedVerses": {
+        "23": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        }
+      }
+    },
+    "1CH:25": {
+      "sourceSHA256": "754766cef14621be4bf4570613e90a87fc3ee044f48d95d62c6080c049262401",
+      "retainedVerses": 29,
+      "omittedVerses": {
+        "5": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        },
+        "6": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        }
+      }
+    },
+    "1CH:28": {
+      "sourceSHA256": "89028b8268338340db8bfc7f6fcec30a273515f2ff705a82751387cfa52e459f",
+      "retainedVerses": 17,
+      "omittedVerses": {
+        "13": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        },
+        "14": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        },
+        "18": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        },
+        "19": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        }
+      }
+    },
+    "2CH:3": {
+      "sourceSHA256": "19746558b993bb236e317472f8d61bfbf6a5054a8c4b69d9cf4d36e1a65a847e",
+      "retainedVerses": 16,
+      "omittedVerses": {
+        "9": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        }
+      }
+    },
+    "2CH:4": {
+      "sourceSHA256": "4274c923fa6bbe16c253114c21f909c5b375835e789265130d7cfd3d502bd857",
+      "retainedVerses": 10,
+      "omittedVerses": {
+        "3": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        },
+        "11": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        }
+      }
+    },
+    "2CH:5": {
+      "sourceSHA256": "b39f39808f63365847c1aa7628d4cd4c23b8ac3bdea465b7fb4a9593e868782a",
+      "retainedVerses": 12,
+      "omittedVerses": {
+        "12": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        },
+        "13": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        }
+      }
+    },
+    "2CH:9": {
+      "sourceSHA256": "b6900883e7419b65d9e13f6b4e6e6b37ae12da0755f2e0aba962788ca12786b2",
+      "retainedVerses": 29,
+      "omittedVerses": {
+        "25": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        },
+        "29": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        }
+      }
+    },
+    "2CH:13": {
+      "sourceSHA256": "fde56cae02ef4a49c3c1eed9bfd7574bb48d4a6b43c54b1e97c805f3d447e004",
+      "retainedVerses": 20,
+      "omittedVerses": {
+        "13": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        },
+        "14": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        }
+      }
+    },
+    "2CH:20": {
+      "sourceSHA256": "b2a6e4a94174b3ef6d4fb49527e785f089992a294b8970a7eec0a83127a3fd4b",
+      "retainedVerses": 35,
+      "omittedVerses": {
+        "22": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        },
+        "23": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        }
+      }
+    },
+    "2CH:24": {
+      "sourceSHA256": "b67ab8a7d548d825833675a700f07cb169daabf038e6a6202ecb59563c43a6b5",
+      "retainedVerses": 25,
+      "omittedVerses": {
+        "13": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        },
+        "14": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        }
+      }
+    },
+    "2CH:25": {
+      "sourceSHA256": "84b084b6c7a25945ffad93d3583b90cd609cf12ccabbd4772bc0c666d73d4dd3",
+      "retainedVerses": 27,
+      "omittedVerses": {
+        "22": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        }
+      }
+    },
+    "2CH:26": {
+      "sourceSHA256": "b1805d8ef97f48d4c68ffcf74f105b140daaedd4d978fa6374491e0d1b80fa64",
+      "retainedVerses": 22,
+      "omittedVerses": {
+        "7": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        }
+      }
+    },
+    "2CH:29": {
+      "sourceSHA256": "636c7c2ab36d5242970edc310fb23d3ae8158be317e860baa8ca0b9f512feef2",
+      "retainedVerses": 26,
+      "omittedVerses": {
+        "10": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        },
+        "11": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        },
+        "12": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        },
+        "13": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        },
+        "14": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        },
+        "15": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        },
+        "16": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        },
+        "17": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        },
+        "18": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        },
+        "19": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        }
+      }
+    },
+    "2CH:33": {
+      "sourceSHA256": "b5a5ae695066bc5372560924b5de25e5198e588b0ae69682dba07c6e9b381b4e",
+      "retainedVerses": 23,
+      "omittedVerses": {
+        "4": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        },
+        "5": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        }
+      }
+    },
+    "2MA:10": {
+      "sourceSHA256": "8144389a0af3e226d8a96c1024e0d0e80fe432b2b8c5274576ed81c1e1e74cac",
+      "retainedVerses": 37,
+      "omittedVerses": {
+        "19": {
+          "sourceVerseSHA256": "51cb2dddd3c7798b1631b8441e20e5c278e6be8d082505a93d77e4d091a5ce42",
+          "reason": "ambiguous Syriac U+0716 without attached seyame; cannot choose dalath or rish"
+        }
+      }
+    },
+    "ISA:38": {
+      "sourceSHA256": "e76cebfc4aa055997bb459ff0027d72330cc3c6467cc5096a64e878eb1ebb3f3",
+      "retainedVerses": 21,
+      "omittedVerses": {
+        "13": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        }
+      }
+    },
+    "JOB:29": {
+      "sourceSHA256": "22fdedfde02eb1f999e71f314279376c388321400084077c7e0190bc17666483",
+      "retainedVerses": 24,
+      "omittedVerses": {
+        "6": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        }
+      }
+    },
+    "JOB:30": {
+      "sourceSHA256": "46285d3c137f5a8e620a1ecf38f9258c09acdac2c16a52d8de51dd2a6e4e1391",
+      "retainedVerses": 28,
+      "omittedVerses": {
+        "4": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        },
+        "5": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        },
+        "7": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        }
+      }
+    },
+    "JOB:41": {
+      "sourceSHA256": "889def174832280a5afe412e3921013ec8d537ad3f72bae4e2ecfe1f5c85e820",
+      "retainedVerses": 22,
+      "omittedVerses": {
+        "22": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        },
+        "23": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        },
+        "24": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        }
+      }
+    },
+    "PSA:89": {
+      "sourceSHA256": "984d3619798e0da0063a14a732a5eaae86d8c8cd19f5ad3201ae76719a20ce9c",
+      "retainedVerses": 51,
+      "omittedVerses": {
+        "31": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        }
+      }
+    },
+    "PSA:118": {
+      "sourceSHA256": "b3c8873c6e70f33801d054d7db03773e0216a04393114b5ad722d190cdd8f7d1",
+      "retainedVerses": 175,
+      "omittedVerses": {
+        "91": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        }
+      }
+    },
+    "SIR:2": {
+      "sourceSHA256": "ac33b31b2032f741c8f5439566b3b56458a311599d667d8dcc35de02739be3ed",
+      "retainedVerses": 20,
+      "omittedVerses": {
+        "3": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        },
+        "6": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        },
+        "10": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        }
+      }
+    },
+    "SIR:3": {
+      "sourceSHA256": "ccbc342fefddaee9b0230f83d6d8f50b836022b37fb9aa12c181d447aab191b7",
+      "retainedVerses": 32,
+      "omittedVerses": {
+        "1": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        },
+        "19": {
+          "sourceVerseSHA256": "6753498e0b71eb8fcaca6b37788c3a6c98922a51f1228c781f7efa70ca516d21",
+          "reason": "ambiguous Syriac U+0716 without attached seyame; cannot choose dalath or rish"
+        }
+      }
+    },
+    "SIR:6": {
+      "sourceSHA256": "3d2db99ec16dc2e212c58c4d51bb40a9ce5ca5af4dfda4f93ab8f57c44ecbc6b",
+      "retainedVerses": 35,
+      "omittedVerses": {
+        "10": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        },
+        "11": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        }
+      }
+    },
+    "SIR:7": {
+      "sourceSHA256": "f6da565f6b927bdfe842e83fbaf371d45fe48adfbf07432480d0da223461ce96",
+      "retainedVerses": 37,
+      "omittedVerses": {
+        "9": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        },
+        "10": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        },
+        "17": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        }
+      }
+    },
+    "SIR:9": {
+      "sourceSHA256": "cf21c83373c92722e856e2e495863bb7e66d25d31878a3e319e54d225eb19094",
+      "retainedVerses": 23,
+      "omittedVerses": {
+        "9": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        },
+        "13": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        }
+      }
+    },
+    "SIR:10": {
+      "sourceSHA256": "f636f01092416abcc88f3f2d7c7a1d2ab3ab68beff0a8b4b5170f6c3854b4ad2",
+      "retainedVerses": 33,
+      "omittedVerses": {
+        "21": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        }
+      }
+    },
+    "SIR:11": {
+      "sourceSHA256": "c0f6d3aa0e47c410dc1c0ebd114831b4803adbfce7997b97fb8a7c942b10f318",
+      "retainedVerses": 32,
+      "omittedVerses": {
+        "24": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        },
+        "25": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        },
+        "26": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        },
+        "27": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        }
+      }
+    },
+    "SIR:13": {
+      "sourceSHA256": "235683228b0db1dbd2b8e817bfcfbbf529390db42913d5fa4542de5a913df02e",
+      "retainedVerses": 28,
+      "omittedVerses": {
+        "11": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        },
+        "17": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        },
+        "18": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        }
+      }
+    },
+    "SIR:20": {
+      "sourceSHA256": "3ec615044848ce065f404d14b78e2c8b8ba6536f3b0cfcead1fe729c2db70aac",
+      "retainedVerses": 28,
+      "omittedVerses": {
+        "16": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        },
+        "17": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        },
+        "18": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        },
+        "19": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        }
+      }
+    },
+    "SIR:22": {
+      "sourceSHA256": "fc534a311d6330226e940ca9a27d9519724180d4e767fcd372faa25eba6dc3d8",
+      "retainedVerses": 33,
+      "omittedVerses": {
+        "33": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        }
+      }
+    },
+    "SIR:38": {
+      "sourceSHA256": "5a4a37a7cb3dc340b41340c0cb25705f61bd430555c3e0049d191f185dd2c5d8",
+      "retainedVerses": 38,
+      "omittedVerses": {
+        "12": {
+          "sourceVerseSHA256": "accef1643f63877147894f5c70537c0cf0a4ba315c1559f6f9110e37c3bd71c2",
+          "reason": "Peshitta Hebrew projection retains an unsupported Syriac letter"
+        }
+      }
+    },
+    "SIR:42": {
+      "sourceSHA256": "765297b75f0911e810abbab7d987297a5eabc658bd45d20c255c6b4e566694b5",
+      "retainedVerses": 18,
+      "omittedVerses": {
+        "3": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        },
+        "4": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        },
+        "5": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        },
+        "6": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        },
+        "7": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        },
+        "8": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        },
+        "14": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        }
+      }
+    },
+    "SIR:44": {
+      "sourceSHA256": "2119dd1d2a4f80f923c30c751d1fb138aca35f5cddcfa0d4c117e3f6c94c216e",
+      "retainedVerses": 26,
+      "omittedVerses": {
+        "16": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        }
+      }
+    },
+    "TOB:8": {
+      "sourceSHA256": "072d66fc23e47ca624565d1959d48fe38df11e6703149f46e2352183dbac3e97",
+      "retainedVerses": 20,
+      "omittedVerses": {
+        "6": {
+          "sourceVerseSHA256": "190fba9f790be904276581f2e5fbe879083a3516be743924c1ca61f0451b08e5",
+          "reason": "ambiguous Syriac U+0716 without attached seyame; cannot choose dalath or rish"
+        }
+      }
+    },
+    "WIS:10": {
+      "sourceSHA256": "1c247a59a794cd7814018dbfc643e87eee9768d940442e26d689cf399d253697",
+      "retainedVerses": 20,
+      "omittedVerses": {
+        "5": {
+          "sourceVerseSHA256": "8ce25990f36d2d58eb73479407ccc9d57b588da56954c46c9d6894ce640647a7",
+          "reason": "Peshitta Hebrew projection retains an unsupported Syriac letter"
+        }
+      }
+    }
+  },
+  "partialChapterMethod": "2026-10-07: Source-native Bible browsing retains each unchanged vocalized verse with a valid existing paired-script projection. Individually defective verse bodies remain omitted with pinned hashes/reasons; chapter completeness is false even when the missing verse is last. Daily appointment mappings still require their independent reviewed coordinates. Copied chapters and invalid numbering remain entirely withheld.",
+  "sourceCompleteness": {
+    "completeChapters": 1012,
+    "partialChapters": 41,
+    "omittedVerses": 111,
+    "retainedPartialVerses": 1325,
+    "withheldChapters": [
+      "1SA:26",
+      "1SA:27",
+      "2CH:12",
+      "2CH:28",
+      "2KI:16",
+      "2KI:17",
+      "SIR:1"
+    ]
+  }
 }

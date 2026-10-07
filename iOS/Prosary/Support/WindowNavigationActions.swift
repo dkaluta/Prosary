@@ -1,12 +1,12 @@
 import SwiftUI
 
 enum AppSection: String, CaseIterable, Hashable {
-  case pray, browse, readings, search
+  case home, pray, readings, search
 
   var title: String {
     switch self {
+    case .home: UILanguage.text("homeWidgets.title", language: UILanguage.current, fallback: "Home")
     case .pray: String(localized: "tabs.pray", defaultValue: "Pray", bundle: UILanguage.bundle, locale: UILanguage.locale)
-    case .browse: String(localized: "tabs.browse", defaultValue: "Browse", bundle: UILanguage.bundle, locale: UILanguage.locale)
     case .readings: String(localized: "tabs.readings", defaultValue: "Readings", bundle: UILanguage.bundle, locale: UILanguage.locale)
     case .search: String(localized: "tabs.search", defaultValue: "Search", bundle: UILanguage.bundle, locale: UILanguage.locale)
     }
@@ -14,8 +14,8 @@ enum AppSection: String, CaseIterable, Hashable {
 
   var systemImage: String {
     switch self {
+    case .home: "house"
     case .pray: "hands.and.sparkles"
-    case .browse: "globe"
     case .readings: "book"
     case .search: "magnifyingglass"
     }
@@ -122,6 +122,8 @@ enum PrayerCopyProgressIdentity {
       configurationSignature: progress.configurationSignature,
       stepIndex: progress.stepIndex,
       languageCode: savedLanguageCode,
-      savedLocalDate: progress.savedLocalDate)
+      savedLocalDate: progress.savedLocalDate,
+      rosaryNavigationGroup: progress.rosaryNavigationGroup,
+      rosaryNavigationOrder: progress.rosaryNavigationOrder)
   }
 }

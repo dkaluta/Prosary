@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "reviewedOn": "2026-10-06",
+  "editionId": "brenton-lxx",
+  "sourceId": "grcbrent",
+  "sourceSHA256": "dcd97e62bab7ff629dd6c5201d1b7ff6237254c665a79535f622e31e72fc4b50",
+  "sourceMember": "grcbrent_vpl.txt",
+  "sourceURL": "https://ebible.org/Scriptures/grcbrent_vpl.zip",
+  "method": "Read the actual complete Greek source rows against the corresponding pinned Hebrew clauses and the exact Roman appointment reviews. Each relation means clause overlap, not identity of two complete Standard verses. Preserve every selected Greek source row intact and disclose its wider whole-unit envelope. These three source-specific reviews do not inherit Douay-Rheims boundaries or change the correctly complete Greek Psalm 8:7 under-feet clause.",
+  "boundaries": [
+    {
+      "source": ["PSA", 16, 4],
+      "standard": [["PSA", 17, 3], ["PSA", 17, 4]],
+      "sourceTextSHA256": "dbd6eec0d9b4c252ca7d5da38acd0f7d43d57704489e5564832db0eb4ebdd25a",
+      "sourceClause": "ὅπως ἂν μὴ λαλήσῃ τὸ στόμα μου.",
+      "corroboratingHebrewReference": ["PSA", 17, 3],
+      "boundaryReview": "The mouth-not-speaking clause completes Standard 17:3 before the works and paths of Standard 17:4 in the same Greek source row.",
+      "affectedRomanKeys": ["daily|Psalm 17:1; 17:2–3; 17:6–7"]
+    },
+    {
+      "source": ["PSA", 18, 6],
+      "standard": [["PSA", 19, 4], ["PSA", 19, 5]],
+      "sourceTextSHA256": "d542e216757b11ba3be12ca7db1762368dffdf95278fedc34d55325f72effb1d",
+      "sourceClause": "ἐν τῷ ἡλίῳ ἔθετο τὸ σκήνωμα αὐτοῦ,",
+      "corroboratingHebrewReference": ["PSA", 19, 5],
+      "boundaryReview": "The sun-tabernacle clause completes Standard 19:4 before the bridegroom and race of Standard 19:5 in the same Greek source row. Hebrew 19:5 corresponds to Standard 19:4.",
+      "affectedRomanKeys": ["daily|Psalm 19:2–3; 19:4–5"]
+    },
+    {
+      "source": ["PSA", 94, 8],
+      "standard": [["PSA", 95, 7], ["PSA", 95, 8]],
+      "sourceTextSHA256": "36450fbbc68928757161e3dfbdb2214796f64598209ffc68ecdac0902449d2b3",
+      "sourceClause": "σήμερον ἐὰν τῆς φωνῆς αὐτοῦ ἀκούσητε,",
+      "corroboratingHebrewReference": ["PSA", 95, 7],
+      "boundaryReview": "The today-hear clause completes Standard 95:7 before the hardening and provocation of Standard 95:8 in the same Greek source row.",
+      "affectedRomanKeys": ["daily|Psalm 95:1–2; 95:3–5; 95:6–7"]
+    }
+  ]
+}

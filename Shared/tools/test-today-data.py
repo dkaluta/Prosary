@@ -30,13 +30,14 @@ def full(name, date):
 
 def main():
     registry = read('calendars')
-    assert [c['id'] for c in registry['calendars']] == ['lpj', 'stjames', 'roman', 'roman1962', 'franciscan-conventual-italy', 'augustinian-discalced', 'ugcc', 'ugcc-julian', 'syriac', 'maronite']
+    assert [c['id'] for c in registry['calendars']] == ['lpj', 'stjames', 'roman', 'roman1962', 'franciscan-conventual-italy', 'augustinian-discalced', 'ugcc', 'ugcc-julian', 'syriac', 'mission-provisional', 'maronite']
     feast_files, reading_files = set(), set()
     for calendar in registry['calendars']:
         translations(calendar['nameByLanguage'], calendar['id'])
         for choice in [calendar, *calendar.get('paschaVariants', {}).values()]:
             feast_files.add(choice['file'])
-            reading_files.add(choice['readingsFile'])
+            if choice.get('readingsFile'):
+                reading_files.add(choice['readingsFile'])
     feast_count = citation_count = 0
     for name in sorted(feast_files):
         dataset = read(name)
@@ -52,6 +53,12 @@ def main():
                 assert dataset['sourceSha256'] and day['sourceUrl'] and day['sourcePage']
                 assert not source_only & day['titleByLanguage'].keys(), (name, date)
             languages = LANGUAGES - source_only
+            if name == 'feasts-mission-provisional':
+                # Supplied Hebrew content is source text, not an invented multilingual
+                # liturgical translation. UI picker/control labels still ship in every locale.
+                assert dataset['provisional'] and dataset['scope'] == 'Mission' and dataset['sourceSha256']
+                assert date.startswith('2026-') and set(day['titleByLanguage']) == {'he'}
+                languages = {'he'}
             translations(day['titleByLanguage'], f'{name}/{date}/{day["title"]}', languages)
             if 'Pentecost' in day['title'] and 'he' in day['titleByLanguage']:
                 assert 'שבועות' in day['titleByLanguage']['he'], (name, date, day['titleByLanguage']['he'])

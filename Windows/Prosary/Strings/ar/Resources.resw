@@ -25,7 +25,7 @@
   <data name="mode_specific" xml:space="preserve"><value>مجموعة محددة دائمًا</value></data>
   <data name="mode_fifteen" xml:space="preserve"><value>الأسرار الخمسة عشر (الفرحة والحزينة والمجيدة)</value></data>
   <data name="mode_twenty" xml:space="preserve"><value>الأسرار العشرون (المجموعات الأربع)</value></data>
-  <data name="mode_single" xml:space="preserve"><value>سرّ واحد فقط</value></data>
+  <data name="mode_single" xml:space="preserve"><value>الأسرار المختارة</value></data>
   <data name="summary_always" xml:space="preserve"><value>دائمًا {0}</value></data>
   <data name="summary_only" xml:space="preserve"><value>{0} فقط</value></data>
   <data name="summary_fifteen" xml:space="preserve"><value>الأسرار الخمسة عشر</value></data>
@@ -607,4 +607,54 @@
   <data name="settings_today_card_default" xml:space="preserve"><value>افتراضي</value></data>
   <data name="calendar_feasts_solemnities" xml:space="preserve"><value>الأعياد والاحتفالات الكبرى</value></data>
   <data name="calendar_no_feasts" xml:space="preserve"><value>لا تتوفر أعياد أو احتفالات كبرى منشورة لهذا التقويم.</value></data>
+  <data name="home_widgets_title" xml:space="preserve"><value>الرئيسية</value></data>
+  <data name="home_widgets_customize" xml:space="preserve"><value>تخصيص الرئيسية</value></data>
+  <data name="home_widgets_add" xml:space="preserve"><value>إضافة عنصر</value></data>
+  <data name="home_widgets_remove" xml:space="preserve"><value>إزالة العنصر</value></data>
+  <data name="home_widgets_move_up" xml:space="preserve"><value>نقل لأعلى</value></data>
+  <data name="home_widgets_move_down" xml:space="preserve"><value>نقل لأسفل</value></data>
+  <data name="home_widgets_readings" xml:space="preserve"><value>قراءات اليوم</value></data>
+  <data name="home_widgets_pope_intention" xml:space="preserve"><value>نية البابا</value></data>
+  <data name="home_widgets_calendar" xml:space="preserve"><value>التقويم</value></data>
+  <data name="home_widgets_photo" xml:space="preserve"><value>صورة</value></data>
+  <data name="home_widgets_reminders" xml:space="preserve"><value>التذكيرات</value></data>
+  <data name="home_widgets_scripture" xml:space="preserve"><value>الكتاب المقدس</value></data>
+  <data name="home_widgets_reflection" xml:space="preserve"><value>تأمل</value></data>
+  <data name="home_widgets_feast" xml:space="preserve"><value>عيد اليوم</value></data>
+  <data name="home_widgets_empty" xml:space="preserve"><value>أضف عناصر لتخصيص صفحتك الرئيسية.</value></data>
+  <data name="home_widgets_choose_photo" xml:space="preserve"><value>اختيار صورة</value></data>
+  <data name="home_widgets_remove_photo" xml:space="preserve"><value>إزالة الصورة</value></data>
+  <data name="home_widgets_photo_error" xml:space="preserve"><value>تعذر تحميل الصورة</value></data>
+  <data name="home_widgets_no_reminders" xml:space="preserve"><value>لا توجد تذكيرات بعد.</value></data>
+  <data name="home_widgets_manage_reminders" xml:space="preserve"><value>إدارة التذكيرات</value></data>
+  <data name="home_widgets_reflection_pending" xml:space="preserve"><value>لا يتوفر تأمل لهذا التاريخ بهذه اللغة.</value></data>
+  <data name="home_widgets_no_feast" xml:space="preserve"><value>لا تتوفر معلومات عن عيد لهذا التاريخ.</value></data>
+  <data name="home_widgets_no_readings" xml:space="preserve"><value>لا تتوفر قراءات لهذا التاريخ.</value></data>
+  <data name="home_widgets_no_intention" xml:space="preserve"><value>لا تتوفر نية لهذا الشهر.</value></data>
+  <data name="home_widgets_feast_details" xml:space="preserve"><value>عن عيد اليوم</value></data>
+  <data name="home_widgets_no_feast_description" xml:space="preserve"><value>لا يتوفر شرح بهذه اللغة.</value></data>
+  <data name="home_widgets_community" xml:space="preserve"><value>صلوات المجتمع</value></data>
+  <data name="home_widgets_available" xml:space="preserve"><value>العناصر المتاحة</value></data>
+  <data name="home_widgets_selected" xml:space="preserve"><value>عناصرك</value></data>
+  <data name="home_widgets_photo_description" xml:space="preserve"><value>الصورة التي اخترتها</value></data>
+  <data name="AbtMissionPrayerCorrections.Text" xml:space="preserve"><value>تصحيحات الصلوات السريانية والأوكرانية قدّمها أحد المساهمين في بروساري (أكتوبر 2026).</value></data>
+  <data name="EdTraditionalMysteries.Content" xml:space="preserve"><value>استخدام الأسرار التقليدية الخمسة عشر</value></data>
+  <data name="QuickTraditionalMysteries.Content" xml:space="preserve"><value>استخدام الأسرار التقليدية الخمسة عشر</value></data>
+  <data name="EdMysteryCount.Header" xml:space="preserve"><value>عدد الأسرار</value></data>
+  <data name="QuickMysteryCount.Header" xml:space="preserve"><value>عدد الأسرار</value></data>
+  <data name="summary_traditional_today" xml:space="preserve"><value>أسرار اليوم (الخمسة عشر التقليدية)</value></data>
+  <data name="flow_choose_prayer" xml:space="preserve"><value>اختيار صلاة</value></data>
+  <data name="flow_mysteries" xml:space="preserve"><value>الأسرار</value></data>
+  <data name="calendar_view" xml:space="preserve"><value>عرض التقويم</value></data>
+  <data name="calendar_list_view" xml:space="preserve"><value>قائمة</value></data>
+  <data name="calendar_month_view" xml:space="preserve"><value>شهر</value></data>
+  <data name="SetShowPopeIntentionInPrayers.Header" xml:space="preserve"><value>عرض النية الشهرية أثناء الصلاة من أجل البابا</value></data>
+  <data name="prayer_pope_intention_source" xml:space="preserve"><value>شبكة صلاة البابا العالمية</value></data>
+  <data name="reminders_save_without_notifications" xml:space="preserve"><value>حفظ دون إشعارات</value></data>
+  <data name="summary_selected_mysteries" xml:space="preserve"><value>{0} أسرار بدءًا من {1}</value></data>
+  <data name="flow_show_transliteration" xml:space="preserve"><value>أظهر النقل الصوتي</value></data>
+  <data name="flow_choose_mystery" xml:space="preserve"><value>اختيار سر</value></data>
+  <data name="mode_choose_on_launch" xml:space="preserve"><value>الاختيار عند بدء الصلاة</value></data>
+  <data name="flow_mystery_set" xml:space="preserve"><value>مجموعة الأسرار</value></data>
+  <data name="flow_entire_set" xml:space="preserve"><value>المجموعة كاملة</value></data>
 </root>
