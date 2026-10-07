@@ -38343,6 +38343,165 @@
           }
         }
       }
+    },
+    "macScripting.invalidReference" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Provide a saved prayer's UUID or exact name."
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "יש לציין את ה־UUID או את השם המדויק של תפילה שמורה."
+          }
+        },
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "أدخل UUID الخاص بالصلاة المحفوظة أو اسمها المطابق تماماً."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Укажите UUID или точное имя сохранённой молитвы."
+          }
+        },
+        "fil" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ibigay ang UUID o eksaktong pangalan ng naka-save na panalangin."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Indiquez l’UUID ou le nom exact d’une prière enregistrée."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Indica l’UUID o il nome esatto di una preghiera salvata."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Укажіть UUID або точну назву збереженої молитви."
+          }
+        }
+      }
+    },
+    "macScripting.prayerNotFound" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This saved prayer is not available. Use list prayers to find its current UUID."
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "התפילה השמורה אינה זמינה. אפשר להשתמש ב־list prayers כדי למצוא את ה־UUID הנוכחי שלה."
+          }
+        },
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "هذه الصلاة المحفوظة غير متاحة. استخدم list prayers للعثور على UUID الحالي."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Эта сохранённая молитва недоступна. Используйте list prayers, чтобы найти её текущий UUID."
+          }
+        },
+        "fil" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hindi available ang naka-save na panalanging ito. Gamitin ang list prayers upang hanapin ang kasalukuyang UUID nito."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cette prière enregistrée n’est pas disponible. Utilisez list prayers pour trouver son UUID actuel."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Questa preghiera salvata non è disponibile. Usa list prayers per trovare il suo UUID attuale."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ця збережена молитва недоступна. Використайте list prayers, щоб знайти її поточний UUID."
+          }
+        }
+      }
+    },
+    "macScripting.ambiguousName" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "More than one saved prayer has this name. Open the prayer by its UUID."
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "יש יותר מתפילה שמורה אחת בשם הזה. יש לפתוח את התפילה לפי ה־UUID שלה."
+          }
+        },
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تحمل أكثر من صلاة محفوظة هذا الاسم. افتح الصلاة باستخدام UUID الخاص بها."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Это имя есть у нескольких сохранённых молитв. Откройте молитву по её UUID."
+          }
+        },
+        "fil" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "May higit sa isang naka-save na panalangin na may ganitong pangalan. Buksan ang panalangin gamit ang UUID nito."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Plusieurs prières enregistrées portent ce nom. Ouvrez la prière avec son UUID."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Più preghiere salvate hanno questo nome. Apri la preghiera usando il suo UUID."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кілька збережених молитов мають цю назву. Відкрийте молитву за її UUID."
+          }
+        }
+      }
     }
   },
   "version" : "1.0"

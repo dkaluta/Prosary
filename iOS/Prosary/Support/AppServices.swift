@@ -61,10 +61,15 @@ struct AppServices {
     let calendar = StubLiturgicalCalendar()
     // Legacy -resetStore is now an isolated-test flag; never delete the person's library
     // or iCloud preferences from an app launch argument.
-    let store: PresetStore = if let error = persistenceError {
-      UnavailablePresetStore(error: error)
+    let store: PresetStore
+    if let error = persistenceError {
+      store = UnavailablePresetStore(error: error)
     } else {
-      SwiftDataPresetStore(context: ModelContext(modelContainer), defaults: ProsaryRuntimeEnvironment.defaults)
+      let context = ModelContext(modelContainer)
+      #if os(macOS) && DEBUG
+      MacScriptingLibrary.seedTestFixtures(in: context)
+      #endif
+      store = SwiftDataPresetStore(context: context, defaults: ProsaryRuntimeEnvironment.defaults)
     }
     return AppServices(
       presetStore: store,

@@ -369,6 +369,7 @@ struct MacSceneBridge: ViewModifier {
       .task {
         let opener = openWindow
         MacPrayerWindowActions.install { route in opener(id: "prayer", value: PrayerWindowRequest(route: route)) }
+        MacScriptingNavigation.shared.install { opener(id: "main") }
         await RecentPrayers.shared.refresh()
       }
       .onReceive(NotificationCenter.default.publisher(for: .prayerLibraryDidChange)) { _ in

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dictionary SYSTEM "file://localhost/System/Library/DTDs/sdef.dtd">
+<dictionary title="Prosary Terminology">
+  <suite name="Prosary Suite" code="PSry" description="Saved prayers and native Mac navigation.">
+    <record-type name="prayer information" code="PSpi" description="Read-only metadata for a saved prayer copy.">
+      <property name="id" code="ID  " type="text" description="The saved copy's stable UUID."><cocoa key="id"/></property>
+      <property name="name" code="pnam" type="text" description="The exact saved name."><cocoa key="name"/></property>
+      <property name="prayer kind" code="PSkd" type="text" description="rosary, jesusPrayer, or custom."><cocoa key="prayerKind"/></property>
+      <property name="language code" code="PSlg" type="text" description="The saved language preference; default follows app settings."><cocoa key="languageCode"/></property>
+      <property name="devotion id" code="PSdv" type="text" description="The custom devotion's bundle ID, or an empty string."><cocoa key="devotionId"/></property>
+      <property name="is default" code="PSdf" type="boolean" description="Whether this is the devotion's default saved copy."><cocoa key="isDefault"/></property>
+    </record-type>
+    <command name="list prayers" code="PSryPSls" description="List saved prayer copies, ordered by name and UUID, without creating or editing prayers.">
+      <cocoa class="ProsaryScriptingCommand"/>
+      <result description="The saved prayers."><type type="prayer information" list="yes"/></result>
+    </command>
+    <command name="open prayer" code="PSryPSop" description="Open a saved prayer with its settings and progress, reusing its normal prayer window.">
+      <cocoa class="ProsaryScriptingCommand"/>
+      <direct-parameter type="text" description="A saved UUID or exact, unambiguous name. Use UUID when names repeat."/>
+      <result type="text" description="The UUID of the opened saved prayer."/>
+    </command>
+    <command name="open library" code="PSryPSlb" description="Show the native Library. Navigation waits until an open editor is dismissed.">
+      <cocoa class="ProsaryScriptingCommand"/>
+    </command>
+    <command name="open readings" code="PSryPSrd" description="Show Daily Readings, retaining the browsed date. Navigation waits until an open editor is dismissed.">
+      <cocoa class="ProsaryScriptingCommand"/>
+    </command>
+  </suite>
+</dictionary>

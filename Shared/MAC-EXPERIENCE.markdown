@@ -299,6 +299,16 @@ gesture. Native regressions cover delayed creation, replacement, window scope an
 The rebuilt app was also launched normally and its first right-click opened the menu before
 any prayer selection, confirming the startup fix outside the test library.
 
+## AppleScript
+
+The Mac app's native scripting dictionary lists saved prayers and opens an existing saved
+copy, the Library, or Daily Readings. Scripts use stable saved UUIDs or an exact unique
+name. Opening reuses the ordinary prayer-window identity and preserves normal continuation
+choices; it does not create or edit presets, reminders or bookmarks. Library navigation
+waits for an open editor to close and retains the browsed reading date. Gallery templates
+without saved copies are absent from the list. See [Mac scripting](MAC-SCRIPTING.markdown)
+for the record fields, examples, errors and native acceptance checks.
+
 ## References
 
 - [Apple: Designing for macOS](https://developer.apple.com/design/human-interface-guidelines/designing-for-macos)
