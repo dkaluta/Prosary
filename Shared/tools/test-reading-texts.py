@@ -199,7 +199,10 @@ class ShippedCorpusTests(unittest.TestCase):
         passages_checked = 0
         for key, translations in self.payload["passages"].items():
             verses = translations.get("masoretic-delitzsch", [])
-            book, _ = builder.parse_citation(key.split("|", 1)[1], expand_subverses=True)
+            from reading_appointment_keys import split_passage_key
+            _, citation, _ = split_passage_key(key)
+            book_name = citation.split(":", 1)[0].rsplit(" ", 1)[0]
+            book = builder.BOOKS.get(book_name)
             if not verses or book not in builder.NT:
                 continue
             passages_checked += 1
@@ -213,7 +216,8 @@ class ShippedCorpusTests(unittest.TestCase):
         self.assertEqual(len(keys), len(set(keys)))
         self.assertTrue(set(keys) <= self.payload["passages"].keys())
         for key in self.payload["passages"]:
-            if builder.includes_whole_verses(key.split("|", 1)[1]):
+            from reading_appointment_keys import split_passage_key
+            if builder.includes_whole_verses(split_passage_key(key)[1]):
                 self.assertIn(key, keys)
         self.assertNotIn("daily|Luke 6:27–38", keys)
 

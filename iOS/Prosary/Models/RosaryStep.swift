@@ -18,6 +18,8 @@ struct RosaryStep: Identifiable, Hashable {
   var subtitle: String?
   /// The full prayer text to display/read.
   var body: String
+  /// Stable source identity for optional context, such as the published monthly intention.
+  var prayerKey: String? = nil
   /// Optional acclamation (the Stations' versicle/response) rendered above the body in the
   /// regular prayer typeface — kept out of `body` so a scripture body's typeface doesn't
   /// swallow the acclamation, which is a prayer, not part of the reading.
@@ -60,12 +62,14 @@ struct RosaryStep: Identifiable, Hashable {
     decadeIndex: Int? = nil,
     hailMaryIndexInDecade: Int? = nil,
     imageOverrideKey: String? = nil,
-    imageVariantKey: String? = nil
+    imageVariantKey: String? = nil,
+    prayerKey: String? = nil
   ) {
     self.id = id
     self.title = HebrewDisplayText.unpointed(title)
     self.subtitle = subtitle.map(HebrewDisplayText.unpointed)
     self.body = body
+    self.prayerKey = prayerKey
     self.acclamation = acclamation
     self.mystery = mystery
     self.isScripture = isScripture

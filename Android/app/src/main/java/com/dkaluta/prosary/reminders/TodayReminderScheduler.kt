@@ -27,7 +27,7 @@ object TodayReminderScheduler {
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
         val manager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         manager.cancel(pending)
-        if (enabled) manager.set(AlarmManager.RTC_WAKEUP,
+        if (enabled) ReminderScheduler.arm(context,
             ReminderScheduler.nextTriggerTimeMillis(minutes / 60, minutes % 60), pending)
     }
 

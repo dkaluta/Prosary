@@ -43,6 +43,10 @@ struct FeastDay: Decodable, Equatable {
     return (observances ?? []).compactMap { $0.saintDescription(language: language) }
   }
 
+  func reflections(language: String) -> [FeastSaintDescription] {
+    (observances ?? []).compactMap { $0.reflection(language: language) }
+  }
+
   /// Captions follow Today's interface language, independently of prayer-language choices.
   /// Roman rank terms follow the Saint James Vicariate's 2025–2026 calendar, pp. 4, 6–7:
   /// https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf
@@ -77,10 +81,25 @@ struct FeastObservance: Decodable, Equatable {
   let descriptionByLanguage: [String: String]?
   let descriptionSourceByLanguage: [String: String]?
   let descriptionCreditByLanguage: [String: String]?
+  let sourceUID: String?
+  let sourceTitleByLanguage: [String: String]?
+  let sourceDescriptionByLanguage: [String: String]?
+  let sourceRecurrence: String?
+  let categories: [String]?
+  let sections: [CalendarTextSection]?
+  let reflectionByLanguage: [String: String]?
 
   func saintDescription(language: String) -> FeastSaintDescription? {
+    textItem(descriptionByLanguage, language: language)
+  }
+
+  func reflection(language: String) -> FeastSaintDescription? {
+    textItem(reflectionByLanguage, language: language)
+  }
+
+  private func textItem(_ texts: [String: String]?, language: String) -> FeastSaintDescription? {
     let code = UILanguage.normalized(language)
-    guard let description = descriptionByLanguage?[code],
+    guard let description = texts?[code],
           !description.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else { return nil }
     let source = descriptionSourceByLanguage?[code].flatMap(URL.init(string:))
     let sourceURL = source.flatMap { url in
@@ -95,6 +114,13 @@ struct FeastObservance: Decodable, Equatable {
   }
 }
 
+/// Exact source sections can feed calendar/reflection widgets without reparsing prose.
+struct CalendarTextSection: Decodable, Equatable {
+  let id: String
+  let titleByLanguage: [String: String]
+  let textByLanguage: [String: String]
+}
+
 struct FeastSaintDescription: Equatable {
   let title: String
   let text: String
@@ -107,12 +133,17 @@ struct PopeIntention: Decodable, Equatable {
   let text: String
   let titleByLanguage: [String: String]?
   let textByLanguage: [String: String]?
+  var sourceByLanguage: [String: String]? = nil
+  var translationCreditByLanguage: [String: String]? = nil
 
   func localizedTitle(_ language: String) -> String {
     HebrewDisplayText.unpointed(localizedValue(titleByLanguage, language: language) ?? title)
   }
   func localizedText(_ language: String) -> String {
     localizedValue(textByLanguage, language: language) ?? text
+  }
+  func translationCredit(_ language: String) -> String? {
+    localizedValue(translationCreditByLanguage, language: language)
   }
 }
 
@@ -124,6 +155,8 @@ struct ReadingCitation: Decodable, Equatable {
   let fullByLanguage: [String: String]?
   let sourceText: String?
   let sourceGroup: String?
+  /// Captured from the actual loaded registry table, independently of localized captions.
+  var readingDatasetID: String? = nil
 
   /// Compatibility for the first readings dataset, which stored one Hebrew full citation in
   /// a dedicated field before citations became language-keyed alongside feast titles.
@@ -267,6 +300,7 @@ enum TodayInfoStore {
   private static var registry: CalendarsFile?
   private static var loadedCalendarId: String?
   private static var loadedReadingsCalendarId: String?
+  private static var loadedReadingsDatasetID: String?
 
   /// The registry's calendars, in picker order.
   static var calendars: [FeastCalendar] {
@@ -318,7 +352,11 @@ enum TodayInfoStore {
 
   static func readings(on date: Date = Date()) -> [ReadingCitation] {
     ensureReadingsLoaded()
-    return readingsByDay[key(for: date, format: "yyyy-MM-dd")]?.readings ?? []
+    return (readingsByDay[key(for: date, format: "yyyy-MM-dd")]?.readings ?? []).map { citation in
+      var captured = citation
+      captured.readingDatasetID = loadedReadingsDatasetID
+      return captured
+    }
   }
 
   static func torahPortion(on date: Date = Date()) -> TorahPortion? {
@@ -444,10 +482,12 @@ enum TodayInfoStore {
     // Clearing before the decode is intentional. A missing/corrupt optional data file must
     // make this calendar's readings row disappear, never retain the last calendar's readings.
     readingsByDay = [:]
+    loadedReadingsDatasetID = nil
     guard let file = variant ? "readings-ugcc-gregorian"
       : registry?.calendars.first(where: { $0.id == selected })?.readingsFile else {
       return
     }
+    loadedReadingsDatasetID = file.hasPrefix("readings-") ? String(file.dropFirst(9)) : nil
     readingsByDay = decode(ReadingsFile.self, resource: file)?.days ?? [:]
   }
 }

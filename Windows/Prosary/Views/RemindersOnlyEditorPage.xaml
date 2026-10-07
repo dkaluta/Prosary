@@ -138,6 +138,9 @@
                                Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" Margin="4,0" />
                 </StackPanel>
 
+                <Button Command="{x:Bind ViewModel.DeleteSavedPrayerCommand}">
+                    <TextBlock x:Uid="HomeDeleteSavedPrayer" Text="Delete Saved Prayer…" />
+                </Button>
             </StackPanel>
         </ScrollViewer>
     </Grid>

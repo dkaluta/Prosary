@@ -8,6 +8,12 @@ fallback text as Ukrainian.
 
 ## Published prayers
 
+The Our Father, Hail Mary and Fatima prayer were replaced by the contributor's explicit
+corrections supplied on 6 October 2026. Their capitalization, wording and punctuation
+are retained as supplied. They have separate contributor credit rather than inheriting
+the published prayerbook attribution below. Previous sources remain recorded for the
+earlier recensions; Scripture passages are unchanged.
+
 The principal source is the [Roman Catholic Church in Ukraine prayerbook](https://rkc.org.ua/duhovnist/molytovnyk/),
 *Щоденно з Богом*. The publisher says these texts have been approved by its Liturgical
 Commission and permits full or partial reuse with a link to https://rkc.org.ua/.

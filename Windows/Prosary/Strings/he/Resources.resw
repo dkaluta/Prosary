@@ -13,10 +13,10 @@
   <data name="common_next" xml:space="preserve"><value>הבא</value></data>
   <data name="common_continue" xml:space="preserve"><value>המשך</value></data>
   <data name="common_restart" xml:space="preserve"><value>התחל מחדש</value></data>
-  <data name="kind_rosary" xml:space="preserve"><value>מחרוזת</value></data>
+  <data name="kind_rosary" xml:space="preserve"><value>מחרוזת הורדים</value></data>
   <data name="kind_jesus_prayer" xml:space="preserve"><value>תפילת ישוע</value></data>
   <data name="kind_devotion" xml:space="preserve"><value>מסלול תפילה</value></data>
-  <data name="kind_default_name_rosary" xml:space="preserve"><value>המחרוזת שלי</value></data>
+  <data name="kind_default_name_rosary" xml:space="preserve"><value>מחרוזת הורדים שלי</value></data>
   <data name="mystery_group_joyful" xml:space="preserve"><value>השמחה</value></data>
   <data name="mystery_group_sorrowful" xml:space="preserve"><value>המוכאבות</value></data>
   <data name="mystery_group_glorious" xml:space="preserve"><value>הכבוד</value></data>
@@ -25,7 +25,7 @@
   <data name="mode_specific" xml:space="preserve"><value>תמיד אוסף ספציפי</value></data>
   <data name="mode_fifteen" xml:space="preserve"><value>15 הרזים (השמחה, המוכאבות, הכבוד)</value></data>
   <data name="mode_twenty" xml:space="preserve"><value>20 הרזים (כל ארבעת האוספים)</value></data>
-  <data name="mode_single" xml:space="preserve"><value>רז אחד בלבד</value></data>
+  <data name="mode_single" xml:space="preserve"><value>רזים נבחרים</value></data>
   <data name="summary_always" xml:space="preserve"><value>תמיד {0}</value></data>
   <data name="summary_only" xml:space="preserve"><value>רק {0}</value></data>
   <data name="summary_fifteen" xml:space="preserve"><value>15 הרזים</value></data>
@@ -69,9 +69,9 @@
   <data name="flow_app_setting" xml:space="preserve"><value>הגדרת האפליקציה</value></data>
   <data name="prayer_resume_title" xml:space="preserve"><value>להמשיך מהמקום שבו הפסקת?</value></data>
   <data name="prayer_resume_message" xml:space="preserve"><value>אפשר להמשיך בתפילה שלא הסתיימה או להתחיל מחדש.</value></data>
-  <data name="rosary_no_favorites_header" xml:space="preserve"><value>אין עדיין מועדפי מחרוזת</value></data>
-  <data name="rosary_no_favorites_body" xml:space="preserve"><value>הוסף תחילה מועדף מחרוזת.</value></data>
-  <data name="rosary_error_body" xml:space="preserve"><value>לא ניתן היה לטעון את תפילת המחרוזת. חזור ונסה שוב.</value></data>
+  <data name="rosary_no_favorites_header" xml:space="preserve"><value>אין עדיין מועדפי מחרוזת הורדים</value></data>
+  <data name="rosary_no_favorites_body" xml:space="preserve"><value>הוסף תחילה מועדף מחרוזת הורדים.</value></data>
+  <data name="rosary_error_body" xml:space="preserve"><value>לא ניתן היה לטעון את תפילת מחרוזת הורדים. חזור ונסה שוב.</value></data>
   <data name="rosary_preset_name" xml:space="preserve"><value>שם התבנית</value></data>
   <data name="rosary_save_as_preset" xml:space="preserve"><value>שמירה כתבנית</value></data>
   <data name="browse_all" xml:space="preserve"><value>הכול</value></data>
@@ -122,8 +122,8 @@
   <data name="FavTitle.Text" xml:space="preserve"><value>מועדפים</value></data>
   <data name="BtnPray.Content" xml:space="preserve"><value>התפלל</value></data>
   <data name="FavSetDefault.Content" xml:space="preserve"><value>הגדר כברירת מחדל</value></data>
-  <data name="FavRosaryHeader.Text" xml:space="preserve"><value>מחרוזת</value></data>
-  <data name="FavAddRosary.Content" xml:space="preserve"><value>+ הוסף מחרוזת</value></data>
+  <data name="FavRosaryHeader.Text" xml:space="preserve"><value>מחרוזת הורדים</value></data>
+  <data name="FavAddRosary.Content" xml:space="preserve"><value>+ הוסף מחרוזת הורדים</value></data>
   <data name="FavJesusHeader.Text" xml:space="preserve"><value>תפילת ישוע</value></data>
   <data name="FavAddJesus.Content" xml:space="preserve"><value>+ הוסף תפילת ישוע</value></data>
   <data name="FavMoreHeader.Text" xml:space="preserve"><value>מסלולי תפילה נוספים</value></data>
@@ -132,10 +132,10 @@
   <data name="FavGetCommunity.Text" xml:space="preserve"><value>מסלולים מהקהילה…</value></data>
   <data name="FavExportButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>ייצוא לעריכה (compose.prosary.app)</value></data>
   <data name="FavRemoveImportedButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>הסר מסלול מיובא</value></data>
-  <data name="PickerTitle.Text" xml:space="preserve"><value>המחרוזת הקדושה</value></data>
+  <data name="PickerTitle.Text" xml:space="preserve"><value>מחרוזת הורדים הקדושה</value></data>
   <data name="PickerDefaultHeader.Text" xml:space="preserve"><value>ברירת המחדל</value></data>
   <data name="PickerCustomHeader.Text" xml:space="preserve"><value>מותאם אישית</value></data>
-  <data name="PickerPrayAny.Text" xml:space="preserve"><value>תפילת מחרוזת חופשית</value></data>
+  <data name="PickerPrayAny.Text" xml:space="preserve"><value>תפילת מחרוזת הורדים חופשית</value></data>
   <data name="PickerAnyDetail.Text" xml:space="preserve"><value>כל שאר האפשרויות עוקבות אחר תבנית ברירת המחדל — התאמה אישית מלאה נמצאת בתבניות.</value></data>
   <data name="PickerSaveAsPreset.Content" xml:space="preserve"><value>שמירה כתבנית</value></data>
   <data name="PickerPresetsHeader.Text" xml:space="preserve"><value>תבניות</value></data>
@@ -157,23 +157,23 @@
   <data name="BtnCancel.Content" xml:space="preserve"><value>ביטול</value></data>
   <data name="BtnSave.Content" xml:space="preserve"><value>שמור</value></data>
   <data name="EdBack.Text" xml:space="preserve"><value>חזרה</value></data>
-  <data name="EdOptionsTitle.Text" xml:space="preserve"><value>אפשרויות המחרוזת</value></data>
+  <data name="EdOptionsTitle.Text" xml:space="preserve"><value>אפשרויות מחרוזת הורדים</value></data>
   <data name="EdSetDefault.Text" xml:space="preserve"><value>הגדר כברירת מחדל</value></data>
   <data name="EdLanguageHeader.Text" xml:space="preserve"><value>שפת התפילה</value></data>
-  <data name="EdRosaryOptionsRow.Text" xml:space="preserve"><value>אפשרויות המחרוזת</value></data>
+  <data name="EdRosaryOptionsRow.Text" xml:space="preserve"><value>אפשרויות מחרוזת הורדים</value></data>
   <data name="EdTargetHeader.Text" xml:space="preserve"><value>מטרה</value></data>
   <data name="EdRemindersHeader.Text" xml:space="preserve"><value>תזכורות</value></data>
   <data name="EdAddReminder.Text" xml:space="preserve"><value>הוסף תזכורת</value></data>
   <data name="EdWhichMysteries.Text" xml:space="preserve"><value>אילו רזים?</value></data>
   <data name="EdOpeningHeader.Text" xml:space="preserve"><value>תפילות הפתיחה והרזים</value></data>
   <data name="EdApostlesCreed.Text" xml:space="preserve"><value>אני מאמין</value></data>
-  <data name="EdOpeningPrayers.Text" xml:space="preserve"><value>“אבינו שבשמים” ו־3 “שמחי מרים” בפתיחה</value></data>
+  <data name="EdOpeningPrayers.Text" xml:space="preserve"><value>“אבינו שבשמים” ו־3 “שלום לך” בפתיחה</value></data>
   <data name="EdFatima.Text" xml:space="preserve"><value>“הו ישוע שלי” בסוף כל רז</value></data>
-  <data name="EdOpeningFatima.Text" xml:space="preserve"><value>תפילת פאטימה אחרי תפילת “כבוד לאב” הפותחת</value></data>
+  <data name="EdOpeningFatima.Text" xml:space="preserve"><value>תפילת פאטימה אחרי תפילת “שבח לאב” הפותחת</value></data>
   <data name="EdDisplayHeader.Text" xml:space="preserve"><value>תצוגה</value></data>
   <data name="EdMysteryArtwork.Header" xml:space="preserve"><value>איורי הרזים</value></data>
   <data name="EdPresenterMode.Text" xml:space="preserve"><value>מצב מנחה</value></data>
-  <data name="EdPresenterHint.Text" xml:space="preserve"><value>איחוד עשר ה“שמחי מרים” וה“כבוד לאב” של כל רז למסך אחד — שימושי למי שמוביל תפילה בציבור בעל־פה.</value></data>
+  <data name="EdPresenterHint.Text" xml:space="preserve"><value>איחוד עשר ה“שלום לך” וה“שבח לאב” של כל רז למסך אחד — שימושי למי שמוביל תפילה בציבור בעל־פה.</value></data>
   <data name="EdClosingHeader.Text" xml:space="preserve"><value>תפילות סיום</value></data>
   <data name="EdClosingIntentions.Text" xml:space="preserve"><value>כוונות הסיום</value></data>
   <data name="EdStMichael.Text" xml:space="preserve"><value>תפילת המלאך מיכאל</value></data>
@@ -182,7 +182,7 @@
   <data name="BeadAntiphonLabel.Text" xml:space="preserve"><value>מ</value></data>
   <data name="FlowTransliterationButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>הצג תעתיק</value></data>
   <data name="AbtTitle.Text" xml:space="preserve"><value>אודות Prosary</value></data>
-  <data name="AbtTagline.Text" xml:space="preserve"><value>עזר לתפילת המחרוזת ולתפילות קתוליות נוספות.</value></data>
+  <data name="AbtTagline.Text" xml:space="preserve"><value>עזר לתפילת מחרוזת הורדים ולתפילות קתוליות נוספות.</value></data>
   <data name="AbtTypefacesHeader.Text" xml:space="preserve"><value>גופנים</value></data>
   <data name="AbtTypeFrank.Text" xml:space="preserve"><value> — רישיון SIL Open Font 1.1 — תפילות בעברית.</value></data>
   <data name="AbtTypeShofar.Text" xml:space="preserve"><value> — GPL v2 עם חריגת הטמעת גופנים — פסוקי מקרא בעברית (פרויקט קולמוס, יורם גנת).</value></data>
@@ -323,8 +323,8 @@
   <data name="SetAramaicSignOfCrossCombo.Header" xml:space="preserve"><value>נוסח אות הצלב בארמית</value></data>
   <data name="EdAramaicSignOfCrossCombo.Header" xml:space="preserve"><value>נוסח אות הצלב בארמית</value></data>
   <data name="EdRiteCombo.Header" xml:space="preserve"><value>נוסח התפילה</value></data>
-  <data name="HomePrayAnyRosary.Content" xml:space="preserve"><value>התפלל מחרוזת כלשהי…</value></data>
-  <data name="HomeAddRosary.Content" xml:space="preserve"><value>הוסף מחרוזת…</value></data>
+  <data name="HomePrayAnyRosary.Content" xml:space="preserve"><value>התפלל מחרוזת הורדים כלשהי…</value></data>
+  <data name="HomeAddRosary.Content" xml:space="preserve"><value>הוסף מחרוזת הורדים…</value></data>
   <data name="HomeAddJesusPrayer.Content" xml:space="preserve"><value>הוסף את תפילת ישוע…</value></data>
   <data name="HomeAddToPrayHeader.Text" xml:space="preserve"><value>הוסף ל״תפילה״</value></data>
   <data name="HomeSavedPresets.Text" xml:space="preserve"><value>מסלולים שמורים</value></data>
@@ -343,7 +343,7 @@
   <data name="PickerApostlesCreed.Text" xml:space="preserve"><value>אני מאמין</value></data>
   <data name="PickerOpeningPrayers.Text" xml:space="preserve"><value>אבינו ושלוש פעמים שלום לך מרים בפתיחה</value></data>
   <data name="PickerFatima.Text" xml:space="preserve"><value>תפילת פאטימה אחרי כל עשור</value></data>
-  <data name="PickerOpeningFatima.Text" xml:space="preserve"><value>תפילת פאטימה אחרי תפילת “כבוד לאב” הפותחת</value></data>
+  <data name="PickerOpeningFatima.Text" xml:space="preserve"><value>תפילת פאטימה אחרי תפילת “שבח לאב” הפותחת</value></data>
   <data name="PickerPresenterMode.Text" xml:space="preserve"><value>מצב מנחה</value></data>
   <data name="PickerClosingIntentions.Text" xml:space="preserve"><value>כוונות הסיום</value></data>
   <data name="PickerStMichael.Text" xml:space="preserve"><value>תפילת המלאך מיכאל</value></data>
@@ -379,10 +379,10 @@
   <data name="import_empty" xml:space="preserve"><value>החבילה אינה מכילה תפילה.</value></data>
   <data name="import_duplicate" xml:space="preserve"><value>תפילה בשם "{0}" כבר מותקנת.</value></data>
   <data name="browse_newer_catalog" xml:space="preserve"><value>המאגר משתמש בתבנית קטלוג חדשה יותר — יש לעדכן את Prosary כדי לעיין בו.</value></data>
-  <data name="reminder_rosary" xml:space="preserve"><value>הגיע הזמן להתפלל את המחרוזת.</value></data>
+  <data name="reminder_rosary" xml:space="preserve"><value>הגיע הזמן להתפלל את מחרוזת הורדים.</value></data>
   <data name="reminder_jesus" xml:space="preserve"><value>הגיע הזמן לתפילת ישוע.</value></data>
   <data name="reminder_pray" xml:space="preserve"><value>הגיע הזמן להתפלל.</value></data>
-  <data name="preset_classic_rosary" xml:space="preserve"><value>מחרוזת קלאסית</value></data>
+  <data name="preset_classic_rosary" xml:space="preserve"><value>מחרוזת הורדים קלאסית</value></data>
   <data name="prayer_default_name" xml:space="preserve"><value>התפילה שלי</value></data>
   <data name="AbtAdditionalSources.Text" xml:space="preserve"><value>כתבי הקודש בצרפתית: קראמפון (1923), נחלת הכלל. כתבי הקודש באיטלקית: אנטוניו מרטיני; נתונים מובנים © Giovanni Novelli, ברישיון CC BY 4.0 ‏(parolaviva.art). תפילות בצרפתית ובאיטלקית: תמצית הקטכיזם של הוותיקן. כוונות האפיפיור: רשת התפילה העולמית של האפיפיור (2026–2027); תרגומים לעברית ולאוקראינית מאת Prosary. כוונות ברוסית (2026): תרגום מאת t.me/ihsovs, שפורסם באתר קהילת העיבור ללא חטא בצ׳ליאבינסק (cc74.wordpress.com/rosary/).</value></data>
   <data name="AbtPeshittaSources.Text" xml:space="preserve"><value>הברית החדשה בפשיטתא (BFBS, 1905): Digital Syriac Corpus; תעתיק הטקסט הסורי מאת George A. Kiraz, מהדורת TEI © James E. Walters, ברישיון CC BY 4.0. המרה לכתב עברי לפי הכללים של ארז; בחירת הפסוקים ועיצוב הטקסט בידי Prosary.</value></data>
@@ -413,8 +413,8 @@
   <data name="SetCyrillicPrayerTypeface.Header" xml:space="preserve"><value>תפילות בכתב קירילי</value></data>
   <data name="settings_typeface_serif" xml:space="preserve"><value>גופן מערכת עם תגים</value></data>
   <data name="prayer_tradition" xml:space="preserve"><value>נוסח התפילה</value></data>
-  <data name="prayer_tradition_vicariate" xml:space="preserve"><value>נוסח הנציגות</value></data>
-  <data name="prayer_tradition_mission" xml:space="preserve"><value>נוסח השליחות</value></data>
+  <data name="prayer_tradition_vicariate" xml:space="preserve"><value>נוסח לטיני</value></data>
+  <data name="prayer_tradition_mission" xml:space="preserve"><value>נוסח סורי</value></data>
   <data name="basic_pin" xml:space="preserve"><value>הצמד ל“תפילה”</value></data>
   <data name="basic_unpin" xml:space="preserve"><value>הסר מ“תפילה”</value></data>
   <data name="EdClosingPopeIntention.Text" xml:space="preserve"><value>תפילות סיום למען האפיפיור</value></data>
@@ -442,7 +442,7 @@
   <data name="AbtHebrewBookIndex.Text" xml:space="preserve"><value>שמות נוספים של ספרי המקרא בעברית: מפתח התנ״ך של מכון ממרא. שמות בלבד, ללא טקסט מקראי.</value></data>
   <data name="AbtUkrainianPrayerSources.Text" xml:space="preserve"><value>תפילות באוקראינית: הכנסייה הקתולית הרומית באוקראינה, סידור התפילות Щоденно з Богом. השימוש נעשה עם ציון המקור בהתאם למדיניות השימוש החוזר של המוציא לאור. כתבי הקודש: תרגום קוליש, נצ׳וי־לויצקי ופוליוי (1905), נחלת הכלל; eBible.org ukr1871. הכתיב ההיסטורי של כתבי הקודש נשמר. תפילת הסיום של מחרוזת התפילה באוקראינית: מרכז המידע האוקראיני MIR מדג׳וגוריה (medjugorje.com.ua), מובאת בציון המקור בהתאם להרשאת הפרסום של האתר.</value></data>
   <data name="AbtUkrainianPrayerbookLink.Content" xml:space="preserve"><value>סידור תפילות באוקראינית</value></data>
-  <data name="AbtUkrainianRosarySourceLink.Content" xml:space="preserve"><value>MIR מדג׳וגוריה — תפילת המחרוזת באוקראינית</value></data>
+  <data name="AbtUkrainianRosarySourceLink.Content" xml:space="preserve"><value>MIR מדג׳וגוריה — תפילת מחרוזת הורדים באוקראינית</value></data>
   <data name="AbtUkrainianScriptureLink.Content" xml:space="preserve"><value>כתבי הקודש באוקראינית (1905)</value></data>
   <!-- Window and menu commands -->
   <data name="CommandsOpenInNewWindow" xml:space="preserve"><value>פתח בחלון חדש</value></data>
@@ -452,7 +452,7 @@
   <data name="CommandsNewWindow" xml:space="preserve"><value>חלון חדש</value></data>
   <data name="FavoriteEditorSaveFailed" xml:space="preserve"><value>לא ניתן לשמור במועדפים</value></data>
   <data name="flow_show_original_text" xml:space="preserve"><value>הצג את הטקסט המקורי</value></data>
-  <data name="RosaryAnyRosaryAction" xml:space="preserve"><value>תפילת מחרוזת חופשית…</value></data>
+  <data name="RosaryAnyRosaryAction" xml:space="preserve"><value>תפילת מחרוזת הורדים חופשית…</value></data>
   <data name="RosarySaveAsPresetAction" xml:space="preserve"><value>שמירה כתבנית…</value></data>
   <data name="FavoriteEditorReminderTime" xml:space="preserve"><value>שעת התזכורת</value></data>
   <data name="FavoriteEditorRemoveReminder" xml:space="preserve"><value>הסר תזכורת</value></data>
@@ -547,7 +547,7 @@
   <data name="home_today_saint_source" xml:space="preserve"><value>מקור הטקסט</value></data>
   <data name="AbtSyriacHebrewCalendar.Text" xml:space="preserve"><value>לוח השנה הסורי בעברית — Urtotho (2026), נמסר ל־Prosary.</value></data>
   <data name="EdLitanyOfLoreto.Header" xml:space="preserve"><value>אמירת התחנון למרים לאחר המחרוזת</value></data>
-  <data name="EdRosaryCollect.Header" xml:space="preserve"><value>מעתר המחרוזת</value></data>
+  <data name="EdRosaryCollect.Header" xml:space="preserve"><value>מעתר מחרוזת הורדים</value></data>
   <data name="readings_title" xml:space="preserve"><value>קריאות</value></data>
   <data name="bible_daily_readings" xml:space="preserve"><value>קריאות היום</value></data>
   <data name="bible_title" xml:space="preserve"><value>כתבי הקודש</value></data>
@@ -605,4 +605,54 @@
   <data name="settings_today_card_default" xml:space="preserve"><value>ברירת מחדל</value></data>
   <data name="calendar_feasts_solemnities" xml:space="preserve"><value>חגים ומועדים</value></data>
   <data name="calendar_no_feasts" xml:space="preserve"><value>אין חגים או מועדים שפורסמו בלוח השנה הזה.</value></data>
+  <data name="home_widgets_title" xml:space="preserve"><value>בית</value></data>
+  <data name="home_widgets_customize" xml:space="preserve"><value>התאמת דף הבית</value></data>
+  <data name="home_widgets_add" xml:space="preserve"><value>הוספת וידג׳ט</value></data>
+  <data name="home_widgets_remove" xml:space="preserve"><value>הסרת וידג׳ט</value></data>
+  <data name="home_widgets_move_up" xml:space="preserve"><value>הזזה למעלה</value></data>
+  <data name="home_widgets_move_down" xml:space="preserve"><value>הזזה למטה</value></data>
+  <data name="home_widgets_readings" xml:space="preserve"><value>מקראות היום</value></data>
+  <data name="home_widgets_pope_intention" xml:space="preserve"><value>כוונת האפיפיור</value></data>
+  <data name="home_widgets_calendar" xml:space="preserve"><value>לוח שנה</value></data>
+  <data name="home_widgets_photo" xml:space="preserve"><value>תמונה</value></data>
+  <data name="home_widgets_reminders" xml:space="preserve"><value>תזכורות</value></data>
+  <data name="home_widgets_scripture" xml:space="preserve"><value>כתבי הקודש</value></data>
+  <data name="home_widgets_reflection" xml:space="preserve"><value>נקודה להרהור</value></data>
+  <data name="home_widgets_feast" xml:space="preserve"><value>החג של היום</value></data>
+  <data name="home_widgets_empty" xml:space="preserve"><value>אפשר להוסיף וידג׳טים ולהתאים את דף הבית.</value></data>
+  <data name="home_widgets_choose_photo" xml:space="preserve"><value>בחירת תמונה</value></data>
+  <data name="home_widgets_remove_photo" xml:space="preserve"><value>הסרת תמונה</value></data>
+  <data name="home_widgets_photo_error" xml:space="preserve"><value>לא ניתן לטעון את התמונה</value></data>
+  <data name="home_widgets_no_reminders" xml:space="preserve"><value>אין עדיין תזכורות.</value></data>
+  <data name="home_widgets_manage_reminders" xml:space="preserve"><value>ניהול תזכורות</value></data>
+  <data name="home_widgets_reflection_pending" xml:space="preserve"><value>אין הרהור לתאריך זה בשפה זו.</value></data>
+  <data name="home_widgets_no_feast" xml:space="preserve"><value>אין מידע על חג בתאריך זה.</value></data>
+  <data name="home_widgets_no_readings" xml:space="preserve"><value>אין מקראות לתאריך זה.</value></data>
+  <data name="home_widgets_no_intention" xml:space="preserve"><value>אין כוונה לחודש זה.</value></data>
+  <data name="home_widgets_feast_details" xml:space="preserve"><value>על החג של היום</value></data>
+  <data name="home_widgets_no_feast_description" xml:space="preserve"><value>אין הסבר בשפה זו.</value></data>
+  <data name="home_widgets_community" xml:space="preserve"><value>תפילות מהקהילה</value></data>
+  <data name="home_widgets_available" xml:space="preserve"><value>וידג׳טים זמינים</value></data>
+  <data name="home_widgets_selected" xml:space="preserve"><value>הווידג׳טים שלך</value></data>
+  <data name="home_widgets_photo_description" xml:space="preserve"><value>התמונה שבחרת</value></data>
+  <data name="AbtMissionPrayerCorrections.Text" xml:space="preserve"><value>תיקוני תפילות בסורית ובאוקראינית נמסרו בידי תורם לפרוסרי (אוקטובר 2026).</value></data>
+  <data name="EdTraditionalMysteries.Content" xml:space="preserve"><value>15 הרזים המסורתיים</value></data>
+  <data name="QuickTraditionalMysteries.Content" xml:space="preserve"><value>15 הרזים המסורתיים</value></data>
+  <data name="EdMysteryCount.Header" xml:space="preserve"><value>מספר הרזים</value></data>
+  <data name="QuickMysteryCount.Header" xml:space="preserve"><value>מספר הרזים</value></data>
+  <data name="summary_traditional_today" xml:space="preserve"><value>רזי היום (15 המסורתיים)</value></data>
+  <data name="flow_choose_prayer" xml:space="preserve"><value>בחירת תפילה</value></data>
+  <data name="flow_mysteries" xml:space="preserve"><value>רזים</value></data>
+  <data name="calendar_view" xml:space="preserve"><value>תצוגת הלוח</value></data>
+  <data name="calendar_list_view" xml:space="preserve"><value>רשימה</value></data>
+  <data name="calendar_month_view" xml:space="preserve"><value>חודש</value></data>
+  <data name="SetShowPopeIntentionInPrayers.Header" xml:space="preserve"><value>הצגת הכוונה החודשית בתפילות למען האפיפיור</value></data>
+  <data name="prayer_pope_intention_source" xml:space="preserve"><value>רשת התפילה העולמית של האפיפיור</value></data>
+  <data name="reminders_save_without_notifications" xml:space="preserve"><value>שמירה ללא התראות</value></data>
+  <data name="summary_selected_mysteries" xml:space="preserve"><value>{0} רזים החל מ־{1}</value></data>
+  <data name="flow_show_transliteration" xml:space="preserve"><value>הצג תעתיק</value></data>
+  <data name="flow_choose_mystery" xml:space="preserve"><value>בחירת רז</value></data>
+  <data name="mode_choose_on_launch" xml:space="preserve"><value>בחירה בתחילת התפילה</value></data>
+  <data name="flow_mystery_set" xml:space="preserve"><value>קבוצת הרזים</value></data>
+  <data name="flow_entire_set" xml:space="preserve"><value>כל הקבוצה</value></data>
 </root>

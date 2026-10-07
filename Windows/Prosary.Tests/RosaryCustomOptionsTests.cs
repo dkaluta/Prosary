@@ -8,6 +8,21 @@ namespace Prosary.Tests;
 
 public class RosaryCustomOptionsTests
 {
+    [Fact]
+    public void OlderInstalledRosaryCannotRestoreRetiredSkipControlOrValue()
+    {
+        CustomDevotionOption[] old =
+        [
+            new("skipFifthDecade", CustomDevotionOption.OptionKind.Toggle, "Legacy skip", Default: JsonSerializer.SerializeToElement(true)),
+            new("fatimaPrayer", CustomDevotionOption.OptionKind.Toggle, "Fatima", Default: JsonSerializer.SerializeToElement(true)),
+        ];
+        Assert.Equal(new[] { "fatimaPrayer" }, RosaryCustomOptions.EditorOptions("rosary", old).Select(row => row.Key));
+        Assert.Same(old, RosaryCustomOptions.EditorOptions("anotherRosary", old));
+        var stored = new Dictionary<string, string> { ["skipFifthDecade"] = "true", ["fatimaPrayer"] = "true" };
+        Assert.Equal(new Dictionary<string, string> { ["fatimaPrayer"] = "true" }, RosaryCustomOptions.Normalize("rosary", stored));
+        Assert.Equal(stored, RosaryCustomOptions.Normalize("anotherRosary", stored));
+    }
+
     [Theory]
     [InlineData(null, "true", null, null, true)]
     [InlineData(null, null, "true", null, true)]

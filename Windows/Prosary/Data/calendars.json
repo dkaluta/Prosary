@@ -151,6 +151,24 @@
       }
     },
     {
+      "id": "mission-provisional",
+      "file": "feasts-mission-provisional",
+      "name": "Mission — provisional Syriac calendar (2026)",
+      "nameByLanguage": {
+        "he": "סורי — לוח קהילתי לתקופת ניסיון (2026)",
+        "ar": "الإرسالية — تقويم سرياني مؤقت (2026)",
+        "ru": "Миссия — предварительный сирийский календарь (2026)",
+        "tl": "Misyon — pansamantalang kalendaryong Siryako (2026)",
+        "fr": "Mission — calendrier syriaque provisoire (2026)",
+        "it": "Missione — calendario siriaco provvisorio (2026)",
+        "uk": "Місія — попередній сирійський календар (2026)"
+      },
+      "provisional": true,
+      "scope": "Mission",
+      "coverageStart": "2026-01-01",
+      "coverageEnd": "2026-12-31"
+    },
+    {
       "id": "maronite",
       "file": "feasts-maronite",
       "readingsFile": "readings-maronite",

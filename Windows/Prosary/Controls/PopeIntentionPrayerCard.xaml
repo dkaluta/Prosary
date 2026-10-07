@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UserControl
+    x:Class="Prosary.Controls.PopeIntentionPrayerCard"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Border Padding="16" Margin="0,16,0,0" CornerRadius="12" BorderThickness="1"
+            Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+            BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}">
+        <StackPanel Spacing="8">
+            <TextBlock x:Name="TitleText" FontSize="18" FontWeight="SemiBold"
+                       TextWrapping="Wrap" IsTextSelectionEnabled="True" />
+            <TextBlock x:Name="BodyText" TextWrapping="Wrap" IsTextSelectionEnabled="True" />
+            <TextBlock x:Name="SourceText" FontSize="12" TextWrapping="Wrap"
+                       Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+            <TextBlock x:Name="CreditText" FontSize="12" TextWrapping="Wrap"
+                       Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+        </StackPanel>
+    </Border>
+</UserControl>

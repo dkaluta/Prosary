@@ -12,7 +12,9 @@ data class RosaryOptions(
     /** 1-based index into `MysteryCatalog.forGroup(specificMysteryGroup)`. Used only when
      * [mysterySelectionMode] is [MysterySelectionMode.SingleMystery]. */
     var specificMysteryOrder: Int = 1,
-    /** Omit the fifth decade of each complete mystery set; explicit single mysteries stay selectable. */
+    var specificMysteryCount: Int = 1,
+    var useTraditionalMysteries: Boolean = false,
+    /** Retired saved-data field. The engine always includes all five decades. */
     var skipFifthDecade: Boolean = false,
     var includeApostlesCreed: Boolean = true,
     /** The opening Our Father + 3 Hail Marys (for faith, hope, and charity) + Glory Be. */
@@ -45,6 +47,21 @@ data class RosaryOptions(
     /** Which artwork set illustrates the mysteries during a session — see [MysteryImageStyle]. */
     var mysteryImageStyle: MysteryImageStyle = MysteryImageStyle.Classic,
 ) {
+    val selectedMysteryStart: Int get() = specificMysteryOrder.coerceIn(1, 5)
+    val selectedMysteryCount: Int get() = specificMysteryCount.coerceIn(1, 6 - selectedMysteryStart)
+    val selectedMysteryIndices: IntRange get() = (selectedMysteryStart - 1) until
+        (selectedMysteryStart - 1 + selectedMysteryCount)
+    fun navigationOptions(group: String?, order: Int?): RosaryOptions? {
+        if (group == null) return if (order == null) this else null
+        val selectedGroup = MysteryGroup.entries.firstOrNull { it.name.lowercase() == group } ?: return null
+        if (order == null) return copy(mysterySelectionMode = MysterySelectionMode.Specific, specificMysteryGroup = selectedGroup)
+        return if (mysterySelectionMode == MysterySelectionMode.ChooseOnLaunch || mysterySelectionMode == MysterySelectionMode.SingleMystery) {
+            if (order == null || order !in 1..5) null else copy(mysterySelectionMode = MysterySelectionMode.SingleMystery,
+                specificMysteryGroup = selectedGroup, specificMysteryOrder = order)
+        } else {
+            null
+        }
+    }
     companion object {
         val legacyClosingIntentionKeys: Set<String> = setOf(
             "closingPopeIntention", "closingBishopIntention", "closingDepartedIntention",
@@ -55,12 +72,14 @@ data class RosaryOptions(
          * combined choice in the editor can turn the complete group off. Other packs retain
          * their own option names and semantics. */
         fun normalizedCustomOptions(bundleId: String, options: Map<String, String>): Map<String, String> {
-            if (bundleId != "rosary" || legacyClosingIntentionKeys.none { it in options }) return options
-            val combined = options["closingIntentions"]?.toBooleanStrictOrNull() ?: false
+            if (bundleId != "rosary") return options
+            val current = options - "skipFifthDecade"
+            if (legacyClosingIntentionKeys.none { it in current }) return current
+            val combined = current["closingIntentions"]?.toBooleanStrictOrNull() ?: false
             val enabled = legacyClosingIntentionKeys.any { key ->
-                options[key]?.toBooleanStrictOrNull() ?: combined
+                current[key]?.toBooleanStrictOrNull() ?: combined
             }
-            return (options - legacyClosingIntentionKeys) + ("closingIntentions" to enabled.toString())
+            return (current - legacyClosingIntentionKeys) + ("closingIntentions" to enabled.toString())
         }
     }
 
@@ -91,10 +110,14 @@ data class RosaryOptions(
             val chosen = MysteryCatalog.forGroup(specificMysteryGroup).firstOrNull { it.order == specificMysteryOrder }
             val title = chosen?.let { MysteryTranslations.get(languageCode = LanguageCatalog.uiLanguageCode(), imageKey = it.imageKey).title }
                 ?: context.getString(specificMysteryGroup.displayNameRes)
-            context.getString(R.string.summary_only, title)
+            if (selectedMysteryCount > 1) context.getString(R.string.summary_selected_mysteries, selectedMysteryCount, title)
+            else context.getString(R.string.summary_only, title)
         }
         MysterySelectionMode.FifteenMystery -> context.getString(R.string.summary_fifteen)
         MysterySelectionMode.TwentyMystery -> context.getString(R.string.summary_twenty)
-        MysterySelectionMode.TodaysMysteries -> context.getString(R.string.mode_todays_mysteries)
+        MysterySelectionMode.TodaysMysteries -> context.getString(
+            if (useTraditionalMysteries) R.string.summary_traditional_today else R.string.mode_todays_mysteries,
+        )
+        MysterySelectionMode.ChooseOnLaunch -> context.getString(R.string.mode_choose_on_launch)
     }
 }

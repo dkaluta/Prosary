@@ -48,6 +48,8 @@ public sealed class SqlitePresetStoreTests : IDisposable
             var loaded = (await migrated.GetAsync(id))!;
             Assert.NotNull(loaded);
             Assert.False(loaded.Rosary.SkipFifthDecade);
+            Assert.Equal(1, loaded.Rosary.SpecificMysteryCount);
+            Assert.False(loaded.Rosary.UseTraditionalMysteries);
             Assert.True(loaded.Rosary.IncludeClosingIntentions);
             Assert.Null(loaded.Rosary.IncludeClosingPopeIntention);
             Assert.Null(loaded.Rosary.IncludeClosingBishopIntention);
@@ -59,9 +61,13 @@ public sealed class SqlitePresetStoreTests : IDisposable
             {
                 IncludeClosingPopeIntention = false,
                 IncludeClosingDepartedIntention = true,
+                SpecificMysteryCount = 3,
+                UseTraditionalMysteries = true,
             }});
             var saved = (await migrated.GetAsync(id))!.Rosary;
             Assert.False(saved.IncludeClosingPopeIntention);
+            Assert.Equal(3, saved.SpecificMysteryCount);
+            Assert.True(saved.UseTraditionalMysteries);
             Assert.Null(saved.IncludeClosingBishopIntention);
             Assert.True(saved.IncludeClosingDepartedIntention);
             Assert.True(saved.EffectiveClosingIntentions);

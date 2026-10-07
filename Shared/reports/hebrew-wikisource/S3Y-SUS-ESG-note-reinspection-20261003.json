@@ -1,0 +1,626 @@
+{
+  "schemaVersion": 1,
+  "status": "Focused source-only original-pixel audit; no canonical mutation",
+  "sourcePDF": "/private/tmp/prosary-kahana-reference/Apocrypha_Kahana_A2.pdf",
+  "sourcePDFSHA256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+  "method": [
+    "Original single embedded page images extracted with pypdf, with no interpolation or image enhancement.",
+    "Native complete-word crops inspected at nearest-neighbour 4x magnification and compared with their whole original pages.",
+    "Existing canonical anchors locate the questions only; grammar, expected vocalization, OCR and parallel text do not supply marks.",
+    "Positive restoration requires a visibly identifiable source mark; note removal for absence requires a reliably clear empty mark location. Neither was established in this verified batch."
+  ],
+  "plannedNotePositions": 33,
+  "verifiedNotePositions": 22,
+  "verifiedWordCrops": 13,
+  "verifiedSourcePages": [
+    221,
+    223,
+    233,
+    237,
+    238,
+    239,
+    240
+  ],
+  "secureProposals": [],
+  "secureProposalCount": 0,
+  "findings": [
+    {
+      "noteId": "sus-1-4-letter-2-vowel",
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 4,
+      "anchor": "מִכּלָּם",
+      "occurrence": 1,
+      "letterIndex": 2,
+      "mark": "vowel",
+      "sourcePage": 237,
+      "nativeBounds": [
+        320,
+        1810,
+        550,
+        1970
+      ],
+      "nativeCrop": "/private/tmp/prosary-isolated-note-audit/sus-4-mikullam-native.png",
+      "expandedCrop": "/private/tmp/prosary-isolated-note-audit/sus-4-mikullam-4x.png",
+      "cropSHA256": "d0fefa8657cc85f76a85bd9341654d59d6e14b419b280f4ebf09519835c2ce1c",
+      "disposition": "retain-source-note",
+      "correctedWord": null,
+      "finding": "The kaf lower group is a heavy continuous shape against the letter foot; its independent vowel class cannot be certified."
+    },
+    {
+      "noteId": "sus-1-6-letter-2-dagesh",
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 6,
+      "anchor": "וַיִתְחַזְּקוּ",
+      "occurrence": 1,
+      "letterIndex": 2,
+      "mark": "dagesh",
+      "sourcePage": 237,
+      "nativeBounds": [
+        1420,
+        2110,
+        1800,
+        2260
+      ],
+      "nativeCrop": "/private/tmp/prosary-isolated-note-audit/sus-6-vayithazku-native.png",
+      "expandedCrop": "/private/tmp/prosary-isolated-note-audit/sus-6-vayithazku-4x.png",
+      "cropSHA256": "21f859ac34b1109841bc237250ae521b9bda79ecfa1a23a43e16a726a66f6121",
+      "disposition": "retain-source-note",
+      "correctedWord": null,
+      "finding": "The yod is a filled narrow glyph; no independent interior dot or reliably empty dot location is visible. The readable lower hiriq remains outside this question."
+    },
+    {
+      "noteId": "sus-1-9-letter-1-vowel",
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 9,
+      "anchor": "ונַּהַפְכוּ",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePage": 238,
+      "nativeBounds": [
+        1740,
+        1270,
+        2060,
+        1410
+      ],
+      "nativeCrop": "/private/tmp/prosary-isolated-note-audit/sus-9-venahafkhu-native.png",
+      "expandedCrop": "/private/tmp/prosary-isolated-note-audit/sus-9-venahafkhu-4x.png",
+      "cropSHA256": "489706265f2864a7b43a472baff65f46e31ab418758b9ef018f74c27235390bd",
+      "disposition": "retain-source-note",
+      "correctedWord": null,
+      "finding": "The initial vav lower group is continuous with its thick foot; neither a secure vowel class nor secure clean absence is established."
+    },
+    {
+      "noteId": "sus-1-14-letter-1-vowel",
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 14,
+      "anchor": "ויָסֹבּוּ",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePage": 238,
+      "nativeBounds": [
+        1260,
+        1780,
+        1550,
+        1940
+      ],
+      "nativeCrop": "/private/tmp/prosary-isolated-note-audit/sus-14-vayasobu-native.png",
+      "expandedCrop": "/private/tmp/prosary-isolated-note-audit/sus-14-vayasobu-4x.png",
+      "cropSHA256": "403691e5cacd90a7a782c8b2a6ab304a8ccdd1b7c6859bf856b1e6dc1fcdf9a6",
+      "disposition": "retain-source-note",
+      "correctedWord": null,
+      "finding": "Initial vav foot and lower material are fused. The narrow yod interior is filled; a separate dagesh or clean absence cannot be established."
+    },
+    {
+      "noteId": "sus-1-14-letter-2-dagesh",
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 14,
+      "anchor": "ויָסֹבּוּ",
+      "occurrence": 1,
+      "letterIndex": 2,
+      "mark": "dagesh",
+      "sourcePage": 238,
+      "nativeBounds": [
+        1260,
+        1780,
+        1550,
+        1940
+      ],
+      "nativeCrop": "/private/tmp/prosary-isolated-note-audit/sus-14-vayasobu-native.png",
+      "expandedCrop": "/private/tmp/prosary-isolated-note-audit/sus-14-vayasobu-4x.png",
+      "cropSHA256": "403691e5cacd90a7a782c8b2a6ab304a8ccdd1b7c6859bf856b1e6dc1fcdf9a6",
+      "disposition": "retain-source-note",
+      "correctedWord": null,
+      "finding": "Initial vav foot and lower material are fused. The narrow yod interior is filled; a separate dagesh or clean absence cannot be established."
+    },
+    {
+      "noteId": "sus-1-17-letter-1-vowel",
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 17,
+      "anchor": "ותַמְרוּקִים",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePage": 238,
+      "nativeBounds": [
+        940,
+        2220,
+        1350,
+        2380
+      ],
+      "nativeCrop": "/private/tmp/prosary-isolated-note-audit/sus-17-vetamruqim-native.png",
+      "expandedCrop": "/private/tmp/prosary-isolated-note-audit/sus-17-vetamruqim-4x.png",
+      "cropSHA256": "8204786d63549f0cf2adccff539f63c11ba396eaf76cd77336fcf994fbaf5722",
+      "disposition": "retain-source-note",
+      "correctedWord": null,
+      "finding": "The initial vav ends in dense connected ink; no independently identifiable vowel survives beneath it."
+    },
+    {
+      "noteId": "sus-1-18-letter-1-vowel",
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 18,
+      "anchor": "בּיַרְכתַיִם",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePage": 238,
+      "nativeBounds": [
+        1210,
+        2410,
+        1660,
+        2570
+      ],
+      "nativeCrop": "/private/tmp/prosary-isolated-note-audit/sus-18-beyarkatayim-native.png",
+      "expandedCrop": "/private/tmp/prosary-isolated-note-audit/sus-18-beyarkatayim-4x.png",
+      "cropSHA256": "15a9f76b24b9014f7adb6a9691023a09601c127c99d635fb9c069536073e67ed",
+      "disposition": "retain-source-note",
+      "correctedWord": null,
+      "finding": "Bet and kaf lower groups remain fused with their letter feet. Visible bet interior dot and neighbouring letters are retained."
+    },
+    {
+      "noteId": "sus-1-18-letter-4-vowel",
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 18,
+      "anchor": "בּיַרְכתַיִם",
+      "occurrence": 1,
+      "letterIndex": 4,
+      "mark": "vowel",
+      "sourcePage": 238,
+      "nativeBounds": [
+        1210,
+        2410,
+        1660,
+        2570
+      ],
+      "nativeCrop": "/private/tmp/prosary-isolated-note-audit/sus-18-beyarkatayim-native.png",
+      "expandedCrop": "/private/tmp/prosary-isolated-note-audit/sus-18-beyarkatayim-4x.png",
+      "cropSHA256": "15a9f76b24b9014f7adb6a9691023a09601c127c99d635fb9c069536073e67ed",
+      "disposition": "retain-source-note",
+      "correctedWord": null,
+      "finding": "Bet and kaf lower groups remain fused with their letter feet. Visible bet interior dot and neighbouring letters are retained."
+    },
+    {
+      "noteId": "sus-1-18-tsadi-vowel",
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 18,
+      "anchor": "צוּוּ",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePage": 238,
+      "nativeBounds": [
+        640,
+        2410,
+        830,
+        2570
+      ],
+      "nativeCrop": "/private/tmp/prosary-isolated-note-audit/sus-18-tsavu-native.png",
+      "expandedCrop": "/private/tmp/prosary-isolated-note-audit/sus-18-tsavu-4x.png",
+      "cropSHA256": "e508d3ffeec68a44a037ac26c3a384982ec80c53b8a7b51ca7a9ddde87d7dab8",
+      "disposition": "retain-source-note",
+      "correctedWord": null,
+      "finding": "Tsadi lower mass joins its descending stroke; a distinct vowel class is not securely visible."
+    },
+    {
+      "noteId": "sus-1-23-letter-1-vowel",
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 23,
+      "anchor": "אעֱשׂנָּה",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePage": 239,
+      "nativeBounds": [
+        1840,
+        1260,
+        2110,
+        1410
+      ],
+      "nativeCrop": "/private/tmp/prosary-isolated-note-audit/sus-23-eesena-native.png",
+      "expandedCrop": "/private/tmp/prosary-isolated-note-audit/sus-23-eesena-4x.png",
+      "cropSHA256": "41ec932ace3b84591c5c08b72d7df29b9c5b962c18affbbb7166c2083dbde125",
+      "disposition": "retain-source-note",
+      "correctedWord": null,
+      "finding": "Alef and sin lower groups have connected dense ink; companion ayin points, sin dot and nun interior dot are visible, but do not resolve the two omitted vowels."
+    },
+    {
+      "noteId": "sus-1-23-letter-3-vowel",
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 23,
+      "anchor": "אעֱשׂנָּה",
+      "occurrence": 1,
+      "letterIndex": 3,
+      "mark": "vowel",
+      "sourcePage": 239,
+      "nativeBounds": [
+        1840,
+        1260,
+        2110,
+        1410
+      ],
+      "nativeCrop": "/private/tmp/prosary-isolated-note-audit/sus-23-eesena-native.png",
+      "expandedCrop": "/private/tmp/prosary-isolated-note-audit/sus-23-eesena-4x.png",
+      "cropSHA256": "41ec932ace3b84591c5c08b72d7df29b9c5b962c18affbbb7166c2083dbde125",
+      "disposition": "retain-source-note",
+      "correctedWord": null,
+      "finding": "Alef and sin lower groups have connected dense ink; companion ayin points, sin dot and nun interior dot are visible, but do not resolve the two omitted vowels."
+    },
+    {
+      "noteId": "sus-1-27-letter-1-vowel",
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 27,
+      "anchor": "ויִתְבּוֹשָׁשׁוּ",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePage": 239,
+      "nativeBounds": [
+        490,
+        1620,
+        950,
+        1800
+      ],
+      "nativeCrop": "/private/tmp/prosary-isolated-note-audit/sus-27-vayitboshashu-native.png",
+      "expandedCrop": "/private/tmp/prosary-isolated-note-audit/sus-27-vayitboshashu-4x.png",
+      "cropSHA256": "da944e63a069c01473a8d91d30b1750d0a0e6e3541e04a6c34f0d5cf270ce76a",
+      "disposition": "retain-source-note",
+      "correctedWord": null,
+      "finding": "Initial vav lower mass and narrow yod interior are filled. Clearly separate neighbouring bet dot and other readable points do not resolve those two locations."
+    },
+    {
+      "noteId": "sus-1-27-letter-2-dagesh",
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 27,
+      "anchor": "ויִתְבּוֹשָׁשׁוּ",
+      "occurrence": 1,
+      "letterIndex": 2,
+      "mark": "dagesh",
+      "sourcePage": 239,
+      "nativeBounds": [
+        490,
+        1620,
+        950,
+        1800
+      ],
+      "nativeCrop": "/private/tmp/prosary-isolated-note-audit/sus-27-vayitboshashu-native.png",
+      "expandedCrop": "/private/tmp/prosary-isolated-note-audit/sus-27-vayitboshashu-4x.png",
+      "cropSHA256": "da944e63a069c01473a8d91d30b1750d0a0e6e3541e04a6c34f0d5cf270ce76a",
+      "disposition": "retain-source-note",
+      "correctedWord": null,
+      "finding": "Initial vav lower mass and narrow yod interior are filled. Clearly separate neighbouring bet dot and other readable points do not resolve those two locations."
+    },
+    {
+      "noteId": "sus-1-40-letter-1-vowel",
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 40,
+      "anchor": "ונִּשְׁאַל",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePage": 240,
+      "nativeBounds": [
+        990,
+        2050,
+        1310,
+        2170
+      ],
+      "nativeCrop": "/private/tmp/prosary-isolated-note-audit/sus-40-venishal-native.png",
+      "expandedCrop": "/private/tmp/prosary-isolated-note-audit/sus-40-venishal-4x.png",
+      "cropSHA256": "d17d574d703b49b95e2e706e625a95dfd087d49d59fc7e4d1d452a7d974811bf",
+      "disposition": "retain-source-note",
+      "correctedWord": null,
+      "finding": "Initial vav lower material is connected with the stem/foot and does not securely identify a vowel."
+    },
+    {
+      "noteId": "s3y-1-1-word14-letter2-dagesh",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 1,
+      "anchor": "הַמְקמִים",
+      "occurrence": 1,
+      "letterIndex": 2,
+      "mark": "dagesh",
+      "sourcePage": 233,
+      "nativeBounds": [
+        930,
+        820,
+        1190,
+        980
+      ],
+      "nativeCrop": "/private/tmp/prosary-isolated-note-audit/s3y-1-hameqimim-native.png",
+      "expandedCrop": "/private/tmp/prosary-isolated-note-audit/s3y-1-hameqimim-4x.png",
+      "cropSHA256": "b8b5897f343d9cc738e89e18587d923b0c58587a4d55bf4c7daa0077d612be3c",
+      "disposition": "retain-source-note",
+      "correctedWord": null,
+      "finding": "The mem interior has heavy connected strokes rather than a detached dot or a reliable empty dot location. The qof lower point merges with its descending glyph stroke."
+    },
+    {
+      "noteId": "s3y-1-1-word14-letter3-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 1,
+      "anchor": "הַמְקמִים",
+      "occurrence": 1,
+      "letterIndex": 3,
+      "mark": "vowel",
+      "sourcePage": 233,
+      "nativeBounds": [
+        930,
+        820,
+        1190,
+        980
+      ],
+      "nativeCrop": "/private/tmp/prosary-isolated-note-audit/s3y-1-hameqimim-native.png",
+      "expandedCrop": "/private/tmp/prosary-isolated-note-audit/s3y-1-hameqimim-4x.png",
+      "cropSHA256": "b8b5897f343d9cc738e89e18587d923b0c58587a4d55bf4c7daa0077d612be3c",
+      "disposition": "retain-source-note",
+      "correctedWord": null,
+      "finding": "The mem interior has heavy connected strokes rather than a detached dot or a reliable empty dot location. The qof lower point merges with its descending glyph stroke."
+    },
+    {
+      "noteId": "esg-5-7-1-vowel",
+      "book": "ESG",
+      "chapter": 5,
+      "verse": 7,
+      "anchor": "וַיַחזק",
+      "occurrence": 1,
+      "letterIndex": 3,
+      "mark": "vowel",
+      "sourcePage": 221,
+      "nativeBounds": [
+        810,
+        1255,
+        1180,
+        1400
+      ],
+      "nativeCrop": "/private/tmp/prosary-isolated-note-audit/esg-5-7-vayahezeq-native.png",
+      "expandedCrop": "/private/tmp/prosary-isolated-note-audit/esg-5-7-vayahezeq-4x.png",
+      "cropSHA256": "9bbbca28b14f6d4e7c2f52ac0f1bbf901869abf235617d9bad80cf80638ae149",
+      "disposition": "retain-source-note",
+      "correctedWord": null,
+      "finding": "Het and zayin lower groups touch dense glyph material; the zayin interior has no independently separable dot. No secure vowel or dot recovery."
+    },
+    {
+      "noteId": "esg-5-7-2-vowel",
+      "book": "ESG",
+      "chapter": 5,
+      "verse": 7,
+      "anchor": "וַיַחזק",
+      "occurrence": 1,
+      "letterIndex": 4,
+      "mark": "vowel",
+      "sourcePage": 221,
+      "nativeBounds": [
+        810,
+        1255,
+        1180,
+        1400
+      ],
+      "nativeCrop": "/private/tmp/prosary-isolated-note-audit/esg-5-7-vayahezeq-native.png",
+      "expandedCrop": "/private/tmp/prosary-isolated-note-audit/esg-5-7-vayahezeq-4x.png",
+      "cropSHA256": "9bbbca28b14f6d4e7c2f52ac0f1bbf901869abf235617d9bad80cf80638ae149",
+      "disposition": "retain-source-note",
+      "correctedWord": null,
+      "finding": "Het and zayin lower groups touch dense glyph material; the zayin interior has no independently separable dot. No secure vowel or dot recovery."
+    },
+    {
+      "noteId": "esg-5-7-3-dagesh",
+      "book": "ESG",
+      "chapter": 5,
+      "verse": 7,
+      "anchor": "וַיַחזק",
+      "occurrence": 1,
+      "letterIndex": 4,
+      "mark": "dagesh",
+      "sourcePage": 221,
+      "nativeBounds": [
+        810,
+        1255,
+        1180,
+        1400
+      ],
+      "nativeCrop": "/private/tmp/prosary-isolated-note-audit/esg-5-7-vayahezeq-native.png",
+      "expandedCrop": "/private/tmp/prosary-isolated-note-audit/esg-5-7-vayahezeq-4x.png",
+      "cropSHA256": "9bbbca28b14f6d4e7c2f52ac0f1bbf901869abf235617d9bad80cf80638ae149",
+      "disposition": "retain-source-note",
+      "correctedWord": null,
+      "finding": "Het and zayin lower groups touch dense glyph material; the zayin interior has no independently separable dot. No secure vowel or dot recovery."
+    },
+    {
+      "noteId": "esg-6-15-1-vowel",
+      "book": "ESG",
+      "chapter": 6,
+      "verse": 15,
+      "anchor": "נקיִים",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePage": 223,
+      "nativeBounds": [
+        1760,
+        1240,
+        2070,
+        1440
+      ],
+      "nativeCrop": "/private/tmp/prosary-isolated-note-audit/esg-6-15-neqiyyim-native.png",
+      "expandedCrop": "/private/tmp/prosary-isolated-note-audit/esg-6-15-neqiyyim-4x.png",
+      "cropSHA256": "4ee01e461eb3e1657fc80b490d469e476e454bbf08b272143995559c79315d59",
+      "disposition": "retain-source-note",
+      "correctedWord": null,
+      "finding": "Nun and qof lower material is fused with their feet, while the yod is a solid narrow printed glyph. No independently secure vowel/dagesh or clean-absence determination."
+    },
+    {
+      "noteId": "esg-6-15-2-vowel",
+      "book": "ESG",
+      "chapter": 6,
+      "verse": 15,
+      "anchor": "נקיִים",
+      "occurrence": 1,
+      "letterIndex": 2,
+      "mark": "vowel",
+      "sourcePage": 223,
+      "nativeBounds": [
+        1760,
+        1240,
+        2070,
+        1440
+      ],
+      "nativeCrop": "/private/tmp/prosary-isolated-note-audit/esg-6-15-neqiyyim-native.png",
+      "expandedCrop": "/private/tmp/prosary-isolated-note-audit/esg-6-15-neqiyyim-4x.png",
+      "cropSHA256": "4ee01e461eb3e1657fc80b490d469e476e454bbf08b272143995559c79315d59",
+      "disposition": "retain-source-note",
+      "correctedWord": null,
+      "finding": "Nun and qof lower material is fused with their feet, while the yod is a solid narrow printed glyph. No independently secure vowel/dagesh or clean-absence determination."
+    },
+    {
+      "noteId": "esg-6-15-3-dagesh",
+      "book": "ESG",
+      "chapter": 6,
+      "verse": 15,
+      "anchor": "נקיִים",
+      "occurrence": 1,
+      "letterIndex": 3,
+      "mark": "dagesh",
+      "sourcePage": 223,
+      "nativeBounds": [
+        1760,
+        1240,
+        2070,
+        1440
+      ],
+      "nativeCrop": "/private/tmp/prosary-isolated-note-audit/esg-6-15-neqiyyim-native.png",
+      "expandedCrop": "/private/tmp/prosary-isolated-note-audit/esg-6-15-neqiyyim-4x.png",
+      "cropSHA256": "4ee01e461eb3e1657fc80b490d469e476e454bbf08b272143995559c79315d59",
+      "disposition": "retain-source-note",
+      "correctedWord": null,
+      "finding": "Nun and qof lower material is fused with their feet, while the yod is a solid narrow printed glyph. No independently secure vowel/dagesh or clean-absence determination."
+    }
+  ],
+  "excludedCropAttempts": [
+    {
+      "name": "sus-5-kemanhige",
+      "nativeBounds": [
+        1780,
+        2030,
+        2100,
+        2160
+      ],
+      "sourcePage": 237,
+      "noteIds": [
+        "sus-1-5-letter-1-vowel"
+      ],
+      "reason": "Crop captures neighbouring wording or clips a relevant part of the complete anchor; excluded from verified count rather than treated as evidence."
+    },
+    {
+      "name": "sus-22-eesena",
+      "nativeBounds": [
+        1020,
+        2860,
+        1360,
+        3020
+      ],
+      "sourcePage": 238,
+      "noteIds": [
+        "sus-1-22-letter-1-vowel",
+        "sus-1-22-letter-3-vowel"
+      ],
+      "reason": "Crop captures neighbouring wording or clips a relevant part of the complete anchor; excluded from verified count rather than treated as evidence."
+    },
+    {
+      "name": "sus-38-befinnat",
+      "nativeBounds": [
+        1320,
+        1830,
+        1570,
+        1990
+      ],
+      "sourcePage": 240,
+      "noteIds": [
+        "sus-1-38-letter-2-vowel",
+        "sus-1-38-letter-3-vowel"
+      ],
+      "reason": "Crop captures neighbouring wording or clips a relevant part of the complete anchor; excluded from verified count rather than treated as evidence."
+    },
+    {
+      "name": "sus-47-vayifen",
+      "nativeBounds": [
+        1050,
+        2680,
+        1250,
+        2840
+      ],
+      "sourcePage": 240,
+      "noteIds": [
+        "sus-1-47-letter-1-vowel",
+        "sus-1-47-letter-2-dagesh"
+      ],
+      "reason": "Crop captures neighbouring wording or clips a relevant part of the complete anchor; excluded from verified count rather than treated as evidence."
+    },
+    {
+      "name": "sus-48-haumnam",
+      "nativeBounds": [
+        1270,
+        2780,
+        1550,
+        2940
+      ],
+      "sourcePage": 240,
+      "noteIds": [
+        "sus-1-48-letter-2-vowel"
+      ],
+      "reason": "Crop captures neighbouring wording or clips a relevant part of the complete anchor; excluded from verified count rather than treated as evidence."
+    },
+    {
+      "name": "sus-62-vayimalet",
+      "nativeBounds": [
+        1210,
+        2190,
+        1510,
+        2330
+      ],
+      "sourcePage": 242,
+      "noteIds": [
+        "sus-1-62-letter-1-vowel",
+        "sus-1-62-letter-2-dagesh",
+        "sus-1-62-letter-3-dagesh"
+      ],
+      "reason": "Crop captures neighbouring wording or clips a relevant part of the complete anchor; excluded from verified count rather than treated as evidence."
+    }
+  ],
+  "niqqudConclusion": "No source-visible replacement niqqud was securely established. Conventional or contextual vocalization would be conjectural and is not proposed by this audit."
+}

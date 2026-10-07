@@ -1,0 +1,576 @@
+{
+  "date": "2026-10-03",
+  "book": "BEL",
+  "scope": "20 focused remaining dagesh notes on A2 pages 244–247; lower Theodotion body only",
+  "method": "Visual inspection of original native embedded page pixels and direct crops enlarged by nearest-neighbor only. No OCR, expected Hebrew, grammar, alternative recension or reconstructed point used.",
+  "sourcePDF": "/private/tmp/prosary-kahana-reference/Apocrypha_Kahana_A2.pdf",
+  "sourcePDFSHA256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+  "canonicalInput": "/Users/dk/Developer/Personal/Prosary/Shared/content/hebrew-deuterocanon/BEL.json",
+  "canonicalInputSHA256": "df8bb4c81359c7ccb40db690665aa07954c296f40b201436523cc525ead851ad",
+  "resolutionCount": 0,
+  "retainedNoteCount": 20,
+  "proposedChanges": [],
+  "interpretation": "Existing readable niqqud remains usable. These inspected missing fine marks cannot be supplied as faithful source transcription from this scan. A reconstructed vocalization would be a distinct editorial layer and would not resolve these source notes.",
+  "results": [
+    {
+      "noteID": "bel-1-15-244-vayetseu15-letter5-dagesh",
+      "verse": 15,
+      "originalWord": "ויֵצְאו",
+      "correctedWord": null,
+      "occurrence": 1,
+      "letterIndex": 5,
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "confidence": "insufficient evidence to resolve",
+      "finding": "The final-vav head and putative interior mark form a saturated joined mass. No detached dot or clean absence is visible.",
+      "evidence": {
+        "name": "244-vayetseu15",
+        "sourcePage": 244,
+        "nativeBounds": [
+          295,
+          2870,
+          540,
+          2950
+        ],
+        "source": "/private/tmp/prosary-kahana-reference/BEL-inventory-native-244.png",
+        "sourceSHA256": "e72e82740e9f8b996a66b8a16cf6b893a52827ffc8ddd12a0791770e06b45f65",
+        "crop": "/private/tmp/prosary-bel-notes-remaining-20261003/244-vayetseu15.png",
+        "sha256": "b88b5fb7442480ecacd3d9fc64d2f20fc592b07b76df26f3811933ff4db8afc3",
+        "enlargement": 4,
+        "transformation": "original pixel crop and nearest-neighbor enlargement only"
+      }
+    },
+    {
+      "noteID": "bel-1-15-244-vayelkhu15-letter5-dagesh",
+      "verse": 15,
+      "originalWord": "ויֵלֵכו",
+      "correctedWord": null,
+      "occurrence": 1,
+      "letterIndex": 5,
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "confidence": "insufficient evidence to resolve",
+      "finding": "The final-vav interior mark joins the head/stem. The source cannot securely distinguish a dot from the letter stroke.",
+      "evidence": {
+        "name": "244-vayelkhu15",
+        "sourcePage": 244,
+        "nativeBounds": [
+          500,
+          2970,
+          695,
+          3040
+        ],
+        "source": "/private/tmp/prosary-kahana-reference/BEL-inventory-native-244.png",
+        "sourceSHA256": "e72e82740e9f8b996a66b8a16cf6b893a52827ffc8ddd12a0791770e06b45f65",
+        "crop": "/private/tmp/prosary-bel-notes-remaining-20261003/244-vayelkhu15.png",
+        "sha256": "5cc160f6af930dda65c85e0720a8f83ce211e527d4574a3e14395fd40c217740",
+        "enlargement": 4,
+        "transformation": "original pixel crop and nearest-neighbor enlargement only"
+      }
+    },
+    {
+      "noteID": "bel-1-16-244-vayavou16-letter5-dagesh",
+      "verse": 16,
+      "originalWord": "ויָבֹאו",
+      "correctedWord": null,
+      "occurrence": 1,
+      "letterIndex": 5,
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "confidence": "insufficient evidence to resolve",
+      "finding": "The final-vav head and inner spur are joined; a small white pinhole does not separate a recoverable mark.",
+      "evidence": {
+        "name": "244-vayavou16",
+        "sourcePage": 244,
+        "nativeBounds": [
+          295,
+          2970,
+          465,
+          3040
+        ],
+        "source": "/private/tmp/prosary-kahana-reference/BEL-inventory-native-244.png",
+        "sourceSHA256": "e72e82740e9f8b996a66b8a16cf6b893a52827ffc8ddd12a0791770e06b45f65",
+        "crop": "/private/tmp/prosary-bel-notes-remaining-20261003/244-vayavou16.png",
+        "sha256": "e7e6fbecedf4bee8cb13191cd493b22431a7f3cc1b3e5dc8907b6c33541c7410",
+        "enlargement": 4,
+        "transformation": "original pixel crop and nearest-neighbor enlargement only"
+      }
+    },
+    {
+      "noteID": "bel-1-16-244-vayokhelu16-letter6-dagesh",
+      "verse": 16,
+      "originalWord": "ויֹאכְלו",
+      "correctedWord": null,
+      "occurrence": 1,
+      "letterIndex": 6,
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "confidence": "insufficient evidence to resolve",
+      "finding": "The final-vav spur joins its stem. There is no securely detached dot and no clean evidence of absence.",
+      "evidence": {
+        "name": "244-vayokhelu16",
+        "sourcePage": 244,
+        "nativeBounds": [
+          540,
+          3050,
+          720,
+          3140
+        ],
+        "source": "/private/tmp/prosary-kahana-reference/BEL-inventory-native-244.png",
+        "sourceSHA256": "e72e82740e9f8b996a66b8a16cf6b893a52827ffc8ddd12a0791770e06b45f65",
+        "crop": "/private/tmp/prosary-bel-notes-remaining-20261003/244-vayokhelu16.png",
+        "sha256": "f12477d468de75eee85abfc294f2f4325efee0b3f7fd9909d9a52032fa1cfe28",
+        "enlargement": 4,
+        "transformation": "original pixel crop and nearest-neighbor enlargement only"
+      }
+    },
+    {
+      "noteID": "bel-1-21-245-vayiktzof21-letter2-dagesh",
+      "verse": 21,
+      "originalWord": "ויִקְצֹף",
+      "correctedWord": null,
+      "occurrence": 1,
+      "letterIndex": 2,
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "confidence": "insufficient evidence to resolve",
+      "finding": "The initial yod is a solid dark head with an unresolved lower spur; no detached interior dot is recoverable.",
+      "evidence": {
+        "name": "245-lower-middle-left",
+        "sourcePage": 245,
+        "nativeBounds": [
+          300,
+          1910,
+          1160,
+          2240
+        ],
+        "source": "/private/tmp/prosary-kahana-reference/BEL-inventory-native-245.png",
+        "crop": "/private/tmp/prosary-bel-notes-remaining-20261003/245-lower-middle-left.png",
+        "sha256": "ff3ab4fa744217ad476d42158e990c180c3fc9edda54db983af4796815960390",
+        "enlargement": 2,
+        "transformation": "original pixel crop and nearest-neighbor enlargement only",
+        "sourceSHA256": "4afba3ccb3ead15145af9d167a3d7bb5d0072af61fa34954c98c662ac47cdfed"
+      }
+    },
+    {
+      "noteID": "bel-1-21-245-vayeesof-wide-letter2-dagesh",
+      "verse": 21,
+      "originalWord": "ויאֱסף",
+      "correctedWord": null,
+      "occurrence": 1,
+      "letterIndex": 2,
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "confidence": "insufficient evidence to resolve",
+      "finding": "The initial yod is saturated; the fine interior mark cannot be distinguished from the letter body.",
+      "evidence": {
+        "name": "245-lower-middle-right",
+        "sourcePage": 245,
+        "nativeBounds": [
+          1160,
+          1910,
+          2110,
+          2240
+        ],
+        "source": "/private/tmp/prosary-kahana-reference/BEL-inventory-native-245.png",
+        "crop": "/private/tmp/prosary-bel-notes-remaining-20261003/245-lower-middle-right.png",
+        "sha256": "57c59bec9c37d1d5d65dbede096a7b224435fff144ed2f63d1784a8c67a5c574",
+        "enlargement": 2,
+        "transformation": "original pixel crop and nearest-neighbor enlargement only",
+        "sourceSHA256": "4afba3ccb3ead15145af9d167a3d7bb5d0072af61fa34954c98c662ac47cdfed"
+      }
+    },
+    {
+      "noteID": "bel-1-21-245-vayarehu-wide-letter2-dagesh",
+      "verse": 21,
+      "originalWord": "ויַרְאֻהוּ",
+      "correctedWord": null,
+      "occurrence": 1,
+      "letterIndex": 2,
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "confidence": "insufficient evidence to resolve",
+      "finding": "The initial yod interior is saturated and joined to its lower stroke.",
+      "evidence": {
+        "name": "245-lower-middle-left",
+        "sourcePage": 245,
+        "nativeBounds": [
+          300,
+          1910,
+          1160,
+          2240
+        ],
+        "source": "/private/tmp/prosary-kahana-reference/BEL-inventory-native-245.png",
+        "crop": "/private/tmp/prosary-bel-notes-remaining-20261003/245-lower-middle-left.png",
+        "sha256": "ff3ab4fa744217ad476d42158e990c180c3fc9edda54db983af4796815960390",
+        "enlargement": 2,
+        "transformation": "original pixel crop and nearest-neighbor enlargement only",
+        "sourceSHA256": "4afba3ccb3ead15145af9d167a3d7bb5d0072af61fa34954c98c662ac47cdfed"
+      }
+    },
+    {
+      "noteID": "bel-1-22-245-vayiten22-letter2-dagesh",
+      "verse": 22,
+      "originalWord": "ויִתֵּן",
+      "correctedWord": null,
+      "occurrence": 1,
+      "letterIndex": 2,
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "confidence": "insufficient evidence to resolve",
+      "finding": "The initial yod is a solid dark shape; its interior offers neither a detached dot nor clean absence.",
+      "evidence": {
+        "name": "245-lower-bottom-right",
+        "sourcePage": 245,
+        "nativeBounds": [
+          1160,
+          2220,
+          2110,
+          2740
+        ],
+        "source": "/private/tmp/prosary-kahana-reference/BEL-inventory-native-245.png",
+        "crop": "/private/tmp/prosary-bel-notes-remaining-20261003/245-lower-bottom-right.png",
+        "sha256": "5e1ad44de800f497938d3436b234733c8a94b44b393407d777ad5f9e0d1a4a17",
+        "enlargement": 2,
+        "transformation": "original pixel crop and nearest-neighbor enlargement only",
+        "sourceSHA256": "4afba3ccb3ead15145af9d167a3d7bb5d0072af61fa34954c98c662ac47cdfed"
+      }
+    },
+    {
+      "noteID": "bel-1-23-245-vayomer23-letter2-dagesh",
+      "verse": 23,
+      "originalWord": "ויֹאמֶר",
+      "correctedWord": null,
+      "occurrence": 1,
+      "letterIndex": 2,
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "confidence": "insufficient evidence to resolve",
+      "finding": "The initial yod is saturated and has an unresolved joined lower spur.",
+      "evidence": {
+        "name": "245-lower-bottom-left",
+        "sourcePage": 245,
+        "nativeBounds": [
+          300,
+          2220,
+          1160,
+          2740
+        ],
+        "source": "/private/tmp/prosary-kahana-reference/BEL-inventory-native-245.png",
+        "crop": "/private/tmp/prosary-bel-notes-remaining-20261003/245-lower-bottom-left.png",
+        "sha256": "79f99d04e2cd8dbe1ce6ac1be53fd3152017ecf20b318efa28e67e6c94a9e037",
+        "enlargement": 2,
+        "transformation": "original pixel crop and nearest-neighbor enlargement only",
+        "sourceSHA256": "4afba3ccb3ead15145af9d167a3d7bb5d0072af61fa34954c98c662ac47cdfed"
+      }
+    },
+    {
+      "noteID": "bel-1-25-245-vayomer25-letter2-dagesh",
+      "verse": 25,
+      "originalWord": "ויֹאמֶר",
+      "correctedWord": null,
+      "occurrence": 1,
+      "letterIndex": 2,
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "confidence": "insufficient evidence to resolve",
+      "finding": "The initial yod interior joins the letter body; the point is not separately recoverable.",
+      "evidence": {
+        "name": "245-lower-bottom-right",
+        "sourcePage": 245,
+        "nativeBounds": [
+          1160,
+          2220,
+          2110,
+          2740
+        ],
+        "source": "/private/tmp/prosary-kahana-reference/BEL-inventory-native-245.png",
+        "crop": "/private/tmp/prosary-bel-notes-remaining-20261003/245-lower-bottom-right.png",
+        "sha256": "5e1ad44de800f497938d3436b234733c8a94b44b393407d777ad5f9e0d1a4a17",
+        "enlargement": 2,
+        "transformation": "original pixel crop and nearest-neighbor enlargement only",
+        "sourceSHA256": "4afba3ccb3ead15145af9d167a3d7bb5d0072af61fa34954c98c662ac47cdfed"
+      }
+    },
+    {
+      "noteID": "bel-1-27-246-vayvashelm-letter4-dagesh",
+      "verse": 27,
+      "originalWord": "ויְבשְׁלֵם",
+      "correctedWord": null,
+      "occurrence": 1,
+      "letterIndex": 4,
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "confidence": "insufficient evidence to resolve",
+      "finding": "The shin interior blob remains joined to the central arm; it is not a separately visible dagesh.",
+      "evidence": {
+        "name": "246-vayvashelm27",
+        "sourcePage": 246,
+        "nativeBounds": [
+          274,
+          1730,
+          490,
+          1832
+        ],
+        "source": "/private/tmp/prosary-kahana-reference/BEL-inventory-native-246.png",
+        "sourceSHA256": "cad805287f5a1339018a19c57322fe989c61f64992afa449bea5c51fc71b1fef",
+        "crop": "/private/tmp/prosary-bel-notes-remaining-20261003/246-vayvashelm27.png",
+        "sha256": "9f77a5e69ec5b4121fd9ac71f43a45c7d12d8e2606c3590757479844e4d403b8",
+        "enlargement": 4,
+        "transformation": "original pixel crop and nearest-neighbor enlargement only"
+      }
+    },
+    {
+      "noteID": "bel-1-28-246-vayirgezu-letter4-dagesh",
+      "verse": 28,
+      "originalWord": "ויִרְגְזוּ",
+      "correctedWord": null,
+      "occurrence": 1,
+      "letterIndex": 4,
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "confidence": "insufficient evidence to resolve",
+      "finding": "The gimel interior spur joins the stem, preventing a secure dot reading.",
+      "evidence": {
+        "name": "246-vayirgezu28",
+        "sourcePage": 246,
+        "nativeBounds": [
+          424,
+          1917,
+          595,
+          2019
+        ],
+        "source": "/private/tmp/prosary-kahana-reference/BEL-inventory-native-246.png",
+        "sourceSHA256": "cad805287f5a1339018a19c57322fe989c61f64992afa449bea5c51fc71b1fef",
+        "crop": "/private/tmp/prosary-bel-notes-remaining-20261003/246-vayirgezu28.png",
+        "sha256": "4f2f9438189e31c8773f505dcd20b5c7e4dc4908beef33aae75b84892b48c145",
+        "enlargement": 4,
+        "transformation": "original pixel crop and nearest-neighbor enlargement only"
+      }
+    },
+    {
+      "noteID": "bel-1-33-246-bishel-letter2-dagesh",
+      "verse": 33,
+      "originalWord": "בִשׁל",
+      "correctedWord": null,
+      "occurrence": 1,
+      "letterIndex": 2,
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "confidence": "insufficient evidence to resolve",
+      "finding": "The shin interior blob touches its arm; neither a detached dagesh nor clean absence can be certified.",
+      "evidence": {
+        "name": "246-bishel33",
+        "sourcePage": 246,
+        "nativeBounds": [
+          1017,
+          2665,
+          1165,
+          2767
+        ],
+        "source": "/private/tmp/prosary-kahana-reference/BEL-inventory-native-246.png",
+        "sourceSHA256": "cad805287f5a1339018a19c57322fe989c61f64992afa449bea5c51fc71b1fef",
+        "crop": "/private/tmp/prosary-bel-notes-remaining-20261003/246-bishel33.png",
+        "sha256": "cfa36ef4dfdf9820d8095431a68865722fccd5967f642c2e6f836a087b6e6c98",
+        "enlargement": 4,
+        "transformation": "original pixel crop and nearest-neighbor enlargement only"
+      }
+    },
+    {
+      "noteID": "bel-1-35-246-veeneni-letter5-dagesh",
+      "verse": 35,
+      "originalWord": "וְאֵינֶנִי",
+      "correctedWord": null,
+      "occurrence": 1,
+      "letterIndex": 5,
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "confidence": "insufficient evidence to resolve",
+      "finding": "The apparent second-nun dot touches the vertical stem in the fresh 6x native crop; retain the uncertainty.",
+      "evidence": {
+        "name": "246-veeneni",
+        "sourcePage": 246,
+        "nativeBounds": [
+          527,
+          2945,
+          707,
+          3047
+        ],
+        "source": "/private/tmp/prosary-kahana-reference/BEL-inventory-native-246.png",
+        "crop": "/private/tmp/prosary-bel-notes-remaining-20261003/246-veeneni.png",
+        "sha256": "3f7153015b7f8e796eae7854ad750474a5bc822c68d2da8d228b48befcc01013",
+        "enlargement": 6,
+        "transformation": "original pixel crop and nearest-neighbor enlargement only",
+        "sourceSHA256": "cad805287f5a1339018a19c57322fe989c61f64992afa449bea5c51fc71b1fef"
+      }
+    },
+    {
+      "noteID": "bel-1-36-247-vayisaehu36-letter3-dagesh",
+      "verse": 36,
+      "originalWord": "ויִשָׂאֵהוּ",
+      "correctedWord": null,
+      "occurrence": 1,
+      "letterIndex": 3,
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "confidence": "insufficient evidence to resolve",
+      "finding": "The shin interior blob merges with the central arm and bowl; it is not a detached mark.",
+      "evidence": {
+        "name": "247-vayisaehu36",
+        "sourcePage": 247,
+        "nativeBounds": [
+          378,
+          1259,
+          581,
+          1343
+        ],
+        "source": "/private/tmp/prosary-kahana-reference/BEL247-native.png",
+        "sourceSHA256": "c4f01af97dd30c31dcfea8d9241ee65a58235906db6a6e3d52f2ceb594e603c4",
+        "crop": "/private/tmp/prosary-bel-notes-remaining-20261003/247-vayisaehu36.png",
+        "sha256": "79f805c81342a641a1a55a326eb94b5c166fdb8f1ccb261cb4a5436e602c1b55",
+        "enlargement": 4,
+        "transformation": "original pixel crop and nearest-neighbor enlargement only"
+      }
+    },
+    {
+      "noteID": "bel-1-40-247-bayom40-letter2-dagesh",
+      "verse": 40,
+      "originalWord": "בּיוֹם",
+      "correctedWord": null,
+      "occurrence": 1,
+      "letterIndex": 2,
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "confidence": "insufficient evidence to resolve",
+      "finding": "The yod is fully saturated; its interior point cannot be distinguished from the letter body.",
+      "evidence": {
+        "name": "247-bayom40",
+        "sourcePage": 247,
+        "nativeBounds": [
+          1845,
+          1728,
+          1995,
+          1818
+        ],
+        "source": "/private/tmp/prosary-kahana-reference/BEL247-native.png",
+        "sourceSHA256": "c4f01af97dd30c31dcfea8d9241ee65a58235906db6a6e3d52f2ceb594e603c4",
+        "crop": "/private/tmp/prosary-bel-notes-remaining-20261003/247-bayom40.png",
+        "sha256": "6bedc24b93a856b69a86068f01688f57d8325a3265ae2e0e55fd0a0ee3ed0f71",
+        "enlargement": 4,
+        "transformation": "original pixel crop and nearest-neighbor enlargement only"
+      }
+    },
+    {
+      "noteID": "bel-1-36-247-vayahazek36-letter2-dagesh",
+      "verse": 36,
+      "originalWord": "ויַחֲזֵק",
+      "correctedWord": null,
+      "occurrence": 1,
+      "letterIndex": 2,
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "confidence": "insufficient evidence to resolve",
+      "finding": "The yod has a small white slit but its inner dark spur is joined to the letter body; the point remains unresolved.",
+      "evidence": {
+        "name": "247-vayahazek36",
+        "sourcePage": 247,
+        "nativeBounds": [
+          1765,
+          1261,
+          1923,
+          1343
+        ],
+        "source": "/private/tmp/prosary-kahana-reference/BEL247-native.png",
+        "sourceSHA256": "c4f01af97dd30c31dcfea8d9241ee65a58235906db6a6e3d52f2ceb594e603c4",
+        "crop": "/private/tmp/prosary-bel-notes-remaining-20261003/247-vayahazek36.png",
+        "sha256": "fcbb849d6f3bc291cee35b6fed3ef1cff52fdab40dda98296e40d03254f64257",
+        "enlargement": 4,
+        "transformation": "original pixel crop and nearest-neighbor enlargement only"
+      }
+    },
+    {
+      "noteID": "bel-1-37-247-daniel37a-letter3-dagesh",
+      "verse": 37,
+      "originalWord": "דָּנִיֵאל",
+      "correctedWord": null,
+      "occurrence": 1,
+      "letterIndex": 3,
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "confidence": "insufficient evidence to resolve",
+      "finding": "The yod has a small white notch amid joined dark strokes; no isolated dagesh or clean absence is visible.",
+      "evidence": {
+        "name": "247-daniel37a",
+        "sourcePage": 247,
+        "nativeBounds": [
+          1965,
+          1444,
+          2155,
+          1529
+        ],
+        "source": "/private/tmp/prosary-kahana-reference/BEL247-native.png",
+        "sourceSHA256": "c4f01af97dd30c31dcfea8d9241ee65a58235906db6a6e3d52f2ceb594e603c4",
+        "crop": "/private/tmp/prosary-bel-notes-remaining-20261003/247-daniel37a.png",
+        "sha256": "0cbee294dfa98c08f2a874302aee246c2b088e189d856a29cb758962763d5ffe",
+        "enlargement": 4,
+        "transformation": "original pixel crop and nearest-neighbor enlargement only"
+      }
+    },
+    {
+      "noteID": "bel-1-37-247-daniel37b-letter3-dagesh",
+      "verse": 37,
+      "originalWord": "דָּנִיֵאל",
+      "correctedWord": null,
+      "occurrence": 2,
+      "letterIndex": 3,
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "confidence": "insufficient evidence to resolve",
+      "finding": "The yod interior spur joins its head and side; no independent point is recoverable.",
+      "evidence": {
+        "name": "247-daniel37b",
+        "sourcePage": 247,
+        "nativeBounds": [
+          1767,
+          1444,
+          1955,
+          1529
+        ],
+        "source": "/private/tmp/prosary-kahana-reference/BEL247-native.png",
+        "sourceSHA256": "c4f01af97dd30c31dcfea8d9241ee65a58235906db6a6e3d52f2ceb594e603c4",
+        "crop": "/private/tmp/prosary-bel-notes-remaining-20261003/247-daniel37b.png",
+        "sha256": "4984b317b94646ecacfce05961a47e2212fc03499b17187e5c9eba18ac1da3fd",
+        "enlargement": 4,
+        "transformation": "original pixel crop and nearest-neighbor enlargement only"
+      }
+    },
+    {
+      "noteID": "bel-1-42-247-vayitarfu42-letter2-dagesh",
+      "verse": 42,
+      "originalWord": "ויִטָּרפוּ",
+      "correctedWord": null,
+      "occurrence": 1,
+      "letterIndex": 2,
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "confidence": "insufficient evidence to resolve",
+      "finding": "The initial yod remains solid and saturated; its interior offers no independently readable point.",
+      "evidence": {
+        "name": "247-vayitarfu42",
+        "sourcePage": 247,
+        "nativeBounds": [
+          1795,
+          2011,
+          1975,
+          2096
+        ],
+        "source": "/private/tmp/prosary-kahana-reference/BEL247-native.png",
+        "sourceSHA256": "c4f01af97dd30c31dcfea8d9241ee65a58235906db6a6e3d52f2ceb594e603c4",
+        "crop": "/private/tmp/prosary-bel-notes-remaining-20261003/247-vayitarfu42.png",
+        "sha256": "340299c625b8492f47108102c35a9aae95553c722cb146453ff7e2c3046a934e",
+        "enlargement": 4,
+        "transformation": "original pixel crop and nearest-neighbor enlargement only"
+      }
+    }
+  ]
+}

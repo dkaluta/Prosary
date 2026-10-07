@@ -246,7 +246,7 @@ struct PrayerStepFlowView: View {
           totalSteps: totalSteps, languageCode: languageCode, canGoBack: canGoBack,
           textSize: presentation.textSize, onBack: onBack, onNext: onNext, onExit: presentation.exit,
           primaryActionLabel: isLastStep ? nil : centralActionLabel, contentBundleID: contentBundleID,
-          titleIsPrayerHeading: navigationTitleIsPrayerHeading)
+          titleIsPrayerHeading: navigationTitleIsPrayerHeading, flowActions: flowActions)
       } else { regularContent }
       #else
       regularContent
@@ -526,8 +526,8 @@ struct PrayerStepFlowView: View {
         // The versicle/response is a prayer, not part of the reading — it keeps the regular
         // prayer typeface even when the body below is scripture.
         Text(bodyAttributedString(acclamation))
-          .font(PrayerTypography.font(languageCode: languageCode, isScripture: false,
-                                      text: acclamation, typefaces: typefaces))
+          .prayerFont(languageCode: languageCode, isScripture: false,
+                      text: acclamation, typefaces: typefaces)
           .lineSpacing(4)
       }
 
@@ -559,20 +559,22 @@ struct PrayerStepFlowView: View {
         // Both original bodies and transliterations follow their actual script; imported
         // Aramaic prayers can use Syriac letters even though built-in Aramaic uses Hebrew.
         Text(bodyAttributedString(usesAlternateText ? transliteration : step.body))
-          .font(PrayerTypography.font(
+          .prayerFont(
             languageCode: languageCode, isScripture: step.isScripture,
-            text: usesAlternateText ? transliteration : step.body, typefaces: typefaces))
+            text: usesAlternateText ? transliteration : step.body, typefaces: typefaces)
           .accessibilityIdentifier("prayerBodyText")
           .lineSpacing(4)
           .textSelection(.enabled)
       } else {
         Text(bodyAttributedString(step.body))
-          .font(PrayerTypography.font(languageCode: languageCode, isScripture: step.isScripture,
-                                      text: step.body, typefaces: typefaces))
+          .prayerFont(languageCode: languageCode, isScripture: step.isScripture,
+                      text: step.body, typefaces: typefaces)
           .accessibilityIdentifier("prayerBodyText")
           .lineSpacing(4)
           .textSelection(.enabled)
       }
+
+      PopeIntentionPrayerView(step: step, languageCode: languageCode)
 
       if let centralActionLabel {
         #if os(macOS)
@@ -595,8 +597,9 @@ struct PrayerStepFlowView: View {
           Text(centralActionLabel)
             .font(.title3.weight(.bold))
             .foregroundStyle(Color(uiColor: .systemBackground))
-            .frame(width: 104, height: 104)
-            .background(Circle().fill(Color.accentColor))
+            .padding(20)
+            .frame(minWidth: 104, minHeight: 104)
+            .background(Capsule().fill(Color.accentColor))
         }
         .buttonStyle(.plain)
         .padding(.top, 12)

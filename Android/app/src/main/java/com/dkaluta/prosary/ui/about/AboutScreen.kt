@@ -206,6 +206,11 @@ fun AboutScreen(onBack: () -> Unit) {
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
+                Text(
+                    stringResource(R.string.about_mission_prayer_corrections),
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
                 TextButton(onClick = { uriHandler.openUri("https://rkc.org.ua/duhovnist/molytovnyk/") }) {
                     Text(stringResource(R.string.about_ukrainian_prayerbook_link))
                 }

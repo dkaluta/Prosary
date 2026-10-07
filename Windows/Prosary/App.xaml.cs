@@ -45,7 +45,7 @@ public partial class App : Application
         // no-longer-listed id resolves to the calendars.json registry's default in the store.
         TodayInfoStore.SelectedCalendarId = AppSettings.FeastCalendarId;
 
-        DesktopWindowManager.ShowLibrary();
+        DesktopWindowManager.ShowLibrary("home");
         MainWindow.Activated += (_, activation) => {
             if (activation.WindowActivationState == WindowActivationState.Deactivated) return;
             TimeZoneInfo.ClearCachedData();

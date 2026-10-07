@@ -14,10 +14,23 @@ Sources: https://ebible.org/Scriptures/details.php?id=grcbrent and the pinned
 STEP TVTMS provenance at versification/step/sources.json. Brenton variants are
 explicitly distinguished in TVTMS's Genesis36–37, Exodus35, Deuteronomy22–23,
 Joshua8–9, Job39–41 and Psalm title sections.
+
+Three Psalm source rows cross Standard clause boundaries even though the integer
+labels exist. Their independently read source clauses and row hashes are recorded
+in brenton-psalm-boundaries.json; complete source rows retain both overlap edges.
 """
 from reading_step_mapping import Unavailable
 from reading_standard_bridge import standard_chapter_max
 from reading_versification import SUPPORTED_BOOKS, chapter_verse_count
+
+
+# These relations belong only to the hash-pinned grcbrent import. Psalm 8:7
+# already contains the under-feet clause; its ordinary relation stays unchanged.
+BRENTON_PSALM_SOURCE_OVERLAPS = {
+    ("PSA", 16, 4): (("PSA", 17, 3), ("PSA", 17, 4)),
+    ("PSA", 18, 6): (("PSA", 19, 4), ("PSA", 19, 5)),
+    ("PSA", 94, 8): (("PSA", 95, 7), ("PSA", 95, 8)),
+}
 
 
 def sil_english_ot_to_standard(references):
@@ -251,3 +264,5 @@ PROFILES = {'brenton-lxx': {'blocked_chapters': {('1CH', 1),
                                   'GrkTitleMerged',
                                   'GrkTitleSeparate',
                                   'GrkTitleSeparate2'}}}
+
+PROFILES["brenton-lxx"]["overrides"].update(BRENTON_PSALM_SOURCE_OVERLAPS)

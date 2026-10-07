@@ -28,7 +28,7 @@ enum PrayerKind: String, CaseIterable, Codable, Hashable {
   /// by the string catalog. The Rosary obtains its prayer names from its bundled manifest.
   private var namesByPrayerLanguage: [String: String] {
     switch self {
-    case .rosary:      return ["he": "מחרוזת"]
+    case .rosary:      return ["he": "מחרוזת הורדים"]
     case .jesusPrayer: return ["he": "תפילת ישוע"]
     case .custom:      return [:]
     }

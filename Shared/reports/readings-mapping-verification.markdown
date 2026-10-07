@@ -1,6 +1,11 @@
 # Readings mapping verification — September 16, 2026
 
-This audit covers the entire shipped offline corpus after the Psalm availability fix. It checks source and numbering provenance; it is not a fresh manual translation or semantic review of every Bible verse.
+This historical audit records the offline corpus as it stood on September 16, 2026.
+Its counts and source coverage are preserved as that snapshot, rather than a claim about
+the current app. Current generated coverage is recorded in
+[readings-text-coverage.json](readings-text-coverage.json) and
+[psalm-coverage.json](psalm-coverage.json). This snapshot checked source and numbering
+provenance; it was not a fresh manual translation or semantic review of every Bible verse.
 
 ## Scope and result
 

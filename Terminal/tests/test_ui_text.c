@@ -24,6 +24,34 @@ static void check_keyboard_navigation(void)
     assert(ui.engine);
     assert(rebuild(&ui, "rosary", 0));
     ui.focus = 1;
+    /* Section jumps remain available through the fifth decade, including its last bead. */
+    handle_key(&ui, ']');
+    assert(ui.session->steps[state.step].decade_index == 0);
+    handle_key(&ui, ']'); handle_key(&ui, ']'); handle_key(&ui, ']'); handle_key(&ui, ']');
+    assert(ui.session->steps[state.step].decade_index == 4);
+    while (state.step + 1 < ui.session->count && ui.session->steps[state.step + 1].decade_index == 4) ++state.step;
+    handle_key(&ui, ']'); assert(ui.session->steps[state.step].decade_index == -1);
+    { size_t closing = state.step; handle_key(&ui, ']'); assert(state.step == closing); }
+    handle_key(&ui, '['); assert(ui.session->steps[state.step].decade_index == 4);
+    handle_key(&ui, '['); assert(ui.session->steps[state.step].decade_index == 3);
+    {
+        /* The section helper also completes a final decade whose session has no closing tail. */
+        size_t full_count = ui.session->count, final_start = 0, final_end, i;
+        while (final_start < full_count && ui.session->steps[final_start].decade_index != 4) ++final_start;
+        assert(final_start < full_count);
+        final_end = final_start;
+        while (final_end + 1 < full_count && ui.session->steps[final_end + 1].decade_index == 4) ++final_end;
+        ui.session->count = final_end + 1;
+        for (i = final_start; i <= final_end; ++i) {
+            state.step = i; state.completed = 0; ui.scroll = 3;
+            handle_key(&ui, ']');
+            assert(state.completed && state.step == final_end && ui.scroll == 0);
+            handle_key(&ui, KEY_BACKSPACE);
+            assert(!state.completed && state.step == final_end);
+        }
+        ui.session->count = full_count;
+    }
+    state.step = 0;
     handle_key(&ui, KEY_RIGHT); assert(state.step == 1);
     handle_key(&ui, ' '); assert(state.step == 2);
     state.keyboard_arrow_navigation_enabled = 0;

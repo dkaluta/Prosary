@@ -16,17 +16,29 @@ namespace Prosary.Views;
 /// back to the default Rosary favorite (see <see cref="RosaryViewModel.LoadAsync"/>).</summary>
 public sealed partial class RosaryPrayerPage : Page
 {
+    private async void OnChooseMystery(object sender, RoutedEventArgs e)
+    {
+        await ShowMysteryChoiceDialogAsync();
+    }
     public RosaryViewModel ViewModel { get; }
 
     private AutoAdvanceTimer? _autoAdvance;
     private readonly PrayerFlowReader _reader;
     private (bool, string, string)? _lastPrayerWording;
+    private bool _isLoadingSession;
+    private bool _isShowingMysteryDialog;
+    private bool _isPageActive;
+
+    private sealed record GroupChoice(MysteryGroup Group, string Title);
 
     public RosaryPrayerPage()
     {
         ViewModel = App.Services.GetRequiredService<RosaryViewModel>();
         ViewModel.Navigation = Router.For(this);
         InitializeComponent();
+        var chooseMystery = Loc.Tr("flow_choose_mystery", "Choose Mystery");
+        Microsoft.UI.Xaml.Automation.AutomationProperties.SetName(MysteryPickerButton, chooseMystery);
+        ToolTipService.SetToolTip(MysteryPickerButton, chooseMystery);
         _reader = new PrayerFlowReader(NarrowReader, NarrowBody);
         _reader.Register(WideReader, WideBody);
         ViewModel.PropertyChanged += OnFlowPropertyChanged;
@@ -34,6 +46,7 @@ public sealed partial class RosaryPrayerPage : Page
         {
             AppSettings.TypographyChanged += OnTypographyChanged;
             AppSettings.PrayerWordingChanged += OnPrayerWordingChanged;
+            AppSettings.PopeIntentionPreferenceChanged += OnTypographyChanged;
             OnPrayerWordingChanged();
             OnTypographyChanged();
         };
@@ -43,6 +56,7 @@ public sealed partial class RosaryPrayerPage : Page
             _autoAdvance = null;
             AppSettings.TypographyChanged -= OnTypographyChanged;
             AppSettings.PrayerWordingChanged -= OnPrayerWordingChanged;
+            AppSettings.PopeIntentionPreferenceChanged -= OnTypographyChanged;
         };
         ActualThemeChanged += OnActualThemeChanged;
     }
@@ -50,35 +64,46 @@ public sealed partial class RosaryPrayerPage : Page
     protected override async void OnNavigatedTo(NavigationEventArgs e)
     {
         base.OnNavigatedTo(e);
-        if (!await Router.WaitUntilLoadedAsync(this)) return;
-        ViewModel.HasDarkTheme = ActualTheme == ElementTheme.Dark;
-        if (e.Parameter is Prosary.Models.Prayer adHoc)
+        _isPageActive = true;
+        _isLoadingSession = true;
+        PauseAutoAdvance();
+        try
         {
-            // The preset picker's "Pray any Rosary" — an unsaved session.
-            ViewModel.LoadAdHoc(adHoc);
-        }
-        else
-        {
-            await ViewModel.LoadAsync(e.Parameter as Guid?);
-        }
+            if (!await Router.WaitUntilLoadedAsync(this)) return;
+            ViewModel.HasDarkTheme = ActualTheme == ElementTheme.Dark;
+            if (e.Parameter is Prosary.Models.Prayer adHoc)
+            {
+                // The preset picker's "Pray any Rosary" — an unsaved session.
+                ViewModel.LoadAdHoc(adHoc);
+            }
+            else
+            {
+                await ViewModel.LoadAsync(e.Parameter as Guid?);
+            }
 
-        if (ViewModel.Navigation.OwnerWindow is null) return;
-        if (ViewModel.HasSavedContinuation)
-        {
-            if (e.NavigationMode == NavigationMode.Back) ViewModel.ContinueSavedRun();
+            if (ViewModel.Navigation.OwnerWindow is null) return;
+            if (ViewModel.HasSavedContinuation)
+            {
+                if (e.NavigationMode == NavigationMode.Back) ViewModel.ContinueSavedRun();
                 else await ShowResumeDialogAsync();
-        }
-        BuildLanguageFlyout();
+            }
+            if (ViewModel.RequiresMysteryChoice) await ShowMysteryChoiceDialogAsync();
+            BuildLanguageFlyout();
 
-        if (ViewModel.Navigation.OwnerWindow is null) return;
-        AutoAdvanceMenu.Populate(AutoAdvanceFlyout, () => _autoAdvance?.Restart());
-        _autoAdvance?.Dispose();
-        _autoAdvance = new AutoAdvanceTimer(ViewModel);
+            if (ViewModel.Navigation.OwnerWindow is null) return;
+            AutoAdvanceMenu.Populate(AutoAdvanceFlyout, () => _autoAdvance?.Restart());
+        }
+        finally
+        {
+            _isLoadingSession = false;
+            ResumeAutoAdvance();
+        }
     }
 
     protected override void OnNavigatedFrom(NavigationEventArgs e)
     {
         base.OnNavigatedFrom(e);
+        _isPageActive = false;
         _autoAdvance?.Dispose();
         _autoAdvance = null;
     }
@@ -119,12 +144,95 @@ public sealed partial class RosaryPrayerPage : Page
             BuildLanguageFlyout();
         });
 
+    private void PauseAutoAdvance()
+    {
+        _autoAdvance?.Dispose();
+        _autoAdvance = null;
+    }
+
+    private void ResumeAutoAdvance()
+    {
+        PauseAutoAdvance();
+        if (_isPageActive && !_isLoadingSession && !_isShowingMysteryDialog
+            && !ViewModel.RequiresMysteryChoice && ViewModel.HasSteps && ViewModel.Navigation.OwnerWindow is not null)
+            _autoAdvance = new AutoAdvanceTimer(ViewModel);
+    }
+
+    private async Task ShowMysteryChoiceDialogAsync()
+    {
+        if (_isShowingMysteryDialog) return;
+        var mandatory = ViewModel.RequiresMysteryChoice;
+        _isShowingMysteryDialog = true;
+        PauseAutoAdvance();
+        try
+        {
+            var groups = new ComboBox { Header = Loc.Tr("flow_mystery_set", "Mystery Set"),
+                HorizontalAlignment = HorizontalAlignment.Stretch, DisplayMemberPath = nameof(GroupChoice.Title),
+                ItemsSource = Enum.GetValues<MysteryGroup>().Select(group => new GroupChoice(group, group.UiName())).ToArray(),
+                SelectedIndex = -1 };
+            var mysteries = new StackPanel { Spacing = 8, Visibility = Visibility.Collapsed };
+            var content = new StackPanel { Spacing = 12 };
+            content.Children.Add(groups);
+            content.Children.Add(new ScrollViewer { Content = mysteries, MaxHeight = 360,
+                VerticalScrollBarVisibility = ScrollBarVisibility.Auto,
+                HorizontalScrollBarVisibility = ScrollBarVisibility.Disabled });
+            var dialog = new ContentDialog { XamlRoot = XamlRoot, FlowDirection = NavigationFlowDirection,
+                Title = Loc.Tr("flow_choose_mystery", "Choose Mystery"), Content = content,
+                CloseButtonText = Loc.Tr("common_cancel", "Cancel"),
+                DefaultButton = ContentDialogButton.None };
+            MysteryGroup? selectedGroup = null;
+            int? selectedOrder = null;
+            var hasChoice = false;
+            Button ChoiceButton(string title, MysteryGroup group, int? order)
+            {
+                var button = new Button { HorizontalAlignment = HorizontalAlignment.Stretch,
+                    HorizontalContentAlignment = HorizontalAlignment.Stretch,
+                    Content = new TextBlock { Text = title, TextWrapping = TextWrapping.Wrap,
+                        TextAlignment = NavigationFlowDirection == FlowDirection.RightToLeft ? TextAlignment.Right : TextAlignment.Left } };
+                button.Click += (_, _) =>
+                {
+                    selectedGroup = group;
+                    selectedOrder = order;
+                    hasChoice = true;
+                    dialog.Hide();
+                };
+                return button;
+            }
+            groups.SelectionChanged += (_, _) =>
+            {
+                if (groups.SelectedItem is not GroupChoice chosen) return;
+                mysteries.Children.Clear();
+                mysteries.Children.Add(ChoiceButton(Loc.Tr("flow_entire_set", "Entire Set"), chosen.Group, null));
+                foreach (var mystery in MysteryCatalog.ForGroup(chosen.Group))
+                    mysteries.Children.Add(ChoiceButton(MysteryTranslations.Get(UiLanguageCatalog.Current, mystery.ImageKey).Title,
+                        chosen.Group, mystery.Order));
+                mysteries.Visibility = Visibility.Visible;
+            };
+            await dialog.ShowAsync();
+            if (!_isPageActive || ViewModel.Navigation.OwnerWindow is null) return;
+            if (hasChoice && selectedGroup is { } group)
+                ViewModel.ChooseMystery(group, selectedOrder);
+            else if (mandatory) ViewModel.Navigation.GoBack();
+        }
+        finally
+        {
+            _isShowingMysteryDialog = false;
+            ResumeAutoAdvance();
+        }
+    }
+
     private void FlowContent_SizeChanged(object sender, SizeChangedEventArgs e) => UpdateFlowLayout();
 
     private void OnFlowPropertyChanged(object? sender, PropertyChangedEventArgs e)
     {
         if (e.PropertyName is nameof(ViewModel.Body) or nameof(ViewModel.Progress)) _reader.Reset();
         if (e.PropertyName is nameof(ViewModel.GroupColumns) or nameof(ViewModel.BottomBeads)) UpdateFlowLayout();
+        if (e.PropertyName == nameof(ViewModel.RequiresMysteryChoice) && ViewModel.RequiresMysteryChoice)
+        {
+            PauseAutoAdvance();
+            if (_isPageActive && !_isLoadingSession && !_isShowingMysteryDialog)
+                DispatcherQueue.TryEnqueue(async () => await ShowMysteryChoiceDialogAsync());
+        }
     }
 
     private void UpdateFlowLayout()

@@ -1,0 +1,161 @@
+{
+  "schemaVersion": 1,
+  "researchedAt": "2026-10-03",
+  "scope": "Read-only follow-up research of the Expo handoff and remaining native widget verification; no refresh, native install, repository publication or device settings change.",
+  "expo": {
+    "package": "@prosary/expo-today",
+    "snapshotDate": "2026-09-08",
+    "snapshotCalendarIDs": [
+      "lpj",
+      "roman",
+      "roman1962",
+      "ugcc",
+      "syriac",
+      "maronite"
+    ],
+    "canonicalCalendarIDs": [
+      "lpj",
+      "stjames",
+      "roman",
+      "roman1962",
+      "franciscan-conventual-italy",
+      "augustinian-discalced",
+      "ugcc",
+      "ugcc-julian",
+      "syriac",
+      "maronite"
+    ],
+    "missingCalendarIDs": [
+      "augustinian-discalced",
+      "franciscan-conventual-italy",
+      "stjames",
+      "ugcc-julian"
+    ],
+    "canonicalTodayFilesExpected": 24,
+    "missingGeneratedDatasetFiles": [
+      "feasts-augustinian-discalced.json",
+      "feasts-franciscan-conventual-italy.json",
+      "feasts-stjames.json",
+      "feasts-ugcc-julian.json",
+      "readings-augustinian-discalced.json",
+      "readings-franciscan-conventual-italy.json",
+      "readings-stjames.json",
+      "readings-ugcc-julian.json"
+    ],
+    "staleCopiedDatasetFiles": [
+      "calendars.json",
+      "feasts-roman.json",
+      "feasts-roman1962.json",
+      "feasts-syriac.json",
+      "feasts-ugcc-gregorian.json",
+      "feasts-ugcc.json",
+      "feasts.json",
+      "pope-intentions.json",
+      "readings-maronite.json",
+      "readings-roman.json",
+      "readings-roman1962.json",
+      "readings-syriac.json",
+      "readings-ugcc-gregorian.json",
+      "readings-ugcc.json",
+      "torah-portions.json",
+      "feasts-maronite.json"
+    ],
+    "freshCanonicalSyncCheck": {
+      "command": "node scripts/sync-data.mjs --check",
+      "exitCode": 1,
+      "additionalGeneratedFilesOutOfSync": [
+        "dataManifest.json",
+        "src/data.ts",
+        "src/labels.ts"
+      ]
+    },
+    "previousTurnReadOnlyChecks": {
+      "strictTypes": "passed",
+      "behaviorTestsPassed": 27,
+      "snapshotDatasetHashesPassed": 16,
+      "scope": "Self-consistency of the September snapshot; does not establish canonical parity."
+    },
+    "providerReadiness": {
+      "registryDrivenSelection": true,
+      "newCalendarTypesRequireSpecialNativeCode": false,
+      "readerPassageAdapter": "Owned by Erez's host app; citations are display strings, not structured Bible verse identifiers.",
+      "saintDescriptions": "Current Expo types/provider expose feast title/rank only; scraped biographies are not part of this package."
+    },
+    "requiredRefresh": [
+      "Run the existing canonical exporter; do not hand-edit generated JSON/imports/labels.",
+      "Update the six-calendar registry expectation to current source order and verify new calendar boundaries, St James dates and empty old-style reading behavior.",
+      "Update source credits and finite coverage documentation for St James, order calendars and the curated old-style feast calendar.",
+      "Correct SOURCE-DATA distinction: first-party natural-language wording/editorial contributions CC0, software code BSD-2-Clause, third-party material its original terms.",
+      "Rerun package checks and canonical check; rebuild the tarball/source archive with the exact current root LICENSE; verify that actual tarball through iOS and Android Metro exports.",
+      "Test the host-native picker, RTL, large text, settings relaunch and reader route on host devices; successful Metro export alone is insufficient."
+    ],
+    "primaryDocumentation": [
+      {
+        "url": "https://docs.expo.dev/versions/latest/sdk/date-time-picker/",
+        "observed": "System date/time picker is included in Expo Go; published recommended package 9.1.0 matches this handoff harness. Install through the host SDK-compatible Expo command."
+      },
+      {
+        "url": "https://docs.expo.dev/develop/development-builds/faq/",
+        "observed": "Native libraries/configuration are determined by the installed native app; a JavaScript export does not test absent or changed native code."
+      }
+    ],
+    "postResearchTitleCorrection": "Counts rechecked after the 2026-10-03 user-supplied Palm Sunday Hebrew display correction; feasts-maronite.json is now also stale. The staged Expo handoff remains untouched."
+  },
+  "widgetVerification": {
+    "localInventory": {
+      "readAt": "2026-10-03",
+      "appleSimulators": "iOS26.3/26.4/26.5/27 available; one existing QA simulator already booted.",
+      "physicalApplePhone": "Known paired iPhone15ProMax currently unavailable; no reachable physical iPhone verified.",
+      "androidADB": "No devices attached.",
+      "windowsRuntime": "No Windows host available in this local macOS task.",
+      "initialSandboxErrors": "Simulator/CoreDevice/ADB sandbox errors disappeared for permitted read-only inventory outside the sandbox; do not label them product defects."
+    },
+    "sourceInspection": {
+      "appGroup": "group.com.dkaluta.prosary",
+      "matchingHostAndExtensionEntitlements": true,
+      "signingStyle": "Automatic; does not prove installed profile membership.",
+      "android1x1Shortcut": "TargetCell 1x1 and 48dp minimums present.",
+      "androidResponsiveLayouts": "RemoteViews size map for API31+ already present."
+    },
+    "practicalNextChecks": [
+      "Run the Apple widget extension under Xcode on a simulator for gallery, family, placeholder/snapshot/timeline and tap-routing evidence.",
+      "On Mac, use Apple's WidgetKit Simulator for configurations, then check an installed signed app for actual desktop/Notification Center and shared storage behavior.",
+      "Verify App Group registration/profile inclusion for both host and extension, and extension embedding, with a signed installation.",
+      "Connect a physical Android device and test the real launcher picker, resize limits, multiple instances, cold/warm launches and saved-prayer lifecycle.",
+      "Test VoiceOver/TalkBack, Hebrew/Arabic ordering, large text, light/dark appearance, local midnight and time-zone changes.",
+      "Run the existing Windows CI job after an authorized push, or the native suite on an available Windows host; no CI claim is made for local-only commits."
+    ],
+    "primaryDocumentation": [
+      {
+        "url": "https://developer.apple.com/documentation/widgetkit/debugging-widgets",
+        "markdownURL": "https://developer.apple.com/documentation/widgetkit/debugging-widgets.md",
+        "sourceSHA256": "8206441dff14c94cb36bd5d6f51c7b7b5265b482ced3e777fa2c8bdeadac09a5",
+        "observed": "Run widget-extension target to display a widget on target; _XCWidgetKind and _XCWidgetFamily select configuration/family. On Mac WidgetKit Simulator supports timeline, snapshot and placeholder inspection."
+      },
+      {
+        "url": "https://developer.apple.com/documentation/xcode/configuring-app-groups",
+        "markdownURL": "https://developer.apple.com/documentation/xcode/configuring-app-groups.md",
+        "sourceSHA256": "5bb1dab2c49723e9a3a0b275cb4e5c9550d698447c5d0e291adada713db21541",
+        "observed": "App Group capability and membership permit host/extension data sharing. Required registration and signatures must be verified separately from source entitlements."
+      },
+      {
+        "url": "https://developer.android.com/develop/ui/views/appwidgets/layouts",
+        "observed": "Launcher cells and margins vary; targetCell dimensions express grid intent. Widget size lists are the launcher's responsibility and can be absent. Test supported resize ranges."
+      },
+      {
+        "url": "https://developer.android.com/guide/topics/ui/accessibility/testing",
+        "observed": "Manual accessibility-service interaction, tools, automated tests and user testing complement one another; static checks do not establish runtime accessibility."
+      }
+    ]
+  },
+  "xcodeCloudManifest": {
+    "path": "iOS/Prosary.xcodeproj/xcshareddata/xcodecloud/manifest.json",
+    "content": "Cloud project identifier plus one Prosary target identifier/name.",
+    "scope": "Configuration metadata; no app behavior implementation.",
+    "repositoryDecision": "Still staged separately; research did not commit, delete or alter it."
+  },
+  "releaseApproval": "Formal Fr Piotr approval remains required for the 1.0 App Store launch; research/development does not establish that approval.",
+  "nativeFeaturesChanged": false,
+  "contactedAnyone": false,
+  "mediaDownloaded": false
+}

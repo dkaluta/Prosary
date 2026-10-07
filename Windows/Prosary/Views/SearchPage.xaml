@@ -18,7 +18,11 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <TextBlock x:Uid="SearchTitle" Grid.Row="0" Text="Search" Style="{StaticResource SubHeadlineTextStyle}" />
+        <Grid Grid.Row="0" ColumnSpacing="12">
+            <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+            <TextBlock x:Uid="SearchTitle" Text="Search" Style="{StaticResource SubHeadlineTextStyle}" />
+            <Button Grid.Column="1" Content="{x:Bind CommunityLabel}" Click="OnOpenCommunity" />
+        </Grid>
         <TextBox x:Name="QueryBox" x:Uid="SearchBox" Grid.Row="1" PlaceholderText="Prayers and categories"
                  Text="{x:Bind ViewModel.SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 

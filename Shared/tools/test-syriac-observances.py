@@ -216,12 +216,15 @@ assert all(part["sourceTitleByLanguage"]["ar"] for part in canonical["2026-02-02
 # Re-localizing an existing dataset keeps source spellings, identity metadata and Arabic.
 with tempfile.TemporaryDirectory() as directory:
     fixture_data = Path(directory)
-    for name in ("feasts-syriac.json", "calendars.json"):
+    for name in ("feasts-syriac.json", "feasts-mission-provisional.json", "calendars.json"):
         (fixture_data / name).write_bytes((TOOLS.parent / "data" / name).read_bytes())
     before = (fixture_data / "feasts-syriac.json").read_bytes()
+    provisional_before = (fixture_data / "feasts-mission-provisional.json").read_bytes()
     with patch.object(feasts, "DATA", fixture_data):
         feasts.localize_existing_datasets({"feasts-syriac"})
         assert (fixture_data / "feasts-syriac.json").read_bytes() == before
+        feasts.localize_existing_datasets({"feasts-mission-provisional"})
+        assert (fixture_data / "feasts-mission-provisional.json").read_bytes() == provisional_before
         feasts.localize_existing_datasets({"feasts-syriac"})
         assert (fixture_data / "feasts-syriac.json").read_bytes() == before
 for target in ("iOS/Prosary/Data", "Android/app/src/main/assets/data", "Windows/Prosary/Data"):

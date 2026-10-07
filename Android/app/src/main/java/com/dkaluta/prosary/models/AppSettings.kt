@@ -209,6 +209,20 @@ object AppSettings {
         }
 
     private var easternPaschaStyleState by mutableStateOf("julian")
+    private var popeIntentionInPrayersState by mutableStateOf(false)
+    var showPopeIntentionInPrayers: Boolean
+        get() = popeIntentionInPrayersState
+        set(value) {
+            popeIntentionInPrayersState = value
+            prefs?.edit()?.putBoolean("showPopeIntentionInPrayers", value)?.apply()
+        }
+    private var calendarViewModeState by mutableStateOf("list")
+    var calendarViewMode: String
+        get() = calendarViewModeState
+        set(value) {
+            calendarViewModeState = if (value == "month") "month" else "list"
+            prefs?.edit()?.putString("calendarViewMode", calendarViewModeState)?.apply()
+        }
     var easternPaschaStyle: String
         get() = easternPaschaStyleState
         set(value) {
@@ -245,9 +259,20 @@ object AppSettings {
 
     private var prefs: SharedPreferences? = null
 
+    private val homeWidgets = HomeWidgetPreferences()
+    var homeWidgetOrder: List<HomeWidget>
+        get() = homeWidgets.widgets
+        set(value) = homeWidgets.updateWidgets(value)
+    var homePhotoPath: String
+        get() = homeWidgets.photoPath
+        set(value) = homeWidgets.updatePhotoPath(value)
+    fun addHomeWidget(widget: HomeWidget) = homeWidgets.add(widget)
+    fun moveHomeWidget(widget: HomeWidget, offset: Int) = homeWidgets.move(widget, offset)
+
     fun init(context: Context) {
         val resolved = context.applicationContext.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
         prefs = resolved
+        homeWidgets.initialize(resolved)
         appColorState = AppColor.resolve(resolved.getString(KEY_APP_COLOR, null)).id
         useSystemColorsState = resolved.getBoolean(KEY_SYSTEM_COLORS, true)
         defaultLanguageState = resolved.getString(KEY_DEFAULT_LANGUAGE, "").orEmpty()
@@ -274,6 +299,8 @@ object AppSettings {
         feastCalendarId = if (storedFeastCalendar == "roman-he") "roman" else storedFeastCalendar
         showTodayFeast = resolved.getBoolean(KEY_SHOW_TODAY_FEAST, true)
         showTodayIntention = resolved.getBoolean(KEY_SHOW_TODAY_INTENTION, true)
+        popeIntentionInPrayersState = resolved.getBoolean("showPopeIntentionInPrayers", false)
+        calendarViewModeState = if (resolved.getString("calendarViewMode", "list") == "month") "month" else "list"
         showTodayTorahPortion = resolved.getBoolean(KEY_SHOW_TODAY_TORAH, false)
         showTodayReadings = resolved.getBoolean(KEY_SHOW_TODAY_READINGS, true)
         todayCardColor = resolved.getString(KEY_TODAY_CARD_COLOR, "default").orEmpty()

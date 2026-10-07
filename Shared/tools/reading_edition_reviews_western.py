@@ -713,3 +713,15 @@ PROFILES = {'crampon-1923': {'blocked_chapters': {('1CH', 11),
                                    'Slavonic'}}}
 
 PROFILES["crampon-1923"]["overrides"].update(_crampon_psalms())
+
+# Published native Psalm chapters can be browsed in full without pretending
+# their irregular row numbers are traditional verse labels. Daily relations
+# remain restricted to the separately inspected unit facts.
+from martini_psalm_mapping import reviewed_profile as _martini_psalm_profile
+_martini = _martini_psalm_profile(PROFILES["martini"]["source_pin_digest"])
+PROFILES["martini"]["overrides"].update(_martini.pop("overrides"))
+PROFILES["martini"]["reviewed_inventory_exceptions"].update(_martini.pop("reviewed_inventory_exceptions"))
+PROFILES["martini"].update(_martini)
+PROFILES["martini"]["notes"] = (*PROFILES["martini"]["notes"],
+    "The additional150ParolaVivaPsalmchapters retain publication-native labels for full browsing. "
+    "Only source-pinned inspected Psalm units have Standard correspondences; no traditional offset is inferred.")

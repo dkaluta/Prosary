@@ -2,7 +2,7 @@
 //  SearchTabView.swift
 //  Prosary
 //
-//  Search the prayers on this device. The Browse tab owns discovery and installation.
+//  Search local prayers and reach the community catalog from the same destination.
 //
 
 import SwiftUI
@@ -22,6 +22,7 @@ struct SearchTabView: View {
   @State private var selectedCategory: String?
   @State private var removingDownload: String?
   @State private var unusedDownloads: Set<String> = []
+  @State private var showsCommunity = false
   @Environment(\.appServices) private var services
 
   private var categories: [String] {
@@ -55,6 +56,12 @@ struct SearchTabView: View {
     let _ = prayerLanguage.code  // dependency registration — see the property's comment
     let _ = showsPrayerNameInPrayerLanguage
     List(selection: desktopSelection) {
+      Section {
+        Button { showsCommunity = true } label: {
+          Label(UILanguage.text("homeWidgets.community", language: UILanguage.current, fallback: "Community Prayers"), systemImage: "globe")
+        }
+        .accessibilityIdentifier("search.community")
+      }
       Section(String(localized: "categories.title", defaultValue: "Categories", bundle: UILanguage.bundle, locale: UILanguage.locale)) {
         ScrollView(.horizontal) {
           HStack(spacing: 8) {
@@ -122,6 +129,9 @@ struct SearchTabView: View {
     }
     .navigationTitle(String(localized: "search.title", defaultValue: "Search", bundle: UILanguage.bundle, locale: UILanguage.locale))
     .searchable(text: $query, prompt: String(localized: "search.localPrompt", defaultValue: "Prayers and categories on this device", bundle: UILanguage.bundle, locale: UILanguage.locale))
+    .sheet(isPresented: $showsCommunity) {
+      NavigationStack { RepositoryBrowserView(presentedAsSheet: true) }
+    }
     .modifier(PrayerDownloadRemovalDialogs(bundleID: $removingDownload, onRemoved: { await refreshDownloads() }))
     .task { await refreshDownloads() }
     .onAppear { packGeneration += 1 }

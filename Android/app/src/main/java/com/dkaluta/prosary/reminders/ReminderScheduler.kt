@@ -9,6 +9,8 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
+import android.provider.Settings
+import android.net.Uri
 import androidx.core.content.ContextCompat
 import androidx.core.app.NotificationManagerCompat
 import com.dkaluta.prosary.content.prayerpack.PrayerPackStore
@@ -41,6 +43,7 @@ object ReminderScheduler {
     private const val ExtraRequestCode = "requestCode"
 
     fun createNotificationChannel(context: Context) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) return
         val manager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         // Idempotent: creating a channel that already exists with the same id is a no-op.
         val channel = NotificationChannel(NotificationChannelId, context.getString(R.string.settings_reminders_header), NotificationManager.IMPORTANCE_DEFAULT)
@@ -53,18 +56,37 @@ object ReminderScheduler {
             PackageManager.PERMISSION_GRANTED
     }
 
+    /** Runtime permission alone does not detect a disabled app or reminder channel. */
+    fun notificationsEnabled(context: Context): Boolean {
+        if (!hasNotificationPermission(context) || !NotificationManagerCompat.from(context).areNotificationsEnabled()) return false
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) return true
+        val manager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        return manager.getNotificationChannel(NotificationChannelId)?.importance != NotificationManager.IMPORTANCE_NONE
+    }
+
+    fun notificationSettingsIntent(context: Context): Intent =
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS).putExtra(Settings.EXTRA_APP_PACKAGE, context.packageName)
+        } else {
+            Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, Uri.fromParts("package", context.packageName, null))
+        }
+
+    /** User-requested notifications still need to wake a phone left asleep overnight. */
+    internal fun arm(context: Context, triggerAt: Long, pendingIntent: PendingIntent) {
+        (context.getSystemService(Context.ALARM_SERVICE) as AlarmManager)
+            .setAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, triggerAt, pendingIntent)
+    }
+
     /** Replaces all pending alarms for [prayer] with its current enabled reminders. */
     fun schedule(context: Context, prayer: Prayer) {
         cancelAll(context, prayer)
-        val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
-
         for (reminder in prayer.reminders) {
             if (!reminder.isEnabled) continue
             val triggerAt = nextTriggerTimeMillis(reminder.hour, reminder.minute)
             val pendingIntent = pendingIntentFor(context, prayer, reminder.id)
             // Re-arm after delivery using the next local civil day. A fixed 24-hour interval
             // shifts an hour at daylight-saving transitions.
-            alarmManager.set(AlarmManager.RTC_WAKEUP, triggerAt, pendingIntent)
+            arm(context, triggerAt, pendingIntent)
         }
     }
 
@@ -96,9 +118,9 @@ object ReminderScheduler {
      * since AlarmManager alarms don't survive it (unlike iOS's UNUserNotificationCenter, which
      * persists at the OS level). */
     fun rescheduleAll(context: Context, prayers: List<Prayer>) {
-        for (prayer in prayers) {
-            if (prayer.reminders.any { it.isEnabled }) schedule(context, prayer)
-        }
+        // Scheduling disabled rows also cancels any alarm left from their earlier state.
+        for (prayer in prayers) schedule(context, prayer)
+        for (devotionId in MultiDayRuns.devotionIds(context)) refreshSeries(context, devotionId)
         TodayReminderScheduler.refresh(context)
     }
 
@@ -124,10 +146,7 @@ object ReminderScheduler {
 
         val (hour, minute) = reminderTime(definition?.suggestedReminderTime)
         for ((day, triggerAt) in pendingSeriesDays(run, days.size, hour, minute)) {
-            alarmManager.set(
-                AlarmManager.RTC_WAKEUP, triggerAt,
-                seriesPendingIntent(context, devotionId, day, days.size),
-            )
+            arm(context, triggerAt, seriesPendingIntent(context, devotionId, day, days.size))
         }
     }
 
@@ -229,8 +248,6 @@ object ReminderScheduler {
         if (!intent.hasExtra(ExtraRequestCode)) return
         val pending = PendingIntent.getBroadcast(context, intent.getIntExtra(ExtraRequestCode, 0), intent,
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
-        (context.getSystemService(Context.ALARM_SERVICE) as AlarmManager).set(
-            AlarmManager.RTC_WAKEUP,
-            nextTriggerTimeMillis(intent.getIntExtra(ExtraHour, 9), intent.getIntExtra(ExtraMinute, 0)), pending)
+        arm(context, nextTriggerTimeMillis(intent.getIntExtra(ExtraHour, 9), intent.getIntExtra(ExtraMinute, 0)), pending)
     }
 }

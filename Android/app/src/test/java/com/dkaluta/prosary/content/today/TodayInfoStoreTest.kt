@@ -20,6 +20,35 @@ import org.junit.Test
  * Roman Calendar), the switchable-calendar registry, the Pope's monthly intention, and the
  * graceful out-of-range null that hides the row. Mirrors iOS's TodayInfoStoreTests.swift. */
 class TodayInfoStoreTest {
+    @Test
+    fun popePublicationRequiresStablePrayerIdentityAndExplicitOptIn() {
+        val intention = PopeIntention("Published title", "English body", mapOf("he" to "כותרת"),
+            mapOf("he" to "גוף"), translationCreditByLanguage = mapOf("he" to "Prosary Hebrew translation"))
+        val step = com.dkaluta.prosary.models.RosaryStep(title = "Renamed heading", body = "Sourced prayer",
+            prayerKey = "intentioPontificis")
+        val resolver = com.dkaluta.prosary.ui.shared.PopeIntentionPrayerPublication
+        assertNull(resolver.resolve(step, intention, "he"))
+        assertNull(resolver.resolve(step, null, "he", true))
+        assertNull(resolver.resolve(step.copy(prayerKey = null, title = "For the Pope's intentions"), intention, "he", true))
+        val publication = resolver.resolve(step, intention, "iw-IL", true)
+        assertEquals("he", publication?.languageCode)
+        assertEquals("Prosary Hebrew translation", publication?.translationCredit)
+        assertEquals("Sourced prayer", step.body)
+    }
+
+    @Test
+    fun popePublicationFallbackUsesTheEnglishCreditAndCompleteEdition() {
+        val intention = PopeIntention("English title", "English body", mapOf("he" to "כותרת"), emptyMap(),
+            translationCreditByLanguage = mapOf("he" to "Hebrew editorial credit", "en" to "English published source"))
+        val step = com.dkaluta.prosary.models.RosaryStep(title = "Pope", body = "Prayer", prayerKey = "intentioPontificis")
+        for (language in listOf("he", "he-x-gamliel", "arc", "la")) {
+            val publication = com.dkaluta.prosary.ui.shared.PopeIntentionPrayerPublication.resolve(step, intention, language, true)
+            assertEquals("en", publication?.languageCode)
+            assertEquals("English title", publication?.title)
+            assertEquals("English body", publication?.text)
+            assertEquals("English published source", publication?.translationCredit)
+        }
+    }
     /** The store resolves the selection live on every lookup, so pinning the setting back to
      * "follow the registry default" is the whole reset. */
     @Test
@@ -197,7 +226,7 @@ class TodayInfoStoreTest {
     @Test
     fun calendarRegistryListsTheShippedCalendarsInPickerOrder() {
         assertEquals(
-            listOf("lpj", "stjames", "roman", "roman1962", "franciscan-conventual-italy", "augustinian-discalced", "ugcc", "ugcc-julian", "syriac", "maronite"),
+            listOf("lpj", "stjames", "roman", "roman1962", "franciscan-conventual-italy", "augustinian-discalced", "ugcc", "ugcc-julian", "syriac", "mission-provisional", "maronite"),
             TodayInfoStore.calendars.map { it.id },
         )
         assertEquals("lpj", TodayInfoStore.selectedCalendarId)
@@ -559,8 +588,12 @@ class TodayInfoStoreTest {
         assertEquals(listOf("Sir. 31", "Lk. 12"), TodayInfoStore.readings(target).map { it.short })
 
         AppSettings.feastCalendarId = "ugcc"
+        val captured = TodayInfoStore.readings(target)
+        assertTrue(captured.all { it.readingDatasetId == "ugcc" })
         assertEquals(listOf("2 Cor. 12", "Mk. 4", "Heb. 9", "Lk. 10"), TodayInfoStore.readings(target).map { it.short })
         AppSettings.easternPaschaStyle = "gregorian"
+        assertTrue(TodayInfoStore.readings(target).all { it.readingDatasetId == "ugcc-gregorian" })
+        assertTrue(captured.all { it.readingDatasetId == "ugcc" })
         assertEquals(listOf("Heb. 9", "Lk. 10"), TodayInfoStore.readings(target).map { it.short })
 
         AppSettings.feastCalendarId = "syriac"

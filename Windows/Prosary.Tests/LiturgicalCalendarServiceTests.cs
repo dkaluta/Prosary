@@ -7,6 +7,15 @@ namespace Prosary.Tests;
 public class LiturgicalCalendarServiceTests
 {
     private readonly LiturgicalCalendarService _calendar = new();
+    [Fact]
+    public void TraditionalFifteenScheduleRetainsSeasonalSundays()
+    {
+        Assert.Equal(MysteryGroup.Joyful, _calendar.GetMysteryGroup(new DateOnly(2026, 10, 8), true));
+        Assert.Equal(MysteryGroup.Luminous, _calendar.GetMysteryGroup(new DateOnly(2026, 10, 8), false));
+        Assert.Equal(MysteryGroup.Glorious, _calendar.GetMysteryGroup(new DateOnly(2026, 10, 10), true));
+        foreach (var sunday in new[] { new DateOnly(2026, 3, 15), new DateOnly(2026, 12, 6) })
+            Assert.Equal(_calendar.GetMysteryGroup(sunday), _calendar.GetMysteryGroup(sunday, true));
+    }
 
     [Theory]
     // Meeus/Jones/Butcher Gregorian Easter algorithm, checked against well-known public Easter

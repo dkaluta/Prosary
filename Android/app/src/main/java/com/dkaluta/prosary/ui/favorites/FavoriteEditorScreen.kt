@@ -1,9 +1,5 @@
 package com.dkaluta.prosary.ui.favorites
 
-import android.Manifest
-import android.os.Build
-import androidx.activity.compose.rememberLauncherForActivityResult
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -25,7 +21,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SegmentedButton
 import androidx.compose.material3.SegmentedButtonDefaults
 import androidx.compose.material3.SingleChoiceSegmentedButtonRow
-import androidx.compose.material3.Switch
+import com.dkaluta.prosary.ui.shared.LabeledSwitch
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
@@ -74,8 +70,6 @@ fun FavoriteEditorScreen(prayerId: String?, newFavoriteKind: PrayerKind = Prayer
     val draft: PrayerEditorState = viewModel(key = "favoriteEditor:$prayerId:$newFavoriteKind")
     var showingRosaryOptions by rememberSaveable(prayerId, newFavoriteKind) { mutableStateOf(false) }
 
-    val notificationPermissionLauncher = rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) {}
-
     LaunchedEffect(draft, prayerId, newFavoriteKind) {
         if (draft.initialized) return@LaunchedEffect
         val loaded = if (prayerId != null) {
@@ -103,16 +97,10 @@ fun FavoriteEditorScreen(prayerId: String?, newFavoriteKind: PrayerKind = Prayer
         return
     }
 
-    fun save() {
+    val saveWithPermission = rememberReminderSavePermission {
         var toSave = prayer
         if (toSave.name.isBlank()) toSave = toSave.copy(name = context.getString(toSave.kind.defaultNameRes))
         scope.launch {
-            val needsPermission = toSave.reminders.any { it.isEnabled } &&
-                Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU &&
-                !ReminderScheduler.hasNotificationPermission(context)
-            if (needsPermission) {
-                notificationPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
-            }
             services.presetStore.save(toSave)
             draft.originalPrayer?.let { ReminderScheduler.cancelAll(context, it) }
             ReminderScheduler.schedule(context, toSave)
@@ -134,7 +122,7 @@ fun FavoriteEditorScreen(prayerId: String?, newFavoriteKind: PrayerKind = Prayer
                 scrollBehavior = topBarScroll,
                 title = { Text(if (isNew) stringResource(R.string.editor_new_favorite) else stringResource(R.string.editor_edit_favorite)) },
                 navigationIcon = { TextButton(onClick = onDone) { Text(stringResource(R.string.common_cancel)) } },
-                actions = { TextButton(onClick = { save() }) { Text(stringResource(R.string.common_save)) } },
+                actions = { TextButton(onClick = { saveWithPermission(prayer.reminders.any { it.isEnabled }) }) { Text(stringResource(R.string.common_save)) } },
             )
         },
     ) { padding ->
@@ -293,6 +281,6 @@ internal fun FormSection(title: String?, content: @Composable ColumnScope.() -> 
 internal fun SwitchRow(label: String, checked: Boolean, switchModifier: Modifier = Modifier, enabled: Boolean = true, onCheckedChange: (Boolean) -> Unit) {
     Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.fillMaxWidth()) {
         Text(label, modifier = Modifier.weight(1f))
-        Switch(checked = checked, onCheckedChange = onCheckedChange, modifier = switchModifier, enabled = enabled)
+        LabeledSwitch(label = label, checked = checked, onCheckedChange = onCheckedChange, modifier = switchModifier, enabled = enabled)
     }
 }

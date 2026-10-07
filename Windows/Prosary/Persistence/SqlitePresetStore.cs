@@ -48,6 +48,8 @@ public sealed class SqlitePresetStore : IPresetStore
         ("SkipFifthDecade", "integer NOT NULL DEFAULT 0"),
         ("IncludeLitanyOfLoreto", "integer NOT NULL DEFAULT 0"),
         ("IncludeRosaryCollect", "integer NOT NULL DEFAULT 1"),
+        ("SpecificMysteryCount", "integer NOT NULL DEFAULT 1"),
+        ("UseTraditionalMysteries", "integer NOT NULL DEFAULT 0"),
     ];
 
     private async Task InitializeAsync()

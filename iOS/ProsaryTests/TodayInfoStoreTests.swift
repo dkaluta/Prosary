@@ -14,6 +14,55 @@ import XCTest
 
 @MainActor
 final class TodayInfoStoreTests: XCTestCase {
+  func testPopePublicationRequiresThePrayerIdentityAndExplicitOptIn() {
+    let intention = PopeIntention(title: "Published title", text: "Published English body",
+      titleByLanguage: ["he": "כותרת"], textByLanguage: ["he": "גוף"],
+      translationCreditByLanguage: ["he": "Prosary Hebrew translation", "en": "English source credit"])
+    let step = RosaryStep(title: "Renamed heading", body: "Sourced prayer", prayerKey: "intentioPontificis")
+    XCTAssertNil(PopeIntentionPrayerPublication.resolve(step: step, intention: intention, language: "he"))
+    XCTAssertNil(PopeIntentionPrayerPublication.resolve(step: step, intention: nil, language: "he", isEnabled: true))
+    let similarHeading = RosaryStep(title: "For the Pope's intentions", body: "intentioPontificis")
+    XCTAssertNil(PopeIntentionPrayerPublication.resolve(step: similarHeading, intention: intention, language: "he", isEnabled: true))
+    let published = PopeIntentionPrayerPublication.resolve(step: step, intention: intention,
+      language: "iw-IL", isEnabled: true)
+    XCTAssertEqual(published?.languageCode, "he")
+    XCTAssertEqual(published?.translationCredit, "Prosary Hebrew translation")
+    XCTAssertEqual(step.body, "Sourced prayer")
+  }
+
+  func testPopePublicationFallbackUsesTheEnglishCreditAndCompleteEdition() {
+    let intention = PopeIntention(title: "English title", text: "English body",
+      titleByLanguage: ["he": "כותרת"], textByLanguage: [:],
+      translationCreditByLanguage: ["he": "Hebrew editorial credit", "en": "English published source"])
+    let step = RosaryStep(title: "Pope", body: "Prayer", prayerKey: "intentioPontificis")
+    for language in ["he", "he-x-gamliel", "arc", "la"] {
+      let publication = PopeIntentionPrayerPublication.resolve(step: step, intention: intention,
+        language: language, isEnabled: true)
+      XCTAssertEqual(publication?.languageCode, "en")
+      XCTAssertEqual(publication?.title, "English title")
+      XCTAssertEqual(publication?.text, "English body")
+      XCTAssertEqual(publication?.translationCredit, "English published source")
+    }
+  }
+
+  func testPopePrayerIdentitySurvivesBundleAssemblyWithoutChangingItsBody() {
+    let engine = PrayerEngine()
+    let prayer = Prayer(languageCode: "en", rosary: RosaryOptions(includeClosingIntentions: true))
+    let steps = engine.buildSteps(for: prayer)
+    let pope = steps.filter { $0.prayerKey == "intentioPontificis" }
+    XCTAssertEqual(pope.count, 1)
+    XCTAssertEqual(pope.first?.body, PrayerPackStore.resolveBodyText(bundleId: "rosary", languageCode: "en", key: "intentioPontificis"))
+    guard let popeStep = pope.first, let bishop = steps.first(where: { $0.prayerKey == "intentioOrdinarii" }) else {
+      XCTFail("The selected closing intentions must carry their authored prayer identities")
+      return
+    }
+    XCTAssertNil(PopeIntentionPrayerPublication.resolve(step: bishop, intention: TodayInfoStore.intention(),
+      language: "en", isEnabled: true))
+    let originalSignature = PrayerRunSignature.rosary(prayer.rosary)
+    _ = PopeIntentionPrayerPublication.resolve(step: popeStep, intention: TodayInfoStore.intention(),
+      language: "en", isEnabled: true)
+    XCTAssertEqual(PrayerRunSignature.rosary(prayer.rosary), originalSignature)
+  }
   // The test host shares the real app's UserDefaults, so every case pins the calendar
   // selection explicitly and the original value is restored afterwards — the store reloads
   // live on selection change, so no reset hook is needed.
@@ -216,7 +265,7 @@ final class TodayInfoStoreTests: XCTestCase {
   func testCalendarRegistryListsTheShippedCalendarsInPickerOrder() {
     XCTAssertEqual(
       TodayInfoStore.calendars.map(\.id),
-      ["lpj", "stjames", "roman", "roman1962", "franciscan-conventual-italy", "augustinian-discalced", "ugcc", "ugcc-julian", "syriac", "maronite"])
+      ["lpj", "stjames", "roman", "roman1962", "franciscan-conventual-italy", "augustinian-discalced", "ugcc", "ugcc-julian", "syriac", "mission-provisional", "maronite"])
     XCTAssertEqual(TodayInfoStore.selectedCalendarId, "lpj")
   }
 
@@ -466,11 +515,15 @@ final class TodayInfoStoreTests: XCTestCase {
 
   func testChangingPaschaStyleReloadsFeastsAndReadingsWithoutChangingCalendar() {
     select("ugcc")
+    let captured = TodayInfoStore.readings(on: date("2026-09-06"))
+    XCTAssertTrue(captured.allSatisfy { $0.readingDatasetID == "ugcc" })
     XCTAssertEqual(TodayInfoStore.selectedPaschaStyle, "julian")
     XCTAssertEqual(TodayInfoStore.feast(on: date("2026-09-06"))?.title, "14th Sunday after Pentecost")
     XCTAssertEqual(TodayInfoStore.readings(on: date("2026-09-06")).map(\.full),
                    ["2 Corinthians 1:21–2:4", "Matthew 22:1–14"])
     UserDefaults.standard.set("gregorian", forKey: TodayInfoStore.paschaStyleDefaultsKey)
+    XCTAssertTrue(TodayInfoStore.readings(on: date("2026-09-06")).allSatisfy { $0.readingDatasetID == "ugcc-gregorian" })
+    XCTAssertTrue(captured.allSatisfy { $0.readingDatasetID == "ugcc" }, "A deferred reading request keeps its original table")
     XCTAssertEqual(TodayInfoStore.selectedCalendarId, "ugcc")
     XCTAssertEqual(TodayInfoStore.feast(on: date("2026-04-05"))?.title, "The Resurrection of Our Lord — Holy Pascha")
     XCTAssertEqual(TodayInfoStore.readings(on: date("2026-09-06")).map(\.full),

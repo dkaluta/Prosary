@@ -66,6 +66,7 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <Button Grid.Column="0" Click="OnNavigateUp" Background="Transparent" Padding="8">
                 <FontIcon Glyph="&#xE72B;" MirroredWhenRightToLeft="True" />
@@ -82,6 +83,10 @@
                 <Button.Flyout>
                     <MenuFlyout x:Name="AutoAdvanceFlyout" />
                 </Button.Flyout>
+            </Button>
+            <Button x:Name="MysteryPickerButton" Grid.Column="4" Background="Transparent" Padding="8" Click="OnChooseMystery"
+                    AutomationProperties.Name="Choose Mystery" ToolTipService.ToolTip="Choose Mystery">
+                <FontIcon Glyph="&#xE8A4;" />
             </Button>
         </Grid>
 
@@ -133,13 +138,15 @@
                         <Button Background="Transparent" Padding="6" HorizontalAlignment="Right"
                                 Visibility="{x:Bind ViewModel.HasTransliteration, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
                                 Command="{x:Bind ViewModel.ToggleTransliterationCommand}"
-                                x:Uid="FlowTransliterationButton" ToolTipService.ToolTip="Show transliteration">
+                                AutomationProperties.Name="{x:Bind ViewModel.TransliterationActionLabel, Mode=OneWay}"
+                                ToolTipService.ToolTip="{x:Bind ViewModel.TransliterationActionLabel, Mode=OneWay}">
                             <FontIcon Glyph="&#xE8C1;" FontSize="14" />
                         </Button>
                         <TextBlock x:Name="NarrowBody" controls:BoldMarkdownText.Text="{x:Bind ViewModel.Body, Mode=OneWay}"
                                    FontFamily="{x:Bind ViewModel.BodyFontFamily, Mode=OneWay}"
                                    FontSize="{x:Bind ViewModel.BodyFontSize, Mode=OneWay}"
                                    TextWrapping="Wrap" TextAlignment="Center" IsTextSelectionEnabled="True" />
+                        <controls:PopeIntentionPrayerCard Publication="{x:Bind ViewModel.PublishedPopeIntention, Mode=OneWay}" />
                     </StackPanel>
                 </ScrollViewer>
             </Grid>
@@ -220,13 +227,15 @@
                         <Button Background="Transparent" Padding="6" HorizontalAlignment="Right"
                                 Visibility="{x:Bind ViewModel.HasTransliteration, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
                                 Command="{x:Bind ViewModel.ToggleTransliterationCommand}"
-                                x:Uid="FlowTransliterationButton" ToolTipService.ToolTip="Show transliteration">
+                                AutomationProperties.Name="{x:Bind ViewModel.TransliterationActionLabel, Mode=OneWay}"
+                                ToolTipService.ToolTip="{x:Bind ViewModel.TransliterationActionLabel, Mode=OneWay}">
                             <FontIcon Glyph="&#xE8C1;" FontSize="14" />
                         </Button>
                         <TextBlock x:Name="WideBody" controls:BoldMarkdownText.Text="{x:Bind ViewModel.Body, Mode=OneWay}"
                                    FontFamily="{x:Bind ViewModel.BodyFontFamily, Mode=OneWay}"
                                    FontSize="{x:Bind ViewModel.BodyFontSize, Mode=OneWay}"
                                    TextWrapping="Wrap" TextAlignment="Center" IsTextSelectionEnabled="True" />
+                        <controls:PopeIntentionPrayerCard Publication="{x:Bind ViewModel.PublishedPopeIntention, Mode=OneWay}" />
                     </StackPanel>
                 </ScrollViewer>
             </Grid>
@@ -253,7 +262,8 @@
                     Background="Transparent" Padding="12,8" ToolTipService.ToolTip="Next mystery"
                     AutomationProperties.Name="Next mystery" />
             <Button Grid.Column="4" Content="{x:Bind ViewModel.NextButtonText, Mode=OneWay}"
-                    Command="{x:Bind ViewModel.NextCommand}" Style="{StaticResource AccentButtonStyle}" MinWidth="120" />
+                    Command="{x:Bind ViewModel.NextCommand}" IsEnabled="{x:Bind ViewModel.HasSteps, Mode=OneWay}"
+                    Style="{StaticResource AccentButtonStyle}" MinWidth="120" />
         </Grid>
     </Grid>
 </Page>

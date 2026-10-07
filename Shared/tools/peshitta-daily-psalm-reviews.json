@@ -1,0 +1,278 @@
+{
+  "schemaVersion": 1,
+  "editionId": "peshitta-1905",
+  "sourceId": "peshitta-eu-2020-psa-118",
+  "sourceSHA256": "b3c8873c6e70f33801d054d7db03773e0216a04393114b5ad722d190cdd8f7d1",
+  "reviewedOn": "2026-10-06",
+  "sourceURL": "https://peshitta.eu/ot/psalms/118.html",
+  "sourceChapterInventory": {
+    "maximum": 176,
+    "omissions": [
+      {
+        "verse": 91,
+        "printedMarker": "(ܠܝܬ)",
+        "reason": "Explicit source omission, not Scripture; any appointment requesting this unit remains unavailable."
+      }
+    ]
+  },
+  "witness": {
+    "revision": "9850f5addade26f681334aa475570bef9b0b440a",
+    "sha256": "2cf17f607a34af8d28612ea59a5683cabfb4695b9d4608cc03428cefd26e830c",
+    "role": "Independent numbered boundary comparison only. ETCBC CC BY-NC witness wording is not distributed or imported."
+  },
+  "scope": "Seven exact Roman daily appointments. This supplement does not admit the incomplete Psalm118 chapter to the Bible catalogue or general reference mapper. Both native Hebrew and Syriac scripts are generated from the unchanged pointed website source.",
+  "appointments": {
+    "daily|Psalm 119:29–29; 119:43–43; 119:79–79; 119:80–80; 119:95–95; 119:102–102": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceChapter": 118,
+      "sourceVerses": [
+        29,
+        43,
+        79,
+        80,
+        95,
+        102
+      ],
+      "sourceVerseSHA256": [
+        "7b08f01a531d015dab61d79dade08a658bf49f3c71e3e59d1370b3c39104eec1",
+        "0200531824f7c4e23bec8c95cdf6a4b781c4d9eed9a334ef6793f344c47bddc0",
+        "f3da5177766a7ea031716e0dbb7f2c76396b7beacc98bb275256e5028b31511d",
+        "ffb4f4e5b0be1794317603d5c6b1aed773bd501c9be1c37dc89c2b0cc80d5ebd",
+        "5a3948df6fd5e73a5e288fcee711593610009d44a2085051c4da158990f5b746",
+        "8d32128d07031b95780ecfb3242b05cd435f159849d58dcb972a06cd0ccc2ff7"
+      ],
+      "witnessVerseSHA256": [
+        "a0cb6fe903946176451e32cf1f98b33e4427f03a707ca6587561a3be1c8e52ea",
+        "9e3f9c04b51073ce7585e752f1f936c6513824a56b0daa853e1a8207f273feaa",
+        "3841cdf7895824fbc1c3436b13fe78d8d0acdd3c129e781b862aedac6749cb76",
+        "d7e0edc14a22e96eb2a44e89762e0a1a8b52ca7eacba4259ceb56f223b6b764b",
+        "c19f8efe29a9d565b58f3dc9bbc708319ba15b551ddb3a9ebd68e6140c79fcc1",
+        "fc8359e070a252376ce08741eed079895e4850329f94d530fa9500c03eb8a83c"
+      ],
+      "includesWholeVerses": false,
+      "boundaryReview": "Actual sourcePsalm118 units independently collated with the Hebrew-labelled witnessPsalm119 body endpoints. Source91 omission is outside this selection. Verse45,97,104 retain their inspected spelling variants. When47-48 are selected, both complete native units retain their crossed lifting-hands clause; no source word, unit or display script is shortened or filled.",
+      "evidenceURLs": [
+        "https://peshitta.eu/ot/psalms/118.html",
+        "https://github.com/ETCBC/peshitta/blob/9850f5addade26f681334aa475570bef9b0b440a/plain/0.2/Psalms.txt"
+      ]
+    },
+    "daily|Psalm 119:14–14; 119:24–24; 119:72–72; 119:103–103; 119:111–111; 119:131–131": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceChapter": 118,
+      "sourceVerses": [
+        14,
+        24,
+        72,
+        103,
+        111,
+        131
+      ],
+      "sourceVerseSHA256": [
+        "152d0102ae388fcd1a0d5c044cc442b07da772a95f3a0b74ab16f8a66faa6852",
+        "5bf8d89730f5bf6af5dbd01f20f1ca4badf93695ede9d2a8d508b60e83bc4527",
+        "08d0d827681ec7adc8c07c72076e039a7232f26806d4033ce838be7df036bc84",
+        "0cf6262388ddaac145dc82a4ebb2c7aa81472ba33b773eca4beb34f3b98d0f37",
+        "27c7b0161888ff516b5fd5526b5b1c7f58afaf043ddb2270c281a1b0a188a6f3",
+        "085bdaf5e1c87aa4a2b0382f0f9876534268d362589ae4457a73874f8af38edf"
+      ],
+      "witnessVerseSHA256": [
+        "3a754077a89fc57914181c080c01b8a8e2b048ae22073659d8151d235591d48c",
+        "c249ba3bae0394dfc55bca5b0130acb3cfc63fb17325d2867e2a89cebb9a2964",
+        "6542f00f2cb08e0f05bb4d0285c64b0cd7d6f9fe0ab89b3381f10bf47ce28c09",
+        "01dda01ecb578c7cd0ae72871bd577dd235517cf0f3684f6ad78cf6eaa242e68",
+        "1310013487360a95561d822d0013d099f5bc1ed791b5b0b07b3cf7ef1f704704",
+        "a48496dc5482d55dd5b22c4a2dc63c8b98bd67b1450750b410bc417a6bfd4135"
+      ],
+      "includesWholeVerses": false,
+      "boundaryReview": "Actual sourcePsalm118 units independently collated with the Hebrew-labelled witnessPsalm119 body endpoints. Source91 omission is outside this selection. Verse45,97,104 retain their inspected spelling variants. When47-48 are selected, both complete native units retain their crossed lifting-hands clause; no source word, unit or display script is shortened or filled.",
+      "evidenceURLs": [
+        "https://peshitta.eu/ot/psalms/118.html",
+        "https://github.com/ETCBC/peshitta/blob/9850f5addade26f681334aa475570bef9b0b440a/plain/0.2/Psalms.txt"
+      ]
+    },
+    "daily|Psalm 119:97–97; 119:98–98; 119:99–99; 119:100–100; 119:101–101; 119:102–102": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceChapter": 118,
+      "sourceVerses": [
+        97,
+        98,
+        99,
+        100,
+        101,
+        102
+      ],
+      "sourceVerseSHA256": [
+        "c98d67fa172a146eaa9169429afdcb6d018aa87580ab8689c5e8c25f7c689752",
+        "2a86c887fd4468d631d2860868389242078af66404bd708ff6b02d56d447971d",
+        "e58605eb8cdca8724eb2099c788d76aecc6d16a1ac5b61ba4cd3fc80f6a93b4e",
+        "baae3d8e3a480805ee434dc0adaa1130ed67f6bcfcf265b9b89c14ec008005ee",
+        "b72fe8d456b71b44d0175aadb24321f2eac12bc1afacbf0d37666548556938d2",
+        "8d32128d07031b95780ecfb3242b05cd435f159849d58dcb972a06cd0ccc2ff7"
+      ],
+      "witnessVerseSHA256": [
+        "3e03e6ec7f71b9a04cc22758d2bf51cf1fb21245084a8bc1dc6f4cbea3101893",
+        "9091238f465fe1c7dcf868df031ebd04616faa0ab09aca0f69556a6939833c34",
+        "051ed9e2032b9bd9ffe06571298400d224ae34c8c1cf9edc2c96cb641af4a5e9",
+        "cc65c628755153ef31f8b43397244351910b0358fc658b8017bc5978786f75e3",
+        "365203f602480a628ada52b272c5fcb82838f1f15c3f52ea263c67e8ce0c7ea9",
+        "fc8359e070a252376ce08741eed079895e4850329f94d530fa9500c03eb8a83c"
+      ],
+      "includesWholeVerses": false,
+      "boundaryReview": "Actual sourcePsalm118 units independently collated with the Hebrew-labelled witnessPsalm119 body endpoints. Source91 omission is outside this selection. Verse45,97,104 retain their inspected spelling variants. When47-48 are selected, both complete native units retain their crossed lifting-hands clause; no source word, unit or display script is shortened or filled.",
+      "evidenceURLs": [
+        "https://peshitta.eu/ot/psalms/118.html",
+        "https://github.com/ETCBC/peshitta/blob/9850f5addade26f681334aa475570bef9b0b440a/plain/0.2/Psalms.txt"
+      ]
+    },
+    "daily|Psalm 119:1; 119:27; 119:30; 119:34; 119:35; 119:44": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceChapter": 118,
+      "sourceVerses": [
+        1,
+        27,
+        30,
+        34,
+        35,
+        44
+      ],
+      "sourceVerseSHA256": [
+        "004dbdd16154afee7aec12c08b81a0be42f923925b0d2d3ae79e73dabd0cdeca",
+        "0b74637878175ab7276afb75d8837504af04fb81a2a2e6013b956541dba588cd",
+        "cbe06434f1f60e49a6b4a55722db4ce030bc2fe088185ee758280925970dfdf4",
+        "bf33dc6a57d733848e87e325b888aaa60ae4b149dceda72c22e2e075102414cf",
+        "64814ec49b8084eefe435a92ad04dadb2542445ecf5d6c5abde728d7168679a7",
+        "d6bb003074286b234150affeca42c1cb459a78f4beef290907e6db07b80a0130"
+      ],
+      "witnessVerseSHA256": [
+        "e3d1ca6b556db0e1e66d9f5b9519b6d849c5bb04baece1b7884cf806aeab243a",
+        "9634886d2ad4e0ecd622fd9eeb1f732f701a690360123ac25da44fcc902f0669",
+        "b95fad2f6af8ffcc4e251ac904c90fa5cf586e94ee55ca2d042be3b615624077",
+        "4c134655b69bcd590a402be50a2d51592a24ebbd833614e60911aa5289aef04a",
+        "f38b7064589b0c05134dac4db7083f922594e2dd7f9ea975b0976b2eda106c99",
+        "0fa3d0c98f17cd6d9aa9c720f7633c652c02e3baae627b00dccd0f1c9117c605"
+      ],
+      "includesWholeVerses": false,
+      "boundaryReview": "Actual sourcePsalm118 units independently collated with the Hebrew-labelled witnessPsalm119 body endpoints. Source91 omission is outside this selection. Verse45,97,104 retain their inspected spelling variants. When47-48 are selected, both complete native units retain their crossed lifting-hands clause; no source word, unit or display script is shortened or filled.",
+      "evidenceURLs": [
+        "https://peshitta.eu/ot/psalms/118.html",
+        "https://github.com/ETCBC/peshitta/blob/9850f5addade26f681334aa475570bef9b0b440a/plain/0.2/Psalms.txt"
+      ]
+    },
+    "daily|Psalm 119:29; 119:72; 119:89; 119:101; 119:104; 119:163": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceChapter": 118,
+      "sourceVerses": [
+        29,
+        72,
+        89,
+        101,
+        104,
+        163
+      ],
+      "sourceVerseSHA256": [
+        "7b08f01a531d015dab61d79dade08a658bf49f3c71e3e59d1370b3c39104eec1",
+        "08d0d827681ec7adc8c07c72076e039a7232f26806d4033ce838be7df036bc84",
+        "4b9807ac2c93a0a9c65b034d9297db4143fdb69c97f704eddb5c46ec59f6a6d5",
+        "b72fe8d456b71b44d0175aadb24321f2eac12bc1afacbf0d37666548556938d2",
+        "9ddfe9dce5c573d1eb4d0bc8beecdef3b4bacd4cabf6797be641bff755c28081",
+        "ee3de64f3ef6045c5abf752934fdb00c9128e42845a0083b279c3e86f2ea29e5"
+      ],
+      "witnessVerseSHA256": [
+        "a0cb6fe903946176451e32cf1f98b33e4427f03a707ca6587561a3be1c8e52ea",
+        "6542f00f2cb08e0f05bb4d0285c64b0cd7d6f9fe0ab89b3381f10bf47ce28c09",
+        "09eb0285b9b5e166945fc934bb151e39c03b1269eb803064b6b06aa1ad9d2c66",
+        "365203f602480a628ada52b272c5fcb82838f1f15c3f52ea263c67e8ce0c7ea9",
+        "08d0d3f02d3d88e0c1037219c813100cdcd6bc228571d8c0ad7887bf86e342be",
+        "2d573e2a8a762f84a2f8b22ba8cd394036bc0d49331a3c62d8ba8806c6b9686b"
+      ],
+      "includesWholeVerses": false,
+      "boundaryReview": "Actual sourcePsalm118 units independently collated with the Hebrew-labelled witnessPsalm119 body endpoints. Source91 omission is outside this selection. Verse45,97,104 retain their inspected spelling variants. When47-48 are selected, both complete native units retain their crossed lifting-hands clause; no source word, unit or display script is shortened or filled.",
+      "evidenceURLs": [
+        "https://peshitta.eu/ot/psalms/118.html",
+        "https://github.com/ETCBC/peshitta/blob/9850f5addade26f681334aa475570bef9b0b440a/plain/0.2/Psalms.txt"
+      ]
+    },
+    "daily|Psalm 119:41–41; 119:43–43; 119:44–44; 119:45–45; 119:47–47; 119:48–48": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceChapter": 118,
+      "sourceVerses": [
+        41,
+        43,
+        44,
+        45,
+        47,
+        48
+      ],
+      "sourceVerseSHA256": [
+        "0d84fcef57b24c4c07b537fec7b59f5b2b2520c7adf8abf9d72154fb7143ab0d",
+        "0200531824f7c4e23bec8c95cdf6a4b781c4d9eed9a334ef6793f344c47bddc0",
+        "d6bb003074286b234150affeca42c1cb459a78f4beef290907e6db07b80a0130",
+        "b367a35bc04917f24ce1ca1db69eb5c4d28a70152b2dc29fc6142560120f268b",
+        "ccf2f30118c023bb66b889790c55da7e198ab856d6ed96bc4bab3eb69ff3876b",
+        "cab42c047a86b62d8bbcbfb5dc9f03d2b1afe08c631a96a32ce0a1c0dffb1968"
+      ],
+      "witnessVerseSHA256": [
+        "a90d7d2b3e4b57ef58ed2a7fd164670eeeacac07f5999d40c34e8c608ee8d2a6",
+        "9e3f9c04b51073ce7585e752f1f936c6513824a56b0daa853e1a8207f273feaa",
+        "0fa3d0c98f17cd6d9aa9c720f7633c652c02e3baae627b00dccd0f1c9117c605",
+        "01c141bcb2f7280c8ac0cc9471c46523477d34166138edff216c20cca8c443ef",
+        "9a44c2b2d22a37f6e4830b0a89384175889bbebe9184839fca79990c126e80d6",
+        "398456d7af366d13d8e70d1a28e713aa07e88a43b7da33ce5af3a58cc8e75cdb"
+      ],
+      "includesWholeVerses": false,
+      "boundaryReview": "Actual sourcePsalm118 units independently collated with the Hebrew-labelled witnessPsalm119 body endpoints. Source91 omission is outside this selection. Verse45,97,104 retain their inspected spelling variants. When47-48 are selected, both complete native units retain their crossed lifting-hands clause; no source word, unit or display script is shortened or filled.",
+      "evidenceURLs": [
+        "https://peshitta.eu/ot/psalms/118.html",
+        "https://github.com/ETCBC/peshitta/blob/9850f5addade26f681334aa475570bef9b0b440a/plain/0.2/Psalms.txt"
+      ]
+    },
+    "daily|Psalm 119:1–1; 119:2–2; 119:10–10; 119:11–11; 119:17–17; 119:18–18": {
+      "contexts": [
+        "roman"
+      ],
+      "sourceChapter": 118,
+      "sourceVerses": [
+        1,
+        2,
+        10,
+        11,
+        17,
+        18
+      ],
+      "sourceVerseSHA256": [
+        "004dbdd16154afee7aec12c08b81a0be42f923925b0d2d3ae79e73dabd0cdeca",
+        "7f1d5384034eba00c18c8d5944d34e2be8341aac4da56d733fc17513bc4fdeab",
+        "f8b3c93bb9f8ac235dc3ea07c6608c8f38604b040b6ac09fc30138a5409e3ddb",
+        "a675f661432d6df0393ba8cfd9f684e3d931ce0f8a28a380bfb0c3986051c8f0",
+        "f6bfae125090ab56db5ec456d21ec38114fd4f4015afa23ec1c99c765fb364db",
+        "3cf6c824a155d0abce3cc8f3e435183b6e823c813848f40b53564e26e26fcd5f"
+      ],
+      "witnessVerseSHA256": [
+        "e3d1ca6b556db0e1e66d9f5b9519b6d849c5bb04baece1b7884cf806aeab243a",
+        "37a31cd475a9400c46ad5d600d574626e67eb4b29af28e3b335dc747848603e0",
+        "3b3a5b37a35b0669029e3141e6b5c8398058637240c77e3b08bf0c977eb4482f",
+        "0483b4c3c5929ba15df22de85c7fe9225a20e11357aab8377af1541df9612acc",
+        "e99313c9604c3bf184cc013de47a37e640b8d9192a6c7d381e9a5d5c3458027a",
+        "e14f9bf8030b54d142b9e928cf853d13885687b69b98e1c2adc8be2b7c982695"
+      ],
+      "includesWholeVerses": false,
+      "boundaryReview": "Actual sourcePsalm118 units independently collated with the Hebrew-labelled witnessPsalm119 body endpoints. Source91 omission is outside this selection. Verse45,97,104 retain their inspected spelling variants. When47-48 are selected, both complete native units retain their crossed lifting-hands clause; no source word, unit or display script is shortened or filled.",
+      "evidenceURLs": [
+        "https://peshitta.eu/ot/psalms/118.html",
+        "https://github.com/ETCBC/peshitta/blob/9850f5addade26f681334aa475570bef9b0b440a/plain/0.2/Psalms.txt"
+      ]
+    }
+  }
+}

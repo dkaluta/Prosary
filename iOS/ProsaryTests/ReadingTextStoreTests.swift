@@ -2,6 +2,32 @@ import XCTest
 @testable import Prosary
 
 final class ReadingTextStoreTests: XCTestCase {
+  func testRegisteredDatasetNamespacesDoNotBorrowTheSameRomanCitation() throws {
+    let citation = "Daniel 13:1"
+    var fixture = sourceFixture()
+    fixture["passages"] = [
+      "daily|\(citation)": ["fixture": [["chapter": 1, "verse": 1, "text": "טקסט מקור"]]],
+      "daily|stjames|\(citation)": ["fixture": [["chapter": 2, "verse": 2, "text": "Separate table source"]]],
+    ]
+    let dataset = try sourceDataset(fixture)
+    XCTAssertEqual(dataset.passage(citation: citation, isTorah: false, editionID: "fixture", datasetID: "lpj")?.verses.first?.text,
+                   "טקסט מקור")
+    XCTAssertEqual(dataset.passage(citation: citation, isTorah: false, editionID: "fixture", datasetID: "stjames")?.verses.first?.text,
+                   "Separate table source")
+    XCTAssertNil(dataset.passage(citation: citation, isTorah: false, editionID: "fixture", datasetID: "augustinian-discalced"))
+    XCTAssertNil(dataset.passage(citation: citation, isTorah: false, editionID: "fixture", datasetID: "../roman"))
+    XCTAssertEqual(dataset.availableEditions(citation: citation, isTorah: false, datasetID: "stjames").map(\.id), ["fixture"])
+    XCTAssertTrue(dataset.availableEditions(citation: citation, isTorah: false, datasetID: "augustinian-discalced").isEmpty)
+  }
+
+  func testLegacyAndTorahPassageIdentitiesRemainStable() {
+    for dataset in ["roman", "roman1962", "ugcc", "ugcc-gregorian", "syriac", "maronite"] {
+      XCTAssertEqual(ReadingPassageIdentity.key(citation: "Psalm 8:7", isTorah: false, datasetID: dataset), "daily|Psalm 8:7")
+    }
+    XCTAssertEqual(ReadingPassageIdentity.key(citation: "Genesis 1:1", isTorah: true, datasetID: "stjames"), "torah|Genesis 1:1")
+    XCTAssertNil(ReadingPassageIdentity.key(citation: "stjames|Psalm 8:7", isTorah: false))
+  }
+
   private let english = ReadingTextEdition(id: "english", languageCode: "en", name: "English fixture",
     attribution: "Synthetic test data", sourceURL: "https://example.com/english")
   private let hebrew = ReadingTextEdition(id: "hebrew", languageCode: "he", name: "Hebrew fixture",
@@ -259,17 +285,14 @@ final class ReadingTextStoreTests: XCTestCase {
     }
     let psalmEditions = ["douay-rheims-1899": 102, "synodal-1876": 102, "jesuit-arabic-1897": 102,
                         "masoretic-delitzsch": 103, "ang-dating-biblia-1905": 103,
-                        "crampon-1923": 103, "kulish-1905": 103]
+                        "crampon-1923": 103, "kulish-1905": 103,
+                        "martini": 102, "peshitta-1905": 103]
     for (editionID, chapter) in psalmEditions {
       let result = await store.passage(citation: cases[1].0, isTorah: false, editionID: editionID)
       let psalm = try XCTUnwrap(result, editionID)
       XCTAssertEqual(psalm.verses.map(\.verse), [1, 2, 3, 4, 9, 10, 11, 12], editionID)
       XCTAssertTrue(psalm.verses.allSatisfy { $0.chapter == chapter }, editionID)
       XCTAssertTrue(psalm.includesWholeVerses, editionID)
-    }
-    for editionID in ["martini", "peshitta-1905"] {
-      let result = await store.passage(citation: cases[1].0, isTorah: false, editionID: editionID)
-      XCTAssertNil(result, editionID)
     }
     let frenchResult = await store.passage(citation: cases[0].0, isTorah: false, editionID: "crampon-1923")
     let french = try XCTUnwrap(frenchResult)
@@ -286,13 +309,16 @@ final class ReadingTextStoreTests: XCTestCase {
     let url = try XCTUnwrap(Bundle.main.url(forResource: "readings-texts", withExtension: "json"))
     let dataset = try JSONDecoder().decode(ReadingTextDataset.self, from: Data(contentsOf: url))
     let sources = try XCTUnwrap(dataset.passageSources)
-    XCTAssertEqual(sources.values.reduce(0) { $0 + $1.count }, 19)
+    XCTAssertEqual(sources.values.filter { $0["masoretic-delitzsch"] != nil }.count, 19)
+    XCTAssertTrue(sources.values.contains { $0["jesuit-arabic-1897"] != nil })
+    XCTAssertTrue(sources.values.contains { $0["martini"] != nil })
     // Wisdom 7 is reviewed for Maronite use, but also occurs in an unreviewed Roman 1962 context.
     XCTAssertNil(dataset.passage(citation: "Wisdom 7:7–14", isTorah: false, editionID: "masoretic-delitzsch"))
     for (key, editions) in sources {
-      let parts = key.split(separator: "|", maxSplits: 1).map(String.init)
+      let parts = key.split(separator: "|").map(String.init)
+      let datasetID = parts.count == 3 ? parts[1] : nil
       for (edition, source) in editions {
-        let passage = try XCTUnwrap(dataset.passage(citation: parts[1], isTorah: parts[0] == "torah", editionID: edition), key)
+        let passage = try XCTUnwrap(dataset.passage(citation: parts.last!, isTorah: parts[0] == "torah", editionID: edition, datasetID: datasetID), key)
         let expected = try XCTUnwrap(dataset.passages[key]?[edition])
         XCTAssertEqual(passage.verses, expected, key)
         XCTAssertEqual(passage.source, source, key)
@@ -413,7 +439,7 @@ final class ReadingTextStoreTests: XCTestCase {
     XCTAssertTrue(torah.verses.allSatisfy { $0.transliteratedText?.isEmpty == false })
   }
 
-  func testBundledPeshittaOldTestamentKeepsBothScriptsAndWithholdsUnreviewedPsalms() async throws {
+  func testBundledPeshittaKeepsBothScriptsForReviewedPsalmsAndDoesNotFillMissingSourceVerse() async throws {
     let store = ReadingTextStore()
     let result = await store.passage(citation: "Genesis 1:1–13", isTorah: false, editionID: "peshitta-1905")
     let passage = try XCTUnwrap(result)
@@ -429,9 +455,13 @@ final class ReadingTextStoreTests: XCTestCase {
     XCTAssertTrue(passage.verses.first?.transliteratedText?.hasPrefix("ܒܪܺܝܫܺܝܬ ܒܪܳܐ") == true,
                   "The source's consonants and vowel marks must survive native decoding")
     XCTAssertTrue(passage.edition.attribution.contains("Old Testament - publication of the Syriac Orthodox Patriarchate 2020"))
-    let unavailable = await store.passage(citation: "Psalm 23:1–3a; 23:3b–4; 23:5–5; 23:6–6",
-                                          isTorah: false, editionID: "peshitta-1905")
-    XCTAssertNil(unavailable, "Peshitta Psalm numbering remains unreviewed; no edition is substituted")
+    let psalmResult = await store.passage(citation: "Psalm 23:1–3a; 23:3b–4; 23:5–5; 23:6–6", isTorah: false, editionID: "peshitta-1905")
+    let psalm = try XCTUnwrap(psalmResult)
+    XCTAssertEqual(psalm.verses.map(\.verse), Array(1...6))
+    XCTAssertTrue(psalm.verses.allSatisfy { $0.chapter == 23 && $0.transliteratedText != nil })
+    XCTAssertTrue(psalm.verses.first?.transliteratedText?.hasPrefix("ܡܳܪܝܳܐ ܢܶܪܥܶܝܢܝ̱") == true)
+    let unavailable = await store.passage(citation: "Psalm 119:66–66; 119:71–71; 119:75–75; 119:91–91; 119:125–125; 119:130–130", isTorah: false, editionID: "peshitta-1905")
+    XCTAssertNil(unavailable, "The source explicitly omits verse91; another edition must not fill it")
   }
 
   func testBundledArabicExpansionUsesThePrintedPsalmChapter() async throws {

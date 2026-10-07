@@ -15,6 +15,8 @@ import json
 from pathlib import Path
 import sys
 import unittest
+import tempfile
+from unittest.mock import patch
 
 TOOLS = Path(__file__).resolve().parent
 ROOT = TOOLS.parents[1]
@@ -43,6 +45,20 @@ def dates(start: str, end: str) -> list[str]:
 
 
 class ImportedCalendarTests(unittest.TestCase):
+    def test_feast_only_calendars_do_not_borrow_a_readings_table_during_localization(self):
+        with tempfile.TemporaryDirectory() as directory:
+            data = Path(directory)
+            (data / "calendars.json").write_text(json.dumps({"calendars": [
+                {"id": "roman", "readingsFile": "readings-roman"},
+                {"id": "mission-provisional", "file": "feasts-mission-provisional"},
+                {"id": "no-reading-table", "readingsFile": None},
+                {"id": "ugcc", "readingsFile": "readings-ugcc", "paschaVariants": {
+                    "feasts-only": {}, "gregorian": {"readingsFile": "readings-ugcc-gregorian"}}},
+            ]}))
+            with patch.object(READINGS, "DATA", data):
+                self.assertEqual([path.name for path in READINGS.citation_dataset_paths()],
+                                 ["readings-roman.json", "readings-ugcc.json", "readings-ugcc-gregorian.json"])
+
     @classmethod
     def setUpClass(cls):
         cls.source = load(IMPORTER.SNAPSHOT)

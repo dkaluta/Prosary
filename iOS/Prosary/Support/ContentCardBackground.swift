@@ -40,33 +40,6 @@ struct TodayCardColorPicker: View {
   }
 }
 
-/// Stable papal keys remain appropriate when the Pope changes.
-struct PapalKeysSymbol: View {
-  var body: some View {
-    ZStack {
-      PapalKeyShape().stroke(style: StrokeStyle(lineWidth: 1.8, lineCap: .round, lineJoin: .round))
-      PapalKeyShape().stroke(style: StrokeStyle(lineWidth: 1.8, lineCap: .round, lineJoin: .round))
-        .scaleEffect(x: -1, y: 1)
-    }
-    .frame(width: 24, height: 24)
-    .accessibilityHidden(true)
-  }
-}
-
-private struct PapalKeyShape: Shape {
-  func path(in rect: CGRect) -> Path {
-    var path = Path()
-    path.addEllipse(in: CGRect(x: 2, y: 16, width: 6, height: 6))
-    path.move(to: CGPoint(x: 7, y: 17))
-    path.addLine(to: CGPoint(x: 20, y: 4))
-    path.move(to: CGPoint(x: 19, y: 5))
-    path.addLine(to: CGPoint(x: 16, y: 2))
-    path.move(to: CGPoint(x: 16, y: 8))
-    path.addLine(to: CGPoint(x: 13, y: 5))
-    return path.applying(CGAffineTransform(scaleX: rect.width / 24, y: rect.height / 24))
-  }
-}
-
 extension View {
   /// Cards belong to the scrolling content layer. Keep their fill opaque on iPhone and Mac;
   /// the spatial window uses a standard material to distinguish content groups within glass.

@@ -95,21 +95,35 @@ public sealed class ReadingsTextStore
 
     public IReadOnlyList<ScriptureEdition> Editions => _editions.Value;
 
-    public IReadOnlyList<ScriptureEdition> AvailableEditions(string scope, string rawCitation) =>
-        Editions.Where(edition => LoadPassage(scope, rawCitation, edition.Id) is not null).ToList();
+    public IReadOnlyList<ScriptureEdition> AvailableEditions(string scope, string rawCitation, string? readingDatasetId = null) =>
+        Editions.Where(edition => LoadPassage(scope, rawCitation, edition.Id, readingDatasetId) is not null).ToList();
 
     public ScriptureEdition? ResolveEdition(string? selectedId, string interfaceLanguage) =>
         !string.IsNullOrEmpty(selectedId)
             ? Editions.FirstOrDefault(edition => edition.Id == selectedId)
             : Editions.FirstOrDefault(edition => NormalizeLanguage(edition.LanguageCode) == NormalizeLanguage(interfaceLanguage));
 
-    public IReadOnlyList<ScriptureVerse> Passage(string scope, string rawCitation, string editionId) =>
-        LoadPassage(scope, rawCitation, editionId)?.Verses ?? [];
+    public IReadOnlyList<ScriptureVerse> Passage(string scope, string rawCitation, string editionId, string? readingDatasetId = null) =>
+        LoadPassage(scope, rawCitation, editionId, readingDatasetId)?.Verses ?? [];
 
-    public ScripturePassage? LoadPassage(string scope, string rawCitation, string editionId)
+    public static string? PassageKey(string scope, string rawCitation, string? readingDatasetId = null)
     {
-        if (scope is not ("daily" or "torah") || !Editions.Any(edition => edition.Id == editionId)
-            || _corpus.Value.Passages?.TryGetValue($"{scope}|{rawCitation}", out var versions) != true
+        if (string.IsNullOrEmpty(rawCitation) || rawCitation.Contains('|')) return null;
+        if (scope == "torah") return $"torah|{rawCitation}";
+        if (scope != "daily") return null;
+        if (readingDatasetId == "lpj") readingDatasetId = "roman";
+        if (string.IsNullOrEmpty(readingDatasetId)
+            || readingDatasetId is "roman" or "roman1962" or "ugcc" or "ugcc-gregorian" or "syriac" or "maronite")
+            return $"daily|{rawCitation}";
+        return System.Text.RegularExpressions.Regex.IsMatch(readingDatasetId, "^[a-z0-9][a-z0-9-]*$")
+            ? $"daily|{readingDatasetId}|{rawCitation}" : null;
+    }
+
+    public ScripturePassage? LoadPassage(string scope, string rawCitation, string editionId, string? readingDatasetId = null)
+    {
+        var key = PassageKey(scope, rawCitation, readingDatasetId);
+        if (key is null || !Editions.Any(edition => edition.Id == editionId)
+            || _corpus.Value.Passages?.TryGetValue(key, out var versions) != true
             || versions is null || !versions.TryGetValue(editionId, out var verses) || verses is null || verses.Count == 0)
             return null;
         // A damaged row must not display a silently shortened or partially missing passage.
@@ -121,7 +135,6 @@ public sealed class ReadingsTextStore
             && (!requiresBothScripts || !string.IsNullOrWhiteSpace(verse.TransliteratedText))
             && ScriptureSourceNote.ValidForVerse(verse, hasScriptMetadata, noteIds))) return null;
         ScripturePassageSource? source = null;
-        var key = $"{scope}|{rawCitation}";
         if (_corpus.Value.PassageSources.ValueKind == JsonValueKind.Object
             && _corpus.Value.PassageSources.TryGetProperty(key, out var sources)
             && sources.TryGetProperty(editionId, out var rawSource))
@@ -139,11 +152,13 @@ public sealed class ReadingsTextStore
         return new ScripturePassage(verses, _corpus.Value.WholeVersePassages?.Contains(key) == true, source);
     }
 
-    public async Task<ScripturePassage?> LoadPassageAsync(string scope, string rawCitation, string editionId)
+    public async Task<ScripturePassage?> LoadPassageAsync(string scope, string rawCitation, string editionId, string? readingDatasetId = null)
     {
-        var passage = LoadPassage(scope, rawCitation, editionId);
+        var passage = LoadPassage(scope, rawCitation, editionId, readingDatasetId);
+        var key = PassageKey(scope, rawCitation, readingDatasetId);
         if (passage is null
-            || _corpus.Value.PassageBooks?.TryGetValue($"{scope}|{rawCitation}", out var books) != true
+            || key is null || _corpus.Value.PassageBooks?.TryGetValue(key, out var books) != true
+            || books is null
             || !books.TryGetValue(editionId, out var book)) return passage;
         try
         {

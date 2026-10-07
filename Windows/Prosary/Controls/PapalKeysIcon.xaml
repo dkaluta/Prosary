@@ -1,0 +1,17 @@
+<UserControl x:Class="Prosary.Controls.PapalKeysIcon" x:Name="Root"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Width="24" Height="24" IsTabStop="False" IsHitTestVisible="False">
+    <!-- Holy See orientation: grips below, teeth facing away from the center. -->
+    <Viewbox Stretch="Uniform">
+        <Canvas Width="24" Height="24" FlowDirection="LeftToRight">
+            <Ellipse Canvas.Left="2" Canvas.Top="16" Width="6" Height="6"
+                Stroke="{Binding Foreground, ElementName=Root}" StrokeThickness="1.8" />
+            <Ellipse Canvas.Left="16" Canvas.Top="16" Width="6" Height="6"
+                Stroke="{Binding Foreground, ElementName=Root}" StrokeThickness="1.8" />
+            <Path Data="M7,17 L20,4 M19,5 L22,8 M16,8 L19,11 M17,17 L4,4 M5,5 L2,8 M8,8 L5,11"
+                Stroke="{Binding Foreground, ElementName=Root}" StrokeThickness="1.8"
+                StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeLineJoin="Round" />
+        </Canvas>
+    </Viewbox>
+</UserControl>

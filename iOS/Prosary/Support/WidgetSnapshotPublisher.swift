@@ -125,7 +125,11 @@ enum WidgetPrayerProjection {
     let count: Int
     switch session.kind {
     case .rosary:
-      signature = PrayerRunSignature.rosary(session.rosary)
+      guard let options = session.rosary.navigationOptions(group: progress.rosaryNavigationGroup,
+        order: progress.rosaryNavigationOrder) else { return row }
+      signature = PrayerRunSignature.rosary(session.rosary, navigationGroup: progress.rosaryNavigationGroup,
+        navigationOrder: progress.rosaryNavigationOrder)
+      session.rosary = options
       count = engine.buildSteps(for: session).count
     case .jesusPrayer:
       signature = PrayerRunSignature.jesus(session.jesusPrayer.target)

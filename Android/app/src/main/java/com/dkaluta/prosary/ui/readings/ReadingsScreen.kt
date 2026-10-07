@@ -101,16 +101,14 @@ import kotlinx.coroutines.withContext
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ReadingsScreen(onOpenSettings: () -> Unit, browsingDate: TodayBrowsingDate = rememberTodayBrowsingDate(),
-    calendarRequest: Long = 0, readingsRequest: Long = 0) {
+    calendarRequest: Long = 0, readingsRequest: Long = 0, homeRequest: Long = 0, homeMode: HomeReadingsMode = HomeReadingsMode.Daily) {
     var mode by rememberSaveable { mutableStateOf("daily") }
-    var handledCalendarRequest by rememberSaveable { mutableStateOf(0L) }
-    var handledReadingsRequest by rememberSaveable { mutableStateOf(0L) }
-    LaunchedEffect(calendarRequest, readingsRequest) {
-        if (calendarRequest != handledCalendarRequest || readingsRequest != handledReadingsRequest) {
-            browsingDate.selectedEpochDay = null
-            mode = if (calendarRequest != handledCalendarRequest) "calendar" else "daily"
-            handledCalendarRequest = calendarRequest
-            handledReadingsRequest = readingsRequest
+    var handledOpenRequest by rememberSaveable { mutableStateOf(0L) }
+    LaunchedEffect(calendarRequest, readingsRequest, homeRequest, homeMode) {
+        val request = ReadingsOpenRequest.latest(calendarRequest, readingsRequest, homeRequest, homeMode)
+        if (request != null && request.sequence != handledOpenRequest) {
+            mode = request.applyTo(browsingDate)
+            handledOpenRequest = request.sequence
         }
     }
     val showsCalendarList = mode == "calendar" || mode == "feasts"
@@ -360,8 +358,8 @@ internal fun ReadingCard(citation: ReadingCitation, language: String, edition: R
     val uriHandler = LocalUriHandler.current
     val context = LocalContext.current
     // A local reading aid survives collapse/lazy recycling; the setting applies until a choice.
-    var scriptOverride by rememberSaveable(citation.full, editionId, isTorah) { mutableStateOf<String?>(null) }
-    var showsAvailableEditions by remember(citation.full, editionId, isTorah) { mutableStateOf(false) }
+    var scriptOverride by rememberSaveable(citation.full, citation.readingDatasetId, editionId, isTorah) { mutableStateOf<String?>(null) }
+    var showsAvailableEditions by remember(citation.full, citation.readingDatasetId, editionId, isTorah) { mutableStateOf(false) }
     val readingScript = scriptOverride ?: AppSettings.aramaicDefaultScript
     Card(Modifier.fillMaxWidth()) {
         Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
@@ -380,7 +378,7 @@ internal fun ReadingCard(citation: ReadingCitation, language: String, edition: R
                 // picker reads a small metadata companion. No localized string is a key.
                 // Give each edition its own state immediately, so a previous edition's
                 // text is never displayed under the new edition's name or source credit.
-                val result by key(store, citation.full, editionId, isTorah) {
+                val result by key(store, citation.full, citation.readingDatasetId, editionId, isTorah) {
                     produceState(ReadingCardText()) {
                         value = withContext(Dispatchers.IO) {
                             val passage = if (edition == null || editionId == null) null else store.passage(citation, editionId, isTorah)

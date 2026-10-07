@@ -27,7 +27,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Switch
+import com.dkaluta.prosary.ui.shared.LabeledSwitch
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
@@ -226,7 +226,7 @@ fun SettingsScreen(onBack: () -> Unit, onOpenAppearance: () -> Unit) {
                     Text(stringResource(R.string.settings_prayer_names_in_prayer_language_hint), style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant)
                 }
-                Switch(checked = AppSettings.showPrayerNameInPrayerLanguage, onCheckedChange = { AppSettings.showPrayerNameInPrayerLanguage = it })
+                LabeledSwitch(label = stringResource(R.string.settings_prayer_names_in_prayer_language), checked = AppSettings.showPrayerNameInPrayerLanguage, onCheckedChange = { AppSettings.showPrayerNameInPrayerLanguage = it })
             }
 
             if ((LanguageCatalog.baseLanguage(defaultLanguageCode) ?: defaultLanguageCode) == "arc") {
@@ -279,7 +279,7 @@ fun SettingsScreen(onBack: () -> Unit, onOpenAppearance: () -> Unit) {
                     stringResource(R.string.settings_haptics_on_advance),
                     modifier = Modifier.weight(1f),
                 )
-                Switch(
+                LabeledSwitch(label = stringResource(R.string.settings_haptics_on_advance),
                     checked = hapticsOnAdvance,
                     onCheckedChange = {
                         hapticsOnAdvance = it
@@ -291,7 +291,7 @@ fun SettingsScreen(onBack: () -> Unit, onOpenAppearance: () -> Unit) {
             if (hardwareKeyboardAvailable) {
                 Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
                     Text(stringResource(R.string.settings_keyboard_arrows), Modifier.weight(1f))
-                    Switch(
+                    LabeledSwitch(label = stringResource(R.string.settings_keyboard_arrows),
                         checked = AppSettings.keyboardArrowNavigationEnabled,
                         onCheckedChange = { AppSettings.keyboardArrowNavigationEnabled = it },
                         modifier = Modifier.testTag("keyboardArrowNavigationEnabled"),
@@ -299,7 +299,7 @@ fun SettingsScreen(onBack: () -> Unit, onOpenAppearance: () -> Unit) {
                 }
                 Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
                     Text(stringResource(R.string.settings_keyboard_space), Modifier.weight(1f))
-                    Switch(
+                    LabeledSwitch(label = stringResource(R.string.settings_keyboard_space),
                         checked = AppSettings.keyboardSpaceAdvanceEnabled,
                         onCheckedChange = { AppSettings.keyboardSpaceAdvanceEnabled = it },
                         modifier = Modifier.testTag("keyboardSpaceAdvanceEnabled"),
@@ -434,13 +434,13 @@ fun SettingsScreen(onBack: () -> Unit, onOpenAppearance: () -> Unit) {
 
             Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
                 Text(stringResource(R.string.settings_show_today_readings), Modifier.weight(1f))
-                Switch(checked = AppSettings.showTodayReadings,
+                LabeledSwitch(label = stringResource(R.string.settings_show_today_readings), checked = AppSettings.showTodayReadings,
                     onCheckedChange = { AppSettings.showTodayReadings = it },
                     modifier = Modifier.testTag("showTodayReadings"))
             }
             Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
                 Text(stringResource(R.string.settings_expand_readings), Modifier.weight(1f))
-                Switch(checked = AppSettings.expandReadingsByDefault,
+                LabeledSwitch(label = stringResource(R.string.settings_expand_readings), checked = AppSettings.expandReadingsByDefault,
                     onCheckedChange = { AppSettings.expandReadingsByDefault = it },
                     modifier = Modifier.testTag("expandReadingsByDefault"))
             }
@@ -452,7 +452,7 @@ fun SettingsScreen(onBack: () -> Unit, onOpenAppearance: () -> Unit) {
                     Text(stringResource(R.string.settings_show_today_torah_hint), style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant)
                 }
-                Switch(checked = AppSettings.showTodayTorahPortion, onCheckedChange = { AppSettings.showTodayTorahPortion = it })
+                LabeledSwitch(label = stringResource(R.string.settings_show_today_torah), checked = AppSettings.showTodayTorahPortion, onCheckedChange = { AppSettings.showTodayTorahPortion = it })
             }
 
             Row(
@@ -463,7 +463,7 @@ fun SettingsScreen(onBack: () -> Unit, onOpenAppearance: () -> Unit) {
                     stringResource(R.string.settings_show_today_feast),
                     modifier = Modifier.weight(1f),
                 )
-                Switch(
+                LabeledSwitch(label = stringResource(R.string.settings_show_today_feast),
                     checked = showTodayFeast,
                     onCheckedChange = {
                         showTodayFeast = it
@@ -479,13 +479,20 @@ fun SettingsScreen(onBack: () -> Unit, onOpenAppearance: () -> Unit) {
                     stringResource(R.string.settings_show_today_intention),
                     modifier = Modifier.weight(1f),
                 )
-                Switch(
+                LabeledSwitch(label = stringResource(R.string.settings_show_today_intention),
                     checked = showTodayIntention,
                     onCheckedChange = {
                         showTodayIntention = it
                         AppSettings.showTodayIntention = it
                     },
                 )
+            }
+
+            Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+                Text(stringResource(R.string.settings_show_pope_intention_in_prayers), Modifier.weight(1f))
+                LabeledSwitch(label = stringResource(R.string.settings_show_pope_intention_in_prayers),
+                    checked = AppSettings.showPopeIntentionInPrayers,
+                    onCheckedChange = { AppSettings.showPopeIntentionInPrayers = it })
             }
 
             val feastCalendars = TodayInfoStore.calendars

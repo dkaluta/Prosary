@@ -10,7 +10,7 @@ import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Language
+import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.automirrored.filled.MenuBook
 import androidx.compose.material3.Icon
@@ -23,6 +23,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
@@ -43,6 +44,7 @@ import androidx.compose.runtime.setValue
 import com.dkaluta.prosary.R
 import com.dkaluta.prosary.ui.shared.rememberTodayBrowsingDate
 import com.dkaluta.prosary.ui.readings.ReadingsScreen
+import com.dkaluta.prosary.ui.readings.HomeReadingsMode
 import com.dkaluta.prosary.ui.search.SearchScreen
 import com.dkaluta.prosary.ui.shared.BasicPrayerFlowScreen
 import com.dkaluta.prosary.ui.shared.BasicPrayersScreen
@@ -56,6 +58,7 @@ import com.dkaluta.prosary.ui.about.AboutScreen
 import com.dkaluta.prosary.ui.favorites.FavoriteEditorScreen
 import com.dkaluta.prosary.ui.favorites.RemindersOnlyEditorScreen
 import com.dkaluta.prosary.ui.home.HomeScreen
+import com.dkaluta.prosary.ui.home.HomeDashboardScreen
 import com.dkaluta.prosary.ui.home.RosaryPresetPickerScreen
 import com.dkaluta.prosary.ui.rosaryflow.RosaryFlowScreen
 import com.dkaluta.prosary.ui.jesusprayer.JesusPrayerFlowScreen
@@ -81,7 +84,7 @@ private object AdHocRosaryHolder {
 
 private object Routes {
     const val Home = "home"
-    const val Browse = "browse"
+    const val Pray = "pray"
     const val Readings = "readings"
     const val Search = "search"
     const val RepositoryBrowser = "favorites/repository"
@@ -141,7 +144,7 @@ internal fun NavHostController.navigateSingleTop(route: String) {
     navigate(route, singleTopNavOptions())
 }
 
-/** The app's tab shell: Pray (Home), Browse (prayers.prosary.app), Readings, Search —
+/** The app's tab shell: Home, Pray, Readings, Search —
  * bottom NavigationBar on phones, NavigationRail on wide layouts ("bottom on phone, side on
  * computer"). The phone bar shows only on the four top-level tab destinations; inner screens
  * (flows, editors) keep the full height so a prayer owns the screen and a stray tap can't
@@ -204,8 +207,8 @@ fun ProsaryApp(widgetLaunchRequest: WidgetLaunchRequest? = null, onWidgetLaunchC
         }
     }
     val tabs = listOf(
-        TabSpec(Routes.Home, R.string.tab_pray, Icons.Filled.Home),
-        TabSpec(Routes.Browse, R.string.tab_browse, Icons.Filled.Language),
+        TabSpec(Routes.Home, R.string.home_widgets_title, Icons.Filled.Home),
+        TabSpec(Routes.Pray, R.string.tab_pray, Icons.Filled.Favorite),
         TabSpec(Routes.Readings, R.string.tab_readings, Icons.AutoMirrored.Filled.MenuBook),
         TabSpec(Routes.Search, R.string.tab_search, Icons.Filled.Search),
     )
@@ -227,6 +230,7 @@ fun ProsaryApp(widgetLaunchRequest: WidgetLaunchRequest? = null, onWidgetLaunchC
             NavigationRail {
                 for (tab in tabs) {
                     NavigationRailItem(
+                        modifier = Modifier.testTag("tab.${tab.route}"),
                         selected = currentRoute == tab.route,
                         onClick = { selectTab(tab.route) },
                         icon = { Icon(tab.icon, contentDescription = null) },
@@ -239,6 +243,7 @@ fun ProsaryApp(widgetLaunchRequest: WidgetLaunchRequest? = null, onWidgetLaunchC
             NavigationBar {
                 for (tab in tabs) {
                     NavigationBarItem(
+                        modifier = Modifier.testTag("tab.${tab.route}"),
                         selected = currentRoute == tab.route,
                         onClick = { selectTab(tab.route) },
                         icon = { Icon(tab.icon, contentDescription = null) },
@@ -306,21 +311,35 @@ private fun NavHostController.launch(target: LaunchTarget) {
 private fun AppNavHost(navController: NavHostController, modifier: Modifier = Modifier, todayWidgetRequest: Long = 0,
     calendarWidgetRequest: Long = 0, readingsWidgetRequest: Long = 0) {
     val browsingDate = rememberTodayBrowsingDate()
+    var homeReadingsRequest by rememberSaveable { mutableLongStateOf(0L) }
+    var homeReadingsMode by rememberSaveable { androidx.compose.runtime.mutableStateOf(HomeReadingsMode.Daily) }
     NavHost(navController = navController, startDestination = Routes.Home, modifier = modifier) {
-        composable(Routes.Browse) {
-            com.dkaluta.prosary.ui.favorites.RepositoryBrowserScreen(onBack = {}, showsBackButton = false)
+        composable(Routes.Home) {
+            HomeDashboardScreen(browsingDate = browsingDate, todayWidgetRequest = todayWidgetRequest,
+                onOpenSettings = { navController.navigateSingleTop(Routes.Settings) },
+                onOpenReminders = { id -> navController.navigateSingleTop(Routes.remindersOnlyEditor(id)) },
+                onOpenReadings = { mode ->
+                    homeReadingsMode = mode
+                    homeReadingsRequest = System.nanoTime()
+                    navController.navigate(Routes.Readings) {
+                        popUpTo(Routes.Home) { saveState = true }
+                        launchSingleTop = true
+                        restoreState = true
+                    }
+                })
         }
         composable(Routes.Readings) {
             ReadingsScreen(onOpenSettings = { navController.navigateSingleTop(Routes.Settings) }, browsingDate = browsingDate,
-                calendarRequest = calendarWidgetRequest, readingsRequest = readingsWidgetRequest)
+                calendarRequest = calendarWidgetRequest, readingsRequest = readingsWidgetRequest,
+                homeRequest = homeReadingsRequest, homeMode = homeReadingsMode)
         }
         composable(Routes.Search) {
-            SearchScreen(onLaunch = { target -> navController.launch(target) })
+            SearchScreen(onLaunch = { target -> navController.launch(target) },
+                onOpenCommunity = { navController.navigateSingleTop(Routes.RepositoryBrowser) })
         }
-        composable(Routes.Home) {
+        composable(Routes.Pray) {
             HomeScreen(
                 browsingDate = browsingDate,
-                todayWidgetRequest = todayWidgetRequest,
                 onOpenPrayer = { id -> navController.navigateSingleTop(Routes.prayer(id)) },
                 onOpenReminders = { id -> navController.navigateSingleTop(Routes.remindersOnlyEditor(id)) },
                 onOpenRosaryPicker = { navController.navigateSingleTop(Routes.RosaryPicker) },

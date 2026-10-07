@@ -287,9 +287,11 @@ struct BibleChapterView: View {
     }
     .navigationTitle(activeBook.displayedName(script: script.wrappedValue))
     .toolbar {
-      ToolbarItemGroup(placement: .automatic) {
+      ToolbarItem(id: "bible.previousChapter", placement: .automatic) {
         Button { move(-1) } label: { Label(bibleLabel("previous", "Previous Chapter"), systemImage: "chevron.backward") }
           .disabled(position.moving(by: -1, in: edition) == nil).accessibilityIdentifier("bible.previousChapter")
+      }
+      ToolbarItem(id: "bible.chapterMenu", placement: .automatic) {
         Menu {
           ForEach(activeBook.chapters, id: \.number) { item in
             Button(bibleChapterLabel(item.number, book: activeBook, edition: edition.readingEdition, script: script.wrappedValue)) {
@@ -300,10 +302,16 @@ struct BibleChapterView: View {
           Text(bibleChapterLabel(number, book: activeBook, edition: edition.readingEdition, script: script.wrappedValue))
         }
         .accessibilityIdentifier("bible.chapterMenu")
+      }
+      ToolbarItem(id: "bible.nextChapter", placement: .automatic) {
         Button { move(1) } label: { Label(bibleLabel("next", "Next Chapter"), systemImage: "chevron.forward") }
           .disabled(position.moving(by: 1, in: edition) == nil).accessibilityIdentifier("bible.nextChapter")
-        if let chapter {
-          Menu {
+      }
+      // Loading a chapter must not remove/reinsert a child of a native toolbar group.
+      // Keep the menu's identity and size stable while its source choices are replaced.
+      ToolbarItem(id: "bible.verseMenu", placement: .automatic) {
+        Menu {
+          if let chapter {
             ForEach(chapter.choices) { block in
               Button(bibleVerseChoiceLabel(block, display: chapter, edition: edition.readingEdition, script: script.wrappedValue,
                 usesPrintedLabels: activeBook.chapters.first { $0.number == number }?.canonicalReference != nil)) {
@@ -315,9 +323,10 @@ struct BibleChapterView: View {
                 }
               }
             }
-          } label: { Label(bibleLabel("verse", "Go to Verse"), systemImage: "text.line.first.and.arrowtriangle.forward") }
-          .accessibilityIdentifier("bible.verseMenu")
-        }
+          }
+        } label: { Label(bibleLabel("verse", "Go to Verse"), systemImage: "text.line.first.and.arrowtriangle.forward") }
+        .disabled(chapter == nil)
+        .accessibilityIdentifier("bible.verseMenu")
       }
     }
     .task(id: "\(activeBook.id)|\(number)") { await load() }

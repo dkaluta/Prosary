@@ -1,2 +1,4 @@
 # Preserve the supplied calendar source and its pinned checksum verbatim.
 Shared/tools/sources/syriac-calendar-2026-he.ics -text -diff
+# Preserve the supplied calendar snapshot, including RFC 5545 folding spaces and CRLF.
+Shared/tools/sources/mission-provisional-2026-he.ics -text -whitespace

@@ -10,6 +10,17 @@ import XCTest
 final class LiturgicalCalendarTests: XCTestCase {
   private let cal = StubLiturgicalCalendar()
   private let utc = TimeZone(identifier: "UTC")!
+  func testTraditionalFifteenScheduleAndSeasonalSundays() {
+    let thursday = date(year: 2026, month: 10, day: 8)
+    let saturday = date(year: 2026, month: 10, day: 10)
+    XCTAssertEqual(cal.mysteryGroup(for: thursday), .luminous)
+    XCTAssertEqual(cal.mysteryGroup(for: thursday, useTraditionalMysteries: true), .joyful)
+    XCTAssertEqual(cal.mysteryGroup(for: saturday), .joyful)
+    XCTAssertEqual(cal.mysteryGroup(for: saturday, useTraditionalMysteries: true), .glorious)
+    for sunday in [date(year: 2026, month: 3, day: 15), date(year: 2026, month: 12, day: 6)] {
+      XCTAssertEqual(cal.mysteryGroup(for: sunday, useTraditionalMysteries: true), cal.mysteryGroup(for: sunday))
+    }
+  }
 
   // MARK: - Helpers
 

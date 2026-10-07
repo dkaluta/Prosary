@@ -9,6 +9,29 @@ import org.junit.Assert.assertTrue
 import org.junit.Test
 
 class ReadingTextStoreTest {
+    @Test fun registeredTablesKeepTheSameCitationInSeparateNamespaces() {
+        val data = """{"schemaVersion":1,"editions":[{"id":"fixture","languageCode":"en","name":"Fixture","attribution":"Synthetic","sourceURL":"https://example.org"}],
+            "passages":{"daily|John 3:16":{"fixture":[{"chapter":3,"verse":16,"text":"Roman source"}]},
+            "daily|stjames|John 3:16":{"fixture":[{"chapter":3,"verse":16,"text":"Separate table source"}]}}}"""
+        val store = ReadingTextStore { data.byteInputStream() }
+        val citation = ReadingCitation("gospel", "Jn", "John 3:16")
+        assertEquals("Roman source", store.passage(citation.copy(readingDatasetId = "lpj"), "fixture")?.verses?.single()?.text)
+        val captured = citation.copy(readingDatasetId = "stjames")
+        assertEquals("Separate table source", store.passage(captured, "fixture")?.verses?.single()?.text)
+        assertNull(store.passage(citation.copy(readingDatasetId = "augustinian-discalced"), "fixture"))
+        assertNull(store.passage(citation.copy(readingDatasetId = "../roman"), "fixture"))
+        assertEquals(listOf("fixture"), store.availableEditions(captured).map { it.id })
+        assertTrue(store.availableEditions(citation.copy(readingDatasetId = "augustinian-discalced")).isEmpty())
+    }
+
+    @Test fun legacyAndTorahIdentitiesRemainStable() {
+        for (id in listOf("roman", "roman1962", "ugcc", "ugcc-gregorian", "syriac", "maronite")) {
+            assertEquals("daily|Psalm 8:7", ReadingPassageIdentity.key("Psalm 8:7", false, id))
+        }
+        assertEquals("torah|Genesis 1:1", ReadingPassageIdentity.key("Genesis 1:1", true, "stjames"))
+        assertNull(ReadingPassageIdentity.key("stjames|Psalm 8:7", false))
+    }
+
     private val supplementCitation = ReadingCitation("reading", "Fixture", "Fixture 2:12–13; 1:1; 2:2")
     private val supplementRows = """[
         {"chapter":2,"verse":12,"endVerse":13,"text":"בַּקּבָּה","sourceNotes":[
@@ -315,7 +338,11 @@ class ReadingTextStoreTest {
         assertEquals(47, torah.verses.first().chapter)
         assertEquals(50, torah.verses.last().chapter)
         assertTrue(torah.verses.all { !it.transliteratedText.isNullOrBlank() })
-        assertNull(store.passage(ReadingCitation("psalm", "Ps", "Psalm 23:1–3a; 23:3b–4; 23:5–5; 23:6–6"), edition.id))
+        val psalm = requireNotNull(store.passage(ReadingCitation("psalm", "Ps", "Psalm 23:1–3a; 23:3b–4; 23:5–5; 23:6–6"), edition.id))
+        assertEquals((1..6).toList(), psalm.verses.map { it.verse })
+        assertTrue(psalm.verses.all { it.chapter == 23 && !it.transliteratedText.isNullOrEmpty() })
+        assertTrue(psalm.verses.first().transliteratedText.orEmpty().startsWith("ܡܳܪܝܳܐ ܢܶܪܥܶܝܢܝ̱"))
+        assertNull(store.passage(ReadingCitation("psalm", "Ps", "Psalm 119:66–66; 119:71–71; 119:75–75; 119:91–91; 119:125–125; 119:130–130"), edition.id))
     }
 
     @Test fun expandedArabicKeepsPrintedPsalmNumberingAndCompleteGospelVerses() {
@@ -357,9 +384,10 @@ class ReadingTextStoreTest {
             assertTrue(editionId, psalm.verses.all { it.chapter == chapter })
             assertTrue(editionId, psalm.includesWholeVerses)
         }
-        for (editionId in listOf("martini")) {
-            assertNull(editionId, store.passage(psalmCitation, editionId))
-        }
+        val italian = requireNotNull(store.passage(psalmCitation, "martini"))
+        assertEquals(listOf(1, 2, 3, 4, 9, 10, 11, 12), italian.verses.map { it.verse })
+        assertTrue(italian.verses.all { it.chapter == 102 })
+        assertTrue(italian.verses.last().text.contains("Oriente dall'Occidente"))
         val french = requireNotNull(store.passage(ReadingCitation("reading", "Sirach", cases[0].first), "crampon-1923"))
         assertEquals(listOf("27:30") + (1..7).map { "28:$it" }, french.verses.map { "${it.chapter}:${it.verse}" })
         assertTrue(french.verses.all { it.text.isNotBlank() })
@@ -373,13 +401,18 @@ class ReadingTextStoreTest {
         val raw = Json.parseToJsonElement(File("src/main/assets/data/readings-texts.json").readText()).jsonObject
         val sources = requireNotNull(raw["passageSources"]).jsonObject
         val store = bundledStore()
-        assertEquals(19, sources.values.sumOf { it.jsonObject.size })
+        assertEquals(19, sources.values.count { "masoretic-delitzsch" in it.jsonObject })
+        assertTrue(sources.values.any { "jesuit-arabic-1897" in it.jsonObject })
+        assertTrue(sources.values.any { "martini" in it.jsonObject })
         // Wisdom 7 is reviewed for Maronite use, but also occurs in an unreviewed Roman 1962 context.
         assertNull(store.passage(ReadingCitation("reading", "Wisdom", "Wisdom 7:7–14"), "masoretic-delitzsch"))
         for ((key, editions) in sources) {
-            val (namespace, citation) = key.split('|', limit = 2)
+            val parts = key.split('|')
+            val namespace = parts.first()
+            val citation = parts.last()
+            val datasetId = if (parts.size == 3) parts[1] else null
             for ((edition, sourceJson) in editions.jsonObject) {
-                val passage = requireNotNull(store.passage(ReadingCitation("reading", "Source", citation), edition, namespace == "torah")) { key }
+                val passage = requireNotNull(store.passage(ReadingCitation("reading", "Source", citation, readingDatasetId = datasetId), edition, namespace == "torah")) { key }
                 val expected = Json.decodeFromJsonElement<List<ReadingVerse>>(raw.getValue("passages").jsonObject.getValue(key).jsonObject.getValue(edition))
                 assertEquals(key, expected, passage.verses)
                 val source = requireNotNull(passage.source)
@@ -415,7 +448,7 @@ class ReadingTextStoreTest {
         assertEquals(listOf(2, 3, 4, 5, 12, 22), passage.verses.map { it.verse })
         assertTrue(passage.verses.all { it.chapter == 32 && it.text.isNotBlank() })
         assertEquals(listOf("ang-dating-biblia-1905", "brenton-lxx", "crampon-1923", "douay-rheims-1899",
-            "kulish-1905", "masoretic-delitzsch", "synodal-1876"),
+            "jesuit-arabic-1897", "kulish-1905", "martini", "masoretic-delitzsch", "peshitta-1905", "synodal-1876"),
             store.availableEditions(citation).map { it.id }.sorted())
     }
 

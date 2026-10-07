@@ -19,6 +19,19 @@ import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
 import kotlinx.serialization.json.*
 
+/** Citation identities are opaque; another registered table cannot borrow Roman numbering. */
+object ReadingPassageIdentity {
+    private val legacy = setOf("roman", "roman1962", "ugcc", "ugcc-gregorian", "syriac", "maronite")
+    fun key(citation: String, isTorah: Boolean, datasetId: String? = null): String? {
+        if (citation.isEmpty() || '|' in citation) return null
+        if (isTorah) return "torah|$citation"
+        if (datasetId.isNullOrEmpty()) return "daily|$citation"
+        val normalized = if (datasetId == "lpj") "roman" else datasetId
+        if (!Regex("[a-z0-9][a-z0-9-]*").matches(normalized)) return null
+        return if (normalized in legacy) "daily|$citation" else "daily|$normalized|$citation"
+    }
+}
+
 @Serializable
 data class ReadingEdition(
     val id: String,
@@ -170,7 +183,7 @@ class ReadingTextStore(private val bibleStore: BibleStore? = null, private val o
 
     fun passage(citation: ReadingCitation, editionId: String, isTorah: Boolean = false): ReadingPassage? {
         val file = data ?: return null
-        val key = "${if (isTorah) "torah" else "daily"}|${citation.full}"
+        val key = ReadingPassageIdentity.key(citation.full, isTorah, citation.readingDatasetId) ?: return null
         val verses = file.passages[key]?.get(editionId)
             ?.takeIf { verses -> verses.isNotEmpty() && verses.all {
                 it.chapter > 0 && it.verse > 0 && it.lastVerse >= it.verse && it.text.isNotBlank()

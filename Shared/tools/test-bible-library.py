@@ -193,6 +193,43 @@ class BibleLibraryTests(unittest.TestCase):
             self.assertEqual(len(books["REV"]["chapters"]), 22)
         self.assertEqual(len(self.editions["douay-rheims-1899"]["books"]), 73)
 
+    def test_all_150_published_italian_psalms_retain_native_rows(self):
+        from martini_daily_psalms import default_resolver
+        from reading_step_mapping import Unavailable
+        source = default_resolver()
+        edition = self.editions["martini"]
+        psalms = next(book for book in edition["books"] if book["id"] == "PSA")
+        self.assertEqual([chapter["number"] for chapter in psalms["chapters"]], list(range(1, 151)))
+        self.assertTrue(all(chapter["isComplete"] for chapter in psalms["chapters"]))
+        filename = edition["downloadURL"].removeprefix(library.DOWNLOAD_ROOT)
+        with zipfile.ZipFile(library.DIST / filename) as archive:
+            for chapter in psalms["chapters"]:
+                number = chapter["number"]
+                payload = json.loads(archive.read(f"chapters/PSA/{number}.json"))
+                expected = [{"chapter": c, "verse": v, "text": source.rows[c, v]}
+                            for c, v in source.whole_chapters[number]]
+                self.assertEqual(payload["verses"], expected)
+            family = json.loads(archive.read("chapters/PSA/127.json"))["verses"]
+            self.assertIn("figliuoli, come novelle piante d'ulivi", family[3]["text"])
+            closing = json.loads(archive.read("chapters/PSA/150.json"))["verses"]
+            self.assertEqual(len(closing), 5)
+            self.assertIn("spirito", closing[-1]["text"])
+        # Browsing complete original chapters does not certify guessed internal
+        # verse offsets for unreviewed daily requests.
+        converter = self.builder.edition_mapper("martini", self.corpora["martini"])
+        with self.assertRaises(Unavailable):
+            converter.from_standard([("PSA", 2, 7)])
+
+    def test_corrected_douay_source_clauses_reach_optional_bible(self):
+        edition = self.editions["douay-rheims-1899"]
+        filename = edition["downloadURL"].removeprefix(library.DOWNLOAD_ROOT)
+        with zipfile.ZipFile(library.DIST / filename) as archive:
+            for chapter, verse, clause in ((127, 3, "Thy children as olive plants"),
+                                          (141, 4, "they have hidden a snare for me"),
+                                          (111, 7, "he shall not fear the evil hearing")):
+                rows = json.loads(archive.read(f"chapters/PSA/{chapter}.json"))["verses"]
+                self.assertIn(clause, next(row["text"] for row in rows if row["verse"] == verse))
+
     def test_source_book_titles_do_not_include_publisher_navigation(self):
         for edition in self.editions.values():
             for book in edition["books"]:

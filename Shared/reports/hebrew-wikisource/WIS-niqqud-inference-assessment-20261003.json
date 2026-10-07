@@ -1,0 +1,481 @@
+{
+  "date": "2026-10-03",
+  "book": "WIS",
+  "scope": "15 focused primary-source native crops in chapters 1-17, excluding the previously inspected chapter 19 and damaged restored-letter targets.",
+  "canonicalPath": "/Users/dk/Developer/Personal/Prosary/Shared/content/hebrew-deuterocanon/WIS.json",
+  "canonicalSHA256": "112baca00e48c687f617e9678ba79cc4bf4e8c37ccae20d5af0186f85f91800d",
+  "sourcePDF": "/private/tmp/prosary-kahana-reference/Apocrypha_Kahana_A2.pdf",
+  "sourcePDFSHA256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+  "method": "Visual inspection of existing lossless enlarged native-source crops. No OCR, AI vocalizer, image reconstruction, or source mutation.",
+  "cropCount": 15,
+  "sourceOnlySecureProposals": [],
+  "editorialCandidatesNotApproved": [
+    {
+      "noteId": "wis-1-2-nirah-alef",
+      "originalAnchor": "וְנִרְאה",
+      "candidateAnchor": "וְנִרְאָה",
+      "suppliedPoint": "alef qamats",
+      "basis": "Familiar verb reading fits the sentence; scan lower point remains fused. This is grammatical inference, not a source reading."
+    },
+    {
+      "noteId": "wis-11-8-kaf",
+      "originalAnchor": "כּאֲשֶׁר",
+      "candidateAnchor": "כַּאֲשֶׁר",
+      "suppliedPoint": "kaf patah",
+      "basis": "Familiar conjunction fits the sentence; scan kaf lower area remains fused. This is editorial inference, not a source reading."
+    }
+  ],
+  "counterexamples": [
+    {
+      "chapter": 7,
+      "verse": 15,
+      "sourceAnchor": "חַנּנּי",
+      "preserve": "Visible het patah and dagesh in BOTH nuns. Only unknown nun vowels could be candidate editorial additions; no model may normalize away visible marks."
+    },
+    {
+      "chapter": 17,
+      "verse": 7,
+      "sourceAnchor": "חָדלּוּ",
+      "preserve": "Visible lamed dagesh. Replacing with modern חָדְלוּ would remove a printed source dot. Only dalet vowel is unresolved."
+    },
+    {
+      "chapter": 3,
+      "verse": 14,
+      "sourceAnchor": "יִנָּתֶן־לוֹ",
+      "preserve": "Existing full source reconciliation retains tav segol. A common יִנָּתֵן replacement would change this already accepted source mark."
+    }
+  ],
+  "inspections": [
+    {
+      "chapter": 1,
+      "verse": 2,
+      "noteIds": [
+        "wis-1-2-nirah-alef"
+      ],
+      "notes": [
+        {
+          "id": "wis-1-2-nirah-alef",
+          "kind": "unreadablePoint",
+          "anchor": "וְנִרְאה",
+          "occurrence": 1,
+          "letterIndex": 4,
+          "mark": "vowel",
+          "sourcePages": [
+            145
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=145"
+        }
+      ],
+      "originalText": "כִּי יִמָּצֵא לְלֹא נִסּוּהוּ וְנִרְאה לְלֹא כִחשׁוּ בוֹ׃",
+      "correctedText": "כִּי יִמָּצֵא לְלֹא נִסּוּהוּ וְנִרְאה לְלֹא כִחשׁוּ בוֹ׃",
+      "cropPath": "/private/tmp/prosary-wis-review/independent-nirah.png",
+      "cropSHA256": "815a13d549daf1a198952d9f4cfe368b102bea5fc1c76afce33eb42f3e950048",
+      "cropProvenance": {},
+      "decision": "retainReviewedSource",
+      "evidence": "Alef lower region is a continuous dense projection; no independently complete lower vowel is separable."
+    },
+    {
+      "chapter": 1,
+      "verse": 2,
+      "noteIds": [
+        "wis-1-2-kichashu-het"
+      ],
+      "notes": [
+        {
+          "id": "wis-1-2-kichashu-het",
+          "kind": "unreadablePoint",
+          "anchor": "כִחשׁוּ",
+          "occurrence": 1,
+          "letterIndex": 2,
+          "mark": "vowel",
+          "sourcePages": [
+            145
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=145"
+        }
+      ],
+      "originalText": "כִּי יִמָּצֵא לְלֹא נִסּוּהוּ וְנִרְאה לְלֹא כִחשׁוּ בוֹ׃",
+      "correctedText": "כִּי יִמָּצֵא לְלֹא נִסּוּהוּ וְנִרְאה לְלֹא כִחשׁוּ בוֹ׃",
+      "cropPath": "/private/tmp/prosary-wis-review/independent-kichashu.png",
+      "cropSHA256": "dec0e284c8e234389226fc335ea44f1d229ae009366312b0c6e752d2d6f9f5b6",
+      "cropProvenance": {},
+      "decision": "retainReviewedSource",
+      "evidence": "Het has a fused lower-right terminal and descender; familiar word identity does not identify the original source mark."
+    },
+    {
+      "chapter": 1,
+      "verse": 3,
+      "noteIds": [
+        "wis-1-3-mahshavot-het"
+      ],
+      "notes": [
+        {
+          "id": "wis-1-3-mahshavot-het",
+          "kind": "unreadablePoint",
+          "anchor": "מַחשָׁבוֹת",
+          "occurrence": 1,
+          "letterIndex": 2,
+          "mark": "vowel",
+          "sourcePages": [
+            145
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=145"
+        }
+      ],
+      "originalText": "כִּי מַחשָׁבוֹת עֲקַלְקַלּוֹת מְרַחֲקוֹת מֵאֱלֹהִים וֶאֱוִילִים מְנַסִּים גְּבוּרָתוֹ יִשָּׁפֵטוּ׃",
+      "correctedText": "כִּי מַחשָׁבוֹת עֲקַלְקַלּוֹת מְרַחֲקוֹת מֵאֱלֹהִים וֶאֱוִילִים מְנַסִּים גְּבוּרָתוֹ יִשָּׁפֵטוּ׃",
+      "cropPath": "/private/tmp/prosary-wis-review/independent-mahshavot.png",
+      "cropSHA256": "edd90f518eac0e0980f291fd0467bd4463ad65d8b1c5f91d14f7f0dc159a17b5",
+      "cropProvenance": {},
+      "decision": "retainReviewedSource",
+      "evidence": "Het lower mass is joined to its body. Clear adjacent mem patah and shin qamats do not settle the het vowel."
+    },
+    {
+      "chapter": 2,
+      "verse": 23,
+      "noteIds": [
+        "wis-2-23-lamed"
+      ],
+      "notes": [
+        {
+          "id": "wis-2-23-lamed",
+          "kind": "unreadablePoint",
+          "anchor": "ל[חַיֵּי]",
+          "occurrence": 1,
+          "letterIndex": 1,
+          "mark": "vowel",
+          "sourcePages": [
+            149
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=149"
+        }
+      ],
+      "originalText": "הִנֵּה אֱלֹהִים בָּרָא אֶת־הָאָדָם ל[חַיֵּי] נֶצַח יַעַשׂ אוֹתוֹ בִּדְמוּת עֶצֶם עַצְמוּתוֹ׃",
+      "correctedText": "הִנֵּה אֱלֹהִים בָּרָא אֶת־הָאָדָם ל[חַיֵּי] נֶצַח יַעַשׂ אוֹתוֹ בִּדְמוּת עֶצֶם עַצְמוּתוֹ׃",
+      "cropPath": "/private/tmp/prosary-wis-review/independent-WIS2-v23-lamed.png",
+      "cropSHA256": "38c7fc61f35b6c7f47f5ad28a76b0e2033474ba1eeb39c88851d180bf7a4e335",
+      "cropProvenance": {},
+      "decision": "retainReviewedSource",
+      "evidence": "Lamed lower region is a dense continuous descender at the source bracket. No separated complete vowel is visible."
+    },
+    {
+      "chapter": 2,
+      "verse": 24,
+      "noteIds": [
+        "wis-2-24-vav"
+      ],
+      "notes": [
+        {
+          "id": "wis-2-24-vav",
+          "kind": "unreadablePoint",
+          "anchor": "ויֵדָעוּהוּ",
+          "occurrence": 1,
+          "letterIndex": 1,
+          "mark": "vowel",
+          "sourcePages": [
+            149
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=149"
+        }
+      ],
+      "originalText": "אָמְנָם בְּקִנְאַת הַשָּׂטָן בָּא הַמָּוֶת לָעוֹלָם ויֵדָעוּהוּ אַנְשֵׁי חֶבְלוֹ׃",
+      "correctedText": "אָמְנָם בְּקִנְאַת הַשָּׂטָן בָּא הַמָּוֶת לָעוֹלָם ויֵדָעוּהוּ אַנְשֵׁי חֶבְלוֹ׃",
+      "cropPath": "/private/tmp/prosary-wis-review/independent-WIS2-v24-vav.png",
+      "cropSHA256": "5e92f49b1398134e6b79f19d88bcbb0a6ed4fd0e334fab613b92120a058e3f0e",
+      "cropProvenance": {},
+      "decision": "retainReviewedSource",
+      "evidence": "Vav lower terminal is a joined dense mass. Adjacent yod tsere is separately visible, but vav vowel is not."
+    },
+    {
+      "chapter": 3,
+      "verse": 14,
+      "noteIds": [],
+      "notes": [],
+      "originalText": "גַּם הַסָּרִיס אֲשֶׁר לֹא־עָשָׂה עָוֶל בְּכַפּוֹ וְלֹא יָעַץ רַע עַל־אֱלֹהִים יִנָּתֶן־לוֹ חֶסֶד רַב בַּעֲבוּר אֱמוּנָתוֹ וְזֵכֶר נֶחְמָד בְּמִקְדַּשׁ יְיָ׃",
+      "correctedText": "גַּם הַסָּרִיס אֲשֶׁר לֹא־עָשָׂה עָוֶל בְּכַפּוֹ וְלֹא יָעַץ רַע עַל־אֱלֹהִים יִנָּתֶן־לוֹ חֶסֶד רַב בַּעֲבוּר אֱמוּנָתוֹ וְזֵכֶר נֶחְמָד בְּמִקְדַּשׁ יְיָ׃",
+      "cropPath": "/private/tmp/prosary-wis-review/independent-WIS3-v14-verb.png",
+      "cropSHA256": "26fa192ea36176040d4b672ec9fcb141aeb23a9024538c2efd2804a035f7d62c",
+      "cropProvenance": {},
+      "decision": "retainReviewedSource",
+      "evidence": "Existing locally accepted transcription is יִנָּתֶן־לוֹ. Repointing the whole token could normalize the retained tav segol to the common tsere form; no new point omission is being resolved here."
+    },
+    {
+      "chapter": 7,
+      "verse": 15,
+      "noteIds": [
+        "wis-7-15-first-nun",
+        "wis-7-15-second-nun"
+      ],
+      "notes": [
+        {
+          "id": "wis-7-15-first-nun",
+          "kind": "unreadablePoint",
+          "anchor": "חַנּנּי",
+          "occurrence": 1,
+          "letterIndex": 2,
+          "mark": "vowel",
+          "sourcePages": [
+            158
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=158"
+        },
+        {
+          "id": "wis-7-15-second-nun",
+          "kind": "unreadablePoint",
+          "anchor": "חַנּנּי",
+          "occurrence": 1,
+          "letterIndex": 3,
+          "mark": "vowel",
+          "sourcePages": [
+            158
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=158"
+        }
+      ],
+      "originalText": "וְלִי יִתֵּן יְיָ לְדַבֵּר כּהָגוּת לִבִּי וּלְהָבִין כּיָאוּת אֶת אֲשֶׁר חַנּנּי בוֹ כִּי הוּא גַם מַנְהִיג הַחָכְמָה וְגַם מַדְרִיךְ הַחֲכָמִים׃",
+      "correctedText": "וְלִי יִתֵּן יְיָ לְדַבֵּר כּהָגוּת לִבִּי וּלְהָבִין כּיָאוּת אֶת אֲשֶׁר חַנּנּי בוֹ כִּי הוּא גַם מַנְהִיג הַחָכְמָה וְגַם מַדְרִיךְ הַחֲכָמִים׃",
+      "cropPath": "/private/tmp/prosary-wis-review/source-gate-WIS7-hanani15.png",
+      "cropSHA256": "0cc1f4b4d34a9dcb135b4c607e580413a0304c4fd23d3f950948ac0720a9c379",
+      "cropProvenance": {},
+      "decision": "retainReviewedSource",
+      "evidence": "Het patah and both nun dagesh dots are plainly separated and already retained. Lower nun masses are fused; nun vowels remain unresolved."
+    },
+    {
+      "chapter": 7,
+      "verse": 15,
+      "noteIds": [
+        "wis-7-15-kaf-kiyaut"
+      ],
+      "notes": [
+        {
+          "id": "wis-7-15-kaf-kiyaut",
+          "kind": "unreadablePoint",
+          "anchor": "כּיָאוּת",
+          "occurrence": 1,
+          "letterIndex": 1,
+          "mark": "vowel",
+          "sourcePages": [
+            158
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=158"
+        }
+      ],
+      "originalText": "וְלִי יִתֵּן יְיָ לְדַבֵּר כּהָגוּת לִבִּי וּלְהָבִין כּיָאוּת אֶת אֲשֶׁר חַנּנּי בוֹ כִּי הוּא גַם מַנְהִיג הַחָכְמָה וְגַם מַדְרִיךְ הַחֲכָמִים׃",
+      "correctedText": "וְלִי יִתֵּן יְיָ לְדַבֵּר כּהָגוּת לִבִּי וּלְהָבִין כּיָאוּת אֶת אֲשֶׁר חַנּנּי בוֹ כִּי הוּא גַם מַנְהִיג הַחָכְמָה וְגַם מַדְרִיךְ הַחֲכָמִים׃",
+      "cropPath": "/private/tmp/prosary-wis-review/source-gate-WIS7-kiyaut15.png",
+      "cropSHA256": "6206d84d724fc8b1ea07b8f7434a28d5ccdaa53da9975d078da824821372785c",
+      "cropProvenance": {},
+      "decision": "retainReviewedSource",
+      "evidence": "Kaf lower terminal is heavily merged with any lower point. The existing yod qamats is retained; no newly legible kaf vowel."
+    },
+    {
+      "chapter": 8,
+      "verse": 3,
+      "noteIds": [
+        "wis-8-3-het"
+      ],
+      "notes": [
+        {
+          "id": "wis-8-3-het",
+          "kind": "unreadablePoint",
+          "anchor": "יַחשָׂהּ",
+          "occurrence": 1,
+          "letterIndex": 2,
+          "mark": "vowel",
+          "sourcePages": [
+            160
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=160"
+        }
+      ],
+      "originalText": "אֶת־רוּם יַחשָׂהּ תַּרְאֶה בִּחְיוֹתָהּ חַיֵי שֻׁתָּפוּת עִם־יְיָ וַאֲדוֹן הַכֹּל אֲהֵבָהּ׃",
+      "correctedText": "אֶת־רוּם יַחשָׂהּ תַּרְאֶה בִּחְיוֹתָהּ חַיֵי שֻׁתָּפוּת עִם־יְיָ וַאֲדוֹן הַכֹּל אֲהֵבָהּ׃",
+      "cropPath": "/private/tmp/prosary-wis-review/source-gate-WIS8-yahsah3.png",
+      "cropSHA256": "2f8e1660696ecf47b229128beb49226b40f69963f0a4a19cd936b0faa1e3c529",
+      "cropProvenance": {},
+      "decision": "retainReviewedSource",
+      "evidence": "First yod patah is already retained; het lower right is a joined dense projection. Filling only the unknown het point must not alter the visible initial vowel."
+    },
+    {
+      "chapter": 12,
+      "verse": 8,
+      "noteIds": [
+        "wis-12-8-tsadi"
+      ],
+      "notes": [
+        {
+          "id": "wis-12-8-tsadi",
+          "kind": "unreadablePoint",
+          "anchor": "הַצּרְעָה",
+          "occurrence": 1,
+          "letterIndex": 2,
+          "mark": "vowel",
+          "sourcePages": [
+            169
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=169"
+        }
+      ],
+      "originalText": "אָמְנָם גַּם־עֲלֵיהֶם חַסְתָּ כְּעַל־בְּנֵי אָדָם וַתִּשְׁלַח אֶת־הַצּרְעָה כּשְׁלחַ רָצִים לִפְנֵי הַמַּחֲנֶה לְכַלּוֹתָם מְעַט מְעָט׃",
+      "correctedText": "אָמְנָם גַּם־עֲלֵיהֶם חַסְתָּ כְּעַל־בְּנֵי אָדָם וַתִּשְׁלַח אֶת־הַצּרְעָה כּשְׁלחַ רָצִים לִפְנֵי הַמַּחֲנֶה לְכַלּוֹתָם מְעַט מְעָט׃",
+      "cropPath": "/private/tmp/prosary-wis-review/WIS12-tight-tsirea8full.png",
+      "cropSHA256": "62bbf7f342bc6cb904ca6a417fc94c6d45abb2cae3cb72d13637de029edecd20",
+      "cropProvenance": {},
+      "decision": "retainReviewedSource",
+      "evidence": "Tsadi lower area is a fused projection. He patah, resh sheva and ayin qamats are already retained. No newly isolated tsadi vowel."
+    },
+    {
+      "chapter": 13,
+      "verse": 11,
+      "noteIds": [
+        "wis-13-11-bet-1-vowel",
+        "wis-13-11-mem-2-vowel"
+      ],
+      "notes": [
+        {
+          "id": "wis-13-11-bet-1-vowel",
+          "kind": "unreadablePoint",
+          "anchor": "בּמּשּׂוֹר",
+          "occurrence": 1,
+          "letterIndex": 1,
+          "mark": "vowel",
+          "sourcePages": [
+            171
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=171"
+        },
+        {
+          "id": "wis-13-11-mem-2-vowel",
+          "kind": "unreadablePoint",
+          "anchor": "בּמּשּׂוֹר",
+          "occurrence": 1,
+          "letterIndex": 2,
+          "mark": "vowel",
+          "sourcePages": [
+            171
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=171"
+        }
+      ],
+      "originalText": "אוֹ אִם־חָרַשׁ עֵצִים יִכְרֹת בּמּשּׂוֹר נֵצֶר נוֹחַ לְטַלְטֵל ויפצּל כָּל־קְלִפָּתוֹ מִסָּבִיב בְּהַשְׂכֵּל וּבְכִשְׁרוֹן מְלָאכָה וְיֵיטִיב עֲשׂוֹת כְּלִי לְצָרְכֵי חַיָּיו׃",
+      "correctedText": "אוֹ אִם־חָרַשׁ עֵצִים יִכְרֹת בּמּשּׂוֹר נֵצֶר נוֹחַ לְטַלְטֵל ויפצּל כָּל־קְלִפָּתוֹ מִסָּבִיב בְּהַשְׂכֵּל וּבְכִשְׁרוֹן מְלָאכָה וְיֵיטִיב עֲשׂוֹת כְּלִי לְצָרְכֵי חַיָּיו׃",
+      "cropPath": "/private/tmp/prosary-wis-review/source-gate-WIS13-saw11-mem-correct.png",
+      "cropSHA256": "8365be8a7bd9917f316851fd3e88df7a64ccc09e5badd692927b10e6e10653af",
+      "cropProvenance": {},
+      "decision": "retainReviewedSource",
+      "evidence": "Both bet and mem dagesh dots are retained and visible, but their lower vowel regions are ink-filled; automatic word normalization could alter the retained double dagesh pattern."
+    },
+    {
+      "chapter": 16,
+      "verse": 1,
+      "noteIds": [
+        "wis-16-1-bet-1-vowel"
+      ],
+      "notes": [
+        {
+          "id": "wis-16-1-bet-1-vowel",
+          "kind": "unreadablePoint",
+          "anchor": "בּהֲמוֹן",
+          "occurrence": 1,
+          "letterIndex": 1,
+          "mark": "vowel",
+          "sourcePages": [
+            176
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=176"
+        }
+      ],
+      "originalText": "לָכֵן בְּצֶדֶק נִשְׁפְּטוּ בַּדָּבָר אֲשֶׁר זָדוּ וְנוּסְרוּ בּהֲמוֹן רְמָשִׂים׃",
+      "correctedText": "לָכֵן בְּצֶדֶק נִשְׁפְּטוּ בַּדָּבָר אֲשֶׁר זָדוּ וְנוּסְרוּ בּהֲמוֹן רְמָשִׂים׃",
+      "cropPath": "/private/tmp/prosary-wis-review/source-gate-WIS16-bahamon1.png",
+      "cropSHA256": "90032f4fb7089fd33be4cf0e771ef07ebf2f1907b1d2c8493a761144fc0499d3",
+      "cropProvenance": {},
+      "decision": "retainReviewedSource",
+      "evidence": "Bet dagesh is visible. Its lower terminal is fused, so the prefix vowel is not source-resolved even though a grammatical candidate is possible."
+    },
+    {
+      "chapter": 11,
+      "verse": 8,
+      "noteIds": [
+        "wis-11-8-kaf"
+      ],
+      "notes": [
+        {
+          "id": "wis-11-8-kaf",
+          "kind": "unreadablePoint",
+          "anchor": "כּאֲשֶׁר",
+          "occurrence": 1,
+          "letterIndex": 1,
+          "mark": "vowel",
+          "sourcePages": [
+            166
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=166"
+        }
+      ],
+      "originalText": "וּבַצִּמָּאוֹן אֲשֶׁר צָמָאוּ אָז הֶרְאֵיתָ אֵיךְ תִּנָּקֵם מִשּׂוֹנְאֶיךָ׃ יַעַן כּאֲשֶׁר נִסִּיתָם וַתְּיַסְּרֵם בְּרַחֲמִים הִכִּירוּ עֹנֶשׁ הָרְשָׁעִים אֲשֶׁר בּחרוֹן אַף יִשָּׁפֵטוּ׃",
+      "correctedText": "וּבַצִּמָּאוֹן אֲשֶׁר צָמָאוּ אָז הֶרְאֵיתָ אֵיךְ תִּנָּקֵם מִשּׂוֹנְאֶיךָ׃ יַעַן כּאֲשֶׁר נִסִּיתָם וַתְּיַסְּרֵם בְּרַחֲמִים הִכִּירוּ עֹנֶשׁ הָרְשָׁעִים אֲשֶׁר בּחרוֹן אַף יִשָּׁפֵטוּ׃",
+      "cropPath": "/private/tmp/prosary-wis-review/source-gate-WIS11-kaasher8.png",
+      "cropSHA256": "cb935eeb1e4d9df6beae9e69d30df4b9c511efa06091bc0a1d24fe43afd11647",
+      "cropProvenance": {},
+      "decision": "retainReviewedSource",
+      "evidence": "Kaf dagesh is clear and retained; its bottom is one thick mass. Familiar כַּאֲשֶׁר supports editorial patah only, not an independently legible printed point."
+    },
+    {
+      "chapter": 3,
+      "verse": 14,
+      "noteIds": [],
+      "notes": [],
+      "originalText": "גַּם הַסָּרִיס אֲשֶׁר לֹא־עָשָׂה עָוֶל בְּכַפּוֹ וְלֹא יָעַץ רַע עַל־אֱלֹהִים יִנָּתֶן־לוֹ חֶסֶד רַב בַּעֲבוּר אֱמוּנָתוֹ וְזֵכֶר נֶחְמָד בְּמִקְדַּשׁ יְיָ׃",
+      "correctedText": "גַּם הַסָּרִיס אֲשֶׁר לֹא־עָשָׂה עָוֶל בְּכַפּוֹ וְלֹא יָעַץ רַע עַל־אֱלֹהִים יִנָּתֶן־לוֹ חֶסֶד רַב בַּעֲבוּר אֱמוּנָתוֹ וְזֵכֶר נֶחְמָד בְּמִקְדַּשׁ יְיָ׃",
+      "cropPath": "/private/tmp/prosary-wis-review/independent-WIS3-v14-points.png",
+      "cropSHA256": "b6133507cdaef63e87d894598ee0f63ccdc11ed3e5fb56ed006661470fd96adf",
+      "cropProvenance": {},
+      "decision": "retainReviewedSource",
+      "evidence": "The tight view documents the existing accepted nun/tav point reconciliation. This is a preservation example, not a proposal to alter its reviewed source transcription."
+    },
+    {
+      "chapter": 17,
+      "verse": 7,
+      "noteIds": [
+        "wis-17-7-dalet-2-vowel"
+      ],
+      "notes": [
+        {
+          "id": "wis-17-7-dalet-2-vowel",
+          "kind": "unreadablePoint",
+          "anchor": "חָדלּוּ",
+          "occurrence": 1,
+          "letterIndex": 2,
+          "mark": "vowel",
+          "sourcePages": [
+            180
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=180"
+        }
+      ],
+      "originalText": "תַּעֲלוּלֵי קְסָמֵיהֶם חָדלּוּ וּגְאוּת חָכְמָתָם נִגְלְתָה חֶרְפָּתָהּ׃ כִּי הָאֲנָשִׁים אֲשֶׁר הִבְטִיחוּ לְגָרֵשׁ מִנֶּפֶשׁ חוֹלָה בֶּעָתָה וּבֶהָלָה גַּם הֵמָּה חָלוּ מֵאֵימָה נִלְעָגָה׃",
+      "correctedText": "תַּעֲלוּלֵי קְסָמֵיהֶם חָדלּוּ וּגְאוּת חָכְמָתָם נִגְלְתָה חֶרְפָּתָהּ׃ כִּי הָאֲנָשִׁים אֲשֶׁר הִבְטִיחוּ לְגָרֵשׁ מִנֶּפֶשׁ חוֹלָה בֶּעָתָה וּבֶהָלָה גַּם הֵמָּה חָלוּ מֵאֵימָה נִלְעָגָה׃",
+      "cropPath": "/private/tmp/prosary-wis-review/source-gate-WIS17-hadlu7.png",
+      "cropSHA256": "38ce7204749fff2ca9f208508e25075cc77d8f0231864122f613356d485f8adf",
+      "cropProvenance": {
+        "page": 180,
+        "path": "/private/tmp/prosary-wis-review/source-gate-WIS17-hadlu7.png",
+        "source": "/private/tmp/prosary-wis-review/WIS-native-180.png",
+        "sourceSHA256": "b0f83edc21d9a8ef13d06f87077a7ffda9f65bae0968a49716b7565a84b5b1b2",
+        "box": [
+          1550,
+          630,
+          1700,
+          720
+        ],
+        "scale": 6,
+        "resampling": "nearest",
+        "sha256": "38ce7204749fff2ca9f208508e25075cc77d8f0231864122f613356d485f8adf"
+      },
+      "decision": "retainReviewedSource",
+      "evidence": "Lamed dagesh is a plainly separate interior dot and already retained. Dalet lower terminal is joined and unreadable. A whole-word modern חָדְלוּ replacement would remove a visible source mark."
+    }
+  ],
+  "recommendation": "A pointing tool can propose alternatives for exact omitted letter/mark anchors after all existing consonants and combining marks are frozen, but cannot certify Kahana print. Keep inferred points in an explicitly editorial projection and preserve immutable source text/evidence. Source-note removal requires new legible evidence; the 15-crop pass yields none."
+}

@@ -1,5 +1,20 @@
 import Foundation
 
+/// Build-time citation identities are opaque. New registry tables have their own namespace;
+/// they must never borrow a same-numbered passage from the legacy Roman corpus.
+nonisolated enum ReadingPassageIdentity {
+  private static let legacyDatasets: Set<String> = ["roman", "roman1962", "ugcc", "ugcc-gregorian", "syriac", "maronite"]
+
+  static func key(citation: String, isTorah: Bool, datasetID: String? = nil) -> String? {
+    guard !citation.isEmpty, !citation.contains("|") else { return nil }
+    if isTorah { return "torah|\(citation)" }
+    guard let datasetID, !datasetID.isEmpty else { return "daily|\(citation)" }
+    let normalized = datasetID == "lpj" ? "roman" : datasetID
+    guard normalized.range(of: "^[a-z0-9][a-z0-9-]*$", options: .regularExpression) != nil else { return nil }
+    return legacyDatasets.contains(normalized) ? "daily|\(citation)" : "daily|\(normalized)|\(citation)"
+  }
+}
+
 nonisolated enum ReadingEditionSelection {
   static let defaultsKey = "readingsEditionId"
 
@@ -185,14 +200,15 @@ nonisolated struct ReadingTextDataset: Decodable, Sendable {
   var passageSources: [String: [String: ReadingPassageSource]]? = nil
   var passageBooks: [String: [String: String]]? = nil
 
-  func availableEditions(citation: String, isTorah: Bool) -> [ReadingTextEdition] {
-    editions.filter { passage(citation: citation, isTorah: isTorah, editionID: $0.id) != nil }
+  func availableEditions(citation: String, isTorah: Bool, datasetID: String? = nil) -> [ReadingTextEdition] {
+    editions.filter { passage(citation: citation, isTorah: isTorah, editionID: $0.id, datasetID: datasetID) != nil }
   }
 
-  func passage(citation: String, isTorah: Bool, editionID: String) -> ReadingTextPassage? {
+  func passage(citation: String, isTorah: Bool, editionID: String, datasetID: String? = nil) -> ReadingTextPassage? {
     guard schemaVersion == 1,
+          let key = ReadingPassageIdentity.key(citation: citation, isTorah: isTorah, datasetID: datasetID),
           let edition = editions.first(where: { $0.id == editionID }),
-          let verses = passages["\(isTorah ? "torah" : "daily")|\(citation)"]?[editionID],
+          let verses = passages[key]?[editionID],
           !verses.isEmpty,
           verses.allSatisfy({ $0.chapter > 0 && $0.verse > 0 && ($0.endVerse ?? $0.verse) >= $0.verse
             && !$0.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty && $0.hasValidSourceNotes }),
@@ -202,7 +218,6 @@ nonisolated struct ReadingTextDataset: Decodable, Sendable {
             !($0.transliteratedText ?? "").trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
           })
     else { return nil }
-    let key = "\(isTorah ? "torah" : "daily")|\(citation)"
     let source = passageSources?[key]?[editionID]
     guard source?.isValid(verses: verses, edition: edition) ?? true else { return nil }
     return ReadingTextPassage(edition: edition, verses: verses,
@@ -257,10 +272,10 @@ actor ReadingTextStore {
     self.bibleStore = bibleStore
   }
 
-  func passage(citation: String, isTorah: Bool, editionID: String) async -> ReadingTextPassage? {
+  func passage(citation: String, isTorah: Bool, editionID: String, datasetID: String? = nil) async -> ReadingTextPassage? {
     loadPassages()
-    guard var passage = dataset?.passage(citation: citation, isTorah: isTorah, editionID: editionID) else { return nil }
-    let key = "\(isTorah ? "torah" : "daily")|\(citation)"
+    guard var passage = dataset?.passage(citation: citation, isTorah: isTorah, editionID: editionID, datasetID: datasetID),
+          let key = ReadingPassageIdentity.key(citation: citation, isTorah: isTorah, datasetID: datasetID) else { return nil }
     if let book = dataset?.passageBooks?[key]?[editionID], let bibleStore,
        let verses = try? await bibleStore.reviewedPassage(editionID: editionID, book: book, expected: passage.verses) {
       passage = ReadingTextPassage(edition: passage.edition, verses: verses,
@@ -269,9 +284,9 @@ actor ReadingTextStore {
     return passage
   }
 
-  func availableEditions(citation: String, isTorah: Bool) -> [ReadingTextEdition] {
+  func availableEditions(citation: String, isTorah: Bool, datasetID: String? = nil) -> [ReadingTextEdition] {
     loadPassages()
-    return dataset?.availableEditions(citation: citation, isTorah: isTorah) ?? []
+    return dataset?.availableEditions(citation: citation, isTorah: isTorah, datasetID: datasetID) ?? []
   }
 
   private func loadPassages() {

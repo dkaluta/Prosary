@@ -281,7 +281,9 @@ final class PrayerRunProgressTests: XCTestCase {
     XCTAssertEqual(RosaryMysteryNavigation.previousIndex(in: steps, from: 5), 1)
     XCTAssertEqual(RosaryMysteryNavigation.previousIndex(in: steps, from: 4), 1)
     XCTAssertNil(RosaryMysteryNavigation.previousIndex(in: steps, from: 1))
-    XCTAssertNil(RosaryMysteryNavigation.nextIndex(in: steps, from: 4))
+    XCTAssertEqual(RosaryMysteryNavigation.nextIndex(in: steps, from: 4), 6)
+    XCTAssertEqual(RosaryMysteryNavigation.nextIndex(in: steps, from: 5), 6)
+    XCTAssertNil(RosaryMysteryNavigation.nextIndex(in: steps, from: 6))
     XCTAssertEqual(RosaryMysteryNavigation.previousIndex(in: steps, from: 6), 4)
   }
 }

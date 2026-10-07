@@ -13,6 +13,36 @@ namespace Prosary.Tests;
 /// </summary>
 public class TodayInfoStoreTests
 {
+    [Fact]
+    public void PopePublicationRequiresStablePrayerIdentityAndExplicitOptIn()
+    {
+        var intention = new PopeIntention("Published title", "English body", new() { ["he"] = "כותרת" },
+            new() { ["he"] = "גוף" }, TranslationCreditByLanguage: new() { ["he"] = "Prosary Hebrew translation" });
+        var step = new RosaryStep("Renamed heading", null, "Sourced prayer") { PrayerKey = "intentioPontificis" };
+        Assert.Null(PopeIntentionPrayerContext.Resolve(step, intention, "he"));
+        Assert.Null(PopeIntentionPrayerContext.Resolve(step, null, "he", true));
+        Assert.Null(PopeIntentionPrayerContext.Resolve(step with { PrayerKey = null, Title = "For the Pope's intentions" }, intention, "he", true));
+        var publication = PopeIntentionPrayerContext.Resolve(step, intention, "iw-IL", true);
+        Assert.Equal("he", publication?.LanguageCode);
+        Assert.Equal("Prosary Hebrew translation", publication?.TranslationCredit);
+        Assert.Equal("Sourced prayer", step.Body);
+    }
+
+    [Fact]
+    public void PopePublicationFallbackUsesTheEnglishCreditAndCompleteEdition()
+    {
+        var intention = new PopeIntention("English title", "English body", new() { ["he"] = "כותרת" }, new(),
+            TranslationCreditByLanguage: new() { ["he"] = "Hebrew editorial credit", ["en"] = "English published source" });
+        var step = new RosaryStep("Pope", null, "Prayer") { PrayerKey = "intentioPontificis" };
+        foreach (var language in new[] { "he", "he-x-gamliel", "arc", "la" })
+        {
+            var publication = PopeIntentionPrayerContext.Resolve(step, intention, language, true);
+            Assert.Equal("en", publication?.LanguageCode);
+            Assert.Equal("English title", publication?.Title);
+            Assert.Equal("English body", publication?.Text);
+            Assert.Equal("English published source", publication?.TranslationCredit);
+        }
+    }
     // The store is process-global static state; every case starts from the unset selection —
     // the LPJ default — and the store reloads live on selection change, so no teardown is
     // needed (xunit builds a fresh instance of this class per test, running this before each).
@@ -32,6 +62,39 @@ public class TodayInfoStoreTests
     {
         TodayInfoStore.SelectedCalendarId = null;
         AppSettings.SetEasternPaschaStyle("julian");
+    }
+
+    [Theory]
+    [InlineData("lpj", "julian", "roman")]
+    [InlineData("roman", "julian", "roman")]
+    [InlineData("ugcc", "julian", "ugcc")]
+    [InlineData("ugcc", "gregorian", "ugcc-gregorian")]
+    [InlineData("stjames", "julian", "stjames")]
+    public void CitationsCaptureTheActualSelectedDatasetAndKeepItAfterLaterCalendarChanges(string calendar, string pascha, string dataset)
+    {
+        var previousCalendar = TodayInfoStore.SelectedCalendarId;
+        var previousPascha = AppSettings.EasternPaschaStyle;
+        try
+        {
+            TodayInfoStore.SelectedCalendarId = calendar;
+            AppSettings.SetEasternPaschaStyle(pascha);
+            using var document = System.Text.Json.JsonDocument.Parse(File.ReadAllText(Path.Combine(AppContext.BaseDirectory, "Data", $"readings-{dataset}.json")));
+            var date = DateOnly.ParseExact(document.RootElement.GetProperty("days").EnumerateObject().First().Name,
+                "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
+            var citations = TodayInfoStore.Readings(date);
+            Assert.NotEmpty(citations);
+            Assert.All(citations, citation => Assert.Equal(dataset, citation.ReadingDatasetId));
+
+            TodayInfoStore.SelectedCalendarId = "maronite";
+            _ = TodayInfoStore.Readings(date);
+            Assert.All(citations, citation => Assert.Equal(dataset, citation.ReadingDatasetId));
+            Assert.DoesNotContain("readingDatasetId", System.Text.Json.JsonSerializer.Serialize(citations), StringComparison.OrdinalIgnoreCase);
+        }
+        finally
+        {
+            TodayInfoStore.SelectedCalendarId = previousCalendar;
+            AppSettings.SetEasternPaschaStyle(previousPascha);
+        }
     }
 
     [Fact]
@@ -117,7 +180,7 @@ public class TodayInfoStoreTests
     public void CalendarRegistryListsTheShippedCalendarsInPickerOrder()
     {
         Assert.Equal(
-            new[] { "lpj", "stjames", "roman", "roman1962", "franciscan-conventual-italy", "augustinian-discalced", "ugcc", "ugcc-julian", "syriac", "maronite" },
+            new[] { "lpj", "stjames", "roman", "roman1962", "franciscan-conventual-italy", "augustinian-discalced", "ugcc", "ugcc-julian", "syriac", "mission-provisional", "maronite" },
             TodayInfoStore.Calendars.Select(c => c.Id));
         Assert.Equal("lpj", TodayInfoStore.ResolvedCalendarId);
         Assert.All(TodayInfoStore.Calendars, calendar => Assert.False(string.IsNullOrWhiteSpace(calendar.ReadingsFile)));

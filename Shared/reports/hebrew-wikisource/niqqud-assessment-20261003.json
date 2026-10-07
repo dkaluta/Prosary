@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-03",
+  "status": "Read-only source reinspection and editorial niqqud assessment complete; no further source-certified correction found in the focused batch",
+  "canonicalChanged": false,
+  "remainingSourceNoteInventory": {
+    "total": 707,
+    "unreadableVowel": 513,
+    "unreadableDagesh": 188,
+    "unreadableShuruq": 1,
+    "restoredConsonant": 5,
+    "initialVavVowelOmissions": 163
+  },
+  "focusedReports": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/WIS-niqqud-inference-assessment-20261003.json",
+      "sha256": "cb64f7119a72d619c5ec981f79703e2e048c4c55097af1197afaea6b8a974b85"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/BEL-remaining-note-reinspection-20261003.json",
+      "sha256": "dcbf8120a3a1ff6bc9a8f2bc8573b8436cf96815c0dcf917c1b0531f46a4a163"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/S3Y-SUS-ESG-note-reinspection-20261003.json",
+      "sha256": "32da0f85836626675a71b916216640e3e4cd1564b11586c6a81116261e700724"
+    }
+  ],
+  "editorialCandidatesNotApplied": [
+    {
+      "book": "WIS",
+      "chapter": 1,
+      "verse": 2,
+      "noteId": "wis-1-2-nirah-alef",
+      "sourceAnchor": "וְנִרְאה",
+      "candidateAnchor": "וְנִרְאָה",
+      "basis": "Grammatical inference; not source-certified"
+    },
+    {
+      "book": "WIS",
+      "chapter": 11,
+      "verse": 8,
+      "noteId": "wis-11-8-kaf",
+      "sourceAnchor": "כּאֲשֶׁר",
+      "candidateAnchor": "כַּאֲשֶׁר",
+      "basis": "Familiar conjunction and same-source parallels; not source-certified"
+    }
+  ],
+  "recommendation": "Prepare a narrowly reviewed editorial pointing proposal if the user chooses that reading policy. Freeze consonants and all readable combining marks. Add only exact omitted-point candidates, retain the faithful source and individual evidence, disclose editorial supplementation distinctly, and keep ambiguous cases unresolved. Automatic pointing is candidate generation rather than evidence of printed points. This report does not alter the current source-note contract or authorize guessed points.",
+  "primaryToolSources": [
+    "https://nakdanpro.dicta.org.il/documentation/",
+    "https://aclanthology.org/2020.acl-demos.23/",
+    "https://aclanthology.org/2022.findings-naacl.75/"
+  ]
+}

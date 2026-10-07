@@ -28,6 +28,97 @@ import org.junit.Test
  * [RosaryOptions] configurations — mirrors iOS's RosaryEngineTests. */
 class RosaryEngineTest {
     @Test
+    fun chooseOnLaunchIsBlankUntilEachOfTheFourSetsIsChosenWithoutSavingIt() {
+        val saved = RosaryOptions(mysterySelectionMode = MysterySelectionMode.ChooseOnLaunch, specificMysteryCount = 3)
+        assertTrue(engine().buildSteps(Prayer(rosary = saved)).isEmpty())
+        assertTrue(engine().resolveMysteryGroups(saved).isEmpty())
+        for (group in MysteryGroup.entries) for (order in 1..5) {
+            val selected = saved.navigationOptions(group.name.lowercase(), order)!!
+            val steps = engine().buildSteps(Prayer(languageCode = "en", rosary = selected))
+            assertEquals((order..minOf(5, order + 2)).toList(), steps.mapNotNull { it.mystery }.distinct().map { it.order })
+            assertEquals("signumCrucis", steps.first().prayerKey)
+        }
+        assertEquals(MysterySelectionMode.ChooseOnLaunch, saved.mysterySelectionMode)
+        assertEquals(MysteryGroup.Joyful, saved.specificMysteryGroup)
+        assertEquals(null, saved.navigationOptions("unknown", 1))
+        assertEquals(MysterySelectionMode.Specific, saved.navigationOptions("joyful", null)?.mysterySelectionMode)
+        assertEquals(null, saved.navigationOptions("joyful", 6))
+    }
+    @Test
+    fun entireSetChoiceBuildsAllFiveWithoutSavingTheChoice() {
+        for (mode in listOf(MysterySelectionMode.ChooseOnLaunch, MysterySelectionMode.SingleMystery)) {
+            val original = RosaryOptions(mysterySelectionMode = mode, specificMysteryCount = 2)
+            for (group in MysteryGroup.entries) {
+                val options = original.navigationOptions(group.name.lowercase(), null)!!
+                val steps = engine().buildSteps(Prayer(languageCode = "en", rosary = options))
+                val mysteries = steps.mapNotNull { it.mystery }.distinct()
+                assertEquals(listOf(1, 2, 3, 4, 5), mysteries.map { it.order })
+                assertEquals(setOf(group), mysteries.map { it.group }.toSet())
+                assertEquals("signumCrucis", steps.first().prayerKey)
+                assertEquals(MysterySelectionMode.Specific, options.mysterySelectionMode)
+            }
+            assertEquals(mode, original.mysterySelectionMode)
+            assertEquals(2, original.specificMysteryCount)
+        }
+    }
+    @Test
+    fun popePrayerIdentityComesFromTheBundleAndLeavesSourcedBodyIntact() {
+        val configured = prayer(closingIntentions = true, language = "en")
+        val steps = engine().buildSteps(configured)
+        val pope = steps.single { it.prayerKey == "intentioPontificis" }
+        assertEquals(PrayerPackStore.resolveBodyText("rosary", "en", "intentioPontificis"), pope.body)
+        val bishop = steps.single { it.prayerKey == "intentioOrdinarii" }
+        val intention = com.dkaluta.prosary.content.today.PopeIntention("Title", "Published body")
+        assertEquals(null, com.dkaluta.prosary.ui.shared.PopeIntentionPrayerPublication.resolve(bishop, intention, "en", true))
+        val signature = com.dkaluta.prosary.models.PrayerRunSignatures.rosary(configured.rosary)
+        val publication = com.dkaluta.prosary.ui.shared.PopeIntentionPrayerPublication.resolve(pope, intention, "en", true)
+        assertEquals("Published body", publication?.text)
+        assertEquals(signature, com.dkaluta.prosary.models.PrayerRunSignatures.rosary(configured.rosary))
+    }
+    @Test
+    fun selectedMysteriesStaySequentialAndNeverWrap() {
+        for (start in 1..5) for (requested in 1..5) for (presenter in listOf(false, true)) {
+            val options = RosaryOptions(mysterySelectionMode = MysterySelectionMode.SingleMystery,
+                specificMysteryGroup = MysteryGroup.Sorrowful, specificMysteryOrder = start,
+                specificMysteryCount = requested, presenterMode = presenter)
+            val steps = engine().buildSteps(Prayer(languageCode = "en", rosary = options))
+            val announcements = steps.mapNotNull { it.mystery }.distinct()
+            assertEquals((start..minOf(5, start + requested - 1)).toList(), announcements.map { it.order })
+            assertEquals(setOf(MysteryGroup.Sorrowful), announcements.map { it.group }.toSet())
+            assertEquals((0 until announcements.size).toSet(), steps.mapNotNull { it.decadeIndex }.toSet())
+        }
+        val malformed = RosaryOptions(mysterySelectionMode = MysterySelectionMode.SingleMystery,
+            specificMysteryOrder = 999, specificMysteryCount = -2)
+        assertEquals(listOf(4), malformed.selectedMysteryIndices.toList())
+        assertTrue(engine().buildSteps(Prayer(rosary = malformed)).isNotEmpty())
+    }
+
+    @Test
+    fun selectionPersistenceAndBookmarkIdentity() {
+        val options = RosaryOptions(mysterySelectionMode = MysterySelectionMode.SingleMystery,
+            specificMysteryOrder = 3, specificMysteryCount = 3, useTraditionalMysteries = true)
+        val row = com.dkaluta.prosary.persistence.PresetEntity(id = "range", name = "Range", isDefault = false,
+            languageCode = "en", mysterySelectionMode = MysterySelectionMode.SingleMystery.name,
+            specificMysteryOrder = 3, specificMysteryCount = 3, useTraditionalMysteries = true)
+        assertEquals(options, row.toPrayer().rosary)
+        assertFalse(com.dkaluta.prosary.models.PrayerRunSignatures.rosary(options) ==
+            com.dkaluta.prosary.models.PrayerRunSignatures.rosary(options.copy(specificMysteryCount = 1)))
+        val today = options.copy(mysterySelectionMode = MysterySelectionMode.TodaysMysteries)
+        assertFalse(com.dkaluta.prosary.models.PrayerRunSignatures.rosary(today) ==
+            com.dkaluta.prosary.models.PrayerRunSignatures.rosary(today.copy(useTraditionalMysteries = false)))
+    }
+
+    @Test
+    fun prayerPickerIncludesFiveAnnouncementsPerConfiguredGroup() {
+        for ((mode, count) in listOf(MysterySelectionMode.FifteenMystery to 3, MysterySelectionMode.TwentyMystery to 4)) {
+            val groups = engine().buildSteps(prayer(mode = mode)).mapNotNull { it.mystery }.distinct().groupBy { it.group }
+            assertEquals(count, groups.size)
+            assertTrue(groups.values.all { it.size == 5 })
+            assertEquals(mode == MysterySelectionMode.TwentyMystery, MysteryGroup.Luminous in groups)
+        }
+    }
+
+    @Test
     fun aramaicCountersFollowTheDisplayedScript() {
         val opening = engine().buildSteps(prayer(language = "arc")).filter { it.imageOverrideKey?.startsWith("virtue_") == true }
         assertEquals(3, opening.size)
@@ -241,7 +332,7 @@ class RosaryEngineTest {
             openingTitles("en"),
         )
         assertEquals(
-            listOf("שמחי מרים (1 מתוך 3)", "שמחי מרים (2 מתוך 3)", "שמחי מרים (3 מתוך 3)"),
+            listOf("שלום לך (1 מתוך 3)", "שלום לך (2 מתוך 3)", "שלום לך (3 מתוך 3)"),
             openingTitles("he"),
         )
     }
@@ -614,19 +705,18 @@ class RosaryEngineTest {
 
     // MARK: - Presenter Mode
 
-    @Test fun skippingFifthDecadesKeepsDenseBeadsAndAllClosingPrayers() {
+    @Test fun retiredSkipPreferenceKeepsAllFiveDecadesInEverySet() {
         for ((mode, expectedCount) in listOf(
-            MysterySelectionMode.Specific to 4,
-            MysterySelectionMode.FifteenMystery to 12,
-            MysterySelectionMode.TwentyMystery to 16,
+            MysterySelectionMode.Specific to 5,
+            MysterySelectionMode.FifteenMystery to 15,
+            MysterySelectionMode.TwentyMystery to 20,
         )) for (presenter in listOf(false, true)) {
             val originalPrayer = prayer(mode = mode, presenterMode = presenter)
             val full = engine().buildSteps(originalPrayer)
-            val shortened = engine().buildSteps(originalPrayer.copy(rosary = originalPrayer.rosary.copy(skipFifthDecade = true)))
-            assertEquals((0 until expectedCount).toList(), shortened.mapNotNull { it.decadeIndex }.distinct())
-            assertTrue(shortened.mapNotNull { it.mystery }.none { it.order == 5 })
-            assertEquals(full.filter { it.decadeIndex == null }.map { it.body },
-                shortened.filter { it.decadeIndex == null }.map { it.body })
+            val restored = engine().buildSteps(originalPrayer.copy(rosary = originalPrayer.rosary.copy(skipFifthDecade = true)))
+            assertEquals((0 until expectedCount).toList(), restored.mapNotNull { it.decadeIndex }.distinct())
+            assertTrue(restored.mapNotNull { it.mystery }.any { it.order == 5 })
+            assertEquals(full.map { it.body }, restored.map { it.body })
         }
         val single = prayer(mode = MysterySelectionMode.SingleMystery, order = 5)
         assertEquals(engine().buildSteps(single).map { it.body },

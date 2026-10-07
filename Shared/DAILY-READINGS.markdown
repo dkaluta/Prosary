@@ -4,13 +4,14 @@ Prosary now has a Readings tab on iPhone, iPad and Android. It replaces the Cate
 button; Search retains category browsing and combines the selected category with the text
 query across local and community devotions. Mac and Windows show the reader in Today.
 The date picker sits above the readings. Desktop references are always written out in full.
-Pray and Readings share one browsed civil date within each window. Choosing Today restores
+Home, Pray and Readings share one browsed civil date within each window. Choosing Today restores
 local-day following in both; browsing never changes a prayer session or widget date.
 Readings start collapsed on entry and date/calendar changes. The shared
 `expandReadingsByDefault` setting (off by default) opens them automatically when enabled;
 manual disclosure choices survive ordinary refreshes and edition changes.
 `showTodayReadings` (on by default) controls readings in Pray and the native desktop Today
-surface; the dedicated phone Readings tab stays available independently.
+surface; the dedicated reader stays available independently. The customizable Home readings
+card has its own visibility in `homeWidgetOrder`.
 Each available passage shows selectable Bible text under a **Chapter** n
 heading at each chapter transition. The word and number style follow the selected Bible,
 independently of the interface: Hebrew gematria, Arabic digits, or the Aramaic reader's
@@ -47,7 +48,7 @@ of Scripture. The generated corpus is separate from existing `.prosaryprayer` pa
 | Russian | Synodal, 1876 | [eBible](https://ebible.org/russyn/copyright.htm), public-domain text; Synodal numbering. The inspected source has 66 books. |
 | Filipino/Tagalog | Ang Dating Biblia / Ang Biblia, 1905 | Existing edition transcribed in scrollmapper `TagAngBiblia`; [CrossWire's source statement](https://www.crosswire.org/sword/modules/ModInfo.jsp?modName=TagAngBiblia) identifies the Philippine Bible Society 1905 text as public domain. |
 | French | Augustin Crampon, 1923 | Existing cached scrollmapper `FreCrampon` source; [CrossWire](https://www.crosswire.org/sword/modules/ModInfo.jsp?modName=FreCrampon) identifies the edition as public domain. Chapters with missing/merged source entries are withheld. |
-| Italian | Antonio Martini, 1769–1781 | [Parola Viva](https://parolaviva.art/opendata): public-domain Bible text; structured data by Giovanni Novelli under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). This source import covers the Pentateuch and New Testament, not its copyrighted meditations. |
+| Italian | Antonio Martini, 1769–1781 | [Parola Viva](https://parolaviva.art/opendata): public-domain Bible text; structured data by Giovanni Novelli under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). This source import covers the Pentateuch, all 150 published Psalms, and New Testament. The copyrighted meditations are excluded. |
 | Ukrainian | Kulish, Nechui-Levytsky and Puluj, 1905 | [eBible `ukr1871`](https://ebible.org/ukr1871/copyright.htm), public-domain text. Uses the same pinned VPL payload as the existing Scripture importer. |
 | Arabic | Old Jesuit translation, Beirut printing, 1897 | [Reviewed canonical transcription](content/arabic-jesuit-1897.json), [Psalm extension](content/arabic-jesuit-1897-readings.json), and [Gospel extension](content/arabic-jesuit-1897-gospel-readings.json), relayed from the [historical scan](https://archive.org/details/AlKitabAlMoqadas). Only visually checked passages are included, with their printed verse boundaries and PDF page evidence. This is a limited public-domain selection, not a complete Arabic Bible or the modern Dar el-Machreq revision. |
 | Aramaic (selectable) | Peshitta, BFBS 1905 New Testament; Syriac Orthodox Patriarchate 2020 Old Testament | [peshitta.eu](https://peshitta.eu/about.html), credited as **Old Testament - publication of the Syriac Orthodox Patriarchate 2020**. Actual pointed website chapters are hash-pinned separately from the prior XML; its unchanged NT is Digital Syriac Corpus, CC BY 4.0. Both use Erez's established Hebrew-script projection. Native OT browsing and daily verse correspondences have separate gates; see the [2020 source review](content/PESHITTA-EU-2020-REVIEW.markdown). |
@@ -61,9 +62,31 @@ Standard Psalm 103 maps to Greek Psalm 102, and Isaiah 9:2 maps to Greek 9:1.
 lettered labels or gaps because the native verse contract cannot represent those labels
 without dropping or relabeling text. Combined Ezra/Nehemiah chapters, separate Greek additions,
 Sirach 33, and uncertain reference boundaries also remain unavailable. The inspected import
-provides 908 complete integer-label chapters from 43 source books; 305 daily appointments
-and 55 Torah appointments are available in the current corpus. These are coverage limits,
+provides 908 complete integer-label chapters from 43 source books. Current passage coverage
+is reported separately for every registered source calendar in
+[psalm-coverage.json](reports/psalm-coverage.json). These are coverage limits,
 not permission to fill missing passages from the Greek New Testament or another Bible.
+
+Nine Roman Psalm appointments additionally have exact reviewed Brenton excerpts in
+[greek-daily-psalm-reviews.json](tools/greek-daily-psalm-reviews.json). The bounded
+[resolver](tools/greek_daily_psalms.py) reads the unchanged pinned VPL and preserves its
+original source units. Roman Psalm 13:6 requires both Greek 12:5 and 12:6. Roman 116:12–13,
+17–18 uses Greek 115:3–4,8–9 without importing the unappointed repeated 4a. Roman 145:13cd
+retains Greek 144:13a as a separate printed source witness; a 13ab-only appointment omits it.
+The complete-chapter parser and general reference crosswalk keep their exclusions. These
+daily excerpts certify only their exact citation, Roman context and source payload, and retain
+whole-verse and partial-source notices where applicable. Every emitted primary and lettered
+unit is independently compared with the pinned source by the full reader audit.
+
+Four complete published Greek Psalm bodies also have independent whole-body reviews:
+native 12 covers Standard 13:1–6; native 114 covers 116:1–9; native 115 covers 116:10–19;
+and native 144 covers 145:1–21. New source calendars may select exact unions of those fully
+requested bodies after their own numbering is established. The native 115 selection keeps
+printed 4a and never invents a verse 5; native 144 retains 13a. Partial unreviewed cuts remain
+unavailable through this route. The whole-body review preserves original row order and
+published labels, pins both source payloads and published page witnesses, and requires
+the wider-source notice for native 12's extra closing praise and native 144's 13a witness.
+The ordinary Bible chapter importer and general partial-reference exclusions remain in place.
 
 The Hebrew reader uses **vocalized Scripture in both testaments**. The New Testament now
 comes from the complete Delitzsch 1901 transcription at delitz.fr, replacing the previous
@@ -117,6 +140,25 @@ All three About screens carry that credit. The NABRE import retains only publish
 chapter and verse labels plus provenance; NABRE wording is neither stored nor shipped.
 
 ## Citation resolution and current limits
+
+The October 6, 2026 update discovers every reading table through `calendars.json`,
+including Pascha variants. Additional calendars use their own opaque dataset-scoped
+passage keys, captured with the reading before an asynchronous lookup; they cannot
+borrow the original six calendars' interpretation. St James and order-calendar
+Psalm conventions have separate print-pinned evidence. Impossible printed spans and
+unreviewed cross-edition endings retain explicit unavailable reasons.
+
+The original Roman Psalm set now has all 103 appointments in nine editions and
+102 in Peshitta; the latter source explicitly omits one appointed verse. English
+and Greek clause overlaps are reviewed against the actual source words, not merely
+chapter counts. Italian retains its published native row labels, and Arabic includes
+the [independently checked 1897 expansion](content/ARABIC-PSALM-APPOINTMENTS-REVIEW.markdown).
+The source note for one uncertain Arabic alif mark remains visible. This is not a
+claim of complete Bible/translation coverage in the additional calendars; current
+per-table counts and every gap are in [psalm-coverage.json](reports/psalm-coverage.json)
+and [readings-text-coverage.json](reports/readings-text-coverage.json).
+
+The older dated counts and limitations below describe their historical expansions.
 
 [build-reading-texts.py](tools/build-reading-texts.py) parses the **original canonical English
 full citation**, before localization, at build time. It preserves ordered ranges, omissions
@@ -374,6 +416,7 @@ uv run --script Shared/tools/build-reading-texts.py --check --sync
 uv run --script Shared/tools/test-reading-texts.py
 uv run --script Shared/tools/test-peshitta-readings.py
 uv run --script Shared/tools/test-greek-readings.py
+uv run --script Shared/tools/test-greek-daily-psalms.py
 uv run --script Shared/tools/test-reading-versification.py
 uv run --script Shared/tools/test-reading-appointment-reviews.py
 uv run --script Shared/tools/test-reading-source-numbering.py

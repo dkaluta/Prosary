@@ -93,6 +93,11 @@ fun RosaryOptionsEditorScreen(
                     onSelect = { onRosaryChange(rosary.copy(mysterySelectionMode = it)) },
                     modifier = Modifier.fillMaxWidth(),
                 )
+                if (rosary.mysterySelectionMode == MysterySelectionMode.TodaysMysteries) {
+                    SwitchRow(stringResource(R.string.ro_traditional_mysteries), rosary.useTraditionalMysteries) {
+                        onRosaryChange(rosary.copy(useTraditionalMysteries = it))
+                    }
+                }
                 if (rosary.mysterySelectionMode == MysterySelectionMode.Specific ||
                     rosary.mysterySelectionMode == MysterySelectionMode.SingleMystery
                 ) {
@@ -105,11 +110,10 @@ fun RosaryOptionsEditorScreen(
                         modifier = Modifier.fillMaxWidth(),
                     )
                 }
-                if (rosary.mysterySelectionMode != MysterySelectionMode.SingleMystery) {
-                    SwitchRow(stringResource(R.string.ro_skip_fifth_decade), rosary.skipFifthDecade,
-                        switchModifier = Modifier.testTag("rosaryOption:skipFifthDecade")) {
-                        onRosaryChange(rosary.copy(skipFifthDecade = it))
-                    }
+                if (rosary.mysterySelectionMode == MysterySelectionMode.ChooseOnLaunch) {
+                    OptionPickerField(label = stringResource(R.string.ro_mystery_count), options = (1..5).toList(),
+                        selected = rosary.specificMysteryCount.coerceIn(1, 5), optionLabel = { it.toString() },
+                        onSelect = { onRosaryChange(rosary.copy(specificMysteryCount = it)) }, modifier = Modifier.fillMaxWidth())
                 }
                 if (rosary.mysterySelectionMode == MysterySelectionMode.SingleMystery) {
                     val mysteries = MysteryCatalog.forGroup(rosary.specificMysteryGroup)
@@ -122,7 +126,18 @@ fun RosaryOptionsEditorScreen(
                         // hardcoded "en" left an all-Hebrew editor naming mysteries in English
                         // (Erez, 2026-08-08).
                         optionLabel = { MysteryTranslations.get(languageCode = LanguageCatalog.uiLanguageCode(), imageKey = it.imageKey).title },
-                        onSelect = { onRosaryChange(rosary.copy(specificMysteryOrder = it.order)) },
+                        onSelect = { onRosaryChange(rosary.copy(
+                            specificMysteryOrder = it.order,
+                            specificMysteryCount = rosary.specificMysteryCount.coerceIn(1, 6 - it.order),
+                        )) },
+                        modifier = Modifier.fillMaxWidth(),
+                    )
+                    OptionPickerField(
+                        label = stringResource(R.string.ro_mystery_count),
+                        options = (1..(6 - rosary.selectedMysteryStart)).toList(),
+                        selected = rosary.selectedMysteryCount,
+                        optionLabel = { it.toString() },
+                        onSelect = { onRosaryChange(rosary.copy(specificMysteryCount = it)) },
                         modifier = Modifier.fillMaxWidth(),
                     )
                 }

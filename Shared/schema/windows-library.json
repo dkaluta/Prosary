@@ -2,9 +2,22 @@
   "$comment": "Windows desktop workflow and ownership contract; see ../WINDOWS-EXPERIENCE.markdown. Uses the existing shared Prayer shape and SQLite database.",
   "platform": "windows",
   "root": "windowsLibrary",
-  "sections": ["library", "today", "gallery", "basic", "search", "community", "settings", "about"],
+  "sections": ["home", "library", "today", "readings", "gallery", "basic", "search", "settings", "about"],
+  "initialSection": "home",
+  "home": {
+    "cards": ["readings", "popeIntention", "calendar", "photo", "reminders", "scripture", "reflection", "feast"],
+    "defaultCards": ["readings", "popeIntention", "calendar", "reminders", "scripture", "feast"],
+    "order": "homeWidgetOrder stores newline-separated known unique identifiers. Absent uses defaultCards; an explicit empty value stays empty. Add appends, Remove preserves the remaining order, and Customize Home offers native drag reorder plus Move Up and Move Down controls.",
+    "date": "Window-local Today selected date; follow the local clock only while Today is selected. Home visibility is independent of the legacy Today visibility preferences.",
+    "destinations": {"readings":"dailyReadings", "calendar":"feastsAndSolemnities", "scripture":"bible", "reminders":"exactSavedPrayerReminderEditorOrTodaySettings"},
+    "reminders": "Show enabled reminders from the existing saved-prayer store and Today settings. Manage Reminders selects any saved prayer, including one with no existing reminder, or Today settings.",
+    "photo": "Native picture picker, decode validation, private LocalFolder/HomePhotos copy, persisted homePhotoPath. Replacement/removal deletes the previous private file. Cancellation and owner/page closure do not replace the selected photo.",
+    "reflection": "Empty until the supplied mission text is available; no freeform editor.",
+    "feast": "Offline selected-calendar title/rank and exact-interface-language sourced descriptions, credit and source links; explicit unavailable messages for absent feast or description."
+  },
   "search": {
     "placement": "Dedicated Library sidebar destination; View > Search or Ctrl+F activates the library and focuses its query field.",
+    "community": "Visible Community Prayers action opens the catalog browser from Search. Community is no longer a top-level sidebar or View menu destination.",
     "categories": "Union of manifest tags in local and available community catalogs, plus All Categories and Other for untagged prayers. Arbitrary tags remain discoverable; localized captions do not replace stable tag identity.",
     "filter": "Selected category AND text query apply to both local and community results. A blank query browses the category. Installed community entries are excluded from the download results.",
     "navigation": "Local results launch through the owning WindowNavigation into independent prayer windows. Installing a community pack refreshes discovery and Gallery without creating a saved library copy.",
@@ -35,7 +48,7 @@
   "menus": {
     "placement": "Native WinUI MenuBar inside each window, with CommandBars for frequent page actions.",
     "file": ["importPrayerPacks", "closeWindow"],
-    "view": ["showLibrary", "today", "gallery", "basicPrayers", "search", "community", "fullScreen"],
+    "view": ["home", "showLibrary", "today", "readings", "gallery", "basicPrayers", "search", "fullScreen"],
     "prayer": ["previousStep", "nextStep", "prayerSettings"],
     "help": ["settings", "about"],
     "shortcuts": {"importPrayerPacks":"Ctrl+O", "closeWindow":"Ctrl+W", "showLibrary":"Ctrl+L", "search":"Ctrl+F", "fullScreen":"F11", "previousStep":"Ctrl+Left", "nextStep":"Ctrl+Right", "rename":"F2", "delete":"Delete", "open":"Enter"},
@@ -50,10 +63,10 @@
     "fullScriptureText": {
       "presentation": "Daily and enabled Torah passages start collapsed on entry and date/calendar changes unless expandReadingsByDefault is enabled. They remain independently collapsible, showing selectable numbered Bible verses with edition name, attribution and source link. Edition text is identified as a Bible passage and may differ from local Mass wording.",
       "loading": "The small readings-editions.json manifest populates the picker; readings-texts.json loads only on passage expansion.",
-      "lookup": "Exact daily|<raw ReadingCitation.Full> or torah|<raw ReadingCitation.Full> plus edition ID. No runtime reference parser or inferred versification.",
+      "lookup": "Exact daily|<raw ReadingCitation.Full> for the six established datasets, daily|<dataset ID>|<raw ReadingCitation.Full> for new datasets, or torah|<raw ReadingCitation.Full>, plus edition ID. Citation captures actual reading filename suffix before asynchronous expansion; LPJ is roman and UGCC captures its actual Pascha table. Scoped keys never fall back to Roman. No runtime reference parser or inferred versification.",
       "selection": "readingsEditionId empty matches the interface language with iw/he and fil/tl normalization. Explicit choices use only that metadata ID. No matching edition, missing appointment, or invalid verse rows show unavailable without changing the citation or falling back to another edition.",
       "state": "Changing date, calendar/Pascha setting, language or edition refreshes the appropriate rows. Ordinary refreshes and edition changes preserve individual collapses; reopening the view expands all passages. Typeface changes refresh displayed Scripture without replacing source text; Arabic/Hebrew passages use RTL."
     }
   },
-  "sources": ["MainWindow.xaml.cs", "PrayerWindow.xaml.cs", "Navigation/Router.cs", "Services/DesktopWindowManager.cs", "Services/DesktopWindowChrome.cs", "Services/DesktopPrayerIdentity.cs", "Models/DesktopPrayerLibrary.cs", "Persistence/DesktopPresetStore.cs", "ViewModels/DesktopLibraryViewModel.cs", "Views/DesktopLibraryPage.xaml", "Views/DesktopGalleryPage.xaml", "Views/DesktopTodayPage.xaml", "Views/SearchPage.xaml", "ViewModels/SearchViewModel.cs", "Services/SearchCategoryFilter.cs", "ViewModels/DesktopReadingsViewModel.cs", "Services/ReadingsTextStore.cs"]
+  "sources": ["MainWindow.xaml.cs", "PrayerWindow.xaml.cs", "Navigation/Router.cs", "Services/DesktopWindowManager.cs", "Services/DesktopWindowChrome.cs", "Services/DesktopPrayerIdentity.cs", "Models/DesktopPrayerLibrary.cs", "Models/HomeWidgets.cs", "Persistence/DesktopPresetStore.cs", "ViewModels/DashboardViewModel.cs", "Views/DashboardPage.xaml", "ViewModels/DesktopLibraryViewModel.cs", "Views/DesktopLibraryPage.xaml", "Views/DesktopGalleryPage.xaml", "Views/DesktopTodayPage.xaml", "Views/SearchPage.xaml", "ViewModels/SearchViewModel.cs", "Services/SearchCategoryFilter.cs", "ViewModels/DesktopReadingsViewModel.cs", "Services/ReadingsTextStore.cs"]
 }

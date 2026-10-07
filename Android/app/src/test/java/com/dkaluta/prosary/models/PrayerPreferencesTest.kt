@@ -7,11 +7,18 @@ import org.junit.Assert.*
 import org.junit.Test
 
 class PrayerPreferencesTest {
-    @Test fun shorteningARosaryInvalidatesItsSavedPositionButDoesNotAlterSingleMysteryIdentity() {
+    @Test fun oldGenericRosaryCannotRestoreRetiredSkipOption() {
+        val old = mapOf("skipFifthDecade" to "true", "fatimaPrayer" to "true")
+        assertEquals(mapOf("fatimaPrayer" to "true"), RosaryOptions.normalizedCustomOptions("rosary", old))
+        assertEquals(old, RosaryOptions.normalizedCustomOptions("anotherRosary", old))
+    }
+
+    @Test fun retiredSkipPreferenceDoesNotAlterRunIdentity() {
         val complete = RosaryOptions()
         assertFalse(complete.skipFifthDecade)
-        assertNotEquals(PrayerRunSignatures.rosary(complete),
+        assertEquals(PrayerRunSignatures.rosary(complete),
             PrayerRunSignatures.rosary(complete.copy(skipFifthDecade = true)))
+        assertFalse(PrayerRunSignatures.rosary(complete).contains("skip-fifth"))
         val single = complete.copy(mysterySelectionMode = MysterySelectionMode.SingleMystery, specificMysteryOrder = 5)
         assertEquals(PrayerRunSignatures.rosary(single), PrayerRunSignatures.rosary(single.copy(skipFifthDecade = true)))
     }
@@ -51,7 +58,7 @@ class PrayerPreferencesTest {
         for (code in listOf("he", "iw", "he-IL", "iw_IL", "he-x-vicariate")) {
             assertEquals(code, "עברית", LanguageCatalog.publicLanguageName(code))
         }
-        assertEquals("עברית, עברית — נוסח השליחות, Tagalog, Français", LanguageCatalog.publicLanguageNames(
+        assertEquals("עברית, עברית — נוסח סורי, Tagalog, Français", LanguageCatalog.publicLanguageNames(
             listOf("he", "he-x-gamliel", "iw", "fil", "tl", "fr-FR")))
         assertEquals("de", LanguageCatalog.publicLanguageName("de-DE"))
         assertEquals("עברית", Prayer(languageCode = "he-x-gamliel").languageNativeName)
@@ -60,7 +67,7 @@ class PrayerPreferencesTest {
     }
 
     @Test fun explicitMissionDownloadKeepsItsLocalizedIdentityWhilePickerStaysOneHebrew() {
-        for (label in listOf("Mission of St. Gamaliel", "נוסח השליחות", "إرسالية القديس غمالائيل",
+        for (label in listOf("Mission of St. Gamaliel", "נוסח סורי", "إرسالية القديس غمالائيل",
             "Миссия святого Гамалиила", "Misyon ni San Gamaliel", "Mission Saint-Gamaliel", "Missione di San Gamaliele")) {
             assertEquals("עברית — $label", LanguageCatalog.publicLanguageName("he-x-gamliel", label))
             assertEquals("עברית, עברית — $label", LanguageCatalog.publicLanguageNames(

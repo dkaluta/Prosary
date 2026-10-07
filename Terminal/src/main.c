@@ -21,7 +21,6 @@ static void usage(FILE *out)
           "  --language CODE        Prayer language, e.g. en, la, he, ar\n"
           "  --ui-language CODE     Interface: en, he, ar, ru, tl, fr, it, uk\n"
           "  --group GROUP          today, joyful, sorrowful, glorious, luminous\n"
-          "  --skip-fifth-decade     Omit the fifth Rosary decade\n"
           "  --litany-of-loreto      Include the Litany after the Rosary\n"
           "  --no-rosary-collect     Omit the collect unless the Litany is included\n"
           "  --variant N            Devotion form (1-based; 0 = language default)\n"
@@ -181,7 +180,6 @@ int main(int argc, char **argv)
         if (!strcmp(argv[i], "--restart")) { reset = 1; continue; }
         if (!strcmp(argv[i], "--litany-of-loreto")) { state.include_litany_of_loreto = 1; reset = 1; continue; }
         if (!strcmp(argv[i], "--no-rosary-collect")) { state.include_rosary_collect = 0; reset = 1; continue; }
-        if (!strcmp(argv[i], "--skip-fifth-decade")) { state.skip_fifth_decade = 1; reset = 1; continue; }
         if (i + 1 >= argc) { fprintf(stderr, "Prosary: missing value or unknown option: %s\n", argv[i]); return 2; }
         value = argv[++i];
         if (!strcmp(argv[i - 1], "--state")) continue;

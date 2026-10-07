@@ -21,6 +21,8 @@ public partial class RemindersOnlyEditorViewModel : ObservableObject
 
     private readonly IPresetStore _presets;
     private readonly IReminderScheduler _scheduler;
+    private readonly PrayerRemovalService? _removal;
+    public Func<PrayerRemovalPlan, Task<bool>>? ConfirmDelete { get; set; }
     public Func<string, Task>? ShowSaveError { get; set; }
 
     private Prayer? _originalPrayer;
@@ -35,10 +37,29 @@ public partial class RemindersOnlyEditorViewModel : ObservableObject
     [ObservableProperty]
     private bool _hasOptions;
 
-    public RemindersOnlyEditorViewModel(IPresetStore presets, IReminderScheduler scheduler)
+    public RemindersOnlyEditorViewModel(IPresetStore presets, IReminderScheduler scheduler, PrayerRemovalService? removal = null)
     {
         _presets = presets;
         _scheduler = scheduler;
+        _removal = removal;
+    }
+
+    [RelayCommand]
+    private async Task DeleteSavedPrayerAsync()
+    {
+        if (_originalPrayer is null || _removal is null || ConfirmDelete is null) return;
+        try
+        {
+            var plan = await _removal.PlanAsync(_originalPrayer.Id);
+            if (plan is null || !await ConfirmDelete(plan)) return;
+            await _removal.DeleteAsync(_originalPrayer.Id);
+            Navigation.GoBack();
+        }
+        catch (Exception error)
+        {
+            if (ShowSaveError is not null) await ShowSaveError(PrayerRemovalService.ErrorMessage(error));
+            if (error is PrayerRemovalException { PrayerWasDeleted: true }) Navigation.GoBack();
+        }
     }
 
     public async Task LoadAsync(Guid prayerId)

@@ -99,6 +99,9 @@ object MultiDayRuns {
 
     fun run(context: Context, devotionId: String): MultiDayRun? = all(context)[devotionId]
 
+    /** Existing runs must regain their remaining notifications after reboot or an update. */
+    fun devotionIds(context: Context): Set<String> = all(context).keys
+
     fun startFresh(context: Context, devotionId: String, now: Long = System.currentTimeMillis()): MultiDayRun {
         val run = MultiDayRun(devotionId = devotionId, startedOn = now)
         save(context, all(context) + (devotionId to run))

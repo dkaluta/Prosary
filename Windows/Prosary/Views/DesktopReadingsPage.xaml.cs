@@ -15,7 +15,8 @@ public sealed partial class DesktopReadingsPage : Page
     public string CalendarLabel => Loc.Tr("calendar_feasts_solemnities", "Feasts and Solemnities");
     public FlowDirection ReadingFlowDirection => UiLanguageCatalog.IsRightToLeft(UiLanguageCatalog.Current) ? FlowDirection.RightToLeft : FlowDirection.LeftToRight;
     public DesktopReadingsPage() { InitializeComponent(); NavigationCacheMode = NavigationCacheMode.Required; }
-    public void ShowDailyReadings() => ReadingModes.SelectedIndex = 0;
+    public void ShowDailyReadings() => ShowMode("daily");
+    public void ShowMode(string mode) => ReadingModes.SelectedIndex = mode switch { "calendar" => 1, "bible" => 2, _ => 0 };
     protected override void OnNavigatedTo(NavigationEventArgs e)
     {
         base.OnNavigatedTo(e);
@@ -27,6 +28,6 @@ public sealed partial class DesktopReadingsPage : Page
                 today.SelectedTodayDate = new DateTimeOffset(date.ToDateTime(TimeOnly.MinValue));
             ReadingModes.SelectedIndex = 0;
         };
-        if (e.Parameter is string mode) ReadingModes.SelectedIndex = mode == "calendar" ? 1 : 0;
+        if (e.Parameter is string mode) ShowMode(mode);
     }
 }

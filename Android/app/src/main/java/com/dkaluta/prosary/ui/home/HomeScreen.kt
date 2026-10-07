@@ -16,10 +16,8 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.background
-import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -60,9 +58,7 @@ import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.lerp
-import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.graphics.StrokeCap
-import androidx.compose.ui.graphics.drawscope.Stroke
+import com.dkaluta.prosary.ui.shared.PapalKeysIcon
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.platform.LocalLayoutDirection
@@ -682,19 +678,6 @@ fun HomeScreen(
                                 modifier = Modifier.testTag("removeDownload.${card.devotionId}"),
                             )
                         }
-                        if (card.basicPrayerId == null && card.devotionId != "rosary") {
-                            val copies = savedPrayers.filter {
-                                if (card.devotionId == "jesusPrayer") it.kind == PrayerKind.JesusPrayer
-                                else it.kind == PrayerKind.Custom && it.customDevotionId == card.devotionId
-                            }
-                            for (copy in copies) {
-                                DropdownMenuItem(
-                                    text = { Text(if (copies.size == 1) stringResource(R.string.prayer_delete_action)
-                                        else stringResource(R.string.favorites_delete_desc, copy.name), color = MaterialTheme.colorScheme.error) },
-                                    onClick = { cardMenu = false; removalRequest = PrayerRemovalRequest.Saved(copy) },
-                                )
-                            }
-                        }
                     }
                 }
             }
@@ -737,22 +720,4 @@ private fun todayCardBackground(): Color {
         else -> return surface
     }
     return lerp(surface, tint, if (isSystemInDarkTheme()) 0.22f else 0.14f)
-}
-
-/** The crossed keys identify the papal intention without tying it to one pontificate. */
-@Composable
-private fun PapalKeysIcon() {
-    val tint = MaterialTheme.colorScheme.primary
-    Canvas(Modifier.size(24.dp)) {
-        val unit = size.width / 24f
-        val stroke = 1.8f * unit
-        fun point(x: Float, y: Float) = Offset(x * unit, y * unit)
-        for (mirrored in listOf(false, true)) {
-            fun x(value: Float) = if (mirrored) 24f - value else value
-            drawCircle(tint, 3f * unit, point(x(6f), 5f), style = Stroke(stroke))
-            drawLine(tint, point(x(8f), 7f), point(x(19f), 21f), stroke, StrokeCap.Round)
-            drawLine(tint, point(x(15.5f), 18f), point(x(18f), 16f), stroke, StrokeCap.Round)
-            drawLine(tint, point(x(19f), 21f), point(x(21.5f), 19f), stroke, StrokeCap.Round)
-        }
-    }
 }

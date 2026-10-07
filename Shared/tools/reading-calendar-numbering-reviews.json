@@ -1,0 +1,3216 @@
+{
+  "schemaVersion": 1,
+  "method": "Source-calendar profiles are distinct from Bible-edition boundaries and from the six legacy appointment reviews. New table keys have independent dataset namespaces. Untested source conventions remain explicit unavailable results.",
+  "datasets": {
+    "stjames": {
+      "sourceURL": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_HebrewandEnglish20262027SA2.pdf",
+      "sourcePDFSHA256": "b7d2eabf9181913379c2de2f5279bd9a8ad9ed3f9804089c38fc6ea59de45960",
+      "sourceSnapshot": "sources/stjames-calendar-2026-2027.json",
+      "sourceSnapshotSHA256": "adeb09bd8e02461345d350353a88910040851627cb7736c40ef7fdfe144b7c19",
+      "psalmNumbering": "hebrew-psalms",
+      "reviewedOn": "2026-10-06",
+      "boundaryReview": "The bilingual primary calendar names the same Hebrew-numbered Psalm in both columns. English80:9-20 reaches the Hebrew20-verse inventory (English80 has19; Latin80 is a different Psalm). English67:2-8 uses the numbered Hebrew title followed by the blessing, beyond English67:7. English2:6-12 explicitly reaches12, whereas NABRE2 ends11. These jointly establish Hebrew/Original chapter and verse numbering, not a NABRE inheritance or an English-language assumption. Full source-native verse envelopes are converted by the pinned Hebrew-to-Standard relations; no verse text from the calendar is imported. Every one of the373 shipped Psalm appointment rows is separately pinned below to its dated primary English citation and matching Hebrew chapter; all376 English Psalm occurrences in the broader snapshot agree with their paired Hebrew chapter numerals. Three genuine printed impossible spans are retained as explicit source gaps. The profile cannot resolve an unlisted citation or substitute Latin chapter identities for these rows.",
+      "evidence": [
+        {
+          "date": "2026-10-04",
+          "sourcePage": 3,
+          "printedEnglish": "Ps 80:9-20",
+          "printedHebrew": "יום א' ה-1 של הצפייה הגדולה (שנה ב') אדם וחווה\nישעיהו ה:1-7; תה' פ; פיליפים ד:6-9; מתי כא:33-43\nמקרא נוסף לצפייה הגדולה (שנה ב'): בראשית ב:4-25"
+        },
+        {
+          "date": "2027-01-01",
+          "sourcePage": 15,
+          "printedEnglish": "Ps 67:2-8",
+          "printedHebrew": "מועד מרים אם עמנואל ומילתו של האדון\nבמדבר ו:22-27; תה' סז; גלטים ד:4-7; לוקס ב:16-21"
+        },
+        {
+          "date": "2027-04-23",
+          "sourcePage": 31,
+          "printedEnglish": "Ps 2:6-12",
+          "printedHebrew": "זכרון של גאורגיוס, מרטיר\nמעשי השליחים יג:26-33; תה' ב; יוחנן יד:1-6"
+        }
+      ],
+      "datasetId": "stjames",
+      "appointments": {
+        "Psalm 80:9–20": [
+          {
+            "date": "2026-10-04",
+            "sourcePage": 3,
+            "printedEnglish": "Ps 80:9-20",
+            "pairedHebrewChapter": 80
+          }
+        ],
+        "Psalm 111:1–10": [
+          {
+            "date": "2026-10-05",
+            "sourcePage": 3,
+            "printedEnglish": "Ps 111:1-10",
+            "pairedHebrewChapter": 111
+          },
+          {
+            "date": "2027-01-19",
+            "sourcePage": 18,
+            "printedEnglish": "Ps 111:1-10",
+            "pairedHebrewChapter": 111
+          }
+        ],
+        "Psalm 139:1–3,13–15": [
+          {
+            "date": "2026-10-06",
+            "sourcePage": 3,
+            "printedEnglish": "Ps 139:1-3.13-15",
+            "pairedHebrewChapter": 139
+          },
+          {
+            "date": "2027-06-24",
+            "sourcePage": 40,
+            "printedEnglish": "Ps 139:1-3.13-15",
+            "pairedHebrewChapter": 139
+          }
+        ],
+        "Psalm 117:1–2": [
+          {
+            "date": "2026-10-07",
+            "sourcePage": 3,
+            "printedEnglish": "Ps 117:1-2",
+            "pairedHebrewChapter": 117
+          }
+        ],
+        "Psalm 105:2–7": [
+          {
+            "date": "2026-10-10",
+            "sourcePage": 3,
+            "printedEnglish": "Ps 105:2-7",
+            "pairedHebrewChapter": 105
+          },
+          {
+            "date": "2026-11-05",
+            "sourcePage": 7,
+            "printedEnglish": "Ps 105:2-7",
+            "pairedHebrewChapter": 105
+          }
+        ],
+        "Psalm 23:1–6": [
+          {
+            "date": "2026-10-11",
+            "sourcePage": 4,
+            "printedEnglish": "Ps 23:1-6",
+            "pairedHebrewChapter": 23
+          },
+          {
+            "date": "2026-11-11",
+            "sourcePage": 8,
+            "printedEnglish": "Ps 23:1-6",
+            "pairedHebrewChapter": 23
+          },
+          {
+            "date": "2026-11-22",
+            "sourcePage": 10,
+            "printedEnglish": "Ps 23:1-6",
+            "pairedHebrewChapter": 23
+          },
+          {
+            "date": "2026-12-02",
+            "sourcePage": 11,
+            "printedEnglish": "Ps 23:1-6",
+            "pairedHebrewChapter": 23
+          },
+          {
+            "date": "2027-03-15",
+            "sourcePage": 26,
+            "printedEnglish": "Ps 23:1-6",
+            "pairedHebrewChapter": 23
+          },
+          {
+            "date": "2027-07-18",
+            "sourcePage": 44,
+            "printedEnglish": "Ps 23:1-6",
+            "pairedHebrewChapter": 23
+          }
+        ],
+        "Psalm 113:1–7": [
+          {
+            "date": "2026-10-12",
+            "sourcePage": 4,
+            "printedEnglish": "Ps 113:1-7",
+            "pairedHebrewChapter": 113
+          },
+          {
+            "date": "2027-09-11",
+            "sourcePage": 51,
+            "printedEnglish": "Ps 113:1-7",
+            "pairedHebrewChapter": 113
+          }
+        ],
+        "Psalm 119:41–48": [
+          {
+            "date": "2026-10-13",
+            "sourcePage": 4,
+            "printedEnglish": "Ps 119:41-48",
+            "pairedHebrewChapter": 119
+          }
+        ],
+        "Psalm 1:1–6": [
+          {
+            "date": "2026-10-14",
+            "sourcePage": 4,
+            "printedEnglish": "Ps 1:1-6",
+            "pairedHebrewChapter": 1
+          },
+          {
+            "date": "2026-10-26",
+            "sourcePage": 6,
+            "printedEnglish": "Ps 1:1-6",
+            "pairedHebrewChapter": 1
+          },
+          {
+            "date": "2026-12-11",
+            "sourcePage": 12,
+            "printedEnglish": "Ps 1:1-6",
+            "pairedHebrewChapter": 1
+          },
+          {
+            "date": "2027-02-11",
+            "sourcePage": 21,
+            "printedEnglish": "Ps 1:1-6",
+            "pairedHebrewChapter": 1
+          },
+          {
+            "date": "2027-02-25",
+            "sourcePage": 23,
+            "printedEnglish": "Ps 1:1-6",
+            "pairedHebrewChapter": 1
+          },
+          {
+            "date": "2027-05-20",
+            "sourcePage": 35,
+            "printedEnglish": "Ps 1:1-6",
+            "pairedHebrewChapter": 1
+          },
+          {
+            "date": "2027-10-07",
+            "sourcePage": 55,
+            "printedEnglish": "Ps 1:1-6",
+            "pairedHebrewChapter": 1
+          },
+          {
+            "date": "2027-10-21",
+            "sourcePage": 57,
+            "printedEnglish": "Ps 1:1-6",
+            "pairedHebrewChapter": 1
+          }
+        ],
+        "Psalm 98:1–6": [
+          {
+            "date": "2026-10-15",
+            "sourcePage": 4,
+            "printedEnglish": "Ps 98:1-6",
+            "pairedHebrewChapter": 98
+          },
+          {
+            "date": "2026-12-25",
+            "sourcePage": 14,
+            "printedEnglish": "Ps 98:1-6",
+            "pairedHebrewChapter": 98
+          },
+          {
+            "date": "2027-06-11",
+            "sourcePage": 38,
+            "printedEnglish": "Ps 98:1-6",
+            "pairedHebrewChapter": 98
+          }
+        ],
+        "Psalm 33:1–5,12–13": [
+          {
+            "date": "2026-10-16",
+            "sourcePage": 4,
+            "printedEnglish": "Ps 33:1-5.12-13",
+            "pairedHebrewChapter": 33
+          }
+        ],
+        "Psalm 8:2–7": [
+          {
+            "date": "2026-10-17",
+            "sourcePage": 4,
+            "printedEnglish": "Ps 8:2-7",
+            "pairedHebrewChapter": 8
+          }
+        ],
+        "Psalm 96:1–10": [
+          {
+            "date": "2026-10-18",
+            "sourcePage": 5,
+            "printedEnglish": "Ps 96:1-10",
+            "pairedHebrewChapter": 96
+          }
+        ],
+        "Psalm 100:2–5": [
+          {
+            "date": "2026-10-19",
+            "sourcePage": 5,
+            "printedEnglish": "Ps 100:2-5",
+            "pairedHebrewChapter": 100
+          },
+          {
+            "date": "2026-11-26",
+            "sourcePage": 10,
+            "printedEnglish": "Ps 100:2-5",
+            "pairedHebrewChapter": 100
+          },
+          {
+            "date": "2027-05-01",
+            "sourcePage": 32,
+            "printedEnglish": "Ps 100:2-5",
+            "pairedHebrewChapter": 100
+          },
+          {
+            "date": "2027-09-03",
+            "sourcePage": 50,
+            "printedEnglish": "Ps 100:2-5",
+            "pairedHebrewChapter": 100
+          },
+          {
+            "date": "2027-09-18",
+            "sourcePage": 52,
+            "printedEnglish": "Ps 100:2-5",
+            "pairedHebrewChapter": 100
+          }
+        ],
+        "Psalm 85:9–14": [
+          {
+            "date": "2026-10-20",
+            "sourcePage": 5,
+            "printedEnglish": "Ps 85:9-14",
+            "pairedHebrewChapter": 85
+          },
+          {
+            "date": "2026-12-06",
+            "sourcePage": 12,
+            "printedEnglish": "Ps 85:9-14",
+            "pairedHebrewChapter": 85
+          },
+          {
+            "date": "2026-12-07",
+            "sourcePage": 12,
+            "printedEnglish": "Ps 85:9-14",
+            "pairedHebrewChapter": 85
+          },
+          {
+            "date": "2026-12-16",
+            "sourcePage": 13,
+            "printedEnglish": "Ps 85:9-14",
+            "pairedHebrewChapter": 85
+          },
+          {
+            "date": "2027-06-10",
+            "sourcePage": 38,
+            "printedEnglish": "Ps 85:9-14",
+            "pairedHebrewChapter": 85
+          },
+          {
+            "date": "2027-07-11",
+            "sourcePage": 43,
+            "printedEnglish": "Ps 85:9-14",
+            "pairedHebrewChapter": 85
+          },
+          {
+            "date": "2027-08-17",
+            "sourcePage": 48,
+            "printedEnglish": "Ps 85:9-14",
+            "pairedHebrewChapter": 85
+          }
+        ],
+        "Psalm 33:1–5,11–12,18–19": [
+          {
+            "date": "2026-10-22",
+            "sourcePage": 5,
+            "printedEnglish": "Ps 33:1-5.11-12.18-19",
+            "pairedHebrewChapter": 33
+          }
+        ],
+        "Psalm 24:1–6": [
+          {
+            "date": "2026-10-23",
+            "sourcePage": 5,
+            "printedEnglish": "Ps 24:1-6",
+            "pairedHebrewChapter": 24
+          },
+          {
+            "date": "2026-11-01",
+            "sourcePage": 7,
+            "printedEnglish": "Ps 24:1-6",
+            "pairedHebrewChapter": 24
+          },
+          {
+            "date": "2026-11-23",
+            "sourcePage": 10,
+            "printedEnglish": "Ps 24:1-6",
+            "pairedHebrewChapter": 24
+          },
+          {
+            "date": "2027-01-28",
+            "sourcePage": 19,
+            "printedEnglish": "Ps 24:1-6",
+            "pairedHebrewChapter": 24
+          },
+          {
+            "date": "2027-10-23",
+            "sourcePage": 57,
+            "printedEnglish": "Ps 24:1-6",
+            "pairedHebrewChapter": 24
+          }
+        ],
+        "Psalm 122:1–5": [
+          {
+            "date": "2026-10-24",
+            "sourcePage": 5,
+            "printedEnglish": "Ps 122:1-5",
+            "pairedHebrewChapter": 122
+          },
+          {
+            "date": "2026-11-06",
+            "sourcePage": 7,
+            "printedEnglish": "Ps 122:1-5",
+            "pairedHebrewChapter": 122
+          },
+          {
+            "date": "2027-04-28",
+            "sourcePage": 32,
+            "printedEnglish": "Ps 122:1-5",
+            "pairedHebrewChapter": 122
+          }
+        ],
+        "Psalm 18:2–4,47,51": [
+          {
+            "date": "2026-10-25",
+            "sourcePage": 6,
+            "printedEnglish": "Ps 18:2-4.47.51",
+            "pairedHebrewChapter": 18
+          },
+          {
+            "date": "2027-08-07",
+            "sourcePage": 46,
+            "printedEnglish": "Ps 18:2-4.47.51",
+            "pairedHebrewChapter": 18
+          }
+        ],
+        "Psalm 128:1–5": [
+          {
+            "date": "2026-10-27",
+            "sourcePage": 6,
+            "printedEnglish": "Ps 128:1-5",
+            "pairedHebrewChapter": 128
+          },
+          {
+            "date": "2026-11-15",
+            "sourcePage": 9,
+            "printedEnglish": "Ps 128:1-5",
+            "pairedHebrewChapter": 128
+          },
+          {
+            "date": "2027-06-03",
+            "sourcePage": 37,
+            "printedEnglish": "Ps 128:1-5",
+            "pairedHebrewChapter": 128
+          },
+          {
+            "date": "2027-06-25",
+            "sourcePage": 40,
+            "printedEnglish": "Ps 128:1-5",
+            "pairedHebrewChapter": 128
+          }
+        ],
+        "Psalm 19:2–5": [
+          {
+            "date": "2026-10-28",
+            "sourcePage": 6,
+            "printedEnglish": "Ps 19:2-5",
+            "pairedHebrewChapter": 19
+          },
+          {
+            "date": "2026-11-13",
+            "sourcePage": 8,
+            "printedEnglish": "Ps 19:2-5",
+            "pairedHebrewChapter": 19
+          },
+          {
+            "date": "2026-11-30",
+            "sourcePage": 11,
+            "printedEnglish": "Ps 19:2-5",
+            "pairedHebrewChapter": 19
+          },
+          {
+            "date": "2027-06-29",
+            "sourcePage": 41,
+            "printedEnglish": "Ps 19:2-5",
+            "pairedHebrewChapter": 19
+          },
+          {
+            "date": "2027-09-21",
+            "sourcePage": 53,
+            "printedEnglish": "Ps 19:2-5",
+            "pairedHebrewChapter": 19
+          },
+          {
+            "date": "2027-10-12",
+            "sourcePage": 56,
+            "printedEnglish": "Ps 19:2-5",
+            "pairedHebrewChapter": 19
+          }
+        ],
+        "Psalm 144:1–2,9–10": [
+          {
+            "date": "2026-10-29",
+            "sourcePage": 6,
+            "printedEnglish": "Ps 144:1-2.9-10",
+            "pairedHebrewChapter": 144
+          },
+          {
+            "date": "2026-11-21",
+            "sourcePage": 9,
+            "printedEnglish": "Ps 144:1-2.9-10",
+            "pairedHebrewChapter": 144
+          }
+        ],
+        "Psalm 111:1–6": [
+          {
+            "date": "2026-10-30",
+            "sourcePage": 6,
+            "printedEnglish": "Ps 111:1-6",
+            "pairedHebrewChapter": 111
+          },
+          {
+            "date": "2027-09-15",
+            "sourcePage": 52,
+            "printedEnglish": "Ps 111:1-6",
+            "pairedHebrewChapter": 111
+          }
+        ],
+        "Psalm 42:2–5": [
+          {
+            "date": "2026-10-31",
+            "sourcePage": 6,
+            "printedEnglish": "Ps 42:2-5",
+            "pairedHebrewChapter": 42
+          }
+        ],
+        "Psalm 27:1,4,7–9,13–14": [
+          {
+            "date": "2026-11-02",
+            "sourcePage": 7,
+            "printedEnglish": "Ps 27:1.4.7-9.13-14",
+            "pairedHebrewChapter": 27
+          }
+        ],
+        "Psalm 22:26–32": [
+          {
+            "date": "2026-11-03",
+            "sourcePage": 7,
+            "printedEnglish": "Ps 22:26-32",
+            "pairedHebrewChapter": 22
+          },
+          {
+            "date": "2027-04-25",
+            "sourcePage": 32,
+            "printedEnglish": "Ps 22:26-32",
+            "pairedHebrewChapter": 22
+          }
+        ],
+        "Psalm 27:1–4,13–14": [
+          {
+            "date": "2026-11-04",
+            "sourcePage": 7,
+            "printedEnglish": "Ps 27:1-4.13-14",
+            "pairedHebrewChapter": 27
+          },
+          {
+            "date": "2027-08-31",
+            "sourcePage": 50,
+            "printedEnglish": "Ps 27:1-4.13-14",
+            "pairedHebrewChapter": 27
+          }
+        ],
+        "Psalm 112:1–9": [
+          {
+            "date": "2026-11-07",
+            "sourcePage": 7,
+            "printedEnglish": "Ps 112:1-9",
+            "pairedHebrewChapter": 112
+          },
+          {
+            "date": "2027-06-16",
+            "sourcePage": 39,
+            "printedEnglish": "Ps 112:1-9",
+            "pairedHebrewChapter": 112
+          },
+          {
+            "date": "2027-08-10",
+            "sourcePage": 47,
+            "printedEnglish": "Ps 112:1-9",
+            "pairedHebrewChapter": 112
+          }
+        ],
+        "Psalm 63:2–8": [
+          {
+            "date": "2026-11-08",
+            "sourcePage": 8,
+            "printedEnglish": "Ps 63:2-8",
+            "pairedHebrewChapter": 63
+          }
+        ],
+        "Psalm 46:2–9": [
+          {
+            "date": "2026-11-09",
+            "sourcePage": 8,
+            "printedEnglish": "Ps 46:2-9",
+            "pairedHebrewChapter": 46
+          },
+          {
+            "date": "2027-03-09",
+            "sourcePage": 25,
+            "printedEnglish": "Ps 46:2-9",
+            "pairedHebrewChapter": 46
+          }
+        ],
+        "Psalm 37:3–4,18,23,27–29": [
+          {
+            "date": "2026-11-10",
+            "sourcePage": 8,
+            "printedEnglish": "Ps 37:3-4.18.23.27-29",
+            "pairedHebrewChapter": 37
+          }
+        ],
+        "Psalm 146:7–10": [
+          {
+            "date": "2026-11-12",
+            "sourcePage": 8,
+            "printedEnglish": "Ps 146:7-10",
+            "pairedHebrewChapter": 146
+          }
+        ],
+        "Psalm 112:1–6": [
+          {
+            "date": "2026-11-14",
+            "sourcePage": 8,
+            "printedEnglish": "Ps 112:1-6",
+            "pairedHebrewChapter": 112
+          }
+        ],
+        "Psalm 1:1–2,3,4,6": [
+          {
+            "date": "2026-11-16",
+            "sourcePage": 9,
+            "printedEnglish": "Ps 1:1-2, 3, 4.6",
+            "pairedHebrewChapter": 1
+          }
+        ],
+        "Psalm 15:1–5": [
+          {
+            "date": "2026-11-17",
+            "sourcePage": 9,
+            "printedEnglish": "Ps 15:1-5",
+            "pairedHebrewChapter": 15
+          },
+          {
+            "date": "2027-06-22",
+            "sourcePage": 40,
+            "printedEnglish": "Ps 15:1-5",
+            "pairedHebrewChapter": 15
+          },
+          {
+            "date": "2027-08-29",
+            "sourcePage": 50,
+            "printedEnglish": "Ps 15:1-5",
+            "pairedHebrewChapter": 15
+          }
+        ],
+        "Psalm 150:1–6": [
+          {
+            "date": "2026-11-18",
+            "sourcePage": 9,
+            "printedEnglish": "Ps 150:1-6",
+            "pairedHebrewChapter": 150
+          },
+          {
+            "date": "2027-09-09",
+            "sourcePage": 51,
+            "printedEnglish": "Ps 150:1-6",
+            "pairedHebrewChapter": 150
+          }
+        ],
+        "Psalm 149:1–9": [
+          {
+            "date": "2026-11-19",
+            "sourcePage": 9,
+            "printedEnglish": "Ps 149:1-9",
+            "pairedHebrewChapter": 149
+          },
+          {
+            "date": "2027-05-28",
+            "sourcePage": 36,
+            "printedEnglish": "Ps 149:1-9",
+            "pairedHebrewChapter": 149
+          },
+          {
+            "date": "2027-08-23",
+            "sourcePage": 49,
+            "printedEnglish": "Ps 149:1-9",
+            "pairedHebrewChapter": 149
+          },
+          {
+            "date": "2027-09-23",
+            "sourcePage": 53,
+            "printedEnglish": "Ps 149:1-9",
+            "pairedHebrewChapter": 149
+          }
+        ],
+        "Psalm 119:14,24,72,103,111,131": [
+          {
+            "date": "2026-11-20",
+            "sourcePage": 9,
+            "printedEnglish": "Ps 119:14.24,72.103.111.131",
+            "pairedHebrewChapter": 119
+          }
+        ],
+        "Psalm 96:10–13": [
+          {
+            "date": "2026-11-24",
+            "sourcePage": 10,
+            "printedEnglish": "Ps 96:10-13",
+            "pairedHebrewChapter": 96
+          }
+        ],
+        "Psalm 98:1–9": [
+          {
+            "date": "2026-11-25",
+            "sourcePage": 10,
+            "printedEnglish": "Ps 98:1-9",
+            "pairedHebrewChapter": 98
+          }
+        ],
+        "Psalm 84:3–8": [
+          {
+            "date": "2026-11-27",
+            "sourcePage": 10,
+            "printedEnglish": "Ps 84:3-8",
+            "pairedHebrewChapter": 84
+          }
+        ],
+        "Psalm 95:1–7": [
+          {
+            "date": "2026-11-28",
+            "sourcePage": 10,
+            "printedEnglish": "Ps 95:1-7",
+            "pairedHebrewChapter": 95
+          }
+        ],
+        "Psalm 80:2–3,15–19": [
+          {
+            "date": "2026-11-29",
+            "sourcePage": 11,
+            "printedEnglish": "Ps 80:2-3.15-19",
+            "pairedHebrewChapter": 80
+          },
+          {
+            "date": "2026-12-12",
+            "sourcePage": 12,
+            "printedEnglish": "Ps 80:2-3.15-19",
+            "pairedHebrewChapter": 80
+          }
+        ],
+        "Psalm 72:1–2,7–8,12–13,17": [
+          {
+            "date": "2026-12-01",
+            "sourcePage": 11,
+            "printedEnglish": "Ps 72:1-2.7-8.12-13.17",
+            "pairedHebrewChapter": 72
+          }
+        ],
+        "Psalm 118:1,8–9,19–21,25–26": [
+          {
+            "date": "2026-12-03",
+            "sourcePage": 11,
+            "printedEnglish": "Ps 118:1.8-9.19-21.25-26",
+            "pairedHebrewChapter": 118
+          }
+        ],
+        "Psalm 27:1,4,13–14": [
+          {
+            "date": "2026-12-04",
+            "sourcePage": 11,
+            "printedEnglish": "Ps 27:1.4.13-14",
+            "pairedHebrewChapter": 27
+          },
+          {
+            "date": "2027-04-09",
+            "sourcePage": 29,
+            "printedEnglish": "Ps 27:1.4.13-14",
+            "pairedHebrewChapter": 27
+          }
+        ],
+        "Psalm 147:1–6": [
+          {
+            "date": "2026-12-05",
+            "sourcePage": 11,
+            "printedEnglish": "Ps 147:1-6",
+            "pairedHebrewChapter": 147
+          },
+          {
+            "date": "2027-02-07",
+            "sourcePage": 21,
+            "printedEnglish": "Ps 147:1-6",
+            "pairedHebrewChapter": 147
+          }
+        ],
+        "Psalm 98:1–4": [
+          {
+            "date": "2026-12-08",
+            "sourcePage": 12,
+            "printedEnglish": "Ps 98:1-4",
+            "pairedHebrewChapter": 98
+          },
+          {
+            "date": "2027-01-02",
+            "sourcePage": 15,
+            "printedEnglish": "Ps 98:1-4",
+            "pairedHebrewChapter": 98
+          },
+          {
+            "date": "2027-04-24",
+            "sourcePage": 31,
+            "printedEnglish": "Ps 98:1-4",
+            "pairedHebrewChapter": 98
+          },
+          {
+            "date": "2027-05-02",
+            "sourcePage": 33,
+            "printedEnglish": "Ps 98:1-4",
+            "pairedHebrewChapter": 98
+          },
+          {
+            "date": "2027-05-06",
+            "sourcePage": 33,
+            "printedEnglish": "Ps 98:1-4",
+            "pairedHebrewChapter": 98
+          },
+          {
+            "date": "2027-06-14",
+            "sourcePage": 39,
+            "printedEnglish": "Ps 98:1-4",
+            "pairedHebrewChapter": 98
+          },
+          {
+            "date": "2027-10-11",
+            "sourcePage": 56,
+            "printedEnglish": "Ps 98:1-4",
+            "pairedHebrewChapter": 98
+          }
+        ],
+        "Psalm 103:1–4,8,10": [
+          {
+            "date": "2026-12-09",
+            "sourcePage": 12,
+            "printedEnglish": "Ps 103:1-4.8.10",
+            "pairedHebrewChapter": 103
+          }
+        ],
+        "Psalm 145:1,9–13": [
+          {
+            "date": "2026-12-10",
+            "sourcePage": 12,
+            "printedEnglish": "Ps 145:1.9-13",
+            "pairedHebrewChapter": 145
+          }
+        ],
+        "Psalm 25:4–9": [
+          {
+            "date": "2026-12-14",
+            "sourcePage": 13,
+            "printedEnglish": "Ps 25:4-9",
+            "pairedHebrewChapter": 25
+          },
+          {
+            "date": "2027-01-24",
+            "sourcePage": 19,
+            "printedEnglish": "Ps 25:4-9",
+            "pairedHebrewChapter": 25
+          },
+          {
+            "date": "2027-02-14",
+            "sourcePage": 22,
+            "printedEnglish": "Ps 25:4-9",
+            "pairedHebrewChapter": 25
+          },
+          {
+            "date": "2027-03-02",
+            "sourcePage": 24,
+            "printedEnglish": "Ps 25:4-9",
+            "pairedHebrewChapter": 25
+          }
+        ],
+        "Psalm 34:2–3,6–7,17–20": [
+          {
+            "date": "2026-12-15",
+            "sourcePage": 13,
+            "printedEnglish": "Ps 34:2-3.6-7.17-20",
+            "pairedHebrewChapter": 34
+          }
+        ],
+        "Psalm 72:1–8,17": [
+          {
+            "date": "2026-12-17",
+            "sourcePage": 13,
+            "printedEnglish": "Ps 72:1-8, 17",
+            "pairedHebrewChapter": 72
+          }
+        ],
+        "Psalm 72:1–2,12–13,18–19": [
+          {
+            "date": "2026-12-18",
+            "sourcePage": 13,
+            "printedEnglish": "Ps 72:1-2.12-13.18-19",
+            "pairedHebrewChapter": 72
+          }
+        ],
+        "Psalm 71:3–6,16–17": [
+          {
+            "date": "2026-12-19",
+            "sourcePage": 13,
+            "printedEnglish": "Ps 71:3-6.16-17",
+            "pairedHebrewChapter": 71
+          }
+        ],
+        "Psalm 89:2–5,27,29": [
+          {
+            "date": "2026-12-20",
+            "sourcePage": 14,
+            "printedEnglish": "Ps 89:2-5.27.29",
+            "pairedHebrewChapter": 89
+          },
+          {
+            "date": "2026-12-24",
+            "sourcePage": 14,
+            "printedEnglish": "Ps 89:2-5.27.29",
+            "pairedHebrewChapter": 89
+          },
+          {
+            "date": "2027-03-19",
+            "sourcePage": 26,
+            "printedEnglish": "Ps 89:2-5, 27.29",
+            "pairedHebrewChapter": 89
+          }
+        ],
+        "Psalm 33:2–3,11–12,20–21": [
+          {
+            "date": "2026-12-21",
+            "sourcePage": 14,
+            "printedEnglish": "Ps 33:2-3.11-12.20-21",
+            "pairedHebrewChapter": 33
+          }
+        ],
+        "Psalm 25:4–5,8–10,14": [
+          {
+            "date": "2026-12-23",
+            "sourcePage": 14,
+            "printedEnglish": "Ps 25:4-5.8-10.14",
+            "pairedHebrewChapter": 25
+          }
+        ],
+        "Psalm 89:4–5,16–17,27,29": [
+          {
+            "date": "2026-12-25",
+            "sourcePage": 14,
+            "printedEnglish": "Ps 89:4-5.16-17.27.29",
+            "pairedHebrewChapter": 89
+          }
+        ],
+        "Psalm 96:1–3,11–13": [
+          {
+            "date": "2026-12-25",
+            "sourcePage": 14,
+            "printedEnglish": "Ps 96:1-3.11-13",
+            "pairedHebrewChapter": 96
+          }
+        ],
+        "Psalm 97:1,6,11–12": [
+          {
+            "date": "2026-12-25",
+            "sourcePage": 14,
+            "printedEnglish": "Ps 97:1.6.11-12",
+            "pairedHebrewChapter": 97
+          }
+        ],
+        "Psalm 31:3–8,16–17": [
+          {
+            "date": "2026-12-26",
+            "sourcePage": 14,
+            "printedEnglish": "Ps 31:3-8.16-17",
+            "pairedHebrewChapter": 31
+          }
+        ],
+        "Psalm 105:1–9": [
+          {
+            "date": "2026-12-27",
+            "sourcePage": 15,
+            "printedEnglish": "Ps 105:1-9",
+            "pairedHebrewChapter": 105
+          },
+          {
+            "date": "2027-01-13",
+            "sourcePage": 17,
+            "printedEnglish": "Ps 105:1-9",
+            "pairedHebrewChapter": 105
+          },
+          {
+            "date": "2027-03-31",
+            "sourcePage": 28,
+            "printedEnglish": "Ps 105:1-9",
+            "pairedHebrewChapter": 105
+          },
+          {
+            "date": "2027-06-23",
+            "sourcePage": 40,
+            "printedEnglish": "Ps 105:1-9",
+            "pairedHebrewChapter": 105
+          }
+        ],
+        "Psalm 124:2–8": [
+          {
+            "date": "2026-12-28",
+            "sourcePage": 15,
+            "printedEnglish": "Ps 124:2-8",
+            "pairedHebrewChapter": 124
+          }
+        ],
+        "Psalm 96:1–6": [
+          {
+            "date": "2026-12-29",
+            "sourcePage": 15,
+            "printedEnglish": "Ps 96:1-6",
+            "pairedHebrewChapter": 96
+          }
+        ],
+        "Psalm 96:7–10": [
+          {
+            "date": "2026-12-30",
+            "sourcePage": 15,
+            "printedEnglish": "Ps 96:7-10",
+            "pairedHebrewChapter": 96
+          }
+        ],
+        "Psalm 96:1–2,11–13": [
+          {
+            "date": "2026-12-31",
+            "sourcePage": 15,
+            "printedEnglish": "Ps 96:1-2.11-13",
+            "pairedHebrewChapter": 96
+          }
+        ],
+        "Psalm 67:2–8": [
+          {
+            "date": "2027-01-01",
+            "sourcePage": 15,
+            "printedEnglish": "Ps 67:2-8",
+            "pairedHebrewChapter": 67
+          },
+          {
+            "date": "2027-04-21",
+            "sourcePage": 31,
+            "printedEnglish": "Ps 67:2-8",
+            "pairedHebrewChapter": 67
+          },
+          {
+            "date": "2027-07-31",
+            "sourcePage": 45,
+            "printedEnglish": "Ps 67:2-8",
+            "pairedHebrewChapter": 67
+          }
+        ],
+        "Psalm 72:1–2,7–13": [
+          {
+            "date": "2027-01-03",
+            "sourcePage": 16,
+            "printedEnglish": "Ps 72:1-2.7-13",
+            "pairedHebrewChapter": 72
+          }
+        ],
+        "Psalm 2:7–11": [
+          {
+            "date": "2027-01-04",
+            "sourcePage": 16,
+            "printedEnglish": "Ps 2:7-11",
+            "pairedHebrewChapter": 2
+          }
+        ],
+        "Psalm 72:1–4,7–8": [
+          {
+            "date": "2027-01-05",
+            "sourcePage": 16,
+            "printedEnglish": "Ps 72:1-4.7-8",
+            "pairedHebrewChapter": 72
+          }
+        ],
+        "Psalm 72:1–2,10–13": [
+          {
+            "date": "2027-01-06",
+            "sourcePage": 16,
+            "printedEnglish": "Ps 72:1-2.10-13",
+            "pairedHebrewChapter": 72
+          }
+        ],
+        "Psalm 72:1–2,14–17": [
+          {
+            "date": "2027-01-07",
+            "sourcePage": 16,
+            "printedEnglish": "Ps 72:1-2.14-17",
+            "pairedHebrewChapter": 72
+          }
+        ],
+        "Psalm 147:12–15,19–20": [
+          {
+            "date": "2027-01-08",
+            "sourcePage": 16,
+            "printedEnglish": "Ps 147:12-15.19-20",
+            "pairedHebrewChapter": 147
+          }
+        ],
+        "Psalm 149:1–6,9": [
+          {
+            "date": "2027-01-09",
+            "sourcePage": 16,
+            "printedEnglish": "Ps 149:1-6.9",
+            "pairedHebrewChapter": 149
+          }
+        ],
+        "Psalm 97:1–2,6–9": [
+          {
+            "date": "2027-01-11",
+            "sourcePage": 17,
+            "printedEnglish": "Ps 97:1-2.6-9",
+            "pairedHebrewChapter": 97
+          }
+        ],
+        "Psalm 8:2–9": [
+          {
+            "date": "2027-01-12",
+            "sourcePage": 17,
+            "printedEnglish": "Ps 8:2-9",
+            "pairedHebrewChapter": 8
+          },
+          {
+            "date": "2027-02-09",
+            "sourcePage": 21,
+            "printedEnglish": "Ps 8:2-9",
+            "pairedHebrewChapter": 8
+          },
+          {
+            "date": "2027-04-01",
+            "sourcePage": 28,
+            "printedEnglish": "Ps 8:2-9",
+            "pairedHebrewChapter": 8
+          }
+        ],
+        "Psalm 95:6–11": [
+          {
+            "date": "2027-01-14",
+            "sourcePage": 17,
+            "printedEnglish": "Ps 95:6-11",
+            "pairedHebrewChapter": 95
+          }
+        ],
+        "Psalm 78:3–8": [
+          {
+            "date": "2027-01-15",
+            "sourcePage": 17,
+            "printedEnglish": "Ps 78:3-8",
+            "pairedHebrewChapter": 78
+          }
+        ],
+        "Psalm 19:8–15": [
+          {
+            "date": "2027-01-16",
+            "sourcePage": 17,
+            "printedEnglish": "Ps 19:8-15",
+            "pairedHebrewChapter": 19
+          }
+        ],
+        "Psalm 40:2–10": [
+          {
+            "date": "2027-01-17",
+            "sourcePage": 18,
+            "printedEnglish": "Ps 40:2-10",
+            "pairedHebrewChapter": 40
+          }
+        ],
+        "Psalm 110:1–4": [
+          {
+            "date": "2027-01-18",
+            "sourcePage": 18,
+            "printedEnglish": "Ps 110:1-4",
+            "pairedHebrewChapter": 110
+          },
+          {
+            "date": "2027-01-20",
+            "sourcePage": 18,
+            "printedEnglish": "Ps 110:1-4",
+            "pairedHebrewChapter": 110
+          },
+          {
+            "date": "2027-01-27",
+            "sourcePage": 19,
+            "printedEnglish": "Ps 110:1-4",
+            "pairedHebrewChapter": 110
+          }
+        ],
+        "Psalm 40:7–10,17": [
+          {
+            "date": "2027-01-21",
+            "sourcePage": 18,
+            "printedEnglish": "Ps 40:7-10.17",
+            "pairedHebrewChapter": 40
+          },
+          {
+            "date": "2027-10-19",
+            "sourcePage": 57,
+            "printedEnglish": "Ps 40:7-10.17",
+            "pairedHebrewChapter": 40
+          }
+        ],
+        "Psalm 85:8–14": [
+          {
+            "date": "2027-01-22",
+            "sourcePage": 18,
+            "printedEnglish": "Ps 85:8-14",
+            "pairedHebrewChapter": 85
+          }
+        ],
+        "Psalm 47:2–9": [
+          {
+            "date": "2027-01-23",
+            "sourcePage": 18,
+            "printedEnglish": "Ps 47:2-9",
+            "pairedHebrewChapter": 47
+          },
+          {
+            "date": "2027-05-09",
+            "sourcePage": 34,
+            "printedEnglish": "Ps 47:2-9",
+            "pairedHebrewChapter": 47
+          }
+        ],
+        "Psalm 117": [
+          {
+            "date": "2027-01-25",
+            "sourcePage": 19,
+            "printedEnglish": "Ps 117",
+            "pairedHebrewChapter": 117
+          },
+          {
+            "date": "2027-04-16",
+            "sourcePage": 30,
+            "printedEnglish": "Ps 117",
+            "pairedHebrewChapter": 117
+          },
+          {
+            "date": "2027-07-03",
+            "sourcePage": 41,
+            "printedEnglish": "Ps 117",
+            "pairedHebrewChapter": 117
+          }
+        ],
+        "Psalm 96:1–3,7–10": [
+          {
+            "date": "2027-01-26",
+            "sourcePage": 19,
+            "printedEnglish": "Ps 96:1-3.7-10",
+            "pairedHebrewChapter": 96
+          }
+        ],
+        "Psalm 37:3–6,23–24,39–40": [
+          {
+            "date": "2027-01-29",
+            "sourcePage": 19,
+            "printedEnglish": "Ps 37:3-6.23-24.39-40",
+            "pairedHebrewChapter": 37
+          }
+        ],
+        "Psalm 95:1–2,6–9": [
+          {
+            "date": "2027-01-31",
+            "sourcePage": 20,
+            "printedEnglish": "Ps 95:1-2.6-9",
+            "pairedHebrewChapter": 95
+          },
+          {
+            "date": "2027-03-04",
+            "sourcePage": 24,
+            "printedEnglish": "Ps 95:1-2.6-9",
+            "pairedHebrewChapter": 95
+          }
+        ],
+        "Psalm 31:20–24": [
+          {
+            "date": "2027-02-01",
+            "sourcePage": 20,
+            "printedEnglish": "Ps 31:20-24",
+            "pairedHebrewChapter": 31
+          }
+        ],
+        "Psalm 24:7–10": [
+          {
+            "date": "2027-02-02",
+            "sourcePage": 20,
+            "printedEnglish": "Ps 24:7-10",
+            "pairedHebrewChapter": 24
+          }
+        ],
+        "Psalm 103:1–2,13–18": [
+          {
+            "date": "2027-02-03",
+            "sourcePage": 20,
+            "printedEnglish": "Ps 103:1-2.13-18",
+            "pairedHebrewChapter": 103
+          }
+        ],
+        "Psalm 48:2–11": [
+          {
+            "date": "2027-02-04",
+            "sourcePage": 20,
+            "printedEnglish": "Ps 48:2-11",
+            "pairedHebrewChapter": 48
+          }
+        ],
+        "Psalm 27:1–9": [
+          {
+            "date": "2027-02-05",
+            "sourcePage": 20,
+            "printedEnglish": "Ps 27:1-9",
+            "pairedHebrewChapter": 27
+          }
+        ],
+        "Psalm 23:2–6": [
+          {
+            "date": "2027-02-06",
+            "sourcePage": 20,
+            "printedEnglish": "Ps 23:2-6",
+            "pairedHebrewChapter": 23
+          },
+          {
+            "date": "2027-02-22",
+            "sourcePage": 23,
+            "printedEnglish": "Ps 23:2-6",
+            "pairedHebrewChapter": 23
+          }
+        ],
+        "Psalm 104:1–12,24,35": [
+          {
+            "date": "2027-02-08",
+            "sourcePage": 21,
+            "printedEnglish": "Ps 104:1-12.24.35",
+            "pairedHebrewChapter": 104
+          }
+        ],
+        "Psalm 51:3–6,12–17": [
+          {
+            "date": "2027-02-10",
+            "sourcePage": 21,
+            "printedEnglish": "Ps 51:3-6.12-17",
+            "pairedHebrewChapter": 51
+          }
+        ],
+        "Psalm 51:3–6,18–19": [
+          {
+            "date": "2027-02-12",
+            "sourcePage": 21,
+            "printedEnglish": "Ps 51:3-6.18-19",
+            "pairedHebrewChapter": 51
+          }
+        ],
+        "Psalm 86:1–6": [
+          {
+            "date": "2027-02-13",
+            "sourcePage": 21,
+            "printedEnglish": "Ps 86:1-6",
+            "pairedHebrewChapter": 86
+          }
+        ],
+        "Psalm 19:8–10,15": [
+          {
+            "date": "2027-02-15",
+            "sourcePage": 22,
+            "printedEnglish": "Ps 19:8-10.15",
+            "pairedHebrewChapter": 19
+          }
+        ],
+        "Psalm 34:4–7,16–19": [
+          {
+            "date": "2027-02-16",
+            "sourcePage": 22,
+            "printedEnglish": "Ps 34:4-7.16-19",
+            "pairedHebrewChapter": 34
+          }
+        ],
+        "Psalm 51:3–4,12–13,18–19": [
+          {
+            "date": "2027-02-17",
+            "sourcePage": 22,
+            "printedEnglish": "Ps 51:3-4.12-13.18-19",
+            "pairedHebrewChapter": 51
+          }
+        ],
+        "Psalm 138:1–3,7–8": [
+          {
+            "date": "2027-02-18",
+            "sourcePage": 22,
+            "printedEnglish": "Ps 138:1-3.7-8",
+            "pairedHebrewChapter": 138
+          },
+          {
+            "date": "2027-05-04",
+            "sourcePage": 33,
+            "printedEnglish": "Ps 138:1-3.7-8",
+            "pairedHebrewChapter": 138
+          }
+        ],
+        "Psalm 130:1–8": [
+          {
+            "date": "2027-02-19",
+            "sourcePage": 22,
+            "printedEnglish": "Ps 130:1-8",
+            "pairedHebrewChapter": 130
+          },
+          {
+            "date": "2027-06-06",
+            "sourcePage": 38,
+            "printedEnglish": "Ps 130:1-8",
+            "pairedHebrewChapter": 130
+          },
+          {
+            "date": "2027-10-05",
+            "sourcePage": 55,
+            "printedEnglish": "Ps 130:1-8",
+            "pairedHebrewChapter": 130
+          }
+        ],
+        "Psalm 119:1–8": [
+          {
+            "date": "2027-02-20",
+            "sourcePage": 22,
+            "printedEnglish": "Ps 119:1-8",
+            "pairedHebrewChapter": 119
+          }
+        ],
+        "Psalm 116:10,15–19": [
+          {
+            "date": "2027-02-21",
+            "sourcePage": 23,
+            "printedEnglish": "Ps 116:10.15-19",
+            "pairedHebrewChapter": 116
+          }
+        ],
+        "Psalm 50:8–9,16–17,21–23": [
+          {
+            "date": "2027-02-23",
+            "sourcePage": 23,
+            "printedEnglish": "Ps 50:8-9.16-17.21-23",
+            "pairedHebrewChapter": 50
+          }
+        ],
+        "Psalm 31:5–6,14–16": [
+          {
+            "date": "2027-02-24",
+            "sourcePage": 23,
+            "printedEnglish": "Ps 31:5-6.14-16",
+            "pairedHebrewChapter": 31
+          }
+        ],
+        "Psalm 105:16–21": [
+          {
+            "date": "2027-02-26",
+            "sourcePage": 23,
+            "printedEnglish": "Ps 105:16-21",
+            "pairedHebrewChapter": 105
+          },
+          {
+            "date": "2027-07-08",
+            "sourcePage": 42,
+            "printedEnglish": "Ps 105:16-21",
+            "pairedHebrewChapter": 105
+          }
+        ],
+        "Psalm 103:1–4,9–12": [
+          {
+            "date": "2027-02-27",
+            "sourcePage": 23,
+            "printedEnglish": "Ps 103:1-4.9-12",
+            "pairedHebrewChapter": 103
+          }
+        ],
+        "Psalm 19:8–11": [
+          {
+            "date": "2027-02-28",
+            "sourcePage": 24,
+            "printedEnglish": "Ps 19:8-11",
+            "pairedHebrewChapter": 19
+          },
+          {
+            "date": "2027-05-29",
+            "sourcePage": 36,
+            "printedEnglish": "Ps 19:8-11",
+            "pairedHebrewChapter": 19
+          },
+          {
+            "date": "2027-07-23",
+            "sourcePage": 44,
+            "printedEnglish": "Ps 19:8-11",
+            "pairedHebrewChapter": 19
+          },
+          {
+            "date": "2027-09-30",
+            "sourcePage": 54,
+            "printedEnglish": "Ps 19:8-11",
+            "pairedHebrewChapter": 19
+          }
+        ],
+        "Psalm 42:2–3; 43:3–4": [
+          {
+            "date": "2027-03-01",
+            "sourcePage": 24,
+            "printedEnglish": "Ps 42:2-3; 43:3-4",
+            "pairedHebrewChapter": 42
+          },
+          {
+            "date": "2027-04-19",
+            "sourcePage": 31,
+            "printedEnglish": "Ps 42:2-3; 43:3-4",
+            "pairedHebrewChapter": 42
+          }
+        ],
+        "Psalm 147:12–16,19–20": [
+          {
+            "date": "2027-03-03",
+            "sourcePage": 24,
+            "printedEnglish": "Ps 147:12-16.19-20",
+            "pairedHebrewChapter": 147
+          }
+        ],
+        "Psalm 81:6–11,14,17": [
+          {
+            "date": "2027-03-05",
+            "sourcePage": 24,
+            "printedEnglish": "Ps 81:6-11.14.17",
+            "pairedHebrewChapter": 81
+          }
+        ],
+        "Psalm 51:3–4,18–21": [
+          {
+            "date": "2027-03-06",
+            "sourcePage": 24,
+            "printedEnglish": "Ps 51:3-4.18-21",
+            "pairedHebrewChapter": 51
+          }
+        ],
+        "Psalm 137:1–6": [
+          {
+            "date": "2027-03-07",
+            "sourcePage": 25,
+            "printedEnglish": "Ps 137:1-6",
+            "pairedHebrewChapter": 137
+          }
+        ],
+        "Psalm 30:2–6,11–13": [
+          {
+            "date": "2027-03-08",
+            "sourcePage": 25,
+            "printedEnglish": "Ps 30:2-6.11-13",
+            "pairedHebrewChapter": 30
+          },
+          {
+            "date": "2027-06-27",
+            "sourcePage": 41,
+            "printedEnglish": "Ps 30:2-6.11-13",
+            "pairedHebrewChapter": 30
+          }
+        ],
+        "Psalm 145:8–9,13–14,17–18": [
+          {
+            "date": "2027-03-10",
+            "sourcePage": 25,
+            "printedEnglish": "Ps 145:8-9.13-14.17-18",
+            "pairedHebrewChapter": 145
+          }
+        ],
+        "Psalm 106:19–23": [
+          {
+            "date": "2027-03-11",
+            "sourcePage": 25,
+            "printedEnglish": "Ps 106:19-23",
+            "pairedHebrewChapter": 106
+          }
+        ],
+        "Psalm 34:17–23": [
+          {
+            "date": "2027-03-12",
+            "sourcePage": 25,
+            "printedEnglish": "Ps 34:17-23",
+            "pairedHebrewChapter": 34
+          }
+        ],
+        "Psalm 7:2–3,9–12": [
+          {
+            "date": "2027-03-13",
+            "sourcePage": 25,
+            "printedEnglish": "Ps 7:2-3.9-12",
+            "pairedHebrewChapter": 7
+          }
+        ],
+        "Psalm 51:3–4,12–15": [
+          {
+            "date": "2027-03-14",
+            "sourcePage": 26,
+            "printedEnglish": "Ps 51:3-4.12-15",
+            "pairedHebrewChapter": 51
+          }
+        ],
+        "Psalm 102:2–3,16–21": [
+          {
+            "date": "2027-03-16",
+            "sourcePage": 26,
+            "printedEnglish": "Ps 102:2-3.16-21",
+            "pairedHebrewChapter": 102
+          }
+        ],
+        "Psalm 105:4–9": [
+          {
+            "date": "2027-03-18",
+            "sourcePage": 26,
+            "printedEnglish": "Ps 105:4-9",
+            "pairedHebrewChapter": 105
+          }
+        ],
+        "Psalm 22:8–9,17–20,23–24": [
+          {
+            "date": "2027-03-21",
+            "sourcePage": 27,
+            "printedEnglish": "Ps 22:8-9.17-20.23-24",
+            "pairedHebrewChapter": 22
+          }
+        ],
+        "Psalm 27:1–3,13–14": [
+          {
+            "date": "2027-03-22",
+            "sourcePage": 27,
+            "printedEnglish": "Ps 27:1-3.13-14",
+            "pairedHebrewChapter": 27
+          }
+        ],
+        "Psalm 71:1–6,15,17": [
+          {
+            "date": "2027-03-23",
+            "sourcePage": 27,
+            "printedEnglish": "Ps 71:1-6.15.17",
+            "pairedHebrewChapter": 71
+          }
+        ],
+        "Psalm 69:8–10,21–22,31,33–34": [
+          {
+            "date": "2027-03-24",
+            "sourcePage": 27,
+            "printedEnglish": "Ps 69:8-10.21-22.31.33-34",
+            "pairedHebrewChapter": 69
+          }
+        ],
+        "Psalm 89:21–22,25,27": [
+          {
+            "date": "2027-03-25",
+            "sourcePage": 27,
+            "printedEnglish": "Ps 89:21-22.25.27",
+            "pairedHebrewChapter": 89
+          }
+        ],
+        "Psalm 116:12–18": [
+          {
+            "date": "2027-03-25",
+            "sourcePage": 27,
+            "printedEnglish": "Ps 116:12-18",
+            "pairedHebrewChapter": 116
+          },
+          {
+            "date": "2027-05-30",
+            "sourcePage": 37,
+            "printedEnglish": "Ps 116:12-18",
+            "pairedHebrewChapter": 116
+          },
+          {
+            "date": "2027-07-16",
+            "sourcePage": 43,
+            "printedEnglish": "Ps 116:12-18",
+            "pairedHebrewChapter": 116
+          }
+        ],
+        "Psalm 31:2,6,12–17,25": [
+          {
+            "date": "2027-03-26",
+            "sourcePage": 27,
+            "printedEnglish": "Ps 31:2.6.12-17.25",
+            "pairedHebrewChapter": 31
+          }
+        ],
+        "Psalm 118:1–2,16–17,22–23": [
+          {
+            "date": "2027-03-27",
+            "sourcePage": 27,
+            "printedEnglish": "Ps 118:1-2.16-17.22-23",
+            "pairedHebrewChapter": 118
+          },
+          {
+            "date": "2027-03-28",
+            "sourcePage": 28,
+            "printedEnglish": "Ps 118:1-2.16-17.22-23",
+            "pairedHebrewChapter": 118
+          },
+          {
+            "date": "2027-03-28",
+            "sourcePage": 28,
+            "printedEnglish": "Ps 118:1-2.16-17.22-23",
+            "pairedHebrewChapter": 118
+          }
+        ],
+        "Psalm 16:1–2,5,7–11": [
+          {
+            "date": "2027-03-29",
+            "sourcePage": 28,
+            "printedEnglish": "Ps 16:1-2.5.7-11",
+            "pairedHebrewChapter": 16
+          }
+        ],
+        "Psalm 33:4–5,18–22": [
+          {
+            "date": "2027-03-30",
+            "sourcePage": 28,
+            "printedEnglish": "Ps 33:4-5.18-22",
+            "pairedHebrewChapter": 33
+          },
+          {
+            "date": "2027-10-17",
+            "sourcePage": 57,
+            "printedEnglish": "Ps 33:4-5.18-22",
+            "pairedHebrewChapter": 33
+          }
+        ],
+        "Psalm 118:1–4,22–27": [
+          {
+            "date": "2027-04-02",
+            "sourcePage": 28,
+            "printedEnglish": "Ps 118:1-4.22-27",
+            "pairedHebrewChapter": 118
+          }
+        ],
+        "Psalm 118:1,14–21": [
+          {
+            "date": "2027-04-03",
+            "sourcePage": 28,
+            "printedEnglish": "Ps 118:1.14-21",
+            "pairedHebrewChapter": 118
+          }
+        ],
+        "Psalm 118:2–4,16–18,22–24": [
+          {
+            "date": "2027-04-04",
+            "sourcePage": 29,
+            "printedEnglish": "Ps 118:2-4.16-18.22-24",
+            "pairedHebrewChapter": 118
+          }
+        ],
+        "Psalm 40:7–11": [
+          {
+            "date": "2027-04-05",
+            "sourcePage": 29,
+            "printedEnglish": "Ps 40:7-11",
+            "pairedHebrewChapter": 40
+          }
+        ],
+        "Psalm 93:1–5": [
+          {
+            "date": "2027-04-06",
+            "sourcePage": 29,
+            "printedEnglish": "Ps 93:1-5",
+            "pairedHebrewChapter": 93
+          }
+        ],
+        "Psalm 34:2–9": [
+          {
+            "date": "2027-04-07",
+            "sourcePage": 29,
+            "printedEnglish": "Ps 34:2-9",
+            "pairedHebrewChapter": 34
+          },
+          {
+            "date": "2027-06-07",
+            "sourcePage": 38,
+            "printedEnglish": "Ps 34:2-9",
+            "pairedHebrewChapter": 34
+          },
+          {
+            "date": "2027-06-29",
+            "sourcePage": 41,
+            "printedEnglish": "Ps 34:2-9",
+            "pairedHebrewChapter": 34
+          },
+          {
+            "date": "2027-08-08",
+            "sourcePage": 47,
+            "printedEnglish": "Ps 34:2-9",
+            "pairedHebrewChapter": 34
+          }
+        ],
+        "Psalm 34:2,9,17–20": [
+          {
+            "date": "2027-04-08",
+            "sourcePage": 29,
+            "printedEnglish": "Ps 34:2.9.17-20",
+            "pairedHebrewChapter": 34
+          }
+        ],
+        "Psalm 33:1–5,18–19": [
+          {
+            "date": "2027-04-10",
+            "sourcePage": 29,
+            "printedEnglish": "Ps 33:1-5.18-19",
+            "pairedHebrewChapter": 33
+          }
+        ],
+        "Psalm 4:2,4,9": [
+          {
+            "date": "2027-04-11",
+            "sourcePage": 30,
+            "printedEnglish": "Ps 4:2.4.9",
+            "pairedHebrewChapter": 4
+          }
+        ],
+        "Psalm 119:23–30": [
+          {
+            "date": "2027-04-12",
+            "sourcePage": 30,
+            "printedEnglish": "Ps 119:23-30",
+            "pairedHebrewChapter": 119
+          }
+        ],
+        "Psalm 31:3–8,17,21": [
+          {
+            "date": "2027-04-13",
+            "sourcePage": 30,
+            "printedEnglish": "Ps 31:3-8.17.21",
+            "pairedHebrewChapter": 31
+          }
+        ],
+        "Psalm 66:1–7": [
+          {
+            "date": "2027-04-14",
+            "sourcePage": 30,
+            "printedEnglish": "Ps 66:1-7",
+            "pairedHebrewChapter": 66
+          }
+        ],
+        "Psalm 66:8–9,16–17,19–20": [
+          {
+            "date": "2027-04-15",
+            "sourcePage": 30,
+            "printedEnglish": "Ps 66:8-9.16-17.19-20",
+            "pairedHebrewChapter": 66
+          }
+        ],
+        "Psalm 116:12–17": [
+          {
+            "date": "2027-04-17",
+            "sourcePage": 30,
+            "printedEnglish": "Ps 116:12-17",
+            "pairedHebrewChapter": 116
+          }
+        ],
+        "Psalm 118:1,8–9,21–23,26,28": [
+          {
+            "date": "2027-04-18",
+            "sourcePage": 31,
+            "printedEnglish": "Ps 118:1.8-9.21-23.26.28",
+            "pairedHebrewChapter": 118
+          }
+        ],
+        "Psalm 87:1–7": [
+          {
+            "date": "2027-04-20",
+            "sourcePage": 31,
+            "printedEnglish": "Ps 87:1-7",
+            "pairedHebrewChapter": 87
+          },
+          {
+            "date": "2027-05-17",
+            "sourcePage": 35,
+            "printedEnglish": "Ps 87:1-7",
+            "pairedHebrewChapter": 87
+          },
+          {
+            "date": "2027-09-28",
+            "sourcePage": 54,
+            "printedEnglish": "Ps 87:1-7",
+            "pairedHebrewChapter": 87
+          }
+        ],
+        "Psalm 89:2–3,21–22,25,27": [
+          {
+            "date": "2027-04-22",
+            "sourcePage": 31,
+            "printedEnglish": "Ps 89:2-3.21-22.25.27",
+            "pairedHebrewChapter": 89
+          }
+        ],
+        "Psalm 2:6–12": [
+          {
+            "date": "2027-04-23",
+            "sourcePage": 31,
+            "printedEnglish": "Ps 2:6-12",
+            "pairedHebrewChapter": 2
+          }
+        ],
+        "Psalm 115:1–4,15–16": [
+          {
+            "date": "2027-04-26",
+            "sourcePage": 32,
+            "printedEnglish": "Ps 115:1-4.15-16",
+            "pairedHebrewChapter": 115
+          }
+        ],
+        "Psalm 145:10–13,21": [
+          {
+            "date": "2027-04-27",
+            "sourcePage": 32,
+            "printedEnglish": "Ps 145:10-13.21",
+            "pairedHebrewChapter": 145
+          }
+        ],
+        "Psalm 96:1–3,10": [
+          {
+            "date": "2027-04-29",
+            "sourcePage": 32,
+            "printedEnglish": "Ps 96:1-3.10",
+            "pairedHebrewChapter": 96
+          }
+        ],
+        "Psalm 57:8–12": [
+          {
+            "date": "2027-04-30",
+            "sourcePage": 32,
+            "printedEnglish": "Ps 57:8-12",
+            "pairedHebrewChapter": 57
+          }
+        ],
+        "Psalm 119:1–2,4–5,15–16": [
+          {
+            "date": "2027-05-03",
+            "sourcePage": 33,
+            "printedEnglish": "Ps 119:1-2, 4-5, 15-16",
+            "pairedHebrewChapter": 119
+          }
+        ],
+        "Psalm 148:1–2,11–14": [
+          {
+            "date": "2027-05-05",
+            "sourcePage": 33,
+            "printedEnglish": "Ps 148:1-2.11-14",
+            "pairedHebrewChapter": 148
+          }
+        ],
+        "Psalm 47:2–7": [
+          {
+            "date": "2027-05-07",
+            "sourcePage": 33,
+            "printedEnglish": "Ps 47:2-7",
+            "pairedHebrewChapter": 47
+          }
+        ],
+        "Psalm 47:2–3,8–10": [
+          {
+            "date": "2027-05-08",
+            "sourcePage": 33,
+            "printedEnglish": "Ps 47:2-3.8-10",
+            "pairedHebrewChapter": 47
+          }
+        ],
+        "Psalm 68:2–7": [
+          {
+            "date": "2027-05-10",
+            "sourcePage": 34,
+            "printedEnglish": "Ps 68:2-7",
+            "pairedHebrewChapter": 68
+          }
+        ],
+        "Psalm 68:10–11,20–21": [
+          {
+            "date": "2027-05-11",
+            "sourcePage": 34,
+            "printedEnglish": "Ps 68:10-11.20-21",
+            "pairedHebrewChapter": 68
+          }
+        ],
+        "Psalm 68:29–36": [
+          {
+            "date": "2027-05-12",
+            "sourcePage": 34,
+            "printedEnglish": "Ps 68:29-36",
+            "pairedHebrewChapter": 68
+          }
+        ],
+        "Psalm 16:1–11": [
+          {
+            "date": "2027-05-13",
+            "sourcePage": 34,
+            "printedEnglish": "Ps 16:1-11",
+            "pairedHebrewChapter": 16
+          },
+          {
+            "date": "2027-08-14",
+            "sourcePage": 47,
+            "printedEnglish": "Ps 16:1-11",
+            "pairedHebrewChapter": 16
+          },
+          {
+            "date": "2027-09-10",
+            "sourcePage": 51,
+            "printedEnglish": "Ps 16:1-11",
+            "pairedHebrewChapter": 16
+          }
+        ],
+        "Psalm 113:1–8": [
+          {
+            "date": "2027-05-14",
+            "sourcePage": 34,
+            "printedEnglish": "Ps 113:1-8",
+            "pairedHebrewChapter": 113
+          }
+        ],
+        "Psalm 11:4–7": [
+          {
+            "date": "2027-05-15",
+            "sourcePage": 34,
+            "printedEnglish": "Ps 11:4-7",
+            "pairedHebrewChapter": 11
+          }
+        ],
+        "Psalm 104:1,24,29–34": [
+          {
+            "date": "2027-05-16",
+            "sourcePage": 35,
+            "printedEnglish": "Ps 104:1.24.29-34",
+            "pairedHebrewChapter": 104
+          }
+        ],
+        "Psalm 37:3–4,18–19,27–28,39–40": [
+          {
+            "date": "2027-05-18",
+            "sourcePage": 35,
+            "printedEnglish": "Ps 37:3-4.18-19.27-28.39-40",
+            "pairedHebrewChapter": 37
+          }
+        ],
+        "Psalm 119:165–175": [
+          {
+            "date": "2027-05-19",
+            "sourcePage": 35,
+            "printedEnglish": "Ps 119:165-175",
+            "pairedHebrewChapter": 119
+          }
+        ],
+        "Psalm 119:12–18,27,34–35": [
+          {
+            "date": "2027-05-21",
+            "sourcePage": 35,
+            "printedEnglish": "Ps 119:12-18.27.34-35",
+            "pairedHebrewChapter": 119
+          }
+        ],
+        "Psalm 103:1–6": [
+          {
+            "date": "2027-05-22",
+            "sourcePage": 35,
+            "printedEnglish": "Ps 103:1-6",
+            "pairedHebrewChapter": 103
+          }
+        ],
+        "Psalm 33:4–0,18–22": [
+          {
+            "date": "2027-05-23",
+            "sourcePage": 36,
+            "printedEnglish": "Ps 33:4-0.18-22",
+            "pairedHebrewChapter": 33
+          }
+        ],
+        "Psalm 32:1–7": [
+          {
+            "date": "2027-05-24",
+            "sourcePage": 36,
+            "printedEnglish": "Ps 32:1-7",
+            "pairedHebrewChapter": 32
+          }
+        ],
+        "Psalm 50:5–8,14,23": [
+          {
+            "date": "2027-05-25",
+            "sourcePage": 36,
+            "printedEnglish": "Ps 50:5-8.14.23",
+            "pairedHebrewChapter": 50
+          }
+        ],
+        "Psalm 79:5–13": [
+          {
+            "date": "2027-05-26",
+            "sourcePage": 36,
+            "printedEnglish": "Ps 79:5-13",
+            "pairedHebrewChapter": 79
+          }
+        ],
+        "Psalm 33:2–9": [
+          {
+            "date": "2027-05-27",
+            "sourcePage": 36,
+            "printedEnglish": "Ps 33:2-9",
+            "pairedHebrewChapter": 33
+          }
+        ],
+        "Psalm 112:1–2,7–9": [
+          {
+            "date": "2027-06-01",
+            "sourcePage": 37,
+            "printedEnglish": "Ps 112:1-2.7-9",
+            "pairedHebrewChapter": 112
+          }
+        ],
+        "Psalm 25:2–9": [
+          {
+            "date": "2027-06-02",
+            "sourcePage": 37,
+            "printedEnglish": "Ps 25:2-9",
+            "pairedHebrewChapter": 25
+          }
+        ],
+        "Psalm 119:129–135": [
+          {
+            "date": "2027-06-08",
+            "sourcePage": 38,
+            "printedEnglish": "Ps 119:129-135",
+            "pairedHebrewChapter": 119
+          }
+        ],
+        "Psalm 99:5–9": [
+          {
+            "date": "2027-06-09",
+            "sourcePage": 38,
+            "printedEnglish": "Ps 99:5-9",
+            "pairedHebrewChapter": 99
+          },
+          {
+            "date": "2027-07-28",
+            "sourcePage": 45,
+            "printedEnglish": "Ps 99:5-9",
+            "pairedHebrewChapter": 99
+          }
+        ],
+        "Psalm 103:1–12": [
+          {
+            "date": "2027-06-12",
+            "sourcePage": 38,
+            "printedEnglish": "Ps 103:1-12",
+            "pairedHebrewChapter": 103
+          }
+        ],
+        "Psalm 92:2–3,13–16": [
+          {
+            "date": "2027-06-13",
+            "sourcePage": 39,
+            "printedEnglish": "Ps 92:2-3.13-16",
+            "pairedHebrewChapter": 92
+          }
+        ],
+        "Psalm 146:1–9": [
+          {
+            "date": "2027-06-15",
+            "sourcePage": 39,
+            "printedEnglish": "Ps 146:1-9",
+            "pairedHebrewChapter": 146
+          }
+        ],
+        "Psalm 111:1–8": [
+          {
+            "date": "2027-06-17",
+            "sourcePage": 39,
+            "printedEnglish": "Ps 111:1-8",
+            "pairedHebrewChapter": 111
+          }
+        ],
+        "Psalm 34:2–7": [
+          {
+            "date": "2027-06-18",
+            "sourcePage": 39,
+            "printedEnglish": "Ps 34:2-7",
+            "pairedHebrewChapter": 34
+          }
+        ],
+        "Psalm 34:8–13": [
+          {
+            "date": "2027-06-19",
+            "sourcePage": 39,
+            "printedEnglish": "Ps 34:8-13",
+            "pairedHebrewChapter": 34
+          }
+        ],
+        "Psalm 107:23–31,16–19": [
+          {
+            "date": "2027-06-20",
+            "sourcePage": 40,
+            "printedEnglish": "Ps 107:23-31.16-19",
+            "pairedHebrewChapter": 107
+          }
+        ],
+        "Psalm 33:12–13,18–22": [
+          {
+            "date": "2027-06-21",
+            "sourcePage": 40,
+            "printedEnglish": "Ps 33:12-13.18-22",
+            "pairedHebrewChapter": 33
+          }
+        ],
+        "Psalm 103:1–4,8–11": [
+          {
+            "date": "2027-06-28",
+            "sourcePage": 41,
+            "printedEnglish": "Ps 103:1-4.8-11",
+            "pairedHebrewChapter": 103
+          }
+        ],
+        "Psalm 34:7–13": [
+          {
+            "date": "2027-06-30",
+            "sourcePage": 41,
+            "printedEnglish": "Ps 34:7-13",
+            "pairedHebrewChapter": 34
+          }
+        ],
+        "Psalm 116:1–9": [
+          {
+            "date": "2027-07-01",
+            "sourcePage": 41,
+            "printedEnglish": "Ps 116:1-9",
+            "pairedHebrewChapter": 116
+          },
+          {
+            "date": "2027-09-12",
+            "sourcePage": 52,
+            "printedEnglish": "Ps 116:1-9",
+            "pairedHebrewChapter": 116
+          }
+        ],
+        "Psalm 106:1–5": [
+          {
+            "date": "2027-07-02",
+            "sourcePage": 41,
+            "printedEnglish": "Ps 106:1-5",
+            "pairedHebrewChapter": 106
+          }
+        ],
+        "Psalm 123:1–4": [
+          {
+            "date": "2027-07-04",
+            "sourcePage": 42,
+            "printedEnglish": "Ps 123:1-4",
+            "pairedHebrewChapter": 123
+          }
+        ],
+        "Psalm 91:1–4,14–15": [
+          {
+            "date": "2027-07-05",
+            "sourcePage": 42,
+            "printedEnglish": "Ps 91:1-4.14-15",
+            "pairedHebrewChapter": 91
+          }
+        ],
+        "Psalm 17:1–8,15": [
+          {
+            "date": "2027-07-06",
+            "sourcePage": 42,
+            "printedEnglish": "Ps 17:1-8.15",
+            "pairedHebrewChapter": 17
+          }
+        ],
+        "Psalm 33:2–3,10–11,18–19": [
+          {
+            "date": "2027-07-07",
+            "sourcePage": 42,
+            "printedEnglish": "Ps 33:2-3.10-11.18-19",
+            "pairedHebrewChapter": 33
+          }
+        ],
+        "Psalm 37:3–4,18–19,27–29,39–40": [
+          {
+            "date": "2027-07-09",
+            "sourcePage": 42,
+            "printedEnglish": "Ps 37:3-4.18-19.27-29.39-40",
+            "pairedHebrewChapter": 37
+          }
+        ],
+        "Psalm 105:1–7": [
+          {
+            "date": "2027-07-10",
+            "sourcePage": 42,
+            "printedEnglish": "Ps 105:1-7",
+            "pairedHebrewChapter": 105
+          }
+        ],
+        "Psalm 124:1–7": [
+          {
+            "date": "2027-07-12",
+            "sourcePage": 43,
+            "printedEnglish": "Ps 124:1-7",
+            "pairedHebrewChapter": 124
+          }
+        ],
+        "Psalm 69:3,14,30–34": [
+          {
+            "date": "2027-07-13",
+            "sourcePage": 43,
+            "printedEnglish": "Ps 69:3.14.30-34",
+            "pairedHebrewChapter": 69
+          }
+        ],
+        "Psalm 103:1–7": [
+          {
+            "date": "2027-07-14",
+            "sourcePage": 43,
+            "printedEnglish": "Ps 103:1-7",
+            "pairedHebrewChapter": 103
+          }
+        ],
+        "Psalm 16:1–15": [
+          {
+            "date": "2027-07-15",
+            "sourcePage": 43,
+            "printedEnglish": "Ps 16:1-15",
+            "pairedHebrewChapter": 16
+          }
+        ],
+        "Psalm 136:1,10–15,23–24": [
+          {
+            "date": "2027-07-17",
+            "sourcePage": 43,
+            "printedEnglish": "Ps 136:1.10-15.23-24",
+            "pairedHebrewChapter": 136
+          }
+        ],
+        "Psalm 78:18–28": [
+          {
+            "date": "2027-07-21",
+            "sourcePage": 44,
+            "printedEnglish": "Ps 78:18-28",
+            "pairedHebrewChapter": 78
+          }
+        ],
+        "Psalm 63:2–9": [
+          {
+            "date": "2027-07-22",
+            "sourcePage": 44,
+            "printedEnglish": "Ps 63:2-9",
+            "pairedHebrewChapter": 63
+          }
+        ],
+        "Psalm 50:1–6,14–15": [
+          {
+            "date": "2027-07-24",
+            "sourcePage": 44,
+            "printedEnglish": "Ps 50:1-6.14-15",
+            "pairedHebrewChapter": 50
+          }
+        ],
+        "Psalm 145:10–18": [
+          {
+            "date": "2027-07-25",
+            "sourcePage": 45,
+            "printedEnglish": "Ps 145:10-18",
+            "pairedHebrewChapter": 145
+          }
+        ],
+        "Psalm 106:6–13": [
+          {
+            "date": "2027-07-26",
+            "sourcePage": 45,
+            "printedEnglish": "Ps 106:6-13",
+            "pairedHebrewChapter": 106
+          }
+        ],
+        "Psalm 103:19–20,21–22,23": [
+          {
+            "date": "2027-07-27",
+            "sourcePage": 45,
+            "printedEnglish": "Ps 103:19-20, 21-22, 23",
+            "pairedHebrewChapter": 103
+          }
+        ],
+        "Psalm 15:1–2,3–4,5": [
+          {
+            "date": "2027-07-29",
+            "sourcePage": 45,
+            "printedEnglish": "Ps 15:1-2, 3-4, 5",
+            "pairedHebrewChapter": 15
+          }
+        ],
+        "Psalm 81:3–11": [
+          {
+            "date": "2027-07-30",
+            "sourcePage": 45,
+            "printedEnglish": "Ps 81:3-11",
+            "pairedHebrewChapter": 81
+          }
+        ],
+        "Psalm 78:3–4,23–25,54": [
+          {
+            "date": "2027-08-01",
+            "sourcePage": 46,
+            "printedEnglish": "Ps 78:3-4.23-25.54",
+            "pairedHebrewChapter": 78
+          }
+        ],
+        "Psalm 81:12–17": [
+          {
+            "date": "2027-08-02",
+            "sourcePage": 46,
+            "printedEnglish": "Ps 81:12-17",
+            "pairedHebrewChapter": 81
+          }
+        ],
+        "Psalm 51:3–7,12–13": [
+          {
+            "date": "2027-08-03",
+            "sourcePage": 46,
+            "printedEnglish": "Ps 51:3-7.12-13",
+            "pairedHebrewChapter": 51
+          }
+        ],
+        "Psalm 106:6–7,13–14,21–23": [
+          {
+            "date": "2027-08-04",
+            "sourcePage": 46,
+            "printedEnglish": "Ps 106:6-7.13-14.21-23",
+            "pairedHebrewChapter": 106
+          }
+        ],
+        "Psalm 95:1–9": [
+          {
+            "date": "2027-08-05",
+            "sourcePage": 46,
+            "printedEnglish": "Ps 95:1-9",
+            "pairedHebrewChapter": 95
+          }
+        ],
+        "Psalm 97:1–2,5–6,9": [
+          {
+            "date": "2027-08-06",
+            "sourcePage": 46,
+            "printedEnglish": "Ps 97:1-2.5-6.9",
+            "pairedHebrewChapter": 97
+          }
+        ],
+        "Psalm 18:2–7,17–18,29,50": [
+          {
+            "date": "2027-08-09",
+            "sourcePage": 47,
+            "printedEnglish": "Ps 18:2-7.17-18.29.50",
+            "pairedHebrewChapter": 18
+          }
+        ],
+        "Psalm 66:1–8,16–17": [
+          {
+            "date": "2027-08-11",
+            "sourcePage": 47,
+            "printedEnglish": "Ps 66:1-8.16-17",
+            "pairedHebrewChapter": 66
+          }
+        ],
+        "Psalm 114:1–6": [
+          {
+            "date": "2027-08-12",
+            "sourcePage": 47,
+            "printedEnglish": "Ps 114:1-6",
+            "pairedHebrewChapter": 114
+          }
+        ],
+        "Psalm 136:1–3,16–24": [
+          {
+            "date": "2027-08-13",
+            "sourcePage": 47,
+            "printedEnglish": "Ps 136:1-3.16-24",
+            "pairedHebrewChapter": 136
+          }
+        ],
+        "Psalm 45:10–16": [
+          {
+            "date": "2027-08-15",
+            "sourcePage": 48,
+            "printedEnglish": "Ps 45:10-16",
+            "pairedHebrewChapter": 45
+          }
+        ],
+        "Psalm 106:34–44": [
+          {
+            "date": "2027-08-16",
+            "sourcePage": 48,
+            "printedEnglish": "Ps 106:34-44",
+            "pairedHebrewChapter": 106
+          }
+        ],
+        "Psalm 21:2–7": [
+          {
+            "date": "2027-08-18",
+            "sourcePage": 48,
+            "printedEnglish": "Ps 21:2-7",
+            "pairedHebrewChapter": 21
+          }
+        ],
+        "Psalm 40:5–10": [
+          {
+            "date": "2027-08-19",
+            "sourcePage": 48,
+            "printedEnglish": "Ps 40:5-10",
+            "pairedHebrewChapter": 40
+          }
+        ],
+        "Psalm 146:5–10": [
+          {
+            "date": "2027-08-20",
+            "sourcePage": 48,
+            "printedEnglish": "Ps 146:5-10",
+            "pairedHebrewChapter": 146
+          }
+        ],
+        "Psalm 128:1–6": [
+          {
+            "date": "2027-08-21",
+            "sourcePage": 48,
+            "printedEnglish": "Ps 128:1-6",
+            "pairedHebrewChapter": 128
+          },
+          {
+            "date": "2027-10-03",
+            "sourcePage": 55,
+            "printedEnglish": "Ps 128:1-6",
+            "pairedHebrewChapter": 128
+          }
+        ],
+        "Psalm 34:2–3,16–23": [
+          {
+            "date": "2027-08-22",
+            "sourcePage": 49,
+            "printedEnglish": "Ps 34:2-3.16-23",
+            "pairedHebrewChapter": 34
+          }
+        ],
+        "Psalm 145:10–11,12–13,17–18": [
+          {
+            "date": "2027-08-24",
+            "sourcePage": 49,
+            "printedEnglish": "Ps 145:10-11, 12-13, 17-18",
+            "pairedHebrewChapter": 145
+          },
+          {
+            "date": "2027-10-18",
+            "sourcePage": 57,
+            "printedEnglish": "Ps 145:10-11,12-13, 17-18",
+            "pairedHebrewChapter": 145
+          }
+        ],
+        "Psalm 139:7–12": [
+          {
+            "date": "2027-08-25",
+            "sourcePage": 49,
+            "printedEnglish": "Ps 139:7-12",
+            "pairedHebrewChapter": 139
+          }
+        ],
+        "Psalm 90:3–4,12–17": [
+          {
+            "date": "2027-08-26",
+            "sourcePage": 49,
+            "printedEnglish": "Ps 90:3-4.12-17",
+            "pairedHebrewChapter": 90
+          }
+        ],
+        "Psalm 97:1–6,10–12": [
+          {
+            "date": "2027-08-27",
+            "sourcePage": 49,
+            "printedEnglish": "Ps 97:1-6.10-12",
+            "pairedHebrewChapter": 97
+          }
+        ],
+        "Psalm 98:1,7–9": [
+          {
+            "date": "2027-08-28",
+            "sourcePage": 49,
+            "printedEnglish": "Ps 98:1.7-9",
+            "pairedHebrewChapter": 98
+          }
+        ],
+        "Psalm 96:1–5,11–13": [
+          {
+            "date": "2027-08-30",
+            "sourcePage": 50,
+            "printedEnglish": "Ps 96:1-5.11-13",
+            "pairedHebrewChapter": 96
+          }
+        ],
+        "Psalm 52:10–11": [
+          {
+            "date": "2027-09-01",
+            "sourcePage": 50,
+            "printedEnglish": "Ps 52:10-11",
+            "pairedHebrewChapter": 52
+          }
+        ],
+        "Psalm 98:2–6": [
+          {
+            "date": "2027-09-02",
+            "sourcePage": 50,
+            "printedEnglish": "Ps 98:2-6",
+            "pairedHebrewChapter": 98
+          }
+        ],
+        "Psalm 54:3–8": [
+          {
+            "date": "2027-09-04",
+            "sourcePage": 50,
+            "printedEnglish": "Ps 54:3-8",
+            "pairedHebrewChapter": 54
+          },
+          {
+            "date": "2027-09-19",
+            "sourcePage": 53,
+            "printedEnglish": "Ps 54:3-8",
+            "pairedHebrewChapter": 54
+          }
+        ],
+        "Psalm 146:6–10": [
+          {
+            "date": "2027-09-05",
+            "sourcePage": 51,
+            "printedEnglish": "Ps 146:6-10",
+            "pairedHebrewChapter": 146
+          }
+        ],
+        "Psalm 62:6–9": [
+          {
+            "date": "2027-09-06",
+            "sourcePage": 51,
+            "printedEnglish": "Ps 62:6-9",
+            "pairedHebrewChapter": 62
+          }
+        ],
+        "Psalm 145:1–2,8–11": [
+          {
+            "date": "2027-09-07",
+            "sourcePage": 51,
+            "printedEnglish": "Ps 145:1-2.8--11",
+            "pairedHebrewChapter": 145
+          }
+        ],
+        "Psalm 13:6": [
+          {
+            "date": "2027-09-08",
+            "sourcePage": 51,
+            "printedEnglish": "Ps 13:6",
+            "pairedHebrewChapter": 13
+          }
+        ],
+        "Psalm 28:2–9": [
+          {
+            "date": "2027-09-13",
+            "sourcePage": 52,
+            "printedEnglish": "Ps 28:2-9",
+            "pairedHebrewChapter": 28
+          }
+        ],
+        "Psalm 78:1–2,34–35,36–37,38": [
+          {
+            "date": "2027-09-14",
+            "sourcePage": 52,
+            "printedEnglish": "Ps 78:1-2, 34-35, 36-37, 38",
+            "pairedHebrewChapter": 78
+          }
+        ],
+        "Psalm 111:7–10": [
+          {
+            "date": "2027-09-16",
+            "sourcePage": 52,
+            "printedEnglish": "Ps 111:7-10",
+            "pairedHebrewChapter": 111
+          }
+        ],
+        "Psalm 49:6–10,17–20": [
+          {
+            "date": "2027-09-17",
+            "sourcePage": 52,
+            "printedEnglish": "Ps 49:6-10.17-20",
+            "pairedHebrewChapter": 49
+          }
+        ],
+        "Psalm 126:1–6": [
+          {
+            "date": "2027-09-20",
+            "sourcePage": 53,
+            "printedEnglish": "Ps 126:1-6",
+            "pairedHebrewChapter": 126
+          },
+          {
+            "date": "2027-10-24",
+            "sourcePage": 58,
+            "printedEnglish": "Ps 126:1-6",
+            "pairedHebrewChapter": 126
+          }
+        ],
+        "Psalm 43:1–4": [
+          {
+            "date": "2027-09-24",
+            "sourcePage": 53,
+            "printedEnglish": "Ps 43:1-4",
+            "pairedHebrewChapter": 43
+          }
+        ],
+        "Psalm 19:8–14": [
+          {
+            "date": "2027-09-26",
+            "sourcePage": 54,
+            "printedEnglish": "Ps 19:8-14",
+            "pairedHebrewChapter": 19
+          }
+        ],
+        "Psalm 102:16–29": [
+          {
+            "date": "2027-09-27",
+            "sourcePage": 54,
+            "printedEnglish": "Ps 102:16-29",
+            "pairedHebrewChapter": 102
+          }
+        ],
+        "Psalm 138:1–5": [
+          {
+            "date": "2027-09-29",
+            "sourcePage": 54,
+            "printedEnglish": "Ps 138:1-5",
+            "pairedHebrewChapter": 138
+          }
+        ],
+        "Psalm 79:1–9": [
+          {
+            "date": "2027-10-01",
+            "sourcePage": 54,
+            "printedEnglish": "Ps 79:1-9",
+            "pairedHebrewChapter": 79
+          }
+        ],
+        "Psalm 69:33–37": [
+          {
+            "date": "2027-10-02",
+            "sourcePage": 54,
+            "printedEnglish": "Ps 69:33-37",
+            "pairedHebrewChapter": 69
+          }
+        ],
+        "Psalm 86:3–10": [
+          {
+            "date": "2027-10-06",
+            "sourcePage": 55,
+            "printedEnglish": "Ps 86:3-10",
+            "pairedHebrewChapter": 86
+          }
+        ],
+        "Psalm 9:2–9": [
+          {
+            "date": "2027-10-08",
+            "sourcePage": 55,
+            "printedEnglish": "Ps 9:2-9",
+            "pairedHebrewChapter": 9
+          }
+        ],
+        "Psalm 90:13–17": [
+          {
+            "date": "2027-10-10",
+            "sourcePage": 56,
+            "printedEnglish": "Ps 90:13-17",
+            "pairedHebrewChapter": 90
+          }
+        ],
+        "Psalm 62:2–9": [
+          {
+            "date": "2027-10-13",
+            "sourcePage": 56,
+            "printedEnglish": "Ps 62:2-9",
+            "pairedHebrewChapter": 62
+          }
+        ],
+        "Psalm 130:1–6": [
+          {
+            "date": "2027-10-14",
+            "sourcePage": 56,
+            "printedEnglish": "Ps 130:1-6",
+            "pairedHebrewChapter": 130
+          }
+        ],
+        "Psalm 32:1–5,11": [
+          {
+            "date": "2027-10-15",
+            "sourcePage": 56,
+            "printedEnglish": "Ps 32:1-5.11",
+            "pairedHebrewChapter": 32
+          }
+        ],
+        "Psalm 105:6–9,42–43": [
+          {
+            "date": "2027-10-16",
+            "sourcePage": 56,
+            "printedEnglish": "Ps 105:6-9.42-43",
+            "pairedHebrewChapter": 105
+          }
+        ],
+        "Psalm 124:1–8": [
+          {
+            "date": "2027-10-20",
+            "sourcePage": 57,
+            "printedEnglish": "Ps 124:1-8",
+            "pairedHebrewChapter": 124
+          }
+        ],
+        "Psalm 119:66–68,76–77,93–94": [
+          {
+            "date": "2027-10-22",
+            "sourcePage": 57,
+            "printedEnglish": "Ps 119:66-68.76-77.93-94",
+            "pairedHebrewChapter": 119
+          }
+        ]
+      },
+      "unavailableAppointments": {
+        "Psalm 33:4–0,18–22": "PrimaryPDF36 genuinely prints33:4-0.18-22; the paired Hebrew column namesPsalm33. Zero/reversed range is unresolved; no inferred correction is imported.",
+        "Psalm 16:1–15": "PrimaryPDF43 genuinely prints16:1-15; the paired Hebrew column namesPsalm16, which ends11. LatinPsalm16 is a different HebrewPsalm17 and is not substituted.",
+        "Psalm 103:19–20,21–22,23": "PrimaryPDF45 genuinely prints103:19-20,21-22,23; the paired Hebrew column namesPsalm103, which ends22. LatinPsalm103 is a different HebrewPsalm104 and is not substituted."
+      }
+    },
+    "franciscan-conventual-italy": {
+      "sourceURL": "https://drive.google.com/file/d/1AwNdtFdwrtdXFSIyW2VuAvIhVGXzs0C4/view",
+      "sourcePDFSHA256": "50ac4291c7a30dd3e105c581dd44a1568c429d3ac15ee42e1327992195d07830",
+      "sourceSnapshot": "sources/franciscan-conventual-italy-2025-2026.json",
+      "sourceSnapshotSHA256": "f5cfc70d6bbb67f383e762d0a1053e5bd82870b76e073fca84ba92b4e765ecce",
+      "psalmNumbering": "vulgate-psalm-chapters",
+      "reviewedOn": "2026-10-06",
+      "boundaryReview": "The dated annual Ordo retains Roman liturgical Psalm chapter numbers: its January1 Mass hasPsalm66 with Numbers6:22-27, Galatians4:4-7 and Luke2:16-21. The official Italian Episcopal Conference publication of that same Mass identifies this asSal66(67), independently establishing the Latin/LXX chapter identity. Whole-Psalm appointments mean complete Bible chapter envelopes in this app, not an inferred responsorial refrain or cuts. Verse-specific Psalm appointments remain unavailable because their within-chapter convention is not established by this chapter review; no modern CEI wording is imported. Whole chapter families use only explicitly pinned SIL target relations, never default identity edges for unlisted source labels. Independently inspected published Martini and Brenton bodies confirm the113/114/115 and146/147 split families recorded below; in particular115 excludes all ofStandard115, and147 retains onlyStandard147:12–20.",
+      "evidence": [
+        {
+          "date": "2026-01-01",
+          "sourcePage": 27,
+          "printed": "Nm 6,22-27; Sal 66; Gal 4,4-7; Lc 2,16-21",
+          "corroboratingURL": "https://www.chiesacattolica.it/liturgia-del-giorno/?data-liturgia=20260101",
+          "corroboratingReference": "Dal Sal66(67)"
+        }
+      ]
+    },
+    "augustinian-discalced": {
+      "sourceURL": "https://oadnet.org/wp-content/uploads/2025/11/Calendario-2026-ENG-site.pdf",
+      "sourcePDFSHA256": "70b94a855cb651f148f8551f493edbdea9f495d86de923c7d419fe37a3667657",
+      "sourceSnapshot": "sources/augustinian-discalced-2026.json",
+      "sourceSnapshotSHA256": "0ae84e4c1309637d22e787208261c2954b153e4d46045b1d9a08f331119293da",
+      "psalmNumbering": "vulgate-psalm-chapters",
+      "reviewedOn": "2026-10-06",
+      "boundaryReview": "The dated annual Ordo retains Roman liturgical Psalm chapter numbers: its January1 Mass hasPsalm66 with Numbers6:22-27, Galatians4:4-7 and Luke2:16-21. The official Italian Episcopal Conference publication of that same Mass identifies this asSal66(67), independently establishing the Latin/LXX chapter identity. Whole-Psalm appointments mean complete Bible chapter envelopes in this app, not an inferred responsorial refrain or cuts. Verse-specific Psalm appointments remain unavailable because their within-chapter convention is not established by this chapter review; no modern CEI wording is imported. Whole chapter families use only explicitly pinned SIL target relations, never default identity edges for unlisted source labels. Independently inspected published Martini and Brenton bodies confirm the113/114/115 and146/147 split families recorded below; in particular115 excludes all ofStandard115, and147 retains onlyStandard147:12–20.",
+      "evidence": [
+        {
+          "date": "2026-01-01",
+          "sourcePage": 17,
+          "printed": "Mass prop., Gl., Cr., Pf. B.V.M. I; Nm 6:22-27; Ps 66; Gal 4:4-7; Lk 2:16-21.",
+          "corroboratingURL": "https://www.chiesacattolica.it/liturgia-del-giorno/?data-liturgia=20260101",
+          "corroboratingReference": "Dal Sal66(67)"
+        }
+      ]
+    }
+  },
+  "wholeChapterFamilyReviews": {
+    "113": {
+      "reviewedOn": "2026-10-07",
+      "scope": "Whole published Latin/LXX chapter bodies only; no native verse offsets are inferred.",
+      "standardReferences": [
+        [
+          "PSA",
+          114,
+          1
+        ],
+        [
+          "PSA",
+          114,
+          2
+        ],
+        [
+          "PSA",
+          114,
+          3
+        ],
+        [
+          "PSA",
+          114,
+          4
+        ],
+        [
+          "PSA",
+          114,
+          5
+        ],
+        [
+          "PSA",
+          114,
+          6
+        ],
+        [
+          "PSA",
+          114,
+          7
+        ],
+        [
+          "PSA",
+          114,
+          8
+        ],
+        [
+          "PSA",
+          115,
+          1
+        ],
+        [
+          "PSA",
+          115,
+          2
+        ],
+        [
+          "PSA",
+          115,
+          3
+        ],
+        [
+          "PSA",
+          115,
+          4
+        ],
+        [
+          "PSA",
+          115,
+          5
+        ],
+        [
+          "PSA",
+          115,
+          6
+        ],
+        [
+          "PSA",
+          115,
+          7
+        ],
+        [
+          "PSA",
+          115,
+          8
+        ],
+        [
+          "PSA",
+          115,
+          9
+        ],
+        [
+          "PSA",
+          115,
+          10
+        ],
+        [
+          "PSA",
+          115,
+          11
+        ],
+        [
+          "PSA",
+          115,
+          12
+        ],
+        [
+          "PSA",
+          115,
+          13
+        ],
+        [
+          "PSA",
+          115,
+          14
+        ],
+        [
+          "PSA",
+          115,
+          15
+        ],
+        [
+          "PSA",
+          115,
+          16
+        ],
+        [
+          "PSA",
+          115,
+          17
+        ],
+        [
+          "PSA",
+          115,
+          18
+        ]
+      ],
+      "martiniSourceURL": "https://parolaviva.art/api/v1/bibbia/sal/113.json",
+      "martiniSourceSHA256": "a873447804cf7f0007d015fad9c907f1dba9ed25b9e32d869f9901fc5845c505",
+      "brentonSourceURL": "https://ebible.org/grcbrent/PSA113.htm",
+      "boundaryReview": "The published Exodus body is followed by the complete not-unto-us body: Standard114:1–8 plus115:1–18. Martini27 rows and Brenton26 retain the same full bodies despite distinct local splits."
+    },
+    "114": {
+      "reviewedOn": "2026-10-07",
+      "scope": "Whole published Latin/LXX chapter bodies only; no native verse offsets are inferred.",
+      "standardReferences": [
+        [
+          "PSA",
+          116,
+          1
+        ],
+        [
+          "PSA",
+          116,
+          2
+        ],
+        [
+          "PSA",
+          116,
+          3
+        ],
+        [
+          "PSA",
+          116,
+          4
+        ],
+        [
+          "PSA",
+          116,
+          5
+        ],
+        [
+          "PSA",
+          116,
+          6
+        ],
+        [
+          "PSA",
+          116,
+          7
+        ],
+        [
+          "PSA",
+          116,
+          8
+        ],
+        [
+          "PSA",
+          116,
+          9
+        ]
+      ],
+      "martiniSourceURL": "https://parolaviva.art/api/v1/bibbia/sal/114.json",
+      "martiniSourceSHA256": "eaf77ad5369bae0f906789c1cc0afbc18dd4f4a1e3763a180dbcc1f19b998184",
+      "brentonSourceURL": "https://ebible.org/grcbrent/PSA114.htm",
+      "boundaryReview": "Published native114 contains the love, delivered-death and walking-before-the-Lord body: Standard116:1–9 only."
+    },
+    "115": {
+      "reviewedOn": "2026-10-07",
+      "scope": "Whole published Latin/LXX chapter bodies only; no native verse offsets are inferred.",
+      "standardReferences": [
+        [
+          "PSA",
+          116,
+          10
+        ],
+        [
+          "PSA",
+          116,
+          11
+        ],
+        [
+          "PSA",
+          116,
+          12
+        ],
+        [
+          "PSA",
+          116,
+          13
+        ],
+        [
+          "PSA",
+          116,
+          14
+        ],
+        [
+          "PSA",
+          116,
+          15
+        ],
+        [
+          "PSA",
+          116,
+          16
+        ],
+        [
+          "PSA",
+          116,
+          17
+        ],
+        [
+          "PSA",
+          116,
+          18
+        ],
+        [
+          "PSA",
+          116,
+          19
+        ]
+      ],
+      "martiniSourceURL": "https://parolaviva.art/api/v1/bibbia/sal/115.json",
+      "martiniSourceSHA256": "95b1cf65d94b04164ee4669b84b4ffc4c1c6a1703c5a5921c36f809fbdecda39",
+      "brentonSourceURL": "https://ebible.org/grcbrent/PSA115.htm",
+      "boundaryReview": "Published native115 begins belief/affliction and ends the courts/Jerusalem vow body: Standard116:10–19 only. SIL lists only source10–19; unlisted source1–9 must never add an identity Psalm115 body. Brenton4a is the earlier vows clause; no printed5 is invented."
+    },
+    "146": {
+      "reviewedOn": "2026-10-07",
+      "scope": "Whole published Latin/LXX chapter bodies only; no native verse offsets are inferred.",
+      "standardReferences": [
+        [
+          "PSA",
+          147,
+          1
+        ],
+        [
+          "PSA",
+          147,
+          2
+        ],
+        [
+          "PSA",
+          147,
+          3
+        ],
+        [
+          "PSA",
+          147,
+          4
+        ],
+        [
+          "PSA",
+          147,
+          5
+        ],
+        [
+          "PSA",
+          147,
+          6
+        ],
+        [
+          "PSA",
+          147,
+          7
+        ],
+        [
+          "PSA",
+          147,
+          8
+        ],
+        [
+          "PSA",
+          147,
+          9
+        ],
+        [
+          "PSA",
+          147,
+          10
+        ],
+        [
+          "PSA",
+          147,
+          11
+        ]
+      ],
+      "martiniSourceURL": "https://parolaviva.art/api/v1/bibbia/sal/146.json",
+      "martiniSourceSHA256": "45fd6713d14bc6b60dd44a6d4d4a038149e30703ce0e301981a8b54263b6c2cc",
+      "brentonSourceURL": "https://ebible.org/grcbrent/PSA146.htm",
+      "boundaryReview": "Published native146 begins praise and rebuilding Jerusalem and ends fear/trust in mercy: Standard147:1–11 only."
+    },
+    "147": {
+      "reviewedOn": "2026-10-07",
+      "scope": "Whole published Latin/LXX chapter bodies only; no native verse offsets are inferred.",
+      "standardReferences": [
+        [
+          "PSA",
+          147,
+          12
+        ],
+        [
+          "PSA",
+          147,
+          13
+        ],
+        [
+          "PSA",
+          147,
+          14
+        ],
+        [
+          "PSA",
+          147,
+          15
+        ],
+        [
+          "PSA",
+          147,
+          16
+        ],
+        [
+          "PSA",
+          147,
+          17
+        ],
+        [
+          "PSA",
+          147,
+          18
+        ],
+        [
+          "PSA",
+          147,
+          19
+        ],
+        [
+          "PSA",
+          147,
+          20
+        ]
+      ],
+      "martiniSourceURL": "https://parolaviva.art/api/v1/bibbia/sal/147.json",
+      "martiniSourceSHA256": "4ec95703d6efaf03f45d6c3f6662f8878b04467975e857b5a61d231063b0a982",
+      "brentonSourceURL": "https://ebible.org/grcbrent/PSA147.htm",
+      "boundaryReview": "Published native147 begins praise Jerusalem and ends statutes revealed to no other nation: Standard147:12–20 only. SIL lists only source12–20; unlisted source1–11 must not broaden into the preceding praise/rebuilding body."
+    }
+  }
+}

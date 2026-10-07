@@ -92,7 +92,7 @@ def chapter_rows(builder, edition, corpus):
     website_ot = edition["id"] == "peshitta-1905" and any(
         source["id"].startswith("peshitta-eu-2020-") for source in edition["sources"])
     for (book, chapter), original in sorted(corpus.items()):
-        source_native = website_ot and book not in builder.NT
+        source_native = (website_ot and book not in builder.NT) or book in profile.get("source_native_books", ())
         if not source_native and (book, chapter) in mapper.excluded_chapters:
             continue
         sparse = not source_native and (edition.get("coveragePolicy") == "reviewed-units" or book in gated_books)
@@ -114,6 +114,10 @@ def chapter_rows(builder, edition, corpus):
         # Peshitta's complete source chapter is still partial if any row is gated out.
         complete = (not sparse or book in gated_books and values == original)
         complete = complete and set(values) == set(range(1, max(values) + 1))
+        if website_ot:
+            from peshitta_eu_source import review
+            if f"{book}:{chapter}" in review().get("partialChapters", {}):
+                complete = False
         yield book, chapter, rows, complete
 
 

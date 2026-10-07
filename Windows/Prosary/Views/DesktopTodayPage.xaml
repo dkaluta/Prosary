@@ -258,13 +258,7 @@
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <Viewbox Grid.Column="0" Width="26" Height="26" VerticalAlignment="Top">
-                            <Canvas Width="26" Height="26">
-                                <Ellipse Canvas.Left="1" Canvas.Top="1" Width="7" Height="7" Stroke="{ThemeResource BrandPrimaryBrush}" StrokeThickness="2" />
-                                <Ellipse Canvas.Left="18" Canvas.Top="1" Width="7" Height="7" Stroke="{ThemeResource BrandPrimaryBrush}" StrokeThickness="2" />
-                                <Path Data="M7,7 L23,23 M17,17 L20,14 M20,20 L23,17 M19,7 L3,23 M9,17 L6,14 M6,20 L3,17" Stroke="{ThemeResource BrandPrimaryBrush}" StrokeThickness="2" />
-                            </Canvas>
-                        </Viewbox>
+                        <controls:PapalKeysIcon Grid.Column="0" Width="26" Height="26" VerticalAlignment="Top" Foreground="{ThemeResource BrandPrimaryBrush}" />
                         <StackPanel Grid.Column="1" Spacing="2">
                             <TextBlock Text="{x:Bind ViewModel.MonthIntentionTitle, Mode=OneWay}" IsTextSelectionEnabled="True" FontWeight="SemiBold" TextWrapping="Wrap"
                                        TextAlignment="{x:Bind ViewModel.TodayTextAlignment, Mode=OneWay}" />

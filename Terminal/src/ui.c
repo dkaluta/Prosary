@@ -34,7 +34,7 @@ typedef struct {
 } Ui;
 
 enum { VIEW_PRAYER, VIEW_SETTINGS, VIEW_HELP };
-enum { SET_INTERFACE, SET_LANGUAGE, SET_GROUP, SET_VARIANT, SET_DAY, SET_SKIP_FIFTH, SET_LITANY, SET_COLLECT, SET_KEYBOARD_ARROWS, SET_KEYBOARD_SPACE, SET_COUNT };
+enum { SET_INTERFACE, SET_LANGUAGE, SET_GROUP, SET_VARIANT, SET_DAY, SET_LITANY, SET_COLLECT, SET_KEYBOARD_ARROWS, SET_KEYBOARD_SPACE, SET_COUNT };
 static volatile sig_atomic_t ui_stopped;
 
 static void stop_ui(int sig) { (void)sig; ui_stopped = 1; }
@@ -407,7 +407,6 @@ static int settings_list(Ui *ui, int *items)
     items[count++] = SET_LANGUAGE;
     if (!strcmp(ui->state->devotion_id, "rosary")) {
         items[count++] = SET_GROUP;
-        items[count++] = SET_SKIP_FIFTH;
         items[count++] = SET_LITANY;
         items[count++] = SET_COLLECT;
     }
@@ -442,7 +441,6 @@ static void draw_settings(Ui *ui, int x, int width, int top, int height)
         case SET_DAY: label = tr(ui, U_DAY); value = engine_day_name(ui->engine, ui->state->devotion_id, (size_t)(ui->state->day < 0 ? 0 : ui->state->day), ui->state->ui_language); break;
         case SET_LITANY: label = tr(ui, U_LITANY); value = tr(ui, ui->state->include_litany_of_loreto ? U_ON : U_OFF); break;
         case SET_COLLECT: label = tr(ui, U_COLLECT); value = tr(ui, ui->state->include_litany_of_loreto || ui->state->include_rosary_collect ? U_ON : U_OFF); break;
-        case SET_SKIP_FIFTH: label = tr(ui, U_SKIP_FIFTH); value = tr(ui, ui->state->skip_fifth_decade ? U_ON : U_OFF); break;
         case SET_KEYBOARD_ARROWS: label = tr(ui, U_KEYBOARD_ARROWS); value = tr(ui, ui->state->keyboard_arrow_navigation_enabled ? U_ON : U_OFF); break;
         case SET_KEYBOARD_SPACE: label = tr(ui, U_KEYBOARD_SPACE); value = tr(ui, ui->state->keyboard_space_advance_enabled ? U_ON : U_OFF); break;
         }
@@ -488,8 +486,6 @@ static void change_setting(Ui *ui, int direction)
     } else if (item == SET_COLLECT) {
         if (ui->state->include_litany_of_loreto) return;
         ui->state->include_rosary_collect = !ui->state->include_rosary_collect;
-    } else if (item == SET_SKIP_FIFTH) {
-        ui->state->skip_fifth_decade = !ui->state->skip_fifth_decade;
     } else if (item == SET_VARIANT) {
         int total = (int)engine_variant_count(ui->engine, ui->state->devotion_id);
         ui->state->variant = (ui->state->variant + direction + total) % total;
@@ -569,6 +565,40 @@ static void prayer_move(Ui *ui, int direction)
     ui->scroll = 0;
     save_state(ui);
 }
+static void prayer_jump(Ui *ui, int direction)
+{
+    size_t i, target;
+    int current;
+    if (!ui->session || ui->state->completed || ui->state->step >= ui->session->count) return;
+    current = ui->session->steps[ui->state->step].decade_index;
+    target = ui->session->count;
+    if (direction > 0) {
+        for (i = ui->state->step + 1; i < ui->session->count; ++i) {
+            int decade = ui->session->steps[i].decade_index;
+            if ((current < 0 && decade >= 0) || (current >= 0 && decade != current)) {
+                target = i;
+                break;
+            }
+        }
+    } else {
+        for (i = 0; i < ui->state->step; ++i) {
+            int decade = ui->session->steps[i].decade_index;
+            if (decade < 0 || decade == current) continue;
+            if (i == 0 || ui->session->steps[i - 1].decade_index != decade) target = i;
+        }
+    }
+    if (target == ui->session->count) {
+        if (direction > 0 && current >= 0) {
+            /* No closing steps: finish on the last valid step using ordinary completion. */
+            ui->state->step = ui->session->count - 1;
+            prayer_move(ui, 1);
+        }
+        return;
+    }
+    ui->state->step = target;
+    ui->scroll = 0;
+    save_state(ui);
+}
 static void handle_key(Ui *ui, wint_t key)
 {
     size_t count = engine_catalog_count(ui->engine);
@@ -592,6 +622,7 @@ static void handle_key(Ui *ui, wint_t key)
         return;
     }
     if (ui->view == VIEW_PRAYER) {
+        if (key == '[' || key == ']') { prayer_jump(ui, key == ']' ? 1 : -1); return; }
         if (key == KEY_BACKSPACE || key == 127) { prayer_move(ui, -1); return; }
         if ((key == KEY_LEFT || key == KEY_RIGHT) && ui->state->keyboard_arrow_navigation_enabled) {
             int direction = key == KEY_RIGHT ? 1 : -1;

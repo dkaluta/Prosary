@@ -1,16 +1,16 @@
 {
   "schemaVersion": 1,
-  "inventorySHA256": "77f13302117aa81f08ef159de311ace2b5b78910f00f795b32d99249881d1fd9",
+  "inventorySHA256": "474674ccc8da8a949d6e2ab84572e2066e1538534ec96cfa9735aeee0a0478ff",
   "reviewFiles": {
-    "reading-text-sources.json": "4c5994ea8a0945b01a8632db6b5e07523097ea91b3ffb299ea5bd99da1e2d63c",
-    "build-reading-texts.py": "b4f2dd77ce4780a771ceaaa80e2dcdf6b3dcfa76a7633a27a6ae96f2179b5eb7",
+    "reading-text-sources.json": "ac35680d33b7a0c748187fceaf7573b16d6ee831b93a75a24667cdd7d4a12290",
+    "build-reading-texts.py": "e2992057d2252fefc42899bd8049e248d1422fb7c5551083a36d572c18812e8d",
     "build-edition-mappings.py": "00bf9ce05d2fc2df810b12c4912d25e94a541ed5c80440e2aadfd38ee53a9f06",
-    "reading_edition_mapping.py": "6023ea436c9e3c74143960b9dfaa79d096b53a480cb323c048984f462935fb18",
+    "reading_edition_mapping.py": "fb22e482dc09a6c1feb5d41550729901803db213cc8c35af0fda085e46375981",
     "reading_edition_reviews_hebrew.py": "c8d81d955a294f32edabb3581afd40f399b2d8adb8cc3f06455f8645f504dd15",
-    "reading_edition_reviews_western.py": "b671508721328f7ac7028c1b0e6dca42581d4a207815468f0d2cba8a4aa4ef00",
+    "reading_edition_reviews_western.py": "c29f45bc77deeb494168e9c06b92a3e23f211422f248feba9244e32e91b7f329",
     "reading_edition_reviews_arabic.py": "ecc50566e5b1bb9f91e0669ba0283c77a638c223806cdbcce58140826f64eca1",
     "arabic-reading-extensions.json": "ab09cfc095c3b8cde1b62b43011c05eab7b7d522169efd87b24bac97f6884015",
-    "reading_edition_reviews_peshitta.py": "d5eb26f3371db1b60f96bc7ccd1265f3967be0cedd4d345cdae76b0759260d26",
+    "reading_edition_reviews_peshitta.py": "27ed47c5e6b3f3db17cd0a39e093e3ebdde14ae93ec7348ed595235bcbafd0f5",
     "peshitta_reading_source.py": "46dc7255dcf24ac4024c9c91263506a7e37cd9250085fbae4883a4705bcb4b7d",
     "peshitta_supplied_ot.py": "15f3ece528ea0d6047859768d7a669a920d3a55a70194a9b731b987f0c358418",
     "peshitta-supplied-ot-review.json": "c4ddaef83d51f501800219d9d7ef6f8dc2779c2b4a261abd631842f74b0384fc",
@@ -18,14 +18,33 @@
     "peshitta-supplied-ot-full-collation.json": "c21fb3cb10969156e3cd9bdacb9583e125fc25122160d21240bf49f02dd53a33",
     "peshitta_ot_semantic_review.py": "cb0cba277eed527e29f6520dd68a6e64124b9c12637b26f631d30f0748f77488",
     "peshitta-supplied-ot-semantic-review.json": "d9ea3ba8fad01c3571e9ab2c7dc70b6abf50c52061a285f02d2d8aa3edde9c5f",
-    "peshitta_eu_source.py": "68d0bd8e00d6f6c4bc043ed9d5cb13be7d27e31e96a189a11e812c8f16655aa9",
-    "peshitta-eu-2020-review.json": "ca9dd585f12bc67c9d4428d80d5832f7a4baf7a02176d497dde10ba411cd7316",
-    "reading_edition_reviews_greek.py": "c56c48cab90adef79e7b8722c396b78da45601dcde787bfe5f9853003341b1f5",
+    "peshitta_eu_source.py": "5b807fc340a841488b921b3cdcb3784a59f73f41ef1e81a2b74314e33c3651a6",
+    "peshitta-eu-2020-review.json": "e8f9be66b7803a0d17fae5e23aa27e80428ec2f36096bc047ce940cda8fd14fc",
+    "reading_edition_reviews_greek.py": "0e96e5bffdc91b7cc387e152409b2a8baf078809e9062142698d57344a71a508",
     "brenton_reading_source.py": "53c356e9fdb754b52f27a15d6c6480b5da8a1cb832dfc7be7ce5d72c175388f0",
+    "greek_daily_psalms.py": "736633c93ff7f764c75f8bab127ad7ae7e90ba998d2184cb7d40a466dbe5b4ad",
+    "greek-daily-psalm-reviews.json": "14ca04eb9b21331f1ae3a6012623f7f38423223c719a7856003dd5b8f1e4f787",
+    "brenton-psalm-boundaries.json": "b99d7b4e2bd64f4c7c722a02cc913e448f25e19724cbb70725d8b53ef94e39fe",
+    "martini_daily_psalms.py": "3b3de4a6b0844f60daa2496c1de839843e9aefec8594dd7df5222c097e995507",
+    "martini-daily-psalm-reviews.json": "0b656605716f3b589e02064af20bc29ed62d68eb64e6b245bc5ea1be53b73d6c",
+    "martini_psalm_mapping.py": "c0974b5ecf756ebde8593e0d0e3bee454e5acaccc4f592d6c77d38c62c025f84",
+    "peshitta_psalm_review.py": "5029675a0b2ace772bf5c7b2dc55204eb31d6ab739811a7936e75eb5f9d3a4f5",
+    "peshitta-eu-2020-psalm-review.json": "86136050463d6d489965aaa6f1491531854fc659855252e331b92f1a6a443677",
+    "peshitta_daily_psalms.py": "2a9dd8c716ad716ba1299ed42f024c2f03a47cf5b74b888b162ff8eb44b07759",
+    "peshitta-daily-psalm-reviews.json": "18ff47033c05ac980c546dfb6f19a971a47fc905b15f4ab1663688faae4e82fb",
+    "douay_rheims_source_corrections.py": "e2192d90d5bbd5f921f69f68183e6818a7a8ffb0dd4226685f77a52defd03d06",
+    "douay-rheims-source-corrections.json": "07eee58b989470af5bca2ad4bd0d226634d88ee533c5394c26b9fa2dd438fc08",
+    "douay-rheims-psalm-boundaries.json": "3cbd5fb816bab7c010ea1379c957d1518e1ecb1de491b958552d4beaf0daf220",
+    "reading_appointment_keys.py": "38a3239f1d45af05b046659648b465e29c266e1e291480d088f91b439e5fa5d7",
+    "reading_calendar_numbering.py": "547851286a05fbcc8b392d3ad79053d0319832fcf2bb7cb05b2c6ef3ad7331a8",
+    "reading-calendar-numbering-reviews.json": "27231cc1f40f0314bdfc8a629737c410d652acbced1f202ed1cff6f2ddf3f66b",
+    "arabic_daily_psalms.py": "2bba4bd37f2de772d62b5601a0b0e53bbed1b81683b438bbbed773a75dc340f9",
+    "arabic-daily-psalm-reviews.json": "4db69e7a7a0ca918600fc58dfaa185f7c7d792e0c8f8d7e87bd8d5836ca0dba6",
+    "../content/arabic-jesuit-1897-psalm-readings-2026.json": "8fa7087f7384461af44f05d62230b287882cb2d51b2710fdd8d94bd2754485ca",
     "import-scripture.py": "2f0c330a6be3d6b090d902da1e9b7b8e08ea41c44589424c3d8129395c9614d0",
     "aramaic_script_converter.py": "2f7941081fa6ffd229dc0755b96c0ca526bd82d2cf83eb8e1a776081466fac0a",
     "reading_step_mapping.py": "12d11608c63be9ae2ced6e41c997fbc804ce49d4f420f5980c51bb4399a27698",
-    "reading_psalm_mapping.py": "6c246c01a1faffe34cd37cf6d624d8665438fb99a2662195de58f9e118e34e41",
+    "reading_psalm_mapping.py": "ba80bbe31223b40702414fed491367d4ad81ac1a49bb61e82b80ea34cd06325b",
     "reading_boundary_groups.py": "19da3727c7972b54e660c32b5004e2e7d112518982f859e079ad2456de3edecb",
     "reading_versification.py": "dea66630406d10d9e459db03ec028eb4bd0ce3fa8c5b57020657a813b5d18912",
     "delitzsch_numbering.py": "2244865ef00b45ee3432e10f50a6a76a8adb23ac62da19230242fc99c354a020",
@@ -312,10 +331,10 @@
       ]
     },
     "martini": {
-      "books": 32,
-      "chapters": 447,
-      "labels": 13785,
-      "mapped": 13708,
+      "books": 33,
+      "chapters": 597,
+      "labels": 16264,
+      "mapped": 14182,
       "policy": "whole-verses",
       "blockedChapters": [
         [
@@ -359,14 +378,30 @@
     },
     "peshitta-1905": {
       "books": 72,
-      "chapters": 1271,
-      "labels": 33307,
-      "mapped": 11586,
+      "chapters": 1312,
+      "labels": 34632,
+      "mapped": 12013,
       "policy": "whole-verses",
       "blockedChapters": [
         [
           "1CH",
+          2
+        ],
+        [
+          "1CH",
           3
+        ],
+        [
+          "1CH",
+          4
+        ],
+        [
+          "1CH",
+          5
+        ],
+        [
+          "1CH",
+          6
         ],
         [
           "1CH",
@@ -374,7 +409,23 @@
         ],
         [
           "1CH",
+          8
+        ],
+        [
+          "1CH",
+          12
+        ],
+        [
+          "1CH",
           24
+        ],
+        [
+          "1CH",
+          25
+        ],
+        [
+          "1CH",
+          28
         ],
         [
           "1KI",
@@ -470,7 +521,27 @@
         ],
         [
           "2CH",
+          3
+        ],
+        [
+          "2CH",
+          4
+        ],
+        [
+          "2CH",
+          5
+        ],
+        [
+          "2CH",
+          9
+        ],
+        [
+          "2CH",
           11
+        ],
+        [
+          "2CH",
+          13
         ],
         [
           "2CH",
@@ -478,7 +549,31 @@
         ],
         [
           "2CH",
+          20
+        ],
+        [
+          "2CH",
+          24
+        ],
+        [
+          "2CH",
+          25
+        ],
+        [
+          "2CH",
+          26
+        ],
+        [
+          "2CH",
           27
+        ],
+        [
+          "2CH",
+          29
+        ],
+        [
+          "2CH",
+          33
         ],
         [
           "2MA",
@@ -515,6 +610,10 @@
         [
           "2MA",
           9
+        ],
+        [
+          "2MA",
+          10
         ],
         [
           "2MA",
@@ -583,6 +682,10 @@
         [
           "HAG",
           2
+        ],
+        [
+          "ISA",
+          38
         ],
         [
           "ISA",
@@ -662,11 +765,23 @@
         ],
         [
           "JOB",
+          29
+        ],
+        [
+          "JOB",
+          30
+        ],
+        [
+          "JOB",
           39
         ],
         [
           "JOB",
           40
+        ],
+        [
+          "JOB",
+          41
         ],
         [
           "JOS",
@@ -710,163 +825,11 @@
         ],
         [
           "PSA",
-          20
+          89
         ],
         [
           "PSA",
-          38
-        ],
-        [
-          "PSA",
-          46
-        ],
-        [
-          "PSA",
-          60
-        ],
-        [
-          "PSA",
-          72
-        ],
-        [
-          "PSA",
-          73
-        ],
-        [
-          "PSA",
-          78
-        ],
-        [
-          "PSA",
-          109
-        ],
-        [
-          "PSA",
-          113
-        ],
-        [
-          "PSA",
-          114
-        ],
-        [
-          "PSA",
-          115
-        ],
-        [
-          "PSA",
-          116
-        ],
-        [
-          "PSA",
-          117
-        ],
-        [
-          "PSA",
-          119
-        ],
-        [
-          "PSA",
-          120
-        ],
-        [
-          "PSA",
-          121
-        ],
-        [
-          "PSA",
-          122
-        ],
-        [
-          "PSA",
-          123
-        ],
-        [
-          "PSA",
-          124
-        ],
-        [
-          "PSA",
-          125
-        ],
-        [
-          "PSA",
-          126
-        ],
-        [
-          "PSA",
-          127
-        ],
-        [
-          "PSA",
-          128
-        ],
-        [
-          "PSA",
-          130
-        ],
-        [
-          "PSA",
-          131
-        ],
-        [
-          "PSA",
-          132
-        ],
-        [
-          "PSA",
-          134
-        ],
-        [
-          "PSA",
-          135
-        ],
-        [
-          "PSA",
-          136
-        ],
-        [
-          "PSA",
-          137
-        ],
-        [
-          "PSA",
-          138
-        ],
-        [
-          "PSA",
-          139
-        ],
-        [
-          "PSA",
-          140
-        ],
-        [
-          "PSA",
-          141
-        ],
-        [
-          "PSA",
-          142
-        ],
-        [
-          "PSA",
-          143
-        ],
-        [
-          "PSA",
-          144
-        ],
-        [
-          "PSA",
-          145
-        ],
-        [
-          "PSA",
-          146
-        ],
-        [
-          "PSA",
-          147
+          118
         ],
         [
           "REV",
@@ -878,6 +841,14 @@
         ],
         [
           "SIR",
+          2
+        ],
+        [
+          "SIR",
+          3
+        ],
+        [
+          "SIR",
           4
         ],
         [
@@ -886,11 +857,35 @@
         ],
         [
           "SIR",
+          6
+        ],
+        [
+          "SIR",
+          7
+        ],
+        [
+          "SIR",
           8
         ],
         [
           "SIR",
+          9
+        ],
+        [
+          "SIR",
+          10
+        ],
+        [
+          "SIR",
+          11
+        ],
+        [
+          "SIR",
           12
+        ],
+        [
+          "SIR",
+          13
         ],
         [
           "SIR",
@@ -918,7 +913,15 @@
         ],
         [
           "SIR",
+          20
+        ],
+        [
+          "SIR",
           21
+        ],
+        [
+          "SIR",
+          22
         ],
         [
           "SIR",
@@ -982,6 +985,10 @@
         ],
         [
           "SIR",
+          38
+        ],
+        [
+          "SIR",
           39
         ],
         [
@@ -994,7 +1001,15 @@
         ],
         [
           "SIR",
+          42
+        ],
+        [
+          "SIR",
           43
+        ],
+        [
+          "SIR",
+          44
         ],
         [
           "SIR",
@@ -1066,6 +1081,10 @@
         ],
         [
           "TOB",
+          8
+        ],
+        [
+          "TOB",
           9
         ],
         [
@@ -1123,6 +1142,10 @@
         [
           "WIS",
           9
+        ],
+        [
+          "WIS",
+          10
         ],
         [
           "WIS",

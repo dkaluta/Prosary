@@ -57,7 +57,7 @@ public class BundledReadingsTests
             ["douay-rheims-1899"] = 102, ["synodal-1876"] = 102,
             ["masoretic-delitzsch"] = 103, ["ang-dating-biblia-1905"] = 103,
             ["crampon-1923"] = 103, ["kulish-1905"] = 103,
-            ["jesuit-arabic-1897"] = 102
+            ["jesuit-arabic-1897"] = 102, ["martini"] = 102, ["peshitta-1905"] = 103
         };
         foreach (var (editionId, chapter) in psalmEditions)
         {
@@ -67,7 +67,6 @@ public class BundledReadingsTests
             Assert.All(psalm.Verses, verse => Assert.Equal(chapter, verse.Chapter));
             Assert.True(psalm.IncludesWholeVerses);
         }
-        Assert.Null(Store.LoadPassage("daily", cases[1].Citation, "martini"));
         var french = Store.LoadPassage("daily", cases[0].Citation, "crampon-1923");
         Assert.NotNull(french);
         Assert.Equal(new[] { "27:30" }.Concat(Enumerable.Range(1, 7).Select(v => $"28:{v}")),
@@ -88,7 +87,8 @@ public class BundledReadingsTests
         using var document = JsonDocument.Parse(File.ReadAllText(
             Path.Combine(AppContext.BaseDirectory, "Data", "readings-texts.json")));
         var data = document.RootElement;
-        var sources = data.GetProperty("passageSources").EnumerateObject().ToList();
+        var sources = data.GetProperty("passageSources").EnumerateObject()
+            .Where(source => source.Value.TryGetProperty("masoretic-delitzsch", out _)).ToList();
         Assert.Equal(19, sources.Count);
         // Wisdom 7 is reviewed for Maronite use, but also occurs in an unreviewed Roman 1962 context.
         Assert.Null(Store.LoadPassage("daily", "Wisdom 7:7–14", "masoretic-delitzsch"));
@@ -199,7 +199,7 @@ public class BundledReadingsTests
         }
         Assert.StartsWith("Ἐξομολογεῖσθε τῷ Κυρίῳ", Store.LoadPassage("daily", citation, "brenton-lxx")!.Verses[0].Text);
         Assert.Equal(new[] { "ang-dating-biblia-1905", "brenton-lxx", "crampon-1923", "douay-rheims-1899",
-            "kulish-1905", "masoretic-delitzsch", "synodal-1876" },
+            "jesuit-arabic-1897", "kulish-1905", "martini", "masoretic-delitzsch", "peshitta-1905", "synodal-1876" },
             Store.AvailableEditions("daily", citation).Select(edition => edition.Id).Order());
     }
 
@@ -317,7 +317,16 @@ public class BundledReadingsTests
         Assert.Equal(47, torah.First().Chapter);
         Assert.Equal(50, torah.Last().Chapter);
         Assert.All(torah, verse => Assert.False(string.IsNullOrWhiteSpace(verse.TransliteratedText)));
-        Assert.Empty(Store.Passage("daily", "Psalm 23:1–3a; 23:3b–4; 23:5–5; 23:6–6", edition.Id));
+        var psalm = Store.Passage("daily", "Psalm 23:1–3a; 23:3b–4; 23:5–5; 23:6–6", edition.Id);
+        Assert.Equal(Enumerable.Range(1, 6), psalm.Select(verse => verse.Verse));
+        Assert.All(psalm, verse =>
+        {
+            Assert.Equal(23, verse.Chapter);
+            Assert.Equal(PrayerTypography.Script.Hebrew, PrayerTypography.ScriptOf(verse.DisplayedText(edition, "Hebr")));
+            Assert.Equal(PrayerTypography.Script.Syriac, PrayerTypography.ScriptOf(verse.DisplayedText(edition, "Syrc")));
+            Assert.Equal(verse.TransliteratedText, verse.DisplayedText(edition, "Syrc"));
+        });
+        Assert.Empty(Store.Passage("daily", "Psalm 119:66–66; 119:71–71; 119:75–75; 119:91–91; 119:125–125; 119:130–130", edition.Id));
     }
 
     [Fact]

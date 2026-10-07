@@ -17,12 +17,14 @@ enum class MysterySelectionMode {
     /** All 20 mysteries in one session, in the chronological order of Christ's life: Joyful, Luminous, Sorrowful, Glorious. */
     TwentyMystery,
 
-    /** Pray exactly one specific mystery (one decade) — see [RosaryOptions.specificMysteryOrder].
+    /** Pray one to five consecutive mysteries — see [RosaryOptions.specificMysteryOrder]
+     * and [RosaryOptions.specificMysteryCount].
      * Added last, not grouped with [Specific] above: Windows persists this enum by raw integer
      * ordinal (not name), so inserting a case earlier would silently reassign the stored values
      * of every case after it for existing saved favorites. Keep new cases appended here even
      * though iOS/Android's own storage (name-keyed) wouldn't require it. */
-    SingleMystery;
+    SingleMystery,
+    ChooseOnLaunch;
 
     @get:StringRes
     val displayNameRes: Int
@@ -32,5 +34,6 @@ enum class MysterySelectionMode {
             FifteenMystery -> R.string.mode_fifteen
             TwentyMystery -> R.string.mode_twenty
             SingleMystery -> R.string.mode_single
+            ChooseOnLaunch -> R.string.mode_choose_on_launch
         }
 }

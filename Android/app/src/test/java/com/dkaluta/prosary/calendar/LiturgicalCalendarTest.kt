@@ -13,6 +13,15 @@ import org.junit.Test
 class LiturgicalCalendarTest {
     private val cal = MockLiturgicalCalendar()
     private val utc = TimeZone.getTimeZone("UTC")
+    @Test
+    fun traditionalFifteenScheduleRetainsSeasonalSundays() {
+        assertEquals(MysteryGroup.Joyful, cal.mysteryGroup(date(2026, 10, 8), true))
+        assertEquals(MysteryGroup.Luminous, cal.mysteryGroup(date(2026, 10, 8), false))
+        assertEquals(MysteryGroup.Glorious, cal.mysteryGroup(date(2026, 10, 10), true))
+        for (sunday in listOf(date(2026, 3, 15), date(2026, 12, 6))) {
+            assertEquals(cal.mysteryGroup(sunday), cal.mysteryGroup(sunday, true))
+        }
+    }
 
     private fun date(year: Int, month: Int, day: Int): Date {
         val c = Calendar.getInstance(utc)

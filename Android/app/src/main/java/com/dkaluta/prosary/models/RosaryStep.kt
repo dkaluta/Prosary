@@ -37,6 +37,8 @@ data class RosaryStep(
      * A separate field because [Mystery.imageKey] is the mystery's identity and the
      * MysteryTranslations lookup key, which must not change with the artwork. */
     val imageVariantKey: String? = null,
+    /** Stable source identity; never infer a prayer from a translated heading or body. */
+    val prayerKey: String? = null,
 ) {
     /** The drawable resource name this step should display: the artwork-style variant, the
      * mystery's own image, an explicit override, or the neutral placeholder. */

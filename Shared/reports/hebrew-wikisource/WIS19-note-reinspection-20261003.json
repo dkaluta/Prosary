@@ -1,0 +1,759 @@
+{
+  "date": "2026-10-03",
+  "book": "WIS",
+  "scope": "Independent focused visual second pass over all 22 existing point notes in chapter 19; no restored-letter note is in scope.",
+  "method": "Human-like visual inspection of existing lossless enlarged primary native-source crops; no OCR, language normalization, restoration, enhancement, or inferred vowel reading.",
+  "canonicalPath": "/Users/dk/Developer/Personal/Prosary/Shared/content/hebrew-deuterocanon/WIS.json",
+  "canonicalSHA256": "112baca00e48c687f617e9678ba79cc4bf4e8c37ccae20d5af0186f85f91800d",
+  "sourcePDF": "/private/tmp/prosary-kahana-reference/Apocrypha_Kahana_A2.pdf",
+  "sourcePDFSHA256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+  "countInspected": 22,
+  "countProposals": 0,
+  "proposals": [],
+  "inspections": [
+    {
+      "noteId": "wis-19-1-word1-vav-1-vowel",
+      "chapter": 19,
+      "verse": 1,
+      "originalAnchor": "ואת",
+      "correctedAnchor": "ואת",
+      "originalText": "ואת הָרְשָׁעִים רָדַף בְּאַפּוֹ בְּלִי חֶמְלָה עַד־כָּלָה בְּדַעְתּוֹ מֵרֹאשׁ אֶת־אֲשֶׁר עֲתִידִים הֵם לַעֲשׂוֹת׃",
+      "correctedText": "ואת הָרְשָׁעִים רָדַף בְּאַפּוֹ בְּלִי חֶמְלָה עַד־כָּלָה בְּדַעְתּוֹ מֵרֹאשׁ אֶת־אֲשֶׁר עֲתִידִים הֵם לַעֲשׂוֹת׃",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        183
+      ],
+      "cropPath": "/private/tmp/prosary-wis-review/source-gate-WIS19-opening1-full.png",
+      "cropSHA256": "5d4e6e203e55fa8faed9431d7cf4123a9f4b3c3469f51aa328150fd0434ff1a5",
+      "existingCropProvenance": {
+        "path": "/private/tmp/prosary-wis-review/source-gate-WIS19-opening1-full.png",
+        "sha256": "5d4e6e203e55fa8faed9431d7cf4123a9f4b3c3469f51aa328150fd0434ff1a5",
+        "source": "/private/tmp/prosary-wis-review/WIS-native-183.png",
+        "sourceSHA256": "d662e07371c1863e13d5a31586367845d95d0da64f5d2a41b6741ca09db784ba",
+        "sourcePage": 183,
+        "box": [
+          1670,
+          1780,
+          2070,
+          1940
+        ],
+        "scale": 4
+      },
+      "decision": "retainUncertainty",
+      "evidence": "Lower vav and alef regions do not have independently separable vowel shapes. The vav has a thick terminal, and the alef lower edge is ink-filled; neither demonstrates an intact unpointed source.",
+      "candidateReading": null,
+      "proposal": null
+    },
+    {
+      "noteId": "wis-19-1-word1-alef-2-vowel",
+      "chapter": 19,
+      "verse": 1,
+      "originalAnchor": "ואת",
+      "correctedAnchor": "ואת",
+      "originalText": "ואת הָרְשָׁעִים רָדַף בְּאַפּוֹ בְּלִי חֶמְלָה עַד־כָּלָה בְּדַעְתּוֹ מֵרֹאשׁ אֶת־אֲשֶׁר עֲתִידִים הֵם לַעֲשׂוֹת׃",
+      "correctedText": "ואת הָרְשָׁעִים רָדַף בְּאַפּוֹ בְּלִי חֶמְלָה עַד־כָּלָה בְּדַעְתּוֹ מֵרֹאשׁ אֶת־אֲשֶׁר עֲתִידִים הֵם לַעֲשׂוֹת׃",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "sourcePages": [
+        183
+      ],
+      "cropPath": "/private/tmp/prosary-wis-review/source-gate-WIS19-opening1-full.png",
+      "cropSHA256": "5d4e6e203e55fa8faed9431d7cf4123a9f4b3c3469f51aa328150fd0434ff1a5",
+      "existingCropProvenance": {
+        "path": "/private/tmp/prosary-wis-review/source-gate-WIS19-opening1-full.png",
+        "sha256": "5d4e6e203e55fa8faed9431d7cf4123a9f4b3c3469f51aa328150fd0434ff1a5",
+        "source": "/private/tmp/prosary-wis-review/WIS-native-183.png",
+        "sourceSHA256": "d662e07371c1863e13d5a31586367845d95d0da64f5d2a41b6741ca09db784ba",
+        "sourcePage": 183,
+        "box": [
+          1670,
+          1780,
+          2070,
+          1940
+        ],
+        "scale": 4
+      },
+      "decision": "retainUncertainty",
+      "evidence": "Lower vav and alef regions do not have independently separable vowel shapes. The vav has a thick terminal, and the alef lower edge is ink-filled; neither demonstrates an intact unpointed source.",
+      "candidateReading": null,
+      "proposal": null
+    },
+    {
+      "noteId": "wis-19-3-word2-gimel-1-vowel",
+      "chapter": 19,
+      "verse": 3,
+      "originalAnchor": "גּרְשׁוּם",
+      "correctedAnchor": "גּרְשׁוּם",
+      "originalText": "הֵם הָיוּ בְּעֶצֶם מַכְאוֹבֵיהֶם וְעַל־קִבְרוֹת מֵתִים יְיֵלִילוּ וַתִּישַׁר בְּעֵינֵיהֶם עֲצַת אִוֶּלֶת אַחֶרֶת וְאַחֲרֵי הָאֲנָשִׁים אֲשֶׁר גּרְשׁוּם בְּתַחֲנוּנִים כְּאַחֲרֵי בוֹרְחִים רָדָפוּ׃",
+      "correctedText": "הֵם הָיוּ בְּעֶצֶם מַכְאוֹבֵיהֶם וְעַל־קִבְרוֹת מֵתִים יְיֵלִילוּ וַתִּישַׁר בְּעֵינֵיהֶם עֲצַת אִוֶּלֶת אַחֶרֶת וְאַחֲרֵי הָאֲנָשִׁים אֲשֶׁר גּרְשׁוּם בְּתַחֲנוּנִים כְּאַחֲרֵי בוֹרְחִים רָדָפוּ׃",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        184
+      ],
+      "cropPath": "/private/tmp/prosary-wis-review/source-gate-WIS19-gereshum3.png",
+      "cropSHA256": "a19751089311bb894b2c85b863f9ed7cb1289a8e4382f0ba13095f2d906c17ab",
+      "existingCropProvenance": {
+        "path": "/private/tmp/prosary-wis-review/source-gate-WIS19-gereshum3.png",
+        "sha256": "a19751089311bb894b2c85b863f9ed7cb1289a8e4382f0ba13095f2d906c17ab",
+        "source": "/private/tmp/prosary-wis-review/WIS-native-184.png",
+        "sourceSHA256": "c615b1c4e96445daaa8f1ab6b1cdb2f0ce333fa29fb4920e69ed4ee5df6fd0d8",
+        "sourcePage": 184,
+        "box": [
+          1470,
+          600,
+          1740,
+          745
+        ],
+        "scale": 4
+      },
+      "decision": "retainUncertainty",
+      "evidence": "Gimel has a heavy joined lower terminal plus a disconnected rounded remnant; these do not isolate the original lower vowel shape.",
+      "candidateReading": null,
+      "proposal": null
+    },
+    {
+      "noteId": "wis-19-4-word3-samekh-1-vowel",
+      "chapter": 19,
+      "verse": 4,
+      "originalAnchor": "סאת",
+      "correctedAnchor": "סאת",
+      "originalText": "כִּי הַמִּשְׁפָּט אֲשֶׁר נִגְזַר בְּצֶדֶק הִסָּה אוֹתָם לִנְתִיב זֶה הוּא הִשְׁכִּיחֵם אֶת־אֲשֶׁר מָצָא אוֹתָם לְמַעַן יְמַלְּאוּ סאת עָנְשָׁם בְּצָרוֹתֵיהֶם׃",
+      "correctedText": "כִּי הַמִּשְׁפָּט אֲשֶׁר נִגְזַר בְּצֶדֶק הִסָּה אוֹתָם לִנְתִיב זֶה הוּא הִשְׁכִּיחֵם אֶת־אֲשֶׁר מָצָא אוֹתָם לְמַעַן יְמַלְּאוּ סאת עָנְשָׁם בְּצָרוֹתֵיהֶם׃",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        184
+      ],
+      "cropPath": "/private/tmp/prosary-wis-review/source-gate-WIS19-saat4.png",
+      "cropSHA256": "b447fcb41ff4ff219f20d9d7bb4ba7f2595029728675ac8f3d6be2f770ba9ca3",
+      "existingCropProvenance": {
+        "path": "/private/tmp/prosary-wis-review/source-gate-WIS19-saat4.png",
+        "sha256": "b447fcb41ff4ff219f20d9d7bb4ba7f2595029728675ac8f3d6be2f770ba9ca3",
+        "source": "/private/tmp/prosary-wis-review/WIS-native-184.png",
+        "sourceSHA256": "c615b1c4e96445daaa8f1ab6b1cdb2f0ce333fa29fb4920e69ed4ee5df6fd0d8",
+        "sourcePage": 184,
+        "box": [
+          1215,
+          820,
+          1420,
+          965
+        ],
+        "scale": 4
+      },
+      "decision": "retainUncertainty",
+      "evidence": "Samekh lower projection is fused into the body; alef lower edge is ink-filled without an independently separable mark. Blank outer space cannot establish original absence.",
+      "candidateReading": null,
+      "proposal": null
+    },
+    {
+      "noteId": "wis-19-4-word3-alef-2-vowel",
+      "chapter": 19,
+      "verse": 4,
+      "originalAnchor": "סאת",
+      "correctedAnchor": "סאת",
+      "originalText": "כִּי הַמִּשְׁפָּט אֲשֶׁר נִגְזַר בְּצֶדֶק הִסָּה אוֹתָם לִנְתִיב זֶה הוּא הִשְׁכִּיחֵם אֶת־אֲשֶׁר מָצָא אוֹתָם לְמַעַן יְמַלְּאוּ סאת עָנְשָׁם בְּצָרוֹתֵיהֶם׃",
+      "correctedText": "כִּי הַמִּשְׁפָּט אֲשֶׁר נִגְזַר בְּצֶדֶק הִסָּה אוֹתָם לִנְתִיב זֶה הוּא הִשְׁכִּיחֵם אֶת־אֲשֶׁר מָצָא אוֹתָם לְמַעַן יְמַלְּאוּ סאת עָנְשָׁם בְּצָרוֹתֵיהֶם׃",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "sourcePages": [
+        184
+      ],
+      "cropPath": "/private/tmp/prosary-wis-review/source-gate-WIS19-saat4.png",
+      "cropSHA256": "b447fcb41ff4ff219f20d9d7bb4ba7f2595029728675ac8f3d6be2f770ba9ca3",
+      "existingCropProvenance": {
+        "path": "/private/tmp/prosary-wis-review/source-gate-WIS19-saat4.png",
+        "sha256": "b447fcb41ff4ff219f20d9d7bb4ba7f2595029728675ac8f3d6be2f770ba9ca3",
+        "source": "/private/tmp/prosary-wis-review/WIS-native-184.png",
+        "sourceSHA256": "c615b1c4e96445daaa8f1ab6b1cdb2f0ce333fa29fb4920e69ed4ee5df6fd0d8",
+        "sourcePage": 184,
+        "box": [
+          1215,
+          820,
+          1420,
+          965
+        ],
+        "scale": 4
+      },
+      "decision": "retainUncertainty",
+      "evidence": "Samekh lower projection is fused into the body; alef lower edge is ink-filled without an independently separable mark. Blank outer space cannot establish original absence.",
+      "candidateReading": null,
+      "proposal": null
+    },
+    {
+      "noteId": "wis-19-5-word4-shin-2-vowel",
+      "chapter": 19,
+      "verse": 5,
+      "originalAnchor": "מְשׁנּה",
+      "correctedAnchor": "מְשׁנּה",
+      "originalText": "וּלְמַעַן יַעֲבֹר עַמְּךָ דֶּרֶךְ פְּלָאִים וְהֵם יִמְצְאוּ מִיתָה מְשׁנּה׃",
+      "correctedText": "וּלְמַעַן יַעֲבֹר עַמְּךָ דֶּרֶךְ פְּלָאִים וְהֵם יִמְצְאוּ מִיתָה מְשׁנּה׃",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "sourcePages": [
+        184
+      ],
+      "cropPath": "/private/tmp/prosary-wis-review/source-gate-WIS19-meshunnah5-full.png",
+      "cropSHA256": "3fa69158241afc20116fdb4e9f605309f638db614a9857bac1074f85697af2ac",
+      "existingCropProvenance": {
+        "path": "/private/tmp/prosary-wis-review/source-gate-WIS19-meshunnah5-full.png",
+        "sha256": "3fa69158241afc20116fdb4e9f605309f638db614a9857bac1074f85697af2ac",
+        "source": "/private/tmp/prosary-wis-review/WIS-native-184.png",
+        "sourceSHA256": "c615b1c4e96445daaa8f1ab6b1cdb2f0ce333fa29fb4920e69ed4ee5df6fd0d8",
+        "sourcePage": 184,
+        "box": [
+          880,
+          920,
+          1220,
+          1090
+        ],
+        "scale": 4
+      },
+      "decision": "retainUncertainty",
+      "evidence": "Shin lower projection is a dense continuous mass; nun lower edge and neighboring edge are ink-filled. Neither point is separable into a complete source vowel.",
+      "candidateReading": null,
+      "proposal": null
+    },
+    {
+      "noteId": "wis-19-5-word4-nun-3-vowel",
+      "chapter": 19,
+      "verse": 5,
+      "originalAnchor": "מְשׁנּה",
+      "correctedAnchor": "מְשׁנּה",
+      "originalText": "וּלְמַעַן יַעֲבֹר עַמְּךָ דֶּרֶךְ פְּלָאִים וְהֵם יִמְצְאוּ מִיתָה מְשׁנּה׃",
+      "correctedText": "וּלְמַעַן יַעֲבֹר עַמְּךָ דֶּרֶךְ פְּלָאִים וְהֵם יִמְצְאוּ מִיתָה מְשׁנּה׃",
+      "letterIndex": 3,
+      "mark": "vowel",
+      "sourcePages": [
+        184
+      ],
+      "cropPath": "/private/tmp/prosary-wis-review/source-gate-WIS19-meshunnah5-full.png",
+      "cropSHA256": "3fa69158241afc20116fdb4e9f605309f638db614a9857bac1074f85697af2ac",
+      "existingCropProvenance": {
+        "path": "/private/tmp/prosary-wis-review/source-gate-WIS19-meshunnah5-full.png",
+        "sha256": "3fa69158241afc20116fdb4e9f605309f638db614a9857bac1074f85697af2ac",
+        "source": "/private/tmp/prosary-wis-review/WIS-native-184.png",
+        "sourceSHA256": "c615b1c4e96445daaa8f1ab6b1cdb2f0ce333fa29fb4920e69ed4ee5df6fd0d8",
+        "sourcePage": 184,
+        "box": [
+          880,
+          920,
+          1220,
+          1090
+        ],
+        "scale": 4
+      },
+      "decision": "retainUncertainty",
+      "evidence": "Shin lower projection is a dense continuous mass; nun lower edge and neighboring edge are ink-filled. Neither point is separable into a complete source vowel.",
+      "candidateReading": null,
+      "proposal": null
+    },
+    {
+      "noteId": "wis-19-6-word5-qof-3-vowel",
+      "chapter": 19,
+      "verse": 6,
+      "originalAnchor": "לִפְקדּוֹתֶיךָ",
+      "correctedAnchor": "לִפְקדּוֹתֶיךָ",
+      "originalText": "כִּי כָּל־הַיְצוּרִים לְמִינֵיהֶם נֶהֶפְכוּ מֵחָדָשׁ לְשָׁרֵת לִפְקדּוֹתֶיךָ בַּעֲבוּר יִשׁמְרוּ בָנֶיךָ מִכָּל פֶּגַע׃",
+      "correctedText": "כִּי כָּל־הַיְצוּרִים לְמִינֵיהֶם נֶהֶפְכוּ מֵחָדָשׁ לְשָׁרֵת לִפְקדּוֹתֶיךָ בַּעֲבוּר יִשׁמְרוּ בָנֶיךָ מִכָּל פֶּגַע׃",
+      "letterIndex": 3,
+      "mark": "vowel",
+      "sourcePages": [
+        184
+      ],
+      "cropPath": "/private/tmp/prosary-wis-review/WIS19-author-pequdot6.png",
+      "cropSHA256": "7d0158e35908a3b56b24cec21bf93881e9ddc49c9bf25e41531cd3431f33bed5",
+      "existingCropProvenance": {
+        "path": "/private/tmp/prosary-wis-review/WIS19-author-pequdot6.png",
+        "source": "WIS19-184-middle.png",
+        "box": [
+          850,
+          160,
+          1220,
+          280
+        ],
+        "scale": 3,
+        "resampling": "nearest",
+        "sha256": "7d0158e35908a3b56b24cec21bf93881e9ddc49c9bf25e41531cd3431f33bed5"
+      },
+      "decision": "retainUncertainty",
+      "evidence": "Qof lower descending stroke and adjacent slanted mass are continuous and do not expose a complete independent lower vowel.",
+      "candidateReading": null,
+      "proposal": null
+    },
+    {
+      "noteId": "wis-19-6-word6-shin-2-vowel",
+      "chapter": 19,
+      "verse": 6,
+      "originalAnchor": "יִשׁמְרוּ",
+      "correctedAnchor": "יִשׁמְרוּ",
+      "originalText": "כִּי כָּל־הַיְצוּרִים לְמִינֵיהֶם נֶהֶפְכוּ מֵחָדָשׁ לְשָׁרֵת לִפְקדּוֹתֶיךָ בַּעֲבוּר יִשׁמְרוּ בָנֶיךָ מִכָּל פֶּגַע׃",
+      "correctedText": "כִּי כָּל־הַיְצוּרִים לְמִינֵיהֶם נֶהֶפְכוּ מֵחָדָשׁ לְשָׁרֵת לִפְקדּוֹתֶיךָ בַּעֲבוּר יִשׁמְרוּ בָנֶיךָ מִכָּל פֶּגַע׃",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "sourcePages": [
+        184
+      ],
+      "cropPath": "/private/tmp/prosary-wis-review/source-gate-WIS19-yishameru6-full.png",
+      "cropSHA256": "16434d9337705a560a5e9e3d97b75919cf95dad93d6ff1a46dd2b3978e50ce84",
+      "existingCropProvenance": {
+        "path": "/private/tmp/prosary-wis-review/source-gate-WIS19-yishameru6-full.png",
+        "sha256": "16434d9337705a560a5e9e3d97b75919cf95dad93d6ff1a46dd2b3978e50ce84",
+        "source": "/private/tmp/prosary-wis-review/WIS-native-184.png",
+        "sourceSHA256": "c615b1c4e96445daaa8f1ab6b1cdb2f0ce333fa29fb4920e69ed4ee5df6fd0d8",
+        "sourcePage": 184,
+        "box": [
+          630,
+          1005,
+          1010,
+          1140
+        ],
+        "scale": 4
+      },
+      "decision": "retainUncertainty",
+      "evidence": "Shin lower mass is fused. The possible internal dot is joined to a shin stroke and cannot certify dagesh presence or absence. Qof has a dense descending stroke requiring its separate pequdot crop.",
+      "candidateReading": null,
+      "proposal": null
+    },
+    {
+      "noteId": "wis-19-6-word6-shin-2-dagesh",
+      "chapter": 19,
+      "verse": 6,
+      "originalAnchor": "יִשׁמְרוּ",
+      "correctedAnchor": "יִשׁמְרוּ",
+      "originalText": "כִּי כָּל־הַיְצוּרִים לְמִינֵיהֶם נֶהֶפְכוּ מֵחָדָשׁ לְשָׁרֵת לִפְקדּוֹתֶיךָ בַּעֲבוּר יִשׁמְרוּ בָנֶיךָ מִכָּל פֶּגַע׃",
+      "correctedText": "כִּי כָּל־הַיְצוּרִים לְמִינֵיהֶם נֶהֶפְכוּ מֵחָדָשׁ לְשָׁרֵת לִפְקדּוֹתֶיךָ בַּעֲבוּר יִשׁמְרוּ בָנֶיךָ מִכָּל פֶּגַע׃",
+      "letterIndex": 2,
+      "mark": "dagesh",
+      "sourcePages": [
+        184
+      ],
+      "cropPath": "/private/tmp/prosary-wis-review/source-gate-WIS19-yishameru6-full.png",
+      "cropSHA256": "16434d9337705a560a5e9e3d97b75919cf95dad93d6ff1a46dd2b3978e50ce84",
+      "existingCropProvenance": {
+        "path": "/private/tmp/prosary-wis-review/source-gate-WIS19-yishameru6-full.png",
+        "sha256": "16434d9337705a560a5e9e3d97b75919cf95dad93d6ff1a46dd2b3978e50ce84",
+        "source": "/private/tmp/prosary-wis-review/WIS-native-184.png",
+        "sourceSHA256": "c615b1c4e96445daaa8f1ab6b1cdb2f0ce333fa29fb4920e69ed4ee5df6fd0d8",
+        "sourcePage": 184,
+        "box": [
+          630,
+          1005,
+          1010,
+          1140
+        ],
+        "scale": 4
+      },
+      "decision": "retainUncertainty",
+      "evidence": "Shin lower mass is fused. The possible internal dot is joined to a shin stroke and cannot certify dagesh presence or absence. Qof has a dense descending stroke requiring its separate pequdot crop.",
+      "candidateReading": null,
+      "proposal": null
+    },
+    {
+      "noteId": "wis-19-7-word7-kaf-2-vowel",
+      "chapter": 19,
+      "verse": 7,
+      "originalAnchor": "מְכסֶּה",
+      "correctedAnchor": "מְכסֶּה",
+      "originalText": "הֵן נִרְאָה עָנָן סוֹכֵךְ עַל־הַמַּחֲנֶה וּמְקוֹם שָׁם מַיִם לְפָנִים יַבֶּשֶׁת הוֹפִיעָה מִיַּם־סוּף דֶּרֶךְ סְלוּלָה וּמִמִּשְׁבָּרִים אַדִּירִים מִישׁוֹר מְכסֶּה דֶּשֶׁא׃",
+      "correctedText": "הֵן נִרְאָה עָנָן סוֹכֵךְ עַל־הַמַּחֲנֶה וּמְקוֹם שָׁם מַיִם לְפָנִים יַבֶּשֶׁת הוֹפִיעָה מִיַּם־סוּף דֶּרֶךְ סְלוּלָה וּמִמִּשְׁבָּרִים אַדִּירִים מִישׁוֹר מְכסֶּה דֶּשֶׁא׃",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "sourcePages": [
+        184
+      ],
+      "cropPath": "/private/tmp/prosary-wis-review/source-gate-WIS19-mekhuseh7-full.png",
+      "cropSHA256": "ed7a9c700ec3de0118d814dee0962d0657c707f8f9ba0495bf70747c02237ed7",
+      "existingCropProvenance": {
+        "path": "/private/tmp/prosary-wis-review/source-gate-WIS19-mekhuseh7-full.png",
+        "sha256": "ed7a9c700ec3de0118d814dee0962d0657c707f8f9ba0495bf70747c02237ed7",
+        "source": "/private/tmp/prosary-wis-review/WIS-native-184.png",
+        "sourceSHA256": "c615b1c4e96445daaa8f1ab6b1cdb2f0ce333fa29fb4920e69ed4ee5df6fd0d8",
+        "sourcePage": 184,
+        "box": [
+          1810,
+          1320,
+          2080,
+          1470
+        ],
+        "scale": 4
+      },
+      "decision": "retainUncertainty",
+      "evidence": "Kaf has a long joined descending projection below its ink-filled baseline. This is not an independently readable source vowel and does not prove clean absence.",
+      "candidateReading": null,
+      "proposal": null
+    },
+    {
+      "noteId": "wis-19-9-word8-vav-1-vowel",
+      "chapter": 19,
+      "verse": 9,
+      "originalAnchor": "ויְשׁוֹמָמוּ",
+      "correctedAnchor": "ויְשׁוֹמָמוּ",
+      "originalText": "ויְשׁוֹמָמוּ כְּסוּסִים בַּמִּרְעֶה וְכִכְבָשִׂים יִרְקְדוּ ויְהַלָלוּ לְךָ יְיָ גּוֹאֲלָם׃",
+      "correctedText": "ויְשׁוֹמָמוּ כְּסוּסִים בַּמִּרְעֶה וְכִכְבָשִׂים יִרְקְדוּ ויְהַלָלוּ לְךָ יְיָ גּוֹאֲלָם׃",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        184
+      ],
+      "cropPath": "/private/tmp/prosary-wis-review/source-gate-WIS19-vishm9.png",
+      "cropSHA256": "2cb7597561dbabc1affc1887ac6259da142f57787423588819d59909a8990ef9",
+      "existingCropProvenance": {
+        "path": "/private/tmp/prosary-wis-review/source-gate-WIS19-vishm9.png",
+        "sha256": "2cb7597561dbabc1affc1887ac6259da142f57787423588819d59909a8990ef9",
+        "source": "/private/tmp/prosary-wis-review/WIS-native-184.png",
+        "sourceSHA256": "c615b1c4e96445daaa8f1ab6b1cdb2f0ce333fa29fb4920e69ed4ee5df6fd0d8",
+        "sourcePage": 184,
+        "box": [
+          1500,
+          1395,
+          1750,
+          1530
+        ],
+        "scale": 4
+      },
+      "decision": "retainUncertainty",
+      "evidence": "Initial vav terminal is a thick continuous mass across the lower letter boundary; expected vowel region cannot be separated. The adjacent yod sheva remains independently visible.",
+      "candidateReading": null,
+      "proposal": null
+    },
+    {
+      "noteId": "wis-19-9-word9-vav-1-vowel",
+      "chapter": 19,
+      "verse": 9,
+      "originalAnchor": "ויְהַלָלוּ",
+      "correctedAnchor": "ויְהַלָלוּ",
+      "originalText": "ויְשׁוֹמָמוּ כְּסוּסִים בַּמִּרְעֶה וְכִכְבָשִׂים יִרְקְדוּ ויְהַלָלוּ לְךָ יְיָ גּוֹאֲלָם׃",
+      "correctedText": "ויְשׁוֹמָמוּ כְּסוּסִים בַּמִּרְעֶה וְכִכְבָשִׂים יִרְקְדוּ ויְהַלָלוּ לְךָ יְיָ גּוֹאֲלָם׃",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        184
+      ],
+      "cropPath": "/private/tmp/prosary-wis-review/source-gate-WIS19-halelu9.png",
+      "cropSHA256": "43962d8bb756a79554d4a9c7ce7df0bf99be11ef9667722ac5562b86c9ecba9e",
+      "existingCropProvenance": {
+        "path": "/private/tmp/prosary-wis-review/source-gate-WIS19-halelu9.png",
+        "sha256": "43962d8bb756a79554d4a9c7ce7df0bf99be11ef9667722ac5562b86c9ecba9e",
+        "source": "/private/tmp/prosary-wis-review/WIS-native-184.png",
+        "sourceSHA256": "c615b1c4e96445daaa8f1ab6b1cdb2f0ce333fa29fb4920e69ed4ee5df6fd0d8",
+        "sourcePage": 184,
+        "box": [
+          355,
+          1395,
+          590,
+          1530
+        ],
+        "scale": 4
+      },
+      "decision": "retainUncertainty",
+      "evidence": "Initial vav lower terminal is ink-filled and widened continuously; no independent complete vowel shape or intact absence is established.",
+      "candidateReading": null,
+      "proposal": null
+    },
+    {
+      "noteId": "wis-19-10-word10-mem-2-vowel",
+      "chapter": 19,
+      "verse": 10,
+      "originalAnchor": "הַמּצָאוֹת",
+      "correctedAnchor": "הַמּצָאוֹת",
+      "originalText": "כִּי זָכְרוּ עוֹד אֶת־הַמּצָאוֹת אוֹתָם בְּאֶרֶץ מְגוּרֵיהֶם אֵיךְ הָאָרֶץ הוֹצִיאָה כִּנִּים תַּחַת חַיּוֹת [הַיַּבָּשָׁה] לְמִינֵיהֶן וְתַחַת חַיּוֹת הַמַּיִם שָׁרַץ הַיְאוֹר צְפַרְדְּעִים לָרֹב׃",
+      "correctedText": "כִּי זָכְרוּ עוֹד אֶת־הַמּצָאוֹת אוֹתָם בְּאֶרֶץ מְגוּרֵיהֶם אֵיךְ הָאָרֶץ הוֹצִיאָה כִּנִּים תַּחַת חַיּוֹת [הַיַּבָּשָׁה] לְמִינֵיהֶן וְתַחַת חַיּוֹת הַמַּיִם שָׁרַץ הַיְאוֹר צְפַרְדְּעִים לָרֹב׃",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "sourcePages": [
+        184
+      ],
+      "cropPath": "/private/tmp/prosary-wis-review/source-gate-WIS19-hamtsaot10.png",
+      "cropSHA256": "be07fa6c3f5607c0ad7b417a0e7c3fccf08ba7f21289729752bc759fbde4d9e9",
+      "existingCropProvenance": {
+        "path": "/private/tmp/prosary-wis-review/source-gate-WIS19-hamtsaot10.png",
+        "sha256": "be07fa6c3f5607c0ad7b417a0e7c3fccf08ba7f21289729752bc759fbde4d9e9",
+        "source": "/private/tmp/prosary-wis-review/WIS-native-184.png",
+        "sourceSHA256": "c615b1c4e96445daaa8f1ab6b1cdb2f0ce333fa29fb4920e69ed4ee5df6fd0d8",
+        "sourcePage": 184,
+        "box": [
+          925,
+          1495,
+          1235,
+          1645
+        ],
+        "scale": 4
+      },
+      "decision": "retainUncertainty",
+      "evidence": "First mem has a thick lower terminal and white pinhole within the joined mass. No complete vowel shape separates from the consonant.",
+      "candidateReading": null,
+      "proposal": null
+    },
+    {
+      "noteId": "wis-19-13-word11-ayin-1-vowel",
+      "chapter": 19,
+      "verse": 13,
+      "originalAnchor": "עוֹנוֹתֵיהֶם",
+      "correctedAnchor": "עוֹנוֹתֵיהֶם",
+      "originalText": "וְעַל הַחַטָּאִים לֹא בָאוּ הַפְּגָעִים עַד־אֲשֶׁר הָרְעָמִים נָתְנוּ עֵדוּתָם בְּעֹז הֵמָּה סָבְלוּ בְּצֶדֶק בִּגְלַל עוֹנוֹתֵיהֶם׃",
+      "correctedText": "וְעַל הַחַטָּאִים לֹא בָאוּ הַפְּגָעִים עַד־אֲשֶׁר הָרְעָמִים נָתְנוּ עֵדוּתָם בְּעֹז הֵמָּה סָבְלוּ בְּצֶדֶק בִּגְלַל עוֹנוֹתֵיהֶם׃",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        185
+      ],
+      "cropPath": "/private/tmp/prosary-wis-review/WIS19-author-avonoteihem13.png",
+      "cropSHA256": "e70ac2d8458a30cc408ac3d4579fb6acdf2041b6e7c5d780b2b83c69135caf00",
+      "existingCropProvenance": {
+        "path": "/private/tmp/prosary-wis-review/WIS19-author-avonoteihem13.png",
+        "source": "WIS19-185-upper.png",
+        "box": [
+          0,
+          200,
+          410,
+          310
+        ],
+        "scale": 3,
+        "resampling": "nearest",
+        "sha256": "e70ac2d8458a30cc408ac3d4579fb6acdf2041b6e7c5d780b2b83c69135caf00"
+      },
+      "decision": "retainUncertainty",
+      "evidence": "Ayin has a fused dense lower-right projection with no separated complete vowel shape. The upper vav holam and later points remain visible.",
+      "candidateReading": null,
+      "proposal": null
+    },
+    {
+      "noteId": "wis-19-17-word12-he-1-vowel",
+      "chapter": 19,
+      "verse": 17,
+      "originalAnchor": "הכּוּ",
+      "correctedAnchor": "הכּוּ",
+      "originalText": "וְגַם הֵם הכּוּ בַּסַּנְוֵרִים כְּמוֹ אֵלֶּה לִפְנֵי פֶּתַח הַצַּדִּיק כַּאֲשֶׁר כִּסָּה אוֹתָם חשֶׁךְ וְצַלְמָוֶת וַיְבַקֵּשׁ כָּל־אִישׁ מֵהֶם אֶת־הַדֶּרֶךְ אֶל־שַׁעַר בֵּיתוֹ׃",
+      "correctedText": "וְגַם הֵם הכּוּ בַּסַּנְוֵרִים כְּמוֹ אֵלֶּה לִפְנֵי פֶּתַח הַצַּדִּיק כַּאֲשֶׁר כִּסָּה אוֹתָם חשֶׁךְ וְצַלְמָוֶת וַיְבַקֵּשׁ כָּל־אִישׁ מֵהֶם אֶת־הַדֶּרֶךְ אֶל־שַׁעַר בֵּיתוֹ׃",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        185
+      ],
+      "cropPath": "/private/tmp/prosary-wis-review/WIS19-author-huku17-correct.png",
+      "cropSHA256": "2f752beda53909f06ce1f18216199c631e48c956f059578bd67917a50ee7d0cc",
+      "existingCropProvenance": {
+        "path": "/private/tmp/prosary-wis-review/WIS19-author-huku17-correct.png",
+        "sourcePage": 185,
+        "box": [
+          1540,
+          1080,
+          1760,
+          1215
+        ],
+        "scale": 3,
+        "resampling": "nearest",
+        "sha256": "2f752beda53909f06ce1f18216199c631e48c956f059578bd67917a50ee7d0cc"
+      },
+      "decision": "retainUncertainty",
+      "evidence": "He has an isolated slanted elongated lower remnant. It does not distinguish a single elongated point from fused sheva or other print loss.",
+      "candidateReading": null,
+      "proposal": null
+    },
+    {
+      "noteId": "wis-19-18-word13-tsadi-1-vowel",
+      "chapter": 19,
+      "verse": 18,
+      "originalAnchor": "צלילי",
+      "correctedAnchor": "צלילי",
+      "originalText": "כִּי הַיְסוֹדוֹת אֶת־סִדְרָם הֶחֱלִיפוּ כּאֲשֶׁר יִשְׁתַּנֶּה קֶצֶב צלילי הַנֵּבֶל בְּהִשְׁתַּנּוֹת מֵיתָרָיו אַף כִּי־קוֹלָם יִשָּׁאֵר תָּמִיד כָּל־עֻמַּת שֶׁהָיָה וְזֹאת יוּכַל הָאִישׁ לִשְׁפֹּט לְנָכוֹן בִּרְאוֹתוֹ אֶת־הַמַּעֲשִׂים׃",
+      "correctedText": "כִּי הַיְסוֹדוֹת אֶת־סִדְרָם הֶחֱלִיפוּ כּאֲשֶׁר יִשְׁתַּנֶּה קֶצֶב צלילי הַנֵּבֶל בְּהִשְׁתַּנּוֹת מֵיתָרָיו אַף כִּי־קוֹלָם יִשָּׁאֵר תָּמִיד כָּל־עֻמַּת שֶׁהָיָה וְזֹאת יוּכַל הָאִישׁ לִשְׁפֹּט לְנָכוֹן בִּרְאוֹתוֹ אֶת־הַמַּעֲשִׂים׃",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        185
+      ],
+      "cropPath": "/private/tmp/prosary-wis-review/source-gate-WIS19-tzlilei18.png",
+      "cropSHA256": "8bdc59e766135bcb9409b7a8e234da17c5a5cde58b0be9d386701bf9c86a7e62",
+      "existingCropProvenance": {
+        "path": "/private/tmp/prosary-wis-review/source-gate-WIS19-tzlilei18.png",
+        "sha256": "8bdc59e766135bcb9409b7a8e234da17c5a5cde58b0be9d386701bf9c86a7e62",
+        "source": "/private/tmp/prosary-wis-review/WIS-native-185.png",
+        "sourceSHA256": "cab15a9f54339b67562d12aa99a258814837385ba25ebb95836c0e8aeb8acf82",
+        "sourcePage": 185,
+        "box": [
+          185,
+          1255,
+          565,
+          1415
+        ],
+        "scale": 4
+      },
+      "decision": "retainUncertainty",
+      "evidence": "Tsadi has a joined thick lower descender; both lamed lower edges are thick continuous terminals. No independently legible vowel shape is separated.",
+      "candidateReading": null,
+      "proposal": null
+    },
+    {
+      "noteId": "wis-19-18-word13-lamed-2-vowel",
+      "chapter": 19,
+      "verse": 18,
+      "originalAnchor": "צלילי",
+      "correctedAnchor": "צלילי",
+      "originalText": "כִּי הַיְסוֹדוֹת אֶת־סִדְרָם הֶחֱלִיפוּ כּאֲשֶׁר יִשְׁתַּנֶּה קֶצֶב צלילי הַנֵּבֶל בְּהִשְׁתַּנּוֹת מֵיתָרָיו אַף כִּי־קוֹלָם יִשָּׁאֵר תָּמִיד כָּל־עֻמַּת שֶׁהָיָה וְזֹאת יוּכַל הָאִישׁ לִשְׁפֹּט לְנָכוֹן בִּרְאוֹתוֹ אֶת־הַמַּעֲשִׂים׃",
+      "correctedText": "כִּי הַיְסוֹדוֹת אֶת־סִדְרָם הֶחֱלִיפוּ כּאֲשֶׁר יִשְׁתַּנֶּה קֶצֶב צלילי הַנֵּבֶל בְּהִשְׁתַּנּוֹת מֵיתָרָיו אַף כִּי־קוֹלָם יִשָּׁאֵר תָּמִיד כָּל־עֻמַּת שֶׁהָיָה וְזֹאת יוּכַל הָאִישׁ לִשְׁפֹּט לְנָכוֹן בִּרְאוֹתוֹ אֶת־הַמַּעֲשִׂים׃",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "sourcePages": [
+        185
+      ],
+      "cropPath": "/private/tmp/prosary-wis-review/source-gate-WIS19-tzlilei18.png",
+      "cropSHA256": "8bdc59e766135bcb9409b7a8e234da17c5a5cde58b0be9d386701bf9c86a7e62",
+      "existingCropProvenance": {
+        "path": "/private/tmp/prosary-wis-review/source-gate-WIS19-tzlilei18.png",
+        "sha256": "8bdc59e766135bcb9409b7a8e234da17c5a5cde58b0be9d386701bf9c86a7e62",
+        "source": "/private/tmp/prosary-wis-review/WIS-native-185.png",
+        "sourceSHA256": "cab15a9f54339b67562d12aa99a258814837385ba25ebb95836c0e8aeb8acf82",
+        "sourcePage": 185,
+        "box": [
+          185,
+          1255,
+          565,
+          1415
+        ],
+        "scale": 4
+      },
+      "decision": "retainUncertainty",
+      "evidence": "Tsadi has a joined thick lower descender; both lamed lower edges are thick continuous terminals. No independently legible vowel shape is separated.",
+      "candidateReading": null,
+      "proposal": null
+    },
+    {
+      "noteId": "wis-19-18-word13-lamed-4-vowel",
+      "chapter": 19,
+      "verse": 18,
+      "originalAnchor": "צלילי",
+      "correctedAnchor": "צלילי",
+      "originalText": "כִּי הַיְסוֹדוֹת אֶת־סִדְרָם הֶחֱלִיפוּ כּאֲשֶׁר יִשְׁתַּנֶּה קֶצֶב צלילי הַנֵּבֶל בְּהִשְׁתַּנּוֹת מֵיתָרָיו אַף כִּי־קוֹלָם יִשָּׁאֵר תָּמִיד כָּל־עֻמַּת שֶׁהָיָה וְזֹאת יוּכַל הָאִישׁ לִשְׁפֹּט לְנָכוֹן בִּרְאוֹתוֹ אֶת־הַמַּעֲשִׂים׃",
+      "correctedText": "כִּי הַיְסוֹדוֹת אֶת־סִדְרָם הֶחֱלִיפוּ כּאֲשֶׁר יִשְׁתַּנֶּה קֶצֶב צלילי הַנֵּבֶל בְּהִשְׁתַּנּוֹת מֵיתָרָיו אַף כִּי־קוֹלָם יִשָּׁאֵר תָּמִיד כָּל־עֻמַּת שֶׁהָיָה וְזֹאת יוּכַל הָאִישׁ לִשְׁפֹּט לְנָכוֹן בִּרְאוֹתוֹ אֶת־הַמַּעֲשִׂים׃",
+      "letterIndex": 4,
+      "mark": "vowel",
+      "sourcePages": [
+        185
+      ],
+      "cropPath": "/private/tmp/prosary-wis-review/source-gate-WIS19-tzlilei18.png",
+      "cropSHA256": "8bdc59e766135bcb9409b7a8e234da17c5a5cde58b0be9d386701bf9c86a7e62",
+      "existingCropProvenance": {
+        "path": "/private/tmp/prosary-wis-review/source-gate-WIS19-tzlilei18.png",
+        "sha256": "8bdc59e766135bcb9409b7a8e234da17c5a5cde58b0be9d386701bf9c86a7e62",
+        "source": "/private/tmp/prosary-wis-review/WIS-native-185.png",
+        "sourceSHA256": "cab15a9f54339b67562d12aa99a258814837385ba25ebb95836c0e8aeb8acf82",
+        "sourcePage": 185,
+        "box": [
+          185,
+          1255,
+          565,
+          1415
+        ],
+        "scale": 4
+      },
+      "decision": "retainUncertainty",
+      "evidence": "Tsadi has a joined thick lower descender; both lamed lower edges are thick continuous terminals. No independently legible vowel shape is separated.",
+      "candidateReading": null,
+      "proposal": null
+    },
+    {
+      "noteId": "wis-19-18-word14-kaf-1-vowel",
+      "chapter": 19,
+      "verse": 18,
+      "originalAnchor": "כּאֲשֶׁר",
+      "correctedAnchor": "כּאֲשֶׁר",
+      "originalText": "כִּי הַיְסוֹדוֹת אֶת־סִדְרָם הֶחֱלִיפוּ כּאֲשֶׁר יִשְׁתַּנֶּה קֶצֶב צלילי הַנֵּבֶל בְּהִשְׁתַּנּוֹת מֵיתָרָיו אַף כִּי־קוֹלָם יִשָּׁאֵר תָּמִיד כָּל־עֻמַּת שֶׁהָיָה וְזֹאת יוּכַל הָאִישׁ לִשְׁפֹּט לְנָכוֹן בִּרְאוֹתוֹ אֶת־הַמַּעֲשִׂים׃",
+      "correctedText": "כִּי הַיְסוֹדוֹת אֶת־סִדְרָם הֶחֱלִיפוּ כּאֲשֶׁר יִשְׁתַּנֶּה קֶצֶב צלילי הַנֵּבֶל בְּהִשְׁתַּנּוֹת מֵיתָרָיו אַף כִּי־קוֹלָם יִשָּׁאֵר תָּמִיד כָּל־עֻמַּת שֶׁהָיָה וְזֹאת יוּכַל הָאִישׁ לִשְׁפֹּט לְנָכוֹן בִּרְאוֹתוֹ אֶת־הַמַּעֲשִׂים׃",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        185
+      ],
+      "cropPath": "/private/tmp/prosary-wis-review/source-gate-WIS19-kaasher18-comparator.png",
+      "cropSHA256": "a23214c08ced0edda294ea2463e1fad41c1d3159d1b2009cdc2049ccd95ed278",
+      "existingCropProvenance": {
+        "path": "/private/tmp/prosary-wis-review/source-gate-WIS19-kaasher18-comparator.png",
+        "sha256": "a23214c08ced0edda294ea2463e1fad41c1d3159d1b2009cdc2049ccd95ed278",
+        "source": "/private/tmp/prosary-wis-review/WIS-native-185.png",
+        "sourceSHA256": "cab15a9f54339b67562d12aa99a258814837385ba25ebb95836c0e8aeb8acf82",
+        "sourcePage": 185,
+        "box": [
+          705,
+          1255,
+          955,
+          1410
+        ],
+        "scale": 4
+      },
+      "decision": "retainUncertainty",
+      "evidence": "Kaf bottom region is a dense fused horizontal body with no separated readable vowel. Its dagesh and adjacent alef hataf-patah remain visible.",
+      "candidateReading": null,
+      "proposal": null
+    },
+    {
+      "noteId": "wis-19-22-word15-mem-1-vowel",
+      "chapter": 19,
+      "verse": 22,
+      "originalAnchor": "מהוֹשִׁיעם",
+      "correctedAnchor": "מהוֹשִׁיעם",
+      "originalText": "כִּי בְּכָל אֵלֶּה יְיָ הִגְדַּלְתָּ וְרוֹמַמְתָּ אֶת עַמְּךָ וְלֹא הֶעְלַמְתָּ מֵהֶם עַיִן מהוֹשִׁיעם בְּכָל־עֵת וּבְכָל־מָקוֹם׃",
+      "correctedText": "כִּי בְּכָל אֵלֶּה יְיָ הִגְדַּלְתָּ וְרוֹמַמְתָּ אֶת עַמְּךָ וְלֹא הֶעְלַמְתָּ מֵהֶם עַיִן מהוֹשִׁיעם בְּכָל־עֵת וּבְכָל־מָקוֹם׃",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        186
+      ],
+      "cropPath": "/private/tmp/prosary-wis-review/WIS19-author-mehoshiam22.png",
+      "cropSHA256": "a7b7138ce1b29a89129f69f10e9e856a8a463344cbfe92a00729c5bf7f5781e2",
+      "existingCropProvenance": {
+        "path": "/private/tmp/prosary-wis-review/WIS19-author-mehoshiam22.png",
+        "sourcePage": 186,
+        "box": [
+          215,
+          580,
+          630,
+          730
+        ],
+        "scale": 3,
+        "resampling": "nearest",
+        "sha256": "a7b7138ce1b29a89129f69f10e9e856a8a463344cbfe92a00729c5bf7f5781e2"
+      },
+      "decision": "retainUncertainty",
+      "evidence": "Initial mem lower mass contains a white pinhole and merged projection; ayin lower edge is a dense terminal. Neither permits a specific complete vowel reading.",
+      "candidateReading": null,
+      "proposal": null
+    },
+    {
+      "noteId": "wis-19-22-word15-ayin-6-vowel",
+      "chapter": 19,
+      "verse": 22,
+      "originalAnchor": "מהוֹשִׁיעם",
+      "correctedAnchor": "מהוֹשִׁיעם",
+      "originalText": "כִּי בְּכָל אֵלֶּה יְיָ הִגְדַּלְתָּ וְרוֹמַמְתָּ אֶת עַמְּךָ וְלֹא הֶעְלַמְתָּ מֵהֶם עַיִן מהוֹשִׁיעם בְּכָל־עֵת וּבְכָל־מָקוֹם׃",
+      "correctedText": "כִּי בְּכָל אֵלֶּה יְיָ הִגְדַּלְתָּ וְרוֹמַמְתָּ אֶת עַמְּךָ וְלֹא הֶעְלַמְתָּ מֵהֶם עַיִן מהוֹשִׁיעם בְּכָל־עֵת וּבְכָל־מָקוֹם׃",
+      "letterIndex": 6,
+      "mark": "vowel",
+      "sourcePages": [
+        186
+      ],
+      "cropPath": "/private/tmp/prosary-wis-review/WIS19-author-mehoshiam22.png",
+      "cropSHA256": "a7b7138ce1b29a89129f69f10e9e856a8a463344cbfe92a00729c5bf7f5781e2",
+      "existingCropProvenance": {
+        "path": "/private/tmp/prosary-wis-review/WIS19-author-mehoshiam22.png",
+        "sourcePage": 186,
+        "box": [
+          215,
+          580,
+          630,
+          730
+        ],
+        "scale": 3,
+        "resampling": "nearest",
+        "sha256": "a7b7138ce1b29a89129f69f10e9e856a8a463344cbfe92a00729c5bf7f5781e2"
+      },
+      "decision": "retainUncertainty",
+      "evidence": "Initial mem lower mass contains a white pinhole and merged projection; ayin lower edge is a dense terminal. Neither permits a specific complete vowel reading.",
+      "candidateReading": null,
+      "proposal": null
+    }
+  ],
+  "conclusion": "No clear source-backed point reading or demonstrably intact clean absence was found among these 22 anchors. Retain all 22 underlying provenance notes. Reader clutter reduction can be implemented separately without deleting their source evidence."
+}

@@ -145,7 +145,7 @@ public static class PrayerTypography
             Script.Syriac => 19,
             Script.Hebrew => isScripture ? 16 : 21,
             Script.Arabic => isScripture ? 16 : 18,
-            Script.Latin or Script.Greek => isScripture ? 19 : 17,
+            Script.Latin or Script.Greek or Script.Cyrillic => isScripture ? 19 : 17,
             _ => 17,
         };
 }

@@ -146,7 +146,7 @@ private struct TodayWidgetView: View {
           }
           if family == .systemLarge {
             if let intention = entry.content.intention {
-              detail(title: text("widget.today.intention"), value: intention, symbol: "heart",
+              detail(title: text("widget.today.intention"), value: intention, symbol: "papalKeys",
                      body: entry.content.intentionText)
             }
             if let torah = entry.content.torah {
@@ -175,7 +175,10 @@ private struct TodayWidgetView: View {
 
   private func detail(title: String, value: String, symbol: String, body: String? = nil) -> some View {
     VStack(alignment: .leading, spacing: 3) {
-      Label(title, systemImage: symbol).font(.caption2.weight(.semibold)).foregroundStyle(.secondary)
+      Label { Text(title) } icon: {
+        if symbol == "papalKeys" { PapalKeysSymbol(size: 12) }
+        else { Image(systemName: symbol) }
+      }.font(.caption2.weight(.semibold)).foregroundStyle(.secondary)
       Text(value).font(.subheadline).lineLimit(2)
       if let body {
         Text(body).font(.caption).foregroundStyle(.secondary).lineLimit(4)

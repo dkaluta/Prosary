@@ -16,7 +16,8 @@ class AngelusFlowInstrumentedTest {
     val composeTestRule = createAndroidComposeRule<MainActivity>()
 
     @Test
-    fun angelusFlowFromHomeToFinish() {
+    fun angelusFlowFromPrayToFinish() {
+        composeTestRule.onNodeWithTag("tab.pray").performClick()
         composeTestRule.onNodeWithTag("angelusCard").performClick()
         composeTestRule.onNodeWithText("The Annunciation").assertIsDisplayed()
 
@@ -27,12 +28,13 @@ class AngelusFlowInstrumentedTest {
 
         composeTestRule.onNodeWithText("Finish").performClick()
 
-        // Back at Home.
+        // Back at Pray.
         composeTestRule.onNodeWithTag("rosaryCard").assertIsDisplayed()
     }
 
     @Test
     fun angelusBackButtonReturnsToPreviousStep() {
+        composeTestRule.onNodeWithTag("tab.pray").performClick()
         composeTestRule.onNodeWithTag("angelusCard").performClick()
         composeTestRule.onNodeWithText("The Annunciation").assertIsDisplayed()
 

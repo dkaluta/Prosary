@@ -17,13 +17,13 @@ public sealed partial class MainWindow : Window
         DesktopWindowChrome.Configure(this, WindowRoot, AppTitleBar, LeftPaddingColumn, RightPaddingColumn, 760);
         Router.Register(RootFrame, this);
         DesktopWindowChrome.Populate(WindowMenus, this, RootFrame);
+        AppNav.MenuItems.Add(Section("home", "home_widgets_title", "Home", "\uE80F"));
         AppNav.MenuItems.Add(Section("library", "desktop_library", "Library", "\uE8F1"));
         AppNav.MenuItems.Add(Section("today", "desktop_today", "Today", "\uE787"));
         AppNav.MenuItems.Add(Section("readings", "readings_title", "Readings", "\uE8A9"));
         AppNav.MenuItems.Add(Section("gallery", "desktop_gallery", "Gallery", "\uE8B9"));
         AppNav.MenuItems.Add(Section("basic", "BasicPrayersTitle/Text", "Basic Prayers", "\uE8A5"));
         AppNav.MenuItems.Add(Section("search", "SearchTitle/Text", "Search", "\uE721"));
-        AppNav.MenuItems.Add(Section("community", "desktop_community", "Community", "\uE902"));
         AppNav.FooterMenuItems.Add(Section("settings", "SetTitle/Text", "Settings", "\uE713"));
         AppNav.FooterMenuItems.Add(Section("about", "AbtTitle/Text", "About", "\uE946"));
         Closed += (_, _) =>
@@ -40,6 +40,13 @@ public sealed partial class MainWindow : Window
 
     public void SelectSection(string section)
     {
+        // Community discovery belongs to Search; retain this internal route for old callers.
+        if (section == "community")
+        {
+            SelectSection("search");
+            Router.For(RootFrame).Navigate<RepositoryBrowserPage>();
+            return;
+        }
         var item = AppNav.MenuItems.Concat(AppNav.FooterMenuItems)
             .OfType<NavigationViewItem>().FirstOrDefault(item => item.Tag as string == section)
             ?? AppNav.MenuItems.OfType<NavigationViewItem>().First();
@@ -60,6 +67,12 @@ public sealed partial class MainWindow : Window
         RootFrame.BackStack.Clear();
     }
 
+    public void ShowReadingsMode(string mode)
+    {
+        SelectSection("readings");
+        if (RootFrame.Content is DesktopReadingsPage readings) readings.ShowMode(mode);
+    }
+
     private void OnNavSelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
     {
         if (args.SelectedItem is not NavigationViewItem item) return;
@@ -71,6 +84,7 @@ public sealed partial class MainWindow : Window
         var navigation = Router.For(RootFrame);
         switch (item.Tag as string)
         {
+            case "home": navigation.Navigate<DashboardPage>(); break;
             case "library": navigation.Navigate<DesktopLibraryPage>(); break;
             case "today": navigation.Navigate<DesktopTodayPage>(); break;
             case "readings": navigation.Navigate<DesktopReadingsPage>(); break;
@@ -80,7 +94,6 @@ public sealed partial class MainWindow : Window
                 navigation.Navigate<SearchPage>();
                 if (RootFrame.Content is SearchPage search) search.FocusSearch();
                 break;
-            case "community": navigation.Navigate<RepositoryBrowserPage>(); break;
             case "settings": navigation.Navigate<SettingsPage>(); break;
             case "about": navigation.Navigate<AboutPage>(); break;
             default: return;

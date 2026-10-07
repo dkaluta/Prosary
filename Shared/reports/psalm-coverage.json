@@ -1,0 +1,1612 @@
+{
+  "schemaVersion": 1,
+  "corpusSHA256": "82864e07d57c09c10e3ca5b01bd52ffd82a998e73816f82b24e443c3e3ba7716",
+  "limits": [
+    "Counts identify current available text, not a complete word-by-word translation review.",
+    "Unavailable keys retain their original printed citations; source-specific gaps are not silently filled from another calendar or edition."
+  ],
+  "readingDatasets": {
+    "roman": {
+      "file": "readings-roman",
+      "calendarIds": [
+        "lpj",
+        "roman"
+      ],
+      "sourceURL": null,
+      "sourceSHA256": null,
+      "appointmentRows": 121,
+      "uniqueAppointments": 103,
+      "coverage": {
+        "douay-rheims-1899": {
+          "available": 103,
+          "unavailable": 0,
+          "reasons": {},
+          "unavailableKeys": {}
+        },
+        "masoretic-delitzsch": {
+          "available": 103,
+          "unavailable": 0,
+          "reasons": {},
+          "unavailableKeys": {}
+        },
+        "synodal-1876": {
+          "available": 103,
+          "unavailable": 0,
+          "reasons": {},
+          "unavailableKeys": {}
+        },
+        "ang-dating-biblia-1905": {
+          "available": 103,
+          "unavailable": 0,
+          "reasons": {},
+          "unavailableKeys": {}
+        },
+        "crampon-1923": {
+          "available": 103,
+          "unavailable": 0,
+          "reasons": {},
+          "unavailableKeys": {}
+        },
+        "martini": {
+          "available": 103,
+          "unavailable": 0,
+          "reasons": {},
+          "unavailableKeys": {}
+        },
+        "kulish-1905": {
+          "available": 103,
+          "unavailable": 0,
+          "reasons": {},
+          "unavailableKeys": {}
+        },
+        "jesuit-arabic-1897": {
+          "available": 103,
+          "unavailable": 0,
+          "reasons": {},
+          "unavailableKeys": {}
+        },
+        "peshitta-1905": {
+          "available": 102,
+          "unavailable": 1,
+          "reasons": {
+            "STEP Standard verse unavailable in source": 1
+          },
+          "unavailableKeys": {
+            "daily|Psalm 119:66–66; 119:71–71; 119:75–75; 119:91–91; 119:125–125; 119:130–130": "STEP Standard verse unavailable in source"
+          }
+        },
+        "brenton-lxx": {
+          "available": 103,
+          "unavailable": 0,
+          "reasons": {},
+          "unavailableKeys": {}
+        }
+      }
+    },
+    "stjames": {
+      "file": "readings-stjames",
+      "calendarIds": [
+        "stjames"
+      ],
+      "sourceURL": "https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_HebrewandEnglish20262027SA2.pdf",
+      "sourceSHA256": "b7d2eabf9181913379c2de2f5279bd9a8ad9ed3f9804089c38fc6ea59de45960",
+      "appointmentRows": 373,
+      "uniqueAppointments": 261,
+      "coverage": {
+        "douay-rheims-1899": {
+          "available": 258,
+          "unavailable": 3,
+          "reasons": {
+            "printed Psalm span conflicts with the paired Hebrew chapter; source correction remains unresolved": 3
+          },
+          "unavailableKeys": {
+            "daily|stjames|Psalm 103:19–20,21–22,23": "printed Psalm span conflicts with the paired Hebrew chapter; source correction remains unresolved",
+            "daily|stjames|Psalm 16:1–15": "printed Psalm span conflicts with the paired Hebrew chapter; source correction remains unresolved",
+            "daily|stjames|Psalm 33:4–0,18–22": "printed Psalm span conflicts with the paired Hebrew chapter; source correction remains unresolved"
+          }
+        },
+        "masoretic-delitzsch": {
+          "available": 258,
+          "unavailable": 3,
+          "reasons": {
+            "printed Psalm span conflicts with the paired Hebrew chapter; source correction remains unresolved": 3
+          },
+          "unavailableKeys": {
+            "daily|stjames|Psalm 103:19–20,21–22,23": "printed Psalm span conflicts with the paired Hebrew chapter; source correction remains unresolved",
+            "daily|stjames|Psalm 16:1–15": "printed Psalm span conflicts with the paired Hebrew chapter; source correction remains unresolved",
+            "daily|stjames|Psalm 33:4–0,18–22": "printed Psalm span conflicts with the paired Hebrew chapter; source correction remains unresolved"
+          }
+        },
+        "synodal-1876": {
+          "available": 258,
+          "unavailable": 3,
+          "reasons": {
+            "printed Psalm span conflicts with the paired Hebrew chapter; source correction remains unresolved": 3
+          },
+          "unavailableKeys": {
+            "daily|stjames|Psalm 103:19–20,21–22,23": "printed Psalm span conflicts with the paired Hebrew chapter; source correction remains unresolved",
+            "daily|stjames|Psalm 16:1–15": "printed Psalm span conflicts with the paired Hebrew chapter; source correction remains unresolved",
+            "daily|stjames|Psalm 33:4–0,18–22": "printed Psalm span conflicts with the paired Hebrew chapter; source correction remains unresolved"
+          }
+        },
+        "ang-dating-biblia-1905": {
+          "available": 258,
+          "unavailable": 3,
+          "reasons": {
+            "printed Psalm span conflicts with the paired Hebrew chapter; source correction remains unresolved": 3
+          },
+          "unavailableKeys": {
+            "daily|stjames|Psalm 103:19–20,21–22,23": "printed Psalm span conflicts with the paired Hebrew chapter; source correction remains unresolved",
+            "daily|stjames|Psalm 16:1–15": "printed Psalm span conflicts with the paired Hebrew chapter; source correction remains unresolved",
+            "daily|stjames|Psalm 33:4–0,18–22": "printed Psalm span conflicts with the paired Hebrew chapter; source correction remains unresolved"
+          }
+        },
+        "crampon-1923": {
+          "available": 255,
+          "unavailable": 6,
+          "reasons": {
+            "printed Psalm span conflicts with the paired Hebrew chapter; source correction remains unresolved": 3,
+            "STEP Standard verse unavailable in source": 3
+          },
+          "unavailableKeys": {
+            "daily|stjames|Psalm 103:19–20,21–22,23": "printed Psalm span conflicts with the paired Hebrew chapter; source correction remains unresolved",
+            "daily|stjames|Psalm 16:1–15": "printed Psalm span conflicts with the paired Hebrew chapter; source correction remains unresolved",
+            "daily|stjames|Psalm 33:4–0,18–22": "printed Psalm span conflicts with the paired Hebrew chapter; source correction remains unresolved",
+            "daily|stjames|Psalm 50:1–6,14–15": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 50:5–8,14,23": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 50:8–9,16–17,21–23": "STEP Standard verse unavailable in source"
+          }
+        },
+        "martini": {
+          "available": 81,
+          "unavailable": 180,
+          "reasons": {
+            "Martini Psalm request exceeds its independently reviewed source-verse boundaries": 177,
+            "printed Psalm span conflicts with the paired Hebrew chapter; source correction remains unresolved": 3
+          },
+          "unavailableKeys": {
+            "daily|stjames|Psalm 102:16–29": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 102:2–3,16–21": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 103:19–20,21–22,23": "printed Psalm span conflicts with the paired Hebrew chapter; source correction remains unresolved",
+            "daily|stjames|Psalm 103:1–12": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 103:1–2,13–18": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 103:1–4,8,10": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 103:1–4,8–11": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 103:1–6": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 103:1–7": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 104:1,24,29–34": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 104:1–12,24,35": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 105:16–21": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 105:1–7": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 105:1–9": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 105:4–9": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 105:6–9,42–43": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 106:19–23": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 106:1–5": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 106:34–44": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 106:6–13": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 106:6–7,13–14,21–23": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 107:23–31,16–19": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 110:1–4": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 113:1–8": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 114:1–6": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 115:1–4,15–16": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 116:10,15–19": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 116:12–17": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 116:12–18": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 118:1,14–21": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 118:1,8–9,21–23,26,28": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 118:1–2,16–17,22–23": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 118:1–4,22–27": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 118:2–4,16–18,22–24": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 119:129–135": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 119:12–18,27,34–35": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 119:165–175": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 119:1–2,4–5,15–16": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 119:1–8": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 119:23–30": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 119:41–48": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 119:66–68,76–77,93–94": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 11:4–7": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 124:1–7": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 124:2–8": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 130:1–6": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 136:1,10–15,23–24": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 136:1–3,16–24": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 137:1–6": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 138:1–3,7–8": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 139:7–12": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 145:1,9–13": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 145:1–2,8–11": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 146:1–9": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 146:5–10": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 147:12–15,19–20": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 147:12–16,19–20": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 148:1–2,11–14": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 16:1–15": "printed Psalm span conflicts with the paired Hebrew chapter; source correction remains unresolved",
+            "daily|stjames|Psalm 16:1–2,5,7–11": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 17:1–8,15": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 18:2–7,17–18,29,50": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 19:8–10,15": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 19:8–11": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 19:8–14": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 19:8–15": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 21:2–7": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 22:8–9,17–20,23–24": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 24:7–10": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 25:2–9": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 25:4–5,8–10,14": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 27:1–3,13–14": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 27:1–4,13–14": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 27:1–9": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 28:2–9": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 2:6–12": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 2:7–11": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 30:2–6,11–13": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 31:2,6,12–17,25": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 31:20–24": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 31:3–8,16–17": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 31:3–8,17,21": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 31:5–6,14–16": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 32:1–5,11": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 32:1–7": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 33:2–9": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 33:4–0,18–22": "printed Psalm span conflicts with the paired Hebrew chapter; source correction remains unresolved",
+            "daily|stjames|Psalm 34:17–23": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 34:2,9,17–20": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 34:2–3,16–23": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 34:2–3,6–7,17–20": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 34:2–7": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 34:2–9": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 34:4–7,16–19": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 34:7–13": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 34:8–13": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 37:3–4,18–19,27–28,39–40": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 37:3–4,18–19,27–29,39–40": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 37:3–6,23–24,39–40": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 40:2–10": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 40:5–10": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 40:7–10,17": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 40:7–11": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 42:2–3; 43:3–4": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 42:2–5": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 43:1–4": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 45:10–16": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 46:2–9": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 47:2–3,8–10": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 47:2–7": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 47:2–9": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 48:2–11": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 49:6–10,17–20": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 4:2,4,9": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 50:1–6,14–15": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 50:5–8,14,23": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 50:8–9,16–17,21–23": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 51:3–4,12–13,18–19": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 51:3–4,12–15": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 51:3–4,18–21": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 51:3–6,12–17": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 51:3–6,18–19": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 51:3–7,12–13": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 52:10–11": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 54:3–8": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 57:8–12": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 62:2–9": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 62:6–9": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 66:1–7": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 66:1–8,16–17": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 66:8–9,16–17,19–20": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 68:10–11,20–21": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 68:29–36": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 68:2–7": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 69:3,14,30–34": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 69:33–37": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 69:8–10,21–22,31,33–34": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 72:1–2,10–13": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 72:1–2,12–13,18–19": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 72:1–2,14–17": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 72:1–2,7–13": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 72:1–2,7–8,12–13,17": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 72:1–4,7–8": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 72:1–8,17": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 78:18–28": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 78:3–4,23–25,54": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 78:3–8": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 79:1–9": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 79:5–13": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 7:2–3,9–12": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 80:2–3,15–19": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 80:9–20": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 81:12–17": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 81:3–11": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 81:6–11,14,17": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 85:8–14": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 86:1–6": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 86:3–10": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 89:21–22,25,27": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 89:2–3,21–22,25,27": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 89:2–5,27,29": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 89:4–5,16–17,27,29": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 8:2–9": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 90:13–17": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 90:3–4,12–17": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 91:1–4,14–15": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 92:2–3,13–16": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 95:6–11": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 96:1–10": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 96:1–2,11–13": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 96:1–3,10": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 96:1–3,11–13": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 96:1–3,7–10": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 96:1–5,11–13": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 96:1–6": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 97:1,6,11–12": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 97:1–2,6–9": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 97:1–6,10–12": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 99:5–9": "Martini Psalm request exceeds its independently reviewed source-verse boundaries",
+            "daily|stjames|Psalm 9:2–9": "Martini Psalm request exceeds its independently reviewed source-verse boundaries"
+          }
+        },
+        "kulish-1905": {
+          "available": 257,
+          "unavailable": 4,
+          "reasons": {
+            "printed Psalm span conflicts with the paired Hebrew chapter; source correction remains unresolved": 3,
+            "STEP Standard verse unavailable in source": 1
+          },
+          "unavailableKeys": {
+            "daily|stjames|Psalm 103:19–20,21–22,23": "printed Psalm span conflicts with the paired Hebrew chapter; source correction remains unresolved",
+            "daily|stjames|Psalm 148:1–2,11–14": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 16:1–15": "printed Psalm span conflicts with the paired Hebrew chapter; source correction remains unresolved",
+            "daily|stjames|Psalm 33:4–0,18–22": "printed Psalm span conflicts with the paired Hebrew chapter; source correction remains unresolved"
+          }
+        },
+        "jesuit-arabic-1897": {
+          "available": 100,
+          "unavailable": 161,
+          "reasons": {
+            "Arabic Psalm includes source words outside the scan review": 158,
+            "printed Psalm span conflicts with the paired Hebrew chapter; source correction remains unresolved": 3
+          },
+          "unavailableKeys": {
+            "daily|stjames|Psalm 102:16–29": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 102:2–3,16–21": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 103:19–20,21–22,23": "printed Psalm span conflicts with the paired Hebrew chapter; source correction remains unresolved",
+            "daily|stjames|Psalm 104:1,24,29–34": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 104:1–12,24,35": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 105:16–21": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 105:1–7": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 105:1–9": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 105:4–9": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 105:6–9,42–43": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 106:19–23": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 106:1–5": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 106:34–44": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 106:6–13": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 106:6–7,13–14,21–23": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 107:23–31,16–19": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 110:1–4": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 114:1–6": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 115:1–4,15–16": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 116:1–9": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 118:1,14–21": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 118:1,8–9,21–23,26,28": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 118:1–2,16–17,22–23": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 118:1–4,22–27": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 118:2–4,16–18,22–24": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 119:129–135": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 119:12–18,27,34–35": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 119:165–175": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 119:1–2,4–5,15–16": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 119:1–8": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 119:23–30": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 119:41–48": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 119:66–68,76–77,93–94": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 11:4–7": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 123:1–4": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 124:1–7": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 124:1–8": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 124:2–8": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 126:1–6": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 130:1–6": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 130:1–8": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 136:1,10–15,23–24": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 136:1–3,16–24": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 137:1–6": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 139:7–12": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 16:1–11": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 16:1–15": "printed Psalm span conflicts with the paired Hebrew chapter; source correction remains unresolved",
+            "daily|stjames|Psalm 16:1–2,5,7–11": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 17:1–8,15": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 18:2–7,17–18,29,50": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 19:8–10,15": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 19:8–11": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 19:8–14": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 19:8–15": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 21:2–7": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 22:8–9,17–20,23–24": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 25:2–9": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 25:4–5,8–10,14": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 27:1–3,13–14": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 27:1–4,13–14": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 27:1–9": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 28:2–9": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 2:6–12": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 2:7–11": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 30:2–6,11–13": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 31:2,6,12–17,25": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 31:20–24": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 31:3–8,16–17": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 31:3–8,17,21": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 31:5–6,14–16": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 32:1–5,11": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 32:1–7": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 33:2–9": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 33:4–0,18–22": "printed Psalm span conflicts with the paired Hebrew chapter; source correction remains unresolved",
+            "daily|stjames|Psalm 34:17–23": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 34:2,9,17–20": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 34:2–3,16–23": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 34:2–3,6–7,17–20": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 34:2–7": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 34:2–9": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 34:4–7,16–19": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 34:7–13": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 34:8–13": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 37:3–4,18–19,27–28,39–40": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 37:3–4,18–19,27–29,39–40": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 37:3–6,23–24,39–40": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 40:2–10": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 40:5–10": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 40:7–10,17": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 40:7–11": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 42:2–3; 43:3–4": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 42:2–5": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 43:1–4": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 45:10–16": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 46:2–9": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 47:2–3,8–10": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 47:2–7": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 47:2–9": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 48:2–11": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 49:6–10,17–20": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 4:2,4,9": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 50:1–6,14–15": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 50:5–8,14,23": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 50:8–9,16–17,21–23": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 51:3–4,12–13,18–19": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 51:3–4,12–15": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 51:3–4,18–21": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 51:3–6,12–17": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 51:3–6,18–19": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 51:3–7,12–13": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 52:10–11": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 54:3–8": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 57:8–12": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 62:2–9": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 62:6–9": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 66:1–7": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 66:1–8,16–17": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 66:8–9,16–17,19–20": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 67:2–8": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 68:10–11,20–21": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 68:29–36": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 68:2–7": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 69:3,14,30–34": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 69:33–37": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 69:8–10,21–22,31,33–34": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 71:3–6,16–17": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 72:1–2,10–13": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 72:1–2,12–13,18–19": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 72:1–2,14–17": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 72:1–2,7–13": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 72:1–2,7–8,12–13,17": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 72:1–4,7–8": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 72:1–8,17": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 78:18–28": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 78:3–4,23–25,54": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 78:3–8": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 79:1–9": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 79:5–13": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 7:2–3,9–12": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 80:2–3,15–19": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 80:9–20": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 81:12–17": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 81:3–11": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 81:6–11,14,17": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 84:3–8": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 85:8–14": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 86:1–6": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 86:3–10": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 87:1–7": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 89:21–22,25,27": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 89:2–3,21–22,25,27": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 89:2–5,27,29": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 89:4–5,16–17,27,29": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 8:2–9": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 90:13–17": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 90:3–4,12–17": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 91:1–4,14–15": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 92:2–3,13–16": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 93:1–5": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 99:5–9": "Arabic Psalm includes source words outside the scan review",
+            "daily|stjames|Psalm 9:2–9": "Arabic Psalm includes source words outside the scan review"
+          }
+        },
+        "peshitta-1905": {
+          "available": 66,
+          "unavailable": 195,
+          "reasons": {
+            "STEP Standard verse unavailable in source": 192,
+            "printed Psalm span conflicts with the paired Hebrew chapter; source correction remains unresolved": 3
+          },
+          "unavailableKeys": {
+            "daily|stjames|Psalm 102:16–29": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 102:2–3,16–21": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 103:19–20,21–22,23": "printed Psalm span conflicts with the paired Hebrew chapter; source correction remains unresolved",
+            "daily|stjames|Psalm 103:1–12": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 103:1–2,13–18": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 103:1–4,8,10": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 103:1–4,8–11": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 103:1–6": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 103:1–7": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 104:1,24,29–34": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 104:1–12,24,35": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 105:16–21": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 105:1–7": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 105:1–9": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 105:4–9": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 105:6–9,42–43": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 106:19–23": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 106:1–5": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 106:34–44": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 106:6–13": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 106:6–7,13–14,21–23": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 107:23–31,16–19": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 110:1–4": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 113:1–8": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 114:1–6": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 115:1–4,15–16": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 116:10,15–19": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 116:12–17": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 116:12–18": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 116:1–9": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 118:1,14–21": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 118:1,8–9,21–23,26,28": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 118:1–2,16–17,22–23": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 118:1–4,22–27": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 118:2–4,16–18,22–24": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 119:129–135": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 119:12–18,27,34–35": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 119:14,24,72,103,111,131": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 119:165–175": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 119:1–2,4–5,15–16": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 119:1–8": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 119:23–30": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 119:41–48": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 119:66–68,76–77,93–94": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 11:4–7": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 123:1–4": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 124:1–7": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 124:1–8": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 124:2–8": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 126:1–6": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 128:1–6": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 130:1–6": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 130:1–8": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 136:1,10–15,23–24": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 136:1–3,16–24": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 137:1–6": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 139:7–12": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 145:1,9–13": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 145:1–2,8–11": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 146:1–9": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 146:5–10": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 146:6–10": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 147:12–15,19–20": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 147:12–16,19–20": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 148:1–2,11–14": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 149:1–9": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 16:1–11": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 16:1–15": "printed Psalm span conflicts with the paired Hebrew chapter; source correction remains unresolved",
+            "daily|stjames|Psalm 16:1–2,5,7–11": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 17:1–8,15": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 18:2–7,17–18,29,50": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 19:8–10,15": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 19:8–11": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 19:8–14": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 19:8–15": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 1:1–6": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 21:2–7": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 22:8–9,17–20,23–24": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 24:7–10": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 25:2–9": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 25:4–5,8–10,14": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 27:1–3,13–14": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 27:1–4,13–14": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 27:1–9": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 28:2–9": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 2:6–12": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 2:7–11": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 30:2–6,11–13": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 31:2,6,12–17,25": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 31:20–24": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 31:3–8,16–17": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 31:3–8,17,21": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 31:5–6,14–16": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 32:1–5,11": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 32:1–7": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 33:2–9": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 33:4–0,18–22": "printed Psalm span conflicts with the paired Hebrew chapter; source correction remains unresolved",
+            "daily|stjames|Psalm 34:17–23": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 34:2,9,17–20": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 34:2–3,16–23": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 34:2–3,6–7,17–20": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 34:2–7": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 34:2–9": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 34:4–7,16–19": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 34:7–13": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 34:8–13": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 37:3–4,18–19,27–28,39–40": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 37:3–4,18–19,27–29,39–40": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 37:3–6,23–24,39–40": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 40:2–10": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 40:5–10": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 40:7–10,17": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 40:7–11": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 42:2–3; 43:3–4": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 42:2–5": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 43:1–4": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 45:10–16": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 46:2–9": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 47:2–3,8–10": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 47:2–7": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 47:2–9": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 48:2–11": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 49:6–10,17–20": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 4:2,4,9": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 50:1–6,14–15": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 50:5–8,14,23": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 50:8–9,16–17,21–23": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 51:3–4,12–13,18–19": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 51:3–4,12–15": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 51:3–4,18–21": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 51:3–6,12–17": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 51:3–6,18–19": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 51:3–7,12–13": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 52:10–11": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 54:3–8": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 57:8–12": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 62:2–9": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 62:6–9": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 66:1–7": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 66:1–8,16–17": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 66:8–9,16–17,19–20": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 67:2–8": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 68:10–11,20–21": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 68:29–36": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 68:2–7": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 69:3,14,30–34": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 69:33–37": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 69:8–10,21–22,31,33–34": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 71:3–6,16–17": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 72:1–2,10–13": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 72:1–2,12–13,18–19": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 72:1–2,14–17": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 72:1–2,7–13": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 72:1–2,7–8,12–13,17": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 72:1–4,7–8": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 72:1–8,17": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 78:18–28": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 78:3–4,23–25,54": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 78:3–8": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 79:1–9": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 79:5–13": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 7:2–3,9–12": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 80:2–3,15–19": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 80:9–20": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 81:12–17": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 81:3–11": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 81:6–11,14,17": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 84:3–8": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 85:8–14": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 86:1–6": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 86:3–10": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 87:1–7": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 89:21–22,25,27": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 89:2–3,21–22,25,27": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 89:2–5,27,29": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 89:4–5,16–17,27,29": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 8:2–9": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 90:13–17": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 90:3–4,12–17": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 91:1–4,14–15": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 92:2–3,13–16": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 93:1–5": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 95:6–11": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 96:1–10": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 96:1–2,11–13": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 96:1–3,10": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 96:1–3,11–13": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 96:1–3,7–10": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 96:1–5,11–13": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 96:1–6": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 97:1,6,11–12": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 97:1–2,6–9": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 97:1–6,10–12": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 99:5–9": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 9:2–9": "STEP Standard verse unavailable in source"
+          }
+        },
+        "brenton-lxx": {
+          "available": 248,
+          "unavailable": 13,
+          "reasons": {
+            "printed Psalm span conflicts with the paired Hebrew chapter; source correction remains unresolved": 3,
+            "unreviewed STEP Standard verse": 9,
+            "STEP Standard verse unavailable in source": 1
+          },
+          "unavailableKeys": {
+            "daily|stjames|Psalm 103:19–20,21–22,23": "printed Psalm span conflicts with the paired Hebrew chapter; source correction remains unresolved",
+            "daily|stjames|Psalm 116:10,15–19": "unreviewed STEP Standard verse",
+            "daily|stjames|Psalm 116:12–17": "unreviewed STEP Standard verse",
+            "daily|stjames|Psalm 116:12–18": "unreviewed STEP Standard verse",
+            "daily|stjames|Psalm 13:6": "STEP Standard verse unavailable in source",
+            "daily|stjames|Psalm 145:1,9–13": "unreviewed STEP Standard verse",
+            "daily|stjames|Psalm 145:10–11,12–13,17–18": "unreviewed STEP Standard verse",
+            "daily|stjames|Psalm 145:10–13,21": "unreviewed STEP Standard verse",
+            "daily|stjames|Psalm 145:10–18": "unreviewed STEP Standard verse",
+            "daily|stjames|Psalm 145:1–2,8–11": "unreviewed STEP Standard verse",
+            "daily|stjames|Psalm 145:8–9,13–14,17–18": "unreviewed STEP Standard verse",
+            "daily|stjames|Psalm 16:1–15": "printed Psalm span conflicts with the paired Hebrew chapter; source correction remains unresolved",
+            "daily|stjames|Psalm 33:4–0,18–22": "printed Psalm span conflicts with the paired Hebrew chapter; source correction remains unresolved"
+          }
+        }
+      }
+    },
+    "roman1962": {
+      "file": "readings-roman1962",
+      "calendarIds": [
+        "roman1962"
+      ],
+      "sourceURL": null,
+      "sourceSHA256": null,
+      "appointmentRows": 0,
+      "uniqueAppointments": 0,
+      "coverage": {
+        "douay-rheims-1899": {
+          "available": 0,
+          "unavailable": 0,
+          "reasons": {},
+          "unavailableKeys": {}
+        },
+        "masoretic-delitzsch": {
+          "available": 0,
+          "unavailable": 0,
+          "reasons": {},
+          "unavailableKeys": {}
+        },
+        "synodal-1876": {
+          "available": 0,
+          "unavailable": 0,
+          "reasons": {},
+          "unavailableKeys": {}
+        },
+        "ang-dating-biblia-1905": {
+          "available": 0,
+          "unavailable": 0,
+          "reasons": {},
+          "unavailableKeys": {}
+        },
+        "crampon-1923": {
+          "available": 0,
+          "unavailable": 0,
+          "reasons": {},
+          "unavailableKeys": {}
+        },
+        "martini": {
+          "available": 0,
+          "unavailable": 0,
+          "reasons": {},
+          "unavailableKeys": {}
+        },
+        "kulish-1905": {
+          "available": 0,
+          "unavailable": 0,
+          "reasons": {},
+          "unavailableKeys": {}
+        },
+        "jesuit-arabic-1897": {
+          "available": 0,
+          "unavailable": 0,
+          "reasons": {},
+          "unavailableKeys": {}
+        },
+        "peshitta-1905": {
+          "available": 0,
+          "unavailable": 0,
+          "reasons": {},
+          "unavailableKeys": {}
+        },
+        "brenton-lxx": {
+          "available": 0,
+          "unavailable": 0,
+          "reasons": {},
+          "unavailableKeys": {}
+        }
+      }
+    },
+    "franciscan-conventual-italy": {
+      "file": "readings-franciscan-conventual-italy",
+      "calendarIds": [
+        "franciscan-conventual-italy"
+      ],
+      "sourceURL": "https://drive.google.com/file/d/1AwNdtFdwrtdXFSIyW2VuAvIhVGXzs0C4/view",
+      "sourceSHA256": "50ac4291c7a30dd3e105c581dd44a1568c429d3ac15ee42e1327992195d07830",
+      "appointmentRows": 77,
+      "uniqueAppointments": 47,
+      "coverage": {
+        "douay-rheims-1899": {
+          "available": 47,
+          "unavailable": 0,
+          "reasons": {},
+          "unavailableKeys": {}
+        },
+        "masoretic-delitzsch": {
+          "available": 47,
+          "unavailable": 0,
+          "reasons": {},
+          "unavailableKeys": {}
+        },
+        "synodal-1876": {
+          "available": 47,
+          "unavailable": 0,
+          "reasons": {},
+          "unavailableKeys": {}
+        },
+        "ang-dating-biblia-1905": {
+          "available": 47,
+          "unavailable": 0,
+          "reasons": {},
+          "unavailableKeys": {}
+        },
+        "crampon-1923": {
+          "available": 47,
+          "unavailable": 0,
+          "reasons": {},
+          "unavailableKeys": {}
+        },
+        "martini": {
+          "available": 47,
+          "unavailable": 0,
+          "reasons": {},
+          "unavailableKeys": {}
+        },
+        "kulish-1905": {
+          "available": 47,
+          "unavailable": 0,
+          "reasons": {},
+          "unavailableKeys": {}
+        },
+        "jesuit-arabic-1897": {
+          "available": 16,
+          "unavailable": 31,
+          "reasons": {
+            "Arabic Psalm includes source words outside the scan review": 31
+          },
+          "unavailableKeys": {
+            "daily|franciscan-conventual-italy|Psalm 103": "Arabic Psalm includes source words outside the scan review",
+            "daily|franciscan-conventual-italy|Psalm 117": "Arabic Psalm includes source words outside the scan review",
+            "daily|franciscan-conventual-italy|Psalm 118": "Arabic Psalm includes source words outside the scan review",
+            "daily|franciscan-conventual-italy|Psalm 129": "Arabic Psalm includes source words outside the scan review",
+            "daily|franciscan-conventual-italy|Psalm 131": "Arabic Psalm includes source words outside the scan review",
+            "daily|franciscan-conventual-italy|Psalm 138": "Arabic Psalm includes source words outside the scan review",
+            "daily|franciscan-conventual-italy|Psalm 15": "Arabic Psalm includes source words outside the scan review",
+            "daily|franciscan-conventual-italy|Psalm 17": "Arabic Psalm includes source words outside the scan review",
+            "daily|franciscan-conventual-italy|Psalm 21": "Arabic Psalm includes source words outside the scan review",
+            "daily|franciscan-conventual-italy|Psalm 24": "Arabic Psalm includes source words outside the scan review",
+            "daily|franciscan-conventual-italy|Psalm 26": "Arabic Psalm includes source words outside the scan review",
+            "daily|franciscan-conventual-italy|Psalm 28": "Arabic Psalm includes source words outside the scan review",
+            "daily|franciscan-conventual-italy|Psalm 30": "Arabic Psalm includes source words outside the scan review",
+            "daily|franciscan-conventual-italy|Psalm 32": "Arabic Psalm includes source words outside the scan review",
+            "daily|franciscan-conventual-italy|Psalm 33": "Arabic Psalm includes source words outside the scan review",
+            "daily|franciscan-conventual-italy|Psalm 39": "Arabic Psalm includes source words outside the scan review",
+            "daily|franciscan-conventual-italy|Psalm 44": "Arabic Psalm includes source words outside the scan review",
+            "daily|franciscan-conventual-italy|Psalm 46": "Arabic Psalm includes source words outside the scan review",
+            "daily|franciscan-conventual-italy|Psalm 50": "Arabic Psalm includes source words outside the scan review",
+            "daily|franciscan-conventual-italy|Psalm 62": "Arabic Psalm includes source words outside the scan review",
+            "daily|franciscan-conventual-italy|Psalm 64": "Arabic Psalm includes source words outside the scan review",
+            "daily|franciscan-conventual-italy|Psalm 65": "Arabic Psalm includes source words outside the scan review",
+            "daily|franciscan-conventual-italy|Psalm 66": "Arabic Psalm includes source words outside the scan review",
+            "daily|franciscan-conventual-italy|Psalm 68": "Arabic Psalm includes source words outside the scan review",
+            "daily|franciscan-conventual-italy|Psalm 71": "Arabic Psalm includes source words outside the scan review",
+            "daily|franciscan-conventual-italy|Psalm 77": "Arabic Psalm includes source words outside the scan review",
+            "daily|franciscan-conventual-italy|Psalm 84": "Arabic Psalm includes source words outside the scan review",
+            "daily|franciscan-conventual-italy|Psalm 85": "Arabic Psalm includes source words outside the scan review",
+            "daily|franciscan-conventual-italy|Psalm 86": "Arabic Psalm includes source words outside the scan review",
+            "daily|franciscan-conventual-italy|Psalm 88": "Arabic Psalm includes source words outside the scan review",
+            "daily|franciscan-conventual-italy|Psalm 89": "Arabic Psalm includes source words outside the scan review"
+          }
+        },
+        "peshitta-1905": {
+          "available": 3,
+          "unavailable": 44,
+          "reasons": {
+            "STEP Standard verse unavailable in source": 44
+          },
+          "unavailableKeys": {
+            "daily|franciscan-conventual-italy|Psalm 102": "STEP Standard verse unavailable in source",
+            "daily|franciscan-conventual-italy|Psalm 103": "STEP Standard verse unavailable in source",
+            "daily|franciscan-conventual-italy|Psalm 111": "STEP Standard verse unavailable in source",
+            "daily|franciscan-conventual-italy|Psalm 115": "STEP Standard verse unavailable in source",
+            "daily|franciscan-conventual-italy|Psalm 117": "STEP Standard verse unavailable in source",
+            "daily|franciscan-conventual-italy|Psalm 118": "STEP Standard verse unavailable in source",
+            "daily|franciscan-conventual-italy|Psalm 121": "STEP Standard verse unavailable in source",
+            "daily|franciscan-conventual-italy|Psalm 127": "STEP Standard verse unavailable in source",
+            "daily|franciscan-conventual-italy|Psalm 129": "STEP Standard verse unavailable in source",
+            "daily|franciscan-conventual-italy|Psalm 131": "STEP Standard verse unavailable in source",
+            "daily|franciscan-conventual-italy|Psalm 138": "STEP Standard verse unavailable in source",
+            "daily|franciscan-conventual-italy|Psalm 144": "STEP Standard verse unavailable in source",
+            "daily|franciscan-conventual-italy|Psalm 145": "STEP Standard verse unavailable in source",
+            "daily|franciscan-conventual-italy|Psalm 147": "STEP Standard verse unavailable in source",
+            "daily|franciscan-conventual-italy|Psalm 15": "STEP Standard verse unavailable in source",
+            "daily|franciscan-conventual-italy|Psalm 17": "STEP Standard verse unavailable in source",
+            "daily|franciscan-conventual-italy|Psalm 21": "STEP Standard verse unavailable in source",
+            "daily|franciscan-conventual-italy|Psalm 23": "STEP Standard verse unavailable in source",
+            "daily|franciscan-conventual-italy|Psalm 24": "STEP Standard verse unavailable in source",
+            "daily|franciscan-conventual-italy|Psalm 26": "STEP Standard verse unavailable in source",
+            "daily|franciscan-conventual-italy|Psalm 28": "STEP Standard verse unavailable in source",
+            "daily|franciscan-conventual-italy|Psalm 30": "STEP Standard verse unavailable in source",
+            "daily|franciscan-conventual-italy|Psalm 32": "STEP Standard verse unavailable in source",
+            "daily|franciscan-conventual-italy|Psalm 33": "STEP Standard verse unavailable in source",
+            "daily|franciscan-conventual-italy|Psalm 39": "STEP Standard verse unavailable in source",
+            "daily|franciscan-conventual-italy|Psalm 44": "STEP Standard verse unavailable in source",
+            "daily|franciscan-conventual-italy|Psalm 46": "STEP Standard verse unavailable in source",
+            "daily|franciscan-conventual-italy|Psalm 50": "STEP Standard verse unavailable in source",
+            "daily|franciscan-conventual-italy|Psalm 62": "STEP Standard verse unavailable in source",
+            "daily|franciscan-conventual-italy|Psalm 64": "STEP Standard verse unavailable in source",
+            "daily|franciscan-conventual-italy|Psalm 65": "STEP Standard verse unavailable in source",
+            "daily|franciscan-conventual-italy|Psalm 66": "STEP Standard verse unavailable in source",
+            "daily|franciscan-conventual-italy|Psalm 68": "STEP Standard verse unavailable in source",
+            "daily|franciscan-conventual-italy|Psalm 71": "STEP Standard verse unavailable in source",
+            "daily|franciscan-conventual-italy|Psalm 77": "STEP Standard verse unavailable in source",
+            "daily|franciscan-conventual-italy|Psalm 84": "STEP Standard verse unavailable in source",
+            "daily|franciscan-conventual-italy|Psalm 85": "STEP Standard verse unavailable in source",
+            "daily|franciscan-conventual-italy|Psalm 86": "STEP Standard verse unavailable in source",
+            "daily|franciscan-conventual-italy|Psalm 88": "STEP Standard verse unavailable in source",
+            "daily|franciscan-conventual-italy|Psalm 89": "STEP Standard verse unavailable in source",
+            "daily|franciscan-conventual-italy|Psalm 94": "STEP Standard verse unavailable in source",
+            "daily|franciscan-conventual-italy|Psalm 95": "STEP Standard verse unavailable in source",
+            "daily|franciscan-conventual-italy|Psalm 96": "STEP Standard verse unavailable in source",
+            "daily|franciscan-conventual-italy|Psalm 99": "STEP Standard verse unavailable in source"
+          }
+        },
+        "brenton-lxx": {
+          "available": 47,
+          "unavailable": 0,
+          "reasons": {},
+          "unavailableKeys": {}
+        }
+      }
+    },
+    "augustinian-discalced": {
+      "file": "readings-augustinian-discalced",
+      "calendarIds": [
+        "augustinian-discalced"
+      ],
+      "sourceURL": "https://oadnet.org/wp-content/uploads/2025/11/Calendario-2026-ENG-site.pdf",
+      "sourceSHA256": "70b94a855cb651f148f8551f493edbdea9f495d86de923c7d419fe37a3667657",
+      "appointmentRows": 353,
+      "uniqueAppointments": 103,
+      "coverage": {
+        "douay-rheims-1899": {
+          "available": 103,
+          "unavailable": 0,
+          "reasons": {},
+          "unavailableKeys": {}
+        },
+        "masoretic-delitzsch": {
+          "available": 103,
+          "unavailable": 0,
+          "reasons": {},
+          "unavailableKeys": {}
+        },
+        "synodal-1876": {
+          "available": 103,
+          "unavailable": 0,
+          "reasons": {},
+          "unavailableKeys": {}
+        },
+        "ang-dating-biblia-1905": {
+          "available": 103,
+          "unavailable": 0,
+          "reasons": {},
+          "unavailableKeys": {}
+        },
+        "crampon-1923": {
+          "available": 102,
+          "unavailable": 1,
+          "reasons": {
+            "STEP Standard verse unavailable in source": 1
+          },
+          "unavailableKeys": {
+            "daily|augustinian-discalced|Psalm 49": "STEP Standard verse unavailable in source"
+          }
+        },
+        "martini": {
+          "available": 103,
+          "unavailable": 0,
+          "reasons": {},
+          "unavailableKeys": {}
+        },
+        "kulish-1905": {
+          "available": 102,
+          "unavailable": 1,
+          "reasons": {
+            "STEP Standard verse unavailable in source": 1
+          },
+          "unavailableKeys": {
+            "daily|augustinian-discalced|Psalm 148": "STEP Standard verse unavailable in source"
+          }
+        },
+        "jesuit-arabic-1897": {
+          "available": 25,
+          "unavailable": 78,
+          "reasons": {
+            "Arabic Psalm includes source words outside the scan review": 78
+          },
+          "unavailableKeys": {
+            "daily|augustinian-discalced|Psalm 10": "Arabic Psalm includes source words outside the scan review",
+            "daily|augustinian-discalced|Psalm 101": "Arabic Psalm includes source words outside the scan review",
+            "daily|augustinian-discalced|Psalm 103": "Arabic Psalm includes source words outside the scan review",
+            "daily|augustinian-discalced|Psalm 104": "Arabic Psalm includes source words outside the scan review",
+            "daily|augustinian-discalced|Psalm 105": "Arabic Psalm includes source words outside the scan review",
+            "daily|augustinian-discalced|Psalm 106": "Arabic Psalm includes source words outside the scan review",
+            "daily|augustinian-discalced|Psalm 113": "Arabic Psalm includes source words outside the scan review",
+            "daily|augustinian-discalced|Psalm 117": "Arabic Psalm includes source words outside the scan review",
+            "daily|augustinian-discalced|Psalm 118": "Arabic Psalm includes source words outside the scan review",
+            "daily|augustinian-discalced|Psalm 12": "Arabic Psalm includes source words outside the scan review",
+            "daily|augustinian-discalced|Psalm 120": "Arabic Psalm includes source words outside the scan review",
+            "daily|augustinian-discalced|Psalm 122": "Arabic Psalm includes source words outside the scan review",
+            "daily|augustinian-discalced|Psalm 123": "Arabic Psalm includes source words outside the scan review",
+            "daily|augustinian-discalced|Psalm 125": "Arabic Psalm includes source words outside the scan review",
+            "daily|augustinian-discalced|Psalm 129": "Arabic Psalm includes source words outside the scan review",
+            "daily|augustinian-discalced|Psalm 131": "Arabic Psalm includes source words outside the scan review",
+            "daily|augustinian-discalced|Psalm 136": "Arabic Psalm includes source words outside the scan review",
+            "daily|augustinian-discalced|Psalm 138": "Arabic Psalm includes source words outside the scan review",
+            "daily|augustinian-discalced|Psalm 143": "Arabic Psalm includes source words outside the scan review",
+            "daily|augustinian-discalced|Psalm 15": "Arabic Psalm includes source words outside the scan review",
+            "daily|augustinian-discalced|Psalm 16": "Arabic Psalm includes source words outside the scan review",
+            "daily|augustinian-discalced|Psalm 17": "Arabic Psalm includes source words outside the scan review",
+            "daily|augustinian-discalced|Psalm 18": "Arabic Psalm includes source words outside the scan review",
+            "daily|augustinian-discalced|Psalm 2": "Arabic Psalm includes source words outside the scan review",
+            "daily|augustinian-discalced|Psalm 20": "Arabic Psalm includes source words outside the scan review",
+            "daily|augustinian-discalced|Psalm 21": "Arabic Psalm includes source words outside the scan review",
+            "daily|augustinian-discalced|Psalm 24": "Arabic Psalm includes source words outside the scan review",
+            "daily|augustinian-discalced|Psalm 26": "Arabic Psalm includes source words outside the scan review",
+            "daily|augustinian-discalced|Psalm 27": "Arabic Psalm includes source words outside the scan review",
+            "daily|augustinian-discalced|Psalm 28": "Arabic Psalm includes source words outside the scan review",
+            "daily|augustinian-discalced|Psalm 29": "Arabic Psalm includes source words outside the scan review",
+            "daily|augustinian-discalced|Psalm 30": "Arabic Psalm includes source words outside the scan review",
+            "daily|augustinian-discalced|Psalm 31": "Arabic Psalm includes source words outside the scan review",
+            "daily|augustinian-discalced|Psalm 32": "Arabic Psalm includes source words outside the scan review",
+            "daily|augustinian-discalced|Psalm 33": "Arabic Psalm includes source words outside the scan review",
+            "daily|augustinian-discalced|Psalm 35": "Arabic Psalm includes source words outside the scan review",
+            "daily|augustinian-discalced|Psalm 36": "Arabic Psalm includes source words outside the scan review",
+            "daily|augustinian-discalced|Psalm 39": "Arabic Psalm includes source words outside the scan review",
+            "daily|augustinian-discalced|Psalm 4": "Arabic Psalm includes source words outside the scan review",
+            "daily|augustinian-discalced|Psalm 41": "Arabic Psalm includes source words outside the scan review",
+            "daily|augustinian-discalced|Psalm 41–42": "Arabic Psalm includes source words outside the scan review",
+            "daily|augustinian-discalced|Psalm 43": "Arabic Psalm includes source words outside the scan review",
+            "daily|augustinian-discalced|Psalm 44": "Arabic Psalm includes source words outside the scan review",
+            "daily|augustinian-discalced|Psalm 45": "Arabic Psalm includes source words outside the scan review",
+            "daily|augustinian-discalced|Psalm 46": "Arabic Psalm includes source words outside the scan review",
+            "daily|augustinian-discalced|Psalm 47": "Arabic Psalm includes source words outside the scan review",
+            "daily|augustinian-discalced|Psalm 49": "Arabic Psalm includes source words outside the scan review",
+            "daily|augustinian-discalced|Psalm 5": "Arabic Psalm includes source words outside the scan review",
+            "daily|augustinian-discalced|Psalm 50": "Arabic Psalm includes source words outside the scan review",
+            "daily|augustinian-discalced|Psalm 55": "Arabic Psalm includes source words outside the scan review",
+            "daily|augustinian-discalced|Psalm 56": "Arabic Psalm includes source words outside the scan review",
+            "daily|augustinian-discalced|Psalm 59": "Arabic Psalm includes source words outside the scan review",
+            "daily|augustinian-discalced|Psalm 62": "Arabic Psalm includes source words outside the scan review",
+            "daily|augustinian-discalced|Psalm 64": "Arabic Psalm includes source words outside the scan review",
+            "daily|augustinian-discalced|Psalm 65": "Arabic Psalm includes source words outside the scan review",
+            "daily|augustinian-discalced|Psalm 66": "Arabic Psalm includes source words outside the scan review",
+            "daily|augustinian-discalced|Psalm 67": "Arabic Psalm includes source words outside the scan review",
+            "daily|augustinian-discalced|Psalm 68": "Arabic Psalm includes source words outside the scan review",
+            "daily|augustinian-discalced|Psalm 7": "Arabic Psalm includes source words outside the scan review",
+            "daily|augustinian-discalced|Psalm 70": "Arabic Psalm includes source words outside the scan review",
+            "daily|augustinian-discalced|Psalm 71": "Arabic Psalm includes source words outside the scan review",
+            "daily|augustinian-discalced|Psalm 73": "Arabic Psalm includes source words outside the scan review",
+            "daily|augustinian-discalced|Psalm 77": "Arabic Psalm includes source words outside the scan review",
+            "daily|augustinian-discalced|Psalm 78": "Arabic Psalm includes source words outside the scan review",
+            "daily|augustinian-discalced|Psalm 79": "Arabic Psalm includes source words outside the scan review",
+            "daily|augustinian-discalced|Psalm 8": "Arabic Psalm includes source words outside the scan review",
+            "daily|augustinian-discalced|Psalm 80": "Arabic Psalm includes source words outside the scan review",
+            "daily|augustinian-discalced|Psalm 83": "Arabic Psalm includes source words outside the scan review",
+            "daily|augustinian-discalced|Psalm 84": "Arabic Psalm includes source words outside the scan review",
+            "daily|augustinian-discalced|Psalm 85": "Arabic Psalm includes source words outside the scan review",
+            "daily|augustinian-discalced|Psalm 86": "Arabic Psalm includes source words outside the scan review",
+            "daily|augustinian-discalced|Psalm 87": "Arabic Psalm includes source words outside the scan review",
+            "daily|augustinian-discalced|Psalm 88": "Arabic Psalm includes source words outside the scan review",
+            "daily|augustinian-discalced|Psalm 89": "Arabic Psalm includes source words outside the scan review",
+            "daily|augustinian-discalced|Psalm 9": "Arabic Psalm includes source words outside the scan review",
+            "daily|augustinian-discalced|Psalm 90": "Arabic Psalm includes source words outside the scan review",
+            "daily|augustinian-discalced|Psalm 92": "Arabic Psalm includes source words outside the scan review",
+            "daily|augustinian-discalced|Psalm 93": "Arabic Psalm includes source words outside the scan review"
+          }
+        },
+        "peshitta-1905": {
+          "available": 7,
+          "unavailable": 96,
+          "reasons": {
+            "STEP Standard verse unavailable in source": 96
+          },
+          "unavailableKeys": {
+            "daily|augustinian-discalced|Psalm 1": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 10": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 101": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 102": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 103": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 104": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 105": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 106": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 111": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 112": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 113": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 115": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 117": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 118": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 12": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 120": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 121": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 122": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 123": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 125": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 127": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 129": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 131": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 136": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 138": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 143": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 144": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 145": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 146": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 147": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 148": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 149": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 15": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 16": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 17": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 18": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 2": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 20": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 21": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 23": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 24": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 26": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 27": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 28": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 29": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 30": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 31": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 32": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 33": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 35": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 36": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 39": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 4": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 41": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 41–42": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 43": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 44": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 45": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 46": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 47": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 49": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 5": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 50": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 55": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 56": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 59": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 62": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 64": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 65": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 66": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 67": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 68": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 7": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 70": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 71": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 73": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 77": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 78": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 79": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 8": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 80": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 83": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 84": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 85": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 86": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 87": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 88": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 89": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 9": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 90": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 92": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 93": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 94": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 95": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 96": "STEP Standard verse unavailable in source",
+            "daily|augustinian-discalced|Psalm 99": "STEP Standard verse unavailable in source"
+          }
+        },
+        "brenton-lxx": {
+          "available": 103,
+          "unavailable": 0,
+          "reasons": {},
+          "unavailableKeys": {}
+        }
+      }
+    },
+    "ugcc": {
+      "file": "readings-ugcc",
+      "calendarIds": [
+        "ugcc"
+      ],
+      "sourceURL": null,
+      "sourceSHA256": null,
+      "appointmentRows": 0,
+      "uniqueAppointments": 0,
+      "coverage": {
+        "douay-rheims-1899": {
+          "available": 0,
+          "unavailable": 0,
+          "reasons": {},
+          "unavailableKeys": {}
+        },
+        "masoretic-delitzsch": {
+          "available": 0,
+          "unavailable": 0,
+          "reasons": {},
+          "unavailableKeys": {}
+        },
+        "synodal-1876": {
+          "available": 0,
+          "unavailable": 0,
+          "reasons": {},
+          "unavailableKeys": {}
+        },
+        "ang-dating-biblia-1905": {
+          "available": 0,
+          "unavailable": 0,
+          "reasons": {},
+          "unavailableKeys": {}
+        },
+        "crampon-1923": {
+          "available": 0,
+          "unavailable": 0,
+          "reasons": {},
+          "unavailableKeys": {}
+        },
+        "martini": {
+          "available": 0,
+          "unavailable": 0,
+          "reasons": {},
+          "unavailableKeys": {}
+        },
+        "kulish-1905": {
+          "available": 0,
+          "unavailable": 0,
+          "reasons": {},
+          "unavailableKeys": {}
+        },
+        "jesuit-arabic-1897": {
+          "available": 0,
+          "unavailable": 0,
+          "reasons": {},
+          "unavailableKeys": {}
+        },
+        "peshitta-1905": {
+          "available": 0,
+          "unavailable": 0,
+          "reasons": {},
+          "unavailableKeys": {}
+        },
+        "brenton-lxx": {
+          "available": 0,
+          "unavailable": 0,
+          "reasons": {},
+          "unavailableKeys": {}
+        }
+      }
+    },
+    "ugcc-gregorian": {
+      "file": "readings-ugcc-gregorian",
+      "calendarIds": [
+        "ugcc"
+      ],
+      "sourceURL": null,
+      "sourceSHA256": null,
+      "appointmentRows": 0,
+      "uniqueAppointments": 0,
+      "coverage": {
+        "douay-rheims-1899": {
+          "available": 0,
+          "unavailable": 0,
+          "reasons": {},
+          "unavailableKeys": {}
+        },
+        "masoretic-delitzsch": {
+          "available": 0,
+          "unavailable": 0,
+          "reasons": {},
+          "unavailableKeys": {}
+        },
+        "synodal-1876": {
+          "available": 0,
+          "unavailable": 0,
+          "reasons": {},
+          "unavailableKeys": {}
+        },
+        "ang-dating-biblia-1905": {
+          "available": 0,
+          "unavailable": 0,
+          "reasons": {},
+          "unavailableKeys": {}
+        },
+        "crampon-1923": {
+          "available": 0,
+          "unavailable": 0,
+          "reasons": {},
+          "unavailableKeys": {}
+        },
+        "martini": {
+          "available": 0,
+          "unavailable": 0,
+          "reasons": {},
+          "unavailableKeys": {}
+        },
+        "kulish-1905": {
+          "available": 0,
+          "unavailable": 0,
+          "reasons": {},
+          "unavailableKeys": {}
+        },
+        "jesuit-arabic-1897": {
+          "available": 0,
+          "unavailable": 0,
+          "reasons": {},
+          "unavailableKeys": {}
+        },
+        "peshitta-1905": {
+          "available": 0,
+          "unavailable": 0,
+          "reasons": {},
+          "unavailableKeys": {}
+        },
+        "brenton-lxx": {
+          "available": 0,
+          "unavailable": 0,
+          "reasons": {},
+          "unavailableKeys": {}
+        }
+      }
+    },
+    "ugcc-julian": {
+      "file": "readings-ugcc-julian",
+      "calendarIds": [
+        "ugcc-julian"
+      ],
+      "sourceURL": null,
+      "sourceSHA256": null,
+      "appointmentRows": 0,
+      "uniqueAppointments": 0,
+      "coverage": {
+        "douay-rheims-1899": {
+          "available": 0,
+          "unavailable": 0,
+          "reasons": {},
+          "unavailableKeys": {}
+        },
+        "masoretic-delitzsch": {
+          "available": 0,
+          "unavailable": 0,
+          "reasons": {},
+          "unavailableKeys": {}
+        },
+        "synodal-1876": {
+          "available": 0,
+          "unavailable": 0,
+          "reasons": {},
+          "unavailableKeys": {}
+        },
+        "ang-dating-biblia-1905": {
+          "available": 0,
+          "unavailable": 0,
+          "reasons": {},
+          "unavailableKeys": {}
+        },
+        "crampon-1923": {
+          "available": 0,
+          "unavailable": 0,
+          "reasons": {},
+          "unavailableKeys": {}
+        },
+        "martini": {
+          "available": 0,
+          "unavailable": 0,
+          "reasons": {},
+          "unavailableKeys": {}
+        },
+        "kulish-1905": {
+          "available": 0,
+          "unavailable": 0,
+          "reasons": {},
+          "unavailableKeys": {}
+        },
+        "jesuit-arabic-1897": {
+          "available": 0,
+          "unavailable": 0,
+          "reasons": {},
+          "unavailableKeys": {}
+        },
+        "peshitta-1905": {
+          "available": 0,
+          "unavailable": 0,
+          "reasons": {},
+          "unavailableKeys": {}
+        },
+        "brenton-lxx": {
+          "available": 0,
+          "unavailable": 0,
+          "reasons": {},
+          "unavailableKeys": {}
+        }
+      }
+    },
+    "syriac": {
+      "file": "readings-syriac",
+      "calendarIds": [
+        "syriac"
+      ],
+      "sourceURL": null,
+      "sourceSHA256": null,
+      "appointmentRows": 0,
+      "uniqueAppointments": 0,
+      "coverage": {
+        "douay-rheims-1899": {
+          "available": 0,
+          "unavailable": 0,
+          "reasons": {},
+          "unavailableKeys": {}
+        },
+        "masoretic-delitzsch": {
+          "available": 0,
+          "unavailable": 0,
+          "reasons": {},
+          "unavailableKeys": {}
+        },
+        "synodal-1876": {
+          "available": 0,
+          "unavailable": 0,
+          "reasons": {},
+          "unavailableKeys": {}
+        },
+        "ang-dating-biblia-1905": {
+          "available": 0,
+          "unavailable": 0,
+          "reasons": {},
+          "unavailableKeys": {}
+        },
+        "crampon-1923": {
+          "available": 0,
+          "unavailable": 0,
+          "reasons": {},
+          "unavailableKeys": {}
+        },
+        "martini": {
+          "available": 0,
+          "unavailable": 0,
+          "reasons": {},
+          "unavailableKeys": {}
+        },
+        "kulish-1905": {
+          "available": 0,
+          "unavailable": 0,
+          "reasons": {},
+          "unavailableKeys": {}
+        },
+        "jesuit-arabic-1897": {
+          "available": 0,
+          "unavailable": 0,
+          "reasons": {},
+          "unavailableKeys": {}
+        },
+        "peshitta-1905": {
+          "available": 0,
+          "unavailable": 0,
+          "reasons": {},
+          "unavailableKeys": {}
+        },
+        "brenton-lxx": {
+          "available": 0,
+          "unavailable": 0,
+          "reasons": {},
+          "unavailableKeys": {}
+        }
+      }
+    },
+    "maronite": {
+      "file": "readings-maronite",
+      "calendarIds": [
+        "maronite"
+      ],
+      "sourceURL": null,
+      "sourceSHA256": null,
+      "appointmentRows": 0,
+      "uniqueAppointments": 0,
+      "coverage": {
+        "douay-rheims-1899": {
+          "available": 0,
+          "unavailable": 0,
+          "reasons": {},
+          "unavailableKeys": {}
+        },
+        "masoretic-delitzsch": {
+          "available": 0,
+          "unavailable": 0,
+          "reasons": {},
+          "unavailableKeys": {}
+        },
+        "synodal-1876": {
+          "available": 0,
+          "unavailable": 0,
+          "reasons": {},
+          "unavailableKeys": {}
+        },
+        "ang-dating-biblia-1905": {
+          "available": 0,
+          "unavailable": 0,
+          "reasons": {},
+          "unavailableKeys": {}
+        },
+        "crampon-1923": {
+          "available": 0,
+          "unavailable": 0,
+          "reasons": {},
+          "unavailableKeys": {}
+        },
+        "martini": {
+          "available": 0,
+          "unavailable": 0,
+          "reasons": {},
+          "unavailableKeys": {}
+        },
+        "kulish-1905": {
+          "available": 0,
+          "unavailable": 0,
+          "reasons": {},
+          "unavailableKeys": {}
+        },
+        "jesuit-arabic-1897": {
+          "available": 0,
+          "unavailable": 0,
+          "reasons": {},
+          "unavailableKeys": {}
+        },
+        "peshitta-1905": {
+          "available": 0,
+          "unavailable": 0,
+          "reasons": {},
+          "unavailableKeys": {}
+        },
+        "brenton-lxx": {
+          "available": 0,
+          "unavailable": 0,
+          "reasons": {},
+          "unavailableKeys": {}
+        }
+      }
+    }
+  }
+}

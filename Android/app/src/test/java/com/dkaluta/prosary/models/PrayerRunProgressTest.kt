@@ -7,6 +7,38 @@ import org.junit.Assert.assertTrue
 import org.junit.Test
 
 class PrayerRunProgressTest {
+    @Test
+    fun entireSetBookmarkReconstructsFiveWithoutAnOrder() {
+        val original = RosaryOptions(mysterySelectionMode = MysterySelectionMode.ChooseOnLaunch, specificMysteryCount = 2)
+        val signature = PrayerRunSignatures.rosary(original, "glorious")
+        val progress = PrayerRunProgress(8, "en", today.toString(), signature, "glorious")
+        val restored = kotlinx.serialization.json.Json.decodeFromString<PrayerRunProgress>(
+            kotlinx.serialization.json.Json.encodeToString(PrayerRunProgress.serializer(), progress))
+        val options = original.navigationOptions(restored.rosaryNavigationGroup, restored.rosaryNavigationOrder)!!
+        assertEquals(MysterySelectionMode.Specific, options.mysterySelectionMode)
+        assertEquals(MysteryGroup.Glorious, options.specificMysteryGroup)
+        assertEquals(null, restored.rosaryNavigationOrder)
+        assertTrue(restored.canResume(80, today, true, signature))
+        assertFalse(restored.canResume(80, today, true, PrayerRunSignatures.rosary(original, "glorious", 1)))
+        assertEquals(MysterySelectionMode.ChooseOnLaunch, original.mysterySelectionMode)
+    }
+    @Test
+    fun chosenLaunchBookmarkReconstructsItsRangeAndRejectsChangedCount() {
+        val original = RosaryOptions(mysterySelectionMode = MysterySelectionMode.ChooseOnLaunch, specificMysteryCount = 2)
+        val signature = PrayerRunSignatures.rosary(original, "sorrowful", 4)
+        val progress = PrayerRunProgress(8, "he", today.toString(), signature, "sorrowful", 4)
+        val restored = kotlinx.serialization.json.Json.decodeFromString<PrayerRunProgress>(
+            kotlinx.serialization.json.Json.encodeToString(PrayerRunProgress.serializer(), progress))
+        val options = original.navigationOptions(restored.rosaryNavigationGroup, restored.rosaryNavigationOrder)!!
+        assertEquals(listOf(3, 4), options.selectedMysteryIndices.toList())
+        assertTrue(restored.canResume(40, today, true, signature))
+        assertFalse(restored.canResume(40, today, true,
+            PrayerRunSignatures.rosary(original.copy(specificMysteryCount = 1), "sorrowful", 4)))
+        val legacy = kotlinx.serialization.json.Json.decodeFromString<PrayerRunProgress>(
+            """{"stepIndex":8,"languageCode":"en","savedLocalDate":"2026-10-07"}""")
+        assertEquals(null, legacy.rosaryNavigationGroup)
+        assertEquals(null, legacy.rosaryNavigationOrder)
+    }
     private val today = LocalDate.of(2026, 9, 3)
 
     @Test

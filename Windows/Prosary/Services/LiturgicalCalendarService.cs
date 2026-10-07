@@ -12,8 +12,10 @@ namespace Prosary.Services;
 /// </summary>
 public sealed class LiturgicalCalendarService
 {
-    public MysteryGroup GetMysteryGroup(DateOnly date)
+    public MysteryGroup GetMysteryGroup(DateOnly date, bool useTraditionalMysteries = false)
     {
+        if (useTraditionalMysteries && date.DayOfWeek == DayOfWeek.Thursday) return MysteryGroup.Joyful;
+        if (useTraditionalMysteries && date.DayOfWeek == DayOfWeek.Saturday) return MysteryGroup.Glorious;
         return date.DayOfWeek switch
         {
             DayOfWeek.Monday or DayOfWeek.Saturday => MysteryGroup.Joyful,
@@ -25,7 +27,8 @@ public sealed class LiturgicalCalendarService
         };
     }
 
-    public MysteryGroup GetMysteryGroupForToday() => GetMysteryGroup(DateOnly.FromDateTime(DateTime.Today));
+    public MysteryGroup GetMysteryGroupForToday(bool useTraditionalMysteries = false) =>
+        GetMysteryGroup(DateOnly.FromDateTime(DateTime.Today), useTraditionalMysteries);
 
     /// <summary>The Marian antiphon traditionally used during the current liturgical season.</summary>
     public MarianAntiphonOption GetSeasonalMarianAntiphon(DateOnly date)

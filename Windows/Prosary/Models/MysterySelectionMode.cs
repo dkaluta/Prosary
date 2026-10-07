@@ -22,7 +22,11 @@ public enum MysterySelectionMode
     /// ordinal (not name), so inserting a case earlier would silently reassign the stored values
     /// of every case after it for existing saved favorites — the same precaution already taken
     /// for <c>MarianAntiphonOption.SubTuumPraesidium</c>.</summary>
-    SingleMystery
+    SingleMystery,
+
+    /// <summary>Choose the starting mystery when a session opens. Appended to preserve
+    /// every existing sqlite-net ordinal; no group is selected by the engine.</summary>
+    ChooseOnLaunch
 }
 
 public static class MysterySelectionModeExtensions
@@ -33,7 +37,8 @@ public static class MysterySelectionModeExtensions
         MysterySelectionMode.Specific => Loc.Tr("mode_specific", "Always a Specific Set"),
         MysterySelectionMode.FifteenMystery => Loc.Tr("mode_fifteen", "The 15 Mysteries (Joyful, Sorrowful, Glorious)"),
         MysterySelectionMode.TwentyMystery => Loc.Tr("mode_twenty", "The 20 Mysteries (All Four Sets)"),
-        MysterySelectionMode.SingleMystery => Loc.Tr("mode_single", "One Mystery Only"),
+        MysterySelectionMode.SingleMystery => Loc.Tr("mode_single", "Selected Mysteries"),
+        MysterySelectionMode.ChooseOnLaunch => Loc.Tr("mode_choose_on_launch", "Choose on Launch"),
         _ => throw new ArgumentOutOfRangeException(nameof(mode))
     };
 }

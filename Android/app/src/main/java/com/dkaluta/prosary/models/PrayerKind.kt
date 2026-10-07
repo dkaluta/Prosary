@@ -36,7 +36,7 @@ enum class PrayerKind {
      * prayer language (exact code, rites included, then its base), then the UI string. */
     private val namesByPrayerLanguage: Map<String, String>
         get() = when (this) {
-            Rosary -> mapOf("he" to "מחרוזת")
+            Rosary -> mapOf("he" to "מחרוזת הורדים")
             JesusPrayer -> mapOf("he" to "תפילת ישוע")
             Custom -> emptyMap()
         }

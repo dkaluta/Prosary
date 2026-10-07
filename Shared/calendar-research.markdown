@@ -37,6 +37,15 @@ The [source investigation and conversion audit](tools/sources/old-style-julian-r
 records the Catholic calendar evidence, the exact generator fingerprint and the
 absence of a verified complete old-style daily lectionary.
 
+The [3 October follow-up](tools/sources/old-style-readings-followup-research.json) verifies
+current Catholic practice through [Our Lady of Fatima Russian Catholic parish](https://byzantinecatholicsf.org/)
+and its published calendar feed: Christmas on 7 January, Theophany on 19 January and Pascha
+on 12 April 2026, plus eight other fixed or movable feast dates. Its entries supply no
+Scripture appointments or explicit 2027 feast records. Several apparent Julian leads instead
+publish new-style fixed feasts. No complete annual Catholic old-style lectionary or usable
+dated reading citations were found in this bounded search; the existing choice remains
+feast-only pending an authorized Catholic ordo or parish reading table.
+
 ## Reading corrections and provenance
 
 The Ukrainian 6 September 2026 reading is **2 Corinthians 1:21–2:4; Matthew 22:1–14**.
@@ -306,6 +315,21 @@ The current Tagalog blocker is preserved rather than hidden by a successful samp
 review. The accompanying `test-*-saints.py`, Arabic scraper, Hebrew scraper and source
 review checks exercise source boundaries, literal wording, language mismatches,
 pagination completeness, metadata-only records and preserved error evidence.
+
+The [first integration batch research](tools/sources/saint-integration-followup-research.json)
+pins six small source-language passages in Hebrew, Russian, Ukrainian and Tagalog, with
+31 inspected calendar/date/title/identity binding candidates. These remain proposed text
+and bindings. The shared importer currently validates only Evangelizo URLs and UUIDs;
+provider-aware reviewed provenance is needed, while the native description, link and credit
+maps already support the intended output. Suppressed memorials and the 1962 calendar's
+different dates must not receive a description through a guessed name/date join.
+
+[RKC's publisher notice](https://rkc.org.ua/events/svyatyj-franczysk-assizkyj-obovyazkovyj-spomyn/)
+permits complete or partial site-material use with a link to its homepage, giving a practical
+route for its finite Ukrainian batch. [CREDO's reuse rules](https://credo.pro/rules) require
+written consent and prohibit full reprints. Catholic.co.il and historical Tagalog candidates
+still need selected-passage credit and distribution review. A short-excerpt editorial limit,
+public feed access or future release approval does not itself supply a reuse license.
 
 ## Eretz Israel Torah portion
 

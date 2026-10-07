@@ -24,7 +24,17 @@ interface LiturgicalCalendarProviding {
      * any devotion's step that carries one. */
     fun isLent(date: Date): Boolean
 
-    fun mysteryGroupToday(): MysteryGroup = mysteryGroup(Date())
+    fun mysteryGroup(date: Date, useTraditionalMysteries: Boolean): MysteryGroup {
+        if (!useTraditionalMysteries) return mysteryGroup(date)
+        val weekday = java.util.Calendar.getInstance().apply { time = date }.get(java.util.Calendar.DAY_OF_WEEK)
+        return when (weekday) {
+            java.util.Calendar.THURSDAY -> MysteryGroup.Joyful
+            java.util.Calendar.SATURDAY -> MysteryGroup.Glorious
+            else -> mysteryGroup(date)
+        }
+    }
+    fun mysteryGroupToday(useTraditionalMysteries: Boolean = false): MysteryGroup =
+        mysteryGroup(Date(), useTraditionalMysteries)
     fun seasonColorToday(): Color = seasonColor(Date())
     fun seasonalMarianAntiphonToday(): MarianAntiphonOption = seasonalMarianAntiphon(Date())
     fun isEasterSeasonToday(): Boolean = isEasterSeason(Date())

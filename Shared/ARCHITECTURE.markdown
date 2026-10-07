@@ -52,8 +52,9 @@ idiom (Swift `struct`, Kotlin `data class`, C# `sealed record`):
   Windows (no cloud store; the enum is persisted as its int) runs a one-time
   `PRAGMA user_version`-guarded SQL pass and keeps the retired ordinals reserved forever.
 - **`RosaryOptions`** — `mysterySelectionMode` (today's mysteries / a specific fixed set / all 15
-  / all 20 / a single mystery), `specificMysteryGroup`, `specificMysteryOrder` (1-based, used only
-  for the single-mystery mode), `presenterMode` (collapses each decade's Hail Marys + Glory Be
+  / all 20 / selected sequential mysteries), `specificMysteryGroup`, `specificMysteryOrder`
+  (1-based start), `specificMysteryCount` (1–5, default 1), `useTraditionalMysteries`
+  (default false; Today mode only), `presenterMode` (collapses each decade's Hail Marys + Glory Be
   onto one combined step — see "Engines" below), toggles for the Apostles' Creed, opening Our
   Father + 3 Hail Marys + Glory Be, an optional Fatima Prayer immediately after that opening
   Glory Be, the Fatima Prayer after each decade, eternal-rest placement, the closing Marian antiphon,
@@ -82,7 +83,7 @@ idiom (Swift `struct`, Kotlin `data class`, C# `sealed record`):
 - **`LanguageOption`/`LanguageCatalog`** — thirteen stored prayer-text codes: `la` (terminal fallback), `en`,
   `ar`, `he` (Vicariate), `he-x-gamliel` (Mission), `arc`, `el`, `es`, `ru`, `uk`, `tl`, `fr`, and `it`.
   Public pickers show twelve languages: Hebrew appears once as `עברית`, with a separate
-  **Prayer tradition** control for Saint James Vicariate / Mission of St. Gamaliel. These controls
+  **Prayer tradition** control (Hebrew UI: נוסח לטיני / נוסח סורי). Source identities remain Saint James Vicariate / Mission of St. Gamaliel. These controls
   jointly select the existing `he` / `he-x-gamliel` code, preserving presets, bookmarks and sparse
   overlays without migrating content identities. Selecting Hebrew from another language or
   App setting starts with the higher Hebrew tradition in the saved language fallback order.
@@ -192,8 +193,8 @@ selects one of the eight translated interfaces and never changes that sourced pr
   Michael prayer → optional end-of-session eternal rest → optional Litany of Loreto → separate
   Rosary collect → optional final Sign of the Cross). The
   single-mystery mode (`mysterySelectionMode == singleMystery`) resolves to the same one-group
-  shape as the fixed-set mode, but the per-group loop only builds the one decade at
-  `specificMysteryOrder - 1`, keeping the mystery's true ordinal (e.g. "3rd Mystery") for its
+  shape as the fixed-set mode, but the per-group loop builds up to `specificMysteryCount` consecutive decades starting at
+  `specificMysteryOrder - 1`, stopping at the fifth without wrapping, keeping the mystery's true ordinal (e.g. "3rd Mystery") for its
   announcement label rather than re-basing it to 1st. Presenter mode
   (`presenterMode == true`) replaces a decade's 10 Hail Mary steps + separate Glory Be step with
   one combined step (title "Hail Mary & Glory Be", both prayers' text in its body); the
@@ -302,26 +303,43 @@ the other two — this is one of the most exactly-mirrored pieces of the whole a
 
 The Rosary flow also exposes **previous mystery** and **next mystery** controls (`⏮` / `⏭`).
 They jump to the preceding or following mystery-announcement step without replacing the ordinary
-Back/Next bead controls; the unavailable direction is disabled at the first/last mystery.
+Back/Next bead controls. Forward remains available throughout the final selected decade:
+it jumps to the first closing prayer, or finishes through the usual progress-clearing path
+when all closing prayers are disabled. The completion sentinel is handled before any step
+array is indexed. The retired fifth-decade setting is ignored, including in older installed
+Rosary option editors; every selected mystery group contains all five decades.
 
 ## Navigation shell
 
-The phone/tablet apps use four sections: **Pray** (the former Home — Rosary card, devotion
-cards, Jesus Prayer, "Today"), **Browse** (the prayers.prosary.app catalog), **Readings**
+The phone/tablet apps use four sections: **Home** (the customizable dashboard and initial
+landing), **Pray** (Rosary, pinned devotions, Jesus Prayer and the existing Today reference), **Readings**
 (date-based appointed citations and expandable Bible passages), and **Search** (built-in and
 installed prayers with category browsing). Readings replaces the former Categories tab. Search
 derives category choices from those local manifests' `tags`, including arbitrary
 downloaded tags, with All Categories and Other for untagged prayers. A selected category and
 the text query both constrain local results; an empty query browses the selected
-category. Search works offline; Browse owns community discovery and installation. Bottom tab
+category. Search works offline and has a visible Community Prayers entry for the online
+catalog; the separate Browse tab is removed. Bottom tab
 bar on phones, sidebar or rail on larger devices: iOS uses `sidebarAdaptable` where
 available (older iOS keeps the classic tab control). Android switches
 NavigationBar → NavigationRail at 840 dp. Programmatic pushes are single-top on every port:
 a rapid repeated click/tap of the same destination must not add an invisible duplicate that
 requires an extra Back press. Pray/Search re-derive their devotion
-lists on every appearance, so a bundle installed from Browse/import (or removed in
+ lists on every appearance, so a bundle installed from Search/community/import (or removed in
 Settings) shows up
 everywhere without a relaunch — the bug that motivated the restructure.
+
+Home has independently selectable cards for readings, the Pope's intention, calendar,
+a gallery photo, reminders, Scripture, a forthcoming Mission reflection and feast explanations.
+Native customization adds, removes and reorders the cards. `homeWidgetOrder` is a newline list
+of stable card IDs, distinct from Pray's `homeCardOrder`; an unset preference uses the six
+default reference cards and an explicit empty value keeps Home empty. `homePhotoPath` records
+only a private device-local copy, with native gallery selection and replacement/removal.
+The reminders card lists actual enabled reminders and opens their existing editors. Feast
+explanations retain their exact-language source credit; missing prose stays explicit. The
+reflection card awaits the supplied text. See [schema/home-widgets.json](schema/home-widgets.json).
+Home, Pray and Readings share the same window's civil-date selection, including a deliberately
+browsed day; choosing a Home shortcut changes Readings mode without resetting that date.
 
 Readings has a date picker above complete citations, with previous/next day and Today actions.
 Its Daily Readings/Bible selector sits inside page content. A separate **Feasts and
@@ -348,8 +366,9 @@ Do not bypass Activity recreation in the manifest to mask missing state restorat
 
 ### Native Windows experience
 
-Windows has a Library, Today, Gallery, Basic Prayers, Search and Community sidebar, with Settings
-and About in its footer. Saved prayers remain in the existing SQLite store. Gallery Add
+Windows has a Home, Library, Today, Gallery, Basic Prayers and Search sidebar, with Settings
+and About in its footer. Initial launch opens Home; Search provides community catalog access.
+Saved prayers remain in the existing SQLite store. Gallery Add
 creates a saved copy; Library offers search, list/grid selection, Open, Prayer Settings,
 Duplicate, Rename and confirmed deletion. Ordinary Open activates the exact saved UUID's
 separate prayer window. Each frame has its own `WindowNavigation`; finishing or closing a
@@ -745,13 +764,12 @@ preset, an ad-hoc "Pray any Rosary" setup, and the remaining named presets, with
 reminder actions. The Jesus Prayer row prays its default saved target or opens setup when none
 exists; the Pray add menu can create another named Rosary or Jesus Prayer configuration.
 
-Each Rosary has `skipFifthDecade` (default `false`). Enabled, the mystery source excludes
-order five from every complete five-decade set before constructing the prayer sequence;
-opening prayers, closing prayers and selected continuations remain. Full twenty/fifteen
-mystery runs become sixteen/twelve decades. An explicit single mystery, including the fifth,
-is preserved and hides this control. Original mystery ordinals remain intact while progress
-uses dense decade indices. Persisted copies and progress signatures include this preference;
-older copies retain all five decades. Terminal offers the same switch for its single set.
+The former `skipFifthDecade` field remains only for saved-data compatibility and is
+ignored. It is absent from native and generic Rosary editors, including older installed
+pack definitions; all selected groups retain five decades. Forward mystery navigation
+skips the remainder of the final decade to the closing prayers or completes a run with
+no closing steps. Old shortened progress signatures do not match the full sequence.
+Terminal uses its section-jump key for the same behavior rather than a stored switch.
 
 Every generic bundle is still constrained at the UI layer to at most one `Prayer` row, matched by
 **bundle id** rather than language. Pinning it from a flow creates that row with the sentinel
@@ -764,8 +782,9 @@ and notification text comes from `reminderBody`, never a hardcoded per-kind tabl
 
 ### Removing prayers and downloads
 
-Unpinning remains separate from deleting a saved prayer. Home context menus and preset
-management expose **Delete Saved Prayer** on iOS, Android, and Windows. The Mac Library exposes
+Unpinning remains separate from deleting a saved prayer. Prayer Settings and saved-prayer
+management expose **Delete Saved Prayer** on iOS, Android, and Windows. Pray context menus
+expose **Remove from Pray**. The Mac Library exposes
 **Delete Prayer** for saved copies and **Remove from Library** for chosen templates, including
 context menus and Command-Delete without intercepting text-field editing. Confirmations name
 the target and explain reminders and final-copy download cleanup.
@@ -1346,8 +1365,9 @@ of its own — its entire step sequence and per-step text are data-driven from i
   pairs. Read Aloud is hidden while a playable recorded narration exists; extraction/codec
   failure returns it to the fallback path. Speech stops on step/language changes, leaving the
   flow, backgrounding and session prompts, and auto-advance pauses until speech ends.
-  **Music groundwork:** an authored musical Rosary can declare `role: "music"` alongside its
-  actual sung prayer language and normal variant. Its Opus file and chapters use the same
+  **Music groundwork:** generic `steps`-type devotion packs can declare `role: "music"`
+  alongside their actual sung prayer language and normal variant. Recording controls
+  currently belong to the generic custom-devotion flow. The pack's Opus file and chapters use the same
   bounded extraction, cache, transport and position persistence; players use music media
   categories. Chapters must omit `stepIndex`: music does not drive the prayer text, and manual
   prayer navigation does not seek it. Music playback also leaves timer-based prayer advancement
@@ -1358,8 +1378,14 @@ of its own — its entire step sequence and per-step text are data-driven from i
   separate track selector remain future work. Compose's editor remains narration-only and
   rejects music metadata it cannot preserve; manually authored music packs can be validated,
   packaged and published through the ordinary bundle tools and repository.
-- **User-installed bundles**: anyone can author a `.prosaryprayer` and import it through Browse
-  on iPhone/iPad, the Mac library, Settings on Android/Windows, or Apple File menu commands
+  **Scope decision, 3 October 2026:** retain this generic music groundwork. At the user's
+  request, creating, bundling or importing an actual musical Rosary is excluded; adding a
+  musical Rosary recording to the built-in Rosary flow is also outside the planned work.
+  The [3 October source research](tools/sources/musical-rosary-followup-research.json) is
+  retained as historical evidence only. Its recordings and scores are not selected for app
+  inclusion, and no actual musical Rosary audio has been added.
+- **User-installed bundles**: anyone can author a `.prosaryprayer` and import it through Search's
+  community catalog on iPhone/iPad, the Mac library, Settings on Android/Windows, or Apple File menu commands
   where available. Apple declares the exported `app.prosary.prayer` type (a ZIP-conforming
   `.prosaryprayer` file) with a Viewer document handler. Finder/Files opening and Mac file drops
   use the same bounded, security-scoped importer. Mac entry points add the pack to the Gallery
@@ -1381,7 +1407,7 @@ of its own — its entire step sequence and per-step text are data-driven from i
   the Mac and Windows galleries immediately; on phones they appear in Search and its categories
   and can be pinned to Pray like built-ins. Android and Windows
   Settings can export an installed pack for editing and remove individual packs; all platforms
-  can remove unused installed downloads, while Apple also imports through its library/Browse/File surfaces.
+  can remove unused installed downloads, while Apple also imports through its library/Search/File surfaces.
   User-facing removal passes through the saved-reference guard described above. After successful
   filesystem removal, the loader unregisters the bundle and its archive/image sources;
   globally merged shared text overrides retain their existing
@@ -1491,6 +1517,12 @@ every installed/basic template as well as saved configurations. The Readings wor
 has Daily Readings and Bible modes plus a separate Feasts and Solemnities list; selecting
 an observance opens its daily readings. Mac uses a native calendar sheet in Today. See [WIDGETS.markdown](WIDGETS.markdown)
 and [schema/widgets.json](schema/widgets.json) for configuration, refresh, signing, and testing.
+
+The portable [Expo Today handoff](expo-today/README.markdown) exposes the same data and
+display rules in TypeScript, with optional React Native components for Erez. Its offline
+copies and interface labels are generated by `expo-today/scripts/sync-data.mjs`; refresh
+canonical data first, then run its `check:sync` verification. No native port reads this
+package at runtime.
 
 Dev-time-generated datasets back the Pray tab's "Today" section (per-platform physical
 copies, same convention as the bundles; per-platform `TodayInfoStore` providers):
@@ -1997,3 +2029,74 @@ The Aramaic final-letter audit covers every non-metadata field in Aramaic conten
 bundle labels, and prayer reflow fixtures. It keeps Unicode combining marks within words and
 exempts citation gematria; Hebrew-script words in citations are still checked. CI runs it after
 the script-conversion and pack-parity checks.
+
+
+## October 2026 calendar and prayer refinements
+
+The Rosary's **Choose Mystery** control lists all four sets, each with five
+mysteries: Joyful, Sorrowful, Glorious and Luminous. Selecting a mystery already in
+the session jumps to its announcement; another selection changes only the current
+session, preserving the saved configuration and keeping its sequential count.
+The traditional 15-mystery Today option assigns Joyful to Monday/Thursday,
+Sorrowful to Tuesday/Friday and Glorious to Wednesday/Saturday; Sunday retains the
+seasonal assignment. `singleMystery` remains the saved raw enum identity for the
+Selected Mysteries UI. Primitive count/traditional fields are persisted in all
+three stores and included in continuation signatures; old choices default to one.
+
+`showPopeIntentionInPrayers` is independent of `showTodayIntention`, default false.
+Any authored `intentioPontificis` step can show the current month's published
+intention, with the Pope's Worldwide Prayer Network attribution and explicit
+translation credit. Empty months remain absent. The sourced intercession body
+is unchanged. The step carries an optional `prayerKey` copied from `entry.bodyKey`;
+translated headings and bodies never decide eligibility.
+
+`calendarViewMode` persists **List** or **Month**, default List. Monthly calendars
+use native date controls and source observances for the selected date. The separate
+`mission-provisional` calendar imports 475 explicitly dated events across 2026's
+365 dates from the supplied Urtotho ICS, credited © Evangelizo. It is provisional
+and specific to the Mission of St. Gamaliel. No 2027 dates or readings were supplied;
+yearly recurrence rules are retained as provenance without expanding movable
+feasts. `import-mission-calendar.py --sync` is deterministic. Original titles,
+descriptions, UID and recurrence survive spelling corrections; a reviewed display
+correction map changes `נקודה לערעור` to `נקודה להרהור`. Reflections and sections are
+available to the Home reflection widget with exact-language matching. Categories
+retain only explicit source CATEGORIES; this file supplied none.
+
+Pray context menus use **Remove from Pray**. Confirmed **Delete Saved Prayer** lives
+in Prayer Settings, saved-prayer management and Rosary presets, where its effects
+on the saved copy, reminders and downloads are explicit. Unpinning preserves them.
+
+Hebrew display vocabulary is documented in
+[HEBREW-DISPLAY-TERMINOLOGY](content/HEBREW-DISPLAY-TERMINOLOGY.markdown): Dominican
+Rosary `מחרוזת הורדים`, Hail Mary heading `שלום לך`, Glory Be heading `שבח לאב`.
+Sourced liturgical bodies and source credits retain their original wording.
+
+Android reminders use inexact alarms allowed through Doze, restore saved and
+multi-day-series reminders on boot/clock/time-zone/app changes, and retain reminder
+times when notification permission is denied while explaining the system setting
+needed. Android 7 does not construct unsupported notification channels. Settings
+switches carry their actual accessible labels; alternate-text controls name the
+current action. Apple Hebrew system sans prayer text follows Dynamic Type, while
+Mac Presenter retains its explicit presentation-size control. Windows uses native
+text enlargement and named native controls. Device/screen-reader evidence is
+recorded separately in the accessibility audit.
+
+
+The appended `chooseOnLaunch` mode keeps a saved Rosary's mysteries blank. The native
+launch chooser lists all four sets and their five mysteries; `specificMysteryCount`
+chooses one to five consecutive mysteries from that start, clamped at the fifth.
+Configured opening prayers run first. A new session and Restart ask again; Continue
+reconstructs the chosen group/order from optional device-local `rosaryNavigationGroup`
+and `rosaryNavigationOrder` before validating the saved configuration signature and
+step bounds. No choice is written back to the saved prayer. The in-session **Choose
+Mystery** control can reopen that chooser. Engines return no steps while this mode
+has no resolved session choice; no hidden Today assignment supplies a default.
+
+The mystery chooser places **Mystery Set** at the top, offering Joyful, Sorrowful,
+Glorious and Luminous, and shows only the selected set’s five mysteries underneath.
+A mandatory launch choice has no automatically selected set or starting mystery.
+
+**Entire Set** appears above the five individual mysteries once a set is selected.
+It prays all five from the beginning while retaining configured opening prayers and
+leaving the saved configuration unchanged. A device-local selected group with null
+`rosaryNavigationOrder` records this explicit whole-set choice for Continue.

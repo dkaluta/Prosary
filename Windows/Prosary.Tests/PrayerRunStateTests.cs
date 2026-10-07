@@ -553,7 +553,9 @@ public class PrayerRunStateTests : IClassFixture<PrayerPackLoaderFixture>
         Assert.Equal(1, MysteryStepNavigation.Previous(steps, 4));
         Assert.Equal(3, MysteryStepNavigation.Previous(steps, 5));
         Assert.Null(MysteryStepNavigation.Previous(steps, 1));
-        Assert.Null(MysteryStepNavigation.Next(steps, 4));
+        Assert.Equal(5, MysteryStepNavigation.Next(steps, 3));
+        Assert.Equal(5, MysteryStepNavigation.Next(steps, 4));
+        Assert.Null(MysteryStepNavigation.Next(steps, 5));
     }
 
     [Fact]

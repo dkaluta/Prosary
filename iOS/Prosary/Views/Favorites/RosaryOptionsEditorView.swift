@@ -50,6 +50,10 @@ struct RosaryOptionsSections: View {
             Text(mode.displayName).tag(mode)
           }
         }
+        .accessibilityIdentifier("rosaryMysteryMode")
+        if rosary.mysterySelectionMode == .todaysMysteries {
+          Toggle("favoriteEditor.traditionalMysteries", isOn: $rosary.useTraditionalMysteries)
+        }
         if rosary.mysterySelectionMode == .specific || rosary.mysterySelectionMode == .singleMystery {
           Picker("favoriteEditor.specificSet", selection: $rosary.specificMysteryGroup) {
             ForEach(MysteryGroup.allCases) { group in
@@ -58,7 +62,12 @@ struct RosaryOptionsSections: View {
           }
         }
         if rosary.mysterySelectionMode == .singleMystery {
-          Picker("favoriteEditor.specificMystery", selection: $rosary.specificMysteryOrder) {
+          Picker("favoriteEditor.specificMystery", selection: Binding(
+            get: { rosary.selectedMysteryStart },
+            set: {
+              rosary.specificMysteryOrder = $0
+              rosary.specificMysteryCount = rosary.selectedMysteryCount
+            })) {
             ForEach(MysteryCatalog.forGroup(rosary.specificMysteryGroup)) { mystery in
               // The mystery is named in the UI language, like the group row above it.
               Text(HebrewDisplayText.unpointed(MysteryTranslations.get(
@@ -66,11 +75,18 @@ struct RosaryOptionsSections: View {
                 imageKey: mystery.imageKey).title)).tag(mystery.order)
             }
           }
+          Picker("favoriteEditor.mysteryCount", selection: Binding(
+            get: { rosary.selectedMysteryCount },
+            set: { rosary.specificMysteryCount = $0 })) {
+            ForEach(1...(6 - rosary.selectedMysteryStart), id: \.self) { count in
+              Text(count, format: .number).tag(count)
+            }
+          }
         }
-        if rosary.mysterySelectionMode != .singleMystery {
-          Toggle(String(localized: "favoriteEditor.skipFifthDecade", defaultValue: "Skip the fifth decade", bundle: UILanguage.bundle, locale: UILanguage.locale),
-                 isOn: $rosary.skipFifthDecade)
-            .accessibilityIdentifier("skipFifthDecadeToggle")
+        if rosary.mysterySelectionMode == .chooseOnLaunch {
+          Picker("favoriteEditor.mysteryCount", selection: $rosary.specificMysteryCount) {
+            ForEach(1...5, id: \.self) { count in Text(count, format: .number).tag(count) }
+          }
         }
       }
 

@@ -30,6 +30,9 @@ data class FeastDay(
     fun saintDescriptions(calendarId: String, language: String): List<SaintDescription> =
         observances.mapNotNull { it.description(language) }
 
+    fun reflections(language: String): List<SaintDescription> =
+        observances.mapNotNull { it.reflection(language) }
+
     /** Follow the Today toggle rather than the app UI language. Roman rank terms follow the
      * Saint James Vicariate's 2025–2026 calendar, pp. 4, 6–7:
      * https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf
@@ -66,11 +69,21 @@ data class FeastObservance(
     val descriptionByLanguage: Map<String, String>? = null,
     val descriptionSourceByLanguage: Map<String, String>? = null,
     val descriptionCreditByLanguage: Map<String, String>? = null,
+    val sourceUID: String? = null,
+    val sourceTitleByLanguage: Map<String, String>? = null,
+    val sourceDescriptionByLanguage: Map<String, String>? = null,
+    val sourceRecurrence: String? = null,
+    val categories: List<String> = emptyList(),
+    val sections: List<CalendarTextSection> = emptyList(),
+    val reflectionByLanguage: Map<String, String>? = null,
 ) {
-    fun description(language: String): SaintDescription? {
+    fun description(language: String): SaintDescription? = textItem(descriptionByLanguage, language)
+    fun reflection(language: String): SaintDescription? = textItem(reflectionByLanguage, language)
+
+    private fun textItem(textByLanguage: Map<String, String>?, language: String): SaintDescription? {
         val normalized = LanguageCatalog.uiLanguageCode(language)
         val code = LanguageCatalog.baseLanguage(normalized) ?: normalized
-        val body = descriptionByLanguage?.get(code)?.trim()?.takeIf(String::isNotEmpty) ?: return null
+        val body = textByLanguage?.get(code)?.trim()?.takeIf(String::isNotEmpty) ?: return null
         return SaintDescription(
             identity = identity,
             title = HebrewDisplayText.unpoint(titleByLanguage.localized(code) ?: title),
@@ -86,6 +99,11 @@ data class FeastObservance(
     }
 }
 
+/** Exact source sections are reusable by calendar/reflection widgets without reparsing prose. */
+@Serializable
+data class CalendarTextSection(val id: String, val titleByLanguage: Map<String, String>,
+    val textByLanguage: Map<String, String>)
+
 data class SaintDescription(val identity: String, val title: String, val text: String,
     val sourceURL: String? = null, val credit: String? = null)
 
@@ -95,6 +113,8 @@ data class PopeIntention(
     val text: String,
     val titleByLanguage: Map<String, String>? = null,
     val textByLanguage: Map<String, String>? = null,
+    val sourceByLanguage: Map<String, String>? = null,
+    val translationCreditByLanguage: Map<String, String>? = null,
 ) {
     fun localizedTitle(language: String) =
         HebrewDisplayText.unpoint(titleByLanguage.localized(language) ?: title)
@@ -112,6 +132,8 @@ data class ReadingCitation(
     val fullByLanguage: Map<String, String>? = null,
     val sourceText: String? = null,
     val sourceGroup: String? = null,
+    /** Captured from the loaded registry table; never supplied by localized display text. */
+    @kotlinx.serialization.Transient val readingDatasetId: String? = null,
 ) {
     fun localizedShort(language: String): String = shortByLanguage.localized(language) ?: short
 
@@ -238,6 +260,7 @@ object TodayInfoStore {
     private var registry: CalendarsFile? = null
     private var loadedCalendarId: String? = null
     private var loadedReadingsCalendarId: String? = null
+    private var loadedReadingDatasetId: String? = null
     private var didLoad = false
 
     /** The registry's calendars, in picker order. */
@@ -276,6 +299,7 @@ object TodayInfoStore {
     fun readings(date: Date = Date()): List<ReadingCitation> {
         ensureReadingsLoaded()
         return readingsByDay[key(date, "yyyy-MM-dd")]?.readings.orEmpty()
+            .map { it.copy(readingDatasetId = loadedReadingDatasetId) }
     }
 
     /** Israel's weekly cycle, mapped to the upcoming Saturday (including Saturday itself).
@@ -404,6 +428,7 @@ object TodayInfoStore {
         registry = null
         loadedCalendarId = null
         loadedReadingsCalendarId = null
+        loadedReadingDatasetId = null
         didLoad = false
     }
 
@@ -431,6 +456,7 @@ object TodayInfoStore {
         loadedReadingsCalendarId = selectionKey
         val file = if (selected == "ugcc" && AppSettings.easternPaschaStyle == "gregorian") "readings-ugcc-gregorian"
             else registry?.calendars?.firstOrNull { it.id == selected }?.readingsFile
+        loadedReadingDatasetId = file?.takeIf { it.startsWith("readings-") }?.removePrefix("readings-")
         readingsByDay = file?.let { decode<ReadingsFile>(it)?.days }.orEmpty()
     }
 

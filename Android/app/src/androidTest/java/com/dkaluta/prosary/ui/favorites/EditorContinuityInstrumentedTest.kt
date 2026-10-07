@@ -203,6 +203,10 @@ class EditorContinuityInstrumentedTest {
     }
 
     @Test fun versionElevenFavoritesGainSafeRosaryOptionDefaults() {
+        val options = com.dkaluta.prosary.models.RosaryOptions(
+            specificMysteryOrder = 3, specificMysteryCount = 3, useTraditionalMysteries = true)
+        val row = com.dkaluta.prosary.persistence.PresetEntity.from(com.dkaluta.prosary.models.Prayer(rosary = options))
+        assertEquals(options, row.toPrayer().rosary)
         val helper = androidx.sqlite.db.framework.FrameworkSQLiteOpenHelperFactory().create(
             androidx.sqlite.db.SupportSQLiteOpenHelper.Configuration.builder(context)
                 .callback(object : androidx.sqlite.db.SupportSQLiteOpenHelper.Callback(1) {
@@ -215,12 +219,15 @@ class EditorContinuityInstrumentedTest {
         helper.use {
             val db = helper.writableDatabase
             com.dkaluta.prosary.persistence.MIGRATION_11_12.migrate(db)
-            db.query("SELECT id, name, includeLitanyOfLoreto, includeRosaryCollect FROM presets").use { row ->
+            com.dkaluta.prosary.persistence.MIGRATION_12_13.migrate(db)
+            db.query("SELECT id, name, includeLitanyOfLoreto, includeRosaryCollect, specificMysteryCount, useTraditionalMysteries FROM presets").use { row ->
                 assertTrue(row.moveToFirst())
                 assertEquals("saved", row.getString(0))
                 assertEquals("Existing prayer", row.getString(1))
                 assertEquals(0, row.getInt(2))
                 assertEquals(1, row.getInt(3))
+                assertEquals(1, row.getInt(4))
+                assertEquals(0, row.getInt(5))
             }
         }
     }

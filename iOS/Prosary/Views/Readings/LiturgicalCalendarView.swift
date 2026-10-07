@@ -6,6 +6,7 @@ struct FeastsAndSolemnitiesView: View {
   var onSelectDate: () -> Void = {}
   @AppStorage(TodayInfoStore.calendarDefaultsKey) private var calendarID = ""
   @AppStorage(TodayInfoStore.paschaStyleDefaultsKey) private var paschaStyle = "julian"
+  @AppStorage("calendarViewMode") private var viewMode = "list"
 
   private var rows: [(date: Date, feast: FeastDay)] {
     _ = calendarID; _ = paschaStyle
@@ -20,6 +21,25 @@ struct FeastsAndSolemnitiesView: View {
   }
 
   var body: some View {
+    VStack(spacing: 0) {
+      Picker(String(localized: "calendar.view", defaultValue: "Calendar View", bundle: UILanguage.bundle, locale: UILanguage.locale), selection: $viewMode) {
+        Text(String(localized: "calendar.listView", defaultValue: "List", bundle: UILanguage.bundle, locale: UILanguage.locale)).tag("list")
+        Text(String(localized: "calendar.monthView", defaultValue: "Month", bundle: UILanguage.bundle, locale: UILanguage.locale)).tag("month")
+      }
+      .pickerStyle(.segmented).padding()
+      .accessibilityIdentifier("calendar.viewMode")
+      if viewMode == "month" {
+        LiturgicalCalendarView(dateSelection: $dateSelection, onSelectDate: onSelectDate)
+      } else {
+        feastList
+      }
+    }
+    .navigationTitle(String(localized: "calendar.feastsAndSolemnities", defaultValue: "Feasts and Solemnities", bundle: UILanguage.bundle, locale: UILanguage.locale))
+    .environment(\.layoutDirection, UILanguage.isRightToLeft(UILanguage.current) ? .rightToLeft : .leftToRight)
+    .accessibilityIdentifier("feastsAndSolemnities.screen")
+  }
+
+  private var feastList: some View {
     ScrollViewReader { proxy in
       List {
         Section {
@@ -61,9 +81,6 @@ struct FeastsAndSolemnitiesView: View {
         }
       }
     }
-    .navigationTitle(String(localized: "calendar.feastsAndSolemnities", defaultValue: "Feasts and Solemnities", bundle: UILanguage.bundle, locale: UILanguage.locale))
-    .environment(\.layoutDirection, UILanguage.isRightToLeft(UILanguage.current) ? .rightToLeft : .leftToRight)
-    .accessibilityIdentifier("feastsAndSolemnities.screen")
   }
 }
 
@@ -118,6 +135,13 @@ struct LiturgicalCalendarView: View {
         Button(label("home.today.today", "Today")) { dateSelection = MacTodayDateSelection() }
         Text(TodayInfoStore.calendars.first { $0.id == TodayInfoStore.selectedCalendarId }?.displayName ?? "")
           .font(.caption).foregroundStyle(.secondary)
+        DatePicker(label("home.today.chooseDate", "Choose a date"),
+                   selection: Binding(get: { date }, set: { dateSelection.select($0); onSelectDate() }),
+                   in: MacTodayDateSelection.pickerRange(), displayedComponents: .date)
+          .datePickerStyle(.graphical).labelsHidden()
+          .environment(\.calendar, calendar)
+          .frame(maxWidth: .infinity)
+          .accessibilityIdentifier("calendar.monthPicker")
       }
       Section {
         if rows.isEmpty {

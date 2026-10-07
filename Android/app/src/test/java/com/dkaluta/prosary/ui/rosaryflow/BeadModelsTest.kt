@@ -162,4 +162,23 @@ class BeadModelsTest {
         assertEquals(starts.last(), MysteryStepNavigation.previous(steps, steps.lastIndex))
         assertNull(MysteryStepNavigation.next(steps, steps.lastIndex))
     }
+
+    @Test
+    fun finalDecadeSkipsToClosingInWholeAndPresenterSessions() {
+        for (mode in listOf(MysterySelectionMode.Specific, MysterySelectionMode.FifteenMystery,
+            MysterySelectionMode.TwentyMystery, MysterySelectionMode.SingleMystery)) {
+            for (presenter in listOf(false, true)) {
+                val steps = PrayerEngine().buildSteps(Prayer(languageCode = "en", rosary = RosaryOptions(
+                    mysterySelectionMode = mode, specificMysteryOrder = 5, presenterMode = presenter)))
+                val lastDecade = steps.mapNotNull { it.decadeIndex }.max()
+                val closing = steps.indexOfLast { it.decadeIndex != null } + 1
+                steps.indices.filter { steps[it].decadeIndex == lastDecade }.forEach {
+                    assertEquals(closing, MysteryStepNavigation.next(steps, it))
+                }
+                assertNull(MysteryStepNavigation.next(steps, closing))
+                assertEquals(steps.indexOfFirst { it.decadeIndex == lastDecade },
+                    MysteryStepNavigation.previous(steps, closing))
+            }
+        }
+    }
 }

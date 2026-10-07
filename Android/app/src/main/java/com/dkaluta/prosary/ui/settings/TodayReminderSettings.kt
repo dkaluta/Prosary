@@ -1,8 +1,7 @@
 package com.dkaluta.prosary.ui.settings
 
 import android.Manifest
-import android.content.Intent
-import android.provider.Settings
+import android.os.Build
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Column
@@ -19,6 +18,7 @@ import com.dkaluta.prosary.models.AppSettings
 import com.dkaluta.prosary.models.PrayerReminder
 import com.dkaluta.prosary.reminders.ReminderScheduler
 import com.dkaluta.prosary.reminders.TodayReminderScheduler
+import com.dkaluta.prosary.ui.shared.LabeledSwitch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -32,7 +32,7 @@ fun TodayReminderSettings() {
         TodayReminderScheduler.refresh(context)
     }
     val permission = rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) { granted ->
-        pendingKind?.let { if (granted) setEnabled(it, true) else permissionDenied = true }
+        pendingKind?.let { if (granted && ReminderScheduler.notificationsEnabled(context)) setEnabled(it, true) else permissionDenied = true }
         pendingKind = null
     }
     LaunchedEffect(AppSettings.feastCalendarId, AppSettings.easternPaschaStyle) { TodayReminderScheduler.refresh(context) }
@@ -43,10 +43,12 @@ fun TodayReminderSettings() {
         Column {
             Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
                 Text(stringResource(if (kind == "readings") R.string.settings_reminders_readings else R.string.settings_reminders_saints), Modifier.weight(1f))
-                Switch(enabled, onCheckedChange = { value ->
-                    if (value && !ReminderScheduler.hasNotificationPermission(context)) {
-                        pendingKind = kind
-                        permission.launch(Manifest.permission.POST_NOTIFICATIONS)
+                LabeledSwitch(label = stringResource(if (kind == "readings") R.string.settings_reminders_readings else R.string.settings_reminders_saints), checked = enabled, onCheckedChange = { value ->
+                    if (value && !ReminderScheduler.notificationsEnabled(context)) {
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && !ReminderScheduler.hasNotificationPermission(context)) {
+                            pendingKind = kind
+                            permission.launch(Manifest.permission.POST_NOTIFICATIONS)
+                        } else permissionDenied = true
                     } else setEnabled(kind, value)
                 })
             }
@@ -60,8 +62,7 @@ fun TodayReminderSettings() {
     Text(stringResource(R.string.settings_prayer_reminders_hint), style = MaterialTheme.typography.bodySmall,
         color = MaterialTheme.colorScheme.onSurfaceVariant)
     TextButton(onClick = {
-        context.startActivity(Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS)
-            .putExtra(Settings.EXTRA_APP_PACKAGE, context.packageName))
+        context.startActivity(ReminderScheduler.notificationSettingsIntent(context))
     }) { Text(stringResource(R.string.settings_reminders_system)) }
     if (permissionDenied) Text(stringResource(R.string.settings_reminders_permission_body), style = MaterialTheme.typography.bodySmall)
     editing?.let { kind ->

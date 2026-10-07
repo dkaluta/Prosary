@@ -20,7 +20,8 @@ from reading_versification import SUPPORTED_BOOKS, SYSTEMS
 TOOLS = Path(__file__).resolve().parent
 REVIEWS = TOOLS / "reading-appointment-reviews.json"
 SOURCE_LOCK = TOOLS / "reading-text-sources.json"
-CALENDARS = frozenset({"roman", "roman1962", "ugcc", "ugcc-gregorian", "syriac", "maronite", "torah"})
+from reading_appointment_keys import registry_datasets
+CALENDARS = frozenset(registry_datasets()) | {"torah"}
 
 
 def load_reviews(path: Path = REVIEWS, source_lock_path: Path = SOURCE_LOCK) -> dict[str, dict]:

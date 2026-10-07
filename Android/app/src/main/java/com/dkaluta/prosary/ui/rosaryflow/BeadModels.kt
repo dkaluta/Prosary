@@ -34,7 +34,7 @@ data class BeadColumn(
 /** Pure step-index math for the Rosary's mystery-skip buttons. A mystery begins at the first
  * step carrying its dense decade index (the announcement); closing prayers have no decade and
  * therefore navigate back to the final announcement, while opening prayers navigate forward to
- * the first. */
+ * the first. A next target equal to steps.size finishes a final decade with no closing prayers. */
 object MysteryStepNavigation {
     fun previous(steps: List<RosaryStep>, currentIndex: Int): Int? {
         val starts = mysteryStarts(steps)
@@ -47,10 +47,13 @@ object MysteryStepNavigation {
     }
 
     fun next(steps: List<RosaryStep>, currentIndex: Int): Int? {
+        if (currentIndex !in steps.indices) return null
         val starts = mysteryStarts(steps)
         val currentDecade = steps.getOrNull(currentIndex)?.decadeIndex
         return if (currentDecade != null) {
             starts.firstOrNull { it.first == currentDecade + 1 }?.second
+                ?: steps.indices.firstOrNull { it > currentIndex && steps[it].decadeIndex == null }
+                ?: steps.size
         } else {
             starts.firstOrNull { it.second > currentIndex }?.second
         }

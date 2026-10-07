@@ -13,6 +13,19 @@ namespace Prosary.Models;
 /// in <see cref="ApplicationData.LocalSettings"/>.</summary>
 public static class AppSettings
 {
+    public static bool ShowPopeIntentionInPrayers => ReadLocalSetting("showPopeIntentionInPrayers") as bool? ?? false;
+    public static event Action? PopeIntentionPreferenceChanged;
+    public static void SetShowPopeIntentionInPrayers(bool enabled)
+    {
+        WriteLocalSetting("showPopeIntentionInPrayers", enabled);
+        PopeIntentionPreferenceChanged?.Invoke();
+    }
+    public static string CalendarViewMode
+    {
+        get => ReadLocalSetting("calendarViewMode") as string == "month" ? "month" : "list";
+        set => SetCalendarViewMode(value);
+    }
+    public static void SetCalendarViewMode(string mode) => WriteLocalSetting("calendarViewMode", mode == "month" ? "month" : "list");
     private const string KeyInterfaceLanguage = "interfaceLanguageCode";
     private const string KeyDefaultLanguage = "defaultLanguageCode";
     private const string KeyBasicPrayersLanguage = "basicPrayersLanguageCode";
@@ -75,6 +88,30 @@ public static class AppSettings
     private static bool? _favoriteBasicPrayersFirst;
     private static IReadOnlyList<string>? _languageFallbackOrder;
     private static string? _appColor;
+    private static IReadOnlyList<string>? _homeWidgetOrder;
+    private static string? _homePhotoPath;
+
+    public static IReadOnlyList<string> HomeWidgetOrder => _homeWidgetOrder ??=
+        HomeWidgets.Parse(ReadLocalSetting("homeWidgetOrder") as string);
+
+    public static event Action? HomeWidgetsChanged;
+
+    public static void SetHomeWidgetOrder(IEnumerable<string> ids)
+    {
+        _homeWidgetOrder = HomeWidgets.Normalize(ids);
+        WriteLocalSetting("homeWidgetOrder", string.Join('\n', _homeWidgetOrder));
+        HomeWidgetsChanged?.Invoke();
+    }
+
+    public static string HomePhotoPath => _homePhotoPath ??=
+        ReadLocalSetting("homePhotoPath") as string ?? string.Empty;
+
+    public static void SetHomePhotoPath(string path)
+    {
+        _homePhotoPath = path;
+        WriteLocalSetting("homePhotoPath", path);
+        HomeWidgetsChanged?.Invoke();
+    }
 
     public static string AppColor => _appColor ??=
         AppColorPalette.Resolve(ReadLocalSetting(KeyAppColor) as string).Id;

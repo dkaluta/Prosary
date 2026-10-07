@@ -74,9 +74,9 @@ enum PrayerTypography {
   // sizes read as oversized next to the rest of a Mac window. Scaling keeps every custom
   // typeface in the same visual proportion to `.body` on both platforms.
   #if os(macOS)
-  private static let scale: CGFloat = 0.76
+  fileprivate static let scale: CGFloat = 0.76
   #else
-  private static let scale: CGFloat = 1.0
+  fileprivate static let scale: CGFloat = 1.0
   #endif
 
   /// The writing system a run of text is actually in.
@@ -146,7 +146,9 @@ enum PrayerTypography {
       }
       let prayerTypeface = typefaces.hebrewPrayer
       if prayerTypeface == TypefaceValue.sansSerif {
-        return .system(size: (pointSize ?? 21) * scale, weight: .regular, design: .default)
+        // Semantic system text scales with Dynamic Type too. Body views use prayerFont
+        // below to retain the Hebrew face's 21-point baseline through a ScaledMetric.
+        return .system(.body, design: .default)
       }
       let name = switch prayerTypeface {
       case TypefaceValue.davidLibre: FontRegistration.PostScriptName.davidLibre
@@ -185,6 +187,34 @@ enum PrayerTypography {
           let script = detectedScript(of: text), script == .hebrew || script == .syriac else { return nil }
     return font(languageCode: languageCode, isScripture: false, text: text,
                 script: script, typefaces: typefaces, pointSize: pointSize).weight(.semibold)
+  }
+}
+
+private struct PrayerFontModifier: ViewModifier {
+  let languageCode: String?
+  let isScripture: Bool
+  let text: String?
+  let typefaces: PrayerTypography.Typefaces
+  @ScaledMetric(relativeTo: .body) private var hebrewSystemSize = 21 * PrayerTypography.scale
+
+  func body(content: Content) -> some View {
+    let script = PrayerTypography.resolvedScript(text: text, languageCode: languageCode)
+    if script == .hebrew, !isScripture,
+       typefaces.hebrewPrayer == PrayerTypography.TypefaceValue.sansSerif {
+      content.font(.system(size: hebrewSystemSize, weight: .regular, design: .default))
+    } else {
+      content.font(PrayerTypography.font(languageCode: languageCode, isScripture: isScripture,
+                                         text: text, typefaces: typefaces))
+    }
+  }
+}
+
+extension View {
+  /// Prayer font selection with the same Dynamic Type response for bundled and system faces.
+  func prayerFont(languageCode: String?, isScripture: Bool, text: String? = nil,
+                  typefaces: PrayerTypography.Typefaces = .current) -> some View {
+    modifier(PrayerFontModifier(languageCode: languageCode, isScripture: isScripture,
+                               text: text, typefaces: typefaces))
   }
 }
 

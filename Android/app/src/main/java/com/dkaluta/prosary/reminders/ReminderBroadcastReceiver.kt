@@ -24,7 +24,7 @@ class ReminderBroadcastReceiver : BroadcastReceiver() {
         val prayerName = intent.getStringExtra(ReminderScheduler.ExtraPrayerName) ?: return
         val body = intent.getStringExtra(ReminderScheduler.ExtraBody) ?: context.getString(R.string.home_tap_to_pray)
 
-        if (!ReminderScheduler.hasNotificationPermission(context)) return
+        if (!ReminderScheduler.notificationsEnabled(context)) return
 
         val openIntent = Intent(context, MainActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP

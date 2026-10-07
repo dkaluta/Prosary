@@ -18,6 +18,7 @@ import androidx.compose.material3.FilterChip
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -45,10 +46,10 @@ import com.dkaluta.prosary.typography.HebrewDisplayText
 import com.dkaluta.prosary.ui.shared.DevotionDirectory
 import com.dkaluta.prosary.ui.shared.LaunchTarget
 
-/** Search prayers already available on this device. Browse owns the installable catalogue. */
+/** Search local prayers and open the community catalogue from the same discovery workspace. */
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class)
 @Composable
-fun SearchScreen(onLaunch: (LaunchTarget) -> Unit) {
+fun SearchScreen(onLaunch: (LaunchTarget) -> Unit, onOpenCommunity: () -> Unit = {}) {
     val context = LocalContext.current
     var query by rememberSaveable { mutableStateOf("") }
     var selectedCategory by rememberSaveable { mutableStateOf<String?>(null) }
@@ -83,6 +84,11 @@ fun SearchScreen(onLaunch: (LaunchTarget) -> Unit) {
             contentPadding = PaddingValues(16.dp),
             verticalArrangement = Arrangement.spacedBy(10.dp),
         ) {
+            item(key = "community") {
+                OutlinedButton(onClick = onOpenCommunity, modifier = Modifier.fillMaxWidth().testTag("searchCommunity")) {
+                    Text(stringResource(R.string.home_widgets_community))
+                }
+            }
             item(key = "query") {
                 OutlinedTextField(
                     value = query,

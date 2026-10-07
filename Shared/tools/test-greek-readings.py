@@ -8,16 +8,23 @@ import importlib.util
 import json
 from pathlib import Path
 import unittest
+from reading_appointment_keys import split_passage_key
 
 from brenton_reading_source import SOURCE_SHA256, load_verses, parse_source
 from reading_edition_mapping import mapper
 from reading_edition_reviews_greek import sil_english_ot_to_standard
 from reading_step_mapping import Unavailable
+from greek_daily_psalms import default_resolver as daily_psalm_resolver
 
 TOOLS = Path(__file__).resolve().parent
 spec = importlib.util.spec_from_file_location("greek_reading_builder", TOOLS / "build-reading-texts.py")
 builder = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(builder)
+
+
+def citation_book(key):
+    citation = split_passage_key(key)[1]
+    return builder.BOOKS.get(citation.split(":", 1)[0].rsplit(" ", 1)[0])
 
 
 class GreekSourceTests(unittest.TestCase):
@@ -101,7 +108,7 @@ class GreekBundledTests(unittest.TestCase):
         for key, editions in self.data["passages"].items():
             if "brenton-lxx" not in editions:
                 continue
-            book, _ = builder.parse_citation(key.split("|", 1)[1], expand_subverses=True)
+            book = citation_book(key)
             self.assertNotIn(book, builder.NT, key)
             count += 1
         self.assertGreater(count, 100)
@@ -116,9 +123,26 @@ class GreekBundledTests(unittest.TestCase):
         corpus = load_verses(raw)
         self.assertEqual((len(corpus), sum(map(len, corpus.values()))), (908, 22377))
         for key, editions in self.data["passages"].items():
-            book, _ = builder.parse_citation(key.split("|", 1)[1], expand_subverses=True)
+            book = citation_book(key)
             for verse in editions.get("brenton-lxx", []):
-                self.assertEqual(verse["text"], corpus[book, verse["chapter"]][verse["verse"]], key)
+                if daily_psalm_resolver().handles(key):
+                    self.assertEqual(verse["text"], daily_psalm_resolver().rows[verse["chapter"], str(verse["verse"])], key)
+                else:
+                    self.assertEqual(verse["text"], corpus[book, verse["chapter"]][verse["verse"]], key)
+
+    def test_all_roman_psalm_appointments_have_a_source_faithful_greek_passage(self):
+        appointments = [key for key, contexts in builder.appointments().items()
+                        if key.startswith("daily|Psalm ") and contexts == {"roman"}]
+        self.assertEqual(len(appointments), 103)
+        for key in appointments:
+            with self.subTest(key=key):
+                self.assertIn("brenton-lxx", self.data["passages"].get(key, {}))
+        key = "daily|Psalm 145:8–9; 145:10–11; 145:12–13ab; 145:13cd–14"
+        source = self.data["passageSources"][key]["brenton-lxx"]
+        witness = next(block for block in source["contentBlocks"] if block["kind"] == "witness")
+        self.assertEqual(witness["printedLabel"], "13a")
+        self.assertEqual(witness["text"], daily_psalm_resolver().rows[144, "13a"])
+        self.assertIn(key, self.data["wholeVersePassages"])
 
 
 if __name__ == "__main__":

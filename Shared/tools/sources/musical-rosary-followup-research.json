@@ -1,0 +1,254 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-10-03T12:20:52Z",
+  "localResearchDate": "2026-10-03",
+  "timeZone": "Asia/Jerusalem",
+  "scope": "Historical primary-source research into musical Rosary recordings and scores. The user subsequently excluded an actual musical Rosary from the app's scope; no recording or score is selected for inclusion.",
+  "productScopeDecision": {
+    "localDate": "2026-10-03",
+    "userInstruction": "do not include an actual musical rosary",
+    "retain": "Generic music-role playback, pack metadata, validation and transport groundwork.",
+    "exclude": [
+      "Creating or commissioning an actual musical Rosary",
+      "Bundling or importing an actual musical Rosary recording or pack",
+      "Adding an actual musical Rosary recording to the built-in Rosary flow"
+    ],
+    "historicalResearchDisposition": "Keep source and licensing findings for reference only; they do not describe approved or planned app content."
+  },
+  "actions": {
+    "audioDownloads": 0,
+    "mediaImportedIntoApp": 0,
+    "contactsSent": 0,
+    "purchasesMade": 0,
+    "scoreFilesDownloadedToFilesystem": 0,
+    "textualGABCViewedInWebReader": true,
+    "nativeSourceOrDataModified": false
+  },
+  "result": {
+    "verifiedReadyToShipFullMusicalRosaryRecordings": 0,
+    "explicitlyLicensedIndividualLatinRecordings": 2,
+    "explicitlyLicensedScoreSource": "GregoBase chant transcriptions, CC0 1.0",
+    "recommendation": "Retain generic music groundwork and the historical evidence below. Do not create, commission, bundle or import an actual musical Rosary. The researched recordings and scores are not selected for app content.",
+    "researchLimit": "This is a bounded search, not evidence that no other openly licensed recording exists. No audio was downloaded or listened to, so performance pronunciation, all sung clauses, editing boundaries, audio quality and actual session lengths remain unverified."
+  },
+  "appContract": {
+    "references": [
+      "Shared/ARCHITECTURE.markdown:1263-1355",
+      "Shared/schema/domain-model.json:704-747",
+      "Shared/content/rosary/manifest.json",
+      "Shared/content/rosary/devotion.json",
+      "iOS/Prosary/Views/Shared/CustomDevotionFlowView.swift:399-409",
+      "Android/app/src/main/java/com/dkaluta/prosary/ui/shared/CustomDevotionFlowScreen.kt:152-164",
+      "Windows/Prosary/ViewModels/CustomDevotionViewModel.cs:793-806"
+    ],
+    "format": "An optional audio.json declares .opus files under audio/ inside a .prosaryprayer bundle. Audio is Ogg Opus, not an Ogg Vorbis file renamed to .opus.",
+    "musicRole": "role: music; use the actual sung language from the manifest and the session's applicable variantId. Chapters begin at zero with increasing start times and omit stepIndex. Music does not seek or advance prayer steps; timer advancement remains available.",
+    "selection": "A matching narration wins over music, then the first matching music declaration wins. There is no independent music track selector or narration/music mixer.",
+    "existingRosaryLanguages": ["la", "en", "ar", "he", "arc", "ru", "tl", "fr", "it", "es", "uk"],
+    "flowBoundary": "Current recording controls and matching are in generic CustomDevotionFlow, not the built-in type: rosary flow. The user has excluded an actual musical Rosary, including any corresponding recording/player integration in the built-in Rosary flow.",
+    "authoringBoundary": "Compose's wizard is narration-only and rejects music metadata it cannot preserve. Music bundles currently need manual authoring followed by the ordinary validator and pack tools.",
+    "languageBoundary": "Translated subtitles, a translated catalogue page, or prayer text overlays do not make an Italian or Latin recording Hebrew, Arabic, French or another spoken language. Instrumental background independent of prayer language is future work.",
+    "credits": "Keep creator, performer, recording owner, source URL, license/version and any editing/transcoding notes with the bundle. Third-party audio retains its source license; it does not inherit the first-party BSD-2-Clause or CC0 dedication."
+  },
+  "rightsEvidence": {
+    "compositionAndRecordingAreSeparate": {
+      "sourceURL": "https://www.copyright.gov/register/pa-sr.html",
+      "finding": "The U.S. Copyright Office distinguishes the underlying composition, including accompanying words, from a particular recording. A recording's authors can include performers and its producer; owning or clearing one work does not substitute for clearing the other."
+    },
+    "layersToIdentify": [
+      "Prayer wording and any modern translation or meditation",
+      "Melody/composition",
+      "Modern arrangement and accompaniment",
+      "Performers and recorded performance",
+      "Master recording and production",
+      "Any accompanying artwork or subtitle translation"
+    ],
+    "licenseSources": [
+      {
+        "sourceURL": "https://creativecommons.org/licenses/by-sa/3.0/",
+        "finding": "CC BY-SA 3.0 permits redistribution and adaptation, including commercially, with attribution and its applicable ShareAlike conditions. It prohibits additional legal or effective technological restrictions. Distribution must retain the audio's license rather than present it as first-party BSD or CC0."
+      },
+      {
+        "sourceURL": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "finding": "CC0 waives the affirmer's copyright and related rights to the extent allowed by law. Other people's rights and rights in separately produced performances or recordings are not established by a score's CC0 status."
+      }
+    ],
+    "historicalPermissionConsiderations": "App or prayer-pack redistribution of protected music would require the actual composition/arrangement and recording owners to cover offline storage, format conversion, chapter metadata, edits, repository distribution where relevant, stores and performers/co-owners. This is historical research, not a planned permission request. No contact has been made.",
+    "licenseDistributionConstraints": "CC BY-SA audio retains its downstream access, notices, ShareAlike conditions and prohibition on additional restrictions. These findings do not select the researched audio for app or prayer-pack inclusion."
+  },
+  "recordingCandidates": [
+    {
+      "id": "schola-gregoriana-ave-maria-2007",
+      "title": "Schola Gregoriana — Ave Maria",
+      "sourceURL": "https://commons.wikimedia.org/wiki/File:Schola_Gregoriana-Ave_Maria.ogg",
+      "supportingSourceURL": "https://www.cbcew.org.uk/podcast/hail-mary-latin-sung/",
+      "kind": "Individual sung prayer; not a complete Rosary",
+      "language": "la",
+      "languageEvidence": "The Catholic Bishops' Conference of England and Wales explicitly identifies its reuse as Latin sung Hail Mary. The Commons source describes Gregorian Vespers in honour of St Vincent Pallotti and links the corresponding chant score; this is not Schubert's song.",
+      "provenance": {
+        "performer": "Schola Gregoriana of the Pallottine Seminary in Ołtarzew, Poland",
+        "conductor": "Fr Dariusz Smolarek SAC",
+        "recordingDate": "2007-06-08",
+        "rightsPermissionSignatories": ["Dr Jacek Bąk, Fundacja Caecilianum", "Fr Dariusz Smolarek SAC"],
+        "rightsHolderPermissionEvidence": "The file description publishes a rights-holder email allowing the named Vespers recordings under free licenses; Wikimedia marks permission confirmed.",
+        "wikimediaVRTTicket": "2008031210015414"
+      },
+      "fileMetadata": {"containerCodec": "Ogg Vorbis", "reportedLengthSeconds": 71, "localAudioInspected": false},
+      "license": {"identifier": "CC-BY-SA-3.0", "URL": "https://creativecommons.org/licenses/by-sa/3.0/", "assetSpecificVerified": true},
+      "matchingScoreLead": "GregoBase 1860, Ave Maria (Salutatio Angelica), Liber Usualis 1961 p.1861 / Chants of the Church 1956 p.86; its browsed GABC contains the complete Latin prayer including the second petition and Amen. The Commons recording's linked score is a separate CC BY-SA 4.0 image asset, not covered by the recording's 3.0 notice.",
+      "decision": "Historical research only: reuse license has strong asset-specific provenance, while listening and exact prayer-text review remain unperformed. No recording is selected for inclusion, and the user excludes an actual musical Rosary."
+    },
+    {
+      "id": "schola-gregoriana-pater-noster-2007",
+      "title": "Schola Gregoriana — Pater Noster",
+      "sourceURL": "https://commons.wikimedia.org/wiki/File:Schola_Gregoriana-Pater_Noster.ogg",
+      "kind": "Individual sung prayer; not a complete Rosary",
+      "language": "la",
+      "languageEvidence": "Commons describes a Gregorian Pater Noster from the same Vespers cycle. Actual sung wording and any introductory liturgical formulas still need listening review.",
+      "provenance": {
+        "performer": "Schola Gregoriana of the Pallottine Seminary in Ołtarzew, Poland",
+        "conductor": "Fr Dariusz Smolarek SAC",
+        "recordingDate": "2007-06-08",
+        "rightsHolderPermissionEvidence": "The individual file carries the same named rights-holder email and confirmed Wikimedia permission, rather than relying on a general Commons footer.",
+        "wikimediaVRTTicket": "2008031210015414"
+      },
+      "fileMetadata": {"containerCodec": "Ogg Vorbis", "reportedLengthSeconds": 75.04, "localAudioInspected": false},
+      "license": {"identifier": "CC-BY-SA-3.0", "URL": "https://creativecommons.org/licenses/by-sa/3.0/", "assetSpecificVerified": true},
+      "decision": "Historical research only: asset-specific licensing is documented, but performance/textual review is unperformed. The surrounding liturgical setting does not establish a Rosary sequence; this recording is not selected for inclusion."
+    },
+    {
+      "id": "susan-bailey-sung-rosary",
+      "title": "Mary, Queen of Peace Meditation Guide & Sung Rosary",
+      "sourceURL": "https://beasone.org/books/susans-sung-rosary-book-cd/",
+      "supportingSourceURL": "https://www.soundclick.com/music/songInfo.cfm?songID=6823388",
+      "kind": "Complete sung Rosary, according to the composer",
+      "candidateLanguage": "en",
+      "actualAudioLanguageVerified": false,
+      "performerComposerLead": "Susan Bailey",
+      "catalogueFinding": "The author's page describes an approximately 50-minute fully sung generic Rosary whose five mysteries are numbered rather than named; one recording can accompany all four mystery sets. Its book includes scores and meditations. SoundClick's opening-prayer item identifies Susan Bailey as author and a 2008 rights notice.",
+      "licenseFinding": "Purchase and personal free-download/streaming links do not publish a redistribution license for embedding the master or arrangement in Prosary.",
+      "decision": "Historical research only: the described full sung recording is permission-dependent and was not listened to or cleared. No permission request, authoring or app inclusion is planned."
+    },
+    {
+      "id": "dana-fr-kevin-scallon-rosary",
+      "title": "The Rosary — DANA & Fr Kevin Scallon",
+      "sourceURL": "https://dsmusicstore.com/products/the-rosary-dana-fr-kevin-scallon",
+      "publisherURL": "https://dsmusicstore.com/",
+      "kind": "Spoken prayer with music; publisher describes four mystery sets on two CDs",
+      "candidateLanguage": "en",
+      "actualAudioLanguageVerified": false,
+      "performerPublisherLead": "DANA, Fr Kevin Scallon CM; DS Music Productions",
+      "catalogueFinding": "The official publisher offers CD and MP3 versions and states that all four mystery sets are present. Dana's official biography describes The Rosary as spoken word and music, so this is not evidence of a fully sung Rosary.",
+      "biographyURL": "https://danaofficial.com/pages/about",
+      "licenseFinding": "No public app redistribution grant was found on the official product page. Buying a CD/download is a listening purchase, not established master/composition clearance.",
+      "decision": "Historical research only: app redistribution is permission-dependent and the recording has mixed spoken/music content. No permission request or app inclusion is planned."
+    },
+    {
+      "id": "pfsgm-sr-letizia-rosario",
+      "title": "Il S. Rosario Cantato, attraverso i Misteri — Sr Letizia",
+      "sourceURL": "https://www.fratipoveri.net/HomeItaliano/CANTIPFSGMinaudio/tabid/181/Default.aspx",
+      "kind": "Publisher's Italian sung Rosary catalogue lead",
+      "candidateLanguage": "it",
+      "actualAudioLanguageVerified": false,
+      "publisherLead": "Piccoli Frati e Sorelle di Gesù e Maria",
+      "catalogueFinding": "The community's audio page lists Sr Letizia's sung Rosary with a complete arrangement and an explicit Creative Commons link.",
+      "license": {"identifier": "CC-BY-NC-ND-3.0", "URL": "https://creativecommons.org/licenses/by-nc-nd/3.0/", "scope": "Linked from the catalogue page; not separately confirmed on an individual master file"},
+      "decision": "Historical research only: the found noncommercial/no-derivatives notice and item-scope uncertainty do not establish a generally reusable app asset. No recording was inspected or selected for inclusion; do not relabel it as CC BY or public domain."
+    },
+    {
+      "id": "zhyve-tv-spivana-vervytsya-2025",
+      "title": "Вервиця єднає — sung Rosary at the Patriarchal Cathedral",
+      "sourceURL": "https://zhyve.tv/video/8299-vervytsya-ednae-molytva-na-vervytsi-u-pryamomu-efiri-z-patriarshogo-soboru/",
+      "kind": "Primary Ukrainian Catholic broadcaster's sung-Rosary event/video lead",
+      "publicationDate": "2025-11-02",
+      "candidateLanguage": "uk",
+      "actualAudioLanguageVerified": false,
+      "publisherLead": "Живе телебачення (Zhyve TV), UGCC Patriarchal Cathedral",
+      "catalogueFinding": "The broadcaster advertises a communal sung Rosary for the initiative's fifth anniversary, with Bishop Andriy Khimyak. The page's copyright footer reserves all rights.",
+      "decision": "Historical research only: a real Ukrainian Catholic performance is documented, but no openly licensed app master or exact sung-language/text review was established. No permission request or app inclusion is planned."
+    },
+    {
+      "id": "matthaeus-ruber-oratorio",
+      "title": "Sung Rosary / Rosario Cantato — Matthaeus Ruber",
+      "sourceURL": "https://www.matthaeusruber.com/ita/rosario-cantato",
+      "englishSourceURL": "https://www.matthaeusruber.com/eng/sung-rosary",
+      "arabicSourceURL": "https://www.matthaeusruber.com/ara/%D8%A7%D9%84%D9%88%D8%B1%D8%AF%D9%8A%D8%A9-%D8%A7%D9%84%D9%85%D8%B1%D8%AA%D9%84%D8%A9",
+      "kind": "Composer's complete sung-Rosary oratorio lead",
+      "actualAudioLanguageVerified": false,
+      "catalogueFinding": "The composer's indexed pages describe four mystery sets, 200 sung Hail Marys and 40 musical themes. They describe availability in 43 languages through subtitles/translations, which does not establish 43 sung audio editions.",
+      "accessFinding": "Official pages were available in search extracts; a later direct English page fetch returned a cache-miss error. No recording or downloadable master was inspected.",
+      "licenseFinding": "No explicit app/master redistribution license established by the inspected pages. A mission to offer performances or make prayer freely accessible is not itself a recording license.",
+      "decision": "Historical research only: no redistribution license or multilingual sung-audio coverage was established. No permission request or app inclusion is planned; translated site pages and subtitles do not establish audio-language editions."
+    }
+  ],
+  "scoreCandidates": [
+    {
+      "id": "gregobase-ave-maria-1860",
+      "title": "Ave Maria (Salutatio Angelica)",
+      "sourceURL": "https://gregobase.selapa.net/chant.php?id=1860",
+      "textualScoreURL": "https://gregobase.selapa.net/download.php?elem=1&format=gabc&id=1860",
+      "licenseSourceURL": "https://gregobase.selapa.net/?page_id=2",
+      "license": "CC0-1.0 for the chant transcription",
+      "transcriber": "Andrew Hinkley, with later corrections recorded by GregoBase",
+      "editionSources": ["Liber Usualis, Solesmes 1961, p.1861", "Chants of the Church, Solesmes 1956, p.86"],
+      "language": "la",
+      "textFinding": "The actual GABC was read. It sets the complete standard Latin Hail Mary, through the second petition and Amen, rather than the shorter offertory text or Schubert's original German poem.",
+      "decision": "Historical research only: the transcription has an explicit CC0 dedication and contains the complete prayer. Its status does not license third-party recordings. No score or new musical Rosary recording is selected for inclusion."
+    },
+    {
+      "id": "gregobase-pater-noster-3326",
+      "title": "Pater noster (A)",
+      "sourceURL": "https://gregobase.selapa.net/chant.php?id=3326",
+      "licenseSourceURL": "https://gregobase.selapa.net/?page_id=2",
+      "license": "CC0-1.0 for the chant transcription",
+      "transcriber": "Richard Chonak; proofreading/corrections recorded by GregoBase",
+      "editionSources": ["Graduale Romanum, Solesmes 1974, p.812", "Liber cantualis, Solesmes 1983, p.27", "Gregorian Missal, Solesmes 1990, p.41"],
+      "language": "la",
+      "decision": "Historical research only: a documented CC0 chant-transcription lead whose full music/text review was not completed. No self-recording or musical Rosary content is planned."
+    },
+    {
+      "id": "cmaa-parish-book-of-chant",
+      "title": "Parish Book of Chant",
+      "sourceURL": "https://churchmusicassociation.org/pbc0/",
+      "recordingsAndScoresURL": "https://churchmusicassociation.org/pbc1/",
+      "publisherPermissionExplanationURL": "https://forum.musicasacra.com/forum/discussion/23495/relevant-gregorian-chant-titlesbookssupplements-that-are-public-domain-and-safe-to-reproduce/p1",
+      "finding": "The publisher provides scores and freely downloadable practice recordings. Its webmaster explains the book's CC BY 3.0 reprint license with Richard Rice/CMAA credit. The practice-recording page identifies a men’s schola under Nicholas Lemme.",
+      "decision": "Historical research only: the book's reproduction license is not assumed to cover separately produced practice masters, and individual recording permission scope was not established. No score or recording is selected for inclusion."
+    }
+  ],
+  "languageCoverage": {
+    "la": "Two individual licensed chant recordings and concrete CC0 transcriptions; no complete freely licensed musical Rosary verified.",
+    "en": "Complete sung Susan Bailey lead and mixed spoken/music DANA lead, both permission-dependent and pending exact audio review.",
+    "it": "Sr Letizia NC/ND catalogue and Matthaeus Ruber composer leads; neither establishes an unrestricted app master.",
+    "uk": "Zhyve TV primary Catholic sung event; all-rights-reserved broadcaster page, not cleared for embedding.",
+    "fr": "Translated oratorio site pages and search leads do not establish a French-sung recording. No primary asset-level reusable full recording verified in this search.",
+    "he": "No primary asset-level reusable sung Rosary recording verified in the bounded Hebrew/Vicariate search. The user excludes an actual musical Rosary. Existing sourced Hebrew prayer wording remains unchanged; do not machine-translate liturgical Hebrew.",
+    "ar": "The oratorio's Arabic page describes translated/subtitled availability, not Arabic-sung masters. No primary asset-level reusable full recording verified.",
+    "tl": "No primary asset-level reusable full recording verified. General Filipino music/history and sung-Rosary traditions are not master-recording clearance.",
+    "ru": "No primary asset-level reusable full recording verified in the bounded search.",
+    "arc": "Not substantially researched; do not claim audio coverage."
+  },
+  "excludedTitleMatches": [
+    {
+      "sourceURL": "https://www.loc.gov/item/jukebox-296819/",
+      "title": "The rosary — Nevin/Venetian Trio, 1915",
+      "reason": "The archive describes an instrumental popular-music trio with bells, not the Catholic Rosary prayer. An old recording's title and U.S. public-domain date do not make it a language-matched devotional session or establish worldwide recording rights."
+    },
+    {
+      "sourceURL": "https://librivox.org/the-rosary-by-florence-louisa-barclay/",
+      "title": "The Rosary — Florence Louisa Barclay",
+      "reason": "A romance audiobook, not a sung or prayed Rosary."
+    },
+    {
+      "sourceURL": "https://commons.wikimedia.org/wiki/File:Rosary_Spoken_Version.ogg",
+      "title": "Rosary Spoken Version",
+      "reason": "A spoken Wikipedia article about the Rosary, not its prayer sequence; its CC BY-SA notice does not solve the musical-Rosary request."
+    }
+  ],
+  "currentScope": [
+    "Retain generic music-role pack and playback groundwork.",
+    "Exclude creating, commissioning, bundling or importing an actual musical Rosary, including built-in Rosary recording integration.",
+    "Keep these source/license findings as historical research only. No researched recording or score is selected for app inclusion.",
+    "Fr Piotr's approval remains the user's stated 1.0 App Store release gate. No release or contact is implied by this research."
+  ]
+}

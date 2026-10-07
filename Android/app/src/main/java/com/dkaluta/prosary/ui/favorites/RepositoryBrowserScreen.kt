@@ -123,7 +123,7 @@ fun RepositoryBrowserScreen(onBack: () -> Unit, showsBackButton: Boolean = true)
         topBar = {
             TopAppBar(
                 scrollBehavior = topBarScroll,
-                title = { Text(stringResource(R.string.browse_title)) },
+                title = { Text(stringResource(R.string.home_widgets_community)) },
                 navigationIcon = {
                     if (showsBackButton) {
                         IconButton(onClick = onBack) {

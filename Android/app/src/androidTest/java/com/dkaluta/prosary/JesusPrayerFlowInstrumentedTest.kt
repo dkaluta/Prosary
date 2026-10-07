@@ -21,6 +21,7 @@ class JesusPrayerFlowInstrumentedTest {
 
     @Test
     fun boundedTargetDefaultsTo33AndTracksCount() {
+        composeTestRule.onNodeWithTag("tab.pray").performClick()
         composeTestRule.onNodeWithTag("jesusPrayerCard").performClick()
         composeTestRule.onNodeWithText("33").assertIsSelected()
 
@@ -37,6 +38,7 @@ class JesusPrayerFlowInstrumentedTest {
 
     @Test
     fun unboundedTargetHasNoFixedTotalAndAlwaysOffersFinish() {
+        composeTestRule.onNodeWithTag("tab.pray").performClick()
         composeTestRule.onNodeWithTag("jesusPrayerCard").performClick()
         composeTestRule.onNodeWithText("Unbounded").performClick()
         composeTestRule.onNodeWithText("Begin").performClick()
@@ -57,6 +59,7 @@ class JesusPrayerFlowInstrumentedTest {
 
     @Test
     fun customTargetRequiresAValidNumberBeforeBeginIsEnabled() {
+        composeTestRule.onNodeWithTag("tab.pray").performClick()
         composeTestRule.onNodeWithTag("jesusPrayerCard").performClick()
         composeTestRule.onNodeWithText("Custom").performClick()
 

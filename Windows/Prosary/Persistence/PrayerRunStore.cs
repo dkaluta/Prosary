@@ -11,7 +11,9 @@ public sealed record PrayerRunState(
     string ConfigurationSignature,
     int Position,
     string LanguageCode,
-    string SavedLocalDate)
+    string SavedLocalDate,
+    string? RosaryNavigationGroup = null,
+    int? RosaryNavigationOrder = null)
 {
     public bool CanResume(
         string expectedSignature,
@@ -161,11 +163,15 @@ public static class PrayerRunSignatures
         var signature = options.EffectiveClosingIntentions
             ? original + "|closing-v2:1,1,1"
             : original;
-        if (options.SkipFifthDecade && options.MysterySelectionMode != Models.MysterySelectionMode.SingleMystery)
-            signature += "|skip-fifth";
         // The collect is now its own step even with default options; old numeric bookmarks
         // must not resume at a different prayer in this new ending sequence.
         signature += $"|rosary-ending-v3:{Flag(options.IncludeLitanyOfLoreto)},{Flag(options.EffectiveRosaryCollect)}";
+        if (options.MysterySelectionMode == MysterySelectionMode.SingleMystery && options.SelectedMysteryCount > 1)
+            signature += $"|mystery-count:{options.SelectedMysteryCount}";
+        if (options.MysterySelectionMode == MysterySelectionMode.ChooseOnLaunch)
+            signature += $"|launch-count:{Math.Clamp(options.SpecificMysteryCount, 1, 5)}";
+        if (options.MysterySelectionMode == MysterySelectionMode.TodaysMysteries && options.UseTraditionalMysteries)
+            signature += "|traditional-mysteries";
         return options.IncludeOpeningPrayers && options.IncludeOpeningFatimaPrayer
             ? signature + "|opening-fatima-v2"
             : signature;

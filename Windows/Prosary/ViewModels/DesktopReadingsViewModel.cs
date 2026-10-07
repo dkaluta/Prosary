@@ -17,6 +17,7 @@ public partial class ReadingPassageViewModel : ObservableObject
     private readonly ScriptureEdition? _edition;
     private readonly string _scope;
     private readonly string _rawCitation;
+    private readonly string? _readingDatasetId;
     private bool _didLoad;
     private IReadOnlyList<ScriptureVerse> _verses = [];
     private ScripturePassage? _passage;
@@ -94,6 +95,7 @@ public partial class ReadingPassageViewModel : ObservableObject
         _edition = edition;
         _scope = scope;
         _rawCitation = citation.Full;
+        _readingDatasetId = citation.ReadingDatasetId;
         Citation = citation.LocalizedFull(interfaceLanguage);
         SourceGroup = showsSourceGroup ? citation.SourceGroup : null;
         ContextKey = contextKey;
@@ -104,11 +106,11 @@ public partial class ReadingPassageViewModel : ObservableObject
     {
         if (!value || _didLoad) return;
         _didLoad = true;
-        var passage = _edition is null ? null : await _store.LoadPassageAsync(_scope, _rawCitation, _edition.Id);
+        var passage = _edition is null ? null : await _store.LoadPassageAsync(_scope, _rawCitation, _edition.Id, _readingDatasetId);
         _passage = passage;
         _verses = passage?.Verses ?? [];
         HasPassage = _verses.Count > 0;
-        AvailableEditions = HasPassage ? [] : _store.AvailableEditions(_scope, _rawCitation)
+        AvailableEditions = HasPassage ? [] : _store.AvailableEditions(_scope, _rawCitation, _readingDatasetId)
             .Select(edition => new ReadingEditionChoice(edition.Id, edition.Name)).ToList();
         HasScriptToggle = HasPassage && _edition?.HasAramaicScripts == true;
         IncludesWholeVerses = passage?.IncludesWholeVerses ?? false;
@@ -183,6 +185,7 @@ public partial class DesktopReadingsViewModel : ObservableObject
     private readonly ReadingsTextStore _store;
     private HomeViewModel? _today;
     private bool _synchronizing;
+    private bool _showsAllDailyReadings;
     public string EditionLabel => Loc.Tr("readings_edition", "Bible Edition");
     public ObservableCollection<ReadingEditionChoice> Editions { get; }
 
@@ -233,12 +236,15 @@ public partial class DesktopReadingsViewModel : ObservableObject
         _today = today;
         SynchronizeEdition();
         var edition = _store.ResolveEdition(AppSettings.ReadingsEditionId, today.TodayLanguage);
-        Daily = Rows(Daily, today.TodayReadings, "daily", today, edition);
+        // The dedicated reader remains available when the optional Today card is hidden.
+        var daily = _showsAllDailyReadings ? TodayInfoStore.Readings(today.SelectedDate) : today.TodayReadings;
+        Daily = Rows(Daily, daily, "daily", today, edition);
         Torah = Rows(Torah, today.TodayTorahPortion?.Readings ?? [], "torah", today, edition);
     }
 
-    public void Open(HomeViewModel today)
+    public void Open(HomeViewModel today, bool showsAllDailyReadings = false)
     {
+        _showsAllDailyReadings = showsAllDailyReadings;
         Refresh(today);
         foreach (var row in Daily.Concat(Torah)) row.IsExpanded = AppSettings.ExpandReadingsByDefault;
     }
@@ -248,7 +254,7 @@ public partial class DesktopReadingsViewModel : ObservableObject
     {
         var rows = citations.Select((citation, index) =>
         {
-            var contextKey = $"{today.SelectedDate:yyyy-MM-dd}|{TodayInfoStore.ResolvedCalendarId}|{AppSettings.EasternPaschaStyle}|{scope}|{index}|{citation.Full}|{today.TodayLanguage}";
+            var contextKey = $"{today.SelectedDate:yyyy-MM-dd}|{TodayInfoStore.ResolvedCalendarId}|{AppSettings.EasternPaschaStyle}|{scope}|{citation.ReadingDatasetId}|{index}|{citation.Full}|{today.TodayLanguage}";
             var configurationKey = $"{contextKey}|{AppSettings.ReadingsEditionId}|{edition?.Id}";
             var old = previous.FirstOrDefault(row => row.ContextKey == contextKey);
             if (old?.ConfigurationKey == configurationKey) return old;

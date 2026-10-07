@@ -184,6 +184,7 @@ struct CustomDevotionOption: Decodable {
   /// Normalize the editor rows without rewriting their authored options or other packs.
   static func normalizedForEditing(_ options: [Self], bundleId: String) -> [Self] {
     guard bundleId == "rosary" else { return options }
+    let options = options.filter { $0.key != "skipFifthDecade" }
     let legacyKeys = Set(RosaryOptions.legacyClosingOptionKeys)
     let legacy = options.filter { legacyKeys.contains($0.key) }
     guard !legacy.isEmpty else { return options }

@@ -1,7 +1,8 @@
 namespace Prosary.Models;
 
 /// <summary>Finds the first step of the preceding/following Rosary mystery without disturbing
-/// the ordinary bead-by-bead Back/Next controls.</summary>
+/// the ordinary bead-by-bead Back/Next controls. A Next target equal to steps.Count finishes
+/// the session when the final mystery has no closing prayers.</summary>
 public static class MysteryStepNavigation
 {
     public static int? Previous(IReadOnlyList<RosaryStep> steps, int currentIndex)
@@ -52,8 +53,8 @@ public static class MysteryStepNavigation
         var currentDecade = steps[currentIndex].DecadeIndex;
         if (currentDecade is null)
         {
-            // Opening material advances to the first mystery. Once every mystery is behind us,
-            // there is no next mystery even though closing prayers remain.
+            // Opening material advances to the first mystery. Closing material has no next
+            // mystery; the ordinary Next button still advances its individual prayers.
             return steps.Skip(currentIndex + 1)
                 .Select((step, offset) => (step, index: currentIndex + 1 + offset))
                 .Where(pair => pair.step.DecadeIndex.HasValue)
@@ -63,9 +64,9 @@ public static class MysteryStepNavigation
 
         return steps.Skip(currentIndex + 1)
             .Select((step, offset) => (step, index: currentIndex + 1 + offset))
-            .Where(pair => pair.step.DecadeIndex is { } decade && decade > currentDecade.Value)
+            .Where(pair => pair.step.DecadeIndex is null || pair.step.DecadeIndex > currentDecade.Value)
             .Select(pair => (int?)pair.index)
-            .FirstOrDefault();
+            .FirstOrDefault() ?? steps.Count;
     }
 
     private static int? FirstIndex(IReadOnlyList<RosaryStep> steps, int decade)

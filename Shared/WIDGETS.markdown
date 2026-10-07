@@ -219,3 +219,13 @@ Keep automated coverage focused on meaningful boundaries: strict widget URL pars
 UUID routing, checkpoint signature/bounds/day validation, missing calendar data, locale
 aliases, and midnight calculation. Package/build checks do not establish launcher, device,
 or signed App Group behavior.
+
+The [3 October follow-up research](tools/sources/expo-widget-followup-research.json) records
+the local test destinations and the documented paths for widget-extension debugging,
+signed App Group verification and launcher/accessibility checks. Apple simulators are
+available; no physical iPhone is currently reachable, no Android device is attached and
+no Windows runtime is available here. This inventory adds no installed-widget verification.
+The same evidence file records the separate Expo handoff refresh: four missing calendars,
+eight missing generated dataset files, sixteen stale copied files after the Hebrew Palm
+Sunday title correction, and generated metadata
+needing synchronization with canonical Shared data.

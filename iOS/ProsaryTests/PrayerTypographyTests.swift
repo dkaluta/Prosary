@@ -1,10 +1,28 @@
 import SwiftUI
 import Combine
 import XCTest
+#if canImport(UIKit)
+import UIKit
+#endif
 @testable import Prosary
 
 @MainActor
 final class PrayerTypographyTests: XCTestCase {
+  #if canImport(UIKit)
+  func testHebrewSystemSansRetainsDynamicTypeAtAccessibilitySizes() {
+    var fonts = PrayerTypography.Typefaces()
+    fonts.hebrewPrayer = PrayerTypography.TypefaceValue.sansSerif
+    let body = "שלום לך מרים מלאת חסד האדון עמך ברוכה את בנשים וברוך פרי בטנך ישוע"
+    func measuredHeight(_ size: DynamicTypeSize) -> CGFloat {
+      let host = UIHostingController(rootView: Text(body)
+        .prayerFont(languageCode: "he", isScripture: false, text: body, typefaces: fonts)
+        .dynamicTypeSize(size))
+      return host.sizeThatFits(in: CGSize(width: 280, height: 10_000)).height
+    }
+    XCTAssertGreaterThan(measuredHeight(.accessibility3), measuredHeight(.large) * 1.5)
+  }
+  #endif
+
   func testOpenPrayerReceivesTypefaceChangesAfterSettingsUpdate() async {
     let defaults = UserDefaults.standard
     let key = PrayerTypography.syriacTypefaceKey

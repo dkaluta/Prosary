@@ -16,6 +16,11 @@ import com.dkaluta.prosary.models.RosaryStep
 /** These models belong to a navigation entry, not its current Activity or measured layout.
  * A recreated screen keeps its live run; only a newly opened entry consults the bookmark. */
 internal class RosaryPrayerSession(prayer: Prayer) : ViewModel() {
+    val rosaryOptions = mutableStateOf(prayer.rosary.copy())
+    val navigationGroup = mutableStateOf<String?>(null)
+    val navigationOrder = mutableStateOf<Int?>(null)
+    val showsMysteryPicker = mutableStateOf(false)
+    val pickerGroup = mutableStateOf<com.dkaluta.prosary.models.MysteryGroup?>(null)
     val steps = mutableStateOf<List<RosaryStep>>(emptyList())
     val currentIndex = mutableIntStateOf(0)
     val seasonColor = mutableStateOf(Color.Transparent)

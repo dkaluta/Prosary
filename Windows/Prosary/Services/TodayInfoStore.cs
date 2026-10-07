@@ -1,4 +1,5 @@
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using Prosary.Localization;
 using Prosary.Models;
 
@@ -14,6 +15,10 @@ public sealed record FeastDay(
 {
     public IReadOnlyList<SaintDescription> LocalizedDescriptions(string language) =>
         (Observances ?? []).Select(observance => observance.LocalizedDescription(language))
+            .OfType<SaintDescription>().ToList();
+
+    public IReadOnlyList<SaintDescription> Reflections(string language) =>
+        (Observances ?? []).Select(observance => observance.Reflection(language))
             .OfType<SaintDescription>().ToList();
 
     public string LocalizedTitle(string language) => HebrewDisplayText.WithoutMarks(
@@ -56,11 +61,23 @@ public sealed record FeastObservance(
     Dictionary<string, string>? TitleByLanguage = null,
     Dictionary<string, string>? DescriptionByLanguage = null,
     Dictionary<string, string>? DescriptionSourceByLanguage = null,
-    Dictionary<string, string>? DescriptionCreditByLanguage = null)
+    Dictionary<string, string>? DescriptionCreditByLanguage = null,
+    string? SourceUID = null,
+    Dictionary<string, string>? SourceTitleByLanguage = null,
+    Dictionary<string, string>? SourceDescriptionByLanguage = null,
+    string? SourceRecurrence = null,
+    IReadOnlyList<string>? Categories = null,
+    IReadOnlyList<CalendarTextSection>? Sections = null,
+    Dictionary<string, string>? ReflectionByLanguage = null)
 {
     public SaintDescription? LocalizedDescription(string language)
+        => TextItem(DescriptionByLanguage, language);
+    public SaintDescription? Reflection(string language)
+        => TextItem(ReflectionByLanguage, language);
+
+    private SaintDescription? TextItem(Dictionary<string, string>? texts, string language)
     {
-        var text = UiLanguageCatalog.Localized(DescriptionByLanguage, language);
+        var text = UiLanguageCatalog.Localized(texts, language);
         if (string.IsNullOrWhiteSpace(text)) return null;
         var source = UiLanguageCatalog.Localized(DescriptionSourceByLanguage, language);
         var sourceUri = Uri.TryCreate(source, UriKind.Absolute, out var uri)
@@ -71,6 +88,10 @@ public sealed record FeastObservance(
             sourceUri, Loc.Tr("home_today_saint_source", "Text source", language));
     }
 }
+
+/// <summary>Exact source sections reusable by calendar/reflection widgets.</summary>
+public sealed record CalendarTextSection(string Id, Dictionary<string, string> TitleByLanguage,
+    Dictionary<string, string> TextByLanguage);
 
 public sealed record SaintDescription(string Identity, string Title, string Text, string Credit, Uri? SourceUri,
     string SourceLabel)
@@ -83,7 +104,9 @@ public sealed record PopeIntention(
     string Title,
     string Text,
     Dictionary<string, string>? TitleByLanguage,
-    Dictionary<string, string>? TextByLanguage)
+    Dictionary<string, string>? TextByLanguage,
+    Dictionary<string, string>? SourceByLanguage = null,
+    Dictionary<string, string>? TranslationCreditByLanguage = null)
 {
     public string LocalizedTitle(string language) => HebrewDisplayText.WithoutMarks(
         UiLanguageCatalog.Localized(TitleByLanguage, language)
@@ -101,6 +124,11 @@ public sealed record ReadingCitation(
     string? SourceText = null,
     string? SourceGroup = null)
 {
+    /// <summary>Freeze the actual selected reading table for later passage expansion; the
+    /// calendar may change in another window before this citation is opened.</summary>
+    [JsonIgnore]
+    public string? ReadingDatasetId { get; init; }
+
     public string LocalizedShort(string language) =>
         Localized(ShortByLanguage, language) ?? (IsHebrew(language) ? Hebrew : null) ?? Short;
 
@@ -408,6 +436,12 @@ public static class TodayInfoStore
         _readingsByDay = string.IsNullOrWhiteSpace(file)
             ? new Dictionary<string, ReadingDay>()
             : LoadFile<ReadingsFile>(file)?.Days ?? new Dictionary<string, ReadingDay>();
+        var datasetId = file?.StartsWith("readings-", StringComparison.Ordinal) == true ? file["readings-".Length..] : file;
+        _readingsByDay = _readingsByDay.ToDictionary(entry => entry.Key,
+            entry => entry.Value with
+            {
+                Readings = entry.Value.Readings?.Select(citation => citation with { ReadingDatasetId = datasetId }).ToList(),
+            });
     }
 
     private static string CalendarDataKey => ResolvedCalendarId == "ugcc"

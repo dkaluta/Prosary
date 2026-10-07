@@ -136,7 +136,12 @@ public partial class BasicPrayerViewModel : ObservableObject, IPrayerStepFlowVie
     private bool _hasTransliteration;
 
     [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(TransliterationActionLabel))]
     private bool _showsTransliteration;
+
+    public string TransliterationActionLabel => ShowsTransliteration
+        ? Loc.Tr("flow_show_original_text", "Show Original Text")
+        : Loc.Tr("flow_show_transliteration", "Show Transliteration");
 
     public string CurrentLanguageRaw => AppSettings.BasicPrayersLanguageCode;
 

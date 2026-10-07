@@ -21,6 +21,7 @@ struct MacPrayerPresenterView: View {
   var primaryActionLabel: String? = nil
   var contentBundleID: String = "rosary"
   var titleIsPrayerHeading = false
+  var flowActions: AnyView? = nil
 
   @Environment(\.layoutDirection) private var interfaceDirection
   @AppStorage(PrayerKeyboardNavigation.arrowsKey) private var keyboardArrowsEnabled = true
@@ -189,6 +190,7 @@ struct MacPrayerPresenterView: View {
         }
         prayerText(step.body, isScripture: step.isScripture)
           .accessibilityIdentifier("presenterPrayerBodyText")
+        PopeIntentionPrayerView(step: step, languageCode: languageCode)
       }
     } else {
       ProgressView()
@@ -229,6 +231,11 @@ struct MacPrayerPresenterView: View {
   }
 
   private var presenterFooter: some View {
+    VStack(spacing: 12) {
+      if let flowActions {
+        HStack(spacing: 12) { flowActions }
+          .disabled(hasAttachedSheet)
+      }
     HStack(spacing: 16) {
       Button { perform(onBack) } label: {
         Label(String(localized: "prayerFlow.back", defaultValue: "Back", bundle: UILanguage.bundle, locale: UILanguage.locale), systemImage: "chevron.backward")
@@ -266,6 +273,7 @@ struct MacPrayerPresenterView: View {
           ? String(localized: "presenter.nextHelpRTL", defaultValue: "Next Step (Left Arrow or Return)", bundle: UILanguage.bundle, locale: UILanguage.locale)
           : String(localized: "presenter.nextHelp", defaultValue: "Next Step (Right Arrow or Return)", bundle: UILanguage.bundle, locale: UILanguage.locale))
       .accessibilityIdentifier("presenterNextButton")
+    }
     }
     .controlSize(.large)
     .padding(.horizontal, 24)

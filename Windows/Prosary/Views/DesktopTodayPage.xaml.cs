@@ -28,8 +28,8 @@ public sealed partial class DesktopTodayPage : Page
     public bool ShowsReadingOptions => !_readingsOnly;
     public bool ShowsDailySection => _readingsOnly || ViewModel.ShowsTodayDay
         || ShowsDailyReadings || ViewModel.ShowsTodayTorahPortion;
-    public bool ShowsDailyReadings => _readingsOnly ? ViewModel.TodayReadings.Count > 0 : ViewModel.ShowsTodayReadings;
-    public bool ShowsNoReadings => _readingsOnly && ViewModel.TodayReadings.Count == 0;
+    public bool ShowsDailyReadings => _readingsOnly ? TodayInfoStore.Readings(ViewModel.SelectedDate).Count > 0 : ViewModel.ShowsTodayReadings;
+    public bool ShowsNoReadings => _readingsOnly && TodayInfoStore.Readings(ViewModel.SelectedDate).Count == 0;
     public string NoReadingsText => Loc.Tr("bible_no_daily_readings", "No daily readings are available for this date.");
     public string OptionsLabel => Loc.Tr("SetTitle/Text", "Settings");
     public Brush TodayCardBackground
@@ -76,7 +76,7 @@ public sealed partial class DesktopTodayPage : Page
         AppSettings.TodayCardColorChanged += OnTodayCardColorChanged;
         SynchronizeOptions();
         RefreshForClock();
-        Readings.Open(ViewModel);
+        Readings.Open(ViewModel, showsAllDailyReadings: _readingsOnly);
         _dateTimer.Start();
     }
 
@@ -114,7 +114,8 @@ public sealed partial class DesktopTodayPage : Page
 
     private void OnTodayChanged(object? sender, PropertyChangedEventArgs args)
     {
-        if (args.PropertyName is nameof(HomeViewModel.TodayReadings) or nameof(HomeViewModel.TodayTorahPortion))
+        if (args.PropertyName is nameof(HomeViewModel.TodayReadings) or nameof(HomeViewModel.TodayTorahPortion)
+            or nameof(HomeViewModel.SelectedTodayDate))
             Readings.Refresh(ViewModel);
         Bindings.Update();
     }
@@ -144,6 +145,8 @@ public sealed partial class DesktopTodayPage : Page
             or nameof(SettingsViewModel.SelectedEasternPascha))
         {
             ViewModel.RefreshToday();
+            Readings.Refresh(ViewModel);
+            Bindings.Update();
         }
     }
 

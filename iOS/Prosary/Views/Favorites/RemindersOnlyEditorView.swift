@@ -14,6 +14,7 @@ struct RemindersOnlyEditorView: View {
   @State var prayer: Prayer
   @State private var isSaving = false
   @State private var saveError: String?
+  @State private var deletingPrayer: Prayer?
 
   @Environment(\.appServices) private var services
   @Environment(\.dismiss) private var dismiss
@@ -38,6 +39,7 @@ struct RemindersOnlyEditorView: View {
 
   var body: some View {
     editorLayout
+      .disabled(isSaving)
     #if os(macOS)
     .navigationTitle(String(localized: "macLibrary.settingsTitle", defaultValue: "Prayer Settings", bundle: UILanguage.bundle, locale: UILanguage.locale))
     #else
@@ -50,13 +52,16 @@ struct RemindersOnlyEditorView: View {
     .toolbar {
       ToolbarItem(placement: .cancellationAction) {
         Button("favoriteEditor.cancel") { dismiss() }
+          .disabled(isSaving)
       }
       ToolbarItem(placement: .confirmationAction) {
         Button("favoriteEditor.save") { save() }
+          .disabled(isSaving)
       }
     }
     #endif
     .interactiveDismissDisabled(isSaving)
+    .modifier(PrayerRemovalDialogs(prayer: $deletingPrayer, onDeleted: { dismiss() }))
     .alert(
       String(localized: "favoriteEditor.saveFailed", defaultValue: "Could Not Save Favorite", bundle: UILanguage.bundle, locale: UILanguage.locale),
       isPresented: .init(get: { saveError != nil }, set: { if !$0 { saveError = nil } })
@@ -88,6 +93,11 @@ struct RemindersOnlyEditorView: View {
   }
 
   @ViewBuilder private var editorSections: some View {
+    Section {
+      Button(role: .destructive) { deletingPrayer = prayer } label: {
+        Label(String(localized: "removal.deleteAction", defaultValue: "Delete Saved Prayer…", bundle: UILanguage.bundle, locale: UILanguage.locale), systemImage: "trash")
+      }
+    }
     #if os(macOS)
     Section {
       TextField("favoriteEditor.name", text: $prayer.name)

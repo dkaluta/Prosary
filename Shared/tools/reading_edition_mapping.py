@@ -37,6 +37,17 @@ REVIEW_FILES = (
     "peshitta_ot_semantic_review.py", "peshitta-supplied-ot-semantic-review.json",
     "peshitta_eu_source.py", "peshitta-eu-2020-review.json",
     "reading_edition_reviews_greek.py", "brenton_reading_source.py",
+    "greek_daily_psalms.py", "greek-daily-psalm-reviews.json",
+    "brenton-psalm-boundaries.json",
+    "martini_daily_psalms.py", "martini-daily-psalm-reviews.json",
+    "martini_psalm_mapping.py",
+    "peshitta_psalm_review.py", "peshitta-eu-2020-psalm-review.json",
+    "peshitta_daily_psalms.py", "peshitta-daily-psalm-reviews.json",
+    "douay_rheims_source_corrections.py", "douay-rheims-source-corrections.json",
+    "douay-rheims-psalm-boundaries.json", "reading_appointment_keys.py",
+    "reading_calendar_numbering.py", "reading-calendar-numbering-reviews.json",
+    "arabic_daily_psalms.py", "arabic-daily-psalm-reviews.json",
+    "../content/arabic-jesuit-1897-psalm-readings-2026.json",
     "import-scripture.py", "aramaic_script_converter.py",
     "reading_step_mapping.py", "reading_psalm_mapping.py", "reading_boundary_groups.py",
     "reading_versification.py", "delitzsch_numbering.py", "versification/sources.json",
@@ -129,7 +140,20 @@ def load_inventory() -> dict:
         raise ValueError("Edition reference inventory checksum changed")
     for name, expected in provenance["reviewFiles"].items():
         path = TOOLS / name
-        if not path.resolve().is_relative_to(TOOLS) or hashlib.sha256(path.read_bytes()).hexdigest() != expected:
+        resolved = path.resolve()
+        if resolved.is_relative_to(TOOLS.parent / "content"):
+            # Standalone numeric converters never open Bible wording. Its
+            # actual bytes are checked by the source builder/audit; here the
+            # hash is anchored to the separately fingerprinted source review.
+            source_review = json.loads((TOOLS / "arabic-daily-psalm-reviews.json").read_text())
+            credited_path = resolved.relative_to(TOOLS.parents[1]).as_posix()
+            actual = next((source["sha256"] for source in source_review["sources"]
+                           if source["path"] == credited_path), None)
+        elif resolved.is_relative_to(TOOLS):
+            actual = hashlib.sha256(path.read_bytes()).hexdigest()
+        else:
+            actual = None
+        if actual != expected:
             raise ValueError("Edition review changed; regenerate its numeric inventory")
     data = json.loads(raw)
     if (not isinstance(data, dict) or set(data) != {"schemaVersion", "standard", "method", "editions"}
