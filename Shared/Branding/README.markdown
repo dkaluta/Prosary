@@ -18,9 +18,19 @@ node Shared/tools/sync-web-branding.mjs
 
 Use `node Shared/tools/build-app-icons.mjs --check` to verify deterministic output.
 The generator writes seven native Apple Icon Composer packages, flattened previews for Mac
-Dock/settings, Android launcher resources, Windows `.ico` and package logos, and the default
-blue marketing icon. Android adaptive-icon XML and native settings/code are maintained by
+Dock/settings, the default blue visionOS icon stack, Android launcher resources, Windows `.ico`
+and package logos, and the default blue marketing icon. Android adaptive-icon XML and native settings/code are maintained by
 their respective ports. All palette ids are persisted as `appColor`.
+
+`iOS/Prosary/Assets.xcassets/ProsaryVision.solidimagestack` is the visionOS primary icon.
+The generator writes its five catalog JSON files and two 1024 × 1024 PNG layers: an opaque
+RGB `Back.solidimagestacklayer/Content.imageset/background.png` and a transparent
+`Front.solidimagestacklayer/Content.imageset/cross.png`. Both image sets use `idiom: vision`
+and `scale: 2x`; Front appears above Back. The cross keeps the canonical silhouette,
+default palette color and centered 550-pixel height. Generation verifies that the combined
+pixels equal the default marketing icon. The target selects `ProsaryVision` with its
+`[sdk=xr*]` primary-icon setting and clears alternate icons for visionOS device and simulator.
+visionOS keeps this blue installed icon while the chosen app color changes its accent.
 
 Apple's large Appearance previews and custom Mac Dock icons use actual Icon Composer
 Default exports. `apple-icon-previews/` holds these rendered inputs with a manifest of
