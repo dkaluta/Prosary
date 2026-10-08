@@ -25,6 +25,10 @@ class CalendarCoverageTests(unittest.TestCase):
     def test_registry_and_pascha_variants_include_every_published_table(self):
         files = registry_datasets()
         self.assertEqual(files["roman"]["calendarIds"], {"lpj", "roman"})
+        self.assertEqual(files["syriac"]["calendarIds"], {"syriac", "mission-provisional"})
+        coverage = json.loads((TOOLS.parent / "reports/readings-text-coverage.json").read_text())["readingDatasets"]
+        for identifier, registered in files.items():
+            self.assertEqual(coverage[identifier]["calendarIds"], sorted(registered["calendarIds"]), identifier)
         for dataset in ("stjames", "franciscan-conventual-italy", "augustinian-discalced",
                         "ugcc", "ugcc-gregorian", "ugcc-julian"):
             self.assertIn(dataset, files)

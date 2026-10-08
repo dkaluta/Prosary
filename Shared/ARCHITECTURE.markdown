@@ -2081,8 +2081,11 @@ translated headings and bodies never decide eligibility.
 use native date controls and source observances for the selected date. The separate
 `mission-provisional` calendar imports 475 explicitly dated events across 2026's
 365 dates from the supplied Urtotho ICS, credited © Evangelizo. It is provisional
-and specific to the Mission of St. Gamaliel. No 2027 dates or readings were supplied;
-yearly recurrence rules are retained as provenance without expanding movable
+and specific to the Mission of St. Gamaliel. Its registry explicitly selects
+Evangelizo's Syriac Catholic SYE readings through `readings-syriac`; reading coverage
+is independent of the supplied feast dates, and missing dates remain unavailable.
+The supplied ICS has no 2027 dates or reading appointments. Yearly recurrence rules
+are retained as provenance without expanding movable
 feasts. `import-mission-calendar.py --sync` is deterministic. Original titles,
 descriptions, UID and recurrence survive spelling corrections; a reviewed display
 correction map changes `נקודה לערעור` to `נקודה להרהור`. Reflections and sections are

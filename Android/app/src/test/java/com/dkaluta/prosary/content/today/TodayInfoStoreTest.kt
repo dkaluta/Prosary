@@ -74,6 +74,27 @@ class TodayInfoStoreTest {
         SimpleDateFormat("yyyy-MM-dd", Locale.US).parse(string)!!
 
     @Test
+    fun provisionalCalendarUsesEvangelizoSyriacReadingsAndKeepsItsFeasts() {
+        AppSettings.feastCalendarId = "mission-provisional"
+        val calendar = TodayInfoStore.calendars.single { it.id == "mission-provisional" }
+        assertEquals("feasts-mission-provisional", calendar.file)
+        assertEquals("readings-syriac", calendar.readingsFile)
+        val today = date("2026-10-08")
+        val missionFeast = TodayInfoStore.feast(today)
+        assertNotNull(missionFeast)
+        val readings = TodayInfoStore.readings(today)
+        assertEquals(listOf("Ephesians 6:10–24", "John 15:12–24"), readings.map { it.full })
+        assertTrue(readings.all { it.readingDatasetId == "syriac" })
+
+        AppSettings.feastCalendarId = "syriac"
+        assertEquals(TodayInfoStore.readings(today), readings)
+        AppSettings.feastCalendarId = "mission-provisional"
+        assertEquals(missionFeast, TodayInfoStore.feast(today))
+        assertEquals(readings, TodayInfoStore.readings(today))
+        assertTrue(TodayInfoStore.readings(date("2027-01-01")).isEmpty())
+    }
+
+    @Test
     fun feastListIsChronologicalAndUsesTheSelectedCalendarsRanks() {
         TodayInfoStore.resetForTesting()
         val files = mapOf(

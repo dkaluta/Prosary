@@ -10,6 +10,7 @@ import importlib.util
 import json
 from pathlib import Path
 import unittest
+from copy import deepcopy
 
 TOOLS = Path(__file__).resolve().parent
 spec = importlib.util.spec_from_file_location("mission_calendar", TOOLS / "import-mission-calendar.py")
@@ -46,14 +47,34 @@ class MissionCalendarTests(unittest.TestCase):
             self.assertEqual(part["categories"], [])  # Source has not supplied categories yet.
             self.assertIn("© Evangelizo", part["descriptionCreditByLanguage"]["he"])
 
-    def test_separate_calendar_has_no_borrowed_readings(self):
+    def test_separate_mission_feasts_use_the_chosen_evangelizo_syriac_readings(self):
         registry = json.loads((importer.ROOT / "Shared/data/calendars.json").read_text())
         calendar = next(row for row in registry["calendars"] if row["id"] == "mission-provisional")
         self.assertTrue(calendar["provisional"])
         self.assertEqual(calendar["scope"], "Mission")
-        self.assertNotIn("readingsFile", calendar)
+        self.assertEqual(calendar["readingsFile"], "readings-syriac")
+        syriac = next(row for row in registry["calendars"] if row["id"] == "syriac")
+        self.assertEqual(calendar["readingsFile"], syriac["readingsFile"])
         self.assertNotEqual(calendar["file"], next(row for row in registry["calendars"] if row["id"] == "syriac")["file"])
         self.assertEqual(set(calendar["nameByLanguage"]), {"he", "ar", "ru", "tl", "fr", "it", "uk"})
+        readings = json.loads((importer.ROOT / "Shared/data/readings-syriac.json").read_text())
+        self.assertIn("publication edition SYE", readings["$comment"])
+        self.assertEqual([item["full"] for item in readings["days"]["2026-10-08"]["readings"]],
+                         ["Ephesians 6:10–24", "John 15:12–24"])
+
+    def test_regeneration_restores_only_the_explicit_mission_readings_mapping(self):
+        registry = json.loads((importer.ROOT / "Shared/data/calendars.json").read_text())
+        original = deepcopy(registry)
+        mission = next(row for row in registry["calendars"] if row["id"] == "mission-provisional")
+        for previous in [None, "readings-roman"]:
+            with self.subTest(previous=previous):
+                if previous is None:
+                    mission.pop("readingsFile", None)
+                else:
+                    mission["readingsFile"] = previous
+                self.assertEqual(importer.configure_registry(registry), original)
+                self.assertEqual(mission.get("readingsFile"), previous)
+        self.assertEqual(importer.configure_registry(original), original)
 
     def test_rebuild_is_byte_stable_and_native_copies_match(self):
         expected = (json.dumps(self.document, ensure_ascii=False, indent=2) + "\n").encode()
@@ -62,6 +83,8 @@ class MissionCalendarTests(unittest.TestCase):
             self.assertEqual((importer.ROOT / directory / importer.OUTPUT.name).read_bytes(), expected)
             self.assertEqual((importer.ROOT / directory / "calendars.json").read_bytes(),
                              (importer.ROOT / "Shared/data/calendars.json").read_bytes())
+            self.assertEqual((importer.ROOT / directory / "readings-syriac.json").read_bytes(),
+                             (importer.ROOT / "Shared/data/readings-syriac.json").read_bytes())
 
     def test_folded_unicode_and_escaped_categories(self):
         header, events = importer.parse("BEGIN:VCALENDAR\r\nBEGIN:VEVENT\r\nUID:test\r\nDTSTART;VALUE=DATE:20260301\r\nSUMMARY:שלום\\,\r\n  עולם\r\nCATEGORIES:Prayer\\, Hymn,Reflection\r\nEND:VEVENT\r\nEND:VCALENDAR".encode())
