@@ -56,6 +56,12 @@ jobs:
             "/p:PublishProfile=" `
             2>&1 | Tee-Object (Join-Path $packageDirectory "package-build.log")
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - name: Match the existing CI test time zone
+        if: matrix.architecture == 'arm64'
+        shell: pwsh
+        run: |
+          Set-TimeZone -Id "UTC"
+          if ((Get-TimeZone).Id -ne "UTC") { throw "The UTC fixture time zone was not applied." }
       - name: Run native ARM64 release tests
         if: matrix.architecture == 'arm64'
         shell: pwsh
