@@ -255,13 +255,20 @@ hidden on older Android versions, which use that palette directly. Launcher icon
 remains independent. Stable launcher aliases point to an always-enabled `MainActivity` so
 existing intents, widgets and notifications remain usable.
 
-Apple icons are seven native Icon Composer `.icon` documents. Default background fills
+Apple icons for iPhone, iPad and Mac are seven native Icon Composer `.icon` documents. Default background fills
 apply the chosen color; Dark uses `system-dark` and the original automatic cross fill.
 White specializes the cross image only for Light, preserving the original dark artwork.
 Never combine a property's specializations with the same unspecialized property, which
 overrides them. iPhone/iPad
 use native alternate-icon support; Mac updates its Dock icon. visionOS retains the installed
-blue icon while applying the selected accent. Windows applies the accent and window icon;
+blue icon while applying the selected accent. Its primary icon is generated as
+`Assets.xcassets/ProsaryVision.solidimagestack`: an opaque Back and transparent Front,
+each a 1024 × 1024 PNG in a `solidimagestacklayer/Content.imageset` with `idiom: vision`
+and `scale: 2x`. The centered cross uses the same 550-pixel height as the canonical default
+icon; compositing the two layers must preserve its pixels exactly. The primary-icon and
+alternate-icon build settings use `[sdk=xr*]` to select `ProsaryVision` and no alternates
+for both visionOS device and simulator. Xcode compiles the stack into the primary-icon
+metadata required by distribution. Windows applies the accent and window icon;
 the packaged Start/store identity remains blue. Native high-contrast treatments take precedence.
 
 `node Shared/tools/build-app-icons.mjs` regenerates the native resources from the existing

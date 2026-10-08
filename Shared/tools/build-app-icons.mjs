@@ -87,6 +87,25 @@ async function canvas(width, height, background, foreground, crossHeight) {
     .composite([{ input: cross, left: Math.round((width - info.width) / 2), top: Math.round((height - info.height) / 2) }])
     .png().toBuffer();
 }
+async function visionIcon(color, foreground, icon) {
+  const path = "iOS/Prosary/Assets.xcassets/ProsaryVision.solidimagestack";
+  const info = { author: "xcode", version: 1 };
+  const front = await canvas(1024, 1024, { r: 0, g: 0, b: 0, alpha: 0 }, foreground, 550);
+  const back = await sharp({ create: { width: 1024, height: 1024, channels: 3, background: color.background } }).png().toBuffer();
+  const flattened = await sharp(back).composite([{ input: front }]).removeAlpha().raw().toBuffer();
+  const canonical = await sharp(icon).removeAlpha().raw().toBuffer();
+  if (!flattened.equals(canonical)) throw new Error("Vision icon layers must preserve the canonical app icon pixels.");
+  const layers = [["Front", "cross.png", front], ["Back", "background.png", back]];
+  output.set(`${path}/Contents.json`, json({ info,
+    layers: layers.map(([name]) => ({ filename: `${name}.solidimagestacklayer` })) }));
+  for (const [name, filename, bytes] of layers) {
+    const layer = `${path}/${name}.solidimagestacklayer`;
+    output.set(`${layer}/Contents.json`, json({ info }));
+    output.set(`${layer}/Content.imageset/Contents.json`, json({ info,
+      images: [{ filename, idiom: "vision", scale: "2x" }] }));
+    output.set(`${layer}/Content.imageset/${filename}`, bytes);
+  }
+}
 async function androidForeground(color) {
   return sharp({ create: { width: 864, height: 864, channels: 4, background: color } })
     .composite([{ input: androidTemplate, blend: "dest-in" }]).png().toBuffer();
@@ -156,6 +175,7 @@ for (const color of palette.colors) {
       await androidForeground(color.cross));
   }
   if (color.id === palette.default) {
+    await visionIcon(color, foreground, icon);
     output.set("Shared/Branding/prosary-app-icon.png", await sharp(icon).removeAlpha().png().toBuffer());
     output.set("Shared/Branding/prosary-mark.png", await sharp(icon).resize(96).removeAlpha().png().toBuffer());
     output.set("Shared/Branding/apple-touch-icon.png", await sharp(icon).resize(180).removeAlpha().png().toBuffer());
