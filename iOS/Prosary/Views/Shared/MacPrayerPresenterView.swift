@@ -200,16 +200,13 @@ struct MacPrayerPresenterView: View {
   }
 
   private func prayerText(_ source: String, isScripture: Bool) -> some View {
-    let isRTL = Self.isRightToLeft(PrayerTypography.resolvedScript(text: source, languageCode: languageCode))
     return Text(Self.attributedBody(source))
       .font(presenterFont(for: source, isScripture: isScripture))
       .lineSpacing(max(8, pointSize * 0.22))
-      .multilineTextAlignment(.leading)
       .fixedSize(horizontal: false, vertical: true)
-      .frame(maxWidth: .infinity, alignment: .leading)
       .textSelection(.enabled)
       // Scope script direction to the text, never the scrolling container or native controls.
-      .environment(\.layoutDirection, isRTL ? .rightToLeft : .leftToRight)
+      .prayerTextStartAlignment(text: source, languageCode: languageCode)
   }
 
   private var continuationStatus: some View {
@@ -325,10 +322,7 @@ struct MacPrayerPresenterView: View {
   }
 
   static func isRightToLeft(_ script: PrayerTypography.Script) -> Bool {
-    switch script {
-    case .hebrew, .arabic, .syriac: true
-    case .latin, .cyrillic, .greek: false
-    }
+    PrayerTypography.isRightToLeft(script)
   }
 
   static func attributedBody(_ source: String) -> AttributedString {

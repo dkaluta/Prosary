@@ -101,7 +101,7 @@ final class BibleUITests: XCTestCase {
     app.buttons["bible.chapter.1"].tap()
     XCTAssertTrue(app.staticTexts["bible.partial"].waitForExistence(timeout: 5))
     XCTAssertEqual(app.staticTexts["readings.chapter.1"].label, "קפלאון א׳")
-    app.segmentedControls["bible.scriptPicker"].buttons["Syriac Script"].tap()
+    app.buttons["bible.scriptPicker.Syrc"].tap()
     XCTAssertEqual(app.staticTexts["readings.chapter.1"].label, "ܩܦܠܐܘܢ ܐ")
     let capture = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
     capture.name = "bible-partial-peshitta-syriac"; capture.lifetime = .keepAlways; add(capture)

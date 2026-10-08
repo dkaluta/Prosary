@@ -288,6 +288,17 @@ fun SettingsScreen(onBack: () -> Unit, onOpenAppearance: () -> Unit) {
                 )
             }
 
+            Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+                Text(stringResource(R.string.settings_volume_buttons), Modifier.weight(1f))
+                LabeledSwitch(label = stringResource(R.string.settings_volume_buttons),
+                    checked = AppSettings.volumeButtonNavigationEnabled,
+                    onCheckedChange = { AppSettings.volumeButtonNavigationEnabled = it },
+                    modifier = Modifier.testTag("volumeButtonNavigationEnabled"),
+                )
+            }
+            Text(stringResource(R.string.settings_volume_buttons_hint),
+                style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+
             if (hardwareKeyboardAvailable) {
                 Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
                     Text(stringResource(R.string.settings_keyboard_arrows), Modifier.weight(1f))
@@ -332,7 +343,7 @@ fun SettingsScreen(onBack: () -> Unit, onOpenAppearance: () -> Unit) {
 
             OptionPickerField(
                 label = stringResource(R.string.settings_aramaic_default_script),
-                options = listOf("Hebr", "Syrc"),
+                options = listOf("Syrc", "Hebr"),
                 selected = AppSettings.aramaicDefaultScript,
                 optionLabel = { context.getString(if (it == "Syrc") R.string.settings_script_syriac else R.string.settings_script_hebrew) },
                 onSelect = { AppSettings.setAramaicDefaultScript(it) },

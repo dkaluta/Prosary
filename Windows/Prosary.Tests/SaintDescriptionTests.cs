@@ -10,6 +10,107 @@ namespace Prosary.Tests;
 
 public class SaintDescriptionTests
 {
+    [Theory]
+    [InlineData("Saint Matthew", " Saint\nMatthew ")]
+    [InlineData("חג מתי", "חַג   מַתִּי")]
+    public void RepeatedParentHeadingHidesOnlyTheDescriptionTitle(string title, string parentTitle)
+    {
+        var source = new SaintDescription("source-identity", title, "Sourced prose", "Source credit",
+            new Uri("https://example.test/source"), "Text source");
+        var displayed = source.UnderHeading(parentTitle);
+        Assert.False(displayed.ShowsTitle);
+        Assert.True(source.ShowsTitle);
+        Assert.Equal(source.Title, displayed.Title);
+        Assert.Equal(source.Text, displayed.Text);
+        Assert.Equal(source.Identity, displayed.Identity);
+        Assert.Equal(source.Credit, displayed.Credit);
+        Assert.Equal(source.SourceUri, displayed.SourceUri);
+    }
+
+    [Fact]
+    public void DistinctSaintHeadingsRemainVisibleUnderACombinedFeastTitle()
+    {
+        var feast = new FeastDay("Saint Matthew; Saint Luke", "Feast", Observances:
+        [
+            new("Saint Matthew", "matthew", DescriptionByLanguage: new() { ["en"] = "Matthew prose" }),
+            new("Saint Luke", "luke", DescriptionByLanguage: new() { ["en"] = "Luke prose" }),
+        ]);
+        var descriptions = feast.LocalizedDescriptions("en", feast.LocalizedTitle("en"));
+        Assert.Equal(2, descriptions.Count);
+        Assert.All(descriptions, description => Assert.True(description.ShowsTitle));
+        Assert.Equal(new[] { "Saint Matthew", "Saint Luke" }, descriptions.Select(description => description.Title));
+    }
+
+    [Fact]
+    public void SourceSectionsKeepEachRitesOwnIdsTitlesOrderAndParagraphs()
+    {
+        var mission = new FeastObservance("Saint", "mission", DescriptionByLanguage: new()
+        {
+            ["he"] = "מסורת:\nפסקה ראשונה\n\nפסקה שנייה\n\nתפילה:\nתפילה מקורית",
+        }, Sections:
+        [
+            new("tradition", new() { ["he"] = "מסורת" }, new() { ["he"] = "פסקה ראשונה\n\nפסקה שנייה" }),
+            new("prayer", new() { ["he"] = "תפילה" }, new() { ["he"] = "תפילה מקורית" }),
+        ]);
+        var roman = new FeastObservance("Saint", "roman", DescriptionByLanguage: new()
+        {
+            ["en"] = "History:\nSource history\n\nCollect:\nSource prayer",
+        }, Sections:
+        [
+            new("local-history", new() { ["en"] = "History" }, new() { ["en"] = "Source history" }),
+            new("collect", new() { ["en"] = "Collect" }, new() { ["en"] = "Source prayer" }),
+        ]);
+        var missionText = mission.LocalizedDescription("iw-IL")!;
+        var romanText = roman.LocalizedDescription("en")!;
+        Assert.True(missionText.ShowsSections);
+        Assert.False(missionText.ShowsUnsectionedText);
+        Assert.Equal(new[] { "tradition", "prayer" }, missionText.Sections.Select(section => section.Id));
+        Assert.Equal("פסקה ראשונה\n\nפסקה שנייה", missionText.Sections[0].Text);
+        Assert.Equal(new[] { "local-history", "collect" }, romanText.Sections.Select(section => section.Id));
+        Assert.Equal(new[] { "History", "Collect" }, romanText.Sections.Select(section => section.Title));
+        Assert.Null(mission.LocalizedDescription("en"));
+        Assert.Null(roman.LocalizedDescription("he"));
+        Assert.Null(roman.LocalizedDescription("unknown"));
+    }
+
+    [Fact]
+    public void SectionOnlyDescriptionsUseExactLocaleAliasesWithoutBorrowingATitleOrBody()
+    {
+        var observance = new FeastObservance("Saint", "identity", Sections:
+        [
+            new("local", new() { ["tl"] = "Kasaysayan" }, new() { ["tl"] = "Tekstong pinagmulan" }),
+            new("foreign-heading", new() { ["en"] = "English" }, new() { ["tl"] = "Teksto" }),
+            new("foreign-body", new() { ["tl"] = "Pamagat" }, new() { ["en"] = "English" }),
+        ]);
+        var description = observance.LocalizedDescription("fil-PH")!;
+        var section = Assert.Single(description.Sections);
+        Assert.Equal("local", section.Id);
+        Assert.Equal("Kasaysayan", section.Title);
+        Assert.Equal("Tekstong pinagmulan", section.Text);
+        Assert.Equal("Kasaysayan:\nTekstong pinagmulan", description.Text);
+        Assert.False(description.ShowsUnsectionedText);
+        Assert.Null(observance.LocalizedDescription("fr"));
+        Assert.Null(observance.LocalizedDescription("unknown"));
+    }
+
+    [Fact]
+    public void IncompleteSectionsKeepAllSourceProseAndReflectionsStayIndependent()
+    {
+        const string fullText = "History:\nHistory prose\n\nAdditional source prose";
+        var observance = new FeastObservance("Saint", "identity",
+            DescriptionByLanguage: new() { ["en"] = fullText }, Sections:
+            [new("history", new() { ["en"] = "History" }, new() { ["en"] = "History prose" })],
+            ReflectionByLanguage: new() { ["en"] = "Reflection prose" });
+        var description = observance.LocalizedDescription("en")!;
+        Assert.Empty(description.Sections);
+        Assert.True(description.ShowsUnsectionedText);
+        Assert.Equal(fullText, description.Text);
+        var reflection = observance.Reflection("en")!;
+        Assert.Empty(reflection.Sections);
+        Assert.True(reflection.ShowsUnsectionedText);
+        Assert.Equal("Reflection prose", reflection.Text);
+    }
+
     [Fact]
     public void OptionalObservanceMetadataDecodesWithoutChangingLegacyFeastTitles()
     {

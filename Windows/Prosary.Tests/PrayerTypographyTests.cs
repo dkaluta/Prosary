@@ -7,6 +7,15 @@ namespace Prosary.Tests;
 public class PrayerTypographyTests
 {
     [Theory]
+    [InlineData("אבון", "ܐܒܘܢ", true)]
+    [InlineData("ܐܒܘܢ", "אבון", true)]
+    [InlineData("ܐܒܘܢ", "Abun", false)]
+    [InlineData("אבון", null, false)]
+    [InlineData("אבון", "אבון", false)]
+    public void AramaicSelectorRequiresBothDistinctAlphabets(string original, string? alternate, bool expected) =>
+        Assert.Equal(expected, PrayerTypography.HasAramaicScriptPair(original, alternate));
+
+    [Theory]
     [InlineData("ru")]
     [InlineData("uk")]
     public void CyrillicScriptureKeepsTheCrossPlatformReadingSize(string language)

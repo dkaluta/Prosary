@@ -66,8 +66,21 @@
                                             <ItemsControl ItemsSource="{x:Bind Descriptions, Mode=OneWay}">
                                                 <ItemsControl.ItemTemplate><DataTemplate x:DataType="svc:SaintDescription">
                                                     <StackPanel Spacing="8" Margin="0,0,0,12">
-                                                        <TextBlock Text="{x:Bind Title}" FontWeight="SemiBold" TextWrapping="Wrap" />
-                                                        <TextBlock Text="{x:Bind Text}" TextWrapping="Wrap" IsTextSelectionEnabled="True" />
+                                                        <TextBlock Text="{x:Bind Title}" FontWeight="SemiBold" TextWrapping="Wrap"
+                                                                   Visibility="{x:Bind ShowsTitle, Converter={StaticResource BoolToVisibility}}" />
+                                                        <TextBlock Text="{x:Bind Text}" TextWrapping="Wrap" IsTextSelectionEnabled="True"
+                                                                   Visibility="{x:Bind ShowsUnsectionedText, Converter={StaticResource BoolToVisibility}}" />
+                                                        <ItemsControl ItemsSource="{x:Bind Sections}"
+                                                                      Visibility="{x:Bind ShowsSections, Converter={StaticResource BoolToVisibility}}">
+                                                            <ItemsControl.ItemsPanel><ItemsPanelTemplate><StackPanel Spacing="16" /></ItemsPanelTemplate></ItemsControl.ItemsPanel>
+                                                            <ItemsControl.ItemTemplate><DataTemplate x:DataType="svc:LocalizedCalendarTextSection">
+                                                                <StackPanel Spacing="8">
+                                                                    <TextBlock Text="{x:Bind Title}" FontWeight="SemiBold" TextWrapping="Wrap" IsTextSelectionEnabled="True"
+                                                                               AutomationProperties.HeadingLevel="Level3" />
+                                                                    <TextBlock Text="{x:Bind Text}" TextWrapping="Wrap" IsTextSelectionEnabled="True" />
+                                                                </StackPanel>
+                                                            </DataTemplate></ItemsControl.ItemTemplate>
+                                                        </ItemsControl>
                                                         <TextBlock Text="{x:Bind Credit}" TextWrapping="Wrap" Style="{StaticResource MutedCaptionTextStyle}" Visibility="{x:Bind HasCredit, Converter={StaticResource BoolToVisibility}}" />
                                                         <HyperlinkButton NavigateUri="{x:Bind SourceUri}" Content="{x:Bind SourceLabel}" HorizontalAlignment="Left" Visibility="{x:Bind HasSource, Converter={StaticResource BoolToVisibility}}" />
                                                     </StackPanel>

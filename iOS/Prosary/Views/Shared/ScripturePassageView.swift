@@ -115,12 +115,7 @@ private struct ScripturePassageBody: View {
         ProgressView().accessibilityLabel(String(localized: "readings.loading", defaultValue: "Loading passage", bundle: UILanguage.bundle, locale: UILanguage.locale))
       } else if let passage {
         if passage.edition.supportsAramaicScriptChoice {
-          Picker(String(localized: "readings.script", defaultValue: "Aramaic Script", bundle: UILanguage.bundle, locale: UILanguage.locale), selection: $script) {
-            Text(String(localized: "settings.script.hebrew", defaultValue: "Hebrew Script", bundle: UILanguage.bundle, locale: UILanguage.locale)).tag("Hebr")
-            Text(String(localized: "settings.script.syriac", defaultValue: "Syriac Script", bundle: UILanguage.bundle, locale: UILanguage.locale)).tag("Syrc")
-          }
-          .pickerStyle(.segmented)
-          .accessibilityIdentifier("readings.scriptPicker")
+          AramaicScriptPicker(script: $script, accessibilityIdentifier: "readings.scriptPicker")
         }
         if passage.includesWholeVerses {
           Text(String(localized: "readings.wholeVersesNotice", defaultValue: "Full verses are shown and may extend beyond the reading’s cited limits.", bundle: UILanguage.bundle, locale: UILanguage.locale))

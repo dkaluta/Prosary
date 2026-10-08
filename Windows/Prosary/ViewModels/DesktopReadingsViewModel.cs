@@ -143,6 +143,12 @@ public partial class ReadingPassageViewModel : ObservableObject
         if (HasScriptToggle) ScriptOverride = EffectiveScript == "Syrc" ? "Hebr" : "Syrc";
     }
 
+    [RelayCommand]
+    private void SelectScript(string script)
+    {
+        if (HasScriptToggle && script is "Hebr" or "Syrc") ScriptOverride = script;
+    }
+
     private void RefreshDisplayedText()
     {
         var sections = new List<ReadingChapterSection>();

@@ -41,6 +41,12 @@ public interface IPrayerStepFlowViewModel : System.ComponentModel.INotifyPropert
     void RefreshPrayerWording();
     string BodyFontFamily { get; }
     double BodyFontSize { get; }
+    bool HasAramaicScriptSelector { get; }
+    string AramaicScript { get; }
+    IRelayCommand<string> SelectAramaicScriptCommand { get; }
+    bool ShowsTransliterationToggle { get; }
+    string TransliterationActionLabel { get; }
+    IRelayCommand ToggleTransliterationCommand { get; }
     bool CanGoBack { get; }
     string NextButtonText { get; }
 

@@ -116,6 +116,18 @@ struct PrayerStepFlowView: View {
     return PrayerTypography.script(of: usesAlternateText ? step.transliteratedBody ?? step.body : step.body) == .syriac
   }
 
+  private var alphabetScript: Binding<String>? {
+    guard let step, let alternate = step.transliteratedBody else { return nil }
+    let originalScript = PrayerTypography.script(of: step.body)
+    let alternateScript = PrayerTypography.script(of: alternate)
+    guard (originalScript == .hebrew && alternateScript == .syriac)
+       || (originalScript == .syriac && alternateScript == .hebrew) else { return nil }
+    return Binding(get: { usesSyriacScript ? "Syrc" : "Hebr" }, set: { script in
+      if aramaicSessionScript != nil { aramaicSessionScript = script }
+      else { showsTransliteration = alternateScript == (script == "Syrc" ? .syriac : .hebrew) }
+    })
+  }
+
   private var displayedNavigationTitle: String {
     navigationTitleIsPrayerHeading
       ? PrayerTranslations.flowTitle(navigationTitle, languageCode: languageCode,
@@ -428,7 +440,7 @@ struct PrayerStepFlowView: View {
     // VStack then took that overflowed width, the prayer text laid out against it too and
     // clipped mid-word at the column's edge. Capping against the column's *height* as well
     // keeps the body visible without scrolling when the window is short.
-    let contentWidth = max(available.width - Self.narrowContentPadding * 2, 0)
+    let contentWidth = max(min(available.width, PrayerFlowLayout.readerViewportMaximumWidth) - Self.narrowContentPadding * 2, 0)
     let imageSide = max(min(contentWidth * 0.75, available.height * 0.4, 340), 120)
 
     VStack(spacing: 12) {
@@ -447,11 +459,12 @@ struct PrayerStepFlowView: View {
         }
         .frame(width: contentWidth)
         .padding(Self.narrowContentPadding)
+        .frame(maxWidth: .infinity, alignment: .center)
       }
     }
   }
 
-  private static let narrowContentPadding: CGFloat = 16
+  private static let narrowContentPadding = PrayerFlowLayout.readerHorizontalInset
 
   @ViewBuilder
   private func wideContent(step: RosaryStep, layout: PrayerFlowLayout) -> some View {
@@ -469,7 +482,7 @@ struct PrayerStepFlowView: View {
       // and text beside it instead of pinning to the top the way a ScrollView's content does.
       ScrollView {
         textBlock(step: step)
-          .padding()
+          .padding(Self.narrowContentPadding)
           // A ScrollView pins its content to the top, so on a tall window (full screen on a
           // Mac) a short prayer floated level with the title while the art sat centred half a
           // screen below it. Filling the viewport centres the prayer beside the art; anything
@@ -485,7 +498,7 @@ struct PrayerStepFlowView: View {
     // edges — art in one corner, prayer in the other, nothing to read as one page. Capped and
     // centred, a wider window gives the prayer more room until it has enough, then stops.
     .frame(maxWidth: 1100)
-    .frame(maxWidth: .infinity)
+    .frame(maxWidth: .infinity, alignment: .center)
   }
 
   /// Deliberately not clipped/framed here — `.aspectRatio(contentMode: .fill)` reports an
@@ -529,33 +542,38 @@ struct PrayerStepFlowView: View {
           .prayerFont(languageCode: languageCode, isScripture: false,
                       text: acclamation, typefaces: typefaces)
           .lineSpacing(4)
+          .prayerTextStartAlignment(text: acclamation, languageCode: languageCode)
       }
 
       if let transliteration = step.transliteratedBody {
         // The side toggle Erez asked for: read the prayer in its own script, or in the
         // transliteration the author provided (e.g. Hebrew letters for Tagalog).
-        HStack {
-          Spacer()
-          Button {
-            toggleTransliteration()
-          } label: {
-            Image(systemName: usesAlternateText ? "character.book.closed.fill" : "character.book.closed")
-              .prosarySpatialTarget()
-              #if os(iOS)
-              .frame(minWidth: 44, minHeight: 44)
-              .contentShape(Rectangle())
-              #endif
+        Group {
+          if let alphabetScript {
+            AramaicScriptPicker(script: alphabetScript, accessibilityIdentifier: "transliterationToggle")
+          } else {
+            Button {
+              toggleTransliteration()
+            } label: {
+              Image(systemName: usesAlternateText ? "character.book.closed.fill" : "character.book.closed")
+                .prosarySpatialTarget()
+                #if os(iOS)
+                .frame(minWidth: 44, minHeight: 44)
+                .contentShape(Rectangle())
+                #endif
+            }
+            #if os(visionOS)
+            .buttonStyle(.bordered)
+            .buttonBorderShape(.circle)
+            #else
+            .buttonStyle(.borderless)
+            #endif
+            .accessibilityLabel(transliterationActionLabel)
+            .help(transliterationActionLabel)
+            .accessibilityIdentifier("transliterationToggle")
           }
-          #if os(visionOS)
-          .buttonStyle(.bordered)
-          .buttonBorderShape(.circle)
-          #else
-          .buttonStyle(.borderless)
-          #endif
-          .accessibilityLabel(transliterationActionLabel)
-          .help(transliterationActionLabel)
-          .accessibilityIdentifier("transliterationToggle")
         }
+        .frame(maxWidth: .infinity, alignment: .center)
         // Both original bodies and transliterations follow their actual script; imported
         // Aramaic prayers can use Syriac letters even though built-in Aramaic uses Hebrew.
         Text(bodyAttributedString(usesAlternateText ? transliteration : step.body))
@@ -565,6 +583,7 @@ struct PrayerStepFlowView: View {
           .accessibilityIdentifier("prayerBodyText")
           .lineSpacing(4)
           .textSelection(.enabled)
+          .prayerTextStartAlignment(text: usesAlternateText ? transliteration : step.body, languageCode: languageCode)
       } else {
         Text(bodyAttributedString(step.body))
           .prayerFont(languageCode: languageCode, isScripture: step.isScripture,
@@ -572,6 +591,7 @@ struct PrayerStepFlowView: View {
           .accessibilityIdentifier("prayerBodyText")
           .lineSpacing(4)
           .textSelection(.enabled)
+          .prayerTextStartAlignment(text: step.body, languageCode: languageCode)
       }
 
       PopeIntentionPrayerView(step: step, languageCode: languageCode)
@@ -607,7 +627,8 @@ struct PrayerStepFlowView: View {
         #endif
       }
     }
-    .frame(maxWidth: .infinity)
+    .frame(maxWidth: PrayerFlowLayout.readerViewportMaximumWidth - PrayerFlowLayout.readerHorizontalInset * 2,
+           alignment: .center)
     // Scoped to the text, never to the scrolling container: mirroring a ScrollView that sits
     // inside a NavigationSplitView detail column made SwiftUI flip its content against the
     // WINDOW's bounds rather than the column's, sliding the image and prayer text left by the

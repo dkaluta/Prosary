@@ -26,6 +26,7 @@ import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.unit.dp
 import com.dkaluta.prosary.R
@@ -33,7 +34,8 @@ import com.dkaluta.prosary.content.today.SaintDescription
 
 /** The caller supplies only descriptions in the interface language for the Syriac calendar. */
 @Composable
-fun SaintDescriptionsCard(descriptions: List<SaintDescription>, dateKey: String, language: String, inCard: Boolean = true) {
+fun SaintDescriptionsCard(descriptions: List<SaintDescription>, dateKey: String, language: String,
+                          inCard: Boolean = true, parentTitle: String? = null) {
     if (descriptions.isEmpty()) return
     var expanded by rememberSaveable(dateKey, language) { mutableStateOf(false) }
     val uriHandler = LocalUriHandler.current
@@ -51,9 +53,17 @@ fun SaintDescriptionsCard(descriptions: List<SaintDescription>, dateKey: String,
                 if (index > 0) HorizontalDivider()
                 SelectionContainer {
                     Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                        Text(saint.title, style = MaterialTheme.typography.titleSmall)
-                        saint.text.split(Regex("\\n\\s*\\n")).forEach { paragraph ->
-                            Text(paragraph.trim(), style = MaterialTheme.typography.bodyMedium)
+                        if (saint.shouldShowTitle(beneath = parentTitle)) {
+                            Text(saint.title, style = MaterialTheme.typography.titleSmall)
+                        }
+                        if (saint.sections.isEmpty()) DescriptionParagraphs(saint.text)
+                        else saint.sections.forEach { section ->
+                            Column(verticalArrangement = Arrangement.spacedBy(8.dp),
+                                modifier = Modifier.fillMaxWidth().testTag("saintSection.${saint.identity}.${section.id}")) {
+                                Text(section.title, style = MaterialTheme.typography.titleSmall,
+                                    modifier = Modifier.semantics { heading() })
+                                DescriptionParagraphs(section.text)
+                            }
                         }
                         saint.credit?.let {
                             Text(it, style = MaterialTheme.typography.bodySmall,
@@ -69,4 +79,11 @@ fun SaintDescriptionsCard(descriptions: List<SaintDescription>, dateKey: String,
     }
     if (inCard) Card(Modifier.fillMaxWidth().testTag("saintDescriptions")) { content() }
     else Column(Modifier.fillMaxWidth().testTag("saintDescriptions")) { content() }
+}
+
+@Composable
+private fun DescriptionParagraphs(text: String) {
+    text.split(Regex("\\n\\s*\\n")).forEach { paragraph ->
+        Text(paragraph.trim(), style = MaterialTheme.typography.bodyMedium)
+    }
 }

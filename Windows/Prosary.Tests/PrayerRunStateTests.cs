@@ -288,6 +288,19 @@ public class PrayerRunStateTests : IClassFixture<PrayerPackLoaderFixture>
                 Assert.Equal(1.0, viewModel.Progress);
             }
             AssertHeading(initialScript);
+            Assert.True(viewModel.HasAramaicScriptSelector);
+            Assert.False(viewModel.ShowsTransliterationToggle);
+            Assert.Equal(initialScript, viewModel.AramaicScript);
+            var otherScript = initialScript == "Syrc" ? "Hebr" : "Syrc";
+            viewModel.SelectAramaicScriptCommand.Execute(otherScript);
+            AssertHeading(otherScript);
+            Assert.Equal(otherScript, viewModel.AramaicScript);
+            // Re-selecting the current segment must preserve the selected script and saved default.
+            viewModel.SelectAramaicScriptCommand.Execute(otherScript);
+            AssertHeading(otherScript);
+            Assert.Equal(initialScript, AppSettings.AramaicDefaultScript);
+            viewModel.SelectAramaicScriptCommand.Execute(initialScript);
+            AssertHeading(initialScript);
             viewModel.ToggleTransliterationCommand.Execute(null);
             AssertHeading(initialScript == "Syrc" ? "Hebr" : "Syrc");
             viewModel.ToggleTransliterationCommand.Execute(null);
@@ -296,6 +309,7 @@ public class PrayerRunStateTests : IClassFixture<PrayerPackLoaderFixture>
             Assert.Equal(initialHeader, viewModel.Header);
 
             viewModel.SelectLanguage("en");
+            Assert.False(viewModel.HasAramaicScriptSelector);
             Assert.Equal(PrayerTypography.NativeUiFontFamily, viewModel.HeaderFontFamily);
             Assert.Equal(PrayerPackStore.ResolveDisplayText(bundleId, "en", titleKey), viewModel.Header);
         }
@@ -346,6 +360,73 @@ public class PrayerRunStateTests : IClassFixture<PrayerPackLoaderFixture>
             }
         }
         finally { AppSettings.SetAramaicDefaultScript(previousScript); }
+    }
+
+    [Fact]
+    public async Task ImportedHebrewPrayerUsesTheAlphabetSelectorWithoutCreatingAnAramaicSession()
+    {
+        var id = "alphabet_" + Guid.NewGuid().ToString("N");
+        var directory = Path.Combine(Path.GetTempPath(), id);
+        var previousDirectory = PrayerPackStore.InstalledPacksDirectory;
+        var previousScript = AppSettings.AramaicDefaultScript;
+        try
+        {
+            PrayerPackStore.InstalledPacksDirectory = directory;
+            AppSettings.SetAramaicDefaultScript("Hebr");
+            using var buffer = new MemoryStream();
+            using (var zip = new System.IO.Compression.ZipArchive(buffer, System.IO.Compression.ZipArchiveMode.Create, leaveOpen: true))
+            {
+                void Put(string name, string text)
+                {
+                    using var writer = new StreamWriter(zip.CreateEntry(name).Open());
+                    writer.Write(text);
+                }
+                Put("manifest.json", $$"""
+                    {"schemaVersion":1,"id":"{{id}}","kind":"{{id}}","displayName":"Alphabet fixture",
+                     "languages":["he"],"hasCatalog":false,"images":[]}
+                    """);
+                Put("devotion.json", $$"""
+                    {"type":"steps","steps":[
+                      {"title":"First","bodyKey":"{{id}}_paired"},
+                      {"title":"Second","bodyKey":"{{id}}_generic"}]}
+                    """);
+                Put("content/he.json", $$"""
+                    {"prayers":{"{{id}}_paired":"אבון","{{id}}_generic":"אבון"},
+                     "transliterations":{"{{id}}_paired":"ܐܒܘܢ","{{id}}_generic":"Abun"},"mysteries":{}}
+                    """);
+            }
+            PrayerPackStore.InstallPack(buffer.ToArray());
+            var calendar = new LiturgicalCalendarService();
+            var flow = new CustomDevotionViewModel(new MemoryPresetStore(), new PrayerEngine(calendar), calendar,
+                new SilentReminders(), new LocalPrayerRunStore(() => null, _ => { }));
+            await flow.LoadAsync(null, id, "he");
+            Assert.True(flow.HasAramaicScriptSelector);
+            Assert.False(flow.ShowsTransliterationToggle);
+            Assert.Equal("אבון", flow.Body);
+            flow.SelectAramaicScriptCommand.Execute("Syrc");
+            Assert.Equal("ܐܒܘܢ", flow.Body);
+            Assert.Equal("Syrc", flow.AramaicScript);
+            flow.SelectAramaicScriptCommand.Execute("Syrc");
+            Assert.Equal("ܐܒܘܢ", flow.Body);
+            flow.SelectAramaicScriptCommand.Execute("Hebr");
+            Assert.Equal("אבון", flow.Body);
+            Assert.Equal("he", flow.CurrentLanguageRaw);
+            Assert.Equal("Hebr", AppSettings.AramaicDefaultScript);
+            flow.NextCommand.Execute(null);
+            Assert.False(flow.HasAramaicScriptSelector);
+            Assert.True(flow.ShowsTransliterationToggle);
+            flow.ToggleTransliterationCommand.Execute(null);
+            Assert.Equal("Abun", flow.Body);
+            flow.ToggleTransliterationCommand.Execute(null);
+            Assert.Equal("אבון", flow.Body);
+        }
+        finally
+        {
+            PrayerPackStore.RemoveInstalledPack(id);
+            PrayerPackStore.InstalledPacksDirectory = previousDirectory;
+            AppSettings.SetAramaicDefaultScript(previousScript);
+            if (Directory.Exists(directory)) Directory.Delete(directory, recursive: true);
+        }
     }
 
     [Fact]

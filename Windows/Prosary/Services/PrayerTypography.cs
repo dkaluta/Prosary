@@ -46,6 +46,9 @@ public static class PrayerTypography
     /// themselves.</summary>
     public enum Script { Hebrew, Arabic, Syriac, Cyrillic, Greek, Latin }
 
+    public static bool HasAramaicScriptPair(string original, string? alternate) => alternate is not null
+        && (ScriptOf(original), ScriptOf(alternate)) is (Script.Hebrew, Script.Syriac) or (Script.Syriac, Script.Hebrew);
+
     /// <summary>The script most of a text's letters belong to. Counted rather than sampled: a
     /// citation line ("— ܡܬܝ 28:1–7") mixes digits and punctuation into every body.</summary>
     public static Script ScriptOf(string text)

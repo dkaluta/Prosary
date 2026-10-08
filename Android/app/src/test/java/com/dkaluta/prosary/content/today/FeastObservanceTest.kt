@@ -5,6 +5,46 @@ import org.junit.Assert.*
 import org.junit.Test
 
 class FeastObservanceTest {
+    @Test fun eachCalendarCanSupplyItsOwnSectionsInSourceOrder() {
+        fun section(id: String, title: String, text: String) = CalendarTextSection(id,
+            mapOf("en" to title), mapOf("en" to text))
+        val eastern = FeastObservance("Feast", "eastern", sections = listOf(
+            section("hymn", "Hymn", "Source hymn"),
+            section("local-custom", "Local custom", "Source custom")))
+        val western = FeastObservance("Feast", "western", sections = listOf(
+            section("biography", "Life", "Source biography")))
+        val easternDescription = requireNotNull(eastern.description("en-US"))
+        assertEquals(listOf("hymn", "local-custom"), easternDescription.sections.map { it.id })
+        assertEquals(listOf("biography"), western.description("en")!!.sections.map { it.id })
+        assertNull(eastern.description("he"))
+        assertNull(eastern.reflection("en"))
+    }
+
+    @Test fun completeSectionsUseExactLocalizedHeadingsWithoutLosingProse() {
+        val first = CalendarTextSection("about", mapOf("he" to "על היום", "tl" to "Tungkol"),
+            mapOf("he" to "פסקה ראשונה", "tl" to "Unang talata"))
+        val second = CalendarTextSection("tradition", mapOf("he" to "מסורת"), mapOf("he" to "פסקה שנייה"))
+        val source = FeastObservance("Feast", "identity", sections = listOf(first, second),
+            descriptionByLanguage = mapOf("he" to "על היום:\nפסקה ראשונה\n\nמסורת:\nפסקה שנייה",
+                "tl" to "Tungkol:\nUnang talata\n\nAdditional source paragraph"),
+            reflectionByLanguage = mapOf("he" to "הרהור"))
+        assertEquals(2, source.description("iw-IL")!!.sections.size)
+        val partial = source.description("fil-PH")!!
+        assertTrue(partial.sections.isEmpty())
+        assertTrue(partial.text.contains("Additional source paragraph"))
+        assertTrue(source.reflection("he")!!.sections.isEmpty())
+        assertNull(source.description("fr"))
+        assertNull(first.localized("fr"))
+    }
+
+    @Test fun expandedDescriptionsDoNotRepeatParentFeastTitles() {
+        val saint = SaintDescription("saint", "  חַג\n הקדוש  ", "Sourced description")
+        assertFalse(saint.shouldShowTitle("חג הקדוש"))
+        assertTrue(saint.shouldShowTitle(null))
+        assertTrue(saint.shouldShowTitle("חג אחר"))
+        assertTrue(saint.shouldShowTitle("חג הקדוש / קדוש נוסף"))
+    }
+
     @Test fun oldFeastFilesRemainReadableAndDescriptionsFollowTheSelectedDataset() {
         val old = Json.decodeFromString<FeastDay>("""{"title":"Feast","rank":"Feast"}""")
         assertTrue(old.saintDescriptions("syriac", "en").isEmpty())

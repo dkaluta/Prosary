@@ -4,6 +4,9 @@ import android.os.Bundle
 import android.os.Build
 import android.Manifest
 import android.content.Intent
+import android.media.AudioManager
+import android.view.KeyEvent
+import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
@@ -30,14 +33,67 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlinx.coroutines.launch
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.Lifecycle
 import com.dkaluta.prosary.content.prayerpack.PrayerPackStore
 import com.dkaluta.prosary.models.MultiDayRuns
 import com.dkaluta.prosary.widgets.WidgetDestination
 import com.dkaluta.prosary.widgets.WidgetLaunchRequest
 import com.dkaluta.prosary.widgets.WidgetUpdates
+import com.dkaluta.prosary.ui.shared.PrayerVolumeAction
+import com.dkaluta.prosary.ui.shared.PrayerVolumeNavigation
+import com.dkaluta.prosary.ui.shared.PrayerVolumeNavigationTarget
 
 class MainActivity : AppCompatActivity() {
     private var widgetLaunchRequest by mutableStateOf<WidgetLaunchRequest?>(null)
+    private val volumeNavigation = PrayerVolumeNavigation()
+    private var volumeNavigationTarget: PrayerVolumeNavigationTarget? = null
+
+    /** Readers register while composed; disposal cannot remove a newer reader's registration. */
+    internal fun registerPrayerVolumeNavigation(target: PrayerVolumeNavigationTarget): () -> Unit {
+        volumeNavigationTarget = target
+        return { if (volumeNavigationTarget === target) volumeNavigationTarget = null }
+    }
+
+    override fun dispatchKeyEvent(event: KeyEvent): Boolean {
+        if (event.keyCode != KeyEvent.KEYCODE_VOLUME_UP && event.keyCode != KeyEvent.KEYCODE_VOLUME_DOWN) {
+            return super.dispatchKeyEvent(event)
+        }
+        val target = volumeNavigationTarget
+        val readerActive = target?.readerActive?.invoke() == true && hasWindowFocus() &&
+            lifecycle.currentState.isAtLeast(Lifecycle.State.RESUMED) && currentFocus !is EditText &&
+            currentFocus?.onCheckIsTextEditor() != true
+        val audioActive = target?.audioActive?.invoke() == true ||
+            (AppSettings.volumeButtonNavigationEnabled && readerActive && systemAudioIsActive())
+        val action = volumeNavigation.action(
+            keyCode = event.keyCode,
+            keyAction = event.action,
+            repeatCount = event.repeatCount,
+            downTime = event.downTime,
+            enabled = AppSettings.volumeButtonNavigationEnabled,
+            readerActive = readerActive,
+            audioActive = audioActive,
+            canGoBack = target?.canGoBack?.invoke() == true,
+            hasModifiers = event.isShiftPressed || event.isAltPressed || event.isCtrlPressed ||
+                event.isMetaPressed || event.isSymPressed || event.isFunctionPressed,
+            canceled = event.isCanceled,
+        )
+        when (action) {
+            PrayerVolumeAction.Previous -> target?.onBack?.invoke()
+            PrayerVolumeAction.Next -> target?.onNext?.invoke()
+            else -> Unit
+        }
+        return action != PrayerVolumeAction.Ignore || super.dispatchKeyEvent(event)
+    }
+
+    private fun systemAudioIsActive(): Boolean {
+        val manager = getSystemService(AudioManager::class.java) ?: return true
+        // Includes another app's media, calls/ringing, and (on Oreo+) alarm/notification audio.
+        // If the device cannot report its playback state, preserve native volume control.
+        return runCatching {
+            manager.isMusicActive || manager.mode != AudioManager.MODE_NORMAL ||
+                (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && manager.activePlaybackConfigurations.isNotEmpty())
+        }.getOrDefault(true)
+    }
     // A completed day leaves its flow immediately. Register on the Activity so the permission
     // result still arrives after that navigation, then restore all newly permitted reminders.
     private val seriesReminderPermission = registerForActivityResult(ActivityResultContracts.RequestPermission()) { granted ->

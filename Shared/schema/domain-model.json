@@ -69,7 +69,7 @@
         },
         "sections": {
           "type": "[CalendarTextSection]?",
-          "description": "Source-bound sections of a provisional reflection/feast description."
+          "description": "Ordered source sections of a feast description. Each selected calendar/rite supplies its own IDs, headings and order; no universal fixed section list. Native cards render nonempty exact-language title/body pairs as dedicated headed blocks when assembled title-colon/body prose covers the full localized description after whitespace normalization, or no flat prose is supplied. Otherwise retain original prose to avoid losing a preamble or partially localized section. iw/he and fil/tl normalize; foreign prose is never borrowed. Reflections use only reflectionByLanguage."
         },
         "reflectionByLanguage": {
           "type": "map<string,string>?",
@@ -926,6 +926,11 @@
           "default": true,
           "description": "Enable Space to invoke the reader's primary advance/count/Finish action in the active window. Independent of keyboardArrowNavigationEnabled, with the same keyboard-availability and focus guards. When off, Space keeps native control/scroll behavior. Changing the preference does not restart the prayer."
         },
+        "volumeButtonNavigationEnabled": {
+          "type": "boolean",
+          "default": false,
+          "description": "Android capability-specific preference: Volume Up invokes advance/count/Finish and Volume Down invokes Back only in an active prayer reader. Independent of interface direction and hardware keyboard settings. Native volume handling takes priority during prayer narration, speech, other active audio or calls, and outside the reader, in dialogs or paused sessions. Held presses advance once. Other platforms do not expose this Android-only setting."
+        },
         "interfaceLanguageCode": {
           "type": "string",
           "default": "",
@@ -988,7 +993,7 @@
             "Hebr",
             "Syrc"
           ],
-          "description": "Initial script for Aramaic prayer sessions: Hebrew letters or Syriac letters. The in-prayer reading-aid switch remains a session override; other languages keep their normal reading-aid behavior."
+          "description": "Initial script for Aramaic prayer sessions: Hebrew letters or Syriac letters. Prayers and Scripture share a legible two-choice control showing Syriac ܐ first then Hebrew א, with localized full script accessibility labels. Option ordering preserves the saved choice and initial Hebr default. The in-prayer reading-aid switch remains a session override; other reading-aid pairs keep their normal behavior."
         },
         "syriacTypeface": {
           "type": "string",

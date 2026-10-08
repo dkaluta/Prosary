@@ -102,6 +102,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.foundation.text.selection.DisableSelection
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDirection
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
@@ -427,6 +428,7 @@ fun PrayerStepFlowScreen(
                             centralActionLabel = centralActionLabel,
                             onCentralAction = onNext,
                             keyboardSessionActive = !sessionPaused && !autoAdvanceMenuExpanded,
+                            audioActive = audioIsPlaying || speech.isSpeaking,
                             interfaceDirection = interfaceDirection,
                             canGoBack = canGoBack,
                             onBack = onBack,
@@ -532,6 +534,7 @@ private fun AdaptivePrayerContent(
     centralActionLabel: String? = null,
     onCentralAction: (() -> Unit)? = null,
     keyboardSessionActive: Boolean,
+    audioActive: Boolean,
     interfaceDirection: LayoutDirection,
     canGoBack: Boolean,
     onBack: () -> Unit,
@@ -540,6 +543,7 @@ private fun AdaptivePrayerContent(
     val readingState = chrome.reading
     val keyboardModifier = prayerKeyboardNavigationModifier(
         sessionActive = keyboardSessionActive,
+        audioActive = audioActive,
         interfaceDirection = interfaceDirection,
         canGoBack = canGoBack,
         onBack = onBack,
@@ -548,8 +552,14 @@ private fun AdaptivePrayerContent(
     val compact = availableHeight < 480.dp
     val imageSide = if (compact) 190.dp else 320.dp
     val visibleBody = if (showsTransliteration) step.transliteratedBody ?: step.body else step.body
+    val readingDirection = if (visibleBody.isBlank()) {
+        if (isRightToLeft) LayoutDirection.Rtl else LayoutDirection.Ltr
+    } else PrayerNavigation.readingDirection(visibleBody)
     val paragraphs = remember(visibleBody) { prayerParagraphs(visibleBody.parseBoldMarkdown()) }
-    val bodyStyle = PrayerTypography.styleForText(visibleBody, isScripture = step.isScripture)
+    val bodyStyle = PrayerTypography.styleForText(visibleBody, isScripture = step.isScripture).copy(
+        textAlign = TextAlign.Start,
+        textDirection = if (readingDirection == LayoutDirection.Rtl) TextDirection.ContentOrRtl else TextDirection.ContentOrLtr,
+    )
 
     // The reading child and its keyed items never move to a different composition branch.
     // Only measurement changes when the window crosses the breakpoint, so LazyListState keeps
@@ -565,7 +575,7 @@ private fun AdaptivePrayerContent(
             Box(contentAlignment = Alignment.TopCenter, modifier = Modifier.testTag("prayerAccessory")) {
                 accessory(isWide, availableHeight >= 300.dp)
             }
-            CompositionLocalProvider(LocalLayoutDirection provides if (isRightToLeft) LayoutDirection.Rtl else LayoutDirection.Ltr) {
+            CompositionLocalProvider(LocalLayoutDirection provides readingDirection) {
                 SelectionContainer {
                     LazyColumn(
                         state = readingState,
@@ -647,24 +657,27 @@ private fun AdaptivePrayerContent(
                 maxWidth = wideAccessoryWidth.roundToPx().coerceAtLeast(0), maxHeight = contentHeight,
             ))
             val textStart = start + side + gap + if (beads.width > 0) beads.width + gap else 0
+            val availableReadingWidth = (width - textStart - end).coerceAtLeast(0)
+            val readingWidth = availableReadingWidth.coerceAtMost(640.dp.roundToPx())
             val reading = measurables[2].measure(Constraints.fixed(
-                (width - textStart - end).coerceAtLeast(0), contentHeight,
+                readingWidth, contentHeight,
             ))
             layout(width, height) {
                 artwork.placeRelative(start, top + (contentHeight - artwork.height) / 2)
                 beads.placeRelative(start + side + gap, top + (contentHeight - beads.height) / 2)
-                reading.placeRelative(textStart, top)
+                reading.placeRelative(textStart + (availableReadingWidth - readingWidth) / 2, top)
             }
         } else {
             val artwork = measurables[0].measure(Constraints.fixed(0, 0))
             val beads = measurables[1].measure(Constraints(maxWidth = width, maxHeight = height))
             val top = if (beads.height > 0) 8.dp.roundToPx() else 0
             val readingTop = (top + beads.height).coerceAtMost(height)
-            val reading = measurables[2].measure(Constraints.fixed(width, height - readingTop))
+            val readingWidth = width.coerceAtMost(640.dp.roundToPx())
+            val reading = measurables[2].measure(Constraints.fixed(readingWidth, height - readingTop))
             layout(width, height) {
                 artwork.placeRelative(0, 0)
                 beads.placeRelative((width - beads.width) / 2, top)
-                reading.placeRelative(0, readingTop)
+                reading.placeRelative((width - readingWidth) / 2, readingTop)
             }
         }
     }
@@ -798,6 +811,7 @@ private fun PrayerTextHeader(
                     style = PrayerTypography.headingStyleForText(visibleSubtitle, MaterialTheme.typography.bodyMedium),
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     textAlign = TextAlign.Center,
+                    modifier = Modifier.fillMaxWidth(),
                 )
             }
             Text(
@@ -806,18 +820,25 @@ private fun PrayerTextHeader(
                 fontWeight = FontWeight.SemiBold,
                 color = MaterialTheme.extraColors.headline,
                 textAlign = TextAlign.Center,
-                modifier = Modifier.testTag("prayerStepTitle"),
+                modifier = Modifier.fillMaxWidth().testTag("prayerStepTitle"),
             )
         }
         step.acclamation?.let { acclamation ->
-            Text(
-                acclamation.parseBoldMarkdown(),
-                style = PrayerTypography.styleForText(acclamation, isScripture = false),
-            )
+            val direction = PrayerNavigation.readingDirection(acclamation)
+            CompositionLocalProvider(LocalLayoutDirection provides direction) {
+                Text(
+                    acclamation.parseBoldMarkdown(),
+                    style = PrayerTypography.styleForText(acclamation, isScripture = false).copy(
+                        textAlign = TextAlign.Start,
+                        textDirection = if (direction == LayoutDirection.Rtl) TextDirection.ContentOrRtl else TextDirection.ContentOrLtr,
+                    ),
+                    modifier = Modifier.fillMaxWidth().testTag("prayerAcclamation"),
+                )
+            }
         }
         if (step.transliteratedBody != null) {
             DisableSelection {
-                Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.End) {
+                Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
                     val actionLabel = stringResource(if (showsTransliteration) R.string.flow_show_original_text else R.string.flow_show_transliteration)
                     val selectedScript = PrayerTypography.scriptOf(visibleBody)
                     val scriptLabel = when (selectedScript) {
@@ -825,7 +846,14 @@ private fun PrayerTextHeader(
                         PrayerTypography.Script.Syriac -> stringResource(R.string.settings_script_syriac)
                         else -> null
                     }
-                    IconButton(onClick = onToggleTransliteration,
+                    val pairedScripts = setOf(PrayerTypography.scriptOf(step.body),
+                        PrayerTypography.scriptOf(step.transliteratedBody.orEmpty()))
+                    if (pairedScripts == setOf(PrayerTypography.Script.Hebrew, PrayerTypography.Script.Syriac)) {
+                        val script = if (selectedScript == PrayerTypography.Script.Syriac) "Syrc" else "Hebr"
+                        AramaicScriptPicker(script, onSelect = { selected ->
+                            if (selected != script) onToggleTransliteration()
+                        }, modifier = Modifier.testTag("transliterationToggle"))
+                    } else IconButton(onClick = onToggleTransliteration,
                         modifier = Modifier.testTag("transliterationToggle").semantics {
                             scriptLabel?.let { stateDescription = it }
                         }) {

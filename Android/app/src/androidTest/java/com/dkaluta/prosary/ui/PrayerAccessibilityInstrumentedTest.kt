@@ -13,6 +13,8 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertIsOff
 import androidx.compose.ui.test.assertIsOn
+import androidx.compose.ui.test.assertIsSelected
+import androidx.compose.ui.test.assertIsNotSelected
 import androidx.compose.ui.test.junit4.v2.createComposeRule
 import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithTag
@@ -49,7 +51,7 @@ class PrayerAccessibilityInstrumentedTest {
             .performClick().assertIsOn()
     }
 
-    @Test fun scriptToggleAnnouncesTheActionForTheTextActuallyShown() {
+    @Test fun scriptChoicesAnnounceTheirFullNamesAndTheCurrentSelection() {
         val context = InstrumentationRegistry.getInstrumentation().targetContext
         AppSettings.init(context)
         val originalScript = AppSettings.aramaicDefaultScript
@@ -65,11 +67,13 @@ class PrayerAccessibilityInstrumentedTest {
                 }
             }
             compose.onNodeWithText("אבא").assertIsDisplayed()
-            compose.onNodeWithContentDescription(context.getString(R.string.flow_show_transliteration))
-                .assertIsDisplayed().performClick()
+            compose.onNodeWithContentDescription(context.getString(R.string.settings_script_hebrew))
+                .assertIsDisplayed().assertIsSelected()
+            compose.onNodeWithContentDescription(context.getString(R.string.settings_script_syriac))
+                .assertIsDisplayed().assertIsNotSelected().performClick().assertIsSelected()
             compose.onNodeWithText("ܐܒܐ").assertIsDisplayed()
-            compose.onNodeWithContentDescription(context.getString(R.string.flow_show_original_text))
-                .assertIsDisplayed().performClick()
+            compose.onNodeWithContentDescription(context.getString(R.string.settings_script_hebrew))
+                .assertIsDisplayed().assertIsNotSelected().performClick().assertIsSelected()
             compose.onNodeWithText("אבא").assertIsDisplayed()
             compose.onNodeWithTag("transliterationToggle").assertIsDisplayed()
         } finally {

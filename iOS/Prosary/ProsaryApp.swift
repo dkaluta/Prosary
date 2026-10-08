@@ -70,7 +70,11 @@ struct ProsaryApp: App {
     .commandsRemoved()
     .appInterfaceLanguage()
 
-    Settings { SettingsView().appInterfaceLanguage() }
+    Settings {
+      SettingsView()
+        .defaultAppStorage(ProsaryRuntimeEnvironment.defaults)
+        .appInterfaceLanguage()
+    }
       .windowResizability(.contentSize)
       .appInterfaceLanguage()
     #else

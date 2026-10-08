@@ -103,6 +103,17 @@
                 <Setter Property="TextWrapping" Value="Wrap" />
                 <Setter Property="TextAlignment" Value="Center" />
             </Style>
+            <Style x:Key="PrayerTextColumnStyle" TargetType="StackPanel">
+                <Setter Property="MaxWidth" Value="640" />
+                <Setter Property="HorizontalAlignment" Value="Stretch" />
+            </Style>
+            <Style x:Key="PrayerBodyTextStyle" TargetType="TextBlock">
+                <Setter Property="HorizontalAlignment" Value="Stretch" />
+                <Setter Property="TextAlignment" Value="Start" />
+                <Setter Property="TextReadingOrder" Value="UseFlowDirection" />
+                <Setter Property="TextWrapping" Value="Wrap" />
+                <Setter Property="IsTextSelectionEnabled" Value="True" />
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

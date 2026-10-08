@@ -10,7 +10,7 @@
 
     <!--
     Shared chrome for a linear prayer flow with no bead-style progress accessory — used by
-    JesusPrayerFlowPage. RosaryPrayerPage does NOT use this control: iOS's own
+    BasicPrayerFlowPage and JesusPrayerFlowPage. RosaryPrayerPage does NOT use this control: iOS's own
     equivalent (PrayerStepFlowView.swift) supports the bead track via an `accessory` closure
     parameter, but doing the same here would need a DataTemplate-based accessory slot (see
     RosaryViewModel.TopBeadRows/GroupColumns/BottomBeads, which need genuinely different visual
@@ -37,9 +37,9 @@
             <TextBlock FontFamily="{x:Bind ViewModel.ProgressFontFamily, Mode=OneWay}" Text="{x:Bind ViewModel.ProgressText, Mode=OneWay}" HorizontalAlignment="Center" Style="{StaticResource MutedCaptionTextStyle}" />
         </StackPanel>
 
-        <ScrollViewer x:Name="Reader" Grid.Row="2" Padding="20"
+        <ScrollViewer x:Name="Reader" Grid.Row="2" Padding="20" HorizontalContentAlignment="Stretch" HorizontalScrollBarVisibility="Disabled"
                       FlowDirection="{x:Bind ViewModel.IsRightToLeft, Mode=OneWay, Converter={StaticResource BoolToFlowDirection}}">
-            <StackPanel Spacing="16" MaxWidth="640" HorizontalAlignment="Center">
+            <StackPanel Spacing="16" Style="{StaticResource PrayerTextColumnStyle}">
                 <Border Height="240" MaxWidth="240" CornerRadius="16" HorizontalAlignment="Center">
                     <Image Source="{x:Bind ViewModel.MysteryImageFile, Mode=OneWay}" Stretch="UniformToFill"
                            AutomationProperties.AccessibilityView="Raw" />
@@ -48,14 +48,23 @@
                 <StackPanel Spacing="2">
                     <TextBlock Text="{x:Bind ViewModel.Subtitle, Mode=OneWay}"
                                Visibility="{x:Bind ViewModel.HasSubtitle, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
-                               Style="{StaticResource MutedSubtitleTextStyle}" HorizontalAlignment="Center" />
-                    <TextBlock Text="{x:Bind ViewModel.Header, Mode=OneWay}" FontFamily="{x:Bind ViewModel.HeaderFontFamily, Mode=OneWay}" Style="{StaticResource SubHeadlineTextStyle}" HorizontalAlignment="Center" />
+                               Style="{StaticResource MutedSubtitleTextStyle}" HorizontalAlignment="Stretch" />
+                    <TextBlock Text="{x:Bind ViewModel.Header, Mode=OneWay}" FontFamily="{x:Bind ViewModel.HeaderFontFamily, Mode=OneWay}" Style="{StaticResource SubHeadlineTextStyle}" HorizontalAlignment="Stretch" />
                 </StackPanel>
 
+                <controls:AramaicScriptSelector Script="{x:Bind ViewModel.AramaicScript, Mode=OneWay}" SelectScriptCommand="{x:Bind ViewModel.SelectAramaicScriptCommand}"
+                                               HorizontalAlignment="Center"
+                                               Visibility="{x:Bind ViewModel.HasAramaicScriptSelector, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
+                <Button Background="Transparent" Padding="12,8" MinHeight="44" HorizontalAlignment="Center"
+                        Content="{x:Bind ViewModel.TransliterationActionLabel, Mode=OneWay}"
+                        Visibility="{x:Bind ViewModel.ShowsTransliterationToggle, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
+                        Command="{x:Bind ViewModel.ToggleTransliterationCommand}"
+                        AutomationProperties.Name="{x:Bind ViewModel.TransliterationActionLabel, Mode=OneWay}"
+                        ToolTipService.ToolTip="{x:Bind ViewModel.TransliterationActionLabel, Mode=OneWay}" />
                 <TextBlock x:Name="PrayerBody" controls:BoldMarkdownText.Text="{x:Bind ViewModel.Body, Mode=OneWay}"
                            FontFamily="{x:Bind ViewModel.BodyFontFamily, Mode=OneWay}"
                            FontSize="{x:Bind ViewModel.BodyFontSize, Mode=OneWay}"
-                           TextWrapping="Wrap" TextAlignment="Center" IsTextSelectionEnabled="True" />
+                           Style="{StaticResource PrayerBodyTextStyle}" />
 
                 <Button Content="{x:Bind CentralActionLabel, Mode=OneWay}"
                         Visibility="{x:Bind VisibleWhenSet(CentralActionLabel), Mode=OneWay}"

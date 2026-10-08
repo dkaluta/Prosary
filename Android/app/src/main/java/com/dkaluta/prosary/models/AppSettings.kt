@@ -25,6 +25,7 @@ object AppSettings {
     private const val KEY_AUTO_ADVANCE = "autoAdvanceSeconds"
     private const val KEY_KEYBOARD_ARROWS = "keyboardArrowNavigationEnabled"
     private const val KEY_KEYBOARD_SPACE = "keyboardSpaceAdvanceEnabled"
+    private const val KEY_VOLUME_BUTTON_NAVIGATION = "volumeButtonNavigationEnabled"
     private const val KEY_HAPTICS = "hapticsOnAdvance"
     private const val KEY_FEAST_CALENDAR = "feastCalendarId"
     private const val KEY_SHOW_TODAY_FEAST = "showTodayFeast"
@@ -269,6 +270,15 @@ object AppSettings {
             prefs?.edit()?.putBoolean(KEY_KEYBOARD_SPACE, value)?.apply()
         }
 
+    /** Android's volume buttons may navigate a silent prayer when explicitly enabled. */
+    private var volumeButtonNavigationState by mutableStateOf(false)
+    var volumeButtonNavigationEnabled: Boolean
+        get() = volumeButtonNavigationState
+        set(value) {
+            volumeButtonNavigationState = value
+            prefs?.edit()?.putBoolean(KEY_VOLUME_BUTTON_NAVIGATION, value)?.apply()
+        }
+
     /** A gentle tap when a flow's step changes — tester-requested (Erez), off by default. */
     var hapticsOnAdvance: Boolean = false
         private set
@@ -310,6 +320,7 @@ object AppSettings {
         autoAdvanceSeconds = resolved.getInt(KEY_AUTO_ADVANCE, 0)
         keyboardArrowNavigationState = resolved.getBoolean(KEY_KEYBOARD_ARROWS, true)
         keyboardSpaceAdvanceState = resolved.getBoolean(KEY_KEYBOARD_SPACE, true)
+        volumeButtonNavigationState = resolved.getBoolean(KEY_VOLUME_BUTTON_NAVIGATION, false)
         hapticsOnAdvance = resolved.getBoolean(KEY_HAPTICS, false)
         val storedFeastCalendar = resolved.getString(KEY_FEAST_CALENDAR, "") ?: ""
         feastCalendarId = if (storedFeastCalendar == "roman-he") "roman" else storedFeastCalendar

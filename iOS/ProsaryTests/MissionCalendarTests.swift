@@ -20,6 +20,9 @@ final class MissionCalendarTests: XCTestCase {
     XCTAssertTrue(TodayInfoStore.readings(on: day).isEmpty, "No readings were supplied for the provisional calendar")
     XCTAssertNil(TodayInfoStore.feast(on: try XCTUnwrap(formatter.date(from: "2027-01-01"))), "RRULE cannot establish future dates")
     let observance = try XCTUnwrap(feast.observances?.first)
+    XCTAssertEqual(observance.saintDescription(language: "iw-IL")?.sections.map(\.id),
+      observance.sections?.map(\.id), "The supplied source sections must replace the matching flattened prose")
+    XCTAssertTrue(try XCTUnwrap(feast.reflections(language: "he").first).sections.isEmpty)
     XCTAssertTrue(try XCTUnwrap(observance.sourceDescriptionByLanguage?["he"]).contains("נקודה לערעור:"))
     XCTAssertTrue(try XCTUnwrap(observance.descriptionByLanguage?["he"]).contains("נקודה להרהור:"))
     XCTAssertEqual(observance.sourceRecurrence, "FREQ=YEARLY")

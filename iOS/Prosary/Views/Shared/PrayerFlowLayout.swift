@@ -3,6 +3,8 @@ import Foundation
 /// Budgets the columns against this prayer window, including the session's complete bead track.
 /// Artwork can yield some width; the readable prayer column never does.
 struct PrayerFlowLayout {
+  static let readerViewportMaximumWidth: CGFloat = 640
+  static let readerHorizontalInset: CGFloat = 16
   let available: CGSize
   let compactHeight: Bool
   let accessoryWidth: CGFloat?

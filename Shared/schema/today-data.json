@@ -100,7 +100,7 @@
         },
         "observances": {
           "type": "FeastObservance[]? (see domain-model.json)",
-          "description": "Optional ordered calendar components: title/identity plus titleByLanguage, sourceTitleByLanguage and optional descriptionByLanguage/descriptionSourceByLanguage/descriptionCreditByLanguage maps. Native feast headings consume assembled day titles; saint disclosures consume exact-interface-language component biographies with no foreign fallback. The supplied Hebrew 2026 Urtotho reference joins exact source UID/date/identity, applies only to Syriac, and never changes calendar dates or ranks."
+          "description": "Optional ordered calendar components: title/identity plus titleByLanguage, sourceTitleByLanguage and optional descriptionByLanguage/descriptionSourceByLanguage/descriptionCreditByLanguage maps. Native feast headings consume assembled day titles; saint disclosures consume exact-interface-language component biographies with no foreign fallback. Expanded descriptions omit a heading identical to an already displayed parent feast title after Hebrew display-pointing and whitespace normalization, preserving distinct saint headings and all source text. The supplied Hebrew 2026 Urtotho reference joins exact source UID/date/identity, applies only to Syriac, and never changes calendar dates or ranks."
         },
         "rank": {
           "type": "string",

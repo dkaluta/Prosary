@@ -120,19 +120,22 @@ struct SettingsView: View {
     TabView(selection: $selectedPane) {
       MacPrayerEditorForm { languageSettings }
         .tabItem { Label(String(localized: "settings.prayerLanguageHeader", defaultValue: "Language", bundle: UILanguage.bundle, locale: UILanguage.locale), systemImage: "character.bubble") }
-        .tag(SettingsPane.language)
-      MacPrayerEditorForm { prayingSettings; TodayReminderSettings() }
+        .tag(MacSettingsPane.language)
+      MacPrayerEditorForm { prayingSettings }
         .tabItem { Label(String(localized: "settings.prayingHeader", defaultValue: "Praying", bundle: UILanguage.bundle, locale: UILanguage.locale), systemImage: "hands.and.sparkles") }
-        .tag(SettingsPane.praying)
+        .tag(MacSettingsPane.praying)
       MacPrayerEditorForm { appearanceSettings; typographySettings }
         .tabItem { Label(String(localized: "settings.appearanceHeader", defaultValue: "Appearance", bundle: UILanguage.bundle, locale: UILanguage.locale), systemImage: "paintpalette") }
-        .tag(SettingsPane.typography)
+        .tag(MacSettingsPane.typography)
+      MacPrayerEditorForm { todaySettings; TodayReminderSettings() }
+        .tabItem { Label(MacSettingsPane.today.title, systemImage: "calendar") }
+        .tag(MacSettingsPane.today)
       MacPrayerEditorForm {
         downloadsSettings
         linksSettings
       }
       .tabItem { Label(String(localized: "settings.downloadsHeader", defaultValue: "Downloads", bundle: UILanguage.bundle, locale: UILanguage.locale), systemImage: "arrow.down.circle") }
-      .tag(SettingsPane.downloads)
+      .tag(MacSettingsPane.downloads)
     }
     .accessibilityIdentifier("macSettingsPanes")
     .frame(width: min(640, max(320, screenSize.width - 80)),
@@ -154,26 +157,12 @@ struct SettingsView: View {
   }
 
   #if os(macOS)
-  @AppStorage("macSettingsPane") private var selectedPane = SettingsPane.language
-
-  private enum SettingsPane: String {
-    case language, praying, typography, downloads
-
-    var title: String {
-      switch self {
-      case .language: String(localized: "settings.prayerLanguageHeader", defaultValue: "Language", bundle: UILanguage.bundle, locale: UILanguage.locale)
-      case .praying: String(localized: "settings.prayingHeader", defaultValue: "Praying", bundle: UILanguage.bundle, locale: UILanguage.locale)
-      case .typography: String(localized: "settings.appearanceHeader", defaultValue: "Appearance", bundle: UILanguage.bundle, locale: UILanguage.locale)
-      case .downloads: String(localized: "settings.downloadsHeader", defaultValue: "Downloads", bundle: UILanguage.bundle, locale: UILanguage.locale)
-      }
-    }
-  }
+  @AppStorage(MacSettingsPane.defaultsKey) private var selectedPane = MacSettingsPane.language
   #endif
 
   private var appearanceSettings: some View {
     #if os(macOS)
     Section {
-      TodayCardColorPicker()
       Picker(String(localized: "settings.appColor", defaultValue: "App Color", bundle: UILanguage.bundle, locale: UILanguage.locale),
              selection: Binding(get: { AppColor.resolved(appColor) }, set: { appColor = $0.rawValue })) {
         ForEach(AppColor.allCases) { color in
@@ -327,8 +316,8 @@ struct SettingsView: View {
       #endif
       Picker(String(localized: "settings.aramaicDefaultScript", defaultValue: "Default Aramaic script", bundle: UILanguage.bundle, locale: UILanguage.locale),
              selection: $aramaicDefaultScript) {
-        Text(String(localized: "settings.script.hebrew", defaultValue: "Hebrew Script", bundle: UILanguage.bundle, locale: UILanguage.locale)).tag("Hebr")
         Text(String(localized: "settings.script.syriac", defaultValue: "Syriac Script", bundle: UILanguage.bundle, locale: UILanguage.locale)).tag("Syrc")
+        Text(String(localized: "settings.script.hebrew", defaultValue: "Hebrew Script", bundle: UILanguage.bundle, locale: UILanguage.locale)).tag("Hebr")
       }
       .accessibilityIdentifier("aramaicDefaultScriptPicker")
       Picker(String(localized: "settings.syriacTypeface", defaultValue: "Aramaic font", bundle: UILanguage.bundle, locale: UILanguage.locale),

@@ -133,6 +133,7 @@ public partial class BasicPrayerViewModel : ObservableObject, IPrayerStepFlowVie
     private double _bodyFontSize = 18;
 
     [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(ShowsTransliterationToggle))]
     private bool _hasTransliteration;
 
     [ObservableProperty]
@@ -142,6 +143,23 @@ public partial class BasicPrayerViewModel : ObservableObject, IPrayerStepFlowVie
     public string TransliterationActionLabel => ShowsTransliteration
         ? Loc.Tr("flow_show_original_text", "Show Original Text")
         : Loc.Tr("flow_show_transliteration", "Show Transliteration");
+
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(ShowsTransliterationToggle))]
+    private bool _hasAramaicScriptSelector;
+    public bool ShowsTransliterationToggle => HasTransliteration && !HasAramaicScriptSelector;
+    public string AramaicScript => PrayerTypography.ScriptOf(Body) == PrayerTypography.Script.Syriac ? "Syrc" : "Hebr";
+
+    [RelayCommand]
+    private void SelectAramaicScript(string script)
+    {
+        if (!HasAramaicScriptSelector || script is not ("Hebr" or "Syrc")) return;
+        if (_aramaicSessionScript is not null) _aramaicSessionScript = script;
+        else if (_prayerId is { } id && BasicPrayerCatalog.Prayer(id) is { } prayer
+            && BasicPrayerCatalog.Step(prayer, SpeechLanguageCode).TransliteratedBody is { } alternate)
+            ShowsTransliteration = PrayerTypography.ScriptOf(alternate) == (script == "Syrc" ? PrayerTypography.Script.Syriac : PrayerTypography.Script.Hebrew);
+        RenderPrayer();
+    }
 
     public string CurrentLanguageRaw => AppSettings.BasicPrayersLanguageCode;
 
@@ -206,9 +224,11 @@ public partial class BasicPrayerViewModel : ObservableObject, IPrayerStepFlowVie
         if (_aramaicSessionScript is not null)
             ShowsTransliteration = PrayerTranslations.InitialTransliteration(language.Code, step.Body, step.TransliteratedBody, _aramaicSessionScript) ?? false;
         HasTransliteration = step.TransliteratedBody is not null;
+        HasAramaicScriptSelector = PrayerTypography.HasAramaicScriptPair(step.Body, step.TransliteratedBody);
         Body = ShowsTransliteration && step.TransliteratedBody is { } transliterated
             ? transliterated
             : step.Body;
+        OnPropertyChanged(nameof(AramaicScript));
         var usesSyriacScript = PrayerTypography.ScriptOf(Body) == PrayerTypography.Script.Syriac;
         Header = PrayerTranslations.FlowTitle(step.Title, language.Code, usesSyriacScript, prayer.BundleId);
         MysteryImageFile = BasicPrayersViewModel.ImageFile(prayer.ImageKey);

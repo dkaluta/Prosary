@@ -7,6 +7,37 @@ final class MacPrayerWindowUITests: XCTestCase {
   override func setUpWithError() throws { continueAfterFailure = false }
 
   @MainActor
+  func testTodayPreferencesAreInNativeSettingsAndCommandCommaReopensThePane() throws {
+    let app = launchApp(galleryDevotionIDs: [])
+    let library = libraryWindow(in: app)
+    let today = element("macLibrary.today", in: library)
+    XCTAssertTrue(today.waitForExistence(timeout: 5))
+    today.click()
+    XCTAssertFalse(library.buttons["macToday.options"].exists)
+    let dateLabel = library.buttons["macToday.chooseDate"].label
+    app.typeKey(",", modifierFlags: .command)
+    let settings = app.windows.containing(.any, identifier: "macSettingsPanes").firstMatch
+    XCTAssertTrue(settings.waitForExistence(timeout: 5), "Today options belong in the app's Settings window")
+    settings.buttons["Today"].click()
+    XCTAssertTrue(settings.popUpButtons["feastCalendarPicker"].waitForExistence(timeout: 5))
+    XCTAssertTrue(settings.checkBoxes["reverseReadingsOrderToggle"].exists)
+    XCTAssertTrue(settings.checkBoxes["readingsReminderEnabled"].exists)
+    XCTAssertTrue(settings.checkBoxes["saintReminderEnabled"].exists)
+    XCTAssertEqual(library.buttons["macToday.chooseDate"].label, dateLabel)
+    XCTAssertEqual(app.windows.count, 2)
+    app.typeKey("w", modifierFlags: .command)
+    XCTAssertTrue(settings.waitForNonExistence(timeout: 5))
+    app.typeKey(",", modifierFlags: .command)
+    XCTAssertTrue(settings.waitForExistence(timeout: 5))
+    XCTAssertTrue(settings.popUpButtons["feastCalendarPicker"].exists,
+                  "Command-comma must return to the same Today pane")
+    let screenshot = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
+    screenshot.name = "mac-today-settings-pane"
+    screenshot.lifetime = .keepAlways
+    add(screenshot)
+  }
+
+  @MainActor
   func testChooseOnLaunchAsksBeforePrayingAndStartsWithOpeningPrayers() throws {
     let app = launchApp(galleryDevotionIDs: [], extraArguments: ["-autoAdvanceSeconds", "0"])
     let library = libraryWindow(in: app)
