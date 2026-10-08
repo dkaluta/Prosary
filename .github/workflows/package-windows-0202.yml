@@ -1,0 +1,156 @@
+name: Windows packages 0.20.2.3
+
+on:
+  push:
+    branches: [feature/package-windows-0202-r3]
+
+permissions:
+  contents: read
+
+jobs:
+  package:
+    name: Unsigned MSIX (${{ matrix.architecture }})
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 40
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - architecture: x64
+            runner: windows-latest
+          - architecture: arm64
+            runner: windows-11-vs2026-arm
+    env:
+      PROSARY_ARCHITECTURE: ${{ matrix.architecture }}
+      PROSARY_RELEASE_SHA: b9f1b7eb641651cc78dd5328185966dc59fb4cae
+      PROSARY_RELEASE_VERSION: 0.20.2.3
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: b9f1b7eb641651cc78dd5328185966dc59fb4cae
+          persist-credentials: false
+      - uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: 10.0.x
+      - name: Build unsigned release package
+        shell: pwsh
+        run: |
+          $packageDirectory = Join-Path $env:RUNNER_TEMP "prosary-0.20.2.3-$env:PROSARY_ARCHITECTURE"
+          New-Item $packageDirectory -ItemType Directory -Force | Out-Null
+          dotnet build Windows/Prosary/Prosary.csproj `
+            /v:minimal `
+            /p:Configuration=Release `
+            "/p:Platform=$env:PROSARY_ARCHITECTURE" `
+            "/p:RuntimeIdentifier=win-$env:PROSARY_ARCHITECTURE" `
+            /p:AppxPackageSigningEnabled=false `
+            /p:GenerateAppxPackageOnBuild=true `
+            /p:AppxBundle=Never `
+            "/p:AppxBundlePlatforms=$env:PROSARY_ARCHITECTURE" `
+            /p:UapAppxPackageBuildMode=SideloadOnly `
+            "/p:AppxPackageDir=$packageDirectory\" `
+            /p:AppxAutoIncrementPackageRevision=false `
+            /p:AppxSymbolPackageEnabled=false `
+            /p:GenerateAppInstallerFile=false `
+            /p:SelfContained=true `
+            /p:WindowsAppSDKSelfContained=true `
+            "/p:PublishProfile=" `
+            2>&1 | Tee-Object (Join-Path $packageDirectory "package-build.log")
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - name: Match the existing CI test time zone
+        if: matrix.architecture == 'arm64'
+        shell: pwsh
+        run: |
+          Set-TimeZone -Id "UTC"
+          if ((Get-TimeZone).Id -ne "UTC") { throw "The UTC fixture time zone was not applied." }
+      - name: Run native ARM64 release tests
+        if: matrix.architecture == 'arm64'
+        shell: pwsh
+        run: |
+          $packageDirectory = Join-Path $env:RUNNER_TEMP "prosary-0.20.2.3-$env:PROSARY_ARCHITECTURE"
+          dotnet test Windows/Prosary.Tests/Prosary.Tests.csproj -c Release `
+            -p:Platform=arm64 -p:RuntimeIdentifier=win-arm64 `
+            -p:WindowsAppSdkDeploymentManagerInitialize=false `
+            -p:WindowsAppSdkBootstrapInitialize=false `
+            --logger "trx;LogFileName=prosary-arm64.trx" `
+            --results-directory (Join-Path $packageDirectory "TestResults") `
+            2>&1 | Tee-Object (Join-Path $packageDirectory "arm64-test.log")
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - name: Verify package identity and Mission readings
+        shell: pwsh
+        run: |
+          Add-Type -AssemblyName System.IO.Compression.FileSystem
+          $packageDirectory = Join-Path $env:RUNNER_TEMP "prosary-0.20.2.3-$env:PROSARY_ARCHITECTURE"
+          $packages = @(Get-ChildItem $packageDirectory -Recurse -Filter *.msix)
+          if ($packages.Count -eq 0) { throw "No MSIX package was produced." }
+          $offlineDependencies = @()
+          foreach ($candidate in Get-ChildItem $packageDirectory -Recurse -File | Where-Object { $_.Extension -in ".msix", ".appx" }) {
+            $dependencyArchive = [System.IO.Compression.ZipFile]::OpenRead($candidate.FullName)
+            try {
+              $entry = $dependencyArchive.GetEntry("AppxManifest.xml")
+              if ($null -eq $entry) { continue }
+              $reader = [System.IO.StreamReader]::new($entry.Open())
+              try { [xml] $dependencyManifest = $reader.ReadToEnd() } finally { $reader.Dispose() }
+              $offlineDependencies += [ordered]@{
+                name = $dependencyManifest.Package.Identity.Name
+                version = $dependencyManifest.Package.Identity.Version
+                architecture = $dependencyManifest.Package.Identity.ProcessorArchitecture
+                file = $candidate.FullName
+              }
+            } finally { $dependencyArchive.Dispose() }
+          }
+          $verified = @()
+          foreach ($package in $packages) {
+            $archive = [System.IO.Compression.ZipFile]::OpenRead($package.FullName)
+            try {
+              function Read-PackageText([string] $name) {
+                $entry = $archive.GetEntry($name)
+                if ($null -eq $entry) { throw "Required package entry missing: $name" }
+                $reader = [System.IO.StreamReader]::new($entry.Open())
+                try { return $reader.ReadToEnd() } finally { $reader.Dispose() }
+              }
+              [xml] $manifest = Read-PackageText "AppxManifest.xml"
+              if ($manifest.Package.Identity.Name -ne "com.dkaluta.prosary" -or $manifest.Package.Identity.ResourceId) { continue }
+              if ($manifest.Package.Identity.Version -ne $env:PROSARY_RELEASE_VERSION) { throw "Unexpected package version." }
+              if ($manifest.Package.Identity.ProcessorArchitecture -ne $env:PROSARY_ARCHITECTURE) { throw "Unexpected package architecture." }
+              if ($manifest.Package.Identity.Publisher -ne "CN=David Kaluta") { throw "Unexpected package publisher." }
+              if ($null -ne $archive.GetEntry("AppxSignature.p7x")) { throw "This artifact must remain explicitly unsigned." }
+              $registry = Read-PackageText "Data/calendars.json" | ConvertFrom-Json
+              $mission = @($registry.calendars | Where-Object id -eq "mission-provisional")
+              if ($mission.Count -ne 1 -or $mission[0].file -ne "feasts-mission-provisional" -or $mission[0].readingsFile -ne "readings-syriac") {
+                throw "Mission calendar/readings mapping is missing from the package."
+              }
+              $readings = Read-PackageText "Data/readings-syriac.json" | ConvertFrom-Json
+              $citations = @($readings.days.'2026-10-08'.readings.full)
+              if (($citations -join "|") -ne "Ephesians 6:10–24|John 15:12–24") { throw "Expected Syriac readings are missing." }
+              $externalDependencies = @($manifest.Package.Dependencies.PackageDependency | Where-Object { $null -ne $_ })
+              foreach ($required in $externalDependencies) {
+                $available = @($offlineDependencies | Where-Object {
+                  $_.name -eq $required.Name -and [version]$_.version -ge [version]$required.MinVersion -and
+                  ($_.architecture -eq $env:PROSARY_ARCHITECTURE -or $_.architecture -eq "neutral")
+                })
+                if ($available.Count -eq 0) { throw "Required offline dependency missing: $($required.Name)" }
+              }
+              $verified += [ordered]@{
+                file = $package.Name
+                sha256 = (Get-FileHash $package.FullName -Algorithm SHA256).Hash
+                sourceSha = $env:PROSARY_RELEASE_SHA
+                version = $manifest.Package.Identity.Version
+                architecture = $manifest.Package.Identity.ProcessorArchitecture
+                signing = "unsigned; requires the existing trusted Prosary certificate before tester installation"
+                missionFeasts = $mission[0].file
+                missionReadings = $mission[0].readingsFile
+                x64TestSource = $env:PROSARY_RELEASE_SHA
+                arm64Tests = "native execution in the ARM64 matrix job; see TestResults and its job result"
+                externalPackageDependencies = @($externalDependencies | ForEach-Object { $_.Name })
+              }
+            } finally { $archive.Dispose() }
+          }
+          if ($verified.Count -eq 0) { throw "The Prosary application package was not found." }
+          $verified | ConvertTo-Json -Depth 5 | Set-Content (Join-Path $packageDirectory "package-verification.json") -Encoding utf8
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: Prosary-0.20.2.3-${{ matrix.architecture }}-unsigned
+          path: ${{ runner.temp }}/prosary-0.20.2.3-${{ matrix.architecture }}/
+          if-no-files-found: error
+          retention-days: 14
