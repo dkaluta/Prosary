@@ -390,9 +390,9 @@ public class PrayerRunStateTests : IClassFixture<PrayerPackLoaderFixture>
                       {"title":"First","bodyKey":"{{id}}_paired"},
                       {"title":"Second","bodyKey":"{{id}}_generic"}]}
                     """);
-                Put("content/he.json", $$"""
-                    {"prayers":{"{{id}}_paired":"אבון","{{id}}_generic":"אבון"},
-                     "transliterations":{"{{id}}_paired":"ܐܒܘܢ","{{id}}_generic":"Abun"},"mysteries":{}}
+                Put("content/he.json", $$$"""
+                    {"prayers":{"{{{id}}}_paired":"אבון","{{{id}}}_generic":"אבון"},
+                     "transliterations":{"{{{id}}}_paired":"ܐܒܘܢ","{{{id}}}_generic":"Abun"},"mysteries":{}}
                     """);
             }
             PrayerPackStore.InstallPack(buffer.ToArray());
