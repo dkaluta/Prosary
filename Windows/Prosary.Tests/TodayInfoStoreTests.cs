@@ -70,6 +70,7 @@ public class TodayInfoStoreTests
     [InlineData("ugcc", "julian", "ugcc")]
     [InlineData("ugcc", "gregorian", "ugcc-gregorian")]
     [InlineData("stjames", "julian", "stjames")]
+    [InlineData("mission-provisional", "julian", "syriac")]
     public void CitationsCaptureTheActualSelectedDatasetAndKeepItAfterLaterCalendarChanges(string calendar, string pascha, string dataset)
     {
         var previousCalendar = TodayInfoStore.SelectedCalendarId;
@@ -183,9 +184,49 @@ public class TodayInfoStoreTests
             new[] { "lpj", "stjames", "roman", "roman1962", "franciscan-conventual-italy", "augustinian-discalced", "ugcc", "ugcc-julian", "syriac", "mission-provisional", "maronite" },
             TodayInfoStore.Calendars.Select(c => c.Id));
         Assert.Equal("lpj", TodayInfoStore.ResolvedCalendarId);
-        Assert.All(TodayInfoStore.Calendars.Where(calendar => calendar.Id != "mission-provisional"),
+        Assert.All(TodayInfoStore.Calendars,
             calendar => Assert.False(string.IsNullOrWhiteSpace(calendar.ReadingsFile)));
-        Assert.Null(TodayInfoStore.Calendars.Single(calendar => calendar.Id == "mission-provisional").ReadingsFile);
+        var mission = TodayInfoStore.Calendars.Single(calendar => calendar.Id == "mission-provisional");
+        Assert.Equal("feasts-mission-provisional", mission.File);
+        Assert.Equal("readings-syriac", mission.ReadingsFile);
+    }
+
+    [Fact]
+    public void MissionCalendarKeepsItsOwnFeastsWhileUsingEvangelizoSyriacReadings()
+    {
+        var date = new DateOnly(2026, 10, 8);
+        TodayInfoStore.SelectedCalendarId = "syriac";
+        var syriacReadings = TodayInfoStore.Readings(date);
+        var syriacFeast = TodayInfoStore.Feast(date);
+        Assert.NotEmpty(syriacReadings);
+
+        TodayInfoStore.SelectedCalendarId = "mission-provisional";
+        var missionReadings = TodayInfoStore.Readings(date);
+        var missionFeast = TodayInfoStore.Feast(date);
+        Assert.Equal("mission-provisional", TodayInfoStore.ResolvedCalendarId);
+        Assert.NotNull(missionFeast);
+        Assert.Equal("חג הקדוש ברסימא, הגמון אדסה והמעיד, דרגה ג׳", missionFeast.Title);
+        Assert.Equal("3rd Class", missionFeast.Rank);
+        Assert.NotEqual(syriacFeast?.Title, missionFeast.Title);
+        Assert.All(missionFeast.Observances!, observance => Assert.StartsWith("mission:", observance.Identity));
+        Assert.Equal(new[] { "Ephesians 6:10–24", "John 15:12–24" }, missionReadings.Select(citation => citation.Full));
+        Assert.All(missionReadings, citation => Assert.Equal("syriac", citation.ReadingDatasetId));
+        Assert.Equal(syriacReadings.Select(citation => (citation.Type, citation.Short, citation.Full)),
+            missionReadings.Select(citation => (citation.Type, citation.Short, citation.Full)));
+        foreach (var language in new[] { "en", "he", "ar", "ru", "tl", "fr", "it", "uk" })
+        {
+            Assert.Equal(syriacReadings.Select(citation => citation.LocalizedFull(language)),
+                missionReadings.Select(citation => citation.LocalizedFull(language)));
+            Assert.Equal(syriacReadings.Select(citation => citation.LocalizedShort(language)),
+                missionReadings.Select(citation => citation.LocalizedShort(language)));
+        }
+
+        TodayInfoStore.SelectedCalendarId = "roman";
+        _ = TodayInfoStore.Readings(date);
+        Assert.All(missionReadings, citation => Assert.Equal("syriac", citation.ReadingDatasetId));
+        TodayInfoStore.SelectedCalendarId = "mission-provisional";
+        Assert.Equal(missionReadings.Select(citation => citation.Full), TodayInfoStore.Readings(date).Select(citation => citation.Full));
+        Assert.Equal(missionFeast.Title, TodayInfoStore.Feast(date)?.Title);
     }
 
     /// <summary>The Evangelizo Hebrew lectionary titles now overlay the complete General Roman
@@ -607,6 +648,7 @@ public class TodayInfoStoreTests
     [InlineData("roman1962")]
     [InlineData("ugcc")]
     [InlineData("syriac")]
+    [InlineData("mission-provisional")]
     [InlineData("maronite")]
     public void ReadingsOutsideASelectedCalendarsCoverageAreEmpty(string calendarId)
     {

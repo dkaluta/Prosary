@@ -50,14 +50,16 @@ class ImportedCalendarTests(unittest.TestCase):
             data = Path(directory)
             (data / "calendars.json").write_text(json.dumps({"calendars": [
                 {"id": "roman", "readingsFile": "readings-roman"},
-                {"id": "mission-provisional", "file": "feasts-mission-provisional"},
+                {"id": "mission-provisional", "file": "feasts-mission-provisional", "readingsFile": "readings-syriac"},
+                {"id": "syriac", "readingsFile": "readings-syriac"},
+                {"id": "feasts-only", "file": "feasts-only"},
                 {"id": "no-reading-table", "readingsFile": None},
                 {"id": "ugcc", "readingsFile": "readings-ugcc", "paschaVariants": {
                     "feasts-only": {}, "gregorian": {"readingsFile": "readings-ugcc-gregorian"}}},
             ]}))
             with patch.object(READINGS, "DATA", data):
                 self.assertEqual([path.name for path in READINGS.citation_dataset_paths()],
-                                 ["readings-roman.json", "readings-ugcc.json", "readings-ugcc-gregorian.json"])
+                                 ["readings-roman.json", "readings-syriac.json", "readings-ugcc.json", "readings-ugcc-gregorian.json"])
 
     @classmethod
     def setUpClass(cls):

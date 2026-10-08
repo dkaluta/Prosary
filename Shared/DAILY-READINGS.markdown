@@ -12,6 +12,11 @@ manual disclosure choices survive ordinary refreshes and edition changes.
 `showTodayReadings` (on by default) controls readings in Pray and the native desktop Today
 surface; the dedicated reader stays available independently. The customizable Home readings
 card has its own visibility in `homeWidgetOrder`.
+
+The Mission provisional calendar keeps its supplied feast and saint data and uses
+Evangelizo's Syriac Catholic (SYE) daily readings through `readings-syriac`. Dates
+outside that reading source's coverage remain unavailable.
+
 Each available passage shows selectable Bible text under a **Chapter** n
 heading at each chapter transition. The word and number style follow the selected Bible,
 independently of the interface: Hebrew gematria, Arabic digits, or the Aramaic reader's

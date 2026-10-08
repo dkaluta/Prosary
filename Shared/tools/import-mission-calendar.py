@@ -24,7 +24,9 @@ ROOT = TOOLS.parents[1]
 SOURCE = TOOLS / "sources/mission-provisional-2026-he.ics"
 CORRECTIONS = TOOLS / "sources/mission-provisional-corrections.json"
 OUTPUT = ROOT / "Shared/data/feasts-mission-provisional.json"
+REGISTRY = ROOT / "Shared/data/calendars.json"
 CALENDAR_ID = "mission-provisional"
+READINGS_FILE = "readings-syriac"
 
 
 def unescape(value: str) -> str:
@@ -161,9 +163,20 @@ def build(raw: bytes, correction_map: dict) -> dict:
             "editorialCorrections": correction_map["displayReplacements"], "days": dict(sorted(days.items()))}
 
 
+def configure_registry(registry: dict) -> dict:
+    """Keep Mission's supplied feasts with its explicitly chosen Evangelizo Syriac readings."""
+    calendars = registry["calendars"]
+    if sum(calendar["id"] == CALENDAR_ID for calendar in calendars) != 1:
+        raise ValueError("Expected one provisional Mission calendar in the registry")
+    return {**registry, "calendars": [
+        {**calendar, "readingsFile": READINGS_FILE} if calendar["id"] == CALENDAR_ID else calendar
+        for calendar in calendars
+    ]}
+
+
 def sync():
     for directory in (ROOT / "iOS/Prosary/Data", ROOT / "Android/app/src/main/assets/data", ROOT / "Windows/Prosary/Data"):
-        for path in (OUTPUT, ROOT / "Shared/data/calendars.json"):
+        for path in (OUTPUT, REGISTRY, ROOT / "Shared/data" / f"{READINGS_FILE}.json"):
             shutil.copyfile(path, directory / path.name)
 
 
@@ -174,11 +187,15 @@ def main():
     args = parser.parse_args()
     document = build(SOURCE.read_bytes(), json.loads(CORRECTIONS.read_text()))
     data = json.dumps(document, ensure_ascii=False, indent=2) + "\n"
+    registry_data = json.dumps(configure_registry(json.loads(REGISTRY.read_text())), ensure_ascii=False, indent=2) + "\n"
     if args.check:
         if OUTPUT.read_text() != data:
             raise SystemExit("Provisional Mission calendar is stale")
+        if REGISTRY.read_text() != registry_data:
+            raise SystemExit("Provisional Mission readings mapping is stale")
     else:
         OUTPUT.write_text(data)
+        REGISTRY.write_text(registry_data)
     if args.sync:
         sync()
     print(f"Mission provisional: {document['sourceEventCount']} source events on {len(document['days'])} explicit dates; "
