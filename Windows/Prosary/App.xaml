@@ -43,16 +43,6 @@
                 </ResourceDictionary>
             </ResourceDictionary.ThemeDictionaries>
 
-            <!-- Keep WinUI's Fluent menu template, focus visuals, and contrast themes.
-                 The native template does not consume MenuBar.Padding, so use an outer
-                 inset and a minimum height that still grows with the menu content. -->
-            <Style x:Key="DesktopMenuBarStyle" TargetType="controls:MenuBar"
-                   BasedOn="{StaticResource DefaultMenuBarStyle}">
-                <Setter Property="Background" Value="{ThemeResource MenuBarBackground}" />
-                <Setter Property="MinHeight" Value="32" />
-                <Setter Property="Margin" Value="8,0,8,4" />
-            </Style>
-
             <!-- Native acrylic keeps the date controls translucent, with WinUI's
                  solid fallback for contrast themes and disabled transparency. -->
             <Style x:Key="TodayDateButtonStyle" TargetType="Button"

@@ -8,7 +8,9 @@
             <Grid.ColumnDefinitions><ColumnDefinition x:Name="LeftPaddingColumn" Width="0" /><ColumnDefinition Width="*" /><ColumnDefinition x:Name="RightPaddingColumn" Width="0" /></Grid.ColumnDefinitions>
             <TextBlock Grid.Column="1" x:Name="PrayerTitle" Text="Prosary" Margin="16,0" VerticalAlignment="Center" FontSize="12" TextTrimming="CharacterEllipsis" />
         </Grid>
-        <MenuBar Style="{StaticResource DesktopMenuBarStyle}" x:Name="WindowMenus" Grid.Row="1" />
+        <!-- Match the library menu spacing while retaining WinUI's native style. -->
+        <MenuBar x:Name="WindowMenus" Grid.Row="1"
+                 Background="{ThemeResource MenuBarBackground}" MinHeight="32" Margin="8,0,8,4" />
         <Frame x:Name="PrayerFrame" Grid.Row="2" />
     </Grid>
 </Window>
