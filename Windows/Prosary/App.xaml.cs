@@ -26,11 +26,13 @@ public partial class App : Application
     {
         UiLanguageCatalog.Initialize();
         InitializeComponent();
-        AppAppearance.Initialize();
     }
 
     protected override void OnLaunched(LaunchActivatedEventArgs args)
     {
+        // WinUI creates the native Application after the initialization callback returns.
+        // Reading Application.Resources in the constructor reaches a null native object.
+        AppAppearance.Initialize();
         Services = ConfigureServices();
 
         PrayerPackStore.InstalledPacksDirectory =
