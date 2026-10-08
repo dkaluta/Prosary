@@ -166,41 +166,43 @@
 
                 <ScrollViewer x:Name="NarrowReader" Grid.Row="1" HorizontalContentAlignment="Stretch" HorizontalScrollBarVisibility="Disabled"
                               FlowDirection="{x:Bind ViewModel.IsRightToLeft, Mode=OneWay, Converter={StaticResource BoolToFlowDirection}}">
-                    <StackPanel Spacing="16" Style="{StaticResource PrayerTextColumnStyle}">
-                        <Border Height="260" MaxWidth="260" CornerRadius="16" HorizontalAlignment="Center">
-                            <Image Source="{x:Bind ViewModel.MysteryImageFile, Mode=OneWay}" Stretch="UniformToFill"
-                                   AutomationProperties.AccessibilityView="Raw" />
-                        </Border>
+                    <Grid HorizontalAlignment="Stretch">
+                        <StackPanel Spacing="16" Style="{StaticResource PrayerTextColumnStyle}">
+                            <Border Height="260" MaxWidth="260" CornerRadius="16" HorizontalAlignment="Center">
+                                <Image Source="{x:Bind ViewModel.MysteryImageFile, Mode=OneWay}" Stretch="UniformToFill"
+                                       AutomationProperties.AccessibilityView="Raw" />
+                            </Border>
 
-                        <StackPanel Spacing="2">
-                            <TextBlock Text="{x:Bind ViewModel.Subtitle, Mode=OneWay}" FontFamily="{x:Bind ViewModel.SubtitleFontFamily, Mode=OneWay}"
-                                       Visibility="{x:Bind ViewModel.HasSubtitle, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
-                                       Style="{StaticResource MutedSubtitleTextStyle}" />
-                            <TextBlock Text="{x:Bind ViewModel.Header, Mode=OneWay}" FontFamily="{x:Bind ViewModel.HeaderFontFamily, Mode=OneWay}" Style="{StaticResource SubHeadlineTextStyle}" />
+                            <StackPanel Spacing="2">
+                                <TextBlock Text="{x:Bind ViewModel.Subtitle, Mode=OneWay}" FontFamily="{x:Bind ViewModel.SubtitleFontFamily, Mode=OneWay}"
+                                           Visibility="{x:Bind ViewModel.HasSubtitle, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
+                                           Style="{StaticResource MutedSubtitleTextStyle}" />
+                                <TextBlock Text="{x:Bind ViewModel.Header, Mode=OneWay}" FontFamily="{x:Bind ViewModel.HeaderFontFamily, Mode=OneWay}" Style="{StaticResource SubHeadlineTextStyle}" />
+                            </StackPanel>
+
+                            <TextBlock controls:BoldMarkdownText.Text="{x:Bind ViewModel.Acclamation, Mode=OneWay}"
+                                       Visibility="{x:Bind ViewModel.HasAcclamation, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
+                                       FontFamily="{x:Bind ViewModel.AcclamationFontFamily, Mode=OneWay}"
+                                       FontSize="{x:Bind ViewModel.AcclamationFontSize, Mode=OneWay}"
+                                       FlowDirection="{x:Bind ViewModel.AcclamationIsRightToLeft, Mode=OneWay, Converter={StaticResource BoolToFlowDirection}}"
+                                       Style="{StaticResource PrayerBodyTextStyle}" Margin="0,0,0,12" />
+                            <!-- v0.7 reading aid: swap the body for its transliteration. -->
+                            <controls:AramaicScriptSelector Script="{x:Bind ViewModel.AramaicScript, Mode=OneWay}" SelectScriptCommand="{x:Bind ViewModel.SelectAramaicScriptCommand}"
+                                                           HorizontalAlignment="Center"
+                                                           Visibility="{x:Bind ViewModel.HasAramaicScriptSelector, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
+                            <Button Background="Transparent" Padding="12,8" MinHeight="44" HorizontalAlignment="Center"
+                                    Content="{x:Bind ViewModel.TransliterationActionLabel, Mode=OneWay}"
+                                    Visibility="{x:Bind ViewModel.ShowsTransliterationToggle, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
+                                    Command="{x:Bind ViewModel.ToggleTransliterationCommand}"
+                                    AutomationProperties.Name="{x:Bind ViewModel.TransliterationActionLabel, Mode=OneWay}"
+                                    ToolTipService.ToolTip="{x:Bind ViewModel.TransliterationActionLabel, Mode=OneWay}" />
+                            <TextBlock x:Name="NarrowBody" controls:BoldMarkdownText.Text="{x:Bind ViewModel.Body, Mode=OneWay}"
+                                       FontFamily="{x:Bind ViewModel.BodyFontFamily, Mode=OneWay}"
+                                       FontSize="{x:Bind ViewModel.BodyFontSize, Mode=OneWay}"
+                                       Style="{StaticResource PrayerBodyTextStyle}" />
+                            <controls:PopeIntentionPrayerCard Publication="{x:Bind ViewModel.PublishedPopeIntention, Mode=OneWay}" />
                         </StackPanel>
-
-                        <TextBlock controls:BoldMarkdownText.Text="{x:Bind ViewModel.Acclamation, Mode=OneWay}"
-                                   Visibility="{x:Bind ViewModel.HasAcclamation, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
-                                   FontFamily="{x:Bind ViewModel.AcclamationFontFamily, Mode=OneWay}"
-                                   FontSize="{x:Bind ViewModel.AcclamationFontSize, Mode=OneWay}"
-                                   FlowDirection="{x:Bind ViewModel.AcclamationIsRightToLeft, Mode=OneWay, Converter={StaticResource BoolToFlowDirection}}"
-                                   Style="{StaticResource PrayerBodyTextStyle}" Margin="0,0,0,12" />
-                        <!-- v0.7 reading aid: swap the body for its transliteration. -->
-                        <controls:AramaicScriptSelector Script="{x:Bind ViewModel.AramaicScript, Mode=OneWay}" SelectScriptCommand="{x:Bind ViewModel.SelectAramaicScriptCommand}"
-                                                       HorizontalAlignment="Center"
-                                                       Visibility="{x:Bind ViewModel.HasAramaicScriptSelector, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
-                        <Button Background="Transparent" Padding="12,8" MinHeight="44" HorizontalAlignment="Center"
-                                Content="{x:Bind ViewModel.TransliterationActionLabel, Mode=OneWay}"
-                                Visibility="{x:Bind ViewModel.ShowsTransliterationToggle, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
-                                Command="{x:Bind ViewModel.ToggleTransliterationCommand}"
-                                AutomationProperties.Name="{x:Bind ViewModel.TransliterationActionLabel, Mode=OneWay}"
-                                ToolTipService.ToolTip="{x:Bind ViewModel.TransliterationActionLabel, Mode=OneWay}" />
-                        <TextBlock x:Name="NarrowBody" controls:BoldMarkdownText.Text="{x:Bind ViewModel.Body, Mode=OneWay}"
-                                   FontFamily="{x:Bind ViewModel.BodyFontFamily, Mode=OneWay}"
-                                   FontSize="{x:Bind ViewModel.BodyFontSize, Mode=OneWay}"
-                                   Style="{StaticResource PrayerBodyTextStyle}" />
-                        <controls:PopeIntentionPrayerCard Publication="{x:Bind ViewModel.PublishedPopeIntention, Mode=OneWay}" />
-                    </StackPanel>
+                    </Grid>
                 </ScrollViewer>
             </Grid>
 
@@ -258,36 +260,38 @@
 
                 <ScrollViewer x:Name="WideReader" Grid.Column="2" HorizontalContentAlignment="Stretch" HorizontalScrollBarVisibility="Disabled"
                               FlowDirection="{x:Bind ViewModel.IsRightToLeft, Mode=OneWay, Converter={StaticResource BoolToFlowDirection}}">
-                    <StackPanel Spacing="16" Style="{StaticResource PrayerTextColumnStyle}" VerticalAlignment="Center">
-                        <StackPanel Spacing="2">
-                            <TextBlock Text="{x:Bind ViewModel.Subtitle, Mode=OneWay}" FontFamily="{x:Bind ViewModel.SubtitleFontFamily, Mode=OneWay}"
-                                       Visibility="{x:Bind ViewModel.HasSubtitle, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
-                                       Style="{StaticResource MutedSubtitleTextStyle}" />
-                            <TextBlock Text="{x:Bind ViewModel.Header, Mode=OneWay}" FontFamily="{x:Bind ViewModel.HeaderFontFamily, Mode=OneWay}" Style="{StaticResource SubHeadlineTextStyle}" />
-                        </StackPanel>
+                    <Grid HorizontalAlignment="Stretch">
+                        <StackPanel Spacing="16" Style="{StaticResource PrayerTextColumnStyle}" VerticalAlignment="Center">
+                            <StackPanel Spacing="2">
+                                <TextBlock Text="{x:Bind ViewModel.Subtitle, Mode=OneWay}" FontFamily="{x:Bind ViewModel.SubtitleFontFamily, Mode=OneWay}"
+                                           Visibility="{x:Bind ViewModel.HasSubtitle, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
+                                           Style="{StaticResource MutedSubtitleTextStyle}" />
+                                <TextBlock Text="{x:Bind ViewModel.Header, Mode=OneWay}" FontFamily="{x:Bind ViewModel.HeaderFontFamily, Mode=OneWay}" Style="{StaticResource SubHeadlineTextStyle}" />
+                            </StackPanel>
 
-                        <TextBlock controls:BoldMarkdownText.Text="{x:Bind ViewModel.Acclamation, Mode=OneWay}"
-                                   Visibility="{x:Bind ViewModel.HasAcclamation, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
-                                   FontFamily="{x:Bind ViewModel.AcclamationFontFamily, Mode=OneWay}"
-                                   FontSize="{x:Bind ViewModel.AcclamationFontSize, Mode=OneWay}"
-                                   FlowDirection="{x:Bind ViewModel.AcclamationIsRightToLeft, Mode=OneWay, Converter={StaticResource BoolToFlowDirection}}"
-                                   Style="{StaticResource PrayerBodyTextStyle}" Margin="0,0,0,12" />
-                        <!-- v0.7 reading aid: swap the body for its transliteration. -->
-                        <controls:AramaicScriptSelector Script="{x:Bind ViewModel.AramaicScript, Mode=OneWay}" SelectScriptCommand="{x:Bind ViewModel.SelectAramaicScriptCommand}"
-                                                       HorizontalAlignment="Center"
-                                                       Visibility="{x:Bind ViewModel.HasAramaicScriptSelector, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
-                        <Button Background="Transparent" Padding="12,8" MinHeight="44" HorizontalAlignment="Center"
-                                Content="{x:Bind ViewModel.TransliterationActionLabel, Mode=OneWay}"
-                                Visibility="{x:Bind ViewModel.ShowsTransliterationToggle, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
-                                Command="{x:Bind ViewModel.ToggleTransliterationCommand}"
-                                AutomationProperties.Name="{x:Bind ViewModel.TransliterationActionLabel, Mode=OneWay}"
-                                ToolTipService.ToolTip="{x:Bind ViewModel.TransliterationActionLabel, Mode=OneWay}" />
-                        <TextBlock x:Name="WideBody" controls:BoldMarkdownText.Text="{x:Bind ViewModel.Body, Mode=OneWay}"
-                                   FontFamily="{x:Bind ViewModel.BodyFontFamily, Mode=OneWay}"
-                                   FontSize="{x:Bind ViewModel.BodyFontSize, Mode=OneWay}"
-                                   Style="{StaticResource PrayerBodyTextStyle}" />
-                        <controls:PopeIntentionPrayerCard Publication="{x:Bind ViewModel.PublishedPopeIntention, Mode=OneWay}" />
-                    </StackPanel>
+                            <TextBlock controls:BoldMarkdownText.Text="{x:Bind ViewModel.Acclamation, Mode=OneWay}"
+                                       Visibility="{x:Bind ViewModel.HasAcclamation, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
+                                       FontFamily="{x:Bind ViewModel.AcclamationFontFamily, Mode=OneWay}"
+                                       FontSize="{x:Bind ViewModel.AcclamationFontSize, Mode=OneWay}"
+                                       FlowDirection="{x:Bind ViewModel.AcclamationIsRightToLeft, Mode=OneWay, Converter={StaticResource BoolToFlowDirection}}"
+                                       Style="{StaticResource PrayerBodyTextStyle}" Margin="0,0,0,12" />
+                            <!-- v0.7 reading aid: swap the body for its transliteration. -->
+                            <controls:AramaicScriptSelector Script="{x:Bind ViewModel.AramaicScript, Mode=OneWay}" SelectScriptCommand="{x:Bind ViewModel.SelectAramaicScriptCommand}"
+                                                           HorizontalAlignment="Center"
+                                                           Visibility="{x:Bind ViewModel.HasAramaicScriptSelector, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
+                            <Button Background="Transparent" Padding="12,8" MinHeight="44" HorizontalAlignment="Center"
+                                    Content="{x:Bind ViewModel.TransliterationActionLabel, Mode=OneWay}"
+                                    Visibility="{x:Bind ViewModel.ShowsTransliterationToggle, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
+                                    Command="{x:Bind ViewModel.ToggleTransliterationCommand}"
+                                    AutomationProperties.Name="{x:Bind ViewModel.TransliterationActionLabel, Mode=OneWay}"
+                                    ToolTipService.ToolTip="{x:Bind ViewModel.TransliterationActionLabel, Mode=OneWay}" />
+                            <TextBlock x:Name="WideBody" controls:BoldMarkdownText.Text="{x:Bind ViewModel.Body, Mode=OneWay}"
+                                       FontFamily="{x:Bind ViewModel.BodyFontFamily, Mode=OneWay}"
+                                       FontSize="{x:Bind ViewModel.BodyFontSize, Mode=OneWay}"
+                                       Style="{StaticResource PrayerBodyTextStyle}" />
+                            <controls:PopeIntentionPrayerCard Publication="{x:Bind ViewModel.PublishedPopeIntention, Mode=OneWay}" />
+                        </StackPanel>
+                    </Grid>
                 </ScrollViewer>
             </Grid>
         </Grid>

@@ -36,6 +36,8 @@ public sealed partial class RosaryPrayerPage : Page
         ViewModel = App.Services.GetRequiredService<RosaryViewModel>();
         ViewModel.Navigation = Router.For(this);
         InitializeComponent();
+        // Keep the clicked item attached until WinUI dismisses its menu.
+        LanguageFlyout.Opening += (_, _) => BuildLanguageFlyout();
         var chooseMystery = Loc.Tr("flow_choose_mystery", "Choose Mystery");
         Microsoft.UI.Xaml.Automation.AutomationProperties.SetName(MysteryPickerButton, chooseMystery);
         ToolTipService.SetToolTip(MysteryPickerButton, chooseMystery);
@@ -88,7 +90,6 @@ public sealed partial class RosaryPrayerPage : Page
                 else await ShowResumeDialogAsync();
             }
             if (ViewModel.RequiresMysteryChoice) await ShowMysteryChoiceDialogAsync();
-            BuildLanguageFlyout();
 
             if (ViewModel.Navigation.OwnerWindow is null) return;
             AutoAdvanceMenu.Populate(AutoAdvanceFlyout, () => _autoAdvance?.Restart());
@@ -141,7 +142,6 @@ public sealed partial class RosaryPrayerPage : Page
             ViewModel.CurrentLanguageRaw, async raw =>
         {
             await ViewModel.SelectLanguageAsync(raw);
-            BuildLanguageFlyout();
         });
 
     private void PauseAutoAdvance()
