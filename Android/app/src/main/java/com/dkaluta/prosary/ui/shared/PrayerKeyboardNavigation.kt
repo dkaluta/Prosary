@@ -11,6 +11,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
@@ -21,9 +22,11 @@ import androidx.compose.ui.input.key.onPreviewKeyEvent
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalWindowInfo
 import androidx.compose.ui.unit.LayoutDirection
+import androidx.activity.compose.LocalActivity
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import com.dkaluta.prosary.models.AppSettings
+import com.dkaluta.prosary.MainActivity
 
 /** Bluetooth, USB and built-in alphabetic keyboards count; IMEs, remotes and gamepads do not. */
 @Composable
@@ -79,7 +82,7 @@ internal fun prayerKeyboardAction(
     return action
 }
 
-/** Attached to the scrollable reader, never to the whole Activity or a global key monitor. */
+/** Keyboard shortcuts belong to the scrollable reader; phone volume keys use its live actions. */
 @Composable
 internal fun prayerKeyboardNavigationModifier(
     sessionActive: Boolean,
@@ -87,10 +90,28 @@ internal fun prayerKeyboardNavigationModifier(
     canGoBack: Boolean,
     onBack: () -> Unit,
     onNext: () -> Unit,
+    audioActive: Boolean = false,
 ): Modifier {
     val keyboardAvailable = rememberHardwareKeyboardAvailable()
     val window = LocalWindowInfo.current
     val lifecycleOwner = LocalLifecycleOwner.current
+    val activity = LocalActivity.current as? MainActivity
+    val volumeReaderActive = rememberUpdatedState(sessionActive)
+    val volumeAudioActive = rememberUpdatedState(audioActive)
+    val volumeCanGoBack = rememberUpdatedState(canGoBack)
+    val volumeOnBack = rememberUpdatedState(onBack)
+    val volumeOnNext = rememberUpdatedState(onNext)
+    DisposableEffect(activity, lifecycleOwner, window) {
+        val unregister = activity?.registerPrayerVolumeNavigation(PrayerVolumeNavigationTarget(
+            readerActive = { volumeReaderActive.value && window.isWindowFocused &&
+                lifecycleOwner.lifecycle.currentState.isAtLeast(Lifecycle.State.RESUMED) },
+            audioActive = { volumeAudioActive.value },
+            canGoBack = { volumeCanGoBack.value },
+            onBack = { volumeOnBack.value() },
+            onNext = { volumeOnNext.value() },
+        ))
+        onDispose { unregister?.invoke() }
+    }
     val focusRequester = remember { FocusRequester() }
     var readerFocused by remember { mutableStateOf(false) }
     LaunchedEffect(keyboardAvailable, sessionActive) {

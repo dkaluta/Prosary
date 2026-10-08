@@ -813,6 +813,40 @@ final class AppShellUITests: XCTestCase {
   }
 
   @MainActor
+  func testAlphabetChoiceIsCenteredAcrossPrayerSteps() throws {
+    let app = XCUIApplication()
+    app.launchArguments = ["-useInMemoryStore", "-AppleLanguages", "(en)", "-interfaceLanguageCode", "en",
+                           "-defaultLanguageCode", "arc", "-aramaicDefaultScript", "Hebr", "-autoAdvanceSeconds", "0"]
+    app.launch()
+    openPrayTab(in: app)
+    app.buttons["rosaryCard"].tap()
+    let preset = app.buttons["prayDefaultPreset"].firstMatch
+    XCTAssertTrue(preset.waitForExistence(timeout: 10))
+    preset.tap()
+    let body = app.staticTexts["prayerBodyText"]
+    let syriac = app.buttons["transliterationToggle.Syrc"]
+    let hebrew = app.buttons["transliterationToggle.Hebr"]
+    XCTAssertTrue(body.waitForExistence(timeout: 10))
+    XCTAssertTrue(syriac.waitForExistence(timeout: 5))
+    XCTAssertEqual(syriac.label, "Syriac Script")
+    XCTAssertEqual(hebrew.label, "Hebrew Script")
+    let textColumnCenter = app.windows.firstMatch.frame.midX
+    XCTAssertEqual(syriac.frame.union(hebrew.frame).midX, textColumnCenter, accuracy: 1)
+    syriac.tap()
+    let switched = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+      body.label.unicodeScalars.contains { (0x0700...0x074F).contains($0.value) }
+    }, object: nil)
+    XCTAssertEqual(XCTWaiter.wait(for: [switched], timeout: 5), .completed)
+    app.buttons["prayerFlowNextButton"].tap()
+    XCTAssertTrue(body.waitForExistence(timeout: 5))
+    XCTAssertEqual(syriac.frame.union(hebrew.frame).midX, textColumnCenter, accuracy: 1)
+    let screenshot = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
+    screenshot.name = "aramaic-centered-alphabet-shared-text-column"
+    screenshot.lifetime = .keepAlways
+    add(screenshot)
+  }
+
+  @MainActor
   func testBasicPrayerLanguagePickerUpdatesFlowAndList() throws {
     let app = XCUIApplication()
     app.launchArguments = ["-resetStore", "-AppleLanguages", "(en)", "-defaultLanguageCode", "en",
@@ -829,9 +863,12 @@ final class AppShellUITests: XCTestCase {
     XCTAssertTrue(ourFather.waitForExistence(timeout: 5))
     XCTAssertTrue(ourFather.label.contains("צלותא מרניתא"))
     ourFather.tap()
-    XCTAssertTrue(app.buttons["transliterationToggle"].waitForExistence(timeout: 5))
+    let syriacButton = app.buttons["transliterationToggle.Syrc"]
+    XCTAssertTrue(syriacButton.waitForExistence(timeout: 5))
+    XCTAssertEqual(syriacButton.label, "Syriac Script")
+    XCTAssertEqual(app.buttons["transliterationToggle.Hebr"].label, "Hebrew Script")
     XCTAssertTrue(app.staticTexts["prayerStepTitle"].label.contains("צלותא"))
-    app.buttons["transliterationToggle"].tap()
+    syriacButton.tap()
     for identifier in ["prayerStepTitle", "prayerFlowTitle"] {
       let heading = app.staticTexts[identifier]
       let syriacHeading = NSPredicate { _, _ in
@@ -845,9 +882,19 @@ final class AppShellUITests: XCTestCase {
     attachment.lifetime = .keepAlways
     add(attachment)
     app.buttons["languageMenu"].tap()
-    app.buttons["basicPrayerLanguage-default"].tap()
-    XCTAssertEqual(app.staticTexts["prayerFlowTitle"].label, "Our Father")
+    let appSetting = app.buttons["basicPrayerLanguage-default"]
+    XCTAssertTrue(appSetting.waitForExistence(timeout: 5))
+    XCTAssertEqual(appSetting.label, "App Setting")
+    let languageMenu = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
+    languageMenu.name = "basic-prayer-default-language-menu"
+    languageMenu.lifetime = .keepAlways
+    add(languageMenu)
+    appSetting.tap()
+    let defaultHeading = XCTNSPredicateExpectation(
+      predicate: NSPredicate(format: "label == %@", "Our Father"), object: app.staticTexts["prayerFlowTitle"])
+    XCTAssertEqual(XCTWaiter.wait(for: [defaultHeading], timeout: 5), .completed)
     XCTAssertFalse(app.buttons["transliterationToggle"].exists)
+    XCTAssertFalse(app.buttons["transliterationToggle.Syrc"].exists)
     app.buttons["prayerFlowNextButton"].tap()
     XCTAssertTrue(ourFather.waitForExistence(timeout: 5))
     XCTAssertTrue(ourFather.label.contains("Our Father"))
@@ -859,6 +906,7 @@ final class AppShellUITests: XCTestCase {
     app.launchArguments = ["-useInMemoryStore", "-AppleLanguages", "(en)", "-interfaceLanguageCode", "", "-defaultLanguageCode", "arc",
                            "-autoAdvanceSeconds", "0"]
     func openScriptSetting() -> XCUIElement {
+      openPrayTab(in: app)
       XCTAssertTrue(app.buttons["settingsButton"].waitForExistence(timeout: 10))
       app.buttons["settingsButton"].tap()
       // Expand the sheet using its header so the gesture does not also scroll
@@ -910,7 +958,7 @@ final class AppShellUITests: XCTestCase {
       attachment.name = "aramaic-default-\(script)"
       attachment.lifetime = .keepAlways
       add(attachment)
-      app.buttons["transliterationToggle"].tap()
+      app.buttons["transliterationToggle.\(script == "Syrc" ? "Hebr" : "Syrc")"].tap()
       expectScript(script != "Syrc")
       app.buttons["prayerFlowNextButton"].tap()
       expectScript(script != "Syrc")

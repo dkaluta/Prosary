@@ -77,13 +77,21 @@ data class FeastObservance(
     val sections: List<CalendarTextSection> = emptyList(),
     val reflectionByLanguage: Map<String, String>? = null,
 ) {
-    fun description(language: String): SaintDescription? = textItem(descriptionByLanguage, language)
+    fun description(language: String): SaintDescription? = textItem(descriptionByLanguage, language, includeSections = true)
     fun reflection(language: String): SaintDescription? = textItem(reflectionByLanguage, language)
 
-    private fun textItem(textByLanguage: Map<String, String>?, language: String): SaintDescription? {
+    private fun textItem(textByLanguage: Map<String, String>?, language: String, includeSections: Boolean = false): SaintDescription? {
         val normalized = LanguageCatalog.uiLanguageCode(language)
         val code = LanguageCatalog.baseLanguage(normalized) ?: normalized
-        val body = textByLanguage?.get(code)?.trim()?.takeIf(String::isNotEmpty) ?: return null
+        val prose = textByLanguage?.get(code)?.trim().orEmpty()
+        val localizedSections = if (includeSections) sections.mapNotNull { it.localized(code) } else emptyList()
+        val sectionProse = localizedSections.joinToString("\n\n") { "${it.title}:\n${it.text}" }
+        // Partial localization or unmatched preambles must never discard original source prose.
+        val completeSections = localizedSections.takeIf {
+            it.isNotEmpty() && (prose.isEmpty() || normalizeSectionProse(sectionProse) == normalizeSectionProse(prose))
+        }.orEmpty()
+        val body = prose.ifEmpty { sectionProse.takeIf { completeSections.isNotEmpty() }.orEmpty() }
+            .takeIf(String::isNotEmpty) ?: return null
         return SaintDescription(
             identity = identity,
             title = HebrewDisplayText.unpoint(titleByLanguage.localized(code) ?: title),
@@ -95,6 +103,7 @@ data class FeastObservance(
                 }.getOrDefault(false)
             },
             credit = descriptionCreditByLanguage?.get(code)?.trim()?.takeIf(String::isNotEmpty),
+            sections = completeSections,
         )
     }
 }
@@ -102,10 +111,31 @@ data class FeastObservance(
 /** Exact source sections are reusable by calendar/reflection widgets without reparsing prose. */
 @Serializable
 data class CalendarTextSection(val id: String, val titleByLanguage: Map<String, String>,
-    val textByLanguage: Map<String, String>)
+    val textByLanguage: Map<String, String>) {
+    fun localized(language: String): LocalizedCalendarTextSection? {
+        val normalized = LanguageCatalog.uiLanguageCode(language)
+        val code = LanguageCatalog.baseLanguage(normalized) ?: normalized
+        val title = titleByLanguage[code]?.trim()?.takeIf(String::isNotEmpty) ?: return null
+        val text = textByLanguage[code]?.trim()?.takeIf(String::isNotEmpty) ?: return null
+        return LocalizedCalendarTextSection(id, title, text)
+    }
+}
+
+/** IDs and ordering belong to each calendar's source; render arbitrary rite-specific sections. */
+data class LocalizedCalendarTextSection(val id: String, val title: String, val text: String)
+
+private fun normalizeSectionProse(value: String) = value.trim().replace(Regex("[\\s\\p{Z}]+"), " ")
 
 data class SaintDescription(val identity: String, val title: String, val text: String,
-    val sourceURL: String? = null, val credit: String? = null)
+    val sourceURL: String? = null, val credit: String? = null,
+    val sections: List<LocalizedCalendarTextSection> = emptyList()) {
+    /** Expanded prose need not repeat an identical heading already supplied by its parent. */
+    fun shouldShowTitle(beneath: String?): Boolean {
+        fun normalized(value: String) = HebrewDisplayText.unpoint(value)
+            .trim().replace(Regex("[\\s\\p{Z}]+"), " ")
+        return beneath == null || normalized(title) != normalized(beneath)
+    }
+}
 
 @Serializable
 data class PopeIntention(

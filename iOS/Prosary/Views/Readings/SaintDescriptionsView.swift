@@ -18,16 +18,25 @@ struct SaintDescriptionsView: View {
         VStack(alignment: .leading, spacing: 20) {
           ForEach(Array(descriptions.enumerated()), id: \.offset) { index, description in
             VStack(alignment: .leading, spacing: 8) {
-              if showsTitle(description) {
+              if description.showsTitle(beneath: feast.localizedTitle(language)) {
                 Text(verbatim: description.title)
                   .font(.headline)
                   .accessibilityAddTraits(.isHeader)
               }
-              Text(verbatim: description.text)
-                .font(.body)
-                .lineSpacing(3)
-                .fixedSize(horizontal: false, vertical: true)
-                .accessibilityIdentifier("today.saintDescription.\(index)")
+              if description.sections.isEmpty {
+                prose(description.text)
+                  .accessibilityIdentifier("today.saintDescription.\(index)")
+              } else {
+                ForEach(Array(description.sections.enumerated()), id: \.offset) { _, section in
+                  VStack(alignment: .leading, spacing: 8) {
+                    Text(verbatim: HebrewDisplayText.unpointed(section.title))
+                      .font(.headline)
+                      .accessibilityAddTraits(.isHeader)
+                    prose(section.text)
+                  }
+                  .accessibilityIdentifier("today.saintDescription.\(index).section.\(section.id)")
+                }
+              }
               if let credit = description.credit {
                 Text(verbatim: credit)
                   .font(.caption).foregroundStyle(.secondary)
@@ -55,11 +64,11 @@ struct SaintDescriptionsView: View {
     }
   }
 
-  private func showsTitle(_ description: FeastSaintDescription) -> Bool {
-    #if os(macOS)
-    return descriptions.count != 1 || description.title != feast.localizedTitle(language)
-    #else
-    return true
-    #endif
+  private func prose(_ text: String) -> some View {
+    Text(verbatim: text)
+      .font(.body)
+      .lineSpacing(3)
+      .fixedSize(horizontal: false, vertical: true)
   }
+
 }

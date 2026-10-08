@@ -371,11 +371,7 @@ struct BibleChapterView: View {
 struct BibleScriptPicker: View {
   @Binding var script: String
   var body: some View {
-    Picker(String(localized: "readings.script", defaultValue: "Aramaic Script", bundle: UILanguage.bundle, locale: UILanguage.locale), selection: $script) {
-      Text(String(localized: "settings.script.hebrew", defaultValue: "Hebrew Script", bundle: UILanguage.bundle, locale: UILanguage.locale)).tag("Hebr")
-      Text(String(localized: "settings.script.syriac", defaultValue: "Syriac Script", bundle: UILanguage.bundle, locale: UILanguage.locale)).tag("Syrc")
-    }
-    .pickerStyle(.segmented).accessibilityIdentifier("bible.scriptPicker")
+    AramaicScriptPicker(script: $script, accessibilityIdentifier: "bible.scriptPicker")
   }
 }
 

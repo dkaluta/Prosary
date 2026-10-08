@@ -90,27 +90,32 @@ struct FeastObservance: Decodable, Equatable {
   let reflectionByLanguage: [String: String]?
 
   func saintDescription(language: String) -> FeastSaintDescription? {
-    textItem(descriptionByLanguage, language: language)
+    textItem(descriptionByLanguage, language: language, includesSections: true)
   }
 
   func reflection(language: String) -> FeastSaintDescription? {
     textItem(reflectionByLanguage, language: language)
   }
 
-  private func textItem(_ texts: [String: String]?, language: String) -> FeastSaintDescription? {
+  private func textItem(_ texts: [String: String]?, language: String, includesSections: Bool = false) -> FeastSaintDescription? {
     let code = UILanguage.normalized(language)
-    guard let description = texts?[code],
-          !description.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else { return nil }
+    let description = texts?[code].flatMap { $0.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? nil : $0 }
+    let localizedSections = includesSections ? (sections ?? []).compactMap { $0.localized(code) } : []
+    let assembledSections = localizedSections.map { "\($0.title):\n\($0.text)" }.joined(separator: "\n\n")
+    let displayedSections = !localizedSections.isEmpty
+      && (description == nil || normalizedCalendarProse(assembledSections) == normalizedCalendarProse(description ?? ""))
+      ? localizedSections : []
+    guard let text = description ?? (displayedSections.isEmpty ? nil : assembledSections) else { return nil }
     let source = descriptionSourceByLanguage?[code].flatMap(URL.init(string:))
     let sourceURL = source.flatMap { url in
       ["https", "http"].contains(url.scheme?.lowercased() ?? "") && url.host != nil ? url : nil
     }
     return FeastSaintDescription(
       title: HebrewDisplayText.unpointed(localizedValue(titleByLanguage, language: code) ?? title),
-      text: description, sourceURL: sourceURL,
+      text: text, sourceURL: sourceURL,
       credit: descriptionCreditByLanguage?[code].flatMap {
         $0.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? nil : $0
-      })
+      }, sections: displayedSections)
   }
 }
 
@@ -119,6 +124,24 @@ struct CalendarTextSection: Decodable, Equatable {
   let id: String
   let titleByLanguage: [String: String]
   let textByLanguage: [String: String]
+
+  func localized(_ language: String) -> LocalizedCalendarTextSection? {
+    let code = UILanguage.normalized(language)
+    guard let title = titleByLanguage[code], let text = textByLanguage[code],
+          !title.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty,
+          !text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else { return nil }
+    return LocalizedCalendarTextSection(id: id, title: title, text: text)
+  }
+}
+
+struct LocalizedCalendarTextSection: Equatable {
+  let id: String
+  let title: String
+  let text: String
+}
+
+private func normalizedCalendarProse(_ value: String) -> String {
+  value.split(whereSeparator: \.isWhitespace).joined(separator: " ")
 }
 
 struct FeastSaintDescription: Equatable {
@@ -126,6 +149,17 @@ struct FeastSaintDescription: Equatable {
   let text: String
   let sourceURL: URL?
   let credit: String?
+  var sections: [LocalizedCalendarTextSection] = []
+
+  /// The surrounding calendar already shows the day's title. Retain separate observance
+  /// names, but avoid printing that same heading again above its explanatory prose.
+  func showsTitle(beneath parentTitle: String) -> Bool {
+    func normalized(_ value: String) -> String {
+      HebrewDisplayText.unpointed(value).split(whereSeparator: \.isWhitespace).joined(separator: " ")
+    }
+    let heading = normalized(title)
+    return !heading.isEmpty && heading != normalized(parentTitle)
+  }
 }
 
 struct PopeIntention: Decodable, Equatable {

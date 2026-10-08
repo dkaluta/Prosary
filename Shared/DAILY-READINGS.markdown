@@ -396,7 +396,8 @@ Paired-script editions additionally declare `textScript` and `transliteratedText
 every verse then requires nonempty `transliteratedText`. Peshitta uses primary Hebrew-square
 `Hebr` and alternate source Syriac `Syrc`, matching the existing Aramaic prayer contract.
 An incomplete pair makes the entire passage unavailable. Native readers initialize from
-`aramaicDefaultScript` and offer the same Hebrew/Syriac choice, rendering the selected
+`aramaicDefaultScript` and offer the same script control as prayers (Syriac `ܐ` first,
+Hebrew `א` second, with full localized accessibility labels), rendering the selected
 verse field with its actual script, typeface and RTL direction. They never convert Scripture
 or substitute the other field when the selected script is missing.
 

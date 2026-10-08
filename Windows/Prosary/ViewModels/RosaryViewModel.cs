@@ -113,6 +113,7 @@ public partial class RosaryViewModel : ObservableObject, IPrayerStepFlowViewMode
     // Alternate-script reading aid. Aramaic mystery announcements use Hebrew-square
     // Peshitta text as their primary body and the source Syriac as this per-step alternate.
     [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(ShowsTransliterationToggle))]
     private bool _hasTransliteration;
 
     [ObservableProperty]
@@ -122,6 +123,22 @@ public partial class RosaryViewModel : ObservableObject, IPrayerStepFlowViewMode
     public string TransliterationActionLabel => ShowsTransliteration
         ? Loc.Tr("flow_show_original_text", "Show Original Text")
         : Loc.Tr("flow_show_transliteration", "Show Transliteration");
+
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(ShowsTransliterationToggle))]
+    private bool _hasAramaicScriptSelector;
+    public bool ShowsTransliterationToggle => HasTransliteration && !HasAramaicScriptSelector;
+    public string AramaicScript => PrayerTypography.ScriptOf(Body) == PrayerTypography.Script.Syriac ? "Syrc" : "Hebr";
+
+    [RelayCommand]
+    private void SelectAramaicScript(string script)
+    {
+        if (!HasAramaicScriptSelector || script is not ("Hebr" or "Syrc")) return;
+        if (_aramaicSessionScript is not null) _aramaicSessionScript = script;
+        else if (_steps.ElementAtOrDefault(_index)?.TransliteratedBody is { } alternate)
+            ShowsTransliteration = PrayerTypography.ScriptOf(alternate) == (script == "Syrc" ? PrayerTypography.Script.Syriac : PrayerTypography.Script.Hebrew);
+        RenderCurrentStep();
+    }
 
     [RelayCommand]
     private void ToggleTransliteration()
@@ -435,6 +452,7 @@ public partial class RosaryViewModel : ObservableObject, IPrayerStepFlowViewMode
             CanGoBack = CanGoToPreviousMystery = CanGoToNextMystery = false;
             IsLastStep = false;
             HasTransliteration = false;
+            HasAramaicScriptSelector = false;
             PublishedPopeIntention = null;
             MysteryImageKey = "cross_placeholder";
             RebuildBeads();
@@ -450,9 +468,11 @@ public partial class RosaryViewModel : ObservableObject, IPrayerStepFlowViewMode
         if (_aramaicSessionScript is not null)
             ShowsTransliteration = PrayerTranslations.InitialTransliteration(_languageCode, step.Body, step.TransliteratedBody, _aramaicSessionScript) ?? false;
         HasTransliteration = step.TransliteratedBody is not null;
+        HasAramaicScriptSelector = PrayerTypography.HasAramaicScriptPair(step.Body, step.TransliteratedBody);
         Body = ShowsTransliteration && step.TransliteratedBody is { } transliterated
             ? transliterated
             : step.Body;
+        OnPropertyChanged(nameof(AramaicScript));
         PublishedPopeIntention = PopeIntentionPrayerContext.Resolve(step,
             TodayInfoStore.Intention(DateOnly.FromDateTime(DateTime.Now)), _languageCode,
             AppSettings.ShowPopeIntentionInPrayers);

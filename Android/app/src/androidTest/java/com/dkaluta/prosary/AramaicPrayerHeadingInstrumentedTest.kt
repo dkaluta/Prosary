@@ -6,7 +6,6 @@ import androidx.compose.ui.semantics.SemanticsProperties
 import androidx.compose.ui.semantics.getOrNull
 import androidx.compose.ui.test.assertTextEquals
 import androidx.compose.ui.test.hasTestTag
-import androidx.compose.ui.test.hasContentDescription
 import androidx.compose.ui.test.junit4.createEmptyComposeRule
 import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithTag
@@ -69,7 +68,7 @@ class AramaicPrayerHeadingInstrumentedTest {
     @Test fun missingAlternateKeepsHeadingInTheActualBodyScript() {
         open("scriptFallback", "Syrc")
         assertHeading("rosary", "paterNosterTitle", syriac = false, checkTopTitle = true)
-        compose.onNodeWithContentDescription(label(R.string.flow_show_transliteration)).assertDoesNotExist()
+        compose.onNodeWithTag("transliterationToggle").assertDoesNotExist()
         assertEquals("Syrc", AppSettings.aramaicDefaultScript)
     }
 
@@ -105,9 +104,10 @@ class AramaicPrayerHeadingInstrumentedTest {
     }
 
     private fun toggle() {
-        val description = label(R.string.flow_show_transliteration)
-        compose.onNodeWithTag("prayerBody").performScrollToNode(hasContentDescription(description))
-        compose.onNodeWithContentDescription(description).performClick()
+        compose.onNodeWithTag("prayerBody").performScrollToNode(hasTestTag("transliterationToggle"))
+        val selectedSyriac = compose.onNodeWithTag("aramaicScript.Syrc").fetchSemanticsNode()
+            .config[SemanticsProperties.Selected]
+        compose.onNodeWithTag(if (selectedSyriac) "aramaicScript.Hebr" else "aramaicScript.Syrc").performClick()
     }
 
     private fun label(resource: Int): String {

@@ -168,7 +168,7 @@ presence on a phone is not, by itself, a reason to include it on Mac.
   and stack it underneath in narrower windows. Show the resolved edition caption only for
   Follow Interface Language in this compact control. Readings precede the quieter monthly
   intention; source descriptions retain their credits and omit a duplicate single-saint title.
-  The Today options popover owns its calendar, Byzantine Pascha choice and row toggles;
+  The Today pane of app Settings owns its calendar, Byzantine Pascha choice and row toggles;
   Julian/Gregorian Pascha switches both Byzantine datasets. Missing data hides only that row.
   Interface language controls the complete view, including Hebrew/Arabic RTL; prayer-language
   settings do not change it. Sunday omits the supplemental day heading; other rites never inherit
@@ -176,9 +176,11 @@ presence on a phone is not, by itself, a reason to include it on Mac.
   the user browses another date, and returns to following after Today. Calendar Data opens About
   with the required source credits. Keep data, localization and citation contracts shared with
   the other platforms while using a desktop reading layout.
-- **Settings:** use a standard Settings scene with four native panes: Prayer Language, Praying,
-  Typography, and Downloads. Preferences apply immediately; Today options live in the Today
-  reference view rather than adding a Settings pane.
+- **Settings:** use a standard Settings scene with native panes for Prayer Language, Praying,
+  Today, Appearance, and Downloads. Preferences apply immediately. Today calendar, visibility,
+  reading presentation, card color and reminder preferences live in the dedicated Today pane
+  under Command-comma. The Today toolbar has no settings icon. Date navigation
+  and Bible edition selection remain in the reference view.
   Pane selection is local Mac presentation state. Native controls expose meaningful
   accessibility labels and values. App settings control defaults; each named prayer copy retains
   its own saved prayer settings. Auto-advance freezes the current app default on a copy's first

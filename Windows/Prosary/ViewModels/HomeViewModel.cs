@@ -526,7 +526,7 @@ public partial class HomeViewModel : ObservableObject
             IsSaintDescriptionsExpanded = false;
             OnPropertyChanged(nameof(SaintDescriptionsTitle));
         }
-        SaintDescriptions = TodayFeast?.LocalizedDescriptions(TodayLanguage) ?? [];
+        SaintDescriptions = TodayFeast?.LocalizedDescriptions(TodayLanguage, TodayFeastTitle) ?? [];
         MonthIntention = AppSettings.ShowTodayIntention ? TodayInfoStore.Intention(today) : null;
         TodayDay = TodayInfoStore.LiturgicalDay(today);
         TodayReadings = AppSettings.ShowTodayReadings ? TodayInfoStore.Readings(today) : [];

@@ -92,7 +92,11 @@ idiom (Swift `struct`, Kotlin `data class`, C# `sealed record`):
   Aramaic's native label is `ܐܪܡܐܝܬ / ארמית`.
   `aramaicDefaultScript` chooses Hebrew letters (`Hebr`, the initial default) or Syriac
   letters (`Syrc`) when entering an Aramaic prayer. The in-prayer script switch can override
-  that choice for the session. Aramaic prayer headings use the sourced heading pair from the
+  that choice for the session. Prayers and Scripture share a legible two-choice script control:
+  Syriac `ܐ` first, then Hebrew `א`, with covering fonts, selected state and localized full
+  accessibility labels. Settings lists Syriac first without changing an existing script choice
+  or the initial `Hebr` default. Other reading-aid pairs retain their ordinary toggle.
+  Aramaic prayer headings use the sourced heading pair from the
   active bundle or shared Rosary prayers, matching the script of the body actually displayed.
   The initial script setting and the session toggle update headings together with the body,
   including sourced basic-prayer navigation headings and repeated-prayer counters. Unknown
@@ -338,6 +342,13 @@ only a private device-local copy, with native gallery selection and replacement/
 The reminders card lists actual enabled reminders and opens their existing editors. Feast
 explanations retain their exact-language source credit; missing prose stays explicit. The
 reflection card shows exact-language source text from the provisional Mission calendar. See [schema/home-widgets.json](schema/home-widgets.json).
+Expanded feast descriptions omit a heading that repeats the parent feast title after display
+normalization (Hebrew pointing and whitespace); distinct saint headings remain visible.
+Each observance can supply its own ordered `sections` with exact-language source headings and
+prose. Native cards render them as dedicated sections, so rites can use different section IDs,
+names and orders without a new screen or a hard-coded rite switch. Full source prose remains
+the fallback when sections are incomplete or do not cover it; foreign-language sections are
+never borrowed. Reflection widgets consume only the reflection, not the entire biography.
 Home and Readings share the same window's civil-date selection, including a deliberately
 browsed day; choosing a Home shortcut changes Readings mode without resetting that date.
 
@@ -462,11 +473,12 @@ quits another minimized session.
 The Dock menu and File → Recently Prayed retain up to eight playable routes locally, refresh
 their titles and remove unavailable entries. Selecting a recent prayer opens that prayer.
 
-Mac Settings uses four native panes: Language, Praying, Appearance, and Downloads.
+Mac Settings uses five native panes: Language, Praying, Appearance, Today, and Downloads.
 Today is a separate Library sidebar reference view, with its own date navigator, full reading
-and Torah citations, expandable Bible passages, an edition picker, and options popover for
-calendar/Pascha and row visibility; it is not a Settings
-pane. Date browsing leaves prayer sessions unchanged, and the shared Today data/language
+and Torah citations, expandable Bible passages and an edition picker. Calendar/Pascha,
+visibility, presentation and reminders live in the Today pane of native app Settings under
+Command-comma; the reference view has no settings toolbar icon.
+Date browsing leaves prayer sessions unchanged, and the shared Today data/language
 contract continues to apply. Editors put Cancel/Escape and Save/Return in bottom-trailing
 footers; informational errors use OK. Library icon/list views support selection and Return.
 Prayer text can be selected and copied.
@@ -555,12 +567,23 @@ its focused reader receives navigation, while library/settings arrows retain the
 behavior. Enter and Backspace remain available when both preferences are off. Traditional
 terminal input cannot distinguish held-key repeats from separate presses.
 
+Android also offers `volumeButtonNavigationEnabled`, off by default and independent of hardware
+keyboard settings. In an active prayer reader, Volume Up invokes advance/count/Finish and Volume
+Down invokes Back, independent of interface direction. Held keys advance only once. The buttons
+retain native volume control during prayer narration, speech, other active audio or calls, and
+outside the active reader. Dialogs, paused sessions and inactive windows keep native handling.
+
 On narrow phones the prayer-flow controls sit in a horizontally scrollable row below the
 title, keeping long titles clear of the buttons. Wider layouts retain native toolbar controls.
 Their ordering and previous/next section arrows follow the **interface** direction, independently
 of the prayer body: in Hebrew/Arabic UI, Next is on the left and Back on the right, with matching
 section-jump icons. Actions remain semantically previous/next. Apple retains native glass where
 supported, with its existing older-system and visionOS styling.
+All prayer kinds use the same responsive reading column with consistent inner margins and a
+640-point/dp maximum width. Short bodies and acclamations fill that column just as long prayers
+do. Headings and the alphabet switch are centered; prose aligns to the start of the actual
+displayed script, including reading aids and fallback text, independently of interface direction.
+Adaptive artwork and bead tracks keep their own layouts and do not change the text's inner edges.
 See [Apple interface materials](APPLE-INTERFACE-MATERIALS.markdown) for the control/content
 boundary and native iPhone, Mac and visionOS presentation rules.
 
@@ -2032,6 +2055,10 @@ the script-conversion and pack-parity checks.
 
 
 ## October 2026 calendar and prayer refinements
+
+Mac app Settings (`Command-,`) includes a dedicated Today pane for calendar, visibility,
+reading presentation, card color and Today reminders. Browsed dates, calendar navigation and
+scripture edition remain in Today; its toolbar omits a duplicate settings icon.
 
 The Rosary's **Choose Mystery** control lists all four sets, each with five
 mysteries: Joyful, Sorrowful, Glorious and Luminous. Selecting a mystery already in

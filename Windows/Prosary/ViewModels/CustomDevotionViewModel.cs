@@ -84,7 +84,10 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
 
     // The versicle/response prayer shown above a scripture body in the regular typeface.
     [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(AcclamationIsRightToLeft))]
     private string _acclamation = string.Empty;
+
+    public bool AcclamationIsRightToLeft => PrayerTypography.IsRightToLeft(PrayerTypography.ScriptOf(Acclamation));
 
     [ObservableProperty]
     private bool _hasAcclamation;
@@ -209,6 +212,7 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
     // --- rendering; sticky across steps for pray-along sessions. ---
 
     [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(ShowsTransliterationToggle))]
     private bool _hasTransliteration;
 
     [ObservableProperty]
@@ -218,6 +222,22 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
     public string TransliterationActionLabel => ShowsTransliteration
         ? Loc.Tr("flow_show_original_text", "Show Original Text")
         : Loc.Tr("flow_show_transliteration", "Show Transliteration");
+
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(ShowsTransliterationToggle))]
+    private bool _hasAramaicScriptSelector;
+    public bool ShowsTransliterationToggle => HasTransliteration && !HasAramaicScriptSelector;
+    public string AramaicScript => PrayerTypography.ScriptOf(Body) == PrayerTypography.Script.Syriac ? "Syrc" : "Hebr";
+
+    [RelayCommand]
+    private void SelectAramaicScript(string script)
+    {
+        if (!HasAramaicScriptSelector || script is not ("Hebr" or "Syrc")) return;
+        if (_aramaicSessionScript is not null) _aramaicSessionScript = script;
+        else if (_steps.ElementAtOrDefault(_index)?.TransliteratedBody is { } alternate)
+            ShowsTransliteration = PrayerTypography.ScriptOf(alternate) == (script == "Syrc" ? PrayerTypography.Script.Syriac : PrayerTypography.Script.Hebrew);
+        RenderCurrentStep();
+    }
 
     [RelayCommand]
     private void ToggleTransliteration()
@@ -677,6 +697,8 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
         if (_steps.Count == 0)
         {
             PublishedPopeIntention = null;
+            HasTransliteration = false;
+            HasAramaicScriptSelector = false;
             return;
         }
 
@@ -689,9 +711,11 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
         if (_aramaicSessionScript is not null)
             ShowsTransliteration = PrayerTranslations.InitialTransliteration(_languageCode, step.Body, step.TransliteratedBody, _aramaicSessionScript) ?? false;
         HasTransliteration = step.TransliteratedBody is not null;
+        HasAramaicScriptSelector = PrayerTypography.HasAramaicScriptPair(step.Body, step.TransliteratedBody);
         Body = ShowsTransliteration && step.TransliteratedBody is { } transliterated
             ? transliterated
             : step.Body;
+        OnPropertyChanged(nameof(AramaicScript));
         PublishedPopeIntention = PopeIntentionPrayerContext.Resolve(step,
             TodayInfoStore.Intention(DateOnly.FromDateTime(DateTime.Now)), _languageCode ?? string.Empty,
             AppSettings.ShowPopeIntentionInPrayers);

@@ -49,9 +49,10 @@
             <CommandBar DefaultLabelPosition="Right" Background="Transparent" HorizontalContentAlignment="Left">
                 <AppBarButton Label="{x:Bind ViewModel.PreviousLabel}" Icon="Back" Command="{x:Bind ViewModel.PreviousChapterCommand}" IsEnabled="{x:Bind ViewModel.HasPrevious, Mode=OneWay}" />
                 <AppBarButton Label="{x:Bind ViewModel.NextLabel}" Icon="Forward" Command="{x:Bind ViewModel.NextChapterCommand}" IsEnabled="{x:Bind ViewModel.HasNext, Mode=OneWay}" />
-                <AppBarButton Label="{x:Bind ViewModel.ScriptLabel, Mode=OneWay}" Icon="Font" Command="{x:Bind ViewModel.ToggleScriptCommand}"
-                              Visibility="{x:Bind ViewModel.HasScriptToggle, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
             </CommandBar>
+            <controls:AramaicScriptSelector Script="{x:Bind ViewModel.EffectiveScript, Mode=OneWay}" SelectScriptCommand="{x:Bind ViewModel.SelectScriptCommand}"
+                                           AutomationProperties.AutomationId="bibleScript"
+                                           Visibility="{x:Bind ViewModel.HasScriptToggle, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
             <TextBlock Text="{x:Bind ViewModel.PartialNotice}" TextWrapping="Wrap" FontWeight="SemiBold"
                        Visibility="{x:Bind ViewModel.IsPartial, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
             <TextBlock Text="{x:Bind ViewModel.ChapterHeading, Mode=OneWay}" FontWeight="Bold" FontSize="22"

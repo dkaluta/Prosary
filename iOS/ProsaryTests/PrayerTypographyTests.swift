@@ -49,6 +49,13 @@ final class PrayerTypographyTests: XCTestCase {
   }
 
   #if canImport(UIKit)
+  func testShortAndLongPrayerBodiesFillTheSameProposedColumn() {
+    for text in ["Fixture.", String(repeating: "Long fixture paragraph. ", count: 30), "טקסט לדוגמה.", "ܐܒܘܢ ܕܒܫܡܝܐ"] {
+      let host = UIHostingController(rootView: Text(text).prayerTextStartAlignment(text: text, languageCode: "en"))
+      XCTAssertEqual(host.sizeThatFits(in: CGSize(width: 280, height: 10_000)).width, 280, accuracy: 0.1)
+    }
+  }
+
   func testPrayerTextSizeChangesBodyLayoutWhileScriptureAndDynamicTypeRemainIndependent() {
     let body = PrayerTranslations.get(languageCode: "en", key: .paterNoster)
     func height(percent: Int, scripture: Bool, dynamic: DynamicTypeSize = .large) -> CGFloat {

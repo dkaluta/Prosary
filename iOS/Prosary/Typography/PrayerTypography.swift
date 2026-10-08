@@ -100,6 +100,13 @@ enum PrayerTypography {
     case hebrew, arabic, syriac, latin, cyrillic, greek
   }
 
+  static func isRightToLeft(_ script: Script) -> Bool {
+    switch script {
+    case .hebrew, .arabic, .syriac: true
+    case .latin, .cyrillic, .greek: false
+    }
+  }
+
   /// The script the majority of a text's letters belong to. Counted rather than sampled: a
   /// citation line ("— ܡܬܝ 28:1–7") mixes digits and punctuation into every body.
   static func script(of text: String) -> Script {
@@ -200,6 +207,18 @@ enum PrayerTypography {
           let script = detectedScript(of: text), script == .hebrew || script == .syriac else { return nil }
     return font(languageCode: languageCode, isScripture: false, text: text,
                 script: script, typefaces: typefaces, pointSize: pointSize).weight(.semibold)
+  }
+}
+
+extension View {
+  /// Every prayer uses the same text-column edges, even for a short response. Direction
+  /// follows the displayed source, including fallback text and imported reading aids.
+  func prayerTextStartAlignment(text: String, languageCode: String?) -> some View {
+    let isRTL = PrayerTypography.isRightToLeft(PrayerTypography.resolvedScript(text: text, languageCode: languageCode))
+    return self
+      .multilineTextAlignment(.leading)
+      .frame(maxWidth: .infinity, alignment: .leading)
+      .environment(\.layoutDirection, isRTL ? .rightToLeft : .leftToRight)
   }
 }
 

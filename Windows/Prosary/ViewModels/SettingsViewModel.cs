@@ -163,8 +163,8 @@ public partial class SettingsViewModel : ObservableObject
 
     public IReadOnlyList<TypefaceOption> AramaicScriptOptions { get; } =
     [
-        Option("Hebr", "settings_script_hebrew", "Hebrew script"),
         Option("Syrc", "settings_script_syriac", "Syriac script"),
+        Option("Hebr", "settings_script_hebrew", "Hebrew script"),
     ];
 
     [ObservableProperty]

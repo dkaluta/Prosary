@@ -13,13 +13,11 @@ struct MacTodayView: View {
   @AppStorage("showTodayFeast") private var showsFeast = true
   @AppStorage("showTodayIntention") private var showsIntention = true
   @AppStorage("showTodayTorahPortion") private var showsTorah = false
-  @AppStorage("expandReadingsByDefault") private var expandReadingsByDefault = false
   @AppStorage(ReadingDisplayOrder.defaultsKey) private var reverseReadingsOrder = false
   @AppStorage(TodayCardColor.defaultsKey) private var todayCardColor = TodayCardColor.default.rawValue
 
   @State private var dateSelection = MacTodayDateSelection()
   @State private var showsDatePicker = false
-  @State private var showsOptions = false
   @State private var showsCalendar = false
   @State private var showsFeasts = false
   @State private var feast: FeastDay?
@@ -252,19 +250,6 @@ struct MacTodayView: View {
       .help(label("home.today.today", "Today"))
       .accessibilityIdentifier("macToday.reset")
     }
-    if #available(macOS 26.0, *) {
-      ToolbarSpacer(.fixed, placement: .primaryAction)
-    }
-    ToolbarItem(id: "today.options", placement: .primaryAction) {
-      Button { showsOptions = true } label: {
-        Label(label("settings.title", "Settings"), systemImage: "slider.horizontal.3")
-      }
-      .labelStyle(.iconOnly)
-      .buttonBorderShape(.circle)
-      .help(label("settings.todayHeader", "Today"))
-      .accessibilityIdentifier("macToday.options")
-      .popover(isPresented: $showsOptions) { optionsPopover }
-    }
   }
 
   private var datePopover: some View {
@@ -275,47 +260,6 @@ struct MacTodayView: View {
                              doneIdentifier: "macToday.dateDone") {
       showsDatePicker = false
     }
-  }
-
-  private var optionsPopover: some View {
-    MacPrayerEditorForm {
-      Section {
-        Picker(label("settings.feastCalendar", "Liturgical calendar"),
-               selection: Binding(get: { TodayInfoStore.selectedCalendarId }, set: { feastCalendarId = $0 })) {
-          ForEach(TodayInfoStore.calendars) { calendar in
-            Text(calendar.displayName).tag(calendar.id)
-          }
-        }
-        .accessibilityIdentifier("macToday.calendarPicker")
-        if TodayInfoStore.selectedCalendarId == "ugcc" {
-          Picker(label("settings.easternPaschaStyle", "Byzantine Easter date"),
-                 selection: Binding(get: { TodayInfoStore.selectedPaschaStyle }, set: { easternPaschaStyle = $0 })) {
-            Text(label("settings.easternPaschaStyle.julian", "Julian Easter")).tag("julian")
-            Text(label("settings.easternPaschaStyle.gregorian", "Gregorian Easter")).tag("gregorian")
-          }
-          .accessibilityIdentifier("macToday.paschaPicker")
-        }
-      }
-      Section {
-        TodayCardColorPicker()
-        Toggle(label("settings.showTodayFeast", "Show the day's feast"), isOn: $showsFeast)
-          .accessibilityIdentifier("macToday.showFeast")
-        Toggle(label("settings.showTodayIntention", "Show the Pope's intention"), isOn: $showsIntention)
-          .accessibilityIdentifier("macToday.showIntention")
-        Toggle(label("settings.showTodayTorahPortion", "Show the weekly Torah portion"), isOn: $showsTorah)
-          .accessibilityIdentifier("macToday.showTorah")
-        Toggle(label("settings.expandReadingsByDefault", "Expand readings by default"), isOn: $expandReadingsByDefault)
-          .accessibilityIdentifier("expandReadingsByDefaultToggle")
-        Toggle(label("settings.reverseReadingsOrder", "Show Gospel First"), isOn: $reverseReadingsOrder)
-          .accessibilityIdentifier("reverseReadingsOrderToggle")
-        if showsTorah {
-          Text(label("settings.torahPortionFooter", "The upcoming Sabbath’s Torah reading, following the Eretz Israel schedule."))
-            .font(.caption).foregroundStyle(.secondary)
-        }
-      }
-      ReadingsReminderSettings()
-    }
-    .frame(width: 400, height: 380)
   }
 
   private var readingsSection: some View {

@@ -321,6 +321,7 @@ public partial class BibleViewModel : ObservableObject
     public void RefreshTypography() { RefreshChoices(); RefreshText(); }
 
     [RelayCommand] private void ToggleScript() { if (HasScriptToggle) ScriptOverride = EffectiveScript == "Syrc" ? "Hebr" : "Syrc"; }
+    [RelayCommand] private void SelectScript(string script) { if (HasScriptToggle && script is "Hebr" or "Syrc") ScriptOverride = script; }
     [RelayCommand] private void PreviousChapter() => Move(-1);
     [RelayCommand] private void NextChapter() => Move(1);
     private void Move(int direction)
@@ -377,7 +378,7 @@ public partial class BibleViewModel : ObservableObject
     {
         foreach (var property in new[] { nameof(HasEdition), nameof(IsUnavailable), nameof(EditionName), nameof(ShowDownload), nameof(DownloadLabel),
             nameof(ShowDownloadNotice), nameof(ShowRemove), nameof(Attribution), nameof(SourceUri), nameof(HasSource), nameof(HasScriptToggle),
-            nameof(ScriptLabel), nameof(ChapterHeading), nameof(BodyFontFamily), nameof(BodyFontSize), nameof(IsRightToLeft), nameof(HasChapter),
+            nameof(EffectiveScript), nameof(ScriptLabel), nameof(ChapterHeading), nameof(BodyFontFamily), nameof(BodyFontSize), nameof(IsRightToLeft), nameof(HasChapter),
             nameof(CanNavigate), nameof(HasPrevious), nameof(HasNext), nameof(Introduction), nameof(HasIntroduction) }) OnPropertyChanged(property);
     }
 }

@@ -167,7 +167,7 @@ public partial class DashboardViewModel(IPresetStore presets) : ObservableObject
                 case "feast":
                     card.Body = feast is null ? Label("no_feast", "No feast information is available for this date.")
                         : feast.LocalizedTitle(language) + Environment.NewLine + feast.LocalizedRank(language);
-                    card.Descriptions = feast?.LocalizedDescriptions(language) ?? [];
+                    card.Descriptions = feast?.LocalizedDescriptions(language, feast.LocalizedTitle(language)) ?? [];
                     break;
                 case "reflection":
                     card.Descriptions = feast?.Reflections(language) ?? [];

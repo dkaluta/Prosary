@@ -67,6 +67,7 @@ public partial class JesusPrayerViewModel : ObservableObject, IPrayerStepFlowVie
     private string _progressFontFamily = PrayerTypography.NativeUiFontFamily;
 
     [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(ShowsTransliterationToggle))]
     private bool _hasTransliteration;
 
     [ObservableProperty]
@@ -74,6 +75,25 @@ public partial class JesusPrayerViewModel : ObservableObject, IPrayerStepFlowVie
 
     private string? _initializedScriptLanguage;
     private string? _aramaicSessionScript;
+
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(ShowsTransliterationToggle))]
+    private bool _hasAramaicScriptSelector;
+    public bool ShowsTransliterationToggle => HasTransliteration && !HasAramaicScriptSelector;
+    public string AramaicScript => PrayerTypography.ScriptOf(Body) == PrayerTypography.Script.Syriac ? "Syrc" : "Hebr";
+    public string TransliterationActionLabel => ShowsTransliteration
+        ? Loc.Tr("flow_show_original_text", "Show Original Text")
+        : Loc.Tr("flow_show_transliteration", "Show Transliteration");
+
+    [RelayCommand]
+    private void SelectAramaicScript(string script)
+    {
+        if (!HasAramaicScriptSelector || script is not ("Hebr" or "Syrc")) return;
+        if (_aramaicSessionScript is not null) _aramaicSessionScript = script;
+        else if (PrayerPackStore.Transliteration("rosary", _languageCode, "oratioIesu") is { } alternate)
+            ShowsTransliteration = PrayerTypography.ScriptOf(alternate) == (script == "Syrc" ? PrayerTypography.Script.Syriac : PrayerTypography.Script.Hebrew);
+        RenderCurrentStep();
+    }
 
     [RelayCommand]
     private void ToggleTransliteration()
@@ -232,7 +252,10 @@ public partial class JesusPrayerViewModel : ObservableObject, IPrayerStepFlowVie
         }
         if (_aramaicSessionScript is not null)
             ShowsTransliteration = PrayerTranslations.InitialTransliteration(_languageCode, original, alternate, _aramaicSessionScript) ?? false;
+        HasAramaicScriptSelector = PrayerTypography.HasAramaicScriptPair(original, alternate);
         Body = ShowsTransliteration ? alternate ?? original : original;
+        OnPropertyChanged(nameof(AramaicScript));
+        OnPropertyChanged(nameof(TransliterationActionLabel));
         var usesSyriacScript = _aramaicSessionScript is not null ? _aramaicSessionScript == "Syrc"
             : PrayerTypography.ScriptOf(Body) == PrayerTypography.Script.Syriac;
         ProgressText = RepetitionState.TargetCount is { } count

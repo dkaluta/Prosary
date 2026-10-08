@@ -294,7 +294,8 @@ fun HomeDashboardScreen(
                                 val descriptions = feast.saintDescriptions(TodayInfoStore.selectedCalendarId, language)
                                 if (descriptions.isEmpty()) Text(stringResource(R.string.home_widgets_no_feast_description),
                                     color = MaterialTheme.colorScheme.onSurfaceVariant)
-                                else SaintDescriptionsCard(descriptions, "$date:${TodayInfoStore.selectedCalendarId}", language, inCard = false)
+                                else SaintDescriptionsCard(descriptions, "$date:${TodayInfoStore.selectedCalendarId}", language,
+                                    inCard = false, parentTitle = feast.localizedTitle(language))
                             }
                         }
                     }
