@@ -39,40 +39,42 @@
 
         <ScrollViewer x:Name="Reader" Grid.Row="2" Padding="20" HorizontalContentAlignment="Stretch" HorizontalScrollBarVisibility="Disabled"
                       FlowDirection="{x:Bind ViewModel.IsRightToLeft, Mode=OneWay, Converter={StaticResource BoolToFlowDirection}}">
-            <StackPanel Spacing="16" Style="{StaticResource PrayerTextColumnStyle}">
-                <Border Height="240" MaxWidth="240" CornerRadius="16" HorizontalAlignment="Center">
-                    <Image Source="{x:Bind ViewModel.MysteryImageFile, Mode=OneWay}" Stretch="UniformToFill"
-                           AutomationProperties.AccessibilityView="Raw" />
-                </Border>
+            <Grid HorizontalAlignment="Stretch">
+                <StackPanel Spacing="16" Style="{StaticResource PrayerTextColumnStyle}">
+                    <Border Height="240" MaxWidth="240" CornerRadius="16" HorizontalAlignment="Center">
+                        <Image Source="{x:Bind ViewModel.MysteryImageFile, Mode=OneWay}" Stretch="UniformToFill"
+                               AutomationProperties.AccessibilityView="Raw" />
+                    </Border>
 
-                <StackPanel Spacing="2">
-                    <TextBlock Text="{x:Bind ViewModel.Subtitle, Mode=OneWay}"
-                               Visibility="{x:Bind ViewModel.HasSubtitle, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
-                               Style="{StaticResource MutedSubtitleTextStyle}" HorizontalAlignment="Stretch" />
-                    <TextBlock Text="{x:Bind ViewModel.Header, Mode=OneWay}" FontFamily="{x:Bind ViewModel.HeaderFontFamily, Mode=OneWay}" Style="{StaticResource SubHeadlineTextStyle}" HorizontalAlignment="Stretch" />
+                    <StackPanel Spacing="2">
+                        <TextBlock Text="{x:Bind ViewModel.Subtitle, Mode=OneWay}"
+                                   Visibility="{x:Bind ViewModel.HasSubtitle, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
+                                   Style="{StaticResource MutedSubtitleTextStyle}" HorizontalAlignment="Stretch" />
+                        <TextBlock Text="{x:Bind ViewModel.Header, Mode=OneWay}" FontFamily="{x:Bind ViewModel.HeaderFontFamily, Mode=OneWay}" Style="{StaticResource SubHeadlineTextStyle}" HorizontalAlignment="Stretch" />
+                    </StackPanel>
+
+                    <controls:AramaicScriptSelector Script="{x:Bind ViewModel.AramaicScript, Mode=OneWay}" SelectScriptCommand="{x:Bind ViewModel.SelectAramaicScriptCommand}"
+                                                   HorizontalAlignment="Center"
+                                                   Visibility="{x:Bind ViewModel.HasAramaicScriptSelector, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
+                    <Button Background="Transparent" Padding="12,8" MinHeight="44" HorizontalAlignment="Center"
+                            Content="{x:Bind ViewModel.TransliterationActionLabel, Mode=OneWay}"
+                            Visibility="{x:Bind ViewModel.ShowsTransliterationToggle, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
+                            Command="{x:Bind ViewModel.ToggleTransliterationCommand}"
+                            AutomationProperties.Name="{x:Bind ViewModel.TransliterationActionLabel, Mode=OneWay}"
+                            ToolTipService.ToolTip="{x:Bind ViewModel.TransliterationActionLabel, Mode=OneWay}" />
+                    <TextBlock x:Name="PrayerBody" controls:BoldMarkdownText.Text="{x:Bind ViewModel.Body, Mode=OneWay}"
+                               FontFamily="{x:Bind ViewModel.BodyFontFamily, Mode=OneWay}"
+                               FontSize="{x:Bind ViewModel.BodyFontSize, Mode=OneWay}"
+                               Style="{StaticResource PrayerBodyTextStyle}" />
+
+                    <Button Content="{x:Bind CentralActionLabel, Mode=OneWay}"
+                            Visibility="{x:Bind VisibleWhenSet(CentralActionLabel), Mode=OneWay}"
+                            Command="{x:Bind ViewModel.NextCommand, Mode=OneWay}"
+                            MinWidth="104" MinHeight="104" Padding="20,12" CornerRadius="52" Margin="0,12,0,0"
+                            HorizontalAlignment="Center" FontSize="18" FontWeight="SemiBold"
+                            Style="{StaticResource AccentButtonStyle}" />
                 </StackPanel>
-
-                <controls:AramaicScriptSelector Script="{x:Bind ViewModel.AramaicScript, Mode=OneWay}" SelectScriptCommand="{x:Bind ViewModel.SelectAramaicScriptCommand}"
-                                               HorizontalAlignment="Center"
-                                               Visibility="{x:Bind ViewModel.HasAramaicScriptSelector, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
-                <Button Background="Transparent" Padding="12,8" MinHeight="44" HorizontalAlignment="Center"
-                        Content="{x:Bind ViewModel.TransliterationActionLabel, Mode=OneWay}"
-                        Visibility="{x:Bind ViewModel.ShowsTransliterationToggle, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
-                        Command="{x:Bind ViewModel.ToggleTransliterationCommand}"
-                        AutomationProperties.Name="{x:Bind ViewModel.TransliterationActionLabel, Mode=OneWay}"
-                        ToolTipService.ToolTip="{x:Bind ViewModel.TransliterationActionLabel, Mode=OneWay}" />
-                <TextBlock x:Name="PrayerBody" controls:BoldMarkdownText.Text="{x:Bind ViewModel.Body, Mode=OneWay}"
-                           FontFamily="{x:Bind ViewModel.BodyFontFamily, Mode=OneWay}"
-                           FontSize="{x:Bind ViewModel.BodyFontSize, Mode=OneWay}"
-                           Style="{StaticResource PrayerBodyTextStyle}" />
-
-                <Button Content="{x:Bind CentralActionLabel, Mode=OneWay}"
-                        Visibility="{x:Bind VisibleWhenSet(CentralActionLabel), Mode=OneWay}"
-                        Command="{x:Bind ViewModel.NextCommand, Mode=OneWay}"
-                        MinWidth="104" MinHeight="104" Padding="20,12" CornerRadius="52" Margin="0,12,0,0"
-                        HorizontalAlignment="Center" FontSize="18" FontWeight="SemiBold"
-                        Style="{StaticResource AccentButtonStyle}" />
-            </StackPanel>
+            </Grid>
         </ScrollViewer>
 
         <!-- A counter flow's only action is its central button: a lone Back beside it competes

@@ -29,6 +29,8 @@ public sealed partial class CustomDevotionFlowPage : Page
         ViewModel = App.Services.GetRequiredService<CustomDevotionViewModel>();
         ViewModel.Navigation = Router.For(this);
         InitializeComponent();
+        // Keep the clicked item attached until WinUI dismisses its menu.
+        LanguageFlyout.Opening += (_, _) => BuildLanguageFlyout();
         _reader = new PrayerFlowReader(NarrowReader, NarrowBody);
         _reader.Register(WideReader, WideBody);
         ViewModel.PropertyChanged += OnFlowPropertyChanged;
@@ -69,7 +71,6 @@ public sealed partial class CustomDevotionFlowPage : Page
                 else await ShowResumeDialogAsync();
             }
             BuildVariantFlyout();
-            BuildLanguageFlyout();
             BuildDayFlyout();
         }
 
@@ -161,14 +162,13 @@ public sealed partial class CustomDevotionFlowPage : Page
         }
     }
 
-    // Same MenuFlyout-has-no-ItemsSource pattern as the variant flyout: "App setting" first,
-    // then the bundle's languages by native name, checkmark refreshed on every switch.
+    // "App setting" first, then the bundle's languages by native name. Opening refreshes
+    // checkmarks without replacing the clicked item during native menu dismissal.
     private void BuildLanguageFlyout() =>
         Prosary.Controls.PrayerLanguageMenu.Populate(LanguageFlyout, ViewModel.Languages,
             ViewModel.CurrentLanguageRaw, async raw =>
         {
             await ViewModel.SelectLanguageAsync(raw);
-            BuildLanguageFlyout();
         }, ViewModel.HebrewRites);
 
     private void OnActualThemeChanged(FrameworkElement sender, object args)

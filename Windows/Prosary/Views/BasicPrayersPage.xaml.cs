@@ -20,6 +20,8 @@ public sealed partial class BasicPrayersPage : Page
         ViewModel = App.Services.GetRequiredService<BasicPrayersViewModel>();
         ViewModel.Navigation = Router.For(this);
         InitializeComponent();
+        // Keep the clicked item attached until WinUI dismisses its menu.
+        LanguageFlyout.Opening += (_, _) => BuildLanguageFlyout();
         var languageLabel = Loc.Tr("EdLanguageHeader/Text", "Prayer language");
         AutomationProperties.SetName(LanguageMenuButton, languageLabel);
         ToolTipService.SetToolTip(LanguageMenuButton, languageLabel);
@@ -29,7 +31,6 @@ public sealed partial class BasicPrayersPage : Page
     {
         base.OnNavigatedTo(e);
         ViewModel.Load();
-        BuildLanguageFlyout();
     }
 
     private void BuildLanguageFlyout() =>
@@ -37,7 +38,6 @@ public sealed partial class BasicPrayersPage : Page
             ViewModel.CurrentLanguageRaw, raw =>
         {
             ViewModel.SelectLanguage(raw);
-            BuildLanguageFlyout();
             return Task.CompletedTask;
         });
 

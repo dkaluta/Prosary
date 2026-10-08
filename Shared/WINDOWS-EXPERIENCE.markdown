@@ -65,9 +65,9 @@ Search destination and focuses its query field.
 Each window has an in-window WinUI `MenuBar`, native caption buttons, and a draggable title
 bar. Page `CommandBar` controls keep frequent library actions visible. The menu is part of
 the window, following Windows conventions rather than depending on a system-wide menu bar.
-The shared `DesktopMenuBarStyle` keeps the row compact and blends its semantic background
-with Mica. It inherits WinUI's standard template, rounded interaction states, flyouts,
-keyboard focus and contrast behavior; frequent actions remain in icon CommandBars.
+The row uses WinUI's native template, rounded interaction states, flyouts,
+keyboard focus and contrast behavior, with a compact height and semantic background
+that blends with Mica; frequent actions remain in icon CommandBars.
 See Microsoft's [menu guidance](https://learn.microsoft.com/en-us/windows/apps/develop/ui/controls/menus).
 
 Settings includes independent **Use arrow keys to navigate** and **Press Space to advance**
@@ -76,6 +76,12 @@ actions according to interface direction; Space uses its primary advance/count/F
 Only the active window's loaded prayer handles them. Dialogs, flyouts, text editing/selection
 and focused controls retain native key behavior. Up/Down and Page Up/Page Down keep scrolling;
 modified and repeated key presses do not advance the prayer.
+
+Prayer readers keep a centered column capped at 640 logical pixels, with common margins
+for short and long prayers. Body text aligns to the start of its actual language; headings
+and alphabet switches stay centered. The column sits inside uncapped scroll content so
+WinUI measures the viewport independently of the current text. Language menus refresh
+before opening, preserving native dismissal and focus when a language is selected.
 
 | Menu | Commands |
 | --- | --- |
