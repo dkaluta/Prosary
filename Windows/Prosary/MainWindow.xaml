@@ -17,7 +17,10 @@
             <Image Grid.Column="1" Source="ms-appx:///Assets/Square44x44Logo.png" Width="20" Height="20" Margin="16,0,8,0" />
             <TextBlock Grid.Column="2" Text="Prosary" VerticalAlignment="Center" FontSize="12" />
         </Grid>
-        <MenuBar Style="{StaticResource DesktopMenuBarStyle}" x:Name="WindowMenus" Grid.Row="1" />
+        <!-- DefaultMenuBarStyle is internal to WinUI's control resources. Keep the
+             native style and apply only the window's spacing and theme brush here. -->
+        <MenuBar x:Name="WindowMenus" Grid.Row="1"
+                 Background="{ThemeResource MenuBarBackground}" MinHeight="32" Margin="8,0,8,4" />
         <NavigationView x:Name="AppNav" Grid.Row="2" PaneDisplayMode="Auto"
             IsBackButtonVisible="Collapsed" IsSettingsVisible="False"
             SelectionChanged="OnNavSelectionChanged">
