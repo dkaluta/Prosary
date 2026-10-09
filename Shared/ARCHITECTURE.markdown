@@ -234,7 +234,7 @@ Two pieces of logic are shared internally by `PrayerEngine` rather than duplicat
 
 ## App color and icons
 
-`appColor` persists the same seven ids on Apple, Android and Windows: `blue` (the default,
+`appColor` persists the same seven ids on iPhone/iPad, visionOS, Android and Windows: `blue` (the default,
 honoring Mary), `green`, `red`, `purple`, `rose`, `white`, and `gold`. Unknown values fall
 back to blue. `Shared/Branding/app-colors.json` defines icon backgrounds/crosses and readable
 light/dark accent pairs; white uses a gold cross and gold controls. Prayer artwork and
@@ -246,7 +246,12 @@ previews beside localized names, inset row separators, and a checkmark or native
 indicator. Selecting a row applies it immediately and keeps the page open; Back returns to
 the existing Settings position. Previews retain their distinguishing colors in dark mode,
 while the installed Apple dark icon remains the original artwork. Mac keeps its native
-Appearance Settings pane with the same icon-and-name choices alongside typography.
+Appearance Settings pane for typography. It has no app-color picker or manual accent
+override: controls and selection/drop highlights follow the live system accent, and the
+installed/Dock icon retains the default Marian-blue branding with its native dark rendition.
+Its existing `appColor` preference is retained but ignored, so other Apple devices keep their
+saved choices. Named user tags, authored content colors and liturgical status colors retain
+their separate meanings. The blue AccentColor asset supplies the default for Multicolor.
 
 On Android 12+, `useSystemColors` defaults to true: Material You wallpaper colors take
 precedence for controls. Its switch lives on the Appearance page; turning it off applies
@@ -260,7 +265,7 @@ apply the chosen color; Dark uses `system-dark` and the original automatic cross
 White specializes the cross image only for Light, preserving the original dark artwork.
 Never combine a property's specializations with the same unspecialized property, which
 overrides them. iPhone/iPad
-use native alternate-icon support; Mac updates its Dock icon. visionOS retains the installed
+use native alternate-icon support; Mac uses the default blue native icon. visionOS retains the installed
 blue icon while applying the selected accent. Its primary icon is generated as
 `Assets.xcassets/ProsaryVision.solidimagestack`: an opaque Back and transparent Front,
 each a 1024 × 1024 PNG in a `solidimagestacklayer/Content.imageset` with `idiom: vision`

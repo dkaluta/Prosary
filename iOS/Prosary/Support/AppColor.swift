@@ -13,7 +13,14 @@ enum AppColor: String, CaseIterable, Identifiable {
   static let defaultsKey = "appColor"
   var id: String { rawValue }
   static func resolved(_ raw: String?) -> Self { Self(rawValue: raw ?? "") ?? .blue }
-  static var current: Self { resolved(UserDefaults.standard.string(forKey: defaultsKey)) }
+  static func appearanceChoice(_ raw: String?) -> Self {
+    #if os(macOS)
+    .blue
+    #else
+    resolved(raw)
+    #endif
+  }
+  static var current: Self { appearanceChoice(UserDefaults.standard.string(forKey: defaultsKey)) }
 
   var lightHex: String {
     switch self {
@@ -45,7 +52,7 @@ enum AppColor: String, CaseIterable, Identifiable {
 
   #if os(macOS)
   func dockIconAssetName(isDark: Bool) -> String? {
-    isDark || self == .blue ? nil : previewAssetName
+    nil
   }
   #endif
 
@@ -63,9 +70,27 @@ enum AppColor: String, CaseIterable, Identifiable {
 }
 
 extension Color {
-  /// Resolve the app's chosen accent from the window environment, including presented sheets.
-  static var appAccent: Color { .accentColor }
+  /// Mac uses the live system accent; other Apple ports retain the chosen window accent.
+  static var appAccent: Color {
+    #if os(macOS)
+    Color(nsColor: .controlAccentColor)
+    #else
+    .accentColor
+    #endif
+  }
 }
+
+#if os(macOS)
+private enum MacSystemAccentRevisionKey: EnvironmentKey {
+  static let defaultValue = 0
+}
+extension EnvironmentValues {
+  var macSystemAccentRevision: Int {
+    get { self[MacSystemAccentRevisionKey.self] }
+    set { self[MacSystemAccentRevisionKey.self] = newValue }
+  }
+}
+#endif
 
 @MainActor
 final class AppIconController: ObservableObject {
@@ -73,31 +98,17 @@ final class AppIconController: ObservableObject {
   @Published var errorMessage: String?
   private var isUpdating = false
   private var requestedColor: AppColor = .blue
-  #if os(macOS)
-  private var appearanceObservation: NSKeyValueObservation?
-  #endif
-
-  private init() {
-    #if os(macOS)
-    // Keep the Dock in sync even after the last app window has closed.
-    appearanceObservation = NSApplication.shared.observe(\.effectiveAppearance) { [weak self] _, _ in
-      Task { @MainActor [weak self] in
-        guard let self else { return }
-        self.synchronize(self.requestedColor)
-      }
-    }
-    #endif
-  }
+  private init() {}
 
   func synchronize(_ color: AppColor) {
     // Unit/UI tests never change the person's installed application icon.
     guard !ProsaryRuntimeEnvironment.isTesting else { return }
-    requestedColor = color
     #if os(macOS)
-    let isDark = NSApplication.shared.effectiveAppearance.bestMatch(from: [.darkAqua, .aqua]) == .darkAqua
-    // The native Icon Composer asset retains the original dark glass and silver cross.
-    NSApplication.shared.applicationIconImage = color.dockIconAssetName(isDark: isDark).flatMap { NSImage(named: $0) }
+    requestedColor = .blue
+    // Restore the default Marian-blue Icon Composer asset, including its native dark rendition.
+    NSApplication.shared.applicationIconImage = nil
     #elseif os(iOS)
+    requestedColor = color
     guard !isUpdating, UIApplication.shared.applicationState == .active,
           UIApplication.shared.supportsAlternateIcons,
           UIApplication.shared.alternateIconName != color.alternateIconName else { return }
@@ -117,11 +128,26 @@ final class AppIconController: ObservableObject {
 }
 
 private struct AppAppearanceModifier: ViewModifier {
+  #if os(macOS)
+  @State private var accentRevision = 0
+  #else
   @AppStorage(AppColor.defaultsKey) private var storedColor = AppColor.blue.rawValue
+  #endif
   @Environment(\.scenePhase) private var scenePhase
 
   func body(content: Content) -> some View {
-    let color = AppColor.resolved(storedColor)
+    #if os(macOS)
+    content
+      .environment(\.macSystemAccentRevision, accentRevision)
+      .onReceive(NotificationCenter.default.publisher(for: NSColor.systemColorsDidChangeNotification)) { _ in
+        accentRevision &+= 1
+      }
+      .onAppear { AppIconController.shared.synchronize(.blue) }
+      .onChange(of: scenePhase) { _, phase in
+        if phase == .active { AppIconController.shared.synchronize(.blue) }
+      }
+    #else
+    let color = AppColor.appearanceChoice(storedColor)
     content
       .tint(color.color)
       .accentColor(color.color)
@@ -130,6 +156,7 @@ private struct AppAppearanceModifier: ViewModifier {
       .onChange(of: scenePhase) { _, phase in
         if phase == .active { AppIconController.shared.synchronize(color) }
       }
+    #endif
   }
 }
 

@@ -20,7 +20,7 @@ struct MacPrayerGalleryCollection: NSViewRepresentable {
   @Environment(\.layoutDirection) private var layoutDirection
   @Environment(\.locale) private var locale
   @Environment(\.isEnabled) private var isEnabled
-  @AppStorage(AppColor.defaultsKey) private var appColor = AppColor.blue.rawValue
+  @Environment(\.macSystemAccentRevision) private var systemAccentRevision
 
   func makeCoordinator() -> Coordinator { Coordinator(self) }
 
@@ -29,7 +29,7 @@ struct MacPrayerGalleryCollection: NSViewRepresentable {
   }
 
   func updateNSView(_ scroll: NSScrollView, context: Context) {
-    let _ = appColor
+    let _ = systemAccentRevision
     context.coordinator.update(self, scroll: scroll)
   }
 
@@ -430,6 +430,7 @@ private final class GalleryTileView: NSView {
   private let title = NSTextField(wrappingLabelWithString: "")
   private var coverHost: NSHostingView<GalleryCover>?
   private var cover: GalleryCover?
+  private var configuredItem: MacPrayerLibraryItem?
   weak var collection: NSCollectionView?
   var selected = false
   var dropTarget = false
@@ -468,6 +469,7 @@ private final class GalleryTileView: NSView {
   required init?(coder: NSCoder) { nil }
 
   func configure(_ item: MacPrayerLibraryItem) {
+    configuredItem = item
     if title.stringValue != item.title {
       title.stringValue = item.title
       needsLayout = true
@@ -476,10 +478,14 @@ private final class GalleryTileView: NSView {
     let store = MacPrayerGalleryImageStore.shared
     let customImage = store.image(for: item.devotionID)
     let resource = customImage == nil ? MacPrayerGalleryArtwork.resource(for: item.devotionID) : nil
+    var systemTint = Color.appAccent
+    effectiveAppearance.performAsCurrentDrawingAppearance {
+      systemTint = Color(nsColor: NSColor.controlAccentColor.usingColorSpace(.deviceRGB) ?? .controlAccentColor)
+    }
     let next = GalleryCover(resource: resource, customImage: customImage,
       cacheKey: customImage != nil ? "local:\(item.devotionID):\(store.revision)" : resource?.cacheKey,
       glyph: item.iconGlyph, symbol: item.systemImage,
-      tint: item.color == .appAccent ? AppColor.current.color : item.color)
+      tint: item.color == .appAccent ? systemTint : item.color)
     if cover?.hasSameArtwork(as: next) != true {
       cover = next
       if let coverHost { coverHost.rootView = next }
@@ -495,6 +501,11 @@ private final class GalleryTileView: NSView {
     setAccessibilityLabel(item.title)
     setAccessibilityIdentifier("macGallery.item.\(item.devotionID)")
     toolTip = item.title
+  }
+
+  override func viewDidChangeEffectiveAppearance() {
+    super.viewDidChangeEffectiveAppearance()
+    if let configuredItem { configure(configuredItem) }
   }
 
   override func layout() {
@@ -529,7 +540,7 @@ private final class GalleryTileView: NSView {
       NSBezierPath(roundedRect: title.frame.insetBy(dx: -4, dy: -2), xRadius: 4, yRadius: 4).fill()
     }
     if dropTarget {
-      NSColor(AppColor.current.color).setStroke()
+      NSColor.controlAccentColor.setStroke()
       let border = NSBezierPath(roundedRect: pictureBacking.insetBy(dx: 1.5, dy: 1.5), xRadius: 7, yRadius: 7)
       border.lineWidth = 3
       border.stroke()

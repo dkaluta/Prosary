@@ -29,15 +29,40 @@ final class AppColorTests: XCTestCase {
   }
 
   #if os(macOS)
-  func testDarkDockUsesTheOriginalNativeIconAndLightRestoresTheChosenColor() {
+  func testMacAccentUsesTheSystemColorAndMarianMulticolorDefault() throws {
+    XCTAssertEqual(Bundle.main.object(forInfoDictionaryKey: "NSAccentColorName") as? String, "AccentColor")
+    let actual = try XCTUnwrap(NSColor(Color.appAccent).usingColorSpace(.deviceRGB))
+    let system = try XCTUnwrap(NSColor.controlAccentColor.usingColorSpace(.deviceRGB))
+    XCTAssertEqual(actual.redComponent, system.redComponent, accuracy: 0.001)
+    XCTAssertEqual(actual.greenComponent, system.greenComponent, accuracy: 0.001)
+    XCTAssertEqual(actual.blueComponent, system.blueComponent, accuracy: 0.001)
+    XCTAssertEqual(Color.appAccent, Color.appAccent, "AppKit bridges must recognize the semantic accent across calls")
+
+    try XCTUnwrap(NSAppearance(named: .aqua)).performAsCurrentDrawingAppearance {
+      let fallback = NSColor(named: "AccentColor")!.usingColorSpace(.deviceRGB)!
+      let blue = NSColor(AppColor.blue.color).usingColorSpace(.deviceRGB)!
+      XCTAssertEqual(fallback.redComponent, blue.redComponent, accuracy: 0.001)
+      XCTAssertEqual(fallback.greenComponent, blue.greenComponent, accuracy: 0.001)
+      XCTAssertEqual(fallback.blueComponent, blue.blueComponent, accuracy: 0.001)
+    }
+  }
+
+  func testMacBrandingKeepsTheDefaultIconRegardlessOfStoredPalette() {
     for color in AppColor.allCases {
+      XCTAssertEqual(AppColor.appearanceChoice(color.rawValue), .blue)
       XCTAssertNil(color.dockIconAssetName(isDark: true), color.rawValue)
-      XCTAssertEqual(color.dockIconAssetName(isDark: false), color == .blue ? nil : color.previewAssetName)
+      XCTAssertNil(color.dockIconAssetName(isDark: false), color.rawValue)
     }
   }
   #endif
 
   #if os(iOS)
+  func testSavedMobilePaletteChoicesRemainEffective() {
+    for color in AppColor.allCases {
+      XCTAssertEqual(AppColor.appearanceChoice(color.rawValue), color)
+    }
+  }
+
   func testEveryAlternateIconIsDeclaredForIPhoneAndIPad() throws {
     XCTAssertTrue(UIApplication.shared.supportsAlternateIcons)
     let deviceFamilies = try XCTUnwrap(Bundle.main.infoDictionary?["UIDeviceFamily"] as? [Int])

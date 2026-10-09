@@ -177,7 +177,11 @@ presence on a phone is not, by itself, a reason to include it on Mac.
   with the required source credits. Keep data, localization and citation contracts shared with
   the other platforms while using a desktop reading layout.
 - **Settings:** use a standard Settings scene with native panes for Prayer Language, Praying,
-  Today, Appearance, and Downloads. Preferences apply immediately. Today calendar, visibility,
+  Today, Appearance, and Downloads. Appearance retains typography controls; accent choices
+  belong to System Settings. Prosary follows the live system accent and keeps its default
+  Marian-blue app/Dock branding, including the native dark icon. Old app-color choices are
+  ignored on Mac without deleting the preference or changing other devices. Preferences
+  apply immediately. Today calendar, visibility,
   reading presentation, card color and reminder preferences live in the dedicated Today pane
   under Command-comma. The Today toolbar has no settings icon. Date navigation
   and Bible edition selection remain in the reference view.
