@@ -69,7 +69,7 @@ struct JesusPrayerSetupView: View {
   /// choice the way a segmented control would report it.
   @ViewBuilder
   private func targetRow(_ options: [SetupOption]) -> some View {
-    HStack(spacing: 8) {
+    HStack(spacing: PrayerControlMetrics.rowSpacing) {
       ForEach(options) { option in
         let isSelected = selection == option
         Button {
@@ -81,6 +81,7 @@ struct JesusPrayerSetupView: View {
             .minimumScaleFactor(0.8)
             .frame(maxWidth: .infinity)
             .padding(.vertical, 8)
+            .frame(minHeight: PrayerControlMetrics.minimumTouchDimension)
             // Without this only the glyphs are hit-testable, so every tap on the pill's
             // padding — most of it — falls through and the row feels dead.
             .contentShape(Rectangle())
@@ -151,7 +152,7 @@ struct JesusPrayerSetupView: View {
       .pickerStyle(.radioGroup)
       .accessibilityIdentifier("jesusPrayerTargetPicker")
       #else
-      VStack(spacing: 8) {
+      VStack(spacing: PrayerControlMetrics.rowSpacing) {
         targetRow(SetupOption.countRow)
         targetRow(SetupOption.openRow)
       }

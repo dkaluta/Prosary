@@ -3,6 +3,7 @@ package com.dkaluta.prosary.ui.rosaryflow
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.SkipNext
 import androidx.compose.material.icons.filled.SkipPrevious
@@ -35,6 +36,7 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.LocalLayoutDirection
 import com.dkaluta.prosary.ui.shared.InterfaceNavigation
 import com.dkaluta.prosary.ui.shared.PrayerNavigation
+import com.dkaluta.prosary.ui.shared.PrayerControlDefaults
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
@@ -304,14 +306,15 @@ fun RosaryFlowScreen(prayer: Prayer, onBack: () -> Unit) {
                 )
                 InterfaceNavigation {
                     val iconScale = PrayerNavigation.iconScale(LocalLayoutDirection.current)
-                    Row {
+                    Row(horizontalArrangement = Arrangement.spacedBy(PrayerControlDefaults.Spacing)) {
                         IconButton(
                             onClick = { previousMystery?.let { currentIndex = it } },
                             enabled = previousMystery != null,
+                            modifier = Modifier.size(PrayerControlDefaults.TargetSize),
                         ) {
                             Icon(
                                 Icons.Filled.SkipPrevious,
-                                modifier = Modifier.graphicsLayer { scaleX = iconScale },
+                                modifier = Modifier.size(PrayerControlDefaults.IconSize).graphicsLayer { scaleX = iconScale },
                                 contentDescription = stringResource(R.string.flow_previous_mystery),
                             )
                         }
@@ -322,10 +325,11 @@ fun RosaryFlowScreen(prayer: Prayer, onBack: () -> Unit) {
                                 }
                             },
                             enabled = nextMystery != null,
+                            modifier = Modifier.size(PrayerControlDefaults.TargetSize),
                         ) {
                             Icon(
                                 Icons.Filled.SkipNext,
-                                modifier = Modifier.graphicsLayer { scaleX = iconScale },
+                                modifier = Modifier.size(PrayerControlDefaults.IconSize).graphicsLayer { scaleX = iconScale },
                                 contentDescription = stringResource(R.string.flow_next_mystery),
                             )
                         }
@@ -334,8 +338,10 @@ fun RosaryFlowScreen(prayer: Prayer, onBack: () -> Unit) {
             }
         },
         topBarActions = {
-            IconButton(onClick = { pickerGroup = null; showsMysteryPicker = true }) {
-                Icon(Icons.AutoMirrored.Filled.List, contentDescription = stringResource(R.string.flow_choose_mystery))
+            IconButton(onClick = { pickerGroup = null; showsMysteryPicker = true },
+                modifier = Modifier.size(PrayerControlDefaults.TargetSize)) {
+                Icon(Icons.AutoMirrored.Filled.List, contentDescription = stringResource(R.string.flow_choose_mystery),
+                    modifier = Modifier.size(PrayerControlDefaults.IconSize))
             }
             PrayerLanguagePicker(
                 devotionId = "rosary",

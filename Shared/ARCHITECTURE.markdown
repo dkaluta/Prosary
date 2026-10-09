@@ -312,7 +312,8 @@ share the exact same model (iOS: `Views/RosaryFlow/BeadModels.swift`; Android:
 If you touch the bead track on one platform, check whether the same behavioral change belongs on
 the other two — this is one of the most exactly-mirrored pieces of the whole app.
 
-The Rosary flow also exposes **previous mystery** and **next mystery** controls (`⏮` / `⏭`).
+The Rosary flow also exposes **previous mystery** and **next mystery** controls using native
+monochrome skip icons (SF Symbols, Material icons and WinUI FontIcon), rather than emoji text.
 They jump to the preceding or following mystery-announcement step without replacing the ordinary
 Back/Next bead controls. Forward remains available throughout the final selected decade:
 it jumps to the first closing prayer, or finishes through the usual progress-clearing path
@@ -585,7 +586,11 @@ title, keeping long titles clear of the buttons. Wider layouts retain native too
 Their ordering and previous/next section arrows follow the **interface** direction, independently
 of the prayer body: in Hebrew/Arabic UI, Next is on the left and Back on the right, with matching
 section-jump icons. Actions remain semantically previous/next. Apple retains native glass where
-supported, with its existing older-system and visionOS styling.
+supported, with its existing older-system and visionOS styling. Related controls use an
+8-point/dp/logical-pixel gap, a consistent icon size per platform, and equal minimum heights
+for Back and Next. Phone controls keep at least 44-point Apple or 48-dp Android touch targets;
+Windows prayer buttons use 48 logical pixels, retaining native focus and contrast states.
+Optional actions collapse within their group without leaving gaps for hidden controls.
 All prayer kinds use the same responsive reading column with consistent inner margins. Apple
 and Android cap that column at 640 points/dp; Windows fills its available viewport width.
 Short bodies and acclamations fill the column just as long prayers do. Headings and the
@@ -594,6 +599,12 @@ displayed script, including reading aids and fallback text, independently of int
 Adaptive artwork and bead tracks keep their own layouts and do not change the text's inner edges.
 See [Apple interface materials](APPLE-INTERFACE-MATERIALS.markdown) for the control/content
 boundary and native iPhone, Mac and visionOS presentation rules.
+
+Mode selectors use compact native tab or segmented controls throughout the app. Windows
+Pivots share compact header typography and padding throughout the app; they
+retain their native selected indicator, keyboard navigation and horizontal header scrolling.
+Apple and Android keep their native compact segmented controls and tab rows. Labels remain
+localized, and interface direction determines their ordering.
 
 The wide prayer layout budgets for artwork, the session's bead columns, spacing and a readable
 text column before switching from the narrow layout. Reading position survives column changes;

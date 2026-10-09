@@ -116,6 +116,7 @@ struct JesusPrayerFlowView: View {
       #if !os(macOS)
       .labelStyle(.titleOnly)
       #endif
+      .prayerControlTouchTarget()
     }
     #if !os(macOS)
     Button { toggleFavorite() } label: {
@@ -124,6 +125,7 @@ struct JesusPrayerFlowView: View {
     }
     .labelStyle(.iconOnly)
     .accessibilityLabel(matchingFavoriteId != nil ? "prayerFlow.removeFromFavorites" : "prayerFlow.addToFavorites")
+    .prayerControlTouchTarget()
     #endif
   }
 

@@ -29,6 +29,21 @@ public sealed partial class CustomDevotionFlowPage : Page
         ViewModel = App.Services.GetRequiredService<CustomDevotionViewModel>();
         ViewModel.Navigation = Router.For(this);
         InitializeComponent();
+        var navigateUpLabel = Loc.Tr("CommandsBack", "Back");
+        Microsoft.UI.Xaml.Automation.AutomationProperties.SetName(NavigateUpButton, navigateUpLabel);
+        ToolTipService.SetToolTip(NavigateUpButton, navigateUpLabel);
+        var languageLabel = Loc.Tr("EdLanguageHeader/Text", "Prayer language");
+        Microsoft.UI.Xaml.Automation.AutomationProperties.SetName(LanguageMenuButton, languageLabel);
+        ToolTipService.SetToolTip(LanguageMenuButton, languageLabel);
+        var autoAdvanceLabel = Loc.Tr("SetAutoAdvanceCombo/Header", "Auto-advance");
+        Microsoft.UI.Xaml.Automation.AutomationProperties.SetName(AutoAdvanceButton, autoAdvanceLabel);
+        ToolTipService.SetToolTip(AutoAdvanceButton, autoAdvanceLabel);
+        var variantLabel = Loc.Tr("RemOptionsHeader/Text", "Options");
+        Microsoft.UI.Xaml.Automation.AutomationProperties.SetName(VariantMenuButton, variantLabel);
+        ToolTipService.SetToolTip(VariantMenuButton, variantLabel);
+        var dayLabel = Loc.Tr("home_widgets_calendar", "Calendar");
+        Microsoft.UI.Xaml.Automation.AutomationProperties.SetName(DayMenuButton, dayLabel);
+        ToolTipService.SetToolTip(DayMenuButton, dayLabel);
         // Keep the clicked item attached until WinUI dismisses its menu.
         LanguageFlyout.Opening += (_, _) => BuildLanguageFlyout();
         _reader = new PrayerFlowReader(NarrowReader, NarrowBody);

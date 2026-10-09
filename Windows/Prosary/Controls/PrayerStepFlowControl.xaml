@@ -80,7 +80,7 @@
         <!-- A counter flow's only action is its central button: a lone Back beside it competes
              with the thing the screen exists for, and "undo one repetition" isn't worth a
              permanent control (the header's back arrow still leaves the session). -->
-        <Grid Grid.Row="3" Padding="20" FlowDirection="{x:Bind NavigationFlowDirection}"
+        <Grid Grid.Row="3" Padding="20" ColumnSpacing="8" FlowDirection="{x:Bind NavigationFlowDirection}"
               Visibility="{x:Bind CollapsedWhenSet(CentralActionLabel), Mode=OneWay}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
@@ -88,9 +88,10 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <Button x:Uid="BtnBack" Grid.Column="0" Content="Back" Command="{x:Bind ViewModel.BackCommand, Mode=OneWay}"
-                    IsEnabled="{x:Bind ViewModel.CanGoBack, Mode=OneWay}" Background="Transparent" />
+                    IsEnabled="{x:Bind ViewModel.CanGoBack, Mode=OneWay}" Background="Transparent"
+                    Style="{StaticResource PrayerActionButtonStyle}" MinWidth="120" />
             <Button Grid.Column="2" Content="{x:Bind ViewModel.NextButtonText, Mode=OneWay}"
-                    Command="{x:Bind ViewModel.NextCommand, Mode=OneWay}" Style="{StaticResource AccentButtonStyle}" MinWidth="120"
+                    Command="{x:Bind ViewModel.NextCommand, Mode=OneWay}" Style="{StaticResource PrayerPrimaryButtonStyle}"
                     Visibility="{x:Bind CollapsedWhenSet(CentralActionLabel), Mode=OneWay}" />
         </Grid>
     </Grid>

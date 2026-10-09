@@ -22,6 +22,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.windowInsetsPadding
@@ -314,18 +315,22 @@ fun PrayerStepFlowScreen(
         val flowActions: @Composable () -> Unit = {
             topBarActions()
             if (speechAvailable) {
-                IconButton(enabled = step != null && !audioIsPlaying && !sessionPaused, onClick = {
+                IconButton(modifier = Modifier.size(PrayerControlDefaults.TargetSize),
+                    enabled = step != null && !audioIsPlaying && !sessionPaused, onClick = {
                     if (speech.isSpeaking) speech.stop()
                     else if (step != null && !speech.speak(listOfNotNull(step.acclamation, step.body)
                             .joinToString("\n\n"), languageCode)) showsSpeechUnavailable = true
                 }) {
                     Icon(if (speech.isSpeaking) Icons.Filled.Stop else Icons.Filled.VolumeUp,
+                        modifier = Modifier.size(PrayerControlDefaults.IconSize),
                         contentDescription = stringResource(if (speech.isSpeaking) R.string.speech_stop else R.string.speech_read))
                 }
             }
-            IconButton(onClick = { autoAdvanceMenuExpanded = true }) {
+            IconButton(onClick = { autoAdvanceMenuExpanded = true },
+                modifier = Modifier.size(PrayerControlDefaults.TargetSize)) {
                 Icon(
                     Icons.Filled.Timer,
+                    modifier = Modifier.size(PrayerControlDefaults.IconSize),
                     contentDescription = stringResource(R.string.settings_auto_advance),
                     tint = if (autoAdvanceSeconds > 0) MaterialTheme.colorScheme.primary else LocalContentColor.current,
                 )
@@ -361,9 +366,11 @@ fun PrayerStepFlowScreen(
                             modifier = Modifier.fillMaxWidth()
                                 .windowInsetsPadding(TopAppBarDefaults.windowInsets),
                             verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.spacedBy(PrayerControlDefaults.Spacing),
                         ) {
-                            IconButton(onClick = onNavigateUp) {
+                            IconButton(onClick = onNavigateUp, modifier = Modifier.size(PrayerControlDefaults.TargetSize)) {
                                 Icon(Icons.AutoMirrored.Filled.ArrowBack,
+                                    modifier = Modifier.size(PrayerControlDefaults.IconSize),
                                     contentDescription = stringResource(R.string.common_back))
                             }
                             Text(
@@ -376,7 +383,7 @@ fun PrayerStepFlowScreen(
                         Row(
                             modifier = Modifier.fillMaxWidth().horizontalScroll(rememberScrollState())
                                 .padding(horizontal = 12.dp).testTag("prayerFlowActions"),
-                            horizontalArrangement = Arrangement.End,
+                            horizontalArrangement = Arrangement.spacedBy(PrayerControlDefaults.Spacing, Alignment.End),
                             verticalAlignment = Alignment.CenterVertically,
                         ) { flowActions() }
                     }
@@ -386,11 +393,15 @@ fun PrayerStepFlowScreen(
                             style = PrayerTypography.headingStyleForText(visibleFlowTitle, MaterialTheme.typography.titleLarge),
                             modifier = Modifier.testTag("prayerFlowTitle")) },
                         navigationIcon = {
-                            IconButton(onClick = onNavigateUp) {
-                                Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(R.string.common_back))
+                            IconButton(onClick = onNavigateUp, modifier = Modifier.size(PrayerControlDefaults.TargetSize)) {
+                                Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(R.string.common_back),
+                                    modifier = Modifier.size(PrayerControlDefaults.IconSize))
                             }
                         },
-                        actions = { flowActions() },
+                        actions = {
+                            Row(horizontalArrangement = Arrangement.spacedBy(PrayerControlDefaults.Spacing),
+                                verticalAlignment = Alignment.CenterVertically) { flowActions() }
+                        },
                     )
                 }
             },
@@ -460,9 +471,11 @@ fun PrayerStepFlowScreen(
                                 vertical = if (isCompactHeight) 8.dp else 16.dp,
                             ),
                             verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.spacedBy(PrayerControlDefaults.Spacing),
                         ) {
                             OutlinedButton(
                                 onClick = onBack,
+                                modifier = Modifier.heightIn(min = PrayerControlDefaults.TargetSize),
                                 enabled = canGoBack,
                                 contentPadding = if (isCompactHeight) compactButtonPadding else ButtonDefaults.ContentPadding,
                             ) {
@@ -471,6 +484,7 @@ fun PrayerStepFlowScreen(
                             Spacer(modifier = Modifier.weight(1f))
                             Button(
                                 onClick = onNext,
+                                modifier = Modifier.heightIn(min = PrayerControlDefaults.TargetSize),
                                 contentPadding = if (isCompactHeight) compactButtonPadding else ButtonDefaults.ContentPadding,
                             ) {
                                 Text(if (isLastStep) stringResource(R.string.common_finish) else stringResource(R.string.common_next))
@@ -854,11 +868,12 @@ private fun PrayerTextHeader(
                             if (selected != script) onToggleTransliteration()
                         }, modifier = Modifier.testTag("transliterationToggle"))
                     } else IconButton(onClick = onToggleTransliteration,
-                        modifier = Modifier.testTag("transliterationToggle").semantics {
+                        modifier = Modifier.size(PrayerControlDefaults.TargetSize).testTag("transliterationToggle").semantics {
                             scriptLabel?.let { stateDescription = it }
                         }) {
                         Icon(
                             if (showsTransliteration) Icons.Filled.Book else Icons.Outlined.Book,
+                            modifier = Modifier.size(PrayerControlDefaults.IconSize),
                             contentDescription = actionLabel,
                             tint = if (showsTransliteration) MaterialTheme.colorScheme.primary else LocalContentColor.current,
                         )

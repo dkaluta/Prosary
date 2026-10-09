@@ -172,12 +172,14 @@ struct RosaryFlowView: View {
     #if !os(macOS)
     .labelStyle(.iconOnly)
     #endif
+    .prayerControlTouchTarget()
     .accessibilityIdentifier("chooseMysteryButton")
     Button { jump(to: previousMysteryIndex) } label: {
       Label {
         Text(String(localized: "rosaryFlow.previousMystery", defaultValue: "Previous Mystery", bundle: UILanguage.bundle, locale: UILanguage.locale))
       } icon: {
         Image(systemName: "backward.end.fill")
+          .prayerControlSymbolFont()
           .flipsForRightToLeftLayoutDirection(true)
       }
     }
@@ -187,6 +189,7 @@ struct RosaryFlowView: View {
     .disabled(previousMysteryIndex == nil)
     .accessibilityLabel(String(localized: "rosaryFlow.previousMystery", defaultValue: "Previous Mystery", bundle: UILanguage.bundle, locale: UILanguage.locale))
     .help(String(localized: "rosaryFlow.previousMystery", defaultValue: "Previous Mystery", bundle: UILanguage.bundle, locale: UILanguage.locale))
+    .prayerControlTouchTarget()
     .accessibilityIdentifier("previousMysteryButton")
 
     Button { jump(to: nextMysteryIndex) } label: {
@@ -194,6 +197,7 @@ struct RosaryFlowView: View {
         Text(String(localized: "rosaryFlow.nextMystery", defaultValue: "Next Mystery", bundle: UILanguage.bundle, locale: UILanguage.locale))
       } icon: {
         Image(systemName: "forward.end.fill")
+          .prayerControlSymbolFont()
           .flipsForRightToLeftLayoutDirection(true)
       }
     }
@@ -203,6 +207,7 @@ struct RosaryFlowView: View {
     .disabled(nextMysteryIndex == nil)
     .accessibilityLabel(String(localized: "rosaryFlow.nextMystery", defaultValue: "Next Mystery", bundle: UILanguage.bundle, locale: UILanguage.locale))
     .help(String(localized: "rosaryFlow.nextMystery", defaultValue: "Next Mystery", bundle: UILanguage.bundle, locale: UILanguage.locale))
+    .prayerControlTouchTarget()
     .accessibilityIdentifier("nextMysteryButton")
 
     if let languages = PrayerPackStore.info(for: "rosary")?.languages,
@@ -218,6 +223,7 @@ struct RosaryFlowView: View {
       #endif
       .accessibilityLabel(String(localized: "prayerFlow.language", defaultValue: "Prayer Language", bundle: UILanguage.bundle, locale: UILanguage.locale))
       .help(String(localized: "prayerFlow.language", defaultValue: "Prayer Language", bundle: UILanguage.bundle, locale: UILanguage.locale))
+      .prayerControlTouchTarget()
       .accessibilityIdentifier("languageMenu")
     }
   }

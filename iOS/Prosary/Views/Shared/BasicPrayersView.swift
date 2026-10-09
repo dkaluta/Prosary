@@ -219,6 +219,7 @@ private struct BasicPrayersLanguageMenu: View {
     #endif
     .accessibilityLabel(String(localized: "prayerFlow.language", defaultValue: "Prayer Language", bundle: UILanguage.bundle, locale: UILanguage.locale))
     .help(String(localized: "prayerFlow.language", defaultValue: "Prayer Language", bundle: UILanguage.bundle, locale: UILanguage.locale))
+    .prayerControlTouchTarget()
     .accessibilityIdentifier("languageMenu")
   }
 

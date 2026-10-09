@@ -238,6 +238,7 @@ struct CustomDevotionFlowView: View {
       .labelStyle(.iconOnly)
       #endif
       .accessibilityLabel(String(localized: "prayerFlow.language", defaultValue: "Prayer Language", bundle: UILanguage.bundle, locale: UILanguage.locale))
+      .prayerControlTouchTarget()
       .accessibilityIdentifier("languageMenu")
     }
     // Day picker — multi-day ("days"-type) devotions only: jump to any day; finishing a
@@ -264,6 +265,7 @@ struct CustomDevotionFlowView: View {
       .labelStyle(.iconOnly)
       #endif
       .accessibilityLabel(String(localized: "prayerFlow.day", defaultValue: "Day", bundle: UILanguage.bundle, locale: UILanguage.locale))
+      .prayerControlTouchTarget()
       .accessibilityIdentifier("dayMenu")
     }
     // Variant switcher — only for bundles declaring alternate step-sets (e.g. the Stations'
@@ -295,6 +297,7 @@ struct CustomDevotionFlowView: View {
       .labelStyle(.iconOnly)
       #endif
       .help(String(localized: "macLibrary.form", defaultValue: "Form", bundle: UILanguage.bundle, locale: UILanguage.locale))
+      .prayerControlTouchTarget()
       .accessibilityIdentifier("variantMenu")
     }
     #if !os(macOS)
@@ -304,6 +307,7 @@ struct CustomDevotionFlowView: View {
     }
     .labelStyle(.iconOnly)
     .accessibilityLabel(isPinned ? "prayerFlow.removeFromFavorites" : "prayerFlow.addToFavorites")
+    .prayerControlTouchTarget()
     .accessibilityIdentifier("pinDevotionButton")
     #endif
   }
