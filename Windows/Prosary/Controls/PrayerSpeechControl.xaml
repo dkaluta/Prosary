@@ -2,9 +2,9 @@
     x:Class="Prosary.Controls.PrayerSpeechControl"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <StackPanel Spacing="4" HorizontalAlignment="Center">
+    <StackPanel Spacing="4" HorizontalAlignment="Stretch">
         <Button x:Name="ReadButton" Click="OnRead" Background="Transparent" HorizontalAlignment="Center" />
         <TextBlock x:Name="UnavailableText" Visibility="Collapsed" TextWrapping="Wrap"
-                   MaxWidth="480" TextAlignment="Center" Style="{StaticResource MutedCaptionTextStyle}" />
+                   HorizontalAlignment="Stretch" TextAlignment="Center" Style="{StaticResource MutedCaptionTextStyle}" />
     </StackPanel>
 </UserControl>

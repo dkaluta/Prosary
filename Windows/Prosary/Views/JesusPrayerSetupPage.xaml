@@ -6,6 +6,14 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
+    <Page.Resources>
+        <DataTemplate x:Key="WrappingButtonLabelTemplate">
+            <TextBlock Text="{Binding}" TextWrapping="Wrap" TextAlignment="Center" />
+        </DataTemplate>
+        <DataTemplate x:Key="WrappingLabelTemplate">
+            <TextBlock Text="{Binding}" TextWrapping="Wrap" />
+        </DataTemplate>
+    </Page.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
@@ -21,26 +29,30 @@
             <Button Grid.Column="0" Command="{x:Bind ViewModel.BackCommand}" Background="Transparent" Padding="8">
                 <FontIcon Glyph="&#xE72B;" MirroredWhenRightToLeft="True" />
             </Button>
-            <TextBlock x:Uid="JpTitle" Grid.Column="1" Text="The Jesus Prayer" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource SubHeadlineTextStyle}" />
+            <TextBlock TextWrapping="Wrap" x:Uid="JpTitle" Grid.Column="1" Text="The Jesus Prayer" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource SubHeadlineTextStyle}" />
         </Grid>
 
-        <StackPanel Grid.Row="1" Spacing="16" MaxWidth="360" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="24">
-            <TextBlock x:Uid="JpHowMany" Text="How many times?" HorizontalAlignment="Center" />
+        <ScrollViewer Grid.Row="1" HorizontalContentAlignment="Stretch" HorizontalScrollMode="Disabled" HorizontalScrollBarVisibility="Disabled">
+            <Grid HorizontalAlignment="Stretch">
+                <StackPanel Spacing="16" HorizontalAlignment="Stretch" VerticalAlignment="Center" Padding="24">
+                    <TextBlock TextWrapping="Wrap" x:Uid="JpHowMany" Text="How many times?" HorizontalAlignment="Center" />
 
-            <ComboBox HorizontalAlignment="Stretch" ItemsSource="{x:Bind ViewModel.Options}" SelectedItem="{x:Bind ViewModel.Selection, Mode=TwoWay}">
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding Converter={StaticResource SetupOptionLabel}}" />
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
+                    <ComboBox MinWidth="0" HorizontalAlignment="Stretch" ItemsSource="{x:Bind ViewModel.Options}" SelectedItem="{x:Bind ViewModel.Selection, Mode=TwoWay}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock TextWrapping="Wrap" Text="{Binding Converter={StaticResource SetupOptionLabel}}" />
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
 
-            <TextBox x:Uid="JpRepetitions" Header="Number of repetitions" InputScope="Number"
-                     Text="{x:Bind ViewModel.CustomCountText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                     Visibility="{x:Bind ViewModel.IsCustomSelected, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
+                    <TextBox HeaderTemplate="{StaticResource WrappingLabelTemplate}" MinWidth="0" x:Uid="JpRepetitions" Header="Number of repetitions" InputScope="Number"
+                             Text="{x:Bind ViewModel.CustomCountText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             Visibility="{x:Bind ViewModel.IsCustomSelected, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
 
-            <Button x:Uid="JpBegin" Content="Begin" HorizontalAlignment="Stretch" Style="{StaticResource AccentButtonStyle}"
-                    Command="{x:Bind ViewModel.BeginCommand, Mode=OneWay}" />
-        </StackPanel>
+                    <Button MinWidth="0" HorizontalContentAlignment="Stretch" ContentTemplate="{StaticResource WrappingButtonLabelTemplate}" x:Uid="JpBegin" Content="Begin" HorizontalAlignment="Stretch" Style="{StaticResource AccentButtonStyle}"
+                            Command="{x:Bind ViewModel.BeginCommand, Mode=OneWay}" />
+                </StackPanel>
+            </Grid>
+        </ScrollViewer>
     </Grid>
 </Page>

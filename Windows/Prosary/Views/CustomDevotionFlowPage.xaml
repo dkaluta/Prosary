@@ -15,6 +15,9 @@
          ViewModel.ShowsBeadTrack so flat ("steps" type) devotions render without them while
          decade/bead ("rosary" type) devotions get the same track as the Rosary. -->
     <Page.Resources>
+        <DataTemplate x:Key="FlowActionLabelTemplate">
+            <TextBlock Text="{Binding}" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Stretch" />
+        </DataTemplate>
         <DataTemplate x:Key="BeadTemplate">
             <Grid Width="20" Height="20">
                 <Ellipse Fill="{Binding Color, Converter={StaticResource ColorToBrush}}"
@@ -104,7 +107,11 @@
 
         <Rectangle Grid.Row="1" Height="6" Fill="{x:Bind ViewModel.SeasonColor, Mode=OneWay, Converter={StaticResource ColorToBrush}}" />
 
-        <StackPanel Grid.Row="2" Spacing="8">
+        <!-- Keep series choices reachable without letting enlarged labels displace the reader. -->
+        <ScrollViewer Grid.Row="2" MaxHeight="180" HorizontalContentAlignment="Stretch"
+                      HorizontalScrollMode="Disabled" HorizontalScrollBarVisibility="Disabled">
+          <Grid HorizontalAlignment="Stretch">
+            <StackPanel Spacing="8">
             <controls:PrayerSpeechControl ViewModel="{x:Bind ViewModel, Mode=OneWay}" />
             <ProgressBar Minimum="0" Maximum="1" Value="{x:Bind ViewModel.Progress, Mode=OneWay, Converter={StaticResource NullableDoubleToValue}}" />
             <TextBlock FontFamily="{x:Bind ViewModel.ProgressFontFamily, Mode=OneWay}" Text="{x:Bind ViewModel.ProgressText, Mode=OneWay}" HorizontalAlignment="Center" Style="{StaticResource MutedCaptionTextStyle}" />
@@ -112,35 +119,48 @@
             <!-- The parting suggestion a finished series makes, when its bundle names a
                  devotion this device actually has. -->
             <InfoBar IsOpen="{x:Bind ViewModel.ShowsCompletionSuggestion, Mode=OneWay}"
-                     IsClosable="False" Severity="Success"
+                     IsClosable="False" Severity="Success" HorizontalContentAlignment="Stretch"
                      Title="{x:Bind ViewModel.CompletionTitleText, Mode=OneWay}">
                 <InfoBar.Content>
-                    <StackPanel Orientation="Horizontal" Spacing="8" Margin="0,0,0,12">
+                    <Grid ColumnSpacing="8" RowSpacing="8" Margin="0,0,0,12"
+                          SizeChanged="ActionPanel_SizeChanged">
+                        <Grid.RowDefinitions><RowDefinition Height="Auto" /><RowDefinition Height="Auto" /></Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions><ColumnDefinition Width="*" /></Grid.ColumnDefinitions>
                         <Button Content="{x:Bind ViewModel.PrayNextText, Mode=OneWay}"
+                                HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" ContentTemplate="{StaticResource FlowActionLabelTemplate}"
                                 Command="{x:Bind ViewModel.PraySuggestedNextCommand}" />
-                        <Button x:Uid="MultiDayNotNowButton" Content="Not now"
+                        <Button x:Uid="MultiDayNotNowButton" Grid.Row="1" Content="Not now"
+                                HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" ContentTemplate="{StaticResource FlowActionLabelTemplate}"
                                 Command="{x:Bind ViewModel.DismissCompletionSuggestionCommand}" />
-                    </StackPanel>
+                    </Grid>
                 </InfoBar.Content>
             </InfoBar>
 
             <!-- A missed day of a series is a real choice, not an error: pray the day that
                  should have happened, stay with the calendar, or start the run over. -->
             <InfoBar x:Uid="MultiDayMissedBar" IsOpen="{x:Bind ViewModel.ShowsMissedDayChoice, Mode=OneWay}"
-                     IsClosable="False" Severity="Informational" Title="You missed a day"
+                     IsClosable="False" Severity="Informational" Title="You missed a day" HorizontalContentAlignment="Stretch"
                      Message="Pray the day you missed, stay with today, or start the whole devotion over.">
                 <InfoBar.Content>
-                    <StackPanel Orientation="Horizontal" Spacing="8" Margin="0,0,0,12">
+                    <Grid ColumnSpacing="8" RowSpacing="8" Margin="0,0,0,12"
+                          SizeChanged="ActionPanel_SizeChanged">
+                        <Grid.RowDefinitions><RowDefinition Height="Auto" /><RowDefinition Height="Auto" /><RowDefinition Height="Auto" /></Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions><ColumnDefinition Width="*" /></Grid.ColumnDefinitions>
                         <Button Content="{x:Bind ViewModel.MissedDayPrayMissedText, Mode=OneWay}"
+                                HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" ContentTemplate="{StaticResource FlowActionLabelTemplate}"
                                 Command="{x:Bind ViewModel.PrayMissedDayCommand}" />
-                        <Button Content="{x:Bind ViewModel.MissedDayPrayTodayText, Mode=OneWay}"
+                        <Button Grid.Row="1" Content="{x:Bind ViewModel.MissedDayPrayTodayText, Mode=OneWay}"
+                                HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" ContentTemplate="{StaticResource FlowActionLabelTemplate}"
                                 Command="{x:Bind ViewModel.PrayCalendarDayCommand}" />
-                        <Button x:Uid="MultiDayStartOverButton" Content="Start over"
+                        <Button x:Uid="MultiDayStartOverButton" Grid.Row="2" Content="Start over"
+                                HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" ContentTemplate="{StaticResource FlowActionLabelTemplate}"
                                 Command="{x:Bind ViewModel.StartRunOverCommand}" />
-                    </StackPanel>
+                    </Grid>
                 </InfoBar.Content>
             </InfoBar>
-        </StackPanel>
+            </StackPanel>
+          </Grid>
+        </ScrollViewer>
 
         <Grid x:Name="FlowContent" Grid.Row="3" SizeChanged="FlowContent_SizeChanged">
             <Grid x:Name="NarrowLayout" RowSpacing="16">

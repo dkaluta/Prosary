@@ -20,15 +20,15 @@
                     ToolTipService.ToolTip="{x:Bind ViewModel.BackLabel}">
                 <FontIcon Glyph="&#xE72B;" MirroredWhenRightToLeft="True" />
             </Button>
-            <TextBlock Grid.Column="1" Text="{x:Bind ViewModel.Title}"
+            <TextBlock TextWrapping="Wrap" Grid.Column="1" Text="{x:Bind ViewModel.Title}"
                        VerticalAlignment="Center" HorizontalAlignment="Center"
                        Style="{StaticResource SubHeadlineTextStyle}" />
         </Grid>
         <ScrollViewer Grid.Row="1" HorizontalContentAlignment="Stretch"
                       HorizontalScrollMode="Disabled" HorizontalScrollBarVisibility="Disabled">
             <Grid HorizontalAlignment="Stretch">
-                <StackPanel Padding="24" MaxWidth="560" HorizontalAlignment="Center" Spacing="12">
-                    <TextBlock Text="{x:Bind ViewModel.ColorLabel}" Style="{StaticResource BaseTextBlockStyle}" />
+                <StackPanel Padding="24" HorizontalAlignment="Stretch" Spacing="12">
+                    <TextBlock TextWrapping="Wrap" Text="{x:Bind ViewModel.ColorLabel}" Style="{StaticResource BaseTextBlockStyle}" />
                     <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
                             BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
                             BorderThickness="1" CornerRadius="8">

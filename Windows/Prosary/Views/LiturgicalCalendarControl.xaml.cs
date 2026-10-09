@@ -16,6 +16,13 @@ public sealed partial class LiturgicalCalendarControl : UserControl
         MonthPicker.MaxDate = new DateTimeOffset(new DateTime(2100, 12, 31));
         Loaded += (_, _) => FocusOnDate(_focusDate ?? DateOnly.FromDateTime(DateTime.Today));
     }
+    private void OnLayoutSizeChanged(object sender, Microsoft.UI.Xaml.SizeChangedEventArgs args)
+    {
+        // Reserve feast rows while the month picker and options can scroll in short windows.
+        var availableHeight = args.NewSize.Height - CalendarLayout.Padding.Top
+            - CalendarLayout.Padding.Bottom - CalendarLayout.RowSpacing;
+        CalendarOptionsScroll.MaxHeight = Math.Max(0, availableHeight * 0.65);
+    }
     public void FocusOnDate(DateOnly date)
     {
         _focusDate = date;

@@ -93,8 +93,8 @@
                 <Setter Property="TextWrapping" Value="Wrap" />
                 <Setter Property="TextAlignment" Value="Center" />
             </Style>
+            <!-- The reader follows its viewport; each page supplies the common inset. -->
             <Style x:Key="PrayerTextColumnStyle" TargetType="StackPanel">
-                <Setter Property="MaxWidth" Value="640" />
                 <Setter Property="HorizontalAlignment" Value="Stretch" />
             </Style>
             <Style x:Key="PrayerBodyTextStyle" TargetType="TextBlock">

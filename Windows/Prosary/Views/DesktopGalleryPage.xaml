@@ -12,7 +12,7 @@
         </Grid.RowDefinitions>
         <StackPanel Spacing="8">
             <TextBlock Text="{x:Bind ViewModel.GalleryTitle}" Style="{ThemeResource TitleTextBlockStyle}"
-                       AutomationProperties.HeadingLevel="Level1" />
+                       AutomationProperties.HeadingLevel="Level1" TextWrapping="Wrap" />
             <TextBlock Text="{x:Bind ViewModel.GalleryDetail}" TextWrapping="Wrap"
                        Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
         </StackPanel>
@@ -46,14 +46,14 @@
                                        TextTrimming="CharacterEllipsis" ToolTipService.ToolTip="{x:Bind Title}" />
                             <TextBlock Grid.Row="2" Text="{x:Bind Subtitle}" FontSize="12" TextWrapping="Wrap" MaxLines="2"
                                        TextTrimming="CharacterEllipsis" Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
-                            <Button Grid.Row="3" HorizontalAlignment="Stretch" Click="OnAddTemplate" Loaded="OnAddButtonLoaded" />
+                            <Button Grid.Row="3" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" Click="OnAddTemplate" Loaded="OnAddButtonLoaded" />
                         </Grid>
                     </DataTemplate>
                 </GridView.ItemTemplate>
             </GridView>
-            <StackPanel x:Name="NoMatchesPanel" Visibility="Collapsed" HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="8">
-                <TextBlock Text="{x:Bind ViewModel.NoMatchesTitle}" Style="{ThemeResource SubtitleTextBlockStyle}" TextWrapping="Wrap" />
-                <TextBlock Text="{x:Bind ViewModel.NoMatchesDetail}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" TextWrapping="Wrap" />
+            <StackPanel x:Name="NoMatchesPanel" Visibility="Collapsed" HorizontalAlignment="Stretch" VerticalAlignment="Center" Spacing="8">
+                <TextBlock Text="{x:Bind ViewModel.NoMatchesTitle}" Style="{ThemeResource SubtitleTextBlockStyle}" TextWrapping="Wrap" TextAlignment="Center" />
+                <TextBlock Text="{x:Bind ViewModel.NoMatchesDetail}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" TextWrapping="Wrap" TextAlignment="Center" />
             </StackPanel>
             <ProgressBar IsIndeterminate="True" VerticalAlignment="Top"
                          Visibility="{x:Bind ViewModel.IsBusy, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />

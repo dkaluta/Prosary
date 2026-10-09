@@ -6,6 +6,11 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
+    <Page.Resources>
+        <DataTemplate x:Key="WrappingLabelTemplate">
+            <TextBlock Text="{Binding}" TextWrapping="Wrap" />
+        </DataTemplate>
+    </Page.Resources>
 
     <!-- Attribution content ported from iOS's AboutView.swift (the current canonical source —
          irosary's older AboutPage.xaml has the same content but predates the app being retitled
@@ -25,186 +30,188 @@
             <Button Grid.Column="0" Click="OnNavigateUp" Background="Transparent" Padding="8">
                 <FontIcon Glyph="&#xE72B;" MirroredWhenRightToLeft="True" />
             </Button>
-            <TextBlock x:Uid="AbtTitle" Grid.Column="1" Text="About Prosary" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource SubHeadlineTextStyle}" />
+            <TextBlock TextWrapping="Wrap" x:Uid="AbtTitle" Grid.Column="1" Text="About Prosary" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource SubHeadlineTextStyle}" />
         </Grid>
 
-        <ScrollViewer Grid.Row="1">
-            <StackPanel Spacing="24" MaxWidth="560" HorizontalAlignment="Center" Padding="24">
+        <ScrollViewer Grid.Row="1" HorizontalContentAlignment="Stretch" HorizontalScrollMode="Disabled" HorizontalScrollBarVisibility="Disabled">
+            <Grid HorizontalAlignment="Stretch">
+                <StackPanel Spacing="24" HorizontalAlignment="Stretch" Padding="24">
 
-                <StackPanel Spacing="4">
-                    <TextBlock Text="Prosary" Style="{StaticResource HeadlineTextStyle}" />
-                    <TextBlock x:Uid="AbtTagline" Text="A companion for praying the Rosary and other Catholic devotions." Style="{StaticResource MutedSubtitleTextStyle}" TextAlignment="Left" HorizontalAlignment="Left" TextWrapping="Wrap" />
+                    <StackPanel Spacing="4">
+                        <TextBlock TextWrapping="Wrap" Text="Prosary" Style="{StaticResource HeadlineTextStyle}" />
+                        <TextBlock x:Uid="AbtTagline" Text="A companion for praying the Rosary and other Catholic devotions." Style="{StaticResource MutedSubtitleTextStyle}" TextAlignment="Left" HorizontalAlignment="Left" TextWrapping="Wrap" />
+                    </StackPanel>
+
+                    <StackPanel Spacing="8">
+                        <TextBlock TextWrapping="Wrap" x:Uid="AbtTypefacesHeader" Text="Typefaces" Style="{StaticResource SubHeadlineTextStyle}" HorizontalAlignment="Left" />
+                        <TextBlock TextWrapping="Wrap" Style="{StaticResource MutedSubtitleTextStyle}" TextAlignment="Left" HorizontalAlignment="Left">
+                            <Run Text="Frank Ruhl Libre" FontWeight="Bold" /><Run x:Uid="AbtTypeFrank" Text=" — SIL Open Font License 1.1 — Hebrew prayers." /><LineBreak />
+                            <Run Text="Shofar" FontWeight="Bold" /><Run x:Uid="AbtTypeShofar" Text=" — GPL v2 with font-embedding exception — Hebrew Scripture (Culmus Project, Yoram Gnat)." /><LineBreak />
+                            <Run Text="Amiri" FontWeight="Bold" /><Run x:Uid="AbtTypeAmiri" Text=" — SIL Open Font License 1.1 — Arabic prayers." /><LineBreak />
+                            <Run Text="Scheherazade New" FontWeight="Bold" /><Run x:Uid="AbtTypeScheherazade" Text=" — SIL Open Font License 1.1 — Arabic Scripture (SIL)." /><LineBreak />
+                            <Run Text="Cardo" FontWeight="Bold" /><Run x:Uid="AbtTypeCardo" Text=" — SIL Open Font License 1.1 — Latin/English Scripture (David J. Perry)." />
+                            <LineBreak /><Run Text="Noto Sans Syriac, Western &amp; Eastern" FontWeight="Bold" /><Run x:Uid="AbtTypeNotoSyriac" Text=" — SIL Open Font License 1.1 — selectable Syriac-script Aramaic faces." />
+                            <LineBreak /><Run Text="David Libre, Noto Sans Hebrew &amp; Noto Rashi Hebrew" FontWeight="Bold" /><Run x:Uid="AbtTypeOptionalHebrew" Text=" — SIL Open Font License 1.1 — optional Hebrew prayer and Scripture faces." />
+                            <LineBreak /><Run Text="Stam Ashkenaz &amp; Stam Sefarad" FontWeight="Bold" /><Run x:Uid="AbtTypeStam" Text=" — GPL v2 with font-embedding exception — optional Hebrew Scripture faces (Culmus Project, Yoram Gnat)." />
+                        </TextBlock>
+                        <TextBlock x:Uid="AbtTypeFooter" Text="Prayer typography can use the platform’s system serif or sans-serif design."
+                                   Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" HorizontalAlignment="Left" />
+                    </StackPanel>
+
+                    <StackPanel Spacing="8">
+                        <TextBlock TextWrapping="Wrap" x:Uid="AbtMysteryHeader" Text="Mystery Illustrations" Style="{StaticResource SubHeadlineTextStyle}" HorizontalAlignment="Left" />
+                        <TextBlock x:Uid="AbtMysteryIntro" Text="All 20 mystery images are classical paintings in the public domain (artist deceased over 100 years), sourced from Wikimedia Commons."
+                                   Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" HorizontalAlignment="Left" />
+                        <TextBlock TextWrapping="Wrap" LineHeight="20" HorizontalAlignment="Left">
+                            <Run x:Uid="AbtMys01Title" Text="The Annunciation" FontStyle="Italic" /><Run x:Uid="AbtCredit01" Text=" — Fra Angelico (d. 1455)" /><LineBreak />
+                            <Run x:Uid="AbtMys02Title" Text="The Visitation" FontStyle="Italic" /><Run x:Uid="AbtCredit02" Text=" — Mariotto Albertinelli (d. 1515)" /><LineBreak />
+                            <Run x:Uid="AbtMys03Title" Text="The Holy Night" FontStyle="Italic" /><Run x:Uid="AbtCredit03" Text=" — Antonio da Correggio (d. 1534)" /><LineBreak />
+                            <Run x:Uid="AbtMys04Title" Text="The Presentation at the Temple" FontStyle="Italic" /><Run x:Uid="AbtCredit04" Text=" — Andrea Mantegna (d. 1506)" /><LineBreak />
+                            <Run x:Uid="AbtMys05Title" Text="Christ Discovered in the Temple" FontStyle="Italic" /><Run x:Uid="AbtCredit05" Text=" — Simone Martini (d. 1344)" /><LineBreak />
+                            <Run x:Uid="AbtMys06Title" Text="The Baptism of Christ" FontStyle="Italic" /><Run x:Uid="AbtCredit06" Text=" — Piero della Francesca (d. 1492)" /><LineBreak />
+                            <Run x:Uid="AbtMys07Title" Text="The Wedding at Cana" FontStyle="Italic" /><Run x:Uid="AbtCredit07" Text=" — Paolo Veronese (d. 1588)" /><LineBreak />
+                            <Run x:Uid="AbtMys08Title" Text="The Sermon on the Mount" FontStyle="Italic" /><Run x:Uid="AbtCredit08" Text=" — Cosimo Rosselli (d. 1507)" /><LineBreak />
+                            <Run x:Uid="AbtMys09Title" Text="The Transfiguration" FontStyle="Italic" /><Run x:Uid="AbtCredit09" Text=" — Raphael (d. 1520)" /><LineBreak />
+                            <Run x:Uid="AbtMys10Title" Text="The Last Supper" FontStyle="Italic" /><Run x:Uid="AbtCredit10" Text=" — Leonardo da Vinci (d. 1519)" /><LineBreak />
+                            <Run x:Uid="AbtMys11Title" Text="The Agony in the Garden" FontStyle="Italic" /><Run x:Uid="AbtCredit04" Text=" — Andrea Mantegna (d. 1506)" /><LineBreak />
+                            <Run x:Uid="AbtMys12Title" Text="The Flagellation of Christ" FontStyle="Italic" /><Run x:Uid="AbtCredit11" Text=" — Caravaggio (d. 1610)" /><LineBreak />
+                            <Run x:Uid="AbtMys13Title" Text="The Crowning with Thorns" FontStyle="Italic" /><Run x:Uid="AbtCredit11" Text=" — Caravaggio (d. 1610)" /><LineBreak />
+                            <Run x:Uid="AbtMys14Title" Text="Christ Carrying the Cross" FontStyle="Italic" /><Run x:Uid="AbtCredit12" Text=" — Titian (d. 1576)" /><LineBreak />
+                            <Run x:Uid="AbtMys15Title" Text="Christ Crucified" FontStyle="Italic" /><Run x:Uid="AbtCredit13" Text=" — Diego Velázquez (d. 1660)" /><LineBreak />
+                            <Run x:Uid="AbtMys16Title" Text="The Resurrection" FontStyle="Italic" /><Run x:Uid="AbtCredit06" Text=" — Piero della Francesca (d. 1492)" /><LineBreak />
+                            <Run x:Uid="AbtMys17Title" Text="The Ascension of Christ" FontStyle="Italic" /><Run x:Uid="AbtCredit14" Text=" — Rembrandt (d. 1669)" /><LineBreak />
+                            <Run x:Uid="AbtMys18Title" Text="The Pentecost" FontStyle="Italic" /><Run x:Uid="AbtCredit15" Text=" — El Greco (d. 1614)" /><LineBreak />
+                            <Run x:Uid="AbtMys19Title" Text="Assumption of the Virgin" FontStyle="Italic" /><Run x:Uid="AbtCredit12" Text=" — Titian (d. 1576)" /><LineBreak />
+                            <Run x:Uid="AbtMys20Title" Text="Coronation of the Virgin" FontStyle="Italic" /><Run x:Uid="AbtCredit13" Text=" — Diego Velázquez (d. 1660)" />
+                        </TextBlock>
+                        <TextBlock x:Uid="AboutEasternIcons" Text="The collection of illustrations of the Mysteries in the Eastern style is used with approval from the Mission of St. Gamaliel for Hebrew Catholics in the Aramaic (Syriac) Catholic Church."
+                                   Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" HorizontalAlignment="Left" />
+                    </StackPanel>
+
+                    <StackPanel Spacing="8">
+                        <TextBlock TextWrapping="Wrap" x:Uid="AbtOtherHeader" Text="Other Images" Style="{StaticResource SubHeadlineTextStyle}" HorizontalAlignment="Left" />
+                        <TextBlock TextWrapping="Wrap" LineHeight="20" HorizontalAlignment="Left">
+                            <Run x:Uid="AbtOther01Title" Text="Crucifix" FontStyle="Italic" /><Run x:Uid="AbtCredit16" Text=" — Cimabue (d. 1302)." /><LineBreak />
+                            <Run x:Uid="AbtOther02Title" Text="The Small Cowper Madonna" FontStyle="Italic" /><Run x:Uid="AbtCredit17" Text=" — Raphael (d. 1520)." /><LineBreak />
+                            <Run x:Uid="AbtOther03Title" Text="Faith, Hope, and Charity" FontStyle="Italic" /><Run x:Uid="AbtCredit18" Text=" — Raphael, Baglioni altarpiece predella (d. 1520)." /><LineBreak />
+                            <Run x:Uid="AbtOther04Title" Text="Praying Hands" FontStyle="Italic" /><Run x:Uid="AbtCredit19" Text=" — Albrecht Dürer (d. 1528)." /><LineBreak />
+                            <Run x:Uid="AbtOther05Title" Text="Holy Trinity" FontStyle="Italic" /><Run x:Uid="AbtCredit20" Text=" — Masaccio (d. 1428)." /><LineBreak />
+                            <Run x:Uid="AbtOther06Title" Text="Christ in Limbo" FontStyle="Italic" /><Run x:Uid="AbtCredit21" Text=" — Fra Angelico (d. 1455)." /><LineBreak />
+                            <Run x:Uid="AbtOther07Title" Text="Michael" FontStyle="Italic" /><Run x:Uid="AbtCredit22" Text=" — Guido Reni (d. 1642)." /><LineBreak />
+                            <Run x:Uid="AbtOther08Title" Text="Head of Christ" FontStyle="Italic" /><Run x:Uid="AbtCredit23" Text=" — Rembrandt (d. 1669)." />
+                        </TextBlock>
+                    </StackPanel>
+
+                    <StackPanel Spacing="8">
+                        <TextBlock TextWrapping="Wrap" x:Uid="AbtStationsHeader" Text="Stations of the Cross Illustrations" Style="{StaticResource SubHeadlineTextStyle}" HorizontalAlignment="Left" />
+                        <TextBlock x:Uid="AbtStationsFugel" Text="All 14 stations: Gebhard Fugel (1863–1939), Kreuzweg (1921), St. Antonius, Bad Saulgau — public domain; photographs by Andreas Praefcke, released into the public domain."
+                                   Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" HorizontalAlignment="Left" />
+                        <TextBlock x:Uid="AbtStationsScriptural" Text="The scriptural (St. John Paul II) form adds: The Kiss of Judas — Giotto (Scrovegni Chapel, c. 1305); Christ before the High Priest — Gerrit van Honthorst (c. 1617), National Gallery, London; The Denial of St Peter — Rembrandt (1660), Rijksmuseum; Le Coup de Lance — Peter Paul Rubens (1620), Royal Museum of Fine Arts Antwerp — all public domain. Its other scenes reuse illustrations listed elsewhere on this page."
+                                   Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" HorizontalAlignment="Left" />
+                        <TextBlock x:Uid="AbtViaLucis" Text="The Via Lucis scenes: The Disciples at the Tomb — Eugène Burnand (1898), Musée d'Orsay; Noli me tangere — Fra Angelico (San Marco, c. 1440); The Road to Emmaus, the appearances to the apostles, at Lake Tiberias, and in Galilee — Duccio di Buoninsegna (Maestà, 1308–1311), Siena; Supper at Emmaus (1601) and The Incredulity of Saint Thomas (1601–1602) — Caravaggio; Christ's Charge to Peter — Raphael (c. 1515), Royal Collection; The Virgin in Prayer — Sassoferrato (1640–1650), National Gallery, London — all public domain. Its other scenes reuse the Rosary's glorious-mystery illustrations."
+                                   Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" HorizontalAlignment="Left" />
+                    </StackPanel>
+
+                    <StackPanel Spacing="8">
+                        <TextBlock TextWrapping="Wrap" x:Uid="AbtCrownHeader" Text="Franciscan Crown Illustration" Style="{StaticResource SubHeadlineTextStyle}" HorizontalAlignment="Left" />
+                        <TextBlock x:Uid="AbtCrownMagi" Text="The Adoration of the Magi: Bartolomé Esteban Murillo (c. 1655–60), Toledo Museum of Art — public domain. The other six Joys reuse the Rosary mystery illustrations above."
+                                   Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" HorizontalAlignment="Left" />
+                    </StackPanel>
+
+                    <StackPanel Spacing="8">
+                        <TextBlock TextWrapping="Wrap" x:Uid="AbtSorrowsHeader" Text="Seven Sorrows Illustrations" Style="{StaticResource SubHeadlineTextStyle}" HorizontalAlignment="Left" />
+                        <TextBlock TextWrapping="Wrap" LineHeight="20" HorizontalAlignment="Left">
+                            <Run x:Uid="AbtSorrow01Title" Text="The Prophecy of Simeon" FontStyle="Italic" /><Run x:Uid="AbtCredit24" Text=" — Rembrandt van Rijn, Simeon’s Song of Praise (1631), Mauritshuis — public domain." /><LineBreak />
+                            <Run x:Uid="AbtSorrow02Title" Text="The Flight into Egypt" FontStyle="Italic" /><Run x:Uid="AbtCredit25" Text=" — Bartolomé Esteban Murillo (c. 1647–50), Detroit Institute of Arts — public domain." /><LineBreak />
+                            <Run x:Uid="AbtSorrow03Title" Text="The Loss of Jesus in the Temple" FontStyle="Italic" /><Run x:Uid="AbtCredit26" Text=" — Paolo Veronese, Christ Among the Doctors (c. 1560), Museo del Prado — public domain." /><LineBreak />
+                            <Run x:Uid="AbtSorrow04Title" Text="The Meeting on the Way of the Cross" FontStyle="Italic" /><Run x:Uid="AbtCredit27" Text=" — Raphael, Lo Spasimo (c. 1514–16), Museo del Prado — public domain." /><LineBreak />
+                            <Run x:Uid="AbtSorrow05Title" Text="The Crucifixion" FontStyle="Italic" /><Run x:Uid="AbtCredit28" Text=" — Hendrick ter Brugghen, The Crucifixion with the Virgin and Saint John (c. 1625), Metropolitan Museum of Art — CC0." /><LineBreak />
+                            <Run x:Uid="AbtSorrow06Title" Text="The Descent from the Cross" FontStyle="Italic" /><Run x:Uid="AbtCredit29" Text=" — Peter Paul Rubens (c. 1612–14), Cathedral of Our Lady, Antwerp — public domain." /><LineBreak />
+                            <Run x:Uid="AbtSorrow07Title" Text="The Burial of Jesus" FontStyle="Italic" /><Run x:Uid="AbtCredit30" Text=" — Titian, The Entombment of Christ (c. 1520), Musée du Louvre — public domain." />
+                        </TextBlock>
+                    </StackPanel>
+
+                    <StackPanel Spacing="8">
+                        <TextBlock TextWrapping="Wrap" x:Uid="AbtMercyHeader" Text="Divine Mercy Illustration" Style="{StaticResource SubHeadlineTextStyle}" HorizontalAlignment="Left" />
+                        <TextBlock x:Uid="AbtMercyBody" Text="Eugeniusz Kazimirowski, Divine Mercy (“Jezu, ufam Tobie”, 1934), Divine Mercy Sanctuary, Vilnius — the original image painted under St. Faustina’s direction; public domain."
+                                   Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" HorizontalAlignment="Left" />
+                    </StackPanel>
+
+                    <StackPanel Spacing="8">
+                        <TextBlock TextWrapping="Wrap" x:Uid="AbtJpHeader" Text="Jesus Prayer Illustration" Style="{StaticResource SubHeadlineTextStyle}" HorizontalAlignment="Left" />
+                        <TextBlock x:Uid="AbtJpBody" Text="Christ Pantocrator: encaustic icon (6th century), Saint Catherine’s Monastery, Mount Sinai — the oldest surviving icon of Christ Pantocrator, honoring the prayer’s Eastern tradition; public domain."
+                                   Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" HorizontalAlignment="Left" />
+                    </StackPanel>
+
+                    <StackPanel Spacing="8">
+                        <TextBlock TextWrapping="Wrap" x:Uid="AbtPrayerTextsHeader" Text="Prayer Texts" Style="{StaticResource SubHeadlineTextStyle}" HorizontalAlignment="Left" />
+                        <TextBlock x:Uid="AbtPrayerTextsBody" Text="The Divine Mercy Chaplet in Hebrew is the Latin Patriarchate of Jerusalem’s own text, approved by Patriarch Michel Sabbah in 2003. The Hebrew prayers are the Saint James Vicariate for Hebrew Speaking Catholics’ own texts, from their prayer book. Some of the prayers in Hebrew and Aramaic are used with the permission of the Patriarchal Exarch of the Aramaic (Syriac) Catholic community."
+                                   Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" HorizontalAlignment="Left" />
+                        <TextBlock x:Uid="AbtLitanySources" Text="The Litany of Loreto uses published Catholic prayer texts. The Hebrew wording is Erez’s contribution through the Mission of St. Gamaliel. The Greek and Tagalog standalone closing prayers are Prosary translations of the Latin original; they are not published liturgical translations."
+                                   Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" HorizontalAlignment="Left" />
+                    </StackPanel>
+
+                    <StackPanel Spacing="8">
+                        <TextBlock TextWrapping="Wrap" x:Uid="AbtScriptureHeader" Text="Scripture Sources" Style="{StaticResource SubHeadlineTextStyle}" HorizontalAlignment="Left" />
+                        <TextBlock x:Uid="AbtScriptureBody" Text="Scripture quotations use the Douay-Rheims Bible (English), the Clementine Vulgate (Latin), Franz Delitzsch's Hebrew New Testament translation (sourced from kirjasilta.net/ha-berit) with Hebrew Old Testament passages following the Masoretic text, the Old Jesuit Arabic Bible (1897), the Russian Synodal Bible (1876), and Ang Dating Biblia (Tagalog, 1905)."
+                                   Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" HorizontalAlignment="Left" />
+                        <TextBlock x:Uid="AbtAdditionalSources" Text="French Scripture: Crampon (1923), public domain. Italian Scripture: Antonio Martini; structured data © Giovanni Novelli, CC BY 4.0 (parolaviva.art). French and Italian prayers: Vatican Compendium. Pope’s intentions: Pope’s Worldwide Prayer Network (2026–2027); Hebrew and Ukrainian translations by Prosary."
+                                   Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" />
+                        <TextBlock x:Uid="AbtUkrainianPrayerSources" Text="Ukrainian prayers: Roman Catholic Church in Ukraine, Щоденно з Богом prayerbook. Used with attribution under the publisher’s reuse policy. Scripture: Kulish, Nechui-Levytsky and Puluj Bible (1905), public domain; eBible.org ukr1871. Historical Scripture spelling is retained. Ukrainian Rosary closing prayer: Ukrainian Information Center MIR Medjugorje (medjugorje.com.ua), reproduced with attribution under the site’s publication permission."
+                                   Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" />
+                        <TextBlock x:Uid="AbtMissionPrayerCorrections" Text="Syriac and Ukrainian prayer corrections supplied by a Prosary contributor (October 2026)."
+                                   FontSize="13" Foreground="{ThemeResource TextFillColorSecondaryBrush}" TextWrapping="Wrap" />
+                        <HyperlinkButton ContentTemplate="{StaticResource WrappingLabelTemplate}" x:Uid="AbtUkrainianPrayerbookLink" Content="Ukrainian prayerbook"
+                                         NavigateUri="https://rkc.org.ua/duhovnist/molytovnyk/" />
+                        <HyperlinkButton ContentTemplate="{StaticResource WrappingLabelTemplate}" x:Uid="AbtUkrainianRosarySourceLink" Content="MIR Medjugorje — Ukrainian Rosary prayer"
+                                         NavigateUri="https://medjugorje.com.ua/media/video/molytvy/6220-6-den-novenna-do-bozhoyi-matery-fatymskoyi17-bereznya-25-bereznya-2022.html" />
+                        <HyperlinkButton ContentTemplate="{StaticResource WrappingLabelTemplate}" x:Uid="AbtUkrainianScriptureLink" Content="Ukrainian Bible (1905)"
+                                         NavigateUri="https://ebible.org/find/details.php?id=ukr1871" />
+                        <TextBlock x:Uid="AbtPeshittaSources" Text="Peshitta New Testament (BFBS, 1905): Digital Syriac Corpus; Syriac transcription by George A. Kiraz, TEI edition © James E. Walters, CC BY 4.0. Hebrew script conversion using Erez’s rules; verse selection and text formatting by Prosary."
+                                   Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" />
+                        <HyperlinkButton ContentTemplate="{StaticResource WrappingLabelTemplate}" x:Uid="AbtPeshittaSourceLink" Content="Digital Syriac Corpus"
+                                         NavigateUri="https://syriaccorpus.org/" />
+                        <HyperlinkButton ContentTemplate="{StaticResource WrappingLabelTemplate}" x:Uid="AbtPeshittaLicenseLink" Content="CC BY 4.0"
+                                         NavigateUri="https://creativecommons.org/licenses/by/4.0/" />
+                        <TextBlock x:Uid="AbtPeshittaIsaiahSources" Text="Old Testament: user-supplied pointed Peshitta XML from Internet Archive. The underlying edition and redistribution terms remain unidentified. Hebrew script conversion using Erez’s rules; verse selection and text formatting by Prosary."
+                                   Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" />
+                        <HyperlinkButton ContentTemplate="{StaticResource WrappingLabelTemplate}" x:Uid="AbtPeshittaIsaiahSourceLink" Content="Internet Archive"
+                                         NavigateUri="https://archive.org/details/peshitta-complete-bible-otnt" />
+                        <TextBlock x:Uid="AbtPrayerSources" Text="Additional prayer sources: Vatican News, the Sanctuary of Fatima, Notre-Dame de Paris, AELF and the Italian Episcopal Conference (CEI). Also: Basilica of Guadalupe; GOARCH Digital Chant Stand; IVE Greece (Greek Anima Christi translated by Fr F. Bravo IVE); St Nicholas Catholic Parish, Tinos; Carmelite Iberian Province; Natalia Smelova, Melkite Syriac Hymns to the Mother of God (2011), for the medieval Syriac Under Your Protection. Officium Parvum Graece et Latine (Avignon: F. Seguin, 1823), pp. 7, 119, 121, 125. Alfonso Maria de’ Liguori: Esercizio della Via Crucis (1761); Mater dolorosa (1888). Greek Angelus: IVE Greece. O Antiphons: Saint James Vicariate (Hebrew) and RusCatholic (Russian). Syriac Rosary opening verse: Psalm 70:2, Walton Polyglot (1657), p. 194. Greek Stations response: Catholic Bishops’ Conference of Greece (cen.gr)."
+                                   Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" />
+                        <TextBlock x:Uid="AbtDivineMercySources" Text="Divine Mercy Chaplet: Congregation of the Sisters of Our Lady of Mercy. Greek text: iPray."
+                                   Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" />
+                        <TextBlock x:Uid="AbtSevenSorrowsSources" Text="Seven Sorrows prayers: Notre Dame de Chrétienté and Confraternite.net. Spanish closing prayer: José Pulido y Espinosa, Misal Romano (Madrid: Imprenta a cargo de Zacarías Soler, 1851), p. 333. Versicle and response: Apostolado Sacerdotal / Pierina Devoções."
+                                   Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" />
+                        <TextBlock x:Uid="AbtBookNameSources" Text="Bible book names: AELF, Dar el-Machreq, Russian Synodal Bible (Azbyka), Philippine Bible Society and ParolaViva."
+                                   Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" />
+                        <HyperlinkButton ContentTemplate="{StaticResource WrappingLabelTemplate}" x:Uid="AbtParolaVivaLink" Content="ParolaViva — CC BY 4.0"
+                                         NavigateUri="https://parolaviva.art/opendata" />
+                        <HyperlinkButton ContentTemplate="{StaticResource WrappingLabelTemplate}" x:Uid="AbtPopeNetworkLink" Content="Pope’s Worldwide Prayer Network"
+                                         NavigateUri="https://www.popesprayer.va/pray/" />
+                    </StackPanel>
+
+                    <StackPanel Spacing="8">
+                        <TextBlock TextWrapping="Wrap" x:Uid="AbtCalendarDataHeader" Text="Calendar Data" Style="{StaticResource SubHeadlineTextStyle}" HorizontalAlignment="Left" />
+                        <TextBlock x:Uid="AbtVerseMappingSources" Text="Verse numbering: STEP Bible / Tyndale House Cambridge, TVTMS (CC BY 4.0). Adapted reference metadata only."
+                                   Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" />
+                        <HyperlinkButton ContentTemplate="{StaticResource WrappingLabelTemplate}" Content="STEPBible.org — TVTMS" NavigateUri="https://github.com/STEPBible/STEPBible-Data/tree/master/Versification" />
+                        <TextBlock x:Uid="AbtTorahData" Text="Weekly Torah portions and festival readings for Eretz Israel: Hebcal.com (CC BY 4.0), with adapted names and citations."
+                                   Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" />
+                        <HyperlinkButton ContentTemplate="{StaticResource WrappingLabelTemplate}" Content="Hebcal.com" NavigateUri="https://www.hebcal.com" />
+                        <HyperlinkButton ContentTemplate="{StaticResource WrappingLabelTemplate}" Content="CC BY 4.0" NavigateUri="https://creativecommons.org/licenses/by/4.0/" />
+                        <TextBlock x:Uid="AbtCalendarDataBody" Text="Calendar and readings data: LitCal; Missale Meum; Evangelizo.org — Daily Gospel, © Evangelizo.org; the Ukrainian Greek Catholic Church and its Patriarchal Liturgical Commission for Julian Pascha; Royal Doors for Gregorian Pascha."
+                                   Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" HorizontalAlignment="Left" />
+                        <TextBlock x:Uid="AbtSyriacHebrewCalendar" Text="Hebrew Syriac calendar — Urtotho (2026), supplied to Prosary."
+                                   Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" />
+                        <HyperlinkButton ContentTemplate="{StaticResource WrappingLabelTemplate}" Content="ugcc.ua" NavigateUri="https://ugcc.ua/data/tserkovnyy-kalendar-ugkts-na-2026-rik-8059/" />
+                        <TextBlock x:Uid="AbtHebrewBookIndex" Text="Additional Hebrew Bible book names: Mechon Mamre’s Hebrew Bible index. Names only; no Scripture text."
+                                   Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" />
+                        <HyperlinkButton ContentTemplate="{StaticResource WrappingLabelTemplate}" Content="Mechon Mamre" NavigateUri="https://www.mechon-mamre.org/i/t/tmp3.htm" />
+                    </StackPanel>
+
                 </StackPanel>
-
-                <StackPanel Spacing="8">
-                    <TextBlock x:Uid="AbtTypefacesHeader" Text="Typefaces" Style="{StaticResource SubHeadlineTextStyle}" HorizontalAlignment="Left" />
-                    <TextBlock TextWrapping="Wrap" Style="{StaticResource MutedSubtitleTextStyle}" TextAlignment="Left" HorizontalAlignment="Left">
-                        <Run Text="Frank Ruhl Libre" FontWeight="Bold" /><Run x:Uid="AbtTypeFrank" Text=" — SIL Open Font License 1.1 — Hebrew prayers." /><LineBreak />
-                        <Run Text="Shofar" FontWeight="Bold" /><Run x:Uid="AbtTypeShofar" Text=" — GPL v2 with font-embedding exception — Hebrew Scripture (Culmus Project, Yoram Gnat)." /><LineBreak />
-                        <Run Text="Amiri" FontWeight="Bold" /><Run x:Uid="AbtTypeAmiri" Text=" — SIL Open Font License 1.1 — Arabic prayers." /><LineBreak />
-                        <Run Text="Scheherazade New" FontWeight="Bold" /><Run x:Uid="AbtTypeScheherazade" Text=" — SIL Open Font License 1.1 — Arabic Scripture (SIL)." /><LineBreak />
-                        <Run Text="Cardo" FontWeight="Bold" /><Run x:Uid="AbtTypeCardo" Text=" — SIL Open Font License 1.1 — Latin/English Scripture (David J. Perry)." />
-                        <LineBreak /><Run Text="Noto Sans Syriac, Western &amp; Eastern" FontWeight="Bold" /><Run x:Uid="AbtTypeNotoSyriac" Text=" — SIL Open Font License 1.1 — selectable Syriac-script Aramaic faces." />
-                        <LineBreak /><Run Text="David Libre, Noto Sans Hebrew &amp; Noto Rashi Hebrew" FontWeight="Bold" /><Run x:Uid="AbtTypeOptionalHebrew" Text=" — SIL Open Font License 1.1 — optional Hebrew prayer and Scripture faces." />
-                        <LineBreak /><Run Text="Stam Ashkenaz &amp; Stam Sefarad" FontWeight="Bold" /><Run x:Uid="AbtTypeStam" Text=" — GPL v2 with font-embedding exception — optional Hebrew Scripture faces (Culmus Project, Yoram Gnat)." />
-                    </TextBlock>
-                    <TextBlock x:Uid="AbtTypeFooter" Text="Prayer typography can use the platform’s system serif or sans-serif design."
-                               Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" HorizontalAlignment="Left" />
-                </StackPanel>
-
-                <StackPanel Spacing="8">
-                    <TextBlock x:Uid="AbtMysteryHeader" Text="Mystery Illustrations" Style="{StaticResource SubHeadlineTextStyle}" HorizontalAlignment="Left" />
-                    <TextBlock x:Uid="AbtMysteryIntro" Text="All 20 mystery images are classical paintings in the public domain (artist deceased over 100 years), sourced from Wikimedia Commons."
-                               Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" HorizontalAlignment="Left" />
-                    <TextBlock TextWrapping="Wrap" LineHeight="20" HorizontalAlignment="Left">
-                        <Run x:Uid="AbtMys01Title" Text="The Annunciation" FontStyle="Italic" /><Run x:Uid="AbtCredit01" Text=" — Fra Angelico (d. 1455)" /><LineBreak />
-                        <Run x:Uid="AbtMys02Title" Text="The Visitation" FontStyle="Italic" /><Run x:Uid="AbtCredit02" Text=" — Mariotto Albertinelli (d. 1515)" /><LineBreak />
-                        <Run x:Uid="AbtMys03Title" Text="The Holy Night" FontStyle="Italic" /><Run x:Uid="AbtCredit03" Text=" — Antonio da Correggio (d. 1534)" /><LineBreak />
-                        <Run x:Uid="AbtMys04Title" Text="The Presentation at the Temple" FontStyle="Italic" /><Run x:Uid="AbtCredit04" Text=" — Andrea Mantegna (d. 1506)" /><LineBreak />
-                        <Run x:Uid="AbtMys05Title" Text="Christ Discovered in the Temple" FontStyle="Italic" /><Run x:Uid="AbtCredit05" Text=" — Simone Martini (d. 1344)" /><LineBreak />
-                        <Run x:Uid="AbtMys06Title" Text="The Baptism of Christ" FontStyle="Italic" /><Run x:Uid="AbtCredit06" Text=" — Piero della Francesca (d. 1492)" /><LineBreak />
-                        <Run x:Uid="AbtMys07Title" Text="The Wedding at Cana" FontStyle="Italic" /><Run x:Uid="AbtCredit07" Text=" — Paolo Veronese (d. 1588)" /><LineBreak />
-                        <Run x:Uid="AbtMys08Title" Text="The Sermon on the Mount" FontStyle="Italic" /><Run x:Uid="AbtCredit08" Text=" — Cosimo Rosselli (d. 1507)" /><LineBreak />
-                        <Run x:Uid="AbtMys09Title" Text="The Transfiguration" FontStyle="Italic" /><Run x:Uid="AbtCredit09" Text=" — Raphael (d. 1520)" /><LineBreak />
-                        <Run x:Uid="AbtMys10Title" Text="The Last Supper" FontStyle="Italic" /><Run x:Uid="AbtCredit10" Text=" — Leonardo da Vinci (d. 1519)" /><LineBreak />
-                        <Run x:Uid="AbtMys11Title" Text="The Agony in the Garden" FontStyle="Italic" /><Run x:Uid="AbtCredit04" Text=" — Andrea Mantegna (d. 1506)" /><LineBreak />
-                        <Run x:Uid="AbtMys12Title" Text="The Flagellation of Christ" FontStyle="Italic" /><Run x:Uid="AbtCredit11" Text=" — Caravaggio (d. 1610)" /><LineBreak />
-                        <Run x:Uid="AbtMys13Title" Text="The Crowning with Thorns" FontStyle="Italic" /><Run x:Uid="AbtCredit11" Text=" — Caravaggio (d. 1610)" /><LineBreak />
-                        <Run x:Uid="AbtMys14Title" Text="Christ Carrying the Cross" FontStyle="Italic" /><Run x:Uid="AbtCredit12" Text=" — Titian (d. 1576)" /><LineBreak />
-                        <Run x:Uid="AbtMys15Title" Text="Christ Crucified" FontStyle="Italic" /><Run x:Uid="AbtCredit13" Text=" — Diego Velázquez (d. 1660)" /><LineBreak />
-                        <Run x:Uid="AbtMys16Title" Text="The Resurrection" FontStyle="Italic" /><Run x:Uid="AbtCredit06" Text=" — Piero della Francesca (d. 1492)" /><LineBreak />
-                        <Run x:Uid="AbtMys17Title" Text="The Ascension of Christ" FontStyle="Italic" /><Run x:Uid="AbtCredit14" Text=" — Rembrandt (d. 1669)" /><LineBreak />
-                        <Run x:Uid="AbtMys18Title" Text="The Pentecost" FontStyle="Italic" /><Run x:Uid="AbtCredit15" Text=" — El Greco (d. 1614)" /><LineBreak />
-                        <Run x:Uid="AbtMys19Title" Text="Assumption of the Virgin" FontStyle="Italic" /><Run x:Uid="AbtCredit12" Text=" — Titian (d. 1576)" /><LineBreak />
-                        <Run x:Uid="AbtMys20Title" Text="Coronation of the Virgin" FontStyle="Italic" /><Run x:Uid="AbtCredit13" Text=" — Diego Velázquez (d. 1660)" />
-                    </TextBlock>
-                    <TextBlock x:Uid="AboutEasternIcons" Text="The collection of illustrations of the Mysteries in the Eastern style is used with approval from the Mission of St. Gamaliel for Hebrew Catholics in the Aramaic (Syriac) Catholic Church."
-                               Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" HorizontalAlignment="Left" />
-                </StackPanel>
-
-                <StackPanel Spacing="8">
-                    <TextBlock x:Uid="AbtOtherHeader" Text="Other Images" Style="{StaticResource SubHeadlineTextStyle}" HorizontalAlignment="Left" />
-                    <TextBlock TextWrapping="Wrap" LineHeight="20" HorizontalAlignment="Left">
-                        <Run x:Uid="AbtOther01Title" Text="Crucifix" FontStyle="Italic" /><Run x:Uid="AbtCredit16" Text=" — Cimabue (d. 1302)." /><LineBreak />
-                        <Run x:Uid="AbtOther02Title" Text="The Small Cowper Madonna" FontStyle="Italic" /><Run x:Uid="AbtCredit17" Text=" — Raphael (d. 1520)." /><LineBreak />
-                        <Run x:Uid="AbtOther03Title" Text="Faith, Hope, and Charity" FontStyle="Italic" /><Run x:Uid="AbtCredit18" Text=" — Raphael, Baglioni altarpiece predella (d. 1520)." /><LineBreak />
-                        <Run x:Uid="AbtOther04Title" Text="Praying Hands" FontStyle="Italic" /><Run x:Uid="AbtCredit19" Text=" — Albrecht Dürer (d. 1528)." /><LineBreak />
-                        <Run x:Uid="AbtOther05Title" Text="Holy Trinity" FontStyle="Italic" /><Run x:Uid="AbtCredit20" Text=" — Masaccio (d. 1428)." /><LineBreak />
-                        <Run x:Uid="AbtOther06Title" Text="Christ in Limbo" FontStyle="Italic" /><Run x:Uid="AbtCredit21" Text=" — Fra Angelico (d. 1455)." /><LineBreak />
-                        <Run x:Uid="AbtOther07Title" Text="Michael" FontStyle="Italic" /><Run x:Uid="AbtCredit22" Text=" — Guido Reni (d. 1642)." /><LineBreak />
-                        <Run x:Uid="AbtOther08Title" Text="Head of Christ" FontStyle="Italic" /><Run x:Uid="AbtCredit23" Text=" — Rembrandt (d. 1669)." />
-                    </TextBlock>
-                </StackPanel>
-
-                <StackPanel Spacing="8">
-                    <TextBlock x:Uid="AbtStationsHeader" Text="Stations of the Cross Illustrations" Style="{StaticResource SubHeadlineTextStyle}" HorizontalAlignment="Left" />
-                    <TextBlock x:Uid="AbtStationsFugel" Text="All 14 stations: Gebhard Fugel (1863–1939), Kreuzweg (1921), St. Antonius, Bad Saulgau — public domain; photographs by Andreas Praefcke, released into the public domain."
-                               Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" HorizontalAlignment="Left" />
-                    <TextBlock x:Uid="AbtStationsScriptural" Text="The scriptural (St. John Paul II) form adds: The Kiss of Judas — Giotto (Scrovegni Chapel, c. 1305); Christ before the High Priest — Gerrit van Honthorst (c. 1617), National Gallery, London; The Denial of St Peter — Rembrandt (1660), Rijksmuseum; Le Coup de Lance — Peter Paul Rubens (1620), Royal Museum of Fine Arts Antwerp — all public domain. Its other scenes reuse illustrations listed elsewhere on this page."
-                               Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" HorizontalAlignment="Left" />
-                    <TextBlock x:Uid="AbtViaLucis" Text="The Via Lucis scenes: The Disciples at the Tomb — Eugène Burnand (1898), Musée d'Orsay; Noli me tangere — Fra Angelico (San Marco, c. 1440); The Road to Emmaus, the appearances to the apostles, at Lake Tiberias, and in Galilee — Duccio di Buoninsegna (Maestà, 1308–1311), Siena; Supper at Emmaus (1601) and The Incredulity of Saint Thomas (1601–1602) — Caravaggio; Christ's Charge to Peter — Raphael (c. 1515), Royal Collection; The Virgin in Prayer — Sassoferrato (1640–1650), National Gallery, London — all public domain. Its other scenes reuse the Rosary's glorious-mystery illustrations."
-                               Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" HorizontalAlignment="Left" />
-                </StackPanel>
-
-                <StackPanel Spacing="8">
-                    <TextBlock x:Uid="AbtCrownHeader" Text="Franciscan Crown Illustration" Style="{StaticResource SubHeadlineTextStyle}" HorizontalAlignment="Left" />
-                    <TextBlock x:Uid="AbtCrownMagi" Text="The Adoration of the Magi: Bartolomé Esteban Murillo (c. 1655–60), Toledo Museum of Art — public domain. The other six Joys reuse the Rosary mystery illustrations above."
-                               Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" HorizontalAlignment="Left" />
-                </StackPanel>
-
-                <StackPanel Spacing="8">
-                    <TextBlock x:Uid="AbtSorrowsHeader" Text="Seven Sorrows Illustrations" Style="{StaticResource SubHeadlineTextStyle}" HorizontalAlignment="Left" />
-                    <TextBlock TextWrapping="Wrap" LineHeight="20" HorizontalAlignment="Left">
-                        <Run x:Uid="AbtSorrow01Title" Text="The Prophecy of Simeon" FontStyle="Italic" /><Run x:Uid="AbtCredit24" Text=" — Rembrandt van Rijn, Simeon’s Song of Praise (1631), Mauritshuis — public domain." /><LineBreak />
-                        <Run x:Uid="AbtSorrow02Title" Text="The Flight into Egypt" FontStyle="Italic" /><Run x:Uid="AbtCredit25" Text=" — Bartolomé Esteban Murillo (c. 1647–50), Detroit Institute of Arts — public domain." /><LineBreak />
-                        <Run x:Uid="AbtSorrow03Title" Text="The Loss of Jesus in the Temple" FontStyle="Italic" /><Run x:Uid="AbtCredit26" Text=" — Paolo Veronese, Christ Among the Doctors (c. 1560), Museo del Prado — public domain." /><LineBreak />
-                        <Run x:Uid="AbtSorrow04Title" Text="The Meeting on the Way of the Cross" FontStyle="Italic" /><Run x:Uid="AbtCredit27" Text=" — Raphael, Lo Spasimo (c. 1514–16), Museo del Prado — public domain." /><LineBreak />
-                        <Run x:Uid="AbtSorrow05Title" Text="The Crucifixion" FontStyle="Italic" /><Run x:Uid="AbtCredit28" Text=" — Hendrick ter Brugghen, The Crucifixion with the Virgin and Saint John (c. 1625), Metropolitan Museum of Art — CC0." /><LineBreak />
-                        <Run x:Uid="AbtSorrow06Title" Text="The Descent from the Cross" FontStyle="Italic" /><Run x:Uid="AbtCredit29" Text=" — Peter Paul Rubens (c. 1612–14), Cathedral of Our Lady, Antwerp — public domain." /><LineBreak />
-                        <Run x:Uid="AbtSorrow07Title" Text="The Burial of Jesus" FontStyle="Italic" /><Run x:Uid="AbtCredit30" Text=" — Titian, The Entombment of Christ (c. 1520), Musée du Louvre — public domain." />
-                    </TextBlock>
-                </StackPanel>
-
-                <StackPanel Spacing="8">
-                    <TextBlock x:Uid="AbtMercyHeader" Text="Divine Mercy Illustration" Style="{StaticResource SubHeadlineTextStyle}" HorizontalAlignment="Left" />
-                    <TextBlock x:Uid="AbtMercyBody" Text="Eugeniusz Kazimirowski, Divine Mercy (“Jezu, ufam Tobie”, 1934), Divine Mercy Sanctuary, Vilnius — the original image painted under St. Faustina’s direction; public domain."
-                               Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" HorizontalAlignment="Left" />
-                </StackPanel>
-
-                <StackPanel Spacing="8">
-                    <TextBlock x:Uid="AbtJpHeader" Text="Jesus Prayer Illustration" Style="{StaticResource SubHeadlineTextStyle}" HorizontalAlignment="Left" />
-                    <TextBlock x:Uid="AbtJpBody" Text="Christ Pantocrator: encaustic icon (6th century), Saint Catherine’s Monastery, Mount Sinai — the oldest surviving icon of Christ Pantocrator, honoring the prayer’s Eastern tradition; public domain."
-                               Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" HorizontalAlignment="Left" />
-                </StackPanel>
-
-                <StackPanel Spacing="8">
-                    <TextBlock x:Uid="AbtPrayerTextsHeader" Text="Prayer Texts" Style="{StaticResource SubHeadlineTextStyle}" HorizontalAlignment="Left" />
-                    <TextBlock x:Uid="AbtPrayerTextsBody" Text="The Divine Mercy Chaplet in Hebrew is the Latin Patriarchate of Jerusalem’s own text, approved by Patriarch Michel Sabbah in 2003. The Hebrew prayers are the Saint James Vicariate for Hebrew Speaking Catholics’ own texts, from their prayer book. Some of the prayers in Hebrew and Aramaic are used with the permission of the Patriarchal Exarch of the Aramaic (Syriac) Catholic community."
-                               Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" HorizontalAlignment="Left" />
-                    <TextBlock x:Uid="AbtLitanySources" Text="The Litany of Loreto uses published Catholic prayer texts. The Hebrew wording is Erez’s contribution through the Mission of St. Gamaliel. The Greek and Tagalog standalone closing prayers are Prosary translations of the Latin original; they are not published liturgical translations."
-                               Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" HorizontalAlignment="Left" />
-                </StackPanel>
-
-                <StackPanel Spacing="8">
-                    <TextBlock x:Uid="AbtScriptureHeader" Text="Scripture Sources" Style="{StaticResource SubHeadlineTextStyle}" HorizontalAlignment="Left" />
-                    <TextBlock x:Uid="AbtScriptureBody" Text="Scripture quotations use the Douay-Rheims Bible (English), the Clementine Vulgate (Latin), Franz Delitzsch's Hebrew New Testament translation (sourced from kirjasilta.net/ha-berit) with Hebrew Old Testament passages following the Masoretic text, the Old Jesuit Arabic Bible (1897), the Russian Synodal Bible (1876), and Ang Dating Biblia (Tagalog, 1905)."
-                               Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" HorizontalAlignment="Left" />
-                    <TextBlock x:Uid="AbtAdditionalSources" Text="French Scripture: Crampon (1923), public domain. Italian Scripture: Antonio Martini; structured data © Giovanni Novelli, CC BY 4.0 (parolaviva.art). French and Italian prayers: Vatican Compendium. Pope’s intentions: Pope’s Worldwide Prayer Network (2026–2027); Hebrew and Ukrainian translations by Prosary."
-                               Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" />
-                    <TextBlock x:Uid="AbtUkrainianPrayerSources" Text="Ukrainian prayers: Roman Catholic Church in Ukraine, Щоденно з Богом prayerbook. Used with attribution under the publisher’s reuse policy. Scripture: Kulish, Nechui-Levytsky and Puluj Bible (1905), public domain; eBible.org ukr1871. Historical Scripture spelling is retained. Ukrainian Rosary closing prayer: Ukrainian Information Center MIR Medjugorje (medjugorje.com.ua), reproduced with attribution under the site’s publication permission."
-                               Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" />
-                    <TextBlock x:Uid="AbtMissionPrayerCorrections" Text="Syriac and Ukrainian prayer corrections supplied by a Prosary contributor (October 2026)."
-                               FontSize="13" Foreground="{ThemeResource TextFillColorSecondaryBrush}" TextWrapping="Wrap" />
-                    <HyperlinkButton x:Uid="AbtUkrainianPrayerbookLink" Content="Ukrainian prayerbook"
-                                     NavigateUri="https://rkc.org.ua/duhovnist/molytovnyk/" />
-                    <HyperlinkButton x:Uid="AbtUkrainianRosarySourceLink" Content="MIR Medjugorje — Ukrainian Rosary prayer"
-                                     NavigateUri="https://medjugorje.com.ua/media/video/molytvy/6220-6-den-novenna-do-bozhoyi-matery-fatymskoyi17-bereznya-25-bereznya-2022.html" />
-                    <HyperlinkButton x:Uid="AbtUkrainianScriptureLink" Content="Ukrainian Bible (1905)"
-                                     NavigateUri="https://ebible.org/find/details.php?id=ukr1871" />
-                    <TextBlock x:Uid="AbtPeshittaSources" Text="Peshitta New Testament (BFBS, 1905): Digital Syriac Corpus; Syriac transcription by George A. Kiraz, TEI edition © James E. Walters, CC BY 4.0. Hebrew script conversion using Erez’s rules; verse selection and text formatting by Prosary."
-                               Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" />
-                    <HyperlinkButton x:Uid="AbtPeshittaSourceLink" Content="Digital Syriac Corpus"
-                                     NavigateUri="https://syriaccorpus.org/" />
-                    <HyperlinkButton x:Uid="AbtPeshittaLicenseLink" Content="CC BY 4.0"
-                                     NavigateUri="https://creativecommons.org/licenses/by/4.0/" />
-                    <TextBlock x:Uid="AbtPeshittaIsaiahSources" Text="Old Testament: user-supplied pointed Peshitta XML from Internet Archive. The underlying edition and redistribution terms remain unidentified. Hebrew script conversion using Erez’s rules; verse selection and text formatting by Prosary."
-                               Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" />
-                    <HyperlinkButton x:Uid="AbtPeshittaIsaiahSourceLink" Content="Internet Archive"
-                                     NavigateUri="https://archive.org/details/peshitta-complete-bible-otnt" />
-                    <TextBlock x:Uid="AbtPrayerSources" Text="Additional prayer sources: Vatican News, the Sanctuary of Fatima, Notre-Dame de Paris, AELF and the Italian Episcopal Conference (CEI). Also: Basilica of Guadalupe; GOARCH Digital Chant Stand; IVE Greece (Greek Anima Christi translated by Fr F. Bravo IVE); St Nicholas Catholic Parish, Tinos; Carmelite Iberian Province; Natalia Smelova, Melkite Syriac Hymns to the Mother of God (2011), for the medieval Syriac Under Your Protection. Officium Parvum Graece et Latine (Avignon: F. Seguin, 1823), pp. 7, 119, 121, 125. Alfonso Maria de’ Liguori: Esercizio della Via Crucis (1761); Mater dolorosa (1888). Greek Angelus: IVE Greece. O Antiphons: Saint James Vicariate (Hebrew) and RusCatholic (Russian). Syriac Rosary opening verse: Psalm 70:2, Walton Polyglot (1657), p. 194. Greek Stations response: Catholic Bishops’ Conference of Greece (cen.gr)."
-                               Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" />
-                    <TextBlock x:Uid="AbtDivineMercySources" Text="Divine Mercy Chaplet: Congregation of the Sisters of Our Lady of Mercy. Greek text: iPray."
-                               Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" />
-                    <TextBlock x:Uid="AbtSevenSorrowsSources" Text="Seven Sorrows prayers: Notre Dame de Chrétienté and Confraternite.net. Spanish closing prayer: José Pulido y Espinosa, Misal Romano (Madrid: Imprenta a cargo de Zacarías Soler, 1851), p. 333. Versicle and response: Apostolado Sacerdotal / Pierina Devoções."
-                               Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" />
-                    <TextBlock x:Uid="AbtBookNameSources" Text="Bible book names: AELF, Dar el-Machreq, Russian Synodal Bible (Azbyka), Philippine Bible Society and ParolaViva."
-                               Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" />
-                    <HyperlinkButton x:Uid="AbtParolaVivaLink" Content="ParolaViva — CC BY 4.0"
-                                     NavigateUri="https://parolaviva.art/opendata" />
-                    <HyperlinkButton x:Uid="AbtPopeNetworkLink" Content="Pope’s Worldwide Prayer Network"
-                                     NavigateUri="https://www.popesprayer.va/pray/" />
-                </StackPanel>
-
-                <StackPanel Spacing="8">
-                    <TextBlock x:Uid="AbtCalendarDataHeader" Text="Calendar Data" Style="{StaticResource SubHeadlineTextStyle}" HorizontalAlignment="Left" />
-                    <TextBlock x:Uid="AbtVerseMappingSources" Text="Verse numbering: STEP Bible / Tyndale House Cambridge, TVTMS (CC BY 4.0). Adapted reference metadata only."
-                               Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" />
-                    <HyperlinkButton Content="STEPBible.org — TVTMS" NavigateUri="https://github.com/STEPBible/STEPBible-Data/tree/master/Versification" />
-                    <TextBlock x:Uid="AbtTorahData" Text="Weekly Torah portions and festival readings for Eretz Israel: Hebcal.com (CC BY 4.0), with adapted names and citations."
-                               Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" />
-                    <HyperlinkButton Content="Hebcal.com" NavigateUri="https://www.hebcal.com" />
-                    <HyperlinkButton Content="CC BY 4.0" NavigateUri="https://creativecommons.org/licenses/by/4.0/" />
-                    <TextBlock x:Uid="AbtCalendarDataBody" Text="Calendar and readings data: LitCal; Missale Meum; Evangelizo.org — Daily Gospel, © Evangelizo.org; the Ukrainian Greek Catholic Church and its Patriarchal Liturgical Commission for Julian Pascha; Royal Doors for Gregorian Pascha."
-                               Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" HorizontalAlignment="Left" />
-                    <TextBlock x:Uid="AbtSyriacHebrewCalendar" Text="Hebrew Syriac calendar — Urtotho (2026), supplied to Prosary."
-                               Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" />
-                    <HyperlinkButton Content="ugcc.ua" NavigateUri="https://ugcc.ua/data/tserkovnyy-kalendar-ugkts-na-2026-rik-8059/" />
-                    <TextBlock x:Uid="AbtHebrewBookIndex" Text="Additional Hebrew Bible book names: Mechon Mamre’s Hebrew Bible index. Names only; no Scripture text."
-                               Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" />
-                    <HyperlinkButton Content="Mechon Mamre" NavigateUri="https://www.mechon-mamre.org/i/t/tmp3.htm" />
-                </StackPanel>
-
-            </StackPanel>
+            </Grid>
         </ScrollViewer>
     </Grid>
 </Page>

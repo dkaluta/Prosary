@@ -54,242 +54,244 @@
             <Setter Property="Padding" Value="20" />
         </Style>
     </Page.Resources>
-    <ScrollViewer HorizontalScrollBarVisibility="Disabled">
-        <StackPanel Spacing="20" MaxWidth="880" HorizontalAlignment="Stretch" Padding="24">
-            <Grid ColumnSpacing="16">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
-                <TextBlock Text="{x:Bind Title}" Style="{StaticResource HeadlineTextStyle}" VerticalAlignment="Center" />
-                <Button Grid.Column="1" Background="Transparent" Width="44" Height="44"
-                        AutomationProperties.Name="{x:Bind OptionsLabel}" ToolTipService.ToolTip="{x:Bind OptionsLabel}">
-                    <FontIcon Glyph="&#xE713;" />
-                    <Button.Flyout>
-                        <Flyout Opened="OnOptionsFlyoutOpened">
-                            <ScrollViewer MaxHeight="560" HorizontalScrollBarVisibility="Disabled">
-                                <StackPanel Spacing="12" Width="300"
-                                            FlowDirection="{x:Bind ViewModel.TodayIsRightToLeft, Mode=OneWay, Converter={StaticResource BoolToFlowDirection}}">
-                                    <TextBlock Text="{x:Bind OptionsLabel}" FontWeight="SemiBold" TextWrapping="Wrap" />
-                                    <ToggleSwitch Header="{x:Bind Options.ReverseReadingsOrderLabel}"
-                                                  IsOn="{x:Bind Options.ReverseReadingsOrder, Mode=TwoWay}" />
-                                    <ToggleSwitch x:Uid="SetReadingsReminder" Header="Reading reminders"
-                                                  IsOn="{x:Bind Options.ReadingsReminderEnabled, Mode=TwoWay}" />
-                                    <TimePicker x:Uid="SetReadingsReminderTime" Header="Notification time"
-                                                Time="{x:Bind Options.ReadingsReminderTime, Mode=TwoWay}"
-                                                ClockIdentifier="{x:Bind Options.ReminderClockIdentifier}"
-                                                Visibility="{x:Bind Options.ReadingsReminderEnabled, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
-                                    <TextBlock Text="{x:Bind Options.ReadingsReminderFooter}" TextWrapping="Wrap"
-                                               Style="{StaticResource MutedCaptionTextStyle}" />
-                                    <ComboBox Header="{x:Bind Readings.EditionLabel}" HorizontalAlignment="Stretch"
-                                              ItemsSource="{x:Bind Readings.Editions}" DisplayMemberPath="Label"
-                                              SelectedItem="{x:Bind Readings.SelectedEdition, Mode=TwoWay}"
-                                              AutomationProperties.AutomationId="readingsEditionId" />
-                                    <ToggleSwitch x:Uid="SetShowTodayFeast" Header="Show the day's feast"
-                                                  IsOn="{x:Bind Options.ShowTodayFeast, Mode=TwoWay}" />
-                                    <ComboBox Header="{x:Bind Options.TodayCardColorLabel}" HorizontalAlignment="Stretch"
-                                              ItemsSource="{x:Bind Options.TodayCardColors}" DisplayMemberPath="Label"
-                                              SelectedItem="{x:Bind Options.SelectedTodayCardColor, Mode=TwoWay}"
-                                              AutomationProperties.AutomationId="todayCardColor" />
-                                    <ToggleSwitch x:Uid="SetShowTodayIntention" Header="Show the Pope's intention"
-                                                  IsOn="{x:Bind Options.ShowTodayIntention, Mode=TwoWay}" />
-                                    <ToggleSwitch x:Uid="SetShowTodayReadingsDesktop" Header="Show readings"
-                                                  Visibility="{x:Bind ShowsReadingOptions, Converter={StaticResource BoolToVisibility}}"
-                                                  IsOn="{x:Bind Options.ShowTodayReadings, Mode=TwoWay}"
-                                                  AutomationProperties.AutomationId="showTodayReadings" />
-                                    <ToggleSwitch x:Uid="SetExpandReadingsByDefault" Header="Expand readings by default"
-                                                  IsOn="{x:Bind Options.ExpandReadingsByDefault, Mode=TwoWay}"
-                                                  AutomationProperties.AutomationId="expandReadingsByDefault" />
-                                    <ToggleSwitch x:Uid="SetShowTodayTorahPortion" Header="Show the weekly Torah portion"
-                                                  IsOn="{x:Bind Options.ShowTodayTorahPortion, Mode=TwoWay}"
-                                                  AutomationProperties.AutomationId="showTodayTorahPortion" />
-                                    <TextBlock x:Uid="SetTorahPortionHint" Text="The coming Sabbath’s reading in Eretz Israel, including festival readings."
-                                               Visibility="{x:Bind Options.ShowTodayTorahPortion, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
-                                               TextWrapping="Wrap" Style="{StaticResource MutedCaptionTextStyle}" />
+    <ScrollViewer HorizontalContentAlignment="Stretch" HorizontalScrollMode="Disabled" HorizontalScrollBarVisibility="Disabled">
+        <Grid HorizontalAlignment="Stretch">
+            <StackPanel Spacing="20" HorizontalAlignment="Stretch" Padding="20">
+                <Grid ColumnSpacing="16">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="{x:Bind Title}" Style="{StaticResource HeadlineTextStyle}" VerticalAlignment="Center" TextWrapping="Wrap" />
+                    <Button Grid.Column="1" Background="Transparent" Width="44" Height="44"
+                            AutomationProperties.Name="{x:Bind OptionsLabel}" ToolTipService.ToolTip="{x:Bind OptionsLabel}">
+                        <FontIcon Glyph="&#xE713;" />
+                        <Button.Flyout>
+                            <Flyout Opened="OnOptionsFlyoutOpened">
+                                <ScrollViewer MaxHeight="560" HorizontalScrollBarVisibility="Disabled">
+                                    <StackPanel Spacing="12" Width="300"
+                                                FlowDirection="{x:Bind ViewModel.TodayIsRightToLeft, Mode=OneWay, Converter={StaticResource BoolToFlowDirection}}">
+                                        <TextBlock Text="{x:Bind OptionsLabel}" FontWeight="SemiBold" TextWrapping="Wrap" />
+                                        <ToggleSwitch Header="{x:Bind Options.ReverseReadingsOrderLabel}"
+                                                      IsOn="{x:Bind Options.ReverseReadingsOrder, Mode=TwoWay}" />
+                                        <ToggleSwitch x:Uid="SetReadingsReminder" Header="Reading reminders"
+                                                      IsOn="{x:Bind Options.ReadingsReminderEnabled, Mode=TwoWay}" />
+                                        <TimePicker x:Uid="SetReadingsReminderTime" Header="Notification time"
+                                                    Time="{x:Bind Options.ReadingsReminderTime, Mode=TwoWay}"
+                                                    ClockIdentifier="{x:Bind Options.ReminderClockIdentifier}"
+                                                    Visibility="{x:Bind Options.ReadingsReminderEnabled, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
+                                        <TextBlock Text="{x:Bind Options.ReadingsReminderFooter}" TextWrapping="Wrap"
+                                                   Style="{StaticResource MutedCaptionTextStyle}" />
+                                        <ComboBox Header="{x:Bind Readings.EditionLabel}" HorizontalAlignment="Stretch"
+                                                  ItemsSource="{x:Bind Readings.Editions}" DisplayMemberPath="Label"
+                                                  SelectedItem="{x:Bind Readings.SelectedEdition, Mode=TwoWay}"
+                                                  AutomationProperties.AutomationId="readingsEditionId" />
+                                        <ToggleSwitch x:Uid="SetShowTodayFeast" Header="Show the day's feast"
+                                                      IsOn="{x:Bind Options.ShowTodayFeast, Mode=TwoWay}" />
+                                        <ComboBox Header="{x:Bind Options.TodayCardColorLabel}" HorizontalAlignment="Stretch"
+                                                  ItemsSource="{x:Bind Options.TodayCardColors}" DisplayMemberPath="Label"
+                                                  SelectedItem="{x:Bind Options.SelectedTodayCardColor, Mode=TwoWay}"
+                                                  AutomationProperties.AutomationId="todayCardColor" />
+                                        <ToggleSwitch x:Uid="SetShowTodayIntention" Header="Show the Pope's intention"
+                                                      IsOn="{x:Bind Options.ShowTodayIntention, Mode=TwoWay}" />
+                                        <ToggleSwitch x:Uid="SetShowTodayReadingsDesktop" Header="Show readings"
+                                                      Visibility="{x:Bind ShowsReadingOptions, Converter={StaticResource BoolToVisibility}}"
+                                                      IsOn="{x:Bind Options.ShowTodayReadings, Mode=TwoWay}"
+                                                      AutomationProperties.AutomationId="showTodayReadings" />
+                                        <ToggleSwitch x:Uid="SetExpandReadingsByDefault" Header="Expand readings by default"
+                                                      IsOn="{x:Bind Options.ExpandReadingsByDefault, Mode=TwoWay}"
+                                                      AutomationProperties.AutomationId="expandReadingsByDefault" />
+                                        <ToggleSwitch x:Uid="SetShowTodayTorahPortion" Header="Show the weekly Torah portion"
+                                                      IsOn="{x:Bind Options.ShowTodayTorahPortion, Mode=TwoWay}"
+                                                      AutomationProperties.AutomationId="showTodayTorahPortion" />
+                                        <TextBlock x:Uid="SetTorahPortionHint" Text="The coming Sabbath’s reading in Eretz Israel, including festival readings."
+                                                   Visibility="{x:Bind Options.ShowTodayTorahPortion, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
+                                                   TextWrapping="Wrap" Style="{StaticResource MutedCaptionTextStyle}" />
 
-                                    <ComboBox x:Uid="SetFeastCalendar" Header="Liturgical calendar" HorizontalAlignment="Stretch"
-                                              Visibility="{x:Bind Options.ShowsFeastCalendarPicker, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
-                                              ItemsSource="{x:Bind Options.FeastCalendarOptions}"
-                                              SelectedItem="{x:Bind Options.SelectedFeastCalendar, Mode=TwoWay}">
-                                        <ComboBox.ItemTemplate>
-                                            <DataTemplate>
-                                                <TextBlock Text="{Binding DisplayName}" />
-                                            </DataTemplate>
-                                        </ComboBox.ItemTemplate>
-                                    </ComboBox>
-                                    <TextBlock x:Uid="SetFeastCalendarHint" Text="Which calendar the Today section's feasts and readings follow."
-                                               Visibility="{x:Bind Options.ShowsFeastCalendarPicker, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
-                                               TextWrapping="Wrap" Style="{StaticResource CaptionTextBlockStyle}"
-                                               Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
-                                    <ComboBox x:Uid="SetEasternPascha" Header="Byzantine Easter calculation" HorizontalAlignment="Stretch"
-                                              Visibility="{x:Bind Options.ShowsEasternPaschaPicker, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
-                                              ItemsSource="{x:Bind Options.EasternPaschaOptions}" DisplayMemberPath="Label"
-                                              SelectedItem="{x:Bind Options.SelectedEasternPascha, Mode=TwoWay}"
-                                              AutomationProperties.AutomationId="easternPaschaStyle" />
-                                </StackPanel>
-                            </ScrollViewer>
-                        </Flyout>
-                    </Button.Flyout>
-                </Button>
-            </Grid>
-            <Grid ColumnSpacing="8" FlowDirection="{x:Bind ViewModel.TodayIsRightToLeft, Mode=OneWay, Converter={StaticResource BoolToFlowDirection}}">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
-                <Button x:Uid="HomePreviousDay" Grid.Column="0" Width="44" Style="{StaticResource TodayDateButtonStyle}"
-                        Command="{x:Bind ViewModel.YesterdayCommand}" AutomationProperties.AutomationId="todayYesterday">
-                    <FontIcon Glyph="&#xE72B;" MirroredWhenRightToLeft="True" />
-                </Button>
-                <Button Grid.Column="1" Content="{x:Bind ViewModel.SelectedDateText, Mode=OneWay}"
-                        HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Style="{StaticResource TodayDateButtonStyle}"
-                        AutomationProperties.AutomationId="todayDatePicker"
-                        AutomationProperties.Name="{x:Bind ViewModel.SelectedDateAccessibilityLabel, Mode=OneWay}">
-                    <Button.Flyout>
-                        <Flyout x:Name="TodayDateFlyout" Opened="OnTodayDateFlyoutOpened"
-                                FlyoutPresenterStyle="{StaticResource TodayDateFlyoutPresenterStyle}">
-                            <StackPanel Spacing="8"
-                                        FlowDirection="{x:Bind ViewModel.TodayIsRightToLeft, Mode=OneWay, Converter={StaticResource BoolToFlowDirection}}">
-                                <Button x:Uid="HomeResetToday" Content="Today" HorizontalAlignment="Stretch"
-                                        Click="OnSelectToday" AutomationProperties.AutomationId="todayReset" />
-                                <CalendarView x:Name="TodayCalendar" SelectionMode="Single" CalendarIdentifier="GregorianCalendar" Background="Transparent"
-                                              MinDate="{x:Bind ViewModel.MinimumTodayDate}" MaxDate="{x:Bind ViewModel.MaximumTodayDate}"
-                                              SelectedDatesChanged="OnTodayCalendarDateChanged"
-                                              AutomationProperties.AutomationId="todayCalendar" />
-                            </StackPanel>
-                        </Flyout>
-                    </Button.Flyout>
-                </Button>
-                <Button x:Uid="HomeNextDay" Grid.Column="2" Width="44" Style="{StaticResource TodayDateButtonStyle}"
-                        Command="{x:Bind ViewModel.TomorrowCommand}" AutomationProperties.AutomationId="todayTomorrow">
-                    <FontIcon Glyph="&#xE72A;" MirroredWhenRightToLeft="True" />
-                </Button>
-            </Grid>
-
-            <!-- "Today" — the day's feast and readings from the selected calendar, plus the
-                 Pope's monthly prayer intention. Rows hide when the bundled datasets have no
-                 entry (ferial days; dates past the generated years). -->
-            <Border Style="{StaticResource SectionCardStyle}"
-                    Background="{x:Bind TodayCardBackground, Mode=OneWay}"
-                    Visibility="{x:Bind ShowsDailySection, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
-                    FlowDirection="{x:Bind ViewModel.TodayIsRightToLeft, Mode=OneWay, Converter={StaticResource BoolToFlowDirection}}">
-                <StackPanel Spacing="10">
-                    <Grid ColumnSpacing="8" Visibility="{x:Bind ViewModel.ShowsTodayDay, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
-                          AutomationProperties.AutomationId="todayDay">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
-                        <FontIcon Grid.Column="0" Glyph="&#xE787;" Foreground="{ThemeResource BrandPrimaryBrush}" VerticalAlignment="Center" />
-                        <TextBlock Grid.Column="1" Text="{x:Bind ViewModel.TodayDayText, Mode=OneWay}" IsTextSelectionEnabled="True" FontWeight="SemiBold" TextWrapping="Wrap" VerticalAlignment="Center"
-                                   TextAlignment="{x:Bind ViewModel.TodayTextAlignment, Mode=OneWay}" />
-                    </Grid>
-                    <TextBlock Text="{x:Bind NoReadingsText}" TextWrapping="Wrap"
-                               Visibility="{x:Bind ShowsNoReadings, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
-                    <Grid ColumnSpacing="8" Visibility="{x:Bind ShowsDailyReadings, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <FontIcon Grid.Column="0" Glyph="&#xE8A9;" Foreground="{ThemeResource BrandPrimaryBrush}" VerticalAlignment="Top" />
-                        <StackPanel Grid.Column="1" Spacing="2">
-                            <TextBlock Text="{x:Bind ViewModel.TodayReadingsTitle, Mode=OneWay}" IsTextSelectionEnabled="True" FontWeight="SemiBold"
-                                       TextAlignment="{x:Bind ViewModel.TodayTextAlignment, Mode=OneWay}" />
-                            <ItemsControl ItemsSource="{x:Bind Readings.Daily, Mode=OneWay}"
-                                          ItemTemplate="{StaticResource ReadingPassageTemplate}" />
-                        </StackPanel>
-                    </Grid>
-                    <Grid ColumnSpacing="8" Visibility="{x:Bind ViewModel.ShowsTodayTorahPortion, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
-                          AutomationProperties.AutomationId="todayTorahPortion">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <FontIcon Grid.Column="0" Glyph="&#xE8A9;" Foreground="{ThemeResource BrandPrimaryBrush}" VerticalAlignment="Top" />
-                        <StackPanel Grid.Column="1" Spacing="2">
-                            <TextBlock Text="{x:Bind ViewModel.TorahPortionHeading, Mode=OneWay}" IsTextSelectionEnabled="True" FontWeight="SemiBold" TextWrapping="Wrap"
-                                       TextAlignment="{x:Bind ViewModel.TodayTextAlignment, Mode=OneWay}" />
-                            <TextBlock Text="{x:Bind ViewModel.TorahPortionTitle, Mode=OneWay}" IsTextSelectionEnabled="True" TextWrapping="Wrap"
-                                       TextAlignment="{x:Bind ViewModel.TodayTextAlignment, Mode=OneWay}" />
-                            <ItemsControl ItemsSource="{x:Bind Readings.Torah, Mode=OneWay}"
-                                          ItemTemplate="{StaticResource ReadingPassageTemplate}" />
-                        </StackPanel>
-                    </Grid>
-                </StackPanel>
-            </Border>
-            <Border Style="{StaticResource SectionCardStyle}"
-                    Visibility="{x:Bind ViewModel.ShowsTodayFeast, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
-                <StackPanel Spacing="10">
-                    <Grid ColumnSpacing="8" Visibility="{x:Bind ViewModel.ShowsTodayFeast, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <FontIcon Grid.Column="0" Glyph="&#xE787;" Foreground="{ThemeResource BrandPrimaryBrush}" VerticalAlignment="Top" />
-                        <StackPanel Grid.Column="1" Spacing="2">
-                            <TextBlock Text="{x:Bind ViewModel.TodayFeastTitle, Mode=OneWay}" IsTextSelectionEnabled="True" FontWeight="SemiBold" TextWrapping="Wrap"
-                                       TextAlignment="{x:Bind ViewModel.TodayTextAlignment, Mode=OneWay}" />
-                            <TextBlock Text="{x:Bind ViewModel.TodayFeastRank, Mode=OneWay}" IsTextSelectionEnabled="True" Style="{StaticResource MutedCaptionTextStyle}"
-                                       TextAlignment="{x:Bind ViewModel.TodayTextAlignment, Mode=OneWay}" />
-                        </StackPanel>
-                    </Grid>
-                    <Expander Header="{x:Bind ViewModel.SaintDescriptionsTitle, Mode=OneWay}"
-                              IsExpanded="{x:Bind ViewModel.IsSaintDescriptionsExpanded, Mode=TwoWay}"
-                              HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch"
-                              AutomationProperties.AutomationId="todaySaintDescriptions"
-                              Visibility="{x:Bind ViewModel.ShowsSaintDescriptions, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
-                        <ItemsControl ItemsSource="{x:Bind ViewModel.SaintDescriptions, Mode=OneWay}">
-                            <ItemsControl.ItemsPanel>
-                                <ItemsPanelTemplate><StackPanel Spacing="20" /></ItemsPanelTemplate>
-                            </ItemsControl.ItemsPanel>
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate x:DataType="services:SaintDescription">
-                                    <StackPanel Spacing="8">
-                                        <TextBlock Text="{x:Bind Title}" FontWeight="SemiBold" TextWrapping="Wrap" IsTextSelectionEnabled="True"
-                                                   Visibility="{x:Bind ShowsTitle, Converter={StaticResource BoolToVisibility}}" />
-                                        <TextBlock Text="{x:Bind Text}" TextWrapping="Wrap" IsTextSelectionEnabled="True"
-                                                   Visibility="{x:Bind ShowsUnsectionedText, Converter={StaticResource BoolToVisibility}}" />
-                                        <ItemsControl ItemsSource="{x:Bind Sections}"
-                                                      Visibility="{x:Bind ShowsSections, Converter={StaticResource BoolToVisibility}}">
-                                            <ItemsControl.ItemsPanel><ItemsPanelTemplate><StackPanel Spacing="16" /></ItemsPanelTemplate></ItemsControl.ItemsPanel>
-                                            <ItemsControl.ItemTemplate><DataTemplate x:DataType="services:LocalizedCalendarTextSection">
-                                                <StackPanel Spacing="8">
-                                                    <TextBlock Text="{x:Bind Title}" FontWeight="SemiBold" TextWrapping="Wrap" IsTextSelectionEnabled="True"
-                                                               AutomationProperties.HeadingLevel="Level3" />
-                                                    <TextBlock Text="{x:Bind Text}" TextWrapping="Wrap" IsTextSelectionEnabled="True" />
-                                                </StackPanel>
-                                            </DataTemplate></ItemsControl.ItemTemplate>
-                                        </ItemsControl>
-                                        <TextBlock Text="{x:Bind Credit}" TextWrapping="Wrap" IsTextSelectionEnabled="True"
-                                                   Style="{StaticResource MutedCaptionTextStyle}"
-                                                   Visibility="{x:Bind HasCredit, Converter={StaticResource BoolToVisibility}}" />
-                                        <HyperlinkButton Content="{x:Bind SourceLabel}" NavigateUri="{x:Bind SourceUri}" Padding="0"
-                                                         Visibility="{x:Bind HasSource, Converter={StaticResource BoolToVisibility}}" />
+                                        <ComboBox x:Uid="SetFeastCalendar" Header="Liturgical calendar" HorizontalAlignment="Stretch"
+                                                  Visibility="{x:Bind Options.ShowsFeastCalendarPicker, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
+                                                  ItemsSource="{x:Bind Options.FeastCalendarOptions}"
+                                                  SelectedItem="{x:Bind Options.SelectedFeastCalendar, Mode=TwoWay}">
+                                            <ComboBox.ItemTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding DisplayName}" />
+                                                </DataTemplate>
+                                            </ComboBox.ItemTemplate>
+                                        </ComboBox>
+                                        <TextBlock x:Uid="SetFeastCalendarHint" Text="Which calendar the Today section's feasts and readings follow."
+                                                   Visibility="{x:Bind Options.ShowsFeastCalendarPicker, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
+                                                   TextWrapping="Wrap" Style="{StaticResource CaptionTextBlockStyle}"
+                                                   Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+                                        <ComboBox x:Uid="SetEasternPascha" Header="Byzantine Easter calculation" HorizontalAlignment="Stretch"
+                                                  Visibility="{x:Bind Options.ShowsEasternPaschaPicker, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
+                                                  ItemsSource="{x:Bind Options.EasternPaschaOptions}" DisplayMemberPath="Label"
+                                                  SelectedItem="{x:Bind Options.SelectedEasternPascha, Mode=TwoWay}"
+                                                  AutomationProperties.AutomationId="easternPaschaStyle" />
                                     </StackPanel>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
-                    </Expander>
-                </StackPanel>
-            </Border>
-            <Border Style="{StaticResource SectionCardStyle}"
-                    Visibility="{x:Bind ViewModel.ShowsMonthIntention, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
-                    <Grid ColumnSpacing="8" Visibility="{x:Bind ViewModel.ShowsMonthIntention, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <controls:PapalKeysIcon Grid.Column="0" Width="26" Height="26" VerticalAlignment="Top" Foreground="{ThemeResource BrandPrimaryBrush}" />
-                        <StackPanel Grid.Column="1" Spacing="2">
-                            <TextBlock Text="{x:Bind ViewModel.MonthIntentionTitle, Mode=OneWay}" IsTextSelectionEnabled="True" FontWeight="SemiBold" TextWrapping="Wrap"
+                                </ScrollViewer>
+                            </Flyout>
+                        </Button.Flyout>
+                    </Button>
+                </Grid>
+                <Grid ColumnSpacing="8" FlowDirection="{x:Bind ViewModel.TodayIsRightToLeft, Mode=OneWay, Converter={StaticResource BoolToFlowDirection}}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Button x:Uid="HomePreviousDay" Grid.Column="0" Width="44" Style="{StaticResource TodayDateButtonStyle}"
+                            Command="{x:Bind ViewModel.YesterdayCommand}" AutomationProperties.AutomationId="todayYesterday">
+                        <FontIcon Glyph="&#xE72B;" MirroredWhenRightToLeft="True" />
+                    </Button>
+                    <Button Grid.Column="1" Content="{x:Bind ViewModel.SelectedDateText, Mode=OneWay}"
+                            HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Style="{StaticResource TodayDateButtonStyle}"
+                            AutomationProperties.AutomationId="todayDatePicker"
+                            AutomationProperties.Name="{x:Bind ViewModel.SelectedDateAccessibilityLabel, Mode=OneWay}">
+                        <Button.Flyout>
+                            <Flyout x:Name="TodayDateFlyout" Opened="OnTodayDateFlyoutOpened"
+                                    FlyoutPresenterStyle="{StaticResource TodayDateFlyoutPresenterStyle}">
+                                <StackPanel Spacing="8"
+                                            FlowDirection="{x:Bind ViewModel.TodayIsRightToLeft, Mode=OneWay, Converter={StaticResource BoolToFlowDirection}}">
+                                    <Button x:Uid="HomeResetToday" Content="Today" HorizontalAlignment="Stretch"
+                                            Click="OnSelectToday" AutomationProperties.AutomationId="todayReset" />
+                                    <CalendarView x:Name="TodayCalendar" SelectionMode="Single" CalendarIdentifier="GregorianCalendar" Background="Transparent"
+                                                  MinDate="{x:Bind ViewModel.MinimumTodayDate}" MaxDate="{x:Bind ViewModel.MaximumTodayDate}"
+                                                  SelectedDatesChanged="OnTodayCalendarDateChanged"
+                                                  AutomationProperties.AutomationId="todayCalendar" />
+                                </StackPanel>
+                            </Flyout>
+                        </Button.Flyout>
+                    </Button>
+                    <Button x:Uid="HomeNextDay" Grid.Column="2" Width="44" Style="{StaticResource TodayDateButtonStyle}"
+                            Command="{x:Bind ViewModel.TomorrowCommand}" AutomationProperties.AutomationId="todayTomorrow">
+                        <FontIcon Glyph="&#xE72A;" MirroredWhenRightToLeft="True" />
+                    </Button>
+                </Grid>
+
+                <!-- "Today" — the day's feast and readings from the selected calendar, plus the
+                     Pope's monthly prayer intention. Rows hide when the bundled datasets have no
+                     entry (ferial days; dates past the generated years). -->
+                <Border Style="{StaticResource SectionCardStyle}"
+                        Background="{x:Bind TodayCardBackground, Mode=OneWay}"
+                        Visibility="{x:Bind ShowsDailySection, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
+                        FlowDirection="{x:Bind ViewModel.TodayIsRightToLeft, Mode=OneWay, Converter={StaticResource BoolToFlowDirection}}">
+                    <StackPanel Spacing="10">
+                        <Grid ColumnSpacing="8" Visibility="{x:Bind ViewModel.ShowsTodayDay, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
+                              AutomationProperties.AutomationId="todayDay">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <FontIcon Grid.Column="0" Glyph="&#xE787;" Foreground="{ThemeResource BrandPrimaryBrush}" VerticalAlignment="Center" />
+                            <TextBlock Grid.Column="1" Text="{x:Bind ViewModel.TodayDayText, Mode=OneWay}" IsTextSelectionEnabled="True" FontWeight="SemiBold" TextWrapping="Wrap" VerticalAlignment="Center"
                                        TextAlignment="{x:Bind ViewModel.TodayTextAlignment, Mode=OneWay}" />
-                            <TextBlock Text="{x:Bind ViewModel.MonthIntentionText, Mode=OneWay}" IsTextSelectionEnabled="True" Style="{StaticResource BodyTextBlockStyle}" TextWrapping="Wrap"
-                                       TextAlignment="{x:Bind ViewModel.TodayTextAlignment, Mode=OneWay}" />
-                        </StackPanel>
-                    </Grid>
-            </Border>
-        </StackPanel>
+                        </Grid>
+                        <TextBlock Text="{x:Bind NoReadingsText}" TextWrapping="Wrap"
+                                   Visibility="{x:Bind ShowsNoReadings, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
+                        <Grid ColumnSpacing="8" Visibility="{x:Bind ShowsDailyReadings, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <FontIcon Grid.Column="0" Glyph="&#xE8A9;" Foreground="{ThemeResource BrandPrimaryBrush}" VerticalAlignment="Top" />
+                            <StackPanel Grid.Column="1" Spacing="2">
+                                <TextBlock Text="{x:Bind ViewModel.TodayReadingsTitle, Mode=OneWay}" IsTextSelectionEnabled="True" FontWeight="SemiBold"
+                                           TextAlignment="{x:Bind ViewModel.TodayTextAlignment, Mode=OneWay}" />
+                                <ItemsControl ItemsSource="{x:Bind Readings.Daily, Mode=OneWay}"
+                                              ItemTemplate="{StaticResource ReadingPassageTemplate}" />
+                            </StackPanel>
+                        </Grid>
+                        <Grid ColumnSpacing="8" Visibility="{x:Bind ViewModel.ShowsTodayTorahPortion, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
+                              AutomationProperties.AutomationId="todayTorahPortion">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <FontIcon Grid.Column="0" Glyph="&#xE8A9;" Foreground="{ThemeResource BrandPrimaryBrush}" VerticalAlignment="Top" />
+                            <StackPanel Grid.Column="1" Spacing="2">
+                                <TextBlock Text="{x:Bind ViewModel.TorahPortionHeading, Mode=OneWay}" IsTextSelectionEnabled="True" FontWeight="SemiBold" TextWrapping="Wrap"
+                                           TextAlignment="{x:Bind ViewModel.TodayTextAlignment, Mode=OneWay}" />
+                                <TextBlock Text="{x:Bind ViewModel.TorahPortionTitle, Mode=OneWay}" IsTextSelectionEnabled="True" TextWrapping="Wrap"
+                                           TextAlignment="{x:Bind ViewModel.TodayTextAlignment, Mode=OneWay}" />
+                                <ItemsControl ItemsSource="{x:Bind Readings.Torah, Mode=OneWay}"
+                                              ItemTemplate="{StaticResource ReadingPassageTemplate}" />
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+                <Border Style="{StaticResource SectionCardStyle}"
+                        Visibility="{x:Bind ViewModel.ShowsTodayFeast, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
+                    <StackPanel Spacing="10">
+                        <Grid ColumnSpacing="8" Visibility="{x:Bind ViewModel.ShowsTodayFeast, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <FontIcon Grid.Column="0" Glyph="&#xE787;" Foreground="{ThemeResource BrandPrimaryBrush}" VerticalAlignment="Top" />
+                            <StackPanel Grid.Column="1" Spacing="2">
+                                <TextBlock Text="{x:Bind ViewModel.TodayFeastTitle, Mode=OneWay}" IsTextSelectionEnabled="True" FontWeight="SemiBold" TextWrapping="Wrap"
+                                           TextAlignment="{x:Bind ViewModel.TodayTextAlignment, Mode=OneWay}" />
+                                <TextBlock Text="{x:Bind ViewModel.TodayFeastRank, Mode=OneWay}" IsTextSelectionEnabled="True" Style="{StaticResource MutedCaptionTextStyle}"
+                                           TextAlignment="{x:Bind ViewModel.TodayTextAlignment, Mode=OneWay}" />
+                            </StackPanel>
+                        </Grid>
+                        <Expander Header="{x:Bind ViewModel.SaintDescriptionsTitle, Mode=OneWay}"
+                                  IsExpanded="{x:Bind ViewModel.IsSaintDescriptionsExpanded, Mode=TwoWay}"
+                                  HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch"
+                                  AutomationProperties.AutomationId="todaySaintDescriptions"
+                                  Visibility="{x:Bind ViewModel.ShowsSaintDescriptions, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
+                            <ItemsControl ItemsSource="{x:Bind ViewModel.SaintDescriptions, Mode=OneWay}">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate><StackPanel Spacing="20" /></ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate x:DataType="services:SaintDescription">
+                                        <StackPanel Spacing="8">
+                                            <TextBlock Text="{x:Bind Title}" FontWeight="SemiBold" TextWrapping="Wrap" IsTextSelectionEnabled="True"
+                                                       Visibility="{x:Bind ShowsTitle, Converter={StaticResource BoolToVisibility}}" />
+                                            <TextBlock Text="{x:Bind Text}" TextWrapping="Wrap" IsTextSelectionEnabled="True"
+                                                       Visibility="{x:Bind ShowsUnsectionedText, Converter={StaticResource BoolToVisibility}}" />
+                                            <ItemsControl ItemsSource="{x:Bind Sections}"
+                                                          Visibility="{x:Bind ShowsSections, Converter={StaticResource BoolToVisibility}}">
+                                                <ItemsControl.ItemsPanel><ItemsPanelTemplate><StackPanel Spacing="16" /></ItemsPanelTemplate></ItemsControl.ItemsPanel>
+                                                <ItemsControl.ItemTemplate><DataTemplate x:DataType="services:LocalizedCalendarTextSection">
+                                                    <StackPanel Spacing="8">
+                                                        <TextBlock Text="{x:Bind Title}" FontWeight="SemiBold" TextWrapping="Wrap" IsTextSelectionEnabled="True"
+                                                                   AutomationProperties.HeadingLevel="Level3" />
+                                                        <TextBlock Text="{x:Bind Text}" TextWrapping="Wrap" IsTextSelectionEnabled="True" />
+                                                    </StackPanel>
+                                                </DataTemplate></ItemsControl.ItemTemplate>
+                                            </ItemsControl>
+                                            <TextBlock Text="{x:Bind Credit}" TextWrapping="Wrap" IsTextSelectionEnabled="True"
+                                                       Style="{StaticResource MutedCaptionTextStyle}"
+                                                       Visibility="{x:Bind HasCredit, Converter={StaticResource BoolToVisibility}}" />
+                                            <HyperlinkButton Content="{x:Bind SourceLabel}" NavigateUri="{x:Bind SourceUri}" Padding="0"
+                                                             Visibility="{x:Bind HasSource, Converter={StaticResource BoolToVisibility}}" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </Expander>
+                    </StackPanel>
+                </Border>
+                <Border Style="{StaticResource SectionCardStyle}"
+                        Visibility="{x:Bind ViewModel.ShowsMonthIntention, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
+                        <Grid ColumnSpacing="8" Visibility="{x:Bind ViewModel.ShowsMonthIntention, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <controls:PapalKeysIcon Grid.Column="0" Width="26" Height="26" VerticalAlignment="Top" Foreground="{ThemeResource BrandPrimaryBrush}" />
+                            <StackPanel Grid.Column="1" Spacing="2">
+                                <TextBlock Text="{x:Bind ViewModel.MonthIntentionTitle, Mode=OneWay}" IsTextSelectionEnabled="True" FontWeight="SemiBold" TextWrapping="Wrap"
+                                           TextAlignment="{x:Bind ViewModel.TodayTextAlignment, Mode=OneWay}" />
+                                <TextBlock Text="{x:Bind ViewModel.MonthIntentionText, Mode=OneWay}" IsTextSelectionEnabled="True" Style="{StaticResource BodyTextBlockStyle}" TextWrapping="Wrap"
+                                           TextAlignment="{x:Bind ViewModel.TodayTextAlignment, Mode=OneWay}" />
+                            </StackPanel>
+                        </Grid>
+                </Border>
+            </StackPanel>
+        </Grid>
     </ScrollViewer>
 </Page>

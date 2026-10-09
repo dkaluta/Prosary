@@ -5,7 +5,7 @@
     FlowDirection="{x:Bind ReadingFlowDirection}">
     <Grid RowSpacing="8">
         <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/></Grid.RowDefinitions>
-        <TextBlock Text="{x:Bind Title}" Style="{StaticResource HeadlineTextStyle}" Margin="24,24,24,0" />
+        <TextBlock Text="{x:Bind Title}" Style="{StaticResource HeadlineTextStyle}" Margin="20,20,20,0" />
         <Pivot x:Name="ReadingModes" Grid.Row="1" AutomationProperties.Name="{x:Bind Title}">
             <PivotItem Header="{x:Bind DailyLabel}"><ContentControl x:Name="DailyContent" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" /></PivotItem>
             <PivotItem Header="{x:Bind CalendarLabel}"><views:LiturgicalCalendarControl x:Name="CalendarContent" /></PivotItem>

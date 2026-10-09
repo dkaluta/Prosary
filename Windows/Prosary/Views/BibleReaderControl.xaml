@@ -3,63 +3,72 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:vm="using:Prosary.ViewModels"
     xmlns:controls="using:Prosary.Controls">
-    <Grid Padding="24,12,24,24" RowSpacing="12" MaxWidth="1000" HorizontalAlignment="Stretch">
-        <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="*"/></Grid.RowDefinitions>
-        <ScrollViewer MaxHeight="300" HorizontalScrollBarVisibility="Disabled">
-            <StackPanel Spacing="10">
-                <ComboBox Header="{x:Bind ViewModel.EditionLabel}" ItemsSource="{x:Bind ViewModel.Editions}" DisplayMemberPath="Label"
-                          SelectedItem="{x:Bind ViewModel.SelectedEdition, Mode=TwoWay}" HorizontalAlignment="Stretch"
-                          AutomationProperties.AutomationId="bibleEdition" />
-                <TextBlock Text="{x:Bind ViewModel.UnavailableNotice}" TextWrapping="Wrap"
-                           Visibility="{x:Bind ViewModel.IsUnavailable, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
-                <TextBlock Text="{x:Bind ViewModel.DownloadNotice}" TextWrapping="Wrap"
-                           Visibility="{x:Bind ViewModel.ShowDownloadNotice, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
-                <StackPanel Orientation="Horizontal" Spacing="12">
-                    <Button Content="{x:Bind ViewModel.DownloadLabel, Mode=OneWay}" Command="{x:Bind ViewModel.DownloadCommand}"
-                            Visibility="{x:Bind ViewModel.ShowDownload, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
-                    <Button Content="{x:Bind ViewModel.RemoveLabel}" Command="{x:Bind ViewModel.RemoveCommand}"
-                            Visibility="{x:Bind ViewModel.ShowRemove, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
-                    <Button Content="{x:Bind ViewModel.CancelLabel}" Command="{x:Bind ViewModel.CancelDownloadCommand}"
-                            Visibility="{x:Bind ViewModel.IsDownloading, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
+    <Grid x:Name="BibleLayout" SizeChanged="OnBibleLayoutSizeChanged" Padding="20,12,20,20" RowSpacing="12" HorizontalAlignment="Stretch">
+        <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/></Grid.RowDefinitions>
+        <ScrollViewer x:Name="BibleOptionsScroll" MaxHeight="300" HorizontalContentAlignment="Stretch" HorizontalScrollMode="Disabled" HorizontalScrollBarVisibility="Disabled">
+            <Grid HorizontalAlignment="Stretch">
+                <StackPanel Spacing="12">
+                    <StackPanel Spacing="10">
+                        <ComboBox MinWidth="0" Header="{x:Bind ViewModel.EditionLabel}" ItemsSource="{x:Bind ViewModel.Editions}" DisplayMemberPath="Label"
+                                  SelectedItem="{x:Bind ViewModel.SelectedEdition, Mode=TwoWay}" HorizontalAlignment="Stretch"
+                                  AutomationProperties.AutomationId="bibleEdition" />
+                        <TextBlock Text="{x:Bind ViewModel.UnavailableNotice}" TextWrapping="Wrap"
+                                   Visibility="{x:Bind ViewModel.IsUnavailable, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
+                        <TextBlock Text="{x:Bind ViewModel.DownloadNotice}" TextWrapping="Wrap"
+                                   Visibility="{x:Bind ViewModel.ShowDownloadNotice, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
+                        <CommandBar DefaultLabelPosition="Right" Background="Transparent"
+                                    Visibility="{x:Bind ViewModel.HasEdition, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
+                            <AppBarButton Label="{x:Bind ViewModel.DownloadLabel, Mode=OneWay}" Icon="Download" Command="{x:Bind ViewModel.DownloadCommand}"
+                                    Visibility="{x:Bind ViewModel.ShowDownload, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
+                            <AppBarButton Label="{x:Bind ViewModel.RemoveLabel}" Icon="Delete" Command="{x:Bind ViewModel.RemoveCommand}"
+                                    Visibility="{x:Bind ViewModel.ShowRemove, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
+                            <AppBarButton Label="{x:Bind ViewModel.CancelLabel}" Icon="Cancel" Command="{x:Bind ViewModel.CancelDownloadCommand}"
+                                    Visibility="{x:Bind ViewModel.IsDownloading, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
+                        </CommandBar>
+                        <ProgressBar Minimum="0" Maximum="100" Value="{x:Bind ViewModel.DownloadProgress, Mode=OneWay}"
+                                     AutomationProperties.Name="{x:Bind ViewModel.DownloadLabel, Mode=OneWay}"
+                                     Visibility="{x:Bind ViewModel.IsDownloading, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
+                        <InfoBar IsOpen="{x:Bind ViewModel.HasError, Mode=OneWay}" Message="{x:Bind ViewModel.Error, Mode=OneWay}" Severity="Error" IsClosable="False">
+                            <InfoBar.ActionButton><Button Content="{x:Bind ViewModel.RetryLabel}" Command="{x:Bind ViewModel.RetryCommand}" /></InfoBar.ActionButton>
+                        </InfoBar>
+                        <TextBlock Text="{x:Bind ViewModel.Attribution, Mode=OneWay}" TextWrapping="Wrap" IsTextSelectionEnabled="True" Style="{StaticResource MutedCaptionTextStyle}" />
+                        <HyperlinkButton Content="{x:Bind ViewModel.SourceLabel}" NavigateUri="{x:Bind ViewModel.SourceUri, Mode=OneWay}" Padding="0"
+                                         Visibility="{x:Bind ViewModel.HasSource, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
+                    </StackPanel>
+                    <Grid x:Name="PassageSelectors" ColumnSpacing="12" SizeChanged="OnPassageSelectorsSizeChanged"
+                          Visibility="{x:Bind ViewModel.IsInstalled, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
+                        <Grid.ColumnDefinitions><ColumnDefinition x:Name="BookSelectorColumn" Width="2*"/><ColumnDefinition Width="*"/><ColumnDefinition x:Name="VerseSelectorColumn" Width="*"/></Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+                        <ComboBox MinWidth="0" x:Name="BookSelector" Header="{x:Bind ViewModel.BookLabel}" ItemsSource="{x:Bind ViewModel.Books, Mode=OneWay}" DisplayMemberPath="Label"
+                                  SelectedItem="{x:Bind ViewModel.SelectedBook, Mode=TwoWay}" HorizontalAlignment="Stretch"
+                                  AutomationProperties.AutomationId="bibleBook" />
+                        <ComboBox MinWidth="0" x:Name="ChapterSelector" Grid.Column="1" Header="{x:Bind ViewModel.ChapterLabel}" ItemsSource="{x:Bind ViewModel.Chapters, Mode=OneWay}" DisplayMemberPath="Label"
+                                  SelectedItem="{x:Bind ViewModel.SelectedChapter, Mode=TwoWay}" HorizontalAlignment="Stretch"
+                                  AutomationProperties.AutomationId="bibleChapter" />
+                        <ComboBox MinWidth="0" x:Name="VerseSelector" Grid.Column="2" Header="{x:Bind ViewModel.VerseLabel}" ItemsSource="{x:Bind ViewModel.VerseChoices, Mode=OneWay}" DisplayMemberPath="VerseLabel"
+                                  SelectedItem="{x:Bind ViewModel.SelectedVerse, Mode=TwoWay}" HorizontalAlignment="Stretch"
+                                  AutomationProperties.AutomationId="bibleVerse" />
+                    </Grid>
+                    <StackPanel Spacing="8" Visibility="{x:Bind ViewModel.IsInstalled, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
+                        <CommandBar DefaultLabelPosition="Right" Background="Transparent" HorizontalContentAlignment="Left">
+                            <AppBarButton Label="{x:Bind ViewModel.PreviousLabel}" Icon="Back" Command="{x:Bind ViewModel.PreviousChapterCommand}" IsEnabled="{x:Bind ViewModel.HasPrevious, Mode=OneWay}" />
+                            <AppBarButton Label="{x:Bind ViewModel.NextLabel}" Icon="Forward" Command="{x:Bind ViewModel.NextChapterCommand}" IsEnabled="{x:Bind ViewModel.HasNext, Mode=OneWay}" />
+                        </CommandBar>
+                        <controls:AramaicScriptSelector Script="{x:Bind ViewModel.EffectiveScript, Mode=OneWay}" SelectScriptCommand="{x:Bind ViewModel.SelectScriptCommand}"
+                                                       AutomationProperties.AutomationId="bibleScript"
+                                                       Visibility="{x:Bind ViewModel.HasScriptToggle, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
+                        <TextBlock Text="{x:Bind ViewModel.PartialNotice}" TextWrapping="Wrap" FontWeight="SemiBold"
+                                   Visibility="{x:Bind ViewModel.IsPartial, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
+                        <TextBlock Text="{x:Bind ViewModel.ChapterHeading, Mode=OneWay}" FontWeight="Bold" FontSize="22"
+                                   TextWrapping="Wrap"
+                                   FlowDirection="{x:Bind ViewModel.IsRightToLeft, Mode=OneWay, Converter={StaticResource BoolToFlowDirection}}" />
+                    </StackPanel>
                 </StackPanel>
-                <ProgressBar Minimum="0" Maximum="100" Value="{x:Bind ViewModel.DownloadProgress, Mode=OneWay}"
-                             AutomationProperties.Name="{x:Bind ViewModel.DownloadLabel, Mode=OneWay}"
-                             Visibility="{x:Bind ViewModel.IsDownloading, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
-                <InfoBar IsOpen="{x:Bind ViewModel.HasError, Mode=OneWay}" Message="{x:Bind ViewModel.Error, Mode=OneWay}" Severity="Error" IsClosable="False">
-                    <InfoBar.ActionButton><Button Content="{x:Bind ViewModel.RetryLabel}" Command="{x:Bind ViewModel.RetryCommand}" /></InfoBar.ActionButton>
-                </InfoBar>
-                <TextBlock Text="{x:Bind ViewModel.Attribution, Mode=OneWay}" TextWrapping="Wrap" IsTextSelectionEnabled="True" Style="{StaticResource MutedCaptionTextStyle}" />
-                <HyperlinkButton Content="{x:Bind ViewModel.SourceLabel}" NavigateUri="{x:Bind ViewModel.SourceUri, Mode=OneWay}" Padding="0"
-                                 Visibility="{x:Bind ViewModel.HasSource, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
-            </StackPanel>
+            </Grid>
         </ScrollViewer>
-        <Grid Grid.Row="1" ColumnSpacing="12" Visibility="{x:Bind ViewModel.IsInstalled, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
-            <Grid.ColumnDefinitions><ColumnDefinition Width="2*"/><ColumnDefinition Width="*"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
-            <ComboBox Header="{x:Bind ViewModel.BookLabel}" ItemsSource="{x:Bind ViewModel.Books, Mode=OneWay}" DisplayMemberPath="Label"
-                      SelectedItem="{x:Bind ViewModel.SelectedBook, Mode=TwoWay}" HorizontalAlignment="Stretch"
-                      AutomationProperties.AutomationId="bibleBook" />
-            <ComboBox Grid.Column="1" Header="{x:Bind ViewModel.ChapterLabel}" ItemsSource="{x:Bind ViewModel.Chapters, Mode=OneWay}" DisplayMemberPath="Label"
-                      SelectedItem="{x:Bind ViewModel.SelectedChapter, Mode=TwoWay}" HorizontalAlignment="Stretch"
-                      AutomationProperties.AutomationId="bibleChapter" />
-            <ComboBox Grid.Column="2" Header="{x:Bind ViewModel.VerseLabel}" ItemsSource="{x:Bind ViewModel.VerseChoices, Mode=OneWay}" DisplayMemberPath="VerseLabel"
-                      SelectedItem="{x:Bind ViewModel.SelectedVerse, Mode=TwoWay}" HorizontalAlignment="Stretch"
-                      AutomationProperties.AutomationId="bibleVerse" />
-        </Grid>
-        <StackPanel Grid.Row="2" Spacing="8" Visibility="{x:Bind ViewModel.IsInstalled, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
-            <CommandBar DefaultLabelPosition="Right" Background="Transparent" HorizontalContentAlignment="Left">
-                <AppBarButton Label="{x:Bind ViewModel.PreviousLabel}" Icon="Back" Command="{x:Bind ViewModel.PreviousChapterCommand}" IsEnabled="{x:Bind ViewModel.HasPrevious, Mode=OneWay}" />
-                <AppBarButton Label="{x:Bind ViewModel.NextLabel}" Icon="Forward" Command="{x:Bind ViewModel.NextChapterCommand}" IsEnabled="{x:Bind ViewModel.HasNext, Mode=OneWay}" />
-            </CommandBar>
-            <controls:AramaicScriptSelector Script="{x:Bind ViewModel.EffectiveScript, Mode=OneWay}" SelectScriptCommand="{x:Bind ViewModel.SelectScriptCommand}"
-                                           AutomationProperties.AutomationId="bibleScript"
-                                           Visibility="{x:Bind ViewModel.HasScriptToggle, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
-            <TextBlock Text="{x:Bind ViewModel.PartialNotice}" TextWrapping="Wrap" FontWeight="SemiBold"
-                       Visibility="{x:Bind ViewModel.IsPartial, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
-            <TextBlock Text="{x:Bind ViewModel.ChapterHeading, Mode=OneWay}" FontWeight="Bold" FontSize="22"
-                       FlowDirection="{x:Bind ViewModel.IsRightToLeft, Mode=OneWay, Converter={StaticResource BoolToFlowDirection}}" />
-        </StackPanel>
-        <Grid Grid.Row="3">
+        <Grid Grid.Row="1">
             <ListView x:Name="VerseList" ItemsSource="{x:Bind ViewModel.Verses, Mode=OneWay}" SelectionMode="None" IsItemClickEnabled="False"
+                      ScrollViewer.HorizontalScrollMode="Disabled" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                       FontFamily="{x:Bind ViewModel.BodyFontFamily, Mode=OneWay}" FontSize="{x:Bind ViewModel.BodyFontSize, Mode=OneWay}"
                       FlowDirection="{x:Bind ViewModel.IsRightToLeft, Mode=OneWay, Converter={StaticResource BoolToFlowDirection}}"
                       AutomationProperties.Name="{x:Bind ViewModel.ChapterHeading, Mode=OneWay}" AutomationProperties.AutomationId="bibleVerses">

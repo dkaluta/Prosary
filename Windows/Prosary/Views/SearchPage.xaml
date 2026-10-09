@@ -9,6 +9,14 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
+    <Page.Resources>
+        <DataTemplate x:Key="WrappingButtonLabelTemplate">
+            <TextBlock Text="{Binding}" TextWrapping="Wrap" TextAlignment="Center" />
+        </DataTemplate>
+        <DataTemplate x:Key="WrappingLabelTemplate">
+            <TextBlock Text="{Binding}" TextWrapping="Wrap" />
+        </DataTemplate>
+    </Page.Resources>
 
     <Grid Padding="16" RowSpacing="12">
         <Grid.RowDefinitions>
@@ -20,44 +28,50 @@
 
         <Grid Grid.Row="0" ColumnSpacing="12">
             <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
-            <TextBlock x:Uid="SearchTitle" Text="Search" Style="{StaticResource SubHeadlineTextStyle}" />
-            <Button Grid.Column="1" Content="{x:Bind CommunityLabel}" Click="OnOpenCommunity" />
+            <TextBlock TextWrapping="Wrap" x:Uid="SearchTitle" Text="Search" Style="{StaticResource SubHeadlineTextStyle}" />
+            <Button MinWidth="0" HorizontalContentAlignment="Stretch" ContentTemplate="{StaticResource WrappingButtonLabelTemplate}" Grid.Column="1" Content="{x:Bind CommunityLabel}" Click="OnOpenCommunity" />
         </Grid>
-        <TextBox x:Name="QueryBox" x:Uid="SearchBox" Grid.Row="1" PlaceholderText="Prayers and categories"
+        <TextBox MinWidth="0" x:Name="QueryBox" x:Uid="SearchBox" Grid.Row="1" PlaceholderText="Prayers and categories"
                  Text="{x:Bind ViewModel.SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
         <StackPanel Grid.Row="2" Spacing="12">
-            <ComboBox Header="{x:Bind ViewModel.CategoryLabel}" HorizontalAlignment="Stretch"
+            <ComboBox HeaderTemplate="{StaticResource WrappingLabelTemplate}" MinWidth="0" Header="{x:Bind ViewModel.CategoryLabel}" HorizontalAlignment="Stretch"
                       ItemsSource="{x:Bind ViewModel.Categories, Mode=OneWay}" DisplayMemberPath="Label"
                       SelectedItem="{x:Bind ViewModel.SelectedCategory, Mode=TwoWay}"
                       AutomationProperties.AutomationId="searchCategory" />
         </StackPanel>
-        <ScrollViewer Grid.Row="3">
-            <StackPanel Spacing="8" MaxWidth="640" HorizontalAlignment="Stretch">
-                <TextBlock Visibility="{x:Bind ViewModel.HasLocalMatches, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" x:Uid="SearchOnDevice" Text="On this device" Foreground="{ThemeResource BrandPrimaryBrush}" FontWeight="SemiBold" />
-                <ItemsControl ItemsSource="{x:Bind ViewModel.LocalMatches, Mode=OneWay}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate x:DataType="svc:DevotionListing">
-                            <Button Background="Transparent" BorderThickness="0" HorizontalAlignment="Stretch"
-                                    HorizontalContentAlignment="Left" Padding="8,10"
-                                    Command="{Binding ElementName=Root, Path=ViewModel.OpenCommand}"
-                                    CommandParameter="{Binding}">
-                                <StackPanel Orientation="Horizontal" Spacing="12">
-                                    <FontIcon Glyph="{x:Bind IconGlyph}" Foreground="{ThemeResource BrandPrimaryBrush}" />
-                                    <StackPanel Spacing="2">
-                                        <TextBlock Text="{x:Bind Title}" FontSize="15" TextWrapping="Wrap" />
-                                        <TextBlock Text="{x:Bind InterfaceSubtitle}" Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap"
-                                                   Visibility="{x:Bind HasInterfaceSubtitle, Converter={StaticResource BoolToVisibility}}" />
-                                    </StackPanel>
-                                </StackPanel>
-                            </Button>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
+        <ScrollViewer Grid.Row="3" HorizontalContentAlignment="Stretch" HorizontalScrollMode="Disabled" HorizontalScrollBarVisibility="Disabled">
+            <Grid HorizontalAlignment="Stretch">
+                <StackPanel Spacing="8" HorizontalAlignment="Stretch">
+                    <TextBlock TextWrapping="Wrap" Visibility="{x:Bind ViewModel.HasLocalMatches, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" x:Uid="SearchOnDevice" Text="On this device" Foreground="{ThemeResource BrandPrimaryBrush}" FontWeight="SemiBold" />
+                    <ItemsControl ItemsSource="{x:Bind ViewModel.LocalMatches, Mode=OneWay}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate x:DataType="svc:DevotionListing">
+                                <Button Background="Transparent" BorderThickness="0" HorizontalAlignment="Stretch"
+                                        HorizontalContentAlignment="Stretch" Padding="8,10"
+                                        Command="{Binding ElementName=Root, Path=ViewModel.OpenCommand}"
+                                        CommandParameter="{Binding}">
+                                    <Grid ColumnSpacing="12">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <FontIcon Glyph="{x:Bind IconGlyph}" Foreground="{ThemeResource BrandPrimaryBrush}" />
+                                        <StackPanel Grid.Column="1" Spacing="2">
+                                            <TextBlock Text="{x:Bind Title}" FontSize="15" TextWrapping="Wrap" />
+                                            <TextBlock Text="{x:Bind InterfaceSubtitle}" Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap"
+                                                       Visibility="{x:Bind HasInterfaceSubtitle, Converter={StaticResource BoolToVisibility}}" />
+                                        </StackPanel>
+                                    </Grid>
+                                </Button>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
 
-                <TextBlock Text="{x:Bind ViewModel.NoMatchesText}" TextWrapping="Wrap"
-                           Visibility="{x:Bind ViewModel.HasNoMatches, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
-            </StackPanel>
+                    <TextBlock Text="{x:Bind ViewModel.NoMatchesText}" TextWrapping="Wrap"
+                               Visibility="{x:Bind ViewModel.HasNoMatches, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
+                </StackPanel>
+            </Grid>
         </ScrollViewer>
     </Grid>
 </Page>
