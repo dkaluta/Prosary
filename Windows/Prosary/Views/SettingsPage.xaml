@@ -8,6 +8,14 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
+    <Page.Resources>
+        <DataTemplate x:Key="WrappingButtonLabelTemplate">
+            <TextBlock Text="{Binding}" TextWrapping="Wrap" TextAlignment="Center" />
+        </DataTemplate>
+        <DataTemplate x:Key="WrappingLabelTemplate">
+            <TextBlock Text="{Binding}" TextWrapping="Wrap" />
+        </DataTemplate>
+    </Page.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
@@ -23,227 +31,229 @@
             <Button Grid.Column="0" Command="{x:Bind ViewModel.BackCommand}" Background="Transparent" Padding="8">
                 <FontIcon Glyph="&#xE72B;" MirroredWhenRightToLeft="True" />
             </Button>
-            <TextBlock x:Uid="SetTitle" Grid.Column="1" Text="Settings" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource SubHeadlineTextStyle}" />
+            <TextBlock TextWrapping="Wrap" x:Uid="SetTitle" Grid.Column="1" Text="Settings" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource SubHeadlineTextStyle}" />
         </Grid>
 
-        <ScrollViewer x:Name="SettingsScroll" Grid.Row="1" Loaded="OnSettingsScrollLoaded">
-            <StackPanel Padding="24" Spacing="16" MaxWidth="560" HorizontalAlignment="Center" VerticalAlignment="Top">
-                <ComboBox x:Uid="SetAppLanguageCombo" Header="App Language" HorizontalAlignment="Stretch"
-                          ItemsSource="{x:Bind ViewModel.AppLanguageOptions}" DisplayMemberPath="Label"
-                          SelectedItem="{x:Bind ViewModel.SelectedAppLanguage, Mode=TwoWay}"
-                          AutomationProperties.AutomationId="interfaceLanguageCode" />
-                <TextBlock x:Uid="SetAppLanguageUsage"
-                           Text="Used for the interface and automatic Bible edition. Prayers follow it unless a prayer language is selected."
-                           TextWrapping="Wrap" Style="{StaticResource MutedCaptionTextStyle}" />
-                <TextBlock x:Uid="SetAppLanguageFooter" Text="Restart Prosary to apply the new app language."
-                           TextWrapping="Wrap" Style="{StaticResource MutedCaptionTextStyle}" />
+        <ScrollViewer x:Name="SettingsScroll" Grid.Row="1" Loaded="OnSettingsScrollLoaded" HorizontalContentAlignment="Stretch" HorizontalScrollMode="Disabled" HorizontalScrollBarVisibility="Disabled">
+            <Grid HorizontalAlignment="Stretch">
+                <StackPanel Padding="24" Spacing="16" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+                    <ComboBox HeaderTemplate="{StaticResource WrappingLabelTemplate}" MinWidth="0" x:Uid="SetAppLanguageCombo" Header="App Language" HorizontalAlignment="Stretch"
+                              ItemsSource="{x:Bind ViewModel.AppLanguageOptions}" DisplayMemberPath="Label"
+                              SelectedItem="{x:Bind ViewModel.SelectedAppLanguage, Mode=TwoWay}"
+                              AutomationProperties.AutomationId="interfaceLanguageCode" />
+                    <TextBlock x:Uid="SetAppLanguageUsage"
+                               Text="Used for the interface and automatic Bible edition. Prayers follow it unless a prayer language is selected."
+                               TextWrapping="Wrap" Style="{StaticResource MutedCaptionTextStyle}" />
+                    <TextBlock x:Uid="SetAppLanguageFooter" Text="Restart Prosary to apply the new app language."
+                               TextWrapping="Wrap" Style="{StaticResource MutedCaptionTextStyle}" />
 
-                <Button HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch"
-                        Padding="12" Command="{x:Bind ViewModel.OpenAppearanceCommand}"
-                        AutomationProperties.AutomationId="openAppearance">
-                    <Grid ColumnSpacing="12">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
-                        <FontIcon Glyph="&#xE790;" VerticalAlignment="Center" />
-                        <TextBlock Grid.Column="1" Text="{x:Bind ViewModel.AppearanceTitle}"
-                                   VerticalAlignment="Center" />
-                        <FontIcon Grid.Column="2" Glyph="&#xE76C;" FontSize="12"
-                                  MirroredWhenRightToLeft="True" VerticalAlignment="Center" />
-                    </Grid>
-                </Button>
+                    <Button HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch"
+                            Padding="12" Command="{x:Bind ViewModel.OpenAppearanceCommand}"
+                            AutomationProperties.AutomationId="openAppearance">
+                        <Grid ColumnSpacing="12">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <FontIcon Glyph="&#xE790;" VerticalAlignment="Center" />
+                            <TextBlock TextWrapping="Wrap" Grid.Column="1" Text="{x:Bind ViewModel.AppearanceTitle}"
+                                       VerticalAlignment="Center" />
+                            <FontIcon Grid.Column="2" Glyph="&#xE76C;" FontSize="12"
+                                      MirroredWhenRightToLeft="True" VerticalAlignment="Center" />
+                        </Grid>
+                    </Button>
 
-                <ComboBox x:Uid="SetLanguageCombo" Header="Prayer Language" HorizontalAlignment="Stretch"
-                          ItemsSource="{x:Bind ViewModel.LanguageOptions}" DisplayMemberPath="NativeName"
-                          SelectedItem="{x:Bind ViewModel.SelectedLanguage, Mode=TwoWay}"
-                          AutomationProperties.AutomationId="defaultLanguageCode" />
+                    <ComboBox HeaderTemplate="{StaticResource WrappingLabelTemplate}" MinWidth="0" x:Uid="SetLanguageCombo" Header="Prayer Language" HorizontalAlignment="Stretch"
+                              ItemsSource="{x:Bind ViewModel.LanguageOptions}" DisplayMemberPath="NativeName"
+                              SelectedItem="{x:Bind ViewModel.SelectedLanguage, Mode=TwoWay}"
+                              AutomationProperties.AutomationId="defaultLanguageCode" />
 
-                <ComboBox x:Uid="SetRiteCombo" Header="Prayer tradition" HorizontalAlignment="Stretch"
-                          Visibility="{x:Bind ViewModel.ShowsRitePicker, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
-                          ItemsSource="{x:Bind ViewModel.RiteOptions, Mode=OneWay}" DisplayMemberPath="NativeName"
-                          SelectedItem="{x:Bind ViewModel.SelectedRite, Mode=TwoWay}" />
+                    <ComboBox HeaderTemplate="{StaticResource WrappingLabelTemplate}" MinWidth="0" x:Uid="SetRiteCombo" Header="Prayer tradition" HorizontalAlignment="Stretch"
+                              Visibility="{x:Bind ViewModel.ShowsRitePicker, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
+                              ItemsSource="{x:Bind ViewModel.RiteOptions, Mode=OneWay}" DisplayMemberPath="NativeName"
+                              SelectedItem="{x:Bind ViewModel.SelectedRite, Mode=TwoWay}" />
 
-                <ComboBox x:Uid="SetAramaicSignOfCrossCombo" Header="Aramaic Sign of the Cross"
-                          HorizontalAlignment="Stretch"
-                          Visibility="{x:Bind ViewModel.ShowsAramaicSignOfCrossPicker, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
-                          ItemsSource="{x:Bind ViewModel.AramaicSignOfCrossOptions}" DisplayMemberPath="Label"
-                          SelectedItem="{x:Bind ViewModel.SelectedAramaicSignOfCross, Mode=TwoWay}" />
+                    <ComboBox HeaderTemplate="{StaticResource WrappingLabelTemplate}" MinWidth="0" x:Uid="SetAramaicSignOfCrossCombo" Header="Aramaic Sign of the Cross"
+                              HorizontalAlignment="Stretch"
+                              Visibility="{x:Bind ViewModel.ShowsAramaicSignOfCrossPicker, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
+                              ItemsSource="{x:Bind ViewModel.AramaicSignOfCrossOptions}" DisplayMemberPath="Label"
+                              SelectedItem="{x:Bind ViewModel.SelectedAramaicSignOfCross, Mode=TwoWay}" />
 
-                <Button x:Uid="SetLanguageFallbackOrder" Content="Language fallback order…"
-                        HorizontalAlignment="Stretch" Click="OnEditLanguageFallbackOrder" />
+                    <Button MinWidth="0" HorizontalContentAlignment="Stretch" ContentTemplate="{StaticResource WrappingButtonLabelTemplate}" x:Uid="SetLanguageFallbackOrder" Content="Language fallback order…"
+                            HorizontalAlignment="Stretch" Click="OnEditLanguageFallbackOrder" />
 
-                <TextBlock x:Uid="SetPrayingHeader" Text="Praying" Style="{StaticResource BaseTextBlockStyle}" Margin="0,8,0,0" />
+                    <TextBlock TextWrapping="Wrap" x:Uid="SetPrayingHeader" Text="Praying" Style="{StaticResource BaseTextBlockStyle}" Margin="0,8,0,0" />
 
-                <ComboBox x:Uid="SetAutoAdvanceCombo" Header="Auto-advance" HorizontalAlignment="Stretch"
-                          ItemsSource="{x:Bind ViewModel.AutoAdvanceOptions}" DisplayMemberPath="Label"
-                          SelectedItem="{x:Bind ViewModel.SelectedAutoAdvance, Mode=TwoWay}" />
+                    <ComboBox HeaderTemplate="{StaticResource WrappingLabelTemplate}" MinWidth="0" x:Uid="SetAutoAdvanceCombo" Header="Auto-advance" HorizontalAlignment="Stretch"
+                              ItemsSource="{x:Bind ViewModel.AutoAdvanceOptions}" DisplayMemberPath="Label"
+                              SelectedItem="{x:Bind ViewModel.SelectedAutoAdvance, Mode=TwoWay}" />
 
-                <Button x:Uid="SetResetHomeOrder" Content="Reset Home Order" HorizontalAlignment="Stretch"
-                        Command="{x:Bind ViewModel.ResetHomeOrderCommand}" />
+                    <Button MinWidth="0" HorizontalContentAlignment="Stretch" ContentTemplate="{StaticResource WrappingButtonLabelTemplate}" x:Uid="SetResetHomeOrder" Content="Reset Home Order" HorizontalAlignment="Stretch"
+                            Command="{x:Bind ViewModel.ResetHomeOrderCommand}" />
 
-                <TextBlock x:Uid="SetTypographyHeader" Text="Typography" Style="{StaticResource BaseTextBlockStyle}" Margin="0,8,0,0" />
-                <ComboBox Header="{x:Bind ViewModel.PrayerTextSizeLabel}" HorizontalAlignment="Stretch"
-                          ItemsSource="{x:Bind ViewModel.PrayerTextSizeOptions}" DisplayMemberPath="Label"
-                          SelectedItem="{x:Bind ViewModel.SelectedPrayerTextSize, Mode=TwoWay}" />
-                <ComboBox x:Uid="SetAramaicDefaultScript" Header="Default Aramaic script" HorizontalAlignment="Stretch"
-                          ItemsSource="{x:Bind ViewModel.AramaicScriptOptions}" DisplayMemberPath="Label"
-                          SelectedItem="{x:Bind ViewModel.SelectedAramaicScript, Mode=TwoWay}" />
-                <ComboBox x:Uid="SetSyriacTypeface" Header="Aramaic font" HorizontalAlignment="Stretch"
-                          ItemsSource="{x:Bind ViewModel.SyriacTypefaceOptions}" DisplayMemberPath="Label"
-                          SelectedItem="{x:Bind ViewModel.SelectedSyriacTypeface, Mode=TwoWay}" />
-                <ComboBox x:Uid="SetHebrewPrayerTypeface" Header="Hebrew font" HorizontalAlignment="Stretch"
-                          ItemsSource="{x:Bind ViewModel.HebrewPrayerTypefaceOptions}" DisplayMemberPath="Label"
-                          SelectedItem="{x:Bind ViewModel.SelectedHebrewPrayerTypeface, Mode=TwoWay}" />
-                <ComboBox x:Uid="SetHebrewScriptureTypeface" Header="Hebrew Scripture font" HorizontalAlignment="Stretch"
-                          ItemsSource="{x:Bind ViewModel.HebrewScriptureTypefaceOptions}" DisplayMemberPath="Label"
-                          SelectedItem="{x:Bind ViewModel.SelectedHebrewScriptureTypeface, Mode=TwoWay}" />
-                <ComboBox x:Uid="SetLatinPrayerTypeface" Header="Latin-script prayers" HorizontalAlignment="Stretch"
-                          ItemsSource="{x:Bind ViewModel.SystemPrayerTypefaceOptions}" DisplayMemberPath="Label"
-                          SelectedItem="{x:Bind ViewModel.SelectedLatinPrayerTypeface, Mode=TwoWay}" />
-                <ComboBox x:Uid="SetCyrillicPrayerTypeface" Header="Cyrillic prayers" HorizontalAlignment="Stretch"
-                          ItemsSource="{x:Bind ViewModel.SystemPrayerTypefaceOptions}" DisplayMemberPath="Label"
-                          SelectedItem="{x:Bind ViewModel.SelectedCyrillicPrayerTypeface, Mode=TwoWay}" />
+                    <TextBlock TextWrapping="Wrap" x:Uid="SetTypographyHeader" Text="Typography" Style="{StaticResource BaseTextBlockStyle}" Margin="0,8,0,0" />
+                    <ComboBox HeaderTemplate="{StaticResource WrappingLabelTemplate}" MinWidth="0" Header="{x:Bind ViewModel.PrayerTextSizeLabel}" HorizontalAlignment="Stretch"
+                              ItemsSource="{x:Bind ViewModel.PrayerTextSizeOptions}" DisplayMemberPath="Label"
+                              SelectedItem="{x:Bind ViewModel.SelectedPrayerTextSize, Mode=TwoWay}" />
+                    <ComboBox HeaderTemplate="{StaticResource WrappingLabelTemplate}" MinWidth="0" x:Uid="SetAramaicDefaultScript" Header="Default Aramaic script" HorizontalAlignment="Stretch"
+                              ItemsSource="{x:Bind ViewModel.AramaicScriptOptions}" DisplayMemberPath="Label"
+                              SelectedItem="{x:Bind ViewModel.SelectedAramaicScript, Mode=TwoWay}" />
+                    <ComboBox HeaderTemplate="{StaticResource WrappingLabelTemplate}" MinWidth="0" x:Uid="SetSyriacTypeface" Header="Aramaic font" HorizontalAlignment="Stretch"
+                              ItemsSource="{x:Bind ViewModel.SyriacTypefaceOptions}" DisplayMemberPath="Label"
+                              SelectedItem="{x:Bind ViewModel.SelectedSyriacTypeface, Mode=TwoWay}" />
+                    <ComboBox HeaderTemplate="{StaticResource WrappingLabelTemplate}" MinWidth="0" x:Uid="SetHebrewPrayerTypeface" Header="Hebrew font" HorizontalAlignment="Stretch"
+                              ItemsSource="{x:Bind ViewModel.HebrewPrayerTypefaceOptions}" DisplayMemberPath="Label"
+                              SelectedItem="{x:Bind ViewModel.SelectedHebrewPrayerTypeface, Mode=TwoWay}" />
+                    <ComboBox HeaderTemplate="{StaticResource WrappingLabelTemplate}" MinWidth="0" x:Uid="SetHebrewScriptureTypeface" Header="Hebrew Scripture font" HorizontalAlignment="Stretch"
+                              ItemsSource="{x:Bind ViewModel.HebrewScriptureTypefaceOptions}" DisplayMemberPath="Label"
+                              SelectedItem="{x:Bind ViewModel.SelectedHebrewScriptureTypeface, Mode=TwoWay}" />
+                    <ComboBox HeaderTemplate="{StaticResource WrappingLabelTemplate}" MinWidth="0" x:Uid="SetLatinPrayerTypeface" Header="Latin-script prayers" HorizontalAlignment="Stretch"
+                              ItemsSource="{x:Bind ViewModel.SystemPrayerTypefaceOptions}" DisplayMemberPath="Label"
+                              SelectedItem="{x:Bind ViewModel.SelectedLatinPrayerTypeface, Mode=TwoWay}" />
+                    <ComboBox HeaderTemplate="{StaticResource WrappingLabelTemplate}" MinWidth="0" x:Uid="SetCyrillicPrayerTypeface" Header="Cyrillic prayers" HorizontalAlignment="Stretch"
+                              ItemsSource="{x:Bind ViewModel.SystemPrayerTypefaceOptions}" DisplayMemberPath="Label"
+                              SelectedItem="{x:Bind ViewModel.SelectedCyrillicPrayerTypeface, Mode=TwoWay}" />
 
-                <ToggleSwitch x:Uid="SetPrayerNameLanguage" Header="Show prayer names in the prayer language"
-                              IsOn="{x:Bind ViewModel.ShowPrayerNameInPrayerLanguage, Mode=TwoWay}"
-                              AutomationProperties.AutomationId="showPrayerNameInPrayerLanguage" />
-                <TextBlock x:Uid="SetPrayerNameLanguageHint" Text="Also show the interface-language name when it differs."
-                           TextWrapping="Wrap" Style="{StaticResource MutedCaptionTextStyle}" />
+                    <ToggleSwitch HeaderTemplate="{StaticResource WrappingLabelTemplate}" x:Uid="SetPrayerNameLanguage" Header="Show prayer names in the prayer language"
+                                  IsOn="{x:Bind ViewModel.ShowPrayerNameInPrayerLanguage, Mode=TwoWay}"
+                                  AutomationProperties.AutomationId="showPrayerNameInPrayerLanguage" />
+                    <TextBlock x:Uid="SetPrayerNameLanguageHint" Text="Also show the interface-language name when it differs."
+                               TextWrapping="Wrap" Style="{StaticResource MutedCaptionTextStyle}" />
 
-                <!-- Windows is always a keyboard-relevant desktop environment. -->
-                <TextBlock x:Uid="SetKeyboardHeader" Text="Keyboard" Style="{StaticResource BaseTextBlockStyle}" Margin="0,8,0,0" />
-                <ToggleSwitch x:Uid="SetKeyboardArrows" Header="Navigate prayers with arrow keys"
-                              IsOn="{x:Bind ViewModel.KeyboardArrowNavigationEnabled, Mode=TwoWay}"
-                              AutomationProperties.AutomationId="keyboardArrowNavigationEnabled" />
-                <ToggleSwitch x:Uid="SetKeyboardSpace" Header="Advance prayers with the space bar"
-                              IsOn="{x:Bind ViewModel.KeyboardSpaceAdvanceEnabled, Mode=TwoWay}"
-                              AutomationProperties.AutomationId="keyboardSpaceAdvanceEnabled" />
-                <TextBlock x:Uid="SetKeyboardHint" Text="Left and Right move between steps. Space advances the prayer in the active window."
-                           TextWrapping="Wrap" Style="{StaticResource MutedCaptionTextStyle}" />
+                    <!-- Windows is always a keyboard-relevant desktop environment. -->
+                    <TextBlock TextWrapping="Wrap" x:Uid="SetKeyboardHeader" Text="Keyboard" Style="{StaticResource BaseTextBlockStyle}" Margin="0,8,0,0" />
+                    <ToggleSwitch HeaderTemplate="{StaticResource WrappingLabelTemplate}" x:Uid="SetKeyboardArrows" Header="Navigate prayers with arrow keys"
+                                  IsOn="{x:Bind ViewModel.KeyboardArrowNavigationEnabled, Mode=TwoWay}"
+                                  AutomationProperties.AutomationId="keyboardArrowNavigationEnabled" />
+                    <ToggleSwitch HeaderTemplate="{StaticResource WrappingLabelTemplate}" x:Uid="SetKeyboardSpace" Header="Advance prayers with the space bar"
+                                  IsOn="{x:Bind ViewModel.KeyboardSpaceAdvanceEnabled, Mode=TwoWay}"
+                                  AutomationProperties.AutomationId="keyboardSpaceAdvanceEnabled" />
+                    <TextBlock x:Uid="SetKeyboardHint" Text="Left and Right move between steps. Space advances the prayer in the active window."
+                               TextWrapping="Wrap" Style="{StaticResource MutedCaptionTextStyle}" />
 
-                <!-- The Home "Today" section: which of its rows show at all, and which
-                     calendar's feasts the feast row prays. The calendar choices come from the
-                     bundled calendars.json registry (labels included, so no resw entries per
-                     calendar); the picker hides entirely if the registry ever ships a single
-                     calendar. -->
-                <TextBlock x:Uid="SetTodayHeader" Text="Today" Style="{StaticResource BaseTextBlockStyle}" Margin="0,8,0,0" />
-                <ToggleSwitch Header="{x:Bind ViewModel.ReverseReadingsOrderLabel}"
-                              IsOn="{x:Bind ViewModel.ReverseReadingsOrder, Mode=TwoWay}" />
-                <TextBlock x:Uid="SetRemindersHeader" Text="Notifications" Style="{StaticResource BaseTextBlockStyle}" />
-                <ToggleSwitch x:Uid="SetReadingsReminder" Header="Reading reminders" IsOn="{x:Bind ViewModel.ReadingsReminderEnabled, Mode=TwoWay}" />
-                <TimePicker x:Uid="SetReadingsReminderTime" Header="Notification time" Time="{x:Bind ViewModel.ReadingsReminderTime, Mode=TwoWay}"
-                            ClockIdentifier="{x:Bind ViewModel.ReminderClockIdentifier}"
-                            Visibility="{x:Bind ViewModel.ReadingsReminderEnabled, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
-                <ToggleSwitch x:Uid="SetSaintReminder" Header="Saint and feast notifications" IsOn="{x:Bind ViewModel.SaintReminderEnabled, Mode=TwoWay}" />
-                <TimePicker x:Uid="SetSaintReminderTime" Header="Notification time" Time="{x:Bind ViewModel.SaintReminderTime, Mode=TwoWay}"
-                            ClockIdentifier="{x:Bind ViewModel.ReminderClockIdentifier}"
-                            Visibility="{x:Bind ViewModel.SaintReminderEnabled, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
-                <TextBlock x:Uid="SetRemindersFooter" Text="Uses your selected calendar and local time. Saint notifications include a sourced description when available in the app language; otherwise they show the feast and its rank."
-                           TextWrapping="Wrap" Style="{StaticResource MutedCaptionTextStyle}" />
-                <TextBlock x:Uid="SetRemindersWindow" Text="Open Prosary regularly to refresh upcoming notifications."
-                           TextWrapping="Wrap" Style="{StaticResource MutedCaptionTextStyle}" />
+                    <!-- The Home "Today" section: which of its rows show at all, and which
+                         calendar's feasts the feast row prays. The calendar choices come from the
+                         bundled calendars.json registry (labels included, so no resw entries per
+                         calendar); the picker hides entirely if the registry ever ships a single
+                         calendar. -->
+                    <TextBlock TextWrapping="Wrap" x:Uid="SetTodayHeader" Text="Today" Style="{StaticResource BaseTextBlockStyle}" Margin="0,8,0,0" />
+                    <ToggleSwitch HeaderTemplate="{StaticResource WrappingLabelTemplate}" Header="{x:Bind ViewModel.ReverseReadingsOrderLabel}"
+                                  IsOn="{x:Bind ViewModel.ReverseReadingsOrder, Mode=TwoWay}" />
+                    <TextBlock TextWrapping="Wrap" x:Uid="SetRemindersHeader" Text="Notifications" Style="{StaticResource BaseTextBlockStyle}" />
+                    <ToggleSwitch HeaderTemplate="{StaticResource WrappingLabelTemplate}" x:Uid="SetReadingsReminder" Header="Reading reminders" IsOn="{x:Bind ViewModel.ReadingsReminderEnabled, Mode=TwoWay}" />
+                    <TimePicker x:Uid="SetReadingsReminderTime" Header="Notification time" Time="{x:Bind ViewModel.ReadingsReminderTime, Mode=TwoWay}"
+                                ClockIdentifier="{x:Bind ViewModel.ReminderClockIdentifier}"
+                                Visibility="{x:Bind ViewModel.ReadingsReminderEnabled, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
+                    <ToggleSwitch HeaderTemplate="{StaticResource WrappingLabelTemplate}" x:Uid="SetSaintReminder" Header="Saint and feast notifications" IsOn="{x:Bind ViewModel.SaintReminderEnabled, Mode=TwoWay}" />
+                    <TimePicker x:Uid="SetSaintReminderTime" Header="Notification time" Time="{x:Bind ViewModel.SaintReminderTime, Mode=TwoWay}"
+                                ClockIdentifier="{x:Bind ViewModel.ReminderClockIdentifier}"
+                                Visibility="{x:Bind ViewModel.SaintReminderEnabled, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
+                    <TextBlock x:Uid="SetRemindersFooter" Text="Uses your selected calendar and local time. Saint notifications include a sourced description when available in the app language; otherwise they show the feast and its rank."
+                               TextWrapping="Wrap" Style="{StaticResource MutedCaptionTextStyle}" />
+                    <TextBlock x:Uid="SetRemindersWindow" Text="Open Prosary regularly to refresh upcoming notifications."
+                               TextWrapping="Wrap" Style="{StaticResource MutedCaptionTextStyle}" />
 
-                <ToggleSwitch x:Uid="SetShowTodayFeast" Header="Show the day's feast"
-                              IsOn="{x:Bind ViewModel.ShowTodayFeast, Mode=TwoWay}" />
-                <ComboBox Header="{x:Bind ViewModel.TodayCardColorLabel}" HorizontalAlignment="Stretch"
-                          ItemsSource="{x:Bind ViewModel.TodayCardColors}" DisplayMemberPath="Label"
-                          SelectedItem="{x:Bind ViewModel.SelectedTodayCardColor, Mode=TwoWay}"
-                          AutomationProperties.AutomationId="todayCardColor" />
-                <ToggleSwitch x:Uid="SetShowTodayIntention" Header="Show the Pope's intention"
-                              IsOn="{x:Bind ViewModel.ShowTodayIntention, Mode=TwoWay}" />
-                <ToggleSwitch x:Uid="SetShowPopeIntentionInPrayers" Header="Show the monthly intention during prayers for the Pope"
-                              IsOn="{x:Bind ViewModel.ShowPopeIntentionInPrayers, Mode=TwoWay}" />
-                <ToggleSwitch x:Uid="SetShowTodayReadingsDesktop" Header="Show readings"
-                              IsOn="{x:Bind ViewModel.ShowTodayReadings, Mode=TwoWay}"
-                              AutomationProperties.AutomationId="showTodayReadings" />
-                <ToggleSwitch x:Uid="SetExpandReadingsByDefault" Header="Expand readings by default"
-                              IsOn="{x:Bind ViewModel.ExpandReadingsByDefault, Mode=TwoWay}"
-                              AutomationProperties.AutomationId="expandReadingsByDefault" />
-                <ToggleSwitch x:Uid="SetShowTodayTorahPortion" Header="Show the weekly Torah portion"
-                              IsOn="{x:Bind ViewModel.ShowTodayTorahPortion, Mode=TwoWay}"
-                              AutomationProperties.AutomationId="showTodayTorahPortion" />
-                <TextBlock x:Uid="SetTorahPortionHint" Text="The coming Sabbath’s reading in Eretz Israel, including festival readings."
-                           Visibility="{x:Bind ViewModel.ShowTodayTorahPortion, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
-                           TextWrapping="Wrap" Style="{StaticResource MutedCaptionTextStyle}" />
+                    <ToggleSwitch HeaderTemplate="{StaticResource WrappingLabelTemplate}" x:Uid="SetShowTodayFeast" Header="Show the day's feast"
+                                  IsOn="{x:Bind ViewModel.ShowTodayFeast, Mode=TwoWay}" />
+                    <ComboBox HeaderTemplate="{StaticResource WrappingLabelTemplate}" MinWidth="0" Header="{x:Bind ViewModel.TodayCardColorLabel}" HorizontalAlignment="Stretch"
+                              ItemsSource="{x:Bind ViewModel.TodayCardColors}" DisplayMemberPath="Label"
+                              SelectedItem="{x:Bind ViewModel.SelectedTodayCardColor, Mode=TwoWay}"
+                              AutomationProperties.AutomationId="todayCardColor" />
+                    <ToggleSwitch HeaderTemplate="{StaticResource WrappingLabelTemplate}" x:Uid="SetShowTodayIntention" Header="Show the Pope's intention"
+                                  IsOn="{x:Bind ViewModel.ShowTodayIntention, Mode=TwoWay}" />
+                    <ToggleSwitch HeaderTemplate="{StaticResource WrappingLabelTemplate}" x:Uid="SetShowPopeIntentionInPrayers" Header="Show the monthly intention during prayers for the Pope"
+                                  IsOn="{x:Bind ViewModel.ShowPopeIntentionInPrayers, Mode=TwoWay}" />
+                    <ToggleSwitch HeaderTemplate="{StaticResource WrappingLabelTemplate}" x:Uid="SetShowTodayReadingsDesktop" Header="Show readings"
+                                  IsOn="{x:Bind ViewModel.ShowTodayReadings, Mode=TwoWay}"
+                                  AutomationProperties.AutomationId="showTodayReadings" />
+                    <ToggleSwitch HeaderTemplate="{StaticResource WrappingLabelTemplate}" x:Uid="SetExpandReadingsByDefault" Header="Expand readings by default"
+                                  IsOn="{x:Bind ViewModel.ExpandReadingsByDefault, Mode=TwoWay}"
+                                  AutomationProperties.AutomationId="expandReadingsByDefault" />
+                    <ToggleSwitch HeaderTemplate="{StaticResource WrappingLabelTemplate}" x:Uid="SetShowTodayTorahPortion" Header="Show the weekly Torah portion"
+                                  IsOn="{x:Bind ViewModel.ShowTodayTorahPortion, Mode=TwoWay}"
+                                  AutomationProperties.AutomationId="showTodayTorahPortion" />
+                    <TextBlock x:Uid="SetTorahPortionHint" Text="The coming Sabbath’s reading in Eretz Israel, including festival readings."
+                               Visibility="{x:Bind ViewModel.ShowTodayTorahPortion, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
+                               TextWrapping="Wrap" Style="{StaticResource MutedCaptionTextStyle}" />
 
-                <ComboBox x:Uid="SetFeastCalendar" Header="Liturgical calendar" HorizontalAlignment="Stretch"
-                          Visibility="{x:Bind ViewModel.ShowsFeastCalendarPicker, Converter={StaticResource BoolToVisibility}}"
-                          ItemsSource="{x:Bind ViewModel.FeastCalendarOptions}"
-                          SelectedItem="{x:Bind ViewModel.SelectedFeastCalendar, Mode=TwoWay}">
-                    <ComboBox.ItemTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding DisplayName}" />
-                        </DataTemplate>
-                    </ComboBox.ItemTemplate>
-                </ComboBox>
-                <TextBlock x:Uid="SetFeastCalendarHint" Text="Which calendar the Today section's feasts and readings follow."
-                           Visibility="{x:Bind ViewModel.ShowsFeastCalendarPicker, Converter={StaticResource BoolToVisibility}}"
-                           TextWrapping="Wrap" Style="{StaticResource CaptionTextBlockStyle}"
-                           Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
-                <ComboBox x:Uid="SetEasternPascha" Header="Byzantine Easter calculation" HorizontalAlignment="Stretch"
-                          Visibility="{x:Bind ViewModel.ShowsEasternPaschaPicker, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
-                          ItemsSource="{x:Bind ViewModel.EasternPaschaOptions}" DisplayMemberPath="Label"
-                          SelectedItem="{x:Bind ViewModel.SelectedEasternPascha, Mode=TwoWay}"
-                          AutomationProperties.AutomationId="easternPaschaStyle" />
+                    <ComboBox HeaderTemplate="{StaticResource WrappingLabelTemplate}" MinWidth="0" x:Uid="SetFeastCalendar" Header="Liturgical calendar" HorizontalAlignment="Stretch"
+                              Visibility="{x:Bind ViewModel.ShowsFeastCalendarPicker, Converter={StaticResource BoolToVisibility}}"
+                              ItemsSource="{x:Bind ViewModel.FeastCalendarOptions}"
+                              SelectedItem="{x:Bind ViewModel.SelectedFeastCalendar, Mode=TwoWay}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock TextWrapping="Wrap" Text="{Binding DisplayName}" />
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <TextBlock x:Uid="SetFeastCalendarHint" Text="Which calendar the Today section's feasts and readings follow."
+                               Visibility="{x:Bind ViewModel.ShowsFeastCalendarPicker, Converter={StaticResource BoolToVisibility}}"
+                               TextWrapping="Wrap" Style="{StaticResource CaptionTextBlockStyle}"
+                               Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+                    <ComboBox HeaderTemplate="{StaticResource WrappingLabelTemplate}" MinWidth="0" x:Uid="SetEasternPascha" Header="Byzantine Easter calculation" HorizontalAlignment="Stretch"
+                              Visibility="{x:Bind ViewModel.ShowsEasternPaschaPicker, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
+                              ItemsSource="{x:Bind ViewModel.EasternPaschaOptions}" DisplayMemberPath="Label"
+                              SelectedItem="{x:Bind ViewModel.SelectedEasternPascha, Mode=TwoWay}"
+                              AutomationProperties.AutomationId="easternPaschaStyle" />
 
-                <TextBlock x:Uid="SetDownloadsHeader" Text="Downloads" Style="{StaticResource BaseTextBlockStyle}" Margin="0,8,0,0" />
+                    <TextBlock TextWrapping="Wrap" x:Uid="SetDownloadsHeader" Text="Downloads" Style="{StaticResource BaseTextBlockStyle}" Margin="0,8,0,0" />
 
-                <TextBlock Text="{x:Bind ViewModel.InstalledCountLabel, Mode=OneWay}" />
+                    <TextBlock TextWrapping="Wrap" Text="{x:Bind ViewModel.InstalledCountLabel, Mode=OneWay}" />
 
-                <!-- Importing, exporting and removing a devotion moved here when the Favorites
-                     screen was retired: Downloads is where the Mac keeps them too. -->
-                <Button x:Uid="SetImportBundle" Content="Import Devotion Bundle…" HorizontalAlignment="Stretch"
-                        Click="OnImportBundle" />
+                    <!-- Importing, exporting and removing a devotion moved here when the Favorites
+                         screen was retired: Downloads is where the Mac keeps them too. -->
+                    <Button MinWidth="0" HorizontalContentAlignment="Stretch" ContentTemplate="{StaticResource WrappingButtonLabelTemplate}" x:Uid="SetImportBundle" Content="Import Devotion Bundle…" HorizontalAlignment="Stretch"
+                            Click="OnImportBundle" />
 
-                <ItemsControl ItemsSource="{x:Bind ViewModel.InstalledDevotions, Mode=OneWay}"
-                              Visibility="{x:Bind ViewModel.HasInstalledDevotions, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate x:DataType="vm:InstalledDevotionRow">
-                            <Grid ColumnSpacing="8" Margin="0,4">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="Auto" />
-                                </Grid.ColumnDefinitions>
-                                <TextBlock Grid.Column="0" Text="{x:Bind Title}" VerticalAlignment="Center" TextWrapping="Wrap" />
-                                <Button Grid.Column="1" x:Uid="SetExportBundle" Background="Transparent" Padding="8"
-                                        ToolTipService.ToolTip="Export for editing"
-                                        Click="OnExportBundle" Tag="{x:Bind BundleId}">
-                                    <FontIcon Glyph="&#xEDE1;" FontSize="14" />
-                                </Button>
-                                <Button Grid.Column="2" x:Uid="SetRemoveBundle" Background="Transparent" Padding="8"
-                                        ToolTipService.ToolTip="Remove Download…"
-                                        Command="{Binding ElementName=Root, Path=ViewModel.RemoveInstalledCommand}"
-                                        CommandParameter="{Binding}">
-                                    <FontIcon Glyph="&#xE74D;" FontSize="14" />
-                                </Button>
-                            </Grid>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
+                    <ItemsControl ItemsSource="{x:Bind ViewModel.InstalledDevotions, Mode=OneWay}"
+                                  Visibility="{x:Bind ViewModel.HasInstalledDevotions, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate x:DataType="vm:InstalledDevotionRow">
+                                <Grid ColumnSpacing="8" Margin="0,4">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0" Text="{x:Bind Title}" VerticalAlignment="Center" TextWrapping="Wrap" />
+                                    <Button Grid.Column="1" x:Uid="SetExportBundle" Background="Transparent" Padding="8"
+                                            ToolTipService.ToolTip="Export for editing"
+                                            Click="OnExportBundle" Tag="{x:Bind BundleId}">
+                                        <FontIcon Glyph="&#xEDE1;" FontSize="14" />
+                                    </Button>
+                                    <Button Grid.Column="2" x:Uid="SetRemoveBundle" Background="Transparent" Padding="8"
+                                            ToolTipService.ToolTip="Remove Download…"
+                                            Command="{Binding ElementName=Root, Path=ViewModel.RemoveInstalledCommand}"
+                                            CommandParameter="{Binding}">
+                                        <FontIcon Glyph="&#xE74D;" FontSize="14" />
+                                    </Button>
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
 
-                <Button Content="{x:Bind ViewModel.AudioCacheLabel, Mode=OneWay}" HorizontalAlignment="Stretch"
-                        Command="{x:Bind ViewModel.ClearAudioCacheCommand}" />
+                    <Button MinWidth="0" HorizontalContentAlignment="Stretch" ContentTemplate="{StaticResource WrappingButtonLabelTemplate}" Content="{x:Bind ViewModel.AudioCacheLabel, Mode=OneWay}" HorizontalAlignment="Stretch"
+                            Command="{x:Bind ViewModel.ClearAudioCacheCommand}" />
 
-                <Button x:Uid="SetRemoveAll" Content="Remove Unused Downloads…" HorizontalAlignment="Stretch"
-                        Foreground="{ThemeResource SystemFillColorCriticalBrush}"
-                        Command="{x:Bind ViewModel.RequestRemoveAllDownloadsCommand}" />
+                    <Button MinWidth="0" HorizontalContentAlignment="Stretch" ContentTemplate="{StaticResource WrappingButtonLabelTemplate}" x:Uid="SetRemoveAll" Content="Remove Unused Downloads…" HorizontalAlignment="Stretch"
+                            Foreground="{ThemeResource SystemFillColorCriticalBrush}"
+                            Command="{x:Bind ViewModel.RequestRemoveAllDownloadsCommand}" />
 
-                <TextBlock x:Uid="SetDownloadsFooter" Text="Only downloads without saved copies can be removed here. Deleting the last saved copy also removes its download. Built-in prayers are kept."
-                           TextWrapping="Wrap" Style="{StaticResource CaptionTextBlockStyle}"
-                           Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+                    <TextBlock x:Uid="SetDownloadsFooter" Text="Only downloads without saved copies can be removed here. Deleting the last saved copy also removes its download. Built-in prayers are kept."
+                               TextWrapping="Wrap" Style="{StaticResource CaptionTextBlockStyle}"
+                               Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
 
-                <TextBlock x:Uid="SetLinksHeader" Text="Links" Style="{StaticResource BaseTextBlockStyle}" Margin="0,8,0,0" />
+                    <TextBlock TextWrapping="Wrap" x:Uid="SetLinksHeader" Text="Links" Style="{StaticResource BaseTextBlockStyle}" Margin="0,8,0,0" />
 
-                <HyperlinkButton x:Uid="SetRepoLink" Content="Community repository"
-                                 Command="{x:Bind ViewModel.OpenLinkCommand}" CommandParameter="https://prayers.prosary.app" />
-                <HyperlinkButton x:Uid="SetComposeLink" Content="Compose a devotion"
-                                 Command="{x:Bind ViewModel.OpenLinkCommand}" CommandParameter="https://compose.prosary.app" />
-                <HyperlinkButton x:Uid="SetPrivacyLink" Content="Privacy policy"
-                                 Command="{x:Bind ViewModel.OpenLinkCommand}" CommandParameter="https://prosary.app/privacy" />
-            </StackPanel>
+                    <HyperlinkButton ContentTemplate="{StaticResource WrappingLabelTemplate}" x:Uid="SetRepoLink" Content="Community repository"
+                                     Command="{x:Bind ViewModel.OpenLinkCommand}" CommandParameter="https://prayers.prosary.app" />
+                    <HyperlinkButton ContentTemplate="{StaticResource WrappingLabelTemplate}" x:Uid="SetComposeLink" Content="Compose a devotion"
+                                     Command="{x:Bind ViewModel.OpenLinkCommand}" CommandParameter="https://compose.prosary.app" />
+                    <HyperlinkButton ContentTemplate="{StaticResource WrappingLabelTemplate}" x:Uid="SetPrivacyLink" Content="Privacy policy"
+                                     Command="{x:Bind ViewModel.OpenLinkCommand}" CommandParameter="https://prosary.app/privacy" />
+                </StackPanel>
+            </Grid>
         </ScrollViewer>
     </Grid>
 </Page>

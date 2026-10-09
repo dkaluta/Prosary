@@ -11,116 +11,118 @@
     mc:Ignorable="d">
 
 
-    <ScrollViewer>
-        <StackPanel Spacing="16" MaxWidth="960" HorizontalAlignment="Center" Padding="20">
-            <Grid ColumnSpacing="8">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
-                <TextBlock x:Uid="HomeTitle" Grid.Column="0" Text="Pray" Style="{StaticResource HeadlineTextStyle}" VerticalAlignment="Center" />
-                <!-- Puts a devotion back on Pray; hidden once everything installed is here. -->
-                <!-- The same menu the Mac's + opens: an ad-hoc Rosary, a new preset of either
-                     configurable kind, and then anything currently off the Pray list. -->
-                <Button x:Uid="HomeAddDevotionButton" Grid.Column="1" Background="Transparent" Padding="8" ToolTipService.ToolTip="Add a prayer">
-                    <FontIcon Glyph="&#xE710;" />
-                    <Button.Flyout>
-                        <Flyout>
-                            <StackPanel Spacing="4" MinWidth="240">
-                                <HyperlinkButton x:Uid="HomePrayAnyRosary" Content="Pray any Rosary" HorizontalAlignment="Stretch"
-                                                 Command="{x:Bind ViewModel.PrayAnyRosaryCommand}" />
-                                <HyperlinkButton x:Uid="HomeAddRosary" Content="Add Rosary" HorizontalAlignment="Stretch"
-                                                 Command="{x:Bind ViewModel.AddRosaryPresetCommand}" />
-                                <HyperlinkButton x:Uid="HomeAddJesusPrayer" Content="Add Jesus Prayer" HorizontalAlignment="Stretch"
-                                                 Command="{x:Bind ViewModel.AddJesusPrayerPresetCommand}" />
-                                <StackPanel Spacing="4"
-                                            Visibility="{x:Bind ViewModel.HasUnpinnedCards, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
-                                    <TextBlock x:Uid="HomeAddToPrayHeader" Text="Add to Pray" Margin="12,8,0,0"
-                                               Style="{StaticResource CaptionTextBlockStyle}"
-                                               Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
-                                    <ItemsControl ItemsSource="{x:Bind ViewModel.UnpinnedCards, Mode=OneWay}">
-                                        <ItemsControl.ItemTemplate>
-                                            <DataTemplate x:DataType="vm:DevotionCardModel">
-                                                <HyperlinkButton Content="{x:Bind Title, Mode=OneWay}" HorizontalAlignment="Stretch"
-                                                                 Command="{Binding ElementName=Root, Path=ViewModel.PinCardCommand}"
-                                                                 CommandParameter="{Binding}" />
-                                            </DataTemplate>
-                                        </ItemsControl.ItemTemplate>
-                                    </ItemsControl>
-                                </StackPanel>
-                            </StackPanel>
-                        </Flyout>
-                    </Button.Flyout>
-                </Button>
-                <!-- Reordering is a header button here too, not only a card's menu. -->
-                <Button x:Uid="HomeEditOrderButton" Grid.Column="2" Background="Transparent" Padding="8" ToolTipService.ToolTip="Edit order…"
-                        Click="OnEditOrder">
-                    <FontIcon Glyph="&#xE8CB;" />
-                </Button>
-                <Button x:Uid="HomeSettingsButton" Grid.Column="3" Background="Transparent" Padding="8" ToolTipService.ToolTip="Settings"
-                        Command="{x:Bind ViewModel.OpenSettingsCommand}">
-                    <FontIcon Glyph="&#xE713;" />
-                </Button>
-                <Button x:Uid="HomeAboutButton" Grid.Column="4" Background="Transparent" Padding="8" ToolTipService.ToolTip="About"
-                        Command="{x:Bind ViewModel.OpenAboutCommand}">
-                    <FontIcon Glyph="&#xE946;" />
-                </Button>
-            </Grid>
-
-            <ItemsControl ItemsSource="{x:Bind ViewModel.DevotionCards}" MaxWidth="560" HorizontalAlignment="Stretch">
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <StackPanel Spacing="12" />
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate x:DataType="vm:DevotionCardModel">
-                        <controls:PrayerCard Title="{x:Bind Title, Mode=OneWay}"
-                                              Subtitle="{x:Bind DisplaySubtitle, Mode=OneWay}"
-                                              AccentColor="{x:Bind AccentColor, Mode=OneWay}"
-                                              IconGlyph="{x:Bind IconGlyph}"
-                                              Command="{x:Bind Command}">
-                            <controls:PrayerCard.ContextFlyout>
-                                <MenuFlyout>
-                                    <MenuFlyoutItem x:Uid="HomeReminders" Text="Reminders…"
-                                                    Visibility="{x:Bind CanHaveReminders, Converter={StaticResource BoolToVisibility}}"
-                                                    Command="{Binding ElementName=Root, Path=ViewModel.OpenRemindersCommand}"
-                                                    CommandParameter="{Binding}" />
-                                    <MenuFlyoutItem x:Uid="HomeMoveToTop" Text="Move to top"
-                                                    Command="{Binding ElementName=Root, Path=ViewModel.MoveCardToTopCommand}"
-                                                    CommandParameter="{Binding}" />
-                                    <MenuFlyoutItem x:Uid="HomeEditOrder" Text="Edit order…" Click="OnEditOrder" />
-                                    <MenuFlyoutItem x:Uid="HomeRemoveFromPray" Text="Remove from Pray"
-                                                    Command="{Binding ElementName=Root, Path=ViewModel.UnpinCardCommand}"
-                                                    CommandParameter="{Binding}" />
-                                </MenuFlyout>
-                            </controls:PrayerCard.ContextFlyout>
-                        </controls:PrayerCard>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-
-            <!-- The basic prayers on their own (Erez, 2026-08-07) — a fixed quiet row below the
-                 cards, not a pinnable card: a reference shelf, not a devotion, so it neither
-                 reorders nor unpins. Always present, which is the point of the ask. -->
-            <Button Click="OnOpenBasicPrayers" HorizontalAlignment="Stretch" MaxWidth="560"
-                    HorizontalContentAlignment="Stretch" Padding="16,12"
-                    AutomationProperties.AutomationId="basicPrayersRow">
-                <Grid ColumnSpacing="12">
+    <ScrollViewer HorizontalContentAlignment="Stretch" HorizontalScrollMode="Disabled" HorizontalScrollBarVisibility="Disabled">
+        <Grid HorizontalAlignment="Stretch">
+            <StackPanel Spacing="16" HorizontalAlignment="Stretch" Padding="20">
+                <Grid ColumnSpacing="8">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
-                    <FontIcon Grid.Column="0" Glyph="&#xE8F1;" />
-                    <TextBlock x:Uid="BasicPrayersTitle" Grid.Column="1" Text="Basic Prayers" VerticalAlignment="Center" />
-                    <FontIcon Grid.Column="2" Glyph="&#xE76C;" MirroredWhenRightToLeft="True" FontSize="12" />
+                    <TextBlock x:Uid="HomeTitle" Grid.Column="0" Text="Pray" Style="{StaticResource HeadlineTextStyle}" VerticalAlignment="Center" TextWrapping="Wrap" />
+                    <!-- Puts a devotion back on Pray; hidden once everything installed is here. -->
+                    <!-- The same menu the Mac's + opens: an ad-hoc Rosary, a new preset of either
+                         configurable kind, and then anything currently off the Pray list. -->
+                    <Button x:Uid="HomeAddDevotionButton" Grid.Column="1" Background="Transparent" Padding="8" ToolTipService.ToolTip="Add a prayer">
+                        <FontIcon Glyph="&#xE710;" />
+                        <Button.Flyout>
+                            <Flyout>
+                                <StackPanel Spacing="4" MinWidth="240">
+                                    <HyperlinkButton x:Uid="HomePrayAnyRosary" Content="Pray any Rosary" HorizontalAlignment="Stretch"
+                                                     Command="{x:Bind ViewModel.PrayAnyRosaryCommand}" />
+                                    <HyperlinkButton x:Uid="HomeAddRosary" Content="Add Rosary" HorizontalAlignment="Stretch"
+                                                     Command="{x:Bind ViewModel.AddRosaryPresetCommand}" />
+                                    <HyperlinkButton x:Uid="HomeAddJesusPrayer" Content="Add Jesus Prayer" HorizontalAlignment="Stretch"
+                                                     Command="{x:Bind ViewModel.AddJesusPrayerPresetCommand}" />
+                                    <StackPanel Spacing="4"
+                                                Visibility="{x:Bind ViewModel.HasUnpinnedCards, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
+                                        <TextBlock x:Uid="HomeAddToPrayHeader" Text="Add to Pray" Margin="12,8,0,0"
+                                                   Style="{StaticResource CaptionTextBlockStyle}"
+                                                   Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+                                        <ItemsControl ItemsSource="{x:Bind ViewModel.UnpinnedCards, Mode=OneWay}">
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate x:DataType="vm:DevotionCardModel">
+                                                    <HyperlinkButton Content="{x:Bind Title, Mode=OneWay}" HorizontalAlignment="Stretch"
+                                                                     Command="{Binding ElementName=Root, Path=ViewModel.PinCardCommand}"
+                                                                     CommandParameter="{Binding}" />
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Flyout>
+                        </Button.Flyout>
+                    </Button>
+                    <!-- Reordering is a header button here too, not only a card's menu. -->
+                    <Button x:Uid="HomeEditOrderButton" Grid.Column="2" Background="Transparent" Padding="8" ToolTipService.ToolTip="Edit order…"
+                            Click="OnEditOrder">
+                        <FontIcon Glyph="&#xE8CB;" />
+                    </Button>
+                    <Button x:Uid="HomeSettingsButton" Grid.Column="3" Background="Transparent" Padding="8" ToolTipService.ToolTip="Settings"
+                            Command="{x:Bind ViewModel.OpenSettingsCommand}">
+                        <FontIcon Glyph="&#xE713;" />
+                    </Button>
+                    <Button x:Uid="HomeAboutButton" Grid.Column="4" Background="Transparent" Padding="8" ToolTipService.ToolTip="About"
+                            Command="{x:Bind ViewModel.OpenAboutCommand}">
+                        <FontIcon Glyph="&#xE946;" />
+                    </Button>
                 </Grid>
-            </Button>
 
-        </StackPanel>
+                <ItemsControl ItemsSource="{x:Bind ViewModel.DevotionCards}" HorizontalAlignment="Stretch">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Spacing="12" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate x:DataType="vm:DevotionCardModel">
+                            <controls:PrayerCard Title="{x:Bind Title, Mode=OneWay}"
+                                                  Subtitle="{x:Bind DisplaySubtitle, Mode=OneWay}"
+                                                  AccentColor="{x:Bind AccentColor, Mode=OneWay}"
+                                                  IconGlyph="{x:Bind IconGlyph}"
+                                                  Command="{x:Bind Command}">
+                                <controls:PrayerCard.ContextFlyout>
+                                    <MenuFlyout>
+                                        <MenuFlyoutItem x:Uid="HomeReminders" Text="Reminders…"
+                                                        Visibility="{x:Bind CanHaveReminders, Converter={StaticResource BoolToVisibility}}"
+                                                        Command="{Binding ElementName=Root, Path=ViewModel.OpenRemindersCommand}"
+                                                        CommandParameter="{Binding}" />
+                                        <MenuFlyoutItem x:Uid="HomeMoveToTop" Text="Move to top"
+                                                        Command="{Binding ElementName=Root, Path=ViewModel.MoveCardToTopCommand}"
+                                                        CommandParameter="{Binding}" />
+                                        <MenuFlyoutItem x:Uid="HomeEditOrder" Text="Edit order…" Click="OnEditOrder" />
+                                        <MenuFlyoutItem x:Uid="HomeRemoveFromPray" Text="Remove from Pray"
+                                                        Command="{Binding ElementName=Root, Path=ViewModel.UnpinCardCommand}"
+                                                        CommandParameter="{Binding}" />
+                                    </MenuFlyout>
+                                </controls:PrayerCard.ContextFlyout>
+                            </controls:PrayerCard>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+                <!-- The basic prayers on their own (Erez, 2026-08-07) — a fixed quiet row below the
+                     cards, not a pinnable card: a reference shelf, not a devotion, so it neither
+                     reorders nor unpins. Always present, which is the point of the ask. -->
+                <Button Click="OnOpenBasicPrayers" HorizontalAlignment="Stretch"
+                        HorizontalContentAlignment="Stretch" Padding="16,12"
+                        AutomationProperties.AutomationId="basicPrayersRow">
+                    <Grid ColumnSpacing="12">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <FontIcon Grid.Column="0" Glyph="&#xE8F1;" />
+                        <TextBlock x:Uid="BasicPrayersTitle" Grid.Column="1" Text="Basic Prayers" VerticalAlignment="Center" TextWrapping="Wrap" />
+                        <FontIcon Grid.Column="2" Glyph="&#xE76C;" MirroredWhenRightToLeft="True" FontSize="12" />
+                    </Grid>
+                </Button>
+
+            </StackPanel>
+        </Grid>
     </ScrollViewer>
 </Page>

@@ -176,6 +176,29 @@ public sealed partial class CustomDevotionFlowPage : Page
 
     private void OnNavigateUp(object sender, RoutedEventArgs e) => Router.For(this).GoBack();
 
+    private void ActionPanel_SizeChanged(object sender, SizeChangedEventArgs e)
+    {
+        if (sender is not Grid panel || e.NewSize.Width <= 0) return;
+        var buttons = panel.Children.OfType<Button>().ToArray();
+        if (buttons.Length == 0) return;
+        var stacked = e.NewSize.Width < buttons.Length * 180;
+        var rows = stacked ? buttons.Length : 1;
+        var columns = stacked ? 1 : buttons.Length;
+        if (panel.RowDefinitions.Count == rows && panel.ColumnDefinitions.Count == columns) return;
+
+        panel.RowDefinitions.Clear();
+        panel.ColumnDefinitions.Clear();
+        for (var row = 0; row < rows; row++)
+            panel.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+        for (var column = 0; column < columns; column++)
+            panel.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+        for (var index = 0; index < buttons.Length; index++)
+        {
+            Grid.SetRow(buttons[index], stacked ? index : 0);
+            Grid.SetColumn(buttons[index], stacked ? 0 : index);
+        }
+    }
+
     private void FlowContent_SizeChanged(object sender, SizeChangedEventArgs e) => UpdateFlowLayout();
 
     private void OnFlowPropertyChanged(object? sender, PropertyChangedEventArgs e)

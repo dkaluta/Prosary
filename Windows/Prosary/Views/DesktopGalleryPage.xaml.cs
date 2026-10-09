@@ -108,7 +108,8 @@ public sealed partial class DesktopGalleryPage : Page
     private void OnAddButtonLoaded(object sender, RoutedEventArgs e)
     {
         if (sender is not Button { DataContext: DesktopGalleryItem item } button) return;
-        button.Content = ViewModel.AddLabel;
+        button.Content = new TextBlock { Text = ViewModel.AddLabel, TextWrapping = TextWrapping.Wrap,
+            TextAlignment = TextAlignment.Center };
         AutomationProperties.SetName(button, ViewModel.AddLabel + ": " + item.Title);
     }
 

@@ -77,11 +77,15 @@ Only the active window's loaded prayer handles them. Dialogs, flyouts, text edit
 and focused controls retain native key behavior. Up/Down and Page Up/Page Down keep scrolling;
 modified and repeated key presses do not advance the prayer.
 
-Prayer readers keep a centered column capped at 640 logical pixels, with common margins
+Pages and prayer readers fill the available viewport width, with common text margins
 for short and long prayers. Body text aligns to the start of its actual language; headings
-and alphabet switches stay centered. The column sits inside uncapped scroll content so
-WinUI measures the viewport independently of the current text. Language menus refresh
-before opening, preserving native dismissal and focus when a language is selected.
+and alphabet switches stay centered. Scroll content remains uncapped and stretches to the
+viewport so WinUI measures it independently of the current text. Lists wrap their labels
+within finite columns, and compact forms and action rows keep controls inside the window.
+Bible options, month navigation and multi-day prompts scroll within bounded areas so
+short windows retain space for their prayer, verse or feast content.
+Language menus refresh before opening, preserving native dismissal and focus when a
+language is selected.
 
 | Menu | Commands |
 | --- | --- |

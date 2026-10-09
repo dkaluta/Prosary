@@ -8,53 +8,64 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
+    <Page.Resources>
+        <DataTemplate x:Key="WrappingButtonLabelTemplate">
+            <TextBlock Text="{Binding}" TextWrapping="Wrap" TextAlignment="Center" />
+        </DataTemplate>
+    </Page.Resources>
 
-    <ScrollViewer Padding="16">
-        <StackPanel Spacing="4" MaxWidth="640" HorizontalAlignment="Stretch">
-            <Grid Margin="0,0,0,8">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
-                <TextBlock x:Uid="BasicPrayersTitle" Text="Basic Prayers" Style="{StaticResource SubHeadlineTextStyle}" VerticalAlignment="Center" />
-                <Button x:Name="LanguageMenuButton" Grid.Column="1" Background="Transparent" Padding="8">
-                    <FontIcon Glyph="&#xE774;" />
-                    <Button.Flyout>
-                        <MenuFlyout x:Name="LanguageFlyout" />
-                    </Button.Flyout>
-                </Button>
-                <!-- Reorderable per Erez (2026-08-08) — the approved Home reorder-dialog pattern. -->
-                <Button Grid.Column="2" x:Uid="BasicPrayersEditOrder" Content="Edit order…" HorizontalAlignment="Right"
-                        Click="OnEditOrder" />
-            </Grid>
-            <ItemsControl ItemsSource="{x:Bind ViewModel.Rows, Mode=OneWay}"
-                          FlowDirection="{x:Bind ViewModel.IsRightToLeft, Mode=OneWay, Converter={StaticResource BoolToFlowDirection}}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate x:DataType="vm:BasicPrayerRow">
-                        <Button Background="Transparent" BorderThickness="0" HorizontalAlignment="Stretch"
-                                HorizontalContentAlignment="Left" Padding="8,10"
-                                Command="{Binding ElementName=Root, Path=ViewModel.OpenCommand}"
-                                CommandParameter="{Binding}"
-                                AutomationProperties.AutomationId="{x:Bind Id}">
-                            <StackPanel Orientation="Horizontal" Spacing="12">
-                                <Border Width="44" Height="44" CornerRadius="8">
-                                    <Image Stretch="UniformToFill" AutomationProperties.AccessibilityView="Raw">
-                                        <Image.Source><BitmapImage UriSource="{x:Bind ImageFile}" /></Image.Source>
-                                    </Image>
-                                </Border>
-                                <StackPanel VerticalAlignment="Center" Spacing="2">
-                                    <TextBlock Text="{x:Bind Title}" FontSize="15" TextWrapping="Wrap"
-                                               FlowDirection="{x:Bind IsTitleRightToLeft, Converter={StaticResource BoolToFlowDirection}}" />
-                                    <TextBlock Text="{x:Bind InterfaceSubtitle}" Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap"
-                                               FlowDirection="{x:Bind IsInterfaceSubtitleRightToLeft, Converter={StaticResource BoolToFlowDirection}}"
-                                               Visibility="{x:Bind HasInterfaceSubtitle, Converter={StaticResource BoolToVisibility}}" />
-                                </StackPanel>
-                            </StackPanel>
-                        </Button>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-        </StackPanel>
+    <ScrollViewer Padding="16" HorizontalContentAlignment="Stretch" HorizontalScrollMode="Disabled" HorizontalScrollBarVisibility="Disabled">
+        <Grid HorizontalAlignment="Stretch">
+            <StackPanel Spacing="4" HorizontalAlignment="Stretch">
+                <Grid Margin="0,0,0,8">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock TextWrapping="Wrap" x:Uid="BasicPrayersTitle" Text="Basic Prayers" Style="{StaticResource SubHeadlineTextStyle}" VerticalAlignment="Center" />
+                    <Button x:Name="LanguageMenuButton" Grid.Column="1" Background="Transparent" Padding="8">
+                        <FontIcon Glyph="&#xE774;" />
+                        <Button.Flyout>
+                            <MenuFlyout x:Name="LanguageFlyout" />
+                        </Button.Flyout>
+                    </Button>
+                    <!-- Reorderable per Erez (2026-08-08) — the approved Home reorder-dialog pattern. -->
+                    <Button MinWidth="0" HorizontalContentAlignment="Stretch" ContentTemplate="{StaticResource WrappingButtonLabelTemplate}" Grid.Column="2" x:Uid="BasicPrayersEditOrder" Content="Edit order…" HorizontalAlignment="Right"
+                            Click="OnEditOrder" />
+                </Grid>
+                <ItemsControl ItemsSource="{x:Bind ViewModel.Rows, Mode=OneWay}"
+                              FlowDirection="{x:Bind ViewModel.IsRightToLeft, Mode=OneWay, Converter={StaticResource BoolToFlowDirection}}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate x:DataType="vm:BasicPrayerRow">
+                            <Button Background="Transparent" BorderThickness="0" HorizontalAlignment="Stretch"
+                                    HorizontalContentAlignment="Stretch" Padding="8,10"
+                                    Command="{Binding ElementName=Root, Path=ViewModel.OpenCommand}"
+                                    CommandParameter="{Binding}"
+                                    AutomationProperties.AutomationId="{x:Bind Id}">
+                                <Grid ColumnSpacing="12">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Border Width="44" Height="44" CornerRadius="8">
+                                        <Image Stretch="UniformToFill" AutomationProperties.AccessibilityView="Raw">
+                                            <Image.Source><BitmapImage UriSource="{x:Bind ImageFile}" /></Image.Source>
+                                        </Image>
+                                    </Border>
+                                    <StackPanel Grid.Column="1" VerticalAlignment="Center" Spacing="2">
+                                        <TextBlock Text="{x:Bind Title}" FontSize="15" TextWrapping="Wrap"
+                                                   FlowDirection="{x:Bind IsTitleRightToLeft, Converter={StaticResource BoolToFlowDirection}}" />
+                                        <TextBlock Text="{x:Bind InterfaceSubtitle}" Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap"
+                                                   FlowDirection="{x:Bind IsInterfaceSubtitleRightToLeft, Converter={StaticResource BoolToFlowDirection}}"
+                                                   Visibility="{x:Bind HasInterfaceSubtitle, Converter={StaticResource BoolToVisibility}}" />
+                                    </StackPanel>
+                                </Grid>
+                            </Button>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+        </Grid>
     </ScrollViewer>
 </Page>

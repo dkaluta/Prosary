@@ -12,6 +12,9 @@
          above reminders; Rosary/Jesus rows use the same page for reminder-only actions. Both
          editors bind through the shared RemindersEditorViewModel. -->
     <Page.Resources>
+        <DataTemplate x:Key="WrappingButtonLabelTemplate">
+            <TextBlock Text="{Binding}" TextWrapping="Wrap" TextAlignment="Center" />
+        </DataTemplate>
         <Style x:Key="SectionHeaderStyle" TargetType="TextBlock">
             <Setter Property="FontSize" Value="13" />
             <Setter Property="FontWeight" Value="SemiBold" />
@@ -35,11 +38,11 @@
                 </Grid>
                 <Grid ColumnSpacing="8" Visibility="{Binding IsChoice, Converter={StaticResource BoolToVisibility}}">
                     <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*" />
                         <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Column="0" Text="{Binding Label}" VerticalAlignment="Center" TextWrapping="Wrap" />
-                    <ComboBox Grid.Column="1" ItemsSource="{Binding Cases}" SelectedItem="{Binding SelectedCase, Mode=TwoWay}" DisplayMemberPath="LocalizedName" MinWidth="160" />
+                    <ComboBox Grid.Column="1" ItemsSource="{Binding Cases}" SelectedItem="{Binding SelectedCase, Mode=TwoWay}" DisplayMemberPath="LocalizedName" MinWidth="0" HorizontalAlignment="Stretch" />
                 </Grid>
             </StackPanel>
         </DataTemplate>
@@ -73,75 +76,82 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <Button x:Uid="BtnCancel" Grid.Column="0" Content="Cancel" Background="Transparent" Command="{x:Bind ViewModel.CancelCommand}" />
-            <TextBlock Grid.Column="1" Text="{x:Bind ViewModel.Title, Mode=OneWay}" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource SubHeadlineTextStyle}" />
-            <Button x:Uid="BtnSave" Grid.Column="2" Content="Save" Style="{StaticResource AccentButtonStyle}" Command="{x:Bind ViewModel.SaveCommand}" />
+            <Button MinWidth="0" HorizontalContentAlignment="Stretch" ContentTemplate="{StaticResource WrappingButtonLabelTemplate}" x:Uid="BtnCancel" Grid.Column="0" Content="Cancel" Background="Transparent" Command="{x:Bind ViewModel.CancelCommand}" />
+            <TextBlock TextWrapping="Wrap" Grid.Column="1" Text="{x:Bind ViewModel.Title, Mode=OneWay}" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource SubHeadlineTextStyle}" />
+            <Button MinWidth="0" HorizontalContentAlignment="Stretch" ContentTemplate="{StaticResource WrappingButtonLabelTemplate}" x:Uid="BtnSave" Grid.Column="2" Content="Save" Style="{StaticResource AccentButtonStyle}" Command="{x:Bind ViewModel.SaveCommand}" />
         </Grid>
 
-        <ScrollViewer Grid.Row="1">
-            <StackPanel Spacing="20" MaxWidth="480" HorizontalAlignment="Center" Padding="16">
+        <ScrollViewer Grid.Row="1" HorizontalContentAlignment="Stretch" HorizontalScrollMode="Disabled" HorizontalScrollBarVisibility="Disabled">
+            <Grid HorizontalAlignment="Stretch">
+                <StackPanel Spacing="20" HorizontalAlignment="Stretch" Padding="16">
 
-                <StackPanel Spacing="8" Visibility="{x:Bind ViewModel.HasOptions, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
-                    <TextBlock x:Uid="RemOptionsHeader" Text="OPTIONS" Style="{StaticResource SectionHeaderStyle}" />
-                    <Border Style="{StaticResource SectionCardStyle}">
-                        <ItemsControl ItemsSource="{x:Bind ViewModel.OptionRows}" ItemTemplate="{StaticResource OptionRowTemplate}" />
-                    </Border>
-                </StackPanel>
+                    <StackPanel Spacing="8" Visibility="{x:Bind ViewModel.HasOptions, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
+                        <TextBlock TextWrapping="Wrap" x:Uid="RemOptionsHeader" Text="OPTIONS" Style="{StaticResource SectionHeaderStyle}" />
+                        <Border Style="{StaticResource SectionCardStyle}">
+                            <ItemsControl ItemsSource="{x:Bind ViewModel.OptionRows}" ItemTemplate="{StaticResource OptionRowTemplate}" />
+                        </Border>
+                    </StackPanel>
 
-                <StackPanel Spacing="8">
-                    <TextBlock x:Uid="EdRemindersHeader" Text="REMINDERS" Style="{StaticResource SectionHeaderStyle}" />
-                    <Border Style="{StaticResource SectionCardStyle}">
-                        <StackPanel Spacing="8">
-                            <!-- Traditional fixed prayer times from the bundle manifest's
-                                 reminderPresetHours (the Angelus's 6am/noon/6pm bells) — quick
-                                 toggles, one per preset hour. -->
-                            <StackPanel Spacing="8" Visibility="{x:Bind ViewModel.RemindersEditor.HasPresetHours, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
-                                <Grid Visibility="{x:Bind ViewModel.RemindersEditor.Shows6AmPreset, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="Auto" />
-                                    </Grid.ColumnDefinitions>
-                                    <TextBlock Grid.Column="0" Text="{x:Bind ViewModel.RemindersEditor.Preset6AmLabel}" VerticalAlignment="Center" />
-                                    <ToggleSwitch Grid.Column="1" OnContent="" OffContent="" IsOn="{x:Bind ViewModel.RemindersEditor.Is6AmEnabled, Mode=OneWay}" Toggled="OnPreset6AmToggled" />
-                                </Grid>
-                                <Grid Visibility="{x:Bind ViewModel.RemindersEditor.ShowsNoonPreset, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="Auto" />
-                                    </Grid.ColumnDefinitions>
-                                    <TextBlock Grid.Column="0" Text="{x:Bind ViewModel.RemindersEditor.PresetNoonLabel}" VerticalAlignment="Center" />
-                                    <ToggleSwitch Grid.Column="1" OnContent="" OffContent="" IsOn="{x:Bind ViewModel.RemindersEditor.IsNoonEnabled, Mode=OneWay}" Toggled="OnPresetNoonToggled" />
-                                </Grid>
-                                <Grid Visibility="{x:Bind ViewModel.RemindersEditor.Shows6PmPreset, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="Auto" />
-                                    </Grid.ColumnDefinitions>
-                                    <TextBlock Grid.Column="0" Text="{x:Bind ViewModel.RemindersEditor.Preset6PmLabel}" VerticalAlignment="Center" />
-                                    <ToggleSwitch Grid.Column="1" OnContent="" OffContent="" IsOn="{x:Bind ViewModel.RemindersEditor.Is6PmEnabled, Mode=OneWay}" Toggled="OnPreset6PmToggled" />
-                                </Grid>
-                            </StackPanel>
-
-                            <ItemsControl ItemsSource="{x:Bind ViewModel.RemindersEditor.CustomReminders, Mode=OneWay}" ItemTemplate="{StaticResource ReminderRowTemplate}" />
-
-                            <Button Command="{x:Bind ViewModel.RemindersEditor.AddReminderCommand}" Background="Transparent">
-                                <StackPanel Orientation="Horizontal" Spacing="6">
-                                    <FontIcon Glyph="&#xE710;" FontSize="14" />
-                                    <TextBlock x:Uid="EdAddReminder" Text="Add Reminder" />
+                    <StackPanel Spacing="8">
+                        <TextBlock TextWrapping="Wrap" x:Uid="EdRemindersHeader" Text="REMINDERS" Style="{StaticResource SectionHeaderStyle}" />
+                        <Border Style="{StaticResource SectionCardStyle}">
+                            <StackPanel Spacing="8">
+                                <!-- Traditional fixed prayer times from the bundle manifest's
+                                     reminderPresetHours (the Angelus's 6am/noon/6pm bells) — quick
+                                     toggles, one per preset hour. -->
+                                <StackPanel Spacing="8" Visibility="{x:Bind ViewModel.RemindersEditor.HasPresetHours, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
+                                    <Grid Visibility="{x:Bind ViewModel.RemindersEditor.Shows6AmPreset, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock TextWrapping="Wrap" Grid.Column="0" Text="{x:Bind ViewModel.RemindersEditor.Preset6AmLabel}" VerticalAlignment="Center" />
+                                        <ToggleSwitch Grid.Column="1" OnContent="" OffContent="" IsOn="{x:Bind ViewModel.RemindersEditor.Is6AmEnabled, Mode=OneWay}" Toggled="OnPreset6AmToggled" />
+                                    </Grid>
+                                    <Grid Visibility="{x:Bind ViewModel.RemindersEditor.ShowsNoonPreset, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock TextWrapping="Wrap" Grid.Column="0" Text="{x:Bind ViewModel.RemindersEditor.PresetNoonLabel}" VerticalAlignment="Center" />
+                                        <ToggleSwitch Grid.Column="1" OnContent="" OffContent="" IsOn="{x:Bind ViewModel.RemindersEditor.IsNoonEnabled, Mode=OneWay}" Toggled="OnPresetNoonToggled" />
+                                    </Grid>
+                                    <Grid Visibility="{x:Bind ViewModel.RemindersEditor.Shows6PmPreset, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock TextWrapping="Wrap" Grid.Column="0" Text="{x:Bind ViewModel.RemindersEditor.Preset6PmLabel}" VerticalAlignment="Center" />
+                                        <ToggleSwitch Grid.Column="1" OnContent="" OffContent="" IsOn="{x:Bind ViewModel.RemindersEditor.Is6PmEnabled, Mode=OneWay}" Toggled="OnPreset6PmToggled" />
+                                    </Grid>
                                 </StackPanel>
-                            </Button>
-                        </StackPanel>
-                    </Border>
 
-                    <TextBlock Text="{x:Bind ViewModel.RemindersEditor.PresetFooter, Mode=OneWay}"
-                               Visibility="{x:Bind ViewModel.RemindersEditor.ShowsPresetFooter, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
-                               Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" Margin="4,0" />
+                                <ItemsControl ItemsSource="{x:Bind ViewModel.RemindersEditor.CustomReminders, Mode=OneWay}" ItemTemplate="{StaticResource ReminderRowTemplate}" />
+
+                                <Button Command="{x:Bind ViewModel.RemindersEditor.AddReminderCommand}" Background="Transparent"
+                                        HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch">
+                                    <Grid ColumnSpacing="6">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <FontIcon Glyph="&#xE710;" FontSize="14" />
+                                        <TextBlock TextWrapping="Wrap" Grid.Column="1" x:Uid="EdAddReminder" Text="Add Reminder" />
+                                    </Grid>
+                                </Button>
+                            </StackPanel>
+                        </Border>
+
+                        <TextBlock Text="{x:Bind ViewModel.RemindersEditor.PresetFooter, Mode=OneWay}"
+                                   Visibility="{x:Bind ViewModel.RemindersEditor.ShowsPresetFooter, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
+                                   Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" Margin="4,0" />
+                    </StackPanel>
+
+                    <Button Command="{x:Bind ViewModel.DeleteSavedPrayerCommand}" HorizontalContentAlignment="Stretch">
+                        <TextBlock TextWrapping="Wrap" x:Uid="HomeDeleteSavedPrayer" Text="Delete Saved Prayer…" />
+                    </Button>
                 </StackPanel>
-
-                <Button Command="{x:Bind ViewModel.DeleteSavedPrayerCommand}">
-                    <TextBlock x:Uid="HomeDeleteSavedPrayer" Text="Delete Saved Prayer…" />
-                </Button>
-            </StackPanel>
+            </Grid>
         </ScrollViewer>
     </Grid>
 </Page>

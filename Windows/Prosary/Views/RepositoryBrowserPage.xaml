@@ -8,6 +8,11 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
+    <Page.Resources>
+        <DataTemplate x:Key="WrappingButtonLabelTemplate">
+            <TextBlock Text="{Binding}" TextWrapping="Wrap" TextAlignment="Center" />
+        </DataTemplate>
+    </Page.Resources>
 
     <Grid Padding="16" RowSpacing="12">
         <Grid.RowDefinitions>
@@ -25,7 +30,7 @@
             <Button Grid.Column="0" Click="OnNavigateUp" Background="Transparent" Padding="8">
                 <FontIcon Glyph="&#xE72B;" MirroredWhenRightToLeft="True" />
             </Button>
-            <TextBlock x:Uid="BrowseTitle" Grid.Column="1" Text="Community Devotions" VerticalAlignment="Center"
+            <TextBlock TextWrapping="Wrap" x:Uid="BrowseTitle" Grid.Column="1" Text="Community Devotions" VerticalAlignment="Center"
                        HorizontalAlignment="Center" Style="{StaticResource SubHeadlineTextStyle}" />
             <!-- Refresh lives in the chrome, not only inside the error state. -->
             <Button x:Uid="BrowseRefresh" Grid.Column="2" Background="Transparent" Padding="8"
@@ -36,18 +41,18 @@
 
         <Grid Grid.Row="1" ColumnSpacing="8">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*" />
                 <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <TextBox x:Uid="BrowseSearchBox" Grid.Column="0" PlaceholderText="Search devotions"
+            <TextBox MinWidth="0" x:Uid="BrowseSearchBox" Grid.Column="0" PlaceholderText="Search devotions"
                      Text="{x:Bind ViewModel.SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-            <ComboBox Grid.Column="1" MinWidth="140"
+            <ComboBox Grid.Column="1" MinWidth="0" HorizontalAlignment="Stretch"
                       Visibility="{x:Bind ViewModel.ShowsTagFilter, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
                       ItemsSource="{x:Bind ViewModel.Tags, Mode=OneWay}"
                       SelectedItem="{x:Bind ViewModel.SelectedTag, Mode=TwoWay}">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock Text="{Binding Converter={StaticResource CategoryLabel}}" />
+                        <TextBlock TextWrapping="Wrap" Text="{Binding Converter={StaticResource CategoryLabel}}" />
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>
@@ -58,59 +63,61 @@
             <StackPanel Spacing="10" HorizontalAlignment="Center" VerticalAlignment="Center"
                         Visibility="{x:Bind ViewModel.LoadError, Mode=OneWay, Converter={StaticResource NullToVisibility}}">
                 <TextBlock Text="{x:Bind ViewModel.LoadError, Mode=OneWay}" TextWrapping="Wrap" TextAlignment="Center" />
-                <Button x:Uid="BtnRetry" Content="Retry" HorizontalAlignment="Center" Command="{x:Bind ViewModel.LoadCommand}" />
+                <Button MinWidth="0" HorizontalContentAlignment="Stretch" ContentTemplate="{StaticResource WrappingButtonLabelTemplate}" x:Uid="BtnRetry" Content="Retry" HorizontalAlignment="Center" Command="{x:Bind ViewModel.LoadCommand}" />
             </StackPanel>
-            <ScrollViewer>
-                <StackPanel Spacing="10" MaxWidth="640" HorizontalAlignment="Stretch">
-                    <ItemsControl ItemsSource="{x:Bind ViewModel.Filtered, Mode=OneWay}">
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate x:DataType="vm:RepositoryRow">
-                                <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
-                                        CornerRadius="12" Padding="14" Margin="0,4">
-                                    <StackPanel Spacing="4">
-                                        <Grid ColumnSpacing="10">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="*" />
-                                                <ColumnDefinition Width="Auto" />
-                                            </Grid.ColumnDefinitions>
-                                            <StackPanel Grid.Column="0" Spacing="2">
-                                                <TextBlock Text="{x:Bind Title, Mode=OneWay}" FontWeight="SemiBold" FontSize="16" />
-                                                <TextBlock Text="{x:Bind InterfaceSubtitle, Mode=OneWay}" Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap"
-                                                           Visibility="{x:Bind HasInterfaceSubtitle, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
-                                                <TextBlock Text="{x:Bind Subtitle}" Style="{StaticResource MutedCaptionTextStyle}" />
-                                            </StackPanel>
-                                            <Grid Grid.Column="1" VerticalAlignment="Center">
-                                                <TextBlock x:Uid="BrowseInstalled" Text="Installed" Style="{StaticResource MutedCaptionTextStyle}"
-                                                           VerticalAlignment="Center"
-                                                           Visibility="{x:Bind ShowsInstalledLabel, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
-                                                <ProgressRing IsActive="{x:Bind IsBusy, Mode=OneWay}" Width="22" Height="22"
-                                                              Visibility="{x:Bind IsBusy, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
-                                                <Button x:Uid="BtnInstall" Content="Install" Style="{StaticResource AccentButtonStyle}"
-                                                        Visibility="{x:Bind IsInstallable, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
-                                                        Command="{Binding ElementName=Root, Path=ViewModel.InstallCommand}"
-                                                        CommandParameter="{Binding}" />
-                                                <!-- The author republished since this copy was installed. -->
-                                                <Button x:Uid="BtnUpdate" Content="Update" Style="{StaticResource AccentButtonStyle}"
-                                                        Visibility="{x:Bind HasUpdate, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
-                                                        Command="{Binding ElementName=Root, Path=ViewModel.InstallCommand}"
-                                                        CommandParameter="{Binding}" />
+            <ScrollViewer HorizontalContentAlignment="Stretch" HorizontalScrollMode="Disabled" HorizontalScrollBarVisibility="Disabled">
+                <Grid HorizontalAlignment="Stretch">
+                    <StackPanel Spacing="10" HorizontalAlignment="Stretch">
+                        <ItemsControl ItemsSource="{x:Bind ViewModel.Filtered, Mode=OneWay}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate x:DataType="vm:RepositoryRow">
+                                    <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                                            CornerRadius="12" Padding="14" Margin="0,4">
+                                        <StackPanel Spacing="4">
+                                            <Grid ColumnSpacing="10">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="Auto" />
+                                                </Grid.ColumnDefinitions>
+                                                <StackPanel Grid.Column="0" Spacing="2">
+                                                    <TextBlock TextWrapping="Wrap" Text="{x:Bind Title, Mode=OneWay}" FontWeight="SemiBold" FontSize="16" />
+                                                    <TextBlock Text="{x:Bind InterfaceSubtitle, Mode=OneWay}" Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap"
+                                                               Visibility="{x:Bind HasInterfaceSubtitle, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
+                                                    <TextBlock TextWrapping="Wrap" Text="{x:Bind Subtitle}" Style="{StaticResource MutedCaptionTextStyle}" />
+                                                </StackPanel>
+                                                <Grid Grid.Column="1" VerticalAlignment="Center">
+                                                    <TextBlock TextWrapping="Wrap" x:Uid="BrowseInstalled" Text="Installed" Style="{StaticResource MutedCaptionTextStyle}"
+                                                               VerticalAlignment="Center"
+                                                               Visibility="{x:Bind ShowsInstalledLabel, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
+                                                    <ProgressRing IsActive="{x:Bind IsBusy, Mode=OneWay}" Width="22" Height="22"
+                                                                  Visibility="{x:Bind IsBusy, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
+                                                    <Button MinWidth="0" HorizontalContentAlignment="Stretch" ContentTemplate="{StaticResource WrappingButtonLabelTemplate}" x:Uid="BtnInstall" Content="Install" Style="{StaticResource AccentButtonStyle}"
+                                                            Visibility="{x:Bind IsInstallable, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
+                                                            Command="{Binding ElementName=Root, Path=ViewModel.InstallCommand}"
+                                                            CommandParameter="{Binding}" />
+                                                    <!-- The author republished since this copy was installed. -->
+                                                    <Button MinWidth="0" HorizontalContentAlignment="Stretch" ContentTemplate="{StaticResource WrappingButtonLabelTemplate}" x:Uid="BtnUpdate" Content="Update" Style="{StaticResource AccentButtonStyle}"
+                                                            Visibility="{x:Bind HasUpdate, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
+                                                            Command="{Binding ElementName=Root, Path=ViewModel.InstallCommand}"
+                                                            CommandParameter="{Binding}" />
+                                                </Grid>
                                             </Grid>
-                                        </Grid>
-                                        <TextBlock Text="{x:Bind Bundle.Description}" TextWrapping="Wrap"
-                                                   Style="{StaticResource MutedCaptionTextStyle}"
-                                                   Visibility="{x:Bind HasDescription, Converter={StaticResource BoolToVisibility}}" />
-                                        <TextBlock Text="{x:Bind TagsLine}" Foreground="{ThemeResource BrandPrimaryBrush}"
-                                                   FontSize="11"
-                                                   Visibility="{x:Bind HasTags, Converter={StaticResource BoolToVisibility}}" />
-                                    </StackPanel>
-                                </Border>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
-                    <TextBlock Text="{x:Bind ViewModel.InstallError, Mode=OneWay}" TextWrapping="Wrap"
-                               Foreground="{ThemeResource SystemFillColorCriticalBrush}"
-                               Visibility="{x:Bind ViewModel.InstallError, Mode=OneWay, Converter={StaticResource NullToVisibility}}" />
-                </StackPanel>
+                                            <TextBlock Text="{x:Bind Bundle.Description}" TextWrapping="Wrap"
+                                                       Style="{StaticResource MutedCaptionTextStyle}"
+                                                       Visibility="{x:Bind HasDescription, Converter={StaticResource BoolToVisibility}}" />
+                                            <TextBlock TextWrapping="Wrap" Text="{x:Bind TagsLine}" Foreground="{ThemeResource BrandPrimaryBrush}"
+                                                       FontSize="11"
+                                                       Visibility="{x:Bind HasTags, Converter={StaticResource BoolToVisibility}}" />
+                                        </StackPanel>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                        <TextBlock Text="{x:Bind ViewModel.InstallError, Mode=OneWay}" TextWrapping="Wrap"
+                                   Foreground="{ThemeResource SystemFillColorCriticalBrush}"
+                                   Visibility="{x:Bind ViewModel.InstallError, Mode=OneWay, Converter={StaticResource NullToVisibility}}" />
+                    </StackPanel>
+                </Grid>
             </ScrollViewer>
         </Grid>
     </Grid>

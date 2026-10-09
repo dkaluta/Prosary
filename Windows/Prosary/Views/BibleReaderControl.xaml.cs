@@ -11,11 +11,36 @@ public sealed partial class BibleReaderControl : UserControl
 {
     public BibleViewModel ViewModel { get; } = new();
     private bool _dialogOpen;
+    private bool? _compactPassageSelectors;
     public BibleReaderControl()
     {
         InitializeComponent();
         Loaded += OnLoaded;
         Unloaded += OnUnloaded;
+    }
+    private void OnBibleLayoutSizeChanged(object sender, SizeChangedEventArgs args)
+    {
+        // Keep verse space available even when the selectors need a second row.
+        var availableHeight = args.NewSize.Height - BibleLayout.Padding.Top
+            - BibleLayout.Padding.Bottom - BibleLayout.RowSpacing;
+        BibleOptionsScroll.MaxHeight = Math.Max(0, availableHeight * 0.5);
+    }
+    private void OnPassageSelectorsSizeChanged(object sender, SizeChangedEventArgs args)
+    {
+        // The page can be narrower than its window because of the library sidebar.
+        var compact = args.NewSize.Width < 600;
+        if (_compactPassageSelectors == compact) return;
+        _compactPassageSelectors = compact;
+        BookSelectorColumn.Width = new GridLength(compact ? 1 : 2, GridUnitType.Star);
+        if (compact) PassageSelectors.ColumnDefinitions.Remove(VerseSelectorColumn);
+        else if (!PassageSelectors.ColumnDefinitions.Contains(VerseSelectorColumn))
+            PassageSelectors.ColumnDefinitions.Add(VerseSelectorColumn);
+        PassageSelectors.RowSpacing = compact ? 12 : 0;
+        Grid.SetColumnSpan(BookSelector, compact ? 2 : 1);
+        Grid.SetRow(ChapterSelector, compact ? 1 : 0);
+        Grid.SetColumn(ChapterSelector, compact ? 0 : 1);
+        Grid.SetRow(VerseSelector, compact ? 1 : 0);
+        Grid.SetColumn(VerseSelector, compact ? 1 : 2);
     }
     private async void OnLoaded(object sender, RoutedEventArgs args)
     {

@@ -586,9 +586,10 @@ Their ordering and previous/next section arrows follow the **interface** directi
 of the prayer body: in Hebrew/Arabic UI, Next is on the left and Back on the right, with matching
 section-jump icons. Actions remain semantically previous/next. Apple retains native glass where
 supported, with its existing older-system and visionOS styling.
-All prayer kinds use the same responsive reading column with consistent inner margins and a
-640-point/dp maximum width. Short bodies and acclamations fill that column just as long prayers
-do. Headings and the alphabet switch are centered; prose aligns to the start of the actual
+All prayer kinds use the same responsive reading column with consistent inner margins. Apple
+and Android cap that column at 640 points/dp; Windows fills its available viewport width.
+Short bodies and acclamations fill the column just as long prayers do. Headings and the
+alphabet switch are centered; prose aligns to the start of the actual
 displayed script, including reading aids and fallback text, independently of interface direction.
 Adaptive artwork and bead tracks keep their own layouts and do not change the text's inner edges.
 See [Apple interface materials](APPLE-INTERFACE-MATERIALS.markdown) for the control/content

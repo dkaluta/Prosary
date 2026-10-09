@@ -13,6 +13,12 @@
          selection inheriting the rest from the default preset — see the ViewModel's doc
          comment), then the remaining presets. Mirrors iOS's RosaryPresetPickerView. -->
     <Page.Resources>
+        <DataTemplate x:Key="WrappingButtonLabelTemplate">
+            <TextBlock Text="{Binding}" TextWrapping="Wrap" TextAlignment="Center" />
+        </DataTemplate>
+        <DataTemplate x:Key="WrappingLabelTemplate">
+            <TextBlock Text="{Binding}" TextWrapping="Wrap" />
+        </DataTemplate>
         <Style x:Key="SectionHeaderStyle" TargetType="TextBlock">
             <Setter Property="FontSize" Value="13" />
             <Setter Property="FontWeight" Value="SemiBold" />
@@ -27,9 +33,9 @@
         <DataTemplate x:Key="PresetCardTemplate" x:DataType="models:Prayer">
             <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" CornerRadius="12" Padding="14" Margin="0,4">
                 <StackPanel Spacing="6">
-                    <TextBlock Text="{Binding DisplayName}" FontWeight="SemiBold" FontSize="16" />
-                    <TextBlock Text="{Binding FavoriteSubtitle}" Style="{StaticResource MutedCaptionTextStyle}" />
-                    <Button x:Uid="BtnPray" Content="Pray" HorizontalAlignment="Stretch" Style="{StaticResource AccentButtonStyle}"
+                    <TextBlock TextWrapping="Wrap" Text="{Binding DisplayName}" FontWeight="SemiBold" FontSize="16" />
+                    <TextBlock TextWrapping="Wrap" Text="{Binding FavoriteSubtitle}" Style="{StaticResource MutedCaptionTextStyle}" />
+                    <Button MinWidth="0" HorizontalContentAlignment="Stretch" ContentTemplate="{StaticResource WrappingButtonLabelTemplate}" x:Uid="BtnPray" Content="Pray" HorizontalAlignment="Stretch" Style="{StaticResource AccentButtonStyle}"
                             Command="{Binding ElementName=Root, Path=ViewModel.PrayPresetCommand}" CommandParameter="{Binding}" />
                 </StackPanel>
                 <!-- Edit / reminders / default / delete, the same four the Mac offers on a
@@ -70,162 +76,164 @@
             <Button Grid.Column="0" Background="Transparent" Command="{x:Bind ViewModel.BackCommand}">
                 <FontIcon Glyph="&#xE72B;" MirroredWhenRightToLeft="True" />
             </Button>
-            <TextBlock x:Uid="PickerTitle" Grid.Column="1" Text="The Holy Rosary" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource SubHeadlineTextStyle}" />
+            <TextBlock TextWrapping="Wrap" x:Uid="PickerTitle" Grid.Column="1" Text="The Holy Rosary" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource SubHeadlineTextStyle}" />
         </Grid>
 
-        <ScrollViewer Grid.Row="1">
-            <StackPanel Spacing="12" MaxWidth="640" HorizontalAlignment="Center" Padding="16">
+        <ScrollViewer Grid.Row="1" HorizontalContentAlignment="Stretch" HorizontalScrollMode="Disabled" HorizontalScrollBarVisibility="Disabled">
+            <Grid HorizontalAlignment="Stretch">
+                <StackPanel Spacing="12" HorizontalAlignment="Stretch" Padding="16">
 
-                <StackPanel Spacing="8" Visibility="{x:Bind ViewModel.HasDefaultPreset, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
-                    <TextBlock x:Uid="PickerDefaultHeader" Text="DEFAULT PRESET" Style="{StaticResource SectionHeaderStyle}" />
-                    <ContentControl Content="{x:Bind ViewModel.DefaultPreset, Mode=OneWay}" ContentTemplate="{StaticResource PresetCardTemplate}" HorizontalContentAlignment="Stretch" />
+                    <StackPanel Spacing="8" Visibility="{x:Bind ViewModel.HasDefaultPreset, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
+                        <TextBlock TextWrapping="Wrap" x:Uid="PickerDefaultHeader" Text="DEFAULT PRESET" Style="{StaticResource SectionHeaderStyle}" />
+                        <ContentControl Content="{x:Bind ViewModel.DefaultPreset, Mode=OneWay}" ContentTemplate="{StaticResource PresetCardTemplate}" HorizontalContentAlignment="Stretch" />
+                    </StackPanel>
+
+                    <StackPanel Spacing="8">
+                        <TextBlock TextWrapping="Wrap" x:Uid="PickerCustomHeader" Text="CUSTOM" Style="{StaticResource SectionHeaderStyle}" />
+                        <Border Style="{StaticResource SectionCardStyle}">
+                            <StackPanel Spacing="12">
+                                <TextBlock TextWrapping="Wrap" x:Uid="PickerPrayAny" Text="Pray any Rosary" FontWeight="SemiBold" FontSize="16" />
+                                <ComboBox HeaderTemplate="{StaticResource WrappingLabelTemplate}" MinWidth="0" x:Uid="PickerMysteries" HorizontalAlignment="Stretch" Header="Mysteries" ItemsSource="{x:Bind ViewModel.SelectionModes}"
+                                          SelectedItem="{x:Bind ViewModel.SelectedMode, Mode=TwoWay}">
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock TextWrapping="Wrap" Text="{Binding Converter={StaticResource EnumDisplayName}}" />
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                </ComboBox>
+                                <CheckBox ContentTemplate="{StaticResource WrappingLabelTemplate}" x:Uid="QuickTraditionalMysteries" Content="Use Traditional 15 Mysteries"
+                                          IsChecked="{x:Bind ViewModel.UseTraditionalMysteries, Mode=TwoWay}"
+                                          Visibility="{x:Bind ViewModel.ShowsTraditionalPicker, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
+                                <ComboBox HeaderTemplate="{StaticResource WrappingLabelTemplate}" MinWidth="0" x:Uid="PickerSpecificSet" HorizontalAlignment="Stretch" Header="Specific set" ItemsSource="{x:Bind ViewModel.Groups}"
+                                          SelectedItem="{x:Bind ViewModel.SelectedGroup, Mode=TwoWay}"
+                                          Visibility="{x:Bind ViewModel.ShowsGroupPicker, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock TextWrapping="Wrap" Text="{Binding Converter={StaticResource EnumDisplayName}}" />
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                </ComboBox>
+                                <ComboBox HeaderTemplate="{StaticResource WrappingLabelTemplate}" MinWidth="0" x:Uid="PickerWhichMystery" HorizontalAlignment="Stretch" Header="Which mystery" ItemsSource="{x:Bind ViewModel.Ordinals}"
+                                          SelectedItem="{x:Bind ViewModel.SelectedOrdinal, Mode=TwoWay}"
+                                          Visibility="{x:Bind ViewModel.ShowsOrdinalPicker, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
+                                <ComboBox HeaderTemplate="{StaticResource WrappingLabelTemplate}" MinWidth="0" x:Uid="QuickMysteryCount" Header="Number of Mysteries" HorizontalAlignment="Stretch"
+                                          ItemsSource="{x:Bind ViewModel.MysteryCountOptions, Mode=OneWay}"
+                                          SelectedItem="{x:Bind ViewModel.SpecificMysteryCount, Mode=TwoWay}"
+                                          Visibility="{x:Bind ViewModel.ShowsMysteryCount, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
+                                <!-- The whole of RosaryOptions, as the Mac's quick setup offers — this
+                                     is where "Save as Preset" creates one from, so an option missing
+                                     here could never be chosen at creation time. -->
+                                <ComboBox HeaderTemplate="{StaticResource WrappingLabelTemplate}" MinWidth="0" x:Uid="PickerEternalRest" HorizontalAlignment="Stretch" Header="For the faithful departed"
+                                          ItemsSource="{x:Bind ViewModel.EternalRestPlacements}"
+                                          SelectedItem="{x:Bind ViewModel.EternalRestForDeceased, Mode=TwoWay}">
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock TextWrapping="Wrap" Text="{Binding Converter={StaticResource EnumDisplayName}}" />
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                </ComboBox>
+                                <ComboBox HeaderTemplate="{StaticResource WrappingLabelTemplate}" MinWidth="0" x:Uid="PickerAntiphon" HorizontalAlignment="Stretch" Header="Marian antiphon"
+                                          ItemsSource="{x:Bind ViewModel.MarianAntiphons, Mode=OneWay}"
+                                          SelectedValuePath="Value" SelectedValue="{x:Bind ViewModel.MarianAntiphon, Mode=TwoWay}">
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock TextWrapping="Wrap" Text="{Binding Label}" />
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                </ComboBox>
+                                <ComboBox HeaderTemplate="{StaticResource WrappingLabelTemplate}" MinWidth="0" x:Uid="PickerMysteryArtwork" HorizontalAlignment="Stretch" Header="Mystery artwork"
+                                          ItemsSource="{x:Bind ViewModel.MysteryImageStyles}"
+                                          SelectedItem="{x:Bind ViewModel.MysteryImageStyle, Mode=TwoWay}">
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock TextWrapping="Wrap" Text="{Binding Converter={StaticResource EnumDisplayName}}" />
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                </ComboBox>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock x:Uid="PickerApostlesCreed" Grid.Column="0" Text="Apostles' Creed" VerticalAlignment="Center" TextWrapping="Wrap" />
+                                    <ToggleSwitch Grid.Column="1" OnContent="" OffContent="" IsOn="{x:Bind ViewModel.IncludeApostlesCreed, Mode=TwoWay}" />
+                                </Grid>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock x:Uid="PickerOpeningPrayers" Grid.Column="0" Text="Opening Our Father &amp; 3 Hail Marys" VerticalAlignment="Center" TextWrapping="Wrap" />
+                                    <ToggleSwitch Grid.Column="1" OnContent="" OffContent="" IsOn="{x:Bind ViewModel.IncludeOpeningPrayers, Mode=TwoWay}" />
+                                </Grid>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock x:Uid="PickerOpeningFatima" Grid.Column="0" Text="Fatima Prayer after the opening Glory Be" VerticalAlignment="Center" TextWrapping="Wrap" />
+                                    <ToggleSwitch Grid.Column="1" OnContent="" OffContent="" IsOn="{x:Bind ViewModel.IncludeOpeningFatimaPrayer, Mode=TwoWay}" />
+                                </Grid>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock x:Uid="PickerFatima" Grid.Column="0" Text="Fatima Prayer after each decade" VerticalAlignment="Center" TextWrapping="Wrap" />
+                                    <ToggleSwitch Grid.Column="1" OnContent="" OffContent="" IsOn="{x:Bind ViewModel.IncludeFatimaPrayer, Mode=TwoWay}" />
+                                </Grid>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock x:Uid="PickerPresenterMode" Grid.Column="0" Text="Presenter mode" VerticalAlignment="Center" TextWrapping="Wrap" />
+                                    <ToggleSwitch Grid.Column="1" OnContent="" OffContent="" IsOn="{x:Bind ViewModel.PresenterMode, Mode=TwoWay}" />
+                                </Grid>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock x:Uid="PickerClosingIntentions" Grid.Column="0" Text="Closing Intentions" VerticalAlignment="Center" TextWrapping="Wrap" />
+                                    <ToggleSwitch Grid.Column="1" OnContent="" OffContent="" IsOn="{x:Bind ViewModel.IncludeClosingIntentions, Mode=TwoWay}" />
+                                </Grid>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock x:Uid="PickerStMichael" Grid.Column="0" Text="St. Michael prayer" VerticalAlignment="Center" TextWrapping="Wrap" />
+                                    <ToggleSwitch Grid.Column="1" OnContent="" OffContent="" IsOn="{x:Bind ViewModel.IncludeStMichaelPrayer, Mode=TwoWay}" />
+                                </Grid>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock x:Uid="PickerFinalCross" Grid.Column="0" Text="Final Sign of the Cross" VerticalAlignment="Center" TextWrapping="Wrap" />
+                                    <ToggleSwitch Grid.Column="1" OnContent="" OffContent="" IsOn="{x:Bind ViewModel.IncludeFinalSignOfCross, Mode=TwoWay}" />
+                                </Grid>
+                                <Grid ColumnSpacing="8">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Button MinWidth="0" HorizontalContentAlignment="Stretch" ContentTemplate="{StaticResource WrappingButtonLabelTemplate}" x:Uid="BtnPray" Grid.Column="0" Content="Pray" HorizontalAlignment="Stretch" Style="{StaticResource AccentButtonStyle}"
+                                            Command="{x:Bind ViewModel.PrayAdHocCommand}" />
+                                    <Button MinWidth="0" HorizontalContentAlignment="Stretch" ContentTemplate="{StaticResource WrappingButtonLabelTemplate}" x:Uid="PickerSaveAsPreset" Grid.Column="1" Content="Save as Preset" HorizontalAlignment="Stretch" Click="OnSaveAsPreset" />
+                                </Grid>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+
+                    <StackPanel Spacing="8" Visibility="{x:Bind ViewModel.HasOtherPresets, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
+                        <TextBlock TextWrapping="Wrap" x:Uid="PickerPresetsHeader" Text="PRESETS" Style="{StaticResource SectionHeaderStyle}" />
+                        <ItemsControl ItemsSource="{x:Bind ViewModel.OtherPresets, Mode=OneWay}" ItemTemplate="{StaticResource PresetCardTemplate}" />
+                    </StackPanel>
+
                 </StackPanel>
-
-                <StackPanel Spacing="8">
-                    <TextBlock x:Uid="PickerCustomHeader" Text="CUSTOM" Style="{StaticResource SectionHeaderStyle}" />
-                    <Border Style="{StaticResource SectionCardStyle}">
-                        <StackPanel Spacing="12">
-                            <TextBlock x:Uid="PickerPrayAny" Text="Pray any Rosary" FontWeight="SemiBold" FontSize="16" />
-                            <ComboBox x:Uid="PickerMysteries" HorizontalAlignment="Stretch" Header="Mysteries" ItemsSource="{x:Bind ViewModel.SelectionModes}"
-                                      SelectedItem="{x:Bind ViewModel.SelectedMode, Mode=TwoWay}">
-                                <ComboBox.ItemTemplate>
-                                    <DataTemplate>
-                                        <TextBlock Text="{Binding Converter={StaticResource EnumDisplayName}}" />
-                                    </DataTemplate>
-                                </ComboBox.ItemTemplate>
-                            </ComboBox>
-                            <CheckBox x:Uid="QuickTraditionalMysteries" Content="Use Traditional 15 Mysteries"
-                                      IsChecked="{x:Bind ViewModel.UseTraditionalMysteries, Mode=TwoWay}"
-                                      Visibility="{x:Bind ViewModel.ShowsTraditionalPicker, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
-                            <ComboBox x:Uid="PickerSpecificSet" HorizontalAlignment="Stretch" Header="Specific set" ItemsSource="{x:Bind ViewModel.Groups}"
-                                      SelectedItem="{x:Bind ViewModel.SelectedGroup, Mode=TwoWay}"
-                                      Visibility="{x:Bind ViewModel.ShowsGroupPicker, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
-                                <ComboBox.ItemTemplate>
-                                    <DataTemplate>
-                                        <TextBlock Text="{Binding Converter={StaticResource EnumDisplayName}}" />
-                                    </DataTemplate>
-                                </ComboBox.ItemTemplate>
-                            </ComboBox>
-                            <ComboBox x:Uid="PickerWhichMystery" HorizontalAlignment="Stretch" Header="Which mystery" ItemsSource="{x:Bind ViewModel.Ordinals}"
-                                      SelectedItem="{x:Bind ViewModel.SelectedOrdinal, Mode=TwoWay}"
-                                      Visibility="{x:Bind ViewModel.ShowsOrdinalPicker, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
-                            <ComboBox x:Uid="QuickMysteryCount" Header="Number of Mysteries" HorizontalAlignment="Stretch"
-                                      ItemsSource="{x:Bind ViewModel.MysteryCountOptions, Mode=OneWay}"
-                                      SelectedItem="{x:Bind ViewModel.SpecificMysteryCount, Mode=TwoWay}"
-                                      Visibility="{x:Bind ViewModel.ShowsMysteryCount, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
-                            <!-- The whole of RosaryOptions, as the Mac's quick setup offers — this
-                                 is where "Save as Preset" creates one from, so an option missing
-                                 here could never be chosen at creation time. -->
-                            <ComboBox x:Uid="PickerEternalRest" HorizontalAlignment="Stretch" Header="For the faithful departed"
-                                      ItemsSource="{x:Bind ViewModel.EternalRestPlacements}"
-                                      SelectedItem="{x:Bind ViewModel.EternalRestForDeceased, Mode=TwoWay}">
-                                <ComboBox.ItemTemplate>
-                                    <DataTemplate>
-                                        <TextBlock Text="{Binding Converter={StaticResource EnumDisplayName}}" />
-                                    </DataTemplate>
-                                </ComboBox.ItemTemplate>
-                            </ComboBox>
-                            <ComboBox x:Uid="PickerAntiphon" HorizontalAlignment="Stretch" Header="Marian antiphon"
-                                      ItemsSource="{x:Bind ViewModel.MarianAntiphons, Mode=OneWay}"
-                                      SelectedValuePath="Value" SelectedValue="{x:Bind ViewModel.MarianAntiphon, Mode=TwoWay}">
-                                <ComboBox.ItemTemplate>
-                                    <DataTemplate>
-                                        <TextBlock Text="{Binding Label}" />
-                                    </DataTemplate>
-                                </ComboBox.ItemTemplate>
-                            </ComboBox>
-                            <ComboBox x:Uid="PickerMysteryArtwork" HorizontalAlignment="Stretch" Header="Mystery artwork"
-                                      ItemsSource="{x:Bind ViewModel.MysteryImageStyles}"
-                                      SelectedItem="{x:Bind ViewModel.MysteryImageStyle, Mode=TwoWay}">
-                                <ComboBox.ItemTemplate>
-                                    <DataTemplate>
-                                        <TextBlock Text="{Binding Converter={StaticResource EnumDisplayName}}" />
-                                    </DataTemplate>
-                                </ComboBox.ItemTemplate>
-                            </ComboBox>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="Auto" />
-                                </Grid.ColumnDefinitions>
-                                <TextBlock x:Uid="PickerApostlesCreed" Grid.Column="0" Text="Apostles' Creed" VerticalAlignment="Center" TextWrapping="Wrap" />
-                                <ToggleSwitch Grid.Column="1" OnContent="" OffContent="" IsOn="{x:Bind ViewModel.IncludeApostlesCreed, Mode=TwoWay}" />
-                            </Grid>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="Auto" />
-                                </Grid.ColumnDefinitions>
-                                <TextBlock x:Uid="PickerOpeningPrayers" Grid.Column="0" Text="Opening Our Father &amp; 3 Hail Marys" VerticalAlignment="Center" TextWrapping="Wrap" />
-                                <ToggleSwitch Grid.Column="1" OnContent="" OffContent="" IsOn="{x:Bind ViewModel.IncludeOpeningPrayers, Mode=TwoWay}" />
-                            </Grid>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="Auto" />
-                                </Grid.ColumnDefinitions>
-                                <TextBlock x:Uid="PickerOpeningFatima" Grid.Column="0" Text="Fatima Prayer after the opening Glory Be" VerticalAlignment="Center" TextWrapping="Wrap" />
-                                <ToggleSwitch Grid.Column="1" OnContent="" OffContent="" IsOn="{x:Bind ViewModel.IncludeOpeningFatimaPrayer, Mode=TwoWay}" />
-                            </Grid>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="Auto" />
-                                </Grid.ColumnDefinitions>
-                                <TextBlock x:Uid="PickerFatima" Grid.Column="0" Text="Fatima Prayer after each decade" VerticalAlignment="Center" TextWrapping="Wrap" />
-                                <ToggleSwitch Grid.Column="1" OnContent="" OffContent="" IsOn="{x:Bind ViewModel.IncludeFatimaPrayer, Mode=TwoWay}" />
-                            </Grid>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="Auto" />
-                                </Grid.ColumnDefinitions>
-                                <TextBlock x:Uid="PickerPresenterMode" Grid.Column="0" Text="Presenter mode" VerticalAlignment="Center" TextWrapping="Wrap" />
-                                <ToggleSwitch Grid.Column="1" OnContent="" OffContent="" IsOn="{x:Bind ViewModel.PresenterMode, Mode=TwoWay}" />
-                            </Grid>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="Auto" />
-                                </Grid.ColumnDefinitions>
-                                <TextBlock x:Uid="PickerClosingIntentions" Grid.Column="0" Text="Closing Intentions" VerticalAlignment="Center" TextWrapping="Wrap" />
-                                <ToggleSwitch Grid.Column="1" OnContent="" OffContent="" IsOn="{x:Bind ViewModel.IncludeClosingIntentions, Mode=TwoWay}" />
-                            </Grid>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="Auto" />
-                                </Grid.ColumnDefinitions>
-                                <TextBlock x:Uid="PickerStMichael" Grid.Column="0" Text="St. Michael prayer" VerticalAlignment="Center" TextWrapping="Wrap" />
-                                <ToggleSwitch Grid.Column="1" OnContent="" OffContent="" IsOn="{x:Bind ViewModel.IncludeStMichaelPrayer, Mode=TwoWay}" />
-                            </Grid>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="Auto" />
-                                </Grid.ColumnDefinitions>
-                                <TextBlock x:Uid="PickerFinalCross" Grid.Column="0" Text="Final Sign of the Cross" VerticalAlignment="Center" TextWrapping="Wrap" />
-                                <ToggleSwitch Grid.Column="1" OnContent="" OffContent="" IsOn="{x:Bind ViewModel.IncludeFinalSignOfCross, Mode=TwoWay}" />
-                            </Grid>
-                            <Grid ColumnSpacing="8">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
-                                <Button x:Uid="BtnPray" Grid.Column="0" Content="Pray" HorizontalAlignment="Stretch" Style="{StaticResource AccentButtonStyle}"
-                                        Command="{x:Bind ViewModel.PrayAdHocCommand}" />
-                                <Button x:Uid="PickerSaveAsPreset" Grid.Column="1" Content="Save as Preset" HorizontalAlignment="Stretch" Click="OnSaveAsPreset" />
-                            </Grid>
-                        </StackPanel>
-                    </Border>
-                </StackPanel>
-
-                <StackPanel Spacing="8" Visibility="{x:Bind ViewModel.HasOtherPresets, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
-                    <TextBlock x:Uid="PickerPresetsHeader" Text="PRESETS" Style="{StaticResource SectionHeaderStyle}" />
-                    <ItemsControl ItemsSource="{x:Bind ViewModel.OtherPresets, Mode=OneWay}" ItemTemplate="{StaticResource PresetCardTemplate}" />
-                </StackPanel>
-
-            </StackPanel>
+            </Grid>
         </ScrollViewer>
     </Grid>
 </Page>

@@ -48,7 +48,7 @@
             <RowDefinition Height="Auto" /><RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <TextBlock Text="{x:Bind ViewModel.LibraryTitle}" Style="{ThemeResource TitleTextBlockStyle}"
-                   AutomationProperties.HeadingLevel="Level1" />
+                   AutomationProperties.HeadingLevel="Level1" TextWrapping="Wrap" />
         <CommandBar Grid.Row="1" DefaultLabelPosition="Right" HorizontalAlignment="Stretch">
             <AppBarButton x:Name="OpenButton" Label="{x:Bind ViewModel.OpenLabel}" Icon="OpenFile"
                           Command="{x:Bind ViewModel.OpenCommand}" CommandParameter="{x:Bind ViewModel.SelectedItem, Mode=OneWay}" />
@@ -86,16 +86,16 @@
                       SelectedItem="{x:Bind ViewModel.SelectedItem, Mode=TwoWay}" IsItemClickEnabled="False"
                       ItemTemplate="{StaticResource PrayerGridTemplate}"
                       AutomationProperties.Name="{x:Bind ViewModel.LibraryTitle}" KeyDown="OnItemsKeyDown" ContextRequested="OnCollectionContextRequested" />
-            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" MaxWidth="460" Spacing="12"
+            <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Center" Spacing="12"
                         Visibility="{x:Bind ViewModel.IsEmpty, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
                 <TextBlock Text="{x:Bind ViewModel.EmptyTitle}" Style="{ThemeResource SubtitleTextBlockStyle}" TextAlignment="Center" TextWrapping="Wrap" />
                 <TextBlock Text="{x:Bind ViewModel.EmptyDetail}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" TextAlignment="Center" TextWrapping="Wrap" />
                 <Button Content="{x:Bind ViewModel.GalleryTitle}" Style="{StaticResource AccentButtonStyle}" HorizontalAlignment="Center" Click="OnShowGallery" />
             </StackPanel>
-            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="8"
+            <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Center" Spacing="8"
                         Visibility="{x:Bind ViewModel.HasNoMatches, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
-                <TextBlock Text="{x:Bind ViewModel.NoMatchesTitle}" Style="{ThemeResource SubtitleTextBlockStyle}" TextWrapping="Wrap" />
-                <TextBlock Text="{x:Bind ViewModel.NoMatchesDetail}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" TextWrapping="Wrap" />
+                <TextBlock Text="{x:Bind ViewModel.NoMatchesTitle}" Style="{ThemeResource SubtitleTextBlockStyle}" TextWrapping="Wrap" TextAlignment="Center" />
+                <TextBlock Text="{x:Bind ViewModel.NoMatchesDetail}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" TextWrapping="Wrap" TextAlignment="Center" />
             </StackPanel>
             <ProgressBar IsIndeterminate="True" VerticalAlignment="Top"
                          Visibility="{x:Bind ViewModel.IsBusy, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
