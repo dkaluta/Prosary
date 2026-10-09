@@ -1991,6 +1991,12 @@ keeps its form, while a fresh run follows the new default. An explicit language 
 retains the devotion's normal form-switch behavior.
 Resource catalogs include accessibility labels, notifications,
 error states, settings, search categories and About credits in all eight languages.
+Every native About screen also shows the installed application version and build in its
+visible header, using the existing localized version label. Apple reads the marketing
+version and build from its app bundle, Android uses generated version name/code metadata,
+and Windows uses its installed package version with assembly metadata for unpackaged
+development. These values follow the installed binary, including Xcode Cloud's actual build
+number; the screen never hardcodes a release version.
 
 French Scripture passages use Augustin Crampon (1923), public domain, from
 [scrollmapper/bible_databases](https://github.com/scrollmapper/bible_databases).

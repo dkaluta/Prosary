@@ -39,6 +39,8 @@
 
                     <StackPanel Spacing="4">
                         <TextBlock TextWrapping="Wrap" Text="Prosary" Style="{StaticResource HeadlineTextStyle}" />
+                        <TextBlock Text="{x:Bind VersionText}" Style="{StaticResource MutedCaptionTextStyle}"
+                                   TextWrapping="Wrap" IsTextSelectionEnabled="True" />
                         <TextBlock x:Uid="AbtTagline" Text="A companion for praying the Rosary and other Catholic devotions." Style="{StaticResource MutedSubtitleTextStyle}" TextAlignment="Left" HorizontalAlignment="Left" TextWrapping="Wrap" />
                     </StackPanel>
 

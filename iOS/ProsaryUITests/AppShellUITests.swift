@@ -1316,6 +1316,26 @@ final class AppShellUITests: XCTestCase {
   }
   #endif
 
+  #if !os(macOS)
+  @MainActor
+  func testAboutShowsTheInstalledVersionAndBuild() throws {
+    let app = XCUIApplication()
+    app.launchArguments = ["-useInMemoryStore", "-AppleLanguages", "(en)", "-interfaceLanguageCode", ""]
+    app.launch()
+    openPrayTab(in: app)
+    app.buttons["About"].tap()
+    let version = app.staticTexts["about.version"]
+    XCTAssertTrue(version.waitForExistence(timeout: 5))
+    XCTAssertNotNil(version.label.range(of: #"^Version \d+(?:\.\d+)+ \(\d+\)$"#, options: .regularExpression),
+                    "About must show the installed marketing version and build, rather than a placeholder")
+    XCTAssertTrue(version.isHittable, "The version belongs in the visible About header")
+    let screenshot = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
+    screenshot.name = "about-installed-version"
+    screenshot.lifetime = .keepAlways
+    add(screenshot)
+  }
+  #endif
+
   @MainActor
   func testSettingsOpensFromHomeAndOffersItsSections() throws {
     let app = XCUIApplication()
