@@ -11,9 +11,9 @@ export const downloads = {
     note: "Available to invited testers on Google Play. Request access first if you haven’t joined the closed test.",
   },
   windows: {
-    version: "0.20.3",
-    href: "https://github.com/dkaluta/Prosary/releases/tag/v0.20.3",
-    instructions: "https://github.com/dkaluta/Prosary/releases/download/v0.20.3/Windows-README.markdown",
+    version: "0.20.4",
+    href: "https://github.com/dkaluta/Prosary/releases/tag/v0.20.4",
+    instructions: "https://github.com/dkaluta/Prosary/releases/download/v0.20.4/Windows-README.markdown",
     note: "Signed installers for ARM64 and x64. First-time setup uses the supplied public testing certificate; follow the installation guide.",
   },
 } as const;
