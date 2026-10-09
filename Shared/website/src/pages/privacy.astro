@@ -19,7 +19,7 @@ const pageLinks = [
 <BaseLayout {title} {description} heading="Privacy Policy" currentPath="/privacy">
   <Fragment slot="hero">
     <p class="tagline">Clear language about what Prosary keeps — and what it never collects.</p>
-    <p class="updated-date">Last updated <time datetime="2026-09-04">September 4, 2026</time></p>
+    <p class="updated-date">Last updated <time datetime="2026-10-09">October 9, 2026</time></p>
   </Fragment>
 
   <div class="legal-shell">
@@ -35,7 +35,7 @@ const pageLinks = [
     <article class="legal-content">
       <section class="legal-intro" aria-label="Policy overview">
         <p>
-          Prosary is a Catholic prayer companion for iPhone, Mac, Android, and Windows, alongside
+          Prosary is a Catholic prayer companion for iPhone, iPad, Mac, Vision Pro, Android, and Windows, alongside
           two web services: <a href="https://compose.prosary.app">Prosary Compose</a> for authoring
           devotions and <a href="https://prayers.prosary.app">Prosary Prayers</a>, the community
           devotion repository. This policy covers all of them.
@@ -64,12 +64,18 @@ const pageLinks = [
             out of iCloud keeps everything working locally.
           </li>
           <li>
-            <strong>The community repository.</strong> Browse and Search can fetch the public
+            <strong>The community repository.</strong> Community browsing can fetch the public
             devotion catalog from prayers.prosary.app and download bundles you choose to install.
             These requests carry the technical information every web request carries, such as
             your IP address, which our hosting processes transiently to serve the request. Each
             download also increments an anonymous per-bundle counter. No account, identifier, or
-            tracking is attached. If you never open those tabs, this feature makes no requests.
+            tracking is attached. This feature makes no requests until you use it.
+          </li>
+          <li>
+            <strong>Optional Bible downloads.</strong> Bible editions can be downloaded from
+            public archives hosted on GitHub and kept on your device for offline reading.
+            Download requests carry ordinary technical request information, such as your IP
+            address. Your reading history and saved prayers are not included.
           </li>
         </ul>
       </section>
@@ -88,8 +94,8 @@ const pageLinks = [
         <ul>
           <li><strong>Notifications</strong> — only for prayer reminders you configure.</li>
           <li>
-            <strong>Internet</strong> — listed explicitly on Android and used only by the community
-            repository browser described above.
+            <strong>Internet</strong> — listed explicitly on Android and used for the community
+            repository and optional Bible downloads described above.
           </li>
           <li>
             <strong>Receive boot completed</strong> — Android only, used to reschedule your

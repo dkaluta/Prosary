@@ -9,8 +9,11 @@ Run from this `website/` directory:
 | Command | Action |
 |---|---|
 | `npm install` | Install dependencies |
-| `npm run dev` | Start local dev server at `localhost:4321` |
+| `npm run dev -- --background` | Start the local server in the background at `localhost:4321` |
+| `npm run astro -- dev status` | Check the background server |
+| `npm run astro -- dev stop` | Stop the background server |
 | `npm run build` | Build the production site to `./dist/` |
+| `npm run check` | Check Astro templates and TypeScript |
 | `npm run preview` | Preview the build locally before deploying |
 
 ## Deployment
@@ -46,10 +49,21 @@ HTTPS" once DNS has propagated (can take up to 24-48 hours).
 
 - `src/layouts/BaseLayout.astro` — shared metadata, navigation, skip link, and page shell.
 - `src/pages/index.astro` — the landing page content.
+- `src/data/downloads.ts` — verified beta availability, platform links, and the Windows release
+  version. The stable landing-page section is `https://prosary.app/#download`; Windows is
+  directly addressable at `https://prosary.app/#windows`.
+- `src/components/LineIcon.astro` — small decorative SVG symbols; these are not app screenshots.
 - `src/pages/privacy.astro` — the privacy policy for the native apps and both web tools.
 - `src/pages/license.astro` — the license page; its text is read from the root `LICENSE` at build
   time rather than duplicated here.
 - `src/styles/global.css` — shared responsive, light/dark, contrast, focus, and reduced-motion
   styling.
-- The remaining inline TODO in `index.astro` is for real screenshots. The TestFlight badge should
-  become an App Store badge when the Apple release leaves testing.
+- The site uses the genuine canonical app icon; it does not present illustrative UI as a screenshot.
+- Release links are deliberately explicit. Windows points to a verified published
+  GitHub testing release, including its public certificate and installation guide. Change the
+  version and links together after a newer release is public. Replace them with the Microsoft
+  Store listing only after its direct link is live and verified.
+- Apple’s public invitation must not imply that an internal TestFlight build has passed external
+  review. Android is a closed test and keeps its invitation link visible.
+- Privacy and license pages share the responsive layout. The canonical license is still read
+  from the root `LICENSE`; original text’s CC0 dedication remains distinct from software licensing.
