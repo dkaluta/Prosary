@@ -1,0 +1,26 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:primitives="using:Microsoft.UI.Xaml.Controls.Primitives">
+
+    <!-- Keep the native Pivot templates, focus, selection and overflow behavior.
+         Auto height lets localized labels and Windows text scaling grow safely. -->
+    <DataTemplate x:Key="CompactTabHeaderTemplate">
+        <TextBlock Text="{Binding}" FontSize="14" FontWeight="SemiBold"
+                   TextWrapping="Wrap" MaxWidth="160" TextAlignment="Center"
+                   Margin="0,0,0,6" VerticalAlignment="Center" />
+    </DataTemplate>
+
+    <Style TargetType="Pivot">
+        <Setter Property="HeaderTemplate" Value="{StaticResource CompactTabHeaderTemplate}" />
+    </Style>
+
+    <Style TargetType="primitives:PivotHeaderItem">
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="Height" Value="Auto" />
+        <Setter Property="MinHeight" Value="40" />
+        <Setter Property="Padding" Value="10,4" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+    </Style>
+</ResourceDictionary>

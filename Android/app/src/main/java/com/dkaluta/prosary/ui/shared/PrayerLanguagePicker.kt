@@ -1,5 +1,7 @@
 package com.dkaluta.prosary.ui.shared
 
+import androidx.compose.foundation.layout.size
+import androidx.compose.ui.Modifier
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Language
@@ -38,8 +40,9 @@ fun PrayerLanguagePicker(
         available
     }
 
-    IconButton(onClick = { onExpandedChange(true) }) {
-        Icon(Icons.Filled.Language, contentDescription = stringResource(R.string.flow_prayer_language))
+    IconButton(onClick = { onExpandedChange(true) }, modifier = Modifier.size(PrayerControlDefaults.TargetSize)) {
+        Icon(Icons.Filled.Language, contentDescription = stringResource(R.string.flow_prayer_language),
+            modifier = Modifier.size(PrayerControlDefaults.IconSize))
     }
     DropdownMenu(expanded = expanded, onDismissRequest = { onExpandedChange(false) }) {
         val choices = listOf(
@@ -67,8 +70,9 @@ fun PrayerLanguagePicker(
     }
     if (showsHebrewTraditions && LanguageCatalog.pickerLanguageCode(LanguageCatalog.resolve(chosenLanguage).code) == "he") {
         var traditionExpanded by remember { mutableStateOf(false) }
-        IconButton(onClick = { traditionExpanded = true }) {
-            Icon(Icons.Filled.AccountBalance, contentDescription = stringResource(R.string.prayer_tradition))
+        IconButton(onClick = { traditionExpanded = true }, modifier = Modifier.size(PrayerControlDefaults.TargetSize)) {
+            Icon(Icons.Filled.AccountBalance, contentDescription = stringResource(R.string.prayer_tradition),
+                modifier = Modifier.size(PrayerControlDefaults.IconSize))
         }
         DropdownMenu(expanded = traditionExpanded, onDismissRequest = { traditionExpanded = false }) {
             for (code in listOf("he", "he-x-gamliel")) {

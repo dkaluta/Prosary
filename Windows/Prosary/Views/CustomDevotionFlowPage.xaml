@@ -60,49 +60,47 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" Click="OnNavigateUp" Background="Transparent" Padding="8">
-                <FontIcon Glyph="&#xE72B;" MirroredWhenRightToLeft="True" />
+            <Button x:Name="NavigateUpButton" Grid.Column="0" Click="OnNavigateUp" Style="{StaticResource PrayerIconButtonStyle}">
+                <FontIcon Style="{StaticResource PrayerControlIconStyle}" Glyph="&#xE72B;" MirroredWhenRightToLeft="True" />
             </Button>
             <TextBlock Grid.Column="1" Text="{x:Bind ViewModel.DevotionTitle, Mode=OneWay}" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource SubHeadlineTextStyle}" />
-            <Button x:Name="LanguageMenuButton" Grid.Column="2" Background="Transparent" Padding="8"
+            <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="8">
+            <Button x:Name="LanguageMenuButton" Style="{StaticResource PrayerIconButtonStyle}"
                     Visibility="{x:Bind ViewModel.ShowsLanguageMenu, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
-                <FontIcon Glyph="&#xE774;" /> <!-- Globe — the prayer-language picker -->
+                <FontIcon Style="{StaticResource PrayerControlIconStyle}" Glyph="&#xE774;" /> <!-- Globe — the prayer-language picker -->
                 <Button.Flyout>
                     <MenuFlyout x:Name="LanguageFlyout" />
                 </Button.Flyout>
             </Button>
-            <Button x:Name="VariantMenuButton" Grid.Column="3" Background="Transparent" Padding="8"
+            <Button x:Name="VariantMenuButton" Style="{StaticResource PrayerIconButtonStyle}"
                     Visibility="{x:Bind ViewModel.ShowsVariantMenu, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
-                <FontIcon Glyph="&#xE8F1;" /> <!-- Library (book shelf) — the variant/form picker -->
+                <FontIcon Style="{StaticResource PrayerControlIconStyle}" Glyph="&#xE8F1;" /> <!-- Library (book shelf) — the variant/form picker -->
                 <Button.Flyout>
                     <MenuFlyout x:Name="VariantFlyout" />
                 </Button.Flyout>
             </Button>
-            <Button x:Name="DayMenuButton" Grid.Column="4" Background="Transparent" Padding="8"
+            <Button x:Name="DayMenuButton" Style="{StaticResource PrayerIconButtonStyle}"
                     Visibility="{x:Bind ViewModel.ShowsDayMenu, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
-                <FontIcon Glyph="&#xE787;" /> <!-- Calendar — the multi-day day picker -->
+                <FontIcon Style="{StaticResource PrayerControlIconStyle}" Glyph="&#xE787;" /> <!-- Calendar — the multi-day day picker -->
                 <Button.Flyout>
                     <MenuFlyout x:Name="DayFlyout" />
                 </Button.Flyout>
             </Button>
-            <Button Grid.Column="5" Background="Transparent" Padding="8">
-                <FontIcon Glyph="&#xE916;" /> <!-- Stopwatch — hands-free auto-advance -->
+            <Button x:Name="AutoAdvanceButton" Style="{StaticResource PrayerIconButtonStyle}">
+                <FontIcon Style="{StaticResource PrayerControlIconStyle}" Glyph="&#xE916;" /> <!-- Stopwatch — hands-free auto-advance -->
                 <Button.Flyout>
                     <MenuFlyout x:Name="AutoAdvanceFlyout" />
                 </Button.Flyout>
             </Button>
-            <Button Grid.Column="6" Command="{x:Bind ViewModel.AddToLibraryCommand, Mode=OneWay}"
+            <Button Command="{x:Bind ViewModel.AddToLibraryCommand, Mode=OneWay}"
                     Visibility="{x:Bind ViewModel.CanAddToLibrary, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
                     AutomationProperties.Name="{x:Bind ViewModel.AddToLibraryText}"
                     ToolTipService.ToolTip="{x:Bind ViewModel.AddToLibraryText}"
-                    Background="Transparent" Padding="8">
-                <FontIcon Glyph="&#xE710;" />
+                    Style="{StaticResource PrayerIconButtonStyle}">
+                <FontIcon Style="{StaticResource PrayerControlIconStyle}" Glyph="&#xE710;" />
             </Button>
+            </StackPanel>
         </Grid>
 
         <Rectangle Grid.Row="1" Height="6" Fill="{x:Bind ViewModel.SeasonColor, Mode=OneWay, Converter={StaticResource ColorToBrush}}" />
@@ -127,10 +125,10 @@
                         <Grid.RowDefinitions><RowDefinition Height="Auto" /><RowDefinition Height="Auto" /></Grid.RowDefinitions>
                         <Grid.ColumnDefinitions><ColumnDefinition Width="*" /></Grid.ColumnDefinitions>
                         <Button Content="{x:Bind ViewModel.PrayNextText, Mode=OneWay}"
-                                HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" ContentTemplate="{StaticResource FlowActionLabelTemplate}"
+                                HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" ContentTemplate="{StaticResource FlowActionLabelTemplate}" Style="{StaticResource PrayerActionButtonStyle}"
                                 Command="{x:Bind ViewModel.PraySuggestedNextCommand}" />
                         <Button x:Uid="MultiDayNotNowButton" Grid.Row="1" Content="Not now"
-                                HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" ContentTemplate="{StaticResource FlowActionLabelTemplate}"
+                                HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" ContentTemplate="{StaticResource FlowActionLabelTemplate}" Style="{StaticResource PrayerActionButtonStyle}"
                                 Command="{x:Bind ViewModel.DismissCompletionSuggestionCommand}" />
                     </Grid>
                 </InfoBar.Content>
@@ -147,13 +145,13 @@
                         <Grid.RowDefinitions><RowDefinition Height="Auto" /><RowDefinition Height="Auto" /><RowDefinition Height="Auto" /></Grid.RowDefinitions>
                         <Grid.ColumnDefinitions><ColumnDefinition Width="*" /></Grid.ColumnDefinitions>
                         <Button Content="{x:Bind ViewModel.MissedDayPrayMissedText, Mode=OneWay}"
-                                HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" ContentTemplate="{StaticResource FlowActionLabelTemplate}"
+                                HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" ContentTemplate="{StaticResource FlowActionLabelTemplate}" Style="{StaticResource PrayerActionButtonStyle}"
                                 Command="{x:Bind ViewModel.PrayMissedDayCommand}" />
                         <Button Grid.Row="1" Content="{x:Bind ViewModel.MissedDayPrayTodayText, Mode=OneWay}"
-                                HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" ContentTemplate="{StaticResource FlowActionLabelTemplate}"
+                                HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" ContentTemplate="{StaticResource FlowActionLabelTemplate}" Style="{StaticResource PrayerActionButtonStyle}"
                                 Command="{x:Bind ViewModel.PrayCalendarDayCommand}" />
                         <Button x:Uid="MultiDayStartOverButton" Grid.Row="2" Content="Start over"
-                                HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" ContentTemplate="{StaticResource FlowActionLabelTemplate}"
+                                HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" ContentTemplate="{StaticResource FlowActionLabelTemplate}" Style="{StaticResource PrayerActionButtonStyle}"
                                 Command="{x:Bind ViewModel.StartRunOverCommand}" />
                     </Grid>
                 </InfoBar.Content>
@@ -320,33 +318,33 @@
              has a narrated recording (ViewModel.HasAudio); chapter skip / play-pause controls,
              the current chapter's title, and a seekable timeline. Mirrors iOS/Android's
              AudioPlaybackBar. -->
-        <Border Grid.Row="4" CornerRadius="12" Padding="8,4"
+        <Border Grid.Row="4" CornerRadius="12" Padding="8"
                 Background="{ThemeResource CardBackgroundFillColorSecondaryBrush}"
                 Visibility="{x:Bind ViewModel.HasAudio, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
-            <Grid ColumnSpacing="4" FlowDirection="{x:Bind NavigationFlowDirection}">
+            <Grid ColumnSpacing="8" FlowDirection="{x:Bind NavigationFlowDirection}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Button x:Uid="AudioPreviousChapter" Grid.Column="0" Background="Transparent" BorderThickness="0"
+                <Button x:Uid="AudioPreviousChapter" Grid.Column="0" Style="{StaticResource PrayerIconButtonStyle}"
                         Command="{x:Bind ViewModel.AudioPreviousChapterCommand}"
                         IsEnabled="{x:Bind ViewModel.CanSkipAudioChapter, Mode=OneWay}"
                         AutomationProperties.Name="Previous chapter" VerticalAlignment="Center">
-                    <FontIcon Glyph="&#xE892;" FontSize="14" MirroredWhenRightToLeft="True" />
+                    <FontIcon Style="{StaticResource PrayerControlIconStyle}" Glyph="&#xE892;" MirroredWhenRightToLeft="True" />
                 </Button>
-                <Button x:Uid="AudioPlayPause" Grid.Column="1" Background="Transparent" BorderThickness="0"
+                <Button x:Uid="AudioPlayPause" Grid.Column="1" Style="{StaticResource PrayerIconButtonStyle}"
                         Command="{x:Bind ViewModel.AudioPlayPauseCommand}"
                         AutomationProperties.Name="Play or pause" VerticalAlignment="Center">
-                    <FontIcon Glyph="{x:Bind PlayPauseGlyph(ViewModel.IsAudioPlaying), Mode=OneWay}" FontSize="22"
+                    <FontIcon Style="{StaticResource PrayerControlIconStyle}" Glyph="{x:Bind PlayPauseGlyph(ViewModel.IsAudioPlaying), Mode=OneWay}"
                               Foreground="{x:Bind ViewModel.SeasonColor, Mode=OneWay, Converter={StaticResource ColorToBrush}}" />
                 </Button>
-                <Button x:Uid="AudioNextChapter" Grid.Column="2" Background="Transparent" BorderThickness="0"
+                <Button x:Uid="AudioNextChapter" Grid.Column="2" Style="{StaticResource PrayerIconButtonStyle}"
                         Command="{x:Bind ViewModel.AudioNextChapterCommand}"
                         IsEnabled="{x:Bind ViewModel.CanSkipAudioChapter, Mode=OneWay}"
                         AutomationProperties.Name="Next chapter" VerticalAlignment="Center">
-                    <FontIcon Glyph="&#xE893;" FontSize="14" MirroredWhenRightToLeft="True" />
+                    <FontIcon Style="{StaticResource PrayerControlIconStyle}" Glyph="&#xE893;" MirroredWhenRightToLeft="True" />
                 </Button>
                 <StackPanel Grid.Column="3" VerticalAlignment="Center">
                     <TextBlock Text="{x:Bind ViewModel.AudioChapterTitle, Mode=OneWay}"
@@ -368,16 +366,17 @@
             </Grid>
         </Border>
 
-        <Grid Grid.Row="5" FlowDirection="{x:Bind NavigationFlowDirection}">
+        <Grid Grid.Row="5" ColumnSpacing="8" FlowDirection="{x:Bind NavigationFlowDirection}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <Button x:Uid="BtnBack" Grid.Column="0" Content="Back" Command="{x:Bind ViewModel.BackCommand}"
-                    IsEnabled="{x:Bind ViewModel.CanGoBack, Mode=OneWay}" Background="Transparent" />
+                    IsEnabled="{x:Bind ViewModel.CanGoBack, Mode=OneWay}" Background="Transparent"
+                    Style="{StaticResource PrayerActionButtonStyle}" MinWidth="120" />
             <Button Grid.Column="2" Content="{x:Bind ViewModel.NextButtonText, Mode=OneWay}"
-                    Command="{x:Bind ViewModel.NextCommand}" Style="{StaticResource AccentButtonStyle}" MinWidth="120" />
+                    Command="{x:Bind ViewModel.NextCommand}" Style="{StaticResource PrayerPrimaryButtonStyle}" />
         </Grid>
     </Grid>
 </Page>

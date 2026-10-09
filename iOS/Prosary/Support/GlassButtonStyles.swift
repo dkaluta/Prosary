@@ -9,7 +9,29 @@
 
 import SwiftUI
 
+enum PrayerControlMetrics {
+  static let rowSpacing: CGFloat = 8
+  static let minimumTouchDimension: CGFloat = 44
+}
+
 extension View {
+  /// Touch sizing stays local to prayer controls; Mac keeps its native control sizes.
+  @ViewBuilder
+  func prayerControlTouchTarget() -> some View {
+    #if os(iOS)
+    self
+      .frame(minWidth: PrayerControlMetrics.minimumTouchDimension,
+             minHeight: PrayerControlMetrics.minimumTouchDimension)
+      .contentShape(Rectangle())
+    #else
+    self
+    #endif
+  }
+
+  func prayerControlSymbolFont() -> some View {
+    modifier(PrayerControlSymbolFont())
+  }
+
   @ViewBuilder
   func prosaryProminentNavigationButtonStyle() -> some View {
     #if os(visionOS)
@@ -48,6 +70,14 @@ extension View {
       self.safeAreaInset(edge: edge, spacing: 0, content: content)
     }
     #endif
+  }
+}
+
+private struct PrayerControlSymbolFont: ViewModifier {
+  @ScaledMetric(relativeTo: .body) private var pointSize: CGFloat = 18
+
+  func body(content: Content) -> some View {
+    content.font(.system(size: pointSize, weight: .semibold))
   }
 }
 

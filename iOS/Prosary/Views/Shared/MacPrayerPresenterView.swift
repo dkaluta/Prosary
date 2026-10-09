@@ -88,7 +88,7 @@ struct MacPrayerPresenterView: View {
   }
 
   private var presenterHeader: some View {
-    HStack(spacing: 12) {
+    HStack(spacing: PrayerControlMetrics.rowSpacing) {
       VStack(alignment: .leading, spacing: 3) {
         Text(String(localized: "presenter.mode", defaultValue: "Presenter Mode", bundle: UILanguage.bundle, locale: UILanguage.locale))
           .font(.caption.weight(.semibold))
@@ -102,7 +102,7 @@ struct MacPrayerPresenterView: View {
           .help(HebrewDisplayText.unpointed(title))
       }
       Spacer(minLength: 8)
-      HStack(spacing: 6) {
+      HStack(spacing: PrayerControlMetrics.rowSpacing) {
         Button { textSize = max(Self.textSizeRange.lowerBound, Double(pointSize) - 4) } label: {
           Image(systemName: "textformat.size.smaller")
         }
@@ -228,12 +228,12 @@ struct MacPrayerPresenterView: View {
   }
 
   private var presenterFooter: some View {
-    VStack(spacing: 12) {
+    VStack(spacing: PrayerControlMetrics.rowSpacing) {
       if let flowActions {
-        HStack(spacing: 12) { flowActions }
+        HStack(spacing: PrayerControlMetrics.rowSpacing) { flowActions }
           .disabled(hasAttachedSheet)
       }
-    HStack(spacing: 16) {
+    HStack(spacing: PrayerControlMetrics.rowSpacing) {
       Button { perform(onBack) } label: {
         Label(String(localized: "prayerFlow.back", defaultValue: "Back", bundle: UILanguage.bundle, locale: UILanguage.locale), systemImage: "chevron.backward")
       }

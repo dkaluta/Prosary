@@ -20,6 +20,12 @@ public sealed partial class JesusPrayerFlowPage : Page
         ViewModel = App.Services.GetRequiredService<JesusPrayerViewModel>();
         ViewModel.Navigation = Router.For(this);
         InitializeComponent();
+        var navigateUpLabel = Loc.Tr("CommandsBack", "Back");
+        Microsoft.UI.Xaml.Automation.AutomationProperties.SetName(NavigateUpButton, navigateUpLabel);
+        ToolTipService.SetToolTip(NavigateUpButton, navigateUpLabel);
+        var autoAdvanceLabel = Loc.Tr("SetAutoAdvanceCombo/Header", "Auto-advance");
+        Microsoft.UI.Xaml.Automation.AutomationProperties.SetName(AutoAdvanceButton, autoAdvanceLabel);
+        ToolTipService.SetToolTip(AutoAdvanceButton, autoAdvanceLabel);
         Unloaded += (_, _) => { _autoAdvance?.Dispose(); _autoAdvance = null; };
         ViewModel.ConfirmDelete = plan => PrayerRemovalDialogs.ConfirmDeleteAsync(XamlRoot, plan);
         ViewModel.ShowRemovalError = message => PrayerRemovalDialogs.ShowErrorAsync(XamlRoot, message);

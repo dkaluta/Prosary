@@ -25,9 +25,10 @@ struct AudioPlaybackBar: View {
   private var chapterCount: Int { controller.track?.chapters.count ?? 0 }
 
   var body: some View {
-    HStack(spacing: 10) {
+    HStack(spacing: PrayerControlMetrics.rowSpacing) {
       Button { controller.previousChapter() } label: {
         Image(systemName: "backward.end.fill")
+          .prayerControlSymbolFont()
           #if os(iOS)
           .frame(minWidth: 44, minHeight: 44)
           .contentShape(Rectangle())
@@ -48,11 +49,11 @@ struct AudioPlaybackBar: View {
       Button { controller.playPause() } label: {
         #if os(visionOS)
         Image(systemName: controller.isPlaying ? "pause.fill" : "play.fill")
-          .font(.title2)
+          .prayerControlSymbolFont()
           .prosarySpatialTarget()
         #else
-        Image(systemName: controller.isPlaying ? "pause.circle.fill" : "play.circle.fill")
-          .font(.system(size: 34))
+        Image(systemName: controller.isPlaying ? "pause.fill" : "play.fill")
+          .prayerControlSymbolFont()
           .foregroundStyle(Color.accentColor)
           #if os(iOS)
           .frame(minWidth: 44, minHeight: 44)
@@ -73,6 +74,7 @@ struct AudioPlaybackBar: View {
 
       Button { controller.nextChapter() } label: {
         Image(systemName: "forward.end.fill")
+          .prayerControlSymbolFont()
           #if os(iOS)
           .frame(minWidth: 44, minHeight: 44)
           .contentShape(Rectangle())

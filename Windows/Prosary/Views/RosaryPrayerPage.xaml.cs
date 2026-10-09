@@ -36,6 +36,15 @@ public sealed partial class RosaryPrayerPage : Page
         ViewModel = App.Services.GetRequiredService<RosaryViewModel>();
         ViewModel.Navigation = Router.For(this);
         InitializeComponent();
+        var navigateUpLabel = Loc.Tr("CommandsBack", "Back");
+        Microsoft.UI.Xaml.Automation.AutomationProperties.SetName(NavigateUpButton, navigateUpLabel);
+        ToolTipService.SetToolTip(NavigateUpButton, navigateUpLabel);
+        var languageLabel = Loc.Tr("EdLanguageHeader/Text", "Prayer language");
+        Microsoft.UI.Xaml.Automation.AutomationProperties.SetName(LanguageMenuButton, languageLabel);
+        ToolTipService.SetToolTip(LanguageMenuButton, languageLabel);
+        var autoAdvanceLabel = Loc.Tr("SetAutoAdvanceCombo/Header", "Auto-advance");
+        Microsoft.UI.Xaml.Automation.AutomationProperties.SetName(AutoAdvanceButton, autoAdvanceLabel);
+        ToolTipService.SetToolTip(AutoAdvanceButton, autoAdvanceLabel);
         // Keep the clicked item attached until WinUI dismisses its menu.
         LanguageFlyout.Opening += (_, _) => BuildLanguageFlyout();
         var chooseMystery = Loc.Tr("flow_choose_mystery", "Choose Mystery");

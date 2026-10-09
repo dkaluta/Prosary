@@ -87,6 +87,17 @@ short windows retain space for their prayer, verse or feast content.
 Language menus refresh before opening, preserving native dismissal and focus when a
 language is selected.
 
+Prayer controls use common 48-pixel minimum targets, 20-pixel monochrome Fluent icons and
+8-pixel gaps. Optional header actions sit in one group so hiding an action also removes its
+spacing. Back and Next share a baseline; Next keeps the native accent treatment. Rosary
+section jumps use FontIcon glyphs with interface-direction ordering and localized action
+names. The native templates retain focus, disabled and high-contrast states.
+
+All Pivot tab rows share compact 14-pixel semibold labels and padding. Readings uses this
+style for Daily Readings, Feasts and Solemnities, and Bible. Headers can grow for wrapped
+translations or Windows text scaling, and native keyboard navigation, selection indicators
+and header overflow remain available.
+
 | Menu | Commands |
 | --- | --- |
 | File | Import Prayer Packs… (Ctrl+O), Close Window (Ctrl+W) |

@@ -19,35 +19,35 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" Click="OnNavigateUp" Background="Transparent" Padding="8">
-                <FontIcon Glyph="&#xE72B;" MirroredWhenRightToLeft="True" />
+            <Button x:Name="NavigateUpButton" Grid.Column="0" Click="OnNavigateUp" Style="{StaticResource PrayerIconButtonStyle}">
+                <FontIcon Style="{StaticResource PrayerControlIconStyle}" Glyph="&#xE72B;" MirroredWhenRightToLeft="True" />
             </Button>
             <TextBlock x:Uid="JpTitle" Grid.Column="1" Text="The Jesus Prayer" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource SubHeadlineTextStyle}" />
 
+            <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="8">
             <!-- The footer's Next button never turns into "Finish" for an unbounded session (see
                  JesusPrayerProgress.IsLastRep) — this is the only way to end that session. -->
-            <Button x:Uid="BtnFinish" Grid.Column="2" Content="Finish" Command="{x:Bind ViewModel.FinishCommand, Mode=OneWay}"
+            <Button x:Uid="BtnFinish" Content="Finish" Style="{StaticResource PrayerActionButtonStyle}" Command="{x:Bind ViewModel.FinishCommand, Mode=OneWay}"
                     Visibility="{x:Bind ViewModel.IsUnbounded, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
 
-            <Button Grid.Column="3" Background="Transparent" Padding="8">
-                <FontIcon Glyph="&#xE916;" /> <!-- Stopwatch — hands-free auto-advance -->
+            <Button x:Name="AutoAdvanceButton" Style="{StaticResource PrayerIconButtonStyle}">
+                <FontIcon Style="{StaticResource PrayerControlIconStyle}" Glyph="&#xE916;" /> <!-- Stopwatch — hands-free auto-advance -->
                 <Button.Flyout>
                     <MenuFlyout x:Name="AutoAdvanceFlyout" />
                 </Button.Flyout>
             </Button>
-            <Button Grid.Column="4" Command="{x:Bind ViewModel.ToggleFavoriteCommand, Mode=OneWay}" Background="Transparent" Padding="8"
+            <Button Command="{x:Bind ViewModel.ToggleFavoriteCommand, Mode=OneWay}" Style="{StaticResource PrayerIconButtonStyle}"
                     ToolTipService.ToolTip="{x:Bind ViewModel.FavoriteActionLabel, Mode=OneWay}"
                     AutomationProperties.Name="{x:Bind ViewModel.FavoriteActionLabel, Mode=OneWay}">
                 <Grid>
-                    <FontIcon Glyph="&#xE74D;"
+                    <FontIcon Style="{StaticResource PrayerControlIconStyle}" Glyph="&#xE74D;"
                               Visibility="{x:Bind ViewModel.IsFavorited, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
-                    <FontIcon Glyph="&#xE74E;"
+                    <FontIcon Style="{StaticResource PrayerControlIconStyle}" Glyph="&#xE74E;"
                               Visibility="{x:Bind ViewModel.IsFavorited, Mode=OneWay, Converter={StaticResource InverseBoolToVisibility}}" />
                 </Grid>
             </Button>
+            </StackPanel>
         </Grid>
 
         <controls:PrayerStepFlowControl Grid.Row="1" ViewModel="{x:Bind ViewModel}" CentralActionLabel="Pray" />

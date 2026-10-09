@@ -20,14 +20,14 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" Click="OnNavigateUp" Background="Transparent" Padding="8">
-                <FontIcon Glyph="&#xE72B;" MirroredWhenRightToLeft="True" />
+            <Button x:Name="NavigateUpButton" Grid.Column="0" Click="OnNavigateUp" Style="{StaticResource PrayerIconButtonStyle}">
+                <FontIcon Style="{StaticResource PrayerControlIconStyle}" Glyph="&#xE72B;" MirroredWhenRightToLeft="True" />
             </Button>
             <TextBlock Grid.Column="1" Text="{x:Bind ViewModel.Header, Mode=OneWay}" FontFamily="{x:Bind ViewModel.HeaderFontFamily, Mode=OneWay}" VerticalAlignment="Center"
                        HorizontalAlignment="Center" Style="{StaticResource SubHeadlineTextStyle}"
                        FlowDirection="{x:Bind ViewModel.IsRightToLeft, Mode=OneWay, Converter={StaticResource BoolToFlowDirection}}" />
-            <Button x:Name="LanguageMenuButton" Grid.Column="2" Background="Transparent" Padding="8">
-                <FontIcon Glyph="&#xE774;" />
+            <Button x:Name="LanguageMenuButton" Grid.Column="2" Style="{StaticResource PrayerIconButtonStyle}">
+                <FontIcon Style="{StaticResource PrayerControlIconStyle}" Glyph="&#xE774;" />
                 <Button.Flyout>
                     <MenuFlyout x:Name="LanguageFlyout" />
                 </Button.Flyout>

@@ -11,6 +11,14 @@
     "alignment": "Headings and the alphabet selector are centered. Bodies and acclamations align to the start of their actual displayed script, including alternate reading aids and fallback text, independently of interface direction.",
     "alphabet": "The shared prayer/Scripture selector shows Syriac ܐ first and Hebrew א second, with covering fonts, visible selected state and localized full script accessibility labels. Preserve saved script choices; other reading-aid pairs retain their generic toggle."
   },
+  "prayerControls": {
+    "icons": "Use monochrome native icons: SF Symbols on Apple, Material icons on Android, and WinUI FontIcon on Windows. Previous/next section glyphs follow interface direction without changing command meanings.",
+    "spacing": "Related controls use an 8-unit gap and consistent icon sizes. Back and Next share a minimum height; hidden optional actions leave no gaps in their group.",
+    "targets": "At least 44 points for Apple phone controls, 48 dp for Android, and 48 logical pixels for Windows prayer buttons. Mac retains native toolbar sizing. Text actions may grow for wrapped labels."
+  },
+  "modeTabs": {
+    "presentation": "Use compact native tabs or segmented controls across screens, with localized labels, visible selection, native focus and keyboard behavior, interface-direction ordering and reachable overflow. Windows Pivots share compact header typography and padding."
+  },
   "appleAppIntents": {
     "openPrayer": {
       "platforms": [

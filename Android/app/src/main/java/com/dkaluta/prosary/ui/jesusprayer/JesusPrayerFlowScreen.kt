@@ -1,6 +1,9 @@
 package com.dkaluta.prosary.ui.jesusprayer
 
 import androidx.activity.compose.BackHandler
+import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.size
+import androidx.compose.ui.Modifier
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.PushPin
 import androidx.compose.material.icons.outlined.PushPin
@@ -12,6 +15,7 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.dkaluta.prosary.ui.shared.JesusPrayerSession
+import com.dkaluta.prosary.ui.shared.PrayerControlDefaults
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
@@ -213,7 +217,7 @@ fun JesusPrayerFlowScreen(
         },
         onNavigateUp = ::leave,
         topBarActions = {
-            IconButton(onClick = {
+            IconButton(modifier = Modifier.size(PrayerControlDefaults.TargetSize), onClick = {
                 scope.launch {
                     val all = services.presetStore.all()
                     val implied = impliedDevotionPins(all)
@@ -227,13 +231,16 @@ fun JesusPrayerFlowScreen(
             }) {
                 Icon(
                     if (isPinned) Icons.Filled.PushPin else Icons.Outlined.PushPin,
+                    modifier = Modifier.size(PrayerControlDefaults.IconSize),
                     contentDescription = if (isPinned) stringResource(R.string.home_remove_from_pray) else stringResource(R.string.home_add_to_pray),
                 )
             }
             // The footer button never turns into "Finish" for an unbounded session (see
             // JesusPrayerProgress.isLastRep) — this is the only way to end that session.
             if (effectiveTarget is JesusPrayerTarget.Unbounded) {
-                TextButton(onClick = ::finish) { Text(stringResource(R.string.common_finish)) }
+                TextButton(onClick = ::finish, modifier = Modifier.heightIn(min = PrayerControlDefaults.TargetSize)) {
+                    Text(stringResource(R.string.common_finish))
+                }
             }
         },
     )

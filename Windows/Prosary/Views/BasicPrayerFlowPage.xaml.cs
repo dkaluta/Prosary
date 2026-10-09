@@ -20,6 +20,9 @@ public sealed partial class BasicPrayerFlowPage : Page
         ViewModel = App.Services.GetRequiredService<BasicPrayerViewModel>();
         ViewModel.Navigation = Router.For(this);
         InitializeComponent();
+        var navigateUpLabel = Loc.Tr("CommandsBack", "Back");
+        Microsoft.UI.Xaml.Automation.AutomationProperties.SetName(NavigateUpButton, navigateUpLabel);
+        ToolTipService.SetToolTip(NavigateUpButton, navigateUpLabel);
         // Keep the clicked item attached until WinUI dismisses its menu.
         LanguageFlyout.Opening += (_, _) => BuildLanguageFlyout();
         var languageLabel = Loc.Tr("EdLanguageHeader/Text", "Prayer language");

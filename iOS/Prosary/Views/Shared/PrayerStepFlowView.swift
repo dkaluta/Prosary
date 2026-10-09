@@ -224,11 +224,12 @@ struct PrayerStepFlowView: View {
     .prosaryNavigationBar(edge: .bottom) {
       // Counter flows advance through their central action and need no duplicate footer.
       if centralActionLabel == nil {
-        ProsaryGlassControlGroup {
-          HStack {
+        ProsaryGlassControlGroup(spacing: PrayerControlMetrics.rowSpacing) {
+          HStack(spacing: PrayerControlMetrics.rowSpacing) {
             Button("prayerFlow.back") { onBack() }
               .disabled(!canGoBack)
               .prosaryNavigationButtonStyle()
+              .prayerControlTouchTarget()
               // Distinguishes step-to-step Back from the system navigation-bar Back.
               .accessibilityIdentifier("prayerFlowBackButton")
 
@@ -236,6 +237,7 @@ struct PrayerStepFlowView: View {
 
             Button(isLastStep ? "prayerFlow.finish" : "prayerFlow.next") { onNext() }
               .prosaryProminentNavigationButtonStyle()
+              .prayerControlTouchTarget()
               .tint(Color.accentColor)
               .disabled(step == nil)
               .accessibilityIdentifier("prayerFlowNextButton")
@@ -352,17 +354,18 @@ struct PrayerStepFlowView: View {
   }
 
   private var compactActions: some View {
-    ProsaryGlassControlGroup {
-      HStack(spacing: 12) {
+    ProsaryGlassControlGroup(spacing: PrayerControlMetrics.rowSpacing) {
+      HStack(spacing: PrayerControlMetrics.rowSpacing) {
         flowActions
         speechButton
         autoAdvanceMenu
       }
       .prosaryNavigationButtonStyle()
+      .prayerControlSymbolFont()
       #if !os(macOS)
       .labelStyle(.iconOnly)
       #endif
-      .controlSize(.large)
+      .controlSize(.regular)
       .frame(minHeight: 44)
       .padding(.horizontal)
     }
@@ -387,6 +390,7 @@ struct PrayerStepFlowView: View {
     #endif
     .accessibilityLabel(String(localized: "prayerFlow.autoAdvance", defaultValue: "Auto-Advance", bundle: UILanguage.bundle, locale: UILanguage.locale))
     .help(String(localized: "prayerFlow.autoAdvance", defaultValue: "Auto-Advance", bundle: UILanguage.bundle, locale: UILanguage.locale))
+    .prayerControlTouchTarget()
     .accessibilityIdentifier("autoAdvanceMenu")
   }
 
@@ -406,6 +410,7 @@ struct PrayerStepFlowView: View {
           systemImage: speech.isSpeaking ? "stop.circle.fill" : "speaker.wave.2")
       }
       .disabled(step == nil || audioIsPlaying || windowIsModal)
+      .prayerControlTouchTarget()
       .accessibilityIdentifier("prayerReadAloudButton")
     }
   }
@@ -556,6 +561,7 @@ struct PrayerStepFlowView: View {
               toggleTransliteration()
             } label: {
               Image(systemName: usesAlternateText ? "character.book.closed.fill" : "character.book.closed")
+                .prayerControlSymbolFont()
                 .prosarySpatialTarget()
                 #if os(iOS)
                 .frame(minWidth: 44, minHeight: 44)

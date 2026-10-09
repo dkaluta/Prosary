@@ -31,6 +31,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.dkaluta.prosary.R
 import com.dkaluta.prosary.content.audio.AudioPlaybackController
@@ -62,22 +63,24 @@ fun AudioPlaybackBar(
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(4.dp),
+            horizontalArrangement = Arrangement.spacedBy(PrayerControlDefaults.Spacing),
             modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp),
         ) {
-            IconButton(onClick = { controller.previousChapter() }, enabled = chapterCount > 1) {
-                Icon(Icons.Filled.SkipPrevious, modifier = Modifier.graphicsLayer { scaleX = iconScale }, contentDescription = stringResource(R.string.audio_previous_chapter))
+            IconButton(onClick = { controller.previousChapter() }, enabled = chapterCount > 1,
+                modifier = Modifier.size(PrayerControlDefaults.TargetSize)) {
+                Icon(Icons.Filled.SkipPrevious, modifier = Modifier.size(PrayerControlDefaults.IconSize).graphicsLayer { scaleX = iconScale }, contentDescription = stringResource(R.string.audio_previous_chapter))
             }
-            IconButton(onClick = { controller.playPause() }) {
+            IconButton(onClick = { controller.playPause() }, modifier = Modifier.size(PrayerControlDefaults.TargetSize)) {
                 Icon(
                     if (controller.isPlaying) Icons.Filled.Pause else Icons.Filled.PlayArrow,
                     contentDescription = if (controller.isPlaying) stringResource(R.string.audio_pause) else stringResource(R.string.audio_play),
                     tint = seasonColor,
-                    modifier = Modifier.size(34.dp),
+                    modifier = Modifier.size(PrayerControlDefaults.IconSize),
                 )
             }
-            IconButton(onClick = { controller.nextChapter() }, enabled = chapterCount > 1) {
-                Icon(Icons.Filled.SkipNext, modifier = Modifier.graphicsLayer { scaleX = iconScale }, contentDescription = stringResource(R.string.audio_next_chapter))
+            IconButton(onClick = { controller.nextChapter() }, enabled = chapterCount > 1,
+                modifier = Modifier.size(PrayerControlDefaults.TargetSize)) {
+                Icon(Icons.Filled.SkipNext, modifier = Modifier.size(PrayerControlDefaults.IconSize).graphicsLayer { scaleX = iconScale }, contentDescription = stringResource(R.string.audio_next_chapter))
             }
 
             Column(modifier = Modifier.weight(1f)) {
@@ -90,10 +93,7 @@ fun AudioPlaybackBar(
                         maxLines = 1,
                     )
                 }
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(8.dp),
-                ) {
+                Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
                     // Scrubbing holds a local value and seeks once on release — seeking per
                     // drag-pixel storms the (asynchronous) MediaPlayer and fights the playback
                     // ticker's writes, snapping the thumb around mid-drag.
@@ -110,13 +110,15 @@ fun AudioPlaybackBar(
                             thumbColor = seasonColor,
                             activeTrackColor = seasonColor,
                         ),
-                        modifier = Modifier.weight(1f),
+                        modifier = Modifier.fillMaxWidth(),
                     )
                     Text(
                         "${timestamp(controller.currentTime)}/${timestamp(controller.duration)}",
                         style = MaterialTheme.typography.labelSmall,
                         fontFamily = FontFamily.Monospace,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        modifier = Modifier.fillMaxWidth(),
+                        textAlign = TextAlign.End,
                     )
                 }
             }

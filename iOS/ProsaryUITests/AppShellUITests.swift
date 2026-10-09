@@ -612,7 +612,7 @@ final class AppShellUITests: XCTestCase {
   func testRosaryTitleHasItsOwnLineAbovePhoneControls() throws {
     let app = XCUIApplication()
     app.launchArguments = ["-resetStore", "-AppleLanguages", "(en)", "-AppleInterfaceStyle", "Dark",
-                           "-defaultLanguageCode", "he"]
+                           "-interfaceLanguageCode", "en", "-defaultLanguageCode", "he", "-autoAdvanceSeconds", "0"]
     app.launch()
     openPrayTab(in: app)
     XCTAssertTrue(app.buttons["rosaryCard"].waitForExistence(timeout: 10))
@@ -628,8 +628,54 @@ final class AppShellUITests: XCTestCase {
     XCTAssertGreaterThanOrEqual(language.frame.minY, title.frame.maxY)
     XCTAssertTrue(app.buttons["autoAdvanceMenu"].isHittable)
     XCTAssertTrue(app.buttons["nextMysteryButton"].isHittable)
+    for identifier in ["chooseMysteryButton", "previousMysteryButton", "nextMysteryButton", "languageMenu", "autoAdvanceMenu", "prayerFlowBackButton", "prayerFlowNextButton"] {
+      let control = app.buttons[identifier]
+      XCTAssertGreaterThanOrEqual(control.frame.width, 44, identifier)
+      XCTAssertGreaterThanOrEqual(control.frame.height, 44, identifier)
+      XCTAssertGreaterThanOrEqual(control.frame.minX, app.frame.minX, identifier)
+      XCTAssertLessThanOrEqual(control.frame.maxX, app.frame.maxX, identifier)
+    }
     let attachment = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
     attachment.name = "rosary-phone-title-and-controls"
+    attachment.lifetime = .keepAlways
+    add(attachment)
+    app.buttons["prayerFlowNextButton"].coordinate(withNormalizedOffset: CGVector(dx: 0.1, dy: 0.5)).tap()
+    XCTAssertTrue(app.buttons["prayerFlowBackButton"].isEnabled, "The footer target includes its padded edges")
+  }
+
+  @MainActor
+  func testPrayerControlsRemainReachableAtAccessibilityTextSize() throws {
+    let app = XCUIApplication()
+    app.launchArguments = ["-resetStore", "-AppleLanguages", "(en)", "-interfaceLanguageCode", "en",
+                           "-defaultLanguageCode", "en", "-autoAdvanceSeconds", "0",
+                           "-UIPreferredContentSizeCategoryName", "UICTContentSizeCategoryAccessibilityXXXL"]
+    app.launch()
+    openPrayTab(in: app)
+    XCTAssertTrue(app.buttons["rosaryCard"].waitForExistence(timeout: 10))
+    app.buttons["rosaryCard"].tap()
+    let preset = app.buttons["prayDefaultPreset"].firstMatch
+    XCTAssertTrue(preset.waitForExistence(timeout: 10))
+    preset.tap()
+    let first = app.buttons["chooseMysteryButton"]
+    XCTAssertTrue(first.waitForExistence(timeout: 10))
+    XCTAssertGreaterThan(first.frame.height, 44, "The accessibility text fixture must enlarge the symbols")
+    let timer = app.buttons["autoAdvanceMenu"]
+    let rowY = first.frame.midY / app.frame.height
+    for _ in 0..<5 {
+      let frame = timer.frame
+      if frame.width > 0, frame.minX >= app.frame.minX, frame.maxX <= app.frame.maxX { break }
+      app.coordinate(withNormalizedOffset: CGVector(dx: 0.85, dy: rowY))
+        .press(forDuration: 0.05, thenDragTo: app.coordinate(withNormalizedOffset: CGVector(dx: 0.15, dy: rowY)))
+    }
+    XCTAssertGreaterThan(timer.frame.width, 0)
+    XCTAssertGreaterThanOrEqual(timer.frame.minX, app.frame.minX)
+    XCTAssertLessThanOrEqual(timer.frame.maxX, app.frame.maxX)
+    XCTAssertGreaterThanOrEqual(timer.frame.height, 44)
+    XCTAssertTrue(timer.isHittable)
+    timer.tap()
+    XCTAssertTrue(app.buttons["Off"].waitForExistence(timeout: 5))
+    let attachment = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
+    attachment.name = "prayer-controls-accessibility-text"
     attachment.lifetime = .keepAlways
     add(attachment)
   }

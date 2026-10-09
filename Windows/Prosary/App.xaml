@@ -17,6 +17,7 @@
                      those keys, not just the first one hit. -->
                 <controls:XamlControlsResources />
                 <ResourceDictionary Source="ms-appx:///Microsoft.UI.Xaml/DensityStyles/Compact.xaml" />
+                <ResourceDictionary Source="ms-appx:///Controls/CompactTabs.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
             <!-- Blue is the default. AppAppearance updates light/dark palette values while
@@ -55,6 +56,43 @@
             <Style x:Key="TodayDateFlyoutPresenterStyle" TargetType="FlyoutPresenter"
                    BasedOn="{StaticResource DefaultFlyoutPresenterStyle}">
                 <Setter Property="Background" Value="{ThemeResource AcrylicInAppFillColorDefaultBrush}" />
+            </Style>
+
+            <!-- Prayer controls share a baseline and keep WinUI's native focus/contrast states. -->
+            <DataTemplate x:Key="PrayerActionLabelTemplate">
+                <TextBlock Text="{Binding}" TextWrapping="Wrap" TextAlignment="Center" />
+            </DataTemplate>
+            <Style x:Key="PrayerActionButtonStyle" TargetType="Button"
+                   BasedOn="{StaticResource DefaultButtonStyle}">
+                <Setter Property="MinHeight" Value="48" />
+                <Setter Property="Padding" Value="16,12" />
+                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                <Setter Property="VerticalContentAlignment" Value="Center" />
+                <Setter Property="ContentTemplate" Value="{StaticResource PrayerActionLabelTemplate}" />
+            </Style>
+            <Style x:Key="PrayerPrimaryButtonStyle" TargetType="Button"
+                   BasedOn="{StaticResource AccentButtonStyle}">
+                <Setter Property="MinHeight" Value="48" />
+                <Setter Property="MinWidth" Value="120" />
+                <Setter Property="Padding" Value="16,12" />
+                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                <Setter Property="VerticalContentAlignment" Value="Center" />
+                <Setter Property="ContentTemplate" Value="{StaticResource PrayerActionLabelTemplate}" />
+            </Style>
+            <Style x:Key="PrayerIconButtonStyle" TargetType="Button"
+                   BasedOn="{StaticResource DefaultButtonStyle}">
+                <Setter Property="MinHeight" Value="48" />
+                <Setter Property="MinWidth" Value="48" />
+                <Setter Property="Padding" Value="12" />
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="BorderThickness" Value="0" />
+                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                <Setter Property="VerticalContentAlignment" Value="Center" />
+            </Style>
+            <Style x:Key="PrayerControlIconStyle" TargetType="FontIcon">
+                <Setter Property="FontFamily" Value="{ThemeResource SymbolThemeFontFamily}" />
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="MirroredWhenRightToLeft" Value="False" />
             </Style>
 
             <conv:ColorToBrushConverter x:Key="ColorToBrush" />

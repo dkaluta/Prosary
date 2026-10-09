@@ -6,7 +6,8 @@
     <Grid RowSpacing="8">
         <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/></Grid.RowDefinitions>
         <TextBlock Text="{x:Bind Title}" Style="{StaticResource HeadlineTextStyle}" Margin="20,20,20,0" />
-        <Pivot x:Name="ReadingModes" Grid.Row="1" AutomationProperties.Name="{x:Bind Title}">
+        <Pivot x:Name="ReadingModes" Grid.Row="1" AutomationProperties.Name="{x:Bind Title}"
+               HeaderTemplate="{StaticResource CompactTabHeaderTemplate}">
             <PivotItem Header="{x:Bind DailyLabel}"><ContentControl x:Name="DailyContent" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" /></PivotItem>
             <PivotItem Header="{x:Bind CalendarLabel}"><views:LiturgicalCalendarControl x:Name="CalendarContent" /></PivotItem>
             <PivotItem Header="{x:Bind BibleLabel}"><views:BibleReaderControl /></PivotItem>

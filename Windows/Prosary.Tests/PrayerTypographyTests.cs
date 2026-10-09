@@ -95,9 +95,9 @@ public class PrayerTypographyTests
     [Fact]
     public void RtlNavigationReversesGlyphsWithoutReversingActions()
     {
-        Assert.Equal("⏮", PrayerNavigation.PreviousGlyph(false));
-        Assert.Equal("⏭", PrayerNavigation.PreviousGlyph(true));
-        Assert.Equal("⏭", PrayerNavigation.NextGlyph(false));
-        Assert.Equal("⏮", PrayerNavigation.NextGlyph(true));
+        Assert.Equal("\uE892", PrayerNavigation.PreviousGlyph(false));
+        Assert.Equal("\uE893", PrayerNavigation.PreviousGlyph(true));
+        Assert.Equal("\uE893", PrayerNavigation.NextGlyph(false));
+        Assert.Equal("\uE892", PrayerNavigation.NextGlyph(true));
     }
 }

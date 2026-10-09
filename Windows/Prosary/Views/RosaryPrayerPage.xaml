@@ -60,34 +60,34 @@
              button below (RelayCommand BackCommand), which steps backward through the Rosary
              itself rather than leaving the page. Every other flow/list page in this app has this
              same header row; it was missing here specifically until now. -->
-        <Grid Grid.Row="0" Padding="0,0,0,4">
+        <Grid Grid.Row="0" Padding="0,0,0,4" ColumnSpacing="8">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" Click="OnNavigateUp" Background="Transparent" Padding="8">
-                <FontIcon Glyph="&#xE72B;" MirroredWhenRightToLeft="True" />
+            <Button x:Name="NavigateUpButton" Grid.Column="0" Click="OnNavigateUp" Style="{StaticResource PrayerIconButtonStyle}">
+                <FontIcon Glyph="&#xE72B;" MirroredWhenRightToLeft="True" Style="{StaticResource PrayerControlIconStyle}" />
             </Button>
-            <Button x:Name="LanguageMenuButton" Grid.Column="2" Background="Transparent" Padding="8"
+            <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="8">
+            <Button x:Name="LanguageMenuButton" Style="{StaticResource PrayerIconButtonStyle}"
                     Visibility="{x:Bind ViewModel.ShowsLanguageMenu, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
-                <FontIcon Glyph="&#xE774;" />
+                <FontIcon Glyph="&#xE774;" Style="{StaticResource PrayerControlIconStyle}" />
                 <Button.Flyout>
                     <MenuFlyout x:Name="LanguageFlyout" />
                 </Button.Flyout>
             </Button>
-            <Button Grid.Column="3" Background="Transparent" Padding="8">
-                <FontIcon Glyph="&#xE916;" /> <!-- Stopwatch — hands-free auto-advance -->
+            <Button x:Name="AutoAdvanceButton" Style="{StaticResource PrayerIconButtonStyle}">
+                <FontIcon Glyph="&#xE916;" Style="{StaticResource PrayerControlIconStyle}" /> <!-- Stopwatch — hands-free auto-advance -->
                 <Button.Flyout>
                     <MenuFlyout x:Name="AutoAdvanceFlyout" />
                 </Button.Flyout>
             </Button>
-            <Button x:Name="MysteryPickerButton" Grid.Column="4" Background="Transparent" Padding="8" Click="OnChooseMystery"
+            <Button x:Name="MysteryPickerButton" Style="{StaticResource PrayerIconButtonStyle}" Click="OnChooseMystery"
                     AutomationProperties.Name="Choose Mystery" ToolTipService.ToolTip="Choose Mystery">
-                <FontIcon Glyph="&#xE8A4;" />
+                <FontIcon Glyph="&#xE8A4;" Style="{StaticResource PrayerControlIconStyle}" />
             </Button>
+            </StackPanel>
         </Grid>
 
         <Rectangle Grid.Row="1" Height="6" Fill="{x:Bind ViewModel.SeasonColor, Mode=OneWay, Converter={StaticResource ColorToBrush}}" />
@@ -251,7 +251,7 @@
             </Grid>
         </Grid>
 
-        <Grid Grid.Row="4" FlowDirection="{x:Bind NavigationFlowDirection}">
+        <Grid Grid.Row="4" ColumnSpacing="8" FlowDirection="{x:Bind NavigationFlowDirection}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
@@ -260,20 +260,27 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <Button x:Uid="BtnBack" Grid.Column="0" Content="Back" Command="{x:Bind ViewModel.BackCommand}"
-                    IsEnabled="{x:Bind ViewModel.CanGoBack, Mode=OneWay}" Background="Transparent" />
-            <Button x:Uid="RosaryPreviousMystery" Grid.Column="1" Content="{x:Bind PreviousNavigationGlyph}"
+                    IsEnabled="{x:Bind ViewModel.CanGoBack, Mode=OneWay}" Background="Transparent"
+                    Style="{StaticResource PrayerActionButtonStyle}" MinWidth="120" />
+            <Button x:Uid="RosaryPreviousMystery" Grid.Column="1"
                     Command="{x:Bind ViewModel.GoToPreviousMysteryCommand}"
                     IsEnabled="{x:Bind ViewModel.CanGoToPreviousMystery, Mode=OneWay}"
-                    Background="Transparent" Padding="12,8" ToolTipService.ToolTip="Previous mystery"
-                    AutomationProperties.Name="Previous mystery" />
-            <Button x:Uid="RosaryNextMystery" Grid.Column="3" Content="{x:Bind NextNavigationGlyph}"
+                    Style="{StaticResource PrayerIconButtonStyle}" ToolTipService.ToolTip="Previous mystery"
+                    AutomationProperties.Name="Previous mystery">
+                <FontIcon Glyph="{x:Bind PreviousNavigationGlyph}" Style="{StaticResource PrayerControlIconStyle}"
+                          AutomationProperties.AccessibilityView="Raw" />
+            </Button>
+            <Button x:Uid="RosaryNextMystery" Grid.Column="3"
                     Command="{x:Bind ViewModel.GoToNextMysteryCommand}"
                     IsEnabled="{x:Bind ViewModel.CanGoToNextMystery, Mode=OneWay}"
-                    Background="Transparent" Padding="12,8" ToolTipService.ToolTip="Next mystery"
-                    AutomationProperties.Name="Next mystery" />
+                    Style="{StaticResource PrayerIconButtonStyle}" ToolTipService.ToolTip="Next mystery"
+                    AutomationProperties.Name="Next mystery">
+                <FontIcon Glyph="{x:Bind NextNavigationGlyph}" Style="{StaticResource PrayerControlIconStyle}"
+                          AutomationProperties.AccessibilityView="Raw" />
+            </Button>
             <Button Grid.Column="4" Content="{x:Bind ViewModel.NextButtonText, Mode=OneWay}"
                     Command="{x:Bind ViewModel.NextCommand}" IsEnabled="{x:Bind ViewModel.HasSteps, Mode=OneWay}"
-                    Style="{StaticResource AccentButtonStyle}" MinWidth="120" />
+                    Style="{StaticResource PrayerPrimaryButtonStyle}" />
         </Grid>
     </Grid>
 </Page>
