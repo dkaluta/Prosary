@@ -1,0 +1,323 @@
+name: Windows packages 0.20.4.0
+
+on:
+  push:
+    branches: [feature/package-windows-0204]
+
+permissions:
+  contents: read
+
+jobs:
+  package:
+    name: Unsigned ${{ matrix.channel }} (${{ matrix.architecture }})
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 40
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - channel: sideload
+            architecture: x64
+            runner: windows-latest
+            packageVersion: 0.20.4.0
+          - channel: sideload
+            architecture: arm64
+            runner: windows-11-vs2026-arm
+            packageVersion: 0.20.4.0
+          - channel: store
+            architecture: x64
+            runner: windows-latest
+            packageVersion: 1.20.4.0
+          - channel: store
+            architecture: arm64
+            runner: windows-11-vs2026-arm
+            packageVersion: 1.20.4.0
+    env:
+      PROSARY_ARCHITECTURE: ${{ matrix.architecture }}
+      PROSARY_RELEASE_SHA: 20ed58af0a752d5c24aa52cf6e69bc439649fde2
+      PROSARY_RELEASE_VERSION: ${{ matrix.packageVersion }}
+      PROSARY_CHANNEL: ${{ matrix.channel }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: 20ed58af0a752d5c24aa52cf6e69bc439649fde2
+          persist-credentials: false
+      - uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: 10.0.x
+      - uses: astral-sh/setup-uv@v6
+      - name: Prepare isolated Store manifest
+        if: matrix.channel == 'store'
+        shell: pwsh
+        run: |
+          $helper = Join-Path $env:RUNNER_TEMP "prepare-prosary-store.py"
+          @'
+          # /// script
+          # requires-python = ">=3.11"
+          # ///
+          """Generate an isolated Store manifest and MSBuild selection overlay; never edit the input."""
+          from pathlib import Path
+          import argparse
+          import hashlib
+          import io
+          import json
+          import xml.etree.ElementTree as ET
+          
+          parser=argparse.ArgumentParser(description=__doc__)
+          parser.add_argument('--input',type=Path,required=True)
+          parser.add_argument('--output-directory',type=Path,required=True)
+          args=parser.parse_args()
+          source=args.input.resolve()
+          directory=args.output_directory.resolve()
+          directory.mkdir(parents=True,exist_ok=True)
+          manifest=directory/'Prosary.Store.generated.appxmanifest'
+          targets=directory/'Prosary.Store.generated.targets'
+          assert manifest!=source
+          original=source.read_bytes()
+          before=hashlib.sha256(original).hexdigest()
+          document=ET.fromstring(original)
+          ns={'p':'http://schemas.microsoft.com/appx/manifest/foundation/windows10'}
+          for prefix,uri in [('','http://schemas.microsoft.com/appx/manifest/foundation/windows10'),('mp','http://schemas.microsoft.com/appx/2014/phone/manifest'),('uap','http://schemas.microsoft.com/appx/manifest/uap/windows10'),('rescap','http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities')]:
+              ET.register_namespace(prefix,uri)
+          identity=document.find('p:Identity',ns)
+          assert identity.attrib['Name']=='com.dkaluta.prosary' and identity.attrib['Publisher']=='CN=David Kaluta'
+          assert identity.attrib['Version']=='0.20.4.0'
+          identity.set('Name','DavidKaluta.Prosary')
+          identity.set('Publisher','CN=CE2B0861-61A6-4125-8640-401045758EE6')
+          identity.set('Version','1.20.4.0')
+          document.find('p:Properties/p:PublisherDisplayName',ns).text='David Kaluta'
+          ET.ElementTree(document).write(manifest,encoding='utf-8',xml_declaration=True)
+          # iterparse pairs are (event, (prefix, URI)); ensure all retained ignored prefixes exist.
+          declared=dict(value for _,value in ET.iterparse(io.BytesIO(manifest.read_bytes()),events=['start-ns']))
+          assert set(document.attrib.get('IgnorableNamespaces','').split())<=declared.keys()
+          targets.write_text('''<Project>
+            <Target Name="SelectProsaryStoreManifest" BeforeTargets="_ValidatePresenceOfAppxManifestItems">
+              <Error Condition="'$(ProsaryStoreManifestPath)' == '' Or !Exists('$(ProsaryStoreManifestPath)')" Text="An isolated Store manifest is required." />
+              <ItemGroup>
+                <AppxManifest Remove="@(AppxManifest)" />
+                <CustomAppxManifest Remove="@(CustomAppxManifest)" />
+                <SourceAppxManifest Remove="@(SourceAppxManifest)" />
+                <AppxManifest Include="$(ProsaryStoreManifestPath)">
+                  <SubType>Designer</SubType>
+                  <Link>Package.appxmanifest</Link>
+                </AppxManifest>
+              </ItemGroup>
+            </Target>
+          </Project>
+          ''')
+          assert source.read_bytes()==original
+          record={'defaultManifestUnchanged':True,'defaultManifestSha256':before,'generatedManifest':str(manifest),'generatedTargets':str(targets),'storeIdentity':dict(identity.attrib),'publisherDisplayName':'David Kaluta','productId':'9NKBBRQX0JST','storeManifestSha256':hashlib.sha256(manifest.read_bytes()).hexdigest(),'buildProperties':{'ProsaryStoreManifestPath':str(manifest),'CustomAfterMicrosoftCommonTargets':str(targets),'AppxPackageSigningEnabled':'false','UapAppxPackageBuildMode':'StoreOnly'}}
+          (directory/'store-manifest-preparation.json').write_text(json.dumps(record,indent=2)+'\n')
+          print(json.dumps(record,indent=2))
+          '@ | Set-Content -LiteralPath $helper -Encoding utf8
+          uv run --script $helper --input Windows/Prosary/Package.appxmanifest --output-directory (Join-Path $env:RUNNER_TEMP "prosary-store-manifest")
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - name: Build unsigned release package
+        shell: pwsh
+        run: |
+          $packageDirectory = Join-Path $env:RUNNER_TEMP "prosary-0.20.4.0-$env:PROSARY_CHANNEL-$env:PROSARY_ARCHITECTURE"
+          New-Item $packageDirectory -ItemType Directory -Force | Out-Null
+          $buildMode = "SideloadOnly"
+          $sourceSha = (git rev-parse HEAD).Trim()
+          if ($LASTEXITCODE -ne 0 -or $sourceSha -ne $env:PROSARY_RELEASE_SHA) { throw "The checkout does not match the pinned release source." }
+          $defaultManifestPath = Join-Path $env:GITHUB_WORKSPACE "Windows/Prosary/Package.appxmanifest"
+          $defaultManifestHash = (Get-FileHash -LiteralPath $defaultManifestPath -Algorithm SHA256).Hash
+          $storeProperties = @()
+          if ($env:PROSARY_CHANNEL -eq "store") {
+            $buildMode = "StoreOnly"
+            $storeRoot = Join-Path $env:RUNNER_TEMP "prosary-store-manifest"
+            $storeProperties = @(
+              "/p:ProsaryStoreManifestPath=$(Join-Path $storeRoot 'Prosary.Store.generated.appxmanifest')",
+              "/p:CustomAfterMicrosoftCommonTargets=$(Join-Path $storeRoot 'Prosary.Store.generated.targets')"
+            )
+          }
+          dotnet build Windows/Prosary/Prosary.csproj `
+            /v:minimal `
+            /p:Configuration=Release `
+            "/p:Platform=$env:PROSARY_ARCHITECTURE" `
+            "/p:RuntimeIdentifier=win-$env:PROSARY_ARCHITECTURE" `
+            /p:AppxPackageSigningEnabled=false `
+            "/p:PackageCertificateKeyFile=" `
+            "/p:PackageCertificateThumbprint=" `
+            /p:GenerateAppxPackageOnBuild=true `
+            /p:AppxBundle=Never `
+            "/p:AppxBundlePlatforms=$env:PROSARY_ARCHITECTURE" `
+            "/p:UapAppxPackageBuildMode=$buildMode" `
+            "/p:AppxPackageDir=$packageDirectory\" `
+            /p:AppxAutoIncrementPackageRevision=false `
+            /p:AppxSymbolPackageEnabled=false `
+            /p:GenerateAppInstallerFile=false `
+            /p:SelfContained=true `
+            /p:WindowsAppSDKSelfContained=true `
+            "/p:PublishProfile=" `
+            @storeProperties `
+            2>&1 | Tee-Object (Join-Path $packageDirectory "package-build.log")
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          $finalManifestHash = (Get-FileHash -LiteralPath $defaultManifestPath -Algorithm SHA256).Hash
+          if ($finalManifestHash -ne $defaultManifestHash) { throw "The canonical sideload manifest changed during packaging." }
+          [ordered]@{
+            sourceSha = $sourceSha
+            channel = $env:PROSARY_CHANNEL
+            packageVersion = $env:PROSARY_RELEASE_VERSION
+            architecture = $env:PROSARY_ARCHITECTURE
+            defaultManifestUnchanged = $true
+            defaultManifestSha256 = $finalManifestHash
+            buildMode = $buildMode
+          } | ConvertTo-Json | Set-Content (Join-Path $packageDirectory "build-provenance.json") -Encoding utf8
+          if ($env:PROSARY_CHANNEL -eq "store") {
+            Copy-Item -LiteralPath (Join-Path $storeRoot "store-manifest-preparation.json") -Destination $packageDirectory
+            Copy-Item -LiteralPath (Join-Path $storeRoot "Prosary.Store.generated.appxmanifest") -Destination $packageDirectory
+            Copy-Item -LiteralPath (Join-Path $storeRoot "Prosary.Store.generated.targets") -Destination $packageDirectory
+          }
+      - name: Match the existing CI test time zone
+        if: matrix.architecture == 'arm64' && matrix.channel == 'sideload'
+        shell: pwsh
+        run: |
+          Set-TimeZone -Id "UTC"
+          if ((Get-TimeZone).Id -ne "UTC") { throw "The UTC fixture time zone was not applied." }
+      - name: Run native ARM64 release tests
+        if: matrix.architecture == 'arm64' && matrix.channel == 'sideload'
+        shell: pwsh
+        run: |
+          $packageDirectory = Join-Path $env:RUNNER_TEMP "prosary-0.20.4.0-$env:PROSARY_CHANNEL-$env:PROSARY_ARCHITECTURE"
+          dotnet test Windows/Prosary.Tests/Prosary.Tests.csproj -c Release `
+            -p:Platform=arm64 -p:RuntimeIdentifier=win-arm64 `
+            -p:WindowsAppSdkDeploymentManagerInitialize=false `
+            -p:WindowsAppSdkBootstrapInitialize=false `
+            --logger "trx;LogFileName=prosary-arm64.trx" `
+            --results-directory (Join-Path $packageDirectory "TestResults") `
+            2>&1 | Tee-Object (Join-Path $packageDirectory "arm64-test.log")
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - name: Verify package identity and Mission readings
+        shell: pwsh
+        run: |
+          Add-Type -AssemblyName System.IO.Compression.FileSystem
+          $packageDirectory = Join-Path $env:RUNNER_TEMP "prosary-0.20.4.0-$env:PROSARY_CHANNEL-$env:PROSARY_ARCHITECTURE"
+          $packages = @(Get-ChildItem $packageDirectory -Recurse -Filter *.msix)
+          if ($packages.Count -eq 0) { throw "No MSIX package was produced." }
+          $offlineDependencies = @()
+          foreach ($candidate in Get-ChildItem $packageDirectory -Recurse -File | Where-Object { $_.Extension -in ".msix", ".appx" }) {
+            $dependencyArchive = [System.IO.Compression.ZipFile]::OpenRead($candidate.FullName)
+            try {
+              $entry = $dependencyArchive.GetEntry("AppxManifest.xml")
+              if ($null -eq $entry) { continue }
+              $reader = [System.IO.StreamReader]::new($entry.Open())
+              try { [xml] $dependencyManifest = $reader.ReadToEnd() } finally { $reader.Dispose() }
+              $offlineDependencies += [ordered]@{
+                name = $dependencyManifest.Package.Identity.Name
+                version = $dependencyManifest.Package.Identity.Version
+                architecture = $dependencyManifest.Package.Identity.ProcessorArchitecture
+                file = $candidate.FullName
+              }
+            } finally { $dependencyArchive.Dispose() }
+          }
+          $expectedName = "com.dkaluta.prosary"
+          $expectedPublisher = "CN=David Kaluta"
+          if ($env:PROSARY_CHANNEL -eq "store") {
+            $expectedName = "DavidKaluta.Prosary"
+            $expectedPublisher = "CN=CE2B0861-61A6-4125-8640-401045758EE6"
+          }
+          $verified = @()
+          foreach ($package in $packages) {
+            $archive = [System.IO.Compression.ZipFile]::OpenRead($package.FullName)
+            try {
+              function Read-PackageText([string] $name) {
+                $entry = $archive.GetEntry($name)
+                if ($null -eq $entry) { throw "Required package entry missing: $name" }
+                $reader = [System.IO.StreamReader]::new($entry.Open())
+                try { return $reader.ReadToEnd() } finally { $reader.Dispose() }
+              }
+              [xml] $manifest = Read-PackageText "AppxManifest.xml"
+              if ($manifest.Package.Identity.Name -ne $expectedName -or $manifest.Package.Identity.ResourceId) { continue }
+              if ($manifest.Package.Identity.Version -ne $env:PROSARY_RELEASE_VERSION) { throw "Unexpected package version." }
+              if ($manifest.Package.Identity.ProcessorArchitecture -ne $env:PROSARY_ARCHITECTURE) { throw "Unexpected package architecture." }
+              if ($manifest.Package.Identity.Publisher -ne $expectedPublisher) { throw "Unexpected package publisher." }
+              if ($manifest.Package.Properties.PublisherDisplayName -ne "David Kaluta") { throw "Unexpected publisher display name." }
+              if ($null -ne $archive.GetEntry("AppxSignature.p7x")) { throw "This artifact must remain explicitly unsigned." }
+              $registry = Read-PackageText "Data/calendars.json" | ConvertFrom-Json
+              $mission = @($registry.calendars | Where-Object id -eq "mission-provisional")
+              if ($mission.Count -ne 1 -or $mission[0].file -ne "feasts-mission-provisional" -or $mission[0].readingsFile -ne "readings-syriac") {
+                throw "Mission calendar/readings mapping is missing from the package."
+              }
+              $readings = Read-PackageText "Data/readings-syriac.json" | ConvertFrom-Json
+              $citations = @($readings.days.'2026-10-08'.readings.full)
+              if (($citations -join "|") -ne "Ephesians 6:10–24|John 15:12–24") { throw "Expected Syriac readings are missing." }
+              $externalDependencies = @($manifest.Package.Dependencies.PackageDependency | Where-Object { $null -ne $_ })
+              foreach ($required in $externalDependencies) {
+                $available = @($offlineDependencies | Where-Object {
+                  $_.name -eq $required.Name -and [version]$_.version -ge [version]$required.MinVersion -and
+                  ($_.architecture -eq $env:PROSARY_ARCHITECTURE -or $_.architecture -eq "neutral")
+                })
+                if ($available.Count -eq 0) { throw "Required offline dependency missing: $($required.Name)" }
+              }
+              $verified += [ordered]@{
+                file = $package.Name
+                sha256 = (Get-FileHash $package.FullName -Algorithm SHA256).Hash
+                sourceSha = $env:PROSARY_RELEASE_SHA
+                channel = $env:PROSARY_CHANNEL
+                identityName = $manifest.Package.Identity.Name
+                publisher = $manifest.Package.Identity.Publisher
+                publisherDisplayName = $manifest.Package.Properties.PublisherDisplayName
+                version = $manifest.Package.Identity.Version
+                architecture = $manifest.Package.Identity.ProcessorArchitecture
+                signing = $(if ($env:PROSARY_CHANNEL -eq "store") { "unsigned Store submission; Microsoft Store signing required; never use the tester certificate" } else { "unsigned sideload package; requires the existing Prosary tester certificate before installation" })
+                missionFeasts = $mission[0].file
+                missionReadings = $mission[0].readingsFile
+                x64TestSource = $env:PROSARY_RELEASE_SHA
+                arm64Tests = "native execution once in the ARM64 sideload job; see its TestResults and source CI"
+                externalPackageDependencies = @($externalDependencies | ForEach-Object { $_.Name })
+              }
+            } finally { $archive.Dispose() }
+          }
+          if ($verified.Count -ne 1) { throw "Exactly one Prosary application MSIX is required per channel and architecture." }
+          $verified | ConvertTo-Json -Depth 5 | Set-Content (Join-Path $packageDirectory "package-verification.json") -Encoding utf8
+          $uploads = @(Get-ChildItem $packageDirectory -Recurse -File | Where-Object { $_.Extension -in ".msixupload", ".appxupload" })
+          if ($env:PROSARY_CHANNEL -eq "sideload" -and $uploads.Count -ne 0) { throw "A sideload build produced a Store submission container." }
+          if ($env:PROSARY_CHANNEL -eq "store" -and $uploads.Count -ne 1) { throw "Exactly one Store submission container is required." }
+          $uploadRecords = @()
+          foreach ($upload in $uploads) {
+            $container = [System.IO.Compression.ZipFile]::OpenRead($upload.FullName)
+            try {
+              $embeddedPackages = @($container.Entries | Where-Object { $_.FullName -match '\.(msix|appx)$' })
+              if ($embeddedPackages.Count -ne 1) { throw "A Store container must hold exactly one application package." }
+              $buffer = [System.IO.MemoryStream]::new()
+              $entryStream = $embeddedPackages[0].Open()
+              try { $entryStream.CopyTo($buffer) } finally { $entryStream.Dispose() }
+              try {
+                $buffer.Position = 0
+                $embeddedHash = (Get-FileHash -InputStream $buffer -Algorithm SHA256).Hash
+                $buffer.Position = 0
+                $embedded = [System.IO.Compression.ZipArchive]::new($buffer, [System.IO.Compression.ZipArchiveMode]::Read, $true)
+                try {
+                  $reader = [System.IO.StreamReader]::new($embedded.GetEntry("AppxManifest.xml").Open())
+                  try { [xml] $uploadManifest = $reader.ReadToEnd() } finally { $reader.Dispose() }
+                  if ($uploadManifest.Package.Identity.Name -ne $expectedName -or
+                      $uploadManifest.Package.Identity.Publisher -ne $expectedPublisher -or
+                      $uploadManifest.Package.Identity.Version -ne $env:PROSARY_RELEASE_VERSION -or
+                      $uploadManifest.Package.Identity.ProcessorArchitecture -ne $env:PROSARY_ARCHITECTURE -or
+                      $uploadManifest.Package.Properties.PublisherDisplayName -ne "David Kaluta") {
+                    throw "The Store upload contains an unexpected application identity."
+                  }
+                  if ($null -ne $embedded.GetEntry("AppxSignature.p7x")) { throw "The Store upload package must remain unsigned." }
+                } finally { $embedded.Dispose() }
+              } finally { $buffer.Dispose() }
+              $uploadRecords += [ordered]@{
+                file = $upload.Name
+                sha256 = (Get-FileHash $upload.FullName -Algorithm SHA256).Hash
+                embeddedPackage = $embeddedPackages[0].FullName
+                embeddedPackageSha256 = $embeddedHash
+                identityName = $uploadManifest.Package.Identity.Name
+                publisher = $uploadManifest.Package.Identity.Publisher
+                version = $uploadManifest.Package.Identity.Version
+                architecture = $uploadManifest.Package.Identity.ProcessorArchitecture
+              }
+            } finally { $container.Dispose() }
+          }
+          ConvertTo-Json -InputObject $uploadRecords | Set-Content (Join-Path $packageDirectory "store-upload-containers.json") -Encoding utf8
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: Prosary-${{ matrix.channel }}-${{ matrix.packageVersion }}-${{ matrix.architecture }}-unsigned
+          path: ${{ runner.temp }}/prosary-0.20.4.0-${{ matrix.channel }}-${{ matrix.architecture }}/
+          if-no-files-found: error
+          retention-days: 14
