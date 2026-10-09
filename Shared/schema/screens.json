@@ -232,7 +232,7 @@
       }
     },
     "about": {
-      "purpose": "Attribution: typefaces, mystery/other image sources, Scripture sources. Static content.",
+      "purpose": "Application identity with a visible, localized installed version and build number sourced from native bundle/package metadata, followed by attribution for typefaces, mystery/other image sources, Scripture and calendar sources. Apple shows its marketing version and actual bundle build, Android its version name and code, and Windows its installed package version (or assembly metadata for unpackaged development). No release version is hardcoded in this screen.",
       "parameters": {},
       "sources": {
         "iOS": "Views/About/AboutView.swift (Mac: app-menu-only, own window; iPhone/iPad: linked from Pray)",

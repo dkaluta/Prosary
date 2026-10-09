@@ -199,7 +199,9 @@ presence on a phone is not, by itself, a reason to include it on Mac.
   Destructive actions remain explicit and never become the default Return action.
   Parent navigation commands disable while a sheet is attached. Importing a pack updates the
   Gallery without replacing an active prayer or dismissing an editor.
-- **About:** use a dedicated About window with application identity, version and selectable credits.
+- **About:** use a dedicated About window with application identity, the installed marketing
+  version and actual bundle build number, and selectable credits. Read the bundle metadata so
+  Xcode Cloud builds display their uploaded build number instead of a project-version constant.
 
 ## Review scope and evidence
 

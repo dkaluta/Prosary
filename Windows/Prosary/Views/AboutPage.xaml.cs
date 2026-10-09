@@ -1,10 +1,13 @@
 using Microsoft.UI.Xaml.Controls;
 using Prosary.Navigation;
+using Prosary.Services;
 
 namespace Prosary.Views;
 
 public sealed partial class AboutPage : Page
 {
+    public string VersionText => AppBuildInfo.AboutText;
+
     public AboutPage()
     {
         InitializeComponent();

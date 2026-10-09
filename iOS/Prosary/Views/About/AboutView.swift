@@ -25,10 +25,7 @@ struct AboutView: View {
             .accessibilityHidden(true)
           Text("about.title")
             .font(.title.bold())
-          let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? ""
-          let build = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String ?? ""
-          Text(String(localized: "about.version", defaultValue: "Version \(version) (\(build))", bundle: UILanguage.bundle, locale: UILanguage.locale))
-            .foregroundStyle(.secondary)
+          versionLabel
           Text("about.tagline")
             .font(.callout)
             .foregroundStyle(.secondary)
@@ -42,6 +39,8 @@ struct AboutView: View {
             .foregroundStyle(Color.appAccent)
           Text("about.tagline")
             .foregroundStyle(.secondary)
+          versionLabel
+            .font(.callout)
         }
         #endif
 
@@ -214,6 +213,15 @@ struct AboutView: View {
     .frame(width: 520, height: 640)
     #endif
     .navigationTitle("about.navigationTitle")
+  }
+
+  private var versionLabel: some View {
+    let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? ""
+    let build = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String ?? ""
+    return Text(String(localized: "about.version", defaultValue: "Version \(version) (\(build))",
+                       bundle: UILanguage.bundle, locale: UILanguage.locale))
+      .foregroundStyle(.secondary)
+      .accessibilityIdentifier("about.version")
   }
 
   @ViewBuilder

@@ -37,6 +37,19 @@
     <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
   </PropertyGroup>
 
+  <!-- Keep the unpackaged About fallback authoritative when the package version changes. -->
+  <Target Name="SetProsaryAssemblyVersion" BeforeTargets="GetAssemblyVersion">
+    <XmlPeek XmlInputPath="$(MSBuildProjectDirectory)/Package.appxmanifest"
+             Query="/*[local-name()='Package']/*[local-name()='Identity']/@Version">
+      <Output TaskParameter="Result" PropertyName="ProsaryManifestVersion" />
+    </XmlPeek>
+    <PropertyGroup>
+      <Version>$(ProsaryManifestVersion)</Version>
+      <AssemblyVersion>$(ProsaryManifestVersion)</AssemblyVersion>
+      <FileVersion>$(ProsaryManifestVersion)</FileVersion>
+    </PropertyGroup>
+  </Target>
+
   <ItemGroup>
     <Manifest Include="$(ApplicationManifest)" />
   </ItemGroup>

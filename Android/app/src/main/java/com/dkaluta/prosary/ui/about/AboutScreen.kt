@@ -33,6 +33,7 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
+import com.dkaluta.prosary.BuildConfig
 import com.dkaluta.prosary.R
 import com.dkaluta.prosary.ui.theme.extraColors
 
@@ -77,6 +78,11 @@ fun AboutScreen(onBack: () -> Unit) {
                 )
                 Text(
                     stringResource(R.string.about_tagline),
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+                Text(
+                    stringResource(R.string.about_version, BuildConfig.VERSION_NAME, BuildConfig.VERSION_CODE.toString()),
+                    style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
             }
