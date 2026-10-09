@@ -7,7 +7,7 @@
   },
   "prayerTextPresentation": {
     "scope": "Rosary, generic devotions, Basic Prayers and Jesus Prayer share each platform's responsive reading column.",
-    "width": "Common maximum width of 640 native logical units, with consistent platform margins. Short prose and acclamations fill the same text bounds as long bodies; adaptive artwork and bead tracks remain separate.",
+    "width": "Apple and Android keep a maximum width of 640 native logical units, with consistent platform margins. Windows fills the available content width with common insets of 20 logical pixels. Short prose and acclamations fill the same text bounds as long bodies; adaptive artwork and bead tracks remain separate.",
     "alignment": "Headings and the alphabet selector are centered. Bodies and acclamations align to the start of their actual displayed script, including alternate reading aids and fallback text, independently of interface direction.",
     "alphabet": "The shared prayer/Scripture selector shows Syriac ܐ first and Hebrew א second, with covering fonts, visible selected state and localized full script accessibility labels. Preserve saved script choices; other reading-aid pairs retain their generic toggle."
   },
