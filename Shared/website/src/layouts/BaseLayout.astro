@@ -69,28 +69,20 @@ const links = [
         </a>
 
         <div class="site-links">
-          {
-            links.slice(1).map((link) => (
-              <a href={link.href} aria-current={currentPath === link.href ? "page" : undefined}>
-                {link.label}
-              </a>
-            ))
-          }
+          <a href="/#prayer-book">Prayer book</a>
+          <a class="nav-download" href="/#download">Get the beta</a>
         </div>
       </nav>
     </header>
 
     <main id="main-content" tabindex="-1" class:list={{ "home-page": isHome, "legal-page": !isHome }}>
-      <header class:list={["hero", { "hero-home": isHome }]}>
-        {isHome && (
-          <span class="hero-icon" aria-hidden="true">
-            <img src="/prosary-icon.png" width="68" height="68" alt="" />
-          </span>
-        )}
-        <p class="eyebrow">A quiet place to pray</p>
-        <h1>{heading}</h1>
-        <slot name="hero" />
-      </header>
+      {isHome ? <slot name="hero" /> : (
+        <header class="hero">
+          <p class="eyebrow">Prosary</p>
+          <h1>{heading}</h1>
+          <slot name="hero" />
+        </header>
+      )}
       <slot />
     </main>
 
@@ -107,6 +99,7 @@ const links = [
         </div>
 
         <nav aria-label="Footer navigation">
+          <a href="/#download">Downloads</a>
           <a href="https://compose.prosary.app">Compose</a>
           <a href="https://prayers.prosary.app">Community prayers</a>
           <a href="https://github.com/dkaluta/Prosary">Source</a>

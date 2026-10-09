@@ -6,7 +6,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 const title = "Prosary — License";
 const description =
-  "All original Prosary material is open source under the BSD 2-Clause License in one public monorepo.";
+  "Prosary’s code is open source under BSD 2-Clause. David Kaluta’s original text is dedicated under CC0. Third-party sources retain their own licenses and credits.";
 // npm executes Astro with this package as cwd in development and CI. Resolve from there rather
 // than import.meta.url: Astro relocates page modules into dist/.prerender before rendering.
 const licenseText = await readFile(resolve(process.cwd(), "../../LICENSE"), "utf8");
@@ -15,8 +15,7 @@ const licenseText = await readFile(resolve(process.cwd(), "../../LICENSE"), "utf
 <BaseLayout {title} {description} heading="Open by design" currentPath="/license">
   <Fragment slot="hero">
     <p class="tagline">
-      One clear license covers Prosary’s native apps, web tools, shared content, documentation,
-      tools, and original assets.
+      Open code, credited sources, and a public-domain dedication for David Kaluta’s original text.
     </p>
   </Fragment>
 
@@ -26,7 +25,7 @@ const licenseText = await readFile(resolve(process.cwd(), "../../LICENSE"), "utf
         <p>On this page</p>
         <ol>
           <li><a href="#coverage">What it covers</a></li>
-          <li><a href="#license-text">BSD 2-Clause License</a></li>
+          <li><a href="#license-text">License and text dedication</a></li>
         </ol>
       </nav>
     </aside>
@@ -36,14 +35,15 @@ const licenseText = await readFile(resolve(process.cwd(), "../../LICENSE"), "utf
         <p class="section-kicker">One project, one license</p>
         <h2 id="coverage-heading">What it covers</h2>
         <p>
-          The SwiftUI app for iPhone, iPad, and Mac, the Jetpack Compose app for Android, the
+          The native apps for iPhone, iPad, Mac, and Vision Pro, the Android app, the
           WinUI app for Windows, Prosary’s web tools, and their shared data, documentation, tools,
           and original assets live in <a href="https://github.com/dkaluta/Prosary">one open-source
           monorepo</a>.
         </p>
         <p>
           Third-party material keeps its own license and attribution. Everything original to
-          Prosary is covered by the canonical license below.
+          Prosary is covered by the canonical terms below: BSD 2-Clause for software and
+          nontextual assets, and CC0 for David Kaluta’s original natural-language text and editorial contributions.
         </p>
       </section>
 
@@ -51,14 +51,14 @@ const licenseText = await readFile(resolve(process.cwd(), "../../LICENSE"), "utf
         <div class="license-heading-row">
           <div>
             <p class="section-kicker">Canonical text</p>
-            <h2 id="license-heading">BSD 2-Clause License</h2>
+            <h2 id="license-heading">License and text dedication</h2>
           </div>
           <a
             class="text-link"
             href="https://github.com/dkaluta/Prosary/blob/main/LICENSE"
           >View on GitHub <span aria-hidden="true">↗</span></a>
         </div>
-        <pre aria-label="BSD 2-Clause License text"><code>{licenseText.trim()}</code></pre>
+        <pre aria-label="Canonical Prosary license and CC0 text dedication"><code>{licenseText.trim()}</code></pre>
         <p class="license-note">
           This published copy is read directly from the repository’s root <code>LICENSE</code>
           file during the site build, so it stays in step with the whole project.

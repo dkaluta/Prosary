@@ -1,0 +1,18 @@
+---
+interface Props {
+  kind: "devices" | "phone" | "desktop" | "prayer" | "book" | "saved" | "arrow";
+}
+const { kind } = Astro.props;
+const paths = {
+  devices: "M3 5h20v15H3z M7 25h12 M13 20v5 M23 12h6v16h-6z",
+  phone: "M9 3h14v26H9z M14 6h4 M15 25h2",
+  desktop: "M3 5h26v18H3z M11 29h10 M16 23v6",
+  prayer: "M16 3v8 M12 7h8 M16 11c-7 0-11 4-11 9s4 9 11 9 11-4 11-9-4-9-11-9z M9 15h.01 M6 20h.01 M10 26h.01 M16 28h.01 M22 26h.01 M26 20h.01 M23 15h.01",
+  book: "M16 7c-4-3-9-3-13-2v21c4-1 9-1 13 2 4-3 9-3 13-2V5c-4-1-9-1-13 2z M16 7v21",
+  saved: "M7 3h18v26l-9-6-9 6z",
+  arrow: "M5 16h21 M18 8l8 8-8 8",
+};
+---
+<svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+  <path d={paths[kind]} />
+</svg>

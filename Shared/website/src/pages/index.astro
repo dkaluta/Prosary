@@ -1,157 +1,133 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import LineIcon from "../components/LineIcon.astro";
+import { downloads } from "../data/downloads";
 
-const title = "Prosary — A Catholic prayer companion for iPhone, Mac, Android, and Windows";
-const description =
-  "Prosary is a native companion for the Rosary and ten Catholic devotions, with prayer presets, community-made devotions, and nine prayer languages. In testing for iPhone, Mac, and Android; in development for Windows.";
-
+const title = "Prosary — A quiet place to pray";
+const description = "A native Catholic prayer companion for Apple devices, Android, and Windows. Pray the Rosary and other devotions, follow daily readings, and keep your own prayer library. Explore the beta downloads.";
 const devotions = [
-  "Holy Rosary",
-  "Angelus",
-  "Jesus Prayer",
-  "Stations of the Cross",
-  "Via Lucis",
-  "Franciscan Crown",
-  "Seven Sorrows",
-  "Divine Mercy Chaplet",
-  "Trisagion",
-  "O Antiphons",
+  "Holy Rosary", "Angelus", "Jesus Prayer", "Stations of the Cross", "Via Lucis",
+  "Franciscan Crown", "Seven Sorrows", "Divine Mercy Chaplet", "Trisagion", "O Antiphons",
 ];
 ---
 
-<BaseLayout {title} {description} heading="Prosary" currentPath="/">
-  <Fragment slot="hero">
-    <p class="tagline">
-      A thoughtful, native companion for praying alone or leading others — with ten built-in
-      devotions and more shared by the community.
-    </p>
-
-    <div class="hero-actions" aria-label="Beta downloads">
-      <a class="button button-primary" href="https://testflight.apple.com/join/RJPs8DWS">
-        Join on TestFlight
-        <span aria-hidden="true">↗</span>
-      </a>
-      <a
-        class="button button-secondary"
-        href="https://play.google.com/store/apps/details?id=com.dkaluta.prosary"
-      >
-        Join the Android test
-        <span aria-hidden="true">↗</span>
-      </a>
+<BaseLayout {title} {description} heading="A quiet place to pray." currentPath="/">
+  <header slot="hero" class="home-hero page-width">
+    <div class="hero-copy">
+      <p class="eyebrow">A Catholic prayer companion</p>
+      <h1>A quiet place<br />to pray.</h1>
+      <p class="hero-description">
+        Familiar devotions, daily readings, and a prayer library of your own.
+        At home on your phone, tablet, or desktop.
+      </p>
+      <div class="hero-actions">
+        <a class="button button-primary" href="#download">Get the beta <LineIcon kind="arrow" /></a>
+        <a class="button button-secondary" href="#prayer-book">Explore the prayer book</a>
+      </div>
+      <p class="hero-platforms">iPhone · iPad · Mac · Vision Pro · Android · Windows</p>
     </div>
-
-    <p class="hint">
-      Need access to the Android test? <a
-        href="https://docs.google.com/forms/d/e/1FAIpQLSe2pFPBmjBL6SOxjh7zktRDzEraxdfNUR-L6vuiPuy-sOunPw/viewform?usp=sharing&ouid=107334041819347937443"
-        target="_blank"
-        rel="noopener noreferrer"
-      >Request an invitation</a><span class="visually-hidden"> (opens in a new tab)</span>.
-    </p>
-
-    <ul class="platform-status" aria-label="Platform availability">
-      <li>
-        <span class="status-dot status-testing" aria-hidden="true"></span>
-        <span><strong>iPhone & Mac</strong><small>TestFlight beta</small></span>
-      </li>
-      <li>
-        <span class="status-dot status-testing" aria-hidden="true"></span>
-        <span><strong>Android</strong><small>Closed test</small></span>
-      </li>
-      <li>
-        <span class="status-dot status-building" aria-hidden="true"></span>
-        <span><strong>Windows</strong><small>In development</small></span>
-      </li>
-    </ul>
-  </Fragment>
+    <div class="hero-art" aria-hidden="true">
+      <div class="icon-frame">
+        <img src="/prosary-social.png" alt="" width="1024" height="1024" fetchpriority="high" />
+      </div>
+      <p>Prosary</p>
+      <span>A little room for prayer, every day.</span>
+    </div>
+  </header>
 
   <div class="page-sections">
-    <section class="spotlight" aria-labelledby="devotions-heading">
+    <section id="download" class="download-section" aria-labelledby="download-heading">
       <div class="section-heading">
-        <p class="section-kicker">A complete prayer book</p>
-        <h2 id="devotions-heading">Familiar devotions, ready when you are</h2>
+        <p class="section-kicker">Try Prosary</p>
+        <h2 id="download-heading">Choose your app.</h2>
+        <p>Prosary is in beta. Here’s how to join on each platform.</p>
       </div>
-      <div class="section-body">
-        <p>
-          Pray today’s Rosary mysteries, a fixed set, all 15 or all 20 mysteries, or one mystery
-          at a time. Presenter mode keeps a group together, while traditional and scriptural
-          forms let each devotion remain true to its own shape.
-        </p>
-        <ul class="devotion-list" aria-label="Built-in devotions">
-          {devotions.map((devotion) => <li>{devotion}</li>)}
-        </ul>
+      <div class="download-grid">
+        <article id="apple" class="download-card" aria-labelledby="apple-heading">
+          <div class="download-heading"><LineIcon kind="devices" /><span class="availability">TestFlight beta</span></div>
+          <h3 id="apple-heading">Apple</h3>
+          <p class="platform-detail">iPhone, iPad, Mac & Vision Pro</p>
+          <p class="download-note">{downloads.apple.note}</p>
+          <a class="button button-secondary" href={downloads.apple.href}>Join the Apple beta <LineIcon kind="arrow" /></a>
+          <p class="download-help">Requires Apple’s TestFlight app</p>
+        </article>
+        <article id="android" class="download-card" aria-labelledby="android-heading">
+          <div class="download-heading"><LineIcon kind="phone" /><span class="availability">Closed test</span></div>
+          <h3 id="android-heading">Android</h3>
+          <p class="platform-detail">Phones & tablets</p>
+          <p class="download-note">{downloads.android.note}</p>
+          <a class="button button-secondary" href={downloads.android.href}>Open Google Play <LineIcon kind="arrow" /></a>
+          <a class="download-help" href={downloads.android.invitation}>Request a test invitation</a>
+        </article>
+        <article id="windows" class="download-card" aria-labelledby="windows-heading">
+          <div class="download-heading"><LineIcon kind="desktop" /><span class="availability">Public beta · {downloads.windows.version}</span></div>
+          <h3 id="windows-heading">Windows</h3>
+          <p class="platform-detail">ARM64 & x64 PCs</p>
+          <p class="download-note">{downloads.windows.note}</p>
+          <a class="button button-primary" href={downloads.windows.href}>Get the Windows beta <LineIcon kind="arrow" /></a>
+          <a class="download-help" href={downloads.windows.instructions}>Download the installation guide</a>
+        </article>
       </div>
     </section>
 
-    <section class="feature-section" aria-labelledby="features-heading">
-      <div class="section-heading centered-heading">
-        <p class="section-kicker">Made for real prayer</p>
-        <h2 id="features-heading">Quietly capable, never in the way</h2>
+    <section id="prayer-book" class="prayer-section" aria-labelledby="prayer-heading">
+      <div class="section-heading">
+        <p class="section-kicker">A prayer book that goes with you</p>
+        <h2 id="prayer-heading">Return to the prayers you know.<br />Make space for something new.</h2>
       </div>
-
       <div class="feature-grid">
         <article class="feature-card">
-          <span class="feature-symbol" aria-hidden="true">✦</span>
-          <h3>Make it your own</h3>
-          <p>
-            Save Rosary presets, choose optional prayers, switch traditional and scriptural
-            forms, and let auto-advance carry you from bead to bead at your pace.
-          </p>
+          <LineIcon kind="prayer" />
+          <h3>Pray at your own pace</h3>
+          <p>Follow the Rosary bead by bead, move through a devotion, or keep count with the Jesus Prayer. Choose the options and language that suit your prayer.</p>
         </article>
-
         <article class="feature-card">
-          <span class="feature-symbol" aria-hidden="true">Aa</span>
-          <h3>Pray in your language</h3>
-          <p>
-            Latin, English, Arabic, Hebrew, Classical Syriac/Aramaic, Greek, Spanish, Russian,
-            and Tagalog — with native right-to-left layout where the language calls for it.
-          </p>
+          <LineIcon kind="book" />
+          <h3>Read with the day</h3>
+          <p>Explore feast calendars and their appointed readings. Download a Bible edition for offline reading, with its sources and available text clearly identified.</p>
         </article>
-
         <article class="feature-card">
-          <span class="feature-symbol" aria-hidden="true">◇</span>
-          <h3>Share a devotion</h3>
-          <p>
-            Every stepped devotion is an open <code>.prosaryprayer</code> bundle. Build one in
-            your browser, keep your draft on your device, then share it when it is ready.
-          </p>
-          <p class="card-links">
-            <a href="https://compose.prosary.app">Open Prosary Compose</a>
-            <a href="https://prayers.prosary.app">Browse community prayers</a>
-          </p>
+          <LineIcon kind="saved" />
+          <h3>Keep your own library</h3>
+          <p>Save the prayers you return to, adjust their options, and set reminders. Your prayer library stays close at hand in an app made for your device.</p>
         </article>
+      </div>
+      <div class="prayer-book-list">
+        <p>In the built-in prayer book</p>
+        <ul class="devotion-list">{devotions.map((devotion) => <li>{devotion}</li>)}</ul>
       </div>
     </section>
 
-    <section class="native-section" aria-labelledby="native-heading">
-      <div class="native-copy">
-        <p class="section-kicker">Native by design</p>
-        <h2 id="native-heading">At home on every screen</h2>
-        <p>
-          Prosary uses SwiftUI on iPhone, iPad, and Mac, Jetpack Compose on Android, and WinUI 3
-          on Windows. Each app follows its platform while sharing the same prayer content,
-          accessible structure, and feature set.
-        </p>
+    <section class="language-section" aria-labelledby="language-heading">
+      <div class="section-heading">
+        <p class="section-kicker">Words that feel like home</p>
+        <h2 id="language-heading">Prayer in many languages.</h2>
       </div>
-      <ul class="native-stack" aria-label="Native app technologies">
-        <li><strong>Apple</strong><span>SwiftUI</span></li>
-        <li><strong>Android</strong><span>Jetpack Compose</span></li>
-        <li><strong>Windows</strong><span>WinUI 3</span></li>
-      </ul>
+      <div class="section-copy">
+        <p>Latin, English, Hebrew, Arabic, Syriac, and more. Choose readable type, follow right-to-left text naturally, and switch between Syriac and Hebrew letters for Aramaic prayers.</p>
+        <p class="fine-print">Available languages and prayer forms vary by devotion. Source credits stay with the texts.</p>
+      </div>
     </section>
 
-    <section class="closing-callout" aria-labelledby="open-heading">
+    <section class="community-section" aria-labelledby="community-heading">
+      <div class="section-heading">
+        <p class="section-kicker">Room for your own devotions</p>
+        <h2 id="community-heading">Make a prayer.<br />Share it when you’re ready.</h2>
+        <p>Write a devotion in your browser with Prosary Compose, then bring it into the app. Explore prayers shared by the community, or keep your own work private.</p>
+      </div>
+      <div class="community-links">
+        <a class="community-link" href="https://compose.prosary.app"><span><strong>Prosary Compose</strong><small>Create and export a devotion</small></span><LineIcon kind="arrow" /></a>
+        <a class="community-link" href="https://prayers.prosary.app"><span><strong>Community prayers</strong><small>Browse the shared prayer library</small></span><LineIcon kind="arrow" /></a>
+      </div>
+    </section>
+
+    <section class="open-section" aria-labelledby="open-heading">
       <div>
-        <p class="section-kicker">Open from end to end</p>
-        <h2 id="open-heading">Prayer content and code you can inspect</h2>
-        <p>
-          The apps, web tools, shared data, documentation, and original assets live together in
-          one public repository under the BSD 2-Clause License.
-        </p>
+        <p class="section-kicker">Built with care, shared openly</p>
+        <h2 id="open-heading">A companion you can look inside.</h2>
+        <p>Native apps. Prayer available offline. No ads or analytics. The code, source credits, and shared content are open for you to explore.</p>
       </div>
-      <a class="button button-secondary" href="https://github.com/dkaluta/Prosary">
-        View the source
-        <span aria-hidden="true">↗</span>
-      </a>
+      <div class="open-links"><a class="button button-secondary" href="https://github.com/dkaluta/Prosary">View the source <LineIcon kind="arrow" /></a><a href="/privacy">Read the privacy policy</a></div>
     </section>
   </div>
 </BaseLayout>
