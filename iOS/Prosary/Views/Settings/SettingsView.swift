@@ -17,8 +17,9 @@ struct SettingsView: View {
   @AppStorage("reverseReadingsOrder") private var reverseReadingsOrder = false
   @Environment(\.appServices) private var services
   @Bindable private var interfaceLanguage = InterfaceLanguageStore.shared
+  #if !os(macOS)
   @AppStorage(AppColor.defaultsKey) private var appColor = AppColor.blue.rawValue
-  @ObservedObject private var iconController = AppIconController.shared
+  #endif
   @AppStorage(LanguageCatalog.defaultsKey) private var languageCode = LanguageCatalog.defaultSentinel
   @AppStorage(AramaicSignOfCrossForm.defaultsKey) private var aramaicSignOfCrossForm = AramaicSignOfCrossForm.formA
   @AppStorage("autoAdvanceSeconds") private var autoAdvanceSeconds = 0
@@ -64,12 +65,6 @@ struct SettingsView: View {
 
   var body: some View {
     settingsContent
-    #if os(macOS)
-    .alert(String(localized: "settings.appColor.iconError", defaultValue: "Could Not Change App Icon", bundle: UILanguage.bundle, locale: UILanguage.locale),
-           isPresented: Binding(get: { iconController.errorMessage != nil }, set: { if !$0 { iconController.errorMessage = nil } })) {
-      Button("common.ok") { iconController.errorMessage = nil }
-    } message: { Text(iconController.errorMessage ?? "") }
-    #endif
     .confirmationDialog(
       String(localized: "settings.removeAllDownloads.title",
              defaultValue: "Remove Unused Downloads?", bundle: UILanguage.bundle, locale: UILanguage.locale),
@@ -124,7 +119,7 @@ struct SettingsView: View {
       MacPrayerEditorForm { prayingSettings }
         .tabItem { Label(String(localized: "settings.prayingHeader", defaultValue: "Praying", bundle: UILanguage.bundle, locale: UILanguage.locale), systemImage: "hands.and.sparkles") }
         .tag(MacSettingsPane.praying)
-      MacPrayerEditorForm { appearanceSettings; typographySettings }
+      MacPrayerEditorForm { typographySettings }
         .tabItem { Label(String(localized: "settings.appearanceHeader", defaultValue: "Appearance", bundle: UILanguage.bundle, locale: UILanguage.locale), systemImage: "paintpalette") }
         .tag(MacSettingsPane.typography)
       MacPrayerEditorForm { todaySettings; TodayReminderSettings() }
@@ -160,28 +155,8 @@ struct SettingsView: View {
   @AppStorage(MacSettingsPane.defaultsKey) private var selectedPane = MacSettingsPane.language
   #endif
 
+  #if !os(macOS)
   private var appearanceSettings: some View {
-    #if os(macOS)
-    Section {
-      Picker(String(localized: "settings.appColor", defaultValue: "App Color", bundle: UILanguage.bundle, locale: UILanguage.locale),
-             selection: Binding(get: { AppColor.resolved(appColor) }, set: { appColor = $0.rawValue })) {
-        ForEach(AppColor.allCases) { color in
-          Label {
-            Text(color.title)
-          } icon: {
-            Image(color.previewAssetName).resizable().scaledToFit().frame(width: 24, height: 24)
-          }
-          .tag(color)
-        }
-      }
-      .accessibilityIdentifier("appColorPicker")
-      .accessibilityValue(AppColor.resolved(appColor).title)
-    } header: {
-      Text(String(localized: "settings.appearanceHeader", defaultValue: "Appearance", bundle: UILanguage.bundle, locale: UILanguage.locale))
-    } footer: {
-      Text(String(localized: "settings.appColor.macFooter", defaultValue: "Changes the accent color and Dock icon while Prosary is open.", bundle: UILanguage.bundle, locale: UILanguage.locale))
-    }
-    #else
     Section {
       NavigationLink {
         AppearanceSettingsView()
@@ -196,8 +171,8 @@ struct SettingsView: View {
       .accessibilityLabel(String(localized: "settings.appearanceHeader", defaultValue: "Appearance", bundle: UILanguage.bundle, locale: UILanguage.locale))
       .accessibilityValue(AppColor.resolved(appColor).title)
     }
-    #endif
   }
+  #endif
   private var languageSettings: some View {
     Section(String(localized: "settings.prayerLanguageHeader", defaultValue: "Language", bundle: UILanguage.bundle, locale: UILanguage.locale)) {
       Picker(String(localized: "settings.interfaceLanguage", defaultValue: "App Language", bundle: UILanguage.bundle, locale: UILanguage.locale),
