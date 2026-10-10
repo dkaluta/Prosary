@@ -59,7 +59,7 @@ section[id], article[id] { scroll-margin-block-start: 100px; }
 }
 .site-nav { min-height: 78px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
 .site-brand { display: inline-flex; align-items: center; gap: 12px; min-height: var(--prosary-control-height); color: var(--prosary-brand-strong); font-size: 1.2rem; font-weight: 750; text-decoration: none; }
-.brand-icon { display: block; flex: 0 0 auto; width: 36px; height: 36px; overflow: hidden; border-radius: var(--prosary-radius-icon); }
+.brand-icon { display: block; flex: 0 0 auto; width: 40px; height: 40px; overflow: hidden; border-radius: var(--prosary-radius-icon); }
 .brand-icon img { width: 100%; height: 100%; }
 .site-links { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
 .site-links a { display: inline-flex; align-items: center; justify-content: center; min-height: var(--prosary-control-height); padding-inline: var(--prosary-control-padding-inline); border-radius: var(--prosary-radius-control); color: var(--prosary-text-muted); font-size: .9rem; font-weight: 650; text-decoration: none; }

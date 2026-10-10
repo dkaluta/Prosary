@@ -1,5 +1,4 @@
 // Update availability only after the corresponding public release has been verified.
-// The assigned Store beta link is pending certification; GitHub remains the available download.
 export const downloads = {
   apple: {
     href: "https://testflight.apple.com/join/RJPs8DWS",
@@ -11,14 +10,8 @@ export const downloads = {
     note: "Available to invited testers on Google Play. Request access first if you haven’t joined the closed test.",
   },
   windows: {
-    version: "0.20.4",
-    href: "https://github.com/dkaluta/Prosary/releases/tag/v0.20.4",
-    instructions: "https://github.com/dkaluta/Prosary/releases/download/v0.20.4/Windows-README.markdown",
-    note: "Signed installers for ARM64 and x64. First-time setup uses the supplied public testing certificate; follow the installation guide.",
-    store: {
-      href: "https://apps.microsoft.com/detail/9NKBBRQX0JST",
-      status: "Certification pending",
-      note: "Awaiting Microsoft Store certification. You can download the signed GitHub beta now.",
-    },
+    href: "https://apps.microsoft.com/detail/9NKBBRQX0JST",
+    standalone: "https://github.com/dkaluta/Prosary/releases/tag/v0.20.4",
+    note: "Join the Windows beta through Microsoft Store.",
   },
 } as const;
