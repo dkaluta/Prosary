@@ -6,7 +6,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 const title = "Prosary — License";
 const description =
-  "Prosary’s code is open source under BSD 2-Clause. David Kaluta’s original text is dedicated under CC0. Third-party sources retain their own licenses and credits.";
+  "Prosary’s original website text is dedicated under CC0 1.0. Software is open source under BSD 2-Clause. Third-party sources retain their own licenses and credits.";
 // npm executes Astro with this package as cwd in development and CI. Resolve from there rather
 // than import.meta.url: Astro relocates page modules into dist/.prerender before rendering.
 const licenseText = await readFile(resolve(process.cwd(), "../../LICENSE"), "utf8");
@@ -15,7 +15,7 @@ const licenseText = await readFile(resolve(process.cwd(), "../../LICENSE"), "utf
 <BaseLayout {title} {description} heading="Open by design" currentPath="/license">
   <Fragment slot="hero">
     <p class="tagline">
-      Open code, credited sources, and a public-domain dedication for David Kaluta’s original text.
+      Original writing shared under CC0. Open code. Sources kept with their credits.
     </p>
   </Fragment>
 
@@ -25,6 +25,7 @@ const licenseText = await readFile(resolve(process.cwd(), "../../LICENSE"), "utf
         <p>On this page</p>
         <ol>
           <li><a href="#coverage">What it covers</a></li>
+          <li><a href="#website-content">Website content</a></li>
           <li><a href="#license-text">License and text dedication</a></li>
         </ol>
       </nav>
@@ -44,6 +45,19 @@ const licenseText = await readFile(resolve(process.cwd(), "../../LICENSE"), "utf
           Third-party material keeps its own license and attribution. Everything original to
           Prosary is covered by the canonical terms below: BSD 2-Clause for software and
           nontextual assets, and CC0 for David Kaluta’s original natural-language text and editorial contributions.
+        </p>
+      </section>
+
+      <section id="website-content" aria-labelledby="website-content-heading">
+        <h2 id="website-content-heading">Original website text is CC0</h2>
+        <p>
+          David Kaluta’s original writing and editorial content on this website are dedicated
+          to the public domain under <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0 1.0 Universal</a>.
+          You may copy, adapt, and share that text, including for commercial use, without asking permission.
+        </p>
+        <p>
+          Software remains under BSD 2-Clause. Store badges, credited prayer texts, fonts,
+          and other third-party material retain their own rights and licenses.
         </p>
       </section>
 

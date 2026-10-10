@@ -1,6 +1,5 @@
 using System.Globalization;
 using System.Text;
-using Prosary.Localization;
 
 namespace Prosary.Services;
 
@@ -14,12 +13,13 @@ public static class ReadingChapterHeading
         // chapter term is attested by CAL and the Antioch Bible (see Shared architecture).
         if (code == "arc") return script == "Syrc" ? "ܩܦܠܐܘܢ" : "קפלאון";
         if (code == "el") return "Κεφάλαιο";
-        var fallback = code switch
+        // MRT UI resources can resolve to the app's fallback language in a packaged build.
+        // This heading belongs to the selected edition, so retain its explicit language.
+        return code switch
         {
             "he" => "פרק", "ar" => "الإصحاح", "ru" => "Глава", "uk" => "Розділ",
             "tl" => "Kabanata", "fr" => "Chapitre", "it" => "Capitolo", _ => "Chapter",
         };
-        return Loc.Tr("readings_chapter", fallback, code);
     }
 
     public static string Number(int chapter, string language, string script = "Hebr")
