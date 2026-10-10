@@ -3,6 +3,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import LineIcon from "../components/LineIcon.astro";
 import RosaryArtwork from "../components/RosaryArtwork.astro";
 import StoreBadge from "../components/StoreBadge.astro";
+import AndroidBetaInvitation from "../components/AndroidBetaInvitation.astro";
 import { downloads } from "../data/downloads";
 import rosaryLatin from "../../../content/rosary/content/la.json";
 
@@ -136,7 +137,7 @@ const languages = ["English", "Latin", "Hebrew", "Arabic", "Syriac", "and more"]
           <p class="platform-detail">Phones & tablets</p>
           <p class="download-note">{downloads.android.note}</p>
           <StoreBadge platform="android" href={downloads.android.href} />
-          <a class="download-help" href={downloads.android.invitation}>Request a test invitation</a>
+          <AndroidBetaInvitation />
         </article>
         <article id="windows" class="download-card" aria-labelledby="windows-heading">
           <div class="download-heading"><LineIcon kind="desktop" /><span class="availability">Store beta</span></div>

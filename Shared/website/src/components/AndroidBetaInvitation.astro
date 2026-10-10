@@ -1,0 +1,103 @@
+---
+import { androidBetaEmail, downloads } from "../data/downloads";
+---
+
+<div class="android-beta-invitation" data-android-beta-invitation>
+  <a class="download-help" href={downloads.android.invitation} data-beta-trigger>Request a beta invitation</a>
+  <dialog aria-labelledby="android-beta-title" aria-describedby="android-beta-description">
+    <form novalidate>
+      <h2 id="android-beta-title">Join the Android beta</h2>
+      <p id="android-beta-description">Enter the Google account you use for Google Play on your phone. We’ll include it in your email request.</p>
+      <label for="android-beta-account">Google account email</label>
+      <input id="android-beta-account" type="email" inputmode="email" autocomplete="email" autocapitalize="none" spellcheck="false" required autofocus aria-describedby="android-beta-error" />
+      <p id="android-beta-error" class="field-error" role="alert"></p>
+      <div class="beta-actions">
+        <button type="button" class="button button-secondary" data-beta-close>Close</button>
+        <button type="submit" class="button button-primary">Open email</button>
+      </div>
+      <p class="beta-fallback">You can also email <a href={downloads.android.invitation} data-beta-email>{androidBetaEmail}</a> directly.</p>
+    </form>
+  </dialog>
+</div>
+
+<script>
+  import { androidBetaInvitationMailto } from "../data/downloads";
+
+  for (const container of document.querySelectorAll<HTMLElement>("[data-android-beta-invitation]")) {
+    const trigger = container.querySelector<HTMLAnchorElement>("[data-beta-trigger]");
+    const dialog = container.querySelector<HTMLDialogElement>("dialog");
+    const form = container.querySelector<HTMLFormElement>("form");
+    const input = container.querySelector<HTMLInputElement>("input");
+    const error = container.querySelector<HTMLElement>(".field-error");
+    const closeButton = container.querySelector<HTMLButtonElement>("[data-beta-close]");
+    const emailLink = container.querySelector<HTMLAnchorElement>("[data-beta-email]");
+    if (!trigger || !dialog || !form || !input || !error || !closeButton || !emailLink || typeof dialog.showModal !== "function") continue;
+    let composing = false;
+
+    function clearError() {
+      error!.textContent = "";
+      input!.removeAttribute("aria-invalid");
+    }
+
+    input.addEventListener("compositionstart", () => { composing = true; });
+    input.addEventListener("compositionend", () => { composing = false; });
+    input.addEventListener("input", () => {
+      clearError();
+      emailLink.href = input.value.trim() && !input.validity.typeMismatch
+        ? androidBetaInvitationMailto(input.value.trim())
+        : trigger.href;
+    });
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      if (composing) return;
+      input.value = input.value.trim();
+      if (!input.value || input.validity.typeMismatch) {
+        error.textContent = input.value
+          ? "Enter a valid email address, such as you@example.com."
+          : "Enter the Google account email you use for Google Play.";
+        input.setAttribute("aria-invalid", "true");
+        input.focus();
+        return;
+      }
+      const destination = androidBetaInvitationMailto(input.value);
+      window.location.assign(destination);
+    });
+    closeButton.addEventListener("click", () => { dialog.close(); });
+    dialog.addEventListener("close", () => {
+      form.reset();
+      composing = false;
+      clearError();
+      emailLink.href = trigger.href;
+      trigger.focus({ preventScroll: true });
+    });
+    trigger.addEventListener("click", (event) => {
+      event.preventDefault();
+      if (!dialog.open) dialog.showModal();
+    });
+  }
+</script>
+
+<style>
+  dialog {
+    width: min(440px, calc(100% - 32px));
+    max-height: calc(100dvh - 32px);
+    margin: auto;
+    padding: 28px;
+    overflow: auto;
+    border: var(--prosary-border-width) solid var(--prosary-border-strong);
+    border-radius: var(--prosary-radius-card);
+    background: var(--prosary-surface);
+    color: var(--prosary-text);
+  }
+  dialog::backdrop { background: color-mix(in srgb, var(--prosary-background) 82%, transparent); }
+  h2 { margin: 0 0 16px; font-size: 2rem; line-height: 1.15; }
+  #android-beta-description { margin: 0 0 24px; color: var(--prosary-text-muted); font-size: .95rem; }
+  label { display: block; margin: 0 0 8px; font-size: .9rem; font-weight: 650; }
+  input { box-sizing: border-box; width: 100%; min-height: var(--prosary-control-height); padding: 10px var(--prosary-control-padding-inline); border: var(--prosary-border-width) solid var(--prosary-border-strong); border-radius: var(--prosary-radius-control); background: var(--prosary-background); color: var(--prosary-text); font: inherit; line-height: 1.35; }
+  input[aria-invalid="true"] { border-color: var(--prosary-danger); }
+  .field-error { min-height: 3em; margin: 8px 0 12px; color: var(--prosary-danger); font-size: .85rem; line-height: 1.5; }
+  .beta-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 10px; }
+  button { font-family: inherit; cursor: pointer; }
+  .beta-fallback { margin: 20px 0 0; color: var(--prosary-text-muted); font-size: .8rem; overflow-wrap: anywhere; }
+  @media (max-width: 440px) { dialog { padding: 22px; } }
+</style>

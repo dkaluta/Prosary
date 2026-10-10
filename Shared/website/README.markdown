@@ -55,6 +55,10 @@ HTTPS" once DNS has propagated (can take up to 24-48 hours).
 - `src/components/StoreBadge.astro` — accessible beta/store links with aligned download badges.
   TestFlight uses `@csauvage/app-store-button`, rendered at build time with React's static
   renderer. The generated page needs no React runtime or device detection.
+- `src/components/AndroidBetaInvitation.astro` — the optional email-entry dialog for Android
+  beta requests. It opens a prefilled `mailto:` directly, keeps the address only in memory,
+  and clears it when closed. Without JavaScript, the invitation link opens the email template
+  with a readable placeholder to fill in. No form data is posted or stored by the website.
 - `src/components/LineIcon.astro` — small decorative SVG symbols; these are not app screenshots.
 - `src/components/RosaryArtwork.astro` — the decorative 59-bead rosary in the landing-page hero.
   Its 55 loop beads and four stem beads are generated as vector artwork.
@@ -68,7 +72,8 @@ HTTPS" once DNS has propagated (can take up to 24-48 hours).
   signed standalone installers, public testing certificate, and installation guide on GitHub.
   Keep release URLs current after verifying availability; omit versions from the visible badges.
 - Apple’s public invitation must not imply that an internal TestFlight build has passed external
-  review. Android is a closed test and keeps its invitation link visible.
+  review. Android is a closed beta; invitations are requested at `prosary@dkaluta.com` and the
+  Google Play account address is included in the prefilled email.
 - Privacy and license pages share the responsive layout. The canonical license is still read
   from the root `LICENSE`; original text's CC0 dedication remains distinct from software licensing.
 
