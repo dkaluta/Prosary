@@ -79,6 +79,11 @@ HTTPS" once DNS has propagated (can take up to 24-48 hours).
 
 ## Page design
 
+Original website writing and editorial content are dedicated under CC0 1.0 by the root
+[`LICENSE`](../../LICENSE). The public license page and footer identify this explicitly.
+Software and nontextual assets retain their existing licenses; store badges and other
+third-party material keep their original rights and credits.
+
 The homepage follows the prayer book, readings and languages, personal library, and beta
 downloads. Its display headings use a system serif family alongside the system sans-serif
 body and controls. Colors, rounded surfaces, focus outlines, and control sizing continue to

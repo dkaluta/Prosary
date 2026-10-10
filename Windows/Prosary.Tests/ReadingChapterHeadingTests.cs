@@ -1,3 +1,5 @@
+using System.Xml.Linq;
+using Prosary.Localization;
 using Prosary.Services;
 using Xunit;
 
@@ -5,6 +7,59 @@ namespace Prosary.Tests;
 
 public class ReadingChapterHeadingTests
 {
+    [Theory]
+    [InlineData("en-US", "Chapter")]
+    [InlineData("he", "פרק")]
+    [InlineData("iw-IL", "פרק")]
+    [InlineData("he-x-gamliel", "פרק")]
+    [InlineData("ar-LB", "الإصحاح")]
+    [InlineData("ru-RU", "Глава")]
+    [InlineData("uk-UA", "Розділ")]
+    [InlineData("tl-PH", "Kabanata")]
+    [InlineData("fil_PH", "Kabanata")]
+    [InlineData("fr-CA", "Chapitre")]
+    [InlineData("it-IT", "Capitolo")]
+    [InlineData("el", "Κεφάλαιο")]
+    [InlineData("grc", "Κεφάλαιο")]
+    [InlineData("la", "Chapter")]
+    public void ChapterLabelsKeepTheEditionLanguageWithAnIndependentInterface(string language, string expected)
+    {
+        var previous = UiLanguageCatalog.Current;
+        try
+        {
+            foreach (var uiLanguage in new[] { "en", "he", "fr" })
+            {
+                UiLanguageCatalog.UseLanguageForCurrentSession(uiLanguage);
+                Assert.Equal(expected, ReadingChapterHeading.Label(language));
+            }
+        }
+        finally { UiLanguageCatalog.UseLanguageForCurrentSession(previous); }
+    }
+
+    [Fact]
+    public void EditionChapterLabelsAgreeWithEveryLocalizedCaption()
+    {
+        foreach (var language in UiLanguageCatalog.All)
+        {
+            var path = Path.Combine(AppContext.BaseDirectory, "Strings",
+                UiLanguageCatalog.ResourceTag(language.Code), "Resources.resw");
+            var caption = XDocument.Load(path).Root!.Elements("data")
+                .Single(row => (string?)row.Attribute("name") == "readings_chapter")
+                .Element("value")!.Value;
+            Assert.Equal(caption, ReadingChapterHeading.Label(language.Code));
+        }
+    }
+
+    [Theory]
+    [InlineData("arc", "Hebr", "קפלאון", "ג׳")]
+    [InlineData("arc-SY", "Syrc", "ܩܦܠܐܘܢ", "ܓ")]
+    public void AramaicChapterLabelsAndNumbersFollowTheChosenAlphabet(
+        string language, string script, string label, string number)
+    {
+        Assert.Equal(label, ReadingChapterHeading.Label(language, script));
+        Assert.Equal(number, ReadingChapterHeading.Number(3, language, script));
+    }
+
     [Theory]
     [InlineData(1, "א׳")]
     [InlineData(9, "ט׳")]
