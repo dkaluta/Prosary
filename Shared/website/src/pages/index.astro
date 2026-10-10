@@ -63,7 +63,11 @@ const devotions = [
           <div class="download-heading"><LineIcon kind="desktop" /><span class="availability">Public beta · {downloads.windows.version}</span></div>
           <h3 id="windows-heading">Windows</h3>
           <p class="platform-detail">ARM64 & x64 PCs</p>
-          <p class="download-note">{downloads.windows.note}</p>
+          <p class="download-note">
+            {downloads.windows.note}
+            <a class="download-help" href={downloads.windows.store.href}>Store beta — {downloads.windows.store.status.toLowerCase()}</a>
+            <span class="platform-detail">{downloads.windows.store.note}</span>
+          </p>
           <a class="button button-primary" href={downloads.windows.href}>Get the Windows beta <LineIcon kind="arrow" /></a>
           <a class="download-help" href={downloads.windows.instructions}>Download the installation guide</a>
         </article>
