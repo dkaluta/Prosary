@@ -1,45 +1,123 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import LineIcon from "../components/LineIcon.astro";
+import RosaryArtwork from "../components/RosaryArtwork.astro";
 import StoreBadge from "../components/StoreBadge.astro";
 import { downloads } from "../data/downloads";
+import rosaryLatin from "../../../content/rosary/content/la.json";
 
-const title = "Prosary — A quiet place to pray";
-const description = "A native Catholic prayer companion for Apple devices, Android, and Windows. Pray the Rosary and other devotions, follow daily readings, and keep your own prayer library. Explore the beta downloads.";
+const title = "Prosary — Make room for prayer";
+const description = "A Catholic prayer companion for Apple devices, Android, and Windows. Familiar devotions, daily readings, and a prayer book of your own. Find your beta download.";
+const prayerExcerpt = rosaryLatin.prayers.subTuumPraesidium.split("\n").slice(0, 2).join("\n");
 const devotions = [
   "Holy Rosary", "Angelus", "Jesus Prayer", "Stations of the Cross", "Via Lucis",
   "Franciscan Crown", "Seven Sorrows", "Divine Mercy Chaplet", "Trisagion", "O Antiphons",
 ];
+const languages = ["English", "Latin", "Hebrew", "Arabic", "Syriac", "and more"];
 ---
 
-<BaseLayout {title} {description} heading="A quiet place to pray." currentPath="/">
+<BaseLayout {title} {description} heading="Make room for prayer." currentPath="/">
   <header slot="hero" class="home-hero page-width">
     <div class="hero-copy">
       <p class="eyebrow">A Catholic prayer companion</p>
-      <h1>A quiet place<br />to pray.</h1>
+      <h1>Make room<br />for <em>prayer.</em></h1>
       <p class="hero-description">
-        Familiar devotions, daily readings, and a prayer library of your own.
-        At home on your phone, tablet, or desktop.
+        The prayers you know. A rhythm for the day. A prayer book that goes with you,
+        on your phone, tablet, or desktop.
       </p>
       <div class="hero-actions">
         <a class="button button-primary" href="#download">Get the beta <LineIcon kind="arrow" /></a>
-        <a class="button button-secondary" href="#prayer-book">Explore the prayer book</a>
+        <a class="button button-text" href="#prayer-book">Explore the prayer book</a>
       </div>
       <p class="hero-platforms">iPhone · iPad · Mac · Vision Pro · Android · Windows</p>
     </div>
-    <div class="hero-art" aria-hidden="true">
-      <div class="icon-frame">
-        <img src="/prosary-social.png" alt="" width="1024" height="1024" fetchpriority="high" />
+    <figure class="rosary-figure">
+      <div class="rosary-visual">
+        <RosaryArtwork />
+        <div class="rosary-prayer">
+          <p class="prayer-example-label">From the prayer book</p>
+          <blockquote lang="la">{prayerExcerpt}</blockquote>
+          <p class="prayer-example-title">Sub tuum praesidium · Latin</p>
+        </div>
       </div>
-      <p>Prosary</p>
-      <span>A little room for prayer, every day.</span>
-    </div>
+      <figcaption class="rosary-caption">A familiar prayer. A moment of your own.</figcaption>
+    </figure>
   </header>
 
+  <ul class="app-principles page-width" aria-label="About the apps">
+    <li>Native apps</li>
+    <li>Prayers offline</li>
+    <li>No ads or analytics</li>
+  </ul>
+
   <div class="page-sections">
+    <section id="prayer-book" class="prayer-section" aria-labelledby="prayer-heading">
+      <div class="section-heading">
+        <p class="section-kicker">The prayer book</p>
+        <h2 id="prayer-heading">Familiar prayers,<br />at your pace.</h2>
+        <p>Devotions to follow, prayers to repeat, and room to make them part of your day.</p>
+      </div>
+      <div class="prayer-book-layout">
+        <div class="prayer-features">
+          <article class="prayer-feature">
+            <LineIcon kind="prayer" />
+            <div><h3>The Rosary, bead by bead</h3><p>Follow the mysteries and prayers at your own pace. Choose your language and the prayers you include.</p></div>
+          </article>
+          <article class="prayer-feature">
+            <LineIcon kind="book" />
+            <div><h3>A devotion for the moment</h3><p>Walk through the Stations of the Cross, pray the Angelus, or return to a familiar chaplet.</p></div>
+          </article>
+          <article class="prayer-feature">
+            <LineIcon kind="saved" />
+            <div><h3>A simple way to keep count</h3><p>Keep the Jesus Prayer close with a quiet counter for repeated prayer.</p></div>
+          </article>
+        </div>
+        <aside class="devotion-index" aria-labelledby="devotion-index-heading">
+          <p class="index-label">In Prosary</p>
+          <h3 id="devotion-index-heading">The built-in prayer book</h3>
+          <ul class="devotion-list">{devotions.map((devotion) => <li>{devotion}</li>)}</ul>
+        </aside>
+      </div>
+    </section>
+
+    <section class="daily-section" aria-labelledby="daily-heading">
+      <div class="daily-layout">
+        <div class="daily-copy">
+          <p class="section-kicker">Feasts & readings</p>
+          <h2 id="daily-heading">Read with the day.</h2>
+          <p>Find the day's feasts and their appointed readings, with calendars from different traditions.</p>
+          <div class="reading-detail">
+            <LineIcon kind="book" />
+            <div><h3>Read, wherever you are</h3><p>Download a Bible edition for offline reading. Sources, citations, and available text stay clearly identified.</p></div>
+          </div>
+        </div>
+        <div class="language-panel">
+          <p class="section-kicker">Words that feel like home</p>
+          <h3>Prayer in many languages.</h3>
+          <p>Choose readable type, follow right-to-left text naturally, and switch between Syriac and Hebrew letters for Aramaic prayers.</p>
+          <ul class="language-list" aria-label="Prayer languages">{languages.map((language) => <li>{language}</li>)}</ul>
+          <p class="fine-print">Languages and prayer forms vary by devotion. Source credits stay with the texts.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="library-section" aria-labelledby="library-heading">
+      <div class="library-layout">
+        <div class="section-heading">
+          <p class="section-kicker">A prayer book of your own</p>
+          <h2 id="library-heading">Keep it close.<br />Let it keep growing.</h2>
+          <p>Save the prayers you return to, adjust their options, and set reminders. Write a devotion with Prosary Compose, bring it into the app, or share it with the community.</p>
+        </div>
+        <div class="community-links">
+          <a class="community-link" href="https://compose.prosary.app"><span><strong>Make a prayer</strong><small>Write and export with Prosary Compose</small></span><LineIcon kind="arrow" /></a>
+          <a class="community-link" href="https://prayers.prosary.app"><span><strong>Find a shared prayer</strong><small>Explore the community prayer library</small></span><LineIcon kind="arrow" /></a>
+        </div>
+      </div>
+    </section>
+
     <section id="download" class="download-section" aria-labelledby="download-heading">
       <div class="section-heading">
-        <p class="section-kicker">Try Prosary</p>
+        <p class="section-kicker">Bring Prosary with you</p>
         <h2 id="download-heading">Choose your app.</h2>
         <p>Prosary is in beta. Here’s how to join on each platform.</p>
       </div>
@@ -71,64 +149,9 @@ const devotions = [
       </div>
     </section>
 
-    <section id="prayer-book" class="prayer-section" aria-labelledby="prayer-heading">
-      <div class="section-heading">
-        <p class="section-kicker">A prayer book that goes with you</p>
-        <h2 id="prayer-heading">Return to the prayers you know.<br />Make space for something new.</h2>
-      </div>
-      <div class="feature-grid">
-        <article class="feature-card">
-          <LineIcon kind="prayer" />
-          <h3>Pray at your own pace</h3>
-          <p>Follow the Rosary bead by bead, move through a devotion, or keep count with the Jesus Prayer. Choose the options and language that suit your prayer.</p>
-        </article>
-        <article class="feature-card">
-          <LineIcon kind="book" />
-          <h3>Read with the day</h3>
-          <p>Explore feast calendars and their appointed readings. Download a Bible edition for offline reading, with its sources and available text clearly identified.</p>
-        </article>
-        <article class="feature-card">
-          <LineIcon kind="saved" />
-          <h3>Keep your own library</h3>
-          <p>Save the prayers you return to, adjust their options, and set reminders. Your prayer library stays close at hand in an app made for your device.</p>
-        </article>
-      </div>
-      <div class="prayer-book-list">
-        <p>In the built-in prayer book</p>
-        <ul class="devotion-list">{devotions.map((devotion) => <li>{devotion}</li>)}</ul>
-      </div>
-    </section>
-
-    <section class="language-section" aria-labelledby="language-heading">
-      <div class="section-heading">
-        <p class="section-kicker">Words that feel like home</p>
-        <h2 id="language-heading">Prayer in many languages.</h2>
-      </div>
-      <div class="section-copy">
-        <p>Latin, English, Hebrew, Arabic, Syriac, and more. Choose readable type, follow right-to-left text naturally, and switch between Syriac and Hebrew letters for Aramaic prayers.</p>
-        <p class="fine-print">Available languages and prayer forms vary by devotion. Source credits stay with the texts.</p>
-      </div>
-    </section>
-
-    <section class="community-section" aria-labelledby="community-heading">
-      <div class="section-heading">
-        <p class="section-kicker">Room for your own devotions</p>
-        <h2 id="community-heading">Make a prayer.<br />Share it when you’re ready.</h2>
-        <p>Write a devotion in your browser with Prosary Compose, then bring it into the app. Explore prayers shared by the community, or keep your own work private.</p>
-      </div>
-      <div class="community-links">
-        <a class="community-link" href="https://compose.prosary.app"><span><strong>Prosary Compose</strong><small>Create and export a devotion</small></span><LineIcon kind="arrow" /></a>
-        <a class="community-link" href="https://prayers.prosary.app"><span><strong>Community prayers</strong><small>Browse the shared prayer library</small></span><LineIcon kind="arrow" /></a>
-      </div>
-    </section>
-
-    <section class="open-section" aria-labelledby="open-heading">
-      <div>
-        <p class="section-kicker">Built with care, shared openly</p>
-        <h2 id="open-heading">A companion you can look inside.</h2>
-        <p>Native apps. Prayer available offline. No ads or analytics. The code, source credits, and shared content are open for you to explore.</p>
-      </div>
+    <aside class="open-section" aria-labelledby="open-heading">
+      <div><h2 id="open-heading">Open, with care.</h2><p>The code and shared content are yours to explore, with their sources and credits.</p></div>
       <div class="open-links"><a class="button button-secondary" href="https://github.com/dkaluta/Prosary">View the source <LineIcon kind="arrow" /></a><a href="/privacy">Read the privacy policy</a></div>
-    </section>
+    </aside>
   </div>
 </BaseLayout>
