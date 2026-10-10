@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import LineIcon from "../components/LineIcon.astro";
+import StoreBadge from "../components/StoreBadge.astro";
 import { downloads } from "../data/downloads";
 
 const title = "Prosary — A quiet place to pray";
@@ -48,7 +49,7 @@ const devotions = [
           <h3 id="apple-heading">Apple</h3>
           <p class="platform-detail">iPhone, iPad, Mac & Vision Pro</p>
           <p class="download-note">{downloads.apple.note}</p>
-          <a class="button button-secondary" href={downloads.apple.href}>Join the Apple beta <LineIcon kind="arrow" /></a>
+          <StoreBadge platform="apple" href={downloads.apple.href} />
           <p class="download-help">Requires Apple’s TestFlight app</p>
         </article>
         <article id="android" class="download-card" aria-labelledby="android-heading">
@@ -56,7 +57,7 @@ const devotions = [
           <h3 id="android-heading">Android</h3>
           <p class="platform-detail">Phones & tablets</p>
           <p class="download-note">{downloads.android.note}</p>
-          <a class="button button-secondary" href={downloads.android.href}>Open Google Play <LineIcon kind="arrow" /></a>
+          <StoreBadge platform="android" href={downloads.android.href} />
           <a class="download-help" href={downloads.android.invitation}>Request a test invitation</a>
         </article>
         <article id="windows" class="download-card" aria-labelledby="windows-heading">
@@ -64,7 +65,7 @@ const devotions = [
           <h3 id="windows-heading">Windows</h3>
           <p class="platform-detail">ARM64 & x64 PCs</p>
           <p class="download-note">{downloads.windows.note}</p>
-          <a class="button button-primary" href={downloads.windows.href}>Open Microsoft Store <LineIcon kind="arrow" /></a>
+          <StoreBadge platform="windows" href={downloads.windows.href} />
           <a class="download-help" href={downloads.windows.standalone}>Standalone installers and setup guide</a>
         </article>
       </div>

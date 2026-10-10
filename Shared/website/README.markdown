@@ -49,9 +49,12 @@ HTTPS" once DNS has propagated (can take up to 24-48 hours).
 
 - `src/layouts/BaseLayout.astro` — shared metadata, navigation, skip link, and page shell.
 - `src/pages/index.astro` — the landing page content.
-- `src/data/downloads.ts` — verified beta availability, platform links, and the Windows release
-  version. The stable landing-page section is `https://prosary.app/#download`; Windows is
+- `src/data/downloads.ts` — verified beta availability and platform links.
+  The stable landing-page section is `https://prosary.app/#download`; Windows is
   directly addressable at `https://prosary.app/#windows`.
+- `src/components/StoreBadge.astro` — accessible beta/store links with aligned download badges.
+  TestFlight uses `@csauvage/app-store-button`, rendered at build time with React's static
+  renderer. The generated page needs no React runtime or device detection.
 - `src/components/LineIcon.astro` — small decorative SVG symbols; these are not app screenshots.
 - `src/pages/privacy.astro` — the privacy policy for the native apps and both web tools.
 - `src/pages/license.astro` — the license page; its text is read from the root `LICENSE` at build
@@ -59,11 +62,24 @@ HTTPS" once DNS has propagated (can take up to 24-48 hours).
 - `src/styles/global.css` — shared responsive, light/dark, contrast, focus, and reduced-motion
   styling.
 - The site uses the genuine canonical app icon; it does not present illustrative UI as a screenshot.
-- Release links are deliberately explicit. Windows points to a verified published
-  GitHub testing release, including its public certificate and installation guide. Change the
-  version and links together after a newer release is public. Replace them with the Microsoft
-  Store listing only after its direct link is live and verified.
+- Windows points to the verified Microsoft Store beta listing. Its secondary link retains the
+  signed standalone installers, public testing certificate, and installation guide on GitHub.
+  Keep release URLs current after verifying availability; omit versions from the visible badges.
 - Apple’s public invitation must not imply that an internal TestFlight build has passed external
   review. Android is a closed test and keeps its invitation link visible.
 - Privacy and license pages share the responsive layout. The canonical license is still read
-  from the root `LICENSE`; original text’s CC0 dedication remains distinct from software licensing.
+  from the root `LICENSE`; original text's CC0 dedication remains distinct from software licensing.
+
+## Download badge credits
+
+- The TestFlight badge comes from [Clément Sauvage's app-store-button library](https://github.com/csauvage/app-store-button)
+  under its [MIT license](public/badges/app-store-button.LICENSE.txt), preserved with the deployed assets.
+  This is the library's generated TestFlight artwork, rather than an Apple App Store badge.
+- `public/badges/google-play.png` is Google's unmodified
+  [English badge](https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png).
+  Preserve its built-in clear space and follow Google's
+  [brand guidelines](https://developer.android.com/distribute/marketing-tools/brand-guidelines).
+  Google Play and the Google Play logo are trademarks of Google LLC.
+- `public/badges/microsoft-store.svg` is Microsoft's unmodified
+  [English dark badge](https://get.microsoft.com/images/en-us%20dark.svg).
+  Microsoft Store and its badge remain Microsoft's trademarks.

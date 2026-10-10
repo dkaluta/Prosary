@@ -1,0 +1,51 @@
+---
+import { AppStoreButton, Locale, Store, Theme } from "@csauvage/app-store-button";
+import { createElement } from "react";
+import { renderToStaticMarkup } from "react-dom/server";
+
+interface Props {
+  platform: "apple" | "android" | "windows";
+  href: string;
+}
+
+const { platform, href } = Astro.props;
+const labels = {
+  apple: "Join the Prosary beta on TestFlight",
+  android: "Get Prosary on Google Play",
+  windows: "Get Prosary from Microsoft Store",
+};
+
+// Render the suggested library once during the build; the badge needs no client runtime.
+// Keep our own link so its accessible name describes the beta invitation accurately.
+const testFlightBadge = platform === "apple"
+  ? renderToStaticMarkup(createElement(AppStoreButton, {
+      store: Store.TestFlight,
+      theme: Theme.Black,
+      locale: Locale.EnUs,
+      showQrCode: false,
+      height: 44,
+    }))
+  : undefined;
+---
+
+<div class="store-badge-row">
+  <a class:list={["store-badge", `store-badge-${platform}`]} href={href} aria-label={labels[platform]}>
+    {platform === "apple" ? (
+      <span class="testflight-badge" aria-hidden="true" set:html={testFlightBadge} />
+    ) : platform === "android" ? (
+      <img src="/badges/google-play.png" width="646" height="250" alt="" />
+    ) : (
+      <img src="/badges/microsoft-store.svg" width="161" height="44" alt="" />
+    )}
+  </a>
+</div>
+
+<style>
+  .store-badge-row { min-height: 66px; display: flex; align-items: center; justify-content: center; }
+  .store-badge { display: inline-flex; align-items: center; justify-content: center; min-height: 66px; max-width: 100%; padding: 10px; border-radius: 8px; text-decoration: none; }
+  .store-badge img { width: 161px; height: auto; }
+  .store-badge-android { padding: 0; }
+  .store-badge-android img { width: 170px; height: auto; }
+  .testflight-badge { display: inline-flex; }
+  .testflight-badge :global(svg) { width: 132px; height: 44px; }
+</style>
