@@ -56,6 +56,8 @@ HTTPS" once DNS has propagated (can take up to 24-48 hours).
   TestFlight uses `@csauvage/app-store-button`, rendered at build time with React's static
   renderer. The generated page needs no React runtime or device detection.
 - `src/components/LineIcon.astro` — small decorative SVG symbols; these are not app screenshots.
+- `src/components/RosaryArtwork.astro` — the decorative 59-bead rosary in the landing-page hero.
+  Its 55 loop beads and four stem beads are generated as vector artwork.
 - `src/pages/privacy.astro` — the privacy policy for the native apps and both web tools.
 - `src/pages/license.astro` — the license page; its text is read from the root `LICENSE` at build
   time rather than duplicated here.
@@ -69,6 +71,18 @@ HTTPS" once DNS has propagated (can take up to 24-48 hours).
   review. Android is a closed test and keeps its invitation link visible.
 - Privacy and license pages share the responsive layout. The canonical license is still read
   from the root `LICENSE`; original text's CC0 dedication remains distinct from software licensing.
+
+## Page design
+
+The homepage follows the prayer book, readings and languages, personal library, and beta
+downloads. Its display headings use a system serif family alongside the system sans-serif
+body and controls. Colors, rounded surfaces, focus outlines, and control sizing continue to
+come from the canonical Prosary tokens; dark mode follows the system.
+
+The hero's Latin excerpt is imported directly from `Shared/content/rosary/content/la.json`
+at build time and preserves the first two lines of `subTuumPraesidium`. Keep the quote as
+accessible HTML with its language and prayer title, and retain the decorative rosary on
+small screens. The illustration and text do not add a client script.
 
 ## Download badge credits
 
