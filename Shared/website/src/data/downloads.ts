@@ -1,4 +1,16 @@
 // Update availability only after the corresponding public release has been verified.
+export const androidBetaEmail = "prosary@dkaluta.com";
+
+export function androidBetaInvitationMailto(account = "[your Google account email]"): string {
+  const body = [
+    "Hello,", "",
+    "I would like to join the Prosary Android closed beta.",
+    `The Google account I use on my phone is ${account}.`, "",
+    "Thank you!",
+  ].join("\r\n");
+  return `mailto:${androidBetaEmail}?subject=${encodeURIComponent("Prosary Android closed beta")}&body=${encodeURIComponent(body)}`;
+}
+
 export const downloads = {
   apple: {
     href: "https://testflight.apple.com/join/RJPs8DWS",
@@ -6,8 +18,8 @@ export const downloads = {
   },
   android: {
     href: "https://play.google.com/store/apps/details?id=com.dkaluta.prosary",
-    invitation: "https://docs.google.com/forms/d/e/1FAIpQLSe2pFPBmjBL6SOxjh7zktRDzEraxdfNUR-L6vuiPuy-sOunPw/viewform?usp=sharing&ouid=107334041819347937443",
-    note: "Available to invited testers on Google Play. Request access first if you haven’t joined the closed test.",
+    invitation: androidBetaInvitationMailto(),
+    note: "Request an invitation by email. Once you’re added to the closed beta, install Prosary through Google Play.",
   },
   windows: {
     href: "https://apps.microsoft.com/detail/9NKBBRQX0JST",
