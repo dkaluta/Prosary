@@ -21,7 +21,8 @@ a:hover { text-decoration-thickness: .13em; }
 main:focus-visible { outline-offset: calc(var(--prosary-focus-offset) * -1); }
 img { display: block; max-width: 100%; height: auto; }
 svg { display: block; flex: 0 0 auto; }
-h1, h2, h3 { color: var(--prosary-brand-strong); letter-spacing: -.035em; text-wrap: balance; }
+h1, h2, h3, .site-brand, .hero-art p { font-kerning: normal; letter-spacing: normal; }
+h1, h2, h3 { color: var(--prosary-brand-strong); text-wrap: balance; }
 p, li { text-wrap: pretty; }
 code, pre { font-family: ui-monospace, "SFMono-Regular", Consolas, monospace; }
 code { font-size: .9em; overflow-wrap: anywhere; }
@@ -57,7 +58,7 @@ section[id], article[id] { scroll-margin-block-start: 100px; }
   backdrop-filter: blur(16px);
 }
 .site-nav { min-height: 78px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
-.site-brand { display: inline-flex; align-items: center; gap: 12px; min-height: var(--prosary-control-height); color: var(--prosary-brand-strong); font-size: 1.2rem; font-weight: 750; letter-spacing: -.025em; text-decoration: none; }
+.site-brand { display: inline-flex; align-items: center; gap: 12px; min-height: var(--prosary-control-height); color: var(--prosary-brand-strong); font-size: 1.2rem; font-weight: 750; text-decoration: none; }
 .brand-icon { display: block; flex: 0 0 auto; width: 36px; height: 36px; overflow: hidden; border-radius: var(--prosary-radius-icon); }
 .brand-icon img { width: 100%; height: 100%; }
 .site-links { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
@@ -67,7 +68,7 @@ section[id], article[id] { scroll-margin-block-start: 100px; }
 
 .home-hero { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); align-items: center; gap: 48px; padding-block: clamp(64px, 8vw, 110px); }
 .eyebrow, .section-kicker { margin: 0 0 16px; color: var(--prosary-brand-primary); font-size: .76rem; font-weight: 750; letter-spacing: .11em; line-height: 1.4; text-transform: uppercase; }
-.home-hero h1 { margin: 0; font-size: clamp(3.25rem, 6.4vw, 5.5rem); font-weight: 750; line-height: 1.04; letter-spacing: -.065em; }
+.home-hero h1 { margin: 0; font-size: clamp(3.25rem, 6.4vw, 5.5rem); font-weight: 750; line-height: 1.04; }
 .hero-description { max-width: 32rem; margin: 24px 0 28px; color: var(--prosary-text-muted); font-size: clamp(1.08rem, 2vw, 1.2rem); line-height: 1.65; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
 .button { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: var(--prosary-control-height); padding: 12px var(--prosary-control-padding-inline); border: var(--prosary-border-width) solid transparent; border-radius: var(--prosary-radius-control); font-size: .94rem; font-weight: 700; line-height: 1.35; text-align: center; text-decoration: none; transition: background-color var(--prosary-motion-fast) ease, box-shadow var(--prosary-motion-fast) ease; }
@@ -78,7 +79,7 @@ section[id], article[id] { scroll-margin-block-start: 100px; }
 .hero-platforms { margin: 22px 0 0; color: var(--prosary-text-muted); font-size: .8rem; }
 .hero-art { min-width: 0; padding: 44px 24px 30px; border: var(--prosary-border-width) solid var(--prosary-border); border-radius: var(--prosary-radius-panel); background: var(--prosary-surface-subtle); text-align: center; }
 .icon-frame { width: min(100%, 250px); margin-inline: auto; overflow: hidden; border-radius: var(--prosary-radius-icon); box-shadow: var(--prosary-shadow-card); }
-.hero-art p { margin: 24px 0 2px; color: var(--prosary-brand-strong); font-size: 1.4rem; font-weight: 700; letter-spacing: -.025em; }
+.hero-art p { margin: 24px 0 2px; color: var(--prosary-brand-strong); font-size: 1.4rem; font-weight: 700; }
 .hero-art > span { color: var(--prosary-text-muted); font-size: .85rem; }
 
 .page-sections { display: grid; gap: clamp(64px, 8vw, 96px); padding-block-end: 96px; }
