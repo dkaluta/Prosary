@@ -9,6 +9,80 @@
 
 import Foundation
 
+/// Only the supplied procession clauses are optional. Other references to the Son, and
+/// Nicene recensions without a sourced alternate clause, retain their own wording.
+enum NiceneCreedText {
+  static let defaultsKey = "includeFilioque"
+
+  private static let clauses: [(included: String, omitted: String)] = [
+    ("הנובע מהאב ומהבן", "הנובע מהאב"),
+    ("אֲשֶׁר נֶאֱצַל מִן הָאָב וּמִן הַבֵּן", "אֲשֶׁר נֶאֱצַל מִן הָאָב"),
+    ("הַו דּמֶן אַבָא ובא ננפֶק", "הַו דּמֶן אַבָא ננפֶק"),
+    ("ܗܰܘ ܕ݁ܡܶܢ ܐܰܒܳܐ ܘܒܐ ܢܢܦܶܩ", "ܗܰܘ ܕ݁ܡܶܢ ܐܰܒܳܐ ܢܢܦܶܩ"),
+    ("qui ex Patre Filioque procedit", "qui ex Patre procedit"),
+    ("הַנּוֹבֵעַ מֵהָאָב וּמֵהַבֵּן", "הַנּוֹבֵעַ מֵהָאָב"),
+    ("הַנּוֹבֵעַ מֵהָאָב וּמֵהַבֵּן", "הַנּוֹבֵעַ מֵהָאָב"),
+  ]
+  private static let missionAnnotation = "אֲשֶׁר נֶאֱצַל מִן הָאָב (וּמִן הַבֵּן)"
+  private static let vicariateAnnotation = "הנובע מהאב [ומהבן]"
+  private static let greekProcession = "τὸ ἐκ τοῦ Πατρὸς ἐκπορευόμενον"
+  private static let suppressionKey = "Prosary.NiceneCreedText.suppressedInitialization"
+
+  /// Counting or validating a saved run must not choose a rite before the reader opens it.
+  static func withoutInitializingPreference<T>(_ action: () throws -> T) rethrows -> T {
+    let thread = Thread.current.threadDictionary
+    let previous = thread[suppressionKey] as? Int ?? 0
+    thread[suppressionKey] = previous + 1
+    defer {
+      if previous == 0 { thread.removeObject(forKey: suppressionKey) }
+      else { thread[suppressionKey] = previous }
+    }
+    return try action()
+  }
+
+  static func sourceDefault(key: String, text: String) -> Bool? {
+    guard key == "symbolumNicaenum" || key == "symbolumApostolorum" else { return nil }
+    if text.contains(missionAnnotation) || text.contains(vicariateAnnotation) { return true }
+    if clauses.contains(where: { text.contains($0.included) }) { return true }
+    if clauses.contains(where: { text.contains($0.omitted) }) { return false }
+    return text.contains(greekProcession) ? false : nil
+  }
+
+  static func applying(_ included: Bool, key: String, text: String) -> String {
+    guard sourceDefault(key: key, text: text) != nil else { return text }
+    var result = text.replacingOccurrences(of: missionAnnotation, with: included ? clauses[1].included : clauses[1].omitted)
+      .replacingOccurrences(of: vicariateAnnotation, with: included ? clauses[0].included : clauses[0].omitted)
+    for clause in clauses {
+      result = result.replacingOccurrences(of: clause.included, with: included ? clause.included : clause.omitted)
+    }
+    return result
+  }
+
+  @MainActor
+  static func included(for languageCode: String? = nil, defaults: UserDefaults = .standard) -> Bool {
+    if defaults.object(forKey: defaultsKey) != nil { return defaults.bool(forKey: defaultsKey) }
+    return LanguageCatalog.resolve(languageCode).code != "el"
+  }
+
+  @MainActor
+  static func initialize(for languageCode: String?, defaults: UserDefaults = .standard) {
+    guard let languageCode, !languageCode.isEmpty, defaults.object(forKey: defaultsKey) == nil else { return }
+    defaults.set(included(for: languageCode, defaults: defaults), forKey: defaultsKey)
+  }
+
+  static func render(key: String, text: String, alternate: String?, defaults: UserDefaults = .standard)
+    -> (text: String, alternate: String?) {
+    guard let sourceIncluded = sourceDefault(key: key, text: text) else { return (text, alternate) }
+    if defaults.object(forKey: defaultsKey) == nil,
+       (Thread.current.threadDictionary[suppressionKey] as? Int ?? 0) == 0 {
+      defaults.set(sourceIncluded, forKey: defaultsKey)
+    }
+    let included = defaults.object(forKey: defaultsKey) == nil ? sourceIncluded : defaults.bool(forKey: defaultsKey)
+    return (applying(included, key: key, text: text),
+            alternate.map { applying(included, key: key, text: $0) })
+  }
+}
+
 enum PrayerTranslations {
   /// Aramaic's two writing systems share one prayer language and one saved preference.
   static let aramaicDefaultScriptKey = "aramaicDefaultScript"

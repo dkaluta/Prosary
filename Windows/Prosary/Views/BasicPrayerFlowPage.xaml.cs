@@ -28,7 +28,15 @@ public sealed partial class BasicPrayerFlowPage : Page
         var languageLabel = Loc.Tr("EdLanguageHeader/Text", "Prayer language");
         AutomationProperties.SetName(LanguageMenuButton, languageLabel);
         ToolTipService.SetToolTip(LanguageMenuButton, languageLabel);
+        Loaded += (_, _) =>
+        {
+            AppSettings.PrayerWordingChanged += OnPrayerWordingChanged;
+            ViewModel.RefreshPrayerWording();
+        };
+        Unloaded += (_, _) => AppSettings.PrayerWordingChanged -= OnPrayerWordingChanged;
     }
+
+    private void OnPrayerWordingChanged() => DispatcherQueue.TryEnqueue(ViewModel.RefreshPrayerWording);
 
     protected override void OnNavigatedTo(NavigationEventArgs e)
     {

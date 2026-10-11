@@ -46,6 +46,9 @@ enum BasicPrayerCatalog {
     BasicPrayer(id: "creed", bundleId: "rosary",
                 titleKey: "symbolumApostolorumTitle", bodyKey: "symbolumApostolorum",
                 imageKey: "crucifix"),
+    BasicPrayer(id: "niceneCreed", bundleId: "rosary",
+                titleKey: "symbolumNicaenumTitle", bodyKey: "symbolumNicaenum",
+                imageKey: "crucifix"),
     BasicPrayer(id: "holyGod", bundleId: "trisagion",
                 titleKey: "trisagionAcclamationTitle", bodyKey: "trisagionAcclamation",
                 imageKey: "jesus_portrait"),
@@ -71,6 +74,13 @@ enum BasicPrayerCatalog {
     let traditions = PrayerPackStore.hebrewTraditions(bundleId: prayer.bundleId, bodyKey: prayer.bodyKey)
     return LanguageCatalog.pickerLanguageCode(resolved) == "he" && traditions.count == 1
       ? traditions[0] : resolved
+  }
+
+  /// Naming a catalog or recent prayer must not render its body or choose a rite.
+  @MainActor
+  static func title(for prayer: BasicPrayer, languageCode: String? = nil) -> String {
+    PrayerPackStore.resolveBodyText(bundleId: prayer.bundleId,
+      languageCode: Self.languageCode(for: prayer, requested: languageCode), key: prayer.titleKey)
   }
 
   /// The prayer as one step, in the selected or app-default prayer language — the same

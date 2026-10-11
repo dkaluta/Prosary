@@ -28,7 +28,10 @@ struct PrayerEngine {
     self.calendar = calendar
   }
 
-  func buildSteps(for prayer: Prayer) -> [RosaryStep] {
+  func buildSteps(for prayer: Prayer, initializeFilioque: Bool = true) -> [RosaryStep] {
+    if !initializeFilioque {
+      return NiceneCreedText.withoutInitializingPreference { buildSteps(for: prayer) }
+    }
     switch prayer.kind {
     case .rosary:
       guard prayer.rosary.mysterySelectionMode != .chooseOnLaunch else { return [] }

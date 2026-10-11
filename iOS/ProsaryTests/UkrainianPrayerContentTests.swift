@@ -23,15 +23,15 @@ final class UkrainianPrayerContentTests: XCTestCase {
 
   func testBasicPrayersUseUkrainianTitlesAndSourcedBodiesOrDeclaredFallbacks() {
     let titles = ["Знак хреста", "Отче наш", "Радуйся, Маріє", "Слава Отцю",
-                  "Апостольський символ віри", "Святий Боже", "Святий архангел Михаїл", "Слався, Царице",
+                  "Апостольський символ віри", "Нікейський Символ віри", "Святий Боже", "Святий архангел Михаїл", "Слався, Царице",
                   "Мати Відкупителя", "Радуйся, Царице небес", "Царице Неба"]
     XCTAssertEqual(titles.count, BasicPrayerCatalog.all.count)
     for (prayer, title) in zip(BasicPrayerCatalog.all, titles) {
       let step = BasicPrayerCatalog.step(for: prayer, languageCode: "uk")
       XCTAssertEqual(step.title, title, prayer.id)
-      // These two existing antiphon translations have sourced titles only. The catalog
+      // These entries have sourced bodies only in other languages. The catalog
       // must preserve the established body fallback rather than invent liturgical text.
-      if ["almaRedemptorisMater", "aveReginaCaelorum"].contains(prayer.id) {
+      if ["niceneCreed", "almaRedemptorisMater", "aveReginaCaelorum"].contains(prayer.id) {
         XCTAssertEqual(step.body, BasicPrayerCatalog.step(for: prayer, languageCode: "en").body)
         continue
       }

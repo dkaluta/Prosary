@@ -14,6 +14,7 @@ struct PrayerLanguagePicker: View {
               let chosen = LanguageCatalog.selectingLanguage($0, current: code)
               code = LanguageCatalog.pickerLanguageCode(chosen) == "he" && hebrewTraditions.count == 1
                 ? hebrewTraditions[0] : chosen
+              NiceneCreedText.initialize(for: code)
             })
   }
 
@@ -26,7 +27,10 @@ struct PrayerLanguagePicker: View {
     }
     .accessibilityIdentifier("prayerLanguagePicker")
     if LanguageCatalog.pickerLanguageCode(code) == "he", hebrewTraditions.count > 1 {
-      Picker(String(localized: "prayerLanguage.tradition", defaultValue: "Prayer Tradition", bundle: UILanguage.bundle, locale: UILanguage.locale), selection: $code) {
+      Picker(String(localized: "prayerLanguage.tradition", defaultValue: "Prayer Tradition", bundle: UILanguage.bundle, locale: UILanguage.locale), selection: Binding(get: { code }, set: {
+        NiceneCreedText.initialize(for: $0)
+        code = $0
+      })) {
         ForEach(hebrewTraditions, id: \.self) { tradition in
           Text(LanguageCatalog.traditionName(tradition)).tag(tradition)
         }
@@ -61,7 +65,7 @@ struct PrayerLanguageMenuContent: View {
       Divider()
       Menu(String(localized: "prayerLanguage.tradition", defaultValue: "Prayer Tradition", bundle: UILanguage.bundle, locale: UILanguage.locale)) {
         ForEach(hebrewTraditions, id: \.self) { tradition in
-          Button { onSelect(tradition) } label: {
+          Button { NiceneCreedText.initialize(for: tradition); onSelect(tradition) } label: {
             if effectiveCode == tradition {
               Label(LanguageCatalog.traditionName(tradition), systemImage: "checkmark")
             } else {
@@ -78,8 +82,10 @@ struct PrayerLanguageMenuContent: View {
   private func option(code selected: String, name: String) -> some View {
     Button {
       let chosen = LanguageCatalog.selectingLanguage(selected, current: code)
-      onSelect(LanguageCatalog.pickerLanguageCode(chosen) == "he" && hebrewTraditions.count == 1
-        ? hebrewTraditions[0] : chosen)
+      let selectedCode = LanguageCatalog.pickerLanguageCode(chosen) == "he" && hebrewTraditions.count == 1
+        ? hebrewTraditions[0] : chosen
+      NiceneCreedText.initialize(for: selectedCode)
+      onSelect(selectedCode)
     } label: {
       if LanguageCatalog.pickerLanguageCode(code) == selected {
         Label(name, systemImage: "checkmark")

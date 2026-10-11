@@ -29,8 +29,12 @@ public sealed class PrayerEngine
         _calendar = calendar;
     }
 
-    public IReadOnlyList<RosaryStep> BuildSteps(Prayer prayer) => prayer.Kind switch
+    public IReadOnlyList<RosaryStep> BuildSteps(Prayer prayer, bool initializeFilioque = true)
     {
+        if (!initializeFilioque)
+            return AppSettings.WithoutFilioqueInitialization(() => BuildSteps(prayer));
+        return prayer.Kind switch
+        {
         // The Rosary builds from the rosary bundle's devotion.json like every other devotion —
         // RosaryOptions stays the persisted shape (no data migration; the bespoke editor keeps
         // writing it) and is mapped onto the bundle's option values here.
@@ -48,7 +52,8 @@ public sealed class PrayerEngine
                 bundleId == "litanyOfLoreto" ? "standard" : prayer.VariantId, prayer.CustomOptions, dayIndex: prayer.DayIndex ?? 0)
             : [],
         _ => throw new ArgumentOutOfRangeException(nameof(prayer), prayer.Kind, "Unhandled PrayerKind in PrayerEngine.BuildSteps")
-    };
+        };
+    }
 
     // Rosary
 

@@ -131,7 +131,7 @@ enum WidgetPrayerProjection {
       signature = PrayerRunSignature.rosary(session.rosary, navigationGroup: progress.rosaryNavigationGroup,
         navigationOrder: progress.rosaryNavigationOrder)
       session.rosary = options
-      count = engine.buildSteps(for: session).count
+      count = engine.buildSteps(for: session, initializeFilioque: false).count
     case .jesusPrayer:
       signature = PrayerRunSignature.jesus(session.jesusPrayer.target)
       switch session.jesusPrayer.target {
@@ -144,7 +144,7 @@ enum WidgetPrayerProjection {
       let variant = PrayerPackStore.definition(for: bundleID)?.effectiveVariantId(session.variantId, languageCode: language)
       signature = PrayerRunSignature.custom(bundleID, effectiveVariantId: variant,
         dayIndex: session.dayIndex ?? 0, options: session.customOptions)
-      count = engine.buildSteps(for: session).count
+      count = engine.buildSteps(for: session, initializeFilioque: false).count
     }
     guard progress.canResume(stepCount: count, today: now, sameLocalDayOnly: prayer.kind == .rosary,
                              expectedConfigurationSignature: signature) else { return row }

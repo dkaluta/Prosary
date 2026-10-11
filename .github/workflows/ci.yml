@@ -30,7 +30,9 @@ jobs:
       - name: Portable packs stay canonical without duplicate native artwork
         run: uv run --script Shared/tools/test-asset-deduplication.py
       - name: Supplied prayer corrections retain their exact source text
-        run: uv run --script Shared/tools/test-contributor-prayer-corrections.py
+        run: |
+          uv run --script Shared/tools/test-contributor-prayer-corrections.py
+          uv run --script Shared/tools/test-nicene-creed.py
       - uses: actions/cache@v4
         with:
           path: Shared/tools/.scripture-cache

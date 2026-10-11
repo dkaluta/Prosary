@@ -54,7 +54,11 @@ public partial class FavoriteEditorViewModel : ObservableObject
     public string BaseLanguageCode
     {
         get => LanguageCatalog.PickerLanguageCode(LanguageCode);
-        set => LanguageCode = LanguageCatalog.SelectingLanguage(value, LanguageCode);
+        set
+        {
+            LanguageCode = LanguageCatalog.SelectingLanguage(value, LanguageCode);
+            AppSettings.InitializeFilioqueForLanguage(LanguageCode);
+        }
     }
 
     /// <summary>The rites of the chosen language — empty (and hidden) when there is only one way
@@ -71,6 +75,7 @@ public partial class FavoriteEditorViewModel : ObservableObject
             if (value is not null)
             {
                 LanguageCode = value.Code;
+                AppSettings.InitializeFilioqueForLanguage(LanguageCode);
             }
         }
     }

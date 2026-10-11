@@ -162,7 +162,7 @@ fun BasicPrayerFlowScreen(prayerId: String, onNavigateUp: () -> Unit) {
     val language = LanguageCatalog.resolve(BasicPrayerCatalog.effectiveLanguage(prayer, chosenLanguage))
     val displayedLanguageChoice = if (language.code == LanguageCatalog.resolve(chosenLanguage).code) chosenLanguage else language.code
     var languageMenuExpanded by rememberSaveable { mutableStateOf(false) }
-    val step = remember(prayerId, language.code) {
+    val step = remember(prayerId, language.code, AppSettings.includeFilioqueChoice) {
         BasicPrayerCatalog.step(prayer, language.code).copy(
             // Recreating a one-step reader must not look like advancing to a new prayer.
             id = "basic:$prayerId:${language.code}",

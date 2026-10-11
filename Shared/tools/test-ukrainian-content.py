@@ -107,7 +107,7 @@ def main():
     result = audit.inventory()
     rosary_gaps = {"almaRedemptorisMater", "aveReginaCaelorum"}
     expected = {
-        "rosary": rosary_gaps, "franciscanCrown": rosary_gaps,
+        "rosary": rosary_gaps | {"symbolumNicaenum"}, "franciscanCrown": rosary_gaps,
         "stationsOfTheCross": {"stationsOpeningPrayer", "stationsClosingPrayer"},
     }
     unique_gaps = set()
@@ -120,8 +120,8 @@ def main():
         unique_gaps.update(missing)
         if missing:
             assert set(content[bundle]["$coverage"]["fallbackPrayerKeys"]) == missing
-    assert len(unique_gaps) == 4
-    print("PASS: 17 published source excerpts, two contributor replacements, 12 Bible examples, 63 Scripture passages, all Ukrainian headings, and exactly 4 documented fallback bodies")
+    assert len(unique_gaps) == 5
+    print("PASS: 17 published source excerpts, two contributor replacements, 12 Bible examples, 63 Scripture passages, all Ukrainian headings, and exactly 5 documented fallback bodies")
 
 
 if __name__ == "__main__":

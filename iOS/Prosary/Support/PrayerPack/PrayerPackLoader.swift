@@ -1008,15 +1008,21 @@ enum PrayerPackStore {
   /// Body and reading aid share one resolution path. An absent aid at the winning source
   /// stays absent instead of borrowing one from another language or prayer tradition.
   static func transliteration(bundleId: String, languageCode: String?, key: String) -> String? {
-    resolvedText(bundleId: bundleId, languageCode: languageCode, key: key)?.transliteration
+    displayText(bundleId: bundleId, languageCode: languageCode, key: key)?.transliteration
   }
 
   static func resolveBodyText(bundleId: String, languageCode: String?, key: String) -> String {
-    resolvedText(bundleId: bundleId, languageCode: languageCode, key: key)?.text ?? key
+    displayText(bundleId: bundleId, languageCode: languageCode, key: key)?.text ?? key
   }
 
   static func resolveSharedPrayer(languageCode: String?, key: PrayerKey) -> String? {
-    resolvedText(bundleId: nil, languageCode: languageCode, key: key.rawValue)?.text
+    displayText(bundleId: nil, languageCode: languageCode, key: key.rawValue)?.text
+  }
+
+  private static func displayText(bundleId: String?, languageCode: String?, key: String) -> ResolvedText? {
+    guard let source = resolvedText(bundleId: bundleId, languageCode: languageCode, key: key) else { return nil }
+    let rendered = NiceneCreedText.render(key: key, text: source.text, alternate: source.transliteration)
+    return ResolvedText(text: rendered.text, transliteration: rendered.alternate)
   }
 
   /// Availability is authored content, never the result of the fallback chain. Generic

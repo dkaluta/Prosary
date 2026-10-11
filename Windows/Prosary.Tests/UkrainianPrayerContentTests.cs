@@ -20,13 +20,24 @@ public class UkrainianPrayerContentTests : IClassFixture<PrayerPackLoaderFixture
             variant, null, rosaryOptions: null, todaysGroup: MysteryGroup.Joyful, dayIndex: 0, isLent: false);
 
     [Fact]
-    public void AllBasicPrayersUseTheSourcedUkrainianTitleAndBody()
+    public void AllBasicPrayersUseUkrainianTitlesAndSourcedBodiesOrDeclaredFallbacks()
     {
-        string[] titles = ["Знак хреста", "Отче наш", "Радуйся, Маріє", "Слава Отцю", "Апостольський символ віри", "Святий Боже"];
+        using var preference = new AppSettingsFilioqueScope(true);
+        string[] titles = ["Знак хреста", "Отче наш", "Радуйся, Маріє", "Слава Отцю",
+            "Апостольський символ віри", "Нікейський Символ віри", "Святий Боже", "Слався, Царице",
+            "Мати Відкупителя", "Радуйся, Царице небес", "Царице Неба", "Святий архангел Михаїл"];
+        Assert.Equal(BasicPrayerCatalog.All.Count, titles.Length);
         foreach (var (prayer, title) in BasicPrayerCatalog.All.Zip(titles))
         {
             var step = BasicPrayerCatalog.Step(prayer, "uk");
             Assert.Equal(title, step.Title);
+            // These separate basic prayers have a Ukrainian heading but no sourced
+            // Ukrainian body. Preserve their declared fallback instead of inventing text.
+            if (prayer.Id is "niceneCreed" or "almaRedemptorisMater" or "aveReginaCaelorum")
+            {
+                Assert.Equal(BasicPrayerCatalog.Step(prayer, "en").Body, step.Body);
+                continue;
+            }
             Assert.Equal(PrayerTypography.Script.Cyrillic, PrayerTypography.ScriptOf(step.Body));
             Assert.NotEqual(BasicPrayerCatalog.Step(prayer, "en").Body, step.Body);
         }

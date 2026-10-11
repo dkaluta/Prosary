@@ -77,13 +77,13 @@ cover all nine imported Isaiah verses, the Annunciation, scourging and Revelatio
 
 ## Remaining fallback bodies
 
-The following **four distinct keys remain unavailable in the bundle**. They are deliberately absent from
+The following **five distinct keys remain unavailable in the bundle**. They are deliberately absent from
 `uk.json`, and incomplete bundles are not described as fully translated. None is substituted
 with a newly composed prayer or another author's text under the original author's name.
 
 | Bundle | Remaining keys |
 | --- | --- |
-| Rosary | `almaRedemptorisMater`, `aveReginaCaelorum` |
+| Rosary | `almaRedemptorisMater`, `aveReginaCaelorum`, `symbolumNicaenum` |
 | Stations of the Cross | `stationsOpeningPrayer`, `stationsClosingPrayer` |
 
 The Franciscan Crown also uses the same two shared Marian-antiphon keys listed under

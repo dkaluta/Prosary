@@ -42,6 +42,8 @@ UNPUNCTUATED_CHANTS.add(("rosary", "fr", "salveRegina"))
 # The complete contributor-supplied Ukrainian Fatima text ends without punctuation.
 # test-contributor-prayer-corrections.py pins its exact full wording independently.
 UNPUNCTUATED_CHANTS.add(("rosary", "uk", "oratioFatimae"))
+# The separate Mission Nicene entry reuses Erez's complete unpunctuated final Amen.
+UNPUNCTUATED_CHANTS.add(("rosary", "he-x-gamliel", "symbolumNicaenum"))
 # Erez's complete Hebrew Litany responses end in the source's colon.
 UNPUNCTUATED_CHANTS.update(
     ("litanyOfLoreto", "he", f"step{number:02}Body") for number in range(1, 15)

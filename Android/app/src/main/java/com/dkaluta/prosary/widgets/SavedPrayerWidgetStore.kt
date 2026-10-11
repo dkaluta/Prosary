@@ -41,7 +41,7 @@ internal object SavedPrayerWidgetStore {
             val checkpoint = PrayerRunProgressStore.progress(context, PrayerRunKeys.rosary(prayer.id)) ?: return null
             val options = prayer.rosary.navigationOptions(checkpoint.rosaryNavigationGroup, checkpoint.rosaryNavigationOrder) ?: return null
             return WidgetProgress.validated(checkpoint,
-                services.engine.buildSteps(prayer.copy(languageCode = checkpoint.languageCode, rosary = options)).size,
+                services.engine.buildSteps(prayer.copy(languageCode = checkpoint.languageCode, rosary = options), initializeFilioque = false).size,
                 PrayerRunSignatures.rosary(prayer.rosary, checkpoint.rosaryNavigationGroup, checkpoint.rosaryNavigationOrder), true)
         }
         val devotionId = prayer.customDevotionId ?: return null
@@ -64,7 +64,7 @@ internal object SavedPrayerWidgetStore {
         val signature = PrayerRunSignatures.custom(devotionId,
             definition.effectiveVariantId(prayer.variantId, language), day, prayer.customOptions)
         return WidgetProgress.validated(checkpoint,
-            services.engine.buildSteps(prayer.copy(languageCode = checkpoint.languageCode, dayIndex = day)).size,
+            services.engine.buildSteps(prayer.copy(languageCode = checkpoint.languageCode, dayIndex = day), initializeFilioque = false).size,
             signature, false)
     }
 }

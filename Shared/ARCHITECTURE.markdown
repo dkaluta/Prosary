@@ -779,7 +779,8 @@ add menu can restore an unpinned devotion. A devotion with an existing saved row
 on first migration so the navigation change does not hide anyone's prayers.
 
 The **Basic Prayers** directory contains Sign of the Cross, Our Father, Hail Mary, Glory Be,
-the Creed, Holy God, St. Michael the Archangel (`stMichael`, reusing the Rosary's
+the Creed, a separate Nicene Creed (`niceneCreed`, immediately after `creed`, using the Rosary
+bundle's `symbolumNicaenumTitle` / `symbolumNicaenum`), Holy God, St. Michael the Archangel (`stMichael`, reusing the Rosary's
 `sanctusMichaelTitle` / `sanctusMichael` text and `st_michael` artwork), and the four Marian
 antiphons: Salve Regina, Alma Redemptoris Mater,
 Ave Regina Caelorum, and Regina Caeli. Each antiphon is its own single-step prayer, using the
@@ -1089,6 +1090,36 @@ Nicene Creed occupies the Apostles' Creed key, which is how the Mission's Rosary
 Creed without creating a second prayer-flow shape. Its Our Father deliberately displays the
 heading `תפילת האדון` (Lord's Prayer), matching the Aramaic title, even when the body falls back
 through another bundle's Hebrew overlay.
+
+The standalone **Nicene Creed** has its own bundle-local `symbolumNicaenum` key. The Vicariate
+text is transcribed from the user's photograph of the printed prayer book, page 6, supplied
+on 11 October 2026. It retains the printed niqqud, spelling and punctuation, with the Filioque
+unbracketed as requested and print line wraps adapted into paragraphs. The source corrects
+the initial typed `ישעינו` to `יִשְׁעֵנוּ`; there is no editorial vocalization or invented
+reading aid. Mission Hebrew, Aramaic (both supplied
+scripts) and Greek reuse their existing sourced Nicene bodies unchanged. The Latin fallback
+relays the ancient Creed printed in the Vatican's 29 June 2012 Mass booklet, retaining its
+wording and typography. These additions do not replace the Vicariate Apostles' Creed or alter
+which Creed existing devotions reference. See [the Rosary source notes](content/rosary/SOURCES.markdown)
+and the independent `tools/fixtures/nicene-creed.json` source fixture.
+
+The app-wide **Include Filioque** preference uses the identical Boolean key `includeFilioque`
+on all native ports. Its storage key remains absent until the first explicit Prayer Language
+selection or the first actual Nicene rendering. That first rite supplies the initial choice:
+Greek omits it; Latin, Vicariate Hebrew, Mission Hebrew and Aramaic include it. Reading Settings,
+rendering a language picker, changing the interface language, or building steps solely to count
+or validate a saved continuation does not initialize the setting.
+Once initialized, the value persists; changing rites never overwrites the user's choice.
+
+Rendering applies this preference after selecting the winning source, to exact recognized
+Nicene procession clauses only, including the established Nicene uses of the legacy
+`symbolumApostolorum` key. Mission's optional parentheses are removed for either rendered
+choice; its raw source text remains intact. The Aramaic primary and alternate scripts change
+together while retaining their supplied spelling. The Greek source contains no Filioque and
+stays unchanged even when the preference is enabled, because no sourced Greek insertion is
+supplied. Ordinary Apostles' Creeds, unrelated Father/Son wording, and unrecognized imported
+recensions remain unchanged. Open prayer readers refresh the wording while retaining their
+current position.
 
 ### Generic (bundle-driven) devotions
 
