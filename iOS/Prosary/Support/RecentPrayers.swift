@@ -120,7 +120,7 @@ final class RecentPrayers {
     case .basicPrayer(let id):
       guard let prayer = BasicPrayerCatalog.prayer(id: id) else { return nil }
       let language = UserDefaults.standard.string(forKey: BasicPrayerCatalog.languageDefaultsKey)
-      return HebrewDisplayText.unpointed(BasicPrayerCatalog.step(for: prayer, languageCode: language).title)
+      return HebrewDisplayText.unpointed(BasicPrayerCatalog.title(for: prayer, languageCode: language))
     case .jesusPrayer(let target):
       if case .count(let count) = target, count <= 0 { return nil }
       return "\(PrayerKind.jesusPrayer.displayName) — \(JesusPrayerOptions(target: target).targetDisplayName)"

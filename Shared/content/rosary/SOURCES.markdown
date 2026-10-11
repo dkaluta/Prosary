@@ -1,5 +1,52 @@
 # Vicariate Hail Mary wording
 
+## Separate Nicene Creed and Filioque, October 2026
+
+The user supplied the St. James Vicariate Nicene Creed on 11 October 2026, then supplied
+a photograph of its **pointed printed text on page 6**, headed נוסח "של ניקאה".
+`symbolumNicaenum` relays the print's spelling, niqqud, punctuation and maqaf. Two independent
+visual transcriptions were compared against the original photograph. Physical print line wraps
+are joined within their paragraphs, retaining the initial first-line break; NFC normalization
+only changes equivalent Unicode mark ordering. This is source transcription, with no editorial
+vocalization or inferred reading aid.
+
+The source image was supplied as `IMG_5448.jpeg`, SHA-256
+`0753c52ca77cad106feec019884775f064a1fbb75b814edfeaa8d87cb97eade7`.
+The repository records its filename, printed page and hash without copying the personal photo
+or its EXIF metadata. The initial unpointed transcription remains in the source fixture under
+`initialUnpointedTranscription`. The photograph establishes **יִשְׁעֵנוּ** (`ישענו`) in place of
+the initial `ישעינו`, and a comma after **הַמְחַיֶּה**. The unusual printed
+**כְּלָאָב וְכַלְבֵּן** is retained without grammatical normalization, as are **מוּלָד**,
+**עַצְמוֹ עֶצֶם הָאָב**, **אֲשֶׁר נוֹלַד**, and **וְלֹא יִהְיֶה קֵץ**.
+The print naturally includes **וּמֵהַבֵּן** without the initial transcription's annotation
+brackets. Its Hebrew body and heading retain the Vicariate provenance marker. It is a
+separate Basic Prayer; the existing Vicariate Apostles' Creed remains available.
+
+The Latin fallback is the ancient Creed printed in the
+[Vatican papal Mass booklet of 29 June 2012](https://www.vatican.va/news_services/liturgy/libretti/2012/20120629.pdf),
+printed pages 36–37. The existing Mission, Greek and Aramaic Nicene texts are reused
+unchanged under the separate key, including the Aramaic source/reading-aid pair.
+The source fixture is [`nicene-creed.json`](../../tools/fixtures/nicene-creed.json).
+Missing prayer translations retain the configured language fallback; editorial headings
+do not establish translated prayer-body coverage.
+
+The separate Nicene body is supplied in Latin, Vicariate Hebrew, Mission Hebrew, Aramaic
+and Greek. English, Arabic, Russian, Tagalog, French, Italian, Spanish and Ukrainian have
+translated display headings and retain the configured body fallback. In particular, the
+Spanish Rosary's existing devotion flow remains complete; its separately available Nicene
+Basic Prayer does not acquire a Spanish liturgical translation from that coverage. The
+Spanish `$coverage.fallbackPrayerKeys` records only `symbolumNicaenum`, and the selected-language
+coverage test permits that exact supplemental omission while continuing to require every
+Spanish devotion body, mystery and heading.
+
+The app-wide `includeFilioque` switch starts from the first selected prayer rite's
+status quo, or from the first Nicene source displayed if no rite has been selected.
+Its saved value then survives language and rite changes. Rendering includes or omits
+only the recognized, supplied procession clause, in both Aramaic scripts together.
+The source documents retain their original wording and annotations. The Greek text
+has no sourced Filioque insertion and remains unchanged by the switch; no clause is
+invented for an unsupplied recension.
+
 The contributor supplied five prayer corrections on 6 October 2026: Syriac Fatima and
 Sub tuum praesidium; Ukrainian Our Father, Fatima and Hail Mary. Their exact supplied
 wording is pinned in `Shared/tools/fixtures/contributor-prayer-corrections.json` and

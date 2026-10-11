@@ -66,6 +66,10 @@ coverage_spec = importlib.util.spec_from_file_location("coverage", TOOLS / "audi
 coverage = importlib.util.module_from_spec(coverage_spec)
 coverage_spec.loader.exec_module(coverage)
 report = coverage.inventory()
+# The Spanish Rosary flow is complete, but the separately added Nicene basic prayer has
+# no Spanish body supplied in this change. Its translated title must not claim source
+# coverage or cause a synthetic liturgical translation to be added merely to pass CI.
+documented_supplemental_fallbacks = {("rosary", "es"): {"symbolumNicaenum"}}
 for bundle, languages in {
     "rosary": ("es",),
     "angelus": ("es", "el"),
@@ -78,7 +82,16 @@ for bundle, languages in {
     for language in languages:
         row = report["packs"][bundle][language]
         assert row["status"] == "advertised", (bundle, language)
-        assert not any(row["missing"].values()), (bundle, language, row["missing"])
+        expected_fallbacks = documented_supplemental_fallbacks.get((bundle, language), set())
+        for category, missing in row["missing"].items():
+            expected = expected_fallbacks if category == "supplemental_body" else set()
+            assert set(missing) == expected, (bundle, language, category, missing)
+        if expected_fallbacks:
+            localized = json.loads((ROOT / f"Shared/content/{bundle}/content/{language}.json").read_text())
+            assert localized["$coverage"]["status"] == "partial"
+            assert set(localized["$coverage"]["fallbackPrayerKeys"]) == expected_fallbacks
+            assert localized["$coverage"]["sourceReview"] == "Shared/content/rosary/SOURCES.markdown"
+            assert not (expected_fallbacks & localized["prayers"].keys())
         assert not any(row["missing_mysteries"].values()), (bundle, language, row["missing_mysteries"])
 
 # Only the seven published Hebrew antiphons are Vicariate prayer text. Display labels

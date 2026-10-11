@@ -80,19 +80,19 @@
       "Shared/content/oAntiphons/devotion.json": "d4ea0198245ce0d6d6437023389ce4d3793334d2ea1ed748ad2c0138be67ecf8",
       "Shared/content/oAntiphons/manifest.json": "cf3f3966ba4f8cdf321d2fc7a205778f61539855d20594dac7f189ce158839f1",
       "Shared/content/rosary/catalog.json": "355671f8c7ec24ff0120cab805c6622ffc882264cc37e2446ea0e042a0537fcb",
-      "Shared/content/rosary/content/ar.json": "6ceaac44ac87604a6be61e8ac8a72c950bfb299eff2d56395e8c154651c5d327",
-      "Shared/content/rosary/content/arc.json": "618b31381fbe0d1b201363402230e3c0484e281fabe32a782e0c5f850d8a1ebf",
-      "Shared/content/rosary/content/el.json": "8db80f5f9977a51ee13023d6c9e8705a5ecdcc22a56f06a3c0430d1393a6d8dc",
-      "Shared/content/rosary/content/en.json": "d9be6799cb73b184990b71cee8342dcefdf7f7876ec180b9a551f843b9e81999",
-      "Shared/content/rosary/content/es.json": "040f3885a6e99004cc4b444b5e5e4acdf78de77fb0189fd0d9fe6eda5837c204",
-      "Shared/content/rosary/content/fr.json": "b07b30ba6f0ec1f1eaa86f4efa6d4cf32789a7690f90c40f61d84f672195e920",
-      "Shared/content/rosary/content/he-x-gamliel.json": "455efdda11c1b73732fbafecdd16ded47763e9fd0ba439edd384308a3dba6824",
-      "Shared/content/rosary/content/he.json": "d54b76aadb412c51fabb82b7e962c86df8282a0e88db52b380d0f725c21f40e3",
-      "Shared/content/rosary/content/it.json": "3b81b854b4455b03732fe35bd42fc54ce2352ea29e97d7c26a3778d5f52384a4",
-      "Shared/content/rosary/content/la.json": "c8f4d29204ac4556d127dc5536b72bc37621fc1461a5dbc9895b3477dcfbd496",
-      "Shared/content/rosary/content/ru.json": "ebeb4534c2563ac70910429fe4fc22569dc5af2ac1d771d8f042a8884d691403",
-      "Shared/content/rosary/content/tl.json": "52fd204f4f0af8c8875993c4f8cc1313e382e4a00d32df7ebe04923886ac53ce",
-      "Shared/content/rosary/content/uk.json": "cb9ac1f607b76176adf461c364ca4df4e70536d055964bf8aae621ba2e557e14",
+      "Shared/content/rosary/content/ar.json": "9e512f33f8ea7606850056de1308c190c3bc42420d08d6e7fd3acfe6351233c3",
+      "Shared/content/rosary/content/arc.json": "4e0d2e42ec0616a7b7140785b447c6506e95871831e3cbaa9d8dc39915ce9c1e",
+      "Shared/content/rosary/content/el.json": "f385d3206fea90ede42e2f3351c746a5a80eda118e9e607f77c17666bb4d84d8",
+      "Shared/content/rosary/content/en.json": "20fd12f322ea30237976445a75d0dcc82faa424f7d296501bcc03d3044a284a1",
+      "Shared/content/rosary/content/es.json": "39472a21009db5df38bd246d1a97270b0a8c4dd95ba6d9d1f77f0d209245a472",
+      "Shared/content/rosary/content/fr.json": "7113aa6d3d0d0c320661bdfac193168e4e75ce1d8d6fcb80d22e657b879720f4",
+      "Shared/content/rosary/content/he-x-gamliel.json": "a1bbcb921344af446980c308651327307a42d167e5dbd351da98968c88f2fc7a",
+      "Shared/content/rosary/content/he.json": "8b88bd5cafd7728af37eb8d8139a379ff0c67ee1453ad4714d7df2c59da301ce",
+      "Shared/content/rosary/content/it.json": "9606670fb22c6b914bc440ac6b7af31948a733d993f91e37ee46b5f7a0382fe6",
+      "Shared/content/rosary/content/la.json": "126a1323da32bf56719f0fc32f9a4b90dc01a3a636bcb416e09d5c6c6db7f0a6",
+      "Shared/content/rosary/content/ru.json": "312503554d95b39eb6347521e7c1e933d00eb38dc9c5b721e4457ab5cf46b38b",
+      "Shared/content/rosary/content/tl.json": "3b517ae40aefa7d39724da44ae0e9e2a14a40652ceb060f42cea6ca48b97cd22",
+      "Shared/content/rosary/content/uk.json": "1eee9d9de3643062cc063c4c0213557a9df9d5f73a6dc4c4fac4135bc60f89af",
       "Shared/content/rosary/devotion.json": "397a86890c059a92be859abaf045a9e4d34f60f7bd025f0e5401b17fb8851235",
       "Shared/content/rosary/manifest.json": "f14b53a594137de02e8ac884062d3e520ee68d767e20a091d7ac0c2cc2d40e4c",
       "Shared/content/rosary/options.json": "167c91b6539e07d6c32d7579cdd161403ab4239cdf741b4170cb462c49c689be",
@@ -2754,7 +2754,8 @@
             "mysteryGroupGloriousTitle": "المجيدة",
             "mysteryGroupLuminousTitle": "النورانية",
             "rosaryCollect": "لنصلِّ. اللهمَّ، إنَّ ابنَكَ الوحيدَ، بحياتِه وموتِه وقيامتِه، أعدَّ لنا أجرَ الحياةِ الأبديةِ، فامنحنا، إذ نتأملُ في أسرارِ مسبحةِ العذراءِ مريمَ القدوسةِ، أن نقتديَ بما تحتويه، وننالَ ما تعِد به، بالمسيحِ ربِّنا. آمين.",
-            "rosaryCollectTitle": "لنصلِّ"
+            "rosaryCollectTitle": "لنصلِّ",
+            "symbolumNicaenumTitle": "قانون الإيمان النيقاوي"
           },
           "mysteries": {
             "joyful_01_annunciation": {
@@ -2935,7 +2936,9 @@
             "invitatoryBodyLent": "אַלָהָא פַצָני.\n**מָריָא לעוּדרָני כַתַר.**\n\nשוּבחָא לַאבָא ✠ ולַברָא וַלרוּחָא קַדישָא\nמֶן עָלַם וַעדַמָא לעָלַם עָלמִין. אַמִין.",
             "invitatoryBody": "אַלָהָא פַצָני.\n**מָריָא לעוּדרָני כַתַר.**\n\nשוּבחָא לַאבָא ✠ ולַברָא וַלרוּחָא קַדישָא\nמֶן עָלַם וַעדַמָא לעָלַם עָלמִין. אַמִין. הַלֶלוּיַא.",
             "rosaryCollectTitle": "צלותא",
-            "oratioFatimae": "ܐܳܘ ܝܶܫܽܘܥ ܕܺܝܠܝ، ܫܒܽܘܩ ܠܰܢ، ܦܰܨܳܢ ܡܶܢ ܢܽܘܪܳܐ ܕܓܺܗܰܢܳܐ، ܫܩܽܘܠ ܟܽܠܗܶܝܢ ܢܰܦܫ̈ܳܬܳܐ ܠܰܫܡܰܝܳܐ، ܘܥܰܕܰܪ ܝܰܬܺܝܪܳܐܺܝܬ ܠܗܳܠܶܝܢ ܕܰܣܢܺܝܩܺܝܢ, ܐܰܡܺܝܢ."
+            "oratioFatimae": "ܐܳܘ ܝܶܫܽܘܥ ܕܺܝܠܝ، ܫܒܽܘܩ ܠܰܢ، ܦܰܨܳܢ ܡܶܢ ܢܽܘܪܳܐ ܕܓܺܗܰܢܳܐ، ܫܩܽܘܠ ܟܽܠܗܶܝܢ ܢܰܦܫ̈ܳܬܳܐ ܠܰܫܡܰܝܳܐ، ܘܥܰܕܰܪ ܝܰܬܺܝܪܳܐܺܝܬ ܠܗܳܠܶܝܢ ܕܰܣܢܺܝܩܺܝܢ, ܐܰܡܺܝܢ.",
+            "symbolumNicaenum": "מהַימנִינַן בחד אַלָהָא, אַבָּא אַחִיד כֻּל, עָבוּדָא דַּשמַיָא ודַארעָא וַדכֻלהֶין אַיללין דמֶתחַזין וַדלָא מֶתחַזיָן, וַבחַד מָריָא יֶשוּע משיחָא יַחחָדָיֶא ברא דַּאַלָהָא, הַו דּמֶן אַבָּא אֶתִילֶד קדדם כלהון עָלמֶא, אַלָהָא מֶן אַלָהָא, נוּהרָא מֶן נוּהרָא, אַלָהָא שַרִירא מֶן אַלָהָא שַרִירָא, יַלִידא ולָא עבִידא, וַשוֶא בֻּאוסִיא לַאבּוּהי, הַו דבּאִידֶה הוֹא כַּל מֶדֶם, הַו דּמֶטֻלָתַן בּנַינשָא, ומֶטֻל פּוּרקָנַן נחֶת מֶן שמַיָא ואֶתגַשַם מֶן רוּחָא קַדִישָא, מֶן מַריַם בּתוּלתָא וַהוֹא בַּרננשֶא, ואֶצטלֶב חלָפִין ביומי פַּנטִיָוס פִילַטָוס, חַש ומִית וְאתקבַר, קם לַתלָתָא יַוַמִין אַיך דַכתִיב, וַסלֶק לַשמַיָא וִיתֶב מֶן יָמִין אַבּוּהי, ותוב אִתֶּא בשוּבחֶה רַבָא לַמן ליַיֶא וַלמִיָתֶא, הַו דַּלמַלכּוּתֶּה שוּלָמָא לָאאית, וַבחַד רוּחָא קַדִישָא דאַיָתַוהי מָריָא מַחינָא דכֻל, הַו דּמֶן אַבָא ובא ננפֶק, ועַם אַבָא ✠ ועַם ברא מֶסתגֶד ומֶשתַבַח, הַו דּמַלֶל בַנכָיֶא, ובַחדָא עִדתָא קַדִישתָא קָתוּלִיקִי וַשלִיחָיתָא, ומַודֶינַן דַחדָא הי מַעמַודָיתָא לשוּבקָנָא דּחַטָהֶא, וַמסַכֶינַן לַקיָמתָא דמִיתֶא וַלִיֶא חַדתֶא דבעָלמָא דַעתִיד. אַמִין.",
+            "symbolumNicaenumTitle": "מהַימנִינַן"
           },
           "transliterations": {
             "repetitionCounterConnector": "ܡܶܢ",
@@ -2980,7 +2983,9 @@
             "mysteryGroupLuminousTitle": "ܪܙܐ ܕܢܘܗܪܐ",
             "invitatoryBodyLent": "ܐܰܠܳܗܳܐ ܦܰܨܳܢܝ.\n**ܡܳܪܝܳܐ ܠܥܽܘܕܪܳܢܝ ܟܰܬܰܪ.**\n\nܫܽܘܒܚܳܐ ܠܰܐܒܳܐ ✠ ܘܠܰܒܪܳܐ ܘܰܠܪܽܘܚܳܐ ܩܰܕܝܫܳܐ\nܡܶܢ ܥܳܠܰܡ ܘܰܥܕܰܡܳܐ ܠܥܳܠܰܡ ܥܳܠܡܺܝܢ. ܐܰܡܺܝܢ.",
             "invitatoryBody": "ܐܰܠܳܗܳܐ ܦܰܨܳܢܝ.\n**ܡܳܪܝܳܐ ܠܥܽܘܕܪܳܢܝ ܟܰܬܰܪ.**\n\nܫܽܘܒܚܳܐ ܠܰܐܒܳܐ ✠ ܘܠܰܒܪܳܐ ܘܰܠܪܽܘܚܳܐ ܩܰܕܝܫܳܐ\nܡܶܢ ܥܳܠܰܡ ܘܰܥܕܰܡܳܐ ܠܥܳܠܰܡ ܥܳܠܡܺܝܢ. ܐܰܡܺܝܢ. ܗܰܠܶܠܽܘܝܰܐ.",
-            "rosaryCollectTitle": "ܨܠܘܬܐ"
+            "rosaryCollectTitle": "ܨܠܘܬܐ",
+            "symbolumNicaenum": "ܡܗܰܝܡܢܺܝܢܰܢ ܒܚܕ ܐܰܠܳܗܳܐ. ܐܰܒ݁ܳܐ ܐܰܚܺܝܕ݂ ܟ݁ܽܠ. ܥܳܒܽܘܕܳܐ ܕ݁ܰܫܡܰܝܳܐ ܘܕ݂ܰܐܪܥܳܐ ܘܰܕ݂ܟܽܠܗܶܝܢ ܐܰܝܠܠ̈ܝܢ ܕܡܶܬ݂ܚܰܙܝܢ ܘܰܕ݂ܠܳܐ ܡܶܬ݂ܚܰܙܝܳܢ. ܘܰܒ݂ܚܰܕ݂ ܡܳܪܝܳܐ ܝܶܫܽܘܥ ܡܫܝܚܳܐ ܝܰܚܚܳܕ݂ܳܝܶܐ ܒܪܐ ܕ݁ܰܐܰܠܳܗܳܐ. ܗܰܘ ܕ݁ܡܶܢ ܐܰܒ݁ܳܐ ܐܶܬܺܝܠܶܕ݂ ܩ݀ܕܕܡ ܟܠܗ݇ܘܢ ܥܳܠܡ̈ܶܐ. ܐܰܠܳܗܳܐ ܡܶܢ ܐܰܠܳܗܳܐ. ܢܽܘܗܪܳܐ ܡܶܢ ܢܽܘܗܪܳܐ. ܐܰܠܳܗܳܐ ܫܰܪܺܝܪܐ ܡܶܢ ܐܰܠܳܗܳܐ ܫܰܪܺܝܪܳܐ. ܝܰܠܺܝܕܐ ܘܠܳܐ ܥܒܿܺܝܕܐ. ܘܰܫܘܶܐ ܒ݁ܽܐܘܣܺܝܐ ܠܰܐܒ݁ܽܘܗ̄ܝ. ܗܰܘ ܕܒ݁ܐܺܝܕ݂ܶܗ ܗ݈ܘܳܐ ܟ݁ܰܠ ܡܶܕܶܡ. ܗܰܘ ܕ݁ܡܶܛܽܠܳܬ݂ܰܢ ܒ݁ܢܰܝ̈ܢܫܳܐ. ܘܡܶܛܽܠ ܦ݁ܽܘܪܩܳܢܰܢ ܢܚܶܬ݂ ܡܶܢ ܫܡܰܝܳܐ ܘܐܶܬ݂ܓܰܫܰܡ ܡܶܢ ܪܽܘܚܳܐ ܩܰܕܺܝܫܳܐ. ܡܶܢ ܡܰܪܝܰܡ ܒ݁ܬ݂ܽܘܠܬ݂ܳܐ ܘܰܗ݈ܘܳܐ ܒ݁ܰܪܢܢܫܶܐ. ܘܐܶܨܛܠܶܒ݂ ܚܠܳܦ݂ܺܝܢ ܒܝܵܘ̈ܡ̇ܝ ܦ݁ܰܢܛܺܝܳܘܣ ܦܺܝܠܰܛܳܘܣ. ܚܰܫ ܘܡܺܝܬ ܘܶܐܬܩܒܰܪ. ܩܿܡ ܠܰܬ݂ܠܳܬ݂ܳܐ ܝܰܘܰܡܺܝܢ ܐܰܝܟ݂ ܕܰܟܬܺܝܒ. ܘܰܣܠܶܩ ܠܰܫܡܰܝܳܐ ܘܺܝܬ݂ܶܒ݂ ܡܶܢ ܝܳܡܺܝܢ ܐܰܒ݁ܽܘܗ̄ܝ. ܘܬܘܒ ܐܺܬ݁ܶܐ ܒܫܽܘܒ݂ܚܶܗ ܪܰܒܳܐ ܠܰܡܢ ܠܝܰܝܶܐ ܘܰܠܡܺܝܳܬ݂ܶܐ. ܗܰܘ ܕ݁ܰܠܡܰܠܟ݁ܽܘܬ݁ܶܗ ܫܽܘܠܳܡܳܐ ܠܳܐܐܝܬ. ܘܰܒ݂ܚܰܕ݂ ܪܽܘܚܳܐ ܩܰܕܺܝܫܳܐ ܕܐܰܝܳܬ݂ܰܘܗ݈ܝ ܡܳܪܝܳܐ ܡܰܚܝܢܳܐ ܕܟܽܠ. ܗܰܘ ܕ݁ܡܶܢ ܐܰܒܳܐ ܘܒܐ ܢܢܦܶܩ. ܘܥܰܡ ܐܰܒ݂ܳܐ ✠ ܘܥܰܡ ܒܪܐ ܡܶܣܬܓܶܕ ܘܡܶܫܬ݂ܰܒ݂ܰܚ. ܗܰܘ ܕ݁ܡܰܠܶܠ ܒܰܢ̈ܟܿܳܝܶܐ. ܘܒ݂ܰܚܕܳܐ ܥܺܕܬ݂ܳܐ ܩܰܕܺܝܫܬ݂ܳܐ ܩܳܬ݂ܽܘܠܺܝܩܺܝ ܘܰܫܠܺܝܚܳܝܬ݂ܳܐ. ܘܡܰܘܕ݂ܶܝܢܰܢ ܕܰܚܕ݂ܳܐ ܗ̄ܝ ܡܰܥܡܰܘܕ݂ܳܝܬܳܐ ܠܫܽܘܒܩܳܢܳܐ ܕ݁ܚܰܛܳܗܶܐ. ܘܰܡܣܰܟܶܝܢܰܢ ܠܰܩ݀ܝܳܡܬܳܐ ܕܡܺܝ̈ܬ݂ܶܐ ܘܰܠܺܝ̈ܶܐ ܚܰܕ̈ܬ݂ܶܐ ܕܒ݂ܥܳܠܡܳܐ ܕܰܥܬ݂ܺܝܕ݂. ܐܰܡܺܝܢ.",
+            "symbolumNicaenumTitle": "ܡܗܰܝܡܢܺܝܢܰܢ"
           },
           "mysteries": {
             "joyful_01_annunciation": {
@@ -3171,7 +3176,8 @@
           },
           "$sources": {
             "subTuumPraesidium": "https://pure.manchester.ac.uk/ws/portalfiles/portal/51221029/Melkite_Syriac_Hymns_to_the_Mother_of_Go.pdf",
-            "oratioFatimae": "Syriac and Ukrainian prayer corrections supplied by a Prosary contributor (October 2026)."
+            "oratioFatimae": "Syriac and Ukrainian prayer corrections supplied by a Prosary contributor (October 2026).",
+            "symbolumNicaenum": "Unchanged existing sourced Nicene Creed, also used under symbolumApostolorum in this prayer tradition. See Shared/content/rosary/SOURCES.markdown."
           },
           "$scriptureSource": "Scripture entries imported from the Peshitta by Shared/tools/import-scripture.py — re-run it rather than editing them by hand. Their Hebrew square script is converted with Erez's script rules; the source text in Syriac letters is beside it for the flow's script toggle. New Testament: BFBS 1905, with Western vowel signs, Digital Syriac Corpus (https://syriaccorpus.org/), CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/); Syriac transcription by George A. Kiraz, TEI edition by James E. Walters. Hebrew projection and whitespace normalization by Prosary. Isaiah: nine pointed verses from user-supplied Internet Archive XML (https://archive.org/details/peshitta-complete-bible-otnt), SHA-256 4f71fe418a1d23f6b65d63d155f838a228dbdb6e4857834f4503afdcf009ea88; the user reported Erez's review of the verses. The underlying Isaiah edition and redistribution terms remain unidentified; the New Testament source's BFBS attribution and CC BY license do not apply to it. See Shared/content/PESHITTA-SOURCES.markdown.",
           "$metadataSource": "Mystery names, spiritual fruits and navigation labels are Prosary editorial translations into unpointed Classical Syriac, not quotations from a published Syriac Rosary or new prayer bodies. Their Hebrew-square forms are deterministic projections by aramaic_script_converter.py; no vowel points are inferred. Syriac vocabulary follows the Peshitta and the Syriac dictionaries cited in Shared/content/rosary/SOURCES.markdown. Existing sourced prayer and Scripture wording is unchanged.",
@@ -3200,7 +3206,8 @@
             "requiescantInPace": "https://www.vatican.va/news_services/liturgy/libretti/2010/messale-cipro2010.pdf — printed/PDF p. 117; the final versicle and response of the already verified requiemAeternam, with only role-label and response-emphasis formatting.",
             "invitatoryBody": "https://books.google.com/books?id=DY_8v-ZEfCYC&pg=PA7",
             "invitatoryBodyLent": "https://books.google.com/books?id=DY_8v-ZEfCYC&pg=PA7",
-            "rosaryCollect": "https://icen.gr/wp-content/uploads/2024/06/Λιτανικές-Ικεσίες-στην-Παναγία-2024.pdf"
+            "rosaryCollect": "https://icen.gr/wp-content/uploads/2024/06/Λιτανικές-Ικεσίες-στην-Παναγία-2024.pdf",
+            "symbolumNicaenum": "Unchanged existing sourced Nicene Creed, also used under symbolumApostolorum in this prayer tradition. See Shared/content/rosary/SOURCES.markdown."
           },
           "prayers": {
             "collectaStandard": "Ας προσευχηθούμε: Θεέ Πατέρα, του οποίου ο Μονογενής Υιός, με τη ζωή, το θάνατο και την ανάστασή του, μας απέκτησε την αμοιβή της αιώνιας σωτηρίας, σε παρακαλούμε, όταν απαγγέλλουμε το σεπτό Ροδάριο της μακαρίας και Αειπαρθένου Μαρίας, και μελετούμε τα Μυστήρια αυτά της σωτηρίας, κάνε να τηρούμε όσα μας διδάσκουν και ν’ αποκτήσομε όσα μας υπόσχονται. Διά του Ιησού Χριστού, του Κυρίου μας.\n℟. Αμήν.",
@@ -3242,7 +3249,9 @@
             "invitatoryBody": "Ὁ Θεὸς, εἰς τὴν βοήθειάν μου πρόσχες.\n**Κύριε, εἰς τὸ βοηθῆσαί μοι σπεῦσον.**\n\nΔόξα Πατρὶ, καὶ Υἱῷ, καὶ Ἁγίῳ Πνεύματι.\nὩς ἦν ἐν ἀρχῇ, καὶ νῦν, καὶ ἀεὶ, καὶ εἰς τοὺς αἰῶνας τῶν αἰώνων. Ἀμήν. Ἀλληλούϊα.",
             "invitatoryBodyLent": "Ὁ Θεὸς, εἰς τὴν βοήθειάν μου πρόσχες.\n**Κύριε, εἰς τὸ βοηθῆσαί μοι σπεῦσον.**\n\nΔόξα Πατρὶ, καὶ Υἱῷ, καὶ Ἁγίῳ Πνεύματι.\nὩς ἦν ἐν ἀρχῇ, καὶ νῦν, καὶ ἀεὶ, καὶ εἰς τοὺς αἰῶνας τῶν αἰώνων. Ἀμήν.",
             "rosaryCollect": "Ας προσευχηθούμε: Θεέ Πατέρα, του οποίου ο Μονογενής Υιός, με τη ζωή, το θάνατο και την ανάστασή του, μας απέκτησε την αμοιβή της αιώνιας σωτηρίας, σε παρακαλούμε, όταν απαγγέλλουμε το σεπτό Ροδάριο της μακαρίας και Αειπαρθένου Μαρίας, και μελετούμε τα Μυστήρια αυτά της σωτηρίας, κάνε να τηρούμε όσα μας διδάσκουν και ν’ αποκτήσομε όσα μας υπόσχονται. Διά του Ιησού Χριστού, του Κυρίου μας.\n℟. Αμήν.",
-            "rosaryCollectTitle": "Ας προσευχηθούμε"
+            "rosaryCollectTitle": "Ας προσευχηθούμε",
+            "symbolumNicaenum": "Πιστεύω εἰς ἕνα Θεόν, Πατέρα, Παντοκράτορα, ποιητὴν οὐρανοῦ καὶ γῆς, ὁρατῶν τε πάντων καὶ ἀοράτων.\nΚαὶ εἰς ἕνα Κύριον Ἰησοῦν Χριστόν, τὸν Υἱὸν τοῦ Θεοῦ τὸν μονογενῆ, τὸν ἐκ τοῦ Πατρὸς γεννηθέντα πρὸ πάντων τῶν αἰώνων·\nφῶς ἐκ φωτός, Θεὸν ἀληθινὸν ἐκ Θεοῦ ἀληθινοῦ, γεννηθέντα οὐ ποιηθέντα, ὁμοούσιον τῷ Πατρί, δι᾽ οὗ τὰ πάντα ἐγένετο.\nΤὸν δι᾽ ἡμᾶς τοὺς ἀνθρώπους καὶ διὰ τὴν ἡμετέραν σωτηρίαν κατελθόντα ἐκ τῶν οὐρανῶν καὶ σαρκωθέντα ἐκ Πνεύματος Ἁγίου καὶ Μαρίας τῆς Παρθένου καὶ ἐνανθρωπήσαντα.\nΣταυρωθέντα τε ὑπὲρ ἡμῶν ἐπὶ Ποντίου Πιλάτου, καὶ παθόντα καὶ ταφέντα.\nΚαὶ ἀναστάντα τῇ τρίτῃ ἡμέρᾳ κατὰ τὰς Γραφάς.\nΚαὶ ἀνελθόντα εἰς τοὺς οὐρανοὺς καὶ καθεζόμενον ἐκ δεξιῶν τοῦ Πατρός.\nΚαὶ πάλιν ἐρχόμενον μετὰ δόξης κρῖναι ζῶντας καὶ νεκρούς, οὗ τῆς βασιλείας οὐκ ἔσται τέλος.\nΚαὶ εἰς τὸ Πνεῦμα τὸ Ἅγιον, τὸ Κύριον, τὸ ζωοποιόν, τὸ ἐκ τοῦ Πατρὸς ἐκπορευόμενον, τὸ σὺν Πατρὶ καὶ Υἱῷ συμπροσκυνούμενον καὶ συνδοξαζόμενον, τὸ λαλῆσαν διὰ τῶν προφητῶν.\nΕἰς μίαν, Ἁγίαν, Καθολικὴν καὶ Ἀποστολικὴν Ἐκκλησίαν.\nὉμολογῶ ἓν βάπτισμα εἰς ἄφεσιν ἁμαρτιῶν.\nΠροσδοκῶ ἀνάστασιν νεκρῶν καὶ ζωὴν τοῦ μέλλοντος αἰῶνος. Ἀμήν.",
+            "symbolumNicaenumTitle": "Σύμβολο της Πίστεως (Νικαίας–Κωνσταντινουπόλεως)"
           },
           "mysteries": {
             "joyful_01_annunciation": {
@@ -3421,7 +3430,8 @@
             "mysteryGroupGloriousTitle": "Glorious",
             "mysteryGroupLuminousTitle": "Luminous",
             "rosaryCollect": "Let us pray. O God, whose only-begotten Son, by His life, death, and resurrection, has purchased for us the rewards of eternal life; grant, we beseech Thee, that, meditating upon these mysteries of the most holy Rosary of the Blessed Virgin Mary, we may imitate what they contain and obtain what they promise, through the same Christ our Lord. Amen.",
-            "rosaryCollectTitle": "Let Us Pray"
+            "rosaryCollectTitle": "Let Us Pray",
+            "symbolumNicaenumTitle": "Nicene Creed"
           },
           "mysteries": {
             "joyful_01_annunciation": {
@@ -3563,7 +3573,8 @@
             "mysteryGroupGloriousTitle": "Gloriosos",
             "mysteryGroupLuminousTitle": "Luminosos",
             "rosaryCollect": "Oremos. Oh Dios, cuyo Hijo por medio de su vida, muerte y resurrección, nos otorgó los premios de la vida eterna, te rogamos que venerando humildemente los misterios del Rosario de la Santísima Virgen María, imitemos lo que contienen y consigamos lo que nos prometen. Por Jesucristo, nuestro Señor. Amén.",
-            "rosaryCollectTitle": "Oremos"
+            "rosaryCollectTitle": "Oremos",
+            "symbolumNicaenumTitle": "Credo niceno"
           },
           "$comment": "Published Spanish fixed prayers fill the former per-key Latin fallbacks. Creed: Vatican Compendium profession of faith (not only its appendix); Fatima: Sanctuary of Fatima; Jesus Prayer: Pope Francis audience, 21 April 2021; Saint Michael: Vatican News; Marian antiphons: Basilica of Guadalupe. Source wrapping and capitalization are normalized; Ave Regina's printed 'entre todas las más bella' has its extra plural s removed. The invitatory follows the published Liturgy of the Hours. Descriptive headings and intention introductions are Prosary translations of the app's existing metadata. Mystery names and fruits are Prosary descriptive translations; Scripture is imported separately from Torres Amat.",
           "$sources": {
@@ -3704,7 +3715,14 @@
             ]
           },
           "$scriptureSource": "Scripture imported from Félix Torres Amat's Spanish Bible (1836) by Shared/tools/import-scripture.py — re-run it rather than editing these by hand. Torres Amat translated the Vulgate, so its chapter-and-verse is the same one these devotions cite and no versification map is needed. Spelling and accentuation are the 1836 printing's own. The New Testament follows Wikisource's transcription. Nine Isaiah verses are independently transcribed and visually checked against volume IX (https://archive.org/details/lasagradabiblian10torr); exact pages and source checksum are recorded in Shared/content/spanish-torres-amat-1836-isaiah.json.",
-          "$rosaryCollectSource": "Rosary-only separate step: unchanged collectaStandard text; when absent (Spanish/Mission Hebrew), unchanged sourced collectAfterRosary from litanyOfLoreto. Basic Marian antiphon texts remain unchanged. Hebrew heading נתפללה supplied explicitly by the user, 2026-09-27."
+          "$rosaryCollectSource": "Rosary-only separate step: unchanged collectaStandard text; when absent (Spanish/Mission Hebrew), unchanged sourced collectAfterRosary from litanyOfLoreto. Basic Marian antiphon texts remain unchanged. Hebrew heading נתפללה supplied explicitly by the user, 2026-09-27.",
+          "$coverage": {
+            "status": "partial",
+            "fallbackPrayerKeys": [
+              "symbolumNicaenum"
+            ],
+            "sourceReview": "Shared/content/rosary/SOURCES.markdown"
+          }
         },
         "fr": {
           "mysteries": {
@@ -3894,7 +3912,8 @@
             "mysteryGroupGloriousTitle": "Glorieux",
             "mysteryGroupLuminousTitle": "Lumineux",
             "rosaryCollect": "Prions. Ô Dieu, dont le Fils unique, par sa vie, sa mort et sa résurrection, nous a acquis les récompenses de la vie éternelle, fais, nous t’en supplions, qu’en méditant ces mystères du Rosaire de la Bienheureuse Vierge Marie, nous puissions imiter ce qu’ils contiennent et obtenir ce qu’ils promettent. Par Jésus Christ, notre Seigneur. Amen.",
-            "rosaryCollectTitle": "Prions"
+            "rosaryCollectTitle": "Prions",
+            "symbolumNicaenumTitle": "Credo de Nicée"
           },
           "$sources": {
             "commonPrayers": "https://www.vatican.va/archive/compendium_ccc/documents/archive_2005_compendium-ccc_fr.html",
@@ -3921,10 +3940,15 @@
             "signumCrucisTitle": "אוֹת הַצְּלָב",
             "symbolumApostolorumTitle": "מַאֲמִינִים שֶׁל נִיקֵאָה",
             "rosaryCollect": "̷א. נִתְפַּלְּלָה:\nאֱלֹהִים, אֲשֶׁר בִּנְךָ הַיָּחִיד,\nבְּחַיָּיו, בְּמוֹתוֹ וּבִתְחִיָּתוֹ,\nקָנָה לָנוּ אֶת גְּמוּלֵי הַיְּשׁוּעָה הַנִּצְחִית;\nהַעֲנֵק־נָא, אָנוּ מִתְחַנְּנִים לְפָנֶיךָ,\nשֶׁבְּהָגוּתֵנוּ בְּרָזֵי הַמַּחְרֹזֶת\nהַקְּדוֹשָׁה בְּיוֹתֵר\nשֶׁל מִרְיָם הַבְּתוּלָה הַמְּבֹרֶכֶת,\nנְחַקֶּה אֶת אֲשֶׁר הֵם מְכִילִים\nוְנִזְכֶּה בְּמָה שֶׁהֵם מַבְטִיחִים.\nעַל יְדֵי אוֹתוֹ הַמָּשִׁיחַ אֲדוֹנֵנוּ.\n̷מ. אָמֵן.",
-            "rosaryCollectTitle": "נתפללה"
+            "rosaryCollectTitle": "נתפללה",
+            "symbolumNicaenum": "אָנוּ מַאֲמִינִים בֶּאֱלוֹהִים אֶחָד\nהָאָב הַכֹּל־יָכוֹל, עוֹשֶׂה שָׁמַיִם וָאָרֶץ,\nוְשֶׁל־כָּל הַדְּבָרִים הַנִּרְאִים וַאֲשֶׁר־לֹא נִרְאִים\nוּבְאָדוֹן אֶחָד יֵשׁוּעַ הַמָּשִׁיחַ, בֵּן יָחִיד לֵאֱלוֹהִים,\nהוּא שֶׁמִּן הָאָב נוֹלַד לִפְנֵי כָּל הָעוֹלָמִים. אֵל מֵאַל,\nאוֹר מֵאוֹר, אֵל אֲמִתִּי מֵאַל אֲמִתִּי. נוֹלַד וְלֹא נְעֵשָּׂהּ,\nוְחַד־עַצְמוּת לְאָבִיו, הוּא שֶׁבְּיָדוֹ נִהְיֶה כָּל דָּבָר.\nהוּא לְמַעֲנֵנוּ, בְּנֵי־הָאֱנוֹשׁ, וּלְמַעַן יְשׁוּעָתֵנוּ, יָרַד מִן הַשָּׁמַיִם\nוְהִתְגַּשֵּׁם מֵרוּחַ הַקֹּדֶשׁ בְּמִרְיָם הַבְּתוּלָה, וְנִהְיֶה בֶּן־אֱנוֹשׁ\nוְנִצְלַב בַּעֲדֵנוּ בִּימֵי פוֹנְטִיּוּס פִּילָטוּס נְעֵנָה וּמֵת וְנִקְבַּר.\nקָם בַּיּוֹם הַשְּׁלִישִׁי כְּפִי שֶׁנִּכְתַּב. וְעָלָה הַשָּׁמַיְמָה\nוְיוֹשֵׁב לִימִין אָבִיו וְשׁוּב יָבוֹא בְּשִׁבְחוֹ הָרַב\nלִשְׁפֹּט אֶת הַחַיִּים וְאֶת הַמֵּתִים וּלְמַלְכוּתוֹ אֵין קֵץ.\nוּבְאֶחָד רוּחַ הַקֹּדֶשׁ, הָאָדוֹן, הַמְּחַיָּה כֹּל,\nאֲשֶׁר נֶאֱצַל מִן הָאָב (וּמִן הַבֵּן)\nוְעִם הָאָב ✠ וְהַבֵּן נִסְגָּד וּמְהֻלָּל, אֲשֶׁר דִּבֵּר בַּנְּבִיאִים.\nוּבָאַחַת, הָעֵדָה, הַקְּדוֹשָׁה, הַקָּתוֹלִית וְהַשְּׁלִיחִית.\nוְאָנוּ מוֹדִים שֶׁאַחַת הִיא הַטְּבִילָה לִמְחִילַת הַחֲטָאִים,\nוּמְצַפִּים לִתְחִיַּת הַמֵּתִים,\nוְלַחַיִּים הַחֲדָשִׁים שֶׁל עוֹלָם הֶעָתִיד. אָמֵן",
+            "symbolumNicaenumTitle": "מַאֲמִינִים שֶׁל נִיקֵאָה"
           },
           "mysteries": {},
-          "$rosaryCollectSource": "Rosary-only separate step: unchanged collectaStandard text; when absent (Spanish/Mission Hebrew), unchanged sourced collectAfterRosary from litanyOfLoreto. Basic Marian antiphon texts remain unchanged. Hebrew heading נתפללה supplied explicitly by the user, 2026-09-27."
+          "$rosaryCollectSource": "Rosary-only separate step: unchanged collectaStandard text; when absent (Spanish/Mission Hebrew), unchanged sourced collectAfterRosary from litanyOfLoreto. Basic Marian antiphon texts remain unchanged. Hebrew heading נתפללה supplied explicitly by the user, 2026-09-27.",
+          "$sources": {
+            "symbolumNicaenum": "Unchanged existing sourced Nicene Creed, also used under symbolumApostolorum in this prayer tradition. See Shared/content/rosary/SOURCES.markdown."
+          }
         },
         "he": {
           "prayers": {
@@ -3972,7 +3996,9 @@
             "mysteryGroupGloriousTitle": "הכבוד",
             "mysteryGroupLuminousTitle": "האור",
             "rosaryCollect": "נִתְפַּלְּלָה. אֱלֹהִים, אֲשֶׁר בְּנְךָ הַיָּחִיד, בְּחַיָּיו וּבְמוֹתוֹ וּבִתְחִיָּתוֹ, קָנָה לָנוּ אֶת שְׂכַר חַיֵּי עוֹלָם, תֵּן נָא, בְּהִרְהוּרֵנוּ בְּרָזֵי הַמַּחְרֹזֶת הַקְּדוֹשָׁה שֶׁל מִרְיָם הַבְּתוּלָה, שֶׁנְּחַקֶּה אֶת אֲשֶׁר הֵם מְכִילִים וְנִזְכֶּה לְמַה שֶּׁהֵם מַבְטִיחִים, בְּיֵשׁוּעַ הַמָּשִׁיחַ אֲדוֹנֵנוּ. אָמֵן.",
-            "rosaryCollectTitle": "נתפללה"
+            "rosaryCollectTitle": "נתפללה",
+            "symbolumNicaenumTitle": "אני מאמין של ניקיאה",
+            "symbolumNicaenum": "אֲנִי מַאֲמִין בֵּאלֹהִים אֶחָד\nהָאָב הַכָּל־יָכוֹל, בּוֹרֵא שָׁמַיִם וָאָרֶץ, כָּל־הַגָּלוּי וְכָל־הַסָּמוּי. וּבְאָדוֹן אֶחָד, יֵשׁוּעַ הַמָּשִׁיחַ, בֵּן יָחִיד לֵאלֹהִים, אֲשֶׁר נוֹלַד מִן הָאָב לִפְנֵי כָּל־הַדּוֹרוֹת.\n\nאֵל מֵאֵל, אוֹר מֵאוֹר, אֵל אֱמֶת מֵאֵל אֱמֶת. לֹא נִבְרָא כִּי אִם מוּלָד, עַצְמוֹ עֶצֶם הָאָב, וְעַל יָדוֹ נַעֲשָׂה הַכֹּל. בַּעֲבוּרֵנוּ, בְּנֵי הָאָדָם, וּלְמַעַן יִשְׁעֵנוּ יָרַד מִן הַשָּׁמַיִם. וְנִהְיָה בָשָׂר מֵרוּחַ הַקֹּדֶשׁ בְּרֶחֶם מִרְיָם הַבְּתוּלָה וְנַעֲשָׂה אָדָם. וְנִצְלַב לְמַעֲנֵנוּ, סָבַל בִּימֵי פּוֹנְצִיוּס פִּילָטוֹס וְנִקְבַּר. וּבַיּוֹם הַשְּׁלִישִׁי קָם לִתְחִיָּה כִּדְבַר הַכָּתוּב וְעָלָה הַשָּׁמַיְמָה וְהוּא יוֹשֵׁב לִימִין הָאָב. וְשׁוּב יָשׁוּב בְּהוֹד לִשְׁפּוֹט אֶת הַחַיִּים וְאֶת הַמֵּתִים וְלֹא יִהְיֶה קֵץ לְמַלְכוּתוֹ.\n\nוַאֲנִי מַאֲמִין בְּרוּחַ הַקֹּדֶשׁ, הָאָדוֹן, הַמְחַיֶּה, הַנּוֹבֵעַ מֵהָאָב וּמֵהַבֵּן. לוֹ סוֹגְדִים וְלוֹ נוֹתְנִים יְקָר כְּלָאָב וְכַלְבֵּן, וְהוּא אֲשֶׁר דִּבֵּר בְּפִי הַנְּבִיאִים.\n\nוַאֲנִי מַאֲמִין בַּכְּנֵסִיָּה הָאַחַת, הַקְּדוֹשָׁה, הַקָּתוֹלִית וְהַשְּׁלִיחִית.\n\nוַאֲנִי מוֹדֶה בַּטְּבִילָה הָאַחַת לִמְחִילַת הַחֲטָאִים וּמְצַפֶּה לִתְחִיַּת הַמֵּתִים וּלְחַיֵּי הָעוֹלָם הַבָּא. אָמֵן."
           },
           "mysteries": {
             "joyful_01_annunciation": {
@@ -4107,9 +4133,14 @@
             "symbolumApostolorumTitle": "vicariate",
             "versiculumPaschale": "vicariate",
             "versiculumStandard": "vicariate",
-            "rosaryCollect": "vicariate"
+            "rosaryCollect": "vicariate",
+            "symbolumNicaenum": "vicariate",
+            "symbolumNicaenumTitle": "vicariate"
           },
-          "$rosaryCollectSource": "Rosary-only separate step: unchanged collectaStandard text; when absent (Spanish/Mission Hebrew), unchanged sourced collectAfterRosary from litanyOfLoreto. Basic Marian antiphon texts remain unchanged. Hebrew heading נתפללה supplied explicitly by the user, 2026-09-27."
+          "$rosaryCollectSource": "Rosary-only separate step: unchanged collectaStandard text; when absent (Spanish/Mission Hebrew), unchanged sourced collectAfterRosary from litanyOfLoreto. Basic Marian antiphon texts remain unchanged. Hebrew heading נתפללה supplied explicitly by the user, 2026-09-27.",
+          "$sources": {
+            "symbolumNicaenum": "St. James Vicariate printed prayer book, page 6, Nicene Creed; exact vocalized text transcribed from user-supplied IMG_5448.jpeg on 2026-10-11. Photo SHA256: 0753c52ca77cad106feec019884775f064a1fbb75b814edfeaa8d87cb97eade7. Printed Filioque retained without brackets; paragraph line wraps adapted for the reader. No editorial niqqud or reading aid inferred."
+          }
         },
         "it": {
           "mysteries": {
@@ -4299,7 +4330,8 @@
             "mysteryGroupGloriousTitle": "Gloriosi",
             "mysteryGroupLuminousTitle": "Luminosi",
             "rosaryCollect": "Preghiamo. O Dio, il tuo unico Figlio ci ha acquistato con la sua vita, morte e risurrezione i beni della salvezza eterna: concedi a noi che, venerando questi misteri del santo Rosario della Vergine Maria, imitiamo ciò che contengono e otteniamo ciò che promettono. Per Cristo nostro Signore. Amen.",
-            "rosaryCollectTitle": "Preghiamo"
+            "rosaryCollectTitle": "Preghiamo",
+            "symbolumNicaenumTitle": "Credo niceno"
           },
           "$sources": {
             "commonPrayers": "https://www.vatican.va/archive/compendium_ccc/documents/archive_2005_compendium-ccc_it.html",
@@ -4360,7 +4392,9 @@
             "mysteryGroupGloriousTitle": "Gloriosa",
             "mysteryGroupLuminousTitle": "Luminosa",
             "rosaryCollect": "Oremus. Deus, cuius Unigenitus per vitam, mortem, et resurrectionem suam nobis salutis aeternae praemia comparavit: concede, quaesumus, ut haec mysteria sacratissimo beatae Mariae Virginis Rosario recolentes, et imitemur quod continent, et quod promittunt assequamur. Per eundem Christum Dominum nostrum. Amen.",
-            "rosaryCollectTitle": "Oremus"
+            "rosaryCollectTitle": "Oremus",
+            "symbolumNicaenumTitle": "Symbolum Nicaenum–Constantinopolitanum",
+            "symbolumNicaenum": "Credo in unum Deum,\nPatrem omnipotentem,\nfactorem cæli et terræ,\nvisibilium omnium et invisibilium.\nEt in unum Dominum Iesum Christum,\nFilium Dei Unigenitum,\net ex Patre natum ante omnia sæcula.\nDeum de Deo, lumen de lumine, Deum verum de Deo vero,\ngenitum, non factum, consubstantialem Patri:\nper quem omnia facta sunt.\nQui propter nos homines et propter nostram salutem\ndescendit de cælis.\nEt incarnatus est de Spiritu Sancto\nex Maria Virgine, et homo factus est.\nCrucifixus etiam pro nobis sub Pontio Pilato;\npassus et sepultus est,\net resurrexit tertia die, secundum Scripturas,\net ascendit in cælum, sedet ad dexteram Patris.\nEt iterum venturus est cum gloria, iudicare vivos et mortuos,\ncuius regni non erit finis.\nEt in Spiritum Sanctum, Dominum et vivificantem:\nqui ex Patre Filioque procedit.\nQui cum Patre et Filio simul adoratur et conglorificatur:\nqui locutus est per prophetas.\nEt unam, sanctam, catholicam et apostolicam Ecclesiam.\nConfiteor unum baptisma in remissionem peccatorum.\nEt exspecto resurrectionem mortuorum,\net vitam venturi sæculi. Amen."
           },
           "mysteries": {
             "joyful_01_annunciation": {
@@ -4464,7 +4498,10 @@
               "description": "Coenantibus autem eis, accepit Jesus panem, et benedixit, ac fregit, deditque discipulis suis, et ait : Accipite, et comedite : hoc est corpus meum. Et accipiens calicem, gratias egit : et dedit illis, dicens : Bibite ex hoc omnes. Hic est enim sanguis meus novi testamenti, qui pro multis effundetur in remissionem peccatorum.\n\n— Matt. 26:26–28 (Vulgata)"
             }
           },
-          "$rosaryCollectSource": "Rosary-only separate step: unchanged collectaStandard text; when absent (Spanish/Mission Hebrew), unchanged sourced collectAfterRosary from litanyOfLoreto. Basic Marian antiphon texts remain unchanged. Hebrew heading נתפללה supplied explicitly by the user, 2026-09-27."
+          "$rosaryCollectSource": "Rosary-only separate step: unchanged collectaStandard text; when absent (Spanish/Mission Hebrew), unchanged sourced collectAfterRosary from litanyOfLoreto. Basic Marian antiphon texts remain unchanged. Hebrew heading נתפללה supplied explicitly by the user, 2026-09-27.",
+          "$sources": {
+            "symbolumNicaenum": "https://www.vatican.va/news_services/liturgy/libretti/2012/20120629.pdf"
+          }
         },
         "ru": {
           "prayers": {
@@ -4512,7 +4549,8 @@
             "mysteryGroupGloriousTitle": "Славные",
             "mysteryGroupLuminousTitle": "Светлые",
             "rosaryCollect": "Помолимся. Боже, единородный Сын Которого жизнью, смертью и воскресением Своим стяжал нам награду вечной жизни; молим Тебя, да мы, размышляя о тайнах Пресвятого Розария Пресвятой Девы Марии, будем подражать тому, что они содержат, и получим то, что они обещают, через Того же Христа Господа нашего. Аминь.",
-            "rosaryCollectTitle": "Помолимся"
+            "rosaryCollectTitle": "Помолимся",
+            "symbolumNicaenumTitle": "Никейский Символ веры"
           },
           "mysteries": {
             "joyful_01_annunciation": {
@@ -4664,7 +4702,8 @@
             "mysteryGroupGloriousTitle": "Luwalhati",
             "mysteryGroupLuminousTitle": "Liwanag",
             "rosaryCollect": "Manalangin tayo. O Diyos, na ang bugtong na Anak, sa pamamagitan ng kanyang buhay, kamatayan, at muling pagkabuhay, ay binili para sa amin ang mga gantimpala ng buhay na walang hanggan; ipagkaloob, aming hinihiling, na tayo, sa pamamagitan ng pagbubulay-bulay ng mga misteryo ng pinakabanal na Rosaryo ng Mahal na Birheng Maria, ay tularan ang nilalaman nito at makamit ang iniaalok nito, sa pamamagitan ng parehong Kristong aming Panginoon. Amen.",
-            "rosaryCollectTitle": "Manalangin tayo"
+            "rosaryCollectTitle": "Manalangin tayo",
+            "symbolumNicaenumTitle": "Kredong Niceno"
           },
           "mysteries": {
             "joyful_01_annunciation": {
@@ -4828,7 +4867,8 @@
             "mysteryGroupLuminousTitle": "Світлі",
             "collectaStandard": "Господи, Боже Всемогутній, заради Твого Єдинородного Сина, який своїм життям, смертю і воскресінням викупив нас для вічного спасіння, благаємо Тебе: уділи нам благодаті, щоб ми, роздумуючи над таємницями Розарію Пресвятої Діви Марії, знали, як гідно наслідувати те, про що вони говорять, і отримали те, що вони обіцяють. Через Христа, Господа нашого. Амінь.",
             "rosaryCollect": "Господи, Боже Всемогутній, заради Твого Єдинородного Сина, який своїм життям, смертю і воскресінням викупив нас для вічного спасіння, благаємо Тебе: уділи нам благодаті, щоб ми, роздумуючи над таємницями Розарію Пресвятої Діви Марії, знали, як гідно наслідувати те, про що вони говорять, і отримали те, що вони обіцяють. Через Христа, Господа нашого. Амінь.",
-            "rosaryCollectTitle": "Молімося"
+            "rosaryCollectTitle": "Молімося",
+            "symbolumNicaenumTitle": "Нікейський Символ віри"
           },
           "mysteries": {
             "joyful_01_annunciation": {
@@ -4988,7 +5028,8 @@
             "status": "partial",
             "fallbackPrayerKeys": [
               "almaRedemptorisMater",
-              "aveReginaCaelorum"
+              "aveReginaCaelorum",
+              "symbolumNicaenum"
             ],
             "sourceReview": "Shared/content/UKRAINIAN-SOURCES.markdown"
           },

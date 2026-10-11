@@ -158,6 +158,11 @@ struct RosaryFlowView: View {
       steps = services.engine.buildSteps(for: sessionPrayer)
       currentIndex = min(currentIndex, max(steps.count - 1, 0))
     }
+    .onChange(of: prayerLanguage.includeFilioque) { _, _ in
+      guard hasLoaded, !didFinish else { return }
+      steps = services.engine.buildSteps(for: sessionPrayer)
+      currentIndex = min(currentIndex, max(steps.count - 1, 0))
+    }
     .onDisappear {
       guard hasLoaded, pendingContinuation == nil, !didFinish else { return }
       persistProgress()
@@ -232,7 +237,7 @@ struct RosaryFlowView: View {
     guard !hasLoaded else { return }
     sessionPrayer = prayer
     isRightToLeft = LanguageCatalog.resolve(sessionPrayer.languageCode).isRightToLeft
-    steps = services.engine.buildSteps(for: sessionPrayer)
+    steps = services.engine.buildSteps(for: sessionPrayer, initializeFilioque: false)
     currentIndex = 0
     seasonColor = services.calendar.seasonColorToday()
     hasLoaded = true
@@ -247,7 +252,7 @@ struct RosaryFlowView: View {
       var candidate = prayer
       candidate.rosary = options
       candidate.languageCode = progress.languageCode
-      let candidateSteps = services.engine.buildSteps(for: candidate)
+      let candidateSteps = services.engine.buildSteps(for: candidate, initializeFilioque: false)
       if progress.canResume(stepCount: candidateSteps.count, sameLocalDayOnly: true,
           expectedConfigurationSignature: PrayerRunSignature.rosary(prayer.rosary,
             navigationGroup: progress.rosaryNavigationGroup, navigationOrder: progress.rosaryNavigationOrder)) {
@@ -259,6 +264,7 @@ struct RosaryFlowView: View {
         pendingContinuation = progress
       }
     }
+    steps = services.engine.buildSteps(for: sessionPrayer)
     if pendingContinuation == nil { progressStore.clear(runKey: runKey) }
     if requiresMysteryChoice { pickerGroup = nil; showsMysteryPicker = true }
   }

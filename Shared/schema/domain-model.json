@@ -976,6 +976,17 @@
           "deprecated": true,
           "description": "Retired alternative Hail Mary wording option. Existing values are ignored; sourced Vicariate text and its matching reading aid are always retained."
         },
+        "includeFilioque": {
+          "type": "boolean",
+          "initialDefaultByRite": {
+            "la": true,
+            "he": true,
+            "he-x-gamliel": true,
+            "arc": true,
+            "el": false
+          },
+          "description": "App-wide Nicene Creed wording choice. The stored key remains absent until the first explicit Prayer Language selection or the first actual Nicene rendering, which initializes it from that rite's existing use: Greek false; Latin, Vicariate Hebrew, Mission Hebrew and Aramaic true. Reading Settings or changing the interface language must not initialize it. Once saved, changing prayer rites never overrides this value. Apply it to exact recognized Nicene procession clauses after selecting the actual winning source, including Nicene uses of symbolumApostolorum. Keep raw source text intact; remove Mission optional parentheses in rendered text and update both Aramaic scripts together. Greek has no sourced insertion and remains unchanged when enabled. Ordinary Apostles' Creeds, unrelated Father/Son wording and unrecognized imported recensions remain unchanged. Active readers refresh wording while retaining position."
+        },
         "todayLanguageCode": {
           "type": "string",
           "deprecated": true,

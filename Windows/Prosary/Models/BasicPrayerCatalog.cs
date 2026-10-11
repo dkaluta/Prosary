@@ -31,6 +31,7 @@ public static class BasicPrayerCatalog
         // Apostles' Creed, and the Mission of St. Gamaliel's overlay replaces it with the
         // Nicene — exactly as their Rosary prays it (Erez, 2026-08-08).
         new("creed", "rosary", "symbolumApostolorumTitle", "symbolumApostolorum", "crucifix"),
+        new("niceneCreed", "rosary", "symbolumNicaenumTitle", "symbolumNicaenum", "crucifix"),
         new("holyGod", "trisagion", "trisagionAcclamationTitle", "trisagionAcclamation", "jesus_portrait"),
         // Standalone antiphon text, without the Rosary's appended versicle and collect.
         new("salveRegina", "rosary", "salveReginaTitle", "salveRegina", "madonna_and_child"),

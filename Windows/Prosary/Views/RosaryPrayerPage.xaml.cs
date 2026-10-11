@@ -24,7 +24,7 @@ public sealed partial class RosaryPrayerPage : Page
 
     private AutoAdvanceTimer? _autoAdvance;
     private readonly PrayerFlowReader _reader;
-    private (bool, string, string)? _lastPrayerWording;
+    private (bool, string, string, bool?)? _lastPrayerWording;
     private bool _isLoadingSession;
     private bool _isShowingMysteryDialog;
     private bool _isPageActive;
@@ -257,7 +257,7 @@ public sealed partial class RosaryPrayerPage : Page
     private void OnTypographyChanged() => ViewModel.RefreshTypography();
     private void OnPrayerWordingChanged()
     {
-        var wording = (AppSettings.UseJaffaHailMaryWording, AppSettings.AramaicSignOfCrossForm, AppSettings.DefaultLanguageCode);
+        var wording = (AppSettings.UseJaffaHailMaryWording, AppSettings.AramaicSignOfCrossForm, AppSettings.DefaultLanguageCode, AppSettings.IncludeFilioquePreference);
         if (_lastPrayerWording == wording) return;
         _lastPrayerWording = wording;
         ViewModel.RefreshPrayerWording();

@@ -144,6 +144,106 @@ public class PrayerRunStateTests : IClassFixture<PrayerPackLoaderFixture>
         Assert.Null(runs.Get(PrayerRunKeys.Rosary(prayer.Id)));
     }
 
+    [Fact]
+    public async Task FilioqueChangeRefreshesIndependentRosariesWithoutMovingTheirStepsOrScript()
+    {
+        using var preference = new AppSettingsFilioqueScope(true);
+        var previousScript = AppSettings.AramaicDefaultScript;
+        try
+        {
+            AppSettings.SetAramaicDefaultScript("Syrc");
+            var aramaicPrayer = new Prayer { LanguageCode = "arc" };
+            var missionPrayer = new Prayer { LanguageCode = "he-x-gamliel" };
+            var presets = new MemoryPresetStore(aramaicPrayer, missionPrayer);
+            var calendar = new LiturgicalCalendarService();
+            var aramaic = new RosaryViewModel(presets, new PrayerEngine(calendar), calendar,
+                new LocalPrayerRunStore(() => null, _ => { }));
+            var mission = new RosaryViewModel(presets, new PrayerEngine(calendar), calendar,
+                new LocalPrayerRunStore(() => null, _ => { }));
+            await aramaic.LoadAsync(aramaicPrayer.Id);
+            await mission.LoadAsync(missionPrayer.Id);
+            for (var index = 0; index < 5 && !aramaic.Body.Contains("ܘܒܐ"); index++)
+                aramaic.NextCommand.Execute(null);
+            for (var index = 0; index < 5 && !mission.Body.Contains("וּמִן הַבֵּן"); index++)
+                mission.NextCommand.Execute(null);
+            Assert.Contains("ܘܒܐ", aramaic.Body);
+            Assert.Contains("וּמִן הַבֵּן", mission.Body);
+            var aramaicPosition = aramaic.Progress;
+            var missionPosition = mission.Progress;
+            AppSettings.PrayerWordingChanged += aramaic.RefreshPrayerWording;
+            AppSettings.PrayerWordingChanged += mission.RefreshPrayerWording;
+            try
+            {
+                AppSettings.SetIncludeFilioque(false);
+                Assert.Equal(aramaicPosition, aramaic.Progress);
+                Assert.Equal(missionPosition, mission.Progress);
+                Assert.Equal("Syrc", aramaic.AramaicScript);
+                Assert.DoesNotContain("ܘܒܐ", aramaic.Body);
+                Assert.DoesNotContain("וּמִן הַבֵּן", mission.Body);
+                AppSettings.SetIncludeFilioque(true);
+                Assert.Contains("ܘܒܐ", aramaic.Body);
+                Assert.Contains("וּמִן הַבֵּן", mission.Body);
+                Assert.DoesNotContain("(וּמִן הַבֵּן)", mission.Body);
+                Assert.Equal(aramaicPosition, aramaic.Progress);
+                Assert.Equal(missionPosition, mission.Progress);
+            }
+            finally
+            {
+                AppSettings.PrayerWordingChanged -= aramaic.RefreshPrayerWording;
+                AppSettings.PrayerWordingChanged -= mission.RefreshPrayerWording;
+            }
+        }
+        finally { AppSettings.SetAramaicDefaultScript(previousScript); }
+    }
+
+    [Theory]
+    [InlineData(false)]
+    [InlineData(true)]
+    public async Task BookmarkPreviewDoesNotChooseFilioqueBeforeTheUserContinues(bool genericFlow)
+    {
+        using var preference = new AppSettingsFilioqueScope(null);
+        var prayer = new Prayer
+        {
+            Kind = genericFlow ? PrayerKind.Custom : PrayerKind.Rosary,
+            CustomDevotionId = genericFlow ? "rosary" : null,
+            LanguageCode = "arc",
+        };
+        var presets = new MemoryPresetStore(prayer);
+        string? json = null;
+        var runs = new LocalPrayerRunStore(() => json, value => json = value);
+        var calendar = new LiturgicalCalendarService();
+        var key = genericFlow
+            ? PrayerRunKeys.Custom(DesktopPrayerIdentity.DevotionID("rosary", prayer.Id), null, 0)
+            : PrayerRunKeys.Rosary(prayer.Id);
+        var signature = genericFlow
+            ? PrayerRunSignatures.Custom("rosary", null, 0, prayer.CustomOptions)
+            : RosarySessionNavigation.Signature(prayer.Rosary);
+        runs.Save(key, new PrayerRunState(signature, 1, "el",
+            PrayerRunState.LocalDateString(DateOnly.FromDateTime(DateTime.Now))));
+        if (genericFlow)
+        {
+            var flow = new CustomDevotionViewModel(presets, new PrayerEngine(calendar), calendar,
+                new SilentReminders(), runs);
+            await flow.LoadAsync(prayer.Id, "rosary");
+            Assert.True(flow.HasSavedContinuation);
+            Assert.Null(AppSettings.IncludeFilioquePreference);
+            flow.RefreshPrayerWording();
+            Assert.Null(AppSettings.IncludeFilioquePreference);
+            flow.ContinueSavedRun();
+        }
+        else
+        {
+            var flow = new RosaryViewModel(presets, new PrayerEngine(calendar), calendar, runs);
+            await flow.LoadAsync(prayer.Id);
+            Assert.True(flow.HasSavedContinuation);
+            Assert.Null(AppSettings.IncludeFilioquePreference);
+            flow.RefreshPrayerWording();
+            Assert.Null(AppSettings.IncludeFilioquePreference);
+            flow.ContinueSavedRun();
+        }
+        Assert.False(AppSettings.IncludeFilioquePreference);
+    }
+
     [Theory]
     [InlineData(false)]
     [InlineData(true)]

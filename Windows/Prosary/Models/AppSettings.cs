@@ -31,6 +31,7 @@ public static class AppSettings
     private const string KeyBasicPrayersLanguage = "basicPrayersLanguageCode";
     private const string KeyAramaicSignOfCrossForm = "aramaicSignOfCrossForm";
     private const string KeyUseJaffaHailMaryWording = "useJaffaHailMaryWording";
+    private const string KeyIncludeFilioque = "includeFilioque";
     private const string KeyFeastCalendar = "feastCalendarId";
     private const string KeyEasternPaschaStyle = "easternPaschaStyle";
     private const string KeyAutoAdvance = "autoAdvanceSeconds";
@@ -92,6 +93,8 @@ public static class AppSettings
     private static string? _appColor;
     private static IReadOnlyList<string>? _homeWidgetOrder;
     private static string? _homePhotoPath;
+    private static bool? _includeFilioque;
+    [ThreadStatic] private static int _filioqueInitializationDepth;
 
     public static IReadOnlyList<string> HomeWidgetOrder => _homeWidgetOrder ??=
         HomeWidgets.Parse(ReadLocalSetting("homeWidgetOrder") as string);
@@ -180,6 +183,7 @@ public static class AppSettings
 
     public static void SetDefaultLanguageCode(string code)
     {
+        InitializeFilioqueForLanguage(code);
         _prayerLanguageCode = code == LanguageCatalog.VicariateContentCode ? "he" : code;
         WriteLocalSetting(KeyDefaultLanguage, _prayerLanguageCode);
     }
@@ -191,6 +195,7 @@ public static class AppSettings
 
     public static void SetBasicPrayersLanguageCode(string code)
     {
+        InitializeFilioqueForLanguage(code);
         _basicPrayersLanguageCode = code;
         WriteLocalSetting(KeyBasicPrayersLanguage, code);
     }
@@ -199,6 +204,48 @@ public static class AppSettings
     public static bool UseJaffaHailMaryWording => false;
 
     public static event Action? PrayerWordingChanged;
+
+    /// <summary>Absent until an explicit prayer-language choice or an actual Nicene body
+    /// supplies the initial tradition. Merely viewing Settings does not write this value.</summary>
+    public static bool? IncludeFilioquePreference => _includeFilioque ??=
+        ReadLocalSetting(KeyIncludeFilioque) as bool?;
+
+    public static bool IncludeFilioque => IncludeFilioquePreference
+        ?? FilioquePrayerWording.DefaultForLanguage(LanguageCatalog.Resolve(DefaultLanguageCode).Code) ?? true;
+
+    public static void InitializeFilioqueForLanguage(string? code)
+    {
+        if (FilioquePrayerWording.DefaultForLanguage(code) is { } status) InitializeFilioque(status);
+    }
+
+    internal static void InitializeFilioque(bool status)
+    {
+        if (IncludeFilioquePreference is not null) return;
+        _includeFilioque = status;
+        WriteLocalSetting(KeyIncludeFilioque, status);
+    }
+
+    internal static void InitializeFilioqueFromSource(bool status)
+    {
+        if (_filioqueInitializationDepth == 0) InitializeFilioque(status);
+    }
+
+    /// <summary>Candidate sessions and step counts may resolve sourced bodies without
+    /// choosing the user's first tradition. Keep nested/background callers independent.</summary>
+    internal static T WithoutFilioqueInitialization<T>(Func<T> build)
+    {
+        _filioqueInitializationDepth++;
+        try { return build(); }
+        finally { _filioqueInitializationDepth--; }
+    }
+
+    public static void SetIncludeFilioque(bool value)
+    {
+        if (IncludeFilioquePreference == value) return;
+        _includeFilioque = value;
+        WriteLocalSetting(KeyIncludeFilioque, value);
+        PrayerWordingChanged?.Invoke();
+    }
 
     public static void SetUseJaffaHailMaryWording(bool value)
     {

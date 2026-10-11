@@ -247,14 +247,15 @@ fun CustomDevotionFlowScreen(
             dayIndex,
             customOptions,
         )
-        fun build(language: String) = services.engine.buildSteps(
+        fun build(language: String, initializeFilioque: Boolean = true) = services.engine.buildSteps(
             Prayer(
                 kind = PrayerKind.Custom, languageCode = language,
                 customDevotionId = devotionId, variantId = variantId, dayIndex = dayIndex,
                 customOptions = customOptions,
             ),
+            initializeFilioque = initializeFilioque,
         )
-        val candidateSteps = build(candidateLanguage)
+        val candidateSteps = if (savedRun != null) build(candidateLanguage, initializeFilioque = false) else emptyList()
         val validRun = if (checkedRunKey != candidateRunKey) {
             savedRun?.takeIf {
                 (initialLanguageCode == null || it.languageCode == configuredLanguage) && it.canResume(
@@ -272,7 +273,7 @@ fun CustomDevotionFlowScreen(
         languageCode = PrayerPackStore.effectiveLanguage(devotionId, sessionLanguage)
         displayName = PrayerPackStore.info(devotionId)?.displayNameIn(languageCode ?: sessionLanguage) ?: devotionId
         isRightToLeft = LanguageCatalog.resolve(languageCode ?: LanguageCatalog.defaultCode).isRightToLeft
-        val built = if (sessionLanguage == candidateLanguage) candidateSteps else build(sessionLanguage)
+        val built = build(sessionLanguage)
         steps = built
         currentIndex = 0
         seasonColor = services.calendar.seasonColorToday()
@@ -321,6 +322,17 @@ fun CustomDevotionFlowScreen(
     }
 
     val continuationLanguage = frozenLanguageCode ?: chosenLanguage
+    LaunchedEffect(AppSettings.includeFilioqueChoice) {
+        if (steps.isNotEmpty()) {
+            val position = currentIndex
+            steps = services.engine.buildSteps(Prayer(
+                kind = PrayerKind.Custom, languageCode = languageCode ?: continuationLanguage,
+                customDevotionId = devotionId, variantId = variantId,
+                dayIndex = dayIndex, customOptions = customOptions,
+            ))
+            currentIndex = position.coerceIn(0, (steps.size - 1).coerceAtLeast(0))
+        }
+    }
     val currentRunKey = PrayerRunKeys.custom(devotionId, variantId, dayIndex)
     val currentEffectiveVariantId = PrayerPackStore.definition(devotionId)
         ?.effectiveVariantId(variantId, languageCode)

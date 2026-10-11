@@ -169,7 +169,7 @@ final class CustomDevotionEngineTests: XCTestCase {
     }
 
     XCTAssertEqual(BasicPrayerCatalog.all.map(\.id),
-                   ["signOfCross", "ourFather", "hailMary", "gloryBe", "creed", "holyGod", "stMichael",
+                   ["signOfCross", "ourFather", "hailMary", "gloryBe", "creed", "niceneCreed", "holyGod", "stMichael",
                     "salveRegina", "almaRedemptorisMater", "aveReginaCaelorum", "reginaCaeli"])
 
     InterfaceLanguageStore.shared.selection = "en"

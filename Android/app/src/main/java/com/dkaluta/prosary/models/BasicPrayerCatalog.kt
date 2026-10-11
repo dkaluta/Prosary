@@ -31,6 +31,7 @@ object BasicPrayerCatalog {
         // Apostles' Creed, and the Mission of St. Gamaliel's overlay replaces it with the
         // Nicene — exactly as their Rosary prays it (Erez, 2026-08-08).
         BasicPrayer("creed", "rosary", "symbolumApostolorumTitle", "symbolumApostolorum", "crucifix"),
+        BasicPrayer("niceneCreed", "rosary", "symbolumNicaenumTitle", "symbolumNicaenum", "crucifix"),
         BasicPrayer(
             "holyGod", "trisagion", "trisagionAcclamationTitle", "trisagionAcclamation",
             "jesus_portrait",

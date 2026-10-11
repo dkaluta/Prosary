@@ -17,6 +17,7 @@ struct SettingsView: View {
   @AppStorage("reverseReadingsOrder") private var reverseReadingsOrder = false
   @Environment(\.appServices) private var services
   @Bindable private var interfaceLanguage = InterfaceLanguageStore.shared
+  @ObservedObject private var prayerLanguage = PrayerLanguageMonitor.shared
   #if !os(macOS)
   @AppStorage(AppColor.defaultsKey) private var appColor = AppColor.blue.rawValue
   #endif
@@ -194,6 +195,17 @@ struct SettingsView: View {
         code: $languageCode,
         defaultLabel: String(localized: "settings.prayerLanguage.appLanguage",
                              defaultValue: "App Language (\(LanguageCatalog.resolve(UILanguage.current).nativeName))", bundle: UILanguage.bundle, locale: UILanguage.locale))
+      Toggle(String(localized: "settings.includeFilioque", defaultValue: "Include Filioque",
+                    bundle: UILanguage.bundle, locale: UILanguage.locale),
+             isOn: Binding(get: {
+               let _ = prayerLanguage.includeFilioque
+               return NiceneCreedText.included(for: languageCode)
+             }, set: { UserDefaults.standard.set($0, forKey: NiceneCreedText.defaultsKey) }))
+        .accessibilityIdentifier("includeFilioqueToggle")
+      Text(String(localized: "settings.includeFilioqueHelp",
+                  defaultValue: "Include “and the Son” in the Nicene Creed where the sourced text supplies it.",
+                  bundle: UILanguage.bundle, locale: UILanguage.locale))
+        .font(.caption).foregroundStyle(.secondary)
       Toggle(String(localized: "settings.showPrayerNameInPrayerLanguage",
                     defaultValue: "Show prayer names in the prayer language", bundle: UILanguage.bundle, locale: UILanguage.locale),
              isOn: $showsPrayerNameInPrayerLanguage)

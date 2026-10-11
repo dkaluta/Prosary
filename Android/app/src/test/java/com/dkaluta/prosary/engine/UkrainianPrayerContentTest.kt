@@ -30,7 +30,9 @@ class UkrainianPrayerContentTest {
 
     @Test fun allBasicPrayersUseTheSourcedUkrainianTitleAndBody() {
         val titles = listOf("Знак хреста", "Отче наш", "Радуйся, Маріє", "Слава Отцю", "Апостольський символ віри", "Святий Боже")
-        for ((prayer, title) in BasicPrayerCatalog.all.zip(titles)) {
+        val sourcedPrayers = listOf("signOfCross", "ourFather", "hailMary", "gloryBe", "creed", "holyGod")
+            .map { requireNotNull(BasicPrayerCatalog.prayer(it)) }
+        for ((prayer, title) in sourcedPrayers.zip(titles)) {
             val step = BasicPrayerCatalog.step(prayer, "uk")
             assertEquals(prayer.id, title, step.title)
             assertEquals(prayer.id, PrayerTypography.Script.Cyrillic, PrayerTypography.scriptOf(step.body))

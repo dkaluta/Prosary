@@ -43,7 +43,8 @@ private val ordinals = listOf(
 class PrayerEngine(
     private val calendar: LiturgicalCalendarProviding = MockLiturgicalCalendar(),
 ) {
-    fun buildSteps(prayer: Prayer): List<RosaryStep> {
+    fun buildSteps(prayer: Prayer, initializeFilioque: Boolean = true): List<RosaryStep> {
+        if (!initializeFilioque) return AppSettings.withoutFilioqueInitialization { buildSteps(prayer) }
         if (prayer.kind == PrayerKind.Rosary && prayer.rosary.mysterySelectionMode == MysterySelectionMode.ChooseOnLaunch) return emptyList()
         val steps = when (prayer.kind) {
             // The Rosary builds from the rosary bundle's devotion.json like every other devotion —

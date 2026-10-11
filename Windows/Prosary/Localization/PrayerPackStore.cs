@@ -50,7 +50,7 @@ public static class PrayerPackStore
     private static readonly Dictionary<string, Dictionary<string, string>> PrayerTransliterations = new();
     private static readonly HashSet<string> SharedPrayerTitleKeys = new(StringComparer.Ordinal)
     {
-        "signumCrucisTitle", "symbolumApostolorumTitle", "paterNosterTitle", "aveMariaTitle", "gloriaPatriTitle",
+        "signumCrucisTitle", "symbolumApostolorumTitle", "symbolumNicaenumTitle", "paterNosterTitle", "aveMariaTitle", "gloriaPatriTitle",
         "mysteryGroupJoyfulTitle", "mysteryGroupSorrowfulTitle", "mysteryGroupGloriousTitle", "mysteryGroupLuminousTitle",
     };
     /// <summary>The fixed prayer keys that may participate in the process-wide override layer.
@@ -59,6 +59,7 @@ public static class PrayerPackStore
     /// keys remain available through <see cref="RawContentByBundle"/> only.</summary>
     private static readonly HashSet<string> SharedPrayerKeys = PrayerTranslations.ByLanguage.Values
         .SelectMany(static table => table.Keys)
+        .Concat(["SymbolumNicaenum", "SymbolumNicaenumTitle"])
         .ToHashSet(StringComparer.Ordinal);
     private static readonly Dictionary<string, Dictionary<string, MysteryTextOverride>> MysteryOverrides = new();
     /// <summary>Image key → pack entries that provide it, in load order. Only the tiny entry
@@ -449,9 +450,10 @@ public static class PrayerPackStore
 
     private sealed record ResolvedPrayerContent(string Text, string? ReadingAid)
     {
-        public static ResolvedPrayerContent FromSource(string text, string? readingAid, string probe)
+        public static ResolvedPrayerContent FromSource(string text, string? readingAid, string key)
         {
-            return new(text, readingAid);
+            var rendered = FilioquePrayerWording.Apply(key, text, readingAid);
+            return new(rendered.Text, rendered.ReadingAid);
         }
     }
 
@@ -466,7 +468,7 @@ public static class PrayerPackStore
                     ?.GetValueOrDefault(sourceKey) is not { } text) return null;
             var aid = TransliterationsByBundle.GetValueOrDefault(sourceBundle)?.GetValueOrDefault(probe)
                 ?.GetValueOrDefault(sourceKey);
-            return ResolvedPrayerContent.FromSource(text, aid, probe);
+            return ResolvedPrayerContent.FromSource(text, aid, sourceKey);
         }
 
         var sharedKey = key == "signumCrucisFormB" ? PrayerKey.SignumCrucis : ToPascalCase(key);
@@ -491,10 +493,10 @@ public static class PrayerPackStore
                     && Local("rosary", probe, "signumCrucisFormB") is { } sharedFormB)
                     return sharedFormB;
                 return ResolvedPrayerContent.FromSource(shared,
-                    PrayerTransliterations.GetValueOrDefault(probe)?.GetValueOrDefault(sharedKey), probe);
+                    PrayerTransliterations.GetValueOrDefault(probe)?.GetValueOrDefault(sharedKey), key);
             }
             if (PrayerTranslations.NativeTextAtProbe(probe, sharedKey) is { } native)
-                return ResolvedPrayerContent.FromSource(native, null, probe);
+                return ResolvedPrayerContent.FromSource(native, null, key);
         }
         return null;
     }

@@ -91,7 +91,10 @@ fun RosaryFlowScreen(prayer: Prayer, onBack: () -> Unit) {
         val saved = PrayerRunProgressStore.progress(context, runKey)
         val candidateOptions = prayer.rosary.navigationOptions(saved?.rosaryNavigationGroup, saved?.rosaryNavigationOrder)
         val candidateLanguage = saved?.languageCode ?: prayer.languageCode
-        val candidateSteps = services.engine.buildSteps(prayer.copy(languageCode = candidateLanguage, rosary = candidateOptions ?: prayer.rosary))
+        val candidateSteps = if (saved != null) services.engine.buildSteps(
+            prayer.copy(languageCode = candidateLanguage, rosary = candidateOptions ?: prayer.rosary),
+            initializeFilioque = false,
+        ) else emptyList()
         val validRun = saved?.takeIf {
             candidateOptions != null && it.canResume(
                 candidateSteps.size,
@@ -105,11 +108,7 @@ fun RosaryFlowScreen(prayer: Prayer, onBack: () -> Unit) {
         sessionOptions = if (validRun != null) candidateOptions!! else prayer.rosary.copy()
         navigationGroup = validRun?.rosaryNavigationGroup
         navigationOrder = validRun?.rosaryNavigationOrder
-        val built = if (validRun != null) {
-            candidateSteps
-        } else {
-            services.engine.buildSteps(prayer.copy(languageCode = sessionLanguage, rosary = sessionOptions))
-        }
+        val built = services.engine.buildSteps(prayer.copy(languageCode = sessionLanguage, rosary = sessionOptions))
         chosenLanguage = sessionLanguage
         languageCode = LanguageCatalog.resolve(sessionLanguage).code
         steps = built
@@ -199,6 +198,14 @@ fun RosaryFlowScreen(prayer: Prayer, onBack: () -> Unit) {
             // text without reloading its bookmark or discarding the active position.
             languageCode = resolvedLanguage
             steps = services.engine.buildSteps(prayer.copy(languageCode = resolvedLanguage, rosary = sessionOptions))
+            currentIndex = position.coerceIn(0, (steps.size - 1).coerceAtLeast(0))
+        }
+    }
+
+    LaunchedEffect(AppSettings.includeFilioqueChoice) {
+        if (steps.isNotEmpty()) {
+            val position = currentIndex
+            steps = services.engine.buildSteps(prayer.copy(languageCode = languageCode, rosary = sessionOptions))
             currentIndex = position.coerceIn(0, (steps.size - 1).coerceAtLeast(0))
         }
     }

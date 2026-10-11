@@ -153,6 +153,11 @@ struct CustomDevotionFlowView: View {
       audio.stop()
     }
     .onChange(of: prayerLanguage.code) { _, _ in refreshInheritedLanguage() }
+    .onChange(of: prayerLanguage.includeFilioque) { _, _ in
+      guard hasLoaded, !didFinish else { return }
+      steps = builtSteps()
+      currentIndex = min(currentIndex, max(steps.count - 1, 0))
+    }
     .confirmationDialog(
       completionSuggestion.map {
         String(localized: "multiDay.completedTitle", defaultValue: "That completes it. Pray \($0.name) next?", bundle: UILanguage.bundle, locale: UILanguage.locale)
@@ -364,7 +369,7 @@ struct CustomDevotionFlowView: View {
     }
 
     isRightToLeft = LanguageCatalog.resolve(languageCode ?? LanguageCatalog.defaultCode).isRightToLeft
-    steps = builtSteps()
+    steps = builtSteps(initializeFilioque: false)
     currentIndex = 0
     seasonColor = services.calendar.seasonColorToday()
 
@@ -375,7 +380,7 @@ struct CustomDevotionFlowView: View {
       preservesInheritedSession: true)
     #endif
     if let progress = continuation {
-      let savedSteps = builtSteps(languageChoice: progress.languageCode)
+      let savedSteps = builtSteps(languageChoice: progress.languageCode, initializeFilioque: false)
       if (initialLanguageCode == nil || progress.languageCode == chosenLanguage), progress.canResume(
         stepCount: savedSteps.count,
         expectedConfigurationSignature: configurationSignature(forLanguageChoice: progress.languageCode)
@@ -393,6 +398,7 @@ struct CustomDevotionFlowView: View {
       progressStore.clear(runKey: runKey)
       pickAudioTrack()
     }
+    steps = builtSteps()
     hasLoaded = true
   }
 
@@ -454,13 +460,13 @@ struct CustomDevotionFlowView: View {
     audio.seekToChapter(target)
   }
 
-  private func builtSteps(languageChoice: String? = nil) -> [RosaryStep] {
+  private func builtSteps(languageChoice: String? = nil, initializeFilioque: Bool = true) -> [RosaryStep] {
     // The effective language belongs to this live run. An inherited change may refresh it
     // only within the same form; saved choices retain their raw sentinel either way.
     services.engine.buildSteps(for: Prayer(
       kind: .custom, languageCode: languageChoice ?? languageCode ?? chosenLanguage,
       customDevotionId: devotionId, variantId: variantId, dayIndex: dayIndex,
-      customOptions: customOptions))
+      customOptions: customOptions), initializeFilioque: initializeFilioque)
   }
 
   private func refreshInheritedLanguage() {

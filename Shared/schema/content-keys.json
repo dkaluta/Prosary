@@ -7,7 +7,8 @@
     },
     {
       "key": "symbolumApostolorum",
-      "text": "Apostles' Creed"
+      "text": "Apostles' Creed",
+      "note": "Existing devotions use this shared Creed key; Mission Hebrew, Aramaic and Greek resolve it to their sourced Nicene Creed. The separate Basic Prayer niceneCreed uses bundle-local symbolumNicaenumTitle/symbolumNicaenum in the Rosary pack, without replacing the ordinary Apostles' Creed or adding a native PrayerKey. The includeFilioque preference affects exact recognized Nicene procession clauses only."
     },
     {
       "key": "paterNoster",

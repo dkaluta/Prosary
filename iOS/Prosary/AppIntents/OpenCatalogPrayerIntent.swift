@@ -16,7 +16,7 @@ struct CatalogPrayerEntity: AppEntity {
   static func available() -> [Self] {
     let devotions = DevotionDirectory.all().map { Self(id: "devotion:\($0.id)", name: $0.title) }
     let basics = BasicPrayerCatalog.all.map { prayer in
-      Self(id: "basic:\(prayer.id)", name: BasicPrayerCatalog.step(for: prayer).title)
+      Self(id: "basic:\(prayer.id)", name: BasicPrayerCatalog.title(for: prayer))
     }
     return (devotions + basics).sorted { $0.name.localizedStandardCompare($1.name) == .orderedAscending }
   }

@@ -99,6 +99,38 @@ object AppSettings {
     private var basicPrayersLanguageState by mutableStateOf(LanguageCatalog.defaultSentinel)
     val basicPrayersLanguageCode: String get() = basicPrayersLanguageState
 
+    private val filioque = FilioquePreference()
+    private val filioqueInitializationDepth = ThreadLocal<Int>()
+    val includeFilioqueChoice: Boolean? get() = filioque.choice
+    var includeFilioque: Boolean
+        get() = filioque.choice ?: filioqueStatusQuo(LanguageCatalog.resolve(defaultLanguageCode).code)
+        set(value) = filioque.set(value)
+
+    fun initializeFilioqueFromSelection(languageCode: String) {
+        if (languageCode.isNotEmpty()) filioque.initializeOnce(filioqueStatusQuo(languageCode))
+    }
+
+    fun initializeFilioqueFromSource(statusQuo: Boolean) {
+        if ((filioqueInitializationDepth.get() ?: 0) == 0) filioque.initializeOnce(statusQuo)
+    }
+
+    /** Bookmark and widget validation count steps without choosing the user's first rite.
+     * This scope is thread-local because widgets may validate on a background thread. */
+    internal fun <T> withoutFilioqueInitialization(block: () -> T): T {
+        val previous = filioqueInitializationDepth.get() ?: 0
+        filioqueInitializationDepth.set(previous + 1)
+        try {
+            return block()
+        } finally {
+            if (previous == 0) filioqueInitializationDepth.remove() else filioqueInitializationDepth.set(previous)
+        }
+    }
+
+    private fun filioqueStatusQuo(languageCode: String): Boolean =
+        LanguageCatalog.uiLanguageCode(languageCode).substringBefore('-') != "el"
+
+    internal fun restoreFilioqueForTesting(choice: Boolean?) = filioque.restoreForTesting(choice)
+
     /** Legacy override retained for storage compatibility; Today now ignores it. */
     private var todayLanguageState by mutableStateOf("")
     val todayLanguageCode: String get() = todayLanguageState
@@ -299,6 +331,7 @@ object AppSettings {
         val resolved = context.applicationContext.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
         prefs = resolved
         homeWidgets.initialize(resolved)
+        filioque.initialize(resolved)
         appColorState = AppColor.resolve(resolved.getString(KEY_APP_COLOR, null)).id
         useSystemColorsState = resolved.getBoolean(KEY_SYSTEM_COLORS, true)
         defaultLanguageState = resolved.getString(KEY_DEFAULT_LANGUAGE, "").orEmpty()

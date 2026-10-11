@@ -360,6 +360,7 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
     /// Persists to the matching favorite when one exists.</summary>
     public async Task SelectLanguageAsync(string raw)
     {
+        AppSettings.InitializeFilioqueForLanguage(raw);
         var oldEffectiveVariant = ResolvedVariantId(_languageCode);
         var newLanguage = PrayerPackStore.EffectiveLanguage(_bundleId, raw);
         var newEffectiveVariant = ResolvedVariantId(newLanguage);
@@ -549,7 +550,7 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
             OnPropertyChanged(nameof(ShowsLanguageMenu));
             OnPropertyChanged(nameof(CurrentLanguageRaw));
 
-            _steps = _engine.BuildSteps(new Prayer
+            var sessionPrayer = new Prayer
             {
                 Kind = PrayerKind.Custom,
                 LanguageCode = _chosenLanguage,
@@ -557,14 +558,12 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
                 VariantId = _variantId,
                 DayIndex = CurrentDayIndex,
                 CustomOptions = new Dictionary<string, string>(_customOptions),
-            });
+            };
+            _steps = _engine.BuildSteps(sessionPrayer, initializeFilioque: false);
             _index = 0;
             UpdateRunIdentity();
             ShowsBeadTrack = _steps.Any(s => s.DecadeIndex.HasValue);
             SeasonColor = _calendar.GetSeasonColorForToday();
-
-            RenderCurrentStep();
-            PickAudioTrack();
 
             var saved = _runStore.Get(_runKey);
             var matchesIncomingLanguage = initialLanguageCode is null || saved?.LanguageCode == _chosenLanguage;
@@ -579,6 +578,10 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
             {
                 _runStore.Remove(_runKey);
             }
+            if (_pendingContinuation is null)
+                _steps = _engine.BuildSteps(sessionPrayer);
+            RenderCurrentStep();
+            PickAudioTrack();
             OnPropertyChanged(nameof(HasSavedContinuation));
         }
         catch (Exception ex)
@@ -687,7 +690,7 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
             VariantId = _variantId,
             DayIndex = CurrentDayIndex,
             CustomOptions = new Dictionary<string, string>(_customOptions),
-        });
+        }, initializeFilioque: _pendingContinuation is null);
         _index = Math.Clamp(_index, 0, Math.Max(_steps.Count - 1, 0));
         RenderCurrentStep();
     }

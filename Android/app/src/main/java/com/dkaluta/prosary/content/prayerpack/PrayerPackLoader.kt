@@ -9,6 +9,7 @@ import com.dkaluta.prosary.typography.HebrewDisplayText
 
 import com.dkaluta.prosary.content.PrayerKey
 import com.dkaluta.prosary.content.PrayerTranslations
+import com.dkaluta.prosary.content.NiceneCreedText
 import java.io.File
 import java.io.InputStream
 import java.io.OutputStream
@@ -824,10 +825,23 @@ object PrayerPackStore {
 
     /** A missing aid at the selected source remains missing; never borrow another wording's aid. */
     fun transliteration(bundleId: String, languageCode: String?, key: String): String? =
-        resolvePrayerContent(bundleId, languageCode, key)?.readingAid
+        resolvedDisplayContent(bundleId, languageCode, key)?.readingAid
 
     fun resolveBodyText(bundleId: String, languageCode: String?, key: String): String =
-        resolvePrayerContent(bundleId, languageCode, key)?.text ?: key
+        resolvedDisplayContent(bundleId, languageCode, key)?.text ?: key
+
+    /** Apply only after fallback has chosen one primary/alternate source pair. A requested
+     * Greek language falling back to Latin must use that actual Latin source's default. */
+    private fun resolvedDisplayContent(bundleId: String, languageCode: String?, key: String): ResolvedPrayerContent? {
+        val content = resolvePrayerContent(bundleId, languageCode, key) ?: return null
+        val statusQuo = NiceneCreedText.statusQuo(key, content.text) ?: return content
+        AppSettings.initializeFilioqueFromSource(statusQuo)
+        val include = AppSettings.includeFilioqueChoice ?: statusQuo
+        return ResolvedPrayerContent(
+            NiceneCreedText.applying(key, content.text, include),
+            content.readingAid?.let { NiceneCreedText.applying(key, it, include) },
+        )
+    }
 
     /** A tradition choice requires two authored bodies. Language fallback and translated
      * headings alone never create a second Hebrew prayer. */

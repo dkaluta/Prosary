@@ -285,7 +285,7 @@ public partial class RosaryViewModel : ObservableObject, IPrayerStepFlowViewMode
                 // Reconstruct a session-only range before checking position bounds. A raw
                 // override never bypasses the original saved preset's signature gate.
                 var signature = RosarySessionNavigation.Signature(prayer.Rosary, group, order);
-                ConfigureSession(prayer with { Rosary = options }, 0);
+                ConfigureSession(prayer with { Rosary = options }, 0, initializeFilioque: false);
                 if (saved.CanResume(signature, _steps.Count, sameLocalDayOnly: true, DateOnly.FromDateTime(DateTime.Now)))
                 {
                     _navigationGroup = group;
@@ -314,13 +314,13 @@ public partial class RosaryViewModel : ObservableObject, IPrayerStepFlowViewMode
         }
     }
 
-    private void ConfigureSession(Prayer prayer, int position)
+    private void ConfigureSession(Prayer prayer, int position, bool initializeFilioque = true)
     {
         _activePrayer = prayer;
         _chosenLanguage = prayer.LanguageCode;
         _languageCode = prayer.ResolvedLanguageCode;
         IsRightToLeft = LanguageCatalog.Resolve(_languageCode).IsRightToLeft;
-        _steps = _engine.BuildSteps(prayer);
+        _steps = _engine.BuildSteps(prayer, initializeFilioque);
         RequiresMysteryChoice = prayer.Rosary.MysterySelectionMode == MysterySelectionMode.ChooseOnLaunch;
         OnPropertyChanged(nameof(HasSteps));
         NextCommand.NotifyCanExecuteChanged();
@@ -398,6 +398,7 @@ public partial class RosaryViewModel : ObservableObject, IPrayerStepFlowViewMode
     public async Task SelectLanguageAsync(string raw)
     {
         if (_activePrayer is null) return;
+        AppSettings.InitializeFilioqueForLanguage(raw);
 
         var position = _index;
         var changed = _activePrayer with { LanguageCode = raw };
@@ -435,7 +436,7 @@ public partial class RosaryViewModel : ObservableObject, IPrayerStepFlowViewMode
     public void RefreshPrayerWording()
     {
         if (_activePrayer is null) return;
-        _steps = _engine.BuildSteps(_activePrayer);
+        _steps = _engine.BuildSteps(_activePrayer, initializeFilioque: _pendingContinuation is null);
         _index = Math.Clamp(_index, 0, Math.Max(_steps.Count - 1, 0));
         RenderCurrentStep();
     }

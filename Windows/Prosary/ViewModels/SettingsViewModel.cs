@@ -37,6 +37,7 @@ public sealed record InstalledDevotionRow(string BundleId, string Title);
 
 public partial class SettingsViewModel : ObservableObject
 {
+    private bool _isInitializingLanguage = true;
     public WindowNavigation Navigation { get; set; } = WindowNavigation.Detached;
 
     private readonly PrayerRemovalService? _removal;
@@ -67,6 +68,7 @@ public partial class SettingsViewModel : ObservableObject
         RefreshRites();
         SelectedEasternPascha = CurrentEasternPascha;
         SynchronizeTodayCardColor();
+        _isInitializingLanguage = false;
     }
 
     private void RefreshRites()
@@ -78,8 +80,10 @@ public partial class SettingsViewModel : ObservableObject
 
     partial void OnSelectedLanguageChanged(LanguageOption value)
     {
+        if (_isInitializingLanguage) return;
         AppSettings.SetDefaultLanguageCode(LanguageCatalog.SelectingLanguage(value.Code, AppSettings.PrayerLanguageCode));
         RefreshRites();
+        SynchronizeFilioque();
         OnPropertyChanged(nameof(ShowsAramaicSignOfCrossPicker));
         RefreshInstalledDevotions();
     }
@@ -94,11 +98,32 @@ public partial class SettingsViewModel : ObservableObject
 
     partial void OnSelectedRiteChanged(LanguageOption? value)
     {
-        if (value is not null && ShowsRitePicker)
+        if (!_isInitializingLanguage && value is not null && ShowsRitePicker)
         {
             AppSettings.SetDefaultLanguageCode(value.Code);
+            SynchronizeFilioque();
             RefreshInstalledDevotions();
         }
+    }
+
+    public string IncludeFilioqueLabel => Loc.Tr("Settings_IncludeFilioque", "Include Filioque");
+    public string IncludeFilioqueHelp => Loc.Tr("Settings_IncludeFilioqueHelp", "Include “and the Son” in the Nicene Creed where the sourced text supplies it.");
+
+    [ObservableProperty]
+    private bool _includeFilioque = AppSettings.IncludeFilioque;
+
+    private bool _isSynchronizingFilioque;
+
+    partial void OnIncludeFilioqueChanged(bool value)
+    {
+        if (!_isSynchronizingFilioque) AppSettings.SetIncludeFilioque(value);
+    }
+
+    private void SynchronizeFilioque()
+    {
+        _isSynchronizingFilioque = true;
+        IncludeFilioque = AppSettings.IncludeFilioque;
+        _isSynchronizingFilioque = false;
     }
 
     private static readonly IReadOnlyList<AramaicSignOfCrossOption> AllAramaicSignOfCrossOptions =

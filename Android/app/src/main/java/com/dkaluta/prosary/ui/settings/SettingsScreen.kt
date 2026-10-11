@@ -198,6 +198,7 @@ fun SettingsScreen(onBack: () -> Unit, onOpenAppearance: () -> Unit) {
                 optionLabel = { if (it.isEmpty()) context.getString(R.string.settings_follow_app_language, InterfaceLanguage.nativeName(AppSettings.effectiveInterfaceLanguageCode)) else LanguageCatalog.pickerLanguageName(it) },
                 onSelect = {
                     defaultLanguageCode = LanguageCatalog.selectingLanguage(it, defaultLanguageCode)
+                    AppSettings.initializeFilioqueFromSelection(defaultLanguageCode)
                     AppSettings.setDefaultLanguageCode(defaultLanguageCode)
                 },
             )
@@ -208,7 +209,11 @@ fun SettingsScreen(onBack: () -> Unit, onOpenAppearance: () -> Unit) {
                     options = listOf("he", "he-x-gamliel"),
                     selected = defaultLanguageCode,
                     optionLabel = { context.getString(if (it == "he") R.string.prayer_tradition_vicariate else R.string.prayer_tradition_mission) },
-                    onSelect = { defaultLanguageCode = it; AppSettings.setDefaultLanguageCode(it) },
+                    onSelect = {
+                        defaultLanguageCode = it
+                        AppSettings.initializeFilioqueFromSelection(it)
+                        AppSettings.setDefaultLanguageCode(it)
+                    },
                 )
             }
 
@@ -219,6 +224,18 @@ fun SettingsScreen(onBack: () -> Unit, onOpenAppearance: () -> Unit) {
                 },
                 modifier = Modifier.fillMaxWidth(),
             ) { Text(stringResource(R.string.settings_language_fallback_order)) }
+
+            Row(modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+                Column(Modifier.weight(1f)) {
+                    Text(stringResource(R.string.settings_include_filioque))
+                    Text(stringResource(R.string.settings_include_filioque_hint), style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant)
+                }
+                LabeledSwitch(label = stringResource(R.string.settings_include_filioque),
+                    checked = AppSettings.includeFilioque,
+                    onCheckedChange = { AppSettings.includeFilioque = it },
+                    modifier = Modifier.testTag("includeFilioque"))
+            }
 
             Row(modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
                 Column(Modifier.weight(1f)) {

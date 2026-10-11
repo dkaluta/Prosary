@@ -20,6 +20,7 @@ import androidx.compose.ui.res.stringResource
 import com.dkaluta.prosary.R
 import com.dkaluta.prosary.content.prayerpack.PrayerPackStore
 import com.dkaluta.prosary.models.LanguageCatalog
+import com.dkaluta.prosary.models.AppSettings
 
 /** The language menu shared by Basic Prayers, the Rosary and data-driven devotions. Keeping the
  * choices here keeps their app-setting sentinel consistent. Hebrew is a public language choice;
@@ -63,7 +64,9 @@ fun PrayerLanguagePicker(
                 },
                 onClick = {
                     onExpandedChange(false)
-                    onSelect(LanguageCatalog.selectingLanguage(choice.code, chosenLanguage))
+                    val selection = LanguageCatalog.selectingLanguage(choice.code, chosenLanguage)
+                    AppSettings.initializeFilioqueFromSelection(selection)
+                    onSelect(selection)
                 },
             )
         }
@@ -81,7 +84,11 @@ fun PrayerLanguagePicker(
                     leadingIcon = if (LanguageCatalog.resolve(chosenLanguage).code == code) {
                         { Icon(Icons.Filled.Check, contentDescription = null) }
                     } else null,
-                    onClick = { traditionExpanded = false; onSelect(code) },
+                    onClick = {
+                        traditionExpanded = false
+                        AppSettings.initializeFilioqueFromSelection(code)
+                        onSelect(code)
+                    },
                 )
             }
         }

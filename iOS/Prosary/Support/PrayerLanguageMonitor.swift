@@ -33,11 +33,13 @@ final class PrayerLanguageMonitor: ObservableObject {
   /// Effective labels can change when fallback priority changes, even if the chosen language
   /// does not. Preserve the order rather than treating it as an unordered set of languages.
   @Published private(set) var fallbackOrder: [String]
+  @Published private(set) var includeFilioque: Bool?
 
   private struct NameSettings: Equatable {
     let code: String
     let showsPrayerName: Bool
     let fallbackOrder: [String]
+    let includeFilioque: Bool?
   }
 
   private var cancellable: AnyCancellable?
@@ -49,12 +51,14 @@ final class PrayerLanguageMonitor: ObservableObject {
     let readSettings = {
       NameSettings(code: resolveCode(),
         showsPrayerName: defaults.bool(forKey: PrayerNamePresentation.defaultsKey),
-        fallbackOrder: resolveFallbackOrder())
+        fallbackOrder: resolveFallbackOrder(),
+        includeFilioque: defaults.object(forKey: NiceneCreedText.defaultsKey) as? Bool)
     }
     let initial = readSettings()
     code = initial.code
     showsPrayerNameInPrayerLanguage = initial.showsPrayerName
     fallbackOrder = initial.fallbackOrder
+    includeFilioque = initial.includeFilioque
     cancellable = Publishers.Merge(
       notificationCenter.publisher(for: UserDefaults.didChangeNotification),
       notificationCenter.publisher(for: .interfaceLanguageDidChange))
@@ -65,6 +69,7 @@ final class PrayerLanguageMonitor: ObservableObject {
         self?.code = resolved.code
         self?.showsPrayerNameInPrayerLanguage = resolved.showsPrayerName
         self?.fallbackOrder = resolved.fallbackOrder
+        self?.includeFilioque = resolved.includeFilioque
       }
   }
 }
