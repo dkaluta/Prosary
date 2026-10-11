@@ -34,13 +34,13 @@ jobs:
             packageVersion: 1.20.5.0
     env:
       PROSARY_ARCHITECTURE: ${{ matrix.architecture }}
-      PROSARY_RELEASE_SHA: 96dc3e0626ee0c465c7df9a7166226a62035b5a5
+      PROSARY_RELEASE_SHA: e985c4de862b90a7e4b7dd8fe5ed728d7b284781
       PROSARY_RELEASE_VERSION: ${{ matrix.packageVersion }}
       PROSARY_CHANNEL: ${{ matrix.channel }}
     steps:
       - uses: actions/checkout@v7
         with:
-          ref: 96dc3e0626ee0c465c7df9a7166226a62035b5a5
+          ref: e985c4de862b90a7e4b7dd8fe5ed728d7b284781
           persist-credentials: false
       - uses: actions/setup-dotnet@v5
         with:

@@ -202,38 +202,48 @@ public class PrayerRunStateTests : IClassFixture<PrayerPackLoaderFixture>
     public async Task BookmarkPreviewDoesNotChooseFilioqueBeforeTheUserContinues(bool genericFlow)
     {
         using var preference = new AppSettingsFilioqueScope(null);
+        // Use a real generic devotion whose manifest declares Greek. The built-in Rosary
+        // is routed through RosaryViewModel and has only a partial Greek overlay; treating
+        // it as a custom devotion would legitimately choose another effective language.
+        var bundleId = genericFlow ? "divineMercyChaplet" : "rosary";
         var prayer = new Prayer
         {
             Kind = genericFlow ? PrayerKind.Custom : PrayerKind.Rosary,
-            CustomDevotionId = genericFlow ? "rosary" : null,
-            LanguageCode = "arc",
+            CustomDevotionId = genericFlow ? bundleId : null,
+            LanguageCode = genericFlow ? "el" : "arc",
         };
         var presets = new MemoryPresetStore(prayer);
         string? json = null;
         var runs = new LocalPrayerRunStore(() => json, value => json = value);
         var calendar = new LiturgicalCalendarService();
+        var engine = new PrayerEngine(calendar);
+        var candidate = engine.BuildSteps(prayer, initializeFilioque: false);
+        Assert.Contains(candidate, step => step.Body.Contains(genericFlow
+            ? "τὸ ἐκ τοῦ Πατρὸς ἐκπορευόμενον" : "הַו דּמֶן אַבָא ובא ננפֶק", StringComparison.Ordinal));
+        Assert.Null(AppSettings.IncludeFilioquePreference);
         var key = genericFlow
-            ? PrayerRunKeys.Custom(DesktopPrayerIdentity.DevotionID("rosary", prayer.Id), null, 0)
+            ? PrayerRunKeys.Custom(DesktopPrayerIdentity.DevotionID(bundleId, prayer.Id), null, 0)
             : PrayerRunKeys.Rosary(prayer.Id);
         var signature = genericFlow
-            ? PrayerRunSignatures.Custom("rosary", null, 0, prayer.CustomOptions)
+            ? PrayerRunSignatures.Custom(bundleId, null, 0, prayer.CustomOptions)
             : RosarySessionNavigation.Signature(prayer.Rosary);
         runs.Save(key, new PrayerRunState(signature, 1, "el",
             PrayerRunState.LocalDateString(DateOnly.FromDateTime(DateTime.Now))));
         if (genericFlow)
         {
-            var flow = new CustomDevotionViewModel(presets, new PrayerEngine(calendar), calendar,
+            var flow = new CustomDevotionViewModel(presets, engine, calendar,
                 new SilentReminders(), runs);
-            await flow.LoadAsync(prayer.Id, "rosary");
+            await flow.LoadAsync(prayer.Id, bundleId);
             Assert.True(flow.HasSavedContinuation);
             Assert.Null(AppSettings.IncludeFilioquePreference);
             flow.RefreshPrayerWording();
             Assert.Null(AppSettings.IncludeFilioquePreference);
             flow.ContinueSavedRun();
+            Assert.Equal("el", flow.SpeechLanguageCode);
         }
         else
         {
-            var flow = new RosaryViewModel(presets, new PrayerEngine(calendar), calendar, runs);
+            var flow = new RosaryViewModel(presets, engine, calendar, runs);
             await flow.LoadAsync(prayer.Id);
             Assert.True(flow.HasSavedContinuation);
             Assert.Null(AppSettings.IncludeFilioquePreference);
