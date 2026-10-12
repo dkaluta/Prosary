@@ -23,7 +23,7 @@ export const downloads = {
   },
   windows: {
     href: "https://apps.microsoft.com/detail/9NKBBRQX0JST",
-    standalone: "https://github.com/dkaluta/Prosary/releases/tag/v0.20.4",
+    standalone: "https://github.com/dkaluta/Prosary/releases/tag/v0.20.5",
     note: "Join the Windows beta through Microsoft Store.",
   },
 } as const;
