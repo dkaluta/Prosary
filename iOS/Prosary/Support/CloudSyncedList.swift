@@ -47,10 +47,14 @@ final class CloudSyncedListStorage {
   private var cloud: (any CloudSyncedListCloudStore)? { isTesting ? nil : cloudProvider() }
 
   func read(_ key: String) -> [String]? {
-    (cloud?.array(forKey: key) as? [String]) ?? defaults.stringArray(forKey: key)
+    guard let value = (cloud?.array(forKey: key) as? [String]) ?? defaults.stringArray(forKey: key) else { return nil }
+    let active = value.filter { !RetiredPrayerBundles.containsDevotionReference($0) }
+    if active != value { write(active, forKey: key) }
+    return active
   }
 
   func write(_ value: [String], forKey key: String) {
+    let value = value.filter { !RetiredPrayerBundles.containsDevotionReference($0) }
     defaults.set(value, forKey: key)
     guard let cloud else { return }
     cloud.set(value, forKey: key)

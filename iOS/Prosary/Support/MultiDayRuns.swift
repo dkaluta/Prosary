@@ -19,10 +19,13 @@ enum MultiDayRuns {
             let decoded = try? JSONDecoder().decode([String: MultiDayRun].self, from: data) else {
         return [:]
       }
-      return decoded
+      let active = decoded.filter { !RetiredPrayerBundles.containsProgressIdentity($0.key) }
+      if active.count != decoded.count { Self.all = active }
+      return active
     }
     set {
-      guard let data = try? JSONEncoder().encode(newValue) else { return }
+      let active = newValue.filter { !RetiredPrayerBundles.containsProgressIdentity($0.key) }
+      guard let data = try? JSONEncoder().encode(active) else { return }
       CloudSyncedList.writeData(data, forKey: key)
     }
   }

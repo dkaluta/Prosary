@@ -194,4 +194,11 @@ object PrayerRunProgressStore {
             saveAll(context, remaining)
         }
     }
+
+    /** A withdrawn pack must lose every form/day checkpoint, including unsaved sessions. */
+    fun clearCustomDevotion(context: Context, devotionId: String) {
+        val remaining = all(context).filterKeys { !it.startsWith("custom:$devotionId:") }
+        if (remaining.isEmpty()) prefs(context).edit().remove(KEY).apply()
+        else saveAll(context, remaining)
+    }
 }

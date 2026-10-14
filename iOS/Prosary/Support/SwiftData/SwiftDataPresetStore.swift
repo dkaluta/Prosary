@@ -8,9 +8,11 @@ import Foundation
 
 struct SwiftDataPresetStore: PresetStore {
   private let context: ModelContext
+  private let defaults: UserDefaults
 
   init(context: ModelContext, defaults: UserDefaults = .standard) {
     self.context = context
+    self.defaults = defaults
     // Mac users choose their starting prayers from the gallery. Existing saved rows
     // remain intact; only a new, empty store skips the phone's starter preset.
     #if !os(macOS)
@@ -51,30 +53,31 @@ struct SwiftDataPresetStore: PresetStore {
   }
 
   func all() async throws -> [Prayer] {
-    let entries = try context.fetch(FetchDescriptor<PresetEntry>(
-      sortBy: [SortDescriptor(\.name)]
-    ))
+    let entries = try activeEntries(sortedByName: true)
     return entries.map { $0.toPrayer() }
   }
 
   func defaultPreset(kind: PrayerKind) async throws -> Prayer? {
-    let all = try context.fetch(FetchDescriptor<PresetEntry>())
+    let all = try activeEntries()
     let matching = all.filter { $0.resolvedKind.kind == kind }
     guard let entry = matching.first(where: { $0.isDefault }) ?? matching.first else { return nil }
     return entry.toPrayer()
   }
 
   func get(id: Prayer.ID) async throws -> Prayer? {
-    let all = try context.fetch(FetchDescriptor<PresetEntry>())
+    let all = try activeEntries()
     return all.first { $0.id == id }?.toPrayer()
   }
 
   func save(_ prayer: Prayer) async throws {
+    let all = try activeEntries()
+    guard prayer.kind != .custom || !RetiredPrayerBundles.contains(prayer.customDevotionId) else {
+      throw PrayerPackStore.InstallError.notADevotion
+    }
     if prayer.isDefault {
       // "One default per kind" is scoped per devotion: (kind, customDevotionId), compared via
       // the resolved identity so legacy-kind rows ("angelus") and their migrated .custom
       // equivalents share one default slot.
-      let all = try context.fetch(FetchDescriptor<PresetEntry>())
       for entry in all {
         let resolved = entry.resolvedKind
         if resolved.kind == prayer.kind && resolved.customDevotionId == prayer.customDevotionId {
@@ -82,7 +85,7 @@ struct SwiftDataPresetStore: PresetStore {
         }
       }
     }
-    let existing = try context.fetch(FetchDescriptor<PresetEntry>()).first { $0.id == prayer.id }
+    let existing = all.first { $0.id == prayer.id }
     if let existing {
       existing.update(from: prayer)
     } else {
@@ -96,7 +99,8 @@ struct SwiftDataPresetStore: PresetStore {
   @discardableResult
   func updateIfPresent(_ prayer: Prayer) async throws -> Bool {
     // This method never suspends between lookup and save, and has no insert path.
-    let all = try context.fetch(FetchDescriptor<PresetEntry>())
+    let all = try activeEntries()
+    guard prayer.kind != .custom || !RetiredPrayerBundles.contains(prayer.customDevotionId) else { return false }
     guard let existing = all.first(where: { $0.id == prayer.id }) else { return false }
     if prayer.isDefault {
       for entry in all {
@@ -114,7 +118,7 @@ struct SwiftDataPresetStore: PresetStore {
   }
 
   func delete(_ prayer: Prayer) async throws {
-    let all = try context.fetch(FetchDescriptor<PresetEntry>())
+    let all = try activeEntries()
     guard let entry = all.first(where: { $0.id == prayer.id }) else { return }
     let wasDefault = entry.isDefault
     let identity = entry.resolvedKind
@@ -127,5 +131,44 @@ struct SwiftDataPresetStore: PresetStore {
     do { try context.save() }
     catch { context.rollback(); throw error }
     NotificationCenter.default.post(name: .prayerLibraryDidChange, object: nil)
+  }
+
+  /// Repeat on every access because CloudKit may deliver an old copy after launch.
+  /// Saving the deletion propagates it to the user's other Apple devices.
+  private func activeEntries(sortedByName: Bool = false) throws -> [PresetEntry] {
+    let entries = try context.fetch(FetchDescriptor<PresetEntry>(
+      sortBy: sortedByName ? [SortDescriptor(\.name)] : []))
+    let retired = entries.filter {
+      $0.resolvedKind.kind == .custom && RetiredPrayerBundles.contains($0.resolvedKind.customDevotionId)
+    }
+    guard !retired.isEmpty else { return entries }
+    let active = entries.filter {
+      $0.resolvedKind.kind != .custom || !RetiredPrayerBundles.contains($0.resolvedKind.customDevotionId)
+    }
+    let prayers = retired.map { $0.toPrayer() }
+    for entry in retired { context.delete(entry) }
+    do { try context.save() }
+    catch { context.rollback(); throw error }
+    for prayer in prayers {
+      if !ProsaryRuntimeEnvironment.isTesting {
+        ReminderScheduler.removeAll(for: prayer)
+        ReminderScheduler.removeSeries(devotionId: RetiredPrayerBundles.loretoStandaloneID,
+          runID: PrayerCopyProgressIdentity.devotionID(RetiredPrayerBundles.loretoStandaloneID, prayerID: prayer.id))
+      }
+      RecentPrayerStore(defaults: defaults).remove(prayerID: prayer.id)
+      MultiDayRuns.clear(RetiredPrayerBundles.loretoStandaloneID)
+      MultiDayRuns.clear(PrayerCopyProgressIdentity.devotionID(RetiredPrayerBundles.loretoStandaloneID, prayerID: prayer.id))
+      _ = PrayerRunProgressStore(defaults: defaults).progress(for:
+        PrayerRunKey.custom(RetiredPrayerBundles.loretoStandaloneID, variantId: nil, dayIndex: 0))
+      #if os(macOS)
+      MacPrayerPlaybackSettings(defaults: defaults).remove(for: prayer.id)
+      MacLibraryMembershipStore(defaults: defaults).remove(RetiredPrayerBundles.loretoStandaloneID)
+      let tags = MacLibraryTagStore(defaults: defaults)
+      tags.removeAssignments(for: prayer.id.uuidString)
+      tags.removeAssignments(for: "devotion:\(RetiredPrayerBundles.loretoStandaloneID)")
+      #endif
+    }
+    NotificationCenter.default.post(name: .prayerLibraryDidChange, object: nil)
+    return active
   }
 }

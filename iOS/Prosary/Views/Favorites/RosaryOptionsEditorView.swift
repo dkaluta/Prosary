@@ -91,7 +91,10 @@ struct RosaryOptionsSections: View {
       }
 
       Section("favoriteEditor.openingDecadePrayers") {
-        Toggle("favoriteEditor.apostlesCreed", isOn: $rosary.includeApostlesCreed)
+        Toggle(PrayerPackStore.creedPolicy(languageCode: languageCode)?.apostlesCreed == false
+          ? UILanguage.text("favoriteEditor.niceneCreed", language: UILanguage.current, fallback: "Nicene Creed")
+          : UILanguage.text("favoriteEditor.apostlesCreed", language: UILanguage.current, fallback: "Apostles' Creed"),
+          isOn: $rosary.includeApostlesCreed)
         Toggle("favoriteEditor.openingPrayers", isOn: $rosary.includeOpeningPrayers)
         Toggle("favoriteEditor.openingFatimaPrayer", isOn: $rosary.includeOpeningFatimaPrayer)
           .disabled(!rosary.includeOpeningPrayers)

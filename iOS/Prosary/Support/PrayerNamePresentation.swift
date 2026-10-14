@@ -7,6 +7,13 @@ struct PrayerNamePresentation: Equatable {
   let title: String
   let translation: String?
 
+  /// Hebrew interface names use the Hebrew tradition of the prayer being opened.
+  /// Other interface and prayer languages keep their ordinary interface translation.
+  static func interfaceTitleLanguage(prayerCode: String, interfaceLanguage: String) -> String {
+    interfaceLanguage == "he" && (prayerCode == "he" || prayerCode == "he-x-gamliel")
+      ? prayerCode : interfaceLanguage
+  }
+
   init(interfaceTitle: String, prayerTitle: String, showPrayerLanguage: Bool) {
     let interfaceTitle = HebrewDisplayText.unpointed(interfaceTitle)
     let prayerTitle = HebrewDisplayText.unpointed(prayerTitle)
@@ -26,10 +33,12 @@ struct PrayerNamePresentation: Equatable {
                           interfaceLanguage: String? = nil,
                           showPrayerLanguage: Bool) -> Self {
     let interfaceLanguage = interfaceLanguage ?? UILanguage.current
+    let prayerLanguage = BasicPrayerCatalog.languageCode(for: prayer, requested: languageCode)
+    let titleLanguage = interfaceTitleLanguage(prayerCode: prayerLanguage, interfaceLanguage: interfaceLanguage)
     let interfaceTitle = HebrewDisplayText.unpointed(PrayerPackStore.resolveBodyText(
-      bundleId: prayer.bundleId, languageCode: BasicPrayerCatalog.languageCode(for: prayer, requested: interfaceLanguage), key: prayer.titleKey))
+      bundleId: prayer.bundleId, languageCode: BasicPrayerCatalog.languageCode(for: prayer, requested: titleLanguage), key: prayer.titleKey))
     let prayerTitle = HebrewDisplayText.unpointed(PrayerPackStore.resolveBodyText(
-      bundleId: prayer.bundleId, languageCode: BasicPrayerCatalog.languageCode(for: prayer, requested: languageCode), key: prayer.titleKey))
+      bundleId: prayer.bundleId, languageCode: prayerLanguage, key: prayer.titleKey))
     return Self(title: prayerTitle,
                 translation: showPrayerLanguage && interfaceTitle != prayerTitle ? interfaceTitle : nil)
   }

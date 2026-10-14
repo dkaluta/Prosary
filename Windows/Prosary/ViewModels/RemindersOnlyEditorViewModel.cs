@@ -80,7 +80,8 @@ public partial class RemindersOnlyEditorViewModel : ObservableObject
         var info = prayer.Kind == PrayerKind.Custom && prayer.CustomDevotionId is { } bundleId
             ? PrayerPackStore.Info(bundleId)
             : null;
-        Title = info?.LocalizedDisplayName ?? prayer.Kind.DisplayName();
+        Title = info is not null && prayer.CustomDevotionId is { } titleBundle
+            ? PrayerPackStore.InterfaceDisplayName(titleBundle, prayer.LanguageCode) : prayer.Kind.DisplayName();
 
         OptionRows.Clear();
         if (prayer.CustomDevotionId is { } devotionId)
@@ -92,7 +93,9 @@ public partial class RemindersOnlyEditorViewModel : ObservableObject
                 // value even before the user has ever touched them; Save stores explicit
                 // overrides for every row.
                 var value = customOptions.GetValueOrDefault(option.Key) ?? option.DefaultValue;
-                OptionRows.Add(new DevotionOptionRowViewModel(option, value));
+                var creedLabel = option.Key == "apostlesCreed" && !PrayerPackStore.HasApostlesCreed(devotionId, prayer.LanguageCode)
+                    ? Loc.Tr("favorite_editor_nicene_creed", "Nicene Creed") : null;
+                OptionRows.Add(new DevotionOptionRowViewModel(option, value, creedLabel));
             }
         }
 
@@ -161,6 +164,7 @@ public partial class RemindersOnlyEditorViewModel : ObservableObject
 public partial class DevotionOptionRowViewModel : ObservableObject
 {
     private readonly CustomDevotionOption _option;
+    private readonly string? _labelOverride;
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(EffectiveIsOn))]
@@ -181,15 +185,16 @@ public partial class DevotionOptionRowViewModel : ObservableObject
     [ObservableProperty]
     private CustomDevotionOption.Case? _selectedCase;
 
-    public DevotionOptionRowViewModel(CustomDevotionOption option, string value)
+    public DevotionOptionRowViewModel(CustomDevotionOption option, string value, string? labelOverride = null)
     {
         _option = option;
+        _labelOverride = labelOverride;
         _isOn = value == "true";
         _selectedCase = option.Cases?.FirstOrDefault(c => c.Id == value) ?? option.Cases?.FirstOrDefault();
     }
 
     public string Key => _option.Key;
-    public string Label => _option.LocalizedName;
+    public string Label => _labelOverride ?? _option.LocalizedName;
     public bool IsToggle => _option.Kind == CustomDevotionOption.OptionKind.Toggle;
     public bool IsChoice => _option.Kind == CustomDevotionOption.OptionKind.Choice;
     public IReadOnlyList<CustomDevotionOption.Case> Cases => _option.Cases ?? [];

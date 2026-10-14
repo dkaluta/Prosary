@@ -23,18 +23,21 @@ final class UkrainianPrayerContentTests: XCTestCase {
 
   func testBasicPrayersUseUkrainianTitlesAndSourcedBodiesOrDeclaredFallbacks() {
     let titles = ["Знак хреста", "Отче наш", "Радуйся, Маріє", "Слава Отцю",
-                  "Апостольський символ віри", "Нікейський Символ віри", "Святий Боже", "Святий архангел Михаїл", "Слався, Царице",
+                  "Нікейський Символ віри", "Святий Боже", "Святий архангел Михаїл", "Слався, Царице",
                   "Мати Відкупителя", "Радуйся, Царице небес", "Царице Неба"]
-    XCTAssertEqual(titles.count, BasicPrayerCatalog.all.count)
-    for (prayer, title) in zip(BasicPrayerCatalog.all, titles) {
+    let available = BasicPrayerCatalog.available(languageCode: "uk")
+    XCTAssertFalse(available.contains { $0.id == "creed" })
+    XCTAssertEqual(titles.count, available.count)
+    for (prayer, title) in zip(available, titles) {
       let step = BasicPrayerCatalog.step(for: prayer, languageCode: "uk")
       XCTAssertEqual(step.title, title, prayer.id)
       // These entries have sourced bodies only in other languages. The catalog
       // must preserve the established body fallback rather than invent liturgical text.
-      if ["niceneCreed", "almaRedemptorisMater", "aveReginaCaelorum"].contains(prayer.id) {
+      if ["almaRedemptorisMater", "aveReginaCaelorum"].contains(prayer.id) {
         XCTAssertEqual(step.body, BasicPrayerCatalog.step(for: prayer, languageCode: "en").body)
         continue
       }
+      if prayer.id == "niceneCreed" { XCTAssertTrue(step.body.contains("[і Сина]")) }
       XCTAssertEqual(PrayerTypography.script(of: step.body), .cyrillic, prayer.id)
       XCTAssertNotEqual(step.body, BasicPrayerCatalog.step(for: prayer, languageCode: "en").body)
     }

@@ -1,6 +1,7 @@
 using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Prosary.Localization;
 using Prosary.Models;
 using Prosary.Navigation;
 using Prosary.Persistence;
@@ -28,7 +29,12 @@ public partial class RosaryPresetPickerViewModel : ObservableObject
     private Prayer? _adHocPrayerForNavigation;
 
     [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(CreedLabel))]
     private Prayer? _defaultPreset;
+
+    public string CreedLabel => PrayerPackStore.HasApostlesCreed("rosary", DefaultPreset?.LanguageCode)
+        ? Loc.Tr("PickerApostlesCreed.Text", "Apostles' Creed")
+        : Loc.Tr("favorite_editor_nicene_creed", "Nicene Creed");
 
     [ObservableProperty]
     private ObservableCollection<Prayer> _otherPresets = [];

@@ -9,6 +9,33 @@ import XCTest
 @testable import Prosary
 
 final class MultiDayRunTests: XCTestCase {
+  @MainActor
+  func testRetirementPurgesLateSyncedSeriesAndBlocksNewMobileAndMacRuns() throws {
+    let key = "multiDayRuns"
+    let original = CloudSyncedList.readData(key)
+    defer {
+      if let original { CloudSyncedList.writeData(original, forKey: key) }
+      else { CloudSyncedList.remove(key) }
+    }
+    let id = RetiredPrayerBundles.loretoStandaloneID
+    let macID = PrayerCopyProgressIdentity.devotionID(id, prayerID: UUID())
+    let builtin = "litanyOfLoreto"
+    let runs = [id: MultiDayRun(devotionId: id, startedOn: Date()),
+                macID: MultiDayRun(devotionId: macID, startedOn: Date()),
+                builtin: MultiDayRun(devotionId: builtin, startedOn: Date())]
+    CloudSyncedList.writeData(try JSONEncoder().encode(runs), forKey: key)
+    XCTAssertNil(MultiDayRuns.run(for: id))
+    XCTAssertNil(MultiDayRuns.run(for: macID))
+    XCTAssertNotNil(MultiDayRuns.run(for: builtin))
+    MultiDayRuns.startFresh(id)
+    MultiDayRuns.recordPrayed(devotionId: macID, day: 0)
+    XCTAssertNil(MultiDayRuns.run(for: id))
+    XCTAssertNil(MultiDayRuns.run(for: macID))
+    let kept = try JSONDecoder().decode([String: MultiDayRun].self,
+      from: XCTUnwrap(CloudSyncedList.readData(key)))
+    XCTAssertEqual(Set(kept.keys), [builtin])
+  }
+
   private let nine = 9
   private func day(_ offset: Int, from start: Date) -> Date {
     Calendar.current.date(byAdding: .day, value: offset, to: start)!

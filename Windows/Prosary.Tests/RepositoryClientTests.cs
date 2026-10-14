@@ -33,4 +33,18 @@ public class RepositoryClientTests
         Assert.Throws<RepositoryClient.UnsupportedCatalogException>(
             () => RepositoryClient.ParseCatalog("""{"prosaryRepository": 2, "bundles": []}"""));
     }
+
+    [Fact]
+    public void WithdrawnStandaloneIsHiddenWithoutRemovingOtherAuthorsOrBuiltInLoreto()
+    {
+        var fixture = """
+            {"prosaryRepository": 1, "bundles": [
+              {"id": "repo.stgamliel-il.litanyOfMaryTheBlessedEverVirgin", "name": "Withdrawn", "author": "stgamliel-il", "languages": ["he"], "tags": [], "description": "", "file": "/withdrawn"},
+              {"id": "repo.another.litanyOfMaryTheBlessedEverVirgin", "name": "Another", "author": "another", "languages": ["en"], "tags": [], "description": "", "file": "/another"},
+              {"id": "litanyOfLoreto", "name": "Loreto", "author": "Prosary", "languages": ["en"], "tags": [], "description": "", "file": "/loreto"}
+            ]}
+            """;
+        Assert.Equal(["repo.another.litanyOfMaryTheBlessedEverVirgin", "litanyOfLoreto"],
+            RepositoryClient.ParseCatalog(fixture).Select(bundle => bundle.Id));
+    }
 }

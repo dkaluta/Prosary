@@ -169,6 +169,11 @@ fun AboutScreen(onBack: () -> Unit) {
             }
 
             AboutSection(title = stringResource(R.string.about_prayer_texts)) {
+                Text(stringResource(R.string.about_source_ukrainian_nicene),
+                    style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                TextButton(onClick = { uriHandler.openUri("https://catechismugcc.org/doc/Catechism-UGCC.pdf") }) {
+                    Text(stringResource(R.string.about_ukrainian_nicene_link))
+                }
                 Text(
                     stringResource(R.string.about_prayer_texts_body),
                     style = MaterialTheme.typography.bodySmall,

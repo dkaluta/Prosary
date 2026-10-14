@@ -274,7 +274,12 @@ struct MacLibraryMembershipStore {
 
   init(defaults: UserDefaults = .standard) { self.defaults = defaults }
 
-  var devotionIDs: Set<String> { Set(defaults.stringArray(forKey: Self.defaultsKey) ?? []) }
+  var devotionIDs: Set<String> {
+    let stored = defaults.stringArray(forKey: Self.defaultsKey) ?? []
+    let active = stored.filter { !RetiredPrayerBundles.contains($0) }
+    if active != stored { defaults.set(active, forKey: Self.defaultsKey) }
+    return Set(active)
+  }
 
   func add(_ devotionID: String) {
     add([devotionID])
@@ -282,7 +287,7 @@ struct MacLibraryMembershipStore {
 
   func add(_ additions: Set<String>) {
     let current = devotionIDs
-    let updated = current.union(additions.filter { !$0.isEmpty })
+    let updated = current.union(additions.filter { !$0.isEmpty && !RetiredPrayerBundles.contains($0) })
     guard updated != current else { return }
     defaults.set(updated.sorted(), forKey: Self.defaultsKey)
   }

@@ -68,13 +68,13 @@ struct ReadingsView: View {
 
   var body: some View {
     Group {
-      if mode == "bible" { BibleView(mode: $mode) }
+      if mode == "bible" { BibleView(mode: $mode, dateSelection: $dateSelection) }
       else { DailyReadingsView(dateSelection: $dateSelection, mode: $mode) }
     }
     .toolbar {
       ToolbarItem(placement: .topBarTrailing) {
         Button { showsFeasts = true } label: {
-          Label(String(localized: "calendar.feastsAndSolemnities", defaultValue: "Feasts and Solemnities", bundle: UILanguage.bundle, locale: UILanguage.locale), systemImage: "calendar")
+          Label(String(localized: "calendar.eventCalendar", defaultValue: "Event Calendar", bundle: UILanguage.bundle, locale: UILanguage.locale), systemImage: "calendar")
         }
         .labelStyle(.iconOnly)
         .accessibilityIdentifier("calendar.list")
@@ -126,8 +126,13 @@ struct ReadingModeSelector: View {
 
 struct BibleView: View {
   var mode: Binding<String>? = nil
+  var dateSelection: Binding<MacTodayDateSelection>? = nil
   @AppStorage(ReadingEditionSelection.defaultsKey) private var preference = ""
   @AppStorage(PrayerTranslations.aramaicDefaultScriptKey) private var defaultScript = "Hebr"
+  @AppStorage(TodayInfoStore.calendarDefaultsKey) private var calendarID = ""
+  @AppStorage(TodayInfoStore.paschaStyleDefaultsKey) private var paschaStyle = "julian"
+  @State private var localDateSelection = MacTodayDateSelection()
+  @State private var showsScriptureDatePicker = false
   @State private var model = BibleLibraryModel.shared
   @State private var removal: BibleEdition?
 
@@ -137,7 +142,10 @@ struct BibleView: View {
     return model.editions.first { $0.id == chosen.id }
   }
 
+  private var daySelection: Binding<MacTodayDateSelection> { dateSelection ?? $localDateSelection }
+
   var body: some View {
+    let _ = calendarID; let _ = paschaStyle
     List {
       #if !os(macOS)
       if let mode {
@@ -148,6 +156,24 @@ struct BibleView: View {
       #endif
       Section {
         ReadingEditionPicker()
+      }
+      Section(bibleLabel("scriptureOfTheDay", "Scripture of the Day")) {
+          Button { showsScriptureDatePicker = true } label: {
+            Label(CalendarEventPresentation.dateLabel(daySelection.wrappedValue.localDate()), systemImage: "calendar")
+          }
+          .accessibilityIdentifier("bible.scriptureDate")
+          .popover(isPresented: $showsScriptureDatePicker) {
+            ReadingDatePickerPopover(selection: Binding(get: { daySelection.wrappedValue.localDate() }, set: { daySelection.wrappedValue.select($0) }),
+              range: MacTodayDateSelection.pickerRange(), pickerIdentifier: "bible.scriptureDatePicker",
+              todayIdentifier: "bible.scriptureDateToday", doneIdentifier: "bible.scriptureDateDone") { showsScriptureDatePicker = false }
+              .presentationCompactAdaptation(.sheet)
+          }
+        if let reading = TodayInfoStore.scriptureOfTheDay(on: daySelection.wrappedValue.localDate()) {
+          ScripturePassageView(reading: reading, interfaceLanguage: UILanguage.current)
+            .accessibilityIdentifier("bible.scriptureOfTheDay")
+        } else {
+          Text(bibleLabel("noScriptureOfTheDay", "No Scripture is appointed for this date.")).foregroundStyle(.secondary)
+        }
       }
       if let edition = selected {
         Section {

@@ -57,7 +57,8 @@
     "collectaStandard": "Господи, Боже Всемогутній, заради Твого Єдинородного Сина, який своїм життям, смертю і воскресінням викупив нас для вічного спасіння, благаємо Тебе: уділи нам благодаті, щоб ми, роздумуючи над таємницями Розарію Пресвятої Діви Марії, знали, як гідно наслідувати те, про що вони говорять, і отримали те, що вони обіцяють. Через Христа, Господа нашого. Амінь.",
     "rosaryCollect": "Господи, Боже Всемогутній, заради Твого Єдинородного Сина, який своїм життям, смертю і воскресінням викупив нас для вічного спасіння, благаємо Тебе: уділи нам благодаті, щоб ми, роздумуючи над таємницями Розарію Пресвятої Діви Марії, знали, як гідно наслідувати те, про що вони говорять, і отримали те, що вони обіцяють. Через Христа, Господа нашого. Амінь.",
     "rosaryCollectTitle": "Молімося",
-    "symbolumNicaenumTitle": "Нікейський Символ віри"
+    "symbolumNicaenumTitle": "Нікейський Символ віри",
+    "symbolumNicaenum": "Вірую в єдиного Бога Отця, Вседержителя, творця неба і землі, і всього видимого і невидимого.\nІ в єдиного Господа Ісуса Христа, Сина Божого, єдинородного, від Отця родженого перед усіма віками.\nСвітло від світла, Бога істинного від Бога істинного, родженого, несотвореного, єдиносущного з Отцем, що через Нього все сталося.\nВін задля нас людей і нашого ради спасіння зійшов із небес, і воплотився з Духа Святого і Марії Діви, і став чоловіком.\nІ був розп’ятий за нас за Понтія Пилата, і страждав, і був похований.\nІ воскрес у третій день, згідно з Писанням.\nІ вознісся на небо, і сидить праворуч Отця.\nІ вдруге прийде зі славою судити живих і мертвих, а Його царству не буде кінця.\nІ в Духа Святого, Господа животворящого, що від Отця [і Сина] ісходить, що з Отцем і Сином рівнопокланяємий і рівнославимий, що говорив через пророків.\nВ єдину, святу, соборну й апостольську Церкву.\nІсповідую одне хрещення на відпущення гріхів.\nОчікую воскресіння мертвих і життя майбутнього віку. Амінь."
   },
   "mysteries": {
     "joyful_01_annunciation": {
@@ -185,7 +186,8 @@
     "invitatoryBodyLent": "https://rkc.org.ua/duhovnist/molytovnyk/shhodenni-molytvy/; https://rkc.org.ua/duhovnist/molytovnyk/osnovni-molytvy/",
     "invitatoryBody": "https://rkc.org.ua/duhovnist/molytovnyk/shhodenni-molytvy/; https://rkc.org.ua/duhovnist/molytovnyk/osnovni-molytvy/",
     "collectaStandard": "https://medjugorje.com.ua/media/video/molytvy/6220-6-den-novenna-do-bozhoyi-matery-fatymskoyi17-bereznya-25-bereznya-2022.html",
-    "rosaryCollect": "https://medjugorje.com.ua/media/video/molytvy/6220-6-den-novenna-do-bozhoyi-matery-fatymskoyi17-bereznya-25-bereznya-2022.html"
+    "rosaryCollect": "https://medjugorje.com.ua/media/video/molytvy/6220-6-den-novenna-do-bozhoyi-matery-fatymskoyi17-bereznya-25-bereznya-2022.html",
+    "symbolumNicaenum": "https://catechismugcc.org/doc/Catechism-UGCC.pdf"
   },
   "$scriptureSource": "Scripture: Bible of Panteleimon Kulish, Ivan Nechui-Levytsky and Ivan Puluj (1905), eBible.org ukr1871 (https://ebible.org/find/details.php?id=ukr1871), public domain. Imported by Shared/tools/import-scripture.py; the published historical Ukrainian spelling and verse numbering are retained. This is distinct from the modern Ukrainian Catholic prayer texts, separately credited to the Roman Catholic Church in Ukraine prayerbook (https://rkc.org.ua/duhovnist/molytovnyk/).",
   "$scriptureImport": {
@@ -217,8 +219,7 @@
     "status": "partial",
     "fallbackPrayerKeys": [
       "almaRedemptorisMater",
-      "aveReginaCaelorum",
-      "symbolumNicaenum"
+      "aveReginaCaelorum"
     ],
     "sourceReview": "Shared/content/UKRAINIAN-SOURCES.markdown"
   },
@@ -242,5 +243,11 @@
     "paterNoster": "https://rkc.org.ua/duhovnist/molytovnyk/osnovni-molytvy/",
     "oratioFatimae": "https://rkc.org.ua/duhovnist/molytovnyk/na-chest-bogorodyczi/",
     "aveMaria": "https://rkc.org.ua/duhovnist/molytovnyk/osnovni-molytvy/"
-  }
+  },
+  "$creedPolicy": {
+    "rite": "ukrainian-greek-catholic",
+    "apostlesCreed": false,
+    "filioque": "bracketed"
+  },
+  "$niceneCreedSource": "Ukrainian Greek Catholic Church, Христос – наша Пасха, 2012 edition, printed page 10, Nicene–Constantinopolitan Creed; source spelling and square-bracketed Filioque retained. Third-party text, not a Prosary translation or CC0 claim."
 }

@@ -68,6 +68,17 @@ enum BasicPrayerCatalog {
     all.first { $0.id == id }
   }
 
+  static func isAvailable(_ prayer: BasicPrayer, languageCode: String? = nil) -> Bool {
+    guard prayer.id == "creed" else { return true }
+    let requested = languageCode ?? UserDefaults.standard.string(forKey: languageDefaultsKey)
+    let language = Self.languageCode(for: prayer, requested: requested)
+    return PrayerPackStore.creedPolicy(bundleId: prayer.bundleId, languageCode: language)?.apostlesCreed != false
+  }
+
+  static func available(languageCode: String? = nil) -> [BasicPrayer] {
+    all.filter { isAvailable($0, languageCode: languageCode) }
+  }
+
   @MainActor
   static func languageCode(for prayer: BasicPrayer, requested: String?) -> String {
     let resolved = LanguageCatalog.resolve(requested).code

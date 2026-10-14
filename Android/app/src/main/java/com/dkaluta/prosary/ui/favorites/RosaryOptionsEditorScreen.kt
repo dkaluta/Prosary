@@ -27,6 +27,7 @@ import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.unit.dp
 import com.dkaluta.prosary.R
 import com.dkaluta.prosary.content.MysteryTranslations
+import com.dkaluta.prosary.content.prayerpack.PrayerPackStore
 import com.dkaluta.prosary.models.LanguageCatalog
 import com.dkaluta.prosary.models.EternalRestPlacement
 import com.dkaluta.prosary.models.MarianAntiphonOption
@@ -144,7 +145,9 @@ fun RosaryOptionsEditorScreen(
             }
 
             FormSection(title = stringResource(R.string.ro_opening_section)) {
-                SwitchRow(stringResource(R.string.ro_apostles_creed), rosary.includeApostlesCreed,
+                val creedLabel = if (PrayerPackStore.usesNiceneCreed("rosary", languageCode))
+                    R.string.favorite_editor_nicene_creed else R.string.ro_apostles_creed
+                SwitchRow(stringResource(creedLabel), rosary.includeApostlesCreed,
                     switchModifier = Modifier.testTag("rosaryOption:apostlesCreed")) {
                     onRosaryChange(rosary.copy(includeApostlesCreed = it))
                 }

@@ -1,0 +1,14 @@
+{
+  "profile": "product-admin",
+  "sourceRoots": ["iOS/Prosary", "Android/app/src/main", "Windows/Prosary"],
+  "canonicalMap": "UX-CONTRACT.markdown",
+  "requiredCapabilities": ["Select/Listbox", "Date", "Form", "Scrollbar", "CRUD"],
+  "ownership": {"Select/Listbox": "native", "Date": "authored"},
+  "requiredCommands": ["unit"],
+  "commands": {"unit": "cd Android && ./gradlew testDebugUnitTest"},
+  "evidence": {
+    "failurePaths": "iOS/ProsaryTests/HomeWidgetOrderTests.swift",
+    "crudFullFlow": "iOS/ProsaryTests/HomeWidgetOrderTests.swift"
+  },
+  "nativeScope": "The web-oriented static auditor checks maintained contracts only. SwiftUI, Compose and WinUI behavior is verified with native tests/builds; Windows rendering requires Windows."
+}

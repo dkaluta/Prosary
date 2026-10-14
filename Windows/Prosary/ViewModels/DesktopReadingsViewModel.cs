@@ -20,11 +20,13 @@ public partial class ReadingPassageViewModel : ObservableObject
     private readonly string? _readingDatasetId;
     private readonly string? _sourceGroupCaption;
     private bool _didLoad;
+    private int _loadRevision;
     private IReadOnlyList<ScriptureVerse> _verses = [];
     private ScripturePassage? _passage;
     public string ContextKey { get; }
     public string ConfigurationKey { get; }
     public string Citation { get; }
+    public ReadingCitation SourceCitation { get; }
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(HasSourceGroup))]
     private string? _sourceGroup;
@@ -101,6 +103,7 @@ public partial class ReadingPassageViewModel : ObservableObject
         _readingDatasetId = citation.ReadingDatasetId;
         _sourceGroupCaption = citation.SourceGroup;
         Citation = citation.LocalizedFull(interfaceLanguage);
+        SourceCitation = citation;
         SourceGroup = showsSourceGroup ? citation.SourceGroup : null;
         ContextKey = contextKey;
         ConfigurationKey = configurationKey;
@@ -112,7 +115,9 @@ public partial class ReadingPassageViewModel : ObservableObject
     {
         if (!value || _didLoad) return;
         _didLoad = true;
+        var revision = ++_loadRevision;
         var passage = _edition is null ? null : await _store.LoadPassageAsync(_scope, _rawCitation, _edition.Id, _readingDatasetId);
+        if (revision != _loadRevision) return;
         _passage = passage;
         _verses = passage?.Verses ?? [];
         HasPassage = _verses.Count > 0;
@@ -190,6 +195,12 @@ public partial class ReadingPassageViewModel : ObservableObject
         OnPropertyChanged(nameof(BodyFontFamily));
         OnPropertyChanged(nameof(BodyFontSize));
     }
+
+    public void InvalidateText()
+    {
+        _didLoad = false;
+        if (IsExpanded) OnIsExpandedChanged(true);
+    }
 }
 
 public partial class DesktopReadingsViewModel : ObservableObject
@@ -209,6 +220,8 @@ public partial class DesktopReadingsViewModel : ObservableObject
 
     [ObservableProperty]
     private ObservableCollection<ReadingPassageViewModel> _torah = [];
+
+    [ObservableProperty] private IReadOnlyList<ReadingPassageViewModel> _scriptureOfDay = [];
 
     public DesktopReadingsViewModel(ReadingsTextStore? store = null)
     {
@@ -243,14 +256,17 @@ public partial class DesktopReadingsViewModel : ObservableObject
         finally { _synchronizing = false; }
     }
 
-    public void Refresh(HomeViewModel today)
+    public void Refresh(HomeViewModel today, bool? showsAllDailyReadings = null)
     {
+        if (showsAllDailyReadings is { } all) _showsAllDailyReadings = all;
         _today = today;
         SynchronizeEdition();
         var edition = _store.ResolveEdition(AppSettings.ReadingsEditionId, today.TodayLanguage);
         // The dedicated reader remains available when the optional Today card is hidden.
         var daily = _showsAllDailyReadings ? TodayInfoStore.Readings(today.SelectedDate) : today.TodayReadings;
         Daily = Rows(Daily, daily, "daily", today, edition);
+        var appointed = ReadingCitation.ScriptureOfDay(daily);
+        ScriptureOfDay = Daily.FirstOrDefault(row => ReferenceEquals(row.SourceCitation, appointed)) is { } scripture ? [scripture] : [];
         Torah = Rows(Torah, today.TodayTorahPortion?.Readings ?? [], "torah", today, edition);
     }
 

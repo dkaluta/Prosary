@@ -14,7 +14,8 @@
                         <Button HorizontalAlignment="Left" Content="{x:Bind ViewModel.TodayLabel}" Click="OnToday" />
                         <TextBlock Text="{x:Bind ViewModel.CalendarName, Mode=OneWay}" TextWrapping="Wrap" />
                     </StackPanel>
-                    <CalendarView x:Name="MonthPicker" MaxHeight="320" SelectionMode="Single"
+                    <CalendarView x:Name="MonthPicker" MaxHeight="320" SelectionMode="Single" FirstDayOfWeek="Monday" CalendarIdentifier="GregorianCalendar"
+                        CalendarViewDayItemChanging="OnDayItemChanging"
                         SelectedDatesChanged="OnSelectedDatesChanged" HorizontalAlignment="Stretch"
                         Visibility="{x:Bind ViewModel.IsMonthView, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"
                         AutomationProperties.Name="{x:Bind ViewModel.MonthLabel}" />
@@ -35,6 +36,8 @@
                         <TextBlock Text="{x:Bind DateLabel}" Style="{StaticResource CaptionTextBlockStyle}" TextWrapping="Wrap" />
                         <TextBlock Text="{x:Bind Title}" FontWeight="SemiBold" TextWrapping="Wrap" />
                         <TextBlock Text="{x:Bind Rank}" Style="{StaticResource CaptionTextBlockStyle}" TextWrapping="Wrap" />
+                        <TextBlock Text="{x:Bind Summary}" TextWrapping="Wrap" Style="{StaticResource MutedCaptionTextStyle}"
+                                   Visibility="{x:Bind HasSummary, Converter={StaticResource BoolToVisibility}}" />
                     </StackPanel>
                 </DataTemplate></ListView.ItemTemplate>
             </ListView>

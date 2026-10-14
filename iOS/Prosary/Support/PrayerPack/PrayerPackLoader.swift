@@ -65,10 +65,12 @@ private struct PackContent: Decodable {
   /// Optional reading aid (v0.7): prayer key → the same text in another script.
   let transliterations: [String: String]?
   let prayerTraditionByKey: [String: String]?
+  let creedPolicy: CreedPolicy?
 
   enum CodingKeys: String, CodingKey {
     case prayers, mysteries, transliterations
     case prayerTraditionByKey = "$prayerTraditionByKey"
+    case creedPolicy = "$creedPolicy"
   }
 }
 
@@ -163,6 +165,14 @@ struct CustomDevotionOption: Decodable {
   var localizedName: String {
     let uiLanguage = UILanguage.current
     return HebrewDisplayText.unpointed(nameByLanguage?[uiLanguage] ?? name)
+  }
+
+  func localizedName(bundleId: String, languageCode: String?) -> String {
+    guard key == "apostlesCreed",
+          PrayerPackStore.creedPolicy(bundleId: bundleId, languageCode: languageCode)?.apostlesCreed == false else {
+      return localizedName
+    }
+    return UILanguage.text("favoriteEditor.niceneCreed", language: UILanguage.current, fallback: "Nicene Creed")
   }
 
   private enum CodingKeys: String, CodingKey {
@@ -481,6 +491,7 @@ struct CustomDevotionDefinition: Decodable {
 /// Metadata a generic devotion's Home card / Favorites row / reminders need, sourced from its
 /// bundle's `manifest.json` rather than any hardcoded per-kind table.
 struct CustomDevotionInfo {
+  let bundleId: String
   let displayName: String
   /// The languages this bundle ships content for (manifest `languages`).
   let languages: [String]
@@ -500,17 +511,21 @@ struct CustomDevotionInfo {
   /// Optional authored Gallery artwork, scoped to this pack rather than shared image keys.
   let galleryImageKey: String?
 
-  /// The interface name by default; the explicit bilingual-name preference uses the exact
-  /// prayer variant, then its base language. Prayer body headings remain in the prayed language.
+  /// Hebrew interface names follow the prayer's sourced tradition. The explicit bilingual-name
+  /// preference uses the exact prayer variant, then its base language.
   var localizedDisplayName: String {
     namePresentation().title
   }
 
   func namePresentation(prayerCode: String = LanguageCatalog.resolve(nil).code,
                         showPrayerLanguage: Bool = UserDefaults.standard.bool(forKey: PrayerNamePresentation.defaultsKey)) -> PrayerNamePresentation {
-    let interfaceName = displayNameByLanguage[UILanguage.current] ?? displayName
+    let nameCode = LanguageCatalog.pickerLanguageCode(prayerCode) == "he"
+      ? PrayerPackStore.effectiveLanguage(for: bundleId, chosen: prayerCode) : prayerCode
+    let interfaceCode = PrayerNamePresentation.interfaceTitleLanguage(
+      prayerCode: nameCode, interfaceLanguage: UILanguage.current)
+    let interfaceName = displayName(for: interfaceCode)
     return PrayerNamePresentation(interfaceTitle: interfaceName,
-                                  prayerTitle: displayName(for: prayerCode),
+                                  prayerTitle: displayName(for: nameCode),
                                   showPrayerLanguage: showPrayerLanguage)
   }
 
@@ -584,6 +599,7 @@ enum PrayerPackStore {
   private static var prayerOverrides: [String: [PrayerKey: String]] = [:]
   /// Reading aids merge with their exact shared prayer text, including removal on replacement.
   private static var prayerTransliterations: [String: [PrayerKey: String]] = [:]
+  private static var sharedCreedText: [String: ResolvedText] = [:]
   private static let sharedPrayerTitleKeys: Set<String> = [
     "signumCrucisTitle", "symbolumApostolorumTitle", "paterNosterTitle", "aveMariaTitle", "gloriaPatriTitle",
     "mysteryGroupJoyfulTitle", "mysteryGroupSorrowfulTitle", "mysteryGroupGloriousTitle", "mysteryGroupLuminousTitle",
@@ -607,6 +623,7 @@ enum PrayerPackStore {
   /// Actual prayer/mystery buckets, distinct from manifest language promises and including
   /// content-only tradition codes. Used when choosing a compatible session language.
   private static var contentCodesByBundle: [String: Set<String>] = [:]
+  private static var creedPoliciesByBundle: [String: [String: CreedPolicy]] = [:]
   /// bundleId → language → prayer key → transliterated text (v0.7 reading aid).
   private static var transliterationsByBundle: [String: [String: [String: String]]] = [:]
   private static var definitionByBundle: [String: CustomDevotionDefinition] = [:]
@@ -665,6 +682,7 @@ enum PrayerPackStore {
     try? FileManager.default.createDirectory(at: cloudPacks, withIntermediateDirectories: true)
 
     let localDirectory = installedPacksDirectory
+    purgeRetiredPacks(in: localDirectory)
     if localDirectory != cloudPacks,
        let localFiles = try? FileManager.default.contentsOfDirectory(at: localDirectory, includingPropertiesForKeys: nil) {
       for file in localFiles where file.pathExtension == "prosaryprayer" {
@@ -894,6 +912,7 @@ enum PrayerPackStore {
       throw InstallError.unreadable
     }
     guard isValidBundleId(manifest.id) else { throw InstallError.unreadable }
+    guard !RetiredPrayerBundles.contains(manifest.id) else { throw InstallError.notADevotion }
     guard zip.fileNames().contains("devotion.json"),
           (try? decoder.decode(
             CustomDevotionDefinition.self, from: controlData("devotion.json", in: zip))) != nil,
@@ -990,6 +1009,7 @@ enum PrayerPackStore {
     audioTracksByBundle[id] = nil
     rawContentByBundle[id] = nil
     contentCodesByBundle[id] = nil
+    creedPoliciesByBundle[id] = nil
     transliterationsByBundle[id] = nil
     packUrlByBundle[id] = nil
     archiveByBundle[id] = nil
@@ -1003,6 +1023,7 @@ enum PrayerPackStore {
   private struct ResolvedText {
     let text: String
     let transliteration: String?
+    var creedPolicy: CreedPolicy? = nil
   }
 
   /// Body and reading aid share one resolution path. An absent aid at the winning source
@@ -1021,8 +1042,12 @@ enum PrayerPackStore {
 
   private static func displayText(bundleId: String?, languageCode: String?, key: String) -> ResolvedText? {
     guard let source = resolvedText(bundleId: bundleId, languageCode: languageCode, key: key) else { return nil }
-    let rendered = NiceneCreedText.render(key: key, text: source.text, alternate: source.transliteration)
-    return ResolvedText(text: rendered.text, transliteration: rendered.alternate)
+    let rendered = NiceneCreedText.render(key: key, text: source.text, alternate: source.transliteration, policy: source.creedPolicy)
+    return ResolvedText(text: rendered.text, transliteration: rendered.alternate, creedPolicy: source.creedPolicy)
+  }
+
+  static func creedPolicy(bundleId: String = "rosary", languageCode: String?) -> CreedPolicy? {
+    resolvedText(bundleId: bundleId, languageCode: languageCode, key: "symbolumApostolorum")?.creedPolicy
   }
 
   /// Availability is authored content, never the result of the fallback chain. Generic
@@ -1112,10 +1137,12 @@ enum PrayerPackStore {
     let prayers = prayerOverrides
     let aids = prayerTransliterations
     let mysteries = mysteryOverrides
+    let creeds = sharedCreedText
     defer {
       prayerOverrides = prayers
       prayerTransliterations = aids
       mysteryOverrides = mysteries
+      sharedCreedText = creeds
     }
     try operation()
   }
@@ -1129,8 +1156,13 @@ enum PrayerPackStore {
   #endif
 
   private static func localText(bundleId: String, contentCode: String, key: String) -> ResolvedText? {
-    guard let text = rawContentByBundle[bundleId]?[contentCode]?[key] else { return nil }
-    return ResolvedText(text: text, transliteration: transliterationsByBundle[bundleId]?[contentCode]?[key])
+    let policy = creedPoliciesByBundle[bundleId]?[contentCode]
+    let sourceKey: String
+    if policy?.apostlesCreed == false && key == "symbolumApostolorum" { sourceKey = "symbolumNicaenum" }
+    else if policy?.apostlesCreed == false && key == "symbolumApostolorumTitle" { sourceKey = "symbolumNicaenumTitle" }
+    else { sourceKey = key }
+    guard let text = rawContentByBundle[bundleId]?[contentCode]?[sourceKey] else { return nil }
+    return ResolvedText(text: text, transliteration: transliterationsByBundle[bundleId]?[contentCode]?[sourceKey], creedPolicy: policy)
   }
 
   /// Each probe exhausts bundle-local, shared-heading and fixed-prayer sources before moving
@@ -1152,6 +1184,7 @@ enum PrayerPackStore {
          let shared = localText(bundleId: "rosary", contentCode: code, key: key) {
         return shared
       }
+      if key == "symbolumApostolorum", let shared = sharedCreedText[code] { return shared }
       guard let prayerKey else { continue }
       if let text = prayerOverride(languageCode: code, key: prayerKey) {
         let alternate = prayerKey == .signumCrucis && code == "arc"
@@ -1188,13 +1221,16 @@ enum PrayerPackStore {
   }
 
   private static func loadInstalledPacks() {
+    // Retirement removes this specific cloud source across Apple devices. Ordinary user
+    // removal remains a local eviction. Every scan retries cleanup and suppresses the ID.
+    purgeRetiredPacks(in: installedPacksDirectory)
     let directoryContents = (try? FileManager.default.contentsOfDirectory(
       at: installedPacksDirectory, includingPropertiesForKeys: nil)) ?? []
     // Undownloaded iCloud placeholders can't load this launch — start their download so a
     // pack imported on another device appears on a later one.
     for placeholder in directoryContents where storagePolicy.allowsUbiquity && placeholder.lastPathComponent.hasSuffix(".prosaryprayer.icloud") {
       let id = String(placeholder.lastPathComponent.dropFirst().dropLast(".prosaryprayer.icloud".count))
-      guard !removedDownloadIDs.contains(id) else { continue }
+      guard !RetiredPrayerBundles.contains(id), !removedDownloadIDs.contains(id) else { continue }
       try? FileManager.default.startDownloadingUbiquitousItem(at: placeholder)
     }
     let installedFiles = directoryContents
@@ -1202,10 +1238,47 @@ enum PrayerPackStore {
       .sorted { $0.lastPathComponent < $1.lastPathComponent }
     for url in installedFiles {
       let id = url.deletingPathExtension().lastPathComponent
-      guard !removedDownloadIDs.contains(id), infoByBundle[id] == nil else { continue }
+      guard !RetiredPrayerBundles.contains(id), !removedDownloadIDs.contains(id), infoByBundle[id] == nil else { continue }
       if (try? load(packAt: url, expectedBundleID: id)) != nil {
         installedIds.append(id)
       }
+    }
+  }
+
+  private static func purgeRetiredPacks(in directory: URL) {
+    let files = (try? FileManager.default.contentsOfDirectory(
+      at: directory, includingPropertiesForKeys: nil)) ?? []
+    struct Identity: Decodable { let id: String }
+    for file in files {
+      let name = file.lastPathComponent
+      if name == ".\(RetiredPrayerBundles.loretoStandaloneID).prosaryprayer.icloud" {
+        // iCloud placeholders may not be materialized yet. Delete the logical cloud URL
+        // where possible, and never request a new download if deletion is unavailable.
+        deleteRetiredPack(at: directory.appendingPathComponent(
+          "\(RetiredPrayerBundles.loretoStandaloneID).prosaryprayer"))
+        deleteRetiredPack(at: file)
+        continue
+      }
+      guard file.pathExtension == "prosaryprayer" else { continue }
+      let canonicalName = name == "\(RetiredPrayerBundles.loretoStandaloneID).prosaryprayer"
+      let manifestID: String? = {
+        guard let zip = try? MinimalZipReader(contentsOf: file),
+              let data = try? controlData("manifest.json", in: zip) else { return nil }
+        return (try? JSONDecoder().decode(Identity.self, from: data))?.id
+      }()
+      guard canonicalName || RetiredPrayerBundles.contains(manifestID) else { continue }
+      deleteRetiredPack(at: file)
+    }
+  }
+
+  private static func deleteRetiredPack(at url: URL) {
+    if storagePolicy.allowsUbiquity {
+      var error: NSError?
+      NSFileCoordinator().coordinate(writingItemAt: url, options: .forDeleting, error: &error) { coordinatedURL in
+        try? FileManager.default.removeItem(at: coordinatedURL)
+      }
+    } else {
+      try? FileManager.default.removeItem(at: url)
     }
   }
 
@@ -1232,11 +1305,13 @@ enum PrayerPackStore {
     let decoder = JSONDecoder()
     let manifest = try parseManifest(controlData("manifest.json", in: zip), in: zip)
     guard isValidBundleId(manifest.id) else { throw InstallError.unreadable }
+    guard !RetiredPrayerBundles.contains(manifest.id) else { throw InstallError.notADevotion }
     // Exclusions, collision checks and removal paths all use this installed filename. Reject
     // renamed/conflict copies before they can register a different id or overwrite a built-in.
     if let expectedBundleID, manifest.id != expectedBundleID { throw InstallError.unreadable }
 
     infoByBundle[manifest.id] = CustomDevotionInfo(
+      bundleId: manifest.id,
       displayName: manifest.displayName,
       languages: manifest.languages,
       accentColorHex: manifest.accentColorHex,
@@ -1262,16 +1337,36 @@ enum PrayerPackStore {
     for language in manifest.languages + overlayLanguages {
       guard let contentData = try? controlData("content/\(language).json", in: zip) else { continue }
       let content = try decoder.decode(PackContent.self, from: contentData)
+      if let policy = content.creedPolicy { creedPoliciesByBundle[manifest.id, default: [:]][language] = policy }
 
       for (key, text) in content.prayers {
         let code = language == "he" && content.prayerTraditionByKey?[key] == "vicariate"
           ? LanguageCatalog.vicariateContentCode : language
         contentCodesByBundle[manifest.id, default: []].insert(code)
+        if let policy = content.creedPolicy { creedPoliciesByBundle[manifest.id, default: [:]][code] = policy }
         rawContentByBundle[manifest.id, default: [:]][code, default: [:]][key] = text
         transliterationsByBundle[manifest.id, default: [:]][code, default: [:]][key] = content.transliterations?[key]
         guard let prayerKey = PrayerKey(rawValue: key) else { continue }
         prayerOverrides[code, default: [:]][prayerKey] = text
         prayerTransliterations[code, default: [:]][prayerKey] = content.transliterations?[key]
+        if key == "symbolumApostolorum" {
+          let sourceKey = content.creedPolicy?.apostlesCreed == false ? "symbolumNicaenum" : key
+          if let creed = content.prayers[sourceKey] {
+            sharedCreedText[code] = ResolvedText(text: creed, transliteration: content.transliterations?[sourceKey], creedPolicy: content.creedPolicy)
+          } else {
+            // A tagged Eastern source cannot leak its retained Apostles text or a Latin body.
+            sharedCreedText[code] = ResolvedText(text: "", transliteration: nil, creedPolicy: content.creedPolicy)
+          }
+        }
+      }
+
+      // Mission's legacy shared key lives in the native tables; its canonical pack now
+      // authors the separate Nicene key. Route that same source through shared callers too.
+      if manifest.id == "rosary", content.creedPolicy?.apostlesCreed == false,
+         content.prayers["symbolumApostolorum"] == nil,
+         let creed = content.prayers["symbolumNicaenum"] {
+        sharedCreedText[language] = ResolvedText(text: creed,
+          transliteration: content.transliterations?["symbolumNicaenum"], creedPolicy: content.creedPolicy)
       }
 
       // Mysteries merge whenever a bundle ships any — `hasCatalog` strictly means "has a

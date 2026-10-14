@@ -48,7 +48,7 @@ public partial class BasicPrayersViewModel : ObservableObject
         IsRightToLeft = UiLanguageCatalog.IsRightToLeft(UiLanguageCatalog.Current);
         // Reorderable per Erez (2026-08-08): the HomeOrder pattern — persisted ids first,
         // catalog order for the rest.
-        Rows = BasicPrayersOrder.Apply(BasicPrayerCatalog.All)
+        Rows = BasicPrayersOrder.Apply(BasicPrayerCatalog.Available(language.Code))
             .Select(p =>
             {
                 var name = PrayerCardName.ForBasicPrayer(p, language.Code);
@@ -214,6 +214,14 @@ public partial class BasicPrayerViewModel : ObservableObject, IPrayerStepFlowVie
     private void RenderPrayer()
     {
         if (_prayerId is null || BasicPrayerCatalog.Prayer(_prayerId) is not { } prayer) return;
+        if (!BasicPrayerCatalog.IsAvailable(prayer, CurrentLanguageRaw))
+        {
+            Header = Loc.Tr("basic_prayer_unavailable_in_rite", "This prayer is not used in the selected rite.");
+            Body = "";
+            HasTransliteration = false;
+            HasAramaicScriptSelector = false;
+            return;
+        }
         var language = BasicPrayerCatalog.EffectiveLanguage(prayer, CurrentLanguageRaw);
         var step = BasicPrayerCatalog.Step(prayer, language.Code);
         if (_initializedScriptLanguage != language.Code)

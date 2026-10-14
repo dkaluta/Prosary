@@ -8,6 +8,10 @@ namespace Prosary.Controls;
 
 public sealed partial class PrayerCard : UserControl
 {
+    public static readonly DependencyProperty ImageSourceProperty = DependencyProperty.Register(
+        nameof(ImageSource), typeof(string), typeof(PrayerCard), new PropertyMetadata(string.Empty));
+
+    public string ImageSource { get => (string)GetValue(ImageSourceProperty); set => SetValue(ImageSourceProperty, value); }
     public static readonly DependencyProperty TitleProperty = DependencyProperty.Register(
         nameof(Title), typeof(string), typeof(PrayerCard), new PropertyMetadata(string.Empty));
 

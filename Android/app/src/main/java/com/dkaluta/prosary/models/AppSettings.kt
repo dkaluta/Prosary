@@ -79,6 +79,14 @@ object AppSettings {
             prefs?.edit()?.putString(KEY_TODAY_CARD_COLOR, todayCardColorState)?.apply()
         }
     private var useSystemColorsState by mutableStateOf(true)
+    private var customAccentColorState by mutableStateOf("")
+    var customAccentColorHex: String
+        get() = customAccentColorState
+        set(value) {
+            customAccentColorState = CustomAccentColor.normalize(value)
+            prefs?.edit()?.putString("customAccentColorHex", customAccentColorState)?.apply()
+            if (customAccentColorState.isNotEmpty()) useSystemColors = false
+        }
     var useSystemColors: Boolean
         get() = useSystemColorsState
         set(value) {
@@ -99,37 +107,29 @@ object AppSettings {
     private var basicPrayersLanguageState by mutableStateOf(LanguageCatalog.defaultSentinel)
     val basicPrayersLanguageCode: String get() = basicPrayersLanguageState
 
-    private val filioque = FilioquePreference()
-    private val filioqueInitializationDepth = ThreadLocal<Int>()
-    val includeFilioqueChoice: Boolean? get() = filioque.choice
+    // Compatibility seams for existing bookmark callers/tests; retired settings have no effect
+    // and selecting or rendering a rite no longer writes a preference.
+    val includeFilioqueChoice: Boolean? get() = null
     var includeFilioque: Boolean
-        get() = filioque.choice ?: filioqueStatusQuo(LanguageCatalog.resolve(defaultLanguageCode).code)
-        set(value) = filioque.set(value)
+        get() = true
+        set(@Suppress("UNUSED_PARAMETER") value) {}
 
     fun initializeFilioqueFromSelection(languageCode: String) {
-        if (languageCode.isNotEmpty()) filioque.initializeOnce(filioqueStatusQuo(languageCode))
     }
 
     fun initializeFilioqueFromSource(statusQuo: Boolean) {
-        if ((filioqueInitializationDepth.get() ?: 0) == 0) filioque.initializeOnce(statusQuo)
     }
 
     /** Bookmark and widget validation count steps without choosing the user's first rite.
      * This scope is thread-local because widgets may validate on a background thread. */
     internal fun <T> withoutFilioqueInitialization(block: () -> T): T {
-        val previous = filioqueInitializationDepth.get() ?: 0
-        filioqueInitializationDepth.set(previous + 1)
-        try {
-            return block()
-        } finally {
-            if (previous == 0) filioqueInitializationDepth.remove() else filioqueInitializationDepth.set(previous)
-        }
+        return block()
     }
 
     private fun filioqueStatusQuo(languageCode: String): Boolean =
         LanguageCatalog.uiLanguageCode(languageCode).substringBefore('-') != "el"
 
-    internal fun restoreFilioqueForTesting(choice: Boolean?) = filioque.restoreForTesting(choice)
+    internal fun restoreFilioqueForTesting(@Suppress("UNUSED_PARAMETER") choice: Boolean?) {}
 
     /** Legacy override retained for storage compatibility; Today now ignores it. */
     private var todayLanguageState by mutableStateOf("")
@@ -326,14 +326,18 @@ object AppSettings {
         set(value) = homeWidgets.updatePhotoPath(value)
     fun addHomeWidget(widget: HomeWidget) = homeWidgets.add(widget)
     fun moveHomeWidget(widget: HomeWidget, offset: Int) = homeWidgets.move(widget, offset)
+    fun isHomeWidgetCollapsed(widget: HomeWidget): Boolean = widget in homeWidgets.collapsed
+    fun setHomeWidgetCollapsed(widget: HomeWidget, collapsed: Boolean) = homeWidgets.setCollapsed(widget, collapsed)
+    fun homeWidgetGraphicPath(widget: HomeWidget): String = homeWidgets.graphicPaths[widget.id].orEmpty()
+    fun setHomeWidgetGraphicPath(widget: HomeWidget, path: String) = homeWidgets.setGraphicPath(widget, path)
 
     fun init(context: Context) {
         val resolved = context.applicationContext.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
         prefs = resolved
         homeWidgets.initialize(resolved)
-        filioque.initialize(resolved)
         appColorState = AppColor.resolve(resolved.getString(KEY_APP_COLOR, null)).id
         useSystemColorsState = resolved.getBoolean(KEY_SYSTEM_COLORS, true)
+        customAccentColorState = CustomAccentColor.normalize(resolved.getString("customAccentColorHex", ""))
         defaultLanguageState = resolved.getString(KEY_DEFAULT_LANGUAGE, "").orEmpty()
         val selected = if (android.os.Build.VERSION.SDK_INT >= 33) {
             context.getSystemService(android.app.LocaleManager::class.java).applicationLocales[0]?.toLanguageTag().orEmpty()

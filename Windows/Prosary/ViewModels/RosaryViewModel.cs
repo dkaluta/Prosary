@@ -398,7 +398,6 @@ public partial class RosaryViewModel : ObservableObject, IPrayerStepFlowViewMode
     public async Task SelectLanguageAsync(string raw)
     {
         if (_activePrayer is null) return;
-        AppSettings.InitializeFilioqueForLanguage(raw);
 
         var position = _index;
         var changed = _activePrayer with { LanguageCode = raw };

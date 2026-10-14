@@ -43,6 +43,12 @@ public static class BasicPrayerCatalog
 
     public static BasicPrayer? Prayer(string id) => All.FirstOrDefault(p => p.Id == id);
 
+    public static bool IsAvailable(BasicPrayer prayer, string? languageCode) => prayer.Id != "creed"
+        || PrayerPackStore.HasApostlesCreed(prayer.BundleId, EffectiveLanguage(prayer, languageCode).Code);
+
+    public static IReadOnlyList<BasicPrayer> Available(string? languageCode) =>
+        All.Where(prayer => IsAvailable(prayer, languageCode)).ToList();
+
     public static LanguageOption EffectiveLanguage(BasicPrayer prayer, string? languageCode)
     {
         var language = LanguageCatalog.Resolve(languageCode);
@@ -53,6 +59,8 @@ public static class BasicPrayerCatalog
 
     public static RosaryStep Step(BasicPrayer prayer, string? languageCode = null)
     {
+        if (!IsAvailable(prayer, languageCode)) return new RosaryStep(
+            Title: Loc.Tr("basic_prayer_unavailable_in_rite", "This prayer is not used in the selected rite."), Subtitle: null, Body: "");
         var language = EffectiveLanguage(prayer, languageCode);
         return new RosaryStep(
             Title: PrayerPackStore.ResolveDisplayText(prayer.BundleId, language.Code, prayer.TitleKey),

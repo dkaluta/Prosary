@@ -20,7 +20,9 @@ struct RecentPrayerStore {
   var entries: [RecentPrayer] {
     guard let data = defaults.data(forKey: Self.defaultsKey),
           let decoded = try? JSONDecoder().decode([RecentPrayer].self, from: data) else { return [] }
-    return Array(decoded.filter { Self.identity(for: $0.route) != nil }.prefix(Self.maximumCount))
+    let active = Array(decoded.filter { Self.identity(for: $0.route) != nil }.prefix(Self.maximumCount))
+    if active != decoded { save(active) }
+    return active
   }
 
   func record(_ route: AppRoute, title: String, at date: Date = Date()) {
@@ -31,14 +33,19 @@ struct RecentPrayerStore {
   }
 
   func save(_ entries: [RecentPrayer]) {
-    guard let data = try? JSONEncoder().encode(Array(entries.prefix(Self.maximumCount))) else { return }
+    let active = entries.filter { Self.identity(for: $0.route) != nil }
+    guard let data = try? JSONEncoder().encode(Array(active.prefix(Self.maximumCount))) else { return }
     defaults.set(data, forKey: Self.defaultsKey)
+  }
+
+  func remove(prayerID: UUID) {
+    save(entries.filter { $0.route != .prayer(id: prayerID) })
   }
 
   static func identity(for route: AppRoute) -> String? {
     switch route {
     case .prayer(let id): "favorite:\(id.uuidString)"
-    case .custom(let id, _, let variant): "custom:\(id):\(variant ?? "")"
+    case .custom(let id, _, let variant): RetiredPrayerBundles.contains(id) ? nil : "custom:\(id):\(variant ?? "")"
     case .basicPrayer(let id): "basic:\(id)"
     case .jesusPrayer(let target): PrayerRunSignature.jesus(target)
     case .rosaryQuickPray(let prayer): "quick:\(PrayerRunSignature.rosary(prayer.rosary)):\(prayer.languageCode)"
@@ -120,6 +127,7 @@ final class RecentPrayers {
     case .basicPrayer(let id):
       guard let prayer = BasicPrayerCatalog.prayer(id: id) else { return nil }
       let language = UserDefaults.standard.string(forKey: BasicPrayerCatalog.languageDefaultsKey)
+      guard BasicPrayerCatalog.isAvailable(prayer, languageCode: language) else { return nil }
       return HebrewDisplayText.unpointed(BasicPrayerCatalog.title(for: prayer, languageCode: language))
     case .jesusPrayer(let target):
       if case .count(let count) = target, count <= 0 { return nil }

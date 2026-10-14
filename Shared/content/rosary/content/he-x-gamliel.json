@@ -18,5 +18,10 @@
   "$rosaryCollectSource": "Rosary-only separate step: unchanged collectaStandard text; when absent (Spanish/Mission Hebrew), unchanged sourced collectAfterRosary from litanyOfLoreto. Basic Marian antiphon texts remain unchanged. Hebrew heading נתפללה supplied explicitly by the user, 2026-09-27.",
   "$sources": {
     "symbolumNicaenum": "Unchanged existing sourced Nicene Creed, also used under symbolumApostolorum in this prayer tradition. See Shared/content/rosary/SOURCES.markdown."
+  },
+  "$creedPolicy": {
+    "rite": "mission",
+    "apostlesCreed": false,
+    "filioque": "bracketed"
   }
 }

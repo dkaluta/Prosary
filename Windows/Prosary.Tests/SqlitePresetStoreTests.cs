@@ -156,6 +156,74 @@ public sealed class SqlitePresetStoreTests : IDisposable
     }
 
     [Fact]
+    public async Task RetirementHidesAndDeletesOnlyWithdrawnSavedCopiesAndRejectsRestoration()
+    {
+        var loreto = new Prayer { Name = "Built-in Loreto", Kind = PrayerKind.Custom, CustomDevotionId = "litanyOfLoreto" };
+        var other = loreto with { Id = Guid.NewGuid(), Name = "Other author", CustomDevotionId = "repo.another.litanyOfMaryTheBlessedEverVirgin" };
+        await _store.SaveAsync(loreto);
+        await _store.SaveAsync(other);
+        var withdrawn = loreto with { Id = Guid.NewGuid(), Name = "Withdrawn", IsDefault = true,
+            CustomDevotionId = RetiredPrayerBundles.GamlielLoreto,
+            Reminders = [new PrayerReminder { Hour = 18, Minute = 30, IsEnabled = true }] };
+        using (var connection = new SQLite.SQLiteConnection(_dbPath))
+            connection.Insert(PresetEntry.FromPrayer(withdrawn));
+
+        Assert.DoesNotContain(await _store.GetAllAsync(), prayer => prayer.Id == withdrawn.Id);
+        Assert.Null(await _store.GetAsync(withdrawn.Id));
+        Assert.NotEqual(withdrawn.Id, (await _store.GetDefaultAsync(PrayerKind.Custom))?.Id);
+        await Assert.ThrowsAsync<InvalidOperationException>(() => _store.SaveAsync(withdrawn));
+        await Assert.ThrowsAsync<InvalidOperationException>(() => _store.UpdateIfPresentAsync(withdrawn));
+
+        var cleaned = new List<Prayer>();
+        await _store.RetireBundlesAsync(cleaned.Add);
+        await _store.RetireBundlesAsync(cleaned.Add);
+        var removed = Assert.Single(cleaned);
+        Assert.Equal(withdrawn.Id, removed.Id);
+        Assert.Equal(18, Assert.Single(removed.Reminders).Hour);
+        using (var connection = new SQLite.SQLiteConnection(_dbPath))
+            Assert.Null(connection.Find<PresetEntry>(withdrawn.Id));
+        Assert.Equal(loreto.Name, (await _store.GetAsync(loreto.Id))!.Name);
+        Assert.Equal("litanyOfLoreto", (await _store.GetAsync(loreto.Id))!.CustomDevotionId);
+        Assert.Equal(other.Id, (await _store.GetAsync(other.Id))!.Id);
+    }
+
+    [Fact]
+    public async Task FailedRetirementCleanupKeepsHiddenRowsForRetry()
+    {
+        await _store.GetAllAsync();
+        var withdrawn = new Prayer { Kind = PrayerKind.Custom, CustomDevotionId = RetiredPrayerBundles.GamlielLoreto };
+        using (var connection = new SQLite.SQLiteConnection(_dbPath))
+            connection.Insert(PresetEntry.FromPrayer(withdrawn));
+        await Assert.ThrowsAsync<IOException>(() => _store.RetireBundlesAsync(_ => throw new IOException("Synthetic cancellation failure")));
+        using (var connection = new SQLite.SQLiteConnection(_dbPath))
+            Assert.NotNull(connection.Find<PresetEntry>(withdrawn.Id));
+        Assert.Null(await _store.GetAsync(withdrawn.Id));
+        await _store.RetireBundlesAsync(_ => { });
+        using (var connection = new SQLite.SQLiteConnection(_dbPath))
+            Assert.Null(connection.Find<PresetEntry>(withdrawn.Id));
+    }
+
+    [Fact]
+    public async Task RetirementPreservesNonCustomRowsAndAConcurrentReplacement()
+    {
+        await _store.GetAllAsync();
+        var stale = new Prayer { Kind = PrayerKind.Rosary, CustomDevotionId = RetiredPrayerBundles.GamlielLoreto };
+        await _store.SaveAsync(stale);
+        var withdrawn = stale with { Id = Guid.NewGuid(), Kind = PrayerKind.Custom };
+        using (var connection = new SQLite.SQLiteConnection(_dbPath))
+            connection.Insert(PresetEntry.FromPrayer(withdrawn));
+        var replacement = withdrawn with { Kind = PrayerKind.JesusPrayer, Name = "Replacement" };
+        await _store.RetireBundlesAsync(_ =>
+        {
+            using var connection = new SQLite.SQLiteConnection(_dbPath);
+            connection.InsertOrReplace(PresetEntry.FromPrayer(replacement));
+        });
+        Assert.Equal(stale.Id, (await _store.GetAsync(stale.Id))!.Id);
+        Assert.Equal("Replacement", (await _store.GetAsync(replacement.Id))!.Name);
+        Assert.Equal(PrayerKind.JesusPrayer, (await _store.GetAsync(replacement.Id))!.Kind);
+    }
+
+    [Fact]
     public async Task SaveAsync_NewDefaultOfOneKind_DoesNotClearAnotherKindsDefault()
     {
         var angelus = new Prayer { Name = "My Angelus", Kind = PrayerKind.Custom, CustomDevotionId = "angelus", IsDefault = true };

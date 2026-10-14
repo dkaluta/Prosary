@@ -149,5 +149,10 @@
       "description": "И когда они ели, Иисус взял хлеб и, благословив, преломил и, раздавая ученикам, сказал: приимите, ядите: сие есть Тело Моё. И, взяв чашу и благодарив, подал им и сказал: пейте из неё все, ибо сие есть Кровь Моя Нового Завета, за многих изливаемая во оставление грехов.\n\n— Мф 26:26–28 (Синодальный)"
     }
   },
-  "$rosaryCollectSource": "Rosary-only separate step: unchanged collectaStandard text; when absent (Spanish/Mission Hebrew), unchanged sourced collectAfterRosary from litanyOfLoreto. Basic Marian antiphon texts remain unchanged. Hebrew heading נתפללה supplied explicitly by the user, 2026-09-27."
+  "$rosaryCollectSource": "Rosary-only separate step: unchanged collectaStandard text; when absent (Spanish/Mission Hebrew), unchanged sourced collectAfterRosary from litanyOfLoreto. Basic Marian antiphon texts remain unchanged. Hebrew heading נתפללה supplied explicitly by the user, 2026-09-27.",
+  "$creedPolicy": {
+    "rite": "latin",
+    "apostlesCreed": true,
+    "filioque": "unbracketed"
+  }
 }

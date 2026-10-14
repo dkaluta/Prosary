@@ -177,6 +177,7 @@
     "responsiumStandard": "vicariate",
     "salveRegina": "vicariate",
     "sanctusMichael": "vicariate",
+    "signumCrucisTitle": "vicariate",
     "subTuumPraesidium": "vicariate",
     "symbolumApostolorumTitle": "vicariate",
     "versiculumPaschale": "vicariate",
@@ -188,5 +189,10 @@
   "$rosaryCollectSource": "Rosary-only separate step: unchanged collectaStandard text; when absent (Spanish/Mission Hebrew), unchanged sourced collectAfterRosary from litanyOfLoreto. Basic Marian antiphon texts remain unchanged. Hebrew heading נתפללה supplied explicitly by the user, 2026-09-27.",
   "$sources": {
     "symbolumNicaenum": "St. James Vicariate printed prayer book, page 6, Nicene Creed; exact vocalized text transcribed from user-supplied IMG_5448.jpeg on 2026-10-11. Photo SHA256: 0753c52ca77cad106feec019884775f064a1fbb75b814edfeaa8d87cb97eade7. Printed Filioque retained without brackets; paragraph line wraps adapted for the reader. No editorial niqqud or reading aid inferred."
+  },
+  "$creedPolicy": {
+    "rite": "vicariate",
+    "apostlesCreed": true,
+    "filioque": "unbracketed"
   }
 }

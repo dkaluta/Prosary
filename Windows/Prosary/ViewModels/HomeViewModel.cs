@@ -24,6 +24,9 @@ public partial class DevotionCardModel : ObservableObject
     private string _title = string.Empty;
     public required string IconGlyph { get; init; }
     public required ICommand Command { get; init; }
+    public string ImageSource => Id.StartsWith("basic:", StringComparison.Ordinal)
+        ? BasicPrayerCatalog.Prayer(Id[6..]) is { } prayer ? PrayerPackStore.ImageFileUriOrPlaceholder(prayer.ImageKey) : ""
+        : DesktopPrayerLibrary.ImageUri(Id.StartsWith("custom.", StringComparison.Ordinal) ? Id[7..] : Id);
 
     /// <summary>Whether this devotion has saved presets worth a menu item — the Rosary does,
     /// the rest are configured in their own flow. Mirrors iOS's DevotionRow.presetsRoute.</summary>
@@ -278,7 +281,7 @@ public partial class HomeViewModel : ObservableObject
             var card = new DevotionCardModel
             {
                 Id = $"custom.{bundleId}",
-                Title = info.LocalizedDisplayName,
+                Title = PrayerPackStore.InterfaceDisplayName(bundleId),
                 IconGlyph = info.IconGlyph ?? GlyphForSystemName(info.IconSystemName),
                 AccentColor = CustomAccent(info),
                 Command = new RelayCommand(() => OpenCustomDevotion(bundleId)),
@@ -315,7 +318,7 @@ public partial class HomeViewModel : ObservableObject
         var implied = ImpliedPinnedIds();
         var pinned = _allCards.Where(card => FavoriteDevotions.Contains(DevotionIdOf(card), implied)).ToList();
         var language = LanguageCatalog.Resolve(AppSettings.BasicPrayersLanguageCode);
-        foreach (var prayer in BasicPrayersOrder.Apply(BasicPrayerCatalog.All)
+        foreach (var prayer in BasicPrayersOrder.Apply(BasicPrayerCatalog.Available(language.Code))
                      .Where(prayer => AppSettings.FavoriteBasicPrayerIds.Contains(prayer.Id)))
         {
             var name = PrayerCardName.ForBasicPrayer(prayer, language.Code);

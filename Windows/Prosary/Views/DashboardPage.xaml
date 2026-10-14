@@ -40,17 +40,34 @@
                                 <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="8" Padding="18" Margin="0,0,0,12">
                                     <StackPanel Spacing="12">
                                         <Grid ColumnSpacing="12">
-                                            <Grid.ColumnDefinitions><ColumnDefinition Width="Auto"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                                            <Grid.ColumnDefinitions><ColumnDefinition Width="Auto"/><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
                                             <controls:PapalKeysIcon Foreground="{ThemeResource BrandPrimaryBrush}" Visibility="{x:Bind IsPopeIntention, Converter={StaticResource BoolToVisibility}}" />
                                             <FontIcon Glyph="{x:Bind Glyph}" Foreground="{ThemeResource BrandPrimaryBrush}" Visibility="{x:Bind IsPopeIntention, Converter={StaticResource InverseBoolToVisibility}}" />
                                             <TextBlock Grid.Column="1" Text="{x:Bind Title}" Style="{StaticResource SubHeadlineTextStyle}" TextWrapping="Wrap" TextAlignment="Start" />
+                                            <Button Grid.Column="2" Click="OnToggleSize" AutomationProperties.Name="{x:Bind SizeActionLabel, Mode=OneWay}" ToolTipService.ToolTip="{x:Bind SizeActionLabel, Mode=OneWay}">
+                                                <FontIcon Glyph="{x:Bind SizeGlyph, Mode=OneWay}" />
+                                            </Button>
+                                            <Button Grid.Column="3" AutomationProperties.Name="{x:Bind AddGraphicLabel, Mode=OneWay}" ToolTipService.ToolTip="{x:Bind AddGraphicLabel, Mode=OneWay}">
+                                                <FontIcon Glyph="&#xEB9F;" />
+                                                <Button.Flyout><MenuFlyout>
+                                                    <MenuFlyoutItem Text="{x:Bind AddGraphicLabel, Mode=OneWay}" Click="OnChoosePhoto" Tag="{x:Bind}" />
+                                                    <MenuFlyoutItem Text="{x:Bind RemoveGraphicLabel}" Click="OnRemovePhoto" Tag="{x:Bind}"
+                                                                    Visibility="{x:Bind HasGraphicChoice, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
+                                                </MenuFlyout></Button.Flyout>
+                                            </Button>
                                         </Grid>
+                                        <TextBlock Text="{x:Bind Summary, Mode=OneWay}" TextWrapping="Wrap" MaxLines="2"
+                                                   Visibility="{x:Bind IsExpanded, Mode=OneWay, Converter={StaticResource InverseBoolToVisibility}}" />
+                                        <StackPanel Spacing="12" Visibility="{x:Bind IsExpanded, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
+                                        <Image Source="{x:Bind PhotoSource, Mode=OneWay}" Stretch="Uniform" MaxHeight="360" ImageFailed="OnPhotoFailed"
+                                               AutomationProperties.Name="{x:Bind GraphicDescription}" Visibility="{x:Bind HasPhoto, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
+                                        <TextBlock Text="{x:Bind GraphicError, Mode=OneWay}" TextWrapping="Wrap"
+                                                   Visibility="{x:Bind HasGraphicError, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
                                         <TextBlock Text="{x:Bind Body, Mode=OneWay}" TextWrapping="Wrap" IsTextSelectionEnabled="True" Visibility="{x:Bind HasBody, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
                                         <StackPanel Visibility="{x:Bind IsPhoto, Converter={StaticResource BoolToVisibility}}" Spacing="12">
-                                            <Image Source="{x:Bind PhotoSource, Mode=OneWay}" Stretch="Uniform" MaxHeight="420" HorizontalAlignment="Center" ImageFailed="OnPhotoFailed" AutomationProperties.Name="{x:Bind PhotoDescription}" Visibility="{x:Bind HasPhoto, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
                                             <StackPanel Spacing="8">
                                                 <Button Content="{x:Bind ChoosePhotoLabel}" Click="OnChoosePhoto" HorizontalAlignment="Stretch" />
-                                                <Button Content="{x:Bind RemovePhotoLabel}" Click="OnRemovePhoto" HorizontalAlignment="Stretch" Visibility="{x:Bind HasPhoto, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
+                                                <Button Content="{x:Bind RemovePhotoLabel}" Click="OnRemovePhoto" HorizontalAlignment="Stretch" Visibility="{x:Bind HasGraphicChoice, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
                                             </StackPanel>
                                         </StackPanel>
                                         <ItemsControl ItemsSource="{x:Bind Reminders, Mode=OneWay}">
@@ -100,6 +117,9 @@
                                                 </StackPanel>
                                             </DataTemplate></ItemsControl.ItemTemplate>
                                         </ItemsControl>
+                                        <ItemsControl ItemsSource="{x:Bind ScripturePassages, Mode=OneWay}" ItemTemplate="{StaticResource ReadingPassageTemplate}"
+                                                      Visibility="{x:Bind IsScripture, Converter={StaticResource BoolToVisibility}}" />
+                                        </StackPanel>
                                         <Button Content="{x:Bind ActionTitle}" Click="OnCardAction" HorizontalAlignment="Left" Visibility="{x:Bind HasAction, Converter={StaticResource BoolToVisibility}}" />
                                     </StackPanel>
                                 </Border>

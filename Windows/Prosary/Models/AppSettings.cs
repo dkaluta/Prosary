@@ -31,7 +31,6 @@ public static class AppSettings
     private const string KeyBasicPrayersLanguage = "basicPrayersLanguageCode";
     private const string KeyAramaicSignOfCrossForm = "aramaicSignOfCrossForm";
     private const string KeyUseJaffaHailMaryWording = "useJaffaHailMaryWording";
-    private const string KeyIncludeFilioque = "includeFilioque";
     private const string KeyFeastCalendar = "feastCalendarId";
     private const string KeyEasternPaschaStyle = "easternPaschaStyle";
     private const string KeyAutoAdvance = "autoAdvanceSeconds";
@@ -93,13 +92,38 @@ public static class AppSettings
     private static string? _appColor;
     private static IReadOnlyList<string>? _homeWidgetOrder;
     private static string? _homePhotoPath;
-    private static bool? _includeFilioque;
-    [ThreadStatic] private static int _filioqueInitializationDepth;
+    private static IReadOnlyList<string>? _homeWidgetCollapsedIds;
+    private static IReadOnlyDictionary<string, string>? _homeWidgetGraphicPaths;
+    private static string? _customAccentColorHex;
 
     public static IReadOnlyList<string> HomeWidgetOrder => _homeWidgetOrder ??=
         HomeWidgets.Parse(ReadLocalSetting("homeWidgetOrder") as string);
 
     public static event Action? HomeWidgetsChanged;
+
+    public static IReadOnlyList<string> HomeWidgetCollapsedIds => _homeWidgetCollapsedIds ??=
+        HomeWidgets.ParseCollapsed(ReadLocalSetting("homeWidgetCollapsedIds") as string);
+
+    public static void SetHomeWidgetCollapsedIds(IEnumerable<string> ids)
+    {
+        _homeWidgetCollapsedIds = HomeWidgets.Normalize(ids);
+        WriteLocalSetting("homeWidgetCollapsedIds", string.Join('\n', _homeWidgetCollapsedIds));
+        HomeWidgetsChanged?.Invoke();
+    }
+
+    public static IReadOnlyDictionary<string, string> HomeWidgetGraphicPaths => _homeWidgetGraphicPaths ??=
+        HomeWidgets.ParseGraphics(ReadLocalSetting("homeWidgetGraphicPaths") as string);
+
+    public static void SetHomeWidgetGraphicPath(string id, string? path)
+    {
+        if (!HomeWidgets.All.Contains(id)) return;
+        var paths = HomeWidgetGraphicPaths.ToDictionary(pair => pair.Key, pair => pair.Value);
+        if (string.IsNullOrWhiteSpace(path)) paths.Remove(id);
+        else paths[id] = path;
+        _homeWidgetGraphicPaths = paths;
+        WriteLocalSetting("homeWidgetGraphicPaths", System.Text.Json.JsonSerializer.Serialize(paths));
+        HomeWidgetsChanged?.Invoke();
+    }
 
     public static void SetHomeWidgetOrder(IEnumerable<string> ids)
     {
@@ -122,6 +146,18 @@ public static class AppSettings
         AppColorPalette.Resolve(ReadLocalSetting(KeyAppColor) as string).Id;
 
     public static event Action? AppColorChanged;
+
+    public static string CustomAccentColorHex => _customAccentColorHex ??=
+        AppColorPalette.NormalizeCustom(ReadLocalSetting("customAccentColorHex") as string);
+
+    public static void SetCustomAccentColorHex(string? hex)
+    {
+        var normalized = AppColorPalette.NormalizeCustom(hex);
+        if (CustomAccentColorHex == normalized) return;
+        _customAccentColorHex = normalized;
+        WriteLocalSetting("customAccentColorHex", normalized);
+        AppColorChanged?.Invoke();
+    }
 
     public static void SetAppColor(string value)
     {
@@ -183,7 +219,6 @@ public static class AppSettings
 
     public static void SetDefaultLanguageCode(string code)
     {
-        InitializeFilioqueForLanguage(code);
         _prayerLanguageCode = code == LanguageCatalog.VicariateContentCode ? "he" : code;
         WriteLocalSetting(KeyDefaultLanguage, _prayerLanguageCode);
     }
@@ -195,7 +230,6 @@ public static class AppSettings
 
     public static void SetBasicPrayersLanguageCode(string code)
     {
-        InitializeFilioqueForLanguage(code);
         _basicPrayersLanguageCode = code;
         WriteLocalSetting(KeyBasicPrayersLanguage, code);
     }
@@ -204,48 +238,6 @@ public static class AppSettings
     public static bool UseJaffaHailMaryWording => false;
 
     public static event Action? PrayerWordingChanged;
-
-    /// <summary>Absent until an explicit prayer-language choice or an actual Nicene body
-    /// supplies the initial tradition. Merely viewing Settings does not write this value.</summary>
-    public static bool? IncludeFilioquePreference => _includeFilioque ??=
-        ReadLocalSetting(KeyIncludeFilioque) as bool?;
-
-    public static bool IncludeFilioque => IncludeFilioquePreference
-        ?? FilioquePrayerWording.DefaultForLanguage(LanguageCatalog.Resolve(DefaultLanguageCode).Code) ?? true;
-
-    public static void InitializeFilioqueForLanguage(string? code)
-    {
-        if (FilioquePrayerWording.DefaultForLanguage(code) is { } status) InitializeFilioque(status);
-    }
-
-    internal static void InitializeFilioque(bool status)
-    {
-        if (IncludeFilioquePreference is not null) return;
-        _includeFilioque = status;
-        WriteLocalSetting(KeyIncludeFilioque, status);
-    }
-
-    internal static void InitializeFilioqueFromSource(bool status)
-    {
-        if (_filioqueInitializationDepth == 0) InitializeFilioque(status);
-    }
-
-    /// <summary>Candidate sessions and step counts may resolve sourced bodies without
-    /// choosing the user's first tradition. Keep nested/background callers independent.</summary>
-    internal static T WithoutFilioqueInitialization<T>(Func<T> build)
-    {
-        _filioqueInitializationDepth++;
-        try { return build(); }
-        finally { _filioqueInitializationDepth--; }
-    }
-
-    public static void SetIncludeFilioque(bool value)
-    {
-        if (IncludeFilioquePreference == value) return;
-        _includeFilioque = value;
-        WriteLocalSetting(KeyIncludeFilioque, value);
-        PrayerWordingChanged?.Invoke();
-    }
 
     public static void SetUseJaffaHailMaryWording(bool value)
     {

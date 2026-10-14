@@ -9,6 +9,72 @@ namespace Prosary.Tests;
 
 public class PrayerRunStateTests : IClassFixture<PrayerPackLoaderFixture>
 {
+    [Fact]
+    public async Task HebrewReaderTitleTracksItsSavedRiteAndLanguageSwitchWithoutMovingThePrayer()
+    {
+        var oldUi = UiLanguageCatalog.Current;
+        var oldDefault = AppSettings.PrayerLanguageCode;
+        var oldOrder = AppSettings.LanguageFallbackOrder.ToArray();
+        try
+        {
+            UiLanguageCatalog.UseLanguageForCurrentSession("he");
+            AppSettings.SetDefaultLanguageCode("he-x-gamliel");
+            AppSettings.SetLanguageFallbackOrder(["he-x-gamliel", "he", "en", "la"]);
+            var prayer = new Prayer { Kind = PrayerKind.Custom, CustomDevotionId = "trisagion", LanguageCode = "he", VariantId = "byzantine" };
+            var presets = new MemoryPresetStore(prayer);
+            var calendar = new LiturgicalCalendarService();
+            var flow = new CustomDevotionViewModel(presets, new PrayerEngine(calendar), calendar,
+                new SilentReminders(), new LocalPrayerRunStore(() => null, _ => { }));
+            await flow.LoadAsync(prayer.Id, "trisagion");
+            Assert.Equal("טריסאגיון", flow.DevotionTitle);
+            Assert.Equal(PrayerPackStore.ResolveBodyText("trisagion", "he", "trisagionAcclamation"), flow.Body);
+            flow.NextCommand.Execute(null);
+            var position = flow.Progress;
+            await flow.SelectLanguageAsync("he-x-gamliel");
+            Assert.Equal("קדישת", flow.DevotionTitle);
+            Assert.Equal(position, flow.Progress);
+            await flow.SelectLanguageAsync("he");
+            Assert.Equal("טריסאגיון", flow.DevotionTitle);
+            Assert.Equal(position, flow.Progress);
+            Assert.Equal("he-x-gamliel", AppSettings.PrayerLanguageCode);
+            Assert.Equal("he", (await presets.GetAsync(prayer.Id))!.LanguageCode);
+        }
+        finally
+        {
+            UiLanguageCatalog.UseLanguageForCurrentSession(oldUi);
+            AppSettings.SetDefaultLanguageCode(oldDefault);
+            AppSettings.SetLanguageFallbackOrder(oldOrder);
+        }
+    }
+
+    [Fact]
+    public async Task InheritedHebrewReaderTitleRefreshesWithTheSameLanguageAsItsBody()
+    {
+        var oldUi = UiLanguageCatalog.Current;
+        var oldDefault = AppSettings.PrayerLanguageCode;
+        try
+        {
+            UiLanguageCatalog.UseLanguageForCurrentSession("he");
+            AppSettings.SetDefaultLanguageCode("he-x-gamliel");
+            var calendar = new LiturgicalCalendarService();
+            var flow = new CustomDevotionViewModel(new MemoryPresetStore(), new PrayerEngine(calendar), calendar,
+                new SilentReminders(), new LocalPrayerRunStore(() => null, _ => { }));
+            await flow.LoadAsync(null, "trisagion", "", "byzantine");
+            Assert.Equal("קדישת", flow.DevotionTitle);
+            var position = flow.Progress;
+            AppSettings.SetDefaultLanguageCode("he");
+            flow.RefreshPrayerWording();
+            Assert.Equal("טריסאגיון", flow.DevotionTitle);
+            Assert.Equal(PrayerPackStore.ResolveBodyText("trisagion", "he", "trisagionAcclamation"), flow.Body);
+            Assert.Equal(position, flow.Progress);
+        }
+        finally
+        {
+            UiLanguageCatalog.UseLanguageForCurrentSession(oldUi);
+            AppSettings.SetDefaultLanguageCode(oldDefault);
+        }
+    }
+
     [Theory]
     [InlineData(false, null, null, null, false)]
     [InlineData(true, null, null, null, true)]
@@ -145,9 +211,8 @@ public class PrayerRunStateTests : IClassFixture<PrayerPackLoaderFixture>
     }
 
     [Fact]
-    public async Task FilioqueChangeRefreshesIndependentRosariesWithoutMovingTheirStepsOrScript()
+    public async Task SourceCreedPolicySurvivesIndependentRosaryRefreshWithoutMovingStepsOrScript()
     {
-        using var preference = new AppSettingsFilioqueScope(true);
         var previousScript = AppSettings.AramaicDefaultScript;
         try
         {
@@ -170,28 +235,14 @@ public class PrayerRunStateTests : IClassFixture<PrayerPackLoaderFixture>
             Assert.Contains("וּמִן הַבֵּן", mission.Body);
             var aramaicPosition = aramaic.Progress;
             var missionPosition = mission.Progress;
-            AppSettings.PrayerWordingChanged += aramaic.RefreshPrayerWording;
-            AppSettings.PrayerWordingChanged += mission.RefreshPrayerWording;
-            try
-            {
-                AppSettings.SetIncludeFilioque(false);
-                Assert.Equal(aramaicPosition, aramaic.Progress);
-                Assert.Equal(missionPosition, mission.Progress);
-                Assert.Equal("Syrc", aramaic.AramaicScript);
-                Assert.DoesNotContain("ܘܒܐ", aramaic.Body);
-                Assert.DoesNotContain("וּמִן הַבֵּן", mission.Body);
-                AppSettings.SetIncludeFilioque(true);
-                Assert.Contains("ܘܒܐ", aramaic.Body);
-                Assert.Contains("וּמִן הַבֵּן", mission.Body);
-                Assert.DoesNotContain("(וּמִן הַבֵּן)", mission.Body);
-                Assert.Equal(aramaicPosition, aramaic.Progress);
-                Assert.Equal(missionPosition, mission.Progress);
-            }
-            finally
-            {
-                AppSettings.PrayerWordingChanged -= aramaic.RefreshPrayerWording;
-                AppSettings.PrayerWordingChanged -= mission.RefreshPrayerWording;
-            }
+            aramaic.RefreshPrayerWording();
+            mission.RefreshPrayerWording();
+            Assert.Equal(aramaicPosition, aramaic.Progress);
+            Assert.Equal(missionPosition, mission.Progress);
+            Assert.Equal("Syrc", aramaic.AramaicScript);
+            Assert.Contains("[ܘܒܐ]", aramaic.Body);
+            Assert.Contains("[וּמִן הַבֵּן]", mission.Body);
+            Assert.DoesNotContain("(וּמִן הַבֵּן)", mission.Body);
         }
         finally { AppSettings.SetAramaicDefaultScript(previousScript); }
     }
@@ -199,9 +250,8 @@ public class PrayerRunStateTests : IClassFixture<PrayerPackLoaderFixture>
     [Theory]
     [InlineData(false)]
     [InlineData(true)]
-    public async Task BookmarkPreviewDoesNotChooseFilioqueBeforeTheUserContinues(bool genericFlow)
+    public async Task BookmarkPreviewKeepsSourceCreedPolicyAndTheSavedContinuationLanguage(bool genericFlow)
     {
-        using var preference = new AppSettingsFilioqueScope(null);
         // Use a real generic devotion whose manifest declares Greek. The built-in Rosary
         // is routed through RosaryViewModel and has only a partial Greek overlay; treating
         // it as a custom devotion would legitimately choose another effective language.
@@ -219,8 +269,7 @@ public class PrayerRunStateTests : IClassFixture<PrayerPackLoaderFixture>
         var engine = new PrayerEngine(calendar);
         var candidate = engine.BuildSteps(prayer, initializeFilioque: false);
         Assert.Contains(candidate, step => step.Body.Contains(genericFlow
-            ? "τὸ ἐκ τοῦ Πατρὸς ἐκπορευόμενον" : "הַו דּמֶן אַבָא ובא ננפֶק", StringComparison.Ordinal));
-        Assert.Null(AppSettings.IncludeFilioquePreference);
+            ? "τὸ ἐκ τοῦ Πατρὸς ἐκπορευόμενον" : "הַו דּמֶן אַבָא [ובא] ננפֶק", StringComparison.Ordinal));
         var key = genericFlow
             ? PrayerRunKeys.Custom(DesktopPrayerIdentity.DevotionID(bundleId, prayer.Id), null, 0)
             : PrayerRunKeys.Rosary(prayer.Id);
@@ -235,9 +284,7 @@ public class PrayerRunStateTests : IClassFixture<PrayerPackLoaderFixture>
                 new SilentReminders(), runs);
             await flow.LoadAsync(prayer.Id, bundleId);
             Assert.True(flow.HasSavedContinuation);
-            Assert.Null(AppSettings.IncludeFilioquePreference);
             flow.RefreshPrayerWording();
-            Assert.Null(AppSettings.IncludeFilioquePreference);
             flow.ContinueSavedRun();
             Assert.Equal("el", flow.SpeechLanguageCode);
         }
@@ -246,12 +293,9 @@ public class PrayerRunStateTests : IClassFixture<PrayerPackLoaderFixture>
             var flow = new RosaryViewModel(presets, engine, calendar, runs);
             await flow.LoadAsync(prayer.Id);
             Assert.True(flow.HasSavedContinuation);
-            Assert.Null(AppSettings.IncludeFilioquePreference);
             flow.RefreshPrayerWording();
-            Assert.Null(AppSettings.IncludeFilioquePreference);
             flow.ContinueSavedRun();
         }
-        Assert.False(AppSettings.IncludeFilioquePreference);
     }
 
     [Theory]

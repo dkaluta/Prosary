@@ -70,6 +70,14 @@
                             </ListView.ItemTemplate>
                         </ListView>
                     </Border>
+                    <TextBlock Text="{x:Bind ViewModel.CustomAccentLabel}" Style="{StaticResource BaseTextBlockStyle}" TextWrapping="Wrap" />
+                    <ColorPicker Color="{x:Bind ViewModel.CustomAccent, Mode=TwoWay}" IsAlphaEnabled="False"
+                                 IsMoreButtonVisible="False" IsHexInputVisible="True"
+                                 HorizontalAlignment="Left" MaxWidth="420"
+                                 AutomationProperties.Name="{x:Bind ViewModel.CustomAccentLabel}"
+                                 AutomationProperties.AutomationId="customAccentColor" />
+                    <Button Content="{x:Bind ViewModel.ResetAccentLabel}" Command="{x:Bind ViewModel.ResetAccentCommand}"
+                            HorizontalAlignment="Left" />
                 </StackPanel>
             </Grid>
         </ScrollViewer>

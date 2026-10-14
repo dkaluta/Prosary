@@ -53,12 +53,8 @@ struct ReadingDatePickerPopover: View {
   }
 
   private var calendar: some View {
-    DatePicker(String(localized: "home.today.chooseDate", defaultValue: "Choose a date", bundle: UILanguage.bundle, locale: UILanguage.locale),
-               selection: $selection, in: range, displayedComponents: .date)
-      .datePickerStyle(.graphical)
-      .labelsHidden()
-      .environment(\.calendar, Calendar(identifier: .gregorian))
-      // The UIKit-backed graphical picker underreports its ideal width in a popover.
+    CalendarMonthGrid(dateSelection: Binding(get: { MacTodayDateSelection(now: selection) },
+      set: { selection = min(max($0.localDate(), range.lowerBound), range.upperBound) }), showsToday: false)
       .frame(width: calendarWidth)
       .fixedSize(horizontal: false, vertical: true)
       .accessibilityIdentifier(pickerIdentifier)

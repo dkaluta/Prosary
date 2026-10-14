@@ -32,6 +32,12 @@ struct RemindersOnlyEditorView: View {
     prayer.customDevotionId.flatMap { PrayerPackStore.info(for: $0) }
   }
 
+  private var displayName: String {
+    let language = LanguageCatalog.resolve(prayer.languageCode).code
+    return info?.namePresentation(prayerCode: language).title
+      ?? prayer.kind.namePresentation(prayerCode: language).title
+  }
+
   private var options: [CustomDevotionOption] {
     guard let id = prayer.customDevotionId else { return [] }
     return CustomDevotionOption.normalizedForEditing(PrayerPackStore.options(for: id), bundleId: id)
@@ -43,7 +49,7 @@ struct RemindersOnlyEditorView: View {
     #if os(macOS)
     .navigationTitle(String(localized: "macLibrary.settingsTitle", defaultValue: "Prayer Settings", bundle: UILanguage.bundle, locale: UILanguage.locale))
     #else
-    .navigationTitle(info?.localizedDisplayName ?? prayer.kind.displayName)
+    .navigationTitle(displayName)
     #endif
     #if os(iOS)
     .navigationBarTitleDisplayMode(.inline)
@@ -124,10 +130,10 @@ struct RemindersOnlyEditorView: View {
         ForEach(options, id: \.key) { option in
           switch option.kind {
           case .toggle:
-            Toggle(option.localizedName, isOn: toggleBinding(for: option))
+            Toggle(option.localizedName(bundleId: prayer.customDevotionId ?? "", languageCode: prayer.effectiveLanguageCode), isOn: toggleBinding(for: option))
               .disabled(isRequiredRosaryCollect(option))
           case .choice:
-            Picker(option.localizedName, selection: choiceBinding(for: option)) {
+            Picker(option.localizedName(bundleId: prayer.customDevotionId ?? "", languageCode: prayer.effectiveLanguageCode), selection: choiceBinding(for: option)) {
               ForEach(option.cases ?? [], id: \.id) { optionCase in
                 Text(optionCase.localizedName).tag(optionCase.id)
               }
@@ -166,7 +172,7 @@ struct RemindersOnlyEditorView: View {
     isSaving = true
     var toSave = prayer
     if toSave.name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-      toSave.name = info?.localizedDisplayName ?? toSave.kind.defaultName
+      toSave.name = displayName
     }
     Task {
       defer { isSaving = false }

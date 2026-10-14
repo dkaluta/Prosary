@@ -4,6 +4,8 @@ import android.content.SharedPreferences
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 
 /** Home cards have a separate order from the user's pinned prayer collection. */
 enum class HomeWidget(val id: String) {
@@ -23,6 +25,8 @@ internal class HomeWidgetPreferences {
     companion object {
         const val orderKey = "homeWidgetOrder"
         const val photoKey = "homePhotoPath"
+        const val collapsedKey = "homeWidgetCollapsedIds"
+        const val graphicsKey = "homeWidgetGraphicPaths"
     }
 
     private var preferences: SharedPreferences? = null
@@ -30,11 +34,19 @@ internal class HomeWidgetPreferences {
         private set
     var photoPath by mutableStateOf("")
         private set
+    var collapsed by mutableStateOf(emptySet<HomeWidget>())
+        private set
+    var graphicPaths by mutableStateOf(emptyMap<String, String>())
+        private set
 
     fun initialize(storage: SharedPreferences) {
         preferences = storage
         widgets = HomeWidget.decode(storage.getString(orderKey, null))
         photoPath = storage.getString(photoKey, "").orEmpty()
+        collapsed = storage.getString(collapsedKey, "").orEmpty().split('\n')
+            .mapNotNull { id -> HomeWidget.entries.firstOrNull { it.id == id } }.toSet()
+        graphicPaths = runCatching { Json.decodeFromString<Map<String, String>>(storage.getString(graphicsKey, "{}").orEmpty()) }
+            .getOrDefault(emptyMap()).filter { (id, path) -> HomeWidget.entries.any { it.id == id } && path.isNotBlank() }
     }
 
     fun updateWidgets(value: List<HomeWidget>) {
@@ -54,5 +66,15 @@ internal class HomeWidgetPreferences {
     fun updatePhotoPath(value: String) {
         photoPath = value
         preferences?.edit()?.putString(photoKey, value)?.apply()
+    }
+
+    fun setCollapsed(widget: HomeWidget, value: Boolean) {
+        collapsed = if (value) collapsed + widget else collapsed - widget
+        preferences?.edit()?.putString(collapsedKey, HomeWidget.entries.filter { it in collapsed }.joinToString("\n") { it.id })?.apply()
+    }
+
+    fun setGraphicPath(widget: HomeWidget, path: String) {
+        graphicPaths = if (path.isBlank()) graphicPaths - widget.id else graphicPaths + (widget.id to path)
+        preferences?.edit()?.putString(graphicsKey, Json.encodeToString(graphicPaths))?.apply()
     }
 }

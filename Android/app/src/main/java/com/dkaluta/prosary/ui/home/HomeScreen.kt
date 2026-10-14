@@ -101,6 +101,7 @@ private data class DevotionCard(
     val onClick: () -> Unit,
     val basicPrayerId: String? = null,
     val interfaceTitle: String? = null,
+    val imageKey: String? = null,
 )
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -196,6 +197,7 @@ fun HomeScreen(
             DevotionCard(
                 id = PrayerKind.Rosary.name,
                 devotionId = "rosary",
+                imageKey = PrayerPackStore.galleryImageKey("rosary"),
                 icon = Icons.Filled.Circle,
                 title = PrayerKind.Rosary.cardTitle(context, LanguageCatalog.resolve(defaultRosary?.languageCode).code).primary,
                 interfaceTitle = PrayerKind.Rosary.cardTitle(context, LanguageCatalog.resolve(defaultRosary?.languageCode).code).interfaceSubtitle,
@@ -221,6 +223,7 @@ fun HomeScreen(
                     iconGlyph = info.iconGlyph,
                     title = cardTitle.primary,
                     interfaceTitle = cardTitle.interfaceSubtitle,
+                    imageKey = PrayerPackStore.galleryImageKey(bundleId),
                     accentColor = customAccent(info),
                     subtitle = MultiDayStatus.subtitle(context, bundleId)
                         ?: defaultCustomDevotions[bundleId]?.name
@@ -238,6 +241,7 @@ fun HomeScreen(
             DevotionCard(
                 id = PrayerKind.JesusPrayer.name,
                 devotionId = "jesusPrayer",
+                imageKey = PrayerPackStore.galleryImageKey("jesusPrayer"),
                 icon = Icons.Filled.Favorite,
                 title = PrayerKind.JesusPrayer.cardTitle(context, LanguageCatalog.resolve(defaultJesusPrayer?.languageCode).code).primary,
                 interfaceTitle = PrayerKind.JesusPrayer.cardTitle(context, LanguageCatalog.resolve(defaultJesusPrayer?.languageCode).code).interfaceSubtitle,
@@ -261,7 +265,7 @@ fun HomeScreen(
         addAll(defaultCustomDevotions.keys)
         if (defaultJesusPrayer != null) add("jesusPrayer")
     }
-    val pinnedBasicCards = BasicPrayerCatalog.all.filter { it.id in AppSettings.pinnedBasicPrayerIds }.map { prayer ->
+    val pinnedBasicCards = BasicPrayerCatalog.available().filter { it.id in AppSettings.pinnedBasicPrayerIds }.map { prayer ->
         val cardTitle = BasicPrayerCatalog.cardTitle(prayer, AppSettings.basicPrayersLanguageCode, interfaceLanguage)
         DevotionCard(
             id = "basic:${prayer.id}", devotionId = "basic:${prayer.id}",
@@ -269,7 +273,7 @@ fun HomeScreen(
             title = cardTitle.primary, interfaceTitle = cardTitle.interfaceSubtitle,
             accentColor = fallbackAccent, subtitle = stringResource(R.string.basic_prayers_title),
             testTag = "basicPrayerCard:${prayer.id}", onClick = { onOpenBasicPrayer(prayer.id) },
-            basicPrayerId = prayer.id,
+            basicPrayerId = prayer.id, imageKey = prayer.imageKey,
         )
     }
     val pinnedCards = remember(devotionCards, pinnedBasicCards, pinGeneration, impliedPinned) {
@@ -381,6 +385,7 @@ fun HomeScreen(
                         title = card.title,
                         subtitle = card.subtitle,
                         interfaceTitle = card.interfaceTitle,
+                        imageKey = card.imageKey,
                         accentColor = card.accentColor,
                         onClick = card.onClick,
                         onLongClick = { cardMenu = true },

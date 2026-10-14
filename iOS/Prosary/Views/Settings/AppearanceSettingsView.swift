@@ -3,10 +3,21 @@ import SwiftUI
 #if !os(macOS)
 struct AppearanceSettingsView: View {
   @AppStorage(AppColor.defaultsKey) private var storedColor = AppColor.blue.rawValue
+  @AppStorage(CustomAccentColor.defaultsKey) private var customAccent = ""
   @ObservedObject private var iconController = AppIconController.shared
 
   var body: some View {
     Form {
+      Section {
+        ColorPicker(UILanguage.text("settings.customAccentColor", language: UILanguage.current, fallback: "Custom Accent Color"),
+          selection: Binding(get: { CustomAccentColor.normalized(customAccent).map { Color(hex: $0) } ?? AppColor.resolved(storedColor).color },
+            set: { if let hex = CustomAccentColor.hex($0) { customAccent = hex } }), supportsOpacity: false)
+          .accessibilityIdentifier("customAccentColorPicker")
+        if !customAccent.isEmpty {
+          Button(UILanguage.text("settings.resetAccentColor", language: UILanguage.current, fallback: "Use App Color")) { customAccent = "" }
+            .accessibilityIdentifier("customAccentColorReset")
+        }
+      }
       Section {
         ForEach(AppColor.allCases) { color in
           let isSelected = AppColor.resolved(storedColor) == color

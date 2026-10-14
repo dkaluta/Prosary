@@ -60,7 +60,7 @@ enum RepositoryClient {
     }
     let catalog = try JSONDecoder().decode(Catalog.self, from: data)
     guard catalog.prosaryRepository == 1 else { throw RepositoryClientError.unsupportedCatalog }
-    return catalog.bundles
+    return catalog.bundles.filter { !RetiredPrayerBundles.contains($0.id) }
   }
 
   static func fetchCatalog() async throws -> [RepositoryBundle] {
@@ -71,6 +71,7 @@ enum RepositoryClient {
   }
 
   static func downloadBundle(_ bundle: RepositoryBundle) async throws -> Data {
+    guard !RetiredPrayerBundles.contains(bundle.id) else { throw RepositoryClientError.invalidBundle }
     guard let url = URL(string: bundle.file, relativeTo: baseURL) else {
       throw RepositoryClientError.badResponse
     }

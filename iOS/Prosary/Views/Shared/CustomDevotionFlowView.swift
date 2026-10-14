@@ -32,7 +32,10 @@ struct CustomDevotionFlowView: View {
   @State private var languageCode: String?
   @State private var matchingFavoriteId: Prayer.ID? = nil
   @State private var isPinned = false
-  private var displayName: String { PrayerPackStore.info(for: devotionId)?.localizedDisplayName ?? devotionId }
+  private var displayName: String {
+    PrayerPackStore.info(for: devotionId)?.namePresentation(
+      prayerCode: languageCode ?? LanguageCatalog.resolve(initialLanguageCode ?? prayer?.languageCode).code).title ?? devotionId
+  }
   @State private var variantId: String? = nil
   /// The favorite's raw language choice: an explicit code, or the sentinel ("follow the
   /// app-level default setting"). `languageCode` above is always the resolved code.

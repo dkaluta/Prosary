@@ -10,6 +10,7 @@ import com.dkaluta.prosary.typography.HebrewDisplayText
 import com.dkaluta.prosary.content.PrayerKey
 import com.dkaluta.prosary.content.PrayerTranslations
 import com.dkaluta.prosary.content.NiceneCreedText
+import com.dkaluta.prosary.content.CreedPolicy
 import java.io.File
 import java.io.InputStream
 import java.io.OutputStream
@@ -54,6 +55,7 @@ private data class PackContent(
     val transliterations: Map<String, String> = emptyMap(),
     /** Optional provenance of specific Hebrew prayer keys; unmarked Hebrew stays generic. */
     @SerialName("\$prayerTraditionByKey") val prayerTraditionByKey: Map<String, String> = emptyMap(),
+    @SerialName("\$creedPolicy") val creedPolicy: CreedPolicy? = null,
 )
 
 /** A bundle can contribute one sourced field without restating a mystery's other metadata.
@@ -464,6 +466,8 @@ data class CustomDevotionDefinition(
 /** Metadata a generic devotion's Home card / Favorites row / reminders need, sourced from its
  * bundle's `manifest.json` rather than any hardcoded per-kind table. */
 data class CustomDevotionInfo(
+    /** Existing manifest identity, retained to choose the bundle's actual authored rite. */
+    val bundleId: String,
     val displayName: String,
     /** The languages this bundle ships content for (manifest `languages`). */
     val languages: List<String>,
@@ -483,10 +487,24 @@ data class CustomDevotionInfo(
     /** Optional authored Gallery artwork, belonging to this pack. */
     val galleryImageKey: String? = null,
 ) {
-    /** Interface metadata follows the interface language. Prayer-language card names are an
-     * explicit display preference; they must not leak into Settings, reminders, or editors. */
+    /** Interface translation stays primary; Hebrew names follow the actual authored rite. */
     val localizedDisplayName: String
-        get() = displayNameIn(LanguageCatalog.uiLanguageCode())
+        get() = interfaceDisplayName()
+
+    fun interfaceDisplayName(
+        prayerLanguage: String? = null,
+        interfaceLanguage: String = LanguageCatalog.uiLanguageCode(),
+    ): String {
+        val effectiveLanguage = titleLanguage(prayerLanguage)
+        return displayNameIn(LanguageCatalog.interfaceTitleLanguage(interfaceLanguage, effectiveLanguage))
+    }
+
+    private fun titleLanguage(prayerLanguage: String?): String {
+        val requested = LanguageCatalog.resolve(prayerLanguage).code
+        return if (LanguageCatalog.pickerLanguageCode(requested) == "he") {
+            PrayerPackStore.effectiveLanguage(bundleId, requested)
+        } else requested
+    }
 
     fun displayNameIn(languageCode: String): String {
         val code = LanguageCatalog.uiLanguageCode(languageCode)
@@ -500,9 +518,12 @@ data class CustomDevotionInfo(
     fun cardTitle(
         prayerLanguage: String = LanguageCatalog.resolve(null).code,
         interfaceLanguage: String = LanguageCatalog.uiLanguageCode(),
-    ) = com.dkaluta.prosary.models.PrayerCardTitle.resolve(
-        displayNameIn(interfaceLanguage), displayNameIn(prayerLanguage),
-    )
+    ): com.dkaluta.prosary.models.PrayerCardTitle {
+        val effectiveLanguage = titleLanguage(prayerLanguage)
+        return com.dkaluta.prosary.models.PrayerCardTitle.resolve(
+            interfaceDisplayName(effectiveLanguage, interfaceLanguage), displayNameIn(effectiveLanguage),
+        )
+    }
 
     val localizedReminderBody: String?
         get() = reminderBody[LanguageCatalog.uiLanguageCode()] ?: reminderBody["en"]
@@ -620,7 +641,9 @@ object PrayerPackStore {
     )
 
     private val prayerOverrides = mutableMapOf<String, MutableMap<PrayerKey, String>>()
-    private val prayerTransliterations = mutableMapOf<String, MutableMap<PrayerKey, String>>()
+    /** Shared overrides outlive removed bundles for this process. Capture their authored
+     * pair and Creed replacement together so display never rereads an unregistered source. */
+    private val sharedPrayerContent = mutableMapOf<String, MutableMap<PrayerKey, ResolvedPrayerContent>>()
     private val sharedPrayerTitleKeys = setOf(
         "signumCrucisTitle", "symbolumApostolorumTitle", "paterNosterTitle", "aveMariaTitle", "gloriaPatriTitle",
         "mysteryGroupJoyfulTitle", "mysteryGroupSorrowfulTitle", "mysteryGroupGloriousTitle", "mysteryGroupLuminousTitle",
@@ -638,6 +661,7 @@ object PrayerPackStore {
      * "trisagionAcclamation"), which is how a generic devotion's `devotion.json` resolves
      * bundle-local body text. See [resolveBodyText]. */
     private val rawContentByBundle = mutableMapOf<String, MutableMap<String, Map<String, String>>>()
+    private val creedPoliciesByBundle = mutableMapOf<String, MutableMap<String, CreedPolicy>>()
     /** Actual nonempty prayer/mystery buckets, distinct from advertised picker languages. */
     private val contentLanguagesByBundle = mutableMapOf<String, MutableSet<String>>()
 
@@ -760,6 +784,9 @@ object PrayerPackStore {
 
     fun info(bundleId: String): CustomDevotionInfo? = infoByBundle[bundleId]
 
+    fun galleryImageKey(bundleId: String): String? = info(bundleId)?.galleryImageKey
+        ?: "gallery_$bundleId".takeIf(::hasImage)
+
     /** Advertised languages remain eligible; Hebrew's two traditions also require actual
      * content in their specific/generic bucket. An undeclared Greek overlay cannot promote
      * Greek into a whole session, while Mission overlays still serve a declared Hebrew pack. */
@@ -784,11 +811,14 @@ object PrayerPackStore {
         return available.first()
     }
 
-    private data class ResolvedPrayerContent(val text: String, val readingAid: String?)
+    private data class ResolvedPrayerContent(val text: String, val readingAid: String?,
+        val sourceBundle: String? = null, val sourceLanguage: String? = null, val policy: CreedPolicy? = null,
+        val niceneReplacement: ResolvedPrayerContent? = null)
 
     private fun localPrayerContent(bundleId: String, probe: String, key: String): ResolvedPrayerContent? =
         rawContentByBundle[bundleId]?.get(probe)?.get(key)?.let { text ->
-            ResolvedPrayerContent(text, transliterationsByBundle[bundleId]?.get(probe)?.get(key))
+            ResolvedPrayerContent(text, transliterationsByBundle[bundleId]?.get(probe)?.get(key), bundleId, probe,
+                creedPoliciesByBundle[bundleId]?.get(probe))
         }
 
     /** Resolve text and its reading aid together, with the same precedence at every probe:
@@ -796,6 +826,12 @@ object PrayerPackStore {
     private fun resolvePrayerContent(bundleId: String, languageCode: String?, key: String): ResolvedPrayerContent? {
         val prayerKey = if (key == "signumCrucisFormB") PrayerKey.SignumCrucis else keyToPrayerKey(key)
         for (probe in LanguageCatalog.contentFallbackChain(languageCode)) {
+            if (key in setOf("symbolumApostolorum", "symbolumApostolorumTitle") &&
+                creedPoliciesByBundle[bundleId]?.get(probe)?.apostlesCreed == false) {
+                val replacement = if (key.endsWith("Title")) "symbolumNicaenumTitle" else "symbolumNicaenum"
+                return localPrayerContent(bundleId, probe, replacement)
+                    ?: ResolvedPrayerContent("", null, bundleId, probe, creedPoliciesByBundle[bundleId]?.get(probe))
+            }
             // The explicit system-wide Aramaic form changes the formula at the Aramaic
             // probe only; it cannot jump ahead of a higher-priority language.
             val usesFormB = probe == "arc" && prayerKey == PrayerKey.SignumCrucis &&
@@ -813,10 +849,11 @@ object PrayerPackStore {
             }
             if (prayerKey != null) {
                 prayerOverride(probe, prayerKey)?.let { text ->
-                    return ResolvedPrayerContent(text, prayerTransliterations[probe]?.get(prayerKey))
+                    return sharedPrayerContent[probe]?.get(prayerKey)?.copy(text = text)
+                        ?: ResolvedPrayerContent(text, null)
                 }
                 PrayerTranslations.byLanguage[probe]?.get(prayerKey)?.let { text ->
-                    return ResolvedPrayerContent(text, null)
+                    return ResolvedPrayerContent(text, null, "rosary", probe, creedPoliciesByBundle["rosary"]?.get(probe))
                 }
             }
         }
@@ -833,15 +870,31 @@ object PrayerPackStore {
     /** Apply only after fallback has chosen one primary/alternate source pair. A requested
      * Greek language falling back to Latin must use that actual Latin source's default. */
     private fun resolvedDisplayContent(bundleId: String, languageCode: String?, key: String): ResolvedPrayerContent? {
-        val content = resolvePrayerContent(bundleId, languageCode, key) ?: return null
-        val statusQuo = NiceneCreedText.statusQuo(key, content.text) ?: return content
-        AppSettings.initializeFilioqueFromSource(statusQuo)
-        val include = AppSettings.includeFilioqueChoice ?: statusQuo
-        return ResolvedPrayerContent(
-            NiceneCreedText.applying(key, content.text, include),
-            content.readingAid?.let { NiceneCreedText.applying(key, it, include) },
-        )
+        var content = resolvePrayerContent(bundleId, languageCode, key) ?: return null
+        var displayKey = key
+        if (content.policy?.apostlesCreed == false && key in setOf("symbolumApostolorum", "symbolumApostolorumTitle")) {
+            displayKey = if (key.endsWith("Title")) "symbolumNicaenumTitle" else "symbolumNicaenum"
+            val source = content.sourceBundle
+            val probe = content.sourceLanguage
+            // Only the same authored source may replace an unavailable Apostles' Creed.
+            content = content.niceneReplacement
+                ?: if (source != null && probe != null) localPrayerContent(source, probe, displayKey)
+                    ?: return content.copy(text = "", readingAid = null) else return content.copy(text = "", readingAid = null)
+        }
+        return content.copy(text = NiceneCreedText.applyingPolicy(displayKey, content.text, content.policy),
+            readingAid = content.readingAid?.let { NiceneCreedText.applyingPolicy(displayKey, it, content.policy) })
     }
+
+    fun apostlesCreedAvailable(languageCode: String?): Boolean {
+        for (probe in LanguageCatalog.contentFallbackChain(languageCode)) {
+            creedPoliciesByBundle["rosary"]?.get(probe)?.let { return it.apostlesCreed }
+        }
+        return true
+    }
+
+    /** Inclusion controls name the Creed that the session's actual authored source selects. */
+    fun usesNiceneCreed(bundleId: String, languageCode: String?): Boolean =
+        resolvePrayerContent(bundleId, languageCode, "symbolumApostolorum")?.policy?.apostlesCreed == false
 
     /** A tradition choice requires two authored bodies. Language fallback and translated
      * headings alone never create a second Hebrew prayer. */
@@ -952,9 +1005,10 @@ object PrayerPackStore {
         didLoad = false
         installedPacksDirectory = null
         prayerOverrides.clear()
-        prayerTransliterations.clear()
+        sharedPrayerContent.clear()
         mysteryOverrides.clear()
         rawContentByBundle.clear()
+        creedPoliciesByBundle.clear()
         contentLanguagesByBundle.clear()
         transliterationsByBundle.clear()
         definitionByBundle.clear()
@@ -986,11 +1040,29 @@ object PrayerPackStore {
             ?.sortedBy { it.name }.orEmpty()
         for (file in installedFiles) {
             val id = file.nameWithoutExtension
+            // Only inspect direct children; a renamed withdrawn file must be removed by its
+            // manifest identity, without reading a symlink that points outside this directory.
+            val canonicalFile = runCatching { file.canonicalFile }.getOrNull() ?: continue
+            if (canonicalFile.parentFile != installedDir?.canonicalFile) continue
+            if (RetiredPrayerPacks.contains(id)) {
+                file.delete()
+                continue
+            }
+            val source = runCatching { IndexedPackSource(SeekableZipArchive.fromFile(file)) }.getOrNull() ?: continue
+            val manifestId = runCatching {
+                source.openEntry("manifest.json", MAX_CONTROL_ENTRY_BYTES)?.use {
+                    json.decodeFromString<PackManifest>(it.read().toString(Charsets.UTF_8)).id
+                }
+            }.getOrNull()
+            if (RetiredPrayerPacks.contains(manifestId)) {
+                file.delete()
+                continue
+            }
             val expectedFile = installedDir?.let { installedPackTarget(it, id) }
-            if (expectedFile == null || expectedFile != runCatching { file.canonicalFile }.getOrNull()) continue
+            if (expectedFile == null || expectedFile != canonicalFile) continue
             if (infoByBundle.containsKey(id)) continue
             val pack = runCatching {
-                load(IndexedPackSource(SeekableZipArchive.fromFile(file)), expectedId = id)
+                load(source, expectedId = id)
             }.getOrNull()
             if (pack != null) {
                 installedIdsList.add(pack.id)
@@ -1043,6 +1115,9 @@ object PrayerPackStore {
                 parseManifest(entries["manifest.json"]!!, archive.images)
             }.getOrNull()
                 ?: throw InstallException("This file is not a readable .prosaryprayer bundle.", R.string.pack_error_unreadable)
+            if (RetiredPrayerPacks.contains(manifest.id)) {
+                throw InstallException("This bundle has been withdrawn.", R.string.pack_error_not_devotion)
+            }
             val hasDevotion = runCatching {
                 json.decodeFromString<CustomDevotionDefinition>(String(entries["devotion.json"]!!, Charsets.UTF_8))
             }.isSuccess
@@ -1146,9 +1221,9 @@ object PrayerPackStore {
         return output.toByteArray()
     }
 
-    /** Deletes an installed bundle and unregisters its devotion/media sources. Merged prayer
-     * text overrides stay in memory until the next launch; no remaining devotion references
-     * them, while image winners immediately fall back to the prior source. */
+    /** Deletes an installed bundle and unregisters its devotion/media sources. Merged shared
+     * prayer pairs and their source policy stay usable until the next launch, while image
+     * winners immediately fall back to the prior source. */
     fun removeInstalledPack(id: String) {
         if (id !in installedIdsList || isBuiltInBundle(id)) return
         val directory = installedPacksDirectory ?: throw java.io.IOException("Download directory is unavailable")
@@ -1165,6 +1240,7 @@ object PrayerPackStore {
         optionsByBundle.remove(id)
         audioTracksByBundle.remove(id)
         rawContentByBundle.remove(id)
+        creedPoliciesByBundle.remove(id)
         contentLanguagesByBundle.remove(id)
         transliterationsByBundle.remove(id)
         synchronized(imageSourceLock) {
@@ -1207,9 +1283,11 @@ object PrayerPackStore {
         val manifestBytes = entries["manifest.json"] ?: return null
         val manifest = parseManifest(manifestBytes, archive.images)
         if (!validBundleId.matches(manifest.id)) return null
+        if (RetiredPrayerPacks.contains(manifest.id)) return null
         if (expectedId != null && manifest.id != expectedId) return null
 
         infoByBundle[manifest.id] = CustomDevotionInfo(
+            bundleId = manifest.id,
             displayName = manifest.displayName,
             languages = manifest.languages,
             accentColorHex = manifest.accentColorHex,
@@ -1246,16 +1324,23 @@ object PrayerPackStore {
             for ((probe, entriesForProbe) in prayersByProbe) {
                 val localPrayers = entriesForProbe.associate { it.key to it.value }
                 bundleRawContent[probe] = localPrayers
+                val policies = creedPoliciesByBundle.getOrPut(manifest.id) { mutableMapOf() }
+                if (content.creedPolicy != null) policies[probe] = content.creedPolicy else policies.remove(probe)
                 bucketLanguages.add(probe)
                 val localAids = content.transliterations.filterKeys { it in localPrayers }
                 transliterationsByBundle.getOrPut(manifest.id) { mutableMapOf() }[probe] = localAids
                 val prayers = prayerOverrides.getOrPut(probe) { mutableMapOf() }
-                val readingAids = prayerTransliterations.getOrPut(probe) { mutableMapOf() }
+                val sharedContent = sharedPrayerContent.getOrPut(probe) { mutableMapOf() }
                 for ((key, text) in localPrayers) {
                     val prayerKey = keyToPrayerKey(key) ?: continue
                     prayers[prayerKey] = text
-                    val readingAid = localAids[key]
-                    if (readingAid != null) readingAids[prayerKey] = readingAid else readingAids.remove(prayerKey)
+                    val replacement = if (prayerKey == PrayerKey.SymbolumApostolorum && content.creedPolicy?.apostlesCreed == false) {
+                        localPrayers["symbolumNicaenum"]?.let { nicene ->
+                            ResolvedPrayerContent(nicene, localAids["symbolumNicaenum"], manifest.id, probe, content.creedPolicy)
+                        }
+                    } else null
+                    sharedContent[prayerKey] = ResolvedPrayerContent(text, localAids[key], manifest.id, probe,
+                        content.creedPolicy, replacement)
                 }
             }
             if (content.mysteries.isNotEmpty()) bucketLanguages.add(language)

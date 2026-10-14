@@ -23,6 +23,14 @@ public partial class HomeWidgetCard : ObservableObject
     public bool IsPopeIntention => Id == "popeIntention";
     public bool IsFeast => Id == "feast";
     public bool IsReflection => Id == "reflection";
+    public bool IsScripture => Id == "scripture";
+    public string AddGraphicLabel => HasGraphicChoice ? Loc.Tr("home_widgets_change_graphic", "Change Image") : Loc.Tr("home_widgets_add_graphic", "Add Image");
+    public string RemoveGraphicLabel => Loc.Tr("home_widgets_remove_graphic", "Remove Image");
+    public string GraphicDescription => Loc.Tr("home_widgets_graphic_description", "Your selected image");
+    public string SizeActionLabel => IsExpanded ? Loc.Tr("home_widgets_collapse", "Collapse") : Loc.Tr("home_widgets_expand", "Expand");
+    public string SizeGlyph => IsExpanded ? "\uE70E" : "\uE70D";
+    [ObservableProperty, NotifyPropertyChangedFor(nameof(SizeActionLabel)), NotifyPropertyChangedFor(nameof(SizeGlyph))]
+    private bool _isExpanded = true;
     public string ChoosePhotoLabel => Loc.Tr("home_widgets_choose_photo", "Choose Photo");
     public string RemovePhotoLabel => Loc.Tr("home_widgets_remove_photo", "Remove Photo");
     public string PhotoDescription => Loc.Tr("home_widgets_photo_description", "Your selected photo");
@@ -31,15 +39,22 @@ public partial class HomeWidgetCard : ObservableObject
     public string MoveUpLabel => Loc.Tr("home_widgets_move_up", "Move Up");
     public string MoveDownLabel => Loc.Tr("home_widgets_move_down", "Move Down");
     public string RemoveLabel => Loc.Tr("home_widgets_remove", "Remove Widget");
-    [ObservableProperty, NotifyPropertyChangedFor(nameof(HasBody))] private string _body = "";
+    [ObservableProperty, NotifyPropertyChangedFor(nameof(HasBody)), NotifyPropertyChangedFor(nameof(Summary))] private string _body = "";
     public bool HasBody => Body.Length > 0;
-    [ObservableProperty, NotifyPropertyChangedFor(nameof(HasPhoto))] private BitmapImage? _photoSource;
+    public string Summary => EventSummary.FirstParagraph(IsReflection && Descriptions.Count > 0 ? Descriptions[0].Text
+        : Id == "reminders" && Reminders.Count > 0 ? Reminders[0].Title + " · " + Reminders[0].Time
+        : IsPhoto && !HasBody ? (HasPhoto ? PhotoDescription : ChoosePhotoLabel) : Body, 150);
+    [ObservableProperty, NotifyPropertyChangedFor(nameof(HasPhoto)), NotifyPropertyChangedFor(nameof(AddGraphicLabel)), NotifyPropertyChangedFor(nameof(Summary))] private BitmapImage? _photoSource;
     public bool HasPhoto => PhotoSource is not null;
-    [ObservableProperty, NotifyPropertyChangedFor(nameof(HasDescriptions)), NotifyPropertyChangedFor(nameof(HasNoDescriptions))]
+    [ObservableProperty, NotifyPropertyChangedFor(nameof(AddGraphicLabel))] private bool _hasGraphicChoice;
+    [ObservableProperty, NotifyPropertyChangedFor(nameof(HasGraphicError))] private string _graphicError = "";
+    public bool HasGraphicError => GraphicError.Length > 0;
+    [ObservableProperty, NotifyPropertyChangedFor(nameof(HasDescriptions)), NotifyPropertyChangedFor(nameof(HasNoDescriptions)), NotifyPropertyChangedFor(nameof(Summary))]
     private IReadOnlyList<SaintDescription> _descriptions = [];
     public bool HasDescriptions => Descriptions.Count > 0;
     public bool HasNoDescriptions => IsFeast && Descriptions.Count == 0;
-    [ObservableProperty] private IReadOnlyList<HomeReminderRow> _reminders = [];
+    [ObservableProperty, NotifyPropertyChangedFor(nameof(Summary))] private IReadOnlyList<HomeReminderRow> _reminders = [];
+    [ObservableProperty] private IReadOnlyList<ReadingPassageViewModel> _scripturePassages = [];
 }
 
 public sealed record HomeReminderRow(Guid? PrayerId, string Title, string Time);
@@ -50,6 +65,7 @@ public partial class DashboardViewModel(IPresetStore presets) : ObservableObject
 {
     public WindowNavigation Navigation { get; set; } = WindowNavigation.Detached;
     public HomeViewModel? Today { get; set; }
+    public DesktopReadingsViewModel Scripture { get; } = new();
     public ObservableCollection<HomeWidgetCard> Cards { get; } = [];
     public ObservableCollection<HomeWidgetCard> AvailableCards { get; } = [];
     public bool IsEmpty => Cards.Count == 0;
@@ -91,7 +107,7 @@ public partial class DashboardViewModel(IPresetStore presets) : ObservableObject
         ActionTitle = id switch
         {
             "readings" => Loc.Tr("bible_daily_readings", "Daily Readings"),
-            "calendar" => Loc.Tr("calendar_feasts_solemnities", "Feasts and Solemnities"),
+            "calendar" => Loc.Tr("calendar_events_title", "Event Calendar"),
             "scripture" => Loc.Tr("bible_title", "Bible"),
             "reminders" => Label("manage_reminders", "Manage Reminders"),
             _ => "",
@@ -107,6 +123,7 @@ public partial class DashboardViewModel(IPresetStore presets) : ObservableObject
         AvailableCards.Clear();
         foreach (var id in HomeWidgets.All.Where(id => !AppSettings.HomeWidgetOrder.Contains(id)))
             AvailableCards.Add(existing.GetValueOrDefault(id) ?? Create(id));
+        foreach (var card in Cards.Concat(AvailableCards)) card.IsExpanded = !AppSettings.HomeWidgetCollapsedIds.Contains(card.Id);
         OnPropertyChanged(nameof(IsEmpty));
         OnPropertyChanged(nameof(HasAvailableCards));
         RefreshToday();
@@ -120,6 +137,13 @@ public partial class DashboardViewModel(IPresetStore presets) : ObservableObject
         AppSettings.SetHomeWidgetOrder(AppSettings.HomeWidgetOrder.Where(id => id != card.Id));
     [RelayCommand] private void MoveUp(HomeWidgetCard card) => Move(card, -1);
     [RelayCommand] private void MoveDown(HomeWidgetCard card) => Move(card, 1);
+    [RelayCommand] private void ToggleSize(HomeWidgetCard card)
+    {
+        var collapsed = AppSettings.HomeWidgetCollapsedIds.ToList();
+        if (!collapsed.Remove(card.Id)) collapsed.Add(card.Id);
+        AppSettings.SetHomeWidgetCollapsedIds(collapsed);
+        card.IsExpanded = !collapsed.Contains(card.Id);
+    }
     private void Move(HomeWidgetCard card, int offset)
     {
         var current = Cards.IndexOf(card);
@@ -137,8 +161,15 @@ public partial class DashboardViewModel(IPresetStore presets) : ObservableObject
         var feast = TodayInfoStore.Feast(date);
         var culture = (CultureInfo)CultureInfo.GetCultureInfo(UiLanguageCatalog.ResourceTag(language)).Clone();
         culture.DateTimeFormat.Calendar = new GregorianCalendar();
+        if (Today is not null) Scripture.Refresh(Today, showsAllDailyReadings: true);
         foreach (var card in Cards.Concat(AvailableCards))
         {
+            var graphicPath = card.IsPhoto ? AppSettings.HomePhotoPath : AppSettings.HomeWidgetGraphicPaths.GetValueOrDefault(card.Id);
+            card.HasGraphicChoice = !string.IsNullOrWhiteSpace(graphicPath);
+            card.PhotoSource = !string.IsNullOrWhiteSpace(graphicPath) && File.Exists(graphicPath)
+                ? new BitmapImage(new Uri("ms-appdata:///local/HomePhotos/" + Uri.EscapeDataString(Path.GetFileName(graphicPath)))) : null;
+            card.GraphicError = !card.IsPhoto && card.HasGraphicChoice && card.PhotoSource is null
+                ? Label("photo_error", "Could Not Load Photo") : "";
             switch (card.Id)
             {
                 case "readings":
@@ -152,7 +183,7 @@ public partial class DashboardViewModel(IPresetStore presets) : ObservableObject
                         : intention.LocalizedTitle(language) + Environment.NewLine + intention.LocalizedText(language);
                     break;
                 case "calendar":
-                    var upcoming = TodayInfoStore.FeastsAndSolemnities()
+                    var upcoming = TodayInfoStore.PublishedEvents()
                         .Where(entry => entry.Date.Year == date.Year && entry.Date.Month == date.Month && entry.Date >= date)
                         .Take(4).Select(entry => entry.Date.ToString("d MMM", culture) + ": " + entry.Feast.LocalizedTitle(language));
                     card.Body = string.Join(Environment.NewLine,
@@ -163,6 +194,11 @@ public partial class DashboardViewModel(IPresetStore presets) : ObservableObject
                     var path = AppSettings.HomePhotoPath;
                     card.PhotoSource = File.Exists(path) ? new BitmapImage(new Uri("ms-appdata:///local/HomePhotos/" + Uri.EscapeDataString(Path.GetFileName(path)))) : null;
                     card.Body = card.PhotoSource is null && path.Length > 0 ? Label("photo_error", "Could Not Load Photo") : "";
+                    break;
+                case "scripture":
+                    var citation = ReadingCitation.ScriptureOfDay(TodayInfoStore.Readings(date));
+                    card.Body = citation?.LocalizedFull(language) ?? Label("no_readings", "No readings are available for this date.");
+                    card.ScripturePassages = Scripture.ScriptureOfDay;
                     break;
                 case "feast":
                     card.Body = feast is null ? Label("no_feast", "No feast information is available for this date.")

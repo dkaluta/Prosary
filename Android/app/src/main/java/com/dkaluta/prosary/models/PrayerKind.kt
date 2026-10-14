@@ -44,14 +44,22 @@ enum class PrayerKind {
     fun displayName(context: android.content.Context): String = context.getString(displayNameRes)
 
     fun cardTitle(context: android.content.Context, prayerLanguage: String = LanguageCatalog.resolve(null).code): PrayerCardTitle {
-        val prayerCode = LanguageCatalog.uiLanguageCode(prayerLanguage)
+        val requestedCode = LanguageCatalog.resolve(prayerLanguage).code
+        val prayerCode = if (this == Rosary && LanguageCatalog.pickerLanguageCode(requestedCode) == "he") {
+            com.dkaluta.prosary.content.prayerpack.PrayerPackStore.effectiveLanguage("rosary", requestedCode)
+        } else requestedCode
         val base = LanguageCatalog.baseLanguage(prayerCode) ?: prayerCode
-        val prayerName = if (this == Rosary) {
-            com.dkaluta.prosary.content.prayerpack.PrayerPackStore.info("rosary")?.displayNameIn(prayerCode)
-        } else null
+        val info = if (this == Rosary) com.dkaluta.prosary.content.prayerpack.PrayerPackStore.info("rosary") else null
+        val prayerName = info?.displayNameIn(prayerCode)
+        val interfaceCode = LanguageCatalog.uiLanguageCode(context.resources.configuration.locales[0].toLanguageTag())
+        val interfaceTitleCode = LanguageCatalog.interfaceTitleLanguage(interfaceCode, prayerCode)
+        val interfaceName = if (interfaceCode.substringBefore('-') == "he" && base == "he") {
+            info?.displayNameIn(interfaceTitleCode)
+                ?: namesByPrayerLanguage[interfaceTitleCode] ?: namesByPrayerLanguage["he"] ?: displayName(context)
+        } else displayName(context)
         val translatedContext = com.dkaluta.prosary.content.today.TodayTranslationLanguage.localizedContext(context, base)
         return PrayerCardTitle.resolve(
-            displayName(context),
+            interfaceName,
             prayerName ?: namesByPrayerLanguage[prayerCode] ?: namesByPrayerLanguage[base]
                 ?: translatedContext.getString(displayNameRes),
         )

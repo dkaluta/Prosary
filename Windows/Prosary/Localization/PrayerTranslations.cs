@@ -122,14 +122,14 @@ public static partial class PrayerTranslations
     {
         foreach (var code in Prosary.Models.LanguageCatalog.ContentFallbackChain(languageCode))
         {
-            var packOverride = PrayerPackStore.PrayerOverride(code, key);
+            var packOverride = PrayerPackStore.SharedPrayerAtProbe(code, key);
             if (packOverride is not null) return FilioquePrayerWording.Apply(key, VicariatePrayerWording.Apply(packOverride, code), null).Text;
             if (NativeTextAtProbe(code, key) is { } text) return FilioquePrayerWording.Apply(key, VicariatePrayerWording.Apply(text, code), null).Text;
         }
 
         // Pack-provided Latin before the hardcoded Latin table — some texts (the converted
         // devotions' bundle-local keys) live only in their bundles.
-        return FilioquePrayerWording.Apply(key, PrayerPackStore.PrayerOverride("la", key)
+        return FilioquePrayerWording.Apply(key, PrayerPackStore.SharedPrayerAtProbe("la", key)
             ?? (Latin.TryGetValue(key, out var latinText) ? latinText : key), null).Text;
     }
 

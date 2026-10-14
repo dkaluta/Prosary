@@ -83,6 +83,7 @@
                                                   Subtitle="{x:Bind DisplaySubtitle, Mode=OneWay}"
                                                   AccentColor="{x:Bind AccentColor, Mode=OneWay}"
                                                   IconGlyph="{x:Bind IconGlyph}"
+                                                  ImageSource="{x:Bind ImageSource}"
                                                   Command="{x:Bind Command}">
                                 <controls:PrayerCard.ContextFlyout>
                                     <MenuFlyout>

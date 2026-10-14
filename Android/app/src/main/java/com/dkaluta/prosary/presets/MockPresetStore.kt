@@ -1,5 +1,6 @@
 package com.dkaluta.prosary.presets
 
+import com.dkaluta.prosary.content.prayerpack.RetiredPrayerPacks
 import com.dkaluta.prosary.models.EternalRestPlacement
 import com.dkaluta.prosary.models.JesusPrayerOptions
 import com.dkaluta.prosary.models.JesusPrayerTarget
@@ -25,6 +26,7 @@ class MockPresetStore(initialFavorites: List<Prayer>? = null) : PresetStore {
     override suspend fun get(id: String): Prayer? = favorites.firstOrNull { it.id == id }
 
     override suspend fun save(prayer: Prayer) {
+        require(!RetiredPrayerPacks.contains(prayer)) { "This devotion has been withdrawn" }
         if (prayer.isDefault) {
             for (i in favorites.indices) {
                 if (favorites[i].kind == prayer.kind && favorites[i].customDevotionId == prayer.customDevotionId) {
@@ -54,6 +56,7 @@ class MockPresetStore(initialFavorites: List<Prayer>? = null) : PresetStore {
     }
 
     override suspend fun updateIfPresent(prayer: Prayer): Boolean {
+        if (RetiredPrayerPacks.contains(prayer)) return false
         val index = favorites.indexOfFirst { it.id == prayer.id }
         if (index < 0) return false
         favorites[index] = prayer

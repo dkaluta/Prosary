@@ -396,6 +396,25 @@ enum TodayInfoStore {
     }
   }
 
+  static func scriptureOfTheDay(on date: Date = Date()) -> ReadingCitation? {
+    scriptureOfTheDay(in: readings(on: date))
+  }
+
+  static func scriptureOfTheDay(in readings: [ReadingCitation]) -> ReadingCitation? {
+    readings.first { $0.type.lowercased() == "gospel" } ?? readings.first
+  }
+
+  static func publishedCalendarDays() -> [(date: Date, feast: FeastDay)] {
+    ensureFeastsLoaded()
+    let calendar = Calendar(identifier: .gregorian)
+    return feastsByDay.sorted { $0.key < $1.key }.compactMap { key, feast in
+      let fields = key.split(separator: "-").compactMap { Int($0) }
+      guard fields.count == 3,
+            let date = calendar.date(from: DateComponents(year: fields[0], month: fields[1], day: fields[2], hour: 12)) else { return nil }
+      return (date, feast)
+    }
+  }
+
   static func torahPortion(on date: Date = Date()) -> TorahPortion? {
     if torahPortionsByDay == nil {
       torahPortionsByDay = decode(TorahPortionsFile.self, resource: "torah-portions")?.days ?? [:]

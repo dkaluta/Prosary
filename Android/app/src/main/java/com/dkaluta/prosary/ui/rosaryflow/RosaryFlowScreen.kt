@@ -202,14 +202,6 @@ fun RosaryFlowScreen(prayer: Prayer, onBack: () -> Unit) {
         }
     }
 
-    LaunchedEffect(AppSettings.includeFilioqueChoice) {
-        if (steps.isNotEmpty()) {
-            val position = currentIndex
-            steps = services.engine.buildSteps(prayer.copy(languageCode = languageCode, rosary = sessionOptions))
-            currentIndex = position.coerceIn(0, (steps.size - 1).coerceAtLeast(0))
-        }
-    }
-
     // Step zero has nothing useful to resume; every later page is written immediately so the
     // Android process can be killed after Navigate Up without losing the user's place.
     LaunchedEffect(runReady, currentIndex, chosenLanguage, steps.size, runKey, configurationSignature) {

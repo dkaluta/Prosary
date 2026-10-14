@@ -19,7 +19,7 @@ internal object CatalogWidgetPrayers {
         val basicLanguage = LanguageCatalog.resolve(AppSettings.basicPrayersLanguageCode).code
         return DevotionDirectory.all(context).map {
             WidgetPrayerChoice("devotion:${it.id}", it.title, it.interfaceTitle)
-        } + BasicPrayerCatalog.all.map {
+        } + BasicPrayerCatalog.available(basicLanguage).map {
             val title = BasicPrayerCatalog.cardTitle(it, basicLanguage, interfaceLanguage)
             WidgetPrayerChoice("basic:${it.id}", title.primary, title.interfaceSubtitle)
         }

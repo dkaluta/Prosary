@@ -155,7 +155,7 @@
                                         <ColumnDefinition Width="*" />
                                         <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>
-                                    <TextBlock x:Uid="PickerApostlesCreed" Grid.Column="0" Text="Apostles' Creed" VerticalAlignment="Center" TextWrapping="Wrap" />
+                                    <TextBlock Grid.Column="0" Text="{x:Bind ViewModel.CreedLabel, Mode=OneWay}" VerticalAlignment="Center" TextWrapping="Wrap" />
                                     <ToggleSwitch Grid.Column="1" OnContent="" OffContent="" IsOn="{x:Bind ViewModel.IncludeApostlesCreed, Mode=TwoWay}" />
                                 </Grid>
                                 <Grid>

@@ -107,7 +107,9 @@ export const checkNativeContent: Check = object({
     title: string, fruit: string, description: string, transliteratedDescription: string,
     transliteratedTitle: string, transliteratedFruit: string,
   })),
-}, {}, { transliterations: strings, $prayerTraditionByKey: strings });
+}, {
+  $creedPolicy: object({ apostlesCreed: boolean, filioque: choice("absent", "bracketed", "unbracketed") }, { rite: string }),
+}, { transliterations: strings, $prayerTraditionByKey: strings });
 
 const optionDefault: Check = (value, path) => {
   if (typeof value !== "string" && typeof value !== "boolean") invalid(path, "a boolean or string");

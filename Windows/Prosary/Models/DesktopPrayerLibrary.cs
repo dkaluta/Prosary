@@ -22,7 +22,7 @@ public static class DesktopPrayerLibrary
         _ => prayer.CustomDevotionId ?? ""
     };
 
-    public static string ImageUri(string id) => PrayerPackStore.ImageFileUriOrPlaceholder("gallery_" + id);
+    public static string ImageUri(string id) => PrayerPackStore.GalleryImageFileUriOrPlaceholder(id);
 
     public static IReadOnlyList<DesktopGalleryItem> Gallery()
     {
@@ -32,7 +32,7 @@ public static class DesktopPrayerLibrary
         return ids.Select(id =>
         {
             var info = PrayerPackStore.Info(id);
-            var title = info?.LocalizedDisplayName ?? (id == "jesusPrayer"
+            var title = info is not null ? PrayerPackStore.InterfaceDisplayName(id) : (id == "jesusPrayer"
                 ? Loc.Tr("kind_jesus_prayer", "Jesus Prayer")
                 : Loc.Tr("kind_rosary", "Rosary"));
             var subtitle = info is null ? "" : string.Join(" · ", info.Tags.Select(tag =>

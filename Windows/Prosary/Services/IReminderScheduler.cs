@@ -18,6 +18,12 @@ public interface IReminderScheduler
     /// <summary>Removes all pending reminders for <paramref name="prayer"/>.</summary>
     void RemoveAll(Prayer prayer);
 
+    /// <summary>Retirement also removes already delivered reminders from notification history.
+    /// Ordinary scheduling leaves previously delivered notifications alone.</summary>
+    void RemoveRetiredHistory(Prayer prayer) { }
+
+    void RemoveRetiredSeriesHistory(string runId) { }
+
     /// <summary>Re-schedules every enabled reminder across every favorite — called at app launch
     /// to top up the rolling notification window (see <c>WindowsReminderScheduler</c>), since
     /// scheduled toasts are pre-materialized a fixed number of days ahead rather than being a

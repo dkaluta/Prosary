@@ -84,6 +84,9 @@ object PrayerTranslations {
     }
 
     fun get(languageCode: String?, key: PrayerKey): String {
+        if (key == PrayerKey.SymbolumApostolorum) {
+            return PrayerPackStore.resolveBodyText("rosary", languageCode, key.name.replaceFirstChar { it.lowercaseChar() })
+        }
         for (code in LanguageCatalog.contentFallbackChain(languageCode)) {
             PrayerPackStore.prayerOverride(code, key)?.let { return it }
             byLanguage[code]?.get(key)?.let { return it }

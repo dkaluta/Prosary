@@ -1,5 +1,6 @@
 package com.dkaluta.prosary.persistence
 
+import com.dkaluta.prosary.content.prayerpack.RetiredPrayerPacks
 import com.dkaluta.prosary.models.LanguageCatalog
 import com.dkaluta.prosary.models.MysterySelectionMode
 import com.dkaluta.prosary.models.Prayer
@@ -31,6 +32,7 @@ class RoomPresetStore(private val dao: PresetDao, private val onChanged: () -> U
     override suspend fun get(id: String): Prayer? = dao.getById(id)?.toPrayer()
 
     override suspend fun save(prayer: Prayer) {
+        require(!RetiredPrayerPacks.contains(prayer)) { "This devotion has been withdrawn" }
         if (prayer.isDefault) {
             // "One default per kind" is scoped per devotion: (kind, customDevotionId), compared
             // via the resolved identity so legacy-kind rows ("Angelus") and their migrated
@@ -50,8 +52,11 @@ class RoomPresetStore(private val dao: PresetDao, private val onChanged: () -> U
         onChanged()
     }
 
-    override suspend fun updateIfPresent(prayer: Prayer): Boolean = (dao.update(PresetEntity.from(prayer)) > 0).also {
-        if (it) onChanged()
+    override suspend fun updateIfPresent(prayer: Prayer): Boolean {
+        if (RetiredPrayerPacks.contains(prayer)) return false
+        return (dao.update(PresetEntity.from(prayer)) > 0).also {
+            if (it) onChanged()
+        }
     }
 
     companion object {

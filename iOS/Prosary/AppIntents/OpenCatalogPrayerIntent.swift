@@ -15,7 +15,7 @@ struct CatalogPrayerEntity: AppEntity {
   @MainActor
   static func available() -> [Self] {
     let devotions = DevotionDirectory.all().map { Self(id: "devotion:\($0.id)", name: $0.title) }
-    let basics = BasicPrayerCatalog.all.map { prayer in
+    let basics = BasicPrayerCatalog.available().map { prayer in
       Self(id: "basic:\(prayer.id)", name: BasicPrayerCatalog.title(for: prayer))
     }
     return (devotions + basics).sorted { $0.name.localizedStandardCompare($1.name) == .orderedAscending }
@@ -24,6 +24,7 @@ struct CatalogPrayerEntity: AppEntity {
   @MainActor
   static func route(for id: String) -> AppRoute? {
     if id.hasPrefix("basic:"), let basic = BasicPrayerCatalog.prayer(id: String(id.dropFirst(6))) {
+      guard BasicPrayerCatalog.isAvailable(basic) else { return nil }
       return .basicPrayer(id: basic.id)
     }
     if id.hasPrefix("devotion:") {

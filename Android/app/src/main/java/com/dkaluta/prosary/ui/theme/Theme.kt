@@ -16,6 +16,7 @@ import androidx.compose.ui.graphics.lerp
 import androidx.compose.ui.platform.LocalContext
 import com.dkaluta.prosary.models.AppColor
 import com.dkaluta.prosary.models.AppSettings
+import com.dkaluta.prosary.models.CustomAccentColor
 
 /** Brand colors with no Material3 color-role equivalent, mirroring the iOS asset catalog's
  * BrandHeadline and BeadCurrent named colors. */
@@ -33,7 +34,11 @@ val MaterialTheme.extraColors: ProsaryExtraColors
 
 internal fun appColorScheme(color: AppColor, isDark: Boolean): ColorScheme {
     val primary = Color(if (isDark) color.dark else color.light)
-    val onPrimary = if (isDark) Color.Black else Color.White
+    return accentColorScheme(primary, isDark, Color(if (isDark) color.light else color.dark))
+}
+
+internal fun accentColorScheme(primary: Color, isDark: Boolean, inverse: Color = primary): ColorScheme {
+    val onPrimary = CustomAccentColor.foreground(primary)
     val container = lerp(primary, if (isDark) Color.Black else Color.White, if (isDark) 0.75f else 0.88f)
     val onContainer = if (isDark) Color.White else lerp(primary, Color.Black, 0.25f)
     val base = if (isDark) darkColorScheme() else lightColorScheme()
@@ -44,7 +49,7 @@ internal fun appColorScheme(color: AppColor, isDark: Boolean): ColorScheme {
         secondaryContainer = container, onSecondaryContainer = onContainer,
         tertiary = primary, onTertiary = onPrimary,
         tertiaryContainer = container, onTertiaryContainer = onContainer,
-        inversePrimary = Color(if (isDark) color.light else color.dark),
+        inversePrimary = inverse,
         surfaceTint = primary,
     )
 }
@@ -52,10 +57,13 @@ internal fun appColorScheme(color: AppColor, isDark: Boolean): ColorScheme {
 @Composable
 fun ProsaryTheme(content: @Composable () -> Unit) {
     val isDark = isSystemInDarkTheme()
+    val custom = CustomAccentColor.color(AppSettings.customAccentColorHex)
     val colorScheme = if (Build.VERSION.SDK_INT >= 31 && AppSettings.useSystemColors) {
         val context = LocalContext.current
         if (isDark) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
-    } else appColorScheme(AppColor.resolve(AppSettings.appColor), isDark)
+    } else if (custom != null) accentColorScheme(CustomAccentColor.readableAccent(custom, isDark), isDark,
+        CustomAccentColor.readableAccent(custom, !isDark))
+    else appColorScheme(AppColor.resolve(AppSettings.appColor), isDark)
     val extraColors = ProsaryExtraColors(
         headline = colorScheme.primary,
         beadCurrent = colorScheme.primary,

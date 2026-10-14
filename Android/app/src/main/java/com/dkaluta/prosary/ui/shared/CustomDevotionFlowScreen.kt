@@ -185,7 +185,6 @@ fun CustomDevotionFlowScreen(
 
     LaunchedEffect(prayer, devotionId, variantId, dayIndex) {
         if (session.loadedSelection == (variantId to dayIndex)) return@LaunchedEffect
-        displayName = PrayerPackStore.info(devotionId)?.localizedDisplayName ?: devotionId
         val definition = PrayerPackStore.definition(devotionId)
 
         if (!session.entryLoaded) {
@@ -322,17 +321,6 @@ fun CustomDevotionFlowScreen(
     }
 
     val continuationLanguage = frozenLanguageCode ?: chosenLanguage
-    LaunchedEffect(AppSettings.includeFilioqueChoice) {
-        if (steps.isNotEmpty()) {
-            val position = currentIndex
-            steps = services.engine.buildSteps(Prayer(
-                kind = PrayerKind.Custom, languageCode = languageCode ?: continuationLanguage,
-                customDevotionId = devotionId, variantId = variantId,
-                dayIndex = dayIndex, customOptions = customOptions,
-            ))
-            currentIndex = position.coerceIn(0, (steps.size - 1).coerceAtLeast(0))
-        }
-    }
     val currentRunKey = PrayerRunKeys.custom(devotionId, variantId, dayIndex)
     val currentEffectiveVariantId = PrayerPackStore.definition(devotionId)
         ?.effectiveVariantId(variantId, languageCode)

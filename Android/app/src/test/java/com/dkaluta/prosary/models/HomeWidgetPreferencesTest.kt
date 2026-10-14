@@ -45,6 +45,34 @@ class HomeWidgetPreferencesTest {
         assertEquals("arc", storage.values["defaultLanguageCode"])
     }
 
+    @Test fun sizeChoicesAndIndependentImagesSurviveRestartWithoutRemovingWidgetContent() {
+        val storage = Preferences()
+        val settings = HomeWidgetPreferences().apply { initialize(storage.instance) }
+        assertTrue(settings.collapsed.isEmpty())
+        settings.setCollapsed(HomeWidget.Readings, true)
+        settings.setGraphicPath(HomeWidget.Readings, "/app/files/homePhotos/home-photo-readings.jpg")
+        settings.setGraphicPath(HomeWidget.Calendar, "/app/files/homePhotos/home-photo-calendar.jpg")
+        val reopened = HomeWidgetPreferences().apply { initialize(storage.instance) }
+        assertEquals(setOf(HomeWidget.Readings), reopened.collapsed)
+        assertEquals(settings.widgets, reopened.widgets)
+        assertEquals(settings.graphicPaths, reopened.graphicPaths)
+        reopened.setCollapsed(HomeWidget.Readings, false)
+        reopened.setGraphicPath(HomeWidget.Readings, "")
+        val again = HomeWidgetPreferences().apply { initialize(storage.instance) }
+        assertTrue(again.collapsed.isEmpty())
+        assertEquals(mapOf("calendar" to "/app/files/homePhotos/home-photo-calendar.jpg"), again.graphicPaths)
+    }
+
+    @Test fun corruptOrUnknownGraphicAndSizePreferencesCannotAddUnrecognizedCards() {
+        val storage = Preferences(mutableMapOf("homeWidgetCollapsedIds" to "unknown\nreadings\nreadings",
+            "homeWidgetGraphicPaths" to "{\"unknown\":\"x\",\"readings\":\"\",\"calendar\":\"local\"}"))
+        val settings = HomeWidgetPreferences().apply { initialize(storage.instance) }
+        assertEquals(setOf(HomeWidget.Readings), settings.collapsed)
+        assertEquals(mapOf("calendar" to "local"), settings.graphicPaths)
+        storage.values["homeWidgetGraphicPaths"] = "corrupted JSON"
+        assertTrue(HomeWidgetPreferences().apply { initialize(storage.instance) }.graphicPaths.isEmpty())
+    }
+
     private class Preferences(val values: MutableMap<String, String> = mutableMapOf()) {
         private val editor = Proxy.newProxyInstance(SharedPreferences.Editor::class.java.classLoader,
             arrayOf(SharedPreferences.Editor::class.java)) { proxy, method, args ->

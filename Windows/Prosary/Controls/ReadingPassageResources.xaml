@@ -1,0 +1,44 @@
+<ResourceDictionary x:Class="Prosary.Controls.ReadingPassageResources" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+ xmlns:vm="using:Prosary.ViewModels" xmlns:controls="using:Prosary.Controls">
+        <DataTemplate x:Key="ReadingPassageTemplate" x:DataType="vm:ReadingPassageViewModel">
+            <StackPanel Spacing="8">
+                <TextBlock Text="{x:Bind SourceGroup, Mode=OneWay}" TextWrapping="Wrap" FontWeight="SemiBold"
+                           AutomationProperties.HeadingLevel="Level3"
+                           Visibility="{x:Bind HasSourceGroup, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
+                <Expander IsExpanded="{x:Bind IsExpanded, Mode=TwoWay}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch">
+                    <Expander.Header>
+                        <TextBlock Text="{x:Bind Citation}" IsTextSelectionEnabled="True" TextWrapping="Wrap" />
+                    </Expander.Header>
+                    <StackPanel Spacing="12">
+                        <TextBlock Text="{x:Bind PassageLabel}" FontWeight="SemiBold" />
+                        <TextBlock Text="{x:Bind EditionName}" TextWrapping="Wrap" Style="{StaticResource MutedCaptionTextStyle}" />
+                        <TextBlock Text="{x:Bind SourceName, Mode=OneWay}" TextWrapping="Wrap" IsTextSelectionEnabled="True" FontWeight="SemiBold"
+                                   Visibility="{x:Bind HasSourceName, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
+                        <TextBlock Text="{x:Bind PartialNotice}" TextWrapping="Wrap" Style="{StaticResource MutedCaptionTextStyle}"
+                                   Visibility="{x:Bind IsPartial, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
+                        <controls:AramaicScriptSelector Script="{x:Bind EffectiveScript, Mode=OneWay}" SelectScriptCommand="{x:Bind SelectScriptCommand}"
+                                AutomationProperties.AutomationId="readingScript"
+                                Visibility="{x:Bind HasScriptToggle, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
+                        <TextBlock Text="{x:Bind WholeVersesNotice}" TextWrapping="Wrap" Style="{StaticResource MutedCaptionTextStyle}"
+                                   Visibility="{x:Bind IncludesWholeVerses, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
+                        <controls:ScripturePassageBody Chapters="{x:Bind Chapters, Mode=OneWay}"
+                                   FontFamily="{x:Bind BodyFontFamily, Mode=OneWay}" FontSize="{x:Bind BodyFontSize, Mode=OneWay}"
+                                   FlowDirection="{x:Bind IsRightToLeft, Mode=OneWay, Converter={StaticResource BoolToFlowDirection}}"
+                                   Visibility="{x:Bind HasPassage, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
+                        <TextBlock Text="{x:Bind UnavailableText}" TextWrapping="Wrap"
+                                   Visibility="{x:Bind IsUnavailable, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
+                        <ComboBox Header="{x:Bind EditionLabel}" HorizontalAlignment="Stretch"
+                                  ItemsSource="{x:Bind AvailableEditions, Mode=OneWay}" DisplayMemberPath="Label"
+                                  SelectedItem="{x:Bind SelectedAvailableEdition, Mode=TwoWay}"
+                                  AutomationProperties.AutomationId="readingAvailableEditions"
+                                  Visibility="{x:Bind HasAvailableEditions, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
+                        <TextBlock Text="{x:Bind TextNotice}" TextWrapping="Wrap" Style="{StaticResource MutedCaptionTextStyle}" />
+                        <TextBlock Text="{x:Bind Attribution, Mode=OneWay}" IsTextSelectionEnabled="True" TextWrapping="Wrap" Style="{StaticResource MutedCaptionTextStyle}" />
+                        <HyperlinkButton Content="{x:Bind SourceLabel}" NavigateUri="{x:Bind SourceUri, Mode=OneWay}" Padding="0"
+                                         Visibility="{x:Bind HasSource, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
+                    </StackPanel>
+                </Expander>
+            </StackPanel>
+        </DataTemplate>
+</ResourceDictionary>

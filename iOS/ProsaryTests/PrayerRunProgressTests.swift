@@ -47,6 +47,26 @@ final class PrayerRunProgressTests: XCTestCase {
     XCTAssertNil(store.progress(for: "rosary:two"))
   }
 
+  func testRetirementPurgesOldMobileAndMacBookmarksAndPreventsNewOnes() throws {
+    let id = RetiredPrayerBundles.loretoStandaloneID
+    let mobile = PrayerRunKey.custom(id, variantId: nil, dayIndex: 0)
+    let mac = PrayerRunKey.custom(PrayerCopyProgressIdentity.devotionID(id, prayerID: UUID()), variantId: "one", dayIndex: 0)
+    let window = "window:\(UUID()):\(mac)"
+    let builtin = PrayerRunKey.custom("litanyOfLoreto", variantId: nil, dayIndex: 0)
+    let progress = PrayerRunProgress(stepIndex: 2, languageCode: "he", savedLocalDate: "2026-10-14")
+    defaults.set(try JSONEncoder().encode([mobile: progress, mac: progress, window: progress, builtin: progress]),
+      forKey: PrayerRunProgressStore.defaultsKey)
+    XCTAssertNil(store.progress(for: mobile))
+    XCTAssertNil(store.progress(for: mac))
+    XCTAssertEqual(store.progress(for: builtin), progress)
+    let kept = try JSONDecoder().decode([String: PrayerRunProgress].self,
+      from: XCTUnwrap(defaults.data(forKey: PrayerRunProgressStore.defaultsKey)))
+    XCTAssertEqual(Set(kept.keys), [builtin])
+    store.save(runKey: mobile, stepIndex: 3, languageCode: "he")
+    XCTAssertNil(store.progress(for: mobile))
+    XCTAssertEqual(store.progress(for: builtin), progress)
+  }
+
   func testWindowsKeepSeparateBookmarksForTheSamePrayer() {
     let first = PrayerRunProgressStore(defaults: defaults, namespace: "first")
     let second = PrayerRunProgressStore(defaults: defaults, namespace: "second")

@@ -834,6 +834,47 @@ final class PrayerPackLoaderTests: XCTestCase {
     XCTAssertEqual(defaults.stringArray(forKey: PrayerPackStore.removedDownloadsKey), [])
   }
 
+  func testRetiredStandaloneCannotBeImportedAndDoesNotRemoveBuiltinLoreto() throws {
+    try withIsolatedInstalledPackScan { directory, _ in
+      let id = RetiredPrayerBundles.loretoStandaloneID
+      XCTAssertThrowsError(try PrayerPackStore.installPack(from: makeExamplePack(id: id)))
+      XCTAssertFalse(FileManager.default.fileExists(atPath: directory.appendingPathComponent("\(id).prosaryprayer").path))
+      XCTAssertNil(PrayerPackStore.info(for: id))
+      XCTAssertNotNil(PrayerPackStore.definition(for: "litanyOfLoreto"))
+      XCTAssertNotNil(PrayerPackStore.definition(for: "rosary"))
+    }
+  }
+
+  func testRetirementScanDeletesCanonicalRenamedAndCloudPlaceholderCopiesOnly() throws {
+    try withIsolatedInstalledPackScan { directory, _ in
+      let id = RetiredPrayerBundles.loretoStandaloneID
+      let canonical = directory.appendingPathComponent("\(id).prosaryprayer")
+      let renamed = directory.appendingPathComponent("old-import.prosaryprayer")
+      let placeholder = directory.appendingPathComponent(".\(id).prosaryprayer.icloud")
+      let neighborID = "repo.stgamliel-il.otherPrayer-\(UUID())"
+      let neighbor = directory.appendingPathComponent("\(neighborID).prosaryprayer")
+      try makeExamplePack(id: id).write(to: canonical)
+      try makeExamplePack(id: id).write(to: renamed)
+      try Data().write(to: placeholder)
+      try makeExamplePack(id: neighborID).write(to: neighbor)
+      defer { PrayerPackStore.removeInstalledPack(id: neighborID) }
+
+      PrayerPackStore.scanInstalledPacksForTesting()
+
+      for url in [canonical, renamed, placeholder] { XCTAssertFalse(FileManager.default.fileExists(atPath: url.path)) }
+      XCTAssertTrue(FileManager.default.fileExists(atPath: neighbor.path))
+      XCTAssertTrue(PrayerPackStore.installedBundleIds().contains(neighborID))
+      XCTAssertFalse(PrayerPackStore.installedBundleIds().contains(id))
+      XCTAssertNotNil(PrayerPackStore.definition(for: "litanyOfLoreto"))
+
+      // A late cloud conflict copy remains retired on a subsequent scan.
+      try makeExamplePack(id: id).write(to: renamed)
+      PrayerPackStore.scanInstalledPacksForTesting()
+      XCTAssertFalse(FileManager.default.fileExists(atPath: renamed.path))
+      XCTAssertNil(PrayerPackStore.info(for: id))
+    }
+  }
+
   func testInstalledScanRejectsRenamedPackThatWouldBypassLocalExclusion() throws {
     try withIsolatedInstalledPackScan { directory, defaults in
       let id = "excluded-\(UUID().uuidString.lowercased())"
@@ -876,6 +917,43 @@ final class PrayerPackLoaderTests: XCTestCase {
       XCTAssertEqual(PrayerPackStore.installedBundleIds(), installedBefore)
       XCTAssertNil(PrayerPackStore.installedPackURL(for: "rosary"))
       XCTAssertNotNil(PrayerPackStore.definition(for: "rosary"))
+    }
+  }
+
+  func testImportedCreedOptionLabelFollowsWinningSourceAndPreservesUnmarkedWording() throws {
+    try withIsolatedInstalledPackScan { _, _ in
+      try PrayerPackStore.preservingSharedTextForTesting {
+        let niceneLabel = UILanguage.text("favoriteEditor.niceneCreed", language: UILanguage.current, fallback: "Nicene Creed")
+        let fixtures: [(name: String, content: String, language: String, expectsNicene: Bool)] = [
+          ("unmarked", #"{"prayers":{"symbolumApostolorum":"Authored Apostles fixture"},"mysteries":{}}"#, "en", false),
+          ("tagged", #"{"$creedPolicy":{"apostlesCreed":false,"filioque":"bracketed"},"prayers":{"symbolumApostolorum":"Original provenance fixture","symbolumNicaenum":"Authored Nicene fixture"},"mysteries":{}}"#, "en", true),
+          ("shared", #"{"prayers":{"exampleBody":"Other authored prayer"},"mysteries":{}}"#, "arc", true),
+        ]
+        for fixture in fixtures {
+          let id = "repo.creed-option.\(fixture.name).\(UUID().uuidString)"
+          let manifest = """
+            {"schemaVersion":1,"id":"\(id)","kind":"\(id)","displayName":"Creed option fixture",
+             "languages":["en"],"hasCatalog":false,"images":[]}
+            """
+          try PrayerPackStore.installPack(from: Self.storedZip([
+            ("manifest.json", Data(manifest.utf8)),
+            ("content/en.json", Data(fixture.content.utf8)),
+            ("devotion.json", Data(#"{"type":"steps","steps":[{"title":"Creed","bodyKey":"symbolumApostolorum"}]}"#.utf8)),
+            ("options.json", Data(#"{"options":[{"key":"apostlesCreed","kind":"toggle","name":"Authored Creed label","default":true}]}"#.utf8)),
+          ]))
+          defer { PrayerPackStore.removeInstalledPack(id: id) }
+          let option = try XCTUnwrap(PrayerPackStore.options(for: id).first)
+          XCTAssertEqual(option.localizedName(bundleId: id, languageCode: fixture.language),
+            fixture.expectsNicene ? niceneLabel : option.localizedName, fixture.name)
+          if fixture.name == "unmarked" {
+            XCTAssertNil(PrayerPackStore.creedPolicy(bundleId: id, languageCode: fixture.language))
+            XCTAssertEqual(PrayerPackStore.resolveBodyText(bundleId: id, languageCode: fixture.language, key: "symbolumApostolorum"),
+              "Authored Apostles fixture")
+          } else {
+            XCTAssertEqual(PrayerPackStore.creedPolicy(bundleId: id, languageCode: fixture.language)?.apostlesCreed, false)
+          }
+        }
+      }
     }
   }
 

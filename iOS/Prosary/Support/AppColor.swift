@@ -2,7 +2,7 @@ import SwiftUI
 import Combine
 #if os(macOS)
 import AppKit
-#elseif os(iOS)
+#elseif canImport(UIKit)
 import UIKit
 #endif
 
@@ -69,6 +69,55 @@ enum AppColor: String, CaseIterable, Identifiable {
   }
 }
 
+enum CustomAccentColor {
+  static let defaultsKey = "customAccentColorHex"
+
+  static func normalized(_ raw: String?) -> String? {
+    guard let raw else { return nil }
+    let value = raw.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
+    let digits = value.hasPrefix("#") ? String(value.dropFirst()) : value
+    guard digits.count == 6, digits.utf8.allSatisfy({ (48...57).contains($0) || (65...70).contains($0) }) else { return nil }
+    return "#" + digits
+  }
+
+  static func color(_ raw: String, fallback: AppColor) -> Color {
+    guard let raw = normalized(raw) else { return fallback.color }
+    return .adaptive(light: readableHex(raw, dark: false), dark: readableHex(raw, dark: true))
+  }
+
+  /// Keep the chosen hue while adapting text/control accents for both native appearances.
+  static func readableHex(_ hex: String, dark: Bool) -> String {
+    guard let normalized = normalized(hex), let value = UInt32(normalized.dropFirst(), radix: 16) else { return hex }
+    let channels = [16, 8, 0].map { Double((value >> $0) & 255) / 255 }
+    let background = dark ? Double(28) / 255 : 1
+    func luminance(_ channels: [Double]) -> Double {
+      zip(channels, [0.2126, 0.7152, 0.0722]).reduce(0) { sum, component in
+        let channel = component.0
+        return sum + (channel <= 0.04045 ? channel / 12.92 : pow((channel + 0.055) / 1.055, 2.4)) * component.1
+      }
+    }
+    let backdrop = luminance([background, background, background])
+    for step in 0...100 {
+      let amount = Double(step) / 100
+      let adjusted = channels.map { $0 * (1 - amount) + (dark ? amount : 0) }
+      let light = luminance(adjusted)
+      if (max(light, backdrop) + 0.05) / (min(light, backdrop) + 0.05) >= 4.55 {
+        return String(format: "#%02X%02X%02X", Int((adjusted[0] * 255).rounded()), Int((adjusted[1] * 255).rounded()), Int((adjusted[2] * 255).rounded()))
+      }
+    }
+    return dark ? "#FFFFFF" : "#000000"
+  }
+
+  #if canImport(UIKit)
+  static func hex(_ color: Color) -> String? {
+    let source = UIColor(color).resolvedColor(with: UITraitCollection(userInterfaceStyle: .light))
+    var red: CGFloat = 0, green: CGFloat = 0, blue: CGFloat = 0, alpha: CGFloat = 0
+    guard source.getRed(&red, green: &green, blue: &blue, alpha: &alpha) else { return nil }
+    return String(format: "#%02X%02X%02X", Int((red * 255).rounded()), Int((green * 255).rounded()), Int((blue * 255).rounded()))
+  }
+  #endif
+}
+
 extension Color {
   /// Mac uses the live system accent; other Apple ports retain the chosen window accent.
   static var appAccent: Color {
@@ -132,6 +181,7 @@ private struct AppAppearanceModifier: ViewModifier {
   @State private var accentRevision = 0
   #else
   @AppStorage(AppColor.defaultsKey) private var storedColor = AppColor.blue.rawValue
+  @AppStorage(CustomAccentColor.defaultsKey) private var customAccent = ""
   #endif
   @Environment(\.scenePhase) private var scenePhase
 
@@ -148,9 +198,10 @@ private struct AppAppearanceModifier: ViewModifier {
       }
     #else
     let color = AppColor.appearanceChoice(storedColor)
+    let accent = CustomAccentColor.color(customAccent, fallback: color)
     content
-      .tint(color.color)
-      .accentColor(color.color)
+      .tint(accent)
+      .accentColor(accent)
       .onAppear { AppIconController.shared.synchronize(color) }
       .onChange(of: storedColor) { _, _ in AppIconController.shared.synchronize(color) }
       .onChange(of: scenePhase) { _, phase in

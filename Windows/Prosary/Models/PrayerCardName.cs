@@ -18,7 +18,10 @@ public sealed record PrayerCardName(string Title, string InterfaceSubtitle)
     {
         var info = PrayerPackStore.Info(bundleId);
         if (info is null) return new(bundleId, "");
-        return Resolve(info.LocalizedDisplayName, info.DisplayNameInLanguage(LanguageCatalog.Resolve(prayerLanguage).Code),
+        var language = LanguageCatalog.Resolve(prayerLanguage).Code;
+        if (LanguageCatalog.PickerLanguageCode(language) == "he")
+            language = PrayerPackStore.EffectiveLanguage(bundleId, language);
+        return Resolve(PrayerPackStore.InterfaceDisplayName(bundleId, language), info.DisplayNameInLanguage(language),
             AppSettings.ShowPrayerNameInPrayerLanguage);
     }
 
@@ -39,9 +42,17 @@ public sealed record PrayerCardName(string Title, string InterfaceSubtitle)
     public static PrayerCardName ForBasicPrayer(BasicPrayer prayer, string? prayerLanguage,
         string? interfaceLanguage = null)
     {
-        var interfaceName = PrayerPackStore.ResolveDisplayText(prayer.BundleId, interfaceLanguage ?? UiLanguageCatalog.Current, prayer.TitleKey);
-        var prayerName = PrayerPackStore.ResolveDisplayText(prayer.BundleId, BasicPrayerCatalog.EffectiveLanguage(prayer, prayerLanguage).Code, prayer.TitleKey);
+        var language = BasicPrayerCatalog.EffectiveLanguage(prayer, prayerLanguage).Code;
+        var interfaceCode = InterfaceTitleLanguage(interfaceLanguage ?? UiLanguageCatalog.Current, language);
+        var interfaceName = PrayerPackStore.ResolveDisplayText(prayer.BundleId, interfaceCode, prayer.TitleKey);
+        var prayerName = PrayerPackStore.ResolveDisplayText(prayer.BundleId, language, prayer.TitleKey);
         return new(prayerName, AppSettings.ShowPrayerNameInPrayerLanguage && prayerName != interfaceName
             ? interfaceName : string.Empty);
     }
+
+    /// <summary>A Hebrew prayer name belongs to the active Hebrew tradition, including
+    /// when it appears as interface text. Other interface languages keep their own names.</summary>
+    internal static string InterfaceTitleLanguage(string interfaceLanguage, string effectivePrayerLanguage) =>
+        UiLanguageCatalog.Normalize(interfaceLanguage) == "he" && effectivePrayerLanguage is "he" or "he-x-gamliel"
+            ? effectivePrayerLanguage : interfaceLanguage;
 }

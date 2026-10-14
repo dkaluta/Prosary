@@ -8,6 +8,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import com.dkaluta.prosary.calendar.LiturgicalCalendarProviding
 import com.dkaluta.prosary.calendar.MockLiturgicalCalendar
 import com.dkaluta.prosary.content.prayerpack.PrayerPackStore
+import com.dkaluta.prosary.content.prayerpack.RetiredPrayerPacks
 import com.dkaluta.prosary.content.today.TodayInfoStore
 import com.dkaluta.prosary.engine.PrayerEngine
 import com.dkaluta.prosary.persistence.ALL_MIGRATIONS
@@ -74,6 +75,18 @@ data class AppServices(
             // library stays empty across restarts, including after an app upgrade.
             db.openHelper.writableDatabase
             if (created.get()) runBlocking { presetStore.seedIfEmpty() }
+            runBlocking {
+                RetiredPrayerPacks.removeSavedPrayers(presetStore) {
+                    com.dkaluta.prosary.reminders.ReminderScheduler.removeAll(context, it)
+                }
+            }
+            for (id in RetiredPrayerPacks.ids) {
+                com.dkaluta.prosary.models.FavoriteDevotions.forget(context, id)
+                com.dkaluta.prosary.models.MultiDayRuns.clear(context, id)
+                com.dkaluta.prosary.models.PrayerRunProgressStore.clearCustomDevotion(context, id)
+                com.dkaluta.prosary.content.audio.AudioPlaybackController.removeCachedAudio(context.cacheDir, id)
+                com.dkaluta.prosary.content.repository.RepositoryInstallStamps.record(context, id, null)
+            }
             PrayerPackStore.installedPacksDirectory = java.io.File(context.filesDir, "prayerpacks")
             PrayerPackStore.initialize(context.assets)
             TodayInfoStore.initialize { name ->

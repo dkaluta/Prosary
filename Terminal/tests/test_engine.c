@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <locale.h>
+#include <unistd.h>
 
 static void parse_tests(void) {
     char error[256];
@@ -55,6 +56,96 @@ static void angelus_ending(const ProsarySession *session, size_t count) {
     assert(!strcmp(session->steps[count - 1].title, "For the Faithful Departed"));
     assert(strstr(session->steps[count - 1].body, "Eternal rest"));
 }
+static void creed_source_tests(ProsaryEngine *e, const char *directory) {
+    char path[4096], error[512];
+    Json *snapshot;
+    const Json *pack, *content = NULL, *source;
+    ProsarySelection selection = {"uk", 0, -1, 0, 2026, 9, 23, 0, 0, 0};
+    ProsarySession *s;
+    snprintf(path, sizeof(path), "%s/content.json", directory);
+    snapshot = json_read_file(path, 32u * 1024u * 1024u, error, sizeof(error)); assert(snapshot);
+    for (pack = json_get(snapshot, "packs")->child; pack; pack = pack->next)
+        if (!strcmp(json_text(json_get(pack, "manifest"), "id"), "rosary")) content = json_get(pack, "content");
+    assert(content);
+    s = build(e, "rosary", &selection); source = json_get(json_get(content, "uk"), "prayers");
+    assert(!strcmp(s->steps[1].body, json_text(source, "symbolumNicaenum")));
+    assert(!strcmp(s->steps[1].title, json_text(source, "symbolumNicaenumTitle")));
+    assert(strcmp(s->steps[1].body, json_text(source, "symbolumApostolorum")));
+    assert(strstr(s->steps[1].body, "що від Отця [і Сина] ісходить")); engine_session_free(s);
+    selection.language = "arc"; s = build(e, "rosary", &selection);
+    assert(strstr(s->steps[1].body, "הַו דּמֶן אַבָא [ובא] ננפֶק"));
+    assert(!strstr(s->steps[1].body, "הַו דּמֶן אַבָא ובא ננפֶק")); engine_session_free(s);
+    selection.language = "he-x-gamliel"; s = build(e, "rosary", &selection);
+    assert(strstr(s->steps[1].body, "אֲשֶׁר נֶאֱצַל מִן הָאָב [וּמִן הַבֵּן]"));
+    assert(!strstr(s->steps[1].body, "(וּמִן הַבֵּן)")); engine_session_free(s);
+    selection.language = "el"; s = build(e, "rosary", &selection); source = json_get(json_get(content, "el"), "prayers");
+    assert(!strcmp(s->steps[1].body, json_text(source, "symbolumNicaenum"))); engine_session_free(s);
+    selection.language = "la"; s = build(e, "rosary", &selection);
+    source = json_get(json_get(snapshot, "common"), "la");
+    assert(!strcmp(s->steps[1].body, json_text(source, "symbolumApostolorum"))); engine_session_free(s);
+    selection.language = "he"; s = build(e, "rosary", &selection); source = json_get(json_get(snapshot, "common"), "he-x-vicariate");
+    assert(!strcmp(s->steps[1].body, json_text(source, "symbolumApostolorum"))); engine_session_free(s);
+    /* The generated source remains unchanged after all runtime presentations. */
+    assert(strstr(json_text(json_get(json_get(content, "arc"), "prayers"), "symbolumNicaenum"), "הַו דּמֶן אַבָא ובא ננפֶק"));
+    json_free(snapshot);
+}
+static void creed_policy_fixture_tests(void) {
+    static const char fixture[] =
+        "{\"schemaVersion\":1,\"common\":{},\"packs\":[{\"manifest\":{\"id\":\"rosary\",\"displayName\":\"Fixture\"},"
+        "\"devotion\":{\"type\":\"steps\",\"steps\":[{\"titleKey\":\"symbolumApostolorumTitle\",\"bodyKey\":\"symbolumApostolorum\"},"
+        "{\"titleKey\":\"symbolumNicaenumTitle\",\"bodyKey\":\"symbolumNicaenum\"}]},\"content\":{"
+        "\"arc\":{\"$creedPolicy\":{\"apostlesCreed\":false,\"filioque\":\"bracketed\"},\"prayers\":{"
+        "\"symbolumNicaenumTitle\":\"Source Creed\",\"symbolumNicaenum\":\"ܗܰܘ ܕ݁ܡܶܢ ܐܰܒܳܐ ܘܒܐ ܢܢܦܶܩ. ܘܥܰܡ ܐܰܒ݂ܳܐ ✠ ܘܥܰܡ ܒܪܐ\"}},"
+        "\"la\":{\"$creedPolicy\":{\"apostlesCreed\":true,\"filioque\":\"unbracketed\"},\"prayers\":{"
+        "\"symbolumApostolorumTitle\":\"Latin source\",\"symbolumApostolorum\":\"qui ex Patre [Filioque] procedit\","
+        "\"symbolumNicaenumTitle\":\"Latin source\",\"symbolumNicaenum\":\"qui ex Patre (Filioque) procedit. Qui cum Patre et Filio\"}},"
+        "\"en\":{\"prayers\":{\"symbolumApostolorumTitle\":\"Untagged source\",\"symbolumApostolorum\":\"qui ex Patre [Filioque] procedit\"}},"
+        "\"ar\":{\"$creedPolicy\":{\"apostlesCreed\":false,\"filioque\":\"absent\"},\"prayers\":{"
+        "\"symbolumNicaenumTitle\":\"Source Creed\",\"symbolumNicaenum\":\"qui ex Patre Filioque procedit. Qui cum Patre et Filio\"}},"
+        "\"it\":{\"$creedPolicy\":{\"apostlesCreed\":false,\"filioque\":\"unbracketed\"},\"prayers\":{"
+        "\"symbolumNicaenumTitle\":\"Source Creed\",\"symbolumNicaenum\":\"τὸ ἐκ τοῦ Πατρὸς ἐκπορευόμενον\"}},"
+        "\"he\":{\"$creedPolicy\":{\"apostlesCreed\":true,\"filioque\":\"unbracketed\"},\"$prayerTraditionByKey\":{"
+        "\"symbolumApostolorum\":\"vicariate\",\"symbolumApostolorumTitle\":\"vicariate\","
+        "\"symbolumNicaenum\":\"vicariate\",\"symbolumNicaenumTitle\":\"vicariate\"},\"prayers\":{"
+        "\"symbolumApostolorumTitle\":\"Vicariate source\",\"symbolumApostolorum\":\"Vicariate Apostles body\","
+        "\"symbolumNicaenumTitle\":\"Vicariate source\",\"symbolumNicaenum\":\"הַנּוֹבֵעַ מֵהָאָב [וּמֵהַבֵּן]\"}},"
+        "\"fr\":{\"$creedPolicy\":{\"apostlesCreed\":true,\"filioque\":\"bracketed\"},\"prayers\":{}},"
+        "\"el\":{\"$creedPolicy\":{\"apostlesCreed\":false,\"filioque\":\"absent\"},\"prayers\":{"
+        "\"symbolumApostolorumTitle\":\"Retained historical title\",\"symbolumApostolorum\":\"Retained historical body\"}}}},"
+        "{\"manifest\":{\"id\":\"other\",\"displayName\":\"Other devotion\"},\"content\":{},"
+        "\"devotion\":{\"type\":\"steps\",\"steps\":[{\"titleKey\":\"symbolumApostolorumTitle\",\"bodyKey\":\"symbolumApostolorum\"}]}}]}";
+    char temporary[] = "/tmp/prosary-creed.XXXXXX", path[4096], error[512];
+    FILE *file;
+    ProsaryEngine *e;
+    ProsarySession *s;
+    ProsarySelection selection = {"en", 0, -1, 0, 2026, 9, 23, 0, 0, 0};
+    assert(mkdtemp(temporary)); snprintf(path, sizeof(path), "%s/content.json", temporary);
+    file = fopen(path, "wb"); assert(file);
+    assert(fwrite(fixture, 1, sizeof(fixture) - 1, file) == sizeof(fixture) - 1); assert(!fclose(file));
+    e = engine_open(temporary, error, sizeof(error)); assert(e);
+    s = build(e, "rosary", &selection);
+    assert(!strcmp(s->steps[0].body, "qui ex Patre [Filioque] procedit")); /* Untagged text is exact. */
+    assert(!strcmp(s->steps[1].body, "qui ex Patre Filioque procedit. Qui cum Patre et Filio"));
+    assert(s->steps[1].used_fallback); assert(!strcmp(s->steps[1].language, "la")); engine_session_free(s);
+    selection.language = "fr"; s = build(e, "rosary", &selection);
+    assert(!strcmp(s->steps[0].body, "qui ex Patre Filioque procedit")); /* Actual Latin owner, not requested French tag. */
+    engine_session_free(s);
+    selection.language = "ar"; s = build(e, "rosary", &selection);
+    assert(!strcmp(s->steps[0].body, "qui ex Patre procedit. Qui cum Patre et Filio")); engine_session_free(s);
+    selection.language = "it"; s = build(e, "rosary", &selection);
+    assert(!strcmp(s->steps[0].body, "τὸ ἐκ τοῦ Πατρὸς ἐκπορευόμενον")); engine_session_free(s);
+    selection.language = "he"; s = build(e, "rosary", &selection);
+    assert(!strcmp(s->steps[0].body, "Vicariate Apostles body"));
+    assert(!strcmp(s->steps[1].body, "הַנּוֹבֵעַ מֵהָאָב וּמֵהַבֵּן"));
+    assert(!s->steps[1].used_fallback); engine_session_free(s);
+    selection.language = "el";
+    assert(!engine_build(e, "rosary", &selection, error, sizeof(error)));
+    assert(strstr(error, "Missing same-source Nicene Creed")); /* No Latin leak. */
+    selection.language = "arc"; s = build(e, "other", &selection); engine_close(e);
+    assert(!strcmp(s->steps[0].title, "Source Creed"));
+    assert(!strcmp(s->steps[0].body, "ܗܰܘ ܕ݁ܡܶܢ ܐܰܒܳܐ [ܘܒܐ] ܢܢܦܶܩ. ܘܥܰܡ ܐܰܒ݂ܳܐ ✠ ܘܥܰܡ ܒܪܐ"));
+    engine_session_free(s); assert(!unlink(path)); assert(!rmdir(temporary));
+}
 int main(int argc, char **argv) {
     char error[512];
     const char *data = argc > 1 ? argv[1] : "data";
@@ -63,10 +154,11 @@ int main(int argc, char **argv) {
     ProsarySession *s;
     size_t i, l, cases = 0, fallback_cases = 0, mixed_steps = 0;
     static const size_t expected[] = {80, 11, 63, 90, 69, 18, 17, 6, 5, 16};
-    parse_tests();
+    parse_tests(); creed_policy_fixture_tests();
     e = engine_open(data, error, sizeof(error));
     if (!e) { fprintf(stderr, "%s\n", error); return 1; }
     assert(engine_catalog_count(e) == 10);
+    creed_source_tests(e, data);
     for (i = 0; i < engine_catalog_count(e); ++i) {
         s = build(e, engine_catalog_id(e, i), &selection);
         printf("%s: %lu steps\n", engine_catalog_id(e, i), (unsigned long)s->count);

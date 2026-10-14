@@ -14,6 +14,19 @@ public partial class AppearanceViewModel : ObservableObject
     public string Title => Loc.Tr("settings_appearance", "Appearance");
     public string ColorLabel => Loc.Tr("SetAppColor/Header", "App color");
     public string BackLabel => Loc.Tr("CommandsBack", "Back");
+    public string CustomAccentLabel => Loc.Tr("appearance_custom_accent", "Custom Accent Color");
+    public string ResetAccentLabel => Loc.Tr("appearance_reset_accent", "Use App Color");
+    private bool _refreshingAccent;
+
+    [ObservableProperty] private Windows.UI.Color _customAccent;
+
+    partial void OnCustomAccentChanged(Windows.UI.Color value)
+    {
+        if (!_refreshingAccent)
+            AppSettings.SetCustomAccentColorHex($"#{value.R:X2}{value.G:X2}{value.B:X2}");
+    }
+
+    [RelayCommand] private void ResetAccent() => AppSettings.SetCustomAccentColorHex("");
     public IReadOnlyList<AppColorChoiceViewModel> AppColorOptions { get; } = AppColorPalette.All
         .Select((option, index) => new AppColorChoiceViewModel(option, index < AppColorPalette.All.Count - 1))
         .ToArray();
@@ -22,6 +35,7 @@ public partial class AppearanceViewModel : ObservableObject
     {
         _selectedAppColor = AppColorOptions.First(option => option.Id == AppSettings.AppColor);
         _selectedAppColor.IsSelected = true;
+        RefreshAccent();
     }
 
     public void Activate()
@@ -39,8 +53,23 @@ public partial class AppearanceViewModel : ObservableObject
         AppSettings.AppColorChanged -= RefreshSelection;
     }
 
-    private void RefreshSelection() => SelectedAppColor =
-        AppColorOptions.First(option => option.Id == AppSettings.AppColor);
+    private void RefreshSelection()
+    {
+        SelectedAppColor = AppColorOptions.First(option => option.Id == AppSettings.AppColor);
+        RefreshAccent();
+    }
+
+    private void RefreshAccent()
+    {
+        _refreshingAccent = true;
+        try
+        {
+            CustomAccent = AppSettings.CustomAccentColorHex.Length > 0
+                ? AppColorPalette.Parse(AppSettings.CustomAccentColorHex[1..])
+                : AppColorPalette.Resolve(AppSettings.AppColor).Accent(false);
+        }
+        finally { _refreshingAccent = false; }
+    }
 
     [ObservableProperty]
     private AppColorChoiceViewModel _selectedAppColor;

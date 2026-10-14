@@ -124,6 +124,13 @@ The interface has English, Hebrew, Arabic, Russian, Filipino, French, Italian, a
 Ukrainian strings. Prayer text comes from the existing source material; missing
 translations follow a sourced fallback and the reader identifies the body language.
 
+Creed wording follows the winning authored source's optional `$creedPolicy` tag.
+Eastern legacy Creed steps use that same source's Nicene body and title, including
+the Ukrainian UGCC text. Syriac and Mission Filioque clauses use square brackets;
+Latin and Vicariate wording stays unbracketed. Greek retains its supplied wording.
+Only exact supplied procession clauses are adjusted; an absent clause is never added.
+Untagged content remains unchanged, and the generated snapshot keeps its raw sources.
+
 Use a UTF-8 locale and a terminal/font with the required scripts. The minimal build
 does not implement bidirectional layout itself and explicitly labels RTL text as
 logical order. For Hebrew/Arabic visual ordering and Arabic shaping, enable the

@@ -13,6 +13,9 @@ snapshot is generated from canonical devotion JSON plus the existing native base
 prayer tables; the build and runtime need no shared tooling. It currently covers
 the stepped-prayer reader, local library, language/form settings, and resume state,
 and does not claim feature parity with the three production native ports.
+Its sourced Creed steps still follow the same authored `$creedPolicy` contract:
+legacy keys select the same source's Nicene text when required, and only supplied
+procession clauses receive the declared bracket presentation. Raw snapshot text is preserved.
 
 ## Brand system and web family
 
@@ -55,7 +58,7 @@ idiom (Swift `struct`, Kotlin `data class`, C# `sealed record`):
   / all 20 / selected sequential mysteries), `specificMysteryGroup`, `specificMysteryOrder`
   (1-based start), `specificMysteryCount` (1–5, default 1), `useTraditionalMysteries`
   (default false; Today mode only), `presenterMode` (collapses each decade's Hail Marys + Glory Be
-  onto one combined step — see "Engines" below), toggles for the Apostles' Creed, opening Our
+  onto one combined step — see "Engines" below), toggles for the source-selected Creed, opening Our
   Father + 3 Hail Marys + Glory Be, an optional Fatima Prayer immediately after that opening
   Glory Be, the Fatima Prayer after each decade, eternal-rest placement, the closing Marian antiphon,
   one combined closing-intentions choice (right after the antiphon — for the Pope, the local
@@ -234,6 +237,11 @@ Two pieces of logic are shared internally by `PrayerEngine` rather than duplicat
 
 ## App color and icons
 
+`customAccentColorHex` stores an optional uppercase `#RRGGBB` accent independently of
+`appColor` and launcher icons. Empty restores the preset. Native adapters adjust lightness
+for readable contrast while retaining hue; semantic calendar and authored content colors
+remain independent. Mac continues to use the live system accent.
+
 `appColor` persists the same seven ids on iPhone/iPad, visionOS, Android and Windows: `blue` (the default,
 honoring Mary), `green`, `red`, `purple`, `rose`, `white`, and `gold`. Unknown values fall
 back to blue. `Shared/Branding/app-colors.json` defines icon backgrounds/crosses and readable
@@ -255,7 +263,7 @@ their separate meanings. The blue AccentColor asset supplies the default for Mul
 
 On Android 12+, `useSystemColors` defaults to true: Material You wallpaper colors take
 precedence for controls. Its switch lives on the Appearance page; turning it off applies
-the selected manual palette. The control is
+the selected manual palette. Custom accent selection explicitly disables this override. The control is
 hidden on older Android versions, which use that palette directly. Launcher icon choice
 remains independent. Stable launcher aliases point to an always-enabled `MainActivity` so
 existing intents, widgets and notifications remain usable.
@@ -366,11 +374,13 @@ Home and Readings share the same window's civil-date selection, including a deli
 browsed day; choosing a Home shortcut changes Readings mode without resetting that date.
 
 Readings has a date picker above complete citations, with previous/next day and Today actions.
-Its Daily Readings/Bible selector sits inside page content. A separate **Feasts and
-Solemnities** action opens all published dates for the selected calendar in chronological
-order, with ranks Solemnity, Feast, Great Feast, 1st Class or 2nd Class. Selecting an entry
-sets the window's shared date and returns to Daily Readings. The list initially scrolls to
-the selected or next upcoming entry; dates beyond source coverage stay absent.
+Its Daily Readings/Bible selector sits inside page content. A separate **Event Calendar** shows every published date for the selected calendar,
+with a Monday-first civil Gregorian month grid and up to three event dots under each date.
+Accessibility retains the full event count. Supplied observances are independently clickable;
+older datasets without components use the parent event. Details use exact interface-language
+source prose, short source excerpts and matching credits, with explicit unavailable text.
+Readings for this Date updates the shared date and opens Daily Readings. Published dates
+are never restricted to high liturgical ranks, and uncovered dates remain absent.
 On iPhone, date navigation and Settings live in the native top toolbar; Today stays inside
 the calendar popover. iPad keeps its date row below the adaptive top tabs to avoid toolbar
 overflow. Short iPhone landscape windows present the calendar in a sheet with a scrolling
@@ -1074,6 +1084,10 @@ before merging overrides. That code is never saved or shown in language pickers.
 built-in prayer wording is annotated without rewriting it; generic headings, counters and
 Scripture stay unmarked. Native Hebrew fixed prayers are Vicariate-specific except the shared
 `decadeOrdinalFormat`, `repetitionCounterConnector` and `fructusMysteriiLabel` vocabulary.
+Source-specific headings carry the same provenance: the Rosary's `signumCrucisTitle` and the
+Trisagion's `trisagionAcclamationTitle` / `trisagionKyrieTitle` retain their existing Vicariate
+wording in the Vicariate bucket, beside the distinct authored Mission headings. Title markers
+do not create a prayer tradition; availability continues to depend on referenced body keys.
 Compose retains title/body provenance independently when importing, saving a project and
 repacking it, even though the generated prayer keys change. It emits the same per-key metadata
 so editing a sourced Vicariate prayer cannot silently turn it into generic repository Hebrew.
@@ -1099,27 +1113,32 @@ the initial typed `ישעינו` to `יִשְׁעֵנוּ`; there is no editoria
 reading aid. Mission Hebrew, Aramaic (both supplied
 scripts) and Greek reuse their existing sourced Nicene bodies unchanged. The Latin fallback
 relays the ancient Creed printed in the Vatican's 29 June 2012 Mass booklet, retaining its
-wording and typography. These additions do not replace the Vicariate Apostles' Creed or alter
-which Creed existing devotions reference. See [the Rosary source notes](content/rosary/SOURCES.markdown)
+wording and typography. The Vicariate Apostles' Creed remains available; Eastern devotion
+Creed steps follow the authored-source policy described below. See [the Rosary source notes](content/rosary/SOURCES.markdown)
 and the independent `tools/fixtures/nicene-creed.json` source fixture.
 
-The app-wide **Include Filioque** preference uses the identical Boolean key `includeFilioque`
-on all native ports. Its storage key remains absent until the first explicit Prayer Language
-selection or the first actual Nicene rendering. That first rite supplies the initial choice:
-Greek omits it; Latin, Vicariate Hebrew, Mission Hebrew and Aramaic include it. Reading Settings,
-rendering a language picker, changing the interface language, or building steps solely to count
-or validate a saved continuation does not initialize the setting.
-Once initialized, the value persists; changing rites never overwrites the user's choice.
+The optional internal **`$creedPolicy`** tag belongs to an authored language source and
+has `apostlesCreed` plus `filioque` (`absent`, `bracketed`, `unbracketed`). It is
+resolved alongside the winning body and its reading aid, independent of interface language
+or feast calendar. The old `includeFilioque` preference and toggle are retired: saved
+values are ignored, and language selection/rendering no longer initializes a preference.
+Untagged imported content stays exactly as authored.
 
-Rendering applies this preference after selecting the winning source, to exact recognized
-Nicene procession clauses only, including the established Nicene uses of the legacy
-`symbolumApostolorum` key. Mission's optional parentheses are removed for either rendered
-choice; its raw source text remains intact. The Aramaic primary and alternate scripts change
-together while retaining their supplied spelling. The Greek source contains no Filioque and
-stays unchanged even when the preference is enabled, because no sourced Greek insertion is
-supplied. Ordinary Apostles' Creeds, unrelated Father/Son wording, and unrecognized imported
-recensions remain unchanged. Open prayer readers refresh the wording while retaining their
-current position.
+The sourced Syriac and Mission Nicene renderings always retain the supplied Filioque in
+square brackets, in both supplied Syriac scripts together. Latin and Vicariate text retain
+unbracketed wording. The Ukrainian Nicene source is the UGCC catechism printed page 10;
+its existing `[і Сина]` is preserved. Greek retains its sourced text with no supplied
+Filioque; no Greek insertion is invented. These source tags describe the particular prayer,
+not every language or every Church with a similar name.
+
+When `apostlesCreed` is false, lists, pins and restored/direct routes omit the Apostles'
+Creed. Legacy devotion entries using `symbolumApostolorum` resolve the same authored
+source's `symbolumNicaenum` body and heading, retaining the appropriate Nicene opening.
+Raw older source text remains retained for provenance; an unavailable entry cannot silently
+fall through to a Latin Apostles' Creed. Saved incompatible shortcuts show a localized
+unavailable state with the existing language selection. Active readers keep their position.
+The historical `includeApostlesCreed` storage field still controls the opening step, but
+its option label follows the same winning policy and says Nicene Creed for Eastern sources.
 
 ### Generic (bundle-driven) devotions
 
@@ -1507,6 +1526,16 @@ of its own — its entire step sequence and per-step text are data-driven from i
   All declared authoring languages, including `arc`, are accepted by the current publishing
   policy. Compose detects new deployments and offers a durable draft save before reloading;
   stale editor tabs must not retain obsolete language restrictions indefinitely.
+  **Retired duplicate:** `repo.stgamliel-il.litanyOfMaryTheBlessedEverVirgin` is permanently
+  retired. Apple, Android and Windows reject this exact manifest ID on import and load,
+  omit it from repository catalogs, and purge installed archives and saved copies, including
+  reminders and progress. Scans inspect manifest IDs so renamed files cannot restore it.
+  Apple also removes its iCloud pack source and repeats saved-row cleanup when reading
+  synchronized records, so a late cloud arrival cannot recreate the prayer. Cleanup takes
+  effect on a device when it runs the updated app; devices running older versions cannot be
+  remotely purged. Repository publication and database guards prevent the same ID returning.
+  The built-in `litanyOfLoreto`, its Rosary continuation, retained Hebrew source text and
+  credits, and all other community prayers remain available.
 - **Transliterations** (v0.7) — a language file may carry an optional
   `"transliterations": {key: text}` map: a parallel rendering of that language's own prayer
   text in another script, for praying along in a language one can't read (a Hebrew
@@ -1997,6 +2026,20 @@ use their selected prayer-language and Hebrew-tradition title as primary; this s
 adds the distinct interface-language subtitle there. It does not change prayer text or its
 selected language, and ordinary descriptions/progress remain visible.
 
+When the interface and the prayer language are both Hebrew, the interface-facing name also
+uses the prayer's **effective Hebrew tradition**. Mission Hebrew therefore uses an authored
+Mission title, including `קדישת` for the Trisagion and `תפילת האדון` for the Our Father, instead
+of showing a Vicariate title for the same prayer. This applies both to default card names and
+to the optional interface-language subtitle; identical names produce no duplicate subtitle.
+The bundle or Basic Prayer's actual authored bodies determine a sole available Hebrew
+tradition before name lookup, so selecting Mission for a Vicariate-only prayer names the
+Vicariate prayer that opens. An exact tradition name falls back to the existing generic Hebrew
+manifest name when no distinct title is authored; missing wording is never invented. Other
+interface languages and non-Hebrew prayer languages retain the established interface naming
+behavior. Saved custom names, sourced prayer bodies, and independently authored step headings
+remain intact; the Mission's Our Father heading intentionally retains its tradition when the
+body falls back through another source.
+
 ## Interface languages and new prayer sources
 
 All three interfaces support English, Hebrew, Arabic, Russian, Filipino/Tagalog, French,
@@ -2215,3 +2258,18 @@ configuration, with normal permission handling and no automatic enablement.
 prayer bodies, their reading aids and acclamations alongside system text scaling.
 Scripture, Bible passages, interface labels and headings retain their existing size.
 The Mac Presenter's explicit point-size controls remain independent.
+
+## Home card size, images and daily Scripture (0.21)
+
+`homeWidgetCollapsedIds` is a newline-separated set of compact card IDs, independent of
+`homeWidgetOrder`; absent/empty means the existing large layout. Compact cards retain
+headings, summaries and open actions. `homeWidgetGraphicPaths` is a JSON object mapping
+known card IDs to app-private device-local image copies; paths and bytes do not synchronize.
+Add/change/remove uses the existing photo importer, installs a valid replacement before
+removing the old copy, and preserves the original photo. Pray/library cards use the owning
+pack gallery artwork without new native artwork copies.
+
+Holy Scripture and the Home Scripture card offer Scripture of the Day: the first Gospel
+appointment in canonical source order, else the first appointment. Reversing the displayed
+readings never changes that selection. The existing offline passage loader, source citation
+mapping, selected edition, source credits and unavailable states remain authoritative.

@@ -18,18 +18,21 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+            <Image Grid.ColumnSpan="3" Source="{x:Bind ImageSource, Mode=OneWay}" MaxHeight="180" Stretch="Uniform"
+                   Margin="0,0,0,12" AutomationProperties.AccessibilityView="Raw" />
 
-            <Border Grid.Column="0" Width="40" Height="40" CornerRadius="20" VerticalAlignment="Center"
+            <Border Grid.Row="1" Grid.Column="0" Width="40" Height="40" CornerRadius="20" VerticalAlignment="Center"
                     Background="{x:Bind AccentColor, Mode=OneWay, Converter={StaticResource ColorToBrush}}">
                 <FontIcon Glyph="{x:Bind IconGlyph, Mode=OneWay}" Foreground="White" FontSize="18" />
             </Border>
 
-            <StackPanel Grid.Column="1" VerticalAlignment="Center" Spacing="2">
+            <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Spacing="2">
                 <TextBlock Text="{x:Bind Title, Mode=OneWay}" FontSize="16" FontWeight="SemiBold" TextWrapping="Wrap" />
                 <TextBlock Text="{x:Bind Subtitle, Mode=OneWay}" Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" />
             </StackPanel>
 
-            <FontIcon Grid.Column="2" Glyph="&#xE76C;" MirroredWhenRightToLeft="True" FontSize="12" Foreground="{ThemeResource TextFillColorSecondaryBrush}" VerticalAlignment="Center" />
+            <FontIcon Grid.Row="1" Grid.Column="2" Glyph="&#xE76C;" MirroredWhenRightToLeft="True" FontSize="12" Foreground="{ThemeResource TextFillColorSecondaryBrush}" VerticalAlignment="Center" />
         </Grid>
     </Button>
 </UserControl>

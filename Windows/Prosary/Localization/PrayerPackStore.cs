@@ -91,6 +91,9 @@ public static class PrayerPackStore
     /// keeps each bundle's own keys addressable per bundle, which is how a generic devotion's
     /// <c>devotion.json</c> resolves bundle-local body text. See <see cref="ResolveBodyText"/>.</summary>
     private static readonly Dictionary<string, Dictionary<string, Dictionary<string, string>>> RawContentByBundle = new();
+    private static readonly Dictionary<string, Dictionary<string, CreedPolicy?>> CreedPoliciesByBundle = new();
+    private sealed record PrayerSource(string BundleId, string Probe, string Key, CreedPolicy? Policy, string Text, string? ReadingAid);
+    private static readonly Dictionary<string, Dictionary<string, PrayerSource>> SharedPrayerSources = new();
     private static readonly Dictionary<string, HashSet<string>> MysteryContentLanguagesByBundle = new();
 
     /// <summary>bundleId → language → prayer key → transliterated text (v0.7 reading aid).</summary>
@@ -245,6 +248,8 @@ public static class PrayerPackStore
             {
                 throw new InstallException(Loc.Tr("import_unreadable", "This file is not a readable .prosaryprayer bundle."));
             }
+            if (RetiredPrayerBundles.Contains(manifest.Id))
+                throw new InstallException(Loc.Tr("import_unreadable", "This file is not a readable .prosaryprayer bundle."));
 
             var devotionEntry = entries.GetValueOrDefault("devotion.json");
             if (devotionEntry is null || manifest.BuiltinKind is not null
@@ -306,9 +311,12 @@ public static class PrayerPackStore
         OptionsByBundle.Remove(id);
         AudioTracksByBundle.Remove(id);
         RawContentByBundle.Remove(id);
+        CreedPoliciesByBundle.Remove(id);
         MysteryContentLanguagesByBundle.Remove(id);
         TransliterationsByBundle.Remove(id);
         PackSourceByBundle.Remove(id);
+        foreach (var key in ExtractedImageUris.Keys.Where(key => key.StartsWith("gallery:" + id + ":", StringComparison.Ordinal)).ToArray())
+            ExtractedImageUris.Remove(key);
 
         foreach (var (imageKey, locations) in ImageLocationsByKey.ToList())
         {
@@ -392,6 +400,19 @@ public static class PrayerPackStore
     public static CustomDevotionInfo? Info(string bundleId) =>
         InfoByBundle.TryGetValue(bundleId, out var info) ? info : null;
 
+    /// <summary>Hebrew interface names follow this bundle's effective authored tradition;
+    /// an explicit saved/reader choice takes precedence over the app's default tradition.</summary>
+    public static string InterfaceDisplayName(string bundleId, string? prayerLanguage = null,
+        string? interfaceLanguage = null)
+    {
+        if (Info(bundleId) is not { } info) return bundleId;
+        var language = LanguageCatalog.Resolve(prayerLanguage).Code;
+        if (LanguageCatalog.PickerLanguageCode(language) == "he")
+            language = EffectiveLanguage(bundleId, language);
+        var displayLanguage = PrayerCardName.InterfaceTitleLanguage(interfaceLanguage ?? UiLanguageCatalog.Current, language);
+        return info.DisplayNameInLanguage(displayLanguage);
+    }
+
     /// <summary>The narrated recordings a bundle's <c>audio.json</c> declares, in authored order.
     /// Empty for bundles without audio (see Shared/ARCHITECTURE.markdown's "Audio").</summary>
     public static IReadOnlyList<DevotionAudioTrack> AudioTracks(string bundleId) =>
@@ -448,13 +469,38 @@ public static class PrayerPackStore
         return TryCopyPackEntry(new PackEntryLocation(bundleId, file), path, MaxAudioEntryBytes);
     }
 
-    private sealed record ResolvedPrayerContent(string Text, string? ReadingAid)
+    private sealed record ResolvedPrayerContent(string Text, string? ReadingAid, CreedPolicy? Policy = null)
     {
-        public static ResolvedPrayerContent FromSource(string text, string? readingAid, string key)
+        public static ResolvedPrayerContent FromSource(string text, string? readingAid, string key, CreedPolicy? policy = null)
         {
-            var rendered = FilioquePrayerWording.Apply(key, text, readingAid);
-            return new(rendered.Text, rendered.ReadingAid);
+            var rendered = FilioquePrayerWording.Apply(key, text, readingAid, policy);
+            return new(rendered.Text, rendered.ReadingAid, policy);
         }
+    }
+
+    public static bool HasApostlesCreed(string bundleId, string? languageCode) =>
+        ResolvePrayerContent(bundleId, languageCode, "symbolumApostolorum")?.Policy?.ApostlesCreed ?? true;
+
+    internal static string? SharedPrayerAtProbe(string probe, string sharedKey)
+    {
+        if (SharedPrayerSources.GetValueOrDefault(probe)?.GetValueOrDefault(sharedKey) is { } source)
+            return ResolvedPrayerContent.FromSource(source.Text, source.ReadingAid, source.Key, source.Policy).Text;
+        return PrayerOverride(probe, sharedKey);
+    }
+
+    private static ResolvedPrayerContent? ResolvePrayerContentAtSource(string sourceBundle, string probe, string sourceKey)
+    {
+        var policy = CreedPoliciesByBundle.GetValueOrDefault(sourceBundle)?.GetValueOrDefault(probe);
+        if (policy?.ApostlesCreed == false)
+        {
+            if (sourceKey.Equals("symbolumApostolorum", StringComparison.OrdinalIgnoreCase)) sourceKey = "symbolumNicaenum";
+            else if (sourceKey.Equals("symbolumApostolorumTitle", StringComparison.OrdinalIgnoreCase)) sourceKey = "symbolumNicaenumTitle";
+        }
+        if (RawContentByBundle.GetValueOrDefault(sourceBundle)?.GetValueOrDefault(probe)?.GetValueOrDefault(sourceKey) is not { } text)
+            return policy?.ApostlesCreed == false && sourceKey.StartsWith("symbolumNicaenum", StringComparison.OrdinalIgnoreCase)
+                ? new ResolvedPrayerContent("", null, policy) : null;
+        var aid = TransliterationsByBundle.GetValueOrDefault(sourceBundle)?.GetValueOrDefault(probe)?.GetValueOrDefault(sourceKey);
+        return ResolvedPrayerContent.FromSource(text, aid, sourceKey, policy);
     }
 
     /// <summary>Resolve a body and its reading aid together. At each ordered content probe,
@@ -464,11 +510,7 @@ public static class PrayerPackStore
     {
         ResolvedPrayerContent? Local(string sourceBundle, string probe, string sourceKey)
         {
-            if (RawContentByBundle.GetValueOrDefault(sourceBundle)?.GetValueOrDefault(probe)
-                    ?.GetValueOrDefault(sourceKey) is not { } text) return null;
-            var aid = TransliterationsByBundle.GetValueOrDefault(sourceBundle)?.GetValueOrDefault(probe)
-                ?.GetValueOrDefault(sourceKey);
-            return ResolvedPrayerContent.FromSource(text, aid, sourceKey);
+            return ResolvePrayerContentAtSource(sourceBundle, probe, sourceKey);
         }
 
         var sharedKey = key == "signumCrucisFormB" ? PrayerKey.SignumCrucis : ToPascalCase(key);
@@ -487,6 +529,8 @@ public static class PrayerPackStore
             if (!SharedPrayerKeys.Contains(sharedKey)) continue;
             if (PrayerOverride(probe, sharedKey) is { } shared)
             {
+                if (SharedPrayerSources.GetValueOrDefault(probe)?.GetValueOrDefault(sharedKey) is { } source)
+                    return ResolvedPrayerContent.FromSource(source.Text, source.ReadingAid, source.Key, source.Policy);
                 if (sharedKey == PrayerKey.SignumCrucis && probe == "arc"
                     && AppSettings.UsesSystemWideAramaicSignOfCrossForm
                     && AppSettings.AramaicSignOfCrossForm == AppSettings.AramaicSignOfCrossFormB
@@ -542,9 +586,24 @@ public static class PrayerPackStore
     /// process-wide store.</summary>
     public static string? ImageFileUri(string imageKey)
     {
-        if (ExtractedImageUris.TryGetValue(imageKey, out var cachedUri)) return cachedUri;
-
         if (!ImageLocationsByKey.TryGetValue(imageKey, out var locations)) return null;
+        return ExtractImageFileUri(imageKey, locations, imageKey);
+    }
+
+    /// <summary>An authored card image belongs to its own pack, even when another download uses the same key.</summary>
+    public static string GalleryImageFileUriOrPlaceholder(string bundleId)
+    {
+        if (Info(bundleId)?.GalleryImageKey is not { } imageKey)
+            return ImageFileUriOrPlaceholder("gallery_" + bundleId);
+        var locations = ImageLocationsByKey.GetValueOrDefault(imageKey)?.Where(location => location.BundleId == bundleId).ToList() ?? [];
+        return ExtractImageFileUri(imageKey, locations, "gallery:" + bundleId + ":" + imageKey)
+            ?? "ms-appx:///Assets/Images/cross_placeholder.png";
+    }
+
+    private static string? ExtractImageFileUri(string imageKey, IReadOnlyList<PackEntryLocation> locations, string cacheKey)
+    {
+        if (locations.Count == 0) return null;
+        if (ExtractedImageUris.TryGetValue(cacheKey, out var cachedUri)) return cachedUri;
         if (Path.GetFileName(imageKey) != imageKey) return null;
 
         try
@@ -567,7 +626,7 @@ public static class PrayerPackStore
                     && !TryCopyPackEntry(location, path, MaxImageEntryBytes)) continue;
 
                 var uri = new Uri(path).AbsoluteUri;
-                ExtractedImageUris[imageKey] = uri;
+                ExtractedImageUris[cacheKey] = uri;
                 return uri;
             }
             return null;
@@ -628,9 +687,11 @@ public static class PrayerPackStore
             // the shared merges) and are skipped on id collision with anything already loaded.
             if (InstalledPacksDirectory is { } directory && Directory.Exists(directory))
             {
+                PurgeRetiredPacks(directory);
                 foreach (var path in Directory.GetFiles(directory, "*.prosaryprayer").OrderBy(p => p))
                 {
                     var id = Path.GetFileNameWithoutExtension(path);
+                    if (RetiredPrayerBundles.Contains(id)) continue;
                     if (InfoByBundle.ContainsKey(id)) continue;
                     try
                     {
@@ -652,6 +713,34 @@ public static class PrayerPackStore
         }
     }
 
+    /// <summary>Remove withdrawn downloads by their manifest identity, including renamed archives.
+    /// Failure to delete never makes the pack loadable: Load also rejects its identity.</summary>
+    internal static void PurgeRetiredPacks(string directory)
+    {
+        if (!Directory.Exists(directory)) return;
+        foreach (var path in Directory.GetFiles(directory, "*.prosaryprayer"))
+        {
+            var retired = RetiredPrayerBundles.Contains(Path.GetFileNameWithoutExtension(path));
+            if (!retired)
+            {
+                try
+                {
+                    using var stream = File.OpenRead(path);
+                    ValidateArchiveLength(stream.Length);
+                    using var archive = new ZipArchive(stream, ZipArchiveMode.Read);
+                    var entries = ValidateArchive(archive);
+                    if (entries.TryGetValue("manifest.json", out var entry))
+                        retired = RetiredPrayerBundles.Contains(ParseManifest(entry, entries).Id);
+                }
+                catch { /* Unrelated unreadable downloads remain untouched. */ }
+            }
+            if (!retired) continue;
+            try { File.Delete(path); }
+            catch (IOException) { /* Suppressed on load; retry removal on the next launch. */ }
+            catch (UnauthorizedAccessException) { /* Suppressed on load; retry removal on the next launch. */ }
+        }
+    }
+
     /// <summary>Returns the loaded bundle's id (null for a zip with no manifest) so callers can
     /// register a re-openable pack source for it — see <see cref="AudioData"/>.</summary>
     private static string? Load(Stream stream)
@@ -670,6 +759,7 @@ public static class PrayerPackStore
         {
             throw new InvalidDataException("manifest.json contains an invalid bundle id");
         }
+        if (RetiredPrayerBundles.Contains(manifest.Id)) return null;
 
         InfoByBundle[manifest.Id] = new CustomDevotionInfo(
             manifest.DisplayName,
@@ -721,6 +811,9 @@ public static class PrayerPackStore
             {
                 var probe = language == "he" && content.PrayerTraditionByKey?.GetValueOrDefault(key) == "vicariate"
                     ? LanguageCatalog.VicariateContentCode : language;
+                if (!CreedPoliciesByBundle.TryGetValue(manifest.Id, out var policies))
+                    CreedPoliciesByBundle[manifest.Id] = policies = new Dictionary<string, CreedPolicy?>();
+                policies[probe] = content.CreedPolicy;
                 byLanguage[probe][key] = text;
                 var readingAid = content.Transliterations?.GetValueOrDefault(key);
                 if (readingAid is not null) translitByLanguage[probe][key] = readingAid;
@@ -730,6 +823,14 @@ public static class PrayerPackStore
                     if (!PrayerOverrides.TryGetValue(probe, out var prayers))
                         PrayerOverrides[probe] = prayers = new Dictionary<string, string>();
                     prayers[sharedKey] = text;
+                    if (!SharedPrayerSources.TryGetValue(probe, out var sources))
+                        SharedPrayerSources[probe] = sources = new Dictionary<string, PrayerSource>();
+                    var renderingKey = content.CreedPolicy?.ApostlesCreed == false
+                        ? key switch { "symbolumApostolorum" => "symbolumNicaenum", "symbolumApostolorumTitle" => "symbolumNicaenumTitle", _ => key }
+                        : key;
+                    var sourceText = rawContent.GetValueOrDefault(renderingKey) ?? (renderingKey == key ? text : "");
+                    sources[sharedKey] = new(manifest.Id, probe, renderingKey, content.CreedPolicy, sourceText,
+                        content.Transliterations?.GetValueOrDefault(renderingKey));
                     if (!PrayerTransliterations.TryGetValue(probe, out var readingAids))
                     {
                         readingAids = new Dictionary<string, string>();
@@ -1302,7 +1403,8 @@ public static class PrayerPackStore
         // Optional reading aid (v0.7): prayer key -> the same text in another script.
         Dictionary<string, string>? Transliterations = null,
         [property: JsonPropertyName("$prayerTraditionByKey")]
-        Dictionary<string, string>? PrayerTraditionByKey = null);
+        Dictionary<string, string>? PrayerTraditionByKey = null,
+        [property: JsonPropertyName("$creedPolicy")] CreedPolicy? CreedPolicy = null);
 
     private sealed record PackOptions(List<CustomDevotionOption> Options);
 
