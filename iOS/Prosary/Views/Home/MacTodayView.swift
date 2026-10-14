@@ -61,7 +61,7 @@ struct MacTodayView: View {
     .toolbar {
       ToolbarItem {
         Button { showsFeasts = true } label: {
-          Label(label("calendar.feastsAndSolemnities", "Feasts and Solemnities"), systemImage: "calendar")
+          Label(label("calendar.eventCalendar", "Event Calendar"), systemImage: "calendar")
         }
       }
     }
@@ -76,7 +76,7 @@ struct MacTodayView: View {
     }
     .sheet(isPresented: $showsFeasts) {
       VStack(spacing: 0) {
-        Text(label("calendar.feastsAndSolemnities", "Feasts and Solemnities"))
+        Text(label("calendar.eventCalendar", "Event Calendar"))
           .font(.headline)
           .frame(maxWidth: .infinity, alignment: .leading)
           .padding()

@@ -54,7 +54,7 @@ struct BasicPrayersView: View {
     let _ = orderGeneration
     let _ = CloudPreferencesGeneration.shared.value
     let language = LanguageCatalog.resolve(chosenLanguage)
-    let ordered = BasicPrayersOrder.apply(BasicPrayerCatalog.all)
+    let ordered = BasicPrayersOrder.apply(BasicPrayerCatalog.available(languageCode: chosenLanguage))
     List(selection: desktopSelection) {
       ForEach(ordered) { prayer in
         #if !os(macOS)
@@ -112,7 +112,7 @@ struct BasicPrayersView: View {
     }
     .navigationTitle(String(localized: "basicPrayers.title", defaultValue: "Basic Prayers", bundle: UILanguage.bundle, locale: UILanguage.locale))
     .macListActivation {
-      guard let id = selectedPrayer, BasicPrayerCatalog.prayer(id: id) != nil else { return false }
+      guard let id = selectedPrayer, ordered.contains(where: { $0.id == id }) else { return false }
       onOpenPrayer(id)
       return true
     }
@@ -178,11 +178,14 @@ struct BasicPrayerFlowView: View {
     let language = LanguageCatalog.resolve(BasicPrayerCatalog.prayer(id: prayerId).map {
       BasicPrayerCatalog.languageCode(for: $0, requested: chosenLanguage)
     } ?? chosenLanguage)
-    let step = BasicPrayerCatalog.prayer(id: prayerId).map {
-      BasicPrayerCatalog.step(for: $0, languageCode: language.code)
+    let step = BasicPrayerCatalog.prayer(id: prayerId).flatMap { prayer -> RosaryStep? in
+      guard BasicPrayerCatalog.isAvailable(prayer, languageCode: language.code) else { return nil }
+      return BasicPrayerCatalog.step(for: prayer, languageCode: language.code)
     }
+    Group {
+    if let step {
     PrayerStepFlowView(
-      navigationTitle: step?.title ?? "",
+      navigationTitle: step.title,
       step: step,
       currentIndex: 0,
       totalSteps: 1,
@@ -197,6 +200,16 @@ struct BasicPrayerFlowView: View {
       navigationTitleIsPrayerHeading: true)
     .onAppear {
       seasonColor = services.calendar.seasonColorToday()
+    }
+    } else {
+      VStack(spacing: 20) {
+        Image(systemName: "text.book.closed").font(.largeTitle).foregroundStyle(.secondary)
+        Text(UILanguage.text("basicPrayers.unavailableInRite", language: UILanguage.current, fallback: "This prayer is not used in the selected rite."))
+          .multilineTextAlignment(.center)
+        BasicPrayersLanguageMenu(chosenLanguage: $chosenLanguage)
+      }.padding(24).frame(maxWidth: .infinity, maxHeight: .infinity)
+        .accessibilityIdentifier("basicPrayer.unavailableInRite")
+    }
     }
   }
 }

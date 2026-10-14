@@ -18,6 +18,7 @@ struct PrayerCard: View {
   var translatedTitle: String? = nil
   let subtitle: String
   let accentColor: Color
+  var artwork: PrayerPackImageResource? = nil
   /// Shown as a chevron the caller can tap separately — a row whose devotion has presets prays
   /// its default on tap and opens the list from here, so the common case stays one tap.
   var onDisclosure: (() -> Void)? = nil
@@ -31,7 +32,10 @@ struct PrayerCard: View {
           .frame(width: 5)
 
         HStack(spacing: 12) {
-          if let iconGlyph {
+          if let artwork {
+            PrayerArtworkView(resource: artwork).aspectRatio(contentMode: .fill)
+              .frame(width: 64, height: 72).clipped().clipShape(RoundedRectangle(cornerRadius: 8)).accessibilityHidden(true)
+          } else if let iconGlyph {
             Text(iconGlyph)
               .font(.title2)
               .foregroundStyle(accentColor)

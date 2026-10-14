@@ -78,7 +78,7 @@ fun RemindersOnlyEditorScreen(prayerId: String, onDone: () -> Unit) {
     } else {
         null
     }
-    val titleText = info?.localizedDisplayName ?: stringResource(current.kind.displayNameRes)
+    val titleText = info?.interfaceDisplayName(current.languageCode) ?: stringResource(current.kind.displayNameRes)
 
     val saveWithPermission = rememberReminderSavePermission {
         val toSave = current
@@ -119,7 +119,8 @@ fun RemindersOnlyEditorScreen(prayerId: String, onDone: () -> Unit) {
                 .verticalScroll(rememberScrollState())
                 .padding(16.dp),
         ) {
-            val declaredOptions = current.customDevotionId?.let { PrayerPackStore.options(it) }.orEmpty()
+            val bundleId = current.customDevotionId
+            val declaredOptions = bundleId?.let { PrayerPackStore.options(it) }.orEmpty()
             val isRosary = current.kind == PrayerKind.Custom && current.customDevotionId == "rosary"
             val options = if (isRosary) {
                 declaredOptions.filterNot { it.key in RosaryOptions.legacyClosingIntentionKeys || it.key == "skipFifthDecade" }
@@ -141,18 +142,21 @@ fun RemindersOnlyEditorScreen(prayerId: String, onDone: () -> Unit) {
                         // store an explicit override.
                         val collectRequired = isRosary && option.key == "rosaryCollect" && editableValues["litanyOfLoreto"] == "true"
                         val value = if (collectRequired) "true" else editableValues[option.key] ?: option.defaultValue
+                        val optionLabel = if (option.key == "apostlesCreed" && bundleId != null &&
+                            PrayerPackStore.usesNiceneCreed(bundleId, PrayerPackStore.effectiveLanguage(bundleId, current.languageCode)))
+                            stringResource(R.string.favorite_editor_nicene_creed) else option.localizedName
                         fun set(newValue: String) {
                             setOption(option.key, newValue)
                         }
                         when (option.kind) {
                             CustomDevotionOption.Kind.Toggle ->
-                                SwitchRow(option.localizedName, value == "true",
+                                SwitchRow(optionLabel, value == "true",
                                     switchModifier = Modifier.testTag("customOption:${option.key}"), enabled = !collectRequired) {
                                     set(if (it) "true" else "false")
                                 }
                             CustomDevotionOption.Kind.Choice ->
                                 OptionPickerField(
-                                    label = option.localizedName,
+                                    label = optionLabel,
                                     options = option.cases.orEmpty().map { it.id },
                                     selected = value,
                                     optionLabel = { id ->

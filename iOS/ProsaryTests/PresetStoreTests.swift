@@ -13,6 +13,67 @@ import SwiftData
 final class PresetStoreTests: XCTestCase {
 
   @MainActor
+  func testPersistentStoreDeletesRetiredCopiesIncludingLateCloudRowsAndRejectsResaving() async throws {
+    let suite = "ProsaryTests.RetiredPreset.\(UUID())"
+    let defaults = try XCTUnwrap(UserDefaults(suiteName: suite))
+    defaults.set(true, forKey: "hasInitializedPrayerPresets")
+    defer { defaults.removePersistentDomain(forName: suite) }
+    let container = try ModelContainer(for: PresetEntry.self,
+      configurations: ModelConfiguration(isStoredInMemoryOnly: true, cloudKitDatabase: .none))
+    let context = ModelContext(container)
+    let store = SwiftDataPresetStore(context: context, defaults: defaults)
+    let retired = Prayer(name: "Old standalone", kind: .custom,
+      customDevotionId: RetiredPrayerBundles.loretoStandaloneID)
+    let builtin = Prayer(name: "Built-in Loreto", kind: .custom, isDefault: true, customDevotionId: "litanyOfLoreto")
+    let neighbor = Prayer(name: "Same author's other prayer", kind: .custom,
+      customDevotionId: "repo.stgamliel-il.otherPrayer")
+    let rosary = Prayer(name: "Rosary with an unused old field", kind: .rosary,
+      customDevotionId: RetiredPrayerBundles.loretoStandaloneID)
+    context.insert(PresetEntry(prayer: retired))
+    context.insert(PresetEntry(prayer: builtin))
+    context.insert(PresetEntry(prayer: neighbor))
+    context.insert(PresetEntry(prayer: rosary))
+    try context.save()
+    RecentPrayerStore(defaults: defaults).record(.prayer(id: retired.id), title: retired.name)
+    RecentPrayerStore(defaults: defaults).record(.prayer(id: builtin.id), title: builtin.name)
+
+    let active = try await store.all()
+    XCTAssertEqual(Set(active.map(\.id)), Set([builtin.id, neighbor.id, rosary.id]))
+    XCTAssertEqual(try context.fetchCount(FetchDescriptor<PresetEntry>()), 3)
+    XCTAssertEqual(RecentPrayerStore(defaults: defaults).entries.map(\.route), [.prayer(id: builtin.id)])
+
+    // CloudKit delivery is asynchronous; cleanup must run after the initial migration too.
+    let late = Prayer(name: "Late cloud copy", kind: .custom,
+      customDevotionId: RetiredPrayerBundles.loretoStandaloneID)
+    context.insert(PresetEntry(prayer: late))
+    try context.save()
+    let fetchedLate = try await store.get(id: late.id)
+    XCTAssertNil(fetchedLate)
+    XCTAssertEqual(try context.fetchCount(FetchDescriptor<PresetEntry>()), 3)
+    do {
+      try await store.save(retired)
+      XCTFail("The retired prayer must not be recreated")
+    } catch { XCTAssertTrue(error is PrayerPackStore.InstallError) }
+    let updated = try await store.updateIfPresent(retired)
+    XCTAssertFalse(updated)
+    let preserved = try await store.get(id: builtin.id)
+    XCTAssertTrue(preserved?.isDefault == true)
+    try await store.save(rosary)
+    let updatedRosary = try await store.updateIfPresent(rosary)
+    XCTAssertTrue(updatedRosary, "An unused custom ID must never retire a Rosary")
+
+    // Legacy rows used the bundle ID as kind, before the generic custom model existed.
+    let legacy = PresetEntry(prayer: retired)
+    legacy.kind = RetiredPrayerBundles.loretoStandaloneID
+    legacy.customDevotionId = nil
+    context.insert(legacy)
+    try context.save()
+    let defaultPrayer = try await store.defaultPreset(kind: .custom)
+    XCTAssertEqual(defaultPrayer?.id, builtin.id)
+    XCTAssertEqual(try context.fetchCount(FetchDescriptor<PresetEntry>()), 3)
+  }
+
+  @MainActor
   func testFreshPersistentStoreRespectsPlatformStartingLibrary() async throws {
     let defaultsName = "ProsaryTests.FreshPresetStore.\(UUID().uuidString)"
     let defaults = try XCTUnwrap(UserDefaults(suiteName: defaultsName))

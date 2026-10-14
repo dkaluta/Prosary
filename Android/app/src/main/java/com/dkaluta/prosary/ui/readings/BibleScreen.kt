@@ -3,6 +3,8 @@ package com.dkaluta.prosary.ui.readings
 import com.dkaluta.prosary.ui.shared.AramaicScriptPicker
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.FlowRow
@@ -79,6 +81,7 @@ private data class BibleChapterState(val loaded: Boolean = false, val chapter: B
 @Composable
 internal fun BibleScreen(
     library: BibleLibrary = BibleLibrary.get(LocalContext.current),
+    date: java.time.LocalDate = java.time.LocalDate.now(),
     openCatalog: (() -> InputStream)? = null,
 ) {
     val context = LocalContext.current
@@ -106,6 +109,9 @@ internal fun BibleScreen(
     var removeEdition by remember { mutableStateOf<BibleEdition?>(null) }
 
     Column(Modifier.fillMaxSize().testTag("bibleScreen")) {
+        Box(Modifier.fillMaxWidth().heightIn(max = 300.dp).verticalScroll(rememberScrollState()).padding(horizontal = 16.dp)) {
+            ScriptureOfDayCard(date, language)
+        }
         Box(Modifier.padding(horizontal = 16.dp)) {
             TextButton(onClick = { showEditions = true }, modifier = Modifier.testTag("bibleEdition")) {
                 Text("${stringResource(R.string.readings_edition)}: ${edition?.name ?: stringResource(R.string.readings_choose_edition)}")

@@ -16,6 +16,7 @@ namespace Prosary;
 /// </summary>
 public partial class App : Application
 {
+    private static readonly SemaphoreSlim ReminderRefreshLock = new(1, 1);
     /// <summary>The process-wide DI container. Pages resolve their ViewModels/services through
     /// this rather than a Frame/Shell-provided mechanism, since plain WinUI3 has none built in.</summary>
     public static IServiceProvider Services { get; private set; } = null!;
@@ -109,9 +110,19 @@ public partial class App : Application
 
     private static async Task RescheduleRemindersAsync()
     {
-        var presetStore = Services.GetRequiredService<IPresetStore>();
-        var scheduler = Services.GetRequiredService<IReminderScheduler>();
-        var prayers = await presetStore.GetAllAsync();
-        scheduler.RescheduleAll(prayers);
+        await ReminderRefreshLock.WaitAsync();
+        try
+        {
+            var presetStore = Services.GetRequiredService<IPresetStore>();
+            var scheduler = Services.GetRequiredService<IReminderScheduler>();
+            var runs = Services.GetRequiredService<IPrayerRunStore>();
+            await Services.GetRequiredService<SqlitePresetStore>().RetireBundlesAsync(
+                prayer => RetiredPrayerCleanup.RemoveSavedState(prayer, scheduler, runs));
+            foreach (var bundleId in RetiredPrayerBundles.Ids)
+                RetiredPrayerCleanup.RemoveBundleState(bundleId, scheduler, runs);
+            var prayers = await presetStore.GetAllAsync();
+            scheduler.RescheduleAll(prayers);
+        }
+        finally { ReminderRefreshLock.Release(); }
     }
 }

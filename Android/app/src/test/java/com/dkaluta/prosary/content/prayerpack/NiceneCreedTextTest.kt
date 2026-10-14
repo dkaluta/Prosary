@@ -1,206 +1,168 @@
 package com.dkaluta.prosary.content.prayerpack
 
+import com.dkaluta.prosary.content.CreedPolicy
 import com.dkaluta.prosary.content.NiceneCreedText
 import com.dkaluta.prosary.models.AppSettings
 import com.dkaluta.prosary.models.BasicPrayerCatalog
-import com.dkaluta.prosary.models.LanguageCatalog
-import com.dkaluta.prosary.models.Prayer
-import com.dkaluta.prosary.models.PrayerKind
-import com.dkaluta.prosary.engine.PrayerEngine
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.util.zip.ZipEntry
 import java.util.zip.ZipOutputStream
+import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.*
 import org.junit.After
-import org.junit.Before
-import org.junit.Test
 import org.junit.Assert.*
+import org.junit.Test
 
 class NiceneCreedTextTest {
-    private var savedChoice: Boolean? = null
-    private var savedOrder = emptyList<String>()
     private val key = "symbolumNicaenum"
     private val latin = "qui ex Patre Filioque procedit"
-    private val greek = "τὸ ἐκ τοῦ Πατρὸς ἐκπορευόμενον"
     private val hebrew = "הַו דּמֶן אַבָא ובא ננפֶק"
     private val syriac = "ܗܰܘ ܕ݁ܡܶܢ ܐܰܒܳܐ ܘܒܐ ܢܢܦܶܩ"
+    private data class Fixture(val text: String, val aid: String? = null, val policy: CreedPolicy? = null, val apostles: String? = null)
 
-    @Before fun setUp() {
-        savedChoice = AppSettings.includeFilioqueChoice
-        savedOrder = AppSettings.languageFallbackOrder
-        AppSettings.restoreFilioqueForTesting(null)
-        AppSettings.setLanguageFallbackOrder(listOf("el", "arc", "la"))
+    @After fun restore() {
         PrayerPackStore.resetForTesting()
+        PrayerPackStore.initialize { name -> File("src/main/assets/$name.prosaryprayer").takeIf { it.exists() }?.inputStream() }
     }
 
-    @After fun tearDown() {
-        AppSettings.restoreFilioqueForTesting(savedChoice)
-        AppSettings.setLanguageFallbackOrder(savedOrder)
-        PrayerPackStore.resetForTesting()
-        PrayerPackStore.initialize { name -> File("src/main/assets/$name.prosaryprayer").takeIf(File::exists)?.inputStream() }
-    }
-
-    @Test fun aRequestedGreekCreedInitializesFromItsActualLatinFallback() {
-        load(mapOf("la" to (latin to null)))
-        assertEquals(latin, PrayerPackStore.resolveBodyText("creedFixture", "el", key))
-        assertEquals(true, AppSettings.includeFilioqueChoice)
+    @Test fun retiredToggleCannotAlterEitherSourcePolicyOrInitializeANewChoice() {
+        load(mapOf("la" to Fixture(latin, policy = CreedPolicy(true, "unbracketed"))))
         AppSettings.includeFilioque = false
-        assertEquals("qui ex Patre procedit", PrayerPackStore.resolveBodyText("creedFixture", "el", key))
+        AppSettings.initializeFilioqueFromSelection("el")
+        assertEquals(latin, PrayerPackStore.resolveBodyText("rosary", "la", key))
+        assertNull(AppSettings.includeFilioqueChoice)
         AppSettings.includeFilioque = true
-        assertEquals(latin, PrayerPackStore.resolveBodyText("creedFixture", "el", key))
+        assertEquals(latin, PrayerPackStore.resolveBodyText("rosary", "la", key))
+        assertNull(AppSettings.includeFilioqueChoice)
     }
 
-    @Test fun emptyAppSettingSentinelUsesTheWinningSourceRatherThanTheInheritedLanguageLabel() {
-        val savedDefault = AppSettings.defaultLanguageCode
+    @Test fun actualFallbackSourceOwnsThePolicyRatherThanTheRequestedLanguage() {
+        load(mapOf("la" to Fixture(latin, policy = CreedPolicy(true, "unbracketed"))))
+        assertEquals(latin, PrayerPackStore.resolveBodyText("rosary", "el", key))
+        assertFalse(PrayerPackStore.usesNiceneCreed("rosary", "el"))
+        load(mapOf("arc" to Fixture(hebrew, syriac, CreedPolicy(false, "bracketed"))))
+        assertTrue(PrayerPackStore.usesNiceneCreed("rosary", "arc"))
+        assertEquals("הַו דּמֶן אַבָא [ובא] ננפֶק", PrayerPackStore.resolveBodyText("rosary", "arc", key))
+        assertEquals("ܗܰܘ ܕ݁ܡܶܢ ܐܰܒܳܐ [ܘܒܐ] ܢܢܦܶܩ", PrayerPackStore.transliteration("rosary", "arc", key))
+    }
+
+    @Test fun unknownAndUntaggedImportsRetainExactWordingAndReadingAid() {
+        load(mapOf("arc" to Fixture(hebrew, syriac)))
+        assertEquals(hebrew, PrayerPackStore.resolveBodyText("rosary", "arc", key))
+        assertEquals(syriac, PrayerPackStore.transliteration("rosary", "arc", key))
+        assertNotNull(BasicPrayerCatalog.prayer("creed", "arc"))
+        assertFalse(PrayerPackStore.usesNiceneCreed("rosary", "arc"))
+        assertEquals("Unrecognized sourced body", NiceneCreedText.applyingPolicy(key, "Unrecognized sourced body", CreedPolicy(false, "absent")))
+    }
+
+    @Test fun unavailableApostlesEntryStaysHiddenWhileLegacyRosaryStepsUseSameSourceNicene() {
+        load(mapOf("uk" to Fixture("що від Отця [і Сина] ісходить", policy = CreedPolicy(false, "bracketed"), apostles = "Historical Apostles body"),
+            "la" to Fixture(latin, policy = CreedPolicy(true, "unbracketed"), apostles = "Latin Apostles body")))
+        assertNull(BasicPrayerCatalog.prayer("creed", "uk"))
+        assertTrue(PrayerPackStore.usesNiceneCreed("rosary", "uk"))
+        assertFalse(PrayerPackStore.usesNiceneCreed("rosary", "la"))
+        assertNotNull(BasicPrayerCatalog.prayer("niceneCreed", "uk"))
+        assertEquals("що від Отця [і Сина] ісходить", PrayerPackStore.resolveBodyText("rosary", "uk", "symbolumApostolorum"))
+        assertEquals("що від Отця [і Сина] ісходить", com.dkaluta.prosary.content.PrayerTranslations.get("uk", com.dkaluta.prosary.content.PrayerKey.SymbolumApostolorum))
+        assertEquals("Nicene source title", PrayerPackStore.resolveBodyText("rosary", "uk", "symbolumApostolorumTitle"))
+        assertEquals("Latin Apostles body", PrayerPackStore.resolveBodyText("rosary", "la", "symbolumApostolorum"))
+        assertNotNull(BasicPrayerCatalog.prayer("creed", "la"))
+    }
+
+    @Test fun unavailableEasternCreedNeverFallsThroughToALatinApostlesBody() {
+        load(mapOf("arc" to Fixture(hebrew, policy = CreedPolicy(false, "bracketed")),
+            "la" to Fixture(latin, policy = CreedPolicy(true, "unbracketed"), apostles = "Latin Apostles body")))
+        assertNull(BasicPrayerCatalog.prayer("creed", "arc"))
+        assertEquals("הַו דּמֶן אַבָא [ובא] ננפֶק", PrayerPackStore.resolveBodyText("rosary", "arc", "symbolumApostolorum"))
+    }
+
+    @Test fun missionAndUkrainianBracketOnlyTheSuppliedProcessionPhrase() {
+        val mission = "אֲשֶׁר נֶאֱצַל מִן הָאָב (וּמִן הַבֵּן). ועם הבן נעבד"
+        assertEquals("אֲשֶׁר נֶאֱצַל מִן הָאָב [וּמִן הַבֵּן]. ועם הבן נעבד", NiceneCreedText.applyingPolicy(key, mission, CreedPolicy(false, "bracketed")))
+        val ukrainian = "що від Отця [і Сина] ісходить"
+        assertEquals(ukrainian, NiceneCreedText.applyingPolicy(key, ukrainian, CreedPolicy(false, "bracketed")))
+        assertEquals("що від Отця ісходить", NiceneCreedText.applyingPolicy(key, ukrainian, CreedPolicy(false, "absent")))
+        assertEquals("що від Отця і Сина ісходить", NiceneCreedText.applyingPolicy(key, ukrainian, CreedPolicy(false, "unbracketed")))
+    }
+
+    @Test fun omittedGreekSourceAndUnrelatedFatherSonTextCannotGainInventedClauses() {
+        val greek = "τὸ ἐκ τοῦ Πατρὸς ἐκπορευόμενον"
+        assertEquals(greek, NiceneCreedText.applyingPolicy(key, greek, CreedPolicy(false, "unbracketed")))
+        assertEquals(latin, NiceneCreedText.applyingPolicy("anotherPrayer", latin, CreedPolicy(false, "absent")))
+        assertEquals("qui ex Patre procedit", NiceneCreedText.applyingPolicy(key, "qui ex Patre procedit", CreedPolicy(true, "unbracketed")))
+    }
+
+    @Test fun sharedEasternCreedKeepsItsSourceBodyAidAndPolicyAfterItsPackIsRemoved() {
+        val baseContents = mapOf("la" to Fixture(latin, policy = CreedPolicy(true, "unbracketed"), apostles = "Latin Apostles body"))
+        load(baseContents)
+        val withoutImportedCreed = PrayerPackStore.resolveBodyText("otherDevotion", "arc", "symbolumApostolorum")
+        val directory = java.nio.file.Files.createTempDirectory("prosary-creed-removal").toFile()
+        PrayerPackStore.installedPacksDirectory = directory
         try {
-            AppSettings.setDefaultLanguageCode("el")
-            load(mapOf("la" to (latin to null)))
-            assertEquals(latin, PrayerPackStore.resolveBodyText("creedFixture", "", key))
-            assertEquals(true, AppSettings.includeFilioqueChoice)
+            val sourceId = "importedEasternCreed"
+            PrayerPackStore.installPack(pack(sourceId, mapOf("arc" to
+                Fixture(hebrew, syriac, CreedPolicy(false, "bracketed"), "Historical Apostles body"))))
+            val consumerId = "otherDevotion"
+            PrayerPackStore.installPack(archive(mapOf(
+                "manifest.json" to """{"id":"$consumerId","displayName":"Other Devotion","languages":["arc"],"hasCatalog":false}""",
+                "devotion.json" to """{"type":"steps","steps":[{"title":"Creed","bodyKey":"symbolumApostolorum"}]}""",
+                "content/arc.json" to """{"prayers":{"otherBody":"Other sourced prayer"}}""",
+            )))
+            // A later Nicene-only override cannot replace the legacy key's authored source.
+            PrayerPackStore.installPack(pack("otherCreedSource", mapOf("arc" to Fixture("Another sourced Nicene body"))))
+            val prayer = com.dkaluta.prosary.models.Prayer(kind = com.dkaluta.prosary.models.PrayerKind.Custom,
+                languageCode = "arc", customDevotionId = consumerId)
+            fun assertSameSourceCreed() {
+                val step = com.dkaluta.prosary.engine.PrayerEngine().buildSteps(prayer).single()
+                assertEquals("הַו דּמֶן אַבָא [ובא] ננפֶק", step.body)
+                assertEquals("ܗܰܘ ܕ݁ܡܶܢ ܐܰܒܳܐ [ܘܒܐ] ܢܢܦܶܩ", step.transliteratedBody)
+                assertTrue(PrayerPackStore.usesNiceneCreed(consumerId, "arc"))
+            }
+            assertSameSourceCreed()
+            PrayerPackStore.removeInstalledPack(sourceId)
+            assertFalse(File(directory, "$sourceId.prosaryprayer").exists())
+            assertNull(PrayerPackStore.info(sourceId))
+            assertSameSourceCreed()
+
+            // The retained override is process-local and disappears on the next catalog load.
+            PrayerPackStore.resetForTesting()
+            PrayerPackStore.installedPacksDirectory = directory
+            val base = pack("rosary", baseContents)
+            PrayerPackStore.initialize { if (it == "rosary") base.inputStream() else null }
+            val reloaded = com.dkaluta.prosary.engine.PrayerEngine().buildSteps(prayer).single()
+            assertEquals(withoutImportedCreed, reloaded.body)
+            assertNull(reloaded.transliteratedBody)
         } finally {
-            AppSettings.setDefaultLanguageCode(savedDefault)
+            directory.deleteRecursively()
         }
     }
 
-    @Test fun bookmarkAndWidgetValidationCannotChooseTheFirstRiteBeforeTheReaderOpens() {
-        load(mapOf("el" to (greek to null), "la" to (latin to null)))
-        val engine = PrayerEngine()
-        val greekPrayer = Prayer(kind = PrayerKind.Custom, customDevotionId = "creedFixture", languageCode = "el")
-        assertEquals(greek, engine.buildSteps(greekPrayer, initializeFilioque = false).single().body)
-        assertNull(AppSettings.includeFilioqueChoice)
-
-        // A discarded Greek candidate must not turn Filioque off in the Latin session.
-        val latinPrayer = greekPrayer.copy(languageCode = "la")
-        assertEquals(latin, engine.buildSteps(latinPrayer, initializeFilioque = false).single().body)
-        assertNull(AppSettings.includeFilioqueChoice)
-        assertEquals(latin, engine.buildSteps(latinPrayer).single().body)
-        assertEquals(true, AppSettings.includeFilioqueChoice)
+    private fun load(contents: Map<String, Fixture>) {
+        val bytes = pack("rosary", contents)
+        PrayerPackStore.resetForTesting()
+        PrayerPackStore.initialize { name -> if (name == "rosary") bytes.inputStream() else null }
     }
 
-    @Test fun shippedVicariateNiceneBodyKeepsTheExactSuppliedTextWithoutInventingAReadingAid() {
-        val fixture = Json.parseToJsonElement(File("../../Shared/tools/fixtures/nicene-creed.json").readText()).jsonObject
-        val supplied = fixture.getValue("hebrewVicariate").jsonObject.getValue("text").jsonPrimitive.content
-        val apostles = fixture.getValue("existingApostlesHebrew").jsonPrimitive.content
-        val includedClause = "הַנּוֹבֵעַ מֵהָאָב וּמֵהַבֵּן"
-        assertTrue(supplied.contains(includedClause))
-        assertEquals(java.text.Normalizer.normalize(supplied, java.text.Normalizer.Form.NFC), supplied)
-        PrayerPackStore.initialize { name -> File("src/main/assets/$name.prosaryprayer").takeIf(File::exists)?.inputStream() }
-        val prayer = requireNotNull(BasicPrayerCatalog.prayer("niceneCreed"))
+    private fun pack(id: String, contents: Map<String, Fixture>): ByteArray = archive(buildMap {
+        val builtin = if (id == "rosary") "\"builtinKind\":\"rosary\"," else ""
+        put("manifest.json", """{"id":"$id",${builtin}"displayName":"Fixture","languages":${Json.encodeToString(contents.keys.toList())},"hasCatalog":false}""")
+        put("devotion.json", """{"type":"steps","steps":[{"titleKey":"symbolumApostolorumTitle","bodyKey":"symbolumApostolorum"}]}""")
+        contents.forEach { (language, fixture) -> put("content/$language.json", buildJsonObject {
+            put("prayers", buildJsonObject {
+                put(key, fixture.text); put("symbolumNicaenumTitle", "Nicene source title")
+                fixture.apostles?.let { put("symbolumApostolorum", it); put("symbolumApostolorumTitle", "Apostles source title") }
+            })
+            fixture.aid?.let { put("transliterations", buildJsonObject { put(key, it) }) }
+            fixture.policy?.let { put("\$creedPolicy", Json.encodeToJsonElement(it)) }
+        }.toString()) }
+    })
 
-        val included = BasicPrayerCatalog.step(prayer, "he")
-        assertEquals(supplied, included.body)
-        assertTrue(included.body.contains(includedClause))
-        assertEquals(true, AppSettings.includeFilioqueChoice)
-        assertNull(included.transliteratedBody)
-        assertFalse(included.body.contains('['))
-        assertFalse(included.body.contains(']'))
-
-        AppSettings.includeFilioque = false
-        val omitted = BasicPrayerCatalog.step(prayer, "he")
-        val suppliedWithoutFilioque = supplied.replace(includedClause, "הַנּוֹבֵעַ מֵהָאָב")
-        assertNotEquals(supplied, suppliedWithoutFilioque)
-        assertEquals(suppliedWithoutFilioque, omitted.body)
-        assertNull(omitted.transliteratedBody)
-        assertEquals(apostles, BasicPrayerCatalog.step(requireNotNull(BasicPrayerCatalog.prayer("creed")), "he").body)
-
-        AppSettings.includeFilioque = true
-        assertEquals(supplied, BasicPrayerCatalog.step(prayer, "he").body)
-        assertNull(PrayerPackStore.transliteration("rosary", "he", key))
-        assertEquals(apostles, BasicPrayerCatalog.step(requireNotNull(BasicPrayerCatalog.prayer("creed")), "he").body)
-    }
-
-    @Test fun greekSourceKeepsItsWordingAndItsFirstDefaultSurvivesLatinFallback() {
-        load(mapOf("el" to (greek to null), "la" to (latin to null)))
-        assertEquals(greek, PrayerPackStore.resolveBodyText("creedFixture", "el", key))
-        assertEquals(false, AppSettings.includeFilioqueChoice)
-        assertEquals("qui ex Patre procedit", PrayerPackStore.resolveBodyText("creedFixture", "la", key))
-        AppSettings.includeFilioque = true
-        assertEquals(greek, PrayerPackStore.resolveBodyText("creedFixture", "el", key))
-    }
-
-    @Test fun bothAramaicScriptsFollowTheWinningSourceWithoutBorrowingAnotherAid() {
-        load(mapOf("arc" to (hebrew to syriac), "la" to (latin to "Unrelated aid")))
-        AppSettings.includeFilioque = false
-        assertEquals("הַו דּמֶן אַבָא ננפֶק", PrayerPackStore.resolveBodyText("creedFixture", "el", key))
-        assertEquals("ܗܰܘ ܕ݁ܡܶܢ ܐܰܒܳܐ ܢܢܦܶܩ", PrayerPackStore.transliteration("creedFixture", "el", key))
-        AppSettings.includeFilioque = true
-        assertEquals(hebrew, PrayerPackStore.resolveBodyText("creedFixture", "arc", key))
-        assertEquals(syriac, PrayerPackStore.transliteration("creedFixture", "arc", key))
-        load(mapOf("arc" to (hebrew to null), "la" to (latin to "Unrelated aid")))
-        assertNull(PrayerPackStore.transliteration("creedFixture", "arc", key))
-    }
-
-    @Test fun missionParenthesesDisappearAndWorshipOfTheSonRemains() {
-        val procession = "אֲשֶׁר נֶאֱצַל מִן הָאָב (וּמִן הַבֵּן)"
-        val worship = "לו סוגדים ולו נותנים יקר כלאב וכלבן"
-        val source = "$procession. $worship"
-        assertEquals("אֲשֶׁר נֶאֱצַל מִן הָאָב וּמִן הַבֵּן. $worship", NiceneCreedText.applying(key, source, true))
-        assertEquals("אֲשֶׁר נֶאֱצַל מִן הָאָב. $worship", NiceneCreedText.applying(key, source, false))
-        val vicariate = "הנובע מהאב [ומהבן]. $worship"
-        assertEquals("הנובע מהאב ומהבן. $worship", NiceneCreedText.applying(key, vicariate, true))
-        assertEquals("הנובע מהאב. $worship", NiceneCreedText.applying(key, vicariate, false))
-    }
-
-    @Test fun pointedVicariateProcessionKeepsEverySuppliedPointOutsideTheOmittedPhrase() {
-        val canonical = "הַנּוֹבֵעַ מֵהָאָב וּמֵהַבֵּן"
-        val priorCombiningOrder = "הַנּוֹבֵעַ מֵהָאָב וּמֵהַבֵּן"
-        assertNotEquals(canonical, priorCombiningOrder)
-        assertEquals(java.text.Normalizer.normalize(priorCombiningOrder, java.text.Normalizer.Form.NFC), canonical)
-        for (clause in listOf(canonical, priorCombiningOrder)) {
-            val source = "בֵּ $clause. כלאב וכלבן"
-            assertEquals(true, NiceneCreedText.statusQuo(key, source))
-            assertEquals(source, NiceneCreedText.applying(key, source, true))
-            assertEquals("בֵּ הַנּוֹבֵעַ מֵהָאָב. כלאב וכלבן", NiceneCreedText.applying(key, source, false))
-        }
-        assertEquals(false, NiceneCreedText.statusQuo(key, "הַנּוֹבֵעַ מֵהָאָב"))
-
-        val source = "רוח הקדש $canonical. כלאב וכלבן"
-        load(mapOf("he" to (source to null)))
-        assertEquals(source, PrayerPackStore.resolveBodyText("creedFixture", "he", key))
-        assertEquals(true, AppSettings.includeFilioqueChoice)
-        AppSettings.includeFilioque = false
-        assertEquals("רוח הקדש הַנּוֹבֵעַ מֵהָאָב. כלאב וכלבן", PrayerPackStore.resolveBodyText("creedFixture", "he", key))
-    }
-
-    @Test fun ordinaryApostlesAndUnknownBodiesRemainUnchangedAndDoNotInitialize() {
-        val apostles = "I believe in God, the Father almighty, and in Jesus Christ, his only Son."
-        assertNull(NiceneCreedText.statusQuo("symbolumApostolorum", apostles))
-        assertEquals(apostles, NiceneCreedText.applying("symbolumApostolorum", apostles, false))
-        assertEquals(latin, NiceneCreedText.applying("anotherPrayer", latin, false))
-        load(mapOf("la" to ("Unrecognized sourced body" to null)))
-        assertEquals("Unrecognized sourced body", PrayerPackStore.resolveBodyText("creedFixture", "la", key))
-        assertNull(AppSettings.includeFilioqueChoice)
-    }
-
-    @Test fun niceneCreedHasAnIndependentCatalogEntryImmediatelyAfterTheExistingCreed() {
-        val prayer = requireNotNull(BasicPrayerCatalog.prayer("niceneCreed"))
-        assertEquals("rosary", prayer.bundleId)
-        assertEquals(key, prayer.bodyKey)
-        assertEquals("symbolumNicaenumTitle", prayer.titleKey)
-        val preceding = BasicPrayerCatalog.all.indexOfFirst { it.id == "creed" }
-        assertEquals(prayer, BasicPrayerCatalog.all[preceding + 1])
-        assertEquals("symbolumApostolorum", BasicPrayerCatalog.prayer("creed")!!.bodyKey)
-    }
-
-    private fun load(contents: Map<String, Pair<String, String?>>) {
+    private fun archive(entries: Map<String, String>): ByteArray {
         val bytes = ByteArrayOutputStream()
         ZipOutputStream(bytes).use { zip ->
-            fun add(name: String, text: String) {
-                zip.putNextEntry(ZipEntry(name)); zip.write(text.toByteArray()); zip.closeEntry()
-            }
-            add("manifest.json", buildJsonObject {
-                put("schemaVersion", 1); put("id", "creedFixture"); put("kind", "creedFixture")
-                put("displayName", "Fixture"); put("languages", JsonArray(contents.keys.map(::JsonPrimitive)))
-                put("hasCatalog", false)
-            }.toString())
-            add("devotion.json", """{"type":"steps","steps":[{"title":"Fixture","bodyKey":"$key"}]}""")
-            for ((language, pair) in contents) add("content/$language.json", buildJsonObject {
-                put("prayers", buildJsonObject { put(key, pair.first) })
-                pair.second?.let { aid -> put("transliterations", buildJsonObject { put(key, aid) }) }
-            }.toString())
+            entries.forEach { (name, text) -> zip.putNextEntry(ZipEntry(name)); zip.write(text.toByteArray()); zip.closeEntry() }
         }
-        PrayerPackStore.resetForTesting()
-        PrayerPackStore.initialize { name -> if (name == "rosary") bytes.toByteArray().inputStream() else null }
+        return bytes.toByteArray()
     }
 }

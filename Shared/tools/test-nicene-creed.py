@@ -4,7 +4,7 @@
 # ///
 """Pin supplied Nicene wording and its separate catalog/data contract across native ports.
 
-Runtime preference initialization and exact clause rendering are covered by the native
+Runtime source policy and exact clause rendering are covered by the native
 Nicene tests; this independent source check ensures those renderers do not rewrite the
 canonical prayers, change the existing Creed, invent reading aids, or ship stale packs.
 """
@@ -136,19 +136,17 @@ class NiceneCreedSourceTests(unittest.TestCase):
         self.assertEqual(identities[0], identities[1])
         self.assertEqual(identities[0], identities[2])
 
-    def test_shared_setting_key_and_optional_initialization_contract(self):
+    def test_source_owned_policy_replaces_the_user_preference(self):
         schema = json.loads((SHARED / "schema/domain-model.json").read_text())
-        preference = schema["types"]["AppSettings"]["fields"]["includeFilioque"]
-        self.assertEqual(preference["type"], "boolean")
-        self.assertNotIn("default", preference, "A fixed default would erase first-rite initialization")
-        self.assertEqual(preference["initialDefaultByRite"], FIXTURE["initialIncludeFilioqueByRite"])
-        for directory, suffix in ((ROOT / "iOS/Prosary", "swift"),
-                                  (ROOT / "Android/app/src/main/java", "kt"),
-                                  (ROOT / "Windows/Prosary", "cs")):
-            with self.subTest(platform=directory.parts[-1]):
-                self.assertTrue(any('"includeFilioque"' in path.read_text()
-                                    for path in directory.rglob(f"*.{suffix}")),
-                                "All native ports must store the identical preference key")
+        self.assertIn("$creedPolicy", schema["types"]["PrayerPackContent"]["fields"])
+        self.assertTrue(schema["types"]["AppSettings"]["fields"]["includeFilioque"]["retired"])
+        for language in ("arc", "he-x-gamliel", "uk"):
+            policy = content(language)["$creedPolicy"]
+            self.assertFalse(policy["apostlesCreed"])
+            self.assertEqual(policy["filioque"], "bracketed")
+        self.assertEqual(content("la")["$creedPolicy"]["filioque"], "unbracketed")
+        self.assertTrue(content("he")["$creedPolicy"]["apostlesCreed"])
+        self.assertFalse(content("el")["$creedPolicy"]["apostlesCreed"])
 
     def test_distributed_content_matches_canonical_sources_and_native_copies(self):
         pack = SHARED / "dist/rosary.prosaryprayer"

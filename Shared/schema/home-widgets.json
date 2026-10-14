@@ -27,19 +27,35 @@
       "scope": "Device-local private photo copy; never a shared gallery permission or cloud-synced external path.",
       "replacement": "Validate and install the new private image before retiring the previous private copy. A failed import preserves the existing photo.",
       "removal": "Remove only the app-owned copy when removing the photo or photo card. Keep the source gallery photo intact."
+    },
+    "homeWidgetCollapsedIds": {
+      "type": "string",
+      "default": "",
+      "encoding": "Newline-separated widget IDs; known first occurrences only.",
+      "scope": "Device-persisted compact/large state, independent of visibility/order.",
+      "behavior": "Compact cards retain heading, source summary and open action; large cards show full content and optional picture."
+    },
+    "homeWidgetGraphicPaths": {
+      "type": "string",
+      "default": "{}",
+      "encoding": "JSON object known widget ID -> app-private device-local image path.",
+      "scope": "Never synchronize paths or photos.",
+      "replacement": "Validate and install the new private image before retiring the previous private copy. A failed import preserves the existing photo.",
+      "removal": "Remove only the app-owned private copy. Clear its mapping without deleting the original photo or another card image."
     }
   },
   "cards": {
     "readings": "Complete localized appointed citations, in reverseReadingsOrder presentation when enabled, linking to Daily Readings for the shared Home/Readings civil date and selected calendar.",
     "popeIntention": "Title and prose from the canonical Pope intention table for the selected month.",
-    "calendar": "Selected date and observances with native calendar access. Selecting a date updates shared Home/Readings date state.",
+    "calendar": "Every published date in the selected calendar is marked; up to three dots plus full accessible event count. Monday-first civil Gregorian grid, true RTL. Supplied observances are independently clickable, with parent fallback for older data. Exact-language descriptions and credits appear in a native detail sheet/dialog, with Readings for this Date action preserving window state.",
     "photo": "A chosen gallery image, stored in app-private storage, with choose/replace/remove controls and recoverable errors.",
     "reminders": "Actual enabled saved-prayer and daily reading/saint reminders, formatted as local wall-clock times. Manage opens existing native reminder settings/editors.",
-    "scripture": "Open the existing Bible reader and selected edition.",
+    "scripture": "Scripture of the Day: first Gospel appointment in canonical source order, else first appointment. Use existing exact citation mapping, selected edition and offline text loader; missing dates/text remain explicit. Open the existing Bible reader.",
     "reflection": "Exact-language, selected-calendar/date reflection sections from the separate provisional Mission source, retaining source credit. Missing source prose is explicit; no invented reflections.",
     "feast": "Localized feast/rank plus exact-language sourced descriptions and credit where available. Repeated parent feast headings are omitted; source-supplied sections render as dedicated headed blocks in each rite's own order. Incomplete section coverage keeps the full source prose. Missing description/date has a localized explicit state."
   },
   "navigation": "Phone/tablet tabs are Home, Pray, Readings and Search. Windows opens Home in its library window. Community prayers are reached from Search, replacing the separate Browse/Community navigation destination.",
   "date": "Reuse the existing window-local civil selection and calendar/Pascha settings; follow the local day until browsing. Home shortcuts preserve the selected day. Operating-system Today/calendar widgets retain their documented current-day activation behavior.",
-  "localization": "All new labels and empty/error states ship in en, he, ar, ru, tl/fil, fr, it and uk; Hebrew and Arabic use genuine RTL."
+  "localization": "All new labels and empty/error states ship in en, he, ar, ru, tl/fil, fr, it and uk; Hebrew and Arabic use genuine RTL.",
+  "cardArtwork": "Home cards can add/change/remove private images. Pray/library prayer cards resolve authored gallery artwork through the owning pack; no native duplicate artwork assets."
 }

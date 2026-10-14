@@ -5,6 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.ViewModel
 import com.dkaluta.prosary.content.audio.AudioPlaybackController
+import com.dkaluta.prosary.content.prayerpack.PrayerPackStore
 import com.dkaluta.prosary.models.DevotionEntryContext
 import com.dkaluta.prosary.models.JesusPrayerProgress
 import com.dkaluta.prosary.models.JesusPrayerTarget
@@ -57,7 +58,11 @@ internal class CustomDevotionPrayerSession(
     val seasonColor = mutableStateOf(Color.Transparent)
     val languageCode = mutableStateOf<String?>(null)
     val matchingFavoriteId = mutableStateOf(prayer?.id)
-    val displayName = mutableStateOf(devotionId)
+    val displayName = mutableStateOf(
+        PrayerPackStore.info(devotionId)?.displayNameIn(
+            PrayerPackStore.effectiveLanguage(devotionId, initialLanguageCode ?: prayer?.languageCode),
+        ) ?: devotionId,
+    )
     val variantId = mutableStateOf(DevotionEntryContext.initialVariant(devotionId, initialVariantId, prayer?.variantId))
     val variantMenuExpanded = mutableStateOf(false)
     val chosenLanguage = mutableStateOf(initialLanguageCode ?: prayer?.languageCode ?: LanguageCatalog.defaultSentinel)

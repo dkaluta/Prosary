@@ -17,6 +17,7 @@ typedef struct {
     const char *language;
     char *error;
     size_t error_size;
+    const Json *prayer_policy; /* Policy belonging to the last winning prayer source. */
     int failed, season, step_fallback, step_mixed, include_litany_of_loreto, omit_rosary_collect;
 } Builder;
 static const char *language_codes[] = {"en", "he", "ar", "ru", "tl", "fr", "it", "uk", "la", "es", "el", "arc", "he-x-gamliel"};
@@ -125,19 +126,114 @@ static size_t fallback_chain(const char *lang, const char **chain) {
     if (!equal(lang, "la")) chain[n++] = "la";
     return n;
 }
-static const char *lookup_at(Builder *b, const char *lang, const char *key) {
-    const Json *content = json_get(b->pack, "content");
-    const Json *local;
-    const char *s, *marked;
+static const Json *source_content(const Json *pack, const char *lang) {
+    return json_get(json_get(pack, "content"), equal(lang, "he-x-vicariate") ? "he" : lang);
+}
+static const char *source_text(const Json *local, const char *lang, const char *key) {
+    const char *s = json_text(json_get(local, "prayers"), key);
+    const char *marked = json_text(json_get(local, "$prayerTraditionByKey"), key);
     int vicariate = equal(lang, "he-x-vicariate");
-    local = json_get(content, vicariate ? "he" : lang);
-    marked = json_text(json_get(local, "$prayerTraditionByKey"), key);
-    s = json_text(json_get(local, "prayers"), key);
     if (equal(lang, "he") && equal(marked, "vicariate")) s = NULL;
     if (vicariate && !equal(marked, "vicariate")) s = NULL;
-    if (s && *s) return s;
-    s = json_text(json_get(json_get(b->engine->root, "common"), lang), key);
     return s && *s ? s : NULL;
+}
+static int creed_key(const char *key) {
+    return equal(key, "symbolumApostolorum") || equal(key, "symbolumApostolorumTitle") ||
+        equal(key, "symbolumNicaenum") || equal(key, "symbolumNicaenumTitle");
+}
+static const char *source_creed(Builder *b, const Json *local, const char *lang, const char *key) {
+    const Json *policy = json_get(local, "$creedPolicy");
+    const char *source_key = key, *s;
+    if (!json_bool(json_get(policy, "apostlesCreed"), 1)) {
+        if (equal(key, "symbolumApostolorum")) source_key = "symbolumNicaenum";
+        else if (equal(key, "symbolumApostolorumTitle")) source_key = "symbolumNicaenumTitle";
+    }
+    s = source_text(local, lang, source_key);
+    if (source_key != key && !s) {
+        /* An unavailable source cannot silently become a different tradition's Creed. */
+        build_error(b, "Missing same-source Nicene Creed", source_key);
+        s = "";
+    }
+    if (s) b->prayer_policy = policy;
+    return s;
+}
+static const char *lookup_at(Builder *b, const char *lang, const char *key) {
+    const Json *local = source_content(b->pack, lang);
+    const char *s;
+    b->prayer_policy = NULL;
+    if (creed_key(key)) s = source_creed(b, local, lang, key);
+    else s = source_text(local, lang, key);
+    if (s) return s;
+    if (creed_key(key)) {
+        /* Canonical shared Creeds belong to the Rosary source, including Mission's
+         * native legacy key. Resolve that source before the flattened common table. */
+        const Json *shared = source_content(pack_by_id(b->engine, "rosary"), lang);
+        if (shared != local) {
+            s = source_creed(b, shared, lang, key);
+            if (s) return s;
+        }
+    }
+    s = json_text(json_get(json_get(b->engine->root, "common"), lang), key);
+    /* Native base Creeds are the Rosary's authored source at this exact probe. */
+    if (s && *s && creed_key(key))
+        b->prayer_policy = json_get(source_content(pack_by_id(b->engine, "rosary"), lang), "$creedPolicy");
+    return s && *s ? s : NULL;
+}
+
+static int replace_clause(Builder *b, char **text, const char *source, const char *replacement) {
+    const char *scan = *text, *match;
+    size_t length = strlen(*text), a = strlen(source), c = strlen(replacement), count = 0, size;
+    char *out, *cursor;
+    if (equal(source, replacement)) return 1;
+    while ((match = strstr(scan, source)) != NULL) { ++count; scan = match + a; }
+    if (!count) return 1;
+    if (c > a && count > (MAX_TEXT - length) / (c - a)) {
+        build_error(b, "Prayer text too large", NULL); return 0;
+    }
+    size = c >= a ? length + count * (c - a) : length - count * (a - c);
+    out = (char *)malloc(size + 1);
+    if (!out) { build_error(b, "Out of memory", NULL); return 0; }
+    cursor = out; scan = *text;
+    while ((match = strstr(scan, source)) != NULL) {
+        size_t prefix = (size_t)(match - scan);
+        memcpy(cursor, scan, prefix); cursor += prefix;
+        memcpy(cursor, replacement, c); cursor += c; scan = match + a;
+    }
+    strcpy(cursor, scan); free(*text); *text = out; return 1;
+}
+/* Return an owned rendition only for a recognized authored policy. The caller frees
+ * it after append has copied the step; the immutable generated snapshot stays raw. */
+static char *render_creed(Builder *b, const char *key, const char *text, const Json *policy) {
+    static const struct { const char *prefix, *phrase, *suffix; } clauses[] = {
+        {"הנובע מהאב ", "ומהבן", ""},
+        {"אֲשֶׁר נֶאֱצַל מִן הָאָב ", "וּמִן הַבֵּן", ""},
+        {"הַו דּמֶן אַבָא ", "ובא", " ננפֶק"},
+        {"ܗܰܘ ܕ݁ܡܶܢ ܐܰܒܳܐ ", "ܘܒܐ", " ܢܢܦܶܩ"},
+        {"qui ex Patre ", "Filioque", " procedit"},
+        {"הַנּוֹבֵעַ מֵהָאָב ", "וּמֵהַבֵּן", ""},
+        {"הַנּוֹבֵעַ מֵהָאָב ", "וּמֵהַבֵּן", ""},
+        {"що від Отця ", "і Сина", " ісходить"}
+    };
+    const char *mode = json_text(policy, "filioque");
+    char *result;
+    size_t i;
+    if ((!equal(key, "symbolumApostolorum") && !equal(key, "symbolumNicaenum")) ||
+        (!equal(mode, "absent") && !equal(mode, "bracketed") && !equal(mode, "unbracketed"))) return NULL;
+    result = copy(text);
+    if (!result) { build_error(b, "Out of memory or excessive text", NULL); return NULL; }
+    for (i = 0; i < sizeof(clauses) / sizeof(clauses[0]); ++i) {
+        char included[512], bracketed[512], parenthesized[512], omitted[512];
+        const char *replacement;
+        snprintf(included, sizeof(included), "%s%s%s", clauses[i].prefix, clauses[i].phrase, clauses[i].suffix);
+        snprintf(bracketed, sizeof(bracketed), "%s[%s]%s", clauses[i].prefix, clauses[i].phrase, clauses[i].suffix);
+        snprintf(parenthesized, sizeof(parenthesized), "%s(%s)%s", clauses[i].prefix, clauses[i].phrase, clauses[i].suffix);
+        snprintf(omitted, sizeof(omitted), "%.*s%s", (int)strlen(clauses[i].prefix) - 1, clauses[i].prefix, clauses[i].suffix);
+        replacement = equal(mode, "absent") ? omitted : equal(mode, "bracketed") ? bracketed : included;
+        if (!replace_clause(b, &result, bracketed, replacement) ||
+            !replace_clause(b, &result, parenthesized, replacement) ||
+            !replace_clause(b, &result, included, replacement)) { free(result); return NULL; }
+    }
+    return result;
 }
 static const char *prayer(Builder *b, const char *key, const char **actual) {
     const char *chain[5], *s;
@@ -289,8 +385,8 @@ static void antiphon(Builder *b, const Json *entry) {
     free(a); free(c); free(d);
 }
 static void entry(Builder *b, const Json *e, const char *context, int decade, int bead, int beads) {
-    const char *title, *body, *subtitle, *lang, *key, *kind;
-    char *composed = NULL;
+    const char *title, *body, *subtitle, *lang, *key, *kind, *body_key;
+    char *composed = NULL, *rendered;
     int repeat, i, ci, ct;
     b->step_fallback = b->step_mixed = 0;
     if (!e || e->type != JSON_OBJECT) { build_error(b, "Invalid prayer entry", NULL); return; }
@@ -329,7 +425,9 @@ static void entry(Builder *b, const Json *e, const char *context, int decade, in
         return;
     }
     key = json_text(e, "titleKey"); title = key ? prayer(b, key, NULL) : json_text(e, "title");
-    body = prayer(b, json_text(e, "bodyKey"), &lang);
+    body_key = json_text(e, "bodyKey"); body = prayer(b, body_key, &lang);
+    rendered = render_creed(b, body_key, body, b->prayer_policy);
+    if (rendered) body = rendered;
     key = json_text(e, "subtitleKey"); subtitle = key ? prayer(b, key, NULL) : json_text(e, "subtitle");
     if (!subtitle) subtitle = context ? context : "";
     key = json_text(e, "acclamationKey");
@@ -339,13 +437,13 @@ static void entry(Builder *b, const Json *e, const char *context, int decade, in
         composed = joined(b, body, "\n\n", acclamation); if (composed) body = composed;
     }
     repeat = json_int(json_get(e, "repeat"), 1);
-    if (repeat < 1 || repeat > MAX_STEPS) { free(composed); build_error(b, "Invalid repeat count", NULL); return; }
+    if (repeat < 1 || repeat > MAX_STEPS) { free(composed); free(rendered); build_error(b, "Invalid repeat count", NULL); return; }
     for (i = 1; i <= repeat; ++i) {
         ci = repeat > 1 ? i : json_int(json_get(e, "counterIndex"), 0);
         ct = repeat > 1 ? repeat : json_int(json_get(e, "counterTotal"), 0);
         append(b, title ? title : "", body, subtitle, lang, decade, bead, beads, ci, ct);
     }
-    free(composed);
+    free(composed); free(rendered);
 }
 static void entries(Builder *b, const Json *list, const char *context, int decade, int beads) {
     const Json *e;

@@ -2,12 +2,13 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:vm="using:Prosary.ViewModels"
-    xmlns:controls="using:Prosary.Controls">
+    xmlns:controls="using:Prosary.Controls" xmlns:views="using:Prosary.Views">
     <Grid x:Name="BibleLayout" SizeChanged="OnBibleLayoutSizeChanged" Padding="20,12,20,20" RowSpacing="12" HorizontalAlignment="Stretch">
         <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/></Grid.RowDefinitions>
         <ScrollViewer x:Name="BibleOptionsScroll" MaxHeight="300" HorizontalContentAlignment="Stretch" HorizontalScrollMode="Disabled" HorizontalScrollBarVisibility="Disabled">
             <Grid HorizontalAlignment="Stretch">
                 <StackPanel Spacing="12">
+                    <views:ScriptureOfDayControl x:Name="DailyScripture" />
                     <StackPanel Spacing="10">
                         <ComboBox MinWidth="0" Header="{x:Bind ViewModel.EditionLabel}" ItemsSource="{x:Bind ViewModel.Editions}" DisplayMemberPath="Label"
                                   SelectedItem="{x:Bind ViewModel.SelectedEdition, Mode=TwoWay}" HorizontalAlignment="Stretch"

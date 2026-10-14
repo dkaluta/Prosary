@@ -153,5 +153,10 @@
   "$rosaryCollectSource": "Rosary-only separate step: unchanged collectaStandard text; when absent (Spanish/Mission Hebrew), unchanged sourced collectAfterRosary from litanyOfLoreto. Basic Marian antiphon texts remain unchanged. Hebrew heading נתפללה supplied explicitly by the user, 2026-09-27.",
   "$sources": {
     "symbolumNicaenum": "https://www.vatican.va/news_services/liturgy/libretti/2012/20120629.pdf"
+  },
+  "$creedPolicy": {
+    "rite": "latin",
+    "apostlesCreed": true,
+    "filioque": "unbracketed"
   }
 }

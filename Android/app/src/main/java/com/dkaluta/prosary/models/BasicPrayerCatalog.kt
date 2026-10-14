@@ -43,7 +43,13 @@ object BasicPrayerCatalog {
         BasicPrayer("stMichael", "rosary", "sanctusMichaelTitle", "sanctusMichael", "st_michael"),
     )
 
-    fun prayer(id: String): BasicPrayer? = all.firstOrNull { it.id == id }
+    fun available(languageCode: String? = AppSettings.basicPrayersLanguageCode): List<BasicPrayer> = all.filter { isAvailable(it, languageCode) }
+
+    fun isAvailable(prayer: BasicPrayer, languageCode: String?): Boolean =
+        prayer.id != "creed" || PrayerPackStore.apostlesCreedAvailable(effectiveLanguage(prayer, languageCode))
+
+    fun prayer(id: String, languageCode: String? = AppSettings.basicPrayersLanguageCode): BasicPrayer? =
+        all.firstOrNull { it.id == id && isAvailable(it, languageCode) }
 
     /** An explicit Hebrew request uses this prayer's sole authored Hebrew source before any
      * non-Hebrew fallback. Global ordering and other requested languages stay unchanged. */
@@ -66,8 +72,9 @@ object BasicPrayerCatalog {
         interfaceLanguage: String,
         showInterfaceSubtitle: Boolean = AppSettings.showPrayerNameInPrayerLanguage,
     ): PrayerCardTitle {
-        val prayerTitle = title(prayer, LanguageCatalog.resolve(languageCode).code)
-        val interfaceTitle = title(prayer, interfaceLanguage)
+        val effectiveLanguage = effectiveLanguage(prayer, languageCode)
+        val prayerTitle = title(prayer, effectiveLanguage)
+        val interfaceTitle = title(prayer, LanguageCatalog.interfaceTitleLanguage(interfaceLanguage, effectiveLanguage))
         return PrayerCardTitle(prayerTitle,
             interfaceTitle.takeIf { showInterfaceSubtitle && it != prayerTitle })
     }

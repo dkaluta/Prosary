@@ -31,4 +31,14 @@ final class RepositoryClientTests: XCTestCase {
     let newer = Data(#"{"prosaryRepository": 2, "bundles": []}"#.utf8)
     XCTAssertThrowsError(try RepositoryClient.parseCatalog(newer))
   }
+
+  func testCatalogExcludesOnlyTheRetiredCommunityStandalone() throws {
+    let ids = [RetiredPrayerBundles.loretoStandaloneID, "repo.stgamliel-il.otherPrayer", "litanyOfLoreto"]
+    let bundles = ids.map { id in
+      ["id": id, "name": "Litany", "author": "stgamliel-il", "languages": ["he"],
+       "tags": [String](), "description": "A prayer", "file": "/api/download/\(id)"] as [String: Any]
+    }
+    let data = try JSONSerialization.data(withJSONObject: ["prosaryRepository": 1, "bundles": bundles])
+    XCTAssertEqual(try RepositoryClient.parseCatalog(data).map(\.id), Array(ids.dropFirst()))
+  }
 }

@@ -49,6 +49,7 @@ fun PrayerCard(
     onLongClick: (() -> Unit)? = null,
     modifier: Modifier = Modifier,
     interfaceTitle: String? = null,
+    imageKey: String? = null,
 ) {
     Row(
         modifier = modifier
@@ -67,7 +68,9 @@ fun PrayerCard(
                 .fillMaxWidth()
                 .padding(horizontal = 16.dp, vertical = 14.dp),
         ) {
-            if (iconGlyph != null) {
+            if (imageKey != null) {
+                MysteryImage(imageKey, Modifier.size(64.dp).clip(MaterialTheme.shapes.medium))
+            } else if (iconGlyph != null) {
                 // Compose's "your own" one-grapheme icon (v0.7, Gamaliel item 6).
                 Text(
                     iconGlyph,

@@ -80,12 +80,6 @@
                               ItemsSource="{x:Bind ViewModel.AramaicSignOfCrossOptions}" DisplayMemberPath="Label"
                               SelectedItem="{x:Bind ViewModel.SelectedAramaicSignOfCross, Mode=TwoWay}" />
 
-                    <ToggleSwitch HeaderTemplate="{StaticResource WrappingLabelTemplate}" Header="{x:Bind ViewModel.IncludeFilioqueLabel}"
-                                  IsOn="{x:Bind ViewModel.IncludeFilioque, Mode=TwoWay}"
-                                  AutomationProperties.AutomationId="includeFilioque"
-                                  AutomationProperties.HelpText="{x:Bind ViewModel.IncludeFilioqueHelp}" />
-                    <TextBlock Text="{x:Bind ViewModel.IncludeFilioqueHelp}" TextWrapping="Wrap"
-                               Style="{StaticResource MutedCaptionTextStyle}" />
 
                     <Button MinWidth="0" HorizontalContentAlignment="Stretch" ContentTemplate="{StaticResource WrappingButtonLabelTemplate}" x:Uid="SetLanguageFallbackOrder" Content="Language fallback order…"
                             HorizontalAlignment="Stretch" Click="OnEditLanguageFallbackOrder" />

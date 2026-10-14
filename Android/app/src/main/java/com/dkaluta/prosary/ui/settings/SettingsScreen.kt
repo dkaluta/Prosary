@@ -227,18 +227,6 @@ fun SettingsScreen(onBack: () -> Unit, onOpenAppearance: () -> Unit) {
 
             Row(modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
                 Column(Modifier.weight(1f)) {
-                    Text(stringResource(R.string.settings_include_filioque))
-                    Text(stringResource(R.string.settings_include_filioque_hint), style = MaterialTheme.typography.bodySmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant)
-                }
-                LabeledSwitch(label = stringResource(R.string.settings_include_filioque),
-                    checked = AppSettings.includeFilioque,
-                    onCheckedChange = { AppSettings.includeFilioque = it },
-                    modifier = Modifier.testTag("includeFilioque"))
-            }
-
-            Row(modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
-                Column(Modifier.weight(1f)) {
                     Text(stringResource(R.string.settings_prayer_names_in_prayer_language))
                     Text(stringResource(R.string.settings_prayer_names_in_prayer_language_hint), style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant)

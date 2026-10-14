@@ -360,7 +360,6 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
     /// Persists to the matching favorite when one exists.</summary>
     public async Task SelectLanguageAsync(string raw)
     {
-        AppSettings.InitializeFilioqueForLanguage(raw);
         var oldEffectiveVariant = ResolvedVariantId(_languageCode);
         var newLanguage = PrayerPackStore.EffectiveLanguage(_bundleId, raw);
         var newEffectiveVariant = ResolvedVariantId(newLanguage);
@@ -470,7 +469,7 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
             OnPropertyChanged(nameof(HasSavedContinuation));
             _bundleId = bundleId;
             DevotionTitle = HebrewDisplayText.WithoutMarks(
-                PrayerPackStore.Info(bundleId)?.LocalizedDisplayName ?? bundleId);
+                PrayerPackStore.InterfaceDisplayName(bundleId, initialLanguageCode));
             var definition = PrayerPackStore.Definition(bundleId);
             Variants = definition?.Variants ?? [];
             OnPropertyChanged(nameof(ShowsVariantMenu));
@@ -682,6 +681,7 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
     public void RefreshPrayerWording()
     {
         if (_steps.Count == 0) return;
+        _languageCode = PrayerPackStore.EffectiveLanguage(_bundleId, _chosenLanguage);
         _steps = _engine.BuildSteps(new Prayer
         {
             Kind = PrayerKind.Custom,
@@ -697,6 +697,7 @@ public partial class CustomDevotionViewModel : ObservableObject, IPrayerStepFlow
 
     private void RenderCurrentStep()
     {
+        DevotionTitle = PrayerPackStore.InterfaceDisplayName(_bundleId, _languageCode ?? _chosenLanguage);
         if (_steps.Count == 0)
         {
             PublishedPopeIntention = null;

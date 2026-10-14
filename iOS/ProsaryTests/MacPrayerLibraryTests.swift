@@ -5,6 +5,19 @@ import SwiftUI
 
 @MainActor
 final class MacPrayerLibraryTests: XCTestCase {
+  func testRetirementRemovesOldLibraryMembershipAndRejectsReaddingIt() throws {
+    let suite = "MacPrayerLibraryTests.Retired.\(UUID())"
+    let defaults = try XCTUnwrap(UserDefaults(suiteName: suite))
+    defer { defaults.removePersistentDomain(forName: suite) }
+    let id = RetiredPrayerBundles.loretoStandaloneID
+    defaults.set([id, "litanyOfLoreto", "repo.stgamliel-il.otherPrayer"], forKey: MacLibraryMembershipStore.defaultsKey)
+    let membership = MacLibraryMembershipStore(defaults: defaults)
+    XCTAssertEqual(membership.devotionIDs, ["litanyOfLoreto", "repo.stgamliel-il.otherPrayer"])
+    membership.add(id)
+    XCTAssertEqual(membership.devotionIDs, ["litanyOfLoreto", "repo.stgamliel-il.otherPrayer"])
+    XCTAssertFalse(defaults.stringArray(forKey: MacLibraryMembershipStore.defaultsKey)?.contains(id) == true)
+  }
+
   func testBrowsingDoesNotCreatePresetsAndOpeningTwiceKeepsOneIdentity() async throws {
     let suite = "MacPrayerLibraryTests.\(UUID())"
     let defaults = try tagFixtureDefaults(suite: suite)

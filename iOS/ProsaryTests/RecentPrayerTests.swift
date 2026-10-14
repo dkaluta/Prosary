@@ -2,6 +2,24 @@ import XCTest
 @testable import Prosary
 
 final class RecentPrayerTests: XCTestCase {
+  func testRetirementRemovesOldStandaloneRoutesAndRejectsNewHistoryEntries() throws {
+    let suite = "RecentPrayerTests.Retired.\(UUID())"
+    let defaults = try XCTUnwrap(UserDefaults(suiteName: suite))
+    defer { defaults.removePersistentDomain(forName: suite) }
+    let store = RecentPrayerStore(defaults: defaults)
+    let id = RetiredPrayerBundles.loretoStandaloneID
+    let old = RecentPrayer(id: "custom:\(id):", route: .custom(devotionId: id),
+      title: "Old standalone", lastPrayedAt: Date())
+    let builtin = RecentPrayer(id: "custom:litanyOfLoreto:", route: .custom(devotionId: "litanyOfLoreto"),
+      title: "Built-in Loreto", lastPrayedAt: Date())
+    defaults.set(try JSONEncoder().encode([old, builtin]), forKey: RecentPrayerStore.defaultsKey)
+    XCTAssertEqual(store.entries, [builtin])
+    store.record(.custom(devotionId: id), title: "Retired standalone")
+    XCTAssertEqual(store.entries, [builtin])
+    XCTAssertNil(RecentPrayerStore.identity(for: .custom(devotionId: id)))
+    XCTAssertNotNil(RecentPrayerStore.identity(for: .custom(devotionId: "repo.stgamliel-il.otherPrayer")))
+  }
+
   func testRecentPrayersPersistDeduplicateAndKeepTheNewestEight() throws {
     let suite = "RecentPrayerTests.\(UUID().uuidString)"
     let defaults = try XCTUnwrap(UserDefaults(suiteName: suite))

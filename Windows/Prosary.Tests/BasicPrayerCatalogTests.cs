@@ -140,13 +140,14 @@ public class BasicPrayerCatalogTests : IClassFixture<PrayerPackLoaderFixture>
         try
         {
             foreach (var (language, expectedOurFather) in titles)
-            foreach (var prayer in BasicPrayerCatalog.All)
+            foreach (var prayer in BasicPrayerCatalog.Available(language))
             foreach (var enabled in new[] { false, true })
             {
                 AppSettings.SetShowPrayerNameInPrayerLanguage(enabled);
                 var name = PrayerCardName.ForBasicPrayer(prayer, language, "he");
                 var prayerTitle = BasicPrayerCatalog.Step(prayer, language).Title;
-                var interfaceTitle = BasicPrayerCatalog.Step(prayer, "he").Title;
+                var interfaceCode = PrayerCardName.InterfaceTitleLanguage("he", BasicPrayerCatalog.EffectiveLanguage(prayer, language).Code);
+                var interfaceTitle = BasicPrayerCatalog.Step(prayer, interfaceCode).Title;
                 Assert.Equal(prayerTitle, name.Title);
                 Assert.Equal(enabled && prayerTitle != interfaceTitle ? interfaceTitle : "", name.InterfaceSubtitle);
                 if (prayer.Id == "ourFather") Assert.Equal(expectedOurFather, name.Title);

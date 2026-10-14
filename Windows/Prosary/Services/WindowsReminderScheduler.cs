@@ -61,6 +61,12 @@ public sealed class WindowsReminderScheduler : IReminderScheduler
         }
     }
 
+    public void RemoveRetiredHistory(Prayer prayer) =>
+        ToastNotificationManager.History.RemoveGroup(prayer.Id.ToString());
+
+    public void RemoveRetiredSeriesHistory(string runId) =>
+        ToastNotificationManager.History.RemoveGroup(SeriesGroup(runId));
+
     public void RescheduleAll(IEnumerable<Prayer> prayers)
     {
         foreach (var prayer in prayers)
@@ -106,7 +112,7 @@ public sealed class WindowsReminderScheduler : IReminderScheduler
         }
 
         var (hour, minute) = ReminderTime(definition.SuggestedReminderTime);
-        var title = Localization.PrayerPackStore.Info(devotionId)?.LocalizedDisplayName ?? devotionId;
+        var title = Localization.PrayerPackStore.InterfaceDisplayName(devotionId);
 
         foreach (var (day, deliveryTime) in PendingSeriesDays(run, days.Count, hour, minute))
         {

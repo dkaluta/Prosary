@@ -49,7 +49,12 @@ public partial class FavoriteEditorViewModel : ObservableObject
     private bool _isDefault;
 
     [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(CreedLabel))]
     private string _languageCode = LanguageCatalog.DefaultSentinel;
+
+    public string CreedLabel => PrayerPackStore.HasApostlesCreed("rosary", LanguageCode)
+        ? Loc.Tr("EdApostlesCreed.Text", "Apostles' Creed")
+        : Loc.Tr("favorite_editor_nicene_creed", "Nicene Creed");
 
     public string BaseLanguageCode
     {
@@ -57,7 +62,6 @@ public partial class FavoriteEditorViewModel : ObservableObject
         set
         {
             LanguageCode = LanguageCatalog.SelectingLanguage(value, LanguageCode);
-            AppSettings.InitializeFilioqueForLanguage(LanguageCode);
         }
     }
 
@@ -75,7 +79,6 @@ public partial class FavoriteEditorViewModel : ObservableObject
             if (value is not null)
             {
                 LanguageCode = value.Code;
-                AppSettings.InitializeFilioqueForLanguage(LanguageCode);
             }
         }
     }

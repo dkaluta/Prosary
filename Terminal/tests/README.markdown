@@ -10,6 +10,12 @@ uv run --script tests/test_pty.py
 That script uses only Python's standard library. It is not needed by `make` or
 `make test`; the normal test suite compiles C test executables and runs a shell script.
 
+The engine suite verifies authored Creed policy against the checked-in Ukrainian,
+Syriac, Mission, Greek, Latin and Vicariate sources. An isolated fixture additionally
+checks both supplied Syriac scripts, actual fallback-source ownership, exact untagged
+wording, absent versus bracketed clauses, refusal to borrow a Latin Creed for a missing
+Eastern source, and owned rendered strings surviving engine closure.
+
 The ordinary build needs a C99 compiler, `make`, and wide-character ncurses
 headers/library. Docker is an optional way to reproduce the Linux checks from
 another operating system:

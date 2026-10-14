@@ -43,7 +43,7 @@ class PrayerPreferencesTest {
             AppSettings.setBasicPrayerPinned(id, false)
             assertFalse(livePins.value.any { it.id == id })
             val home = File("src/main/java/com/dkaluta/prosary/ui/home/HomeScreen.kt").readText()
-            assertTrue(home.contains("BasicPrayerCatalog.all.filter { it.id in AppSettings.pinnedBasicPrayerIds }"))
+            assertTrue(home.contains("BasicPrayerCatalog.available().filter { it.id in AppSettings.pinnedBasicPrayerIds }"))
             assertTrue(home.contains("onOpenBasicPrayer(prayer.id)"))
             assertTrue(home.contains("basic:"))
             val list = File("src/main/java/com/dkaluta/prosary/ui/shared/BasicPrayersScreen.kt").readText()

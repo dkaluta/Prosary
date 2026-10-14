@@ -100,6 +100,10 @@ struct PrayerRunProgressStore {
     today: Date = Date(),
     calendar: Calendar = .current
   ) {
+    guard !RetiredPrayerBundles.containsRunKey(runKey) else {
+      clear(runKey: runKey)
+      return
+    }
     guard stepIndex > 0 else {
       clear(runKey: runKey)
       return
@@ -137,7 +141,10 @@ struct PrayerRunProgressStore {
 
   private func all() -> [String: PrayerRunProgress] {
     guard let data = defaults.data(forKey: defaultsKey) else { return [:] }
-    return (try? JSONDecoder().decode([String: PrayerRunProgress].self, from: data)) ?? [:]
+    let runs = (try? JSONDecoder().decode([String: PrayerRunProgress].self, from: data)) ?? [:]
+    let active = runs.filter { !RetiredPrayerBundles.containsRunKey($0.key) }
+    if active.count != runs.count { save(active) }
+    return active
   }
 
   private func save(_ runs: [String: PrayerRunProgress]) {

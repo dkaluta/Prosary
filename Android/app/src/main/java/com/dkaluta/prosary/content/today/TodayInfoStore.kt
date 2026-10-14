@@ -77,6 +77,7 @@ data class FeastObservance(
     val sections: List<CalendarTextSection> = emptyList(),
     val reflectionByLanguage: Map<String, String>? = null,
 ) {
+    fun localizedTitle(language: String): String = HebrewDisplayText.unpoint(titleByLanguage.localized(language) ?: title)
     fun description(language: String): SaintDescription? = textItem(descriptionByLanguage, language, includeSections = true)
     fun reflection(language: String): SaintDescription? = textItem(reflectionByLanguage, language)
 
@@ -335,6 +336,12 @@ object TodayInfoStore {
     }
 
     fun intention(date: Date = Date()): PopeIntention? = intentionsByMonth[key(date, "yyyy-MM")]
+
+    fun allCalendarDates(): List<Pair<java.time.LocalDate, FeastDay>> {
+        ensureFeastsLoaded()
+        return feastsByDay.mapNotNull { (date, feast) -> runCatching { java.time.LocalDate.parse(date) to feast }.getOrNull() }
+            .sortedBy { it.first }
+    }
 
     fun readings(date: Date = Date()): List<ReadingCitation> {
         ensureReadingsLoaded()

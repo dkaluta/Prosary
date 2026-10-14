@@ -30,4 +30,15 @@ class RepositoryClientTest {
         val result = runCatching { RepositoryClient.parseCatalog("""{"prosaryRepository": 2, "bundles": []}""") }
         assertTrue(result.exceptionOrNull() is RepositoryClient.UnsupportedCatalogException)
     }
+
+    @Test
+    fun anOlderCatalogCannotOfferTheWithdrawnStandalone() {
+        val retiredId = "repo.stgamliel-il.litanyOfMaryTheBlessedEverVirgin"
+        val retainedId = "repo.stgamliel-il.otherPrayer"
+        val text = """{"prosaryRepository":1,"bundles":[
+            {"id":"$retiredId","name":"Loreto","author":"stgamliel-il","file":"/api/download/$retiredId"},
+            {"id":"$retainedId","name":"Other","author":"stgamliel-il","file":"/api/download/$retainedId"}
+        ]}"""
+        assertEquals(listOf(retainedId), RepositoryClient.parseCatalog(text).map { it.id })
+    }
 }

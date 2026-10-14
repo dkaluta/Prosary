@@ -1,6 +1,7 @@
 package com.dkaluta.prosary.content.repository
 
 import com.dkaluta.prosary.content.prayerpack.PrayerPackStore
+import com.dkaluta.prosary.content.prayerpack.RetiredPrayerPacks
 import java.net.URL
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.TimeoutCancellationException
@@ -48,7 +49,7 @@ object RepositoryClient {
     fun parseCatalog(text: String): List<RepositoryBundle> {
         val catalog = json.decodeFromString<RepositoryCatalog>(text)
         if (catalog.prosaryRepository != 1) throw UnsupportedCatalogException()
-        return catalog.bundles
+        return catalog.bundles.filterNot { RetiredPrayerPacks.contains(it.id) }
     }
 
     private fun openConnection(url: String) = (URL(url).openConnection()).apply {

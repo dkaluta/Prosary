@@ -10,6 +10,7 @@ namespace Prosary.Views;
 public sealed partial class BibleReaderControl : UserControl
 {
     public BibleViewModel ViewModel { get; } = new();
+    public HomeViewModel? Today { get => DailyScripture.Today; set => DailyScripture.Today = value; }
     private bool _dialogOpen;
     private bool? _compactPassageSelectors;
     public BibleReaderControl()

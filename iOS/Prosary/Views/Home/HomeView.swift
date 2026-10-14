@@ -56,7 +56,7 @@ struct HomeView: View {
     let implied = impliedPinnedIds
     var rows = allDevotions.filter { FavoriteDevotions.contains($0.id, defaultingTo: implied) }
     let language = LanguageCatalog.resolve(basicPrayerLanguageCode)
-    for prayer in BasicPrayersOrder.apply(BasicPrayerCatalog.all) where BasicPrayerFavorites.contains(prayer.id) {
+    for prayer in BasicPrayersOrder.apply(BasicPrayerCatalog.available(languageCode: basicPrayerLanguageCode)) where BasicPrayerFavorites.contains(prayer.id) {
       let name = PrayerNamePresentation.basicPrayer(prayer, languageCode: language.code,
                                                     showPrayerLanguage: showsPrayerNameInPrayerLanguage)
       rows.append(DevotionRow(
@@ -196,6 +196,7 @@ struct HomeView: View {
                 translatedTitle: row.translatedTitle,
                 subtitle: row.subtitle,
                 accentColor: row.accent,
+                artwork: PrayerPackStore.galleryImageResource(for: row.id.hasPrefix("custom.") ? String(row.id.dropFirst(7)) : row.id),
                 // One tap prays the default; the disclosure is the way into the presets, so
                 // the common case stays a single tap.
                 onDisclosure: row.presetsRoute.map { route in { path.push(route) } }

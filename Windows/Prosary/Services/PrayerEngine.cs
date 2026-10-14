@@ -31,8 +31,6 @@ public sealed class PrayerEngine
 
     public IReadOnlyList<RosaryStep> BuildSteps(Prayer prayer, bool initializeFilioque = true)
     {
-        if (!initializeFilioque)
-            return AppSettings.WithoutFilioqueInitialization(() => BuildSteps(prayer));
         return prayer.Kind switch
         {
         // The Rosary builds from the rosary bundle's devotion.json like every other devotion —

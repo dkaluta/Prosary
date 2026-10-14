@@ -10,6 +10,7 @@ import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performScrollTo
 import androidx.compose.ui.test.performScrollToNode
+import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.Espresso.pressBack
 import androidx.test.platform.app.InstrumentationRegistry
@@ -36,7 +37,7 @@ class HomeDashboardInstrumentedTest {
             val citations = ReadingCitation.displayOrder(TodayInfoStore.readings(), AppSettings.reverseReadingsOrder)
             val language = TodayTranslationLanguage.resolve(app.resources.configuration.locales[0].toLanguageTag())
             citations.forEachIndexed { index, citation ->
-                compose.onNodeWithTag("homeReading.$index").performScrollTo()
+                compose.onNodeWithTag("homeReading.$index", useUnmergedTree = true).performScrollTo()
                     .assertTextContains(citation.localizedFull(language))
             }
             compose.onNodeWithTag("tab.pray").performClick()
@@ -46,6 +47,147 @@ class HomeDashboardInstrumentedTest {
             }
             compose.onNodeWithTag("tab.home").performClick()
             compose.onNodeWithTag("homeDate").assertExists()
+        }
+    }
+
+    @Test fun compactHomeWidgetsKeepTheirContentAndPersistAcrossRecreation() = withFreshHome {
+        ActivityScenario.launch(MainActivity::class.java).use { scenario ->
+            awaitHome()
+            captureScreenshot("home-large")
+            compose.onNodeWithTag("homeWidgetSize.readings").performClick()
+            assertTrue(AppSettings.isHomeWidgetCollapsed(HomeWidget.Readings))
+            compose.onNodeWithTag("homeReading.0").assertDoesNotExist()
+            compose.onNodeWithTag("homeWidgetGraphic.readings").assertDoesNotExist()
+            captureScreenshot("home-small")
+            scenario.recreate()
+            awaitHome()
+            assertTrue(AppSettings.isHomeWidgetCollapsed(HomeWidget.Readings))
+            compose.onNodeWithTag("homeWidgetSize.readings").performClick()
+            assertFalse(AppSettings.isHomeWidgetCollapsed(HomeWidget.Readings))
+            compose.onNodeWithTag("homeWidgetGraphic.readings").assertExists()
+        }
+    }
+
+    @Test fun customAccentKeepsTheLauncherChoiceAndSurvivesRecreation() = withFreshHome {
+        ActivityScenario.launch(MainActivity::class.java).use { scenario ->
+            awaitHome()
+            val old = AppSettings.customAccentColorHex
+            val system = AppSettings.useSystemColors
+            val launcher = AppSettings.appColor
+            try {
+                compose.onNodeWithContentDescription(app.getString(R.string.common_settings)).performClick()
+                compose.onNodeWithTag("settingsAppearance").performScrollTo().performClick()
+                compose.onNodeWithTag("customAccentColor").performScrollTo().performClick()
+                compose.onNodeWithTag("customAccentSave").assertExists()
+                captureScreenshot("accent-color")
+                compose.onNodeWithTag("customAccentSave").performClick()
+                assertEquals("#1768AC", AppSettings.customAccentColorHex)
+                assertFalse(AppSettings.useSystemColors)
+                assertEquals(launcher, AppSettings.appColor)
+                scenario.recreate()
+                compose.onNodeWithTag("appearanceScreen").assertExists()
+                assertEquals("#1768AC", AppSettings.customAccentColorHex)
+                compose.onNodeWithTag("customAccentColor").performScrollTo().performClick()
+                compose.onNodeWithTag("customAccentReset").performScrollTo().performClick()
+                assertEquals("", AppSettings.customAccentColorHex)
+            } finally {
+                scenario.onActivity { AppSettings.customAccentColorHex = old; AppSettings.useSystemColors = system }
+            }
+        }
+    }
+
+    @Test fun widgetImagesHideInSmallCardsAndRemoveOnlyTheirPrivateCopy() = withFreshHome {
+        ActivityScenario.launch(MainActivity::class.java).use { scenario ->
+            awaitHome()
+            val old = AppSettings.homeWidgetGraphicPath(HomeWidget.Readings)
+            val file = java.io.File(app.filesDir, "homePhotos/home-photo-ui-${java.util.UUID.randomUUID()}.jpg")
+            file.parentFile!!.mkdirs()
+            val bitmap = android.graphics.Bitmap.createBitmap(20, 20, android.graphics.Bitmap.Config.ARGB_8888)
+            bitmap.eraseColor(android.graphics.Color.BLUE)
+            file.outputStream().use { bitmap.compress(android.graphics.Bitmap.CompressFormat.JPEG, 90, it) }
+            bitmap.recycle()
+            try {
+                scenario.onActivity { AppSettings.setHomeWidgetGraphicPath(HomeWidget.Readings, file.path) }
+                compose.waitUntil(15_000) { compose.onAllNodes(hasTestTag("homeWidgetGraphicImage.readings"), useUnmergedTree = true).fetchSemanticsNodes().isNotEmpty() }
+                captureScreenshot("card-graphic")
+                compose.onNodeWithTag("homeWidgetSize.readings").performClick()
+                compose.onNodeWithTag("homeWidgetGraphicImage.readings", useUnmergedTree = true).assertDoesNotExist()
+                assertTrue(file.exists())
+                compose.onNodeWithTag("homeWidgetSize.readings").performClick()
+                compose.onNodeWithTag("homeWidgetGraphicRemove.readings").performScrollTo().performClick()
+                compose.waitUntil(15_000) { !file.exists() && AppSettings.homeWidgetGraphicPath(HomeWidget.Readings).isEmpty() }
+            } finally {
+                scenario.onActivity { AppSettings.setHomeWidgetGraphicPath(HomeWidget.Readings, old) }
+                file.delete()
+            }
+        }
+    }
+
+    @Test fun returnedImageKeepsItsOriginalWidgetAfterActivityRecreation() = withFreshHome {
+        ActivityScenario.launch(MainActivity::class.java).use { scenario ->
+            awaitHome()
+            val oldGraphic = AppSettings.homeWidgetGraphicPath(HomeWidget.Readings)
+            val oldPhoto = AppSettings.homePhotoPath
+            val source = java.io.File(app.cacheDir, "picker-result-${java.util.UUID.randomUUID()}.jpg")
+            val bitmap = android.graphics.Bitmap.createBitmap(20, 20, android.graphics.Bitmap.Config.ARGB_8888)
+            bitmap.eraseColor(android.graphics.Color.BLUE)
+            source.outputStream().use { bitmap.compress(android.graphics.Bitmap.CompressFormat.JPEG, 90, it) }
+            bitmap.recycle()
+            var imported: String? = null
+            try {
+                compose.onNodeWithTag("homeWidgetGraphic.readings").performClick()
+                val registryState = android.os.Bundle()
+                scenario.onActivity { it.activityResultRegistry.onSaveInstanceState(registryState) }
+                val launched = requireNotNull(registryState.getStringArrayList("KEY_COMPONENT_ACTIVITY_LAUNCHED_KEYS")).single()
+                val keys = requireNotNull(registryState.getStringArrayList("KEY_COMPONENT_ACTIVITY_REGISTERED_KEYS"))
+                val codes = requireNotNull(registryState.getIntegerArrayList("KEY_COMPONENT_ACTIVITY_REGISTERED_RCS"))
+                val requestCode = codes[keys.indexOf(launched)]
+                var originalActivity: MainActivity? = null
+                scenario.onActivity { originalActivity = it; it.recreate() }
+                compose.waitUntil(15_000) {
+                    var recreated = false
+                    runCatching { scenario.onActivity { recreated = it !== originalActivity } }
+                    recreated
+                }
+                // Deliver the same OS result to the restored registry, then foreground Home.
+                scenario.onActivity { it.activityResultRegistry.dispatchResult(requestCode, android.app.Activity.RESULT_OK,
+                    android.content.Intent().setData(android.net.Uri.fromFile(source))) }
+                InstrumentationRegistry.getInstrumentation().uiAutomation.executeShellCommand("input keyevent 4").close()
+                compose.waitUntil(15_000) { AppSettings.homeWidgetGraphicPath(HomeWidget.Readings) != oldGraphic }
+                imported = AppSettings.homeWidgetGraphicPath(HomeWidget.Readings)
+                assertTrue(java.io.File(requireNotNull(imported)).exists())
+                assertEquals(oldPhoto, AppSettings.homePhotoPath)
+            } finally {
+                scenario.onActivity { AppSettings.setHomeWidgetGraphicPath(HomeWidget.Readings, oldGraphic); AppSettings.homePhotoPath = oldPhoto }
+                imported?.let { java.io.File(it).delete() }
+                source.delete()
+            }
+        }
+    }
+
+    @Test fun eventCalendarMarksEverySourceDateAndOpensIndividualEventDetails() = withFreshHome {
+        ActivityScenario.launch(MainActivity::class.java).use { scenario ->
+            awaitHome()
+            val oldCalendar = AppSettings.feastCalendarId
+            val oldMode = AppSettings.calendarViewMode
+            try {
+                scenario.onActivity { AppSettings.feastCalendarId = "mission-provisional"; AppSettings.calendarViewMode = "month" }
+                compose.onNodeWithTag("homeDashboard").performScrollToNode(hasTestTag("homeOpenCalendar"))
+                compose.onNodeWithTag("homeOpenCalendar").performClick()
+                val date = LocalDate.now()
+                val events = com.dkaluta.prosary.content.today.CalendarEvents.events(date, TodayInfoStore.feast())
+                assertTrue(events.isNotEmpty())
+                compose.onNodeWithTag("calendarDate.$date", useUnmergedTree = true).assertExists()
+                captureScreenshot("calendar-events")
+                compose.onNodeWithTag("calendar.monthPicker").performScrollToNode(hasTestTag("calendarEvent.${events.first().id}"))
+                compose.onNodeWithTag("calendarEvent.${events.first().id}").performClick()
+                compose.onNodeWithText(app.getString(R.string.calendar_event_details)).assertExists()
+                captureScreenshot("event-details")
+                compose.onNodeWithTag("calendarEventReadings").performClick()
+                compose.onNodeWithTag("readingsMode.daily").assertIsSelected()
+            } finally {
+                scenario.onActivity { AppSettings.feastCalendarId = oldCalendar; AppSettings.calendarViewMode = oldMode }
+            }
         }
     }
 
@@ -103,14 +245,32 @@ class HomeDashboardInstrumentedTest {
         compose.onAllNodes(hasTestTag("homeDashboard")).fetchSemanticsNodes().isNotEmpty()
     }
 
+    private fun captureScreenshot(name: String) {
+        if (InstrumentationRegistry.getArguments().getString("captureHomeScreenshots") != "true") return
+        compose.waitForIdle()
+        val automation = InstrumentationRegistry.getInstrumentation().uiAutomation
+        automation.waitForIdle(500, 5_000)
+        val bitmap = requireNotNull(automation.takeScreenshot())
+        val directory = java.io.File(app.getExternalFilesDir(null), "homeScreenshots").apply { mkdirs() }
+        java.io.File(directory, "$name.png").outputStream().use { bitmap.compress(android.graphics.Bitmap.CompressFormat.PNG, 100, it) }
+        bitmap.recycle()
+    }
+
     private fun withFreshHome(block: () -> Unit) {
         val original = preferences.getString("homeWidgetOrder", null)
+        val collapsed = preferences.getString("homeWidgetCollapsedIds", null)
+        val graphics = preferences.getString("homeWidgetGraphicPaths", null)
+        val photo = preferences.getString("homePhotoPath", null)
         try {
-            preferences.edit().putString("homeWidgetOrder", HomeWidget.defaults.joinToString("\n") { it.id }).commit()
+            preferences.edit().putString("homeWidgetOrder", HomeWidget.defaults.joinToString("\n") { it.id })
+                .putString("homeWidgetCollapsedIds", "").putString("homeWidgetGraphicPaths", "{}").putString("homePhotoPath", "").commit()
             block()
         } finally {
             preferences.edit().apply {
                 if (original == null) remove("homeWidgetOrder") else putString("homeWidgetOrder", original)
+                if (collapsed == null) remove("homeWidgetCollapsedIds") else putString("homeWidgetCollapsedIds", collapsed)
+                if (graphics == null) remove("homeWidgetGraphicPaths") else putString("homeWidgetGraphicPaths", graphics)
+                if (photo == null) remove("homePhotoPath") else putString("homePhotoPath", photo)
             }.commit()
             InstrumentationRegistry.getInstrumentation().runOnMainSync { AppSettings.init(app) }
         }

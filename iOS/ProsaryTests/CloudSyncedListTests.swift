@@ -3,6 +3,22 @@ import XCTest
 
 @MainActor
 final class CloudSyncedListTests: XCTestCase {
+  func testRetirementCleansLateCloudPinsAndMirrorsTheNarrowRemoval() throws {
+    let suite = "CloudSyncedListTests.Retired.\(UUID())"
+    let defaults = try XCTUnwrap(UserDefaults(suiteName: suite))
+    defer { defaults.removePersistentDomain(forName: suite) }
+    let fakeCloud = FakeCloudStore()
+    let storage = CloudSyncedListStorage(defaults: defaults, isTesting: false, cloudProvider: { fakeCloud })
+    let id = RetiredPrayerBundles.loretoStandaloneID
+    fakeCloud.values["pins"] = [id, "custom.\(id)", "litanyOfLoreto", "repo.stgamliel-il.otherPrayer"]
+    XCTAssertEqual(storage.read("pins"), ["litanyOfLoreto", "repo.stgamliel-il.otherPrayer"])
+    XCTAssertEqual(defaults.stringArray(forKey: "pins"), ["litanyOfLoreto", "repo.stgamliel-il.otherPrayer"])
+    XCTAssertEqual(fakeCloud.values["pins"] as? [String], ["litanyOfLoreto", "repo.stgamliel-il.otherPrayer"])
+    fakeCloud.values["pins"] = [id, "rosary"]
+    XCTAssertEqual(storage.read("pins"), ["rosary"])
+    storage.write([id, "litanyOfLoreto"], forKey: "pins")
+    XCTAssertEqual(fakeCloud.values["pins"] as? [String], ["litanyOfLoreto"])
+  }
   func testTestModeNeverAcquiresCloudForReadsWritesRemovalOrStartup() throws {
     let suite = "CloudSyncedListTests.\(UUID().uuidString)"
     let defaults = try XCTUnwrap(UserDefaults(suiteName: suite))

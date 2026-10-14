@@ -20,6 +20,9 @@ import androidx.compose.material3.SegmentedButtonDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
@@ -28,6 +31,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.dkaluta.prosary.R
 import com.dkaluta.prosary.content.today.TodayInfoStore
+import com.dkaluta.prosary.content.today.CalendarEvent
+import com.dkaluta.prosary.content.today.CalendarEvents
 import com.dkaluta.prosary.content.today.TodayTranslationLanguage
 import com.dkaluta.prosary.models.AppSettings
 import com.dkaluta.prosary.ui.shared.TodayBrowsingDate
@@ -62,9 +67,10 @@ private fun FeastList(browsingDate: TodayBrowsingDate, onSelectDate: () -> Unit)
     val date = browsingDate.selectedDate(LocalDate.now())
     val calendarId = TodayInfoStore.selectedCalendarId
     val rows = remember(calendarId, AppSettings.easternPaschaStyle) {
-        TodayInfoStore.feastsAndSolemnities()
+        TodayInfoStore.allCalendarDates().flatMap { (day, feast) -> CalendarEvents.events(day, feast) }
     }
-    val firstUpcoming = rows.indexOfFirst { it.first >= date }.takeIf { it >= 0 } ?: rows.lastIndex.coerceAtLeast(0)
+    val firstUpcoming = rows.indexOfFirst { it.date >= date }.takeIf { it >= 0 } ?: rows.lastIndex.coerceAtLeast(0)
+    var selectedEvent by remember(calendarId) { mutableStateOf<CalendarEvent?>(null) }
     val state = rememberLazyListState(initialFirstVisibleItemIndex = if (rows.isEmpty()) 0 else firstUpcoming + 1)
     LaunchedEffect(calendarId, AppSettings.easternPaschaStyle) {
         if (rows.isNotEmpty()) state.scrollToItem(firstUpcoming + 1)
@@ -83,17 +89,16 @@ private fun FeastList(browsingDate: TodayBrowsingDate, onSelectDate: () -> Unit)
         if (rows.isEmpty()) item {
             Text(stringResource(R.string.calendar_no_feasts), Modifier.padding(24.dp))
         }
-        items(rows, key = { it.first.toEpochDay() }) { (day, feast) ->
-            Column(Modifier.fillMaxWidth().clickable {
-                browsingDate.selectedEpochDay = day.toEpochDay()
-                onSelectDate()
-            }.padding(horizontal = 24.dp, vertical = 16.dp).testTag("calendarFeast.$day"), verticalArrangement = Arrangement.spacedBy(4.dp)) {
-                Text(day.format(DateTimeFormatter.ofPattern("EEE d MMM yyyy", locale)),
+        items(rows, key = { it.id }) { event ->
+            Column(Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 8.dp).testTag("calendarFeast.${event.date}"), verticalArrangement = Arrangement.spacedBy(4.dp)) {
+                Text(event.date.format(DateTimeFormatter.ofPattern("EEE d MMM yyyy", locale)),
                     style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
-                Text(feast.localizedTitle(language), style = MaterialTheme.typography.titleMedium)
-                Text(feast.localizedRank(language, context), style = MaterialTheme.typography.bodySmall)
+                CalendarEventRow(event, language) { selectedEvent = event }
             }
             HorizontalDivider(Modifier.padding(horizontal = 24.dp))
         }
     }
+    selectedEvent?.let { event -> CalendarEventDialog(event, language, onDismiss = { selectedEvent = null }, onOpenReadings = {
+        browsingDate.selectedEpochDay = event.date.toEpochDay(); selectedEvent = null; onSelectDate()
+    }) }
 }

@@ -28,6 +28,18 @@ test("legacy native bundles need no explicit format or schema version", async ()
   assert.equal(savedManifest.formatVersion, undefined);
 });
 
+test("authored Creed policy survives publication without rewriting source text", async () => {
+  const source = { ...content, $creedPolicy: { rite: "syriac", apostlesCreed: false, filioque: "bracketed" } };
+  const result = await validateAndRestamp(fixture({ "content/en.json": source }), "pilgrim");
+  assert.deepEqual(await ZipReader.open(result.bytes).json("content/en.json"), source);
+  for (const policy of [
+    { apostlesCreed: "false", filioque: "bracketed" },
+    { apostlesCreed: false, filioque: "optional" },
+  ]) await assert.rejects(() => validateAndRestamp(fixture({
+    "content/en.json": { ...content, $creedPolicy: policy },
+  }), "pilgrim"), BundleError);
+});
+
 test("portable canonical definitions remain publishable while the built-in Rosary extension is rejected", async () => {
   const root = new URL("../../Shared/content/", import.meta.url);
   let checked = 0;

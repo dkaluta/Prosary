@@ -26,7 +26,8 @@ class BasicPrayerTitleTest {
         assertEquals(LanguageCatalog.all.map { it.code }.toSet(), titles.keys)
         for ((language, expectedOurFather) in titles) for (prayer in BasicPrayerCatalog.all) {
             val title = BasicPrayerCatalog.step(prayer, language).title
-            val interfaceTitle = BasicPrayerCatalog.title(prayer, "he")
+            val interfaceTitle = if (language == "he" || language == "he-x-gamliel") title
+                else BasicPrayerCatalog.title(prayer, "he")
             for (enabled in listOf(false, true)) {
                 val name = BasicPrayerCatalog.cardTitle(prayer, language, "he", enabled)
                 assertEquals("${prayer.id}, $language, $enabled", title, name.primary)

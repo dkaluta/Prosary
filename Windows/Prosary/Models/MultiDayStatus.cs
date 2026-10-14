@@ -86,6 +86,6 @@ public static class MultiDayStatus
             return null;
         }
 
-        return (suggestion, info.LocalizedDisplayName);
+        return (suggestion, PrayerPackStore.InterfaceDisplayName(suggestion));
     }
 }

@@ -160,6 +160,7 @@ public sealed partial class DesktopTodayPage : Page
 
     private void OnTodayDateFlyoutOpened(object sender, object e)
     {
+        Prosary.Controls.CalendarEventMarkers.Refresh();
         _updatingTodayCalendar = true;
         try
         {
@@ -177,6 +178,9 @@ public sealed partial class DesktopTodayPage : Page
         if (args.AddedDates.Count > 0) ViewModel.SelectedTodayDate = args.AddedDates[0];
         TodayDateFlyout.Hide();
     }
+
+    private void OnDayItemChanging(CalendarView sender, CalendarViewDayItemChangingEventArgs args) =>
+        Prosary.Controls.CalendarEventMarkers.Apply(args);
 
     private void OnSelectToday(object sender, RoutedEventArgs e)
     {

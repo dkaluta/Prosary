@@ -83,7 +83,6 @@ public partial class SettingsViewModel : ObservableObject
         if (_isInitializingLanguage) return;
         AppSettings.SetDefaultLanguageCode(LanguageCatalog.SelectingLanguage(value.Code, AppSettings.PrayerLanguageCode));
         RefreshRites();
-        SynchronizeFilioque();
         OnPropertyChanged(nameof(ShowsAramaicSignOfCrossPicker));
         RefreshInstalledDevotions();
     }
@@ -101,29 +100,8 @@ public partial class SettingsViewModel : ObservableObject
         if (!_isInitializingLanguage && value is not null && ShowsRitePicker)
         {
             AppSettings.SetDefaultLanguageCode(value.Code);
-            SynchronizeFilioque();
-            RefreshInstalledDevotions();
+                RefreshInstalledDevotions();
         }
-    }
-
-    public string IncludeFilioqueLabel => Loc.Tr("Settings_IncludeFilioque", "Include Filioque");
-    public string IncludeFilioqueHelp => Loc.Tr("Settings_IncludeFilioqueHelp", "Include “and the Son” in the Nicene Creed where the sourced text supplies it.");
-
-    [ObservableProperty]
-    private bool _includeFilioque = AppSettings.IncludeFilioque;
-
-    private bool _isSynchronizingFilioque;
-
-    partial void OnIncludeFilioqueChanged(bool value)
-    {
-        if (!_isSynchronizingFilioque) AppSettings.SetIncludeFilioque(value);
-    }
-
-    private void SynchronizeFilioque()
-    {
-        _isSynchronizingFilioque = true;
-        IncludeFilioque = AppSettings.IncludeFilioque;
-        _isSynchronizingFilioque = false;
     }
 
     private static readonly IReadOnlyList<AramaicSignOfCrossOption> AllAramaicSignOfCrossOptions =
@@ -506,7 +484,7 @@ public partial class SettingsViewModel : ObservableObject
         foreach (var bundleId in PrayerPackStore.InstalledBundleIds())
         {
             InstalledDevotions.Add(new InstalledDevotionRow(
-                bundleId, PrayerPackStore.Info(bundleId)?.LocalizedDisplayName ?? bundleId));
+                bundleId, PrayerPackStore.InterfaceDisplayName(bundleId)));
         }
 
         InstalledCount = PrayerPackStore.InstalledBundleIds().Count;

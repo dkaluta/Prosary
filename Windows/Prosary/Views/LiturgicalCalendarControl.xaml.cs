@@ -1,5 +1,8 @@
 using Microsoft.UI.Xaml.Controls;
 using Prosary.ViewModels;
+using Microsoft.UI.Xaml;
+using Prosary.Controls;
+using Prosary.Localization;
 
 namespace Prosary.Views;
 
@@ -7,6 +10,7 @@ public sealed partial class LiturgicalCalendarControl : UserControl
 {
     private DateOnly? _focusDate;
     private bool _updatingPicker;
+    private bool _dialogOpen;
     public LiturgicalCalendarViewModel ViewModel { get; } = new();
     public Action<DateOnly>? SelectDate { get; set; }
     public LiturgicalCalendarControl()
@@ -27,6 +31,7 @@ public sealed partial class LiturgicalCalendarControl : UserControl
     {
         _focusDate = date;
         ViewModel.FocusOnDate(date);
+        CalendarEventMarkers.Refresh();
         if (IsLoaded)
         {
             _updatingPicker = true;
@@ -38,21 +43,43 @@ public sealed partial class LiturgicalCalendarControl : UserControl
         }
     }
     private void OnToday(object sender, Microsoft.UI.Xaml.RoutedEventArgs e) => FocusOnDate(DateOnly.FromDateTime(DateTime.Today));
+    private void OnDayItemChanging(CalendarView sender, CalendarViewDayItemChangingEventArgs args) => CalendarEventMarkers.Apply(args);
     private void OnSelectedDatesChanged(CalendarView sender, CalendarViewSelectedDatesChangedEventArgs args)
     {
         if (_updatingPicker || args.AddedDates.Count == 0) return;
         var date = DateOnly.FromDateTime(args.AddedDates[0].DateTime);
         _focusDate = date;
         ViewModel.FocusOnDate(date);
-        SelectDate?.Invoke(date);
+        ScrollToDate(date);
     }
     private void ScrollToDate(DateOnly date)
     {
         var row = ViewModel.Rows.FirstOrDefault(row => row.Date >= date) ?? ViewModel.Rows.LastOrDefault();
         if (row is not null) DispatcherQueue.TryEnqueue(() => FeastList.ScrollIntoView(row, ScrollIntoViewAlignment.Leading));
     }
-    private void OnItemClick(object sender, ItemClickEventArgs e)
+    private async void OnItemClick(object sender, ItemClickEventArgs e)
     {
-        if (e.ClickedItem is LiturgicalCalendarRow row) SelectDate?.Invoke(row.Date);
+        if (_dialogOpen || e.ClickedItem is not LiturgicalCalendarRow row || XamlRoot is null) return;
+        _dialogOpen = true;
+        try
+        {
+            var content = new StackPanel { Spacing = 12 };
+            content.Children.Add(new TextBlock { Text = row.DateLabel, TextWrapping = TextWrapping.Wrap });
+            content.Children.Add(new TextBlock { Text = row.Rank, TextWrapping = TextWrapping.Wrap });
+            if (row.SourceDescriptions.Count == 0)
+                content.Children.Add(new TextBlock { Text = Loc.Tr("calendar_description_unavailable", "No description is available for this event."), TextWrapping = TextWrapping.Wrap });
+            foreach (var description in row.SourceDescriptions)
+            {
+                content.Children.Add(new TextBlock { Text = description.Text, TextWrapping = TextWrapping.Wrap, IsTextSelectionEnabled = true });
+                if (description.HasCredit) content.Children.Add(new TextBlock { Text = description.Credit, TextWrapping = TextWrapping.Wrap });
+                if (description.HasSource) content.Children.Add(new HyperlinkButton { Content = description.SourceLabel, NavigateUri = description.SourceUri });
+            }
+            var result = await new ContentDialog { XamlRoot = XamlRoot, Title = row.Title, FlowDirection = FlowDirection,
+                Content = new ScrollViewer { Content = content, MaxHeight = 480 },
+                PrimaryButtonText = Loc.Tr("calendar_open_readings", "Readings for this Date"),
+                CloseButtonText = Loc.Tr("common_done", "Done"), DefaultButton = ContentDialogButton.Close }.ShowAsync();
+            if (IsLoaded && result == ContentDialogResult.Primary) SelectDate?.Invoke(row.Date);
+        }
+        finally { _dialogOpen = false; }
     }
 }

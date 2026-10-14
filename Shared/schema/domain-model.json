@@ -131,6 +131,10 @@
         "$prayerTraditionByKey": {
           "type": "map<string, string>?",
           "description": "Only in content/he.json: map explicitly Vicariate prayer keys to vicariate. Keys must exist in prayers. Unmarked keys remain generic Hebrew. Load marked text and its reading aid into the internal he-x-vicariate content bucket. This internal probe is never a saved preference or a language-picker choice."
+        },
+        "$creedPolicy": {
+          "type": "CreedPolicy?",
+          "description": "Internal authored-source Creed availability and Filioque presentation. Resolve with the body and reading aid, never by interface language or feast calendar. Absence preserves imported source wording and existing availability."
         }
       }
     },
@@ -236,7 +240,8 @@
         },
         "includeApostlesCreed": {
           "type": "boolean",
-          "default": true
+          "default": true,
+          "description": "Historical storage name for including the source-selected opening Creed. Authored policy selects Apostles or Nicene body and the matching localized option label."
         },
         "includeOpeningPrayers": {
           "type": "boolean",
@@ -978,14 +983,9 @@
         },
         "includeFilioque": {
           "type": "boolean",
-          "initialDefaultByRite": {
-            "la": true,
-            "he": true,
-            "he-x-gamliel": true,
-            "arc": true,
-            "el": false
-          },
-          "description": "App-wide Nicene Creed wording choice. The stored key remains absent until the first explicit Prayer Language selection or the first actual Nicene rendering, which initializes it from that rite's existing use: Greek false; Latin, Vicariate Hebrew, Mission Hebrew and Aramaic true. Reading Settings or changing the interface language must not initialize it. Once saved, changing prayer rites never overrides this value. Apply it to exact recognized Nicene procession clauses after selecting the actual winning source, including Nicene uses of symbolumApostolorum. Keep raw source text intact; remove Mission optional parentheses in rendered text and update both Aramaic scripts together. Greek has no sourced insertion and remains unchanged when enabled. Ordinary Apostles' Creeds, unrelated Father/Son wording and unrecognized imported recensions remain unchanged. Active readers refresh wording while retaining position."
+          "retired": true,
+          "deprecated": true,
+          "description": "Retired stored compatibility key. Existing values are ignored; no toggle or first-selection initialization remains. Authored $creedPolicy metadata governs Creed rendering."
         },
         "todayLanguageCode": {
           "type": "string",
@@ -1093,7 +1093,7 @@
         "showPrayerNameInPrayerLanguage": {
           "type": "boolean",
           "default": false,
-          "description": "Display prayer-language names as card/list primary titles and the interface-language name as a distinct subtitle. Off uses interface-language titles. Prayer text language is unchanged."
+          "description": "Display prayer-language names as card/list primary titles and the interface-language name as a distinct subtitle. Off uses interface-language titles. When interface and prayer languages are both Hebrew, the interface-facing title and subtitle follow the effective prayer tradition (Vicariate he or Mission he-x-gamliel), including sole-authored-tradition normalization for bundles/basic prayers. Use an exact authored tradition name, then the existing generic Hebrew name; never invent missing wording or display a second rite as a same-language subtitle. Identical names suppress the subtitle. Basic Prayers always retain their selected prayer/tradition primary heading regardless of this setting. Other interface/prayer-language combinations keep the existing interface naming behavior; prayer text, independently authored step headings and saved custom names are unchanged."
         },
         "easternPaschaStyle": {
           "type": "string",
@@ -1153,6 +1153,22 @@
           "type": "boolean",
           "default": false,
           "description": "Reverse only daily appointment presentation, so Gospel appears first, across Home/Readings/native Today, reading widgets and notifications. Never modify canonical source order, Bible chapter order, Torah passages, citation identity, source groups or verse mappings."
+        },
+        "customAccentColorHex": {
+          "type": "string",
+          "default": "",
+          "pattern": "^$|^#[0-9A-F]{6}$",
+          "description": "Optional normalized custom control/link accent. Empty uses the preset. Icon selection appColor and semantic liturgical colors remain independent; native adapters adjust lightness for contrast. Android manual selection disables useSystemColors; Mac retains system accent."
+        },
+        "homeWidgetCollapsedIds": {
+          "type": "string",
+          "default": "",
+          "description": "Newline-separated known Home widget IDs in compact/small form. Empty means all large; independent of order, images and selected date."
+        },
+        "homeWidgetGraphicPaths": {
+          "type": "string",
+          "default": "{}",
+          "description": "JSON object mapping known Home widget IDs to device-local private image paths. Never synchronize paths or external photo permissions. Replacement validates before removing previous app-owned image; failed import preserves old image."
         }
       },
       "rendering": "Body, acclamation and currently visible reading-aid text choose typography by dominant actual letters, ignoring combining marks, punctuation and numbers. Syriac custom bodies therefore obey syriacTypeface. Hebrew-square Aramaic keeps Hebrew choices; Greek is independent of the Latin-script preference. Setting changes invalidate open prayer renderings immediately, including other Mac scenes.",
@@ -1175,12 +1191,35 @@
         }
       },
       "description": "A source-bounded section; reflection title spelling is editorial while original text remains in sourceDescriptionByLanguage."
+    },
+    "CreedPolicy": {
+      "description": "Internal source tag, not a user preference or calendar rite inference.",
+      "fields": {
+        "rite": {
+          "type": "string?",
+          "description": "Descriptive authored source/tradition identity; never a language-switching control."
+        },
+        "apostlesCreed": {
+          "type": "boolean",
+          "description": "Whether the selected authored tradition prays the Apostles Creed. False hides the basic creed entry and directs legacy Creed steps to that source Nicene text/title."
+        },
+        "filioque": {
+          "type": "string",
+          "values": [
+            "absent",
+            "bracketed",
+            "unbracketed"
+          ],
+          "description": "Exact recognized procession clause presentation for the winning source and paired script. No phrase is invented for sources without supplied wording."
+        }
+      }
     }
   },
   "languages": {
     "$ref": "LanguageCatalog stores la (default), en, ar, he, he-x-gamliel, arc, el, es, ru, uk, tl, fr, it. Ordinary public choices show one Hebrew (עברית) with a separate Saint James Vicariate (stored he) / Mission of St. Gamaliel (he-x-gamliel) tradition. The fallback editor exposes both Hebrew traditions independently, preserving interleaving such as Mission, Aramaic, Vicariate. Generic shared/repository Hebrew uses the higher Hebrew slot, immediately after that tradition; internal content-only he-x-vicariate distinguishes marked Vicariate text and is never persisted or selectable. Aramaic is labeled ܐܪܡܐܝܬ / ארמית. ar/he/he-x-gamliel/arc are RTL. Other variants retain base fallback. New languages are inserted before a previously terminal Latin fallback."
   },
   "persistence": {
+    "retiredPrayerPacks": "The exact community manifest ID repo.stgamliel-il.litanyOfMaryTheBlessedEverVirgin is permanently retired. All native ports reject import/load and hide repository entries; installed scans purge archives by manifest ID, saved stores delete matching custom copies and reject resurrection, and reminders/progress are cleared. Apple deletes this specific iCloud pack source and repeats cleanup on reads to handle late synchronized rows. Devices apply cleanup when running the updated app. Built-in litanyOfLoreto and other authors remain available.",
     "removal": "Unpinning never deletes a saved Prayer. Delete Saved Prayer persists deletion before cancelling its reminders, preserves sibling copies, and removes an installed custom download only after a fresh reference check finds no remaining saved copies. Built-in packs remain available. Downloads permits unused-only removal; cleanup failures surface without pretending the saved copy survived. Stale editors and autosave updates cannot recreate deleted records.",
     "starterSeeding": "Phone and Windows starter presets are seeded once at initial store creation, never when an existing store is empty after deletion. Apple records hasInitializedPrayerPresets in local UserDefaults; Android seeds only in Room onCreate; Windows seeds only when creating the PresetEntry table. Mac starts empty.",
     "appleDeviceDownloads": "removedDownloadedPrayerIDs is a device-local UserDefaults string array shared by the Apple pack loader. Local pack eviction/removal adds an ID; explicit reimport clears it. Excluded iCloud placeholders are not automatically downloaded. This preference and Mac membership do not delete the cloud pack source or alter saved-preset synchronization.",

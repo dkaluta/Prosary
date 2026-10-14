@@ -12,7 +12,7 @@ public sealed partial class DesktopReadingsPage : Page
     public string Title => Loc.Tr("readings_title", "Readings");
     public string DailyLabel => Loc.Tr("bible_daily_readings", "Daily Readings");
     public string BibleLabel => Loc.Tr("bible_title", "Bible");
-    public string CalendarLabel => Loc.Tr("calendar_feasts_solemnities", "Feasts and Solemnities");
+    public string CalendarLabel => Loc.Tr("calendar_events_title", "Event Calendar");
     public FlowDirection ReadingFlowDirection => UiLanguageCatalog.IsRightToLeft(UiLanguageCatalog.Current) ? FlowDirection.RightToLeft : FlowDirection.LeftToRight;
     public DesktopReadingsPage() { InitializeComponent(); NavigationCacheMode = NavigationCacheMode.Required; }
     public void ShowDailyReadings() => ShowMode("daily");
@@ -21,6 +21,7 @@ public sealed partial class DesktopReadingsPage : Page
     {
         base.OnNavigatedTo(e);
         DailyContent.Content ??= new DesktopTodayPage(Router.For(this).Today, readingsOnly: true);
+        BibleContent.Today = Router.For(this).Today;
         CalendarContent.FocusOnDate(Router.For(this).Today?.SelectedDate ?? DateOnly.FromDateTime(DateTime.Today));
         CalendarContent.SelectDate = date =>
         {

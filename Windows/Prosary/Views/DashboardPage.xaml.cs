@@ -47,6 +47,9 @@ public sealed partial class DashboardPage : Page
     {
         AppSettings.HomeWidgetsChanged += OnLayoutChanged;
         AppSettings.ReadingsOrderChanged += OnReadingsOrderChanged;
+        AppSettings.ReadingsEditionChanged += OnReadingsOrderChanged;
+        AppSettings.TypographyChanged += OnTypographyChanged;
+        Prosary.Services.BibleLibraryStore.Default.Changed += OnBibleChanged;
         DesktopLibraryChanges.Changed += OnLibraryChanged;
         if (ViewModel.Today is { } today) today.PropertyChanged += OnTodayChanged;
         ViewModel.ReloadLayout();
@@ -60,6 +63,9 @@ public sealed partial class DashboardPage : Page
         _clock.Stop();
         AppSettings.HomeWidgetsChanged -= OnLayoutChanged;
         AppSettings.ReadingsOrderChanged -= OnReadingsOrderChanged;
+        AppSettings.ReadingsEditionChanged -= OnReadingsOrderChanged;
+        AppSettings.TypographyChanged -= OnTypographyChanged;
+        Prosary.Services.BibleLibraryStore.Default.Changed -= OnBibleChanged;
         DesktopLibraryChanges.Changed -= OnLibraryChanged;
         if (ViewModel.Today is { } today) today.PropertyChanged -= OnTodayChanged;
     }
@@ -79,6 +85,11 @@ public sealed partial class DashboardPage : Page
     private void OnReadingsOrderChanged() => DispatcherQueue.TryEnqueue(() =>
     {
         if (IsLoaded) ViewModel.RefreshToday();
+    });
+    private void OnTypographyChanged() => DispatcherQueue.TryEnqueue(() => { if (IsLoaded) ViewModel.Scripture.RefreshTypography(); });
+    private void OnBibleChanged(string id) => DispatcherQueue.TryEnqueue(() =>
+    {
+        if (IsLoaded) foreach (var row in ViewModel.Scripture.ScriptureOfDay) row.InvalidateText();
     });
 
     private void OnTodayChanged(object? sender, PropertyChangedEventArgs e)
@@ -103,13 +114,18 @@ public sealed partial class DashboardPage : Page
     private async void OnRemoveWidget(object sender, RoutedEventArgs e)
     {
         if (sender is not FrameworkElement { DataContext: HomeWidgetCard card }) return;
-        if (card.Id == "photo" && _photoBusy) return;
+        if (_photoBusy) return;
         try
         {
             if (card.Id == "photo")
             {
-                DeletePhoto(AppSettings.HomePhotoPath);
+                DeletePhoto(AppSettings.HomePhotoPath, card.Id);
                 AppSettings.SetHomePhotoPath("");
+            }
+            else
+            {
+                DeletePhoto(AppSettings.HomeWidgetGraphicPaths.GetValueOrDefault(card.Id) ?? "", card.Id);
+                AppSettings.SetHomeWidgetGraphicPath(card.Id, null);
             }
             ViewModel.RemoveCommand.Execute(card);
         }
@@ -122,6 +138,8 @@ public sealed partial class DashboardPage : Page
     { if (sender is FrameworkElement { DataContext: HomeWidgetCard card }) ViewModel.MoveUpCommand.Execute(card); }
     private void OnMoveDown(object sender, RoutedEventArgs e)
     { if (sender is FrameworkElement { DataContext: HomeWidgetCard card }) ViewModel.MoveDownCommand.Execute(card); }
+    private void OnToggleSize(object sender, RoutedEventArgs e)
+    { if (sender is FrameworkElement { DataContext: HomeWidgetCard card }) ViewModel.ToggleSizeCommand.Execute(card); }
     private void OnEditReminder(object sender, RoutedEventArgs e)
     { if (sender is FrameworkElement { DataContext: HomeReminderRow row }) ViewModel.EditReminderCommand.Execute(row); }
 
@@ -191,16 +209,29 @@ public sealed partial class DashboardPage : Page
     private static bool IsOwnedPhoto(string path)
     {
         if (string.IsNullOrWhiteSpace(path)) return false;
-        var directory = Path.Combine(ApplicationData.Current.LocalFolder.Path, "HomePhotos");
-        return string.Equals(Path.GetDirectoryName(Path.GetFullPath(path)), directory, StringComparison.OrdinalIgnoreCase);
+        try
+        {
+            var directory = Path.Combine(ApplicationData.Current.LocalFolder.Path, "HomePhotos");
+            return string.Equals(Path.GetDirectoryName(Path.GetFullPath(path)), directory, StringComparison.OrdinalIgnoreCase);
+        }
+        catch (ArgumentException) { return false; }
+        catch (NotSupportedException) { return false; }
     }
 
-    private static void DeletePhoto(string path)
-    { if (IsOwnedPhoto(path) && File.Exists(path)) File.Delete(path); }
+    private static void DeletePhoto(string path, string? removingCard = null)
+    {
+        if (!IsOwnedPhoto(path) || !File.Exists(path)) return;
+        if (removingCard != "photo" && string.Equals(AppSettings.HomePhotoPath, path, StringComparison.OrdinalIgnoreCase)) return;
+        if (AppSettings.HomeWidgetGraphicPaths.Any(pair => pair.Key != removingCard
+            && string.Equals(pair.Value, path, StringComparison.OrdinalIgnoreCase))) return;
+        File.Delete(path);
+    }
 
     private async void OnChoosePhoto(object sender, RoutedEventArgs e)
     {
         if (_dialogOpen || _photoBusy) return;
+        var card = (sender as FrameworkElement)?.Tag as HomeWidgetCard ?? (sender as FrameworkElement)?.DataContext as HomeWidgetCard;
+        if (card is null) return;
         var owner = Router.For(this).OwnerWindow;
         if (owner is null) return;
         _photoBusy = true;
@@ -220,10 +251,12 @@ public sealed partial class DashboardPage : Page
             var bitmap = new Microsoft.UI.Xaml.Media.Imaging.BitmapImage();
             using (var stream = await copy.OpenReadAsync()) await bitmap.SetSourceAsync(stream);
             if (Router.For(this).OwnerWindow != owner || !IsLoaded) { DeletePhoto(newPath); return; }
-            var previous = AppSettings.HomePhotoPath;
-            AppSettings.SetHomePhotoPath(newPath);
+            if (!AppSettings.HomeWidgetOrder.Contains(card.Id)) { DeletePhoto(newPath); return; }
+            var previous = card.IsPhoto ? AppSettings.HomePhotoPath : AppSettings.HomeWidgetGraphicPaths.GetValueOrDefault(card.Id) ?? "";
+            if (card.IsPhoto) AppSettings.SetHomePhotoPath(newPath);
+            else AppSettings.SetHomeWidgetGraphicPath(card.Id, newPath);
             newPath = null;
-            DeletePhoto(previous);
+            DeletePhoto(previous, card.Id);
         }
         catch (Exception error)
         {
@@ -241,7 +274,15 @@ public sealed partial class DashboardPage : Page
     private async void OnRemovePhoto(object sender, RoutedEventArgs e)
     {
         if (_photoBusy) return;
-        try { var previous = AppSettings.HomePhotoPath; DeletePhoto(previous); AppSettings.SetHomePhotoPath(""); }
+        var card = (sender as FrameworkElement)?.Tag as HomeWidgetCard ?? (sender as FrameworkElement)?.DataContext as HomeWidgetCard;
+        if (card is null) return;
+        try
+        {
+            var previous = card.IsPhoto ? AppSettings.HomePhotoPath : AppSettings.HomeWidgetGraphicPaths.GetValueOrDefault(card.Id) ?? "";
+            DeletePhoto(previous, card.Id);
+            if (card.IsPhoto) AppSettings.SetHomePhotoPath("");
+            else AppSettings.SetHomeWidgetGraphicPath(card.Id, null);
+        }
         catch (Exception error) { await ShowErrorAsync(Loc.Tr("home_widgets_photo_error", "Could Not Load Photo"), error.Message); }
     }
 
@@ -250,7 +291,8 @@ public sealed partial class DashboardPage : Page
         if (sender is FrameworkElement { DataContext: HomeWidgetCard card })
         {
             card.PhotoSource = null;
-            card.Body = Loc.Tr("home_widgets_photo_error", "Could Not Load Photo");
+            if (card.IsPhoto) card.Body = Loc.Tr("home_widgets_photo_error", "Could Not Load Photo");
+            else card.GraphicError = Loc.Tr("home_widgets_photo_error", "Could Not Load Photo");
         }
     }
 

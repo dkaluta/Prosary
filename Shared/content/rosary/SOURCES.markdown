@@ -30,8 +30,8 @@ The source fixture is [`nicene-creed.json`](../../tools/fixtures/nicene-creed.js
 Missing prayer translations retain the configured language fallback; editorial headings
 do not establish translated prayer-body coverage.
 
-The separate Nicene body is supplied in Latin, Vicariate Hebrew, Mission Hebrew, Aramaic
-and Greek. English, Arabic, Russian, Tagalog, French, Italian, Spanish and Ukrainian have
+The separate Nicene body is supplied in Latin, Vicariate Hebrew, Mission Hebrew, Aramaic,
+Greek and Ukrainian. English, Arabic, Russian, Tagalog, French, Italian and Spanish have
 translated display headings and retain the configured body fallback. In particular, the
 Spanish Rosary's existing devotion flow remains complete; its separately available Nicene
 Basic Prayer does not acquire a Spanish liturgical translation from that coverage. The
@@ -39,13 +39,31 @@ Spanish `$coverage.fallbackPrayerKeys` records only `symbolumNicaenum`, and the 
 coverage test permits that exact supplemental omission while continuing to require every
 Spanish devotion body, mystery and heading.
 
-The app-wide `includeFilioque` switch starts from the first selected prayer rite's
-status quo, or from the first Nicene source displayed if no rite has been selected.
-Its saved value then survives language and rite changes. Rendering includes or omits
-only the recognized, supplied procession clause, in both Aramaic scripts together.
-The source documents retain their original wording and annotations. The Greek text
-has no sourced Filioque insertion and remains unchanged by the switch; no clause is
-invented for an unsupplied recension.
+The former user Filioque switch is retired. Internal `$creedPolicy` tags choose absent,
+square-bracketed or unbracketed presentation for the actual authored source; old saved toggle
+values are ignored. Syriac and Mission preserve their supplied clause in square brackets.
+Latin and Vicariate render it unbracketed. Greek has no supplied procession insertion and
+retains its sourced wording.
+
+The [St. George Melkite parish explanation](https://stgeorgemelkite.org/resources/frequently-asked-questions/)
+also describes retaining the Creed without the Filioque. The request for an unbracketed
+Melkite recension therefore remains a source-selection question; the app does not add a
+Greek clause to the supplied text without an identified preferred source.
+
+The Ukrainian Nicene body is independently transcribed from the [UGCC catechism,
+Христос – наша Пасха](https://catechismugcc.org/doc/Catechism-UGCC.pdf), 2012 edition,
+printed page 10. Its square-bracketed `[і Сина]` is already in the source. Physical
+line wraps and split words are joined; no wording, spelling or punctuation is modernized.
+The PDF hash and exact text are pinned in `tools/fixtures/ukrainian-nicene-creed.json`.
+This is credited third-party wording, not a Prosary translation or CC0 dedication. Raw
+older Ukrainian Apostles text is retained with its Latin source credit for provenance;
+the selected Eastern policy hides that separate entry and resolves legacy devotion Creed
+steps to the authored Nicene body/title instead.
+
+A [published Saint Maron parish Creed](https://www.saintmaron.ca/prayers/) includes the
+Filioque unbracketed. A Maronite source can therefore declare `unbracketed` explicitly;
+this evidence does not supply an otherwise missing Syriac or Hebrew Maronite recension.
+The renderer never manufactures a clause merely from a language, calendar or Church name.
 
 The contributor supplied five prayer corrections on 6 October 2026: Syriac Fatima and
 Sub tuum praesidium; Ukrainian Our Father, Fatima and Hail Mary. Their exact supplied

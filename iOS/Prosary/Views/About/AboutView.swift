@@ -139,6 +139,9 @@ struct AboutView: View {
           Text("about.ukrainianPrayerSources")
             .font(.footnote)
             .foregroundStyle(.secondary)
+          Text("about.ukrainianNiceneSource").font(.footnote).foregroundStyle(.secondary)
+          Link(String(localized: "about.ukrainianNiceneLink", defaultValue: "UGCC Catechism — Nicene Creed", bundle: UILanguage.bundle, locale: UILanguage.locale),
+               destination: URL(string: "https://catechismugcc.org/doc/Catechism-UGCC.pdf")!)
           Text("about.missionPrayerCorrections")
             .font(.footnote)
             .foregroundStyle(.secondary)

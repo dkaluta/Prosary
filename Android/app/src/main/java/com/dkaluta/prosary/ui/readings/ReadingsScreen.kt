@@ -119,8 +119,7 @@ fun ReadingsScreen(browsingDate: TodayBrowsingDate = rememberTodayBrowsingDate()
     val holder = rememberSaveableStateHolder()
     Scaffold(topBar = {
         TopAppBar(title = { Text(stringResource(when (mode) {
-            "feasts" -> R.string.calendar_feasts_solemnities
-            "calendar" -> R.string.calendar_title
+            "feasts", "calendar" -> R.string.calendar_event_calendar
             else -> R.string.tab_readings
         })) },
             navigationIcon = {
@@ -128,8 +127,8 @@ fun ReadingsScreen(browsingDate: TodayBrowsingDate = rememberTodayBrowsingDate()
                     Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(R.string.bible_daily_readings))
                 }
             }, actions = {
-            if (mode != "feasts") IconButton(onClick = { mode = "feasts" }, modifier = Modifier.testTag("readingsMode.feasts")) {
-                Icon(Icons.Filled.CalendarMonth, contentDescription = stringResource(R.string.calendar_feasts_solemnities))
+            if (!showsCalendarList) IconButton(onClick = { mode = "feasts" }, modifier = Modifier.testTag("readingsMode.feasts")) {
+                Icon(Icons.Filled.CalendarMonth, contentDescription = stringResource(R.string.calendar_event_calendar))
             }
                 IconButton(onClick = { showsReadingSettings = true }, modifier = Modifier.testTag("readingsSettingsButton")) {
                     Icon(Icons.Filled.Settings, contentDescription = stringResource(R.string.reading_settings))
@@ -148,8 +147,8 @@ fun ReadingsScreen(browsingDate: TodayBrowsingDate = rememberTodayBrowsingDate()
             }
             holder.SaveableStateProvider(mode) {
                 when (mode) {
-                    "bible" -> BibleScreen()
-                    "calendar" -> LiturgicalCalendarContent(browsingDate) { mode = "daily" }
+                    "bible" -> BibleScreen(date = browsingDate.selectedDate(LocalDate.now()))
+                    "calendar" -> FeastsAndSolemnitiesContent(browsingDate) { mode = "daily" }
                     "feasts" -> FeastsAndSolemnitiesContent(browsingDate) { mode = "daily" }
                     else -> DailyReadingsContent(browsingDate)
                 }
@@ -221,32 +220,11 @@ private fun DailyReadingsContent(browsingDate: TodayBrowsingDate) {
     CompositionLocalProvider(LocalLayoutDirection provides
         if (TodayTranslationLanguage.isRightToLeft(language)) LayoutDirection.Rtl else LayoutDirection.Ltr) {
         if (showsDatePicker) {
-            val picker = rememberDatePickerState(
-                initialSelectedDateMillis = TodayDateSelection.pickerMillis(selectedDate),
-                yearRange = TodayDateSelection.earliest.year..TodayDateSelection.latest.year,
-            )
-            DatePickerDialog(
-                onDismissRequest = { showsDatePicker = false },
-                confirmButton = {
-                    TextButton(enabled = picker.selectedDateMillis != null, onClick = {
-                        picker.selectedDateMillis?.let { browsingDate.selectedEpochDay = TodayDateSelection.fromPickerMillis(it).toEpochDay() }
-                        showsDatePicker = false
-                    }) { Text(stringResource(R.string.common_ok)) }
-                },
-                dismissButton = {
-                    TextButton(onClick = { showsDatePicker = false }) { Text(stringResource(R.string.common_cancel)) }
-                },
-            ) {
-                DatePicker(state = picker, modifier = Modifier.testTag("readingsDatePicker"), title = {
-                    TextButton(onClick = {
-                        browsingDate.selectedEpochDay = null
-                        currentDate = LocalDate.now()
-                        showsDatePicker = false
-                    }, modifier = Modifier.padding(horizontal = 12.dp).testTag("readingsReset")) {
-                        Text(stringResource(R.string.home_today_reset))
-                    }
-                })
-            }
+            CalendarDatePickerDialog(selectedDate, onDismiss = { showsDatePicker = false }, onSelect = {
+                browsingDate.selectedEpochDay = it.toEpochDay(); showsDatePicker = false
+            }, onToday = {
+                browsingDate.selectedEpochDay = null; currentDate = LocalDate.now(); showsDatePicker = false
+            })
         }
             LazyColumn(
                 modifier = Modifier.fillMaxSize().testTag("readingsList"),

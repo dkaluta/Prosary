@@ -58,11 +58,83 @@ final class PrayerNamePresentationTests: XCTestCase {
           let name = PrayerNamePresentation.basicPrayer(prayer, languageCode: language,
             interfaceLanguage: "he", showPrayerLanguage: enabled)
           XCTAssertEqual(name.title, title, "\(prayer.id), \(language), \(enabled)")
-          let interfaceTitle = HebrewDisplayText.unpointed(BasicPrayerCatalog.step(for: prayer, languageCode: "he").title)
+          let interfaceCode = language == "he-x-gamliel" ? language : "he"
+          let interfaceTitle = HebrewDisplayText.unpointed(BasicPrayerCatalog.title(for: prayer, languageCode: interfaceCode))
           XCTAssertEqual(name.translation, enabled && title != interfaceTitle ? interfaceTitle : nil)
           if prayer.id == "ourFather" { XCTAssertEqual(name.title, expectedOurFather, language) }
         }
       }
+    }
+  }
+
+  func testHebrewBasicPrayerSubtitlesKeepTheSelectedRite() throws {
+    let prayer = try XCTUnwrap(BasicPrayerCatalog.prayer(id: "ourFather"))
+    for (language, expected) in [("he", "אבינו שבשמים"), ("he-x-gamliel", "תפילת האדון")] {
+      for enabled in [false, true] {
+        let name = PrayerNamePresentation.basicPrayer(prayer, languageCode: language,
+          interfaceLanguage: "he", showPrayerLanguage: enabled)
+        XCTAssertEqual(name.title, expected)
+        XCTAssertNil(name.translation, "The Hebrew subtitle must not name the other rite")
+      }
+    }
+    let bilingual = PrayerNamePresentation.basicPrayer(prayer, languageCode: "he-x-gamliel",
+      interfaceLanguage: "en", showPrayerLanguage: true)
+    XCTAssertEqual(bilingual.title, "תפילת האדון")
+    XCTAssertEqual(bilingual.translation, "Our Father")
+  }
+
+  func testHebrewDevotionNamesFollowTheSessionRiteWithoutDuplicateSubtitles() throws {
+    let saved = InterfaceLanguageStore.shared.selection
+    let savedDefault = UserDefaults.standard.object(forKey: LanguageCatalog.defaultsKey)
+    let savedOrder = UserDefaults.standard.object(forKey: LanguageCatalog.fallbackOrderKey)
+    defer {
+      InterfaceLanguageStore.shared.selection = saved
+      for (key, value) in [(LanguageCatalog.defaultsKey, savedDefault), (LanguageCatalog.fallbackOrderKey, savedOrder)] {
+        if let value { UserDefaults.standard.set(value, forKey: key) }
+        else { UserDefaults.standard.removeObject(forKey: key) }
+      }
+    }
+    InterfaceLanguageStore.shared.selection = "he"
+    UserDefaults.standard.set("he-x-gamliel", forKey: LanguageCatalog.defaultsKey)
+    LanguageCatalog.setFallbackOrder(["he-x-gamliel", "he"])
+    let info = try XCTUnwrap(PrayerPackStore.info(for: "trisagion"))
+    XCTAssertEqual(info.localizedDisplayName, "קדישת")
+    for (language, expected) in [("he", "טריסאגיון"), ("he-x-gamliel", "קדישת")] {
+      for enabled in [false, true] {
+        let name = info.namePresentation(prayerCode: language, showPrayerLanguage: enabled)
+        XCTAssertEqual(name.title, expected)
+        XCTAssertNil(name.translation)
+      }
+    }
+    XCTAssertEqual(info.namePresentation(prayerCode: "arc", showPrayerLanguage: false).title, "טריסאגיון")
+    XCTAssertEqual(info.namePresentation(prayerCode: "arc", showPrayerLanguage: true).translation, "טריסאגיון")
+    InterfaceLanguageStore.shared.selection = "en"
+    XCTAssertEqual(info.namePresentation(prayerCode: "he-x-gamliel", showPrayerLanguage: false).title, "Trisagion")
+    let bilingual = info.namePresentation(prayerCode: "he-x-gamliel", showPrayerLanguage: true)
+    XCTAssertEqual(bilingual.title, "קדישת")
+    XCTAssertEqual(bilingual.translation, "Trisagion")
+  }
+
+  func testVicariatePrayerHeadingsStayVicariateWithAMissionDefaultAndFallbackPriority() throws {
+    let savedDefault = UserDefaults.standard.object(forKey: LanguageCatalog.defaultsKey)
+    let savedOrder = UserDefaults.standard.object(forKey: LanguageCatalog.fallbackOrderKey)
+    defer {
+      for (key, value) in [(LanguageCatalog.defaultsKey, savedDefault), (LanguageCatalog.fallbackOrderKey, savedOrder)] {
+        if let value { UserDefaults.standard.set(value, forKey: key) }
+        else { UserDefaults.standard.removeObject(forKey: key) }
+      }
+    }
+    UserDefaults.standard.set("he-x-gamliel", forKey: LanguageCatalog.defaultsKey)
+    LanguageCatalog.setFallbackOrder(["he-x-gamliel", "he"])
+    let expectedTitles = ["ourFather": "אבינו שבשמים", "hailMary": "שלום לך",
+                          "gloryBe": "שבח לאב", "creed": "אני מאמין", "holyGod": "קדוש האלהים"]
+    for (id, expected) in expectedTitles {
+      let prayer = try XCTUnwrap(BasicPrayerCatalog.prayer(id: id))
+      let name = PrayerNamePresentation.basicPrayer(prayer, languageCode: "he",
+        interfaceLanguage: "he", showPrayerLanguage: true)
+      XCTAssertEqual(name.title, expected, id)
+      XCTAssertNil(name.translation, id)
+      XCTAssertEqual(HebrewDisplayText.unpointed(BasicPrayerCatalog.step(for: prayer, languageCode: "he").title), expected, id)
     }
   }
 

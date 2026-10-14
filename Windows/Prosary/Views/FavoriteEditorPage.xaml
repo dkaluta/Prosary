@@ -241,7 +241,7 @@
                                         <ColumnDefinition Width="*" />
                                         <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>
-                                    <TextBlock TextWrapping="Wrap" x:Uid="EdApostlesCreed" Grid.Column="0" Text="Apostles' Creed" VerticalAlignment="Center" />
+                                    <TextBlock TextWrapping="Wrap" Grid.Column="0" Text="{x:Bind ViewModel.CreedLabel, Mode=OneWay}" VerticalAlignment="Center" />
                                     <ToggleSwitch Grid.Column="1" OnContent="" OffContent="" IsOn="{x:Bind ViewModel.IncludeApostlesCreed, Mode=TwoWay}" />
                                 </Grid>
                                 <Grid>

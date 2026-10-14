@@ -11,6 +11,8 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
@@ -28,6 +30,8 @@ import androidx.compose.material.icons.filled.ArrowUpward
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.filled.ExpandLess
+import androidx.compose.material.icons.filled.ExpandMore
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Card
 import androidx.compose.material3.CircularProgressIndicator
@@ -53,6 +57,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ImageBitmap
@@ -66,6 +71,9 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.stateDescription
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.compose.LocalLifecycleOwner
@@ -79,6 +87,11 @@ import com.dkaluta.prosary.models.Prayer
 import com.dkaluta.prosary.models.PrayerReminder
 import com.dkaluta.prosary.services.LocalAppServices
 import com.dkaluta.prosary.ui.readings.HomeReadingsMode
+import com.dkaluta.prosary.ui.readings.CalendarMonthGrid
+import com.dkaluta.prosary.ui.readings.CalendarEventRow
+import com.dkaluta.prosary.ui.readings.CalendarEventDialog
+import com.dkaluta.prosary.content.today.CalendarEvents
+import com.dkaluta.prosary.content.today.CalendarEvent
 import com.dkaluta.prosary.ui.shared.SaintDescriptionsCard
 import com.dkaluta.prosary.ui.shared.TodayBrowsingDate
 import com.dkaluta.prosary.ui.shared.PapalKeysIcon
@@ -105,6 +118,9 @@ private val HomeWidget.title: Int
         HomeWidget.Feast -> R.string.home_widgets_feast
     }
 
+private data class HomeGraphicActions(val choose: (HomeWidget) -> Unit, val remove: (HomeWidget) -> Unit, val busy: Boolean)
+private val LocalHomeGraphicActions = staticCompositionLocalOf { HomeGraphicActions({}, {}, false) }
+
 /** A personal reference dashboard, independent of pinned prayers and their running sessions. */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -126,6 +142,7 @@ fun HomeDashboardScreen(
     var showsCustomization by rememberSaveable { mutableStateOf(false) }
     var photoBusy by remember { mutableStateOf(false) }
     var photoError by remember { mutableStateOf(false) }
+    var photoTarget by rememberSaveable { mutableStateOf(HomeWidget.Photo) }
     var handledTodayRequest by rememberSaveable { mutableStateOf(0L) }
     val lifecycle = LocalLifecycleOwner.current
     DisposableEffect(lifecycle) {
@@ -151,6 +168,7 @@ fun HomeDashboardScreen(
         TodayInfoStore.feast(lookupDate)
     }
     val intention = remember(date, generation) { TodayInfoStore.intention(lookupDate) }
+    var selectedCalendarEvent by remember(date, AppSettings.feastCalendarId) { mutableStateOf<CalendarEvent?>(null) }
     val readings = remember(date, generation, AppSettings.feastCalendarId, AppSettings.easternPaschaStyle, AppSettings.reverseReadingsOrder) {
         com.dkaluta.prosary.content.today.ReadingCitation.displayOrder(TodayInfoStore.readings(lookupDate), AppSettings.reverseReadingsOrder)
     }
@@ -161,15 +179,16 @@ fun HomeDashboardScreen(
     val reminders = prayers.flatMap { prayer -> prayer.reminders.filter { it.isEnabled }.map { prayer to it } }
         .sortedWith(compareBy({ it.second.hour }, { it.second.minute }, { it.first.name }))
 
-    fun removePhoto(removeCard: Boolean = false) {
+    fun removePhoto(widget: HomeWidget = HomeWidget.Photo, removeCard: Boolean = false) {
         if (photoBusy) return
         photoBusy = true
-        val oldPath = AppSettings.homePhotoPath
+        val oldPath = if (widget == HomeWidget.Photo) AppSettings.homePhotoPath else AppSettings.homeWidgetGraphicPath(widget)
         scope.launch {
             try {
                 HomePhotoTransaction.remove(oldPath, { HomePhotoStore.remove(context.filesDir, it) }) {
-                    AppSettings.homePhotoPath = ""
-                    if (removeCard) AppSettings.homeWidgetOrder = AppSettings.homeWidgetOrder - HomeWidget.Photo
+                    if (widget == HomeWidget.Photo) AppSettings.homePhotoPath = ""
+                    else AppSettings.setHomeWidgetGraphicPath(widget, "")
+                    if (removeCard) AppSettings.homeWidgetOrder = AppSettings.homeWidgetOrder - widget
                 }
             } catch (cancelled: CancellationException) { throw cancelled }
             catch (error: Exception) { photoError = true }
@@ -178,13 +197,18 @@ fun HomeDashboardScreen(
     }
 
     val photoPicker = rememberLauncherForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
-        if (uri != null) {
+        if (uri != null && photoTarget in AppSettings.homeWidgetOrder) {
+            val widget = photoTarget
             photoBusy = true
             scope.launch {
-                val oldPath = AppSettings.homePhotoPath
+                val oldPath = if (widget == HomeWidget.Photo) AppSettings.homePhotoPath else AppSettings.homeWidgetGraphicPath(widget)
                 try {
                     HomePhotoTransaction.replace(oldPath, { HomePhotoStore.copy(context, uri) },
-                        { AppSettings.homePhotoPath = it }, { HomePhotoStore.remove(context.filesDir, it) })
+                        {
+                            if (widget !in AppSettings.homeWidgetOrder) throw CancellationException("The image's card was removed")
+                            if (widget == HomeWidget.Photo) AppSettings.homePhotoPath = it else AppSettings.setHomeWidgetGraphicPath(widget, it)
+                        },
+                        { HomePhotoStore.remove(context.filesDir, it) })
                 } catch (cancelled: CancellationException) { throw cancelled }
                 catch (error: Exception) { photoError = true }
                 finally { photoBusy = false }
@@ -202,7 +226,10 @@ fun HomeDashboardScreen(
             }
         })
     }) { padding ->
-        CompositionLocalProvider(LocalLayoutDirection provides if (TodayTranslationLanguage.isRightToLeft(language)) LayoutDirection.Rtl else LayoutDirection.Ltr) {
+        CompositionLocalProvider(LocalLayoutDirection provides if (TodayTranslationLanguage.isRightToLeft(language)) LayoutDirection.Rtl else LayoutDirection.Ltr,
+            LocalHomeGraphicActions provides HomeGraphicActions(
+                choose = { widget -> photoTarget = widget; photoPicker.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly)) },
+                remove = { widget -> removePhoto(widget) }, busy = photoBusy)) {
             LazyColumn(Modifier.padding(padding).fillMaxSize().testTag("homeDashboard"),
                 contentPadding = PaddingValues(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
                 item("date") {
@@ -215,34 +242,37 @@ fun HomeDashboardScreen(
                 }
                 items(AppSettings.homeWidgetOrder, key = { it.id }) { widget ->
                     when (widget) {
-                        HomeWidget.Readings -> DashboardCard(widget, { onOpenReadings(HomeReadingsMode.Daily) }) {
+                        HomeWidget.Readings -> DashboardCard(widget, { onOpenReadings(HomeReadingsMode.Daily) },
+                            summary = readings.firstOrNull()?.localizedFull(language) ?: stringResource(R.string.home_widgets_no_readings)) {
                             if (readings.isEmpty()) Text(stringResource(R.string.home_widgets_no_readings))
                             else readings.forEachIndexed { index, citation ->
                                 Text(citation.localizedFull(language), modifier = Modifier.fillMaxWidth().testTag("homeReading.$index"))
                             }
                         }
-                        HomeWidget.PopeIntention -> DashboardCard(widget) {
+                        HomeWidget.PopeIntention -> DashboardCard(widget, summary = intention?.localizedTitle(language) ?: stringResource(R.string.home_widgets_no_intention)) {
                             if (intention == null) Text(stringResource(R.string.home_widgets_no_intention))
                             else {
                                 Text(intention.localizedTitle(language), style = MaterialTheme.typography.titleSmall)
                                 Text(intention.localizedText(language))
                             }
                         }
-                        HomeWidget.Calendar -> DashboardCard(widget) {
-                            Text(date.format(DateTimeFormatter.ofPattern("LLLL yyyy", locale)))
+                        HomeWidget.Calendar -> DashboardCard(widget, { onOpenReadings(HomeReadingsMode.Calendar) },
+                            summary = feast?.localizedTitle(language) ?: stringResource(R.string.home_widgets_no_feast)) {
                             if (calendarName.isNotBlank()) Text(calendarName, style = MaterialTheme.typography.bodyMedium)
-                            Text(date.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG).withLocale(locale)),
-                                style = MaterialTheme.typography.labelMedium)
-                            Text(feast?.localizedTitle(language) ?: stringResource(R.string.home_widgets_no_feast))
+                            CalendarMonthGrid(date) { browsingDate.selectedEpochDay = it.toEpochDay() }
+                            CalendarEvents.events(date, feast).forEach { event -> CalendarEventRow(event, language) { selectedCalendarEvent = event } }
+                            if (feast == null) Text(stringResource(R.string.home_widgets_no_feast))
                             TextButton(onClick = { onOpenReadings(HomeReadingsMode.Calendar) }, modifier = Modifier.testTag("homeOpenCalendar")) {
-                                Text(stringResource(R.string.calendar_title))
+                                Text(stringResource(R.string.calendar_event_calendar))
                             }
                         }
-                        HomeWidget.Photo -> DashboardCard(widget) {
+                        HomeWidget.Photo -> DashboardCard(widget, summary = stringResource(if (AppSettings.homePhotoPath.isEmpty())
+                            R.string.home_widgets_choose_photo else R.string.home_widgets_photo_description)) {
                             HomePhoto(AppSettings.homePhotoPath)
                             if (photoBusy) CircularProgressIndicator()
                             Row {
                                 TextButton(enabled = !photoBusy, onClick = {
+                                    photoTarget = HomeWidget.Photo
                                     photoPicker.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
                                 }) { Text(stringResource(R.string.home_widgets_choose_photo)) }
                                 if (AppSettings.homePhotoPath.isNotEmpty()) TextButton(enabled = !photoBusy, onClick = { removePhoto() }) {
@@ -250,7 +280,9 @@ fun HomeDashboardScreen(
                                 }
                             }
                         }
-                        HomeWidget.Reminders -> DashboardCard(widget) {
+                        HomeWidget.Reminders -> DashboardCard(widget, { onOpenSettings() }, summary = reminders.firstOrNull()?.first?.name
+                            ?: stringResource(if (AppSettings.readingsReminderEnabled) R.string.settings_reminders_readings
+                            else if (AppSettings.saintReminderEnabled) R.string.settings_reminders_saints else R.string.home_widgets_no_reminders)) {
                             if (reminders.isEmpty() && !AppSettings.readingsReminderEnabled && !AppSettings.saintReminderEnabled)
                                 Text(stringResource(R.string.home_widgets_no_reminders))
                             if (AppSettings.readingsReminderEnabled) ReminderLink(stringResource(R.string.settings_reminders_readings),
@@ -262,10 +294,13 @@ fun HomeDashboardScreen(
                             }
                             TextButton(onClick = onOpenSettings) { Text(stringResource(R.string.home_widgets_manage_reminders)) }
                         }
-                        HomeWidget.Scripture -> DashboardCard(widget, { onOpenReadings(HomeReadingsMode.Bible) }) {
-                            Text(stringResource(R.string.bible_title))
+                        HomeWidget.Scripture -> DashboardCard(widget, { onOpenReadings(HomeReadingsMode.Bible) },
+                            summary = com.dkaluta.prosary.content.today.ScriptureOfDay.citation(TodayInfoStore.readings(lookupDate))?.localizedFull(language)
+                                ?: stringResource(R.string.home_widgets_no_readings)) {
+                            com.dkaluta.prosary.ui.readings.ScriptureOfDayCard(date, language)
                         }
-                        HomeWidget.Reflection -> DashboardCard(widget) {
+                        HomeWidget.Reflection -> DashboardCard(widget, summary = feast?.reflections(language)?.firstOrNull()?.title
+                            ?: stringResource(R.string.home_widgets_reflection_pending)) {
                             val reflections = feast?.reflections(language).orEmpty()
                             if (reflections.isEmpty()) Text(stringResource(R.string.home_widgets_reflection_pending),
                                 color = MaterialTheme.colorScheme.onSurfaceVariant)
@@ -286,7 +321,7 @@ fun HomeDashboardScreen(
                                 }
                             }
                         }
-                        HomeWidget.Feast -> DashboardCard(widget) {
+                        HomeWidget.Feast -> DashboardCard(widget, summary = feast?.localizedTitle(language) ?: stringResource(R.string.home_widgets_no_feast)) {
                             if (feast == null) Text(stringResource(R.string.home_widgets_no_feast))
                             else {
                                 Text(feast.localizedTitle(language), style = MaterialTheme.typography.titleSmall)
@@ -306,24 +341,51 @@ fun HomeDashboardScreen(
 
     if (showsCustomization) HomeCustomizationDialog(onDismiss = { showsCustomization = false }, photoBusy = photoBusy,
         onRemove = { widget ->
-            if (widget != HomeWidget.Photo) AppSettings.homeWidgetOrder = AppSettings.homeWidgetOrder - widget
-            else removePhoto(removeCard = true)
+            if (!photoBusy) {
+                if (widget != HomeWidget.Photo && AppSettings.homeWidgetGraphicPath(widget).isEmpty()) AppSettings.homeWidgetOrder = AppSettings.homeWidgetOrder - widget
+                else removePhoto(widget, removeCard = true)
+            }
         })
+    selectedCalendarEvent?.let { event -> CalendarEventDialog(event, language, onDismiss = { selectedCalendarEvent = null }, onOpenReadings = {
+        browsingDate.selectedEpochDay = event.date.toEpochDay(); selectedCalendarEvent = null; onOpenReadings(HomeReadingsMode.Daily)
+    }) }
     if (photoError) AlertDialog(onDismissRequest = { photoError = false },
         title = { Text(stringResource(R.string.home_widgets_photo_error)) },
         confirmButton = { TextButton(onClick = { photoError = false }) { Text(stringResource(R.string.common_ok)) } })
 }
 
 @Composable
-private fun DashboardCard(widget: HomeWidget, onClick: (() -> Unit)? = null, content: @Composable ColumnScope.() -> Unit) {
+private fun DashboardCard(widget: HomeWidget, onClick: (() -> Unit)? = null, summary: String = "", content: @Composable ColumnScope.() -> Unit) {
+    val expanded = !AppSettings.isHomeWidgetCollapsed(widget)
+    val sizeLabel = stringResource(if (expanded) R.string.home_widget_large else R.string.home_widget_small)
+    val actionLabel = stringResource(if (expanded) R.string.home_widget_collapse else R.string.home_widget_expand)
+    val graphics = LocalHomeGraphicActions.current
+    val graphicPath = AppSettings.homeWidgetGraphicPath(widget)
     Card(Modifier.fillMaxWidth().testTag("homeWidget.${widget.id}").then(if (onClick != null) Modifier.clickable(onClick = onClick) else Modifier)) {
         Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 if (widget == HomeWidget.PopeIntention) PapalKeysIcon(Modifier.padding(end = 8.dp))
                 Text(stringResource(widget.title), style = MaterialTheme.typography.titleMedium, modifier = Modifier.weight(1f))
+                IconButton(onClick = { AppSettings.setHomeWidgetCollapsed(widget, expanded) },
+                    modifier = Modifier.testTag("homeWidgetSize.${widget.id}").semantics { stateDescription = sizeLabel }) {
+                    Icon(if (expanded) Icons.Filled.ExpandLess else Icons.Filled.ExpandMore, contentDescription = actionLabel)
+                }
                 if (onClick != null) Icon(Icons.AutoMirrored.Filled.KeyboardArrowRight, contentDescription = null)
             }
-            content()
+            if (expanded) {
+                if (widget != HomeWidget.Photo && graphicPath.isNotEmpty()) HomePhoto(graphicPath, Modifier.testTag("homeWidgetGraphicImage.${widget.id}"))
+                content()
+                if (widget != HomeWidget.Photo) Row {
+                    TextButton(enabled = !graphics.busy, onClick = { graphics.choose(widget) }, modifier = Modifier.testTag("homeWidgetGraphic.${widget.id}")) {
+                        Text(stringResource(if (graphicPath.isEmpty()) R.string.home_widget_add_graphic else R.string.home_widget_change_graphic))
+                    }
+                    if (graphicPath.isNotEmpty()) TextButton(enabled = !graphics.busy, onClick = { graphics.remove(widget) },
+                        modifier = Modifier.testTag("homeWidgetGraphicRemove.${widget.id}")) {
+                        Text(stringResource(R.string.home_widget_remove_graphic))
+                    }
+                }
+            } else if (summary.isNotBlank()) Text(summary, maxLines = 2, overflow = TextOverflow.Ellipsis,
+                color = MaterialTheme.colorScheme.onSurfaceVariant)
         }
     }
 }
@@ -341,7 +403,7 @@ private fun ReminderLink(title: String, reminder: PrayerReminder, onClick: () ->
 }
 
 @Composable
-private fun HomePhoto(path: String) {
+private fun HomePhoto(path: String, modifier: Modifier = Modifier) {
     val context = LocalContext.current
     var failed by remember(path) { mutableStateOf(false) }
     val bitmap by key(path) {
@@ -351,9 +413,12 @@ private fun HomePhoto(path: String) {
             }.onSuccess { value = it }.onFailure { failed = true }
         }
     }
-    bitmap?.let { Image(it, contentDescription = stringResource(R.string.home_widgets_photo_description),
-        modifier = Modifier.fillMaxWidth().heightIn(max = 400.dp), contentScale = ContentScale.Fit) }
-    if (failed) Text(stringResource(R.string.home_widgets_photo_error), color = MaterialTheme.colorScheme.error)
+    if (path.isNotEmpty()) Box(modifier.fillMaxWidth().height(200.dp), contentAlignment = Alignment.Center) {
+        bitmap?.let { Image(it, contentDescription = stringResource(R.string.home_widgets_photo_description),
+            modifier = Modifier.fillMaxSize(), contentScale = ContentScale.Fit) }
+        if (failed) Text(stringResource(R.string.home_widgets_photo_error), color = MaterialTheme.colorScheme.error)
+        else if (bitmap == null) CircularProgressIndicator()
+    }
 }
 
 @Composable
@@ -373,7 +438,7 @@ private fun HomeCustomizationDialog(photoBusy: Boolean, onRemove: (HomeWidget) -
                         IconButton(enabled = index < selected.lastIndex, onClick = { AppSettings.moveHomeWidget(widget, 1) }) {
                             Icon(Icons.Filled.ArrowDownward, "${stringResource(R.string.home_widgets_move_down)}: $label")
                         }
-                        IconButton(enabled = widget != HomeWidget.Photo || !photoBusy, onClick = { onRemove(widget) },
+                        IconButton(enabled = !photoBusy, onClick = { onRemove(widget) },
                             modifier = Modifier.testTag("homeWidgetRemove.${widget.id}")) {
                             Icon(Icons.Filled.Delete, "${stringResource(R.string.home_widgets_remove)}: $label")
                         }

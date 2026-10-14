@@ -10,6 +10,9 @@ struct HomeDashboardView: View {
   @Environment(\.scenePhase) private var scenePhase
   @AppStorage(HomeWidgetOrder.key) private var storedOrder = HomeWidgetOrder.encode(HomeWidgetOrder.defaults)
   @AppStorage(HomePhotoStore.key) private var photoPath = ""
+  @AppStorage(HomeWidgetDisplay.collapsedKey) private var storedCollapsed = ""
+  @AppStorage(HomeWidgetDisplay.graphicsKey) private var storedGraphics = "{}"
+  @Environment(\.accessibilityReduceMotion) private var reduceMotion
   @AppStorage(TodayInfoStore.calendarDefaultsKey) private var calendarID = ""
   @AppStorage(TodayInfoStore.paschaStyleDefaultsKey) private var paschaStyle = "julian"
   @AppStorage(ReadingDisplayOrder.defaultsKey) private var reverseReadingsOrder = false
@@ -23,10 +26,15 @@ struct HomeDashboardView: View {
   @State private var selectedPhoto: PhotosPickerItem?
   @State private var photoImage: CGImage?
   @State private var showsPhotoError = false
-  @State private var photoIsLoading = false
+  @State private var photoImport = HomeGraphicImportState()
+  @State private var showsDatePicker = false
   @State private var prayers: [Prayer] = []
+  @State private var showsGraphicPicker = false
+  @State private var graphicTarget: HomeWidget = .photo
+  @State private var graphicImages: [HomeWidget: CGImage] = [:]
 
   private var language: String { UILanguage.current }
+  private var photoIsLoading: Bool { photoImport.active != nil }
   private var widgets: [HomeWidget] { HomeWidgetOrder.decode(storedOrder) }
   private var selectedDate: Date { dateSelection.localDate() }
   private var feast: FeastDay? { TodayInfoStore.feast(on: selectedDate) }
@@ -41,9 +49,16 @@ struct HomeDashboardView: View {
   var body: some View {
     ScrollView {
       VStack(alignment: .leading, spacing: 16) {
-        DatePicker(UILanguage.text("home.today.chooseDate", language: language, fallback: "Choose a date"),
-                   selection: dateBinding, in: MacTodayDateSelection.pickerRange(), displayedComponents: .date)
+        Button { showsDatePicker = true } label: {
+          Label(CalendarEventPresentation.dateLabel(selectedDate), systemImage: "calendar")
+        }
+          .buttonStyle(.bordered)
           .accessibilityIdentifier("homeWidgets.date")
+          .popover(isPresented: $showsDatePicker) {
+            ReadingDatePickerPopover(selection: dateBinding, range: MacTodayDateSelection.pickerRange(),
+              pickerIdentifier: "homeWidgets.datePicker", todayIdentifier: "homeWidgets.dateToday", doneIdentifier: "homeWidgets.dateDone") { showsDatePicker = false }
+              .presentationCompactAdaptation(.sheet)
+          }
         if !dateSelection.isToday() {
           Button(UILanguage.text("home.today.today", language: language, fallback: "Today")) {
             dateSelection.select(Date())
@@ -89,9 +104,11 @@ struct HomeDashboardView: View {
       HomeReminderManager()
     }
     .alert(label("photoError"), isPresented: $showsPhotoError) { Button("common.ok", role: .cancel) {} }
-    .task { refreshDate(); await reloadPrayers(); photoImage = HomePhotoStore.image(photoPath) }
+    .photosPicker(isPresented: $showsGraphicPicker, selection: $selectedPhoto, matching: .images)
+    .task { refreshDate(); await reloadPrayers(); photoImage = HomePhotoStore.image(photoPath); reloadGraphics() }
     .task(id: selectedPhoto) { await loadPhoto() }
     .onChange(of: photoPath) { _, path in photoImage = HomePhotoStore.image(path) }
+    .onChange(of: storedGraphics) { _, _ in reloadGraphics() }
     .onChange(of: scenePhase) { _, phase in
       if phase == .active { refreshDate(); Task { await reloadPrayers() } }
     }
@@ -102,14 +119,40 @@ struct HomeDashboardView: View {
   }
 
   private func card(_ widget: HomeWidget) -> some View {
-    VStack(alignment: .leading, spacing: 12) {
-      HomeWidgetLabel(widget: widget).font(.headline).accessibilityAddTraits(.isHeader)
-      cardContent(widget)
+    let isCollapsed = HomeWidgetDisplay.collapsed(storedCollapsed).contains(widget)
+    return VStack(alignment: .leading, spacing: 12) {
+      Button { toggleSize(widget) } label: {
+        HStack {
+          HomeWidgetLabel(widget: widget).font(.headline).accessibilityAddTraits(.isHeader)
+          Spacer(minLength: 12)
+          Image(systemName: isCollapsed ? "chevron.down" : "chevron.up").font(.caption.weight(.semibold))
+            .foregroundStyle(.secondary)
+        }.frame(minHeight: 44).contentShape(Rectangle())
+      }
+      .buttonStyle(.plain)
+      .accessibilityLabel("\(widget.title), \(label(isCollapsed ? "expand" : "collapse"))")
+      .accessibilityIdentifier("homeWidgets.size.\(widget.rawValue)")
+      if isCollapsed { compactContent(widget) }
+      else {
+        if let image = graphicImages[widget], widget != .photo {
+          Image(decorative: image, scale: 1).resizable().scaledToFit().frame(maxHeight: 280)
+            .clipShape(RoundedRectangle(cornerRadius: 10)).accessibilityHidden(true)
+        }
+        cardContent(widget)
+      }
     }
     .frame(maxWidth: .infinity, alignment: .leading)
     .padding(18)
     .prosaryContentCardBackground()
     .contextMenu {
+      Button(label(isCollapsed ? "expand" : "collapse"), systemImage: isCollapsed ? "arrow.up.left.and.arrow.down.right" : "arrow.down.right.and.arrow.up.left") { toggleSize(widget) }
+      Button(label(graphicPath(widget).isEmpty ? "addGraphic" : "changeGraphic"), systemImage: "photo.badge.plus") {
+        chooseGraphic(widget)
+      }.disabled(photoIsLoading)
+      if !graphicPath(widget).isEmpty {
+        Button(label("removeGraphic"), systemImage: "photo", role: .destructive) { removeGraphic(widget) }
+          .disabled(photoIsLoading)
+      }
       Button(label("moveUp"), systemImage: "arrow.up") { move(widget, by: -1) }
         .disabled(widgets.first == widget)
       Button(label("moveDown"), systemImage: "arrow.down") { move(widget, by: 1) }
@@ -118,6 +161,37 @@ struct HomeDashboardView: View {
     }
     .accessibilityElement(children: .contain)
     .accessibilityIdentifier("homeWidgets.\(widget.rawValue)")
+  }
+
+  @ViewBuilder private func compactContent(_ widget: HomeWidget) -> some View {
+    switch widget {
+    case .readings:
+      Text(readings.first?.value.localizedFull(language) ?? label("noReadings")).font(.subheadline)
+      Button(widget.title) { openReadings("daily") }.buttonStyle(.bordered)
+    case .calendar:
+      Text(feast?.localizedTitle(language) ?? label("noFeast")).font(.subheadline)
+      Button(widget.title) { openReadings("calendar") }.buttonStyle(.bordered)
+    case .scripture:
+      if let reading = TodayInfoStore.scriptureOfTheDay(on: selectedDate) {
+        Text(reading.localizedFull(language)).font(.subheadline)
+      }
+      Button(widget.title) { openReadings("bible") }.buttonStyle(.bordered)
+    case .popeIntention:
+      Text(intention?.localizedTitle(language) ?? label("noIntention")).font(.subheadline)
+    case .photo:
+      Button { chooseGraphic(.photo) } label: { Label(label("choosePhoto"), systemImage: "photo.badge.plus") }
+        .buttonStyle(.bordered).disabled(photoIsLoading)
+    case .reminders:
+      Text(prayers.first(where: { $0.reminders.contains(where: \.isEnabled) })?.name
+        ?? (readingsReminderEnabled ? HomeWidget.readings.title : saintReminderEnabled ? HomeWidget.feast.title : label("noReminders")))
+        .font(.subheadline)
+      Button(label("manageReminders")) { showsReminders = true }.buttonStyle(.bordered)
+    case .reflection:
+      Text(feast?.reflections(language: language).first?.title ?? label("reflectionPending")).font(.subheadline)
+    case .feast:
+      Text(feast?.localizedTitle(language) ?? label("noFeast")).font(.subheadline)
+      if feast != nil { Button(label("feastDetails")) { openReadings("daily") }.buttonStyle(.bordered) }
+    }
   }
 
   @ViewBuilder private func cardContent(_ widget: HomeWidget) -> some View {
@@ -139,10 +213,8 @@ struct HomeDashboardView: View {
         Text(verbatim: intention.localizedText(language)).textSelection(.enabled)
       } else { Text(label("noIntention")).foregroundStyle(.secondary) }
     case .calendar:
-      DatePicker("", selection: dateBinding, in: MacTodayDateSelection.pickerRange(), displayedComponents: .date)
-        .datePickerStyle(.graphical).labelsHidden()
-        .environment(\.calendar, Calendar(identifier: .gregorian))
-      if let feast { Text(verbatim: feast.localizedTitle(language)).font(.subheadline) }
+      CalendarMonthGrid(dateSelection: $dateSelection)
+      CalendarDayEvents(date: selectedDate, openReadings: { openReadings("daily") })
       Button(HomeWidget.calendar.title) { openReadings("calendar") }.buttonStyle(.bordered)
     case .photo:
       if let photoImage {
@@ -152,11 +224,11 @@ struct HomeDashboardView: View {
           .accessibilityLabel(label("photoDescription"))
       }
       if photoIsLoading { ProgressView() }
-      PhotosPicker(selection: $selectedPhoto, matching: .images) {
+      Button { chooseGraphic(.photo) } label: {
         Label(label("choosePhoto"), systemImage: "photo.badge.plus")
       }.buttonStyle(.bordered).disabled(photoIsLoading)
       if !photoPath.isEmpty {
-        Button(label("removePhoto"), role: .destructive) { removePhoto() }
+        Button(label("removePhoto"), role: .destructive) { removeGraphic(.photo) }.disabled(photoIsLoading)
       }
     case .reminders:
       if readingsReminderEnabled { reminderLine(HomeWidget.readings.title, minutes: readingsReminderMinutes) }
@@ -171,6 +243,11 @@ struct HomeDashboardView: View {
       }
       Button(label("manageReminders")) { showsReminders = true }.buttonStyle(.bordered)
     case .scripture:
+      if let reading = TodayInfoStore.scriptureOfTheDay(on: selectedDate) {
+        Text(bibleLabel("scriptureOfTheDay", "Scripture of the Day")).font(.subheadline.weight(.semibold))
+        ScripturePassageView(reading: reading, interfaceLanguage: language)
+          .id("\(dateSelection.day)|\(calendarID)|\(paschaStyle)")
+      }
       Button { openReadings("bible") } label: {
         Label(HomeWidget.scripture.title, systemImage: "chevron.forward")
           .frame(maxWidth: .infinity, minHeight: 44, alignment: .leading)
@@ -224,7 +301,8 @@ struct HomeDashboardView: View {
   }
 
   private func removeWidget(_ widget: HomeWidget) {
-    if widget == .photo, !removePhoto() { return }
+    if !removeGraphic(widget) { return }
+    if graphicTarget == widget { selectedPhoto = nil }
     storedOrder = HomeWidgetOrder.encode(widgets.filter { $0 != widget })
   }
 
@@ -239,17 +317,58 @@ struct HomeDashboardView: View {
 
   private func loadPhoto() async {
     guard let item = selectedPhoto else { return }
-    photoIsLoading = true
-    defer { photoIsLoading = false }
+    let target = graphicTarget
+    let request = photoImport.begin(target)
+    defer { photoImport.finish(request) }
     do {
       guard let data = try await item.loadTransferable(type: Data.self) else { throw HomePhotoStore.PhotoError.invalidImage }
       try Task.checkCancellation()
+      guard photoImport.canCommit(request, widgets: widgets) else { return }
       let newPath = try HomePhotoStore.install(data)
-      do { try HomePhotoStore.remove(photoPath) }
+      let oldPath = graphicPath(target)
+      do { try HomePhotoStore.remove(oldPath) }
       catch { try? HomePhotoStore.remove(newPath); throw error }
-      photoPath = newPath
+      if target == .photo { photoPath = newPath }
+      else {
+        var graphics = HomeWidgetDisplay.graphics(storedGraphics)
+        graphics[target] = newPath
+        storedGraphics = HomeWidgetDisplay.encodeGraphics(graphics)
+      }
     } catch is CancellationError { }
     catch { showsPhotoError = true }
+  }
+
+  private func toggleSize(_ widget: HomeWidget) {
+    withAnimation(reduceMotion ? nil : .easeInOut(duration: 0.2)) {
+      var collapsed = HomeWidgetDisplay.collapsed(storedCollapsed)
+      if collapsed.contains(widget) { collapsed.remove(widget) } else { collapsed.insert(widget) }
+      storedCollapsed = HomeWidgetDisplay.encodeCollapsed(collapsed)
+    }
+  }
+
+  private func graphicPath(_ widget: HomeWidget) -> String {
+    widget == .photo ? photoPath : HomeWidgetDisplay.graphics(storedGraphics)[widget] ?? ""
+  }
+
+  private func chooseGraphic(_ widget: HomeWidget) {
+    graphicTarget = widget; selectedPhoto = nil; showsGraphicPicker = true
+  }
+
+  @discardableResult private func removeGraphic(_ widget: HomeWidget) -> Bool {
+    photoImport.cancel(widget)
+    if graphicTarget == widget { selectedPhoto = nil }
+    if widget == .photo { return removePhoto() }
+    do {
+      try HomePhotoStore.remove(graphicPath(widget))
+      var graphics = HomeWidgetDisplay.graphics(storedGraphics)
+      graphics[widget] = nil
+      storedGraphics = HomeWidgetDisplay.encodeGraphics(graphics)
+      return true
+    } catch { showsPhotoError = true; return false }
+  }
+
+  private func reloadGraphics() {
+    graphicImages = HomeWidgetDisplay.graphics(storedGraphics).compactMapValues { HomePhotoStore.image($0) }
   }
 }
 

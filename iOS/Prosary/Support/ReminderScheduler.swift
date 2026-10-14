@@ -30,6 +30,10 @@ struct ReminderScheduler {
 
   /// Replaces all pending notifications for `prayer` with its current enabled reminders.
   static func schedule(for prayer: Prayer) {
+    guard prayer.kind != .custom || !RetiredPrayerBundles.contains(prayer.customDevotionId) else {
+      removeAll(for: prayer)
+      return
+    }
     let center = UNUserNotificationCenter.current()
     let prefix = notificationPrefix(for: prayer)
 

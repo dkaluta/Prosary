@@ -40,6 +40,16 @@ object LanguageCatalog {
         return canonicalBase + normalized.removePrefix(base)
     }
 
+    /** Hebrew prayer names distinguish authored rites even when interface names are primary.
+     * Other interface languages keep their translation, independently of the prayer rite. */
+    fun interfaceTitleLanguage(interfaceLanguage: String, prayerLanguage: String?): String {
+        val interfaceCode = uiLanguageCode(interfaceLanguage)
+        val prayerCode = resolve(prayerLanguage).code
+        return if (interfaceCode.substringBefore('-') == "he" && pickerLanguageCode(prayerCode) == "he") {
+            prayerCode
+        } else interfaceCode
+    }
+
     /** Sentinel stored in a favorite's `languageCode` meaning "follow the global prayer language". */
     const val defaultSentinel = ""
 

@@ -1,6 +1,7 @@
 using System.Net.Http;
 using System.Text.Json;
 using Prosary.Localization;
+using Prosary.Models;
 
 namespace Prosary.Services;
 
@@ -44,7 +45,7 @@ public static class RepositoryClient
         var catalog = JsonSerializer.Deserialize<Catalog>(json, JsonOptions)
             ?? throw new UnsupportedCatalogException();
         if (catalog.ProsaryRepository != 1) throw new UnsupportedCatalogException();
-        return catalog.Bundles ?? [];
+        return (catalog.Bundles ?? []).Where(bundle => !RetiredPrayerBundles.Contains(bundle.Id)).ToList();
     }
 
     public static async Task<IReadOnlyList<RepositoryBundle>> FetchCatalogAsync()

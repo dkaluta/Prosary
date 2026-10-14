@@ -49,6 +49,40 @@ public class HebrewFallbackTests : IClassFixture<PrayerPackLoaderFixture>
     }
 
     [Fact]
+    public void HebrewBundleNamesFollowItsOnlyAuthoredRiteWithoutChangingOtherLanguageNames()
+    {
+        var oldUi = UiLanguageCatalog.Current;
+        var oldNames = AppSettings.ShowPrayerNameInPrayerLanguage;
+        try
+        {
+            UiLanguageCatalog.UseLanguageForCurrentSession("he");
+            using var fixture = new ImportedPack(new Dictionary<string, object>
+            {
+                ["he"] = new { prayers = new { genericTitle = "טריסאגיון" } },
+                ["he-x-gamliel"] = new { prayers = new { genericBody = "Mission body" } },
+            }, displayNames: new() { ["he"] = "טריסאגיון", ["he-x-gamliel"] = "קדישת", ["uk"] = "Трисвяте" });
+            fixture.SetOrder("he", "he-x-gamliel");
+            Assert.Equal("קדישת", PrayerPackStore.InterfaceDisplayName(fixture.Id, "he"));
+            foreach (var enabled in new[] { false, true })
+            {
+                AppSettings.SetShowPrayerNameInPrayerLanguage(enabled);
+                var name = PrayerCardName.ForBundle(fixture.Id, "he");
+                Assert.Equal("קדישת", name.Title);
+                Assert.Empty(name.InterfaceSubtitle);
+            }
+            UiLanguageCatalog.UseLanguageForCurrentSession("uk");
+            Assert.Equal("Трисвяте", PrayerPackStore.InterfaceDisplayName(fixture.Id, "he"));
+            AppSettings.SetShowPrayerNameInPrayerLanguage(true);
+            Assert.Equal("Трисвяте", PrayerCardName.ForBundle(fixture.Id, "uk").Title);
+        }
+        finally
+        {
+            UiLanguageCatalog.UseLanguageForCurrentSession(oldUi);
+            AppSettings.SetShowPrayerNameInPrayerLanguage(oldNames);
+        }
+    }
+
+    [Fact]
     public void ImportedAramaicHeadingsKeepLocalPairsAndSupportReverseScriptOrder()
     {
         var pointed = PrayerPackStore.ResolveBodyText("trisagion", "arc", "trisagionAcclamationTitle");
@@ -411,7 +445,8 @@ public class HebrewFallbackTests : IClassFixture<PrayerPackLoaderFixture>
         private readonly Action _restoreAids = Snapshot<string>("PrayerTransliterations");
         private readonly Action _restoreMysteries = Snapshot<MysteryTextOverride>("MysteryOverrides");
 
-        public ImportedPack(Dictionary<string, object> contents, string[]? declaredLanguages = null)
+        public ImportedPack(Dictionary<string, object> contents, string[]? declaredLanguages = null,
+            Dictionary<string, string>? displayNames = null)
         {
             PrayerPackStore.InstalledPacksDirectory = _directory;
             using var buffer = new MemoryStream();
@@ -422,7 +457,7 @@ public class HebrewFallbackTests : IClassFixture<PrayerPackLoaderFixture>
                     using var writer = new StreamWriter(archive.CreateEntry(path).Open());
                     writer.Write(JsonSerializer.Serialize(value));
                 }
-                Put("manifest.json", new { schemaVersion = 1, id = Id, kind = Id, displayName = "Fallback fixture", languages = declaredLanguages ?? contents.Keys.ToArray(), hasCatalog = false, images = Array.Empty<string>() });
+                Put("manifest.json", new { schemaVersion = 1, id = Id, kind = Id, displayName = "Fallback fixture", displayNameByLanguage = displayNames, languages = declaredLanguages ?? contents.Keys.ToArray(), hasCatalog = false, images = Array.Empty<string>() });
                 Put("devotion.json", new { type = "steps", steps = new[] { new { title = "Fixture", bodyKey = "genericBody" } } });
                 foreach (var (language, content) in contents) Put($"content/{language}.json", content);
             }

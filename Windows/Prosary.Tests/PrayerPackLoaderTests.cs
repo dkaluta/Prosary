@@ -495,6 +495,40 @@ public class PrayerPackLoaderTests : IClassFixture<PrayerPackLoaderFixture>
         }
     }
 
+    [Fact]
+    public void ImportedGalleryCardsResolveTheirOwnArtworkWhenImageKeysCollide()
+    {
+        var previousFolder = PrayerPackStore.InstalledPacksDirectory;
+        var previousCache = PrayerPackStore.ImageCacheDirectoryOverride;
+        var directory = Path.Combine(Path.GetTempPath(), $"prosary_gallery_owner_{Guid.NewGuid():N}");
+        var first = $"galleryOwnerFirst{Random.Shared.Next(1000, 9999)}";
+        var second = $"galleryOwnerSecond{Random.Shared.Next(1000, 9999)}";
+        PrayerPackStore.InstalledPacksDirectory = Path.Combine(directory, "packs");
+        PrayerPackStore.ImageCacheDirectoryOverride = Path.Combine(directory, "images");
+        try
+        {
+            PrayerPackStore.InstallPack(MakeGalleryPack(first, "\"gallery_fixture\""));
+            PrayerPackStore.InstallPack(MakeGalleryPack(second, "\"gallery_fixture\""));
+            var firstUri = PrayerPackStore.GalleryImageFileUriOrPlaceholder(first);
+            var secondUri = PrayerPackStore.GalleryImageFileUriOrPlaceholder(second);
+            Assert.StartsWith("file:", firstUri);
+            Assert.StartsWith("file:", secondUri);
+            Assert.NotEqual(firstUri, secondUri);
+            Assert.Equal(firstUri, DesktopPrayerLibrary.ImageUri(first));
+            PrayerPackStore.RemoveInstalledPack(first);
+            PrayerPackStore.InstallPack(MakeGalleryPack(first, "\"gallery_fixture\""));
+            Assert.NotEqual(firstUri, PrayerPackStore.GalleryImageFileUriOrPlaceholder(first));
+        }
+        finally
+        {
+            PrayerPackStore.RemoveInstalledPack(first);
+            PrayerPackStore.RemoveInstalledPack(second);
+            PrayerPackStore.InstalledPacksDirectory = previousFolder;
+            PrayerPackStore.ImageCacheDirectoryOverride = previousCache;
+            if (Directory.Exists(directory)) Directory.Delete(directory, recursive: true);
+        }
+    }
+
     private static byte[] MakeImageOverridePack(
         string id,
         string imageKey,
@@ -553,6 +587,48 @@ public class PrayerPackLoaderTests : IClassFixture<PrayerPackLoaderFixture>
         Assert.Null(PrayerPackStore.Definition(id));
         Assert.Equal("exampleBody", PrayerPackStore.ResolveBodyText(id, "en", "exampleBody"));
         Directory.Delete(PrayerPackStore.InstalledPacksDirectory, recursive: true);
+    }
+
+    [Fact]
+    public void WithdrawnStandaloneCannotBeReimported()
+    {
+        Assert.Throws<PrayerPackStore.InstallException>(() =>
+            PrayerPackStore.InstallPack(MakeExamplePack(RetiredPrayerBundles.GamlielLoreto)));
+        Assert.DoesNotContain(RetiredPrayerBundles.GamlielLoreto, PrayerPackStore.InstalledBundleIds());
+        Assert.Null(PrayerPackStore.Info(RetiredPrayerBundles.GamlielLoreto));
+        Assert.NotNull(PrayerPackStore.Definition("litanyOfLoreto"));
+    }
+
+    [Fact]
+    public void RetirementRemovesRenamedArchivesAndLeavesOtherDownloadsByteIdentical()
+    {
+        var directory = Path.Combine(Path.GetTempPath(), $"prosary_retired_packs_{Guid.NewGuid():N}");
+        Directory.CreateDirectory(directory);
+        try
+        {
+            var canonical = Path.Combine(directory, $"{RetiredPrayerBundles.GamlielLoreto}.prosaryprayer");
+            var renamed = Path.Combine(directory, "renamed.prosaryprayer");
+            var builtin = Path.Combine(directory, "litanyOfLoreto.prosaryprayer");
+            var other = Path.Combine(directory, "another.prosaryprayer");
+            var unreadable = Path.Combine(directory, "unrelated.prosaryprayer");
+            var builtinBytes = MakeExamplePack("litanyOfLoreto");
+            var otherBytes = MakeExamplePack("repo.another.litanyOfMaryTheBlessedEverVirgin");
+            File.WriteAllBytes(canonical, "unreadable withdrawn archive"u8.ToArray());
+            File.WriteAllBytes(renamed, MakeExamplePack(RetiredPrayerBundles.GamlielLoreto));
+            File.WriteAllBytes(builtin, builtinBytes);
+            File.WriteAllBytes(other, otherBytes);
+            File.WriteAllBytes(unreadable, "unreadable unrelated archive"u8.ToArray());
+
+            PrayerPackStore.PurgeRetiredPacks(directory);
+            PrayerPackStore.PurgeRetiredPacks(directory);
+
+            Assert.False(File.Exists(canonical));
+            Assert.False(File.Exists(renamed));
+            Assert.Equal(builtinBytes, File.ReadAllBytes(builtin));
+            Assert.Equal(otherBytes, File.ReadAllBytes(other));
+            Assert.Equal("unreadable unrelated archive", File.ReadAllText(unreadable));
+        }
+        finally { Directory.Delete(directory, recursive: true); }
     }
 
     [Fact]

@@ -4,6 +4,15 @@ import XCTest
 
 @MainActor
 final class AppColorTests: XCTestCase {
+  func testCustomAccentUsesPortableOpaqueHexAndReadableNativeAppearances() {
+    XCTAssertEqual(CustomAccentColor.normalized(" #aBc123 "), "#ABC123")
+    XCTAssertEqual(CustomAccentColor.normalized("abcdef"), "#ABCDEF")
+    for invalid in ["", "#123", "#12345678", "#GG0011", "red", "12 3456"] { XCTAssertNil(CustomAccentColor.normalized(invalid)) }
+    for chosen in ["#FFFFFF", "#000000", "#FFFF00", "#FF00FF", "#1768AC"] {
+      XCTAssertGreaterThanOrEqual(contrast(CustomAccentColor.readableHex(chosen, dark: false), "#FFFFFF"), 4.5)
+      XCTAssertGreaterThanOrEqual(contrast(CustomAccentColor.readableHex(chosen, dark: true), "#1C1C1C"), 4.5)
+    }
+  }
   func testMissingAndUnknownChoicesUseMaryBlue() {
     XCTAssertEqual(AppColor.resolved(nil), .blue)
     XCTAssertEqual(AppColor.resolved(""), .blue)

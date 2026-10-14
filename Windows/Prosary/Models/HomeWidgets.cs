@@ -16,4 +16,18 @@ public static class HomeWidgets
         .Where(id => All.Contains(id, StringComparer.Ordinal)).Distinct(StringComparer.Ordinal).ToArray();
 
     public static IReadOnlyList<string> Add(IEnumerable<string> ids, string id) => Normalize(ids.Append(id));
+
+    public static IReadOnlyList<string> ParseCollapsed(string? stored) =>
+        Normalize((stored ?? "").Split('\n', StringSplitOptions.RemoveEmptyEntries));
+
+    public static IReadOnlyDictionary<string, string> ParseGraphics(string? stored)
+    {
+        try
+        {
+            var paths = System.Text.Json.JsonSerializer.Deserialize<Dictionary<string, string>>(stored ?? "{}") ?? [];
+            return paths.Where(pair => All.Contains(pair.Key, StringComparer.Ordinal) && !string.IsNullOrWhiteSpace(pair.Value))
+                .ToDictionary(pair => pair.Key, pair => pair.Value, StringComparer.Ordinal);
+        }
+        catch (System.Text.Json.JsonException) { return new Dictionary<string, string>(); }
+    }
 }

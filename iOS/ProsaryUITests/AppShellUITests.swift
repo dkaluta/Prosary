@@ -408,12 +408,12 @@ final class AppShellUITests: XCTestCase {
       #endif
       let originalDate = date.label
       date.tap()
-      let picker = app.datePickers[row.3]
+      let picker = app.descendants(matching: .any).matching(identifier: row.3).firstMatch
       XCTAssertTrue(picker.waitForExistence(timeout: 5))
       let popover = app.descendants(matching: .any)[row.3 + ".popover"].firstMatch
       XCTAssertTrue(popover.exists)
-      let calendar = picker.collectionViews.firstMatch
-      XCTAssertTrue(calendar.waitForExistence(timeout: 5))
+      let calendar = picker
+      XCTAssertGreaterThanOrEqual(picker.buttons.matching(NSPredicate(format: "identifier BEGINSWITH 'calendar.day.'")).count, 28)
       XCTAssertGreaterThanOrEqual(calendar.frame.minX, popover.frame.minX - 1)
       XCTAssertLessThanOrEqual(calendar.frame.maxX, popover.frame.maxX + 1, "All seven calendar columns fit in the popover")
       let screenshot = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
@@ -424,6 +424,53 @@ final class AppShellUITests: XCTestCase {
       XCTAssertTrue(picker.waitForNonExistence(timeout: 5))
       XCTAssertEqual(date.label, originalDate, "Done dismisses without changing the selected date")
     }
+  }
+  #endif
+
+  #if os(iOS)
+  @MainActor
+  func testVersion021HomeCalendarAppearanceAndScripture() throws {
+    let app = XCUIApplication()
+    app.launchArguments = ["-useInMemoryStore", "-AppleLanguages", "(en)", "-interfaceLanguageCode", "en",
+      "-homeWidgetOrder", "calendar", "-feastCalendarId", "roman",
+      "-customAccentColorHex", "#C14076"]
+    app.launch()
+    func capture(_ name: String) {
+      let attachment = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
+      attachment.name = "v021-" + name; attachment.lifetime = .keepAlways; add(attachment)
+    }
+    let size = app.buttons["homeWidgets.size.calendar"]
+    XCTAssertTrue(size.waitForExistence(timeout: 10))
+    if size.label.contains("Expand") { size.tap() }
+    capture("home-large")
+    size.tap()
+    capture("home-small")
+    XCTAssertTrue(size.label.contains("Expand"), size.label)
+    size.tap()
+    let day = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH 'calendar.day.'")).firstMatch
+    XCTAssertTrue(day.waitForExistence(timeout: 5)); day.tap()
+    let event = app.buttons["calendar.event.0"]
+    for _ in 0..<3 where !event.isHittable { app.swipeUp() }
+    XCTAssertTrue(event.isHittable); event.tap()
+    XCTAssertTrue(app.navigationBars["Event Details"].waitForExistence(timeout: 5))
+    capture("event-detail")
+    app.buttons["Done"].tap()
+    app.tabBars.buttons["Readings"].tap()
+    XCTAssertTrue(app.buttons["calendar.list"].waitForExistence(timeout: 5))
+    app.buttons["calendar.list"].tap()
+    XCTAssertTrue(app.navigationBars["Event Calendar"].waitForExistence(timeout: 5))
+    capture("event-calendar")
+    app.buttons["Done"].tap()
+    let mode = app.segmentedControls["readings.mode"]
+    XCTAssertTrue(mode.waitForExistence(timeout: 5)); mode.buttons.element(boundBy: 1).tap()
+    XCTAssertTrue(app.staticTexts["Scripture of the Day"].waitForExistence(timeout: 5))
+    capture("scripture-of-the-day")
+    app.tabBars.buttons["Home"].tap()
+    app.buttons["Settings"].tap()
+    XCTAssertTrue(app.buttons["appearanceSettingsLink"].waitForExistence(timeout: 5))
+    app.buttons["appearanceSettingsLink"].tap()
+    XCTAssertTrue(app.descendants(matching: .any).matching(identifier: "customAccentColorPicker").firstMatch.waitForExistence(timeout: 5))
+    capture("custom-accent")
   }
   #endif
 

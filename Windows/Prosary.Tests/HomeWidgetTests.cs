@@ -27,4 +27,22 @@ public class HomeWidgetTests
         Assert.Equal(new[] { "photo" }, HomeWidgets.Add(["photo"], "photo"));
         Assert.Empty(HomeWidgets.Add([], "unknown"));
     }
+
+    [Fact]
+    public void CollapsedCardsStartEmptyAndRejectUnknownAndRepeatedIdentifiers()
+    {
+        Assert.Empty(HomeWidgets.ParseCollapsed(null));
+        Assert.Empty(HomeWidgets.ParseCollapsed(""));
+        Assert.Equal(["photo", "scripture"], HomeWidgets.ParseCollapsed("photo\nunknown\nscripture\nphoto"));
+    }
+
+    [Fact]
+    public void GraphicPathsRemainScopedToKnownCardsAndCorruptPreferencesStayEmpty()
+    {
+        Assert.Empty(HomeWidgets.ParseGraphics("bad json"));
+        Assert.Empty(HomeWidgets.ParseGraphics("null"));
+        var paths = HomeWidgets.ParseGraphics("""{"scripture":"/private/photo.png","unknown":"/another.png","calendar":""}""");
+        Assert.Single(paths);
+        Assert.Equal("/private/photo.png", paths["scripture"]);
+    }
 }

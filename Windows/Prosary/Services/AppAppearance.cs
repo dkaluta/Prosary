@@ -46,12 +46,11 @@ internal static class AppAppearance
 
     private static void ApplyResources()
     {
-        var palette = AppColorPalette.Resolve(AppSettings.AppColor);
         var resources = Application.Current.Resources;
         foreach (var theme in new[] { "Light", "Dark" })
         {
             if (resources.ThemeDictionaries[theme] is not ResourceDictionary values) continue;
-            var accent = palette.Accent(theme == "Dark");
+            var accent = AppColorPalette.Accent(AppSettings.AppColor, AppSettings.CustomAccentColorHex, theme == "Dark");
             values["BrandPrimaryColor"] = accent;
             values["BrandHeadlineColor"] = accent;
             foreach (var key in new[] { "BrandPrimaryBrush", "BrandPrimaryFaintBrush", "BrandHeadlineBrush" })
@@ -61,8 +60,8 @@ internal static class AppAppearance
             // dark surfaces. Opacity states remain owned by its native control templates.
             foreach (var level in new[] { 1, 2, 3 })
             {
-                values[$"SystemAccentColorDark{level}"] = palette.Accent(false);
-                values[$"SystemAccentColorLight{level}"] = palette.Accent(true);
+                values[$"SystemAccentColorDark{level}"] = AppColorPalette.Accent(AppSettings.AppColor, AppSettings.CustomAccentColorHex, false);
+                values[$"SystemAccentColorLight{level}"] = AppColorPalette.Accent(AppSettings.AppColor, AppSettings.CustomAccentColorHex, true);
             }
         }
         // HighContrast is deliberately untouched: its brushes resolve Windows system colors.

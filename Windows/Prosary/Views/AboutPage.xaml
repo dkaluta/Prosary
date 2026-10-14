@@ -151,6 +151,10 @@
                                    Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" HorizontalAlignment="Left" />
                         <TextBlock x:Uid="AbtLitanySources" Text="The Litany of Loreto uses published Catholic prayer texts. The Hebrew wording is Erez’s contribution through the Mission of St. Gamaliel. The Greek and Tagalog standalone closing prayers are Prosary translations of the Latin original; they are not published liturgical translations."
                                    Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" HorizontalAlignment="Left" />
+                        <TextBlock Text="{x:Bind UkrainianNiceneCredit}" Style="{StaticResource MutedCaptionTextStyle}"
+                                   TextWrapping="Wrap" IsTextSelectionEnabled="True" />
+                        <HyperlinkButton Content="{x:Bind UkrainianNiceneLinkLabel}" NavigateUri="https://catechismugcc.org/doc/Catechism-UGCC.pdf"
+                                         Padding="0" />
                     </StackPanel>
 
                     <StackPanel Spacing="8">

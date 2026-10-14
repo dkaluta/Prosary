@@ -32,13 +32,13 @@ class ReadingsSearchInstrumentedTest {
             compose.onNodeWithTag("prayCards").assertExists()
             compose.onNodeWithTag("todayChooseDate").assertDoesNotExist()
             compose.onNodeWithTag("todayReadings").assertDoesNotExist()
-            compose.onNodeWithText(context.getString(R.string.tab_readings)).performClick()
+            compose.onNodeWithTag("tab.readings").performClick()
             compose.onNodeWithTag("readingsPrevious").performClick()
             val date = LocalDate.now().minusDays(1).format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG)
                 .withLocale(context.resources.configuration.locales[0]))
             compose.onNodeWithTag("readingsChooseDate").assertTextContains(date)
             assertDateControlHeights("readingsPrevious", "readingsChooseDate", "readingsNext")
-            compose.onNodeWithText(context.getString(R.string.tab_pray)).performClick()
+            compose.onNodeWithTag("tab.pray").performClick()
             compose.onNodeWithTag("todayChooseDate").assertDoesNotExist()
             compose.onNodeWithTag("tab.home").performClick()
             compose.onNodeWithTag("homeDate").assertTextContains(LocalDate.now().minusDays(1)
@@ -47,9 +47,9 @@ class ReadingsSearchInstrumentedTest {
             compose.onNodeWithTag("readingsPrevious").performClick()
             val earlierDate = LocalDate.now().minusDays(2).format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG)
                 .withLocale(context.resources.configuration.locales[0]))
-            compose.onNodeWithText(context.getString(R.string.tab_readings)).performClick()
+            compose.onNodeWithTag("tab.readings").performClick()
             compose.onNodeWithTag("readingsChooseDate").assertTextContains(earlierDate)
-            compose.onNodeWithText(context.getString(R.string.tab_search)).performClick()
+            compose.onNodeWithTag("tab.search").performClick()
             compose.onNodeWithTag("searchCategory.eastern").performScrollTo().performClick().assertIsSelected()
             compose.onNodeWithTag("searchQuery").performTextInput("___No matching prayer___")
             scenario.recreate()
@@ -57,9 +57,12 @@ class ReadingsSearchInstrumentedTest {
             compose.onNodeWithTag("searchCategory.eastern").performScrollTo().assertIsSelected()
             compose.onNodeWithText(context.getString(R.string.search_no_device_match)).performScrollTo().assertExists()
             compose.onNodeWithTag("searchCategoryAll").performScrollTo().performClick().assertIsSelected()
-            compose.onNodeWithText(context.getString(R.string.tab_readings)).performClick()
+            compose.onNodeWithTag("tab.readings").performClick()
             compose.onNodeWithTag("readingsChooseDate").assertTextContains(earlierDate)
             compose.onNodeWithTag("readingsChooseDate").performClick()
+            compose.onNodeWithTag("readingsDatePicker").assertExists()
+            compose.onNodeWithTag("calendarDate.${LocalDate.now().minusDays(2)}", useUnmergedTree = true).assertExists()
+            captureDateChooser()
             compose.onNodeWithTag("readingsReset").performClick()
             val today = LocalDate.now().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG)
                 .withLocale(context.resources.configuration.locales[0]))
@@ -81,5 +84,19 @@ class ReadingsSearchInstrumentedTest {
             assertEquals("$tag must match the date button height", dateHeight, height, 1f)
             assertTrue("$tag must retain a 48dp touch target", height >= 48f * density - 1f)
         }
+    }
+
+    private fun captureDateChooser() {
+        if (InstrumentationRegistry.getArguments().getString("captureHomeScreenshots") != "true") return
+        compose.waitForIdle()
+        val automation = InstrumentationRegistry.getInstrumentation().uiAutomation
+        automation.waitForIdle(500, 5_000)
+        val bitmap = requireNotNull(automation.takeScreenshot())
+        val context = InstrumentationRegistry.getInstrumentation().targetContext
+        val directory = java.io.File(context.getExternalFilesDir(null), "homeScreenshots").apply { mkdirs() }
+        java.io.File(directory, "readings-date-chooser.png").outputStream().use {
+            bitmap.compress(android.graphics.Bitmap.CompressFormat.PNG, 100, it)
+        }
+        bitmap.recycle()
     }
 }

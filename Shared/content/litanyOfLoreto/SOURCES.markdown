@@ -28,6 +28,11 @@ both complete forms, and each final collect has its own source or translation cr
 The Greek and Tagalog standalone translation status is disclosed in every platform's About
 screen in all seven interface languages. It is not presented as episcopally approved wording.
 
+The original `repo.stgamliel-il.litanyOfMaryTheBlessedEverVirgin` community upload was
+retired on 14 October 2026. Its link above records the original source identity; the supplied
+Hebrew is retained locally in `sources/erez-he.json` with Erez's credit. Retirement removes
+the duplicate downloadable prayer, not the sourced Hebrew in this built-in pack.
+
 ## Transcription decisions
 
 - Erez's raw Hebrew contribution is retained in `sources/erez-he.json`. Only alignment spaces,

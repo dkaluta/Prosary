@@ -189,5 +189,10 @@
   },
   "$scriptureSource": "Scripture imported from the Byzantine Majority Text (Robinson-Pierpont, public domain) and Brenton's Septuagint (eBible.org grcbrent, public domain) by Shared/tools/import-scripture.py — re-run it rather than editing these by hand. Polytonic, as the sources have it; each citation names its own edition.",
   "$metadataSource": "Prosary editorial translations of the English mystery names, meditation fruits, and navigation headings. These are app metadata, not published prayer or Scripture translations. The Creed heading identifies the Nicene–Constantinopolitan text actually used by the existing Greek prayer table; the remaining sourced prayer headings are preserved. Closing intention captions are also Prosary editorial translations.",
-  "$rosaryCollectSource": "Rosary-only separate step: unchanged collectaStandard text; when absent (Spanish/Mission Hebrew), unchanged sourced collectAfterRosary from litanyOfLoreto. Basic Marian antiphon texts remain unchanged. Hebrew heading נתפללה supplied explicitly by the user, 2026-09-27."
+  "$rosaryCollectSource": "Rosary-only separate step: unchanged collectaStandard text; when absent (Spanish/Mission Hebrew), unchanged sourced collectAfterRosary from litanyOfLoreto. Basic Marian antiphon texts remain unchanged. Hebrew heading נתפללה supplied explicitly by the user, 2026-09-27.",
+  "$creedPolicy": {
+    "rite": "greek",
+    "apostlesCreed": false,
+    "filioque": "absent"
+  }
 }

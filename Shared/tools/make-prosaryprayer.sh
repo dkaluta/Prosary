@@ -113,7 +113,10 @@ done
 
 mkdir -p "$(dirname "$OUT_PATH")"
 rm -f "$OUT_PATH"
-( cd "$STAGE_DIR" && zip -rq -X "$OUT_PATH" . -x '.DS_Store' -x '__MACOSX/*' )
+# Archive timestamps describe the format, not the machine/time that built it. Fixed
+# timestamps make a second build byte-identical and keep generated assets reviewable.
+TZ=UTC find "$STAGE_DIR" -exec touch -t 198001010000 {} +
+( cd "$STAGE_DIR" && TZ=UTC zip -rq -X "$OUT_PATH" . -x '.DS_Store' -x '__MACOSX/*' )
 
 FILE_COUNT=$(find "$STAGE_DIR" -type f | wc -l | tr -d ' ')
 BYTE_SIZE=$(wc -c < "$OUT_PATH" | tr -d ' ')

@@ -1,184 +1,84 @@
 import SwiftUI
 
-/// All published feasts in chronological order; choosing one opens its appointed readings.
+/// Every sourced date and observance remains available, regardless of its liturgical rank.
 struct FeastsAndSolemnitiesView: View {
   @Binding var dateSelection: MacTodayDateSelection
   var onSelectDate: () -> Void = {}
   @AppStorage(TodayInfoStore.calendarDefaultsKey) private var calendarID = ""
   @AppStorage(TodayInfoStore.paschaStyleDefaultsKey) private var paschaStyle = "julian"
   @AppStorage("calendarViewMode") private var viewMode = "list"
+  @State private var selectedEvent: CalendarEvent?
 
   private var rows: [(date: Date, feast: FeastDay)] {
-    _ = calendarID; _ = paschaStyle
-    return TodayInfoStore.feastsAndSolemnities()
-  }
-  private func formatted(_ date: Date, template: String) -> String {
-    let formatter = DateFormatter()
-    formatter.locale = UILanguage.locale
-    formatter.calendar = Calendar(identifier: .gregorian)
-    formatter.setLocalizedDateFormatFromTemplate(template)
-    return formatter.string(from: date)
+    let _ = calendarID; let _ = paschaStyle
+    return TodayInfoStore.publishedCalendarDays()
   }
 
   var body: some View {
     VStack(spacing: 0) {
-      Picker(String(localized: "calendar.view", defaultValue: "Calendar View", bundle: UILanguage.bundle, locale: UILanguage.locale), selection: $viewMode) {
-        Text(String(localized: "calendar.listView", defaultValue: "List", bundle: UILanguage.bundle, locale: UILanguage.locale)).tag("list")
-        Text(String(localized: "calendar.monthView", defaultValue: "Month", bundle: UILanguage.bundle, locale: UILanguage.locale)).tag("month")
-      }
-      .pickerStyle(.segmented).padding()
-      .accessibilityIdentifier("calendar.viewMode")
-      if viewMode == "month" {
-        LiturgicalCalendarView(dateSelection: $dateSelection, onSelectDate: onSelectDate)
-      } else {
-        feastList
-      }
+      Picker(label("view", "Calendar View"), selection: $viewMode) {
+        Text(label("listView", "List")).tag("list")
+        Text(label("monthView", "Month")).tag("month")
+      }.pickerStyle(.segmented).padding().accessibilityIdentifier("calendar.viewMode")
+      if viewMode == "month" { LiturgicalCalendarView(dateSelection: $dateSelection, onSelectDate: onSelectDate) }
+      else { eventList }
     }
-    .navigationTitle(String(localized: "calendar.feastsAndSolemnities", defaultValue: "Feasts and Solemnities", bundle: UILanguage.bundle, locale: UILanguage.locale))
+    .navigationTitle(label("eventCalendar", "Event Calendar"))
     .environment(\.layoutDirection, UILanguage.isRightToLeft(UILanguage.current) ? .rightToLeft : .leftToRight)
     .accessibilityIdentifier("feastsAndSolemnities.screen")
+    .sheet(item: $selectedEvent) { event in
+      CalendarEventDetail(event: event) { selectedEvent = nil; dateSelection.select(event.date); onSelectDate() }
+    }
   }
 
-  private var feastList: some View {
+  private var eventList: some View {
     ScrollViewReader { proxy in
       List {
         Section {
           Text(TodayInfoStore.calendars.first { $0.id == TodayInfoStore.selectedCalendarId }?.displayName ?? "")
             .font(.caption).foregroundStyle(.secondary)
-          if rows.isEmpty {
-            Text(String(localized: "calendar.noFeasts", defaultValue: "No published feasts or solemnities are available in this calendar.", bundle: UILanguage.bundle, locale: UILanguage.locale))
-              .foregroundStyle(.secondary)
-          }
+          if rows.isEmpty { Text(label("noFeasts", "No published feasts or solemnities are available in this calendar.")).foregroundStyle(.secondary) }
         }
         ForEach(rows, id: \.date) { row in
-          Button {
-            dateSelection.select(row.date)
-            onSelectDate()
-          } label: {
-            HStack(alignment: .top, spacing: 12) {
-              VStack(alignment: .leading, spacing: 4) {
-                Text(formatted(row.date, template: "yMMMMdEEEE"))
-                  .font(.caption).foregroundStyle(.secondary)
-                Text(row.feast.localizedTitle(UILanguage.current))
-                  .foregroundStyle(.primary)
-                Text(row.feast.localizedRank(UILanguage.current))
-                  .font(.caption).foregroundStyle(.secondary)
-              }
-              Spacer(minLength: 0)
-              Image(systemName: "chevron.forward").font(.caption).foregroundStyle(.tertiary)
+          Section {
+            ForEach(CalendarEventPresentation.events(on: row.date, feast: row.feast)) { event in
+              Button { selectedEvent = event } label: { CalendarEventRow(event: event) }.buttonStyle(.plain)
             }
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .contentShape(Rectangle())
-          }
-          .buttonStyle(.plain)
-          .id(row.date)
+          } header: {
+            Text(CalendarEventPresentation.dateLabel(row.date, template: "yMMMMdEEEE"))
+          }.id(row.date)
         }
       }
       .onAppear {
-        let selected = dateSelection.localDate()
-        if let row = rows.first(where: { $0.date >= selected }) ?? rows.last {
-          proxy.scrollTo(row.date, anchor: .top)
-        }
+        if let row = rows.first(where: { $0.date >= dateSelection.localDate() }) ?? rows.last { proxy.scrollTo(row.date, anchor: .top) }
       }
     }
   }
+  private func label(_ key: String, _ fallback: String) -> String { UILanguage.text("calendar." + key, language: UILanguage.current, fallback: fallback) }
 }
 
-/// A month of this calendar's published observances. A date tap opens its readings.
+/// Home and the Readings/desktop reference surfaces share the same marked civil-date grid.
 struct LiturgicalCalendarView: View {
   @Binding var dateSelection: MacTodayDateSelection
   var onSelectDate: () -> Void = {}
   @AppStorage(TodayInfoStore.calendarDefaultsKey) private var calendarID = ""
   @AppStorage(TodayInfoStore.paschaStyleDefaultsKey) private var paschaStyle = "julian"
 
-  private var calendar: Calendar { Calendar(identifier: .gregorian) }
-  private var date: Date { dateSelection.localDate() }
-  private var monthStart: Date {
-    calendar.date(from: calendar.dateComponents([.year, .month], from: date))!
-  }
-  private var days: [Date] {
-    guard let range = calendar.range(of: .day, in: .month, for: date) else { return [] }
-    return range.compactMap { calendar.date(byAdding: .day, value: $0 - 1, to: monthStart) }
-  }
-  private var rows: [(Date, FeastDay)] {
-    // Reading the AppStorage values makes a Settings calendar change invalidate this view.
-    _ = calendarID; _ = paschaStyle
-    return days.compactMap { day in TodayInfoStore.feast(on: day).map { (day, $0) } }
-  }
-  private func formatted(_ date: Date, template: String) -> String {
-    let formatter = DateFormatter()
-    formatter.locale = UILanguage.locale
-    formatter.calendar = calendar
-    formatter.setLocalizedDateFormatFromTemplate(template)
-    return formatter.string(from: date)
-  }
-
   var body: some View {
     List {
       Section {
-        HStack {
-          Button { moveMonth(-1) } label: {
-            Image(systemName: "chevron.backward")
-          }.accessibilityLabel(label("calendar.previousMonth", "Previous Month"))
-            .disabled(dateSelection.day.year == MacTodayDateSelection.minimumDay.year
-                      && dateSelection.day.month == MacTodayDateSelection.minimumDay.month)
-          Spacer()
-          Text(formatted(date, template: "yMMMM")).font(.headline)
-          Spacer()
-          Button { moveMonth(1) } label: {
-            Image(systemName: "chevron.forward")
-          }.accessibilityLabel(label("calendar.nextMonth", "Next Month"))
-            .disabled(dateSelection.day.year == MacTodayDateSelection.maximumDay.year
-                      && dateSelection.day.month == MacTodayDateSelection.maximumDay.month)
-        }
-        .buttonStyle(.borderless)
-        Button(label("home.today.today", "Today")) { dateSelection = MacTodayDateSelection() }
         Text(TodayInfoStore.calendars.first { $0.id == TodayInfoStore.selectedCalendarId }?.displayName ?? "")
           .font(.caption).foregroundStyle(.secondary)
-        DatePicker(label("home.today.chooseDate", "Choose a date"),
-                   selection: Binding(get: { date }, set: { dateSelection.select($0); onSelectDate() }),
-                   in: MacTodayDateSelection.pickerRange(), displayedComponents: .date)
-          .datePickerStyle(.graphical).labelsHidden()
-          .environment(\.calendar, calendar)
-          .frame(maxWidth: .infinity)
-          .accessibilityIdentifier("calendar.monthPicker")
+        CalendarMonthGrid(dateSelection: $dateSelection)
       }
       Section {
-        if rows.isEmpty {
-          Text(label("calendar.noObservances", "No published observances are available for this month."))
-            .foregroundStyle(.secondary)
-        }
-        ForEach(rows, id: \.0) { day, feast in
-          Button {
-            dateSelection.select(day)
-            onSelectDate()
-          } label: {
-            HStack(alignment: .top, spacing: 16) {
-              Text(formatted(day, template: "EEEd"))
-                .font(.subheadline).foregroundStyle(.secondary).frame(minWidth: 70, alignment: .leading)
-              VStack(alignment: .leading, spacing: 4) {
-                Text(feast.localizedTitle(UILanguage.current)).foregroundStyle(.primary)
-                Text(feast.localizedRank(UILanguage.current)).font(.caption).foregroundStyle(.secondary)
-              }
-              Spacer(minLength: 0)
-              Image(systemName: "chevron.forward").font(.caption).foregroundStyle(.tertiary)
-            }
-          }.buttonStyle(.plain)
-        }
+        CalendarDayEvents(date: dateSelection.localDate(), openReadings: onSelectDate)
+      } header: {
+        Text(CalendarEventPresentation.dateLabel(dateSelection.localDate()))
       }
     }
-    .navigationTitle(label("calendar.title", "Liturgical Calendar"))
+    .navigationTitle(UILanguage.text("calendar.title", language: UILanguage.current, fallback: "Liturgical Calendar"))
     .environment(\.layoutDirection, UILanguage.isRightToLeft(UILanguage.current) ? .rightToLeft : .leftToRight)
     .accessibilityIdentifier("liturgicalCalendar.screen")
-  }
-
-  private func moveMonth(_ offset: Int) {
-    if let target = calendar.date(byAdding: .month, value: offset, to: monthStart) {
-      dateSelection.select(target)
-    }
-  }
-  private func label(_ key: StaticString, _ fallback: String.LocalizationValue) -> String {
-    String(localized: key, defaultValue: fallback,
-           bundle: UILanguage.bundle, locale: UILanguage.locale)
   }
 }

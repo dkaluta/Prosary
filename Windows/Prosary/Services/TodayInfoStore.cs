@@ -173,6 +173,10 @@ public sealed record ReadingCitation(
     public static IReadOnlyList<ReadingCitation> DisplayOrder(IReadOnlyList<ReadingCitation> citations, bool reverse) =>
         reverse ? citations.Reverse().ToArray() : citations;
 
+    public static ReadingCitation? ScriptureOfDay(IReadOnlyList<ReadingCitation> sourceOrder) =>
+        sourceOrder.FirstOrDefault(citation => citation.Type.Equals("gospel", StringComparison.OrdinalIgnoreCase))
+        ?? sourceOrder.FirstOrDefault();
+
     /// <summary>Freeze the actual selected reading table for later passage expansion; the
     /// calendar may change in another window before this citation is opened.</summary>
     [JsonIgnore]
@@ -361,6 +365,15 @@ public static class TodayInfoStore
         EnsureFeastsLoaded();
         return _feastsByDay.Where(entry => entry.Value.Rank is "Solemnity" or "Feast" or "Great Feast" or "1st Class" or "2nd Class")
             .Select(entry => (Date: DateOnly.ParseExact(entry.Key, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture), Feast: entry.Value))
+            .OrderBy(entry => entry.Date).ToList();
+    }
+
+    /// <summary>All sourced observance dates, including memorials, Sundays and optional events.</summary>
+    public static IReadOnlyList<(DateOnly Date, FeastDay Feast)> PublishedEvents()
+    {
+        EnsureFeastsLoaded();
+        return _feastsByDay.Select(entry => (Date: DateOnly.ParseExact(entry.Key, "yyyy-MM-dd",
+            System.Globalization.CultureInfo.InvariantCulture), Feast: entry.Value))
             .OrderBy(entry => entry.Date).ToList();
     }
 

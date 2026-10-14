@@ -109,14 +109,15 @@ public sealed class SqlitePresetStore : IPresetStore
     {
         await _initialization;
         var rows = await _connection.Table<PresetEntry>().OrderBy(r => r.Name).ToListAsync();
-        return rows.Select(r => r.ToPrayer()).ToList();
+        return rows.Where(r => !RetiredPrayerBundles.Contains(r.Kind, r.CustomDevotionId)).Select(r => r.ToPrayer()).ToList();
     }
 
     public async Task<Prayer?> GetDefaultAsync(PrayerKind kind)
     {
         await _initialization;
         var rows = await _connection.Table<PresetEntry>().Where(r => r.Kind == kind).ToListAsync();
-        var chosen = rows.FirstOrDefault(r => r.IsDefault) ?? rows.FirstOrDefault();
+        var available = rows.Where(r => !RetiredPrayerBundles.Contains(r.Kind, r.CustomDevotionId)).ToList();
+        var chosen = available.FirstOrDefault(r => r.IsDefault) ?? available.FirstOrDefault();
         return chosen?.ToPrayer();
     }
 
@@ -124,11 +125,12 @@ public sealed class SqlitePresetStore : IPresetStore
     {
         await _initialization;
         var row = await _connection.Table<PresetEntry>().Where(r => r.Id == id).FirstOrDefaultAsync();
-        return row?.ToPrayer();
+        return row is null || RetiredPrayerBundles.Contains(row.Kind, row.CustomDevotionId) ? null : row.ToPrayer();
     }
 
     public async Task SaveAsync(Prayer prayer)
     {
+        RejectRetiredPrayer(prayer);
         await _initialization;
         await _connection.RunInTransactionAsync(connection =>
         {
@@ -139,6 +141,7 @@ public sealed class SqlitePresetStore : IPresetStore
 
     public async Task<bool> UpdateIfPresentAsync(Prayer prayer)
     {
+        RejectRetiredPrayer(prayer);
         await _initialization;
         var updated = false;
         await _connection.RunInTransactionAsync(connection =>
@@ -150,6 +153,34 @@ public sealed class SqlitePresetStore : IPresetStore
             updated = connection.Update(PresetEntry.FromPrayer(prayer)) > 0;
         });
         return updated;
+    }
+
+    private static void RejectRetiredPrayer(Prayer prayer)
+    {
+        if (RetiredPrayerBundles.Contains(prayer.Kind, prayer.CustomDevotionId))
+            throw new InvalidOperationException(Localization.Loc.Tr(
+                "prayerRemoval_prayerRemoved", "This saved prayer has been deleted."));
+    }
+
+    /// <summary>Cancel withdrawn prayers' reminders and progress before committing their deletion.
+    /// Hidden rows remain retryable when cleanup fails, and restored rows are checked on every launch.</summary>
+    public async Task RetireBundlesAsync(Action<Prayer> cleanup)
+    {
+        await _initialization;
+        var rows = await _connection.Table<PresetEntry>().ToListAsync();
+        var retired = rows.Where(row => RetiredPrayerBundles.Contains(row.Kind, row.CustomDevotionId)).ToList();
+        foreach (var row in retired) cleanup(row.ToPrayer());
+        await _connection.RunInTransactionAsync(connection =>
+        {
+            foreach (var row in retired)
+            {
+                // Another window can replace a configuration during notification cleanup.
+                // Only its current devotion identity authorizes deletion.
+                var current = connection.Find<PresetEntry>(row.Id);
+                if (current is not null && RetiredPrayerBundles.Contains(current.Kind, current.CustomDevotionId))
+                    connection.Delete<PresetEntry>(current.Id);
+            }
+        });
     }
 
     private static void ClearOtherDefaults(SQLiteConnection connection, Prayer prayer)

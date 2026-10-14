@@ -1,0 +1,55 @@
+# 0.21 implementation and verification
+
+Local pre-release verification on 14 October 2026. These checks preceded commit,
+push and distribution; they are not a record of store availability. Unrelated staged
+and checkout changes were preserved. The user requested Apple/Android release and
+explicitly deferred the Windows release.
+
+## Implemented behavior
+
+| Request | Result |
+| --- | --- |
+| Small and large widgets | In-app Home cards have independently persisted compact/expanded state. Order, visibility, date and prayer progress remain independent. Operating-system widget families retain their existing sizes. |
+| Calendar parity | iOS, Android and Windows use all supplied events, a Monday-first Gregorian month grid and shared window date selection. Dates show up to three dots with the complete accessible count. |
+| Clickable events | Individual supplied observances open details with an exact-language source excerpt, prose and credits where available. Missing prose stays explicitly unavailable. |
+| Custom accent | Device settings accept a custom color independently of the app icon. Native rendering adjusts lightness for readable contrast. Android manual selection disables system colors; Mac retains its system accent. |
+| Graphics on cards | Home cards can add, replace and remove private image copies. Prayer cards use artwork from their owning pack. Failed replacement preserves the old private image and the original gallery photo. |
+| Scripture of the Day | Holy Scripture and Home use the first Gospel in canonical appointment order, or the first appointment when no Gospel is supplied. Existing edition, citation mapping and offline text availability govern the reader. |
+| Creed policy | Optional authored-source tags replace the Filioque toggle. Syriac and Mission clauses render in square brackets, Ukrainian preserves its source brackets, and Latin/Vicariate wording is unbracketed. |
+| Apostles' Creed availability | Sources tagged as not praying it omit it from lists and shortcuts. Legacy devotion Creed steps and option labels use that same source's Nicene body and heading. Stale direct routes show a localized explanation and language selection. |
+| Duplicate community Litany | Only `repo.stgamliel-il.litanyOfMaryTheBlessedEverVirgin` is retired. Updated apps reject/purge it and associated saved state. The built-in Litany of Loreto and the Rosary option remain. |
+
+The Ukrainian Nicene text is transcribed from the 2012 UGCC catechism,
+[Христос – наша Пасха, printed page 10](https://catechismugcc.org/doc/Catechism-UGCC.pdf).
+Its exact text and PDF hash are pinned in the source fixture and credited in all native About screens.
+
+The supplied Greek Creed contains no Filioque. The
+[St. George Melkite source](https://stgeorgemelkite.org/resources/frequently-asked-questions/)
+also describes omitting it, so a preferred unbracketed Melkite recension is still needed
+before changing that supplied text. A
+[Saint Maron parish source](https://www.saintmaron.ca/prayers/) confirms an unbracketed
+Maronite form, but supplies no missing Syriac or Hebrew Maronite recension. Untagged
+imported prayers retain their authored wording.
+
+## Verification
+
+| Area | Evidence |
+| --- | --- |
+| Android | Debug app/test builds passed. The final unit suite passed 557 tests with no failures/errors; ten API 36 emulator tests passed. Representative Home, image, accent, event and marked toolbar-date screenshots were inspected. The final import/remove regression preserves body, reading aid and policy from their original source. Subsequent option-label compilation and 65 relevant tests passed. |
+| Apple | Full macOS unit run completed 685 XCTest tests with one intentional skip and no failures; two Swift Testing cases passed. Final iOS Simulator build passed. Three targeted iPhone UI flows passed, covering portrait/landscape marked date choosers and Home/calendar/Scripture/Appearance; six screenshots were inspected. The English Apostles availability regression covers an Aramaic-first Nicene fallback; image import cancellation and Gregorian date ownership are covered. Source/option-label checks passed twelve focused tests, followed by nine tests covering tagged/untagged imported option labels and source fallback. |
+| Windows | Seven retirement methods with actual SQLite/model seams, five Home preference methods, ten contrast assertions and six actual-pack Creed checks passed. All 239 C# files and 35 XAML files parsed; native SDK API and generated MVVM checks compiled. Final editor, quick-picker and schema-driven Creed label members compiled with Toolkit generation and notification checks. New native regressions remain for execution on Windows. |
+| Terminal | Full engine, state, text and CLI tests passed with warnings treated as errors (234 sourced sessions). Address/undefined-behavior sanitizer checks passed. Creed policy is applied at runtime; the generated raw snapshot and its source hashes remain exact. |
+| Shared content | Nicene source tests, exact Ukrainian source fixture, devotion validation, converter/bundle checks, contributor corrections and localized-content checks passed. All eight native UI locales are complete. |
+| Assets and data | Ten native pack copies match Shared/dist; packed artwork has no loose native duplicate. Canonical Today data and all three native copies match. Rosary pack regeneration is byte-stable. |
+| Repository | All 64 tests and TypeScript checking passed, including optional Creed policy validation and exact-ID retirement. |
+| Design contract | Strict premium UI audit and DESIGN.md lint passed with no findings. Native screen inspection remains separate from the web-oriented audit. |
+| Version | Android 0.21.0/code 56, Apple 0.21.0/build 2100, and Windows 0.21.0.0 are synchronized. |
+
+The full Windows suite, XAML compilation and live WinUI interaction still require a
+Windows host. This macOS run does not establish Windows runtime parity or physical-device behavior.
+
+At the implementation checkpoint, the production community upload remained live.
+Its exact-ID deletion and server publication guard are prepared locally and kept
+outside this release; the user explicitly deferred authenticated live removal.
+Installed-device cleanup takes effect when the updated app runs. The release includes
+the optional Creed format validation, but performs no production deletion.

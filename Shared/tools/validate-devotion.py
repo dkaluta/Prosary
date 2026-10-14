@@ -151,6 +151,18 @@ MYSTERY_OVERRIDE_FIELDS = {"title", "fruit", "description", "transliteratedDescr
 
 def validate_prayer_traditions(path: Path, content: dict) -> None:
     """Keep plain repository Hebrew generic; explicitly mark sourced Vicariate prayer keys."""
+    policy = content.get("$creedPolicy")
+    if policy is not None:
+        label = f"content/{path.name}: $creedPolicy"
+        if not isinstance(policy, dict):
+            err(f"{label} must be an object")
+        else:
+            if not isinstance(policy.get("apostlesCreed"), bool):
+                err(f"{label}: apostlesCreed must be a boolean")
+            if policy.get("filioque") not in {"absent", "bracketed", "unbracketed"}:
+                err(f"{label}: filioque must be absent, bracketed, or unbracketed")
+            if "rite" in policy and not isinstance(policy["rite"], str):
+                err(f"{label}: rite must be a source identity string")
     traditions = content.get("$prayerTraditionByKey", {})
     label = f"content/{path.name}: $prayerTraditionByKey"
     if not isinstance(traditions, dict):

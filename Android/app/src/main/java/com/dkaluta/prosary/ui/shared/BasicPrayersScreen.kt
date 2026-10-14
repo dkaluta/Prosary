@@ -69,8 +69,8 @@ fun BasicPrayersScreen(onOpen: (String) -> Unit, onNavigateUp: () -> Unit) {
     // 2026-08-08).
     var orderGeneration by remember { mutableIntStateOf(0) }
     var showsOrderEditor by rememberSaveable { mutableStateOf(false) }
-    val ordered = remember(orderGeneration) {
-        BasicPrayersOrder.apply(context, BasicPrayerCatalog.all)
+    val ordered = remember(orderGeneration, language.code) {
+        BasicPrayersOrder.apply(context, BasicPrayerCatalog.available(language.code))
     }
     Scaffold(
         topBar = {
@@ -138,7 +138,7 @@ fun BasicPrayersScreen(onOpen: (String) -> Unit, onNavigateUp: () -> Unit) {
         // The same generic drag-handle editor Home uses; titles resolve in the prayer
         // language, so the dialog reads exactly like the list behind it.
         HomeOrderEditor(
-            titles = BasicPrayersOrder.apply(context, BasicPrayerCatalog.all).map {
+            titles = BasicPrayersOrder.apply(context, BasicPrayerCatalog.available(language.code)).map {
                 it.id to BasicPrayerCatalog.cardTitle(it, language.code, interfaceLanguage).primary
             },
             onMove = { ids ->
@@ -162,7 +162,7 @@ fun BasicPrayerFlowScreen(prayerId: String, onNavigateUp: () -> Unit) {
     val language = LanguageCatalog.resolve(BasicPrayerCatalog.effectiveLanguage(prayer, chosenLanguage))
     val displayedLanguageChoice = if (language.code == LanguageCatalog.resolve(chosenLanguage).code) chosenLanguage else language.code
     var languageMenuExpanded by rememberSaveable { mutableStateOf(false) }
-    val step = remember(prayerId, language.code, AppSettings.includeFilioqueChoice) {
+    val step = remember(prayerId, language.code) {
         BasicPrayerCatalog.step(prayer, language.code).copy(
             // Recreating a one-step reader must not look like advancing to a new prayer.
             id = "basic:$prayerId:${language.code}",
