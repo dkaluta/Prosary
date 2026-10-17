@@ -435,21 +435,34 @@ private fun DashboardCard(widget: HomeWidget, onClick: (() -> Unit)? = null, sum
 @Composable
 private fun HomeCardColorMenu(widget: HomeWidget) {
     var expanded by rememberSaveable(widget.id) { mutableStateOf(false) }
+    var choosingColor by rememberSaveable(widget.id) { mutableStateOf(false) }
     val selectedColor = AppSettings.homeWidgetColor(widget)
     Box {
-        IconButton(onClick = { expanded = true }, modifier = Modifier.testTag("homeWidgetColor.${widget.id}")) {
-            Icon(Icons.Filled.Palette, contentDescription = "${stringResource(R.string.home_widgets_color)}: ${stringResource(widget.title)}")
+        IconButton(onClick = { choosingColor = false; expanded = true }, modifier = Modifier.testTag("homeWidgetColor.${widget.id}")) {
+            Icon(Icons.Filled.Palette, contentDescription = "${stringResource(R.string.home_widgets_set_accent_color)}: ${stringResource(widget.title)}")
         }
-        DropdownMenu(expanded = expanded, onDismissRequest = { expanded = false }) {
-            AppSettings.todayCardColors.forEach { color ->
-                val label = stringResource(if (color == "default") R.string.settings_today_card_color_default else AppColor.resolve(color).labelRes)
-                DropdownMenuItem(text = {
-                    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-                        Text(label, modifier = Modifier.weight(1f))
-                        if (selectedColor == color) Icon(Icons.Filled.Check, contentDescription = null)
-                    }
-                }, onClick = { AppSettings.setHomeWidgetColor(widget, color); expanded = false },
-                    modifier = Modifier.testTag("homeWidgetColor.${widget.id}.$color").semantics { selected = selectedColor == color })
+        DropdownMenu(expanded = expanded, onDismissRequest = { expanded = false; choosingColor = false }) {
+            if (choosingColor) {
+                AppSettings.todayCardColors.filter { it != "default" }.forEach { color ->
+                    val label = stringResource(AppColor.resolve(color).labelRes)
+                    DropdownMenuItem(text = {
+                        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+                            Text(label, modifier = Modifier.weight(1f))
+                            if (selectedColor == color) Icon(Icons.Filled.Check, contentDescription = null)
+                        }
+                    }, onClick = { AppSettings.setHomeWidgetColor(widget, color); expanded = false; choosingColor = false },
+                        modifier = Modifier.testTag("homeWidgetColor.${widget.id}.$color").semantics { selected = selectedColor == color })
+                }
+            } else {
+                DropdownMenuItem(text = { Text(stringResource(R.string.home_widgets_set_accent_color)) },
+                    trailingIcon = { Icon(Icons.AutoMirrored.Filled.KeyboardArrowRight, contentDescription = null) },
+                    onClick = { choosingColor = true }, modifier = Modifier.testTag("homeWidgetSetAccent.${widget.id}"))
+                if (selectedColor != "default") {
+                    HorizontalDivider()
+                    DropdownMenuItem(text = { Text(stringResource(R.string.home_widgets_remove_accent_color)) },
+                        onClick = { AppSettings.setHomeWidgetColor(widget, "default"); expanded = false },
+                        modifier = Modifier.testTag("homeWidgetRemoveAccent.${widget.id}"))
+                }
             }
         }
     }

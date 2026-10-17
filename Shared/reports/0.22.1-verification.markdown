@@ -1,0 +1,17 @@
+# Prosary 0.22.1 verification
+
+Verified on October 17, 2026 from the isolated release snapshot, excluding unrelated Bible and Repository work.
+
+Each Home card now offers Set Accent Color… with Blue, Green, Gold and Rose choices. Default is no longer a selectable choice. Remove Accent Color is a separate action shown only for an active accent; it clears only that card's override. All eight interface languages use the same behavior on Apple, Android and Windows. Storage normalization, existing selections and iCloud payloads are unchanged.
+
+## Validation
+
+- Apple: build-for-testing and the focused iPhone Duo UI interaction passed, including no removal action on a default card, no Default choice, independent Blue/Rose selections, and removing one card's accent without changing the other. One UI test, zero failures. No simulator was created; the existing standard device is shut down.
+- Android: 569 unit tests passed with no failures, errors or skips. The interaction-test APK assembled with updated Set/Remove coverage; no connected Android host was available to execute it. Fresh signed bundle 0.22.1 (58) passed ZIP, signature and manifest-version verification.
+- Windows: actual WinUI/Windows SDK source typecheck passed. Native CI remains the release gate; runtime rendering and installer distribution require Windows.
+- Localization: all eight native UI locales and shared metadata pass the translation completeness check.
+- Meaningful existing storage tests remain unchanged because the stored schema and reset behavior are unchanged; the UI test proves the revised action flow.
+
+Android bundle SHA-256: `64922c5a65317140b7a48a9f75257888b4352e5d15676b7fbbe04592a5a7b465`.
+
+The [0.22 verification](0.22-verification.markdown) records the broader content, source, fold geometry and iCloud payload validation. Real partial-fold transitions and signed two-device iCloud propagation remain unverified.

@@ -203,10 +203,10 @@ struct HomeDashboardView: View {
         .buttonStyle(.plain)
         .accessibilityLabel("\(widget.title), \(label(isCollapsed ? "expand" : "collapse"))")
         .accessibilityIdentifier("homeWidgets.size.\(widget.rawValue)")
-        Menu { cardColorPicker(widget) } label: {
+        Menu { cardAccentActions(widget) } label: {
           Image(systemName: "paintpalette").frame(minWidth: 44, minHeight: 44)
         }
-        .accessibilityLabel("\(widget.title), \(label("color"))")
+        .accessibilityLabel("\(widget.title), \(label("setAccentColor"))")
         .accessibilityValue(cardColor(widget).title)
         .accessibilityIdentifier("homeWidgets.color.\(widget.rawValue)")
       }
@@ -225,7 +225,7 @@ struct HomeDashboardView: View {
     .prosaryContentCardBackground()
     .contextMenu {
       Button(label(isCollapsed ? "expand" : "collapse"), systemImage: isCollapsed ? "arrow.up.left.and.arrow.down.right" : "arrow.down.right.and.arrow.up.left") { toggleSize(widget) }
-      Menu(label("color"), systemImage: "paintpalette") { cardColorPicker(widget) }
+      cardAccentActions(widget)
       if widget != .feast {
         Button(label(graphicPath(widget).isEmpty ? "addGraphic" : "changeGraphic"), systemImage: "photo.badge.plus") {
           chooseGraphic(widget)
@@ -456,11 +456,19 @@ struct HomeDashboardView: View {
     publishLayout()
   }
 
-  private func cardColorPicker(_ widget: HomeWidget) -> some View {
-    Picker(label("color"), selection: Binding(get: { cardColor(widget) }, set: { setCardColor($0, for: widget) })) {
-      ForEach(TodayCardColor.allCases) { color in Text(color.title).tag(color) }
+  @ViewBuilder private func cardAccentActions(_ widget: HomeWidget) -> some View {
+    Menu(label("setAccentColor"), systemImage: "paintpalette") {
+      ForEach(TodayCardColor.allCases.filter { $0 != .default }) { color in
+        Button { setCardColor(color, for: widget) } label: {
+          if cardColor(widget) == color { Label(color.title, systemImage: "checkmark") }
+          else { Text(color.title) }
+        }
+      }
     }
-    .pickerStyle(.inline)
+    if cardColor(widget) != .default {
+      Button(label("removeAccentColor"), systemImage: "xmark") { setCardColor(.default, for: widget) }
+        .accessibilityIdentifier("homeWidgets.removeAccentColor.\(widget.rawValue)")
+    }
   }
 
   @discardableResult private func applyCloudLayout() -> Bool {

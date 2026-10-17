@@ -96,23 +96,36 @@ class HomeDashboardInstrumentedTest {
         }
     }
 
-    @Test fun homeCardColorSelectionSurvivesRecreationAndDefaultResetsOnlyThatCard() = withFreshHome {
+    @Test fun homeCardAccentSelectionSurvivesRecreationAndRemovalResetsOnlyThatCard() = withFreshHome {
         ActivityScenario.launch(MainActivity::class.java).use { scenario ->
             awaitHome()
             val appColor = AppSettings.appColor
             compose.onNodeWithTag("homeWidgetColor.readings").performClick()
+            compose.onNodeWithTag("homeWidgetRemoveAccent.readings").assertDoesNotExist()
+            compose.onNodeWithTag("homeWidgetSetAccent.readings").performClick()
+            compose.onNodeWithTag("homeWidgetColor.readings.default").assertDoesNotExist()
             compose.onNodeWithTag("homeWidgetColor.readings.blue").performClick()
             compose.runOnIdle {
                 assertEquals("blue", AppSettings.homeWidgetColor(HomeWidget.Readings))
                 assertEquals("default", AppSettings.homeWidgetColor(HomeWidget.Feast))
                 assertEquals(appColor, AppSettings.appColor)
             }
+            scenario.onActivity { AppSettings.setHomeWidgetColor(HomeWidget.Feast, "rose") }
             scenario.recreate()
             awaitHome()
             compose.onNodeWithTag("homeWidgetColor.readings").performClick()
+            compose.onNodeWithTag("homeWidgetRemoveAccent.readings").assertExists()
+            compose.onNodeWithTag("homeWidgetSetAccent.readings").performClick()
             compose.onNodeWithTag("homeWidgetColor.readings.blue").assertIsSelected()
-            compose.onNodeWithTag("homeWidgetColor.readings.default").performClick()
-            compose.runOnIdle { assertEquals("default", AppSettings.homeWidgetColor(HomeWidget.Readings)) }
+            pressBack()
+            compose.onNodeWithTag("homeWidgetColor.readings").performClick()
+            compose.onNodeWithTag("homeWidgetRemoveAccent.readings").performClick()
+            compose.runOnIdle {
+                assertEquals("default", AppSettings.homeWidgetColor(HomeWidget.Readings))
+                assertEquals("rose", AppSettings.homeWidgetColor(HomeWidget.Feast))
+            }
+            compose.onNodeWithTag("homeWidgetColor.readings").performClick()
+            compose.onNodeWithTag("homeWidgetRemoveAccent.readings").assertDoesNotExist()
         }
     }
 

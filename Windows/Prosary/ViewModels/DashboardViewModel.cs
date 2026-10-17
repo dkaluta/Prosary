@@ -27,7 +27,8 @@ public partial class HomeWidgetCard : ObservableObject
     public bool IsReflection => Id == "reflection";
     public bool IsScripture => Id == "scripture";
     public bool HasScripturePassages => IsScripture || Id == "torah";
-    public string ColorLabel => Loc.Tr("home_widgets_color", "Card Color");
+    public string ColorLabel => Loc.Tr("home_widgets_set_accent_color", "Set Accent Color…");
+    public string RemoveAccentColorLabel => Loc.Tr("home_widgets_remove_accent_color", "Remove Accent Color");
     [ObservableProperty] private Brush? _cardBackground;
     public string AddGraphicLabel => HasGraphicChoice ? Loc.Tr("home_widgets_change_graphic", "Change Image") : Loc.Tr("home_widgets_add_graphic", "Add Image");
     public string RemoveGraphicLabel => Loc.Tr("home_widgets_remove_graphic", "Remove Image");

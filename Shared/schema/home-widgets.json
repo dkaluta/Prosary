@@ -54,7 +54,7 @@
       "type": "string",
       "default": "{}",
       "encoding": "JSON object of known widget ID to blue, green, gold or rose. Default removes the override; invalid IDs/colors are ignored.",
-      "behavior": "Independent per-card background tint over an opaque native surface; preserve native light/dark and high-contrast foregrounds. Palette choices use existing Today color captions."
+      "behavior": "Independent per-card accent tint over an opaque native surface; preserve native light/dark and high-contrast foregrounds. Set Accent Color opens Blue, Green, Gold and Rose choices using existing Today color captions. Default is not a selectable item; Remove Accent Color appears only for an active override and clears that card alone."
     }
   },
   "cards": {
