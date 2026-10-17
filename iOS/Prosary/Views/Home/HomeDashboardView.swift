@@ -9,9 +9,11 @@ struct HomeDashboardView: View {
   @Environment(\.appServices) private var services
   @Environment(\.scenePhase) private var scenePhase
   @AppStorage(HomeWidgetOrder.key) private var storedOrder = HomeWidgetOrder.encode(HomeWidgetOrder.defaults)
+  @AppStorage(HomeWidgetOrder.layoutVersionKey) private var layoutVersion = ""
   @AppStorage(HomePhotoStore.key) private var photoPath = ""
   @AppStorage(HomeWidgetDisplay.collapsedKey) private var storedCollapsed = ""
   @AppStorage(HomeWidgetDisplay.graphicsKey) private var storedGraphics = "{}"
+  @AppStorage(HomeWidgetDisplay.colorsKey) private var storedColors = "{}"
   @Environment(\.accessibilityReduceMotion) private var reduceMotion
   @AppStorage(TodayInfoStore.calendarDefaultsKey) private var calendarID = ""
   @AppStorage(TodayInfoStore.paschaStyleDefaultsKey) private var paschaStyle = "julian"
@@ -38,45 +40,25 @@ struct HomeDashboardView: View {
   private var widgets: [HomeWidget] { HomeWidgetOrder.decode(storedOrder) }
   private var selectedDate: Date { dateSelection.localDate() }
   private var feast: FeastDay? { TodayInfoStore.feast(on: selectedDate) }
+  private var sourceReadings: [ReadingCitation] { TodayInfoStore.readings(on: selectedDate) }
   private var readings: [ReadingDisplayOrder.Row<ReadingCitation>] {
-    ReadingDisplayOrder.indexed(TodayInfoStore.readings(on: selectedDate), reverse: reverseReadingsOrder)
+    ReadingDisplayOrder.indexed(sourceReadings, reverse: reverseReadingsOrder)
+  }
+  private var collapsedReadingsSummary: String {
+    if let gospel = sourceReadings.first(where: { $0.type == "gospel" }) {
+      return gospel.localizedShort(language)
+    }
+    return readings.isEmpty ? label("noReadings")
+      : readings.map { $0.value.localizedShort(language) }.joined(separator: " · ")
   }
   private var intention: PopeIntention? { TodayInfoStore.intention(for: selectedDate) }
+  private var torah: TorahPortion? { TodayInfoStore.torahPortion(on: selectedDate) }
   private var dateBinding: Binding<Date> {
     Binding(get: { selectedDate }, set: { dateSelection.select($0) })
   }
 
   var body: some View {
-    ScrollView {
-      VStack(alignment: .leading, spacing: 16) {
-        Button { showsDatePicker = true } label: {
-          Label(CalendarEventPresentation.dateLabel(selectedDate), systemImage: "calendar")
-        }
-          .buttonStyle(.bordered)
-          .accessibilityIdentifier("homeWidgets.date")
-          .popover(isPresented: $showsDatePicker) {
-            ReadingDatePickerPopover(selection: dateBinding, range: MacTodayDateSelection.pickerRange(),
-              pickerIdentifier: "homeWidgets.datePicker", todayIdentifier: "homeWidgets.dateToday", doneIdentifier: "homeWidgets.dateDone") { showsDatePicker = false }
-              .presentationCompactAdaptation(.sheet)
-          }
-        if !dateSelection.isToday() {
-          Button(UILanguage.text("home.today.today", language: language, fallback: "Today")) {
-            dateSelection.select(Date())
-          }
-        }
-        ForEach(widgets) { widget in card(widget) }
-        if widgets.isEmpty { Text(label("empty")).foregroundStyle(.secondary) }
-        Button { showsCustomizer = true } label: {
-          Label(label("add"), systemImage: "plus")
-            .frame(maxWidth: .infinity, minHeight: 44)
-        }
-        .buttonStyle(.bordered)
-        .accessibilityIdentifier("homeWidgets.add")
-      }
-      .frame(maxWidth: 720)
-      .frame(maxWidth: .infinity)
-      .padding(20)
-    }
+    dashboard
     .navigationTitle(label("title"))
     .toolbar {
       ToolbarItem(placement: .topBarTrailing) {
@@ -91,7 +73,7 @@ struct HomeDashboardView: View {
       }
     }
     .sheet(isPresented: $showsCustomizer) {
-      HomeWidgetCustomizer(storedOrder: $storedOrder, removeWidget: removeWidget)
+      HomeWidgetCustomizer(storedOrder: Binding(get: { storedOrder }, set: { storedOrder = $0; publishLayout() }), removeWidget: removeWidget)
     }
     .sheet(isPresented: $showsSettings) {
       NavigationStack {
@@ -105,8 +87,14 @@ struct HomeDashboardView: View {
     }
     .alert(label("photoError"), isPresented: $showsPhotoError) { Button("common.ok", role: .cancel) {} }
     .photosPicker(isPresented: $showsGraphicPicker, selection: $selectedPhoto, matching: .images)
-    .task { refreshDate(); await reloadPrayers(); photoImage = HomePhotoStore.image(photoPath); reloadGraphics() }
+    .task {
+      if !applyCloudLayout(), layoutVersion != "1" {
+        storedOrder = HomeWidgetOrder.encode(HomeWidgetOrder.addingDailyCards(to: widgets)); layoutVersion = "1"
+      }
+      refreshDate(); await reloadPrayers(); photoImage = HomePhotoStore.image(photoPath); reloadGraphics()
+    }
     .task(id: selectedPhoto) { await loadPhoto() }
+    .onChange(of: CloudPreferencesGeneration.shared.value) { _, _ in applyCloudLayout() }
     .onChange(of: photoPath) { _, path in photoImage = HomePhotoStore.image(path) }
     .onChange(of: storedGraphics) { _, _ in reloadGraphics() }
     .onChange(of: scenePhase) { _, phase in
@@ -118,23 +106,113 @@ struct HomeDashboardView: View {
     .environment(\.layoutDirection, UILanguage.isRightToLeft(language) ? .rightToLeft : .leftToRight)
   }
 
+  private var dashboard: some View {
+    GeometryReader { geometry in
+      #if os(iOS)
+      if #available(iOS 27.1, *) { reservedRegionDashboard(geometry: geometry) }
+      else { dashboardPane(widgets, showsDate: true, showsAdd: true) }
+      #else
+      dashboardPane(widgets, showsDate: true, showsAdd: true)
+      #endif
+    }
+  }
+
+  #if os(iOS)
+  @available(iOS 27.1, *)
+  @ViewBuilder private func reservedRegionDashboard(geometry: GeometryProxy) -> some View {
+    let bounds = CGRect(origin: .zero, size: geometry.size)
+    let hasDivision = geometry.reservedRegions(kind: .division, layoutDirectionBehavior: .fixed)
+      .contains { $0.isActive && PrayerReservedRegionLayout.intersects($0.frame, bounds: bounds) }
+    if hasDivision {
+      let split = (widgets.count + 1) / 2
+      ArrangementView {
+        ReservedRegionAvoidingContent { _ in
+          dashboardPane(Array(widgets.prefix(split)), showsDate: true, showsAdd: false)
+        }
+      } secondary: {
+        ReservedRegionAvoidingContent { _ in
+          dashboardPane(Array(widgets.dropFirst(split)), showsDate: false, showsAdd: true)
+        }
+      }
+      .arrangementViewStyle(.split)
+      .accessibilityIdentifier("homeWidgets.foldArrangement")
+    } else {
+      ReservedRegionAvoidingContent { _ in dashboardPane(widgets, showsDate: true, showsAdd: true) }
+    }
+  }
+  #endif
+
+  private func dashboardPane(_ cards: [HomeWidget], showsDate: Bool, showsAdd: Bool) -> some View {
+    GeometryReader { geometry in
+      ScrollView {
+        VStack(alignment: .leading, spacing: 16) {
+          if showsDate { dashboardDateControls }
+          LazyVGrid(columns: Array(repeating: GridItem(.flexible(minimum: 0), spacing: 16, alignment: .top),
+            count: HomeDashboardLayout.columnCount(availableWidth: geometry.size.width)), alignment: .leading, spacing: 16) {
+            ForEach(cards) { widget in card(widget) }
+          }
+          if widgets.isEmpty, showsDate { Text(label("empty")).foregroundStyle(.secondary) }
+          if showsAdd {
+            Button { showsCustomizer = true } label: {
+              Label(label("add"), systemImage: "plus")
+                .frame(maxWidth: .infinity, minHeight: 44)
+            }
+            .buttonStyle(.bordered)
+            .accessibilityIdentifier("homeWidgets.add")
+          }
+        }
+        .frame(maxWidth: HomeDashboardLayout.maximumContentWidth)
+        .frame(maxWidth: .infinity)
+        .padding(20)
+      }
+    }
+  }
+
+  private var dashboardDateControls: some View {
+    VStack(alignment: .leading, spacing: 16) {
+      Button { showsDatePicker = true } label: {
+        Label(CalendarEventPresentation.dateLabel(selectedDate), systemImage: "calendar")
+      }
+      .buttonStyle(.bordered)
+      .accessibilityIdentifier("homeWidgets.date")
+      .popover(isPresented: $showsDatePicker) {
+        ReadingDatePickerPopover(selection: dateBinding, range: MacTodayDateSelection.pickerRange(),
+          pickerIdentifier: "homeWidgets.datePicker", todayIdentifier: "homeWidgets.dateToday", doneIdentifier: "homeWidgets.dateDone") { showsDatePicker = false }
+          .presentationCompactAdaptation(.sheet)
+      }
+      if !dateSelection.isToday() {
+        Button(UILanguage.text("home.today.today", language: language, fallback: "Today")) {
+          dateSelection.select(Date())
+        }
+      }
+    }
+  }
+
   private func card(_ widget: HomeWidget) -> some View {
     let isCollapsed = HomeWidgetDisplay.collapsed(storedCollapsed).contains(widget)
     return VStack(alignment: .leading, spacing: 12) {
-      Button { toggleSize(widget) } label: {
-        HStack {
-          HomeWidgetLabel(widget: widget).font(.headline).accessibilityAddTraits(.isHeader)
-          Spacer(minLength: 12)
-          Image(systemName: isCollapsed ? "chevron.down" : "chevron.up").font(.caption.weight(.semibold))
-            .foregroundStyle(.secondary)
-        }.frame(minHeight: 44).contentShape(Rectangle())
+      HStack(spacing: 8) {
+        Button { toggleSize(widget) } label: {
+          HStack {
+            HomeWidgetLabel(widget: widget).font(.headline).accessibilityAddTraits(.isHeader)
+            Spacer(minLength: 12)
+            Image(systemName: isCollapsed ? "chevron.down" : "chevron.up").font(.caption.weight(.semibold))
+              .foregroundStyle(.secondary)
+          }.frame(minHeight: 44).contentShape(Rectangle())
+        }
+        .buttonStyle(.plain)
+        .accessibilityLabel("\(widget.title), \(label(isCollapsed ? "expand" : "collapse"))")
+        .accessibilityIdentifier("homeWidgets.size.\(widget.rawValue)")
+        Menu { cardColorPicker(widget) } label: {
+          Image(systemName: "paintpalette").frame(minWidth: 44, minHeight: 44)
+        }
+        .accessibilityLabel("\(widget.title), \(label("color"))")
+        .accessibilityValue(cardColor(widget).title)
+        .accessibilityIdentifier("homeWidgets.color.\(widget.rawValue)")
       }
-      .buttonStyle(.plain)
-      .accessibilityLabel("\(widget.title), \(label(isCollapsed ? "expand" : "collapse"))")
-      .accessibilityIdentifier("homeWidgets.size.\(widget.rawValue)")
       if isCollapsed { compactContent(widget) }
       else {
-        if let image = graphicImages[widget], widget != .photo {
+        if let image = graphicImages[widget], widget != .photo, widget != .feast {
           Image(decorative: image, scale: 1).resizable().scaledToFit().frame(maxHeight: 280)
             .clipShape(RoundedRectangle(cornerRadius: 10)).accessibilityHidden(true)
         }
@@ -143,15 +221,19 @@ struct HomeDashboardView: View {
     }
     .frame(maxWidth: .infinity, alignment: .leading)
     .padding(18)
+    .background(cardColor(widget).tint, in: RoundedRectangle(cornerRadius: 14))
     .prosaryContentCardBackground()
     .contextMenu {
       Button(label(isCollapsed ? "expand" : "collapse"), systemImage: isCollapsed ? "arrow.up.left.and.arrow.down.right" : "arrow.down.right.and.arrow.up.left") { toggleSize(widget) }
-      Button(label(graphicPath(widget).isEmpty ? "addGraphic" : "changeGraphic"), systemImage: "photo.badge.plus") {
-        chooseGraphic(widget)
-      }.disabled(photoIsLoading)
-      if !graphicPath(widget).isEmpty {
-        Button(label("removeGraphic"), systemImage: "photo", role: .destructive) { removeGraphic(widget) }
-          .disabled(photoIsLoading)
+      Menu(label("color"), systemImage: "paintpalette") { cardColorPicker(widget) }
+      if widget != .feast {
+        Button(label(graphicPath(widget).isEmpty ? "addGraphic" : "changeGraphic"), systemImage: "photo.badge.plus") {
+          chooseGraphic(widget)
+        }.disabled(photoIsLoading)
+        if !graphicPath(widget).isEmpty {
+          Button(label("removeGraphic"), systemImage: "photo", role: .destructive) { removeGraphic(widget) }
+            .disabled(photoIsLoading)
+        }
       }
       Button(label("moveUp"), systemImage: "arrow.up") { move(widget, by: -1) }
         .disabled(widgets.first == widget)
@@ -166,16 +248,20 @@ struct HomeDashboardView: View {
   @ViewBuilder private func compactContent(_ widget: HomeWidget) -> some View {
     switch widget {
     case .readings:
-      Text(readings.first?.value.localizedFull(language) ?? label("noReadings")).font(.subheadline)
+      Text(collapsedReadingsSummary).font(.subheadline)
       Button(widget.title) { openReadings("daily") }.buttonStyle(.bordered)
+    case .torah:
+      Text(torah?.localizedTitle(language) ?? label("noTorah")).font(.subheadline)
     case .calendar:
       Text(feast?.localizedTitle(language) ?? label("noFeast")).font(.subheadline)
       Button(widget.title) { openReadings("calendar") }.buttonStyle(.bordered)
+        .accessibilityIdentifier("homeWidgets.open.calendar")
     case .scripture:
       if let reading = TodayInfoStore.scriptureOfTheDay(on: selectedDate) {
         Text(reading.localizedFull(language)).font(.subheadline)
       }
       Button(widget.title) { openReadings("bible") }.buttonStyle(.bordered)
+        .accessibilityIdentifier("homeWidgets.open.scripture")
     case .popeIntention:
       Text(intention?.localizedTitle(language) ?? label("noIntention")).font(.subheadline)
     case .photo:
@@ -207,6 +293,14 @@ struct HomeDashboardView: View {
           .accessibilityIdentifier("homeWidgets.reading.\(reading.type)")
       }
       Button(HomeWidget.readings.title) { openReadings("daily") }.buttonStyle(.bordered)
+    case .torah:
+      if let torah {
+        Text(verbatim: torah.localizedTitle(language)).font(.subheadline.weight(.semibold))
+        ForEach(Array(torah.allReadings.enumerated()), id: \.offset) { _, reading in
+          ScripturePassageView(reading: reading, isTorah: true, interfaceLanguage: language)
+            .id("\(dateSelection.day)|\(reading.full)")
+        }
+      } else { Text(label("noTorah")).foregroundStyle(.secondary) }
     case .popeIntention:
       if let intention {
         Text(verbatim: intention.localizedTitle(language)).font(.subheadline.weight(.semibold))
@@ -216,6 +310,7 @@ struct HomeDashboardView: View {
       CalendarMonthGrid(dateSelection: $dateSelection)
       CalendarDayEvents(date: selectedDate, openReadings: { openReadings("daily") })
       Button(HomeWidget.calendar.title) { openReadings("calendar") }.buttonStyle(.bordered)
+        .accessibilityIdentifier("homeWidgets.open.calendar")
     case .photo:
       if let photoImage {
         Image(decorative: photoImage, scale: 1)
@@ -252,6 +347,7 @@ struct HomeDashboardView: View {
         Label(HomeWidget.scripture.title, systemImage: "chevron.forward")
           .frame(maxWidth: .infinity, minHeight: 44, alignment: .leading)
       }.buttonStyle(.bordered)
+        .accessibilityIdentifier("homeWidgets.open.scripture")
     case .reflection:
       let reflections = feast?.reflections(language: language) ?? []
       if reflections.isEmpty { Text(label("reflectionPending")).foregroundStyle(.secondary) }
@@ -298,12 +394,14 @@ struct HomeDashboardView: View {
     guard let index = order.firstIndex(of: widget), order.indices.contains(index + offset) else { return }
     order.swapAt(index, index + offset)
     storedOrder = HomeWidgetOrder.encode(order)
+    publishLayout()
   }
 
   private func removeWidget(_ widget: HomeWidget) {
     if !removeGraphic(widget) { return }
     if graphicTarget == widget { selectedPhoto = nil }
     storedOrder = HomeWidgetOrder.encode(widgets.filter { $0 != widget })
+    publishLayout()
   }
 
   @discardableResult private func removePhoto() -> Bool {
@@ -343,7 +441,39 @@ struct HomeDashboardView: View {
       var collapsed = HomeWidgetDisplay.collapsed(storedCollapsed)
       if collapsed.contains(widget) { collapsed.remove(widget) } else { collapsed.insert(widget) }
       storedCollapsed = HomeWidgetDisplay.encodeCollapsed(collapsed)
+      publishLayout()
     }
+  }
+
+  private func cardColor(_ widget: HomeWidget) -> TodayCardColor {
+    HomeWidgetDisplay.colors(storedColors)[widget] ?? .default
+  }
+
+  private func setCardColor(_ color: TodayCardColor, for widget: HomeWidget) {
+    var colors = HomeWidgetDisplay.colors(storedColors)
+    colors[widget] = color
+    storedColors = HomeWidgetDisplay.encodeColors(colors)
+    publishLayout()
+  }
+
+  private func cardColorPicker(_ widget: HomeWidget) -> some View {
+    Picker(label("color"), selection: Binding(get: { cardColor(widget) }, set: { setCardColor($0, for: widget) })) {
+      ForEach(TodayCardColor.allCases) { color in Text(color.title).tag(color) }
+    }
+    .pickerStyle(.inline)
+  }
+
+  @discardableResult private func applyCloudLayout() -> Bool {
+    guard let layout = HomeLayoutCloud.read() else { return false }
+    storedOrder = layout.order
+    storedCollapsed = layout.collapsed
+    storedColors = layout.colors
+    layoutVersion = "1"
+    return true
+  }
+
+  private func publishLayout() {
+    HomeLayoutCloud.write(order: storedOrder, collapsed: storedCollapsed, colors: storedColors)
   }
 
   private func graphicPath(_ widget: HomeWidget) -> String {
@@ -351,6 +481,7 @@ struct HomeDashboardView: View {
   }
 
   private func chooseGraphic(_ widget: HomeWidget) {
+    guard widget != .feast else { return }
     graphicTarget = widget; selectedPhoto = nil; showsGraphicPicker = true
   }
 

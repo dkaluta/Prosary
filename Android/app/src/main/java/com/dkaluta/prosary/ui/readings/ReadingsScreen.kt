@@ -1,6 +1,5 @@
 package com.dkaluta.prosary.ui.readings
 
-import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -21,8 +20,6 @@ import androidx.compose.foundation.text.selection.DisableSelection
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowLeft
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.filled.CalendarMonth
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.Card
 import androidx.compose.material3.CircularProgressIndicator
@@ -36,9 +33,6 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
-import androidx.compose.material3.SingleChoiceSegmentedButtonRow
-import androidx.compose.material3.SegmentedButton
-import androidx.compose.material3.SegmentedButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
@@ -54,7 +48,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.produceState
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.saveable.rememberSaveableStateHolder
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -71,6 +64,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.window.Dialog
+import androidx.compose.ui.window.DialogProperties
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.compose.LocalLifecycleOwner
@@ -102,56 +97,46 @@ import kotlinx.coroutines.withContext
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ReadingsScreen(browsingDate: TodayBrowsingDate = rememberTodayBrowsingDate(),
-    calendarRequest: Long = 0, readingsRequest: Long = 0, homeRequest: Long = 0, homeMode: HomeReadingsMode = HomeReadingsMode.Daily) {
-    var mode by rememberSaveable { mutableStateOf("daily") }
+    calendarRequest: Long = 0, readingsRequest: Long = 0, homeRequest: Long = 0,
+    homeMode: HomeReadingsMode = HomeReadingsMode.Daily,
+    onOpenReference: (HomeReadingsMode) -> Unit = {}) {
     var showsReadingSettings by rememberSaveable { mutableStateOf(false) }
     if (showsReadingSettings) ReadingSettingsSheet { showsReadingSettings = false }
     var handledOpenRequest by rememberSaveable { mutableStateOf(0L) }
     LaunchedEffect(calendarRequest, readingsRequest, homeRequest, homeMode) {
         val request = ReadingsOpenRequest.latest(calendarRequest, readingsRequest, homeRequest, homeMode)
         if (request != null && request.sequence != handledOpenRequest) {
-            mode = request.applyTo(browsingDate)
+            request.applyTo(browsingDate)
+            onOpenReference(request.mode)
             handledOpenRequest = request.sequence
         }
     }
-    val showsCalendarList = mode == "calendar" || mode == "feasts"
-    BackHandler(enabled = showsCalendarList) { mode = "daily" }
-    val holder = rememberSaveableStateHolder()
     Scaffold(topBar = {
-        TopAppBar(title = { Text(stringResource(when (mode) {
-            "feasts", "calendar" -> R.string.calendar_event_calendar
-            else -> R.string.tab_readings
-        })) },
-            navigationIcon = {
-                if (showsCalendarList) IconButton(onClick = { mode = "daily" }) {
-                    Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(R.string.bible_daily_readings))
-                }
-            }, actions = {
-            if (!showsCalendarList) IconButton(onClick = { mode = "feasts" }, modifier = Modifier.testTag("readingsMode.feasts")) {
-                Icon(Icons.Filled.CalendarMonth, contentDescription = stringResource(R.string.calendar_event_calendar))
-            }
-                IconButton(onClick = { showsReadingSettings = true }, modifier = Modifier.testTag("readingsSettingsButton")) {
-                    Icon(Icons.Filled.Settings, contentDescription = stringResource(R.string.reading_settings))
+        TopAppBar(title = { Text(stringResource(R.string.tab_readings)) }, actions = {
+            IconButton(onClick = { showsReadingSettings = true }, modifier = Modifier.testTag("readingsSettingsButton")) {
+                Icon(Icons.Filled.Settings, contentDescription = stringResource(R.string.reading_settings))
             }
         })
     }) { padding ->
         Column(Modifier.padding(padding).fillMaxSize()) {
-            if (!showsCalendarList) SingleChoiceSegmentedButtonRow(Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 8.dp)) {
-                listOf("daily" to R.string.bible_daily_readings,
-                    "bible" to R.string.bible_title).forEachIndexed { index, (id, title) ->
-                    SegmentedButton(selected = mode == id, onClick = { mode = id },
-                        shape = SegmentedButtonDefaults.itemShape(index, 2), modifier = Modifier.testTag("readingsMode.$id")) {
-                        Text(stringResource(title))
-                    }
-                }
-            }
-            holder.SaveableStateProvider(mode) {
-                when (mode) {
-                    "bible" -> BibleScreen(date = browsingDate.selectedDate(LocalDate.now()))
-                    "calendar" -> FeastsAndSolemnitiesContent(browsingDate) { mode = "daily" }
-                    "feasts" -> FeastsAndSolemnitiesContent(browsingDate) { mode = "daily" }
-                    else -> DailyReadingsContent(browsingDate)
-                }
+            DailyReadingsContent(browsingDate)
+        }
+    }
+}
+
+/** Home reference tools have their own surface instead of becoming modes of Readings. */
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+internal fun HomeReferenceSheet(mode: HomeReadingsMode, browsingDate: TodayBrowsingDate,
+    onDismiss: () -> Unit, onOpenReadings: () -> Unit) {
+    Dialog(onDismissRequest = onDismiss, properties = DialogProperties(usePlatformDefaultWidth = false)) {
+        Scaffold(modifier = Modifier.fillMaxSize().testTag("homeReference.${mode.id}"), topBar = {
+            TopAppBar(title = { Text(stringResource(if (mode == HomeReadingsMode.Bible) R.string.bible_title else R.string.calendar_event_calendar)) },
+                actions = { TextButton(onClick = onDismiss) { Text(stringResource(R.string.common_done)) } })
+        }) { padding ->
+            Box(Modifier.fillMaxSize().padding(padding)) {
+                if (mode == HomeReadingsMode.Bible) BibleScreen()
+                else FeastsAndSolemnitiesContent(browsingDate, onSelectDate = onOpenReadings)
             }
         }
     }
@@ -312,7 +297,7 @@ private fun DailyReadingsContent(browsingDate: TodayBrowsingDate) {
                             style = MaterialTheme.typography.titleSmall)
                         Text(torah.localizedTitle(language), style = MaterialTheme.typography.titleMedium)
                     }
-                    for ((index, citation) in torah.readings.withIndex()) {
+                    for ((index, citation) in torah.allReadings.withIndex()) {
                         val passageKey = "torah.$index.${citation.full}"
                         item(key = "torah.$selectedDate.$index.${citation.full}") {
                             ReadingCard(citation, language, edition, editionId, store, true,
@@ -349,6 +334,8 @@ internal fun ReadingCard(citation: ReadingCitation, language: String, edition: R
             Text(stringResource(when (citation.type) {
                 "gospel" -> R.string.readings_type_gospel
                 "psalm" -> R.string.readings_type_psalm
+                "haftarah" -> R.string.readings_type_haftarah
+                "haftarahSephardic" -> R.string.readings_type_haftarah_sephardic
                 else -> R.string.readings_type_reading
             }), style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.primary)
             SelectionContainer { Text(citation.localizedFull(language), style = MaterialTheme.typography.titleMedium) }

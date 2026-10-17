@@ -86,6 +86,22 @@ public class AppColorPaletteTests
         }
     }
 
+    [Theory]
+    [InlineData(false, 179, 243)]
+    [InlineData(true, 13, 32)]
+    public void TintedCardsCompositeNativeAlphaAndKeepTheirThemeTextReadable(bool dark, byte cardAlpha, byte pageGray)
+    {
+        var surface = Windows.UI.Color.FromArgb(cardAlpha, 255, 255, 255);
+        var page = Windows.UI.Color.FromArgb(255, pageGray, pageGray, pageGray);
+        foreach (var id in HomeWidgets.ColorIds.Where(id => id != "default"))
+        {
+            var tinted = AppColorPalette.TintedCardBackground(AppColorPalette.Resolve(id).Accent(dark), surface, page);
+            Assert.Equal(255, tinted.A);
+            Assert.True(Contrast(Luminance(tinted), dark ? 1 : 0) >= 4.5, id);
+            if (dark) Assert.True(Math.Max(tinted.R, Math.Max(tinted.G, tinted.B)) < 100, id);
+        }
+    }
+
     private static double Luminance(Windows.UI.Color color) =>
         0.2126 * Channel(color.R) + 0.7152 * Channel(color.G) + 0.0722 * Channel(color.B);
 

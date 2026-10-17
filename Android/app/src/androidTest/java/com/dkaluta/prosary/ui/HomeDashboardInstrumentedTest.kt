@@ -96,6 +96,26 @@ class HomeDashboardInstrumentedTest {
         }
     }
 
+    @Test fun homeCardColorSelectionSurvivesRecreationAndDefaultResetsOnlyThatCard() = withFreshHome {
+        ActivityScenario.launch(MainActivity::class.java).use { scenario ->
+            awaitHome()
+            val appColor = AppSettings.appColor
+            compose.onNodeWithTag("homeWidgetColor.readings").performClick()
+            compose.onNodeWithTag("homeWidgetColor.readings.blue").performClick()
+            compose.runOnIdle {
+                assertEquals("blue", AppSettings.homeWidgetColor(HomeWidget.Readings))
+                assertEquals("default", AppSettings.homeWidgetColor(HomeWidget.Feast))
+                assertEquals(appColor, AppSettings.appColor)
+            }
+            scenario.recreate()
+            awaitHome()
+            compose.onNodeWithTag("homeWidgetColor.readings").performClick()
+            compose.onNodeWithTag("homeWidgetColor.readings.blue").assertIsSelected()
+            compose.onNodeWithTag("homeWidgetColor.readings.default").performClick()
+            compose.runOnIdle { assertEquals("default", AppSettings.homeWidgetColor(HomeWidget.Readings)) }
+        }
+    }
+
     @Test fun widgetImagesHideInSmallCardsAndRemoveOnlyTheirPrivateCopy() = withFreshHome {
         ActivityScenario.launch(MainActivity::class.java).use { scenario ->
             awaitHome()
@@ -184,7 +204,8 @@ class HomeDashboardInstrumentedTest {
                 compose.onNodeWithText(app.getString(R.string.calendar_event_details)).assertExists()
                 captureScreenshot("event-details")
                 compose.onNodeWithTag("calendarEventReadings").performClick()
-                compose.onNodeWithTag("readingsMode.daily").assertIsSelected()
+                compose.onNodeWithTag("readingsList").assertExists()
+                compose.onNodeWithTag("readingsMode.daily").assertDoesNotExist()
             } finally {
                 scenario.onActivity { AppSettings.feastCalendarId = oldCalendar; AppSettings.calendarViewMode = oldMode }
             }
@@ -224,12 +245,17 @@ class HomeDashboardInstrumentedTest {
             compose.onNodeWithTag("homeDate").assertTextContains(selected.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL).withLocale(locale)))
             compose.onNodeWithTag("homeDashboard").performScrollToNode(hasTestTag("homeWidget.scripture"))
             compose.onNodeWithTag("homeWidget.scripture").performClick()
-            compose.onNodeWithTag("readingsMode.bible").assertIsSelected()
-            compose.onNodeWithTag("tab.home").performClick()
+            compose.onNodeWithTag("homeReference.bible").assertExists()
+            compose.onNodeWithTag("bibleScreen").assertExists()
+            pressBack()
+            compose.onNodeWithTag("tab.home").assertIsSelected()
             compose.onNodeWithTag("homeDashboard").performScrollToNode(hasTestTag("homeOpenCalendar"))
             compose.onNodeWithTag("homeOpenCalendar").performClick()
+            compose.onNodeWithTag("homeReference.calendar").assertExists()
             pressBack()
-            compose.onNodeWithTag("readingsMode.daily").assertIsSelected()
+            compose.onNodeWithTag("tab.home").assertIsSelected()
+            compose.onNodeWithTag("tab.readings").performClick()
+            compose.onNodeWithTag("readingsMode.bible").assertDoesNotExist()
             compose.onNodeWithTag("readingsChooseDate").assertTextContains(selected.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG).withLocale(locale)))
             compose.onNodeWithTag("tab.search").performClick()
             compose.onNodeWithTag("searchCommunity").performClick()
@@ -261,9 +287,11 @@ class HomeDashboardInstrumentedTest {
         val collapsed = preferences.getString("homeWidgetCollapsedIds", null)
         val graphics = preferences.getString("homeWidgetGraphicPaths", null)
         val photo = preferences.getString("homePhotoPath", null)
+        val colors = preferences.getString("homeWidgetColors", null)
         try {
             preferences.edit().putString("homeWidgetOrder", HomeWidget.defaults.joinToString("\n") { it.id })
-                .putString("homeWidgetCollapsedIds", "").putString("homeWidgetGraphicPaths", "{}").putString("homePhotoPath", "").commit()
+                .putString("homeWidgetCollapsedIds", "").putString("homeWidgetGraphicPaths", "{}").putString("homePhotoPath", "")
+                .putString("homeWidgetColors", "{}").commit()
             block()
         } finally {
             preferences.edit().apply {
@@ -271,6 +299,7 @@ class HomeDashboardInstrumentedTest {
                 if (collapsed == null) remove("homeWidgetCollapsedIds") else putString("homeWidgetCollapsedIds", collapsed)
                 if (graphics == null) remove("homeWidgetGraphicPaths") else putString("homeWidgetGraphicPaths", graphics)
                 if (photo == null) remove("homePhotoPath") else putString("homePhotoPath", photo)
+                if (colors == null) remove("homeWidgetColors") else putString("homeWidgetColors", colors)
             }.commit()
             InstrumentationRegistry.getInstrumentation().runOnMainSync { AppSettings.init(app) }
         }

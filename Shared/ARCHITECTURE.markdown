@@ -263,7 +263,7 @@ their separate meanings. The blue AccentColor asset supplies the default for Mul
 
 On Android 12+, `useSystemColors` defaults to true: Material You wallpaper colors take
 precedence for controls. Its switch lives on the Appearance page; turning it off applies
-the selected manual palette. Custom accent selection explicitly disables this override. The control is
+the selected manual palette. Explicit preset selection disables this override and clears any custom accent; custom accent selection also disables it. The control is
 hidden on older Android versions, which use that palette directly. Launcher icon choice
 remains independent. Stable launcher aliases point to an always-enabled `MainActivity` so
 existing intents, widgets and notifications remain usable.
@@ -374,7 +374,7 @@ Home and Readings share the same window's civil-date selection, including a deli
 browsed day; choosing a Home shortcut changes Readings mode without resetting that date.
 
 Readings has a date picker above complete citations, with previous/next day and Today actions.
-Its Daily Readings/Bible selector sits inside page content. A separate **Event Calendar** shows every published date for the selected calendar,
+Readings contains only daily appointed readings and enabled Torah/haftarah passages, without a full Bible selector or Calendar action. Home opens full Holy Scripture and Calendar in separate native reference surfaces. The **Event Calendar** shows every published date for the selected calendar,
 with a Monday-first civil Gregorian month grid and up to three event dots under each date.
 Accessibility retains the full event count. Supplied observances are independently clickable;
 older datasets without components use the parent event. Details use exact interface-language
@@ -628,7 +628,8 @@ also retains its deadline across Activity replacement, while manual navigation, 
 audio playback and session prompts reset or suspend it as appropriate. Editor draft retention is
 for the current entry and does not turn Cancel into Save.
 
-See `FOLDABLE-READINESS.markdown` for fold/resize validation and the Xcode 27.1 Duo follow-up.
+See `FOLDABLE-READINESS.markdown` for the Xcode 27.1 native-bar/reserved-region adaptation
+and the remaining fold/resize device matrix.
 
 On Mac, every flow can switch to `MacPrayerPresenterView` through the focused View menu or the
 prayer toolbar. It renders the same current step and selected original/transliterated body,
@@ -1620,9 +1621,7 @@ and existing prayer continuation rules. The Apple extension reads a small App Gr
 for settings and saved-prayer summaries; Android reads its existing local stores. Widget taps
 open the current local day, month calendar, or normal prayer flow. Android's compact 1×1
 shortcut can select a saved copy, installed devotion or basic prayer. Apple Shortcuts exposes
-every installed/basic template as well as saved configurations. The Readings workspace now
-has Daily Readings and Bible modes plus a separate Feasts and Solemnities list; selecting
-an observance opens its daily readings. Mac uses a native calendar sheet in Today. See [WIDGETS.markdown](WIDGETS.markdown)
+every installed/basic template as well as saved configurations. Readings shows the daily appointments. Home opens full Bible and Event Calendar as separate reference surfaces; selecting an observance can open its daily readings. Mac uses a native calendar sheet in Today. See [WIDGETS.markdown](WIDGETS.markdown)
 and [schema/widgets.json](schema/widgets.json) for configuration, refresh, signing, and testing.
 
 The portable [Expo Today handoff](expo-today/README.markdown) exposes the same data and
@@ -1724,7 +1723,7 @@ copies, same convention as the bundles; per-platform `TodayInfoStore` providers)
     descriptor terminology remain preferred, including `תאמא השליח` and `שבועות`. Source
     descriptions remain verbatim apart from moving their trailing attribution into separate
     source/credit fields. Neither RRULE nor the supplied dates changes any appointed calendar.
-    A collapsed “About the saints” disclosure sits above readings in native Today and Readings,
+    A collapsed “About the Feast and Day” disclosure sits above readings in native Today and Readings,
     obeys `showTodayFeast`, and resets on date/calendar/interface-language changes. It appears
     for the selected calendar when a biography exists in the exact interface language;
     descriptions never fall back to another language. The supplied Urtotho biographies are
@@ -1819,8 +1818,7 @@ copies, same convention as the bundles; per-platform `TodayInfoStore` providers)
 - **`torah-portions.json`** — optional `showTodayTorahPortion` (default false), from
   Hebcal.com (CC BY 4.0). Always Eretz Israel (`i=on`); there is no diaspora option.
   Each selected day maps to the coming Saturday, including Saturday itself. Festival Torah
-  readings replace a weekly portion where appropriate. Only the five books of Moses are
-  included; haftarah and festival megillot are excluded. Source Hebrew/French/Russian/Ukrainian proper
+  readings replace a weekly portion where appropriate. The five books of Moses and published haftarot are included; festival megillot remain excluded. Optional `haftarah` and `haftarahSephardic` arrays retain Hebcal’s Ashkenazi appointment and distinct Sephardic alternative. No missing appointment is inferred. Native Today/Readings use `allReadings`; Home has an independent default `torah` card. Source Hebrew/French/Russian/Ukrainian proper
   names and source transliterations combine with localized captions and citation book names.
   Hebrew-calendar years in festival titles use `AM 5787` in non-Hebrew languages and full
   gematria, including thousands (`ה׳תשפ״ז`), in Hebrew. The generator identifies the year
@@ -1883,9 +1881,9 @@ See [calendar research and coverage](calendar-research.markdown) for source rule
 
 ### Offline Bible passages
 
-Readings provides Daily Readings and Bible modes. The latter browses the selected edition's
+Home opens a separate Bible reference that browses the selected edition's
 available books and chapters, with verse navigation, paired scripts, source credit, and
-explicit partial-chapter notices. Both modes share `readingsEditionId`; Bible position is
+explicit partial-chapter notices. It shares `readingsEditionId` with daily passages; Bible position is
 window-local and independent of the prayer date. Only `bible-catalog.json` is bundled.
 Each Bible is an optional, individually removable offline download, validated and installed
 atomically in a separate private library. The full contract, generation and source limits
@@ -1895,6 +1893,13 @@ reviewed verse units using generated `passageBooks` metadata. A missing or older
 keeps the same edition's reviewed bundled passage available offline. Native readers never
 parse citation text or widen an appointment to unreviewed chapters. Terminal has no readings
 or download features.
+
+Wide iOS, Android and Windows Bible readers paginate complete source blocks into facing
+pages with justified paragraphs and inline verse indicators. Native page turns follow the
+Scripture's inline direction independently of the interface, and source-block anchors connect
+verse jumps and narrow/wide reflow. Long units
+remain scrollable without truncation. These are layout pages, not printed-source pagination;
+the archive and saved-preference shapes do not change. Mac retains continuous reading.
 
 Hebrew additions retain their independently reviewed source work IDs and addresses,
 while book and chapter `canonicalReference` metadata identifies their Catholic placement:
@@ -2263,8 +2268,12 @@ The Mac Presenter's explicit point-size controls remain independent.
 
 `homeWidgetCollapsedIds` is a newline-separated set of compact card IDs, independent of
 `homeWidgetOrder`; absent/empty means the existing large layout. Compact cards retain
-headings, summaries and open actions. `homeWidgetGraphicPaths` is a JSON object mapping
-known card IDs to app-private device-local image copies; paths and bytes do not synchronize.
+headings, summaries and open actions. The compact readings summary shows the first
+source-appointed Gospel in localized shorthand, or all shorthand citations when no Gospel
+is supplied. Expanded readings retain their order.
+
+`homeWidgetGraphicPaths` is a JSON object mapping known card IDs to app-private device-local
+image copies; paths and bytes do not synchronize.
 Add/change/remove uses the existing photo importer, installs a valid replacement before
 removing the old copy, and preserves the original photo. Pray/library cards use the owning
 pack gallery artwork without new native artwork copies.
@@ -2273,3 +2282,15 @@ Holy Scripture and the Home Scripture card offer Scripture of the Day: the first
 appointment in canonical source order, else the first appointment. Reversing the displayed
 readings never changes that selection. The existing offline passage loader, source citation
 mapping, selected edition, source credits and unavailable states remain authoritative.
+
+## Reported Home and Readings corrections (0.22)
+
+The Home `torah` card shows the coming Saturday’s Eretz Israel Torah portion and source-published haftarot, independently of the optional Today/Readings Torah switch. The string preference `homeWidgetLayoutVersion` migrates existing nonempty Home layouts once, inserting Torah after readings (or first if readings is absent) and appending Reflection. Default layouts place Reflection after the feast card; deliberate empty layouts and later removal remain respected. `על החג והיום` is the Hebrew feast explanation title. Complete source sections keep their hymns and Syriac explanations in supplied order. Reflection sections move to the separate Home reflection card only when the exact-language `reflectionByLanguage` copy matches all combined reflection-section text after whitespace normalization. Partial section metadata or an absent, foreign-language, partial or mismatched reflection copy retains full source prose to avoid data loss. Raw source descriptions remain unchanged. Feast explanation cards no longer display or offer user-selected photos.
+
+Readings shows the daily appointments and enabled Torah/haftarah passages. Full Scripture and Event Calendar remain available from Home in native reference presentations, preserving the shared selected date. Full Scripture omits the redundant bounded Scripture-of-the-Day preview, so it cannot show the clipped duplicate reading and script picker.
+
+### Per-card colors, adaptive grids and Apple layout sync
+
+`homeWidgetColors` is a JSON string mapping known Home card IDs to `blue`, `green`, `gold` or `rose`; choosing Default removes the override. Palette menus use existing localized Today color names. Native opaque surfaces retain semantic foregrounds and high-contrast behavior. Cards use natural heights in responsive rows, from one column in narrow safe panes up to three on wide displays, with a 340-point/dp readable minimum. Card order and content state survive width/posture changes; column counts are computed locally.
+
+Apple layouts reuse the existing iCloud key-value preference store through `HomeLayoutCloud`, rather than adding a new CloudKit schema. One versioned `homeWidgetLayout` Data value carries normalized order, collapsed IDs and colors atomically. It is applied on entry and external preference notifications; only explicit user edits publish, so initial defaults/migrations cannot overwrite an incoming layout. Empty layouts stay empty. Photos, private paths, browsed dates and responsive column counts remain device-local. SwiftData’s existing CloudKit preset mirroring is unchanged. Local payload/isolation tests do not certify signed multi-device propagation.

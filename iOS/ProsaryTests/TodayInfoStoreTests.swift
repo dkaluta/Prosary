@@ -155,7 +155,18 @@ final class TodayInfoStoreTests: XCTestCase {
     XCTAssertEqual(portion.localizedTitle("iw"), "ראש השנה")
     XCTAssertEqual(portion.readings.first?.localizedFull("he"), "בראשית כ״א 1–34")
     XCTAssertEqual(portion.saturday, "2026-09-12")
+    XCTAssertEqual(portion.allReadings, portion.readings, "Older imported data without haftarot stays readable")
     XCTAssertNil(TodayInfoStore.torahPortion(on: date("2031-01-01")))
+  }
+
+  func testBundledHaftarotPreserveTheSourceCustomsAndCitationSequence() throws {
+    let portion = try XCTUnwrap(TodayInfoStore.torahPortion(on: date("2026-01-10")))
+    XCTAssertEqual(portion.haftarah?.map(\.full), ["Isaiah 27:6–28:13, 29:22–23"])
+    XCTAssertEqual(portion.haftarahSephardic?.map(\.full), ["Jeremiah 1:1–2:3"])
+    XCTAssertEqual(portion.allReadings.map(\.type), ["reading", "haftarah", "haftarahSephardic"])
+    for citation in portion.allReadings {
+      XCTAssertNotEqual(citation.localizedFull("he"), citation.full)
+    }
   }
 
   func testBundledTorahScheduleUsesTheUpcomingIsraelSabbathAndFestivalReplacement() throws {

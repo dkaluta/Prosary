@@ -118,6 +118,11 @@ fun AppearanceScreen(onBack: () -> Unit) {
                                     .selectable(selected = selected, role = Role.RadioButton, onClick = {
                                         if (!LauncherIconController.select(context, color.id)) {
                                             Toast.makeText(context, R.string.settings_app_color_error, Toast.LENGTH_LONG).show()
+                                        } else {
+                                            // A preset tap chooses its accent as well as its icon. Otherwise
+                                            // wallpaper colors (enabled by default) hide the new selection.
+                                            AppSettings.customAccentColorHex = ""
+                                            AppSettings.useSystemColors = false
                                         }
                                     }).testTag("appColor.${color.id}"),
                             )

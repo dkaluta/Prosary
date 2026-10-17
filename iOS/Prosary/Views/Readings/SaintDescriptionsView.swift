@@ -53,7 +53,7 @@ struct SaintDescriptionsView: View {
         .padding(.top, 12)
         .textSelection(.enabled)
       } label: {
-        Text(UILanguage.text("home.today.aboutSaints", language: language, fallback: "About the saints"))
+        Text(UILanguage.text("home.today.aboutSaints", language: language, fallback: "About the Feast and Day"))
           #if os(macOS)
           .font(.subheadline.weight(.medium))
           #else

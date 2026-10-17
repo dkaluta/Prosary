@@ -232,10 +232,7 @@ final class AppShellUITests: XCTestCase {
                            "-readingsEditionId", "peshitta-1905", "-aramaicDefaultScript", "Hebr"]
     app.launch()
     openReadingsTab(in: app, title: "Readings")
-    app.segmentedControls["readings.mode"].buttons["Bible"].tap()
-    XCTAssertTrue(app.buttons["bible.remove"].waitForExistence(timeout: 10),
-                  "The final verified Peshitta archive is installed in this disposable simulator")
-    app.segmentedControls["readings.mode"].buttons["Daily Readings"].tap()
+    XCTAssertFalse(app.segmentedControls["readings.mode"].exists)
     try moveReadingsDate(in: app, to: "2026-10-03")
     XCTAssertTrue(app.staticTexts["וַענָא אִיוּב וְאמַר למָריָא."].waitForExistence(timeout: 15),
                   "The first appointed verse uses the source's Hebrew-script projection")
@@ -429,10 +426,41 @@ final class AppShellUITests: XCTestCase {
 
   #if os(iOS)
   @MainActor
+  func testHomeCardColorsAreIndependentAndResetToDefault() throws {
+    let app = XCUIApplication()
+    app.launchArguments = ["-useInMemoryStore", "-AppleLanguages", "(en)", "-interfaceLanguageCode", "en",
+      "-homeWidgetOrder", "readings\\nfeast", "-homeWidgetLayoutVersion", "1",
+      "-homeWidgetCollapsedIds", "readings\\nfeast", "-homeWidgetColors", "{}"]
+    app.launch()
+    let home = app.buttons["Home"].firstMatch
+    XCTAssertTrue(home.waitForExistence(timeout: 10))
+    home.tap()
+    let readingsColor = app.buttons["homeWidgets.color.readings"]
+    let feastColor = app.buttons["homeWidgets.color.feast"]
+    XCTAssertTrue(readingsColor.waitForExistence(timeout: 10), app.debugDescription)
+    readingsColor.tap()
+    app.buttons["Blue"].firstMatch.tap()
+    XCTAssertEqual(readingsColor.value as? String, "Blue")
+    for _ in 0..<6 where !feastColor.isHittable { app.swipeUp() }
+    XCTAssertTrue(feastColor.waitForExistence(timeout: 5))
+    XCTAssertEqual(feastColor.value as? String, "Default")
+    feastColor.tap()
+    app.buttons["Rose"].firstMatch.tap()
+    XCTAssertEqual(feastColor.value as? String, "Rose")
+    for _ in 0..<6 where !readingsColor.isHittable { app.swipeDown() }
+    XCTAssertEqual(readingsColor.value as? String, "Blue")
+    readingsColor.tap()
+    app.buttons["Default"].firstMatch.tap()
+    XCTAssertEqual(readingsColor.value as? String, "Default")
+    for _ in 0..<6 where !feastColor.isHittable { app.swipeUp() }
+    XCTAssertEqual(feastColor.value as? String, "Rose")
+  }
+
+  @MainActor
   func testVersion021HomeCalendarAppearanceAndScripture() throws {
     let app = XCUIApplication()
     app.launchArguments = ["-useInMemoryStore", "-AppleLanguages", "(en)", "-interfaceLanguageCode", "en",
-      "-homeWidgetOrder", "calendar", "-feastCalendarId", "roman",
+      "-homeWidgetOrder", "calendar\\nscripture", "-feastCalendarId", "roman",
       "-customAccentColorHex", "#C14076"]
     app.launch()
     func capture(_ name: String) {
@@ -455,16 +483,19 @@ final class AppShellUITests: XCTestCase {
     XCTAssertTrue(app.navigationBars["Event Details"].waitForExistence(timeout: 5))
     capture("event-detail")
     app.buttons["Done"].tap()
-    app.tabBars.buttons["Readings"].tap()
-    XCTAssertTrue(app.buttons["calendar.list"].waitForExistence(timeout: 5))
-    app.buttons["calendar.list"].tap()
+    let openCalendar = app.buttons["homeWidgets.open.calendar"]
+    for _ in 0..<5 where !openCalendar.isHittable { app.swipeUp() }
+    XCTAssertTrue(openCalendar.isHittable); openCalendar.tap()
     XCTAssertTrue(app.navigationBars["Event Calendar"].waitForExistence(timeout: 5))
     capture("event-calendar")
     app.buttons["Done"].tap()
-    let mode = app.segmentedControls["readings.mode"]
-    XCTAssertTrue(mode.waitForExistence(timeout: 5)); mode.buttons.element(boundBy: 1).tap()
+    let scripture = app.buttons["homeWidgets.open.scripture"]
+    for _ in 0..<5 where !scripture.isHittable { app.swipeUp() }
     XCTAssertTrue(app.staticTexts["Scripture of the Day"].waitForExistence(timeout: 5))
     capture("scripture-of-the-day")
+    XCTAssertTrue(scripture.isHittable); scripture.tap()
+    XCTAssertTrue(app.buttons["bible.book.GEN"].waitForExistence(timeout: 5))
+    app.buttons["homeReference.done"].tap()
     app.tabBars.buttons["Home"].tap()
     app.buttons["Settings"].tap()
     XCTAssertTrue(app.buttons["appearanceSettingsLink"].waitForExistence(timeout: 5))

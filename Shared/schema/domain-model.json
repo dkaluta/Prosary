@@ -69,7 +69,7 @@
         },
         "sections": {
           "type": "[CalendarTextSection]?",
-          "description": "Ordered source sections of a feast description. Each selected calendar/rite supplies its own IDs, headings and order; no universal fixed section list. Native cards render nonempty exact-language title/body pairs as dedicated headed blocks when assembled title-colon/body prose covers the full localized description after whitespace normalization, or no flat prose is supplied. Otherwise retain original prose to avoid losing a preamble or partially localized section. iw/he and fil/tl normalize; foreign prose is never borrowed. Reflections use only reflectionByLanguage."
+          "description": "Ordered source sections of a feast description. Each selected calendar/rite supplies its own IDs, headings and order; no universal fixed section list. Native cards render nonempty exact-language title/body pairs as dedicated headed blocks when assembled title-colon/body prose covers the full localized description after whitespace normalization, or no flat prose is supplied. Otherwise retain original prose to avoid losing a preamble or partially localized section. iw/he and fil/tl normalize; foreign prose is never borrowed. Reflections use only reflectionByLanguage. Exclude reflection sections from descriptions only when full coverage is verified and the separate exact-language reflectionByLanguage value matches all combined reflection-section text after whitespace normalization; rebuild displayed prose from the remaining sections. An absent, foreign-language, partial or mismatched copy retains the complete description. Preserve source text/metadata unchanged."
         },
         "reflectionByLanguage": {
           "type": "map<string,string>?",
@@ -919,7 +919,7 @@
         "useSystemColors": {
           "type": "boolean",
           "default": true,
-          "description": "Android capability-specific preference: use Material You wallpaper colors on API31+ before the manual appColor accent palette. The toggle is shown only where supported. Other platforms do not show this Android-only preference; launcher icon selection is unchanged."
+          "description": "Android capability-specific preference: use Material You wallpaper colors on API31+ before the manual appColor accent palette. The toggle is shown only where supported. Other platforms do not show this Android-only preference; launcher icon selection is unchanged. Explicit Android preset selection disables this override and clears a previous custom accent so the chosen palette is immediately visible."
         },
         "keyboardArrowNavigationEnabled": {
           "type": "boolean",
@@ -1058,7 +1058,7 @@
         "showTodayTorahPortion": {
           "type": "boolean",
           "default": false,
-          "description": "Show the Eretz Israel Torah portion for the selected date, or its Saturday holiday reading."
+          "description": "Show the Eretz Israel Torah portion and published haftarot for the selected date or its coming Saturday holiday reading. Independent of the Home Torah card."
         },
         "showTodayReadings": {
           "type": "boolean",
@@ -1169,6 +1169,16 @@
           "type": "string",
           "default": "{}",
           "description": "JSON object mapping known Home widget IDs to device-local private image paths. Never synchronize paths or external photo permissions. Replacement validates before removing previous app-owned image; failed import preserves old image."
+        },
+        "homeWidgetLayoutVersion": {
+          "type": "string",
+          "default": "1",
+          "description": "One-time migration adding Torah and reflection Home cards to nonempty layouts, preserving deliberately empty layouts and subsequent removals."
+        },
+        "homeWidgetColors": {
+          "type": "string",
+          "default": "{}",
+          "description": "Independent known Home-card IDs mapped to blue/green/gold/rose palette IDs. Default clears override. JSON normalizes unknown IDs/colors; does not alter order, size, content or app accent. Apple includes this string in its atomic iCloud Home layout snapshot."
         }
       },
       "rendering": "Body, acclamation and currently visible reading-aid text choose typography by dominant actual letters, ignoring combining marks, punctuation and numbers. Syriac custom bodies therefore obey syriacTypeface. Hebrew-square Aramaic keeps Hebrew choices; Greek is independent of the Latin-script preference. Setting changes invalidate open prayer renderings immediately, including other Mac scenes.",
@@ -1213,6 +1223,27 @@
           "description": "Exact recognized procession clause presentation for the winning source and paired script. No phrase is invented for sources without supplied wording."
         }
       }
+    },
+    "TorahPortion": {
+      "fields": {
+        "readings": {
+          "type": "ReadingCitation[]",
+          "description": "Appointed Torah readings."
+        },
+        "haftarah": {
+          "type": "ReadingCitation[]?",
+          "description": "Published Hebcal Ashkenazi haftarah."
+        },
+        "haftarahSephardic": {
+          "type": "ReadingCitation[]?",
+          "description": "Distinct published Sephardic alternative."
+        },
+        "allReadings": {
+          "type": "ReadingCitation[]",
+          "description": "Derived readings plus haftarah plus haftarahSephardic, in source order; never infer missing verses."
+        }
+      },
+      "source": "Hebcal.com CC BY 4.0, Eretz Israel. No festival megillot or fabricated appointments."
     }
   },
   "languages": {

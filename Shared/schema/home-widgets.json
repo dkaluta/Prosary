@@ -12,11 +12,13 @@
       "encoding": "Newline-separated widget IDs in display order.",
       "unsetDefault": [
         "readings",
+        "torah",
         "popeIntention",
         "calendar",
         "reminders",
         "scripture",
-        "feast"
+        "feast",
+        "reflection"
       ],
       "explicitEmpty": "No cards. Keep Add Widget available; do not silently restore defaults.",
       "normalization": "Preserve known IDs' first occurrence, ignore unknown IDs and duplicates. Add appends; removal deletes only that card's selection."
@@ -42,20 +44,49 @@
       "scope": "Never synchronize paths or photos.",
       "replacement": "Validate and install the new private image before retiring the previous private copy. A failed import preserves the existing photo.",
       "removal": "Remove only the app-owned private copy. Clear its mapping without deleting the original photo or another card image."
+    },
+    "homeWidgetLayoutVersion": {
+      "type": "string",
+      "default": "1",
+      "behavior": "One-time migration adds torah after readings (or first when readings is absent) and appends reflection to nonempty existing layouts. The default layout places reflection after feast. Explicit empty layouts remain empty; subsequent removals stay removed."
+    },
+    "homeWidgetColors": {
+      "type": "string",
+      "default": "{}",
+      "encoding": "JSON object of known widget ID to blue, green, gold or rose. Default removes the override; invalid IDs/colors are ignored.",
+      "behavior": "Independent per-card background tint over an opaque native surface; preserve native light/dark and high-contrast foregrounds. Palette choices use existing Today color captions."
     }
   },
   "cards": {
-    "readings": "Complete localized appointed citations, in reverseReadingsOrder presentation when enabled, linking to Daily Readings for the shared Home/Readings civil date and selected calendar.",
+    "readings": "Expanded: complete localized appointed citations, in reverseReadingsOrder presentation when enabled. Collapsed: the first Gospel citation in localized shorthand and canonical source order; when no Gospel is supplied, show all localized shorthand citations in the selected display order. Link to Daily Readings for the shared Home/Readings civil date and selected calendar.",
     "popeIntention": "Title and prose from the canonical Pope intention table for the selected month.",
     "calendar": "Every published date in the selected calendar is marked; up to three dots plus full accessible event count. Monday-first civil Gregorian grid, true RTL. Supplied observances are independently clickable, with parent fallback for older data. Exact-language descriptions and credits appear in a native detail sheet/dialog, with Readings for this Date action preserving window state.",
     "photo": "A chosen gallery image, stored in app-private storage, with choose/replace/remove controls and recoverable errors.",
     "reminders": "Actual enabled saved-prayer and daily reading/saint reminders, formatted as local wall-clock times. Manage opens existing native reminder settings/editors.",
-    "scripture": "Scripture of the Day: first Gospel appointment in canonical source order, else first appointment. Use existing exact citation mapping, selected edition and offline text loader; missing dates/text remain explicit. Open the existing Bible reader.",
+    "scripture": "Scripture of the Day: first Gospel appointment in canonical source order, else first appointment. Use existing exact citation mapping, selected edition and offline text loader; missing dates/text remain explicit. Open the existing Bible reader. Its reference reader opens separately from the daily Readings destination and omits a duplicate Scripture-of-the-Day card.",
     "reflection": "Exact-language, selected-calendar/date reflection sections from the separate provisional Mission source, retaining source credit. Missing source prose is explicit; no invented reflections.",
-    "feast": "Localized feast/rank plus exact-language sourced descriptions and credit where available. Repeated parent feast headings are omitted; source-supplied sections render as dedicated headed blocks in each rite's own order. Incomplete section coverage keeps the full source prose. Missing description/date has a localized explicit state."
+    "feast": "Localized feast/rank plus exact-language sourced descriptions and credit where available. Repeated parent feast headings are omitted; source-supplied sections render as dedicated headed blocks in each rite's own order. Incomplete section coverage keeps the full source prose. Missing description/date has a localized explicit state. Remove reflection sections from this card only after complete source coverage is verified and the separate exact-language reflectionByLanguage copy matches all combined reflection-section text after whitespace normalization. Otherwise retain the complete source description. The title is About the Feast and Day. This card has no user image actions or images.",
+    "torah": "Weekly Eretz Israel Torah portion plus published Ashkenazi haftarah and any distinct Sephardic alternative for the coming Saturday, including Saturday itself. Uses the shared civil date and canonical Hebcal citations with source credit; does not depend on showTodayTorahPortion, which controls native Today/Readings. Missing source dates stay explicit."
   },
   "navigation": "Phone/tablet tabs are Home, Pray, Readings and Search. Windows opens Home in its library window. Community prayers are reached from Search, replacing the separate Browse/Community navigation destination.",
   "date": "Reuse the existing window-local civil selection and calendar/Pascha settings; follow the local day until browsing. Home shortcuts preserve the selected day. Operating-system Today/calendar widgets retain their documented current-day activation behavior.",
   "localization": "All new labels and empty/error states ship in en, he, ar, ru, tl/fil, fr, it and uk; Hebrew and Arabic use genuine RTL.",
-  "cardArtwork": "Home cards can add/change/remove private images. Pray/library prayer cards resolve authored gallery artwork through the owning pack; no native duplicate artwork assets."
+  "cardArtwork": "Home cards except feast can add/change/remove private images. Feast explanations use only their sourced text. Pray/library prayer cards resolve authored gallery artwork through the owning pack; no native duplicate artwork assets.",
+  "responsiveLayout": "One to three columns from available pane width, with a minimum readable card width of 340 native points/dp; narrow panes keep one column. Row heights fit full source content. Column count is never persisted or synced. Active folds use safe panes rather than placing controls across reserved regions.",
+  "appleLayoutSync": {
+    "storage": "Existing iCloud key-value store, not a new CloudKit schema. Atomic version-1 homeWidgetLayout Data snapshot.",
+    "fields": [
+      "order",
+      "collapsed",
+      "colors"
+    ],
+    "behavior": "Apply an available remote layout on entry and external cloud changes. Publish only explicit user edits, never initial defaults or migration. An explicitly empty layout is intentional. Last delivered iCloud snapshot wins. Reject malformed or unsupported versions.",
+    "excluded": [
+      "photos",
+      "private image paths",
+      "selected civil date",
+      "column count"
+    ],
+    "verification": "Pure payload validation and isolated test-store behavior; real signed multi-device sync remains unverified."
+  }
 }

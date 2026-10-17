@@ -283,7 +283,7 @@ struct MacTodayView: View {
         : label("home.today.torahPortion", "Weekly Torah portion"))
         .font(.headline).accessibilityAddTraits(.isHeader)
       Text(portion.localizedTitle(language))
-      ForEach(Array(portion.readings.enumerated()), id: \.offset) { _, reading in
+      ForEach(Array(portion.allReadings.enumerated()), id: \.offset) { _, reading in
         ScripturePassageView(reading: reading, isTorah: true, interfaceLanguage: language)
           .id(passageContext)
       }

@@ -90,7 +90,7 @@ public class TodayNavigationTests
                 vm.TodayReadings.Select(reading => reading.LocalizedShort(vm.TodayLanguage))), vm.ReadingsText);
             Assert.NotNull(vm.TodayTorahPortion);
             Assert.Equal(string.Join(Environment.NewLine,
-                vm.TodayTorahPortion.Readings!.Select(reading => reading.LocalizedFull(vm.TodayLanguage))),
+                vm.TodayTorahPortion.AllReadings.Select(reading => reading.LocalizedFull(vm.TodayLanguage))),
                 vm.TorahPortionReadings);
             vm.SelectTodayCommand.Execute(null);
             Assert.True(vm.IsSelectedDateToday);
@@ -144,6 +144,16 @@ public class TodayNavigationTests
             Assert.Equal($"Roch Hachanah AM {year}", portion.LocalizedTitle("fr"));
             Assert.Equal($"Рош-А-Шана AM {year}", portion.LocalizedTitle("ru"));
         }
+    }
+
+    [Fact]
+    public void HaftarotKeepTheSourceCustomsAndSequence()
+    {
+        var portion = TodayInfoStore.WeeklyTorahPortion(new DateOnly(2026, 1, 10))!;
+        Assert.Equal(["Isaiah 27:6–28:13, 29:22–23"], portion.Haftarah!.Select(citation => citation.Full));
+        Assert.Equal(["Jeremiah 1:1–2:3"], portion.HaftarahSephardic!.Select(citation => citation.Full));
+        Assert.Equal(["reading", "haftarah", "haftarahSephardic"], portion.AllReadings.Select(citation => citation.Type));
+        Assert.All(portion.AllReadings, citation => Assert.NotEqual(citation.Full, citation.LocalizedFull("he")));
     }
 
     [Fact]

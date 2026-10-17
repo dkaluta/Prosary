@@ -58,74 +58,18 @@ func bibleChapterLabel(_ number: Int, book: BibleBook, edition: ReadingTextEditi
   }
 }
 
-/// The scope belongs to this window; the civil date remains owned by ContentView.
+/// Appointed readings have one workspace; Home reference tools open independently.
 #if !os(macOS)
 struct ReadingsView: View {
   @Binding var dateSelection: MacTodayDateSelection
-  @Binding var mode: String
-  @State private var showsFeasts = false
-  @State private var showsMonthCalendar = false
 
   var body: some View {
-    Group {
-      if mode == "bible" { BibleView(mode: $mode, dateSelection: $dateSelection) }
-      else { DailyReadingsView(dateSelection: $dateSelection, mode: $mode) }
-    }
-    .toolbar {
-      ToolbarItem(placement: .topBarTrailing) {
-        Button { showsFeasts = true } label: {
-          Label(String(localized: "calendar.eventCalendar", defaultValue: "Event Calendar", bundle: UILanguage.bundle, locale: UILanguage.locale), systemImage: "calendar")
-        }
-        .labelStyle(.iconOnly)
-        .accessibilityIdentifier("calendar.list")
-      }
-    }
-    .sheet(isPresented: $showsFeasts) {
-      NavigationStack {
-        FeastsAndSolemnitiesView(dateSelection: $dateSelection) {
-          mode = "daily"
-          showsFeasts = false
-        }
-        .toolbar {
-          ToolbarItem(placement: .confirmationAction) {
-            Button(String(localized: "common.done", defaultValue: "Done", bundle: UILanguage.bundle, locale: UILanguage.locale)) { showsFeasts = false }
-          }
-        }
-      }
-    }
-    .sheet(isPresented: $showsMonthCalendar) {
-      NavigationStack {
-        LiturgicalCalendarView(dateSelection: $dateSelection) { showsMonthCalendar = false }
-        .toolbar {
-          ToolbarItem(placement: .confirmationAction) {
-            Button(String(localized: "common.done", defaultValue: "Done", bundle: UILanguage.bundle, locale: UILanguage.locale)) { showsMonthCalendar = false }
-          }
-        }
-      }
-    }
-    .onAppear { if mode == "calendar" { mode = "daily"; showsMonthCalendar = true } }
-    .onChange(of: mode) { _, value in
-      if value == "calendar" { mode = "daily"; showsMonthCalendar = true }
-    }
-  }
-}
-
-/// An ordinary content control scrolls with the reader and cannot cover its large title.
-struct ReadingModeSelector: View {
-  @Binding var mode: String
-  var body: some View {
-    Picker(String(localized: "tabs.readings", defaultValue: "Readings", bundle: UILanguage.bundle, locale: UILanguage.locale), selection: $mode) {
-      Text(bibleLabel("daily", "Daily Readings")).tag("daily")
-      Text(bibleLabel("title", "Bible")).tag("bible")
-    }
-    .pickerStyle(.segmented)
-    .accessibilityIdentifier("readings.mode")
+    DailyReadingsView(dateSelection: $dateSelection)
   }
 }
 #endif
 
 struct BibleView: View {
-  var mode: Binding<String>? = nil
   var dateSelection: Binding<MacTodayDateSelection>? = nil
   @AppStorage(ReadingEditionSelection.defaultsKey) private var preference = ""
   @AppStorage(PrayerTranslations.aramaicDefaultScriptKey) private var defaultScript = "Hebr"
@@ -147,16 +91,10 @@ struct BibleView: View {
   var body: some View {
     let _ = calendarID; let _ = paschaStyle
     List {
-      #if !os(macOS)
-      if let mode {
-        ReadingModeSelector(mode: mode)
-          .listRowBackground(Color.clear)
-          .listRowInsets(EdgeInsets(top: 4, leading: 0, bottom: 4, trailing: 0))
-      }
-      #endif
       Section {
         ReadingEditionPicker()
       }
+      #if os(macOS)
       Section(bibleLabel("scriptureOfTheDay", "Scripture of the Day")) {
           Button { showsScriptureDatePicker = true } label: {
             Label(CalendarEventPresentation.dateLabel(daySelection.wrappedValue.localDate()), systemImage: "calendar")
@@ -175,6 +113,7 @@ struct BibleView: View {
           Text(bibleLabel("noScriptureOfTheDay", "No Scripture is appointed for this date.")).foregroundStyle(.secondary)
         }
       }
+      #endif
       if let edition = selected {
         Section {
           Text(edition.name).font(.headline)

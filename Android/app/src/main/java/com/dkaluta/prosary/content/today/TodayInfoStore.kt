@@ -91,7 +91,14 @@ data class FeastObservance(
         val completeSections = localizedSections.takeIf {
             it.isNotEmpty() && (prose.isEmpty() || normalizeSectionProse(sectionProse) == normalizeSectionProse(prose))
         }.orEmpty()
-        val body = prose.ifEmpty { sectionProse.takeIf { completeSections.isNotEmpty() }.orEmpty() }
+        // Partition only if the separate same-language card carries every reflection section.
+        val reflectionSections = completeSections.filter { it.id == "reflection" }
+        val separateReflection = reflectionByLanguage?.get(code)
+        val canSeparateReflection = reflectionSections.isNotEmpty() && separateReflection != null &&
+            normalizeSectionProse(reflectionSections.joinToString("\n\n") { it.text }) == normalizeSectionProse(separateReflection)
+        val displayedSections = completeSections.filterNot { canSeparateReflection && it.id == "reflection" }
+        val body = (if (completeSections.isNotEmpty()) displayedSections.joinToString("\n\n") { "${it.title}:\n${it.text}" }
+            else prose)
             .takeIf(String::isNotEmpty) ?: return null
         return SaintDescription(
             identity = identity,
@@ -104,7 +111,7 @@ data class FeastObservance(
                 }.getOrDefault(false)
             },
             credit = descriptionCreditByLanguage?.get(code)?.trim()?.takeIf(String::isNotEmpty),
-            sections = completeSections,
+            sections = displayedSections,
         )
     }
 }
@@ -193,7 +200,10 @@ data class TorahPortion(
     val isHoliday: Boolean = false,
     val readings: List<ReadingCitation> = emptyList(),
     val sourceUrl: String = "https://www.hebcal.com",
+    val haftarah: List<ReadingCitation> = emptyList(),
+    val haftarahSephardic: List<ReadingCitation> = emptyList(),
 ) {
+    val allReadings: List<ReadingCitation> get() = readings + haftarah + haftarahSephardic
     fun localizedTitle(language: String): String =
         HebrewDisplayText.unpoint(titleByLanguage.localized(language) ?: title)
 }

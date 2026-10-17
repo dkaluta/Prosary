@@ -45,6 +45,25 @@ class FeastObservanceTest {
         assertTrue(saint.shouldShowTitle("חג הקדוש / קדוש נוסף"))
     }
 
+    @Test fun reflectionPartitionRequiresTheCompleteSameLanguageCopy() {
+        fun section(id: String, title: String, text: String) = CalendarTextSection(id,
+            mapOf("en" to title), mapOf("en" to text))
+        val fullText = "About:\nSource explanation.\n\nFirst reflection:\nFirst prompt.\n\nSecond reflection:\nSecond prompt."
+        val source = FeastObservance("Fixture", "fixture", descriptionByLanguage = mapOf("en" to fullText), sections = listOf(
+            section("about", "About", "Source explanation."), section("reflection", "First reflection", "First prompt."),
+            section("reflection", "Second reflection", "Second prompt.")))
+        for (reflections in listOf(null, mapOf("en" to "Different prompt."), mapOf("en" to "First prompt."),
+            mapOf("he" to "First prompt. Second prompt."))) {
+            val row = source.copy(reflectionByLanguage = reflections).description("en")!!
+            assertEquals(fullText, row.text)
+            assertEquals(listOf("about", "reflection", "reflection"), row.sections.map { it.id })
+        }
+        val row = source.copy(reflectionByLanguage = mapOf("en" to " First prompt.\r\n\nSecond   prompt. ")).description("en")!!
+        assertEquals("About:\nSource explanation.", row.text)
+        assertEquals(listOf("about"), row.sections.map { it.id })
+        assertEquals(fullText, source.descriptionByLanguage!!.getValue("en"))
+    }
+
     @Test fun oldFeastFilesRemainReadableAndDescriptionsFollowTheSelectedDataset() {
         val old = Json.decodeFromString<FeastDay>("""{"title":"Feast","rank":"Feast"}""")
         assertTrue(old.saintDescriptions("syriac", "en").isEmpty())

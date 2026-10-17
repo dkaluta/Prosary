@@ -27,6 +27,13 @@ public partial class ReadingPassageViewModel : ObservableObject
     public string ConfigurationKey { get; }
     public string Citation { get; }
     public ReadingCitation SourceCitation { get; }
+    public string AppointmentLabel => SourceCitation.Type switch
+    {
+        "haftarah" => Loc.Tr("readings_type_haftarah", "Haftarah · Ashkenazi"),
+        "haftarahSephardic" => Loc.Tr("readings_type_haftarah_sephardic", "Haftarah · Sephardic"),
+        _ => "",
+    };
+    public bool HasAppointmentLabel => !string.IsNullOrEmpty(AppointmentLabel);
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(HasSourceGroup))]
     private string? _sourceGroup;
@@ -267,7 +274,7 @@ public partial class DesktopReadingsViewModel : ObservableObject
         Daily = Rows(Daily, daily, "daily", today, edition);
         var appointed = ReadingCitation.ScriptureOfDay(daily);
         ScriptureOfDay = Daily.FirstOrDefault(row => ReferenceEquals(row.SourceCitation, appointed)) is { } scripture ? [scripture] : [];
-        Torah = Rows(Torah, today.TodayTorahPortion?.Readings ?? [], "torah", today, edition);
+        Torah = Rows(Torah, today.TodayTorahPortion?.AllReadings ?? [], "torah", today, edition);
     }
 
     public void Open(HomeViewModel today, bool showsAllDailyReadings = false)

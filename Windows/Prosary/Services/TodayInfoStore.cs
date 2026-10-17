@@ -79,7 +79,16 @@ public sealed record FeastObservance(
     {
         if (UiLanguageCatalog.NormalizePreference(language).Length == 0) return null;
         var text = UiLanguageCatalog.Localized(texts, language);
-        var sections = includesSections ? LocalizedSections(language, text) : [];
+        var completeSections = includesSections ? LocalizedSections(language, text) : [];
+        var reflectionSections = completeSections.Where(section => section.Id == "reflection").ToList();
+        var separateReflection = UiLanguageCatalog.Localized(ReflectionByLanguage, language);
+        var canSeparateReflection = reflectionSections.Count > 0 && separateReflection is not null
+            && NormalizeWhitespace(string.Join("\n\n", reflectionSections.Select(section => section.Text)))
+                == NormalizeWhitespace(separateReflection);
+        var sections = completeSections.Where(section => !canSeparateReflection || section.Id != "reflection").ToList();
+        // Keep complete source prose unless the independent card carries the same reflection.
+        if (completeSections.Count > 0)
+            text = string.Join("\n\n", sections.Select(section => $"{section.Title}:\n{section.Text}"));
         if (string.IsNullOrWhiteSpace(text) && sections.Count == 0) return null;
         if (string.IsNullOrWhiteSpace(text))
             text = string.Join("\n\n", sections.Select(section => $"{section.Title}:\n{section.Text}"));
@@ -197,12 +206,14 @@ public sealed record ReadingCitation(
 
 public sealed record TorahPortion(
     string Saturday, string Title, Dictionary<string, string>? TitleByLanguage,
-    bool IsHoliday, List<ReadingCitation>? Readings, string? SourceUrl)
+    bool IsHoliday, List<ReadingCitation>? Readings, string? SourceUrl,
+    List<ReadingCitation>? Haftarah = null, List<ReadingCitation>? HaftarahSephardic = null)
 {
+    public IReadOnlyList<ReadingCitation> AllReadings => [.. Readings ?? [], .. Haftarah ?? [], .. HaftarahSephardic ?? []];
     public string LocalizedTitle(string language) => HebrewDisplayText.WithoutMarks(
         UiLanguageCatalog.Localized(TitleByLanguage, language) ?? Title);
     public string LocalizedReadings(string language) => string.Join("; ",
-        (Readings ?? []).Select(reading => reading.LocalizedFull(language)));
+        AllReadings.Select(reading => reading.LocalizedFull(language)));
 }
 
 public sealed record LiturgicalDayInfo(string English, string Hebrew, DateOnly Date, string Season, int Week, bool UsesRomanSeason = true)

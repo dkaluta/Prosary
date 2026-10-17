@@ -4,6 +4,8 @@ import SwiftUI
 /// Browsing civil dates leaves prayer mysteries and continuation unchanged.
 struct DailyReadingsView: View {
   @Environment(\.scenePhase) private var scenePhase
+  @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+  @Environment(\.self) private var environment
   @AppStorage(TodayInfoStore.calendarDefaultsKey) private var calendarID = ""
   @AppStorage(TodayInfoStore.paschaStyleDefaultsKey) private var paschaStyle = "julian"
   @AppStorage("showTodayFeast") private var showsFeast = true
@@ -11,7 +13,6 @@ struct DailyReadingsView: View {
   @AppStorage("expandReadingsByDefault") private var expandReadingsByDefault = false
   @AppStorage(ReadingDisplayOrder.defaultsKey) private var reverseReadingsOrder = false
   @Binding var dateSelection: MacTodayDateSelection
-  @Binding var mode: String
   @State private var showsDatePicker = false
   @State private var showsOptions = false
   @State private var readings: [ReadingCitation] = []
@@ -22,8 +23,10 @@ struct DailyReadingsView: View {
   private var displayedReadings: [ReadingDisplayOrder.Row<ReadingCitation>] { ReadingDisplayOrder.indexed(readings, reverse: reverseReadingsOrder) }
   private var usesDateToolbar: Bool {
     #if os(iOS)
-    // iPad's adaptive tabs share this toolbar row and would overflow the date controls.
-    UIDevice.current.userInterfaceIdiom == .phone
+    // Regular horizontal bars share space with adaptive tabs; compact and vertical bars
+    // have their own native date controls, regardless of which device supplies the window.
+    if #available(iOS 27.1, *), environment.toolbarVerticalEdge != nil { return true }
+    return horizontalSizeClass == .compact
     #else
     false
     #endif
@@ -44,7 +47,6 @@ struct DailyReadingsView: View {
   var body: some View {
     ScrollView {
       VStack(alignment: .leading, spacing: 24) {
-        ReadingModeSelector(mode: $mode)
         if usesDateToolbar {
           Text(calendarName)
             .font(.caption)
@@ -84,7 +86,7 @@ struct DailyReadingsView: View {
                  : String(localized: "home.today.torahPortion", defaultValue: "Weekly Torah portion", bundle: UILanguage.bundle, locale: UILanguage.locale))
               .font(.headline).accessibilityAddTraits(.isHeader)
             Text(torah.localizedTitle(language))
-            ForEach(Array(torah.readings.enumerated()), id: \.offset) { _, reading in
+            ForEach(Array(torah.allReadings.enumerated()), id: \.offset) { _, reading in
               ScripturePassageView(reading: reading, isTorah: true, interfaceLanguage: language)
                 .id(passageContext)
             }
@@ -103,15 +105,11 @@ struct DailyReadingsView: View {
     .toolbar {
       #if os(iOS)
       if usesDateToolbar {
-        ToolbarItem(placement: .topBarLeading) { previousDayButton }
-        if #available(iOS 26.0, *) {
-          ToolbarSpacer(.fixed, placement: .topBarLeading)
+        ToolbarItemGroup(placement: .topBarLeading) {
+          previousDayButton
+          dateButton
+          nextDayButton
         }
-        ToolbarItem(placement: .topBarLeading) { dateButton }
-        if #available(iOS 26.0, *) {
-          ToolbarSpacer(.fixed, placement: .topBarLeading)
-        }
-        ToolbarItem(placement: .topBarLeading) { nextDayButton }
         // The date controls own the compact bar; keep the large title above the content.
         ToolbarItem(placement: .principal) { Color.clear.frame(width: 0, height: 0) }
       }
@@ -187,7 +185,8 @@ struct DailyReadingsView: View {
     Button { showsDatePicker = true } label: {
       let label = Text(dateLabel).font(.subheadline.weight(.semibold))
       if usesDateToolbar {
-        label.lineLimit(1)
+        Label { label.lineLimit(1) } icon: { Image(systemName: "calendar") }
+          .labelStyle(.automatic)
       } else {
         label.multilineTextAlignment(.center)
           .fixedSize(horizontal: false, vertical: true)

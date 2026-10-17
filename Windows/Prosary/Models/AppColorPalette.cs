@@ -39,6 +39,17 @@ public static class AppColorPalette
         NormalizeCustom(customHex) is { Length: > 0 } normalized
             ? AccessibleAccent(Parse(normalized[1..]), dark) : Resolve(paletteId).Accent(dark);
 
+    /// <summary>Resolve the translucent native card surface before tinting it. Its RGB is
+    /// white in both themes, so treating that RGB as opaque would erase dark-mode contrast.</summary>
+    public static Color TintedCardBackground(Color tint, Color surface, Color page, double surfaceOpacity = 1)
+    {
+        var alpha = Math.Clamp(surface.A / 255.0 * surfaceOpacity, 0, 1);
+        byte channel(byte accent, byte foreground, byte underlying) =>
+            (byte)Math.Round(accent * 0.12 + (foreground * alpha + underlying * (1 - alpha)) * 0.88);
+        return Color.FromArgb(255, channel(tint.R, surface.R, page.R),
+            channel(tint.G, surface.G, page.G), channel(tint.B, surface.B, page.B));
+    }
+
     internal static Color AccessibleAccent(Color color, bool dark)
     {
         var background = dark ? Parse("2B2B2B") : Parse("FFFFFF");

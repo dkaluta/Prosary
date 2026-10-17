@@ -8,7 +8,7 @@ struct ContentView: View {
   @State private var prayPath: [AppRoute]
   @State private var homePath: [AppRoute] = []
   @State private var readingsPath: [AppRoute] = []
-  @State private var readingsMode = "daily"
+  @State private var referenceMode: String?
   // Civil-date browsing belongs to this window and is shared by Home, Pray and Readings.
   @State private var dateSelection = MacTodayDateSelection()
   @State private var searchPath: [AppRoute] = []
@@ -114,6 +114,27 @@ struct ContentView: View {
         Task<Void, Never> { await RecentPrayers.shared.refresh() }
       }
       #else
+      .sheet(isPresented: Binding(get: { referenceMode != nil }, set: { if !$0 { referenceMode = nil } })) {
+        NavigationStack {
+          Group {
+            if referenceMode == "bible" { BibleView(dateSelection: $dateSelection) }
+            else {
+              FeastsAndSolemnitiesView(dateSelection: $dateSelection) {
+                referenceMode = nil
+                readingsPath = []
+                selectedTab = .readings
+              }
+            }
+          }
+          .accessibilityIdentifier("homeReference.\(referenceMode ?? "calendar")")
+          .toolbar {
+            ToolbarItem(placement: .confirmationAction) {
+              Button(String(localized: "common.done", defaultValue: "Done", bundle: UILanguage.bundle, locale: UILanguage.locale)) { referenceMode = nil }
+                .accessibilityIdentifier("homeReference.done")
+            }
+          }
+        }
+      }
       .task { activateWindow() }
       .onChange(of: scenePhase) { _, phase in
         if phase == .active { activateWindow() }
@@ -163,9 +184,10 @@ struct ContentView: View {
         MacTodayView().appRouteDestinations(path: $homePath)
         #else
         HomeDashboardView(dateSelection: $dateSelection) { mode in
-          readingsMode = mode
-          readingsPath = []
-          selectedTab = .readings
+          if mode == "daily" {
+            readingsPath = []
+            selectedTab = .readings
+          } else { referenceMode = mode }
         }
         .appRouteDestinations(path: $homePath)
         #endif
@@ -183,7 +205,7 @@ struct ContentView: View {
         MacTodayView()
           .appRouteDestinations(path: $readingsPath)
         #else
-        ReadingsView(dateSelection: $dateSelection, mode: $readingsMode)
+        ReadingsView(dateSelection: $dateSelection)
           .appRouteDestinations(path: $readingsPath)
         #endif
       }
@@ -235,9 +257,13 @@ struct ContentView: View {
     switch link {
     case .calendar, .readings:
       dateSelection = MacTodayDateSelection()
-      readingsMode = link == .calendar ? "calendar" : "daily"
+      #if os(macOS)
       selectedTab = .readings
       readingsPath = []
+      #else
+      if link == .calendar { referenceMode = "calendar" }
+      else { referenceMode = nil; selectedTab = .readings; readingsPath = [] }
+      #endif
     case .today:
       dateSelection.select(Date())
       selectedTab = .home

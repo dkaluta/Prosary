@@ -6,29 +6,14 @@ using Prosary.Navigation;
 
 namespace Prosary.Views;
 
-/// <summary>The cached reading workspace keeps Bible position local to its library window.</summary>
+/// <summary>Readings contains the selected day's appointed passages.</summary>
 public sealed partial class DesktopReadingsPage : Page
 {
-    public string Title => Loc.Tr("readings_title", "Readings");
-    public string DailyLabel => Loc.Tr("bible_daily_readings", "Daily Readings");
-    public string BibleLabel => Loc.Tr("bible_title", "Bible");
-    public string CalendarLabel => Loc.Tr("calendar_events_title", "Event Calendar");
     public FlowDirection ReadingFlowDirection => UiLanguageCatalog.IsRightToLeft(UiLanguageCatalog.Current) ? FlowDirection.RightToLeft : FlowDirection.LeftToRight;
     public DesktopReadingsPage() { InitializeComponent(); NavigationCacheMode = NavigationCacheMode.Required; }
-    public void ShowDailyReadings() => ShowMode("daily");
-    public void ShowMode(string mode) => ReadingModes.SelectedIndex = mode switch { "calendar" => 1, "bible" => 2, _ => 0 };
     protected override void OnNavigatedTo(NavigationEventArgs e)
     {
         base.OnNavigatedTo(e);
         DailyContent.Content ??= new DesktopTodayPage(Router.For(this).Today, readingsOnly: true);
-        BibleContent.Today = Router.For(this).Today;
-        CalendarContent.FocusOnDate(Router.For(this).Today?.SelectedDate ?? DateOnly.FromDateTime(DateTime.Today));
-        CalendarContent.SelectDate = date =>
-        {
-            if (Router.For(this).Today is { } today)
-                today.SelectedTodayDate = new DateTimeOffset(date.ToDateTime(TimeOnly.MinValue));
-            ReadingModes.SelectedIndex = 0;
-        };
-        if (e.Parameter is string mode) ShowMode(mode);
     }
 }

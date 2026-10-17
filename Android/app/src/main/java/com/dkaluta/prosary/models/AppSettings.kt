@@ -330,6 +330,8 @@ object AppSettings {
     fun setHomeWidgetCollapsed(widget: HomeWidget, collapsed: Boolean) = homeWidgets.setCollapsed(widget, collapsed)
     fun homeWidgetGraphicPath(widget: HomeWidget): String = homeWidgets.graphicPaths[widget.id].orEmpty()
     fun setHomeWidgetGraphicPath(widget: HomeWidget, path: String) = homeWidgets.setGraphicPath(widget, path)
+    fun homeWidgetColor(widget: HomeWidget): String = homeWidgets.colors[widget.id] ?: "default"
+    fun setHomeWidgetColor(widget: HomeWidget, color: String) = homeWidgets.setColor(widget, color)
 
     fun init(context: Context) {
         val resolved = context.applicationContext.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)

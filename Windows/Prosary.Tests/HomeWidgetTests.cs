@@ -8,8 +8,16 @@ public class HomeWidgetTests
     [Fact]
     public void MissingLayoutGetsDefaultsWhileAnIntentionallyEmptyHomeStaysEmpty()
     {
-        Assert.Equal(new[] { "readings", "popeIntention", "calendar", "reminders", "scripture", "feast" }, HomeWidgets.Parse(null));
+        Assert.Equal(new[] { "readings", "torah", "popeIntention", "calendar", "reminders", "scripture", "feast", "reflection" }, HomeWidgets.Parse(null));
         Assert.Empty(HomeWidgets.Parse(""));
+    }
+
+    [Fact]
+    public void DailyCardMigrationPreservesEmptyAndExistingOrderWithoutDuplicates()
+    {
+        Assert.Empty(HomeWidgets.AddingDailyCards([]));
+        Assert.Equal(["photo", "readings", "torah", "feast", "reflection"], HomeWidgets.AddingDailyCards(["photo", "readings", "feast"]));
+        Assert.Equal(["reflection", "torah", "photo"], HomeWidgets.AddingDailyCards(["reflection", "torah", "photo"]));
     }
 
     [Fact]
@@ -44,5 +52,30 @@ public class HomeWidgetTests
         var paths = HomeWidgets.ParseGraphics("""{"scripture":"/private/photo.png","unknown":"/another.png","calendar":""}""");
         Assert.Single(paths);
         Assert.Equal("/private/photo.png", paths["scripture"]);
+    }
+
+    [Fact]
+    public void CardColorsRejectUnknownValuesAndDefaultResetPreservesOtherCards()
+    {
+        Assert.Empty(HomeWidgets.ParseColors("bad json"));
+        Assert.Empty(HomeWidgets.ParseColors("null"));
+        var colors = HomeWidgets.ParseColors("""{"readings":"blue","feast":"rose","photo":"default","torah":"purple","unknown":"green"}""");
+        Assert.Equal(2, colors.Count);
+        Assert.Equal("blue", colors["readings"]);
+        var previous = AppSettings.HomeWidgetColors.ToDictionary(pair => pair.Key, pair => pair.Value);
+        var order = AppSettings.HomeWidgetOrder.ToArray();
+        try
+        {
+            AppSettings.SetHomeWidgetColor("readings", "gold");
+            AppSettings.SetHomeWidgetColor("feast", "rose");
+            AppSettings.SetHomeWidgetColor("readings", "default");
+            Assert.False(AppSettings.HomeWidgetColors.ContainsKey("readings"));
+            Assert.Equal("rose", AppSettings.HomeWidgetColors["feast"]);
+            Assert.Equal(order, AppSettings.HomeWidgetOrder);
+        }
+        finally
+        {
+            foreach (var id in HomeWidgets.All) AppSettings.SetHomeWidgetColor(id, previous.GetValueOrDefault(id) ?? "default");
+        }
     }
 }

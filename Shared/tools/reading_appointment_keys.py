@@ -73,6 +73,6 @@ def appointments(data: Path = DATA) -> dict[str, set[str]]:
     torah = data / "torah-portions.json"
     if torah.exists():
         for day in json.loads(torah.read_text(encoding="utf-8"))["days"].values():
-            for reading in day.get("readings", []):
+            for reading in day.get("readings", []) + day.get("haftarah", []) + day.get("haftarahSephardic", []):
                 result[passage_key(reading["full"], is_torah=True)].add("torah")
     return dict(result)
