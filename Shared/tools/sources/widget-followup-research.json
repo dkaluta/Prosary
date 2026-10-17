@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "researchedAt": "2026-10-03",
+  "scope": "Read-only follow-up research of remaining native widget verification; no native install, repository publication or device settings change.",
+  "widgetVerification": {
+    "localInventory": {
+      "readAt": "2026-10-03",
+      "appleSimulators": "iOS26.3/26.4/26.5/27 available; one existing QA simulator already booted.",
+      "physicalApplePhone": "Known paired iPhone15ProMax currently unavailable; no reachable physical iPhone verified.",
+      "androidADB": "No devices attached.",
+      "windowsRuntime": "No Windows host available in this local macOS task.",
+      "initialSandboxErrors": "Simulator/CoreDevice/ADB sandbox errors disappeared for permitted read-only inventory outside the sandbox; do not label them product defects."
+    },
+    "sourceInspection": {
+      "appGroup": "group.com.dkaluta.prosary",
+      "matchingHostAndExtensionEntitlements": true,
+      "signingStyle": "Automatic; does not prove installed profile membership.",
+      "android1x1Shortcut": "TargetCell 1x1 and 48dp minimums present.",
+      "androidResponsiveLayouts": "RemoteViews size map for API31+ already present."
+    },
+    "practicalNextChecks": [
+      "Run the Apple widget extension under Xcode on a simulator for gallery, family, placeholder/snapshot/timeline and tap-routing evidence.",
+      "On Mac, use Apple's WidgetKit Simulator for configurations, then check an installed signed app for actual desktop/Notification Center and shared storage behavior.",
+      "Verify App Group registration/profile inclusion for both host and extension, and extension embedding, with a signed installation.",
+      "Connect a physical Android device and test the real launcher picker, resize limits, multiple instances, cold/warm launches and saved-prayer lifecycle.",
+      "Test VoiceOver/TalkBack, Hebrew/Arabic ordering, large text, light/dark appearance, local midnight and time-zone changes.",
+      "Run the existing Windows CI job after an authorized push, or the native suite on an available Windows host; no CI claim is made for local-only commits."
+    ],
+    "primaryDocumentation": [
+      {
+        "url": "https://developer.apple.com/documentation/widgetkit/debugging-widgets",
+        "markdownURL": "https://developer.apple.com/documentation/widgetkit/debugging-widgets.md",
+        "sourceSHA256": "8206441dff14c94cb36bd5d6f51c7b7b5265b482ced3e777fa2c8bdeadac09a5",
+        "observed": "Run widget-extension target to display a widget on target; _XCWidgetKind and _XCWidgetFamily select configuration/family. On Mac WidgetKit Simulator supports timeline, snapshot and placeholder inspection."
+      },
+      {
+        "url": "https://developer.apple.com/documentation/xcode/configuring-app-groups",
+        "markdownURL": "https://developer.apple.com/documentation/xcode/configuring-app-groups.md",
+        "sourceSHA256": "5bb1dab2c49723e9a3a0b275cb4e5c9550d698447c5d0e291adada713db21541",
+        "observed": "App Group capability and membership permit host/extension data sharing. Required registration and signatures must be verified separately from source entitlements."
+      },
+      {
+        "url": "https://developer.android.com/develop/ui/views/appwidgets/layouts",
+        "observed": "Launcher cells and margins vary; targetCell dimensions express grid intent. Widget size lists are the launcher's responsibility and can be absent. Test supported resize ranges."
+      },
+      {
+        "url": "https://developer.android.com/guide/topics/ui/accessibility/testing",
+        "observed": "Manual accessibility-service interaction, tools, automated tests and user testing complement one another; static checks do not establish runtime accessibility."
+      }
+    ]
+  },
+  "xcodeCloudManifest": {
+    "path": "iOS/Prosary.xcodeproj/xcshareddata/xcodecloud/manifest.json",
+    "content": "Cloud project identifier plus one Prosary target identifier/name.",
+    "scope": "Configuration metadata; no app behavior implementation.",
+    "repositoryDecision": "Still staged separately; research did not commit, delete or alter it."
+  },
+  "releaseApproval": "Formal Fr Piotr approval remains required for the 1.0 App Store launch; research/development does not establish that approval.",
+  "nativeFeaturesChanged": false,
+  "contactedAnyone": false,
+  "mediaDownloaded": false
+}
