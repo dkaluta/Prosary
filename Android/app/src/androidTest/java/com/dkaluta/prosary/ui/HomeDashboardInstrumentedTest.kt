@@ -1,6 +1,7 @@
 package com.dkaluta.prosary.ui
 
 import android.content.Context
+import androidx.compose.ui.semantics.SemanticsProperties
 import androidx.compose.ui.test.assertIsSelected
 import androidx.compose.ui.test.assertTextContains
 import androidx.compose.ui.test.hasTestTag
@@ -129,6 +130,17 @@ class HomeDashboardInstrumentedTest {
         }
     }
 
+    @Test fun homeCardAccessibilityTraversalFollowsSavedAcrossColumnOrder() = withFreshHome {
+        ActivityScenario.launch(MainActivity::class.java).use {
+            awaitHome()
+            HomeWidget.defaults.forEachIndexed { index, widget ->
+                val semantics = compose.onNodeWithTag("homeColumnCard.${widget.id}", useUnmergedTree = true).fetchSemanticsNode().config
+                assertEquals(index.toFloat(), semantics[SemanticsProperties.TraversalIndex], 0f)
+                assertTrue(semantics[SemanticsProperties.IsTraversalGroup])
+            }
+        }
+    }
+
     @Test fun widgetImagesHideInSmallCardsAndRemoveOnlyTheirPrivateCopy() = withFreshHome {
         ActivityScenario.launch(MainActivity::class.java).use { scenario ->
             awaitHome()
@@ -205,7 +217,7 @@ class HomeDashboardInstrumentedTest {
             val oldMode = AppSettings.calendarViewMode
             try {
                 scenario.onActivity { AppSettings.feastCalendarId = "mission-provisional"; AppSettings.calendarViewMode = "month" }
-                compose.onNodeWithTag("homeDashboard").performScrollToNode(hasTestTag("homeOpenCalendar"))
+                compose.onNodeWithTag("homeOpenCalendar").performScrollTo()
                 compose.onNodeWithTag("homeOpenCalendar").performClick()
                 val date = LocalDate.now()
                 val events = com.dkaluta.prosary.content.today.CalendarEvents.events(date, TodayInfoStore.feast())
@@ -237,7 +249,7 @@ class HomeDashboardInstrumentedTest {
             scenario.recreate()
             awaitHome()
             compose.onNodeWithTag("homeWidget.readings").assertDoesNotExist()
-            compose.onNodeWithTag("homeDashboard").performScrollToNode(hasTestTag("homeWidget.reflection"))
+            compose.onNodeWithTag("homeWidget.reflection").performScrollTo()
             compose.onNodeWithText(app.getString(R.string.home_widgets_reflection_pending)).assertExists()
             scenario.onActivity { AppSettings.homeWidgetOrder = emptyList() }
             scenario.recreate()
@@ -256,13 +268,13 @@ class HomeDashboardInstrumentedTest {
             val selected = LocalDate.now().minusDays(1)
             val locale = app.resources.configuration.locales[0]
             compose.onNodeWithTag("homeDate").assertTextContains(selected.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL).withLocale(locale)))
-            compose.onNodeWithTag("homeDashboard").performScrollToNode(hasTestTag("homeWidget.scripture"))
+            compose.onNodeWithTag("homeWidget.scripture").performScrollTo()
             compose.onNodeWithTag("homeWidget.scripture").performClick()
             compose.onNodeWithTag("homeReference.bible").assertExists()
             compose.onNodeWithTag("bibleScreen").assertExists()
             pressBack()
             compose.onNodeWithTag("tab.home").assertIsSelected()
-            compose.onNodeWithTag("homeDashboard").performScrollToNode(hasTestTag("homeOpenCalendar"))
+            compose.onNodeWithTag("homeOpenCalendar").performScrollTo()
             compose.onNodeWithTag("homeOpenCalendar").performClick()
             compose.onNodeWithTag("homeReference.calendar").assertExists()
             pressBack()

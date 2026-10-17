@@ -464,6 +464,60 @@ final class AppShellUITests: XCTestCase {
   }
 
   @MainActor
+  func testHomeColumnsKeepIndependentHeightsAndAcrossOrder() throws {
+    XCUIDevice.shared.orientation = .landscapeLeft
+    defer { XCUIDevice.shared.orientation = .portrait }
+    for language in ["en", "he"] {
+      let app = XCUIApplication()
+      app.launchArguments = ["-useInMemoryStore", "-AppleLanguages", "(\(language))", "-interfaceLanguageCode", language,
+        "-homeWidgetOrder", "calendar\\nreadings\\nreminders\\nfeast", "-homeWidgetLayoutVersion", "1",
+        "-homeWidgetCollapsedIds", "calendar\\nreadings\\nreminders\\nfeast", "-homeWidgetColors", "{}",
+        "-feastCalendarId", "roman"]
+      app.launch()
+      let calendar = app.buttons["homeWidgets.size.calendar"]
+      let readings = app.buttons["homeWidgets.size.readings"]
+      let reminders = app.buttons["homeWidgets.size.reminders"]
+      let feast = app.buttons["homeWidgets.size.feast"]
+      XCTAssertTrue(calendar.waitForExistence(timeout: 10))
+      try XCTSkipIf(app.windows.firstMatch.frame.width < 1000,
+        "This check requires a wide tablet pane with two columns.")
+      XCTAssertTrue(readings.waitForExistence(timeout: 5))
+      XCTAssertTrue(reminders.waitForExistence(timeout: 5))
+      XCTAssertTrue(feast.waitForExistence(timeout: 5))
+      XCTAssertEqual(calendar.frame.minY, readings.frame.minY, accuracy: 2)
+      XCTAssertEqual(calendar.frame.minX, reminders.frame.minX, accuracy: 2)
+      XCTAssertEqual(readings.frame.minX, feast.frame.minX, accuracy: 2)
+      if language == "he" { XCTAssertGreaterThan(calendar.frame.minX, readings.frame.minX) }
+      else { XCTAssertLessThan(calendar.frame.minX, readings.frame.minX) }
+      let orderedHeaders = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH 'homeWidgets.size.'"))
+      let headerIDs = ["calendar", "readings", "reminders", "feast"].map { "homeWidgets.size." + $0 }
+      XCTAssertEqual(orderedHeaders.allElementsBoundByIndex.map(\.identifier), headerIDs)
+      let cardGroup = app.otherElements["homeWidgets.cards"].firstMatch
+      XCTAssertTrue(cardGroup.waitForExistence(timeout: 5))
+      XCTAssertEqual(cardGroup.buttons.matching(NSPredicate(format: "identifier BEGINSWITH 'homeWidgets.size.'"))
+        .allElementsBoundByIndex.map(\.identifier), headerIDs)
+      XCTAssertFalse(cardGroup.buttons["homeWidgets.date"].exists)
+      XCTAssertFalse(cardGroup.buttons["homeWidgets.add"].exists)
+      XCTAssertLessThanOrEqual(app.buttons["homeWidgets.date"].frame.maxY, cardGroup.frame.minY)
+      XCTAssertGreaterThanOrEqual(app.buttons["homeWidgets.add"].frame.minY, cardGroup.frame.maxY)
+      let followingCardY = reminders.frame.minY
+      let neighboringColumnY = feast.frame.minY
+      calendar.tap()
+      let growsOnlyItsColumn = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+        reminders.frame.minY > followingCardY + 100
+      }, object: nil)
+      XCTAssertEqual(XCTWaiter.wait(for: [growsOnlyItsColumn], timeout: 5), .completed)
+      XCTAssertEqual(feast.frame.minY, neighboringColumnY, accuracy: 2,
+        "Expanding the calendar does not create a gap in the neighboring column")
+      let screenshot = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
+      screenshot.name = "home-independent-columns-" + language
+      screenshot.lifetime = .keepAlways
+      add(screenshot)
+      app.terminate()
+    }
+  }
+
+  @MainActor
   func testVersion021HomeCalendarAppearanceAndScripture() throws {
     let app = XCUIApplication()
     app.launchArguments = ["-useInMemoryStore", "-AppleLanguages", "(en)", "-interfaceLanguageCode", "en",
