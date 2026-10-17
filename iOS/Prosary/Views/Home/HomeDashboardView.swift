@@ -124,14 +124,13 @@ struct HomeDashboardView: View {
     let hasDivision = geometry.reservedRegions(kind: .division, layoutDirectionBehavior: .fixed)
       .contains { $0.isActive && PrayerReservedRegionLayout.intersects($0.frame, bounds: bounds) }
     if hasDivision {
-      let split = (widgets.count + 1) / 2
       ArrangementView {
-        ReservedRegionAvoidingContent { _ in
-          dashboardPane(Array(widgets.prefix(split)), showsDate: true, showsAdd: false)
+        HomeArrangementPane(widgets: widgets, paneIndex: 0) { cards, isHorizontal in
+          dashboardPane(cards, showsDate: true, showsAdd: false, isHorizontalPane: isHorizontal)
         }
       } secondary: {
-        ReservedRegionAvoidingContent { _ in
-          dashboardPane(Array(widgets.dropFirst(split)), showsDate: false, showsAdd: true)
+        HomeArrangementPane(widgets: widgets, paneIndex: 1) { cards, isHorizontal in
+          dashboardPane(cards, showsDate: false, showsAdd: true, isHorizontalPane: isHorizontal)
         }
       }
       .arrangementViewStyle(.split)
@@ -142,15 +141,19 @@ struct HomeDashboardView: View {
   }
   #endif
 
-  private func dashboardPane(_ cards: [HomeWidget], showsDate: Bool, showsAdd: Bool) -> some View {
+  private func dashboardPane(_ cards: [HomeWidget], showsDate: Bool, showsAdd: Bool, isHorizontalPane: Bool = false) -> some View {
     GeometryReader { geometry in
       ScrollView {
         VStack(alignment: .leading, spacing: 16) {
           if showsDate { dashboardDateControls }
-          LazyVGrid(columns: Array(repeating: GridItem(.flexible(minimum: 0), spacing: 16, alignment: .top),
-            count: HomeDashboardLayout.columnCount(availableWidth: geometry.size.width)), alignment: .leading, spacing: 16) {
-            ForEach(cards) { widget in card(widget) }
+          HomeCardColumnsLayout(columnCount: HomeDashboardLayout.columnCount(availableWidth: geometry.size.width,
+            isHorizontalPane: isHorizontalPane)) {
+            ForEach(cards) { widget in
+              card(widget).accessibilitySortPriority(Double(widgets.count - (widgets.firstIndex(of: widget) ?? widgets.count)))
+            }
           }
+          .accessibilityElement(children: .contain)
+          .accessibilityIdentifier("homeWidgets.cards")
           if widgets.isEmpty, showsDate { Text(label("empty")).foregroundStyle(.secondary) }
           if showsAdd {
             Button { showsCustomizer = true } label: {
@@ -510,6 +513,23 @@ struct HomeDashboardView: View {
     graphicImages = HomeWidgetDisplay.graphics(storedGraphics).compactMapValues { HomePhotoStore.image($0) }
   }
 }
+
+#if os(iOS)
+@available(iOS 27.1, *)
+private struct HomeArrangementPane<Content: View>: View {
+  let widgets: [HomeWidget]
+  let paneIndex: Int
+  let content: ([HomeWidget], Bool) -> Content
+  @Environment(\.splitArrangementAxis) private var axis
+
+  var body: some View {
+    ReservedRegionAvoidingContent { _ in
+      content(HomeDashboardLayout.paneItems(widgets, paneIndex: paneIndex, isHorizontal: axis == .horizontal),
+        axis == .horizontal)
+    }
+  }
+}
+#endif
 
 private struct HomeWidgetLabel: View {
   let widget: HomeWidget

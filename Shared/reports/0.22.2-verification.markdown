@@ -1,0 +1,16 @@
+# Prosary 0.22.2 verification
+
+Verified on October 17, 2026 from the isolated release snapshot, excluding unrelated Bible and Repository work.
+
+Home now places natural-height cards in independent vertical columns. Saved order runs across columns from the native leading edge, by source index modulo column count; expanding a card moves only later cards in its column. One outer scrolling page serves each safe pane. The existing readable-width policy chooses one to three columns, while narrow panes retain one. Native RTL, card identity, stored accents, expanded state and the existing Apple iCloud arrangement contract are preserved. Column count remains local.
+
+## Validation
+
+- Apple: six layout geometry tests and the focused wide-layout UI test passed. English and Hebrew checks verify saved and accessibility order, mirrored leading column, and independent heights when Calendar expands. The existing Duo accent test passed, including independent additions and removal. Partial-fold assignment tests cover alternating cards in side-by-side single-column panes and contiguous groups in stacked panes. Accessibility priorities are scoped to the cards inside each native scroll pane, preserving the date and Add controls around them. Only existing standard iPad and Duo simulators were used.
+- Android: 575 unit tests passed with zero failures, errors or skips, including six new independent-column geometry tests. The interaction-test APK assembled, with saved traversal-order coverage; no connected Android host was available to execute it. Fresh signed bundle 0.22.2 (59) passed ZIP, signature and manifest-version verification.
+- Windows: 10 portable geometry tests passed, and source typechecking against the actual WinUI and Windows SDK APIs passed. Native Windows CI is required before release; runtime rendering and installer distribution require a Windows host.
+- Strict UI audit has zero findings. The maintained design document passes lint with zero errors or warnings. All eight native UI locales remain complete. Ten portable prayer packs remain byte-identical across ports without duplicate artwork.
+
+Android bundle SHA-256: `ab3d5dfe680bac9f168b8121942ac913d83e41400cc66f3aafed1f64cd3b1766`.
+
+The [0.22 verification](0.22-verification.markdown) records the broader content, source, fold geometry and iCloud payload validation. Real partial-fold transitions, signed two-device iCloud propagation and Windows runtime rendering remain unverified. The [0.22.1 verification](0.22.1-verification.markdown) records the separate Set/Remove Accent Color actions retained here.

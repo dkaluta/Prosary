@@ -70,7 +70,7 @@ labels and source punctuation keep the existing content typography contracts.
 
 ## Layout
 
-Home includes the weekly Torah portion and haftarot as a default card and uses an adaptive one-to-three-column grid with readable 340-point/dp minimum cards and native desktop/tablet navigation.
+Home includes the weekly Torah portion and haftarot as a default card. Wide panes use one to three independent vertical columns with readable 340-point/dp minimum cards and native desktop/tablet navigation. Saved order runs across the columns, while cards stack at their natural heights within each column. One scrolling page contains the columns; narrow panes keep one column.
 Apple retains its 20-point page / 18-point card rhythm; Android retains 16-dp card padding
 and 12-dp card gaps; Windows keeps its existing native resource spacing. Small and large cards
 use the same heading and controls, changing the visible content rather than the navigation.
@@ -144,4 +144,4 @@ belong to the effective authored content's internal metadata, with no user toggl
 - Keep icons, custom accent, liturgical colors and authored images as separate choices.
 - Preserve the Mac library/Today workflow instead of adding a phone dashboard for parity.
 
-Home cards offer Set Accent Color… with Blue, Green, Gold and Rose through native palette menus. Remove Accent Color appears only when a card has an override and restores its native appearance independently of other cards. Tints composite over opaque native surfaces and retain readable semantic foregrounds in light, dark and high contrast. Available pane width chooses columns; active fold and camera regions constrain the safe content pane. Apple’s existing iCloud preferences sync an atomic card arrangement, size and color snapshot after explicit edits. Photos, dates and responsive columns stay device-local.
+Home cards offer Set Accent Color… with Blue, Green, Gold and Rose through native palette menus. Remove Accent Color appears only when a card has an override and restores its native appearance independently of other cards. Tints composite over opaque native surfaces and retain readable semantic foregrounds in light, dark and high contrast. Available pane width chooses columns; active fold and camera regions constrain the safe content pane. Each column grows independently, so expanding one card moves only later cards in that column. Saved order runs across columns from the native leading edge. Accessibility follows saved order within each safe pane. Side-by-side Apple fold panes each host one column with alternating cards; vertically stacked panes retain contiguous top-to-bottom groups. Apple’s existing iCloud preferences sync an atomic card arrangement, size and color snapshot after explicit edits. Photos, dates and responsive columns stay device-local.

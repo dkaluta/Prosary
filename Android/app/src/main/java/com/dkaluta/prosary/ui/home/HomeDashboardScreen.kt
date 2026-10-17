@@ -9,7 +9,6 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.height
@@ -18,11 +17,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.GridItemSpan
-import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.items
-import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.text.selection.SelectionContainer
@@ -160,7 +154,7 @@ fun HomeDashboardScreen(
     var photoTarget by rememberSaveable { mutableStateOf(HomeWidget.Photo) }
     var handledTodayRequest by rememberSaveable { mutableStateOf(0L) }
     val lifecycle = LocalLifecycleOwner.current
-    val gridState = rememberLazyGridState()
+    val dashboardScroll = rememberScrollState()
     DisposableEffect(lifecycle) {
         val observer = LifecycleEventObserver { _, event ->
             if (event == Lifecycle.Event.ON_RESUME) { today = LocalDate.now(); generation++ }
@@ -252,22 +246,18 @@ fun HomeDashboardScreen(
                 choose = { widget -> photoTarget = widget; photoPicker.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly)) },
                 remove = { widget -> removePhoto(widget) }, busy = photoBusy)) {
             Box(Modifier.fillMaxSize(), contentAlignment = Alignment.TopCenter) {
-            LazyVerticalGrid(columns = GridCells.Adaptive(340.dp),
-                state = gridState,
-                modifier = Modifier.padding(padding).widthIn(max = 1200.dp).fillMaxSize().testTag("homeDashboard"),
-                contentPadding = PaddingValues(16.dp), horizontalArrangement = Arrangement.spacedBy(12.dp),
+            Column(modifier = Modifier.padding(padding).widthIn(max = 1200.dp).fillMaxSize()
+                .verticalScroll(dashboardScroll).testTag("homeDashboard").padding(16.dp),
                 verticalArrangement = Arrangement.spacedBy(12.dp)) {
-                item("date", span = { GridItemSpan(maxLineSpan) }) {
-                    Text(date.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL).withLocale(locale)),
-                        style = MaterialTheme.typography.titleMedium, modifier = Modifier.testTag("homeDate"))
-                }
-                if (AppSettings.homeWidgetOrder.isEmpty()) item("empty", span = { GridItemSpan(maxLineSpan) }) {
+                Text(date.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL).withLocale(locale)),
+                    style = MaterialTheme.typography.titleMedium, modifier = Modifier.testTag("homeDate"))
+                if (AppSettings.homeWidgetOrder.isEmpty()) {
                     Column {
                         Text(stringResource(R.string.home_widgets_empty))
                         TextButton(onClick = { showsCustomization = true }) { Text(stringResource(R.string.home_widgets_add)) }
                     }
                 }
-                items(AppSettings.homeWidgetOrder, key = { it.id }) { widget ->
+                HomeCardColumns(AppSettings.homeWidgetOrder, Modifier.fillMaxWidth()) { widget ->
                     when (widget) {
                         HomeWidget.Readings -> DashboardCard(widget, { onOpenReadings(HomeReadingsMode.Daily) },
                             summary = sourceReadings.firstOrNull { it.type == "gospel" }?.localizedShort(language)

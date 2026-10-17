@@ -31,11 +31,11 @@
             <Button Grid.Column="1" Content="{x:Bind ViewModel.CustomizeLabel}" Click="OnCustomize" />
         </Grid>
         <ScrollViewer Grid.Row="1" HorizontalContentAlignment="Stretch" HorizontalScrollMode="Disabled" HorizontalScrollBarVisibility="Disabled">
-            <Grid HorizontalAlignment="Stretch">
+            <Grid HorizontalAlignment="Stretch" MaxWidth="1200">
                 <StackPanel HorizontalAlignment="Stretch" Spacing="12">
                     <TextBlock Text="{x:Bind ViewModel.EmptyLabel}" TextWrapping="Wrap" Visibility="{x:Bind ViewModel.IsEmpty, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
                     <ItemsControl ItemsSource="{x:Bind ViewModel.Cards, Mode=OneWay}">
-                        <ItemsControl.ItemsPanel><ItemsPanelTemplate><controls:DashboardGridPanel /></ItemsPanelTemplate></ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemsPanel><ItemsPanelTemplate><controls:DashboardColumnPanel /></ItemsPanelTemplate></ItemsControl.ItemsPanel>
                         <ItemsControl.ItemTemplate>
                             <DataTemplate x:DataType="vm:HomeWidgetCard">
                                 <Border Background="{x:Bind CardBackground, Mode=OneWay}" BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="8" Padding="18">
