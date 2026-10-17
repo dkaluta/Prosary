@@ -152,15 +152,24 @@ public sealed partial class DashboardPage : Page
         if (sender is not Button { DataContext: HomeWidgetCard card } button) return;
         var selected = AppSettings.HomeWidgetColors.GetValueOrDefault(card.Id) ?? "default";
         var menu = new MenuFlyout();
-        foreach (var id in HomeWidgets.ColorIds)
+        var colors = new MenuFlyoutSubItem { Text = card.ColorLabel };
+        foreach (var id in HomeWidgets.ColorIds.Where(id => id != "default"))
         {
             var choice = new ToggleMenuFlyoutItem
             {
-                Text = id == "default" ? Loc.Tr("settings_today_card_default", "Default") : AppColorPalette.Resolve(id).Label,
+                Text = AppColorPalette.Resolve(id).Label,
                 IsChecked = selected == id,
             };
             choice.Click += (_, _) => AppSettings.SetHomeWidgetColor(card.Id, id);
-            menu.Items.Add(choice);
+            colors.Items.Add(choice);
+        }
+        menu.Items.Add(colors);
+        if (selected != "default")
+        {
+            menu.Items.Add(new MenuFlyoutSeparator());
+            var remove = new MenuFlyoutItem { Text = card.RemoveAccentColorLabel };
+            remove.Click += (_, _) => AppSettings.SetHomeWidgetColor(card.Id, "default");
+            menu.Items.Add(remove);
         }
         menu.ShowAt(button);
     }

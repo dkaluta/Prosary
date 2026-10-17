@@ -426,7 +426,7 @@ final class AppShellUITests: XCTestCase {
 
   #if os(iOS)
   @MainActor
-  func testHomeCardColorsAreIndependentAndResetToDefault() throws {
+  func testHomeCardAccentsAreIndependentAndCanBeRemoved() throws {
     let app = XCUIApplication()
     app.launchArguments = ["-useInMemoryStore", "-AppleLanguages", "(en)", "-interfaceLanguageCode", "en",
       "-homeWidgetOrder", "readings\\nfeast", "-homeWidgetLayoutVersion", "1",
@@ -439,18 +439,25 @@ final class AppShellUITests: XCTestCase {
     let feastColor = app.buttons["homeWidgets.color.feast"]
     XCTAssertTrue(readingsColor.waitForExistence(timeout: 10), app.debugDescription)
     readingsColor.tap()
+    XCTAssertFalse(app.buttons["homeWidgets.removeAccentColor.readings"].exists)
+    app.buttons["Set Accent Color…"].firstMatch.tap()
+    XCTAssertFalse(app.buttons["Default"].exists)
     app.buttons["Blue"].firstMatch.tap()
     XCTAssertEqual(readingsColor.value as? String, "Blue")
     for _ in 0..<6 where !feastColor.isHittable { app.swipeUp() }
     XCTAssertTrue(feastColor.waitForExistence(timeout: 5))
     XCTAssertEqual(feastColor.value as? String, "Default")
     feastColor.tap()
+    XCTAssertFalse(app.buttons["homeWidgets.removeAccentColor.feast"].exists)
+    app.buttons["Set Accent Color…"].firstMatch.tap()
     app.buttons["Rose"].firstMatch.tap()
     XCTAssertEqual(feastColor.value as? String, "Rose")
     for _ in 0..<6 where !readingsColor.isHittable { app.swipeDown() }
     XCTAssertEqual(readingsColor.value as? String, "Blue")
     readingsColor.tap()
-    app.buttons["Default"].firstMatch.tap()
+    let removeAccent = app.buttons["homeWidgets.removeAccentColor.readings"]
+    XCTAssertTrue(removeAccent.waitForExistence(timeout: 5))
+    removeAccent.tap()
     XCTAssertEqual(readingsColor.value as? String, "Default")
     for _ in 0..<6 where !feastColor.isHittable { app.swipeUp() }
     XCTAssertEqual(feastColor.value as? String, "Rose")
