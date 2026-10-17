@@ -339,7 +339,7 @@ private fun AppNavHost(navController: NavHostController, modifier: Modifier = Mo
             ReadingsScreen(browsingDate = browsingDate,
                 calendarRequest = calendarWidgetRequest, readingsRequest = readingsWidgetRequest,
                 homeRequest = homeReadingsRequest, homeMode = homeReadingsMode,
-                onOpenReference = { referenceMode = it })
+                onOpenReference = { referenceMode = it.takeUnless { mode -> mode == HomeReadingsMode.Daily } })
         }
         composable(Routes.Search) {
             SearchScreen(onLaunch = { target -> navController.launch(target) },

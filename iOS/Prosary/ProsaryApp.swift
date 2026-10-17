@@ -29,7 +29,10 @@ struct ProsaryApp: App {
     var seededValues: [String: String] = [:]
     for key in keys {
       guard let index = arguments.firstIndex(of: "-" + key), arguments.indices.contains(index + 1) else { continue }
-      seededValues[key] = arguments[index + 1]
+      let value = arguments[index + 1]
+      // XCUITest launch transport can split literal newlines; list fixtures may escape them.
+      seededValues[key] = key == HomeWidgetOrder.key || key == HomeWidgetDisplay.collapsedKey
+        ? value.replacingOccurrences(of: "\\n", with: "\n") : value
       argumentDomain.removeValue(forKey: key)
     }
     if seededValues[HomeWidgetOrder.key] != nil {

@@ -262,7 +262,7 @@ struct ContentView: View {
       readingsPath = []
       #else
       if link == .calendar { referenceMode = "calendar" }
-      else { selectedTab = .readings; readingsPath = [] }
+      else { referenceMode = nil; selectedTab = .readings; readingsPath = [] }
       #endif
     case .today:
       dateSelection.select(Date())

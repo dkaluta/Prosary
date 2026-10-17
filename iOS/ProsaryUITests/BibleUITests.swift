@@ -5,8 +5,8 @@ final class BibleUITests: XCTestCase {
   @MainActor private func launch() -> XCUIApplication {
     let app = XCUIApplication()
     app.launchArguments = ["-useInMemoryStore", "-AppleLanguages", "(en)", "-interfaceLanguageCode", "en",
-                           "-readingsEditionId", "douay-rheims-1899", "-homeWidgetOrder", "scripture\ncalendar\nreadings",
-                           "-homeWidgetLayoutVersion", "1", "-homeWidgetCollapsedIds", "scripture\ncalendar\nreadings",
+                           "-readingsEditionId", "douay-rheims-1899", "-homeWidgetOrder", "scripture\\ncalendar\\nreadings",
+                           "-homeWidgetLayoutVersion", "1", "-homeWidgetCollapsedIds", "scripture\\ncalendar\\nreadings",
                            "-expandReadingsByDefault", "NO"]
     app.launch()
     selectSection("Readings", in: app)

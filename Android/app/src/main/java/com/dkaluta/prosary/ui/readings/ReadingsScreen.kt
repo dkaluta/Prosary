@@ -107,7 +107,7 @@ fun ReadingsScreen(browsingDate: TodayBrowsingDate = rememberTodayBrowsingDate()
         val request = ReadingsOpenRequest.latest(calendarRequest, readingsRequest, homeRequest, homeMode)
         if (request != null && request.sequence != handledOpenRequest) {
             request.applyTo(browsingDate)
-            if (request.mode != HomeReadingsMode.Daily) onOpenReference(request.mode)
+            onOpenReference(request.mode)
             handledOpenRequest = request.sequence
         }
     }

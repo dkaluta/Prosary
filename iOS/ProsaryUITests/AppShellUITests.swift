@@ -429,8 +429,8 @@ final class AppShellUITests: XCTestCase {
   func testHomeCardColorsAreIndependentAndResetToDefault() throws {
     let app = XCUIApplication()
     app.launchArguments = ["-useInMemoryStore", "-AppleLanguages", "(en)", "-interfaceLanguageCode", "en",
-      "-homeWidgetOrder", "readings\nfeast", "-homeWidgetLayoutVersion", "1",
-      "-homeWidgetCollapsedIds", "readings\nfeast", "-homeWidgetColors", "{}"]
+      "-homeWidgetOrder", "readings\\nfeast", "-homeWidgetLayoutVersion", "1",
+      "-homeWidgetCollapsedIds", "readings\\nfeast", "-homeWidgetColors", "{}"]
     app.launch()
     let home = app.buttons["Home"].firstMatch
     XCTAssertTrue(home.waitForExistence(timeout: 10))
@@ -460,7 +460,7 @@ final class AppShellUITests: XCTestCase {
   func testVersion021HomeCalendarAppearanceAndScripture() throws {
     let app = XCUIApplication()
     app.launchArguments = ["-useInMemoryStore", "-AppleLanguages", "(en)", "-interfaceLanguageCode", "en",
-      "-homeWidgetOrder", "calendar\nscripture", "-feastCalendarId", "roman",
+      "-homeWidgetOrder", "calendar\\nscripture", "-feastCalendarId", "roman",
       "-customAccentColorHex", "#C14076"]
     app.launch()
     func capture(_ name: String) {
