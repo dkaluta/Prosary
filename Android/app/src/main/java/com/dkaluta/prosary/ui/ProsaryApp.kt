@@ -45,6 +45,7 @@ import com.dkaluta.prosary.R
 import com.dkaluta.prosary.ui.shared.rememberTodayBrowsingDate
 import com.dkaluta.prosary.ui.readings.ReadingsScreen
 import com.dkaluta.prosary.ui.readings.HomeReadingsMode
+import com.dkaluta.prosary.ui.readings.HomeReferenceSheet
 import com.dkaluta.prosary.ui.search.SearchScreen
 import com.dkaluta.prosary.ui.shared.BasicPrayerFlowScreen
 import com.dkaluta.prosary.ui.shared.BasicPrayersScreen
@@ -313,25 +314,32 @@ private fun AppNavHost(navController: NavHostController, modifier: Modifier = Mo
     val browsingDate = rememberTodayBrowsingDate()
     var homeReadingsRequest by rememberSaveable { mutableLongStateOf(0L) }
     var homeReadingsMode by rememberSaveable { androidx.compose.runtime.mutableStateOf(HomeReadingsMode.Daily) }
+    var referenceMode by rememberSaveable { androidx.compose.runtime.mutableStateOf<HomeReadingsMode?>(null) }
+    val openDailyReadings: () -> Unit = {
+        referenceMode = null
+        homeReadingsMode = HomeReadingsMode.Daily
+        homeReadingsRequest = System.nanoTime()
+        navController.navigate(Routes.Readings) {
+            popUpTo(Routes.Home) { saveState = true }
+            launchSingleTop = true
+            restoreState = true
+        }
+    }
     NavHost(navController = navController, startDestination = Routes.Home, modifier = modifier) {
         composable(Routes.Home) {
             HomeDashboardScreen(browsingDate = browsingDate, todayWidgetRequest = todayWidgetRequest,
                 onOpenSettings = { navController.navigateSingleTop(Routes.Settings) },
                 onOpenReminders = { id -> navController.navigateSingleTop(Routes.remindersOnlyEditor(id)) },
                 onOpenReadings = { mode ->
-                    homeReadingsMode = mode
-                    homeReadingsRequest = System.nanoTime()
-                    navController.navigate(Routes.Readings) {
-                        popUpTo(Routes.Home) { saveState = true }
-                        launchSingleTop = true
-                        restoreState = true
-                    }
+                    if (mode == HomeReadingsMode.Daily) openDailyReadings()
+                    else referenceMode = mode
                 })
         }
         composable(Routes.Readings) {
             ReadingsScreen(browsingDate = browsingDate,
                 calendarRequest = calendarWidgetRequest, readingsRequest = readingsWidgetRequest,
-                homeRequest = homeReadingsRequest, homeMode = homeReadingsMode)
+                homeRequest = homeReadingsRequest, homeMode = homeReadingsMode,
+                onOpenReference = { referenceMode = it })
         }
         composable(Routes.Search) {
             SearchScreen(onLaunch = { target -> navController.launch(target) },
@@ -492,5 +500,8 @@ private fun AppNavHost(navController: NavHostController, modifier: Modifier = Mo
                 PrayerDispatchScreen(prayerId = id, onBack = { navController.popBackStack() })
             }
         }
+    }
+    referenceMode?.let { mode ->
+        HomeReferenceSheet(mode, browsingDate, onDismiss = { referenceMode = null }, onOpenReadings = openDailyReadings)
     }
 }

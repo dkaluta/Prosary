@@ -314,7 +314,7 @@
       }
     },
     "tabShell": {
-      "purpose": "Four phone/tablet sections: Home (customizable dashboard and initial landing), Pray (saved/pinned devotion collection), Readings (daily, calendar and Bible modes), and Search (local categories plus a community catalog entry). Browse is removed. Native bottom bars, tablet sidebars and rails, independent Apple navigation stacks, and stable Android session ownership remain. Windows opens Home within its native library shell; Mac retains its native library workflow.",
+      "purpose": "Four phone/tablet sections: Home (customizable dashboard and initial landing), Pray (saved/pinned devotion collection), Readings (daily appointed readings), and Search (local categories plus a community catalog entry). Browse is removed. Native bottom bars, tablet sidebars and rails, independent Apple navigation stacks, and stable Android session ownership remain. Windows opens Home within its native library shell; Mac retains its native library workflow.",
       "parameters": {},
       "sources": {
         "iOS": "ContentView.swift (TabView + adaptiveTabViewStyle), ProsaryApp.swift, Support/PrayersCommands.swift",
@@ -328,7 +328,7 @@
         "android",
         "windows"
       ],
-      "purpose": "The phone/tablet Readings tab replaces Categories. Its date controls use native Apple glass with older-system fallbacks or a translucent Android Material surface above full localized appointed citations from the selected Today calendar and Pascha setting, with the optional Eretz Israel Torah portion and an explicit missing-date state. Following today advances with the local day; a deliberately browsed date remains selected. Browsing does not alter prayer sessions or the Today widget. The date is shared with Home in the same window. Daily and enabled Torah passages start collapsed on entry and date/calendar changes unless expandReadingsByDefault is enabled, showing localized chapter headings followed by selectable verse-numbered Bible text in a metadata-selected edition, or a localized unavailable message. Individual collapses survive ordinary refreshes and edition changes. Hebrew/Arabic interface and passage text use their own RTL layout; Scripture marks and source typography are retained. Above the readings, a collapsed About the saints disclosure appears for the selected calendar when biographies exist in the exact interface language. It respects showTodayFeast, resets with date/calendar/language, and includes source credit. Chapter words and nonitalic numbers follow the selected Bible language, including Hebrew gematria, Eastern Arabic digits, and selected Aramaic script; verse numbers remain unchanged. The Daily Readings/Bible selector stays inside phone page content so it cannot overlap a large navigation title. An Event Calendar action shows every published event date, with up to three markers, individual sourced observance details and matching credits; Readings for this Date updates the shared civil date. The list initially scrolls to the selected or next upcoming entry. Missing future dates do not invent observances.",
+      "purpose": "The phone/tablet Readings tab replaces Categories. Its date controls use native Apple glass with older-system fallbacks or a translucent Android Material surface above full localized appointed citations from the selected Today calendar and Pascha setting, with the optional Eretz Israel Torah portion and an explicit missing-date state. Following today advances with the local day; a deliberately browsed date remains selected. Browsing does not alter prayer sessions or the Today widget. The date is shared with Home in the same window. Daily and enabled Torah passages start collapsed on entry and date/calendar changes unless expandReadingsByDefault is enabled, showing localized chapter headings followed by selectable verse-numbered Bible text in a metadata-selected edition, or a localized unavailable message. Individual collapses survive ordinary refreshes and edition changes. Hebrew/Arabic interface and passage text use their own RTL layout; Scripture marks and source typography are retained. Above the readings, a collapsed About the Feast and Day disclosure appears for the selected calendar when biographies exist in the exact interface language. It respects showTodayFeast, resets with date/calendar/language, and includes source credit. Chapter words and nonitalic numbers follow the selected Bible language, including Hebrew gematria, Eastern Arabic digits, and selected Aramaic script; verse numbers remain unchanged. Readings contains only daily appointed readings and enabled Torah/haftarah passages, with no Calendar action or full Bible selector. Home opens Event Calendar and full Holy Scripture as separate native reference surfaces. Calendar shows every published event date, with up to three markers, individual sourced observance details and matching credits; Readings for this Date updates the shared civil date. The list initially scrolls to the selected or next upcoming entry. Missing future dates do not invent observances.",
       "parameters": {},
       "settings": [
         "feastCalendarId",
@@ -347,28 +347,8 @@
         "windows": "Views/DesktopReadingsPage.xaml(.cs) + Views/DesktopTodayPage.xaml(.cs) + Controls/ScripturePassageControl.xaml(.cs)"
       },
       "modes": [
-        "dailyReadings",
-        "liturgicalCalendar",
-        "bible"
-      ],
-      "bibleLibrary": {
-        "schema": "bible-library.json",
-        "catalog": "bible-catalog.json",
-        "editionPreference": "readingsEditionId",
-        "position": "Window-local book, chapter and verse; independent of selected prayer date.",
-        "navigation": "Source-native book/chapter lists, verse jump, previous/next available chapter, paired script selection and selectable text.",
-        "downloads": "Explicit optional per-edition download with progress, cancellation/retry and removal. Verify size, SHA-256, manifest and all chapter contents before atomic installation. Daily passages do not depend on downloaded Bibles.",
-        "coverage": "Display only declared books/chapters and visibly mark partial chapters. Never silently replace an unavailable edition, chapter, verse or language.",
-        "credits": "Selected edition credit and source link, plus optional per-book translator attribution and source link."
-      },
-      "liturgicalCalendar": {
-        "behavior": "Browse a month of published observances from the selected calendar and Pascha usage. Previous/next month and Today use local civil dates. Selecting an observance opens that date in Daily Readings; source coverage gaps remain empty. Calendar widget activation follows today and opens this mode. Mac exposes the same month list in a native Today sheet.",
-        "sources": {
-          "iOS": "Views/Readings/LiturgicalCalendarView.swift + Views/Readings/BibleView.swift + Views/Home/MacTodayView.swift",
-          "android": "ui/readings/LiturgicalCalendarContent.kt + ui/readings/ReadingsScreen.kt",
-          "windows": "Views/LiturgicalCalendarControl.xaml(.cs) + ViewModels/LiturgicalCalendarViewModel.cs + Views/DesktopReadingsPage.xaml(.cs)"
-        }
-      }
+        "dailyReadings"
+      ]
     },
     "categories": {
       "status": "Legacy compatibility surfaces only; no Categories tab or Windows sidebar destination. Active category browsing lives in search.",
@@ -416,19 +396,47 @@
         "android",
         "windows"
       ],
-      "purpose": "Customizable Home dashboard and initial landing. Choose, remove and reorder independent cards for readings, Pope intention, calendar, private gallery photo, existing reminders, Holy Scripture, forthcoming Mission reflection and sourced feast explanations. The date is shared with Pray and Readings in the same window, follows the local day until browsing, and never changes prayer sessions. Hebrew and Arabic use RTL. Reflection remains a localized awaiting-text state until supplied. No missing prayer or feast explanation is invented. Each card has persisted small/large state and can show a private selected image. The calendar marks all sourced dates and opens individual descriptions. Scripture of the Day uses canonical appointment order.",
+      "purpose": "Customizable Home dashboard and initial landing. Choose, remove and reorder independent cards for readings, weekly Torah portion and haftarot, Pope intention, calendar, private gallery photo, existing reminders, Holy Scripture, sourced Mission reflection and sourced feast explanations. The date is shared with Pray and Readings in the same window, follows the local day until browsing, and never changes prayer sessions. Hebrew and Arabic use RTL. Reflection shows the supplied exact-language Mission reflection in its own card; feast explanations retain hymns and Syriac tradition without repeating reflection prompts. No missing prayer or feast explanation is invented. Each card has persisted small/large state and an independent Default/Blue/Green/Gold/Rose color menu. Wide panes use an adaptive grid with natural content heights; compact panes keep one column. Apple syncs card order, visibility, size and colors through existing iCloud preference storage, leaving photos, dates and column count local. Cards other than feast explanations can show a private selected image. The calendar marks all sourced dates and opens individual descriptions. Scripture of the Day uses canonical appointment order.",
       "parameters": {},
       "settings": [
         "homeWidgetOrder",
         "homePhotoPath",
         "homeWidgetCollapsedIds",
-        "homeWidgetGraphicPaths"
+        "homeWidgetGraphicPaths",
+        "homeWidgetColors",
+        "homeWidgetLayoutVersion"
       ],
       "contract": "home-widgets.json",
       "sources": {
         "iOS": "Views/Home/HomeDashboardView.swift + Support/HomeWidgetOrder.swift + Support/HomePhotoStore.swift",
         "android": "ui/home/HomeDashboardScreen.kt + models/HomeWidgetPreferences.kt",
         "windows": "Views/DashboardPage.xaml(.cs) + ViewModels/DashboardViewModel.cs + Models/HomeWidgets.cs"
+      }
+    },
+    "bibleReference": {
+      "purpose": "Full Bible library opened separately from Home; no duplicate bounded Scripture-of-the-Day preview.",
+      "presentation": "Native sheet/dialog on Apple/Android; independent native reference window on Windows.",
+      "bibleLibrary": {
+        "schema": "bible-library.json",
+        "catalog": "bible-catalog.json",
+        "editionPreference": "readingsEditionId",
+        "position": "Window-local book, chapter and verse; independent of selected prayer date.",
+        "navigation": "Source-native book/chapter lists, verse jump, previous/next available chapter, paired script selection and selectable text.",
+        "downloads": "Explicit optional per-edition download with progress, cancellation/retry and removal. Verify size, SHA-256, manifest and all chapter contents before atomic installation. Daily passages do not depend on downloaded Bibles.",
+        "coverage": "Display only declared books/chapters and visibly mark partial chapters. Never silently replace an unavailable edition, chapter, verse or language.",
+        "credits": "Selected edition credit and source link, plus optional per-book translator attribution and source link."
+      }
+    },
+    "calendarReference": {
+      "purpose": "Event Calendar opened separately from Home; selecting Readings for this Date shares the civil date and opens daily Readings.",
+      "presentation": "Native sheet/dialog on Apple/Android; independent native reference window on Windows.",
+      "liturgicalCalendar": {
+        "behavior": "Browse a month of published observances from the selected calendar and Pascha usage. Previous/next month and Today use local civil dates. Selecting an observance opens that date in Daily Readings; source coverage gaps remain empty. Calendar widget activation follows today and opens this mode. Mac exposes the same month list in a native Today sheet.",
+        "sources": {
+          "iOS": "Views/Readings/LiturgicalCalendarView.swift + Views/Readings/BibleView.swift + Views/Home/MacTodayView.swift",
+          "android": "ui/readings/LiturgicalCalendarContent.kt + ui/readings/ReadingsScreen.kt",
+          "windows": "Views/LiturgicalCalendarControl.xaml(.cs) + ViewModels/LiturgicalCalendarViewModel.cs + Views/DesktopReadingsPage.xaml(.cs)"
+        }
       }
     }
   },

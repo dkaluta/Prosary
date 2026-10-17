@@ -15,6 +15,7 @@ This contract covers the 0.21 native changes; existing architecture continues to
 | Scrollbar | Native ScrollView, Compose scroll containers, WinUI scrolling controls | Platform conventions | Page / bounded native sheet body | Build and reachable-action inspection |
 | CRUD | Home widget preferences and app-private photo store | Shared home-widgets schema | Add/change/remove image; add/remove/reorder card | Existing photo tests and new card-state tests |
 | Toast | Existing native inline error/alert owners | Platform sibling flows | Recoverable import or passage error | Focused failure-path tests |
+| Bible pagination | Native Bible chapter readers and whole-source-block paginators | Shared/BIBLE-VIEWER.markdown and source block order | Wide justified facing pages with inline verse indicators and directional turns / narrow continuous reading | Pagination, typography, canonical verse jump, resize and RTL checks |
 
 Home expansion changes only that card's size. It preserves widget order, the selected civil
 date, images, settings and the prayer session. Removing a card is independent of hiding its
@@ -41,3 +42,7 @@ All controls and empty/error/accessibility strings ship in eight interface local
 Arabic use actual RTL; prayer language, interface language, Bible edition and calendar remain
 independent. Device-specific photos and paths never synchronize. Preset, cloud and downloaded
 prayer deletion retain their existing architecture contracts, including exact-ID retirement.
+
+Home Torah and haftarot reuse TodayInfoStore and the canonical Hebcal table. Readings owns daily appointments and enabled Torah/haftarah passages; Home Calendar and full Scripture open separate native reference surfaces. Feast explanations reuse source section owners and exclude reflection sections only after complete prose coverage is verified and the separate exact-language reflection copy matches all combined reflection-section text after whitespace normalization. Otherwise the complete source explanation remains visible. The feast card has no image picker. Explicit Android palette selection removes accent overrides so the chosen color is visible.
+
+Per-card colors use homeWidgetColors and the existing Today palette, independently of app accent and source liturgical colors. Adaptive Home grids use actual safe pane width and natural card heights. Apple HomeLayoutCloud reuses CloudSyncedList for an atomic versioned layout snapshot; initial defaults and migrations never publish over an incoming account layout.

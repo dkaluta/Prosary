@@ -111,7 +111,7 @@ public partial class HomeViewModel : ObservableObject
 
     private string? _saintDescriptionsContext;
     public bool ShowsSaintDescriptions => SaintDescriptions.Count > 0;
-    public string SaintDescriptionsTitle => Loc.Tr("home_today_about_saints", "About the saints", TodayLanguage);
+    public string SaintDescriptionsTitle => Loc.Tr("home_today_about_saints", "About the Feast and Day", TodayLanguage);
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(ShowsMonthIntention))]
@@ -200,7 +200,7 @@ public partial class HomeViewModel : ObservableObject
         : Loc.Tr("home_today_torah_portion", "Weekly Torah portion", TodayLanguage);
     public string TorahPortionTitle => TodayTorahPortion?.LocalizedTitle(TodayLanguage) ?? "";
     public string TorahPortionReadings => TodayTorahPortion is { } portion
-        ? string.Join(Environment.NewLine, (portion.Readings ?? []).Select(r => r.LocalizedFull(TodayLanguage)))
+        ? string.Join(Environment.NewLine, portion.AllReadings.Select(r => r.LocalizedFull(TodayLanguage)))
         : "";
 
     public string TodayLanguage => UiLanguageCatalog.Current;

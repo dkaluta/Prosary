@@ -129,4 +129,25 @@ final class FeastSaintDescriptionTests: XCTestCase {
     XCTAssertEqual(reflection.text, "Fixture reflection.")
     XCTAssertTrue(reflection.sections.isEmpty)
   }
+
+  func testReflectionPartitionRequiresTheCompleteSameLanguageCopy() throws {
+    let sections: [[String: Any]] = [
+      ["id": "about", "titleByLanguage": ["en": "About"], "textByLanguage": ["en": "Source explanation."]],
+      ["id": "reflection", "titleByLanguage": ["en": "First reflection"], "textByLanguage": ["en": "First prompt."]],
+      ["id": "reflection", "titleByLanguage": ["en": "Second reflection"], "textByLanguage": ["en": "Second prompt."]]
+    ]
+    let fullText = "About:\nSource explanation.\n\nFirst reflection:\nFirst prompt.\n\nSecond reflection:\nSecond prompt."
+    for reflections in [[:], ["en": "Different prompt."], ["en": "First prompt."], ["he": "First prompt. Second prompt."]] {
+      let feast = try sectionFixture(sections, descriptions: ["en": fullText], reflections: reflections)
+      let row = try XCTUnwrap(feast.saintDescriptions(calendarID: "roman", language: "en").first)
+      XCTAssertEqual(row.text, fullText)
+      XCTAssertEqual(row.sections.map(\.id), ["about", "reflection", "reflection"])
+    }
+    let feast = try sectionFixture(sections, descriptions: ["en": fullText],
+      reflections: ["en": " First prompt.\r\n\nSecond   prompt. "])
+    let row = try XCTUnwrap(feast.saintDescriptions(calendarID: "roman", language: "en").first)
+    XCTAssertEqual(row.text, "About:\nSource explanation.")
+    XCTAssertEqual(row.sections.map(\.id), ["about"])
+    XCTAssertEqual(feast.observances?.first?.descriptionByLanguage?["en"], fullText)
+  }
 }

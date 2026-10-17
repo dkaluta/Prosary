@@ -11,7 +11,6 @@ struct DailyReadingsView: View {
   @AppStorage("expandReadingsByDefault") private var expandReadingsByDefault = false
   @AppStorage(ReadingDisplayOrder.defaultsKey) private var reverseReadingsOrder = false
   @Binding var dateSelection: MacTodayDateSelection
-  @Binding var mode: String
   @State private var showsDatePicker = false
   @State private var showsOptions = false
   @State private var readings: [ReadingCitation] = []
@@ -44,7 +43,6 @@ struct DailyReadingsView: View {
   var body: some View {
     ScrollView {
       VStack(alignment: .leading, spacing: 24) {
-        ReadingModeSelector(mode: $mode)
         if usesDateToolbar {
           Text(calendarName)
             .font(.caption)
@@ -84,7 +82,7 @@ struct DailyReadingsView: View {
                  : String(localized: "home.today.torahPortion", defaultValue: "Weekly Torah portion", bundle: UILanguage.bundle, locale: UILanguage.locale))
               .font(.headline).accessibilityAddTraits(.isHeader)
             Text(torah.localizedTitle(language))
-            ForEach(Array(torah.readings.enumerated()), id: \.offset) { _, reading in
+            ForEach(Array(torah.allReadings.enumerated()), id: \.offset) { _, reading in
               ScripturePassageView(reading: reading, isTorah: true, interfaceLanguage: language)
                 .id(passageContext)
             }

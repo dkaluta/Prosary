@@ -102,10 +102,19 @@ struct FeastObservance: Decodable, Equatable {
     let description = texts?[code].flatMap { $0.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? nil : $0 }
     let localizedSections = includesSections ? (sections ?? []).compactMap { $0.localized(code) } : []
     let assembledSections = localizedSections.map { "\($0.title):\n\($0.text)" }.joined(separator: "\n\n")
-    let displayedSections = !localizedSections.isEmpty
+    let completeSections = !localizedSections.isEmpty
       && (description == nil || normalizedCalendarProse(assembledSections) == normalizedCalendarProse(description ?? ""))
       ? localizedSections : []
-    guard let text = description ?? (displayedSections.isEmpty ? nil : assembledSections) else { return nil }
+    // Partition only when the independent card has the complete same-language reflection.
+    let reflectionSections = completeSections.filter { $0.id == "reflection" }
+    let separateReflection = reflectionByLanguage?[code]
+    let canSeparateReflection = !reflectionSections.isEmpty && separateReflection != nil
+      && normalizedCalendarProse(reflectionSections.map(\.text).joined(separator: "\n\n"))
+        == normalizedCalendarProse(separateReflection ?? "")
+    let displayedSections = completeSections.filter { !canSeparateReflection || $0.id != "reflection" }
+    let displayedText = completeSections.isEmpty ? description
+      : displayedSections.map { "\($0.title):\n\($0.text)" }.joined(separator: "\n\n")
+    guard let text = displayedText, !text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else { return nil }
     let source = descriptionSourceByLanguage?[code].flatMap(URL.init(string:))
     let sourceURL = source.flatMap { url in
       ["https", "http"].contains(url.scheme?.lowercased() ?? "") && url.host != nil ? url : nil
@@ -236,6 +245,9 @@ struct TorahPortion: Decodable, Equatable {
   let isHoliday: Bool
   let readings: [ReadingCitation]
   let sourceUrl: String
+  var haftarah: [ReadingCitation]? = nil
+  var haftarahSephardic: [ReadingCitation]? = nil
+  var allReadings: [ReadingCitation] { readings + (haftarah ?? []) + (haftarahSephardic ?? []) }
 
   func localizedTitle(_ language: String) -> String {
     HebrewDisplayText.unpointed(localizedValue(titleByLanguage, language: language) ?? title)

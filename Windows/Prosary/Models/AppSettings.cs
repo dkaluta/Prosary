@@ -96,10 +96,38 @@ public static class AppSettings
     private static IReadOnlyDictionary<string, string>? _homeWidgetGraphicPaths;
     private static string? _customAccentColorHex;
 
-    public static IReadOnlyList<string> HomeWidgetOrder => _homeWidgetOrder ??=
-        HomeWidgets.Parse(ReadLocalSetting("homeWidgetOrder") as string);
+    public static IReadOnlyList<string> HomeWidgetOrder
+    {
+        get
+        {
+            if (_homeWidgetOrder is not null) return _homeWidgetOrder;
+            _homeWidgetOrder = HomeWidgets.Parse(ReadLocalSetting("homeWidgetOrder") as string);
+            if (ReadLocalSetting("homeWidgetLayoutVersion") as string != "1")
+            {
+                _homeWidgetOrder = HomeWidgets.AddingDailyCards(_homeWidgetOrder);
+                WriteLocalSetting("homeWidgetOrder", string.Join('\n', _homeWidgetOrder));
+                WriteLocalSetting("homeWidgetLayoutVersion", "1");
+            }
+            return _homeWidgetOrder;
+        }
+    }
 
     public static event Action? HomeWidgetsChanged;
+    private static IReadOnlyDictionary<string, string>? _homeWidgetColors;
+    public static IReadOnlyDictionary<string, string> HomeWidgetColors => _homeWidgetColors ??=
+        HomeWidgets.ParseColors(ReadLocalSetting("homeWidgetColors") as string);
+
+    public static void SetHomeWidgetColor(string id, string color)
+    {
+        if (!HomeWidgets.All.Contains(id)) return;
+        var colors = HomeWidgetColors.ToDictionary(pair => pair.Key, pair => pair.Value);
+        if (color == "default" || !HomeWidgets.ColorIds.Contains(color)) colors.Remove(id);
+        else colors[id] = color;
+        _homeWidgetColors = colors;
+        WriteLocalSetting("homeWidgetColors", System.Text.Json.JsonSerializer.Serialize(colors.OrderBy(pair => pair.Key)
+            .ToDictionary(pair => pair.Key, pair => pair.Value)));
+        HomeWidgetsChanged?.Invoke();
+    }
 
     public static IReadOnlyList<string> HomeWidgetCollapsedIds => _homeWidgetCollapsedIds ??=
         HomeWidgets.ParseCollapsed(ReadLocalSetting("homeWidgetCollapsedIds") as string);

@@ -10,6 +10,7 @@ namespace Prosary;
 /// <summary>The library is one native window; opening a prayer preserves its selection and sidebar.</summary>
 public sealed partial class MainWindow : Window
 {
+    private readonly Dictionary<string, ReferenceWindow> _referenceWindows = new();
     public MainWindow()
     {
         InitializeComponent();
@@ -28,6 +29,7 @@ public sealed partial class MainWindow : Window
         AppNav.FooterMenuItems.Add(Section("about", "AbtTitle/Text", "About", "\uE946"));
         Closed += (_, _) =>
         {
+            foreach (var reference in _referenceWindows.Values.ToArray()) reference.Close();
             Router.Unregister(RootFrame);
             RootFrame.Content = null;
         };
@@ -61,7 +63,6 @@ public sealed partial class MainWindow : Window
         if (readingsOnly)
         {
             navigation.Navigate<DesktopReadingsPage>("daily");
-            if (RootFrame.Content is DesktopReadingsPage readings) readings.ShowDailyReadings();
         }
         else navigation.Navigate<DesktopTodayPage>();
         RootFrame.BackStack.Clear();
@@ -69,8 +70,22 @@ public sealed partial class MainWindow : Window
 
     public void ShowReadingsMode(string mode)
     {
+        if (mode is "calendar" or "bible")
+        {
+            if (_referenceWindows.TryGetValue(mode, out var existing)) { existing.Activate(); return; }
+            var reference = new ReferenceWindow(mode, Router.For(RootFrame).Today, date =>
+            {
+                if (Router.For(RootFrame).Today is { } today)
+                    today.SelectedTodayDate = new DateTimeOffset(date.ToDateTime(TimeOnly.MinValue));
+                SelectSection("readings");
+                Activate();
+            });
+            _referenceWindows.Add(mode, reference);
+            reference.Closed += (_, _) => _referenceWindows.Remove(mode);
+            reference.Activate();
+            return;
+        }
         SelectSection("readings");
-        if (RootFrame.Content is DesktopReadingsPage readings) readings.ShowMode(mode);
     }
 
     private void OnNavSelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)

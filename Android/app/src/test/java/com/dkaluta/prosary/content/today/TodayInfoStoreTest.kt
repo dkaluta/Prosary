@@ -667,6 +667,15 @@ class TodayInfoStoreTest {
     }
 
     @Test
+    fun haftarotKeepTheAppointedSourceCustomsAndLocalizedReferences() {
+        val portion = TodayInfoStore.torahPortion(date("2026-01-10"))!!
+        assertEquals(listOf("Isaiah 27:6–28:13, 29:22–23"), portion.haftarah.map { it.full })
+        assertEquals(listOf("Jeremiah 1:1–2:3"), portion.haftarahSephardic.map { it.full })
+        assertEquals(listOf("reading", "haftarah", "haftarahSephardic"), portion.allReadings.map { it.type })
+        portion.allReadings.forEach { citation -> assertFalse(citation.full == citation.localizedFull("he")) }
+    }
+
+    @Test
     fun torahFestivalYearsUseAnnoMundiOutsideHebrewAndGematriaInHebrew() {
         val cases = listOf(
             Triple("2026-09-07", "2026-09-12", 5787 to "ה׳תשפ״ז"),

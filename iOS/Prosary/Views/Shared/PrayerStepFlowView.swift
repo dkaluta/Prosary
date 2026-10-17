@@ -61,6 +61,9 @@ struct PrayerStepFlowView: View {
 
   @Environment(\.horizontalSizeClass) private var horizontalSizeClass
   @Environment(\.verticalSizeClass) private var verticalSizeClass
+  // Read the new bar environment behind its availability check, keeping older iOS and the
+  // other Apple ports on their existing controls without identifying a particular device.
+  @Environment(\.self) private var environment
   @Environment(\.prayerWindowIsModal) private var windowIsModal
   @Environment(\.scenePhase) private var scenePhase
   @State private var speech = PrayerSpeechController()
@@ -167,10 +170,17 @@ struct PrayerStepFlowView: View {
 
   private var showsCompactHeader: Bool {
     #if os(iOS)
-    horizontalSizeClass == .compact
+    horizontalSizeClass == .compact && !usesVerticalToolbar
     #else
     false
     #endif
+  }
+
+  private var usesVerticalToolbar: Bool {
+    #if os(iOS)
+    if #available(iOS 27.1, *) { return environment.toolbarVerticalEdge != nil }
+    #endif
+    return false
   }
 
   /// Matches the pre-load "no step yet" instant to "last step" so the footer doesn't flash a
@@ -189,33 +199,18 @@ struct PrayerStepFlowView: View {
         .fill(seasonColor)
         .frame(height: 6)
 
-      progressHeader
-        .padding(.horizontal)
-        .padding(.top, isCompactHeight ? 6 : 12)
-
-      if let step {
-        // Folding, split views, and desktop windows all use this column's available space.
-        // Include every mystery group when budgeting the bead track, and let artwork yield
-        // width before reducing the readable prayer column.
-        GeometryReader { geo in
-          let layout = PrayerFlowLayout(available: geo.size, compactHeight: isCompactHeight,
-            accessoryWidth: accessoryWidth?(geo.size.height >= 300))
-          if layout.isWide {
-            wideContent(step: step, layout: layout)
-          } else {
-            narrowContent(step: step, available: geo.size)
-          }
+      // Progress and audio belong to the reader pane too: either can cross a vertical fold
+      // when left outside the arrangement that protects the prayer body.
+      GeometryReader { geometry in
+        #if os(iOS)
+        if #available(iOS 27.1, *) {
+          reservedRegionContent(geometry: geometry)
+        } else {
+          standardPrayerContent
         }
-      } else {
-        Spacer()
-        ProgressView()
-        Spacer()
-      }
-
-      if let audioBar {
-        audioBar
-          .padding(.horizontal)
-          .padding(.bottom, 6)
+        #else
+        standardPrayerContent
+        #endif
       }
     }
     .prosaryNavigationBar(edge: .top) {
@@ -223,7 +218,7 @@ struct PrayerStepFlowView: View {
     }
     .prosaryNavigationBar(edge: .bottom) {
       // Counter flows advance through their central action and need no duplicate footer.
-      if centralActionLabel == nil {
+      if centralActionLabel == nil && !usesVerticalToolbar {
         ProsaryGlassControlGroup(spacing: PrayerControlMetrics.rowSpacing) {
           HStack(spacing: PrayerControlMetrics.rowSpacing) {
             Button("prayerFlow.back") { onBack() }
@@ -249,6 +244,38 @@ struct PrayerStepFlowView: View {
           .padding(isCompactHeight ? 8 : 16)
         }
       }
+    }
+  }
+
+  private var standardPrayerContent: some View {
+    VStack(spacing: 0) {
+      paddedProgressHeader
+      if let step {
+        // Keep the fitting budget scoped to the space remaining after progress and audio.
+        GeometryReader { geometry in
+          adaptiveContent(step: step, available: geometry.size)
+        }
+      } else {
+        Spacer()
+        ProgressView()
+        Spacer()
+      }
+      paddedAudioBar
+    }
+  }
+
+  private var paddedProgressHeader: some View {
+    progressHeader
+      .padding(.horizontal)
+      .padding(.top, isCompactHeight ? 6 : 12)
+  }
+
+  @ViewBuilder
+  private var paddedAudioBar: some View {
+    if let audioBar {
+      audioBar
+        .padding(.horizontal)
+        .padding(.bottom, 6)
     }
   }
 
@@ -309,8 +336,29 @@ struct PrayerStepFlowView: View {
           autoAdvanceMenu
         }
       }
+      #if os(iOS)
+      if usesVerticalToolbar, centralActionLabel == nil {
+        if #available(iOS 27.1, *) {
+          ToolbarItemGroup(placement: .bottomBar) {
+            Button(action: onBack) {
+              Label("prayerFlow.back", systemImage: "chevron.backward")
+            }
+            .disabled(!canGoBack)
+            .accessibilityIdentifier("prayerFlowBackButton")
+            Button(action: onNext) {
+              Label(isLastStep ? "prayerFlow.finish" : "prayerFlow.next",
+                    systemImage: isLastStep ? "checkmark" : "chevron.forward")
+            }
+            .disabled(step == nil)
+            .accessibilityIdentifier("prayerFlowNextButton")
+          }
+          .visibilityPriority(.high)
+        }
+      }
+      #endif
       }
     }
+    .modifier(PrayerToolbarCompression())
     // Restarts whenever the step, the interval, or the loaded state changes — so tapping
     // Back/Next resets the countdown, and turning the setting off cancels it. Never fires on
     // the last step: auto-"Finish" would dismiss the whole flow mid-prayer. Suspended outright
@@ -438,6 +486,75 @@ struct PrayerStepFlowView: View {
   }
 
   @ViewBuilder
+  private func adaptiveContent(step: RosaryStep, available: CGSize) -> some View {
+    let layout = PrayerFlowLayout(available: available, compactHeight: isCompactHeight,
+      accessoryWidth: accessoryWidth?(available.height >= 300))
+    if layout.isWide {
+      wideContent(step: step, layout: layout)
+    } else {
+      narrowContent(step: step, available: available)
+    }
+  }
+
+  #if os(iOS)
+  @available(iOS 27.1, *)
+  @ViewBuilder
+  private func reservedRegionContent(geometry: GeometryProxy) -> some View {
+    let bounds = CGRect(origin: .zero, size: geometry.size)
+    let divisions = geometry.reservedRegions(kind: .division, layoutDirectionBehavior: .fixed)
+      .filter { $0.isActive && PrayerReservedRegionLayout.intersects($0.frame, bounds: bounds) }
+    if let step, !divisions.isEmpty {
+      // Native arrangements follow the actual fold in either axis. Each pane remains a
+      // bounded scroll surface, and the reader retains the session's body-relative anchor.
+      ArrangementView {
+        ReservedRegionAvoidingContent { available in
+          foldedArtwork(step: step, available: available)
+        }
+        .accessibilityElement(children: .contain)
+        .accessibilityIdentifier("prayerFoldArtworkPane")
+      } secondary: {
+        ReservedRegionAvoidingContent { _ in
+          VStack(spacing: 0) {
+            paddedProgressHeader
+            GeometryReader { readerGeometry in
+              ScrollView {
+                textBlock(step: step)
+                  .frame(maxWidth: .infinity)
+                  .padding(Self.narrowContentPadding)
+                  .frame(minHeight: readerGeometry.size.height, alignment: .center)
+              }
+            }
+            paddedAudioBar
+          }
+        }
+        .accessibilityElement(children: .contain)
+        .accessibilityIdentifier("prayerFoldReaderPane")
+      }
+      .arrangementViewStyle(.split)
+      .accessibilityIdentifier("prayerFoldArrangement")
+    } else {
+      ReservedRegionAvoidingContent { _ in standardPrayerContent }
+    }
+  }
+
+  @available(iOS 27.1, *)
+  private func foldedArtwork(step: RosaryStep, available: CGSize) -> some View {
+    let imageSide = max(0, min(available.width - Self.narrowContentPadding * 2,
+      available.height - Self.narrowContentPadding * 2, 340))
+    return ScrollView([.horizontal, .vertical]) {
+      VStack(spacing: 12) {
+        if let accessory { accessory(false, true) }
+        mysteryImage(step: step)
+          .frame(width: imageSide, height: imageSide)
+          .clipShape(RoundedRectangle(cornerRadius: 16))
+      }
+      .padding(Self.narrowContentPadding)
+      .frame(minWidth: available.width, minHeight: available.height, alignment: .center)
+    }
+  }
+  #endif
+
+  @ViewBuilder
   private func narrowContent(step: RosaryStep, available: CGSize) -> some View {
     // Sized from the flow's own column, measured by the GeometryReader above.
     // containerRelativeFrame resolved against the whole window instead, so on a slim Mac
@@ -446,7 +563,8 @@ struct PrayerStepFlowView: View {
     // clipped mid-word at the column's edge. Capping against the column's *height* as well
     // keeps the body visible without scrolling when the window is short.
     let contentWidth = max(min(available.width, PrayerFlowLayout.readerViewportMaximumWidth) - Self.narrowContentPadding * 2, 0)
-    let imageSide = max(min(contentWidth * 0.75, available.height * 0.4, 340), 120)
+    let imageSide = max(0, min(contentWidth,
+      max(min(contentWidth * 0.75, available.height * 0.4, 340), 120)))
 
     VStack(spacing: 12) {
       if let accessory {
@@ -661,5 +779,19 @@ struct PrayerStepFlowView: View {
   private func bodyAttributedString(_ body: String) -> AttributedString {
     (try? AttributedString(markdown: body, options: .init(interpretedSyntax: .inlineOnlyPreservingWhitespace)))
       ?? AttributedString(body)
+  }
+}
+
+/// In a prayer the step controls take precedence when a vertical bar runs out of room.
+private struct PrayerToolbarCompression: ViewModifier {
+  @ViewBuilder
+  func body(content: Content) -> some View {
+    #if os(iOS)
+    if #available(iOS 27.1, *) {
+      content.toolbarVerticalCompressionBehavior(.prefersToolbarItems)
+    } else { content }
+    #else
+    content
+    #endif
   }
 }

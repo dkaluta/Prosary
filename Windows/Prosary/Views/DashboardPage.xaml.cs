@@ -4,6 +4,7 @@ using Microsoft.UI.Dispatching;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
+using Microsoft.UI.Xaml.Media;
 using Prosary.Localization;
 using Prosary.Models;
 using Prosary.Navigation;
@@ -19,6 +20,7 @@ public sealed partial class DashboardPage : Page
     public FlowDirection ContentDirection => UiLanguageCatalog.IsRightToLeft(UiLanguageCatalog.Current)
         ? FlowDirection.RightToLeft : FlowDirection.LeftToRight;
     private readonly DispatcherQueueTimer _clock;
+    private readonly Windows.UI.ViewManagement.AccessibilitySettings _accessibility = new();
     private bool _dialogOpen;
     private bool _photoBusy;
     private TextBlock? _customizationError;
@@ -34,6 +36,7 @@ public sealed partial class DashboardPage : Page
         _clock.Tick += (_, _) => RefreshToday();
         Loaded += OnLoaded;
         Unloaded += OnUnloaded;
+        ActualThemeChanged += (_, _) => RefreshCardColors();
     }
 
     protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -49,10 +52,12 @@ public sealed partial class DashboardPage : Page
         AppSettings.ReadingsOrderChanged += OnReadingsOrderChanged;
         AppSettings.ReadingsEditionChanged += OnReadingsOrderChanged;
         AppSettings.TypographyChanged += OnTypographyChanged;
+        _accessibility.HighContrastChanged += OnHighContrastChanged;
         Prosary.Services.BibleLibraryStore.Default.Changed += OnBibleChanged;
         DesktopLibraryChanges.Changed += OnLibraryChanged;
         if (ViewModel.Today is { } today) today.PropertyChanged += OnTodayChanged;
         ViewModel.ReloadLayout();
+        RefreshCardColors();
         RefreshToday();
         await RefreshRemindersAsync();
         if (IsLoaded) _clock.Start();
@@ -65,6 +70,7 @@ public sealed partial class DashboardPage : Page
         AppSettings.ReadingsOrderChanged -= OnReadingsOrderChanged;
         AppSettings.ReadingsEditionChanged -= OnReadingsOrderChanged;
         AppSettings.TypographyChanged -= OnTypographyChanged;
+        _accessibility.HighContrastChanged -= OnHighContrastChanged;
         Prosary.Services.BibleLibraryStore.Default.Changed -= OnBibleChanged;
         DesktopLibraryChanges.Changed -= OnLibraryChanged;
         if (ViewModel.Today is { } today) today.PropertyChanged -= OnTodayChanged;
@@ -74,6 +80,7 @@ public sealed partial class DashboardPage : Page
     {
         if (!IsLoaded) return;
         ViewModel.ReloadLayout();
+        RefreshCardColors();
         await RefreshRemindersAsync();
     });
 
@@ -140,6 +147,50 @@ public sealed partial class DashboardPage : Page
     { if (sender is FrameworkElement { DataContext: HomeWidgetCard card }) ViewModel.MoveDownCommand.Execute(card); }
     private void OnToggleSize(object sender, RoutedEventArgs e)
     { if (sender is FrameworkElement { DataContext: HomeWidgetCard card }) ViewModel.ToggleSizeCommand.Execute(card); }
+    private void OnCardColor(object sender, RoutedEventArgs e)
+    {
+        if (sender is not Button { DataContext: HomeWidgetCard card } button) return;
+        var selected = AppSettings.HomeWidgetColors.GetValueOrDefault(card.Id) ?? "default";
+        var menu = new MenuFlyout();
+        foreach (var id in HomeWidgets.ColorIds)
+        {
+            var choice = new ToggleMenuFlyoutItem
+            {
+                Text = id == "default" ? Loc.Tr("settings_today_card_default", "Default") : AppColorPalette.Resolve(id).Label,
+                IsChecked = selected == id,
+            };
+            choice.Click += (_, _) => AppSettings.SetHomeWidgetColor(card.Id, id);
+            menu.Items.Add(choice);
+        }
+        menu.ShowAt(button);
+    }
+
+    private void RefreshCardColors()
+    {
+        var normal = (Brush)Application.Current.Resources["CardBackgroundFillColorDefaultBrush"];
+        var highContrast = _accessibility.HighContrast;
+        var dark = ActualTheme == ElementTheme.Dark;
+        var page = Application.Current.Resources["ApplicationPageBackgroundThemeBrush"] is SolidColorBrush nativePage
+            ? nativePage.Color
+            : Windows.UI.Color.FromArgb(255, dark ? (byte)32 : (byte)243,
+                dark ? (byte)32 : (byte)243, dark ? (byte)32 : (byte)243);
+        foreach (var card in ViewModel.Cards)
+        {
+            var id = AppSettings.HomeWidgetColors.GetValueOrDefault(card.Id) ?? "default";
+            if (id == "default" || highContrast || normal is not SolidColorBrush surface)
+            {
+                card.CardBackground = normal;
+                continue;
+            }
+            var tint = AppColorPalette.Resolve(id).Accent(dark);
+            // Fluent cards are translucent white, even in dark mode. Composite their
+            // native alpha over the page before adding the quiet opaque accent tint.
+            card.CardBackground = new SolidColorBrush(
+                AppColorPalette.TintedCardBackground(tint, surface.Color, page, surface.Opacity));
+        }
+    }
+    private void OnHighContrastChanged(Windows.UI.ViewManagement.AccessibilitySettings sender, object args) =>
+        DispatcherQueue.TryEnqueue(() => { if (IsLoaded) RefreshCardColors(); });
     private void OnEditReminder(object sender, RoutedEventArgs e)
     { if (sender is FrameworkElement { DataContext: HomeReminderRow row }) ViewModel.EditReminderCommand.Execute(row); }
 
@@ -231,7 +282,7 @@ public sealed partial class DashboardPage : Page
     {
         if (_dialogOpen || _photoBusy) return;
         var card = (sender as FrameworkElement)?.Tag as HomeWidgetCard ?? (sender as FrameworkElement)?.DataContext as HomeWidgetCard;
-        if (card is null) return;
+        if (card is null || !card.CanChooseGraphic) return;
         var owner = Router.For(this).OwnerWindow;
         if (owner is null) return;
         _photoBusy = true;

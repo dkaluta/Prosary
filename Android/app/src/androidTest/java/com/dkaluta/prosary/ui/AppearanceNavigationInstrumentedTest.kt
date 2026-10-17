@@ -36,6 +36,7 @@ class AppearanceNavigationInstrumentedTest {
             compose.waitUntil(15_000) { compose.onAllNodes(hasTestTag("homeDashboard")).fetchSemanticsNodes().isNotEmpty() }
             val originalColor = AppSettings.appColor
             val originalSystemColors = AppSettings.useSystemColors
+            val originalCustomAccent = AppSettings.customAccentColorHex
             try {
                 compose.onNodeWithContentDescription(context.getString(R.string.common_settings)).performClick()
                 compose.onNodeWithTag("settingsAppearance").performScrollTo().assertIsDisplayed()
@@ -54,17 +55,25 @@ class AppearanceNavigationInstrumentedTest {
                         .performScrollTo().assertIsDisplayed()
                     if (color == AppColor.Blue || color == AppColor.White) captureScreenshot("appearance-${color.id}")
                 }
+                scenario.onActivity {
+                    AppSettings.customAccentColorHex = "#A12345"
+                    AppSettings.useSystemColors = true
+                }
                 compose.onNodeWithTag("appColor.purple").performScrollTo().performClick().assertIsSelected()
                 assertEquals("purple", AppSettings.appColor)
+                assertEquals("", AppSettings.customAccentColorHex)
+                assertFalse(AppSettings.useSystemColors)
                 compose.onNodeWithTag("appearanceScreen").assertExists()
                 captureScreenshot("appearance-selected")
                 if (Build.VERSION.SDK_INT >= 31) {
                     compose.onNodeWithTag("useSystemColors").performScrollTo().performClick()
-                    assertEquals(!originalSystemColors, AppSettings.useSystemColors)
+                    assertTrue(AppSettings.useSystemColors)
                 } else compose.onNodeWithTag("useSystemColors").assertDoesNotExist()
                 scenario.recreate()
                 compose.onNodeWithTag("appearanceScreen").assertExists()
                 compose.onNodeWithTag("appColor.purple").performScrollTo().assertIsSelected()
+                assertEquals("", AppSettings.customAccentColorHex)
+                assertEquals(Build.VERSION.SDK_INT >= 31, AppSettings.useSystemColors)
                 pressBack()
                 compose.onNodeWithTag("settingsAppearance").assertIsDisplayed()
                 assertEquals(previousScroll, settingsScroll(), 1f)
@@ -74,6 +83,7 @@ class AppearanceNavigationInstrumentedTest {
             } finally {
                 scenario.onActivity {
                     assertTrue(LauncherIconController.select(it, originalColor))
+                    AppSettings.customAccentColorHex = originalCustomAccent
                     AppSettings.useSystemColors = originalSystemColors
                 }
             }

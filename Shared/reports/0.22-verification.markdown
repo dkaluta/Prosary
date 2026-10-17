@@ -1,0 +1,22 @@
+# Prosary 0.22 verification
+
+Verified on October 17, 2026 from an isolated release tree that excludes the pending Bible-pagination, Repository and Expo handoff work.
+
+## Resulting behavior
+
+Home includes the weekly Torah portion and published haftarot, a separate reflection card, per-card Default/Blue/Green/Gold/Rose palettes, and adaptive grids. Feast explanations retain supplied hymns and Syriac tradition, exclude reflection prompts only when an exact-language reflection copy matches, and offer no private-image actions. Readings contains daily appointments; Bible and Calendar open as separate native references without the clipped duplicate Scripture preview. Explicit Android app-palette choices clear accent overrides.
+
+Apple Home layout preferences use the existing iCloud key-value store for one versioned atomic order/visibility/size/color snapshot. Initial defaults and migration do not publish; photos, dates and responsive columns remain local. This does not add a CloudKit schema or change saved-prayer mirroring.
+
+## Validation
+
+- Android: 569 unit tests passed with no failures, errors or skips. Native interaction-test APK assembled, including color/reset and Home reference navigation checks.
+- Apple: 591 XCTest and 2 Swift Testing tests passed on the iPhone Duo simulator with Xcode 27.1. Mac build passed. Two focused simulator UI checks passed for standalone Calendar and standalone Bible with daily-date preservation. The palette menu and Blue selection were exercised; the complete independence/reset UI run was interrupted by the simulator test driver at this checkpoint. Pure palette normalization/reset tests pass.
+- Windows: actual WinUI/Windows SDK source API checks passed, including responsive layout, color menus and live high-contrast subscription. Eight native light/dark RGBA tint calculations pass at least 4.5:1 semantic text contrast. Native Windows CI remains a release gate.
+- Shared: 57 focused reading/source tests, Mission source tests, Today data parity, translation completeness, asset deduplication and strict design audit passed. The offline reading builder reproduces the corpus and native copies byte for byte.
+- Torah: 730 civil dates, 105 Sabbaths, 29 distinct Sephardic alternatives and 69 unique haftarah citations. All 69 have at least one source-backed offline edition. Original metadata credits remain intact.
+- Version parity: Android 0.22.0 (57), Apple marketing version 0.22.0, Windows 0.22.0.0.
+
+## Remaining device evidence
+
+Actual partial-fold transitions, cameras and native overlay placement still require physical/device testing. Geometry checks and simulator rotation do not certify those poses. Signed multi-device iCloud propagation has not been verified. Windows rendering and installer distribution require a Windows host. No public App Store launch is implied by this testing release.

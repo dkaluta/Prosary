@@ -55,6 +55,73 @@ final class PrayerAdaptiveLayoutTests: XCTestCase {
   }
 }
 
+final class PrayerReservedRegionLayoutTests: XCTestCase {
+  private let viewport = CGRect(x: 0, y: 0, width: 800, height: 600)
+
+  func testMissingAndNonIntersectingCamerasKeepTheFullViewport() {
+    XCTAssertEqual(PrayerReservedRegionLayout.unobscuredFrame(in: viewport, avoiding: []), viewport)
+    XCTAssertEqual(PrayerReservedRegionLayout.unobscuredFrame(in: viewport,
+      avoiding: [CGRect(x: 800, y: 0, width: 40, height: 40)]), viewport)
+  }
+
+  func testActiveCornerCameraLeavesTheLargestUnobscuredReadingArea() {
+    let camera = CGRect(x: 740, y: 0, width: 60, height: 80)
+    let result = PrayerReservedRegionLayout.unobscuredFrame(in: viewport, avoiding: [camera])
+    XCTAssertEqual(result, CGRect(x: 0, y: 0, width: 740, height: 600))
+    XCTAssertFalse(PrayerReservedRegionLayout.intersects(camera, bounds: result))
+  }
+
+  func testCameraInTheTopCenterMovesContentBelowItsIncludedMargins() {
+    let camera = CGRect(x: 350, y: 0, width: 100, height: 70)
+    let result = PrayerReservedRegionLayout.unobscuredFrame(in: viewport, avoiding: [camera])
+    XCTAssertEqual(result, CGRect(x: 0, y: 70, width: 800, height: 530))
+    XCTAssertFalse(PrayerReservedRegionLayout.intersects(camera, bounds: result))
+  }
+
+  func testMultipleOcclusionsAndOffscreenMarginsStayOutsideTheReader() {
+    let cameras = [CGRect(x: -20, y: -20, width: 80, height: 100),
+      CGRect(x: 740, y: 500, width: 80, height: 120)]
+    let result = PrayerReservedRegionLayout.unobscuredFrame(in: viewport, avoiding: cameras)
+    XCTAssertEqual(result, CGRect(x: 60, y: 0, width: 680, height: 600))
+    XCTAssertTrue(viewport.contains(result))
+    for camera in cameras {
+      XCTAssertFalse(PrayerReservedRegionLayout.intersects(camera, bounds: result))
+    }
+  }
+
+  func testPhysicalCameraPlacementDoesNotDependOnThePrayerWritingDirection() {
+    let leftCamera = CGRect(x: 0, y: 0, width: 60, height: 80)
+    let rightCamera = CGRect(x: 740, y: 0, width: 60, height: 80)
+    XCTAssertEqual(PrayerReservedRegionLayout.unobscuredFrame(in: viewport, avoiding: [leftCamera]),
+      CGRect(x: 60, y: 0, width: 740, height: 600))
+    XCTAssertEqual(PrayerReservedRegionLayout.unobscuredFrame(in: viewport, avoiding: [rightCamera]),
+      CGRect(x: 0, y: 0, width: 740, height: 600))
+  }
+
+  func testZeroSizeAndCompletelyOccludedViewportsStayBounded() {
+    XCTAssertEqual(PrayerReservedRegionLayout.unobscuredFrame(in: .zero, avoiding: [viewport]), .zero)
+    XCTAssertEqual(PrayerReservedRegionLayout.unobscuredFrame(in: viewport, avoiding: [viewport]), .zero)
+  }
+
+  func testArrangementPaneOnlyAvoidsThePartOfACameraInsideItsBounds() {
+    let pane = CGRect(x: 420, y: 0, width: 380, height: 600)
+    let camera = CGRect(x: 400, y: -10, width: 70, height: 90)
+    let result = PrayerReservedRegionLayout.unobscuredFrame(in: pane, avoiding: [camera])
+    XCTAssertEqual(result, CGRect(x: 470, y: 0, width: 330, height: 600))
+    XCTAssertTrue(pane.contains(result))
+    XCTAssertFalse(PrayerReservedRegionLayout.intersects(camera, bounds: result))
+  }
+
+  func testRotatedShortPaneKeepsItsCameraAndIncludedMarginsOutsideContent() {
+    let pane = CGRect(x: 0, y: 320, width: 800, height: 280)
+    let camera = CGRect(x: 350, y: 300, width: 100, height: 70)
+    let result = PrayerReservedRegionLayout.unobscuredFrame(in: pane, avoiding: [camera])
+    XCTAssertEqual(result, CGRect(x: 0, y: 370, width: 800, height: 230))
+    XCTAssertTrue(pane.contains(result))
+    XCTAssertFalse(PrayerReservedRegionLayout.intersects(camera, bounds: result))
+  }
+}
+
 final class PrayerReadingLocationTests: XCTestCase {
   func testReadingPositionFollowsPrayerTextWhenArtworkMovesOutOfTheScroller() {
     var location = PrayerReadingLocation()

@@ -3,6 +3,7 @@ using System.Globalization;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml.Media.Imaging;
+using Microsoft.UI.Xaml.Media;
 using Prosary.Localization;
 using Prosary.Models;
 using Prosary.Navigation;
@@ -22,8 +23,12 @@ public partial class HomeWidgetCard : ObservableObject
     public bool IsPhoto => Id == "photo";
     public bool IsPopeIntention => Id == "popeIntention";
     public bool IsFeast => Id == "feast";
+    public bool CanChooseGraphic => !IsFeast;
     public bool IsReflection => Id == "reflection";
     public bool IsScripture => Id == "scripture";
+    public bool HasScripturePassages => IsScripture || Id == "torah";
+    public string ColorLabel => Loc.Tr("home_widgets_color", "Card Color");
+    [ObservableProperty] private Brush? _cardBackground;
     public string AddGraphicLabel => HasGraphicChoice ? Loc.Tr("home_widgets_change_graphic", "Change Image") : Loc.Tr("home_widgets_add_graphic", "Add Image");
     public string RemoveGraphicLabel => Loc.Tr("home_widgets_remove_graphic", "Remove Image");
     public string GraphicDescription => Loc.Tr("home_widgets_graphic_description", "Your selected image");
@@ -34,14 +39,15 @@ public partial class HomeWidgetCard : ObservableObject
     public string ChoosePhotoLabel => Loc.Tr("home_widgets_choose_photo", "Choose Photo");
     public string RemovePhotoLabel => Loc.Tr("home_widgets_remove_photo", "Remove Photo");
     public string PhotoDescription => Loc.Tr("home_widgets_photo_description", "Your selected photo");
-    public string DetailsLabel => Loc.Tr("home_widgets_feast_details", "About Today’s Feast");
+    public string DetailsLabel => Loc.Tr("home_widgets_feast_details", "About the Feast and Day");
     public string NoDescriptionLabel => Loc.Tr("home_widgets_no_feast_description", "No explanation is available in this language.");
     public string MoveUpLabel => Loc.Tr("home_widgets_move_up", "Move Up");
     public string MoveDownLabel => Loc.Tr("home_widgets_move_down", "Move Down");
     public string RemoveLabel => Loc.Tr("home_widgets_remove", "Remove Widget");
     [ObservableProperty, NotifyPropertyChangedFor(nameof(HasBody)), NotifyPropertyChangedFor(nameof(Summary))] private string _body = "";
+    [ObservableProperty, NotifyPropertyChangedFor(nameof(Summary))] private string? _summaryOverride;
     public bool HasBody => Body.Length > 0;
-    public string Summary => EventSummary.FirstParagraph(IsReflection && Descriptions.Count > 0 ? Descriptions[0].Text
+    public string Summary => SummaryOverride ?? EventSummary.FirstParagraph(IsReflection && Descriptions.Count > 0 ? Descriptions[0].Text
         : Id == "reminders" && Reminders.Count > 0 ? Reminders[0].Title + " · " + Reminders[0].Time
         : IsPhoto && !HasBody ? (HasPhoto ? PhotoDescription : ChoosePhotoLabel) : Body, 150);
     [ObservableProperty, NotifyPropertyChangedFor(nameof(HasPhoto)), NotifyPropertyChangedFor(nameof(AddGraphicLabel)), NotifyPropertyChangedFor(nameof(Summary))] private BitmapImage? _photoSource;
@@ -84,7 +90,7 @@ public partial class DashboardViewModel(IPresetStore presets) : ObservableObject
     public string ChoosePhotoLabel => Label("choose_photo", "Choose Photo");
     public string RemovePhotoLabel => Label("remove_photo", "Remove Photo");
     public string PhotoDescription => Label("photo_description", "Your selected photo");
-    public string DetailsLabel => Label("feast_details", "About Today’s Feast");
+    public string DetailsLabel => Label("feast_details", "About the Feast and Day");
     public string NoDescriptionLabel => Label("no_feast_description", "No explanation is available in this language.");
 
     private static HomeWidgetCard Create(string id) => new()
@@ -93,15 +99,16 @@ public partial class DashboardViewModel(IPresetStore presets) : ObservableObject
         Title = id switch
         {
             "readings" => Label("readings", "Today’s Readings"),
+            "torah" => Label("torah", "Weekly Torah portion and haftarah"),
             "popeIntention" => Label("pope_intention", "Pope’s Intention"),
             "calendar" => Label("calendar", "Calendar"),
             "photo" => Label("photo", "Photo"),
             "reminders" => Label("reminders", "Reminders"),
             "scripture" => Label("scripture", "Holy Scripture"),
             "reflection" => Label("reflection", "Reflection"),
-            _ => Label("feast", "Today’s Feast"),
+            _ => Label("feast", "About the Feast and Day"),
         },
-        Glyph = id switch { "readings" or "scripture" => "\uE8A9", "calendar" => "\uE787",
+        Glyph = id switch { "readings" or "scripture" or "torah" => "\uE8A9", "calendar" => "\uE787",
             "photo" => "\uEB9F", "reminders" => "\uEA8F", "reflection" => "\uE8F2",
             "popeIntention" => "\uE8D7", _ => "\uE734" },
         ActionTitle = id switch
@@ -164,7 +171,7 @@ public partial class DashboardViewModel(IPresetStore presets) : ObservableObject
         if (Today is not null) Scripture.Refresh(Today, showsAllDailyReadings: true);
         foreach (var card in Cards.Concat(AvailableCards))
         {
-            var graphicPath = card.IsPhoto ? AppSettings.HomePhotoPath : AppSettings.HomeWidgetGraphicPaths.GetValueOrDefault(card.Id);
+            var graphicPath = !card.CanChooseGraphic ? null : card.IsPhoto ? AppSettings.HomePhotoPath : AppSettings.HomeWidgetGraphicPaths.GetValueOrDefault(card.Id);
             card.HasGraphicChoice = !string.IsNullOrWhiteSpace(graphicPath);
             card.PhotoSource = !string.IsNullOrWhiteSpace(graphicPath) && File.Exists(graphicPath)
                 ? new BitmapImage(new Uri("ms-appdata:///local/HomePhotos/" + Uri.EscapeDataString(Path.GetFileName(graphicPath)))) : null;
@@ -173,14 +180,35 @@ public partial class DashboardViewModel(IPresetStore presets) : ObservableObject
             switch (card.Id)
             {
                 case "readings":
-                    var citations = ReadingCitation.DisplayOrder(TodayInfoStore.Readings(date), AppSettings.ReverseReadingsOrder);
+                    var sourceCitations = TodayInfoStore.Readings(date);
+                    var citations = ReadingCitation.DisplayOrder(sourceCitations, AppSettings.ReverseReadingsOrder);
                     card.Body = citations.Count == 0 ? Label("no_readings", "No readings are available for this date.")
                         : string.Join(Environment.NewLine, citations.Select(citation => citation.LocalizedFull(language)));
+                    card.SummaryOverride = citations.Count == 0 ? card.Body
+                        : sourceCitations.FirstOrDefault(citation => citation.Type.Equals("gospel", StringComparison.OrdinalIgnoreCase))?.LocalizedShort(language)
+                            ?? string.Join(" · ", citations.Select(citation => citation.LocalizedShort(language)));
                     break;
                 case "popeIntention":
                     var intention = TodayInfoStore.Intention(date);
                     card.Body = intention is null ? Label("no_intention", "No intention is available for this month.")
                         : intention.LocalizedTitle(language) + Environment.NewLine + intention.LocalizedText(language);
+                    break;
+                case "torah":
+                    var portion = TodayInfoStore.WeeklyTorahPortion(date);
+                    card.Body = portion is null ? Label("no_torah", "No Torah portion or haftarah is available for this date.")
+                        : portion.LocalizedTitle(language);
+                    card.SummaryOverride = portion?.LocalizedTitle(language) ?? card.Body;
+                    var store = ReadingsTextStore.Default;
+                    var edition = store.ResolveEdition(AppSettings.ReadingsEditionId, language);
+                    card.ScripturePassages = (portion?.AllReadings ?? []).Select((reading, index) =>
+                    {
+                        var contextKey = $"home|{date:yyyy-MM-dd}|torah|{index}|{reading.Full}|{language}";
+                        var configurationKey = $"{contextKey}|{AppSettings.ReadingsEditionId}|{edition?.Id}";
+                        var existing = card.ScripturePassages.FirstOrDefault(row => row.ContextKey == contextKey);
+                        return existing?.ConfigurationKey == configurationKey ? existing
+                            : new ReadingPassageViewModel(store, edition, "torah", reading, language, contextKey, configurationKey)
+                                { IsExpanded = existing?.IsExpanded ?? AppSettings.ExpandReadingsByDefault };
+                    }).ToList();
                     break;
                 case "calendar":
                     var upcoming = TodayInfoStore.PublishedEvents()
@@ -222,7 +250,7 @@ public partial class DashboardViewModel(IPresetStore presets) : ObservableObject
                 new HomeReminderRow(prayer.Id, prayer.DisplayName, reminder.DisplayTime)));
         if (AppSettings.ReadingsReminderEnabled) rows.Add(new(null, Label("readings", "Today’s Readings"),
             new PrayerReminder(AppSettings.ReadingsReminderMinutes / 60, AppSettings.ReadingsReminderMinutes % 60).DisplayTime));
-        if (AppSettings.SaintReminderEnabled) rows.Add(new(null, Label("feast", "Today’s Feast"),
+        if (AppSettings.SaintReminderEnabled) rows.Add(new(null, Label("feast", "About the Feast and Day"),
             new PrayerReminder(AppSettings.SaintReminderMinutes / 60, AppSettings.SaintReminderMinutes % 60).DisplayTime));
         foreach (var card in Cards.Concat(AvailableCards).Where(card => card.Id == "reminders"))
         {

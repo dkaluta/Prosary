@@ -176,23 +176,20 @@ class BibleNavigationInstrumentedTest {
         }
     }
 
-    @Test fun dailyAndBibleModesRetainSelectedDateWithoutChangingIt() {
+    @Test fun dailyReadingsHasNoFullBibleOrCalendarModeAndKeepsDateBrowsing() {
         val previous = AppSettings.readingsEditionId
         val date = TodayBrowsingDate(LocalDate.of(2026, 10, 1).toEpochDay())
         try {
             AppSettings.readingsEditionId = "douay-rheims-1899"
             compose.setContent { MaterialTheme { ReadingsScreen(browsingDate = date) } }
-            compose.onNodeWithTag("readingsMode.bible").performClick()
-            waitFor("bibleScreen")
-            waitFor("bibleDownload")
-            captureScreenshot("bible-library.png")
+            compose.onNodeWithTag("readingsMode.bible").assertDoesNotExist()
+            compose.onNodeWithTag("readingsMode.daily").assertDoesNotExist()
+            compose.onNodeWithTag("readingsMode.feasts").assertDoesNotExist()
+            compose.onNodeWithTag("bibleScreen").assertDoesNotExist()
             assertEquals(LocalDate.of(2026, 10, 1).toEpochDay(), date.selectedEpochDay)
-            compose.onNodeWithTag("readingsMode.daily").performClick()
             compose.onNodeWithTag("readingsList").performScrollToNode(hasTestTag("readingsPrevious"))
             compose.onNodeWithTag("readingsPrevious").performClick()
             assertEquals(LocalDate.of(2026, 9, 30).toEpochDay(), date.selectedEpochDay)
-            compose.onNodeWithTag("readingsMode.bible").performClick()
-            compose.onNodeWithTag("readingsMode.daily").performClick()
             assertEquals(LocalDate.of(2026, 9, 30).toEpochDay(), date.selectedEpochDay)
         } finally { AppSettings.readingsEditionId = previous }
     }

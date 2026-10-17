@@ -16,9 +16,13 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.GridItemSpan
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.text.selection.SelectionContainer
@@ -32,8 +36,11 @@ import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.ExpandLess
 import androidx.compose.material.icons.filled.ExpandMore
+import androidx.compose.material.icons.filled.Palette
+import androidx.compose.material.icons.filled.Check
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
@@ -44,6 +51,8 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.DisposableEffect
@@ -62,6 +71,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.asImageBitmap
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.compositeOver
+import androidx.compose.ui.graphics.luminance
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
@@ -74,6 +86,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
+import androidx.compose.ui.semantics.selected
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.compose.LocalLifecycleOwner
@@ -82,6 +95,7 @@ import com.dkaluta.prosary.content.today.TodayDateSelection
 import com.dkaluta.prosary.content.today.TodayInfoStore
 import com.dkaluta.prosary.content.today.TodayTranslationLanguage
 import com.dkaluta.prosary.models.AppSettings
+import com.dkaluta.prosary.models.AppColor
 import com.dkaluta.prosary.models.HomeWidget
 import com.dkaluta.prosary.models.Prayer
 import com.dkaluta.prosary.models.PrayerReminder
@@ -109,6 +123,7 @@ import kotlinx.coroutines.withContext
 private val HomeWidget.title: Int
     get() = when (this) {
         HomeWidget.Readings -> R.string.home_widgets_readings
+        HomeWidget.Torah -> R.string.home_widgets_torah
         HomeWidget.PopeIntention -> R.string.home_widgets_pope_intention
         HomeWidget.Calendar -> R.string.home_widgets_calendar
         HomeWidget.Photo -> R.string.home_widgets_photo
@@ -145,6 +160,7 @@ fun HomeDashboardScreen(
     var photoTarget by rememberSaveable { mutableStateOf(HomeWidget.Photo) }
     var handledTodayRequest by rememberSaveable { mutableStateOf(0L) }
     val lifecycle = LocalLifecycleOwner.current
+    val gridState = rememberLazyGridState()
     DisposableEffect(lifecycle) {
         val observer = LifecycleEventObserver { _, event ->
             if (event == Lifecycle.Event.ON_RESUME) { today = LocalDate.now(); generation++ }
@@ -168,9 +184,13 @@ fun HomeDashboardScreen(
         TodayInfoStore.feast(lookupDate)
     }
     val intention = remember(date, generation) { TodayInfoStore.intention(lookupDate) }
+    val torah = remember(date, generation) { TodayInfoStore.torahPortion(lookupDate) }
     var selectedCalendarEvent by remember(date, AppSettings.feastCalendarId) { mutableStateOf<CalendarEvent?>(null) }
-    val readings = remember(date, generation, AppSettings.feastCalendarId, AppSettings.easternPaschaStyle, AppSettings.reverseReadingsOrder) {
-        com.dkaluta.prosary.content.today.ReadingCitation.displayOrder(TodayInfoStore.readings(lookupDate), AppSettings.reverseReadingsOrder)
+    val sourceReadings = remember(date, generation, AppSettings.feastCalendarId, AppSettings.easternPaschaStyle) {
+        TodayInfoStore.readings(lookupDate)
+    }
+    val readings = remember(sourceReadings, AppSettings.reverseReadingsOrder) {
+        com.dkaluta.prosary.content.today.ReadingCitation.displayOrder(sourceReadings, AppSettings.reverseReadingsOrder)
     }
     val calendarName = TodayInfoStore.calendars.firstOrNull { it.id == TodayInfoStore.selectedCalendarId }?.displayName.orEmpty()
     val prayers by produceState<List<Prayer>>(initialValue = emptyList(), generation, services) {
@@ -216,6 +236,7 @@ fun HomeDashboardScreen(
         }
     }
 
+    HomeFoldSafePane {
     Scaffold(topBar = {
         TopAppBar(title = { Text(stringResource(R.string.home_widgets_title)) }, actions = {
             IconButton(onClick = { showsCustomization = true }, modifier = Modifier.testTag("homeCustomize")) {
@@ -230,24 +251,35 @@ fun HomeDashboardScreen(
             LocalHomeGraphicActions provides HomeGraphicActions(
                 choose = { widget -> photoTarget = widget; photoPicker.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly)) },
                 remove = { widget -> removePhoto(widget) }, busy = photoBusy)) {
-            LazyColumn(Modifier.padding(padding).fillMaxSize().testTag("homeDashboard"),
-                contentPadding = PaddingValues(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
-                item("date") {
+            Box(Modifier.fillMaxSize(), contentAlignment = Alignment.TopCenter) {
+            LazyVerticalGrid(columns = GridCells.Adaptive(340.dp),
+                state = gridState,
+                modifier = Modifier.padding(padding).widthIn(max = 1200.dp).fillMaxSize().testTag("homeDashboard"),
+                contentPadding = PaddingValues(16.dp), horizontalArrangement = Arrangement.spacedBy(12.dp),
+                verticalArrangement = Arrangement.spacedBy(12.dp)) {
+                item("date", span = { GridItemSpan(maxLineSpan) }) {
                     Text(date.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL).withLocale(locale)),
                         style = MaterialTheme.typography.titleMedium, modifier = Modifier.testTag("homeDate"))
                 }
-                if (AppSettings.homeWidgetOrder.isEmpty()) item("empty") {
-                    Text(stringResource(R.string.home_widgets_empty))
-                    TextButton(onClick = { showsCustomization = true }) { Text(stringResource(R.string.home_widgets_add)) }
+                if (AppSettings.homeWidgetOrder.isEmpty()) item("empty", span = { GridItemSpan(maxLineSpan) }) {
+                    Column {
+                        Text(stringResource(R.string.home_widgets_empty))
+                        TextButton(onClick = { showsCustomization = true }) { Text(stringResource(R.string.home_widgets_add)) }
+                    }
                 }
                 items(AppSettings.homeWidgetOrder, key = { it.id }) { widget ->
                     when (widget) {
                         HomeWidget.Readings -> DashboardCard(widget, { onOpenReadings(HomeReadingsMode.Daily) },
-                            summary = readings.firstOrNull()?.localizedFull(language) ?: stringResource(R.string.home_widgets_no_readings)) {
+                            summary = sourceReadings.firstOrNull { it.type == "gospel" }?.localizedShort(language)
+                                ?: readings.takeIf { it.isNotEmpty() }?.joinToString(" · ") { it.localizedShort(language) }
+                                ?: stringResource(R.string.home_widgets_no_readings)) {
                             if (readings.isEmpty()) Text(stringResource(R.string.home_widgets_no_readings))
                             else readings.forEachIndexed { index, citation ->
                                 Text(citation.localizedFull(language), modifier = Modifier.fillMaxWidth().testTag("homeReading.$index"))
                             }
+                        }
+                        HomeWidget.Torah -> DashboardCard(widget, summary = torah?.localizedTitle(language) ?: stringResource(R.string.home_widgets_no_torah)) {
+                            com.dkaluta.prosary.ui.readings.TorahPortionCard(torah, language)
                         }
                         HomeWidget.PopeIntention -> DashboardCard(widget, summary = intention?.localizedTitle(language) ?: stringResource(R.string.home_widgets_no_intention)) {
                             if (intention == null) Text(stringResource(R.string.home_widgets_no_intention))
@@ -336,7 +368,9 @@ fun HomeDashboardScreen(
                     }
                 }
             }
+            }
         }
+    }
     }
 
     if (showsCustomization) HomeCustomizationDialog(onDismiss = { showsCustomization = false }, photoBusy = photoBusy,
@@ -361,7 +395,14 @@ private fun DashboardCard(widget: HomeWidget, onClick: (() -> Unit)? = null, sum
     val actionLabel = stringResource(if (expanded) R.string.home_widget_collapse else R.string.home_widget_expand)
     val graphics = LocalHomeGraphicActions.current
     val graphicPath = AppSettings.homeWidgetGraphicPath(widget)
-    Card(Modifier.fillMaxWidth().testTag("homeWidget.${widget.id}").then(if (onClick != null) Modifier.clickable(onClick = onClick) else Modifier)) {
+    val color = AppSettings.homeWidgetColor(widget)
+    val defaultColors = CardDefaults.cardColors()
+    val palette = AppColor.resolve(color)
+    val accent = Color(if (MaterialTheme.colorScheme.surface.luminance() < 0.5f) palette.dark else palette.light)
+    val containerColor = if (color == "default") defaultColors.containerColor
+        else accent.copy(alpha = 0.12f).compositeOver(defaultColors.containerColor)
+    Card(Modifier.fillMaxWidth().testTag("homeWidget.${widget.id}").then(if (onClick != null) Modifier.clickable(onClick = onClick) else Modifier),
+        colors = CardDefaults.cardColors(containerColor = containerColor, contentColor = MaterialTheme.colorScheme.onSurface)) {
         Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 if (widget == HomeWidget.PopeIntention) PapalKeysIcon(Modifier.padding(end = 8.dp))
@@ -370,12 +411,13 @@ private fun DashboardCard(widget: HomeWidget, onClick: (() -> Unit)? = null, sum
                     modifier = Modifier.testTag("homeWidgetSize.${widget.id}").semantics { stateDescription = sizeLabel }) {
                     Icon(if (expanded) Icons.Filled.ExpandLess else Icons.Filled.ExpandMore, contentDescription = actionLabel)
                 }
+                HomeCardColorMenu(widget)
                 if (onClick != null) Icon(Icons.AutoMirrored.Filled.KeyboardArrowRight, contentDescription = null)
             }
             if (expanded) {
-                if (widget != HomeWidget.Photo && graphicPath.isNotEmpty()) HomePhoto(graphicPath, Modifier.testTag("homeWidgetGraphicImage.${widget.id}"))
+                if (widget != HomeWidget.Photo && widget != HomeWidget.Feast && graphicPath.isNotEmpty()) HomePhoto(graphicPath, Modifier.testTag("homeWidgetGraphicImage.${widget.id}"))
                 content()
-                if (widget != HomeWidget.Photo) Row {
+                if (widget != HomeWidget.Photo && widget != HomeWidget.Feast) Row {
                     TextButton(enabled = !graphics.busy, onClick = { graphics.choose(widget) }, modifier = Modifier.testTag("homeWidgetGraphic.${widget.id}")) {
                         Text(stringResource(if (graphicPath.isEmpty()) R.string.home_widget_add_graphic else R.string.home_widget_change_graphic))
                     }
@@ -386,6 +428,29 @@ private fun DashboardCard(widget: HomeWidget, onClick: (() -> Unit)? = null, sum
                 }
             } else if (summary.isNotBlank()) Text(summary, maxLines = 2, overflow = TextOverflow.Ellipsis,
                 color = MaterialTheme.colorScheme.onSurfaceVariant)
+        }
+    }
+}
+
+@Composable
+private fun HomeCardColorMenu(widget: HomeWidget) {
+    var expanded by rememberSaveable(widget.id) { mutableStateOf(false) }
+    val selectedColor = AppSettings.homeWidgetColor(widget)
+    Box {
+        IconButton(onClick = { expanded = true }, modifier = Modifier.testTag("homeWidgetColor.${widget.id}")) {
+            Icon(Icons.Filled.Palette, contentDescription = "${stringResource(R.string.home_widgets_color)}: ${stringResource(widget.title)}")
+        }
+        DropdownMenu(expanded = expanded, onDismissRequest = { expanded = false }) {
+            AppSettings.todayCardColors.forEach { color ->
+                val label = stringResource(if (color == "default") R.string.settings_today_card_color_default else AppColor.resolve(color).labelRes)
+                DropdownMenuItem(text = {
+                    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+                        Text(label, modifier = Modifier.weight(1f))
+                        if (selectedColor == color) Icon(Icons.Filled.Check, contentDescription = null)
+                    }
+                }, onClick = { AppSettings.setHomeWidgetColor(widget, color); expanded = false },
+                    modifier = Modifier.testTag("homeWidgetColor.${widget.id}.$color").semantics { selected = selectedColor == color })
+            }
         }
     }
 }

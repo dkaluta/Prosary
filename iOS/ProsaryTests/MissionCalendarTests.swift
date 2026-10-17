@@ -35,7 +35,12 @@ final class MissionCalendarTests: XCTestCase {
     XCTAssertNil(TodayInfoStore.feast(on: try date("2027-01-01")), "RRULE cannot establish future dates")
     let observance = try XCTUnwrap(feast.observances?.first)
     XCTAssertEqual(observance.saintDescription(language: "iw-IL")?.sections.map(\.id),
-      observance.sections?.map(\.id), "The supplied source sections must replace the matching flattened prose")
+      observance.sections?.filter { $0.id != "reflection" }.map(\.id),
+      "Explanations retain supplied hymns and tradition; reflections have their own Home card")
+    let explanations = feast.saintDescriptions(calendarID: "mission-provisional", language: "he")
+    XCTAssertTrue(explanations.flatMap(\.sections).contains { $0.id == "hymn" })
+    XCTAssertTrue(explanations.flatMap(\.sections).contains { $0.id == "tradition" })
+    XCTAssertFalse(explanations.contains { $0.text.contains("נקודה להרהור:") })
     XCTAssertTrue(try XCTUnwrap(feast.reflections(language: "he").first).sections.isEmpty)
     XCTAssertTrue(try XCTUnwrap(observance.sourceDescriptionByLanguage?["he"]).contains("נקודה לערעור:"))
     XCTAssertTrue(try XCTUnwrap(observance.descriptionByLanguage?["he"]).contains("נקודה להרהור:"))

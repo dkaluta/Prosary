@@ -77,8 +77,15 @@ struct ScripturePassageView: View {
           .padding(.top, 8)
       }
     } label: {
-      Text(reading.localizedFull(interfaceLanguage))
-        .frame(maxWidth: .infinity, alignment: .leading)
+      VStack(alignment: .leading, spacing: 4) {
+        if reading.type == "haftarah" || reading.type == "haftarahSephardic" {
+          Text(UILanguage.text("readings.type.\(reading.type)", language: interfaceLanguage,
+            fallback: reading.type == "haftarah" ? "Haftarah · Ashkenazi" : "Haftarah · Sephardic"))
+            .font(.caption.weight(.semibold)).foregroundStyle(.secondary)
+        }
+        Text(reading.localizedFull(interfaceLanguage))
+      }
+      .frame(maxWidth: .infinity, alignment: .leading)
     }
     .accessibilityIdentifier("readings.passage.\(isTorah ? "torah" : "daily").\(reading.full)")
     .onAppear {

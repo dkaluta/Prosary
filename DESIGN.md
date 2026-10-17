@@ -50,7 +50,7 @@ device preference containing uppercase `#RRGGBB`, or empty to use the preset. It
 control/link accents independently of icons, authored artwork, prayer tags and liturgical colors.
 Native theme adapters preserve the selected hue while adjusting lightness for readable contrast.
 Foreground accents target at least 4.5:1 against their corresponding native content surface.
-Android custom selection turns off wallpaper colors; users may explicitly re-enable them.
+Android preset selection clears a custom accent and turns off wallpaper colors; custom selection also turns off wallpaper colors. Users may explicitly re-enable them.
 Mac controls retain the live system accent and the existing coherent desktop experience.
 
 | Runtime source | Adapter | Consumers |
@@ -70,7 +70,7 @@ labels and source punctuation keep the existing content typography contracts.
 
 ## Layout
 
-Home preserves the existing adaptive one-column card flow and native desktop/tablet navigation.
+Home includes the weekly Torah portion and haftarot as a default card and uses an adaptive one-to-three-column grid with readable 340-point/dp minimum cards and native desktop/tablet navigation.
 Apple retains its 20-point page / 18-point card rhythm; Android retains 16-dp card padding
 and 12-dp card gaps; Windows keeps its existing native resource spacing. Small and large cards
 use the same heading and controls, changing the visible content rather than the navigation.
@@ -101,7 +101,7 @@ owner as sibling import/read flows; no new toast or loading system is introduced
 
 ### Buttons and actions
 
-Expansion is a button separate from the card's open action. Image add/change/remove uses
+Expansion is a button separate from the card's open action. Image add/change/remove on cards other than feast explanations uses
 the existing native photo picker and private image-store recovery path. Changing or resetting
 the accent applies immediately in Appearance. Standard palette choices and custom colors
 remain visibly distinguishable from semantic liturgical status colors.
@@ -143,3 +143,5 @@ belong to the effective authored content's internal metadata, with no user toggl
 - Reuse native shared owners and persist compact/large state independently of card order.
 - Keep icons, custom accent, liturgical colors and authored images as separate choices.
 - Preserve the Mac library/Today workflow instead of adding a phone dashboard for parity.
+
+Home cards each offer Default, Blue, Green, Gold and Rose through native palette menus. Tints composite over opaque native surfaces and retain readable semantic foregrounds in light, dark and high contrast. Available pane width chooses columns; active fold and camera regions constrain the safe content pane. Apple’s existing iCloud preferences sync an atomic card arrangement, size and color snapshot after explicit edits. Photos, dates and responsive columns stay device-local.

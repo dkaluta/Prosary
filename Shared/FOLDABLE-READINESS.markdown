@@ -22,9 +22,15 @@ emulator; debug test hosts use in-memory presets and disposable preferences/cont
 Draft retention covers configuration recreation, including folding and rotation. It does not
 serialize an entire unsaved draft for recovery after the operating system kills the process.
 
-The current change does not introduce a separate tabletop interface or hinge-aware pane layout.
-Those require a distinct design pass using Android WindowManager folding features, including
-dialog placement on devices with an occluding hinge.
+Home observes the current Activity's real folding features with Jetpack WindowManager 1.5.1.
+An active separating fold or fully occluding hinge constrains its toolbar and card grid to the
+largest unobstructed pane; equal panes prefer the lower or physical right side. Window-relative
+feature bounds are converted through Home's measured window origin, without mirroring for RTL.
+One grid and remembered scroll state remain in place while pane geometry changes. The centered
+grid uses up to 1200 dp on ordinary tablets and flat nonseparating folds, with 340-dp minimum cards;
+inside a partial fold's safe pane it uses as many columns as that pane can fit. This is a
+conservative one-safe-pane fallback, not a dual-pane tabletop dashboard. Native dialogs remain
+platform-owned and require posture interaction checks; prayer/session ownership is unchanged.
 
 ## Apple and iPhone Duo
 
@@ -38,17 +44,34 @@ views adapt to reserved regions automatically; custom prayer content needs expli
 The current Apple reader keeps a position relative to the prayer text when columns or wrapping
 change. It does not promise restoration to the exact same character after reflow.
 
-The user identified Xcode 27.1 as the Duo SDK delivery target and confirmed that it is not yet
-available. Duo SDK implementation and simulator verification remain pending. The current
-compatibility changes must build with the installed SDK; do not add guessed future APIs or
-claim Duo verification from iPad/Mac results. Once Xcode 27.1 is available:
+Xcode 27.1 supplies the Duo SDK and simulator. Standard tabs, navigation, sheets and menus
+adapt through the SDK. Prosary keeps this system behavior rather than identifying the device
+or manually placing side bars. Custom prayer controls read `toolbarVerticalEdge`: vertical
+bars receive native grouped actions and high-priority Back/Next buttons, with prayer actions
+preferred over the tab bar when space is tight. Horizontal compact windows retain their
+existing control row and footer.
+
+Custom prayer content uses active reserved regions and native split arrangements. Artwork
+and beads occupy one pane; reading, progress and audio controls occupy the other. Camera
+regions use physical coordinates independently of the interface direction. The same session
+and reading anchor survive layout changes. `ReservedRegionAvoidingContent` is the shared
+camera-avoidance owner for custom content and arrangement panes. Region frames already include
+the system's interactive margins; do not add those margins a second time.
+
+The iOS root uses a native tab view and navigation stacks. The explicit navigation split view
+is Mac-only, so the prayer's arrangement is not nested inside a navigation split view. Each
+arrangement pane owns its bounded scrolling content rather than placing the arrangement inside
+a scroll view. Home uses the same pane-local camera avoidance and measures its card grid from
+the available pane width.
+
+The remaining device matrix includes:
 
 1. Build with the Duo SDK and run both displays, inner portrait/landscape, partial-fold poses,
    Split View and changing camera reserved regions.
-2. Adopt the documented reserved-region/arrangement APIs for custom artwork, beads and reading
-   content where native adaptation is insufficient.
-3. Check the existing compact action row, prayer footer and tab visibility against the native
-   vertical bars. Preserve system overflow and item groupings, with titles and symbols.
+2. Check camera and partial-fold reserved regions for custom artwork, beads and reading
+   content, Home cards and native Scripture readers.
+3. Check action reachability and tab visibility in vertical bars and native overflow, retaining
+   grouped items, localized titles and symbols.
 4. Verify live prayer, narration, scroll position and open editors/sheets during transitions,
    including all mystery groups, long content, large text, Hebrew and Arabic.
 5. Follow simulator verification with physical-device testing before claiming full Duo readiness.
@@ -60,7 +83,20 @@ need a Windows host; Apple or Android success is not evidence that WinUI interac
 The fitting helper measures the content row, including artwork, bead groups and a readable
 text column. The reader retains a text-symbol and line anchor across both layout modes.
 
-## Verification on September 10, 2026
+## Verification on October 17, 2026
+
+| Platform | Verified | Remaining |
+| --- | --- | --- |
+| Apple | 591 XCTest and 2 Swift Testing cases pass in the isolated release tree; Mac builds. The prayer fold audit follows Apple's current iPhone Duo overview and reserved-region API. Geometry coverage includes offset vertical panes, rotated short panes, camera margins and physical placement independent of text direction. Earlier Duo UI checks covered live Rosary progress/navigation, counter prayer actions and an open mystery picker across rotation. | Full open/closed/partial-fold matrix, narration, large text and RTL prayer transitions; physical Duo testing. Rotation and geometry checks do not certify actual fold transitions. |
+| Android | 569 unit tests pass, including eight safe-pane geometry cases. The native interaction test APK assembles, including preset selection over existing custom and wallpaper overrides. Home has source-backed separating/occluding-fold observation and pure safe-pane geometry tests. | Execute native interaction tests on a provisioned emulator; actual partial-fold transitions, safe-pane placement and native dialogs require device verification. |
+| Windows | Actual WinUI API source checks and eight native palette/contrast calculations pass. Existing portable layout/reading helper coverage remains applicable. | Native Windows build, XAML rendering and interaction tests on Windows. |
+
+The installed `simctl` exposes orientation and screen geometry controls but no public fold-pose
+operation. Device Hub posture inspection was unavailable during this audit. Actual partially
+folded operation is therefore unverified; geometry and rotation are recorded separately. No
+simulator device or clone was created for this audit.
+
+## Historical verification on September 10, 2026
 
 | Platform | Verified | Remaining |
 | --- | --- | --- |

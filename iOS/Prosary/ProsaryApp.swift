@@ -11,11 +11,33 @@ struct ProsaryApp: App {
 
   init() {
     let defaults = ProsaryRuntimeEnvironment.defaults
+    if ProsaryRuntimeEnvironment.isTesting { Self.seedHomeLayoutForTesting(in: defaults) }
     // Font registration is process-scoped and also needed by isolated UI test hosts.
     FontRegistration.registerBundledFontsIfNeeded()
     defaults.register(defaults: [UILanguage.defaultsKey: "", LanguageCatalog.defaultsKey: ""])
     if !ProsaryRuntimeEnvironment.isTesting { CloudSyncedList.startSyncing() }
     if !ProsaryRuntimeEnvironment.isTesting { UNUserNotificationCenter.current().delegate = ReminderActivation.shared }
+  }
+
+  /// Seed the isolated UI host once, then allow real preference edits to beat its fixture.
+  /// Launch arguments otherwise outrank writes to UserDefaults for the entire process.
+  private static func seedHomeLayoutForTesting(in defaults: UserDefaults) {
+    let arguments = CommandLine.arguments
+    let keys = [HomeWidgetOrder.key, HomeWidgetOrder.layoutVersionKey,
+      HomeWidgetDisplay.collapsedKey, HomeWidgetDisplay.colorsKey]
+    var argumentDomain = defaults.volatileDomain(forName: UserDefaults.argumentDomain)
+    var seededValues: [String: String] = [:]
+    for key in keys {
+      guard let index = arguments.firstIndex(of: "-" + key), arguments.indices.contains(index + 1) else { continue }
+      seededValues[key] = arguments[index + 1]
+      argumentDomain.removeValue(forKey: key)
+    }
+    if seededValues[HomeWidgetOrder.key] != nil {
+      defaults.removeObject(forKey: HomeLayoutCloud.key)
+      argumentDomain.removeValue(forKey: HomeLayoutCloud.key)
+    }
+    defaults.setVolatileDomain(argumentDomain, forName: UserDefaults.argumentDomain)
+    for (key, value) in seededValues { defaults.set(value, forKey: key) }
   }
 
   var body: some Scene {
@@ -80,6 +102,7 @@ struct ProsaryApp: App {
     #else
     WindowGroup {
       ContentView()
+        .defaultAppStorage(ProsaryRuntimeEnvironment.defaults)
         .modifier(WidgetSnapshotLifecycle())
         .modifier(ReminderLifecycle())
         .modifier(PrayerStoreStartupGuard())

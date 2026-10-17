@@ -67,6 +67,12 @@ def build_days(start: dt.date, end: dt.date, payloads: dict) -> dict:
     readings = reading_tools()
     books_he = json.loads(readings.HEBREW_BOOKS_FILE.read_text())["books"]
     books_localized = json.loads(readings.LOCALIZED_BOOKS_FILE.read_text())["books"]
+    def haftarah_citations(text: str) -> list[dict]:
+        # Hebcal uses Roman-numbered biblical books; the shared citation parser uses
+        # Arabic numbering. This changes only the book identifier, never a reference.
+        text = re.sub(r"\b(II|I) (?=(?:Samuel|Kings|Chronicles)\b)",
+                      lambda match: {"I": "1", "II": "2"}[match[1]] + " ", text)
+        return readings.generic_citations(text)
     by_language = {
         language: {item["date"]: item for item in payload["items"]
                    if dt.date.fromisoformat(item["date"]).weekday() == 5
@@ -96,8 +102,17 @@ def build_days(start: dt.date, end: dt.date, payloads: dict) -> dict:
         }
         if not row["readings"]:
             raise ValueError(f"No Torah citation for {date}: {item['title']}")
-        missing_he = readings.localize_hebrew_readings({date: row}, books_he)
-        missing_localized = readings.localize_reading_names({date: row}, books_localized)
+        row["haftarah"] = haftarah_citations(item["leyning"].get("haftarah", ""))
+        row["haftarahSephardic"] = haftarah_citations(item["leyning"].get("haftarah_sephardic", ""))
+        for citation in row["haftarah"]:
+            citation["type"] = "haftarah"
+        for citation in row["haftarahSephardic"]:
+            citation["type"] = "haftarahSephardic"
+        if not row["haftarah"]:
+            raise ValueError(f"No haftarah citation for {date}: {item['title']}")
+        all_citations = {date: {"readings": row["readings"] + row["haftarah"] + row["haftarahSephardic"]}}
+        missing_he = readings.localize_hebrew_readings(all_citations, books_he)
+        missing_localized = readings.localize_reading_names(all_citations, books_localized)
         if missing_he or missing_localized:
             raise ValueError(f"Missing book names on {date}: {missing_he | missing_localized}; {row['readings']}")
         sabbaths[date] = row
@@ -147,7 +162,8 @@ def main():
             for date, row in days.items():
                 assert row["saturday"] == upcoming_saturday(dt.date.fromisoformat(date)).isoformat()
                 assert row["readings"] and row["titleByLanguage"]["he"]
-                for citation in row["readings"]:
+                assert row["haftarah"]
+                for citation in row["readings"] + row["haftarah"] + row.get("haftarahSephardic", []):
                     assert set(citation["fullByLanguage"]) >= {"he", "ar", "ru", "tl", "fr", "it", "uk"}
             assert days["2026-09-06"]["isHoliday"]  # Rosh Hashanah, not Haazinu a week later.
             assert "Rosh Hashana" in days["2026-09-06"]["title"]
@@ -158,6 +174,9 @@ def main():
                 for language in ("en", "ar", "ru", "tl", "fr", "it", "uk"):
                     assert titles[language].endswith(f" AM {year}")
             assert days["2026-05-23"]["title"] == "Parashat Nasso"  # Israel; diaspora is Shavuot II.
+            assert days["2026-01-03"]["haftarah"][0]["full"] == "1 Kings 2:1–12"
+            assert days["2026-01-10"]["haftarah"][0]["full"] == "Isaiah 27:6–28:13, 29:22–23"
+            assert days["2026-01-10"]["haftarahSephardic"][0]["full"] == "Jeremiah 1:1–2:3"
         print("Torah portion checks passed")
         return
     start, end = dt.date(min(args.years), 1, 1), dt.date(max(args.years), 12, 31)
@@ -176,7 +195,17 @@ def main():
         payloads[language] = json.loads(path.read_text(encoding="utf-8"))
         sources[language] = url
     payload = {
-        "$comment": "Eretz Israel only. Hebcal.com, CC BY 4.0. Names and citations adapted for Prosary; no Scripture text. Each civil day maps to the next Saturday inclusive, including festival replacements. Refresh with Shared/tools/fetch-torah-portions.py --sync.",
+        "$comment": (
+            "Eretz Israel only. Hebcal.com, CC BY 4.0. Names and citations adapted for Prosary; no Scripture text. "
+            "Each civil day maps to the next Saturday inclusive, including festival replacements. "
+            "Haftarah follows Hebcal's Ashkenazi appointment, with its distinct Sephardic alternative when supplied. "
+            "Refresh with Shared/tools/fetch-torah-portions.py --sync. "
+            "Hebrew citation book names are relayed from Evangelizo.org — Daily Gospel (© Evangelizo.org), "
+            "publication edition HE, with Judith/Tobit names from the St James Vicariate (catholic.co.il); "
+            "each calendar's appointed passages are retained. Arabic, Russian, Filipino, French, Italian and "
+            "Ukrainian book metadata sources are recorded in Shared/tools/reading-books-localized.json; "
+            "source chapter and verse numbering is preserved. Compact citations use the user-supplied Hebrew "
+            "abbreviations recorded in Shared/tools/hebrew-reading-books.json."),
         "generated": dt.date.today().isoformat(), "startDate": start.isoformat(), "endDate": end.isoformat(),
         "region": "IL", "source": "https://www.hebcal.com", "license": "https://creativecommons.org/licenses/by/4.0/",
         "sources": sources, "days": build_days(start, end, payloads),

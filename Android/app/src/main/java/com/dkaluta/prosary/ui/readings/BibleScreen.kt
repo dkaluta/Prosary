@@ -81,7 +81,6 @@ private data class BibleChapterState(val loaded: Boolean = false, val chapter: B
 @Composable
 internal fun BibleScreen(
     library: BibleLibrary = BibleLibrary.get(LocalContext.current),
-    date: java.time.LocalDate = java.time.LocalDate.now(),
     openCatalog: (() -> InputStream)? = null,
 ) {
     val context = LocalContext.current
@@ -109,9 +108,6 @@ internal fun BibleScreen(
     var removeEdition by remember { mutableStateOf<BibleEdition?>(null) }
 
     Column(Modifier.fillMaxSize().testTag("bibleScreen")) {
-        Box(Modifier.fillMaxWidth().heightIn(max = 300.dp).verticalScroll(rememberScrollState()).padding(horizontal = 16.dp)) {
-            ScriptureOfDayCard(date, language)
-        }
         Box(Modifier.padding(horizontal = 16.dp)) {
             TextButton(onClick = { showEditions = true }, modifier = Modifier.testTag("bibleEdition")) {
                 Text("${stringResource(R.string.readings_edition)}: ${edition?.name ?: stringResource(R.string.readings_choose_edition)}")

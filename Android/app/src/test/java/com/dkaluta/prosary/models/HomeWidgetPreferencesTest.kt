@@ -17,7 +17,7 @@ class HomeWidgetPreferencesTest {
     }
 
     @Test fun unknownAndRepeatedIdsCannotCreateDuplicateCardsAndAddingAppends() {
-        val storage = Preferences(mutableMapOf("homeWidgetOrder" to "unknown\nphoto\nphoto\nreadings\ncalendar\nother"))
+        val storage = Preferences(mutableMapOf("homeWidgetOrder" to "unknown\nphoto\nphoto\nreadings\ncalendar\nother", "homeWidgetLayoutVersion" to "1"))
         val settings = HomeWidgetPreferences().apply { initialize(storage.instance) }
         val observed = derivedStateOf { settings.widgets.map { it.id } }
         assertEquals(listOf("photo", "readings", "calendar"), observed.value)
@@ -32,6 +32,18 @@ class HomeWidgetPreferencesTest {
         assertEquals(settings.widgets, reopened.widgets)
         reopened.updateWidgets(reopened.widgets - HomeWidget.Readings)
         assertEquals("photo\nreflection\ncalendar", storage.values["homeWidgetOrder"])
+    }
+
+    @Test fun dailyCardsMigrateOnceAndLaterRemovalStaysRemoved() {
+        val storage = Preferences(mutableMapOf("homeWidgetOrder" to "photo\nreadings\nfeast"))
+        val settings = HomeWidgetPreferences().apply { initialize(storage.instance) }
+        assertEquals(listOf(HomeWidget.Photo, HomeWidget.Readings, HomeWidget.Torah, HomeWidget.Feast, HomeWidget.Reflection), settings.widgets)
+        assertEquals("1", storage.values["homeWidgetLayoutVersion"])
+        settings.updateWidgets(settings.widgets - HomeWidget.Torah - HomeWidget.Reflection)
+        assertEquals(listOf(HomeWidget.Photo, HomeWidget.Readings, HomeWidget.Feast),
+            HomeWidgetPreferences().apply { initialize(storage.instance) }.widgets)
+        assertTrue(HomeWidget.addingDailyCards(emptyList()).isEmpty())
+        assertEquals(HomeWidget.defaults, HomeWidget.addingDailyCards(HomeWidget.defaults))
     }
 
     @Test fun deviceLocalPhotoCanBeReplacedAndRemovedWithoutChangingPrayerSettings() {
@@ -71,6 +83,23 @@ class HomeWidgetPreferencesTest {
         assertEquals(mapOf("calendar" to "local"), settings.graphicPaths)
         storage.values["homeWidgetGraphicPaths"] = "corrupted JSON"
         assertTrue(HomeWidgetPreferences().apply { initialize(storage.instance) }.graphicPaths.isEmpty())
+    }
+
+    @Test fun cardColorsPersistIndependentlyAndDefaultResetDoesNotChangeOtherCards() {
+        val storage = Preferences(mutableMapOf("homeWidgetColors" to
+            "{\"readings\":\"blue\",\"feast\":\"rose\",\"photo\":\"default\",\"torah\":\"purple\",\"unknown\":\"green\"}"))
+        val settings = HomeWidgetPreferences().apply { initialize(storage.instance) }
+        assertEquals(mapOf("readings" to "blue", "feast" to "rose"), settings.colors)
+        val originalOrder = settings.widgets
+        settings.setColor(HomeWidget.Readings, "gold")
+        settings.setColor(HomeWidget.Feast, "default")
+        val reopened = HomeWidgetPreferences().apply { initialize(storage.instance) }
+        assertEquals(mapOf("readings" to "gold"), reopened.colors)
+        assertEquals(originalOrder, reopened.widgets)
+        reopened.setColor(HomeWidget.Readings, "unknown")
+        assertEquals("{}", storage.values["homeWidgetColors"])
+        assertTrue(HomeWidgetPreferences.parseColors("bad json").isEmpty())
+        assertTrue(HomeWidgetPreferences.parseColors("null").isEmpty())
     }
 
     private class Preferences(val values: MutableMap<String, String> = mutableMapOf()) {
